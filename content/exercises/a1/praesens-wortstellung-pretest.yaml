@@ -1,0 +1,43 @@
+topic: praesens-wortstellung
+items:
+  - id: pre-endung
+    type: mc
+    prompt: "Er ___ in München."
+    options: ["wohne", "wohnst", "wohnt"]
+    correct: 2
+    translation:
+      en: He lives in Munich.
+      ru: Он живёт в Мюнхене.
+    explain:
+      en: "The verb ending follows the person: ich wohne, du wohnst, er/sie/es wohnt. With „er“ the stem takes the ending -t."
+      ru: "Окончание глагола зависит от лица: ich wohne, du wohnst, er/sie/es wohnt. При „er“ к основе добавляется окончание -t."
+
+  - id: pre-verb-zweit
+    type: mc
+    prompt: "Was ist richtig?"
+    options:
+      - "Morgen ich kaufe Brot."
+      - "Morgen kaufe ich Brot."
+      - "Ich morgen kaufe Brot."
+    correct: 1
+    translation:
+      en: Tomorrow I am buying bread.
+      ru: Завтра я куплю хлеб.
+    explain:
+      en: "In a German statement the conjugated verb is always in position 2. When a time word like „morgen“ comes first, the subject moves to right after the verb: Morgen kaufe ich Brot."
+      ru: "В немецком повествовательном предложении спрягаемый глагол всегда стоит на втором месте. Если первым идёт слово времени, например „morgen“, подлежащее переходит на место сразу после глагола: Morgen kaufe ich Brot."
+
+  - id: pre-sein
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich müde."
+      - "Ich bin müde."
+      - "Ich habe müde."
+    correct: 1
+    translation:
+      en: I am tired.
+      ru: Я устал.
+    explain:
+      en: "Russian drops „to be“ in the present tense (я устал), German never does: sein must be spelled out — Ich bin müde. And müde is an adjective, so haben is impossible here — you are tired, you don't „have“ tired."
+      ru: "В русском связка «быть» в настоящем времени опускается (я устал), в немецком — никогда: sein обязателен — Ich bin müde. А müde — прилагательное, поэтому вариант с haben невозможен: усталым «являются», а не «имеют»."

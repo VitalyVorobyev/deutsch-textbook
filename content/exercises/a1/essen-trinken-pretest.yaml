@@ -1,0 +1,37 @@
+topic: essen-trinken
+items:
+  - id: pre-hunger-haben
+    type: mc
+    prompt: "Ich ___ Hunger. Was gibt es zum Mittagessen?"
+    options: ["bin", "habe", "mache"]
+    correct: 1
+    translation:
+      en: I'm hungry. What's for lunch?
+      ru: Я голоден. Что на обед?
+    explain:
+      en: 'German expresses hunger and thirst with haben + noun: Ich habe Hunger, ich habe Durst. "Ich bin Hunger" is impossible — and even the adjective version "Ich bin hungrig" sounds bookish. In everyday German you "have" hunger.'
+      ru: 'Голод и жажду немецкий выражает через haben + существительное: Ich habe Hunger, ich habe Durst. Сказать "Ich bin Hunger" нельзя, и даже вариант с прилагательным "Ich bin hungrig" звучит книжно — по-немецки голод «имеют».'
+
+  - id: pre-schmecken-dativ
+    type: mc
+    prompt: "Die Suppe schmeckt ___ sehr gut."
+    options: ["mich", "mir", "ich"]
+    correct: 1
+    translation:
+      en: The soup tastes very good to me.
+      ru: Суп мне очень нравится.
+    explain:
+      en: 'With "schmecken" the food is the subject, and the person enjoying it is in the dative (der Dativ): mir, dir, ihm. Russian points the same way — «суп нравится (кому?) мне», so the accusative "mich" is wrong.'
+      ru: '"schmecken" требует дательного падежа (der Dativ): еда — подлежащее, а тот, кто ест, стоит в дательном — mir, dir, ihm. Русский здесь подсказывает правильно: суп нравится (кому?) мне, поэтому винительный "mich" — ошибка.'
+
+  - id: pre-obst-singular
+    type: mc
+    prompt: "___ Obst ist frisch."
+    options: ["Das", "Die", "Der"]
+    correct: 0
+    translation:
+      en: The fruit is fresh.
+      ru: Фрукты свежие.
+    explain:
+      en: '"Obst" and "Gemüse" are neuter collective nouns and always singular: das Obst ist frisch, das Gemüse ist gesund. Even though English and Russian often use plurals here, German keeps das + a singular verb.'
+      ru: '"Obst" и "Gemüse" — собирательные существительные среднего рода, и они всегда в единственном числе: das Obst ist frisch, das Gemüse ist gesund. По-русски мы говорим «фрукты, овощи» во множественном числе, а по-немецки — das + глагол в единственном.'

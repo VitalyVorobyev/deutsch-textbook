@@ -15,7 +15,22 @@ const nodes = await getTopicNodes();
     <span class="lang-ru">Ваш атлас немецкого — продолжайте с того места, где остановились.</span>
   </p>
 
-  <div class="mt-8 grid gap-4 sm:grid-cols-2">
+  <a
+    href="/session"
+    class="mt-8 block rounded-lg bg-amber-600 p-6 text-white shadow-sm hover:bg-amber-700"
+  >
+    <p class="text-xl font-bold">Session starten →</p>
+    <p class="mt-1 text-sm text-amber-100">
+      <span class="lang-en">
+        Your daily session: review, mixed training, next topic — about 15 minutes.
+      </span>
+      <span class="lang-ru">
+        Ваша ежедневная сессия: повторение, смешанная тренировка, следующая тема — около 15 минут.
+      </span>
+    </p>
+  </a>
+
+  <div class="mt-4 grid gap-4 sm:grid-cols-2">
     <a
       href="/review"
       class="rounded-lg border border-stone-200 bg-white p-6 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"

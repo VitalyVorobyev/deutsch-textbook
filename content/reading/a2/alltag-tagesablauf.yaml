@@ -1,0 +1,65 @@
+topic: alltag-tagesablauf
+title_de: "Der Alltag von Frau Sommer"
+text:
+  - >-
+    Frau Sommer arbeitet in einer [[Bäckerei::bakery::пекарня, булочная]].
+    Ihr Wecker klingelt um vier Uhr, denn die Arbeit beginnt um fünf. Sie
+    steht auf, duscht und zieht sich an. Zu Hause frühstückt sie nicht — am
+    Morgen hat sie keine Zeit.
+  - >-
+    Um halb fünf fährt sie mit dem Fahrrad zur Arbeit. Dort
+    [[backt::bakes::печёт]] sie Brot und
+    [[Brötchen::bread rolls::булочки]]. Um neun Uhr macht sie eine Pause und
+    frühstückt [[endlich::finally, at last::наконец-то]]: ein frisches
+    Brötchen mit Käse. Um zwei Uhr hat sie
+    [[Feierabend::end of the working day::конец рабочего дня]].
+  - >-
+    Am Nachmittag kauft sie im Supermarkt ein und räumt die Wohnung auf.
+    Danach schläft sie [[meistens::usually, mostly::обычно, чаще всего]]
+    eine Stunde. Am Abend isst sie mit ihrem Mann und sieht ein bisschen
+    fern. Um neun Uhr geht sie ins Bett und schläft sofort ein. Der Tag ist
+    lang, aber sie mag ihre Arbeit — und den
+    [[Duft::scent, (nice) smell::аромат, запах]] von frischem Brot.
+questions:
+  - id: frage-fruehstueck
+    type: mc
+    prompt: "Warum frühstückt Frau Sommer nicht zu Hause?"
+    options:
+      - "Sie hat am Morgen keine Zeit."
+      - "Sie frühstückt nie."
+      - "Sie frühstückt lieber im Supermarkt."
+    correct: 0
+    translation:
+      en: Why doesn't Frau Sommer have breakfast at home?
+      ru: Почему фрау Зоммер не завтракает дома?
+    explain:
+      en: "„Zu Hause frühstückt sie nicht — am Morgen hat sie keine Zeit.“ She does have breakfast, just later: at nine o'clock, during her break at the bakery — a fresh roll with cheese."
+      ru: "„Zu Hause frühstückt sie nicht — am Morgen hat sie keine Zeit.“ Завтрак у неё всё-таки есть, просто позже: в девять часов, во время перерыва в пекарне — свежая булочка с сыром."
+  - id: frage-nachmittag
+    type: mc
+    prompt: "Was macht Frau Sommer am Nachmittag?"
+    options:
+      - "Sie backt Brot und Brötchen."
+      - "Sie kauft ein und räumt die Wohnung auf."
+      - "Sie sieht mit ihrem Mann fern."
+    correct: 1
+    translation:
+      en: What does Frau Sommer do in the afternoon?
+      ru: Что фрау Зоммер делает во второй половине дня?
+    explain:
+      en: "„Am Nachmittag kauft sie im Supermarkt ein und räumt die Wohnung auf.“ Baking is her morning work at the bakery, and she watches TV in the evening."
+      ru: "„Am Nachmittag kauft sie im Supermarkt ein und räumt die Wohnung auf.“ Печёт она утром на работе, а телевизор смотрит вечером."
+  - id: frage-feierabend
+    type: mc
+    prompt: "Wann hat Frau Sommer Feierabend?"
+    options:
+      - "Um neun Uhr."
+      - "Um zwei Uhr."
+      - "Um fünf Uhr."
+    correct: 1
+    translation:
+      en: When does Frau Sommer finish work?
+      ru: Когда у фрау Зоммер заканчивается рабочий день?
+    explain:
+      en: "„Um zwei Uhr hat sie Feierabend.“ Her work starts at five in the morning, so her day ends early. At nine she has her break (and in the evening she goes to bed), and at five the work only begins."
+      ru: "„Um zwei Uhr hat sie Feierabend.“ Работа начинается в пять утра, поэтому день заканчивается рано. В девять у неё перерыв (а вечером в девять она ложится спать), в пять же работа только начинается."

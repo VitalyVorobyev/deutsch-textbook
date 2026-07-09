@@ -1,0 +1,65 @@
+topic: perfekt-haben-sein
+title_de: "Ein Sonntag am See"
+text:
+  - >-
+    Am Sonntag sind Anna und Tim an den Ammersee gefahren. Sie sind schon um
+    sieben Uhr aufgestanden, denn der Zug ist um acht Uhr
+    [[abgefahren::departed::отправился]]. Am Bahnhof hat Tim zwei
+    [[Fahrkarten::train tickets::билеты на поезд]] gekauft, und Anna hat zwei
+    Kaffee [[geholt::got, fetched::сходила за (кофе), принесла]].
+  - >-
+    Um neun Uhr sind sie am See [[angekommen::arrived::прибыли, приехали]].
+    Zuerst haben sie einen langen [[Spaziergang::walk, stroll::прогулка]]
+    gemacht. Die Sonne hat [[geschienen::shone::светило (солнце)]], und das
+    Wasser war ganz blau. Am Mittag haben sie in einem kleinen Restaurant
+    Fisch gegessen und Apfelsaft getrunken.
+  - >-
+    Am Nachmittag ist [[etwas Lustiges::something funny::кое-что смешное]]
+    passiert: Ein großer Hund ist ins Wasser
+    [[gesprungen::jumped::прыгнул]] und hat Tims Ball geholt. Alle haben
+    gelacht, und Anna hat viele Fotos gemacht. Um sechs Uhr sind sie müde
+    nach Hause gefahren. Anna ist im Zug sofort eingeschlafen — Tim hat noch
+    ein Buch gelesen. Es war ein schöner Tag.
+questions:
+  - id: frage-frueh-aufgestanden
+    type: mc
+    prompt: "Warum sind Anna und Tim schon um sieben Uhr aufgestanden?"
+    options:
+      - "Der Zug ist um acht Uhr abgefahren."
+      - "Sie haben im Restaurant gefrühstückt."
+      - "Das Wetter war schlecht."
+    correct: 0
+    translation:
+      en: Why did Anna and Tim get up as early as seven o'clock?
+      ru: Почему Анна и Тим встали уже в семь часов?
+    explain:
+      en: "The text says: „Sie sind schon um sieben Uhr aufgestanden, denn der Zug ist um acht Uhr abgefahren.“ The restaurant comes only at lunchtime, and the weather was fine — the sun was shining."
+      ru: "В тексте сказано: „Sie sind schon um sieben Uhr aufgestanden, denn der Zug ist um acht Uhr abgefahren.“ Ресторан появляется только в обед, а погода была отличная — светило солнце."
+  - id: frage-mittag
+    type: mc
+    prompt: "Was haben Anna und Tim am Mittag gemacht?"
+    options:
+      - "Sie haben einen langen Spaziergang gemacht."
+      - "Sie haben Fisch gegessen und Apfelsaft getrunken."
+      - "Sie sind nach Hause gefahren."
+    correct: 1
+    translation:
+      en: What did Anna and Tim do at lunchtime?
+      ru: Что Анна и Тим делали в обед?
+    explain:
+      en: "„Am Mittag haben sie in einem kleinen Restaurant Fisch gegessen und Apfelsaft getrunken.“ The long walk came first, right after they arrived, and they went home only at six o'clock."
+      ru: "„Am Mittag haben sie in einem kleinen Restaurant Fisch gegessen und Apfelsaft getrunken.“ Долгая прогулка была раньше, сразу после приезда, а домой они поехали только в шесть часов."
+  - id: frage-nachmittag
+    type: mc
+    prompt: "Was ist am Nachmittag passiert?"
+    options:
+      - "Anna ist ins Wasser gesprungen."
+      - "Tim hat ein Buch gekauft."
+      - "Ein Hund ist ins Wasser gesprungen und hat Tims Ball geholt."
+    correct: 2
+    translation:
+      en: What happened in the afternoon?
+      ru: Что случилось во второй половине дня?
+    explain:
+      en: "„Ein großer Hund ist ins Wasser gesprungen und hat Tims Ball geholt.“ It was the dog, not Anna — and Tim did not buy a book, he read one on the train home."
+      ru: "„Ein großer Hund ist ins Wasser gesprungen und hat Tims Ball geholt.“ В воду прыгнул пёс, а не Анна, а книгу Тим не покупал — он читал её в поезде по дороге домой."

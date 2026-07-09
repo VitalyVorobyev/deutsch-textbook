@@ -16,6 +16,7 @@ site that renders it.
 - `content/topics/<level>/<id>.mdx` — atlas nodes (articles). Level dir must match frontmatter `level`.
 - `content/vocab/<id>.yaml` — vocabulary files; every entry becomes two flashcards (DE→EN/RU and EN/RU→DE).
 - `content/exercises/<level>/<set-id>.yaml` — exercise sets, embedded automatically on the owning topic's page.
+- `content/reading/<level>/<id>.yaml` — graded reading texts (comprehensible input): glossed paragraphs + 2–4 `mc` comprehension questions; rendered as the topic's "Lesetext" section (`src/components/reading/ReadingText.tsx`). Attempts log under `reading:<path-id>`.
 - `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `npm run validate` enforces it.
 - `progress/*.json` — learner progress snapshots exported from the browser. Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
@@ -51,6 +52,8 @@ Section order (H2 headings, in German):
 - Cloze gaps: `{{answer}}` or `{{answer|alternative}}` inline in `text`.
 - `translate` items: `prompt_en` + `prompt_ru` (same sentence, written independently), `answer` (canonical German), optional `accept` list for legitimate variants (e.g. fronted time phrase vs subject-first — both valid V2). Matching is case-sensitive and whitespace-normalized with trailing `.!?` optional, so `accept` is for real word-order/wording variants, not typo tolerance.
 - `mc` has exactly one correct answer (`correct` = index into `options`).
+- Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — exactly three non-empty `::`-separated fields; every reading should gloss 6–10 phrases.
+- Pretests: a 3-item exercise set at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`. Rendered above the article as the "Was weißt du schon?" callout (guessing before reading boosts retention, even when wrong).
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
 - Vocab: nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat").
 - **Card identity**: flashcard history is keyed by `<vocab-file-id>::<de>::<direction>`. Renaming a headword or the vocab file id resets the learner's SRS history for it — avoid unless the entry was wrong.
@@ -60,9 +63,11 @@ Section order (H2 headings, in German):
 New topic:
 1. `content/topics/<level>/<id>.mdx` with full frontmatter + article following the skeleton.
 2. Exercise set(s) in `content/exercises/<level>/<id>.yaml` — 8–15 items, ≥3 different types, each with `explain`.
-3. Vocab file if the topic introduces a word field (20–40 entries).
-4. Add the node to `content/atlas.yaml`.
-5. `npm run validate` must pass.
+3. Pretest in `content/exercises/<level>/<id>-pretest.yaml` — 3 `mc` items probing the topic's core rules, referenced via `pretest`.
+4. Reading text in `content/reading/<level>/<id>.yaml` — ~90–130 words at the topic's level, 6–10 glosses, 3 comprehension questions; referenced via `reading`.
+5. Vocab file if the topic introduces a word field (20–40 entries).
+6. Add the node to `content/atlas.yaml`.
+7. `npm run validate` must pass.
 
 Drills from progress (the personalization loop):
 1. Read the newest `progress/*.json`; find items with `correct: false` and cards with high `lapses`.

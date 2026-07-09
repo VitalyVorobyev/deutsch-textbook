@@ -1,0 +1,37 @@
+topic: artikel-genus
+items:
+  - id: pre-genus-buch
+    type: mc
+    prompt: "Was ist richtig?"
+    options: ["der Buch", "die Buch", "das Buch"]
+    correct: 2
+    translation:
+      en: the book
+      ru: книга
+    explain:
+      en: "Gender belongs to the German word, not to the thing it names — and it does not transfer from Russian: книга is feminine, but Buch is neuter, so das Buch. That is why you always learn a noun together with its article."
+      ru: "Род — свойство немецкого слова, а не предмета, и из русского он не переносится: «книга» — женского рода, а Buch — среднего, поэтому das Buch. Вот почему существительное всегда учат вместе с артиклем."
+
+  - id: pre-plural-die
+    type: mc
+    prompt: "___ Kinder spielen zu Hause."
+    options: ["Der", "Die", "Das"]
+    correct: 1
+    translation:
+      en: The children are playing at home.
+      ru: Дети играют дома.
+    explain:
+      en: "In the plural the article is always die, whatever the gender of the singular: das Kind → die Kinder, der Mann → die Männer."
+      ru: "Во множественном числе артикль всегда die, независимо от рода в единственном: das Kind → die Kinder, der Mann → die Männer."
+
+  - id: pre-kein
+    type: mc
+    prompt: "Ich habe ___ Katze."
+    options: ["nicht eine", "keine", "kein"]
+    correct: 1
+    translation:
+      en: I don't have a cat.
+      ru: У меня нет кошки.
+    explain:
+      en: "A noun is negated with kein, never with „nicht ein“: Ich habe keine Katze. And die Katze is feminine, so the form is keine, not kein."
+      ru: "Существительное отрицается через kein и никогда через „nicht ein“: Ich habe keine Katze. А die Katze — женского рода, поэтому форма keine, а не kein."

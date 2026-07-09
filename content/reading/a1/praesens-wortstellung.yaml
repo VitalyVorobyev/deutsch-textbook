@@ -1,0 +1,62 @@
+topic: praesens-wortstellung
+title_de: "Ein Tag mit Anna"
+text:
+  - >-
+    Anna wohnt in Berlin. Sie ist [[Lehrerin::teacher::учительница]] und
+    arbeitet in einer Schule. Am Morgen trinkt sie Kaffee und
+    [[isst ein Brötchen::eats a bread roll::ест булочку]]. Dann
+    [[fährt::goes, rides (by bus, car …)::едет (на транспорте)]] sie mit dem
+    Bus [[zur Arbeit::to work::на работу]].
+  - >-
+    Die Schule beginnt um acht Uhr. Anna spricht viel,
+    [[denn::because::потому что]] die Kinder haben viele
+    [[Fragen::questions::вопросы]]. Um ein Uhr macht sie
+    [[Mittagspause::lunch break::обеденный перерыв]].
+  - >-
+    Am Abend kocht Anna nicht. Sie ist [[müde::tired::уставшая]] und
+    [[hat Hunger::is hungry (literally „has hunger“)::хочет есть (дословно
+    «имеет голод»)]]. Heute kocht ihr Freund Tom. Er macht eine Suppe. Dann
+    sehen sie einen Film. Um elf Uhr [[schläft::sleeps::спит]] Anna.
+questions:
+  - id: frage-bus
+    type: mc
+    prompt: "Wie fährt Anna zur Arbeit?"
+    options:
+      - "Mit dem Bus."
+      - "Mit dem Auto."
+      - "Mit dem Zug."
+    correct: 0
+    translation:
+      en: How does Anna get to work?
+      ru: Как Анна добирается до работы?
+    explain:
+      en: "The text says: „Dann fährt sie mit dem Bus zur Arbeit.“ — she takes the bus. A car or a train are not mentioned anywhere."
+      ru: "В тексте сказано: „Dann fährt sie mit dem Bus zur Arbeit.“ — она едет на автобусе. Про машину или поезд в тексте ничего нет."
+  - id: frage-fragen
+    type: mc
+    prompt: "Warum spricht Anna viel?"
+    options:
+      - "Die Kinder haben viele Fragen."
+      - "Sie spricht mit Tom."
+      - "Sie hat viele Freunde."
+    correct: 0
+    translation:
+      en: Why does Anna talk a lot?
+      ru: Почему Анна много говорит?
+    explain:
+      en: "„Anna spricht viel, denn die Kinder haben viele Fragen.“ — she is a teacher, and the children at school ask her a lot. Tom and friends only appear in the evening."
+      ru: "„Anna spricht viel, denn die Kinder haben viele Fragen.“ — она учительница, и дети в школе задают ей много вопросов. Том появляется в тексте только вечером."
+  - id: frage-abend
+    type: mc
+    prompt: "Wer kocht heute am Abend?"
+    options:
+      - "Anna."
+      - "Ihr Freund Tom."
+      - "Die Kinder."
+    correct: 1
+    translation:
+      en: Who is cooking tonight?
+      ru: Кто сегодня вечером готовит?
+    explain:
+      en: "„Am Abend kocht Anna nicht. … Heute kocht ihr Freund Tom.“ — Anna is tired, so Tom makes the soup."
+      ru: "„Am Abend kocht Anna nicht. … Heute kocht ihr Freund Tom.“ — Анна устала, поэтому суп готовит Том."

@@ -1,0 +1,37 @@
+topic: akkusativ
+items:
+  - id: pre-den-tisch
+    type: mc
+    prompt: "Ich kaufe ___ Tisch."
+    options: ["der", "den", "das"]
+    correct: 1
+    translation:
+      en: I am buying the table.
+      ru: Я покупаю стол.
+    explain:
+      en: "The thing you buy is the direct object and stands in the Akkusativ: masculine der → den. Unlike Russian, German changes every masculine noun here, not only animate ones — den Mann and den Tisch alike."
+      ru: "То, что вы покупаете, — прямое дополнение, оно стоит в Akkusativ: мужской род der → den. В отличие от русского, в немецком здесь меняется каждое слово мужского рода, а не только одушевлённые: и den Mann, и den Tisch."
+
+  - id: pre-nur-maskulin
+    type: mc
+    prompt: "Sie liest ___ Buch."
+    options: ["einen", "ein", "eine"]
+    correct: 1
+    translation:
+      en: She is reading a book.
+      ru: Она читает книгу.
+    explain:
+      en: "Only the masculine changes in the Akkusativ. Buch is neuter (das Buch), so the article stays ein — „einen Buch“ is a typical over-correction."
+      ru: "В Akkusativ меняется только мужской род. Buch — среднего рода (das Buch), поэтому артикль остаётся ein; „einen Buch“ — типичная гиперкоррекция."
+
+  - id: pre-es-gibt
+    type: mc
+    prompt: "Es gibt hier ___ Bahnhof."
+    options: ["ein", "einen", "eine"]
+    correct: 1
+    translation:
+      en: There is a train station here.
+      ru: Здесь есть вокзал.
+    explain:
+      en: "After „es gibt“ the noun always stands in the Akkusativ — the grammatical subject is „es“. Der Bahnhof is masculine, so ein → einen, even though English „there is“ and Russian «здесь есть» make it look like a subject."
+      ru: "После „es gibt“ существительное всегда стоит в Akkusativ — грамматическое подлежащее здесь „es“. Der Bahnhof — мужского рода, поэтому ein → einen, хотя английское „there is“ и русское «здесь есть» подсказывают именительный падеж."

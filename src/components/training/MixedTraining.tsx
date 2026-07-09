@@ -32,7 +32,7 @@ const SESSION_SIZE = 15;
 /**
  * Builds an interleaved session from all items across all sets.
  *
- * Priority bands (filled in order until SESSION_SIZE):
+ * Priority bands (filled in order until `count`):
  *   1. items whose most recent attempt was wrong,
  *   2. items never attempted,
  *   3. the rest, least-recently-attempted first.
@@ -40,7 +40,7 @@ const SESSION_SIZE = 15;
  * Afterwards adjacency is repaired so no two consecutive items share a set
  * (best effort — impossible if one set dominates the selection).
  */
-async function buildSession(sets: TrainingSet[]): Promise<SessionItem[]> {
+async function buildSession(sets: TrainingSet[], count: number): Promise<SessionItem[]> {
   const attempts = await getAttempts();
 
   // most recent attempt per item
@@ -76,7 +76,7 @@ async function buildSession(sets: TrainingSet[]): Promise<SessionItem[]> {
     ...shuffle(lastWrong),
     ...shuffle(untried),
     ...seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry),
-  ].slice(0, SESSION_SIZE);
+  ].slice(0, count);
 
   return repairAdjacency(ordered);
 }
@@ -121,7 +121,16 @@ interface Answered {
   correct: boolean;
 }
 
-export default function MixedTraining({ sets }: { sets: TrainingSet[] }) {
+interface MixedTrainingProps {
+  sets: TrainingSet[];
+  /** number of items per session */
+  count?: number;
+  /** when provided, the end screen shows a "Weiter →" button that calls this
+      (instead of the standalone "Nochmal" restart) */
+  onFinished?: () => void;
+}
+
+export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }: MixedTrainingProps) {
   const lang = useExplainLang();
   const [session, setSession] = useState<SessionItem[] | null>(null);
   const [index, setIndex] = useState(0);
@@ -131,13 +140,13 @@ export default function MixedTraining({ sets }: { sets: TrainingSet[] }) {
 
   useEffect(() => {
     let cancelled = false;
-    void buildSession(sets).then((s) => {
+    void buildSession(sets, count).then((s) => {
       if (!cancelled) setSession(s);
     });
     return () => {
       cancelled = true;
     };
-  }, [sets, round]);
+  }, [sets, count, round]);
 
   function handleResult(result: ItemResult) {
     const entry = session?.[index];
@@ -238,13 +247,23 @@ export default function MixedTraining({ sets }: { sets: TrainingSet[] }) {
           ))}
         </ul>
         <div className="mt-5 text-center">
-          <button
-            type="button"
-            onClick={restart}
-            className="rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700"
-          >
-            Nochmal
-          </button>
+          {onFinished ? (
+            <button
+              type="button"
+              onClick={onFinished}
+              className="rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700"
+            >
+              Weiter →
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={restart}
+              className="rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700"
+            >
+              Nochmal
+            </button>
+          )}
         </div>
       </div>
     );

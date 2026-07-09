@@ -6,6 +6,7 @@ import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
 import VocabTable from '../../components/VocabTable.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
+import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
 import { KIND_LABEL } from '../../lib/content';
 import { buildDeck } from '../../lib/srs';
@@ -40,6 +41,18 @@ const vocabFiles = await Promise.all(
     return v.data;
   }),
 );
+
+const readings = await Promise.all(
+  data.reading.map(async (id) => {
+    const r = await getEntry('reading', id);
+    if (!r) throw new Error(`Topic ${data.id}: reading "${id}" not found`);
+    return { id, data: r.data };
+  }),
+);
+
+const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : undefined;
+if (data.pretest && !pretestSet)
+  throw new Error(`Topic ${data.id}: pretest set "${data.pretest}" not found`);
 ---
 
 <Base title={data.title_de}>
@@ -85,9 +98,41 @@ const vocabFiles = await Promise.all(
     }
   </header>
 
+  {
+    data.pretest && pretestSet && (
+      <aside class="mb-10 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/60 p-5 dark:border-amber-700 dark:bg-amber-950/40">
+        <h2 lang="de" class="text-lg font-bold">Was weißt du schon?</h2>
+        <p class="mt-1 mb-4 text-sm text-stone-600 dark:text-stone-400">
+          <span class="lang-en">
+            Try to answer before you read — guessing first, even wrongly, measurably improves what
+            you remember from the article.
+          </span>
+          <span class="lang-ru">
+            Попробуйте ответить до чтения: догадки заранее — даже неверные — заметно улучшают
+            запоминание материала.
+          </span>
+        </p>
+        <ExerciseSetIsland client:only="react" setId={data.pretest} set={pretestSet.data} />
+      </aside>
+    )
+  }
+
   <article class="article-prose">
     <Content components={{ Bilingual, En, Ru }} />
   </article>
+
+  {
+    readings.length > 0 && (
+      <section class="mt-12">
+        <h2 class="mb-4 text-2xl font-bold">Lesetext</h2>
+        <div class="flex flex-col gap-6">
+          {readings.map((r) => (
+            <ReadingTextIsland client:only="react" readingId={r.id} reading={r.data} />
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   {
     vocabFiles.length > 0 && (

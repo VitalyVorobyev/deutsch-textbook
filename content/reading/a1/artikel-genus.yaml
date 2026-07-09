@@ -1,0 +1,60 @@
+topic: artikel-genus
+title_de: "Ninas Zimmer"
+text:
+  - >-
+    Nina wohnt jetzt in Hamburg. Ihr [[Zimmer::room::комната]] ist klein,
+    aber [[hell::bright::светлая]]. Das [[Fenster::window::окно]] ist groß,
+    das Bett ist neu, und der [[Schrank::wardrobe::шкаф]] ist sehr alt.
+  - >-
+    Der Tisch steht am Fenster, und auf dem Tisch steht eine Lampe. Die
+    Lampe ist alt, aber sehr schön: Sie ist ein
+    [[Geschenk::present, gift::подарок]] von Ninas [[Oma::grandma::бабушка]].
+  - >-
+    Nina hat auch viele Bücher. Aber sie hat noch kein
+    [[Regal::bookshelf::книжная полка]], und die Bücher
+    [[liegen auf dem Boden::are lying on the floor::лежат на полу]]. Morgen
+    kauft Nina ein Regal. Das ist kein Problem: Der
+    [[Laden::shop::магазин]] ist nicht [[weit::far::далеко]].
+questions:
+  - id: frage-zimmer
+    type: mc
+    prompt: "Wie ist Ninas Zimmer?"
+    options:
+      - "Klein, aber hell."
+      - "Groß, aber alt."
+      - "Neu und sehr groß."
+    correct: 0
+    translation:
+      en: What is Nina's room like?
+      ru: Какая у Нины комната?
+    explain:
+      en: "„Ihr Zimmer ist klein, aber hell.“ — the room itself is small; only the window is big (Das Fenster ist groß)."
+      ru: "„Ihr Zimmer ist klein, aber hell.“ — сама комната маленькая; большое в ней только окно (Das Fenster ist groß)."
+  - id: frage-geschenk
+    type: mc
+    prompt: "Was ist ein Geschenk von Ninas Oma?"
+    options:
+      - "Das Bett."
+      - "Die Lampe."
+      - "Der Schrank."
+    correct: 1
+    translation:
+      en: Which thing is a present from Nina's grandma?
+      ru: Какой предмет — подарок бабушки Нины?
+    explain:
+      en: "„Die Lampe ist alt, aber sehr schön: Sie ist ein Geschenk von Ninas Oma.“ — the bed is simply new, and the wardrobe is simply old."
+      ru: "„Die Lampe ist alt, aber sehr schön: Sie ist ein Geschenk von Ninas Oma.“ — кровать просто новая, а шкаф просто старый."
+  - id: frage-boden
+    type: mc
+    prompt: "Warum liegen die Bücher auf dem Boden?"
+    options:
+      - "Nina hat noch kein Regal."
+      - "Das Regal ist zu klein."
+      - "Die Bücher sind ein Geschenk von Oma."
+    correct: 0
+    translation:
+      en: Why are the books lying on the floor?
+      ru: Почему книги лежат на полу?
+    explain:
+      en: "„Aber sie hat noch kein Regal, und die Bücher liegen auf dem Boden.“ — there is no shelf at all yet; Nina buys one tomorrow."
+      ru: "„Aber sie hat noch kein Regal, und die Bücher liegen auf dem Boden.“ — полки пока вообще нет; Нина купит её завтра."

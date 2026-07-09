@@ -1,6 +1,6 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { topicSchema, vocabFileSchema, exerciseSetSchema } from './lib/schemas';
+import { topicSchema, vocabFileSchema, exerciseSetSchema, readingSchema } from './lib/schemas';
 
 const topics = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './content/topics' }),
@@ -17,4 +17,9 @@ const exercises = defineCollection({
   schema: exerciseSetSchema,
 });
 
-export const collections = { topics, vocab, exercises };
+const reading = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './content/reading' }),
+  schema: readingSchema,
+});
+
+export const collections = { topics, vocab, exercises, reading };

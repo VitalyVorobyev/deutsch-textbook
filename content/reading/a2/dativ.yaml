@@ -1,0 +1,61 @@
+topic: dativ
+title_de: "Ein Umzug mit Freunden"
+text:
+  - >-
+    Jonas hat eine neue Wohnung. Heute ist [[der Umzug::the move (to a new
+    flat)::переезд]], und seine Freunde helfen ihm. Paul kommt mit dem Auto,
+    Lena kommt mit dem Fahrrad. Sie bringt Kaffee und Brötchen für alle.
+  - >-
+    Die Arbeit ist [[schwer::hard, heavy::тяжёлая]]. In den
+    [[Kisten::boxes::коробках]] sind Bücher, Teller und Gläser. Die Bücher
+    gehören seiner Schwester. Paul [[trägt::carries::несёт]] den Tisch, und
+    Jonas hilft ihm. Nach zwei Stunden sind alle müde.
+  - >-
+    Am Abend bestellt Jonas Pizza. Sie schmeckt seinen Freunden sehr gut.
+    „Die Wohnung gefällt mir“, sagt Lena. „Sie ist [[hell::bright::светлая]]
+    und [[ruhig::quiet::тихая]].“ Jonas dankt seinen Freunden: „Vielen Dank!
+    [[Ohne euch geht es nicht::it doesn't work without you::без вас никак]].“
+    Dann fährt Paul mit dem Auto nach Hause.
+questions:
+  - id: frage-fahrrad
+    type: mc
+    prompt: "Wie kommt Lena zu Jonas?"
+    options:
+      - "Mit dem Auto."
+      - "Mit dem Fahrrad."
+      - "Mit dem Bus."
+    correct: 1
+    translation:
+      en: How does Lena get to Jonas's place?
+      ru: Как Лена добирается до Йонаса?
+    explain:
+      en: "The text says: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ The car is how Paul gets there, and a bus never appears in the story."
+      ru: "В тексте сказано: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ На машине приезжает Пауль, а автобус в тексте вообще не упоминается."
+  - id: frage-buecher
+    type: mc
+    prompt: "Wem gehören die Bücher?"
+    options:
+      - "Jonas."
+      - "Seiner Schwester."
+      - "Paul."
+    correct: 1
+    translation:
+      en: Who do the books belong to?
+      ru: Кому принадлежат книги?
+    explain:
+      en: "„Die Bücher gehören seiner Schwester“ — they belong to Jonas's sister. The verb „gehören“ names the owner, and the owner stands in the dative: seiner Schwester."
+      ru: "„Die Bücher gehören seiner Schwester“ — книги принадлежат сестре Йонаса. Глагол „gehören“ называет владельца, и владелец стоит в дательном падеже: seiner Schwester."
+  - id: frage-abend
+    type: mc
+    prompt: "Was machen die Freunde am Abend?"
+    options:
+      - "Sie essen Pizza."
+      - "Sie kaufen einen Tisch."
+      - "Sie fahren alle nach Hause."
+    correct: 0
+    translation:
+      en: What do the friends do in the evening?
+      ru: Что друзья делают вечером?
+    explain:
+      en: "„Am Abend bestellt Jonas Pizza. Sie schmeckt seinen Freunden sehr gut.“ — in the evening they eat pizza together. Only Paul drives home afterwards, and nobody buys a table."
+      ru: "„Am Abend bestellt Jonas Pizza. Sie schmeckt seinen Freunden sehr gut.“ — вечером все вместе едят пиццу. Домой потом уезжает только Пауль, а стол никто не покупает."

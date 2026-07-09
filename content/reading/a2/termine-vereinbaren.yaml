@@ -1,0 +1,69 @@
+topic: termine-vereinbaren
+title_de: "Herr Orlow verschiebt seinen Termin"
+text:
+  - >-
+    Herr Orlow hat am Donnerstag um 9 Uhr einen Termin bei Dr. Weber. Aber
+    jetzt gibt es ein Problem: Die [[Heizung::heating::отопление]] in seiner
+    Wohnung [[ist kaputt::is broken::не работает, сломалось]], und der
+    Techniker kommt genau am Donnerstagvormittag. Herr Orlow muss den Termin
+    [[verschieben::to move to another time::перенести на другое время]].
+  - >-
+    Deshalb ruft er am Mittwoch in der
+    [[Arztpraxis::doctor's practice::приёмная врача]] an. „Guten Tag, mein
+    Name ist Orlow. Ich habe morgen um 9 Uhr einen Termin, aber ich kann
+    leider nicht kommen. Können wir den Termin verschieben?“
+  - >-
+    Die [[Mitarbeiterin::employee (here: the receptionist)::сотрудница (здесь:
+    регистратор)]] schaut in den Kalender. „Kein Problem, Herr Orlow. Ist es
+    [[dringend::urgent::срочно]]?“ — „Nein, gar nicht.“ — „Gut. Passt es Ihnen
+    am Dienstag um 14 Uhr?“ — „Ja, das passt mir sehr gut.“
+  - >-
+    Die Mitarbeiterin [[trägt den neuen Termin ein::writes the new appointment
+    in the calendar::записывает новый приём в календарь]]. „Dann bis Dienstag!
+    Bitte bringen Sie Ihre [[Versichertenkarte::health insurance card::карта
+    медицинского страхования]] mit.“ — „Mache ich. Vielen Dank und
+    [[auf Wiederhören::goodbye (only on the phone)::до свидания (только по
+    телефону)]]!“
+questions:
+  - id: frage-warum
+    type: mc
+    prompt: "Warum kann Herr Orlow am Donnerstag nicht zum Arzt gehen?"
+    options:
+      - "Er ist krank und muss im Bett bleiben."
+      - "Der Techniker kommt am Donnerstagvormittag zu ihm."
+      - "Die Praxis ist am Donnerstag geschlossen."
+    correct: 1
+    translation:
+      en: Why can't Mr Orlov go to the doctor on Thursday?
+      ru: Почему господин Орлов не может пойти к врачу в четверг?
+    explain:
+      en: "The heating in his flat is broken, so the technician is coming on Thursday morning — exactly when the appointment was. The text says nothing about illness or a closed practice."
+      ru: "У него дома не работает отопление, поэтому в четверг утром придёт техник — как раз тогда, когда назначен приём. Про болезнь или закрытую практику в тексте ничего нет."
+  - id: frage-mittwoch
+    type: mc
+    prompt: "Was macht Herr Orlow am Mittwoch?"
+    options:
+      - "Er sagt den Termin ab."
+      - "Er ruft in der Praxis an und verschiebt den Termin."
+      - "Er geht ohne Termin zur Praxis."
+    correct: 1
+    translation:
+      en: What does Mr Orlov do on Wednesday?
+      ru: Что делает господин Орлов в среду?
+    explain:
+      en: "He calls the practice and moves the appointment (verschieben) — he does not cancel it (absagen). Moving keeps the appointment, cancelling removes it."
+      ru: "Он звонит в приёмную и переносит приём (verschieben), а не отменяет его (absagen). При переносе запись сохраняется, при отмене — исчезает."
+  - id: frage-neuer-termin
+    type: mc
+    prompt: "Wann ist der neue Termin?"
+    options:
+      - "Am Donnerstag um 9 Uhr."
+      - "Am Dienstag um 14 Uhr."
+      - "Am Mittwoch um 14 Uhr."
+    correct: 1
+    translation:
+      en: When is the new appointment?
+      ru: Когда новый приём?
+    explain:
+      en: "The receptionist offers Tuesday at 2 p.m. — „Passt es Ihnen am Dienstag um 14 Uhr?“ — and Mr Orlov agrees. Thursday at 9 was the old appointment."
+      ru: "Сотрудница предлагает вторник, 14 часов — „Passt es Ihnen am Dienstag um 14 Uhr?“ — и господин Орлов соглашается. Четверг, 9 часов — это старый приём."

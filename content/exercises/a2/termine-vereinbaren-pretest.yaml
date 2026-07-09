@@ -1,0 +1,40 @@
+topic: termine-vereinbaren
+items:
+  - id: pre-passt-ihnen
+    type: mc
+    prompt: "Passt es ___ am Montag um 10 Uhr?"
+    options: ["Sie", "Ihnen", "Ihr"]
+    correct: 1
+    translation:
+      en: Does Monday at 10 o'clock suit you? (formal)
+      ru: Вам удобно в понедельник в 10 часов? (вежливая форма)
+    explain:
+      en: '"passen" takes the dative (der Dativ), so the polite pronoun is "Ihnen", never "Sie". Russian points the same way — «подходит вам» is dative too.'
+      ru: '"passen" требует дательного падежа (der Dativ), поэтому вежливое местоимение — "Ihnen", а не "Sie". Русский подсказывает то же самое: «подходит вам» — тоже дательный.'
+
+  - id: pre-um-am
+    type: mc
+    prompt: "Der Zahnarzt hat ___ Mittwoch ___ 11 Uhr einen Termin frei."
+    options: ["am … um", "um … am", "im … um"]
+    correct: 0
+    translation:
+      en: The dentist has an appointment free on Wednesday at 11 o'clock.
+      ru: У зубного врача есть свободное время в среду в 11 часов.
+    explain:
+      en: 'Days of the week take "am" (am Mittwoch), clock times take "um" (um 11 Uhr). "im" is for months and seasons (im Mai, im Winter).'
+      ru: 'С днями недели используется "am" (am Mittwoch), со временем по часам — "um" (um 11 Uhr). "im" — для месяцев и времён года (im Mai, im Winter).'
+
+  - id: pre-du-sie
+    type: mc
+    prompt: "Sie rufen in einer Praxis an und möchten einen Termin. Was sagen Sie?"
+    options:
+      - "Hast du diese Woche einen Termin frei?"
+      - "Haben Sie diese Woche einen Termin frei?"
+      - "Ich will sofort einen Termin!"
+    correct: 1
+    translation:
+      en: You are calling a practice and would like an appointment. What do you say?
+      ru: Вы звоните в приёмную и хотите записаться. Что вы скажете?
+    explain:
+      en: 'On the phone with a practice or any stranger, only the Sie-form works — "du" is rude here. "Ich will sofort …!" sounds like a demand; polite German asks a question with "Sie".'
+      ru: 'По телефону с приёмной и вообще с незнакомыми людьми возможна только форма Sie — "du" здесь звучит грубо. "Ich will sofort …!" звучит как требование; вежливо — задать вопрос с "Sie".'

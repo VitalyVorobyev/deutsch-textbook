@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SessionFlow from '../components/session/SessionFlow';
+import type { TrainingSet } from '../components/training/MixedTraining';
+import { getAllCards, getTopicNodes } from '../lib/content';
+
+const [cards, nodes, exercises, topics] = await Promise.all([
+  getAllCards(),
+  getTopicNodes(),
+  getCollection('exercises'),
+  getCollection('topics'),
+]);
+const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+
+// Same assembly as /training, but tolerant of in-flight content: an exercise
+// set whose topic hasn't landed yet is simply left out of the session.
+const sets: TrainingSet[] = exercises.flatMap((e) => {
+  const topic = topicById.get(e.data.topic);
+  if (!topic) return [];
+  return [
+    {
+      setId: e.id,
+      topicId: topic.id,
+      title_de: topic.title_de,
+      level: topic.level,
+      items: e.data.items,
+    },
+  ];
+});
+---
+
+<Base title="Session">
+  <h1 class="text-3xl font-bold tracking-tight">Tägliche Session</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">
+      One guided session — review, mixed training, then your next topic. About 15 minutes,
+      nothing to decide.
+    </span>
+    <span class="lang-ru">
+      Одна структурированная сессия — повторение, смешанная тренировка и следующая тема.
+      Около 15 минут, ничего решать не нужно.
+    </span>
+  </p>
+
+  <div class="mt-8">
+    <SessionFlow client:only="react" cards={cards} sets={sets} nodes={nodes} />
+  </div>
+</Base>

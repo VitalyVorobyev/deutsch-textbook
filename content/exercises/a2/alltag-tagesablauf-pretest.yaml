@@ -1,0 +1,43 @@
+topic: alltag-tagesablauf
+items:
+  - id: pre-fernsehen
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich fernsehe am Abend ein bisschen."
+      - "Ich sehe am Abend ein bisschen fern."
+      - "Ich sehe fern am Abend ein bisschen."
+    correct: 1
+    translation:
+      en: Which sentence is correct? (I watch a bit of TV in the evening.)
+      ru: Какое предложение построено правильно? (Вечером я немного смотрю телевизор.)
+    explain:
+      en: "fernsehen is separable (trennbar): the conjugated part sits in position 2 and the prefix fern- goes to the very end of the sentence — „Ich sehe am Abend ein bisschen fern.“ The same happens with aufstehen, einkaufen, aufräumen."
+      ru: "fernsehen — глагол с отделяемой приставкой (trennbar): спрягаемая часть стоит на втором месте, а приставка fern- уходит в самый конец предложения — „Ich sehe am Abend ein bisschen fern.“ Так же ведут себя aufstehen, einkaufen, aufräumen."
+
+  - id: pre-dann-inversion
+    type: mc
+    prompt: "Zuerst dusche ich, ___"
+    options:
+      - "dann frühstücke ich."
+      - "dann ich frühstücke."
+      - "frühstücke dann ich."
+    correct: 0
+    translation:
+      en: First I shower, then I have breakfast.
+      ru: Сначала я принимаю душ, потом завтракаю.
+    explain:
+      en: "After a sequencer like dann, danach, zuerst the verb must stay in second position, so the subject moves behind it: „Dann frühstücke ich.“ This is die Inversion (inversion / инверсия) — Russian «потом я завтракаю» keeps the subject first and leads you astray."
+      ru: "После слов-связок dann, danach, zuerst глагол обязан оставаться на втором месте, поэтому подлежащее уходит за него: „Dann frühstücke ich.“ Это die Inversion (инверсия) — русское «потом я завтракаю» сохраняет подлежащее на первом месте и потому сбивает с толку."
+
+  - id: pre-am-in-der
+    type: mc
+    prompt: "___ Nachmittag mache ich Sport, und ___ Nacht schlafe ich."
+    options: ["Am … am", "Am … in der", "Im … in der"]
+    correct: 1
+    translation:
+      en: In the afternoon I do sports, and at night I sleep.
+      ru: Во второй половине дня я занимаюсь спортом, а ночью я сплю.
+    explain:
+      en: "Parts of the day take am: am Morgen, am Nachmittag, am Abend. The one exception is the night — in der Nacht. (im is for months and seasons: im Mai, im Winter.)"
+      ru: "С частями суток используется am: am Morgen, am Nachmittag, am Abend. Единственное исключение — ночь: in der Nacht. (im — для месяцев и времён года: im Mai, im Winter.)"

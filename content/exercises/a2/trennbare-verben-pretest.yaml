@@ -1,0 +1,43 @@
+topic: trennbare-verben
+items:
+  - id: pre-praesens-klammer
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich aufstehe um 7 Uhr."
+      - "Ich stehe auf um 7 Uhr."
+      - "Ich stehe um 7 Uhr auf."
+    correct: 2
+    translation:
+      en: Which sentence is correct? (I get up at 7 o'clock.)
+      ru: Какое предложение правильное? (Я встаю в 7 часов.)
+    explain:
+      en: 'In the present tense a separable prefix breaks off and goes to the very end of the clause: "Ich stehe um 7 Uhr auf." Keeping the verb in one piece (aufstehe) or parking the prefix right after the verb are the two classic mistakes.'
+      ru: 'В настоящем времени отделяемая приставка отрывается и уходит в самый конец предложения: "Ich stehe um 7 Uhr auf." Оставить глагол целым (aufstehe) или поставить приставку сразу после глагола — две классические ошибки.'
+
+  - id: pre-modal-infinitiv
+    type: mc
+    prompt: "Morgen muss ich früh ___ ."
+    options: ["aufstehen", "stehe auf", "stehen auf"]
+    correct: 0
+    translation:
+      en: Tomorrow I have to get up early.
+      ru: Завтра мне нужно рано встать.
+    explain:
+      en: 'With a modal verb only the modal is conjugated; the separable verb goes to the end as one unbroken infinitive: "Ich muss früh aufstehen." It does not split and takes no personal ending.'
+      ru: 'С модальным глаголом спрягается только модальный, а глагол с приставкой стоит в конце целиком, одним инфинитивом: "Ich muss früh aufstehen." Он не разрывается и не получает личного окончания.'
+
+  - id: pre-untrennbar
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich stehe die Frage ver."
+      - "Ich verstehe die Frage."
+      - "Ich verstehe die Frage ver."
+    correct: 1
+    translation:
+      en: Which sentence is correct? (I understand the question.)
+      ru: Какое предложение правильное? (Я понимаю вопрос.)
+    explain:
+      en: 'be-, ver-, er-, ent-, ge- are inseparable prefixes: they are unstressed and never move anywhere — "Ich verstehe die Frage." Rule of thumb: a stressed prefix (AUFstehen) separates, an unstressed one (verSTEHen) does not.'
+      ru: 'be-, ver-, er-, ent-, ge- — неотделяемые приставки: они безударные и никуда не перемещаются — "Ich verstehe die Frage." Простое правило: ударная приставка (AUFstehen) отделяется, безударная (verSTEHen) — нет.'

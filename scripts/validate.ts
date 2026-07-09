@@ -2,8 +2,9 @@
  * Content validation beyond Astro's schema check. Run with: npm run validate
  *
  * Checks: schema conformance, id/filename/level consistency, reference resolution
- * (prerequisites, vocab, exercises), exercise answer-key sanity, prerequisite
- * cycles, and atlas.yaml consistency with topic frontmatter.
+ * (prerequisites, vocab, exercises, reading, pretest), exercise answer-key sanity,
+ * reading gloss markup, prerequisite cycles, and atlas.yaml consistency with
+ * topic frontmatter.
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
@@ -12,13 +13,16 @@ import { z } from 'zod';
 import {
   atlasSchema,
   exerciseSetSchema,
+  readingSchema,
   topicSchema,
   vocabFileSchema,
   type ExerciseSet,
+  type Reading,
   type Topic,
   type VocabFile,
 } from '../src/lib/schemas';
 import { clozeGaps, normalizeTranslation } from '../src/lib/cloze';
+import { parseGlosses } from '../src/lib/gloss';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -125,6 +129,21 @@ for (const file of listFiles(join(CONTENT, 'exercises'), '.yaml')) {
   exerciseSets.set(id, { file: rel(file), data });
 }
 
+const readings = new Map<string, { file: string; data: Reading }>();
+for (const file of listFiles(join(CONTENT, 'reading'), '.yaml')) {
+  let raw: unknown;
+  try {
+    raw = YAML.parse(readFileSync(file, 'utf8'));
+  } catch (e) {
+    fail(rel(file), `YAML parse error: ${e instanceof Error ? e.message : e}`);
+    continue;
+  }
+  const data = validateWith(readingSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'reading'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  readings.set(id, { file: rel(file), data });
+}
+
 // ---------------------------------------------------------------------------
 // Cross-checks
 // ---------------------------------------------------------------------------
@@ -140,14 +159,27 @@ for (const [id, { file, data }] of topics) {
   for (const ex of data.exercises) {
     if (!exerciseSets.has(ex)) fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
   }
+  for (const r of data.reading) {
+    if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
+  }
+  if (data.pretest !== undefined) {
+    const pre = exerciseSets.get(data.pretest);
+    if (!pre) {
+      fail(file, `pretest ref "${data.pretest}" does not resolve to content/exercises/${data.pretest}.yaml`);
+    } else if (pre.data.topic !== id) {
+      fail(file, `pretest set "${data.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
+    }
+    if (data.exercises.includes(data.pretest))
+      fail(file, `pretest set "${data.pretest}" must not also be listed in exercises`);
+  }
 }
 
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
-  } else if (!owner.data.exercises.includes(setId)) {
-    fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises`);
+  } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
+    fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
   }
 
   const itemIds = new Set<string>();
@@ -209,9 +241,41 @@ for (const [setId, { file, data }] of exerciseSets) {
   }
 }
 
+// Reading texts: backrefs, gloss markup, question sanity
+for (const [readingId, { file, data }] of readings) {
+  const owner = topics.get(data.topic);
+  if (!owner) {
+    fail(file, `topic backref "${data.topic}" does not resolve`);
+  } else if (!owner.data.reading.includes(readingId)) {
+    fail(file, `topic "${data.topic}" does not list this reading ("${readingId}") in its reading refs`);
+  }
+
+  let glossCount = 0;
+  data.text.forEach((para, i) => {
+    const { segments, errors: glossErrors } = parseGlosses(para);
+    for (const e of glossErrors) fail(`${file} → paragraph ${i + 1}`, e);
+    glossCount += segments.filter((s) => s.kind === 'gloss').length;
+  });
+  if (glossCount === 0)
+    warn(file, 'reading has no [[gloss::…::…]] markers — add a few for comprehensible input');
+
+  const qIds = new Set<string>();
+  for (const q of data.questions) {
+    const where = `${file} → question "${q.id}"`;
+    if (qIds.has(q.id)) fail(where, 'duplicate question id within reading');
+    qIds.add(q.id);
+    if (q.correct >= q.options.length)
+      fail(where, `correct index ${q.correct} out of range (${q.options.length} options)`);
+    if (new Set(q.options).size !== q.options.length) fail(where, 'duplicate options');
+    if (!q.explain) warn(where, 'no explain text (feedback on wrong answers will be thin)');
+  }
+}
+
 // Orphan exercise sets (not referenced by any topic)
 for (const [setId, { file }] of exerciseSets) {
-  const referenced = [...topics.values()].some((t) => t.data.exercises.includes(setId));
+  const referenced = [...topics.values()].some(
+    (t) => t.data.exercises.includes(setId) || t.data.pretest === setId,
+  );
   if (!referenced) warn(file, 'exercise set is not embedded on any topic page');
 }
 
@@ -271,7 +335,7 @@ for (const [setId, { file }] of exerciseSets) {
 // ---------------------------------------------------------------------------
 
 console.log(
-  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets.`,
+  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets, ${readings.size} reading texts.`,
 );
 if (warnings.length) {
   console.log(`\n⚠ ${warnings.length} warning(s):`);

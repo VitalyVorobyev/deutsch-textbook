@@ -1,0 +1,61 @@
+topic: essen-trinken
+title_de: "Ein Samstag mit Anna und Max"
+text:
+  - >-
+    Es ist Samstag. Anna hat Hunger. Zum Frühstück isst sie ein Brötchen mit
+    Butter und Käse. Sie trinkt Kaffee mit Milch, aber ohne Zucker.
+    [[Ihr Bruder::her brother::её брат]] Max isst ein Ei und trinkt Tee.
+  - >-
+    Um elf Uhr gehen Anna und Max [[auf den Markt::to the market::на рынок]].
+    [[Dort::there::там]] kaufen sie Obst, Gemüse und Kartoffeln. Alles ist
+    frisch. Max kauft auch einen Fisch, [[denn::because::потому что]] er
+    kocht heute das Abendessen.
+  - >-
+    Am Abend ist das Essen [[fertig::ready::готово]]: Fisch mit Reis und
+    Gemüse. Die Familie sitzt [[am Tisch::at the table::за столом]]. „Guten
+    Appetit!“ Der Fisch schmeckt Anna sehr gut. „Das ist
+    [[wirklich::really::действительно]] lecker!“, sagt sie. Max hat Durst
+    und trinkt ein Glas Wasser. Nach dem Abendessen trinken alle Tee.
+questions:
+  - id: frage-fruehstueck
+    type: mc
+    prompt: "Was trinkt Anna zum Frühstück?"
+    options:
+      - "Tee mit Zucker."
+      - "Kaffee mit Milch, ohne Zucker."
+      - "Ein Glas Saft."
+    correct: 1
+    translation:
+      en: What does Anna drink for breakfast?
+      ru: Что Анна пьёт на завтрак?
+    explain:
+      en: "The text says: „Sie trinkt Kaffee mit Milch, aber ohne Zucker.“ Tea is what her brother Max drinks, and juice does not appear in the story at all."
+      ru: "В тексте сказано: „Sie trinkt Kaffee mit Milch, aber ohne Zucker.“ Чай пьёт её брат Макс, а сок в тексте вообще не упоминается."
+  - id: frage-fisch
+    type: mc
+    prompt: "Warum kauft Max einen Fisch?"
+    options:
+      - "Er hat Hunger."
+      - "Er kocht heute das Abendessen."
+      - "Der Fisch ist billig."
+    correct: 1
+    translation:
+      en: Why does Max buy a fish?
+      ru: Почему Макс покупает рыбу?
+    explain:
+      en: "The reason comes right after „denn“: „Max kauft auch einen Fisch, denn er kocht heute das Abendessen.“ The text says nothing about the price or about Max being hungry."
+      ru: "Причина названа сразу после союза „denn“: „Max kauft auch einen Fisch, denn er kocht heute das Abendessen.“ О цене и о том, что Макс голоден, в тексте ничего нет."
+  - id: frage-nach-dem-essen
+    type: mc
+    prompt: "Was machen alle nach dem Abendessen?"
+    options:
+      - "Sie trinken Tee."
+      - "Sie gehen auf den Markt."
+      - "Sie kochen eine Suppe."
+    correct: 0
+    translation:
+      en: What does everyone do after dinner?
+      ru: Что все делают после ужина?
+    explain:
+      en: "The last sentence says it directly: „Nach dem Abendessen trinken alle Tee.“ The market trip was earlier in the day, and the cooking happened before dinner."
+      ru: "Последнее предложение говорит об этом прямо: „Nach dem Abendessen trinken alle Tee.“ На рынок Анна и Макс ходили ещё до обеда, а еду Макс приготовил до ужина."

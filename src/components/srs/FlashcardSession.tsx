@@ -16,6 +16,8 @@ interface Props {
   cards: CardDef[];
   /** cap on never-seen cards mixed into this session */
   newLimit?: number;
+  /** called once, exactly when the review queue runs empty */
+  onFinished?: () => void;
 }
 
 interface SessionStats {
@@ -44,7 +46,7 @@ function verdictHint(v: AnswerVerdict, canonical: string, given: string): string
   return null;
 }
 
-export default function FlashcardSession({ cards, newLimit = 15 }: Props) {
+export default function FlashcardSession({ cards, newLimit = 15, onFinished }: Props) {
   const lang = useExplainLang();
   const [queue, setQueue] = useState<CardDef[] | null>(null);
   const [states, setStates] = useState<CardStates>({});
@@ -58,6 +60,8 @@ export default function FlashcardSession({ cards, newLimit = 15 }: Props) {
   // bubbles on to window after React flushes the verdict, and must not also
   // confirm the suggested grade (Enter double-fire).
   const submitTs = useRef(0);
+  // ensures onFinished fires at most once per mounted session
+  const finishedFired = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,6 +104,14 @@ export default function FlashcardSession({ cards, newLimit = 15 }: Props) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+
+  // Completion signal: fires exactly once, when the queue has emptied.
+  useEffect(() => {
+    if (queue !== null && queue.length === 0 && !finishedFired.current) {
+      finishedFired.current = true;
+      onFinished?.();
+    }
+  }, [queue, onFinished]);
 
   if (queue === null) {
     return <p className="text-sm text-stone-500">…</p>;

@@ -1,0 +1,37 @@
+topic: dativ
+items:
+  - id: pre-danken-dativ
+    type: mc
+    prompt: "Ich danke ___ für die Hilfe."
+    options: ["dich", "dir", "du"]
+    correct: 1
+    translation:
+      en: I thank you for the help.
+      ru: Спасибо тебе за помощь.
+    explain:
+      en: '"danken" always takes the dative (der Dativ): Ich danke dir. This is a real trap for Russian speakers — Russian says «благодарить кого?» with the accusative, but German insists on the dative, just like with helfen, gefallen and gehören.'
+      ru: '"danken" всегда требует дательного падежа (der Dativ): Ich danke dir. Это настоящая ловушка: по-русски «благодарить (кого?) тебя» — винительный падеж, а в немецком только дательный, как и у helfen, gefallen, gehören.'
+
+  - id: pre-mit-dativ
+    type: mc
+    prompt: "Wir fahren mit ___ Bus zur Arbeit."
+    options: ["der", "dem", "den"]
+    correct: 1
+    translation:
+      en: We take the bus to work.
+      ru: Мы едем на работу на автобусе.
+    explain:
+      en: 'The prepositions aus, bei, mit, nach, seit, von, zu are always followed by the dative. "der Bus" is masculine, and in the dative der → dem: mit dem Bus. "den Bus" would be accusative, "der Bus" nominative.'
+      ru: 'Предлоги aus, bei, mit, nach, seit, von, zu всегда требуют дательного падежа. "der Bus" — мужской род, в дательном der → dem: mit dem Bus. "den Bus" — это винительный падеж, а "der Bus" — именительный.'
+
+  - id: pre-dativ-plural
+    type: mc
+    prompt: "Die Suppe schmeckt ___ nicht."
+    options: ["die Kinder", "den Kinder", "den Kindern"]
+    correct: 2
+    translation:
+      en: The children don't like the soup.
+      ru: Детям суп не нравится.
+    explain:
+      en: 'In the dative plural two things change: the article becomes den, and the noun itself takes an extra -n — den Kindern. "den Kinder" is the classic half-way mistake: the article is right, but the -n on the noun is missing.'
+      ru: 'В дательном падеже множественного числа меняются две вещи: артикль становится den, и само существительное получает окончание -n — den Kindern. Вариант "den Kinder" — классическая ошибка «на полпути»: артикль правильный, но окончания -n у существительного не хватает.'

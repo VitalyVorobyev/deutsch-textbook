@@ -34,6 +34,10 @@ export const topicSchema = z.object({
   vocab: z.array(slug).default([]),
   /** ids (paths) of exercise sets embedded on this topic's page */
   exercises: z.array(z.string()).default([]),
+  /** ids (paths) of reading texts rendered in the Lesetext section */
+  reading: z.array(z.string()).default([]),
+  /** id (path) of a 3-item pretest exercise set rendered above the article */
+  pretest: z.string().optional(),
   tags: z.array(slug).default([]),
   status: z.enum(['draft', 'reviewed']).default('draft'),
 });
@@ -208,6 +212,24 @@ export const exerciseSetSchema = z.object({
   items: z.array(exerciseItemSchema).min(1),
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
+
+// ---------------------------------------------------------------------------
+// Reading texts (content/reading/<level>/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+export const readingSchema = z.object({
+  /** back-reference to the owning topic id */
+  topic: slug,
+  title_de: z.string().min(1),
+  /**
+   * Paragraphs of German text. Inline gloss markers:
+   * `[[German phrase::en gloss::ru gloss]]` (see src/lib/gloss.ts).
+   */
+  text: z.array(z.string().min(1)).min(1),
+  /** 2–4 comprehension questions shown after the text */
+  questions: z.array(mcItemSchema).min(2).max(4),
+});
+export type Reading = z.infer<typeof readingSchema>;
 
 // ---------------------------------------------------------------------------
 // Atlas graph (content/atlas.yaml)
