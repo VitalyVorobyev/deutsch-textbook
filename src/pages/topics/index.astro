@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { KIND_LABEL } from '../../lib/content';
+import { LEVELS } from '../../lib/schemas';
+
+const topics = await getCollection('topics');
+const byLevel = LEVELS.map((level) => ({
+  level,
+  topics: topics
+    .filter((t) => t.data.level === level)
+    .sort((a, b) => a.data.title_de.localeCompare(b.data.title_de, 'de')),
+})).filter((g) => g.topics.length > 0);
+---
+
+<Base title="Themen">
+  <h1 class="text-3xl font-bold tracking-tight">Themen</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">The atlas of topics, level by level.</span>
+    <span class="lang-ru">Атлас тем — уровень за уровнем.</span>
+  </p>
+
+  {
+    byLevel.map(({ level, topics: group }) => (
+      <section class="mt-10">
+        <h2 class="mb-4 flex items-center gap-3 text-xl font-bold">
+          <span class="rounded-md bg-amber-500 px-2 py-0.5 text-sm font-black text-white">{level}</span>
+          <span class="text-stone-400 text-sm font-normal">
+            {group.length} {group.length === 1 ? 'Thema' : 'Themen'}
+          </span>
+        </h2>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {group.map((t) => (
+            <a
+              href={`/topics/${t.id}`}
+              class="rounded-lg border border-stone-200 bg-white p-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
+            >
+              <p class="text-xs font-medium uppercase tracking-wide text-stone-400">
+                {KIND_LABEL[t.data.kind]}
+              </p>
+              <p lang="de" class="mt-1 font-semibold">{t.data.title_de}</p>
+              <p class="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
+                <span class="lang-en">{t.data.title_en}</span>
+                <span class="lang-ru">{t.data.title_ru}</span>
+              </p>
+              {t.data.tags.length > 0 && (
+                <p class="mt-2 flex flex-wrap gap-1">
+                  {t.data.tags.map((tag) => (
+                    <span class="rounded bg-stone-100 px-1.5 py-0.5 text-xs text-stone-500 dark:bg-stone-700 dark:text-stone-400">
+                      #{tag}
+                    </span>
+                  ))}
+                </p>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</Base>

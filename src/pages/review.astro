@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import FlashcardSession from '../components/srs/FlashcardSession';
+import { getAllCards } from '../lib/content';
+
+const cards = await getAllCards();
+---
+
+<Base title="Wiederholen">
+  <h1 class="text-3xl font-bold tracking-tight">Wiederholen</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">Your daily review across all decks — due cards first, then a few new ones.</span>
+    <span class="lang-ru">Ежедневное повторение по всем колодам — сначала карточки к повторению, затем немного новых.</span>
+  </p>
+
+  <div class="mt-8">
+    <FlashcardSession client:only="react" cards={cards} newLimit={15} />
+  </div>
+</Base>

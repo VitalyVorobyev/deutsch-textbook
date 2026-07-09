@@ -1,0 +1,209 @@
+topic: dativ
+title:
+  en: Practice — the dative case
+  ru: Практика — дательный падеж
+items:
+  - id: artikel-dativ
+    type: table
+    title: "Bestimmter Artikel — Nominativ und Dativ"
+    instruction:
+      en: Fill in the dative form of each definite article.
+      ru: Впишите форму определённого артикля в дательном падеже.
+    columns: [Nominativ, Dativ]
+    rows:
+      - label: Maskulin
+        cells: [{ answer: der, given: true }, { answer: dem }]
+      - label: Feminin
+        cells: [{ answer: die, given: true }, { answer: der }]
+      - label: Neutrum
+        cells: [{ answer: das, given: true }, { answer: dem }]
+      - label: Plural
+        cells: [{ answer: die, given: true }, { answer: den }]
+    explain:
+      en: "Dative articles: der/das → dem, die → der, plural die → den (and the noun adds -n: den Kindern)."
+      ru: "Артикли в Dativ: der/das → dem, die → der, во множественном числе die → den (а существительное получает -n: den Kindern)."
+
+  - id: pronomen-dativ
+    type: table
+    title: "Personalpronomen im Dativ"
+    instruction:
+      en: Fill in the dative form of each pronoun. Mind the capital letter in the formal form.
+      ru: Впишите дательную форму каждого местоимения. Не забудьте заглавную букву в вежливой форме.
+    columns: [Dativ]
+    rows:
+      - label: ich
+        cells: [{ answer: mir, given: true }]
+      - label: du
+        cells: [{ answer: dir }]
+      - label: er / es
+        cells: [{ answer: ihm }]
+      - label: sie
+        cells: [{ answer: ihr }]
+      - label: wir
+        cells: [{ answer: uns }]
+      - label: ihr
+        cells: [{ answer: euch }]
+      - label: sie (Plural)
+        cells: [{ answer: ihnen }]
+      - label: Sie (formell)
+        cells: [{ answer: Ihnen }]
+    explain:
+      en: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — and capitalized Ihnen for formal Sie. Compare Russian: мне, тебе, ему, ей, нам, вам, им."
+      ru: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — и Ihnen с заглавной буквы для вежливого Sie. Прямые аналоги русских «мне, тебе, ему, ей, нам, вам, им»."
+
+  - id: cloze-antworten
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Der Schüler antwortet {{der}} Lehrerin."
+    translation:
+      en: The pupil answers the teacher.
+      ru: Ученик отвечает учительнице.
+    explain:
+      en: "antworten takes the dative. die Lehrerin is feminine, so die → der: der Lehrerin."
+      ru: "antworten требует Dativ. die Lehrerin — женский род, поэтому die → der: der Lehrerin."
+
+  - id: cloze-gefallen
+    type: cloze
+    instruction:
+      en: Fill the gap with the dative form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в дательном падеже.
+    text: "Der Film gefällt {{mir}} (ich) sehr gut."
+    translation:
+      en: I like the film a lot.
+      ru: Фильм мне очень нравится.
+    explain:
+      en: "gefallen works like Russian «нравиться»: the film is the subject, the person is in the dative — ich → mir."
+      ru: "gefallen устроен как «нравиться»: фильм — подлежащее, а человек стоит в дательном падеже — ich → mir."
+
+  - id: cloze-kindern
+    type: cloze
+    instruction:
+      en: Put the noun in brackets into the dative plural.
+      ru: Поставьте существительное из скобок в Dativ множественного числа.
+    text: "Die Mutter hilft den {{Kindern}} (Kinder)."
+    translation:
+      en: The mother is helping the children.
+      ru: Мама помогает детям.
+    explain:
+      en: "In the dative plural the noun itself takes -n: die Kinder → den Kindern."
+      ru: "В Dativ Plural окончание -n получает и само существительное: die Kinder → den Kindern."
+
+  - id: cloze-seit
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of "ein".
+      ru: Вставьте правильную форму артикля "ein".
+    text: "Er wohnt seit {{einem}} Jahr in Berlin."
+    translation:
+      en: He has been living in Berlin for a year.
+      ru: Он живёт в Берлине уже год.
+    explain:
+      en: "seit always takes the dative; das Jahr is neuter, so ein → einem."
+      ru: "После seit всегда стоит Dativ; das Jahr — средний род, поэтому ein → einem."
+
+  - id: mc-danken
+    type: mc
+    prompt: "Ich danke ___ für die Hilfe."
+    options: ["Ihnen", "Sie", "Ihre"]
+    correct: 0
+    translation:
+      en: I thank you (formal) for the help.
+      ru: Благодарю Вас за помощь.
+    explain:
+      en: "danken takes the dative: Sie → Ihnen. Careful: Russian uses the accusative here («благодарю вас»), so 'Ich danke Sie' is a typical interference error."
+      ru: "danken требует Dativ: Sie → Ihnen. Осторожно: по-русски «благодарю (кого?) вас» — винительный падеж, поэтому «Ich danke Sie» — типичная ошибка."
+
+  - id: mc-mit-bus
+    type: mc
+    prompt: "Wir fahren mit ___ Bus zur Schule."
+    options: ["dem", "den", "der"]
+    correct: 0
+    translation:
+      en: We take the bus to school.
+      ru: Мы едем в школу на автобусе.
+    explain:
+      en: "mit always takes the dative; der Bus is masculine, so der → dem. 'den Bus' would be accusative."
+      ru: "mit всегда требует Dativ; der Bus — мужской род, поэтому der → dem. Форма «den Bus» — это Akkusativ."
+
+  - id: mc-gehoert
+    type: mc
+    prompt: "Das ist mein Bruder. Das Fahrrad gehört ___."
+    options: ["ihm", "ihn", "er"]
+    correct: 0
+    translation:
+      en: This is my brother. The bicycle belongs to him.
+      ru: Это мой брат. Велосипед принадлежит ему.
+    explain:
+      en: "gehören takes the dative: er → ihm — just like Russian «принадлежит (кому?) ему»."
+      ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
+
+  - id: mc-zwei-objekte
+    type: mc
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich zeige meinem Vater den Brief."
+      - "Ich zeige meinen Vater den Brief."
+      - "Ich zeige meinem Vater dem Brief."
+    correct: 0
+    explain:
+      en: "The person is dative (meinem Vater — to whom?), the thing is accusative (den Brief — what?). With two noun objects the dative comes first."
+      ru: "Человек стоит в Dativ (meinem Vater — кому?), предмет — в Akkusativ (den Brief — что?). При двух дополнениях-существительных Dativ идёт первым."
+
+  - id: match-kontraktionen
+    type: match
+    instruction:
+      en: Match each preposition + article with its contracted form.
+      ru: Соедините предлог с артиклем и его краткую (слитную) форму.
+    pairs:
+      - { left: "zu dem", right: "zum" }
+      - { left: "zu der", right: "zur" }
+      - { left: "bei dem", right: "beim" }
+      - { left: "von dem", right: "vom" }
+    explain:
+      en: "The dative prepositions merge with the article: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
+      ru: "Дативные предлоги сливаются с артиклем: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
+
+  - id: match-praepositionen
+    type: match
+    instruction:
+      en: Match each preposition with the sentence it fits.
+      ru: Подберите к каждому предлогу подходящее предложение.
+    pairs:
+      - { left: "aus", right: "Er kommt ___ der Schweiz." }
+      - { left: "seit", right: "Wir lernen ___ einem Jahr Deutsch." }
+      - { left: "bei", right: "Sie wohnt noch ___ ihren Eltern." }
+      - { left: "nach", right: "___ dem Essen trinken wir Kaffee." }
+    explain:
+      en: "All of aus, bei, mit, nach, seit, von, zu take the dative: aus der Schweiz (origin), seit einem Jahr (for/since a time), bei ihren Eltern (at someone's place), nach dem Essen (after something)."
+      ru: "Все предлоги aus, bei, mit, nach, seit, von, zu требуют Dativ: aus der Schweiz (откуда), seit einem Jahr (с какого времени), bei ihren Eltern (у кого), nach dem Essen (после чего)."
+
+  - id: order-geben
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Ich", "gebe", "dem", "Kind", "einen", "Apfel."]
+    translation:
+      en: I give the child an apple.
+      ru: Я даю ребёнку яблоко.
+    explain:
+      en: "With two noun objects the dative comes before the accusative: dem Kind (to whom?) before einen Apfel (what?)."
+      ru: "При двух дополнениях-существительных Dativ стоит перед Akkusativ: dem Kind (кому?) перед einen Apfel (что?)."
+
+  - id: order-bus
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Sie", "fährt", "mit", "dem", "Bus", "zur", "Arbeit."]
+    translation:
+      en: She takes the bus to work.
+      ru: Она едет на работу на автобусе.
+    explain:
+      en: "Both prepositions take the dative: mit dem Bus (der Bus → dem) and zur Arbeit (zur = zu der). The usual order is how before where: mit dem Bus zur Arbeit."
+      ru: "Оба предлога требуют Dativ: mit dem Bus (der Bus → dem) и zur Arbeit (zur = zu der). Обычный порядок — сначала как, потом куда: mit dem Bus zur Arbeit."

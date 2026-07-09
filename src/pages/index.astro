@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import DueBadge from '../components/srs/DueBadge';
+import NextTopic from '../components/today/NextTopic';
+import { getAllCards, getTopicNodes } from '../lib/content';
+
+const cards = await getAllCards();
+const nodes = await getTopicNodes();
+---
+
+<Base title="Heute">
+  <h1 class="text-3xl font-bold tracking-tight">Guten Tag! 👋</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">Your German atlas — pick up where you left off.</span>
+    <span class="lang-ru">Ваш атлас немецкого — продолжайте с того места, где остановились.</span>
+  </p>
+
+  <div class="mt-8 grid gap-4 sm:grid-cols-2">
+    <a
+      href="/review"
+      class="rounded-lg border border-stone-200 bg-white p-6 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
+    >
+      <DueBadge client:only="react" cards={cards} variant="full" />
+      <p class="mt-3 text-sm font-semibold text-amber-700 dark:text-amber-400">Wiederholen →</p>
+    </a>
+
+    <div class="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+      <NextTopic client:only="react" nodes={nodes} />
+    </div>
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-lg font-bold">Schnellzugriff</h2>
+    <div class="mt-3 flex flex-wrap gap-3 text-sm">
+      <a href="/topics" class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
+        📚 Alle Themen
+      </a>
+      <a href="/vocab" class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
+        🗂 Wortschatz
+      </a>
+      <a href="/progress" class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
+        📈 Fortschritt
+      </a>
+    </div>
+  </section>
+</Base>

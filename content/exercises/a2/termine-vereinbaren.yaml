@@ -1,0 +1,192 @@
+topic: termine-vereinbaren
+title:
+  en: Practice — making appointments
+  ru: Практика — как договориться о встрече
+items:
+  - id: mc-register
+    type: mc
+    prompt: "Sie rufen in einer Arztpraxis an. Was sagen Sie?"
+    options:
+      - "Hast du morgen Zeit?"
+      - "Haben Sie morgen einen Termin frei?"
+      - "Du, ich brauche einen Termin."
+    correct: 1
+    translation:
+      en: You are calling a doctor's office. What do you say?
+      ru: Вы звоните в приёмную врача. Что вы скажете?
+    explain:
+      en: "With a receptionist or any stranger you must use the Sie-form. Both du-options are impolite in this situation, even though they are grammatically fine."
+      ru: "С регистратором и вообще с незнакомыми людьми обязательна форма Sie. Оба варианта с du в этой ситуации невежливы, хотя грамматически они правильные."
+
+  - id: mc-hoeflich
+    type: mc
+    prompt: "Was ist höflich?"
+    options:
+      - "Ich will einen Termin."
+      - "Ich möchte einen Termin vereinbaren."
+      - "Geben Sie mir einen Termin!"
+    correct: 1
+    translation:
+      en: What is polite?
+      ru: Какой вариант вежливый?
+    explain:
+      en: '"Ich möchte…" is the polite standard for wishes. "Ich will…" sounds blunt, and a bare imperative with "!" sounds like an order.'
+      ru: '"Ich möchte…" — вежливый стандарт для выражения желания. "Ich will…" звучит грубо, а голый императив с "!" — как приказ.'
+
+  - id: mc-passt-form
+    type: mc
+    prompt: "___ es Ihnen um 15 Uhr?"
+    options: ["Passt", "Passen", "Passe"]
+    correct: 0
+    translation:
+      en: Does 3 p.m. suit you?
+      ru: Вам удобно в 15 часов?
+    explain:
+      en: 'The subject is "es" (er/sie/es form), so the verb is "passt". "Ihnen" is a dative object, not the subject.'
+      ru: 'Подлежащее — "es" (форма er/sie/es), поэтому глагол — "passt". "Ihnen" — дополнение в дательном падеже, а не подлежащее.'
+
+  - id: mc-um
+    type: mc
+    prompt: "Der Termin ist ___ 14:30 Uhr."
+    options: ["um", "am", "im"]
+    correct: 0
+    translation:
+      en: The appointment is at 2:30 p.m.
+      ru: Приём в 14:30.
+    explain:
+      en: 'Clock times take "um": um 14:30 Uhr. "am" is for days and parts of the day (am Montag, am Nachmittag).'
+      ru: 'Со временем по часам используется "um": um 14:30 Uhr. "am" употребляется с днями и частями дня (am Montag, am Nachmittag).'
+
+  - id: cloze-mir
+    type: cloze
+    instruction:
+      en: Fill in the correct pronoun.
+      ru: Вставьте правильное местоимение.
+    text: "Der Termin am Freitag passt {{mir}} sehr gut."
+    translation:
+      en: The appointment on Friday suits me very well.
+      ru: Встреча в пятницу мне очень подходит.
+    explain:
+      en: '"passen" takes the dative: mir, not mich. Russian helps here — «подходит мне» is dative too.'
+      ru: '"passen" требует дательного падежа: mir, а не mich. Русский здесь подсказывает — «подходит мне» тоже дательный.'
+
+  - id: cloze-ihnen
+    type: cloze
+    instruction:
+      en: Fill in the polite pronoun in the correct case.
+      ru: Вставьте вежливое местоимение в правильном падеже.
+    text: "Passt es {{Ihnen}} am Donnerstag um 10 Uhr?"
+    translation:
+      en: Does Thursday at 10 o'clock suit you?
+      ru: Вам удобно в четверг в 10 часов?
+    explain:
+      en: 'Dative of the polite "Sie" is "Ihnen" — always capitalized. "Passt es Sie?" is a classic mistake.'
+      ru: 'Дательный падеж вежливого "Sie" — "Ihnen", всегда с заглавной буквы. "Passt es Sie?" — классическая ошибка.'
+
+  - id: cloze-absagen
+    type: cloze
+    instruction:
+      en: Complete the separable verb.
+      ru: Дополните глагол с отделяемой приставкой.
+    text: "Es klappt morgen leider nicht. Ich sage den Termin {{ab}}."
+    translation:
+      en: Unfortunately it won't work out tomorrow. I am cancelling the appointment.
+      ru: Завтра, к сожалению, не получится. Я отменяю встречу.
+    explain:
+      en: '"absagen" is separable: in a main clause the prefix "ab" moves to the end — ich sage … ab.'
+      ru: 'У "absagen" отделяемая приставка: в главном предложении "ab" уходит в конец — ich sage … ab.'
+
+  - id: cloze-dialog
+    type: cloze
+    instruction:
+      en: Complete the mini-dialogue.
+      ru: Дополните мини-диалог.
+    text: "— Guten Tag, ich möchte einen Termin {{vereinbaren}}. — Gern! Passt es Ihnen {{am}} Freitag {{um}} 15 Uhr?"
+    translation:
+      en: "— Hello, I would like to make an appointment. — Certainly! Does Friday at 3 p.m. suit you?"
+      ru: "— Добрый день, я хотел бы записаться на приём. — Конечно! Вам удобно в пятницу в 15 часов?"
+    explain:
+      en: 'The fixed formula is "einen Termin vereinbaren"; days take "am" (am Freitag) and clock times take "um" (um 15 Uhr).'
+      ru: 'Устойчивая формула — "einen Termin vereinbaren"; с днями недели употребляется "am" (am Freitag), со временем по часам — "um" (um 15 Uhr).'
+
+  - id: match-dialog
+    type: match
+    instruction:
+      en: Match each question with its answer.
+      ru: Соедините каждый вопрос с подходящим ответом.
+    pairs:
+      - { left: "Haben Sie am Montag Zeit?", right: "Nein, am Montag bin ich leider beschäftigt." }
+      - { left: "Passt es Ihnen um 15 Uhr?", right: "Ja, 15 Uhr passt mir gut." }
+      - { left: "Können wir den Termin verschieben?", right: "Ja, gern. Geht es am Freitag?" }
+      - { left: "Ist es dringend?", right: "Ja, ich habe starke Schmerzen." }
+    explain:
+      en: "Typical appointment exchanges: time questions get time answers (with passen + dative), and a yes/no question about urgency gets a reason."
+      ru: "Типичные реплики при записи на приём: на вопросы о времени отвечают о времени (с passen + дательный), а на вопрос о срочности — называют причину."
+
+  - id: match-funktion
+    type: match
+    instruction:
+      en: What is the speaker doing? Match each sentence with its function.
+      ru: Что делает говорящий? Соедините каждое предложение с его функцией.
+    pairs:
+      - { left: "Ich möchte einen Termin vereinbaren.", right: "nach einem Termin fragen" }
+      - { left: "Es tut mir leid, ich kann morgen nicht kommen.", right: "einen Termin absagen" }
+      - { left: "Geht es auch eine Stunde später?", right: "nach einer anderen Zeit fragen" }
+      - { left: "Ja, das passt mir gut.", right: "Ja sagen" }
+    explain:
+      en: "These four moves cover almost every appointment call: ask for an appointment, cancel, suggest another time, confirm."
+      ru: "Эти четыре хода покрывают почти любой звонок о встрече: попросить о приёме, отменить, предложить другое время, подтвердить."
+
+  - id: order-moechte
+    type: order
+    instruction:
+      en: Arrange the words into a polite sentence.
+      ru: Составьте вежливое предложение.
+    words: ["Ich", "möchte", "einen", "Termin", "vereinbaren."]
+    translation:
+      en: I would like to make an appointment.
+      ru: Я хотел бы записаться на приём.
+    explain:
+      en: '"möchte" is the conjugated verb in position 2; the infinitive "vereinbaren" goes to the end of the sentence.'
+      ru: '"möchte" — спрягаемый глагол на второй позиции; инфинитив "vereinbaren" уходит в конец предложения.'
+
+  - id: order-koennten
+    type: order
+    instruction:
+      en: Build the polite question.
+      ru: Составьте вежливый вопрос.
+    words: ["Könnten", "wir", "den", "Termin", "auf", "Freitag", "verschieben", "?"]
+    translation:
+      en: Could we move the appointment to Friday?
+      ru: Мы могли бы перенести встречу на пятницу?
+    explain:
+      en: 'A yes/no question starts with the conjugated verb ("Könnten"); the infinitive "verschieben" stands at the end, and the new day takes "auf".'
+      ru: 'Общий вопрос начинается со спрягаемого глагола ("Könnten"); инфинитив "verschieben" стоит в конце, а новый день вводится через "auf".'
+
+  - id: table-verben
+    type: table
+    title: "Verbformen"
+    instruction:
+      en: Fill in the missing verb forms.
+      ru: Заполните недостающие формы глаголов.
+    columns: ["er/sie/es (Präsens)", "Partizip II"]
+    rows:
+      - label: vereinbaren
+        cells:
+          - { answer: "vereinbart", given: true }
+          - { answer: "vereinbart" }
+      - label: absagen
+        cells:
+          - { answer: "sagt ab" }
+          - { answer: "abgesagt" }
+      - label: verschieben
+        cells:
+          - { answer: "verschiebt", given: true }
+          - { answer: "verschoben" }
+      - label: passen
+        cells:
+          - { answer: "passt" }
+          - { answer: "gepasst" }
+    explain:
+      en: 'Separable "absagen": er sagt ab, hat abgesagt (ge- inside). Inseparable "vereinbaren"/"verschieben": no ge- at all — vereinbart, verschoben.'
+      ru: 'Отделяемый "absagen": er sagt ab, hat abgesagt (ge- внутри). Неотделяемые "vereinbaren"/"verschieben": без ge- вообще — vereinbart, verschoben.'

@@ -1,0 +1,193 @@
+topic: perfekt-haben-sein
+title:
+  en: Practice — perfect tense with haben and sein
+  ru: Практика — перфект с haben и sein
+items:
+  - id: partizip2-tabelle
+    type: table
+    title: "Partizip II"
+    instruction:
+      en: Fill in the Partizip II of each verb.
+      ru: Впишите Partizip II каждого глагола.
+    columns: [Partizip II]
+    rows:
+      - label: machen
+        cells: [{ answer: gemacht, given: true }]
+      - label: kaufen
+        cells: [{ answer: gekauft }]
+      - label: essen
+        cells: [{ answer: gegessen }]
+      - label: trinken
+        cells: [{ answer: getrunken }]
+      - label: gehen
+        cells: [{ answer: gegangen }]
+      - label: schreiben
+        cells: [{ answer: geschrieben }]
+    explain:
+      en: "Regular verbs: ge-…-t (gemacht, gekauft). Strong verbs: ge-…-en, often with a vowel change (gegessen, getrunken, gegangen, geschrieben)."
+      ru: "Правильные глаголы: ge-…-t (gemacht, gekauft). Сильные глаголы: ge-…-en, часто со сменой гласной (gegessen, getrunken, gegangen, geschrieben)."
+
+  - id: mc-nach-hause
+    type: mc
+    prompt: "Ich ___ gestern nach Hause gegangen."
+    options: ["habe", "bin", "ist"]
+    correct: 1
+    translation:
+      en: I went home yesterday.
+      ru: Вчера я пошёл домой.
+    explain:
+      en: "gehen describes movement from A to B, so it forms the Perfekt with sein: ich bin gegangen. 'Ist' is the er/sie/es form, and 'habe' is the classic Russian-speaker mistake here."
+      ru: "gehen обозначает движение из точки А в точку Б, поэтому перфект образуется с sein: ich bin gegangen. 'Ist' — форма для er/sie/es, а 'habe' — типичная ошибка русскоязычных."
+
+  - id: cloze-gefahren
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Wir {{sind}} am Sonntag nach Berlin gefahren."
+    translation:
+      en: On Sunday we went to Berlin.
+      ru: В воскресенье мы поехали в Берлин.
+    explain:
+      en: "fahren is a verb of movement from A to B, so it takes sein: wir sind gefahren."
+      ru: "fahren — глагол движения из точки А в точку Б, поэтому вспомогательный глагол — sein: wir sind gefahren."
+
+  - id: mc-gegessen
+    type: mc
+    prompt: "Er ___ eine Pizza gegessen."
+    options: ["hat", "ist", "habt"]
+    correct: 0
+    translation:
+      en: He ate a pizza.
+      ru: Он съел пиццу.
+    explain:
+      en: "essen is neither movement nor a change of state, so it takes haben: er hat gegessen. 'Habt' is the ihr form."
+      ru: "essen — не движение и не смена состояния, поэтому перфект образуется с haben: er hat gegessen. 'Habt' — форма для ihr."
+
+  - id: match-partizip
+    type: match
+    instruction:
+      en: Match each infinitive with its Partizip II.
+      ru: Соедините каждый инфинитив с его Partizip II.
+    pairs:
+      - { left: "kaufen", right: "gekauft" }
+      - { left: "trinken", right: "getrunken" }
+      - { left: "aufstehen", right: "aufgestanden" }
+      - { left: "bezahlen", right: "bezahlt" }
+      - { left: "studieren", right: "studiert" }
+    explain:
+      en: "kaufen is regular (ge-…-t), trinken is strong (ge-…-en with vowel change), aufstehen is separable (-ge- goes inside: aufgestanden). bezahlen has an inseparable prefix and studieren ends in -ieren — both take no ge-."
+      ru: "kaufen — правильный глагол (ge-…-t), trinken — сильный (ge-…-en со сменой гласной), aufstehen — с отделяемой приставкой (-ge- вставляется внутрь: aufgestanden). У bezahlen неотделяемая приставка, а studieren оканчивается на -ieren — оба без ge-."
+
+  - id: order-brot
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Ich", "habe", "ein", "Brot", "gekauft."]
+    translation:
+      en: I bought a loaf of bread.
+      ru: Я купил хлеб.
+    explain:
+      en: "Sentence bracket: 'habe' in position 2, the participle 'gekauft' strictly at the end. 'Ich habe gekauft ein Brot' is impossible in German."
+      ru: "Глагольная рамка: 'habe' на втором месте, причастие 'gekauft' — строго в конце. Сказать 'Ich habe gekauft ein Brot' по-немецки нельзя."
+
+  - id: cloze-studiert
+    type: cloze
+    instruction:
+      en: Fill the gap with the Partizip II of the verb in brackets.
+      ru: Вставьте Partizip II глагола, указанного в скобках.
+    text: "Ich habe in München {{studiert}} (studieren)."
+    translation:
+      en: I studied (at university) in Munich.
+      ru: Я учился в университете в Мюнхене.
+    explain:
+      en: "Verbs ending in -ieren form the participle without ge-: studiert, telefoniert. 'Gestudiert' does not exist."
+      ru: "Глаголы на -ieren образуют причастие без ge-: studiert, telefoniert. Формы 'gestudiert' не существует."
+
+  - id: mc-gemacht
+    type: mc
+    prompt: "Was hast du am Wochenende ___?"
+    options: ["gemacht", "macht", "machen"]
+    correct: 0
+    translation:
+      en: What did you do at the weekend?
+      ru: Что ты делал на выходных?
+    explain:
+      en: "The Perfekt needs the Partizip II: ge- + mach + -t = gemacht. 'Macht' is a present-tense form and 'machen' is the infinitive — don't drop the ge-."
+      ru: "Для перфекта нужен Partizip II: ge- + mach + -t = gemacht. 'Macht' — форма настоящего времени, 'machen' — инфинитив; не теряйте ge-."
+
+  - id: cloze-aufgestanden
+    type: cloze
+    instruction:
+      en: Fill the gap with the Partizip II of the verb in brackets.
+      ru: Вставьте Partizip II глагола, указанного в скобках.
+    text: "Sie ist um sieben Uhr {{aufgestanden}} (aufstehen)."
+    translation:
+      en: She got up at seven o'clock.
+      ru: Она встала в семь часов.
+    explain:
+      en: "Separable verbs put -ge- between prefix and stem: auf + ge + standen. As a change of state, aufstehen also takes sein."
+      ru: "У глаголов с отделяемой приставкой -ge- вставляется между приставкой и основой: auf + ge + standen. Как смена состояния, aufstehen к тому же образует перфект с sein."
+
+  - id: order-gestern
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Gestern", "ist", "er", "nach", "Berlin", "gefahren."]
+    translation:
+      en: Yesterday he went to Berlin.
+      ru: Вчера он поехал в Берлин.
+    explain:
+      en: "'Gestern' takes position 1, so the auxiliary 'ist' stays in position 2 (inversion), and the participle 'gefahren' closes the sentence."
+      ru: "'Gestern' занимает первое место, поэтому вспомогательный глагол 'ist' остаётся на втором (инверсия), а причастие 'gefahren' замыкает предложение."
+
+  - id: mc-geblieben
+    type: mc
+    prompt: "Wir ___ am Wochenende zu Hause geblieben."
+    options: ["haben", "sind", "seid"]
+    correct: 1
+    translation:
+      en: We stayed at home at the weekend.
+      ru: На выходных мы остались дома.
+    explain:
+      en: "bleiben is one of the exceptions that always take sein (together with sein and passieren), even though there is no movement: wir sind geblieben."
+      ru: "bleiben — одно из исключений, которые всегда образуют перфект с sein (вместе с sein и passieren), хотя движения здесь нет: wir sind geblieben."
+
+  - id: cloze-bezahlt
+    type: cloze
+    instruction:
+      en: Fill the gap with the Partizip II of the verb in brackets.
+      ru: Вставьте Partizip II глагола, указанного в скобках.
+    text: "Hast du schon {{bezahlt}} (bezahlen)?"
+    translation:
+      en: Have you paid yet?
+      ru: Ты уже заплатил?
+    explain:
+      en: "Inseparable prefixes (be-, ver-, er- …) block ge-: bezahlt, verstanden. 'Gebezahlt' does not exist."
+      ru: "Неотделяемые приставки (be-, ver-, er- …) не допускают ge-: bezahlt, verstanden. Формы 'gebezahlt' не существует."
+
+  - id: tabelle-haben-sein
+    type: table
+    title: "haben oder sein?"
+    instruction:
+      en: Write the correct auxiliary (haben or sein) for each verb.
+      ru: Впишите правильный вспомогательный глагол (haben или sein) для каждого глагола.
+    columns: ["haben oder sein?"]
+    rows:
+      - label: gehen
+        cells: [{ answer: sein, given: true }]
+      - label: kaufen
+        cells: [{ answer: haben }]
+      - label: kommen
+        cells: [{ answer: sein }]
+      - label: trinken
+        cells: [{ answer: haben }]
+      - label: passieren
+        cells: [{ answer: sein }]
+      - label: schreiben
+        cells: [{ answer: haben }]
+    explain:
+      en: "sein for movement from A to B (gehen, kommen) and for the exceptions bleiben, sein, passieren; everything else — including kaufen, trinken, schreiben — takes haben."
+      ru: "sein — для движения из точки А в точку Б (gehen, kommen) и для исключений bleiben, sein, passieren; всё остальное — в том числе kaufen, trinken, schreiben — образует перфект с haben."

@@ -1,0 +1,177 @@
+topic: artikel-genus
+title:
+  en: Practice — articles and gender
+  ru: Практика — артикли и род существительных
+items:
+  - id: tabelle-der-die-das
+    type: table
+    title: "der, die oder das?"
+    instruction:
+      en: Fill in the correct definite article for each noun.
+      ru: Впишите правильный определённый артикль для каждого существительного.
+    columns: [Artikel]
+    rows:
+      - label: Mann
+        cells: [{ answer: der, given: true }]
+      - label: Frau
+        cells: [{ answer: die }]
+      - label: Kind
+        cells: [{ answer: das }]
+      - label: Buch
+        cells: [{ answer: das }]
+      - label: Zeitung
+        cells: [{ answer: die }]
+      - label: Mädchen
+        cells: [{ answer: das }]
+    explain:
+      en: "der Mann, die Frau, das Kind are the model words for the three genders. die Zeitung follows the -ung rule, das Mädchen the -chen rule, and das Buch simply has to be memorized — Russian книга (feminine) is no guide."
+      ru: "der Mann, die Frau, das Kind — образцы трёх родов. die Zeitung — по правилу для -ung, das Mädchen — по правилу для -chen, а das Buch нужно просто запомнить: русское «книга» (женский род) здесь не помощник."
+
+  - id: mc-maedchen
+    type: mc
+    prompt: "___ Mädchen ist klein."
+    options: ["Der", "Die", "Das"]
+    correct: 2
+    translation:
+      en: The girl is little.
+      ru: Девочка маленькая.
+    explain:
+      en: "Gender is grammatical, not natural: every noun in -chen is neuter, so it is das Mädchen — even though a girl is female."
+      ru: "Род грамматический, а не природный: все слова на -chen среднего рода, поэтому das Mädchen — хотя девочка женского пола."
+
+  - id: cloze-wohnung
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct definite article.
+      ru: Вставьте правильный определённый артикль.
+    text: "{{Die|die}} Wohnung ist groß."
+    translation:
+      en: The apartment is big.
+      ru: Квартира большая.
+    explain:
+      en: "Nouns in -ung are always feminine: die Wohnung, die Zeitung, die Übung."
+      ru: "Слова на -ung всегда женского рода: die Wohnung, die Zeitung, die Übung."
+
+  - id: cloze-sommer
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct definite article.
+      ru: Вставьте правильный определённый артикль.
+    text: "{{Der|der}} Sommer ist warm."
+    translation:
+      en: The summer is warm.
+      ru: Лето тёплое.
+    explain:
+      en: "Days, months and seasons are masculine: der Montag, der Januar, der Sommer."
+      ru: "Дни недели, месяцы и времена года — мужского рода: der Montag, der Januar, der Sommer."
+
+  - id: mc-auto
+    type: mc
+    prompt: "Ich habe ___ Auto."
+    options: ["ein", "eine", "der"]
+    correct: 0
+    translation:
+      en: I have a car.
+      ru: У меня есть машина.
+    explain:
+      en: "das Auto is neuter, so the indefinite article is ein. And the article cannot simply be dropped — 'Ich habe Auto' is wrong."
+      ru: "das Auto — среднего рода, поэтому неопределённый артикль ein. И опустить артикль нельзя — 'Ich habe Auto' неправильно."
+
+  - id: mc-frage
+    type: mc
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение правильное?
+    prompt: "Was ist richtig?"
+    options:
+      - "Ich habe Frage."
+      - "Ich habe eine Frage."
+      - "Ich habe ein Frage."
+    correct: 1
+    explain:
+      en: "Russian has no articles, but German requires one here: die Frage is feminine, so it is eine Frage. Without an article ('Ich habe Frage') the sentence is broken, and 'ein Frage' has the wrong form."
+      ru: "В русском артиклей нет, а в немецком здесь артикль обязателен: die Frage — женского рода, поэтому eine Frage. Без артикля ('Ich habe Frage') предложение неправильное, а 'ein Frage' — неверная форма."
+
+  - id: cloze-zeit
+    type: cloze
+    instruction:
+      en: Negate the noun with the correct form.
+      ru: Вставьте правильную отрицательную форму.
+    text: "Ich habe {{keine}} Zeit."
+    translation:
+      en: I have no time.
+      ru: У меня нет времени.
+    explain:
+      en: "Nouns are negated with kein-, not with 'nicht': die Zeit is feminine, so it is keine Zeit."
+      ru: "Существительные отрицаются через kein-, а не через 'nicht': die Zeit — женского рода, поэтому keine Zeit."
+
+  - id: mc-brot
+    type: mc
+    prompt: "Wir haben ___ Brot."
+    options: ["kein", "keine", "nicht"]
+    correct: 0
+    translation:
+      en: We have no bread.
+      ru: У нас нет хлеба.
+    explain:
+      en: "das Brot is neuter, so the negative article is kein. 'nicht' cannot negate a noun — that is what kein/keine is for."
+      ru: "das Brot — среднего рода, поэтому отрицательный артикль kein. 'nicht' не отрицает существительное — для этого есть kein/keine."
+
+  - id: match-genus-signale
+    type: match
+    instruction:
+      en: Match each gender signal with a fitting example.
+      ru: Соедините каждый признак рода с подходящим примером.
+    pairs:
+      - { left: "-ung", right: "die Zeitung" }
+      - { left: "-chen", right: "das Mädchen" }
+      - { left: "Beruf auf -er", right: "der Lehrer" }
+      - { left: "Jahreszeit", right: "der Sommer" }
+      - { left: "Plural", right: "die Kinder" }
+    explain:
+      en: "-ung → die, -chen → das, professions in -er → der, seasons (like days and months) → der, and the plural article is always die."
+      ru: "-ung → die, -chen → das, профессии на -er → der, времена года (как дни и месяцы) → der, а во множественном числе артикль всегда die."
+
+  - id: order-auto
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Ich", "habe", "ein", "Auto."]
+    translation:
+      en: I have a car.
+      ru: У меня есть машина.
+    explain:
+      en: "Don't skip the article: das Auto needs ein here. 'Ich habe Auto' is a typical Russian-speaker mistake."
+      ru: "Не пропускайте артикль: das Auto требует здесь ein. 'Ich habe Auto' — типичная ошибка русскоязычных."
+
+  - id: order-kinder
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Die", "Kinder", "sind", "zu", "Hause."]
+    translation:
+      en: The children are at home.
+      ru: Дети дома.
+    explain:
+      en: "In the plural the article is always die, whatever the gender of the singular: das Kind → die Kinder."
+      ru: "Во множественном числе артикль всегда die, независимо от рода в единственном: das Kind → die Kinder."
+
+  - id: tabelle-ein-kein
+    type: table
+    title: "ein oder kein?"
+    instruction:
+      en: Fill in the indefinite article and the negative article (nominative).
+      ru: Впишите неопределённый и отрицательный артикли (в номинативе).
+    columns: [ein-Form, kein-Form]
+    rows:
+      - label: der Mann
+        cells: [{ answer: ein, given: true }, { answer: kein }]
+      - label: die Frau
+        cells: [{ answer: eine }, { answer: keine }]
+      - label: das Kind
+        cells: [{ answer: ein }, { answer: kein }]
+    explain:
+      en: "In the nominative, masculine and neuter take the bare forms ein/kein; only the feminine adds -e: eine, keine."
+      ru: "В номинативе мужской и средний род получают формы без окончания — ein/kein; только женский род добавляет -e: eine, keine."

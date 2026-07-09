@@ -1,0 +1,127 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Bilingual from '../../components/Bilingual.astro';
+import En from '../../components/En.astro';
+import Ru from '../../components/Ru.astro';
+import VocabTable from '../../components/VocabTable.astro';
+import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
+import DueBadge from '../../components/srs/DueBadge';
+import { KIND_LABEL } from '../../lib/content';
+import { buildDeck } from '../../lib/srs';
+
+export async function getStaticPaths() {
+  const topics = await getCollection('topics');
+  return topics.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const allTopics = await getCollection('topics');
+const byId = new Map(allTopics.map((t) => [t.data.id, t]));
+const prerequisites = data.prerequisites
+  .map((id) => byId.get(id))
+  .filter((t) => t !== undefined);
+
+const exerciseSets = await Promise.all(
+  data.exercises.map(async (id) => {
+    const set = await getEntry('exercises', id);
+    if (!set) throw new Error(`Topic ${data.id}: exercise set "${id}" not found`);
+    return { id, data: set.data };
+  }),
+);
+
+const vocabFiles = await Promise.all(
+  data.vocab.map(async (id) => {
+    const v = await getEntry('vocab', id);
+    if (!v) throw new Error(`Topic ${data.id}: vocab file "${id}" not found`);
+    return v.data;
+  }),
+);
+---
+
+<Base title={data.title_de}>
+  <nav class="mb-4 text-sm text-stone-400">
+    <a href="/topics" class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
+    <span> / {data.level}</span>
+  </nav>
+
+  <header class="mb-8">
+    <div class="flex flex-wrap items-center gap-2 text-xs">
+      <span class="rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+        {data.level}
+      </span>
+      <span class="rounded-full bg-stone-200 px-2.5 py-0.5 font-medium text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+        {KIND_LABEL[data.kind]}
+      </span>
+      {data.status === 'draft' && (
+        <span class="rounded-full border border-stone-300 px-2.5 py-0.5 text-stone-400 dark:border-stone-600">
+          Entwurf
+        </span>
+      )}
+    </div>
+    <h1 lang="de" class="mt-3 text-3xl font-bold tracking-tight">{data.title_de}</h1>
+    <p class="mt-1 text-stone-500 dark:text-stone-400">
+      <span class="lang-en">{data.title_en}</span>
+      <span class="lang-ru">{data.title_ru}</span>
+    </p>
+    {
+      prerequisites.length > 0 && (
+        <p class="mt-3 text-sm text-stone-500 dark:text-stone-400">
+          Voraussetzungen:
+          {prerequisites.map((p) => (
+            <a
+              href={`/topics/${p.id}`}
+              lang="de"
+              class="ml-2 text-sky-700 hover:underline dark:text-sky-400"
+            >
+              {p.data.title_de}
+            </a>
+          ))}
+        </p>
+      )
+    }
+  </header>
+
+  <article class="article-prose">
+    <Content components={{ Bilingual, En, Ru }} />
+  </article>
+
+  {
+    vocabFiles.length > 0 && (
+      <section class="mt-12">
+        <h2 class="mb-4 text-2xl font-bold">Wortschatz</h2>
+        {vocabFiles.map((v) => (
+          <div class="mb-8">
+            <div class="mb-2 flex items-center gap-3">
+              <h3 lang="de" class="text-lg font-semibold">{v.title_de}</h3>
+              <DueBadge client:only="react" cards={buildDeck(v.id, v.entries)} />
+              <a
+                href={`/vocab/${v.id}`}
+                class="ml-auto text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
+              >
+                Karten lernen →
+              </a>
+            </div>
+            <VocabTable entries={v.entries} />
+          </div>
+        ))}
+      </section>
+    )
+  }
+
+  {
+    exerciseSets.length > 0 && (
+      <section class="mt-12">
+        <h2 class="mb-4 text-2xl font-bold">Übungen</h2>
+        <div class="flex flex-col gap-6">
+          {exerciseSets.map((s) => (
+            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>

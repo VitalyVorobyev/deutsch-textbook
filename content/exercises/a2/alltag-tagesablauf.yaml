@@ -1,0 +1,181 @@
+topic: alltag-tagesablauf
+title:
+  en: Practice — everyday life and daily routine
+  ru: Практика — повседневная жизнь и распорядок дня
+items:
+  - id: cloze-aufstehen
+    type: cloze
+    instruction:
+      en: Fill in both parts of the separable verb "aufstehen".
+      ru: Вставьте обе части глагола с отделяемой приставкой "aufstehen".
+    text: "Ich {{stehe}} jeden Morgen um sieben Uhr {{auf}}."
+    translation:
+      en: I get up at seven o'clock every morning.
+      ru: Я встаю каждое утро в семь часов.
+    explain:
+      en: 'aufstehen is separable: the conjugated part "stehe" sits in second position, the prefix "auf" goes to the very end of the sentence.'
+      ru: 'aufstehen — глагол с отделяемой приставкой: спрягаемая часть "stehe" стоит на втором месте, а приставка "auf" уходит в самый конец предложения.'
+
+  - id: order-dann
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Dann", "frühstücke", "ich", "in", "der", "Küche."]
+    translation:
+      en: Then I have breakfast in the kitchen.
+      ru: Потом я завтракаю на кухне.
+    explain:
+      en: '"Dann" fills position 1, so the verb "frühstücke" must come second and the subject "ich" third — this is the inversion that sequencers trigger.'
+      ru: '"Dann" занимает первую позицию, поэтому глагол "frühstücke" стоит вторым, а подлежащее "ich" — третьим. Это инверсия, которую вызывают слова-связки.'
+
+  - id: mc-fernsehen
+    type: mc
+    prompt: "Am Abend ___ ich ein bisschen fern."
+    options: ["sehe", "fernsehe", "sieht"]
+    correct: 0
+    translation:
+      en: In the evening I watch a bit of TV.
+      ru: Вечером я немного смотрю телевизор.
+    explain:
+      en: 'fernsehen splits: the conjugated form for "ich" is "sehe", and "fern" already stands at the end. The unseparated "fernsehe" cannot sit in second position, and "sieht" is the er/sie/es form.'
+      ru: 'fernsehen разделяется: спрягаемая форма для "ich" — "sehe", а "fern" уже стоит в конце. Слитная форма "fernsehe" не может занимать второе место, а "sieht" — форма er/sie/es.'
+
+  - id: match-tageszeiten
+    type: match
+    instruction:
+      en: Match each time of day with the typical activity.
+      ru: Соедините время суток с типичным занятием.
+    pairs:
+      - { left: "am Morgen", right: "frühstücken" }
+      - { left: "am Mittag", right: "Pause machen" }
+      - { left: "am Abend", right: "fernsehen" }
+      - { left: "in der Nacht", right: "schlafen" }
+    explain:
+      en: 'Parts of the day take "am": am Morgen, am Mittag, am Abend. Only the night takes "in": in der Nacht.'
+      ru: 'С частями суток используется "am": am Morgen, am Mittag, am Abend. Только с ночью — "in": in der Nacht.'
+
+  - id: table-trennbare
+    type: table
+    title: "Trennbare Verben im Präsens"
+    instruction:
+      en: Fill in the er/sie/es present form — two words, with the prefix at the end, like the example in the first row.
+      ru: Впишите форму er/sie/es в презенсе — два слова, приставка в конце, как в примере в первой строке.
+    columns: ["er/sie/es"]
+    rows:
+      - label: aufstehen
+        cells: [{ answer: "steht auf", given: true }]
+      - label: einkaufen
+        cells: [{ answer: "kauft ein" }]
+      - label: fernsehen
+        cells: [{ answer: "sieht fern" }]
+      - label: einschlafen
+        cells: [{ answer: "schläft ein" }]
+    explain:
+      en: 'In the present tense the prefix separates: er kauft ein, er sieht fern (stem change e → ie), er schläft ein (stem change a → ä).'
+      ru: 'В презенсе приставка отделяется: er kauft ein, er sieht fern (чередование e → ie), er schläft ein (чередование a → ä).'
+
+  - id: cloze-um
+    type: cloze
+    instruction:
+      en: Fill in the correct preposition (the same one twice).
+      ru: Вставьте правильный предлог (один и тот же дважды).
+    text: "Ich stehe {{um}} sieben Uhr auf und fahre {{um}} acht Uhr zur Arbeit."
+    translation:
+      en: I get up at seven o'clock and go to work at eight o'clock.
+      ru: Я встаю в семь часов и еду на работу в восемь часов.
+    explain:
+      en: 'Clock times always take "um": um sieben Uhr. Russian «в семь часов» tempts you to say "in", but "in sieben Uhr" is wrong.'
+      ru: 'С точным временем всегда "um": um sieben Uhr. Русское «в семь часов» подталкивает к "in", но "in sieben Uhr" — ошибка.'
+
+  - id: mc-meistens
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Meistens ich dusche am Morgen."
+      - "Meistens dusche ich am Morgen."
+      - "Ich meistens dusche am Morgen."
+    correct: 1
+    translation:
+      en: Which sentence is correct? — Usually I shower in the morning.
+      ru: Какое предложение правильное? — Обычно я принимаю душ утром.
+    explain:
+      en: '"Meistens" may start the sentence, but then the verb follows immediately: Meistens dusche ich… Inside the sentence it stands after the verb (Ich dusche meistens…), never between subject and verb.'
+      ru: '"Meistens" может начинать предложение, но тогда сразу за ним идёт глагол: Meistens dusche ich… Внутри предложения оно стоит после глагола (Ich dusche meistens…), но никогда между подлежащим и глаголом.'
+
+  - id: cloze-feierabend
+    type: cloze
+    instruction:
+      en: Complete the fixed expression.
+      ru: Дополните устойчивое выражение.
+    text: "Um fünf Uhr habe ich {{Feierabend}} und fahre nach Hause."
+    translation:
+      en: At five o'clock I finish work and go home.
+      ru: В пять часов я заканчиваю работу и еду домой.
+    explain:
+      en: '"Feierabend haben" = to be done with work for the day. Feierabend is a noun, so it is capitalized.'
+      ru: '"Feierabend haben" = закончить рабочий день. Feierabend — существительное, поэтому пишется с заглавной буквы.'
+
+  - id: order-danach
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Danach", "räume", "ich", "die", "Küche", "auf."]
+    translation:
+      en: After that I tidy up the kitchen.
+      ru: После этого я убираю кухню.
+    explain:
+      en: 'Two rules at once: "Danach" takes position 1, so the verb "räume" stays second — and the separable prefix "auf" goes to the very end.'
+      ru: 'Два правила сразу: "Danach" занимает первую позицию, поэтому глагол "räume" остаётся на втором месте, а отделяемая приставка "auf" уходит в самый конец.'
+
+  - id: mc-perfekt-aufstehen
+    type: mc
+    prompt: "Heute ___ ich schon um sechs Uhr aufgestanden."
+    options: ["bin", "habe", "ist"]
+    correct: 0
+    translation:
+      en: Today I got up as early as six o'clock.
+      ru: Сегодня я встал уже в шесть часов.
+    explain:
+      en: 'aufstehen describes a change of position/state and forms the Perfekt with sein: ich bin aufgestanden. "habe" is the wrong auxiliary, and "ist" does not agree with "ich".'
+      ru: 'aufstehen обозначает смену положения/состояния и образует перфект с sein: ich bin aufgestanden. "habe" — неправильный вспомогательный глагол, а "ist" не согласуется с "ich".'
+
+  - id: match-praefixe
+    type: match
+    instruction:
+      en: Match each sentence beginning with its separable prefix.
+      ru: Соедините начало предложения с его отделяемой приставкой.
+    pairs:
+      - { left: "Ich kaufe am Samstag …", right: "ein." }
+      - { left: "Er sieht am Abend …", right: "fern." }
+      - { left: "Sie zieht sich schnell …", right: "an." }
+      - { left: "Wir stehen sehr früh …", right: "auf." }
+    explain:
+      en: 'einkaufen, fernsehen, sich anziehen, aufstehen — in the present tense the separable prefix stands at the end of the sentence.'
+      ru: 'einkaufen, fernsehen, sich anziehen, aufstehen — в презенсе отделяемая приставка стоит в конце предложения.'
+
+  - id: cloze-zuerst
+    type: cloze
+    instruction:
+      en: Fill in the sequencing words that match the translation.
+      ru: Вставьте слова-связки, соответствующие переводу.
+    text: "{{Zuerst}} dusche ich, {{dann|danach}} ziehe ich mich an."
+    translation:
+      en: First I shower, then I get dressed.
+      ru: Сначала я принимаю душ, потом одеваюсь.
+    explain:
+      en: 'zuerst → dann/danach chain the actions into a narrative. Note the word order after them: verb second, subject third (dusche ich, ziehe ich).'
+      ru: 'zuerst → dann/danach выстраивают действия в рассказ. Обратите внимание на порядок слов после них: глагол на втором месте, подлежащее — на третьем (dusche ich, ziehe ich).'
+
+  - id: mc-wochenende
+    type: mc
+    prompt: "___ Wochenende schlafe ich bis zehn Uhr."
+    options: ["Am", "Um", "In"]
+    correct: 0
+    translation:
+      en: On the weekend I sleep until ten o'clock.
+      ru: В выходные я сплю до десяти часов.
+    explain:
+      en: '"am Wochenende" — like the parts of the day (am Morgen, am Abend), the weekend takes "am". "um" is only for clock times, and "in" would need an article (in der Nacht).'
+      ru: '"am Wochenende" — как и с частями суток (am Morgen, am Abend), с выходными используется "am". "um" — только для точного времени, а "in" требует артикля (in der Nacht).'

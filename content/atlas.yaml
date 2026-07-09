@@ -1,0 +1,45 @@
+# The atlas graph: one node per topic, kept consistent with topic frontmatter.
+# `npm run validate` enforces consistency. The v2 map view will render this file.
+nodes:
+  # --- A1 ---
+  - id: praesens-wortstellung
+    level: A1
+    kind: grammar
+    prerequisites: []
+  - id: artikel-genus
+    level: A1
+    kind: grammar
+    prerequisites: []
+  - id: akkusativ
+    level: A1
+    kind: grammar
+    prerequisites: [artikel-genus]
+  - id: essen-trinken
+    level: A1
+    kind: vocab-field
+    prerequisites: [praesens-wortstellung]
+  # --- A2 ---
+  - id: dativ
+    level: A2
+    kind: grammar
+    prerequisites: [akkusativ]
+  - id: trennbare-verben
+    level: A2
+    kind: grammar
+    prerequisites: [praesens-wortstellung]
+  - id: modalverben
+    level: A2
+    kind: grammar
+    prerequisites: [praesens-wortstellung]
+  - id: perfekt-haben-sein
+    level: A2
+    kind: grammar
+    prerequisites: [praesens-wortstellung]
+  - id: alltag-tagesablauf
+    level: A2
+    kind: vocab-field
+    prerequisites: [praesens-wortstellung, trennbare-verben]
+  - id: termine-vereinbaren
+    level: A2
+    kind: communication
+    prerequisites: [modalverben]

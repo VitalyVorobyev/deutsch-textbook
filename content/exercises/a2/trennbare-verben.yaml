@@ -1,0 +1,181 @@
+topic: trennbare-verben
+title:
+  en: Practice — separable verbs
+  ru: Практика — глаголы с отделяемыми приставками
+items:
+  - id: order-aufstehen
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Ich", "stehe", "um", "7", "Uhr", "auf."]
+    translation:
+      en: I get up at 7 o'clock.
+      ru: Я встаю в 7 часов.
+    explain:
+      en: "Conjugated verb in position 2, separable prefix at the very end: Ich stehe … auf. The two parts form the sentence bracket."
+      ru: "Спрягаемый глагол на втором месте, отделяемая приставка в самом конце: Ich stehe … auf. Две части образуют глагольную рамку."
+
+  - id: cloze-anrufen
+    type: cloze
+    instruction:
+      en: Complete the sentence with the separable prefix.
+      ru: Вставьте отделяемую приставку.
+    text: "Er ruft seine Mutter {{an}}. (anrufen)"
+    translation:
+      en: He calls his mother.
+      ru: Он звонит своей маме.
+    explain:
+      en: "anrufen splits in the present tense: er ruft … an. The prefix an- closes the bracket at the end of the clause."
+      ru: "anrufen в настоящем времени разделяется: er ruft … an. Приставка an- закрывает рамку в конце предложения."
+
+  - id: mc-satzklammer
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich aufstehe um 7 Uhr."
+      - "Ich stehe um 7 Uhr auf."
+      - "Ich stehe auf um 7 Uhr."
+    correct: 1
+    explain:
+      en: "In the present tense the prefix must split off AND go to the very end of the clause — not stay glued to the verb and not sit right after it: Ich stehe um 7 Uhr auf."
+      ru: "В настоящем времени приставка обязана отделиться И уйти в самый конец предложения — она не остаётся при глаголе и не стоит сразу после него: Ich stehe um 7 Uhr auf."
+
+  - id: match-praefixe
+    type: match
+    instruction:
+      en: Match each sentence with its separable prefix.
+      ru: Подберите к каждому предложению его отделяемую приставку.
+    pairs:
+      - { left: "Ich stehe um sieben Uhr ___.", right: "auf" }
+      - { left: "Er ruft seine Oma ___.", right: "an" }
+      - { left: "Wir kaufen im Supermarkt ___.", right: "ein" }
+      - { left: "Die Kinder sehen am Abend ___.", right: "fern" }
+      - { left: "Ich hole dich vom Bahnhof ___.", right: "ab" }
+    explain:
+      en: "aufstehen (to get up), anrufen (to call), einkaufen (to shop), fernsehen (to watch TV), abholen (to pick up) — the conjugated stem stays in position 2, the prefix ends the sentence."
+      ru: "aufstehen (вставать), anrufen (звонить), einkaufen (делать покупки), fernsehen (смотреть телевизор), abholen (забирать) — спрягаемая часть остаётся на втором месте, приставка завершает предложение."
+
+  - id: order-modal
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Ich", "muss", "morgen", "früh", "aufstehen."]
+    translation:
+      en: I have to get up early tomorrow.
+      ru: Завтра мне нужно рано вставать.
+    explain:
+      en: "With a modal verb the modal takes position 2 and the separable verb goes to the end as ONE unbroken infinitive: … muss … aufstehen."
+      ru: "С модальным глаголом на втором месте стоит модальный глагол, а глагол с приставкой уходит в конец ЦЕЛИКОМ, одним инфинитивом: … muss … aufstehen."
+
+  - id: cloze-anfangen
+    type: cloze
+    instruction:
+      en: Fill both gaps with the correct forms of the verb in brackets.
+      ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
+    text: "Der Film {{fängt}} um acht Uhr {{an}}. (anfangen)"
+    translation:
+      en: The film starts at eight o'clock.
+      ru: Фильм начинается в восемь часов.
+    explain:
+      en: "anfangen changes its stem vowel (er/es fängt) and its prefix an- moves to the end: Der Film fängt … an."
+      ru: "У anfangen меняется корневая гласная (er/es fängt), а приставка an- уходит в конец: Der Film fängt … an."
+
+  - id: mc-untrennbar
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Er zahlt das Essen be."
+      - "Er bezahlt das Essen."
+      - "Er bezahlt das Essen be."
+    correct: 1
+    explain:
+      en: "be- is an inseparable prefix (like ver-, er-, ent-, ge-): it is unstressed and never splits off — bezahlen stays in one piece."
+      ru: "be- — неотделяемая приставка (как ver-, er-, ent-, ge-): она безударная и никогда не отделяется — bezahlen остаётся единым словом."
+
+  - id: order-frage
+    type: order
+    instruction:
+      en: Build a yes/no question. Start with the capitalized word.
+      ru: Составьте вопрос без вопросительного слова. Начните со слова с заглавной буквы.
+    words: ["Kommst", "du", "heute", "Abend", "mit?"]
+    translation:
+      en: Are you coming along tonight?
+      ru: Ты пойдёшь сегодня вечером с нами?
+    explain:
+      en: "In a yes/no question the verb comes first, but the prefix still goes to the very end: Kommst du … mit?"
+      ru: "В вопросе без вопросительного слова глагол стоит первым, но приставка всё равно уходит в самый конец: Kommst du … mit?"
+
+  - id: cloze-fernsehen
+    type: cloze
+    instruction:
+      en: Fill both gaps with the correct forms of the verb in brackets.
+      ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
+    text: "Wann {{siehst}} du {{fern}}? (fernsehen)"
+    translation:
+      en: When do you watch TV?
+      ru: Когда ты смотришь телевизор?
+    explain:
+      en: "fernsehen splits like any separable verb, and sehen changes its vowel: du siehst … fern. In a W-question the verb is second, the prefix last."
+      ru: "fernsehen разделяется, как любой глагол с отделяемой приставкой, а у sehen меняется гласная: du siehst … fern. В вопросе с вопросительным словом глагол второй, приставка — последняя."
+
+  - id: table-satzklammer
+    type: table
+    title: "Trennbare Verben im Präsens"
+    instruction:
+      en: "Conjugate each verb for the given person: the verb form goes in position 2, the prefix at the end of the sentence."
+      ru: "Проспрягайте каждый глагол для указанного лица: форма глагола — на второе место, приставка — в конец предложения."
+    columns: ["Position 2", "Satzende"]
+    rows:
+      - label: ich / anrufen
+        cells: [{ answer: rufe }, { answer: an, given: true }]
+      - label: du / abholen
+        cells: [{ answer: holst }, { answer: ab }]
+      - label: er/sie/es / fernsehen
+        cells: [{ answer: sieht }, { answer: fern }]
+      - label: wir / ausgehen
+        cells: [{ answer: gehen }, { answer: aus }]
+      - label: ihr / aufmachen
+        cells: [{ answer: macht }, { answer: auf }]
+    explain:
+      en: "The stem is conjugated normally (du holst, er sieht, wir gehen, ihr macht) and sits in position 2; the prefix (ab, fern, aus, auf) always closes the sentence."
+      ru: "Основа спрягается как обычно (du holst, er sieht, wir gehen, ihr macht) и стоит на втором месте; приставка (ab, fern, aus, auf) всегда закрывает предложение."
+
+  - id: mc-modal-infinitiv
+    type: mc
+    prompt: "Ich muss morgen früh ___."
+    options: ["aufstehen", "stehe auf", "auf stehen"]
+    correct: 0
+    translation:
+      en: I have to get up early tomorrow.
+      ru: Завтра мне нужно рано вставать.
+    explain:
+      en: "After a modal verb the separable verb stands at the end as one whole infinitive — no personal ending, no splitting: aufstehen."
+      ru: "После модального глагола глагол с приставкой стоит в конце целым инфинитивом — без личного окончания и без разделения: aufstehen."
+
+  - id: order-inversion
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Am", "Samstag", "gehen", "wir", "aus."]
+    translation:
+      en: On Saturday we go out.
+      ru: В субботу мы идём развлекаться.
+    explain:
+      en: "Fronted time expression → inversion: Am Samstag gehen wir … But the prefix aus still takes the last position."
+      ru: "Обстоятельство времени на первом месте → инверсия: Am Samstag gehen wir … Но приставка aus всё равно занимает последнее место."
+
+  - id: cloze-zumachen
+    type: cloze
+    instruction:
+      en: Complete the sentence with the separable prefix.
+      ru: Вставьте отделяемую приставку.
+    text: "Sie macht das Fenster {{zu}}. (zumachen)"
+    translation:
+      en: She closes the window.
+      ru: Она закрывает окно.
+    explain:
+      en: "zumachen (to close) splits: sie macht … zu. Its opposite works the same way: sie macht das Fenster auf (aufmachen — to open)."
+      ru: "zumachen (закрывать) разделяется: sie macht … zu. Его антоним ведёт себя так же: sie macht das Fenster auf (aufmachen — открывать)."

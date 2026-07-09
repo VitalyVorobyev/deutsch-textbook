@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import ProgressPanel from '../components/progress/ProgressPanel';
+---
+
+<Base title="Fortschritt">
+  <h1 class="text-3xl font-bold tracking-tight">Fortschritt</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">
+      Your progress lives in this browser. Export it as JSON and commit it to the repo's
+      <code>progress/</code> folder — the agent reads it to generate drills targeting your weak spots.
+    </span>
+    <span class="lang-ru">
+      Прогресс хранится в этом браузере. Экспортируйте его в JSON и положите в папку
+      <code>progress/</code> репозитория — агент прочитает его и создаст упражнения по вашим слабым местам.
+    </span>
+  </p>
+
+  <div class="mt-8">
+    <ProgressPanel client:only="react" />
+  </div>
+</Base>

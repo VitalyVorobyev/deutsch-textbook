@@ -1,0 +1,194 @@
+topic: modalverben
+title:
+  en: Practice — modal verbs
+  ru: Практика — модальные глаголы
+items:
+  - id: konjugation-koennen-muessen
+    type: table
+    title: "können und müssen — Präsens"
+    instruction:
+      en: Fill in the missing present-tense forms of "können" and "müssen".
+      ru: Заполните пропущенные формы глаголов "können" и "müssen" в настоящем времени.
+    columns: [können, müssen]
+    rows:
+      - label: ich
+        cells: [{ answer: kann, given: true }, { answer: muss }]
+      - label: du
+        cells: [{ answer: kannst }, { answer: musst }]
+      - label: er/sie/es
+        cells: [{ answer: kann }, { answer: muss }]
+      - label: wir
+        cells: [{ answer: können }, { answer: müssen, given: true }]
+      - label: ihr
+        cells: [{ answer: könnt }, { answer: müsst }]
+      - label: sie/Sie
+        cells: [{ answer: können }, { answer: müssen }]
+    explain:
+      en: "In the singular the stem vowel changes (können → kann, müssen → muss) and the ich and er/sie/es forms are identical with no -t: ich kann — er kann. The plural is regular: wir können, ihr könnt, sie können."
+      ru: "В единственном числе меняется корневая гласная (können → kann, müssen → muss), а формы ich и er/sie/es совпадают и не имеют окончания -t: ich kann — er kann. Множественное число правильное: wir können, ihr könnt, sie können."
+
+  - id: mc-verboten
+    type: mc
+    instruction:
+      en: Choose the correct modal verb.
+      ru: Выберите правильный модальный глагол.
+    prompt: "Hier ___ man nicht rauchen. (Rauchen ist hier verboten.)"
+    options: ["muss", "darf", "will"]
+    correct: 1
+    translation:
+      en: You are not allowed to smoke here. (Smoking is forbidden here.)
+      ru: Здесь нельзя курить. (Курить здесь запрещено.)
+    explain:
+      en: "A prohibition is always 'dürfen nicht': Hier darf man nicht rauchen. 'Muss nicht' would mean the opposite of what you want — 'you don't have to smoke'."
+      ru: "Запрет — это всегда 'dürfen nicht': Hier darf man nicht rauchen. Русское «нельзя» = darf nicht. 'Muss nicht' означало бы совсем другое — «не обязан курить»."
+
+  - id: mc-nicht-noetig
+    type: mc
+    instruction:
+      en: Choose the modal verb that means "it is not necessary".
+      ru: Выберите модальный глагол со значением «это необязательно».
+    prompt: "Du ___ nicht kommen, aber du kannst gern kommen."
+    options: ["musst", "darfst", "sollst"]
+    correct: 0
+    translation:
+      en: You don't have to come, but you're welcome to.
+      ru: Ты не обязан приходить, но можешь прийти, если хочешь.
+    explain:
+      en: "'Musst nicht' = don't have to (no necessity) — the second half of the sentence says you may still come. 'Darfst nicht' would forbid it, which contradicts 'du kannst gern kommen'."
+      ru: "'Musst nicht' = «не обязан» (нет необходимости) — вторая часть предложения говорит, что прийти всё-таки можно. 'Darfst nicht' означало бы запрет, а это противоречит словам 'du kannst gern kommen'."
+
+  - id: cloze-koennen
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Ich {{kann}} (können) heute nicht kommen."
+    translation:
+      en: I can't come today.
+      ru: Я сегодня не могу прийти.
+    explain:
+      en: "ich kann — the singular changes the vowel (ö → a) and takes no ending. The infinitive 'kommen' stays at the end of the sentence."
+      ru: "ich kann — в единственном числе меняется гласная (ö → a), окончания нет. Инфинитив 'kommen' остаётся в конце предложения."
+
+  - id: cloze-wollen-er
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Er {{will}} (wollen) ein Eis essen."
+    translation:
+      en: He wants to eat an ice cream.
+      ru: Он хочет съесть мороженое.
+    explain:
+      en: "er will — the er/sie/es form of a modal verb has no -t and is identical to the ich form: ich will, er will. 'Er willt' does not exist."
+      ru: "er will — форма er/sie/es у модальных глаголов не имеет -t и совпадает с формой ich: ich will, er will. Формы 'er willt' не существует."
+
+  - id: cloze-moechten
+    type: cloze
+    instruction:
+      en: Fill the gap with the polite form — you are ordering in a café.
+      ru: Вставьте вежливую форму — вы делаете заказ в кафе.
+    text: "Ich {{möchte}} (möchten) einen Kaffee, bitte."
+    translation:
+      en: I would like a coffee, please.
+      ru: Я хотел бы кофе, пожалуйста.
+    explain:
+      en: "möchte is the polite 'want' — the right choice for ordering and requests. 'Ich will einen Kaffee' sounds blunt and rude in a café."
+      ru: "möchte — вежливое «хочу», именно эта форма используется в заказах и просьбах. 'Ich will einen Kaffee' в кафе звучит грубо."
+
+  - id: cloze-duerfen-plural
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Die Kinder {{dürfen}} (dürfen) heute lange fernsehen."
+    translation:
+      en: The children are allowed to watch TV for a long time today.
+      ru: Детям сегодня можно долго смотреть телевизор.
+    explain:
+      en: "'Die Kinder' is plural (= sie), so the form is the regular plural 'dürfen'. The vowel change (dürfen → darf) happens only in the singular."
+      ru: "'Die Kinder' — множественное число (= sie), поэтому нужна правильная форма 'dürfen'. Смена гласной (dürfen → darf) происходит только в единственном числе."
+
+  - id: mc-er-kann
+    type: mc
+    prompt: "Er ___ sehr gut kochen."
+    options: ["kann", "kannt", "könnt"]
+    correct: 0
+    translation:
+      en: He can cook very well.
+      ru: Он очень хорошо умеет готовить.
+    explain:
+      en: "er kann — no -t in the er/sie/es form: it is identical to ich kann. 'Kannt' does not exist, and 'könnt' is the ihr form (ihr könnt)."
+      ru: "er kann — в форме er/sie/es нет окончания -t, она совпадает с ich kann. Формы 'kannt' не существует, а 'könnt' — это форма для ihr (ihr könnt)."
+
+  - id: mc-magst
+    type: mc
+    instruction:
+      en: Choose the verb that fits the answer.
+      ru: Выберите глагол, который подходит к ответу.
+    prompt: "___ du Tee? — Ja, ich trinke jeden Tag Tee."
+    options: ["Magst", "Möchtest", "Musst"]
+    correct: 0
+    translation:
+      en: Do you like tea? — Yes, I drink tea every day.
+      ru: Ты любишь чай? — Да, я пью чай каждый день.
+    explain:
+      en: "mögen + noun = to like something in general, and the answer ('I drink tea every day') is about a general preference. 'Möchtest du Tee?' would be an offer right now — would you like some tea?"
+      ru: "mögen + существительное = «нравится вообще», и ответ («я пью чай каждый день») говорит именно об общем вкусе. 'Möchtest du Tee?' — это предложение прямо сейчас: «хочешь чаю?»."
+
+  - id: order-infinitiv-ende
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Ich", "kann", "gut", "Deutsch", "sprechen."]
+    accept: ["Ich kann Deutsch gut sprechen."]
+    translation:
+      en: I can speak German well.
+      ru: Я хорошо говорю по-немецки (умею хорошо говорить).
+    explain:
+      en: "The modal 'kann' takes position 2 and the infinitive 'sprechen' goes strictly last — 'Ich kann Deutsch sprechen gut' is impossible."
+      ru: "Модальный глагол 'kann' стоит на втором месте, а инфинитив 'sprechen' — строго в конце. Сказать 'Ich kann Deutsch sprechen gut' нельзя."
+
+  - id: order-inversion
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Am", "Sonntag", "wollen", "wir", "ins", "Kino", "gehen."]
+    translation:
+      en: On Sunday we want to go to the cinema.
+      ru: В воскресенье мы хотим пойти в кино.
+    explain:
+      en: "'Am Sonntag' fills position 1, so the modal 'wollen' must come second and the subject 'wir' third; the infinitive 'gehen' closes the bracket at the end."
+      ru: "'Am Sonntag' занимает первое место, поэтому модальный глагол 'wollen' стоит вторым, а подлежащее 'wir' — третьим; инфинитив 'gehen' закрывает рамку в конце."
+
+  - id: match-bedeutungen
+    type: match
+    instruction:
+      en: Match each modal verb with its meaning.
+      ru: Соедините каждый модальный глагол с его значением.
+    pairs:
+      - { left: "können", right: "ability / умение" }
+      - { left: "müssen", right: "necessity / необходимость" }
+      - { left: "wollen", right: "wish, plan / желание" }
+      - { left: "dürfen", right: "permission / разрешение" }
+      - { left: "sollen", right: "advice / совет" }
+      - { left: "mögen", right: "liking / нравится" }
+    explain:
+      en: "können = can (ability), müssen = must (necessity), wollen = want (wish), dürfen = may (permission), sollen = should (advice or a task from someone else), mögen = like."
+      ru: "können = мочь, уметь; müssen = быть должным (необходимость); wollen = хотеть; dürfen = «можно» (разрешение); sollen = следует (совет, поручение); mögen = любить, нравиться."
+
+  - id: match-duerfen-formen
+    type: match
+    instruction:
+      en: Match each pronoun with the correct form of "dürfen".
+      ru: Соедините каждое местоимение с правильной формой глагола "dürfen".
+    pairs:
+      - { left: "ich", right: "darf" }
+      - { left: "du", right: "darfst" }
+      - { left: "ihr", right: "dürft" }
+      - { left: "wir", right: "dürfen" }
+    explain:
+      en: "Singular: ich darf, du darfst, er darf (vowel change ü → a, no -t for er). Plural: wir dürfen, ihr dürft, sie dürfen — regular endings with the umlaut back."
+      ru: "Единственное число: ich darf, du darfst, er darf (смена гласной ü → a, у er нет -t). Множественное: wir dürfen, ihr dürft, sie dürfen — правильные окончания, умлаут возвращается."

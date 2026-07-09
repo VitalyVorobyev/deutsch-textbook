@@ -1,0 +1,70 @@
+---
+import type { VocabEntry } from '../lib/schemas';
+
+interface Props {
+  entries: VocabEntry[];
+}
+const { entries } = Astro.props;
+
+function headword(e: VocabEntry): string {
+  if (e.pos === 'noun' && e.gender) {
+    const article = { m: 'der', f: 'die', n: 'das' }[e.gender];
+    return `${article} ${e.de}`;
+  }
+  return e.de;
+}
+
+function forms(e: VocabEntry): string {
+  if (e.pos === 'noun') return e.plural ?? '';
+  if (e.pos === 'verb') {
+    const parts: string[] = [];
+    if (e.praesens_3sg) parts.push(e.praesens_3sg);
+    if (e.partizip2) parts.push(`${e.aux === 'sein' ? 'ist' : 'hat'} ${e.partizip2}`);
+    if (e.valence) parts.push(e.valence);
+    return parts.join(', ');
+  }
+  return e.valence ?? '';
+}
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr class="border-b-2 border-stone-300 text-left dark:border-stone-600">
+        <th class="py-2 pr-4 font-semibold">Wort</th>
+        <th class="py-2 pr-4 font-semibold">Formen</th>
+        <th class="py-2 pr-4 font-semibold">
+          <span class="lang-en">English</span><span class="lang-ru">Русский</span>
+        </th>
+        <th class="py-2 font-semibold">Beispiel</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        entries.map((e) => (
+          <tr class="border-b border-stone-200 align-top dark:border-stone-700">
+            <td lang="de" class="py-2 pr-4 font-medium whitespace-nowrap">{headword(e)}</td>
+            <td lang="de" class="py-2 pr-4 text-stone-500 dark:text-stone-400">{forms(e)}</td>
+            <td class="py-2 pr-4">
+              <span class="lang-en">{e.en}</span>
+              <span class="lang-ru">{e.ru}</span>
+              {e.note && (
+                <span class="block text-xs text-stone-400">
+                  <span class="lang-en">{e.note.en}</span>
+                  <span class="lang-ru">{e.note.ru}</span>
+                </span>
+              )}
+            </td>
+            <td class="py-2">
+              <span lang="de">{e.example_de}</span>
+              <span class="block text-xs italic text-stone-400">
+                <span class="lang-en">{e.example_en}</span>
+                <span class="lang-ru">{e.example_ru}</span>
+              </span>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

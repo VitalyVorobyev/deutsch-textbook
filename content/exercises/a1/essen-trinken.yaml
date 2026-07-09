@@ -1,0 +1,156 @@
+topic: essen-trinken
+title:
+  en: Practice — food and drink
+  ru: Практика — еда и напитки
+items:
+  - id: match-artikel
+    type: match
+    instruction:
+      en: Match each noun with its article.
+      ru: Соедините каждое существительное с его артиклем.
+    pairs:
+      - { left: "Apfel", right: "der" }
+      - { left: "Milch", right: "die" }
+      - { left: "Brot", right: "das" }
+    explain:
+      en: "der Apfel (masculine), die Milch (feminine), das Brot (neuter). Learn every noun together with its article."
+      ru: "der Apfel (мужской род), die Milch (женский род), das Brot (средний род). Учите каждое существительное вместе с артиклем."
+
+  - id: cloze-hunger
+    type: cloze
+    instruction:
+      en: Complete the fixed expression.
+      ru: Дополните устойчивое выражение.
+    text: "Ich habe {{Hunger}} — wann essen wir?"
+    translation:
+      en: I'm hungry — when are we eating?
+      ru: Я голоден — когда мы будем есть?
+    explain:
+      en: '"Hunger haben" = to be hungry. Hunger is a noun, so it is capitalized.'
+      ru: '"Hunger haben" = быть голодным. Hunger — существительное, поэтому пишется с заглавной буквы.'
+
+  - id: mc-getraenk
+    type: mc
+    prompt: "Was ist kein Getränk?"
+    options: ["der Kaffee", "der Tee", "das Brot"]
+    correct: 2
+    translation:
+      en: Which one is not a drink?
+      ru: Что из этого не напиток?
+    explain:
+      en: "Brot (bread) is food; Kaffee and Tee are drinks (Getränke)."
+      ru: "Brot (хлеб) — еда; Kaffee и Tee — напитки (Getränke)."
+
+  - id: cloze-fruehstueck
+    type: cloze
+    instruction:
+      en: Fill in the correct form of "essen".
+      ru: Вставьте правильную форму глагола "essen".
+    text: "Zum Frühstück {{esse}} ich Brötchen mit Käse."
+    translation:
+      en: For breakfast I eat rolls with cheese.
+      ru: На завтрак я ем булочки с сыром.
+    explain:
+      en: "ich esse — the stem change (e → i) only happens with du (isst) and er/sie/es (isst)."
+      ru: "ich esse — смена гласной (e → i) происходит только в формах du (isst) и er/sie/es (isst)."
+
+  - id: order-kaffee
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Zum", "Frühstück", "trinke", "ich", "Kaffee."]
+    translation:
+      en: For breakfast I drink coffee.
+      ru: На завтрак я пью кофе.
+    explain:
+      en: '"Zum Frühstück" fills position 1, so the verb "trinke" comes second and "ich" third.'
+      ru: '"Zum Frühstück" занимает первую позицию, поэтому глагол "trinke" стоит вторым, а "ich" — третьим.'
+
+  - id: mc-schmecken
+    type: mc
+    prompt: "Die Suppe ___ sehr gut."
+    options: ["schmeckt", "schmecke", "isst"]
+    correct: 0
+    translation:
+      en: The soup tastes very good.
+      ru: Суп очень вкусный.
+    explain:
+      en: "The subject is 'die Suppe' (er/sie/es form): schmeckt. 'isst' would mean the soup is eating something."
+      ru: "Подлежащее — 'die Suppe' (форма er/sie/es): schmeckt. 'isst' означало бы, что суп сам что-то ест."
+
+  - id: match-mahlzeiten
+    type: match
+    instruction:
+      en: Match each meal with its time of day.
+      ru: Соедините приём пищи со временем суток.
+    pairs:
+      - { left: "das Frühstück", right: "am Morgen" }
+      - { left: "das Mittagessen", right: "am Mittag" }
+      - { left: "das Abendessen", right: "am Abend" }
+    explain:
+      en: "The meal names contain their time: Früh(stück) — early, Mittag(essen) — midday, Abend(essen) — evening."
+      ru: "Названия приёмов пищи содержат время: Früh(stück) — рано, Mittag(essen) — полдень, Abend(essen) — вечер."
+
+  - id: cloze-isst
+    type: cloze
+    instruction:
+      en: Fill in the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Er {{isst}} (essen) kein Fleisch."
+    translation:
+      en: He doesn't eat meat.
+      ru: Он не ест мясо.
+    explain:
+      en: "essen changes its stem in the er/sie/es form: er isst."
+      ru: "У essen меняется корневая гласная в форме er/sie/es: er isst."
+
+  - id: mc-bezahlen
+    type: mc
+    prompt: "Das Essen war lecker. Wir möchten jetzt ___, bitte."
+    options: ["bezahlen", "kochen", "bestellen"]
+    correct: 0
+    translation:
+      en: The food was delicious. We would like to pay now, please.
+      ru: Еда была вкусной. Мы хотели бы теперь расплатиться, пожалуйста.
+    explain:
+      en: "After the meal you pay (bezahlen). You order (bestellen) at the start, and the kitchen cooks (kochen)."
+      ru: "После еды платят (bezahlen). Заказывают (bestellen) в начале, а готовит (kochen) кухня."
+
+  - id: cloze-durst
+    type: cloze
+    instruction:
+      en: Complete the fixed expression.
+      ru: Дополните устойчивое выражение.
+    text: "Hast du {{Durst}}? Hier ist ein Glas Wasser."
+    translation:
+      en: Are you thirsty? Here is a glass of water.
+      ru: Хочешь пить? Вот стакан воды.
+    explain:
+      en: '"Durst haben" = to be thirsty — the same pattern as "Hunger haben".'
+      ru: '"Durst haben" = хотеть пить — та же модель, что и "Hunger haben".'
+
+  - id: order-frage
+    type: order
+    instruction:
+      en: Build the question.
+      ru: Составьте вопрос.
+    words: ["Was", "isst", "du", "zum", "Frühstück", "?"]
+    translation:
+      en: What do you eat for breakfast?
+      ru: Что ты ешь на завтрак?
+    explain:
+      en: "W-question: question word first, verb second — Was isst du…?"
+      ru: "Вопрос с вопросительным словом: вопросительное слово — первое, глагол — второй: Was isst du…?"
+
+  - id: mc-wasser
+    type: mc
+    prompt: "___ Wasser ist kalt."
+    options: ["Das", "Der", "Die"]
+    correct: 0
+    translation:
+      en: The water is cold.
+      ru: Вода холодная.
+    explain:
+      en: "Wasser is neuter: das Wasser."
+      ru: "Wasser — среднего рода: das Wasser."

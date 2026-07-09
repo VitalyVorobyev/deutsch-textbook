@@ -1,0 +1,183 @@
+topic: praesens-wortstellung
+title:
+  en: Practice — present tense and word order
+  ru: Практика — настоящее время и порядок слов
+items:
+  - id: konjugation-wohnen
+    type: table
+    title: "wohnen — Präsens"
+    instruction:
+      en: Fill in the missing present-tense forms of "wohnen".
+      ru: Заполните пропущенные формы глагола "wohnen" в настоящем времени.
+    columns: [wohnen]
+    rows:
+      - label: ich
+        cells: [{ answer: wohne, given: true }]
+      - label: du
+        cells: [{ answer: wohnst }]
+      - label: er/sie/es
+        cells: [{ answer: wohnt }]
+      - label: wir
+        cells: [{ answer: wohnen }]
+      - label: ihr
+        cells: [{ answer: wohnt }]
+      - label: sie/Sie
+        cells: [{ answer: wohnen }]
+    explain:
+      en: "Stem wohn- + endings: -e, -st, -t, -en, -t, -en. Note that er/sie/es and ihr share the ending -t."
+      ru: "Основа wohn- + окончания: -e, -st, -t, -en, -t, -en. Обратите внимание: у er/sie/es и ihr одинаковое окончание -t."
+
+  - id: cloze-kommen
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Ich {{komme}} (kommen) aus Russland."
+    translation:
+      en: I come from Russia.
+      ru: Я из России.
+    explain:
+      en: "ich → stem + -e: ich komme."
+      ru: "ich → основа + -e: ich komme."
+
+  - id: mc-sprichst
+    type: mc
+    prompt: "___ du Deutsch?"
+    options: ["Sprichst", "Sprechst", "Spricht"]
+    correct: 0
+    translation:
+      en: Do you speak German?
+      ru: Ты говоришь по-немецки?
+    explain:
+      en: "sprechen changes its stem vowel: du sprichst, er spricht. 'Sprechst' does not exist, and 'spricht' is the er/sie/es form."
+      ru: "У sprechen меняется корневая гласная: du sprichst, er spricht. Формы 'sprechst' не существует, а 'spricht' — форма для er/sie/es."
+
+  - id: order-heute
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Heute", "gehe", "ich", "ins", "Kino."]
+    translation:
+      en: Today I am going to the cinema.
+      ru: Сегодня я иду в кино.
+    explain:
+      en: "'Heute' takes position 1, so the verb 'gehe' must come second and the subject 'ich' third — inversion."
+      ru: "'Heute' занимает первое место, поэтому глагол 'gehe' обязан стоять вторым, а подлежащее 'ich' — третьим. Это инверсия."
+
+  - id: cloze-sein-wir
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of "sein".
+      ru: Вставьте правильную форму глагола "sein".
+    text: "Wir {{sind}} müde."
+    translation:
+      en: We are tired.
+      ru: Мы устали.
+    explain:
+      en: "sein is irregular: ich bin, du bist, er ist, wir sind, ihr seid, sie sind."
+      ru: "sein — неправильный глагол: ich bin, du bist, er ist, wir sind, ihr seid, sie sind."
+
+  - id: mc-wortstellung
+    type: mc
+    instruction:
+      en: Which sentence has correct word order?
+      ru: В каком предложении правильный порядок слов?
+    prompt: "Wie ist die Wortstellung richtig?"
+    options:
+      - "Am Abend ich lese ein Buch."
+      - "Am Abend lese ich ein Buch."
+      - "Am Abend ich ein Buch lese."
+    correct: 1
+    explain:
+      en: "After a fronted time expression (Am Abend) the conjugated verb must stay in position 2: Am Abend lese ich…"
+      ru: "После обстоятельства времени в начале (Am Abend) спрягаемый глагол должен остаться на втором месте: Am Abend lese ich…"
+
+  - id: match-endungen
+    type: match
+    instruction:
+      en: Match each pronoun with the correct verb form.
+      ru: Соедините каждое местоимение с правильной формой глагола.
+    pairs:
+      - { left: "ich", right: "lerne" }
+      - { left: "du", right: "lernst" }
+      - { left: "er", right: "lernt" }
+      - { left: "wir", right: "lernen" }
+    explain:
+      en: "Endings: ich -e, du -st, er/sie/es -t, wir -en."
+      ru: "Окончания: ich -e, du -st, er/sie/es -t, wir -en."
+
+  - id: order-frage
+    type: order
+    instruction:
+      en: Build a W-question.
+      ru: Составьте вопрос с вопросительным словом.
+    words: ["Wo", "wohnst", "du", "?"]
+    translation:
+      en: Where do you live?
+      ru: Где ты живёшь?
+    explain:
+      en: "W-word first, verb second, subject third: Wo wohnst du?"
+      ru: "Вопросительное слово — первое, глагол — второй, подлежащее — третье: Wo wohnst du?"
+
+  - id: cloze-haben-ihr
+    type: cloze
+    instruction:
+      en: Fill the gap with the correct form of "haben".
+      ru: Вставьте правильную форму глагола "haben".
+    text: "Ihr {{habt}} ein Auto."
+    translation:
+      en: You (plural) have a car.
+      ru: У вас (мн. ч.) есть машина.
+    explain:
+      en: "haben is irregular: du hast, er hat — but ihr habt keeps the regular -t ending."
+      ru: "haben — неправильный глагол: du hast, er hat — но форма ihr habt сохраняет обычное окончание -t."
+
+  - id: mc-spielen
+    type: mc
+    prompt: "Am Montag ___ wir Fußball."
+    options: ["spielt", "spielen", "spiele"]
+    correct: 1
+    translation:
+      en: On Monday we play football.
+      ru: В понедельник мы играем в футбол.
+    explain:
+      en: "wir always takes the -en form: wir spielen."
+      ru: "С wir всегда используется форма на -en: wir spielen."
+
+  - id: konjugation-sein
+    type: table
+    title: "sein — Präsens"
+    instruction:
+      en: Fill in the missing forms of "sein".
+      ru: Заполните пропущенные формы глагола "sein".
+    columns: [sein]
+    rows:
+      - label: ich
+        cells: [{ answer: bin }]
+      - label: du
+        cells: [{ answer: bist }]
+      - label: er/sie/es
+        cells: [{ answer: ist, given: true }]
+      - label: wir
+        cells: [{ answer: sind }]
+      - label: ihr
+        cells: [{ answer: seid }]
+      - label: sie/Sie
+        cells: [{ answer: sind }]
+    explain:
+      en: "sein must be memorized: bin, bist, ist, sind, seid, sind."
+      ru: "Формы sein нужно выучить наизусть: bin, bist, ist, sind, seid, sind."
+
+  - id: order-zuhause
+    type: order
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Ich", "bin", "heute", "zu", "Hause."]
+    translation:
+      en: I am at home today.
+      ru: Я сегодня дома.
+    explain:
+      en: "Subject first, verb second. Remember: German never drops 'sein' — 'Ich heute zu Hause' is impossible."
+      ru: "Подлежащее — первое, глагол — второй. Помните: в немецком 'sein' не опускается — сказать 'Ich heute zu Hause' нельзя."

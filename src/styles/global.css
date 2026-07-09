@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Explanation-language toggle: <html data-explain-lang="en|ru"> controls
+   which .lang-en / .lang-ru blocks are visible. German content is always shown. */
+[data-explain-lang="en"] .lang-ru {
+  display: none;
+}
+[data-explain-lang="ru"] .lang-en {
+  display: none;
+}
+
+:root {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-50 text-stone-800 antialiased dark:bg-stone-900 dark:text-stone-200;
+}
+
+/* Reading typography for articles */
+.article-prose {
+  @apply prose prose-stone max-w-none dark:prose-invert
+    prose-headings:scroll-mt-20
+    prose-a:text-sky-700 prose-a:no-underline hover:prose-a:underline
+    dark:prose-a:text-sky-400
+    prose-table:text-sm;
+}
+
+/* German example sentences inside articles */
+.article-prose blockquote {
+  @apply border-l-4 border-amber-400 bg-amber-50 px-4 py-1 not-italic
+    dark:border-amber-500 dark:bg-stone-800;
+  quotes: none;
+}
+.article-prose blockquote p::before,
+.article-prose blockquote p::after {
+  content: none;
+}
