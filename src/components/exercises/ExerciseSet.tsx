@@ -8,6 +8,7 @@ import { Match } from './Match';
 import { MultipleChoice } from './MultipleChoice';
 import { Order } from './Order';
 import { TableFill } from './TableFill';
+import { Translate } from './Translate';
 import type { ItemResult } from './shared';
 
 interface Props {
@@ -20,7 +21,21 @@ interface Answered {
   correct: boolean;
 }
 
-function ItemView({
+/**
+ * Renders a single exercise item of any type and reports the learner's answer.
+ *
+ * Exported for reuse outside ExerciseSet (e.g. a mixed-training page):
+ * - `item` — any ExerciseItem from the content schema (discriminated by `type`).
+ * - `lang` — explanation language, usually obtained via useExplainLang().
+ * - `onResult` — called exactly once when the learner submits, with
+ *   `{ correct, given }` (`given` = the answer serialized for the attempt log).
+ *   Persistence is the caller's job — ItemView does not log attempts itself.
+ * - `locked` — set true after submission to freeze the item's inputs.
+ *
+ * Items keep internal state; remount with a fresh React `key` to reset one
+ * for another attempt.
+ */
+export function ItemView({
   item,
   lang,
   onResult,
@@ -42,6 +57,8 @@ function ItemView({
       return <Order item={item} lang={lang} onResult={onResult} locked={locked} />;
     case 'table':
       return <TableFill item={item} lang={lang} onResult={onResult} locked={locked} />;
+    case 'translate':
+      return <Translate item={item} lang={lang} onResult={onResult} locked={locked} />;
   }
 }
 

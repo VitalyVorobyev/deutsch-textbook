@@ -192,3 +192,41 @@ items:
     explain:
       en: "Singular: ich darf, du darfst, er darf (vowel change ü → a, no -t for er). Plural: wir dürfen, ihr dürft, sie dürfen — regular endings with the umlaut back."
       ru: "Единственное число: ich darf, du darfst, er darf (смена гласной ü → a, у er нет -t). Множественное: wir dürfen, ihr dürft, sie dürfen — правильные окончания, умлаут возвращается."
+
+  - id: uebersetzen-muessen
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I have to work today."
+    prompt_ru: "Я должен сегодня работать."
+    answer: "Ich muss heute arbeiten."
+    accept:
+      - "Heute muss ich arbeiten."
+    explain:
+      en: "The modal muss takes position 2 and the infinitive arbeiten goes to the end. Both Ich muss heute arbeiten and Heute muss ich arbeiten are correct — with heute first, the subject moves behind the verb."
+      ru: "Модальный глагол muss стоит на втором месте, а инфинитив arbeiten уходит в конец. Правильны оба варианта: Ich muss heute arbeiten и Heute muss ich arbeiten — если heute в начале, подлежащее встаёт после глагола."
+
+  - id: uebersetzen-helfen-frage
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Can you help me?"
+    prompt_ru: "Ты можешь мне помочь?"
+    answer: "Kannst du mir helfen?"
+    explain:
+      en: "A yes/no question starts with the modal: Kannst du …? The infinitive helfen goes to the end, and helfen takes the dative — mir, not mich."
+      ru: "Общий вопрос начинается с модального глагола: Kannst du …? Инфинитив helfen уходит в конец, а helfen требует Dativ — mir, а не mich."
+
+  - id: uebersetzen-wollen
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "He wants to buy a car."
+    prompt_ru: "Он хочет купить машину."
+    answer: "Er will ein Auto kaufen."
+    explain:
+      en: "er will — the er/sie/es form of a modal verb has no -t. The infinitive kaufen closes the sentence, and das Auto is neuter, so ein stays unchanged in the accusative."
+      ru: "er will — у модальных глаголов форма er/sie/es не имеет окончания -t. Инфинитив kaufen замыкает предложение, а das Auto — среднего рода, поэтому ein в Akkusativ не меняется."

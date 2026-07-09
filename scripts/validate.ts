@@ -18,7 +18,7 @@ import {
   type Topic,
   type VocabFile,
 } from '../src/lib/schemas';
-import { clozeGaps } from '../src/lib/cloze';
+import { clozeGaps, normalizeTranslation } from '../src/lib/cloze';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -49,7 +49,11 @@ function parseFrontmatter(src: string, file: string): unknown {
   }
 }
 
-function validateWith<T>(schema: z.ZodType<T>, data: unknown, file: string): T | undefined {
+function validateWith<S extends z.ZodTypeAny>(
+  schema: S,
+  data: unknown,
+  file: string,
+): z.output<S> | undefined {
   const result = schema.safeParse(data);
   if (!result.success) {
     for (const issue of result.error.issues) {
@@ -176,6 +180,18 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
       case 'order': {
         if (item.words.length < 3) warn(where, 'order item with fewer than 3 tokens is trivial');
+        break;
+      }
+      case 'translate': {
+        if (item.answer.trim().length === 0) fail(where, 'translate answer is empty');
+        const canonical = normalizeTranslation(item.answer);
+        const seen = new Set<string>();
+        for (const a of item.accept) {
+          const n = normalizeTranslation(a);
+          if (n === canonical) fail(where, `accept entry "${a}" duplicates the canonical answer`);
+          if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
+          seen.add(n);
+        }
         break;
       }
       case 'table': {

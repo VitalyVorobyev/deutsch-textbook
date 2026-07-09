@@ -191,3 +191,31 @@ items:
     explain:
       en: "sein for movement from A to B (gehen, kommen) and for the exceptions bleiben, sein, passieren; everything else — including kaufen, trinken, schreiben — takes haben."
       ru: "sein — для движения из точки А в точку Б (gehen, kommen) и для исключений bleiben, sein, passieren; всё остальное — в том числе kaufen, trinken, schreiben — образует перфект с haben."
+
+  - id: uebersetzen-pizza
+    type: translate
+    instruction:
+      en: Translate into German. Use the Perfekt.
+      ru: Переведите на немецкий. Используйте перфект.
+    prompt_en: "Yesterday we ate a pizza."
+    prompt_ru: "Вчера мы съели пиццу."
+    answer: "Gestern haben wir eine Pizza gegessen."
+    accept:
+      - "Wir haben gestern eine Pizza gegessen."
+    explain:
+      en: "essen takes haben, and the participle is strong: gegessen. Both word orders are correct — with Gestern first, haben stays in position 2 and the participle closes the sentence."
+      ru: "essen образует перфект с haben, причастие сильное: gegessen. Оба порядка слов правильны — если Gestern стоит в начале, haben остаётся на втором месте, а причастие замыкает предложение."
+
+  - id: uebersetzen-geblieben
+    type: translate
+    instruction:
+      en: Translate into German. Use the Perfekt.
+      ru: Переведите на немецкий. Используйте перфект.
+    prompt_en: "She stayed at home."
+    prompt_ru: "Она осталась дома."
+    answer: "Sie ist zu Hause geblieben."
+    accept:
+      - "Sie ist zuhause geblieben."
+    explain:
+      en: "bleiben is one of the exceptions that always take sein, even though there is no movement: sie ist geblieben. «Sie hat geblieben» is a typical mistake."
+      ru: "bleiben — одно из исключений, которые всегда образуют перфект с sein, хотя движения здесь нет: sie ist geblieben. «Sie hat geblieben» — типичная ошибка."

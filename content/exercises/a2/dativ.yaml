@@ -207,3 +207,41 @@ items:
     explain:
       en: "Both prepositions take the dative: mit dem Bus (der Bus → dem) and zur Arbeit (zur = zu der). The usual order is how before where: mit dem Bus zur Arbeit."
       ru: "Оба предлога требуют Dativ: mit dem Bus (der Bus → dem) и zur Arbeit (zur = zu der). Обычный порядок — сначала как, потом куда: mit dem Bus zur Arbeit."
+
+  - id: uebersetzen-helfen
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I am helping my brother."
+    prompt_ru: "Я помогаю своему брату."
+    answer: "Ich helfe meinem Bruder."
+    explain:
+      en: "helfen takes the dative: mein Bruder → meinem Bruder. Russian works the same way here — «помогаю (кому?) брату» is dative too."
+      ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
+
+  - id: uebersetzen-gehoeren
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The car belongs to my father."
+    prompt_ru: "Машина принадлежит моему отцу."
+    answer: "Das Auto gehört meinem Vater."
+    explain:
+      en: "gehören takes the dative: mein Vater → meinem Vater — just like Russian «принадлежит (кому?) отцу». das Auto is the subject and stays in the nominative."
+      ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
+
+  - id: uebersetzen-nach-arbeit
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "After work I go home."
+    prompt_ru: "После работы я иду домой."
+    answer: "Nach der Arbeit gehe ich nach Hause."
+    accept:
+      - "Ich gehe nach der Arbeit nach Hause."
+    explain:
+      en: "nach always takes the dative: die Arbeit → der Arbeit. When Nach der Arbeit opens the sentence, the verb stays second: … gehe ich …. The subject-first order Ich gehe nach der Arbeit nach Hause is also correct."
+      ru: "nach всегда требует Dativ: die Arbeit → der Arbeit. Если Nach der Arbeit стоит в начале, глагол остаётся на втором месте: … gehe ich …. Порядок с подлежащим в начале — Ich gehe nach der Arbeit nach Hause — тоже правильный."

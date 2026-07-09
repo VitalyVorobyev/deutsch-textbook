@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import MixedTraining from '../components/training/MixedTraining';
+import type { TrainingSet } from '../components/training/MixedTraining';
+
+const [exercises, topics] = await Promise.all([
+  getCollection('exercises'),
+  getCollection('topics'),
+]);
+const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+
+const sets: TrainingSet[] = exercises.map((e) => {
+  const topic = topicById.get(e.data.topic);
+  if (!topic) {
+    throw new Error(`Training: exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
+  }
+  return {
+    setId: e.id,
+    topicId: topic.id,
+    title_de: topic.title_de,
+    level: topic.level,
+    items: e.data.items,
+  };
+});
+---
+
+<Base title="Gemischtes Training">
+  <h1 class="text-3xl font-bold tracking-tight">Gemischtes Training</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">
+      A mixed session across all topics — constantly switching rules forces you to recognize
+      which one applies, something practicing one topic at a time never trains.
+    </span>
+    <span class="lang-ru">
+      Смешанная тренировка по всем темам — постоянная смена правил учит распознавать, какое из
+      них применить; при отработке тем по отдельности этот навык не развивается.
+    </span>
+  </p>
+
+  <div class="mt-8">
+    <MixedTraining client:only="react" sets={sets} />
+  </div>
+</Base>

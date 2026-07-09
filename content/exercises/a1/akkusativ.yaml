@@ -197,3 +197,41 @@ items:
     explain:
       en: "ein and kein decline the same way: only the masculine adds -en (einen, keinen). Feminine (eine/keine) and neuter (ein/kein) match the nominative."
       ru: "ein и kein склоняются одинаково: окончание -en появляется только в мужском роде (einen, keinen). Женский (eine/keine) и средний род (ein/kein) совпадают с именительным падежом."
+
+  - id: uebersetzen-hund
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I have a dog."
+    prompt_ru: "У меня есть собака."
+    answer: "Ich habe einen Hund."
+    explain:
+      en: "haben always takes the accusative, and der Hund is masculine, so ein → einen: Ich habe einen Hund."
+      ru: "Глагол haben всегда требует Akkusativ, а der Hund — мужского рода, поэтому ein → einen: Ich habe einen Hund."
+
+  - id: uebersetzen-kaffee
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "He is drinking a coffee."
+    prompt_ru: "Он пьёт кофе."
+    answer: "Er trinkt einen Kaffee."
+    explain:
+      en: "The coffee is the direct object of trinken, and der Kaffee is masculine: ein → einen. And remember the capital K — every German noun is capitalized."
+      ru: "Кофе — прямое дополнение при глаголе trinken, а der Kaffee — мужского рода: ein → einen. И не забудьте заглавную K — все существительные в немецком пишутся с большой буквы."
+
+  - id: uebersetzen-lampe
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Tomorrow I am buying a lamp."
+    prompt_ru: "Завтра я куплю лампу."
+    answer: "Morgen kaufe ich eine Lampe."
+    accept:
+      - "Ich kaufe morgen eine Lampe."
+    explain:
+      en: "Both word orders are correct: Morgen kaufe ich … (the verb stays second, the subject moves behind it) and Ich kaufe morgen …. die Lampe is feminine, so eine does not change in the accusative."
+      ru: "Правильны оба порядка слов: Morgen kaufe ich … (глагол остаётся на втором месте, подлежащее уходит за него) и Ich kaufe morgen …. die Lampe — женского рода, поэтому eine в Akkusativ не меняется."

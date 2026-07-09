@@ -2,9 +2,12 @@
 
 export type ExplainLang = 'en' | 'ru';
 export type Theme = 'light' | 'dark';
+/** Flashcard answer mode for the x-de (production) direction. */
+export type CardInputMode = 'typed' | 'reveal';
 
 export const LANG_KEY = 'da:lang';
 export const THEME_KEY = 'da:theme';
+export const CARD_INPUT_KEY = 'da:cardinput';
 
 export function getExplainLang(): ExplainLang {
   if (typeof document === 'undefined') return 'en';
@@ -20,6 +23,15 @@ export function setExplainLang(lang: ExplainLang): void {
 export function setTheme(theme: Theme): void {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem(THEME_KEY, theme);
+}
+
+export function getCardInputMode(): CardInputMode {
+  if (typeof localStorage === 'undefined') return 'typed';
+  return localStorage.getItem(CARD_INPUT_KEY) === 'reveal' ? 'reveal' : 'typed';
+}
+
+export function setCardInputMode(mode: CardInputMode): void {
+  localStorage.setItem(CARD_INPUT_KEY, mode);
 }
 
 /** Pick the current-language variant of a bilingual text. */

@@ -34,6 +34,8 @@ export interface CardDef {
   exampleEn: string;
   exampleRu: string;
   pos: string;
+  /** nouns only — the typed answer must include the matching article */
+  gender?: 'm' | 'f' | 'n';
 }
 
 function deDetail(e: VocabEntry): string | undefined {
@@ -62,6 +64,7 @@ export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
       exampleEn: e.example_en,
       exampleRu: e.example_ru,
       pos: e.pos,
+      gender: e.pos === 'noun' ? e.gender : undefined,
     };
     cards.push({ ...base, id: cardId(deckId, e.de, 'de-x'), dir: 'de-x' });
     cards.push({ ...base, id: cardId(deckId, e.de, 'x-de'), dir: 'x-de' });

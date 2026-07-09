@@ -178,12 +178,26 @@ export const tableItemSchema = z.object({
     .min(1),
 });
 
+export const translateItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('translate'),
+  /** source sentence, English version (shown when the explanation language is EN) */
+  prompt_en: z.string().min(1),
+  /** source sentence, Russian version (shown when the explanation language is RU) */
+  prompt_ru: z.string().min(1),
+  /** canonical German translation — shown as the correct answer on mistakes */
+  answer: z.string().min(1),
+  /** alternative accepted German translations (e.g. another valid V2 word order) */
+  accept: z.array(z.string().min(1)).default([]),
+});
+
 export const exerciseItemSchema = z.discriminatedUnion('type', [
   mcItemSchema,
   clozeItemSchema,
   matchItemSchema,
   orderItemSchema,
   tableItemSchema,
+  translateItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
 

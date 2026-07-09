@@ -42,3 +42,17 @@ export function answerMatches(given: string, accepted: string[]): boolean {
 export function normalizeSentence(tokens: string[]): string {
   return tokens.join(' ').replace(/\s+([.,!?;:])/g, '$1').trim();
 }
+
+/**
+ * Normalize a free-typed German sentence for comparison: whitespace-normalized,
+ * trailing sentence punctuation (. ! ?) optional. Case matters in German.
+ */
+export function normalizeTranslation(s: string): string {
+  return normalizeAnswer(s).replace(/[.!?]+$/, '').trim();
+}
+
+/** True if a typed translation matches any of the accepted German sentences. */
+export function translationMatches(given: string, accepted: string[]): boolean {
+  const g = normalizeTranslation(given);
+  return accepted.some((a) => normalizeTranslation(a) === g);
+}
