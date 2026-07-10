@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ProfileSwitcher from '../components/ProfileSwitcher';
 
 interface Props {
   title: string;
@@ -62,6 +63,7 @@ function isActive(href: string): boolean {
           }
         </nav>
         <div class="ml-auto flex items-center gap-2">
+          <ProfileSwitcher client:only="react" />
           <div class="flex overflow-hidden rounded-md border border-stone-300 text-xs dark:border-stone-600" role="group" aria-label="Explanation language">
             <button type="button" data-lang-btn="en" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">EN</button>
             <button type="button" data-lang-btn="ru" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">RU</button>
