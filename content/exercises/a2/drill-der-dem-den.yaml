@@ -1,0 +1,162 @@
+topic: dativ
+title:
+  en: Drill — der, dem or den?
+  ru: Тренажёр — der, dem или den?
+items:
+  - id: mc-mit-auto
+    type: mc
+    focus: dativ-praepositionen
+    prompt: "Wir fahren mit ___ Auto nach Hamburg."
+    options: ["dem", "das"]
+    correct: 0
+    translation:
+      en: We are driving to Hamburg in the car.
+      ru: Мы едем в Гамбург на машине.
+    explain:
+      en: "mit always takes the dative: das Auto → dem Auto. 'mit das Auto' is impossible — after mit there is no accusative."
+      ru: "mit всегда требует Dativ: das Auto → dem Auto. «mit das Auto» невозможно — после mit винительного падежа не бывает."
+
+  - id: mc-fuer-vater
+    type: mc
+    focus: akkusativ-artikel
+    prompt: "Das Geschenk ist für ___ Vater."
+    options: ["den", "dem"]
+    correct: 0
+    translation:
+      en: The present is for the father.
+      ru: Подарок для отца.
+    explain:
+      en: "für always takes the accusative: der Vater → den Vater. für, ohne, durch never take the dative — 'für dem' is impossible."
+      ru: "für всегда требует Akkusativ: der Vater → den Vater. für, ohne, durch никогда не сочетаются с Dativ — «für dem» невозможно."
+
+  - id: mc-nach-arbeit
+    type: mc
+    focus: dativ-praepositionen
+    prompt: "Nach ___ Arbeit gehe ich einkaufen."
+    options: ["der", "die"]
+    correct: 0
+    translation:
+      en: After work I go shopping.
+      ru: После работы я иду за покупками.
+    explain:
+      en: "nach always takes the dative: die Arbeit → der Arbeit. In the dative, feminine die becomes der."
+      ru: "nach всегда требует Dativ: die Arbeit → der Arbeit. В дательном падеже женский артикль die превращается в der."
+
+  - id: mc-durch-stadt
+    type: mc
+    focus: akkusativ-artikel
+    prompt: "Der Bus fährt durch ___ Stadt."
+    options: ["die", "der"]
+    correct: 0
+    translation:
+      en: The bus goes through the city.
+      ru: Автобус едет через город.
+    explain:
+      en: "durch always takes the accusative: die Stadt stays die Stadt (feminine doesn't change in the accusative). 'durch der Stadt' would be dative — wrong here."
+      ru: "durch всегда требует Akkusativ: die Stadt остаётся die Stadt (женский род в винительном не меняется). «durch der Stadt» — это Dativ, здесь он неверен."
+
+  - id: cloze-bei-eltern
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Er wohnt noch bei {{den}} Eltern. (die Eltern)"
+    translation:
+      en: He still lives with his parents.
+      ru: Он всё ещё живёт у родителей.
+    explain:
+      en: "bei always takes the dative; in the plural die → den: bei den Eltern. (The noun Eltern already ends in -n.)"
+      ru: "bei всегда требует Dativ; во множественном числе die → den: bei den Eltern. (Существительное Eltern уже заканчивается на -n.)"
+
+  - id: mc-ohne-kinder
+    type: mc
+    focus: akkusativ-artikel
+    prompt: "Wir machen den Ausflug ohne ___ Kinder."
+    options: ["die", "den"]
+    correct: 0
+    translation:
+      en: We are going on the trip without the children.
+      ru: Мы едем на экскурсию без детей.
+    explain:
+      en: "ohne always takes the accusative; the plural accusative article is die: ohne die Kinder. den Kindern would be dative — never after ohne."
+      ru: "ohne всегда требует Akkusativ; во множественном числе винительный артикль — die: ohne die Kinder. den Kindern — это Dativ, после ohne он невозможен."
+
+  - id: mc-helfen-mann
+    type: mc
+    focus: dativ-artikel
+    prompt: "Ich helfe ___ Mann."
+    options: ["dem", "den"]
+    correct: 0
+    translation:
+      en: I am helping the man.
+      ru: Я помогаю мужчине.
+    explain:
+      en: "helfen takes the dative: der Mann → dem Mann. Russian helps here — «помогать (кому?) мужчине» is dative too."
+      ru: "helfen требует Dativ: der Mann → dem Mann. Русский подсказывает: «помогать (кому?) мужчине» — тоже дательный падеж."
+
+  - id: mc-sehen-mann
+    type: mc
+    focus: akkusativ-artikel
+    prompt: "Ich sehe ___ Mann dort."
+    options: ["den", "dem"]
+    correct: 0
+    translation:
+      en: I see the man over there.
+      ru: Я вижу вон того мужчину.
+    explain:
+      en: "sehen takes the accusative: der Mann → den Mann. Compare the minimal pair: Ich helfe dem Mann (dative) — Ich sehe den Mann (accusative)."
+      ru: "sehen требует Akkusativ: der Mann → den Mann. Сравните минимальную пару: Ich helfe dem Mann (Dativ) — Ich sehe den Mann (Akkusativ)."
+
+  - id: cloze-zum-arzt
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill the gap with the contracted form of preposition + article.
+      ru: Вставьте слитную форму предлога с артиклем.
+    text: "Ich gehe heute {{zum}} Arzt. (zu + dem)"
+    translation:
+      en: I'm going to the doctor today.
+      ru: Я сегодня иду к врачу.
+    explain:
+      en: "zu always takes the dative; zu dem contracts to zum: Ich gehe zum Arzt."
+      ru: "zu всегда требует Dativ; zu dem сливается в zum: Ich gehe zum Arzt."
+
+  - id: mc-kindern
+    type: mc
+    focus: dativ-artikel
+    prompt: "Die Lehrerin hilft ___."
+    options: ["den Kindern", "die Kinder", "den Kinder"]
+    correct: 0
+    translation:
+      en: The teacher is helping the children.
+      ru: Учительница помогает детям.
+    explain:
+      en: "helfen takes the dative. In the dative plural two things change: die → den and the noun adds -n — den Kindern. 'den Kinder' is the classic half-way mistake."
+      ru: "helfen требует Dativ. В Dativ Plural меняются две вещи: die → den, а существительное получает -n — den Kindern. «den Kinder» — классическая ошибка «на полпути»."
+
+  - id: uebersetzen-helfen-mann
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German. Use the definite article (der Mann).
+      ru: Переведите на немецкий. Используйте определённый артикль (der Mann).
+    prompt_en: "I am helping the man."
+    prompt_ru: "Я помогаю мужчине."
+    answer: "Ich helfe dem Mann."
+    explain:
+      en: "helfen takes the dative: der Mann → dem Mann. Russian works the same way — «помогаю (кому?) мужчине»."
+      ru: "helfen требует Dativ: der Mann → dem Mann. В русском так же — «помогаю (кому?) мужчине»."
+
+  - id: uebersetzen-sehen-mann
+    type: translate
+    focus: akkusativ-artikel
+    instruction:
+      en: Translate into German. Use the definite article (der Mann).
+      ru: Переведите на немецкий. Используйте определённый артикль (der Mann).
+    prompt_en: "I see the man."
+    prompt_ru: "Я вижу мужчину."
+    answer: "Ich sehe den Mann."
+    explain:
+      en: "sehen takes the accusative: der Mann → den Mann. Only the masculine article changes in the accusative — and that is exactly the der/dem/den choice this drill trains."
+      ru: "sehen требует Akkusativ: der Mann → den Mann. В винительном падеже меняется только мужской артикль — именно этот выбор der/dem/den мы и тренируем."

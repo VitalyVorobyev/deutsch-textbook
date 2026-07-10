@@ -1,0 +1,167 @@
+topic: dativ
+title:
+  en: Drill — mir or mich?
+  ru: Тренажёр — mir или mich?
+items:
+  - id: mc-helfen-mir
+    type: mc
+    focus: verben-mit-dativ
+    prompt: "Kannst du ___ bitte helfen?"
+    options: ["mir", "mich"]
+    correct: 0
+    translation:
+      en: Can you please help me?
+      ru: Ты можешь мне помочь, пожалуйста?
+    explain:
+      en: "helfen takes the dative: mir. Russian helps you here — «помогать (кому?) мне» is dative too."
+      ru: "helfen требует Dativ: mir. Русский здесь подсказывает: «помогать (кому?) мне» — тоже дательный падеж."
+
+  - id: mc-anrufen-dich
+    type: mc
+    focus: akkusativ-pronomen
+    prompt: "Ich rufe ___ heute Abend an."
+    options: ["dich", "dir"]
+    correct: 0
+    translation:
+      en: I'll call you tonight.
+      ru: Я позвоню тебе сегодня вечером.
+    explain:
+      en: "anrufen takes the accusative: dich. This is the classic trap — Russian «звонить (кому?) тебе» is dative, but German says jemanden anrufen. Never 'dir anrufen'."
+      ru: "anrufen требует Akkusativ: dich. Классическая ловушка — по-русски «звонить (кому?) тебе», дательный падеж, но по-немецки jemanden anrufen. «Dir anrufen» — ошибка."
+
+  - id: mc-danken-dir
+    type: mc
+    focus: verben-mit-dativ
+    prompt: "Ich danke ___ für das Geschenk."
+    options: ["dir", "dich"]
+    correct: 0
+    translation:
+      en: Thank you for the present.
+      ru: Спасибо тебе за подарок.
+    explain:
+      en: "danken takes the dative: dir. Here Russian misleads — «благодарить (кого?) тебя» is accusative, but German insists on the dative."
+      ru: "danken требует Dativ: dir. Здесь русский сбивает: «благодарить (кого?) тебя» — винительный падеж, а в немецком только дательный."
+
+  - id: mc-sehen-ihn
+    type: mc
+    focus: akkusativ-pronomen
+    prompt: "Dort ist Herr Braun. Siehst du ___?"
+    options: ["ihn", "ihm"]
+    correct: 0
+    translation:
+      en: There is Mr Braun. Do you see him?
+      ru: Вон господин Браун. Ты его видишь?
+    explain:
+      en: "sehen takes the accusative: er → ihn. Just like Russian «видеть (кого?) его». ihm would be dative."
+      ru: "sehen требует Akkusativ: er → ihn. Как и в русском: «видеть (кого?) его». Форма ihm — это Dativ."
+
+  - id: mc-gehoeren-ihm
+    type: mc
+    focus: verben-mit-dativ
+    prompt: "Das ist Peters Tasche. Sie gehört ___."
+    options: ["ihm", "ihn"]
+    correct: 0
+    translation:
+      en: That is Peter's bag. It belongs to him.
+      ru: Это сумка Петера. Она принадлежит ему.
+    explain:
+      en: "gehören takes the dative: er → ihm — just like Russian «принадлежит (кому?) ему»."
+      ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
+
+  - id: mc-fragen-sie
+    type: mc
+    focus: akkusativ-pronomen
+    prompt: "Entschuldigung, darf ich ___ etwas fragen?"
+    options: ["Sie", "Ihnen"]
+    correct: 0
+    translation:
+      en: Excuse me, may I ask you something?
+      ru: Извините, можно Вас кое о чём спросить?
+    explain:
+      en: "fragen takes the accusative: jemanden fragen → Sie. Russian agrees here: «спросить (кого?) Вас». Ihnen would be dative — wrong after fragen."
+      ru: "fragen требует Akkusativ: jemanden fragen → Sie. Русский здесь совпадает: «спросить (кого?) Вас». Ihnen — это Dativ, после fragen он не нужен."
+
+  - id: cloze-passen-mir
+    type: cloze
+    focus: passen-dativ
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Die Schuhe sind schön, aber sie passen {{mir}} nicht. (ich)"
+    translation:
+      en: The shoes are nice, but they don't fit me.
+      ru: Туфли красивые, но они мне не подходят.
+    explain:
+      en: "passen takes the dative: ich → mir. Like Russian «подходить (кому?) мне» — let Russian help you here."
+      ru: "passen требует Dativ: ich → mir. Как и «подходить (кому?) мне» — русский здесь подсказывает правильно."
+
+  - id: cloze-gefallen-ihr
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Meine Schwester liebt Musik. Das Konzert gefällt {{ihr}} sehr. (sie)"
+    translation:
+      en: My sister loves music. She likes the concert a lot.
+      ru: Моя сестра любит музыку. Концерт ей очень нравится.
+    explain:
+      en: "gefallen works like Russian «нравиться»: the concert is the subject, the person is dative — sie → ihr."
+      ru: "gefallen устроен как «нравиться»: концерт — подлежащее, а человек стоит в дательном падеже — sie → ihr."
+
+  - id: cloze-anrufen-ihn
+    type: cloze
+    focus: akkusativ-pronomen
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Max wartet auf deine Antwort. Warum rufst du {{ihn}} nicht an? (er)"
+    translation:
+      en: Max is waiting for your answer. Why don't you call him?
+      ru: Макс ждёт твоего ответа. Почему ты ему не звонишь?
+    explain:
+      en: "anrufen takes the accusative: er → ihn. Russian «звонить ему» misleads — in German you call someone, not to someone: ihn anrufen."
+      ru: "anrufen требует Akkusativ: er → ihn. Русское «звонить ему» сбивает — по-немецки «звонят кого-то», а не «кому-то»: ihn anrufen."
+
+  - id: mc-helfen-ihnen
+    type: mc
+    focus: dativ-pronomen
+    prompt: "Frau Müller, ich helfe ___ gern."
+    options: ["Ihnen", "Sie"]
+    correct: 0
+    translation:
+      en: Mrs Müller, I'm happy to help you.
+      ru: Госпожа Мюллер, я с удовольствием Вам помогу.
+    explain:
+      en: "helfen takes the dative, and the dative of formal Sie is Ihnen (always capitalized): Ich helfe Ihnen."
+      ru: "helfen требует Dativ, а дательная форма вежливого Sie — Ihnen (всегда с заглавной буквы): Ich helfe Ihnen."
+
+  - id: mc-satz-gefallen
+    type: mc
+    focus: dativ-pronomen
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Der Film gefällt mir."
+      - "Der Film gefällt mich."
+    correct: 0
+    explain:
+      en: "gefallen takes the dative: mir. Russian works the same way — «фильм нравится (кому?) мне», so 'gefällt mich' is impossible."
+      ru: "gefallen требует Dativ: mir. Русский устроен так же — «фильм нравится (кому?) мне», поэтому «gefällt mich» невозможно."
+
+  - id: uebersetzen-anrufen
+    type: translate
+    focus: akkusativ-pronomen
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обращение на «ты».
+    prompt_en: "I will call you tomorrow."
+    prompt_ru: "Я позвоню тебе завтра."
+    answer: "Ich rufe dich morgen an."
+    accept:
+      - "Morgen rufe ich dich an."
+    explain:
+      en: "anrufen takes the accusative — dich, not dir — and the separable prefix an goes to the end: Ich rufe dich morgen an. Russian «позвоню тебе» misleads here."
+      ru: "anrufen требует Akkusativ — dich, а не dir, — и отделяемая приставка an уходит в конец: Ich rufe dich morgen an. Русское «позвоню тебе» здесь сбивает."

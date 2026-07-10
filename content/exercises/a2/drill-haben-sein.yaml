@@ -1,0 +1,166 @@
+topic: perfekt-haben-sein
+title:
+  en: Drill — haben or sein?
+  ru: Тренажёр — haben или sein?
+items:
+  - id: mc-gefahren
+    type: mc
+    focus: haben-sein
+    prompt: "Wir ___ im Sommer nach Italien gefahren."
+    options: ["sind", "haben"]
+    correct: 0
+    translation:
+      en: In the summer we went to Italy.
+      ru: Летом мы ездили в Италию.
+    explain:
+      en: "fahren is movement from A to B, so the auxiliary is sein: Wir sind nach Italien gefahren."
+      ru: "fahren — движение из точки А в точку Б, поэтому вспомогательный глагол — sein: Wir sind nach Italien gefahren."
+
+  - id: mc-gearbeitet
+    type: mc
+    focus: haben-sein
+    prompt: "Ich ___ gestern viel gearbeitet."
+    options: ["habe", "bin"]
+    correct: 0
+    translation:
+      en: I worked a lot yesterday.
+      ru: Вчера я много работал.
+    explain:
+      en: "arbeiten is an activity, not movement or a change of state — auxiliary haben: Ich habe gearbeitet."
+      ru: "arbeiten — это занятие, а не движение и не смена состояния, поэтому вспомогательный глагол haben: Ich habe gearbeitet."
+
+  - id: mc-geblieben
+    type: mc
+    focus: haben-sein
+    prompt: "Sie ___ am Sonntag zu Hause geblieben."
+    options: ["ist", "hat"]
+    correct: 0
+    translation:
+      en: She stayed at home on Sunday.
+      ru: В воскресенье она осталась дома.
+    explain:
+      en: "bleiben is a trap: no movement at all, but it still takes sein. Memorize the trio bleiben, sein, passieren → sein."
+      ru: "bleiben — ловушка: никакого движения нет, но всё равно sein. Запомните тройку bleiben, sein, passieren → sein."
+
+  - id: mc-passiert
+    type: mc
+    focus: haben-sein
+    prompt: "Was ___ hier passiert?"
+    options: ["ist", "hat"]
+    correct: 0
+    translation:
+      en: What happened here?
+      ru: Что здесь случилось?
+    explain:
+      en: "passieren always takes sein: Was ist passiert? It belongs to the memorized trio bleiben, sein, passieren."
+      ru: "passieren всегда идёт с sein: Was ist passiert? Это глагол из тройки-исключения bleiben, sein, passieren."
+
+  - id: mc-gelesen
+    type: mc
+    focus: haben-sein
+    prompt: "Er ___ das Buch schon gelesen."
+    options: ["hat", "ist"]
+    correct: 0
+    translation:
+      en: He has already read the book.
+      ru: Он уже прочитал книгу.
+    explain:
+      en: "lesen has an object (das Buch) — verbs with an object always take haben: Er hat das Buch gelesen."
+      ru: "У lesen есть дополнение (das Buch) — глаголы с дополнением всегда образуют Perfekt с haben: Er hat das Buch gelesen."
+
+  - id: mc-gespielt
+    type: mc
+    focus: haben-sein
+    prompt: "Die Kinder ___ im Park Fußball gespielt."
+    options: ["haben", "sind"]
+    correct: 0
+    translation:
+      en: The children played football in the park.
+      ru: Дети играли в футбол в парке.
+    explain:
+      en: "spielen is an activity — auxiliary haben. Being in the park is not movement from A to B."
+      ru: "spielen — это занятие, вспомогательный глагол haben. Находиться в парке — не движение из точки А в точку Б."
+
+  - id: cloze-aufgestanden
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Heute {{bin}} ich um sechs Uhr aufgestanden."
+    translation:
+      en: Today I got up at six o'clock.
+      ru: Сегодня я встал в шесть часов.
+    explain:
+      en: "aufstehen is a change of state (lying → standing), so it takes sein: ich bin aufgestanden."
+      ru: "aufstehen — смена состояния (лежал → встал), поэтому sein: ich bin aufgestanden."
+
+  - id: cloze-ferngesehen
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Gestern Abend {{haben}} wir ferngesehen."
+    translation:
+      en: Yesterday evening we watched TV.
+      ru: Вчера вечером мы смотрели телевизор.
+    explain:
+      en: "fernsehen is an activity — auxiliary haben: wir haben ferngesehen."
+      ru: "fernsehen — это занятие, вспомогательный глагол haben: wir haben ferngesehen."
+
+  - id: cloze-angekommen
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Der Zug {{ist}} pünktlich in München angekommen."
+    translation:
+      en: The train arrived in Munich on time.
+      ru: Поезд прибыл в Мюнхен вовремя.
+    explain:
+      en: "ankommen is the end point of movement from A to B — auxiliary sein: Der Zug ist angekommen."
+      ru: "ankommen — конечная точка движения из А в Б, вспомогательный глагол sein: Der Zug ist angekommen."
+
+  - id: cloze-angerufen
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Ich {{habe}} am Morgen meine Oma angerufen."
+    translation:
+      en: I called my grandma in the morning.
+      ru: Утром я позвонил бабушке.
+    explain:
+      en: "anrufen has an object (meine Oma) — verbs with an object take haben: Ich habe sie angerufen."
+      ru: "У anrufen есть дополнение (meine Oma) — глаголы с дополнением образуют Perfekt с haben: Ich habe sie angerufen."
+
+  - id: mc-geschlafen
+    type: mc
+    focus: haben-sein
+    prompt: "___ du gut geschlafen?"
+    options: ["Hast", "Bist"]
+    correct: 0
+    translation:
+      en: Did you sleep well?
+      ru: Ты хорошо спал?
+    explain:
+      en: "schlafen is neither movement nor a change of state — auxiliary haben: Hast du gut geschlafen?"
+      ru: "schlafen — не движение и не смена состояния, поэтому haben: Hast du gut geschlafen?"
+
+  - id: uebersetzen-geblieben
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Yesterday we stayed at home."
+    prompt_ru: "Вчера мы остались дома."
+    answer: "Gestern sind wir zu Hause geblieben."
+    accept:
+      - "Wir sind gestern zu Hause geblieben."
+    explain:
+      en: "bleiben takes sein even though nothing moves: wir sind geblieben. And after fronted Gestern the auxiliary stays in position 2: Gestern sind wir …"
+      ru: "bleiben идёт с sein, хотя никакого движения нет: wir sind geblieben. А после Gestern в начале предложения вспомогательный глагол остаётся на втором месте: Gestern sind wir …"

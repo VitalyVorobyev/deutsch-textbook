@@ -1,0 +1,177 @@
+topic: trennbare-verben
+title:
+  en: Drill — where does the prefix go?
+  ru: Тренажёр — куда идёт приставка?
+items:
+  - id: mc-einkaufen-v2
+    type: mc
+    focus: trennbar-wortstellung
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich kaufe am Samstag ein."
+      - "Ich einkaufe am Samstag."
+    correct: 0
+    explain:
+      en: "In a main clause the separable prefix splits off and goes to the very end: Ich kaufe … ein. The verb never stays in one piece in position 2."
+      ru: "В главном предложении отделяемая приставка отрывается и уходит в самый конец: Ich kaufe … ein. Целиком на втором месте такой глагол стоять не может."
+
+  - id: mc-muss-aufstehen
+    type: mc
+    focus: trennbar-modal
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Er muss um sechs Uhr aufstehen."
+      - "Er muss um sechs Uhr steht auf."
+    correct: 0
+    explain:
+      en: "After a modal the separable verb stays in one piece as an infinitive at the end: muss … aufstehen. Only the modal is conjugated."
+      ru: "После модального глагола отделяемый глагол стоит целиком в форме инфинитива в конце: muss … aufstehen. Спрягается только модальный глагол."
+
+  - id: mc-verstehen
+    type: mc
+    focus: trennbar-untrennbar
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich verstehe die Frage nicht."
+      - "Ich stehe die Frage nicht ver."
+    correct: 0
+    explain:
+      en: "ver- is an inseparable prefix: be-, ver-, er-, ent- never split off. verstehen stays in one piece: Ich verstehe …"
+      ru: "ver- — неотделяемая приставка: be-, ver-, er-, ent- никогда не отрываются. verstehen остаётся целым: Ich verstehe …"
+
+  - id: cloze-anfangen
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill the gaps with the correct forms of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+    text: "Die Schule {{fängt}} um acht Uhr {{an}}. (anfangen)"
+    translation:
+      en: School starts at eight o'clock.
+      ru: Занятия в школе начинаются в восемь часов.
+    explain:
+      en: "anfangen splits: the conjugated part fängt takes position 2 (with the vowel change a → ä), the prefix an goes to the end."
+      ru: "anfangen разделяется: спрягаемая часть fängt стоит на втором месте (со сменой гласной a → ä), приставка an уходит в конец."
+
+  - id: mc-fenster-aufmachen
+    type: mc
+    focus: trennbar-modal
+    prompt: "Kannst du bitte das Fenster ___?"
+    options: ["aufmachen", "machst auf"]
+    correct: 0
+    translation:
+      en: Can you please open the window?
+      ru: Ты можешь, пожалуйста, открыть окно?
+    explain:
+      en: "kannst is the conjugated verb in position 2, so aufmachen stays whole as an infinitive at the end — it does not split after a modal."
+      ru: "Спрягаемый глагол здесь kannst (второе место), поэтому aufmachen стоит целиком в инфинитиве в конце — после модального глагола он не разделяется."
+
+  - id: cloze-bezahlen
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме.
+    text: "Er {{bezahlt}} die Rechnung. (bezahlen)"
+    translation:
+      en: He pays the bill.
+      ru: Он оплачивает счёт.
+    explain:
+      en: "be- is an inseparable prefix — nothing moves to the end: Er bezahlt die Rechnung. Compare separable aufmachen: Er macht die Tür auf."
+      ru: "be- — неотделяемая приставка, в конец ничего не уходит: Er bezahlt die Rechnung. Сравните с отделяемым aufmachen: Er macht die Tür auf."
+
+  - id: order-aufstehen
+    type: order
+    focus: trennbar-wortstellung
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Ich", "stehe", "jeden", "Tag", "um", "sechs", "Uhr", "auf."]
+    accept:
+      - "Jeden Tag stehe ich um sechs Uhr auf."
+    translation:
+      en: I get up at six o'clock every day.
+      ru: Я встаю в шесть часов каждый день.
+    explain:
+      en: "The two parts of aufstehen form the bracket: stehe in position 2, auf at the very end — everything else sits in between."
+      ru: "Две части aufstehen образуют рамку: stehe на втором месте, auf в самом конце — всё остальное стоит между ними."
+
+  - id: order-einkaufen-modal
+    type: order
+    focus: trennbar-modal
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+    words: ["Wir", "müssen", "heute", "noch", "einkaufen."]
+    accept:
+      - "Heute müssen wir noch einkaufen."
+    translation:
+      en: We still have to do the shopping today.
+      ru: Нам сегодня ещё нужно сходить за покупками.
+    explain:
+      en: "With a modal the bracket is modal + whole infinitive: müssen in position 2, einkaufen unsplit at the end."
+      ru: "С модальным глаголом рамку образуют модальный глагол и целый инфинитив: müssen на втором месте, einkaufen в конце без разрыва."
+
+  - id: mc-fernsehen
+    type: mc
+    focus: trennbar-wortstellung
+    prompt: "Er ___ am Abend fern."
+    options: ["sieht", "fernsieht"]
+    correct: 0
+    translation:
+      en: He watches TV in the evening.
+      ru: Вечером он смотрит телевизор.
+    explain:
+      en: "The prefix fern is already at the end, so position 2 holds only the conjugated stem: Er sieht … fern. 'Er fernsieht' is impossible."
+      ru: "Приставка fern уже стоит в конце, поэтому на втором месте — только спрягаемая часть: Er sieht … fern. «Er fernsieht» невозможно."
+
+  - id: mc-ausgehen-modal
+    type: mc
+    focus: trennbar-modal
+    prompt: "Ich möchte am Samstag ___."
+    options: ["ausgehen", "gehe aus"]
+    correct: 0
+    translation:
+      en: I would like to go out on Saturday.
+      ru: В субботу я хочу куда-нибудь сходить.
+    explain:
+      en: "möchte already fills position 2, so ausgehen stays whole at the end. The verb splits only when it is the conjugated verb itself."
+      ru: "Второе место уже занято möchte, поэтому ausgehen стоит целиком в конце. Глагол разделяется только тогда, когда он сам спрягается."
+
+  - id: mc-erklaeren
+    type: mc
+    focus: trennbar-untrennbar
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Die Lehrerin erklärt die Grammatik."
+      - "Die Lehrerin klärt die Grammatik er."
+    correct: 0
+    explain:
+      en: "er- is inseparable — erklären never splits: Die Lehrerin erklärt … Unlike separable prefixes, be-, ver-, er- are unstressed and glued to the verb."
+      ru: "er- — неотделяемая приставка, erklären никогда не разделяется: Die Lehrerin erklärt … В отличие от отделяемых приставок, be-, ver-, er- безударны и «приклеены» к глаголу."
+
+  - id: cloze-anrufen-frage
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill the gaps with the correct forms of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+    text: "Wann {{rufst}} du deine Oma {{an}}? (anrufen)"
+    translation:
+      en: When are you going to call your grandma?
+      ru: Когда ты позвонишь бабушке?
+    explain:
+      en: "In a W-question the conjugated part is second, the prefix last: Wann rufst du … an?"
+      ru: "В вопросе с вопросительным словом спрягаемая часть стоит на втором месте, приставка — в конце: Wann rufst du … an?"

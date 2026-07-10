@@ -1,0 +1,174 @@
+topic: termine-vereinbaren
+title:
+  en: Drill — du or Sie?
+  ru: Тренажёр — du или Sie?
+items:
+  - id: mc-zahnarzt
+    type: mc
+    focus: du-sie
+    prompt: "Sie rufen beim Zahnarzt an. Was sagen Sie?"
+    options:
+      - "Guten Tag, haben Sie morgen einen Termin frei?"
+      - "Hallo, hast du morgen einen Termin frei?"
+    correct: 0
+    translation:
+      en: You are calling the dentist's office. What do you say?
+      ru: Вы звоните в стоматологию. Что вы говорите?
+    explain:
+      en: "On the phone with a doctor's office you always use Sie: Guten Tag, haben Sie …? du is only for friends, family and children."
+      ru: "По телефону с врачебной практикой всегда на Sie: Guten Tag, haben Sie …? Обращение du — только для друзей, семьи и детей."
+
+  - id: mc-freundin
+    type: mc
+    focus: du-sie
+    prompt: "Du sprichst mit deiner Freundin Anna. Was sagst du?"
+    options:
+      - "Hast du morgen Zeit?"
+      - "Haben Sie morgen Zeit?"
+    correct: 0
+    translation:
+      en: You are talking to your friend Anna. What do you say?
+      ru: Ты разговариваешь со своей подругой Анной. Что ты говоришь?
+    explain:
+      en: "With a friend you use du and the du-form of the verb: Hast du …? Sie to a close friend sounds cold and distant."
+      ru: "С подругой — на du и с глаголом в форме du: Hast du …? Sie в разговоре с близкой подругой звучит холодно и отчуждённо."
+
+  - id: mc-neuer-kunde
+    type: mc
+    focus: du-sie
+    prompt: "Ein neuer Kunde ruft in Ihrer Firma an. Was sagen Sie?"
+    options:
+      - "Passt es Ihnen am Freitag um 10 Uhr?"
+      - "Passt es dir am Freitag um 10 Uhr?"
+    correct: 0
+    translation:
+      en: A new client is calling your company. What do you say?
+      ru: В вашу фирму звонит новый клиент. Что вы говорите?
+    explain:
+      en: "A new client always gets Sie — and the matching dative pronoun Ihnen: Passt es Ihnen …? dir belongs to du."
+      ru: "С новым клиентом — всегда на Sie, а значит и дательное местоимение Ihnen: Passt es Ihnen …? Форма dir относится к du."
+
+  - id: mc-kollege
+    type: mc
+    focus: du-sie
+    prompt: "Max ist dein Kollege und guter Freund. Was sagst du?"
+    options:
+      - "Kannst du mir kurz helfen?"
+      - "Können Sie mir kurz helfen?"
+    correct: 0
+    translation:
+      en: Max is your colleague and a good friend. What do you say?
+      ru: Макс — твой коллега и хороший друг. Что ты говоришь?
+    explain:
+      en: "With a colleague you are on du-terms with, you use du: Kannst du …? Once you have agreed on du, switching back to Sie sounds strange."
+      ru: "С коллегой, с которым вы на «ты», используется du: Kannst du …? Если вы уже перешли на «ты», возвращаться к Sie странно."
+
+  - id: mc-geschaeft
+    type: mc
+    focus: du-sie
+    prompt: "Sie sind in einem Geschäft und sprechen mit der Verkäuferin. Was sagen Sie?"
+    options:
+      - "Entschuldigung, können Sie mir helfen?"
+      - "Entschuldigung, kannst du mir helfen?"
+    correct: 0
+    translation:
+      en: You are in a shop talking to the sales assistant. What do you say?
+      ru: Вы в магазине разговариваете с продавщицей. Что вы говорите?
+    explain:
+      en: "Strangers in shops, offices and on the street get Sie: können Sie …? In Germany du to an adult stranger is impolite."
+      ru: "С незнакомыми людьми в магазине, в учреждении и на улице — только Sie: können Sie …? Обращение du к незнакомому взрослому в Германии невежливо."
+
+  - id: cloze-arztpraxis
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме.
+    text: "In der Arztpraxis: Guten Tag, {{haben}} Sie diese Woche noch einen Termin frei? (haben)"
+    translation:
+      en: "At the doctor's office: Good day, do you still have an appointment free this week?"
+      ru: "В приёмной врача: Здравствуйте, у вас есть ещё свободное время на этой неделе?"
+    explain:
+      en: "Formal Sie takes the same verb form as sie (plural): haben Sie. 'hast Sie' mixes the du-ending with the Sie-pronoun."
+      ru: "С вежливым Sie глагол стоит в той же форме, что и с sie (мн. ч.): haben Sie. «hast Sie» — это смешение окончания для du с местоимением Sie."
+
+  - id: cloze-freund-samstag
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме.
+    text: "Anna, {{hast}} du am Samstag Zeit? (haben)"
+    translation:
+      en: Anna, do you have time on Saturday?
+      ru: Анна, у тебя есть время в субботу?
+    explain:
+      en: "With du the verb takes the -st ending: hast du. haben Sie would be the formal version — wrong with a friend's first name."
+      ru: "С du глагол получает окончание -st: hast du. haben Sie — вежливый вариант, он не сочетается с обращением к подруге по имени."
+
+  - id: cloze-kundin-ihnen
+    type: cloze
+    focus: passen-dativ
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets. Mind the capital letter.
+      ru: Вставьте местоимение из скобок в правильной форме. Не забудьте заглавную букву.
+    text: "Zu einer neuen Kundin: Passt es {{Ihnen}} um 14 Uhr? (Sie)"
+    translation:
+      en: "To a new client: Does 2 p.m. suit you?"
+      ru: "Новой клиентке: Вам подходит 14 часов?"
+    explain:
+      en: "passen takes the dative, and the dative of Sie is Ihnen (capitalized): Passt es Ihnen? — never 'Passt es Sie?'."
+      ru: "passen требует Dativ, а дательная форма Sie — Ihnen (с заглавной буквы): Passt es Ihnen? Вариант «Passt es Sie?» невозможен."
+
+  - id: cloze-freundin-dir
+    type: cloze
+    focus: passen-dativ
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильной форме.
+    text: "Zu deiner Freundin: Passt es {{dir}} am Sonntag? (du)"
+    translation:
+      en: "To your friend: Does Sunday work for you?"
+      ru: "Подруге: Тебе подходит воскресенье?"
+    explain:
+      en: "passen takes the dative: du → dir. Like Russian «тебе подходит» — the person is in the dative, not the subject."
+      ru: "passen требует Dativ: du → dir. Как в русском «тебе подходит» — человек стоит в дательном падеже, а не в роли подлежащего."
+
+  - id: mc-herr-weber
+    type: mc
+    focus: du-sie
+    prompt: "Herr Weber, ___ Sie den Termin auf Montag verschieben?"
+    options: ["können", "kannst"]
+    correct: 0
+    translation:
+      en: Mr Weber, can you move the appointment to Monday?
+      ru: Господин Вебер, вы можете перенести встречу на понедельник?
+    explain:
+      en: "Herr + surname signals the Sie-register, and Sie takes können (not kannst): können Sie …?"
+      ru: "Обращение Herr + фамилия — признак общения на Sie, а с Sie глагол стоит в форме können (не kannst): können Sie …?"
+
+  - id: uebersetzen-passt-ihnen
+    type: translate
+    focus: passen-dativ
+    instruction:
+      en: "Translate into German using the phrase \"Passt es …?\". You are talking to a new client (Sie)."
+      ru: "Переведите на немецкий с оборотом «Passt es …?». Вы говорите с новым клиентом (на Sie)."
+    prompt_en: "Does Tuesday at 9 o'clock work for you?"
+    prompt_ru: "Вам удобно во вторник в 9 часов?"
+    answer: "Passt es Ihnen am Dienstag um 9 Uhr?"
+    explain:
+      en: "passen takes the dative: formal Sie → Ihnen (capitalized). Time phrases: am Dienstag (day), um 9 Uhr (clock time)."
+      ru: "passen требует Dativ: вежливое Sie → Ihnen (с заглавной буквы). Обстоятельства времени: am Dienstag (день), um 9 Uhr (время по часам)."
+
+  - id: uebersetzen-kannst-du
+    type: translate
+    focus: du-sie
+    instruction:
+      en: "Translate into German. You are talking to a friend (du)."
+      ru: "Переведите на немецкий. Вы говорите с другом (на «ты»)."
+    prompt_en: "Can you help me?"
+    prompt_ru: "Ты можешь мне помочь?"
+    answer: "Kannst du mir helfen?"
+    explain:
+      en: "With a friend: du + the du-form kannst, and helfen takes the dative — mir: Kannst du mir helfen?"
+      ru: "С другом — du и форма kannst, а helfen требует Dativ — mir: Kannst du mir helfen?"
