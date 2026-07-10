@@ -6,8 +6,10 @@ and FSRS flashcards — built as a static Astro site over a structured content b
 - **Content** lives in `content/` (MDX topics, YAML vocabulary and exercises) and is
   written by an agent following the rules in [CLAUDE.md](CLAUDE.md).
 - **Progress** (exercise attempts, flashcard scheduling) lives in the browser
-  (IndexedDB) and can be exported to `progress/*.json` — the agent reads those
-  snapshots to generate drills targeting your weak spots.
+  (IndexedDB) and is recorded automatically as you practice. While `bun run dev`
+  is running, every change also syncs to `progress/<profile>/<date>.json` in the
+  repo — the agent reads those snapshots to generate drills targeting your weak
+  spots. On the deployed site use Export/Import on the Fortschritt page instead.
 - **Explanations** are bilingual (English/Russian, toggle in the header); the German
   content itself is always visible.
 

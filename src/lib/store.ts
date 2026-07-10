@@ -1,6 +1,7 @@
 /** IndexedDB-backed progress store (client-side only), namespaced per profile. */
 import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval';
 import { getActiveProfileId, dbNameFor } from './profile';
+import { scheduleAutoSync } from './autosync';
 
 // ---------------------------------------------------------------------------
 // Profile-aware store handle
@@ -41,6 +42,7 @@ export interface Attempt {
 
 export async function logAttempt(attempt: Attempt): Promise<void> {
   await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], getStore());
+  scheduleAutoSync();
 }
 
 export async function getAttempts(): Promise<Attempt[]> {
@@ -72,6 +74,7 @@ export async function getCardStates(): Promise<CardStates> {
 
 export async function setCardState(cardId: string, card: StoredCard): Promise<void> {
   await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), getStore());
+  scheduleAutoSync();
 }
 
 // ---------------------------------------------------------------------------
@@ -97,6 +100,7 @@ export function localDateString(d = new Date()): string {
 
 export async function logSession(entry: SessionLogEntry): Promise<void> {
   await update<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry], getStore());
+  scheduleAutoSync();
 }
 
 export async function getSessionLog(): Promise<SessionLogEntry[]> {
@@ -141,6 +145,7 @@ export async function markTopicRead(topicId: string, ts = Date.now()): Promise<v
     },
     getStore(),
   );
+  scheduleAutoSync();
 }
 
 /** Set (or clear, with null) the manual learned/reopened override for a topic. */
@@ -166,6 +171,7 @@ export async function setTopicManual(
     },
     getStore(),
   );
+  scheduleAutoSync();
 }
 
 // ---------------------------------------------------------------------------
@@ -302,6 +308,7 @@ export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
     store,
   );
   await update<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, snapshot.topics ?? {}), store);
+  scheduleAutoSync();
 }
 
 /** Destructive: replaces the whole store with the snapshot's contents. */
@@ -317,6 +324,7 @@ export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void>
     snapshot.topics && typeof snapshot.topics === 'object' ? snapshot.topics : {},
     store,
   );
+  scheduleAutoSync();
 }
 
 /** Default import path — non-destructive merge. */

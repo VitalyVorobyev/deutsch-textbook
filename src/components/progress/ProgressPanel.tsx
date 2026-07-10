@@ -220,6 +220,14 @@ export default function ProgressPanel({ nodes }: Props) {
             }}
           />
         </div>
+        {import.meta.env.DEV && (
+          <p className="mt-3 text-center text-xs text-stone-400">
+            {t(
+              'Auto-sync is on: while bun run dev is running, every change is written to progress/ automatically. Export is for the deployed site.',
+              'Автосинхронизация включена: пока работает bun run dev, каждое изменение автоматически записывается в progress/. Экспорт нужен для задеплоенного сайта.',
+            )}
+          </p>
+        )}
         {message && (
           <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
         )}
