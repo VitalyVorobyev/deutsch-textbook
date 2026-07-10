@@ -56,3 +56,18 @@ export function translationMatches(given: string, accepted: string[]): boolean {
   const g = normalizeTranslation(given);
   return accepted.some((a) => normalizeTranslation(a) === g);
 }
+
+/**
+ * Normalize a dictation answer: whitespace-normalized with ALL punctuation
+ * stripped — you cannot hear commas or periods. Case stays significant, since
+ * noun capitalization is part of what dictation drills.
+ */
+export function normalizeDictation(s: string): string {
+  return normalizeAnswer(s.replace(/[.,!?;:„“”"«»'’…–—-]/g, ' '));
+}
+
+/** True if a typed dictation matches any of the accepted German sentences. */
+export function dictationMatches(given: string, accepted: string[]): boolean {
+  const g = normalizeDictation(given);
+  return accepted.some((a) => normalizeDictation(a) === g);
+}

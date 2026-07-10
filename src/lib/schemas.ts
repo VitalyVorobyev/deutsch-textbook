@@ -206,6 +206,21 @@ export const translateItemSchema = z.object({
   accept: z.array(z.string().min(1)).default([]),
 });
 
+export const listenItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('listen'),
+  /**
+   * German sentence spoken aloud via browser TTS — also the canonical typed
+   * answer. Keep it ≤ ~10 words at the set's level; write numbers as words
+   * so what is heard and what must be typed agree. Punctuation is ignored in
+   * matching; capitalization is not.
+   */
+  text: z.string().min(1),
+  /** alternative accepted transcriptions (real spelling variants only) */
+  accept: z.array(z.string().min(1)).default([]),
+  translation: bilingualSchema.optional(),
+});
+
 export const exerciseItemSchema = z.discriminatedUnion('type', [
   mcItemSchema,
   clozeItemSchema,
@@ -213,6 +228,7 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   orderItemSchema,
   tableItemSchema,
   translateItemSchema,
+  listenItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
 

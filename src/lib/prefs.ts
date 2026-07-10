@@ -2,8 +2,12 @@
 
 export type ExplainLang = 'en' | 'ru';
 export type Theme = 'light' | 'dark';
-/** Flashcard answer mode for the x-de (production) direction. */
-export type CardInputMode = 'typed' | 'reveal';
+/**
+ * Flashcard answer mode: 'typed'/'reveal' apply to the x-de (production)
+ * direction; 'listen' additionally turns de-x (recognition) cards into
+ * dictation — hear the word, type it.
+ */
+export type CardInputMode = 'typed' | 'reveal' | 'listen';
 
 export const LANG_KEY = 'da:lang';
 export const THEME_KEY = 'da:theme';
@@ -27,7 +31,8 @@ export function setTheme(theme: Theme): void {
 
 export function getCardInputMode(): CardInputMode {
   if (typeof localStorage === 'undefined') return 'typed';
-  return localStorage.getItem(CARD_INPUT_KEY) === 'reveal' ? 'reveal' : 'typed';
+  const v = localStorage.getItem(CARD_INPUT_KEY);
+  return v === 'reveal' || v === 'listen' ? v : 'typed';
 }
 
 export function setCardInputMode(mode: CardInputMode): void {

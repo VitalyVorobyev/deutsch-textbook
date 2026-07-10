@@ -10,6 +10,8 @@ import {
   normalizeTyped,
   type AnswerVerdict,
 } from '../../lib/typing';
+import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
+import SpeakerButton from '../SpeakerButton';
 import { useExplainLang } from '../hooks';
 
 interface Props {
@@ -51,7 +53,11 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
   const [queue, setQueue] = useState<CardDef[] | null>(null);
   const [states, setStates] = useState<CardStates>({});
   const [revealed, setRevealed] = useState(false);
-  const [inputMode, setInputMode] = useState<CardInputMode>(() => getCardInputMode());
+  const canTts = ttsAvailable();
+  const [inputMode, setInputMode] = useState<CardInputMode>(() => {
+    const m = getCardInputMode();
+    return m === 'listen' && !ttsAvailable() ? 'typed' : m;
+  });
   const [typed, setTyped] = useState('');
   const [verdict, setVerdict] = useState<AnswerVerdict | null>(null);
   const [stats, setStats] = useState<SessionStats>({ reviewed: 0, again: 0 });
@@ -62,6 +68,8 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
   const submitTs = useRef(0);
   // ensures onFinished fires at most once per mounted session
   const finishedFired = useRef(false);
+  // iOS allows programmatic TTS only after one user-gesture speak — track it
+  const hasPlayedManually = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -77,7 +85,11 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
   }, [cards, newLimit]);
 
   const card = queue?.[0];
-  const typing = !!card && card.dir === 'x-de' && inputMode === 'typed';
+  // 'listen' turns recognition (de-x) cards into dictation; production (x-de)
+  // cards fall back to typed there — hearing the answer would spoil recall.
+  const listening = !!card && card.dir === 'de-x' && inputMode === 'listen' && canTts;
+  const typing =
+    !!card && ((card.dir === 'x-de' && inputMode !== 'reveal') || listening);
   const answered = typing ? verdict !== null : revealed;
   const suggested: Grade = verdict?.kind === 'correct' ? Rating.Good : Rating.Again;
 
@@ -85,6 +97,15 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
   useEffect(() => {
     if (typing && verdict === null) inputRef.current?.focus();
   }, [typing, verdict, card?.id]);
+
+  // Dictation auto-play for each new card — only after the learner has tapped
+  // play once (iOS unlocks speechSynthesis on the first user-gesture speak).
+  useEffect(() => {
+    if (listening && verdict === null && card && hasPlayedManually.current) {
+      speakGerman(articledForm(card.de, card.gender));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [card?.id, listening, verdict === null]);
 
   // Keyboard grading once the back side is visible: 1–4 pick a grade,
   // Enter confirms the suggested grade (typed mode only).
@@ -139,7 +160,9 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
 
   // Nouns are shown and must be answered WITH their article ("der Apfel").
   const answerDe = articledForm(card.de, card.gender);
-  const front = card.dir === 'de-x' ? answerDe : `${card.en} · ${card.ru}`;
+  // In dictation the German side is the (hidden) audio prompt, so the visible
+  // "front" after answering is the meaning instead.
+  const front = card.dir === 'de-x' && !listening ? answerDe : `${card.en} · ${card.ru}`;
   const back = card.dir === 'de-x' ? `${card.en} · ${card.ru}` : answerDe;
 
   async function grade(g: Grade) {
@@ -201,6 +224,7 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
       )}
       <p lang="de" className="mt-4 text-sm italic text-stone-600 dark:text-stone-300">
         {card.exampleDe}
+        <SpeakerButton text={card.exampleDe} className="ml-1 not-italic text-stone-400" />
       </p>
       <p className="mt-1 text-xs text-stone-400">
         {lang === 'ru' ? card.exampleRu : card.exampleEn}
@@ -243,13 +267,20 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
             [
               ['typed', 'Tippen'],
               ['reveal', 'Aufdecken'],
+              ['listen', 'Hören'],
             ] as Array<[CardInputMode, string]>
           ).map(([mode, label]) => (
             <button
               key={mode}
               type="button"
               onClick={() => switchMode(mode)}
-              className={`rounded px-2 py-1.5 font-medium sm:py-0.5 ${
+              disabled={mode === 'listen' && !canTts}
+              title={
+                mode === 'listen' && !canTts
+                  ? 'Audio ist auf diesem Gerät nicht verfügbar'
+                  : undefined
+              }
+              className={`rounded px-2 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40 sm:py-0.5 ${
                 inputMode === mode
                   ? 'bg-stone-800 text-white dark:bg-stone-200 dark:text-stone-900'
                   : 'text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200'
@@ -265,11 +296,42 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
       </div>
       <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
         <p className="text-center text-xs uppercase tracking-wide text-stone-400">
-          {card.dir === 'de-x' ? 'Deutsch →' : '→ Deutsch'}
+          {listening ? '🔊 Hören → Schreiben' : card.dir === 'de-x' ? 'Deutsch →' : '→ Deutsch'}
         </p>
-        <p lang={card.dir === 'de-x' ? 'de' : undefined} className="mt-4 text-center text-2xl font-bold sm:text-3xl">
-          {front}
-        </p>
+        {listening && verdict === null ? (
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                hasPlayedManually.current = true;
+                speakGerman(answerDe);
+              }}
+              className="min-h-11 rounded-md bg-stone-800 px-5 py-2 font-semibold text-white hover:bg-stone-700 sm:min-h-0 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
+            >
+              ▶ Anhören
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                hasPlayedManually.current = true;
+                speakGerman(answerDe, { rate: SLOW_RATE });
+              }}
+              className="min-h-11 rounded-md border border-stone-300 px-4 py-2 text-sm font-semibold hover:border-amber-500 sm:min-h-0 dark:border-stone-600"
+            >
+              🐢 Langsam
+            </button>
+          </div>
+        ) : (
+          <p
+            lang={card.dir === 'de-x' && !listening ? 'de' : undefined}
+            className="mt-4 text-center text-2xl font-bold sm:text-3xl"
+          >
+            {front}
+            {card.dir === 'de-x' && !listening && (
+              <SpeakerButton text={answerDe} className="ml-2 text-stone-400" />
+            )}
+          </p>
+        )}
 
         {typing ? (
           verdict === null ? (
@@ -345,6 +407,7 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
                         <span key={i}>{seg.text}</span>
                       ),
                     )}
+                <SpeakerButton text={answerDe} className="ml-1 text-stone-400" />
               </p>
               {verdict.kind !== 'correct' && givenNorm !== '' && (
                 <p className="mt-1 text-sm text-stone-400">
@@ -367,6 +430,9 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
           <div className="mt-6 border-t border-stone-200 pt-6 text-center dark:border-stone-700">
             <p lang={card.dir === 'x-de' ? 'de' : undefined} className="text-2xl font-semibold">
               {back}
+              {card.dir === 'x-de' && (
+                <SpeakerButton text={answerDe} className="ml-1 text-stone-400" />
+              )}
             </p>
             {backDetails}
             {gradeButtons(false)}

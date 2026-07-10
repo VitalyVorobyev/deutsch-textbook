@@ -2,47 +2,13 @@ import { useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { translateItemSchema } from '../../lib/schemas';
 import { normalizeAnswer, translationMatches } from '../../lib/cloze';
+import { diffExpectedWords } from '../../lib/worddiff';
 import { CheckButton, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
 
 /** Characters that are awkward to type on a non-German keyboard. */
 const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
-
-/** Strip attached punctuation so "Hund." and "Hund" count as the same word in the diff. */
-const wordKey = (w: string) => w.replace(/[.,!?;:]+$/, '');
-
-/**
- * Word-level diff via longest common subsequence: returns one flag per word of
- * `expected` — true if that word has no counterpart in `given` (i.e. differs).
- */
-function diffExpected(expected: string[], given: string[]): boolean[] {
-  const a = expected.map(wordKey);
-  const b = given.map(wordKey);
-  const dp: number[][] = Array.from({ length: a.length + 1 }, () =>
-    Array<number>(b.length + 1).fill(0),
-  );
-  for (let i = a.length - 1; i >= 0; i--) {
-    for (let j = b.length - 1; j >= 0; j--) {
-      dp[i]![j] = a[i] === b[j] ? dp[i + 1]![j + 1]! + 1 : Math.max(dp[i + 1]![j]!, dp[i]![j + 1]!);
-    }
-  }
-  const differs = expected.map(() => true);
-  let i = 0;
-  let j = 0;
-  while (i < a.length && j < b.length) {
-    if (a[i] === b[j]) {
-      differs[i] = false;
-      i += 1;
-      j += 1;
-    } else if (dp[i + 1]![j]! >= dp[i]![j + 1]!) {
-      i += 1;
-    } else {
-      j += 1;
-    }
-  }
-  return differs;
-}
 
 export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateItem>) {
   const [value, setValue] = useState('');
@@ -73,7 +39,7 @@ export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateI
   const answerWords = item.answer.split(/\s+/);
   const differs =
     checked && !isCorrect
-      ? diffExpected(answerWords, normalizeAnswer(value).split(/\s+/))
+      ? diffExpectedWords(answerWords, normalizeAnswer(value).split(/\s+/))
       : null;
 
   return (
@@ -136,6 +102,7 @@ export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateI
           }
           explain={item.explain}
           lang={lang}
+          speakText={item.answer}
         />
       )}
     </div>

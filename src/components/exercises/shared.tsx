@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Bilingual } from '../../lib/schemas';
 import { pick, type ExplainLang } from '../../lib/prefs';
+import SpeakerButton from '../SpeakerButton';
 
 export interface ItemResult {
   correct: boolean;
@@ -45,11 +46,14 @@ export function Feedback({
   correctAnswer,
   explain,
   lang,
+  speakText,
 }: {
   correct: boolean;
   correctAnswer?: ReactNode;
   explain?: Bilingual;
   lang: ExplainLang;
+  /** German text to offer for playback next to the correct answer */
+  speakText?: string;
 }) {
   return (
     <div
@@ -64,6 +68,7 @@ export function Feedback({
         <p className="mt-1">
           {lang === 'ru' ? 'Правильный ответ: ' : 'Correct answer: '}
           <span lang="de" className="font-medium">{correctAnswer}</span>
+          {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
       )}
       {!correct && explain && <p className="mt-2">{pick(lang, explain)}</p>}

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import type { ExerciseItem, ExerciseSet as ExerciseSetData } from '../../lib/schemas';
 import { logAttempt } from '../../lib/store';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 import { Cloze } from './Cloze';
+import { Listen } from './Listen';
 import { Match } from './Match';
 import { MultipleChoice } from './MultipleChoice';
 import { Order } from './Order';
@@ -45,7 +46,8 @@ export function ItemView({
   lang: 'en' | 'ru';
   onResult: (r: ItemResult) => void;
   locked: boolean;
-}) {
+  // explicit return type so a forgotten case fails the type check
+}): ReactElement {
   switch (item.type) {
     case 'mc':
       return <MultipleChoice item={item} lang={lang} onResult={onResult} locked={locked} />;
@@ -59,6 +61,8 @@ export function ItemView({
       return <TableFill item={item} lang={lang} onResult={onResult} locked={locked} />;
     case 'translate':
       return <Translate item={item} lang={lang} onResult={onResult} locked={locked} />;
+    case 'listen':
+      return <Listen item={item} lang={lang} onResult={onResult} locked={locked} />;
   }
 }
 

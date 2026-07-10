@@ -20,7 +20,7 @@ site that renders it.
 - `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `npm run validate` enforces it.
 - `progress/*.json` — learner progress snapshots exported from the browser (v2: `attempts`, `cards`, plus `sessions` — the daily-session completion log, useful for judging study cadence). Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
-- Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`). SRS: `src/lib/srs.ts` + `src/components/srs/`.
+- Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`, `listen`). SRS: `src/lib/srs.ts` + `src/components/srs/`. TTS: `src/lib/speech.ts` + `src/components/SpeakerButton.tsx` (browser speechSynthesis, German voice; also powers the flashcards' "Hören" dictation input mode).
 - `/training` — cross-topic interleaved practice (`src/components/training/MixedTraining.tsx`): prioritizes recently-wrong items, then items tagged with a currently weak focus (`src/lib/weakness.ts` aggregates error rates per focus tag), then never-attempted items; never two consecutive items from one topic; attempts are logged under the item's origin set id. EN/RU→DE flashcards use typed input (`src/lib/typing.ts` does the matching: article required for nouns, umlaut-substitute detection, trailing-punctuation-tolerant).
 
 ## Authoring rules (content quality is the product)
@@ -53,6 +53,7 @@ Section order (H2 headings, in German):
 - Cloze gaps: `{{answer}}` or `{{answer|alternative}}` inline in `text`.
 - `translate` items: `prompt_en` + `prompt_ru` (same sentence, written independently), `answer` (canonical German), optional `accept` list for legitimate variants (e.g. fronted time phrase vs subject-first — both valid V2). Matching is case-sensitive and whitespace-normalized with trailing `.!?` optional, so `accept` is for real word-order/wording variants, not typo tolerance.
 - `mc` has exactly one correct answer (`correct` = index into `options`).
+- `listen` items (dictation): `text` is spoken via browser TTS and is also the canonical typed answer — keep it ≤ ~10 words at the set's level, write numbers as words (validate fails on digits), gloss nothing. Matching ignores punctuation but keeps case (noun capitalization is part of the drill); `accept` is for real spelling variants only.
 - Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — exactly three non-empty `::`-separated fields; every reading should gloss 6–10 phrases.
 - Pretests: a 3-item exercise set at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`. Rendered above the article as the "Was weißt du schon?" callout (guessing before reading boosts retention, even when wrong).
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.

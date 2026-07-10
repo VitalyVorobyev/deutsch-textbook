@@ -21,7 +21,7 @@ import {
   type Topic,
   type VocabFile,
 } from '../src/lib/schemas';
-import { clozeGaps, normalizeTranslation } from '../src/lib/cloze';
+import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { parseGlosses } from '../src/lib/gloss';
 
 const ROOT = join(import.meta.dirname, '..');
@@ -239,6 +239,22 @@ for (const [setId, { file, data }] of exerciseSets) {
           asked += row.cells.filter((c) => !c.given).length;
         }
         if (asked === 0) fail(where, 'table has no cells to fill in');
+        break;
+      }
+      case 'listen': {
+        if (/\d/.test(item.text))
+          fail(where, 'listen text contains digits — write numbers as words so audio and answer agree');
+        const words = item.text.trim().split(/\s+/).length;
+        if (words > 12)
+          warn(where, `listen text has ${words} words — dictation beyond ~12 words overloads working memory`);
+        const canonical = normalizeDictation(item.text);
+        const seen = new Set<string>();
+        for (const a of item.accept) {
+          const n = normalizeDictation(a);
+          if (n === canonical) fail(where, `accept entry "${a}" duplicates the canonical text`);
+          if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
+          seen.add(n);
+        }
         break;
       }
     }

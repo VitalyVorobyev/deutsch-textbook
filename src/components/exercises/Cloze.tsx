@@ -71,6 +71,9 @@ export function Cloze({ item, lang, onResult, locked }: ItemProps<ClozeItem>) {
             .join(', ')}
           explain={item.explain}
           lang={lang}
+          speakText={parts
+            .map((p) => (p.type === 'text' ? p.value : p.answers[0]))
+            .join('')}
         />
       )}
     </div>

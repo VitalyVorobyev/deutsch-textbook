@@ -5,6 +5,7 @@ import { logAttempt } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
+import SpeakerButton from '../SpeakerButton';
 
 interface Props {
   /** reading path-id, e.g. "a2/termine-vereinbaren" */
@@ -71,6 +72,10 @@ export default function ReadingText({ readingId, reading }: Props) {
       <div lang="de" className="flex flex-col gap-4 leading-relaxed">
         {paragraphs.map((segments, pi) => (
           <p key={pi}>
+            <SpeakerButton
+              text={segments.map((s) => (s.kind === 'text' ? s.text : s.gloss.de)).join('')}
+              className="float-right ml-2 text-stone-400"
+            />
             {segments.map((seg, si) => {
               if (seg.kind === 'text') return <Fragment key={si}>{seg.text}</Fragment>;
               const key = `${pi}:${si}`;
