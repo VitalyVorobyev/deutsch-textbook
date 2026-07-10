@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ExerciseItem, Level } from '../../lib/schemas';
 import { getAttempts, logAttempt } from '../../lib/store';
+import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { weakFocuses } from '../../lib/weakness';
 import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
@@ -130,6 +131,47 @@ interface Answered {
   correct: boolean;
 }
 
+interface TrainingResume {
+  /** the built queue, by item uid — restored instead of rebuilding, which
+      would pick different items */
+  uids: string[];
+  answered: Answered[];
+}
+
+/** Rebuilds a saved session from item uids; null when any item is gone
+    (content changed) or the saved shape is inconsistent — build fresh then. */
+function restoreSession(
+  sets: TrainingSet[],
+  surface: string,
+): { session: SessionItem[]; answered: Answered[] } | null {
+  const saved = loadResume<TrainingResume>(surface);
+  if (!saved || !Array.isArray(saved.uids) || !Array.isArray(saved.answered)) return null;
+  if (saved.answered.length > saved.uids.length) return null;
+  if (!saved.answered.every((a, i) => a.uid === saved.uids[i])) return null;
+
+  const byUid = new Map<string, SessionItem>();
+  for (const s of sets) {
+    for (const item of s.items) {
+      byUid.set(`${s.setId}::${item.id}`, {
+        uid: `${s.setId}::${item.id}`,
+        setId: s.setId,
+        topicId: s.topicId,
+        title_de: s.title_de,
+        level: s.level,
+        item,
+      });
+    }
+  }
+
+  const session: SessionItem[] = [];
+  for (const uid of saved.uids) {
+    const entry = byUid.get(uid);
+    if (!entry) return null;
+    session.push(entry);
+  }
+  return { session, answered: saved.answered };
+}
+
 interface MixedTrainingProps {
   sets: TrainingSet[];
   /** number of items per session */
@@ -137,9 +179,17 @@ interface MixedTrainingProps {
   /** when provided, the end screen shows a "Weiter →" button that calls this
       (instead of the standalone "Nochmal" restart) with the actual counts */
   onFinished?: (result: { answered: number; correct: number }) => void;
+  /** when provided, today's in-progress run is persisted under this key and
+      resumed after a reload (mobile tab discard, navigation) */
+  resumeKey?: string;
 }
 
-export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }: MixedTrainingProps) {
+export default function MixedTraining({
+  sets,
+  count = SESSION_SIZE,
+  onFinished,
+  resumeKey,
+}: MixedTrainingProps) {
   const lang = useExplainLang();
   const [session, setSession] = useState<SessionItem[] | null>(null);
   const [index, setIndex] = useState(0);
@@ -147,21 +197,39 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
 
+  const surface = resumeKey ? `training:${resumeKey}` : null;
+
   useEffect(() => {
+    // only the initial mount resumes; an explicit restart builds fresh
+    if (surface && round === 0) {
+      const restored = restoreSession(sets, surface);
+      if (restored) {
+        setSession(restored.session);
+        setAnswered(restored.answered);
+        setIndex(restored.answered.length);
+        return;
+      }
+    }
     let cancelled = false;
     void buildSession(sets, count).then((s) => {
-      if (!cancelled) setSession(s);
+      if (cancelled) return;
+      setSession(s);
+      if (surface) saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
     });
     return () => {
       cancelled = true;
     };
-  }, [sets, count, round]);
+  }, [sets, count, round, surface]);
 
   function handleResult(result: ItemResult) {
     const entry = session?.[index];
-    if (!entry) return;
+    if (!entry || !session) return;
     setCurrentDone(true);
-    setAnswered((a) => [...a, { uid: entry.uid, correct: result.correct }]);
+    const next = [...answered, { uid: entry.uid, correct: result.correct }];
+    setAnswered(next);
+    if (surface) {
+      saveResume<TrainingResume>(surface, { uids: session.map((s) => s.uid), answered: next });
+    }
     void logAttempt({
       setId: entry.setId,
       itemId: entry.item.id,
@@ -179,6 +247,7 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
   }
 
   function restart() {
+    if (surface) clearResume(surface);
     setSession(null);
     setIndex(0);
     setAnswered([]);
@@ -260,7 +329,10 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
           {onFinished ? (
             <button
               type="button"
-              onClick={() => onFinished({ answered: answered.length, correct })}
+              onClick={() => {
+                if (surface) clearResume(surface);
+                onFinished({ answered: answered.length, correct });
+              }}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >
               Weiter →

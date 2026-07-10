@@ -1,6 +1,7 @@
 import { useState, type ReactElement } from 'react';
 import type { ExerciseItem, ExerciseSet as ExerciseSetData } from '../../lib/schemas';
 import { logAttempt } from '../../lib/store';
+import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 import { Cloze } from './Cloze';
@@ -68,19 +69,30 @@ export function ItemView({
 
 export default function ExerciseSet({ setId, set }: Props) {
   const lang = useExplainLang();
-  const [index, setIndex] = useState(0);
-  const [answered, setAnswered] = useState<Answered[]>([]);
+  const items = set.items;
+  const resumeSurface = `exset:${setId}`;
+  // Resume today's run at the first unanswered item (a reload — mobile tab
+  // discard, navigation — would otherwise restart the set from scratch).
+  const [answered, setAnswered] = useState<Answered[]>(() => {
+    const saved = loadResume<{ answered: Answered[] }>(resumeSurface);
+    if (!saved || !Array.isArray(saved.answered) || saved.answered.length > items.length) return [];
+    // stale if the set's items changed since the state was saved
+    if (!saved.answered.every((a, i) => a.itemId === items[i]?.id)) return [];
+    return saved.answered;
+  });
+  const [index, setIndex] = useState(answered.length);
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
 
-  const items = set.items;
   const finished = index >= items.length;
   const item = items[index];
 
   function handleResult(result: ItemResult) {
     if (!item) return;
     setCurrentDone(true);
-    setAnswered((a) => [...a, { itemId: item.id, correct: result.correct }]);
+    const next = [...answered, { itemId: item.id, correct: result.correct }];
+    setAnswered(next);
+    saveResume(resumeSurface, { answered: next });
     void logAttempt({
       setId,
       itemId: item.id,
@@ -98,6 +110,7 @@ export default function ExerciseSet({ setId, set }: Props) {
   }
 
   function restart() {
+    clearResume(resumeSurface);
     setIndex(0);
     setAnswered([]);
     setCurrentDone(false);

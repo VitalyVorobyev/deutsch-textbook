@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
 import { getCardStates, localDateString, logSession, sessionDoneToday } from '../../lib/store';
+import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
 import type { TopicNode } from '../../lib/mastery';
@@ -41,13 +42,27 @@ interface ReviewPlan {
   dueRemaining: number;
 }
 
+const RESUME_SURFACE = 'session';
+
+interface SessionResume {
+  step: Step;
+  reviewedCount: number | null;
+}
+
 export default function SessionFlow({ cards, sets, nodes }: Props) {
   const lang = useExplainLang();
-  const [step, setStep] = useState<Step>(1);
+  // a reload mid-session (mobile tab discard, opening a topic page) returns
+  // to the saved lesson point; step 3 is never saved — by then the session is
+  // already logged and the "done today" gate takes over
+  const [initial] = useState<SessionResume | null>(() => {
+    const saved = loadResume<SessionResume>(RESUME_SURFACE);
+    return saved && (saved.step === 1 || saved.step === 2) ? saved : null;
+  });
+  const [step, setStep] = useState<Step>(initial?.step ?? 1);
   const [plan, setPlan] = useState<ReviewPlan | null>(null);
   const [reviewDone, setReviewDone] = useState(false);
   // summary counters: null = step was skipped
-  const [reviewedCount, setReviewedCount] = useState<number | null>(null);
+  const [reviewedCount, setReviewedCount] = useState<number | null>(initial?.reviewedCount ?? null);
   const [trainedCount, setTrainedCount] = useState<number | null>(null);
   // null = still loading the session log
   const [doneToday, setDoneToday] = useState<boolean | null>(null);
@@ -94,6 +109,12 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
     return () => clearTimeout(t);
   }, [step, plan]);
 
+  // Persist the lesson point (steps 1–2 only; finishTraining clears it).
+  useEffect(() => {
+    if (step === 3) return;
+    saveResume<SessionResume>(RESUME_SURFACE, { step, reviewedCount });
+  }, [step, reviewedCount]);
+
   function finishReview() {
     // accumulate across optional extra rounds
     setReviewedCount((c) => (c ?? 0) + (plan?.total ?? 0));
@@ -106,6 +127,7 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   }
 
   function finishTraining({ answered }: { answered: number; correct: number }) {
+    clearResume(RESUME_SURFACE);
     setTrainedCount(answered);
     setStep(3);
     void logSession({
@@ -239,7 +261,14 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
             </>
           ))}
 
-        {step === 2 && <MixedTraining sets={sets} count={TRAINING_COUNT} onFinished={finishTraining} />}
+        {step === 2 && (
+          <MixedTraining
+            sets={sets}
+            count={TRAINING_COUNT}
+            onFinished={finishTraining}
+            resumeKey="session"
+          />
+        )}
 
         {step === 3 && (
           <div>
