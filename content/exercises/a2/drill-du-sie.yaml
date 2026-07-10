@@ -172,3 +172,44 @@ items:
     explain:
       en: "With a friend: du + the du-form kannst, and helfen takes the dative — mir: Kannst du mir helfen?"
       ru: "С другом — du и форма kannst, а helfen требует Dativ — mir: Kannst du mir helfen?"
+
+  - id: cloze-max-kino
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме.
+    text: "Max, {{kommst}} du mit ins Kino? (kommen)"
+    translation:
+      en: Max, are you coming along to the cinema?
+      ru: Макс, пойдёшь с нами в кино?
+    explain:
+      en: "A first name signals du, so the verb takes -st: kommst du. 'kommen Sie' would clash with addressing Max by first name."
+      ru: "Обращение по имени — признак du, поэтому глагол с окончанием -st: kommst du. «kommen Sie» не сочетается с обращением к Максу по имени."
+
+  - id: cloze-chef-zeigen
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме.
+    text: "Herr Braun, {{können}} Sie mir das Dokument zeigen? (können)"
+    translation:
+      en: Mr Braun, can you show me the document?
+      ru: Господин Браун, вы можете показать мне документ?
+    explain:
+      en: "Herr + surname means the Sie-register, and Sie takes the plural form können: können Sie. zeigen adds a dative receiver: mir."
+      ru: "Herr + фамилия — значит общение на Sie, а с Sie глагол в форме können: können Sie. При zeigen получатель в Dativ: mir."
+
+  - id: uebersetzen-frau-schmidt
+    type: translate
+    focus: du-sie
+    instruction:
+      en: "Translate into German. You are talking to Mrs Schmidt (Sie). Use dürfen."
+      ru: "Переведите на немецкий. Вы говорите с госпожой Шмидт (на Sie). Используйте dürfen."
+    prompt_en: "Mrs Schmidt, may I ask you something?"
+    prompt_ru: "Госпожа Шмидт, можно Вас кое о чём спросить?"
+    answer: "Frau Schmidt, darf ich Sie etwas fragen?"
+    explain:
+      en: "Formal address: Frau + surname + Sie. fragen takes the accusative (Sie), and polite permission is darf ich …?"
+      ru: "Вежливое обращение: Frau + фамилия + Sie. fragen требует Akkusativ (Sie — «спросить кого»), а вежливое «можно» — darf ich …?"

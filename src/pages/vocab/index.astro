@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import DueBadge from '../../components/srs/DueBadge';
 import { buildDeck } from '../../lib/srs';
+import { withBase } from '../../lib/url';
 
 const vocab = await getCollection('vocab');
 const decks = vocab
@@ -21,7 +22,7 @@ const decks = vocab
     {
       decks.map(({ data, cards }) => (
         <a
-          href={`/vocab/${data.id}`}
+          href={withBase(`/vocab/${data.id}`)}
           class="rounded-lg border border-stone-200 bg-white p-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
         >
           <div class="flex items-center gap-2">

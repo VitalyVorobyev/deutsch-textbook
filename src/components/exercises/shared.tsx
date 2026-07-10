@@ -72,6 +72,14 @@ export function Feedback({
         </p>
       )}
       {!correct && explain && <p className="mt-2">{pick(lang, explain)}</p>}
+      {correct && explain && (
+        <details className="mt-1">
+          <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">
+            Warum?
+          </summary>
+          <p className="mt-1">{pick(lang, explain)}</p>
+        </details>
+      )}
     </div>
   );
 }

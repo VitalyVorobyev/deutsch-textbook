@@ -1,0 +1,65 @@
+topic: dativ
+title_de: "Im Sprachkurs"
+text:
+  - >-
+    Sara kommt aus Spanien und wohnt
+    [[seit zwei Monaten::for two months now::уже два месяца]] in Köln. Sie
+    lernt Deutsch in einem [[Sprachkurs::language course::языковые
+    курсы]]. Der Kurs gefällt ihr, denn die Lehrerin
+    [[erklärt::explains::объясняет]] alles langsam und hilft den
+    Studenten.
+  - >-
+    Heute [[üben::practise::отрабатывают]] sie Dialoge. Die Lehrerin
+    [[stellt Fragen::asks questions::задаёт вопросы]], Sara antwortet
+    ihr, und die anderen [[hören ihr zu::listen to her::слушают её]].
+    Neben Sara sitzt Tomek aus Polen. Er hilft ihr oft mit der Grammatik,
+    und sie dankt ihm.
+  - >-
+    Nach dem Kurs trinken Sara und Tomek einen Kaffee. „Wie gefällt dir
+    Köln?“, fragt Tomek. „Die Stadt gefällt mir sehr“, sagt Sara. „Aber
+    meine Familie [[fehlt mir::I miss them (lit. “they are missing to
+    me”)::мне её не хватает, я скучаю]].“ Am Sonntag telefoniert sie mit
+    ihrer Mutter — das hilft ihr [[wirklich::really::действительно]].
+questions:
+  - id: frage-kurs
+    type: mc
+    prompt: "Warum gefällt Sara der Kurs?"
+    options:
+      - "Die Lehrerin erklärt alles langsam und hilft den Studenten."
+      - "Der Kurs ist am Abend."
+      - "Sie trinkt dort Kaffee."
+    correct: 0
+    translation:
+      en: Why does Sara like the course?
+      ru: Почему Саре нравится курс?
+    explain:
+      en: "The reason comes after „denn“: „Der Kurs gefällt ihr, denn die Lehrerin erklärt alles langsam und hilft den Studenten.“ Note the dative: gefällt ihr, hilft den Studenten."
+      ru: "Причина стоит после союза „denn“: „Der Kurs gefällt ihr, denn die Lehrerin erklärt alles langsam und hilft den Studenten.“ Обратите внимание на датив: gefällt ihr, hilft den Studenten."
+  - id: frage-grammatik
+    type: mc
+    prompt: "Wer hilft Sara oft mit der Grammatik?"
+    options:
+      - "Die Lehrerin."
+      - "Tomek."
+      - "Ihre Mutter."
+    correct: 1
+    translation:
+      en: Who often helps Sara with the grammar?
+      ru: Кто часто помогает Саре с грамматикой?
+    explain:
+      en: "„Er hilft ihr oft mit der Grammatik, und sie dankt ihm.“ — „er“ is Tomek from Poland, who sits next to Sara. Both verbs take the dative: hilft ihr, dankt ihm."
+      ru: "„Er hilft ihr oft mit der Grammatik, und sie dankt ihm.“ — „er“ — это Томек из Польши, он сидит рядом с Сарой. Оба глагола требуют датива: hilft ihr, dankt ihm."
+  - id: frage-familie
+    type: mc
+    prompt: "Was fehlt Sara?"
+    options:
+      - "Die Stadt Köln."
+      - "Der Kaffee."
+      - "Ihre Familie."
+    correct: 2
+    translation:
+      en: What does Sara miss?
+      ru: Чего Саре не хватает?
+    explain:
+      en: "Sara says: „Die Stadt gefällt mir sehr. Aber meine Familie fehlt mir.“ — she likes Cologne; it is her family that she misses."
+      ru: "Сара говорит: „Die Stadt gefällt mir sehr. Aber meine Familie fehlt mir.“ — Кёльн ей как раз нравится; не хватает ей именно семьи."

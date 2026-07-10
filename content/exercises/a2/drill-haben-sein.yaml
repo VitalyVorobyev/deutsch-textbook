@@ -164,3 +164,73 @@ items:
     explain:
       en: "bleiben takes sein even though nothing moves: wir sind geblieben. And after fronted Gestern the auxiliary stays in position 2: Gestern sind wir …"
       ru: "bleiben идёт с sein, хотя никакого движения нет: wir sind geblieben. А после Gestern в начале предложения вспомогательный глагол остаётся на втором месте: Gestern sind wir …"
+
+  - id: cloze-kino-gegangen
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Wir {{sind}} gestern Abend ins Kino gegangen."
+    translation:
+      en: We went to the cinema yesterday evening.
+      ru: Вчера вечером мы ходили в кино.
+    explain:
+      en: "gehen is movement from A to B — auxiliary sein: wir sind gegangen."
+      ru: "gehen — движение из точки А в точку Б, вспомогательный глагол sein: wir sind gegangen."
+
+  - id: cloze-wochenende-gemacht
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Was {{hast}} du am Wochenende gemacht?"
+    translation:
+      en: What did you do at the weekend?
+      ru: Что ты делал в выходные?
+    explain:
+      en: "machen has an object (was?) — verbs with an object take haben: Was hast du gemacht?"
+      ru: "У machen есть дополнение (что?) — глаголы с дополнением образуют Perfekt с haben: Was hast du gemacht?"
+
+  - id: cloze-wetter-geblieben
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill the gap with the correct auxiliary (haben or sein).
+      ru: Вставьте правильный вспомогательный глагол (haben или sein).
+    text: "Das Wetter war schlecht, und wir {{sind}} zu Hause geblieben."
+    translation:
+      en: The weather was bad, and we stayed at home.
+      ru: Погода была плохая, и мы остались дома.
+    explain:
+      en: "bleiben is the classic trap: no movement, but still sein — the fixed trio is bleiben, sein, passieren."
+      ru: "bleiben — классическая ловушка: движения нет, но всё равно sein. Тройка-исключение: bleiben, sein, passieren."
+
+  - id: uebersetzen-geflogen
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "She flew to Spain."
+    prompt_ru: "Она улетела в Испанию."
+    answer: "Sie ist nach Spanien geflogen."
+    explain:
+      en: "fliegen is movement from A to B — auxiliary sein: Sie ist geflogen. Countries without an article take nach: nach Spanien."
+      ru: "fliegen — движение из точки А в точку Б, вспомогательный глагол sein: Sie ist geflogen. Страны без артикля — с nach: nach Spanien."
+
+  - id: uebersetzen-paket-bekommen
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I received a parcel yesterday."
+    prompt_ru: "Вчера я получил посылку."
+    answer: "Ich habe gestern ein Paket bekommen."
+    accept:
+      - "Gestern habe ich ein Paket bekommen."
+    explain:
+      en: "bekommen looks like kommen but is not movement — it means to receive and takes haben: Ich habe … bekommen."
+      ru: "bekommen похоже на kommen, но это не движение — глагол значит «получать» и идёт с haben: Ich habe … bekommen."

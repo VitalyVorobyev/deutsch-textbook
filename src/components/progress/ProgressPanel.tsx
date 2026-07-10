@@ -160,7 +160,7 @@ export default function ProgressPanel({ nodes }: Props) {
 
       {data && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <Heatmap attempts={data.attempts} sessions={data.sessions} />
+          <Heatmap attempts={data.attempts} sessions={data.sessions} cards={data.cards} />
         </section>
       )}
 

@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
 import { getCardStates, localDateString, logSession, sessionDoneToday } from '../../lib/store';
+import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
@@ -36,6 +37,8 @@ interface ReviewPlan {
   newLimit: number;
   /** total cards this step will actually show */
   total: number;
+  /** due cards left out by the MAX_CARDS cap — offered as an optional extra round */
+  dueRemaining: number;
 }
 
 export default function SessionFlow({ cards, sets, nodes }: Props) {
@@ -49,6 +52,8 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   // null = still loading the session log
   const [doneToday, setDoneToday] = useState<boolean | null>(null);
   const [repeatAnyway, setRepeatAnyway] = useState(false);
+  // bumped when the learner opts into reviewing the cards the cap left out
+  const [planRound, setPlanRound] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -63,6 +68,7 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   // Plan step 1: due cards first (capped), new cards only when little is due.
   useEffect(() => {
     let cancelled = false;
+    setPlan(null);
     void getCardStates().then((states) => {
       if (cancelled) return;
       const { due, fresh } = splitQueue(cards, states);
@@ -72,38 +78,40 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
         cards: newLimit > 0 ? [...dueCapped, ...fresh] : dueCapped,
         newLimit,
         total: dueCapped.length + Math.min(newLimit, fresh.length),
+        dueRemaining: due.length - dueCapped.length,
       });
     });
     return () => {
       cancelled = true;
     };
-  }, [cards]);
+  }, [cards, planRound]);
 
   // Nothing due at all → brief note, then auto-advance to training.
   useEffect(() => {
     if (step !== 1 || plan === null || plan.total > 0) return;
-    setReviewedCount(0);
+    setReviewedCount((c) => c ?? 0);
     const t = setTimeout(() => setStep(2), 1600);
     return () => clearTimeout(t);
   }, [step, plan]);
 
-  const trainingTotal = useMemo(
-    () => Math.min(TRAINING_COUNT, sets.reduce((n, s) => n + s.items.length, 0)),
-    [sets],
-  );
-
   function finishReview() {
-    setReviewedCount(plan?.total ?? 0);
+    // accumulate across optional extra rounds
+    setReviewedCount((c) => (c ?? 0) + (plan?.total ?? 0));
     setReviewDone(true);
   }
 
-  function finishTraining() {
-    setTrainedCount(trainingTotal);
+  function continueReview() {
+    setReviewDone(false);
+    setPlanRound((r) => r + 1);
+  }
+
+  function finishTraining({ answered }: { answered: number; correct: number }) {
+    setTrainedCount(answered);
     setStep(3);
     void logSession({
       date: localDateString(),
       reviewed: reviewedCount,
-      trained: trainingTotal,
+      trained: answered,
       ts: Date.now(),
     });
   }
@@ -136,7 +144,7 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
           >
             Nochmal üben
           </button>
-          <a href="/" className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
+          <a href={withBase('/')} className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
             Zur Startseite
           </a>
         </div>
@@ -199,9 +207,14 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
             </p>
           ) : (
             <>
-              <FlashcardSession cards={plan.cards} newLimit={plan.newLimit} onFinished={finishReview} />
+              <FlashcardSession
+                key={planRound}
+                cards={plan.cards}
+                newLimit={plan.newLimit}
+                onFinished={finishReview}
+              />
               {reviewDone && (
-                <div className="mt-4 text-center">
+                <div className="mt-4 flex flex-col items-center gap-2 text-center">
                   <button
                     type="button"
                     onClick={() => setStep(2)}
@@ -209,6 +222,18 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
                   >
                     Weiter →
                   </button>
+                  {plan.dueRemaining > 0 && (
+                    <button
+                      type="button"
+                      onClick={continueReview}
+                      lang="de"
+                      className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+                    >
+                      {plan.dueRemaining === 1
+                        ? 'Noch 1 Karte fällig — weiter wiederholen'
+                        : `Noch ${plan.dueRemaining} Karten fällig — weiter wiederholen`}
+                    </button>
+                  )}
                 </div>
               )}
             </>
@@ -245,7 +270,7 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
 
             <div className="mt-6 text-center">
               <a
-                href="/"
+                href={withBase('/')}
                 className="inline-block rounded-md bg-amber-600 px-6 py-2 text-sm font-semibold text-white hover:bg-amber-700"
               >
                 Fertig

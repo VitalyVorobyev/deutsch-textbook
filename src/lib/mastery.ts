@@ -1,5 +1,6 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
+import { localDateString } from './store';
 
 /** The minimum a topic needs for its progress to be rolled up. */
 export interface TopicRollup {
@@ -32,6 +33,9 @@ const TIER_ORDER: Record<Tier, number> = { untouched: 0, read: 1, practiced: 2, 
 const MASTERY_WINDOW = 10;
 const MASTERY_MIN_ATTEMPTS = 5;
 const MASTERY_ACCURACY = 0.8;
+// Mastery must show retention across sessions, not one massed day — same-day
+// accuracy is fluent-but-fragile, so the badge would inflate without this.
+const MASTERY_MIN_DAYS = 2;
 
 /** Every attempt setId keying that belongs to this topic: exercises, pretest, and reading:<id>. */
 export function topicSetIds(node: TopicRollup): string[] {
@@ -57,7 +61,8 @@ export interface TopicContext {
  * Auto tier from real activity (ignores the manual override):
  *  read      — article opened;
  *  practiced — ≥1 exercise/reading/pretest attempt;
- *  mastered  — recent accuracy ≥ threshold AND (if the topic has vocab) ≥1 card reviewed.
+ *  mastered  — non-pretest attempts on ≥2 distinct days, recent accuracy ≥ threshold,
+ *              AND (if the topic has vocab) ≥1 card reviewed.
  */
 export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
   const setIds = new Set(topicSetIds(node));
@@ -65,12 +70,23 @@ export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
   const read = !!ctx.topics[node.id]?.readAt;
 
   if (own.length > 0) {
-    const recent = own.slice(-MASTERY_WINDOW);
-    const accuracy = recent.filter((a) => a.correct).length / recent.length;
+    // Pretest answers are guesses by design: they mark the topic as practiced
+    // but must not count toward (or against) mastery accuracy.
+    const scored = node.pretestId ? own.filter((a) => a.setId !== node.pretestId) : own;
+    const recent = scored.slice(-MASTERY_WINDOW);
+    const accuracy = recent.length
+      ? recent.filter((a) => a.correct).length / recent.length
+      : 0;
+    const practiceDays = new Set(scored.map((a) => localDateString(new Date(a.ts))));
     const hasVocab = node.vocabIds.length > 0;
     const cardReviewed =
       !hasVocab || topicCardIds(node, ctx.cards).some((id) => (ctx.cards[id]?.reps ?? 0) > 0);
-    if (recent.length >= MASTERY_MIN_ATTEMPTS && accuracy >= MASTERY_ACCURACY && cardReviewed) {
+    if (
+      recent.length >= MASTERY_MIN_ATTEMPTS &&
+      accuracy >= MASTERY_ACCURACY &&
+      practiceDays.size >= MASTERY_MIN_DAYS &&
+      cardReviewed
+    ) {
       return 'mastered';
     }
     return 'practiced';

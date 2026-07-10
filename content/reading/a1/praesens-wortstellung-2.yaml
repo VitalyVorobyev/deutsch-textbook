@@ -1,0 +1,63 @@
+topic: praesens-wortstellung
+title_de: "Herr Braun ist Bäcker"
+text:
+  - >-
+    Herr Braun ist [[Bäcker::baker::пекарь]]. Er arbeitet in einer
+    [[Bäckerei::bakery::пекарня]] in München. Am Morgen beginnt die
+    Arbeit sehr [[früh::early::рано]]: um vier Uhr! Herr Braun macht
+    Brot, Brötchen und Kuchen.
+  - >-
+    Um neun Uhr trinkt er einen Kaffee und isst ein Brötchen mit Käse.
+    Dann kommen viele [[Kunden::customers::покупатели]]. Sie kaufen Brot
+    und Kuchen. Alles ist frisch und lecker. Herr Braun spricht gern mit
+    den Kunden.
+  - >-
+    Um zwei Uhr ist Herr Braun [[fertig::done, finished::заканчивает
+    (готов)]]. Am Nachmittag schläft er
+    [[eine Stunde::one hour::один час]], denn er ist
+    [[müde::tired::уставший]]. Am Abend kocht seine Frau, und die
+    Familie isst [[zusammen::together::вместе]]. Um neun Uhr schläft
+    Herr Braun [[schon::already::уже]].
+questions:
+  - id: frage-beginn
+    type: mc
+    prompt: "Wann beginnt die Arbeit?"
+    options:
+      - "Um vier Uhr."
+      - "Um neun Uhr."
+      - "Um zwei Uhr."
+    correct: 0
+    translation:
+      en: When does the work start?
+      ru: Когда начинается работа?
+    explain:
+      en: "The text says: „Am Morgen beginnt die Arbeit sehr früh: um vier Uhr!“ At nine he has his coffee break, and at two he is already done."
+      ru: "В тексте сказано: „Am Morgen beginnt die Arbeit sehr früh: um vier Uhr!“ В девять у него перерыв на кофе, а в два он уже заканчивает."
+  - id: frage-neun-uhr
+    type: mc
+    prompt: "Was macht Herr Braun um neun Uhr?"
+    options:
+      - "Er schläft eine Stunde."
+      - "Er trinkt einen Kaffee und isst ein Brötchen."
+      - "Er kocht mit seiner Frau."
+    correct: 1
+    translation:
+      en: What does Mr. Braun do at nine o'clock?
+      ru: Что господин Браун делает в девять часов?
+    explain:
+      en: "„Um neun Uhr trinkt er einen Kaffee und isst ein Brötchen mit Käse.“ — the one-hour nap comes in the afternoon, and in the evening his wife cooks."
+      ru: "„Um neun Uhr trinkt er einen Kaffee und isst ein Brötchen mit Käse.“ — час он спит уже после обеда, а вечером готовит его жена."
+  - id: frage-nachmittag
+    type: mc
+    prompt: "Warum schläft Herr Braun am Nachmittag?"
+    options:
+      - "Er hat keine Kunden."
+      - "Er ist müde."
+      - "Er isst mit der Familie."
+    correct: 1
+    translation:
+      en: Why does Mr. Braun sleep in the afternoon?
+      ru: Почему господин Браун спит после обеда?
+    explain:
+      en: "The reason comes after „denn“: „Am Nachmittag schläft er eine Stunde, denn er ist müde.“ — no surprise, his work starts at four in the morning."
+      ru: "Причина стоит после союза „denn“: „Am Nachmittag schläft er eine Stunde, denn er ist müde.“ — неудивительно, ведь его работа начинается в четыре утра."

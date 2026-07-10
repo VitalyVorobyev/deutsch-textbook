@@ -165,3 +165,75 @@ items:
     explain:
       en: "anrufen takes the accusative — dich, not dir — because you call SOMEONE (a direct object). And the separable prefix an goes to the end: Ich rufe dich morgen an."
       ru: "anrufen требует Akkusativ — dich, а не dir, — и отделяемая приставка an уходит в конец: Ich rufe dich morgen an. Русское «позвоню тебе» здесь сбивает."
+
+  - id: cloze-speisekarte-mir
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Kannst du {{mir}} bitte die Speisekarte geben? (ich)"
+    translation:
+      en: Can you please give me the menu?
+      ru: Ты можешь дать мне меню, пожалуйста?
+    explain:
+      en: "geben has two objects: the thing is accusative (die Speisekarte), the receiver is dative — ich → mir."
+      ru: "У geben два дополнения: предмет — Akkusativ (die Speisekarte), получатель — Dativ: ich → mir, как и в русском «дать (кому?) мне»."
+
+  - id: cloze-verstehe-dich
+    type: cloze
+    focus: akkusativ-pronomen
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Sprich bitte langsamer, ich verstehe {{dich}} nicht. (du)"
+    translation:
+      en: Please speak more slowly, I don't understand you.
+      ru: Говори, пожалуйста, медленнее, я тебя не понимаю.
+    explain:
+      en: "verstehen takes the accusative: du → dich. You understand SOMEONE — a plain direct object, as in English."
+      ru: "verstehen требует Akkusativ: du → dich. Как и в русском: «понимать (кого?) тебя»."
+
+  - id: cloze-danken-ihnen
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill the gap with the correct form of the pronoun in brackets.
+      ru: Вставьте местоимение из скобок в правильном падеже.
+    text: "Meine Nachbarn haben mir geholfen. Ich danke {{ihnen}} sehr. (sie, Plural)"
+    translation:
+      en: My neighbours helped me. I thank them a lot.
+      ru: Соседи мне помогли. Я им очень благодарен.
+    explain:
+      en: "danken takes the dative; plural sie → ihnen (lowercase — it means 'them', not the formal Sie)."
+      ru: "danken требует Dativ; множественное sie → ihnen (со строчной буквы — это «им», а не вежливое Sie)."
+
+  - id: uebersetzen-hilf-mir
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обращение на «ты».
+    prompt_en: "Can you please help me?"
+    prompt_ru: "Ты можешь мне помочь, пожалуйста?"
+    answer: "Kannst du mir bitte helfen?"
+    accept:
+      - "Kannst du mir helfen, bitte?"
+    explain:
+      en: "helfen takes the dative: mir, not mich. The modal kannst sits in position 2, helfen goes to the end."
+      ru: "helfen требует Dativ: mir, а не mich — как и русское «помочь (кому?) мне». Модальный kannst — на втором месте, helfen — в конце."
+
+  - id: uebersetzen-abholen-dich
+    type: translate
+    focus: akkusativ-pronomen
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обращение на «ты».
+    prompt_en: "I'll pick you up from the station."
+    prompt_ru: "Я встречу тебя на вокзале."
+    answer: "Ich hole dich vom Bahnhof ab."
+    accept:
+      - "Ich hole dich am Bahnhof ab."
+    explain:
+      en: "abholen takes the accusative: dich. The prefix ab goes to the end, and vom Bahnhof = von dem Bahnhof (dative after von)."
+      ru: "abholen требует Akkusativ: dich — «встретить (кого?) тебя». Приставка ab уходит в конец, а vom Bahnhof = von dem Bahnhof (Dativ после von)."

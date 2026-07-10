@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Bilingual from '../../components/Bilingual.astro';
 import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
+import ExampleQuote from '../../components/ExampleQuote.astro';
 import VocabTable from '../../components/VocabTable.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import ReadingTextIsland from '../../components/reading/ReadingText';
@@ -11,6 +12,7 @@ import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import { KIND_LABEL } from '../../lib/content';
 import { buildDeck } from '../../lib/srs';
+import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
   const topics = await getCollection('topics');
@@ -58,7 +60,7 @@ if (data.pretest && !pretestSet)
 
 <Base title={data.title_de}>
   <nav class="mb-4 text-sm text-stone-400">
-    <a href="/topics" class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
+    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
     <span> / {data.level}</span>
   </nav>
 
@@ -95,7 +97,7 @@ if (data.pretest && !pretestSet)
           Voraussetzungen:
           {prerequisites.map((p) => (
             <a
-              href={`/topics/${p.id}`}
+              href={withBase(`/topics/${p.id}`)}
               lang="de"
               class="ml-2 text-sky-700 hover:underline dark:text-sky-400"
             >
@@ -127,7 +129,7 @@ if (data.pretest && !pretestSet)
   }
 
   <article class="article-prose">
-    <Content components={{ Bilingual, En, Ru }} />
+    <Content components={{ Bilingual, En, Ru, blockquote: ExampleQuote }} />
   </article>
 
   {
@@ -153,7 +155,7 @@ if (data.pretest && !pretestSet)
               <h3 lang="de" class="text-lg font-semibold">{v.title_de}</h3>
               <DueBadge client:only="react" cards={buildDeck(v.id, v.entries)} />
               <a
-                href={`/vocab/${v.id}`}
+                href={withBase(`/vocab/${v.id}`)}
                 class="ml-auto text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
               >
                 Karten lernen →

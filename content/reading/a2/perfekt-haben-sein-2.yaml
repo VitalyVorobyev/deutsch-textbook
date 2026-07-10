@@ -1,0 +1,63 @@
+topic: perfekt-haben-sein
+title_de: "Wo ist der Schlüssel?"
+text:
+  - >-
+    Gestern ist Herrn Weber [[etwas Dummes::something silly::кое-что
+    глупое]] passiert. Am Morgen ist er zur Arbeit gefahren, und am Abend
+    ist er nach Hause gekommen. Aber der [[Schlüssel::key::ключ]]
+    [[war weg::was gone::пропал, исчез]]! Er hat in allen
+    [[Taschen::pockets::карманы]] gesucht und nichts gefunden.
+  - >-
+    Herr Weber hat sofort mit seiner Frau telefoniert. Aber sie ist an
+    diesem Tag zu ihrer Schwester nach Bonn gefahren. [[Was nun?::What
+    now?::Что же теперь?]] Herr Weber ist zu seinem
+    [[Nachbarn::neighbour::сосед]] gegangen und hat dort gewartet.
+  - >-
+    Um neun Uhr ist seine Frau [[zurückgekommen::came back::вернулась]].
+    Sie hat gelacht: „Dein Schlüssel ist nicht weg. Du hast ihn heute
+    Morgen auf dem [[Küchentisch::kitchen table::кухонный стол]]
+    vergessen!“ Herr Weber hat den Schlüssel genommen und gesagt: „So
+    etwas ist mir noch nie passiert.“
+questions:
+  - id: frage-abend
+    type: mc
+    prompt: "Was ist gestern Abend passiert?"
+    options:
+      - "Herr Weber hat seinen Schlüssel nicht gefunden."
+      - "Herr Weber ist zu spät nach Hause gekommen."
+      - "Herr Weber hat seine Tasche verloren."
+    correct: 0
+    translation:
+      en: What happened yesterday evening?
+      ru: Что случилось вчера вечером?
+    explain:
+      en: "„Aber der Schlüssel war weg! Er hat in allen Taschen gesucht und nichts gefunden.“ He came home at the usual time and did not lose a bag — the key was the problem."
+      ru: "„Aber der Schlüssel war weg! Er hat in allen Taschen gesucht und nichts gefunden.“ Домой он вернулся как обычно и сумку не терял — проблема была именно в ключе."
+  - id: frage-frau
+    type: mc
+    prompt: "Wohin ist seine Frau an diesem Tag gefahren?"
+    options:
+      - "Zur Arbeit."
+      - "Zu ihrer Schwester nach Bonn."
+      - "Zu den Nachbarn."
+    correct: 1
+    translation:
+      en: Where did his wife go that day?
+      ru: Куда его жена поехала в этот день?
+    explain:
+      en: "„Aber sie ist an diesem Tag zu ihrer Schwester nach Bonn gefahren.“ That is why she could not help right away. It was Herr Weber who went to the neighbour. Movement from A to B — so sein: sie ist … gefahren."
+      ru: "„Aber sie ist an diesem Tag zu ihrer Schwester nach Bonn gefahren.“ Поэтому она и не могла сразу помочь. К соседу пошёл сам господин Вебер. Движение из точки А в точку Б — поэтому с sein: sie ist … gefahren."
+  - id: frage-schluessel
+    type: mc
+    prompt: "Wo war der Schlüssel?"
+    options:
+      - "In einer Tasche."
+      - "Bei dem Nachbarn."
+      - "Auf dem Küchentisch."
+    correct: 2
+    translation:
+      en: Where was the key?
+      ru: Где был ключ?
+    explain:
+      en: "His wife explains: „Du hast ihn heute Morgen auf dem Küchentisch vergessen!“ The key was never lost — Herr Weber left it at home in the morning. The pockets were empty, and at the neighbour's he only waited."
+      ru: "Жена объясняет: „Du hast ihn heute Morgen auf dem Küchentisch vergessen!“ Ключ никуда не пропадал — господин Вебер утром оставил его дома. В карманах было пусто, а у соседа он просто ждал."
