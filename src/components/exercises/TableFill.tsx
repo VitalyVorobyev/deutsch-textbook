@@ -37,15 +37,15 @@ export function TableFill({ item, lang, onResult, locked }: ItemProps<TableItem>
     <div>
       <Instruction text={item.instruction} lang={lang} />
       {item.title && <p lang="de" className="mb-2 font-medium">{item.title}</p>}
-      <div className="overflow-x-auto">
+      <div className="-mx-2 overflow-x-auto px-2 sm:mx-0 sm:px-0">
         <table lang="de" className="w-full border-collapse text-sm">
           <thead>
             <tr>
-              <th className="border border-stone-300 bg-stone-100 px-3 py-1.5 text-left dark:border-stone-600 dark:bg-stone-800"></th>
+              <th className="sticky left-0 z-10 border border-stone-300 bg-stone-100 px-2 py-2 text-left dark:border-stone-600 dark:bg-stone-800 sm:px-3 sm:py-1.5"></th>
               {item.columns.map((col) => (
                 <th
                   key={col}
-                  className="border border-stone-300 bg-stone-100 px-3 py-1.5 text-left font-semibold dark:border-stone-600 dark:bg-stone-800"
+                  className="border border-stone-300 bg-stone-100 px-2 py-2 text-left font-semibold dark:border-stone-600 dark:bg-stone-800 sm:px-3 sm:py-1.5"
                 >
                   {col}
                 </th>
@@ -55,7 +55,7 @@ export function TableFill({ item, lang, onResult, locked }: ItemProps<TableItem>
           <tbody>
             {item.rows.map((row, r) => (
               <tr key={row.label}>
-                <td className="border border-stone-300 px-3 py-1.5 font-medium dark:border-stone-600">
+                <td className="sticky left-0 z-10 border border-stone-300 bg-white px-2 py-2 font-medium dark:border-stone-600 dark:bg-stone-800 sm:px-3 sm:py-1.5">
                   {row.label}
                 </td>
                 {row.cells.map((cell, c) => (
@@ -71,7 +71,7 @@ export function TableFill({ item, lang, onResult, locked }: ItemProps<TableItem>
                           setValues((v) => ({ ...v, [cellKey(r, c)]: e.target.value }))
                         }
                         disabled={checked}
-                        className={`w-full min-w-20 rounded border-b-2 bg-transparent px-1 py-0.5 outline-none ${
+                        className={`w-full min-w-16 rounded border-b-2 bg-transparent px-1 py-1.5 text-base outline-none sm:min-w-20 sm:py-0.5 sm:text-sm ${
                           checked
                             ? cellOk(r, c, cell.answer)
                               ? 'border-green-500 text-green-700 dark:text-green-400'

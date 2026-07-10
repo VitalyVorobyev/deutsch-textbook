@@ -104,7 +104,7 @@ export default function ExerciseSet({ setId, set }: Props) {
     const correct = answered.filter((a) => a.correct).length;
     const pct = Math.round((correct / items.length) * 100);
     return (
-      <div className="rounded-lg border border-stone-200 bg-white p-6 text-center dark:border-stone-700 dark:bg-stone-800">
+      <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
         <p className="text-3xl font-bold">
           {correct} / {items.length}
         </p>
@@ -120,7 +120,7 @@ export default function ExerciseSet({ setId, set }: Props) {
         <button
           type="button"
           onClick={restart}
-          className="mt-4 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700"
+          className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
         >
           {lang === 'ru' ? 'Ещё раз' : 'Try again'}
         </button>
@@ -129,7 +129,7 @@ export default function ExerciseSet({ setId, set }: Props) {
   }
 
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+    <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
       <div className="mb-4 flex items-center justify-between">
         {set.title && (
           <p className="text-sm font-semibold text-stone-600 dark:text-stone-300">
@@ -166,7 +166,7 @@ export default function ExerciseSet({ setId, set }: Props) {
           <button
             type="button"
             onClick={next}
-            className="rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
+            className="min-h-11 rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 sm:min-h-0 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
           >
             {index + 1 < items.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'}
           </button>

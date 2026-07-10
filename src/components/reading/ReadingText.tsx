@@ -63,7 +63,7 @@ export default function ReadingText({ readingId, reading }: Props) {
   const correctCount = answered.filter(Boolean).length;
 
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+    <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
       <h3 lang="de" className="mb-4 text-xl font-semibold">
         {reading.title_de}
       </h3>
@@ -145,7 +145,7 @@ export default function ReadingText({ readingId, reading }: Props) {
                   <button
                     type="button"
                     onClick={next}
-                    className="rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
+                    className="min-h-11 rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 sm:min-h-0 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
                   >
                     {index + 1 < questions.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'}
                   </button>

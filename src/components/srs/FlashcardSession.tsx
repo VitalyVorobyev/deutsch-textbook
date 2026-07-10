@@ -210,13 +210,13 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
 
   const gradeButtons = (withSuggestion: boolean) => (
     <>
-      <div className="mt-6 flex justify-center gap-2">
+      <div className="mt-6 flex flex-wrap justify-center gap-2">
         {GRADE_BUTTONS.map(({ grade: g, de, cls }) => (
           <button
             key={g}
             type="button"
             onClick={() => void grade(g)}
-            className={`rounded-md px-4 py-2 text-sm font-semibold text-white ${cls} ${
+            className={`min-h-11 rounded-md px-3 py-2 text-sm font-semibold text-white sm:min-h-0 sm:px-4 ${cls} ${
               withSuggestion && g === suggested
                 ? 'ring-2 ring-stone-900 ring-offset-2 ring-offset-white dark:ring-stone-100 dark:ring-offset-stone-800'
                 : ''
@@ -249,7 +249,7 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
               key={mode}
               type="button"
               onClick={() => switchMode(mode)}
-              className={`rounded px-2 py-0.5 font-medium ${
+              className={`rounded px-2 py-1.5 font-medium sm:py-0.5 ${
                 inputMode === mode
                   ? 'bg-stone-800 text-white dark:bg-stone-200 dark:text-stone-900'
                   : 'text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200'
@@ -263,11 +263,11 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
           {lang === 'ru' ? 'Осталось' : 'Remaining'}: {queue.length}
         </p>
       </div>
-      <div className="rounded-lg border border-stone-200 bg-white p-8 dark:border-stone-700 dark:bg-stone-800">
+      <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
         <p className="text-center text-xs uppercase tracking-wide text-stone-400">
           {card.dir === 'de-x' ? 'Deutsch →' : '→ Deutsch'}
         </p>
-        <p lang={card.dir === 'de-x' ? 'de' : undefined} className="mt-4 text-center text-3xl font-bold">
+        <p lang={card.dir === 'de-x' ? 'de' : undefined} className="mt-4 text-center text-2xl font-bold sm:text-3xl">
           {front}
         </p>
 
@@ -312,7 +312,7 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
                     lang="de"
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => insertChar(ch)}
-                    className="w-9 rounded-md border border-stone-300 py-1 text-sm font-semibold text-stone-700 hover:bg-stone-100 dark:border-stone-600 dark:text-stone-200 dark:hover:bg-stone-700"
+                    className="min-h-10 w-10 rounded-md border border-stone-300 py-1 text-sm font-semibold text-stone-700 hover:bg-stone-100 dark:border-stone-600 dark:text-stone-200 dark:hover:bg-stone-700 sm:min-h-0 sm:w-9"
                   >
                     {ch}
                   </button>

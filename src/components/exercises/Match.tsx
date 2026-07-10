@@ -34,7 +34,7 @@ export function Match({ item, lang, onResult, locked }: ItemProps<MatchItem>) {
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 items-start gap-2">
         <div className="flex flex-col gap-2">
           {item.pairs.map((p) => {
             const isMatched = matched.has(p.left);
@@ -45,7 +45,7 @@ export function Match({ item, lang, onResult, locked }: ItemProps<MatchItem>) {
                 lang="de"
                 disabled={isMatched || done}
                 onClick={() => setSelectedLeft(p.left)}
-                className={`rounded-md border px-3 py-2 text-left text-sm ${
+                className={`min-h-11 break-words rounded-md border px-2.5 py-2 text-left text-sm leading-snug sm:min-h-0 sm:px-3 ${
                   isMatched
                     ? 'border-green-400 bg-green-50 opacity-60 dark:bg-green-950'
                     : selectedLeft === p.left
@@ -67,7 +67,7 @@ export function Match({ item, lang, onResult, locked }: ItemProps<MatchItem>) {
                 type="button"
                 disabled={isMatched || done}
                 onClick={() => clickRight(right)}
-                className={`rounded-md border px-3 py-2 text-left text-sm ${
+                className={`min-h-11 break-words rounded-md border px-2.5 py-2 text-left text-sm leading-snug sm:min-h-0 sm:px-3 ${
                   isMatched
                     ? 'border-green-400 bg-green-50 opacity-60 dark:bg-green-950'
                     : wrongFlash === right

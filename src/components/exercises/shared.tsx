@@ -33,7 +33,7 @@ export function CheckButton({ onClick, disabled }: { onClick: () => void; disabl
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="mt-4 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-40"
+      className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-40 sm:min-h-0 sm:py-1.5"
     >
       Prüfen
     </button>

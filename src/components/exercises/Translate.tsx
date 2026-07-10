@@ -109,7 +109,7 @@ export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateI
             disabled={checked}
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => insertChar(ch)}
-            className="rounded-md border border-stone-300 px-2.5 py-0.5 text-sm hover:border-amber-500 disabled:opacity-40 dark:border-stone-600 dark:hover:border-amber-400"
+            className="min-h-10 rounded-md border border-stone-300 px-3 py-1 text-base hover:border-amber-500 disabled:opacity-40 dark:border-stone-600 dark:hover:border-amber-400 sm:min-h-0 sm:px-2.5 sm:py-0.5 sm:text-sm"
           >
             {ch}
           </button>

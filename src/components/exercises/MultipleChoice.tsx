@@ -36,7 +36,7 @@ export function MultipleChoice({ item, lang, onResult, locked }: ItemProps<McIte
               lang="de"
               onClick={() => choose(idx)}
               disabled={chosen !== null}
-              className={`rounded-md border px-4 py-2 text-left text-base ${cls}`}
+              className={`min-h-11 rounded-md border px-4 py-2 text-left text-base sm:min-h-0 ${cls}`}
             >
               {item.options[idx]}
             </button>

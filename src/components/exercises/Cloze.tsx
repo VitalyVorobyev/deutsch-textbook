@@ -46,7 +46,7 @@ export function Cloze({ item, lang, onResult, locked }: ItemProps<ClozeItem>) {
               onKeyDown={(e) => e.key === 'Enter' && check()}
               disabled={checked}
               style={{ width: `${width}ch` }}
-              className={`mx-1 rounded border-b-2 bg-transparent px-1 text-center outline-none ${
+              className={`mx-1 min-h-10 rounded border-b-2 bg-transparent px-1 text-center outline-none sm:min-h-0 ${
                 checked
                   ? ok
                     ? 'border-green-500 text-green-700 dark:text-green-400'
