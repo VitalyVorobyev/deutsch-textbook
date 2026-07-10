@@ -13,11 +13,13 @@ and FSRS flashcards — built as a static Astro site over a structured content b
 
 ## Usage
 
+This project uses [Bun](https://bun.sh) as its package manager and task runner.
+
 ```sh
-npm install
-npm run dev        # the textbook at http://localhost:4321
-npm run validate   # check all content against schemas and cross-references
-npm run build      # static production build
+bun install
+bun run dev        # the textbook at http://localhost:4321
+bun run validate   # check all content against schemas and cross-references
+bun run build      # static production build
 ```
 
 ## Structure

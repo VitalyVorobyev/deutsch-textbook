@@ -1,5 +1,5 @@
 /**
- * Content validation beyond Astro's schema check. Run with: npm run validate
+ * Content validation beyond Astro's schema check. Run with: bun run validate
  *
  * Checks: schema conformance, id/filename/level consistency, reference resolution
  * (prerequisites, vocab, exercises, reading, pretest), exercise answer-key sanity,

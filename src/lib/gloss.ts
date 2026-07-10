@@ -17,7 +17,7 @@ export type Segment = { kind: 'text'; text: string } | { kind: 'gloss'; gloss: G
  *
  * Malformed markup (unbalanced `[[`/`]]`, not exactly three `::`-separated
  * non-empty fields) is reported in `errors`; the offending region is kept as
- * plain text so rendering degrades gracefully. `npm run validate` treats any
+ * plain text so rendering degrades gracefully. `bun run validate` treats any
  * error as fatal.
  */
 export function parseGlosses(paragraph: string): { segments: Segment[]; errors: string[] } {

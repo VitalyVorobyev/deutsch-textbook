@@ -7,9 +7,11 @@ site that renders it.
 
 ## Commands
 
-- `npm run dev` — dev server
-- `npm run validate` — content validation (**run after every content change; it must pass before you are done**)
-- `npm run build` — production build (also type-checks content against schemas)
+This project uses **Bun** as its package manager and task runner (`bun install`, `bun run <script>`; the validator runs directly on Bun's native TypeScript loader).
+
+- `bun run dev` — dev server
+- `bun run validate` — content validation (**run after every content change; it must pass before you are done**)
+- `bun run build` — production build (also type-checks content against schemas)
 
 ## Architecture
 
@@ -17,7 +19,7 @@ site that renders it.
 - `content/vocab/<id>.yaml` — vocabulary files; every entry becomes two flashcards (DE→EN/RU and EN/RU→DE).
 - `content/exercises/<level>/<set-id>.yaml` — exercise sets, embedded automatically on the owning topic's page.
 - `content/reading/<level>/<id>.yaml` — graded reading texts (comprehensible input): glossed paragraphs + 2–4 `mc` comprehension questions; rendered as the topic's "Lesetext" section (`src/components/reading/ReadingText.tsx`). Attempts log under `reading:<path-id>`.
-- `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `npm run validate` enforces it.
+- `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `bun run validate` enforces it.
 - `progress/*.json` — learner progress snapshots exported from the browser (v2: `attempts`, `cards`, plus `sessions` — the daily-session completion log, useful for judging study cadence). Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
 - Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`, `listen`). SRS: `src/lib/srs.ts` + `src/components/srs/`. TTS: `src/lib/speech.ts` + `src/components/SpeakerButton.tsx` (browser speechSynthesis, German voice; also powers the flashcards' "Hören" dictation input mode).
@@ -34,7 +36,7 @@ site that renders it.
 ### Bilingual voice
 - Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX).
 - EN and RU halves are each a complete, self-sufficient explanation of the same point — write both from scratch. They **may diverge** where it helps their reader: the RU half may contrast German with Russian («быть», падежи); the EN half may contrast with English ("must not" ≠ *muss nicht*) or use German-internal hooks (the wem?-question test). Never assume an EN reader knows Russian or vice versa.
-- **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Enforced by `npm run validate`.
+- **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Enforced by `bun run validate`.
 - German content (examples, tables, headings like "Beispiele") stays outside Bilingual blocks — it is always visible.
 - Grammar terminology: use German terms with a per-language gloss on first use — in En blocks "der Kasus (case)", in Ru blocks "der Kasus (падеж)".
 
@@ -105,7 +107,7 @@ New topic:
 4. Reading text in `content/reading/<level>/<id>.yaml` — ~90–130 words at the topic's level, 6–10 glosses, 3 comprehension questions; referenced via `reading`.
 5. Vocab file if the topic introduces a word field (20–40 entries).
 6. Add the node to `content/atlas.yaml`.
-7. `npm run validate` must pass.
+7. `bun run validate` must pass.
 
 Drills from progress (the personalization loop):
 1. Read the newest `progress/*.json`. Attempts carry a `focus` tag — aggregate error rates per tag (the same logic as `weakFocuses` in `src/lib/weakness.ts`: last ~30 attempts per focus, weak = ≥4 attempts and ≥35% errors) and also check cards with high `lapses`.

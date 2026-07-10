@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "validate": "tsx scripts/validate.ts",
+    "validate": "bun scripts/validate.ts",
     "check": "astro check"
   },
   "dependencies": {
@@ -29,7 +29,6 @@
     "@types/node": "^26.1.1",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "tsx": "^4.20.0",
     "typescript": "^5.8.0"
   }
 }
