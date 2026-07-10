@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
-import { getCardStates } from '../../lib/store';
+import { getCardStates, localDateString, logSession, sessionDoneToday } from '../../lib/store';
 import { shuffle } from '../../lib/shuffle';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
@@ -46,6 +46,19 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   // summary counters: null = step was skipped
   const [reviewedCount, setReviewedCount] = useState<number | null>(null);
   const [trainedCount, setTrainedCount] = useState<number | null>(null);
+  // null = still loading the session log
+  const [doneToday, setDoneToday] = useState<boolean | null>(null);
+  const [repeatAnyway, setRepeatAnyway] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    void sessionDoneToday().then((done) => {
+      if (!cancelled) setDoneToday(done);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Plan step 1: due cards first (capped), new cards only when little is due.
   useEffect(() => {
@@ -87,10 +100,49 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   function finishTraining() {
     setTrainedCount(trainingTotal);
     setStep(3);
+    void logSession({
+      date: localDateString(),
+      reviewed: reviewedCount,
+      trained: trainingTotal,
+      ts: Date.now(),
+    });
   }
 
   const skipTarget: Step | null = step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
   const skippedLabel = lang === 'ru' ? 'пропущено' : 'skipped';
+
+  if (doneToday === null) {
+    return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;
+  }
+
+  // Already completed today → quiet gate with an explicit escape hatch.
+  if (doneToday && !repeatAnyway) {
+    return (
+      <div className="rounded-lg border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-800">
+        <p className="text-2xl text-green-600 dark:text-green-400">✓</p>
+        <p lang="de" className="mt-2 font-semibold">
+          Heute schon erledigt
+        </p>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+          {lang === 'ru'
+            ? 'Сессия на сегодня уже завершена. Хотите пройти ещё одну?'
+            : "Today's session is already done. Want to run another one anyway?"}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => setRepeatAnyway(true)}
+            className="rounded-md border border-stone-300 px-5 py-2 text-sm font-semibold text-stone-700 hover:border-amber-500 dark:border-stone-600 dark:text-stone-200 dark:hover:border-amber-500"
+          >
+            Nochmal üben
+          </button>
+          <a href="/" className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
+            Zur Startseite
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

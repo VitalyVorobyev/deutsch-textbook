@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { exportSnapshot, importSnapshot, getAttempts, getCardStates } from '../../lib/store';
+import {
+  exportSnapshot,
+  importSnapshot,
+  getAttempts,
+  getCardStates,
+  getSessionLog,
+  type SessionLogEntry,
+} from '../../lib/store';
 import { weakFocuses, type FocusStat } from '../../lib/weakness';
 import { useExplainLang } from '../hooks';
 
@@ -7,6 +14,7 @@ export default function ProgressPanel() {
   const lang = useExplainLang();
   const [summary, setSummary] = useState<{ attempts: number; accuracy: number; cards: number } | null>(null);
   const [weak, setWeak] = useState<FocusStat[]>([]);
+  const [sessions, setSessions] = useState<SessionLogEntry[]>([]);
   const [message, setMessage] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -20,6 +28,7 @@ export default function ProgressPanel() {
       cards: Object.keys(cards).length,
     });
     setWeak(weakFocuses(attempts).slice(0, 5));
+    setSessions(await getSessionLog());
   }
 
   useEffect(() => {
@@ -60,7 +69,7 @@ export default function ProgressPanel() {
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       {summary && (
-        <dl className="grid grid-cols-3 gap-4 text-center">
+        <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
           <div>
             <dt className="text-xs uppercase tracking-wide text-stone-400">
               {lang === 'ru' ? 'Ответов' : 'Answers'}
@@ -82,6 +91,15 @@ export default function ProgressPanel() {
         </dl>
       )}
 
+      {sessions.length > 0 && (
+        <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">
+          {lang === 'ru' ? 'Последняя сессия' : 'Last session'}:{' '}
+          <span className="font-semibold tabular-nums">{sessions.at(-1)!.date}</span>
+          {' · '}
+          {sessions.length} {lang === 'ru' ? 'всего' : 'total'}
+        </p>
+      )}
+
       {weak.length > 0 && (
         <div className="mt-6 border-t border-stone-200 pt-4 dark:border-stone-700">
           <h2 lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
@@ -101,7 +119,7 @@ export default function ProgressPanel() {
                 <span className="ml-auto tabular-nums font-semibold text-red-600 dark:text-red-400">
                   {Math.round(w.errorRate * 100)}%
                 </span>
-                <span className="w-24 text-right text-xs tabular-nums text-stone-400">
+                <span className="shrink-0 whitespace-nowrap text-right text-xs tabular-nums text-stone-400">
                   {w.attempts} {lang === 'ru' ? 'ответов' : 'attempts'}
                 </span>
               </li>
@@ -114,14 +132,14 @@ export default function ProgressPanel() {
         <button
           type="button"
           onClick={() => void doExport()}
-          className="rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700"
+          className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
         >
           {lang === 'ru' ? 'Экспорт прогресса' : 'Export progress'}
         </button>
         <button
           type="button"
           onClick={() => fileInput.current?.click()}
-          className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600"
+          className="min-h-11 rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
         >
           {lang === 'ru' ? 'Импорт…' : 'Import…'}
         </button>

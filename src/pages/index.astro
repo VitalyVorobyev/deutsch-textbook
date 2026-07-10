@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import DueBadge from '../components/srs/DueBadge';
 import NextTopic from '../components/today/NextTopic';
+import SessionDoneBadge from '../components/today/SessionDoneBadge';
 import { getAllCards, getTopicNodes } from '../lib/content';
 
 const cards = await getAllCards();
@@ -28,6 +29,7 @@ const nodes = await getTopicNodes();
         Ваша ежедневная сессия: повторение, смешанная тренировка, следующая тема — около 15 минут.
       </span>
     </p>
+    <SessionDoneBadge client:only="react" />
   </a>
 
   <div class="mt-4 grid gap-4 sm:grid-cols-2">
