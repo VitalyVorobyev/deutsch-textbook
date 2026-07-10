@@ -2,6 +2,7 @@ topic: essen-trinken
 items:
   - id: pre-hunger-haben
     type: mc
+    focus: haben-wendungen
     prompt: "Ich ___ Hunger. Was gibt es zum Mittagessen?"
     options: ["bin", "habe", "mache"]
     correct: 1
@@ -14,6 +15,7 @@ items:
 
   - id: pre-schmecken-dativ
     type: mc
+    focus: verben-mit-dativ
     prompt: "Die Suppe schmeckt ___ sehr gut."
     options: ["mich", "mir", "ich"]
     correct: 1
@@ -26,6 +28,7 @@ items:
 
   - id: pre-obst-singular
     type: mc
+    focus: genus
     prompt: "___ Obst ist frisch."
     options: ["Das", "Die", "Der"]
     correct: 0

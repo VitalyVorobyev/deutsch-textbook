@@ -5,6 +5,7 @@ title:
 items:
   - id: partizip2-tabelle
     type: table
+    focus: partizip2-form
     title: "Partizip II"
     instruction:
       en: Fill in the Partizip II of each verb.
@@ -29,6 +30,7 @@ items:
 
   - id: mc-nach-hause
     type: mc
+    focus: haben-sein
     prompt: "Ich ___ gestern nach Hause gegangen."
     options: ["habe", "bin", "ist"]
     correct: 1
@@ -41,6 +43,7 @@ items:
 
   - id: cloze-gefahren
     type: cloze
+    focus: haben-sein
     instruction:
       en: Fill the gap with the correct auxiliary (haben or sein).
       ru: Вставьте правильный вспомогательный глагол (haben или sein).
@@ -54,6 +57,7 @@ items:
 
   - id: mc-gegessen
     type: mc
+    focus: haben-sein
     prompt: "Er ___ eine Pizza gegessen."
     options: ["hat", "ist", "habt"]
     correct: 0
@@ -66,6 +70,7 @@ items:
 
   - id: match-partizip
     type: match
+    focus: partizip2-form
     instruction:
       en: Match each infinitive with its Partizip II.
       ru: Соедините каждый инфинитив с его Partizip II.
@@ -81,6 +86,7 @@ items:
 
   - id: order-brot
     type: order
+    focus: perfekt-satzklammer
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -94,6 +100,7 @@ items:
 
   - id: cloze-studiert
     type: cloze
+    focus: partizip2-form
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
@@ -107,6 +114,7 @@ items:
 
   - id: mc-gemacht
     type: mc
+    focus: partizip2-form
     prompt: "Was hast du am Wochenende ___?"
     options: ["gemacht", "macht", "machen"]
     correct: 0
@@ -119,6 +127,7 @@ items:
 
   - id: cloze-aufgestanden
     type: cloze
+    focus: partizip2-form
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
@@ -132,6 +141,7 @@ items:
 
   - id: order-gestern
     type: order
+    focus: perfekt-satzklammer
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -145,6 +155,7 @@ items:
 
   - id: mc-geblieben
     type: mc
+    focus: haben-sein
     prompt: "Wir ___ am Wochenende zu Hause geblieben."
     options: ["haben", "sind", "seid"]
     correct: 1
@@ -157,6 +168,7 @@ items:
 
   - id: cloze-bezahlt
     type: cloze
+    focus: partizip2-form
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
@@ -170,6 +182,7 @@ items:
 
   - id: tabelle-haben-sein
     type: table
+    focus: haben-sein
     title: "haben oder sein?"
     instruction:
       en: Write the correct auxiliary (haben or sein) for each verb.
@@ -194,6 +207,7 @@ items:
 
   - id: uebersetzen-pizza
     type: translate
+    focus: haben-sein
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
@@ -208,6 +222,7 @@ items:
 
   - id: uebersetzen-geblieben
     type: translate
+    focus: haben-sein
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.

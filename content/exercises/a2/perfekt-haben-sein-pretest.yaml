@@ -2,6 +2,7 @@ topic: perfekt-haben-sein
 items:
   - id: pre-sein-gefahren
     type: mc
+    focus: haben-sein
     prompt: "Wir ___ am Samstag nach Berlin gefahren."
     options: ["haben", "sind", "ist"]
     correct: 1
@@ -14,6 +15,7 @@ items:
 
   - id: pre-partizip-ende
     type: mc
+    focus: perfekt-satzklammer
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich habe gegessen gestern eine Pizza."
@@ -29,6 +31,7 @@ items:
 
   - id: pre-partizip-ieren
     type: mc
+    focus: partizip2-form
     prompt: "Wie heißt das Partizip II von „telefonieren“?"
     options: ["getelefoniert", "telefoniert", "telefonieren"]
     correct: 1

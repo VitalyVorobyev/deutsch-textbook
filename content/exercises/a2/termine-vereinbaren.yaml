@@ -5,6 +5,7 @@ title:
 items:
   - id: mc-register
     type: mc
+    focus: du-sie
     prompt: "Sie rufen in einer Arztpraxis an. Was sagen Sie?"
     options:
       - "Hast du morgen Zeit?"
@@ -20,6 +21,7 @@ items:
 
   - id: mc-hoeflich
     type: mc
+    focus: will-moechte
     prompt: "Was ist höflich?"
     options:
       - "Ich will einen Termin."
@@ -35,6 +37,7 @@ items:
 
   - id: mc-passt-form
     type: mc
+    focus: verb-endungen
     prompt: "___ es Ihnen um 15 Uhr?"
     options: ["Passt", "Passen", "Passe"]
     correct: 0
@@ -47,6 +50,7 @@ items:
 
   - id: mc-um
     type: mc
+    focus: um-am-zeit
     prompt: "Der Termin ist ___ 14:30 Uhr."
     options: ["um", "am", "im"]
     correct: 0
@@ -59,6 +63,7 @@ items:
 
   - id: cloze-mir
     type: cloze
+    focus: passen-dativ
     instruction:
       en: Fill in the correct pronoun.
       ru: Вставьте правильное местоимение.
@@ -72,6 +77,7 @@ items:
 
   - id: cloze-ihnen
     type: cloze
+    focus: passen-dativ
     instruction:
       en: Fill in the polite pronoun in the correct case.
       ru: Вставьте вежливое местоимение в правильном падеже.
@@ -85,6 +91,7 @@ items:
 
   - id: cloze-absagen
     type: cloze
+    focus: trennbar-wortstellung
     instruction:
       en: Complete the separable verb.
       ru: Дополните глагол с отделяемой приставкой.
@@ -98,6 +105,7 @@ items:
 
   - id: cloze-dialog
     type: cloze
+    focus: um-am-zeit
     instruction:
       en: Complete the mini-dialogue.
       ru: Дополните мини-диалог.
@@ -139,6 +147,7 @@ items:
 
   - id: order-moechte
     type: order
+    focus: modal-satzklammer
     instruction:
       en: Arrange the words into a polite sentence.
       ru: Составьте вежливое предложение.
@@ -152,6 +161,7 @@ items:
 
   - id: order-koennten
     type: order
+    focus: modal-satzklammer
     instruction:
       en: Build the polite question.
       ru: Составьте вежливый вопрос.
@@ -165,6 +175,7 @@ items:
 
   - id: table-verben
     type: table
+    focus: partizip2-form
     title: "Verbformen"
     instruction:
       en: Fill in the missing verb forms.
@@ -193,6 +204,7 @@ items:
 
   - id: uebersetzen-absagen
     type: translate
+    focus: trennbar-modal
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -205,6 +217,7 @@ items:
 
   - id: uebersetzen-passt-ihnen
     type: translate
+    focus: passen-dativ
     instruction:
       en: Translate into German. Use the verb "passen".
       ru: Переведите на немецкий. Используйте глагол "passen".
@@ -217,6 +230,7 @@ items:
 
   - id: uebersetzen-termin-freitag
     type: translate
+    focus: um-am-zeit
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

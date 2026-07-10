@@ -5,6 +5,7 @@ title:
 items:
   - id: order-aufstehen
     type: order
+    focus: trennbar-wortstellung
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -18,6 +19,7 @@ items:
 
   - id: cloze-anrufen
     type: cloze
+    focus: trennbar-wortstellung
     instruction:
       en: Complete the sentence with the separable prefix.
       ru: Вставьте отделяемую приставку.
@@ -31,6 +33,7 @@ items:
 
   - id: mc-satzklammer
     type: mc
+    focus: trennbar-wortstellung
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich aufstehe um 7 Uhr."
@@ -43,6 +46,7 @@ items:
 
   - id: match-praefixe
     type: match
+    focus: trennbar-wortstellung
     instruction:
       en: Match each sentence with its separable prefix.
       ru: Подберите к каждому предложению его отделяемую приставку.
@@ -58,6 +62,7 @@ items:
 
   - id: order-modal
     type: order
+    focus: trennbar-modal
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -71,6 +76,7 @@ items:
 
   - id: cloze-anfangen
     type: cloze
+    focus: trennbar-wortstellung
     instruction:
       en: Fill both gaps with the correct forms of the verb in brackets.
       ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
@@ -84,6 +90,7 @@ items:
 
   - id: mc-untrennbar
     type: mc
+    focus: trennbar-untrennbar
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Er zahlt das Essen be."
@@ -96,6 +103,7 @@ items:
 
   - id: order-frage
     type: order
+    focus: trennbar-wortstellung
     instruction:
       en: Build a yes/no question. Start with the capitalized word.
       ru: Составьте вопрос без вопросительного слова. Начните со слова с заглавной буквы.
@@ -109,6 +117,7 @@ items:
 
   - id: cloze-fernsehen
     type: cloze
+    focus: trennbar-wortstellung
     instruction:
       en: Fill both gaps with the correct forms of the verb in brackets.
       ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
@@ -122,6 +131,7 @@ items:
 
   - id: table-satzklammer
     type: table
+    focus: trennbar-wortstellung
     title: "Trennbare Verben im Präsens"
     instruction:
       en: "Conjugate each verb for the given person: the verb form goes in position 2, the prefix at the end of the sentence."
@@ -144,6 +154,7 @@ items:
 
   - id: mc-modal-infinitiv
     type: mc
+    focus: trennbar-modal
     prompt: "Ich muss morgen früh ___."
     options: ["aufstehen", "stehe auf", "auf stehen"]
     correct: 0
@@ -156,6 +167,7 @@ items:
 
   - id: order-inversion
     type: order
+    focus: trennbar-wortstellung
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -169,6 +181,7 @@ items:
 
   - id: cloze-zumachen
     type: cloze
+    focus: trennbar-wortstellung
     instruction:
       en: Complete the sentence with the separable prefix.
       ru: Вставьте отделяемую приставку.

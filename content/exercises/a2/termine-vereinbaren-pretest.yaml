@@ -2,6 +2,7 @@ topic: termine-vereinbaren
 items:
   - id: pre-passt-ihnen
     type: mc
+    focus: passen-dativ
     prompt: "Passt es ___ am Montag um 10 Uhr?"
     options: ["Sie", "Ihnen", "Ihr"]
     correct: 1
@@ -14,6 +15,7 @@ items:
 
   - id: pre-um-am
     type: mc
+    focus: um-am-zeit
     prompt: "Der Zahnarzt hat ___ Mittwoch ___ 11 Uhr einen Termin frei."
     options: ["am … um", "um … am", "im … um"]
     correct: 0
@@ -26,6 +28,7 @@ items:
 
   - id: pre-du-sie
     type: mc
+    focus: du-sie
     prompt: "Sie rufen in einer Praxis an und möchten einen Termin. Was sagen Sie?"
     options:
       - "Hast du diese Woche einen Termin frei?"

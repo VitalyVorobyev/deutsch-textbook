@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ExerciseItem, Level } from '../../lib/schemas';
 import { getAttempts, logAttempt } from '../../lib/store';
+import { weakFocuses } from '../../lib/weakness';
 import { shuffle } from '../../lib/shuffle';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
@@ -34,9 +35,11 @@ const SESSION_SIZE = 15;
  *
  * Priority bands (filled in order until `count`):
  *   1. items whose most recent attempt was wrong,
- *   2. items never attempted,
- *   3. the rest, least-recently-attempted first.
- * Bands 1 and 2 are shuffled; band 3 keeps its recency ordering.
+ *   2. items whose `focus` tag is currently weak (per weakFocuses over the
+ *      whole attempt log) and that are not already in band 1,
+ *   3. items never attempted,
+ *   4. the rest, least-recently-attempted first.
+ * Bands 1–3 are shuffled; band 4 keeps its recency ordering.
  * Afterwards adjacency is repaired so no two consecutive items share a set
  * (best effort — impossible if one set dominates the selection).
  */
@@ -51,6 +54,8 @@ async function buildSession(sets: TrainingSet[], count: number): Promise<Session
     if (!prev || a.ts >= prev.ts) lastAttempt.set(key, { correct: a.correct, ts: a.ts });
   }
 
+  const weak = new Set(weakFocuses(attempts).map((w) => w.focus));
+
   const pool: SessionItem[] = sets.flatMap((s) =>
     s.items.map((item) => ({
       uid: `${s.setId}::${item.id}`,
@@ -63,17 +68,20 @@ async function buildSession(sets: TrainingSet[], count: number): Promise<Session
   );
 
   const lastWrong: SessionItem[] = [];
+  const weakFocus: SessionItem[] = [];
   const untried: SessionItem[] = [];
   const seen: { entry: SessionItem; ts: number }[] = [];
   for (const p of pool) {
     const a = lastAttempt.get(p.uid);
-    if (!a) untried.push(p);
-    else if (!a.correct) lastWrong.push(p);
+    if (a && !a.correct) lastWrong.push(p);
+    else if (p.item.focus && weak.has(p.item.focus)) weakFocus.push(p);
+    else if (!a) untried.push(p);
     else seen.push({ entry: p, ts: a.ts });
   }
 
   const ordered = [
     ...shuffle(lastWrong),
+    ...shuffle(weakFocus),
     ...shuffle(untried),
     ...seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry),
   ].slice(0, count);
@@ -159,6 +167,7 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
       itemType: entry.item.type,
       correct: result.correct,
       given: result.given,
+      focus: entry.item.focus,
       ts: Date.now(),
     });
   }

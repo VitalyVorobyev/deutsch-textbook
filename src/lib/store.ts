@@ -15,6 +15,8 @@ export interface Attempt {
   correct: boolean;
   /** what the learner entered/chose, for the personalization loop */
   given: string;
+  /** the item's confusion tag (see focus-tag table in CLAUDE.md), when tagged */
+  focus?: string;
   ts: number;
 }
 

@@ -5,6 +5,7 @@ title:
 items:
   - id: konjugation-wohnen
     type: table
+    focus: verb-endungen
     title: "wohnen — Präsens"
     instruction:
       en: Fill in the missing present-tense forms of "wohnen".
@@ -29,6 +30,7 @@ items:
 
   - id: cloze-kommen
     type: cloze
+    focus: verb-endungen
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
@@ -42,6 +44,7 @@ items:
 
   - id: mc-sprichst
     type: mc
+    focus: verb-endungen
     prompt: "___ du Deutsch?"
     options: ["Sprichst", "Sprechst", "Spricht"]
     correct: 0
@@ -54,6 +57,7 @@ items:
 
   - id: order-heute
     type: order
+    focus: verbzweit
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -67,6 +71,7 @@ items:
 
   - id: cloze-sein-wir
     type: cloze
+    focus: verb-endungen
     instruction:
       en: Fill the gap with the correct form of "sein".
       ru: Вставьте правильную форму глагола "sein".
@@ -80,6 +85,7 @@ items:
 
   - id: mc-wortstellung
     type: mc
+    focus: verbzweit
     instruction:
       en: Which sentence has correct word order?
       ru: В каком предложении правильный порядок слов?
@@ -95,6 +101,7 @@ items:
 
   - id: match-endungen
     type: match
+    focus: verb-endungen
     instruction:
       en: Match each pronoun with the correct verb form.
       ru: Соедините каждое местоимение с правильной формой глагола.
@@ -109,6 +116,7 @@ items:
 
   - id: order-frage
     type: order
+    focus: verbzweit
     instruction:
       en: Build a W-question.
       ru: Составьте вопрос с вопросительным словом.
@@ -122,6 +130,7 @@ items:
 
   - id: cloze-haben-ihr
     type: cloze
+    focus: verb-endungen
     instruction:
       en: Fill the gap with the correct form of "haben".
       ru: Вставьте правильную форму глагола "haben".
@@ -135,6 +144,7 @@ items:
 
   - id: mc-spielen
     type: mc
+    focus: verb-endungen
     prompt: "Am Montag ___ wir Fußball."
     options: ["spielt", "spielen", "spiele"]
     correct: 1
@@ -147,6 +157,7 @@ items:
 
   - id: konjugation-sein
     type: table
+    focus: verb-endungen
     title: "sein — Präsens"
     instruction:
       en: Fill in the missing forms of "sein".
@@ -171,6 +182,7 @@ items:
 
   - id: order-zuhause
     type: order
+    focus: verbzweit
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.

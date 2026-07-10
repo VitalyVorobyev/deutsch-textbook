@@ -5,6 +5,7 @@ title:
 items:
   - id: match-artikel
     type: match
+    focus: genus
     instruction:
       en: Match each noun with its article.
       ru: Соедините каждое существительное с его артиклем.
@@ -18,6 +19,7 @@ items:
 
   - id: cloze-hunger
     type: cloze
+    focus: haben-wendungen
     instruction:
       en: Complete the fixed expression.
       ru: Дополните устойчивое выражение.
@@ -43,6 +45,7 @@ items:
 
   - id: cloze-fruehstueck
     type: cloze
+    focus: verb-endungen
     instruction:
       en: Fill in the correct form of "essen".
       ru: Вставьте правильную форму глагола "essen".
@@ -56,6 +59,7 @@ items:
 
   - id: order-kaffee
     type: order
+    focus: verbzweit
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
@@ -69,6 +73,7 @@ items:
 
   - id: mc-schmecken
     type: mc
+    focus: verb-endungen
     prompt: "Die Suppe ___ sehr gut."
     options: ["schmeckt", "schmecke", "isst"]
     correct: 0
@@ -94,6 +99,7 @@ items:
 
   - id: cloze-isst
     type: cloze
+    focus: verb-endungen
     instruction:
       en: Fill in the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
@@ -119,6 +125,7 @@ items:
 
   - id: cloze-durst
     type: cloze
+    focus: haben-wendungen
     instruction:
       en: Complete the fixed expression.
       ru: Дополните устойчивое выражение.
@@ -132,6 +139,7 @@ items:
 
   - id: order-frage
     type: order
+    focus: verbzweit
     instruction:
       en: Build the question.
       ru: Составьте вопрос.
@@ -145,6 +153,7 @@ items:
 
   - id: mc-wasser
     type: mc
+    focus: genus
     prompt: "___ Wasser ist kalt."
     options: ["Das", "Der", "Die"]
     correct: 0

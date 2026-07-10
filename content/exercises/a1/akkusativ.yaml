@@ -5,6 +5,7 @@ title:
 items:
   - id: tabelle-bestimmter-artikel
     type: table
+    focus: akkusativ-artikel
     title: "Bestimmter Artikel — Nominativ und Akkusativ"
     instruction:
       en: Fill in the missing definite articles.
@@ -25,6 +26,7 @@ items:
 
   - id: cloze-bruder
     type: cloze
+    focus: akkusativ-artikel
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
@@ -38,6 +40,7 @@ items:
 
   - id: mc-mann
     type: mc
+    focus: akkusativ-artikel
     prompt: "Ich sehe ___ Mann."
     options: ["der", "den", "das"]
     correct: 1
@@ -50,6 +53,7 @@ items:
 
   - id: cloze-es-gibt
     type: cloze
+    focus: akkusativ-artikel
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
@@ -63,6 +67,7 @@ items:
 
   - id: match-pronomen
     type: match
+    focus: akkusativ-pronomen
     instruction:
       en: Match each nominative pronoun with its accusative form.
       ru: Соедините каждое местоимение в именительном падеже с его формой в винительном.
@@ -78,6 +83,7 @@ items:
 
   - id: mc-lampe
     type: mc
+    focus: akkusativ-artikel
     prompt: "Wir brauchen ___ Lampe."
     options: ["eine", "einen", "ein"]
     correct: 0
@@ -90,6 +96,7 @@ items:
 
   - id: cloze-fruehstueck
     type: cloze
+    focus: akkusativ-artikel
     instruction:
       en: Fill the gaps with the correct forms of "ein".
       ru: Вставьте правильные формы артикля "ein".
@@ -103,6 +110,7 @@ items:
 
   - id: order-stuhl
     type: order
+    focus: verbzweit
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -116,6 +124,7 @@ items:
 
   - id: mc-pronomen-ihn
     type: mc
+    focus: akkusativ-pronomen
     prompt: "Das ist mein Bruder. Ich sehe ___ oft."
     options: ["er", "ihn", "sie"]
     correct: 1
@@ -128,6 +137,7 @@ items:
 
   - id: cloze-kein-hund
     type: cloze
+    focus: akkusativ-artikel
     instruction:
       en: Fill the gap with the correct form of "kein".
       ru: Вставьте правильную форму отрицания "kein".
@@ -141,6 +151,7 @@ items:
 
   - id: mc-buch
     type: mc
+    focus: akkusativ-artikel
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение правильное?
@@ -156,6 +167,7 @@ items:
 
   - id: match-artikel
     type: match
+    focus: akkusativ-artikel
     instruction:
       en: Match each nominative form with its accusative form.
       ru: Соедините каждую форму именительного падежа с её формой в винительном.
@@ -171,6 +183,7 @@ items:
 
   - id: cloze-verstehen
     type: cloze
+    focus: akkusativ-pronomen
     instruction:
       en: Fill the gap with the accusative form of the pronoun in brackets.
       ru: Вставьте форму винительного падежа местоимения, указанного в скобках.
@@ -184,6 +197,7 @@ items:
 
   - id: tabelle-ein-kein
     type: table
+    focus: akkusativ-artikel
     title: "ein / kein im Akkusativ"
     instruction:
       en: Fill in the accusative forms of "ein" and "kein".
@@ -200,6 +214,7 @@ items:
 
   - id: uebersetzen-hund
     type: translate
+    focus: akkusativ-artikel
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -212,6 +227,7 @@ items:
 
   - id: uebersetzen-kaffee
     type: translate
+    focus: akkusativ-artikel
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -224,6 +240,7 @@ items:
 
   - id: uebersetzen-lampe
     type: translate
+    focus: verbzweit
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

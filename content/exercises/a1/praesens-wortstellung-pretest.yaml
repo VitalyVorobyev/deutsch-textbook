@@ -2,6 +2,7 @@ topic: praesens-wortstellung
 items:
   - id: pre-endung
     type: mc
+    focus: verb-endungen
     prompt: "Er ___ in München."
     options: ["wohne", "wohnst", "wohnt"]
     correct: 2
@@ -14,6 +15,7 @@ items:
 
   - id: pre-verb-zweit
     type: mc
+    focus: verbzweit
     prompt: "Was ist richtig?"
     options:
       - "Morgen ich kaufe Brot."
@@ -29,6 +31,7 @@ items:
 
   - id: pre-sein
     type: mc
+    focus: kopula-sein
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich müde."

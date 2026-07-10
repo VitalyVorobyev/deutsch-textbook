@@ -2,6 +2,7 @@ topic: dativ
 items:
   - id: pre-danken-dativ
     type: mc
+    focus: verben-mit-dativ
     prompt: "Ich danke ___ für die Hilfe."
     options: ["dich", "dir", "du"]
     correct: 1
@@ -14,6 +15,7 @@ items:
 
   - id: pre-mit-dativ
     type: mc
+    focus: dativ-praepositionen
     prompt: "Wir fahren mit ___ Bus zur Arbeit."
     options: ["der", "dem", "den"]
     correct: 1
@@ -26,6 +28,7 @@ items:
 
   - id: pre-dativ-plural
     type: mc
+    focus: dativ-artikel
     prompt: "Die Suppe schmeckt ___ nicht."
     options: ["die Kinder", "den Kinder", "den Kindern"]
     correct: 2

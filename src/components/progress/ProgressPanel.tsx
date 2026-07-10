@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { exportSnapshot, importSnapshot, getAttempts, getCardStates } from '../../lib/store';
+import { weakFocuses, type FocusStat } from '../../lib/weakness';
 import { useExplainLang } from '../hooks';
 
 export default function ProgressPanel() {
   const lang = useExplainLang();
   const [summary, setSummary] = useState<{ attempts: number; accuracy: number; cards: number } | null>(null);
+  const [weak, setWeak] = useState<FocusStat[]>([]);
   const [message, setMessage] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -17,6 +19,7 @@ export default function ProgressPanel() {
       accuracy: attempts.length ? Math.round((correct / attempts.length) * 100) : 0,
       cards: Object.keys(cards).length,
     });
+    setWeak(weakFocuses(attempts).slice(0, 5));
   }
 
   useEffect(() => {
@@ -77,6 +80,34 @@ export default function ProgressPanel() {
             <dd className="mt-1 text-2xl font-bold">{summary.cards}</dd>
           </div>
         </dl>
+      )}
+
+      {weak.length > 0 && (
+        <div className="mt-6 border-t border-stone-200 pt-4 dark:border-stone-700">
+          <h2 lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+            Schwachstellen
+          </h2>
+          <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+            {lang === 'ru'
+              ? 'Путаницы с самой высокой долей ошибок за последнее время — тренировка и новые упражнения будут целить именно в них.'
+              : 'The confusions with the highest recent error rates — training sessions and new drills target these first.'}
+          </p>
+          <ul className="mt-3 space-y-1.5">
+            {weak.map((w) => (
+              <li key={w.focus} className="flex items-center gap-2 text-sm">
+                <code className="rounded bg-stone-100 px-1.5 py-0.5 text-xs font-semibold text-stone-700 dark:bg-stone-700 dark:text-stone-200">
+                  {w.focus}
+                </code>
+                <span className="ml-auto tabular-nums font-semibold text-red-600 dark:text-red-400">
+                  {Math.round(w.errorRate * 100)}%
+                </span>
+                <span className="w-24 text-right text-xs tabular-nums text-stone-400">
+                  {w.attempts} {lang === 'ru' ? 'ответов' : 'attempts'}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       <div className="mt-6 flex flex-wrap justify-center gap-3">

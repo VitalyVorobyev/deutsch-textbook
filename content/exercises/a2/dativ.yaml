@@ -5,6 +5,7 @@ title:
 items:
   - id: artikel-dativ
     type: table
+    focus: dativ-artikel
     title: "Bestimmter Artikel — Nominativ und Dativ"
     instruction:
       en: Fill in the dative form of each definite article.
@@ -25,6 +26,7 @@ items:
 
   - id: pronomen-dativ
     type: table
+    focus: dativ-pronomen
     title: "Personalpronomen im Dativ"
     instruction:
       en: Fill in the dative form of each pronoun. Mind the capital letter in the formal form.
@@ -53,6 +55,7 @@ items:
 
   - id: cloze-antworten
     type: cloze
+    focus: verben-mit-dativ
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
@@ -66,6 +69,7 @@ items:
 
   - id: cloze-gefallen
     type: cloze
+    focus: dativ-pronomen
     instruction:
       en: Fill the gap with the dative form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в дательном падеже.
@@ -79,6 +83,7 @@ items:
 
   - id: cloze-kindern
     type: cloze
+    focus: dativ-artikel
     instruction:
       en: Put the noun in brackets into the dative plural.
       ru: Поставьте существительное из скобок в Dativ множественного числа.
@@ -92,6 +97,7 @@ items:
 
   - id: cloze-seit
     type: cloze
+    focus: dativ-praepositionen
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
@@ -105,6 +111,7 @@ items:
 
   - id: mc-danken
     type: mc
+    focus: verben-mit-dativ
     prompt: "Ich danke ___ für die Hilfe."
     options: ["Ihnen", "Sie", "Ihre"]
     correct: 0
@@ -117,6 +124,7 @@ items:
 
   - id: mc-mit-bus
     type: mc
+    focus: dativ-praepositionen
     prompt: "Wir fahren mit ___ Bus zur Schule."
     options: ["dem", "den", "der"]
     correct: 0
@@ -129,6 +137,7 @@ items:
 
   - id: mc-gehoert
     type: mc
+    focus: verben-mit-dativ
     prompt: "Das ist mein Bruder. Das Fahrrad gehört ___."
     options: ["ihm", "ihn", "er"]
     correct: 0
@@ -141,6 +150,7 @@ items:
 
   - id: mc-zwei-objekte
     type: mc
+    focus: wechsel-akk-dat
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
@@ -156,6 +166,7 @@ items:
 
   - id: match-kontraktionen
     type: match
+    focus: dativ-praepositionen
     instruction:
       en: Match each preposition + article with its contracted form.
       ru: Соедините предлог с артиклем и его краткую (слитную) форму.
@@ -170,6 +181,7 @@ items:
 
   - id: match-praepositionen
     type: match
+    focus: dativ-praepositionen
     instruction:
       en: Match each preposition with the sentence it fits.
       ru: Подберите к каждому предлогу подходящее предложение.
@@ -184,6 +196,7 @@ items:
 
   - id: order-geben
     type: order
+    focus: wechsel-akk-dat
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
@@ -197,6 +210,7 @@ items:
 
   - id: order-bus
     type: order
+    focus: dativ-praepositionen
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
@@ -210,6 +224,7 @@ items:
 
   - id: uebersetzen-helfen
     type: translate
+    focus: verben-mit-dativ
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -222,6 +237,7 @@ items:
 
   - id: uebersetzen-gehoeren
     type: translate
+    focus: verben-mit-dativ
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -234,6 +250,7 @@ items:
 
   - id: uebersetzen-nach-arbeit
     type: translate
+    focus: dativ-praepositionen
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

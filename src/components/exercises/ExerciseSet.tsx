@@ -83,6 +83,7 @@ export default function ExerciseSet({ setId, set }: Props) {
       itemType: item.type,
       correct: result.correct,
       given: result.given,
+      focus: item.focus,
       ts: Date.now(),
     });
   }

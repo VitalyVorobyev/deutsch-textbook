@@ -2,6 +2,7 @@ topic: akkusativ
 items:
   - id: pre-den-tisch
     type: mc
+    focus: akkusativ-artikel
     prompt: "Ich kaufe ___ Tisch."
     options: ["der", "den", "das"]
     correct: 1
@@ -14,6 +15,7 @@ items:
 
   - id: pre-nur-maskulin
     type: mc
+    focus: akkusativ-artikel
     prompt: "Sie liest ___ Buch."
     options: ["einen", "ein", "eine"]
     correct: 1
@@ -26,6 +28,7 @@ items:
 
   - id: pre-es-gibt
     type: mc
+    focus: akkusativ-artikel
     prompt: "Es gibt hier ___ Bahnhof."
     options: ["ein", "einen", "eine"]
     correct: 1

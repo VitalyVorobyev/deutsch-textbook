@@ -21,7 +21,7 @@ site that renders it.
 - `progress/*.json` — learner progress snapshots exported from the browser. Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
 - Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`). SRS: `src/lib/srs.ts` + `src/components/srs/`.
-- `/training` — cross-topic interleaved practice (`src/components/training/MixedTraining.tsx`): pulls recently-wrong and least-practiced items from all sets, never two consecutive items from one topic; attempts are logged under the item's origin set id. EN/RU→DE flashcards use typed input (`src/lib/typing.ts` does the matching: article required for nouns, umlaut-substitute detection, trailing-punctuation-tolerant).
+- `/training` — cross-topic interleaved practice (`src/components/training/MixedTraining.tsx`): prioritizes recently-wrong items, then items tagged with a currently weak focus (`src/lib/weakness.ts` aggregates error rates per focus tag), then never-attempted items; never two consecutive items from one topic; attempts are logged under the item's origin set id. EN/RU→DE flashcards use typed input (`src/lib/typing.ts` does the matching: article required for nouns, umlaut-substitute detection, trailing-punctuation-tolerant).
 
 ## Authoring rules (content quality is the product)
 
@@ -55,6 +55,42 @@ Section order (H2 headings, in German):
 - Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — exactly three non-empty `::`-separated fields; every reading should gloss 6–10 phrases.
 - Pretests: a 3-item exercise set at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`. Rendered above the article as the "Was weißt du schon?" callout (guessing before reading boosts retention, even when wrong).
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
+- Every exercise item that clearly drills one confusion gets a `focus` tag (kebab-case ASCII, validated against `/^[a-z0-9]+(-[a-z0-9]+)*$/`) from the canonical table below. Leave genuinely mixed or pure-comprehension items (dialogue matching, lexical MC) untagged. Attempts carry the tag into progress snapshots; weakness detection and training prioritization aggregate per tag.
+
+### Focus tags (the confusion taxonomy)
+
+Use existing tags whenever possible; add a new one only for a genuinely new confusion, and add it to this table in the same change.
+
+| Tag | Confusion it names |
+| --- | --- |
+| `verbzweit` | conjugated verb must stay in position 2 (inversion after fronted element, W-questions) |
+| `verb-endungen` | present-tense person endings, incl. stem changes (du sprichst) and sein/haben forms |
+| `kopula-sein` | dropping sein like Russian drops «быть» (❌ Ich müde) |
+| `genus` | noun gender / der–die–das, incl. -ung/-chen signals; no transfer from Russian |
+| `plural-artikel` | plural article is always die |
+| `artikel-pflicht` | dropping the article (❌ Ich habe Frage) |
+| `kein-nicht` | negating nouns with kein-, not nicht |
+| `akkusativ-artikel` | accusative article forms: der→den, ein→einen, kein→keinen; only masculine changes |
+| `akkusativ-pronomen` | accusative pronoun forms: mich, dich, ihn |
+| `dativ-artikel` | dative article/noun forms: dem, der, den …-n (Dativ Plural) |
+| `dativ-pronomen` | dative pronoun forms: mir, dir, ihm, ihr, Ihnen |
+| `dativ-praepositionen` | aus/bei/mit/nach/seit/von/zu always govern the dative (incl. zum/zur/beim/vom) |
+| `verben-mit-dativ` | dative-governing verbs: helfen, danken, gefallen, gehören, antworten, schmecken |
+| `passen-dativ` | passen + Dativ (Passt es Ihnen? — ❌ Passt es Sie?) |
+| `wechsel-akk-dat` | choosing Akkusativ vs Dativ (two-object sentences; later: two-way prepositions) |
+| `trennbar-wortstellung` | separable prefix splits off and goes to the clause end |
+| `trennbar-modal` | after a modal/möchte the separable verb stays whole at the end (… muss … aufstehen) |
+| `trennbar-untrennbar` | separable vs inseparable prefixes (be-, ver-, er- … never split) |
+| `modal-satzklammer` | modal in position 2, bare infinitive at the very end |
+| `modal-konjugation` | modal forms: ich/er kann without -t, vowel change only in singular |
+| `duerfen-muessen` | darf nicht (prohibition, «нельзя») vs muss nicht (no necessity) |
+| `will-moechte` | blunt wollen vs polite möchte (vs mögen = general liking) |
+| `haben-sein` | Perfekt auxiliary choice: sein for A→B movement + bleiben/sein/passieren, else haben |
+| `partizip2-form` | building the Partizip II: ge-…-t/-en, -ieren without ge-, separable -ge- inside, inseparable without ge- |
+| `perfekt-satzklammer` | Perfekt bracket: haben/sein in position 2, participle at the very end |
+| `haben-wendungen` | states expressed with haben + noun: Hunger/Durst/Feierabend haben (❌ Ich bin Hunger) |
+| `um-am-zeit` | time prepositions: um + clock time, am + day/part of day, im + month/season, in der Nacht |
+| `du-sie` | register: du vs Sie with strangers/officials |
 - Vocab: nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat").
 - **Card identity**: flashcard history is keyed by `<vocab-file-id>::<de>::<direction>`. Renaming a headword or the vocab file id resets the learner's SRS history for it — avoid unless the entry was wrong.
 
@@ -70,6 +106,6 @@ New topic:
 7. `npm run validate` must pass.
 
 Drills from progress (the personalization loop):
-1. Read the newest `progress/*.json`; find items with `correct: false` and cards with high `lapses`.
-2. Diagnose the underlying confusion (e.g. haben/sein choice, adjective endings), don't just repeat failed items verbatim.
-3. Write a drill set targeting that confusion; attach it to the relevant topic's `exercises` list.
+1. Read the newest `progress/*.json`. Attempts carry a `focus` tag — aggregate error rates per tag (the same logic as `weakFocuses` in `src/lib/weakness.ts`: last ~30 attempts per focus, weak = ≥4 attempts and ≥35% errors) and also check cards with high `lapses`.
+2. Diagnose via the weak focus tags, not individual failed items — the tag names the confusion (e.g. `haben-sein`, `dativ-pronomen`). For untagged failures, infer the confusion from `given` vs the answer key.
+3. Write a drill set targeting that confusion; give every drill item the matching `focus` tag (so future snapshots keep measuring it) and attach the set to the relevant topic's `exercises` list.

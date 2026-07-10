@@ -2,6 +2,7 @@ topic: artikel-genus
 items:
   - id: pre-genus-buch
     type: mc
+    focus: genus
     prompt: "Was ist richtig?"
     options: ["der Buch", "die Buch", "das Buch"]
     correct: 2
@@ -14,6 +15,7 @@ items:
 
   - id: pre-plural-die
     type: mc
+    focus: plural-artikel
     prompt: "___ Kinder spielen zu Hause."
     options: ["Der", "Die", "Das"]
     correct: 1
@@ -26,6 +28,7 @@ items:
 
   - id: pre-kein
     type: mc
+    focus: kein-nicht
     prompt: "Ich habe ___ Katze."
     options: ["nicht eine", "keine", "kein"]
     correct: 1

@@ -5,6 +5,7 @@ title:
 items:
   - id: tabelle-der-die-das
     type: table
+    focus: genus
     title: "der, die oder das?"
     instruction:
       en: Fill in the correct definite article for each noun.
@@ -29,6 +30,7 @@ items:
 
   - id: mc-maedchen
     type: mc
+    focus: genus
     prompt: "___ Mädchen ist klein."
     options: ["Der", "Die", "Das"]
     correct: 2
@@ -41,6 +43,7 @@ items:
 
   - id: cloze-wohnung
     type: cloze
+    focus: genus
     instruction:
       en: Fill the gap with the correct definite article.
       ru: Вставьте правильный определённый артикль.
@@ -54,6 +57,7 @@ items:
 
   - id: cloze-sommer
     type: cloze
+    focus: genus
     instruction:
       en: Fill the gap with the correct definite article.
       ru: Вставьте правильный определённый артикль.
@@ -67,6 +71,7 @@ items:
 
   - id: mc-auto
     type: mc
+    focus: genus
     prompt: "Ich habe ___ Auto."
     options: ["ein", "eine", "der"]
     correct: 0
@@ -79,6 +84,7 @@ items:
 
   - id: mc-frage
     type: mc
+    focus: artikel-pflicht
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение правильное?
@@ -94,6 +100,7 @@ items:
 
   - id: cloze-zeit
     type: cloze
+    focus: kein-nicht
     instruction:
       en: Negate the noun with the correct form.
       ru: Вставьте правильную отрицательную форму.
@@ -107,6 +114,7 @@ items:
 
   - id: mc-brot
     type: mc
+    focus: kein-nicht
     prompt: "Wir haben ___ Brot."
     options: ["kein", "keine", "nicht"]
     correct: 0
@@ -119,6 +127,7 @@ items:
 
   - id: match-genus-signale
     type: match
+    focus: genus
     instruction:
       en: Match each gender signal with a fitting example.
       ru: Соедините каждый признак рода с подходящим примером.
@@ -134,6 +143,7 @@ items:
 
   - id: order-auto
     type: order
+    focus: artikel-pflicht
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -147,6 +157,7 @@ items:
 
   - id: order-kinder
     type: order
+    focus: plural-artikel
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
@@ -160,6 +171,7 @@ items:
 
   - id: tabelle-ein-kein
     type: table
+    focus: genus
     title: "ein oder kein?"
     instruction:
       en: Fill in the indefinite article and the negative article (nominative).

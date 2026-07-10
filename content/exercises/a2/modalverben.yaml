@@ -5,6 +5,7 @@ title:
 items:
   - id: konjugation-koennen-muessen
     type: table
+    focus: modal-konjugation
     title: "können und müssen — Präsens"
     instruction:
       en: Fill in the missing present-tense forms of "können" and "müssen".
@@ -29,6 +30,7 @@ items:
 
   - id: mc-verboten
     type: mc
+    focus: duerfen-muessen
     instruction:
       en: Choose the correct modal verb.
       ru: Выберите правильный модальный глагол.
@@ -44,6 +46,7 @@ items:
 
   - id: mc-nicht-noetig
     type: mc
+    focus: duerfen-muessen
     instruction:
       en: Choose the modal verb that means "it is not necessary".
       ru: Выберите модальный глагол со значением «это необязательно».
@@ -59,6 +62,7 @@ items:
 
   - id: cloze-koennen
     type: cloze
+    focus: modal-konjugation
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
@@ -72,6 +76,7 @@ items:
 
   - id: cloze-wollen-er
     type: cloze
+    focus: modal-konjugation
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
@@ -85,6 +90,7 @@ items:
 
   - id: cloze-moechten
     type: cloze
+    focus: will-moechte
     instruction:
       en: Fill the gap with the polite form — you are ordering in a café.
       ru: Вставьте вежливую форму — вы делаете заказ в кафе.
@@ -98,6 +104,7 @@ items:
 
   - id: cloze-duerfen-plural
     type: cloze
+    focus: modal-konjugation
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
@@ -111,6 +118,7 @@ items:
 
   - id: mc-er-kann
     type: mc
+    focus: modal-konjugation
     prompt: "Er ___ sehr gut kochen."
     options: ["kann", "kannt", "könnt"]
     correct: 0
@@ -123,6 +131,7 @@ items:
 
   - id: mc-magst
     type: mc
+    focus: will-moechte
     instruction:
       en: Choose the verb that fits the answer.
       ru: Выберите глагол, который подходит к ответу.
@@ -138,6 +147,7 @@ items:
 
   - id: order-infinitiv-ende
     type: order
+    focus: modal-satzklammer
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
@@ -152,6 +162,7 @@ items:
 
   - id: order-inversion
     type: order
+    focus: modal-satzklammer
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
@@ -181,6 +192,7 @@ items:
 
   - id: match-duerfen-formen
     type: match
+    focus: modal-konjugation
     instruction:
       en: Match each pronoun with the correct form of "dürfen".
       ru: Соедините каждое местоимение с правильной формой глагола "dürfen".
@@ -195,6 +207,7 @@ items:
 
   - id: uebersetzen-muessen
     type: translate
+    focus: modal-satzklammer
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -209,6 +222,7 @@ items:
 
   - id: uebersetzen-helfen-frage
     type: translate
+    focus: verben-mit-dativ
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -221,6 +235,7 @@ items:
 
   - id: uebersetzen-wollen
     type: translate
+    focus: modal-konjugation
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

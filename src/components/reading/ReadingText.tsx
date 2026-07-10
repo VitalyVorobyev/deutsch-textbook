@@ -50,6 +50,7 @@ export default function ReadingText({ readingId, reading }: Props) {
       itemType: question.type,
       correct: result.correct,
       given: result.given,
+      focus: question.focus,
       ts: Date.now(),
     });
   }
