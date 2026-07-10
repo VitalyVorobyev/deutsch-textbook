@@ -1,34 +1,53 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   exportSnapshot,
-  importSnapshot,
+  mergeSnapshot,
+  replaceSnapshot,
   getAttempts,
   getCardStates,
   getSessionLog,
+  getTopicsState,
+  type Attempt,
+  type CardStates,
   type SessionLogEntry,
+  type TopicsState,
 } from '../../lib/store';
-import { weakFocuses, type FocusStat } from '../../lib/weakness';
+import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
+import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
+import { Heatmap } from './Heatmap';
+import { WeaknessTrends } from './WeaknessTrends';
+import { SessionLog } from './SessionLog';
+import { TopicProgressList } from './TopicProgressList';
 
-export default function ProgressPanel() {
+interface Data {
+  attempts: Attempt[];
+  cards: CardStates;
+  sessions: SessionLogEntry[];
+  topics: TopicsState;
+}
+
+interface Props {
+  nodes: TopicNode[];
+}
+
+export default function ProgressPanel({ nodes }: Props) {
   const lang = useExplainLang();
-  const [summary, setSummary] = useState<{ attempts: number; accuracy: number; cards: number } | null>(null);
-  const [weak, setWeak] = useState<FocusStat[]>([]);
-  const [sessions, setSessions] = useState<SessionLogEntry[]>([]);
+  const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const importMode = useRef<'merge' | 'replace'>('merge');
+
+  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
 
   async function refresh() {
-    const attempts = await getAttempts();
-    const cards = await getCardStates();
-    const correct = attempts.filter((a) => a.correct).length;
-    setSummary({
-      attempts: attempts.length,
-      accuracy: attempts.length ? Math.round((correct / attempts.length) * 100) : 0,
-      cards: Object.keys(cards).length,
-    });
-    setWeak(weakFocuses(attempts).slice(0, 5));
-    setSessions(await getSessionLog());
+    const [attempts, cards, sessions, topics] = await Promise.all([
+      getAttempts(),
+      getCardStates(),
+      getSessionLog(),
+      getTopicsState(),
+    ]);
+    setData({ attempts, cards, sessions, topics });
   }
 
   useEffect(() => {
@@ -36,8 +55,32 @@ export default function ProgressPanel() {
   }, []);
 
   async function doExport() {
-    const snapshot = await exportSnapshot();
-    const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' });
+    const profileId = getActiveProfileId();
+    const snapshot = await exportSnapshot(getActiveProfile().label);
+    const body = JSON.stringify(snapshot, null, 2);
+
+    // Try the dev-only writer first (writes straight into the repo under `bun run dev`).
+    try {
+      const res = await fetch(`/__progress/${profileId}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body,
+      });
+      if (res.ok) {
+        const info = (await res.json().catch(() => ({}))) as { path?: string };
+        setMessage(
+          t(
+            `Written to ${info.path ?? `progress/${profileId}/`} — commit it so the agent can tailor drills.`,
+            `Сохранено в ${info.path ?? `progress/${profileId}/`} — закоммитьте, чтобы агент подобрал упражнения.`,
+          ),
+        );
+        return;
+      }
+    } catch {
+      // dev endpoint unavailable (static build / preview) — fall back to a download.
+    }
+
+    const blob = new Blob([body], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -45,120 +88,142 @@ export default function ProgressPanel() {
     a.click();
     URL.revokeObjectURL(url);
     setMessage(
-      lang === 'ru'
-        ? 'Снимок сохранён. Положите файл в папку progress/ репозитория, чтобы агент мог подобрать упражнения под ваши ошибки.'
-        : 'Snapshot saved. Drop the file into the repo’s progress/ folder so the agent can tailor drills to your mistakes.',
+      t(
+        `Snapshot saved. Drop it into progress/${profileId}/ in the repo so the agent can tailor drills.`,
+        `Снимок сохранён. Положите его в progress/${profileId}/ репозитория, чтобы агент подобрал упражнения.`,
+      ),
     );
   }
 
   async function doImport(file: File) {
+    const mode = importMode.current;
     try {
       const snapshot = JSON.parse(await file.text());
-      await importSnapshot(snapshot);
+      if (mode === 'replace') {
+        const ok = confirm(
+          t(
+            'Replace ALL progress in this profile with the imported snapshot? This cannot be undone.',
+            'Заменить ВЕСЬ прогресс этого профиля импортируемым снимком? Отменить нельзя.',
+          ),
+        );
+        if (!ok) return;
+        await replaceSnapshot(snapshot);
+      } else {
+        await mergeSnapshot(snapshot);
+      }
       await refresh();
-      setMessage(lang === 'ru' ? 'Прогресс восстановлен.' : 'Progress restored.');
+      setMessage(
+        mode === 'replace'
+          ? t('Progress replaced.', 'Прогресс заменён.')
+          : t('Progress merged.', 'Прогресс объединён.'),
+      );
     } catch (e) {
       setMessage(
-        lang === 'ru'
-          ? `Не удалось импортировать: ${e instanceof Error ? e.message : String(e)}`
-          : `Import failed: ${e instanceof Error ? e.message : String(e)}`,
+        t(
+          `Import failed: ${e instanceof Error ? e.message : String(e)}`,
+          `Не удалось импортировать: ${e instanceof Error ? e.message : String(e)}`,
+        ),
       );
     }
   }
 
+  function pickFile(mode: 'merge' | 'replace') {
+    importMode.current = mode;
+    fileInput.current?.click();
+  }
+
+  const correct = data ? data.attempts.filter((a) => a.correct).length : 0;
+  const accuracy = data && data.attempts.length ? Math.round((correct / data.attempts.length) * 100) : 0;
+
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-      {summary && (
-        <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
-          <div>
-            <dt className="text-xs uppercase tracking-wide text-stone-400">
-              {lang === 'ru' ? 'Ответов' : 'Answers'}
-            </dt>
-            <dd className="mt-1 text-2xl font-bold">{summary.attempts}</dd>
-          </div>
-          <div>
-            <dt className="text-xs uppercase tracking-wide text-stone-400">
-              {lang === 'ru' ? 'Точность' : 'Accuracy'}
-            </dt>
-            <dd className="mt-1 text-2xl font-bold">{summary.accuracy}%</dd>
-          </div>
-          <div>
-            <dt className="text-xs uppercase tracking-wide text-stone-400">
-              {lang === 'ru' ? 'Карточек начато' : 'Cards started'}
-            </dt>
-            <dd className="mt-1 text-2xl font-bold">{summary.cards}</dd>
-          </div>
-        </dl>
+    <div className="space-y-8">
+      {data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-stone-400">{t('Answers', 'Ответов')}</dt>
+              <dd className="mt-1 text-2xl font-bold">{data.attempts.length}</dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-stone-400">{t('Accuracy', 'Точность')}</dt>
+              <dd className="mt-1 text-2xl font-bold">{accuracy}%</dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-stone-400">
+                {t('Cards started', 'Карточек начато')}
+              </dt>
+              <dd className="mt-1 text-2xl font-bold">{Object.keys(data.cards).length}</dd>
+            </div>
+          </dl>
+        </section>
       )}
 
-      {sessions.length > 0 && (
-        <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru' ? 'Последняя сессия' : 'Last session'}:{' '}
-          <span className="font-semibold tabular-nums">{sessions.at(-1)!.date}</span>
-          {' · '}
-          {sessions.length} {lang === 'ru' ? 'всего' : 'total'}
-        </p>
+      {data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <Heatmap attempts={data.attempts} sessions={data.sessions} />
+        </section>
       )}
 
-      {weak.length > 0 && (
-        <div className="mt-6 border-t border-stone-200 pt-4 dark:border-stone-700">
-          <h2 lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-            Schwachstellen
-          </h2>
-          <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-            {lang === 'ru'
-              ? 'Путаницы с самой высокой долей ошибок за последнее время — тренировка и новые упражнения будут целить именно в них.'
-              : 'The confusions with the highest recent error rates — training sessions and new drills target these first.'}
-          </p>
-          <ul className="mt-3 space-y-1.5">
-            {weak.map((w) => (
-              <li key={w.focus} className="flex items-center gap-2 text-sm">
-                <code className="rounded bg-stone-100 px-1.5 py-0.5 text-xs font-semibold text-stone-700 dark:bg-stone-700 dark:text-stone-200">
-                  {w.focus}
-                </code>
-                <span className="ml-auto tabular-nums font-semibold text-red-600 dark:text-red-400">
-                  {Math.round(w.errorRate * 100)}%
-                </span>
-                <span className="shrink-0 whitespace-nowrap text-right text-xs tabular-nums text-stone-400">
-                  {w.attempts} {lang === 'ru' ? 'ответов' : 'attempts'}
-                </span>
-              </li>
-            ))}
-          </ul>
+      {data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <TopicProgressList
+            nodes={nodes}
+            ctx={{ attempts: data.attempts, cards: data.cards, topics: data.topics }}
+          />
+        </section>
+      )}
+
+      {data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <WeaknessTrends attempts={data.attempts} />
+        </section>
+      )}
+
+      {data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <SessionLog attempts={data.attempts} sessions={data.sessions} />
+        </section>
+      )}
+
+      <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => void doExport()}
+            className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
+          >
+            {t('Export progress', 'Экспорт прогресса')}
+          </button>
+          <button
+            type="button"
+            onClick={() => pickFile('merge')}
+            className="min-h-11 rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
+          >
+            {t('Import (merge)', 'Импорт (объединить)')}
+          </button>
+          <button
+            type="button"
+            onClick={() => pickFile('replace')}
+            className="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-red-600 dark:text-stone-400 sm:min-h-0"
+          >
+            {t('Replace…', 'Заменить…')}
+          </button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="application/json"
+            className="hidden"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) void doImport(f);
+              e.target.value = '';
+            }}
+          />
         </div>
-      )}
-
-      <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => void doExport()}
-          className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
-        >
-          {lang === 'ru' ? 'Экспорт прогресса' : 'Export progress'}
-        </button>
-        <button
-          type="button"
-          onClick={() => fileInput.current?.click()}
-          className="min-h-11 rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
-        >
-          {lang === 'ru' ? 'Импорт…' : 'Import…'}
-        </button>
-        <input
-          ref={fileInput}
-          type="file"
-          accept="application/json"
-          className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) void doImport(f);
-            e.target.value = '';
-          }}
-        />
-      </div>
-
-      {message && (
-        <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
-      )}
+        {message && (
+          <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
+        )}
+      </section>
     </div>
   );
 }

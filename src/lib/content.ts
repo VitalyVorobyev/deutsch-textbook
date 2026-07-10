@@ -22,6 +22,9 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
     title_ru: t.data.title_ru,
     prerequisites: t.data.prerequisites,
     exerciseSets: t.data.exercises,
+    vocabIds: t.data.vocab,
+    readingIds: t.data.reading,
+    pretestId: t.data.pretest,
   }));
 }
 

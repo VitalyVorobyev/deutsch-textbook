@@ -1,22 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
+import { getTopicNodes } from '../lib/content';
+
+const nodes = await getTopicNodes();
 ---
 
 <Base title="Fortschritt">
   <h1 class="text-3xl font-bold tracking-tight">Fortschritt</h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
-      Your progress lives in this browser. Export it as JSON and commit it to the repo's
-      <code>progress/</code> folder — the agent reads it to generate drills targeting your weak spots.
+      Your activity, streak, per-topic progress, and weak spots for the active profile — all stored
+      in this browser. Export writes a snapshot to <code>progress/&lt;profile&gt;/</code> (or downloads
+      it) so the agent can generate drills targeting your mistakes.
     </span>
     <span class="lang-ru">
-      Прогресс хранится в этом браузере. Экспортируйте его в JSON и положите в папку
-      <code>progress/</code> репозитория — агент прочитает его и создаст упражнения по вашим слабым местам.
+      Активность, серия, прогресс по темам и слабые места активного профиля — всё хранится в этом
+      браузере. Экспорт записывает снимок в <code>progress/&lt;profile&gt;/</code> (или скачивает его),
+      чтобы агент создал упражнения по вашим ошибкам.
     </span>
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" />
+    <ProgressPanel client:only="react" nodes={nodes} />
   </div>
 </Base>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { suggestNextTopic, topicMastery, type TopicNode } from '../../lib/mastery';
-import { getAttempts } from '../../lib/store';
+import { suggestNextTopic, topicCompletion, type TopicNode } from '../../lib/mastery';
+import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 
 interface Props {
@@ -13,10 +13,13 @@ export default function NextTopic({ nodes }: Props) {
   const [mastered, setMastered] = useState(0);
 
   useEffect(() => {
-    void getAttempts().then((attempts) => {
-      setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
-      setMastered(nodes.filter((n) => topicMastery(n, attempts) === 'mastered').length);
-    });
+    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
+      ([attempts, cards, topics]) => {
+        setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
+        const ctx = { attempts, cards, topics };
+        setMastered(nodes.filter((n) => topicCompletion(n, ctx).tier === 'mastered').length);
+      },
+    );
   }, [nodes]);
 
   if (!suggestion) return null;

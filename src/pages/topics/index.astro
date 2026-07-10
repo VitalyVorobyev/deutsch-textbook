@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { KIND_LABEL } from '../../lib/content';
+import TopicsProgress from '../../components/topic/TopicsProgress';
+import { KIND_LABEL, getTopicNodes } from '../../lib/content';
 import { LEVELS } from '../../lib/schemas';
 
 const topics = await getCollection('topics');
+const nodes = await getTopicNodes();
 const byLevel = LEVELS.map((level) => ({
   level,
   topics: topics
@@ -33,11 +35,15 @@ const byLevel = LEVELS.map((level) => ({
           {group.map((t) => (
             <a
               href={`/topics/${t.id}`}
+              data-topic-id={t.data.id}
               class="rounded-lg border border-stone-200 bg-white p-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
             >
-              <p class="text-xs font-medium uppercase tracking-wide text-stone-400">
-                {KIND_LABEL[t.data.kind]}
-              </p>
+              <div class="flex items-start justify-between gap-2">
+                <p class="text-xs font-medium uppercase tracking-wide text-stone-400">
+                  {KIND_LABEL[t.data.kind]}
+                </p>
+                <span data-topic-badge={t.data.id} />
+              </div>
               <p lang="de" class="mt-1 font-semibold">{t.data.title_de}</p>
               <p class="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
                 <span class="lang-en">{t.data.title_en}</span>
@@ -58,4 +64,6 @@ const byLevel = LEVELS.map((level) => ({
       </section>
     ))
   }
+
+  <TopicsProgress client:only="react" topics={nodes} />
 </Base>

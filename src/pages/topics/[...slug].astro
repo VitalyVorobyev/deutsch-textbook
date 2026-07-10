@@ -8,6 +8,7 @@ import VocabTable from '../../components/VocabTable.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
+import TopicProgress from '../../components/topic/TopicProgress';
 import { KIND_LABEL } from '../../lib/content';
 import { buildDeck } from '../../lib/srs';
 
@@ -74,6 +75,14 @@ if (data.pretest && !pretestSet)
           Entwurf
         </span>
       )}
+      <TopicProgress
+        client:only="react"
+        topicId={data.id}
+        exerciseSets={data.exercises}
+        vocabIds={data.vocab}
+        readingIds={data.reading}
+        pretestId={data.pretest}
+      />
     </div>
     <h1 lang="de" class="mt-3 text-3xl font-bold tracking-tight">{data.title_de}</h1>
     <p class="mt-1 text-stone-500 dark:text-stone-400">
