@@ -50,7 +50,7 @@ items:
       - label: Sie (formell)
         cells: [{ answer: Ihnen }]
     explain:
-      en: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — and capitalized Ihnen for formal Sie. Compare Russian: мне, тебе, ему, ей, нам, вам, им."
+      en: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — and capitalized Ihnen for formal Sie. Hook: -m marks masculine and neuter (ihm), -r feminine (ihr), and plural ihnen echoes the Dativ-Plural -n ending."
       ru: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — и Ihnen с заглавной буквы для вежливого Sie. Прямые аналоги русских «мне, тебе, ему, ей, нам, вам, им»."
 
   - id: cloze-antworten
@@ -78,7 +78,7 @@ items:
       en: I like the film a lot.
       ru: Фильм мне очень нравится.
     explain:
-      en: "gefallen works like Russian «нравиться»: the film is the subject, the person is in the dative — ich → mir."
+      en: "gefallen flips subject and experiencer, like English 'it appeals to me': the film is the subject, the person is in the dative — ich → mir."
       ru: "gefallen устроен как «нравиться»: фильм — подлежащее, а человек стоит в дательном падеже — ich → mir."
 
   - id: cloze-kindern
@@ -119,7 +119,7 @@ items:
       en: I thank you (formal) for the help.
       ru: Благодарю Вас за помощь.
     explain:
-      en: "danken takes the dative: Sie → Ihnen. Careful: Russian uses the accusative here («благодарю вас»), so 'Ich danke Sie' is a typical interference error."
+      en: "danken takes the dative: Sie → Ihnen. Careful: English 'I thank YOU' looks like a direct object, so 'Ich danke Sie' is a very common learner mistake."
       ru: "danken требует Dativ: Sie → Ihnen. Осторожно: по-русски «благодарю (кого?) вас» — винительный падеж, поэтому «Ich danke Sie» — типичная ошибка."
 
   - id: mc-mit-bus
@@ -145,7 +145,7 @@ items:
       en: This is my brother. The bicycle belongs to him.
       ru: Это мой брат. Велосипед принадлежит ему.
     explain:
-      en: "gehören takes the dative: er → ihm — just like Russian «принадлежит (кому?) ему»."
+      en: "gehören takes the dative: er → ihm — think 'it belongs TO him'; the owner is the wem?-answer."
       ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
 
   - id: mc-zwei-objekte
@@ -232,7 +232,7 @@ items:
     prompt_ru: "Я помогаю своему брату."
     answer: "Ich helfe meinem Bruder."
     explain:
-      en: "helfen takes the dative: mein Bruder → meinem Bruder. Russian works the same way here — «помогаю (кому?) брату» is dative too."
+      en: "helfen takes the dative: mein Bruder → meinem Bruder. English 'help HIM' looks like a direct object, but helfen means giving help TO someone — ask wem? (to whom?)."
       ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
 
   - id: uebersetzen-gehoeren
@@ -245,7 +245,7 @@ items:
     prompt_ru: "Машина принадлежит моему отцу."
     answer: "Das Auto gehört meinem Vater."
     explain:
-      en: "gehören takes the dative: mein Vater → meinem Vater — just like Russian «принадлежит (кому?) отцу». das Auto is the subject and stays in the nominative."
+      en: "gehören takes the dative: mein Vater → meinem Vater — 'it belongs TO my father'. das Auto is the subject and stays in the nominative."
       ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
 
   - id: uebersetzen-nach-arbeit

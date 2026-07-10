@@ -18,7 +18,7 @@ site that renders it.
 - `content/exercises/<level>/<set-id>.yaml` — exercise sets, embedded automatically on the owning topic's page.
 - `content/reading/<level>/<id>.yaml` — graded reading texts (comprehensible input): glossed paragraphs + 2–4 `mc` comprehension questions; rendered as the topic's "Lesetext" section (`src/components/reading/ReadingText.tsx`). Attempts log under `reading:<path-id>`.
 - `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `npm run validate` enforces it.
-- `progress/*.json` — learner progress snapshots exported from the browser. Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
+- `progress/*.json` — learner progress snapshots exported from the browser (v2: `attempts`, `cards`, plus `sessions` — the daily-session completion log, useful for judging study cadence). Read these to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
 - Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`). SRS: `src/lib/srs.ts` + `src/components/srs/`.
 - `/training` — cross-topic interleaved practice (`src/components/training/MixedTraining.tsx`): prioritizes recently-wrong items, then items tagged with a currently weak focus (`src/lib/weakness.ts` aggregates error rates per focus tag), then never-attempted items; never two consecutive items from one topic; attempts are logged under the item's origin set id. EN/RU→DE flashcards use typed input (`src/lib/typing.ts` does the matching: article required for nouns, umlaut-substitute detection, trailing-punctuation-tolerant).
@@ -33,16 +33,17 @@ site that renders it.
 
 ### Bilingual voice
 - Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX).
-- EN and RU versions must carry the same content — write both from scratch, don't translate word-for-word.
+- EN and RU halves are each a complete, self-sufficient explanation of the same point — write both from scratch. They **may diverge** where it helps their reader: the RU half may contrast German with Russian («быть», падежи); the EN half may contrast with English ("must not" ≠ *muss nicht*) or use German-internal hooks (the wem?-question test). Never assume an EN reader knows Russian or vice versa.
+- **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Enforced by `npm run validate`.
 - German content (examples, tables, headings like "Beispiele") stays outside Bilingual blocks — it is always visible.
-- Grammar terminology: use German terms with a gloss on first use (e.g. "der Kasus (case / падеж)").
+- Grammar terminology: use German terms with a per-language gloss on first use — in En blocks "der Kasus (case)", in Ru blocks "der Kasus (падеж)".
 
 ### Topic article skeleton
 Section order (H2 headings, in German):
 1. `## Kurz gesagt` — the rule in 2–3 sentences (bilingual).
 2. `## Erklärung` — the full explanation with tables (bilingual prose, German tables).
 3. `## Beispiele` — 5–10 German sentences as blockquotes, each with EN/RU translation in a Bilingual block right after.
-4. `## Häufige Fehler` — typical mistakes (❌/✅ pairs), especially Russian-speaker interference errors.
+4. `## Häufige Fehler` — typical mistakes (❌/✅ pairs). The Ru half highlights Russian-interference errors; the En half gets its own framing — English false friends where they exist ("must not"), otherwise neutral rule statements. Never Russian-framed English.
 - Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from frontmatter (`exercises`, `vocab`).
 
 ### Frontmatter / schema notes

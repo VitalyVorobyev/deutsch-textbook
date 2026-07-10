@@ -70,16 +70,21 @@ function validateWith<S extends z.ZodTypeAny>(
 
 const rel = (f: string) => relative(ROOT, f);
 
+/** English-facing text must contain no Cyrillic (see CLAUDE.md, bilingual voice). */
+const CYRILLIC = /[Ѐ-ӿ]/;
+
 // ---------------------------------------------------------------------------
 // Load everything
 // ---------------------------------------------------------------------------
 
-const topics = new Map<string, { file: string; data: Topic }>();
+const topics = new Map<string, { file: string; data: Topic; body: string }>();
 for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
-  const raw = parseFrontmatter(readFileSync(file, 'utf8'), rel(file));
+  const src = readFileSync(file, 'utf8');
+  const raw = parseFrontmatter(src, rel(file));
   if (raw === undefined) continue;
   const data = validateWith(topicSchema, raw, rel(file));
   if (!data) continue;
+  const body = src.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '');
 
   const parts = relative(join(CONTENT, 'topics'), file).split(sep);
   const basename = parts.at(-1)!.replace(/\.mdx$/, '');
@@ -88,7 +93,7 @@ for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
   if (levelDir.toUpperCase() !== data.level)
     fail(rel(file), `level directory "${levelDir}" ≠ frontmatter level "${data.level}"`);
   if (topics.has(data.id)) fail(rel(file), `duplicate topic id "${data.id}"`);
-  topics.set(data.id, { file: rel(file), data });
+  topics.set(data.id, { file: rel(file), data, body });
 }
 
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
@@ -254,6 +259,10 @@ for (const [readingId, { file, data }] of readings) {
   data.text.forEach((para, i) => {
     const { segments, errors: glossErrors } = parseGlosses(para);
     for (const e of glossErrors) fail(`${file} → paragraph ${i + 1}`, e);
+    for (const s of segments) {
+      if (s.kind === 'gloss' && CYRILLIC.test(s.gloss.en))
+        fail(`${file} → paragraph ${i + 1}`, `Cyrillic in en gloss field: "${s.gloss.en}"`);
+    }
     glossCount += segments.filter((s) => s.kind === 'gloss').length;
   });
   if (glossCount === 0)
@@ -328,6 +337,47 @@ for (const [setId, { file }] of exerciseSets) {
       }
     }
   }
+}
+
+// ---------------------------------------------------------------------------
+// EN-half purity: no Cyrillic anywhere an EN-only reader looks
+// ---------------------------------------------------------------------------
+
+/** Recursively flags Cyrillic in any string under a key named `en` or ending in `_en`. */
+function checkEnFields(file: string, node: unknown, path: string): void {
+  if (Array.isArray(node)) {
+    node.forEach((v, i) => checkEnFields(file, v, `${path}[${i}]`));
+    return;
+  }
+  if (node && typeof node === 'object') {
+    for (const [key, value] of Object.entries(node)) {
+      const p = path ? `${path}.${key}` : key;
+      if ((key === 'en' || key.endsWith('_en')) && typeof value === 'string') {
+        if (CYRILLIC.test(value))
+          fail(file, `Cyrillic in English-facing field ${p}: "${value.slice(0, 70)}"`);
+      } else {
+        checkEnFields(file, value, p);
+      }
+    }
+  }
+}
+
+for (const { file, data } of vocabFiles.values()) checkEnFields(file, data, '');
+for (const { file, data } of exerciseSets.values()) checkEnFields(file, data, '');
+for (const { file, data } of readings.values()) checkEnFields(file, data, '');
+for (const { file, data } of topics.values()) checkEnFields(file, data, '');
+
+// <En> blocks in topic article bodies
+for (const { file, body } of topics.values()) {
+  const opens = (body.match(/<En>/g) ?? []).length;
+  const closes = (body.match(/<\/En>/g) ?? []).length;
+  if (opens !== closes) warn(file, `unbalanced <En> tags (${opens} open, ${closes} close)`);
+  (body.match(/<En>[\s\S]*?<\/En>/g) ?? []).forEach((block, i) => {
+    for (const line of block.split('\n')) {
+      if (CYRILLIC.test(line))
+        fail(file, `Cyrillic inside <En> block ${i + 1}: "${line.trim().slice(0, 70)}"`);
+    }
+  });
 }
 
 // ---------------------------------------------------------------------------
