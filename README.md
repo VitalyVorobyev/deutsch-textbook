@@ -19,8 +19,19 @@ This project uses [Bun](https://bun.sh) as its package manager and task runner.
 bun install
 bun run dev        # the textbook at http://localhost:4321
 bun run validate   # check all content against schemas and cross-references
+bun run check      # astro type-check
 bun run build      # static production build
 ```
+
+## CI & deployment
+
+GitHub Actions run on every push and pull request (`.github/workflows/ci.yml`:
+validate → type-check → build). Pushes to `main` also deploy the site to GitHub
+Pages (`.github/workflows/pages.yml`) at
+<https://vitalyvorobyev.github.io/deutsch-textbook/> — enable **Settings →
+Pages → Source: GitHub Actions** once for the repository. Learner progress
+stays in the browser per origin; use Export/Import on the Fortschritt page to
+move it between localhost and the deployed site.
 
 ## Structure
 

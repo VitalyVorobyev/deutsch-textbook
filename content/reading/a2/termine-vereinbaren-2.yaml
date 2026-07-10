@@ -1,0 +1,67 @@
+topic: termine-vereinbaren
+title_de: "Ein dringender Termin beim Zahnarzt"
+text:
+  - >-
+    Frau Herzog hat seit gestern [[Zahnschmerzen::toothache::зубная
+    боль]]. Sie kann nachts nicht schlafen. Am Morgen ruft sie in der
+    [[Zahnarztpraxis::dentist's practice::стоматологическая клиника]] an:
+    „Guten Tag, mein Name ist Herzog. Ich möchte bitte einen Termin
+    vereinbaren. Es ist dringend!“
+  - >-
+    Die Mitarbeiterin fragt: „Haben Sie heute Zeit? Um elf Uhr ist ein
+    Termin frei.“ — „Um elf habe ich leider eine wichtige
+    [[Besprechung::meeting::совещание]]. [[Geht es früher?::Is earlier
+    possible?::Можно пораньше?]]“ — „Moment … Ja, um neun Uhr. Passt
+    Ihnen das?“ — „Ja, das passt mir gut.“ — „Dann bis neun Uhr, Frau
+    Herzog. Bitte kommen Sie [[pünktlich::on time,
+    punctual::вовремя, пунктуально]].“
+  - >-
+    Um [[Viertel vor neun::quarter to nine (8:45)::без четверти девять
+    (8:45)]] sitzt Frau Herzog schon im Wartezimmer. Der Zahnarzt findet
+    ein kleines [[Loch::hole (in the tooth)::дырка (в зубе)]] und hilft
+    ihr schnell. Nach einer halben Stunde ist alles [[vorbei::over,
+    finished::позади, закончилось]]. „Und in sechs Monaten kommen Sie
+    bitte wieder zur [[Kontrolle::check-up::осмотр, контрольный приём]]!“
+questions:
+  - id: frage-warum
+    type: mc
+    prompt: "Warum ruft Frau Herzog in der Praxis an?"
+    options:
+      - "Sie will einen Termin verschieben."
+      - "Sie hat eine Frage zur Kontrolle."
+      - "Sie hat Zahnschmerzen und braucht dringend einen Termin."
+    correct: 2
+    translation:
+      en: Why does Frau Herzog call the practice?
+      ru: Почему фрау Херцог звонит в клинику?
+    explain:
+      en: "„Frau Herzog hat seit gestern Zahnschmerzen. … Ich möchte bitte einen Termin vereinbaren. Es ist dringend!“ She is making a new appointment (vereinbaren), not moving an old one (verschieben) — and the check-up is only mentioned at the very end."
+      ru: "„Frau Herzog hat seit gestern Zahnschmerzen. … Ich möchte bitte einen Termin vereinbaren. Es ist dringend!“ Она записывается на новый приём (vereinbaren), а не переносит старый (verschieben); осмотр упоминается только в самом конце."
+  - id: frage-elf-uhr
+    type: mc
+    prompt: "Warum passt der Termin um elf Uhr nicht?"
+    options:
+      - "Die Praxis ist um elf geschlossen."
+      - "Frau Herzog hat um elf eine wichtige Besprechung."
+      - "Der Zahnarzt hat um elf keine Zeit."
+    correct: 1
+    translation:
+      en: Why doesn't the eleven o'clock appointment work?
+      ru: Почему приём в одиннадцать часов не подходит?
+    explain:
+      en: "„Um elf habe ich leider eine wichtige Besprechung.“ The practice actually offers eleven o'clock — that slot is free; it is Frau Herzog who cannot come then."
+      ru: "„Um elf habe ich leider eine wichtige Besprechung.“ Приёмная как раз предлагает одиннадцать часов — это время свободно; прийти не может сама фрау Херцог."
+  - id: frage-sechs-monate
+    type: mc
+    prompt: "Was soll Frau Herzog in sechs Monaten machen?"
+    options:
+      - "Sie soll wieder zur Kontrolle kommen."
+      - "Sie soll den Termin absagen."
+      - "Sie soll eine neue Besprechung planen."
+    correct: 0
+    translation:
+      en: What is Frau Herzog supposed to do in six months?
+      ru: Что фрау Херцог должна сделать через шесть месяцев?
+    explain:
+      en: "The dentist says at the end: „Und in sechs Monaten kommen Sie bitte wieder zur Kontrolle!“ — a routine check-up; there is nothing about cancelling (absagen) or planning meetings."
+      ru: "В конце зубной врач говорит: „Und in sechs Monaten kommen Sie bitte wieder zur Kontrolle!“ — обычный контрольный осмотр; об отмене приёма (absagen) или о совещаниях речи нет."

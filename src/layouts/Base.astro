@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import ProfileSwitcher from '../components/ProfileSwitcher';
+import { withBase } from '../lib/url';
 
 interface Props {
   title: string;
@@ -8,17 +9,18 @@ interface Props {
 }
 const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch' } = Astro.props;
 
+const home = withBase('/');
 const nav = [
-  { href: '/', label: 'Heute' },
-  { href: '/topics', label: 'Themen' },
-  { href: '/vocab', label: 'Wortschatz' },
-  { href: '/review', label: 'Wiederholen' },
-  { href: '/training', label: 'Training' },
-  { href: '/progress', label: 'Fortschritt' },
+  { href: home, label: 'Heute' },
+  { href: withBase('/topics'), label: 'Themen' },
+  { href: withBase('/vocab'), label: 'Wortschatz' },
+  { href: withBase('/review'), label: 'Wiederholen' },
+  { href: withBase('/training'), label: 'Training' },
+  { href: withBase('/progress'), label: 'Fortschritt' },
 ];
 const current = Astro.url.pathname;
 function isActive(href: string): boolean {
-  return href === '/' ? current === '/' : current.startsWith(href);
+  return href === home ? current === home || current === home.replace(/\/$/, '') : current.startsWith(href);
 }
 ---
 
@@ -42,7 +44,7 @@ function isActive(href: string): boolean {
   <body class="flex min-h-screen flex-col">
     <header class="sticky top-0 z-10 border-b border-stone-200 bg-stone-50/90 backdrop-blur dark:border-stone-700 dark:bg-stone-900/90">
       <div class="mx-auto flex max-w-4xl flex-wrap items-center gap-x-6 gap-y-1 px-4 py-3">
-        <a href="/" class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
+        <a href={home} class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
           Deutsch-<span class="text-amber-600 dark:text-amber-400">Atlas</span>
         </a>
         <nav class="order-3 -mx-4 flex w-full gap-x-4 overflow-x-auto whitespace-nowrap px-4 text-sm sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible sm:whitespace-normal sm:px-0">

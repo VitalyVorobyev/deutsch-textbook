@@ -1,0 +1,65 @@
+topic: alltag-tagesablauf
+title_de: "Ein Student in Leipzig"
+text:
+  - >-
+    Lukas studiert in Leipzig. Sein Wecker klingelt um acht Uhr, aber er
+    wacht meistens [[erst::only, not until::только, лишь]] um halb neun auf.
+    Dann duscht er, frühstückt schnell und fährt mit der
+    [[Straßenbahn::tram::трамвай]] zur Uni. Sein erstes Seminar fängt um
+    zehn Uhr an.
+  - >-
+    Am Mittag isst er in der [[Mensa::university canteen::студенческая
+    столовая]] — das Essen dort ist [[billig::cheap::дешёвый, недорогой]].
+    Danach lernt er zwei Stunden in der
+    [[Bibliothek::library::библиотека]]. Am Nachmittag hat er Freizeit: Er
+    [[treibt Sport::does sports::занимается спортом]] oder trifft Freunde
+    im Café.
+  - >-
+    Am Abend kocht Lukas mit seinem [[Mitbewohner::flatmate,
+    roommate::сосед по квартире]]. Danach räumen sie zusammen die Küche
+    auf. Manchmal sehen sie noch ein bisschen fern. Um
+    [[Mitternacht::midnight::полночь]] geht Lukas ins Bett — für einen
+    Studenten ist das früh, sagt er.
+questions:
+  - id: frage-seminar
+    type: mc
+    prompt: "Wann fängt das erste Seminar an?"
+    options:
+      - "Um acht Uhr."
+      - "Um halb neun."
+      - "Um zehn Uhr."
+    correct: 2
+    translation:
+      en: When does the first seminar start?
+      ru: Когда начинается первый семинар?
+    explain:
+      en: "„Sein erstes Seminar fängt um zehn Uhr an.“ At eight only the alarm clock rings, and at half past eight Lukas usually wakes up — the seminar itself starts at ten."
+      ru: "„Sein erstes Seminar fängt um zehn Uhr an.“ В восемь только звонит будильник, в полдевятого Лукас обычно просыпается, а сам семинар начинается лишь в десять."
+  - id: frage-mittag
+    type: mc
+    prompt: "Wo isst Lukas am Mittag?"
+    options:
+      - "In der Mensa."
+      - "Im Café."
+      - "Zu Hause."
+    correct: 0
+    translation:
+      en: Where does Lukas eat at lunchtime?
+      ru: Где Лукас обедает?
+    explain:
+      en: "„Am Mittag isst er in der Mensa — das Essen dort ist billig.“ He meets friends at the café only in the afternoon, and at home he cooks in the evening."
+      ru: "„Am Mittag isst er in der Mensa — das Essen dort ist billig.“ В кафе он встречается с друзьями только во второй половине дня, а дома готовит вечером."
+  - id: frage-abend
+    type: mc
+    prompt: "Was macht Lukas am Abend?"
+    options:
+      - "Er lernt in der Bibliothek."
+      - "Er kocht mit seinem Mitbewohner."
+      - "Er trifft Freunde im Café."
+    correct: 1
+    translation:
+      en: What does Lukas do in the evening?
+      ru: Что Лукас делает вечером?
+    explain:
+      en: "„Am Abend kocht Lukas mit seinem Mitbewohner.“ The library and the café belong to the daytime: he studies there after lunch and meets friends in his free time in the afternoon."
+      ru: "„Am Abend kocht Lukas mit seinem Mitbewohner.“ Библиотека и кафе — это дневные дела: после обеда он занимается, а с друзьями встречается в свободное время во второй половине дня."

@@ -1,0 +1,24 @@
+---
+/** Blockquote override for topic MDX — Beispiele get a tap-to-hear button.
+    Blockquotes in articles hold only German example sentences (see the
+    `.article-prose blockquote` styling), so the whole text is speakable. */
+import SpeakerButton from './SpeakerButton';
+
+const html = await Astro.slots.render('default');
+const text = html
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&amp;/g, '&')
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/\s+/g, ' ')
+  .trim();
+---
+
+<blockquote lang="de">
+  <div class="flex items-center gap-2">
+    <div class="min-w-0 flex-1" set:html={html} />
+    {text && <SpeakerButton client:only="react" text={text} className="shrink-0" />}
+  </div>
+</blockquote>

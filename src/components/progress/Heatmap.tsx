@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { dailyActivity, activeDateSet, currentStreak, mondayOf, addDays } from '../../lib/trends';
-import { localDateString, type Attempt, type SessionLogEntry } from '../../lib/store';
+import { localDateString, type Attempt, type CardStates, type SessionLogEntry } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 
 const WEEKS = 13;
@@ -16,12 +16,14 @@ function intensity(total: number): string {
 export function Heatmap({
   attempts,
   sessions,
+  cards = {},
 }: {
   attempts: Attempt[];
   sessions: SessionLogEntry[];
+  cards?: CardStates;
 }) {
   const lang = useExplainLang();
-  const map = useMemo(() => dailyActivity(attempts, sessions), [attempts, sessions]);
+  const map = useMemo(() => dailyActivity(attempts, sessions, cards), [attempts, sessions, cards]);
   const streak = useMemo(() => currentStreak(activeDateSet(map)), [map]);
 
   const today = new Date();
@@ -58,7 +60,7 @@ export function Heatmap({
                 const cls = future ? 'bg-transparent' : intensity(day?.total ?? 0);
                 const title = future
                   ? ''
-                  : `${date}: ${day?.attempts ?? 0} ${t('exercises', 'упр.')}, ${day?.reviewed ?? 0} ${t('cards', 'карт.')}`;
+                  : `${date}: ${day?.attempts ?? 0} ${t('exercises', 'упр.')}, ${Math.max(day?.reviewed ?? 0, day?.cardReviews ?? 0)} ${t('cards', 'карт.')}`;
                 return <div key={date} title={title} className={`h-3 w-3 rounded-sm ${cls}`} />;
               })}
             </div>

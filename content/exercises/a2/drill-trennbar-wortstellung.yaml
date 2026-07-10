@@ -175,3 +175,73 @@ items:
     explain:
       en: "In a W-question the conjugated part is second, the prefix last: Wann rufst du … an?"
       ru: "В вопросе с вопросительным словом спрягаемая часть стоит на втором месте, приставка — в конце: Wann rufst du … an?"
+
+  - id: cloze-zug-abfahren
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill the gaps with the correct forms of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+    text: "Der Zug {{fährt}} um sieben Uhr {{ab}}. (abfahren)"
+    translation:
+      en: The train departs at seven o'clock.
+      ru: Поезд отправляется в семь часов.
+    explain:
+      en: "abfahren splits: fährt in position 2 (with the Umlaut ä), the prefix ab at the very end."
+      ru: "abfahren разделяется: fährt на втором месте (с умлаутом ä), приставка ab — в самом конце."
+
+  - id: cloze-einladen-party
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill the gaps with the correct forms of the verb in brackets.
+      ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+    text: "Ich {{lade}} dich zu meiner Party {{ein}}. (einladen)"
+    translation:
+      en: I'm inviting you to my party.
+      ru: Я приглашаю тебя на свою вечеринку.
+    explain:
+      en: "einladen splits: lade in position 2, ein at the end — Ich lade dich … ein."
+      ru: "einladen разделяется: lade на втором месте, ein — в конце: Ich lade dich … ein."
+
+  - id: order-aufstehen-frage
+    type: order
+    focus: trennbar-wortstellung
+    instruction:
+      en: Arrange the words into a correct question.
+      ru: Составьте правильный вопрос.
+    words: ["Wann", "stehst", "du", "am", "Sonntag", "auf?"]
+    translation:
+      en: When do you get up on Sunday?
+      ru: Когда ты встаёшь в воскресенье?
+    explain:
+      en: "W-word first, conjugated part second, prefix last: Wann stehst du … auf?"
+      ru: "Вопросительное слово — первым, спрягаемая часть — на втором месте, приставка — в конце: Wann stehst du … auf?"
+
+  - id: uebersetzen-supermarkt-zu
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German. Use zumachen.
+      ru: Переведите на немецкий. Используйте zumachen.
+    prompt_en: "The supermarket closes at eight o'clock."
+    prompt_ru: "Супермаркет закрывается в восемь часов."
+    answer: "Der Supermarkt macht um acht Uhr zu."
+    explain:
+      en: "zumachen splits: macht in position 2, zu at the very end — Der Supermarkt macht … zu."
+      ru: "zumachen разделяется: macht на втором месте, zu — в самом конце: Der Supermarkt macht … zu."
+
+  - id: uebersetzen-muss-aufstehen
+    type: translate
+    focus: trennbar-modal
+    instruction:
+      en: Translate into German. Use müssen and aufstehen.
+      ru: Переведите на немецкий. Используйте müssen и aufstehen.
+    prompt_en: "I have to get up early tomorrow."
+    prompt_ru: "Завтра мне нужно рано встать."
+    answer: "Ich muss morgen früh aufstehen."
+    accept:
+      - "Morgen muss ich früh aufstehen."
+    explain:
+      en: "After the modal muss the separable verb stays whole at the end: … muss … aufstehen — it does not split."
+      ru: "После модального muss отделяемый глагол стоит целиком в конце: … muss … aufstehen — он не разделяется."

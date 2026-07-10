@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { ExerciseItem, Level } from '../../lib/schemas';
 import { getAttempts, logAttempt } from '../../lib/store';
 import { weakFocuses } from '../../lib/weakness';
+import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
@@ -134,8 +135,8 @@ interface MixedTrainingProps {
   /** number of items per session */
   count?: number;
   /** when provided, the end screen shows a "Weiter →" button that calls this
-      (instead of the standalone "Nochmal" restart) */
-  onFinished?: () => void;
+      (instead of the standalone "Nochmal" restart) with the actual counts */
+  onFinished?: (result: { answered: number; correct: number }) => void;
 }
 
 export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }: MixedTrainingProps) {
@@ -237,7 +238,7 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
                 {row.level}
               </span>
               <a
-                href={`/topics/${topicId}`}
+                href={withBase(`/topics/${topicId}`)}
                 lang="de"
                 className="truncate font-medium text-stone-700 hover:underline dark:text-stone-200"
               >
@@ -259,7 +260,7 @@ export default function MixedTraining({ sets, count = SESSION_SIZE, onFinished }
           {onFinished ? (
             <button
               type="button"
-              onClick={onFinished}
+              onClick={() => onFinished({ answered: answered.length, correct })}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >
               Weiter →

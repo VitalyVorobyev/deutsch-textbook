@@ -1,0 +1,64 @@
+topic: trennbare-verben
+title_de: "Mit dem Zug nach Köln"
+text:
+  - >-
+    Frau Berg wohnt in Frankfurt. Am Freitag fährt sie zu ihrer Freundin
+    Carla nach Köln. Der Zug fährt um acht Uhr ab. Frau Berg steigt ein
+    und findet einen [[Platz am Fenster::seat by the window::место у
+    окна]]. In Bonn steigt sie um — der zweite Zug ist [[zum
+    Glück::luckily::к счастью]] schon da.
+  - >-
+    Um elf Uhr kommt der Zug in Köln an. Carla holt ihre Freundin vom
+    Bahnhof ab. „[[Schön, dass du da bist::great that you're
+    here::здорово, что ты приехала]]!“, sagt sie. Frau Berg lacht: „Ich
+    bringe dir etwas mit — deine [[Lieblingsschokolade::favourite
+    chocolate::твой любимый шоколад]]!“
+  - >-
+    Am Samstagabend gehen die zwei Freundinnen aus. Sie essen in einem
+    kleinen Restaurant [[am Rhein::on the Rhine (river)::на Рейне]] und
+    sehen den [[Dom::cathedral::собор]]. Am Sonntag fährt Frau Berg
+    [[zurück::back (home)::обратно]]. Carla sagt: „Komm bald wieder! Ich
+    rufe dich am Montag an.“
+questions:
+  - id: frage-umsteigen
+    type: mc
+    prompt: "Wo steigt Frau Berg um?"
+    options:
+      - "In Frankfurt."
+      - "In Bonn."
+      - "In Köln."
+    correct: 1
+    translation:
+      en: Where does Frau Berg change trains?
+      ru: Где фрау Берг делает пересадку?
+    explain:
+      en: "„In Bonn steigt sie um.“ In Frankfurt she gets on the train (sie steigt ein), and in Köln the train arrives (kommt … an). Note how the prefix goes to the end: umsteigen → sie steigt … um."
+      ru: "„In Bonn steigt sie um.“ Во Франкфурте она садится в поезд (steigt ein), а в Кёльн поезд прибывает (kommt … an). Обратите внимание, как приставка уходит в конец: umsteigen → sie steigt … um."
+  - id: frage-mitbringen
+    type: mc
+    prompt: "Was bringt Frau Berg ihrer Freundin mit?"
+    options:
+      - "Fotos aus Frankfurt."
+      - "Einen Kaffee."
+      - "Schokolade."
+    correct: 2
+    translation:
+      en: What does Frau Berg bring for her friend?
+      ru: Что фрау Берг привозит своей подруге?
+    explain:
+      en: "„Ich bringe dir etwas mit — deine Lieblingsschokolade!“ The verb mitbringen splits: bringe … mit. Photos and coffee do not appear in the story."
+      ru: "„Ich bringe dir etwas mit — deine Lieblingsschokolade!“ Глагол mitbringen разделяется: bringe … mit. Про фотографии и кофе в тексте ничего нет."
+  - id: frage-samstagabend
+    type: mc
+    prompt: "Was machen die Freundinnen am Samstagabend?"
+    options:
+      - "Sie fahren zusammen nach Frankfurt."
+      - "Sie gehen aus und essen in einem Restaurant."
+      - "Sie warten am Bahnhof."
+    correct: 1
+    translation:
+      en: What do the two friends do on Saturday evening?
+      ru: Что подруги делают в субботу вечером?
+    explain:
+      en: "„Am Samstagabend gehen die zwei Freundinnen aus. Sie essen in einem kleinen Restaurant am Rhein …“ Frau Berg travels back alone on Sunday, and the station scene was on Friday."
+      ru: "„Am Samstagabend gehen die zwei Freundinnen aus. Sie essen in einem kleinen Restaurant am Rhein …“ Обратно фрау Берг едет одна в воскресенье, а сцена на вокзале была в пятницу."

@@ -1,5 +1,5 @@
 /** Time-series rollups over the attempt/session logs for the progress dashboard. */
-import type { Attempt, SessionLogEntry } from './store';
+import type { Attempt, CardStates, SessionLogEntry } from './store';
 import { localDateString } from './store';
 
 const DAY_MS = 86_400_000;
@@ -32,20 +32,23 @@ export interface DayActivity {
   correct: number;
   reviewed: number; // cards reviewed (from sessions)
   trained: number; // items trained (from sessions)
+  cardReviews: number; // cards whose most recent review fell on this day
   /** total weight for heatmap intensity */
   total: number;
 }
 
-/** Map of local-date → activity, aggregated from attempts and the session log. */
+/** Map of local-date → activity, aggregated from attempts, the session log,
+    and card review dates (so standalone /review days count as active). */
 export function dailyActivity(
   attempts: Attempt[],
   sessions: SessionLogEntry[],
+  cards: CardStates = {},
 ): Map<string, DayActivity> {
   const map = new Map<string, DayActivity>();
   const ensure = (date: string): DayActivity => {
     let d = map.get(date);
     if (!d) {
-      d = { date, attempts: 0, correct: 0, reviewed: 0, trained: 0, total: 0 };
+      d = { date, attempts: 0, correct: 0, reviewed: 0, trained: 0, cardReviews: 0, total: 0 };
       map.set(date, d);
     }
     return d;
@@ -60,7 +63,13 @@ export function dailyActivity(
     d.reviewed += s.reviewed ?? 0;
     d.trained += s.trained;
   }
-  for (const d of map.values()) d.total = d.attempts + d.reviewed;
+  for (const c of Object.values(cards)) {
+    if (c.last_review) ensure(localDateString(new Date(c.last_review))).cardReviews++;
+  }
+  // Session `reviewed` misses standalone /review activity; `last_review` keeps
+  // only each card's most recent review. max() of the two is a lower bound on
+  // real reviews that never double-counts a session's cards.
+  for (const d of map.values()) d.total = d.attempts + Math.max(d.reviewed, d.cardReviews);
   return map;
 }
 

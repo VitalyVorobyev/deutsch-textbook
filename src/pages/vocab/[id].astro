@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import VocabTable from '../../components/VocabTable.astro';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { buildDeck } from '../../lib/srs';
+import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
   const vocab = await getCollection('vocab');
@@ -17,7 +18,7 @@ const cards = buildDeck(data.id, data.entries);
 
 <Base title={data.title_de}>
   <nav class="mb-4 text-sm text-stone-400">
-    <a href="/vocab" class="hover:text-stone-600 dark:hover:text-stone-200">Wortschatz</a>
+    <a href={withBase('/vocab')} class="hover:text-stone-600 dark:hover:text-stone-200">Wortschatz</a>
   </nav>
 
   <header class="mb-8">

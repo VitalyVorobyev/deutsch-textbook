@@ -160,3 +160,73 @@ items:
     explain:
       en: "sehen takes the accusative: der Mann → den Mann. Only the masculine article changes in the accusative — and that is exactly the der/dem/den choice this drill trains."
       ru: "sehen требует Akkusativ: der Mann → den Mann. В винительном падеже меняется только мужской артикль — именно этот выбор der/dem/den мы и тренируем."
+
+  - id: cloze-von-oma
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Das Geschenk ist von {{der}} Oma. (die Oma)"
+    translation:
+      en: The present is from grandma.
+      ru: Подарок от бабушки.
+    explain:
+      en: "von always takes the dative; feminine die → der: von der Oma."
+      ru: "von всегда требует Dativ; женский род die → der: von der Oma."
+
+  - id: cloze-gast-suppe
+    type: cloze
+    focus: dativ-artikel
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Der Kellner bringt {{dem}} Gast die Suppe. (der Gast)"
+    translation:
+      en: The waiter brings the guest the soup.
+      ru: Официант приносит гостю суп.
+    explain:
+      en: "Two objects: the guest is the wem?-answer (dative, der → dem), the soup is the was?-answer (accusative). The person comes first."
+      ru: "Два дополнения: гость — ответ на wem? (Dativ, der → dem), суп — ответ на was? (Akkusativ). Сначала кому, потом что."
+
+  - id: cloze-siehst-bus
+    type: cloze
+    focus: akkusativ-artikel
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Siehst du {{den}} Bus dort? (der Bus)"
+    translation:
+      en: Do you see the bus over there?
+      ru: Ты видишь вон тот автобус?
+    explain:
+      en: "sehen takes the accusative: der Bus → den Bus. Compare: Wir fahren mit dem Bus (dative after mit)."
+      ru: "sehen требует Akkusativ: der Bus → den Bus. Сравните: Wir fahren mit dem Bus (Dativ после mit)."
+
+  - id: uebersetzen-zum-arzt
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "She is going to the doctor."
+    prompt_ru: "Она идёт к врачу."
+    answer: "Sie geht zum Arzt."
+    accept:
+      - "Sie geht zu dem Arzt."
+    explain:
+      en: "zu always takes the dative, and zu dem contracts to zum: Sie geht zum Arzt."
+      ru: "zu всегда требует Dativ, а zu dem сливается в zum: Sie geht zum Arzt."
+
+  - id: uebersetzen-hilft-kindern
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German. Use die Lehrerin for "the teacher".
+      ru: Переведите на немецкий. «Учительница» — die Lehrerin.
+    prompt_en: "The teacher is helping the children."
+    prompt_ru: "Учительница помогает детям."
+    answer: "Die Lehrerin hilft den Kindern."
+    explain:
+      en: "helfen takes the dative; in the dative plural both things change: die → den AND the noun adds -n — den Kindern."
+      ru: "helfen требует Dativ; в Dativ Plural меняются две вещи: die → den И существительное получает -n — den Kindern."

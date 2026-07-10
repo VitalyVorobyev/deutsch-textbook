@@ -1,0 +1,63 @@
+topic: artikel-genus
+title_de: "Tims Tasche"
+text:
+  - >-
+    Tim arbeitet [[in einem Büro::in an office::в офисе]]. Am Morgen geht
+    er [[zur Arbeit::to work::на работу]], und seine Tasche ist immer
+    [[voll::full::полная]]. In der Tasche sind ein
+    [[Handy::mobile phone::мобильный телефон]], ein
+    [[Schlüssel::key::ключ]], eine [[Flasche::bottle::бутылка]] Wasser und
+    ein Apfel.
+  - >-
+    Das Handy ist neu und sehr [[wichtig::important::важный]]: Tim
+    [[telefoniert::makes phone calls::звонит по телефону]] viel. Der
+    Schlüssel ist klein und alt. Die Flasche ist groß, denn Tim trinkt
+    viel Wasser. Und der Apfel? Der Apfel ist das Frühstück.
+  - >-
+    Aber heute gibt es ein Problem: Wo ist der Schlüssel? Er ist nicht in
+    der Tasche! Tim sucht und sucht. Dann sieht er: Der Schlüssel
+    [[liegt auf dem Tisch::is lying on the table::лежит на столе]]. Alles
+    ist gut, und Tim [[lacht::laughs::смеётся]].
+questions:
+  - id: frage-tasche
+    type: mc
+    prompt: "Was ist in Tims Tasche?"
+    options:
+      - "Ein Handy, ein Schlüssel, eine Flasche Wasser und ein Apfel."
+      - "Ein Buch, eine Lampe und ein Brötchen."
+      - "Nur ein Handy und ein Schlüssel."
+    correct: 0
+    translation:
+      en: What is in Tim's bag?
+      ru: Что лежит в сумке Тима?
+    explain:
+      en: "The first paragraph lists everything: „In der Tasche sind ein Handy, ein Schlüssel, eine Flasche Wasser und ein Apfel.“ A book and a lamp are not in the story."
+      ru: "В первом абзаце всё перечислено: „In der Tasche sind ein Handy, ein Schlüssel, eine Flasche Wasser und ein Apfel.“ Книги и лампы в тексте нет."
+  - id: frage-flasche
+    type: mc
+    prompt: "Warum ist die Flasche groß?"
+    options:
+      - "Das Büro ist groß."
+      - "Tim trinkt viel Wasser."
+      - "Tim isst viel Obst."
+    correct: 1
+    translation:
+      en: Why is the bottle big?
+      ru: Почему бутылка большая?
+    explain:
+      en: "The reason comes right after „denn“: „Die Flasche ist groß, denn Tim trinkt viel Wasser.“ The apple is his breakfast — fruit is not the reason for the big bottle."
+      ru: "Причина названа сразу после союза „denn“: „Die Flasche ist groß, denn Tim trinkt viel Wasser.“ Яблоко — это его завтрак, а не причина, почему бутылка большая."
+  - id: frage-schluessel
+    type: mc
+    prompt: "Wo liegt der Schlüssel heute?"
+    options:
+      - "In der Tasche."
+      - "Im Büro."
+      - "Auf dem Tisch."
+    correct: 2
+    translation:
+      en: Where is the key today?
+      ru: Где сегодня лежит ключ?
+    explain:
+      en: "„Dann sieht er: Der Schlüssel liegt auf dem Tisch.“ — the key is not in the bag today; that is exactly the problem in the story."
+      ru: "„Dann sieht er: Der Schlüssel liegt auf dem Tisch.“ — сегодня ключа нет в сумке, в этом и состоит проблема в тексте."

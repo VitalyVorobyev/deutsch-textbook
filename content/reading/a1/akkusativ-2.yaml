@@ -1,0 +1,62 @@
+topic: akkusativ
+title_de: "Ein Geschenk für Oma"
+text:
+  - >-
+    Oma Erika hat am Sonntag [[Geburtstag::birthday::день рождения]]. Lena
+    und ihr Bruder Jonas suchen ein [[Geschenk::present, gift::подарок]]
+    für die Oma. Sie gehen in die Stadt.
+  - >-
+    [[Im Laden::in the shop::в магазине]] sehen sie einen
+    [[Schal::scarf::шарф]], eine Tasche und ein Buch. Der Schal ist schön,
+    aber [[teuer::expensive::дорогой]]. Die Tasche ist zu klein. Und das
+    Buch? „Oma liest gern“, sagt Lena. „Wir kaufen das Buch!“ Jonas findet
+    die [[Idee::idea::идея]] gut. Sie kaufen das Buch und auch
+    [[Blumen::flowers::цветы]].
+  - >-
+    Am Sonntag besuchen Lena und Jonas die Oma. Oma Erika
+    [[öffnet::opens::открывает]] das Geschenk. „Ein Buch! Danke!“ Sie ist
+    sehr [[glücklich::happy::счастлива]]. Dann trinken alle einen Tee und
+    essen einen Kuchen. Der Kuchen schmeckt super.
+questions:
+  - id: frage-kaufen
+    type: mc
+    prompt: "Was kaufen Lena und Jonas?"
+    options:
+      - "Den Schal."
+      - "Das Buch und Blumen."
+      - "Nur die Tasche."
+    correct: 1
+    translation:
+      en: What do Lena and Jonas buy?
+      ru: Что покупают Лена и Йонас?
+    explain:
+      en: "„Wir kaufen das Buch!“, says Lena, and then the text adds: „Sie kaufen das Buch und auch Blumen.“ The scarf is too expensive, and the bag is too small."
+      ru: "„Wir kaufen das Buch!“ — говорит Лена, и дальше в тексте сказано: „Sie kaufen das Buch und auch Blumen.“ Шарф слишком дорогой, а сумка слишком маленькая."
+  - id: frage-schal
+    type: mc
+    prompt: "Warum kaufen sie den Schal nicht?"
+    options:
+      - "Er ist teuer."
+      - "Er ist zu klein."
+      - "Oma hat schon einen Schal."
+    correct: 0
+    translation:
+      en: Why do they not buy the scarf?
+      ru: Почему они не покупают шарф?
+    explain:
+      en: "The text says: „Der Schal ist schön, aber teuer.“ — it is the bag that is too small, and a second scarf is not mentioned at all."
+      ru: "В тексте сказано: „Der Schal ist schön, aber teuer.“ — слишком маленькая там сумка, а про второй шарф в тексте вообще ничего нет."
+  - id: frage-tee
+    type: mc
+    prompt: "Was trinken alle bei der Oma?"
+    options:
+      - "Kaffee."
+      - "Saft."
+      - "Tee."
+    correct: 2
+    translation:
+      en: What does everyone drink at grandma's place?
+      ru: Что все пьют у бабушки?
+    explain:
+      en: "The last paragraph says: „Dann trinken alle einen Tee und essen einen Kuchen.“ Coffee and juice do not appear in the story."
+      ru: "В последнем абзаце сказано: „Dann trinken alle einen Tee und essen einen Kuchen.“ Кофе и сок в тексте не упоминаются."

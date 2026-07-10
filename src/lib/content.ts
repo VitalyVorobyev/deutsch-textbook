@@ -1,6 +1,7 @@
 /** Server-side helpers over the content collections (usable in .astro files only). */
 import { getCollection } from 'astro:content';
 import { buildDeck, type CardDef } from './srs';
+import { withBase } from './url';
 import type { TopicNode } from './mastery';
 
 export const KIND_LABEL: Record<string, string> = {
@@ -14,7 +15,7 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
   const topics = await getCollection('topics');
   return topics.map((t) => ({
     id: t.data.id,
-    path: `/topics/${t.id}`,
+    path: withBase(`/topics/${t.id}`),
     level: t.data.level,
     kind: t.data.kind,
     title_de: t.data.title_de,
