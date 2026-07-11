@@ -62,9 +62,70 @@ export const POS = [
 ] as const;
 export const posSchema = z.enum(POS);
 
+/** The German IPA inventory, in house style — see CLAUDE.md → Lautschrift.
+    ʁ not r, ASCII g not ɡ, no tie bars; ɑ and the nasal exist only for French
+    loans (ʁɛstoˈʁɑ̃ː). */
+export const IPA_CHARS =
+  /^[aɐɑbçdeəɛfghiɪjklmnŋoøœɔpʁsʃtuʊvxyʏzʒʔˈˌː̯̩̃ ]+$/u;
+
+/** Combining marks may only sit on a base that can carry them. */
+const IPA_MARK_BASE: Array<[string, RegExp, string]> = [
+  ['̯', /[iɪuʊyʏɐeoaɔ]/, 'non-syllabic mark must follow a vowel (aɪ̯, aʊ̯, ɔʏ̯, uːɐ̯)'],
+  ['̩', /[nlmŋ]/, 'syllabic mark must follow n, l, m or ŋ'],
+  ['̃', /[aɑɔɛœ]/, 'nasal mark must follow a vowel'],
+];
+
+/**
+ * Every hard rule of the Lautschrift house style, as human-readable problems.
+ * Lives here rather than in scripts/validate.ts so `bun run build` — which checks
+ * content against these schemas — enforces it too, and so the look-alike traps get
+ * named: ɡ/g and ʁ/r are near-indistinguishable on screen, and a generic "bad
+ * character" message costs the author minutes every time.
+ */
+export function ipaProblems(de: string, ipa: string | undefined): string[] {
+  if (!ipa) return [];
+  const at = `ipa for "${de}"`;
+  const problems: string[] = [];
+
+  if (/[[\]/()]/.test(ipa)) problems.push(`${at} must be bare — the UI adds the brackets`);
+  if (ipa !== ipa.trim() || /\s{2,}/.test(ipa)) problems.push(`${at} has stray whitespace`);
+  if (ipa !== ipa.normalize('NFC')) problems.push(`${at} is not NFC-normalized`);
+  if (ipa === de) problems.push(`${at} is identical to the headword (generator echoed the word?)`);
+
+  if (/ɡ/.test(ipa)) problems.push(`${at} uses ɡ (U+0261) — house style is ASCII g`);
+  if (/[rʀ]/.test(ipa)) problems.push(`${at} uses r/ʀ — German /r/ is ʁ (ɐ̯ when vocalized)`);
+  if (/͡/.test(ipa)) problems.push(`${at} uses a tie bar — write ts / pf / tʃ untied`);
+
+  if (!IPA_CHARS.test(ipa)) {
+    const bad = [...new Set([...ipa])]
+      .filter((c) => !IPA_CHARS.test(c))
+      .map((c) => `"${c}" (U+${c.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0')})`);
+    problems.push(`${at} has characters outside the German set: ${bad.join(', ')}`);
+  }
+
+  const primary = (ipa.match(/ˈ/g) ?? []).length;
+  if (primary === 0) problems.push(`${at} has no primary stress mark ˈ`);
+  if (primary > 1 && !/\s/.test(de))
+    problems.push(`${at} marks ${primary} primary stresses on one word — use ˌ for secondary`);
+
+  for (const [mark, base, hint] of IPA_MARK_BASE) {
+    for (let i = 0; i < ipa.length; i++) {
+      if (ipa[i] === mark && (i === 0 || !base.test(ipa[i - 1]!))) {
+        problems.push(`${at}: ${hint}`);
+        break;
+      }
+    }
+  }
+  return problems;
+}
+
 export const vocabEntrySchema = z
   .object({
     de: z.string().min(1),
+    /** Lautschrift: IPA of the headword alone — no article, and bare (the UI adds
+        the brackets). Generate with `bun run gen:ipa`, then review. Notation is
+        checked in the superRefine below. */
+    ipa: z.string().min(1).optional(),
     pos: posSchema,
     /** nouns only */
     gender: z.enum(['m', 'f', 'n']).optional(),
@@ -95,6 +156,17 @@ export const vocabEntrySchema = z
         code: z.ZodIssueCode.custom,
         message: `"${entry.de}" is not a noun but has gender/plural`,
       });
+    }
+    // Sentence-length phrases are exempt: a full-sentence transcription is
+    // useless in the table and hostile to author.
+    if (entry.pos !== 'phrase' && !entry.ipa) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `"${entry.de}" is missing ipa (Lautschrift) — run \`bun run gen:ipa\``,
+      });
+    }
+    for (const message of ipaProblems(entry.de, entry.ipa)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message });
     }
   });
 export type VocabEntry = z.infer<typeof vocabEntrySchema>;

@@ -1,0 +1,53 @@
+---
+/** Static tap-to-hear button — the .astro twin of SpeakerButton.tsx.
+    Emits plain markup; one hoisted, delegated listener (below) drives every
+    instance on the page, so a 40-row Wortschatz table costs one event handler
+    and zero React islands. Use this in .astro templates; SpeakerButton.tsx is
+    for inside React islands. */
+import { SLOW_RATE } from '../lib/speech';
+
+interface Props {
+  /** German text to speak */
+  text: string;
+  /** turtle button: slow playback for careful listening */
+  slow?: boolean;
+  rate?: number;
+  /** aria-label / title; defaults to "Anhören: <text>" */
+  label?: string;
+  class?: string;
+}
+
+const { text, slow = false, rate, label, class: className = '' } = Astro.props;
+const aria = label ?? (slow ? `Langsam anhören: ${text}` : `Anhören: ${text}`);
+const effectiveRate = rate ?? (slow ? SLOW_RATE : undefined);
+---
+
+<button
+  type="button"
+  data-speak={text}
+  data-speak-rate={effectiveRate}
+  aria-label={aria}
+  title={aria}
+  class={`inline-flex min-h-10 min-w-10 items-center justify-center rounded-md align-middle text-base leading-none hover:bg-stone-100 sm:min-h-8 sm:min-w-8 dark:hover:bg-stone-700 ${className}`}
+>
+  {slow ? '🐢' : '🔊'}
+</button>
+
+<script>
+  import { speakGerman, ttsAvailable } from '../lib/speech';
+
+  // The buttons are hidden by CSS until this flag says the browser can speak,
+  // so a no-JS or no-voice reader never sees a dead control.
+  if (ttsAvailable()) {
+    document.documentElement.dataset.tts = 'ready';
+    document.addEventListener('click', (ev) => {
+      const btn = (ev.target as HTMLElement | null)?.closest<HTMLButtonElement>(
+        'button[data-speak]',
+      );
+      const text = btn?.dataset.speak;
+      if (!btn || !text) return;
+      const rate = btn.dataset.speakRate;
+      speakGerman(text, { rate: rate ? Number(rate) : undefined });
+    });
+  }
+</script>
