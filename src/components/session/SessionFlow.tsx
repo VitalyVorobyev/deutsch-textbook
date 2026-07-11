@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
-import { getCardStates, localDateString, logSession, sessionDoneToday } from '../../lib/store';
+import { eligibleFreshCards } from '../../lib/decks';
+import {
+  getAttempts,
+  getCardStates,
+  getTopicsState,
+  localDateString,
+  logSession,
+  sessionDoneToday,
+} from '../../lib/store';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
@@ -14,6 +22,8 @@ interface Props {
   cards: CardDef[];
   sets: TrainingSet[];
   nodes: TopicNode[];
+  /** deck id → CEFR level, for gating fresh cards of decks no topic owns */
+  deckLevels: Record<string, string>;
 }
 
 /** hard cap on flashcards in step 1 — keeps the whole session ~15 min */
@@ -49,7 +59,7 @@ interface SessionResume {
   reviewedCount: number | null;
 }
 
-export default function SessionFlow({ cards, sets, nodes }: Props) {
+export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
   const lang = useExplainLang();
   // a reload mid-session (mobile tab discard, opening a topic page) returns
   // to the saved lesson point; step 3 is never saved — by then the session is
@@ -81,26 +91,30 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
     };
   }, []);
 
-  // Plan step 1: due cards first (capped), new cards only when little is due.
+  // Plan step 1: due cards first (capped), new cards only when little is due —
+  // and only from eligible decks (opened/suggested topics, see src/lib/decks.ts).
   useEffect(() => {
     let cancelled = false;
     setPlan(null);
-    void getCardStates().then((states) => {
-      if (cancelled) return;
-      const { due, fresh } = splitQueue(cards, states);
-      const dueCapped = shuffle(due).slice(0, MAX_CARDS);
-      const newLimit = due.length > 0 && due.length < MIN_DUE ? MAX_CARDS - dueCapped.length : 0;
-      setPlan({
-        cards: newLimit > 0 ? [...dueCapped, ...fresh] : dueCapped,
-        newLimit,
-        total: dueCapped.length + Math.min(newLimit, fresh.length),
-        dueRemaining: due.length - dueCapped.length,
-      });
-    });
+    void Promise.all([getCardStates(), getAttempts(), getTopicsState()]).then(
+      ([states, attempts, topics]) => {
+        if (cancelled) return;
+        const { due, fresh } = splitQueue(cards, states);
+        const pool = eligibleFreshCards(fresh, nodes, deckLevels, attempts, topics, states);
+        const dueCapped = shuffle(due).slice(0, MAX_CARDS);
+        const newLimit = due.length > 0 && due.length < MIN_DUE ? MAX_CARDS - dueCapped.length : 0;
+        setPlan({
+          cards: newLimit > 0 ? [...dueCapped, ...pool] : dueCapped,
+          newLimit,
+          total: dueCapped.length + Math.min(newLimit, pool.length),
+          dueRemaining: due.length - dueCapped.length,
+        });
+      },
+    );
     return () => {
       cancelled = true;
     };
-  }, [cards, planRound]);
+  }, [cards, nodes, deckLevels, planRound]);
 
   // Nothing due at all → brief note, then auto-advance to training.
   useEffect(() => {

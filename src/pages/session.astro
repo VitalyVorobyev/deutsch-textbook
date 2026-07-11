@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SessionFlow from '../components/session/SessionFlow';
 import type { TrainingSet } from '../components/training/MixedTraining';
-import { getAllCards, getTopicNodes } from '../lib/content';
+import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
 
-const [cards, nodes, exercises, topics] = await Promise.all([
+const [cards, nodes, deckLevels, exercises, topics] = await Promise.all([
   getAllCards(),
   getTopicNodes(),
+  getDeckLevels(),
   getCollection('exercises'),
   getCollection('topics'),
 ]);
@@ -46,6 +47,6 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
   </p>
 
   <div class="mt-8">
-    <SessionFlow client:only="react" cards={cards} sets={sets} nodes={nodes} />
+    <SessionFlow client:only="react" cards={cards} sets={sets} nodes={nodes} deckLevels={deckLevels} />
   </div>
 </Base>
