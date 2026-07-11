@@ -148,6 +148,8 @@ function restoreSession(
 ): { session: SessionItem[]; answered: Answered[] } | null {
   const saved = loadResume<TrainingResume>(surface);
   if (!saved || !Array.isArray(saved.uids) || !Array.isArray(saved.answered)) return null;
+  // an empty queue must rebuild — eligibility may have changed since it was saved
+  if (saved.uids.length === 0) return null;
   if (saved.answered.length > saved.uids.length) return null;
   if (!saved.answered.every((a, i) => a.uid === saved.uids[i])) return null;
 
@@ -228,7 +230,8 @@ export default function MixedTraining({
       const s = buildSession(eligibleTrainingSets(sets, nodes, attempts, topics), count, attempts);
       setSession(s);
       setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
-      if (surface) saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
+      if (surface && s.length > 0)
+        saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
     });
     return () => {
       cancelled = true;
