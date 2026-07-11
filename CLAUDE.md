@@ -12,6 +12,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun run dev` — dev server
 - `bun run validate` — content validation (**run after every content change; it must pass before you are done**)
 - `bun run build` — production build (also type-checks content against schemas)
+- `bun run gen:ipa` — fill missing `ipa` (Lautschrift) on vocab entries via espeak-ng (`brew install espeak-ng`; one-off dev tool — the IPA is committed to YAML and nothing about espeak ships). **Always review the output**: it is a good phoneme skeleton but gets compound/separable-verb stress, loanwords, and unstressed vowel quality wrong. `--calibrate` diffs it against a known-answer table; `--check` is a dry run; `--force` regenerates (discarding manual fixes).
 - `bun tauri dev` / `bun tauri build` — desktop app (thin Tauri v2 shell in `src-tauri/`; needs a Rust toolchain). Release: push a plain `vX.Y.Z` tag → `.github/workflows/release.yml` builds Windows (.exe/.msi), Linux (.deb/.AppImage), and macOS (.dmg, unsigned) installers into a GitHub Release; the tag is stamped as the version (committed `version` fields are dev placeholders). Keep the site base-path-agnostic — the app ships the default root-base build. Tauri JS APIs are used only behind the `isTauri()` runtime check (`src/lib/syncdir.ts`).
 
 ## Architecture
@@ -23,7 +24,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `content/atlas.yaml` — the topic graph (id/level/kind/prerequisites per node). Must stay consistent with topic frontmatter; `bun run validate` enforces it.
 - `progress/<profile>/*.json` — learner progress snapshots, **one folder per local profile**. The folder name is the slug of whatever name the learner chose at first run; this repo's historical learner folder is `progress/vitaly/`. v3 snapshots carry `attempts`, `cards`, `sessions` (daily-session completion log) and `topics` (per-topic `readAt` + a manual `learned`/`reopened` override; import back-compat reads v1/v2/v3). Read the newest snapshot in the relevant profile folder to find weak spots and generate targeted drill sets (put drills in `content/exercises/<level>/drill-*.yaml` attached to the relevant topic). Snapshots sync **automatically** on two paths (`src/lib/autosync.ts`, debounced full-snapshot on every progress write): under `bun run dev` via POST to the dev-only `POST /__progress/<profile>` middleware (`src/integrations/progress-writer.ts`), which writes `progress/<profile>/<date>.json` into the repo; in the desktop app via the Tauri fs plugin into the configurable sync folder (`src/lib/syncdir.ts`, localStorage `da:syncdir`, default app-data — point it at a repo clone's `progress/` on the Fortschritt page). The Fortschritt page's Export button does the same on demand; on the plain deployed website it falls back to a file download. Import is a **non-destructive merge** by default (Replace is confirm-gated).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
-- Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`, `listen`). SRS: `src/lib/srs.ts` + `src/components/srs/`. TTS: `src/lib/speech.ts` + `src/components/SpeakerButton.tsx` (browser speechSynthesis, German voice; also powers the flashcards' "Hören" dictation input mode).
+- Exercise UI: `src/components/exercises/` (item types: `mc`, `cloze`, `match`, `order`, `table`, `translate`, `listen`). SRS: `src/lib/srs.ts` + `src/components/srs/`. TTS: `src/lib/speech.ts` + `src/components/SpeakerButton.tsx` (browser speechSynthesis, German voice; also powers the flashcards' "Hören" dictation input mode). In `.astro` templates use `src/components/SpeakButton.astro` instead — it emits plain `<button data-speak>` markup driven by one hoisted, delegated listener, so a 40-row Wortschatz table costs one event handler; **never mount a React island per table row**. The buttons are CSS-hidden until the script sets `<html data-tts="ready">`, so no-JS/no-voice readers never see a dead control.
 - `/training` — cross-topic interleaved practice (`src/components/training/MixedTraining.tsx`): prioritizes recently-wrong items, then items tagged with a currently weak focus (`src/lib/weakness.ts` aggregates error rates per focus tag), then never-attempted items; never two consecutive items from one topic; attempts are logged under the item's origin set id. EN/RU→DE flashcards use typed input (`src/lib/typing.ts` does the matching: article required for nouns, umlaut-substitute detection, trailing-punctuation-tolerant).
 - Profiles & progress store: `src/lib/profile.ts` (local learner profiles — no accounts/server; each profile owns the IndexedDB database `deutsch-atlas--<id>` and writes its identity into it under the key `profile`, so the browser's databases — not the localStorage registry — are the source of truth for who learns on this device; switcher in the header). There is **no default profile and no name is ever assumed**: with no profile registered, `resolveProfileState()` reports `first-run` and the blocking `src/components/FirstRunGate.tsx` asks who is learning, offering to reconnect anything `discoverProfiles()` finds (a named database → one-click "continue as …"; the unnamed pre-profile `deutsch-atlas` database → the learner claims it by giving it a name, which binds it via the registry entry's `db` field). Name → id → database is deterministic (`slugify`), so re-entering the same name reconnects even where `indexedDB.databases()` is unavailable. The last remaining profile cannot be deleted. `src/lib/store.ts` (profile-aware `getStore`; keys `attempts`/`cards`/`sessions`/`topics` + the `profile` identity record; `mergeSnapshot`/`replaceSnapshot`) awaits that decision before touching IndexedDB and parks writes while the gate is up (nothing may create a database before discovery has run).
 - Lesson resume: `src/lib/resume.ts` — profile-scoped, same-day localStorage state so a reload (mobile tab discard, mid-session navigation) returns to the same lesson point. Used by `ExerciseSet` (answered items), `MixedTraining` (built queue + position, via `resumeKey`), and `SessionFlow` (step + review count). Cleared on finish/restart; flashcards need no resume state (each grade persists immediately, so the due queue rebuilds itself).
@@ -100,7 +101,24 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `haben-wendungen` | states expressed with haben + noun: Hunger/Durst/Feierabend haben (❌ Ich bin Hunger) |
 | `um-am-zeit` | time prepositions: um + clock time, am + day/part of day, im + month/season, in der Nacht |
 | `du-sie` | register: du vs Sie with strangers/officials |
-- Vocab: nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat").
+- Vocab: nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat"). Every entry except sentence-length `phrase`s needs `ipa` (Lautschrift) — see below.
+
+### Lautschrift (the `ipa` field)
+
+Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then reviewed. Rendered under the word in the Wortschatz table and on the flashcard's back. The character set and these rules are enforced by `bun run validate` (`IPA_CHARS` in `src/lib/schemas.ts`).
+
+| Rule | Yes | No |
+| --- | --- | --- |
+| Bare — the UI adds the brackets | `ˈapfl̩` | `[ˈapfl̩]`, `/ˈapfl̩/` |
+| Headword only, no article | `ˈapfl̩` | `deːɐ̯ ˈapfl̩` |
+| Primary stress always marked, incl. monosyllables | `ˈbʁoːt` | `bʁoːt` |
+| Secondary stress in compounds and separable verbs, primary on the prefix/first stem | `ˈaʊ̯fˌʃteːən`, `ˈfʁyːˌʃtʏk` | `aʊ̯fˈʃteːən`, two `ˈ` |
+| Uvular r; vocalized r is `ɐ̯` (incl. the ver-/er- prefixes) | `ʁ`, `ˈuːɐ̯`, `fɛɐ̯ˈʃteːən` | `r`, `ʀ` |
+| ASCII g (U+0067) | `g` | `ɡ` (U+0261 — the Wiktionary copy-paste trap) |
+| Affricates as sequences, no tie bars | `ts`, `pf`, `tʃ` | `t͡s`, `p͡f` |
+| Diphthong offglides carry ̯ (U+032F) | `aɪ̯ aʊ̯ ɔʏ̯` | `aɪ aʊ ɔʏ` |
+| Syllabic consonant after an obstruent — but not after a sonorant | `ˈmaxn̩`, `ˈapfl̩`, `telefoˈniːʁən` | `telefoˈniːʁn̩` |
+| Glottal stop before a word-internal stressed vowel; omitted word-initially | `bəˈʔantvɔʁtn̩`, `ˈmɪtaːkˌʔɛsn̩` | `ˈʔapfl̩` |
 - **Card identity**: flashcard history is keyed by `<vocab-file-id>::<de>::<direction>`. Renaming a headword or the vocab file id resets the learner's SRS history for it — avoid unless the entry was wrong.
 
 ### Checklists
@@ -110,7 +128,7 @@ New topic:
 2. Exercise set(s) in `content/exercises/<level>/<id>.yaml` — 8–15 items, ≥3 different types, each with `explain`.
 3. Pretest in `content/exercises/<level>/<id>-pretest.yaml` — 3 `mc` items probing the topic's core rules, referenced via `pretest`.
 4. Reading text in `content/reading/<level>/<id>.yaml` — ~90–130 words at the topic's level, 6–10 glosses, 3 comprehension questions; referenced via `reading`.
-5. Vocab file if the topic introduces a word field (20–40 entries).
+5. Vocab file if the topic introduces a word field (20–40 entries). Fill `ipa` with `bun run gen:ipa`, then review it — the generator is weakest exactly on compounds, separable verbs and loanwords.
 6. Add the node to `content/atlas.yaml`.
 7. `bun run validate` must pass.
 

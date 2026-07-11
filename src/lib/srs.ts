@@ -28,6 +28,8 @@ export interface CardDef {
   de: string;
   en: string;
   ru: string;
+  /** Lautschrift of the headword alone, bare — the UI adds the brackets */
+  ipa?: string;
   /** display form with article/plural for nouns, aux+partizip for verbs */
   deDetail?: string;
   exampleDe: string;
@@ -59,6 +61,7 @@ export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
       de: e.de,
       en: e.en,
       ru: e.ru,
+      ipa: e.ipa,
       deDetail: deDetail(e),
       exampleDe: e.example_de,
       exampleEn: e.example_en,

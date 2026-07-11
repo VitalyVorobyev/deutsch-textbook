@@ -12,6 +12,13 @@
   display: none;
 }
 
+/* Tap-to-hear buttons (src/components/SpeakButton.astro) stay hidden until the
+   page script confirms the browser can actually speak — no dead controls with
+   JS off or no German voice installed. */
+html:not([data-tts="ready"]) [data-speak] {
+  display: none;
+}
+
 :root {
   color-scheme: light;
 }

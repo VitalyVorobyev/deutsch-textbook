@@ -19,6 +19,7 @@ import {
   type ExerciseSet,
   type Reading,
   type Topic,
+  type VocabEntry,
   type VocabFile,
 } from '../src/lib/schemas';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
@@ -96,6 +97,27 @@ for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
   topics.set(data.id, { file: rel(file), data, body });
 }
 
+/**
+ * Soft Lautschrift oracles. The hard rules (charset, stress, the ɡ/ʁ look-alike
+ * traps, mark placement) live in `ipaProblems` in the schema, so `bun run build`
+ * enforces them too; these are the heuristics that are useful but too fuzzy to
+ * make a schema error.
+ */
+function checkIpa(where: string, e: VocabEntry): void {
+  const at = `${where} → "${e.de}"`;
+  if (!e.ipa) {
+    // the schema requires ipa on everything but phrases; nudge the short ones
+    if (e.pos === 'phrase' && e.de.split(/\s+/).length <= 3)
+      warn(at, 'short phrase without ipa — worth transcribing');
+    return;
+  }
+  // ä/ö/ü only; ß would false-positive on Fuß → ˈfuːs
+  if (/[äöü]/i.test(e.de) && !/[ɛøœyʏ]/.test(e.ipa))
+    warn(at, 'headword has an umlaut but its ipa has no front-rounded/ɛ vowel — check it');
+  if (e.de.split(/\s+/).length !== e.ipa.split(/\s+/).length)
+    warn(at, 'de and ipa disagree on word count');
+}
+
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
 for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   let raw: unknown;
@@ -116,6 +138,7 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   for (const e of data.entries) {
     if (seen.has(e.de)) fail(rel(file), `duplicate entry "${e.de}" (card ids must be unique)`);
     seen.add(e.de);
+    checkIpa(rel(file), e);
   }
 }
 

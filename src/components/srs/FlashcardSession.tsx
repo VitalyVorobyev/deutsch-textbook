@@ -215,11 +215,18 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
   const givenNorm = normalizeTyped(typed);
   const hint = verdict ? verdictHint(verdict, answerDe, givenNorm) : null;
 
+  // Back side only: on an x-de card, and on a de-x card in dictation mode, the
+  // Lautschrift on the front would give the answer away.
   const backDetails = (
     <>
-      {card.deDetail && (
-        <p lang="de" className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {card.deDetail}
+      {(card.ipa || card.deDetail) && (
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+          {card.ipa && (
+            <span translate="no" className="mr-2">
+              [{card.ipa}]
+            </span>
+          )}
+          {card.deDetail && <span lang="de">{card.deDetail}</span>}
         </p>
       )}
       <p lang="de" className="mt-4 text-sm italic text-stone-600 dark:text-stone-300">
