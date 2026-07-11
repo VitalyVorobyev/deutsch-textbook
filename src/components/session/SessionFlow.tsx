@@ -66,6 +66,7 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
   const [trainedCount, setTrainedCount] = useState<number | null>(null);
   // null = still loading the session log
   const [doneToday, setDoneToday] = useState<boolean | null>(null);
+  const [trainingEmpty, setTrainingEmpty] = useState(false);
   const [repeatAnyway, setRepeatAnyway] = useState(false);
   // bumped when the learner opts into reviewing the cards the cap left out
   const [planRound, setPlanRound] = useState(0);
@@ -108,6 +109,13 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
     const t = setTimeout(() => setStep(2), 1600);
     return () => clearTimeout(t);
   }, [step, plan]);
+
+  // Empty training pool (nothing eligible yet) → same brief-note-then-advance.
+  useEffect(() => {
+    if (step !== 2 || !trainingEmpty) return;
+    const t = setTimeout(() => finishTraining({ answered: 0, correct: 0 }), 1600);
+    return () => clearTimeout(t);
+  }, [step, trainingEmpty]);
 
   // Persist the lesson point (steps 1–2 only; finishTraining clears it).
   useEffect(() => {
@@ -264,8 +272,10 @@ export default function SessionFlow({ cards, sets, nodes }: Props) {
         {step === 2 && (
           <MixedTraining
             sets={sets}
+            nodes={nodes}
             count={TRAINING_COUNT}
             onFinished={finishTraining}
+            onEmpty={() => setTrainingEmpty(true)}
             resumeKey="session"
           />
         )}
