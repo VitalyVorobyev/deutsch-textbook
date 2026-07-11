@@ -24,7 +24,7 @@ jobs:
         platform: [macos-latest, ubuntu-22.04, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -56,7 +56,7 @@ jobs:
           jq --arg v "$V" '.version = $v' src-tauri/tauri.conf.json > tauri.conf.json.tmp
           mv tauri.conf.json.tmp src-tauri/tauri.conf.json
 
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

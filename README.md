@@ -1,94 +1,97 @@
 # Deutsch-Atlas
 
-An agent-authored German learning system: a wiki-like textbook, interactive exercises,
-and FSRS flashcards — built as a static Astro site over a structured content base,
-also shipped as a desktop app for Windows, Linux, and macOS.
+[![CI](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml/badge.svg)](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml)
 
-- **Content** lives in `content/` (MDX topics, YAML vocabulary and exercises) and is
-  written by an agent following the rules in [CLAUDE.md](CLAUDE.md).
-- **Profiles**: on first open the app asks for your name and creates a local
-  profile (no accounts, no server); more profiles can be added from the header
-  switcher, each with fully separate progress.
-- **Progress** (exercise attempts, flashcard scheduling) lives in the browser
-  (IndexedDB) and is recorded automatically as you practice. While `bun run dev`
-  is running, every change also syncs to `progress/<profile>/<date>.json` in the
-  repo — the agent reads those snapshots to generate drills targeting your weak
-  spots. The desktop app does the same automatically (see below); on the deployed
-  website use Export/Import on the Fortschritt page instead.
-- **Explanations** are bilingual (English/Russian, toggle in the header); the German
-  content itself is always visible.
+A free, local-first app for learning German — a structured textbook, interactive
+exercises, and spaced-repetition flashcards in one place. Explanations are
+bilingual: every topic is written twice, in English and in Russian, and you can
+switch between the two at any time. The German itself — examples, tables,
+readings — is always visible.
 
-## Usage
+There are no ads, no accounts, and no gamification. The design follows what
+learning research actually supports: active recall, typed answers, spaced
+review, interleaved practice, and immediate explanations when you get something
+wrong.
 
-This project uses [Bun](https://bun.sh) as its package manager and task runner.
+## What's inside
 
-```sh
-bun install
-bun run dev        # the textbook at http://localhost:4321
-bun run validate   # check all content against schemas and cross-references
-bun run check      # astro type-check
-bun run build      # static production build
-```
+- **A structured path from A1 toward B2.** Topics form an atlas: each article
+  states the rule briefly, explains it in depth, shows translated examples, and
+  warns about the mistakes learners actually make. Prerequisites link topics
+  together, so you always know what to learn next.
+- **Interactive exercises on every topic** — multiple choice, fill-in-the-gap,
+  matching, word order, tables, translation, and dictation. A wrong answer
+  immediately shows a short explanation of the rule you tripped over, in
+  English or Russian.
+- **Flashcards with real recall.** Vocabulary becomes flashcards in both
+  directions, scheduled by FSRS (a modern spaced-repetition algorithm). In the
+  production direction you type the German — article included for nouns —
+  instead of just flipping the card. Words come with pronunciation (IPA) and
+  audio.
+- **A ~15-minute guided daily session**: due flashcards first, then a short
+  mixed-exercise workout, then a suggestion for what to read next.
+- **Mixed training that targets your weak spots.** Exercises from different
+  topics are interleaved, and the queue prioritizes what you recently got wrong
+  and the specific confusions (dative pronouns, haben/sein, word order …) your
+  error history shows.
+- **A progress dashboard** with an activity heatmap, streak, per-topic
+  completion, and trends for each confusion the exercises measure.
 
-## Desktop app
+## Getting it
 
-The site ships as an installable desktop app (a thin [Tauri v2](https://tauri.app)
-shell around the same static build). Download installers from
+**Use it in the browser** — the site is deployed at
+<https://vitalyvorobyev.github.io/deutsch-textbook/>. Nothing to install;
+progress stays in your browser.
+
+**Or install the desktop app** (Windows, Linux, macOS) from
 [GitHub Releases](../../releases):
 
-- **Windows**: `.exe` (NSIS) or `.msi`. SmartScreen may warn — *More info → Run anyway*.
-- **Linux**: `.deb` (`sudo apt install ./deutsch-atlas_…_amd64.deb`) or `.AppImage`
-  (`chmod +x`, then run). Text-to-speech needs `speech-dispatcher` with a German
-  voice — without it, listening exercises degrade to silence.
+- **Windows**: `.exe` (NSIS) or `.msi`. SmartScreen may warn — choose
+  *More info → Run anyway*.
+- **Linux**: `.deb` (`sudo apt install ./deutsch-atlas_…_amd64.deb`) or
+  `.AppImage` (`chmod +x`, then run). Text-to-speech needs `speech-dispatcher`
+  with a German voice — without it, listening exercises stay silent.
 - **macOS**: `.dmg`, unsigned — after moving the app to Applications run
   `xattr -cr /Applications/Deutsch-Atlas.app`, or right-click → Open
   (macOS 15+: System Settings → Privacy & Security → Open Anyway).
 
-Progress in the app is saved permanently (webview IndexedDB) and additionally
-auto-synced as snapshot files to a **sync folder** — by default the app data
-directory, configurable on the Fortschritt page. Point it at your repo clone's
-`progress/` folder and the agent personalization loop works exactly like under
-`bun run dev`. The website and the app are separate storage origins: to carry
-existing browser history into the app once, use Export there and Import here.
-
-Local desktop development needs a [Rust toolchain](https://rustup.rs):
+**Or run it locally** with [Bun](https://bun.sh):
 
 ```sh
-bun tauri dev      # desktop window against the dev server
-bun tauri build    # installers in src-tauri/target/release/bundle/
+bun install
+bun run dev   # http://localhost:4321
 ```
 
-## CI & deployment
+## Your data
 
-GitHub Actions run on every push and pull request (`.github/workflows/ci.yml`:
-validate → type-check → build). Pushes to `main` also deploy the site to GitHub
-Pages (`.github/workflows/pages.yml`) at
-<https://vitalyvorobyev.github.io/deutsch-textbook/> — enable **Settings →
-Pages → Source: GitHub Actions** once for the repository. Learner progress
-stays in the browser per origin; use Export/Import on the Fortschritt page to
-move it between localhost and the deployed site.
+Everything stays with you. On first open the app asks for a name and creates a
+local profile — no account, no server, no tracking. Several people can share
+one device, each with fully separate progress. Exercise attempts and flashcard
+scheduling are stored in your browser (or in the desktop app's own storage) and
+recorded automatically as you practice.
 
-Desktop installers are built and published by `.github/workflows/release.yml`
-on every semver tag:
+The Fortschritt (progress) page can export your progress as a JSON snapshot and
+import it elsewhere — for example to move from the website to the desktop app.
+Import merges by default, so nothing is overwritten without asking.
 
-```sh
-git tag v0.2.0 && git push origin v0.2.0
-```
+## Development
 
-Plain `vX.Y.Z` tags only (no `-beta` suffixes — the MSI installer requires
-numeric versions). The tag version is stamped into the installers; the
-`version` fields committed in `package.json`/`tauri.conf.json` are dev
-placeholders.
+Deutsch-Atlas is a static [Astro](https://astro.build) site with React islands,
+Tailwind CSS, and a thin [Tauri v2](https://tauri.app) shell for the desktop
+build; all content lives in the repo as MDX and YAML, validated against Zod
+schemas. Bun is the package manager and task runner.
 
-## Structure
-
-| Path | What |
+| Command | What it does |
 | --- | --- |
-| `content/topics/<level>/<id>.mdx` | Topic articles (the atlas nodes) |
-| `content/vocab/<id>.yaml` | Vocabulary → flashcard decks |
-| `content/exercises/<level>/<id>.yaml` | Exercise sets (mc, cloze, match, order, table) |
-| `content/atlas.yaml` | Topic graph (levels, prerequisites) |
-| `progress/` | Exported learner progress snapshots |
-| `src/` | Astro site + React islands |
-| `src-tauri/` | Desktop shell (Tauri v2) |
-| `scripts/validate.ts` | Content validator |
+| `bun run dev` | dev server |
+| `bun run validate` | validate all content against schemas and cross-references |
+| `bun run check` | type-check (`astro check`) |
+| `bun run lint` | ESLint over `src/` and `scripts/` |
+| `bun run build` | static production build |
+| `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
+
+Content authoring rules — bilingual voice, CEFR discipline, exercise and IPA
+conventions — are in [CLAUDE.md](CLAUDE.md); direction lives in
+[docs/roadmap.md](docs/roadmap.md) and [docs/backlog.md](docs/backlog.md).
+Releases: push a `vX.Y.Z` tag and `.github/workflows/release.yml` builds and
+publishes the installers.

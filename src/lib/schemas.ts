@@ -64,9 +64,11 @@ export const posSchema = z.enum(POS);
 
 /** The German IPA inventory, in house style — see CLAUDE.md → Lautschrift.
     ʁ not r, ASCII g not ɡ, no tie bars; ɑ and the nasal exist only for French
-    loans (ʁɛstoˈʁɑ̃ː). */
+    loans (ʁɛstoˈʁɑ̃ː). The three combining marks (U+0303 nasal, U+032F
+    non-syllabic, U+0329 syllabic) are standalone members of the set and written
+    as escapes so they don't render glued onto the preceding letter. */
 export const IPA_CHARS =
-  /^[aɐɑbçdeəɛfghiɪjklmnŋoøœɔpʁsʃtuʊvxyʏzʒʔˈˌː̯̩̃ ]+$/u;
+  /^[aɐɑbçdeəɛfghiɪjklmnŋoøœɔpʁsʃtuʊvxyʏzʒʔˈˌː\u0303\u032F\u0329 ]+$/u;
 
 /** Combining marks may only sit on a base that can carry them. */
 const IPA_MARK_BASE: Array<[string, RegExp, string]> = [

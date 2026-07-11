@@ -43,18 +43,22 @@ export default function ProgressPanel({ nodes }: Props) {
 
   const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
 
-  async function refresh() {
+  async function loadData(): Promise<Data> {
     const [attempts, cards, sessions, topics] = await Promise.all([
       getAttempts(),
       getCardStates(),
       getSessionLog(),
       getTopicsState(),
     ]);
-    setData({ attempts, cards, sessions, topics });
+    return { attempts, cards, sessions, topics };
+  }
+
+  async function refresh() {
+    setData(await loadData());
   }
 
   useEffect(() => {
-    void refresh();
+    void loadData().then(setData);
     if (isTauri()) void getSyncDir().then(setSyncDir);
   }, []);
 
