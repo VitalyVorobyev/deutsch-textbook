@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import type { ExerciseItem, Level } from '../../lib/schemas';
-import { getAttempts, logAttempt } from '../../lib/store';
+import { getAttempts, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
+import { suggestNextTopic, type TopicNode } from '../../lib/mastery';
+import { eligibleTrainingSets } from '../../lib/training';
 import { weakFocuses } from '../../lib/weakness';
 import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
@@ -17,6 +19,8 @@ export interface TrainingSet {
   /** German title of the owning topic */
   title_de: string;
   level: Level;
+  /** the set referenced by its topic's `pretest` frontmatter — never trained */
+  isPretest: boolean;
   items: ExerciseItem[];
 }
 
@@ -45,9 +49,7 @@ const SESSION_SIZE = 15;
  * Afterwards adjacency is repaired so no two consecutive items share a set
  * (best effort — impossible if one set dominates the selection).
  */
-async function buildSession(sets: TrainingSet[], count: number): Promise<SessionItem[]> {
-  const attempts = await getAttempts();
-
+function buildSession(sets: TrainingSet[], count: number, attempts: Attempt[]): SessionItem[] {
   // most recent attempt per item
   const lastAttempt = new Map<string, { correct: boolean; ts: number }>();
   for (const a of attempts) {
@@ -146,6 +148,8 @@ function restoreSession(
 ): { session: SessionItem[]; answered: Answered[] } | null {
   const saved = loadResume<TrainingResume>(surface);
   if (!saved || !Array.isArray(saved.uids) || !Array.isArray(saved.answered)) return null;
+  // an empty queue must rebuild — eligibility may have changed since it was saved
+  if (saved.uids.length === 0) return null;
   if (saved.answered.length > saved.uids.length) return null;
   if (!saved.answered.every((a, i) => a.uid === saved.uids[i])) return null;
 
@@ -174,11 +178,16 @@ function restoreSession(
 
 interface MixedTrainingProps {
   sets: TrainingSet[];
+  /** the topic graph — eligibility and the empty-state suggestion need it */
+  nodes: TopicNode[];
   /** number of items per session */
   count?: number;
   /** when provided, the end screen shows a "Weiter →" button that calls this
       (instead of the standalone "Nochmal" restart) with the actual counts */
   onFinished?: (result: { answered: number; correct: number }) => void;
+  /** called when the built session has no items (nothing eligible yet) —
+      an empty session can never reach onFinished */
+  onEmpty?: () => void;
   /** when provided, today's in-progress run is persisted under this key and
       resumed after a reload (mobile tab discard, navigation) */
   resumeKey?: string;
@@ -186,12 +195,15 @@ interface MixedTrainingProps {
 
 export default function MixedTraining({
   sets,
+  nodes,
   count = SESSION_SIZE,
   onFinished,
+  onEmpty,
   resumeKey,
 }: MixedTrainingProps) {
   const lang = useExplainLang();
   const [session, setSession] = useState<SessionItem[] | null>(null);
+  const [suggestion, setSuggestion] = useState<TopicNode | null>(null);
   const [index, setIndex] = useState(0);
   const [answered, setAnswered] = useState<Answered[]>([]);
   const [currentDone, setCurrentDone] = useState(false);
@@ -201,6 +213,8 @@ export default function MixedTraining({
 
   useEffect(() => {
     // only the initial mount resumes; an explicit restart builds fresh
+    // (restored against all sets — a queue built before a set turned
+    // ineligible finishes as saved rather than losing today's progress)
     if (surface && round === 0) {
       const restored = restoreSession(sets, surface);
       if (restored) {
@@ -211,15 +225,24 @@ export default function MixedTraining({
       }
     }
     let cancelled = false;
-    void buildSession(sets, count).then((s) => {
+    void Promise.all([getAttempts(), getTopicsState()]).then(([attempts, topics]) => {
       if (cancelled) return;
+      const s = buildSession(eligibleTrainingSets(sets, nodes, attempts, topics), count, attempts);
       setSession(s);
-      if (surface) saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
+      setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
+      if (surface && s.length > 0)
+        saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
     });
     return () => {
       cancelled = true;
     };
-  }, [sets, count, round, surface]);
+  }, [sets, nodes, count, round, surface]);
+
+  // an empty session can never finish by answering — let the owner advance
+  const empty = session !== null && session.length === 0;
+  useEffect(() => {
+    if (empty) onEmpty?.();
+  }, [empty, onEmpty]);
 
   function handleResult(result: ItemResult) {
     const entry = session?.[index];
@@ -264,10 +287,33 @@ export default function MixedTraining({
   }
 
   if (session.length === 0) {
+    // inside the guided session the owner auto-advances (onEmpty) — brief note only
+    if (onFinished) {
+      return (
+        <p className="rounded-lg border border-stone-200 bg-white p-6 text-center text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
+          <span lang="de">Noch keine Übungen — weiter zum nächsten Schritt …</span>
+        </p>
+      );
+    }
     return (
-      <p className="text-sm text-stone-500 dark:text-stone-400">
-        {lang === 'ru' ? 'Пока нет упражнений для тренировки.' : 'No exercises to train with yet.'}
-      </p>
+      <div className="rounded-lg border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-800">
+        <p lang="de" className="font-semibold">
+          Noch nichts zu üben
+        </p>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+          {lang === 'ru'
+            ? 'Откройте тему и прочитайте статью — её упражнения появятся в тренировке.'
+            : 'Open a topic and read its article — its exercises will show up in training.'}
+        </p>
+        {suggestion && (
+          <a
+            href={suggestion.path}
+            className="mt-5 inline-block rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700"
+          >
+            <span lang="de">{suggestion.title_de}</span> · {suggestion.level}
+          </a>
+        )}
+      </div>
     );
   }
 

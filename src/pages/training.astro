@@ -3,12 +3,15 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import MixedTraining from '../components/training/MixedTraining';
 import type { TrainingSet } from '../components/training/MixedTraining';
+import { getTopicNodes } from '../lib/content';
 
-const [exercises, topics] = await Promise.all([
+const [nodes, exercises, topics] = await Promise.all([
+  getTopicNodes(),
   getCollection('exercises'),
   getCollection('topics'),
 ]);
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const pretestIds = new Set(topics.map((t) => t.data.pretest).filter(Boolean));
 
 const sets: TrainingSet[] = exercises.map((e) => {
   const topic = topicById.get(e.data.topic);
@@ -20,6 +23,7 @@ const sets: TrainingSet[] = exercises.map((e) => {
     topicId: topic.id,
     title_de: topic.title_de,
     level: topic.level,
+    isPretest: pretestIds.has(e.id),
     items: e.data.items,
   };
 });
@@ -39,6 +43,6 @@ const sets: TrainingSet[] = exercises.map((e) => {
   </p>
 
   <div class="mt-8">
-    <MixedTraining client:only="react" sets={sets} resumeKey="mixed" />
+    <MixedTraining client:only="react" sets={sets} nodes={nodes} resumeKey="mixed" />
   </div>
 </Base>
