@@ -8,6 +8,11 @@ type ClozeItem = z.infer<typeof clozeItemSchema>;
 
 export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<ClozeItem>) {
   const parts = useMemo(() => parseCloze(item.text), [item]);
+  // part index → gap ordinal (-1 for text parts), so render needs no mutable counter
+  const gapNumbers = useMemo(() => {
+    let g = 0;
+    return parts.map((p) => (p.type === 'gap' ? g++ : -1));
+  }, [parts]);
   const gapCount = parts.filter((p) => p.type === 'gap').length;
   const [values, setValues] = useState<string[]>(() => Array(gapCount).fill(''));
   const [checked, setChecked] = useState(false);
@@ -25,15 +30,13 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
     onResult({ correct: gapResults.every(Boolean), given: values.join(' / ') });
   }
 
-  let gapIndex = -1;
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
       <p lang="de" className="text-lg leading-loose">
         {parts.map((p, i) => {
           if (p.type === 'text') return <span key={i}>{p.value}</span>;
-          gapIndex += 1;
-          const gi = gapIndex;
+          const gi = gapNumbers[i]!;
           const ok = gapResults[gi];
           const width = Math.max(4, p.answers[0]!.length + 2);
           return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
 import { eligibleFreshCards } from '../../lib/decks';
 import {
@@ -95,7 +95,6 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
   // and only from eligible decks (opened/suggested topics, see src/lib/decks.ts).
   useEffect(() => {
     let cancelled = false;
-    setPlan(null);
     void Promise.all([getCardStates(), getAttempts(), getTopicsState()]).then(
       ([states, attempts, topics]) => {
         if (cancelled) return;
@@ -119,17 +118,34 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
   // Nothing due at all → brief note, then auto-advance to training.
   useEffect(() => {
     if (step !== 1 || plan === null || plan.total > 0) return;
-    setReviewedCount((c) => c ?? 0);
-    const t = setTimeout(() => setStep(2), 1600);
+    const t = setTimeout(() => {
+      setReviewedCount((c) => c ?? 0);
+      setStep(2);
+    }, 1600);
     return () => clearTimeout(t);
   }, [step, plan]);
+
+  const finishTraining = useCallback(
+    ({ answered }: { answered: number; correct: number }) => {
+      clearResume(RESUME_SURFACE);
+      setTrainedCount(answered);
+      setStep(3);
+      void logSession({
+        date: localDateString(),
+        reviewed: reviewedCount,
+        trained: answered,
+        ts: Date.now(),
+      });
+    },
+    [reviewedCount],
+  );
 
   // Empty training pool (nothing eligible yet) → same brief-note-then-advance.
   useEffect(() => {
     if (step !== 2 || !trainingEmpty) return;
     const t = setTimeout(() => finishTraining({ answered: 0, correct: 0 }), 1600);
     return () => clearTimeout(t);
-  }, [step, trainingEmpty]);
+  }, [step, trainingEmpty, finishTraining]);
 
   // Persist the lesson point (steps 1–2 only; finishTraining clears it).
   useEffect(() => {
@@ -145,19 +161,8 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
 
   function continueReview() {
     setReviewDone(false);
+    setPlan(null); // back to the loading state until the new round's plan lands
     setPlanRound((r) => r + 1);
-  }
-
-  function finishTraining({ answered }: { answered: number; correct: number }) {
-    clearResume(RESUME_SURFACE);
-    setTrainedCount(answered);
-    setStep(3);
-    void logSession({
-      date: localDateString(),
-      reviewed: reviewedCount,
-      trained: answered,
-      ts: Date.now(),
-    });
   }
 
   const skipTarget: Step | null = step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
