@@ -347,33 +347,90 @@ for (const [setId, { file }] of exerciseSets) {
   for (const id of topics.keys()) visit(id, []);
 }
 
-// Atlas consistency
+// Atlas consistency + curriculum spine
 {
   const atlasFile = join(CONTENT, 'atlas.yaml');
+  const AT = 'content/atlas.yaml';
   if (!existsSync(atlasFile)) {
-    fail('content/atlas.yaml', 'missing');
+    fail(AT, 'missing');
   } else {
     const raw = YAML.parse(readFileSync(atlasFile, 'utf8'));
-    const atlas = validateWith(atlasSchema, raw, 'content/atlas.yaml');
+    const atlas = validateWith(atlasSchema, raw, AT);
     if (atlas) {
       const nodeIds = new Set(atlas.nodes.map((n) => n.id));
       for (const id of topics.keys()) {
-        if (!nodeIds.has(id)) fail('content/atlas.yaml', `topic "${id}" missing from atlas`);
+        if (!nodeIds.has(id)) fail(AT, `topic "${id}" missing from atlas`);
       }
       for (const node of atlas.nodes) {
         const t = topics.get(node.id);
         if (!t) {
-          fail('content/atlas.yaml', `node "${node.id}" has no topic file`);
+          fail(AT, `node "${node.id}" has no topic file`);
           continue;
         }
         if (node.level !== t.data.level)
-          fail('content/atlas.yaml', `node "${node.id}" level ${node.level} ≠ topic level ${t.data.level}`);
+          fail(AT, `node "${node.id}" level ${node.level} ≠ topic level ${t.data.level}`);
         if (node.kind !== t.data.kind)
-          fail('content/atlas.yaml', `node "${node.id}" kind ${node.kind} ≠ topic kind ${t.data.kind}`);
+          fail(AT, `node "${node.id}" kind ${node.kind} ≠ topic kind ${t.data.kind}`);
         const a = [...node.prerequisites].sort().join(',');
         const b = [...t.data.prerequisites].sort().join(',');
-        if (a !== b) fail('content/atlas.yaml', `node "${node.id}" prerequisites ≠ topic frontmatter`);
+        if (a !== b) fail(AT, `node "${node.id}" prerequisites ≠ topic frontmatter`);
       }
+
+      // Spine: every topic in exactly one unit; unit topics exist and match
+      // the unit's level; units grouped by ascending level; the flattened
+      // order never puts a topic before a prerequisite; deepens targets exist
+      // and appear strictly earlier.
+      const nodeById = new Map(atlas.nodes.map((n) => [n.id, n]));
+      const unitIds = new Set<string>();
+      const unitOf = new Map<string, string>();
+      for (const unit of atlas.units) {
+        if (unitIds.has(unit.id)) fail(AT, `duplicate unit id "${unit.id}"`);
+        unitIds.add(unit.id);
+        for (const t of unit.topics) {
+          const node = nodeById.get(t);
+          if (!node) {
+            fail(AT, `unit "${unit.id}" lists unknown topic "${t}"`);
+            continue;
+          }
+          const prev = unitOf.get(t);
+          if (prev) fail(AT, `topic "${t}" appears in two units ("${prev}" and "${unit.id}")`);
+          else unitOf.set(t, unit.id);
+          if (node.level !== unit.level)
+            fail(AT, `unit "${unit.id}" (${unit.level}) contains topic "${t}" of level ${node.level}`);
+        }
+      }
+      for (const node of atlas.nodes) {
+        if (!unitOf.has(node.id)) fail(AT, `topic "${node.id}" is not in any unit`);
+      }
+
+      const LEVEL_ORDER: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
+      for (let i = 1; i < atlas.units.length; i++) {
+        const prev = atlas.units[i - 1]!;
+        const cur = atlas.units[i]!;
+        if (LEVEL_ORDER[cur.level]! < LEVEL_ORDER[prev.level]!)
+          fail(AT, `unit "${cur.id}" (${cur.level}) comes after ${prev.level} unit "${prev.id}" — group units by ascending level`);
+      }
+
+      const spinePos = new Map(atlas.units.flatMap((u) => u.topics).map((t, i) => [t, i]));
+      for (const node of atlas.nodes) {
+        const at = spinePos.get(node.id);
+        for (const p of node.prerequisites) {
+          const pAt = spinePos.get(p);
+          if (at !== undefined && pAt !== undefined && pAt > at)
+            fail(AT, `spine orders "${node.id}" before its prerequisite "${p}"`);
+        }
+        for (const d of node.deepens) {
+          if (!nodeIds.has(d)) {
+            fail(AT, `node "${node.id}" deepens unknown topic "${d}"`);
+            continue;
+          }
+          const dAt = spinePos.get(d);
+          if (at !== undefined && dAt !== undefined && dAt >= at)
+            fail(AT, `node "${node.id}" deepens "${d}", which must appear earlier in the spine`);
+        }
+      }
+
+      checkEnFields(AT, atlas, '');
     }
   }
 }

@@ -12,7 +12,7 @@ interface Props {
   /** when set, the "new" count only counts eligible decks — must match the
       gate of the queue this badge advertises (the compact variant never
       shows fresh, so per-deck badges don't need it) */
-  gate?: { nodes: TopicNode[]; deckLevels: Record<string, string> };
+  gate?: { spine: string[]; nodes: TopicNode[]; deckLevels: Record<string, string> };
 }
 
 export default function DueBadge({ cards, variant = 'compact', gate }: Props) {
@@ -27,7 +27,11 @@ export default function DueBadge({ cards, variant = 'compact', gate }: Props) {
     ]).then(([s, attempts, topics]) => {
       const { due, fresh } = splitQueue(cards, s);
       const pool = gate
-        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, { attempts, cards: s, topics })
+        ? eligibleFreshCards(fresh, gate.spine, gate.nodes, gate.deckLevels, {
+            attempts,
+            cards: s,
+            topics,
+          })
         : fresh;
       setCounts({ due: due.length, fresh: pool.length });
     });

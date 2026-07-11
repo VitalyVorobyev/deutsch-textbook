@@ -1,31 +1,44 @@
-# The best-tested learning practices — full catalog
+# The best-tested learning practices — full catalog, with calibrated evidence
 
 This is the evidence base the `learning-science` skill draws on. Each principle
-lists: the **finding**, the **strength of evidence**, what **honoring it looks
-like**, the **anti-pattern**, and the key **trade-off** (because good pedagogy
-balances levers rather than maximizing each one). Citations are for grounding —
-never cite papers *at the learner*; apply the principle in the content.
+lists: the **finding**, a calibrated **evidence** verdict, what **honoring it
+looks like**, the **anti-pattern**, and the key **trade-off**. Citations are for
+grounding — never cite papers *at the learner*; apply the principle in the
+content.
+
+**How to read the evidence labels.** *Strong* = replicated across labs,
+populations and materials, meta-analyzed, safe to organize a product around.
+*Moderate* = well-supported, real caveats about scope or effect size.
+*Promising* = solid laboratory support, thinner evidence in classroom or L2
+settings specifically — worth using where cheap, not worth overselling.
+*Conditional* = the effect is real only under specific conditions and is easy
+to misapply so that it reverses. *Framework* = not an experimental finding at
+all, but a widely adopted standard for organizing goals and coverage.
+The honest hierarchy for this project: **retrieval, spacing and explanatory
+feedback are the settled core**; pretesting, interleaving, dual coding and i+1
+are good bets that must be presented as bets.
 
 ## Table of contents
 
 - Part A — Memory & practice (domain-general)
-  1. Retrieval practice (the testing effect)
-  2. Spaced / distributed practice
-  3. Interleaving
-  4. Generation & pretesting
-  5. Elaboration & self-explanation
-  6. Feedback (timely, explanatory)
-  7. Desirable difficulties (the umbrella)
-  8. Worked examples, faded practice & cognitive load
-  9. Metacognition & calibration (the fluency illusion)
-  10. Dual coding (verbal + visual + audio)
+  1. Retrieval practice (the testing effect) — strong
+  2. Spaced / distributed practice — strong
+  3. Interleaving — promising
+  4. Generation & pretesting — promising
+  5. Elaboration & self-explanation — moderate
+  6. Feedback (timely, explanatory) — strong
+  7. Desirable difficulties (the umbrella) — organizing frame
+  8. Worked examples, cognitive load & the fading progression — strong (novices)
+  9. Metacognition & calibration — strong (the illusion), moderate (remedies)
+  10. Multimedia & dual coding — conditional
 - Part B — Language learning (SLA-specific)
-  11. Comprehensible input (i+1) & extensive reading
-  12. Pushed output & productive recall
-  13. Transfer-appropriate processing & encoding specificity
-  14. Frequency & contrastive analysis (L1 interference)
+  11. Comprehensible input: intensive vs extensive — conditional
+  12. Pushed output & productive recall — moderate
+  13. Transfer-appropriate processing, authenticity & varied contexts — moderate
+  14. Frequency & contrastive analysis — strong / real-but-partial
+  15. CEFR action orientation & four-skill/mode balance — framework
 - Part C — Motivation & the anti-gamification stance
-  15. Self-determination; the overjustification trap
+  16. Self-determination; the overjustification trap — moderate
 
 ---
 
@@ -34,252 +47,300 @@ never cite papers *at the learner*; apply the principle in the content.
 ### 1. Retrieval practice (the testing effect)
 **Finding:** Actively recalling information from memory strengthens it far more
 than re-studying the same material for the same time. The act of retrieval *is*
-the learning event, not just a measurement of it.
-**Evidence:** Among the strongest, most replicated results in all of cognitive
-psychology. Roediger & Karpicke (2006); Karpicke & Blunt (2011, *Science*);
-ranked "high utility" in the Dunlosky et al. (2013) review of learning
-techniques.
-**Honored:** Every study touch is an attempt to *produce* the answer before
-seeing it — typed recall, cloze, translation, dictation — not passive re-reading.
-**Anti-pattern:** "Study" screens that show the answer next to the prompt;
-multiple-choice where recognition substitutes for recall; re-reading an article
-and *feeling* fluent without ever having produced anything.
-**Trade-off:** Retrieval must be *successful often enough* to avoid demoralizing
-failure — pair with feedback (§6) and appropriate difficulty (§7).
+a learning event, not just a measurement of it.
+**Evidence: strong.** Among the most replicated results in cognitive
+psychology, across ages, materials and delays. Roediger & Karpicke (2006);
+Karpicke & Blunt (2011, *Science*); "high utility" in Dunlosky et al. (2013).
+**Honored:** Everything that calls itself practice or review demands recall or
+production before showing the answer — typed recall, cloze, translation,
+dictation. Input artifacts (readings, examples) are exempt: their job is
+comprehension, and they are paired with retrieval rather than replaced by it.
+**Anti-pattern:** "Review" screens that re-show material; recognition quietly
+substituting for recall in what claims to measure production.
+**Trade-off:** Retrieval must succeed often enough not to demoralize — pair
+with feedback (§6) and level-appropriate difficulty (§7/§8).
 
 ### 2. Spaced / distributed practice
-**Finding:** The same amount of practice spread across time produces far more
-durable memory than the same practice massed together (cramming). Optimal gap
-grows with the target retention interval; expanding intervals work well.
-**Evidence:** Cepeda, Pashler, Vul, Wixted & Rohrer (2006) meta-analysis;
-Ebbinghaus's forgetting curve (1885). "High utility" in Dunlosky (2013).
-**Honored:** A scheduler (Leitner → SuperMemo → **FSRS**) that revisits each item
-just as it is about to be forgotten; sessions are *daily and small*, not weekly
-and large.
-**Anti-pattern:** Reviewing everything every day (no spacing benefit, wasted
-effort), or in one big weekly binge (massed).
-**Trade-off:** Too-long gaps cause forgetting before the successful retrieval
-that spacing depends on; the scheduler's job is to keep retrieval at a high but
-non-trivial success rate.
+**Finding:** The same practice spread across time produces far more durable
+memory than massed together. The optimal gap grows with the target retention
+interval; expanding schedules work well.
+**Evidence: strong.** Century-old, meta-analyzed (Cepeda et al. 2006), robust
+across domains; "high utility" in Dunlosky (2013).
+**Honored:** A scheduler (FSRS here) that revisits each item near the edge of
+forgetting; small daily sessions; mastery that *requires* multi-day evidence.
+**Anti-pattern:** Reviewing everything daily; weekly binges; same-day accuracy
+treated as retention.
+**Trade-off:** Too-long gaps cause failure before the retrieval that spacing
+depends on; the scheduler's job is a high but non-trivial success rate.
 
 ### 3. Interleaving
-**Finding:** Mixing different problem types / categories within a session
-(ABCABC) beats doing all of one then all of the next (AAABBB). It forces the
-learner to *discriminate* which rule applies — the hard part of transfer — and
-prevents the "I've got it" illusion that blocking creates.
-**Evidence:** Rohrer & Taylor (2007); Taylor & Rohrer (2010); Kornell & Bjork
-(2008, inductive category learning).
-**Honored:** Cross-topic mixed practice; never two consecutive items from the
-same topic; drills that force choosing *between* confusable rules (Akkusativ vs
-Dativ), not just applying one in isolation.
-**Anti-pattern:** A drill of 10 consecutive `akkusativ-artikel` items where the
-learner stops reading the prompt and autopilots the pattern.
-**Trade-off:** For *initial* acquisition of a brand-new rule, a little blocking
-first helps form the concept; interleave once the pieces exist to be confused.
+**Finding:** Mixing problem types within a session (ABCABC) beats blocking
+(AAABBB) when the types are *confusable* — it forces the "which rule applies?"
+discrimination that blocked practice never exercises.
+**Evidence: promising.** Robust in math learning and inductive category
+learning (Rohrer & Taylor 2007; Kornell & Bjork 2008); direct evidence for
+L2 grammar is thinner and effects depend on the categories actually being
+confusable. Use it — it is nearly free here — but don't claim it is as settled
+as retrieval or spacing.
+**Honored:** Cross-topic mixed training over rules that genuinely compete
+(Akkusativ vs Dativ, darf nicht vs muss nicht); never two consecutive items
+from one topic.
+**Anti-pattern:** Ten identical items in a row → autopilot. Also the inverse
+error: "interleaving" things no learner ever confuses, which just adds noise.
+**Trade-off:** Initial acquisition of a brand-new rule benefits from a little
+blocking first; interleave once the pieces exist to be confused.
 
 ### 4. Generation & pretesting
-**Finding:** Attempting to produce an answer *before* being taught — even when
-you get it wrong — improves later retention of the correct answer, versus reading
-it directly. Guessing primes the memory to encode the correction.
-**Evidence:** Slamecka & Graf (1978, generation effect); Richland, Kornell & Kao
-(2009, pretesting); Kornell, Hays & Bjork (2009, errorful generation);
-Kapur's "productive failure".
-**Honored:** A short pretest *before* the article ("Was weißt du schon?");
-guessing a gloss before it's revealed.
-**Anti-pattern:** Front-loading all explanation, then testing — the safe,
-intuitive order that wastes the pretest's priming effect.
-**Trade-off:** Wrong guesses must be *low-stakes and immediately corrected*, or
-the error can persist. Keep pretests short and clearly framed as guessing.
+**Finding:** Attempting an answer *before* being taught — even wrongly —
+improves retention of the later-taught correct answer relative to reading it
+directly.
+**Evidence: promising.** Reliable in the lab with modest effect sizes
+(Slamecka & Graf 1978; Richland, Kornell & Kao 2009; Kornell, Hays & Bjork
+2009); classroom and L2 evidence is thinner. Cheap to implement, so worth it —
+as a bonus, not a pillar.
+**Honored:** A 3-item pretest before the article, framed as guessing; excluded
+from training pools so it stays a pretest.
+**Anti-pattern:** Front-loading all explanation, then testing; letting pretest
+items leak into ordinary drilling (a drilled pretest measures nothing).
+**Trade-off:** Wrong guesses must be low-stakes and immediately corrected, or
+the error can stick.
 
 ### 5. Elaboration & self-explanation
-**Finding:** Connecting new material to what you already know, and explaining
-*why* a rule holds (not just *that* it holds), builds richer, more retrievable
-memory. Contrast and analogy are powerful elaboration.
-**Evidence:** Chi et al. (1994, self-explanation); elaborative interrogation
-rated "moderate utility" in Dunlosky (2013).
-**Honored:** Explanations that give the *reason* and hang the rule on prior
-knowledge — including contrast with the learner's L1 ("German keeps «быть», unlike
-Russian"), and L2-internal hooks (the *wem?*-question test for the dative).
-**Anti-pattern:** Bare rule statements with no "why"; a single explanation
-written for one audience and machine-translated for another.
-**Trade-off:** Elaboration adds load (§8) — keep it targeted to the one confusion
-at hand, not a wall of tangential detail.
+**Finding:** Connecting new material to prior knowledge and explaining *why* a
+rule holds builds richer, more retrievable memory; contrast and analogy are
+strong elaborators.
+**Evidence: moderate.** Chi et al. (1994); elaborative interrogation rated
+"moderate utility" in Dunlosky (2013). Effects depend on the quality of the
+elaboration — bad elaboration is just load.
+**Honored:** Explanations that give the reason and hang the rule on what the
+learner has — RU halves contrasting with Russian («быть», падежи), EN halves
+using L2-internal hooks (the wem?-question test) or English false friends.
+**Anti-pattern:** Bare rule statements; one explanation machine-translated into
+the other language.
+**Trade-off:** Elaboration adds load (§8) — target the one confusion at hand.
 
 ### 6. Feedback (timely, explanatory)
-**Finding:** Retrieval practice only pays off when errors are corrected.
-*Explanatory* feedback (why the right answer is right) beats bare
-right/wrong, and beats no feedback substantially.
-**Evidence:** Hattie & Timperley (2007); Butler, Karpicke & Roediger (2007,
-feedback and timing).
-**Honored:** Every exercise item carries an explanation shown on a wrong answer —
-this is where the teaching happens, not the prompt.
-**Anti-pattern:** "Incorrect ✗" with no explanation; feedback so verbose the
-learner skips it.
-**Trade-off:** Immediate feedback aids acquisition; slightly delayed feedback can
-aid retention — but for a self-paced app, immediate + explanatory is the safe
-default. Too much scaffolding breeds dependence — fade it as mastery grows.
+**Finding:** Retrieval pays off when errors are corrected. *Explanatory*
+feedback (why the right answer is right) beats bare right/wrong, which beats
+nothing.
+**Evidence: strong.** Hattie & Timperley (2007); Butler, Karpicke & Roediger
+(2007). One of the largest, most consistent effects in education research.
+**Honored:** Every exercise item's `explain` teaches on wrong answers — that is
+where the teaching happens.
+**Anti-pattern:** "Incorrect ✗" with no why; feedback so verbose it gets
+skipped.
+**Trade-off:** Immediate + explanatory is the right default for a self-paced
+app; ever-present scaffolding breeds dependence — fade it (§8).
 
 ### 7. Desirable difficulties (the umbrella)
-**Finding:** Conditions that make learning feel *harder and slower now* — spacing,
-interleaving, retrieval, varying context, reducing feedback frequency — produce
-better *long-term* retention and transfer. Ease during study is a poor predictor
-of durable learning.
-**Evidence:** Bjork & Bjork (2011); the organizing frame behind §§1–3.
-**Honored:** Choosing typed production over multiple-choice when the target skill
-*is* production; not smoothing away every struggle.
-**Anti-pattern (both directions):** (a) Removing all difficulty for a "smooth"
-UX, which removes the learning; (b) adding *undesirable* difficulty — ambiguous
-instructions, brittle answer-matching, bad UI — which is just extraneous load
-(§8) with none of the benefit.
-**Trade-off:** The entire art is telling *desirable* from *undesirable*
-difficulty. Difficulty that comes from the material's structure = good;
-difficulty that comes from the interface or unclear rules = bad.
+**Finding:** Conditions that make learning feel harder and slower now —
+spacing, interleaving, retrieval, varied contexts — produce better long-term
+retention and transfer. Ease during study predicts durable learning poorly.
+**Evidence: organizing frame.** Bjork & Bjork (2011). Not itself one effect but
+the umbrella over §§1–3; its value is the design question it forces.
+**Honored:** Typed production over MC where production is the goal; not
+smoothing away every struggle.
+**Anti-pattern (both directions):** Removing all difficulty for a "smooth" UX;
+or adding *undesirable* difficulty — ambiguous prompts, brittle matching, bad
+UI — which is extraneous load with none of the benefit.
+**Trade-off:** The entire art is telling desirable from undesirable difficulty:
+difficulty from the material = good; from the interface or unclear rules = bad.
 
-### 8. Worked examples, faded practice & cognitive load
-**Finding:** Working memory is narrow. Novices learn a new procedure better from
-studying *worked examples* than from immediate problem-solving; as expertise
-grows, examples should *fade* into problems (the expertise-reversal effect).
-Manage load: minimize *extraneous* load (poor design), respect *intrinsic* load
-(the material's inherent difficulty), free capacity for *germane* processing.
-**Evidence:** Sweller (1988); Sweller, van Merriënboer & Paas (1998); Kalyuga
-(2007, expertise reversal); Mayer's multimedia coherence & signaling principles.
-**Honored:** 5–10 clear worked examples before exercises; one confusion per item;
-CEFR ceiling so an A2 item never smuggles in B1 vocabulary the learner must also
-decode; removing "seductive details".
-**Anti-pattern:** Throwing novices straight into production with no models;
-example sentences that use grammar above the topic's level (load spent decoding
-the sentence, not learning the rule).
-**Trade-off:** Faded guidance — too much support past the novice stage becomes
-redundant and can *hurt* (expertise reversal). Match scaffolding to level.
+### 8. Worked examples, cognitive load & the fading progression
+**Finding:** Working memory is narrow. Novices learn a procedure better from
+worked examples than from immediate problem-solving; as expertise grows,
+support must *fade* or it starts hurting (expertise reversal). The full arc:
+**model → scaffold → fade → independent transfer → delayed check.**
+**Evidence: strong** for worked examples and load management with novices
+(Sweller 1988; Sweller, van Merriënboer & Paas 1998; Kalyuga 2007). The
+five-stage arc is this project's synthesis of worked-example fading (§8),
+transfer (§13) and spacing (§2) — principled, not itself a single tested
+package.
+**Honored:** 5–10 worked examples before exercises; one confusion per item;
+CEFR ceiling; support (glosses, hints, translations) heaviest at the model
+stage, absent at transfer; a delayed check after days, not minutes.
+**Anti-pattern:** Straight to production with no models; above-level example
+sentences; hints that persist into practice that claims to measure mastery;
+arcs that end at the scaffold stage — drilled once, never transferred, never
+re-checked.
+**Trade-off:** Support past the novice stage is not neutral — it can reverse
+(expertise reversal). Match scaffolding to the learner's current state.
 
 ### 9. Metacognition & calibration (the fluency illusion)
-**Finding:** Learners are systematically *overconfident* after re-reading —
-fluency of processing masquerades as knowledge. Testing both reveals and
-*improves* calibration (accurate self-assessment of what you do/don't know).
-**Evidence:** Koriat & Bjork (2005, foresight bias); Bjork, Dunlosky & Kornell
-(2013).
-**Honored:** Progress signals grounded in *demonstrated retrieval* (attempts,
-SRS performance, mastery tiers) rather than time-on-page; pretests that expose
-gaps before the learner assumes competence.
-**Anti-pattern:** "Read" = "learned"; progress bars that fill from page views;
-letting a learner mark a topic mastered they've never been tested on.
-**Trade-off:** Calibration signals must be honest even when discouraging — a
-mastery tier that inflates is worse than none.
+**Finding:** Learners are systematically overconfident after re-reading —
+processing fluency masquerades as knowledge. Testing both reveals and improves
+calibration.
+**Evidence: strong** for the illusion itself (Koriat & Bjork 2005; Bjork,
+Dunlosky & Kornell 2013); **moderate** for interventions that durably fix it.
+**Honored:** Progress signals grounded in demonstrated retrieval (attempts,
+SRS outcomes, measured tiers); self-assessment *visible but separate* — a
+learner's "learned" rating is information about confidence, never a substitute
+for measurement. Pretests that expose gaps early.
+**Anti-pattern:** "Read" = "learned"; page-view progress; self-ratings that
+override measured state (calibration data destroyed at the source).
+**Trade-off:** Honest signals can discourage — pair the gap with the concrete
+next step (what's missing for the next tier), not just a low number.
 
-### 10. Dual coding (verbal + visual + audio)
-**Finding:** Information encoded in more than one channel (verbal + visual, or
-verbal + auditory) is more retrievable than one channel alone — provided the
-channels reinforce rather than compete.
-**Evidence:** Paivio (1971/1986, dual coding); Mayer (2009, multimedia
-principles).
-**Honored:** Grammar tables (spatial), audio via TTS for pronunciation and
-dictation, gender-color conventions — each carrying the *same* point in a second
-channel.
-**Anti-pattern:** Redundant on-screen text read aloud verbatim (channel
-competition, the redundancy effect); decorative images that add load without
-carrying meaning.
-**Trade-off:** More channels ≠ better; they must be *complementary*. Respect the
-modality and redundancy principles.
+### 10. Multimedia & dual coding
+**Finding:** Complementary channels (a diagram beside prose; narration over an
+animation) can reinforce each other. But the same literature documents the
+**redundancy effect**: identical text presented to eye and ear *competes*, and
+decorative additions add load without meaning.
+**Evidence: conditional.** Paivio (1971/1986); Mayer's multimedia principles
+(2009) — including modality, coherence and redundancy limits. The positive
+effect is design-dependent and reverses under misuse; treat every "add another
+channel" idea as guilty until proven complementary.
+**Honored:** Grammar tables as the spatial channel for a verbal rule;
+gender-color conventions carrying the same distinction a second way. Audio is
+**not** justified by dual coding at all — audio is justified by a listening or
+phonological purpose (§11–§13): dictation trains sound→spelling, dialogue audio
+trains parsing connected speech, a pronunciation model attaches sound to a word.
+**Anti-pattern:** TTS reading on-screen text verbatim and calling it dual
+coding — that is the redundancy effect by definition. Decorative images.
+**Trade-off:** More channels ≠ better. Ask what the second channel carries that
+the first doesn't.
 
 ---
 
 ## Part B — Language learning (SLA-specific)
 
-### 11. Comprehensible input (i+1) & extensive reading
-**Finding:** Acquisition is driven by understanding input pitched *just above*
-current level (i+1) — comprehensible, meaningful, abundant. Extensive reading of
-level-appropriate text builds vocabulary, collocation, and grammatical intuition
-implicitly.
-**Evidence:** Krashen (1982, 1985, Input Hypothesis); Nation (2009, extensive
-reading); large graded-reader literature.
-**Honored:** Graded reading texts at the topic's CEFR level, with 6–10 glosses so
-comprehension never breaks; new grammar shown in abundant contextualized examples
-before rules are drilled.
-**Anti-pattern:** Reading text stuffed with above-level vocabulary (input becomes
-*in*comprehensible); grammar taught only as abstract paradigm with no input.
-**Trade-off:** Pure input is slow for *production* accuracy — pair with output
-(§12) and explicit rules for adult learners who benefit from noticing.
+### 11. Comprehensible input: intensive vs extensive
+**Finding:** Understanding meaningful input at a manageable difficulty drives
+acquisition; massive comprehensible reading/listening builds vocabulary,
+collocation and grammatical intuition implicitly. Two distinct regimes matter:
+**intensive** input (short, dense, studied closely, mined by questions) and
+**extensive** input (long, easy, read for meaning in volume — ~98% known-word
+coverage).
+**Evidence: conditional.** Krashen's i+1 (1982, 1985) is influential but
+unfalsifiable as stated — "input slightly above the current level" has no
+independent measure. What *is* well-supported: graded readers work (Nation
+2009; the graded-reader literature), comprehension precedes production, and
+incomprehensible input teaches nothing. Treat "comprehensible, level-graded,
+abundant" as the operational rule and skip the theoretical baggage.
+**Honored — and honestly labeled:** Deutsch-Atlas's readings (~90–130 words,
+6–10 glosses, comprehension questions) are **intensive graded input**, and
+good at it. The course currently has **no extensive reading at all** — that is
+a known gap, scheduled as Phase 4 extensive readers (backlog P4-2), not a
+solved problem. Never describe the current readings as extensive reading.
+**Anti-pattern:** Above-level unglossed text (input stops being input); grammar
+taught only as paradigm tables with no contextualized examples; mislabeling
+short intensive texts as satisfying the volume-input need.
+**Trade-off:** Input alone is slow for production accuracy — pair with output
+(§12) and explicit rules, which adult learners demonstrably benefit from.
 
 ### 12. Pushed output & productive recall
-**Finding:** Producing language ("pushed output") forces deeper processing than
-comprehension and makes the learner *notice* gaps between what they mean and what
-they can say. For vocabulary, **productive** recall (L1→L2, generating the target
-word/form) is harder and more valuable than **receptive** recognition (L2→L1) —
-and the two are partly separate skills.
-**Evidence:** Swain (1985, 1995, Output Hypothesis); Nation (2001/2013), Webb
-(2005, receptive vs productive vocabulary knowledge).
-**Honored:** Typed production with real matching (article required for nouns,
-umlaut handling); every vocab item generates *both* directions, with the
-L1→DE (productive) card treated as the harder, higher-value rep.
-**Anti-pattern:** Recognition-only review (tap the right translation); accepting
-production so leniently that the learner is never actually pushed.
+**Finding:** Producing language forces deeper processing than comprehending it
+and makes the learner notice the gap between what they mean and what they can
+say. For vocabulary, productive recall (L1→L2) and receptive recognition
+(L2→L1) are partly separate skills; the productive direction is harder and
+transfers to real use.
+**Evidence: moderate.** Swain (1985, 1995); Nation (2001/2013); Webb (2005).
+Broadly accepted in SLA; effect sizes vary with task and level.
+**Honored:** Typed production with strict-but-fair matching (article required
+for nouns, umlaut handling); both card directions first-class; `translate` and
+dictation as production formats.
+**Anti-pattern:** Recognition-only review; matching so lenient the learner is
+never actually pushed; a course whose *measured* output is zero even when
+production items exist (check the snapshot, §15).
 **Trade-off:** Production is costly and error-prone early — scaffold with input
-first, and make matching strict-but-fair (tolerate typos/umlaut substitutes, not
-wrong forms).
+first; strictness must come from the German, not the interface.
 
-### 13. Transfer-appropriate processing & encoding specificity
-**Finding:** Memory is best when the *cognitive operation at retrieval matches
-the one at encoding*, and when retrieval cues resemble the target use. Practice
-in the form you'll need to perform.
-**Evidence:** Morris, Bransford & Franks (1977, TAP); Tulving & Thomson (1973,
-encoding specificity).
-**Honored:** If the goal is to *produce* German in conversation, practice
-*producing* (typed/spoken), not just recognizing; dictation trains the
-sound→spelling path you actually use.
-**Anti-pattern:** Training exclusively with multiple-choice, then expecting free
-production; testing a spelling skill with a tap-to-select interface.
-**Trade-off:** Full fidelity to real use (open conversation) is hard to grade
-automatically — approximate it as closely as the interface allows, prioritizing
-production formats.
+### 13. Transfer-appropriate processing, task authenticity & varied contexts
+**Finding:** Memory and skill are best when the cognitive operation at practice
+matches the one at use, and when practice varies across contexts rather than
+repeating one cue. Authentic task framings (order food, cancel an appointment)
+align practice with the actual target behavior; varied contexts prevent the
+knowledge from binding to one prompt.
+**Evidence: moderate.** Morris, Bransford & Franks (1977); Tulving & Thomson
+(1973); variability-of-practice effects across skill domains. Authenticity per
+se is a design principle standing on this evidence, not a separately measured
+intervention.
+**Honored:** Production practiced as production; dictation for the
+sound→spelling path; the same rule met in menus, messages and appointments —
+not five re-skins of one sentence; items answerable only by knowing the rule,
+not by remembering the item.
+**Anti-pattern:** MC-only training followed by expectations of free
+production; drill items that recur verbatim so success measures item memory;
+prompts no real situation would ever produce.
+**Trade-off:** Full fidelity (open conversation) exceeds what the interface can
+grade — approximate it as closely as gradeability allows, and label
+self-assessed production as practice evidence, never verified accuracy.
 
 ### 14. Frequency & contrastive analysis (L1 interference)
 **Finding:** High-frequency words and patterns give the most communicative
-return per item and should come first. Predictable L1→L2 interference errors
-(here: Russian → German) can be pre-empted by *contrastive* treatment.
-**Evidence:** Nation & Waring (frequency & coverage); Lado (1957, contrastive
-analysis); Selinker (1972, interlanguage); interference is real though not the
-*only* error source.
-**Honored:** Vocabulary ordered by usefulness/frequency; a taxonomy of *named
-confusions* (focus tags) that includes L1-interference errors (dropping «быть» =
-*sein*, missing articles, case transfer); the RU explanation half explicitly
-contrasts with Russian.
-**Anti-pattern:** Teaching rare vocabulary early; ignoring the systematic Russian
--interference errors that a Russian speaker will reliably make.
-**Trade-off:** Not every error is L1 interference — many are developmental and
-universal. Diagnose from the actual error data, don't assume.
+return per item learned. Some L1→L2 errors are systematic and predictable
+(Russian → German: dropped copula, dropped articles, case transfer) and can be
+pre-empted by contrastive treatment.
+**Evidence: strong** for frequency (a corpus fact plus coverage studies —
+Nation & Waring); **real but partial** for interference: Lado's (1957) strong
+claim failed — many errors are developmental and universal (Selinker 1972) —
+but the specific, recurring RU→DE interference patterns are well-documented.
+**Honored:** Vocabulary ordered by usefulness; the focus-tag taxonomy naming
+confusions *including* interference ones (`kopula-sein`, `artikel-pflicht`);
+RU halves contrasting explicitly; weakness detection aggregating per tag.
+**Anti-pattern:** Rare vocabulary early; assuming every error is interference
+instead of diagnosing from the actual attempt data.
+**Trade-off:** Contrastive framing helps the RU reader and is noise for the EN
+reader — which is exactly why the two halves diverge by design.
+
+### 15. CEFR action orientation & four-skill/mode balance
+**Finding (framework):** The CEFR frames language ability as *action* — can-do
+statements about real-world tasks — across reception, production and
+interaction, spoken and written. It is not an experimental result; it is the
+de-facto standard that keeps a course honest about what "knowing German" means
+and which modes are being silently skipped.
+**Honored:** Every topic carries 2–4 can-do `outcomes` (content/atlas.yaml)
+phrased as actions ("Ich kann einen Termin absagen"), not knowledge claims;
+coverage across modes is a design target within the app's means — reading and
+listening (readings, dictation, planned audio-comprehension), written
+production (typed input, `translate`, planned `write`), interaction
+approximated by dialogue-shaped tasks; and **audits measure the actual mode
+distribution from snapshots** rather than assuming the content mix reaches the
+learner.
+**Anti-pattern:** A grammar-table course with can-do labels stuck on; outcomes
+phrased as "knows the dative table"; a mode (listening, writing) present in
+content but absent from every logged attempt, unnoticed because nobody counted.
+**Trade-off:** A single-learner text-first app cannot grade speech — be
+explicit about which modes are covered, approximated, or out of scope
+(mediation is dropped; speaking is Phase 4 at best), rather than pretending.
 
 ---
 
 ## Part C — Motivation & the anti-gamification stance
 
-### 15. Self-determination; the overjustification trap
-**Finding:** Durable motivation comes from **autonomy** (meaningful choice),
-**competence** (visible, honest progress), and **relatedness** (purpose) —
-Self-Determination Theory. Extrinsic rewards (points, badges, streak pressure)
-can *undermine* intrinsic motivation for an already-interesting task
-(overjustification), and gamified rewards often boost short-term engagement while
-flattening or reducing intrinsic interest and learning.
-**Evidence:** Deci & Ryan (1985, 2000, SDT); Lepper, Greene & Nisbett (1973,
-overjustification); Hanus & Fox (2015, gamification reduced motivation over time).
-**Honored:** Progress framed as *competence feedback* (mastery tiers derived from
-real retrieval, an honest activity heatmap, a streak that *informs* rather than
-punishes) and *autonomy* (a "nothing to decide" daily session you can also skip;
-non-destructive data ownership). No points, no coins, no loss-aversion streaks.
-**Anti-pattern:** Points/leaderboards/badges bolted onto learning; streaks
-engineered to induce guilt; extrinsic rewards that shift the learner's reason for
-studying from "I want to learn German" to "I want the number to go up".
-**Trade-off:** *Some* structure and visible progress aids competence — the line
-is whether the signal reflects real learning (good) or is a manufactured reward
-(risky). When in doubt, prefer honest competence feedback over engineered reward.
+### 16. Self-determination; the overjustification trap
+**Finding:** Durable motivation rests on autonomy (meaningful choice),
+competence (visible, honest progress) and relatedness/purpose. Extrinsic
+rewards for an already-interesting activity can undermine intrinsic motivation
+(overjustification); gamified rewards often buy short-term engagement at the
+cost of flattened interest.
+**Evidence: moderate.** Deci & Ryan (1985, 2000); Lepper, Greene & Nisbett
+(1973); Hanus & Fox (2015). The overjustification effect is real but
+boundary-conditioned; SDT is a well-supported framework more than a single
+effect. For this project the stance is also a **values decision**: even where
+gamification might "work", a manufactured reward corrupts the calibration
+signal (§9) this product is built on.
+**Honored:** Progress as competence feedback (measured tiers, honest heatmap, a
+streak that informs); autonomy (a skippable "nothing to decide" session; a
+recommended path that orders but never locks; data ownership).
+**Anti-pattern:** Points/leaderboards/badges; streaks engineered for guilt;
+rewards that shift the reason for studying from "learn German" to "make the
+number go up".
+**Trade-off:** Some structure and visible progress *is* competence support —
+the test is whether the signal reflects real learning (keep) or manufactures
+reward (cut).
 
 ---
 
 ## The one-paragraph synthesis
 
-If you keep only five levers, keep these — they have the strongest, most
-transferable evidence and the highest utility ratings: **retrieval practice**,
-**spaced practice**, **interleaving**, **elaborative/explanatory feedback**, and
-(for language) **comprehensible input paired with pushed output**. Everything
-else tunes how well those five land: generation primes them, calibration keeps
-them honest, cognitive-load management keeps them learnable, and
-self-determination keeps the learner coming back without bribery.
+If you keep only the settled core, keep **retrieval practice**, **spaced
+practice** and **explanatory feedback** — then, because this is a language,
+pair **graded input with pushed output** and check the **mode balance** against
+real attempt data, not the content catalog. Everything else tunes how those
+land: pretesting primes (promising), interleaving discriminates (promising,
+needs confusable material), worked examples and fading make the arc learnable
+(strong for novices), calibration keeps the signals honest, and
+self-determination keeps the learner coming back without bribery. And the
+success criteria are always **delayed retention and novel transfer** — never
+how much activity got logged this week.

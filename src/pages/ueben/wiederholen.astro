@@ -3,12 +3,14 @@ import Base from '../../layouts/Base.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../../lib/content';
+import { getCurriculum } from '../../lib/curriculum';
 
 const [cards, nodes, deckLevels] = await Promise.all([
   getAllCards(),
   getTopicNodes(),
   getDeckLevels(),
 ]);
+const { spine } = getCurriculum();
 ---
 
 <Base title="Wiederholen">
@@ -20,6 +22,6 @@ const [cards, nodes, deckLevels] = await Promise.all([
   </p>
 
   <div class="mt-8">
-    <FlashcardSession client:only="react" cards={cards} newLimit={15} gate={{ nodes, deckLevels }} />
+    <FlashcardSession client:only="react" cards={cards} newLimit={15} gate={{ spine, nodes, deckLevels }} />
   </div>
 </Base>

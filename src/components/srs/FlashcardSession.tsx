@@ -28,7 +28,7 @@ interface Props {
   newLimit?: number;
   /** when set, never-graded cards are limited to eligible decks (due cards
       always pass) — the per-deck page omits it, studying a deck is an opt-in */
-  gate?: { nodes: TopicNode[]; deckLevels: Record<string, string> };
+  gate?: { spine: string[]; nodes: TopicNode[]; deckLevels: Record<string, string> };
   /** called once, exactly when the review queue runs empty */
   onFinished?: () => void;
 }
@@ -92,7 +92,11 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
       if (cancelled) return;
       const { due, fresh } = splitQueue(cards, s);
       const pool = gate
-        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, { attempts, cards: s, topics })
+        ? eligibleFreshCards(fresh, gate.spine, gate.nodes, gate.deckLevels, {
+            attempts,
+            cards: s,
+            topics,
+          })
         : fresh;
       setStates(s);
       setQueue([...shuffle(due), ...shuffle(pool).slice(0, newLimit)]);
