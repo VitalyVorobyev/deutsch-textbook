@@ -4,7 +4,7 @@ import type { listenItemSchema } from '../../lib/schemas';
 import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
 import { diffExpectedWords } from '../../lib/worddiff';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
-import { CheckButton, Feedback, Instruction, Translation, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ListenItem = z.infer<typeof listenItemSchema>;
 
@@ -17,7 +17,14 @@ const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
  * matching; capitalization counts. Without TTS the sentence is shown and the
  * item degrades to a copy/spelling task.
  */
-export function Listen({ item, lang, onResult, locked }: ItemProps<ListenItem>) {
+export function Listen({
+  item,
+  lang,
+  onResult,
+  locked,
+  onNext,
+  nextLabel,
+}: ItemProps<ListenItem>) {
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,7 +124,14 @@ export function Listen({ item, lang, onResult, locked }: ItemProps<ListenItem>) 
           </button>
         ))}
       </div>
-      {!checked && <CheckButton onClick={check} disabled={value.trim() === ''} />}
+      <ActionRow
+        checked={checked}
+        correct={isCorrect}
+        onCheck={check}
+        checkDisabled={value.trim() === ''}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {checked && (
         <>
           <Feedback

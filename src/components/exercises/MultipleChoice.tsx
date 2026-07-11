@@ -2,11 +2,18 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { mcItemSchema } from '../../lib/schemas';
 import { shuffle } from '../../lib/shuffle';
-import { Feedback, Instruction, Translation, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type McItem = z.infer<typeof mcItemSchema>;
 
-export function MultipleChoice({ item, lang, onResult, locked }: ItemProps<McItem>) {
+export function MultipleChoice({
+  item,
+  lang,
+  onResult,
+  locked,
+  onNext,
+  nextLabel,
+}: ItemProps<McItem>) {
   const [chosen, setChosen] = useState<number | null>(null);
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
 
@@ -44,6 +51,12 @@ export function MultipleChoice({ item, lang, onResult, locked }: ItemProps<McIte
         })}
       </div>
       <Translation text={item.translation} lang={lang} />
+      <ActionRow
+        checked={chosen !== null}
+        correct={chosen === item.correct}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {chosen !== null && (
         <Feedback
           correct={chosen === item.correct}

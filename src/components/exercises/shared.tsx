@@ -16,6 +16,14 @@ export interface ItemProps<T> {
   onResult: (result: ItemResult) => void;
   /** after submission the item is locked and shows its state */
   locked: boolean;
+  /**
+   * Advance to the next item. Rendered by ActionRow in the very slot the Prüfen
+   * button occupied, so checking an answer never moves the button under the
+   * learner's finger.
+   */
+  onNext: () => void;
+  /** label for the advance button — "Weiter →" or the runner's end-of-set wording */
+  nextLabel: string;
 }
 
 export function Instruction({ text, lang }: { text?: Bilingual; lang: ExplainLang }) {
@@ -28,19 +36,78 @@ export function Translation({ text, lang }: { text?: Bilingual; lang: ExplainLan
   return <p className="mt-2 text-sm italic text-stone-400 dark:text-stone-500">{pick(lang, text)}</p>;
 }
 
-export function CheckButton({ onClick, disabled }: { onClick: () => void; disabled?: boolean }) {
+/** Prüfen and Weiter share these metrics, so swapping one for the other moves nothing. */
+const ACTION_BUTTON = 'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-40 sm:min-h-0 sm:py-1.5';
+
+function VerdictChip({ correct }: { correct: boolean }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-40 sm:min-h-0 sm:py-1.5"
+    <span
+      lang="de"
+      className={`text-sm font-semibold ${
+        correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'
+      }`}
     >
-      Prüfen
-    </button>
+      {correct ? 'Richtig! ✓' : 'Leider falsch ✗'}
+    </span>
   );
 }
 
+/**
+ * The item's one and only action slot: Prüfen turns into Weiter *in place*, so the
+ * button keeps its exact position when an answer is checked and the learner never
+ * has to chase it down the page. The verdict sits after the button (never before,
+ * or it would push the button sideways) and Feedback renders below the row.
+ *
+ * Items that submit on click instead of on Prüfen (mc, match) pass no `onCheck`:
+ * the slot then holds a disabled Weiter from the start, reserving the same height.
+ */
+export function ActionRow({
+  checked,
+  correct,
+  onCheck,
+  checkDisabled,
+  onNext,
+  nextLabel,
+}: {
+  checked: boolean;
+  correct: boolean;
+  onCheck?: () => void;
+  checkDisabled?: boolean;
+  onNext: () => void;
+  nextLabel: string;
+}) {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-3">
+      {onCheck && !checked ? (
+        <button
+          type="button"
+          onClick={onCheck}
+          disabled={checkDisabled}
+          className={`${ACTION_BUTTON} bg-amber-600 text-white hover:bg-amber-700`}
+        >
+          Prüfen
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={onNext}
+          disabled={!checked}
+          className={`${ACTION_BUTTON} bg-stone-800 text-white hover:bg-stone-700 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300`}
+        >
+          {nextLabel}
+        </button>
+      )}
+      {checked && <VerdictChip correct={correct} />}
+    </div>
+  );
+}
+
+/**
+ * The teaching half of a checked answer: correct solution + explanation, rendered
+ * *below* the ActionRow so it can grow to any height without displacing the button.
+ * The Richtig/Falsch verdict itself lives in the row (VerdictChip), which is why a
+ * correct answer with nothing left to say renders nothing at all.
+ */
 export function Feedback({
   correct,
   correctAnswer,
@@ -55,6 +122,9 @@ export function Feedback({
   /** German text to offer for playback next to the correct answer */
   speakText?: string;
 }) {
+  const showAnswer = !correct && !!correctAnswer;
+  if (!showAnswer && !explain) return null;
+
   return (
     <div
       className={`mt-4 rounded-md border px-4 py-3 text-sm ${
@@ -63,17 +133,16 @@ export function Feedback({
           : 'border-red-300 bg-red-50 text-red-900 dark:border-red-800 dark:bg-red-950 dark:text-red-200'
       }`}
     >
-      <p className="font-semibold">{correct ? 'Richtig! ✓' : 'Leider falsch ✗'}</p>
-      {!correct && correctAnswer && (
-        <p className="mt-1">
+      {showAnswer && (
+        <p>
           {lang === 'ru' ? 'Правильный ответ: ' : 'Correct answer: '}
           <span lang="de" className="font-medium">{correctAnswer}</span>
           {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
       )}
-      {!correct && explain && <p className="mt-2">{pick(lang, explain)}</p>}
+      {!correct && explain && <p className={showAnswer ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
       {correct && explain && (
-        <details className="mt-1">
+        <details>
           <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">
             Warum?
           </summary>
