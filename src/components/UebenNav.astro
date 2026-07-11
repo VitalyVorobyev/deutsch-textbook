@@ -1,0 +1,40 @@
+---
+/**
+ * Sub-navigation for the merged Üben tab: Wiederholen | Training | Wortschatz.
+ * Server-rendered links; the owning page declares which tab is active.
+ */
+import { withBase } from '../lib/url';
+
+interface Props {
+  active: 'wiederholen' | 'training' | 'wortschatz';
+}
+const { active } = Astro.props;
+
+const tabs = [
+  { id: 'wiederholen', href: withBase('/ueben/wiederholen'), label: 'Wiederholen' },
+  { id: 'training', href: withBase('/ueben/training'), label: 'Training' },
+  { id: 'wortschatz', href: withBase('/ueben/wortschatz'), label: 'Wortschatz' },
+] as const;
+---
+
+<nav
+  aria-label="Üben"
+  class="mb-6 flex gap-x-5 overflow-x-auto whitespace-nowrap border-b border-stone-200 text-sm dark:border-stone-700"
+>
+  {
+    tabs.map((tab) => (
+      <a
+        href={tab.href}
+        aria-current={tab.id === active ? 'page' : undefined}
+        class:list={[
+          '-mb-px border-b-2 py-2 font-medium',
+          tab.id === active
+            ? 'border-amber-600 text-amber-700 dark:border-amber-400 dark:text-amber-400'
+            : 'border-transparent text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
+        ]}
+      >
+        {tab.label}
+      </a>
+    ))
+  }
+</nav>

@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import MixedTraining from '../components/training/MixedTraining';
-import type { TrainingSet } from '../components/training/MixedTraining';
-import { getTopicNodes } from '../lib/content';
+import Base from '../../layouts/Base.astro';
+import UebenNav from '../../components/UebenNav.astro';
+import MixedTraining from '../../components/training/MixedTraining';
+import type { TrainingSet } from '../../components/training/MixedTraining';
+import { getTopicNodes } from '../../lib/content';
 
 const [nodes, exercises, topics] = await Promise.all([
   getTopicNodes(),
@@ -30,6 +31,7 @@ const sets: TrainingSet[] = exercises.map((e) => {
 ---
 
 <Base title="Gemischtes Training">
+  <UebenNav active="training" />
   <h1 class="text-3xl font-bold tracking-tight">Gemischtes Training</h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">

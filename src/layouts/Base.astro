@@ -11,17 +11,22 @@ interface Props {
 const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch' } = Astro.props;
 
 const home = withBase('/');
-const nav = [
+interface NavItem {
+  href: string;
+  label: string;
+  /** Extra path prefixes that also count as "this tab" (e.g. /vocab/<deck> → Üben). */
+  match?: string[];
+}
+const nav: NavItem[] = [
   { href: home, label: 'Heute' },
   { href: withBase('/topics'), label: 'Themen' },
-  { href: withBase('/vocab'), label: 'Wortschatz' },
-  { href: withBase('/review'), label: 'Wiederholen' },
-  { href: withBase('/training'), label: 'Training' },
+  { href: withBase('/ueben'), label: 'Üben', match: [withBase('/vocab')] },
   { href: withBase('/progress'), label: 'Fortschritt' },
 ];
 const current = Astro.url.pathname;
-function isActive(href: string): boolean {
-  return href === home ? current === home || current === home.replace(/\/$/, '') : current.startsWith(href);
+function isActive(item: NavItem): boolean {
+  if (item.href === home) return current === home || current === home.replace(/\/$/, '');
+  return [item.href, ...(item.match ?? [])].some((prefix) => current.startsWith(prefix));
 }
 ---
 
@@ -57,7 +62,7 @@ function isActive(href: string): boolean {
                 href={item.href}
                 class:list={[
                   'py-2 font-medium sm:py-1',
-                  isActive(item.href)
+                  isActive(item)
                     ? 'text-amber-700 dark:text-amber-400'
                     : 'text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
                 ]}
