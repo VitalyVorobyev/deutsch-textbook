@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   listProfiles,
   getActiveProfileId,
-  createProfile,
+  startProfile,
   switchProfile,
   deleteProfile,
   resolveProfileState,
@@ -43,7 +43,7 @@ export default function ProfileSwitcher() {
   function handleCreate() {
     const label = newLabel.trim();
     if (!label) return;
-    switchProfile(createProfile(label).id); // reloads
+    void startProfile(label); // stamps the new database with its identity, then reloads
   }
 
   function handleDelete(id: string, label: string) {

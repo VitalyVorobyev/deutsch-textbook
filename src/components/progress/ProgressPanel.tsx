@@ -77,25 +77,28 @@ export default function ProgressPanel({ nodes }: Props) {
     const snapshot = await exportSnapshot(getActiveProfile().label);
     const body = JSON.stringify(snapshot, null, 2);
 
-    // Try the dev-only writer first (writes straight into the repo under `bun run dev`).
-    try {
-      const res = await fetch(`/__progress/${profileId}`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body,
-      });
-      if (res.ok) {
-        const info = (await res.json().catch(() => ({}))) as { path?: string };
-        setMessage(
-          t(
-            `Written to ${info.path ?? `progress/${profileId}/`} — commit it so the agent can tailor drills.`,
-            `Сохранено в ${info.path ?? `progress/${profileId}/`} — закоммитьте, чтобы агент подобрал упражнения.`,
-          ),
-        );
-        return;
+    // The dev-only writer (writes straight into the repo under `bun run dev`). The
+    // endpoint exists nowhere else, so on the deployed site we do not even ask.
+    if (import.meta.env.DEV) {
+      try {
+        const res = await fetch(`/__progress/${profileId}`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body,
+        });
+        if (res.ok) {
+          const info = (await res.json().catch(() => ({}))) as { path?: string };
+          setMessage(
+            t(
+              `Written to ${info.path ?? `progress/${profileId}/`} — commit it so the agent can tailor drills.`,
+              `Сохранено в ${info.path ?? `progress/${profileId}/`} — закоммитьте, чтобы агент подобрал упражнения.`,
+            ),
+          );
+          return;
+        }
+      } catch {
+        // dev endpoint unavailable (middleware off) — fall back below.
       }
-    } catch {
-      // dev endpoint unavailable (static build / preview) — fall back below.
     }
 
     // Desktop app: write into the sync folder.

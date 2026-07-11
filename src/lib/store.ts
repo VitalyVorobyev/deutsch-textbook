@@ -1,6 +1,6 @@
 /** IndexedDB-backed progress store (client-side only), namespaced per profile. */
 import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval';
-import { getActiveProfileId, dbNameFor, resolveProfileState } from './profile';
+import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord } from './profile';
 import { scheduleAutoSync } from './autosync';
 
 // ---------------------------------------------------------------------------
@@ -323,7 +323,10 @@ export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
 export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void> {
   if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
   const store = await getStore();
+  // The identity record names this database for discovery — it outlives its contents.
+  const identity = await get<ProfileRecord>('profile', store);
   await clear(store);
+  if (identity) await set('profile', identity, store);
   await set('attempts', snapshot.attempts, store);
   await set('cards', snapshot.cards, store);
   await set('sessions', Array.isArray(snapshot.sessions) ? snapshot.sessions : [], store);
