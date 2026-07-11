@@ -5,7 +5,7 @@ import {
   type TopicContext,
   type TopicNode,
 } from '../../lib/mastery';
-import { TierBadge } from '../topic/TierBadge';
+import { SelfAssessedMark, TierBadge } from '../topic/TierBadge';
 import { useExplainLang } from '../hooks';
 
 function Seg({ on, label }: { on: boolean; label: string }) {
@@ -65,7 +65,8 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
                 <Seg on={exAttempts > 0} label="Geübt" />
                 <Seg on={spaced} label="2 Tage" />
                 {n.vocabIds.length > 0 && <Seg on={cardsReviewed > 0} label="Vokabeln" />}
-                <TierBadge tier={done.tier} manual={!!done.manual} className="ml-1" />
+                <TierBadge tier={done.tier} manual={done.manual === 'reopened'} className="ml-1" />
+                {done.manual === 'learned' && <SelfAssessedMark />}
               </div>
             </li>
           );

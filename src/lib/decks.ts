@@ -1,6 +1,5 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
-import { suggestNextTopic, type TopicNode } from './mastery';
-import type { Attempt, CardStates, TopicsState } from './store';
+import { suggestNextTopic, type TopicContext, type TopicNode } from './mastery';
 import type { CardDef } from './srs';
 
 /**
@@ -18,9 +17,7 @@ export function eligibleFreshCards(
   fresh: CardDef[],
   nodes: TopicNode[],
   deckLevels: Record<string, string>,
-  attempts: Attempt[],
-  topics: TopicsState,
-  states: CardStates,
+  ctx: TopicContext,
 ): CardDef[] {
   const owners = new Map<string, TopicNode[]>();
   for (const n of nodes) {
@@ -28,19 +25,19 @@ export function eligibleFreshCards(
   }
   // cardId is `<deckId>::<de>::<dir>`, so the deck is recoverable from the key
   const graded = new Set<string>();
-  for (const [id, s] of Object.entries(states)) {
+  for (const [id, s] of Object.entries(ctx.cards)) {
     if (s.reps > 0) graded.add(id.slice(0, id.indexOf('::')));
   }
-  const next = suggestNextTopic(nodes, attempts)?.id;
+  const next = suggestNextTopic(nodes, ctx)?.id;
   const openedLevels = new Set(
-    nodes.filter((n) => topics[n.id]?.readAt).map((n) => n.level),
+    nodes.filter((n) => ctx.topics[n.id]?.readAt).map((n) => n.level),
   );
 
   const eligible = new Set<string>();
   for (const deckId of new Set(fresh.map((c) => c.deckId))) {
     const own = owners.get(deckId);
     const ok = own
-      ? own.some((n) => topics[n.id]?.readAt || n.id === next)
+      ? own.some((n) => ctx.topics[n.id]?.readAt || n.id === next)
       : openedLevels.has(deckLevels[deckId] ?? '');
     if (ok || graded.has(deckId)) eligible.add(deckId);
   }

@@ -27,7 +27,12 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
   function check() {
     if (checked || locked) return;
     setChecked(true);
-    onResult({ correct: gapResults.every(Boolean), given: values.join(' / ') });
+    onResult({
+      correct: gapResults.every(Boolean),
+      given: values.join(' / '),
+      correctParts: gapResults.filter(Boolean).length,
+      totalParts: gapCount,
+    });
   }
 
   return (

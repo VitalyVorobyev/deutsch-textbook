@@ -37,6 +37,13 @@ export function TableFill({
     onResult({
       correct: allCorrect,
       given: askedCells.map(({ r, c }) => values[cellKey(r, c)] ?? '').join(' / '),
+      // guard: a table with only given cells would make totalParts 0
+      ...(askedCells.length >= 1
+        ? {
+            correctParts: askedCells.filter(({ r, c, answer }) => cellOk(r, c, answer)).length,
+            totalParts: askedCells.length,
+          }
+        : {}),
     });
   }
 

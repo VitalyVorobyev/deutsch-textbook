@@ -1,6 +1,5 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
-import { suggestNextTopic, topicSetIds, type TopicNode } from './mastery';
-import type { Attempt, TopicsState } from './store';
+import { suggestNextTopic, topicSetIds, type TopicContext, type TopicNode } from './mastery';
 
 /**
  * Pretests never enter the pool — they are guesses by design, meant to be
@@ -11,17 +10,17 @@ import type { Attempt, TopicsState } from './store';
  */
 export function eligibleTrainingSets<
   T extends { setId: string; topicId: string; isPretest?: boolean },
->(sets: T[], nodes: TopicNode[], attempts: Attempt[], topics: TopicsState): T[] {
+>(sets: T[], nodes: TopicNode[], ctx: TopicContext): T[] {
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
-  const attempted = new Set(attempts.map((a) => a.setId));
+  const attempted = new Set(ctx.attempts.map((a) => a.setId));
   const practiced = (topicId: string): boolean => {
     const node = nodeById.get(topicId);
     return node ? topicSetIds(node).some((id) => attempted.has(id)) : false;
   };
-  const next = suggestNextTopic(nodes, attempts)?.id;
+  const next = suggestNextTopic(nodes, ctx)?.id;
   return sets.filter(
     (s) =>
       !s.isPretest &&
-      (topics[s.topicId]?.readAt || s.topicId === next || practiced(s.topicId)),
+      (ctx.topics[s.topicId]?.readAt || s.topicId === next || practiced(s.topicId)),
   );
 }

@@ -4,9 +4,13 @@ import { pick, type ExplainLang } from '../../lib/prefs';
 import SpeakerButton from '../SpeakerButton';
 
 export interface ItemResult {
+  /** fully correct */
   correct: boolean;
   /** learner's answer, serialized for the attempt log */
   given: string;
+  /** partial credit for multi-part items (cloze/match/table); totalParts ≥ 1 when present */
+  correctParts?: number;
+  totalParts?: number;
 }
 
 export interface ItemProps<T> {

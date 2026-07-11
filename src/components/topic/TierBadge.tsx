@@ -10,7 +10,8 @@ const META: Record<Tier, { label: string; cls: string }> = {
   },
 };
 
-/** Small completion pill. `manual` adds a ✎ mark when the tier is a manual override. */
+/** Small completion pill for the measured tier. `manual` adds a ✎ mark when the
+    tier is manually capped (reopened). */
 export function TierBadge({
   tier,
   manual = false,
@@ -32,6 +33,20 @@ export function TierBadge({
           ✎
         </span>
       )}
+    </span>
+  );
+}
+
+/** Self-rating marker: the learner marked the topic learned — shown next to the
+    measured tier, which it never changes. */
+export function SelfAssessedMark({ className = '' }: { className?: string }) {
+  return (
+    <span
+      lang="de"
+      title="Selbsteinschätzung – ändert den gemessenen Stand nicht"
+      className={`inline-flex items-center gap-1 rounded-full border border-emerald-300 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-700 dark:text-emerald-300 ${className}`}
+    >
+      ✎ gelernt
     </span>
   );
 }

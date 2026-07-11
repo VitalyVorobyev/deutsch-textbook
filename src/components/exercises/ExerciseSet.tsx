@@ -1,6 +1,7 @@
 import { useState, type ReactElement } from 'react';
 import type { ExerciseItem, ExerciseSet as ExerciseSetData } from '../../lib/schemas';
 import { logAttempt } from '../../lib/store';
+import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
@@ -21,6 +22,8 @@ interface Props {
 interface Answered {
   itemId: string;
   correct: boolean;
+  /** attemptScore of the answer — parts-weighted for multi-part items */
+  score: number;
 }
 
 /**
@@ -83,8 +86,9 @@ export default function ExerciseSet({ setId, set }: Props) {
   const [answered, setAnswered] = useState<Answered[]>(() => {
     const saved = loadResume<{ answered: Answered[] }>(resumeSurface);
     if (!saved || !Array.isArray(saved.answered) || saved.answered.length > items.length) return [];
-    // stale if the set's items changed since the state was saved
-    if (!saved.answered.every((a, i) => a.itemId === items[i]?.id)) return [];
+    // stale if the set's items changed since the state was saved (or pre-score shape)
+    if (!saved.answered.every((a, i) => a.itemId === items[i]?.id && typeof a.score === 'number'))
+      return [];
     return saved.answered;
   });
   const [index, setIndex] = useState(answered.length);
@@ -97,7 +101,10 @@ export default function ExerciseSet({ setId, set }: Props) {
   function handleResult(result: ItemResult) {
     if (!item) return;
     setCurrentDone(true);
-    const next = [...answered, { itemId: item.id, correct: result.correct }];
+    const next = [
+      ...answered,
+      { itemId: item.id, correct: result.correct, score: attemptScore(result) },
+    ];
     setAnswered(next);
     saveResume(resumeSurface, { answered: next });
     void logAttempt({
@@ -105,6 +112,9 @@ export default function ExerciseSet({ setId, set }: Props) {
       itemId: item.id,
       itemType: item.type,
       correct: result.correct,
+      ...(result.totalParts !== undefined
+        ? { correctParts: result.correctParts, totalParts: result.totalParts }
+        : {}),
       given: result.given,
       focus: item.focus,
       ts: Date.now(),
@@ -125,12 +135,12 @@ export default function ExerciseSet({ setId, set }: Props) {
   }
 
   if (finished) {
-    const correct = answered.filter((a) => a.correct).length;
-    const pct = Math.round((correct / items.length) * 100);
+    const score = answered.reduce((s, a) => s + a.score, 0);
+    const pct = Math.round((score / items.length) * 100);
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
         <p className="text-3xl font-bold">
-          {correct} / {items.length}
+          {formatScore(score, lang)} / {items.length}
         </p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
           {pct >= 80

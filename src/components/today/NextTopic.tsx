@@ -15,8 +15,8 @@ export default function NextTopic({ nodes }: Props) {
   useEffect(() => {
     void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
       ([attempts, cards, topics]) => {
-        setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
         const ctx = { attempts, cards, topics };
+        setSuggestion(suggestNextTopic(nodes, ctx) ?? null);
         setMastered(nodes.filter((n) => topicCompletion(n, ctx).tier === 'mastered').length);
       },
     );

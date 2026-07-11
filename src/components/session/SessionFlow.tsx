@@ -99,7 +99,11 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
       ([states, attempts, topics]) => {
         if (cancelled) return;
         const { due, fresh } = splitQueue(cards, states);
-        const pool = eligibleFreshCards(fresh, nodes, deckLevels, attempts, topics, states);
+        const pool = eligibleFreshCards(fresh, nodes, deckLevels, {
+          attempts,
+          cards: states,
+          topics,
+        });
         const dueCapped = shuffle(due).slice(0, MAX_CARDS);
         const newLimit = due.length > 0 && due.length < MIN_DUE ? MAX_CARDS - dueCapped.length : 0;
         setPlan({

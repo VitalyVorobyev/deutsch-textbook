@@ -22,7 +22,13 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       setMatched(next);
       setSelectedLeft(null);
       if (next.size === item.pairs.length) {
-        onResult({ correct: errors === 0, given: `${errors} Fehler` });
+        onResult({
+          correct: errors === 0,
+          given: `${errors} Fehler`,
+          // errors are unbounded (every wrong click counts) — credit clamps at zero
+          correctParts: Math.max(0, item.pairs.length - errors),
+          totalParts: item.pairs.length,
+        });
       }
     } else {
       setErrors((e) => e + 1);
