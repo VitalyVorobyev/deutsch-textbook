@@ -3,7 +3,7 @@ import type { z } from 'zod';
 import type { orderItemSchema } from '../../lib/schemas';
 import { normalizeSentence } from '../../lib/cloze';
 import { shuffle } from '../../lib/shuffle';
-import { CheckButton, Feedback, Instruction, Translation, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type OrderItem = z.infer<typeof orderItemSchema>;
 
@@ -12,7 +12,7 @@ interface Chip {
   key: number;
 }
 
-export function Order({ item, lang, onResult, locked }: ItemProps<OrderItem>) {
+export function Order({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<OrderItem>) {
   const initialPool = useMemo<Chip[]>(
     () => shuffle(item.words.map((word, key) => ({ word, key }))),
     [item],
@@ -85,7 +85,14 @@ export function Order({ item, lang, onResult, locked }: ItemProps<OrderItem>) {
         ))}
       </div>
       <Translation text={item.translation} lang={lang} />
-      {!checked && <CheckButton onClick={check} disabled={pool.length > 0} />}
+      <ActionRow
+        checked={checked}
+        correct={isCorrect}
+        onCheck={check}
+        checkDisabled={pool.length > 0}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {checked && (
         <Feedback correct={isCorrect} correctAnswer={target} explain={item.explain} lang={lang} />
       )}

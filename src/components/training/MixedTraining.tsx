@@ -388,19 +388,11 @@ export default function MixedTraining({
           lang={lang}
           onResult={handleResult}
           locked={currentDone}
+          onNext={next}
+          nextLabel={
+            index + 1 < session.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
+          }
         />
-      )}
-
-      {currentDone && (
-        <div className="mt-4 text-right">
-          <button
-            type="button"
-            onClick={next}
-            className="min-h-11 rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 sm:min-h-0 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
-          >
-            {index + 1 < session.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'}
-          </button>
-        </div>
       )}
     </div>
   );

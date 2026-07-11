@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { matchItemSchema } from '../../lib/schemas';
 import { shuffle } from '../../lib/shuffle';
-import { Feedback, Instruction, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type MatchItem = z.infer<typeof matchItemSchema>;
 
-export function Match({ item, lang, onResult, locked }: ItemProps<MatchItem>) {
+export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<MatchItem>) {
   const rights = useMemo(() => shuffle(item.pairs.map((p) => p.right)), [item]);
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [matched, setMatched] = useState<Set<string>>(new Set());
@@ -81,12 +81,17 @@ export function Match({ item, lang, onResult, locked }: ItemProps<MatchItem>) {
           })}
         </div>
       </div>
+      {/* height reserved even at zero errors, so the counter appearing cannot shove the action row down */}
+      <p className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400">
+        {errors > 0 && !done && (lang === 'ru' ? `Ошибки: ${errors}` : `Errors: ${errors}`)}
+      </p>
+      <ActionRow
+        checked={done}
+        correct={errors === 0}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {done && <Feedback correct={errors === 0} explain={item.explain} lang={lang} />}
-      {errors > 0 && !done && (
-        <p className="mt-2 text-xs text-red-600 dark:text-red-400">
-          {lang === 'ru' ? `Ошибки: ${errors}` : `Errors: ${errors}`}
-        </p>
-      )}
     </div>
   );
 }

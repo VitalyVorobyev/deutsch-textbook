@@ -3,14 +3,21 @@ import type { z } from 'zod';
 import type { translateItemSchema } from '../../lib/schemas';
 import { normalizeAnswer, translationMatches } from '../../lib/cloze';
 import { diffExpectedWords } from '../../lib/worddiff';
-import { CheckButton, Feedback, Instruction, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
 
 /** Characters that are awkward to type on a non-German keyboard. */
 const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
 
-export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateItem>) {
+export function Translate({
+  item,
+  lang,
+  onResult,
+  locked,
+  onNext,
+  nextLabel,
+}: ItemProps<TranslateItem>) {
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -81,7 +88,14 @@ export function Translate({ item, lang, onResult, locked }: ItemProps<TranslateI
           </button>
         ))}
       </div>
-      {!checked && <CheckButton onClick={check} disabled={value.trim() === ''} />}
+      <ActionRow
+        checked={checked}
+        correct={isCorrect}
+        onCheck={check}
+        checkDisabled={value.trim() === ''}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {checked && (
         <Feedback
           correct={isCorrect}
