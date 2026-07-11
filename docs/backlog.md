@@ -147,7 +147,7 @@ highlighted, click → topic page. List (current grid) stays as toggle and no-JS
   box); badges match the Fortschritt dashboard; toggle to list works; works under `bun run dev`
   and in the Tauri shell.
 
-### P1-4 · Merged Üben tab — `todo` (M)
+### P1-4 · Merged Üben tab — `done` (M)
 
 `/ueben` with three sub-views — Wiederholen (`FlashcardSession`, all cards, `newLimit` honoring
 P0-2), Training (`MixedTraining`), Wortschatz (deck list with due badges). Nav slims to
