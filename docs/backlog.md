@@ -31,7 +31,8 @@ New (never-graded) cards enter the queue only from opened or recommended-next to
 are always reviewed regardless of origin.
 
 - Map deck → owning topic(s) via topic frontmatter `vocab: [ids]` (`getTopicNodes()` already
-  carries `vocabIds`). Decks referenced by no topic stay always-eligible.
+  carries `vocabIds`). Decks referenced by no topic (e.g. `kernwortschatz-a2`) are gated by
+  their `level`: fresh cards become eligible once ≥1 topic at that level has been opened.
 - Explicit navigation to `/vocab/<deck>` remains an opt-in override — studying a deck directly
   is a deliberate act and stays ungated.
 - Files: `src/lib/srs.ts` (`splitQueue` or a filter before it),

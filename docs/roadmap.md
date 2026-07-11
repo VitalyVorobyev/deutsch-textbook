@@ -170,14 +170,14 @@ where the unit's outcomes call for them.
 
 ### Phase 3 — A2 completion + spiral (trimmed to ~10 units)
 
-1. **Wohnen & Umzug** — two-way prepositions; `deepens: akkusativ` + `dativ`.
+1. **Wohnen & Umzug** — two-way prepositions; `deepens: [akkusativ, dativ]`.
 2. **Reisen & Verkehr** — tickets, problems, directions.
 3. **Einkaufen & Reklamation** — comparisons, returns, complaints.
-4. **Gesundheit & Termine** — doctor/pharmacy, advice, imperatives; `deepens: termine-vereinbaren`.
+4. **Gesundheit & Termine** — doctor/pharmacy, advice, imperatives; `deepens: [termine-vereinbaren]`.
 5. **Arbeit & Beruf** — duties, simple professional messages.
 6. **Lernen & Verstehen** — courses, learning strategies, asking for clarification.
 7. **Biografie & Vergangenheit** — narrative Perfekt + Präteritum of sein/haben/modals;
-   `deepens: perfekt-haben-sein`.
+   `deepens: [perfekt-haben-sein]`.
 8. **Freunde & Feste** — invitations, social arrangements (merges codex 8 with parts of 9).
 9. **Ämter & Alltag** — authorities, bank, post, forms.
 10. **Nebensätze & Pläne** — weil/dass/wenn, future intentions, polite wishes (codex 11+12).
