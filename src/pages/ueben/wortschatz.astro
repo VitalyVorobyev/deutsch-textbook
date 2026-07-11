@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import UebenNav from '../../components/UebenNav.astro';
 import DueBadge from '../../components/srs/DueBadge';
 import { buildDeck } from '../../lib/srs';
 import { withBase } from '../../lib/url';
@@ -12,6 +13,7 @@ const decks = vocab
 ---
 
 <Base title="Wortschatz">
+  <UebenNav active="wortschatz" />
   <h1 class="text-3xl font-bold tracking-tight">Wortschatz</h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">Flashcard decks built from the vocabulary base.</span>

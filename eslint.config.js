@@ -15,6 +15,8 @@ export default tseslint.config(
       'src-tauri/', // Rust shell + Tauri-generated artifacts
       'progress/',
       'docs/',
+      '.claude/', // local settings + agent worktrees (each carries a full repo copy)
+      '.agents/',
     ],
   },
 
