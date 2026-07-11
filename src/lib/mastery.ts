@@ -1,6 +1,7 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
 import { localDateString } from './store';
+import { scoreTotal } from './scoring';
 
 /** The minimum a topic needs for its progress to be rolled up. */
 export interface TopicRollup {
@@ -83,7 +84,7 @@ export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] 
   // but must not count toward (or against) mastery accuracy.
   const scored = node.pretestId ? own.filter((a) => a.setId !== node.pretestId) : own;
   const recent = scored.slice(-MASTERY_WINDOW);
-  const accuracy = recent.length ? recent.filter((a) => a.correct).length / recent.length : 0;
+  const accuracy = recent.length ? scoreTotal(recent) / recent.length : 0;
   const practiceDays = new Set(scored.map((a) => localDateString(new Date(a.ts))));
   const reviewedCards = topicCardIds(node, ctx.cards).filter(
     (id) => (ctx.cards[id]?.reps ?? 0) > 0,
@@ -131,9 +132,12 @@ export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
   return ctx.topics[node.id]?.readAt ? 'read' : 'untouched';
 }
 
-/** Apply the manual override: learned → mastered; reopened → capped at practiced. */
+/**
+ * Apply the manual override: `reopened` caps the tier at practiced (capping
+ * down is honest). `learned` is a self-rating rendered as a separate marker —
+ * it never raises the measured tier.
+ */
 export function effectiveTier(auto: Tier, manual?: TopicManual): Tier {
-  if (manual === 'learned') return 'mastered';
   if (manual === 'reopened') return TIER_ORDER[auto] > TIER_ORDER.practiced ? 'practiced' : auto;
   return auto;
 }
@@ -151,47 +155,35 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
 }
 
 // ---------------------------------------------------------------------------
-// Next-topic suggestion (3-state view over the attempt log)
+// Next-topic suggestion (same measured tiers as the dashboard)
 // ---------------------------------------------------------------------------
-
-export type MasteryState = 'untouched' | 'started' | 'mastered';
-
-/**
- * Attempts-only 3-state used by suggestNextTopic (read/practiced collapse to "started").
- *
- * Deliberately looser than topicTier(): no ≥2-days and no card requirement. The
- * suggester prefers "started" topics over untouched ones, so a topic finished in a
- * single sitting would otherwise stay "started" forever and block the learner from
- * ever being pointed at a new topic. Badge = retention; suggestion = where to go next.
- */
-export function topicMastery(node: TopicRollup, attempts: Attempt[]): MasteryState {
-  const setIds = new Set(topicSetIds(node));
-  const own = attempts.filter((a) => setIds.has(a.setId));
-  if (own.length === 0) return 'untouched';
-  const recent = own.slice(-MASTERY_WINDOW);
-  if (recent.length >= MASTERY_MIN_ATTEMPTS) {
-    const accuracy = recent.filter((a) => a.correct).length / recent.length;
-    if (accuracy >= MASTERY_ACCURACY) return 'mastered';
-  }
-  return 'started';
-}
 
 const LEVEL_ORDER: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
 
-/** Suggest the next topic: lowest level first; prefer topics already started,
-    then untouched topics whose prerequisites are all mastered, then any untouched. */
-export function suggestNextTopic(nodes: TopicNode[], attempts: Attempt[]): TopicNode | undefined {
-  const mastery = new Map(nodes.map((n) => [n.id, topicMastery(n, attempts)]));
+/**
+ * Suggest the next topic: lowest level first; prefer topics already started
+ * (read or practiced but not yet mastered), then untouched topics whose
+ * prerequisites are all mastered, then any not-mastered topic.
+ *
+ * "Mastered" is the same measured tier the dashboard shows (topicCompletion —
+ * after the self-assessment split a manual "learned" can never raise it), so
+ * the suggestion and the Fortschritt topic list can never disagree.
+ */
+export function suggestNextTopic(nodes: TopicNode[], ctx: TopicContext): TopicNode | undefined {
+  const tiers = new Map(nodes.map((n) => [n.id, topicCompletion(n, ctx).tier]));
   const sorted = [...nodes].sort(
     (a, b) => (LEVEL_ORDER[a.level] ?? 9) - (LEVEL_ORDER[b.level] ?? 9) || a.id.localeCompare(b.id),
   );
-  const started = sorted.find((n) => mastery.get(n.id) === 'started');
+  const started = sorted.find((n) => {
+    const t = tiers.get(n.id);
+    return t === 'read' || t === 'practiced';
+  });
   if (started) return started;
   const ready = sorted.find(
     (n) =>
-      mastery.get(n.id) === 'untouched' &&
-      n.prerequisites.every((p) => !mastery.has(p) || mastery.get(p) === 'mastered'),
+      tiers.get(n.id) === 'untouched' &&
+      n.prerequisites.every((p) => !tiers.has(p) || tiers.get(p) === 'mastered'),
   );
   if (ready) return ready;
-  return sorted.find((n) => mastery.get(n.id) !== 'mastered');
+  return sorted.find((n) => tiers.get(n.id) !== 'mastered');
 }

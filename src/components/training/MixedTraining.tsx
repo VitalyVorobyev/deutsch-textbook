@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ExerciseItem, Level } from '../../lib/schemas';
-import { getAttempts, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
+import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { suggestNextTopic, type TopicNode } from '../../lib/mastery';
 import { eligibleTrainingSets } from '../../lib/training';
@@ -131,6 +132,8 @@ function repairAdjacency(items: SessionItem[]): SessionItem[] {
 interface Answered {
   uid: string;
   correct: boolean;
+  /** attemptScore of the answer — parts-weighted for multi-part items */
+  score: number;
 }
 
 interface TrainingResume {
@@ -151,7 +154,8 @@ function restoreSession(
   // an empty queue must rebuild — eligibility may have changed since it was saved
   if (saved.uids.length === 0) return null;
   if (saved.answered.length > saved.uids.length) return null;
-  if (!saved.answered.every((a, i) => a.uid === saved.uids[i])) return null;
+  if (!saved.answered.every((a, i) => a.uid === saved.uids[i] && typeof a.score === 'number'))
+    return null;
 
   const byUid = new Map<string, SessionItem>();
   for (const s of sets) {
@@ -183,7 +187,8 @@ interface MixedTrainingProps {
   /** number of items per session */
   count?: number;
   /** when provided, the end screen shows a "Weiter →" button that calls this
-      (instead of the standalone "Nochmal" restart) with the actual counts */
+      (instead of the standalone "Nochmal" restart) with the actual counts;
+      `correct` is the parts-weighted score sum */
   onFinished?: (result: { answered: number; correct: number }) => void;
   /** called when the built session has no items (nothing eligible yet) —
       an empty session can never reach onFinished */
@@ -219,14 +224,17 @@ export default function MixedTraining({
   useEffect(() => {
     if (round === 0 && restored) return; // this mount resumed a saved queue
     let cancelled = false;
-    void Promise.all([getAttempts(), getTopicsState()]).then(([attempts, topics]) => {
-      if (cancelled) return;
-      const s = buildSession(eligibleTrainingSets(sets, nodes, attempts, topics), count, attempts);
-      setSession(s);
-      setSuggestion(suggestNextTopic(nodes, attempts) ?? null);
-      if (surface && s.length > 0)
-        saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
-    });
+    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
+      ([attempts, cards, topics]) => {
+        if (cancelled) return;
+        const ctx = { attempts, cards, topics };
+        const s = buildSession(eligibleTrainingSets(sets, nodes, ctx), count, attempts);
+        setSession(s);
+        setSuggestion(suggestNextTopic(nodes, ctx) ?? null);
+        if (surface && s.length > 0)
+          saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
+      },
+    );
     return () => {
       cancelled = true;
     };
@@ -242,7 +250,10 @@ export default function MixedTraining({
     const entry = session?.[index];
     if (!entry || !session) return;
     setCurrentDone(true);
-    const next = [...answered, { uid: entry.uid, correct: result.correct }];
+    const next = [
+      ...answered,
+      { uid: entry.uid, correct: result.correct, score: attemptScore(result) },
+    ];
     setAnswered(next);
     if (surface) {
       saveResume<TrainingResume>(surface, { uids: session.map((s) => s.uid), answered: next });
@@ -252,6 +263,9 @@ export default function MixedTraining({
       itemId: entry.item.id,
       itemType: entry.item.type,
       correct: result.correct,
+      ...(result.totalParts !== undefined
+        ? { correctParts: result.correctParts, totalParts: result.totalParts }
+        : {}),
       given: result.given,
       focus: entry.item.focus,
       ts: Date.now(),
@@ -314,28 +328,33 @@ export default function MixedTraining({
   const finished = index >= session.length;
 
   if (finished) {
-    const correct = answered.filter((a) => a.correct).length;
+    const score = answered.reduce((s, a) => s + a.score, 0);
 
     // per-topic breakdown, in first-appearance order
-    const byTopic = new Map<string, { title_de: string; level: Level; correct: number; total: number }>();
+    const byTopic = new Map<
+      string,
+      { title_de: string; level: Level; score: number; allCorrect: boolean; total: number }
+    >();
     answered.forEach((a, i) => {
       const entry = session[i];
       if (!entry) return;
       const row = byTopic.get(entry.topicId) ?? {
         title_de: entry.title_de,
         level: entry.level,
-        correct: 0,
+        score: 0,
+        allCorrect: true,
         total: 0,
       };
       row.total += 1;
-      if (a.correct) row.correct += 1;
+      row.score += a.score;
+      row.allCorrect &&= a.correct;
       byTopic.set(entry.topicId, row);
     });
 
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
         <p className="text-center text-3xl font-bold">
-          {correct} / {session.length}
+          {formatScore(score, lang)} / {session.length}
         </p>
         <p className="mt-1 text-center text-sm text-stone-500 dark:text-stone-400">
           {lang === 'ru' ? 'Результат по темам:' : 'Breakdown by topic:'}
@@ -355,12 +374,12 @@ export default function MixedTraining({
               </a>
               <span
                 className={`ml-auto font-semibold tabular-nums ${
-                  row.correct === row.total
+                  row.allCorrect
                     ? 'text-green-600 dark:text-green-400'
                     : 'text-stone-600 dark:text-stone-300'
                 }`}
               >
-                {row.correct} / {row.total}
+                {formatScore(row.score, lang)} / {row.total}
               </span>
             </li>
           ))}
@@ -371,7 +390,7 @@ export default function MixedTraining({
               type="button"
               onClick={() => {
                 if (surface) clearResume(surface);
-                onFinished({ answered: answered.length, correct });
+                onFinished({ answered: answered.length, correct: score });
               }}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >

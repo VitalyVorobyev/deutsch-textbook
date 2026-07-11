@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { topicCompletion, type TopicContext, type TopicRollup } from '../../lib/mastery';
-import { TierBadge } from './TierBadge';
+import { SelfAssessedMark, TierBadge } from './TierBadge';
 
 interface Props {
   topics: TopicRollup[];
@@ -44,8 +44,16 @@ export default function TopicsProgress({ topics }: Props) {
         const node = byId.get(id);
         if (!node) return null;
         const done = topicCompletion(node, ctx);
-        if (done.tier === 'untouched') return null;
-        return createPortal(<TierBadge tier={done.tier} manual={!!done.manual} />, el, id);
+        const selfLearned = done.manual === 'learned';
+        if (done.tier === 'untouched' && !selfLearned) return null;
+        return createPortal(
+          <span className="inline-flex flex-wrap items-center gap-1">
+            <TierBadge tier={done.tier} manual={done.manual === 'reopened'} />
+            {selfLearned && <SelfAssessedMark />}
+          </span>,
+          el,
+          id,
+        );
       })}
     </>
   );

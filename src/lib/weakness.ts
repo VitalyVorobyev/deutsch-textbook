@@ -7,11 +7,13 @@
  * progress page use them to steer practice toward weak confusions.
  */
 import type { Attempt } from './store';
+import { attemptScore } from './scoring';
 
 export interface FocusStat {
   focus: string;
   /** attempts counted (at most `window` most recent per focus) */
   attempts: number;
+  /** parts-weighted errors — a 5-of-6 table contributes 1/6, not 1 */
   errors: number;
   /** errors / attempts within the window */
   errorRate: number;
@@ -43,7 +45,7 @@ export function focusStats(attempts: Attempt[], window = DEFAULT_WINDOW): FocusS
   const stats: FocusStat[] = [];
   for (const [focus, own] of byFocus) {
     const recent = [...own].sort((a, b) => a.ts - b.ts).slice(-window);
-    const errors = recent.filter((a) => !a.correct).length;
+    const errors = recent.reduce((s, a) => s + (1 - attemptScore(a)), 0);
     stats.push({
       focus,
       attempts: recent.length,

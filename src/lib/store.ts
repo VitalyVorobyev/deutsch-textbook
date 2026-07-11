@@ -40,7 +40,12 @@ export interface Attempt {
   setId: string;
   itemId: string;
   itemType: string;
+  /** fully correct (partial credit lives in correctParts/totalParts) */
   correct: boolean;
+  /** parts answered correctly, for multi-part items (cloze gaps, match pairs, table cells) */
+  correctParts?: number;
+  /** parts asked; ≥ 1 when present — emitters and snapshot import both enforce it */
+  totalParts?: number;
   /** what the learner entered/chose, for the personalization loop */
   given: string;
   /** the item's confusion tag (see focus-tag table in CLAUDE.md), when tagged */
@@ -222,6 +227,24 @@ function isValidSnapshot(s: unknown): s is ProgressSnapshot {
   );
 }
 
+/** Strip malformed partial-credit fields so attemptScore() can trust totalParts ≥ 1. */
+function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
+  return attempts.map((a) => {
+    if (a.correctParts === undefined && a.totalParts === undefined) return a;
+    if (
+      typeof a.correctParts === 'number' &&
+      typeof a.totalParts === 'number' &&
+      Number.isFinite(a.correctParts) &&
+      a.correctParts >= 0 &&
+      a.totalParts >= 1
+    ) {
+      return a;
+    }
+    const { correctParts: _cp, totalParts: _tp, ...rest } = a;
+    return rest;
+  });
+}
+
 // --- merge helpers (pure) ---------------------------------------------------
 
 function attemptKey(a: Attempt): string {
@@ -308,7 +331,11 @@ function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
 export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
   if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
   const store = await getStore();
-  await update<Attempt[]>('attempts', (cur) => mergeAttempts(cur ?? [], snapshot.attempts), store);
+  await update<Attempt[]>(
+    'attempts',
+    (cur) => mergeAttempts(cur ?? [], sanitizeAttempts(snapshot.attempts)),
+    store,
+  );
   await update<CardStates>('cards', (cur) => mergeCards(cur ?? {}, snapshot.cards), store);
   await update<SessionLogEntry[]>(
     'sessions',
@@ -327,7 +354,7 @@ export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void>
   const identity = await get<ProfileRecord>('profile', store);
   await clear(store);
   if (identity) await set('profile', identity, store);
-  await set('attempts', snapshot.attempts, store);
+  await set('attempts', sanitizeAttempts(snapshot.attempts), store);
   await set('cards', snapshot.cards, store);
   await set('sessions', Array.isArray(snapshot.sessions) ? snapshot.sessions : [], store);
   await set(
