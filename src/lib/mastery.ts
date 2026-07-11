@@ -155,35 +155,25 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
 }
 
 // ---------------------------------------------------------------------------
-// Next-topic suggestion (same measured tiers as the dashboard)
+// Recommended next topic (spine order × the dashboard's measured tiers)
 // ---------------------------------------------------------------------------
 
-const LEVEL_ORDER: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
-
 /**
- * Suggest the next topic: lowest level first; prefer topics already started
- * (read or practiced but not yet mastered), then untouched topics whose
- * prerequisites are all mastered, then any not-mastered topic.
- *
- * "Mastered" is the same measured tier the dashboard shows (topicCompletion —
- * after the self-assessment split a manual "learned" can never raise it), so
- * the suggestion and the Fortschritt topic list can never disagree.
+ * The recommended next topic: the first topic in spine order whose measured
+ * tier is below mastered. The spine (content/atlas.yaml `units`, flattened by
+ * getCurriculum) is validated to respect prerequisites, and the tier is the
+ * dashboard's own (topicCompletion — a manual "learned" can never raise it),
+ * so the suggestion, the path and the Fortschritt list can never disagree.
  */
-export function suggestNextTopic(nodes: TopicNode[], ctx: TopicContext): TopicNode | undefined {
-  const tiers = new Map(nodes.map((n) => [n.id, topicCompletion(n, ctx).tier]));
-  const sorted = [...nodes].sort(
-    (a, b) => (LEVEL_ORDER[a.level] ?? 9) - (LEVEL_ORDER[b.level] ?? 9) || a.id.localeCompare(b.id),
-  );
-  const started = sorted.find((n) => {
-    const t = tiers.get(n.id);
-    return t === 'read' || t === 'practiced';
-  });
-  if (started) return started;
-  const ready = sorted.find(
-    (n) =>
-      tiers.get(n.id) === 'untouched' &&
-      n.prerequisites.every((p) => !tiers.has(p) || tiers.get(p) === 'mastered'),
-  );
-  if (ready) return ready;
-  return sorted.find((n) => tiers.get(n.id) !== 'mastered');
+export function recommendedNext(
+  spineTopicIds: string[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): TopicNode | undefined {
+  const byId = new Map(nodes.map((n) => [n.id, n]));
+  for (const id of spineTopicIds) {
+    const node = byId.get(id);
+    if (node && topicCompletion(node, ctx).tier !== 'mastered') return node;
+  }
+  return undefined;
 }
