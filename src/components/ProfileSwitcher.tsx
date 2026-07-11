@@ -5,7 +5,7 @@ import {
   createProfile,
   switchProfile,
   deleteProfile,
-  DEFAULT_PROFILE_ID,
+  resolveProfileState,
   type Profile,
 } from '../lib/profile';
 import { useExplainLang } from './hooks';
@@ -15,14 +15,17 @@ export default function ProfileSwitcher() {
   const lang = useExplainLang();
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<Profile[]>([]);
-  const [activeId, setActiveId] = useState(DEFAULT_PROFILE_ID);
+  const [activeId, setActiveId] = useState('');
   const [adding, setAdding] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setProfiles(listProfiles());
-    setActiveId(getActiveProfileId());
+    // Wait for the first-run/legacy decision — it may seed the registry.
+    void resolveProfileState().then(() => {
+      setProfiles(listProfiles());
+      setActiveId(getActiveProfileId());
+    });
   }, []);
 
   useEffect(() => {
@@ -89,7 +92,7 @@ export default function ProfileSwitcher() {
                 {p.id === activeId ? '✓ ' : ''}
                 {p.label}
               </button>
-              {p.id !== DEFAULT_PROFILE_ID && (
+              {profiles.length > 1 && (
                 <button
                   type="button"
                   onClick={() => handleDelete(p.id, p.label)}

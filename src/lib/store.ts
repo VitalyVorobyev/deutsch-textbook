@@ -1,6 +1,6 @@
 /** IndexedDB-backed progress store (client-side only), namespaced per profile. */
 import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval';
-import { getActiveProfileId, dbNameFor } from './profile';
+import { getActiveProfileId, dbNameFor, resolveProfileState } from './profile';
 import { scheduleAutoSync } from './autosync';
 
 // ---------------------------------------------------------------------------
@@ -10,10 +10,18 @@ import { scheduleAutoSync } from './autosync';
 // One idb-keyval store per profile, memoized so we don't reopen the IndexedDB
 // connection on every operation. The active profile is read inside each call
 // (not at module load) so a mid-session profile switch + reload picks the right
-// database. The default profile aliases the legacy `deutsch-atlas` DB.
+// database. The legacy profile aliases the pre-profile `deutsch-atlas` DB.
 const stores = new Map<string, UseStore>();
 
-function getStore(): UseStore {
+// Awaits the first-run/legacy decision before touching IndexedDB: creating a
+// store here would otherwise race the legacy-DB detection in profile.ts (e.g.
+// markTopicRead fires on topic-page mount with no user interaction). While the
+// first-run gate is up there is no profile to own a write, so park forever —
+// creating the profile reloads the page, which discards parked operations.
+async function getStore(): Promise<UseStore> {
+  if ((await resolveProfileState()) === 'first-run') {
+    await new Promise<never>(() => {});
+  }
   const id = getActiveProfileId();
   let s = stores.get(id);
   if (!s) {
@@ -41,12 +49,12 @@ export interface Attempt {
 }
 
 export async function logAttempt(attempt: Attempt): Promise<void> {
-  await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], getStore());
+  await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], await getStore());
   scheduleAutoSync();
 }
 
 export async function getAttempts(): Promise<Attempt[]> {
-  return (await get<Attempt[]>('attempts', getStore())) ?? [];
+  return (await get<Attempt[]>('attempts', await getStore())) ?? [];
 }
 
 // ---------------------------------------------------------------------------
@@ -69,11 +77,11 @@ export interface StoredCard {
 export type CardStates = Record<string, StoredCard>;
 
 export async function getCardStates(): Promise<CardStates> {
-  return (await get<CardStates>('cards', getStore())) ?? {};
+  return (await get<CardStates>('cards', await getStore())) ?? {};
 }
 
 export async function setCardState(cardId: string, card: StoredCard): Promise<void> {
-  await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), getStore());
+  await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), await getStore());
   scheduleAutoSync();
 }
 
@@ -99,12 +107,12 @@ export function localDateString(d = new Date()): string {
 }
 
 export async function logSession(entry: SessionLogEntry): Promise<void> {
-  await update<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry], getStore());
+  await update<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry], await getStore());
   scheduleAutoSync();
 }
 
 export async function getSessionLog(): Promise<SessionLogEntry[]> {
-  return (await get<SessionLogEntry[]>('sessions', getStore())) ?? [];
+  return (await get<SessionLogEntry[]>('sessions', await getStore())) ?? [];
 }
 
 export async function sessionDoneToday(): Promise<boolean> {
@@ -131,7 +139,7 @@ export interface TopicProgress {
 export type TopicsState = Record<string, TopicProgress>;
 
 export async function getTopicsState(): Promise<TopicsState> {
-  return (await get<TopicsState>('topics', getStore())) ?? {};
+  return (await get<TopicsState>('topics', await getStore())) ?? {};
 }
 
 /** Mark a topic's article as read. Idempotent — keeps the earliest readAt. */
@@ -143,7 +151,7 @@ export async function markTopicRead(topicId: string, ts = Date.now()): Promise<v
       if (cur[topicId]?.readAt) return cur;
       return { ...cur, [topicId]: { ...cur[topicId], readAt: ts } };
     },
-    getStore(),
+    await getStore(),
   );
   scheduleAutoSync();
 }
@@ -169,7 +177,7 @@ export async function setTopicManual(
       }
       return { ...cur, [topicId]: next };
     },
-    getStore(),
+    await getStore(),
   );
   scheduleAutoSync();
 }
@@ -299,7 +307,7 @@ function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
  */
 export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
   if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
-  const store = getStore();
+  const store = await getStore();
   await update<Attempt[]>('attempts', (cur) => mergeAttempts(cur ?? [], snapshot.attempts), store);
   await update<CardStates>('cards', (cur) => mergeCards(cur ?? {}, snapshot.cards), store);
   await update<SessionLogEntry[]>(
@@ -314,7 +322,7 @@ export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
 /** Destructive: replaces the whole store with the snapshot's contents. */
 export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void> {
   if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
-  const store = getStore();
+  const store = await getStore();
   await clear(store);
   await set('attempts', snapshot.attempts, store);
   await set('cards', snapshot.cards, store);

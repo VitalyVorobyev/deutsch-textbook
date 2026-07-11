@@ -13,6 +13,8 @@ import {
   type TopicsState,
 } from '../../lib/store';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
+import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
+import { localDateString } from '../../lib/store';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
 import { Heatmap } from './Heatmap';
@@ -35,6 +37,7 @@ export default function ProgressPanel({ nodes }: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [syncDir, setSyncDir] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const importMode = useRef<'merge' | 'replace'>('merge');
 
@@ -52,7 +55,22 @@ export default function ProgressPanel({ nodes }: Props) {
 
   useEffect(() => {
     void refresh();
+    if (isTauri()) void getSyncDir().then(setSyncDir);
   }, []);
+
+  async function changeSyncDir() {
+    const dir = await pickSyncDir();
+    if (!dir) return;
+    setSyncDir(dir);
+    // write a snapshot right away so the new folder visibly works
+    const snapshot = await exportSnapshot(getActiveProfile().label);
+    const path = await writeSnapshotToSyncDir(
+      getActiveProfileId(),
+      JSON.stringify(snapshot, null, 2),
+      localDateString(),
+    );
+    setMessage(t(`Written to ${path}`, `Сохранено в ${path}`));
+  }
 
   async function doExport() {
     const profileId = getActiveProfileId();
@@ -77,7 +95,18 @@ export default function ProgressPanel({ nodes }: Props) {
         return;
       }
     } catch {
-      // dev endpoint unavailable (static build / preview) — fall back to a download.
+      // dev endpoint unavailable (static build / preview) — fall back below.
+    }
+
+    // Desktop app: write into the sync folder.
+    if (isTauri()) {
+      try {
+        const path = await writeSnapshotToSyncDir(profileId, body, localDateString());
+        setMessage(t(`Written to ${path}`, `Сохранено в ${path}`));
+        return;
+      } catch {
+        // sync folder unwritable — fall back to a download.
+      }
     }
 
     const blob = new Blob([body], { type: 'application/json' });
@@ -220,13 +249,37 @@ export default function ProgressPanel({ nodes }: Props) {
             }}
           />
         </div>
-        {import.meta.env.DEV && (
+        {isTauri() && (
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-500 dark:text-stone-400">
+            <span className="font-semibold">{t('Sync folder:', 'Папка синхронизации:')}</span>
+            <code className="max-w-full truncate rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-900">
+              {syncDir ?? '…'}
+            </code>
+            <button
+              type="button"
+              onClick={() => void changeSyncDir()}
+              className="rounded-md border border-stone-300 px-2 py-1 font-semibold hover:border-amber-500 dark:border-stone-600"
+            >
+              {t('Change…', 'Изменить…')}
+            </button>
+          </div>
+        )}
+        {isTauri() ? (
           <p className="mt-3 text-center text-xs text-stone-400">
             {t(
-              'Auto-sync is on: while bun run dev is running, every change is written to progress/ automatically. Export is for the deployed site.',
-              'Автосинхронизация включена: пока работает bun run dev, каждое изменение автоматически записывается в progress/. Экспорт нужен для задеплоенного сайта.',
+              'Auto-sync is on: every change writes a snapshot to the sync folder. Point it at your repo clone’s progress/ folder so the agent can tailor drills.',
+              'Автосинхронизация включена: каждое изменение записывает снимок в папку синхронизации. Укажите папку progress/ клона репозитория, чтобы агент подбирал упражнения.',
             )}
           </p>
+        ) : (
+          import.meta.env.DEV && (
+            <p className="mt-3 text-center text-xs text-stone-400">
+              {t(
+                'Auto-sync is on: while bun run dev is running, every change is written to progress/ automatically. Export is for the deployed site.',
+                'Автосинхронизация включена: пока работает bun run dev, каждое изменение автоматически записывается в progress/. Экспорт нужен для задеплоенного сайта.',
+              )}
+            </p>
+          )
         )}
         {message && (
           <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
