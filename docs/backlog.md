@@ -130,7 +130,7 @@ Atlas, and eligibility (P0-1/P0-2's "recommended-next").
 - Accept: path order is deterministic and documented; NextTopic follows the spine, not
   id-alphabetical order.
 
-### P1-3 · Atlas map view at `/topics` — `todo` (L)
+### P1-3 · Atlas map view at `/topics` — `done` (L)
 
 The graph rendered as the default Themen view: level bands, prerequisite edges, `deepens` edges
 styled distinctly, per-node tier badges (same `effectiveTier` as everywhere), recommended path
