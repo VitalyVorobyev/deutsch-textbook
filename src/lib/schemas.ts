@@ -333,19 +333,47 @@ export const readingSchema = z.object({
 export type Reading = z.infer<typeof readingSchema>;
 
 // ---------------------------------------------------------------------------
-// Atlas graph (content/atlas.yaml)
+// Atlas graph + curriculum spine (content/atlas.yaml)
 // ---------------------------------------------------------------------------
 
+/** A learner-facing CEFR can-do statement ("Ich kann …") with independently
+    written EN and RU versions (never translations of each other). */
+export const outcomeSchema = z.object({
+  de: z.string().min(1),
+  en: z.string().min(1),
+  ru: z.string().min(1),
+});
+export type Outcome = z.infer<typeof outcomeSchema>;
+
+export const atlasNodeSchema = z.object({
+  id: slug,
+  level: levelSchema,
+  kind: topicKindSchema,
+  prerequisites: z.array(slug).default([]),
+  /** base topics this one revisits at greater depth (spiral learning). A target
+      may also be a prerequisite — both meanings can apply. Must appear earlier
+      in the spine. */
+  deepens: z.array(slug).default([]),
+  /** 2–4 can-do statements the topic teaches, at the topic's CEFR level */
+  outcomes: z.array(outcomeSchema).min(2).max(4),
+});
+export type AtlasNode = z.infer<typeof atlasNodeSchema>;
+
+/** One curriculum unit. The file order of `units:` IS the spine order — new
+    units are inserted, never renumbered. */
+export const atlasUnitSchema = z.object({
+  id: slug,
+  level: levelSchema,
+  title_de: z.string().min(1),
+  title_en: z.string().min(1),
+  title_ru: z.string().min(1),
+  /** topic ids in teaching order within the unit */
+  topics: z.array(slug).min(1),
+});
+export type AtlasUnit = z.infer<typeof atlasUnitSchema>;
+
 export const atlasSchema = z.object({
-  nodes: z
-    .array(
-      z.object({
-        id: slug,
-        level: levelSchema,
-        kind: topicKindSchema,
-        prerequisites: z.array(slug).default([]),
-      }),
-    )
-    .min(1),
+  nodes: z.array(atlasNodeSchema).min(1),
+  units: z.array(atlasUnitSchema).min(1),
 });
 export type Atlas = z.infer<typeof atlasSchema>;

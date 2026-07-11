@@ -5,12 +5,14 @@ import UebenNav from '../../components/UebenNav.astro';
 import MixedTraining from '../../components/training/MixedTraining';
 import type { TrainingSet } from '../../components/training/MixedTraining';
 import { getTopicNodes } from '../../lib/content';
+import { getCurriculum } from '../../lib/curriculum';
 
 const [nodes, exercises, topics] = await Promise.all([
   getTopicNodes(),
   getCollection('exercises'),
   getCollection('topics'),
 ]);
+const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
 const pretestIds = new Set(topics.map((t) => t.data.pretest).filter(Boolean));
 
@@ -45,6 +47,6 @@ const sets: TrainingSet[] = exercises.map((e) => {
   </p>
 
   <div class="mt-8">
-    <MixedTraining client:only="react" sets={sets} nodes={nodes} resumeKey="mixed" />
+    <MixedTraining client:only="react" sets={sets} spine={spine} nodes={nodes} resumeKey="mixed" />
   </div>
 </Base>

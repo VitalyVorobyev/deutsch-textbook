@@ -3,7 +3,7 @@ import type { ExerciseItem, Level } from '../../lib/schemas';
 import { getAttempts, getCardStates, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
-import { suggestNextTopic, type TopicNode } from '../../lib/mastery';
+import { recommendedNext, type TopicNode } from '../../lib/mastery';
 import { eligibleTrainingSets } from '../../lib/training';
 import { weakFocuses } from '../../lib/weakness';
 import { withBase } from '../../lib/url';
@@ -182,6 +182,8 @@ function restoreSession(
 
 interface MixedTrainingProps {
   sets: TrainingSet[];
+  /** topic ids in recommended-path order (getCurriculum().spine) */
+  spine: string[];
   /** the topic graph — eligibility and the empty-state suggestion need it */
   nodes: TopicNode[];
   /** number of items per session */
@@ -200,6 +202,7 @@ interface MixedTrainingProps {
 
 export default function MixedTraining({
   sets,
+  spine,
   nodes,
   count = SESSION_SIZE,
   onFinished,
@@ -228,9 +231,9 @@ export default function MixedTraining({
       ([attempts, cards, topics]) => {
         if (cancelled) return;
         const ctx = { attempts, cards, topics };
-        const s = buildSession(eligibleTrainingSets(sets, nodes, ctx), count, attempts);
+        const s = buildSession(eligibleTrainingSets(sets, spine, nodes, ctx), count, attempts);
         setSession(s);
-        setSuggestion(suggestNextTopic(nodes, ctx) ?? null);
+        setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         if (surface && s.length > 0)
           saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
       },
@@ -238,7 +241,7 @@ export default function MixedTraining({
     return () => {
       cancelled = true;
     };
-  }, [sets, nodes, count, round, surface, restored]);
+  }, [sets, spine, nodes, count, round, surface, restored]);
 
   // an empty session can never finish by answering — let the owner advance
   const empty = session !== null && session.length === 0;

@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import SessionFlow from '../components/session/SessionFlow';
 import type { TrainingSet } from '../components/training/MixedTraining';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
+import { getCurriculum } from '../lib/curriculum';
 
 const [cards, nodes, deckLevels, exercises, topics] = await Promise.all([
   getAllCards(),
@@ -12,6 +13,7 @@ const [cards, nodes, deckLevels, exercises, topics] = await Promise.all([
   getCollection('exercises'),
   getCollection('topics'),
 ]);
+const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
 const pretestIds = new Set(topics.map((t) => t.data.pretest).filter(Boolean));
 
@@ -47,6 +49,6 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
   </p>
 
   <div class="mt-8">
-    <SessionFlow client:only="react" cards={cards} sets={sets} nodes={nodes} deckLevels={deckLevels} />
+    <SessionFlow client:only="react" cards={cards} sets={sets} spine={spine} nodes={nodes} deckLevels={deckLevels} />
   </div>
 </Base>

@@ -21,6 +21,8 @@ import NextTopic from '../today/NextTopic';
 interface Props {
   cards: CardDef[];
   sets: TrainingSet[];
+  /** topic ids in recommended-path order (getCurriculum().spine) */
+  spine: string[];
   nodes: TopicNode[];
   /** deck id → CEFR level, for gating fresh cards of decks no topic owns */
   deckLevels: Record<string, string>;
@@ -59,7 +61,7 @@ interface SessionResume {
   reviewedCount: number | null;
 }
 
-export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
+export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: Props) {
   const lang = useExplainLang();
   // a reload mid-session (mobile tab discard, opening a topic page) returns
   // to the saved lesson point; step 3 is never saved — by then the session is
@@ -99,7 +101,7 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
       ([states, attempts, topics]) => {
         if (cancelled) return;
         const { due, fresh } = splitQueue(cards, states);
-        const pool = eligibleFreshCards(fresh, nodes, deckLevels, {
+        const pool = eligibleFreshCards(fresh, spine, nodes, deckLevels, {
           attempts,
           cards: states,
           topics,
@@ -117,7 +119,7 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [cards, nodes, deckLevels, planRound]);
+  }, [cards, spine, nodes, deckLevels, planRound]);
 
   // Nothing due at all → brief note, then auto-advance to training.
   useEffect(() => {
@@ -295,6 +297,7 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
         {step === 2 && (
           <MixedTraining
             sets={sets}
+            spine={spine}
             nodes={nodes}
             count={TRAINING_COUNT}
             onFinished={finishTraining}
@@ -306,7 +309,7 @@ export default function SessionFlow({ cards, sets, nodes, deckLevels }: Props) {
         {step === 3 && (
           <div>
             <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-              <NextTopic nodes={nodes} />
+              <NextTopic spine={spine} nodes={nodes} />
               <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">
                 {lang === 'ru'
                   ? 'Прочитайте статью и выполните упражнения на её странице — это ваш учебный шаг на сегодня.'

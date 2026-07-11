@@ -100,7 +100,7 @@ self-rating shown next to the measured tier. `reopened` may keep capping the tie
 
 ## Phase 1 — Structure
 
-### P1-1 · Curriculum spine in `atlas.yaml` — `todo` (M)
+### P1-1 · Curriculum spine in `atlas.yaml` — `done` (M)
 
 Extend `content/atlas.yaml` with `units` (ordered per level: id, bilingual titles, ordered
 `topics` list) and per-node optional `deepens: [<topic-ids>]` (a list — one unit may deepen
@@ -119,7 +119,7 @@ runtime from the profile store.
   prerequisites, unknown `deepens` target; `getCurriculum()` returns the ordered spine for the
   10 existing topics.
 
-### P1-2 · Recommended-path engine — `todo` (S)
+### P1-2 · Recommended-path engine — `done` (S)
 
 Linear path = units in order → topics in unit order. `recommendedNext(spine, state)` returns the
 first topic whose *measured* tier (per P0-3/P0-5) is below mastered. Consumed by NextTopic, the
@@ -164,7 +164,7 @@ Heute / Themen / Üben / Fortschritt. `/review`, `/training`, `/vocab` redirect 
 - Accept: 4 nav tabs; every old URL lands somewhere sensible; session flow (`/session`)
   untouched; resume state (`src/lib/resume.ts`) keyed surfaces still work.
 
-### P1-5 · Learning-science skill rewrite — `todo` (M)
+### P1-5 · Learning-science skill rewrite — `done` (M)
 
 Rewrite `.claude/skills/learning-science` per roadmap §4/Phase 1: calibrated evidence claims,
 input/retrieval/interaction/production balance instead of "every touch produces an answer",
