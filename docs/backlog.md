@@ -9,7 +9,7 @@ Statuses: `todo` → `doing` → `done`. Update this file in the same change tha
 
 ## Phase 0 — Correctness & honesty fixes
 
-### P0-1 · Training eligibility filter — `todo` (M)
+### P0-1 · Training eligibility filter — `done` (M)
 
 Exclude pretests and never-opened topics from mixed training and the daily session pool.
 
