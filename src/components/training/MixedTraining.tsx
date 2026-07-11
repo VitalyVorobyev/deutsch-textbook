@@ -202,28 +202,22 @@ export default function MixedTraining({
   resumeKey,
 }: MixedTrainingProps) {
   const lang = useExplainLang();
-  const [session, setSession] = useState<SessionItem[] | null>(null);
+
+  const surface = resumeKey ? `training:${resumeKey}` : null;
+  // only the initial mount resumes; an explicit restart builds fresh
+  // (restored against all sets — a queue built before a set turned
+  // ineligible finishes as saved rather than losing today's progress)
+  const [restored] = useState(() => (surface ? restoreSession(sets, surface) : null));
+
+  const [session, setSession] = useState<SessionItem[] | null>(restored?.session ?? null);
   const [suggestion, setSuggestion] = useState<TopicNode | null>(null);
-  const [index, setIndex] = useState(0);
-  const [answered, setAnswered] = useState<Answered[]>([]);
+  const [index, setIndex] = useState(restored?.answered.length ?? 0);
+  const [answered, setAnswered] = useState<Answered[]>(restored?.answered ?? []);
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
 
-  const surface = resumeKey ? `training:${resumeKey}` : null;
-
   useEffect(() => {
-    // only the initial mount resumes; an explicit restart builds fresh
-    // (restored against all sets — a queue built before a set turned
-    // ineligible finishes as saved rather than losing today's progress)
-    if (surface && round === 0) {
-      const restored = restoreSession(sets, surface);
-      if (restored) {
-        setSession(restored.session);
-        setAnswered(restored.answered);
-        setIndex(restored.answered.length);
-        return;
-      }
-    }
+    if (round === 0 && restored) return; // this mount resumed a saved queue
     let cancelled = false;
     void Promise.all([getAttempts(), getTopicsState()]).then(([attempts, topics]) => {
       if (cancelled) return;
@@ -236,7 +230,7 @@ export default function MixedTraining({
     return () => {
       cancelled = true;
     };
-  }, [sets, nodes, count, round, surface]);
+  }, [sets, nodes, count, round, surface, restored]);
 
   // an empty session can never finish by answering — let the owner advance
   const empty = session !== null && session.length === 0;

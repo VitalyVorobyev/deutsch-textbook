@@ -35,10 +35,10 @@ function isActive(href: string): boolean {
     <title>{title} · Deutsch-Atlas</title>
     <script is:inline>
       (function () {
-        var theme = localStorage.getItem('da:theme');
+        let theme = localStorage.getItem('da:theme');
         if (!theme) theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        var lang = localStorage.getItem('da:lang');
+        const lang = localStorage.getItem('da:lang');
         if (lang === 'ru' || lang === 'en') document.documentElement.dataset.explainLang = lang;
       })();
     </script>
