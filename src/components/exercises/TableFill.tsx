@@ -2,11 +2,18 @@ import { useState } from 'react';
 import type { z } from 'zod';
 import type { tableItemSchema } from '../../lib/schemas';
 import { answerMatches } from '../../lib/cloze';
-import { CheckButton, Feedback, Instruction, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TableItem = z.infer<typeof tableItemSchema>;
 
-export function TableFill({ item, lang, onResult, locked }: ItemProps<TableItem>) {
+export function TableFill({
+  item,
+  lang,
+  onResult,
+  locked,
+  onNext,
+  nextLabel,
+}: ItemProps<TableItem>) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState(false);
 
@@ -90,7 +97,14 @@ export function TableFill({ item, lang, onResult, locked }: ItemProps<TableItem>
           </tbody>
         </table>
       </div>
-      {!checked && <CheckButton onClick={check} disabled={!allFilled} />}
+      <ActionRow
+        checked={checked}
+        correct={allCorrect}
+        onCheck={check}
+        checkDisabled={!allFilled}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {checked && (
         <Feedback
           correct={allCorrect}

@@ -33,6 +33,8 @@ interface Answered {
  *   `{ correct, given }` (`given` = the answer serialized for the attempt log).
  *   Persistence is the caller's job — ItemView does not log attempts itself.
  * - `locked` — set true after submission to freeze the item's inputs.
+ * - `onNext` / `nextLabel` — the advance action. The item renders it itself, in the
+ *   same slot as its Prüfen button, so checking an answer never moves the button.
  *
  * Items keep internal state; remount with a fresh React `key` to reset one
  * for another attempt.
@@ -42,28 +44,33 @@ export function ItemView({
   lang,
   onResult,
   locked,
+  onNext,
+  nextLabel,
 }: {
   item: ExerciseItem;
   lang: 'en' | 'ru';
   onResult: (r: ItemResult) => void;
   locked: boolean;
+  onNext: () => void;
+  nextLabel: string;
   // explicit return type so a forgotten case fails the type check
 }): ReactElement {
+  const props = { lang, onResult, locked, onNext, nextLabel };
   switch (item.type) {
     case 'mc':
-      return <MultipleChoice item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <MultipleChoice item={item} {...props} />;
     case 'cloze':
-      return <Cloze item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <Cloze item={item} {...props} />;
     case 'match':
-      return <Match item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <Match item={item} {...props} />;
     case 'order':
-      return <Order item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <Order item={item} {...props} />;
     case 'table':
-      return <TableFill item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <TableFill item={item} {...props} />;
     case 'translate':
-      return <Translate item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <Translate item={item} {...props} />;
     case 'listen':
-      return <Listen item={item} lang={lang} onResult={onResult} locked={locked} />;
+      return <Listen item={item} {...props} />;
   }
 }
 
@@ -175,19 +182,11 @@ export default function ExerciseSet({ setId, set }: Props) {
           lang={lang}
           onResult={handleResult}
           locked={currentDone}
+          onNext={next}
+          nextLabel={
+            index + 1 < items.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
+          }
         />
-      )}
-
-      {currentDone && (
-        <div className="mt-4 text-right">
-          <button
-            type="button"
-            onClick={next}
-            className="min-h-11 rounded-md bg-stone-800 px-4 py-1.5 text-sm font-semibold text-white hover:bg-stone-700 sm:min-h-0 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
-          >
-            {index + 1 < items.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'}
-          </button>
-        </div>
       )}
     </div>
   );

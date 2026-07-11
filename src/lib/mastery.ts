@@ -57,41 +57,78 @@ export interface TopicContext {
   topics: TopicsState;
 }
 
+/** The requirements a topic must meet to count as mastered. */
+export type MasteryReq = 'attempts' | 'accuracy' | 'days' | 'cards';
+
+export interface MasteryGap {
+  req: MasteryReq;
+  met: boolean;
+  /** what the learner has so far (attempts / accuracy in percent / days / reviewed cards) */
+  have: number;
+  /** what mastery requires */
+  need: number;
+}
+
+/**
+ * The mastery requirements with their current values — the single source of
+ * truth for both topicTier() and the "what's still missing" checklist, so the
+ * badge and the explanation can never drift apart.
+ *
+ * `cards` is omitted for topics without a vocab deck (there is nothing to review).
+ */
+export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] {
+  const setIds = new Set(topicSetIds(node));
+  const own = ctx.attempts.filter((a) => setIds.has(a.setId));
+  // Pretest answers are guesses by design: they mark the topic as practiced
+  // but must not count toward (or against) mastery accuracy.
+  const scored = node.pretestId ? own.filter((a) => a.setId !== node.pretestId) : own;
+  const recent = scored.slice(-MASTERY_WINDOW);
+  const accuracy = recent.length ? recent.filter((a) => a.correct).length / recent.length : 0;
+  const practiceDays = new Set(scored.map((a) => localDateString(new Date(a.ts))));
+  const reviewedCards = topicCardIds(node, ctx.cards).filter(
+    (id) => (ctx.cards[id]?.reps ?? 0) > 0,
+  ).length;
+
+  const gaps: MasteryGap[] = [
+    {
+      req: 'attempts',
+      met: recent.length >= MASTERY_MIN_ATTEMPTS,
+      have: scored.length,
+      need: MASTERY_MIN_ATTEMPTS,
+    },
+    {
+      req: 'accuracy',
+      met: accuracy >= MASTERY_ACCURACY,
+      have: Math.round(accuracy * 100),
+      need: Math.round(MASTERY_ACCURACY * 100),
+    },
+    {
+      req: 'days',
+      met: practiceDays.size >= MASTERY_MIN_DAYS,
+      have: practiceDays.size,
+      need: MASTERY_MIN_DAYS,
+    },
+  ];
+  if (node.vocabIds.length > 0) {
+    gaps.push({ req: 'cards', met: reviewedCards > 0, have: reviewedCards, need: 1 });
+  }
+  return gaps;
+}
+
 /**
  * Auto tier from real activity (ignores the manual override):
  *  read      — article opened;
  *  practiced — ≥1 exercise/reading/pretest attempt;
- *  mastered  — non-pretest attempts on ≥2 distinct days, recent accuracy ≥ threshold,
- *              AND (if the topic has vocab) ≥1 card reviewed.
+ *  mastered  — every requirement in masteryGaps() met.
  */
 export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
   const setIds = new Set(topicSetIds(node));
   const own = ctx.attempts.filter((a) => setIds.has(a.setId));
-  const read = !!ctx.topics[node.id]?.readAt;
 
   if (own.length > 0) {
-    // Pretest answers are guesses by design: they mark the topic as practiced
-    // but must not count toward (or against) mastery accuracy.
-    const scored = node.pretestId ? own.filter((a) => a.setId !== node.pretestId) : own;
-    const recent = scored.slice(-MASTERY_WINDOW);
-    const accuracy = recent.length
-      ? recent.filter((a) => a.correct).length / recent.length
-      : 0;
-    const practiceDays = new Set(scored.map((a) => localDateString(new Date(a.ts))));
-    const hasVocab = node.vocabIds.length > 0;
-    const cardReviewed =
-      !hasVocab || topicCardIds(node, ctx.cards).some((id) => (ctx.cards[id]?.reps ?? 0) > 0);
-    if (
-      recent.length >= MASTERY_MIN_ATTEMPTS &&
-      accuracy >= MASTERY_ACCURACY &&
-      practiceDays.size >= MASTERY_MIN_DAYS &&
-      cardReviewed
-    ) {
-      return 'mastered';
-    }
-    return 'practiced';
+    return masteryGaps(node, ctx).every((g) => g.met) ? 'mastered' : 'practiced';
   }
-  return read ? 'read' : 'untouched';
+  return ctx.topics[node.id]?.readAt ? 'read' : 'untouched';
 }
 
 /** Apply the manual override: learned → mastered; reopened → capped at practiced. */
@@ -119,7 +156,14 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
 
 export type MasteryState = 'untouched' | 'started' | 'mastered';
 
-/** Attempts-only 3-state used by suggestNextTopic (read/practiced collapse to "started"). */
+/**
+ * Attempts-only 3-state used by suggestNextTopic (read/practiced collapse to "started").
+ *
+ * Deliberately looser than topicTier(): no ≥2-days and no card requirement. The
+ * suggester prefers "started" topics over untouched ones, so a topic finished in a
+ * single sitting would otherwise stay "started" forever and block the learner from
+ * ever being pointed at a new topic. Badge = retention; suggestion = where to go next.
+ */
 export function topicMastery(node: TopicRollup, attempts: Attempt[]): MasteryState {
   const setIds = new Set(topicSetIds(node));
   const own = attempts.filter((a) => setIds.has(a.setId));

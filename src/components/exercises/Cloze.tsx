@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { clozeItemSchema } from '../../lib/schemas';
 import { answerMatches, parseCloze } from '../../lib/cloze';
-import { CheckButton, Feedback, Instruction, Translation, type ItemProps } from './shared';
+import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ClozeItem = z.infer<typeof clozeItemSchema>;
 
-export function Cloze({ item, lang, onResult, locked }: ItemProps<ClozeItem>) {
+export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<ClozeItem>) {
   const parts = useMemo(() => parseCloze(item.text), [item]);
   const gapCount = parts.filter((p) => p.type === 'gap').length;
   const [values, setValues] = useState<string[]>(() => Array(gapCount).fill(''));
@@ -61,7 +61,14 @@ export function Cloze({ item, lang, onResult, locked }: ItemProps<ClozeItem>) {
         })}
       </p>
       <Translation text={item.translation} lang={lang} />
-      {!checked && <CheckButton onClick={check} disabled={values.some((v) => v.trim() === '')} />}
+      <ActionRow
+        checked={checked}
+        correct={gapResults.every(Boolean)}
+        onCheck={check}
+        checkDisabled={values.some((v) => v.trim() === '')}
+        onNext={onNext}
+        nextLabel={nextLabel}
+      />
       {checked && (
         <Feedback
           correct={gapResults.every(Boolean)}

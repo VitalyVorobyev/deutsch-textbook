@@ -1,4 +1,10 @@
-import { topicCompletion, topicSetIds, type TopicContext, type TopicNode } from '../../lib/mastery';
+import {
+  masteryGaps,
+  topicCompletion,
+  topicSetIds,
+  type TopicContext,
+  type TopicNode,
+} from '../../lib/mastery';
 import { TierBadge } from '../topic/TierBadge';
 import { useExplainLang } from '../hooks';
 
@@ -38,6 +44,9 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
           const cardsReviewed = Object.keys(ctx.cards).filter(
             (k) => n.vocabIds.some((v) => k.startsWith(`${v}::`)) && (ctx.cards[k]?.reps ?? 0) > 0,
           ).length;
+          // Practice must span ≥2 days to count as mastered — without this chip a row
+          // could show all-green next to a "Geübt" badge and look like a bug.
+          const spaced = masteryGaps(n, ctx).find((g) => g.req === 'days')?.met ?? false;
           return (
             <li
               key={n.id}
@@ -54,6 +63,7 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
               <div className="ml-auto flex items-center gap-1.5">
                 <Seg on={read} label="Gelesen" />
                 <Seg on={exAttempts > 0} label="Geübt" />
+                <Seg on={spaced} label="2 Tage" />
                 {n.vocabIds.length > 0 && <Seg on={cardsReviewed > 0} label="Vokabeln" />}
                 <TierBadge tier={done.tier} manual={!!done.manual} className="ml-1" />
               </div>
