@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Rating, gradeCard, splitQueue, type CardDef, type Grade } from '../../lib/srs';
-import { getCardStates, setCardState, type CardStates } from '../../lib/store';
+import { eligibleFreshCards } from '../../lib/decks';
+import type { TopicNode } from '../../lib/mastery';
+import {
+  getAttempts,
+  getCardStates,
+  getTopicsState,
+  setCardState,
+  type CardStates,
+} from '../../lib/store';
 import { shuffle } from '../../lib/shuffle';
 import { getCardInputMode, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import {
@@ -18,6 +26,9 @@ interface Props {
   cards: CardDef[];
   /** cap on never-seen cards mixed into this session */
   newLimit?: number;
+  /** when set, never-graded cards are limited to eligible decks (due cards
+      always pass) — the per-deck page omits it, studying a deck is an opt-in */
+  gate?: { nodes: TopicNode[]; deckLevels: Record<string, string> };
   /** called once, exactly when the review queue runs empty */
   onFinished?: () => void;
 }
@@ -48,7 +59,7 @@ function verdictHint(v: AnswerVerdict, canonical: string, given: string): string
   return null;
 }
 
-export default function FlashcardSession({ cards, newLimit = 15, onFinished }: Props) {
+export default function FlashcardSession({ cards, newLimit = 15, gate, onFinished }: Props) {
   const lang = useExplainLang();
   const [queue, setQueue] = useState<CardDef[] | null>(null);
   const [states, setStates] = useState<CardStates>({});
@@ -73,16 +84,23 @@ export default function FlashcardSession({ cards, newLimit = 15, onFinished }: P
 
   useEffect(() => {
     let cancelled = false;
-    void getCardStates().then((s) => {
+    void Promise.all([
+      getCardStates(),
+      gate ? getAttempts() : [],
+      gate ? getTopicsState() : {},
+    ]).then(([s, attempts, topics]) => {
       if (cancelled) return;
       const { due, fresh } = splitQueue(cards, s);
+      const pool = gate
+        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, attempts, topics, s)
+        : fresh;
       setStates(s);
-      setQueue([...shuffle(due), ...shuffle(fresh).slice(0, newLimit)]);
+      setQueue([...shuffle(due), ...shuffle(pool).slice(0, newLimit)]);
     });
     return () => {
       cancelled = true;
     };
-  }, [cards, newLimit]);
+  }, [cards, newLimit, gate]);
 
   const card = queue?.[0];
   // 'listen' turns recognition (de-x) cards into dictation; production (x-de)

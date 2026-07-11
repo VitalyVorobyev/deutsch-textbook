@@ -33,3 +33,9 @@ export async function getAllCards(): Promise<CardDef[]> {
   const vocab = await getCollection('vocab');
   return vocab.flatMap((v) => buildDeck(v.data.id, v.data.entries));
 }
+
+/** deck id → CEFR level, for level-gating decks no topic owns (see src/lib/decks.ts). */
+export async function getDeckLevels(): Promise<Record<string, string>> {
+  const vocab = await getCollection('vocab');
+  return Object.fromEntries(vocab.map((v) => [v.data.id, v.data.level]));
+}
