@@ -1,24 +1,37 @@
 import { useEffect, useState } from 'react';
 import { splitQueue, type CardDef } from '../../lib/srs';
-import { getCardStates } from '../../lib/store';
+import { eligibleFreshCards } from '../../lib/decks';
+import type { TopicNode } from '../../lib/mastery';
+import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 
 interface Props {
   cards: CardDef[];
   /** compact renders just "n due" text; full renders the Today-page call to action */
   variant?: 'compact' | 'full';
+  /** when set, the "new" count only counts eligible decks — must match the
+      gate of the queue this badge advertises (the compact variant never
+      shows fresh, so per-deck badges don't need it) */
+  gate?: { nodes: TopicNode[]; deckLevels: Record<string, string> };
 }
 
-export default function DueBadge({ cards, variant = 'compact' }: Props) {
+export default function DueBadge({ cards, variant = 'compact', gate }: Props) {
   const lang = useExplainLang();
   const [counts, setCounts] = useState<{ due: number; fresh: number } | null>(null);
 
   useEffect(() => {
-    void getCardStates().then((s) => {
+    void Promise.all([
+      getCardStates(),
+      gate ? getAttempts() : [],
+      gate ? getTopicsState() : {},
+    ]).then(([s, attempts, topics]) => {
       const { due, fresh } = splitQueue(cards, s);
-      setCounts({ due: due.length, fresh: fresh.length });
+      const pool = gate
+        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, attempts, topics, s)
+        : fresh;
+      setCounts({ due: due.length, fresh: pool.length });
     });
-  }, [cards]);
+  }, [cards, gate]);
 
   if (!counts) return null;
 
