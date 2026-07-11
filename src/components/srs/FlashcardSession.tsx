@@ -92,7 +92,7 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
       if (cancelled) return;
       const { due, fresh } = splitQueue(cards, s);
       const pool = gate
-        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, attempts, topics, s)
+        ? eligibleFreshCards(fresh, gate.nodes, gate.deckLevels, { attempts, cards: s, topics })
         : fresh;
       setStates(s);
       setQueue([...shuffle(due), ...shuffle(pool).slice(0, newLimit)]);

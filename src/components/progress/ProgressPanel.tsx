@@ -12,6 +12,7 @@ import {
   type SessionLogEntry,
   type TopicsState,
 } from '../../lib/store';
+import { scoreTotal } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
@@ -168,7 +169,7 @@ export default function ProgressPanel({ nodes }: Props) {
     fileInput.current?.click();
   }
 
-  const correct = data ? data.attempts.filter((a) => a.correct).length : 0;
+  const correct = data ? scoreTotal(data.attempts) : 0;
   const accuracy = data && data.attempts.length ? Math.round((correct / data.attempts.length) * 100) : 0;
 
   return (

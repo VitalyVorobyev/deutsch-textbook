@@ -1,6 +1,7 @@
 /** Time-series rollups over the attempt/session logs for the progress dashboard. */
 import type { Attempt, CardStates, SessionLogEntry } from './store';
 import { localDateString } from './store';
+import { attemptScore } from './scoring';
 
 const DAY_MS = 86_400_000;
 
@@ -29,6 +30,7 @@ export function addDays(d: Date, n: number): Date {
 export interface DayActivity {
   date: string; // YYYY-MM-DD (local)
   attempts: number;
+  /** parts-weighted correct answers (fractional with partial credit) */
   correct: number;
   reviewed: number; // cards reviewed (from sessions)
   trained: number; // items trained (from sessions)
@@ -56,7 +58,7 @@ export function dailyActivity(
   for (const a of attempts) {
     const d = ensure(localDateString(new Date(a.ts)));
     d.attempts++;
-    if (a.correct) d.correct++;
+    d.correct += attemptScore(a);
   }
   for (const s of sessions) {
     const d = ensure(s.date);
@@ -101,6 +103,7 @@ export function currentStreak(active: Set<string>, today = new Date()): number {
 export interface TrendBucket {
   start: string; // first local date of the bucket
   attempts: number;
+  /** parts-weighted errors (fractional with partial credit) */
   errors: number;
   errorRate: number | null; // null when no attempts in the bucket
 }
@@ -147,7 +150,7 @@ export function focusTrends(attempts: Attempt[], opts: FocusTrendOpts = {}): Foc
       if (fromEnd < 0 || fromEnd >= buckets) continue;
       const idx = buckets - 1 - fromEnd;
       b[idx].attempts++;
-      if (!a.correct) b[idx].errors++;
+      b[idx].errors += 1 - attemptScore(a);
     }
     let latest: number | null = null;
     for (const bucket of b) {

@@ -43,7 +43,7 @@ are always reviewed regardless of origin.
   opening `essen-trinken`, its deck's fresh cards appear; already-due cards from any deck
   always appear.
 
-### P0-3 · Unify next-topic selection with real mastery — `todo` (S)
+### P0-3 · Unify next-topic selection with real mastery — `done` (S)
 
 Retire the attempts-only `topicMastery()` shortcut; `suggestNextTopic` consumes the same
 tier logic as the dashboard (`topicTier`/`effectiveTier`), which needs attempts + cards + topics
@@ -56,7 +56,7 @@ state as inputs.
   mastered for sequencing; NextTopic and the Fortschritt topic list never disagree on a
   topic's tier.
 
-### P0-4 · Partial-credit scoring (`correctParts`/`totalParts`) — `todo` (M)
+### P0-4 · Partial-credit scoring (`correctParts`/`totalParts`) — `done` (M)
 
 Add optional `correctParts`/`totalParts` to `Attempt`; multi-part items report them; accuracy
 math weights parts. `correct` stays and means "fully correct" (back-compat).
@@ -83,7 +83,7 @@ math weights parts. `correct` stays and means "fully correct" (back-compat).
   than pairs logs `correctParts: 0`, never negative; importing the existing
   `progress/vitaly/2026-07-10.json` snapshot still works and old attempts score as before.
 
-### P0-5 · Self-assessment separated from measured mastery — `todo` (S)
+### P0-5 · Self-assessment separated from measured mastery — `done` (S)
 
 The manual `learned` flag no longer maps to the mastered tier; it becomes a visibly separate
 self-rating shown next to the measured tier. `reopened` may keep capping the tier at practiced

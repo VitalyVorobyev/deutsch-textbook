@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { localDateString, type Attempt, type SessionLogEntry } from '../../lib/store';
+import { attemptScore } from '../../lib/scoring';
 import { useExplainLang } from '../hooks';
 
 export function SessionLog({
@@ -18,7 +19,7 @@ export function SessionLog({
       const d = localDateString(new Date(a.ts));
       const e = m.get(d) ?? { correct: 0, total: 0 };
       e.total++;
-      if (a.correct) e.correct++;
+      e.correct += attemptScore(a);
       m.set(d, e);
     }
     return m;

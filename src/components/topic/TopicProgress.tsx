@@ -16,7 +16,7 @@ import {
   type TopicRollup,
 } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
-import { TierBadge } from './TierBadge';
+import { SelfAssessedMark, TierBadge } from './TierBadge';
 
 interface Props {
   topicId: string;
@@ -106,15 +106,18 @@ export default function TopicProgress(props: Props) {
   }
 
   const isMastered = done.tier === 'mastered';
-  // The gate is only worth explaining once the learner is actually practising it
-  // and has not overridden the tier by hand.
+  const selfLearned = done.manual === 'learned';
+  // The gate is only worth explaining once the learner is actually practising it.
+  // (Shown even when self-assessed as learned — the badge stays measured, so the
+  // explanation must follow the badge.)
   const missing = gaps.filter((g) => !g.met);
-  const showGaps = done.auto === 'practiced' && !done.manual && missing.length > 0;
+  const showGaps = done.auto === 'practiced' && missing.length > 0;
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap items-center gap-2">
-        <TierBadge tier={done.tier} manual={!!done.manual} />
+        <TierBadge tier={done.tier} manual={done.manual === 'reopened'} />
+        {selfLearned && <SelfAssessedMark />}
         {isMastered ? (
           <button
             type="button"
@@ -124,13 +127,15 @@ export default function TopicProgress(props: Props) {
             {t('Reopen', 'Wieder öffnen')}
           </button>
         ) : (
-          <button
-            type="button"
-            onClick={() => void setManual('learned')}
-            className="rounded-md border border-stone-300 px-2.5 py-1 text-xs font-medium text-stone-600 hover:border-emerald-500 dark:border-stone-600 dark:text-stone-300"
-          >
-            {t('Mark as learned', 'Als gelernt markieren')}
-          </button>
+          !selfLearned && (
+            <button
+              type="button"
+              onClick={() => void setManual('learned')}
+              className="rounded-md border border-stone-300 px-2.5 py-1 text-xs font-medium text-stone-600 hover:border-emerald-500 dark:border-stone-600 dark:text-stone-300"
+            >
+              {t('Mark as learned', 'Als gelernt markieren')}
+            </button>
+          )
         )}
         {done.manual && (
           <button
