@@ -1,9 +1,11 @@
 topic: termine-vereinbaren
+role: drill
 title:
   en: Drill — du or Sie?
   ru: Тренажёр — du или Sie?
 items:
   - id: mc-zahnarzt
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Sie rufen beim Zahnarzt an. Was sagen Sie?"
@@ -19,6 +21,7 @@ items:
       ru: "По телефону с врачебной практикой всегда на Sie: Guten Tag, haben Sie …? Обращение du — только для друзей, семьи и детей."
 
   - id: mc-freundin
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Du sprichst mit deiner Freundin Anna. Was sagst du?"
@@ -34,6 +37,7 @@ items:
       ru: "С подругой — на du и с глаголом в форме du: Hast du …? Sie в разговоре с близкой подругой звучит холодно и отчуждённо."
 
   - id: mc-neuer-kunde
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Ein neuer Kunde ruft in Ihrer Firma an. Was sagen Sie?"
@@ -49,6 +53,7 @@ items:
       ru: "С новым клиентом — всегда на Sie, а значит и дательное местоимение Ihnen: Passt es Ihnen …? Форма dir относится к du."
 
   - id: mc-kollege
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Max ist dein Kollege und guter Freund. Was sagst du?"
@@ -64,6 +69,7 @@ items:
       ru: "С коллегой, с которым вы на «ты», используется du: Kannst du …? Если вы уже перешли на «ты», возвращаться к Sie странно."
 
   - id: mc-geschaeft
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Sie sind in einem Geschäft und sprechen mit der Verkäuferin. Was sagen Sie?"
@@ -79,6 +85,7 @@ items:
       ru: "С незнакомыми людьми в магазине, в учреждении и на улице — только Sie: können Sie …? Обращение du к незнакомому взрослому в Германии невежливо."
 
   - id: cloze-arztpraxis
+    outcomes: [termine-organisieren]
     type: cloze
     focus: du-sie
     instruction:
@@ -93,6 +100,7 @@ items:
       ru: "С вежливым Sie глагол стоит в той же форме, что и с sie (мн. ч.): haben Sie. «hast Sie» — это смешение окончания для du с местоимением Sie."
 
   - id: cloze-freund-samstag
+    outcomes: [termine-organisieren]
     type: cloze
     focus: du-sie
     instruction:
@@ -107,6 +115,7 @@ items:
       ru: "С du глагол получает окончание -st: hast du. haben Sie — вежливый вариант, он не сочетается с обращением к подруге по имени."
 
   - id: cloze-kundin-ihnen
+    outcomes: [termine-organisieren]
     type: cloze
     focus: passen-dativ
     instruction:
@@ -121,6 +130,7 @@ items:
       ru: "passen требует Dativ, а дательная форма Sie — Ihnen (с заглавной буквы): Passt es Ihnen? Вариант «Passt es Sie?» невозможен."
 
   - id: cloze-freundin-dir
+    outcomes: [termine-organisieren]
     type: cloze
     focus: passen-dativ
     instruction:
@@ -135,6 +145,7 @@ items:
       ru: "passen требует Dativ: du → dir. Как в русском «тебе подходит» — человек стоит в дательном падеже, а не в роли подлежащего."
 
   - id: mc-herr-weber
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Herr Weber, ___ Sie den Termin auf Montag verschieben?"
@@ -148,6 +159,7 @@ items:
       ru: "Обращение Herr + фамилия — признак общения на Sie, а с Sie глагол стоит в форме können (не kannst): können Sie …?"
 
   - id: uebersetzen-passt-ihnen
+    outcomes: [termine-organisieren]
     type: translate
     focus: passen-dativ
     instruction:
@@ -161,6 +173,7 @@ items:
       ru: "passen требует Dativ: вежливое Sie → Ihnen (с заглавной буквы). Обстоятельства времени: am Dienstag (день), um 9 Uhr (время по часам)."
 
   - id: uebersetzen-kannst-du
+    outcomes: [termine-organisieren]
     type: translate
     focus: du-sie
     instruction:
@@ -174,6 +187,7 @@ items:
       ru: "С другом — du и форма kannst, а helfen требует Dativ — mir: Kannst du mir helfen?"
 
   - id: cloze-max-kino
+    outcomes: [termine-organisieren]
     type: cloze
     focus: du-sie
     instruction:
@@ -188,6 +202,7 @@ items:
       ru: "Обращение по имени — признак du, поэтому глагол с окончанием -st: kommst du. «kommen Sie» не сочетается с обращением к Максу по имени."
 
   - id: cloze-chef-zeigen
+    outcomes: [termine-organisieren]
     type: cloze
     focus: du-sie
     instruction:
@@ -202,6 +217,7 @@ items:
       ru: "Herr + фамилия — значит общение на Sie, а с Sie глагол в форме können: können Sie. При zeigen получатель в Dativ: mir."
 
   - id: uebersetzen-frau-schmidt
+    outcomes: [termine-organisieren]
     type: translate
     focus: du-sie
     instruction:

@@ -66,13 +66,13 @@ Wortschatz (`/vocab`), Wiederholen (`/review`), and Training (`/training`) merge
 state migration. New nav: **Heute / Themen / Üben / Fortschritt**. Old routes redirect; the
 prerendered `/vocab/<deck>` detail pages stay.
 
-### 3.2 The Atlas becomes real — as the default Themen view
+### 3.2 The Atlas becomes a learning path with optional relationships
 
-`/topics` renders the topic graph as a map: level bands, prerequisite edges, per-node mastery
-badges (same tiers as the dashboard), the recommended path highlighted, and spiral "deepens"
-edges styled distinctly. The current level-grouped card list remains as a toggle and as the
-mobile/no-JS fallback. This finally delivers what `content/atlas.yaml`'s header has promised
-since v2 was named.
+`/topics` defaults to a spine-ordered Lernpfad with one dominant continuation action, balanced
+unit rows, measured tiers and level filters. A focused Zusammenhänge explorer shows only one
+topic's direct prerequisites, unlocks and deepening relations. The full-canvas graph was removed:
+it was horizontally unbounded, unreadable on mobile and made topology compete with the learner's
+actual decision. The server-rendered path remains useful without JavaScript.
 
 ### 3.3 Explicit recommended order — yes, and it is soft
 
@@ -125,15 +125,15 @@ one; old snapshots still import.
    titles) + per-node `deepens` (list) and can-do `outcomes` (de/en/ru). Content-only; Zod schema +
    validator rules (unit order consistent with prerequisites, acyclic, every topic in exactly
    one unit).
-2. **Atlas map view** at `/topics` (map default, list toggle).
+2. **Themen Lernpfad** at `/topics` (path default, focused relationship explorer secondary).
 3. **Üben tab** at `/ueben` with Wiederholen / Training / Wortschatz sub-views; redirects.
 4. **Learning-science skill rewrite**: calibrated claims, model → scaffold → fade progression,
    four-skill balance, drop "every touch produces an answer" and TTS-as-dual-coding; add the
    review checks the codex plan lists (distractor plausibility, valid alternatives, natural
    German, scoring granularity, mode distribution in real snapshots).
 
-**Exit criteria:** nav has 4 tabs; the Atlas renders the real graph with live mastery badges and
-the recommended path; `bun run validate` rejects a spine that contradicts prerequisites; the
+**Exit criteria:** nav has 4 tabs; Themen renders the spine and direct relationships with live
+mastery badges; `bun run validate` rejects a spine that contradicts prerequisites; the
 skill no longer contains the flagged framings.
 
 ### Phase 2 — A1 completion (trimmed to ~10 units)

@@ -17,6 +17,7 @@ text:
     [[Laden::shop::магазин]] ist nicht [[weit::far::далеко]].
 questions:
   - id: frage-zimmer
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Wie ist Ninas Zimmer?"
     options:
@@ -31,6 +32,7 @@ questions:
       en: "„Ihr Zimmer ist klein, aber hell.“ — the room itself is small; only the window is big (Das Fenster ist groß)."
       ru: "„Ihr Zimmer ist klein, aber hell.“ — сама комната маленькая; большое в ней только окно (Das Fenster ist groß)."
   - id: frage-geschenk
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Was ist ein Geschenk von Ninas Oma?"
     options:
@@ -45,6 +47,7 @@ questions:
       en: "„Die Lampe ist alt, aber sehr schön: Sie ist ein Geschenk von Ninas Oma.“ — the bed is simply new, and the wardrobe is simply old."
       ru: "„Die Lampe ist alt, aber sehr schön: Sie ist ein Geschenk von Ninas Oma.“ — кровать просто новая, а шкаф просто старый."
   - id: frage-boden
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Warum liegen die Bücher auf dem Boden?"
     options:

@@ -12,6 +12,8 @@ import { MultipleChoice } from './MultipleChoice';
 import { Order } from './Order';
 import { TableFill } from './TableFill';
 import { Translate } from './Translate';
+import { Write } from './Write';
+import { AudioComprehension } from './AudioComprehension';
 import type { ItemResult } from './shared';
 
 interface Props {
@@ -24,6 +26,7 @@ interface Answered {
   correct: boolean;
   /** attemptScore of the answer — parts-weighted for multi-part items */
   score: number;
+  evidence?: 'verified' | 'practice';
 }
 
 /**
@@ -49,6 +52,7 @@ export function ItemView({
   locked,
   onNext,
   nextLabel,
+  storageKey,
 }: {
   item: ExerciseItem;
   lang: 'en' | 'ru';
@@ -56,6 +60,7 @@ export function ItemView({
   locked: boolean;
   onNext: () => void;
   nextLabel: string;
+  storageKey?: string;
   // explicit return type so a forgotten case fails the type check
 }): ReactElement {
   const props = { lang, onResult, locked, onNext, nextLabel };
@@ -74,6 +79,10 @@ export function ItemView({
       return <Translate item={item} {...props} />;
     case 'listen':
       return <Listen item={item} {...props} />;
+    case 'write':
+      return <Write item={item} storageKey={storageKey ?? item.id} {...props} />;
+    case 'audio-comprehension':
+      return <AudioComprehension item={item} {...props} />;
   }
 }
 
@@ -103,7 +112,12 @@ export default function ExerciseSet({ setId, set }: Props) {
     setCurrentDone(true);
     const next = [
       ...answered,
-      { itemId: item.id, correct: result.correct, score: attemptScore(result) },
+      {
+        itemId: item.id,
+        correct: result.correct,
+        score: attemptScore(result),
+        evidence: result.evidence,
+      },
     ];
     setAnswered(next);
     saveResume(resumeSurface, { answered: next });
@@ -117,6 +131,8 @@ export default function ExerciseSet({ setId, set }: Props) {
         : {}),
       given: result.given,
       focus: item.focus,
+      evidence: result.evidence,
+      outcomes: item.outcomes,
       ts: Date.now(),
     });
   }
@@ -135,15 +151,20 @@ export default function ExerciseSet({ setId, set }: Props) {
   }
 
   if (finished) {
-    const score = answered.reduce((s, a) => s + a.score, 0);
-    const pct = Math.round((score / items.length) * 100);
+    const verified = answered.filter((a) => a.evidence !== 'practice');
+    const score = verified.reduce((s, a) => s + a.score, 0);
+    const pct = verified.length ? Math.round((score / verified.length) * 100) : 0;
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
         <p className="text-3xl font-bold">
-          {formatScore(score, lang)} / {items.length}
+          {formatScore(score, lang)} / {verified.length}
         </p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {pct >= 80
+          {verified.length === 0
+            ? lang === 'ru'
+              ? 'Практика сохранена; автоматической оценки нет.'
+              : 'Practice saved; there is no automatic score.'
+            : pct >= 80
             ? lang === 'ru'
               ? 'Отлично! Тема усваивается.'
               : 'Great — this topic is sinking in.'
@@ -196,6 +217,7 @@ export default function ExerciseSet({ setId, set }: Props) {
           nextLabel={
             index + 1 < items.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
           }
+          storageKey={`${setId}::${item.id}`}
         />
       )}
     </div>

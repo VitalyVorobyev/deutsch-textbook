@@ -1,177 +1,35 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import AtlasMap from '../../components/atlas/AtlasMap';
-import TopicsProgress from '../../components/topic/TopicsProgress';
-import { KIND_LABEL, getTopicNodes } from '../../lib/content';
+import CurriculumPath from '../../components/atlas/CurriculumPath';
+import { getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '../../lib/curriculum';
-import { withBase } from '../../lib/url';
-import { LEVELS } from '../../lib/schemas';
 
-const topics = await getCollection('topics');
-const nodes = await getTopicNodes();
-const byLevel = LEVELS.map((level) => ({
-  level,
-  topics: topics
-    .filter((t) => t.data.level === level)
-    .sort((a, b) => a.data.title_de.localeCompare(b.data.title_de, 'de')),
-})).filter((g) => g.topics.length > 0);
-
-// The map island gets plain serializable data: unit columns + graph edges for
-// the layout, the spine for recommendedNext, and nodes with server-computed
-// hrefs (it never builds URLs itself).
 const curriculum = getCurriculum();
-const mapUnits = curriculum.units.map(({ id, level, topics: t }) => ({ id, level, topics: t }));
-const mapGraph = curriculum.nodes.map(({ id, prerequisites, deepens }) => ({
-  id,
-  prerequisites,
-  deepens,
+const topicNodes = await getTopicNodes();
+const topicById = new Map(topicNodes.map((topic) => [topic.id, topic]));
+const graphById = new Map(curriculum.nodes.map((node) => [node.id, node]));
+
+const units = curriculum.units.map((unit) => ({
+  ...unit,
+  topics: unit.topics.map((id) => {
+    const topic = topicById.get(id);
+    const graph = graphById.get(id);
+    if (!topic || !graph) throw new Error(`Curriculum unit ${unit.id}: topic ${id} is incomplete`);
+    return { ...topic, outcomes: graph.outcomes, deepens: graph.deepens };
+  }),
 }));
 ---
 
 <Base title="Themen">
-  {/* View choice must be on <html> before the grid below is parsed, so the
-      no-JS default (grid) never flashes when the map is active. */}
-  <script is:inline>
-    document.documentElement.dataset.topicsView =
-      localStorage.getItem('da:topics-view') === 'list' ? 'list' : 'map';
-  </script>
-
-  <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-    <div>
-      <h1 class="text-3xl font-bold tracking-tight">Themen</h1>
-      <p class="mt-1 text-stone-500 dark:text-stone-400">
-        <span class="lang-en">The atlas of topics, level by level.</span>
-        <span class="lang-ru">Атлас тем — уровень за уровнем.</span>
-      </p>
-    </div>
-    <div
-      data-topics-toggle
-      class="flex overflow-hidden rounded-md border border-stone-300 text-xs dark:border-stone-600"
-      role="group"
-      aria-label="Ansicht"
-    >
-      <button type="button" data-view-btn="map" class="px-3 py-1.5 font-semibold">Karte</button>
-      <button type="button" data-view-btn="list" class="px-3 py-1.5 font-semibold">Liste</button>
-    </div>
-  </div>
-
-  <div data-atlas-map class="mt-8">
-    <AtlasMap
-      client:only="react"
-      units={mapUnits}
-      graph={mapGraph}
-      spine={curriculum.spine}
-      topics={nodes}
-    />
-    <p class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
-      <span class="inline-flex items-center gap-2">
-        <span class="inline-block w-6 border-t-2 border-stone-300 dark:border-stone-600"></span>
-        <span lang="de">Voraussetzung</span>
-        <span class="lang-en">(prerequisite)</span>
-        <span class="lang-ru">(необходимая база)</span>
-      </span>
-      <span class="inline-flex items-center gap-2">
-        <span class="inline-block w-6 border-t-2 border-dashed border-violet-400 dark:border-violet-500"></span>
-        <span lang="de">vertieft</span>
-        <span class="lang-en">(builds on it in more depth)</span>
-        <span class="lang-ru">(углубляет тему)</span>
-      </span>
-      <span class="inline-flex items-center gap-2">
-        <span class="inline-block h-3 w-3 rounded-full ring-2 ring-amber-500"></span>
-        <span lang="de">Weiter lernen</span>
-        <span class="lang-en">(recommended next step)</span>
-        <span class="lang-ru">(рекомендуемый следующий шаг)</span>
-      </span>
+  <header>
+    <h1 class="text-3xl font-bold tracking-tight">Themen</h1>
+    <p class="mt-1 text-stone-500 dark:text-stone-400">
+      <span class="lang-en">Your course path — continue clearly, explore freely.</span>
+      <span class="lang-ru">Ваш учебный путь: понятный следующий шаг и свободный выбор тем.</span>
     </p>
-  </div>
+  </header>
 
-  <div data-atlas-grid>
-    {
-      byLevel.map(({ level, topics: group }) => (
-        <section class="mt-10">
-          <h2 class="mb-4 flex items-center gap-3 text-xl font-bold">
-            <span class="rounded-md bg-amber-500 px-2 py-0.5 text-sm font-black text-white">{level}</span>
-            <span class="text-stone-400 text-sm font-normal">
-              {group.length} {group.length === 1 ? 'Thema' : 'Themen'}
-            </span>
-          </h2>
-          <div class="grid gap-3 sm:grid-cols-2">
-            {group.map((t) => (
-              <a
-                href={withBase(`/topics/${t.id}`)}
-                data-topic-id={t.data.id}
-                class="rounded-lg border border-stone-200 bg-white p-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
-              >
-                <div class="flex items-start justify-between gap-2">
-                  <p class="text-xs font-medium uppercase tracking-wide text-stone-400">
-                    {KIND_LABEL[t.data.kind]}
-                  </p>
-                  <span data-topic-badge={t.data.id} />
-                </div>
-                <p lang="de" class="mt-1 font-semibold">{t.data.title_de}</p>
-                <p class="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
-                  <span class="lang-en">{t.data.title_en}</span>
-                  <span class="lang-ru">{t.data.title_ru}</span>
-                </p>
-                {t.data.tags.length > 0 && (
-                  <p class="mt-2 flex flex-wrap gap-1">
-                    {t.data.tags.map((tag) => (
-                      <span class="rounded bg-stone-100 px-1.5 py-0.5 text-xs text-stone-500 dark:bg-stone-700 dark:text-stone-400">
-                        #{tag}
-                      </span>
-                    ))}
-                  </p>
-                )}
-              </a>
-            ))}
-          </div>
-        </section>
-      ))
-    }
+  <div class="mt-6">
+    <CurriculumPath client:load units={units} spine={curriculum.spine} />
   </div>
-
-  <TopicsProgress client:only="react" topics={nodes} />
 </Base>
-
-<style is:global>
-  /* Karte | Liste: the grid is the no-JS default; the inline script above puts
-     data-topics-view on <html>, which flips to the map (same pattern as the
-     data-tts flag for SpeakButton). The toggle stays hidden until JS ran. */
-  [data-atlas-map] {
-    display: none;
-  }
-  html[data-topics-view='map'] [data-atlas-map] {
-    display: block;
-  }
-  html[data-topics-view='map'] [data-atlas-grid] {
-    display: none;
-  }
-  html:not([data-topics-view]) [data-topics-toggle] {
-    display: none;
-  }
-</style>
-
-<script>
-  const KEY = 'da:topics-view';
-
-  function paintViewButtons() {
-    const view = document.documentElement.dataset.topicsView;
-    document.querySelectorAll<HTMLButtonElement>('[data-view-btn]').forEach((btn) => {
-      const active = btn.dataset.viewBtn === view;
-      btn.classList.toggle('bg-amber-500', active);
-      btn.classList.toggle('text-white', active);
-    });
-  }
-
-  document.querySelectorAll<HTMLButtonElement>('[data-view-btn]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const view = btn.dataset.viewBtn === 'list' ? 'list' : 'map';
-      document.documentElement.dataset.topicsView = view;
-      localStorage.setItem(KEY, view);
-      paintViewButtons();
-    });
-  });
-
-  paintViewButtons();
-</script>

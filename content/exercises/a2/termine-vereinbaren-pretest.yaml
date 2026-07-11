@@ -1,6 +1,8 @@
 topic: termine-vereinbaren
+role: pretest
 items:
   - id: pre-passt-ihnen
+    outcomes: [termine-organisieren]
     type: mc
     focus: passen-dativ
     prompt: "Passt es ___ am Montag um 10 Uhr?"
@@ -14,6 +16,7 @@ items:
       ru: '"passen" требует дательного падежа (der Dativ), поэтому вежливое местоимение — "Ihnen", а не "Sie". Русский подсказывает то же самое: «подходит вам» — тоже дательный.'
 
   - id: pre-um-am
+    outcomes: [termine-organisieren]
     type: mc
     focus: um-am-zeit
     prompt: "Der Zahnarzt hat ___ Mittwoch ___ 11 Uhr einen Termin frei."
@@ -27,6 +30,7 @@ items:
       ru: 'С днями недели используется "am" (am Mittwoch), со временем по часам — "um" (um 11 Uhr). "im" — для месяцев и времён года (im Mai, im Winter).'
 
   - id: pre-du-sie
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Sie rufen in einer Praxis an und möchten einen Termin. Was sagen Sie?"

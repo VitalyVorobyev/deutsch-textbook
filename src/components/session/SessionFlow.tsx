@@ -94,7 +94,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   }, []);
 
   // Plan step 1: due cards first (capped), new cards only when little is due —
-  // and only from eligible decks (opened/suggested topics, see src/lib/decks.ts).
+  // and only from eligible decks (opened topics, see src/lib/decks.ts).
   useEffect(() => {
     let cancelled = false;
     void Promise.all([getCardStates(), getAttempts(), getTopicsState()]).then(

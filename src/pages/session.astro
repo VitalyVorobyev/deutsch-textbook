@@ -15,7 +15,6 @@ const [cards, nodes, deckLevels, exercises, topics] = await Promise.all([
 ]);
 const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
-const pretestIds = new Set(topics.map((t) => t.data.pretest).filter(Boolean));
 
 // Same assembly as /training, but tolerant of in-flight content: an exercise
 // set whose topic hasn't landed yet is simply left out of the session.
@@ -28,7 +27,7 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
       topicId: topic.id,
       title_de: topic.title_de,
       level: topic.level,
-      isPretest: pretestIds.has(e.id),
+      role: e.data.role,
       items: e.data.items,
     },
   ];

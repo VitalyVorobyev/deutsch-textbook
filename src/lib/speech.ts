@@ -85,3 +85,36 @@ function speakNow(text: string, opts: { rate?: number }): void {
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
 }
+
+/** Speak several dialogue turns in order with one reliable German voice.
+    Returns a cancel function; callers must not assume multiple voices exist. */
+export function speakGermanSequence(
+  texts: readonly string[],
+  opts: { rate?: number } = {},
+  onDone?: () => void,
+): () => void {
+  if (!ttsAvailable() || texts.length === 0) return () => {};
+  ensureVoiceListener();
+  window.speechSynthesis.cancel();
+  let cancelled = false;
+  let index = 0;
+  const next = () => {
+    if (cancelled || index >= texts.length) {
+      if (!cancelled) onDone?.();
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(texts[index++]!);
+    utterance.lang = 'de-DE';
+    const voice = bestGermanVoice();
+    if (voice) utterance.voice = voice;
+    utterance.rate = opts.rate ?? 0.9;
+    utterance.onend = next;
+    utterance.onerror = next;
+    window.speechSynthesis.speak(utterance);
+  };
+  next();
+  return () => {
+    cancelled = true;
+    window.speechSynthesis.cancel();
+  };
+}

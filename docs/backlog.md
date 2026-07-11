@@ -130,22 +130,17 @@ Atlas, and eligibility (P0-1/P0-2's "recommended-next").
 - Accept: path order is deterministic and documented; NextTopic follows the spine, not
   id-alphabetical order.
 
-### P1-3 · Atlas map view at `/topics` — `done` (L)
+### P1-3 · Themen Lernpfad and relationship explorer — `done` (L)
 
-The graph rendered as the default Themen view: level bands, prerequisite edges, `deepens` edges
-styled distinctly, per-node tier badges (same `effectiveTier` as everywhere), recommended path
-highlighted, click → topic page. List (current grid) stays as toggle and no-JS/mobile fallback.
+The first full-canvas graph implementation was replaced after responsive review. `/topics`
+now defaults to a server-rendered, spine-ordered Lernpfad with a dominant continuation action,
+balanced unit rows, honest tiers and A1/A2 filters. `Zusammenhänge` shows only one topic's direct
+prerequisites, unlocks and spiral relations as semantic, responsive content.
 
-- Suggested shape: layered SVG computed from the spine (units as columns/rows inside level
-  bands) in a React island `src/components/atlas/AtlasMap.tsx` + pure layout util
-  (`src/lib/atlas-layout.ts`) so layout is unit-testable; reuse `TierBadge`; wide map scrolls
-  inside its own container.
-- Files: `src/pages/topics/index.astro`, new `src/components/atlas/`, reuse of
-  `src/components/topic/TopicsProgress.tsx` patterns.
-- Depends on: P1-1, P1-2 (renders path), P0-5 (badges show honest tiers).
-- Accept: all nodes + edges visible without horizontal page scroll (map pans/scrolls in its own
-  box); badges match the Fortschritt dashboard; toggle to list works; works under `bun run dev`
-  and in the Tauri shell.
+- Files: `src/pages/topics/index.astro`, `src/components/atlas/CurriculumPath.tsx`.
+- Depends on: P1-1, P1-2, P0-5.
+- Accept: no horizontal overflow or clipped titles at 390/768/1280 px; next topic is one obvious
+  action; relationship meaning is available to keyboard and screen-reader users.
 
 ### P1-4 · Merged Üben tab — `done` (M)
 
@@ -178,6 +173,33 @@ no longer sold as dual coding. Keep the non-gamification stance.
 - Accept: the flagged framings are gone; the skill's audit mode requires reading the newest
   snapshot and reporting attempts-per-mode.
 
+## Phase 1.5 — Post-merge hardening
+
+### P1.5-1 · Untaught-content and resume gating — `done` (M)
+
+Recommended-but-unread topics no longer feed ordinary training or fresh cards; restored queues
+are revalidated before rendering; due cards remain unconditional.
+
+### P1.5-2 · Pretest/mastery separation — `done` (S)
+
+Pretest-only activity no longer produces `Geübt` or mastery evidence. Historical snapshots remain
+valid and their pretest attempts are retained as diagnostic activity.
+
+### P1.5-3 · Curriculum/evidence contracts — `done` (M)
+
+Stable outcome ids + modes/domains, explicit set roles, item outcome references, verified/practice
+attempt evidence, and validator checks for role/ownership/order leakage.
+
+### P1.5-4 · Themen Lernpfad redesign — `done` (L)
+
+Server-rendered/hydrated continuation panel, spine-ordered balanced rows, level filters and a
+focused semantic relationship explorer. No horizontal graph canvas.
+
+### P1.5-5 · Domain regression suite — `done` (M)
+
+`bun test` covers mastery, pretests, partial credit, eligibility, resumed queues, curriculum
+ordering/outcome uniqueness and v1-v3 snapshot compatibility.
+
 ## Phase 2 — A1 completion
 
 ### P2-1 · A1 spine authored (~10 units) — `todo` (S)
@@ -190,7 +212,7 @@ their content lands (validator keeps spine and topics consistent).
 - Accept: validate passes; Atlas shows the A1 path with existing topics live and planned units
   visible in this file (not as dead nodes).
 
-### P2-2 · Lesson-cycle template + authoring convention — `todo` (M)
+### P2-2 · Lesson-cycle template + authoring convention — `done` (M)
 
 Codify pretest → model dialogue → explanation → recognition → constrained production →
 transfer → delayed check as a documented topic skeleton (extends CLAUDE.md's current skeleton),
@@ -201,7 +223,7 @@ reading) rather than a new content type, unless a schema gap forces one.
 - Depends on: P1-5 (conventions must agree with the rewritten skill).
 - Accept: one existing topic (e.g. `essen-trinken`) retrofitted as the reference example.
 
-### P2-3 · `write` task type — `todo` (M)
+### P2-3 · `write` task type — `done` (M)
 
 Bilingual situation + communicative goal + required content points; learner writes freely;
 local save; model answer + checklist after submission. Logs **practice evidence** via a
@@ -216,7 +238,7 @@ evidence never enters accuracy/mastery math but shows on the dashboard as produc
 - Accept: a write task saves the response locally (survives reload via resume/store), reveals
   the model only after submission, and produces zero effect on any accuracy metric.
 
-### P2-4 · `audio-comprehension` task type (TTS-based) — `todo` (M)
+### P2-4 · `audio-comprehension` task type (TTS-based) — `done` (M)
 
 Multi-turn dialogue spoken via speechSynthesis with alternating voices/rates
 (`src/lib/speech.ts` grows utterance-sequencing), transcript hidden until answered, limited
@@ -229,9 +251,9 @@ transcript and label the item as reading, never silently score listening.
 - Accept: works in Chrome + Tauri; with voices disabled the fallback path visibly relabels the
   task; attempts log with the item's `focus` tag.
 
-### P2-5 · Author 6 new A1 units — `todo` (L, 6× per-topic checklist)
+### P2-5 · Author 6 new A1 units — `doing` (L, 6× per-topic checklist)
 
-Erste Schritte · Menschen & Familie · Alltag & Zeit · Wohnen · Stadt & Wege · Freizeit & Können.
+Erste Schritte (`done`) · Menschen & Familie · Alltag & Zeit · Wohnen · Stadt & Wege · Freizeit & Können.
 Each follows the full new-topic checklist (topic MDX, exercises ≥8 items/≥3 types, pretest,
 reading, vocab 20–40 entries with reviewed IPA, atlas node + unit slot) **plus** the P2-2 lesson
 cycle and, where outcomes call for it, ≥1 `write` and ≥1 `audio-comprehension` task.
@@ -240,7 +262,7 @@ cycle and, where outcomes call for it, ≥1 `write` and ≥1 `audio-comprehensio
 - Accept per unit: validate green; CEFR discipline (A1-only grammar/vocab); reviewed under the
   learning-science skill.
 
-### P2-6 · Strengthen 4 existing A1 topics — `todo` (M each)
+### P2-6 · Strengthen 4 existing A1 topics — `doing` (M each)
 
 Per codex §4: `praesens-wortstellung` (+question formation, negation),
 `artikel-genus` (+plural patterns, kein/nicht outcomes), `essen-trinken` (recall → full

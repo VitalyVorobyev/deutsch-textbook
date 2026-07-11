@@ -19,6 +19,7 @@ text:
     essen einen Kuchen. Der Kuchen schmeckt super.
 questions:
   - id: frage-kaufen
+    outcomes: [akkusativ-objekte]
     type: mc
     prompt: "Was kaufen Lena und Jonas?"
     options:
@@ -33,6 +34,7 @@ questions:
       en: "„Wir kaufen das Buch!“, says Lena, and then the text adds: „Sie kaufen das Buch und auch Blumen.“ The scarf is too expensive, and the bag is too small."
       ru: "„Wir kaufen das Buch!“ — говорит Лена, и дальше в тексте сказано: „Sie kaufen das Buch und auch Blumen.“ Шарф слишком дорогой, а сумка слишком маленькая."
   - id: frage-schal
+    outcomes: [akkusativ-objekte]
     type: mc
     prompt: "Warum kaufen sie den Schal nicht?"
     options:
@@ -47,6 +49,7 @@ questions:
       en: "The text says: „Der Schal ist schön, aber teuer.“ — it is the bag that is too small, and a second scarf is not mentioned at all."
       ru: "В тексте сказано: „Der Schal ist schön, aber teuer.“ — слишком маленькая там сумка, а про второй шарф в тексте вообще ничего нет."
   - id: frage-tee
+    outcomes: [akkusativ-objekte]
     type: mc
     prompt: "Was trinken alle bei der Oma?"
     options:

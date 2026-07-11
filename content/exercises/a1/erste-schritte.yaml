@@ -1,0 +1,80 @@
+topic: erste-schritte
+role: practice
+title: { en: "Practice — introductions and personal details", ru: "Практика — знакомство и личные данные" }
+items:
+  - id: mc-greeting
+    outcomes: [erste-sich-vorstellen]
+    type: mc
+    prompt: "Sie sprechen mit einer Mitarbeiterin im Bürgerbüro."
+    options: ["Guten Tag!", "Tschüs!", "Gute Nacht!"]
+    correct: 0
+    translation: { en: "You are speaking with an employee at the citizens' office.", ru: "Вы разговариваете с сотрудницей ведомства." }
+    explain: { en: "Guten Tag is the neutral formal greeting.", ru: "Guten Tag — нейтральное официальное приветствие." }
+  - id: cloze-intro
+    outcomes: [erste-sich-vorstellen]
+    type: cloze
+    text: "Guten Tag. Ich {{heiße}} Amir und ich {{komme}} aus Syrien."
+    translation: { en: "Hello. My name is Amir and I come from Syria.", ru: "Добрый день. Меня зовут Амир, я из Сирии." }
+    explain: { en: "Use heiße for the name and komme aus for origin.", ru: "Для имени используется heiße, для происхождения — komme aus." }
+  - id: match-numbers
+    outcomes: [erste-zahlen-verstehen]
+    type: match
+    pairs:
+      - { left: "2", right: "zwei" }
+      - { left: "5", right: "fünf" }
+      - { left: "8", right: "acht" }
+      - { left: "0", right: "null" }
+    explain: { en: "These digits are often heard in telephone numbers.", ru: "Эти цифры часто встречаются в номерах телефонов." }
+  - id: order-question
+    outcomes: [erste-sich-vorstellen]
+    type: order
+    words: ["Wie", "heißen", "Sie", "?"]
+    translation: { en: "What is your name? (formal)", ru: "Как вас зовут?" }
+    explain: { en: "In this question the W-word comes first, then the verb: Wie heißen Sie?", ru: "Сначала вопросительное слово, затем глагол: Wie heißen Sie?" }
+  - id: translate-language
+    outcomes: [erste-sich-vorstellen]
+    type: translate
+    prompt_en: "I speak Russian and a little German."
+    prompt_ru: "Я говорю по-русски и немного по-немецки."
+    answer: "Ich spreche Russisch und ein bisschen Deutsch."
+    explain: { en: "Language names are capitalized: Russisch, Deutsch.", ru: "Названия языков пишутся с заглавной буквы: Russisch, Deutsch." }
+  - id: cloze-spell
+    outcomes: [erste-buchstabieren]
+    type: cloze
+    text: "— Wie schreibt man das? — Lena: {{L}} – {{E}} – {{N}} – {{A}}."
+    explain: { en: "Say one letter at a time when spelling a name.", ru: "При диктовке имени произносите каждую букву отдельно." }
+  - id: audio-phone
+    outcomes: [erste-zahlen-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.8
+      turns:
+        - { speaker: "Mitarbeiter", text: "Wie ist Ihre Telefonnummer?" }
+        - { speaker: "Frau Ali", text: "Null eins fünf sieben, drei zwei, acht neun." }
+    question: "Welche Ziffer kommt nach fünf?"
+    options: ["sieben", "drei", "neun"]
+    correct: 0
+    translation: { en: "Which digit comes after five?", ru: "Какая цифра идёт после пяти?" }
+    explain: { en: "The number begins null – eins – fünf – sieben.", ru: "Номер начинается: null – eins – fünf – sieben." }
+  - id: mc-email
+    outcomes: [erste-buchstabieren]
+    type: mc
+    prompt: "maria@example.de: Wie spricht man den Punkt?"
+    options: ["Punkt", "Komma", "Strich"]
+    correct: 0
+    translation: { en: "How do you say the dot?", ru: "Как произносится точка?" }
+    explain: { en: "A dot in an email address is Punkt.", ru: "Точка в электронном адресе — Punkt." }
+  - id: write-profile
+    outcomes: [erste-sich-vorstellen]
+    type: write
+    prompt: { en: "Write a short profile for your German course.", ru: "Напишите короткую анкету для курса немецкого." }
+    goal: { en: "Introduce yourself in three simple sentences.", ru: "Представьтесь в трёх простых предложениях." }
+    requirements:
+      - { en: "Give your name.", ru: "Назовите имя." }
+      - { en: "Say where you come from or live.", ru: "Скажите, откуда вы или где живёте." }
+      - { en: "Name one language you speak.", ru: "Назовите язык, на котором говорите." }
+    min_words: 10
+    model_answer: "Ich heiße Olga. Ich komme aus Lettland und wohne in Berlin. Ich spreche Russisch und Deutsch."
+    model_translation: { en: "My name is Olga. I come from Latvia and live in Berlin. I speak Russian and German.", ru: "Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и по-немецки." }
+    explain: { en: "Use one clear sentence for name, origin/home and language.", ru: "Используйте по одному ясному предложению для имени, страны/места жительства и языка." }

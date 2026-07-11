@@ -135,6 +135,9 @@ sufficient.
   knowledge-oriented ("I know the dative table"). Content should teach to them.
 
 ### Exercise set
+- **Contracts:** every set has an explicit `role`; every item references stable
+  curriculum outcome IDs. `pretest`, `checkpoint`, and `probe` roles never enter
+  ordinary mixed training.
 - **Mode fit (§1/§13):** choose the format for the skill: production formats
   (`cloze`, `translate`, `listen`, `order`) when production is the goal; `mc`
   for genuine discrimination/comprehension decisions.
@@ -146,6 +149,9 @@ sufficient.
   `correctParts`/`totalParts`; `attemptScore` (src/lib/scoring.ts) weights every
   accuracy consumer. Design parts to be independently meaningful — six cells
   that all hinge on one insight are one part pretending to be six.
+- **Evidence honesty:** automatically scored answers are `verified`; open
+  writing/speaking is `practice`. Practice evidence belongs in activity and
+  mode coverage but is excluded from accuracy and mastery.
 - **Difficulty source (§7):** difficulty comes from the German, never from
   ambiguous prompts or matching that rejects correct variants — maintain `accept`.
 - **Blocked first, then mixed (§3/§8):** the topic's own sets may block; the
@@ -192,7 +198,8 @@ RU halves; an EN reader who knows no Russian).
 1. **Scope & read.** Identify what you're reviewing and read it fully. For a
    feature, read the components/lib that implement it.
 2. **Snapshot audit — mandatory for course/feature audits.** Read the newest
-   `progress/<profile>/*.json` and report, as numbers:
+   `progress/<profile>/*.json`, report its export date, and warn explicitly when
+   it is stale. Then report, as numbers:
    - **attempts per mode/itemType** (`mc`/`cloze`/`match`/`order`/`table`/
      `translate`/`listen`, reading attempts under `reading:*`) — the mode
      distribution is the headline finding;
@@ -209,6 +216,8 @@ RU halves; an EN reader who knows no Russian).
    *here*? Weight by evidence strength — a retrieval/feedback violation
    outranks an interleaving quibble. Use the map to know what implements what.
 4. **Run the item-level checks** (for content):
+   - **Curriculum order:** does an item depend on a focus/outcome taught later in
+     the spine? If intentional it must be marked as a preview; otherwise it is leakage.
    - **Distractor plausibility (mc):** every wrong option is an error a real
      learner at this level makes; no filler options that shrink the item to a
      coin flip.
@@ -230,6 +239,8 @@ RU halves; an EN reader who knows no Russian).
    exercises".
 6. **Check the tension points** (bottom of the map) — where well-intentioned
    content quietly goes wrong.
+7. **Check course navigation:** the learner must see the next meaningful action
+   without decoding the dependency graph. Relationships are secondary context.
 
 ### Findings format
 

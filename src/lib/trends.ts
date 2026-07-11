@@ -1,7 +1,7 @@
 /** Time-series rollups over the attempt/session logs for the progress dashboard. */
 import type { Attempt, CardStates, SessionLogEntry } from './store';
 import { localDateString } from './store';
-import { attemptScore } from './scoring';
+import { attemptScore, isVerifiedEvidence } from './scoring';
 
 const DAY_MS = 86_400_000;
 
@@ -130,7 +130,7 @@ export function focusTrends(attempts: Attempt[], opts: FocusTrendOpts = {}): Foc
 
   const byFocus = new Map<string, Attempt[]>();
   for (const a of attempts) {
-    if (!a.focus || a.ts < windowStart) continue;
+    if (!a.focus || !isVerifiedEvidence(a) || a.ts < windowStart) continue;
     const arr = byFocus.get(a.focus) ?? [];
     arr.push(a);
     byFocus.set(a.focus, arr);

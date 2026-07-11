@@ -1,9 +1,11 @@
 topic: perfekt-haben-sein
+role: practice
 title:
   en: Practice — perfect tense with haben and sein
   ru: Практика — перфект с haben и sein
 items:
   - id: partizip2-tabelle
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: table
     focus: partizip2-form
     title: "Partizip II"
@@ -29,6 +31,7 @@ items:
       ru: "Правильные глаголы: ge-…-t (gemacht, gekauft). Сильные глаголы: ge-…-en, часто со сменой гласной (gegessen, getrunken, gegangen, geschrieben)."
 
   - id: mc-nach-hause
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Ich ___ gestern nach Hause gegangen."
@@ -42,6 +45,7 @@ items:
       ru: "gehen обозначает движение из точки А в точку Б, поэтому перфект образуется с sein: ich bin gegangen. 'Ist' — форма для er/sie/es, а 'habe' — типичная ошибка русскоязычных."
 
   - id: cloze-gefahren
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -56,6 +60,7 @@ items:
       ru: "fahren — глагол движения из точки А в точку Б, поэтому вспомогательный глагол — sein: wir sind gefahren."
 
   - id: mc-gegessen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Er ___ eine Pizza gegessen."
@@ -69,6 +74,7 @@ items:
       ru: "essen — не движение и не смена состояния, поэтому перфект образуется с haben: er hat gegessen. 'Habt' — форма для ihr."
 
   - id: match-partizip
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: match
     focus: partizip2-form
     instruction:
@@ -85,6 +91,7 @@ items:
       ru: "kaufen — правильный глагол (ge-…-t), trinken — сильный (ge-…-en со сменой гласной), aufstehen — с отделяемой приставкой (-ge- вставляется внутрь: aufgestanden). У bezahlen неотделяемая приставка, а studieren оканчивается на -ieren — оба без ge-."
 
   - id: order-brot
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: order
     focus: perfekt-satzklammer
     instruction:
@@ -99,6 +106,7 @@ items:
       ru: "Глагольная рамка: 'habe' на втором месте, причастие 'gekauft' — строго в конце. Сказать 'Ich habe gekauft ein Brot' по-немецки нельзя."
 
   - id: cloze-studiert
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: partizip2-form
     instruction:
@@ -113,6 +121,7 @@ items:
       ru: "Глаголы на -ieren образуют причастие без ge-: studiert, telefoniert. Формы 'gestudiert' не существует."
 
   - id: mc-gemacht
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: partizip2-form
     prompt: "Was hast du am Wochenende ___?"
@@ -126,6 +135,7 @@ items:
       ru: "Для перфекта нужен Partizip II: ge- + mach + -t = gemacht. 'Macht' — форма настоящего времени, 'machen' — инфинитив; не теряйте ge-."
 
   - id: cloze-aufgestanden
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: partizip2-form
     instruction:
@@ -140,6 +150,7 @@ items:
       ru: "У глаголов с отделяемой приставкой -ge- вставляется между приставкой и основой: auf + ge + standen. Как смена состояния, aufstehen к тому же образует перфект с sein."
 
   - id: order-gestern
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: order
     focus: perfekt-satzklammer
     instruction:
@@ -154,6 +165,7 @@ items:
       ru: "'Gestern' занимает первое место, поэтому вспомогательный глагол 'ist' остаётся на втором (инверсия), а причастие 'gefahren' замыкает предложение."
 
   - id: mc-geblieben
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Wir ___ am Wochenende zu Hause geblieben."
@@ -167,6 +179,7 @@ items:
       ru: "bleiben — одно из исключений, которые всегда образуют перфект с sein (вместе с sein и passieren), хотя движения здесь нет: wir sind geblieben."
 
   - id: cloze-bezahlt
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: partizip2-form
     instruction:
@@ -181,6 +194,7 @@ items:
       ru: "Неотделяемые приставки (be-, ver-, er- …) не допускают ge-: bezahlt, verstanden. Формы 'gebezahlt' не существует."
 
   - id: tabelle-haben-sein
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: table
     focus: haben-sein
     title: "haben oder sein?"
@@ -206,6 +220,7 @@ items:
       ru: "sein — для движения из точки А в точку Б (gehen, kommen) и для исключений bleiben, sein, passieren; всё остальное — в том числе kaufen, trinken, schreiben — образует перфект с haben."
 
   - id: uebersetzen-pizza
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
     instruction:
@@ -221,6 +236,7 @@ items:
       ru: "essen образует перфект с haben, причастие сильное: gegessen. Оба порядка слов правильны — если Gestern стоит в начале, haben остаётся на втором месте, а причастие замыкает предложение."
 
   - id: uebersetzen-geblieben
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
     instruction:
