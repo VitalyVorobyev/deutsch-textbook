@@ -68,17 +68,20 @@ math weights parts. `correct` stays and means "fully correct" (back-compat).
 - Consumers: one shared helper (`attemptScore(a): number` — `correctParts/totalParts` when
   present, else `correct ? 1 : 0`) used by **every** accuracy aggregation: `src/lib/weakness.ts`,
   `masteryGaps` in `src/lib/mastery.ts`, `dailyActivity`/`focusTrends` in `src/lib/trends.ts`,
-  and the dashboard's headline accuracy + session log (`src/components/progress/`). No consumer
-  may keep treating a partial as a full miss.
+  the dashboard's headline accuracy + session log (`src/components/progress/`), and the in-run
+  end-of-set summaries in `ExerciseSet.tsx` and `MixedTraining.tsx` (currently
+  `answered.filter((a) => a.correct).length`). No consumer may keep treating a partial as a
+  full miss. `totalParts`, when present, must be ≥ 1 (schema-enforced) so `attemptScore` can
+  never divide by zero.
 - Files: `src/lib/store.ts`, `src/components/exercises/{Cloze,Match,TableFill}.tsx`,
   `src/components/exercises/ExerciseSet.tsx`, `src/components/training/MixedTraining.tsx`,
   `src/lib/weakness.ts`, `src/lib/mastery.ts`, `src/lib/trends.ts`, `src/components/progress/`.
 - Depends on: —
 - Accept: a 5-of-6 table attempt logs `{correct: false, correctParts: 5, totalParts: 6}`;
-  weakness error-rate for its focus tag moves by 1/6, not 1, and the dashboard/trends show the
-  same parts-weighted number; a match with more errors than pairs logs `correctParts: 0`, never
-  negative; importing the existing `progress/vitaly/2026-07-10.json` snapshot still works and
-  old attempts score as before.
+  weakness error-rate for its focus tag moves by 1/6, not 1, and the dashboard/trends **and the
+  end-of-run summary screens** show the same parts-weighted number; a match with more errors
+  than pairs logs `correctParts: 0`, never negative; importing the existing
+  `progress/vitaly/2026-07-10.json` snapshot still works and old attempts score as before.
 
 ### P0-5 · Self-assessment separated from measured mastery — `todo` (S)
 
@@ -201,9 +204,11 @@ reading) rather than a new content type, unless a schema gap forces one.
 ### P2-3 · `write` task type — `todo` (M)
 
 Bilingual situation + communicative goal + required content points; learner writes freely;
-local save; model answer + checklist after submission. Logs **practice evidence**
-(`kind: 'practice'` or `totalParts: 0` convention — decide in implementation) that never enters
-accuracy/mastery math but shows on the dashboard as production activity.
+local save; model answer + checklist after submission. Logs **practice evidence** via a
+separate evidence kind (e.g. `kind: 'practice'` on the attempt record) that every accuracy
+consumer excludes *before* scoring — never via a `totalParts: 0` convention, which would make
+`attemptScore` divide by zero (P0-4 forbids zero denominators at the schema level). Practice
+evidence never enters accuracy/mastery math but shows on the dashboard as production activity.
 
 - Files: `src/lib/schemas.ts`, new `src/components/exercises/Write.tsx`, `ExerciseSet.tsx`
   wiring, `src/lib/store.ts` (evidence kind), dashboard surfacing.
