@@ -1,8 +1,9 @@
 # Progress snapshots
 
 JSON snapshots of a learner's browser state, **one folder per local profile**:
-`progress/<profile>/<date>.json` (e.g. `progress/vitaly/2026-07-10.json`). The default
-profile id is `vitaly`. A snapshot contains exercise `attempts`, FSRS `cards`, the daily
+`progress/<profile>/<date>.json` (e.g. `progress/vitaly/2026-07-10.json`). The folder name is
+the slug of the name the learner gave at first run — there is no default profile. A snapshot
+contains exercise `attempts`, FSRS `cards`, the daily
 `sessions` log, and per-topic completion (`topics`: `readAt` + a manual `learned`/`reopened`
 override). Current snapshots are `version: 3`; import tolerates v1/v2/v3.
 
