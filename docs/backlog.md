@@ -61,18 +61,24 @@ state as inputs.
 Add optional `correctParts`/`totalParts` to `Attempt`; multi-part items report them; accuracy
 math weights parts. `correct` stays and means "fully correct" (back-compat).
 
-- Emitters: `Cloze` (per gap), `Match` (pairs − errors), `TableFill` (per asked cell); single-part
-  types (`mc`, `order`, `translate`, `listen`) omit the fields. Plumb through the `onResult`
-  payloads in `ExerciseSet.tsx` and `MixedTraining.tsx`.
-- Consumers: `src/lib/weakness.ts` and `masteryGaps` accuracy use parts-weighted correctness
-  when fields are present, else fall back to the boolean.
+- Emitters: `Cloze` (per gap), `Match` (`max(0, pairs − errors)` — errors are unbounded, credit
+  must clamp at zero), `TableFill` (per asked cell); single-part types (`mc`, `order`,
+  `translate`, `listen`) omit the fields. Plumb through the `onResult` payloads in
+  `ExerciseSet.tsx` and `MixedTraining.tsx`.
+- Consumers: one shared helper (`attemptScore(a): number` — `correctParts/totalParts` when
+  present, else `correct ? 1 : 0`) used by **every** accuracy aggregation: `src/lib/weakness.ts`,
+  `masteryGaps` in `src/lib/mastery.ts`, `dailyActivity`/`focusTrends` in `src/lib/trends.ts`,
+  and the dashboard's headline accuracy + session log (`src/components/progress/`). No consumer
+  may keep treating a partial as a full miss.
 - Files: `src/lib/store.ts`, `src/components/exercises/{Cloze,Match,TableFill}.tsx`,
   `src/components/exercises/ExerciseSet.tsx`, `src/components/training/MixedTraining.tsx`,
-  `src/lib/weakness.ts`, `src/lib/mastery.ts`.
+  `src/lib/weakness.ts`, `src/lib/mastery.ts`, `src/lib/trends.ts`, `src/components/progress/`.
 - Depends on: —
 - Accept: a 5-of-6 table attempt logs `{correct: false, correctParts: 5, totalParts: 6}`;
-  weakness error-rate for its focus tag moves by 1/6, not 1; importing the existing
-  `progress/vitaly/2026-07-10.json` snapshot still works and old attempts score as before.
+  weakness error-rate for its focus tag moves by 1/6, not 1, and the dashboard/trends show the
+  same parts-weighted number; a match with more errors than pairs logs `correctParts: 0`, never
+  negative; importing the existing `progress/vitaly/2026-07-10.json` snapshot still works and
+  old attempts score as before.
 
 ### P0-5 · Self-assessment separated from measured mastery — `todo` (S)
 
@@ -101,8 +107,9 @@ runtime from the profile store.
 
 - Schema in `src/lib/schemas.ts` (`atlasSchema`); validator rules in `scripts/validate.ts`:
   every topic in exactly one unit, unit order consistent with prerequisites (no topic ordered
-  before its prerequisite), `deepens` targets exist and differ from prerequisites, graph stays
-  acyclic. Runtime loader `src/lib/curriculum.ts` (atlas.yaml becomes a runtime data source for
+  before its prerequisite), `deepens` targets exist and appear earlier in the spine (a target
+  may ALSO be a prerequisite — both meanings can apply, e.g. two-way prepositions deepen *and*
+  require akkusativ/dativ), prerequisite graph stays acyclic. Runtime loader `src/lib/curriculum.ts` (atlas.yaml becomes a runtime data source for
   the first time — decide between a content collection and a build-time import).
 - Depends on: —
 - Accept: `bun run validate` fails on: topic missing from units, unit order contradicting
