@@ -1,9 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import FlashcardSession from '../components/srs/FlashcardSession';
-import { getAllCards } from '../lib/content';
+import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
 
-const cards = await getAllCards();
+const [cards, nodes, deckLevels] = await Promise.all([
+  getAllCards(),
+  getTopicNodes(),
+  getDeckLevels(),
+]);
 ---
 
 <Base title="Wiederholen">
@@ -14,6 +18,6 @@ const cards = await getAllCards();
   </p>
 
   <div class="mt-8">
-    <FlashcardSession client:only="react" cards={cards} newLimit={15} />
+    <FlashcardSession client:only="react" cards={cards} newLimit={15} gate={{ nodes, deckLevels }} />
   </div>
 </Base>

@@ -25,7 +25,7 @@ Exclude pretests and never-opened topics from mixed training and the daily sessi
   session serve items exclusively from that topic's non-pretest sets (+ recommended-next);
   pretest item ids never appear in logged attempts with training/session origin.
 
-### P0-2 · Fresh-vocab gating — `todo` (M)
+### P0-2 · Fresh-vocab gating — `done` (M)
 
 New (never-graded) cards enter the queue only from opened or recommended-next topics; due cards
 are always reviewed regardless of origin.
