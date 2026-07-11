@@ -93,7 +93,8 @@ self-rating shown next to the measured tier. `reopened` may keep capping the tie
 ### P1-1 · Curriculum spine in `atlas.yaml` — `todo` (M)
 
 Extend `content/atlas.yaml` with `units` (ordered per level: id, bilingual titles, ordered
-`topics` list) and per-node optional `deepens: <topic-id>` and `outcomes` (can-do statements,
+`topics` list) and per-node optional `deepens: [<topic-ids>]` (a list — one unit may deepen
+several bases, e.g. Wohnen & Umzug → akkusativ + dativ) and `outcomes` (can-do statements,
 de/en/ru). Content-only — **no learner state in content**; outcome/unit status is derived at
 runtime from the profile store.
 
@@ -255,8 +256,9 @@ Termine → termine-vereinbaren; Biografie → perfekt-haben-sein). Depends on: 
 
 ### P3-2 · `deepens` semantics in training — `todo` (S)
 
-Practicing a deepening topic re-activates the base topic's focus tags in weakness aggregation
-and training priority; Atlas already renders the edges (P1-3).
+Practicing a deepening topic re-activates its base topics' focus tags (all entries in its
+`deepens` list) in weakness aggregation and training priority; Atlas already renders the
+edges (P1-3).
 
 - Files: `src/lib/weakness.ts`, `src/components/training/MixedTraining.tsx`,
   `src/lib/curriculum.ts`.
@@ -283,9 +285,12 @@ Same per-unit bar as P2-5, at A2 CEFR discipline. Depends on: P3-1, P2-2..P2-4.
 
 ### P3-5 · Strengthen 6 existing A2 topics — `todo` (M each)
 
-Per codex §4: Perfekt as narrative practice, modal communicative functions + darf nicht/muss
-nicht, trennbare Verben in authentic contexts + imperative/Perfekt interactions,
-Alltag frequency/chores/weekend contrast, Termine branching calls/voicemail/rescheduling.
+Per codex §4, all six existing A2 topics: `dativ` (common governed prepositions, meaningful
+Akkusativ-vs-Dativ choice in varied contexts — two-way prepositions stay in the Wohnen & Umzug
+deepening unit), `perfekt-haben-sein` (narrative practice: sequencing, recounting yesterday),
+`modalverben` (communicative functions + darf nicht/muss nicht), `trennbare-verben` (authentic
+contexts + imperative/Perfekt interactions), `alltag-tagesablauf` (frequency/chores/weekend
+contrast), `termine-vereinbaren` (branching calls, voicemail, rescheduling by message).
 Depends on: P2-2.
 
 ### P3-6 · A2 checkpoint — `todo` (M)

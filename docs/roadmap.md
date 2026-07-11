@@ -86,9 +86,11 @@ the learner may choose. This fits the project's non-gamified, autonomy-respectin
 
 Revisiting a theme at increasing depth is well-supported practice, and the codex plan already
 spirals implicitly (Akkusativ at A1 → Dativ and case choice at A2 → two-way prepositions later).
-We make it explicit: a deepening topic declares `deepens: <base-topic-id>` in the spine. Rules:
+We make it explicit: a deepening topic declares `deepens: [<base-topic-ids>]` in the spine —
+a list, since one unit may deepen several bases (Wohnen & Umzug deepens both `akkusativ` and
+`dativ`). Rules:
 
-- A deepening topic **re-activates the base topic's focus tags** in training rather than
+- A deepening topic **re-activates its base topics' focus tags** in training rather than
   duplicating the base content.
 - The Atlas renders `deepens` edges differently from prerequisites.
 - Cumulative unit checkpoints (Phase 3) are the other spiral instrument: they mix earlier
@@ -120,7 +122,7 @@ one; old snapshots still import.
 ### Phase 1 — Structure (the four decisions)
 
 1. **Curriculum spine** in `content/atlas.yaml`: `units` (ordered, per level, with bilingual
-   titles) + per-node `deepens` and can-do `outcomes` (de/en/ru). Content-only; Zod schema +
+   titles) + per-node `deepens` (list) and can-do `outcomes` (de/en/ru). Content-only; Zod schema +
    validator rules (unit order consistent with prerequisites, acyclic, every topic in exactly
    one unit).
 2. **Atlas map view** at `/topics` (map default, list toggle).
