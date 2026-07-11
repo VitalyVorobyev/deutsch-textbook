@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import type { Bilingual } from '../../lib/schemas';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import SpeakerButton from '../SpeakerButton';
@@ -39,6 +39,14 @@ export function Translation({ text, lang }: { text?: Bilingual; lang: ExplainLan
 /** Prüfen and Weiter share these metrics, so swapping one for the other moves nothing. */
 const ACTION_BUTTON = 'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-40 sm:min-h-0 sm:py-1.5';
 
+/**
+ * Because Weiter takes over the very pixels Prüfen occupied, a double-click or
+ * double-tap on Prüfen would land its second click on Weiter and skip past the
+ * feedback the learner never got to read. Swallow clicks that arrive within this
+ * window of the swap — a real "next" click always comes later than a stray one.
+ */
+const SWAP_GUARD_MS = 500;
+
 function VerdictChip({ correct }: { correct: boolean }) {
   return (
     <span
@@ -76,6 +84,18 @@ export function ActionRow({
   onNext: () => void;
   nextLabel: string;
 }) {
+  // Only the Prüfen→Weiter swap needs the guard; items that submit on click (mc,
+  // match) never had a button in this slot to double-click in the first place.
+  const swappedAt = useRef(0);
+  useEffect(() => {
+    if (checked && onCheck) swappedAt.current = Date.now();
+  }, [checked, onCheck]);
+
+  function handleNext() {
+    if (onCheck && Date.now() - swappedAt.current < SWAP_GUARD_MS) return;
+    onNext();
+  }
+
   return (
     <div className="mt-4 flex flex-wrap items-center gap-3">
       {onCheck && !checked ? (
@@ -90,7 +110,7 @@ export function ActionRow({
       ) : (
         <button
           type="button"
-          onClick={onNext}
+          onClick={handleNext}
           disabled={!checked}
           className={`${ACTION_BUTTON} bg-stone-800 text-white hover:bg-stone-700 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300`}
         >
