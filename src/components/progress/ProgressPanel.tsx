@@ -24,6 +24,7 @@ import { SessionLog } from './SessionLog';
 import { TopicProgressList } from './TopicProgressList';
 import type { CardDef } from '../../lib/srs';
 import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
+import { CheckpointResults, type CheckpointInfo } from './CheckpointResults';
 
 interface Data {
   attempts: Attempt[];
@@ -37,9 +38,10 @@ interface Props {
   outcomeModes: Record<string, string>;
   cards: CardDef[];
   vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
+  checkpoint?: CheckpointInfo;
 }
 
-export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGroups }: Props) {
+export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGroups, checkpoint }: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -249,6 +251,10 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
             ctx={{ attempts: data.attempts, cards: data.cards, topics: data.topics }}
           />
         </section>
+      )}
+
+      {data && checkpoint && (
+        <CheckpointResults checkpoint={checkpoint} outcomeModes={outcomeModes} attempts={data.attempts} />
       )}
 
       {data && (
