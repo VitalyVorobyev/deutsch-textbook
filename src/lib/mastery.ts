@@ -123,6 +123,40 @@ export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] 
   return gaps;
 }
 
+/** What the learner has actually done on a topic — the chips behind the badge. */
+export interface TopicEvidence {
+  /** the article was opened */
+  read: boolean;
+  /** ≥1 non-pretest attempt on an exercise set or reading */
+  practiced: boolean;
+  /** practice spans ≥2 days (the masteryGaps 'days' requirement) */
+  spaced: boolean;
+  /** the topic owns a vocab deck at all — no deck, no chip */
+  hasVocab: boolean;
+  /** ≥1 card of that deck has been reviewed */
+  vocab: boolean;
+}
+
+/**
+ * The evidence behind the tier, shared by the Fortschritt list and the Themen
+ * overview so the two can never disagree about what "Geübt" means.
+ *
+ * Practice deliberately counts topicPracticeSetIds, not topicSetIds: a pretest
+ * is diagnostic generation, not study. Counting it would put a ✓ Geübt chip
+ * next to a "Neu" badge, since topicTier() excludes it.
+ */
+export function topicEvidence(node: TopicRollup, ctx: TopicContext): TopicEvidence {
+  const setIds = new Set(topicPracticeSetIds(node));
+  const reviewed = topicCardIds(node, ctx.cards).filter((id) => (ctx.cards[id]?.reps ?? 0) > 0);
+  return {
+    read: !!ctx.topics[node.id]?.readAt,
+    practiced: ctx.attempts.some((a) => setIds.has(a.setId)),
+    spaced: masteryGaps(node, ctx).find((g) => g.req === 'days')?.met ?? false,
+    hasVocab: node.vocabIds.length > 0,
+    vocab: reviewed.length > 0,
+  };
+}
+
 /**
  * Auto tier from real activity (ignores the manual override):
  *  read      — article opened;
@@ -167,27 +201,70 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
  * live flows set it before practice anyway, but imported/legacy snapshots can
  * carry the attempts without topic state, and the recommended path must not
  * wedge on those.
+ *
+ * `since` only counts attempts from that moment on, which is how a reopened
+ * topic asks to be worked through again (see pathDone).
  */
-export function lessonCompleted(node: TopicNode, ctx: TopicContext): boolean {
+export function lessonCompleted(node: TopicNode, ctx: TopicContext, since = 0): boolean {
   if (!node.primaryPractice?.itemIds.length) return false;
   const attempted = new Set(
     ctx.attempts
-      .filter((attempt) => attempt.setId === node.primaryPractice!.setId)
+      .filter((attempt) => attempt.setId === node.primaryPractice!.setId && attempt.ts >= since)
       .map((attempt) => attempt.itemId),
   );
   return node.primaryPractice.itemIds.every((id) => attempted.has(id));
 }
 
+/**
+ * Is this topic behind the learner? The one predicate every path surface asks —
+ * the recommendation, the goal route, the level checkpoint gate and fresh-card
+ * priority. Navigation only: never render a badge from this. Badges stay
+ * measured (topicCompletion), and a self-rating must not fake evidence.
+ *
+ * Deliberately wider than lessonCompleted(): authored practice sets grow as the
+ * course is deepened, and a topic the learner already mastered must not fall
+ * back onto the path merely because items were added to its set afterwards.
+ * That is what made a "Gemeistert" topic keep surfacing as the next lesson —
+ * and, through the same gate, kept the level checkpoint hidden.
+ *
+ *  - `learned`  → done. The learner's explicit "I know this, move on". It still
+ *    never raises the measured tier; the path is advisory, the badge is evidence.
+ *  - `reopened` → done only once the lesson has been worked through AGAIN, i.e.
+ *    the practice set is complete in attempts made after the flag was set.
+ *    Blocking outright would wedge the path forever: reopening caps the tier at
+ *    `practiced`, so the topic could never clear itself and would hide every
+ *    later topic — and the checkpoint — behind it.
+ */
+export function pathDone(node: TopicNode, ctx: TopicContext): boolean {
+  const state = ctx.topics[node.id];
+  if (state?.manual === 'learned') return true;
+  // topicCompletion, not topicTier: `reopened` caps the tier at practiced, so
+  // this branch correctly does not fire for a topic the learner just reopened.
+  if (topicCompletion(node, ctx).tier === 'mastered') return true;
+  const since = state?.manual === 'reopened' ? state.manualAt ?? 0 : 0;
+  return lessonCompleted(node, ctx, since);
+}
+
+/** Every lesson of a level is behind the learner — its checkpoint may be offered. */
+export function levelPathDone(level: string, nodes: TopicNode[], ctx: TopicContext): boolean {
+  const own = nodes.filter((node) => node.level === level);
+  return own.length > 0 && own.every((node) => pathDone(node, ctx));
+}
+
+/** Lessons still to do before the level's checkpoint. */
+export function levelRemaining(level: string, nodes: TopicNode[], ctx: TopicContext): number {
+  return nodes.filter((node) => node.level === level && !pathDone(node, ctx)).length;
+}
+
 // ---------------------------------------------------------------------------
-// Recommended next topic (spine order × the dashboard's measured tiers)
+// Recommended next topic (spine order × what the learner has behind them)
 // ---------------------------------------------------------------------------
 
 /**
- * The recommended next topic: the first topic in spine order whose measured
- * tier is below mastered. The spine (content/atlas.yaml `units`, flattened by
- * getCurriculum) is validated to respect prerequisites, and the tier is the
- * dashboard's own (topicCompletion — a manual "learned" can never raise it),
- * so the suggestion, the path and the Fortschritt list can never disagree.
+ * The recommended next topic: the first topic in spine order the learner has
+ * not put behind them (pathDone). The spine (content/atlas.yaml `units`,
+ * flattened by getCurriculum) is validated to respect prerequisites, so the
+ * first such topic is always reachable.
  */
 export function recommendedNext(
   spineTopicIds: string[],
@@ -197,7 +274,7 @@ export function recommendedNext(
   const byId = new Map(nodes.map((n) => [n.id, n]));
   for (const id of spineTopicIds) {
     const node = byId.get(id);
-    if (node && !lessonCompleted(node, ctx)) return node;
+    if (node && !pathDone(node, ctx)) return node;
   }
   return undefined;
 }
@@ -226,7 +303,5 @@ export function recommendedForGoal(
   nodes: TopicNode[],
   ctx: TopicContext,
 ): TopicNode | undefined {
-  return goalRoute(topicId, spine, nodes).find(
-    (node) => !lessonCompleted(node, ctx),
-  );
+  return goalRoute(topicId, spine, nodes).find((node) => !pathDone(node, ctx));
 }

@@ -1,10 +1,10 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **in progress** (updated 2026-07-11).
+Status: **in progress** (updated 2026-07-12).
 
-Deutsch-Atlas has the learning-system foundation and the first reference A1 unit. The current
-milestone is to complete A1 with the same content quality, then extend the proven model through
-A2. Executable work lives in [backlog.md](backlog.md); completed implementation history lives in
+A1 is complete and shipped (v0.2.0). The current milestone is to bring A2 to the same bar, and to
+add the retention machinery — cumulative checkpoints and delayed probes — that a two-level course
+needs. Executable work lives in [backlog.md](backlog.md); implementation history lives in
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md).
 
 ## Product direction
@@ -27,39 +27,14 @@ A2. Executable work lives in [backlog.md](backlog.md); completed implementation 
 - **Local-first and non-gamified.** Profiles, attempts and FSRS state remain on the learner's
   device and portable through backward-compatible snapshots.
 
-## Completed foundation
+## Completed
 
-Phases 0, 1 and 1.5 are complete in the code on PR
-[#10](https://github.com/VitalyVorobyev/deutsch-textbook/pull/10): eligibility and scoring
-corrections, unified mastery, curriculum/outcome contracts, the Lernpfad redesign, Üben
-navigation, and domain regression tests. Phase 2's reusable machinery is also complete:
-the lesson-cycle convention, `write`, `audio-comprehension`, evidence classification, and the
-`Erste Schritte` reference unit.
+Phases 0–1.5 built the learning system: eligibility and scoring corrections, unified mastery,
+curriculum/outcome contracts, the Lernpfad and Atlas, Üben navigation, and the domain regression
+suite. Phase 2 completed A1 — ten units, the cumulative checkpoint, and full Goethe-A1 Wortliste
+coverage. Details and stable IDs are in the archive.
 
-## Current milestone — Phase 2: complete A1
-
-Outcome: a learner can follow a coherent path from Erste Schritte to a cumulative A1 checkpoint.
-
-The current authored vocabulary baseline is **83 unique A1 headwords** and **141 unique A2
-headwords**. These are coverage counts for today's incomplete course, not CEFR target sizes.
-Vocabulary grows with complete units (topic, practice, reading, productive use and reviewed IPA),
-never as disconnected padding.
-
-1. Author the remaining units in spine order: Alltag & Zeit, Wohnen, Stadt & Wege, and
-   Freizeit & Können. Menschen & Familie is complete.
-2. Strengthen Präsens & Wortstellung, Artikel & Genus, Akkusativ, and Essen & Einkaufen with
-   faded support, productive transfer and authentic task genres.
-3. Add the cumulative A1 checkpoint, connected to stable outcome IDs and excluded from ordinary
-   mixed training.
-
-Each unit must implement pretest → model → explanation → scaffold → fade → transfer → delayed
-check, cover its declared outcome modes, and ship only when its topic, exercises, reading,
-vocabulary and validation are complete.
-
-**Exit criteria:** every A1 unit is usable from the Lernpfad; the checkpoint covers the A1
-outcomes; old snapshots still import; all repository gates pass.
-
-## Next milestone — Phase 3: complete A2 and retention
+## Current milestone — Phase 3: complete A2 and retention
 
 Outcome: the same complete course loop reaches an A2 checkpoint and measures retention beyond
 immediate practice.
@@ -69,6 +44,10 @@ immediate practice.
 - Add cumulative unit checkpoints and delayed probes with parallel variants.
 - Reserve a stable share of mixed sessions for broad cumulative retrieval.
 - Finish with a cumulative A2 checkpoint.
+
+Vocabulary grows with complete units — topic, practice, reading, productive use and reviewed IPA —
+never as disconnected padding. Do not quote headword counts here; they go stale. The live figures
+are on the Über page, and `bun scripts/coverage-a1.ts` reports A1 against the Goethe Wortliste.
 
 **Exit criteria:** the A1–A2 path is complete; checkpoints and delayed probes run; weakness
 targeting cannot monopolize a session; verified and practice evidence remain distinct.

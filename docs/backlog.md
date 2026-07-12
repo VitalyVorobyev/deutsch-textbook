@@ -1,56 +1,15 @@
 # Active Backlog
 
-Companion to [roadmap.md](roadmap.md). Completed P0–P2 foundation items retain their stable IDs
-in [the July 2026 archive](archive/2026-07-learning-foundations.md). Statuses here are
-`todo` → `doing` → `done`; completed items move to the archive rather than accumulating here.
+Companion to [roadmap.md](roadmap.md). Completed P0–P2 items keep their stable IDs in
+[the July 2026 archive](archive/2026-07-learning-foundations.md). Statuses are `todo` → `doing` →
+`done`; a finished item moves to the archive rather than accumulating here.
 
-Every content item must pass the learning-science review and `bun run validate`. Code changes
-must preserve v1–v3 snapshot import and pass the full repository gate.
+Every content item must pass the learning-science review and `bun run validate`. Code changes must
+preserve v1–v4 snapshot import and pass the full repository gate.
 
-## Now — Phase 2: A1 completion
+Phases 0–2 are done: the learning system, the Atlas, and a complete A1 (v0.2.0).
 
-### P2-5 · Author the four remaining A1 units — `done` (L)
-
-Completed: `Erste Schritte`, `Menschen & Familie`. Continue sequentially: Alltag & Zeit → Wohnen
-→ Stadt & Wege → Freizeit & Können.
-
-Each unit includes its atlas node/unit slot with stable outcomes, topic MDX, diagnostic pretest,
-at least eight practice items across three task types, an intensive reading, and 20–40 vocabulary
-entries with reviewed IPA. Declare its conceptual leaf group and meaningful `prerequisites`,
-`deepens`, and symmetric `related` edges. Use `write` and `audio-comprehension` whenever declared outcome modes
-require them; do not add placeholder atlas nodes before their content lands.
-
-- Depends on: completed P2-1 through P2-4.
-- Accept per unit: the full lesson cycle is present; German stays within A1; outcome modes and
-  content genres are appropriate; validation and the learning-science review pass.
-
-### P2-6 · Strengthen the four existing A1 topics — `done` (M each)
-
-`essen-trinken` has the reference-cycle retrofit and initial writing/audio transfer. Complete the
-planned depth across all four topics:
-
-- `praesens-wortstellung`: questions and negation;
-- `artikel-genus`: plural patterns and `kein`/`nicht` outcomes;
-- `akkusativ`: governed prepositions, pronouns and varied contexts;
-- `essen-trinken`: complete menu, quantity, substitution and payment transactions.
-
-Do not rename topic IDs, vocabulary files or headwords: those are persisted card identities.
-
-- Depends on: completed P2-2.
-- Accept: each topic has scaffolded and faded work plus at least one fresh-context production
-  task; outcome references are complete; no preview leaks or card-identity changes.
-
-### P2-7 · Build the cumulative A1 checkpoint — `done` (M)
-
-Create a checkpoint-role set covering the completed A1 outcomes across listening, reading,
-writing and feasible interaction/production evidence. Keep it out of ordinary mixed training and
-surface its outcome-level result in Fortschritt.
-
-- Depends on: P2-5 and P2-6.
-- Accept: reachable after the final A1 unit; ordinary training never selects it; verified and
-  practice evidence remain separate; results survive snapshot export/import.
-
-## Next — Phase 3: A2 completion and retention
+## Now — Phase 3: A2 completion and retention
 
 ### P3-1 · Author the complete A2 spine — `todo` (S)
 

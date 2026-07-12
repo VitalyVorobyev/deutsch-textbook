@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { checkpointOutcomeResults, type CheckpointItemRef } from '../src/lib/checkpoint';
+import { levelPathDone, levelRemaining, type TopicContext, type TopicNode } from '../src/lib/mastery';
 import type { Attempt } from '../src/lib/store';
 
 const SET = 'a1/checkpoint-a1';
@@ -86,5 +87,49 @@ describe('checkpointOutcomeResults', () => {
     )!;
     expect(summary.score).toBe(0.5);
     expect(summary.answered).toBe(1);
+  });
+});
+
+// The Heute card unlocks the level checkpoint with levelNodes.every(pathDone).
+// Before pathDone that gate was lessonCompleted, so a learner who had mastered
+// every A1 topic never saw the checkpoint once a practice set had grown.
+describe('level checkpoint gate', () => {
+  const topic = (id: string, itemIds: string[]): TopicNode => ({
+    id, path: `/topics/a1/${id}`, level: 'A1', kind: 'grammar',
+    title_de: id, title_en: id, title_ru: id, prerequisites: [],
+    exerciseSets: [`a1/${id}`], vocabIds: [], readingIds: [],
+    primaryPractice: { setId: `a1/${id}`, itemIds },
+  });
+  const mastery = (setId: string): Attempt[] => {
+    const day1 = new Date(2026, 0, 1, 10).getTime();
+    const day2 = new Date(2026, 0, 2, 10).getTime();
+    return [0, 1, 2, 3]
+      .map((n) => attempt(`done-${n}`, day1 + n, { setId }))
+      .concat(attempt('done-4', day2, { setId }));
+  };
+
+  test('mastering every topic unlocks the checkpoint even after a set grew', () => {
+    // Both topics gained an item ("fresh") the learner has never answered.
+    const nodes = [
+      topic('erste-schritte', ['done-0', 'done-1', 'done-2', 'done-3', 'done-4', 'fresh']),
+      topic('akkusativ', ['done-0', 'done-1', 'done-2', 'done-3', 'done-4', 'fresh']),
+    ];
+    const ctx: TopicContext = {
+      attempts: [...mastery('a1/erste-schritte'), ...mastery('a1/akkusativ')],
+      cards: {},
+      topics: {},
+    };
+    expect(levelPathDone('A1', nodes, ctx)).toBe(true);
+    expect(levelRemaining('A1', nodes, ctx)).toBe(0);
+  });
+
+  test('one unfinished topic keeps the checkpoint locked', () => {
+    const nodes = [
+      topic('erste-schritte', ['done-0', 'done-1', 'done-2', 'done-3', 'done-4']),
+      topic('akkusativ', ['a', 'b']),
+    ];
+    const ctx: TopicContext = { attempts: mastery('a1/erste-schritte'), cards: {}, topics: {} };
+    expect(levelPathDone('A1', nodes, ctx)).toBe(false);
+    expect(levelRemaining('A1', nodes, ctx)).toBe(1);
   });
 });

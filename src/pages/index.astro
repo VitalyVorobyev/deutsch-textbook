@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import DueBadge from '../components/srs/DueBadge';
+import FirstSteps from '../components/today/FirstSteps';
 import NextTopic from '../components/today/NextTopic';
 import SessionDoneBadge from '../components/today/SessionDoneBadge';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
@@ -11,15 +12,20 @@ const cards = await getAllCards();
 const nodes = await getTopicNodes();
 const deckLevels = await getDeckLevels();
 const { spine } = getCurriculum();
+
+// Where a learner with no history starts — the FirstSteps card links straight to it.
+const firstNode = nodes.find((node) => node.id === spine[0]);
+const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de };
 ---
 
 <Base title="Heute">
   <h1 class="text-3xl font-bold tracking-tight">Guten Tag! 👋</h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
-    <span class="lang-en">Your German atlas — pick up where you left off.</span>
-    <span class="lang-ru">Ваш атлас немецкого — продолжайте с того места, где остановились.</span>
+    <span class="lang-en">Your German atlas — a textbook, exercises and flashcards in one place.</span>
+    <span class="lang-ru">Ваш атлас немецкого — учебник, упражнения и карточки в одном месте.</span>
   </p>
 
+  <FirstSteps client:only="react" first={first} />
   <a
     href={withBase('/session')}
     class="mt-8 block rounded-lg bg-amber-600 p-6 text-white shadow-sm hover:bg-amber-700"
