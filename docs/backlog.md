@@ -93,7 +93,7 @@ The measurement A2 authoring will be judged by, built before the content it judg
   drilled on, and validation fails on one that is not; `bun scripts/coverage.ts A2` reports a real
   figure; an A2 checkpoint could be added without touching four pages.
 
-### P4-3 · Bring the six shipped A2 topics up to the hardened contract — `todo` (L)
+### P4-3 · Bring the six shipped A2 topics up to the hardened contract — `done` (L)
 
 They predate the loop entirely. Across all six: **zero** `write` items, **zero** `speak` items,
 **zero** `audio-comprehension` items, **zero** probe families, no extensive reader. A1 has 8, 2, 14
