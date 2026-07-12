@@ -123,6 +123,40 @@ export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] 
   return gaps;
 }
 
+/** What the learner has actually done on a topic — the chips behind the badge. */
+export interface TopicEvidence {
+  /** the article was opened */
+  read: boolean;
+  /** ≥1 non-pretest attempt on an exercise set or reading */
+  practiced: boolean;
+  /** practice spans ≥2 days (the masteryGaps 'days' requirement) */
+  spaced: boolean;
+  /** the topic owns a vocab deck at all — no deck, no chip */
+  hasVocab: boolean;
+  /** ≥1 card of that deck has been reviewed */
+  vocab: boolean;
+}
+
+/**
+ * The evidence behind the tier, shared by the Fortschritt list and the Themen
+ * overview so the two can never disagree about what "Geübt" means.
+ *
+ * Practice deliberately counts topicPracticeSetIds, not topicSetIds: a pretest
+ * is diagnostic generation, not study. Counting it would put a ✓ Geübt chip
+ * next to a "Neu" badge, since topicTier() excludes it.
+ */
+export function topicEvidence(node: TopicRollup, ctx: TopicContext): TopicEvidence {
+  const setIds = new Set(topicPracticeSetIds(node));
+  const reviewed = topicCardIds(node, ctx.cards).filter((id) => (ctx.cards[id]?.reps ?? 0) > 0);
+  return {
+    read: !!ctx.topics[node.id]?.readAt,
+    practiced: ctx.attempts.some((a) => setIds.has(a.setId)),
+    spaced: masteryGaps(node, ctx).find((g) => g.req === 'days')?.met ?? false,
+    hasVocab: node.vocabIds.length > 0,
+    vocab: reviewed.length > 0,
+  };
+}
+
 /**
  * Auto tier from real activity (ignores the manual override):
  *  read      — article opened;
