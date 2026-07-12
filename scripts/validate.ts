@@ -296,6 +296,20 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
           seen.add(n);
         }
+        // key_tokens names the tokens of `answer` the focus tag grades. A token that is
+        // not in the answer grades nothing, and the item would silently lose both its
+        // typo protection and its attribution — so a stale one has to fail the build.
+        const answerTokens = new Set(
+          canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, '')),
+        );
+        for (const t of item.key_tokens) {
+          if (!answerTokens.has(t.replace(/[.,!?;:]+$/, ''))) {
+            fail(where, `key_tokens entry "${t}" does not occur in the answer`);
+          }
+        }
+        if (item.key_tokens.length > 0 && !item.focus) {
+          warn(where, 'key_tokens without a focus tag grades nothing');
+        }
         break;
       }
       case 'table': {

@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import type { z } from 'zod';
 import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
+import { getActiveProfileId } from '../../lib/profile';
 import { Instruction, Translation, type ItemProps } from './shared';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
@@ -27,7 +28,12 @@ export function Write({
   nextLabel,
   storageKey,
 }: ItemProps<WriteItem> & { storageKey: string }) {
-  const draftKey = `da:write:${storageKey}`;
+  // Profile-scoped, like every other per-learner key: a draft is the learner's own
+  // writing, and an unscoped key would hand it to whoever opens the item next on a
+  // shared device. Unlike `resume.ts` this does not expire at the end of the day —
+  // resume state tracks where you are in a lesson, but a draft is work, and silently
+  // deleting someone's unfinished paragraph overnight is worse than keeping it.
+  const draftKey = `da:write:${getActiveProfileId()}:${storageKey}`;
   const saved = (() => {
     if (typeof localStorage === 'undefined') return null;
     try {

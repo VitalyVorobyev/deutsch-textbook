@@ -284,6 +284,17 @@ export const translateItemSchema = z.object({
   answer: z.string().min(1),
   /** alternative accepted German translations (e.g. another valid V2 word order) */
   accept: z.array(z.string().min(1)).default([]),
+  /**
+   * The tokens of `answer` whose exact form this item grades — typically the verb
+   * form or participle the `focus` tag is about. A near-miss on one of these is a
+   * real error (`geflügen` is a wrong participle, not a typo) and is what the focus
+   * tag is attributed to; a slip anywhere else is forgiven as spelling.
+   *
+   * Word order needs no declaration (tokens are compared positionally), and articles
+   * and pronouns are protected automatically, so an item usually needs this only when
+   * it grades a verb form. See `src/lib/production.ts`.
+   */
+  key_tokens: z.array(z.string().min(1)).default([]),
 });
 
 export const listenItemSchema = z.object({

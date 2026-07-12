@@ -96,6 +96,7 @@ items:
     prompt_en: "I can swim well."
     prompt_ru: "Я умею хорошо плавать."
     answer: "Ich kann gut schwimmen."
+    key_tokens: ["kann"]
     explain: { en: "können in position 2, the bare infinitive at the very end: Ich kann gut schwimmen — never kann schwimme.", ru: "können на втором месте, инфинитив в самом конце: Ich kann gut schwimmen — не kann schwimme, хотя по-русски порядок свободный." }
   - id: translate-gern-fussball
     outcomes: [freizeit-hobbys]
@@ -104,6 +105,7 @@ items:
     prompt_en: "I like playing football."
     prompt_ru: "Я люблю играть в футбол."
     answer: "Ich spiele gern Fußball."
+    key_tokens: ["gern"]
     accept: ["Ich spiele gerne Fußball.", "Fußball spiele ich gern.", "Fußball spiele ich gerne."]
     explain: { en: "No like-verb: the liking lives in gern after the verb — Ich spiele gern Fußball. gerne is an equally correct variant of gern.", ru: "Без глагола «любить»: любовь к занятию выражает gern после глагола — Ich spiele gern Fußball. gerne — равноправный вариант слова gern." }
   - id: schreiben-meine-hobbys

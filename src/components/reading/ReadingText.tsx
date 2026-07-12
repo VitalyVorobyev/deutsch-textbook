@@ -1,6 +1,7 @@
 import { Fragment, useMemo, useState } from 'react';
 import type { Reading } from '../../lib/schemas';
 import { parseGlosses } from '../../lib/gloss';
+import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
@@ -51,7 +52,9 @@ export default function ReadingText({ readingId, reading }: Props) {
       itemType: question.type,
       correct: result.correct,
       given: result.given,
-      focus: question.focus,
+      focus: focusForAttempt(question, result),
+      evidence: result.evidence,
+      responseMode: result.responseMode ?? responseModeForItem(question),
       outcomes: question.outcomes,
       ts: Date.now(),
     });

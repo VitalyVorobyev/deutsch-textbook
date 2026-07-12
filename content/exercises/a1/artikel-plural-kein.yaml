@@ -143,6 +143,7 @@ items:
     prompt_en: "That is not a problem."
     prompt_ru: "Это не проблема."
     answer: "Das ist kein Problem."
+    key_tokens: ["kein"]
     accept:
       - "Es ist kein Problem."
     explain:
@@ -159,6 +160,7 @@ items:
     prompt_en: "They have no children."
     prompt_ru: "У них нет детей."
     answer: "Sie haben keine Kinder."
+    key_tokens: ["keine"]
     explain:
       en: "In the plural the negative article is always keine: keine Kinder. 'Sie haben nicht Kinder' is wrong — the negation belongs to the noun, so it must be kein-."
       ru: "Во множественном числе отрицательный артикль всегда keine: keine Kinder. Русская конструкция «у них нет…» превращается в обычное sie haben + keine Kinder — отрицание относится к существительному, поэтому только kein-."

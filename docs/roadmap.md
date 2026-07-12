@@ -4,9 +4,14 @@ Status: **in progress** (updated 2026-07-12).
 
 A1 is content-complete and shipped (v0.2.0). The post-release
 [learning-system audit](a1-learning-audit.md) found that the lesson foundation is strong but the
-course loop still lacks delayed probes, production revision, spoken self-practice, sustained input
-and coherent cross-skill missions. The current milestone hardens that loop before its patterns are
-scaled across A2. Executable work lives in [backlog.md](backlog.md); implementation history lives in
+course loop still lacks delayed probes, production revision, spoken self-practice and sustained
+input. Re-examining it against a much larger snapshot (671 attempts, three consecutive days) then
+surfaced a deeper problem the thin early data had hidden: **the system was not measuring what it
+claimed to.** Free production was scored so that a typo counted as a grammar failure, and every
+sentence error was blamed on whichever confusion the item drilled — so the weakness signal that
+drives training and drill authoring was substantially wrong. The current milestone fixes that
+instrument, then hardens the loop, before either is scaled across A2. Executable work lives in
+[backlog.md](backlog.md); implementation history lives in
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md).
 
 ## Product direction
@@ -39,19 +44,32 @@ coverage. Details and stable IDs are in the archive.
 ## Current milestone — Phase 3: harden the A1 learning loop
 
 Outcome: A1 demonstrates a complete input → retrieval → interaction/production → revision → delayed
-transfer loop, and that loop becomes the required authoring contract for A2.
+transfer loop, **measured by an instrument that works**, and that loop becomes the required
+authoring contract for A2.
 
-- Add local, snapshot-safe delayed probes with parallel variants.
+- **Fix free-production scoring and error attribution first.** The 671-attempt snapshot showed the
+  `translate` scorer was recording spelling slips as grammar failures and blaming every sentence
+  error on whichever confusion the item happened to drill. Weakness detection, training priority and
+  drill authoring all read that signal, and the most-practiced set in the corpus turned out to be a
+  drill for a confusion the learner does not have. Everything below consumes this signal, so it is
+  the gate.
+- Add local, snapshot-safe delayed probes with parallel variants — and start their clock early, as
+  a 21-day probe cannot report before 21 days.
 - Reserve a stable share of mixed sessions for broad cumulative retrieval.
 - Upgrade open writing to checklist-led revision and add local record/replay speaking practice.
-- Introduce lightweight mission grouping over existing item types.
-- Pilot one late-A1 extensive reader and reviewed committed comprehension audio.
+- Rebalance the item mix before A2 inherits it: `mc`+`match`+`order` are ~58% of all attempts at
+  93–100% accuracy, buying almost no information.
+- Pilot one late-A1 extensive reader.
 - Record actual response mode separately from the curriculum outcome's target mode.
 
-**Exit criteria:** at least one A1 mission exercises reading/listening, constrained retrieval,
-revised writing and recorded speaking; due parallel probes run after a real interval; progress shows
-actual mode coverage without treating unverified production as mastery; the full repository gate
-passes.
+Mission grouping and reviewed multi-voice audio were **deferred out of this milestone** — neither is
+supported by the usage data, and both cost more than they would measurably teach. See P5-4 and P5-1.
+
+**Exit criteria:** the weak-focus signal is trustworthy (a replay of the newest snapshot changes it,
+and the change survives review); due parallel probes run after a real interval and clear a stated
+numeric bar — **≥80% per A1 outcome, with free-production items ≥70%** — so that the gate is able to
+fail; progress shows actual mode coverage without treating unverified production as mastery; the
+full repository gate passes.
 
 ## Next milestone — Phase 4: complete A2 and retention
 

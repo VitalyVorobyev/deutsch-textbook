@@ -16,7 +16,7 @@ import { Write } from './Write';
 import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
 import type { ItemResult } from './shared';
-import { responseModeForItem } from '../../lib/evidence';
+import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 
 interface Props {
   setId: string;
@@ -134,7 +134,7 @@ export default function ExerciseSet({ setId, set }: Props) {
         ? { correctParts: result.correctParts, totalParts: result.totalParts }
         : {}),
       given: result.given,
-      focus: item.focus,
+      focus: focusForAttempt(item, result),
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(item),
       outcomes: item.outcomes,

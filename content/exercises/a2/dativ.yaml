@@ -247,6 +247,7 @@ items:
     prompt_en: "I am helping my brother."
     prompt_ru: "Я помогаю своему брату."
     answer: "Ich helfe meinem Bruder."
+    key_tokens: ["meinem"]
     explain:
       en: "helfen takes the dative: mein Bruder → meinem Bruder. English 'help HIM' looks like a direct object, but helfen means giving help TO someone — ask wem? (to whom?)."
       ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
@@ -261,6 +262,7 @@ items:
     prompt_en: "The car belongs to my father."
     prompt_ru: "Машина принадлежит моему отцу."
     answer: "Das Auto gehört meinem Vater."
+    key_tokens: ["meinem"]
     explain:
       en: "gehören takes the dative: mein Vater → meinem Vater — 'it belongs TO my father'. das Auto is the subject and stays in the nominative."
       ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
@@ -275,6 +277,7 @@ items:
     prompt_en: "After work I go home."
     prompt_ru: "После работы я иду домой."
     answer: "Nach der Arbeit gehe ich nach Hause."
+    key_tokens: ["Nach", "der"]
     accept:
       - "Ich gehe nach der Arbeit nach Hause."
     explain:

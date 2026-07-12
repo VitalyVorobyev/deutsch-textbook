@@ -229,6 +229,7 @@ items:
     prompt_en: "I have to work today."
     prompt_ru: "Я должен сегодня работать."
     answer: "Ich muss heute arbeiten."
+    key_tokens: ["muss", "arbeiten"]
     accept:
       - "Heute muss ich arbeiten."
     explain:
@@ -245,6 +246,7 @@ items:
     prompt_en: "Can you help me?"
     prompt_ru: "Ты можешь мне помочь?"
     answer: "Kannst du mir helfen?"
+    key_tokens: ["mir"]
     explain:
       en: "A yes/no question starts with the modal: Kannst du …? The infinitive helfen goes to the end, and helfen takes the dative — mir, not mich."
       ru: "Общий вопрос начинается с модального глагола: Kannst du …? Инфинитив helfen уходит в конец, а helfen требует Dativ — mir, а не mich."
@@ -259,6 +261,7 @@ items:
     prompt_en: "He wants to buy a car."
     prompt_ru: "Он хочет купить машину."
     answer: "Er will ein Auto kaufen."
+    key_tokens: ["will"]
     explain:
       en: "er will — the er/sie/es form of a modal verb has no -t. The infinitive kaufen closes the sentence, and das Auto is neuter, so ein stays unchanged in the accusative."
       ru: "er will — у модальных глаголов форма er/sie/es не имеет окончания -t. Инфинитив kaufen замыкает предложение, а das Auto — среднего рода, поэтому ein в Akkusativ не меняется."

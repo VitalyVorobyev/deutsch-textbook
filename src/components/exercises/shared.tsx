@@ -15,6 +15,12 @@ export interface ItemResult {
   evidence?: 'verified' | 'practice';
   /** what the learner actually did, independent of the target outcome's CEFR mode */
   responseMode?: 'selection' | 'writing' | 'listening' | 'spoken-production' | 'spoken-interaction';
+  /**
+   * Focus attribution. Undefined leaves the item's own `focus` tag in place; `null`
+   * disclaims it, when the item was failed for a reason that tag is not about. See
+   * `focusForAttempt` in src/lib/evidence.ts.
+   */
+  focus?: string | null;
 }
 
 export interface ItemProps<T> {
@@ -139,19 +145,25 @@ export function ActionRow({
 export function Feedback({
   correct,
   correctAnswer,
+  note,
   explain,
   lang,
   speakText,
 }: {
   correct: boolean;
   correctAnswer?: ReactNode;
+  /**
+   * Shown whether or not the answer was correct — for the things worth saying about
+   * an answer that still counts, such as the spelling of an otherwise right sentence.
+   */
+  note?: ReactNode;
   explain?: Bilingual;
   lang: ExplainLang;
   /** German text to offer for playback next to the correct answer */
   speakText?: string;
 }) {
   const showAnswer = !correct && !!correctAnswer;
-  if (!showAnswer && !explain) return null;
+  if (!showAnswer && !note && !explain) return null;
 
   return (
     <div
@@ -168,7 +180,8 @@ export function Feedback({
           {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
       )}
-      {!correct && explain && <p className={showAnswer ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
+      {note && <div className={showAnswer ? 'mt-2' : undefined}>{note}</div>}
+      {!correct && explain && <p className={showAnswer || note ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
       {correct && explain && (
         <details>
           <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">

@@ -226,6 +226,7 @@ items:
     prompt_en: "I would like to cancel the appointment."
     prompt_ru: "Я хотел бы отменить встречу."
     answer: "Ich möchte den Termin absagen."
+    key_tokens: ["möchte", "absagen"]
     explain:
       en: 'The polite wish is "Ich möchte …" with the infinitive absagen at the end. After möchte the separable verb stays in one piece — the prefix moves away only when the verb itself is conjugated (ich sage den Termin ab).'
       ru: 'Вежливое желание — "Ich möchte …", инфинитив absagen стоит в конце. После möchte отделяемый глагол не разделяется — приставка уходит в конец, только когда глагол спрягается сам (ich sage den Termin ab).'
@@ -240,6 +241,7 @@ items:
     prompt_en: "Does Monday at 10 o'clock suit you? (formal)"
     prompt_ru: "Вам удобно в понедельник в 10 часов? (вежливая форма)"
     answer: "Passt es Ihnen am Montag um 10 Uhr?"
+    key_tokens: ["Ihnen"]
     explain:
       en: 'The subject is "es": Passt es Ihnen …? The polite pronoun is dative "Ihnen" — always capitalized. Days take "am" (am Montag), clock times take "um" (um 10 Uhr).'
       ru: 'Подлежащее — "es": Passt es Ihnen …? Вежливое местоимение стоит в дательном падеже — "Ihnen", всегда с заглавной буквы. С днями недели используется "am" (am Montag), со временем по часам — "um" (um 10 Uhr).'
@@ -254,6 +256,7 @@ items:
     prompt_en: "The appointment is on Friday at 3 p.m."
     prompt_ru: "Приём в пятницу в 15 часов."
     answer: "Der Termin ist am Freitag um 15 Uhr."
+    key_tokens: ["am", "um"]
     explain:
       en: 'Days take "am" and clock times take "um": am Freitag um 15 Uhr. The usual order is day before time, and German schedules use the 24-hour clock: 3 p.m. = 15 Uhr.'
       ru: 'С днями недели используется "am", со временем по часам — "um": am Freitag um 15 Uhr. Обычный порядок — сначала день, потом время; в расписаниях немцы используют 24-часовой формат: 15 Uhr.'

@@ -140,6 +140,7 @@ items:
     prompt_en: "He is not coming today."
     prompt_ru: "Он сегодня не придёт."
     answer: "Er kommt heute nicht."
+    key_tokens: ["nicht"]
     accept:
       - "Heute kommt er nicht."
     explain:
@@ -153,6 +154,7 @@ items:
     prompt_en: "Where does she live?"
     prompt_ru: "Где она живёт?"
     answer: "Wo wohnt sie?"
+    key_tokens: ["wohnt"]
     explain:
       en: "Question word first, conjugated verb second, subject third: Wo wohnt sie? German has no helper like 'does' — the main verb itself takes position 2."
       ru: "Русский порядок «Где она живёт?» подталкивает к «Wo sie wohnt?» — но в немецком глагол обязан стоять сразу после вопросительного слова: Wo wohnt sie?"

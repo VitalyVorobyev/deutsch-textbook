@@ -84,6 +84,7 @@ items:
     prompt_en: "There is a balcony in the apartment."
     prompt_ru: "В квартире есть балкон."
     answer: "In der Wohnung gibt es einen Balkon."
+    key_tokens: ["einen"]
     accept: ["Es gibt einen Balkon in der Wohnung."]
     explain: { en: "'There is' = es gibt + Akkusativ: einen Balkon. Don't build it with ist.", ru: "«Есть» здесь — оборот es gibt + Akkusativ: einen Balkon. Вариант с ist и без артикля — калька с русского." }
   - id: translate-bad
@@ -93,6 +94,7 @@ items:
     prompt_en: "The bathroom is small and dark."
     prompt_ru: "Ванная маленькая и тёмная."
     answer: "Das Bad ist klein und dunkel."
+    key_tokens: ["ist"]
     accept: ["Das Badezimmer ist klein und dunkel."]
     explain: { en: "After ist the adjective never changes its form: klein, dunkel.", ru: "Глагол ist обязателен: по-русски «ванная маленькая» — без глагола, по-немецки так нельзя. Прилагательное после ist не меняется." }
   - id: schreiben-meine-wohnung

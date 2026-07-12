@@ -11,12 +11,41 @@ Phases 0–2 are done: the learning system, the Atlas, and a complete A1 (v0.2.0
 
 ## Now — Phase 3: A1 learning-loop hardening
 
+**Sequencing note.** P3-0 comes first and blocks P3-1. P3-1 is the only item with a *calendar* cost
+— a 21-day probe cannot report before 21 days — so the instinct is to ship it immediately. But
+probes read the same scorer as everything else, and until P3-0 landed that scorer was writing wrong
+`correct` flags and wrong `focus` tags (see finding 0 in the [audit](a1-learning-audit.md)). A
+retention cohort measured with a broken instrument is a cohort that has to be re-run. Fix the
+instrument, then start the clock.
+
+### P3-0 · Fix free-production scoring and error attribution — `done` (M)
+
+Score `translate` answers honestly: a one-token near-miss outside the graded tokens is a spelling
+slip (shown, scored correct, no focus error), and a real error is attributed to the item's `focus`
+tag only when a token that tag grades is what diverged. Closed-class words are never forgiven as
+typos — `den`/`dem` are one edit apart *and* are what the taxonomy grades. Items declare
+`key_tokens`. Also: profile-scope `write` drafts, log `evidence`/`responseMode` on reading
+attempts, and stop the dev progress-writer from overwriting a snapshot with a smaller one.
+
+- Accept: replaying `progress/vitaly/2026-07-12.json` moves the weak-focus list (it does —
+  `trennbar-modal` was a phantom and leaves it; `verben-mit-dativ` 33%→20%, `haben-sein` 27%→17%)
+  while leaving genuine weaknesses (`kein-nicht`, `dativ-artikel`) intact; the full gate passes.
+
 ### P3-1 · Add scheduled parallel probes — `todo` (L)
 
 Implement local, snapshot-safe 2–3, 7 and 21-day outcome probes. A probe family has reviewed
 parallel variants; the scheduler never presents the identical item as its own transfer check.
 Reserve a bounded broad-retrieval share in mixed sessions.
 
+The `probe` role already exists in `EXERCISE_ROLES`, is already excluded from mixed training
+(`trainableRoles` is an allowlist), and is already granted cross-topic outcome references by the
+validator — but **no probe content file exists**. This is wiring, not invention. Persist probe due
+state the way `goal` was added at snapshot v4: a new optional key, a guarded `mergeSnapshot` branch,
+**and a `set` in `replaceSnapshot`** (which clears the store and re-sets only an explicit list, so an
+omitted key is silently destroyed). Keep stamping `version: 4` — `isValidSnapshot` hard-rejects
+unknown versions, so a v5 stamp would make older builds refuse the file.
+
+- Depends on: P3-0.
 - Accept: probe due state survives export/import; pretests/checkpoints/probes stay out of ordinary
   training; each attempt records the variant; tests cover due dates, replacement and session share.
 
@@ -39,29 +68,51 @@ attempt. No cloud recognition and no automatic mastery.
   local and can be deleted; unsupported browsers get an honest speak-and-self-check fallback;
   writing/speaking attempts never enter verified accuracy.
 
-### P3-4 · Add lightweight mission grouping — `todo` (M)
+### P3-4 · Rebalance the item mix — `todo` (M)
 
-Group existing exercise and reading artifacts under a shared real-world situation with ordered
-steps and a final transfer task. Avoid a branching game engine; the mission is a presentation and
-resume layer over stable content IDs.
+A1 is 77 `mc` of 232 items, and in *attempts* `mc` is 45% of everything the learner did — at 93%
+accuracy. `mc` + `match` + `order` together are ~58% of all attempts and score 93–100%, while
+`translate`, the format that actually discriminates (54%), is 25 items in all of A1. `order` is
+45/45 and yields no information at all.
 
-- Accept: one A1 pilot combines input, retrieval, revised writing and speaking; it resumes; item
-  attempts retain their original set IDs; ordinary topic pages remain usable independently.
+The audit noted that "tightly constrained manipulation still dominates" without drawing the
+consequence. The consequence is that **the authoring template must change before A2 exists**, or A2
+inherits a recognition-heavy diet at ten times the volume. Set a target item-mix ratio in the
+`CLAUDE.md` authoring checklist, rebalance the weakest A1 sets, and decide whether `order` earns its
+place as an item type.
 
-### P3-5 · Pilot sustained input and reviewed audio — `todo` (M)
+- Accept: the A1 catalog's production share rises materially; the checklist states the target so new
+  units cannot regress it; no persisted item ids are renamed.
+
+### P3-5 · Pilot sustained input — `todo` (M)
 
 Author one recurring-character late-A1 reader of 250–400 words with very high known-word coverage
-and sparse glosses. Add at least one reviewed committed multi-voice comprehension asset; keep TTS as
-a visible fallback, not the primary artifact.
+and sparse glosses, experienced for meaning rather than quizzed line by line. `readingSchema` caps
+`questions` at four and every current reading is ~100 words, so this needs a relaxed or separate
+schema plus a `content.config.ts` entry and validator rules.
 
-- Accept: the reader is experienced for meaning rather than quizzed line by line; unknown-word
-  sampling meets the late-A1 ceiling; audio transcript stays hidden until attempt; assets build in
+Reviewed multi-voice audio is **split out and deferred** (see P5-1): there is no evidence TTS
+acoustics are the limiter — `listen` is at 76% and `audio-comprehension` is 8/8 on TTS — and P5-1
+already gates audio work on "audio quality, rather than content coverage, is the limiting factor."
+That condition is not met.
+
+- Accept: unknown-word sampling meets the late-A1 ceiling; the reader is not a quiz; it builds in
   web and Tauri outputs.
 
-### P3-6 · Validate the hardened A1 loop — `todo` (M)
+### P3-6 · Validate the hardened A1 loop — `todo` (S engineering + a 21-day gate)
 
-Run an end-to-end pilot and inspect a fresh snapshot. Compare immediate performance with parallel
-probes after real intervals; report mode distribution, transfer, focus-error reduction and workload.
+Not an engineering task of size (M): the delayed half runs on wall-clock. Split it.
+
+- **Now, with P3-1:** the probe report and mode-coverage surface — the tooling that will read the
+  cohort.
+- **~21 days after P3-1 ships:** compare immediate performance with parallel probes at 2–3, 7 and
+  21 days. Report delayed retention, novel-context transfer, focus-error reduction (now that the
+  focus tags are trustworthy — P3-0), mode distribution and workload.
+
+Phase 3's exit criteria must also become **falsifiable**. "Due parallel probes run after a real
+interval" is a system check, not a learning check, and no numeric bar exists anywhere in the docs, so
+nothing can currently fail. State one — e.g. **≥80% on delayed parallel probes per A1 outcome, with
+free-production items ≥70%** — so the A2 gate can actually block.
 
 - Accept: every A1 mode has real practice evidence; delayed and novel-transfer evidence are
   reported separately from engagement; findings update the audit before A2 authoring begins.
@@ -141,7 +192,24 @@ is complete enough to keep them comprehensible.
 Evaluate constrained local or optional AI pronunciation assistance. Keep all resulting evidence
 unverified unless a trustworthy assessment method exists.
 
-### P5-4 · Evaluate branching missions — `deferred` (M)
+### P5-4 · Add lightweight mission grouping — `deferred` (M)
 
-Only add branching after the Phase 3 linear mission pilot shows that branching would improve rather
+Was P3-4. Group existing exercise and reading artifacts under a shared real-world situation with
+ordered steps and a final transfer task — a presentation and resume layer over stable content IDs,
+not a branching game engine.
+
+**Deferred out of Phase 3 on 2026-07-12.** By its own description it adds no new retrieval
+opportunity, and its premise is engagement — which is not the problem the data shows. The learner
+completed three consecutive daily sessions (reviewed 14/15/15, trained 8/8/8, every session
+finished). What the data does show is a production gap and, until P3-0, a broken measurement of it.
+Missions are the most code in Phase 3 for the least measured learning gain. Reconsider once the
+probe cohort reports and the item mix is fixed.
+
+- Accept, when taken up: one A1 pilot combines input, retrieval, revised writing and speaking; it
+  resumes; item attempts retain their original set IDs; ordinary topic pages remain usable
+  independently.
+
+### P5-5 · Evaluate branching missions — `deferred` (M)
+
+Only add branching after a linear mission pilot (P5-4) shows that branching would improve rather
 than distract from the learning workflow.
