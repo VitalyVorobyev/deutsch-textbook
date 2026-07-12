@@ -65,12 +65,22 @@ async function sync(): Promise<void> {
 
   if (import.meta.env.DEV) {
     try {
-      await fetch(`/__progress/${getActiveProfileId()}`, {
+      const res = await fetch(`/__progress/${getActiveProfileId()}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body,
         keepalive: true,
       });
+      // fetch only rejects on a network failure, so a refused write (e.g. the writer
+      // declining to shrink an existing snapshot — see progress-writer.ts) arrives as
+      // a perfectly successful response and would otherwise pass unnoticed while sync
+      // silently stopped happening. Say so.
+      if (!res.ok) {
+        const detail = (await res.json().catch(() => null)) as { message?: string } | null;
+        console.warn(
+          `[autosync] progress not written (${res.status}): ${detail?.message ?? 'unknown reason'}`,
+        );
+      }
     } catch {
       // dev endpoint unavailable or write failed — the next write retries
     }

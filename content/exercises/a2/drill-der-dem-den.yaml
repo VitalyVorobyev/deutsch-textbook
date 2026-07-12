@@ -156,6 +156,7 @@ items:
     prompt_en: "I am helping the man."
     prompt_ru: "Я помогаю мужчине."
     answer: "Ich helfe dem Mann."
+    key_tokens: ["dem"]
     explain:
       en: "helfen takes the dative: der Mann → dem Mann. Think of it as giving help TO the man — the wem? (to whom?) answer is always dative."
       ru: "helfen требует Dativ: der Mann → dem Mann. В русском так же — «помогаю (кому?) мужчине»."
@@ -170,6 +171,7 @@ items:
     prompt_en: "I see the man."
     prompt_ru: "Я вижу мужчину."
     answer: "Ich sehe den Mann."
+    key_tokens: ["den"]
     explain:
       en: "sehen takes the accusative: der Mann → den Mann. Only the masculine article changes in the accusative — and that is exactly the der/dem/den choice this drill trains."
       ru: "sehen требует Akkusativ: der Mann → den Mann. В винительном падеже меняется только мужской артикль — именно этот выбор der/dem/den мы и тренируем."
@@ -229,6 +231,7 @@ items:
     prompt_en: "She is going to the doctor."
     prompt_ru: "Она идёт к врачу."
     answer: "Sie geht zum Arzt."
+    key_tokens: ["zum"]
     accept:
       - "Sie geht zu dem Arzt."
     explain:
@@ -245,6 +248,7 @@ items:
     prompt_en: "The teacher is helping the children."
     prompt_ru: "Учительница помогает детям."
     answer: "Die Lehrerin hilft den Kindern."
+    key_tokens: ["den", "Kindern"]
     explain:
       en: "helfen takes the dative; in the dative plural both things change: die → den AND the noun adds -n — den Kindern."
       ru: "helfen требует Dativ; в Dativ Plural меняются две вещи: die → den И существительное получает -n — den Kindern."

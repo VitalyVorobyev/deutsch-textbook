@@ -1,0 +1,44 @@
+topic: wohnen
+role: probe
+title:
+  en: "Probe — home and rooms"
+  ru: "Проверка — жильё и комнаты"
+
+items:
+  - id: variant-a
+    outcomes: [wohnen-beschreiben]
+    type: translate
+    focus: kopula-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The kitchen is small and bright."
+    prompt_ru: "Кухня маленькая и светлая."
+    answer: "Die Küche ist klein und hell."
+    key_tokens: ["ist"]
+    explain:
+      en: "German always needs the linking verb, even where English can feel optional in a list: die Küche ist klein — never die Küche klein."
+      ru: "Немецкий всегда требует глагол-связку, в отличие от русского, где «кухня маленькая» обходится без «есть»: die Küche ist klein, но не die Küche klein."
+
+  - id: variant-b
+    outcomes: [wohnen-beschreiben]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction:
+      en: Fill the gaps.
+      ru: Заполните пропуски.
+    text: "In der Wohnung {{gibt}} es {{einen}} Balkon und {{eine}} Küche."
+    explain:
+      en: "es gibt always takes an accusative object: einen Balkon (masculine changes), eine Küche (feminine does not)."
+      ru: "После es gibt всегда стоит винительный падеж: einen Balkon (мужской род меняется), eine Küche (женский — нет)."
+
+  - id: variant-c
+    outcomes: [wohnen-lage-sagen, wohnen-anzeige-verstehen]
+    type: cloze
+    instruction:
+      en: Fill the gaps.
+      ru: Заполните пропуски.
+    text: "Das Bett ist {{im}} Schlafzimmer. Der Tisch ist {{in}} der Küche."
+    explain:
+      en: "im is the fixed short form of in dem and goes with masculine and neuter rooms: im Schlafzimmer. Feminine die Küche keeps in der."
+      ru: "im — устойчивая краткая форма от in dem, используется с комнатами мужского и среднего рода: im Schlafzimmer. С женским die Küche остаётся in der."

@@ -96,6 +96,7 @@ items:
     prompt_en: "On Sunday I don't work."
     prompt_ru: "В воскресенье я не работаю."
     answer: "Am Sonntag arbeite ich nicht."
+    key_tokens: ["Am"]
     accept: ["Ich arbeite am Sonntag nicht.", "Ich arbeite nicht am Sonntag."]
     explain: { en: "Days take am: am Sonntag. If the time phrase opens the sentence, the verb keeps position 2: Am Sonntag arbeite ich nicht.", ru: "С днями недели — am: am Sonntag, не in. Если время стоит в начале, глагол всё равно на втором месте: Am Sonntag arbeite ich nicht." }
   - id: translate-januar
@@ -105,6 +106,7 @@ items:
     prompt_en: "In January I study German every day."
     prompt_ru: "В январе я каждый день учу немецкий."
     answer: "Im Januar lerne ich jeden Tag Deutsch."
+    key_tokens: ["Im"]
     accept: ["Ich lerne im Januar jeden Tag Deutsch."]
     explain: { en: "Months take im: im Januar. jeden Tag needs no preposition at all.", ru: "С месяцами — im: im Januar. «Каждый день» — просто jeden Tag, без предлога." }
   - id: schreiben-tagesplan

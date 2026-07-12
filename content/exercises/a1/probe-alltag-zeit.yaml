@@ -1,0 +1,46 @@
+topic: alltag-zeit
+role: probe
+title:
+  en: "Probe — time and daily routine"
+  ru: "Проверка — время и распорядок дня"
+
+items:
+  - id: variant-a
+    outcomes: [zeit-praepositionen]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Monday I work."
+    prompt_ru: "В понедельник я работаю."
+    answer: "Am Montag arbeite ich."
+    key_tokens: ["Am"]
+    accept:
+      - "Ich arbeite am Montag."
+    explain:
+      en: "Days of the week take am: am Montag. Clock times take um, months take im — the preposition is chosen by the kind of time, not by meaning."
+      ru: "С днями недели употребляется am: am Montag. С часами — um, с месяцами — im. Предлог выбирается по типу времени, а не по смыслу."
+
+  - id: variant-b
+    outcomes: [zeit-praepositionen, zeit-tagesablauf-beschreiben]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: Fill in um, am or im.
+      ru: Вставьте um, am или im.
+    text: "{{Um}} acht Uhr frühstücke ich. {{Am}} Sonntag schlafe ich lange. {{Im}} Juli habe ich frei."
+    explain:
+      en: "um + clock time, am + day, im + month. Three different prepositions for three kinds of time — there is no single word for at."
+      ru: "um + время на часах, am + день, im + месяц. Три разных предлога для трёх типов времени — единого слова «в» здесь нет."
+
+  - id: variant-c
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: listen
+    instruction:
+      en: Listen and type what you hear.
+      ru: Послушайте и напишите то, что услышали.
+    text: "Der Kurs beginnt um neun Uhr."
+    explain:
+      en: "Clock times are announced with um: um neun Uhr."
+      ru: "Время на часах объявляют с предлогом um: um neun Uhr."

@@ -141,6 +141,7 @@ items:
     prompt_en: "On Saturday I play tennis."
     prompt_ru: "В субботу я играю в теннис."
     answer: "Am Samstag spiele ich Tennis."
+    key_tokens: ["spiele"]
     accept: ["Ich spiele am Samstag Tennis."]
     explain: { en: "After a fronted time phrase the verb still stands in position 2, so the subject moves behind it: Am Samstag spiele ich — never Am Samstag ich spiele.", ru: "После вынесенного вперёд обстоятельства времени глагол всё равно стоит на втором месте, поэтому подлежащее уходит за него: Am Samstag spiele ich — не Am Samstag ich spiele, как подсказывает русский порядок слов." }
   - id: uebersetzen-fahrrad
@@ -160,6 +161,7 @@ items:
     prompt_en: "I'll take an orange juice, please."
     prompt_ru: "Я возьму апельсиновый сок, пожалуйста."
     answer: "Ich nehme einen Orangensaft, bitte."
+    key_tokens: ["einen"]
     accept: ["Ich nehme einen Orangensaft bitte."]
     explain: { en: "Ich nehme … is the standard café ordering formula, and nehmen takes the accusative: der Orangensaft → einen Orangensaft.", ru: "Ich nehme … — стандартная формула заказа в кафе, а nehmen требует Akkusativ: der Orangensaft → einen Orangensaft." }
   - id: schreiben-mein-tag

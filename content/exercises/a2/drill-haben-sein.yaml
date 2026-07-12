@@ -172,6 +172,7 @@ items:
     prompt_en: "Yesterday we stayed at home."
     prompt_ru: "Вчера мы остались дома."
     answer: "Gestern sind wir zu Hause geblieben."
+    key_tokens: ["sind", "geblieben"]
     accept:
       - "Wir sind gestern zu Hause geblieben."
     explain:
@@ -233,6 +234,7 @@ items:
     prompt_en: "She flew to Spain."
     prompt_ru: "Она улетела в Испанию."
     answer: "Sie ist nach Spanien geflogen."
+    key_tokens: ["ist", "geflogen"]
     explain:
       en: "fliegen is movement from A to B — auxiliary sein: Sie ist geflogen. Countries without an article take nach: nach Spanien."
       ru: "fliegen — движение из точки А в точку Б, вспомогательный глагол sein: Sie ist geflogen. Страны без артикля — с nach: nach Spanien."
@@ -247,6 +249,7 @@ items:
     prompt_en: "I received a parcel yesterday."
     prompt_ru: "Вчера я получил посылку."
     answer: "Ich habe gestern ein Paket bekommen."
+    key_tokens: ["habe", "bekommen"]
     accept:
       - "Gestern habe ich ein Paket bekommen."
     explain:

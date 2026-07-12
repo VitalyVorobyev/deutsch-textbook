@@ -204,3 +204,49 @@ items:
     explain:
       en: '"am Wochenende" — like the parts of the day (am Morgen, am Abend), the weekend takes "am". "um" is only for clock times, and "in" would need an article (in der Nacht).'
       ru: '"am Wochenende" — как и с частями суток (am Morgen, am Abend), с выходными используется "am". "um" — только для точного времени, а "in" требует артикля (in der Nacht).'
+
+  - id: uebersetzen-stehe-auf
+    outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I get up at seven o'clock."
+    prompt_ru: "Я встаю в семь часов."
+    answer: "Ich stehe um sieben Uhr auf."
+    key_tokens: ["stehe", "auf"]
+    accept:
+      - "Um sieben Uhr stehe ich auf."
+    explain:
+      en: "aufstehen splits: stehe holds position 2 and the prefix auf drops to the very end, behind the time phrase."
+      ru: "aufstehen разделяется: stehe стоит на втором месте, а приставка auf уходит в самый конец, за обстоятельство времени."
+
+  - id: uebersetzen-abends-fernsehen
+    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "In the evening I often watch television."
+    prompt_ru: "Вечером я часто смотрю телевизор."
+    answer: "Am Abend sehe ich oft fern."
+    key_tokens: ["Am", "sehe", "fern"]
+    accept:
+      - "Ich sehe am Abend oft fern."
+    explain:
+      en: "Parts of the day take am: am Abend. fernsehen is separable, so fern closes the sentence — even behind the adverb oft."
+      ru: "С частями суток употребляется am: am Abend. fernsehen — отделяемый глагол, поэтому fern замыкает предложение, даже после наречия oft."
+
+  - id: cloze-tagesablauf-zeiten
+    outcomes: [alltag-zeitpraepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: Fill in um, am or im.
+      ru: Вставьте um, am или im.
+    text: "{{Um}} halb acht frühstücke ich. {{Am}} Mittwoch habe ich einen Kurs. {{Im}} Sommer stehe ich früh auf."
+    explain:
+      en: "um + clock time, am + day or part of day, im + month or season. The preposition follows the kind of time, not the meaning."
+      ru: "um + время на часах, am + день или часть суток, im + месяц или время года. Предлог выбирается по типу времени, а не по смыслу."

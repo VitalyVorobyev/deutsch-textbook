@@ -237,6 +237,7 @@ items:
     prompt_en: "I have a dog."
     prompt_ru: "У меня есть собака."
     answer: "Ich habe einen Hund."
+    key_tokens: ["einen"]
     explain:
       en: "haben always takes the accusative, and der Hund is masculine, so ein → einen: Ich habe einen Hund."
       ru: "Глагол haben всегда требует Akkusativ, а der Hund — мужского рода, поэтому ein → einen: Ich habe einen Hund."
@@ -251,6 +252,7 @@ items:
     prompt_en: "He is drinking a coffee."
     prompt_ru: "Он пьёт кофе."
     answer: "Er trinkt einen Kaffee."
+    key_tokens: ["einen"]
     explain:
       en: "The coffee is the direct object of trinken, and der Kaffee is masculine: ein → einen. And remember the capital K — every German noun is capitalized."
       ru: "Кофе — прямое дополнение при глаголе trinken, а der Kaffee — мужского рода: ein → einen. И не забудьте заглавную K — все существительные в немецком пишутся с большой буквы."
@@ -265,6 +267,7 @@ items:
     prompt_en: "Tomorrow I am buying a lamp."
     prompt_ru: "Завтра я куплю лампу."
     answer: "Morgen kaufe ich eine Lampe."
+    key_tokens: ["kaufe"]
     accept:
       - "Ich kaufe morgen eine Lampe."
     explain:

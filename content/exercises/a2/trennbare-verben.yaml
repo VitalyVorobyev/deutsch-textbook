@@ -206,3 +206,76 @@ items:
     explain:
       en: "zumachen (to close) splits: sie macht … zu. Its opposite works the same way: sie macht das Fenster auf (aufmachen — to open)."
       ru: "zumachen (закрывать) разделяется: sie macht … zu. Его антоним ведёт себя так же: sie macht das Fenster auf (aufmachen — открывать)."
+
+  - id: uebersetzen-ruft-an
+    outcomes: [trennbar-satz]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "She calls her mother every day."
+    prompt_ru: "Она каждый день звонит маме."
+    answer: "Sie ruft ihre Mutter jeden Tag an."
+    key_tokens: ["ruft", "an"]
+    accept:
+      - "Jeden Tag ruft sie ihre Mutter an."
+    explain:
+      en: "anrufen splits: ruft takes position 2, and the prefix an goes to the very end — behind the object and the time phrase, however long the middle grows."
+      ru: "anrufen разделяется: ruft занимает второе место, а приставка an уходит в самый конец — за дополнение и обстоятельство времени, каким бы длинным ни была середина."
+
+  - id: uebersetzen-einkaufen-gehen
+    outcomes: [trennbar-satz, trennbar-tagesablauf]
+    type: translate
+    focus: trennbar-modal
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I have to shop today."
+    prompt_ru: "Сегодня я должен сделать покупки."
+    answer: "Ich muss heute einkaufen."
+    key_tokens: ["muss", "einkaufen"]
+    accept:
+      - "Heute muss ich einkaufen."
+    explain:
+      en: "After a modal the separable verb stays whole at the end: muss … einkaufen, never *muss … kaufe ein. Only a finite separable verb splits."
+      ru: "После модального глагола отделяемый глагол остаётся целым в конце: muss … einkaufen, а не *muss … kaufe ein. Разделяется только спрягаемая форма."
+
+  - id: uebersetzen-steht-auf-frueh
+    outcomes: [trennbar-satz, trennbar-tagesablauf]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My father gets up early."
+    prompt_ru: "Мой отец встаёт рано."
+    answer: "Mein Vater steht früh auf."
+    key_tokens: ["steht", "auf"]
+    explain:
+      en: "steht in position 2, auf at the end. The adverb früh sits inside the bracket the two of them make."
+      ru: "steht на втором месте, auf — в конце. Наречие früh стоит внутри рамки, которую они образуют."
+
+  - id: cloze-trennbar-satzende
+    outcomes: [trennbar-satz]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill in the verb and its prefix.
+      ru: Вставьте глагол и его приставку.
+    text: "Der Zug {{fährt}} um acht Uhr {{ab}}. Ich {{kaufe}} am Samstag {{ein}}."
+    explain:
+      en: "abfahren and einkaufen both split: the conjugated part holds position 2, the prefix waits at the end of the clause."
+      ru: "И abfahren, и einkaufen разделяются: спрягаемая часть стоит на втором месте, приставка ждёт в конце предложения."
+
+  - id: cloze-trennbar-untrennbar
+    outcomes: [trennbar-erkennen]
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: "Fill the gaps. Careful — not every prefix separates."
+      ru: "Заполните пропуски. Внимание: не всякая приставка отделяется."
+    text: "Ich {{verstehe}} die Frage nicht. Er {{bekommt}} morgen ein Paket. Wir {{stehen}} um sechs Uhr {{auf}}."
+    explain:
+      en: "ver- and be- are inseparable and never move: ich verstehe, er bekommt. Only auf- and its kind split off to the end."
+      ru: "Приставки ver- и be- неотделяемые и никуда не уходят: ich verstehe, er bekommt. Отделяются только приставки вроде auf-."

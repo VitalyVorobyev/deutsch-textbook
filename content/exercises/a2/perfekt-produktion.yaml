@@ -1,0 +1,50 @@
+topic: perfekt-haben-sein
+role: practice
+title:
+  en: "Production — tell it in the Perfekt yourself"
+  ru: "Продукция — расскажите в перфекте сами"
+
+items:
+  - id: uebersetzen-kino-gegangen
+    outcomes: [perfekt-hilfsverb, perfekt-satzklammer]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German. Use the Perfekt.
+      ru: Переведите на немецкий. Используйте перфект.
+    prompt_en: "Yesterday I went to the cinema."
+    prompt_ru: "Вчера я ходил в кино."
+    answer: "Gestern bin ich ins Kino gegangen."
+    key_tokens: ["bin", "gegangen"]
+    accept:
+      - "Ich bin gestern ins Kino gegangen."
+    explain:
+      en: "gehen is movement from A to B, so the auxiliary is sein: ich bin … gegangen. With Gestern in front, bin still holds position 2 and the participle closes the sentence."
+      ru: "gehen — движение из A в B, поэтому вспомогательный глагол sein: ich bin … gegangen. Если Gestern стоит первым, bin остаётся на втором месте, а причастие замыкает предложение."
+
+  - id: uebersetzen-brief-geschrieben
+    outcomes: [perfekt-partizip, perfekt-hilfsverb]
+    type: translate
+    focus: partizip2-form
+    instruction:
+      en: Translate into German. Use the Perfekt.
+      ru: Переведите на немецкий. Используйте перфект.
+    prompt_en: "I have written a letter."
+    prompt_ru: "Я написал письмо."
+    answer: "Ich habe einen Brief geschrieben."
+    key_tokens: ["habe", "geschrieben"]
+    explain:
+      en: "schreiben is strong: the participle is geschrieben, not *geschreibt. It takes haben, since nothing moves anywhere."
+      ru: "schreiben — сильный глагол: причастие geschrieben, а не *geschreibt. Вспомогательный глагол haben, так как никакого перемещения нет."
+
+  - id: cloze-perfekt-hilfsverb
+    outcomes: [perfekt-hilfsverb]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill in haben or sein in the correct form.
+      ru: Вставьте haben или sein в правильной форме.
+    text: "Wir {{sind}} nach Berlin gefahren. Dort {{haben}} wir viel gesehen. Am Abend {{sind}} wir müde gewesen."
+    explain:
+      en: "fahren moves you from A to B → sein. sehen does not → haben. And sein itself takes sein in the Perfekt: wir sind … gewesen."
+      ru: "fahren — перемещение из A в B → sein. sehen — нет → haben. А сам глагол sein образует перфект с sein: wir sind … gewesen."

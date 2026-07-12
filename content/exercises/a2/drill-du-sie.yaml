@@ -168,6 +168,7 @@ items:
     prompt_en: "Does Tuesday at 9 o'clock work for you?"
     prompt_ru: "Вам удобно во вторник в 9 часов?"
     answer: "Passt es Ihnen am Dienstag um 9 Uhr?"
+    key_tokens: ["Ihnen"]
     explain:
       en: "passen takes the dative: formal Sie → Ihnen (capitalized). Time phrases: am Dienstag (day), um 9 Uhr (clock time)."
       ru: "passen требует Dativ: вежливое Sie → Ihnen (с заглавной буквы). Обстоятельства времени: am Dienstag (день), um 9 Uhr (время по часам)."
@@ -182,6 +183,7 @@ items:
     prompt_en: "Can you help me?"
     prompt_ru: "Ты можешь мне помочь?"
     answer: "Kannst du mir helfen?"
+    key_tokens: ["du"]
     explain:
       en: "With a friend: du + the du-form kannst, and helfen takes the dative — mir: Kannst du mir helfen?"
       ru: "С другом — du и форма kannst, а helfen требует Dativ — mir: Kannst du mir helfen?"
@@ -226,6 +228,7 @@ items:
     prompt_en: "Mrs Schmidt, may I ask you something?"
     prompt_ru: "Госпожа Шмидт, можно Вас кое о чём спросить?"
     answer: "Frau Schmidt, darf ich Sie etwas fragen?"
+    key_tokens: ["Sie"]
     explain:
       en: "Formal address: Frau + surname + Sie. fragen takes the accusative (Sie), and polite permission is darf ich …?"
       ru: "Вежливое обращение: Frau + фамилия + Sie. fragen требует Akkusativ (Sie — «спросить кого»), а вежливое «можно» — darf ich …?"

@@ -244,6 +244,9 @@ items:
     prompt_en: "The supermarket closes at eight o'clock."
     prompt_ru: "Супермаркет закрывается в восемь часов."
     answer: "Der Supermarkt macht um acht Uhr zu."
+    key_tokens: ["macht", "zu"]
+    accept:
+      - "Um acht Uhr macht der Supermarkt zu."
     explain:
       en: "zumachen splits: macht in position 2, zu at the very end — Der Supermarkt macht … zu."
       ru: "zumachen разделяется: macht на втором месте, zu — в самом конце: Der Supermarkt macht … zu."
@@ -258,6 +261,7 @@ items:
     prompt_en: "I have to get up early tomorrow."
     prompt_ru: "Завтра мне нужно рано встать."
     answer: "Ich muss morgen früh aufstehen."
+    key_tokens: ["muss", "aufstehen"]
     accept:
       - "Morgen muss ich früh aufstehen."
     explain:

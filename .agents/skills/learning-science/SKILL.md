@@ -145,6 +145,9 @@ sufficient.
 - **Evidence honesty:** automatically scored answers are `verified`; open
   writing/speaking is `practice`. Practice evidence belongs in activity and
   mode coverage but is excluded from accuracy and mastery.
+- **Mode validity:** distinguish the curriculum outcome's target mode from the
+  learner's actual response. Written MC can teach a spoken-interaction outcome,
+  but it records selected-response evidence, never spoken evidence.
 - **Difficulty source (§7):** difficulty comes from the German, never from
   ambiguous prompts or matching that rejects correct variants — maintain `accept`.
 - **Blocked first, then mixed (§3/§8):** the topic's own sets may block; the
@@ -173,6 +176,18 @@ at natural pace trains parsing connected speech; a pronunciation model attaches
 sound to a new word. TTS speaking text the learner is simultaneously reading is
 the *redundancy effect* — channel competition, not reinforcement. Ask of every
 audio use: what does the ear learn here that the eye doesn't already have?
+
+### Open writing and speaking
+- **Revision (§6/§12):** require draft → task-specific checklist/model
+  comparison → revised attempt. Revealing a model alone is not feedback use.
+- **Speaking:** use model → first attempt → record/replay or explicit say-aloud
+  fallback → self-check → improved attempt. Stress, rhythm and
+  comprehensibility are targets; IPA and TTS alone are not a pronunciation
+  curriculum.
+- **Formulaic language:** retrieve high-frequency communicative chunks as
+  usable units as well as composing via grammar rules.
+- **Assessment honesty:** word count, completion, ASR text and automated AI
+  feedback never become verified mastery without task-specific validation.
 
 ### Feature design
 Reuse existing mechanisms (see the map): spacing → FSRS; interleaving →
@@ -227,6 +242,10 @@ RU halves; an EN reader who knows no Russian).
      listening, or copying visible text?
    - **Scoring granularity:** do multi-part items report parts? Does anything
      still score a 6-cell table like one MC?
+   - **Mode validity:** what did the learner actually do? Do not credit written
+     selection as speech merely because the outcome targets interaction.
+   - **Open-production loop:** does writing/speaking require self-check and a
+     revised attempt, or stop after revealing a polished model?
 5. **Diagnose by principle, not symptom.** "No measured production: zero
    `translate` attempts despite available items (§12/§13/§15)" beats "add more
    exercises".

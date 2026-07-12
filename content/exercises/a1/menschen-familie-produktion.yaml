@@ -1,0 +1,51 @@
+topic: menschen-familie
+role: practice
+title:
+  en: "Production — describe people yourself"
+  ru: "Продукция — опишите человека сами"
+
+# Appended after the topic's primary practice set, never before it: primaryPractice is the
+# first practice set a topic lists, and the Lernpfad advances on its completion.
+
+items:
+  - id: uebersetzen-schwester-beruf
+    outcomes: [menschen-beschreiben]
+    type: translate
+    focus: possessivartikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My brother is a doctor. He is thirty."
+    prompt_ru: "Мой брат — врач. Ему тридцать."
+    answer: "Mein Bruder ist Arzt. Er ist dreißig."
+    key_tokens: ["Mein"]
+    explain:
+      en: "No article before a profession: er ist Arzt, not ein Arzt. And age is stated with sein, never with haben: er ist dreißig."
+      ru: "Перед профессией артикль не ставится: er ist Arzt, а не ein Arzt. Возраст выражается глаголом sein, а не haben: er ist dreißig — «ему тридцать»."
+
+  - id: uebersetzen-familie-vorstellen
+    outcomes: [familie-vorstellen, menschen-beschreiben]
+    type: translate
+    focus: possessivartikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "That is my mother. She lives in Hamburg."
+    prompt_ru: "Это моя мама. Она живёт в Гамбурге."
+    answer: "Das ist meine Mutter. Sie wohnt in Hamburg."
+    key_tokens: ["meine"]
+    explain:
+      en: "die Mutter is feminine, so mein takes -e: meine Mutter. The pointing phrase stays das ist, whatever the gender of what follows."
+      ru: "die Mutter — женского рода, поэтому mein получает -e: meine Mutter. Указательный оборот всегда das ist, независимо от рода того, на что указывают."
+
+  - id: cloze-person-beschreiben
+    outcomes: [menschen-beschreiben]
+    type: cloze
+    focus: kopula-sein
+    instruction:
+      en: Fill the gaps.
+      ru: Заполните пропуски.
+    text: "Meine Schwester {{ist}} Lehrerin. Sie {{ist}} freundlich und {{arbeitet}} in Berlin."
+    explain:
+      en: "Every one of these needs its verb: German cannot leave sein out of a description the way a list of adjectives might suggest."
+      ru: "В каждом предложении обязателен глагол: в отличие от русского («моя сестра — учительница»), немецкий не может опустить sein."

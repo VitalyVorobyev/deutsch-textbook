@@ -5,6 +5,7 @@ import { getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { getAllCards } from '../lib/content';
 import { getCollection, getEntry } from 'astro:content';
+import { probeFamilies } from '../lib/probes';
 import { withBase } from '../lib/url';
 
 const nodes = await getTopicNodes();
@@ -32,6 +33,19 @@ const vocabularyGroups = [
 const curriculum = getCurriculum();
 const outcomeModes = Object.fromEntries(
   curriculum.nodes.flatMap((node) => node.outcomes.map((outcome) => [outcome.id, outcome.mode])),
+);
+const exercises = await getCollection('exercises');
+const families = probeFamilies(
+  exercises.map((e) => ({
+    setId: e.id,
+    topicId: e.data.topic,
+    role: e.data.role,
+    items: e.data.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
+  })),
+);
+const titleByTopic = new Map(nodes.map((n) => [n.id, n.title_de]));
+const probeLabels = Object.fromEntries(
+  families.map((f) => [f.setId, titleByTopic.get(f.topicId) ?? f.topicId]),
 );
 const checkpointSet = await getEntry('exercises', 'a1/checkpoint-a1');
 const checkpoint = !checkpointSet ? undefined : {
@@ -67,6 +81,6 @@ const checkpoint = !checkpointSet ? undefined : {
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoint={checkpoint} />
+    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoint={checkpoint} probeFamilies={families} probeLabels={probeLabels} />
   </div>
 </Base>

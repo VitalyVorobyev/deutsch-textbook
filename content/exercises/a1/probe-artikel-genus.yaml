@@ -1,0 +1,47 @@
+topic: artikel-genus
+role: probe
+title:
+  en: "Probe — gender, plural and kein"
+  ru: "Проверка — род, множественное число и kein"
+
+items:
+  - id: variant-a
+    outcomes: [artikel-genus-erkennen, artikel-richtig-verwenden]
+    type: cloze
+    focus: genus
+    instruction:
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+    text: "{{Die}} Wohnung ist klein. {{Das}} Mädchen lernt Deutsch. {{Der}} Kaffee ist heiß."
+    explain:
+      en: "The ending often gives the gender away: -ung is always feminine (die Wohnung), -chen always neuter (das Mädchen), whatever the person's actual sex."
+      ru: "Окончание часто выдаёт род: -ung всегда женского рода (die Wohnung), -chen всегда среднего (das Mädchen) — независимо от реального пола."
+
+  - id: variant-b
+    outcomes: [artikel-kein-verwenden]
+    type: translate
+    focus: kein-nicht
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "That is not a mistake."
+    prompt_ru: "Это не ошибка."
+    answer: "Das ist kein Fehler."
+    key_tokens: ["kein"]
+    accept:
+      - "Es ist kein Fehler."
+    explain:
+      en: "A noun is negated with kein-, not with nicht: kein Fehler. nicht would negate a verb or an adjective instead."
+      ru: "Существительное отрицается через kein-, а не через nicht: kein Fehler. nicht отрицал бы глагол или прилагательное."
+
+  - id: variant-c
+    outcomes: [artikel-plural-verwenden]
+    type: cloze
+    focus: plural-artikel
+    instruction:
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+    text: "{{Die}} Kinder spielen. {{Die}} Bücher sind neu."
+    explain:
+      en: "In the plural the article is always die, whatever the singular gender was: das Kind → die Kinder, das Buch → die Bücher."
+      ru: "Во множественном числе артикль всегда die, каким бы ни был род в единственном: das Kind → die Kinder, das Buch → die Bücher."
