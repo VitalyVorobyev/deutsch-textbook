@@ -170,6 +170,20 @@ insufficient.
 Only after a linear mission pilot shows that branching would improve rather than distract from the
 learning workflow.
 
+### P5-7 · Delayed evidence for listening — `todo` (M)
+
+One competence is probed per topic, and in every one of the sixteen topics the competence that
+answers "did this lesson stick" turned out to be a production one. So **no listening outcome has a
+retention curve** — listening is practised (`listen` dictation, `audio-comprehension`) but never
+re-checked after an interval. That is a real hole, and it is stated here rather than papered over.
+
+The fix is a second probe family per topic where a listening outcome deserves it (`probe-<topic>-hoeren`,
+three parallel `listen` or `audio-comprehension` variants). It is not free: a due probe opens the
+session and the cap is three, and sixteen families already arm at once. Do it after the first cohort
+reports, when the real probe load is known rather than guessed.
+
+- Accept: a listening outcome shows a 2/7/21-day curve; the probe load per session stays bounded.
+
 ### P5-6 · Recognition-only vocabulary cards — `deferred` (S)
 
 `buildDeck()` turns every vocab entry into two cards, so there is no way to teach a word for
