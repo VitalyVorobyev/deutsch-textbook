@@ -540,14 +540,15 @@ for (const [setId, { file }] of exerciseSets) {
         'trennbar-wortstellung': 'trennbare-verben',
         'trennbar-modal': 'trennbare-verben',
         'trennbar-untrennbar': 'trennbare-verben',
-        'modal-satzklammer': 'modalverben',
-        'modal-konjugation': 'modalverben',
+        'modal-satzklammer': 'freizeit-koennen',
+        'modal-konjugation': 'freizeit-koennen',
+        'gern-moegen': 'freizeit-koennen',
         'duerfen-muessen': 'modalverben',
         'will-moechte': 'modalverben',
         'haben-sein': 'perfekt-haben-sein',
         'partizip2-form': 'perfekt-haben-sein',
         'perfekt-satzklammer': 'perfekt-haben-sein',
-        'um-am-zeit': 'alltag-tagesablauf',
+        'um-am-zeit': 'alltag-zeit',
         'du-sie': 'termine-vereinbaren',
       };
       for (const { file, data } of exerciseSets.values()) {
