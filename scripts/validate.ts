@@ -206,8 +206,14 @@ for (const [id, { file, data }] of topics) {
 
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
+  const standalone = data.role === 'checkpoint' || data.role === 'probe';
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
+  } else if (standalone) {
+    // Checkpoints/probes anchor to a topic for spine position only — they get
+    // their own pages and must never be embedded in ordinary lesson flow.
+    if (owner.data.exercises.includes(setId) || owner.data.pretest === setId)
+      fail(file, `a role: ${data.role} set must not be listed in any topic's exercises or pretest`);
   } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
     fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
   }
@@ -335,7 +341,8 @@ for (const [readingId, { file, data }] of readings) {
 }
 
 // Orphan exercise sets (not referenced by any topic)
-for (const [setId, { file }] of exerciseSets) {
+for (const [setId, { file, data }] of exerciseSets) {
+  if (data.role === 'checkpoint' || data.role === 'probe') continue; // standalone by design
   const referenced = [...topics.values()].some(
     (t) => t.data.exercises.includes(setId) || t.data.pretest === setId,
   );
@@ -496,11 +503,14 @@ for (const [setId, { file }] of exerciseSets) {
       }
 
       for (const { file, data } of exerciseSets.values()) {
+        // Checkpoints/probes span the whole level, so they may reference any
+        // known outcome; ordinary sets stay locked to their own topic's.
+        const crossTopic = data.role === 'checkpoint' || data.role === 'probe';
         for (const item of data.items) {
           for (const outcome of item.outcomes) {
             const owns = outcomeOwner.get(outcome);
             if (!owns) fail(`${file} → item "${item.id}"`, `unknown outcome "${outcome}"`);
-            else if (owns !== data.topic)
+            else if (!crossTopic && owns !== data.topic)
               fail(`${file} → item "${item.id}"`, `outcome "${outcome}" belongs to topic "${owns}"`);
           }
         }
