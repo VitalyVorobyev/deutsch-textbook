@@ -1,0 +1,27 @@
+topic: wohnen
+title_de: "Lena sucht eine Wohnung"
+text:
+  - "Lena [[sucht::is looking for::ищет]] eine Wohnung. Sie liest eine [[Anzeige::ad::объявление]]: „2-Zimmer-Wohnung in Leipzig, 54 [[Quadratmeter::square metres::квадратных метра]]. Die Wohnung ist hell und ruhig. Die Küche ist neu, das Bad ist klein. Es gibt einen Balkon und einen Flur. [[Miete::rent::арендная плата]]: 650 Euro. [[Frei ab September::available from September::свободна с сентября]].“"
+  - "Lena sagt: „Meine Wohnung jetzt ist dunkel und [[teuer::expensive::дорогая]]. Es gibt keinen Balkon, und die Küche ist sehr klein. Im Wohnzimmer steht [[nur::only::только]] ein Sofa, im Schlafzimmer steht ein Bett, und im Flur steht ein Schrank. Die Wohnung in Leipzig ist hell, und die Miete ist nicht so [[hoch::high::высокая]]. Am Samstag besuche ich die Wohnung. [[Vielleicht::maybe::может быть]] ist das meine Wohnung!“"
+questions:
+  - id: q-zimmer
+    outcomes: [wohnen-anzeige-verstehen]
+    type: mc
+    prompt: "Wie viele Zimmer hat die Wohnung in der Anzeige?"
+    options: ["zwei Zimmer", "vier Zimmer", "sechs Zimmer"]
+    correct: 0
+    explain: { en: "2-Zimmer-Wohnung means two rooms in total — the living room counts too.", ru: "2-Zimmer-Wohnung — всего две комнаты, гостиная тоже считается." }
+  - id: q-miete
+    outcomes: [wohnen-anzeige-verstehen]
+    type: mc
+    prompt: "Was kostet die Wohnung pro Monat?"
+    options: ["650 Euro", "560 Euro", "750 Euro"]
+    correct: 0
+    explain: { en: "The ad says: Miete: 650 Euro — that is the rent per month.", ru: "В объявлении: Miete: 650 Euro — это арендная плата за месяц." }
+  - id: q-lena-wohnung
+    outcomes: [wohnen-anzeige-verstehen]
+    type: mc
+    prompt: "Wie ist Lenas Wohnung jetzt?"
+    options: ["dunkel und teuer", "hell und billig", "groß und neu"]
+    correct: 0
+    explain: { en: "Lena says: Meine Wohnung jetzt ist dunkel und teuer.", ru: "Лена говорит: Meine Wohnung jetzt ist dunkel und teuer." }
