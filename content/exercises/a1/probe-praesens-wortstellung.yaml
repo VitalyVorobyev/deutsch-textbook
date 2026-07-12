@@ -1,0 +1,52 @@
+topic: praesens-wortstellung
+role: probe
+title:
+  en: "Probe — present tense and word order"
+  ru: "Проверка — настоящее время и порядок слов"
+
+items:
+  - id: variant-a
+    outcomes: [praesens-verbzweit]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Tomorrow I am working in Berlin."
+    prompt_ru: "Завтра я работаю в Берлине."
+    answer: "Morgen arbeite ich in Berlin."
+    key_tokens: ["arbeite"]
+    accept:
+      - "Ich arbeite morgen in Berlin."
+    explain:
+      en: "The conjugated verb holds position 2. Fronting Morgen pushes the subject behind the verb: Morgen arbeite ich — never Morgen ich arbeite."
+      ru: "Спрягаемый глагол стоит на втором месте. Если вынести Morgen вперёд, подлежащее уходит за глагол: Morgen arbeite ich — но не Morgen ich arbeite."
+
+  - id: variant-b
+    outcomes: [praesens-konjugation]
+    type: cloze
+    focus: verb-endungen
+    instruction:
+      en: Fill the gaps with the correct present-tense form.
+      ru: Заполните пропуски правильной формой настоящего времени.
+    text: "Du {{sprichst}} sehr gut Deutsch. Er {{arbeitet}} in München und {{ist}} Lehrer."
+    explain:
+      en: "sprechen changes its stem vowel in the du/er forms: du sprichst, er spricht. arbeiten adds -et after the t-stem. sein is irregular: er ist."
+      ru: "У sprechen меняется корневая гласная во 2-м и 3-м лице: du sprichst, er spricht. У arbeiten после основы на -t добавляется -et. sein — неправильный глагол: er ist."
+
+  - id: variant-c
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "She is not working today."
+    prompt_ru: "Сегодня она не работает."
+    answer: "Sie arbeitet heute nicht."
+    key_tokens: ["nicht"]
+    accept:
+      - "Heute arbeitet sie nicht."
+    explain:
+      en: "nicht negates the verb and goes to the end, after the time phrase: Sie arbeitet heute nicht — not Sie nicht arbeitet."
+      ru: "nicht отрицает глагол и ставится в конце, после обстоятельства времени: Sie arbeitet heute nicht — а не Sie nicht arbeitet."

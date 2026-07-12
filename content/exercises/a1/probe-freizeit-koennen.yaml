@@ -1,0 +1,50 @@
+topic: freizeit-koennen
+role: probe
+title:
+  en: "Probe — free time and können"
+  ru: "Проверка — свободное время и können"
+
+items:
+  - id: variant-a
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I can play football."
+    prompt_ru: "Я умею играть в футбол."
+    answer: "Ich kann Fußball spielen."
+    key_tokens: ["kann"]
+    explain:
+      en: "The modal takes position 2 and the bare infinitive closes the sentence: kann … spielen. Everything else sits inside that bracket."
+      ru: "Модальный глагол стоит на втором месте, а инфинитив без zu замыкает предложение: kann … spielen. Всё остальное — внутри этой рамки."
+
+  - id: variant-b
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill in the correct form of können.
+      ru: Вставьте правильную форму können.
+    text: "Ich {{kann}} gut kochen. {{Kannst}} du schwimmen? Wir {{können}} morgen kommen."
+    explain:
+      en: "The modal has no -t in ich/er (ich kann, er kann), and the vowel change happens only in the singular: wir können keeps its ö."
+      ru: "У модального глагола нет -t в формах ich/er (ich kann, er kann), а смена гласной происходит только в единственном числе: wir können сохраняет ö."
+
+  - id: variant-c
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I like reading."
+    prompt_ru: "Я люблю читать."
+    answer: "Ich lese gern."
+    key_tokens: ["gern"]
+    accept:
+      - "Ich lese gerne."
+    explain:
+      en: "German says what you like doing with verb + gern, not with a verb meaning to love plus an infinitive: ich lese gern."
+      ru: "«Люблю читать» по-немецки строится как глагол + gern, а не через «любить» + инфинитив: ich lese gern, а не ich liebe zu lesen."

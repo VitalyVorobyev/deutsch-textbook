@@ -1,0 +1,43 @@
+topic: stadt-wege
+role: probe
+title:
+  en: "Probe — asking the way in town"
+  ru: "Проверка — как спросить дорогу в городе"
+
+items:
+  - id: variant-a
+    outcomes: [stadt-weg-erfragen]
+    type: translate
+    focus: artikel-pflicht
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Excuse me, where is the pharmacy?"
+    prompt_ru: "Извините, где аптека?"
+    answer: "Entschuldigung, wo ist die Apotheke?"
+    key_tokens: ["die"]
+    explain:
+      en: "Open politely with Entschuldigung, then a plain W-question: wo ist + article + noun. The article is not optional — die Apotheke, never just Apotheke."
+      ru: "Начните вежливо с Entschuldigung, затем обычный W-вопрос: wo ist + артикль + существительное. Артикль обязателен: die Apotheke, а не просто Apotheke."
+
+  - id: variant-b
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: cloze
+    instruction:
+      en: Fill the gaps.
+      ru: Заполните пропуски.
+    text: "Gehen Sie {{geradeaus}} und dann {{links}}. Die Bank ist {{rechts}}."
+    explain:
+      en: "The three directions that carry almost every German route description: geradeaus, links, rechts."
+      ru: "Три направления, на которых держится почти любое немецкое объяснение дороги: geradeaus, links, rechts."
+
+  - id: variant-c
+    outcomes: [stadt-schilder-verstehen, stadt-verkehrsmittel-nennen]
+    type: listen
+    instruction:
+      en: Listen and type what you hear.
+      ru: Послушайте и напишите то, что услышали.
+    text: "Der Bahnhof ist links und die Post ist rechts."
+    explain:
+      en: "Both nouns keep their article, and each direction word closes its own clause."
+      ru: "Оба существительных сохраняют артикль, и каждое слово-направление замыкает свою часть предложения."

@@ -25,6 +25,8 @@ import { TopicProgressList } from './TopicProgressList';
 import type { CardDef } from '../../lib/srs';
 import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
 import { CheckpointResults, type CheckpointInfo } from './CheckpointResults';
+import { ProbeResults } from './ProbeResults';
+import type { ProbeFamily } from '../../lib/probes';
 
 interface Data {
   attempts: Attempt[];
@@ -39,9 +41,20 @@ interface Props {
   cards: CardDef[];
   vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
   checkpoint?: CheckpointInfo;
+  probeFamilies: ProbeFamily[];
+  /** probe set id → the topic's German title, for the results list */
+  probeLabels: Record<string, string>;
 }
 
-export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGroups, checkpoint }: Props) {
+export default function ProgressPanel({
+  nodes,
+  outcomeModes,
+  cards,
+  vocabularyGroups,
+  checkpoint,
+  probeFamilies,
+  probeLabels,
+}: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -181,15 +194,17 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
   const accuracy = verified.length ? Math.round((correct / verified.length) * 100) : 0;
   const modeEvidence = new Map<string, { verified: number; practice: number }>();
   for (const attempt of data?.attempts ?? []) {
-    for (const outcome of new Set(attempt.outcomes ?? [])) {
-      const mode = outcomeModes[outcome];
-      if (!mode) continue;
+    const actualModes = attempt.responseMode
+      ? [attempt.responseMode]
+      : [...new Set((attempt.outcomes ?? []).map((outcome) => outcomeModes[outcome]).filter(Boolean))];
+    for (const mode of actualModes) {
       const count = modeEvidence.get(mode) ?? { verified: 0, practice: 0 };
       count[attempt.evidence === 'practice' ? 'practice' : 'verified']++;
       modeEvidence.set(mode, count);
     }
   }
   const modeLabels: Record<string, [string, string]> = {
+    selection: ['Selected response', 'Выбор ответа'],
     listening: ['Listening', 'Аудирование'],
     reading: ['Reading', 'Чтение'],
     writing: ['Writing', 'Письмо'],
@@ -238,7 +253,13 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
 
       {data && modeEvidence.size > 0 && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{t('Evidence by skill', 'Практика по навыкам')}</h2>
+          <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{t('Evidence by actual response', 'Практика по фактическому ответу')}</h2>
+          <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+            {t(
+              'What you actually did, separate from the skill targeted by the curriculum outcome. Older attempts use their target mode because they did not record a response mode.',
+              'Что вы фактически делали — отдельно от навыка, указанного в цели курса. Для старых попыток показан целевой навык, потому что тип ответа ещё не сохранялся.',
+            )}
+          </p>
           <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[...modeEvidence.entries()].map(([mode, count]) => (
               <div key={mode} className="rounded-md bg-stone-50 px-3 py-2 dark:bg-stone-900/50">
@@ -269,6 +290,15 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
 
       {data && checkpoint && (
         <CheckpointResults checkpoint={checkpoint} outcomeModes={outcomeModes} attempts={data.attempts} />
+      )}
+
+      {data && (
+        <ProbeResults
+          families={probeFamilies}
+          labels={probeLabels}
+          attempts={data.attempts}
+          lang={lang}
+        />
       )}
 
       {/* Both own their card and render nothing when they have nothing to say. */}

@@ -74,8 +74,47 @@ const handler: Connect.NextHandleFunction = (req, res, next) => {
         }
         // The server decides the filename — never trust the client for the path.
         const file = `${localDate(new Date())}.json`;
+        const target = path.join(dir, file);
         await fs.mkdir(dir, { recursive: true });
-        await fs.writeFile(path.join(dir, file), raw, 'utf8');
+
+        // A profile's attempt log only grows within a day, so a snapshot with FEWER
+        // attempts than the file it would replace is not a save — it is a *different*
+        // learner state arriving under the same name. That happens easily: any browser
+        // (a fresh profile, an incognito window, an automated test) that adopts an
+        // existing profile's name syncs to the same path, and a blind write flattens a
+        // real day of work.
+        //
+        // Do not overwrite, and do not simply drop it either: park the incoming state in
+        // a sibling file so nothing is ever lost, and let the caller see the conflict.
+        // Timestamping every snapshot instead would avoid the collision, but autosync
+        // fires on every progress write — a single session would litter the folder with
+        // a dozen files and the day would no longer have one canonical name.
+        const existing = await fs.readFile(target, 'utf8').catch(() => null);
+        if (existing) {
+          const prior = JSON.parse(existing) as { attempts?: unknown[] };
+          const had = Array.isArray(prior.attempts) ? prior.attempts.length : 0;
+          const now = snap.attempts.length;
+          if (now < had) {
+            const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const parked = `${localDate(new Date())}.conflict-${stamp}.json`;
+            await fs.writeFile(path.join(dir, parked), raw, 'utf8');
+            res.statusCode = 409;
+            res.setHeader('content-type', 'application/json');
+            return res.end(
+              JSON.stringify({
+                ok: false,
+                reason: 'would-shrink',
+                parked: `progress/${id}/${parked}`,
+                message:
+                  `progress/${id}/${file} holds ${had} attempts; the posted snapshot holds ` +
+                  `${now}. Not overwriting — the incoming state was parked at ` +
+                  `progress/${id}/${parked}.`,
+              }),
+            );
+          }
+        }
+
+        await fs.writeFile(target, raw, 'utf8');
         res.statusCode = 200;
         res.setHeader('content-type', 'application/json');
         res.end(JSON.stringify({ ok: true, path: `progress/${id}/${file}` }));

@@ -7,6 +7,53 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [Unreleased]
+
+### Added
+
+- **Delayed outcome probes.** Two, seven and twenty-one days after you learn a topic, the same
+  competence is asked again — in a task you have not seen — and it opens the session, before
+  review and training. A probe answered after twenty minutes of practice on the same material would
+  measure the practice, not the interval. Ten A1 probe families, three parallel variants each.
+  Fortschritt reports the results apart from practice accuracy, at the interval that *actually*
+  elapsed rather than the one that was scheduled.
+- **An extensive reader.** "Lena in Bremen" — a longer text meant to be read straight through for
+  meaning, with sparse glosses and no line-by-line quiz. Readings now declare whether they are
+  intensive or extensive, and the validator holds the two apart.
+- **A reserved share of broad retrieval.** A quarter of every mixed session now goes to material you
+  answered correctly a long time ago. Recency and weakness are the loudest signals, not the most
+  informative ones, and they used to take the whole session.
+- Local record/replay speaking practice with self-check and a required improved attempt; recordings
+  never leave the current browser tab and never produce verified mastery.
+- Actual response modes on new attempts, so progress distinguishes selected, written, listening and
+  spoken activity from the curriculum outcome's intended skill.
+
+### Changed
+
+- **Typing a German sentence is graded honestly.** A one-letter slip in an otherwise correct
+  sentence used to fail the item *and* be recorded as a failure of the grammar it was drilling. It
+  is now shown as a spelling note and scored correct. Articles and pronouns are never forgiven this
+  way — `den` for `dem` is a choice, not a slip.
+- **A mistake is only blamed on the confusion it is actually about.** `Sie ist zu Hause gebliebt`
+  was being logged as a *haben-sein* error although the auxiliary was right. Errors that cannot be
+  attributed are now recorded as unattributed rather than mislabelled, because the weakness signal
+  drives which drills you are given — and it had been sending them after confusions the learner did
+  not have.
+- **More writing, less picking.** Every topic's practice now has to include real sentence
+  production, and multiple choice can no longer carry a topic. Thirty new production items.
+- Open writing now uses a draft → checklist → revision loop and preserves both versions as
+  unverified practice evidence.
+
+### Fixed
+
+- The dev server could overwrite a day's progress snapshot with an emptier one from any browser that
+  happened to use the same profile name. It now refuses to shrink a snapshot and parks the incoming
+  state in a conflict file instead of discarding it, and a refused sync is reported rather than
+  silently swallowed.
+- Writing drafts were shared between profiles on the same device.
+- Reading comprehension answers were not recording their evidence quality or response mode.
+- The roadmap now gates further A2 authoring on the post-release A1 learning-system hardening audit.
+
 ## [0.2.0] — 2026-07-12
 
 The A1 release. Version 0.1.0 shipped the desktop shell; almost the entire course arrived after it.

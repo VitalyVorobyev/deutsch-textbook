@@ -284,6 +284,17 @@ export const translateItemSchema = z.object({
   answer: z.string().min(1),
   /** alternative accepted German translations (e.g. another valid V2 word order) */
   accept: z.array(z.string().min(1)).default([]),
+  /**
+   * The tokens of `answer` whose exact form this item grades — typically the verb
+   * form or participle the `focus` tag is about. A near-miss on one of these is a
+   * real error (`geflügen` is a wrong participle, not a typo) and is what the focus
+   * tag is attributed to; a slip anywhere else is forgiven as spelling.
+   *
+   * Word order needs no declaration (tokens are compared positionally), and articles
+   * and pronouns are protected automatically, so an item usually needs this only when
+   * it grades a verb form. See `src/lib/production.ts`.
+   */
+  key_tokens: z.array(z.string().min(1)).default([]),
 });
 
 export const listenItemSchema = z.object({
@@ -312,6 +323,19 @@ export const writeItemSchema = z.object({
   model_answer: z.string().min(1),
   model_translation: bilingualSchema.optional(),
   min_words: z.number().int().min(1).default(8),
+});
+
+/** Open spoken production or interaction. Audio never leaves the browser and
+    the completion is practice evidence, not automatically verified accuracy. */
+export const speakItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('speak'),
+  mode: z.enum(['spoken-production', 'spoken-interaction']),
+  prompt: bilingualSchema,
+  goal: bilingualSchema,
+  checklist: z.array(bilingualSchema).min(1),
+  model_answer: z.string().min(1),
+  model_translation: bilingualSchema.optional(),
 });
 
 const audioTurnSchema = z.object({
@@ -354,6 +378,7 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   translateItemSchema,
   listenItemSchema,
   writeItemSchema,
+  speakItemSchema,
   audioComprehensionItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
@@ -376,17 +401,31 @@ export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
 // Reading texts (content/reading/<level>/<id>.yaml)
 // ---------------------------------------------------------------------------
 
+export const READING_KINDS = ['intensive', 'extensive'] as const;
+
 export const readingSchema = z.object({
   /** back-reference to the owning topic id */
   topic: slug,
   title_de: z.string().min(1),
   /**
+   * What the text is *for*, which decides how it is read — not merely how long it is.
+   *
+   * `intensive` (the default, and every reading before this field existed): ~90–130 words,
+   * densely glossed, followed by comprehension questions. The learner works through it.
+   *
+   * `extensive`: 250–400 words at late A1, very high known-word coverage and sparse glosses,
+   * read for meaning at volume. It is deliberately NOT quizzed line by line — being asked to
+   * account for every sentence is what turns reading back into a test, and the whole point of
+   * this track is the reading itself. A couple of gist questions are allowed; none is fine.
+   */
+  kind: z.enum(READING_KINDS).default('intensive'),
+  /**
    * Paragraphs of German text. Inline gloss markers:
    * `[[German phrase::en gloss::ru gloss]]` (see src/lib/gloss.ts).
    */
   text: z.array(z.string().min(1)).min(1),
-  /** 2–4 comprehension questions shown after the text */
-  questions: z.array(mcItemSchema).min(2).max(4),
+  /** comprehension questions shown after the text — 2–4 for intensive, 0–2 for extensive */
+  questions: z.array(mcItemSchema).max(4).default([]),
 });
 export type Reading = z.infer<typeof readingSchema>;
 

@@ -116,6 +116,7 @@ items:
     prompt_en: "The gift is for my brother."
     prompt_ru: "Подарок для моего брата."
     answer: "Das Geschenk ist für meinen Bruder."
+    key_tokens: ["für", "meinen"]
     explain:
       en: "für governs the accusative: der Bruder is masculine, so mein → meinen. English 'for my brother' changes nothing — German marks the case on the masculine."
       ru: "После für всегда Akkusativ: der Bruder — мужского рода, поэтому mein → meinen. По-русски «для» требует родительного падежа, в немецком für — винительного."
@@ -130,6 +131,7 @@ items:
     prompt_en: "The flowers are for you."
     prompt_ru: "Цветы для тебя."
     answer: "Die Blumen sind für dich."
+    key_tokens: ["für", "dich"]
     accept:
       - "Die Blumen sind für euch."
       - "Die Blumen sind für Sie."
@@ -147,6 +149,7 @@ items:
     prompt_en: "He is coming without his sister today."
     prompt_ru: "Сегодня он придёт без своей сестры."
     answer: "Er kommt heute ohne seine Schwester."
+    key_tokens: ["ohne", "seine"]
     accept:
       - "Heute kommt er ohne seine Schwester."
     explain:

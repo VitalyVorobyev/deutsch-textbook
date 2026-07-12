@@ -1,0 +1,48 @@
+topic: akkusativ
+role: probe
+title:
+  en: "Probe — the accusative"
+  ru: "Проверка — винительный падеж"
+
+items:
+  - id: variant-a
+    outcomes: [akkusativ-objekte, akkusativ-artikel]
+    type: translate
+    focus: akkusativ-artikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I am buying a table."
+    prompt_ru: "Я покупаю стол."
+    answer: "Ich kaufe einen Tisch."
+    key_tokens: ["einen"]
+    explain:
+      en: "kaufen takes an accusative object, and der Tisch is masculine — so ein becomes einen. This is the one gender that changes."
+      ru: "kaufen требует винительного падежа, а der Tisch — мужского рода, поэтому ein превращается в einen. Меняется только мужской род."
+
+  - id: variant-b
+    outcomes: [akkusativ-artikel, akkusativ-maskulin]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction:
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Ich sehe {{den}} Mann und {{die}} Frau. Wir haben {{ein}} Kind."
+    explain:
+      en: "Only the masculine changes in the accusative: der → den. Feminine die and neuter ein stay exactly as they are."
+      ru: "В винительном падеже меняется только мужской род: der → den. Женский die и средний ein остаются без изменений."
+
+  - id: variant-c
+    outcomes: [akkusativ-praepositionen]
+    type: translate
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The book is for my father."
+    prompt_ru: "Эта книга для моего отца."
+    answer: "Das Buch ist für meinen Vater."
+    key_tokens: ["für", "meinen"]
+    explain:
+      en: "für always governs the accusative, so mein becomes meinen before the masculine Vater — no exceptions, whatever the sentence means."
+      ru: "für всегда требует винительного падежа, поэтому перед мужским Vater mein превращается в meinen — без исключений, независимо от смысла."

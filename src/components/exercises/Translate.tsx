@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { translateItemSchema } from '../../lib/schemas';
-import { normalizeAnswer, translationMatches } from '../../lib/cloze';
+import { normalizeAnswer } from '../../lib/cloze';
+import { gradeTranslation, verdictIsCorrect, type TranslationVerdict } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
@@ -22,12 +23,26 @@ export function Translate({
   const [checked, setChecked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const isCorrect = translationMatches(value, [item.answer, ...item.accept]);
+  const verdict: TranslationVerdict = gradeTranslation(value, {
+    answer: item.answer,
+    accept: item.accept,
+    focus: item.focus,
+    keyTokens: item.key_tokens,
+  });
+  const isCorrect = verdictIsCorrect(verdict);
 
   function check() {
     if (checked || locked || value.trim() === '') return;
     setChecked(true);
-    onResult({ correct: isCorrect, given: normalizeAnswer(value) });
+    onResult({
+      correct: isCorrect,
+      given: normalizeAnswer(value),
+      // A correct answer — including one with a slipped letter — keeps the item's tag:
+      // producing the structure correctly is exactly the positive evidence that tag is
+      // for. Only a failure gives it up, and only when the tokens that diverged are not
+      // the ones the tag grades (`undefined` means "use the item's own tag").
+      focus: verdict.kind === 'wrong' ? (verdict.focus ?? null) : undefined,
+    });
   }
 
   /** Insert a character at the caret position of the answer input. */
@@ -113,6 +128,18 @@ export function Translate({
                 )}
               </span>
             ))
+          }
+          note={
+            verdict.kind === 'spelling' && (
+              <p>
+                {lang === 'ru' ? 'Обратите внимание на написание: ' : 'Watch the spelling: '}
+                <span lang="de">
+                  <s className="opacity-70">{verdict.correction.given}</s>
+                  {' → '}
+                  <strong>{verdict.correction.expected}</strong>
+                </span>
+              </p>
+            )
           }
           explain={item.explain}
           lang={lang}

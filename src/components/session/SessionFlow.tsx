@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CardDef } from '../../lib/srs';
 import { planReview, type ReviewPlanResult } from '../../lib/decks';
 import {
@@ -13,10 +13,12 @@ import {
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import type { TopicNode } from '../../lib/mastery';
+import { dueProbes, probeFamilies, type DueProbe } from '../../lib/probes';
 import { useExplainLang } from '../hooks';
 import FlashcardSession from '../srs/FlashcardSession';
 import MixedTraining, { type TrainingSet } from '../training/MixedTraining';
 import NextTopic from '../today/NextTopic';
+import ProbeStep from './ProbeStep';
 
 interface Props {
   cards: CardDef[];
@@ -35,19 +37,34 @@ const MIN_DUE = 5;
 /** exercise items in step 2 */
 const TRAINING_COUNT = 8;
 
-type Step = 1 | 2 | 3;
+/**
+ * Step 0 is the delayed probe check, and it only exists on days one is due — which is
+ * why the steps are numbered from 0 rather than the visible list being renumbered: a
+ * saved resume point from earlier today must keep meaning the same step.
+ */
+type Step = 0 | 1 | 2 | 3;
 
-const STEPS: Array<{ n: Step; de: string }> = [
-  { n: 1, de: 'Wiederholen' },
-  { n: 2, de: 'Training' },
-  { n: 3, de: 'Weiter lernen' },
-];
+const STEP_LABELS: Record<Step, string> = {
+  0: 'Rückblick',
+  1: 'Wiederholen',
+  2: 'Training',
+  3: 'Weiter lernen',
+};
 
 const RESUME_SURFACE = 'session';
 
 interface SessionResume {
   step: Step;
   reviewedCount: number | null;
+  /**
+   * Whether today's probes have already been answered or waved through.
+   *
+   * This cannot be inferred from `step`, because step 1 is both "past the probes" and
+   * the default starting point — so a session opened before a probe fell due would save
+   * step 1, and every later visit that day would read it as "already done" and silently
+   * drop the probe. The flag says which of the two it was.
+   */
+  probesDone?: boolean;
 }
 
 export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: Props) {
@@ -57,9 +74,13 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   // already logged and the "done today" gate takes over
   const [initial] = useState<SessionResume | null>(() => {
     const saved = loadResume<SessionResume>(RESUME_SURFACE);
-    return saved && (saved.step === 1 || saved.step === 2) ? saved : null;
+    return saved && (saved.step === 0 || saved.step === 1 || saved.step === 2) ? saved : null;
   });
   const [step, setStep] = useState<Step>(initial?.step ?? 1);
+  // null = still deciding whether any probe is due; [] = none, so step 0 does not exist today
+  const [due, setDue] = useState<DueProbe[] | null>(null);
+  const [probedCount, setProbedCount] = useState<number | null>(null);
+  const [probesDone, setProbesDone] = useState(initial?.probesDone ?? false);
   const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
   const [reviewDone, setReviewDone] = useState(false);
   // summary counters: null = step was skipped
@@ -81,6 +102,28 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
       cancelled = true;
     };
   }, []);
+
+  // Which probes came due. Probe scheduling is derived entirely from the attempt log
+  // (see src/lib/probes.ts), so there is no separate state to load or keep in sync.
+  const families = useMemo(() => probeFamilies(sets), [sets]);
+  useEffect(() => {
+    let cancelled = false;
+    void getAttempts().then((attempts) => {
+      if (cancelled) return;
+      const owed = dueProbes(families, attempts);
+      setDue(owed);
+      // A due probe opens the session, unless the learner already dealt with it today.
+      // `owed` is itself the record of that: answering a probe logs an attempt, which
+      // advances its stage, so it stops being due. The flag only covers a deliberate skip.
+      if (owed.length > 0 && !probesDone) setStep(0);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // probesDone is read once, at the moment the lookup lands — re-running on a later
+    // skip would just re-answer the same question.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [families]);
 
   // Plan step 1: most-overdue due cards first (capped), new cards only when
   // little is due — and only from eligible decks (see planReview in decks.ts).
@@ -104,15 +147,17 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     };
   }, [cards, spine, nodes, deckLevels, planRound]);
 
-  // Nothing due at all → brief note, then auto-advance to training.
+  // Nothing due at all → brief note, then auto-advance to training. Waits for the probe
+  // lookup too: advancing out of step 1 while it is still in flight would race the probe
+  // step into existence just as the session moved past it.
   useEffect(() => {
-    if (step !== 1 || plan === null || plan.total > 0) return;
+    if (step !== 1 || due === null || plan === null || plan.total > 0) return;
     const t = setTimeout(() => {
       setReviewedCount((c) => c ?? 0);
       setStep(2);
     }, 1600);
     return () => clearTimeout(t);
-  }, [step, plan]);
+  }, [step, plan, due]);
 
   const finishTraining = useCallback(
     ({ answered }: { answered: number; correct: number }) => {
@@ -129,6 +174,12 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     [reviewedCount],
   );
 
+  const finishProbes = useCallback(({ answered }: { answered: number; correct: number }) => {
+    setProbedCount(answered);
+    setProbesDone(true);
+    setStep(1);
+  }, []);
+
   // Empty training pool (nothing eligible yet) → same brief-note-then-advance.
   useEffect(() => {
     if (step !== 2 || !trainingEmpty) return;
@@ -136,11 +187,16 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     return () => clearTimeout(t);
   }, [step, trainingEmpty, finishTraining]);
 
-  // Persist the lesson point (steps 1–2 only; finishTraining clears it).
+  // Persist the lesson point (steps 0–2; finishTraining clears it).
+  //
+  // Not before the probe check has resolved. `step` starts at 1, and saving that while
+  // the due-probe lookup is still in flight would write a resume point saying "already
+  // past the probes" — so the next reload would honour it and skip step 0 for the rest
+  // of the day. Every day a probe came due, one reload would silently cancel it.
   useEffect(() => {
-    if (step === 3) return;
-    saveResume<SessionResume>(RESUME_SURFACE, { step, reviewedCount });
-  }, [step, reviewedCount]);
+    if (step === 3 || due === null) return;
+    saveResume<SessionResume>(RESUME_SURFACE, { step, reviewedCount, probesDone });
+  }, [step, reviewedCount, probesDone, due]);
 
   function finishReview() {
     // accumulate across optional extra rounds
@@ -154,10 +210,22 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     setPlanRound((r) => r + 1);
   }
 
-  const skipTarget: Step | null = step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
+  // Skipping step 0 does not discard the probe — it stays due and comes back tomorrow
+  // with its stage intact (dueProbe counts probes taken, not days offered). The flag only
+  // stops it from reappearing on every reload for the rest of today.
+  function skip(to: Step) {
+    if (step === 0) setProbesDone(true);
+    setStep(to);
+  }
+
+  const skipTarget: Step | null =
+    step === 0 ? 1 : step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
   const skippedLabel = lang === 'ru' ? 'пропущено' : 'skipped';
 
-  if (doneToday === null) {
+  // Step 0 exists only on days a probe is actually due.
+  const steps: Step[] = due !== null && due.length > 0 ? [0, 1, 2, 3] : [1, 2, 3];
+
+  if (doneToday === null || due === null) {
     return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;
   }
 
@@ -195,30 +263,30 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
       {/* slim step header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <ol className="flex flex-wrap items-center gap-2 text-sm">
-          {STEPS.map((s, i) => (
-            <li key={s.n} className="flex items-center gap-2">
+          {steps.map((n, i) => (
+            <li key={n} className="flex items-center gap-2">
               {i > 0 && <span className="text-stone-300 dark:text-stone-600">→</span>}
               <span className="flex items-center gap-1.5">
                 <span
                   className={`flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                    step === s.n
+                    step === n
                       ? 'bg-amber-600 text-white'
-                      : step > s.n
+                      : step > n
                         ? 'bg-stone-300 text-stone-600 dark:bg-stone-600 dark:text-stone-300'
                         : 'border border-stone-300 text-stone-400 dark:border-stone-600 dark:text-stone-500'
                   }`}
                 >
-                  {s.n}
+                  {i + 1}
                 </span>
                 <span
                   lang="de"
                   className={
-                    step === s.n
+                    step === n
                       ? 'font-semibold text-stone-900 dark:text-stone-100'
                       : 'text-stone-400 dark:text-stone-500'
                   }
                 >
-                  {s.de}
+                  {STEP_LABELS[n]}
                 </span>
               </span>
             </li>
@@ -227,7 +295,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
         {skipTarget !== null && (
           <button
             type="button"
-            onClick={() => setStep(skipTarget)}
+            onClick={() => skip(skipTarget)}
             className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
           >
             Überspringen →
@@ -236,6 +304,8 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
       </div>
 
       <div className="mt-6">
+        {step === 0 && <ProbeStep due={due} sets={sets} onFinished={finishProbes} />}
+
         {step === 1 &&
           (plan === null ? (
             <p className="text-sm text-stone-500 dark:text-stone-400">…</p>
@@ -305,6 +375,12 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                 {lang === 'ru' ? 'Итог сессии' : 'Session summary'}
               </p>
               <ul className="mt-2 space-y-1 text-sm text-stone-600 dark:text-stone-300">
+                {probedCount !== null && (
+                  <li>
+                    {lang === 'ru' ? 'Проверок через время' : 'Delayed checks'}:{' '}
+                    <span className="font-semibold">{probedCount}</span>
+                  </li>
+                )}
                 <li>
                   {lang === 'ru' ? 'Карточек повторено' : 'Cards reviewed'}:{' '}
                   <span className="font-semibold">{reviewedCount ?? skippedLabel}</span>
