@@ -1,28 +1,7 @@
-import {
-  masteryGaps,
-  topicCompletion,
-  topicSetIds,
-  type TopicContext,
-  type TopicNode,
-} from '../../lib/mastery';
+import { topicCompletion, topicEvidence, type TopicContext, type TopicNode } from '../../lib/mastery';
+import { EvidenceChips } from '../topic/EvidenceChips';
 import { SelfAssessedMark, TierBadge } from '../topic/TierBadge';
 import { useExplainLang } from '../hooks';
-
-function Seg({ on, label }: { on: boolean; label: string }) {
-  return (
-    <span
-      lang="de"
-      className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${
-        on
-          ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200'
-          : 'bg-stone-100 text-stone-400 dark:bg-stone-700 dark:text-stone-500'
-      }`}
-    >
-      {on ? '✓ ' : ''}
-      {label}
-    </span>
-  );
-}
 
 export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: TopicContext }) {
   const lang = useExplainLang();
@@ -38,15 +17,6 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
       <ul className="mt-3">
         {rows.map((n) => {
           const done = topicCompletion(n, ctx);
-          const setIds = new Set(topicSetIds(n));
-          const exAttempts = ctx.attempts.filter((a) => setIds.has(a.setId)).length;
-          const read = !!ctx.topics[n.id]?.readAt;
-          const cardsReviewed = Object.keys(ctx.cards).filter(
-            (k) => n.vocabIds.some((v) => k.startsWith(`${v}::`)) && (ctx.cards[k]?.reps ?? 0) > 0,
-          ).length;
-          // Practice must span ≥2 days to count as mastered — without this chip a row
-          // could show all-green next to a "Geübt" badge and look like a bug.
-          const spaced = masteryGaps(n, ctx).find((g) => g.req === 'days')?.met ?? false;
           return (
             <li
               key={n.id}
@@ -61,10 +31,7 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
               </a>
               <span className="text-xs text-stone-400">{n.level}</span>
               <div className="ml-auto flex items-center gap-1.5">
-                <Seg on={read} label="Gelesen" />
-                <Seg on={exAttempts > 0} label="Geübt" />
-                <Seg on={spaced} label="2 Tage" />
-                {n.vocabIds.length > 0 && <Seg on={cardsReviewed > 0} label="Vokabeln" />}
+                <EvidenceChips evidence={topicEvidence(n, ctx)} />
                 <TierBadge tier={done.tier} manual={done.manual === 'reopened'} className="ml-1" />
                 {done.manual === 'learned' && <SelfAssessedMark />}
               </div>

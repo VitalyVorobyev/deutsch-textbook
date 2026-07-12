@@ -20,6 +20,7 @@ interface Props {
 export default function DueBadge({ cards, variant = 'compact', gate, newLimit = 15 }: Props) {
   const lang = useExplainLang();
   const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
+  const [started, setStarted] = useState(true);
 
   useEffect(() => {
     void Promise.all([
@@ -28,6 +29,7 @@ export default function DueBadge({ cards, variant = 'compact', gate, newLimit = 
       gate ? getTopicsState() : {},
       gate ? getLearningGoal() : undefined,
     ]).then(([s, attempts, topics, goal]) => {
+      setStarted(Object.keys(s).length > 0);
       setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }));
     });
   }, [cards, gate, newLimit]);
@@ -44,11 +46,19 @@ export default function DueBadge({ cards, variant = 'compact', gate, newLimit = 
   }
 
   if (plan.total === 0) {
+    // A zero the learner has earned ("nothing is due today") and a zero that
+    // only means "you haven't started" look identical but say opposite things.
+    // Fresh cards are gated on opening a topic (see eligibleFreshCards), so the
+    // second is exactly what a new profile sees — and it reads as broken.
     return (
       <div>
         <p className="text-4xl font-bold">0</p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru' ? 'карточек к повторению' : 'cards due for review'}
+          {started
+            ? lang === 'ru' ? 'карточек к повторению' : 'cards due for review'
+            : lang === 'ru'
+              ? 'Карточки появятся, как только вы откроете первую тему.'
+              : 'Flashcards appear as soon as you open your first topic.'}
         </p>
       </div>
     );

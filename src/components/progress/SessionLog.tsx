@@ -27,10 +27,11 @@ export function SessionLog({
   }, [attempts]);
 
   const rows = [...sessions].sort((a, b) => b.ts - a.ts).slice(0, 30);
+  // Owns its card, so an empty log leaves no empty box behind.
   if (rows.length === 0) return null;
 
   return (
-    <div>
+    <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
         {t('Session history', 'История занятий')}
       </h2>
@@ -61,6 +62,6 @@ export function SessionLog({
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   );
 }

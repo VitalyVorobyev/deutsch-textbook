@@ -15,10 +15,16 @@ wrong.
 
 ## What's inside
 
-- **A growing A1–A2 course.** The Themen page presents a clear, ordered
-  Lernpfad with one recommended next action. A focused Zusammenhänge view shows
-  a topic's direct prerequisites, unlocks, and deeper follow-ups without making
-  the learner navigate a global dependency graph.
+- **A complete A1, and A2 in progress.** All ten A1 units are authored — from
+  Erste Schritte to Freizeit & Können — each with a diagnostic pretest, a full
+  article, a graded reading and its own vocabulary. A cumulative **A1
+  checkpoint** measures the level end to end, and every headword on the
+  Goethe-Institut's A1 Wortliste is covered. A2 is six topics of core grammar
+  so far: a strong start, not yet the whole level. The Über page states exactly
+  how far each level goes, with figures measured from the content itself.
+- **Themen shows the course three ways** — an ordered Lernpfad with one
+  recommended next action, an Atlas of how the topics relate, and *Alle Themen*:
+  every topic in curriculum order with the status you have earned on it.
 - **Interactive exercises on every topic** — multiple choice, fill-in-the-gap,
   matching, word order, tables, translation, open writing, and listening or
   reading comprehension. A wrong answer immediately shows a short explanation
@@ -93,9 +99,11 @@ schemas. Bun is the package manager and task runner.
 | `bun run check` | type-check (`astro check`) |
 | `bun run lint` | ESLint over `src/` and `scripts/` |
 | `bun run build` | static production build |
+| `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
+| `bun scripts/coverage-a1.ts` | Goethe-A1 Wortliste coverage report |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
 
-Before opening a pull request, run the complete gate:
+Before opening a pull request, run the complete gate — the same one CI runs:
 
 ```sh
 bun run validate
@@ -106,7 +114,12 @@ bun run build
 ```
 
 Content authoring rules — bilingual voice, CEFR discipline, exercise and IPA
-conventions — are in [CLAUDE.md](CLAUDE.md); direction lives in
-[docs/roadmap.md](docs/roadmap.md) and [docs/backlog.md](docs/backlog.md).
-Releases: push a `vX.Y.Z` tag and `.github/workflows/release.yml` builds and
-publishes the installers.
+conventions — are in [CLAUDE.md](CLAUDE.md).
+
+## Licence
+
+The application (`src/`, `scripts/`, `src-tauri/`) is MIT — see
+[LICENSE](LICENSE). The course material in `content/` — articles, exercises,
+readings and vocabulary — is Creative Commons **BY-SA 4.0**, see
+[content/LICENSE](content/LICENSE): use and adapt it freely, with credit, under
+the same licence.

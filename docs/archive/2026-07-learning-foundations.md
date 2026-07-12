@@ -136,6 +136,30 @@ unverified practice evidence. It cannot affect accuracy or mastery.
 `audio-comprehension` supports TTS dialogue or committed assets, hides the transcript until the
 answer and visibly relabels itself as reading when no usable German voice is available.
 
+## Phase 2 — A1 completion (shipped in v0.2.0)
+
+A1 is complete: ten units from `erste-schritte` to `freizeit-koennen`, each with the full lesson
+cycle, a cumulative checkpoint, and 100% Goethe-A1 Wortliste coverage (673/673 — run
+`bun scripts/coverage-a1.ts` for the live figure).
+
+### P2-5 · The four remaining A1 units — `done`
+
+`alltag-zeit`, `wohnen`, `stadt-wege`, `freizeit-koennen`, each a complete unit.
+
+### P2-6 · Depth for the four existing A1 topics — `done`
+
+`praesens-wortstellung` (questions, negation), `artikel-genus` (plurals, `kein`/`nicht`),
+`akkusativ` (governed prepositions, pronouns), `essen-trinken` (menu, quantity, payment).
+
+Growing these practice sets is what exposed the recommended-path bug fixed in v0.2.0: a lesson
+completed against the old, shorter set silently became incomplete again. See `pathDone` in
+`src/lib/mastery.ts` — item-level completion alone can never settle a topic.
+
+### P2-7 · Cumulative A1 checkpoint — `done`
+
+`a1/checkpoint-a1`, reachable once every A1 lesson is done, excluded from ordinary training, with
+outcome-level results on Fortschritt.
+
 ## Superseded input
 
 The broader initial analysis remains available as

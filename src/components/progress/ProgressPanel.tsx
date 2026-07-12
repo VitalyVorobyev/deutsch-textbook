@@ -197,8 +197,22 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
     'spoken-interaction': ['Spoken interaction', 'Диалог'],
   };
 
+  // Nothing measured yet: an empty heatmap over empty charts says "broken", not
+  // "new". Say what will fill them instead. Import stays reachable below.
+  const untouched =
+    !!data && data.attempts.length === 0 && Object.keys(data.cards).length === 0;
+
   return (
     <div className="space-y-8">
+      {untouched && (
+        <section className="rounded-lg border border-dashed border-stone-300 p-6 text-sm text-stone-500 dark:border-stone-600 dark:text-stone-400">
+          {t(
+            'Nothing to show yet. Answer your first exercise or review your first flashcard, and this page fills up: what you practised, on which days, and which confusions keep costing you points.',
+            'Пока показывать нечего. Решите первое упражнение или повторите первую карточку — и эта страница заполнится: что вы отрабатывали, в какие дни и какие ошибки повторяются чаще всего.',
+          )}
+        </section>
+      )}
+
       {data && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
@@ -257,17 +271,9 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
         <CheckpointResults checkpoint={checkpoint} outcomeModes={outcomeModes} attempts={data.attempts} />
       )}
 
-      {data && (
-        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <WeaknessTrends attempts={data.attempts} />
-        </section>
-      )}
-
-      {data && (
-        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <SessionLog attempts={data.attempts} sessions={data.sessions} />
-        </section>
-      )}
+      {/* Both own their card and render nothing when they have nothing to say. */}
+      {data && <WeaknessTrends attempts={data.attempts} />}
+      {data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
 
       <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
         <div className="flex flex-wrap items-center justify-center gap-3">
