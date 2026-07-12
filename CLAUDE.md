@@ -102,6 +102,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `modal-konjugation` | modal forms: ich/er kann without -t, vowel change only in singular |
 | `duerfen-muessen` | darf nicht (prohibition, «нельзя») vs muss nicht (no necessity) |
 | `will-moechte` | blunt wollen vs polite möchte (vs mögen = general liking) |
+| `gern-moegen` | expressing liking: verb + gern (Ich spiele gern Fußball), not a «люблю + инфинитив» calque; mögen only with nouns at A1 |
 | `haben-sein` | Perfekt auxiliary choice: sein for A→B movement + bleiben/sein/passieren, else haben |
 | `partizip2-form` | building the Partizip II: ge-…-t/-en, -ieren without ge-, separable -ge- inside, inseparable without ge- |
 | `perfekt-satzklammer` | Perfekt bracket: haben/sein in position 2, participle at the very end |
