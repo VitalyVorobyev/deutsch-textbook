@@ -9,7 +9,7 @@ must preserve v1–v3 snapshot import and pass the full repository gate.
 
 ## Now — Phase 2: A1 completion
 
-### P2-5 · Author the four remaining A1 units — `doing` (L)
+### P2-5 · Author the four remaining A1 units — `done` (L)
 
 Completed: `Erste Schritte`, `Menschen & Familie`. Continue sequentially: Alltag & Zeit → Wohnen
 → Stadt & Wege → Freizeit & Können.
@@ -24,7 +24,7 @@ require them; do not add placeholder atlas nodes before their content lands.
 - Accept per unit: the full lesson cycle is present; German stays within A1; outcome modes and
   content genres are appropriate; validation and the learning-science review pass.
 
-### P2-6 · Strengthen the four existing A1 topics — `doing` (M each)
+### P2-6 · Strengthen the four existing A1 topics — `done` (M each)
 
 `essen-trinken` has the reference-cycle retrofit and initial writing/audio transfer. Complete the
 planned depth across all four topics:
@@ -40,7 +40,7 @@ Do not rename topic IDs, vocabulary files or headwords: those are persisted card
 - Accept: each topic has scaffolded and faded work plus at least one fresh-context production
   task; outcome references are complete; no preview leaks or card-identity changes.
 
-### P2-7 · Build the cumulative A1 checkpoint — `todo` (M)
+### P2-7 · Build the cumulative A1 checkpoint — `done` (M)
 
 Create a checkpoint-role set covering the completed A1 outcomes across listening, reading,
 writing and feasible interaction/production evidence. Keep it out of ordinary mixed training and
