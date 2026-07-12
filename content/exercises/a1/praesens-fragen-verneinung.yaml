@@ -1,0 +1,158 @@
+topic: praesens-wortstellung
+role: practice
+title:
+  en: Practice — questions and negation
+  ru: Практика — вопросы и отрицание
+items:
+  - id: order-kommst-du
+    outcomes: [praesens-fragen]
+    type: order
+    focus: verbzweit
+    instruction:
+      en: Build a yes/no question.
+      ru: Составьте общий вопрос (да/нет).
+    words: ["Kommst", "du", "aus", "Russland", "?"]
+    translation:
+      en: Do you come from Russia?
+      ru: Ты из России?
+    explain:
+      en: "A yes/no question starts with the conjugated verb: Kommst du aus Russland? German has no helper like the English 'do' — the verb itself moves to position 1."
+      ru: "Общий вопрос начинается со спрягаемого глагола: Kommst du aus Russland? Подлежащее идёт сразу после глагола."
+
+  - id: order-wann-lernst
+    outcomes: [praesens-fragen, praesens-verbzweit]
+    type: order
+    focus: verbzweit
+    instruction:
+      en: Build a W-question.
+      ru: Составьте вопрос с вопросительным словом.
+    words: ["Wann", "lernst", "du", "Deutsch", "?"]
+    translation:
+      en: When do you study German?
+      ru: Когда ты учишь немецкий?
+    explain:
+      en: "In a W-question the question word takes position 1 and the verb stays in position 2: Wann lernst du Deutsch? 'Wann du lernst …' is impossible."
+      ru: "В вопросе с вопросительным словом первым идёт вопросительное слово, глагол — вторым: Wann lernst du Deutsch? Порядок «Wann du lernst …» невозможен."
+
+  - id: mc-nicht-satzende
+    outcomes: [praesens-verneinung]
+    type: mc
+    focus: nicht-position
+    instruction:
+      en: Which sentence is correctly negated?
+      ru: В каком предложении отрицание стоит правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich nicht arbeite heute."
+      - "Ich arbeite heute nicht."
+      - "Heute ich arbeite nicht."
+    correct: 1
+    translation:
+      en: I am not working today.
+      ru: Я сегодня не работаю.
+    explain:
+      en: "nicht comes after the conjugated verb — here it lands at the very end: Ich arbeite heute nicht. English negates before the verb (I do not work), German does not. 'Heute ich arbeite nicht' also breaks the verb-second rule."
+      ru: "По-русски «не» стоит перед глаголом («я не работаю»), поэтому хочется сказать «Ich nicht arbeite» — но в немецком nicht стоит после спрягаемого глагола, здесь — в самом конце: Ich arbeite heute nicht. Вариант «Heute ich arbeite nicht» к тому же нарушает правило второго места."
+
+  - id: cloze-fragewoerter
+    outcomes: [praesens-fragen]
+    type: cloze
+    instruction:
+      en: Fill in the question words (wer, wo or was). Each one starts a sentence, so write it with a capital letter.
+      ru: Вставьте вопросительные слова (wer, wo или was). Каждое стоит в начале предложения — пишите с заглавной буквы.
+    text: "— {{Wer}} ist das? — Das ist Tom. — {{Wo}} wohnt er? — Er wohnt in Berlin. — {{Was}} lernt er? — Er lernt Deutsch."
+    translation:
+      en: "— Who is that? — That is Tom. — Where does he live? — He lives in Berlin. — What is he learning? — He is learning German."
+      ru: "— Кто это? — Это Том. — Где он живёт? — Он живёт в Берлине. — Что он учит? — Он учит немецкий."
+    explain:
+      en: "Wer asks about a person, wo about a place, was about a thing. The question word takes position 1 and the verb follows in position 2."
+      ru: "Wer спрашивает о человеке, wo — о месте, was — о предмете. Вопросительное слово занимает первое место, глагол идёт сразу за ним."
+
+  - id: cloze-nicht-muede
+    outcomes: [praesens-verneinung]
+    type: cloze
+    focus: nicht-position
+    instruction:
+      en: Complete the negative answer — put each word in the right gap.
+      ru: Дополните отрицательный ответ — поставьте каждое слово в нужный пропуск.
+    text: "— Bist du müde? — Nein, ich {{bin}} {{nicht}} müde."
+    translation:
+      en: "— Are you tired? — No, I am not tired."
+      ru: "— Ты устал? — Нет, я не устал."
+    explain:
+      en: "The verb keeps position 2 and nicht comes directly before the adjective: ich bin nicht müde. 'Ich nicht bin müde' is impossible."
+      ru: "Глагол остаётся на втором месте, а nicht стоит непосредственно перед прилагательным: ich bin nicht müde. По-русски «я не устал» — без связки и с «не» перед глаголом; по-немецки bin обязателен, а nicht идёт после него."
+
+  - id: order-seid-ihr
+    outcomes: [praesens-fragen]
+    type: order
+    focus: verbzweit
+    instruction:
+      en: Build a yes/no question.
+      ru: Составьте общий вопрос (да/нет).
+    words: ["Seid", "ihr", "heute", "zu", "Hause", "?"]
+    translation:
+      en: Are you (plural) at home today?
+      ru: Вы (мн. ч.) сегодня дома?
+    explain:
+      en: "Verb first in a yes/no question — and sein is never dropped: Seid ihr heute zu Hause?"
+      ru: "В общем вопросе глагол стоит первым, и sein не опускается: Seid ihr heute zu Hause? По-русски можно спросить «Вы сегодня дома?» без глагола — по-немецки нельзя."
+
+  - id: mc-nicht-adjektiv
+    outcomes: [praesens-verneinung]
+    type: mc
+    focus: nicht-position
+    instruction:
+      en: Which sentence is correctly negated?
+      ru: В каком предложении отрицание стоит правильно?
+    prompt: "Wie ist die Verneinung richtig?"
+    options:
+      - "Das ist gut nicht."
+      - "Das nicht ist gut."
+      - "Das ist nicht gut."
+    correct: 2
+    translation:
+      en: That is not good.
+      ru: Это нехорошо.
+    explain:
+      en: "Before an adjective, nicht goes directly in front of it — nicht gut, just like English 'not good'. The verb ist must stay in position 2."
+      ru: "Перед прилагательным nicht стоит непосредственно перед ним: nicht gut — здесь немецкий совпадает с русским («не хорошо»). Но глагол ist обязан остаться на втором месте: Das ist nicht gut."
+
+  - id: cloze-liest
+    outcomes: [praesens-konjugation, praesens-fragen]
+    type: cloze
+    focus: verb-endungen
+    instruction:
+      en: Fill each gap with the correct form of "lesen".
+      ru: Вставьте правильную форму глагола "lesen".
+    text: "— Was {{liest}} (lesen) du? — Ich {{lese}} (lesen) ein Buch."
+    translation:
+      en: "— What are you reading? — I am reading a book."
+      ru: "— Что ты читаешь? — Я читаю книгу."
+    explain:
+      en: "lesen changes its stem vowel: du liest ('du lest' does not exist — lest is the ihr form). The ich form stays regular: ich lese."
+      ru: "lesen меняет корневую гласную: du liest (форма lest — это ihr lest, для du она не подходит). Форма ich остаётся правильной: ich lese."
+
+  - id: translate-kommt-nicht
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    prompt_en: "He is not coming today."
+    prompt_ru: "Он сегодня не придёт."
+    answer: "Er kommt heute nicht."
+    accept:
+      - "Heute kommt er nicht."
+    explain:
+      en: "nicht follows the conjugated verb — with a time adverb it lands at the very end: Er kommt heute nicht. German uses the present tense here; no helper verb is needed."
+      ru: "По-русски «не» стоит перед глаголом («не придёт»); по-немецки nicht идёт после глагола, здесь — в самый конец: Er kommt heute nicht. Будущее событие выражается настоящим временем."
+
+  - id: translate-wo-wohnt
+    outcomes: [praesens-fragen, praesens-verbzweit]
+    type: translate
+    focus: verbzweit
+    prompt_en: "Where does she live?"
+    prompt_ru: "Где она живёт?"
+    answer: "Wo wohnt sie?"
+    explain:
+      en: "Question word first, conjugated verb second, subject third: Wo wohnt sie? German has no helper like 'does' — the main verb itself takes position 2."
+      ru: "Русский порядок «Где она живёт?» подталкивает к «Wo sie wohnt?» — но в немецком глагол обязан стоять сразу после вопросительного слова: Wo wohnt sie?"

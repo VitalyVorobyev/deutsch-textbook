@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { splitQueue, type CardDef } from '../../lib/srs';
-import { eligibleFreshCards } from '../../lib/decks';
+import type { CardDef } from '../../lib/srs';
+import { planReview, type ReviewPlanResult } from '../../lib/decks';
 import {
   getAttempts,
   getCardStates,
+  getLearningGoal,
   getTopicsState,
   localDateString,
   logSession,
@@ -11,7 +12,6 @@ import {
 } from '../../lib/store';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
-import { shuffle } from '../../lib/shuffle';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
 import FlashcardSession from '../srs/FlashcardSession';
@@ -43,17 +43,6 @@ const STEPS: Array<{ n: Step; de: string }> = [
   { n: 3, de: 'Weiter lernen' },
 ];
 
-interface ReviewPlan {
-  /** cards handed to FlashcardSession (capped due first, then the new-card pool) */
-  cards: CardDef[];
-  /** how many never-seen cards FlashcardSession may mix in */
-  newLimit: number;
-  /** total cards this step will actually show */
-  total: number;
-  /** due cards left out by the MAX_CARDS cap — offered as an optional extra round */
-  dueRemaining: number;
-}
-
 const RESUME_SURFACE = 'session';
 
 interface SessionResume {
@@ -71,7 +60,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     return saved && (saved.step === 1 || saved.step === 2) ? saved : null;
   });
   const [step, setStep] = useState<Step>(initial?.step ?? 1);
-  const [plan, setPlan] = useState<ReviewPlan | null>(null);
+  const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
   const [reviewDone, setReviewDone] = useState(false);
   // summary counters: null = step was skipped
   const [reviewedCount, setReviewedCount] = useState<number | null>(initial?.reviewedCount ?? null);
@@ -93,27 +82,21 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     };
   }, []);
 
-  // Plan step 1: due cards first (capped), new cards only when little is due —
-  // and only from eligible decks (opened topics, see src/lib/decks.ts).
+  // Plan step 1: most-overdue due cards first (capped), new cards only when
+  // little is due — and only from eligible decks (see planReview in decks.ts).
   useEffect(() => {
     let cancelled = false;
-    void Promise.all([getCardStates(), getAttempts(), getTopicsState()]).then(
-      ([states, attempts, topics]) => {
+    void Promise.all([getCardStates(), getAttempts(), getTopicsState(), getLearningGoal()]).then(
+      ([states, attempts, topics, goal]) => {
         if (cancelled) return;
-        const { due, fresh } = splitQueue(cards, states);
-        const pool = eligibleFreshCards(fresh, spine, nodes, deckLevels, {
-          attempts,
-          cards: states,
-          topics,
-        });
-        const dueCapped = shuffle(due).slice(0, MAX_CARDS);
-        const newLimit = due.length > 0 && due.length < MIN_DUE ? MAX_CARDS - dueCapped.length : 0;
-        setPlan({
-          cards: newLimit > 0 ? [...dueCapped, ...pool] : dueCapped,
-          newLimit,
-          total: dueCapped.length + Math.min(newLimit, pool.length),
-          dueRemaining: due.length - dueCapped.length,
-        });
+        setPlan(
+          planReview(
+            cards,
+            { spine, nodes, deckLevels },
+            { attempts, cards: states, topics, goal },
+            { maxDue: MAX_CARDS, maxTotal: MAX_CARDS, freshPolicy: { kind: 'top-up', minDue: MIN_DUE } },
+          ),
+        );
       },
     );
     return () => {
@@ -264,8 +247,8 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             <>
               <FlashcardSession
                 key={planRound}
-                cards={plan.cards}
-                newLimit={plan.newLimit}
+                cards={plan.queue}
+                queue={plan.queue}
                 onFinished={finishReview}
               />
               {reviewDone && (
