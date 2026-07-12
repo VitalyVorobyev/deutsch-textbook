@@ -25,6 +25,8 @@ import { TopicProgressList } from './TopicProgressList';
 import type { CardDef } from '../../lib/srs';
 import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
 import { CheckpointResults, type CheckpointInfo } from './CheckpointResults';
+import { ProbeResults } from './ProbeResults';
+import type { ProbeFamily } from '../../lib/probes';
 
 interface Data {
   attempts: Attempt[];
@@ -39,9 +41,20 @@ interface Props {
   cards: CardDef[];
   vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
   checkpoint?: CheckpointInfo;
+  probeFamilies: ProbeFamily[];
+  /** probe set id → the topic's German title, for the results list */
+  probeLabels: Record<string, string>;
 }
 
-export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGroups, checkpoint }: Props) {
+export default function ProgressPanel({
+  nodes,
+  outcomeModes,
+  cards,
+  vocabularyGroups,
+  checkpoint,
+  probeFamilies,
+  probeLabels,
+}: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -277,6 +290,15 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
 
       {data && checkpoint && (
         <CheckpointResults checkpoint={checkpoint} outcomeModes={outcomeModes} attempts={data.attempts} />
+      )}
+
+      {data && (
+        <ProbeResults
+          families={probeFamilies}
+          labels={probeLabels}
+          attempts={data.attempts}
+          lang={lang}
+        />
       )}
 
       {/* Both own their card and render nothing when they have nothing to say. */}

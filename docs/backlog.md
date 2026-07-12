@@ -31,23 +31,43 @@ attempts, and stop the dev progress-writer from overwriting a snapshot with a sm
   `trennbar-modal` was a phantom and leaves it; `verben-mit-dativ` 33%→20%, `haben-sein` 27%→17%)
   while leaving genuine weaknesses (`kein-nicht`, `dativ-artikel`) intact; the full gate passes.
 
-### P3-1 · Add scheduled parallel probes — `todo` (L)
+### P3-1 · Add scheduled parallel probes — `done` (L)
 
-Implement local, snapshot-safe 2–3, 7 and 21-day outcome probes. A probe family has reviewed
-parallel variants; the scheduler never presents the identical item as its own transfer check.
-Reserve a bounded broad-retrieval share in mixed sessions.
+Local 2/7/21-day outcome probes with parallel variants (`src/lib/probes.ts`, ten A1 probe families
+in `content/exercises/a1/probe-*.yaml`). A due probe opens the session as step 0 — **before** review
+and training, because a probe answered after twenty minutes of practice on the same material
+measures the practice, not the interval.
 
-The `probe` role already exists in `EXERCISE_ROLES`, is already excluded from mixed training
-(`trainableRoles` is an allowlist), and is already granted cross-topic outcome references by the
-validator — but **no probe content file exists**. This is wiring, not invention. Persist probe due
-state the way `goal` was added at snapshot v4: a new optional key, a guarded `mergeSnapshot` branch,
-**and a `set` in `replaceSnapshot`** (which clears the store and re-sets only an explicit list, so an
-omitted key is silently destroyed). Keep stamping `version: 4` — `isValidSnapshot` hard-rejects
-unknown versions, so a v5 stamp would make older builds refuse the file.
+**No new snapshot key was needed.** Probe state is *derived* from the attempt log rather than
+stored: when the family was armed (earliest verified attempt on its topic/outcomes), how many probes
+have been taken (their attempts), and which variants were used (their item ids). That makes probe
+scheduling survive export/import by construction — nothing for `mergeSnapshot` to merge, nothing for
+`replaceSnapshot` to silently destroy. The attempt log is the one structure in the system that
+already merges correctly, so the scheduler was built on it.
 
-- Depends on: P3-0.
-- Accept: probe due state survives export/import; pretests/checkpoints/probes stay out of ordinary
-  training; each attempt records the variant; tests cover due dates, replacement and session share.
+Two things the implementation had to get right, both found by running it against the real snapshot:
+
+- **Arming cannot depend on `attempt.outcomes`.** That field is recent, and 551 of the learner's 671
+  attempts predate it. Outcome-only arming left `akkusativ` and `artikel-genus` — 35 and 26 attempts
+  each — permanently unarmed. Families are therefore armed by their topic's practice/drill sets too
+  (pretests excluded: a pretest is a guess taken *before* the lesson).
+- **The session resume point cannot be `step` alone.** Step 1 is both "past the probes" and the
+  default, so a session opened before a probe fell due saved step 1 and every later visit that day
+  read it as "already done" — one reload would silently cancel the probe. `probesDone` is explicit.
+
+- Accept: ✅ probe state survives export/import (it *is* the attempt log); ✅ probes stay out of
+  ordinary training (`trainableRoles` is an allowlist); ✅ each attempt records its variant as the
+  item id; ✅ 18 tests cover arming, due dates, variant replacement and the session cap
+  (`MAX_PROBES_PER_SESSION = 3`); ✅ Fortschritt reports delayed results apart from practice
+  accuracy, at the interval that *actually* elapsed rather than the scheduled one.
+
+### P3-1b · Reserve a broad-retrieval share in mixed sessions — `todo` (S)
+
+The remaining half of the original P3-1: a bounded, stable share of each mixed session drawn from
+older material rather than the current topic, so recency cannot monopolize practice.
+
+- Depends on: P3-1.
+- Accept: the share is bounded and stable; weakness targeting cannot crowd it out; tests cover it.
 
 ### P3-2 · Add mode-valid evidence — `done` (M)
 

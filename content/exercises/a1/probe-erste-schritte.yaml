@@ -1,0 +1,46 @@
+topic: erste-schritte
+role: probe
+title:
+  en: "Probe — introductions and numbers"
+  ru: "Проверка — знакомство и числа"
+
+# Three parallel variants of the same check, never the items practised in the lesson.
+# One is drawn per due interval (2, 7, 21 days), so a probe is always a fresh context.
+
+items:
+  - id: variant-a
+    outcomes: [erste-sich-vorstellen]
+    type: translate
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My name is Anna. I come from Poland."
+    prompt_ru: "Меня зовут Анна. Я из Польши."
+    answer: "Ich heiße Anna. Ich komme aus Polen."
+    accept:
+      - "Mein Name ist Anna. Ich komme aus Polen."
+    explain:
+      en: "Two fixed introduction chunks: ich heiße + name, ich komme aus + country. Both keep the verb in position 2."
+      ru: "Две устойчивые формулы знакомства: ich heiße + имя, ich komme aus + страна. В обеих глагол стоит на втором месте."
+
+  - id: variant-b
+    outcomes: [erste-sich-vorstellen, erste-buchstabieren]
+    type: cloze
+    instruction:
+      en: Fill the gaps.
+      ru: Заполните пропуски.
+    text: "Ich {{heiße}} Tomas. Ich {{wohne}} in Berlin und {{spreche}} Polnisch."
+    explain:
+      en: "All three verbs take the ich-ending -e: heiße, wohne, spreche."
+      ru: "У всех трёх глаголов окончание 1-го лица -e: heiße, wohne, spreche."
+
+  - id: variant-c
+    outcomes: [erste-zahlen-verstehen]
+    type: listen
+    instruction:
+      en: Listen and type what you hear.
+      ru: Послушайте и напишите то, что услышали.
+    text: "Meine Nummer ist null drei sieben."
+    explain:
+      en: "Numbers in a phone number are spoken one digit at a time: null — drei — sieben."
+      ru: "Цифры в номере телефона называют по одной: null — drei — sieben."
