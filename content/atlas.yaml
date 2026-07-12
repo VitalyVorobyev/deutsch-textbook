@@ -76,6 +76,18 @@ groups:
     title_de: Alltag
     title_en: Everyday life
     title_ru: Повседневная жизнь
+  - id: wohnen-zuhause
+    strand: vocabulary
+    parent: wortschatz
+    title_de: Wohnen & Zuhause
+    title_en: Home & living
+    title_ru: Дом и жильё
+  - id: unterwegs
+    strand: communication
+    parent: kommunikation
+    title_de: Unterwegs
+    title_en: Out and about
+    title_ru: В городе и в пути
 
 nodes:
   # --- A1 ---
@@ -259,6 +271,128 @@ nodes:
         de: "Ich kann die Präpositionen für, ohne und um mit dem Akkusativ benutzen."
         en: "I can use the prepositions für, ohne and um with the accusative."
         ru: "Я умею употреблять предлоги für, ohne и um с Akkusativ."
+  - id: alltag-zeit
+    level: A1
+    kind: vocab-field
+    strand: vocabulary
+    group: alltag-wortschatz
+    related: [alltag-tagesablauf, freizeit-koennen]
+    prerequisites: [praesens-wortstellung, artikel-genus]
+    outcomes:
+      - id: zeit-uhrzeit-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann Uhrzeiten, Wochentage und einfache Zeitansagen verstehen."
+        en: "I can understand clock times, weekdays and simple time announcements."
+        ru: "Я понимаю время по часам, дни недели и простые объявления о времени."
+      - id: zeit-tagesablauf-beschreiben
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann meinen Tag mit Zeitangaben beschreiben: Um acht Uhr lerne ich Deutsch."
+        en: "I can describe my day with time phrases: Um acht Uhr lerne ich Deutsch."
+        ru: "Я умею описывать свой день с указанием времени: Um acht Uhr lerne ich Deutsch."
+      - id: zeit-praepositionen
+        mode: writing
+        domain: personal
+        de: "Ich kann um, am und im richtig benutzen: um acht Uhr, am Montag, im Juli."
+        en: "I can use um, am and im correctly: um acht Uhr, am Montag, im Juli."
+        ru: "Я умею правильно употреблять um, am и im: um acht Uhr, am Montag, im Juli."
+      - id: zeit-wochenplan-lesen
+        mode: reading
+        domain: public
+        de: "Ich kann einen Wochenplan und Öffnungszeiten verstehen."
+        en: "I can understand a weekly schedule and opening hours."
+        ru: "Я понимаю расписание на неделю и часы работы."
+  - id: wohnen
+    level: A1
+    kind: vocab-field
+    strand: vocabulary
+    group: wohnen-zuhause
+    related: [stadt-wege]
+    prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
+    outcomes:
+      - id: wohnen-beschreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann meine Wohnung beschreiben: die Zimmer, einfache Adjektive, es gibt."
+        en: "I can describe my home: its rooms, simple adjectives, es gibt."
+        ru: "Я умею описывать свою квартиру: комнаты, простые прилагательные, оборот es gibt."
+      - id: wohnen-anzeige-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann eine einfache Wohnungsanzeige verstehen."
+        en: "I can understand a simple housing advertisement."
+        ru: "Я понимаю простое объявление о сдаче квартиры."
+      - id: wohnen-lage-sagen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann mit festen Wendungen sagen, wo etwas in der Wohnung ist: im Wohnzimmer, in der Küche."
+        en: "I can say where things are at home using fixed phrases: im Wohnzimmer, in der Küche."
+        ru: "Я умею готовыми выражениями говорить, где что находится дома: im Wohnzimmer, in der Küche."
+  - id: stadt-wege
+    level: A1
+    kind: communication
+    strand: communication
+    group: unterwegs
+    related: [wohnen]
+    prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
+    outcomes:
+      - id: stadt-weg-erfragen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann höflich fragen, wo etwas ist und wie ich dorthin komme."
+        en: "I can politely ask where something is and how to get there."
+        ru: "Я умею вежливо спрашивать, где что находится и как туда добраться."
+      - id: stadt-wegbeschreibung-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann eine kurze Wegbeschreibung verstehen: links, rechts, geradeaus."
+        en: "I can follow a short set of directions: links, rechts, geradeaus."
+        ru: "Я понимаю короткое объяснение дороги: links, rechts, geradeaus."
+      - id: stadt-verkehrsmittel-nennen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann sagen, wie ich fahre: mit dem Bus, mit der U-Bahn, zu Fuß."
+        en: "I can say how I get around: mit dem Bus, mit der U-Bahn, zu Fuß."
+        ru: "Я умею говорить, как я добираюсь: mit dem Bus, mit der U-Bahn, zu Fuß."
+      - id: stadt-schilder-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann häufige Schilder und Hinweise in der Stadt verstehen."
+        en: "I can understand common signs and notices around town."
+        ru: "Я понимаю частые вывески и указатели в городе."
+  - id: freizeit-koennen
+    level: A1
+    kind: communication
+    strand: communication
+    group: person-alltag
+    related: [alltag-zeit, modalverben]
+    prerequisites: [praesens-wortstellung, artikel-genus]
+    outcomes:
+      - id: freizeit-hobbys
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann sagen, was ich in meiner Freizeit mache und was ich gern tue."
+        en: "I can say what I do in my free time and what I like doing."
+        ru: "Я умею рассказывать, что я делаю в свободное время и что мне нравится делать."
+      - id: freizeit-koennen-satz
+        mode: writing
+        domain: personal
+        de: "Ich kann Sätze mit können bilden: können auf Position 2, der Infinitiv am Ende."
+        en: "I can build sentences with können: können in second position, the infinitive at the end."
+        ru: "Я умею строить предложения с können: können на втором месте, инфинитив в конце."
+      - id: freizeit-gespraech-verstehen
+        mode: listening
+        domain: personal
+        de: "Ich kann ein kurzes Gespräch über Freizeit und Verabredungen verstehen."
+        en: "I can understand a short conversation about free time and meeting up."
+        ru: "Я понимаю короткий разговор о свободном времени и встречах."
+      - id: freizeit-verabredung
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann einen Vorschlag annehmen oder höflich ablehnen: Ja, gern. Nein, ich kann nicht."
+        en: "I can accept a suggestion or politely turn it down: Ja, gern. Nein, ich kann nicht."
+        ru: "Я умею принять предложение или вежливо отказаться: Ja, gern. Nein, ich kann nicht."
   # --- A2 ---
   - id: dativ
     level: A2
@@ -267,6 +401,7 @@ nodes:
     group: nomen-kasus
     related: [akkusativ]
     prerequisites: [akkusativ]
+    deepens: [stadt-wege]
     outcomes:
       - id: dativ-artikel
         mode: writing
@@ -323,8 +458,9 @@ nodes:
     kind: vocab-field
     strand: vocabulary
     group: alltag-wortschatz
-    related: [essen-trinken, termine-vereinbaren]
+    related: [essen-trinken, termine-vereinbaren, alltag-zeit]
     prerequisites: [praesens-wortstellung, trennbare-verben, perfekt-haben-sein]
+    deepens: [alltag-zeit]
     outcomes:
       - id: alltag-beschreiben
         mode: spoken-production
@@ -349,8 +485,9 @@ nodes:
     kind: grammar
     strand: grammar
     group: verbformen-zeit
-    related: [trennbare-verben, termine-vereinbaren]
+    related: [trennbare-verben, termine-vereinbaren, freizeit-koennen]
     prerequisites: [praesens-wortstellung]
+    deepens: [freizeit-koennen]
     outcomes:
       - id: modal-satzklammer
         mode: writing
@@ -475,6 +612,30 @@ units:
     title_en: "Food & shopping"
     title_ru: "Еда и покупки"
     topics: [essen-trinken]
+  - id: alltag-zeit
+    level: A1
+    title_de: "Alltag & Zeit"
+    title_en: "Everyday life & time"
+    title_ru: "Будни и время"
+    topics: [alltag-zeit]
+  - id: wohnen
+    level: A1
+    title_de: "Wohnen"
+    title_en: "Housing"
+    title_ru: "Жильё"
+    topics: [wohnen]
+  - id: stadt-wege
+    level: A1
+    title_de: "Stadt & Wege"
+    title_en: "City & directions"
+    title_ru: "Город и дороги"
+    topics: [stadt-wege]
+  - id: freizeit-koennen
+    level: A1
+    title_de: "Freizeit & Können"
+    title_en: "Free time & können"
+    title_ru: "Свободное время и können"
+    topics: [freizeit-koennen]
   # --- A2 ---
   - id: dativ
     level: A2

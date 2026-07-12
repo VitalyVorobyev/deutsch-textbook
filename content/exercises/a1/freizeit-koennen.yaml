@@ -1,0 +1,121 @@
+topic: freizeit-koennen
+role: practice
+title: { en: "Practice — free time and können", ru: "Практика — свободное время и können" }
+items:
+  - id: table-koennen-formen
+    outcomes: [freizeit-koennen-satz]
+    type: table
+    focus: modal-konjugation
+    title: "können — Präsens"
+    instruction: { en: "Fill in the missing present-tense forms of können.", ru: "Заполните пропущенные формы глагола können в настоящем времени." }
+    columns: [können]
+    rows:
+      - label: ich
+        cells: [{ answer: kann }]
+      - label: du
+        cells: [{ answer: kannst }]
+      - label: er/sie/es
+        cells: [{ answer: kann }]
+      - label: wir
+        cells: [{ answer: können, given: true }]
+      - label: ihr
+        cells: [{ answer: könnt }]
+      - label: sie/Sie
+        cells: [{ answer: können }]
+    explain: { en: "The vowel changes only in the singular (können → kann), and the ich and er/sie/es forms are identical with no ending: ich kann — er kann. The plural is regular: wir können, ihr könnt, sie können.", ru: "Гласная меняется только в единственном числе (können → kann), а формы ich и er/sie/es совпадают и не имеют окончания: ich kann — er kann. Множественное число правильное: wir können, ihr könnt, sie können." }
+  - id: cloze-kann-kannst
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-konjugation
+    instruction: { en: "Fill in the correct form of können.", ru: "Вставьте правильную форму глагола können." }
+    text: "Ich {{kann}} gut schwimmen. Und du? Was {{kannst}} du gut? Meine Freunde {{können}} super tanzen."
+    translation: { en: "I can swim well. And you? What can you do well? My friends can dance really well.", ru: "Я умею хорошо плавать. А ты? Что ты умеешь делать хорошо? Мои друзья отлично танцуют." }
+    explain: { en: "ich kann without an ending, du kannst with -st, and in the plural the vowel comes back: die Freunde können. The vowel change kann/kannst lives only in the singular.", ru: "ich kann — без окончания, du kannst — с -st, а во множественном числе возвращается гласная инфинитива: die Freunde können. Смена гласной kann/kannst — только в единственном числе." }
+  - id: mc-satzklammer
+    outcomes: [freizeit-koennen-satz]
+    type: mc
+    focus: modal-satzklammer
+    prompt: "Welcher Satz ist richtig?"
+    options: ["Ich kann heute nicht ins Kino gehen.", "Ich kann gehe heute nicht ins Kino.", "Ich kann heute nicht ins Kino gehe."]
+    correct: 0
+    translation: { en: "Which sentence is correct? — I cannot go to the cinema today.", ru: "Какое предложение правильное? — Я не могу сегодня пойти в кино." }
+    explain: { en: "können in position 2, the bare infinitive gehen at the very end: Ich kann heute nicht ins Kino gehen. A second conjugated verb (kann gehe) is impossible, and the final verb must stay an infinitive, not gehe.", ru: "können на втором месте, инфинитив gehen в самом конце: Ich kann heute nicht ins Kino gehen. Второй спрягаемый глагол (kann gehe) невозможен, и глагол в конце — только инфинитив, не gehe." }
+  - id: order-kann-aussage
+    outcomes: [freizeit-koennen-satz]
+    type: order
+    focus: modal-satzklammer
+    words: ["Ich", "kann", "sehr", "gut", "schwimmen", "."]
+    translation: { en: "I can swim very well.", ru: "Я умею очень хорошо плавать." }
+    explain: { en: "The bracket: kann in position 2, the infinitive schwimmen at the very end, everything else in the middle — Ich kann sehr gut schwimmen.", ru: "Рамка: kann на втором месте, инфинитив schwimmen в самом конце, всё остальное в середине — Ich kann sehr gut schwimmen." }
+  - id: order-kann-frage
+    outcomes: [freizeit-koennen-satz, freizeit-verabredung]
+    type: order
+    focus: modal-satzklammer
+    words: ["Kannst", "du", "am", "Sonntag", "kommen", "?"]
+    translation: { en: "Can you come on Sunday?", ru: "Ты можешь прийти в воскресенье?" }
+    explain: { en: "In a yes/no question the modal opens the sentence, but the infinitive still waits at the very end: Kannst du am Sonntag kommen?", ru: "В вопросе без вопросительного слова модальный глагол открывает предложение, но инфинитив всё равно стоит в самом конце: Kannst du am Sonntag kommen?" }
+  - id: cloze-gern-lieber
+    outcomes: [freizeit-hobbys]
+    type: cloze
+    focus: gern-moegen
+    instruction: { en: "gern or lieber?", ru: "gern или lieber?" }
+    text: "Ich schwimme {{gern}}, aber Tanzen ist mein Hobby Nummer eins: ich tanze {{lieber}}."
+    translation: { en: "I like swimming, but dancing is my number-one hobby: I prefer dancing.", ru: "Я люблю плавать, но танцы — моё хобби номер один: танцевать мне нравится больше." }
+    explain: { en: "gern says you like doing something; lieber is its comparative and marks the preference. Both stand after the conjugated verb: ich schwimme gern — ich tanze lieber.", ru: "gern значит «люблю это делать», lieber — его сравнительная степень, «больше нравится». Оба стоят после спрягаемого глагола: ich schwimme gern — ich tanze lieber." }
+  - id: mc-gern-falle
+    outcomes: [freizeit-hobbys]
+    type: mc
+    focus: gern-moegen
+    prompt: "Welcher Satz ist richtig?"
+    options: ["Ich spiele gern Fußball.", "Ich liebe spielen Fußball.", "Ich mag spielen Fußball."]
+    correct: 0
+    translation: { en: "Which sentence is correct? — I like playing football.", ru: "Какой вариант правильный? — Я люблю играть в футбол." }
+    explain: { en: "Liking an activity is verb + gern: Ich spiele gern Fußball. At A1 mögen goes only with nouns (Ich mag Fußball), and lieben + infinitive is a word-for-word calque that German does not use.", ru: "Любимое занятие — это глагол + gern: Ich spiele gern Fußball. На уровне A1 mögen сочетается только с существительными (Ich mag Fußball), а «lieben + инфинитив» — дословная калька с русского «люблю играть», по-немецки так не говорят." }
+  - id: match-freizeitorte
+    outcomes: [freizeit-hobbys]
+    type: match
+    instruction: { en: "Match each place with the activity.", ru: "Соедините каждое место с занятием." }
+    pairs:
+      - { left: "das Kino", right: "Wir sehen einen Film." }
+      - { left: "das Schwimmbad", right: "Wir schwimmen." }
+      - { left: "der Park", right: "Wir spielen Fußball." }
+      - { left: "das Konzert", right: "Wir hören Musik." }
+    explain: { en: "The classic free-time pairs: ins Kino gehen — einen Film sehen, ins Schwimmbad gehen — schwimmen, im Park Fußball spielen, im Konzert Musik hören.", ru: "Классические пары свободного времени: ins Kino gehen — смотреть фильм, ins Schwimmbad gehen — плавать, im Park — играть в футбол, im Konzert — слушать музыку." }
+  - id: mc-absagen
+    outcomes: [freizeit-verabredung]
+    type: mc
+    prompt: "Ein Freund fragt: „Gehen wir am Samstag ins Kino?“ Sie haben keine Zeit. Was sagen Sie?"
+    options: ["Leider kann ich am Samstag nicht. Hast du am Sonntag Zeit?", "Nein! Kino ist langweilig.", "Ich kann nicht gehen ins Kino."]
+    correct: 0
+    translation: { en: "A friend asks: 'Shall we go to the cinema on Saturday?' You have no time. What do you say?", ru: "Друг спрашивает: «Пойдём в субботу в кино?» У вас нет времени. Что вы скажете?" }
+    explain: { en: "Decline politely with leider plus a reason or a counter-suggestion: Leider kann ich nicht … A bare Nein! sounds rude, and in the bracket the infinitive must go to the very end: Ich kann nicht ins Kino gehen.", ru: "Отказывайтесь вежливо: leider плюс причина или встречное предложение — Leider kann ich nicht … Голое Nein! звучит грубо, а в рамке инфинитив обязан стоять в самом конце: Ich kann nicht ins Kino gehen." }
+  - id: translate-kann-schwimmen
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    prompt_en: "I can swim well."
+    prompt_ru: "Я умею хорошо плавать."
+    answer: "Ich kann gut schwimmen."
+    explain: { en: "können in position 2, the bare infinitive at the very end: Ich kann gut schwimmen — never kann schwimme.", ru: "können на втором месте, инфинитив в самом конце: Ich kann gut schwimmen — не kann schwimme, хотя по-русски порядок свободный." }
+  - id: translate-gern-fussball
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    prompt_en: "I like playing football."
+    prompt_ru: "Я люблю играть в футбол."
+    answer: "Ich spiele gern Fußball."
+    accept: ["Ich spiele gerne Fußball.", "Fußball spiele ich gern.", "Fußball spiele ich gerne."]
+    explain: { en: "No like-verb: the liking lives in gern after the verb — Ich spiele gern Fußball. gerne is an equally correct variant of gern.", ru: "Без глагола «любить»: любовь к занятию выражает gern после глагола — Ich spiele gern Fußball. gerne — равноправный вариант слова gern." }
+  - id: schreiben-meine-hobbys
+    outcomes: [freizeit-hobbys, freizeit-koennen-satz]
+    type: write
+    prompt: { en: "Meine Hobbys — introduce your hobbies to your German course group.", ru: "Meine Hobbys — расскажите группе курса немецкого о своих хобби." }
+    goal: { en: "Write three to four simple sentences about your free time.", ru: "Напишите три-четыре простых предложения о своём свободном времени." }
+    requirements:
+      - { en: "Use at least one sentence with können: können in position 2, the infinitive at the end.", ru: "Используйте хотя бы одно предложение с können: können на втором месте, инфинитив в конце." }
+      - { en: "Use at least one sentence with verb + gern: Ich spiele gern …", ru: "Используйте хотя бы одно предложение с глаголом + gern: Ich spiele gern …" }
+      - { en: "Name at least two different hobbies or activities.", ru: "Назовите минимум два разных хобби или занятия." }
+    min_words: 18
+    model_answer: "Meine Hobbys sind Musik und Sport. Ich höre gern Musik, und ich spiele gern Gitarre. Ich kann gut schwimmen, aber ich kann nicht gut tanzen. Ich mag auch Filme."
+    model_translation: { en: "My hobbies are music and sport. I like listening to music, and I like playing the guitar. I can swim well, but I cannot dance well. I also like films.", ru: "Мои хобби — музыка и спорт. Я люблю слушать музыку и играть на гитаре. Я умею хорошо плавать, но не умею хорошо танцевать. Ещё я люблю фильмы." }
+    explain: { en: "Pattern: verb in position 2, gern right after it, and with können the infinitive at the very end. Things you like are mögen + noun: Ich mag Filme.", ru: "Схема: глагол на втором месте, gern сразу после него, а с können инфинитив в самом конце. Любимые вещи — mögen + существительное: Ich mag Filme." }

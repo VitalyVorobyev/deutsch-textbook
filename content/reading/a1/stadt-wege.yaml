@@ -1,0 +1,27 @@
+topic: stadt-wege
+title_de: "Neu in Hamburg"
+text:
+  - "Anna ist neu in Hamburg. Heute sucht sie die Post. Aber wo ist die Post? Anna fragt eine Frau: „Entschuldigung, wo ist die Post?“ Die Frau [[antwortet::answers::отвечает]]: „Gehen Sie geradeaus, dann die zweite Straße links. Die Post ist [[am Platz::on the square::на площади]].“ Anna geht geradeaus und dann links. Da ist der Platz, und da ist die Post. Aber an der Tür steht ein [[Schild::sign::табличка]]: „Geschlossen“. [[Schade!::What a pity!::Как жаль!]]"
+  - "Am Nachmittag fährt Anna zum Bahnhof. Ihre Freundin kommt heute aus Berlin. Der Bahnhof ist weit, und Anna nimmt die U-Bahn. Die [[Haltestelle::stop::остановка]] ist nah. Am Bahnhof sieht Anna viele Schilder: „Eingang“, „Ausgang“, „geöffnet“. Sie findet den Ausgang [[schnell::quickly::быстро]]. Ihre Freundin [[wartet schon::is already waiting::уже ждёт]] am Ausgang. „Hallo, Anna!“ Sie fahren [[zusammen::together::вместе]] [[ins Zentrum::to the city centre::в центр]] — mit der U-Bahn, und dann gehen sie zu Fuß."
+questions:
+  - id: q-weg-zur-post
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: mc
+    prompt: "Wie kommt Anna zur Post?"
+    options: ["geradeaus und dann die zweite Straße links", "geradeaus und dann die erste Straße rechts", "mit der U-Bahn"]
+    correct: 0
+    explain: { en: "The woman says: Gehen Sie geradeaus, dann die zweite Straße links. The U-Bahn comes later, on the way to the station.", ru: "Женщина говорит: Gehen Sie geradeaus, dann die zweite Straße links. На метро Анна едет позже, к вокзалу." }
+  - id: q-schild-post
+    outcomes: [stadt-schilder-verstehen]
+    type: mc
+    prompt: "Was steht auf dem Schild an der Post?"
+    options: ["Geschlossen", "Geöffnet", "Ausgang"]
+    correct: 0
+    explain: { en: "On the door there is a sign: Geschlossen — the post office is closed, Anna is out of luck today.", ru: "На двери табличка: Geschlossen — почта закрыта, сегодня Анне не повезло." }
+  - id: q-zum-bahnhof
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: mc
+    prompt: "Wie fährt Anna zum Bahnhof?"
+    options: ["mit der U-Bahn", "mit dem Bus", "mit dem Taxi"]
+    correct: 0
+    explain: { en: "The text says: Der Bahnhof ist weit, und Anna nimmt die U-Bahn.", ru: "В тексте сказано: Der Bahnhof ist weit, und Anna nimmt die U-Bahn." }
