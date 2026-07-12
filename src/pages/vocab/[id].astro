@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import VocabTable from '../../components/VocabTable.astro';
+import { VocabWordTable } from '../../components/vocab/VocabMastery';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { buildDeck } from '../../lib/srs';
 import { withBase } from '../../lib/url';
@@ -36,6 +36,6 @@ const cards = buildDeck(data.id, data.entries);
 
   <section class="mt-12">
     <h2 class="mb-4 text-2xl font-bold">Alle Wörter</h2>
-    <VocabTable entries={data.entries} />
+    <VocabWordTable client:only="react" cards={cards} />
   </section>
 </Base>

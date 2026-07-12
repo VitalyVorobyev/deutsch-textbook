@@ -15,7 +15,11 @@ describe('scoring and curriculum contracts', () => {
     const curriculum = getCurriculum();
     const position = new Map(curriculum.spine.map((id, index) => [id, index]));
     const outcomes = new Set<string>();
+    const groupIds = new Set(curriculum.groups.map((group) => group.id));
+    const parentGroups = new Set(curriculum.groups.flatMap((group) => group.parent ? [group.parent] : []));
     for (const node of curriculum.nodes) {
+      expect(groupIds.has(node.group)).toBe(true);
+      expect(parentGroups.has(node.group)).toBe(false);
       for (const prerequisite of node.prerequisites)
         expect(position.get(prerequisite)!).toBeLessThan(position.get(node.id)!);
       for (const base of node.deepens)
@@ -24,11 +28,13 @@ describe('scoring and curriculum contracts', () => {
         expect(outcomes.has(outcome.id)).toBe(false);
         outcomes.add(outcome.id);
       }
+      for (const related of node.related)
+        expect(curriculum.nodes.find((candidate) => candidate.id === related)?.related).toContain(node.id);
     }
   });
 
-  test('v1-v3 snapshots remain accepted and malformed partial scores are sanitized', () => {
-    for (const version of [1, 2, 3])
+  test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
+    for (const version of [1, 2, 3, 4])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);
     const bad: Attempt = {
       setId: 'x', itemId: 'y', itemType: 'table', correct: false,

@@ -1,240 +1,227 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { Outcome } from '../../lib/schemas';
-import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import type { AtlasGroup, CurriculumStrand, Outcome } from '../../lib/schemas';
 import {
-  recommendedNext,
-  topicCompletion,
-  type Completion,
-  type TopicContext,
-  type TopicNode,
+  getAttempts, getCardStates, getLearningGoal, getTopicsState, setLearningGoal,
+  type LearningGoal,
+} from '../../lib/store';
+import {
+  goalRoute, recommendedForGoal, recommendedNext, topicCompletion,
+  type Completion, type TopicContext, type TopicNode,
 } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
 import { TierBadge } from '../topic/TierBadge';
+import { crossGroupDependencies, groupBreadcrumb, leafGroups } from '../../lib/atlas';
 
 export interface CourseTopic extends TopicNode {
+  strand: CurriculumStrand;
+  group: string;
   outcomes: Outcome[];
   deepens: string[];
+  related: string[];
 }
-
 export interface CourseUnit {
-  id: string;
-  level: string;
-  title_de: string;
-  title_en: string;
-  title_ru: string;
-  topics: CourseTopic[];
+  id: string; level: string; title_de: string; title_en: string; title_ru: string; topics: CourseTopic[];
 }
-
-interface Props {
-  units: CourseUnit[];
-  spine: string[];
-}
-
-type View = 'path' | 'relations';
+interface Props { units: CourseUnit[]; groups: AtlasGroup[]; spine: string[] }
+type ActiveGoal = LearningGoal & { topicId: string };
+type View = 'path' | 'atlas' | 'relations';
 type LevelFilter = 'all' | 'A1' | 'A2';
 
+const STRANDS: Array<[CurriculumStrand, string]> = [
+  ['foundations', 'Grundlagen'], ['grammar', 'Grammatik'],
+  ['communication', 'Kommunikation'], ['vocabulary', 'Wortschatz'],
+];
 const actionLabel: Record<string, string> = {
-  untouched: 'Starten',
-  read: 'Fortsetzen',
-  practiced: 'Weiter üben',
-  mastered: 'Wiederholen',
+  untouched: 'Starten', read: 'Fortsetzen', practiced: 'Weiter üben', mastered: 'Wiederholen',
 };
 
-function SelfRatingText() {
-  return (
-    <span lang="de" className="text-xs text-stone-400" title="Selbsteinschätzung; ändert den gemessenen Stand nicht">
-      ✎ selbst eingeschätzt
-    </span>
-  );
-}
-
-export default function CurriculumPath({ units, spine }: Props) {
+export default function CurriculumPath({ units, groups, spine }: Props) {
   const lang = useExplainLang();
   const topics = useMemo(() => units.flatMap((unit) => unit.topics), [units]);
   const byId = useMemo(() => new Map(topics.map((topic) => [topic.id, topic])), [topics]);
   const [ctx, setCtx] = useState<TopicContext | null>(null);
-  const [view, setView] = useState<View>('path');
-  const [level, setLevel] = useState<LevelFilter | null>(null);
-  const [selectedId, setSelectedId] = useState('');
+  const [goal, setGoal] = useState<ActiveGoal>();
+  const [view, setView] = useState<View>('atlas');
+  const [level, setLevel] = useState<LevelFilter>('all');
+  const [strand, setStrand] = useState<CurriculumStrand | 'all'>('all');
+  const [selectedId, setSelectedId] = useState(spine[0] ?? '');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    const savedView = localStorage.getItem('da:topics-view');
-    const savedLevel = localStorage.getItem('da:topics-level');
+    const saved = localStorage.getItem('da:topics-view');
     queueMicrotask(() => {
-      if (savedView === 'relations') setView('relations');
-      if (savedLevel === 'A1' || savedLevel === 'A2' || savedLevel === 'all') setLevel(savedLevel);
+      if (saved === 'path' || saved === 'atlas' || saved === 'relations') setView(saved);
     });
-    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
-      ([attempts, cards, topicState]) => setCtx({ attempts, cards, topics: topicState }),
+    void Promise.all([getAttempts(), getCardStates(), getTopicsState(), getLearningGoal()]).then(
+      ([attempts, cards, topicState, activeGoal]) => {
+        setCtx({ attempts, cards, topics: topicState });
+        if (activeGoal?.topicId && byId.has(activeGoal.topicId)) setGoal(activeGoal as ActiveGoal);
+      },
     );
-  }, []);
+  }, [byId]);
 
-  const completions = useMemo(() => {
-    if (!ctx) return new Map<string, Completion>();
-    return new Map(topics.map((topic) => [topic.id, topicCompletion(topic, ctx)]));
-  }, [ctx, topics]);
-  const recommended = ctx ? recommendedNext(spine, topics, ctx) : topics[0];
-  const next = recommended ? byId.get(recommended.id) : undefined;
-  const currentUnit = units.find((unit) => unit.topics.some((topic) => topic.id === next?.id));
+  const completions = useMemo(() => new Map<string, Completion>(
+    ctx ? topics.map((topic) => [topic.id, topicCompletion(topic, ctx)]) : [],
+  ), [ctx, topics]);
+  const normalNextNode = ctx ? recommendedNext(spine, topics, ctx) : topics[0];
+  const goalNextNode = ctx && goal ? recommendedForGoal(goal.topicId, spine, topics, ctx) : undefined;
+  const next = byId.get((goalNextNode ?? normalNextNode)?.id ?? '');
+  const selected = byId.get(selectedId) ?? next ?? topics[0];
+  const route = goal
+    ? goalRoute(goal.topicId, spine, topics).map((node) => byId.get(node.id)).filter((node): node is CourseTopic => !!node)
+    : [];
+  const routeIds = new Set(route.map((topic) => topic.id));
 
-  function changeView(nextView: View) {
-    setView(nextView);
-    localStorage.setItem('da:topics-view', nextView);
+  async function chooseGoal(topicId?: string) {
+    const persisted: LearningGoal = { ...(topicId ? { topicId } : {}), setAt: Date.now() };
+    await setLearningGoal(persisted);
+    setGoal(topicId ? persisted as ActiveGoal : undefined);
+  }
+  function changeView(value: View) {
+    setView(value); localStorage.setItem('da:topics-view', value);
   }
 
-  function changeLevel(nextLevel: LevelFilter) {
-    setLevel(nextLevel);
-    localStorage.setItem('da:topics-level', nextLevel);
-  }
-
-  const effectiveLevel = level ?? (next?.level === 'A2' ? 'A2' : 'A1');
-  const visibleUnits = units.filter((unit) => effectiveLevel === 'all' || unit.level === effectiveLevel);
-  const selected = byId.get(selectedId || next?.id || spine[0] || '') ?? topics[0];
-  const prerequisites = selected
-    ? (selected.prerequisites.map((id) => byId.get(id)).filter(Boolean) as CourseTopic[])
-    : [];
-  const unlocks = selected
-    ? topics.filter((topic) => topic.prerequisites.includes(selected.id))
-    : [];
-  const bases = selected
-    ? (selected.deepens.map((id) => byId.get(id)).filter(Boolean) as CourseTopic[])
-    : [];
-  const deepenedBy = selected ? topics.filter((topic) => topic.deepens.includes(selected.id)) : [];
-
-  return (
-    <div>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="inline-flex rounded-md border border-stone-300 p-0.5 text-sm dark:border-stone-600" role="group" aria-label="Themenansicht">
-          {([['path', 'Lernpfad'], ['relations', 'Zusammenhänge']] as const).map(([id, label]) => (
-            <button key={id} type="button" aria-pressed={view === id} onClick={() => changeView(id)}
-              className={`rounded px-3 py-1.5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 ${view === id ? 'bg-stone-800 text-white dark:bg-stone-200 dark:text-stone-900' : 'text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100'}`}>
-              {label}
-            </button>
-          ))}
-        </div>
-        {view === 'path' && (
-          <div className="inline-flex gap-1" role="group" aria-label="Niveau filtern">
-            {([['A1', 'A1'], ['A2', 'A2'], ['all', 'Alle']] as const).map(([id, label]) => (
-              <button key={id} type="button" aria-pressed={effectiveLevel === id} onClick={() => changeLevel(id)}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 ${effectiveLevel === id ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100' : 'text-stone-500 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800'}`}>
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
+  return <div>
+    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-4 dark:border-stone-700">
+      <div className="inline-flex rounded-md border border-stone-300 p-0.5 text-sm dark:border-stone-600" role="tablist" aria-label="Themenansicht">
+        {([['path', 'Lernpfad'], ['atlas', 'Atlas'], ['relations', 'Zusammenhänge']] as const).map(([id, label]) =>
+          <button key={id} role="tab" aria-selected={view === id} onClick={() => changeView(id)} className={`rounded px-3 py-1.5 font-medium focus-visible:outline-2 focus-visible:outline-amber-500 ${view === id ? 'bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900' : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'}`}>{label}</button>)}
       </div>
-
-      {view === 'path' ? (
-        <>
-          {next && currentUnit && (
-            <section className="mt-6 border-l-4 border-amber-500 bg-amber-50 px-5 py-5 dark:bg-amber-950/25" aria-labelledby="continue-heading">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-amber-800 dark:text-amber-300">Weiter lernen · {next.level}</p>
-                  <h2 id="continue-heading" lang="de" className="mt-1 text-2xl font-bold text-stone-900 dark:text-stone-100">{next.title_de}</h2>
-                  <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? next.title_ru : next.title_en} · {lang === 'ru' ? currentUnit.title_ru : currentUnit.title_en}</p>
-                  {next.outcomes[0] && <p className="mt-3 max-w-2xl text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? next.outcomes[0].ru : next.outcomes[0].en}</p>}
-                </div>
-                <a href={next.path} className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 sm:min-h-0">
-                  {actionLabel[completions.get(next.id)?.tier ?? 'untouched']} →
-                </a>
-              </div>
-            </section>
-          )}
-
-          <div className="mt-8 space-y-3">
-            {visibleUnits.map((unit, index) => {
-              const unitDone = unit.topics.map((topic) => completions.get(topic.id));
-              const mastered = unitDone.filter((done) => done?.tier === 'mastered').length;
-              const unitNext = unit.topics.find((topic) => completions.get(topic.id)?.tier !== 'mastered') ?? unit.topics[0];
-              const current = unit.topics.some((topic) => topic.id === next?.id);
-              const outcome = unit.topics[0]?.outcomes[0];
-              return (
-                <section key={unit.id} className={`rounded-lg border bg-white px-4 py-4 dark:bg-stone-800 sm:px-5 ${current ? 'border-amber-400 dark:border-amber-600' : 'border-stone-200 dark:border-stone-700'} ${mastered === unit.topics.length ? 'opacity-75' : ''}`}>
-                  <div className="grid gap-3 sm:grid-cols-[auto_1fr_auto] sm:items-center">
-                    <div className="flex items-center gap-2 sm:block sm:text-center">
-                      <span className="text-xs font-semibold text-stone-400">{unit.level}</span>
-                      <span className="ml-1 text-sm tabular-nums text-stone-400">{index + 1}</span>
-                    </div>
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h2 lang="de" className="text-lg font-semibold text-stone-900 dark:text-stone-100">{unit.title_de}</h2>
-                        {current && <span className="text-xs font-semibold text-amber-700 dark:text-amber-300">aktuell</span>}
-                      </div>
-                      <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">{lang === 'ru' ? unit.title_ru : unit.title_en}</p>
-                      {outcome && <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? outcome.ru : outcome.en}</p>}
-                      <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-stone-400">
-                        <span>{mastered} von {unit.topics.length} gemeistert</span>
-                        {unit.topics.some((topic) => completions.get(topic.id)?.manual === 'learned') && <SelfRatingText />}
-                      </div>
-                    </div>
-                    {unitNext && (
-                      <div className="flex items-center gap-3 sm:justify-end">
-                        {completions.get(unitNext.id) && <TierBadge tier={completions.get(unitNext.id)!.tier} />}
-                        <a href={unitNext.path} className={`rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 ${current ? 'bg-amber-600 text-white hover:bg-amber-700' : 'border border-stone-300 text-stone-700 hover:border-amber-400 dark:border-stone-600 dark:text-stone-200'}`}>
-                          {actionLabel[completions.get(unitNext.id)?.tier ?? 'untouched']}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                  {unit.topics.length > 1 && (
-                    <details className="mt-4 border-t border-stone-100 pt-3 dark:border-stone-700">
-                      <summary className="cursor-pointer text-sm font-medium text-stone-600 dark:text-stone-300">Themen in dieser Einheit</summary>
-                      <ul className="mt-2 divide-y divide-stone-100 dark:divide-stone-700">
-                        {unit.topics.map((topic) => <li key={topic.id} className="flex items-center justify-between gap-3 py-2"><a href={topic.path} lang="de" className="hover:text-amber-700 hover:underline dark:hover:text-amber-300">{topic.title_de}</a>{completions.get(topic.id) && <TierBadge tier={completions.get(topic.id)!.tier} />}</li>)}
-                      </ul>
-                    </details>
-                  )}
-                </section>
-              );
-            })}
-          </div>
-        </>
-      ) : selected ? (
-        <section className="mt-6" aria-labelledby="relations-heading">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 id="relations-heading" className="text-xl font-bold">Zusammenhänge</h2>
-              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Nur die direkten Beziehungen eines Themas — ohne unlesbares Gesamtnetz.</p>
-            </div>
-            <label className="text-sm font-medium text-stone-600 dark:text-stone-300">Thema{' '}
-              <select value={selected.id} onChange={(e) => setSelectedId(e.target.value)} className="ml-2 rounded-md border border-stone-300 bg-white px-3 py-2 dark:border-stone-600 dark:bg-stone-800">
-                {topics.map((topic) => <option key={topic.id} value={topic.id}>{topic.level} · {topic.title_de}</option>)}
-              </select>
-            </label>
-          </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1.15fr_1fr] md:items-stretch">
-            <RelationColumn title="Voraussetzungen" empty="Keine Voraussetzungen" topics={prerequisites} />
-            <article className="rounded-lg border-2 border-amber-400 bg-amber-50 p-5 dark:border-amber-600 dark:bg-amber-950/25">
-              <p className="text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">Ausgewähltes Thema · {selected.level}</p>
-              <h3 lang="de" className="mt-2 text-xl font-bold">{selected.title_de}</h3>
-              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{lang === 'ru' ? selected.title_ru : selected.title_en}</p>
-              <a href={selected.path} className="mt-4 inline-block text-sm font-semibold text-amber-800 hover:underline dark:text-amber-300">Thema öffnen →</a>
-            </article>
-            <RelationColumn title="Baut darauf auf" empty="Noch keine Folgethemen" topics={unlocks} />
-          </div>
-          {(bases.length > 0 || deepenedBy.length > 0) && (
-            <div className="mt-4 rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">
-              <h3 className="text-sm font-semibold">Spiralförmige Vertiefung</h3>
-              {bases.length > 0 && <RelationLinks label="Vertieft" topics={bases} />}
-              {deepenedBy.length > 0 && <RelationLinks label="Wird später vertieft durch" topics={deepenedBy} />}
-            </div>
-          )}
-        </section>
-      ) : null}
+      {goal && <div className="flex items-center gap-2 text-sm"><span className="text-stone-500">Ziel:</span><button onClick={() => { setSelectedId(goal.topicId); changeView('atlas'); }} className="font-semibold text-amber-700 hover:underline dark:text-amber-300">{byId.get(goal.topicId)?.title_de}</button><button onClick={() => void chooseGoal()} aria-label="Lernziel löschen" className="text-stone-400 hover:text-red-600">×</button></div>}
     </div>
-  );
+
+    {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} />}
+    {view === 'atlas' && <AtlasView topics={topics} groups={groups} currentId={next?.id} selected={selected} goal={goal} routeIds={routeIds} completions={completions} level={level} strand={strand} lang={lang} onLevel={setLevel} onStrand={setStrand} onSelect={setSelectedId} onGoal={chooseGoal} />}
+    {view === 'relations' && <RelationsView topics={topics} groups={groups} selected={selected} query={query} lang={lang} completions={completions} onQuery={setQuery} onSelect={setSelectedId} onGoal={chooseGoal} goal={goal} />}
+  </div>;
 }
 
-function RelationColumn({ title, empty, topics }: { title: string; empty: string; topics: CourseTopic[] }) {
-  return (
-    <section className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{title}</h3>
-      {topics.length ? <ul className="mt-2 space-y-2">{topics.map((topic) => <li key={topic.id}><a href={topic.path} lang="de" className="text-sm font-medium hover:text-amber-700 hover:underline dark:hover:text-amber-300">{topic.title_de}</a><span className="ml-2 text-xs text-stone-400">{topic.level}</span></li>)}</ul> : <p className="mt-2 text-sm text-stone-400">{empty}</p>}
+function PathView({ next, goal, route, completions, lang }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string }) {
+  if (!next) return <p className="mt-8 text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>;
+  return <div className="mt-6 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+    <section className="border-l-4 border-amber-500 bg-amber-50 p-6 dark:bg-amber-950/25">
+      <p className="text-xs font-semibold uppercase tracking-wider text-amber-800 dark:text-amber-300">Nächster Schritt · {next.level}</p>
+      <h2 className="mt-2 text-2xl font-bold">{next.title_de}</h2>
+      <p className="mt-1 text-sm text-stone-500">{lang === 'ru' ? next.title_ru : next.title_en}</p>
+      {next.outcomes[0] && <p className="mt-4 text-sm text-stone-700 dark:text-stone-300">{lang === 'ru' ? next.outcomes[0].ru : next.outcomes[0].en}</p>}
+      <a href={next.path} className="mt-5 inline-flex rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">{actionLabel[completions.get(next.id)?.tier ?? 'untouched']} →</a>
     </section>
-  );
+    <section className="rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+      <h2 className="font-semibold">{goal ? 'Weg zu deinem Ziel' : 'So funktioniert der Lernpfad'}</h2>
+      {goal ? <ol className="mt-3 space-y-2">{route.map((topic, i) => <li key={topic.id} className="flex items-center gap-3 text-sm"><span className="w-5 text-right text-stone-400">{i + 1}</span><TierBadge tier={completions.get(topic.id)?.tier ?? 'untouched'} /><a href={topic.path} className="font-medium hover:text-amber-700">{topic.title_de}</a></li>)}</ol> : <p className="mt-2 text-sm text-stone-500">Der nächste Schritt folgt dem Lehrplan und deinem gemessenen Lernstand. Im Atlas kannst du stattdessen ein eigenes Ziel wählen.</p>}
+    </section>
+  </div>;
 }
 
-function RelationLinks({ label, topics }: { label: string; topics: CourseTopic[] }) {
-  return <p className="mt-2 text-sm text-stone-600 dark:text-stone-300"><span className="font-medium">{label}:</span>{' '}{topics.map((topic, i) => <span key={topic.id}>{i > 0 && ', '}<a href={topic.path} lang="de" className="hover:text-amber-700 hover:underline dark:hover:text-amber-300">{topic.title_de}</a></span>)}</p>;
+interface AtlasViewProps {
+  topics: CourseTopic[]; groups: AtlasGroup[]; currentId?: string; selected: CourseTopic; goal?: ActiveGoal; routeIds: Set<string>;
+  completions: Map<string, Completion>; level: LevelFilter; strand: CurriculumStrand | 'all'; lang: string;
+  onLevel: (value: LevelFilter) => void; onStrand: (value: CurriculumStrand | 'all') => void;
+  onSelect: (id: string) => void; onGoal: (id?: string) => Promise<void>;
 }
+type DrawerState = 'closed' | 'collapsed' | 'open';
+function AtlasView({ topics, groups, currentId, selected, goal, routeIds, completions, level, strand, lang, onLevel, onStrand, onSelect, onGoal }: AtlasViewProps) {
+  const [expandedGroup, setExpandedGroup] = useState<string>();
+  const [drawer, setDrawer] = useState<DrawerState>('closed');
+  const leaves = leafGroups(groups);
+  const groupById = new Map(groups.map((group) => [group.id, group]));
+  const visibleTopic = (topic: CourseTopic) =>
+    ((level === 'all' || topic.level === level) && (strand === 'all' || topic.strand === strand)) ||
+    routeIds.has(topic.id) || topic.id === currentId;
+  function selectTopic(topic: CourseTopic) {
+    onSelect(topic.id);
+    setExpandedGroup(topic.group);
+    setDrawer('open');
+  }
+  return <div className="mt-6">
+    <div className="flex flex-wrap gap-4">
+      <Filter label="Niveau" value={level} onChange={onLevel} options={[['all','Alle'],['A1','A1'],['A2','A2']]} />
+      <Filter label="Strang" value={strand} onChange={onStrand} options={[['all','Alle'], ...STRANDS]} />
+    </div>
+    <div className="mt-5 overflow-hidden rounded-xl border border-stone-200 bg-stone-50 dark:border-stone-700 dark:bg-stone-900/40">
+      <div className="space-y-7 p-4 sm:p-6">
+        {STRANDS.map(([strandId, label]) => {
+          const strandGroups = leaves.filter((group) => group.strand === strandId).filter((group) => {
+            const own = topics.filter((topic) => topic.group === group.id);
+            return own.some(visibleTopic);
+          });
+          if (!strandGroups.length) return null;
+          return <section key={strandId} aria-labelledby={`strand-${strandId}`}>
+            <h2 id={`strand-${strandId}`} className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-400">{label}</h2>
+            <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {strandGroups.map((group) => {
+                const own = topics.filter((topic) => topic.group === group.id && visibleTopic(topic));
+                const expanded = expandedGroup === group.id;
+                const deps = crossGroupDependencies(group.id, topics);
+                const route = own.some((topic) => routeIds.has(topic.id));
+                const current = own.some((topic) => topic.id === currentId);
+                const mastered = own.filter((topic) => completions.get(topic.id)?.tier === 'mastered').length;
+                return <article key={group.id} className={`${expanded ? 'md:col-span-2 xl:col-span-3' : ''} rounded-lg border ${expanded ? 'border-amber-400 bg-white dark:border-amber-700 dark:bg-stone-800' : route || current ? 'border-amber-300 bg-white dark:border-amber-800 dark:bg-stone-800' : 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800'}`}>
+                  <button type="button" aria-expanded={expanded} onClick={() => setExpandedGroup(expanded ? undefined : group.id)} className="flex w-full items-start justify-between gap-3 p-4 text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-amber-500">
+                    <span><span className="block text-xs text-stone-400">{groupBreadcrumb(group.id, groups).map((part) => lang === 'ru' ? part.title_ru : part.title_en).join(' › ')}</span><strong className="mt-1 block text-base">{group.title_de}</strong><span className="mt-2 block text-xs text-stone-500">{mastered}/{own.length} gemeistert{deps.incoming.length ? ` · ${deps.incoming.length} Voraussetzung${deps.incoming.length > 1 ? 'en' : ''}` : ''}{deps.outgoing.length ? ` · öffnet ${deps.outgoing.length}` : ''}</span></span>
+                    <span className="flex items-center gap-2">{current && <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">aktuell</span>}{route && <span className="text-amber-600">◆</span>}<span aria-hidden="true" className="text-stone-400">{expanded ? '−' : '+'}</span></span>
+                  </button>
+                  {expanded && <div className="border-t border-stone-200 p-4 dark:border-stone-700">
+                    <div className="flex flex-wrap gap-3">{own.map((topic) => <MapNode key={topic.id} topic={topic} selected={drawer !== 'closed' && topic.id === selected.id} goal={topic.id === goal?.topicId} route={routeIds.has(topic.id)} completion={completions.get(topic.id)} onSelect={() => selectTopic(topic)} />)}</div>
+                    {(deps.incoming.length > 0 || deps.outgoing.length > 0) && <div className="mt-4 flex flex-wrap gap-2 text-xs text-stone-500">{deps.incoming.map((id) => <button key={`in-${id}`} onClick={() => setExpandedGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">← {groupById.get(id)?.title_de}</button>)}{deps.outgoing.map((id) => <button key={`out-${id}`} onClick={() => setExpandedGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">{groupById.get(id)?.title_de} →</button>)}</div>}
+                  </div>}
+                </article>;
+              })}
+            </div>
+          </section>;
+        })}
+      </div>
+      {drawer !== 'closed' && <div className="border-t border-stone-300 bg-white dark:border-stone-600 dark:bg-stone-800">
+        {drawer === 'collapsed' ? <button type="button" onClick={() => setDrawer('open')} className="flex w-full items-center justify-between gap-3 px-5 py-3 text-left"><span><strong>{selected.title_de}</strong><span className="ml-2 text-sm text-stone-400">{selected.level}</span></span><span className="text-sm text-stone-500">Details öffnen ↑</span></button> : <div className="relative"><div className="absolute right-4 top-3 flex gap-2"><button onClick={() => setDrawer('collapsed')} className="rounded px-2 py-1 text-sm text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">Einklappen</button><button onClick={() => setDrawer('closed')} aria-label="Details schließen" className="rounded px-2 py-1 text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">×</button></div><TopicDetail topic={selected} topics={topics} groups={groups} completion={completions.get(selected.id)} lang={lang} isGoal={goal?.topicId === selected.id} onGoal={onGoal} embedded /></div>}
+      </div>}
+    </div>
+  </div>;
+}
+
+interface MapNodeProps { topic: CourseTopic; selected: boolean; goal: boolean; route: boolean; completion?: Completion; onSelect: (id: string) => void }
+function MapNode({ topic, selected, goal, route, completion, onSelect }: MapNodeProps) {
+  return <button onClick={() => onSelect(topic.id)} aria-pressed={selected} className={`relative w-44 rounded-md border p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 ${selected ? 'border-amber-500 bg-amber-50 dark:bg-amber-950/30' : route ? 'border-amber-300 bg-white dark:border-amber-800 dark:bg-stone-800' : 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800'}`}>
+    {topic.prerequisites.length > 0 && <span aria-hidden="true" className="absolute -left-3 top-1/2 text-stone-300">→</span>}
+    <span className="flex justify-between text-[10px] font-semibold uppercase tracking-wide text-stone-400"><span>{topic.level}</span>{goal && <span className="text-amber-700">Ziel</span>}</span>
+    <span className="mt-1 block text-sm font-semibold">{topic.title_de}</span>
+    <span className="mt-2 block"><TierBadge tier={completion?.tier ?? 'untouched'} /></span>
+  </button>;
+}
+
+interface TopicDetailProps { topic: CourseTopic; topics: CourseTopic[]; groups: AtlasGroup[]; completion?: Completion; lang: string; isGoal: boolean; onGoal: (id?: string) => Promise<void>; embedded?: boolean }
+function TopicDetail({ topic, topics, groups, completion, lang, isGoal, onGoal, embedded = false }: TopicDetailProps) {
+  const prereqs = topic.prerequisites
+    .map((id) => topics.find((candidate) => candidate.id === id))
+    .filter((candidate): candidate is CourseTopic => !!candidate);
+  const unlocks = topics.filter((t: CourseTopic) => t.prerequisites.includes(topic.id));
+  const bases = topic.deepens.map((id) => topics.find((candidate) => candidate.id === id)).filter((candidate): candidate is CourseTopic => !!candidate);
+  const deepenedBy = topics.filter((candidate) => candidate.deepens.includes(topic.id));
+  const related = topic.related.map((id) => topics.find((candidate) => candidate.id === id)).filter((candidate): candidate is CourseTopic => !!candidate);
+  const breadcrumb = groupBreadcrumb(topic.group, groups);
+  return <aside className={`${embedded ? 'px-5 pb-5 pt-12' : 'rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800'}`}>
+    <div className="flex items-center justify-between"><span className="text-xs font-semibold uppercase tracking-wide text-stone-400">{topic.level} · {STRANDS.find(([id]) => id === topic.strand)?.[1]}</span><TierBadge tier={completion?.tier ?? 'untouched'} /></div>
+    <p className="mt-2 text-xs text-stone-400">{breadcrumb.map((part) => part.title_de).join(' › ')}</p>
+    <h2 className="mt-2 text-xl font-bold">{topic.title_de}</h2><p className="mt-1 text-sm text-stone-500">{lang === 'ru' ? topic.title_ru : topic.title_en}</p>
+    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-stone-600 dark:text-stone-300">{topic.outcomes.map((o: Outcome) => <li key={o.id}>{lang === 'ru' ? o.ru : o.en}</li>)}</ul>
+    <div className="mt-5 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3"><RelationSummary label="Voraussetzungen" topics={prereqs} /><RelationSummary label="Baut darauf auf" topics={unlocks} /><RelationSummary label="Vertieft" topics={bases} /><RelationSummary label="Wird vertieft durch" topics={deepenedBy} /><RelationSummary label="Verwandte Themen" topics={related} /></div>
+    <div className="mt-5 flex flex-wrap gap-2"><a href={topic.path} className="rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white">Thema öffnen</a>{!isGoal && <button onClick={() => void onGoal(topic.id)} className="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold dark:border-stone-600">Als Ziel setzen</button>}</div>
+  </aside>;
+}
+
+interface RelationsViewProps {
+  topics: CourseTopic[]; groups: AtlasGroup[]; selected: CourseTopic; query: string; lang: string;
+  completions: Map<string, Completion>; onQuery: (value: string) => void;
+  onSelect: (id: string) => void; onGoal: (id?: string) => Promise<void>; goal?: ActiveGoal;
+}
+function RelationsView({ topics, groups, selected, query, lang, completions, onQuery, onSelect, onGoal, goal }: RelationsViewProps) {
+  const q = query.trim().toLocaleLowerCase('de');
+  const shown = topics.filter((t: CourseTopic) => !q || `${t.title_de} ${t.title_en} ${t.title_ru}`.toLocaleLowerCase('de').includes(q));
+  return <div className="mt-6 grid gap-6 md:grid-cols-[17rem_1fr]">
+    <aside><label className="text-sm font-semibold" htmlFor="topic-search">Thema suchen</label><input id="topic-search" value={query} onChange={(e) => onQuery(e.target.value)} placeholder="Titel…" className="mt-2 w-full rounded-md border border-stone-300 bg-white px-3 py-2 dark:border-stone-600 dark:bg-stone-800" />
+      <div className="mt-3 max-h-[34rem] overflow-y-auto rounded-md border border-stone-200 dark:border-stone-700">{STRANDS.map(([id,label]) => { const group = shown.filter((t: CourseTopic) => t.strand === id); return group.length ? <section key={id}><h3 className="sticky top-0 bg-stone-100 px-3 py-1 text-[10px] font-semibold uppercase text-stone-400 dark:bg-stone-900">{label}</h3>{group.map((t: CourseTopic) => <button key={t.id} onClick={() => onSelect(t.id)} className={`flex w-full items-center justify-between border-t border-stone-100 px-3 py-2 text-left text-sm dark:border-stone-700 ${selected.id === t.id ? 'bg-amber-50 dark:bg-amber-950/30' : 'hover:bg-stone-50 dark:hover:bg-stone-800'}`}><span>{t.title_de}</span><span className="text-xs text-stone-400">{t.level}</span></button>)}</section> : null; })}</div>
+    </aside><TopicDetail topic={selected} topics={topics} groups={groups} completion={completions.get(selected.id)} lang={lang} isGoal={goal?.topicId === selected.id} onGoal={onGoal} />
+  </div>;
+}
+
+function Filter<T extends string>({ label, value, onChange, options }: { label: string; value: T; onChange: (value: T) => void; options: Array<readonly [T, string]> }) { return <label className="text-sm font-medium text-stone-500">{label} <select value={value} onChange={(e) => onChange(e.target.value as T)} className="ml-2 rounded-md border border-stone-300 bg-white px-3 py-1.5 text-stone-800 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100">{options.map(([id,text]) => <option key={id} value={id}>{text}</option>)}</select></label>; }
+function RelationSummary({ label, topics }: { label: string; topics: CourseTopic[] }) { return <div className="mt-4 text-sm"><h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{label}</h3>{topics.length ? <ul className="mt-1 space-y-1">{topics.map((topic) => <li key={topic.id}><a href={topic.path} className="font-medium text-stone-700 hover:text-amber-700 hover:underline focus-visible:outline-2 focus-visible:outline-amber-500 dark:text-stone-200 dark:hover:text-amber-300">{topic.title_de}</a></li>)}</ul> : <p className="mt-1 text-stone-400">Keine</p>}</div>; }
