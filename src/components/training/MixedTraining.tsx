@@ -212,9 +212,8 @@ export default function MixedTraining({
   const lang = useExplainLang();
 
   const surface = resumeKey ? `training:${resumeKey}` : null;
-  // only the initial mount resumes; an explicit restart builds fresh
-  // (restored against all sets — a queue built before a set turned
-  // ineligible finishes as saved rather than losing today's progress)
+  // Only the initial mount may resume; the eligibility check below decides
+  // whether the saved queue is still safe. An explicit restart always rebuilds.
   const [restored] = useState(() => (surface ? restoreSession(sets, surface) : null));
 
   // A saved queue is not rendered until its topics are revalidated against
@@ -415,7 +414,7 @@ export default function MixedTraining({
               type="button"
               onClick={() => {
                 if (surface) clearResume(surface);
-                onFinished({ answered: verified.length, correct: score });
+                onFinished({ answered: answered.length, correct: score });
               }}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >

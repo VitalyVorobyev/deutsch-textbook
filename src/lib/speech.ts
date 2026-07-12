@@ -95,9 +95,11 @@ export function speakGermanSequence(
 ): () => void {
   if (!ttsAvailable() || texts.length === 0) return () => {};
   ensureVoiceListener();
+  if (voices.length === 0) refreshVoices();
   window.speechSynthesis.cancel();
   let cancelled = false;
   let index = 0;
+  let stopWaiting: (() => void) | undefined;
   const next = () => {
     if (cancelled || index >= texts.length) {
       if (!cancelled) onDone?.();
@@ -112,9 +114,28 @@ export function speakGermanSequence(
     utterance.onerror = next;
     window.speechSynthesis.speak(utterance);
   };
-  next();
+
+  if (voices.length === 0) {
+    let started = false;
+    const onReady = () => {
+      if (started) return;
+      started = true;
+      stopWaiting?.();
+      if (!cancelled) next();
+    };
+    window.speechSynthesis.addEventListener('voiceschanged', onReady);
+    const timeout = window.setTimeout(onReady, 300);
+    stopWaiting = () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', onReady);
+      window.clearTimeout(timeout);
+    };
+  } else {
+    next();
+  }
+
   return () => {
     cancelled = true;
+    stopWaiting?.();
     window.speechSynthesis.cancel();
   };
 }
