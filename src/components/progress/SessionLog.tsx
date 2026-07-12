@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { localDateString, type Attempt, type SessionLogEntry } from '../../lib/store';
-import { attemptScore } from '../../lib/scoring';
+import { attemptScore, isVerifiedEvidence } from '../../lib/scoring';
 import { useExplainLang } from '../hooks';
 
 export function SessionLog({
@@ -16,6 +16,7 @@ export function SessionLog({
   const accByDate = useMemo(() => {
     const m = new Map<string, { correct: number; total: number }>();
     for (const a of attempts) {
+      if (!isVerifiedEvidence(a)) continue;
       const d = localDateString(new Date(a.ts));
       const e = m.get(d) ?? { correct: 0, total: 0 };
       e.total++;

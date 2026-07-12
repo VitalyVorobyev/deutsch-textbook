@@ -6,6 +6,12 @@ export interface Scorable {
   correct: boolean;
   correctParts?: number;
   totalParts?: number;
+  evidence?: 'verified' | 'practice';
+}
+
+/** Historical attempts omit the field and are verified by definition. */
+export function isVerifiedEvidence(a: Pick<Scorable, 'evidence'>): boolean {
+  return a.evidence !== 'practice';
 }
 
 /**
@@ -14,6 +20,7 @@ export interface Scorable {
  * fall back to `correct`, so a hand-edited snapshot can never divide by zero.
  */
 export function attemptScore(a: Scorable): number {
+  if (!isVerifiedEvidence(a)) return 0;
   if (
     typeof a.correctParts === 'number' &&
     typeof a.totalParts === 'number' &&
@@ -22,6 +29,10 @@ export function attemptScore(a: Scorable): number {
     return Math.min(1, Math.max(0, a.correctParts) / a.totalParts);
   }
   return a.correct ? 1 : 0;
+}
+
+export function verifiedOnly<T extends Pick<Scorable, 'evidence'>>(items: readonly T[]): T[] {
+  return items.filter(isVerifiedEvidence);
 }
 
 /** Sum of scores — "how many items' worth were answered correctly". */

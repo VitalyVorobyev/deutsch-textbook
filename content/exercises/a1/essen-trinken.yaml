@@ -1,9 +1,11 @@
 topic: essen-trinken
+role: practice
 title:
   en: Practice — food and drink
   ru: Практика — еда и напитки
 items:
   - id: match-artikel
+    outcomes: [essen-vorlieben]
     type: match
     focus: genus
     instruction:
@@ -18,6 +20,7 @@ items:
       ru: "der Apfel (мужской род), die Milch (женский род), das Brot (средний род). Учите каждое существительное вместе с артиклем."
 
   - id: cloze-hunger
+    outcomes: [essen-vorlieben]
     type: cloze
     focus: haben-wendungen
     instruction:
@@ -32,6 +35,7 @@ items:
       ru: '"Hunger haben" = быть голодным. Hunger — существительное, поэтому пишется с заглавной буквы.'
 
   - id: mc-getraenk
+    outcomes: [essen-vorlieben]
     type: mc
     prompt: "Was ist kein Getränk?"
     options: ["der Kaffee", "der Tee", "das Brot"]
@@ -44,6 +48,7 @@ items:
       ru: "Brot (хлеб) — еда; Kaffee и Tee — напитки (Getränke)."
 
   - id: cloze-fruehstueck
+    outcomes: [essen-vorlieben]
     type: cloze
     focus: verb-endungen
     instruction:
@@ -58,6 +63,7 @@ items:
       ru: "ich esse — смена гласной (e → i) происходит только в формах du (isst) и er/sie/es (isst)."
 
   - id: order-kaffee
+    outcomes: [essen-vorlieben]
     type: order
     focus: verbzweit
     instruction:
@@ -72,6 +78,7 @@ items:
       ru: '"Zum Frühstück" занимает первую позицию, поэтому глагол "trinke" стоит вторым, а "ich" — третьим.'
 
   - id: mc-schmecken
+    outcomes: [essen-vorlieben]
     type: mc
     focus: verb-endungen
     prompt: "Die Suppe ___ sehr gut."
@@ -85,6 +92,7 @@ items:
       ru: "Подлежащее — 'die Suppe' (форма er/sie/es): schmeckt. 'isst' означало бы, что суп сам что-то ест."
 
   - id: match-mahlzeiten
+    outcomes: [essen-vorlieben]
     type: match
     instruction:
       en: Match each meal with its time of day.
@@ -98,6 +106,7 @@ items:
       ru: "Названия приёмов пищи содержат время: Früh(stück) — рано, Mittag(essen) — полдень, Abend(essen) — вечер."
 
   - id: cloze-isst
+    outcomes: [essen-vorlieben]
     type: cloze
     focus: verb-endungen
     instruction:
@@ -112,6 +121,7 @@ items:
       ru: "У essen меняется корневая гласная в форме er/sie/es: er isst."
 
   - id: mc-bezahlen
+    outcomes: [essen-vorlieben]
     type: mc
     prompt: "Das Essen war lecker. Wir möchten jetzt ___, bitte."
     options: ["bezahlen", "kochen", "bestellen"]
@@ -124,6 +134,7 @@ items:
       ru: "После еды платят (bezahlen). Заказывают (bestellen) в начале, а готовит (kochen) кухня."
 
   - id: cloze-durst
+    outcomes: [essen-vorlieben]
     type: cloze
     focus: haben-wendungen
     instruction:
@@ -138,6 +149,7 @@ items:
       ru: '"Durst haben" = хотеть пить — та же модель, что и "Hunger haben".'
 
   - id: order-frage
+    outcomes: [essen-vorlieben]
     type: order
     focus: verbzweit
     instruction:
@@ -152,6 +164,7 @@ items:
       ru: "Вопрос с вопросительным словом: вопросительное слово — первое, глагол — второй: Was isst du…?"
 
   - id: mc-wasser
+    outcomes: [essen-vorlieben]
     type: mc
     focus: genus
     prompt: "___ Wasser ist kalt."
@@ -163,3 +176,49 @@ items:
     explain:
       en: "Wasser is neuter: das Wasser."
       ru: "Wasser — среднего рода: das Wasser."
+
+  - id: audio-im-cafe
+    outcomes: [essen-bestellen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Kellnerin", text: "Guten Tag. Was möchten Sie?" }
+        - { speaker: "Gast", text: "Ich möchte eine Suppe und ein Wasser, bitte." }
+        - { speaker: "Kellnerin", text: "Gern. Sonst noch etwas?" }
+        - { speaker: "Gast", text: "Nein, danke." }
+    question: "Was bestellt der Gast?"
+    options:
+      - "Eine Suppe und ein Wasser."
+      - "Einen Kaffee und einen Salat."
+      - "Nur ein Wasser."
+    correct: 0
+    translation:
+      en: What does the guest order?
+      ru: Что заказывает посетитель?
+    explain:
+      en: "The guest says directly: Ich möchte eine Suppe und ein Wasser. Listen for the two nouns after möchte."
+      ru: "Посетитель прямо говорит: Ich möchte eine Suppe und ein Wasser. Услышьте два существительных после möchte."
+
+  - id: schreiben-bestellung
+    outcomes: [essen-bestellen]
+    type: write
+    prompt:
+      en: "You are ordering a simple breakfast in a café. Write what you say to the server."
+      ru: "Вы заказываете простой завтрак в кафе. Напишите, что вы скажете официанту."
+    goal:
+      en: "Make a polite, complete order in German."
+      ru: "Сделайте вежливый и полный заказ по-немецки."
+    requirements:
+      - { en: "Greet the server.", ru: "Поздоровайтесь." }
+      - { en: "Order one food and one drink with möchte.", ru: "Закажите еду и напиток с möchte." }
+      - { en: "Finish politely.", ru: "Вежливо завершите реплику." }
+    min_words: 10
+    model_answer: "Guten Morgen. Ich möchte ein Brötchen mit Käse und einen Kaffee, bitte. Danke!"
+    model_translation:
+      en: "Good morning. I would like a bread roll with cheese and a coffee, please. Thank you!"
+      ru: "Доброе утро. Я хотел бы булочку с сыром и кофе, пожалуйста. Спасибо!"
+    explain:
+      en: "A useful café frame is greeting + Ich möchte …, bitte + Danke. Your own food and drink may differ from the model."
+      ru: "Удобная схема для кафе: приветствие + Ich möchte …, bitte + Danke. Еда и напиток в вашем варианте могут отличаться от примера."

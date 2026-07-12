@@ -1,9 +1,11 @@
 topic: modalverben
+role: practice
 title:
   en: Practice — modal verbs
   ru: Практика — модальные глаголы
 items:
   - id: konjugation-koennen-muessen
+    outcomes: [modal-satzklammer]
     type: table
     focus: modal-konjugation
     title: "können und müssen — Präsens"
@@ -29,6 +31,7 @@ items:
       ru: "В единственном числе меняется корневая гласная (können → kann, müssen → muss), а формы ich и er/sie/es совпадают и не имеют окончания -t: ich kann — er kann. Множественное число правильное: wir können, ihr könnt, sie können."
 
   - id: mc-verboten
+    outcomes: [modal-satzklammer]
     type: mc
     focus: duerfen-muessen
     instruction:
@@ -45,6 +48,7 @@ items:
       ru: "Запрет — это всегда 'dürfen nicht': Hier darf man nicht rauchen. Русское «нельзя» = darf nicht. 'Muss nicht' означало бы совсем другое — «не обязан курить»."
 
   - id: mc-nicht-noetig
+    outcomes: [modal-satzklammer]
     type: mc
     focus: duerfen-muessen
     instruction:
@@ -61,6 +65,7 @@ items:
       ru: "'Musst nicht' = «не обязан» (нет необходимости) — вторая часть предложения говорит, что прийти всё-таки можно. 'Darfst nicht' означало бы запрет, а это противоречит словам 'du kannst gern kommen'."
 
   - id: cloze-koennen
+    outcomes: [modal-satzklammer]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -75,6 +80,7 @@ items:
       ru: "ich kann — в единственном числе меняется гласная (ö → a), окончания нет. Инфинитив 'kommen' остаётся в конце предложения."
 
   - id: cloze-wollen-er
+    outcomes: [modal-satzklammer]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -89,6 +95,7 @@ items:
       ru: "er will — форма er/sie/es у модальных глаголов не имеет -t и совпадает с формой ich: ich will, er will. Формы 'er willt' не существует."
 
   - id: cloze-moechten
+    outcomes: [modal-satzklammer]
     type: cloze
     focus: will-moechte
     instruction:
@@ -103,6 +110,7 @@ items:
       ru: "möchte — вежливое «хочу», именно эта форма используется в заказах и просьбах. 'Ich will einen Kaffee' в кафе звучит грубо."
 
   - id: cloze-duerfen-plural
+    outcomes: [modal-satzklammer]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -117,6 +125,7 @@ items:
       ru: "'Die Kinder' — множественное число (= sie), поэтому нужна правильная форма 'dürfen'. Смена гласной (dürfen → darf) происходит только в единственном числе."
 
   - id: mc-er-kann
+    outcomes: [modal-satzklammer]
     type: mc
     focus: modal-konjugation
     prompt: "Er ___ sehr gut kochen."
@@ -130,6 +139,7 @@ items:
       ru: "er kann — в форме er/sie/es нет окончания -t, она совпадает с ich kann. Формы 'kannt' не существует, а 'könnt' — это форма для ihr (ihr könnt)."
 
   - id: mc-magst
+    outcomes: [modal-satzklammer]
     type: mc
     focus: will-moechte
     instruction:
@@ -146,6 +156,7 @@ items:
       ru: "mögen + существительное = «нравится вообще», и ответ («я пью чай каждый день») говорит именно об общем вкусе. 'Möchtest du Tee?' — это предложение прямо сейчас: «хочешь чаю?»."
 
   - id: order-infinitiv-ende
+    outcomes: [modal-satzklammer]
     type: order
     focus: modal-satzklammer
     instruction:
@@ -161,6 +172,7 @@ items:
       ru: "Модальный глагол 'kann' стоит на втором месте, а инфинитив 'sprechen' — строго в конце. Сказать 'Ich kann Deutsch sprechen gut' нельзя."
 
   - id: order-inversion
+    outcomes: [modal-satzklammer]
     type: order
     focus: modal-satzklammer
     instruction:
@@ -175,6 +187,7 @@ items:
       ru: "'Am Sonntag' занимает первое место, поэтому модальный глагол 'wollen' стоит вторым, а подлежащее 'wir' — третьим; инфинитив 'gehen' закрывает рамку в конце."
 
   - id: match-bedeutungen
+    outcomes: [modal-satzklammer]
     type: match
     instruction:
       en: Match each modal verb with its meaning.
@@ -191,6 +204,7 @@ items:
       ru: "können = мочь, уметь; müssen = быть должным (необходимость); wollen = хотеть; dürfen = «можно» (разрешение); sollen = следует (совет, поручение); mögen = любить, нравиться."
 
   - id: match-duerfen-formen
+    outcomes: [modal-satzklammer]
     type: match
     focus: modal-konjugation
     instruction:
@@ -206,6 +220,7 @@ items:
       ru: "Единственное число: ich darf, du darfst, er darf (смена гласной ü → a, у er нет -t). Множественное: wir dürfen, ihr dürft, sie dürfen — правильные окончания, умлаут возвращается."
 
   - id: uebersetzen-muessen
+    outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
     instruction:
@@ -221,6 +236,7 @@ items:
       ru: "Модальный глагол muss стоит на втором месте, а инфинитив arbeiten уходит в конец. Правильны оба варианта: Ich muss heute arbeiten и Heute muss ich arbeiten — если heute в начале, подлежащее встаёт после глагола."
 
   - id: uebersetzen-helfen-frage
+    outcomes: [modal-satzklammer]
     type: translate
     focus: verben-mit-dativ
     instruction:
@@ -234,6 +250,7 @@ items:
       ru: "Общий вопрос начинается с модального глагола: Kannst du …? Инфинитив helfen уходит в конец, а helfen требует Dativ — mir, а не mich."
 
   - id: uebersetzen-wollen
+    outcomes: [modal-satzklammer]
     type: translate
     focus: modal-konjugation
     instruction:

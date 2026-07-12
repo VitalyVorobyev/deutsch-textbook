@@ -11,6 +11,8 @@ export interface ItemResult {
   /** partial credit for multi-part items (cloze/match/table); totalParts ≥ 1 when present */
   correctParts?: number;
   totalParts?: number;
+  /** open production is useful practice but not automatically verified */
+  evidence?: 'verified' | 'practice';
 }
 
 export interface ItemProps<T> {

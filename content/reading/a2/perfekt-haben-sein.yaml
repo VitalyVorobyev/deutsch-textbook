@@ -22,6 +22,7 @@ text:
     ein Buch gelesen. Es war ein schöner Tag.
 questions:
   - id: frage-frueh-aufgestanden
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     prompt: "Warum sind Anna und Tim schon um sieben Uhr aufgestanden?"
     options:
@@ -36,6 +37,7 @@ questions:
       en: "The text says: „Sie sind schon um sieben Uhr aufgestanden, denn der Zug ist um acht Uhr abgefahren.“ The restaurant comes only at lunchtime, and the weather was fine — the sun was shining."
       ru: "В тексте сказано: „Sie sind schon um sieben Uhr aufgestanden, denn der Zug ist um acht Uhr abgefahren.“ Ресторан появляется только в обед, а погода была отличная — светило солнце."
   - id: frage-mittag
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     prompt: "Was haben Anna und Tim am Mittag gemacht?"
     options:
@@ -50,6 +52,7 @@ questions:
       en: "„Am Mittag haben sie in einem kleinen Restaurant Fisch gegessen und Apfelsaft getrunken.“ The long walk came first, right after they arrived, and they went home only at six o'clock."
       ru: "„Am Mittag haben sie in einem kleinen Restaurant Fisch gegessen und Apfelsaft getrunken.“ Долгая прогулка была раньше, сразу после приезда, а домой они поехали только в шесть часов."
   - id: frage-nachmittag
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     prompt: "Was ist am Nachmittag passiert?"
     options:

@@ -24,6 +24,7 @@ text:
     bitte wieder zur [[Kontrolle::check-up::осмотр, контрольный приём]]!“
 questions:
   - id: frage-warum
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Warum ruft Frau Herzog in der Praxis an?"
     options:
@@ -38,6 +39,7 @@ questions:
       en: "„Frau Herzog hat seit gestern Zahnschmerzen. … Ich möchte bitte einen Termin vereinbaren. Es ist dringend!“ She is making a new appointment (vereinbaren), not moving an old one (verschieben) — and the check-up is only mentioned at the very end."
       ru: "„Frau Herzog hat seit gestern Zahnschmerzen. … Ich möchte bitte einen Termin vereinbaren. Es ist dringend!“ Она записывается на новый приём (vereinbaren), а не переносит старый (verschieben); осмотр упоминается только в самом конце."
   - id: frage-elf-uhr
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Warum passt der Termin um elf Uhr nicht?"
     options:
@@ -52,6 +54,7 @@ questions:
       en: "„Um elf habe ich leider eine wichtige Besprechung.“ The practice actually offers eleven o'clock — that slot is free; it is Frau Herzog who cannot come then."
       ru: "„Um elf habe ich leider eine wichtige Besprechung.“ Приёмная как раз предлагает одиннадцать часов — это время свободно; прийти не может сама фрау Херцог."
   - id: frage-sechs-monate
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Was soll Frau Herzog in sechs Monaten machen?"
     options:

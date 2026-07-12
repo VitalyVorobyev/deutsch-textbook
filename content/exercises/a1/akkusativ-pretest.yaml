@@ -1,6 +1,8 @@
 topic: akkusativ
+role: pretest
 items:
   - id: pre-den-tisch
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     prompt: "Ich kaufe ___ Tisch."
@@ -14,6 +16,7 @@ items:
       ru: "То, что вы покупаете, — прямое дополнение, оно стоит в Akkusativ: мужской род der → den. В отличие от русского, в немецком здесь меняется каждое слово мужского рода, а не только одушевлённые: и den Mann, и den Tisch."
 
   - id: pre-nur-maskulin
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     prompt: "Sie liest ___ Buch."
@@ -27,6 +30,7 @@ items:
       ru: "В Akkusativ меняется только мужской род. Buch — среднего рода (das Buch), поэтому артикль остаётся ein; „einen Buch“ — типичная гиперкоррекция."
 
   - id: pre-es-gibt
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     prompt: "Es gibt hier ___ Bahnhof."

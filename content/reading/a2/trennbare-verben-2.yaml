@@ -21,6 +21,7 @@ text:
     rufe dich am Montag an.“
 questions:
   - id: frage-umsteigen
+    outcomes: [trennbar-erkennen]
     type: mc
     prompt: "Wo steigt Frau Berg um?"
     options:
@@ -35,6 +36,7 @@ questions:
       en: "„In Bonn steigt sie um.“ In Frankfurt she gets on the train (sie steigt ein), and in Köln the train arrives (kommt … an). Note how the prefix goes to the end: umsteigen → sie steigt … um."
       ru: "„In Bonn steigt sie um.“ Во Франкфурте она садится в поезд (steigt ein), а в Кёльн поезд прибывает (kommt … an). Обратите внимание, как приставка уходит в конец: umsteigen → sie steigt … um."
   - id: frage-mitbringen
+    outcomes: [trennbar-erkennen]
     type: mc
     prompt: "Was bringt Frau Berg ihrer Freundin mit?"
     options:
@@ -49,6 +51,7 @@ questions:
       en: "„Ich bringe dir etwas mit — deine Lieblingsschokolade!“ The verb mitbringen splits: bringe … mit. Photos and coffee do not appear in the story."
       ru: "„Ich bringe dir etwas mit — deine Lieblingsschokolade!“ Глагол mitbringen разделяется: bringe … mit. Про фотографии и кофе в тексте ничего нет."
   - id: frage-samstagabend
+    outcomes: [trennbar-erkennen]
     type: mc
     prompt: "Was machen die Freundinnen am Samstagabend?"
     options:

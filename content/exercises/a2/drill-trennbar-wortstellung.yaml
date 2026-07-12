@@ -1,9 +1,11 @@
 topic: trennbare-verben
+role: drill
 title:
   en: Drill — where does the prefix go?
   ru: Тренажёр — куда идёт приставка?
 items:
   - id: mc-einkaufen-v2
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-wortstellung
     instruction:
@@ -19,6 +21,7 @@ items:
       ru: "В главном предложении отделяемая приставка отрывается и уходит в самый конец: Ich kaufe … ein. Целиком на втором месте такой глагол стоять не может."
 
   - id: mc-muss-aufstehen
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-modal
     instruction:
@@ -34,6 +37,7 @@ items:
       ru: "После модального глагола отделяемый глагол стоит целиком в форме инфинитива в конце: muss … aufstehen. Спрягается только модальный глагол."
 
   - id: mc-verstehen
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-untrennbar
     instruction:
@@ -49,6 +53,7 @@ items:
       ru: "ver- — неотделяемая приставка: be-, ver-, er-, ent- никогда не отрываются. verstehen остаётся целым: Ich verstehe …"
 
   - id: cloze-anfangen
+    outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -63,6 +68,7 @@ items:
       ru: "anfangen разделяется: спрягаемая часть fängt стоит на втором месте (со сменой гласной a → ä), приставка an уходит в конец."
 
   - id: mc-fenster-aufmachen
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-modal
     prompt: "Kannst du bitte das Fenster ___?"
@@ -76,6 +82,7 @@ items:
       ru: "Спрягаемый глагол здесь kannst (второе место), поэтому aufmachen стоит целиком в инфинитиве в конце — после модального глагола он не разделяется."
 
   - id: cloze-bezahlen
+    outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-untrennbar
     instruction:
@@ -90,6 +97,7 @@ items:
       ru: "be- — неотделяемая приставка, в конец ничего не уходит: Er bezahlt die Rechnung. Сравните с отделяемым aufmachen: Er macht die Tür auf."
 
   - id: order-aufstehen
+    outcomes: [trennbar-satz]
     type: order
     focus: trennbar-wortstellung
     instruction:
@@ -106,6 +114,7 @@ items:
       ru: "Две части aufstehen образуют рамку: stehe на втором месте, auf в самом конце — всё остальное стоит между ними."
 
   - id: order-einkaufen-modal
+    outcomes: [trennbar-satz]
     type: order
     focus: trennbar-modal
     instruction:
@@ -122,6 +131,7 @@ items:
       ru: "С модальным глаголом рамку образуют модальный глагол и целый инфинитив: müssen на втором месте, einkaufen в конце без разрыва."
 
   - id: mc-fernsehen
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-wortstellung
     prompt: "Er ___ am Abend fern."
@@ -135,6 +145,7 @@ items:
       ru: "Приставка fern уже стоит в конце, поэтому на втором месте — только спрягаемая часть: Er sieht … fern. «Er fernsieht» невозможно."
 
   - id: mc-ausgehen-modal
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-modal
     prompt: "Ich möchte am Samstag ___."
@@ -148,6 +159,7 @@ items:
       ru: "Второе место уже занято möchte, поэтому ausgehen стоит целиком в конце. Глагол разделяется только тогда, когда он сам спрягается."
 
   - id: mc-erklaeren
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-untrennbar
     instruction:
@@ -163,6 +175,7 @@ items:
       ru: "er- — неотделяемая приставка, erklären никогда не разделяется: Die Lehrerin erklärt … В отличие от отделяемых приставок, be-, ver-, er- безударны и «приклеены» к глаголу."
 
   - id: cloze-anrufen-frage
+    outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -177,6 +190,7 @@ items:
       ru: "В вопросе с вопросительным словом спрягаемая часть стоит на втором месте, приставка — в конце: Wann rufst du … an?"
 
   - id: cloze-zug-abfahren
+    outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -191,6 +205,7 @@ items:
       ru: "abfahren разделяется: fährt на втором месте (с умлаутом ä), приставка ab — в самом конце."
 
   - id: cloze-einladen-party
+    outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -205,6 +220,7 @@ items:
       ru: "einladen разделяется: lade на втором месте, ein — в конце: Ich lade dich … ein."
 
   - id: order-aufstehen-frage
+    outcomes: [trennbar-satz]
     type: order
     focus: trennbar-wortstellung
     instruction:
@@ -219,6 +235,7 @@ items:
       ru: "Вопросительное слово — первым, спрягаемая часть — на втором месте, приставка — в конце: Wann stehst du … auf?"
 
   - id: uebersetzen-supermarkt-zu
+    outcomes: [trennbar-satz]
     type: translate
     focus: trennbar-wortstellung
     instruction:
@@ -232,6 +249,7 @@ items:
       ru: "zumachen разделяется: macht на втором месте, zu — в самом конце: Der Supermarkt macht … zu."
 
   - id: uebersetzen-muss-aufstehen
+    outcomes: [trennbar-satz]
     type: translate
     focus: trennbar-modal
     instruction:

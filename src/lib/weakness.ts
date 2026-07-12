@@ -8,6 +8,7 @@
  */
 import type { Attempt } from './store';
 import { attemptScore } from './scoring';
+import { isVerifiedEvidence } from './scoring';
 
 export interface FocusStat {
   focus: string;
@@ -36,7 +37,7 @@ const DEFAULT_WINDOW = 30;
 export function focusStats(attempts: Attempt[], window = DEFAULT_WINDOW): FocusStat[] {
   const byFocus = new Map<string, Attempt[]>();
   for (const a of attempts) {
-    if (!a.focus) continue;
+    if (!a.focus || !isVerifiedEvidence(a)) continue;
     const arr = byFocus.get(a.focus);
     if (arr) arr.push(a);
     else byFocus.set(a.focus, [a]);

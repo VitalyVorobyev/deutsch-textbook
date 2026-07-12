@@ -2,8 +2,12 @@
 import Base from '../layouts/Base.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
 import { getTopicNodes } from '../lib/content';
+import { getCurriculum } from '../lib/curriculum';
 
 const nodes = await getTopicNodes();
+const outcomeModes = Object.fromEntries(
+  getCurriculum().nodes.flatMap((node) => node.outcomes.map((outcome) => [outcome.id, outcome.mode])),
+);
 ---
 
 <Base title="Fortschritt">
@@ -22,6 +26,6 @@ const nodes = await getTopicNodes();
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" nodes={nodes} />
+    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} />
   </div>
 </Base>

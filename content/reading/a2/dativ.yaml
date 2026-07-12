@@ -18,6 +18,7 @@ text:
     Dann fährt Paul mit dem Auto nach Hause.
 questions:
   - id: frage-fahrrad
+    outcomes: [dativ-artikel]
     type: mc
     prompt: "Wie kommt Lena zu Jonas?"
     options:
@@ -32,6 +33,7 @@ questions:
       en: "The text says: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ The car is how Paul gets there, and a bus never appears in the story."
       ru: "В тексте сказано: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ На машине приезжает Пауль, а автобус в тексте вообще не упоминается."
   - id: frage-buecher
+    outcomes: [dativ-artikel]
     type: mc
     prompt: "Wem gehören die Bücher?"
     options:
@@ -46,6 +48,7 @@ questions:
       en: "„Die Bücher gehören seiner Schwester“ — they belong to Jonas's sister. The verb „gehören“ names the owner, and the owner stands in the dative: seiner Schwester."
       ru: "„Die Bücher gehören seiner Schwester“ — книги принадлежат сестре Йонаса. Глагол „gehören“ называет владельца, и владелец стоит в дательном падеже: seiner Schwester."
   - id: frage-abend
+    outcomes: [dativ-artikel]
     type: mc
     prompt: "Was machen die Freunde am Abend?"
     options:

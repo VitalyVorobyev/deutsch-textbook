@@ -194,6 +194,10 @@ const focusTag = z
 
 const itemBase = {
   id: slug,
+  /** stable curriculum outcomes this item provides evidence for */
+  outcomes: z.array(slug).default([]),
+  /** intentional preview of a structure taught later in the spine */
+  preview: z.boolean().default(false),
   /** task instruction shown above the item, in both explanation languages */
   instruction: bilingualSchema.optional(),
   /** shown when the learner answers incorrectly */
@@ -295,6 +299,50 @@ export const listenItemSchema = z.object({
   translation: bilingualSchema.optional(),
 });
 
+/** Open productive writing. It creates practice evidence, never an automatic
+    correctness score. The model stays hidden until the learner submits. */
+export const writeItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('write'),
+  prompt: bilingualSchema,
+  goal: bilingualSchema,
+  requirements: z.array(bilingualSchema).min(1),
+  model_answer: z.string().min(1),
+  model_translation: bilingualSchema.optional(),
+  min_words: z.number().int().min(1).default(8),
+});
+
+const audioTurnSchema = z.object({
+  speaker: z.string().min(1),
+  text: z.string().min(1),
+});
+
+export const audioSourceSchema = z.discriminatedUnion('kind', [
+  z.object({
+    kind: z.literal('tts'),
+    turns: z.array(audioTurnSchema).min(1),
+    rate: z.number().min(0.5).max(1.2).default(0.9),
+  }),
+  z.object({
+    kind: z.literal('asset'),
+    src: z.string().min(1),
+    transcript: z.array(audioTurnSchema).min(1),
+  }),
+]);
+
+/** Listening comprehension rather than dictation. When no audio is available
+    the UI exposes the transcript and explicitly relabels the task as reading. */
+export const audioComprehensionItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('audio-comprehension'),
+  source: audioSourceSchema,
+  question: z.string().min(1),
+  options: z.array(z.string().min(1)).min(2),
+  correct: z.number().int().min(0),
+  translation: bilingualSchema.optional(),
+  max_replays: z.number().int().min(1).max(10).default(3),
+});
+
 export const exerciseItemSchema = z.discriminatedUnion('type', [
   mcItemSchema,
   clozeItemSchema,
@@ -303,12 +351,20 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   tableItemSchema,
   translateItemSchema,
   listenItemSchema,
+  writeItemSchema,
+  audioComprehensionItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
+
+export const EXERCISE_ROLES = ['pretest', 'practice', 'drill', 'checkpoint', 'probe'] as const;
+export const exerciseRoleSchema = z.enum(EXERCISE_ROLES);
+export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
 
 export const exerciseSetSchema = z.object({
   /** back-reference to the owning topic id */
   topic: slug,
+  /** explicit learning role; controls training eligibility and evidence use */
+  role: exerciseRoleSchema.default('practice'),
   title: bilingualSchema.optional(),
   items: z.array(exerciseItemSchema).min(1),
 });
@@ -339,6 +395,9 @@ export type Reading = z.infer<typeof readingSchema>;
 /** A learner-facing CEFR can-do statement ("Ich kann …") with independently
     written EN and RU versions (never translations of each other). */
 export const outcomeSchema = z.object({
+  id: slug,
+  mode: z.enum(['listening', 'reading', 'writing', 'spoken-production', 'spoken-interaction']),
+  domain: z.enum(['personal', 'public', 'educational', 'professional']).optional(),
   de: z.string().min(1),
   en: z.string().min(1),
   ru: z.string().min(1),

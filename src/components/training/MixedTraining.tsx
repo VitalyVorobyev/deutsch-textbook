@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import type { ExerciseItem, Level } from '../../lib/schemas';
+import type { ExerciseItem, ExerciseRole, Level } from '../../lib/schemas';
 import { getAttempts, getCardStates, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { recommendedNext, type TopicNode } from '../../lib/mastery';
-import { eligibleTrainingSets } from '../../lib/training';
+import { eligibleTrainingSets, resumedQueueIsEligible } from '../../lib/training';
 import { weakFocuses } from '../../lib/weakness';
 import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
@@ -20,8 +20,7 @@ export interface TrainingSet {
   /** German title of the owning topic */
   title_de: string;
   level: Level;
-  /** the set referenced by its topic's `pretest` frontmatter — never trained */
-  isPretest: boolean;
+  role: ExerciseRole;
   items: ExerciseItem[];
 }
 
@@ -134,6 +133,7 @@ interface Answered {
   correct: boolean;
   /** attemptScore of the answer — parts-weighted for multi-part items */
   score: number;
+  evidence?: 'verified' | 'practice';
 }
 
 interface TrainingResume {
@@ -212,26 +212,37 @@ export default function MixedTraining({
   const lang = useExplainLang();
 
   const surface = resumeKey ? `training:${resumeKey}` : null;
-  // only the initial mount resumes; an explicit restart builds fresh
-  // (restored against all sets — a queue built before a set turned
-  // ineligible finishes as saved rather than losing today's progress)
+  // Only the initial mount may resume; the eligibility check below decides
+  // whether the saved queue is still safe. An explicit restart always rebuilds.
   const [restored] = useState(() => (surface ? restoreSession(sets, surface) : null));
 
-  const [session, setSession] = useState<SessionItem[] | null>(restored?.session ?? null);
+  // A saved queue is not rendered until its topics are revalidated against
+  // the current profile state; old queues must not bypass eligibility changes.
+  const [session, setSession] = useState<SessionItem[] | null>(null);
   const [suggestion, setSuggestion] = useState<TopicNode | null>(null);
-  const [index, setIndex] = useState(restored?.answered.length ?? 0);
-  const [answered, setAnswered] = useState<Answered[]>(restored?.answered ?? []);
+  const [index, setIndex] = useState(0);
+  const [answered, setAnswered] = useState<Answered[]>([]);
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
 
   useEffect(() => {
-    if (round === 0 && restored) return; // this mount resumed a saved queue
     let cancelled = false;
     void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
       ([attempts, cards, topics]) => {
         if (cancelled) return;
         const ctx = { attempts, cards, topics };
-        const s = buildSession(eligibleTrainingSets(sets, spine, nodes, ctx), count, attempts);
+        const eligible = eligibleTrainingSets(sets, spine, nodes, ctx);
+        if (round === 0 && restored) {
+          if (resumedQueueIsEligible(restored.session, eligible)) {
+            setSession(restored.session);
+            setAnswered(restored.answered);
+            setIndex(restored.answered.length);
+            setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
+            return;
+          }
+          if (surface) clearResume(surface);
+        }
+        const s = buildSession(eligible, count, attempts);
         setSession(s);
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         if (surface && s.length > 0)
@@ -255,7 +266,12 @@ export default function MixedTraining({
     setCurrentDone(true);
     const next = [
       ...answered,
-      { uid: entry.uid, correct: result.correct, score: attemptScore(result) },
+      {
+        uid: entry.uid,
+        correct: result.correct,
+        score: attemptScore(result),
+        evidence: result.evidence,
+      },
     ];
     setAnswered(next);
     if (surface) {
@@ -271,6 +287,8 @@ export default function MixedTraining({
         : {}),
       given: result.given,
       focus: entry.item.focus,
+      evidence: result.evidence,
+      outcomes: entry.item.outcomes,
       ts: Date.now(),
     });
   }
@@ -331,7 +349,8 @@ export default function MixedTraining({
   const finished = index >= session.length;
 
   if (finished) {
-    const score = answered.reduce((s, a) => s + a.score, 0);
+    const verified = answered.filter((a) => a.evidence !== 'practice');
+    const score = verified.reduce((s, a) => s + a.score, 0);
 
     // per-topic breakdown, in first-appearance order
     const byTopic = new Map<
@@ -348,16 +367,18 @@ export default function MixedTraining({
         allCorrect: true,
         total: 0,
       };
-      row.total += 1;
-      row.score += a.score;
-      row.allCorrect &&= a.correct;
+      if (a.evidence !== 'practice') {
+        row.total += 1;
+        row.score += a.score;
+        row.allCorrect &&= a.correct;
+      }
       byTopic.set(entry.topicId, row);
     });
 
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
         <p className="text-center text-3xl font-bold">
-          {formatScore(score, lang)} / {session.length}
+          {formatScore(score, lang)} / {verified.length}
         </p>
         <p className="mt-1 text-center text-sm text-stone-500 dark:text-stone-400">
           {lang === 'ru' ? 'Результат по темам:' : 'Breakdown by topic:'}
@@ -382,7 +403,7 @@ export default function MixedTraining({
                     : 'text-stone-600 dark:text-stone-300'
                 }`}
               >
-                {formatScore(row.score, lang)} / {row.total}
+                {row.total > 0 ? `${formatScore(row.score, lang)} / ${row.total}` : lang === 'ru' ? 'практика' : 'practice'}
               </span>
             </li>
           ))}
@@ -454,6 +475,7 @@ export default function MixedTraining({
           nextLabel={
             index + 1 < session.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
           }
+          storageKey={entry.uid}
         />
       )}
     </div>

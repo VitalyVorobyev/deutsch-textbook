@@ -1,0 +1,27 @@
+topic: menschen-familie
+title_de: "Ein Foto aus Leipzig"
+text:
+  - "Sofia zeigt im Deutschkurs ein Familienfoto. „Das ist [[meine Familie::my family::моя семья]]. Links steht mein Vater Oleg. Er ist [[Ingenieur::engineer::инженер]] und arbeitet in Leipzig. Meine Mutter Marina ist Lehrerin. Sie ist sehr [[freundlich::friendly::дружелюбная]] und hat kurze blonde Haare.“"
+  - "„In der Mitte ist mein [[Bruder::brother::брат]] Anton. Er ist zweiundzwanzig Jahre alt und studiert. Neben Anton steht [[seine Freundin::his girlfriend::его девушка]] Lea. Sie ist klein und hat lange braune Haare. Rechts sitzen [[meine Großeltern::my grandparents::мои бабушка и дедушка]]. Mein Großvater ist ruhig, aber meine Großmutter spricht gern und viel. Wir wohnen nicht zusammen, aber am Sonntag telefonieren wir.“"
+questions:
+  - id: q-parents-work
+    outcomes: [familie-verstehen]
+    type: mc
+    prompt: "Was machen Sofias Eltern beruflich?"
+    options: ["Ihr Vater ist Ingenieur und ihre Mutter ist Lehrerin.", "Beide studieren.", "Ihr Vater ist Koch und ihre Mutter ist Ärztin."]
+    correct: 0
+    explain: { en: "Oleg is an engineer and Marina is a teacher.", ru: "Олег — инженер, Марина — учительница." }
+  - id: q-anton
+    outcomes: [familie-verstehen]
+    type: mc
+    prompt: "Wer ist Anton?"
+    options: ["Sofias Bruder", "Sofias Vater", "Sofias Großvater"]
+    correct: 0
+    explain: { en: "Sofia says: mein Bruder Anton.", ru: "София говорит: mein Bruder Anton." }
+  - id: q-sunday
+    outcomes: [familie-verstehen]
+    type: mc
+    prompt: "Was macht die Familie am Sonntag?"
+    options: ["Sie telefoniert.", "Sie arbeitet zusammen.", "Sie lernt Deutsch."]
+    correct: 0
+    explain: { en: "They do not all live in one city, but they phone on Sunday.", ru: "Они живут в разных городах, но созваниваются по воскресеньям." }

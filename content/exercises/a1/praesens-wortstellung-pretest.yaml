@@ -1,6 +1,8 @@
 topic: praesens-wortstellung
+role: pretest
 items:
   - id: pre-endung
+    outcomes: [praesens-verbzweit]
     type: mc
     focus: verb-endungen
     prompt: "Er ___ in München."
@@ -14,6 +16,7 @@ items:
       ru: "Окончание глагола зависит от лица: ich wohne, du wohnst, er/sie/es wohnt. При „er“ к основе добавляется окончание -t."
 
   - id: pre-verb-zweit
+    outcomes: [praesens-verbzweit]
     type: mc
     focus: verbzweit
     prompt: "Was ist richtig?"
@@ -30,6 +33,7 @@ items:
       ru: "В немецком повествовательном предложении спрягаемый глагол всегда стоит на втором месте. Если первым идёт слово времени, например „morgen“, подлежащее переходит на место сразу после глагола: Morgen kaufe ich Brot."
 
   - id: pre-sein
+    outcomes: [praesens-verbzweit]
     type: mc
     focus: kopula-sein
     prompt: "Welcher Satz ist richtig?"

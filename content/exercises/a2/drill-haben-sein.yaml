@@ -1,9 +1,11 @@
 topic: perfekt-haben-sein
+role: drill
 title:
   en: Drill — haben or sein?
   ru: Тренажёр — haben или sein?
 items:
   - id: mc-gefahren
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Wir ___ im Sommer nach Italien gefahren."
@@ -17,6 +19,7 @@ items:
       ru: "fahren — движение из точки А в точку Б, поэтому вспомогательный глагол — sein: Wir sind nach Italien gefahren."
 
   - id: mc-gearbeitet
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Ich ___ gestern viel gearbeitet."
@@ -30,6 +33,7 @@ items:
       ru: "arbeiten — это занятие, а не движение и не смена состояния, поэтому вспомогательный глагол haben: Ich habe gearbeitet."
 
   - id: mc-geblieben
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Sie ___ am Sonntag zu Hause geblieben."
@@ -43,6 +47,7 @@ items:
       ru: "bleiben — ловушка: никакого движения нет, но всё равно sein. Запомните тройку bleiben, sein, passieren → sein."
 
   - id: mc-passiert
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Was ___ hier passiert?"
@@ -56,6 +61,7 @@ items:
       ru: "passieren всегда идёт с sein: Was ist passiert? Это глагол из тройки-исключения bleiben, sein, passieren."
 
   - id: mc-gelesen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Er ___ das Buch schon gelesen."
@@ -69,6 +75,7 @@ items:
       ru: "У lesen есть дополнение (das Buch) — глаголы с дополнением всегда образуют Perfekt с haben: Er hat das Buch gelesen."
 
   - id: mc-gespielt
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "Die Kinder ___ im Park Fußball gespielt."
@@ -82,6 +89,7 @@ items:
       ru: "spielen — это занятие, вспомогательный глагол haben. Находиться в парке — не движение из точки А в точку Б."
 
   - id: cloze-aufgestanden
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -96,6 +104,7 @@ items:
       ru: "aufstehen — смена состояния (лежал → встал), поэтому sein: ich bin aufgestanden."
 
   - id: cloze-ferngesehen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -110,6 +119,7 @@ items:
       ru: "fernsehen — это занятие, вспомогательный глагол haben: wir haben ferngesehen."
 
   - id: cloze-angekommen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -124,6 +134,7 @@ items:
       ru: "ankommen — конечная точка движения из А в Б, вспомогательный глагол sein: Der Zug ist angekommen."
 
   - id: cloze-angerufen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -138,6 +149,7 @@ items:
       ru: "У anrufen есть дополнение (meine Oma) — глаголы с дополнением образуют Perfekt с haben: Ich habe sie angerufen."
 
   - id: mc-geschlafen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: mc
     focus: haben-sein
     prompt: "___ du gut geschlafen?"
@@ -151,6 +163,7 @@ items:
       ru: "schlafen — не движение и не смена состояния, поэтому haben: Hast du gut geschlafen?"
 
   - id: uebersetzen-geblieben
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
     instruction:
@@ -166,6 +179,7 @@ items:
       ru: "bleiben идёт с sein, хотя никакого движения нет: wir sind geblieben. А после Gestern в начале предложения вспомогательный глагол остаётся на втором месте: Gestern sind wir …"
 
   - id: cloze-kino-gegangen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -180,6 +194,7 @@ items:
       ru: "gehen — движение из точки А в точку Б, вспомогательный глагол sein: wir sind gegangen."
 
   - id: cloze-wochenende-gemacht
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -194,6 +209,7 @@ items:
       ru: "У machen есть дополнение (что?) — глаголы с дополнением образуют Perfekt с haben: Was hast du gemacht?"
 
   - id: cloze-wetter-geblieben
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: cloze
     focus: haben-sein
     instruction:
@@ -208,6 +224,7 @@ items:
       ru: "bleiben — классическая ловушка: движения нет, но всё равно sein. Тройка-исключение: bleiben, sein, passieren."
 
   - id: uebersetzen-geflogen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
     instruction:
@@ -221,6 +238,7 @@ items:
       ru: "fliegen — движение из точки А в точку Б, вспомогательный глагол sein: Sie ist geflogen. Страны без артикля — с nach: nach Spanien."
 
   - id: uebersetzen-paket-bekommen
+    outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
     instruction:

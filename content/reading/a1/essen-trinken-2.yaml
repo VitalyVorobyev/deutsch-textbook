@@ -21,6 +21,7 @@ text:
     [[Trinkgeld::tip::чаевые]]. Dann geht die Familie nach Hause.
 questions:
   - id: frage-mutter
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Was isst die Mutter?"
     options:
@@ -35,6 +36,7 @@ questions:
       en: "The text says: „die Mutter isst einen Salat und eine Suppe.“ Fish with rice is the father's order, and meat with potatoes is what Lisa and Paul eat."
       ru: "В тексте сказано: „die Mutter isst einen Salat und eine Suppe.“ Рыбу с рисом заказывает папа, а мясо с картошкой едят Лиза и Пауль."
   - id: frage-kinder
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Was trinken die Kinder?"
     options:
@@ -49,6 +51,7 @@ questions:
       en: "„Der Vater trinkt ein Glas Wein, die Mutter Wasser, und die Kinder trinken Saft.“ — each person gets a different drink, and the children get juice."
       ru: "„Der Vater trinkt ein Glas Wein, die Mutter Wasser, und die Kinder trinken Saft.“ — у каждого свой напиток, и детям достаётся сок."
   - id: frage-bezahlen
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Wer bezahlt am Ende?"
     options:

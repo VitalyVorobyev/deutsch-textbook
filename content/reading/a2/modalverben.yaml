@@ -23,6 +23,7 @@ text:
     braunen Hund. Er heißt Bruno.
 questions:
   - id: frage-vermieter-fragen
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Warum muss der Vater zuerst den Vermieter fragen?"
     options:
@@ -37,6 +38,7 @@ questions:
       en: "The family lives in a rented flat, and there you cannot simply keep a dog: „dort darf man nicht einfach einen Hund halten“. That is why the father must ask the landlord first. There is no dog barking yet, and the shelter visit happens on Saturday without any problem."
       ru: "Семья живёт в съёмной квартире, а там нельзя просто так завести собаку: „dort darf man nicht einfach einen Hund halten“. Поэтому отец сначала должен спросить арендодателя. Собаки у семьи пока нет, так что лаять некому, а в приют они спокойно едут в субботу."
   - id: frage-vermieter-antwort
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Was sagt der Vermieter?"
     options:
@@ -51,6 +53,7 @@ questions:
       en: "The landlord says: „Ein kleiner Hund ist kein Problem. Aber er darf im Treppenhaus nicht bellen.“ So a small dog is allowed — he does not forbid it, and he says nothing about staying in the flat."
       ru: "Арендодатель говорит: „Ein kleiner Hund ist kein Problem. Aber er darf im Treppenhaus nicht bellen.“ То есть маленькая собака разрешена — он её не запрещает и ничего не говорит о том, что собака должна всегда сидеть в квартире."
   - id: frage-jeden-tag
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Was muss Emma jeden Tag machen?"
     options:

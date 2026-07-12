@@ -1,9 +1,11 @@
 topic: alltag-tagesablauf
+role: practice
 title:
   en: Practice — everyday life and daily routine
   ru: Практика — повседневная жизнь и распорядок дня
 items:
   - id: cloze-aufstehen
+    outcomes: [alltag-beschreiben]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -18,6 +20,7 @@ items:
       ru: 'aufstehen — глагол с отделяемой приставкой: спрягаемая часть "stehe" стоит на втором месте, а приставка "auf" уходит в самый конец предложения.'
 
   - id: order-dann
+    outcomes: [alltag-beschreiben]
     type: order
     focus: verbzweit
     instruction:
@@ -32,6 +35,7 @@ items:
       ru: '"Dann" занимает первую позицию, поэтому глагол "frühstücke" стоит вторым, а подлежащее "ich" — третьим. Это инверсия, которую вызывают слова-связки.'
 
   - id: mc-fernsehen
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: trennbar-wortstellung
     prompt: "Am Abend ___ ich ein bisschen fern."
@@ -45,6 +49,7 @@ items:
       ru: 'fernsehen разделяется: спрягаемая форма для "ich" — "sehe", а "fern" уже стоит в конце. Слитная форма "fernsehe" не может занимать второе место, а "sieht" — форма er/sie/es.'
 
   - id: match-tageszeiten
+    outcomes: [alltag-beschreiben]
     type: match
     instruction:
       en: Match each time of day with the typical activity.
@@ -59,6 +64,7 @@ items:
       ru: 'С частями суток используется "am": am Morgen, am Mittag, am Abend. Только с ночью — "in": in der Nacht.'
 
   - id: table-trennbare
+    outcomes: [alltag-beschreiben]
     type: table
     focus: trennbar-wortstellung
     title: "Trennbare Verben im Präsens"
@@ -80,6 +86,7 @@ items:
       ru: 'В презенсе приставка отделяется: er kauft ein, er sieht fern (чередование e → ie), er schläft ein (чередование a → ä).'
 
   - id: cloze-um
+    outcomes: [alltag-beschreiben]
     type: cloze
     focus: um-am-zeit
     instruction:
@@ -94,6 +101,7 @@ items:
       ru: 'С точным временем всегда "um": um sieben Uhr. Русское «в семь часов» подталкивает к "in", но "in sieben Uhr" — ошибка.'
 
   - id: mc-meistens
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: verbzweit
     prompt: "Welcher Satz ist richtig?"
@@ -110,6 +118,7 @@ items:
       ru: '"Meistens" может начинать предложение, но тогда сразу за ним идёт глагол: Meistens dusche ich… Внутри предложения оно стоит после глагола (Ich dusche meistens…), но никогда между подлежащим и глаголом.'
 
   - id: cloze-feierabend
+    outcomes: [alltag-beschreiben]
     type: cloze
     focus: haben-wendungen
     instruction:
@@ -124,6 +133,7 @@ items:
       ru: '"Feierabend haben" = закончить рабочий день. Feierabend — существительное, поэтому пишется с заглавной буквы.'
 
   - id: order-danach
+    outcomes: [alltag-beschreiben]
     type: order
     focus: verbzweit
     instruction:
@@ -138,6 +148,7 @@ items:
       ru: 'Два правила сразу: "Danach" занимает первую позицию, поэтому глагол "räume" остаётся на втором месте, а отделяемая приставка "auf" уходит в самый конец.'
 
   - id: mc-perfekt-aufstehen
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: haben-sein
     prompt: "Heute ___ ich schon um sechs Uhr aufgestanden."
@@ -151,6 +162,7 @@ items:
       ru: 'aufstehen обозначает смену положения/состояния и образует перфект с sein: ich bin aufgestanden. "habe" — неправильный вспомогательный глагол, а "ist" не согласуется с "ich".'
 
   - id: match-praefixe
+    outcomes: [alltag-beschreiben]
     type: match
     focus: trennbar-wortstellung
     instruction:
@@ -166,6 +178,7 @@ items:
       ru: 'einkaufen, fernsehen, sich anziehen, aufstehen — в презенсе отделяемая приставка стоит в конце предложения.'
 
   - id: cloze-zuerst
+    outcomes: [alltag-beschreiben]
     type: cloze
     instruction:
       en: Fill in the sequencing words that match the translation.
@@ -179,6 +192,7 @@ items:
       ru: 'zuerst → dann/danach выстраивают действия в рассказ. Обратите внимание на порядок слов после них: глагол на втором месте, подлежащее — на третьем (dusche ich, ziehe ich).'
 
   - id: mc-wochenende
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: um-am-zeit
     prompt: "___ Wochenende schlafe ich bis zehn Uhr."

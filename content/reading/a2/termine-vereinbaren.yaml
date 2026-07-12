@@ -26,6 +26,7 @@ text:
     телефону)]]!“
 questions:
   - id: frage-warum
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Warum kann Herr Orlow am Donnerstag nicht zum Arzt gehen?"
     options:
@@ -40,6 +41,7 @@ questions:
       en: "The heating in his flat is broken, so the technician is coming on Thursday morning — exactly when the appointment was. The text says nothing about illness or a closed practice."
       ru: "У него дома не работает отопление, поэтому в четверг утром придёт техник — как раз тогда, когда назначен приём. Про болезнь или закрытую практику в тексте ничего нет."
   - id: frage-mittwoch
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Was macht Herr Orlow am Mittwoch?"
     options:
@@ -54,6 +56,7 @@ questions:
       en: "He calls the practice and moves the appointment (verschieben) — he does not cancel it (absagen). Moving keeps the appointment, cancelling removes it."
       ru: "Он звонит в приёмную и переносит приём (verschieben), а не отменяет его (absagen). При переносе запись сохраняется, при отмене — исчезает."
   - id: frage-neuer-termin
+    outcomes: [termine-zeit-verstehen]
     type: mc
     prompt: "Wann ist der neue Termin?"
     options:
