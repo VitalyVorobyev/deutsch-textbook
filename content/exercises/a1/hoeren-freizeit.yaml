@@ -1,0 +1,48 @@
+topic: freizeit-koennen
+role: practice
+title: { en: "Listening — free time and invitations", ru: "Аудирование — свободное время и приглашения" }
+items:
+  - id: hoeren-leider-nicht
+    outcomes: [freizeit-gespraech-verstehen]
+    type: listen
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Ich kann am Samstag leider nicht kommen."
+    translation: { en: "Unfortunately I cannot come on Saturday.", ru: "К сожалению, я не могу прийти в субботу." }
+    explain: { en: "You can hear the bracket: kann in position 2, the infinitive kommen at the very end. Samstag is a noun — capitalized; leider stays lowercase.", ru: "Рамка слышна: kann на втором месте, инфинитив kommen в самом конце. Samstag — существительное, с большой буквы; leider — со строчной." }
+  - id: hoeren-was-machst
+    outcomes: [freizeit-gespraech-verstehen]
+    type: listen
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Was machst du gern in der Freizeit?"
+    translation: { en: "What do you like doing in your free time?", ru: "Что ты любишь делать в свободное время?" }
+    explain: { en: "In the W-question the verb follows the question word (Was machst du …), and gern comes right after the verb and its subject. Freizeit is a noun — capitalized.", ru: "В W-вопросе глагол стоит сразу после вопросительного слова (Was machst du …), а gern идёт после глагола и подлежащего. Freizeit — существительное, с большой буквы." }
+  - id: hoeren-kino-einladung
+    outcomes: [freizeit-gespraech-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Lena", text: "Hallo Tom! Gehen wir heute Abend ins Kino? Der Film ist super." }
+        - { speaker: "Tom", text: "Ja, gern! Ich mag Filme. Um wie viel Uhr?" }
+        - { speaker: "Lena", text: "Um acht Uhr. Bis dann!" }
+    question: "Was machen Lena und Tom heute Abend?"
+    options: ["Sie gehen ins Kino.", "Sie gehen in den Park.", "Sie hören Musik."]
+    correct: 0
+    translation: { en: "What are Lena and Tom doing this evening?", ru: "Что Лена и Том делают сегодня вечером?" }
+    explain: { en: "Lena asks: Gehen wir heute Abend ins Kino? — and Tom accepts: Ja, gern! Ich mag Filme. So they are going to the cinema, at eight.", ru: "Лена спрашивает: Gehen wir heute Abend ins Kino? — и Том соглашается: Ja, gern! Ich mag Filme. Значит, они идут в кино, в восемь часов." }
+  - id: hoeren-park-absage
+    outcomes: [freizeit-gespraech-verstehen, freizeit-verabredung]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Anna", text: "Hallo Paul! Wir spielen am Samstag im Park Fußball. Kommst du?" }
+        - { speaker: "Paul", text: "Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich." }
+        - { speaker: "Anna", text: "Super, dann bis Sonntag!" }
+    question: "Warum kann Paul am Samstag nicht kommen?"
+    options: ["Er hat keine Zeit.", "Er mag Fußball nicht.", "Der Park ist weit."]
+    correct: 0
+    translation: { en: "Why can Paul not come on Saturday?", ru: "Почему Пауль не может прийти в субботу?" }
+    explain: { en: "Paul declines politely with a reason: Leider kann ich am Samstag nicht. Ich habe keine Zeit — and offers Sunday instead. Nothing is said against football or the park.", ru: "Пауль вежливо отказывается и называет причину: Leider kann ich am Samstag nicht. Ich habe keine Zeit — и предлагает воскресенье. Про футбол и парк он ничего плохого не говорит." }
