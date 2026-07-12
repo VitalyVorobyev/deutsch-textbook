@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Rating, gradeCard, rankDueCards, splitQueue, type CardDef, type Grade } from '../../lib/srs';
-import { eligibleFreshCards, prioritizeFreshCards } from '../../lib/decks';
-import type { TopicNode } from '../../lib/mastery';
+import { Rating, gradeCard, type CardDef, type Grade } from '../../lib/srs';
+import { planReview, type ReviewGate } from '../../lib/decks';
 import {
   getAttempts,
   getCardStates,
@@ -10,7 +9,6 @@ import {
   setCardState,
   type CardStates,
 } from '../../lib/store';
-import { shuffle } from '../../lib/shuffle';
 import { getCardInputMode, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import {
   articledForm,
@@ -29,7 +27,10 @@ interface Props {
   newLimit?: number;
   /** when set, never-graded cards are limited to eligible decks (due cards
       always pass) — the per-deck page omits it, studying a deck is an opt-in */
-  gate?: { spine: string[]; nodes: TopicNode[]; deckLevels: Record<string, string> };
+  gate?: ReviewGate;
+  /** a pre-planned queue (e.g. from SessionFlow's planReview) — when given,
+      this session skips its own planning and reviews exactly these cards */
+  queue?: CardDef[];
   /** called once, exactly when the review queue runs empty */
   onFinished?: () => void;
 }
@@ -60,7 +61,13 @@ function verdictHint(v: AnswerVerdict, canonical: string, given: string): string
   return null;
 }
 
-export default function FlashcardSession({ cards, newLimit = 15, gate, onFinished }: Props) {
+export default function FlashcardSession({
+  cards,
+  newLimit = 15,
+  gate,
+  queue: presetQueue,
+  onFinished,
+}: Props) {
   const lang = useExplainLang();
   const [queue, setQueue] = useState<CardDef[] | null>(null);
   const [states, setStates] = useState<CardStates>({});
@@ -85,6 +92,17 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
 
   useEffect(() => {
     let cancelled = false;
+    if (presetQueue) {
+      // Pre-planned queue: states still load for grading, planning is skipped.
+      void getCardStates().then((s) => {
+        if (cancelled) return;
+        setStates(s);
+        setQueue([...presetQueue]);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }
     void Promise.all([
       getCardStates(),
       gate ? getAttempts() : [],
@@ -92,24 +110,13 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
       gate ? getLearningGoal() : undefined,
     ]).then(([s, attempts, topics, goal]) => {
       if (cancelled) return;
-      const { due, fresh } = splitQueue(cards, s);
-      const pool = gate
-        ? eligibleFreshCards(fresh, gate.spine, gate.nodes, gate.deckLevels, {
-            attempts,
-            cards: s,
-            topics,
-          })
-        : fresh;
       setStates(s);
-      const orderedFresh = gate
-        ? prioritizeFreshCards(pool, gate.spine, gate.nodes, gate.deckLevels, { attempts, cards: s, topics }, goal)
-        : shuffle(pool);
-      setQueue([...rankDueCards(due, s), ...orderedFresh.slice(0, newLimit)]);
+      setQueue(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }).queue);
     });
     return () => {
       cancelled = true;
     };
-  }, [cards, newLimit, gate]);
+  }, [cards, newLimit, gate, presetQueue]);
 
   const card = queue?.[0];
   // 'listen' turns recognition (de-x) cards into dictation; production (x-de)

@@ -1,0 +1,154 @@
+topic: akkusativ
+role: practice
+title:
+  en: Practice — accusative prepositions and pronouns
+  ru: Практика — предлоги с Akkusativ и местоимения
+items:
+  - id: cloze-geschenk-vater
+    outcomes: [akkusativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct form of "mein".
+      ru: Вставьте правильную форму притяжательного артикля "mein".
+    text: "Ich suche ein Geschenk für {{meinen}} Vater."
+    translation:
+      en: I am looking for a present for my father.
+      ru: Я ищу подарок для отца.
+    explain:
+      en: "für always takes the accusative. In English 'for my father' nothing changes — German makes the case visible on the masculine: der Vater, so mein → meinen."
+      ru: "Русское «для» требует родительного падежа («для отца»), но für всегда требует Akkusativ: der Vater — мужского рода, поэтому mein → meinen."
+
+  - id: cloze-ohne-bruder
+    outcomes: [akkusativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct form of "sein".
+      ru: Вставьте правильную форму притяжательного артикля "sein".
+    text: "Er kommt heute ohne {{seinen}} Bruder."
+    translation:
+      en: He is coming without his brother today.
+      ru: Он придёт сегодня без брата.
+    explain:
+      en: "English 'without his brother' shows no change, but ohne always governs the accusative: der Bruder is masculine, so sein → seinen."
+      ru: "Русское «без» требует родительного падежа («без брата»), а ohne всегда требует Akkusativ: der Bruder — мужского рода, поэтому sein → seinen."
+
+  - id: mc-um-die-ecke
+    outcomes: [akkusativ-praepositionen, akkusativ-maskulin]
+    type: mc
+    focus: akkusativ-praepositionen
+    prompt: "Der Supermarkt ist gleich um ___ Ecke."
+    options: ["die", "den", "der"]
+    correct: 0
+    translation:
+      en: The supermarket is just around the corner.
+      ru: Супермаркет прямо за углом.
+    explain:
+      en: "This um is spatial — 'around the corner' — and it takes the accusative. But die Ecke is feminine, and feminine forms never change: die stays die. Don't over-apply -en; only the masculine becomes den."
+      ru: "Здесь um — пространственный предлог («за угол, за углом») и требует Akkusativ. Но die Ecke — женского рода, а женский род не меняется: die остаётся die. Не переносите -en на всё подряд — den бывает только у мужского рода."
+
+  - id: cloze-kuchen-party
+    outcomes: [akkusativ-artikel]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction:
+      en: Fill the gap with the correct form of "ein".
+      ru: Вставьте правильную форму артикля "ein".
+    text: "Wir kaufen {{einen}} Kuchen für die Party."
+    translation:
+      en: We are buying a cake for the party.
+      ru: Мы покупаем торт для вечеринки.
+    explain:
+      en: "The cake is the direct object of kaufen, and der Kuchen is masculine: ein → einen. Note für die Party — für also takes the accusative, but feminine die shows no change."
+      ru: "Торт — прямое дополнение при kaufen, а der Kuchen — мужского рода: ein → einen. Обратите внимание на für die Party: после für тоже стоит Akkusativ, но женский род die не меняется."
+
+  - id: mc-bus-ihn
+    outcomes: [akkusativ-objekte]
+    type: mc
+    focus: akkusativ-pronomen
+    prompt: "Wo ist der Bus? Ich sehe ___ nicht."
+    options: ["er", "ihn", "es"]
+    correct: 1
+    translation:
+      en: Where is the bus? I don't see it.
+      ru: Где автобус? Я его не вижу.
+    explain:
+      en: "English says 'it' for a bus, but German pronouns follow grammatical gender: der Bus → er, and as a direct object er → ihn — the same change as der → den."
+      ru: "der Bus — мужского рода, поэтому и местоимение мужское: er, а в винительном падеже — ihn (так же, как der → den). Русский здесь помогает: «я его не вижу» — не берите es по образцу английского it."
+
+  - id: mc-schwester-sie
+    outcomes: [akkusativ-objekte, akkusativ-maskulin]
+    type: mc
+    focus: akkusativ-pronomen
+    prompt: "Das ist meine Schwester. Wir besuchen ___ heute."
+    options: ["ihr", "ihn", "sie"]
+    correct: 2
+    translation:
+      en: That is my sister. We are visiting her today.
+      ru: Это моя сестра. Мы навестим её сегодня.
+    explain:
+      en: "Feminine sie stays sie as a direct object — only the masculine changes (er → ihn). ihr is the possessive 'her' or the plural 'you', not an accusative object form."
+      ru: "Женский род не меняется: sie остаётся sie — меняется только мужской род (er → ihn). ihr — это притяжательное «её» или местоимение «вы» (к нескольким людям), а не форма винительного падежа."
+
+  - id: order-ohne-kaffee
+    outcomes: [akkusativ-praepositionen]
+    type: order
+    focus: verbzweit
+    instruction:
+      en: Arrange the words into a correct sentence. Start with the capitalized word.
+      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+    words: ["Ohne", "meinen", "Kaffee", "arbeite", "ich", "nicht", "gern."]
+    translation:
+      en: Without my coffee I don't like working.
+      ru: Без кофе я не люблю работать.
+    explain:
+      en: "'Ohne meinen Kaffee' fills position 1, so the verb arbeite comes second and ich third — the same V2 rule as with Heute. And ohne takes the accusative: mein → meinen."
+      ru: "'Ohne meinen Kaffee' занимает первую позицию, поэтому глагол arbeite стоит вторым, а ich — третьим: то же правило V2, что и с Heute. И ohne требует Akkusativ: mein → meinen."
+
+  - id: uebersetzen-geschenk-bruder
+    outcomes: [akkusativ-praepositionen]
+    type: translate
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The gift is for my brother."
+    prompt_ru: "Подарок для моего брата."
+    answer: "Das Geschenk ist für meinen Bruder."
+    explain:
+      en: "für governs the accusative: der Bruder is masculine, so mein → meinen. English 'for my brother' changes nothing — German marks the case on the masculine."
+      ru: "После für всегда Akkusativ: der Bruder — мужского рода, поэтому mein → meinen. По-русски «для» требует родительного падежа, в немецком für — винительного."
+
+  - id: uebersetzen-blumen-dich
+    outcomes: [akkusativ-praepositionen]
+    type: translate
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The flowers are for you."
+    prompt_ru: "Цветы для тебя."
+    answer: "Die Blumen sind für dich."
+    accept:
+      - "Die Blumen sind für euch."
+      - "Die Blumen sind für Sie."
+    explain:
+      en: "für + accusative: du → dich. The pronoun changes just like the article does — für dich, für mich, für ihn."
+      ru: "für + Akkusativ: du → dich. Русское «для тебя» — родительный падеж, а в немецком für всегда требует винительный: für dich."
+
+  - id: uebersetzen-ohne-schwester
+    outcomes: [akkusativ-praepositionen, akkusativ-maskulin]
+    type: translate
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "He is coming without his sister today."
+    prompt_ru: "Сегодня он придёт без своей сестры."
+    answer: "Er kommt heute ohne seine Schwester."
+    accept:
+      - "Heute kommt er ohne seine Schwester."
+    explain:
+      en: "ohne takes the accusative — but die Schwester is feminine, and feminine forms do not change: seine stays seine (not seinen!). The verb kommt stays in position 2 whether you start with Er or with Heute."
+      ru: "ohne требует Akkusativ, но die Schwester — женского рода, а женский род не меняется: seine остаётся seine (не seinen!). «Без» в русском требует родительного падежа, ohne — винительного. Глагол kommt стоит на втором месте при любом порядке слов."

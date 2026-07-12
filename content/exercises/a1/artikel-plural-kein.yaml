@@ -1,0 +1,164 @@
+topic: artikel-genus
+role: practice
+title:
+  en: Practice — plural patterns and kein/nicht
+  ru: Практика — множественное число и отрицание kein/nicht
+items:
+  - id: tabelle-plural-muster
+    outcomes: [artikel-plural-verwenden]
+    type: table
+    focus: plural-artikel
+    title: "Wie heißt der Plural?"
+    instruction:
+      en: Fill in the plural form together with its article.
+      ru: Впишите форму множественного числа вместе с артиклем.
+    columns: [Plural]
+    rows:
+      - label: der Tisch
+        cells: [{ answer: die Tische, given: true }]
+      - label: die Frau
+        cells: [{ answer: die Frauen }]
+      - label: das Kind
+        cells: [{ answer: die Kinder }]
+      - label: das Auto
+        cells: [{ answer: die Autos }]
+      - label: der Apfel
+        cells: [{ answer: die Äpfel }]
+    explain:
+      en: "The five main plural patterns: -e (die Tische), -en (die Frauen), -er (die Kinder), -s (die Autos) and umlaut (der Apfel → die Äpfel). Whatever the pattern, the plural article is always die."
+      ru: "Пять основных моделей множественного числа: -e (die Tische), -en (die Frauen), -er (die Kinder), -s (die Autos) и умлаут (der Apfel → die Äpfel). Какой бы ни была модель, артикль во множественном числе всегда die."
+
+  - id: cloze-plural-buecher
+    outcomes: [artikel-plural-verwenden]
+    type: cloze
+    focus: plural-artikel
+    instruction:
+      en: Insert the correct article.
+      ru: Вставьте правильный артикль.
+    text: "{{Die|die}} Bücher sind neu."
+    translation:
+      en: The books are new.
+      ru: Книги новые.
+    explain:
+      en: "In the plural the article is always die, whatever the gender of the singular: das Buch → die Bücher."
+      ru: "Во множественном числе артикль всегда die, независимо от рода в единственном: das Buch → die Bücher. Три рода различаются только в единственном числе."
+
+  - id: cloze-plural-zeitungen
+    outcomes: [artikel-plural-verwenden, artikel-genus-erkennen]
+    type: cloze
+    focus: plural-artikel
+    instruction:
+      en: "Insert the plural of die Zeitung."
+      ru: "Вставьте форму множественного числа от die Zeitung."
+    text: "Die {{Zeitungen}} sind alt."
+    translation:
+      en: The newspapers are old.
+      ru: Газеты старые.
+    explain:
+      en: "Nouns in -ung are feminine, and almost all feminine nouns build the plural with -en: die Zeitung → die Zeitungen, die Wohnung → die Wohnungen."
+      ru: "Слова на -ung женского рода, а почти все существительные женского рода образуют множественное число на -en: die Zeitung → die Zeitungen, die Wohnung → die Wohnungen."
+
+  - id: mc-kein-oder-nicht
+    outcomes: [artikel-kein-verwenden]
+    type: mc
+    focus: kein-nicht
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение правильное?
+    prompt: "Was ist richtig?"
+    options:
+      - "Ich habe nicht Zeit."
+      - "Ich habe keine Zeit."
+      - "Ich habe nicht eine Zeit."
+    correct: 1
+    explain:
+      en: "A noun is negated with kein-, which replaces the article: die Zeit → keine Zeit. English 'I do not have time' tempts you into nicht, but German folds the negation into the article."
+      ru: "Существительное отрицается через kein-, который встаёт на место артикля: die Zeit → keine Zeit. По-русски всё отрицается частицей «не», поэтому рука тянется к nicht — но 'nicht Zeit' и 'nicht eine Zeit' в немецком неправильны."
+
+  - id: mc-nicht-wohnen
+    outcomes: [artikel-kein-verwenden]
+    type: mc
+    focus: kein-nicht
+    prompt: "Er wohnt ___ in Berlin."
+    options: ["kein", "keine", "nicht"]
+    correct: 2
+    translation:
+      en: He does not live in Berlin.
+      ru: Он не живёт в Берлине.
+    explain:
+      en: "Here you negate the verb wohnen, not a noun — so the word is nicht. kein- exists only as an article in front of a noun."
+      ru: "Здесь отрицается глагол wohnen, а не существительное, поэтому нужно nicht. kein- бывает только артиклем перед существительным — как русское «не» он работать не может."
+
+  - id: mc-nicht-neu
+    outcomes: [artikel-kein-verwenden]
+    type: mc
+    focus: kein-nicht
+    prompt: "Das Buch ist ___ neu."
+    options: ["kein", "nicht", "keine"]
+    correct: 1
+    translation:
+      en: The book is not new.
+      ru: Книга не новая.
+    explain:
+      en: "An adjective (neu) is negated with nicht. kein- can only stand where an article stands — directly before a noun: kein Buch, but nicht neu."
+      ru: "Прилагательное (neu) отрицается через nicht. kein- может стоять только там, где стоит артикль, — прямо перед существительным: kein Buch, но nicht neu."
+
+  - id: cloze-keine-zeitung
+    outcomes: [artikel-kein-verwenden]
+    type: cloze
+    focus: kein-nicht
+    instruction:
+      en: Negate the noun with the correct form.
+      ru: Вставьте правильную отрицательную форму.
+    text: "Das ist {{keine}} Zeitung, das ist ein Buch."
+    translation:
+      en: That is not a newspaper, that is a book.
+      ru: Это не газета, это книга.
+    explain:
+      en: "kein takes the same ending as ein: die Zeitung → eine Zeitung → keine Zeitung. The feminine adds -e; masculine and neuter stay bare (kein Buch)."
+      ru: "kein получает то же окончание, что и ein: die Zeitung → eine Zeitung → keine Zeitung. Женский род добавляет -e, мужской и средний остаются без окончания (kein Buch). Русское «это не газета» с одним «не» здесь не подсказка — форму диктует артикль."
+
+  - id: cloze-keine-fragen
+    outcomes: [artikel-kein-verwenden, artikel-plural-verwenden]
+    type: cloze
+    focus: kein-nicht
+    instruction:
+      en: Negate the noun with the correct form.
+      ru: Вставьте правильную отрицательную форму.
+    text: "Wir haben {{keine}} Fragen."
+    translation:
+      en: We have no questions.
+      ru: У нас нет вопросов.
+    explain:
+      en: "ein has no plural, but its negation does exist: in the plural the form is always keine — keine Fragen, keine Bücher, keine Kinder."
+      ru: "У ein нет множественного числа, а у отрицания оно есть: во множественном числе форма всегда keine — keine Fragen, keine Bücher, keine Kinder. По-русски «нет вопросов» — одно слово «нет», а в немецком отрицание живёт в артикле."
+
+  - id: uebersetzen-kein-problem
+    outcomes: [artikel-kein-verwenden]
+    type: translate
+    focus: kein-nicht
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "That is not a problem."
+    prompt_ru: "Это не проблема."
+    answer: "Das ist kein Problem."
+    accept:
+      - "Es ist kein Problem."
+    explain:
+      en: "English says 'not a problem' in two words — German folds the negation into the article: kein Problem, never 'nicht ein Problem'. das Problem is neuter, so kein stays bare."
+      ru: "По-русски «это не проблема» — отрицает частица «не», но в немецком отрицание уходит в артикль: kein Problem, и никогда 'nicht ein Problem'. das Problem — среднего рода, поэтому kein без окончания."
+
+  - id: uebersetzen-keine-kinder
+    outcomes: [artikel-kein-verwenden, artikel-plural-verwenden]
+    type: translate
+    focus: kein-nicht
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "They have no children."
+    prompt_ru: "У них нет детей."
+    answer: "Sie haben keine Kinder."
+    explain:
+      en: "In the plural the negative article is always keine: keine Kinder. 'Sie haben nicht Kinder' is wrong — the negation belongs to the noun, so it must be kein-."
+      ru: "Во множественном числе отрицательный артикль всегда keine: keine Kinder. Русская конструкция «у них нет…» превращается в обычное sie haben + keine Kinder — отрицание относится к существительному, поэтому только kein-."
