@@ -1,133 +1,26 @@
 import { useEffect, useState } from 'react';
-import type { ExerciseItem, ExerciseRole, Level } from '../../lib/schemas';
-import { getAttempts, getCardStates, getTopicsState, logAttempt, type Attempt } from '../../lib/store';
+import type { Level } from '../../lib/schemas';
+import { getAttempts, getCardStates, getTopicsState, logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { recommendedNext, type TopicNode } from '../../lib/mastery';
-import { eligibleTrainingSets, resumedQueueIsEligible } from '../../lib/training';
-import { weakFocuses } from '../../lib/weakness';
+import {
+  buildSession,
+  eligibleTrainingSets,
+  resumedQueueIsEligible,
+  type SessionItem,
+  type TrainingSet,
+} from '../../lib/training';
 import { withBase } from '../../lib/url';
-import { shuffle } from '../../lib/shuffle';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 
-/** One exercise set flattened for training, with its owning topic's metadata. */
-export interface TrainingSet {
-  /** exercise set id, e.g. "a2/perfekt-haben-sein" — attempts are logged under this */
-  setId: string;
-  topicId: string;
-  /** German title of the owning topic */
-  title_de: string;
-  level: Level;
-  role: ExerciseRole;
-  items: ExerciseItem[];
-}
-
-interface SessionItem {
-  /** `${setId}::${itemId}` — matches how attempts are keyed for priority lookup */
-  uid: string;
-  setId: string;
-  topicId: string;
-  title_de: string;
-  level: Level;
-  item: ExerciseItem;
-}
+// re-exported so the pages and SessionFlow keep importing it from here
+export type { TrainingSet } from '../../lib/training';
 
 const SESSION_SIZE = 15;
-
-/**
- * Builds an interleaved session from all items across all sets.
- *
- * Priority bands (filled in order until `count`):
- *   1. items whose most recent attempt was wrong,
- *   2. items whose `focus` tag is currently weak (per weakFocuses over the
- *      whole attempt log) and that are not already in band 1,
- *   3. items never attempted,
- *   4. the rest, least-recently-attempted first.
- * Bands 1–3 are shuffled; band 4 keeps its recency ordering.
- * Afterwards adjacency is repaired so no two consecutive items share a set
- * (best effort — impossible if one set dominates the selection).
- */
-function buildSession(sets: TrainingSet[], count: number, attempts: Attempt[]): SessionItem[] {
-  // most recent attempt per item
-  const lastAttempt = new Map<string, { correct: boolean; ts: number }>();
-  for (const a of attempts) {
-    const key = `${a.setId}::${a.itemId}`;
-    const prev = lastAttempt.get(key);
-    if (!prev || a.ts >= prev.ts) lastAttempt.set(key, { correct: a.correct, ts: a.ts });
-  }
-
-  const weak = new Set(weakFocuses(attempts).map((w) => w.focus));
-
-  const pool: SessionItem[] = sets.flatMap((s) =>
-    s.items.map((item) => ({
-      uid: `${s.setId}::${item.id}`,
-      setId: s.setId,
-      topicId: s.topicId,
-      title_de: s.title_de,
-      level: s.level,
-      item,
-    })),
-  );
-
-  const lastWrong: SessionItem[] = [];
-  const weakFocus: SessionItem[] = [];
-  const untried: SessionItem[] = [];
-  const seen: { entry: SessionItem; ts: number }[] = [];
-  for (const p of pool) {
-    const a = lastAttempt.get(p.uid);
-    if (a && !a.correct) lastWrong.push(p);
-    else if (p.item.focus && weak.has(p.item.focus)) weakFocus.push(p);
-    else if (!a) untried.push(p);
-    else seen.push({ entry: p, ts: a.ts });
-  }
-
-  const ordered = [
-    ...shuffle(lastWrong),
-    ...shuffle(weakFocus),
-    ...shuffle(untried),
-    ...seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry),
-  ].slice(0, count);
-
-  return repairAdjacency(ordered);
-}
-
-/**
- * Swaps items until no two consecutive entries come from the same set
- * (or no swap improves things anymore). Each accepted swap strictly
- * reduces the number of adjacent same-set pairs, so this terminates.
- */
-function repairAdjacency(items: SessionItem[]): SessionItem[] {
-  const out = [...items];
-  const conflicts = (arr: readonly SessionItem[]): number => {
-    let n = 0;
-    for (let i = 1; i < arr.length; i++) if (arr[i]!.setId === arr[i - 1]!.setId) n++;
-    return n;
-  };
-
-  let current = conflicts(out);
-  let improved = true;
-  while (current > 0 && improved) {
-    improved = false;
-    outer: for (let i = 1; i < out.length; i++) {
-      if (out[i]!.setId !== out[i - 1]!.setId) continue;
-      for (let j = 0; j < out.length; j++) {
-        if (j === i) continue;
-        [out[i], out[j]] = [out[j]!, out[i]!];
-        const c = conflicts(out);
-        if (c < current) {
-          current = c;
-          improved = true;
-          break outer;
-        }
-        [out[i], out[j]] = [out[j]!, out[i]!]; // revert
-      }
-    }
-  }
-  return out;
-}
 
 interface Answered {
   uid: string;

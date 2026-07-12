@@ -67,11 +67,29 @@ export default function ReadingText({ readingId, reading }: Props) {
 
   const correctCount = answered.filter(Boolean).length;
 
+  const extensive = reading.kind === 'extensive';
+
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
-      <h3 lang="de" className="mb-4 text-xl font-semibold">
+      <h3 lang="de" className="mb-1 text-xl font-semibold">
         {reading.title_de}
       </h3>
+
+      {/*
+        An extensive reader is told what it is, because otherwise a learner treats every
+        German text on this site the same way — parsing each sentence, tapping every gloss,
+        bracing for the questions. That is the intensive reading habit, and it is exactly
+        what stops a longer text from ever being read at volume. Saying "read it once,
+        keep going, you are meant not to know everything" is the intervention.
+      */}
+      {extensive && (
+        <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
+          {lang === 'ru'
+            ? 'Длинный текст для чтения ради удовольствия. Прочитайте его один раз, не останавливаясь. Незнакомые слова — это нормально: не открывайте подсказки, пока смысл понятен.'
+            : 'A longer text, meant to be read for pleasure. Read it straight through once. Not knowing every word is fine — leave the glosses closed while the meaning still carries.'}
+        </p>
+      )}
+      {!extensive && <div className="mb-4" />}
 
       <div lang="de" className="flex flex-col gap-4 leading-relaxed">
         {paragraphs.map((segments, pi) => (
@@ -109,10 +127,12 @@ export default function ReadingText({ readingId, reading }: Props) {
         ))}
       </div>
 
+      {questions.length === 0 ? null : (
       <div className="mt-6 border-t border-stone-200 pt-4 dark:border-stone-700">
         <div className="mb-4 flex items-center justify-between">
           <p lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-            Fragen zum Text
+            {/* one gist question, not an interrogation of every sentence */}
+            {extensive ? 'Worum geht es?' : 'Fragen zum Text'}
           </p>
           <div className="flex items-center gap-1" aria-label="progress">
             {questions.map((q, i) => (
@@ -155,6 +175,7 @@ export default function ReadingText({ readingId, reading }: Props) {
           )
         )}
       </div>
+      )}
     </div>
   );
 }

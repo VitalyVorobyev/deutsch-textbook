@@ -82,9 +82,25 @@ Section order (H2 headings, in German):
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
 - Every exercise item that clearly drills one confusion gets a `focus` tag (kebab-case ASCII, validated against `/^[a-z0-9]+(-[a-z0-9]+)*$/`) from the canonical table below. Leave genuinely mixed or pure-comprehension items (dialogue matching, lexical MC) untagged. Attempts carry the tag into progress snapshots; weakness detection and training prioritization aggregate per tag.
 
+### Item mix (validator-enforced, per topic)
+
+Recognition items are cheap to author and cheap to answer, so a catalog drifts toward them on its own. The A1 pilot learner scored **93% on `mc`, 94% on `match` and 45/45 on `order`** against **54% on `translate`** — the constrained formats had stopped carrying information, while the one format that discriminates was 13% of the catalog. `bun run validate` therefore enforces, over the union of a topic's `role: practice` sets:
+
+| Rule | Why |
+| --- | --- |
+| **≥ 2 `translate` items** | Free production of a whole sentence is the only format here that reliably separates learners who can build German from learners who can recognize it. |
+| **`mc` ≤ ⅓ of the topic's practice items** | Recognition cannot carry a topic. |
+| **`mc` + `match` + `order` ≤ 45%** | Above that, the learner mostly picks from what is already on screen and rarely has to produce anything. |
+
+Checked per **topic**, not per set, so a set may still specialize — a Hören set is all `listen`, and should be.
+
+`order` gives the learner every token and asks only for the sequence. It is scaffolded first-encounter practice for a word-order rule, not a test of one, and it saturates fast. Keep it to a couple per set, and never let it stand in for a `translate` of the same rule.
+
+**Adding items to an existing topic is not free.** `pathDone` treats a topic as finished when its `primaryPractice` set's items have all been attempted, so appending an item to that set silently un-finishes the topic for anyone who had completed it (mastered topics are safe — they pass `pathDone` by mastery). When adding practice to a topic that already ships, append it to a **non-primary** set, or add a new `role: practice` set **after** the existing ones in the topic's `exercises` list — `primaryPractice` is the *first* practice set, so it stays put.
+
 ### Focus tags (the confusion taxonomy)
 
-Use existing tags whenever possible; add a new one only for a genuinely new confusion, and add it to this table in the same change.
+Use existing tags whenever possible; add a new one only for a genuinely new confusion, and add it to this table in the same change. The table is an **allowlist**: `bun run validate` rejects a focus tag that is not also registered in `focusIntroducedBy` (`scripts/validate.ts`) with the topic that introduces it, so a typo or an undeclared confusion cannot slip through unchecked.
 
 | Tag | Confusion it names |
 | --- | --- |

@@ -1,0 +1,48 @@
+topic: wohnen
+role: practice
+title:
+  en: "Production — describe your home yourself"
+  ru: "Продукция — опишите жильё сами"
+
+items:
+  - id: uebersetzen-wohnung-gross
+    outcomes: [wohnen-beschreiben]
+    type: translate
+    focus: kopula-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The apartment is big and bright."
+    prompt_ru: "Квартира большая и светлая."
+    answer: "Die Wohnung ist groß und hell."
+    key_tokens: ["ist"]
+    explain:
+      en: "die Wohnung (the -ung ending is always feminine), and the linking verb is compulsory: die Wohnung ist groß."
+      ru: "die Wohnung (окончание -ung всегда женского рода), и глагол-связка обязателен: die Wohnung ist groß — по-русски «квартира большая» обходится без «есть», по-немецки нет."
+
+  - id: uebersetzen-es-gibt-kueche
+    outcomes: [wohnen-beschreiben, wohnen-lage-sagen]
+    type: translate
+    focus: akkusativ-artikel
+    instruction:
+      en: Translate into German. Use "es gibt".
+      ru: Переведите на немецкий. Используйте «es gibt».
+    prompt_en: "There is a garden and a balcony."
+    prompt_ru: "Здесь есть сад и балкон."
+    answer: "Es gibt einen Garten und einen Balkon."
+    key_tokens: ["einen"]
+    explain:
+      en: "es gibt always takes an accusative object. Both der Garten and der Balkon are masculine, so both articles become einen."
+      ru: "После es gibt всегда стоит винительный падеж. И der Garten, и der Balkon — мужского рода, поэтому оба артикля становятся einen."
+
+  - id: cloze-wohnung-zimmer
+    outcomes: [wohnen-lage-sagen, wohnen-beschreiben]
+    type: cloze
+    focus: genus
+    instruction:
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+    text: "{{Die}} Küche ist klein. {{Das}} Bad ist neu. {{Der}} Balkon ist groß."
+    explain:
+      en: "Three rooms, three genders — they must simply be learned with the noun: die Küche, das Bad, der Balkon."
+      ru: "Три комнаты — три рода. Их нужно заучивать вместе с существительным: die Küche, das Bad, der Balkon."

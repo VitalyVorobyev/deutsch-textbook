@@ -68,10 +68,13 @@ measured rather than argued.
 
 Two further observations:
 
-- **`mc` is 305 of 671 attempts (45% of everything the learner did) at 93% accuracy**, and
-  `mc`+`match`+`order` together are ~58% of all attempts at 93–100%. Roughly half the practice
-  budget is spent on formats that no longer discriminate. `order` (45/45) yields no information at
-  all.
+- **The catalog leans on formats that no longer discriminate.** Counting only trainable
+  (`practice`/`drill`) items — the raw attempt mix is not a fair measure here, because pretests and
+  reading questions are `mc`-only *by design* and inflate it — the pre-rebalance catalog was 44%
+  `mc`/`match`/`order` and only 13% `translate`. `order` was 10% of the catalog and scored 45/45.
+  The one format that separates learners who can build German from learners who can recognize it
+  was the scarcest. Addressed in P3-4: `translate` is now 17% of the catalog, selection 40%, and
+  the bounds are enforced per topic by `bun run validate` so A2 cannot regress them.
 - **149 cards and 305 reviews produced one lapse.** FSRS has effectively never observed a failure,
   so every stability estimate is untested. The first 7-day intervals fall due 2026-07-17; that is
   the first honest retention signal the project will have.

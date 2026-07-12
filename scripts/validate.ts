@@ -30,6 +30,9 @@ const CONTENT = join(ROOT, 'content');
 
 const errors: string[] = [];
 const warnings: string[] = [];
+
+/** Share of a topic's practice items that may be mc/match/order (see the item-mix check). */
+const MAX_SELECTION_PERCENT = 45;
 const fail = (file: string, msg: string) => errors.push(`${file}: ${msg}`);
 const warn = (file: string, msg: string) => warnings.push(`${file}: ${msg}`);
 
@@ -221,6 +224,42 @@ for (const [id, { file, data }] of topics) {
   // completed, so the Lernpfad would stop on it forever.
   if (!data.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
     fail(file, 'topic owns no role: practice exercise set — the Lernpfad could never advance past it');
+
+  // Item mix (see "Item mix" in CLAUDE.md).
+  //
+  // Recognition items are cheap to author and cheap to answer, so a catalog drifts toward
+  // them on its own. The pilot learner scored 93% on `mc`, 94% on `match` and 45/45 on
+  // `order`, against 54% on `translate` — the constrained formats had stopped telling us
+  // anything, while the one that discriminates was 13% of the catalog. These bounds keep a
+  // topic's practice honest, and they are checked per topic rather than per set so that a
+  // set may still specialize (a Hören set is all `listen`, and should be).
+  const practiceItems = data.exercises
+    .filter((ex) => exerciseSets.get(ex)?.data.role === 'practice')
+    .flatMap((ex) => exerciseSets.get(ex)!.data.items);
+  if (practiceItems.length > 0) {
+    const count = (t: string) => practiceItems.filter((i) => i.type === t).length;
+    const selection = count('mc') + count('match') + count('order');
+
+    if (count('translate') < 2)
+      fail(
+        file,
+        `topic's practice has ${count('translate')} translate item(s); at least 2 are required — ` +
+          'free production of a whole sentence is the only format here that reliably discriminates',
+      );
+    if (count('mc') * 3 > practiceItems.length)
+      fail(
+        file,
+        `${count('mc')} of ${practiceItems.length} practice items are mc (over one third) — ` +
+          'recognition cannot carry a topic',
+      );
+    if (selection * 100 > practiceItems.length * MAX_SELECTION_PERCENT)
+      fail(
+        file,
+        `${selection} of ${practiceItems.length} practice items are mc/match/order ` +
+          `(${Math.round((100 * selection) / practiceItems.length)}%, cap ${MAX_SELECTION_PERCENT}%) — ` +
+          'the learner picks from what is already on screen and never has to produce it',
+      );
+  }
   for (const r of data.reading) {
     if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }
@@ -369,6 +408,7 @@ for (const [readingId, { file, data }] of readings) {
   }
 
   let glossCount = 0;
+  let wordCount = 0;
   data.text.forEach((para, i) => {
     const { segments, errors: glossErrors } = parseGlosses(para);
     for (const e of glossErrors) fail(`${file} → paragraph ${i + 1}`, e);
@@ -377,9 +417,41 @@ for (const [readingId, { file, data }] of readings) {
         fail(`${file} → paragraph ${i + 1}`, `Cyrillic in en gloss field: "${s.gloss.en}"`);
     }
     glossCount += segments.filter((s) => s.kind === 'gloss').length;
+    // the German the learner actually reads: gloss markers flattened to their German half
+    const plain = segments
+      .map((s) => (s.kind === 'gloss' ? s.gloss.de : s.text))
+      .join('')
+      .trim();
+    wordCount += plain ? plain.split(/\s+/).length : 0;
   });
   if (glossCount === 0)
     warn(file, 'reading has no [[gloss::…::…]] markers — add a few for comprehensible input');
+
+  // The two reading kinds do different jobs, and the bounds are what keep them apart.
+  // An "extensive" reader that is quizzed line by line, or glossed every other phrase, is
+  // just a long intensive text — and the volume input it exists to provide never happens.
+  if (data.kind === 'extensive') {
+    if (wordCount < 250 || wordCount > 400)
+      fail(file, `extensive reader is ${wordCount} words; the band is 250–400`);
+    if (data.questions.length > 2)
+      fail(
+        file,
+        `extensive reader has ${data.questions.length} questions; at most 2 (gist only) — ` +
+          'accounting for every sentence turns reading back into a test',
+      );
+    // roughly one gloss per 40 words: enough to unblock, sparse enough to keep reading
+    const maxGlosses = Math.ceil(wordCount / 40);
+    if (glossCount > maxGlosses)
+      fail(
+        file,
+        `extensive reader has ${glossCount} glosses for ${wordCount} words (max ~${maxGlosses}) — ` +
+          'a gloss every few phrases interrupts the reading it is meant to support',
+      );
+  } else {
+    if (data.questions.length < 2)
+      fail(file, `intensive reading has ${data.questions.length} questions; 2–4 are required`);
+    if (wordCount > 160) warn(file, `intensive reading is ${wordCount} words — keep these concise`);
+  }
 
   const qIds = new Set<string>();
   for (const q of data.questions) {
@@ -613,12 +685,28 @@ for (const [setId, { file, data }] of exerciseSets) {
         'perfekt-satzklammer': 'perfekt-haben-sein',
         'um-am-zeit': 'alltag-zeit',
         'du-sie': 'termine-vereinbaren',
+        // was escaping the spine check entirely while the table was a lookup, not an allowlist
+        'haben-wendungen': 'essen-trinken',
       };
       for (const { file, data } of exerciseSets.values()) {
         const ownerAt = spinePos.get(data.topic);
         for (const item of data.items) {
-          const intro = item.focus ? focusIntroducedBy[item.focus] : undefined;
-          const introAt = intro ? spinePos.get(intro) : undefined;
+          if (!item.focus) continue;
+          // An allowlist, not a lookup. A tag missing from the table used to be silently
+          // exempt from the spine check — which is exactly backwards, since a tag nobody
+          // registered is the one most likely to be a typo or an undeclared new confusion.
+          // (`haben-wendungen` had been escaping this way.) The table is also the canonical
+          // focus-tag list in CLAUDE.md, so the two cannot drift apart unnoticed.
+          const intro = focusIntroducedBy[item.focus];
+          if (!intro) {
+            fail(
+              `${file} → item "${item.id}"`,
+              `focus "${item.focus}" is not in the focus-tag table — add it to CLAUDE.md and to ` +
+                'focusIntroducedBy in scripts/validate.ts, naming the topic that introduces it',
+            );
+            continue;
+          }
+          const introAt = spinePos.get(intro);
           if (!item.preview && ownerAt !== undefined && introAt !== undefined && introAt > ownerAt)
             fail(
               `${file} → item "${item.id}"`,

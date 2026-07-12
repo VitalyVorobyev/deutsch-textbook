@@ -65,11 +65,22 @@ authoring contract for A2.
 Mission grouping and reviewed multi-voice audio were **deferred out of this milestone** — neither is
 supported by the usage data, and both cost more than they would measurably teach. See P5-4 and P5-1.
 
-**Exit criteria:** the weak-focus signal is trustworthy (a replay of the newest snapshot changes it,
-and the change survives review); due parallel probes run after a real interval and clear a stated
-numeric bar — **≥80% per A1 outcome, with free-production items ≥70%** — so that the gate is able to
-fail; progress shows actual mode coverage without treating unverified production as mastery; the
-full repository gate passes.
+**Status (2026-07-12): every engineering item is done.** The scorer is fixed, probes are running,
+the item mix is enforced, the extensive reader has shipped, and mixed sessions reserve a quarter of
+themselves for broad retrieval. What Phase 3 now waits on is *elapsed time*, not work.
+
+**Exit criteria:**
+
+1. The weak-focus signal is trustworthy — ✅ replaying the newest snapshot moves it, and the change
+   survived review (`trennbar-modal` was a phantom; `kein-nicht` and `dativ-artikel` are real).
+2. Due parallel probes run after a real interval and clear a stated numeric bar: **≥ 80% per A1
+   outcome, with free-production items ≥ 70%.** ⏳ The 21-day cohort completes **2026-08-02**. This
+   is the one criterion that can fail, and it is the gate on A2.
+3. Progress shows actual mode coverage without treating unverified production as mastery — ✅.
+4. The full repository gate passes — ✅.
+
+A2 authoring does not begin before (2) reports. If A1 does not clear the bar, the lesson pattern
+about to be scaled tenfold is the thing to fix, and authoring faster would only multiply the defect.
 
 ## Next milestone — Phase 4: complete A2 and retention
 

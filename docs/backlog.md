@@ -11,12 +11,16 @@ Phases 0–2 are done: the learning system, the Atlas, and a complete A1 (v0.2.0
 
 ## Now — Phase 3: A1 learning-loop hardening
 
-**Sequencing note.** P3-0 comes first and blocks P3-1. P3-1 is the only item with a *calendar* cost
-— a 21-day probe cannot report before 21 days — so the instinct is to ship it immediately. But
-probes read the same scorer as everything else, and until P3-0 landed that scorer was writing wrong
-`correct` flags and wrong `focus` tags (see finding 0 in the [audit](a1-learning-audit.md)). A
-retention cohort measured with a broken instrument is a cohort that has to be re-run. Fix the
-instrument, then start the clock.
+**Every engineering item in Phase 3 is done.** What remains is not work but *elapsed time*: the
+probes shipped on 2026-07-12, and the 21-day cohort cannot report before **2026-08-02**. That gate
+(P3-6) is what Phase 4 waits on — not a task anyone can pull forward.
+
+**Sequencing note, kept because it was the hard call.** P3-0 blocked P3-1. P3-1 was the only item
+with a *calendar* cost, so the instinct was to ship it immediately. But probes read the same scorer
+as everything else, and until P3-0 landed that scorer was writing wrong `correct` flags and wrong
+`focus` tags (see finding 0 in the [audit](a1-learning-audit.md)). A retention cohort measured with
+a broken instrument is a cohort that has to be re-run. Fixing the instrument first cost two days of
+clock and bought data worth trusting.
 
 ### P3-0 · Fix free-production scoring and error attribution — `done` (M)
 
@@ -61,13 +65,24 @@ Two things the implementation had to get right, both found by running it against
   (`MAX_PROBES_PER_SESSION = 3`); ✅ Fortschritt reports delayed results apart from practice
   accuracy, at the interval that *actually* elapsed rather than the scheduled one.
 
-### P3-1b · Reserve a broad-retrieval share in mixed sessions — `todo` (S)
+### P3-1b · Reserve a broad-retrieval share in mixed sessions — `done` (S)
 
-The remaining half of the original P3-1: a bounded, stable share of each mixed session drawn from
-older material rather than the current topic, so recency cannot monopolize practice.
+`BROAD_RETRIEVAL_SHARE = 0.25` in `src/lib/training.ts`. A quarter of every mixed session is
+reserved for items the learner answered *correctly*, longest ago.
 
-- Depends on: P3-1.
-- Accept: the share is bounded and stable; weakness targeting cannot crowd it out; tests cover it.
+The three priority bands — answered wrong, weak focus, never seen — could previously fill a session
+on their own, and they always can: there is nearly always something wrong or unseen to serve. So a
+learner with any backlog would never meet an older topic again — and an old topic answered correctly
+weeks ago is exactly the material whose retention has decayed most. Recency and weakness are the
+loudest signals, not the most informative ones, so they no longer get the whole session. The
+reservation is elastic in both directions: short on old material, the priority bands take the slack;
+short on priority items, broad retrieval fills the session.
+
+Queue building moved out of `MixedTraining.tsx` into `training.ts` (`buildSession`) so it is pure
+and testable.
+
+- Accept: ✅ the share is bounded and stable; ✅ weakness targeting cannot crowd it out; ✅ 7 tests
+  cover the reservation, its elasticity in both directions, and interleaving.
 
 ### P3-2 · Add mode-valid evidence — `done` (M)
 
@@ -88,54 +103,79 @@ attempt. No cloud recognition and no automatic mastery.
   local and can be deleted; unsupported browsers get an honest speak-and-self-check fallback;
   writing/speaking attempts never enter verified accuracy.
 
-### P3-4 · Rebalance the item mix — `todo` (M)
+### P3-4 · Rebalance the item mix — `done` (M)
 
-A1 is 77 `mc` of 232 items, and in *attempts* `mc` is 45% of everything the learner did — at 93%
-accuracy. `mc` + `match` + `order` together are ~58% of all attempts and score 93–100%, while
-`translate`, the format that actually discriminates (54%), is 25 items in all of A1. `order` is
-45/45 and yields no information at all.
+The trainable catalog was 44% `mc`/`match`/`order` and only 13% `translate` — the one format that
+reliably separates learners who can build German from learners who can recognize it. The pilot
+learner scored 93% on `mc`, 94% on `match` and 45/45 on `order`, against 54% on `translate`: the
+constrained formats had stopped carrying information.
 
-The audit noted that "tightly constrained manipulation still dominates" without drawing the
-consequence. The consequence is that **the authoring template must change before A2 exists**, or A2
-inherits a recognition-heavy diet at ten times the volume. Set a target item-mix ratio in the
-`CLAUDE.md` authoring checklist, rebalance the weakest A1 sets, and decide whether `order` earns its
-place as an item type.
+(The audit's first draft put this at "58% of attempts", which was too strong. Pretests and reading
+questions are `mc`-only *by design*, and counting them indicted the practice catalog for something
+it was not doing. The catalog figures above exclude them.)
 
-- Accept: the A1 catalog's production share rises materially; the checklist states the target so new
-  units cannot regress it; no persisted item ids are renamed.
+Now enforced per topic by `bun run validate`, over the union of its `role: practice` sets: **≥ 2
+`translate` items**, **`mc` ≤ ⅓**, **`mc`+`match`+`order` ≤ 45%**. Checked per topic rather than per
+set, so a Hören set may still be all `listen`. Nine of sixteen topics failed the bar; 30 production
+items were authored to clear it. `translate` is now 17% of the catalog and selection 40%.
 
-### P3-5 · Pilot sustained input — `todo` (M)
+`order` keeps its place but not its share: it hands the learner every token and asks only for the
+sequence, which makes it scaffolding for a first encounter with a word-order rule, not a test of one.
 
-Author one recurring-character late-A1 reader of 250–400 words with very high known-word coverage
-and sparse glosses, experienced for meaning rather than quizzed line by line. `readingSchema` caps
-`questions` at four and every current reading is ~100 words, so this needs a relaxed or separate
-schema plus a `content.config.ts` entry and validator rules.
+**Placement mattered more than authoring.** `pathDone` treats a topic as finished once its
+`primaryPractice` items have all been attempted, and most of the learner's topics are `practiced`
+rather than `mastered` — so appending an item to a primary set would have silently un-finished the
+topic and reopened the Lernpfad. New items went to non-primary sets, to mastered topics, or into new
+practice sets appended *after* the existing ones (`primaryPractice` is the *first* practice set).
+Verified: `pathDone` is unchanged for all sixteen topics.
 
-Reviewed multi-voice audio is **split out and deferred** (see P5-1): there is no evidence TTS
+- Accept: ✅ production share rises materially (translate 48 → 68 items); ✅ the bar is enforced, not
+  merely documented, so new units cannot regress it; ✅ no persisted item ids renamed; ✅ no topic
+  un-finished.
+
+### P3-5 · Pilot sustained input — `done` (M)
+
+`content/reading/a1/lena-1-der-erste-tag.yaml` — 262 words, a recurring character (Lena, newly
+arrived in Bremen), three glosses, one gist question. Readings now declare `kind:
+intensive | extensive`, and the two are held apart by the validator, because the difference is what
+the text is *for*, not how long it is: an extensive reader is 250–400 words, at most 2 questions,
+and roughly one gloss per 40 words. A "long reader" that is quizzed line by line and glossed every
+other phrase is just a long intensive text, and the volume input it exists to provide never happens.
+
+The UI says so too. Left unlabelled, a learner treats every German text on the site the same way —
+parsing each sentence, tapping every gloss, bracing for the questions. That habit is exactly what
+stops a longer text from being read at volume, so the reader opens by telling the learner to read it
+straight through and leave the glosses closed while the meaning still carries.
+
+Reviewed multi-voice audio was **split out and deferred** (see P5-1): there is no evidence TTS
 acoustics are the limiter — `listen` is at 76% and `audio-comprehension` is 8/8 on TTS — and P5-1
 already gates audio work on "audio quality, rather than content coverage, is the limiting factor."
 That condition is not met.
 
-- Accept: unknown-word sampling meets the late-A1 ceiling; the reader is not a quiz; it builds in
-  web and Tauri outputs.
+- Accept: ✅ every structure at or below late A1; ✅ the reader is not a quiz; ✅ bounds are enforced
+  rather than asked for; ✅ builds in web and Tauri outputs.
 
-### P3-6 · Validate the hardened A1 loop — `todo` (S engineering + a 21-day gate)
+### P3-6 · Validate the hardened A1 loop — `blocked on 2026-08-02` (a calendar gate, not a task)
 
-Not an engineering task of size (M): the delayed half runs on wall-clock. Split it.
+The engineering half is **done** and shipped with P3-1: the probe report on Fortschritt, reporting
+delayed results apart from practice accuracy and at the interval that actually elapsed.
 
-- **Now, with P3-1:** the probe report and mode-coverage surface — the tooling that will read the
-  cohort.
-- **~21 days after P3-1 ships:** compare immediate performance with parallel probes at 2–3, 7 and
-  21 days. Report delayed retention, novel-context transfer, focus-error reduction (now that the
-  focus tags are trustworthy — P3-0), mode distribution and workload.
+The other half runs on wall-clock and cannot be pulled forward. Probes armed on 2026-07-12; the
+21-day cohort completes **2026-08-02**. Then, and only then: compare immediate performance against
+the parallel probes at 2, 7 and 21 days, and report delayed retention, novel-context transfer,
+focus-error reduction (trustworthy now that P3-0 fixed the tags), mode distribution and workload.
 
-Phase 3's exit criteria must also become **falsifiable**. "Due parallel probes run after a real
-interval" is a system check, not a learning check, and no numeric bar exists anywhere in the docs, so
-nothing can currently fail. State one — e.g. **≥80% on delayed parallel probes per A1 outcome, with
-free-production items ≥70%** — so the A2 gate can actually block.
+**The exit bar, so that it can fail.** Phase 3's criteria used to be unfalsifiable — "due parallel
+probes run after a real interval" is a system check, not a learning check, and no number appeared
+anywhere in the docs. The bar is now:
 
-- Accept: every A1 mode has real practice evidence; delayed and novel-transfer evidence are
-  reported separately from engagement; findings update the audit before A2 authoring begins.
+> **≥ 80% correct on delayed parallel probes per A1 outcome, with free-production items ≥ 70%.**
+
+If A1 does not clear it, the answer is not to author A2 faster — it is that the A1 loop does not yet
+produce retention, and the lesson pattern about to be scaled ten times over is the thing to fix.
+
+- Accept: every A1 mode has real practice evidence; delayed and novel-transfer evidence are reported
+  separately from engagement; the findings update the audit **before** A2 authoring begins.
 
 ## Next — Phase 4: A2 completion and retention
 

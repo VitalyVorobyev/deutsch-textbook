@@ -158,3 +158,74 @@ items:
     explain:
       en: "Question word first, conjugated verb second, subject third: Wo wohnt sie? German has no helper like 'does' — the main verb itself takes position 2."
       ru: "Русский порядок «Где она живёт?» подталкивает к «Wo sie wohnt?» — но в немецком глагол обязан стоять сразу после вопросительного слова: Wo wohnt sie?"
+
+  - id: uebersetzen-arbeitet-nicht
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Today my brother is not working."
+    prompt_ru: "Сегодня мой брат не работает."
+    answer: "Heute arbeitet mein Bruder nicht."
+    key_tokens: ["nicht"]
+    accept:
+      - "Mein Bruder arbeitet heute nicht."
+    explain:
+      en: "nicht negates the verb, so it goes to the end — after the subject and the time phrase. Putting it before the verb (Mein Bruder nicht arbeitet) is the commonest slip."
+      ru: "nicht отрицает глагол и потому уходит в конец — после подлежащего и обстоятельства времени. Русское «не работает» подталкивает поставить nicht перед глаголом: ❌ Mein Bruder nicht arbeitet."
+
+  - id: uebersetzen-woher-kommst
+    outcomes: [praesens-fragen]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обратитесь на du.
+    prompt_en: "Where do you come from?"
+    prompt_ru: "Откуда ты?"
+    answer: "Woher kommst du?"
+    key_tokens: ["kommst"]
+    explain:
+      en: "The W-word takes position 1 and the conjugated verb position 2 — the subject follows it. German has no auxiliary 'do': the main verb does the work itself."
+      ru: "Вопросительное слово стоит на первом месте, спрягаемый глагол — на втором, подлежащее идёт после него. Вспомогательного «do», как в английском, нет — работает сам смысловой глагол."
+
+  - id: uebersetzen-trinkst-du-kaffee
+    outcomes: [praesens-fragen]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обратитесь на du.
+    prompt_en: "Do you drink coffee?"
+    prompt_ru: "Ты пьёшь кофе?"
+    answer: "Trinkst du Kaffee?"
+    key_tokens: ["Trinkst"]
+    explain:
+      en: "A yes/no question simply starts with the conjugated verb: Trinkst du …? Nothing is added in front of it."
+      ru: "Вопрос без вопросительного слова начинается прямо со спрягаемого глагола: Trinkst du …? Никакой частицы «ли» и никакого вспомогательного слова не нужно."
+
+  - id: cloze-fragen-w-woerter
+    outcomes: [praesens-fragen]
+    type: cloze
+    focus: verbzweit
+    instruction:
+      en: Fill in the question word and the verb.
+      ru: Вставьте вопросительное слово и глагол.
+    text: "{{Wo}} wohnst du? — {{Wie}} heißt deine Schwester? — {{Was}} machst du am Montag?"
+    explain:
+      en: "wo asks for a place, wie for a name or manner, was for a thing. In all three the verb stays glued to position 2."
+      ru: "wo спрашивает о месте, wie — об имени или способе, was — о предмете. Во всех трёх глагол остаётся строго на втором месте."
+
+  - id: cloze-verneinung-nicht-stellung
+    outcomes: [praesens-verneinung]
+    type: cloze
+    focus: nicht-position
+    instruction:
+      en: Put nicht in the right place.
+      ru: Поставьте nicht на правильное место.
+    text: "Ich arbeite heute {{nicht}}. Er kommt am Montag {{nicht}}. Sie ist {{nicht}} müde."
+    explain:
+      en: "nicht goes after the verb and its time phrase, but *before* a predicative adjective: er kommt … nicht, yet sie ist nicht müde."
+      ru: "nicht ставится после глагола и обстоятельства времени, но перед прилагательным-сказуемым: er kommt … nicht, однако sie ist nicht müde."

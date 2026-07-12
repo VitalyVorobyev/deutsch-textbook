@@ -265,3 +265,35 @@ items:
     explain:
       en: "er will — the er/sie/es form of a modal verb has no -t. The infinitive kaufen closes the sentence, and das Auto is neuter, so ein stays unchanged in the accusative."
       ru: "er will — у модальных глаголов форма er/sie/es не имеет окончания -t. Инфинитив kaufen замыкает предложение, а das Auto — среднего рода, поэтому ein в Akkusativ не меняется."
+
+  - id: uebersetzen-darf-nicht
+    outcomes: [modal-erlaubnis-notwendigkeit, modal-satzklammer]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "You must not smoke here."
+    prompt_ru: "Здесь нельзя курить."
+    answer: "Hier darf man nicht rauchen."
+    key_tokens: ["darf", "rauchen"]
+    accept:
+      - "Man darf hier nicht rauchen."
+    explain:
+      en: "A prohibition is darf nicht, not muss nicht — English 'must not' is a false friend here, because muss nicht means only that something is not necessary."
+      ru: "Запрет — это darf nicht, а не muss nicht. «Нельзя» передаётся через dürfen: muss nicht означало бы всего лишь «не обязательно»."
+
+  - id: uebersetzen-moechte-bestellen
+    outcomes: [modal-hoefliche-wuensche, modal-satzklammer]
+    type: translate
+    focus: will-moechte
+    instruction:
+      en: Translate into German. Be polite.
+      ru: Переведите на немецкий. Вежливо.
+    prompt_en: "I would like to order a coffee."
+    prompt_ru: "Я хотел бы заказать кофе."
+    answer: "Ich möchte einen Kaffee bestellen."
+    key_tokens: ["möchte", "bestellen"]
+    explain:
+      en: "möchte is the polite wish; ich will would sound blunt, almost like a demand. The infinitive still closes the bracket: möchte … bestellen."
+      ru: "möchte — вежливое желание; ich will прозвучало бы резко, почти как требование. Инфинитив по-прежнему замыкает рамку: möchte … bestellen."

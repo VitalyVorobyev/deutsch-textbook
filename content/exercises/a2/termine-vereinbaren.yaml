@@ -260,3 +260,33 @@ items:
     explain:
       en: 'Days take "am" and clock times take "um": am Freitag um 15 Uhr. The usual order is day before time, and German schedules use the 24-hour clock: 3 p.m. = 15 Uhr.'
       ru: 'С днями недели используется "am", со временем по часам — "um": am Freitag um 15 Uhr. Обычный порядок — сначала день, потом время; в расписаниях немцы используют 24-часовой формат: 15 Uhr.'
+
+  - id: uebersetzen-termin-verschieben
+    outcomes: [termine-organisieren]
+    type: translate
+    focus: trennbar-modal
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Can we move the appointment to Friday?"
+    prompt_ru: "Мы можем перенести встречу на пятницу?"
+    answer: "Können wir den Termin auf Freitag verschieben?"
+    key_tokens: ["Können", "verschieben"]
+    explain:
+      en: "A yes/no question puts the modal first, and the infinitive still closes the sentence: Können wir … verschieben? ver- is inseparable, so it never splits off."
+      ru: "В вопросе без вопросительного слова модальный глагол стоит первым, а инфинитив по-прежнему замыкает предложение: Können wir … verschieben? Приставка ver- неотделяемая и не отходит."
+
+  - id: uebersetzen-wann-passt
+    outcomes: [termine-organisieren, termine-hoeflich-telefonieren]
+    type: translate
+    focus: passen-dativ
+    instruction:
+      en: Translate into German. Use "passen" and address the person formally.
+      ru: Переведите на немецкий. Используйте «passen» и обратитесь на «Вы».
+    prompt_en: "When does it suit you?"
+    prompt_ru: "Когда Вам удобно?"
+    answer: "Wann passt es Ihnen?"
+    key_tokens: ["passt", "Ihnen"]
+    explain:
+      en: "passen governs the dative, so the formal you is Ihnen, never Sie: Passt es Ihnen? The question word takes position 1 and the verb position 2."
+      ru: "passen управляет дательным падежом, поэтому вежливое «Вам» — это Ihnen, а не Sie: Passt es Ihnen? Вопросительное слово на первом месте, глагол — на втором."
