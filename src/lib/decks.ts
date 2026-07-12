@@ -1,7 +1,8 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
-import type { CardDef } from './srs';
+import { rankDueCards, splitQueue, type CardDef } from './srs';
 import { goalRoute, lessonCompleted, recommendedForGoal, recommendedNext } from './mastery';
+import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
 
 /**
@@ -72,4 +73,98 @@ export function prioritizeFreshCards(
     return 3;
   }
   return [...cards].sort((a, b) => priority(a) - priority(b) || a.id.localeCompare(b.id));
+}
+
+// ---------------------------------------------------------------------------
+// Review planning — the ONE rule for "what does a review queue contain"
+// ---------------------------------------------------------------------------
+
+/** Fresh-card gating context, exactly as the pages pass it to the islands. */
+export interface ReviewGate {
+  /** topic ids in recommended-path order (getCurriculum().spine) */
+  spine: string[];
+  nodes: TopicNode[];
+  /** deck id → CEFR level, for gating fresh cards of decks no topic owns */
+  deckLevels: Record<string, string>;
+}
+
+/** Everything planReview reads from the store — callers load it and pass it in. */
+export interface ReviewContext extends TopicContext {
+  goal?: LearningGoal;
+}
+
+export interface ReviewPlanOpts {
+  /** cap on never-graded cards mixed into the queue (default 15) */
+  newLimit?: number;
+  /** cap on due cards in the queue (default unlimited) */
+  maxDue?: number;
+  /** cap on the whole queue (default unlimited) */
+  maxTotal?: number;
+  /**
+   * When fresh cards join the queue. `always` (default): whenever the caps
+   * leave room. `top-up`: only when 0 < total due < minDue — a session with
+   * nothing due at all adds no fresh cards either (the daily session skips
+   * straight to training then; this preserves SessionFlow's historical rule).
+   */
+  freshPolicy?: { kind: 'always' } | { kind: 'top-up'; minDue: number };
+  now?: Date;
+}
+
+export interface ReviewPlanResult {
+  /** ranked due cards (capped) followed by prioritized fresh cards (capped) */
+  queue: CardDef[];
+  /** due cards actually in the queue */
+  dueCount: number;
+  /** fresh cards actually in the queue */
+  freshCount: number;
+  /** queue.length — always dueCount + freshCount */
+  total: number;
+  /** due cards cut off by the caps (offered as an optional extra round) */
+  dueRemaining: number;
+}
+
+/**
+ * Build a review queue: most-overdue due cards first (capped), then fresh
+ * cards from eligible decks in curriculum-priority order (capped). Pure and
+ * synchronous — every surface that shows or runs a review (Heute tile,
+ * /ueben/wiederholen, the daily session) plans through here, so their
+ * numbers can never disagree. Without a gate the fresh pool is ungated and
+ * shuffled (the per-deck page: studying a deck directly is an opt-in).
+ */
+export function planReview(
+  cards: CardDef[],
+  gate: ReviewGate | undefined,
+  ctx: ReviewContext,
+  opts: ReviewPlanOpts = {},
+): ReviewPlanResult {
+  const {
+    newLimit = 15,
+    maxDue = Infinity,
+    maxTotal = Infinity,
+    freshPolicy = { kind: 'always' },
+    now,
+  } = opts;
+  const { due, fresh } = splitQueue(cards, ctx.cards, now);
+  const dueQueue = rankDueCards(due, ctx.cards).slice(0, Math.min(maxDue, maxTotal));
+
+  const wantFresh =
+    freshPolicy.kind === 'always' || (due.length > 0 && due.length < freshPolicy.minDue);
+  let freshQueue: CardDef[] = [];
+  if (wantFresh) {
+    const pool = gate
+      ? eligibleFreshCards(fresh, gate.spine, gate.nodes, gate.deckLevels, ctx)
+      : fresh;
+    const ordered = gate
+      ? prioritizeFreshCards(pool, gate.spine, gate.nodes, gate.deckLevels, ctx, ctx.goal)
+      : shuffle(pool);
+    freshQueue = ordered.slice(0, Math.max(0, Math.min(newLimit, maxTotal - dueQueue.length)));
+  }
+
+  return {
+    queue: [...dueQueue, ...freshQueue],
+    dueCount: dueQueue.length,
+    freshCount: freshQueue.length,
+    total: dueQueue.length + freshQueue.length,
+    dueRemaining: due.length - dueQueue.length,
+  };
 }
