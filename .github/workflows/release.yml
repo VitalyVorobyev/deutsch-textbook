@@ -49,12 +49,38 @@ jobs:
       - name: Validate content
         run: bun run validate
 
+      - name: Test
+        run: bun test
+
       - name: Stamp version from tag
         shell: bash
         run: |
           V="${GITHUB_REF_NAME#v}"
           jq --arg v "$V" '.version = $v' src-tauri/tauri.conf.json > tauri.conf.json.tmp
           mv tauri.conf.json.tmp src-tauri/tauri.conf.json
+
+      # The release notes are the tag's own CHANGELOG section — everything between
+      # its "## [x.y.z]" heading and the next "## [". Missing section: install
+      # instructions only, rather than failing a release that is otherwise good.
+      - name: Release notes from CHANGELOG
+        id: notes
+        shell: bash
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          BODY=$(awk -v v="$V" '
+            $0 ~ "^## \\[" v "\\]" { found = 1; next }
+            found && /^## \[/ { exit }          # the next release
+            found && /^\[[0-9]/ { exit }        # the link definitions at the foot
+            found { print }
+          ' CHANGELOG.md)
+          if [ -z "$(printf '%s' "$BODY" | tr -d '[:space:]')" ]; then
+            echo "::warning::no CHANGELOG section for $V — publishing install instructions only"
+          fi
+          {
+            echo 'body<<CHANGELOG_EOF'
+            printf '%s\n' "$BODY"
+            echo 'CHANGELOG_EOF'
+          } >> "$GITHUB_OUTPUT"
 
       - uses: tauri-apps/tauri-action@v1
         env:
@@ -63,6 +89,10 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: 'Deutsch-Atlas ${{ github.ref_name }}'
           releaseBody: |
+            ${{ steps.notes.outputs.body }}
+
+            ---
+
             ### Installation
 
             **Windows:** download the `.exe` (NSIS installer) or `.msi`. SmartScreen may warn — choose *More info → Run anyway*.

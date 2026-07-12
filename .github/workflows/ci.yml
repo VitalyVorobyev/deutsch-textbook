@@ -21,6 +21,9 @@ jobs:
       - name: Validate content
         run: bun run validate
 
+      - name: Test
+        run: bun test
+
       - name: Type-check
         run: bun run check
 
