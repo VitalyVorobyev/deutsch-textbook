@@ -1,8 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CurriculumPath from '../../components/atlas/CurriculumPath';
 import { getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '../../lib/curriculum';
+import { withBase } from '../../lib/url';
 
 const curriculum = getCurriculum();
 const topicNodes = await getTopicNodes();
@@ -18,6 +20,19 @@ const units = curriculum.units.map((unit) => ({
     return { ...topic, strand: graph.strand, group: graph.group, outcomes: graph.outcomes, deepens: graph.deepens, related: graph.related };
   }),
 }));
+
+const checkpointSet = await getEntry('exercises', 'a1/checkpoint-a1');
+const checkpoint = !checkpointSet ? undefined : {
+  level: 'A1',
+  title: 'Checkpoint A1',
+  path: withBase('/checkpoint/a1'),
+  setId: 'a1/checkpoint-a1',
+  items: checkpointSet.data.items.map((item) => ({
+    id: item.id,
+    type: item.type,
+    outcomes: item.outcomes,
+  })),
+};
 ---
 
 <Base title="Themen">
@@ -30,6 +45,6 @@ const units = curriculum.units.map((unit) => ({
   </header>
 
   <div class="mt-6">
-    <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} />
+    <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} checkpoint={checkpoint} />
   </div>
 </Base>

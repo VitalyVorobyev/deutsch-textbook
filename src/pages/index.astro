@@ -46,7 +46,12 @@ const { spine } = getCurriculum();
     </a>
 
     <div class="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-      <NextTopic client:only="react" spine={spine} nodes={nodes} />
+      <NextTopic
+        client:only="react"
+        spine={spine}
+        nodes={nodes}
+        checkpoint={{ path: withBase('/checkpoint/a1'), setId: 'a1/checkpoint-a1', level: 'A1', title: 'Checkpoint A1' }}
+      />
     </div>
   </div>
 

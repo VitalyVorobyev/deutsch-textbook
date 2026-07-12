@@ -5,9 +5,12 @@ import {
   type LearningGoal,
 } from '../../lib/store';
 import {
-  goalRoute, recommendedForGoal, recommendedNext, topicCompletion,
+  goalRoute, lessonCompleted, recommendedForGoal, recommendedNext, topicCompletion,
   type Completion, type TopicContext, type TopicNode,
 } from '../../lib/mastery';
+import {
+  checkpointOutcomeResults, type CheckpointItemRef, type CheckpointSummary,
+} from '../../lib/checkpoint';
 import { useExplainLang } from '../hooks';
 import { TierBadge } from '../topic/TierBadge';
 import { crossGroupDependencies, groupBreadcrumb, leafGroups } from '../../lib/atlas';
@@ -22,7 +25,14 @@ export interface CourseTopic extends TopicNode {
 export interface CourseUnit {
   id: string; level: string; title_de: string; title_en: string; title_ru: string; topics: CourseTopic[];
 }
-interface Props { units: CourseUnit[]; groups: AtlasGroup[]; spine: string[] }
+export interface PathCheckpoint {
+  level: string;
+  title: string;
+  path: string;
+  setId: string;
+  items: CheckpointItemRef[];
+}
+interface Props { units: CourseUnit[]; groups: AtlasGroup[]; spine: string[]; checkpoint?: PathCheckpoint }
 type ActiveGoal = LearningGoal & { topicId: string };
 type View = 'path' | 'atlas' | 'relations';
 type LevelFilter = 'all' | 'A1' | 'A2';
@@ -35,7 +45,7 @@ const actionLabel: Record<string, string> = {
   untouched: 'Starten', read: 'Fortsetzen', practiced: 'Weiter üben', mastered: 'Wiederholen',
 };
 
-export default function CurriculumPath({ units, groups, spine }: Props) {
+export default function CurriculumPath({ units, groups, spine, checkpoint }: Props) {
   const lang = useExplainLang();
   const topics = useMemo(() => units.flatMap((unit) => unit.topics), [units]);
   const byId = useMemo(() => new Map(topics.map((topic) => [topic.id, topic])), [topics]);
@@ -71,6 +81,14 @@ export default function CurriculumPath({ units, groups, spine }: Props) {
     ? goalRoute(goal.topicId, spine, topics).map((node) => byId.get(node.id)).filter((node): node is CourseTopic => !!node)
     : [];
   const routeIds = new Set(route.map((topic) => topic.id));
+  const checkpointState = useMemo(() => {
+    if (!checkpoint || !ctx) return undefined;
+    const levelTopics = topics.filter((topic) => topic.level === checkpoint.level);
+    return {
+      remaining: levelTopics.filter((topic) => !lessonCompleted(topic, ctx)).length,
+      summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
+    };
+  }, [checkpoint, ctx, topics]);
 
   async function chooseGoal(topicId?: string) {
     const persisted: LearningGoal = { ...(topicId ? { topicId } : {}), setAt: Date.now() };
@@ -90,15 +108,18 @@ export default function CurriculumPath({ units, groups, spine }: Props) {
       {goal && <div className="flex items-center gap-2 text-sm"><span className="text-stone-500">Ziel:</span><button onClick={() => { setSelectedId(goal.topicId); changeView('atlas'); }} className="font-semibold text-amber-700 hover:underline dark:text-amber-300">{byId.get(goal.topicId)?.title_de}</button><button onClick={() => void chooseGoal()} aria-label="Lernziel löschen" className="text-stone-400 hover:text-red-600">×</button></div>}
     </div>
 
-    {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} />}
+    {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} checkpoint={checkpoint} checkpointState={checkpointState} />}
     {view === 'atlas' && <AtlasView topics={topics} groups={groups} currentId={next?.id} selected={selected} goal={goal} routeIds={routeIds} completions={completions} level={level} strand={strand} lang={lang} onLevel={setLevel} onStrand={setStrand} onSelect={setSelectedId} onGoal={chooseGoal} />}
     {view === 'relations' && <RelationsView topics={topics} groups={groups} selected={selected} query={query} lang={lang} completions={completions} onQuery={setQuery} onSelect={setSelectedId} onGoal={chooseGoal} goal={goal} />}
   </div>;
 }
 
-function PathView({ next, goal, route, completions, lang }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string }) {
-  if (!next) return <p className="mt-8 text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>;
-  return <div className="mt-6 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+interface CheckpointCardState { remaining: number; summary: CheckpointSummary | null }
+function PathView({ next, goal, route, completions, lang, checkpoint, checkpointState }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string; checkpoint?: PathCheckpoint; checkpointState?: CheckpointCardState }) {
+  const checkpointCard = checkpoint && checkpointState && <CheckpointCard checkpoint={checkpoint} state={checkpointState} lang={lang} />;
+  if (!next) return <div className="mt-8"><p className="text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>{checkpointCard}</div>;
+  return <>
+    <div className="mt-6 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
     <section className="border-l-4 border-amber-500 bg-amber-50 p-6 dark:bg-amber-950/25">
       <p className="text-xs font-semibold uppercase tracking-wider text-amber-800 dark:text-amber-300">Nächster Schritt · {next.level}</p>
       <h2 className="mt-2 text-2xl font-bold">{next.title_de}</h2>
@@ -110,7 +131,40 @@ function PathView({ next, goal, route, completions, lang }: { next?: CourseTopic
       <h2 className="font-semibold">{goal ? 'Weg zu deinem Ziel' : 'So funktioniert der Lernpfad'}</h2>
       {goal ? <ol className="mt-3 space-y-2">{route.map((topic, i) => <li key={topic.id} className="flex items-center gap-3 text-sm"><span className="w-5 text-right text-stone-400">{i + 1}</span><TierBadge tier={completions.get(topic.id)?.tier ?? 'untouched'} /><a href={topic.path} className="font-medium hover:text-amber-700">{topic.title_de}</a></li>)}</ol> : <p className="mt-2 text-sm text-stone-500">Der nächste Schritt folgt dem Lehrplan und deinem gemessenen Lernstand. Im Atlas kannst du stattdessen ein eigenes Ziel wählen.</p>}
     </section>
-  </div>;
+    </div>
+    {checkpointCard}
+  </>;
+}
+
+function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoint; state: CheckpointCardState; lang: string }) {
+  const { remaining, summary } = state;
+  if (summary) {
+    const pct = summary.total ? Math.round((summary.score / summary.total) * 100) : 0;
+    const when = new Date(summary.lastTs).toLocaleDateString(lang === 'ru' ? 'ru' : 'en');
+    return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-emerald-300 bg-emerald-50/60 p-5 dark:border-emerald-800 dark:bg-emerald-950/25">
+      <div>
+        <h2 className="font-semibold">{checkpoint.title} ✓</h2>
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? `Последний результат: ${pct}% · задания: ${summary.answered}/${summary.total} · ${when}` : `Latest result: ${pct}% · ${summary.answered}/${summary.total} tasks · ${when}`}</p>
+      </div>
+      <a href={checkpoint.path} className="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold hover:border-amber-500 dark:border-stone-600">{lang === 'ru' ? 'Ещё раз →' : 'Retake →'}</a>
+    </section>;
+  }
+  if (remaining > 0) {
+    return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dashed border-stone-300 p-5 dark:border-stone-600">
+      <div>
+        <h2 className="font-semibold text-stone-500 dark:text-stone-400">{checkpoint.title}</h2>
+        <p className="mt-1 text-sm text-stone-500">{lang === 'ru' ? `Ещё ${remaining} ${remaining === 1 ? 'урок' : remaining < 5 ? 'урока' : 'уроков'} до контрольной точки ${checkpoint.level}.` : `${remaining} lesson${remaining === 1 ? '' : 's'} to go before the ${checkpoint.level} checkpoint.`}</p>
+      </div>
+      <a href={checkpoint.path} className="text-sm font-medium text-stone-400 hover:text-amber-700 hover:underline dark:hover:text-amber-300">{lang === 'ru' ? 'Всё равно открыть' : 'Open anyway'}</a>
+    </section>;
+  }
+  return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <div>
+      <h2 className="font-semibold">{checkpoint.title}</h2>
+      <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? `Все уроки ${checkpoint.level} пройдены — проверьте, что вы уже умеете.` : `All ${checkpoint.level} lessons done — measure what you can already do.`}</p>
+    </div>
+    <a href={checkpoint.path} className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">Checkpoint starten →</a>
+  </section>;
 }
 
 interface AtlasViewProps {
