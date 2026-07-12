@@ -1,0 +1,49 @@
+topic: alltag-zeit
+role: practice
+title: { en: "Listening — times and daily plans", ru: "Аудирование — время и планы на день" }
+items:
+  - id: hoeren-kurs-halb
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: listen
+    focus: um-am-zeit
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Der Kurs beginnt um halb neun."
+    translation: { en: "The course begins at half past eight (8:30).", ru: "Курс начинается в половине девятого (8:30)." }
+    explain: { en: "Clock times take um. halb neun is two words, both lowercase, and means 8:30.", ru: "Время по часам вводит um. halb neun пишется в два слова со строчной буквы и означает 8:30." }
+  - id: hoeren-sonntag-lange
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: listen
+    focus: um-am-zeit
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Am Sonntag schlafe ich lange."
+    translation: { en: "On Sunday I sleep in.", ru: "В воскресенье я долго сплю." }
+    explain: { en: "Days take am, never in. Sonntag is a noun — capitalized; lange stays lowercase.", ru: "С днями недели — am, а не in, хотя по-русски «в воскресенье». Sonntag — существительное, с большой буквы; lange — со строчной." }
+  - id: hoeren-ansage
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Ansage", text: "Guten Morgen! Der Deutschkurs beginnt heute um halb zehn. Am Freitag beginnt der Kurs um acht Uhr." }
+    question: "Wann beginnt der Kurs heute?"
+    options: ["um neun Uhr dreißig (9:30)", "um zehn Uhr dreißig (10:30)", "um acht Uhr (8:00)"]
+    correct: 0
+    translation: { en: "When does the course begin today?", ru: "Когда сегодня начинается курс?" }
+    explain: { en: "The announcement says: heute um halb zehn — and halb zehn is 9:30, not 10:30. Eight o'clock is the Friday time.", ru: "В объявлении сказано: heute um halb zehn, а halb zehn — это 9:30, «половина десятого». В восемь часов курс начинается в пятницу." }
+  - id: hoeren-wochenplan
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Anna", text: "Was machst du am Samstag?" }
+        - { speaker: "Ben", text: "Am Vormittag lerne ich Deutsch, und am Abend koche ich für Freunde." }
+        - { speaker: "Anna", text: "Und was machst du am Sonntag?" }
+        - { speaker: "Ben", text: "Am Sonntag arbeite ich nie. Ich schlafe lange." }
+    question: "Was macht Ben am Sonntag?"
+    options: ["Er schläft lange.", "Er kocht für Freunde.", "Er lernt Deutsch."]
+    correct: 0
+    translation: { en: "What does Ben do on Sunday?", ru: "Что Бен делает в воскресенье?" }
+    explain: { en: "Ben says: Am Sonntag arbeite ich nie. Ich schlafe lange. Cooking for friends and studying German are his Saturday plans.", ru: "Бен говорит: Am Sonntag arbeite ich nie. Ich schlafe lange. Готовить для друзей и учить немецкий он собирается в субботу." }
