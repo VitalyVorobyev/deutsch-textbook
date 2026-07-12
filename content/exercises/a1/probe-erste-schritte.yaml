@@ -33,14 +33,18 @@ items:
 
   - id: variant-b
     outcomes: [erste-sich-vorstellen]
-    type: cloze
+    type: translate
     instruction:
-      en: Fill the gaps in the conversation.
-      ru: Заполните пропуски в диалоге.
-    text: "— Guten Tag! Wie {{heißen}} Sie? — Ich {{heiße}} Yuki Tanaka. — Und woher {{kommen}} Sie? — Ich {{komme}} aus Japan."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Hello! My name is Marta. I come from Spain and I live in Hamburg."
+    prompt_ru: "Привет! Меня зовут Марта. Я из Испании и живу в Гамбурге."
+    answer: "Hallo! Ich heiße Marta. Ich komme aus Spanien und ich wohne in Hamburg."
+    accept:
+      - "Hallo! Mein Name ist Marta. Ich komme aus Spanien und ich wohne in Hamburg."
     explain:
-      en: "The same two chunks, this time in the polite register. With Sie the verb ends in -en (Wie heißen Sie? Woher kommen Sie?); your own answer keeps the ich-ending -e (ich heiße, ich komme)."
-      ru: "Те же две формулы, но в вежливом обращении. С Sie глагол оканчивается на -en (Wie heißen Sie? Woher kommen Sie?), а в ответе о себе сохраняется окончание -e (ich heiße, ich komme)."
+      en: "Where you are from and where you live are two different chunks: kommen aus + country (ich komme aus Spanien) and wohnen in + town (ich wohne in Hamburg). Both prepositions are fixed parts of the chunk, and the country stands with no article."
+      ru: "Откуда вы родом и где вы живёте — две разные формулы: kommen aus + страна (ich komme aus Spanien) и wohnen in + город (ich wohne in Hamburg). Предлог входит в формулу и не выбирается заново, а страна стоит без артикля. По-русски здесь «из» и «в», но опираться нужно на немецкую формулу, а не на русский предлог."
 
   - id: variant-c
     outcomes: [erste-sich-vorstellen]

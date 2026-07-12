@@ -21,6 +21,11 @@ GitHub Release notes.
   practice had produced no evidence that any of it survived. Six new families — production-led, not
   multiple choice — arm off the practice already in the log, so the first checks fall due
   immediately rather than after the next ten units are written.
+- **Three new A2 units.** *Wohnen & Umzug* (where things are and where they go — the German case
+  distinction Russian marks differently and English not at all), *Reisen & Verkehr* (planning a
+  journey and recovering when the train is cancelled), and *Einkaufen & Reklamation* (comparing two
+  products, buying one, and taking it back when it breaks). Each one is a single story told across
+  its article, its reading, its listening, its practice and its final task.
 - **A2 can now be listened to, written and spoken.** The six A2 topics were built before the rest of
   the course was, and you had been practising all of them entirely by typing into boxes: no listening
   with the transcript hidden, no writing that gets revised, and no speaking at all. Each one now has
@@ -83,6 +88,17 @@ GitHub Release notes.
   and nothing could be compared with anything. Every check was rewritten so its three versions test
   one skill in three different situations, and the result is the curve it was always meant to be.
   Caught before a single check had been answered, so no history was lost.
+- **The delayed checks were also being made easier at exactly one interval.** Every check comes in
+  three versions, one served after two days, one after a week, one after three weeks — and the
+  middle one was a fill-in-the-gap while the other two asked you to build the whole sentence from
+  nothing. The week-old result would have looked stronger than the others no matter what you
+  actually remembered. All three versions now ask for the same kind of answer, so the only thing
+  that changes between them is how long it has been.
+- **A word-order variant could switch off the grading it was meant to be generous about.** When an
+  exercise accepts more than one correct word order, the alternative often starts with the very word
+  the exercise is grading — *am Samstag* becomes *Am Samstag*. The capital letter made the scorer stop
+  recognizing it, so typing *Um* instead of *Am* was quietly forgiven as a typo rather than recorded as
+  the mistake it is. Fixed, with a test that fails without the fix.
 - **Four A2 can-dos were promised and never asked about.** *I can use the dative pronouns*, *…the
   dative prepositions*, *…verbs like helfen and gefallen* and *…the modal forms* were listed on the
   topic pages but tagged on no exercise, so they could never be marked as learned and no delayed

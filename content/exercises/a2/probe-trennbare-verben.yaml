@@ -10,7 +10,7 @@ title:
 # lost it cannot, whatever else they remember about prefixes.
 #
 # Each variant uses different verbs and a different sentence shape (fronted time phrase,
-# gap-filling, negation), so none of them can be answered from the memory of another.
+# W-question, negation), so none of them can be answered from the memory of another.
 
 items:
   - id: variant-a
@@ -32,15 +32,18 @@ items:
 
   - id: variant-b
     outcomes: [trennbar-satz]
-    type: cloze
+    type: translate
     focus: trennbar-wortstellung
     instruction:
-      en: Fill in the correct form of the verb in brackets — mind where each part goes.
-      ru: Вставьте правильную форму глагола из скобок — следите за тем, где стоит каждая часть.
-    text: "Der Kurs {{hört}} um halb sechs {{auf}}. (aufhören) In Köln {{steigen}} wir {{um}}. (umsteigen) Die Bank {{macht}} um neun Uhr {{auf}}. (aufmachen)"
+      en: Translate into German. Use the verbs aufmachen and mitnehmen.
+      ru: Переведите на немецкий. Используйте глаголы aufmachen и mitnehmen.
+    prompt_en: "When does the bank open? I am taking my passport with me."
+    prompt_ru: "Когда открывается банк? Я возьму с собой паспорт."
+    answer: "Wann macht die Bank auf? Ich nehme meinen Pass mit."
+    key_tokens: ["macht", "auf", "nehme", "mit"]
     explain:
-      en: "Three verbs, one rule: the conjugated part stays in position 2 and the prefix goes to the end of the clause, however short the clause is. Even in In Köln steigen wir um, where only one word follows the verb, the prefix still waits behind the subject."
-      ru: "Три глагола — одно правило: спрягаемая часть остаётся на втором месте, а приставка уходит в конец предложения, каким бы коротким оно ни было. Даже в In Köln steigen wir um, где после глагола стоит всего одно слово, приставка всё равно ждёт за подлежащим."
+      en: "A question does not loosen the bracket. The W-word takes position 1, so the conjugated part macht is still the second element and the prefix auf still waits at the very end: Wann macht die Bank auf? In the statement the same rule pushes mit behind the object — nehme … meinen Pass mit. Whatever stands between them, the two halves of the verb are the first and the last thing the clause says."
+      ru: "Вопрос рамку не ослабляет. Вопросительное слово занимает первое место, спрягаемая часть macht остаётся вторым элементом, а приставка auf ждёт в самом конце: Wann macht die Bank auf? В повествовательном предложении то же правило отправляет mit за дополнение — nehme … meinen Pass mit. Что бы ни стояло между ними, две половины глагола — это первое и последнее, что произносит предложение."
 
   - id: variant-c
     outcomes: [trennbar-satz]

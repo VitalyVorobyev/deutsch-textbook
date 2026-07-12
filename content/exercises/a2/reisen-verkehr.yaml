@@ -1,0 +1,213 @@
+topic: reisen-verkehr
+role: practice
+title:
+  en: "Practice — Timo's journey from Cologne to Hamburg"
+  ru: "Практика — поездка Тимо из Кёльна в Гамбург"
+items:
+  - id: cloze-praepositionen-fahrplan
+    outcomes: [verbindung-waehlen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: "Timo is leaving for Hamburg this morning. Fill each gap with the missing preposition or article."
+      ru: "Сегодня утром Тимо уезжает в Гамбург. Вставьте в пропуски предлог или артикль."
+    text: "Timo fährt um acht Uhr mit {{dem}} Bus {{zum}} Hauptbahnhof. Sein Zug fährt {{nach}} Hamburg."
+    translation:
+      en: "At eight o'clock Timo takes the bus to the main station. His train goes to Hamburg."
+      ru: "В восемь часов Тимо едет на автобусе на главный вокзал. Его поезд идёт в Гамбург."
+    explain:
+      en: "Three travel prepositions in one sentence, and two of them take the dative. mit + Dativ names the vehicle: der Bus → mit dem Bus. zu + Dativ names the place you are heading for, and zu dem contracts to zum: zum Hauptbahnhof. A city needs neither: nach Hamburg, with no article at all."
+      ru: "Три «дорожных» предлога в одном предложении, и два из них требуют Dativ. mit + Dativ вводит транспорт: der Bus → mit dem Bus. zu + Dativ вводит место, куда идут, причём zu dem сливается в zum: zum Hauptbahnhof. А перед городом не нужно ни того, ни другого: nach Hamburg — вообще без артикля."
+
+  - id: cloze-hilfsverb-reise
+    outcomes: [reise-berichten]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: "Timo tells his sister about the journey. Fill each gap with haben or sein in the correct form."
+      ru: "Тимо рассказывает сестре о поездке. Вставьте в пропуски haben или sein в правильной форме."
+    text: "Ich {{bin}} in Köln eingestiegen. In Hannover {{bin}} ich umgestiegen. Dort {{habe}} ich eine Durchsage gehört."
+    translation:
+      en: "I got on in Cologne. In Hanover I changed trains. There I heard an announcement."
+      ru: "Я сел в поезд в Кёльне. В Ганновере я сделал пересадку. Там я услышал объявление."
+    explain:
+      en: "einsteigen and umsteigen move you from A to B, so both take sein: ich bin eingestiegen, ich bin umgestiegen. hören moves nobody anywhere — it is an ordinary haben verb, and the fact that the whole story is about trains changes nothing. Note the word order too: In Hannover fills position 1, so bin comes second and ich follows it."
+      ru: "einsteigen и umsteigen перемещают вас из точки А в точку Б, поэтому оба требуют sein: ich bin eingestiegen, ich bin umgestiegen. А hören никого никуда не перемещает — это обычный глагол с haben, и то, что весь рассказ про поезда, здесь ничего не меняет. Обратите внимание и на порядок слов: In Hannover стоит на первом месте, значит bin — на втором, а ich идёт после него."
+
+  - id: mc-verpasst
+    outcomes: [reise-berichten]
+    type: mc
+    focus: haben-sein
+    instruction:
+      en: "Choose the correct auxiliary."
+      ru: "Выберите правильный вспомогательный глагол."
+    prompt: "Ich ___ den Anschluss verpasst."
+    options: ["bin", "habe", "hat"]
+    correct: 1
+    translation:
+      en: I missed the connection.
+      ru: Я не успел на пересадку.
+    explain:
+      en: "The sentence is about a train, but nobody travels from A to B in it: verpassen is an ordinary haben verb with an accusative object (den Anschluss). Trains in the sentence do not make it a sein sentence — the verb decides, not the topic."
+      ru: "Предложение о поезде, но никто в нём не перемещается из точки А в точку Б: verpassen — обычный глагол с haben и дополнением в Akkusativ (den Anschluss). Поезд в предложении сам по себе не делает его предложением с sein — выбор определяет глагол, а не тема."
+
+  - id: mc-durchsage-verstehen
+    outcomes: [durchsage-verstehen]
+    type: mc
+    instruction:
+      en: "You hear this announcement in the station. What does it mean?"
+      ru: "В вокзале звучит это объявление. Что оно означает?"
+    prompt: "Durchsage: „Der Zug nach Hamburg fällt heute aus.“"
+    options:
+      - "Der Zug kommt zwanzig Minuten später."
+      - "Der Zug fährt heute nicht."
+      - "Der Zug fährt heute von Gleis drei."
+    correct: 1
+    translation:
+      en: "Announcement: 'The train to Hamburg is cancelled today.'"
+      ru: "Объявление: «Поезд на Гамбург сегодня отменён»."
+    explain:
+      en: "ausfallen means that the train does not run at all — the trip is off, and you need another connection. A train that is merely late has Verspätung: „Der Zug hat zwanzig Minuten Verspätung.“ The two announcements ask for very different reactions, so the difference is worth hearing."
+      ru: "ausfallen означает, что поезда не будет вообще — рейс отменён и нужно искать другую пересадку. Если поезд просто опаздывает, объявляют Verspätung: „Der Zug hat zwanzig Minuten Verspätung.“ Реакция на эти два объявления совершенно разная, поэтому разницу важно услышать."
+
+  - id: order-satzklammer-bus
+    outcomes: [reise-berichten]
+    type: order
+    focus: perfekt-satzklammer
+    instruction:
+      en: "Arrange the words into a correct sentence."
+      ru: "Составьте правильное предложение."
+    words: ["Timo", "ist", "mit", "dem", "Bus", "zum", "Bahnhof", "gefahren."]
+    accept:
+      - "Mit dem Bus ist Timo zum Bahnhof gefahren."
+    translation:
+      en: Timo took the bus to the station.
+      ru: Тимо поехал на автобусе на вокзал.
+    explain:
+      en: "The Perfekt builds a bracket: ist stands in position 2 and the Partizip II gefahren is the last word. Everything else — the vehicle, the destination — sits between them. Both Timo ist mit dem Bus zum Bahnhof gefahren and Mit dem Bus ist Timo zum Bahnhof gefahren are correct: whatever fills position 1, the verb stays second."
+      ru: "Перфект образует рамку: ist стоит на втором месте, а Partizip II gefahren — последнее слово. Всё остальное — транспорт, пункт назначения — находится внутри рамки. Правильны оба варианта: Timo ist mit dem Bus zum Bahnhof gefahren и Mit dem Bus ist Timo zum Bahnhof gefahren — что бы ни стояло на первом месте, глагол остаётся на втором."
+
+  - id: cloze-trennbar-fahrplan
+    outcomes: [verbindung-waehlen]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: "Timo reads the timetable aloud. Put the separable prefixes where they belong."
+      ru: "Тимо читает расписание вслух. Поставьте отделяемые приставки на своё место."
+    text: "Der Zug nach Bremen fährt um neun Uhr {{ab}}. Er kommt um elf Uhr in Bremen {{an}}."
+    translation:
+      en: "The train to Bremen departs at nine o'clock. It arrives in Bremen at eleven."
+      ru: "Поезд на Бремен отправляется в девять часов. Он прибывает в Бремен в одиннадцать."
+    explain:
+      en: "abfahren and ankommen are separable: the conjugated stem stays in position 2 (fährt, kommt) and the prefix drops to the very end of the clause. Everything in between — the time, the place — sits inside that bracket. The infinitive is what you look up; the sentence is what you say."
+      ru: "abfahren и ankommen — отделяемые глаголы: спрягаемая часть остаётся на втором месте (fährt, kommt), а приставка уходит в самый конец предложения. Всё остальное — время, место — стоит внутри этой рамки. В словаре вы видите инфинитив, но в предложении глагол разрывается."
+
+  - id: table-perfekt-formen
+    outcomes: [reise-berichten]
+    type: table
+    focus: haben-sein
+    title: "Perfekt: ich …"
+    instruction:
+      en: "Fill in the ich-form of the auxiliary and the Partizip II."
+      ru: "Заполните форму вспомогательного глагола для ich и Partizip II."
+    columns: [Hilfsverb, "Partizip II"]
+    rows:
+      - label: fahren
+        cells: [{ answer: bin, given: true }, { answer: gefahren }]
+      - label: umsteigen
+        cells: [{ answer: bin }, { answer: umgestiegen }]
+      - label: ankommen
+        cells: [{ answer: bin }, { answer: angekommen }]
+      - label: warten
+        cells: [{ answer: habe }, { answer: gewartet, given: true }]
+      - label: verpassen
+        cells: [{ answer: habe }, { answer: verpasst }]
+      - label: kaufen
+        cells: [{ answer: habe }, { answer: gekauft }]
+    explain:
+      en: "Two questions per verb, and they are independent. The auxiliary: fahren, umsteigen and ankommen are movement from A to B → sein (ich bin); warten, verpassen and kaufen are not → haben (ich habe). The participle: separable verbs put the -ge- inside the word (um-ge-stiegen, an-ge-kommen), inseparable ones take no ge- at all (verpasst)."
+      ru: "На каждый глагол два вопроса, и они независимы. Вспомогательный глагол: fahren, umsteigen и ankommen — движение из точки А в точку Б → sein (ich bin); warten, verpassen и kaufen — нет → haben (ich habe). Причастие: у отделяемых глаголов -ge- стоит внутри слова (um-ge-stiegen, an-ge-kommen), у неотделяемых приставки ge- нет вообще (verpasst)."
+
+  - id: uebersetzen-zug-hamburg
+    outcomes: [reise-berichten]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "I travelled to Hamburg by train."
+    prompt_ru: "Я поехал в Гамбург на поезде."
+    answer: "Ich bin mit dem Zug nach Hamburg gefahren."
+    key_tokens: ["bin", "gefahren"]
+    accept:
+      - "Mit dem Zug bin ich nach Hamburg gefahren."
+    explain:
+      en: "Both halves of the tense are graded here. The auxiliary is sein, because fahren takes you from A to B: ich bin, never ich habe. The participle gefahren closes the sentence. The rest is prepositions: mit dem Zug for the vehicle (dative), nach Hamburg for the city (no article)."
+      ru: "Здесь проверяются обе половины времени. Вспомогательный глагол — sein, потому что fahren переносит вас из точки А в точку Б: ich bin, а не ich habe. Причастие gefahren замыкает предложение. Остальное — предлоги: mit dem Zug для транспорта (Dativ) и nach Hamburg для города (без артикля)."
+
+  - id: uebersetzen-angekommen
+    outcomes: [reise-berichten]
+    type: translate
+    focus: perfekt-satzklammer
+    instruction:
+      en: "Translate into German. Start with the time expression."
+      ru: "Переведите на немецкий. Начните с обстоятельства времени."
+    prompt_en: "Yesterday I arrived in Hamburg at three o'clock."
+    prompt_ru: "Вчера я приехал в Гамбург в три часа."
+    answer: "Gestern bin ich um drei Uhr in Hamburg angekommen."
+    key_tokens: ["bin", "angekommen"]
+    accept:
+      - "Gestern bin ich in Hamburg um drei Uhr angekommen."
+    explain:
+      en: "Gestern fills position 1, so bin has to stand second and ich follows it. Everything else — the clock time, the city — sits inside the bracket, and the participle angekommen is the last word. Ankommen is separable, so the -ge- goes inside: an-ge-kommen."
+      ru: "Gestern занимает первое место, поэтому bin стоит вторым, а ich идёт после него. Всё остальное — время и город — находится внутри рамки, а причастие angekommen стоит последним словом. Ankommen — отделяемый глагол, поэтому -ge- уходит внутрь: an-ge-kommen."
+
+  - id: uebersetzen-koennen-sie-helfen
+    outcomes: [reise-problem-loesen]
+    type: translate
+    focus: du-sie
+    instruction:
+      en: "You are speaking to the woman at the ticket counter. Translate into German."
+      ru: "Вы обращаетесь к сотруднице у билетной кассы. Переведите на немецкий."
+    prompt_en: "Excuse me, can you help me? My train has been cancelled."
+    prompt_ru: "Извините, вы можете мне помочь? Мой поезд отменили."
+    answer: "Entschuldigung, können Sie mir helfen? Mein Zug ist ausgefallen."
+    # du-sie grades the register, and the register lives in the pronoun: kannst du → können Sie.
+    # `mir` is NOT declared here on purpose — mir/mich is dativ-pronomen, not register, and a
+    # learner who writes `mich` must not be logged as confusing du with Sie. It is closed-class,
+    # so it is still never forgiven as a typo; the attempt is simply logged wrong, unattributed.
+    key_tokens: ["Sie"]
+    explain:
+      en: "A stranger doing their job is always Sie, and Sie takes the plural verb form: können Sie, not kannst du. helfen governs the dative, so the pronoun is mir, never mich. Note the capital S — it is part of the spelling of the polite form."
+      ru: "К незнакомому человеку на работе обращаются только на Sie, и глагол при Sie стоит в форме множественного числа: können Sie, а не kannst du. Глагол helfen управляет дательным падежом, поэтому местоимение — mir, а не mich. И заглавная S — часть написания вежливой формы."
+
+  - id: match-bahnhof-woerter
+    outcomes: [verbindung-waehlen]
+    type: match
+    instruction:
+      en: "Match each word with its explanation in German."
+      ru: "Соедините каждое слово с его объяснением на немецком."
+    pairs:
+      - { left: "die Verspätung", right: "Der Zug kommt zu spät." }
+      - { left: "der Anschluss", right: "Man steigt um und fährt weiter." }
+      - { left: "der Schalter", right: "Hier bekommt man Fahrkarten und Hilfe." }
+      - { left: "die Durchsage", right: "Im Bahnhof hört man: „Der Zug fällt aus.“" }
+      - { left: "der Sitzplatz", right: "Hier sitzt man im Zug." }
+    explain:
+      en: "These five words carry every travel problem you will have to describe. Verspätung is a late train, Anschluss is the train you change to, Schalter is the counter where a person can help you, Durchsage is what you hear over the loudspeakers, and Sitzplatz is your seat."
+      ru: "Эти пять слов покрывают почти любую дорожную проблему, о которой придётся рассказать. Verspätung — опоздание поезда, Anschluss — поезд, на который вы пересаживаетесь, Schalter — касса, где вам поможет живой человек, Durchsage — объявление по громкой связи, Sitzplatz — ваше сидячее место."
+
+  - id: listen-durchsage
+    outcomes: [durchsage-verstehen]
+    type: listen
+    focus: trennbar-wortstellung
+    instruction:
+      en: "Listen to the announcement and type it exactly."
+      ru: "Прослушайте объявление и запишите его в точности."
+    text: "Der Zug nach Hamburg fällt heute leider aus."
+    translation:
+      en: "Unfortunately, the train to Hamburg is cancelled today."
+      ru: "К сожалению, поезд на Гамбург сегодня отменён."
+    explain:
+      en: "The verb is ausfallen, and in the sentence it splits: fällt stays in position 2 and the prefix aus lands at the very end, after leider. That final aus is easy to hear and easy to leave out — and without it the sentence says nothing about a cancellation."
+      ru: "Глагол здесь — ausfallen, и в предложении он разрывается: fällt остаётся на втором месте, а приставка aus уходит в самый конец, после leider. Это финальное aus легко услышать и так же легко пропустить — а без него предложение вообще не говорит об отмене."

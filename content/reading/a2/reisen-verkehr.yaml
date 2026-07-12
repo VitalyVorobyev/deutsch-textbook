@@ -1,0 +1,70 @@
+topic: reisen-verkehr
+title_de: "Der Zug fällt aus"
+kind: intensive
+text:
+  - >-
+    Timo wohnt in Köln. Heute fährt er nach Hamburg. Dort wartet seine Schwester
+    Katrin. Timo ist zuerst mit dem Bus zum [[Hauptbahnhof::main station::главный
+    вокзал]] gefahren. Der Zug nach Hannover ist um acht Uhr zwölf von Gleis sieben
+    [[abgefahren::departed::отправился]]. Timo hat einen [[Sitzplatz::seat::сидячее
+    место]] in Wagen sieben.
+  - >-
+    In Hannover ist Timo [[umgestiegen::changed trains::сделал пересадку]]. Dann hat
+    er eine [[Durchsage::announcement::объявление]] gehört: „Der Zug nach Hamburg
+    [[fällt heute aus::is cancelled today::сегодня отменён]].“ Timo ist zum
+    [[Schalter::counter::касса]] gegangen. „Mein Zug ist ausgefallen. Können Sie mir
+    helfen?“ Frau Hoffmann sagt: „Sie fahren jetzt über Bremen. Dort haben Sie einen
+    [[Anschluss::connection::пересадку]] nach Hamburg.“
+  - >-
+    Timo ist um zehn Uhr zwanzig von Gleis vier abgefahren. Am Ende ist er mit einer
+    Stunde [[Verspätung::delay::опозданием]] in Hamburg angekommen. Katrin hat am
+    Bahnhof gewartet. „Die Fahrt hat sechs Stunden gedauert“, sagt Timo. „Aber jetzt
+    bin ich da.“
+questions:
+  - id: frage-ausgefallen
+    outcomes: [verbindung-waehlen]
+    type: mc
+    prompt: "Wo hat Timo die Durchsage gehört?"
+    options:
+      - "In Köln."
+      - "In Hannover."
+      - "In Bremen."
+    correct: 1
+    translation:
+      en: Where did Timo hear the announcement?
+      ru: Где Тимо услышал объявление?
+    explain:
+      en: "„In Hannover ist Timo umgestiegen. Dann hat er eine Durchsage gehört …“ — Hanover is where he changes trains, and that is where he learns that the onward train is cancelled. Cologne is where the journey started; Bremen is only the new route he is given afterwards."
+      ru: "„In Hannover ist Timo umgestiegen. Dann hat er eine Durchsage gehört …“ — в Ганновере он делает пересадку, и именно там узнаёт, что поезда дальше не будет. В Кёльне поездка началась, а Бремен появляется только потом — как новый маршрут."
+
+  - id: frage-schalter
+    outcomes: [durchsage-verstehen]
+    type: mc
+    prompt: "Was macht Timo nach der Durchsage?"
+    options:
+      - "Er geht zum Schalter."
+      - "Er fährt nach Köln zurück."
+      - "Er wartet auf Gleis sieben."
+    correct: 0
+    translation:
+      en: What does Timo do after the announcement?
+      ru: Что Тимо делает после объявления?
+    explain:
+      en: "„Timo ist zum Schalter gegangen“ — the announcement only tells him that the train is gone, so he goes to a person who can give him a new route. Platform seven was the platform in Cologne, at the start of the story, and nobody goes back."
+      ru: "„Timo ist zum Schalter gegangen“ — объявление лишь сообщает, что поезда не будет, и Тимо идёт к человеку, который даст ему новый маршрут. Седьмой путь был в Кёльне, в начале истории, и назад никто не едет."
+
+  - id: frage-fahrt-dauer
+    outcomes: [reise-berichten]
+    type: mc
+    prompt: "Wie lange hat die Fahrt gedauert?"
+    options:
+      - "Eine Stunde."
+      - "Vier Stunden."
+      - "Sechs Stunden."
+    correct: 2
+    translation:
+      en: How long did the journey take?
+      ru: Сколько длилась поездка?
+    explain:
+      en: "Timo says it himself at the end: „Die Fahrt hat sechs Stunden gedauert.“ One hour is the delay (mit einer Stunde Verspätung), not the journey — the text gives you both numbers, and they answer different questions."
+      ru: "Тимо сам говорит об этом в конце: „Die Fahrt hat sechs Stunden gedauert.“ Один час — это опоздание (mit einer Stunde Verspätung), а не длительность поездки; в тексте есть оба числа, и они отвечают на разные вопросы."
