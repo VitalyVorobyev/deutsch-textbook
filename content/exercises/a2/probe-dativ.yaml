@@ -1,0 +1,53 @@
+topic: dativ
+role: probe
+title:
+  en: "Probe — the dative"
+  ru: "Проверка — дательный падеж"
+
+# Three parallel variants of the same check, never the items practised in the lesson.
+# One is drawn per due interval (2, 7, 21 days), so a probe is always a fresh context.
+
+items:
+  - id: variant-a
+    outcomes: [dativ-praepositionen, dativ-artikel]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Since Monday my sister has been living at her friend's place."
+    prompt_ru: "С понедельника моя сестра живёт у подруги."
+    answer: "Meine Schwester wohnt seit Montag bei ihrer Freundin."
+    key_tokens: ["seit", "bei", "ihrer"]
+    accept:
+      - "Seit Montag wohnt meine Schwester bei ihrer Freundin."
+    explain:
+      en: "seit and bei always govern the dative, whatever the sentence means — so ihre becomes ihrer before the feminine Freundin. Note also that German uses the present tense here: wohnt seit Montag, because the living still goes on."
+      ru: "seit и bei всегда требуют дательного падежа, независимо от смысла, поэтому перед женским Freundin ihre превращается в ihrer. Обратите внимание и на время: по-немецки здесь настоящее — wohnt seit Montag, ведь действие продолжается."
+
+  - id: variant-b
+    outcomes: [dativ-pronomen, dativ-verben]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill in the correct dative pronoun.
+      ru: Вставьте правильное местоимение в дательном падеже.
+    text: "Der Kuchen schmeckt {{ihm}} sehr gut. (er) Ich zeige {{dir}} die Fotos. (du) Frau Berger, ich antworte {{Ihnen}} morgen. (Sie)"
+    explain:
+      en: "schmecken and antworten take a dative object, and the person you show something to is dative too. The forms are the ones to know by heart: er → ihm, du → dir, Sie → Ihnen (always capitalized)."
+      ru: "schmecken и antworten управляют дательным падежом, и тот, кому что-то показывают, тоже стоит в дательном. Формы нужно знать наизусть: er → ihm, du → dir, Sie → Ihnen (всегда с большой буквы)."
+
+  - id: variant-c
+    outcomes: [dativ-verben, dativ-artikel]
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The keys belong to my mother."
+    prompt_ru: "Ключи принадлежат моей маме."
+    answer: "Die Schlüssel gehören meiner Mutter."
+    key_tokens: ["meiner"]
+    explain:
+      en: "gehören has no accusative object at all: the owner goes into the dative, so mein becomes meiner before the feminine Mutter. The verb agrees with the plural subject die Schlüssel — gehören, not gehört."
+      ru: "У gehören нет винительного дополнения: владелец стоит в дательном падеже, поэтому перед женским Mutter mein превращается в meiner. Глагол согласуется с подлежащим во множественном числе die Schlüssel — gehören, а не gehört."

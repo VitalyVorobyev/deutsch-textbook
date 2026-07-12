@@ -40,7 +40,10 @@ interface Props {
   outcomeModes: Record<string, string>;
   cards: CardDef[];
   vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
-  checkpoint?: CheckpointInfo;
+  /** every level checkpoint in the content — each panel hides itself until taken */
+  checkpoints?: CheckpointInfo[];
+  /** outcome id → learner-facing can-do text, shared by every checkpoint panel */
+  outcomeLabels: Record<string, { en: string; ru: string }>;
   probeFamilies: ProbeFamily[];
   /** probe set id → the topic's German title, for the results list */
   probeLabels: Record<string, string>;
@@ -51,7 +54,8 @@ export default function ProgressPanel({
   outcomeModes,
   cards,
   vocabularyGroups,
-  checkpoint,
+  checkpoints = [],
+  outcomeLabels,
   probeFamilies,
   probeLabels,
 }: Props) {
@@ -288,9 +292,16 @@ export default function ProgressPanel({
         </section>
       )}
 
-      {data && checkpoint && (
-        <CheckpointResults checkpoint={checkpoint} outcomeModes={outcomeModes} attempts={data.attempts} />
-      )}
+      {data &&
+        checkpoints.map((checkpoint) => (
+          <CheckpointResults
+            key={checkpoint.setId}
+            checkpoint={checkpoint}
+            outcomeModes={outcomeModes}
+            outcomeLabels={outcomeLabels}
+            attempts={data.attempts}
+          />
+        ))}
 
       {data && (
         <ProbeResults

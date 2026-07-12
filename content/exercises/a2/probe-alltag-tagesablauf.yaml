@@ -1,0 +1,50 @@
+topic: alltag-tagesablauf
+role: probe
+title:
+  en: "Probe — everyday life and daily routine"
+  ru: "Проверка — повседневная жизнь и распорядок дня"
+
+items:
+  - id: variant-a
+    outcomes: [alltag-zeitpraepositionen, alltag-zeit-haeufigkeit]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Thursday I do sport at six o'clock."
+    prompt_ru: "В четверг я в шесть часов занимаюсь спортом."
+    answer: "Am Donnerstag mache ich um sechs Uhr Sport."
+    key_tokens: ["Am", "um"]
+    accept:
+      - "Ich mache am Donnerstag um sechs Uhr Sport."
+    explain:
+      en: "The kind of time chooses the preposition, not the meaning: am for a day (am Donnerstag), um for a clock time (um sechs Uhr). Both appear in one sentence here, and fronting the day pushes the subject behind the verb."
+      ru: "Предлог выбирается по типу времени, а не по смыслу: am — с днём недели (am Donnerstag), um — с часами (um sechs Uhr). Здесь они стоят в одном предложении, а вынесенный вперёд день недели отодвигает подлежащее за глагол."
+
+  - id: variant-b
+    outcomes: [alltag-beschreiben]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill in the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола из скобок.
+    text: "Am Morgen {{ziehe}} ich meine Jacke {{an}}. (anziehen) Am Nachmittag {{kaufe}} ich im Supermarkt {{ein}}. (einkaufen)"
+    explain:
+      en: "A daily routine in German is built almost entirely from separable verbs, and each one splits the same way: the conjugated part stays in position 2 and the prefix waits at the end of its own clause — ziehe … an, kaufe … ein."
+      ru: "Рассказ о распорядке дня по-немецки почти целиком состоит из глаголов с отделяемой приставкой, и каждый распадается одинаково: спрягаемая часть остаётся на втором месте, а приставка ждёт в конце своей части предложения — ziehe … an, kaufe … ein."
+
+  - id: variant-c
+    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My husband cooks every day. Afterwards we watch television."
+    prompt_ru: "Мой муж готовит каждый день. Потом мы смотрим телевизор."
+    answer: "Mein Mann kocht jeden Tag. Danach sehen wir fern."
+    key_tokens: ["sehen"]
+    explain:
+      en: "Danach is a sentence element like any other, so it occupies position 1 and the verb must still come second: Danach sehen wir fern. English keeps 'then we watch', and that habit is exactly what goes wrong here."
+      ru: "Danach — такой же член предложения, как и любой другой: он занимает первое место, а глагол обязан остаться на втором — Danach sehen wir fern. По-русски «потом мы смотрим» звучит естественно, и именно эта привычка здесь подводит."

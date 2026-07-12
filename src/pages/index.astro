@@ -4,7 +4,7 @@ import DueBadge from '../components/srs/DueBadge';
 import FirstSteps from '../components/today/FirstSteps';
 import NextTopic from '../components/today/NextTopic';
 import SessionDoneBadge from '../components/today/SessionDoneBadge';
-import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
+import { getAllCards, getCheckpoints, getDeckLevels, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { withBase } from '../lib/url';
 
@@ -12,6 +12,15 @@ const cards = await getAllCards();
 const nodes = await getTopicNodes();
 const deckLevels = await getDeckLevels();
 const { spine } = getCurriculum();
+
+// The card links to the checkpoint the learner is due for; the island decides
+// which (lowest level whose lessons are done and whose set is unattempted).
+const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title }) => ({
+  setId,
+  level,
+  path,
+  title,
+}));
 
 // Where a learner with no history starts — the FirstSteps card links straight to it.
 const firstNode = nodes.find((node) => node.id === spine[0]);
@@ -52,12 +61,7 @@ const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de 
     </a>
 
     <div class="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-      <NextTopic
-        client:only="react"
-        spine={spine}
-        nodes={nodes}
-        checkpoint={{ path: withBase('/checkpoint/a1'), setId: 'a1/checkpoint-a1', level: 'A1', title: 'Checkpoint A1' }}
-      />
+      <NextTopic client:only="react" spine={spine} nodes={nodes} checkpoints={checkpoints} />
     </div>
   </div>
 

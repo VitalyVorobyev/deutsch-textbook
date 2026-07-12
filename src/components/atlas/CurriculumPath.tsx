@@ -23,7 +23,9 @@ import {
 
 export type { CourseTopic, CourseUnit, PathCheckpoint } from './course';
 
-interface Props { units: CourseUnit[]; groups: AtlasGroup[]; spine: string[]; checkpoint?: PathCheckpoint }
+interface Props { units: CourseUnit[]; groups: AtlasGroup[]; spine: string[]; checkpoints?: PathCheckpoint[] }
+
+const NO_CHECKPOINTS: PathCheckpoint[] = [];
 
 const VIEWS = [['path', 'Lernpfad'], ['atlas', 'Atlas'], ['overview', 'Alle Themen']] as const;
 
@@ -34,7 +36,7 @@ function savedView(value: string | null): View | undefined {
   return migrated === 'path' || migrated === 'atlas' || migrated === 'overview' ? migrated : undefined;
 }
 
-export default function CurriculumPath({ units, groups, spine, checkpoint }: Props) {
+export default function CurriculumPath({ units, groups, spine, checkpoints = NO_CHECKPOINTS }: Props) {
   const lang = useExplainLang();
   const topics = useMemo(() => units.flatMap((unit) => unit.topics), [units]);
   const byId = useMemo(() => new Map(topics.map((topic) => [topic.id, topic])), [topics]);
@@ -70,13 +72,14 @@ export default function CurriculumPath({ units, groups, spine, checkpoint }: Pro
     ? goalRoute(goal.topicId, spine, topics).map((node) => byId.get(node.id)).filter((node): node is CourseTopic => !!node)
     : [];
   const routeIds = new Set(route.map((topic) => topic.id));
-  const checkpointState = useMemo(() => {
-    if (!checkpoint || !ctx) return undefined;
-    return {
+  const checkpointCards = useMemo<CheckpointCardData[]>(() => {
+    if (!ctx) return [];
+    return checkpoints.map((checkpoint) => ({
+      checkpoint,
       remaining: levelRemaining(checkpoint.level, topics, ctx),
       summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
-    };
-  }, [checkpoint, ctx, topics]);
+    }));
+  }, [checkpoints, ctx, topics]);
 
   async function chooseGoal(topicId?: string) {
     const persisted: LearningGoal = { ...(topicId ? { topicId } : {}), setAt: Date.now() };
@@ -96,16 +99,16 @@ export default function CurriculumPath({ units, groups, spine, checkpoint }: Pro
       {goal && <div className="flex items-center gap-2 text-sm"><span className="text-stone-500">Ziel:</span><button onClick={() => { setSelectedId(goal.topicId); changeView('atlas'); }} className="font-semibold text-amber-700 hover:underline dark:text-amber-300">{byId.get(goal.topicId)?.title_de}</button><button onClick={() => void chooseGoal()} aria-label="Lernziel löschen" className="text-stone-400 hover:text-red-600">×</button></div>}
     </div>
 
-    {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} checkpoint={checkpoint} checkpointState={checkpointState} />}
+    {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} checkpointCards={checkpointCards} />}
     {view === 'atlas' && <AtlasView topics={topics} groups={groups} currentId={next?.id} selected={selected} goal={goal} routeIds={routeIds} completions={completions} level={level} strand={strand} lang={lang} onLevel={setLevel} onStrand={setStrand} onSelect={setSelectedId} onGoal={chooseGoal} />}
     {view === 'overview' && <OverviewTable units={units} groups={groups} ctx={ctx} completions={completions} nextId={next?.id} goal={goal} routeIds={routeIds} query={query} lang={lang} onQuery={setQuery} onSelect={setSelectedId} onGoal={chooseGoal} />}
   </div>;
 }
 
-interface CheckpointCardState { remaining: number; summary: CheckpointSummary | null }
-function PathView({ next, goal, route, completions, lang, checkpoint, checkpointState }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string; checkpoint?: PathCheckpoint; checkpointState?: CheckpointCardState }) {
-  const checkpointCard = checkpoint && checkpointState && <CheckpointCard checkpoint={checkpoint} state={checkpointState} lang={lang} />;
-  if (!next) return <div className="mt-8"><p className="text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>{checkpointCard}</div>;
+interface CheckpointCardData { checkpoint: PathCheckpoint; remaining: number; summary: CheckpointSummary | null }
+function PathView({ next, goal, route, completions, lang, checkpointCards }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string; checkpointCards: CheckpointCardData[] }) {
+  const cards = checkpointCards.map((card) => <CheckpointCard key={card.checkpoint.setId} checkpoint={card.checkpoint} state={card} lang={lang} />);
+  if (!next) return <div className="mt-8"><p className="text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>{cards}</div>;
   return <>
     <div className="mt-6 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
     <section className="border-l-4 border-amber-500 bg-amber-50 p-6 dark:bg-amber-950/25">
@@ -120,11 +123,11 @@ function PathView({ next, goal, route, completions, lang, checkpoint, checkpoint
       {goal ? <ol className="mt-3 space-y-2">{route.map((topic, i) => <li key={topic.id} className="flex items-center gap-3 text-sm"><span className="w-5 text-right text-stone-400">{i + 1}</span><TierBadge tier={completions.get(topic.id)?.tier ?? 'untouched'} /><a href={topic.path} className="font-medium hover:text-amber-700">{topic.title_de}</a></li>)}</ol> : <p className="mt-2 text-sm text-stone-500">Der nächste Schritt folgt dem Lehrplan und deinem gemessenen Lernstand. Im Atlas kannst du stattdessen ein eigenes Ziel wählen.</p>}
     </section>
     </div>
-    {checkpointCard}
+    {cards}
   </>;
 }
 
-function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoint; state: CheckpointCardState; lang: string }) {
+function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoint; state: CheckpointCardData; lang: string }) {
   const { remaining, summary } = state;
   if (summary) {
     const pct = summary.total ? Math.round((summary.score / summary.total) * 100) : 0;

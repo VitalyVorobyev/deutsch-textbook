@@ -1,0 +1,48 @@
+topic: termine-vereinbaren
+role: probe
+title:
+  en: "Probe — making appointments"
+  ru: "Проверка — как договориться о встрече"
+
+items:
+  - id: variant-a
+    outcomes: [termine-hoeflich-telefonieren, termine-organisieren]
+    type: translate
+    focus: du-sie
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Mr Klein, can you call me tomorrow?"
+    prompt_ru: "Господин Кляйн, вы можете позвонить мне завтра?"
+    answer: "Herr Klein, können Sie mich morgen anrufen?"
+    key_tokens: ["können", "Sie"]
+    explain:
+      en: "Addressing someone by title and surname means Sie, and the Sie-form of the verb is the infinitive: können Sie, never kannst Sie. English has only one 'you', so the choice has to be made consciously every time."
+      ru: "Обращение по фамилии с Herr/Frau означает Sie, а форма глагола при Sie совпадает с инфинитивом: können Sie, но никогда kannst Sie. Как и русское «вы», Sie пишется с большой буквы — и выбор между du и Sie приходится делать каждый раз осознанно."
+
+  - id: variant-b
+    outcomes: [termine-zeit-verstehen]
+    type: listen
+    focus: um-am-zeit
+    instruction:
+      en: Listen and type what you hear.
+      ru: Послушайте и напишите то, что услышали.
+    text: "Der Termin ist am Mittwoch um halb elf."
+    explain:
+      en: "An appointment is announced with both prepositions: am for the day, um for the clock time. halb elf is half an hour before eleven, that is 10:30 — German counts forward to the next hour, not back from the last one."
+      ru: "Время встречи называют сразу с двумя предлогами: am — для дня, um — для часа. halb elf — это половина одиннадцатого, то есть 10:30: немецкий отсчитывает время вперёд к следующему часу, как и русское «половина одиннадцатого»."
+
+  - id: variant-c
+    outcomes: [termine-organisieren]
+    type: translate
+    focus: passen-dativ
+    instruction:
+      en: Translate into German (informal — you are writing to a friend).
+      ru: Переведите на немецкий (неформально — вы пишете другу).
+    prompt_en: "Friday doesn't suit me. Does Saturday suit you?"
+    prompt_ru: "Пятница мне не подходит. А тебе подходит суббота?"
+    answer: "Der Freitag passt mir nicht. Passt es dir am Samstag?"
+    key_tokens: ["mir", "dir"]
+    explain:
+      en: "passen takes a dative object: the person it suits goes into the dative — mir, dir, ihm, Ihnen. With a friend the informal dir is the right form; Ihnen would sound oddly official."
+      ru: "passen управляет дательным падежом: тот, кому подходит, стоит в дательном — mir, dir, ihm, Ihnen. С другом уместна неформальная форма dir; Ihnen прозвучало бы неуместно официально."
