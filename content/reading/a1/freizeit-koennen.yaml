@@ -1,0 +1,27 @@
+topic: freizeit-koennen
+title_de: "Am Samstag kann ich nicht"
+text:
+  - "Lena und Tom sind Freunde. Am Freitag fragt Lena: „Tom, hast du am Samstag Zeit? Gehen wir ins Schwimmbad? Ich schwimme so gern!“ Tom sagt: „[[Leider::Unfortunately::К сожалению]] kann ich am Samstag nicht. Meine Oma [[hat Geburtstag::has her birthday::празднует день рождения]], und wir machen eine Party. [[Schade!::What a pity!::Как жаль!]]“ Lena fragt: „Und am Sonntag? Kannst du am Sonntag?“ Tom sagt: „Ja, am Sonntag kann ich. Aber ich kann nicht gut schwimmen.“"
+  - "Lena sagt: „[[Kein Problem!::No problem!::Не беда!]] Wir schwimmen zusammen, [[das macht Spaß::that is fun::это весело]]. Und dann können wir ins Café gehen.“ Tom sagt: „Ja, gern! Ich mag [[Kuchen::cake::пироги]].“ Am Sonntag gehen die Freunde ins Schwimmbad. Tom schwimmt [[langsam::slowly::медленно]], aber er lernt schnell. Dann sitzen sie im Café. Tom sagt: „[[Das nächste Mal::Next time::В следующий раз]] spielen wir Fußball im Park. Das kann ich [[wirklich::really::действительно]] gut!“"
+questions:
+  - id: q-warum-nicht
+    outcomes: [freizeit-verabredung]
+    type: mc
+    prompt: "Warum kann Tom am Samstag nicht ins Schwimmbad gehen?"
+    options: ["Seine Oma hat Geburtstag.", "Er kann nicht gut schwimmen.", "Er mag das Schwimmbad nicht."]
+    correct: 0
+    explain: { en: "Tom declines with a reason: Meine Oma hat Geburtstag, und wir machen eine Party. That he cannot swim well is true, but it is not why Saturday does not work.", ru: "Том отказывается и называет причину: Meine Oma hat Geburtstag, und wir machen eine Party. Что он плохо плавает — правда, но суббота не подходит не поэтому." }
+  - id: q-sonntag-plan
+    outcomes: [freizeit-gespraech-verstehen]
+    type: mc
+    prompt: "Was machen Lena und Tom am Sonntag?"
+    options: ["Sie schwimmen und gehen dann ins Café.", "Sie spielen Fußball im Park.", "Sie machen eine Party."]
+    correct: 0
+    explain: { en: "The plan for Sunday: Wir schwimmen zusammen … und dann können wir ins Café gehen. Football in the park is only an idea for next time.", ru: "План на воскресенье: Wir schwimmen zusammen … und dann können wir ins Café gehen. Футбол в парке — только идея на следующий раз." }
+  - id: q-tom-kann
+    outcomes: [freizeit-gespraech-verstehen]
+    type: mc
+    prompt: "Was kann Tom wirklich gut?"
+    options: ["Fußball spielen", "schwimmen", "Kuchen machen"]
+    correct: 0
+    explain: { en: "At the end Tom says: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! He swims slowly, and Kuchen he only likes to eat.", ru: "В конце Том говорит: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! Плавает он медленно, а пироги он любит только есть." }
