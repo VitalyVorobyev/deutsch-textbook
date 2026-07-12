@@ -266,6 +266,15 @@ prompts no real situation would ever produce.
 grade — approximate it as closely as gradeability allows, and label
 self-assessed production as practice evidence, never verified accuracy.
 
+**Operational extensions for Deutsch-Atlas:** open production includes a
+feedback-and-revision loop, not only a model reveal. Spoken practice pairs a
+model with record/replay, self-check and an improved attempt; pronunciation
+includes stress, rhythm and comprehensibility. High-frequency formulaic chunks
+deserve retrieval as whole usable units. An artifact's target outcome and its
+actual response mode are separate: written work may teach interaction but
+cannot verify speech. Generated practice, ASR and AI feedback must expose
+uncertainty and remain unverified unless validated for the exact inference.
+
 ### 14. Frequency & contrastive analysis (L1 interference)
 **Finding:** High-frequency words and patterns give the most communicative
 return per item learned. Some L1→L2 errors are systematic and predictable

@@ -11,6 +11,7 @@ import { shuffle } from '../../lib/shuffle';
 import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
+import { responseModeForItem } from '../../lib/evidence';
 
 /** One exercise set flattened for training, with its owning topic's metadata. */
 export interface TrainingSet {
@@ -288,6 +289,7 @@ export default function MixedTraining({
       given: result.given,
       focus: entry.item.focus,
       evidence: result.evidence,
+      responseMode: result.responseMode ?? responseModeForItem(entry.item),
       outcomes: entry.item.outcomes,
       ts: Date.now(),
     });

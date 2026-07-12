@@ -314,6 +314,19 @@ export const writeItemSchema = z.object({
   min_words: z.number().int().min(1).default(8),
 });
 
+/** Open spoken production or interaction. Audio never leaves the browser and
+    the completion is practice evidence, not automatically verified accuracy. */
+export const speakItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('speak'),
+  mode: z.enum(['spoken-production', 'spoken-interaction']),
+  prompt: bilingualSchema,
+  goal: bilingualSchema,
+  checklist: z.array(bilingualSchema).min(1),
+  model_answer: z.string().min(1),
+  model_translation: bilingualSchema.optional(),
+});
+
 const audioTurnSchema = z.object({
   speaker: z.string().min(1),
   text: z.string().min(1),
@@ -354,6 +367,7 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   translateItemSchema,
   listenItemSchema,
   writeItemSchema,
+  speakItemSchema,
   audioComprehensionItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;

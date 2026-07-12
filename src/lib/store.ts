@@ -52,6 +52,8 @@ export interface Attempt {
   focus?: string;
   /** omitted in historical snapshots; absence means verified */
   evidence?: 'verified' | 'practice';
+  /** actual response channel; absent in historical snapshots */
+  responseMode?: 'selection' | 'writing' | 'listening' | 'spoken-production' | 'spoken-interaction';
   /** stable curriculum outcome ids exercised by this attempt */
   outcomes?: string[];
   ts: number;

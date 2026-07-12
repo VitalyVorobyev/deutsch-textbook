@@ -119,3 +119,16 @@ items:
     model_answer: "Meine Hobbys sind Musik und Sport. Ich höre gern Musik, und ich spiele gern Gitarre. Ich kann gut schwimmen, aber ich kann nicht gut tanzen. Ich mag auch Filme."
     model_translation: { en: "My hobbies are music and sport. I like listening to music, and I like playing the guitar. I can swim well, but I cannot dance well. I also like films.", ru: "Мои хобби — музыка и спорт. Я люблю слушать музыку и играть на гитаре. Я умею хорошо плавать, но не умею хорошо танцевать. Ещё я люблю фильмы." }
     explain: { en: "Pattern: verb in position 2, gern right after it, and with können the infinitive at the very end. Things you like are mögen + noun: Ich mag Filme.", ru: "Схема: глагол на втором месте, gern сразу после него, а с können инфинитив в самом конце. Любимые вещи — mögen + существительное: Ich mag Filme." }
+  - id: speak-invitation
+    outcomes: [freizeit-verabredung]
+    type: speak
+    mode: spoken-interaction
+    prompt: { en: "A friend asks: ‘Hast du am Samstag Zeit? Wir können zusammen ins Kino gehen.’ Answer aloud.", ru: "Друг спрашивает: «Hast du am Samstag Zeit? Wir können zusammen ins Kino gehen.» Ответьте вслух." }
+    goal: { en: "Accept or decline politely and add one useful detail.", ru: "Вежливо согласитесь или откажитесь и добавьте одну полезную деталь." }
+    checklist:
+      - { en: "I clearly accepted or declined.", ru: "Я ясно согласился(-ась) или отказался(-ась)." }
+      - { en: "I used a polite chunk such as Ja, gern or Leider kann ich nicht.", ru: "Я использовал(а) вежливую связку, например Ja, gern или Leider kann ich nicht." }
+      - { en: "I added a time or an alternative suggestion.", ru: "Я добавил(а) время или предложил(а) другой вариант." }
+    model_answer: "Ja, gern! Am Samstag habe ich Zeit. Können wir um sieben Uhr ins Kino gehen?"
+    model_translation: { en: "Yes, gladly! I have time on Saturday. Can we go to the cinema at seven?", ru: "Да, с удовольствием! В субботу у меня есть время. Мы можем пойти в кино в семь?" }
+    explain: { en: "Interaction needs a complete turn: react first, then add a concrete time or alternative.", ru: "В диалоге нужен законченный ответ: сначала реакция, затем конкретное время или другой вариант." }

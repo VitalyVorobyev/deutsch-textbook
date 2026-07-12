@@ -13,8 +13,10 @@ import { Order } from './Order';
 import { TableFill } from './TableFill';
 import { Translate } from './Translate';
 import { Write } from './Write';
+import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
 import type { ItemResult } from './shared';
+import { responseModeForItem } from '../../lib/evidence';
 
 interface Props {
   setId: string;
@@ -81,6 +83,8 @@ export function ItemView({
       return <Listen item={item} {...props} />;
     case 'write':
       return <Write item={item} storageKey={storageKey ?? item.id} {...props} />;
+    case 'speak':
+      return <Speak item={item} {...props} />;
     case 'audio-comprehension':
       return <AudioComprehension item={item} {...props} />;
   }
@@ -132,6 +136,7 @@ export default function ExerciseSet({ setId, set }: Props) {
       given: result.given,
       focus: item.focus,
       evidence: result.evidence,
+      responseMode: result.responseMode ?? responseModeForItem(item),
       outcomes: item.outcomes,
       ts: Date.now(),
     });

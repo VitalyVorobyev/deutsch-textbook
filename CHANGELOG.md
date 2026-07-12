@@ -7,6 +7,21 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [Unreleased]
+
+### Added
+
+- Local record/replay speaking practice with self-check and a required improved attempt; recordings
+  never leave the current browser tab and never produce verified mastery.
+- Actual response modes on new attempts, so progress distinguishes selected, written, listening and
+  spoken activity from the curriculum outcome's intended skill.
+
+### Changed
+
+- Open writing now uses a draft → checklist → revision loop and preserves both versions as
+  unverified practice evidence.
+- The roadmap now gates further A2 authoring on the post-release A1 learning-system hardening audit.
+
 ## [0.2.0] — 2026-07-12
 
 The A1 release. Version 0.1.0 shipped the desktop shell; almost the entire course arrived after it.

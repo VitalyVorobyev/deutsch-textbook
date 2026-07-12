@@ -13,6 +13,8 @@ export interface ItemResult {
   totalParts?: number;
   /** open production is useful practice but not automatically verified */
   evidence?: 'verified' | 'practice';
+  /** what the learner actually did, independent of the target outcome's CEFR mode */
+  responseMode?: 'selection' | 'writing' | 'listening' | 'spoken-production' | 'spoken-interaction';
 }
 
 export interface ItemProps<T> {

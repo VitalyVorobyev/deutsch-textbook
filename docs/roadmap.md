@@ -2,9 +2,11 @@
 
 Status: **in progress** (updated 2026-07-12).
 
-A1 is complete and shipped (v0.2.0). The current milestone is to bring A2 to the same bar, and to
-add the retention machinery — cumulative checkpoints and delayed probes — that a two-level course
-needs. Executable work lives in [backlog.md](backlog.md); implementation history lives in
+A1 is content-complete and shipped (v0.2.0). The post-release
+[learning-system audit](a1-learning-audit.md) found that the lesson foundation is strong but the
+course loop still lacks delayed probes, production revision, spoken self-practice, sustained input
+and coherent cross-skill missions. The current milestone hardens that loop before its patterns are
+scaled across A2. Executable work lives in [backlog.md](backlog.md); implementation history lives in
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md).
 
 ## Product direction
@@ -34,15 +36,32 @@ curriculum/outcome contracts, the Lernpfad and Atlas, Üben navigation, and the 
 suite. Phase 2 completed A1 — ten units, the cumulative checkpoint, and full Goethe-A1 Wortliste
 coverage. Details and stable IDs are in the archive.
 
-## Current milestone — Phase 3: complete A2 and retention
+## Current milestone — Phase 3: harden the A1 learning loop
 
-Outcome: the same complete course loop reaches an A2 checkpoint and measures retention beyond
-immediate practice.
+Outcome: A1 demonstrates a complete input → retrieval → interaction/production → revision → delayed
+transfer loop, and that loop becomes the required authoring contract for A2.
+
+- Add local, snapshot-safe delayed probes with parallel variants.
+- Reserve a stable share of mixed sessions for broad cumulative retrieval.
+- Upgrade open writing to checklist-led revision and add local record/replay speaking practice.
+- Introduce lightweight mission grouping over existing item types.
+- Pilot one late-A1 extensive reader and reviewed committed comprehension audio.
+- Record actual response mode separately from the curriculum outcome's target mode.
+
+**Exit criteria:** at least one A1 mission exercises reading/listening, constrained retrieval,
+revised writing and recorded speaking; due parallel probes run after a real interval; progress shows
+actual mode coverage without treating unverified production as mastery; the full repository gate
+passes.
+
+## Next milestone — Phase 4: complete A2 and retention
+
+Outcome: the hardened course loop reaches an A2 checkpoint and measures retention beyond immediate
+practice.
 
 - Author the revised A2 spine and strengthen the six existing A2 topics.
 - Implement `deepens` in training so relevant earlier focus areas resurface.
+- Author ten A2 units to the quality gate in the audit.
 - Add cumulative unit checkpoints and delayed probes with parallel variants.
-- Reserve a stable share of mixed sessions for broad cumulative retrieval.
 - Finish with a cumulative A2 checkpoint.
 
 Vocabulary grows with complete units — topic, practice, reading, productive use and reviewed IPA —
@@ -52,13 +71,16 @@ are on the Über page, and `bun scripts/coverage-a1.ts` reports A1 against the G
 **Exit criteria:** the A1–A2 path is complete; checkpoints and delayed probes run; weakness
 targeting cannot monopolize a session; verified and practice evidence remain distinct.
 
-## Deferred — Phase 4
+## Deferred — Phase 5
 
-Reconsider only after real A1 usage data exists: committed neural-TTS assets, extensive readers,
-local speaking capture, and scenario grouping. None may block A1 or A2 completion.
+Reconsider only after real A1 usage data exists: broader neural-audio replacement, longer reader
+series beyond the pilot, optional constrained AI feedback and pronunciation analysis. None may
+silently create verified evidence.
 
 ## Definition of roadmap completion
 
-A learner can start at Erste Schritte and reach the A2 checkpoint through a visible ordered
-path. Sessions combine due review, eligible mixed practice and a clear next step. Outcome progress
-is backed by honest evidence, and snapshot-driven weakness drills continue to work throughout.
+A learner can start at Erste Schritte and reach the A2 checkpoint through a visible ordered path.
+Sessions combine due review, eligible mixed practice and a clear next step. The learner reads and
+listens at useful volume, produces and revises language, rehearses spoken exchanges, and proves
+retention later in parallel contexts. Outcome progress is backed by mode-valid honest evidence, and
+snapshot-driven weakness drills continue to work throughout.

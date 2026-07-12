@@ -78,3 +78,16 @@ items:
     model_answer: "Ich heiße Olga. Ich komme aus Lettland und wohne in Berlin. Ich spreche Russisch und Deutsch."
     model_translation: { en: "My name is Olga. I come from Latvia and live in Berlin. I speak Russian and German.", ru: "Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и по-немецки." }
     explain: { en: "Use one clear sentence for name, origin/home and language.", ru: "Используйте по одному ясному предложению для имени, страны/места жительства и языка." }
+  - id: speak-introduction
+    outcomes: [erste-sich-vorstellen]
+    type: speak
+    mode: spoken-production
+    prompt: { en: "You meet a new person in your German course. Introduce yourself aloud.", ru: "Вы знакомитесь с новым человеком на курсе немецкого. Представьтесь вслух." }
+    goal: { en: "Speak without reading a prepared sentence, then listen and improve your answer.", ru: "Говорите без чтения готового предложения, затем прослушайте запись и улучшите ответ." }
+    checklist:
+      - { en: "I gave my name.", ru: "Я назвал(а) своё имя." }
+      - { en: "I said where I come from or live.", ru: "Я сказал(а), откуда я или где живу." }
+      - { en: "I named at least one language.", ru: "Я назвал(а) хотя бы один язык." }
+    model_answer: "Guten Tag! Ich heiße Olga. Ich komme aus Lettland und wohne in Berlin. Ich spreche Russisch und ein bisschen Deutsch."
+    model_translation: { en: "Hello! My name is Olga. I come from Latvia and live in Berlin. I speak Russian and a little German.", ru: "Добрый день! Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и немного по-немецки." }
+    explain: { en: "A short introduction is built from reusable chunks: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …", ru: "Короткое представление строится из готовых связок: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …" }

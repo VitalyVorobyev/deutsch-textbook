@@ -329,6 +329,11 @@ for (const [setId, { file, data }] of exerciseSets) {
           warn(where, 'model answer is shorter than the learner minimum');
         break;
       }
+      case 'speak': {
+        if (item.model_answer.trim().split(/\s+/).length < 3)
+          warn(where, 'spoken model is very short; make the communicative response meaningful');
+        break;
+      }
       case 'audio-comprehension': {
         if (item.correct >= item.options.length)
           fail(where, `correct index ${item.correct} out of range (${item.options.length} options)`);
