@@ -1,0 +1,44 @@
+topic: einkaufen-reklamation
+role: pretest
+items:
+  - id: pre-komparativ-als
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: komparativ-als
+    prompt: "Die Jacke hier kostet 95 Euro, die Jacke dort kostet 60 Euro. Die Jacke hier ist ___ als die Jacke dort."
+    options: ["teuer", "teurer", "am teuersten"]
+    correct: 1
+    translation:
+      en: The jacket here costs 95 euros, the jacket over there costs 60 euros. The jacket here is more expensive than the jacket over there.
+      ru: Эта куртка стоит 95 евро, та — 60 евро. Эта куртка дороже, чем та.
+    explain:
+      en: "Two prices are being compared, so the adjective needs the comparative ending -er: teuer → teurer (the -e- of the stem drops out). The word als demands a comparative in front of it — teuer als and am teuersten als are both impossible. The superlative am teuersten would name the most expensive of them all, not the more expensive of two."
+      ru: "Сравниваются две цены, поэтому прилагательному нужно окончание сравнительной степени -er: teuer → teurer (при этом -e- в основе выпадает). Слово als требует, чтобы перед ним стояла сравнительная степень: сочетания teuer als и am teuersten als невозможны. Превосходная степень am teuersten назвала бы самую дорогую вещь из всех, а не более дорогую из двух."
+
+  - id: pre-passen-dativ
+    outcomes: [gefallen-passen-sagen]
+    type: mc
+    focus: passen-dativ
+    prompt: "Die Schuhe sind zu eng. Sie passen ___ nicht."
+    options: ["mich", "mir", "ich"]
+    correct: 1
+    translation:
+      en: The shoes are too tight. They don't fit me.
+      ru: Ботинки слишком узкие. Они мне не подходят.
+    explain:
+      en: "With passen the product is the subject (die Schuhe) and the person stands in the dative: mir. English hides this, because 'they don't fit me' puts 'me' in the object slot — but German asks wem passen die Schuhe? and answers with the dative form. The accusative mich is exactly the wrong choice here."
+      ru: "С глаголом passen подлежащее — товар (die Schuhe), а человек стоит в дательном падеже: mir. Здесь русский подсказывает верно: «(кому?) мне не подходят». Немецкий вопрос тот же — wem passen die Schuhe? — и ответ стоит в Dativ. Форма mich (Akkusativ) была бы ошибкой."
+
+  - id: pre-superlativ-am
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: superlativ-am
+    prompt: "Von allen Jacken im Kaufhaus ist diese Jacke ___."
+    options: ["warm", "wärmer", "am wärmsten"]
+    correct: 2
+    translation:
+      en: Of all the jackets in the department store, this jacket is the warmest.
+      ru: Из всех курток в универмаге эта — самая тёплая.
+    explain:
+      en: "„Von allen Jacken“ compares one item against a whole group, and that is what the superlative is for. After ist it has a fixed shape: am + adjective + -sten → am wärmsten. Both parts are needed; wärmer alone would only compare this jacket with one other one, and it would need an als-phrase to say which."
+      ru: "«Von allen Jacken» сравнивает одну вещь со всей группой — именно для этого и нужна превосходная степень. После ist она имеет строго определённый вид: am + прилагательное + -sten → am wärmsten. Нужны обе части: одно только wärmer сравнило бы эту куртку с какой-то одной другой, и тогда потребовалось бы ещё als."

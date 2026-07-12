@@ -338,6 +338,26 @@ for (const [setId, { file, data }] of exerciseSets) {
             `show no retention curve. Split it into one family per competence.`,
         );
     }
+
+    // ...and the same item TYPE, for the same reason one step further in.
+    //
+    // The variants are served one per interval, so anything that differs between them is
+    // confounded with the delay. A family running translate → cloze → translate asks for a
+    // whole sentence at 2 days, hands the learner the sentence frame at 7, and takes it away
+    // again at 21 — so the 7-day point would sit higher than the other two whatever the
+    // learner remembered, and the curve would show a recovery that is pure response format.
+    // The only thing allowed to vary across a probe family is the elapsed time.
+    const type = data.items[0]!.type;
+    for (const item of data.items.slice(1)) {
+      if (item.type !== type)
+        fail(
+          `${file} → item "${item.id}"`,
+          `probe variants must all be the same item type ("${type}"), but this one is ` +
+            `"${item.type}". One variant is served per interval, so a format that changes ` +
+            `between them is confounded with the delay — a cloze at 7 days scores higher than ` +
+            `a translate at 2 and 21 no matter what was retained.`,
+        );
+    }
   }
 
   const itemIds = new Set<string>();
@@ -765,6 +785,11 @@ for (const [setId, { file, data }] of exerciseSets) {
         'perfekt-satzklammer': 'perfekt-haben-sein',
         'um-am-zeit': 'alltag-zeit',
         'du-sie': 'termine-vereinbaren',
+        // --- A2 units ---
+        'wo-wohin': 'wohnen-umzug',
+        'stellen-stehen': 'wohnen-umzug',
+        'komparativ-als': 'einkaufen-reklamation',
+        'superlativ-am': 'einkaufen-reklamation',
         // was escaping the spine check entirely while the table was a lookup, not an allowlist
         'haben-wendungen': 'essen-trinken',
       };

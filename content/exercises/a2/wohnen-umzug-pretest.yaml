@@ -1,0 +1,56 @@
+topic: wohnen-umzug
+role: pretest
+title:
+  en: "Pretest — where is it, where does it go?"
+  ru: "Предтест — где стоит и куда ставят"
+items:
+  - id: pretest-wohin-tisch
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: wo-wohin
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+    prompt: "Nina stellt die Lampe ___ Tisch."
+    options: ["auf dem", "auf den", "auf der"]
+    correct: 1
+    translation:
+      en: "Nina puts the lamp on the table."
+      ru: "Нина ставит лампу на стол."
+    explain:
+      en: "The lamp is moving to a new place, so the question is Wohin? — and after a two-way preposition Wohin? takes the accusative: auf den Tisch. auf dem Tisch would say where the lamp already is."
+      ru: "Лампа перемещается на новое место, значит вопрос — Wohin? После предлога двойного управления Wohin? требует Akkusativ: auf den Tisch. Форма auf dem Tisch сказала бы, где лампа уже находится."
+
+  - id: pretest-wo-flur
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: wo-wohin
+    instruction:
+      en: "Guess which form describes a position."
+      ru: "Угадайте, какая форма описывает положение."
+    prompt: "Die Kiste steht ___ Flur."
+    options: ["in den", "im", "in der"]
+    correct: 1
+    translation:
+      en: "The box is standing in the hallway."
+      ru: "Коробка стоит в прихожей."
+    explain:
+      en: "Nothing is moving: the box simply is somewhere, so the question is Wo? and in takes the dative — der Flur → in dem Flur → im Flur. The contraction im is the everyday form."
+      ru: "Движения нет: коробка просто где-то находится, значит вопрос Wo?, и предлог in требует Dativ — der Flur → in dem Flur → im Flur. Слитная форма im и есть обычная разговорная."
+
+  - id: pretest-stellen-stehen
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: stellen-stehen
+    instruction:
+      en: "Which verb fits?"
+      ru: "Какой глагол подходит?"
+    prompt: "Tobias ___ die Kiste in den Keller."
+    options: ["steht", "stellt", "liegt"]
+    correct: 1
+    translation:
+      en: "Tobias puts the box down in the cellar."
+      ru: "Тобиас ставит коробку в подвал."
+    explain:
+      en: "The sentence has an object — die Kiste — and somebody moving it. That calls for a placement verb: stellen. stehen and liegen describe where a thing already is and never take an object."
+      ru: "В предложении есть дополнение — die Kiste — и тот, кто её перемещает. Значит нужен глагол перемещения: stellen («ставить»). Глаголы stehen и liegen описывают, где вещь уже находится, и дополнения не принимают."

@@ -10,8 +10,8 @@ title:
 # has the bracket can say what they must, may or want to do, whichever modal it is.
 #
 # The three tasks put the bracket under different pressure: a fronted time phrase
-# (inversion), a choice of which of two verbs is conjugated and which is the infinitive,
-# and a W-question.
+# (inversion), a plain declarative whose middle field is long enough that the infinitive
+# has to travel past a time phrase and an object, and a W-question.
 
 items:
   - id: variant-a
@@ -33,15 +33,26 @@ items:
 
   - id: variant-b
     outcomes: [modal-satzklammer]
-    type: cloze
+    type: translate
     focus: modal-satzklammer
     instruction:
-      en: Fill in the two verbs in brackets — decide which one is conjugated and which stays an infinitive.
-      ru: Вставьте два глагола из скобок — решите, какой из них спрягается, а какой остаётся инфинитивом.
-    text: "Herr Weber {{kann}} heute leider nicht {{kommen}}. (kommen / können) Am Sonntag {{wollen}} meine Eltern nach Hamburg {{fahren}}. (fahren / wollen)"
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My brother wants to cook a soup this evening."
+    prompt_ru: "Сегодня вечером мой брат хочет приготовить суп."
+    answer: "Mein Bruder will heute Abend eine Suppe kochen."
+    key_tokens: ["will", "kochen"]
+    accept:
+      # The time phrase may be fronted (both orders are ordinary V2), and möchte renders
+      # "wants to" as readily as will. The item grades the bracket, not the choice of modal —
+      # so a learner who built the bracket correctly must never be logged as a bracket failure
+      # for having been polite.
+      - "Heute Abend will mein Bruder eine Suppe kochen."
+      - "Mein Bruder möchte heute Abend eine Suppe kochen."
+      - "Heute Abend möchte mein Bruder eine Suppe kochen."
     explain:
-      en: "The modal always takes the conjugated slot in position 2 and the full verb always stays an infinitive at the end — never the other way round. Both halves are needed: kann … kommen, wollen … fahren. In the second sentence the fronted Am Sonntag pushes the subject behind the modal."
-      ru: "Модальный глагол всегда занимает спрягаемое место — второе, — а смысловой глагол всегда остаётся инфинитивом в конце; наоборот не бывает. Нужны обе половины: kann … kommen, wollen … fahren. Во втором предложении вынесенное вперёд Am Sonntag отодвигает подлежащее за модальный глагол."
+      en: "The modal is the only verb that gets conjugated, and it claims position 2 — everything the sentence actually says (when, what) then piles up in the middle, and the infinitive is pushed out to the very end: will … kochen. The longer the middle field, the stronger the pull to put the infinitive next to the modal, the way English does ('wants to cook a soup'). German makes you hold it back to the last word."
+      ru: "Спрягается только модальный глагол, и он занимает второе место. Всё содержание предложения — когда, что — набивается в середину, а инфинитив выталкивается в самый конец: will … kochen. Чем длиннее середина, тем сильнее соблазн поставить инфинитив сразу за модальным глаголом, как в русском («хочет приготовить суп»). Немецкий заставляет придержать его до последнего слова."
 
   - id: variant-c
     outcomes: [modal-satzklammer]

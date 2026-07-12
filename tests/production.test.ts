@@ -197,3 +197,52 @@ describe('rule 2 — a real error is only blamed on the tag it is about', () => 
     expect(verdict).toEqual({ kind: 'wrong' });
   });
 });
+
+describe('a graded token stays graded when an accept variant capitalizes it', () => {
+  // The bug this pins: `graded` was a case-sensitive set of the item's key_tokens, and an
+  // `accept` line that fronts a time phrase capitalizes whatever was first — `am Samstag`
+  // becomes `Am Samstag`. The graded `am` then failed to match for that rendering, so the
+  // one-token-slip rule forgave a real `Um`-for-`Am` error and never logged it against
+  // `um-am-zeit`. An accept line, added to be generous about word order, silently inverted
+  // the forgiveness rule for the very confusion the item measures.
+  const spec = {
+    answer: 'Ich kaufe am Samstag ein.',
+    accept: ['Am Samstag kaufe ich ein.'],
+    keyTokens: ['am'],
+    focus: 'um-am-zeit',
+  };
+
+  test('the wrong preposition is a grammar error in the canonical order', () => {
+    expect(gradeTranslation('Ich kaufe um Samstag ein.', spec)).toEqual({
+      kind: 'wrong',
+      focus: 'um-am-zeit',
+    });
+  });
+
+  test('and still a grammar error in the fronted variant, where it is capitalized', () => {
+    expect(gradeTranslation('Um Samstag kaufe ich ein.', spec)).toEqual({
+      kind: 'wrong',
+      focus: 'um-am-zeit',
+    });
+  });
+
+  test('a genuine slip elsewhere in the fronted variant is still forgiven', () => {
+    expect(gradeTranslation('Am Samstag kaufe ich ien.', spec)).toEqual({
+      kind: 'spelling',
+      correction: { given: 'ien', expected: 'ein' },
+    });
+  });
+
+  // Mid-sentence capitalization is grammar, not orthography: `Sie` (formal you) and `sie`
+  // (she) are different words. A `du-sie` item grading both would blame the register tag
+  // for a pronoun error that has nothing to do with register — so only position 0 is
+  // matched case-insensitively.
+  test('a lowercase homograph mid-sentence is not graded by a capitalized key token', () => {
+    const register = {
+      answer: 'Rufen Sie sie bitte an.',
+      keyTokens: ['Sie'],
+      focus: 'du-sie',
+    };
+    expect(gradeTranslation('Rufen Sie ihn bitte an.', register)).toEqual({ kind: 'wrong' });
+  });
+});

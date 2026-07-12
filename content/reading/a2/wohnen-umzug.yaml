@@ -1,0 +1,73 @@
+topic: wohnen-umzug
+kind: intensive
+title_de: "Nina zieht um"
+text:
+  - >-
+    Nina sucht eine Wohnung. Am Montag liest sie eine Anzeige: „Zwei Zimmer,
+    Küche, Bad. Die Wohnung liegt [[im dritten Stock::on the third floor::на
+    третьем этаже]] und ist hell und ruhig. Miete: 620 Euro plus
+    [[Nebenkosten::utility costs on top of the rent::коммунальные платежи сверх
+    аренды]]. [[Kaution::deposit paid to the landlord::залог за квартиру]]: 1240
+    Euro.“ Nina schreibt an den [[Vermieter::landlord::арендодатель, хозяин
+    квартиры]].
+  - >-
+    Am Mittwoch zeigt Herr Weber ihr die Wohnung. Im Haus gibt es keinen
+    [[Aufzug::lift, elevator::лифт]], und die
+    [[Treppe::staircase, stairs::лестница]] ist dunkel. Aber die Zimmer sind
+    groß. Frau Kern wohnt
+    [[im Erdgeschoss::on the ground floor::на первом этаже]]. „Die Fahrräder
+    kommen in den [[Keller::cellar, basement::подвал]]“, sagt Herr Weber.
+  - >-
+    Am Samstag ist der [[Umzug::move into a new home::переезд]]. Tobias hilft. Er
+    stellt den Schrank ins Schlafzimmer, und die Bücher kommen ins Regal. Nina
+    legt den [[Teppich::carpet, rug::ковёр]] ins Wohnzimmer und hängt ein Bild an
+    die Wand. Am Abend steht alles an seinem Platz. Nur die Heizung im
+    Schlafzimmer funktioniert nicht.
+questions:
+  - id: frage-anzeige
+    outcomes: [wohnungsanzeige-lesen]
+    type: mc
+    prompt: "Was steht in der Anzeige?"
+    options:
+      - "Die Wohnung liegt im dritten Stock."
+      - "Die Wohnung hat einen Balkon."
+      - "Die Kaution kostet 620 Euro."
+    correct: 0
+    translation:
+      en: What does the listing say?
+      ru: Что написано в объявлении?
+    explain:
+      en: "The listing gives four facts: two rooms, kitchen and bathroom, third floor, and the money. 620 euros is the rent — the deposit is 1240. A balcony is never mentioned; a listing tells you what is there, so what is not written is not there."
+      ru: "В объявлении четыре факта: две комнаты, кухня и ванная, третий этаж и деньги. 620 евро — это аренда, а залог составляет 1240. Балкон не упомянут вовсе: объявление перечисляет то, что есть, и чего в нём нет, того нет и в квартире."
+
+  - id: frage-schrank
+    outcomes: [wo-wohin-position]
+    type: mc
+    prompt: "Wohin stellt Tobias den Schrank?"
+    options:
+      - "Ins Schlafzimmer."
+      - "Ins Wohnzimmer."
+      - "In den Keller."
+    correct: 0
+    translation:
+      en: Where does Tobias put the wardrobe?
+      ru: Куда Тобиас ставит шкаф?
+    explain:
+      en: "„Er stellt den Schrank ins Schlafzimmer“ — the accusative ins answers Wohin?. The living room is where the carpet goes (Nina legt den Teppich ins Wohnzimmer), and the cellar is for the bikes."
+      ru: "«Er stellt den Schrank ins Schlafzimmer» — форма ins (Akkusativ) отвечает на вопрос Wohin?. В гостиную отправляется ковёр (Nina legt den Teppich ins Wohnzimmer), а подвал предназначен для велосипедов."
+
+  - id: frage-heizung
+    outcomes: [wohnung-beschreiben]
+    type: mc
+    prompt: "Was funktioniert am Abend nicht?"
+    options:
+      - "Die Heizung im Schlafzimmer."
+      - "Der Aufzug im Haus."
+      - "Das Licht im Flur."
+    correct: 0
+    translation:
+      en: What does not work in the evening?
+      ru: Что вечером не работает?
+    explain:
+      en: "The last sentence: „Nur die Heizung im Schlafzimmer funktioniert nicht.“ The building has no lift at all, so nothing about it can break, and the light in the hallway is never mentioned. Note the dative im Schlafzimmer — it says where the heating is, not where it is going."
+      ru: "Последнее предложение: «Nur die Heizung im Schlafzimmer funktioniert nicht.» Лифта в доме вообще нет, поэтому сломаться он не может, а про свет в прихожей не сказано ни слова. Обратите внимание на Dativ в im Schlafzimmer: он говорит, где отопление находится, а не куда оно движется."
