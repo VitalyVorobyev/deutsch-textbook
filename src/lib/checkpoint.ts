@@ -1,12 +1,41 @@
 /** Pure rollups over cumulative checkpoint attempts (`role: checkpoint` sets). */
 import type { Attempt } from './store';
 import { attemptScore, isVerifiedEvidence } from './scoring';
+import { levelPathDone, type TopicContext, type TopicNode } from './mastery';
 
 /** What the rollup needs to know about a checkpoint item (from the set's YAML). */
 export interface CheckpointItemRef {
   id: string;
   type: string;
   outcomes: string[];
+}
+
+/** The minimum a surface needs to link to a checkpoint (see getCheckpoints()). */
+export interface CheckpointRef {
+  setId: string;
+  level: string;
+  path: string;
+  title: string;
+}
+
+/**
+ * The checkpoint to offer the learner right now: the **lowest** level whose
+ * lessons are all behind them (`levelPathDone`) and whose set has never been
+ * attempted. Lowest wins so that a learner who finished A2 without ever taking
+ * the A1 checkpoint is not sent past it.
+ */
+export function dueCheckpoint<T extends CheckpointRef>(
+  checkpoints: T[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): T | undefined {
+  return [...checkpoints]
+    .sort((a, b) => a.level.localeCompare(b.level))
+    .find(
+      (checkpoint) =>
+        levelPathDone(checkpoint.level, nodes, ctx) &&
+        !ctx.attempts.some((attempt) => attempt.setId === checkpoint.setId),
+    );
 }
 
 export interface CheckpointOutcomeResult {

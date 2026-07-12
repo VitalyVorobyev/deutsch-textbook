@@ -5,7 +5,7 @@ title:
   ru: Тренажёр — der, dem или den?
 items:
   - id: mc-mit-auto
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: mc
     focus: dativ-praepositionen
     prompt: "Wir fahren mit ___ Auto nach Hamburg."
@@ -33,7 +33,7 @@ items:
       ru: "für всегда требует Akkusativ: der Vater → den Vater. für, ohne, durch никогда не сочетаются с Dativ — «für dem» невозможно."
 
   - id: mc-nach-arbeit
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: mc
     focus: dativ-praepositionen
     prompt: "Nach ___ Arbeit gehe ich einkaufen."
@@ -61,7 +61,7 @@ items:
       ru: "durch всегда требует Akkusativ: die Stadt остаётся die Stadt (женский род в винительном не меняется). «durch der Stadt» — это Dativ, здесь он неверен."
 
   - id: cloze-bei-eltern
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: cloze
     focus: dativ-praepositionen
     instruction:
@@ -90,7 +90,7 @@ items:
       ru: "ohne всегда требует Akkusativ; во множественном числе винительный артикль — die: ohne die Kinder. den Kindern — это Dativ, после ohne он невозможен."
 
   - id: mc-helfen-mann
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-artikel, dativ-verben]
     type: mc
     focus: dativ-artikel
     prompt: "Ich helfe ___ Mann."
@@ -118,7 +118,7 @@ items:
       ru: "sehen требует Akkusativ: der Mann → den Mann. Сравните минимальную пару: Ich helfe dem Mann (Dativ) — Ich sehe den Mann (Akkusativ)."
 
   - id: cloze-zum-arzt
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen]
     type: cloze
     focus: dativ-praepositionen
     instruction:
@@ -147,7 +147,7 @@ items:
       ru: "helfen требует Dativ. В Dativ Plural меняются две вещи: die → den, а существительное получает -n — den Kindern. «den Kinder» — классическая ошибка «на полпути»."
 
   - id: uebersetzen-helfen-mann
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-artikel, dativ-verben]
     type: translate
     focus: dativ-artikel
     instruction:
@@ -177,7 +177,7 @@ items:
       ru: "sehen требует Akkusativ: der Mann → den Mann. В винительном падеже меняется только мужской артикль — именно этот выбор der/dem/den мы и тренируем."
 
   - id: cloze-von-oma
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: cloze
     focus: dativ-praepositionen
     instruction:
@@ -222,7 +222,7 @@ items:
       ru: "sehen требует Akkusativ: der Bus → den Bus. Сравните: Wir fahren mit dem Bus (Dativ после mit)."
 
   - id: uebersetzen-zum-arzt
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen]
     type: translate
     focus: dativ-praepositionen
     instruction:
@@ -239,7 +239,7 @@ items:
       ru: "zu всегда требует Dativ, а zu dem сливается в zum: Sie geht zum Arzt."
 
   - id: uebersetzen-hilft-kindern
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-artikel, dativ-verben]
     type: translate
     focus: dativ-artikel
     instruction:

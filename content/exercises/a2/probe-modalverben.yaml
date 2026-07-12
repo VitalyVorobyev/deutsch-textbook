@@ -1,0 +1,50 @@
+topic: modalverben
+role: probe
+title:
+  en: "Probe — modal verbs"
+  ru: "Проверка — модальные глаголы"
+
+items:
+  - id: variant-a
+    outcomes: [modal-satzklammer, modal-konjugation]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Monday I have to go to the doctor."
+    prompt_ru: "В понедельник мне нужно к врачу."
+    answer: "Am Montag muss ich zum Arzt gehen."
+    key_tokens: ["muss", "gehen"]
+    accept:
+      - "Ich muss am Montag zum Arzt gehen."
+    explain:
+      en: "The modal is the conjugated verb, so it holds position 2 — and because Am Montag is fronted, the subject ich follows it. The bare infinitive gehen closes the sentence: muss … gehen."
+      ru: "Модальный глагол — спрягаемый, поэтому он занимает второе место, а из-за вынесенного вперёд Am Montag подлежащее ich идёт за ним. Инфинитив без zu замыкает предложение: muss … gehen."
+
+  - id: variant-b
+    outcomes: [modal-konjugation]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill in the correct form of the modal verb in brackets.
+      ru: Вставьте правильную форму модального глагола из скобок.
+    text: "Er {{muss}} (müssen) am Samstag arbeiten. {{Willst}} (wollen) du heute Abend ins Kino gehen? Meine Eltern {{können}} (können) gut Englisch."
+    explain:
+      en: "Modals take no -t in the er-form: er muss. The stem vowel changes only in the singular — du willst, but meine Eltern können keeps its ö. And a modal can stand alone when the action is obvious: gut Englisch können."
+      ru: "У модальных глаголов нет -t в форме 3-го лица: er muss. Гласная в корне меняется только в единственном числе — du willst, а meine Eltern können сохраняет ö. Модальный глагол может стоять и без инфинитива, если действие очевидно: gut Englisch können."
+
+  - id: variant-c
+    outcomes: [modal-erlaubnis-notwendigkeit, modal-hoefliche-wuensche]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The children would like to play here. Unfortunately they are not allowed to."
+    prompt_ru: "Дети хотели бы поиграть здесь. К сожалению, им нельзя."
+    answer: "Die Kinder möchten hier spielen. Leider dürfen sie nicht."
+    key_tokens: ["dürfen", "nicht"]
+    explain:
+      en: "dürfen nicht is a prohibition — permission is refused. müssen nicht would say something completely different: that there is no need to do it. Careful with English here: 'they must not play' means dürfen nicht, not müssen nicht. möchten is the polite way to state the wish."
+      ru: "dürfen nicht — это запрет: разрешения нет («нельзя»). müssen nicht сказало бы совсем другое — что делать это не обязательно («не нужно»). Русское «нельзя» передаётся именно через darf nicht. möchten — вежливая форма для выражения желания."

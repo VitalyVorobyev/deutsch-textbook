@@ -1,7 +1,18 @@
 import { describe, expect, test } from 'bun:test';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import YAML from 'yaml';
 import { getCurriculum } from '../src/lib/curriculum';
 import { attemptScore, verifiedOnly } from '../src/lib/scoring';
 import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/store';
+
+/** The real content files under content/<dir>, parsed — the same source the validator reads. */
+function contentFiles<T>(dir: string): T[] {
+  const root = join(process.cwd(), 'content', dir);
+  return readdirSync(root, { recursive: true, encoding: 'utf8' })
+    .filter((f) => f.endsWith('.yaml'))
+    .map((f) => YAML.parse(readFileSync(join(root, f), 'utf8')) as T);
+}
 
 describe('scoring and curriculum contracts', () => {
   test('partial credit is clamped and practice is excluded', () => {
@@ -31,6 +42,28 @@ describe('scoring and curriculum contracts', () => {
       for (const related of node.related)
         expect(curriculum.nodes.find((candidate) => candidate.id === related)?.related).toContain(node.id);
     }
+  });
+
+  test('every outcome in the real atlas is measured by practice, a drill or a reading', () => {
+    // Only practice and drill items count, plus reading questions. A pretest is a guess
+    // taken before the lesson; a checkpoint or probe tests an outcome rather than teaching
+    // it — an outcome that is only ever tested was never practised. And an outcome nothing
+    // measures at all can never light up on the progress page, nor arm its delayed probe.
+    const measured = new Set<string>();
+    for (const set of contentFiles<{ role?: string; items?: { outcomes?: string[] }[] }>(
+      'exercises',
+    )) {
+      const role = set.role ?? 'practice';
+      if (role !== 'practice' && role !== 'drill') continue;
+      for (const item of set.items ?? []) for (const o of item.outcomes ?? []) measured.add(o);
+    }
+    for (const reading of contentFiles<{ questions?: { outcomes?: string[] }[] }>('reading'))
+      for (const q of reading.questions ?? []) for (const o of q.outcomes ?? []) measured.add(o);
+
+    const orphans = getCurriculum().nodes.flatMap((node) =>
+      node.outcomes.filter((o) => !measured.has(o.id)).map((o) => `${node.id}: ${o.id}`),
+    );
+    expect(orphans).toEqual([]);
   });
 
   test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {

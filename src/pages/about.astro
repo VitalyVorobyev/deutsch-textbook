@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { getCheckpoints } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
-import { goetheA1Coverage } from '../lib/coverage';
+import { goetheCoverage, hasManifest } from '../lib/coverage';
 import { withBase } from '../lib/url';
 
 const REPO = 'https://github.com/VitalyVorobyev/deutsch-textbook';
@@ -16,7 +17,10 @@ const [topics, exercises, readings, vocab] = await Promise.all([
   getCollection('vocab'),
 ]);
 const { units } = getCurriculum();
-const coverage = goetheA1Coverage();
+const coverage = goetheCoverage('A1');
+// A level with no committed Wortliste manifest has no coverage figure, and must not
+// invent one. A2 gets its sentence only once data/goethe-a2-wortliste.txt exists.
+const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
 
 const levels = ['A1', 'A2'] as const;
 const stats = levels.map((level) => {
@@ -32,7 +36,11 @@ const stats = levels.map((level) => {
 });
 const a1 = stats.find((s) => s.level === 'A1')!;
 const a2 = stats.find((s) => s.level === 'A2')!;
-const checkpointA1 = exercises.find((set) => set.id === 'a1/checkpoint-a1');
+// Checkpoints are content, so the claims below are too: whether a level has one
+// at all, and how big it is, are both read off the checkpoint sets.
+const checkpoints = await getCheckpoints();
+const checkpointA1 = checkpoints.find((c) => c.level === 'A1');
+const checkpointA2 = checkpoints.find((c) => c.level === 'A2');
 
 const principles = [
   {
@@ -155,7 +163,7 @@ const principles = [
             {' '}{coverage.total} headwords on the official Goethe-Institut A1 Wortliste are covered
             ({coverage.percent}%) — {coverage.cards} as flashcards and {coverage.grammar} taught as
             grammar rather than as vocabulary. A cumulative
-            {checkpointA1 && ` ${checkpointA1.data.items.length}-item`} A1 checkpoint measures the
+            {checkpointA1 && ` ${checkpointA1.items.length}-item`} A1 checkpoint measures the
             level end to end.
           </span>
           <span class="lang-ru">
@@ -165,7 +173,7 @@ const principles = [
             A1 Wortliste охвачено {coverage.cards + coverage.grammar} ({coverage.percent}%):
             {' '}{coverage.cards} — карточками, ещё {coverage.grammar} даются как грамматика, а не как
             лексика. Итоговая контрольная точка A1
-            {checkpointA1 && ` из ${checkpointA1.data.items.length} заданий`} проверяет уровень
+            {checkpointA1 && ` из ${checkpointA1.items.length} заданий`} проверяет уровень
             целиком.
           </span>
         </p>
@@ -179,16 +187,29 @@ const principles = [
           <span class="lang-en">
             {a2.topics} topics are authored so far — the core grammar of the level (Dativ, Perfekt,
             Modalverben, trennbare Verben) plus everyday routine and appointments. They are built to
-            the same standard as A1, but they are not yet the whole level: the word fields are thin,
-            there is no A2 checkpoint, and no claim is made that finishing them makes you A2. Treat
-            A2 as a strong start, not as coverage.
+            the same standard as A1, but they are not yet the whole level.
+            {coverageA2 &&
+              ` Of the ${coverageA2.total} headwords on the official Goethe-Institut A2 Wortliste,
+              ${coverageA2.cards + coverageA2.grammar} are covered (${coverageA2.percent}%) —
+              ${coverageA2.cards} as flashcards and ${coverageA2.grammar} taught as grammar.`}
+            {checkpointA2
+              ? ` A cumulative ${checkpointA2.items.length}-item A2 checkpoint covers what is authored.`
+              : ' There is no A2 checkpoint yet.'} No claim is made that finishing what exists makes
+            you A2. Treat A2 as work in progress, and read the percentage above as exactly what it
+            says.
           </span>
           <span class="lang-ru">
             Пока написано тем: {a2.topics} — ядро грамматики уровня (Dativ, Perfekt, Modalverben,
             trennbare Verben), а также повседневный распорядок и назначение встреч. Они сделаны по
-            тем же требованиям, что и A1, но это ещё не весь уровень: словарные поля неполные,
-            контрольной точки A2 нет, и мы не утверждаем, что, пройдя их, вы получите A2. A2 — это
-            хорошее начало, а не полный охват.
+            тем же требованиям, что и A1, но это ещё не весь уровень.
+            {coverageA2 &&
+              ` Из ${coverageA2.total} слов официального списка Goethe-Institut A2 Wortliste охвачено
+              ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%):
+              ${coverageA2.cards} — карточками, ещё ${coverageA2.grammar} даются как грамматика.`}
+            {checkpointA2
+              ? ` Итоговая контрольная точка A2 из ${checkpointA2.items.length} заданий проверяет то, что уже написано.`
+              : ' Контрольной точки A2 пока нет.'} Мы не утверждаем, что, пройдя написанное, вы получите
+            A2. Считайте A2 незавершённым уровнем, а процент выше — ровно тем, что в нём сказано.
           </span>
         </p>
       </article>

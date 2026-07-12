@@ -117,7 +117,7 @@ schemas. Bun is the package manager and task runner.
 | `bun run lint` | ESLint over `src/` and `scripts/` |
 | `bun run build` | static production build |
 | `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
-| `bun scripts/coverage-a1.ts` | Goethe-A1 Wortliste coverage report |
+| `bun scripts/coverage.ts A1` | Goethe Wortliste coverage report (`A1` or `A2`) |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
 
 Before opening a pull request, run the complete gate — the same one CI runs:

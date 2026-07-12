@@ -1,0 +1,50 @@
+topic: perfekt-haben-sein
+role: probe
+title:
+  en: "Probe — the Perfekt with haben and sein"
+  ru: "Проверка — перфект с haben и sein"
+
+items:
+  - id: variant-a
+    outcomes: [perfekt-hilfsverb, perfekt-vergangenheit-erzaehlen]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The children ran to school."
+    prompt_ru: "Дети побежали в школу."
+    answer: "Die Kinder sind zur Schule gelaufen."
+    key_tokens: ["sind", "gelaufen"]
+    explain:
+      en: "laufen moves the subject from one place to another, so the auxiliary is sein: die Kinder sind … gelaufen. haben would be wrong here however much the sentence looks like an ordinary action."
+      ru: "laufen перемещает подлежащее из одной точки в другую, поэтому вспомогательный глагол — sein: die Kinder sind … gelaufen. haben здесь неверно, каким бы обычным ни казалось действие."
+
+  - id: variant-b
+    outcomes: [perfekt-partizip]
+    type: cloze
+    focus: partizip2-form
+    instruction:
+      en: Fill in the Partizip II of the verb in brackets.
+      ru: Вставьте Partizip II глагола из скобок.
+    text: "Wir haben eine Stunde {{telefoniert}} (telefonieren). Er hat das Fenster {{zugemacht}} (zumachen). Ich habe die Frage nicht {{verstanden}} (verstehen)."
+    explain:
+      en: "Three different rules in one line. Verbs in -ieren take no ge- at all: telefoniert. A separable verb puts the -ge- inside, between prefix and stem: zu-ge-macht. An inseparable verb takes no ge- either, and verstehen is strong: verstanden."
+      ru: "Три разных правила в одной строке. Глаголы на -ieren вообще не получают ge-: telefoniert. У отделяемого глагола -ge- встаёт внутрь, между приставкой и корнем: zu-ge-macht. Неотделяемый тоже обходится без ge-, а verstehen — сильный глагол: verstanden."
+
+  - id: variant-c
+    outcomes: [perfekt-satzklammer, perfekt-vergangenheit-erzaehlen]
+    type: translate
+    focus: perfekt-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Sunday we cooked together."
+    prompt_ru: "В воскресенье мы готовили вместе."
+    answer: "Am Sonntag haben wir zusammen gekocht."
+    key_tokens: ["haben", "gekocht"]
+    accept:
+      - "Wir haben am Sonntag zusammen gekocht."
+    explain:
+      en: "The Perfekt is a bracket: the auxiliary haben is the conjugated verb and holds position 2 (so after the fronted Am Sonntag the subject wir follows it), and the participle gekocht waits at the very end."
+      ru: "Перфект — это рамка: вспомогательный глагол haben спрягается и стоит на втором месте (поэтому после вынесенного вперёд Am Sonntag подлежащее wir идёт за ним), а причастие gekocht ждёт в самом конце."

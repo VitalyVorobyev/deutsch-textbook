@@ -1,0 +1,52 @@
+topic: trennbare-verben
+role: probe
+title:
+  en: "Probe — separable verbs"
+  ru: "Проверка — глаголы с отделяемой приставкой"
+
+items:
+  - id: variant-a
+    outcomes: [trennbar-satz, trennbar-tagesablauf]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Saturday I tidy up my room."
+    prompt_ru: "В субботу я убираю свою комнату."
+    answer: "Am Samstag räume ich mein Zimmer auf."
+    key_tokens: ["räume", "auf"]
+    accept:
+      - "Ich räume am Samstag mein Zimmer auf."
+    explain:
+      en: "aufräumen splits: the conjugated part räume takes position 2 and the prefix auf goes to the very end, behind the object. Everything the sentence says sits inside that bracket."
+      ru: "aufräumen отделяемый: спрягаемая часть räume стоит на втором месте, а приставка auf уходит в самый конец, за дополнение. Всё содержание предложения оказывается внутри этой рамки."
+
+  - id: variant-b
+    outcomes: [trennbar-erkennen]
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: Fill in the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола из скобок.
+    text: "Wir {{besuchen}} am Sonntag meine Eltern. (besuchen) Am Montag {{fängt}} der Kurs {{an}}. (anfangen) Der Lehrer {{erklärt}} die Aufgabe noch einmal. (erklären)"
+    explain:
+      en: "The prefix decides. be- and er- are inseparable: besuchen and erklären stay whole and never send anything to the end. an- is separable, so anfangen breaks in two — fängt in position 2, an at the end."
+      ru: "Всё решает приставка. be- и er- неотделяемые: besuchen и erklären остаются целыми и ничего не отправляют в конец. an- отделяемая, поэтому anfangen распадается: fängt на втором месте, an — в конце."
+
+  - id: variant-c
+    outcomes: [trennbar-satz]
+    type: translate
+    focus: trennbar-modal
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Friday we want to invite our friends."
+    prompt_ru: "В пятницу мы хотим пригласить друзей."
+    answer: "Wir wollen am Freitag unsere Freunde einladen."
+    key_tokens: ["wollen", "einladen"]
+    accept:
+      - "Am Freitag wollen wir unsere Freunde einladen."
+    explain:
+      en: "After a modal the separable verb is an infinitive, and an infinitive is never split: it stays whole at the very end as einladen. Only a conjugated separable verb breaks apart — wir laden … ein."
+      ru: "После модального глагола отделяемый глагол стоит в инфинитиве, а инфинитив никогда не разделяется: он целиком уходит в самый конец — einladen. Распадается только спрягаемая форма — wir laden … ein."
