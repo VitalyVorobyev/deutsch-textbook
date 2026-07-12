@@ -216,6 +216,11 @@ for (const [id, { file, data }] of topics) {
   for (const ex of data.exercises) {
     if (!exerciseSets.has(ex)) fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
   }
+  // The recommended path advances a topic on its first role: practice set (see
+  // primaryPractice in src/lib/content.ts). A topic without one can never be
+  // completed, so the Lernpfad would stop on it forever.
+  if (!data.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
+    fail(file, 'topic owns no role: practice exercise set — the Lernpfad could never advance past it');
   for (const r of data.reading) {
     if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }

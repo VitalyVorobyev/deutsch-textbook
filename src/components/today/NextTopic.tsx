@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { lessonCompleted, recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
+import { levelPathDone, recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 
@@ -24,10 +24,8 @@ export default function NextTopic({ spine, nodes, checkpoint }: Props) {
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         setMastered(nodes.filter((n) => topicCompletion(n, ctx).tier === 'mastered').length);
         if (checkpoint) {
-          const levelNodes = nodes.filter((n) => n.level === checkpoint.level);
           setCheckpointDue(
-            levelNodes.length > 0 &&
-              levelNodes.every((n) => lessonCompleted(n, ctx)) &&
+            levelPathDone(checkpoint.level, nodes, ctx) &&
               !attempts.some((a) => a.setId === checkpoint.setId),
           );
         }

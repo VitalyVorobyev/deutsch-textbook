@@ -1,7 +1,7 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
 import { rankDueCards, splitQueue, type CardDef } from './srs';
-import { goalRoute, lessonCompleted, recommendedForGoal, recommendedNext } from './mastery';
+import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
 
@@ -58,7 +58,7 @@ export function prioritizeFreshCards(
 ): CardDef[] {
   const routeDecks = new Set(
     (goal?.topicId ? goalRoute(goal.topicId, spine, nodes) : [])
-      .filter((node) => !lessonCompleted(node, ctx))
+      .filter((node) => !pathDone(node, ctx))
       .flatMap((node) => node.vocabIds),
   );
   const next = goal?.topicId

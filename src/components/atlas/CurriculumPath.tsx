@@ -5,7 +5,7 @@ import {
   type LearningGoal,
 } from '../../lib/store';
 import {
-  goalRoute, lessonCompleted, recommendedForGoal, recommendedNext, topicCompletion,
+  goalRoute, levelRemaining, recommendedForGoal, recommendedNext, topicCompletion,
   type Completion, type TopicContext, type TopicNode,
 } from '../../lib/mastery';
 import {
@@ -83,9 +83,8 @@ export default function CurriculumPath({ units, groups, spine, checkpoint }: Pro
   const routeIds = new Set(route.map((topic) => topic.id));
   const checkpointState = useMemo(() => {
     if (!checkpoint || !ctx) return undefined;
-    const levelTopics = topics.filter((topic) => topic.level === checkpoint.level);
     return {
-      remaining: levelTopics.filter((topic) => !lessonCompleted(topic, ctx)).length,
+      remaining: levelRemaining(checkpoint.level, topics, ctx),
       summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
     };
   }, [checkpoint, ctx, topics]);
