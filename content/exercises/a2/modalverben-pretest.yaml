@@ -1,6 +1,8 @@
 topic: modalverben
+role: pretest
 items:
   - id: pre-infinitiv-ende
+    outcomes: [modal-satzklammer]
     type: mc
     focus: modal-satzklammer
     prompt: "Welcher Satz ist richtig?"
@@ -17,6 +19,7 @@ items:
       ru: "Модальный глагол создаёт die Satzklammer (глагольную рамку): он стоит на втором месте, а второй глагол уходит в самый конец предложения в форме инфинитива — „Ich muss heute lange arbeiten.“ После инфинитива ничего стоять не может."
 
   - id: pre-sie-will
+    outcomes: [modal-satzklammer]
     type: mc
     focus: modal-konjugation
     prompt: "Meine Schwester ___ ein neues Fahrrad kaufen."
@@ -30,6 +33,7 @@ items:
       ru: "В единственном числе формы ich и er/sie/es у модальных глаголов совпадают и не имеют окончания -t: ich will — sie will. Форма „wollt“ существует, но только для ihr: ihr wollt."
 
   - id: pre-darf-nicht
+    outcomes: [modal-satzklammer]
     type: mc
     focus: duerfen-muessen
     prompt: "Im Krankenhaus ___ man nicht laut sprechen. (Es ist verboten.)"

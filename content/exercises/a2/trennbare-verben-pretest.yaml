@@ -1,6 +1,8 @@
 topic: trennbare-verben
+role: pretest
 items:
   - id: pre-praesens-klammer
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-wortstellung
     prompt: "Welcher Satz ist richtig?"
@@ -17,6 +19,7 @@ items:
       ru: 'В настоящем времени отделяемая приставка отрывается и уходит в самый конец предложения: "Ich stehe um 7 Uhr auf." Оставить глагол целым (aufstehe) или поставить приставку сразу после глагола — две классические ошибки.'
 
   - id: pre-modal-infinitiv
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-modal
     prompt: "Morgen muss ich früh ___ ."
@@ -30,6 +33,7 @@ items:
       ru: 'С модальным глаголом спрягается только модальный, а глагол с приставкой стоит в конце целиком, одним инфинитивом: "Ich muss früh aufstehen." Он не разрывается и не получает личного окончания.'
 
   - id: pre-untrennbar
+    outcomes: [trennbar-satz]
     type: mc
     focus: trennbar-untrennbar
     prompt: "Welcher Satz ist richtig?"

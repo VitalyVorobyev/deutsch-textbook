@@ -1,4 +1,8 @@
-# A1–A2 Curriculum and Learning-System Revision
+# Archived: A1–A2 Curriculum and Learning-System Revision
+
+> Original review input from July 2026. This document is not the active roadmap.
+> See [../roadmap.md](../roadmap.md) for current direction and
+> [../backlog.md](../backlog.md) for executable work.
 
 ## Summary
 

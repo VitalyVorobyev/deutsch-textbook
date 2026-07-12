@@ -1,6 +1,8 @@
 topic: essen-trinken
+role: pretest
 items:
   - id: pre-hunger-haben
+    outcomes: [essen-vorlieben]
     type: mc
     focus: haben-wendungen
     prompt: "Ich ___ Hunger. Was gibt es zum Mittagessen?"
@@ -13,20 +15,22 @@ items:
       en: 'German expresses hunger and thirst with haben + noun: Ich habe Hunger, ich habe Durst. "Ich bin Hunger" is impossible — and even the adjective version "Ich bin hungrig" sounds bookish. In everyday German you "have" hunger.'
       ru: 'Голод и жажду немецкий выражает через haben + существительное: Ich habe Hunger, ich habe Durst. Сказать "Ich bin Hunger" нельзя, и даже вариант с прилагательным "Ich bin hungrig" звучит книжно — по-немецки голод «имеют».'
 
-  - id: pre-schmecken-dativ
+  - id: pre-trinke-kaffee
+    outcomes: [essen-vorlieben]
     type: mc
-    focus: verben-mit-dativ
-    prompt: "Die Suppe schmeckt ___ sehr gut."
-    options: ["mich", "mir", "ich"]
-    correct: 1
+    focus: verb-endungen
+    prompt: "Ich ___ gern Kaffee."
+    options: ["trinke", "trinkst", "trinkt"]
+    correct: 0
     translation:
-      en: The soup tastes very good to me.
-      ru: Суп мне очень нравится.
+      en: I like drinking coffee.
+      ru: Я люблю пить кофе.
     explain:
-      en: 'With "schmecken" the food is the subject, and the person enjoying it is in the dative (der Dativ): mir, dir, ihm — like gefallen, it works as "the soup tastes good TO me". Ask wem? (to whom?) — the answer is dative, so the accusative "mich" is wrong.'
-      ru: '"schmecken" требует дательного падежа (der Dativ): еда — подлежащее, а тот, кто ест, стоит в дательном — mir, dir, ihm. Русский здесь подсказывает правильно: суп нравится (кому?) мне, поэтому винительный "mich" — ошибка.'
+      en: 'With ich, a regular present-tense verb takes -e: ich trinke. The word gern says that you enjoy doing the activity.'
+      ru: 'С ich правильный глагол в настоящем времени получает окончание -e: ich trinke. Слово gern показывает, что вам нравится это действие.'
 
   - id: pre-obst-singular
+    outcomes: [essen-vorlieben]
     type: mc
     focus: genus
     prompt: "___ Obst ist frisch."

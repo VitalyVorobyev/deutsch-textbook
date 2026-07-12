@@ -19,6 +19,7 @@ text:
     sehen sie einen Film. Um elf Uhr [[schläft::sleeps::спит]] Anna.
 questions:
   - id: frage-bus
+    outcomes: [praesens-verbzweit]
     type: mc
     prompt: "Wie fährt Anna zur Arbeit?"
     options:
@@ -33,6 +34,7 @@ questions:
       en: "The text says: „Dann fährt sie mit dem Bus zur Arbeit.“ — she takes the bus. A car or a train are not mentioned anywhere."
       ru: "В тексте сказано: „Dann fährt sie mit dem Bus zur Arbeit.“ — она едет на автобусе. Про машину или поезд в тексте ничего нет."
   - id: frage-fragen
+    outcomes: [praesens-verbzweit]
     type: mc
     prompt: "Warum spricht Anna viel?"
     options:
@@ -47,6 +49,7 @@ questions:
       en: "„Anna spricht viel, denn die Kinder haben viele Fragen.“ — she is a teacher, and the children at school ask her a lot. Tom and friends only appear in the evening."
       ru: "„Anna spricht viel, denn die Kinder haben viele Fragen.“ — она учительница, и дети в школе задают ей много вопросов. Том появляется в тексте только вечером."
   - id: frage-abend
+    outcomes: [praesens-verbzweit]
     type: mc
     prompt: "Wer kocht heute am Abend?"
     options:

@@ -12,7 +12,7 @@ import {
   type SessionLogEntry,
   type TopicsState,
 } from '../../lib/store';
-import { scoreTotal } from '../../lib/scoring';
+import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
@@ -32,9 +32,10 @@ interface Data {
 
 interface Props {
   nodes: TopicNode[];
+  outcomeModes: Record<string, string>;
 }
 
-export default function ProgressPanel({ nodes }: Props) {
+export default function ProgressPanel({ nodes, outcomeModes }: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -169,8 +170,26 @@ export default function ProgressPanel({ nodes }: Props) {
     fileInput.current?.click();
   }
 
-  const correct = data ? scoreTotal(data.attempts) : 0;
-  const accuracy = data && data.attempts.length ? Math.round((correct / data.attempts.length) * 100) : 0;
+  const verified = data ? verifiedOnly(data.attempts) : [];
+  const correct = scoreTotal(verified);
+  const accuracy = verified.length ? Math.round((correct / verified.length) * 100) : 0;
+  const modeEvidence = new Map<string, { verified: number; practice: number }>();
+  for (const attempt of data?.attempts ?? []) {
+    for (const outcome of new Set(attempt.outcomes ?? [])) {
+      const mode = outcomeModes[outcome];
+      if (!mode) continue;
+      const count = modeEvidence.get(mode) ?? { verified: 0, practice: 0 };
+      count[attempt.evidence === 'practice' ? 'practice' : 'verified']++;
+      modeEvidence.set(mode, count);
+    }
+  }
+  const modeLabels: Record<string, [string, string]> = {
+    listening: ['Listening', 'Аудирование'],
+    reading: ['Reading', 'Чтение'],
+    writing: ['Writing', 'Письмо'],
+    'spoken-production': ['Spoken production', 'Устная речь'],
+    'spoken-interaction': ['Spoken interaction', 'Диалог'],
+  };
 
   return (
     <div className="space-y-8">
@@ -191,6 +210,22 @@ export default function ProgressPanel({ nodes }: Props) {
               </dt>
               <dd className="mt-1 text-2xl font-bold">{Object.keys(data.cards).length}</dd>
             </div>
+          </dl>
+        </section>
+      )}
+
+      {data && modeEvidence.size > 0 && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{t('Evidence by skill', 'Практика по навыкам')}</h2>
+          <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[...modeEvidence.entries()].map(([mode, count]) => (
+              <div key={mode} className="rounded-md bg-stone-50 px-3 py-2 dark:bg-stone-900/50">
+                <dt className="text-sm font-medium">{t(...(modeLabels[mode] ?? [mode, mode]))}</dt>
+                <dd className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+                  {count.verified} {t('verified', 'проверено')} · {count.practice} {t('practice', 'практика')}
+                </dd>
+              </div>
+            ))}
           </dl>
         </section>
       )}

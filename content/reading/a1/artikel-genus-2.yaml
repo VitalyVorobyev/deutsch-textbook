@@ -20,6 +20,7 @@ text:
     ist gut, und Tim [[lacht::laughs::смеётся]].
 questions:
   - id: frage-tasche
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Was ist in Tims Tasche?"
     options:
@@ -34,6 +35,7 @@ questions:
       en: "The first paragraph lists everything: „In der Tasche sind ein Handy, ein Schlüssel, eine Flasche Wasser und ein Apfel.“ A book and a lamp are not in the story."
       ru: "В первом абзаце всё перечислено: „In der Tasche sind ein Handy, ein Schlüssel, eine Flasche Wasser und ein Apfel.“ Книги и лампы в тексте нет."
   - id: frage-flasche
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Warum ist die Flasche groß?"
     options:
@@ -48,6 +50,7 @@ questions:
       en: "The reason comes right after „denn“: „Die Flasche ist groß, denn Tim trinkt viel Wasser.“ The apple is his breakfast — fruit is not the reason for the big bottle."
       ru: "Причина названа сразу после союза „denn“: „Die Flasche ist groß, denn Tim trinkt viel Wasser.“ Яблоко — это его завтрак, а не причина, почему бутылка большая."
   - id: frage-schluessel
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     prompt: "Wo liegt der Schlüssel heute?"
     options:

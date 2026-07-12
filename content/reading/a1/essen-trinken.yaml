@@ -18,6 +18,7 @@ text:
     und trinkt ein Glas Wasser. Nach dem Abendessen trinken alle Tee.
 questions:
   - id: frage-fruehstueck
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Was trinkt Anna zum Frühstück?"
     options:
@@ -32,6 +33,7 @@ questions:
       en: "The text says: „Sie trinkt Kaffee mit Milch, aber ohne Zucker.“ Tea is what her brother Max drinks, and juice does not appear in the story at all."
       ru: "В тексте сказано: „Sie trinkt Kaffee mit Milch, aber ohne Zucker.“ Чай пьёт её брат Макс, а сок в тексте вообще не упоминается."
   - id: frage-fisch
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Warum kauft Max einen Fisch?"
     options:
@@ -46,6 +48,7 @@ questions:
       en: "The reason comes right after „denn“: „Max kauft auch einen Fisch, denn er kocht heute das Abendessen.“ The text says nothing about the price or about Max being hungry."
       ru: "Причина названа сразу после союза „denn“: „Max kauft auch einen Fisch, denn er kocht heute das Abendessen.“ О цене и о том, что Макс голоден, в тексте ничего нет."
   - id: frage-nach-dem-essen
+    outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Was machen alle nach dem Abendessen?"
     options:

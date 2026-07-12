@@ -22,6 +22,7 @@ text:
     [[Duft::scent, (nice) smell::аромат, запах]] von frischem Brot.
 questions:
   - id: frage-fruehstueck
+    outcomes: [alltag-beschreiben]
     type: mc
     prompt: "Warum frühstückt Frau Sommer nicht zu Hause?"
     options:
@@ -36,6 +37,7 @@ questions:
       en: "„Zu Hause frühstückt sie nicht — am Morgen hat sie keine Zeit.“ She does have breakfast, just later: at nine o'clock, during her break at the bakery — a fresh roll with cheese."
       ru: "„Zu Hause frühstückt sie nicht — am Morgen hat sie keine Zeit.“ Завтрак у неё всё-таки есть, просто позже: в девять часов, во время перерыва в пекарне — свежая булочка с сыром."
   - id: frage-nachmittag
+    outcomes: [alltag-beschreiben]
     type: mc
     prompt: "Was macht Frau Sommer am Nachmittag?"
     options:
@@ -50,6 +52,7 @@ questions:
       en: "„Am Nachmittag kauft sie im Supermarkt ein und räumt die Wohnung auf.“ Baking is her morning work at the bakery, and she watches TV in the evening."
       ru: "„Am Nachmittag kauft sie im Supermarkt ein und räumt die Wohnung auf.“ Печёт она утром на работе, а телевизор смотрит вечером."
   - id: frage-feierabend
+    outcomes: [alltag-beschreiben]
     type: mc
     prompt: "Wann hat Frau Sommer Feierabend?"
     options:

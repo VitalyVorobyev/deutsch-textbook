@@ -1,9 +1,11 @@
 topic: akkusativ
+role: practice
 title:
   en: Practice — the accusative case
   ru: Практика — винительный падеж (Akkusativ)
 items:
   - id: tabelle-bestimmter-artikel
+    outcomes: [akkusativ-objekte]
     type: table
     focus: akkusativ-artikel
     title: "Bestimmter Artikel — Nominativ und Akkusativ"
@@ -25,6 +27,7 @@ items:
       ru: "В Akkusativ меняется только мужской род: der → den. Женский род (die), средний род (das) и множественное число (die) совпадают с именительным падежом."
 
   - id: cloze-bruder
+    outcomes: [akkusativ-objekte]
     type: cloze
     focus: akkusativ-artikel
     instruction:
@@ -39,6 +42,7 @@ items:
       ru: "Глагол haben требует Akkusativ, а der Bruder — мужского рода: ein → einen."
 
   - id: mc-mann
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     prompt: "Ich sehe ___ Mann."
@@ -52,6 +56,7 @@ items:
       ru: "Мужчина — прямое дополнение при глаголе 'sehen', поэтому артикль мужского рода меняется: der → den."
 
   - id: cloze-es-gibt
+    outcomes: [akkusativ-objekte]
     type: cloze
     focus: akkusativ-artikel
     instruction:
@@ -66,6 +71,7 @@ items:
       ru: "После 'es gibt' всегда стоит Akkusativ; der Supermarkt — мужского рода, поэтому ein → einen."
 
   - id: match-pronomen
+    outcomes: [akkusativ-objekte]
     type: match
     focus: akkusativ-pronomen
     instruction:
@@ -82,6 +88,7 @@ items:
       ru: "Местоимения в Akkusativ: ich → mich, du → dich, er → ihn, wir → uns, ihr → euch. Обратите внимание: sie и es не меняются."
 
   - id: mc-lampe
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     prompt: "Wir brauchen ___ Lampe."
@@ -95,6 +102,7 @@ items:
       ru: "die Lampe — женского рода, а женский род в Akkusativ не меняется: eine остаётся eine. Окончание -en получает только мужской род."
 
   - id: cloze-fruehstueck
+    outcomes: [akkusativ-objekte]
     type: cloze
     focus: akkusativ-artikel
     instruction:
@@ -109,6 +117,7 @@ items:
       ru: "der Kaffee — мужского рода (ein → einen), а das Brötchen — среднего, поэтому ein не меняется."
 
   - id: order-stuhl
+    outcomes: [akkusativ-objekte]
     type: order
     focus: verbzweit
     instruction:
@@ -123,6 +132,7 @@ items:
       ru: "'Heute' занимает первое место, поэтому глагол стоит вторым, а 'ich' — третьим. Стул — прямое дополнение: der Stuhl → einen Stuhl."
 
   - id: mc-pronomen-ihn
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-pronomen
     prompt: "Das ist mein Bruder. Ich sehe ___ oft."
@@ -136,6 +146,7 @@ items:
       ru: "Местоимение здесь — прямое дополнение, поэтому мужской род меняется: er → ihn — точно так же, как der → den."
 
   - id: cloze-kein-hund
+    outcomes: [akkusativ-objekte]
     type: cloze
     focus: akkusativ-artikel
     instruction:
@@ -150,6 +161,7 @@ items:
       ru: "kein изменяется так же, как ein: der Hund — мужского рода, поэтому в Akkusativ получается keinen."
 
   - id: mc-buch
+    outcomes: [akkusativ-objekte]
     type: mc
     focus: akkusativ-artikel
     instruction:
@@ -166,6 +178,7 @@ items:
       ru: "das Buch — среднего рода, а средний род в Nominativ и Akkusativ совпадает: das остаётся das. Изменение на -en касается только мужского рода."
 
   - id: match-artikel
+    outcomes: [akkusativ-objekte]
     type: match
     focus: akkusativ-artikel
     instruction:
@@ -182,6 +195,7 @@ items:
       ru: "Тройка Akkusativ, которую нужно запомнить: den – einen – keinen. Формы женского и среднего рода не меняются."
 
   - id: cloze-verstehen
+    outcomes: [akkusativ-objekte]
     type: cloze
     focus: akkusativ-pronomen
     instruction:
@@ -196,6 +210,7 @@ items:
       ru: "Тот, кого понимают, — прямое дополнение: ich → mich."
 
   - id: tabelle-ein-kein
+    outcomes: [akkusativ-objekte]
     type: table
     focus: akkusativ-artikel
     title: "ein / kein im Akkusativ"
@@ -213,6 +228,7 @@ items:
       ru: "ein и kein склоняются одинаково: окончание -en появляется только в мужском роде (einen, keinen). Женский (eine/keine) и средний род (ein/kein) совпадают с именительным падежом."
 
   - id: uebersetzen-hund
+    outcomes: [akkusativ-objekte]
     type: translate
     focus: akkusativ-artikel
     instruction:
@@ -226,6 +242,7 @@ items:
       ru: "Глагол haben всегда требует Akkusativ, а der Hund — мужского рода, поэтому ein → einen: Ich habe einen Hund."
 
   - id: uebersetzen-kaffee
+    outcomes: [akkusativ-objekte]
     type: translate
     focus: akkusativ-artikel
     instruction:
@@ -239,6 +256,7 @@ items:
       ru: "Кофе — прямое дополнение при глаголе trinken, а der Kaffee — мужского рода: ein → einen. И не забудьте заглавную K — все существительные в немецком пишутся с большой буквы."
 
   - id: uebersetzen-lampe
+    outcomes: [akkusativ-objekte]
     type: translate
     focus: verbzweit
     instruction:

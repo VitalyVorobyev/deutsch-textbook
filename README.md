@@ -15,14 +15,15 @@ wrong.
 
 ## What's inside
 
-- **A structured path from A1 toward B2.** Topics form an atlas: each article
-  states the rule briefly, explains it in depth, shows translated examples, and
-  warns about the mistakes learners actually make. Prerequisites link topics
-  together, so you always know what to learn next.
+- **A growing A1–A2 course.** The Themen page presents a clear, ordered
+  Lernpfad with one recommended next action. A focused Zusammenhänge view shows
+  a topic's direct prerequisites, unlocks, and deeper follow-ups without making
+  the learner navigate a global dependency graph.
 - **Interactive exercises on every topic** — multiple choice, fill-in-the-gap,
-  matching, word order, tables, translation, and dictation. A wrong answer
-  immediately shows a short explanation of the rule you tripped over, in
-  English or Russian.
+  matching, word order, tables, translation, open writing, and listening or
+  reading comprehension. A wrong answer immediately shows a short explanation
+  of the rule you tripped over, in English or Russian. Open production is saved
+  locally and shown as practice without pretending it was automatically verified.
 - **Flashcards with real recall.** Vocabulary becomes flashcards in both
   directions, scheduled by FSRS (a modern spaced-repetition algorithm). In the
   production direction you type the German — article included for nouns —
@@ -34,8 +35,10 @@ wrong.
   topics are interleaved, and the queue prioritizes what you recently got wrong
   and the specific confusions (dative pronouns, haben/sein, word order …) your
   error history shows.
-- **A progress dashboard** with an activity heatmap, streak, per-topic
-  completion, and trends for each confusion the exercises measure.
+- **An evidence-aware progress dashboard** with an activity heatmap, streak,
+  per-topic completion, skill-mode coverage, and trends for each confusion the
+  exercises measure. Automatically scored evidence and unverified production
+  remain visibly distinct.
 
 ## Getting it
 
@@ -44,13 +47,14 @@ wrong.
 progress stays in your browser.
 
 **Or install the desktop app** (Windows, Linux, macOS) from
-[GitHub Releases](../../releases):
+[GitHub Releases](https://github.com/VitalyVorobyev/deutsch-textbook/releases):
 
 - **Windows**: `.exe` (NSIS) or `.msi`. SmartScreen may warn — choose
   *More info → Run anyway*.
 - **Linux**: `.deb` (`sudo apt install ./deutsch-atlas_…_amd64.deb`) or
   `.AppImage` (`chmod +x`, then run). Text-to-speech needs `speech-dispatcher`
-  with a German voice — without it, listening exercises stay silent.
+  with a German voice; without one, audio-comprehension tasks fall back visibly
+  to reading comprehension.
 - **macOS**: `.dmg`, unsigned — after moving the app to Applications run
   `xattr -cr /Applications/Deutsch-Atlas.app`, or right-click → Open
   (macOS 15+: System Settings → Privacy & Security → Open Anyway).
@@ -85,10 +89,21 @@ schemas. Bun is the package manager and task runner.
 | --- | --- |
 | `bun run dev` | dev server |
 | `bun run validate` | validate all content against schemas and cross-references |
+| `bun test` | domain regression tests |
 | `bun run check` | type-check (`astro check`) |
 | `bun run lint` | ESLint over `src/` and `scripts/` |
 | `bun run build` | static production build |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
+
+Before opening a pull request, run the complete gate:
+
+```sh
+bun run validate
+bun test
+bun run check
+bun run lint
+bun run build
+```
 
 Content authoring rules — bilingual voice, CEFR discipline, exercise and IPA
 conventions — are in [CLAUDE.md](CLAUDE.md); direction lives in

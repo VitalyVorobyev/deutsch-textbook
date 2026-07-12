@@ -1,9 +1,11 @@
 topic: dativ
+role: drill
 title:
   en: Drill — mir or mich?
   ru: Тренажёр — mir или mich?
 items:
   - id: mc-helfen-mir
+    outcomes: [dativ-artikel]
     type: mc
     focus: verben-mit-dativ
     prompt: "Kannst du ___ bitte helfen?"
@@ -17,6 +19,7 @@ items:
       ru: "helfen требует Dativ: mir. Русский здесь подсказывает: «помогать (кому?) мне» — тоже дательный падеж."
 
   - id: mc-anrufen-dich
+    outcomes: [dativ-artikel]
     type: mc
     focus: akkusativ-pronomen
     prompt: "Ich rufe ___ heute Abend an."
@@ -30,6 +33,7 @@ items:
       ru: "anrufen требует Akkusativ: dich. Классическая ловушка — по-русски «звонить (кому?) тебе», дательный падеж, но по-немецки jemanden anrufen. «Dir anrufen» — ошибка."
 
   - id: mc-danken-dir
+    outcomes: [dativ-artikel]
     type: mc
     focus: verben-mit-dativ
     prompt: "Ich danke ___ für das Geschenk."
@@ -43,6 +47,7 @@ items:
       ru: "danken требует Dativ: dir. Здесь русский сбивает: «благодарить (кого?) тебя» — винительный падеж, а в немецком только дательный."
 
   - id: mc-sehen-ihn
+    outcomes: [dativ-artikel]
     type: mc
     focus: akkusativ-pronomen
     prompt: "Dort ist Herr Braun. Siehst du ___?"
@@ -56,6 +61,7 @@ items:
       ru: "sehen требует Akkusativ: er → ihn. Как и в русском: «видеть (кого?) его». Форма ihm — это Dativ."
 
   - id: mc-gehoeren-ihm
+    outcomes: [dativ-artikel]
     type: mc
     focus: verben-mit-dativ
     prompt: "Das ist Peters Tasche. Sie gehört ___."
@@ -69,6 +75,7 @@ items:
       ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
 
   - id: mc-fragen-sie
+    outcomes: [dativ-artikel]
     type: mc
     focus: akkusativ-pronomen
     prompt: "Entschuldigung, darf ich ___ etwas fragen?"
@@ -82,6 +89,7 @@ items:
       ru: "fragen требует Akkusativ: jemanden fragen → Sie. Русский здесь совпадает: «спросить (кого?) Вас». Ihnen — это Dativ, после fragen он не нужен."
 
   - id: cloze-passen-mir
+    outcomes: [dativ-artikel]
     type: cloze
     focus: passen-dativ
     instruction:
@@ -96,6 +104,7 @@ items:
       ru: "passen требует Dativ: ich → mir. Как и «подходить (кому?) мне» — русский здесь подсказывает правильно."
 
   - id: cloze-gefallen-ihr
+    outcomes: [dativ-artikel]
     type: cloze
     focus: dativ-pronomen
     instruction:
@@ -110,6 +119,7 @@ items:
       ru: "gefallen устроен как «нравиться»: концерт — подлежащее, а человек стоит в дательном падеже — sie → ihr."
 
   - id: cloze-anrufen-ihn
+    outcomes: [dativ-artikel]
     type: cloze
     focus: akkusativ-pronomen
     instruction:
@@ -124,6 +134,7 @@ items:
       ru: "anrufen требует Akkusativ: er → ihn. Русское «звонить ему» сбивает — по-немецки «звонят кого-то», а не «кому-то»: ihn anrufen."
 
   - id: mc-helfen-ihnen
+    outcomes: [dativ-artikel]
     type: mc
     focus: dativ-pronomen
     prompt: "Frau Müller, ich helfe ___ gern."
@@ -137,6 +148,7 @@ items:
       ru: "helfen требует Dativ, а дательная форма вежливого Sie — Ihnen (всегда с заглавной буквы): Ich helfe Ihnen."
 
   - id: mc-satz-gefallen
+    outcomes: [dativ-artikel]
     type: mc
     focus: dativ-pronomen
     instruction:
@@ -152,6 +164,7 @@ items:
       ru: "gefallen требует Dativ: mir. Русский устроен так же — «фильм нравится (кому?) мне», поэтому «gefällt mich» невозможно."
 
   - id: uebersetzen-anrufen
+    outcomes: [dativ-artikel]
     type: translate
     focus: akkusativ-pronomen
     instruction:
@@ -167,6 +180,7 @@ items:
       ru: "anrufen требует Akkusativ — dich, а не dir, — и отделяемая приставка an уходит в конец: Ich rufe dich morgen an. Русское «позвоню тебе» здесь сбивает."
 
   - id: cloze-speisekarte-mir
+    outcomes: [dativ-artikel]
     type: cloze
     focus: dativ-pronomen
     instruction:
@@ -181,6 +195,7 @@ items:
       ru: "У geben два дополнения: предмет — Akkusativ (die Speisekarte), получатель — Dativ: ich → mir, как и в русском «дать (кому?) мне»."
 
   - id: cloze-verstehe-dich
+    outcomes: [dativ-artikel]
     type: cloze
     focus: akkusativ-pronomen
     instruction:
@@ -195,6 +210,7 @@ items:
       ru: "verstehen требует Akkusativ: du → dich. Как и в русском: «понимать (кого?) тебя»."
 
   - id: cloze-danken-ihnen
+    outcomes: [dativ-artikel]
     type: cloze
     focus: dativ-pronomen
     instruction:
@@ -209,6 +225,7 @@ items:
       ru: "danken требует Dativ; множественное sie → ihnen (со строчной буквы — это «им», а не вежливое Sie)."
 
   - id: uebersetzen-hilf-mir
+    outcomes: [dativ-artikel]
     type: translate
     focus: verben-mit-dativ
     instruction:
@@ -224,6 +241,7 @@ items:
       ru: "helfen требует Dativ: mir, а не mich — как и русское «помочь (кому?) мне». Модальный kannst — на втором месте, helfen — в конце."
 
   - id: uebersetzen-abholen-dich
+    outcomes: [dativ-artikel]
     type: translate
     focus: akkusativ-pronomen
     instruction:

@@ -14,7 +14,6 @@ const [nodes, exercises, topics] = await Promise.all([
 ]);
 const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
-const pretestIds = new Set(topics.map((t) => t.data.pretest).filter(Boolean));
 
 const sets: TrainingSet[] = exercises.map((e) => {
   const topic = topicById.get(e.data.topic);
@@ -26,7 +25,7 @@ const sets: TrainingSet[] = exercises.map((e) => {
     topicId: topic.id,
     title_de: topic.title_de,
     level: topic.level,
-    isPretest: pretestIds.has(e.id),
+    role: e.data.role,
     items: e.data.items,
   };
 });

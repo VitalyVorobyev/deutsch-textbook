@@ -1,6 +1,8 @@
 topic: alltag-tagesablauf
+role: pretest
 items:
   - id: pre-fernsehen
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: trennbar-wortstellung
     prompt: "Welcher Satz ist richtig?"
@@ -17,6 +19,7 @@ items:
       ru: "fernsehen — глагол с отделяемой приставкой (trennbar): спрягаемая часть стоит на втором месте, а приставка fern- уходит в самый конец предложения — „Ich sehe am Abend ein bisschen fern.“ Так же ведут себя aufstehen, einkaufen, aufräumen."
 
   - id: pre-dann-inversion
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: verbzweit
     prompt: "Zuerst dusche ich, ___"
@@ -33,6 +36,7 @@ items:
       ru: "После слов-связок dann, danach, zuerst глагол обязан оставаться на втором месте, поэтому подлежащее уходит за него: „Dann frühstücke ich.“ Это die Inversion (инверсия) — русское «потом я завтракаю» сохраняет подлежащее на первом месте и потому сбивает с толку."
 
   - id: pre-am-in-der
+    outcomes: [alltag-beschreiben]
     type: mc
     focus: um-am-zeit
     prompt: "___ Nachmittag mache ich Sport, und ___ Nacht schlafe ich."

@@ -1,0 +1,33 @@
+topic: erste-schritte
+role: pretest
+items:
+  - id: pre-name
+    outcomes: [erste-sich-vorstellen]
+    type: mc
+    prompt: "Ich ___ Maria."
+    options: ["heiße", "komme", "spreche"]
+    correct: 0
+    translation: { en: "My name is Maria.", ru: "Меня зовут Мария." }
+    explain:
+      en: "heißen means to be called: Ich heiße Maria."
+      ru: "heißen означает «называться»: Ich heiße Maria."
+  - id: pre-origin
+    outcomes: [erste-sich-vorstellen]
+    type: mc
+    prompt: "Ich komme ___ Georgien."
+    options: ["aus", "in", "um"]
+    correct: 0
+    translation: { en: "I come from Georgia.", ru: "Я из Грузии." }
+    explain:
+      en: "Use aus for origin: aus Georgien."
+      ru: "Для происхождения используется aus: aus Georgien."
+  - id: pre-number
+    outcomes: [erste-zahlen-verstehen]
+    type: mc
+    prompt: "Welche Zahl ist 7?"
+    options: ["sechs", "sieben", "acht"]
+    correct: 1
+    translation: { en: "Which number is 7?", ru: "Как называется цифра 7?" }
+    explain:
+      en: "7 is sieben."
+      ru: "7 по-немецки sieben."

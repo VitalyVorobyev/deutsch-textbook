@@ -50,6 +50,10 @@ export interface Attempt {
   given: string;
   /** the item's confusion tag (see focus-tag table in CLAUDE.md), when tagged */
   focus?: string;
+  /** omitted in historical snapshots; absence means verified */
+  evidence?: 'verified' | 'practice';
+  /** stable curriculum outcome ids exercised by this attempt */
+  outcomes?: string[];
   ts: number;
 }
 
@@ -215,7 +219,7 @@ export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot
   };
 }
 
-function isValidSnapshot(s: unknown): s is ProgressSnapshot {
+export function isValidSnapshot(s: unknown): s is ProgressSnapshot {
   if (!s || typeof s !== 'object') return false;
   const snap = s as Partial<ProgressSnapshot>;
   const v = snap.version;
@@ -228,7 +232,7 @@ function isValidSnapshot(s: unknown): s is ProgressSnapshot {
 }
 
 /** Strip malformed partial-credit fields so attemptScore() can trust totalParts ≥ 1. */
-function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
+export function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
   return attempts.map((a) => {
     if (a.correctParts === undefined && a.totalParts === undefined) return a;
     if (

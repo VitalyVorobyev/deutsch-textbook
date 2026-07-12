@@ -1,9 +1,11 @@
 topic: termine-vereinbaren
+role: practice
 title:
   en: Practice — making appointments
   ru: Практика — как договориться о встрече
 items:
   - id: mc-register
+    outcomes: [termine-organisieren]
     type: mc
     focus: du-sie
     prompt: "Sie rufen in einer Arztpraxis an. Was sagen Sie?"
@@ -20,6 +22,7 @@ items:
       ru: "С регистратором и вообще с незнакомыми людьми обязательна форма Sie. Оба варианта с du в этой ситуации невежливы, хотя грамматически они правильные."
 
   - id: mc-hoeflich
+    outcomes: [termine-organisieren]
     type: mc
     focus: will-moechte
     prompt: "Was ist höflich?"
@@ -36,6 +39,7 @@ items:
       ru: '"Ich möchte…" — вежливый стандарт для выражения желания. "Ich will…" звучит грубо, а голый императив с "!" — как приказ.'
 
   - id: mc-passt-form
+    outcomes: [termine-organisieren]
     type: mc
     focus: verb-endungen
     prompt: "___ es Ihnen um 15 Uhr?"
@@ -49,6 +53,7 @@ items:
       ru: 'Подлежащее — "es" (форма er/sie/es), поэтому глагол — "passt". "Ihnen" — дополнение в дательном падеже, а не подлежащее.'
 
   - id: mc-um
+    outcomes: [termine-organisieren]
     type: mc
     focus: um-am-zeit
     prompt: "Der Termin ist ___ 14:30 Uhr."
@@ -62,6 +67,7 @@ items:
       ru: 'Со временем по часам используется "um": um 14:30 Uhr. "am" употребляется с днями и частями дня (am Montag, am Nachmittag).'
 
   - id: cloze-mir
+    outcomes: [termine-organisieren]
     type: cloze
     focus: passen-dativ
     instruction:
@@ -76,6 +82,7 @@ items:
       ru: '"passen" требует дательного падежа: mir, а не mich. Русский здесь подсказывает — «подходит мне» тоже дательный.'
 
   - id: cloze-ihnen
+    outcomes: [termine-organisieren]
     type: cloze
     focus: passen-dativ
     instruction:
@@ -90,6 +97,7 @@ items:
       ru: 'Дательный падеж вежливого "Sie" — "Ihnen", всегда с заглавной буквы. "Passt es Sie?" — классическая ошибка.'
 
   - id: cloze-absagen
+    outcomes: [termine-organisieren]
     type: cloze
     focus: trennbar-wortstellung
     instruction:
@@ -104,6 +112,7 @@ items:
       ru: 'У "absagen" отделяемая приставка: в главном предложении "ab" уходит в конец — ich sage … ab.'
 
   - id: cloze-dialog
+    outcomes: [termine-organisieren]
     type: cloze
     focus: um-am-zeit
     instruction:
@@ -118,6 +127,7 @@ items:
       ru: 'Устойчивая формула — "einen Termin vereinbaren"; с днями недели употребляется "am" (am Freitag), со временем по часам — "um" (um 15 Uhr).'
 
   - id: match-dialog
+    outcomes: [termine-organisieren]
     type: match
     instruction:
       en: Match each question with its answer.
@@ -132,6 +142,7 @@ items:
       ru: "Типичные реплики при записи на приём: на вопросы о времени отвечают о времени (с passen + дательный), а на вопрос о срочности — называют причину."
 
   - id: match-funktion
+    outcomes: [termine-organisieren]
     type: match
     instruction:
       en: What is the speaker doing? Match each sentence with its function.
@@ -146,6 +157,7 @@ items:
       ru: "Эти четыре хода покрывают почти любой звонок о встрече: попросить о приёме, отменить, предложить другое время, подтвердить."
 
   - id: order-moechte
+    outcomes: [termine-organisieren]
     type: order
     focus: modal-satzklammer
     instruction:
@@ -160,6 +172,7 @@ items:
       ru: '"möchte" — спрягаемый глагол на второй позиции; инфинитив "vereinbaren" уходит в конец предложения.'
 
   - id: order-koennten
+    outcomes: [termine-organisieren]
     type: order
     focus: modal-satzklammer
     instruction:
@@ -174,6 +187,7 @@ items:
       ru: 'Общий вопрос начинается со спрягаемого глагола ("Könnten"); инфинитив "verschieben" стоит в конце, а новый день вводится через "auf".'
 
   - id: table-verben
+    outcomes: [termine-organisieren]
     type: table
     focus: partizip2-form
     title: "Verbformen"
@@ -203,6 +217,7 @@ items:
       ru: 'Отделяемый "absagen": er sagt ab, hat abgesagt (ge- внутри). Неотделяемые "vereinbaren"/"verschieben": без ge- вообще — vereinbart, verschoben.'
 
   - id: uebersetzen-absagen
+    outcomes: [termine-organisieren]
     type: translate
     focus: trennbar-modal
     instruction:
@@ -216,6 +231,7 @@ items:
       ru: 'Вежливое желание — "Ich möchte …", инфинитив absagen стоит в конце. После möchte отделяемый глагол не разделяется — приставка уходит в конец, только когда глагол спрягается сам (ich sage den Termin ab).'
 
   - id: uebersetzen-passt-ihnen
+    outcomes: [termine-organisieren]
     type: translate
     focus: passen-dativ
     instruction:
@@ -229,6 +245,7 @@ items:
       ru: 'Подлежащее — "es": Passt es Ihnen …? Вежливое местоимение стоит в дательном падеже — "Ihnen", всегда с заглавной буквы. С днями недели используется "am" (am Montag), со временем по часам — "um" (um 10 Uhr).'
 
   - id: uebersetzen-termin-freitag
+    outcomes: [termine-organisieren]
     type: translate
     focus: um-am-zeit
     instruction:

@@ -20,6 +20,7 @@ text:
     warten. [[Gesundheit::health::здоровье]] ist wichtig!“
 questions:
   - id: frage-chefin
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Warum ruft Herr Braun seine Chefin an?"
     options:
@@ -34,6 +35,7 @@ questions:
       en: "He calls her and says: „Ich bin krank. Ich muss leider zu Hause bleiben.“ He is not asking for a holiday, and the doctor's visit comes only later, at midday."
       ru: "Он звонит ей и говорит: „Ich bin krank. Ich muss leider zu Hause bleiben.“ Об отпуске речи нет, а к врачу он идёт только позже, в обед."
   - id: frage-arzt
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Was sagt der Arzt?"
     options:
@@ -48,6 +50,7 @@ questions:
       en: "The doctor says: „Sie müssen viel trinken und sollen drei Tage im Bett bleiben.“ Working and sport are exactly what he is not allowed to do: „Sie dürfen nicht arbeiten — und Sport dürfen Sie auch nicht machen.“ Remember: darf nicht = is forbidden, must not."
       ru: "Врач говорит: „Sie müssen viel trinken und sollen drei Tage im Bett bleiben.“ Работа и спорт как раз запрещены: „Sie dürfen nicht arbeiten — und Sport dürfen Sie auch nicht machen.“ Помните: darf nicht = «нельзя»."
   - id: frage-frau
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     prompt: "Was sagt seine Frau nach drei Tagen?"
     options:

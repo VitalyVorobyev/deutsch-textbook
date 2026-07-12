@@ -1,6 +1,8 @@
 topic: dativ
+role: pretest
 items:
   - id: pre-danken-dativ
+    outcomes: [dativ-artikel]
     type: mc
     focus: verben-mit-dativ
     prompt: "Ich danke ___ für die Hilfe."
@@ -14,6 +16,7 @@ items:
       ru: '"danken" всегда требует дательного падежа (der Dativ): Ich danke dir. Это настоящая ловушка: по-русски «благодарить (кого?) тебя» — винительный падеж, а в немецком только дательный, как и у helfen, gefallen, gehören.'
 
   - id: pre-mit-dativ
+    outcomes: [dativ-artikel]
     type: mc
     focus: dativ-praepositionen
     prompt: "Wir fahren mit ___ Bus zur Arbeit."
@@ -27,6 +30,7 @@ items:
       ru: 'Предлоги aus, bei, mit, nach, seit, von, zu всегда требуют дательного падежа. "der Bus" — мужской род, в дательном der → dem: mit dem Bus. "den Bus" — это винительный падеж, а "der Bus" — именительный.'
 
   - id: pre-dativ-plural
+    outcomes: [dativ-artikel]
     type: mc
     focus: dativ-artikel
     prompt: "Die Suppe schmeckt ___ nicht."

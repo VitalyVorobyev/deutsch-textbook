@@ -1,7 +1,7 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
 import { localDateString } from './store';
-import { scoreTotal } from './scoring';
+import { scoreTotal, verifiedOnly } from './scoring';
 
 /** The minimum a topic needs for its progress to be rolled up. */
 export interface TopicRollup {
@@ -47,6 +47,11 @@ export function topicSetIds(node: TopicRollup): string[] {
   ];
 }
 
+/** Sets that represent actual study; a pretest is diagnostic generation, not practice. */
+export function topicPracticeSetIds(node: TopicRollup): string[] {
+  return [...node.exerciseSets, ...node.readingIds.map((id) => `reading:${id}`)];
+}
+
 /** Cards that belong to this topic — cardId is `<vocabId>::<de>::<dir>`. */
 function topicCardIds(node: TopicRollup, cards: CardStates): string[] {
   return Object.keys(cards).filter((k) => node.vocabIds.some((v) => k.startsWith(`${v}::`)));
@@ -78,11 +83,8 @@ export interface MasteryGap {
  * `cards` is omitted for topics without a vocab deck (there is nothing to review).
  */
 export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] {
-  const setIds = new Set(topicSetIds(node));
-  const own = ctx.attempts.filter((a) => setIds.has(a.setId));
-  // Pretest answers are guesses by design: they mark the topic as practiced
-  // but must not count toward (or against) mastery accuracy.
-  const scored = node.pretestId ? own.filter((a) => a.setId !== node.pretestId) : own;
+  const setIds = new Set(topicPracticeSetIds(node));
+  const scored = verifiedOnly(ctx.attempts.filter((a) => setIds.has(a.setId)));
   const recent = scored.slice(-MASTERY_WINDOW);
   const accuracy = recent.length ? scoreTotal(recent) / recent.length : 0;
   const practiceDays = new Set(scored.map((a) => localDateString(new Date(a.ts))));
@@ -119,11 +121,11 @@ export function masteryGaps(node: TopicRollup, ctx: TopicContext): MasteryGap[] 
 /**
  * Auto tier from real activity (ignores the manual override):
  *  read      — article opened;
- *  practiced — ≥1 exercise/reading/pretest attempt;
+ *  practiced — ≥1 non-pretest exercise/reading attempt;
  *  mastered  — every requirement in masteryGaps() met.
  */
 export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
-  const setIds = new Set(topicSetIds(node));
+  const setIds = new Set(topicPracticeSetIds(node));
   const own = ctx.attempts.filter((a) => setIds.has(a.setId));
 
   if (own.length > 0) {

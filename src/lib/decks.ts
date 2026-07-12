@@ -1,12 +1,11 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
-import { recommendedNext, type TopicContext, type TopicNode } from './mastery';
+import type { TopicContext, TopicNode } from './mastery';
 import type { CardDef } from './srs';
 
 /**
  * Due cards are always reviewed, whatever their deck — this gates only fresh
  * (never-graded) cards. A deck's fresh cards are eligible when:
- *  - any owning topic (frontmatter `vocab`) is opened (readAt) or the
- *    recommended next topic on the spine;
+ *  - any owning topic (frontmatter `vocab`) is opened (readAt);
  *  - no topic owns the deck (kernwortschatz): ≥1 topic at the deck's level
  *    has been opened;
  *  - the learner already has ≥1 graded card in the deck — a deck in active
@@ -29,7 +28,7 @@ export function eligibleFreshCards(
   for (const [id, s] of Object.entries(ctx.cards)) {
     if (s.reps > 0) graded.add(id.slice(0, id.indexOf('::')));
   }
-  const next = recommendedNext(spine, nodes, ctx)?.id;
+  void spine;
   const openedLevels = new Set(
     nodes.filter((n) => ctx.topics[n.id]?.readAt).map((n) => n.level),
   );
@@ -38,7 +37,7 @@ export function eligibleFreshCards(
   for (const deckId of new Set(fresh.map((c) => c.deckId))) {
     const own = owners.get(deckId);
     const ok = own
-      ? own.some((n) => ctx.topics[n.id]?.readAt || n.id === next)
+      ? own.some((n) => ctx.topics[n.id]?.readAt)
       : openedLevels.has(deckLevels[deckId] ?? '');
     if (ok || graded.has(deckId)) eligible.add(deckId);
   }

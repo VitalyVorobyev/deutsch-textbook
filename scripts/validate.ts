@@ -196,6 +196,8 @@ for (const [id, { file, data }] of topics) {
       fail(file, `pretest ref "${data.pretest}" does not resolve to content/exercises/${data.pretest}.yaml`);
     } else if (pre.data.topic !== id) {
       fail(file, `pretest set "${data.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
+    } else if (pre.data.role !== 'pretest') {
+      fail(file, `pretest set "${data.pretest}" must declare role: pretest`);
     }
     if (data.exercises.includes(data.pretest))
       fail(file, `pretest set "${data.pretest}" must not also be listed in exercises`);
@@ -209,6 +211,8 @@ for (const [setId, { file, data }] of exerciseSets) {
   } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
     fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
   }
+  if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
+    fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
   const itemIds = new Set<string>();
   for (const item of data.items) {
@@ -278,6 +282,17 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
           seen.add(n);
         }
+        break;
+      }
+      case 'write': {
+        if (item.model_answer.trim().split(/\s+/).length < item.min_words)
+          warn(where, 'model answer is shorter than the learner minimum');
+        break;
+      }
+      case 'audio-comprehension': {
+        if (item.correct >= item.options.length)
+          fail(where, `correct index ${item.correct} out of range (${item.options.length} options)`);
+        if (new Set(item.options).size !== item.options.length) fail(where, 'duplicate options');
         break;
       }
     }
@@ -381,6 +396,21 @@ for (const [setId, { file }] of exerciseSets) {
       // order never puts a topic before a prerequisite; deepens targets exist
       // and appear strictly earlier.
       const nodeById = new Map(atlas.nodes.map((n) => [n.id, n]));
+      const outcomeOwner = new Map<string, string>();
+      for (const node of atlas.nodes) {
+        for (const outcome of node.outcomes) {
+          const previous = outcomeOwner.get(outcome.id);
+          if (previous) fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
+          else outcomeOwner.set(outcome.id, node.id);
+        }
+        if (
+          node.kind === 'communication' &&
+          !node.outcomes.some((o) =>
+            ['writing', 'spoken-production', 'spoken-interaction'].includes(o.mode),
+          )
+        )
+          fail(AT, `communication topic "${node.id}" needs a productive or interactive outcome`);
+      }
       const unitIds = new Set<string>();
       const unitOf = new Map<string, string>();
       for (const unit of atlas.units) {
@@ -427,6 +457,72 @@ for (const [setId, { file }] of exerciseSets) {
           const dAt = spinePos.get(d);
           if (at !== undefined && dAt !== undefined && dAt >= at)
             fail(AT, `node "${node.id}" deepens "${d}", which must appear earlier in the spine`);
+        }
+      }
+
+      for (const { file, data } of exerciseSets.values()) {
+        for (const item of data.items) {
+          for (const outcome of item.outcomes) {
+            const owns = outcomeOwner.get(outcome);
+            if (!owns) fail(`${file} → item "${item.id}"`, `unknown outcome "${outcome}"`);
+            else if (owns !== data.topic)
+              fail(`${file} → item "${item.id}"`, `outcome "${outcome}" belongs to topic "${owns}"`);
+          }
+        }
+      }
+      for (const { file, data } of readings.values()) {
+        for (const question of data.questions) {
+          for (const outcome of question.outcomes) {
+            const owns = outcomeOwner.get(outcome);
+            if (!owns) fail(`${file} → question "${question.id}"`, `unknown outcome "${outcome}"`);
+            else if (owns !== data.topic)
+              fail(`${file} → question "${question.id}"`, `outcome "${outcome}" belongs to topic "${owns}"`);
+          }
+        }
+      }
+
+      // A focus tag cannot silently teach a structure whose owning topic is
+      // later in the spine. Intentional preview items must say `preview: true`.
+      const focusIntroducedBy: Record<string, string> = {
+        verbzweit: 'praesens-wortstellung',
+        'verb-endungen': 'praesens-wortstellung',
+        'kopula-sein': 'praesens-wortstellung',
+        genus: 'artikel-genus',
+        'plural-artikel': 'artikel-genus',
+        'artikel-pflicht': 'artikel-genus',
+        'kein-nicht': 'artikel-genus',
+        possessivartikel: 'menschen-familie',
+        'akkusativ-artikel': 'akkusativ',
+        'akkusativ-pronomen': 'akkusativ',
+        'dativ-artikel': 'dativ',
+        'dativ-pronomen': 'dativ',
+        'dativ-praepositionen': 'dativ',
+        'verben-mit-dativ': 'dativ',
+        'passen-dativ': 'dativ',
+        'wechsel-akk-dat': 'dativ',
+        'trennbar-wortstellung': 'trennbare-verben',
+        'trennbar-modal': 'trennbare-verben',
+        'trennbar-untrennbar': 'trennbare-verben',
+        'modal-satzklammer': 'modalverben',
+        'modal-konjugation': 'modalverben',
+        'duerfen-muessen': 'modalverben',
+        'will-moechte': 'modalverben',
+        'haben-sein': 'perfekt-haben-sein',
+        'partizip2-form': 'perfekt-haben-sein',
+        'perfekt-satzklammer': 'perfekt-haben-sein',
+        'um-am-zeit': 'alltag-tagesablauf',
+        'du-sie': 'termine-vereinbaren',
+      };
+      for (const { file, data } of exerciseSets.values()) {
+        const ownerAt = spinePos.get(data.topic);
+        for (const item of data.items) {
+          const intro = item.focus ? focusIntroducedBy[item.focus] : undefined;
+          const introAt = intro ? spinePos.get(intro) : undefined;
+          if (!item.preview && ownerAt !== undefined && introAt !== undefined && introAt > ownerAt)
+            fail(
+              `${file} → item "${item.id}"`,
+              `focus "${item.focus}" is introduced later by "${intro}"; move it or declare preview: true`,
+            );
         }
       }
 

@@ -8,18 +8,50 @@
 # Atlas map render this file.
 nodes:
   # --- A1 ---
+  - id: erste-schritte
+    level: A1
+    kind: phonetics
+    prerequisites: []
+    outcomes:
+      - id: erste-sich-vorstellen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann mich mit Name, Herkunft und Sprache kurz vorstellen."
+        en: "I can briefly introduce myself with my name, origin and language."
+        ru: "Я умею кратко представиться: назвать имя, страну и язык."
+      - id: erste-buchstabieren
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann meinen Namen und meine Adresse buchstabieren."
+        en: "I can spell my name and address."
+        ru: "Я умею продиктовать по буквам своё имя и адрес."
+      - id: erste-zahlen-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann einfache Zahlen und Telefonnummern verstehen."
+        en: "I can understand simple numbers and telephone numbers."
+        ru: "Я понимаю простые числа и номера телефонов."
   - id: praesens-wortstellung
     level: A1
     kind: grammar
     prerequisites: []
     outcomes:
-      - de: "Ich kann einfache Sätze im Präsens bilden: Das Verb steht auf Position 2."
+      - id: praesens-verbzweit
+        mode: writing
+        domain: personal
+        de: "Ich kann einfache Sätze im Präsens bilden: Das Verb steht auf Position 2."
         en: "I can build simple present-tense sentences with the verb in second position."
         ru: "Я умею строить простые предложения в настоящем времени: глагол стоит на втором месте."
-      - de: "Ich kann Verben im Präsens konjugieren: ich lerne, du lernst, er lernt."
+      - id: praesens-konjugation
+        mode: writing
+        domain: personal
+        de: "Ich kann Verben im Präsens konjugieren: ich lerne, du lernst, er lernt."
         en: "I can conjugate present-tense verbs with the right personal endings (ich lerne, du lernst, er lernt)."
         ru: "Я умею спрягать глаголы в настоящем времени с правильными личными окончаниями (ich lerne, du lernst, er lernt)."
-      - de: "Ich kann W-Fragen und Ja/Nein-Fragen stellen."
+      - id: praesens-fragen
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann W-Fragen und Ja/Nein-Fragen stellen."
         en: "I can ask W-questions and yes/no questions."
         ru: "Я умею задавать вопросы с вопросительным словом и общие вопросы (да/нет)."
   - id: artikel-genus
@@ -27,27 +59,68 @@ nodes:
     kind: grammar
     prerequisites: []
     outcomes:
-      - de: "Ich kann Nomen mit dem richtigen Artikel benutzen: der, die oder das."
+      - id: artikel-richtig-verwenden
+        mode: writing
+        domain: personal
+        de: "Ich kann Nomen mit dem richtigen Artikel benutzen: der, die oder das."
         en: "I can use nouns with the correct article: der, die or das."
         ru: "Я умею употреблять существительные с правильным артиклем: der, die или das."
-      - de: "Ich kann an der Endung oft das Genus erkennen: die -ung, das -chen."
+      - id: artikel-genus-erkennen
+        mode: reading
+        domain: educational
+        de: "Ich kann an der Endung oft das Genus erkennen: die -ung, das -chen."
         en: "I can often tell a noun's gender from its ending (die -ung, das -chen)."
         ru: "Я умею определять род существительного по окончанию (die -ung, das -chen)."
-      - de: "Ich weiß: Der Artikel im Plural ist immer die."
+      - id: artikel-plural-verwenden
+        mode: writing
+        domain: personal
+        de: "Ich weiß: Der Artikel im Plural ist immer die."
         en: "I know that the plural article is always die."
         ru: "Я знаю, что во множественном числе артикль всегда die."
+  - id: menschen-familie
+    level: A1
+    kind: communication
+    prerequisites: [praesens-wortstellung, artikel-genus]
+    outcomes:
+      - id: familie-vorstellen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann meine Familie und wichtige Personen kurz vorstellen."
+        en: "I can briefly introduce my family and important people."
+        ru: "Я умею кратко представить свою семью и близких людей."
+      - id: menschen-beschreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann eine Person mit einfachen Angaben zu Aussehen und Beruf beschreiben."
+        en: "I can describe a person with simple details about appearance and occupation."
+        ru: "Я умею просто описать внешность и профессию человека."
+      - id: familie-verstehen
+        mode: listening
+        domain: personal
+        de: "Ich kann in einem kurzen Gespräch wichtige Informationen über eine Familie verstehen."
+        en: "I can understand important information about a family in a short conversation."
+        ru: "Я понимаю основную информацию о семье в коротком разговоре."
   - id: essen-trinken
     level: A1
     kind: vocab-field
-    prerequisites: [praesens-wortstellung]
+    prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
     outcomes:
-      - de: "Ich kann sagen, was ich gern esse und trinke."
+      - id: essen-vorlieben
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann sagen, was ich gern esse und trinke."
         en: "I can say what I like to eat and drink."
         ru: "Я умею говорить, что я люблю есть и пить."
-      - de: "Ich kann im Café oder Restaurant einfach bestellen."
+      - id: essen-bestellen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann im Café oder Restaurant einfach bestellen."
         en: "I can place a simple order in a café or restaurant."
         ru: "Я умею делать простой заказ в кафе или ресторане."
-      - de: "Ich kann die wichtigsten Wörter für Essen und Getränke verstehen und benutzen."
+      - id: essen-grundwortschatz
+        mode: reading
+        domain: public
+        de: "Ich kann die wichtigsten Wörter für Essen und Getränke verstehen und benutzen."
         en: "I can understand and use the most important words for food and drinks."
         ru: "Я понимаю и умею употреблять самые нужные слова для еды и напитков."
   - id: akkusativ
@@ -55,13 +128,22 @@ nodes:
     kind: grammar
     prerequisites: [artikel-genus]
     outcomes:
-      - de: "Ich kann den Akkusativ nach Verben wie haben, kaufen und sehen benutzen."
+      - id: akkusativ-objekte
+        mode: writing
+        domain: personal
+        de: "Ich kann den Akkusativ nach Verben wie haben, kaufen und sehen benutzen."
         en: "I can use the accusative after verbs like haben, kaufen and sehen."
         ru: "Я умею употреблять Akkusativ после глаголов вроде haben, kaufen, sehen."
-      - de: "Ich kann die Artikel im Akkusativ bilden: der wird den, ein wird einen."
+      - id: akkusativ-artikel
+        mode: writing
+        domain: personal
+        de: "Ich kann die Artikel im Akkusativ bilden: der wird den, ein wird einen."
         en: "I can form accusative articles: der becomes den, ein becomes einen."
         ru: "Я умею образовывать артикли в Akkusativ: der переходит в den, ein — в einen."
-      - de: "Ich weiß: Nur der maskuline Artikel ändert sich im Akkusativ."
+      - id: akkusativ-maskulin
+        mode: writing
+        domain: educational
+        de: "Ich weiß: Nur der maskuline Artikel ändert sich im Akkusativ."
         en: "I know that only the masculine article changes in the accusative."
         ru: "Я знаю, что в Akkusativ меняется только артикль мужского рода."
   # --- A2 ---
@@ -70,16 +152,28 @@ nodes:
     kind: grammar
     prerequisites: [akkusativ]
     outcomes:
-      - de: "Ich kann die Artikel und Endungen im Dativ bilden: dem, der, den …-n."
+      - id: dativ-artikel
+        mode: writing
+        domain: personal
+        de: "Ich kann die Artikel und Endungen im Dativ bilden: dem, der, den …-n."
         en: "I can form dative articles and endings: dem, der, den …-n."
         ru: "Я умею образовывать артикли и окончания в Dativ: dem, der, den …-n."
-      - de: "Ich kann die Dativ-Pronomen benutzen: mir, dir, ihm, ihr, Ihnen."
+      - id: dativ-pronomen
+        mode: writing
+        domain: personal
+        de: "Ich kann die Dativ-Pronomen benutzen: mir, dir, ihm, ihr, Ihnen."
         en: "I can use the dative pronouns mir, dir, ihm, ihr and Ihnen."
         ru: "Я умею употреблять местоимения в Dativ: mir, dir, ihm, ihr, Ihnen."
-      - de: "Ich kann die Präpositionen aus, bei, mit, nach, seit, von und zu mit dem Dativ verwenden."
+      - id: dativ-praepositionen
+        mode: writing
+        domain: public
+        de: "Ich kann die Präpositionen aus, bei, mit, nach, seit, von und zu mit dem Dativ verwenden."
         en: "I can use the prepositions aus, bei, mit, nach, seit, von and zu with the dative."
         ru: "Я умею употреблять предлоги aus, bei, mit, nach, seit, von, zu с дательным падежом."
-      - de: "Ich kann Verben wie helfen, danken und gefallen mit dem Dativ benutzen."
+      - id: dativ-verben
+        mode: writing
+        domain: personal
+        de: "Ich kann Verben wie helfen, danken und gefallen mit dem Dativ benutzen."
         en: "I can use verbs like helfen, danken and gefallen with a dative object."
         ru: "Я умею употреблять глаголы helfen, danken, gefallen с дополнением в Dativ."
   - id: trennbare-verben
@@ -87,27 +181,45 @@ nodes:
     kind: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
-      - de: "Ich kann trennbare Verben im Satz benutzen: Die Vorsilbe geht ans Ende."
+      - id: trennbar-satz
+        mode: writing
+        domain: personal
+        de: "Ich kann trennbare Verben im Satz benutzen: Die Vorsilbe geht ans Ende."
         en: "I can use separable verbs in a sentence: the prefix moves to the end."
         ru: "Я умею употреблять глаголы с отделяемой приставкой: приставка уходит в конец предложения."
-      - de: "Ich kann trennbare und untrennbare Vorsilben unterscheiden: auf- geht ans Ende, be- und ver- nie."
+      - id: trennbar-erkennen
+        mode: reading
+        domain: educational
+        de: "Ich kann trennbare und untrennbare Vorsilben unterscheiden: auf- geht ans Ende, be- und ver- nie."
         en: "I can tell separable prefixes from inseparable ones: auf- splits off, be- and ver- never do."
         ru: "Я различаю отделяемые и неотделяемые приставки: auf- отделяется, be- и ver- — никогда."
-      - de: "Ich kann über meinen Tag mit Verben wie aufstehen und einkaufen sprechen."
+      - id: trennbar-tagesablauf
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann über meinen Tag mit Verben wie aufstehen und einkaufen sprechen."
         en: "I can talk about my day using verbs like aufstehen and einkaufen."
         ru: "Я умею рассказывать о своём дне с глаголами вроде aufstehen и einkaufen."
   - id: alltag-tagesablauf
     level: A2
     kind: vocab-field
-    prerequisites: [praesens-wortstellung, trennbare-verben]
+    prerequisites: [praesens-wortstellung, trennbare-verben, perfekt-haben-sein]
     outcomes:
-      - de: "Ich kann meinen Tagesablauf beschreiben: aufstehen, arbeiten, einkaufen, schlafen gehen."
+      - id: alltag-beschreiben
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann meinen Tagesablauf beschreiben: aufstehen, arbeiten, einkaufen, schlafen gehen."
         en: "I can describe my daily routine: getting up, working, shopping, going to bed."
         ru: "Я умею описывать свой распорядок дня: подъём, работа, покупки, отход ко сну."
-      - de: "Ich kann sagen, wann und wie oft ich etwas mache: um sieben Uhr, jeden Tag."
+      - id: alltag-zeit-haeufigkeit
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann sagen, wann und wie oft ich etwas mache: um sieben Uhr, jeden Tag."
         en: "I can say when and how often I do something (um sieben Uhr, jeden Tag)."
         ru: "Я умею говорить, когда и как часто я что-то делаю (um sieben Uhr, jeden Tag)."
-      - de: "Ich kann die Zeitpräpositionen um, am und im richtig wählen."
+      - id: alltag-zeitpraepositionen
+        mode: writing
+        domain: personal
+        de: "Ich kann die Zeitpräpositionen um, am und im richtig wählen."
         en: "I can choose the right time preposition: um, am or im."
         ru: "Я умею правильно выбирать предлоги времени um, am и im."
   - id: modalverben
@@ -115,30 +227,51 @@ nodes:
     kind: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
-      - de: "Ich kann Sätze mit Modalverben bilden: Das Modalverb steht auf Position 2, der Infinitiv am Ende."
+      - id: modal-satzklammer
+        mode: writing
+        domain: personal
+        de: "Ich kann Sätze mit Modalverben bilden: Das Modalverb steht auf Position 2, der Infinitiv am Ende."
         en: "I can build sentences with modal verbs: the modal in second position, the infinitive at the end."
         ru: "Я умею строить предложения с модальными глаголами: модальный глагол на втором месте, инфинитив в конце."
-      - de: "Ich kann Modalverben konjugieren: ich kann, er muss — ohne -t."
+      - id: modal-konjugation
+        mode: writing
+        domain: educational
+        de: "Ich kann Modalverben konjugieren: ich kann, er muss — ohne -t."
         en: "I can conjugate modal verbs: ich kann, er muss — no -t in the singular."
         ru: "Я умею спрягать модальные глаголы: ich kann, er muss — без окончания -t."
-      - de: "Ich kann darf nicht und muss nicht unterscheiden."
+      - id: modal-erlaubnis-notwendigkeit
+        mode: reading
+        domain: public
+        de: "Ich kann darf nicht und muss nicht unterscheiden."
         en: "I can tell darf nicht (not allowed) from muss nicht (not necessary)."
         ru: "Я различаю darf nicht («нельзя») и muss nicht («не обязательно»)."
-      - de: "Ich kann höflich sagen, was ich möchte."
+      - id: modal-hoefliche-wuensche
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann höflich sagen, was ich möchte."
         en: "I can say politely what I would like, using möchte."
         ru: "Я умею вежливо говорить, чего я хочу, с помощью möchte."
   - id: termine-vereinbaren
     level: A2
     kind: communication
-    prerequisites: [modalverben]
+    prerequisites: [modalverben, dativ, trennbare-verben, perfekt-haben-sein]
     outcomes:
-      - de: "Ich kann einen Termin vereinbaren, verschieben oder absagen."
+      - id: termine-organisieren
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann einen Termin vereinbaren, verschieben oder absagen."
         en: "I can make, move or cancel an appointment."
         ru: "Я умею договариваться о встрече, переносить и отменять её."
-      - de: "Ich kann Uhrzeiten und Wochentage verstehen und nennen."
+      - id: termine-zeit-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann Uhrzeiten und Wochentage verstehen und nennen."
         en: "I can understand and give times and days of the week."
         ru: "Я понимаю и умею называть время и дни недели."
-      - de: "Ich kann am Telefon höflich Sie sagen und passende Formeln benutzen."
+      - id: termine-hoeflich-telefonieren
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann am Telefon höflich Sie sagen und passende Formeln benutzen."
         en: "I can use polite Sie forms and standard phrases on the phone."
         ru: "Я умею вежливо обращаться на Sie по телефону и использовать подходящие формулы."
   - id: perfekt-haben-sein
@@ -146,24 +279,41 @@ nodes:
     kind: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
-      - de: "Ich kann über gestern und die Vergangenheit im Perfekt sprechen."
+      - id: perfekt-vergangenheit-erzaehlen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann über gestern und die Vergangenheit im Perfekt sprechen."
         en: "I can talk about yesterday and the past using the Perfekt."
         ru: "Я умею рассказывать о вчерашнем дне и о прошлом в перфекте."
-      - de: "Ich kann das richtige Hilfsverb wählen: sein für Bewegung von A nach B, sonst haben."
+      - id: perfekt-hilfsverb
+        mode: writing
+        domain: personal
+        de: "Ich kann das richtige Hilfsverb wählen: sein für Bewegung von A nach B, sonst haben."
         en: "I can pick the right auxiliary: sein for A-to-B movement, otherwise haben."
         ru: "Я умею выбирать вспомогательный глагол: sein для движения из точки А в точку Б, иначе haben."
-      - de: "Ich kann das Partizip II bilden: ge-…-t, ge-…-en, -ieren ohne ge-."
+      - id: perfekt-partizip
+        mode: writing
+        domain: educational
+        de: "Ich kann das Partizip II bilden: ge-…-t, ge-…-en, -ieren ohne ge-."
         en: "I can form the Partizip II: ge-…-t, ge-…-en, and -ieren verbs without ge-."
         ru: "Я умею образовывать Partizip II: ge-…-t, ge-…-en, глаголы на -ieren — без ge-."
-      - de: "Ich kann die Satzklammer im Perfekt bauen: haben oder sein auf Position 2, das Partizip am Ende."
+      - id: perfekt-satzklammer
+        mode: writing
+        domain: personal
+        de: "Ich kann die Satzklammer im Perfekt bauen: haben oder sein auf Position 2, das Partizip am Ende."
         en: "I can build the Perfekt bracket: haben or sein in second position, the participle at the end."
         ru: "Я умею строить рамочную конструкцию в перфекте: haben или sein на втором месте, причастие в конце."
 
-# Roadmap slots (docs/roadmap.md §Phase 2): Präsens & Wortstellung = unit 2,
-# Artikel & Genus = 3, Essen & Einkaufen = 6, Akkusativ = 7. Planned units
-# (Erste Schritte, Wohnen & Umzug, …) are added only when their content lands.
+# File order is the authoritative recommended path. Add a unit only when its
+# complete topic content lands; prerequisites must already appear above it.
 units:
   # --- A1 ---
+  - id: erste-schritte
+    level: A1
+    title_de: "Erste Schritte"
+    title_en: "First steps"
+    title_ru: "Первые шаги"
+    topics: [erste-schritte]
   - id: praesens-wortstellung
     level: A1
     title_de: "Präsens & Wortstellung"
@@ -176,20 +326,25 @@ units:
     title_en: "Articles & gender"
     title_ru: "Артикли и род существительных"
     topics: [artikel-genus]
-  - id: essen-einkaufen
+  - id: menschen-familie
     level: A1
-    title_de: "Essen & Einkaufen"
-    title_en: "Food & shopping"
-    title_ru: "Еда и покупки"
-    topics: [essen-trinken]
+    title_de: "Menschen & Familie"
+    title_en: "People & family"
+    title_ru: "Люди и семья"
+    topics: [menschen-familie]
   - id: akkusativ
     level: A1
     title_de: "Der Akkusativ"
     title_en: "The accusative case"
     title_ru: "Винительный падеж (Akkusativ)"
     topics: [akkusativ]
-  # --- A2 --- (dativ continues the case thread; alltag after trennbare-verben,
-  # termine after modalverben — both are hard prerequisites)
+  - id: essen-einkaufen
+    level: A1
+    title_de: "Essen & Einkaufen"
+    title_en: "Food & shopping"
+    title_ru: "Еда и покупки"
+    topics: [essen-trinken]
+  # --- A2 ---
   - id: dativ
     level: A2
     title_de: "Der Dativ"
@@ -202,27 +357,27 @@ units:
     title_en: "Separable verbs"
     title_ru: "Глаголы с отделяемыми приставками"
     topics: [trennbare-verben]
-  - id: alltag-tagesablauf
-    level: A2
-    title_de: "Alltag & Tagesablauf"
-    title_en: "Everyday life & daily routine"
-    title_ru: "Повседневная жизнь и распорядок дня"
-    topics: [alltag-tagesablauf]
   - id: modalverben
     level: A2
     title_de: "Modalverben"
     title_en: "Modal verbs"
     title_ru: "Модальные глаголы"
     topics: [modalverben]
-  - id: termine-vereinbaren
-    level: A2
-    title_de: "Termine vereinbaren"
-    title_en: "Making appointments"
-    title_ru: "Как договориться о встрече"
-    topics: [termine-vereinbaren]
   - id: perfekt-haben-sein
     level: A2
     title_de: "Das Perfekt mit haben und sein"
     title_en: "The perfect tense with haben and sein"
     title_ru: "Перфект с haben и sein"
     topics: [perfekt-haben-sein]
+  - id: alltag-tagesablauf
+    level: A2
+    title_de: "Alltag & Tagesablauf"
+    title_en: "Everyday life & daily routine"
+    title_ru: "Повседневная жизнь и распорядок дня"
+    topics: [alltag-tagesablauf]
+  - id: termine-vereinbaren
+    level: A2
+    title_de: "Termine vereinbaren"
+    title_en: "Making appointments"
+    title_ru: "Как договориться о встрече"
+    topics: [termine-vereinbaren]

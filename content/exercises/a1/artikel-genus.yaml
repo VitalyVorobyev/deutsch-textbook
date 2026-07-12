@@ -1,9 +1,11 @@
 topic: artikel-genus
+role: practice
 title:
   en: Practice — articles and gender
   ru: Практика — артикли и род существительных
 items:
   - id: tabelle-der-die-das
+    outcomes: [artikel-richtig-verwenden]
     type: table
     focus: genus
     title: "der, die oder das?"
@@ -29,6 +31,7 @@ items:
       ru: "der Mann, die Frau, das Kind — образцы трёх родов. die Zeitung — по правилу для -ung, das Mädchen — по правилу для -chen, а das Buch нужно просто запомнить: русское «книга» (женский род) здесь не помощник."
 
   - id: mc-maedchen
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     focus: genus
     prompt: "___ Mädchen ist klein."
@@ -42,6 +45,7 @@ items:
       ru: "Род грамматический, а не природный: все слова на -chen среднего рода, поэтому das Mädchen — хотя девочка женского пола."
 
   - id: cloze-wohnung
+    outcomes: [artikel-richtig-verwenden]
     type: cloze
     focus: genus
     instruction:
@@ -56,6 +60,7 @@ items:
       ru: "Слова на -ung всегда женского рода: die Wohnung, die Zeitung, die Übung."
 
   - id: cloze-sommer
+    outcomes: [artikel-richtig-verwenden]
     type: cloze
     focus: genus
     instruction:
@@ -70,6 +75,7 @@ items:
       ru: "Дни недели, месяцы и времена года — мужского рода: der Montag, der Januar, der Sommer."
 
   - id: mc-auto
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     focus: genus
     prompt: "Ich habe ___ Auto."
@@ -83,6 +89,7 @@ items:
       ru: "das Auto — среднего рода, поэтому неопределённый артикль ein. И опустить артикль нельзя — 'Ich habe Auto' неправильно."
 
   - id: mc-frage
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     focus: artikel-pflicht
     instruction:
@@ -99,6 +106,7 @@ items:
       ru: "В русском артиклей нет, а в немецком здесь артикль обязателен: die Frage — женского рода, поэтому eine Frage. Без артикля ('Ich habe Frage') предложение неправильное, а 'ein Frage' — неверная форма."
 
   - id: cloze-zeit
+    outcomes: [artikel-richtig-verwenden]
     type: cloze
     focus: kein-nicht
     instruction:
@@ -113,6 +121,7 @@ items:
       ru: "Существительные отрицаются через kein-, а не через 'nicht': die Zeit — женского рода, поэтому keine Zeit."
 
   - id: mc-brot
+    outcomes: [artikel-richtig-verwenden]
     type: mc
     focus: kein-nicht
     prompt: "Wir haben ___ Brot."
@@ -126,6 +135,7 @@ items:
       ru: "das Brot — среднего рода, поэтому отрицательный артикль kein. 'nicht' не отрицает существительное — для этого есть kein/keine."
 
   - id: match-genus-signale
+    outcomes: [artikel-richtig-verwenden]
     type: match
     focus: genus
     instruction:
@@ -142,6 +152,7 @@ items:
       ru: "-ung → die, -chen → das, профессии на -er → der, времена года (как дни и месяцы) → der, а во множественном числе артикль всегда die."
 
   - id: order-auto
+    outcomes: [artikel-richtig-verwenden]
     type: order
     focus: artikel-pflicht
     instruction:
@@ -156,6 +167,7 @@ items:
       ru: "Не пропускайте артикль: das Auto требует здесь ein. 'Ich habe Auto' — типичная ошибка русскоязычных."
 
   - id: order-kinder
+    outcomes: [artikel-richtig-verwenden]
     type: order
     focus: plural-artikel
     instruction:
@@ -170,6 +182,7 @@ items:
       ru: "Во множественном числе артикль всегда die, независимо от рода в единственном: das Kind → die Kinder."
 
   - id: tabelle-ein-kein
+    outcomes: [artikel-richtig-verwenden]
     type: table
     focus: genus
     title: "ein oder kein?"
