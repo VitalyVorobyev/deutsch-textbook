@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { masteryGaps, recommendedNext, topicTier, type TopicContext, type TopicNode } from '../src/lib/mastery';
+import { goalRoute, masteryGaps, recommendedForGoal, recommendedNext, topicTier, type TopicContext, type TopicNode } from '../src/lib/mastery';
 import type { Attempt } from '../src/lib/store';
 
 const node: TopicNode = {
@@ -43,5 +43,16 @@ describe('measured mastery', () => {
     const second = { ...node, id: 'next', path: '/topics/a1/next', title_de: 'Next', exerciseSets: ['a1/next'] };
     const ctx: TopicContext = { attempts: [], cards: {}, topics: {} };
     expect(recommendedNext(['basis', 'next'], [node, second], ctx)?.id).toBe('basis');
+  });
+
+  test('goal route includes every transitive prerequisite in spine order', () => {
+    const grammar = { ...node, id: 'grammar', prerequisites: ['basis'] };
+    const words = { ...node, id: 'words', prerequisites: [] };
+    const goal = { ...node, id: 'goal', prerequisites: ['grammar', 'words'] };
+    const nodes = [node, grammar, words, goal];
+    expect(goalRoute('goal', ['basis', 'words', 'grammar', 'goal'], nodes).map((n) => n.id))
+      .toEqual(['basis', 'words', 'grammar', 'goal']);
+    const ctx: TopicContext = { attempts: [], cards: {}, topics: {} };
+    expect(recommendedForGoal('goal', ['basis', 'words', 'grammar', 'goal'], nodes, ctx)?.id).toBe('basis');
   });
 });

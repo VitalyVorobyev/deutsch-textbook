@@ -22,6 +22,8 @@ import { Heatmap } from './Heatmap';
 import { WeaknessTrends } from './WeaknessTrends';
 import { SessionLog } from './SessionLog';
 import { TopicProgressList } from './TopicProgressList';
+import type { CardDef } from '../../lib/srs';
+import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
 
 interface Data {
   attempts: Attempt[];
@@ -33,9 +35,11 @@ interface Data {
 interface Props {
   nodes: TopicNode[];
   outcomeModes: Record<string, string>;
+  cards: CardDef[];
+  vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
 }
 
-export default function ProgressPanel({ nodes, outcomeModes }: Props) {
+export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGroups }: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -213,6 +217,8 @@ export default function ProgressPanel({ nodes, outcomeModes }: Props) {
           </dl>
         </section>
       )}
+
+      {data && <VocabularyProgress cards={cards} groups={vocabularyGroups} />}
 
       {data && modeEvidence.size > 0 && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">

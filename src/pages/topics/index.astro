@@ -15,7 +15,7 @@ const units = curriculum.units.map((unit) => ({
     const topic = topicById.get(id);
     const graph = graphById.get(id);
     if (!topic || !graph) throw new Error(`Curriculum unit ${unit.id}: topic ${id} is incomplete`);
-    return { ...topic, outcomes: graph.outcomes, deepens: graph.deepens };
+    return { ...topic, strand: graph.strand, outcomes: graph.outcomes, deepens: graph.deepens };
   }),
 }));
 ---

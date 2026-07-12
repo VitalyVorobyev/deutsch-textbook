@@ -1,6 +1,8 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
 import type { CardDef } from './srs';
+import { goalRoute, recommendedForGoal, recommendedNext, topicCompletion } from './mastery';
+import type { LearningGoal } from './store';
 
 /**
  * Due cards are always reviewed, whatever their deck — this gates only fresh
@@ -42,4 +44,32 @@ export function eligibleFreshCards(
     if (ok || graded.has(deckId)) eligible.add(deckId);
   }
   return fresh.filter((c) => eligible.has(c.deckId));
+}
+
+/** Goal route first, then the current topic, level-core decks, and everything else. */
+export function prioritizeFreshCards(
+  cards: CardDef[],
+  spine: string[],
+  nodes: TopicNode[],
+  deckLevels: Record<string, string>,
+  ctx: TopicContext,
+  goal?: LearningGoal,
+): CardDef[] {
+  const routeDecks = new Set(
+    (goal?.topicId ? goalRoute(goal.topicId, spine, nodes) : [])
+      .filter((node) => topicCompletion(node, ctx).tier !== 'mastered')
+      .flatMap((node) => node.vocabIds),
+  );
+  const next = goal?.topicId
+    ? recommendedForGoal(goal.topicId, spine, nodes, ctx) ?? recommendedNext(spine, nodes, ctx)
+    : recommendedNext(spine, nodes, ctx);
+  const nextDecks = new Set(next?.vocabIds ?? []);
+  const currentLevel = next?.level;
+  function priority(card: CardDef) {
+    if (routeDecks.has(card.deckId)) return 0;
+    if (nextDecks.has(card.deckId)) return 1;
+    if (deckLevels[card.deckId] === currentLevel) return 2;
+    return 3;
+  }
+  return [...cards].sort((a, b) => priority(a) - priority(b) || a.id.localeCompare(b.id));
 }

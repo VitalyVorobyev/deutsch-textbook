@@ -1,5 +1,6 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
+import type { CurriculumStrand } from './schemas';
 import { localDateString } from './store';
 import { scoreTotal, verifiedOnly } from './scoring';
 
@@ -26,6 +27,7 @@ export interface TopicNode extends TopicRollup {
   title_en: string;
   title_ru: string;
   prerequisites: string[];
+  strand?: CurriculumStrand;
 }
 
 export type Tier = 'untouched' | 'read' | 'practiced' | 'mastered';
@@ -178,4 +180,33 @@ export function recommendedNext(
     if (node && topicCompletion(node, ctx).tier !== 'mastered') return node;
   }
   return undefined;
+}
+
+/** Goal plus every transitive prerequisite, in curriculum order. */
+export function goalRoute(topicId: string, spine: string[], nodes: TopicNode[]): TopicNode[] {
+  const byId = new Map(nodes.map((node) => [node.id, node]));
+  const included = new Set<string>();
+  function visit(id: string) {
+    if (included.has(id)) return;
+    const node = byId.get(id);
+    if (!node) return;
+    for (const prerequisite of node.prerequisites) visit(prerequisite);
+    included.add(id);
+  }
+  visit(topicId);
+  return spine.flatMap((id) => {
+    const node = byId.get(id);
+    return node && included.has(id) ? [node] : [];
+  });
+}
+
+export function recommendedForGoal(
+  topicId: string,
+  spine: string[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): TopicNode | undefined {
+  return goalRoute(topicId, spine, nodes).find(
+    (node) => topicCompletion(node, ctx).tier !== 'mastered',
+  );
 }

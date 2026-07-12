@@ -27,8 +27,8 @@ describe('scoring and curriculum contracts', () => {
     }
   });
 
-  test('v1-v3 snapshots remain accepted and malformed partial scores are sanitized', () => {
-    for (const version of [1, 2, 3])
+  test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
+    for (const version of [1, 2, 3, 4])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);
     const bad: Attempt = {
       setId: 'x', itemId: 'y', itemType: 'table', correct: false,

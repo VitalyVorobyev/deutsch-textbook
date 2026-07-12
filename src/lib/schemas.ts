@@ -6,6 +6,8 @@ export const levelSchema = z.enum(LEVELS);
 export type Level = z.infer<typeof levelSchema>;
 
 export const TOPIC_KINDS = ['grammar', 'vocab-field', 'communication', 'phonetics'] as const;
+export const CURRICULUM_STRANDS = ['foundations', 'grammar', 'communication', 'vocabulary'] as const;
+export type CurriculumStrand = (typeof CURRICULUM_STRANDS)[number];
 export const topicKindSchema = z.enum(TOPIC_KINDS);
 export type TopicKind = z.infer<typeof topicKindSchema>;
 
@@ -408,6 +410,7 @@ export const atlasNodeSchema = z.object({
   id: slug,
   level: levelSchema,
   kind: topicKindSchema,
+  strand: z.enum(CURRICULUM_STRANDS),
   prerequisites: z.array(slug).default([]),
   /** base topics this one revisits at greater depth (spiral learning). A target
       may also be a prerequisite — both meanings can apply. Must appear earlier

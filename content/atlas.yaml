@@ -11,6 +11,7 @@ nodes:
   - id: erste-schritte
     level: A1
     kind: phonetics
+    strand: foundations
     prerequisites: []
     outcomes:
       - id: erste-sich-vorstellen
@@ -34,6 +35,7 @@ nodes:
   - id: praesens-wortstellung
     level: A1
     kind: grammar
+    strand: grammar
     prerequisites: []
     outcomes:
       - id: praesens-verbzweit
@@ -57,6 +59,7 @@ nodes:
   - id: artikel-genus
     level: A1
     kind: grammar
+    strand: grammar
     prerequisites: []
     outcomes:
       - id: artikel-richtig-verwenden
@@ -80,6 +83,7 @@ nodes:
   - id: menschen-familie
     level: A1
     kind: communication
+    strand: communication
     prerequisites: [praesens-wortstellung, artikel-genus]
     outcomes:
       - id: familie-vorstellen
@@ -103,6 +107,7 @@ nodes:
   - id: essen-trinken
     level: A1
     kind: vocab-field
+    strand: vocabulary
     prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
     outcomes:
       - id: essen-vorlieben
@@ -126,6 +131,7 @@ nodes:
   - id: akkusativ
     level: A1
     kind: grammar
+    strand: grammar
     prerequisites: [artikel-genus]
     outcomes:
       - id: akkusativ-objekte
@@ -150,6 +156,7 @@ nodes:
   - id: dativ
     level: A2
     kind: grammar
+    strand: grammar
     prerequisites: [akkusativ]
     outcomes:
       - id: dativ-artikel
@@ -179,6 +186,7 @@ nodes:
   - id: trennbare-verben
     level: A2
     kind: grammar
+    strand: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: trennbar-satz
@@ -202,6 +210,7 @@ nodes:
   - id: alltag-tagesablauf
     level: A2
     kind: vocab-field
+    strand: vocabulary
     prerequisites: [praesens-wortstellung, trennbare-verben, perfekt-haben-sein]
     outcomes:
       - id: alltag-beschreiben
@@ -225,6 +234,7 @@ nodes:
   - id: modalverben
     level: A2
     kind: grammar
+    strand: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: modal-satzklammer
@@ -254,6 +264,7 @@ nodes:
   - id: termine-vereinbaren
     level: A2
     kind: communication
+    strand: communication
     prerequisites: [modalverben, dativ, trennbare-verben, perfekt-haben-sein]
     outcomes:
       - id: termine-organisieren
@@ -277,6 +288,7 @@ nodes:
   - id: perfekt-haben-sein
     level: A2
     kind: grammar
+    strand: grammar
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: perfekt-vergangenheit-erzaehlen
