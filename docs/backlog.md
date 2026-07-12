@@ -9,10 +9,10 @@ must preserve v1–v3 snapshot import and pass the full repository gate.
 
 ## Now — Phase 2: A1 completion
 
-### P2-5 · Author the five remaining A1 units — `doing` (L)
+### P2-5 · Author the four remaining A1 units — `doing` (L)
 
-Author sequentially: Menschen & Familie → Alltag & Zeit → Wohnen → Stadt & Wege → Freizeit &
-Können. `Erste Schritte`, originally the first of six new units, is complete.
+Completed: `Erste Schritte`, `Menschen & Familie`. Continue sequentially: Alltag & Zeit → Wohnen
+→ Stadt & Wege → Freizeit & Können.
 
 Each unit includes its atlas node/unit slot with stable outcomes, topic MDX, diagnostic pretest,
 at least eight practice items across three task types, an intensive reading, and 20–40 vocabulary

@@ -77,6 +77,29 @@ nodes:
         de: "Ich weiß: Der Artikel im Plural ist immer die."
         en: "I know that the plural article is always die."
         ru: "Я знаю, что во множественном числе артикль всегда die."
+  - id: menschen-familie
+    level: A1
+    kind: communication
+    prerequisites: [praesens-wortstellung, artikel-genus]
+    outcomes:
+      - id: familie-vorstellen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann meine Familie und wichtige Personen kurz vorstellen."
+        en: "I can briefly introduce my family and important people."
+        ru: "Я умею кратко представить свою семью и близких людей."
+      - id: menschen-beschreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann eine Person mit einfachen Angaben zu Aussehen und Beruf beschreiben."
+        en: "I can describe a person with simple details about appearance and occupation."
+        ru: "Я умею просто описать внешность и профессию человека."
+      - id: familie-verstehen
+        mode: listening
+        domain: personal
+        de: "Ich kann in einem kurzen Gespräch wichtige Informationen über eine Familie verstehen."
+        en: "I can understand important information about a family in a short conversation."
+        ru: "Я понимаю основную информацию о семье в коротком разговоре."
   - id: essen-trinken
     level: A1
     kind: vocab-field
@@ -303,6 +326,12 @@ units:
     title_en: "Articles & gender"
     title_ru: "Артикли и род существительных"
     topics: [artikel-genus]
+  - id: menschen-familie
+    level: A1
+    title_de: "Menschen & Familie"
+    title_en: "People & family"
+    title_ru: "Люди и семья"
+    topics: [menschen-familie]
   - id: akkusativ
     level: A1
     title_de: "Der Akkusativ"

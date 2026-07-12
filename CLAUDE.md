@@ -84,6 +84,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `plural-artikel` | plural article is always die |
 | `artikel-pflicht` | dropping the article (❌ Ich habe Frage) |
 | `kein-nicht` | negating nouns with kein-, not nicht |
+| `possessivartikel` | choosing mein/dein/sein/ihr and matching nominative gender/plural endings |
 | `akkusativ-artikel` | accusative article forms: der→den, ein→einen, kein→keinen; only masculine changes |
 | `akkusativ-pronomen` | accusative pronoun forms: mich, dich, ihn |
 | `dativ-artikel` | dative article/noun forms: dem, der, den …-n (Dativ Plural) |

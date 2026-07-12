@@ -36,8 +36,8 @@ the lesson-cycle convention, `write`, `audio-comprehension`, evidence classifica
 
 Outcome: a learner can follow a coherent path from Erste Schritte to a cumulative A1 checkpoint.
 
-1. Author the remaining units in spine order: Menschen & Familie, Alltag & Zeit, Wohnen,
-   Stadt & Wege, and Freizeit & Können.
+1. Author the remaining units in spine order: Alltag & Zeit, Wohnen, Stadt & Wege, and
+   Freizeit & Können. Menschen & Familie is complete.
 2. Strengthen Präsens & Wortstellung, Artikel & Genus, Akkusativ, and Essen & Einkaufen with
    faded support, productive transfer and authentic task genres.
 3. Add the cumulative A1 checkpoint, connected to stable outcome IDs and excluded from ordinary

@@ -25,7 +25,6 @@ import { execFileSync } from 'node:child_process';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { vocabFileSchema } from '../src/lib/schemas';
 
 const VOCAB = join(import.meta.dirname, '..', 'content', 'vocab');
 
@@ -272,12 +271,18 @@ function skip(de: string, pos: string): boolean {
  */
 function fill(file: string, opts: { force: boolean; check: boolean }): void {
   const text = readFileSync(file, 'utf8');
-  const parsed = vocabFileSchema.safeParse(YAML.parse(text));
-  if (!parsed.success) {
+  const document: unknown = YAML.parse(text);
+  const entries =
+    document && typeof document === 'object' && Array.isArray((document as { entries?: unknown }).entries)
+      ? (document as { entries: Array<{ de?: unknown; pos?: unknown }> }).entries
+      : null;
+  if (
+    !entries ||
+    entries.some((entry) => typeof entry.de !== 'string' || typeof entry.pos !== 'string')
+  ) {
     console.error(`${file}: does not parse as a vocab file — fix it first`);
     process.exit(1);
   }
-  const entries = parsed.data.entries;
 
   const lines = text.split('\n');
   const out: string[] = [];
@@ -286,20 +291,42 @@ function fill(file: string, opts: { force: boolean; check: boolean }): void {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]!;
-    out.push(line);
-    const m = /^(\s*)- de:\s/.exec(line);
-    if (!m) continue;
+    const block = /^(\s*)- de:\s/.exec(line);
+    const inline = /^(\s*)- \{\s*de:\s*(?:"[^"]*"|'[^']*'|[^,}]+),/.exec(line);
+    if (!block && !inline) {
+      out.push(line);
+      continue;
+    }
     const e = entries[n++];
-    if (!e) continue;
-    if (skip(e.de, e.pos)) continue;
+    if (!e || typeof e.de !== 'string' || typeof e.pos !== 'string') continue;
+    if (skip(e.de, e.pos)) {
+      out.push(line);
+      continue;
+    }
+
+    const ipa = ipaFor(e.de);
+
+    if (inline) {
+      const existing = /\bipa:\s*"[^"]*",?\s*/.test(line);
+      if (existing && !opts.force) {
+        out.push(line);
+        continue;
+      }
+      const withoutOld = existing ? line.replace(/\bipa:\s*"[^"]*",?\s*/, '') : line;
+      out.push(withoutOld.replace(/(de:\s*(?:"[^"]*"|'[^']*'|[^,}]+),)/, `$1 ipa: "${ipa}",`));
+      added++;
+      if (opts.check) console.log(`  ${e.de.padEnd(24)} ${ipa}`);
+      continue;
+    }
+
+    out.push(line);
 
     // an existing ipa always sits on the line right after `de` (we put it there)
     const existing = /^\s*ipa:\s/.test(lines[i + 1] ?? '');
     if (existing && !opts.force) continue;
     if (existing) i++; // --force: drop the old line instead of stacking a duplicate key
 
-    const indent = m[1]!.length + 2; // align under `- `
-    const ipa = ipaFor(e.de);
+    const indent = block![1]!.length + 2; // align under `- `
     out.push(`${' '.repeat(indent)}ipa: "${ipa}"`);
     added++;
     if (opts.check) console.log(`  ${e.de.padEnd(24)} ${ipa}`);

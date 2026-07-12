@@ -491,6 +491,7 @@ for (const [setId, { file }] of exerciseSets) {
         'plural-artikel': 'artikel-genus',
         'artikel-pflicht': 'artikel-genus',
         'kein-nicht': 'artikel-genus',
+        possessivartikel: 'menschen-familie',
         'akkusativ-artikel': 'akkusativ',
         'akkusativ-pronomen': 'akkusativ',
         'dativ-artikel': 'dativ',
