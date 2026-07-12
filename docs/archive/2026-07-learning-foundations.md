@@ -160,6 +160,99 @@ completed against the old, shorter set silently became incomplete again. See `pa
 `a1/checkpoint-a1`, reachable once every A1 lesson is done, excluded from ordinary training, with
 outcome-level results on Fortschritt.
 
+## Phase 3 — hardening the A1 learning loop
+
+Shipped 2026-07-12. Driven by [the A1 learning audit](../a1-learning-audit.md), which judged the
+course as a learning system rather than as a valid content collection.
+
+**The sequencing was the hard call, and it is worth preserving.** P3-1 (probes) was the only item
+with a *calendar* cost, so the instinct was to ship it first. But probes read the same scorer as
+everything else, and until P3-0 landed that scorer was writing wrong `correct` flags and wrong
+`focus` tags. A retention cohort measured with a broken instrument is a cohort that has to be
+re-run. Fixing the instrument first cost two days of clock and bought data worth trusting.
+
+### P3-0 · Fix free-production scoring and error attribution — `done`
+
+The 671-attempt snapshot exposed two defects, each verified against the answer keys. **Spelling
+slips were scored as grammar failures**: 12 of 29 failed translations were single-token slips
+(`Kanst`, `heite`, `Artzt`), and a translate item asks for a whole sentence, so one mistyped
+character sank it *and* was recorded as a failure of the grammar it drilled. **The `focus` tag was
+attached to the item, not to the error**: `Sie ist zu Hause gebliebt` counted as `haben-sein`
+evidence although the auxiliary is correct.
+
+The consequence was not academic. `a2/drill-mir-mich` — the most-practiced set in the entire corpus,
+73 attempts — had been authored for a mir/mich confusion the learner does not have. The
+personalization loop aimed at a phantom.
+
+`src/lib/production.ts` now scores a typed sentence by two rules: a one-token near-miss outside the
+graded tokens is a spelling slip (shown, scored correct, logging no focus error), and a real error is
+attributed to the item's tag only when a token that tag grades is what diverged. Closed-class words
+are never forgiven — `den`/`dem` are one edit apart *and* are exactly what the taxonomy grades.
+Items declare `key_tokens`.
+
+**Acceptance retained:** replaying the snapshot moved the weak-focus list (`trennbar-modal` left it
+entirely — it was a phantom; `verben-mit-dativ` 33%→20%) while leaving the genuine weaknesses
+(`kein-nicht`, `dativ-artikel`) intact.
+
+### P3-1 · Scheduled parallel probes — `done`
+
+Local 2/7/21-day outcome probes with parallel variants (`src/lib/probes.ts`, ten A1 probe families
+in `content/exercises/a1/probe-*.yaml`). A due probe opens the session as step 0 — before review and
+training, because a probe answered after twenty minutes of practice on the same material measures
+the practice, not the interval.
+
+**No new snapshot key was needed.** Probe state is *derived* from the attempt log rather than stored,
+so scheduling survives export and import by construction. Two things the implementation had to get
+right, both found by running it against the real snapshot: arming cannot depend on
+`attempt.outcomes` (551 of 671 attempts predate that field), and the session resume point cannot be
+`step` alone (step 1 is both "past the probes" and the default, so one reload silently cancelled a
+due probe).
+
+**Acceptance retained:** probe state survives export/import; probes stay out of ordinary training;
+each attempt records its variant as the item id; `MAX_PROBES_PER_SESSION = 3`.
+
+### P3-1b · Reserved broad-retrieval share — `done`
+
+`BROAD_RETRIEVAL_SHARE = 0.25` in `src/lib/training.ts`. The three priority bands — answered wrong,
+weak focus, never seen — could always fill a session on their own, so a learner with any backlog
+would never meet an older topic again. An old topic answered correctly weeks ago is exactly the
+material whose retention has decayed most. Recency and weakness are the loudest signals, not the
+most informative ones. Queue building moved into `buildSession` so it is pure and testable.
+
+### P3-2 · Mode-valid evidence — `done`
+
+Each item has an actual response mode, persisted on attempts and reported separately from the
+curriculum outcome's target mode. A written multiple-choice item targeting a spoken outcome is
+reported as written selection, not spoken interaction.
+
+### P3-3 · Open production upgraded — `done`
+
+`write` became draft → requirement checklist → revision, preserving both versions as unverified
+practice. `speak` added, with local record/replay, a model, a checklist and a required second
+attempt. No cloud recognition, no automatic mastery.
+
+### P3-4 · Item mix rebalanced — `done`
+
+The trainable catalog was 44% `mc`/`match`/`order` and only 13% `translate` — and the pilot learner
+scored 93% on `mc`, 94% on `match` and 45/45 on `order` against 54% on `translate`. The constrained
+formats had stopped carrying information. Now enforced per topic by `bun run validate` over the
+union of its `role: practice` sets: ≥ 2 `translate`, `mc` ≤ ⅓, `mc`+`match`+`order` ≤ 45%. Nine of
+sixteen topics failed the bar; 30 production items were authored to clear it.
+
+**Placement mattered more than authoring.** `pathDone` treats a topic as finished once its
+`primaryPractice` items have all been attempted, so appending an item to that set would have
+silently un-finished the topic and reopened the Lernpfad. New items went to non-primary sets, to
+mastered topics, or into new practice sets appended *after* the existing ones.
+
+### P3-5 · Sustained input piloted — `done`
+
+`content/reading/a1/lena-1-der-erste-tag.yaml` — 262 words, a recurring character, three glosses, one
+gist question. Readings now declare `kind: intensive | extensive`, held apart by the validator,
+because the difference is what the text is *for*: an extensive reader is 250–400 words, at most two
+questions, roughly one gloss per 40 words. A long text quizzed line by line is just a long intensive
+text, and the volume input it exists to provide never happens. The UI says so too, so the learner
+reads it straight through instead of parsing it.
+
 ## Superseded input
 
 The broader initial analysis remains available as

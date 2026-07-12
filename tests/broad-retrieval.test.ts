@@ -83,12 +83,46 @@ describe('broad-retrieval share', () => {
     expect(conflicts).toBe(floor);
   });
 
+  // The queue is shuffled, so one sample proves nothing: the old swap-based repair passed
+  // this test two runs in three and still produced a same-topic pair in a third of real
+  // sessions. Interleaving is only worth claiming if it holds every time.
   test('no two consecutive items share a set when the composition permits it', () => {
     const a = set('a1/a', 'a', ['a1', 'a2', 'a3', 'a4']);
     const b = set('a1/b', 'b', ['b1', 'b2', 'b3', 'b4']);
-    const queue = buildSession([a, b], 8, []);
-    for (let i = 1; i < queue.length; i++) {
-      expect(queue[i]!.setId).not.toBe(queue[i - 1]!.setId);
+    for (let run = 0; run < 200; run++) {
+      const queue = buildSession([a, b], 8, []);
+      expect(queue).toHaveLength(8);
+      for (let i = 1; i < queue.length; i++) {
+        expect(queue[i]!.setId).not.toBe(queue[i - 1]!.setId);
+      }
     }
+  });
+
+  test('three uneven sets still interleave, and no item is dropped', () => {
+    const a = set('a1/a', 'a', ['a1', 'a2', 'a3', 'a4', 'a5']);
+    const b = set('a1/b', 'b', ['b1', 'b2', 'b3']);
+    const c = set('a1/c', 'c', ['c1', 'c2']);
+    for (let run = 0; run < 200; run++) {
+      const queue = buildSession([a, b, c], 10, []);
+      expect(new Set(queue.map((q) => q.uid)).size).toBe(10);
+      for (let i = 1; i < queue.length; i++) {
+        expect(queue[i]!.setId).not.toBe(queue[i - 1]!.setId);
+      }
+    }
+  });
+
+  // A set holding more than half the queue makes a same-set pair arithmetically
+  // unavoidable. The session must still be served in full, at the minimum possible
+  // number of conflicts — not truncated to keep the invariant.
+  test('a dominant set yields the unavoidable minimum of conflicts, never a short session', () => {
+    const big = set('a1/big', 'big', ['x1', 'x2', 'x3', 'x4', 'x5', 'x6']);
+    const small = set('a1/small', 'small', ['y1', 'y2']);
+    const queue = buildSession([big, small], 8, []);
+    expect(queue).toHaveLength(8);
+    let conflicts = 0;
+    for (let i = 1; i < queue.length; i++) {
+      if (queue[i]!.setId === queue[i - 1]!.setId) conflicts++;
+    }
+    expect(conflicts).toBe(2 * 6 - 8 - 1); // 3
   });
 });

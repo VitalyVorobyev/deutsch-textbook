@@ -217,14 +217,20 @@ independent measure. What *is* well-supported: graded readers work (Nation
 2009; the graded-reader literature), comprehension precedes production, and
 incomprehensible input teaches nothing. Treat "comprehensible, level-graded,
 abundant" as the operational rule and skip the theoretical baggage.
-**Honored — and honestly labeled:** Deutsch-Atlas's readings (~90–130 words,
-6–10 glosses, comprehension questions) are **intensive graded input**, and
-good at it. The course currently has **no extensive reading at all** — that is
-a known gap, scheduled as Phase 4 extensive readers (backlog P4-2), not a
-solved problem. Never describe the current readings as extensive reading.
+**Honored — and honestly labeled:** the two regimes are separate artifacts in
+the repo, and a reading declares which one it is (`kind: intensive | extensive`).
+Most of Deutsch-Atlas is **intensive graded input** (~90–130 words, 6–10
+glosses, comprehension questions), and good at it. Extensive reading now exists
+too, but barely: one A1 pilot reader ships (Lena in Bremen), and the validator
+holds the format to what makes it extensive — 250–400 words, at most two gist
+questions, roughly one gloss per 40 words. The honest statement of the gap is
+therefore no longer "no extensive reading" but **"one pilot, not a series"**;
+the series is deferred as backlog P5-2. Never describe an intensive reading as
+extensive: the difference is what the text is *for*, not how long it is.
 **Anti-pattern:** Above-level unglossed text (input stops being input); grammar
-taught only as paradigm tables with no contextualized examples; mislabeling
-short intensive texts as satisfying the volume-input need.
+taught only as paradigm tables with no contextualized examples; a "long reader"
+that is glossed every other phrase and quizzed line by line — that is a long
+intensive text, and the volume input it was written for never happens.
 **Trade-off:** Input alone is slow for production accuracy — pair with output
 (§12) and explicit rules, which adult learners demonstrably benefit from.
 
@@ -301,17 +307,20 @@ and which modes are being silently skipped.
 **Honored:** Every topic carries 2–4 can-do `outcomes` (content/atlas.yaml)
 phrased as actions ("Ich kann einen Termin absagen"), not knowledge claims;
 coverage across modes is a design target within the app's means — reading and
-listening (readings, dictation, planned audio-comprehension), written
-production (typed input, `translate`, planned `write`), interaction
-approximated by dialogue-shaped tasks; and **audits measure the actual mode
-distribution from snapshots** rather than assuming the content mix reaches the
-learner.
+listening (readings, dictation, `audio-comprehension`), written production
+(typed input, `translate`, revision-based `write`), spoken production (`speak`,
+with local record/replay and a second attempt), interaction approximated by
+dialogue-shaped tasks; and **audits measure the actual mode distribution from
+snapshots** rather than assuming the content mix reaches the learner.
 **Anti-pattern:** A grammar-table course with can-do labels stuck on; outcomes
 phrased as "knows the dative table"; a mode (listening, writing) present in
 content but absent from every logged attempt, unnoticed because nobody counted.
-**Trade-off:** A single-learner text-first app cannot grade speech — be
-explicit about which modes are covered, approximated, or out of scope
-(mediation is dropped; speaking is Phase 4 at best), rather than pretending.
+**Trade-off:** A single-learner text-first app cannot *grade* speech — be
+explicit about which modes are covered, approximated, or out of scope. Speaking
+is practised (`speak`: model, record/replay, self-check, second attempt) but
+never automatically scored, so it produces unverified practice evidence and
+never mastery; mediation is out of scope. Say which of the three each mode is,
+rather than pretending.
 
 ---
 
