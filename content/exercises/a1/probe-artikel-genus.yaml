@@ -1,47 +1,54 @@
 topic: artikel-genus
 role: probe
 title:
-  en: "Probe — gender, plural and kein"
-  ru: "Проверка — род, множественное число и kein"
+  en: "Probe — der, die or das"
+  ru: "Проверка — der, die или das"
+
+# Three parallel variants of ONE competence: giving a known noun its correct article.
+# The nouns come from the words the learner already owns at this point in the spine
+# (Adresse, Name, Land, Sprache, Buchstabe, Telefonnummer, Wort, Zahl) and none of them
+# had its article drilled in the lesson's practice sets — so no variant can be answered
+# from memory of a practised item.
 
 items:
   - id: variant-a
-    outcomes: [artikel-genus-erkennen, artikel-richtig-verwenden]
+    outcomes: [artikel-richtig-verwenden]
     type: cloze
     focus: genus
     instruction:
       en: Fill in the correct article.
       ru: Вставьте правильный артикль.
-    text: "{{Die}} Wohnung ist klein. {{Das}} Mädchen lernt Deutsch. {{Der}} Kaffee ist heiß."
+    text: "{{Die|die}} Adresse ist neu. {{Der|der}} Name ist kurz. {{Das|das}} Land ist groß."
     explain:
-      en: "The ending often gives the gender away: -ung is always feminine (die Wohnung), -chen always neuter (das Mädchen), whatever the person's actual sex."
-      ru: "Окончание часто выдаёт род: -ung всегда женского рода (die Wohnung), -chen всегда среднего (das Mädchen) — независимо от реального пола."
+      en: "Every German noun carries a gender, and the article is part of the word: die Adresse, der Name, das Land. Learn a noun together with its article — there is no reliable way to guess it afterwards."
+      ru: "У каждого немецкого существительного есть род, и артикль — часть слова: die Adresse, der Name, das Land. Учите существительное сразу с артиклем: род русского слова здесь ничего не подсказывает."
 
   - id: variant-b
-    outcomes: [artikel-kein-verwenden]
+    outcomes: [artikel-richtig-verwenden]
     type: translate
-    focus: kein-nicht
+    focus: genus
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "That is not a mistake."
-    prompt_ru: "Это не ошибка."
-    answer: "Das ist kein Fehler."
-    key_tokens: ["kein"]
-    accept:
-      - "Es ist kein Fehler."
+    prompt_en: "The letter is small and the word is long."
+    prompt_ru: "Буква маленькая, а слово длинное."
+    answer: "Der Buchstabe ist klein und das Wort ist lang."
+    key_tokens: ["Der", "das"]
     explain:
-      en: "A noun is negated with kein-, not with nicht: kein Fehler. nicht would negate a verb or an adjective instead."
-      ru: "Существительное отрицается через kein-, а не через nicht: kein Fehler. nicht отрицал бы глагол или прилагательное."
+      en: "der Buchstabe is masculine, das Wort is neuter — two nouns from the same field with two different genders. The article never depends on the meaning, only on the word."
+      ru: "der Buchstabe — мужского рода, das Wort — среднего: два слова из одной области и два разных рода. Артикль зависит не от смысла, а от самого слова."
 
   - id: variant-c
-    outcomes: [artikel-plural-verwenden]
-    type: cloze
-    focus: plural-artikel
+    outcomes: [artikel-richtig-verwenden]
+    type: translate
+    focus: genus
     instruction:
-      en: Fill in the correct article.
-      ru: Вставьте правильный артикль.
-    text: "{{Die}} Kinder spielen. {{Die}} Bücher sind neu."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The telephone number is long, but the first name is short."
+    prompt_ru: "Номер телефона длинный, а имя короткое."
+    answer: "Die Telefonnummer ist lang, aber der Vorname ist kurz."
+    key_tokens: ["Die", "der"]
     explain:
-      en: "In the plural the article is always die, whatever the singular gender was: das Kind → die Kinder, das Buch → die Bücher."
-      ru: "Во множественном числе артикль всегда die, каким бы ни был род в единственном: das Kind → die Kinder, das Buch → die Bücher."
+      en: "A compound takes the gender of its last part: die Nummer → die Telefonnummer, der Name → der Vorname. That last element is the one to check."
+      ru: "Сложное слово получает род последней части: die Nummer → die Telefonnummer, der Name → der Vorname. Смотреть нужно именно на последний элемент."

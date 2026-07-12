@@ -23,7 +23,16 @@ one. The other half runs on wall-clock. Probes armed on 2026-07-12; the 21-day c
 
 **The exit bar, stated so that it can fail:**
 
-> **≥ 80% correct on delayed parallel probes per A1 outcome, with free-production items ≥ 70%.**
+> **≥ 80% correct on delayed parallel probes per probed competence, with free-production items ≥ 70%.**
+
+The bar used to say *per A1 outcome*, and it could not have been met as written. A probe family's
+three variants were testing three **different** competences, and `dueProbe` serves one variant per
+interval — so each competence was measured exactly once, at exactly one delay, and no retention
+curve could exist. The number would have looked like retention without being it. Caught before the
+cohort produced a single answer (zero probe attempts were logged), and fixed: a family's variants are
+now parallel checks of **one** competence, and `bun run validate` refuses any other kind. One
+competence per topic is probed — a topic's remaining outcomes get their evidence from practice, which
+is where outcome mastery comes from anyway.
 
 This used to gate the *start* of A2 authoring. It is now a **revision trigger** instead — the
 roadmap explains why, and names the risk that change accepts. If A1 misses the bar, A2 authoring

@@ -4,45 +4,58 @@ title:
   en: "Probe — making appointments"
   ru: "Проверка — как договориться о встрече"
 
+# Three PARALLEL variants of ONE competence: passen + Dativ — saying whether a time
+# suits someone. It is the move the whole topic turns on (you cannot offer, refuse or
+# move an appointment without it), it is the topic's own construction, and it is the
+# exact place where Russian interference produces "Passt es Sie?".
+#
+# Note that the graded token also carries the register: Ihnen or dir is the same choice
+# as Sie or du, so politeness is exercised in every variant even though the tag names
+# the case.
+
 items:
   - id: variant-a
-    outcomes: [termine-hoeflich-telefonieren, termine-organisieren]
+    outcomes: [termine-organisieren]
     type: translate
-    focus: du-sie
+    focus: passen-dativ
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "Mr Klein, can you call me tomorrow?"
-    prompt_ru: "Господин Кляйн, вы можете позвонить мне завтра?"
-    answer: "Herr Klein, können Sie mich morgen anrufen?"
-    key_tokens: ["können", "Sie"]
+    prompt_en: "Tuesday doesn't suit us. Does Wednesday work too?"
+    prompt_ru: "Вторник нам не подходит. А в среду получится?"
+    answer: "Der Dienstag passt uns nicht. Klappt es auch am Mittwoch?"
+    key_tokens: ["uns"]
+    accept:
+      - "Uns passt der Dienstag nicht. Klappt es auch am Mittwoch?"
     explain:
-      en: "Addressing someone by title and surname means Sie, and the Sie-form of the verb is the infinitive: können Sie, never kannst Sie. English has only one 'you', so the choice has to be made consciously every time."
-      ru: "Обращение по фамилии с Herr/Frau означает Sie, а форма глагола при Sie совпадает с инфинитивом: können Sie, но никогда kannst Sie. Как и русское «вы», Sie пишется с большой буквы — и выбор между du и Sie приходится делать каждый раз осознанно."
+      en: "With passen the day is the subject and the people it suits are the dative object: der Dienstag passt uns. The person is never the subject — a sentence starting Wir passen … would say that we fit somewhere, which is not what is meant."
+      ru: "При глаголе passen подлежащее — это день, а те, кому он подходит, стоят в дательном падеже: der Dienstag passt uns. Человек здесь никогда не подлежащее: фраза Wir passen … означала бы, что мы куда-то помещаемся, а не что нам удобно."
 
   - id: variant-b
-    outcomes: [termine-zeit-verstehen]
-    type: listen
-    focus: um-am-zeit
+    outcomes: [termine-organisieren]
+    type: cloze
+    focus: passen-dativ
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Der Termin ist am Mittwoch um halb elf."
+      en: Fill in the correct dative form of the person in brackets.
+      ru: Вставьте правильную форму лица из скобок в дательном падеже.
+    text: "Frau Berger, passt {{Ihnen}} der Termin am Montag? (Sie) — Nein, der Montag passt {{mir}} leider nicht. (ich) — Und Ihrem Mann? Passt {{ihm}} der Dienstag? (er)"
     explain:
-      en: "An appointment is announced with both prepositions: am for the day, um for the clock time. halb elf is half an hour before eleven, that is 10:30 — German counts forward to the next hour, not back from the last one."
-      ru: "Время встречи называют сразу с двумя предлогами: am — для дня, um — для часа. halb elf — это половина одиннадцатого, то есть 10:30: немецкий отсчитывает время вперёд к следующему часу, как и русское «половина одиннадцатого»."
+      en: "Every person in this dialogue appears in the dative, because that is the only case passen offers them: Sie → Ihnen (capitalized), ich → mir, er → ihm. Answer with the accusative (Passt es Sie?) and the sentence stops being German."
+      ru: "Все участники диалога стоят в дательном падеже, потому что другого падежа глагол passen им не предлагает: Sie → Ihnen (с большой буквы), ich → mir, er → ihm. Винительный падеж (Passt es Sie?) превращает фразу в несуществующий немецкий."
 
   - id: variant-c
     outcomes: [termine-organisieren]
     type: translate
     focus: passen-dativ
     instruction:
-      en: Translate into German (informal — you are writing to a friend).
-      ru: Переведите на немецкий (неформально — вы пишете другу).
-    prompt_en: "Friday doesn't suit me. Does Saturday suit you?"
-    prompt_ru: "Пятница мне не подходит. А тебе подходит суббота?"
-    answer: "Der Freitag passt mir nicht. Passt es dir am Samstag?"
-    key_tokens: ["mir", "dir"]
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Thursday doesn't suit my wife. Friday suits her better."
+    prompt_ru: "Четверг моей жене не подходит. Пятница подходит ей лучше."
+    answer: "Der Donnerstag passt meiner Frau nicht. Der Freitag passt ihr besser."
+    key_tokens: ["meiner", "ihr"]
+    accept:
+      - "Meiner Frau passt der Donnerstag nicht. Der Freitag passt ihr besser."
     explain:
-      en: "passen takes a dative object: the person it suits goes into the dative — mir, dir, ihm, Ihnen. With a friend the informal dir is the right form; Ihnen would sound oddly official."
-      ru: "passen управляет дательным падежом: тот, кому подходит, стоит в дательном — mir, dir, ihm, Ihnen. С другом уместна неформальная форма dir; Ihnen прозвучало бы неуместно официально."
+      en: "The dative is not only for pronouns: a whole noun phrase goes into it just as readily — meine Frau → meiner Frau. The second sentence replaces it with the matching pronoun, ihr, and the case does not change with it."
+      ru: "Дательный падеж — не только для местоимений: целая именная группа переходит в него точно так же — meine Frau → meiner Frau. Во втором предложении она заменяется соответствующим местоимением ihr, и падеж при этом не меняется."

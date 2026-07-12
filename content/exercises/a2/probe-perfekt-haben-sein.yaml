@@ -4,9 +4,18 @@ title:
   en: "Probe — the Perfekt with haben and sein"
   ru: "Проверка — перфект с haben и sein"
 
+# Three PARALLEL variants of ONE competence: choosing the auxiliary — sein for movement
+# from A to B (plus bleiben/sein/passieren), haben for everything else. The topic is
+# literally named after that choice, and it is the half of the Perfekt a learner keeps
+# getting wrong long after the participles are safe.
+#
+# Per the focus taxonomy, a haben-sein item grades both halves of the tense, so the
+# participle is a key token too: a Perfekt built from the right auxiliary and a broken
+# participle is not a Perfekt.
+
 items:
   - id: variant-a
-    outcomes: [perfekt-hilfsverb, perfekt-vergangenheit-erzaehlen]
+    outcomes: [perfekt-hilfsverb]
     type: translate
     focus: haben-sein
     instruction:
@@ -17,34 +26,34 @@ items:
     answer: "Die Kinder sind zur Schule gelaufen."
     key_tokens: ["sind", "gelaufen"]
     explain:
-      en: "laufen moves the subject from one place to another, so the auxiliary is sein: die Kinder sind … gelaufen. haben would be wrong here however much the sentence looks like an ordinary action."
-      ru: "laufen перемещает подлежащее из одной точки в другую, поэтому вспомогательный глагол — sein: die Kinder sind … gelaufen. haben здесь неверно, каким бы обычным ни казалось действие."
+      en: "laufen moves the subject from one place to another, so the auxiliary is sein: die Kinder sind … gelaufen. haben would be wrong here however ordinary the action looks — what decides is the movement from A to B, not the meaning of the verb in isolation."
+      ru: "laufen перемещает подлежащее из одной точки в другую, поэтому вспомогательный глагол — sein: die Kinder sind … gelaufen. haben здесь неверно, каким бы обычным ни казалось действие: решает именно перемещение из точки А в точку Б, а не значение глагола само по себе."
 
   - id: variant-b
-    outcomes: [perfekt-partizip]
+    outcomes: [perfekt-hilfsverb]
     type: cloze
-    focus: partizip2-form
+    focus: haben-sein
     instruction:
-      en: Fill in the Partizip II of the verb in brackets.
-      ru: Вставьте Partizip II глагола из скобок.
-    text: "Wir haben eine Stunde {{telefoniert}} (telefonieren). Er hat das Fenster {{zugemacht}} (zumachen). Ich habe die Frage nicht {{verstanden}} (verstehen)."
+      en: Fill in the correct auxiliary — haben or sein.
+      ru: Вставьте правильный вспомогательный глагол — haben или sein.
+    text: "Am Samstag {{hat}} meine Schwester den ganzen Tag gelernt. Am Sonntag {{ist}} sie zu ihrer Freundin gefahren. Am Abend {{hat}} sie mit ihrer Mutter telefoniert. Um elf Uhr {{ist}} sie ins Bett gegangen."
     explain:
-      en: "Three different rules in one line. Verbs in -ieren take no ge- at all: telefoniert. A separable verb puts the -ge- inside, between prefix and stem: zu-ge-macht. An inseparable verb takes no ge- either, and verstehen is strong: verstanden."
-      ru: "Три разных правила в одной строке. Глаголы на -ieren вообще не получают ge-: telefoniert. У отделяемого глагола -ge- встаёт внутрь, между приставкой и корнем: zu-ge-macht. Неотделяемый тоже обходится без ge-, а verstehen — сильный глагол: verstanden."
+      en: "Four sentences, one question each time: did the subject move from one place to another? Learning and phoning happen on the spot, so they take haben. Driving to a friend and going to bed are movement from A to B, so they take sein. The auxiliary follows the movement, not the tense and not the person."
+      ru: "Четыре предложения — и каждый раз один и тот же вопрос: переместилось ли подлежащее из одной точки в другую? Учиться и говорить по телефону можно на месте — значит, haben. Поехать к подруге и уйти спать — это движение из точки А в точку Б, значит, sein. Выбор вспомогательного глагола зависит от перемещения, а не от времени и не от лица."
 
   - id: variant-c
-    outcomes: [perfekt-satzklammer, perfekt-vergangenheit-erzaehlen]
+    outcomes: [perfekt-hilfsverb]
     type: translate
-    focus: perfekt-satzklammer
+    focus: haben-sein
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "On Sunday we cooked together."
-    prompt_ru: "В воскресенье мы готовили вместе."
-    answer: "Am Sonntag haben wir zusammen gekocht."
-    key_tokens: ["haben", "gekocht"]
+    prompt_en: "On Friday my colleague drove to Hamburg. There he visited his family."
+    prompt_ru: "В пятницу мой коллега поехал в Гамбург. Там он навестил свою семью."
+    answer: "Am Freitag ist mein Kollege nach Hamburg gefahren. Dort hat er seine Familie besucht."
+    key_tokens: ["ist", "gefahren", "hat", "besucht"]
     accept:
-      - "Wir haben am Sonntag zusammen gekocht."
+      - "Mein Kollege ist am Freitag nach Hamburg gefahren. Dort hat er seine Familie besucht."
     explain:
-      en: "The Perfekt is a bracket: the auxiliary haben is the conjugated verb and holds position 2 (so after the fronted Am Sonntag the subject wir follows it), and the participle gekocht waits at the very end."
-      ru: "Перфект — это рамка: вспомогательный глагол haben спрягается и стоит на втором месте (поэтому после вынесенного вперёд Am Sonntag подлежащее wir идёт за ним), а причастие gekocht ждёт в самом конце."
+      en: "Both auxiliaries in one story, and the two sentences differ in exactly one way: fahren nach Hamburg takes the subject from A to B (sein), while besuchen leaves him where he already is (haben). Same past, same person, different auxiliary — the movement is what decides."
+      ru: "Оба вспомогательных глагола в одном рассказе, и различаются предложения ровно одним: fahren nach Hamburg переносит подлежащее из точки А в точку Б (sein), а besuchen оставляет его там, где он уже находится (haben). То же прошедшее время, то же лицо — но вспомогательный глагол разный, потому что решает перемещение."

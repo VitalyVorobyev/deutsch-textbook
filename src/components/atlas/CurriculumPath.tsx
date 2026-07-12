@@ -9,7 +9,7 @@ import {
   type Completion, type TopicContext,
 } from '../../lib/mastery';
 import {
-  checkpointOutcomeResults, type CheckpointSummary,
+  blockedByEarlier, checkpointOutcomeResults, type CheckpointSummary,
 } from '../../lib/checkpoint';
 import { useExplainLang } from '../hooks';
 import { TierBadge } from '../topic/TierBadge';
@@ -78,6 +78,9 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
       checkpoint,
       remaining: levelRemaining(checkpoint.level, topics, ctx),
       summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
+      // Heute offers the lowest unattempted checkpoint (`dueCheckpoint`); the Lernpfad must
+      // say the same thing, or the two screens disagree about what to do next.
+      blockedBy: blockedByEarlier(checkpoint, checkpoints, ctx),
     }));
   }, [checkpoints, ctx, topics]);
 
@@ -105,7 +108,7 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   </div>;
 }
 
-interface CheckpointCardData { checkpoint: PathCheckpoint; remaining: number; summary: CheckpointSummary | null }
+interface CheckpointCardData { checkpoint: PathCheckpoint; remaining: number; summary: CheckpointSummary | null; blockedBy?: PathCheckpoint }
 function PathView({ next, goal, route, completions, lang, checkpointCards }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string; checkpointCards: CheckpointCardData[] }) {
   const cards = checkpointCards.map((card) => <CheckpointCard key={card.checkpoint.setId} checkpoint={card.checkpoint} state={card} lang={lang} />);
   if (!next) return <div className="mt-8"><p className="text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>{cards}</div>;
@@ -128,7 +131,7 @@ function PathView({ next, goal, route, completions, lang, checkpointCards }: { n
 }
 
 function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoint; state: CheckpointCardData; lang: string }) {
-  const { remaining, summary } = state;
+  const { remaining, summary, blockedBy } = state;
   if (summary) {
     const pct = summary.total ? Math.round((summary.score / summary.total) * 100) : 0;
     const when = new Date(summary.lastTs).toLocaleDateString(lang === 'ru' ? 'ru' : 'en');
@@ -140,11 +143,14 @@ function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoin
       <a href={checkpoint.path} className="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold hover:border-amber-500 dark:border-stone-600">{lang === 'ru' ? 'Ещё раз →' : 'Retake →'}</a>
     </section>;
   }
-  if (remaining > 0) {
+  if (remaining > 0 || blockedBy) {
+    const waiting = remaining > 0
+      ? (lang === 'ru' ? `Ещё ${remaining} ${remaining === 1 ? 'урок' : remaining < 5 ? 'урока' : 'уроков'} до контрольной точки ${checkpoint.level}.` : `${remaining} lesson${remaining === 1 ? '' : 's'} to go before the ${checkpoint.level} checkpoint.`)
+      : (lang === 'ru' ? `Сначала пройдите «${blockedBy!.title}» — контрольные точки идут по порядку.` : `Take ${blockedBy!.title} first — the checkpoints come in order.`);
     return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dashed border-stone-300 p-5 dark:border-stone-600">
       <div>
         <h2 className="font-semibold text-stone-500 dark:text-stone-400">{checkpoint.title}</h2>
-        <p className="mt-1 text-sm text-stone-500">{lang === 'ru' ? `Ещё ${remaining} ${remaining === 1 ? 'урок' : remaining < 5 ? 'урока' : 'уроков'} до контрольной точки ${checkpoint.level}.` : `${remaining} lesson${remaining === 1 ? '' : 's'} to go before the ${checkpoint.level} checkpoint.`}</p>
+        <p className="mt-1 text-sm text-stone-500">{waiting}</p>
       </div>
       <a href={checkpoint.path} className="text-sm font-medium text-stone-400 hover:text-amber-700 hover:underline dark:hover:text-amber-300">{lang === 'ru' ? 'Всё равно открыть' : 'Open anyway'}</a>
     </section>;

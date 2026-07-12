@@ -311,6 +311,35 @@ for (const [setId, { file, data }] of exerciseSets) {
   if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
+  // A probe family's items are PARALLEL VARIANTS: different tasks, one competence.
+  //
+  // This is the whole basis of the retention measurement, and it is easy to get wrong in
+  // a way that looks fine. `dueProbe` serves one unused variant per interval, so if the
+  // variants test *different* things, the 2-day probe measures one skill, the 7-day probe
+  // measures another and the 21-day probe a third. Each competence is then measured
+  // exactly once, at exactly one delay — and a retention curve needs the same competence
+  // at several delays. There is nothing to compare, and the number that comes out looks
+  // like retention without being it.
+  //
+  // So every item in a probe family must carry the same `focus` and the same `outcomes`.
+  // A topic with two core competences worth delayed evidence owns two families
+  // (probe-<topic>-<competence>), not one family with two kinds of item in it.
+  if (data.role === 'probe' && data.items.length > 0) {
+    const key = (item: (typeof data.items)[number]): string =>
+      `${item.focus ?? '-'} :: ${[...item.outcomes].sort().join('+')}`;
+    const first = key(data.items[0]!);
+    for (const item of data.items.slice(1)) {
+      if (key(item) !== first)
+        fail(
+          `${file} → item "${item.id}"`,
+          `probe variants must be parallel — same focus and same outcomes as the other ` +
+            `variants ("${first}"), but this one is "${key(item)}". A family whose variants ` +
+            `test different competences measures each of them once, at one interval, and can ` +
+            `show no retention curve. Split it into one family per competence.`,
+        );
+    }
+  }
+
   const itemIds = new Set<string>();
   for (const item of data.items) {
     const where = `${file} → item "${item.id}"`;

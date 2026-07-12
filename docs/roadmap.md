@@ -71,8 +71,15 @@ practice evidence remain distinct.
 ### The A1 retention gate, and why A2 authoring proceeds anyway
 
 Phase 3's second exit criterion is the only one that can fail: **due parallel probes clear ≥ 80% per
-A1 outcome, with free-production items ≥ 70%.** The probes armed on 2026-07-12, so the 21-day cohort
-cannot report before **2026-08-02**.
+probed competence, with free-production items ≥ 70%.** The probes armed on 2026-07-12, so the 21-day
+cohort cannot report before **2026-08-02**.
+
+*(The bar used to say "per A1 outcome". It could not have been met, because the probe families were
+not built to measure an outcome across time — their three variants tested three* different *skills,
+so each was checked exactly once, at exactly one delay, and no retention curve could exist. Fixed
+before the cohort produced a single answer: a family's variants are now parallel checks of one
+competence, and the validator refuses any other kind. One competence per topic is probed; the rest
+of a topic's outcomes get their evidence from practice, not from delay.)*
 
 This roadmap previously said that A2 authoring would not begin until it did. That rule is
 deliberately changed here rather than quietly broken, because the reasoning behind it turned out to

@@ -67,6 +67,13 @@ GitHub Release notes.
   composition allows it at all. It also used to count two exercise files from the *same* topic as
   different topics, which let two dative questions sit side by side; the dative alone owns four such
   files.
+- **The delayed checks could not have shown whether anything stuck.** A check is supposed to ask the
+  same question again after two days, a week and three weeks, so that you can see what fades. They
+  were instead asking a *different* question each time — word order at two days, verb endings at a
+  week, negation at three weeks. Each skill was therefore tested exactly once, at exactly one delay,
+  and nothing could be compared with anything. Every check was rewritten so its three versions test
+  one skill in three different situations, and the result is the curve it was always meant to be.
+  Caught before a single check had been answered, so no history was lost.
 - **Four A2 can-dos were promised and never asked about.** *I can use the dative pronouns*, *…the
   dative prepositions*, *…verbs like helfen and gefallen* and *…the modal forms* were listed on the
   topic pages but tagged on no exercise, so they could never be marked as learned and no delayed
