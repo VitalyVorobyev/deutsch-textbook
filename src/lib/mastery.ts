@@ -161,9 +161,15 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
   return { auto, tier: effectiveTier(auto, manual), manual };
 }
 
-/** First-pass lesson completion is separate from delayed, evidence-based mastery. */
+/**
+ * First-pass lesson completion is separate from delayed, evidence-based mastery.
+ * Completing the primary practice is the evidence; readAt is not required —
+ * live flows set it before practice anyway, but imported/legacy snapshots can
+ * carry the attempts without topic state, and the recommended path must not
+ * wedge on those.
+ */
 export function lessonCompleted(node: TopicNode, ctx: TopicContext): boolean {
-  if (!ctx.topics[node.id]?.readAt || !node.primaryPractice?.itemIds.length) return false;
+  if (!node.primaryPractice?.itemIds.length) return false;
   const attempted = new Set(
     ctx.attempts
       .filter((attempt) => attempt.setId === node.primaryPractice!.setId)

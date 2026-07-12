@@ -62,9 +62,9 @@ export function VocabWordTable({ cards }: { cards: CardDef[] }) {
 }
 
 export interface VocabGroup { id: string; label: string; cardIds: string[] }
-export function VocabularyProgress({ cards, groups }: { cards: CardDef[]; groups: Array<{ title: string; items: VocabGroup[] }> }) {
+// Card states come in as a prop (not via useStates) so the Fortschritt import
+// flow's refresh() re-renders the bars with the merged data.
+export function VocabularyProgress({ cards, groups, states }: { cards: CardDef[]; groups: Array<{ title: string; items: VocabGroup[] }>; states: CardStates }) {
   const lang = useExplainLang();
-  const states = useStates();
-  if (!states) return null;
   return <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800"><h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">Wortschatz nach Bereichen</h2><p className="mt-2 max-w-3xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">{lang === 'ru' ? 'Показаны уникальные слова, уже добавленные в курс: два направления карточек считаются одним словом. Курсы A1 и A2 ещё дополняются; полосы показывают ваш прогресс только по существующему материалу.' : 'These are unique headwords currently authored in the course: two card directions count as one word. A1 and A2 are still being completed; the bars show your mastery of the material that exists today.'}</p><div className="mt-3"><MasteryLegend /></div>{groups.map((group) => <div key={group.title} className="mt-5"><h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{group.title}{group.title === 'Niveau' && <span className="ml-2 font-normal normal-case tracking-normal">· {lang === 'ru' ? 'сейчас в курсе' : 'currently authored'}</span>}</h3><div className="mt-2 grid gap-3 sm:grid-cols-2">{group.items.map((item) => { const ids = new Set(item.cardIds); const words = rollupWords(cards.filter((card) => ids.has(card.id)), states); return words.length ? <div key={item.id} className="rounded-md bg-stone-50 p-3 dark:bg-stone-900/50"><div className="mb-2 flex justify-between gap-2 text-sm"><span className="font-medium">{item.label}</span><span className="text-stone-400">{words.length}</span></div><MasteryBar counts={masteryCounts(words)} compact /></div> : null; })}</div></div>)}</section>;
 }

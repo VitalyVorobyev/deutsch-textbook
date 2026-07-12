@@ -218,7 +218,7 @@ export default function ProgressPanel({ nodes, outcomeModes, cards, vocabularyGr
         </section>
       )}
 
-      {data && <VocabularyProgress cards={cards} groups={vocabularyGroups} />}
+      {data && <VocabularyProgress cards={cards} groups={vocabularyGroups} states={data.cards} />}
 
       {data && modeEvidence.size > 0 && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
