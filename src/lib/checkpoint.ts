@@ -38,6 +38,30 @@ export function dueCheckpoint<T extends CheckpointRef>(
     );
 }
 
+/**
+ * The earlier-level checkpoint that is still unattempted, if there is one.
+ *
+ * `dueCheckpoint` already refuses to *offer* A2 while A1 is unstarted, but every surface
+ * that renders a checkpoint has to agree with it. The Lernpfad used to decide each card
+ * on its own level's `levelRemaining`, so a learner who finished A2's lessons would see
+ * the A2 checkpoint invitingly ready while the A1 one sat unopened — the two screens
+ * would have disagreed about what to do next, which is precisely what one suggestion
+ * function is supposed to prevent.
+ */
+export function blockedByEarlier<T extends CheckpointRef>(
+  checkpoint: T,
+  checkpoints: T[],
+  ctx: TopicContext,
+): T | undefined {
+  return [...checkpoints]
+    .sort((a, b) => a.level.localeCompare(b.level))
+    .find(
+      (other) =>
+        other.level < checkpoint.level &&
+        !ctx.attempts.some((attempt) => attempt.setId === other.setId),
+    );
+}
+
 export interface CheckpointOutcomeResult {
   outcome: string;
   /** parts-weighted score summed over this outcome's answered items */

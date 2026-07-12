@@ -1,48 +1,54 @@
 topic: akkusativ
 role: probe
 title:
-  en: "Probe — the accusative"
-  ru: "Проверка — винительный падеж"
+  en: "Probe — the accusative article"
+  ru: "Проверка — артикль в винительном падеже"
+
+# Three parallel variants of ONE competence: the accusative article after a transitive
+# verb — der → den, ein → einen, and every other gender unchanged. Each variant puts a
+# masculine object (which changes) next to a feminine or neuter one (which does not), so
+# each is evidence for all three outcomes: the object case, the article forms, and the
+# fact that only the masculine moves.
 
 items:
   - id: variant-a
-    outcomes: [akkusativ-objekte, akkusativ-artikel]
+    outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
     type: translate
     focus: akkusativ-artikel
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "I am buying a table."
-    prompt_ru: "Я покупаю стол."
-    answer: "Ich kaufe einen Tisch."
-    key_tokens: ["einen"]
+    prompt_en: "I see the teacher and the girl."
+    prompt_ru: "Я вижу учителя и девочку."
+    answer: "Ich sehe den Lehrer und das Mädchen."
+    key_tokens: ["den", "das"]
     explain:
-      en: "kaufen takes an accusative object, and der Tisch is masculine — so ein becomes einen. This is the one gender that changes."
-      ru: "kaufen требует винительного падежа, а der Tisch — мужского рода, поэтому ein превращается в einen. Меняется только мужской род."
+      en: "sehen takes an accusative object. der Lehrer is masculine, so der becomes den; das Mädchen is neuter and keeps das unchanged."
+      ru: "sehen требует винительного падежа. der Lehrer — мужского рода, поэтому der превращается в den; das Mädchen — среднего рода, и das остаётся без изменений."
 
   - id: variant-b
-    outcomes: [akkusativ-artikel, akkusativ-maskulin]
+    outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
     type: cloze
     focus: akkusativ-artikel
     instruction:
       en: Fill in the correct article.
       ru: Вставьте правильный артикль.
-    text: "Ich sehe {{den}} Mann und {{die}} Frau. Wir haben {{ein}} Kind."
+    text: "Meine Tochter braucht {{einen}} Stuhl, {{eine}} Lampe und {{ein}} Buch."
     explain:
-      en: "Only the masculine changes in the accusative: der → den. Feminine die and neuter ein stay exactly as they are."
-      ru: "В винительном падеже меняется только мужской род: der → den. Женский die и средний ein остаются без изменений."
+      en: "brauchen takes an accusative object, and all three genders line up in one sentence: einen Stuhl (masculine, changed), eine Lampe (feminine, unchanged), ein Buch (neuter, unchanged)."
+      ru: "brauchen требует винительного падежа, и все три рода стоят рядом в одном предложении: einen Stuhl (мужской род — форма изменилась), eine Lampe (женский род — без изменений), ein Buch (средний род — без изменений)."
 
   - id: variant-c
-    outcomes: [akkusativ-praepositionen]
+    outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
     type: translate
-    focus: akkusativ-praepositionen
+    focus: akkusativ-artikel
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "The book is for my father."
-    prompt_ru: "Эта книга для моего отца."
-    answer: "Das Buch ist für meinen Vater."
-    key_tokens: ["für", "meinen"]
+    prompt_en: "My sister has a son and a daughter."
+    prompt_ru: "У моей сестры есть сын и дочь."
+    answer: "Meine Schwester hat einen Sohn und eine Tochter."
+    key_tokens: ["einen", "eine"]
     explain:
-      en: "für always governs the accusative, so mein becomes meinen before the masculine Vater — no exceptions, whatever the sentence means."
-      ru: "für всегда требует винительного падежа, поэтому перед мужским Vater mein превращается в meinen — без исключений, независимо от смысла."
+      en: "haben always takes an accusative object, even where English says there is: der Sohn → einen Sohn, while die Tochter keeps eine. Only the masculine ever changes."
+      ru: "haben всегда управляет винительным падежом, хотя по-русски мы говорим «у сестры есть»: der Sohn → einen Sohn, а die Tochter сохраняет eine. Меняется только мужской род."

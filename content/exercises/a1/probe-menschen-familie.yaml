@@ -1,44 +1,53 @@
 topic: menschen-familie
 role: probe
 title:
-  en: "Probe — people and family"
-  ru: "Проверка — люди и семья"
+  en: "Probe — introducing people with mein, dein, ihr"
+  ru: "Проверка — представляем людей: mein, dein, ihr"
+
+# Three parallel variants of ONE competence: introducing a person with the right
+# possessive article. Each variant introduces a family member and adds one simple
+# detail, so each is evidence for both outcomes; the people, the possessives (mein,
+# meine, ihr) and the occupations are new in all three.
 
 items:
   - id: variant-a
-    outcomes: [menschen-beschreiben]
+    outcomes: [familie-vorstellen, menschen-beschreiben]
     type: translate
     focus: possessivartikel
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "My sister is a teacher. She is friendly."
-    prompt_ru: "Моя сестра — учительница. Она приветливая."
-    answer: "Meine Schwester ist Lehrerin. Sie ist freundlich."
-    key_tokens: ["Meine"]
+    prompt_en: "My son is an engineer. He lives in Cologne."
+    prompt_ru: "Мой сын — инженер. Он живёт в Кёльне."
+    answer: "Mein Sohn ist Ingenieur. Er wohnt in Köln."
+    key_tokens: ["Mein"]
     explain:
-      en: "German drops the article before a profession: sie ist Lehrerin, not eine Lehrerin. The feminine form takes -in."
-      ru: "Перед названием профессии артикль не ставится: sie ist Lehrerin, а не eine Lehrerin. Женская форма образуется суффиксом -in."
+      en: "mein is declined like ein: der Sohn is masculine, so the possessive stays bare — mein Sohn. Note also that a profession takes no article after sein: er ist Ingenieur."
+      ru: "mein склоняется как ein: der Sohn мужского рода, поэтому притяжательное слово остаётся без окончания — mein Sohn. И помните: перед профессией после sein артикль не ставится — er ist Ingenieur."
 
   - id: variant-b
-    outcomes: [familie-vorstellen]
+    outcomes: [familie-vorstellen, menschen-beschreiben]
     type: cloze
     focus: possessivartikel
     instruction:
       en: Fill in the correct possessive.
       ru: Вставьте правильное притяжательное местоимение.
-    text: "Das ist {{mein}} Bruder. {{Meine}} Mutter heißt Eva. {{Mein}} Kind ist zwei."
+    text: "Das sind {{meine}} Großeltern. {{Mein|mein}} Großvater ist ruhig und {{meine}} Großmutter ist sehr freundlich."
     explain:
-      en: "mein takes the same endings as ein: mein Bruder (m), meine Mutter (f), mein Kind (n). The noun's gender decides, not yours."
-      ru: "mein склоняется как ein: mein Bruder (м. р.), meine Mutter (ж. р.), mein Kind (ср. р.). Решает род существительного, а не говорящего."
+      en: "The ending follows the noun: mein Großvater (masculine, no ending), meine Großmutter (feminine, -e), meine Großeltern (plural, -e). Plural behaves like the feminine here."
+      ru: "Окончание зависит от существительного: mein Großvater (мужской род, без окончания), meine Großmutter (женский род, -e), meine Großeltern (множественное число, -e). Во множественном числе окончание такое же, как в женском роде."
 
   - id: variant-c
-    outcomes: [familie-verstehen]
-    type: listen
+    outcomes: [familie-vorstellen, menschen-beschreiben]
+    type: translate
+    focus: possessivartikel
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Mein Vater ist Arzt und meine Mutter ist Ärztin."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "That is my daughter. Her husband is a doctor."
+    prompt_ru: "Это моя дочь. Её муж — врач."
+    answer: "Das ist meine Tochter. Ihr Mann ist Arzt."
+    key_tokens: ["meine", "Ihr"]
     explain:
-      en: "Both professions appear without an article, and the feminine form adds -in: Arzt → Ärztin."
-      ru: "Обе профессии стоят без артикля, а женская форма получает суффикс -in: Arzt → Ärztin."
+      en: "Two possessives at once: meine Tochter (my + feminine noun → -e) and ihr Mann (her + masculine noun → no ending). The owner picks the word (mein/ihr); the noun picks the ending."
+      ru: "Здесь сразу два притяжательных слова: meine Tochter (моя + женский род → -e) и ihr Mann (её + мужской род → без окончания). Владелец определяет слово (mein/ihr), а существительное — окончание."

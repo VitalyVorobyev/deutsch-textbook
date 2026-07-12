@@ -4,9 +4,16 @@ title:
   en: "Probe — everyday life and daily routine"
   ru: "Проверка — повседневная жизнь и распорядок дня"
 
+# Three PARALLEL variants of ONE competence: choosing the time preposition —
+# um + clock time, am + day or part of day, im + month or season, and in der Nacht.
+# It is the only thing this topic owns outright (the separable verbs belong to
+# trennbare-verben and the verb-second rule to praesens-wortstellung), and nothing
+# else the topic teaches is needed as often: you cannot say when you do anything
+# without it.
+
 items:
   - id: variant-a
-    outcomes: [alltag-zeitpraepositionen, alltag-zeit-haeufigkeit]
+    outcomes: [alltag-zeitpraepositionen]
     type: translate
     focus: um-am-zeit
     instruction:
@@ -19,32 +26,34 @@ items:
     accept:
       - "Ich mache am Donnerstag um sechs Uhr Sport."
     explain:
-      en: "The kind of time chooses the preposition, not the meaning: am for a day (am Donnerstag), um for a clock time (um sechs Uhr). Both appear in one sentence here, and fronting the day pushes the subject behind the verb."
-      ru: "Предлог выбирается по типу времени, а не по смыслу: am — с днём недели (am Donnerstag), um — с часами (um sechs Uhr). Здесь они стоят в одном предложении, а вынесенный вперёд день недели отодвигает подлежащее за глагол."
+      en: "The kind of time chooses the preposition, not the meaning: am for a day (am Donnerstag), um for a clock time (um sechs Uhr). Both stand in one sentence here, which is exactly where they get swapped. Do not let English 'in the morning' pull you towards im either — a part of the day is still am: am Morgen."
+      ru: "Предлог выбирается по типу времени, а не по смыслу: am — с днём недели (am Donnerstag), um — с точным временем (um sechs Uhr). Здесь они стоят в одном предложении, и именно тут их чаще всего путают: по-русски и там и там просто «в», так что подсказки от родного языка ждать не приходится."
 
   - id: variant-b
-    outcomes: [alltag-beschreiben]
+    outcomes: [alltag-zeitpraepositionen]
     type: cloze
-    focus: trennbar-wortstellung
+    focus: um-am-zeit
     instruction:
-      en: Fill in the correct form of the verb in brackets.
-      ru: Вставьте правильную форму глагола из скобок.
-    text: "Am Morgen {{ziehe}} ich meine Jacke {{an}}. (anziehen) Am Nachmittag {{kaufe}} ich im Supermarkt {{ein}}. (einkaufen)"
+      en: Fill in the correct time preposition.
+      ru: Вставьте правильный предлог времени.
+    text: "Mein Kurs beginnt {{im}} Februar. {{Am}} Dienstag und {{am}} Freitag habe ich Unterricht. Der Unterricht fängt {{um}} halb zehn an. {{In}} der Nacht lerne ich nie."
     explain:
-      en: "A daily routine in German is built almost entirely from separable verbs, and each one splits the same way: the conjugated part stays in position 2 and the prefix waits at the end of its own clause — ziehe … an, kaufe … ein."
-      ru: "Рассказ о распорядке дня по-немецки почти целиком состоит из глаголов с отделяемой приставкой, и каждый распадается одинаково: спрягаемая часть остаётся на втором месте, а приставка ждёт в конце своей части предложения — ziehe … an, kaufe … ein."
+      en: "The whole system in four lines: im for a month or a season, am for a day or a part of the day, um for a point on the clock. The night is the one exception that has to be memorized as a chunk — in der Nacht, never am."
+      ru: "Вся система в четырёх строчках: im — с месяцем или временем года, am — с днём недели или частью дня, um — с точным временем на часах. Ночь — единственное исключение, которое приходится запомнить целиком: in der Nacht, но никогда am."
 
   - id: variant-c
-    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
+    outcomes: [alltag-zeitpraepositionen]
     type: translate
-    focus: verbzweit
+    focus: um-am-zeit
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "My husband cooks every day. Afterwards we watch television."
-    prompt_ru: "Мой муж готовит каждый день. Потом мы смотрим телевизор."
-    answer: "Mein Mann kocht jeden Tag. Danach sehen wir fern."
-    key_tokens: ["sehen"]
+    prompt_en: "In winter it is already dark at five o'clock."
+    prompt_ru: "Зимой в пять часов уже темно."
+    answer: "Im Winter ist es um fünf Uhr schon dunkel."
+    key_tokens: ["Im", "um"]
+    accept:
+      - "Im Winter ist es schon um fünf Uhr dunkel."
     explain:
-      en: "Danach is a sentence element like any other, so it occupies position 1 and the verb must still come second: Danach sehen wir fern. English keeps 'then we watch', and that habit is exactly what goes wrong here."
-      ru: "Danach — такой же член предложения, как и любой другой: он занимает первое место, а глагол обязан остаться на втором — Danach sehen wir fern. По-русски «потом мы смотрим» звучит естественно, и именно эта привычка здесь подводит."
+      en: "A season takes im, like a month: im Winter, im Januar. The clock time next to it still takes um — the two prepositions do not agree with each other, each one follows its own kind of time."
+      ru: "Время года требует im — так же, как месяц: im Winter, im Januar. Стоящее рядом точное время всё равно требует um: предлоги не «согласуются» друг с другом, каждый следует своему типу времени."
