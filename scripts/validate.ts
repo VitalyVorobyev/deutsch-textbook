@@ -142,6 +142,35 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   }
 }
 
+// Every headword lives in exactly one deck: a duplicate means the learner
+// grinds two SRS histories for one word and coverage counts it twice. The
+// allowlist freezes the five pairs that predate the rule — card identity is
+// <file-id>::<de>::<direction>, so consolidating them now would wipe history.
+const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
+  wohnen: 'erste-schritte+kernwortschatz-a2',
+  kommen: 'erste-schritte+perfekt-verben',
+  sprechen: 'erste-schritte+perfekt-verben',
+  Arzt: 'menschen-familie+termine-zeit',
+  Ärztin: 'menschen-familie+termine-zeit',
+};
+{
+  const decksOf = new Map<string, string[]>();
+  for (const [id, { data }] of vocabFiles) {
+    for (const e of data.entries) decksOf.set(e.de, [...(decksOf.get(e.de) ?? []), id]);
+  }
+  for (const [de, decks] of decksOf) {
+    if (decks.length < 2) continue;
+    if (LEGACY_DUPLICATE_PAIRS[de] === [...decks].sort().join('+')) continue;
+    fail(
+      `content/vocab/${decks[decks.length - 1]}.yaml`,
+      `headword "${de}" already exists in ${decks
+        .slice(0, -1)
+        .map((d) => `content/vocab/${d}.yaml`)
+        .join(', ')} — every headword lives in exactly one deck`,
+    );
+  }
+}
+
 const exerciseSets = new Map<string, { file: string; data: ExerciseSet }>();
 for (const file of listFiles(join(CONTENT, 'exercises'), '.yaml')) {
   let raw: unknown;
