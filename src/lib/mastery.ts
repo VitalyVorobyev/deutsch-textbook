@@ -28,6 +28,9 @@ export interface TopicNode extends TopicRollup {
   title_ru: string;
   prerequisites: string[];
   strand?: CurriculumStrand;
+  group?: string;
+  /** First authored practice-role set; completing every item advances the lesson. */
+  primaryPractice?: { setId: string; itemIds: string[] };
 }
 
 export type Tier = 'untouched' | 'read' | 'practiced' | 'mastered';
@@ -158,6 +161,17 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
   return { auto, tier: effectiveTier(auto, manual), manual };
 }
 
+/** First-pass lesson completion is separate from delayed, evidence-based mastery. */
+export function lessonCompleted(node: TopicNode, ctx: TopicContext): boolean {
+  if (!ctx.topics[node.id]?.readAt || !node.primaryPractice?.itemIds.length) return false;
+  const attempted = new Set(
+    ctx.attempts
+      .filter((attempt) => attempt.setId === node.primaryPractice!.setId)
+      .map((attempt) => attempt.itemId),
+  );
+  return node.primaryPractice.itemIds.every((id) => attempted.has(id));
+}
+
 // ---------------------------------------------------------------------------
 // Recommended next topic (spine order × the dashboard's measured tiers)
 // ---------------------------------------------------------------------------
@@ -177,7 +191,7 @@ export function recommendedNext(
   const byId = new Map(nodes.map((n) => [n.id, n]));
   for (const id of spineTopicIds) {
     const node = byId.get(id);
-    if (node && topicCompletion(node, ctx).tier !== 'mastered') return node;
+    if (node && !lessonCompleted(node, ctx)) return node;
   }
   return undefined;
 }
@@ -207,6 +221,6 @@ export function recommendedForGoal(
   ctx: TopicContext,
 ): TopicNode | undefined {
   return goalRoute(topicId, spine, nodes).find(
-    (node) => topicCompletion(node, ctx).tier !== 'mastered',
+    (node) => !lessonCompleted(node, ctx),
   );
 }

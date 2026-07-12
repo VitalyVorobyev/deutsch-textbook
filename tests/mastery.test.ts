@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { goalRoute, masteryGaps, recommendedForGoal, recommendedNext, topicTier, type TopicContext, type TopicNode } from '../src/lib/mastery';
+import { goalRoute, lessonCompleted, masteryGaps, recommendedForGoal, recommendedNext, topicTier, type TopicContext, type TopicNode } from '../src/lib/mastery';
 import type { Attempt } from '../src/lib/store';
 
 const node: TopicNode = {
@@ -43,6 +43,32 @@ describe('measured mastery', () => {
     const second = { ...node, id: 'next', path: '/topics/a1/next', title_de: 'Next', exerciseSets: ['a1/next'] };
     const ctx: TopicContext = { attempts: [], cards: {}, topics: {} };
     expect(recommendedNext(['basis', 'next'], [node, second], ctx)?.id).toBe('basis');
+  });
+
+  test('a completed first lesson advances before spaced mastery', () => {
+    const first = { ...node, primaryPractice: { setId: 'a1/basis', itemIds: ['one', 'two'] } };
+    const second = { ...node, id: 'next', path: '/topics/a1/next', exerciseSets: ['a1/next'] };
+    const attempts: Attempt[] = [
+      { ...attempt('a1/basis', 1), itemId: 'one' },
+      { ...attempt('a1/basis', 2), itemId: 'two' },
+    ];
+    const ctx: TopicContext = { attempts, cards: {}, topics: { basis: { readAt: 1 } } };
+    expect(topicTier(first, ctx)).toBe('practiced');
+    expect(lessonCompleted(first, ctx)).toBe(true);
+    expect(recommendedNext(['basis', 'next'], [first, second], ctx)?.id).toBe('next');
+  });
+
+  test('partial practice and pretest activity do not complete a lesson', () => {
+    const first = { ...node, primaryPractice: { setId: 'a1/basis', itemIds: ['one', 'two'] } };
+    const ctx: TopicContext = {
+      attempts: [
+        { ...attempt('a1/basis', 1), itemId: 'one' },
+        { ...attempt('a1/basis-pretest', 2), itemId: 'two' },
+      ],
+      cards: {}, topics: { basis: { readAt: 1 } },
+    };
+    expect(lessonCompleted(first, ctx)).toBe(false);
+    expect(recommendedNext(['basis'], [first], ctx)?.id).toBe('basis');
   });
 
   test('goal route includes every transitive prerequisite in spine order', () => {

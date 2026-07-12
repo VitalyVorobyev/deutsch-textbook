@@ -12,7 +12,8 @@ export const KIND_LABEL: Record<string, string> = {
 };
 
 export async function getTopicNodes(): Promise<TopicNode[]> {
-  const topics = await getCollection('topics');
+  const [topics, exercises] = await Promise.all([getCollection('topics'), getCollection('exercises')]);
+  const exerciseById = new Map(exercises.map((exercise) => [exercise.id, exercise.data]));
   return topics.map((t) => ({
     id: t.data.id,
     path: withBase(`/topics/${t.id}`),
@@ -26,6 +27,12 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
     vocabIds: t.data.vocab,
     readingIds: t.data.reading,
     pretestId: t.data.pretest,
+    primaryPractice: t.data.exercises.flatMap((setId) => {
+      const set = exerciseById.get(setId);
+      return set?.role === 'practice'
+        ? [{ setId, itemIds: set.items.map((item) => item.id) }]
+        : [];
+    })[0],
   }));
 }
 

@@ -15,7 +15,7 @@ const units = curriculum.units.map((unit) => ({
     const topic = topicById.get(id);
     const graph = graphById.get(id);
     if (!topic || !graph) throw new Error(`Curriculum unit ${unit.id}: topic ${id} is incomplete`);
-    return { ...topic, strand: graph.strand, outcomes: graph.outcomes, deepens: graph.deepens };
+    return { ...topic, strand: graph.strand, group: graph.group, outcomes: graph.outcomes, deepens: graph.deepens, related: graph.related };
   }),
 }));
 ---
@@ -30,6 +30,6 @@ const units = curriculum.units.map((unit) => ({
   </header>
 
   <div class="mt-6">
-    <CurriculumPath client:load units={units} spine={curriculum.spine} />
+    <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} />
   </div>
 </Base>

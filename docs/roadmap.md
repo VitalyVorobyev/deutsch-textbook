@@ -9,8 +9,12 @@ A2. Executable work lives in [backlog.md](backlog.md); completed implementation 
 
 ## Product direction
 
-- **One clear next action.** Themen defaults to a spine-ordered Lernpfad. The focused
-  Zusammenhänge view explains direct relationships without making learners interpret a graph.
+- **One clear next action.** The curriculum spine recommends the next unfinished lesson, while
+  retained mastery remains a separate delayed-evidence signal; completing a lesson never demands
+  an immediate second-day repetition.
+- **A layered Atlas.** Nested conceptual groups provide orientation, prerequisite edges form the
+  blocking knowledge DAG, and `deepens`/`related` express spiral and non-blocking relationships.
+  The spine is teaching order, not an implicit dependency chain.
 - **A soft path.** Curriculum order drives recommendations and automatic content selection, but
   learners may open any topic or deck deliberately.
 - **Honest evidence.** Automatically scored retrieval/comprehension is `verified`; open writing,
@@ -35,6 +39,11 @@ the lesson-cycle convention, `write`, `audio-comprehension`, evidence classifica
 ## Current milestone — Phase 2: complete A1
 
 Outcome: a learner can follow a coherent path from Erste Schritte to a cumulative A1 checkpoint.
+
+The current authored vocabulary baseline is **83 unique A1 headwords** and **141 unique A2
+headwords**. These are coverage counts for today's incomplete course, not CEFR target sizes.
+Vocabulary grows with complete units (topic, practice, reading, productive use and reviewed IPA),
+never as disconnected padding.
 
 1. Author the remaining units in spine order: Alltag & Zeit, Wohnen, Stadt & Wege, and
    Freizeit & Können. Menschen & Familie is complete.

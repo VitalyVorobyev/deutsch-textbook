@@ -373,6 +373,27 @@ for (const [setId, { file }] of exerciseSets) {
     const atlas = validateWith(atlasSchema, raw, AT);
     if (atlas) {
       const nodeIds = new Set(atlas.nodes.map((n) => n.id));
+      const groupById = new Map(atlas.groups.map((group) => [group.id, group]));
+      if (groupById.size !== atlas.groups.length) fail(AT, 'duplicate group id');
+      const parentGroups = new Set(atlas.groups.flatMap((group) => group.parent ? [group.parent] : []));
+      for (const group of atlas.groups) {
+        if (group.parent) {
+          const parent = groupById.get(group.parent);
+          if (!parent) fail(AT, `group "${group.id}" has unknown parent "${group.parent}"`);
+          else if (parent.strand !== group.strand)
+            fail(AT, `group "${group.id}" strand differs from parent "${group.parent}"`);
+        }
+        const seen = new Set<string>([group.id]);
+        let cursor = group.parent;
+        while (cursor) {
+          if (seen.has(cursor)) {
+            fail(AT, `group cycle includes "${cursor}"`);
+            break;
+          }
+          seen.add(cursor);
+          cursor = groupById.get(cursor)?.parent;
+        }
+      }
       for (const id of topics.keys()) {
         if (!nodeIds.has(id)) fail(AT, `topic "${id}" missing from atlas`);
       }
@@ -386,6 +407,13 @@ for (const [setId, { file }] of exerciseSets) {
           fail(AT, `node "${node.id}" level ${node.level} ≠ topic level ${t.data.level}`);
         if (node.kind !== t.data.kind)
           fail(AT, `node "${node.id}" kind ${node.kind} ≠ topic kind ${t.data.kind}`);
+        const group = groupById.get(node.group);
+        if (!group) fail(AT, `node "${node.id}" has unknown group "${node.group}"`);
+        else {
+          if (parentGroups.has(group.id)) fail(AT, `node "${node.id}" must belong to a leaf group`);
+          if (group.strand !== node.strand)
+            fail(AT, `node "${node.id}" strand differs from group "${node.group}"`);
+        }
         const a = [...node.prerequisites].sort().join(',');
         const b = [...t.data.prerequisites].sort().join(',');
         if (a !== b) fail(AT, `node "${node.id}" prerequisites ≠ topic frontmatter`);
@@ -410,6 +438,13 @@ for (const [setId, { file }] of exerciseSets) {
           )
         )
           fail(AT, `communication topic "${node.id}" needs a productive or interactive outcome`);
+        for (const related of node.related) {
+          const other = nodeById.get(related);
+          if (!other) fail(AT, `node "${node.id}" relates to unknown topic "${related}"`);
+          else if (!other.related.includes(node.id))
+            fail(AT, `related edge "${node.id}" ↔ "${related}" must be symmetric`);
+          if (related === node.id) fail(AT, `node "${node.id}" relates to itself`);
+        }
       }
       const unitIds = new Set<string>();
       const unitOf = new Map<string, string>();

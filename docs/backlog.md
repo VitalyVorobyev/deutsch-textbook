@@ -16,7 +16,8 @@ Completed: `Erste Schritte`, `Menschen & Familie`. Continue sequentially: Alltag
 
 Each unit includes its atlas node/unit slot with stable outcomes, topic MDX, diagnostic pretest,
 at least eight practice items across three task types, an intensive reading, and 20–40 vocabulary
-entries with reviewed IPA. Use `write` and `audio-comprehension` whenever declared outcome modes
+entries with reviewed IPA. Declare its conceptual leaf group and meaningful `prerequisites`,
+`deepens`, and symmetric `related` edges. Use `write` and `audio-comprehension` whenever declared outcome modes
 require them; do not add placeholder atlas nodes before their content lands.
 
 - Depends on: completed P2-1 through P2-4.
