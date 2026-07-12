@@ -1,6 +1,7 @@
 /** FSRS scheduling and deck building. */
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs';
 import type { VocabEntry } from './schemas';
+import { shuffle } from './shuffle';
 import type { StoredCard } from './store';
 
 export { Rating, State };
@@ -141,15 +142,63 @@ export function splitQueue(
   return { due, fresh };
 }
 
-/** Stable due ordering: most overdue first, then fragile/lapsed cards. */
+/**
+ * Due ordering: most overdue first, then fragile/lapsed cards.
+ *
+ * Genuine ties are broken at random, not by card id. Sorting ties by id made
+ * every session deal the same cards in the same sequence — and, because a
+ * word's two card ids differ only in their direction suffix, it dealt both
+ * directions of a word back to back. The learner then recognised an order
+ * instead of recalling words. Array.sort is stable, so shuffling first is what
+ * randomizes the ties while the overdue ranking above them stays exact.
+ */
 export function rankDueCards(cards: CardDef[], states: Record<string, StoredCard>): CardDef[] {
-  return [...cards].sort((a, b) => {
+  return shuffle(cards).sort((a, b) => {
     const sa = states[a.id];
     const sb = states[b.id];
     const due = Date.parse(sa.due) - Date.parse(sb.due);
     if (due) return due;
     if (sa.stability !== sb.stability) return sa.stability - sb.stability;
-    if (sa.lapses !== sb.lapses) return sb.lapses - sa.lapses;
-    return a.id.localeCompare(b.id);
+    return sb.lapses - sa.lapses;
   });
+}
+
+/** The word a card asks about — its two directions share one. */
+const wordKey = (card: CardDef): string => `${card.deckId}::${card.de}`;
+
+/**
+ * Pull the two directions of the same word apart.
+ *
+ * "Brot → bread" immediately followed by "bread → Brot" is not two retrievals:
+ * the first card hands the learner the answer to the second, and the typed
+ * production — the whole point of the x-de direction — becomes copying. Walk
+ * the queue and take the first card whose word has not come up in the last
+ * `gap` cards, keeping the ordering above it otherwise intact. A queue too
+ * small to separate them (a two-card deck) takes the card anyway rather than
+ * dropping it.
+ */
+export function spaceSiblings(cards: CardDef[], gap = 4): CardDef[] {
+  const pool = [...cards];
+  const waiting = new Map<string, number>();
+  for (const card of pool) waiting.set(wordKey(card), (waiting.get(wordKey(card)) ?? 0) + 1);
+
+  const out: CardDef[] = [];
+  while (pool.length > 0) {
+    const recent = new Set(out.slice(-gap).map(wordKey));
+    const free = pool.filter((card) => !recent.has(wordKey(card)));
+    // Among the cards clear of the window, take the one whose word still has the
+    // most cards waiting. Plain first-fit strands a word's last two cards at the
+    // tail with nothing left to separate them; spending the doubled words early
+    // is what keeps the queue solvable. Counts tie for every ordinary word, and
+    // the reduce keeps the first — so the overdue/curriculum order above survives.
+    const pick = free.length > 0
+      ? free.reduce((best, card) =>
+        (waiting.get(wordKey(card)) ?? 0) > (waiting.get(wordKey(best)) ?? 0) ? card : best)
+      : pool[0]!; // a deck too small to separate: keep the card rather than drop it
+
+    waiting.set(wordKey(pick), (waiting.get(wordKey(pick)) ?? 1) - 1);
+    pool.splice(pool.indexOf(pick), 1);
+    out.push(pick);
+  }
+  return out;
 }

@@ -1,6 +1,6 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
-import { rankDueCards, splitQueue, type CardDef } from './srs';
+import { rankDueCards, spaceSiblings, splitQueue, type CardDef } from './srs';
 import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
@@ -72,7 +72,10 @@ export function prioritizeFreshCards(
     if (deckLevels[card.deckId] === currentLevel) return 2;
     return 3;
   }
-  return [...cards].sort((a, b) => priority(a) - priority(b) || a.id.localeCompare(b.id));
+  // Shuffle, then stable-sort by priority: curriculum order decides which decks
+  // come first, chance decides the order inside a deck. Sorting by card id
+  // instead served the same words in the same sequence every single session.
+  return shuffle(cards).sort((a, b) => priority(a) - priority(b));
 }
 
 // ---------------------------------------------------------------------------
@@ -161,7 +164,10 @@ export function planReview(
   }
 
   return {
-    queue: [...dueQueue, ...freshQueue],
+    // Spacing runs over the assembled queue, so a due card and a fresh card of
+    // the same word cannot meet at the seam either. It only moves a card when
+    // its word just came up, so due-before-fresh survives everywhere else.
+    queue: spaceSiblings([...dueQueue, ...freshQueue]),
     dueCount: dueQueue.length,
     freshCount: freshQueue.length,
     total: dueQueue.length + freshQueue.length,
