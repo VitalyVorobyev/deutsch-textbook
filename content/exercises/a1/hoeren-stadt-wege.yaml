@@ -1,0 +1,48 @@
+topic: stadt-wege
+role: practice
+title: { en: "Listening — asking the way", ru: "Аудирование — как спросить дорогу" }
+items:
+  - id: hoeren-zweite-strasse
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: listen
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Die zweite Straße links, dann geradeaus."
+    translation: { en: "The second street on the left, then straight ahead.", ru: "Вторая улица налево, потом прямо." }
+    explain: { en: "Straße is a noun — capitalized and written with ß; zweite and geradeaus stay lowercase.", ru: "Straße — существительное: с большой буквы и с ß; zweite и geradeaus — со строчной." }
+  - id: hoeren-gehen-sie
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: listen
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Gehen Sie geradeaus und dann rechts."
+    translation: { en: "Go straight ahead and then right.", ru: "Идите прямо, потом направо." }
+    explain: { en: "Gehen Sie … is the polite formula locals use for directions. Sie is capitalized — it is the polite 'you'.", ru: "Gehen Sie … — вежливая формула, которой объясняют дорогу. Sie пишется с большой буквы — это вежливое «вы»." }
+  - id: hoeren-weg-zur-post
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Tourist", text: "Entschuldigung, wo ist die Post?" }
+        - { speaker: "Frau", text: "Die Post ist nicht weit. Gehen Sie geradeaus und dann die erste Straße rechts." }
+        - { speaker: "Tourist", text: "Danke schön!" }
+    question: "Wie kommt der Tourist zur Post?"
+    options: ["geradeaus und dann die erste Straße rechts", "geradeaus und dann die erste Straße links", "die zweite Straße rechts und dann geradeaus"]
+    correct: 0
+    translation: { en: "How does the tourist get to the post office?", ru: "Как туристу пройти к почте?" }
+    explain: { en: "The woman says: Gehen Sie geradeaus und dann die erste Straße rechts — first straight ahead, then the first street on the right.", ru: "Женщина говорит: Gehen Sie geradeaus und dann die erste Straße rechts — сначала прямо, потом первая улица направо." }
+  - id: hoeren-zum-bahnhof
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Tourist", text: "Entschuldigung, wie komme ich zum Bahnhof? Ist das weit?" }
+        - { speaker: "Mann", text: "Ja, der Bahnhof ist weit. Nehmen Sie den Bus. Die Haltestelle ist da links." }
+        - { speaker: "Tourist", text: "Danke schön!" }
+    question: "Wie kommt der Tourist zum Bahnhof?"
+    options: ["mit dem Bus", "zu Fuß", "mit der U-Bahn"]
+    correct: 0
+    translation: { en: "How does the tourist get to the station?", ru: "Как туристу добраться до вокзала?" }
+    explain: { en: "The man says: Der Bahnhof ist weit. Nehmen Sie den Bus — the station is far, so the tourist should take the bus, not walk.", ru: "Мужчина говорит: Der Bahnhof ist weit. Nehmen Sie den Bus — вокзал далеко, поэтому туристу нужен автобус, а не пешком." }

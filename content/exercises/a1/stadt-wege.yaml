@@ -1,0 +1,111 @@
+topic: stadt-wege
+role: practice
+title: { en: "Practice — city and directions", ru: "Практика — город и дороги" }
+items:
+  - id: mc-wo-frage
+    outcomes: [stadt-weg-erfragen]
+    type: mc
+    focus: verbzweit
+    prompt: "Welche Frage ist richtig?"
+    options: ["Wo ist der Bahnhof?", "Wo der Bahnhof ist?", "Wo der Bahnhof?"]
+    correct: 0
+    translation: { en: "Which question is correct? — Where is the station?", ru: "Какой вопрос правильный? — Где вокзал?" }
+    explain: { en: "In a W-question the conjugated verb comes right after the question word: Wo ist der Bahnhof? 'Wo der Bahnhof ist' is embedded-clause order, not a direct question.", ru: "В W-вопросе спрягаемый глагол стоит сразу после вопросительного слова: Wo ist der Bahnhof? По-русски глагол можно опустить («Где вокзал?»), по-немецки ist обязателен." }
+  - id: mc-hoeflich-fragen
+    outcomes: [stadt-weg-erfragen]
+    type: mc
+    prompt: "Sie sind fremd in der Stadt und suchen die Apotheke. Was sagen Sie?"
+    options: ["Entschuldigung, wo ist die Apotheke?", "Apotheke — wo?", "Ich suche Apotheke."]
+    correct: 0
+    translation: { en: "You are a stranger in town and are looking for the pharmacy. What do you say?", ru: "Вы впервые в городе и ищете аптеку. Что вы скажете?" }
+    explain: { en: "Open politely with Entschuldigung and ask a complete W-question. 'Ich suche Apotheke' drops the required article (die Apotheke) and asks nothing at all.", ru: "Начните вежливо с Entschuldigung и задайте полный W-вопрос. «Ich suche Apotheke» теряет обязательный артикль (die Apotheke) и вообще не является вопросом." }
+  - id: mc-fremde-anreden
+    outcomes: [stadt-weg-erfragen]
+    type: mc
+    focus: du-sie
+    preview: true
+    prompt: "Sie fragen einen fremden Mann nach dem Weg. Wie beginnen Sie?"
+    options: ["Entschuldigung, wo ist hier die Bank?", "Du, wo ist hier die Bank?", "Hallo du, wo ist die Bank?"]
+    correct: 0
+    translation: { en: "You ask a stranger for directions. How do you begin?", ru: "Вы спрашиваете дорогу у незнакомого мужчины. Как вы начнёте?" }
+    explain: { en: "Strangers on the street are Sie-territory: open neutrally and politely with Entschuldigung. A du opening is for friends, family and children.", ru: "С незнакомыми людьми — только вежливый регистр: начните с Entschuldigung и обращайтесь на Sie. du — для друзей, семьи и детей; «тыкать» незнакомцу невежливо и по-русски, и по-немецки." }
+  - id: cloze-bus-ubahn
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction: { en: "Fill in the accusative article.", ru: "Вставьте артикль в аккузативе." }
+    text: "Ich nehme {{den}} Bus, und Anna nimmt {{die}} U-Bahn."
+    translation: { en: "I take the bus, and Anna takes the U-Bahn.", ru: "Я поеду на автобусе, а Анна поедет на метро." }
+    explain: { en: "nehmen takes the accusative. Only the masculine article changes: der Bus → den Bus. die U-Bahn stays die.", ru: "nehmen требует аккузатива. Меняется только мужской артикль: der Bus → den Bus. die U-Bahn остаётся die." }
+  - id: cloze-taxi-fahrrad
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction: { en: "Fill in the accusative article.", ru: "Вставьте артикль в аккузативе." }
+    text: "Der Bahnhof ist weit. Wir nehmen {{ein}} Taxi. — Nein, ich nehme {{das}} Fahrrad."
+    translation: { en: "The station is far away. We are taking a taxi. — No, I am taking the bike.", ru: "Вокзал далеко. Мы возьмём такси. — Нет, я поеду на велосипеде." }
+    explain: { en: "In the accusative only the masculine changes (der → den, ein → einen). Taxi and Fahrrad are neuter, so ein and das stay unchanged — do not add -en where nothing changes.", ru: "В аккузативе меняется только мужской род (der → den, ein → einen). Taxi и Fahrrad — средний род: ein и das не меняются; не добавляйте -en там, где ничего не меняется." }
+  - id: match-schilder
+    outcomes: [stadt-schilder-verstehen]
+    type: match
+    instruction: { en: "Signs and directions: match each word with its opposite.", ru: "Вывески и направления: соедините каждое слово с его противоположностью." }
+    pairs:
+      - { left: "der Eingang", right: "der Ausgang" }
+      - { left: "geöffnet", right: "geschlossen" }
+      - { left: "links", right: "rechts" }
+      - { left: "weit", right: "nah" }
+    explain: { en: "Eingang/Ausgang hang over doors, geöffnet/geschlossen on shop doors. links/rechts and weit/nah are the pairs you hear in every Wegbeschreibung.", ru: "Eingang/Ausgang висят над дверями, geöffnet/geschlossen — на дверях магазинов. links/rechts и weit/nah — пары, которые звучат в каждом объяснении дороги." }
+  - id: order-wie-komme
+    outcomes: [stadt-weg-erfragen]
+    type: order
+    focus: verbzweit
+    words: ["Wie", "komme", "ich", "zum", "Bahnhof", "?"]
+    translation: { en: "How do I get to the station?", ru: "Как мне пройти к вокзалу?" }
+    explain: { en: "In a W-question the conjugated verb stands right after the question word: Wie komme ich …? — never Wie ich komme.", ru: "В W-вопросе спрягаемый глагол стоит сразу после вопросительного слова: Wie komme ich …? — не Wie ich komme, хотя по-русски «как я пройду» звучит нормально." }
+  - id: cloze-zum-zur
+    outcomes: [stadt-weg-erfragen]
+    type: cloze
+    focus: dativ-praepositionen
+    preview: true
+    instruction: { en: "zum or zur? The article of the place decides.", ru: "zum или zur? Решает артикль места." }
+    text: "Entschuldigung, wie komme ich {{zum}} Bahnhof? Und wie komme ich {{zur}} Apotheke?"
+    translation: { en: "Excuse me, how do I get to the station? And how do I get to the pharmacy?", ru: "Извините, как мне пройти к вокзалу? А как пройти к аптеке?" }
+    explain: { en: "der Bahnhof and das Hotel take zum; die Apotheke takes zur. Why the article changes is the dative case — a later topic. For now: der/das → zum, die → zur.", ru: "der Bahnhof и das Hotel — zum; die Apotheke — zur. Почему артикль меняется, объяснит тема Dativ — она впереди. Пока правило простое: der/das → zum, die → zur." }
+  - id: mc-zum-hotel
+    outcomes: [stadt-weg-erfragen]
+    type: mc
+    focus: dativ-praepositionen
+    preview: true
+    prompt: "Entschuldigung, wie komme ich ___ Hotel?"
+    options: ["zum", "zur", "nach"]
+    correct: 0
+    translation: { en: "Excuse me, how do I get to the hotel?", ru: "Извините, как мне пройти к отелю?" }
+    explain: { en: "das Hotel is a das-word, so it takes zum: zum Hotel. zur belongs to die-words (zur Post), and nach goes with city and country names: nach Berlin.", ru: "das Hotel — слово с das, поэтому zum: zum Hotel. zur — для слов с die (zur Post), а nach — для городов и стран: nach Berlin." }
+  - id: translate-bahnhof
+    outcomes: [stadt-weg-erfragen]
+    type: translate
+    prompt_en: "Excuse me, where is the station?"
+    prompt_ru: "Извините, где вокзал?"
+    answer: "Entschuldigung, wo ist der Bahnhof?"
+    explain: { en: "Open politely with Entschuldigung, then a plain W-question: wo ist + article + noun. The article is not optional: der Bahnhof.", ru: "Начните вежливо с Entschuldigung, дальше обычный W-вопрос: wo ist + артикль + существительное. Артикль обязателен: der Bahnhof, а не просто Bahnhof." }
+  - id: translate-mit-dem-bus
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: translate
+    prompt_en: "I go to work by bus."
+    prompt_ru: "Я езжу на работу на автобусе."
+    answer: "Ich fahre mit dem Bus zur Arbeit."
+    accept: ["Ich fahre zur Arbeit mit dem Bus.", "Zur Arbeit fahre ich mit dem Bus.", "Mit dem Bus fahre ich zur Arbeit."]
+    explain: { en: "'By bus' is mit dem Bus — with the article, never bei. zur Arbeit is the fixed chunk for 'to work'.", ru: "«На автобусе» — mit dem Bus: с артиклем, не auf. «На работу» — устойчивая связка zur Arbeit." }
+  - id: schreiben-mein-weg
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: write
+    prompt: { en: "Mein Weg zur Arbeit — describe for your course group how you get to work (or to your German course).", ru: "Mein Weg zur Arbeit — опишите для группы курса, как вы добираетесь до работы (или до курса немецкого)." }
+    goal: { en: "Write three to four simple sentences about how you get there.", ru: "Напишите три-четыре простых предложения о том, как вы добираетесь." }
+    requirements:
+      - { en: "Use a transport chunk: mit dem Bus, mit der U-Bahn, mit dem Auto or zu Fuß.", ru: "Используйте транспортную связку: mit dem Bus, mit der U-Bahn, mit dem Auto или zu Fuß." }
+      - { en: "Use nehmen with a visible accusative: Ich nehme den Bus.", ru: "Используйте nehmen с аккузативом: Ich nehme den Bus." }
+      - { en: "Say whether the way is far or near: weit / nah.", ru: "Скажите, далеко это или близко: weit / nah." }
+    min_words: 18
+    model_answer: "Mein Weg ist nicht weit. Ich gehe zu Fuß zur Haltestelle. Dann nehme ich den Bus. Am Freitag fahre ich manchmal mit dem Fahrrad."
+    model_translation: { en: "My way is not far. I walk to the stop. Then I take the bus. On Fridays I sometimes go by bike.", ru: "Мой путь недалёкий. Я иду пешком до остановки. Потом я еду на автобусе. По пятницам я иногда езжу на велосипеде." }
+    explain: { en: "Pattern: chunk + verb in position 2. Dann nehme ich den Bus — after a fronted dann the verb comes right away. Transport is always mit + article or zu Fuß.", ru: "Схема: связка + глагол на втором месте. Dann nehme ich den Bus — после вынесенного dann глагол идёт сразу. Транспорт — всегда mit + артикль или zu Fuß." }

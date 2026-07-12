@@ -1,0 +1,28 @@
+topic: stadt-wege
+role: pretest
+items:
+  - id: pre-zum-bahnhof
+    outcomes: [stadt-weg-erfragen]
+    type: mc
+    prompt: "Entschuldigung, wie komme ich ___ Bahnhof?"
+    options: ["zum", "zur", "nach"]
+    correct: 0
+    translation: { en: "Excuse me, how do I get to the station?", ru: "Извините, как мне пройти к вокзалу?" }
+    explain: { en: "der Bahnhof is a der-word, so the question formula is zum: Wie komme ich zum Bahnhof? zur belongs to die-words (zur Post), and nach goes with city names: nach Berlin.", ru: "der Bahnhof — слово с der, поэтому формула вопроса — zum: Wie komme ich zum Bahnhof? zur — для слов с die (zur Post), а nach — для названий городов: nach Berlin." }
+  - id: pre-geradeaus
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: mc
+    prompt: "»Gehen Sie geradeaus, dann die erste Straße links.« Wohin gehen Sie zuerst?"
+    options: ["geradeaus", "links", "rechts"]
+    correct: 0
+    translation: { en: "'Go straight ahead, then the first street on the left.' Where do you go first?", ru: "«Идите прямо, потом первая улица налево». Куда вы идёте сначала?" }
+    explain: { en: "geradeaus means straight ahead. The directions say: first straight ahead, and only then the first street on the left.", ru: "geradeaus — «прямо». По описанию сначала идут прямо и только потом сворачивают на первую улицу налево." }
+  - id: pre-den-bus
+    outcomes: [stadt-verkehrsmittel-nennen]
+    type: mc
+    focus: akkusativ-artikel
+    prompt: "Ich nehme ___ Bus."
+    options: ["den", "der", "dem"]
+    correct: 0
+    translation: { en: "I take the bus.", ru: "Я поеду на автобусе." }
+    explain: { en: "nehmen takes an accusative object, and masculine der becomes den: Ich nehme den Bus.", ru: "nehmen требует аккузатива, а мужской артикль der превращается в den: Ich nehme den Bus." }
