@@ -8,10 +8,12 @@ export function WeaknessTrends({ attempts }: { attempts: Attempt[] }) {
   const trends = focusTrends(attempts)
     .filter((t) => t.total >= 3)
     .slice(0, 8);
+  // Owns its card: the panel used to wrap this in a <section>, so returning
+  // null here still left an empty box on the page.
   if (trends.length === 0) return null;
 
   return (
-    <div>
+    <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <h2 lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
         Schwachstellen im Verlauf
       </h2>
@@ -35,6 +37,6 @@ export function WeaknessTrends({ attempts }: { attempts: Attempt[] }) {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
