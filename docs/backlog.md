@@ -13,14 +13,16 @@ Phases 0–2 are done: the learning system, the Atlas, and a complete A1 (v0.2.0
 
 ### P3-1 · Author the complete A2 spine — `todo` (S)
 
-Define the final unit order and stable outcomes for Wohnen & Umzug, Reisen & Verkehr, Einkaufen &
-Reklamation, Gesundheit & Termine, Arbeit & Beruf, Lernen & Verstehen, Biografie & Vergangenheit,
-Freunde & Feste, Ämter & Alltag, and Nebensätze & Pläne. Add each live unit only with its content;
-declare the established `deepens` relationships from the roadmap.
+Use [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) to define the final A2 unit order,
+stable outcomes and `deepens` relationships. First incorporate the pre-A2 learning-audit findings
+into its entry assumptions, unit boundaries and vocabulary budgets. Add each live unit only with
+its complete content bundle; planning-only units remain in the blueprint and never become empty
+Atlas nodes.
 
 - Depends on: P2-7 pattern and current curriculum contracts.
-- Accept: ordering respects prerequisites; every topic belongs to one unit; outcome IDs are unique;
-  validation passes.
+- Accept: the blueprint's detailed A2 section reflects the completed pre-A2 audit; ordering respects
+  prerequisites; every live topic belongs to one unit; outcome IDs are unique; existing persisted
+  A2 identities are preserved; validation passes.
 
 ### P3-2 · Apply `deepens` semantics in training — `todo` (S)
 

@@ -5,7 +5,9 @@ Status: **in progress** (updated 2026-07-12).
 A1 is complete and shipped (v0.2.0). The current milestone is to bring A2 to the same bar, and to
 add the retention machinery — cumulative checkpoints and delayed probes — that a two-level course
 needs. Executable work lives in [backlog.md](backlog.md); implementation history lives in
-[archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md).
+[archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md). The detailed
+A2 authoring sequence and provisional B1 north star live in
+[curriculum-a2-b1.md](curriculum-a2-b1.md).
 
 ## Product direction
 
@@ -56,6 +58,13 @@ targeting cannot monopolize a session; verified and practice evidence remain dis
 
 Reconsider only after real A1 usage data exists: committed neural-TTS assets, extensive readers,
 local speaking capture, and scenario grouping. None may block A1 or A2 completion.
+
+## North star — B1 after the A2 checkpoint
+
+B1 is deliberately provisional. Its missions and progression are outlined in the curriculum
+blueprint so A2 does not create a dead end, but B1 topics are not added to the live Atlas or backlog
+until representative A2 usage and the cumulative checkpoint expose the real transition needs.
+Promoting B1 requires a separate roadmap decision; it is not part of the current completion claim.
 
 ## Definition of roadmap completion
 
