@@ -88,8 +88,8 @@ export function resumedQueueIsEligible(
  * take everything (see the constant). When band 4 is short the priority bands take the
  * slack back, and vice versa; nothing is ever wasted.
  *
- * Afterwards adjacency is repaired so no two consecutive items share a set (best effort —
- * impossible if one set dominates the selection).
+ * Afterwards the selection is interleaved so that no two consecutive items share a set,
+ * which is possible exactly when no set holds more than half the queue.
  */
 export function buildSession(
   sets: readonly TrainingSet[],
@@ -136,40 +136,65 @@ export function buildSession(
   const fromPriority = priority.slice(0, Math.max(0, count - reserved));
   const fromBroad = broad.slice(0, count - fromPriority.length);
 
-  return repairAdjacency([...fromPriority, ...fromBroad].slice(0, count));
+  return interleaveBySet([...fromPriority, ...fromBroad].slice(0, count));
 }
 
 /**
- * Swaps items until no two consecutive entries come from the same set (or no swap
- * improves things anymore). Each accepted swap strictly reduces the number of adjacent
- * same-set pairs, so this terminates.
+ * Reorders a selection so that no two consecutive items come from the same set.
+ *
+ * This replaces a hill-climbing swap repair that got stuck: it only ever tried to
+ * relocate the *right-hand* member of a conflicting pair, and it only accepted a swap
+ * that strictly reduced the conflict count, so a queue like `a b a b b a b a` was a
+ * local minimum with nowhere to go. Every single swap of that stray `b` either kept the
+ * count at one or made it worse — and moving the `b` to its *left* would have fixed it.
+ * A third of four-and-four sessions came out with a same-topic pair in them, which is
+ * the one thing interleaving exists to prevent.
+ *
+ * The greedy rule below cannot get stuck: at each step take the next item from whichever
+ * set has the most items left, excluding the set just served. Always spending down the
+ * largest remaining set is what keeps it from cornering itself, and it reaches zero
+ * conflicts whenever zero is reachable at all — that is, whenever no single set holds
+ * more than half the queue. When one set does dominate, the leftovers are unavoidable and
+ * are appended; nothing is dropped.
+ *
+ * Order inside a set is preserved exactly, and ties between equally large sets go to
+ * whichever one's next item came first, so the priority bands still decide who is served
+ * early.
  */
-function repairAdjacency(items: SessionItem[]): SessionItem[] {
-  const out = [...items];
-  const conflicts = (arr: readonly SessionItem[]): number => {
-    let n = 0;
-    for (let i = 1; i < arr.length; i++) if (arr[i]!.setId === arr[i - 1]!.setId) n++;
-    return n;
-  };
+function interleaveBySet(items: readonly SessionItem[]): SessionItem[] {
+  const groups = new Map<string, SessionItem[]>();
+  for (const item of items) {
+    const group = groups.get(item.setId);
+    if (group) group.push(item);
+    else groups.set(item.setId, [item]);
+  }
+  const rank = new Map(items.map((item, i) => [item.uid, i]));
 
-  let current = conflicts(out);
-  let improved = true;
-  while (current > 0 && improved) {
-    improved = false;
-    outer: for (let i = 1; i < out.length; i++) {
-      if (out[i]!.setId !== out[i - 1]!.setId) continue;
-      for (let j = 0; j < out.length; j++) {
-        if (j === i) continue;
-        [out[i], out[j]] = [out[j]!, out[i]!];
-        const c = conflicts(out);
-        if (c < current) {
-          current = c;
-          improved = true;
-          break outer;
-        }
-        [out[i], out[j]] = [out[j]!, out[i]!]; // revert
+  const out: SessionItem[] = [];
+  let previous: string | null = null;
+  while (out.length < items.length) {
+    let pick: SessionItem[] | undefined;
+    let pickId: string | null = null;
+    for (const [setId, group] of groups) {
+      if (group.length === 0 || setId === previous) continue;
+      if (
+        !pick ||
+        group.length > pick.length ||
+        (group.length === pick.length && rank.get(group[0]!.uid)! < rank.get(pick[0]!.uid)!)
+      ) {
+        pick = group;
+        pickId = setId;
       }
     }
+    // Only the set we just served has anything left: one set holds more than half the
+    // queue, so a same-set pair is arithmetically unavoidable. Serve them rather than
+    // shorten the session.
+    if (!pick) {
+      out.push(...groups.get(previous!)!);
+      break;
+    }
+    out.push(pick.shift()!);
+    previous = pickId;
   }
   return out;
 }

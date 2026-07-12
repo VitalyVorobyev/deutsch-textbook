@@ -52,7 +52,11 @@ GitHub Release notes.
   silently swallowed.
 - Writing drafts were shared between profiles on the same device.
 - Reading comprehension answers were not recording their evidence quality or response mode.
-- The roadmap now gates further A2 authoring on the post-release A1 learning-system hardening audit.
+- **Mixed training sometimes served two exercises from the same topic back to back.** Interleaving is
+  the whole point of mixed training — meeting a rule out of its own context is what forces you to
+  choose it rather than merely apply it — and a third of sessions were quietly failing to do it. The
+  queue is now built so that consecutive items come from different topics whenever the session's
+  composition allows it at all.
 
 ## [0.2.0] — 2026-07-12
 

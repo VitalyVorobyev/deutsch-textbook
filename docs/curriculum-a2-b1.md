@@ -1,416 +1,421 @@
-# A2–B1 Curriculum Blueprint
+# A2–B1 curriculum blueprint
 
-Status: **A2 authoring draft; B1 provisional** (2026-07-12).
+Status: **A2 is an authoring contract; B1 is a provisional north star** (2026-07-12).
 
-This is the authoring source of truth for the next course levels. It defines what a complete,
-adult-oriented path must teach before topics are added to the live Atlas. The ongoing pre-A2
-learning audit is the entry gate: its findings may change A2 assumptions, ordering and budgets.
-Until those findings are incorporated, A2 is detailed enough to author from but is not final. B1
-is a north star, not a content commitment.
+This is the source of truth for what A2 teaches, in what order, with which identities. It exists
+because the ten remaining A2 units share prerequisites, vocabulary and confusions, and deciding
+those unit by unit produces a level that does not add up. Everything here that names an identity —
+a topic id, an outcome id, a focus tag — is **frozen**: it becomes a persisted key in the learner's
+progress the moment its unit ships, and renaming it destroys their history.
+
+What this document is *not*: a second authoring contract. The rules for how any single artifact is
+written live in [`CLAUDE.md`](../CLAUDE.md), and the bar a finished unit must clear is the twelve-point
+A2 unit quality gate in [the A1 learning audit](a1-learning-audit.md). This document decides the
+*curriculum* — what the units are, what they own, and what they may not touch.
 
 ## Product and progression principles
 
-A2 moves the learner from rehearsed A1 exchanges toward independent handling of predictable
-everyday situations. B1 moves from isolated sentences toward connected accounts, explanations,
-opinions and problem solving in familiar personal, public, educational and professional contexts.
-The course teaches practical action, not a grammar inventory.
+A2 moves the learner from rehearsed A1 exchanges to independent handling of predictable everyday
+situations: housing, travel, shopping, health, work, socializing and public services. The course
+teaches practical action, not a grammar inventory. Grammar is embedded in the situation that needs
+it, and gets its own node only when the contrast is reusable across many situations — which at A2
+is true exactly once, for subordinate clauses.
 
-Every unit must:
+Every unit:
 
-- center on a real-world mission and 2–4 observable **Ich kann …** outcomes;
-- pair meaningful input with retrieval, interaction approximation and fresh-context production;
-- follow model → scaffold → fade → transfer → delayed check;
-- embed grammar in the mission unless a reusable contrast genuinely needs its own grammar node;
-- revisit earlier language through explicit `deepens` relationships and cumulative retrieval;
-- include cultural-pragmatic knowledge only where it changes what the learner understands or does;
-- keep the path soft and evidence honest: open production is practice, not verified mastery.
+- centres on one real-world scenario and 2–4 observable **Ich kann …** outcomes;
+- pairs meaningful input with retrieval, interaction approximation and fresh-context production;
+- follows pretest → model → explanation → scaffold → fade → transfer → delayed check;
+- revisits earlier language through explicit `deepens` edges and cumulative retrieval;
+- keeps the path soft and the evidence honest: open production is practice, never verified mastery.
 
-The modes must recur across the path. `spoken-interaction` means dialogue turns, a response task or
-a role prompt; it does not claim that the app measures real conversation. Pronunciation must serve
-intelligibility or listening rather than decorate written content.
+### Missions are an authoring convention, not a feature
+
+The audit requires each unit to provide "a coherent real-world mission joining multiple skills",
+while the backlog defers the mission *feature* (P5-4) as the most code for the least measured
+learning gain. Both are right, and the resolution is that a mission is a **content** rule:
+
+> A unit's article examples, reading, listening, practice and transfer task all take place in one
+> concrete scenario with the same people and the same problem, and the unit ends with a
+> fresh-context production task in which the learner does the thing the scenario was about.
+
+That costs no code, needs no new schema, and is exactly what "combine several skills in a coherent
+mission rather than merely lengthen the article" asked for. A branching or resumable mission engine
+remains deferred.
 
 ## Vocabulary policy
 
-Vocabulary comes from missions, models and readings, never a level-wide quota. Each unit below
-names lexical fields, productive chunks and an **approximate** new-entry budget. The budget is a
-load guardrail, not a target to fill.
-
-- Mark planned language as **new productive**, **new receptive** or **recycled** before writing a
-  deck. Productive language appears in a model and at least two retrieval contexts.
-- Prefer frequent, versatile words and natural collocations. A useful chunk can outrank a rare
-  standalone noun.
-- Recycle important new language in the next two units and again in a cumulative task.
-- Complete all noun/verb metadata and manually review IPA, especially for compounds, separable
-  verbs and loanwords.
-- Do not create disconnected `kernwortschatz` padding. A word without an input or communicative
-  role does not belong.
-- Exact headwords remain an authoring decision and may be redistributed after audit evidence.
-
-Across A2, aim for roughly **18–30 new entries per unit**, lower for grammar-heavy consolidation
-and higher for a genuinely new domain. Function words and chunks count. B1 budgets remain
-provisional at **20–35**, because input volume and collocational depth should grow faster than raw
-headword count.
-
-## A2 authoring sequence
-
-The persisted topic IDs `dativ`, `trennbare-verben`, `modalverben`, `perfekt-haben-sein`,
-`alltag-tagesablauf` and `termine-vereinbaren` remain intact. Strengthen them in place and use them
-as foundations; do not duplicate them under thematic names. The order below is the target after
-the pre-A2 audit, not permission to add empty Atlas nodes.
-
-### A2.0 · Existing foundations — strengthen in place
-
-**IDs:** the six existing IDs above. **Mission:** use case and verb-bracket knowledge while
-organizing a day, recounting an event and arranging a real appointment.
-
-**Outcomes:** Ich kann meinen Alltag mit Zeitangaben zusammenhängend beschreiben; ich kann kurz
-erzählen, was passiert ist; ich kann Erlaubnis, Notwendigkeit und Wünsche unterscheiden; ich kann
-einen Termin telefonisch oder schriftlich organisieren.
-
-**Input/interaction:** schedules, chats, phone turns, voicemail/calendar information and short
-past narratives. Add response turns and new-context production to the current material.
-
-**Language/pronunciation:** meaningful Dativ valency; separable verbs in Präsens, Perfekt and with
-modals; modal meanings; Perfekt narration and sequencing; prefix stress and audible brackets.
-
-**Lexis:** routine, appointment phrases, frequent participles and obligation/permission chunks.
-Budget: **0–15 new entries per strengthened topic**, only where an outcome lacks its language.
-
-**Transfer/check/confusions:** reschedule an appointment after explaining what happened; later
-choose case, modal meaning and auxiliary in parallel contexts. Reuse existing case, modal,
-separable-verb and Perfekt focus tags.
-
-**Exclude:** two-way prepositions, extended workplace duties, long narratives and subordinate
-clauses.
-
-### A2.1 · Wohnen & Umzug
-
-**Proposed ID/mission:** `wohnen-umzug` — find housing, describe where things go and handle a
-simple moving or neighbour issue.
-
-**Outcomes:** Ich kann eine Wohnungsanzeige nach wichtigen Informationen lesen; ich kann eine
-Wohnung und ihre Lage genauer beschreiben; ich kann sagen, wo etwas ist oder wohin es kommt; ich
-kann eine einfache Bitte an Vermieter oder Nachbarn formulieren.
-
-**Input/interaction:** listings, floor plans, handover note, house rules, neighbour chat and an
-enquiry about rent, deposit, availability or a household problem.
-
-**Language/pronunciation:** two-way prepositions with Wo?/Wohin?, contractions and
-`stehen/stellen`, `liegen/legen`, `hängen`; stressed location information and compound stress.
-
-**Prerequisites/spiral:** `wohnen`, `dativ`, `akkusativ`, `stadt-wege`; deepen all four.
-
-**Lexis/chunks/budget:** rooms, furniture, costs, moving, position/direction, neighbours and
-repairs; *Die Wohnung liegt …*, *Wie hoch ist …?*, *Ich stelle … neben …*, *Könnten Sie bitte …?*;
-productive core plus receptive listing abbreviations; **24–30**.
-
-**Transfer/check/confusions:** choose a listing and write an enquiry plus moving plan; later
-describe a changed room without sentence cues. Likely: `wechsel-akk-dat`, `dativ-artikel`,
-`akkusativ-artikel`; add narrowly defined tags for Wo?/Wohin? or placement verbs only if needed.
-
-**Exclude:** tenancy law, formal defect notices, passive voice and dense abbreviations.
-
-### A2.2 · Reisen & Verkehr
-
-**Proposed ID/mission:** `reisen-verkehr` — plan a trip and recover from a predictable transport or
-accommodation problem.
-
-**Outcomes:** Ich kann eine Verbindung auswählen und wichtige Durchsagen verstehen; ich kann
-Tickets, Zeiten und Umstiege erfragen; ich kann ein Reiseproblem erklären und um Hilfe bitten; ich
-kann kurz von einer Reise berichten.
-
-**Input/interaction:** timetable, ticket screen, announcement, booking confirmation, reception
-dialogue and delay message; clarification and repair turns.
-
-**Language/pronunciation:** travel prepositions, local/directional contrasts, movement Perfekt and
-`zuerst/dann/danach/am Ende`; times, platform numbers and announcement phrasing.
-
-**Prerequisites/spiral:** `stadt-wege`, `termine-vereinbaren`, `perfekt-haben-sein`,
-`wohnen-umzug`; deepen the first three.
-
-**Lexis/chunks/budget:** tickets, routes, platforms, luggage, accommodation, delays and repair;
-*Ich möchte nach …*, *Wo muss ich umsteigen?*, *Der Zug fällt aus*, *Ich habe … verloren*;
-productive actions plus receptive announcements; **26–30**.
-
-**Transfer/check/confusions:** reroute after cancellation and send an arrival message; delayed
-audio changes time and platform. Reuse `haben-sein`, `perfekt-satzklammer` and
-`dativ-praepositionen`; add no generic “travel” tag.
-
-**Exclude:** compensation claims, complex fares, Konjunktiv II theory and travel essays.
-
-### A2.3 · Einkaufen & Reklamation
-
-**Proposed ID/mission:** `einkaufen-reklamation` — compare products, buy clothing or household
-goods and resolve a simple problem politely.
-
-**Outcomes:** Ich kann Preise, Größen und Produktinformationen vergleichen; ich kann sagen, was
-mir passt oder gefällt; ich kann einen Umtausch begründen; ich kann eine kurze Reklamation schreiben.
-
-**Input/interaction:** labels, receipt, product page, shop dialogue, return policy and service chat.
-
-**Language/pronunciation:** frequent comparative/superlative patterns, high-value adjective+noun
-chunks, `passen/gefallen` + Dativ and `zu + Adjektiv`; prices and endings as audible chunks.
-
-**Prerequisites/spiral:** `essen-trinken`, `artikel-genus`, `akkusativ`, `dativ`, `modalverben`;
-deepen the first four.
-
-**Lexis/chunks/budget:** clothing, sizes, materials, qualities, payment, receipts, defects and
-returns; *günstiger als …*, *Das passt mir nicht*, *Ich möchte … umtauschen*, *Es ist kaputt*;
-**24–28**, reusing existing clothing/shopping decks first.
-
-**Transfer/check/confusions:** compare, choose and negotiate a return; later change the shop and
-product. Reuse `passen-dativ`, `dativ-pronomen`, `artikel-pflicht`; consider narrowly scoped
-`komparativ-als` and adjective-ending tags.
-
-**Exclude:** full adjective paradigms, consumer law and legal complaints.
-
-### A2.4 · Gesundheit & Arzttermin
-
-**Proposed ID/mission:** `gesundheit-arzttermin` — describe a problem, understand basic advice and
-organize appropriate care.
-
-**Outcomes:** Ich kann Beschwerden und ihre Dauer beschreiben; ich kann einfache Fragen und
-Anweisungen in Praxis oder Apotheke verstehen; ich kann Ratschläge geben und beantworten; ich kann
-einen Termin und eine kurze Abwesenheitsnachricht organisieren.
-
-**Input/interaction:** voicemail, symptom dialogue, medication label, pharmacy advice, sick message
-and appointment form.
-
-**Language/pronunciation:** body-part constructions, `seit` + Dativ/time, imperative, `sollen`,
-frequent reflexive phrases and polite questions; symptom stress and phone comprehension.
-
-**Prerequisites/spiral:** `termine-vereinbaren`, `dativ`, `modalverben`, `alltag-tagesablauf`;
-deepen the first three.
-
-**Lexis/chunks/budget:** body, symptoms, duration/intensity, pharmacy, dosage, appointments and
-absence; *Seit wann haben Sie …?*, *Mir tut … weh*, *Sie sollten …*, *Nehmen Sie …*; productive
-symptoms/requests plus receptive safety instructions; **24–30**.
-
-**Transfer/check/confusions:** choose a service, leave voicemail and relay instructions; later use
-a changed symptom scenario. Likely `seit-dativ-zeit`, `imperativ-form`, plus existing
-`dativ-pronomen`, `modal-satzklammer`, `du-sie`.
-
-**Exclude:** diagnosis, nonessential emergency medicine, medical promises and full reflexive theory.
-
-### A2.5 · Arbeit & Beruf
-
-**Proposed ID/mission:** `arbeit-beruf` — describe work and handle routine coordination.
-
-**Outcomes:** Ich kann Aufgaben, Arbeitszeiten und Erfahrung kurz beschreiben; ich kann eine Bitte
-oder ein Problem am Arbeitsplatz besprechen; ich kann Anweisungen und interne Nachrichten
-verstehen; ich kann eine kurze berufliche Nachricht schreiben.
-
-**Input/interaction:** job profile, rota, note, chat/email, instruction and colleague exchange.
-
-**Language/pronunciation:** obligation/permission, temporal order, frequent reflexive/separable work
-verbs, polite requests and causal `denn`; formal names, phone spelling and compound stress.
-
-**Prerequisites/spiral:** `modalverben`, `alltag-tagesablauf`, `termine-vereinbaren`,
-`perfekt-haben-sein`; deepen the first three.
-
-**Lexis/chunks/budget:** jobs, duties, schedules, colleagues, workplace, absence and shifts; *Ich
-bin zuständig für …*, *Ich muss …*, *Könnten Sie … übernehmen?*, *Ich komme später, denn …*;
-**22–28**.
-
-**Transfer/check/confusions:** explain duties and negotiate a shift change; later prioritize a
-changed task list. Reuse modal/separable tags and `du-sie`; consider `denn-verbzweit`.
-
-**Exclude:** complete applications, interviews, labor law and specialist vocabulary.
-
-### A2.6 · Lernen & Verstehen
-
-**Proposed ID/mission:** `lernen-verstehen` — participate in a course and repair understanding.
-
-**Outcomes:** Ich kann nach Bedeutung, Schreibung und Beispielen fragen; ich kann Anweisungen und
-Feedback verstehen; ich kann sagen, was mir beim Lernen hilft; ich kann eine kurze Kursanfrage oder
-Abwesenheitsnachricht schreiben.
-
-**Input/interaction:** course description, instructions, feedback note, learning plan, email and
-clarification dialogue.
-
-**Language/pronunciation:** high-frequency indirect-question chunks, `dass` and `weil` in useful
-frames, pronoun reference and repair phrases; spelling refresh, sentence accent for clarification.
-
-**Prerequisites/spiral:** `erste-schritte`, `modalverben`, `termine-vereinbaren`, `arbeit-beruf`;
-deepen the first three.
-
-**Lexis/chunks/budget:** courses, tasks, skills, understanding, feedback and habits; *Was bedeutet
-…?*, *Wie schreibt man das?*, *Können Sie das wiederholen?*; preview *Ich lerne besser, wenn …*
-only if marked; **20–24**.
-
-**Transfer/check/confusions:** repair three misunderstandings and write a learning plan; delayed
-audio changes the instruction. Use `nebensatz-verbende` only after instruction; otherwise existing
-`du-sie`, `modal-satzklammer`, `verbzweit`.
-
-**Exclude:** academic argument, reported-speech paradigms and abstract pedagogy vocabulary.
-
-### A2.7 · Biografie & Erfahrungen
-
-**Proposed ID/mission:** `biografie-erfahrungen` — give a short connected account of life events
-and past experiences.
-
-**Outcomes:** Ich kann wichtige Stationen ordnen; ich kann nach Erfahrungen fragen und antworten;
-ich kann häufige Präteritumformen von `sein`, `haben` und Modalverben benutzen; ich kann ein kurzes
-biografisches Profil verstehen und schreiben.
-
-**Input/interaction:** timeline, profile, interview turns, short narrative and personal email.
-
-**Language/pronunciation:** Perfekt consolidation; `war`, `hatte`, modal Präteritum; `vor/seit` and
-sequence connectors; sentence grouping in narrative speech.
-
-**Prerequisites/spiral:** `perfekt-haben-sein`, `alltag-tagesablauf`, `arbeit-beruf`; deepen the first
-two and `menschen-familie`.
-
-**Lexis/chunks/budget:** life stages, work/education milestones, moves, relationships and sequence;
-lexical *Als Kind …*, *Danach habe ich …*, *Damals war …*, *Seit …*; **20–26**.
-
-**Transfer/check/confusions:** interview from notes and write a fresh profile; later reconstruct a
-different timeline. Reuse Perfekt tags; consider `praeteritum-sein-haben-modal`, `seit-vor-zeit`.
-
-**Exclude:** full `als`-clause instruction, literary tense and detailed CV conventions.
-
-### A2.8 · Freunde, Einladungen & Feste
-
-**Proposed ID/mission:** `freunde-feste` — plan a social event, respond appropriately and handle a
-change or misunderstanding.
-
-**Outcomes:** Ich kann einladen, annehmen, ablehnen und begründen; ich kann Absprachen und Aufgaben
-aushandeln; ich kann Glückwünsche und passende Formeln benutzen; ich kann eine Einladung oder
-Ereignisnachricht schreiben.
-
-**Input/interaction:** invitation, group chat, notice, voice message and etiquette scenario.
-
-**Language/pronunciation:** two-object patterns, reflexive social verbs, `weil`, `aber/sondern` and
-time/place sequencing; friendly intonation versus neutral written formulas.
-
-**Prerequisites/spiral:** `freizeit-koennen`, `termine-vereinbaren`, `dativ`,
-`biografie-erfahrungen`; deepen the first two and `menschen-familie`.
-
-**Lexis/chunks/budget:** invitations, celebrations, gifts, contributions, congratulations,
-emotions and changes; *Hast du Lust …?*, *Leider kann ich nicht, weil …*, *Ich bringe … mit*,
-*Herzlichen Glückwunsch!*; **20–25**.
-
-**Transfer/check/confusions:** coordinate an event through changing chat turns; delayed variant
-changes people and constraints. Likely `nebensatz-verbende`, `trennbar-modal`,
-`dativ-pronomen`, `du-sie`.
-
-**Exclude:** relationship counseling, slang and broad cultural surveys.
-
-### A2.9 · Ämter & Dienstleistungen
-
-**Proposed ID/mission:** `aemter-dienstleistungen` — understand a routine form or notice and make a
-clear, polite public-service request.
-
-**Outcomes:** Ich kann Hauptinformationen in einem einfachen Schreiben oder Formular finden; ich
-kann Daten und Anliegen klar nennen; ich kann nach Unterlagen und nächsten Schritten fragen; ich
-kann eine kurze formelle Nachricht mit Grund schreiben.
-
-**Input/interaction:** form, appointment letter, opening-hours notice, post/bank/service dialogue
-and formal email.
-
-**Language/pronunciation:** formal Sie, lexicalized `könnte/würde gern`, common prepositional verbs,
-reason clauses and attachment/document language; names, dates and reference numbers.
-
-**Prerequisites/spiral:** `termine-vereinbaren`, `lernen-verstehen`, `modalverben`, `arbeit-beruf`;
-deepen `termine-vereinbaren`, `erste-schritte`, `modalverben`.
-
-**Lexis/chunks/budget:** forms, documents, registration, post/bank basics, copies, signatures and
-steps; *Ich möchte … beantragen*, *Welche Unterlagen brauche ich?*, *Mir fehlt …*, *Im Anhang finden
-Sie …*; productive service language plus receptive compounds; **24–30**.
-
-**Transfer/check/confusions:** extract requirements, complete a data task and ask for the missing
-step; delayed variant changes office/document. Reuse `du-sie`, `dativ-praepositionen`,
-`modal-satzklammer`; add `formal-anrede` only if distinct.
-
-**Exclude:** legal advice, tax/insurance systems and dense authentic letters above A2.
-
-### A2.10 · Gründe, Nebensätze & Pläne
-
-**Proposed ID/mission:** `gruende-plaene` — connect familiar information into a short explanation
-and make conditional or future plans.
-
-**Outcomes:** Ich kann Gründe mit `weil` und Informationen mit `dass` ausdrücken; ich kann einfache
-Bedingungen mit `wenn` verstehen und benutzen; ich kann Pläne, Wünsche und Alternativen erklären;
-ich kann mehrere verbundene Sätze schreiben oder sprechen.
-
-**Input/interaction:** plan comparison, advice exchange, personal message, short opinion and
-problem-solving dialogue. This consolidates the level instead of adding another broad domain.
-
-**Language/pronunciation:** verb-final `weil`, `dass`, basic `wenn`; main-clause order after a
-fronted subordinate clause; future intention mainly with Präsens and lexical `würde gern`; clause
-boundaries and sentence accent.
-
-**Prerequisites/spiral:** all earlier A2 units, especially `lernen-verstehen`, `freunde-feste`,
-`aemter-dienstleistungen`; deepen `praesens-wortstellung`, `modalverben`, `perfekt-haben-sein`.
-
-**Lexis/chunks/budget:** connectors, reasons, conditions, plans, alternatives and decisions;
-*…, weil …*, *Ich glaube, dass …*, *Wenn …, dann …*, *Ich würde gern …*; **14–20** because syntax
-and recycling carry the load.
-
-**Transfer/check/confusions:** solve a familiar planning problem and write a connected explanation;
-delayed probe uses a new domain. Likely `nebensatz-verbende`, `nebensatz-vorfeld-verbzweit`,
-`weil-denn`, `dass-satz`.
-
-**Exclude:** indirect speech, Konjunktiv II paradigms, relative clauses and essay writing.
-
-### A2 checkpoint and transition
-
-The cumulative checkpoint samples outcomes rather than every topic fact. It includes hidden-
-transcript listening, practical reading, automatically scored constrained production and an
-unverified fresh-context writing task. Parallel delayed probes measure the same outcomes with new
-details. Completion does not claim speaking certification.
-
-B1 readiness means the learner can connect several sentences, recover from predictable
-misunderstandings and retain high-value A2 language across time. It does not require every A2 topic
-badge to say mastered.
+**The lexical fields are already ~85% spent.** Twenty-five decks hold 711 headwords, and the
+validator hard-fails a headword that appears in two decks. Twelve of those decks are deliberately
+*unowned* — they were authored for the Goethe-A1 Wortliste completion pass and gate their fresh
+cards on the learner's level rather than on a topic (`eligibleFreshCards`, `src/lib/decks.ts`).
+They already own most of the words a new A2 unit reaches for: `umsteigen`, `Gleis` and `Fahrplan`
+(reisen-urlaub); `stehen`, `stellen`, `legen` and `liegen` (wohnen, verben-grundwortschatz);
+`passen` (termine-zeit); `weil`, `dass`, `wenn` and `denn` (kernwortschatz-a2); `bedeuten` and
+`wiederholen` (kommunikation-medien).
+
+Two rules follow, and they are not negotiable.
+
+**Recycle, never adopt.** An A2 unit must not list an existing A1 deck in its `vocab:` frontmatter.
+Doing so flips that deck's fresh-card eligibility from "any A1 topic has been opened" to "this A2
+topic has been opened", which would push hundreds of A1 Wortliste words behind an A2 gate and
+quietly break the 100% A1 coverage claim in practice. Instead the unit **recycles** the A1 field
+deck in its article examples, reading and exercises — which is what finally gives those words the
+communicative home the level-completion decks never had.
+
+**Each unit owns one thin new A2 deck.** `content/vocab/<unit-id>.yaml`, `level: A2`, holding only
+language that no deck already teaches: the genuinely A2 words, and the multi-word chunks that carry
+the function (`Wo muss ich umsteigen?` is a distinct headword from `umsteigen`, and is the more
+useful card). Before authoring, list the forbidden headwords for the field — every `de` in
+`content/vocab/*.yaml` — and check against it. Expect **12–24 new entries per unit**, lower for a
+grammar-heavy unit, and treat the number as a load guardrail rather than a target.
+
+**Receptive-only language never enters a deck.** `buildDeck()` turns every vocab entry into two
+cards, a recognition card and a production card; there is no recognition-only representation. So a
+station announcement, a listing abbreviation or a form heading — language the learner must
+understand but will never produce — belongs in a reading, a gloss or an article table, and nowhere
+near `content/vocab/`. (The draft of this blueprint asked authors to budget "new receptive"
+vocabulary; that category is deleted. If A2 usage shows the SRS load is genuinely inflated by words
+that only need recognition, a `cards: recognition | both` field is the fix, and it is a backlog
+item, not an authoring workaround.)
+
+**Coverage is measured, not asserted.** A2 is checked against the Goethe-Zertifikat A2 Wortliste in
+`data/goethe-a2-wortliste.txt` exactly as A1 is: units drive authoring, a completion pass at the end
+of the level closes the remaining gap, and the Über page computes the real figure. No count on a
+user-facing page is ever hand-written.
+
+## The A2 spine
+
+The six A2 topics that already ship keep their ids and their spine positions. They are strengthened
+in place, never duplicated under a thematic name.
+
+| # | Topic id | Kind | What it owns | Deepens |
+| ---: | --- | --- | --- | --- |
+| 11 | `dativ` | grammar | *(ships)* dative articles, pronouns, prepositions, dative verbs | stadt-wege |
+| 12 | `trennbare-verben` | grammar | *(ships)* separable prefixes and the bracket | — |
+| 13 | `modalverben` | grammar | *(ships)* modal meanings and the bracket | freizeit-koennen |
+| 14 | `perfekt-haben-sein` | grammar | *(ships)* auxiliary choice, Partizip II, the Perfekt bracket | — |
+| 15 | `alltag-tagesablauf` | vocab-field | *(ships)* daily routine, sequencing | alltag-zeit |
+| 16 | `termine-vereinbaren` | communication | *(ships)* appointments, register | — |
+| 17 | `wohnen-umzug` | vocab-field | Wechselpräpositionen (Wo?/Wohin?), stehen/stellen, liegen/legen, hängen | wohnen, akkusativ, dativ, stadt-wege |
+| 18 | `reisen-verkehr` | communication | travel prepositions, movement Perfekt, sequence connectors | stadt-wege, perfekt-haben-sein, termine-vereinbaren |
+| 19 | `einkaufen-reklamation` | vocab-field | Komparativ/Superlativ, passen/gefallen + Dativ, zu + Adjektiv | essen-trinken, dativ, akkusativ |
+| 20 | `gesundheit-arzttermin` | communication | Imperativ, sollen, seit/vor + Dativ, reflexive chunks | termine-vereinbaren, dativ, modalverben |
+| 21 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf |
+| 22 | `nebensaetze-plaene` | grammar | weil, dass, wenn, denn; verb-final; the fronted subordinate clause | praesens-wortstellung, modalverben |
+| 23 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie |
+| 24 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ |
+| 25 | `lernen-verstehen` | communication | indirect questions, repair chunks, dass/weil frames | erste-schritte, modalverben |
+| 26 | `aemter-dienstleistungen` | communication | formal Sie, lexical könnte/würde gern, reason clauses | termine-vereinbaren, erste-schritte |
+
+### Why Nebensätze sit in the middle
+
+The first draft of this blueprint put subordinate clauses last, as a final consolidation unit
+(`gruende-plaene`). That order does not survive contact with the validator, and it should not: four
+of the units that would precede it — work, biography, invitations, public services — cannot say
+anything worth saying without *weil* and *dass*. "Leider kann ich nicht, weil …" is not an advanced
+flourish; it is how an A2 learner declines an invitation. Declaring the `weil` items `preview: true`
+across three units would be a way of admitting the order is wrong without fixing it.
+
+So `nebensaetze-plaene` is a grammar node at position 22, and the four units after it spiral
+subordinate clauses instead of tiptoeing around them. The consolidation function that the final unit
+was supposed to serve moves to the cumulative A2 checkpoint, which is what a checkpoint is for.
+
+### Atlas groups
+
+Three new **leaf** groups are needed; a node must sit in a group that is nobody's parent, and its
+strand must match the group's.
+
+| Group id | Strand | Parent | Holds |
+| --- | --- | --- | --- |
+| `gesundheit-koerper` | vocabulary | `wortschatz` | `gesundheit-arzttermin` |
+| `arbeit-bildung` | vocabulary | `wortschatz` | `arbeit-beruf`, `lernen-verstehen` |
+| `behoerden-services` | communication | `kommunikation` | `aemter-dienstleistungen` |
+
+The rest fit existing leaves: `wohnen-umzug` → `wohnen-zuhause`; `reisen-verkehr` → `unterwegs`;
+`einkaufen-reklamation` → `essen-einkaufen`; `nebensaetze-plaene` → `satzbau`;
+`biografie-erfahrungen` and `freunde-feste` → `person-alltag`.
+
+## Outcomes
+
+Two to four per node, globally unique, and every one of them must be referenced by at least one
+non-pretest exercise item or reading question — an outcome nothing measures is decoration, and the
+validator now rejects it. Modes are spread deliberately: a level whose outcomes are all `writing`
+cannot claim to teach a language.
+
+| Topic | Outcome ids (mode) |
+| --- | --- |
+| `wohnen-umzug` | `wohnungsanzeige-lesen` (reading), `wohnung-beschreiben` (writing), `wo-wohin-position` (writing), `nachbarn-bitte` (spoken-interaction) |
+| `reisen-verkehr` | `verbindung-waehlen` (reading), `durchsage-verstehen` (listening), `reise-problem-loesen` (spoken-interaction), `reise-berichten` (spoken-production) |
+| `einkaufen-reklamation` | `produkte-vergleichen` (writing), `gefallen-passen-sagen` (spoken-interaction), `umtausch-begruenden` (spoken-interaction), `reklamation-schreiben` (writing) |
+| `gesundheit-arzttermin` | `beschwerden-beschreiben` (spoken-production), `praxis-anweisungen-verstehen` (listening), `ratschlag-geben` (spoken-interaction), `krankmeldung-schreiben` (writing) |
+| `arbeit-beruf` | `aufgaben-beschreiben` (spoken-production), `arbeitszeit-aushandeln` (spoken-interaction), `arbeitsanweisung-verstehen` (listening), `berufliche-nachricht-schreiben` (writing) |
+| `nebensaetze-plaene` | `weil-grund` (spoken-production), `dass-satz` (writing), `wenn-bedingung` (writing), `nebensatz-vorfeld-stellung` (writing) |
+| `biografie-erfahrungen` | `lebensstationen-ordnen` (writing), `praeteritum-war-hatte` (writing), `erfahrungen-fragen` (spoken-interaction), `profil-schreiben` (writing) |
+| `freunde-feste` | `einladen-zusagen-absagen` (spoken-interaction), `absprachen-aushandeln` (spoken-interaction), `glueckwuensche-formeln` (spoken-production), `einladung-schreiben` (writing) |
+| `lernen-verstehen` | `nachfragen-klaeren` (spoken-interaction), `kursanweisungen-verstehen` (listening), `lernstrategien-sagen` (spoken-production), `kursanfrage-schreiben` (writing) |
+| `aemter-dienstleistungen` | `formular-verstehen` (reading), `anliegen-nennen` (spoken-interaction), `unterlagen-erfragen` (spoken-interaction), `formelle-nachricht-schreiben` (writing) |
+
+An outcome's `mode` is what the curriculum *targets*. It is not a claim about what the learner did:
+attempts record their own `responseMode`, and a written multiple-choice item never becomes spoken
+evidence because the outcome it serves says `spoken-interaction`.
+
+## Focus tags
+
+The taxonomy is an allowlist. A tag must appear in the CLAUDE.md table **and** in
+`focusIntroducedBy` (`scripts/validate.ts`), naming the topic that introduces it, or validation
+fails. These are the A2 additions, decided here so the taxonomy stays coherent instead of accreting
+one unit at a time. Each is registered in the pull request that lands its introducing topic.
+
+| Tag | Introduced by | The confusion it names |
+| --- | --- | --- |
+| `wo-wohin` | `wohnen-umzug` | two-way prepositions: Wo? + Dativ (position) vs Wohin? + Akkusativ (direction) |
+| `stellen-stehen` | `wohnen-umzug` | the placement/position verb pairs stellen/stehen, legen/liegen, hängen |
+| `komparativ-als` | `einkaufen-reklamation` | comparison with *als*, and the irregular forms (gut → besser, gern → lieber) |
+| `superlativ-am` | `einkaufen-reklamation` | the superlative *am …-sten* |
+| `imperativ-form` | `gesundheit-arzttermin` | imperative forms for du, ihr and Sie (Nehmen Sie …, Nimm …) |
+| `seit-vor-zeit` | `gesundheit-arzttermin` | *seit* + Dativ (since/for, still true) vs *vor* + Dativ (ago, finished) |
+| `reflexiv-akkusativ` | `gesundheit-arzttermin` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |
+| `nebensatz-verbende` | `nebensaetze-plaene` | the conjugated verb goes last in a weil-, dass- or wenn-clause |
+| `weil-denn` | `nebensaetze-plaene` | *weil* sends the verb to the end, *denn* does not |
+| `nebensatz-vorfeld` | `nebensaetze-plaene` | a fronted subordinate clause fills position 1, so the main verb comes straight after it |
+| `praeteritum-sein-haben` | `biografie-erfahrungen` | war/hatte and the modal Präteritum, used where Perfekt is not |
+| `indirekte-frage` | `lernen-verstehen` | indirect questions send the verb to the end (Wissen Sie, wo der Kurs **ist**?) |
+| `hoeflich-konjunktiv` | `aemter-dienstleistungen` | the lexical polite forms *könnte* and *würde gern*, learned as chunks, not as a paradigm |
+
+Two confusions that look new are not, and must reuse the existing tag: choosing between accusative
+and dative in a two-way-preposition sentence is `wechsel-akk-dat`, and register is `du-sie`.
+
+## The units
+
+Each entry below fixes the scenario, the language, the recycled lexis, the transfer task, the likely
+confusions and — most importantly — **what the unit may not touch**. The exclusions are what keep an
+A2 article readable by an A2 learner.
+
+### A2.0 · The six shipped topics — strengthen in place
+
+They predate the hardened loop and are below its bar: across all six there are zero `write` items,
+zero `speak` items, zero `audio-comprehension` items, zero probe families and no extensive reader,
+and four declared outcomes (`dativ-pronomen`, `dativ-praepositionen`, `dativ-verben`,
+`modal-konjugation`) are measured by nothing at all. Bringing them up is a prerequisite for the ten
+units that build on them, not a tidy-up.
+
+Per topic: a hidden-transcript listening task, a `write` task with the draft → checklist → revision
+loop, a `speak` task with record and replay, and a faded discrimination set against the material it
+is confusable with. Give each topic one scenario its artifacts share. Add items to **non-primary**
+practice sets, or to a new practice set appended *after* the existing ones — appending to a topic's
+`primaryPractice` set silently un-finishes it for a learner who had completed it.
+
+**Exclude:** two-way prepositions (they belong to `wohnen-umzug`), subordinate clauses, workplace
+duties, long narratives.
+
+### A2.1 · `wohnen-umzug` — Wohnen & Umzug
+
+**Scenario:** find a flat, move in, and get one thing fixed.
+**Input:** a listing, a floor plan, a handover note, house rules, a message to the landlord.
+**Language:** two-way prepositions with Wo?/Wohin? and the contractions (im, ins, am, ans);
+stehen/stellen, liegen/legen, hängen; compound stress in the vocabulary of rooms and costs.
+**Recycles:** `wohnen`, `haushalt-geraete`, `verben-grundwortschatz` (the position verbs are already
+cards there — teach the *contrast*, do not re-deck the words), `dativ`, `akkusativ`.
+**New deck:** Umzug, Nachbar, Vermieter, Kaution, Nebenkosten, Regal, Teppich, hängen, plus the
+chunks *Die Wohnung liegt …*, *Wie hoch ist die Miete?*, *Könnten Sie bitte …?*
+**Transfer:** choose a listing, write an enquiry, and say where the furniture goes.
+**Confusions:** `wo-wohin`, `stellen-stehen`, `wechsel-akk-dat`, `dativ-artikel`, `akkusativ-artikel`.
+**Exclude:** tenancy law, formal defect notices, the passive, dense listing abbreviations as
+production.
+
+### A2.2 · `reisen-verkehr` — Reisen & Verkehr
+
+**Scenario:** plan a journey, then recover when the train is cancelled.
+**Input:** a timetable, a ticket screen, a platform announcement, a booking confirmation, a
+reception dialogue.
+**Language:** travel prepositions (nach, zu, in, mit); the movement Perfekt with *sein*; the
+sequence connectors zuerst/dann/danach/am Ende (recycled, not re-decked); numbers, platforms and the
+phrasing of announcements as listening.
+**Recycles:** `reisen-urlaub`, `stadt-wege`, `trennbare-verben` (einsteigen, umsteigen, abfahren and
+ankommen are already cards), `perfekt-verben`.
+**New deck:** Verspätung, ausfallen, Anschluss, Durchsage, Schaffner, entwerten, Sitzplatz, plus
+*Wo muss ich umsteigen?*, *Der Zug fällt aus*, *Ich habe meinen Koffer verloren*.
+**Transfer:** reroute after a cancellation and send an arrival message.
+**Confusions:** `haben-sein`, `perfekt-satzklammer`, `dativ-praepositionen`, `trennbar-wortstellung`.
+**Exclude:** compensation claims, fare systems, Konjunktiv II, travel essays.
+
+### A2.3 · `einkaufen-reklamation` — Einkaufen & Reklamation
+
+**Scenario:** compare two products, buy one, and take it back when it breaks.
+**Input:** labels, a receipt, a product page, a shop dialogue, a returns policy, a service chat.
+**Language:** the comparative with *als* and the superlative *am …-sten*, including gut/besser and
+gern/lieber; passen and gefallen with the dative; *zu + Adjektiv*.
+**Recycles:** `einkaufen-geschaefte`, `kleidung-farben`, `essen-trinken` (Preis, Kasse, kosten,
+bezahlen are already cards), `dativ-verben` (gefallen), `termine-zeit` (passen).
+**New deck:** umtauschen, Reklamation, Quittung, zurückgeben, Garantie, günstig, Bon, plus
+*Das passt mir nicht*, *Ich möchte das umtauschen*, *Es ist kaputt gegangen*.
+**Transfer:** compare, choose, then negotiate a return in a shop that is not the one in the article.
+**Confusions:** `komparativ-als`, `superlativ-am`, `passen-dativ`, `dativ-pronomen`.
+**Exclude:** the full adjective-ending paradigm (attributive endings stay out of A2 here), consumer
+law, legal complaints.
+
+### A2.4 · `gesundheit-arzttermin` — Gesundheit & Arzttermin
+
+**Scenario:** you have been ill for three days; get an appointment, understand the advice, tell work.
+**Input:** a voicemail, a symptom dialogue, a medication label, pharmacy advice, a sick note.
+**Language:** *Mir tut … weh* and the body-part constructions; *seit* + Dativ for duration against
+*vor* + Dativ for "ago"; the imperative for du/ihr/Sie; *sollen* for advice; the frequent reflexive
+chunks (sich fühlen, sich ausruhen).
+**Recycles:** `koerper-gesundheit`, `termine-zeit`, `kernwortschatz-a2` (krank and gesund are
+already cards), `dativ-pronomen`.
+**New deck:** Rezept, Husten, Schnupfen, untersuchen, Krankschreibung, Beschwerden, Salbe, plus
+*Seit wann haben Sie …?*, *Mir tut der Hals weh*, *Sie sollten viel trinken*.
+**Transfer:** leave a voicemail for the practice, then relay the doctor's instructions to someone else.
+**Confusions:** `seit-vor-zeit`, `imperativ-form`, `reflexiv-akkusativ`, `dativ-pronomen`, `du-sie`.
+**Exclude:** diagnosis, emergency medicine beyond calling for help, anything that reads as medical
+advice, the full reflexive paradigm.
+
+### A2.5 · `arbeit-beruf` — Arbeit & Beruf
+
+**Scenario:** describe what you do, then swap a shift with a colleague.
+**Input:** a job profile, a rota, a note, a short internal message, a spoken instruction.
+**Language:** obligation and permission at work (müssen, dürfen, sollen); polite requests
+(Könnten Sie …?); temporal order; *denn* as a coordinating reason — which sets up the contrast that
+`nebensaetze-plaene` completes.
+**Recycles:** `schule-arbeit`, `alltag-tagesablauf` (Arbeit, Büro, Pause and Feierabend are already
+cards), `termine-zeit`, `modalverben`.
+**New deck:** Schicht, Überstunden, zuständig, übernehmen, Abteilung, Vertrag, plus
+*Ich bin zuständig für …*, *Könnten Sie das übernehmen?*, *Ich komme später, denn …*
+**Transfer:** explain your duties and negotiate a shift change by message.
+**Confusions:** `modal-satzklammer`, `duerfen-muessen`, `du-sie`, `trennbar-modal`.
+**Exclude:** applications and interviews (those are B1), labour law, specialist vocabulary.
+
+### A2.6 · `nebensaetze-plaene` — Nebensätze & Pläne
+
+**Scenario:** explain a decision — why you cannot come, what you think, what you will do if it rains.
+**Input:** an advice exchange, a personal message, a short opinion, a planning dialogue.
+**Language:** verb-final *weil*, *dass* and *wenn*; *denn* against *weil*; the main clause after a
+fronted subordinate clause (Wenn ich Zeit habe, **komme** ich); plans expressed with the present
+plus a time phrase, and the lexical *würde gern*.
+**Recycles:** `kernwortschatz-a2` (weil, dass, wenn and denn are already cards — this unit teaches
+the *syntax*, so it must not re-deck them), `praesens-wortstellung`, `modalverben`.
+**New deck:** deliberately thin — the connectors are already taught. Chunks only: *Ich glaube, dass …*,
+*Wenn …, dann …*, *Ich würde gern …*, *Deshalb …*
+**Transfer:** solve a familiar planning problem in several connected sentences.
+**Confusions:** `nebensatz-verbende`, `weil-denn`, `nebensatz-vorfeld`, `verbzweit`.
+**Exclude:** indirect speech, the Konjunktiv II paradigm, relative clauses, essay writing.
+
+### A2.7 · `biografie-erfahrungen` — Biografie & Erfahrungen
+
+**Scenario:** tell someone your story, and ask them for theirs.
+**Input:** a timeline, a profile, interview turns, a short narrative, a personal email.
+**Language:** Perfekt consolidated for narration; *war*, *hatte* and the modal Präteritum, which is
+where German actually uses the simple past in speech; *vor* and *seit*; sequence connectors.
+**Recycles:** `menschen-familie` (geboren, verheiratet, Geburtstag are already cards),
+`perfekt-verben`, `schule-arbeit`, `verben-grundwortschatz` (heiraten).
+**New deck:** Lebenslauf, Station, Erfahrung, Ausbildung, damals, plus *Als Kind …*,
+*Danach habe ich …*, *Damals war ich …*
+**Transfer:** interview a partner from notes, then write a profile of someone you have not met.
+**Confusions:** `praeteritum-sein-haben`, `haben-sein`, `perfekt-satzklammer`, `seit-vor-zeit`.
+**Exclude:** *als*-clauses as a taught structure (they appear only as fixed chunks here), the
+literary Präteritum of full verbs, CV conventions.
+
+### A2.8 · `freunde-feste` — Freunde, Einladungen & Feste
+
+**Scenario:** organize a birthday in a group chat, and handle the person who has to cancel.
+**Input:** an invitation, a group chat, a notice, a voice message.
+**Language:** two-object patterns (Ich bringe **dir** **einen Kuchen** mit); reflexive social verbs;
+*weil* for declining; *aber* against *sondern*; congratulation formulas as chunks.
+**Recycles:** `freizeit-koennen` (Einladung, Party, feiern are already cards), `trennbare-verben`
+(einladen, mitbringen), `termine-zeit` (absagen, verschieben), `funktionswoerter-chunks`
+(Herzlichen Glückwunsch), `dativ`.
+**New deck:** Gastgeber, Geschenk, Überraschung, sich freuen, mitfeiern, plus *Hast du Lust …?*,
+*Leider kann ich nicht, weil …*, *Ich bringe … mit*.
+**Transfer:** coordinate the event through chat turns that keep changing.
+**Confusions:** `nebensatz-verbende`, `wechsel-akk-dat`, `dativ-pronomen`, `trennbar-modal`.
+**Exclude:** slang, relationship talk, broad cultural surveys.
+
+### A2.9 · `lernen-verstehen` — Lernen & Verstehen
+
+**Scenario:** you are in a course and you did not understand — repair it.
+**Input:** a course description, spoken instructions, a feedback note, an email, a clarification
+dialogue.
+**Language:** indirect questions with the verb at the end (Können Sie mir sagen, wo …?); repair
+chunks; *dass* and *weil* in useful frames; pronoun reference across sentences.
+**Recycles:** `kommunikation-medien` (bedeuten, wiederholen, Antwort, Frage are already cards),
+`schule-arbeit`, `erste-schritte` (buchstabieren), `kernwortschatz-a2`.
+**New deck:** Bedeutung, Beispiel, üben, Aussprache, Wörterbuch, Fehler, plus
+*Was bedeutet das?*, *Wie schreibt man das?*, *Können Sie das bitte wiederholen?*
+**Transfer:** repair three misunderstandings in a lesson you have not seen, and write a learning plan.
+**Confusions:** `indirekte-frage`, `nebensatz-verbende`, `du-sie`, `verbzweit`.
+**Exclude:** academic argument, reported speech, abstract pedagogy vocabulary.
+
+### A2.10 · `aemter-dienstleistungen` — Ämter & Dienstleistungen
+
+**Scenario:** you must register your address; find out what you need and ask for it politely.
+**Input:** a form, an appointment letter, an opening-hours notice, a counter dialogue, a formal email.
+**Language:** formal Sie throughout; the lexical *könnte* and *würde gern*; reason clauses with
+*weil*; the language of documents, attachments and next steps; names, dates and reference numbers as
+listening.
+**Recycles:** `stadt-wege` (Post, Bank), `schule-arbeit` (Formular, Ausweis), `reisen-urlaub`
+(Rathaus, Polizei), `termine-zeit`.
+**New deck:** Amt, Antrag, beantragen, Unterlagen, Anmeldung, Bescheinigung, Unterschrift, Gebühr,
+plus *Ich möchte … beantragen*, *Welche Unterlagen brauche ich?*, *Im Anhang finden Sie …*
+**Transfer:** extract the requirements from a notice, fill in the data, and ask for the step that is
+missing.
+**Confusions:** `hoeflich-konjunktiv`, `du-sie`, `nebensatz-verbende`, `dativ-praepositionen`.
+**Exclude:** legal advice, the tax and insurance systems, authentic letters written above A2.
+
+## The A2 checkpoint and the transition to B1
+
+The cumulative checkpoint samples the level's outcomes rather than every fact in it, following
+`content/exercises/a1/checkpoint-a1.yaml`: hidden-transcript listening, practical reading,
+automatically scored constrained production, and one fresh-context writing task that is recorded as
+practice and never as verified mastery. It is reachable only when the A2 path is done, it never
+enters ordinary training, and finishing it is not a claim that the learner speaks A2 German.
+
+B1 readiness means the learner connects several sentences, recovers from a predictable
+misunderstanding, and still has the high-value A2 language weeks later. It does not require every A2
+badge to read *mastered*.
 
 ## Provisional B1 architecture
 
-Do not add these units to `content/atlas.yaml`. Boundaries, budgets and IDs remain provisional until
-representative A2 usage and the A2 checkpoint are reviewed. B1 grows discourse length,
-independence and genre range; it is not simply “more grammar.”
+**Do not add any of this to `content/atlas.yaml`.** Boundaries, budgets and ids stay provisional
+until representative A2 usage and the A2 checkpoint have been reviewed. B1 grows discourse length,
+independence and genre range; it is not simply more grammar.
 
-| Order / proposed ID | Mission and mode progression | Language/discourse | Lexical fields / budget | Dependency and uncertainty |
-| --- | --- | --- | --- | --- |
-| B1.1 `erfahrungen-erzaehlen` | Tell a connected story, understand an interview, ask follow-ups, write a narrative message | `als`/`wenn` time relations, Perfekt–Präteritum distribution, reference across sentences | experiences, turning points, reactions; **20–28** | Builds on A2 biography; confirm retained narrative control |
-| B1.2 `leben-veraendern` | Discuss housing/relocation, compare options and justify a choice | useful relative clauses, comparison, frequent infinitive-with-`zu` intentions | housing quality, neighbourhood, change, trade-offs; **24–30** | Builds on housing/reasons; keep practical boundary |
-| B1.3 `arbeit-bewerbung` | Read a vacancy, present experience, write a simple application, handle interview turns | formal register, broader subordinate clauses, polite Konjunktiv II | qualifications, applications, workplace communication; **28–35** | Depends on work/public services; depth depends on learner goals |
-| B1.4 `gesundheit-wohlbefinden` | Explain history, understand recommendations, discuss habits/stress | reflexive/prepositional verbs, advice, conditions, cause/effect | services, wellbeing, habits, prevention; **22–30** | Builds on health; remain safe and non-diagnostic |
-| B1.5 `meinung-medien` | Understand a report, summarize its point and support an opinion | opinion frames, connectors, indirect questions, reported information | media, digital life, credibility, preferences; **24–30** | Depends on reasons/plans; test mediation load |
-| B1.6 `konsum-umwelt` | Compare choices, understand notices and negotiate a practical solution | passive recognition/limited production, relative clauses, consequences | consumption, repairs, waste, energy; **24–30** | Builds on shopping/housing; avoid abstract policy early |
-| B1.7 `reisen-probleme` | Manage less predictable disruption and make a complaint | narrative plus formal request, prepositional verbs, hypothetical solutions | disruption, accommodation, claims, alternatives; **22–28** | Builds on travel/complaints; exclude legal detail |
-| B1.8 `lernen-zukunft` | Discuss learning/career goals, summarize information, plan next steps | infinitive clauses, future intentions, conditions, justification | education, skills, goals, advice; **22–28** | Confirm whether work/education need variants |
-| B1.9 `gesellschaft-zusammenleben` | Join a familiar community discussion and resolve disagreement | `obwohl`/`trotzdem`, modal nuance, relative clauses | neighbours, volunteering, rules, everyday civic life; **24–30** | Cultural content must remain action-oriented |
-| B1.10 `informationen-vermitteln` | Relay main points of a notice, message or conversation | paraphrase, reported information, reference control, summaries | cross-domain mediation/repair chunks; **18–24** | Cumulative; requires a workable task/rubric model |
+| Proposed id | Mission | Language and discourse | Depends on / uncertainty |
+| --- | --- | --- | --- |
+| `erfahrungen-erzaehlen` | Tell a connected story, understand an interview, write a narrative message | als/wenn time relations, the Perfekt–Präteritum distribution, reference across sentences | A2 biography; confirm narrative control is retained |
+| `leben-veraendern` | Discuss housing and relocation, compare options, justify a choice | useful relative clauses, comparison, infinitive with *zu* | A2 housing and reasons; keep the boundary practical |
+| `arbeit-bewerbung` | Read a vacancy, present experience, write an application, handle interview turns | formal register, broader subordinate clauses, polite Konjunktiv II | A2 work and public services; depth depends on the learner's goals |
+| `gesundheit-wohlbefinden` | Explain a history, understand recommendations, discuss habits | reflexive and prepositional verbs, advice, cause and effect | A2 health; stays non-diagnostic |
+| `meinung-medien` | Understand a report, summarize its point, support an opinion | opinion frames, connectors, indirect questions, reported information | A2 reasons and plans; test the mediation load |
+| `konsum-umwelt` | Compare choices, understand notices, negotiate a practical solution | passive recognition, relative clauses, consequences | A2 shopping and housing; avoid abstract policy |
+| `reisen-probleme` | Manage less predictable disruption and make a complaint | narrative plus formal request, prepositional verbs, hypotheticals | A2 travel and complaints; exclude legal detail |
+| `lernen-zukunft` | Discuss learning and career goals, summarize, plan next steps | infinitive clauses, future intention, conditions, justification | confirm whether work and education need separate variants |
+| `gesellschaft-zusammenleben` | Join a familiar community discussion and resolve a disagreement | obwohl/trotzdem, modal nuance, relative clauses | cultural content must stay action-oriented |
+| `informationen-vermitteln` | Relay the main points of a notice, message or conversation | paraphrase, reported information, reference control, summary | cumulative; needs a workable task and rubric model |
 
-The likely mode progression is supported narrative → comparison/justification → formal
-transactions → short summary/mediation → multi-turn problem solving. Pronunciation shifts toward
-clause grouping, sentence accent, reductions and connected-speech intelligibility. No B1 unit may
-assume that a structure encountered once at A2 is retained.
+Pronunciation shifts toward clause grouping, sentence accent, reductions and connected speech. No B1
+unit may assume that a structure met once at A2 was retained.
 
 ## Authoring and release workflow
 
-1. Finish the pre-A2 audit and record changed entry assumptions here.
-2. Freeze A2 order, proposed IDs and stable outcome IDs before adding a new live unit. Never rename
-   persisted identities for tidiness.
-3. Write one vertical slice: Atlas node/outcomes, article, 3-item pretest, primary practice,
-   intensive reading, vocabulary if needed, purposeful listening/interaction and transfer.
-4. Review CEFR load, mode balance, feedback, valid alternatives, authenticity, recycling and
-   delayed-check suitability; run `bun run validate` and the relevant full repository gate.
-5. Land the unit as one coherent change. Planning-only units remain here, never as empty topics,
-   decks or path entries.
-6. After every 2–3 A2 units, inspect the newest snapshot: mode distribution, focus errors, card
-   directions/lapses, delayed retention and novel transfer. Adjust future units and additive
-   content without churning identities.
-7. After representative A2 checkpoint evidence, review B1 boundaries, adult-use priorities,
-   budgets and required capabilities. Only then promote B1 to an authoring contract.
+1. Freeze the identities above before authoring. Never rename a persisted id for tidiness.
+2. Author one complete unit per bundle: atlas node and unit slot, article, three-item pretest,
+   practice sets clearing the item-mix bar, a probe family, an intensive reading, the thin vocab
+   deck, and the focus tags registered in both CLAUDE.md and `scripts/validate.ts`.
+3. Review each unit against the twelve-point A2 unit quality gate in the audit and the
+   `learning-science` skill before it lands.
+4. Run the full gate: `bun run validate && bun test && bun run check && bun run lint && bun run build`.
+5. After every two or three units, read the newest snapshot in `progress/<profile>/`: mode
+   distribution, focus errors, card lapses, delayed-probe retention and novel transfer. Adjust the
+   units that follow; add to the units that shipped without renaming anything.
+6. Close the level with the checkpoint, the Wortliste completion pass, and an honest Über page.
 
 ## Acceptance gates
 
-- Every A2 unit has a mission, outcomes, prerequisites/spiral, mode/genre and lexical plans,
-  transfer, delayed check, likely confusions and explicit exclusions.
-- Existing A2 topics are strengthened in place rather than duplicated.
-- Reception, retrieval, interaction approximation and production recur throughout the level.
-- Budgets are approximate and exact headwords remain grounded in unit content.
-- B1 is clearly provisional and creates no learner-visible completeness claim.
-- This document, [roadmap.md](roadmap.md) and [backlog.md](backlog.md) agree.
+- Every A2 unit clears the twelve-point A2 unit quality gate in [the audit](a1-learning-audit.md).
+- Every declared outcome is measured by at least one non-pretest item or reading question.
+- No A2 deck re-teaches a headword another deck owns, and no A2 topic adopts an A1 deck.
+- Receptive-only language appears in readings and articles, never in a deck.
+- The six shipped A2 topics are strengthened in place, never duplicated under a thematic name.
+- B1 remains provisional and creates no learner-visible completeness claim.
+- This document, [roadmap.md](roadmap.md), [backlog.md](backlog.md) and `CLAUDE.md` agree.
