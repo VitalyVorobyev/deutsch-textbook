@@ -1,5 +1,6 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
+import type { CurriculumStrand } from './schemas';
 import { localDateString } from './store';
 import { scoreTotal, verifiedOnly } from './scoring';
 
@@ -26,6 +27,10 @@ export interface TopicNode extends TopicRollup {
   title_en: string;
   title_ru: string;
   prerequisites: string[];
+  strand?: CurriculumStrand;
+  group?: string;
+  /** First authored practice-role set; completing every item advances the lesson. */
+  primaryPractice?: { setId: string; itemIds: string[] };
 }
 
 export type Tier = 'untouched' | 'read' | 'practiced' | 'mastered';
@@ -156,6 +161,23 @@ export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completio
   return { auto, tier: effectiveTier(auto, manual), manual };
 }
 
+/**
+ * First-pass lesson completion is separate from delayed, evidence-based mastery.
+ * Completing the primary practice is the evidence; readAt is not required —
+ * live flows set it before practice anyway, but imported/legacy snapshots can
+ * carry the attempts without topic state, and the recommended path must not
+ * wedge on those.
+ */
+export function lessonCompleted(node: TopicNode, ctx: TopicContext): boolean {
+  if (!node.primaryPractice?.itemIds.length) return false;
+  const attempted = new Set(
+    ctx.attempts
+      .filter((attempt) => attempt.setId === node.primaryPractice!.setId)
+      .map((attempt) => attempt.itemId),
+  );
+  return node.primaryPractice.itemIds.every((id) => attempted.has(id));
+}
+
 // ---------------------------------------------------------------------------
 // Recommended next topic (spine order × the dashboard's measured tiers)
 // ---------------------------------------------------------------------------
@@ -175,7 +197,36 @@ export function recommendedNext(
   const byId = new Map(nodes.map((n) => [n.id, n]));
   for (const id of spineTopicIds) {
     const node = byId.get(id);
-    if (node && topicCompletion(node, ctx).tier !== 'mastered') return node;
+    if (node && !lessonCompleted(node, ctx)) return node;
   }
   return undefined;
+}
+
+/** Goal plus every transitive prerequisite, in curriculum order. */
+export function goalRoute(topicId: string, spine: string[], nodes: TopicNode[]): TopicNode[] {
+  const byId = new Map(nodes.map((node) => [node.id, node]));
+  const included = new Set<string>();
+  function visit(id: string) {
+    if (included.has(id)) return;
+    const node = byId.get(id);
+    if (!node) return;
+    for (const prerequisite of node.prerequisites) visit(prerequisite);
+    included.add(id);
+  }
+  visit(topicId);
+  return spine.flatMap((id) => {
+    const node = byId.get(id);
+    return node && included.has(id) ? [node] : [];
+  });
+}
+
+export function recommendedForGoal(
+  topicId: string,
+  spine: string[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): TopicNode | undefined {
+  return goalRoute(topicId, spine, nodes).find(
+    (node) => !lessonCompleted(node, ctx),
+  );
 }

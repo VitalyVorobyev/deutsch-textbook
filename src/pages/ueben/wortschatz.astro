@@ -5,6 +5,7 @@ import UebenNav from '../../components/UebenNav.astro';
 import DueBadge from '../../components/srs/DueBadge';
 import { buildDeck } from '../../lib/srs';
 import { withBase } from '../../lib/url';
+import { DeckMasterySummary } from '../../components/vocab/VocabMastery';
 
 const vocab = await getCollection('vocab');
 const decks = vocab
@@ -41,6 +42,7 @@ const decks = vocab
           <p class="mt-2 text-xs text-stone-400">
             {data.entries.length} Wörter · {cards.length} Karten
           </p>
+          <DeckMasterySummary client:only="react" cards={cards} />
         </a>
       ))
     }

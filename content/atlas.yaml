@@ -1,16 +1,90 @@
 # The atlas graph and curriculum spine.
 #
+# `groups:` — nested conceptual domains; order controls Atlas presentation.
 # `nodes:` — one node per topic, kept consistent with topic frontmatter.
 # `units:` — the ordered curriculum spine: file order IS the recommended path
 # (A1 units before A2; insert new units, never renumber). Every topic lives in
 # exactly one unit; `bun run validate` enforces all of it. The recommended-path
 # engine (src/lib/curriculum.ts + recommendedNext in src/lib/mastery.ts) and the
 # Atlas map render this file.
+groups:
+  - id: grundlagen
+    strand: foundations
+    title_de: Grundlagen
+    title_en: Foundations
+    title_ru: Основы
+  - id: einstieg
+    strand: foundations
+    parent: grundlagen
+    title_de: Einstieg
+    title_en: Getting started
+    title_ru: Начало
+  - id: grammatik
+    strand: grammar
+    title_de: Grammatik
+    title_en: Grammar
+    title_ru: Грамматика
+  - id: satzbau
+    strand: grammar
+    parent: grammatik
+    title_de: Satzbau
+    title_en: Sentence structure
+    title_ru: Структура предложения
+  - id: nomen-kasus
+    strand: grammar
+    parent: grammatik
+    title_de: Nomen & Kasus
+    title_en: Nouns & cases
+    title_ru: Существительные и падежи
+  - id: verbformen-zeit
+    strand: grammar
+    parent: grammatik
+    title_de: Verbformen & Zeit
+    title_en: Verb forms & tense
+    title_ru: Формы глагола и время
+  - id: kommunikation
+    strand: communication
+    title_de: Kommunikation
+    title_en: Communication
+    title_ru: Общение
+  - id: person-alltag
+    strand: communication
+    parent: kommunikation
+    title_de: Person & Alltag
+    title_en: People & everyday life
+    title_ru: Люди и повседневная жизнь
+  - id: transaktionen-termine
+    strand: communication
+    parent: kommunikation
+    title_de: Transaktionen & Termine
+    title_en: Transactions & appointments
+    title_ru: Покупки и договорённости
+  - id: wortschatz
+    strand: vocabulary
+    title_de: Wortschatz
+    title_en: Vocabulary
+    title_ru: Лексика
+  - id: essen-einkaufen
+    strand: vocabulary
+    parent: wortschatz
+    title_de: Essen & Einkaufen
+    title_en: Food & shopping
+    title_ru: Еда и покупки
+  - id: alltag-wortschatz
+    strand: vocabulary
+    parent: wortschatz
+    title_de: Alltag
+    title_en: Everyday life
+    title_ru: Повседневная жизнь
+
 nodes:
   # --- A1 ---
   - id: erste-schritte
     level: A1
     kind: phonetics
+    strand: foundations
+    group: einstieg
+    related: [menschen-familie]
     prerequisites: []
     outcomes:
       - id: erste-sich-vorstellen
@@ -34,6 +108,9 @@ nodes:
   - id: praesens-wortstellung
     level: A1
     kind: grammar
+    strand: grammar
+    group: satzbau
+    related: [trennbare-verben]
     prerequisites: []
     outcomes:
       - id: praesens-verbzweit
@@ -57,6 +134,9 @@ nodes:
   - id: artikel-genus
     level: A1
     kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    related: [akkusativ]
     prerequisites: []
     outcomes:
       - id: artikel-richtig-verwenden
@@ -80,6 +160,9 @@ nodes:
   - id: menschen-familie
     level: A1
     kind: communication
+    strand: communication
+    group: person-alltag
+    related: [erste-schritte]
     prerequisites: [praesens-wortstellung, artikel-genus]
     outcomes:
       - id: familie-vorstellen
@@ -103,6 +186,9 @@ nodes:
   - id: essen-trinken
     level: A1
     kind: vocab-field
+    strand: vocabulary
+    group: essen-einkaufen
+    related: [alltag-tagesablauf]
     prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
     outcomes:
       - id: essen-vorlieben
@@ -126,6 +212,9 @@ nodes:
   - id: akkusativ
     level: A1
     kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    related: [artikel-genus, dativ]
     prerequisites: [artikel-genus]
     outcomes:
       - id: akkusativ-objekte
@@ -150,6 +239,9 @@ nodes:
   - id: dativ
     level: A2
     kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    related: [akkusativ]
     prerequisites: [akkusativ]
     outcomes:
       - id: dativ-artikel
@@ -179,6 +271,9 @@ nodes:
   - id: trennbare-verben
     level: A2
     kind: grammar
+    strand: grammar
+    group: verbformen-zeit
+    related: [praesens-wortstellung, modalverben]
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: trennbar-satz
@@ -202,6 +297,9 @@ nodes:
   - id: alltag-tagesablauf
     level: A2
     kind: vocab-field
+    strand: vocabulary
+    group: alltag-wortschatz
+    related: [essen-trinken, termine-vereinbaren]
     prerequisites: [praesens-wortstellung, trennbare-verben, perfekt-haben-sein]
     outcomes:
       - id: alltag-beschreiben
@@ -225,6 +323,9 @@ nodes:
   - id: modalverben
     level: A2
     kind: grammar
+    strand: grammar
+    group: verbformen-zeit
+    related: [trennbare-verben, termine-vereinbaren]
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: modal-satzklammer
@@ -254,6 +355,9 @@ nodes:
   - id: termine-vereinbaren
     level: A2
     kind: communication
+    strand: communication
+    group: transaktionen-termine
+    related: [alltag-tagesablauf, modalverben]
     prerequisites: [modalverben, dativ, trennbare-verben, perfekt-haben-sein]
     outcomes:
       - id: termine-organisieren
@@ -277,6 +381,9 @@ nodes:
   - id: perfekt-haben-sein
     level: A2
     kind: grammar
+    strand: grammar
+    group: verbformen-zeit
+    related: []
     prerequisites: [praesens-wortstellung]
     outcomes:
       - id: perfekt-vergangenheit-erzaehlen

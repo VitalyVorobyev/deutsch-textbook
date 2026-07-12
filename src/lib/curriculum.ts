@@ -2,11 +2,12 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { atlasSchema, type AtlasNode, type AtlasUnit } from './schemas';
+import { atlasSchema, type AtlasGroup, type AtlasNode, type AtlasUnit } from './schemas';
 
 export interface Curriculum {
   /** ordered units — the file order of `units:` in content/atlas.yaml IS the spine order */
   units: AtlasUnit[];
+  groups: AtlasGroup[];
   /** graph nodes with prerequisites, deepens edges and outcomes */
   nodes: AtlasNode[];
   /** every topic id, units flattened in file order — the recommended path */
@@ -27,6 +28,7 @@ export function getCurriculum(): Curriculum {
     const atlas = atlasSchema.parse(YAML.parse(readFileSync(file, 'utf8')));
     cached = {
       units: atlas.units,
+      groups: atlas.groups,
       nodes: atlas.nodes,
       spine: atlas.units.flatMap((u) => u.topics),
     };

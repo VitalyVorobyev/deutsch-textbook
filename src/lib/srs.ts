@@ -140,3 +140,16 @@ export function splitQueue(
   }
   return { due, fresh };
 }
+
+/** Stable due ordering: most overdue first, then fragile/lapsed cards. */
+export function rankDueCards(cards: CardDef[], states: Record<string, StoredCard>): CardDef[] {
+  return [...cards].sort((a, b) => {
+    const sa = states[a.id];
+    const sb = states[b.id];
+    const due = Date.parse(sa.due) - Date.parse(sb.due);
+    if (due) return due;
+    if (sa.stability !== sb.stability) return sa.stability - sb.stability;
+    if (sa.lapses !== sb.lapses) return sb.lapses - sa.lapses;
+    return a.id.localeCompare(b.id);
+  });
+}

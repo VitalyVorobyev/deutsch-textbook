@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Rating, gradeCard, splitQueue, type CardDef, type Grade } from '../../lib/srs';
-import { eligibleFreshCards } from '../../lib/decks';
+import { Rating, gradeCard, rankDueCards, splitQueue, type CardDef, type Grade } from '../../lib/srs';
+import { eligibleFreshCards, prioritizeFreshCards } from '../../lib/decks';
 import type { TopicNode } from '../../lib/mastery';
 import {
   getAttempts,
   getCardStates,
+  getLearningGoal,
   getTopicsState,
   setCardState,
   type CardStates,
@@ -88,7 +89,8 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
       getCardStates(),
       gate ? getAttempts() : [],
       gate ? getTopicsState() : {},
-    ]).then(([s, attempts, topics]) => {
+      gate ? getLearningGoal() : undefined,
+    ]).then(([s, attempts, topics, goal]) => {
       if (cancelled) return;
       const { due, fresh } = splitQueue(cards, s);
       const pool = gate
@@ -99,7 +101,10 @@ export default function FlashcardSession({ cards, newLimit = 15, gate, onFinishe
           })
         : fresh;
       setStates(s);
-      setQueue([...shuffle(due), ...shuffle(pool).slice(0, newLimit)]);
+      const orderedFresh = gate
+        ? prioritizeFreshCards(pool, gate.spine, gate.nodes, gate.deckLevels, { attempts, cards: s, topics }, goal)
+        : shuffle(pool);
+      setQueue([...rankDueCards(due, s), ...orderedFresh.slice(0, newLimit)]);
     });
     return () => {
       cancelled = true;

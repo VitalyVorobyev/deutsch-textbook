@@ -3,8 +3,31 @@ import Base from '../layouts/Base.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
 import { getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
+import { getAllCards } from '../lib/content';
+import { getCollection } from 'astro:content';
 
 const nodes = await getTopicNodes();
+const cards = await getAllCards();
+const vocab = await getCollection('vocab');
+const cardsByDeck = new Map<string, string[]>();
+for (const card of cards) cardsByDeck.set(card.deckId, [...(cardsByDeck.get(card.deckId) ?? []), card.id]);
+const vocabularyGroups = [
+  {
+    title: 'Niveau',
+    items: ['A1', 'A2'].map((level) => ({
+      id: level, label: level,
+      cardIds: vocab.filter((deck) => deck.data.level === level).flatMap((deck) => cardsByDeck.get(deck.data.id) ?? []),
+    })),
+  },
+  {
+    title: 'Thema',
+    items: vocab.map((deck) => ({ id: deck.data.id, label: deck.data.title_de, cardIds: cardsByDeck.get(deck.data.id) ?? [] })),
+  },
+  {
+    title: 'Wortart',
+    items: [...new Set(cards.map((card) => card.pos))].sort().map((pos) => ({ id: pos, label: pos, cardIds: cards.filter((card) => card.pos === pos).map((card) => card.id) })),
+  },
+];
 const outcomeModes = Object.fromEntries(
   getCurriculum().nodes.flatMap((node) => node.outcomes.map((outcome) => [outcome.id, outcome.mode])),
 );
@@ -26,6 +49,6 @@ const outcomeModes = Object.fromEntries(
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} />
+    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} />
   </div>
 </Base>

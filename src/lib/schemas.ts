@@ -6,6 +6,8 @@ export const levelSchema = z.enum(LEVELS);
 export type Level = z.infer<typeof levelSchema>;
 
 export const TOPIC_KINDS = ['grammar', 'vocab-field', 'communication', 'phonetics'] as const;
+export const CURRICULUM_STRANDS = ['foundations', 'grammar', 'communication', 'vocabulary'] as const;
+export type CurriculumStrand = (typeof CURRICULUM_STRANDS)[number];
 export const topicKindSchema = z.enum(TOPIC_KINDS);
 export type TopicKind = z.infer<typeof topicKindSchema>;
 
@@ -404,15 +406,29 @@ export const outcomeSchema = z.object({
 });
 export type Outcome = z.infer<typeof outcomeSchema>;
 
+export const atlasGroupSchema = z.object({
+  id: slug,
+  strand: z.enum(CURRICULUM_STRANDS),
+  parent: slug.optional(),
+  title_de: z.string().min(1),
+  title_en: z.string().min(1),
+  title_ru: z.string().min(1),
+});
+export type AtlasGroup = z.infer<typeof atlasGroupSchema>;
+
 export const atlasNodeSchema = z.object({
   id: slug,
   level: levelSchema,
   kind: topicKindSchema,
+  strand: z.enum(CURRICULUM_STRANDS),
+  group: slug,
   prerequisites: z.array(slug).default([]),
   /** base topics this one revisits at greater depth (spiral learning). A target
       may also be a prerequisite — both meanings can apply. Must appear earlier
       in the spine. */
   deepens: z.array(slug).default([]),
+  /** Useful comparison/association; symmetric, non-blocking, and unordered. */
+  related: z.array(slug).default([]),
   /** 2–4 can-do statements the topic teaches, at the topic's CEFR level */
   outcomes: z.array(outcomeSchema).min(2).max(4),
 });
@@ -432,6 +448,7 @@ export const atlasUnitSchema = z.object({
 export type AtlasUnit = z.infer<typeof atlasUnitSchema>;
 
 export const atlasSchema = z.object({
+  groups: z.array(atlasGroupSchema).min(1),
   nodes: z.array(atlasNodeSchema).min(1),
   units: z.array(atlasUnitSchema).min(1),
 });

@@ -95,6 +95,25 @@ export async function setCardState(cardId: string, card: StoredCard): Promise<vo
 }
 
 // ---------------------------------------------------------------------------
+// Active curriculum goal (profile-scoped and snapshot-synced)
+// ---------------------------------------------------------------------------
+
+export interface LearningGoal {
+  /** absent is a timestamped clear marker, so clearing also merges across devices */
+  topicId?: string;
+  setAt: number;
+}
+
+export async function getLearningGoal(): Promise<LearningGoal | undefined> {
+  return await get<LearningGoal>('goal', await getStore());
+}
+
+export async function setLearningGoal(goal: LearningGoal): Promise<void> {
+  await set('goal', goal, await getStore());
+  scheduleAutoSync();
+}
+
+// ---------------------------------------------------------------------------
 // Daily session log ("done today" state + cadence history for the agent loop)
 // ---------------------------------------------------------------------------
 
@@ -196,7 +215,7 @@ export async function setTopicManual(
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 3; import accepts 1 (pre-sessions), 2 (pre-topics), 3 */
+  /** written as 4; import accepts 1 (pre-sessions), 2 (pre-topics), 3 (pre-goal), 4 */
   version: number;
   exportedAt: string;
   /** profile label, informational only */
@@ -205,17 +224,19 @@ export interface ProgressSnapshot {
   cards: CardStates;
   sessions: SessionLogEntry[];
   topics: TopicsState;
+  goal?: LearningGoal;
 }
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 3,
+    version: 4,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),
     cards: await getCardStates(),
     sessions: await getSessionLog(),
     topics: await getTopicsState(),
+    goal: await getLearningGoal(),
   };
 }
 
@@ -224,7 +245,7 @@ export function isValidSnapshot(s: unknown): s is ProgressSnapshot {
   const snap = s as Partial<ProgressSnapshot>;
   const v = snap.version;
   return (
-    (v === 1 || v === 2 || v === 3) &&
+    (v === 1 || v === 2 || v === 3 || v === 4) &&
     Array.isArray(snap.attempts) &&
     typeof snap.cards === 'object' &&
     snap.cards !== null
@@ -347,6 +368,13 @@ export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
     store,
   );
   await update<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, snapshot.topics ?? {}), store);
+  if (snapshot.goal) {
+    await update<LearningGoal | undefined>(
+      'goal',
+      (cur) => (!cur || snapshot.goal!.setAt > cur.setAt ? snapshot.goal : cur),
+      store,
+    );
+  }
   scheduleAutoSync();
 }
 
@@ -366,6 +394,7 @@ export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void>
     snapshot.topics && typeof snapshot.topics === 'object' ? snapshot.topics : {},
     store,
   );
+  if (snapshot.goal) await set('goal', snapshot.goal, store);
   scheduleAutoSync();
 }
 
