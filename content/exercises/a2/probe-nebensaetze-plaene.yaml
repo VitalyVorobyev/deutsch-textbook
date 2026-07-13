@@ -21,11 +21,23 @@ title:
 # the weil/denn discrimination. They are different competences and would make the three
 # delays incomparable; practice is where their evidence comes from.
 #
+# All three variants are STRUCTURALLY IDENTICAL: subordinator + … + infinitive + conjugated
+# modal at the wall. Only the conjunction and the surface situation change. An earlier draft
+# made the middle variant a Perfekt cluster (… dass er den Zug verpasst hat), which looked
+# like healthy variety and was not: variants are served in file order, one per interval, so
+# the 7-day measurement would have been the only Perfekt one. Any drop at 7 days would then
+# be indistinguishable from "the Perfekt cluster is harder than the modal cluster", and the
+# curve would look like retention without being it. Difficulty must be held constant across
+# the delays; only the surface may move. The conjunction is allowed to vary because the tag
+# is defined across all three of them ("the conjugated verb goes last in a weil-, dass- or
+# wenn-clause") — a family that only ever asked `weil` would report a number labelled
+# nebensatz-verbende while evidencing something narrower.
+#
 # key_tokens pins ONLY the conjugated verb that the rule drives to the wall — never the
-# infinitive or the participle in front of it. Those are lexis, and the tag does not
-# grade them: a learner who writes `verpasst` as `verpassen` has made a different mistake
-# and must not be logged as a failure of nebensatz-verbende. `accept` is deliberately
-# generous, because a probe that marks correct German wrong corrupts the retention curve.
+# infinitive in front of it. That is lexis, and the tag does not grade it: a learner who
+# writes `lernen` as `lehrnen` has made a different mistake and must not be logged as a
+# failure of nebensatz-verbende. `accept` is deliberately generous, because a probe that
+# marks correct German wrong corrupts the retention curve.
 
 items:
   - id: variant-a
@@ -54,15 +66,18 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "Mr Bauer says that he has missed the train."
-    prompt_ru: "Господин Бауэр говорит, что опоздал на поезд."
-    answer: "Herr Bauer sagt, dass er den Zug verpasst hat."
-    accept:
-      - "Herr Bauer sagt, dass er seinen Zug verpasst hat."
-    key_tokens: ["hat"]
+    prompt_en: "Mr Bauer says that he has to learn more German."
+    prompt_ru: "Господин Бауэр говорит, что ему нужно больше учить немецкий."
+    answer: "Herr Bauer sagt, dass er mehr Deutsch lernen muss."
+    # No `accept` list: there is no second natural word order for this sentence. The one other
+    # thing a learner might write — `Herr Bauer sagt, er muss mehr Deutsch lernen.` — is correct
+    # German but is the dass-less construction, which leaves the verb in position 2 and therefore
+    # demonstrates none of what this family measures. Accepting it would score the competence as
+    # retained on evidence that never tested it.
+    key_tokens: ["muss"]
     explain:
-      en: "In the Perfekt the conjugated verb is the auxiliary — hat — and the participle verpasst is not conjugated at all. dass opens a Nebensatz, so it is the conjugated word that goes to the wall: dass er den Zug verpasst hat. Standing alone the clause would read Er hat den Zug verpasst, with hat in position 2 and the participle at the end; the conjunction swaps the two around. Keep the comma before dass — German never leaves it out."
-      ru: "В Perfekt спрягается вспомогательный глагол — hat, — а причастие verpasst не спрягается вовсе. dass вводит придаточное, и к стене уходит именно спрягаемое слово: dass er den Zug verpasst hat. Само по себе это предложение звучало бы Er hat den Zug verpasst — hat на втором месте, причастие в конце; союз меняет их местами. И не теряйте запятую перед dass: в немецком она обязательна."
+      en: "Two verbs, and only one of them is conjugated: muss. dass opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive lernen queues up in front of it: … dass er mehr Deutsch lernen muss. Standing alone the clause would come out back to front: Er muss mehr Deutsch lernen. The conjunction turns the bracket inside out. Keep the comma before dass — German never leaves it out."
+      ru: "Глагола два, но спрягается только один — muss. dass вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив lernen выстраивается перед ним — … dass er mehr Deutsch lernen muss. Само по себе это предложение звучало бы наоборот: Er muss mehr Deutsch lernen. Союз выворачивает рамку наизнанку. И не теряйте запятую перед dass: в немецком она обязательна."
 
   - id: variant-c
     outcomes: [weil-grund]
