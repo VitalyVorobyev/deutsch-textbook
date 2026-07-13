@@ -1,0 +1,72 @@
+topic: nebensaetze-plaene
+kind: intensive
+title_de: "Ein Plan für das Wochenende"
+text:
+  - >-
+    Nina hat eine Idee. Am Sonntag will sie mit Freunden zum See fahren. Sie
+    schreibt an Yusuf und Tobias: „Wenn das Wetter gut ist, machen wir einen
+    [[Ausflug::day trip, outing::поездка за город]]. Wir treffen uns um neun am
+    Bahnhof.“
+  - >-
+    Yusuf antwortet sofort: „Ich [[würde gern::would love to::я бы с
+    удовольствием]] mitkommen, aber leider geht es nicht, weil ich am Sonntag
+    arbeiten muss. Das ist mein [[Grund::reason::причина]].“ Nina findet das
+    schade.
+  - >-
+    Tobias hat einen [[Vorschlag::suggestion, proposal::предложение (идея)]]:
+    „Ich [[meine::think, am of the opinion::считаю, полагаю]], dass der Samstag
+    besser ist. Yusuf hat dann frei.“ Nina antwortet: „Gute Idee! Aber ich
+    glaube, dass es am Samstag [[wahrscheinlich::probably::скорее всего]]
+    regnet.“ Tobias hat auch eine [[Lösung::solution::решение]]: „Kein
+    [[Problem::problem::проблема]]! Wenn es regnet, gehen wir ins Museum.“
+  - >-
+    [[Deshalb::that is why, therefore::поэтому]] fahren die drei am Samstag. Wenn
+    die Sonne scheint, fahren sie zum See. Wenn es regnet, gehen sie ins Museum.
+questions:
+  - id: frage-grund
+    outcomes: [weil-grund]
+    type: mc
+    prompt: "Warum kommt Yusuf am Sonntag nicht mit?"
+    options:
+      - "Weil er arbeiten muss."
+      - "Weil er keine Lust hat."
+      - "Weil es am Sonntag regnet."
+    correct: 0
+    translation:
+      en: Why is Yusuf not coming along on Sunday?
+      ru: Почему Юсуф не поедет с ними в воскресенье?
+    explain:
+      en: "Yusuf names his reason himself: „… weil ich am Sonntag arbeiten muss.“ He would love to come — he says so — so it is not a question of wanting to. And the rain is expected on Saturday, not on Sunday; it is Nina who mentions it, and it is a guess, not a reason. Look at the shape of his answer while you are there: the conjugated verb muss is the last word of the clause, and the infinitive arbeiten stands in front of it."
+      ru: "Юсуф сам называет причину: «… weil ich am Sonntag arbeiten muss.» Поехать он как раз хочет — он это прямо говорит, — так что дело не в желании. А дождь ожидается в субботу, а не в воскресенье, и говорит о нём Нина, причём как о предположении, а не как о причине. Заодно посмотрите на форму его ответа: спрягаемый глагол muss стоит последним словом придаточного, а инфинитив arbeiten — перед ним."
+
+  - id: frage-meinung
+    outcomes: [dass-satz]
+    type: mc
+    prompt: "Was meint Tobias?"
+    options:
+      - "Dass der Samstag besser ist."
+      - "Dass der Sonntag besser ist."
+      - "Dass der Ausflug keine gute Idee ist."
+    correct: 0
+    translation:
+      en: What does Tobias think?
+      ru: Что думает Тобиас?
+    explain:
+      en: "„Ich meine, dass der Samstag besser ist“ — and he gives the ground for it in the next sentence: Yusuf hat dann frei. Sunday is Nina's original plan, not Tobias's opinion, and nobody in the text is against the trip; Tobias is the one who rescues it. Note the verb ist at the very end of his dass-clause — that is where a Nebensatz keeps it."
+      ru: "«Ich meine, dass der Samstag besser ist» — и следующим предложением он приводит основание: Yusuf hat dann frei. Воскресенье — это первоначальный план Нины, а не мнение Тобиаса, и против поездки в тексте не выступает никто: как раз Тобиас её и спасает. Обратите внимание на глагол ist в самом конце его придаточного с dass — именно там придаточное его и держит."
+
+  - id: frage-bedingung
+    outcomes: [wenn-bedingung]
+    type: mc
+    prompt: "Was machen die drei am Samstag, wenn es regnet?"
+    options:
+      - "Sie gehen ins Museum."
+      - "Sie fahren zum See."
+      - "Sie bleiben zu Hause."
+    correct: 0
+    translation:
+      en: What are the three of them doing on Saturday if it rains?
+      ru: Что все трое будут делать в субботу, если пойдёт дождь?
+    explain:
+      en: "The last paragraph sets out both conditions side by side: „Wenn die Sonne scheint, fahren sie zum See. Wenn es regnet, gehen sie ins Museum.“ The lake is the good-weather plan, so it is the trap here — read the condition, not the noun. Staying at home is never mentioned by anyone. And look at what follows each comma: the verb, then the subject — fahren sie, gehen sie — because the fronted wenn-clause has taken position 1."
+      ru: "В последнем абзаце оба условия стоят рядом: «Wenn die Sonne scheint, fahren sie zum See. Wenn es regnet, gehen sie ins Museum.» Озеро — это план на хорошую погоду, и именно в нём здесь ловушка: читайте условие, а не существительное. О том, чтобы остаться дома, не говорит никто. И посмотрите, что идёт после каждой запятой: сначала глагол, потом подлежащее — fahren sie, gehen sie, — потому что вынесенное вперёд придаточное с wenn заняло первое место."

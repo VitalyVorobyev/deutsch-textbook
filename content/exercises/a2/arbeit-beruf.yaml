@@ -1,0 +1,196 @@
+topic: arbeit-beruf
+role: practice
+title:
+  en: "Practice — a shift, a duty, a request"
+  ru: "Практика — смена, обязанность, просьба"
+items:
+  - id: table-modalformen-arbeit
+    outcomes: [aufgaben-beschreiben]
+    type: table
+    focus: modal-konjugation
+    title: "Modalverben am Arbeitsplatz"
+    instruction:
+      en: "Fill in the missing modal forms. Look closely at the ich- and er/sie-columns."
+      ru: "Заполните пропущенные формы модальных глаголов. Внимательно посмотрите на столбцы ich и er/sie."
+    columns: [ich, "er/sie", wir]
+    rows:
+      - label: müssen
+        cells: [{ answer: muss, given: true }, { answer: muss }, { answer: müssen }]
+      - label: dürfen
+        cells: [{ answer: darf }, { answer: darf }, { answer: dürfen }]
+      - label: sollen
+        cells: [{ answer: soll }, { answer: soll }, { answer: sollen, given: true }]
+      - label: können
+        cells: [{ answer: kann }, { answer: kann }, { answer: können }]
+    explain:
+      en: "The whole point of the table is the first two columns: they are identical, and both are bare. A modal verb takes no ending in the ich-form and no -t in the er/sie-form — er muss, er darf, er soll, er kann. Every other German verb does the opposite (er arbeitet, er macht), which is why er musst and er kannt are among the most stubborn mistakes at this level. Note also that the vowel changes only in the singular: the plural goes back to the infinitive, so wir müssen looks exactly like müssen itself."
+      ru: "Вся суть таблицы — в первых двух столбцах: они одинаковы, и оба «голые». У модального глагола нет окончания в форме ich и нет -t в форме er/sie — er muss, er darf, er soll, er kann. Все остальные немецкие глаголы ведут себя ровно наоборот (er arbeitet, er macht), поэтому формы вроде er musst и er kannt — одни из самых живучих ошибок на этом уровне. Обратите внимание и на другое: гласная меняется только в единственном числе, а множественное совпадает с инфинитивом — wir müssen выглядит точно так же, как само müssen."
+
+  - id: cloze-fruehschicht-infinitiv
+    outcomes: [aufgaben-beschreiben]
+    type: cloze
+    focus: trennbar-modal
+    instruction:
+      en: "Nina is on the early shift. Put the verb in brackets at the end of the sentence, in the form the modal demands."
+      ru: "У Нины утренняя смена. Поставьте глагол из скобок в конец предложения в той форме, которой требует модальный глагол."
+    text: "Nina hat heute Frühschicht. Sie muss um sechs Uhr {{anfangen}} (anfangen). Dann soll sie die Kasse {{aufmachen}} (aufmachen). Um vierzehn Uhr kann sie {{aufhören}} (aufhören)."
+    translation:
+      en: "Nina is on the early shift today. She has to start at six o'clock. Then she is supposed to open the till. At two o'clock she can stop."
+      ru: "Сегодня у Нины утренняя смена. Она должна начать в шесть. Потом ей нужно открыть кассу. В четырнадцать часов она может закончить."
+    explain:
+      en: "All three verbs are separable, and none of them splits here. A prefix leaves its verb only when the verb itself is conjugated — sie fängt um sechs Uhr an. Under a modal the verb is a plain infinitive, so it stays in one piece and closes the sentence: anfangen, aufmachen, aufhören. Writing fangen … an inside a modal sentence produces two verbs where German allows one. Note the three modals themselves: muss is an obligation, soll passes on somebody else's instruction, and kann simply states what is possible — the shift ends at two, so at two she can go."
+      ru: "Все три глагола — с отделяемой приставкой, и ни один из них здесь не распадается. Приставка отрывается только тогда, когда спрягается сам глагол: sie fängt um sechs Uhr an. Под модальным глаголом стоит чистый инфинитив, поэтому он остаётся целым и замыкает предложение: anfangen, aufmachen, aufhören. Написать fangen … an в предложении с модальным — значит поставить два сказуемых там, где немецкий допускает одно. Обратите внимание и на сами модальные глаголы: muss — обязанность, soll — переданное чужое распоряжение, а kann просто говорит о возможности: смена заканчивается в четырнадцать, значит, в четырнадцать она и может уйти."
+
+  - id: mc-muss-nicht
+    outcomes: [aufgaben-beschreiben]
+    type: mc
+    focus: duerfen-muessen
+    instruction:
+      en: "The work is finished. Choose the modal that fits."
+      ru: "Работа закончена. Выберите подходящий модальный глагол."
+    prompt: "Die Arbeit ist fertig. Du ___ heute nicht länger bleiben — du kannst nach Hause gehen."
+    options: ["darfst", "musst", "sollst"]
+    correct: 1
+    translation:
+      en: "The work is finished. You don't have to stay any longer today — you can go home."
+      ru: "Работа закончена. Сегодня можешь не оставаться дольше — можешь идти домой."
+    explain:
+      en: "The second half of the sentence gives the game away: du kannst nach Hause gehen. Going home is allowed, so nothing is being forbidden — the obligation to stay has simply been lifted, and that is musst nicht. darfst nicht would forbid you to stay, which would be a strange thing to say to someone who has finished their work. sollst nicht would mean somebody has instructed you not to stay."
+      ru: "Вторая половина предложения выдаёт ответ: du kannst nach Hause gehen. Уйти домой можно, значит, ничего не запрещают — просто снята обязанность оставаться, а это и есть musst nicht. Форма darfst nicht запретила бы оставаться, что было бы странно сказать человеку, закончившему работу. А sollst nicht означало бы, что кто-то велел ему не оставаться."
+
+  - id: cloze-verbot-und-freiheit
+    outcomes: [aufgaben-beschreiben, arbeitsanweisung-verstehen]
+    type: cloze
+    focus: duerfen-muessen
+    instruction:
+      en: "Two notices in the same office. Fill in the correct modal verb."
+      ru: "Два объявления в одном офисе. Вставьте нужный модальный глагол."
+    text: "An der Tür steht: Rauchen verboten. Im Büro {{darf}} man nicht rauchen. Die Chefin sagt: Es ist nicht nötig. Niemand {{muss}} Überstunden machen."
+    translation:
+      en: "It says on the door: no smoking. You are not allowed to smoke in the office. The manager says: it is not necessary. Nobody has to work overtime."
+      ru: "На двери написано: курить запрещено. В офисе курить нельзя. Начальница говорит: это не обязательно. Никто не обязан работать сверхурочно."
+    explain:
+      en: "Each gap has a signal word standing right in front of it, and the two signals point at different verbs. verboten is a ban, and a ban in German is always dürfen + nicht: man darf nicht rauchen. nicht nötig bans nothing at all — it releases people from an obligation, and that is muss nicht: overtime is still allowed, it is simply not required, and anyone who wants the hours may stay. Swap the two verbs and the office turns into a strange place where smoking is optional and overtime is forbidden."
+      ru: "Перед каждым пропуском стоит своё сигнальное слово, и указывают эти сигналы на разные глаголы. verboten — это запрет, а запрет по-немецки всегда выражается через dürfen + nicht: man darf nicht rauchen. А nicht nötig не запрещает ничего — оно снимает обязанность, и это muss nicht: сверхурочные по-прежнему разрешены, просто не обязательны, и тот, кому нужны часы, вполне может остаться. Поменяйте глаголы местами — и офис превратится в странное место, где курение необязательно, а сверхурочные запрещены."
+
+  - id: order-satzklammer-schicht
+    outcomes: [aufgaben-beschreiben]
+    type: order
+    focus: modal-satzklammer
+    instruction:
+      en: "Arrange the words into a correct sentence."
+      ru: "Составьте правильное предложение."
+    words: ["Am", "Montag", "muss", "ich", "die", "Schicht", "von", "Jonas", "übernehmen."]
+    translation:
+      en: "On Monday I have to take over Jonas's shift."
+      ru: "В понедельник мне придётся взять смену Йонаса."
+    explain:
+      en: "Am Montag fills position 1, so the modal muss takes position 2 and the subject ich drops in behind it. Everything else — the object die Schicht and its owner von Jonas — sits in the middle field, and the infinitive übernehmen shuts the bracket at the very end. Nothing may follow it: übernehmen am Montag would leave the sentence open."
+      ru: "Am Montag занимает первое место, поэтому модальный глагол muss встаёт на второе, а подлежащее ich уходит за него. Всё остальное — дополнение die Schicht и его «владелец» von Jonas — располагается в середине, а инфинитив übernehmen закрывает рамку в самом конце. После него не может стоять ничего: вариант übernehmen am Montag оставил бы предложение незакрытым."
+
+  - id: mc-du-sie-dienstplan
+    outcomes: [arbeitszeit-aushandeln]
+    type: mc
+    focus: du-sie
+    instruction:
+      en: "You are writing to your manager, Ms Kaufmann. Choose the sentence that fits."
+      ru: "Вы пишете своей начальнице, госпоже Кауфман. Выберите подходящее предложение."
+    prompt: "Sehr geehrte Frau Kaufmann, ___"
+    options:
+      - "könnten Sie mir bitte den Dienstplan schicken?"
+      - "kannst du mir bitte den Dienstplan schicken?"
+      - "schick mir bitte den Dienstplan."
+    correct: 0
+    translation:
+      en: "Dear Ms Kaufmann, could you please send me the rota?"
+      ru: "Уважаемая госпожа Кауфман, не могли бы вы прислать мне график смен?"
+    explain:
+      en: "The opening line has already chosen the register: Sehr geehrte Frau Kaufmann is a surname and a formal greeting, and that means Sie for the rest of the message. Slipping into du one line later mixes two registers in one breath. The third option is a du-imperative — plain and direct, fine for a friend, blunt for a manager. Könnten Sie is the polite step above Können Sie, and it costs nothing but two letters."
+      ru: "Регистр выбран уже первой строкой: Sehr geehrte Frau Kaufmann — это фамилия и официальное обращение, а значит, дальше всё письмо идёт на Sie. Перейти строкой ниже на du — значит смешать два регистра в одной фразе. Третий вариант — повелительное наклонение на du: для друга нормально, для начальницы резко. Könnten Sie — вежливая ступень над Können Sie, и стоит она всего двух букв."
+
+  - id: match-dienstplan-lesen
+    outcomes: [arbeitsanweisung-verstehen]
+    type: match
+    # Deliberately untagged: this is pure comprehension of workplace notices, not a
+    # single grammatical confusion — the four right-hand sentences use four different
+    # structures, so one focus tag on the item would file any error under the wrong one.
+    instruction:
+      en: "The rota and the notice board of the Firma Nordwind. Match each line with what it means for you."
+      ru: "График смен и доска объявлений фирмы «Нордвинд». Соедините каждую строку с тем, что она означает лично для вас."
+    pairs:
+      - { left: "Frühschicht: von sechs bis vierzehn Uhr", right: "Ich fange um sechs Uhr an und höre um vierzehn Uhr auf." }
+      - { left: "Spätschicht: von vierzehn bis zweiundzwanzig Uhr", right: "Ich komme am Nachmittag und arbeite bis zum Abend." }
+      - { left: "Zuständig für die Kasse: Nina", right: "Nina arbeitet an der Kasse." }
+      - { left: "Überstunden am Freitag: nicht nötig", right: "Ich muss am Freitag nicht länger bleiben." }
+      - { left: "Rauchen im Büro: verboten", right: "Ich darf im Büro nicht rauchen." }
+    explain:
+      en: "A rota and a notice board never speak in full sentences — they hand you a keyword and expect you to build the sentence yourself. Two of these lines are the pair the whole lesson turns on: nicht nötig becomes muss nicht (the obligation is gone), verboten becomes darf nicht (the action is banned). Read the last two lines again and check that you would not have swapped them: that swap is the single most expensive mistake in this unit."
+      ru: "График смен и доска объявлений никогда не говорят полными предложениями — они дают ключевое слово, а предложение вы строите сами. Две строки здесь — та самая пара, ради которой затевался урок: nicht nötig превращается в muss nicht (обязанности больше нет), а verboten — в darf nicht (действие запрещено). Перечитайте две последние строки и проверьте, не поменяли бы вы их местами: именно такая подмена — самая дорогая ошибка в этом уроке."
+
+  - id: order-denn-grund
+    outcomes: [arbeitszeit-aushandeln, berufliche-nachricht-schreiben]
+    type: order
+    focus: verbzweit
+    instruction:
+      en: "Arrange the words into a correct sentence. Watch where the second verb goes."
+      ru: "Составьте правильное предложение. Следите за тем, куда встаёт второй глагол."
+    words: ["Ich", "komme", "heute", "später,", "denn", "ich", "habe", "einen", "Termin."]
+    translation:
+      en: "I'm coming in later today, because I have an appointment."
+      ru: "Сегодня я приду позже, потому что у меня встреча."
+    explain:
+      en: "denn is a coordinating conjunction: it glues two full main clauses together and touches neither of them. So the second half keeps the shape it would have on its own — subject ich first, conjugated verb habe second, object last. Putting habe at the end (denn ich einen Termin habe) is what a different conjunction does, and it is not this one. Keep the comma in front of denn, and never let denn open a sentence."
+      ru: "denn — сочинительный союз: он склеивает два полноценных главных предложения и ни одно из них не трогает. Поэтому вторая половина сохраняет тот вид, который был бы у неё отдельно: сначала подлежащее ich, затем спрягаемый глагол habe на втором месте, а дополнение — в конце. Отправить habe в конец (denn ich einen Termin habe) — значит перепутать denn с другим союзом. Перед denn ставится запятая, и denn никогда не начинает предложение."
+
+  - id: uebersetzen-zustaendig-satzklammer
+    outcomes: [aufgaben-beschreiben]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: "Translate into German. You are describing your job to a new colleague."
+      ru: "Переведите на немецкий. Вы рассказываете о своей работе новому коллеге."
+    prompt_en: "I am responsible for the till. Today I have to work longer."
+    prompt_ru: "Я отвечаю за кассу. Сегодня мне придётся работать дольше."
+    answer: "Ich bin zuständig für die Kasse. Heute muss ich länger arbeiten."
+    key_tokens: ["muss", "arbeiten"]
+    accept:
+      - "Ich bin für die Kasse zuständig. Heute muss ich länger arbeiten."
+      - "Ich bin zuständig für die Kasse. Ich muss heute länger arbeiten."
+      - "Ich bin für die Kasse zuständig. Ich muss heute länger arbeiten."
+    explain:
+      en: "Two sentences, two jobs. The first one names your duty with the fixed frame zuständig für + accusative — für die Kasse. The second one is the bracket: Heute fills position 1, so muss must stand second and ich follows it, and the infinitive arbeiten waits at the very end with länger in front of it. Starting with Ich muss heute … is equally correct German; what is never correct is Heute ich muss, with two elements crowding in front of the verb."
+      ru: "Два предложения — две задачи. Первое называет обязанность устойчивой конструкцией zuständig für + Akkusativ — für die Kasse. Второе — рамка: Heute занимает первое место, поэтому muss обязано стоять вторым, а ich идёт следом; инфинитив arbeiten ждёт в самом конце, а länger стоит перед ним. Вариант Ich muss heute … по-немецки столь же верен; неверно только Heute ich muss, когда перед глаголом толпятся сразу два члена предложения."
+
+  - id: uebersetzen-schicht-uebernehmen
+    outcomes: [arbeitszeit-aushandeln]
+    type: translate
+    focus: du-sie
+    instruction:
+      en: "Translate into German. You are speaking to your manager, Ms Kaufmann."
+      ru: "Переведите на немецкий. Вы обращаетесь к своей начальнице, госпоже Кауфман."
+    prompt_en: "Ms Kaufmann, could you take over my shift on Saturday?"
+    prompt_ru: "Госпожа Кауфман, вы не могли бы взять мою смену в субботу?"
+    answer: "Frau Kaufmann, könnten Sie am Samstag meine Schicht übernehmen?"
+    key_tokens: ["könnten", "Sie"]
+    accept:
+      - "Frau Kaufmann, könnten Sie meine Schicht am Samstag übernehmen?"
+    explain:
+      en: "A surname decides the register: Frau Kaufmann takes Sie, with a capital S, and the verb form that goes with it is könnten (not könntest, which belongs to du). The polite könnten is what turns a demand into a request — Können Sie …? is merely a question about ability. The rest is the familiar bracket: the modal is the first thing after the address, and the infinitive übernehmen closes the question at the end."
+      ru: "Фамилия определяет регистр: к Frau Kaufmann обращаются на Sie — с большой буквы, — и соответствующая форма глагола здесь könnten (а не könntest, которая относится к du). Именно вежливое könnten превращает требование в просьбу: Können Sie …? — это лишь вопрос о способности. Всё остальное — знакомая рамка: модальный глагол идёт сразу после обращения, а инфинитив übernehmen закрывает вопрос в конце."
+
+  - id: uebersetzen-denn-termin
+    outcomes: [arbeitszeit-aushandeln, berufliche-nachricht-schreiben]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: "Translate into German. You are texting a colleague."
+      ru: "Переведите на немецкий. Вы пишете коллеге сообщение."
+    prompt_en: "I'm coming in later today, because I have an appointment at the doctor's."
+    prompt_ru: "Сегодня я приду позже, потому что у меня приём у врача."
+    answer: "Ich komme heute später, denn ich habe einen Termin beim Arzt."
+    key_tokens: ["denn", "habe"]
+    accept:
+      - "Heute komme ich später, denn ich habe einen Termin beim Arzt."
+    explain:
+      en: "denn does not reorder anything. The clause it introduces is a complete main clause and behaves like one: ich in position 1, the conjugated habe in position 2, the object behind it. That is why denn is the cheapest way to give a reason at this level — you already know how to build the sentence that follows it. Two habits to fix now: a comma always goes in front of denn, and denn never opens a sentence."
+      ru: "denn ничего не переставляет. Введённая им часть — полноценное главное предложение и ведёт себя как таковое: ich на первом месте, спрягаемое habe на втором, дополнение за ним. Именно поэтому denn — самый дешёвый способ назвать причину на этом уровне: предложение после него вы уже умеете строить. Две привычки стоит закрепить сразу: перед denn всегда запятая, и denn никогда не начинает предложение."
