@@ -213,13 +213,13 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
-    prompt_en: "The jacket fits me, but I don't like it."
-    prompt_ru: "Куртка мне подходит по размеру, но она мне не нравится."
-    answer: "Die Jacke passt mir, aber sie gefällt mir nicht."
-    key_tokens: ["passt", "gefällt", "mir"]
+    prompt_en: "The jacket fits me, but my husband doesn't like it."
+    prompt_ru: "Куртка мне подходит по размеру, но моему мужу она не нравится."
+    answer: "Die Jacke passt mir, aber sie gefällt meinem Mann nicht."
+    key_tokens: ["passt", "mir"]
     explain:
-      en: "This is the sentence the whole lesson turns on, and it is only sayable if both verbs are built the same way: the jacket is the subject twice over (passt, gefällt — third person singular), and you are the dative object twice over (mir). Ich passe die Jacke and Ich gefalle die Jacke are not weaker versions of this sentence; they are not German."
-      ru: "Ради этого предложения и затевался весь урок, и построить его можно только одним способом: подлежащее в обеих частях — куртка (passt, gefällt — третье лицо единственного числа), а вы дважды стоите в дательном падеже (mir). Фразы Ich passe die Jacke и Ich gefalle die Jacke — не «менее удачные» варианты, а просто не немецкий язык."
+      en: "This is the sentence the whole lesson turns on, and it is only sayable if both verbs are built the same way: the jacket is the subject twice over (passt, gefällt — third person singular), and the person is in the dative twice over (mir, meinem Mann). Ich passe die Jacke and Ich gefalle die Jacke are not weaker versions of this sentence; they are not German. Note that the dative object does not have to be a pronoun — meinem Mann is the same slot as mir, just filled with a noun."
+      ru: "Ради этого предложения и затевался весь урок, и построить его можно только одним способом: подлежащее в обеих частях — куртка (passt, gefällt — третье лицо единственного числа), а человек дважды стоит в дательном падеже (mir, meinem Mann). Фразы Ich passe die Jacke и Ich gefalle die Jacke — не «менее удачные» варианты, а просто не немецкий язык. Обратите внимание: дательное дополнение не обязано быть местоимением — meinem Mann занимает ту же позицию, что и mir, просто выражено существительным."
 
   - id: uebersetzen-umtauschen-akkusativ
     outcomes: [umtausch-begruenden, reklamation-schreiben]

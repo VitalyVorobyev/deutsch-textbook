@@ -37,13 +37,20 @@ items:
       ru: Переведите на немецкий.
     prompt_en: "We flew to Vienna and stayed there for a week."
     prompt_ru: "Мы полетели в Вену и пробыли там неделю."
-    answer: "Wir sind nach Wien geflogen und sind eine Woche dort geblieben."
+    answer: "Wir sind nach Wien geflogen und eine Woche dort geblieben."
     key_tokens: ["sind", "geflogen", "geblieben"]
     accept:
-      # The second `sind` may be elided after `und`, and dort/eine Woche may swap — both are
+      # The `sind` may be repeated after `und`, and dort/eine Woche may swap — both are
       # ordinary German. A probe measures the auxiliary, so it must not fail a learner who
       # picked the right one and put the adverb where a native also puts it.
-      - "Wir sind nach Wien geflogen und eine Woche dort geblieben."
+      #
+      # The canonical answer elides the second `sind` on purpose: repeated, it would put the
+      # graded token in the sentence twice, and `graded` in src/lib/production.ts matches by
+      # string rather than by position — so one auxiliary slip would be counted against
+      # haben-sein twice over. Here both occurrences would be the same decision, so nothing
+      # would be mis-attributed, but the probe would still weigh this item's aux error more
+      # heavily than its siblings', and a probe exists to be compared with its siblings.
+      - "Wir sind nach Wien geflogen und sind eine Woche dort geblieben."
       - "Wir sind nach Wien geflogen und sind dort eine Woche geblieben."
       - "Wir sind nach Wien geflogen und dort eine Woche geblieben."
     explain:

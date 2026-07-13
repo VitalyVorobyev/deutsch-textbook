@@ -64,20 +64,35 @@ items:
       en: "The question word decides the verb. Wohin? asks about a movement, and a movement needs a placement verb with an object: Nina legt die Schlüssel auf den Tisch. liegt would answer a different question — Wo liegen die Schlüssel? — Auf dem Tisch. Notice how the answer changes with it: auf den Tisch (accusative) against auf dem Tisch (dative)."
       ru: "Глагол определяется вопросительным словом. Wohin? спрашивает о перемещении, а перемещению нужен глагол с дополнением: Nina legt die Schlüssel auf den Tisch. Форма liegt отвечала бы на другой вопрос — Wo liegen die Schlüssel? — Auf dem Tisch. Обратите внимание, как вместе с глаголом меняется и ответ: auf den Tisch (Akkusativ) против auf dem Tisch (Dativ)."
 
-  - id: uebersetzen-stuhl-neben-den-schrank
+  - id: uebersetzen-stuhl-akkusativ-objekt
     outcomes: [wohnung-beschreiben, wo-wohin-position]
     type: translate
     focus: akkusativ-artikel
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
-    prompt_en: "Nina puts the chair next to the wardrobe."
-    prompt_ru: "Нина ставит стул рядом со шкафом."
-    answer: "Nina stellt den Stuhl neben den Schrank."
+    prompt_en: "Nina puts the chair in the kitchen."
+    prompt_ru: "Нина ставит стул на кухню."
+    answer: "Nina stellt den Stuhl in die Küche."
     key_tokens: ["den"]
     explain:
-      en: "Two masculine nouns, two accusatives, two different reasons. den Stuhl is the object — the thing Nina moves. neben den Schrank is the direction — Wohin? Both come out as den, and that is the form to get right: der Stuhl → den Stuhl, der Schrank → den Schrank. Once the chair is there, the second half becomes dative: Der Stuhl steht neben dem Schrank."
-      ru: "Два существительных мужского рода, два Akkusativ, две разные причины. den Stuhl — дополнение, предмет, который Нина перемещает. neben den Schrank — направление, ответ на Wohin? Оба раза получается den, и это как раз та форма, которую нужно не потерять: der Stuhl → den Stuhl, der Schrank → den Schrank. Осторожно: по-русски здесь творительный падеж — «рядом со шкафом», — и он никак не намекает на направление. Когда стул уже стоит, вторая половина уйдёт в Dativ: Der Stuhl steht neben dem Schrank."
+      en: "The thing Nina moves is the direct object, and it takes the Akkusativ: der Stuhl → den Stuhl. That is the only article here that changes shape — die Küche is feminine, so its accusative is die, exactly as its nominative was. Masculine is the one gender where the accusative is visible, which is why it is the one you have to think about."
+      ru: "Предмет, который Нина перемещает, — прямое дополнение, и он стоит в Akkusativ: der Stuhl → den Stuhl. Это единственный артикль здесь, который меняет форму: die Küche — женского рода, и её Akkusativ — die, ровно как и Nominativ. Мужской род — единственный, где Akkusativ виден, поэтому думать приходится именно о нём."
+
+  - id: uebersetzen-stuhl-neben-den-schrank
+    outcomes: [wohnung-beschreiben, wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "Nina puts the lamp next to the wardrobe."
+    prompt_ru: "Нина ставит лампу рядом со шкафом."
+    answer: "Nina stellt die Lampe neben den Schrank."
+    key_tokens: ["den"]
+    explain:
+      en: "neben is one of the nine two-way prepositions, and the case is decided by the question, not by the preposition: Wohin? — the lamp is moving — so Akkusativ, der Schrank → neben den Schrank. Once the lamp is standing there, the same preposition takes the Dativ, because the question has become Wo?: Die Lampe steht neben dem Schrank. One word, two cases, and only the question tells them apart."
+      ru: "neben — один из девяти предлогов двойного управления, и падеж выбирает вопрос, а не предлог: Wohin? — лампа перемещается — значит Akkusativ, der Schrank → neben den Schrank. Когда лампа уже стоит, тот же предлог требует Dativ, потому что вопрос сменился на Wo?: Die Lampe steht neben dem Schrank. Осторожно: по-русски здесь творительный падеж — «рядом со шкафом», — и он никак не намекает на направление."
 
   - id: schreiben-anfrage-vermieterin
     outcomes: [wohnung-beschreiben, wo-wohin-position]

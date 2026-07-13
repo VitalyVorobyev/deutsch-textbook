@@ -27,13 +27,13 @@ items:
     instruction:
       en: Translate into German. Use "es gibt".
       ru: Переведите на немецкий. Используйте «es gibt».
-    prompt_en: "There is a garden and a balcony."
-    prompt_ru: "Здесь есть сад и балкон."
-    answer: "Es gibt einen Garten und einen Balkon."
+    prompt_en: "There is a garden and a kitchen."
+    prompt_ru: "Здесь есть сад и кухня."
+    answer: "Es gibt einen Garten und eine Küche."
     key_tokens: ["einen"]
     explain:
-      en: "es gibt always takes an accusative object. Both der Garten and der Balkon are masculine, so both articles become einen."
-      ru: "После es gibt всегда стоит винительный падеж. И der Garten, и der Balkon — мужского рода, поэтому оба артикля становятся einen."
+      en: "es gibt always takes an accusative object — but the accusative only *shows* on masculine nouns. der Garten is masculine, so ein becomes einen. die Küche is feminine, and eine stays eine: nothing happens to it. That asymmetry is the whole rule. The accusative is not an ending you add everywhere; it is a form that surfaces on der-words and hides on the others."
+      ru: "После es gibt всегда стоит винительный падеж — но виден он только у существительных мужского рода. der Garten — мужской род, поэтому ein превращается в einen. die Küche — женский, и eine остаётся eine: с ней не происходит ничего. В этой асимметрии и состоит всё правило. Винительный падеж — не окончание, которое дописывают ко всему подряд, а форма, которая проявляется у слов с der и прячется у остальных."
 
   - id: cloze-wohnung-zimmer
     outcomes: [wohnen-lage-sagen, wohnen-beschreiben]

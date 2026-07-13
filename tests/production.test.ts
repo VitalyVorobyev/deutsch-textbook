@@ -246,3 +246,58 @@ describe('a graded token stays graded when an accept variant capitalizes it', ()
     expect(gradeTranslation('Rufen Sie ihn bitte an.', register)).toEqual({ kind: 'wrong' });
   });
 });
+
+describe('a graded token stays graded when an accept variant lowercases it', () => {
+  // The same hole as above, in the other direction — and it was the direction still open.
+  // The index-0 rule covers a key token that is lowercase in `answer` and gets capitalized
+  // by an `accept` line that fronts it. It does nothing for the reverse: a key token that
+  // stands FIRST in `answer` is capitalized by sentence position, and an `accept` line that
+  // moves it mid-sentence lowercases it. Matched case-sensitively, `im` then stopped being
+  // the pinned `Im`, so rule 1 forgave `um` for `im` as a one-edit slip — the exact
+  // `um-am-zeit` error the item exists to measure, silently never logged.
+  const spec = {
+    answer: 'Im Sommer stehe ich um sechs Uhr auf.',
+    accept: ['Ich stehe im Sommer um sechs Uhr auf.'],
+    keyTokens: ['Im', 'um'],
+    focus: 'um-am-zeit',
+  };
+
+  test('the wrong preposition is a grammar error in the canonical order', () => {
+    expect(gradeTranslation('Um Sommer stehe ich um sechs Uhr auf.', spec)).toEqual({
+      kind: 'wrong',
+      focus: 'um-am-zeit',
+    });
+  });
+
+  test('and still a grammar error in the variant, where it is lowercase mid-sentence', () => {
+    expect(gradeTranslation('Ich stehe um Sommer um sechs Uhr auf.', spec)).toEqual({
+      kind: 'wrong',
+      focus: 'um-am-zeit',
+    });
+  });
+
+  test('a genuine slip elsewhere in that variant is still forgiven', () => {
+    expect(gradeTranslation('Ich stehe im Sommer um sechs Uhr aif.', spec)).toEqual({
+      kind: 'spelling',
+      correction: { given: 'aif', expected: 'auf' },
+    });
+  });
+
+  // The derivation is deliberately narrow: the lowercase form is added only when the key
+  // token really is the first word of `answer`. A key token that is capitalized anywhere
+  // else is capitalized by grammar, and folding in its lowercase form would grade a word
+  // the tag is not about — which is what the `Sie`/`sie` test above pins.
+  test('the lowercase form is not derived for a key token that is not sentence-initial', () => {
+    const noun = {
+      answer: 'Ich kaufe am Montag eine Jacke.',
+      keyTokens: ['Jacke'],
+      focus: 'genus',
+    };
+    // `jacke` is not a word, so nothing should have been added to the graded set for it;
+    // a real divergence on the pinned noun is still attributed.
+    expect(gradeTranslation('Ich kaufe am Montag eine Hose.', noun)).toEqual({
+      kind: 'wrong',
+      focus: 'genus',
+    });
+  });
+});

@@ -164,6 +164,27 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
   const graded = new Set((spec.keyTokens ?? []).map(bare));
 
   /**
+   * The mirror of the index-0 rule below, and it has to happen here rather than there.
+   *
+   * A key token standing first in `answer` is capitalized by sentence position, not by
+   * grammar: `Im Sommer stehe ich um sechs Uhr auf.` pins `Im`. An `accept` rendering that
+   * moves it mid-sentence lowercases it — `Ich stehe im Sommer um sechs Uhr auf.` — and
+   * `im` is then a different string from the pinned `Im`, so it stops being graded for that
+   * rendering. Rule 1 would forgive `um` for `im` as a one-edit spelling slip, which is
+   * exactly the `um-am-zeit` error the item exists to measure, and Rule 2 would never blame
+   * the tag for it. The index-0 rule only covers the opposite move (lowercase in `answer`,
+   * fronted and capitalized in an `accept`), so without this the hole is one-directional.
+   *
+   * Narrow on purpose: the lowercase form is derived only when the key token really is the
+   * first word of `answer`. Mid-sentence capitalization *is* grammar in German — `Sie` and
+   * `sie` are different words — so nothing else is folded together.
+   */
+  const answerHead = bare(tokenize(spec.answer)[0] ?? '');
+  if (graded.has(answerHead)) {
+    graded.add(answerHead.charAt(0).toLowerCase() + answerHead.slice(1));
+  }
+
+  /**
    * Is the token at position `i` of `tokens` one this item grades?
    *
    * Sentence-initial capitalization is orthography, not grammar, and an `accept` variant
