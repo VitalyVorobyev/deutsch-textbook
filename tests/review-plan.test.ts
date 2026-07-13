@@ -186,3 +186,110 @@ describe('planReview', () => {
     expect(plan.queue.slice(1).every((c) => c.deckId === 'basis-deck')).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// The daily new-card budget
+// ---------------------------------------------------------------------------
+
+/** a card introduced (first graded) on `date`, still in learning */
+const introduced = (date: string): StoredCard => ({
+  due: new Date(Date.now() + 600_000).toISOString(),
+  stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0,
+  learning_steps: 1, reps: 1, lapses: 0, state: 1,
+  last_review: new Date().toISOString(),
+  introducedAt: date,
+});
+
+const today = () => {
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${String(d.getDate()).padStart(2, '0')}`;
+};
+
+describe('the daily new-card budget survives a reload', () => {
+  test('a second queue on the same day introduces nothing more', () => {
+    // The bug this pins: newLimit caps one queue *build*, and planReview re-runs on
+    // every mount. Reloading /ueben/wiederholen used to deal the next 15 fresh cards,
+    // and the next, and the next — a debt FSRS then delivers for months.
+    const pool = fresh(60);
+    const first = planReview(pool, gate, ctx({}), { newLimit: 15 });
+    expect(first.freshCount).toBe(15);
+
+    // the learner grades all 15 — they are no longer "fresh", and the day is spent
+    const states = Object.fromEntries(first.queue.map((c) => [c.id, introduced(today())]));
+    const second = planReview(pool, gate, ctx(states), { newLimit: 15 });
+    expect(second.freshCount).toBe(0);
+  });
+
+  test('a partly spent day deals only the remainder', () => {
+    const pool = fresh(60);
+    const states = Object.fromEntries(
+      fresh(4).map((c) => [c.id, introduced(today())]),
+    );
+    const plan = planReview(pool, gate, ctx(states), { newLimit: 15 });
+    expect(plan.freshCount).toBe(11); // DAILY_NEW_CARDS(15) − 4 already introduced
+  });
+
+  test("yesterday's introductions do not spend today's budget", () => {
+    const pool = fresh(60);
+    const states = Object.fromEntries(
+      fresh(15).map((c) => [c.id, introduced('2020-01-01')]),
+    );
+    const plan = planReview(pool, gate, ctx(states), { newLimit: 15 });
+    expect(plan.freshCount).toBe(15);
+  });
+
+  test('a card with no introducedAt (graded before the field existed) is not today', () => {
+    // Back-compat: an old profile's cards carry no introducedAt. They must read as
+    // "not introduced today" — otherwise every returning learner would find their
+    // budget mysteriously spent.
+    const pool = fresh(60);
+    const states = Object.fromEntries(fresh(20).map((c) => [c.id, dueState(1)]));
+    const plan = planReview(pool, gate, ctx(states), { newLimit: 15 });
+    expect(plan.freshCount).toBe(15);
+  });
+
+  test('the ungated per-deck page is not rationed', () => {
+    // Studying one deck directly is an explicit opt-in — the same carve-out
+    // eligibility already makes by skipping the gate.
+    const pool = fresh(60);
+    const states = Object.fromEntries(fresh(15).map((c) => [c.id, introduced(today())]));
+    const plan = planReview(pool, undefined, ctx(states), { newLimit: 15 });
+    expect(plan.freshCount).toBe(15);
+  });
+
+  test('due cards are never rationed — only new ones are', () => {
+    const dueCards = bothDirections('basis-deck', 'Alt');
+    const states: Record<string, StoredCard> = {
+      [dueCards[0]!.id]: dueState(3),
+      [dueCards[1]!.id]: dueState(3),
+      ...Object.fromEntries(fresh(15).map((c) => [c.id, introduced(today())])),
+    };
+    const plan = planReview([...dueCards, ...fresh(30)], gate, ctx(states), { newLimit: 15 });
+    expect(plan.dueCount).toBe(2);
+    expect(plan.freshCount).toBe(0);
+  });
+});
+
+describe('completion decks rank behind the lesson decks', () => {
+  test('an unowned deck at the current level comes after the owned ones', () => {
+    // Closing the A2 Wortliste puts ~680 completion words at the learner's level
+    // against ~250 lesson words. In one flat band the lesson loses.
+    const gateWithCompletion: ReviewGate = {
+      spine: ['basis', 'zweit'],
+      nodes: [basis, zweit],
+      deckLevels: { 'basis-deck': 'A1', 'zweit-deck': 'A1', 'wortliste-deck': 'A1' },
+    };
+    // basis is read (so it is behind the learner), making zweit the recommended next.
+    const context: ReviewContext = {
+      attempts: [], cards: {},
+      topics: { basis: { readAt: 1, learned: true, manualAt: 1 }, zweit: { readAt: 1 } },
+    };
+    const pool = [...fresh(10, 'zweit-deck'), ...fresh(10, 'wortliste-deck')];
+    const plan = planReview(pool, gateWithCompletion, context, { newLimit: 10 });
+
+    expect(plan.freshCount).toBe(10);
+    // every card dealt comes from the lesson deck, none from the completion deck
+    expect(plan.queue.every((c) => c.deckId === 'zweit-deck')).toBe(true);
+  });
+});

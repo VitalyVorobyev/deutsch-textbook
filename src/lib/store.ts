@@ -83,6 +83,12 @@ export interface StoredCard {
   lapses: number;
   state: number;
   last_review?: string;
+  /** Local date this card was first ever graded (YYYY-MM-DD) — the daily new-card
+      budget counts these. Stamped once by `gradeCard`, never updated. Absent on
+      cards introduced before the field existed, which reads correctly as "not
+      today". See `introducedToday` in srs.ts for why FSRS's own fields cannot
+      answer this. */
+  introducedAt?: string;
 }
 
 export type CardStates = Record<string, StoredCard>;

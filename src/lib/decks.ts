@@ -1,6 +1,6 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
-import { rankDueCards, spaceSiblings, splitQueue, type CardDef } from './srs';
+import { introducedToday, rankDueCards, spaceSiblings, splitQueue, type CardDef } from './srs';
 import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
@@ -66,11 +66,19 @@ export function prioritizeFreshCards(
     : recommendedNext(spine, nodes, ctx);
   const nextDecks = new Set(next?.vocabIds ?? []);
   const currentLevel = next?.level;
+  // A deck no topic lists in `vocab:` is a Wortliste completion deck. It teaches
+  // the level's lexis, not any lesson's, so it belongs behind the decks that do.
+  const owned = new Set(nodes.flatMap((n) => n.vocabIds));
   function priority(card: CardDef) {
     if (routeDecks.has(card.deckId)) return 0;
     if (nextDecks.has(card.deckId)) return 1;
-    if (deckLevels[card.deckId] === currentLevel) return 2;
-    return 3;
+    // Band 2 used to hold every deck at the current level, owned or not. Closing the
+    // A2 Wortliste puts ~680 completion words in it against ~250 lesson words, so a
+    // learner who finished their unit's deck would meet `Volleyball` shuffled in with
+    // the vocabulary of the unit they are about to study. Splitting the band costs
+    // nothing and keeps the lesson in front.
+    if (deckLevels[card.deckId] === currentLevel) return owned.has(card.deckId) ? 2 : 3;
+    return 4;
   }
   // Shuffle, then stable-sort by priority: curriculum order decides which decks
   // come first, chance decides the order inside a deck. Sorting by card id
@@ -96,9 +104,25 @@ export interface ReviewContext extends TopicContext {
   goal?: LearningGoal;
 }
 
+/**
+ * How many never-seen cards a learner may be dealt in one day, across every gated
+ * surface together. `newLimit` caps a single queue *build* and `planReview` re-runs
+ * on every mount, so without this a reload of /ueben/wiederholen simply dealt the
+ * next 15 — five reloads, 75 new cards, and a review debt FSRS delivers for months.
+ */
+export const DAILY_NEW_CARDS = 15;
+
 export interface ReviewPlanOpts {
-  /** cap on never-graded cards mixed into the queue (default 15) */
+  /** cap on never-graded cards mixed into this one queue (default 15) */
   newLimit?: number;
+  /**
+   * Cap on never-graded cards introduced *today*, counted across surfaces from the
+   * card states themselves. Defaults to DAILY_NEW_CARDS whenever a `gate` is given,
+   * and to no cap without one — the same carve-out eligibility already makes: the
+   * per-deck page is ungated because studying one deck directly is an explicit
+   * opt-in, and it should not be rationed like the daily flow.
+   */
+  dailyNewCap?: number;
   /** cap on due cards in the queue (default unlimited) */
   maxDue?: number;
   /** cap on the whole queue (default unlimited) */
@@ -142,6 +166,7 @@ export function planReview(
 ): ReviewPlanResult {
   const {
     newLimit = 15,
+    dailyNewCap = gate ? DAILY_NEW_CARDS : Infinity,
     maxDue = Infinity,
     maxTotal = Infinity,
     freshPolicy = { kind: 'always' },
@@ -149,6 +174,10 @@ export function planReview(
   } = opts;
   const { due, fresh } = splitQueue(cards, ctx.cards, now);
   const dueQueue = rankDueCards(due, ctx.cards).slice(0, Math.min(maxDue, maxTotal));
+
+  // Today's remaining budget. Spent budget shrinks every later queue this day,
+  // which is the whole point: the cap has to survive a page reload to mean anything.
+  const budget = Math.max(0, dailyNewCap - introducedToday(ctx.cards, now));
 
   const wantFresh =
     freshPolicy.kind === 'always' || (due.length > 0 && due.length < freshPolicy.minDue);
@@ -160,7 +189,10 @@ export function planReview(
     const ordered = gate
       ? prioritizeFreshCards(pool, gate.spine, gate.nodes, gate.deckLevels, ctx, ctx.goal)
       : shuffle(pool);
-    freshQueue = ordered.slice(0, Math.max(0, Math.min(newLimit, maxTotal - dueQueue.length)));
+    freshQueue = ordered.slice(
+      0,
+      Math.max(0, Math.min(newLimit, budget, maxTotal - dueQueue.length)),
+    );
   }
 
   return {
