@@ -1,0 +1,71 @@
+topic: lernen-verstehen
+kind: intensive
+title_de: "Vor der Prüfung"
+text:
+  - >-
+    Am Samstag ist die Prüfung. Sie beginnt um neun Uhr, aber Sie sollen schon um
+    halb neun da sein. An der Tür zeigen Sie Ihren
+    [[Ausweis::ID card::удостоверение личности]] — ohne Ausweis dürfen Sie nicht
+    [[teilnehmen::take part::участвовать]].
+  - >-
+    Im Raum sitzt jeder allein an einem Tisch. Eine
+    [[Prüferin::examiner (a woman)::экзаменатор (женщина)]] oder ein
+    [[Prüfer::examiner (a man)::экзаменатор (мужчина)]] erklärt die
+    [[Regeln::rules::правила]]: Handys aus, Wörterbücher weg. Ihre
+    [[Lösungen::answers, solutions::решения, ответы]] schreiben Sie am Ende auf den
+    [[Antwortbogen::answer sheet::бланк ответов]]. Nur der Antwortbogen
+    [[zählt::counts::засчитывается]].
+  - >-
+    Die Prüfung hat vier Teile: Lesen, Hören, Schreiben und Sprechen. Nach dem
+    Hören gibt es eine Pause. Sprechen kommt am Ende, und Sie sprechen zu zweit.
+  - >-
+    Wenn Sie eine Aufgabe nicht verstehen, fragen Sie. Der Prüfer darf die Aufgabe
+    nicht lösen, aber er darf sie [[wiederholen::repeat::повторить]]. Und wenn Sie
+    ein Wort nicht kennen, lesen Sie einfach weiter — Sie müssen nicht jedes Wort
+    verstehen.
+questions:
+  - id: frage-antwortbogen
+    outcomes: [kursanweisungen-verstehen]
+    type: mc
+    prompt: "Wohin schreiben Sie Ihre Lösungen?"
+    options:
+      - "Auf den Antwortbogen."
+      - "In das Wörterbuch."
+      - "An die Tafel."
+    correct: 0
+    translation:
+      en: Where do you write your answers?
+      ru: Куда вы пишете свои ответы?
+    explain:
+      en: "The text says it twice, and the second time it says why it matters: „Ihre Lösungen schreiben Sie am Ende auf den Antwortbogen. Nur der Antwortbogen zählt.“ Whatever you scribble on the question paper is yours alone — the examiner never looks at it. Wörterbücher are in fact explicitly put away (Wörterbücher weg), and nobody writes on a board in an exam. Notice the direction, too: auf den Antwortbogen, with the accusative, because the answers are going somewhere."
+      ru: "В тексте это сказано дважды, и во второй раз объясняется, почему это важно: «Ihre Lösungen schreiben Sie am Ende auf den Antwortbogen. Nur der Antwortbogen zählt.» Всё, что вы черкаете на листе с заданиями, остаётся при вас — экзаменатор туда не заглянет. Словари, наоборот, прямо велят убрать (Wörterbücher weg), а к доске на экзамене никто не выходит. Обратите внимание и на направление: auf den Antwortbogen, с Akkusativ, потому что ответы куда-то перемещаются."
+  - id: frage-pruefer
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    prompt: "Sie verstehen eine Aufgabe nicht. Was macht der Prüfer?"
+    options:
+      - "Er wiederholt die Aufgabe."
+      - "Er löst die Aufgabe für Sie."
+      - "Er gibt Ihnen ein Wörterbuch."
+    correct: 0
+    translation:
+      en: You do not understand a task. What does the examiner do?
+      ru: Вы не поняли задание. Что сделает экзаменатор?
+    explain:
+      en: "The last paragraph draws the line exactly: „Der Prüfer darf die Aufgabe nicht lösen, aber er darf sie wiederholen.“ So asking is allowed and it is worth doing — the text opens that sentence with an imperative, fragen Sie. What you get back is the task once more, not the answer, and certainly not a dictionary: those were put away in the second paragraph. Note the two modals side by side, darf nicht (forbidden) against darf (allowed) — one word apart, opposite meanings."
+      ru: "Последний абзац проводит границу точно: «Der Prüfer darf die Aufgabe nicht lösen, aber er darf sie wiederholen.» Значит, спрашивать можно и нужно — это предложение и открывается повелительным fragen Sie. В ответ вам повторят задание, но не решат его, и уж точно не дадут словарь: словари убрали ещё во втором абзаце. Обратите внимание на два модальных глагола рядом: darf nicht (нельзя) и darf (можно) — разница в одном слове, значения противоположные."
+  - id: frage-unbekanntes-wort
+    outcomes: [lernstrategien-sagen]
+    type: mc
+    prompt: "Im Text steht ein Wort, das Sie nicht kennen. Was machen Sie?"
+    options:
+      - "Ich lese weiter — ich muss nicht jedes Wort verstehen."
+      - "Ich frage die Prüferin nach der Übersetzung."
+      - "Ich höre auf und warte auf die Pause."
+    correct: 0
+    translation:
+      en: There is a word in the text that you do not know. What do you do?
+      ru: В тексте попалось слово, которого вы не знаете. Что вы делаете?
+    explain:
+      en: "This is the strategy the whole last sentence is there to teach: „Wenn Sie ein Wort nicht kennen, lesen Sie einfach weiter — Sie müssen nicht jedes Wort verstehen.“ A reading task asks whether you got the meaning, not whether you knew every word, and stopping at the first unknown one is how people run out of time. Asking for a translation is a repair you use in a course, not in an exam — and waiting for the break costs you the very minutes the task is measured in."
+      ru: "Именно этой стратегии посвящено последнее предложение текста: «Wenn Sie ein Wort nicht kennen, lesen Sie einfach weiter — Sie müssen nicht jedes Wort verstehen.» Задание на чтение проверяет, поняли ли вы смысл, а не знали ли вы каждое слово; остановка на первом незнакомом слове — самый верный способ не уложиться во время. Просьба перевести слово — это приём для курса, а не для экзамена, а ждать перерыва значит потратить те самые минуты, в которых измеряется задание."
