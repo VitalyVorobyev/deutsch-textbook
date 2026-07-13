@@ -107,8 +107,8 @@ items:
     outcomes: [termine-organisieren, termine-hoeflich-telefonieren]
     type: write
     prompt:
-      en: "In der Praxis geht niemand ans Telefon. You have an appointment at Praxis Dr. Weber tomorrow at 10:45, but a meeting at the office has been scheduled for eleven. Write a short e-mail to the practice."
-      ru: "In der Praxis geht niemand ans Telefon. У вас завтра приём в Praxis Dr. Weber в 10:45, но на одиннадцать назначили совещание в офисе. Напишите короткое письмо в приёмную."
+      en: "In der Praxis geht niemand ans Telefon. You have an appointment at Praxis Dr. Weber on Wednesday at 10:45, but a meeting at the office has been scheduled for eleven that same day. Write a short e-mail to the practice."
+      ru: "In der Praxis geht niemand ans Telefon. У вас приём в Praxis Dr. Weber в среду в 10:45, но на одиннадцать того же дня назначили совещание в офисе. Напишите короткое письмо в приёмную."
     goal:
       en: "Get the appointment moved in writing: say which appointment you mean, why you cannot come, and when you could."
       ru: "Добиться переноса приёма письменно: назвать, о каком приёме речь, почему вы не можете прийти и когда могли бы."
@@ -122,10 +122,10 @@ items:
       - en: "I addressed the practice with Sie throughout, and my new time is offered with Passt es Ihnen …? — never Passt es Sie?"
         ru: "Я обращаюсь к приёмной только на Sie, а новое время предлагаю формулой Passt es Ihnen …? — но не Passt es Sie?"
     min_words: 25
-    model_answer: "Guten Tag, mein Name ist Orlow. Ich habe morgen um Viertel vor elf einen Termin bei Dr. Weber. Leider habe ich um elf eine Besprechung im Büro. Können wir den Termin verschieben? Passt es Ihnen am Freitag um vier Uhr? Vielen Dank und viele Grüße!"
+    model_answer: "Guten Tag, mein Name ist Orlow. Ich habe am Mittwoch um Viertel vor elf einen Termin bei Dr. Weber. Leider habe ich um elf eine Besprechung im Büro. Können wir den Termin verschieben? Passt es Ihnen am Freitag um vier Uhr? Vielen Dank und viele Grüße!"
     model_translation:
-      en: "Hello, my name is Orlov. I have an appointment with Dr Weber tomorrow at quarter to eleven. Unfortunately I have a meeting at the office at eleven. Could we move the appointment? Would Friday at four o'clock suit you? Many thanks and best wishes!"
-      ru: "Добрый день, моя фамилия Орлов. Завтра без четверти одиннадцать у меня приём у доктора Вебера. К сожалению, в одиннадцать у меня совещание в офисе. Мы можем перенести приём? Вам подходит пятница, в четыре часа? Большое спасибо и всего доброго!"
+      en: "Hello, my name is Orlov. I have an appointment with Dr Weber on Wednesday at quarter to eleven. Unfortunately I have a meeting at the office at eleven. Could we move the appointment? Would Friday at four o'clock suit you? Many thanks and best wishes!"
+      ru: "Добрый день, моя фамилия Орлов. В среду без четверти одиннадцать у меня приём у доктора Вебера. К сожалению, в одиннадцать у меня совещание в офисе. Мы можем перенести приём? Вам подходит пятница, в четыре часа? Большое спасибо и всего доброго!"
     explain:
       en: "Four moves, four sentences: identify the appointment (am + day, um + time), state the clash, ask for the change with a modal + verschieben at the end, offer a new slot with Passt es Ihnen …? Keep every sentence a main clause with the verb second — you do not need a single long sentence to be polite in German."
       ru: "Четыре хода — четыре предложения: назвать приём (am + день, um + время), объяснить накладку, попросить о переносе (модальный глагол + verschieben в конце) и предложить новое время формулой Passt es Ihnen …? Каждое предложение остаётся простым, с глаголом на втором месте: чтобы звучать вежливо по-немецки, длинные конструкции не нужны."

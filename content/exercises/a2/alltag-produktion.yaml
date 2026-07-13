@@ -24,17 +24,17 @@ items:
         - { speaker: "Mara", text: "Ich komme am Morgen nach Hause und gehe sofort ins Bett. Ich stehe meistens um vier Uhr am Nachmittag auf." }
     question: "Wann schläft Mara?"
     options:
-      - "Am Vormittag und am Mittag."
-      - "In der Nacht."
-      - "Am Abend, vor der Arbeit."
+      - "Am Vormittag, am Mittag und am Nachmittag."
+      - "In der Nacht und am frühen Morgen."
+      - "Am Abend und in der Nacht, vor der Arbeit."
     correct: 0
     max_replays: 3
     translation:
       en: "When does Mara sleep?"
       ru: "Когда Мара спит?"
     explain:
-      en: "No single line gives the answer — you have to hold two of them together. Mara comes home in the morning and goes straight to bed, and she gets up at four in the afternoon: so she sleeps through the late morning and midday. „In der Nacht“ is the trap: at night she works. And the evening is when her shift starts, not when she rests."
-      ru: "Ответа нет ни в одной отдельной реплике — нужно соединить две. Мара приходит домой утром и сразу ложится спать, а встаёт в четыре часа дня: значит, спит она в первой половине дня и в обед. «In der Nacht» — ловушка: ночью она работает. А вечером у неё начинается смена, а не отдых."
+      en: "No single line gives the answer — you have to hold two of them together. Mara comes home in the morning and goes straight to bed, and she does not get up until four in the afternoon: the sleep runs right through the late morning, midday and much of the afternoon. „In der Nacht“ is the trap: at night she works. And the evening is when her shift starts, not when she rests."
+      ru: "Ответа нет ни в одной отдельной реплике — нужно соединить две. Мара приходит домой утром и сразу ложится спать, а встаёт только в четыре часа дня: сон тянется через всю первую половину дня, обед и бо́льшую часть второй половины. «In der Nacht» — ловушка: ночью она работает. А вечером у неё начинается смена, а не отдых."
 
   - id: cloze-nachricht-zeiten
     outcomes: [alltag-zeitpraepositionen]
@@ -95,7 +95,7 @@ items:
     prompt_en: "At night I never watch television."
     prompt_ru: "Ночью я никогда не смотрю телевизор."
     answer: "In der Nacht sehe ich nie fern."
-    key_tokens: ["In", "der", "Nacht"]
+    key_tokens: ["In", "der"]
     accept:
       - "Ich sehe in der Nacht nie fern."
     explain:
