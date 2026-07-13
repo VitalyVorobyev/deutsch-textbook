@@ -125,8 +125,8 @@ entries:
   - de: merken
     ipa: "ˈmɛʁkn̩"
     pos: verb
-    praesens_3sg: merkt
-    partizip2: gemerkt
+    praesens_3sg: merkt sich
+    partizip2: sich gemerkt
     aux: haben
     valence: "sich (Dat) + Akk"
     en: to memorize, to keep in mind
@@ -330,11 +330,15 @@ entries:
     note:
       en: 'For concrete activities German prefers machen (Hausaufgaben machen). tun lives mostly in fixed expressions: Es tut mir leid, Das tut weh, Was kann ich für Sie tun? Irregular forms: er tut, hat getan.'
       ru: 'Для конкретных занятий немецкий предпочитает machen (Hausaufgaben machen). tun живёт в основном в устойчивых оборотах: Es tut mir leid, Das tut weh, Was kann ich für Sie tun? Формы нестандартные: er tut, hat getan.'
+  # The forms carry `sich`, because without it this is a different verb: bare
+  # `unterhalten` means to entertain or to support someone. The flashcard's detail
+  # line shows exactly these two fields, so dropping the pronoun there would teach
+  # the wrong pattern under the right gloss.
   - de: unterhalten
     ipa: "ʊntɐˈhaltn̩"
     pos: verb
-    praesens_3sg: unterhält
-    partizip2: unterhalten
+    praesens_3sg: unterhält sich
+    partizip2: sich unterhalten
     aux: haben
     valence: "sich … mit + Dat"
     en: to have a conversation, to chat (sich unterhalten)
