@@ -140,16 +140,31 @@ Every exclusion below is a new `~`, and therefore a content debt the validator c
 | the fourteen `am Montag` / `am Abend` chunks | pure `um-am-zeit`, an existing focus tag; a card `am Montag` beside a card `montags` is two production cards for one rule | the existing um/am table (13 of the 14 already pass) |
 | `hin`, `her`, `heraus`, `herein` | directional grammar, no citation form to produce | a hin/her table in `trennbare-verben` |
 | `hunderteins`, `zweihundert`, `zweitausendeins` | the PDF's number-*formation* demos, not words | the number-building table |
-| `Lieblings-`, `einzel-` | word-formation prefixes, only alive in compounds | an article table |
+| **every `stem-` headword** — `all-`, `ander-`, `einig-`, `manch-`, `meist-`, `eigen-`, `letzt-`, `lieb-`, `geehrt-`, `Lieblings-`, `einzel-` | coverage matches a deck's `de` against the manifest string **exactly**, so covering `eigen-` means a flashcard whose front literally reads *"eigen-"*. That is not a word anyone can produce. | an article table (see below) |
 | `Disko`, `Klub` | spelling variants of `Disco`/`Club`; four production cards for two words is SRS interference | the `example_de` of `Disco` / `Club` |
+
+**The stem rule, and why the first draft of this table got it wrong.** The draft said `eigen-`,
+`letzt-` and `lieb-` should keep cards, on the grounds that they have real free forms and the
+manifest's trailing hyphen is a transcription artifact. That is true about German and false about the
+instrument: `ownedBy` keys on the exact `de` string, so the *only* way to cover the headword `letzt-`
+is a deck entry whose `de` is `letzt-` — a flashcard whose front reads "letzt-". So every stem is a
+`~`, as `all-`, `ander-`, `meist-`, `einig-` and `manch-` already were.
+
+That makes the *teaching* the thing to check, and the check alone will not do it — the stem matcher
+accepts `lieb-` on the strength of `lieber`, which in this course only ever appears as the
+**comparative of `gern`**, a different lexeme entirely. A word can pass the earned-`~` test and still
+not be taught. So each stem now has a real lesson: `lieb-` opens an invitation in `freunde-feste`
+(*Liebe Anna,* / *Lieber Tom,* — the warm counterpart to the *Sehr geehrte* that
+`aemter-dienstleistungen` already teaches), `letzt-` is the past-time table in `biografie-erfahrungen`
+(*letzte Woche*, *letztes Jahr*, and why the ending changes), and `eigen-`/`Lieblings-`/`einzel-` are
+the word-building table in `wohnen-umzug`.
 
 **But these keep their cards, against the temptation:** `PC`, `SMS`, `ICE`, `WC`, `Lkw` (spoken nouns
 with gender and plural — *Wo ist das WC?*; their IPA is hand-written as letter names, `veːˈtseː`);
 `markieren`, `Punkt`, `Teil`, `Text` (general vocabulary that merely also appears in rubrics —
 `~`-ing them would be laundering); the `-s` adverbs `montags`, `abends`, `tagsüber`; `raus` and
-`rein`; `eigen-`, `letzt-`, `lieb-` (real free forms — the manifest's trailing hyphen is a
-transcription artifact, not a grammar fact); all 43 **Berufe** (*Ich bin Krankenpfleger* is the A2
-speaking task); all 20 **Länder/Nationalitäten**; all 16 **Schulfächer**.
+`rein`; all 43 **Berufe** (*Ich bin Krankenpfleger* is the A2 speaking task); all 20
+**Länder/Nationalitäten**; all 16 **Schulfächer**.
 
 `wegen` and `außerhalb` were `~` and are now **cards**: they carry translatable meanings ("because
 of", "outside of"), and teaching them as case grammar would drag the Genitiv into A2.
