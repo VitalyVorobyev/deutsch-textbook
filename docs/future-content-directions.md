@@ -219,7 +219,98 @@ compete with language the learner actually needs and converts exploration into d
 models and readings should introduce the productive core; SRS should preserve it. The larger field
 supports orientation and voluntary breadth.
 
-## 8. Use online media selectively
+### Enrich word cards without changing what is learned
+
+The default card should still have one stable lexical target: a word, or a genuinely formulaic
+chunk that must be retrieved as a unit. It should not become a test of an entire example sentence.
+The surrounding material can nevertheless become much richer:
+
+- one short, natural phrase that shows the most useful construction or valence;
+- one contrasting phrase when the word is commonly confused with a neighbour;
+- the forms needed for production, such as plural, Partizip II or governed case;
+- optional later examples from different situations, registers or grammatical frames;
+- a link back to the Wortfeld and readings in which the word does real work.
+
+This gives context without creating false precision in progress. The **lexical entry remains the
+unit of scheduling and status**; its existing recognition and production cards remain the evidence.
+Example phrases are models attached to that entry, not independent mastered objects. Merely seeing
+the word in a phrase or reading must not count as a successful review.
+
+Context should normally appear after retrieval, on the answer side. Putting a highly diagnostic
+sentence on the front can turn recall of the word into recognition of one memorized sentence. If a
+context cue is needed on the production side, use a brief situation or sense disambiguator and vary
+it over time. The target answer and card identity must remain stable even when examples change.
+
+There is one important exception: some language is genuinely stored and used as a unit. `Wie wäre
+es mit …?`, `Es kommt darauf an` or `einen Termin vereinbaren` may deserve their own phrase entry
+when the learner needs to produce the whole expression and cannot reliably derive it word by word.
+That is a deliberate curricular decision, not an automatic card for every collocation. A phrase
+entry has its own status because the phrase itself is the learning target; an example attached to
+`vereinbaren` does not.
+
+### Make lexical connections visible, but typed
+
+“Related words” is too vague to be useful. German connections should be shown by the job they do:
+
+- **Formen:** `fahren – fährt – fuhr – ist gefahren`, noun plural and case-sensitive valence;
+- **Wortfamilie:** `fahren – die Fahrt – der Fahrer – das Fahrrad`;
+- **Wortbildung:** separable prefixes, productive suffixes and transparent compounds;
+- **Kollokationen:** `eine Entscheidung treffen`, `starker Regen`, `sich um eine Stelle bewerben`;
+- **Bedeutung:** near-synonyms and antonyms, with the difference in use rather than an equals sign;
+- **Kontraste:** `kennen / wissen`, `lernen / studieren`, `leihen / ausleihen`;
+- **Register und Situation:** neutral, formal, colloquial, regional or domain-specific use.
+
+These relations should help the learner predict, compare and choose. They should not become a
+decorative thesaurus graph or imply that every neighbour is equally important. Show a small number
+of high-value relations progressively, attach a short example to semantic distinctions, and keep
+above-level branches folded or optional.
+
+The identity rules need to remain explicit. Inflected forms belong to one lexeme and share its
+status. Derived words are separate lexemes and get separate status only if they enter the
+productive curriculum. Synonyms, antonyms, family membership and collocations are typed edges for
+navigation and authoring; the edge itself has no mastery state. When a contrast is important enough
+to measure, test the learner's choice in a fresh sentence and record that exercise evidence rather
+than inventing “relation learned” progress.
+
+## 8. Build reading strands that are worth following
+
+Deutsch-Atlas should deliberately commission level-controlled readings whose subject is genuinely
+worth the learner's attention. “Interesting” cannot be guaranteed by a schema, but it can be an
+editorial requirement: each text needs a question, tension, discovery, useful explanation or human
+detail that would justify reading it in translation too. A thin story whose only purpose is to
+contain ten target words is still an exercise wearing a costume.
+
+The existing distinction between intensive and extensive reading should remain decisive:
+
+- **Intensive lesson readings** are short, supported and dense with the unit's target language.
+  They build comprehension and noticing, then feed a specific task.
+- **Extensive reader strands** are longer, easier and sparsely interrupted. Their purpose is fluent
+  meaning-focused reading and voluntary continuation, not line-by-line testing.
+
+A strand can use recurring people, places or questions so that background knowledge and familiar
+language carry forward. This creates room for richer content without increasing linguistic load on
+every page. Good strands might follow a person settling in a city, an object through German
+history, a journey along one railway line, an everyday scientific mystery or connected portraits
+of life across the German-speaking world.
+
+Level control applies to the whole reading experience, not only sentence grammar. Most of the
+running language should already be known or transparently inferable; the small remainder should be
+selectively glossed. A text becomes difficult through topic assumptions, names, chronology and
+visual clutter as well as vocabulary. Interest is not a licence to push an A2 reader through B1
+prose with a dictionary.
+
+Readings should reuse productive vocabulary across new contexts, including its collocations and
+word-family members. That repeated contact strengthens the learner's representation, but it is
+input evidence, not proof of recall. Opening or finishing a story does not advance word status and
+never creates cards automatically. The learner may explicitly save a useful new word or chunk for
+later review; until then, it remains receptive support.
+
+Evaluation must match the kind. For intensive reading, check comprehension and later use of the
+target language in a fresh context. For extensive strands, look first at successful gist
+comprehension, readability and voluntary continuation; occasional delayed retelling or transfer can
+provide stronger evidence, but a completion count alone is not mastery.
+
+## 9. Use online media selectively
 
 The web can provide voices, current places, maps, public data and genuine genres. It can also
 provide unstable links, advertisements, tracking, inaccessible players, unexplained difficulty and
@@ -248,7 +339,7 @@ Maps, transit data, museum pages and event listings can support excellent tasks.
 used, capture or author a stable learning version as well. A lesson should not silently change
 because an external service changed its interface or schedule.
 
-## 9. Do not attach a quiz to everything
+## 10. Do not attach a quiz to everything
 
 The current system is good at recording answers, which creates a temptation to make every content
 touch produce one. That would flatten the new layer back into the old problem.
@@ -269,7 +360,7 @@ When exercises are included, they should follow the real use of the material:
 Generic detail questions are sometimes useful for checking comprehension, but they should not be
 the default endpoint.
 
-## 10. Protect the product from attractive failure modes
+## 11. Protect the product from attractive failure modes
 
 This direction can make Deutsch-Atlas much better, but it can also produce a larger and less
 coherent content pile. The main risks are:
@@ -321,9 +412,9 @@ or communication.
 **Guardrail:** prefer situated stories, multiple regions, contemporary life and cultural-pragmatic
 knowledge that changes interpretation or action.
 
-## 11. Small experiments before new platforms
+## 12. Small experiments before new platforms
 
-The next step should not be a large generic content framework. Four pilots would reveal most of the
+The next step should not be a large generic content framework. Five pilots would reveal most of the
 important design constraints:
 
 1. **One mission-authored unit revision**  
@@ -338,9 +429,17 @@ important design constraints:
    Publish a short, visual, level-controlled piece about a place, person or historical trace. Make
    exercises optional and test whether the piece is enjoyable without them.
 
-4. **One reference plus one Wortfeld**  
-   Try `Kasus im Überblick` and a structured appointment or rail-travel vocabulary field. Reuse
-   canonical data where possible and avoid creating automatic card debt.
+4. **One lexical-network and rich-card pilot**
+
+   Try a structured appointment or rail-travel Wortfeld, then enrich the productive core's card
+   backs with phrases, forms and typed relations. Keep the existing word card identities and create
+   phrase entries only for deliberately taught chunks.
+
+5. **One small reading strand**
+
+   Publish one intensive text and two connected extensive episodes in the same setting. Test
+   whether the language stays comfortably level-controlled and whether the subject earns voluntary
+   continuation without manufacturing a reading mastery bar.
 
 Evaluate pilots by different criteria:
 
@@ -367,8 +466,10 @@ Before adding a new artifact, answer:
 8. Does opening it create any review obligation?
 9. Who owns factual accuracy, attribution, reuse rights and link durability?
 10. What existing data or content would it duplicate?
-11. How will we know whether it worked?
-12. If it disappears tomorrow, does the learning path still function?
+11. What is the learning object, and exactly what acquires status?
+12. Is the subject worth reading, hearing or exploring apart from the target language it contains?
+13. How will we know whether it worked?
+14. If it disappears tomorrow, does the learning path still function?
 
 ## Direction
 
