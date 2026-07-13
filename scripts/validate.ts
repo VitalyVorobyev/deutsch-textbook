@@ -24,6 +24,7 @@ import {
 } from '../src/lib/schemas';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { parseGlosses } from '../src/lib/gloss';
+import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -937,6 +938,30 @@ for (const { file, body } of topics.values()) {
         fail(file, `Cyrillic inside <En> block ${i + 1}: "${line.trim().slice(0, 70)}"`);
     }
   });
+}
+
+// ---------------------------------------------------------------------------
+// Wortliste: a "~" (taught as grammar, no flashcard) must be earned
+// ---------------------------------------------------------------------------
+
+/**
+ * A `~` in a Wortliste manifest counts toward the coverage figure the Über page
+ * publishes. It used to be a self-certification — the manifest asserted the course
+ * taught the word, and nothing checked. Nine marks turned out to be false, so the
+ * claim is now measured: goetheCoverage() demotes a `~` word the taught surface
+ * does not contain, and the build stops here rather than shipping the number.
+ */
+for (const level of MEASURED_LEVELS) {
+  if (!hasManifest(level, ROOT)) continue;
+  const { unearned } = goetheCoverage(level, ROOT);
+  for (const word of unearned) {
+    fail(
+      `data/goethe-${level.toLowerCase()}-wortliste.txt`,
+      `"~${word}" claims the course teaches ${word} as grammar, but no topic article ` +
+        `(outside its En/Ru blocks), reading or practice/drill item contains it. ` +
+        `Teach it, or drop the "~" and give it a flashcard.`,
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------

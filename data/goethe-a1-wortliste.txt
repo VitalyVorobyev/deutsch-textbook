@@ -3,9 +3,17 @@
 # translations and examples in content/vocab/ are original). One headword per
 # line, bare form matching the vocab `de` field. Sections mirror the planned
 # Kernwortschatz decks; words a topic deck already owns are marked covered-by
-# by scripts/coverage-a1.ts, not removed from here. A leading ~ marks words
-# addressed by grammar topics (pronouns, articles, case prepositions,
-# conjunctions, W-words) - the curriculum teaches them, no flashcard needed.
+# by scripts/coverage.ts, not removed from here.
+#
+# A leading ~ marks words addressed by grammar topics (pronouns, articles, case
+# prepositions, conjunctions, W-words) - the curriculum teaches them, no
+# flashcard needed. THE ~ IS CHECKED, NOT TRUSTED: `bun run validate` fails
+# unless the word actually occurs in a topic article (outside the En/Ru
+# explanation blocks), a reading, or a practice/drill item. It used to be a
+# self-certification, and `euer` was claimed here while the possessive table in
+# menschen-familie.mdx stopped at the `sie` row - the word appeared only inside
+# English prose *about* German. If you cannot pay for a ~ with content, the word
+# needs a flashcard instead.
 
 # --- zahlen-daten-geld ---
 null
@@ -440,9 +448,9 @@ Guten Morgen
 Guten Tag
 Guten Abend
 Gute Nacht
-Hallo
+hallo
 Auf Wiedersehen
-Tschüs
+tschüs
 Entschuldigung
 Wie geht es Ihnen
 Herzlichen Glückwunsch
