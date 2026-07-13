@@ -15,13 +15,15 @@ wrong.
 
 ## What's inside
 
-- **A complete A1, and A2 in progress.** All ten A1 units are authored — from
-  Erste Schritte to Freizeit & Können — each with a diagnostic pretest, a full
-  article, a graded reading and its own vocabulary. A cumulative **A1
-  checkpoint** measures the level end to end, and every headword on the
-  Goethe-Institut's A1 Wortliste is covered. A2 is six topics of core grammar
-  so far: a strong start, not yet the whole level. The Über page states exactly
-  how far each level goes, with figures measured from the content itself.
+- **A complete A1 and a complete A2.** All ten A1 units and all sixteen A2 units
+  are authored — from Erste Schritte to Ämter & Dienstleistungen — each with a
+  diagnostic pretest, a full article, a graded reading, exercises across several
+  task types, and its own vocabulary. A cumulative **checkpoint** measures each
+  level end to end, and **every headword on the Goethe-Institut's A1 and A2
+  Wortlisten is covered**. The Über page states exactly how far each level goes,
+  with figures measured from the content itself — never hand-written, and a word
+  the course claims to teach without a flashcard has to actually appear in an
+  article, a reading or a practice item, or the build fails.
 - **Themen shows the course three ways** — an ordered Lernpfad with one
   recommended next action, an Atlas of how the topics relate, and *Alle Themen*:
   every topic in curriculum order with the status you have earned on it.

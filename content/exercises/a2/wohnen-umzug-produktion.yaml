@@ -94,6 +94,33 @@ items:
       en: "neben is one of the nine two-way prepositions, and the case is decided by the question, not by the preposition: Wohin? — the lamp is moving — so Akkusativ, der Schrank → neben den Schrank. Once the lamp is standing there, the same preposition takes the Dativ, because the question has become Wo?: Die Lampe steht neben dem Schrank. One word, two cases, and only the question tells them apart."
       ru: "neben — один из девяти предлогов двойного управления, и падеж выбирает вопрос, а не предлог: Wohin? — лампа перемещается — значит Akkusativ, der Schrank → neben den Schrank. Когда лампа уже стоит, тот же предлог требует Dativ, потому что вопрос сменился на Wo?: Die Lampe steht neben dem Schrank. Осторожно: по-русски здесь творительный падеж — «рядом со шкафом», — и он никак не намекает на направление."
 
+  # The verified half of `nachbarn-bitte`. The outcome was carried by the `speak` item at the
+  # bottom of this file and by nothing else — and a `speak`, like a `write`, logs unverified
+  # practice evidence by design, so the outcome could never light up. The request frame
+  # Könnten Sie bitte …? is this topic's own vocabulary (the deck teaches it as a chunk), but
+  # the tag it belongs to, `hoeflich-konjunktiv`, is not introduced until aemter-dienstleistungen,
+  # nine units later — so what this item *grades* is what this topic actually drills: the case
+  # after a two-way preposition. The two halves make the contrast in one breath: the boxes move
+  # (Wohin? → Akkusativ), the wardrobe does not (Wo? → Dativ).
+  - id: uebersetzen-bitte-an-den-nachbarn
+    outcomes: [nachbarn-bitte, wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: "Moving day. Your neighbour is helping you carry things up. Translate your request into German."
+      ru: "День переезда. Сосед помогает вам заносить вещи. Переведите свою просьбу на немецкий."
+    prompt_en: "Could you please put the boxes on the balcony? The wardrobe can stay in the hallway."
+    prompt_ru: "Не могли бы вы поставить коробки на балкон? Шкаф может остаться в коридоре."
+    answer: "Könnten Sie bitte die Kisten auf den Balkon stellen? Der Schrank kann im Flur bleiben."
+    accept:
+      - "Könnten Sie die Kisten bitte auf den Balkon stellen? Der Schrank kann im Flur bleiben."
+      - "Könnten Sie bitte die Kisten auf den Balkon stellen? Der Schrank kann im Flur stehen bleiben."
+      - "Könnten Sie bitte die Kisten auf den Balkon stellen? Der Schrank kann in dem Flur bleiben."
+    key_tokens: ["den", "im"]
+    explain:
+      en: "The request itself is a ready-made chunk — Könnten Sie bitte …?, with the infinitive at the very end — and it comes out the same in every situation, so learn it whole and spend your attention on the two small words this item grades. auf is a two-way preposition, and here the boxes really do travel: the question is Wohin?, and the answer is the accusative — auf den Balkon. In the second sentence nothing travels at all. The wardrobe stays exactly where it is, and bleiben says so: the question is Wo?, and the answer is the dative — im Flur, which is in and dem melted into one word. Same kind of preposition, same rule, two cases, and only the question tells them apart. Write auf dem Balkon and you have announced that the boxes are already standing out there; write in den Flur and you have ordered the wardrobe to move. The verb is a reliable check: stellen puts something somewhere and needs a direction, while bleiben and stehen need a place."
+      ru: "Сама просьба — готовый оборот: Könnten Sie bitte …? с инфинитивом в самом конце. Он одинаков в любой ситуации, поэтому выучите его целиком, а внимание потратьте на два коротких слова, которые здесь и оцениваются. auf — предлог двойного управления, и коробки действительно перемещаются: вопрос Wohin?, ответ — Akkusativ, auf den Balkon. Во втором предложении не перемещается ничто. Шкаф остаётся ровно там, где стоит, и глагол bleiben прямо об этом говорит: вопрос Wo?, ответ — Dativ, im Flur (это in и dem, слитые в одно слово). Предлоги одного разряда, правило одно, а падежа два, и различает их только вопрос. Русский здесь скорее помогает: «на балкон» — винительный, «в коридоре» — предложный, разница слышна. Но опереться на это до конца нельзя: по-немецки предлог в обоих случаях один и тот же, и решение приходится принимать самому. Напишете auf dem Balkon — и получится, что коробки уже там стоят; напишете in den Flur — и вы велели шкафу переехать. Надёжная проверка — глагол: stellen ставит и требует направления, а bleiben и stehen требуют места."
+
   - id: schreiben-anfrage-vermieterin
     outcomes: [wohnung-beschreiben, wo-wohin-position]
     type: write
