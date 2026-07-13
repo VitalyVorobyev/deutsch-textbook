@@ -146,6 +146,22 @@ export const vocabEntrySchema = z
     praesens_3sg: z.string().optional(),
     /** e.g. "+ Akk", "+ Dat", "auf + Akk" */
     valence: z.string().optional(),
+    /**
+     * Further typed answers the EN/RU→DE production card must accept.
+     *
+     * `de` is three things at once: the Wortliste key (matched against the manifest
+     * character for character), the answer shown on the back, and the answer the
+     * learner must type. For most words those coincide. For three classes they do
+     * not, and without this field the card marks correct German wrong:
+     *  - a reflexive verb — the headword is `ärgern`, but the form a learner should
+     *    produce is `sich ärgern`;
+     *  - an adjectival noun — `die Deutsche` is one correct form of several, and
+     *    `der Deutsche` / `ein Deutscher` are just as right;
+     *  - anywhere the article is genuinely optional.
+     * A country that takes no article is NOT solved here: it is `pos: phrase`, so no
+     * article is demanded of it in the first place.
+     */
+    accept: z.array(z.string().min(1)).default([]),
     note: bilingualSchema.optional(),
   })
   .superRefine((entry, ctx) => {

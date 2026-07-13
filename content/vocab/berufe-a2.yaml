@@ -11,6 +11,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Angestellten"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Angestellte", "ein Angestellter", "eine Angestellte", "Angestellte"]
     en: employee (of a company or an office)
     ru: служащая, наёмная работница
     example_de: Meine Schwester ist Angestellte bei der Post.
@@ -24,6 +27,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Auszubildenden"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Auszubildende", "ein Auszubildender", "eine Auszubildende", "Auszubildende"]
     en: trainee, apprentice (in company training)
     ru: ученица на производстве, стажёрка
     example_de: Unsere Firma hat dieses Jahr drei Auszubildende.
