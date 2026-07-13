@@ -1,275 +1,162 @@
 # Active Backlog
 
-Companion to [roadmap.md](roadmap.md). Completed P0–P2 items keep their stable IDs in
+Companion to [roadmap.md](roadmap.md). Completed P0–P3 items keep their stable IDs in
 [the July 2026 archive](archive/2026-07-learning-foundations.md). Statuses are `todo` → `doing` →
 `done`; a finished item moves to the archive rather than accumulating here.
 
 Every content item must pass the learning-science review and `bun run validate`. Code changes must
-preserve v1–v4 snapshot import and pass the full repository gate.
+preserve v1–v4 snapshot import and pass the full repository gate. What A2 teaches, in what order,
+with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
+before authoring anything.
 
-Phases 0–2 are done: the learning system, the Atlas, and a complete A1 (v0.2.0).
+Phases 0–3 are done: the learning system, the Atlas, a complete A1 (v0.2.0), and the hardened A1
+learning loop.
 
-## Now — Phase 3: A1 learning-loop hardening
+## The open gate
 
-**Every engineering item in Phase 3 is done.** What remains is not work but *elapsed time*: the
-probes shipped on 2026-07-12, and the 21-day cohort cannot report before **2026-08-02**. That gate
-(P3-6) is what Phase 4 waits on — not a task anyone can pull forward.
+### P3-6 · Read the A1 retention cohort — `blocked on 2026-08-02` (a calendar gate, not a task)
 
-**Sequencing note, kept because it was the hard call.** P3-0 blocked P3-1. P3-1 was the only item
-with a *calendar* cost, so the instinct was to ship it immediately. But probes read the same scorer
-as everything else, and until P3-0 landed that scorer was writing wrong `correct` flags and wrong
-`focus` tags (see finding 0 in the [audit](a1-learning-audit.md)). A retention cohort measured with
-a broken instrument is a cohort that has to be re-run. Fixing the instrument first cost two days of
-clock and bought data worth trusting.
+The engineering half shipped with P3-1: the probe report on Fortschritt, reporting delayed results
+apart from practice accuracy and at the interval that *actually* elapsed rather than the scheduled
+one. The other half runs on wall-clock. Probes armed on 2026-07-12; the 21-day cohort completes
+**2026-08-02**.
 
-### P3-0 · Fix free-production scoring and error attribution — `done` (M)
-
-Score `translate` answers honestly: a one-token near-miss outside the graded tokens is a spelling
-slip (shown, scored correct, no focus error), and a real error is attributed to the item's `focus`
-tag only when a token that tag grades is what diverged. Closed-class words are never forgiven as
-typos — `den`/`dem` are one edit apart *and* are what the taxonomy grades. Items declare
-`key_tokens`. Also: profile-scope `write` drafts, log `evidence`/`responseMode` on reading
-attempts, and stop the dev progress-writer from overwriting a snapshot with a smaller one.
-
-- Accept: replaying `progress/vitaly/2026-07-12.json` moves the weak-focus list (it does —
-  `trennbar-modal` was a phantom and leaves it; `verben-mit-dativ` 33%→20%, `haben-sein` 27%→17%)
-  while leaving genuine weaknesses (`kein-nicht`, `dativ-artikel`) intact; the full gate passes.
-
-### P3-1 · Add scheduled parallel probes — `done` (L)
-
-Local 2/7/21-day outcome probes with parallel variants (`src/lib/probes.ts`, ten A1 probe families
-in `content/exercises/a1/probe-*.yaml`). A due probe opens the session as step 0 — **before** review
-and training, because a probe answered after twenty minutes of practice on the same material
-measures the practice, not the interval.
-
-**No new snapshot key was needed.** Probe state is *derived* from the attempt log rather than
-stored: when the family was armed (earliest verified attempt on its topic/outcomes), how many probes
-have been taken (their attempts), and which variants were used (their item ids). That makes probe
-scheduling survive export/import by construction — nothing for `mergeSnapshot` to merge, nothing for
-`replaceSnapshot` to silently destroy. The attempt log is the one structure in the system that
-already merges correctly, so the scheduler was built on it.
-
-Two things the implementation had to get right, both found by running it against the real snapshot:
-
-- **Arming cannot depend on `attempt.outcomes`.** That field is recent, and 551 of the learner's 671
-  attempts predate it. Outcome-only arming left `akkusativ` and `artikel-genus` — 35 and 26 attempts
-  each — permanently unarmed. Families are therefore armed by their topic's practice/drill sets too
-  (pretests excluded: a pretest is a guess taken *before* the lesson).
-- **The session resume point cannot be `step` alone.** Step 1 is both "past the probes" and the
-  default, so a session opened before a probe fell due saved step 1 and every later visit that day
-  read it as "already done" — one reload would silently cancel the probe. `probesDone` is explicit.
-
-- Accept: ✅ probe state survives export/import (it *is* the attempt log); ✅ probes stay out of
-  ordinary training (`trainableRoles` is an allowlist); ✅ each attempt records its variant as the
-  item id; ✅ 18 tests cover arming, due dates, variant replacement and the session cap
-  (`MAX_PROBES_PER_SESSION = 3`); ✅ Fortschritt reports delayed results apart from practice
-  accuracy, at the interval that *actually* elapsed rather than the scheduled one.
-
-### P3-1b · Reserve a broad-retrieval share in mixed sessions — `done` (S)
-
-`BROAD_RETRIEVAL_SHARE = 0.25` in `src/lib/training.ts`. A quarter of every mixed session is
-reserved for items the learner answered *correctly*, longest ago.
-
-The three priority bands — answered wrong, weak focus, never seen — could previously fill a session
-on their own, and they always can: there is nearly always something wrong or unseen to serve. So a
-learner with any backlog would never meet an older topic again — and an old topic answered correctly
-weeks ago is exactly the material whose retention has decayed most. Recency and weakness are the
-loudest signals, not the most informative ones, so they no longer get the whole session. The
-reservation is elastic in both directions: short on old material, the priority bands take the slack;
-short on priority items, broad retrieval fills the session.
-
-Queue building moved out of `MixedTraining.tsx` into `training.ts` (`buildSession`) so it is pure
-and testable.
-
-- Accept: ✅ the share is bounded and stable; ✅ weakness targeting cannot crowd it out; ✅ 7 tests
-  cover the reservation, its elasticity in both directions, and interleaving.
-
-### P3-2 · Add mode-valid evidence — `done` (M)
-
-Give each exercise item an actual response mode derived by default from its type and overridable
-where necessary. Persist it on attempts and show outcome target mode separately from practiced
-mode. Historical snapshots remain valid.
-
-- Accept: a written MC item targeting a spoken outcome is reported as written selection, not spoken
-  interaction; practice/verified evidence remains independent; v1–v4 import passes.
-
-### P3-3 · Upgrade open production — `done` (M)
-
-Change writing to draft → requirement checklist → revision, preserving both versions as unverified
-practice. Add a `speak` item with local record/replay, model audio/transcript, checklist and a second
-attempt. No cloud recognition and no automatic mastery.
-
-- Accept: drafts survive reload; learners cannot finish before reflection/revision; recordings stay
-  local and can be deleted; unsupported browsers get an honest speak-and-self-check fallback;
-  writing/speaking attempts never enter verified accuracy.
-
-### P3-4 · Rebalance the item mix — `done` (M)
-
-The trainable catalog was 44% `mc`/`match`/`order` and only 13% `translate` — the one format that
-reliably separates learners who can build German from learners who can recognize it. The pilot
-learner scored 93% on `mc`, 94% on `match` and 45/45 on `order`, against 54% on `translate`: the
-constrained formats had stopped carrying information.
-
-(The audit's first draft put this at "58% of attempts", which was too strong. Pretests and reading
-questions are `mc`-only *by design*, and counting them indicted the practice catalog for something
-it was not doing. The catalog figures above exclude them.)
-
-Now enforced per topic by `bun run validate`, over the union of its `role: practice` sets: **≥ 2
-`translate` items**, **`mc` ≤ ⅓**, **`mc`+`match`+`order` ≤ 45%**. Checked per topic rather than per
-set, so a Hören set may still be all `listen`. Nine of sixteen topics failed the bar; 30 production
-items were authored to clear it. `translate` is now 17% of the catalog and selection 40%.
-
-`order` keeps its place but not its share: it hands the learner every token and asks only for the
-sequence, which makes it scaffolding for a first encounter with a word-order rule, not a test of one.
-
-**Placement mattered more than authoring.** `pathDone` treats a topic as finished once its
-`primaryPractice` items have all been attempted, and most of the learner's topics are `practiced`
-rather than `mastered` — so appending an item to a primary set would have silently un-finished the
-topic and reopened the Lernpfad. New items went to non-primary sets, to mastered topics, or into new
-practice sets appended *after* the existing ones (`primaryPractice` is the *first* practice set).
-Verified: `pathDone` is unchanged for all sixteen topics.
-
-- Accept: ✅ production share rises materially (translate 48 → 68 items); ✅ the bar is enforced, not
-  merely documented, so new units cannot regress it; ✅ no persisted item ids renamed; ✅ no topic
-  un-finished.
-
-### P3-5 · Pilot sustained input — `done` (M)
-
-`content/reading/a1/lena-1-der-erste-tag.yaml` — 262 words, a recurring character (Lena, newly
-arrived in Bremen), three glosses, one gist question. Readings now declare `kind:
-intensive | extensive`, and the two are held apart by the validator, because the difference is what
-the text is *for*, not how long it is: an extensive reader is 250–400 words, at most 2 questions,
-and roughly one gloss per 40 words. A "long reader" that is quizzed line by line and glossed every
-other phrase is just a long intensive text, and the volume input it exists to provide never happens.
-
-The UI says so too. Left unlabelled, a learner treats every German text on the site the same way —
-parsing each sentence, tapping every gloss, bracing for the questions. That habit is exactly what
-stops a longer text from being read at volume, so the reader opens by telling the learner to read it
-straight through and leave the glosses closed while the meaning still carries.
-
-Reviewed multi-voice audio was **split out and deferred** (see P5-1): there is no evidence TTS
-acoustics are the limiter — `listen` is at 76% and `audio-comprehension` is 8/8 on TTS — and P5-1
-already gates audio work on "audio quality, rather than content coverage, is the limiting factor."
-That condition is not met.
-
-- Accept: ✅ every structure at or below late A1; ✅ the reader is not a quiz; ✅ bounds are enforced
-  rather than asked for; ✅ builds in web and Tauri outputs.
-
-### P3-6 · Validate the hardened A1 loop — `blocked on 2026-08-02` (a calendar gate, not a task)
-
-The engineering half is **done** and shipped with P3-1: the probe report on Fortschritt, reporting
-delayed results apart from practice accuracy and at the interval that actually elapsed.
-
-The other half runs on wall-clock and cannot be pulled forward. Probes armed on 2026-07-12; the
-21-day cohort completes **2026-08-02**. Then, and only then: compare immediate performance against
-the parallel probes at 2, 7 and 21 days, and report delayed retention, novel-context transfer,
-focus-error reduction (trustworthy now that P3-0 fixed the tags), mode distribution and workload.
-
-**The exit bar, so that it can fail.** Phase 3's criteria used to be unfalsifiable — "due parallel
-probes run after a real interval" is a system check, not a learning check, and no number appeared
-anywhere in the docs. The bar is now:
+**The exit bar, stated so that it can fail:**
 
 > **≥ 80% correct on delayed parallel probes per A1 outcome, with free-production items ≥ 70%.**
 
-If A1 does not clear it, the answer is not to author A2 faster — it is that the A1 loop does not yet
-produce retention, and the lesson pattern about to be scaled ten times over is the thing to fix.
+This used to gate the *start* of A2 authoring. It is now a **revision trigger** instead — the
+roadmap explains why, and names the risk that change accepts. If A1 misses the bar, A2 authoring
+stops, the units written by then are revised against the finding, and the lesson pattern is fixed
+before another unit is written.
 
-- Accept: every A1 mode has real practice evidence; delayed and novel-transfer evidence are reported
-  separately from engagement; the findings update the audit **before** A2 authoring begins.
+- Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
+  update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
 
-## Next — Phase 4: A2 completion and retention
+## Now — Phase 4: complete A2
 
-### P4-1 · Author the complete A2 spine — `todo` (S)
+### P4-1 · Freeze the A2 curriculum contract — `doing` (S)
 
-Define the final unit order and stable outcomes for Wohnen & Umzug, Reisen & Verkehr, Einkaufen &
-Reklamation, Gesundheit & Termine, Arbeit & Beruf, Lernen & Verstehen, Biografie & Vergangenheit,
-Freunde & Feste, Ämter & Alltag, and Nebensätze & Pläne. Add each live unit only with its content;
-declare the established `deepens` relationships from the roadmap.
+Rewrite the blueprint against the post-hardening authoring contract, and freeze the identities: the
+spine order, the topic ids, the outcome ids, the focus-tag additions and the atlas groups. All of
+them become persisted keys in the learner's progress the moment a unit ships.
 
-- Depends on: P2-7 pattern and current curriculum contracts.
-- Accept: ordering respects prerequisites; every topic belongs to one unit; outcome IDs are unique;
-  validation passes.
+Two decisions carry the weight. **Nebensätze move from last to sixth** — four of the units that
+would have preceded them cannot decline an invitation or explain an absence without *weil*, and
+declaring those items `preview: true` across three units would be a way of admitting the order is
+wrong without fixing it. **An A2 unit owns a thin new A2 deck and never adopts an A1 one** —
+adoption would flip that deck's fresh-card gate from "any A1 topic opened" to "this A2 topic
+opened", pushing hundreds of A1 Wortliste words behind an A2 gate.
 
-### P4-2 · Apply `deepens` semantics in training — `todo` (S)
+- Accept: the blueprint, roadmap, backlog and `CLAUDE.md` agree; no persisted identity is renamed;
+  the documentation describes the system that exists, not a planned one.
 
-When a learner practices a deepening topic, include its base topics' relevant focus tags in
-weakness aggregation and training priority without duplicating base lessons.
+### P4-2 · Build the A2 instrument — `todo` (L)
 
-- Depends on: P4-1.
-- Accept: an error in a deepening topic can resurface an applicable base drill; unrelated base
-  content does not enter the queue; focused relationship labels remain accurate.
+The measurement A2 authoring will be judged by, built before the content it judges.
 
-### P4-3 · Add unit checkpoints and delayed probes — `todo` (L)
+- **A validator rule: every declared outcome must be measured.** Four A2 outcomes
+  (`dativ-pronomen`, `dativ-praepositionen`, `dativ-verben`, `modal-konjugation`) are declared in
+  `content/atlas.yaml` and referenced by no exercise item and no reading question. They can never
+  light up, and a probe on them can never arm. Fix the four, then make it impossible to ship a fifth.
+- Six A2 probe families with parallel variants, following the A1 pattern. This arms the A2 retention
+  clock now rather than after ten more units.
+- `deepens` semantics in training: a deepening topic's errors resurface its base topics' focus tags
+  in weakness aggregation and training priority, without duplicating base lessons.
+- A Goethe-A2 Wortliste manifest (`data/goethe-a2-wortliste.txt`) and `goetheCoverage(level)`
+  generalized from `goetheA1Coverage()`, so the Über page can make an A2 claim it has measured.
+- A checkpoint route that is not hard-wired to A1: `a1/checkpoint-a1` is currently named in five
+  places, and `NextTopic` accepts exactly one checkpoint.
 
-Add cumulative checkpoint sets, scheduled outcome probes with parallel variants, and a reserved
-broad-retrieval share in mixed sessions. Probe scheduling must be local-first and snapshot-safe.
+- Accept: the outcome rule fails on a deliberately orphaned outcome; A2 probes arm from the real
+  snapshot with correct due dates; `deepens` resurfaces base focus tags without dragging unrelated
+  base content into the queue; `bun scripts/coverage.ts A2` reports a real figure; an A2 checkpoint
+  could be added without touching four pages.
 
-- Depends on: P3-1 and P4-1.
-- Accept: checkpoint/probe roles never enter ordinary training; a due probe uses a parallel
-  variant rather than the identical item; the session log exposes cumulative practice.
+### P4-3 · Bring the six shipped A2 topics up to the hardened contract — `todo` (L)
 
-### P4-4 · Author ten A2 units — `todo` (L)
+They predate the loop entirely. Across all six: **zero** `write` items, **zero** `speak` items,
+**zero** `audio-comprehension` items, **zero** probe families, no extensive reader. A1 has 8, 2, 14
+and 10 respectively. Ten new units built on that foundation would inherit its gaps, so this comes
+before them, not after.
 
-Use the same complete-unit bar as P2-5 with A2-calibrated language, genres and outcome modes.
-Author in spine order and land one complete unit per change.
+Per topic: hidden-transcript listening, a `write` task with the draft → checklist → revision loop, a
+`speak` task with record and replay, and a faded discrimination set against confusable earlier
+material. One shared real-world scenario per topic — the mission convention, see the blueprint. One
+A2 extensive reader.
 
-- Depends on: Phase 3, P4-1 and the completed Phase 2 task machinery.
-- Accept per unit: complete lesson cycle and content bundle; learning-science review and full
-  validation pass.
+- Depends on: P4-2 (the probe families land with it).
+- Accept: every A2 topic exercises every mode A1 does; `pathDone` is unchanged for all sixteen
+  existing topics — asserted, not assumed, because a new item in a `primaryPractice` set silently
+  un-finishes a topic.
 
-### P4-5 · Strengthen the six existing A2 topics — `todo` (M each)
+### P4-4 · Author the ten A2 units — `todo` (L)
 
-Extend Dativ, Perfekt, Modalverben, trennbare Verben, Alltag/Tagesablauf and Termine into authentic
-case choices, narratives, communicative functions, varied time frames and real scheduling tasks.
-Keep two-way prepositions in the later Wohnen & Umzug deepening unit.
+In spine order, in three bundles: `wohnen-umzug`, `reisen-verkehr`, `einkaufen-reklamation`; then
+`gesundheit-arzttermin`, `arbeit-beruf`, `nebensaetze-plaene`; then `biografie-erfahrungen`,
+`freunde-feste`, `lernen-verstehen`, `aemter-dienstleistungen`.
 
-- Depends on: Phase 2 lesson-cycle convention.
-- Accept: each topic gains faded production and transfer without duplicate content or renamed
-  persisted identities.
+Each unit is one complete bundle: atlas node and unit slot, article, three-item pretest, practice
+sets clearing the item-mix bar, a probe family, an intensive reading, a thin A2 vocab deck deduped
+against every existing deck, and its focus tags registered in both `CLAUDE.md` and
+`scripts/validate.ts`.
 
-### P4-6 · Build the cumulative A2 checkpoint — `todo` (M)
+- Depends on: P4-1, P4-2, P4-3.
+- Accept per unit: the twelve-point A2 unit quality gate in the audit; the learning-science review;
+  the full repository gate.
 
-Create the end-of-course checkpoint using the proven A1 pattern and stable A2 outcome IDs.
+### P4-5 · Close A2 — `todo` (M)
 
-- Depends on: P4-3 through P4-5.
-- Accept: reachable at the end of the Lernpfad; provides honest outcome coverage; remains excluded
-  from ordinary mixed training and compatible with snapshots.
+The cumulative A2 checkpoint and its page; the Goethe-A2 Wortliste completion pass; two or three A2
+extensive readers; the Über page's A2 card rewritten from a hand-written hedge to a computed claim;
+the 2026-08-02 probe report folded into the audit; a 0.3.0 release.
+
+- Depends on: P4-4, P3-6.
+- Accept: the checkpoint is reachable only when the A2 path is done and never enters ordinary
+  training; the Über page's A2 figures match `bun scripts/coverage.ts A2`; no page claims A2 is more
+  finished than it is.
 
 ## Later — Phase 5 (deferred)
 
 ### P5-1 · Expand committed neural-TTS audio — `deferred` (L)
 
-Prefer generated assets with speech synthesis as a permanent fallback. Reconsider after A1 usage
-shows that audio quality, rather than content coverage, is the limiting factor.
+Prefer generated assets with speech synthesis as a permanent fallback. Reconsider after usage shows
+that audio quality, rather than content coverage, is the limiting factor. It does not: `listen` sits
+at 76% and `audio-comprehension` at 8/8 on browser TTS.
 
 ### P5-2 · Expand the extensive-reader series — `deferred` (M per reader)
 
-Expand beyond the Phase 3 pilot with 500–800-word A2 episodes after the vocabulary and grammar base
-is complete enough to keep them comprehensible.
+Beyond the Phase 3 pilot: 500–800-word A2 episodes, once the vocabulary and grammar base is complete
+enough to keep them comprehensible.
 
 ### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
 
-Evaluate constrained local or optional AI pronunciation assistance. Keep all resulting evidence
-unverified unless a trustworthy assessment method exists.
+Constrained local or optional AI pronunciation assistance. All resulting evidence stays unverified
+unless a trustworthy assessment method exists.
 
 ### P5-4 · Add lightweight mission grouping — `deferred` (M)
 
-Was P3-4. Group existing exercise and reading artifacts under a shared real-world situation with
-ordered steps and a final transfer task — a presentation and resume layer over stable content IDs,
-not a branching game engine.
+A presentation and resume layer over stable content IDs — not a branching game engine.
 
-**Deferred out of Phase 3 on 2026-07-12.** By its own description it adds no new retrieval
-opportunity, and its premise is engagement — which is not the problem the data shows. The learner
-completed three consecutive daily sessions (reviewed 14/15/15, trained 8/8/8, every session
-finished). What the data does show is a production gap and, until P3-0, a broken measurement of it.
-Missions are the most code in Phase 3 for the least measured learning gain. Reconsider once the
-probe cohort reports and the item mix is fixed.
-
-- Accept, when taken up: one A1 pilot combines input, retrieval, revised writing and speaking; it
-  resumes; item attempts retain their original set IDs; ordinary topic pages remain usable
-  independently.
+**Deferred out of Phase 3 on 2026-07-12**, and it stays deferred: by its own description it adds no
+new retrieval opportunity, and its premise is engagement, which is not the problem the data shows.
+The audit's requirement that an A2 unit provide "a coherent real-world mission" is met as an
+**authoring convention** instead — a unit's artifacts share one scenario and end in a fresh-context
+production task. That costs no code. Reconsider the feature only if the convention proves
+insufficient.
 
 ### P5-5 · Evaluate branching missions — `deferred` (M)
 
-Only add branching after a linear mission pilot (P5-4) shows that branching would improve rather
-than distract from the learning workflow.
+Only after a linear mission pilot shows that branching would improve rather than distract from the
+learning workflow.
+
+### P5-6 · Recognition-only vocabulary cards — `deferred` (S)
+
+`buildDeck()` turns every vocab entry into two cards, so there is no way to teach a word for
+recognition alone. Language the learner must understand but will never produce — station
+announcements, listing abbreviations, form headings — therefore lives in readings and article tables
+and never in a deck. If A2 usage shows the review load is genuinely inflated by words that only need
+recognition, a `cards: recognition | both` field on a vocab entry is the fix.
+
+- Accept, when taken up: a recognition-only entry produces one card rather than two; existing card
+  ids are unchanged; the Wortschatz table says which words are recognition-only.
