@@ -7,9 +7,30 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
-## [Unreleased]
+## [0.3.0] — 2026-07-13
+
+**A complete A2.** Sixteen units, a cumulative checkpoint, and every word of the
+Goethe-Institut's A2 Wortliste — measured, not asserted.
 
 ### Added
+
+- **All sixteen A2 units.** *Wohnen & Umzug*, *Reisen & Verkehr*, *Einkaufen & Reklamation*,
+  *Gesundheit & Arzttermin*, *Arbeit & Beruf*, *Nebensätze & Pläne*, *Biografie & Erfahrungen*,
+  *Freunde & Feste*, *Lernen & Verstehen*, *Ämter & Dienstleistungen* — each with a diagnostic
+  pretest, a full article, a graded reading, listening, writing and speaking tasks, and a delayed
+  probe that asks the same competence again weeks later.
+- **The whole Goethe-A2 Wortliste.** All 1449 headwords: 1358 as flashcards, 91 taught as grammar
+  in an article rather than drilled as vocabulary. That last number used to be a promise the course
+  made to itself — now it is checked, and the build fails if a word the course claims to teach
+  without a flashcard does not actually appear in an article, a reading or a practice item. Nine of
+  those claims turned out to be false when the check was first run, including one at A1.
+- **A cumulative A2 checkpoint** — twenty items across all sixteen units, offered only once the
+  whole level is behind you, and never mixed into ordinary practice.
+- **New cards are rationed by the day, not by the sitting.** Reloading the review page used to hand
+  you fifteen more new words, and fifteen more after that — a debt the scheduler would then deliver
+  faithfully for months. Fifteen a day is now fifteen a day, however many times you come back.
+- **Three more long reads.** Lena finds work she actually wants, and goes to her first German
+  party — read straight through, with the glosses closed.
 
 - **Delayed outcome probes.** Two, seven and twenty-one days after you learn a topic, the same
   competence is asked again — in a task you have not seen — and it opens the session, before
@@ -167,5 +188,6 @@ The A1 release. Version 0.1.0 shipped the desktop shell; almost the entire cours
 - FSRS flashcards with typed production, Lautschrift (IPA) and tap-to-hear audio.
 - Progress snapshots: export, and a non-destructive merge on import.
 
+[0.3.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.3.0
 [0.2.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.2.0
 [0.1.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.1.0
