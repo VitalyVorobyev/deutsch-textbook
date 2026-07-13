@@ -1,0 +1,76 @@
+topic: alltag-tagesablauf
+kind: extensive
+title_de: "Lena in Bremen (2): Der Wecker um vier"
+
+# The second Lena episode, and A2's first extensive reader. Read straight through
+# for meaning, glosses closed: sparse glosses, two gist questions, no line-by-line
+# quizzing. Everything stays at or below A2 — Präsens, Perfekt, separable verbs,
+# modals, the daily-routine field, war/hatte — and deliberately contains NO
+# subordinate clause (weil/dass/wenn come in a later A2 unit).
+# Episode 1: content/reading/a1/lena-1-der-erste-tag.yaml.
+
+text:
+  - >-
+    Lena wohnt jetzt drei Monate in Bremen. Ihr Deutschkurs hat im September
+    angefangen. Seit Oktober hat sie auch einen Job. Sie arbeitet in einer
+    [[Bäckerei::bakery::пекарня, булочная]] in der Bahnhofstraße. Der Job ist
+    gut, aber er fängt sehr früh an.
+  - >-
+    Ihr Wecker klingelt um vier Uhr. Draußen ist es dunkel und kalt. Lena steht
+    auf, duscht schnell und trinkt einen Kaffee. Um halb fünf fährt sie mit dem
+    Fahrrad zur Bäckerei. Um fünf Uhr macht sie den Laden auf. Die Kunden kommen
+    schon um Viertel nach fünf. Lena verkauft Brot und
+    [[Brötchen::bread rolls::булочки]] und sagt hundertmal „Guten Morgen“.
+  - >-
+    Um zwei Uhr am Nachmittag hat sie Feierabend. Sie kauft schnell ein und geht
+    nach Hause. Am Abend, um sechs Uhr, beginnt der Deutschkurs. Und da kommt das
+    Problem: Lena ist müde. Sehr müde. Am Dienstag ist sie im Unterricht
+    [[eingeschlafen::fell asleep::заснула]]. Die Lehrerin hat sie
+    [[geweckt::woke her up::разбудила]]. „Lena, alles in Ordnung?“ Die anderen
+    haben gelacht. Lena hat auch gelacht, aber sie hat sich nicht gut gefühlt.
+  - >-
+    Am Samstag hat Lena mit ihrer Nachbarin gesprochen. Frau Kern ist siebzig und
+    steht auch immer früh auf. „Kind, du machst zu viel“, hat sie gesagt. „Wann
+    gehst du ins Bett?“ — „Meistens um elf Uhr, manchmal um zwölf.“ — „Um elf?
+    Und um vier Uhr klingelt der Wecker? Das kann nicht
+    [[funktionieren::work out::так не пойдёт]].“
+  - >-
+    Lena hat also ihren Tag neu [[geplant::planned::спланировала]]. Sie sieht am
+    Abend nicht mehr fern. Sie kauft nur noch am Samstag ein. Um neun Uhr macht
+    sie das Licht aus. Zuerst war das schwer, aber jetzt geht es. Am Montag hat
+    sie im Kurs alles verstanden. Sie hat sogar zwei Fragen
+    [[gestellt::asked::задала]]. Nach dem Kurs hat die Lehrerin gesagt: „Heute
+    bist du richtig wach!“ Lena hat gelacht. Am Abend ist sie um halb zehn ins
+    Bett gegangen. Und der Wecker um vier Uhr war kein Problem mehr.
+
+questions:
+  - id: q-problem
+    outcomes: [alltag-beschreiben]
+    type: mc
+    prompt: "Was ist Lenas Problem?"
+    options:
+      - "Sie ist am Abend im Deutschkurs zu müde."
+      - "Sie findet in Bremen keinen Job."
+      - "Ihr Deutschkurs fängt zu früh an."
+    correct: 0
+    translation:
+      en: "What is Lena's problem?"
+      ru: "В чём проблема Лены?"
+    explain:
+      en: "The alarm goes off at four, the course starts at six in the evening — and by then Lena is exhausted: on Tuesday she falls asleep in class. She has a job (in the bakery), and the course is the last thing in her day, not the first."
+      ru: "Будильник звонит в четыре, а курс начинается в шесть вечера — к этому времени Лена уже без сил: во вторник она засыпает на занятии. Работа у неё есть (в пекарне), а курс стоит в конце дня, а не в начале."
+  - id: q-loesung
+    outcomes: [alltag-beschreiben]
+    type: mc
+    prompt: "Was macht Lena am Ende anders?"
+    options:
+      - "Sie geht viel früher ins Bett."
+      - "Sie geht nicht mehr in den Deutschkurs."
+      - "Sie steht erst um neun Uhr auf."
+    correct: 0
+    translation:
+      en: "What does Lena do differently in the end?"
+      ru: "Что Лена в итоге меняет?"
+    explain:
+      en: "After the talk with Frau Kern she replans her day: no more TV in the evening, shopping only on Saturday, lights out at nine — and she is in bed by half past nine. The course stays; the alarm clock stays at four. Only the evening changes."
+      ru: "После разговора с фрау Керн она перестраивает свой день: вечером больше никакого телевизора, покупки только в субботу, свет гаснет в девять — и в половине десятого она уже в постели. Курс остаётся, будильник по-прежнему звонит в четыре. Меняется только вечер."

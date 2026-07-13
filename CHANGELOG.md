@@ -21,6 +21,15 @@ GitHub Release notes.
   practice had produced no evidence that any of it survived. Six new families — production-led, not
   multiple choice — arm off the practice already in the log, so the first checks fall due
   immediately rather than after the next ten units are written.
+- **A2 can now be listened to, written and spoken.** The six A2 topics were built before the rest of
+  the course was, and you had been practising all of them entirely by typing into boxes: no listening
+  with the transcript hidden, no writing that gets revised, and no speaking at all. Each one now has
+  a listening task, a writing task with a checklist and a second draft, a speaking task you record
+  and replay, and exercises that make you *choose* the rule rather than apply the one you were just
+  shown — with the whole set built around one real situation, so the listening, the writing and the
+  speaking are the same story rather than six unrelated drills.
+- **Lena's second episode.** A2's first long read: she has a bakery job that starts at five, an
+  alarm at four, and a German course at six in the evening. Something has to give.
 - **An A2 vocabulary figure that is measured rather than claimed.** The Über page now reports A2
   against the official Goethe-Institut A2 Wortliste, exactly as it already did for A1. It currently
   says 45%, and that is the point: the number is computed from the content, so it cannot flatter the

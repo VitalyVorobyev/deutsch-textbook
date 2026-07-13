@@ -1,0 +1,157 @@
+topic: alltag-tagesablauf
+role: practice
+title:
+  en: "Production — my day, told to a future flatmate"
+  ru: "Продукция — мой день: рассказ будущему соседу по квартире"
+
+# One scenario across the whole set: a WG (shared flat) in Bremen. Jonas and Mara
+# live there and are looking for a third person. Everything here happens inside
+# that conversation — the listening is the WG's own rhythm, the writing is the
+# learner's message to them, the speaking is the learner's answer face to face,
+# and the discrimination items are sentences out of exactly those messages.
+
+items:
+  - id: audio-wg-rhythmus
+    outcomes: [alltag-zeit-haeufigkeit]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Jonas", text: "Mara, ich habe eine Frage. Wann brauchst du am Morgen das Bad?" }
+        - { speaker: "Mara", text: "Am Morgen gar nicht. Ich arbeite in der Nacht im Krankenhaus. Meine Arbeit fängt am Abend um zehn Uhr an." }
+        - { speaker: "Jonas", text: "Und wann schläfst du?" }
+        - { speaker: "Mara", text: "Ich komme am Morgen nach Hause und gehe sofort ins Bett. Ich stehe meistens um vier Uhr am Nachmittag auf." }
+    question: "Wann schläft Mara?"
+    options:
+      - "Am Vormittag, am Mittag und am Nachmittag."
+      - "In der Nacht und am frühen Morgen."
+      - "Am Abend und in der Nacht, vor der Arbeit."
+    correct: 0
+    max_replays: 3
+    translation:
+      en: "When does Mara sleep?"
+      ru: "Когда Мара спит?"
+    explain:
+      en: "No single line gives the answer — you have to hold two of them together. Mara comes home in the morning and goes straight to bed, and she does not get up until four in the afternoon: the sleep runs right through the late morning, midday and much of the afternoon. „In der Nacht“ is the trap: at night she works. And the evening is when her shift starts, not when she rests."
+      ru: "Ответа нет ни в одной отдельной реплике — нужно соединить две. Мара приходит домой утром и сразу ложится спать, а встаёт только в четыре часа дня: сон тянется через всю первую половину дня, обед и бо́льшую часть второй половины. «In der Nacht» — ловушка: ночью она работает. А вечером у неё начинается смена, а не отдых."
+
+  - id: cloze-nachricht-zeiten
+    outcomes: [alltag-zeitpraepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "You are writing to your future flatmates about your week. Fill in um, am, im or in."
+      ru: "Вы пишете будущим соседям по квартире о своей неделе. Вставьте um, am, im или in."
+    text: "{{Um}} halb sieben stehe ich auf. {{Am}} Samstag kaufe ich ein. {{Im}} Sommer arbeite ich oft {{am}} Abend. {{In}} der Nacht bin ich immer leise."
+    translation:
+      en: "I get up at half past six. On Saturday I do the shopping. In summer I often work in the evening. At night I am always quiet."
+      ru: "Я встаю в половине седьмого. В субботу я делаю покупки. Летом я часто работаю вечером. Ночью я всегда веду себя тихо."
+    explain:
+      en: "Four different kinds of time, four different words — and English 'at/on/in' will not sort them for you. Clock time → um (um halb sieben). Day of the week → am (am Samstag). Month or season → im (im Sommer). Part of the day → am (am Abend). The night is the one exception you simply memorize: in der Nacht."
+      ru: "Четыре разных типа времени — четыре разных слова, и русское «в» не поможет их различить: «в семь», «в субботу», «летом», «вечером», «ночью». Точное время на часах → um (um halb sieben). День недели → am (am Samstag). Месяц или время года → im (im Sommer). Часть суток → am (am Abend). Ночь — единственное исключение, его просто запоминают: in der Nacht."
+
+  - id: uebersetzen-wg-sommer
+    outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: "Translate into German — you are telling Jonas about your summer."
+      ru: "Переведите на немецкий — вы рассказываете Jonas о своём лете."
+    prompt_en: "In summer I get up at six o'clock."
+    prompt_ru: "Летом я встаю в шесть часов."
+    answer: "Im Sommer stehe ich um sechs Uhr auf."
+    key_tokens: ["Im", "um"]
+    accept:
+      - "Ich stehe im Sommer um sechs Uhr auf."
+    explain:
+      en: "Two time expressions, two different prepositions. A season takes im (im Sommer); a clock time takes um (um sechs Uhr). Note also that German cannot leave the season bare the way English can say 'summers' — the preposition is obligatory. And aufstehen splits: auf closes the sentence."
+      ru: "Два обстоятельства времени — два разных предлога. Время года требует im (im Sommer), точное время на часах — um (um sechs Uhr). Обратите внимание: по-русски «летом» обходится без предлога, а по-немецки предлог обязателен. И aufstehen разделяется: auf замыкает предложение."
+
+  - id: uebersetzen-wg-samstag
+    outcomes: [alltag-zeitpraepositionen, alltag-zeit-haeufigkeit]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: "Translate into German — you are telling Mara when you use the kitchen."
+      ru: "Переведите на немецкий — вы рассказываете Mara, когда пользуетесь кухней."
+    prompt_en: "On Saturday I always do the shopping in the morning."
+    prompt_ru: "В субботу я всегда делаю покупки утром."
+    answer: "Am Samstag kaufe ich immer am Morgen ein."
+    key_tokens: ["Am", "am"]
+    accept:
+      - "Ich kaufe am Samstag immer am Morgen ein."
+    explain:
+      en: "Both time expressions here take am — a weekday (am Samstag) and a part of the day (am Morgen) belong to the same group, even though English uses 'on' for one and 'in' for the other. The frequency word immer stands right after the verb, and the prefix ein closes the sentence."
+      ru: "Здесь оба обстоятельства времени требуют am: день недели (am Samstag) и часть суток (am Morgen) относятся к одной группе, хотя по-русски это «в субботу» и «утром» — разные конструкции. Наречие частотности immer стоит сразу после глагола, а приставка ein замыкает предложение."
+
+  - id: uebersetzen-wg-nacht
+    outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
+    type: translate
+    focus: um-am-zeit
+    instruction:
+      en: "Translate into German — you are promising your flatmates a quiet night."
+      ru: "Переведите на немецкий — вы обещаете соседям тихую ночь."
+    prompt_en: "At night I never watch television."
+    prompt_ru: "Ночью я никогда не смотрю телевизор."
+    answer: "In der Nacht sehe ich nie fern."
+    key_tokens: ["In", "der"]
+    accept:
+      - "Ich sehe in der Nacht nie fern."
+    explain:
+      en: "The night is the exception in the whole system: not am Nacht, but in der Nacht — a fixed chunk with in + the dative article der. Everything around it still follows the ordinary rules: the fronted time phrase pushes the verb into position 2 (sehe ich), and the separable prefix fern goes to the very end."
+      ru: "Ночь — исключение во всей системе: не am Nacht, а in der Nacht — устойчивое сочетание с in и дательным артиклем der. Всё остальное подчиняется обычным правилам: обстоятельство времени в начале выталкивает глагол на второе место (sehe ich), а отделяемая приставка fern уходит в самый конец."
+
+  - id: schreiben-wg-nachricht
+    outcomes: [alltag-zeitpraepositionen]
+    type: write
+    prompt:
+      en: "Jonas and Mara have a free room. Before they decide, they want to know your rhythm. Write them a short message about your working day."
+      ru: "У Jonas и Mara освободилась комната. Прежде чем решить, они хотят знать ваш ритм жизни. Напишите им короткое сообщение о своём рабочем дне."
+    goal:
+      en: "Describe your working day so that they can see when you need the bathroom and the kitchen — and when you are quiet."
+      ru: "Опишите свой рабочий день так, чтобы им было видно, когда вам нужны ванная и кухня — и когда вы никому не мешаете."
+    requirements:
+      - en: "Give at least two clock times with um (um halb sieben, um acht Uhr)."
+        ru: "Назовите минимум два точных времени с um (um halb sieben, um acht Uhr)."
+      - en: "Use am twice: once for a part of the day and once for a weekday (am Abend, am Samstag)."
+        ru: "Используйте am дважды: один раз с частью суток и один раз с днём недели (am Abend, am Samstag)."
+      - en: "Use two frequency words (immer, oft, meistens, manchmal, nie) and put each one right after the verb."
+        ru: "Используйте два наречия частотности (immer, oft, meistens, manchmal, nie) и поставьте каждое сразу после глагола."
+      - en: "Use at least two separable verbs of the routine (aufstehen, einkaufen, aufräumen, fernsehen) and leave the prefix at the end of its sentence."
+        ru: "Используйте минимум два глагола с отделяемой приставкой (aufstehen, einkaufen, aufräumen, fernsehen) и оставьте приставку в конце предложения."
+    min_words: 35
+    model_answer: "Hallo Jonas, hallo Mara! Hier ist mein Tag. Ich stehe um halb sieben auf und dusche sofort. Um acht Uhr fahre ich zur Arbeit. Am Abend komme ich um sechs Uhr nach Hause. Dann koche ich und räume immer die Küche auf. Ich sehe manchmal fern und gehe um elf Uhr ins Bett. Am Samstag kaufe ich für die Woche ein. In der Nacht bin ich nie laut."
+    model_translation:
+      en: "Hello Jonas, hello Mara! Here is my day. I get up at half past six and shower straight away. At eight o'clock I go to work. In the evening I come home at six. Then I cook and always tidy up the kitchen. I sometimes watch TV and go to bed at eleven. On Saturday I do the shopping for the week. At night I am never loud."
+      ru: "Привет, Jonas, привет, Mara! Вот мой день. Я встаю в половине седьмого и сразу иду в душ. В восемь часов я еду на работу. Вечером я возвращаюсь домой в шесть. Потом готовлю и всегда убираю кухню. Иногда смотрю телевизор, а в одиннадцать ложусь спать. В субботу закупаюсь на неделю. Ночью я никогда не шумлю."
+    explain:
+      en: "Check your draft against the four requirements one by one — that is the point of the revision step. The three traps: a clock time must take um, a weekday and a part of the day both take am, and the night takes in der Nacht. Then check the separable verbs: the prefix belongs at the end (räume … auf, kaufe … ein), never glued to the conjugated verb."
+      ru: "Проверьте черновик по четырём пунктам по очереди — ради этого и существует этап правки. Три ловушки: точное время требует um, день недели и часть суток — оба требуют am, а ночь — in der Nacht. Затем проверьте глаголы с отделяемой приставкой: приставка стоит в конце (räume … auf, kaufe … ein), а не слитно со спрягаемым глаголом."
+
+  - id: sprechen-wg-tagesablauf
+    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "You are sitting in the kitchen with Jonas and Mara. Jonas asks: „Erzähl mal: Wie sieht dein Arbeitstag aus?“ Answer aloud — from the alarm clock to bedtime."
+      ru: "Вы сидите на кухне с Jonas и Mara. Jonas спрашивает: «Erzähl mal: Wie sieht dein Arbeitstag aus?» Ответьте вслух — от будильника до отхода ко сну."
+    goal:
+      en: "Tell the story of one working day out loud, in order, with concrete times and how often you do things."
+      ru: "Расскажите вслух про один рабочий день — по порядку, с конкретным временем и с указанием, как часто вы что-то делаете."
+    checklist:
+      - en: "I said at least three times: two with um (um sieben Uhr) and one with am (am Abend)."
+        ru: "Я назвал(а) минимум три момента времени: два с um (um sieben Uhr) и один с am (am Abend)."
+      - en: "I used at least two frequency words (immer, meistens, oft, manchmal, nie), each right after the verb."
+        ru: "Я использовал(а) минимум два наречия частотности (immer, meistens, oft, manchmal, nie), каждое сразу после глагола."
+      - en: "I used at least three separable verbs (aufstehen, einkaufen, aufräumen, fernsehen) with the prefix at the end."
+        ru: "Я использовал(а) минимум три глагола с отделяемой приставкой (aufstehen, einkaufen, aufräumen, fernsehen), оставив приставку в конце."
+      - en: "I told the story in order, with zuerst, dann and danach — and the verb stayed in second position after each of them."
+        ru: "Я рассказал(а) по порядку — zuerst, dann, danach, — и после каждого из них глагол оставался на втором месте."
+    model_answer: "Also, mein Tag ist ganz normal. Ich stehe um halb sieben auf und dusche immer sofort. Das Bad brauche ich also nur früh am Morgen. Um acht Uhr fahre ich zur Arbeit. Am Abend komme ich um sechs Uhr nach Hause. Zuerst koche ich, dann esse ich, danach räume ich die Küche auf. Ich sehe manchmal fern und gehe um elf Uhr ins Bett. Am Samstag kaufe ich ein. In der Nacht schlafe ich immer."
+    model_translation:
+      en: "Well, my day is quite ordinary. I get up at half past six and always shower right away — so I only need the bathroom early in the morning. At eight o'clock I go to work. In the evening I come home at six. First I cook, then I eat, after that I tidy up the kitchen. I sometimes watch TV and go to bed at eleven. On Saturday I do the shopping. At night I always sleep."
+      ru: "Ну, день у меня самый обычный. Я встаю в половине седьмого и всегда сразу иду в душ — так что ванная нужна мне только рано утром. В восемь часов я еду на работу. Вечером возвращаюсь домой в шесть. Сначала готовлю, потом ем, после этого убираю кухню. Иногда смотрю телевизор, а в одиннадцать ложусь спать. В субботу закупаюсь. Ночью я всегда сплю."
+    explain:
+      en: "Speaking a routine aloud is where the rules meet real time pressure. Two things break first: the prefix (Ich stehe … auf — never Ich aufstehe) and the verb position after a sequencer (Dann esse ich, never Dann ich esse). Record yourself, listen back once against the checklist, then say it a second time — the second attempt is the one that improves."
+      ru: "Когда распорядок дня произносишь вслух, правила впервые встречаются с реальным темпом речи. Первыми ломаются два: приставка (Ich stehe … auf — никогда Ich aufstehe) и место глагола после слова-связки (Dann esse ich, а не Dann ich esse). Запишите себя, прослушайте один раз по чек-листу и произнесите ещё раз — улучшается именно вторая попытка."

@@ -1,0 +1,158 @@
+# One mission: Herr Orlow has an appointment at Praxis Dr. Weber tomorrow at 10:45,
+# and a meeting at the office has landed on top of it. He has to hear the offered
+# slots, say the first one does not suit him, propose another and confirm — by phone,
+# in writing, and aloud. Same people, same problem, in every item of this set.
+topic: termine-vereinbaren
+role: practice
+title:
+  en: Practice — moving an appointment (listening, writing, speaking)
+  ru: Практика — переносим приём (аудирование, письмо, речь)
+items:
+  # Untagged on purpose: this is comprehension, not one confusion. Nothing about
+  # um/am is being chosen here — the learner has to hold three spoken times in the
+  # air and work out which one was actually accepted.
+  - id: hoeren-termin-verschieben
+    outcomes: [termine-zeit-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - speaker: "Praxis"
+          text: "Praxis Dr. Weber, guten Tag. Was kann ich für Sie tun?"
+        - speaker: "Herr Orlow"
+          text: "Guten Tag, hier ist Orlow. Ich habe morgen um Viertel vor elf einen Termin. Um elf habe ich aber eine Besprechung im Büro. Können wir den Termin verschieben?"
+        - speaker: "Praxis"
+          text: "Kein Problem. Am Donnerstag ist um halb neun etwas frei, und am Freitag um vier Uhr."
+        - speaker: "Herr Orlow"
+          text: "Am Donnerstag um halb neun bin ich leider noch im Zug. Der Freitag passt mir gut."
+    question: "Wann kommt Herr Orlow in die Praxis?"
+    options:
+      - "Am Donnerstag um halb neun (8:30)."
+      - "Am Freitag um vier Uhr (16:00)."
+      - "Morgen um Viertel vor elf (10:45)."
+    correct: 1
+    translation:
+      en: When does Mr Orlov come to the practice?
+      ru: Когда господин Орлов придёт в приёмную?
+    explain:
+      en: "All three times are said aloud, so only the ear decides. Tomorrow at Viertel vor elf (10:45) is the old appointment — the one he is moving. Thursday at halb neun (8:30, not 9:30!) is offered and turned down: „Am Donnerstag um halb neun bin ich leider noch im Zug.“ He accepts with „Der Freitag passt mir gut“ — and the Friday slot was named one turn earlier: um vier Uhr."
+      ru: "Все три времени звучат вслух, поэтому решает только слух. Завтра в Viertel vor elf (10:45) — это старый приём, который он и переносит. Четверг в halb neun (8:30, а не 9:30!) ему предлагают, но он отказывается: „Am Donnerstag um halb neun bin ich leider noch im Zug.“ Соглашается он словами „Der Freitag passt mir gut“, а время пятницы названо репликой раньше — um vier Uhr."
+
+  - id: cloze-sie-ihnen
+    outcomes: [termine-hoeflich-telefonieren]
+    type: cloze
+    focus: passen-dativ
+    instruction:
+      en: The same person, two different verbs. Fill in the polite pronoun in the form each verb needs.
+      ru: Один и тот же человек, два разных глагола. Вставьте вежливое местоимение в форме, которую требует каждый глагол.
+    text: "Die Mitarbeiterin sagt: „Ich rufe {{Sie}} morgen wieder an. Passt es {{Ihnen}} am Freitag um vier Uhr?“"
+    translation:
+      en: "The receptionist says: I will call you again tomorrow. Does Friday at four o'clock suit you?"
+      ru: "Сотрудница говорит: я позвоню вам завтра ещё раз. Вам подходит пятница, в четыре часа?"
+    explain:
+      en: "The verb decides the case, not the person. anrufen takes the accusative — Ich rufe Sie an. passen takes the dative — Passt es Ihnen? Two sentences apart, the same polite addressee, two different forms; „Passt es Sie?“ is the slip this contrast is here to stop."
+      ru: "Падеж выбирает глагол, а не человек. anrufen требует винительного падежа — Ich rufe Sie an (по-русски «позвоню вам» — дательный, и это ловушка). passen требует дательного — Passt es Ihnen? Два предложения подряд, один и тот же вежливый адресат, две разные формы; именно так и рождается ошибка „Passt es Sie?“."
+
+  - id: uebersetzen-passt-mir-nicht
+    outcomes: [termine-organisieren]
+    type: translate
+    focus: passen-dativ
+    prompt_en: "Unfortunately the appointment on Thursday does not suit me."
+    prompt_ru: "Приём в четверг мне, к сожалению, не подходит."
+    answer: "Der Termin am Donnerstag passt mir leider nicht."
+    accept:
+      - "Leider passt mir der Termin am Donnerstag nicht."
+      - "Am Donnerstag passt mir der Termin leider nicht."
+    key_tokens: ["passt", "mir"]
+    explain:
+      en: "With passen the appointment is the subject and the person stands in the dative: der Termin passt mir. Not mich — „Das passt mich“ is one of the most audible mistakes on the phone. The verb agrees with der Termin, so it is passt."
+      ru: "При passen подлежащее — сам приём, а человек стоит в дательном падеже: der Termin passt mir. Здесь русский подсказывает верно — «приём подходит мне», тоже дательный, поэтому mir, а не mich. Глагол согласуется с der Termin, отсюда форма passt."
+
+  - id: uebersetzen-praxis-ihnen
+    outcomes: [termine-hoeflich-telefonieren]
+    type: translate
+    focus: du-sie
+    instruction:
+      en: You are on the phone with the practice. Translate into German.
+      ru: Вы говорите по телефону с приёмной. Переведите на немецкий.
+    prompt_en: "Does Friday at four in the afternoon suit you?"
+    prompt_ru: "Вам подходит пятница, в четыре часа дня?"
+    answer: "Passt es Ihnen am Freitag um vier Uhr?"
+    accept:
+      - "Passt es Ihnen am Freitag um 16 Uhr?"
+    key_tokens: ["Ihnen"]
+    explain:
+      en: "The receptionist is a stranger, so the addressee is Sie — and after passen the dative of Sie is Ihnen, always capitalized. Both halves of that word matter here: the case comes from the verb, the capital letter from the register. Practices run on the 24-hour clock, so um 16 Uhr is just as good as um vier Uhr."
+      ru: "Регистратор — незнакомый человек, поэтому обращение только на Sie, а после passen дательный падеж от Sie — это Ihnen, всегда с заглавной буквы. В этом слове важны обе стороны: падеж задаёт глагол, а заглавную букву — вежливая форма. В расписаниях приёмных принят 24-часовой формат, поэтому um 16 Uhr так же верно, как um vier Uhr."
+
+  - id: uebersetzen-freundin-dir
+    outcomes: [termine-hoeflich-telefonieren]
+    type: translate
+    focus: du-sie
+    instruction:
+      en: Now the same question to your friend Lena, who is driving you to the practice. Translate into German.
+      ru: Тот же вопрос подруге Лене, которая отвезёт вас в приёмную. Переведите на немецкий.
+    prompt_en: "Does Friday at four in the afternoon suit you?"
+    prompt_ru: "Тебе подходит пятница, в четыре часа дня?"
+    answer: "Passt es dir am Freitag um vier Uhr?"
+    accept:
+      - "Passt es dir am Freitag um 16 Uhr?"
+    key_tokens: ["dir"]
+    explain:
+      en: "Word for word the same question as to the practice — only the addressee has changed, and with it the pronoun: Lena is a friend, so the dative of du is dir. Neither sentence is ungrammatical; each is simply wrong in the other situation. Ihnen to a friend sounds cold and distant, dir to a receptionist sounds rude."
+      ru: "Дословно тот же вопрос, что и в приёмной, — изменился только адресат, а вместе с ним и местоимение: Лена — подруга, поэтому дательный падеж от du — это dir. Ни одно из двух предложений не является грамматически неправильным; каждое просто неуместно в чужой ситуации. Ihnen подруге звучит холодно и отстранённо, dir регистратору — грубо."
+
+  - id: schreiben-mail-praxis
+    outcomes: [termine-organisieren, termine-hoeflich-telefonieren]
+    type: write
+    prompt:
+      en: "In der Praxis geht niemand ans Telefon. You have an appointment at Praxis Dr. Weber on Wednesday at 10:45, but a meeting at the office has been scheduled for eleven that same day. Write a short e-mail to the practice."
+      ru: "In der Praxis geht niemand ans Telefon. У вас приём в Praxis Dr. Weber в среду в 10:45, но на одиннадцать того же дня назначили совещание в офисе. Напишите короткое письмо в приёмную."
+    goal:
+      en: "Get the appointment moved in writing: say which appointment you mean, why you cannot come, and when you could."
+      ru: "Добиться переноса приёма письменно: назвать, о каком приёме речь, почему вы не можете прийти и когда могли бы."
+    requirements:
+      - en: "I named the existing appointment with its day and its clock time — am + day, um + time (am Mittwoch um Viertel vor elf)."
+        ru: "Я назвал(а) существующий приём с днём и временем — am + день, um + время (am Mittwoch um Viertel vor elf)."
+      - en: "I gave the reason in its own simple main clause, with the verb in second position (Um elf habe ich eine Besprechung im Büro)."
+        ru: "Я назвал(а) причину отдельным простым предложением, глагол на втором месте (Um elf habe ich eine Besprechung im Büro)."
+      - en: "I asked to move it with a modal verb, and the infinitive verschieben stands at the very end (Können wir den Termin verschieben?)."
+        ru: "Я попросил(а) о переносе с модальным глаголом, а инфинитив verschieben стоит в самом конце (Können wir den Termin verschieben?)."
+      - en: "I addressed the practice with Sie throughout, and my new time is offered with Passt es Ihnen …? — never Passt es Sie?"
+        ru: "Я обращаюсь к приёмной только на Sie, а новое время предлагаю формулой Passt es Ihnen …? — но не Passt es Sie?"
+    min_words: 25
+    model_answer: "Guten Tag, mein Name ist Orlow. Ich habe am Mittwoch um Viertel vor elf einen Termin bei Dr. Weber. Leider habe ich um elf eine Besprechung im Büro. Können wir den Termin verschieben? Passt es Ihnen am Freitag um vier Uhr? Vielen Dank und viele Grüße!"
+    model_translation:
+      en: "Hello, my name is Orlov. I have an appointment with Dr Weber on Wednesday at quarter to eleven. Unfortunately I have a meeting at the office at eleven. Could we move the appointment? Would Friday at four o'clock suit you? Many thanks and best wishes!"
+      ru: "Добрый день, моя фамилия Орлов. В среду без четверти одиннадцать у меня приём у доктора Вебера. К сожалению, в одиннадцать у меня совещание в офисе. Мы можем перенести приём? Вам подходит пятница, в четыре часа? Большое спасибо и всего доброго!"
+    explain:
+      en: "Four moves, four sentences: identify the appointment (am + day, um + time), state the clash, ask for the change with a modal + verschieben at the end, offer a new slot with Passt es Ihnen …? Keep every sentence a main clause with the verb second — you do not need a single long sentence to be polite in German."
+      ru: "Четыре хода — четыре предложения: назвать приём (am + день, um + время), объяснить накладку, попросить о переносе (модальный глагол + verschieben в конце) и предложить новое время формулой Passt es Ihnen …? Каждое предложение остаётся простым, с глаголом на втором месте: чтобы звучать вежливо по-немецки, длинные конструкции не нужны."
+
+  - id: sprechen-termin-verschieben
+    outcomes: [termine-organisieren, termine-hoeflich-telefonieren]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "You are on the phone with Praxis Dr. Weber and you have just asked to move tomorrow's appointment. The receptionist answers: „Kein Problem. Passt es Ihnen am Donnerstag um halb neun?“ — but on Thursday at 8:30 you are still on the train. Answer her aloud."
+      ru: "Вы говорите по телефону с Praxis Dr. Weber и только что попросили перенести завтрашний приём. Сотрудница отвечает: „Kein Problem. Passt es Ihnen am Donnerstag um halb neun?“ — но в четверг в 8:30 вы ещё будете в поезде. Ответьте ей вслух."
+    goal:
+      en: "Turn down the offered slot politely and put a workable one on the table — do not just say no."
+      ru: "Вежливо отклонить предложенное время и сразу предложить подходящее — не ограничиваться отказом."
+    checklist:
+      - en: "I said clearly that the slot does not suit me — with passen + mir, or with Leider kann ich nicht."
+        ru: "Я ясно сказал(а), что это время мне не подходит, — через passen + mir или через Leider kann ich nicht."
+      - en: "I gave a short reason in one main clause (Da bin ich noch im Zug)."
+        ru: "Я коротко назвал(а) причину одним простым предложением (Da bin ich noch im Zug)."
+      - en: "I proposed a concrete alternative — a day and a time, not just 'later'."
+        ru: "Я предложил(а) конкретную альтернативу — день и время, а не просто «позже»."
+      - en: "I stayed with Sie and Ihnen the whole time. The receptionist is not a du."
+        ru: "Я всё время оставался(-ась) на Sie и Ihnen. Регистратор — не на «ты»."
+    model_answer: "Am Donnerstag um halb neun passt es mir leider nicht. Da bin ich noch im Zug. Geht es auch am Freitag um vier Uhr?"
+    model_translation:
+      en: "Thursday at half past eight unfortunately does not suit me. I am still on the train then. Would Friday at four o'clock work as well?"
+      ru: "В четверг в половине девятого мне, к сожалению, не подходит. В это время я ещё буду в поезде. А в пятницу в четыре часа можно?"
+    explain:
+      en: "A refusal alone leaves the other person to do all the work. A complete turn does three things at once: reject the slot (passt es mir leider nicht), give a one-clause reason (Da bin ich noch im Zug), and hand back a concrete alternative (Geht es auch am Freitag um vier Uhr?). Note the two pronouns you must not swap: it suits mir, and you ask Ihnen."
+      ru: "Один только отказ перекладывает всю работу на собеседника. Полноценная реплика делает три вещи сразу: отклоняет предложенное время (passt es mir leider nicht), коротко называет причину (Da bin ich noch im Zug) и возвращает конкретную альтернативу (Geht es auch am Freitag um vier Uhr?). Обратите внимание на два местоимения, которые нельзя перепутать: подходит mir, а спрашиваете вы Ihnen."
