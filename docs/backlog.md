@@ -44,7 +44,7 @@ before another unit is written.
 
 ## Now — Phase 4: complete A2
 
-### P4-1 · Freeze the A2 curriculum contract — `doing` (S)
+### P4-1 · Freeze the A2 curriculum contract — `done` (S)
 
 Rewrite the blueprint against the post-hardening authoring contract, and freeze the identities: the
 spine order, the topic ids, the outcome ids, the focus-tag additions and the atlas groups. All of
@@ -59,6 +59,14 @@ opened", pushing hundreds of A1 Wortliste words behind an A2 gate.
 
 - Accept: the blueprint, roadmap, backlog and `CLAUDE.md` agree; no persisted identity is renamed;
   the documentation describes the system that exists, not a planned one.
+
+Closed with bundle 2, which is when the last two disagreements surfaced — both of them in the
+direction the acceptance criterion warns about, a document describing a system that does not exist.
+The blueprint gave `gesundheit-arzttermin` a `gesundheit-koerper` group of its own under
+`wortschatz`; the node is `communication`, the group would have been `vocabulary`, and the rule one
+line above the table forbids the mismatch. The group had been added to `content/atlas.yaml` and was
+held by no node. And `arbeit-beruf`'s `deepens` had grown a third edge (`termine-vereinbaren`, which
+is real — the unit drills `du-sie`) that the blueprint's table never gained.
 
 ### P4-2 · Build the A2 instrument — `done` (L)
 
@@ -120,6 +128,11 @@ Each unit is one complete bundle: atlas node and unit slot, article, three-item 
 sets clearing the item-mix bar, a probe family, an intensive reading, a thin A2 vocab deck deduped
 against every existing deck, and its focus tags registered in both `CLAUDE.md` and
 `scripts/validate.ts`.
+
+Bundle 1 and bundle 2 have shipped: six of the ten units are authored, and with
+`nebensaetze-plaene` the subordinate-clause ban is lifted. The four units of bundle 3 may now use
+*weil* and *dass* freely, and should — the blueprint reordered the spine precisely so that they
+could stop tiptoeing.
 
 - Depends on: P4-1, P4-2, P4-3.
 - Accept per unit: the twelve-point A2 unit quality gate in the audit; the learning-science review;

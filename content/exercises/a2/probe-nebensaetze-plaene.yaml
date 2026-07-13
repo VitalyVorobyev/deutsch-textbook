@@ -1,0 +1,99 @@
+topic: nebensaetze-plaene
+role: probe
+title:
+  en: "Probe — the verb at the end of the Nebensatz"
+  ru: "Проверка — глагол в конце придаточного"
+
+# Three PARALLEL variants of ONE competence: the COLLAPSED BRACKET. A Nebensatz with
+# two verbs — a modal plus an infinitive, or an auxiliary plus a Partizip II — puts the
+# conjugated one LAST, behind the other: weil sie ihre Tochter abholen muss, dass er den
+# Zug verpasst hat. That is the hardest thing this unit teaches and the one the article
+# calls its headline rule, because it inverts the main-clause bracket the learner has
+# just spent two units automating (muss … abholen → abholen muss).
+#
+# The single-verb case (weil sie keine Zeit hat) is deliberately NOT what is probed:
+# it is the easy end of the same rule, it is what all three variants used to ask, and a
+# learner can pass it while still writing weil ich muss arbeiten. One variant is drawn
+# per due interval (2, 7, 21 days), so the two-verb cluster is measured three times, in
+# three situations the learner has not seen — new people, new lexis, one conjunction each.
+#
+# Deliberately excluded from this family: the fronted Nebensatz (nebensatz-vorfeld) and
+# the weil/denn discrimination. They are different competences and would make the three
+# delays incomparable; practice is where their evidence comes from.
+#
+# All three variants are STRUCTURALLY IDENTICAL: subordinator + … + infinitive + conjugated
+# modal at the wall. Only the conjunction and the surface situation change. An earlier draft
+# made the middle variant a Perfekt cluster (… dass er den Zug verpasst hat), which looked
+# like healthy variety and was not: variants are served in file order, one per interval, so
+# the 7-day measurement would have been the only Perfekt one. Any drop at 7 days would then
+# be indistinguishable from "the Perfekt cluster is harder than the modal cluster", and the
+# curve would look like retention without being it. Difficulty must be held constant across
+# the delays; only the surface may move. The conjunction is allowed to vary because the tag
+# is defined across all three of them ("the conjugated verb goes last in a weil-, dass- or
+# wenn-clause") — a family that only ever asked `weil` would report a number labelled
+# nebensatz-verbende while evidencing something narrower.
+#
+# key_tokens pins ONLY the conjugated verb that the rule drives to the wall — never the
+# infinitive in front of it. That is lexis, and the tag does not grade it: a learner who
+# writes `lernen` as `lehrnen` has made a different mistake and must not be logged as a
+# failure of nebensatz-verbende. `accept` is deliberately generous, because a probe that
+# marks correct German wrong corrupts the retention curve.
+
+items:
+  - id: variant-a
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Lena is not coming to the cinema today, because she has to pick up her daughter."
+    prompt_ru: "Лена сегодня не пойдёт в кино, потому что ей нужно забрать дочь."
+    answer: "Lena kommt heute nicht ins Kino, weil sie ihre Tochter abholen muss."
+    accept:
+      - "Lena geht heute nicht ins Kino, weil sie ihre Tochter abholen muss."
+      - "Heute kommt Lena nicht ins Kino, weil sie ihre Tochter abholen muss."
+      - "Heute geht Lena nicht ins Kino, weil sie ihre Tochter abholen muss."
+    key_tokens: ["muss"]
+    explain:
+      en: "Two verbs, and only one of them is conjugated: muss. weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive abholen queues up in front of it: … weil sie ihre Tochter abholen muss. As a main clause the very same words come out back to front: Sie muss ihre Tochter abholen. That is the whole difficulty here — the conjunction turns the bracket inside out. Note also that abholen keeps its prefix: a separable verb has no position 2 to leave behind in a Nebensatz."
+      ru: "Глагола два, но спрягается только один — muss. weil вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив abholen выстраивается перед ним — … weil sie ihre Tochter abholen muss. В главном предложении те же самые слова идут в обратном порядке: Sie muss ihre Tochter abholen. В этом и вся трудность: союз выворачивает рамку наизнанку. Обратите внимание и на abholen — приставка остаётся на месте: в придаточном нет второго места, которое она могла бы покинуть."
+
+  - id: variant-b
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Mr Bauer says that he has to learn more German."
+    prompt_ru: "Господин Бауэр говорит, что ему нужно больше учить немецкий."
+    answer: "Herr Bauer sagt, dass er mehr Deutsch lernen muss."
+    # No `accept` list: there is no second natural word order for this sentence. The one other
+    # thing a learner might write — `Herr Bauer sagt, er muss mehr Deutsch lernen.` — is correct
+    # German but is the dass-less construction, which leaves the verb in position 2 and therefore
+    # demonstrates none of what this family measures. Accepting it would score the competence as
+    # retained on evidence that never tested it.
+    key_tokens: ["muss"]
+    explain:
+      en: "Two verbs, and only one of them is conjugated: muss. dass opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive lernen queues up in front of it: … dass er mehr Deutsch lernen muss. Standing alone the clause would come out back to front: Er muss mehr Deutsch lernen. The conjunction turns the bracket inside out. Keep the comma before dass — German never leaves it out."
+      ru: "Глагола два, но спрягается только один — muss. dass вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив lernen выстраивается перед ним — … dass er mehr Deutsch lernen muss. Само по себе это предложение звучало бы наоборот: Er muss mehr Deutsch lernen. Союз выворачивает рамку наизнанку. И не теряйте запятую перед dass: в немецком она обязательна."
+
+  - id: variant-c
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "We'll take a taxi if you have to be at the office at six o'clock."
+    prompt_ru: "Мы возьмём такси, если тебе нужно быть в офисе в шесть часов."
+    answer: "Wir nehmen ein Taxi, wenn du um sechs Uhr im Büro sein musst."
+    accept:
+      - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein musst."
+      - "Wenn du um sechs Uhr im Büro sein musst, nehmen wir ein Taxi."
+      - "Wenn du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
+    key_tokens: ["musst"]
+    explain:
+      en: "wenn is the third conjunction of the set and it behaves exactly like the other two: the conjugated verb closes the clause. The conjugated verb is the modal musst, so the infinitive sein stands in front of it — … wenn du um sechs Uhr im Büro sein musst. Everything else, um sechs Uhr and im Büro, simply lines up inside the clause and changes nothing: only the verb has a fixed address. And note the tense — German uses the plain present inside a wenn-clause even when the sentence is about tomorrow."
+      ru: "wenn — третий союз из этой тройки, и ведёт он себя точно так же, как два других: спрягаемый глагол закрывает придаточное. Спрягаемый здесь — модальный musst, поэтому инфинитив sein стоит перед ним: … wenn du um sechs Uhr im Büro sein musst. Всё остальное — um sechs Uhr, im Büro — просто выстраивается внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола. Обратите внимание и на время: внутри придаточного с wenn немецкий ставит обычное настоящее, даже если речь о завтрашнем дне."

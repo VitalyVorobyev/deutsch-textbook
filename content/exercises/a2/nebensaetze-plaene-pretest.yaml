@@ -1,0 +1,65 @@
+topic: nebensaetze-plaene
+role: pretest
+title:
+  en: "Pretest — where does the verb go?"
+  ru: "Предтест — где стоит глагол?"
+items:
+  - id: pretest-weil-modal
+    outcomes: [weil-grund]
+    type: mc
+    focus: nebensatz-verbende
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+    prompt: "Ich komme nicht mit, weil ich am Sonntag ___."
+    options:
+      - "arbeiten muss"
+      - "muss arbeiten"
+      - "muss arbeite"
+    correct: 0
+    translation:
+      en: "I am not coming along, because I have to work on Sunday."
+      ru: "Я не поеду с вами, потому что в воскресенье мне нужно работать."
+    explain:
+      en: "weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb. The conjugated verb here is the modal muss, so muss is the last word and the infinitive arbeiten stands in front of it. In a main clause it is the other way round: Ich muss am Sonntag arbeiten."
+      ru: "weil вводит придаточное, а придаточное заканчивается спрягаемым глаголом. Спрягаемый здесь — модальный muss, поэтому muss стоит последним, а инфинитив arbeiten — перед ним. В главном предложении всё наоборот: Ich muss am Sonntag arbeiten."
+
+  - id: pretest-weil-denn
+    outcomes: [weil-grund]
+    type: mc
+    focus: weil-denn
+    instruction:
+      en: "Guess which continuation is correct German."
+      ru: "Угадайте, какое продолжение — правильный немецкий."
+    prompt: "Ich bleibe heute zu Hause, ___"
+    options:
+      - "denn ich bin krank."
+      - "denn ich krank bin."
+      - "weil ich bin krank."
+    correct: 0
+    translation:
+      en: "I am staying at home today, because I am ill."
+      ru: "Сегодня я остаюсь дома, потому что я болен."
+    explain:
+      en: "denn and weil mean the same thing and treat the verb differently. denn simply joins two main clauses, so the verb stays in position 2: denn ich bin krank. weil would send it to the end: weil ich krank bin. The two wrong options each take one conjunction and give it the other one's word order."
+      ru: "denn и weil значат одно и то же, а с глаголом обращаются по-разному. denn просто соединяет два главных предложения, поэтому глагол остаётся на втором месте: denn ich bin krank. weil отправил бы его в конец: weil ich krank bin. В обоих неверных вариантах союз взят один, а порядок слов — от другого."
+
+  - id: pretest-vorfeld
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: mc
+    focus: nebensatz-vorfeld
+    instruction:
+      en: "Guess what follows the comma."
+      ru: "Угадайте, что идёт после запятой."
+    prompt: "Wenn es regnet, ___"
+    options:
+      - "gehen wir ins Museum."
+      - "wir gehen ins Museum."
+      - "wir ins Museum gehen."
+    correct: 0
+    translation:
+      en: "If it rains, we will go to the museum."
+      ru: "Если пойдёт дождь, мы пойдём в музей."
+    explain:
+      en: "The whole wenn-clause counts as position 1 of the sentence, so the conjugated verb of the main clause has to take position 2 — the first slot after the comma — and the subject follows it: gehen wir. It is the same inversion as in Am Sonntag gehen wir ins Museum."
+      ru: "Всё придаточное с wenn считается первым местом предложения, поэтому спрягаемый глагол главного обязан занять второе — первый слот после запятой, — а подлежащее идёт за ним: gehen wir. Это та же инверсия, что и в Am Sonntag gehen wir ins Museum."

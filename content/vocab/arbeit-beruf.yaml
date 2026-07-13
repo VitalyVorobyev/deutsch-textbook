@@ -1,0 +1,209 @@
+id: arbeit-beruf
+title_de: "Arbeit & Beruf"
+title_en: "Work & profession"
+title_ru: "Работа и профессия"
+level: A2
+# Deliberately thin. The workplace word field is already taught: Arbeit, Büro, Pause and
+# Feierabend live in `alltag-tagesablauf`; Beruf, Chef, Firma, Kollegin and Aufgabe live in
+# the A1 deck `schule-arbeit`; Termin, Kollege, Besprechung and pünktlich live in
+# `termine-zeit`. This unit recycles all of them in its article, reading and exercises and
+# owns only the language no deck teaches yet. The rota abbreviations (F, S, N, U, K) are
+# receptive-only and stay in the article table — a vocab entry becomes two flashcards, one
+# of which asks the learner to produce it.
+entries:
+  # --- Die Schicht und die Zeit ---
+  - de: Schicht
+    ipa: "ˈʃɪçt"
+    pos: noun
+    gender: f
+    plural: "die Schichten"
+    en: shift (a block of working hours)
+    ru: смена (рабочая)
+    example_de: Am Montag habe ich Frühschicht.
+    example_en: On Monday I am on the early shift.
+    example_ru: В понедельник у меня утренняя смена.
+    note:
+      en: "The building blocks of a rota: die Frühschicht (early), die Spätschicht (late), die Nachtschicht (night). You have a shift — Ich habe Frühschicht — and you take one over: eine Schicht übernehmen."
+      ru: "Из этого слова строится весь график: die Frühschicht (утренняя), die Spätschicht (вечерняя), die Nachtschicht (ночная). Смену «имеют» — Ich habe Frühschicht — и её же «берут на себя»: eine Schicht übernehmen."
+  - de: Überstunden
+    ipa: "ˈyːbɐˌʃtʊndn̩"
+    pos: phrase
+    en: overtime (extra hours)
+    ru: сверхурочные (часы)
+    example_de: Am Freitag mache ich zwei Stunden Überstunden.
+    example_en: On Friday I work two hours of overtime.
+    example_ru: В пятницу я отрабатываю два часа сверхурочно.
+    note:
+      en: "A plural-only word in practice — you will almost never meet the singular die Überstunde. The verb it goes with is machen: Überstunden machen, not arbeiten."
+      ru: "На практике слово только во множественном числе — форму die Überstunde вы почти не встретите. Глагол при нём — machen: Überstunden machen, а не arbeiten."
+  - de: Dienstplan
+    ipa: "ˈdiːnstˌplaːn"
+    pos: noun
+    gender: m
+    plural: "die Dienstpläne"
+    en: rota, shift schedule
+    ru: график смен, график дежурств
+    example_de: Der neue Dienstplan hängt an der Tür.
+    example_en: The new rota is up on the door.
+    example_ru: Новый график смен висит на двери.
+  # --- Die Firma und die Aufgabe ---
+  - de: Abteilung
+    ipa: "ˈaptaɪ̯lʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Abteilungen"
+    en: department (of a company or a shop)
+    ru: отдел (в фирме, в магазине)
+    example_de: Ich arbeite in der Abteilung Kundenservice.
+    example_en: I work in the customer service department.
+    example_ru: Я работаю в отделе обслуживания клиентов.
+  - de: Team
+    ipa: "ˈtiːm"
+    pos: noun
+    gender: n
+    plural: "die Teams"
+    en: team
+    ru: команда, коллектив
+    example_de: In unserem Team sind sechs Leute.
+    example_en: There are six people in our team.
+    example_ru: В нашей команде шесть человек.
+  - de: Vertrag
+    ipa: "fɛɐ̯ˈtʁaːk"
+    pos: noun
+    gender: m
+    plural: "die Verträge"
+    en: contract
+    ru: договор, контракт
+    example_de: Ich soll den Vertrag heute unterschreiben.
+    example_en: I am supposed to sign the contract today.
+    example_ru: Мне велено подписать договор сегодня.
+  - de: Anweisung
+    ipa: "ˈanvaɪ̯zʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Anweisungen"
+    en: instruction (given by someone in charge)
+    ru: указание, распоряжение
+    example_de: Die Anweisung kommt von der Chefin.
+    example_en: The instruction comes from the boss.
+    example_ru: Указание исходит от начальницы.
+    note:
+      en: "An Anweisung is what somebody with authority tells you to do — and the verb that reports it is sollen: Ich soll die Kasse aufmachen."
+      ru: "Anweisung — это то, что велит сделать человек, наделённый полномочиями; передаётся такое распоряжение глаголом sollen: Ich soll die Kasse aufmachen."
+  - de: zuständig
+    ipa: "ˈtsuːʃtɛndɪç"
+    pos: adj
+    en: responsible, in charge (of)
+    ru: ответственный (за что-л.), отвечающий (за)
+    example_de: Ich bin zuständig für die Kasse.
+    example_en: I am responsible for the till.
+    example_ru: Я отвечаю за кассу.
+    note:
+      en: "Always with für + Akkusativ: zuständig für den Dienstplan, für die Kasse, für das Team. Both word orders are correct — Ich bin zuständig für die Kasse and Ich bin für die Kasse zuständig."
+      ru: "Всегда с für + Akkusativ: zuständig für den Dienstplan, für die Kasse, für das Team. Оба порядка слов верны — Ich bin zuständig für die Kasse и Ich bin für die Kasse zuständig."
+  # --- Was man am Arbeitsplatz tut ---
+  - de: übernehmen
+    ipa: "yːbɐˈneːmən"
+    pos: verb
+    praesens_3sg: übernimmt
+    partizip2: übernommen
+    aux: haben
+    valence: "+ Akk"
+    en: to take over, to take on (a task, a shift)
+    ru: взять на себя, перенять (задачу, смену)
+    example_de: Könnten Sie am Samstag meine Schicht übernehmen?
+    example_en: Could you take over my shift on Saturday?
+    example_ru: Вы не могли бы взять мою смену в субботу?
+    note:
+      en: "The prefix über- is inseparable here: er übernimmt, and the Partizip II has no ge- at all — übernommen. Do not write er nimmt … über."
+      ru: "Приставка über- здесь неотделяемая: er übernimmt, а в Partizip II нет никакого ge- — übernommen. Форма er nimmt … über невозможна."
+  - de: tauschen
+    ipa: "ˈtaʊ̯ʃn̩"
+    pos: verb
+    praesens_3sg: tauscht
+    partizip2: getauscht
+    aux: haben
+    valence: "+ Akk"
+    en: to swap, to exchange (with someone)
+    ru: поменяться, обменять
+    example_de: Können wir die Schicht tauschen?
+    example_en: Can we swap the shift?
+    example_ru: Можем поменяться сменами?
+    note:
+      en: "tauschen is a swap between two people — each of you gives something. umtauschen, with the prefix, is what you do in a shop with a faulty product."
+      ru: "tauschen — обмен между двумя людьми: каждый что-то отдаёт. А umtauschen, с приставкой, — это то, что делают в магазине с бракованным товаром."
+  - de: erledigen
+    ipa: "ɛɐ̯ˈleːdɪgn̩"
+    pos: verb
+    praesens_3sg: erledigt
+    partizip2: erledigt
+    aux: haben
+    valence: "+ Akk"
+    en: to deal with, to get done (a task)
+    ru: выполнить, сделать (задачу), уладить
+    example_de: Kannst du das für mich erledigen?
+    example_en: Can you sort that out for me?
+    example_ru: Ты можешь это сделать за меня?
+    note:
+      en: "Inseparable er-, so the Partizip II has no ge-: erledigt. Erledigt! on its own means 'done, sorted'."
+      ru: "Неотделяемая приставка er-, поэтому в Partizip II нет ge-: erledigt. Отдельное Erledigt! означает «сделано, готово»."
+  - de: melden
+    ipa: "ˈmɛldn̩"
+    pos: verb
+    praesens_3sg: meldet
+    partizip2: gemeldet
+    aux: haben
+    valence: "+ Akk"
+    en: to report (something to someone in charge)
+    ru: сообщить, доложить
+    example_de: Ich melde den Fehler der Chefin.
+    example_en: I am reporting the fault to the boss.
+    example_ru: Я сообщаю об ошибке начальнице.
+  # --- Chunks: das sagt man am Arbeitsplatz ---
+  - de: Ich bin zuständig für …
+    pos: phrase
+    en: I am responsible for …
+    ru: Я отвечаю за …
+    example_de: Ich bin zuständig für die Kasse und für den Dienstplan.
+    example_en: I am responsible for the till and for the rota.
+    example_ru: Я отвечаю за кассу и за график смен.
+    note:
+      en: "The one line that answers 'what do you do here?'. für takes the Akkusativ, so a masculine noun changes its article: für den Dienstplan."
+      ru: "Именно этой фразой отвечают на вопрос «чем вы здесь занимаетесь?». für требует Akkusativ, поэтому существительное мужского рода меняет артикль: für den Dienstplan."
+  - de: Könnten Sie das übernehmen?
+    pos: phrase
+    en: Could you take that on?
+    ru: Вы не могли бы взять это на себя?
+    example_de: Frau Kaufmann, ich habe am Freitag einen Termin. Könnten Sie das übernehmen?
+    example_en: Ms Kaufmann, I have an appointment on Friday. Could you take that on?
+    example_ru: Госпожа Кауфман, в пятницу у меня встреча. Вы не могли бы взять это на себя?
+    note:
+      en: "The polite request to someone you address as Sie. To a colleague it becomes Könntest du das übernehmen? — and the infinitive stays at the end in both."
+      ru: "Вежливая просьба к тому, к кому обращаются на Sie. Коллеге говорят Könntest du das übernehmen? — и в обоих случаях инфинитив остаётся в конце."
+  - de: Können wir die Schicht tauschen?
+    pos: phrase
+    en: Can we swap the shift?
+    ru: Можем поменяться сменами?
+    example_de: Hallo Jonas, können wir die Schicht tauschen? Ich habe am Samstag ein Fest.
+    example_en: Hi Jonas, can we swap the shift? I have a celebration on Saturday.
+    example_ru: Привет, Йонас, можем поменяться сменами? В субботу у меня праздник.
+  - de: Ich komme später, denn …
+    pos: phrase
+    en: I'll come in later, because …
+    ru: Я приду позже, потому что …
+    example_de: Ich komme später, denn ich habe am Morgen einen Termin.
+    example_en: I'll come in later, because I have an appointment in the morning.
+    example_ru: Я приду позже, потому что утром у меня встреча.
+    note:
+      en: "denn gives a reason and changes nothing: the clause after it keeps the subject first and the conjugated verb in position 2 — denn ich habe … A comma always goes in front of denn, and denn never opens a sentence."
+      ru: "denn называет причину и ничего не меняет: в части после него подлежащее стоит первым, а спрягаемый глагол — на втором месте: denn ich habe … Перед denn всегда запятая, и denn никогда не начинает предложение."
+  - de: Ich sage dir Bescheid.
+    pos: phrase
+    en: I'll let you know.
+    ru: Я тебе сообщу.
+    example_de: Ich frage die Chefin und sage dir morgen Bescheid.
+    example_en: I'll ask the boss and let you know tomorrow.
+    example_ru: Я спрошу у начальницы и завтра тебе сообщу.
+    note:
+      en: "Bescheid sagen is a fixed pair, and the person it is aimed at stands in the Dativ: Ich sage dir / Ihnen / der Chefin Bescheid."
+      ru: "Bescheid sagen — устойчивое сочетание, и человек при нём стоит в Dativ: Ich sage dir / Ihnen / der Chefin Bescheid."
