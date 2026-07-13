@@ -1,0 +1,60 @@
+topic: trennbare-verben
+role: probe
+title:
+  en: "Probe — separable verbs"
+  ru: "Проверка — глаголы с отделяемой приставкой"
+
+# Three PARALLEL variants of ONE competence: the Satzklammer of a conjugated separable
+# verb — the verb in position 2, its prefix at the very end of the clause. That is what
+# the topic is about; a learner who has kept it can build the sentence, and one who has
+# lost it cannot, whatever else they remember about prefixes.
+#
+# Each variant uses different verbs and a different sentence shape (fronted time phrase,
+# gap-filling, negation), so none of them can be answered from the memory of another.
+
+items:
+  - id: variant-a
+    outcomes: [trennbar-satz]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Saturday my friend is bringing her children along."
+    prompt_ru: "В субботу моя подруга приведёт с собой детей."
+    answer: "Am Samstag bringt meine Freundin ihre Kinder mit."
+    key_tokens: ["bringt", "mit"]
+    accept:
+      - "Meine Freundin bringt am Samstag ihre Kinder mit."
+    explain:
+      en: "mitbringen splits: bringt is the conjugated verb and holds position 2, and the prefix mit waits at the very end, behind the object. Everything the sentence says — who, when, what — sits inside that bracket, and the prefix closes it."
+      ru: "mitbringen отделяемый: bringt — спрягаемая часть, она стоит на втором месте, а приставка mit ждёт в самом конце, за дополнением. Всё содержание предложения — кто, когда, что — оказывается внутри этой рамки, и приставка её закрывает."
+
+  - id: variant-b
+    outcomes: [trennbar-satz]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: Fill in the correct form of the verb in brackets — mind where each part goes.
+      ru: Вставьте правильную форму глагола из скобок — следите за тем, где стоит каждая часть.
+    text: "Der Kurs {{hört}} um halb sechs {{auf}}. (aufhören) In Köln {{steigen}} wir {{um}}. (umsteigen) Die Bank {{macht}} um neun Uhr {{auf}}. (aufmachen)"
+    explain:
+      en: "Three verbs, one rule: the conjugated part stays in position 2 and the prefix goes to the end of the clause, however short the clause is. Even in In Köln steigen wir um, where only one word follows the verb, the prefix still waits behind the subject."
+      ru: "Три глагола — одно правило: спрягаемая часть остаётся на втором месте, а приставка уходит в конец предложения, каким бы коротким оно ни было. Даже в In Köln steigen wir um, где после глагола стоит всего одно слово, приставка всё равно ждёт за подлежащим."
+
+  - id: variant-c
+    outcomes: [trennbar-satz]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My sister is not coming along this evening. She has to work."
+    prompt_ru: "Сегодня вечером моя сестра не пойдёт с нами. Ей нужно работать."
+    answer: "Meine Schwester kommt heute Abend nicht mit. Sie muss arbeiten."
+    key_tokens: ["kommt", "mit"]
+    accept:
+      - "Heute Abend kommt meine Schwester nicht mit. Sie muss arbeiten."
+    explain:
+      en: "The prefix stays at the end even when the sentence is negated: nicht comes before mit, never after it. The bracket is the last thing to close — kommt … nicht mit — and nothing may follow the prefix."
+      ru: "Приставка остаётся в конце и при отрицании: nicht ставится перед mit, а не после. Рамка закрывается в самую последнюю очередь — kommt … nicht mit, — и после приставки уже ничего стоять не может."

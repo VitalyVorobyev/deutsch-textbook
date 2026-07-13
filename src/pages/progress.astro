@@ -1,12 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
-import { getTopicNodes } from '../lib/content';
+import { getCheckpoints, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { getAllCards } from '../lib/content';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { probeFamilies } from '../lib/probes';
-import { withBase } from '../lib/url';
 
 const nodes = await getTopicNodes();
 const cards = await getAllCards();
@@ -47,22 +46,19 @@ const titleByTopic = new Map(nodes.map((n) => [n.id, n.title_de]));
 const probeLabels = Object.fromEntries(
   families.map((f) => [f.setId, titleByTopic.get(f.topicId) ?? f.topicId]),
 );
-const checkpointSet = await getEntry('exercises', 'a1/checkpoint-a1');
-const checkpoint = !checkpointSet ? undefined : {
-  title: 'Checkpoint A1',
-  setId: 'a1/checkpoint-a1',
-  path: withBase('/checkpoint/a1'),
-  items: checkpointSet.data.items.map((item) => ({
-    id: item.id,
-    type: item.type,
-    outcomes: item.outcomes,
-  })),
-  labels: Object.fromEntries(
-    curriculum.nodes.flatMap((node) =>
-      node.outcomes.map((outcome) => [outcome.id, { en: outcome.en, ru: outcome.ru }]),
-    ),
+// One results panel per checkpoint in the content; each renders nothing until it
+// has been taken, so a level whose checkpoint is untouched stays silent.
+const checkpoints = (await getCheckpoints()).map(({ setId, title, path, items }) => ({
+  setId,
+  title,
+  path,
+  items,
+}));
+const outcomeLabels = Object.fromEntries(
+  curriculum.nodes.flatMap((node) =>
+    node.outcomes.map((outcome) => [outcome.id, { en: outcome.en, ru: outcome.ru }]),
   ),
-};
+);
 ---
 
 <Base title="Fortschritt">
@@ -81,6 +77,6 @@ const checkpoint = !checkpointSet ? undefined : {
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoint={checkpoint} probeFamilies={families} probeLabels={probeLabels} />
+    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} />
   </div>
 </Base>

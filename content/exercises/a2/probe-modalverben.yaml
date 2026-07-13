@@ -1,0 +1,59 @@
+topic: modalverben
+role: probe
+title:
+  en: "Probe — modal verbs"
+  ru: "Проверка — модальные глаголы"
+
+# Three PARALLEL variants of ONE competence: the modal Satzklammer — the modal verb
+# conjugated in position 2, the bare infinitive at the very end. It is what makes a
+# modal sentence German, and it is the thing that has to survive: a learner who still
+# has the bracket can say what they must, may or want to do, whichever modal it is.
+#
+# The three tasks put the bracket under different pressure: a fronted time phrase
+# (inversion), a choice of which of two verbs is conjugated and which is the infinitive,
+# and a W-question.
+
+items:
+  - id: variant-a
+    outcomes: [modal-satzklammer]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Monday I have to go to the doctor."
+    prompt_ru: "В понедельник мне нужно к врачу."
+    answer: "Am Montag muss ich zum Arzt gehen."
+    key_tokens: ["muss", "gehen"]
+    accept:
+      - "Ich muss am Montag zum Arzt gehen."
+    explain:
+      en: "The modal is the conjugated verb, so it holds position 2 — and because Am Montag is fronted, the subject ich follows it. The bare infinitive gehen closes the sentence: muss … gehen. The infinitive is the last word, never the second."
+      ru: "Модальный глагол — спрягаемый, поэтому он занимает второе место, а из-за вынесенного вперёд Am Montag подлежащее ich идёт за ним. Инфинитив без zu замыкает предложение: muss … gehen. Инфинитив — последнее слово, а не второе."
+
+  - id: variant-b
+    outcomes: [modal-satzklammer]
+    type: cloze
+    focus: modal-satzklammer
+    instruction:
+      en: Fill in the two verbs in brackets — decide which one is conjugated and which stays an infinitive.
+      ru: Вставьте два глагола из скобок — решите, какой из них спрягается, а какой остаётся инфинитивом.
+    text: "Herr Weber {{kann}} heute leider nicht {{kommen}}. (kommen / können) Am Sonntag {{wollen}} meine Eltern nach Hamburg {{fahren}}. (fahren / wollen)"
+    explain:
+      en: "The modal always takes the conjugated slot in position 2 and the full verb always stays an infinitive at the end — never the other way round. Both halves are needed: kann … kommen, wollen … fahren. In the second sentence the fronted Am Sonntag pushes the subject behind the modal."
+      ru: "Модальный глагол всегда занимает спрягаемое место — второе, — а смысловой глагол всегда остаётся инфинитивом в конце; наоборот не бывает. Нужны обе половины: kann … kommen, wollen … fahren. Во втором предложении вынесенное вперёд Am Sonntag отодвигает подлежащее за модальный глагол."
+
+  - id: variant-c
+    outcomes: [modal-satzklammer]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Where can I buy tickets?"
+    prompt_ru: "Где я могу купить билеты?"
+    answer: "Wo kann ich Fahrkarten kaufen?"
+    key_tokens: ["kann", "kaufen"]
+    explain:
+      en: "A W-question changes nothing about the bracket: the question word takes position 1, the modal kann is still the second element, and the infinitive kaufen still ends the sentence. English puts 'buy' right after 'I' — German makes you wait for it."
+      ru: "Вопрос с вопросительным словом ничего не меняет в рамке: вопросительное слово занимает первое место, модальный глагол kann остаётся вторым, а инфинитив kaufen по-прежнему замыкает предложение. По-русски «купить» стоит сразу после «могу» — по-немецки его приходится ждать до конца."

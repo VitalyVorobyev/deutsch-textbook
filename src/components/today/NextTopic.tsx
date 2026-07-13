@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { levelPathDone, recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
+import { recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
+import { dueCheckpoint, type CheckpointRef } from '../../lib/checkpoint';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { useExplainLang } from '../hooks';
 
@@ -7,15 +8,17 @@ interface Props {
   /** topic ids in recommended-path order (getCurriculum().spine) */
   spine: string[];
   nodes: TopicNode[];
-  /** level checkpoint to surface once every lesson of its level is complete */
-  checkpoint?: { path: string; setId: string; level: string; title: string };
+  /** every level checkpoint in the content; the due one (if any) is surfaced */
+  checkpoints?: CheckpointRef[];
 }
 
-export default function NextTopic({ spine, nodes, checkpoint }: Props) {
+const NO_CHECKPOINTS: CheckpointRef[] = [];
+
+export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }: Props) {
   const lang = useExplainLang();
   const [suggestion, setSuggestion] = useState<TopicNode | null>(null);
   const [mastered, setMastered] = useState(0);
-  const [checkpointDue, setCheckpointDue] = useState(false);
+  const [checkpoint, setCheckpoint] = useState<CheckpointRef | null>(null);
 
   useEffect(() => {
     void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
@@ -23,17 +26,12 @@ export default function NextTopic({ spine, nodes, checkpoint }: Props) {
         const ctx = { attempts, cards, topics };
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         setMastered(nodes.filter((n) => topicCompletion(n, ctx).tier === 'mastered').length);
-        if (checkpoint) {
-          setCheckpointDue(
-            levelPathDone(checkpoint.level, nodes, ctx) &&
-              !attempts.some((a) => a.setId === checkpoint.setId),
-          );
-        }
+        setCheckpoint(dueCheckpoint(checkpoints, nodes, ctx) ?? null);
       },
     );
-  }, [spine, nodes, checkpoint]);
+  }, [spine, nodes, checkpoints]);
 
-  if (!suggestion && !checkpointDue) return null;
+  if (!suggestion && !checkpoint) return null;
 
   return (
     <div>
@@ -52,7 +50,7 @@ export default function NextTopic({ spine, nodes, checkpoint }: Props) {
           </a>
         </>
       )}
-      {checkpointDue && checkpoint && (
+      {checkpoint && (
         <div className={suggestion ? 'mt-4 border-t border-stone-200 pt-3 dark:border-stone-700' : ''}>
           <p className="text-xs uppercase tracking-wide text-stone-400">
             {lang === 'ru' ? 'Все уроки пройдены' : 'All lessons complete'}

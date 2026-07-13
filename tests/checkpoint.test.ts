@@ -1,5 +1,10 @@
 import { describe, expect, test } from 'bun:test';
-import { checkpointOutcomeResults, type CheckpointItemRef } from '../src/lib/checkpoint';
+import {
+  checkpointOutcomeResults,
+  dueCheckpoint,
+  type CheckpointItemRef,
+  type CheckpointRef,
+} from '../src/lib/checkpoint';
 import { levelPathDone, levelRemaining, type TopicContext, type TopicNode } from '../src/lib/mastery';
 import type { Attempt } from '../src/lib/store';
 
@@ -131,5 +136,57 @@ describe('level checkpoint gate', () => {
     const ctx: TopicContext = { attempts: mastery('a1/erste-schritte'), cards: {}, topics: {} };
     expect(levelPathDone('A1', nodes, ctx)).toBe(false);
     expect(levelRemaining('A1', nodes, ctx)).toBe(1);
+  });
+});
+
+// Checkpoints are discovered from the content (getCheckpoints), so every surface
+// sees a *list*. dueCheckpoint is the one rule for which of them to offer.
+describe('dueCheckpoint', () => {
+  const checkpoints: CheckpointRef[] = [
+    { setId: 'a2/checkpoint-a2', level: 'A2', path: '/checkpoint/a2', title: 'Checkpoint A2' },
+    { setId: 'a1/checkpoint-a1', level: 'A1', path: '/checkpoint/a1', title: 'Checkpoint A1' },
+  ];
+  const lesson = (id: string, level: string): TopicNode => ({
+    id, path: `/topics/${level.toLowerCase()}/${id}`, level, kind: 'grammar',
+    title_de: id, title_en: id, title_ru: id, prerequisites: [],
+    exerciseSets: [`${level.toLowerCase()}/${id}`], vocabIds: [], readingIds: [],
+    primaryPractice: { setId: `${level.toLowerCase()}/${id}`, itemIds: ['i1', 'i2'] },
+  });
+  const nodes = [lesson('erste-schritte', 'A1'), lesson('dativ', 'A2')];
+  const done = (setId: string): Attempt[] =>
+    ['i1', 'i2'].map((itemId, n) => attempt(itemId, 100 + n, { setId }));
+  const ctxOf = (attempts: Attempt[]): TopicContext => ({ attempts, cards: {}, topics: {} });
+
+  test('nothing is due while the level still has lessons left', () => {
+    expect(dueCheckpoint(checkpoints, nodes, ctxOf([]))).toBeUndefined();
+  });
+
+  test('a level whose lessons are all behind the learner surfaces its checkpoint', () => {
+    const due = dueCheckpoint(checkpoints, nodes, ctxOf(done('a1/erste-schritte')));
+    expect(due?.setId).toBe('a1/checkpoint-a1');
+  });
+
+  test('the earlier level wins — nobody is sent past an unstarted A1 checkpoint', () => {
+    const ctx = ctxOf([...done('a1/erste-schritte'), ...done('a2/dativ')]);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a1/checkpoint-a1');
+  });
+
+  test('a taken checkpoint steps aside for the next level', () => {
+    const ctx = ctxOf([
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
+    ]);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+  });
+
+  test('once every checkpoint has been taken, none is due', () => {
+    const ctx = ctxOf([
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
+      attempt('hoeren-1', 300, { setId: 'a2/checkpoint-a2' }),
+    ]);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)).toBeUndefined();
   });
 });

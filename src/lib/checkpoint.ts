@@ -1,12 +1,65 @@
 /** Pure rollups over cumulative checkpoint attempts (`role: checkpoint` sets). */
 import type { Attempt } from './store';
 import { attemptScore, isVerifiedEvidence } from './scoring';
+import { levelPathDone, type TopicContext, type TopicNode } from './mastery';
 
 /** What the rollup needs to know about a checkpoint item (from the set's YAML). */
 export interface CheckpointItemRef {
   id: string;
   type: string;
   outcomes: string[];
+}
+
+/** The minimum a surface needs to link to a checkpoint (see getCheckpoints()). */
+export interface CheckpointRef {
+  setId: string;
+  level: string;
+  path: string;
+  title: string;
+}
+
+/**
+ * The checkpoint to offer the learner right now: the **lowest** level whose
+ * lessons are all behind them (`levelPathDone`) and whose set has never been
+ * attempted. Lowest wins so that a learner who finished A2 without ever taking
+ * the A1 checkpoint is not sent past it.
+ */
+export function dueCheckpoint<T extends CheckpointRef>(
+  checkpoints: T[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): T | undefined {
+  return [...checkpoints]
+    .sort((a, b) => a.level.localeCompare(b.level))
+    .find(
+      (checkpoint) =>
+        levelPathDone(checkpoint.level, nodes, ctx) &&
+        !ctx.attempts.some((attempt) => attempt.setId === checkpoint.setId),
+    );
+}
+
+/**
+ * The earlier-level checkpoint that is still unattempted, if there is one.
+ *
+ * `dueCheckpoint` already refuses to *offer* A2 while A1 is unstarted, but every surface
+ * that renders a checkpoint has to agree with it. The Lernpfad used to decide each card
+ * on its own level's `levelRemaining`, so a learner who finished A2's lessons would see
+ * the A2 checkpoint invitingly ready while the A1 one sat unopened — the two screens
+ * would have disagreed about what to do next, which is precisely what one suggestion
+ * function is supposed to prevent.
+ */
+export function blockedByEarlier<T extends CheckpointRef>(
+  checkpoint: T,
+  checkpoints: T[],
+  ctx: TopicContext,
+): T | undefined {
+  return [...checkpoints]
+    .sort((a, b) => a.level.localeCompare(b.level))
+    .find(
+      (other) =>
+        other.level < checkpoint.level &&
+        !ctx.attempts.some((attempt) => attempt.setId === other.setId),
+    );
 }
 
 export interface CheckpointOutcomeResult {

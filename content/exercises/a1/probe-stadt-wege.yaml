@@ -1,43 +1,62 @@
 topic: stadt-wege
 role: probe
 title:
-  en: "Probe — asking the way in town"
-  ru: "Проверка — как спросить дорогу в городе"
+  en: "Probe — asking the way: zum or zur"
+  ru: "Проверка — как спросить дорогу: zum или zur"
+
+# Three parallel variants of ONE competence: asking the way to a place — wie komme ich
+# zum/zur X, with the destination's gender deciding zum or zur. That is what the topic
+# exists for, and the chunk that decays: get zum/zur wrong and the question stops
+# working. Three fresh destinations (Supermarkt, Bank/Platz/Haltestelle, Zentrum), none
+# of them one of the places drilled in the lesson (Bahnhof, Apotheke, Hotel, Post).
+#
+# `preview: true` on every item: the focus tag dativ-praepositionen is introduced later
+# in the spine (by the A2 topic dativ), but at A1 this topic teaches zum/zur as a fixed
+# chunk, and the tag is the honest name for the confusion these items grade. The topic's
+# own practice set carries the same tag under the same flag.
 
 items:
   - id: variant-a
     outcomes: [stadt-weg-erfragen]
     type: translate
-    focus: artikel-pflicht
+    focus: dativ-praepositionen
+    preview: true
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "Excuse me, where is the pharmacy?"
-    prompt_ru: "Извините, где аптека?"
-    answer: "Entschuldigung, wo ist die Apotheke?"
-    key_tokens: ["die"]
+    prompt_en: "Excuse me, how do I get to the supermarket?"
+    prompt_ru: "Извините, как мне попасть в супермаркет?"
+    answer: "Entschuldigung, wie komme ich zum Supermarkt?"
+    key_tokens: ["zum"]
     explain:
-      en: "Open politely with Entschuldigung, then a plain W-question: wo ist + article + noun. The article is not optional — die Apotheke, never just Apotheke."
-      ru: "Начните вежливо с Entschuldigung, затем обычный W-вопрос: wo ist + артикль + существительное. Артикль обязателен: die Apotheke, а не просто Apotheke."
+      en: "The question is a fixed frame — Entschuldigung, wie komme ich zu … ? — and only the ending moves: der Supermarkt is masculine, so zu dem contracts to zum."
+      ru: "Вопрос строится по готовой формуле — Entschuldigung, wie komme ich zu … ? — и меняется только окончание: der Supermarkt мужского рода, поэтому zu dem стягивается в zum."
 
   - id: variant-b
-    outcomes: [stadt-wegbeschreibung-verstehen]
+    outcomes: [stadt-weg-erfragen]
     type: cloze
+    focus: dativ-praepositionen
+    preview: true
     instruction:
-      en: Fill the gaps.
-      ru: Заполните пропуски.
-    text: "Gehen Sie {{geradeaus}} und dann {{links}}. Die Bank ist {{rechts}}."
+      en: Fill in zum or zur.
+      ru: Вставьте zum или zur.
+    text: "— Entschuldigung, wie komme ich {{zur}} Bank? — Gehen Sie geradeaus. Die Bank ist rechts. — Und wie komme ich {{zum}} Platz? — Gehen Sie {{zur}} Haltestelle und nehmen Sie den Bus."
     explain:
-      en: "The three directions that carry almost every German route description: geradeaus, links, rechts."
-      ru: "Три направления, на которых держится почти любое немецкое объяснение дороги: geradeaus, links, rechts."
+      en: "The gender of the destination decides: die Bank and die Haltestelle are feminine → zur, der Platz is masculine → zum. Learn the place together with its article and the question builds itself."
+      ru: "Выбор зависит от рода места назначения: die Bank и die Haltestelle — женского рода → zur, der Platz — мужского → zum. Если запоминать место сразу с артиклем, вопрос собирается сам."
 
   - id: variant-c
-    outcomes: [stadt-schilder-verstehen, stadt-verkehrsmittel-nennen]
-    type: listen
+    outcomes: [stadt-weg-erfragen]
+    type: translate
+    focus: dativ-praepositionen
+    preview: true
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Der Bahnhof ist links und die Post ist rechts."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Excuse me, which bus goes to the centre?"
+    prompt_ru: "Извините, какой автобус идёт в центр?"
+    answer: "Entschuldigung, welcher Bus fährt zum Zentrum?"
+    key_tokens: ["zum"]
     explain:
-      en: "Both nouns keep their article, and each direction word closes its own clause."
-      ru: "Оба существительных сохраняют артикль, и каждое слово-направление замыкает свою часть предложения."
+      en: "A different way to ask for the same thing: welcher Bus fährt zu … ? The destination still governs the contraction — das Zentrum is neuter, and zu dem is zum for neuter as well as masculine."
+      ru: "Другой способ спросить о том же: welcher Bus fährt zu … ? Место назначения по-прежнему определяет форму: das Zentrum среднего рода, а zu dem даёт zum и для среднего рода, и для мужского."

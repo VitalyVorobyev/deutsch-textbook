@@ -1,11 +1,19 @@
 topic: erste-schritte
 role: probe
 title:
-  en: "Probe — introductions and numbers"
-  ru: "Проверка — знакомство и числа"
+  en: "Probe — introducing yourself"
+  ru: "Проверка — как представиться"
 
-# Three parallel variants of the same check, never the items practised in the lesson.
-# One is drawn per due interval (2, 7, 21 days), so a probe is always a fresh context.
+# Three parallel variants of ONE competence: producing a self-introduction
+# (name → origin/residence → language). Different people, different situations,
+# different chunks — never an item from the lesson's own practice set. One variant is
+# drawn per due interval (2, 7, 21 days), so the same competence is measured three
+# times and a retention curve can exist.
+#
+# No `focus` tag: erste-schritte opens the spine and every registered confusion tag is
+# introduced later (verbzweit and the rest at praesens-wortstellung). Tagging these
+# items would file introduction chunks under a confusion they do not test — the topic's
+# own practice set is untagged for exactly the same reason.
 
 items:
   - id: variant-a
@@ -14,33 +22,37 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "My name is Anna. I come from Poland."
-    prompt_ru: "Меня зовут Анна. Я из Польши."
-    answer: "Ich heiße Anna. Ich komme aus Polen."
+    prompt_en: "My name is Sofia. I come from Italy and I speak Italian."
+    prompt_ru: "Меня зовут София. Я из Италии и говорю по-итальянски."
+    answer: "Ich heiße Sofia. Ich komme aus Italien und ich spreche Italienisch."
     accept:
-      - "Mein Name ist Anna. Ich komme aus Polen."
+      - "Mein Name ist Sofia. Ich komme aus Italien und ich spreche Italienisch."
     explain:
-      en: "Two fixed introduction chunks: ich heiße + name, ich komme aus + country. Both keep the verb in position 2."
-      ru: "Две устойчивые формулы знакомства: ich heiße + имя, ich komme aus + страна. В обеих глагол стоит на втором месте."
+      en: "A German introduction rests on three fixed chunks: ich heiße + name, ich komme aus + country, ich spreche + language. After aus the country takes no article (aus Italien), and the language is a bare capitalized noun."
+      ru: "Немецкое представление держится на трёх устойчивых формулах: ich heiße + имя, ich komme aus + страна, ich spreche + язык. После aus страна стоит без артикля (aus Italien), название языка тоже идёт без артикля и пишется с большой буквы."
 
   - id: variant-b
-    outcomes: [erste-sich-vorstellen, erste-buchstabieren]
+    outcomes: [erste-sich-vorstellen]
     type: cloze
     instruction:
-      en: Fill the gaps.
-      ru: Заполните пропуски.
-    text: "Ich {{heiße}} Tomas. Ich {{wohne}} in Berlin und {{spreche}} Polnisch."
+      en: Fill the gaps in the conversation.
+      ru: Заполните пропуски в диалоге.
+    text: "— Guten Tag! Wie {{heißen}} Sie? — Ich {{heiße}} Yuki Tanaka. — Und woher {{kommen}} Sie? — Ich {{komme}} aus Japan."
     explain:
-      en: "All three verbs take the ich-ending -e: heiße, wohne, spreche."
-      ru: "У всех трёх глаголов окончание 1-го лица -e: heiße, wohne, spreche."
+      en: "The same two chunks, this time in the polite register. With Sie the verb ends in -en (Wie heißen Sie? Woher kommen Sie?); your own answer keeps the ich-ending -e (ich heiße, ich komme)."
+      ru: "Те же две формулы, но в вежливом обращении. С Sie глагол оканчивается на -en (Wie heißen Sie? Woher kommen Sie?), а в ответе о себе сохраняется окончание -e (ich heiße, ich komme)."
 
   - id: variant-c
-    outcomes: [erste-zahlen-verstehen]
-    type: listen
+    outcomes: [erste-sich-vorstellen]
+    type: translate
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Meine Nummer ist null drei sieben."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Good morning! My name is Viktor. I live in Vienna and I am learning German."
+    prompt_ru: "Доброе утро! Меня зовут Виктор. Я живу в Вене и учу немецкий."
+    answer: "Guten Morgen! Ich heiße Viktor. Ich wohne in Wien und ich lerne Deutsch."
+    accept:
+      - "Guten Morgen! Mein Name ist Viktor. Ich wohne in Wien und ich lerne Deutsch."
     explain:
-      en: "Numbers in a phone number are spoken one digit at a time: null — drei — sieben."
-      ru: "Цифры в номере телефона называют по одной: null — drei — sieben."
+      en: "Two different chunks of the same introduction: wohnen takes in + the city you live in (ich wohne in Wien), and lernen names what you are studying (ich lerne Deutsch). Present tense covers both — German has no separate continuous form."
+      ru: "Две другие формулы того же представления: wohnen требует in + город (ich wohne in Wien), а lernen называет то, что вы изучаете (ich lerne Deutsch). Обе — в настоящем времени: отдельной формы «продолженного» времени в немецком нет."

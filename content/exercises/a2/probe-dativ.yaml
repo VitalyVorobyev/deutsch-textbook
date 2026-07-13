@@ -1,0 +1,61 @@
+topic: dativ
+role: probe
+title:
+  en: "Probe — the dative"
+  ru: "Проверка — дательный падеж"
+
+# Three PARALLEL variants of ONE competence: producing the dative article and noun
+# ending (dem, der, den …-n). One variant is drawn per due interval (2, 7, 21 days),
+# so the same skill is measured three times, in three tasks the learner has not seen.
+#
+# The trigger deliberately changes from variant to variant — a preposition, a dative
+# verb, a fronted phrase — because the trigger is not what is graded: the case-marked
+# article and noun are. That is the Dativ itself; everything else in the topic
+# (prepositions, dative verbs, pronouns) is a way of demanding it.
+
+items:
+  - id: variant-a
+    outcomes: [dativ-artikel]
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Saturday I am travelling to Berlin with my friends."
+    prompt_ru: "В субботу я еду в Берлин с друзьями."
+    answer: "Ich fahre am Samstag mit meinen Freunden nach Berlin."
+    key_tokens: ["meinen", "Freunden"]
+    accept:
+      - "Am Samstag fahre ich mit meinen Freunden nach Berlin."
+    explain:
+      en: "The dative plural marks itself twice: the article takes -en (meinen) and the noun adds an -n of its own (Freunde → Freunden). Leave out either half and the case is not there. This is also the only plural that changes at all — in the nominative and the accusative it stays meine Freunde."
+      ru: "Дательный падеж множественного числа отмечается дважды: артикль получает -en (meinen), а существительное — собственное -n (Freunde → Freunden). Пропустите одну из двух половин — и падежа нет. Это к тому же единственная форма множественного числа, которая вообще меняется: в именительном и винительном остаётся meine Freunde."
+
+  - id: variant-b
+    outcomes: [dativ-artikel]
+    type: cloze
+    focus: dativ-artikel
+    instruction:
+      en: Fill in the correct dative form of the word in brackets.
+      ru: Вставьте правильную форму слова из скобок в дательном падеже.
+    text: "Wir fahren mit {{dem}} Zug nach Hamburg. (der Zug) Ich komme gerade von {{der}} Bank. (die Bank) Das Zimmer gefällt {{den}} {{Gästen}} sehr gut. (die Gäste)"
+    explain:
+      en: "One set of forms, three different triggers: der → dem, die → der, and in the plural die → den with an -n added to the noun (Gäste → Gästen). What demands the dative — a preposition (mit, von) or a dative verb (gefallen) — changes nothing about the forms themselves. Learn the forms once and every trigger is served."
+      ru: "Один набор форм и три разных «спусковых крючка»: der → dem, die → der, а во множественном числе die → den, причём существительное получает -n (Gäste → Gästen). Что именно требует дательного падежа — предлог (mit, von) или глагол с дательным управлением (gefallen), — на сами формы не влияет. Выучив формы один раз, вы обслужите любой из этих случаев."
+
+  - id: variant-c
+    outcomes: [dativ-artikel]
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "After the concert we drive home with my sister."
+    prompt_ru: "После концерта мы едем домой с моей сестрой."
+    answer: "Nach dem Konzert fahren wir mit meiner Schwester nach Hause."
+    key_tokens: ["dem", "meiner"]
+    accept:
+      - "Wir fahren nach dem Konzert mit meiner Schwester nach Hause."
+    explain:
+      en: "Two dative slots in one sentence, and the two forms look nothing alike: neuter das Konzert → dem, feminine die Schwester → meiner. The feminine ending is the trap, because -er is what the masculine looks like in the nominative (der Mann) — in the dative it means the opposite. And the fronted phrase keeps the verb in position 2: Nach dem Konzert fahren wir …"
+      ru: "Два дательных слова в одном предложении, и формы у них совершенно разные: средний род das Konzert → dem, женский die Schwester → meiner. Женское окончание — главная ловушка: -er выглядит как мужской именительный (der Mann), а в дательном означает прямо противоположное. И не забудьте про порядок слов: вынесенная вперёд группа оставляет глагол на втором месте — Nach dem Konzert fahren wir …"

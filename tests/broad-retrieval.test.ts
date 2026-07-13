@@ -111,7 +111,25 @@ describe('broad-retrieval share', () => {
     }
   });
 
-  // A set holding more than half the queue makes a same-set pair arithmetically
+  // The grain is the TOPIC, not the set. Two sets of the same topic back to back are two
+  // items on the same rule back to back, whichever file they came from — and `dativ` alone
+  // owns four sets. Grouping by set let exactly that through.
+  test('two sets of the same topic are never served consecutively', () => {
+    // dativ owns two sets but only half the items, so alternation is always reachable —
+    // the queue may not reach for the second dativ set just because it is a different file.
+    const dativA = set('a2/dativ', 'dativ', ['d1', 'd2']);
+    const dativB = set('a2/drill-mir-mich', 'dativ', ['m1', 'm2']);
+    const akkusativ = set('a1/akkusativ', 'akkusativ', ['k1', 'k2', 'k3', 'k4']);
+    for (let run = 0; run < 200; run++) {
+      const queue = buildSession([dativA, dativB, akkusativ], 8, []);
+      expect(queue).toHaveLength(8);
+      for (let i = 1; i < queue.length; i++) {
+        expect(queue[i]!.topicId).not.toBe(queue[i - 1]!.topicId);
+      }
+    }
+  });
+
+  // A topic holding more than half the queue makes a same-topic pair arithmetically
   // unavoidable. The session must still be served in full, at the minimum possible
   // number of conflicts — not truncated to keep the invariant.
   test('a dominant set yields the unavoidable minimum of conflicts, never a short session', () => {

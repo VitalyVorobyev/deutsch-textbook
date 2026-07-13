@@ -27,7 +27,7 @@ items:
       ru: "Артикли в Dativ: der/das → dem, die → der, во множественном числе die → den (а существительное получает -n: den Kindern)."
 
   - id: pronomen-dativ
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-pronomen]
     type: table
     focus: dativ-pronomen
     title: "Personalpronomen im Dativ"
@@ -57,7 +57,7 @@ items:
       ru: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — и Ihnen с заглавной буквы для вежливого Sie. Прямые аналоги русских «мне, тебе, ему, ей, нам, вам, им»."
 
   - id: cloze-antworten
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-verben, dativ-artikel]
     type: cloze
     focus: verben-mit-dativ
     instruction:
@@ -72,7 +72,7 @@ items:
       ru: "antworten требует Dativ. die Lehrerin — женский род, поэтому die → der: der Lehrerin."
 
   - id: cloze-gefallen
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-pronomen, dativ-verben]
     type: cloze
     focus: dativ-pronomen
     instruction:
@@ -102,7 +102,7 @@ items:
       ru: "В Dativ Plural окончание -n получает и само существительное: die Kinder → den Kindern."
 
   - id: cloze-seit
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: cloze
     focus: dativ-praepositionen
     instruction:
@@ -117,7 +117,7 @@ items:
       ru: "После seit всегда стоит Dativ; das Jahr — средний род, поэтому ein → einem."
 
   - id: mc-danken
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-verben, dativ-pronomen]
     type: mc
     focus: verben-mit-dativ
     prompt: "Ich danke ___ für die Hilfe."
@@ -131,7 +131,7 @@ items:
       ru: "danken требует Dativ: Sie → Ihnen. Осторожно: по-русски «благодарю (кого?) вас» — винительный падеж, поэтому «Ich danke Sie» — типичная ошибка."
 
   - id: mc-mit-bus
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: mc
     focus: dativ-praepositionen
     prompt: "Wir fahren mit ___ Bus zur Schule."
@@ -145,7 +145,7 @@ items:
       ru: "mit всегда требует Dativ; der Bus — мужской род, поэтому der → dem. Форма «den Bus» — это Akkusativ."
 
   - id: mc-gehoert
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-verben, dativ-pronomen]
     type: mc
     focus: verben-mit-dativ
     prompt: "Das ist mein Bruder. Das Fahrrad gehört ___."
@@ -176,7 +176,7 @@ items:
       ru: "Человек стоит в Dativ (meinem Vater — кому?), предмет — в Akkusativ (den Brief — что?). При двух дополнениях-существительных Dativ идёт первым."
 
   - id: match-kontraktionen
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen]
     type: match
     focus: dativ-praepositionen
     instruction:
@@ -192,7 +192,7 @@ items:
       ru: "Дативные предлоги сливаются с артиклем: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
 
   - id: match-praepositionen
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen]
     type: match
     focus: dativ-praepositionen
     instruction:
@@ -223,7 +223,7 @@ items:
       ru: "При двух дополнениях-существительных Dativ стоит перед Akkusativ: dem Kind (кому?) перед einen Apfel (что?)."
 
   - id: order-bus
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen]
     type: order
     focus: dativ-praepositionen
     instruction:
@@ -238,7 +238,7 @@ items:
       ru: "Оба предлога требуют Dativ: mit dem Bus (der Bus → dem) и zur Arbeit (zur = zu der). Обычный порядок — сначала как, потом куда: mit dem Bus zur Arbeit."
 
   - id: uebersetzen-helfen
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-verben, dativ-artikel]
     type: translate
     focus: verben-mit-dativ
     instruction:
@@ -253,7 +253,7 @@ items:
       ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
 
   - id: uebersetzen-gehoeren
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-verben, dativ-artikel]
     type: translate
     focus: verben-mit-dativ
     instruction:
@@ -268,7 +268,7 @@ items:
       ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
 
   - id: uebersetzen-nach-arbeit
-    outcomes: [dativ-artikel]
+    outcomes: [dativ-praepositionen, dativ-artikel]
     type: translate
     focus: dativ-praepositionen
     instruction:

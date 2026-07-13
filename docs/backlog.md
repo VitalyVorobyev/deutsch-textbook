@@ -23,7 +23,16 @@ one. The other half runs on wall-clock. Probes armed on 2026-07-12; the 21-day c
 
 **The exit bar, stated so that it can fail:**
 
-> **≥ 80% correct on delayed parallel probes per A1 outcome, with free-production items ≥ 70%.**
+> **≥ 80% correct on delayed parallel probes per probed competence, with free-production items ≥ 70%.**
+
+The bar used to say *per A1 outcome*, and it could not have been met as written. A probe family's
+three variants were testing three **different** competences, and `dueProbe` serves one variant per
+interval — so each competence was measured exactly once, at exactly one delay, and no retention
+curve could exist. The number would have looked like retention without being it. Caught before the
+cohort produced a single answer (zero probe attempts were logged), and fixed: a family's variants are
+now parallel checks of **one** competence, and `bun run validate` refuses any other kind. One
+competence per topic is probed — a topic's remaining outcomes get their evidence from practice, which
+is where outcome mastery comes from anyway.
 
 This used to gate the *start* of A2 authoring. It is now a **revision trigger** instead — the
 roadmap explains why, and names the risk that change accepts. If A1 misses the bar, A2 authoring
@@ -51,7 +60,7 @@ opened", pushing hundreds of A1 Wortliste words behind an A2 gate.
 - Accept: the blueprint, roadmap, backlog and `CLAUDE.md` agree; no persisted identity is renamed;
   the documentation describes the system that exists, not a planned one.
 
-### P4-2 · Build the A2 instrument — `todo` (L)
+### P4-2 · Build the A2 instrument — `done` (L)
 
 The measurement A2 authoring will be judged by, built before the content it judges.
 
@@ -61,17 +70,28 @@ The measurement A2 authoring will be judged by, built before the content it judg
   light up, and a probe on them can never arm. Fix the four, then make it impossible to ship a fifth.
 - Six A2 probe families with parallel variants, following the A1 pattern. This arms the A2 retention
   clock now rather than after ten more units.
-- `deepens` semantics in training: a deepening topic's errors resurface its base topics' focus tags
-  in weakness aggregation and training priority, without duplicating base lessons.
+- ~~`deepens` semantics in training~~ — **already true; do not build it.** The behaviour this asked
+  for exists, and the focus tag is what delivers it: `focusStats` (`src/lib/weakness.ts`) keys weakness
+  by tag alone and is blind to the topic an attempt came from, so an error while practising a deepening
+  topic marks that confusion weak course-wide; `buildSession` (`src/lib/training.ts`) then draws its
+  second band from the entire eligible pool, and the base topic — earlier in the spine, therefore
+  already opened — hands over its items carrying that tag. Measured on the shipped content: four errors
+  on `dativ-praepositionen` inside `dativ` resurface `stadt-wege`'s items on that tag in 200 sessions
+  out of 200, and nothing else from `stadt-wege` enters. Base lessons are never duplicated because
+  nothing copies them — training addresses items, not lessons. **A `deepens`-aware aggregation would be
+  a regression**: scoping a tag to a topic narrows a signal that is deliberately global. What was
+  genuinely missing is now shipped — the edge worked only because the content happened to give it a
+  shared tag, so `bun run validate` now rejects a `deepens` edge whose two ends share no tag the base
+  can be drilled on (`tests/deepens.test.ts` pins both the behaviour and the content contract).
 - A Goethe-A2 Wortliste manifest (`data/goethe-a2-wortliste.txt`) and `goetheCoverage(level)`
   generalized from `goetheA1Coverage()`, so the Über page can make an A2 claim it has measured.
 - A checkpoint route that is not hard-wired to A1: `a1/checkpoint-a1` is currently named in five
   places, and `NextTopic` accepts exactly one checkpoint.
 
 - Accept: the outcome rule fails on a deliberately orphaned outcome; A2 probes arm from the real
-  snapshot with correct due dates; `deepens` resurfaces base focus tags without dragging unrelated
-  base content into the queue; `bun scripts/coverage.ts A2` reports a real figure; an A2 checkpoint
-  could be added without touching four pages.
+  snapshot with correct due dates; every `deepens` edge is backed by a shared focus tag the base can be
+  drilled on, and validation fails on one that is not; `bun scripts/coverage.ts A2` reports a real
+  figure; an A2 checkpoint could be added without touching four pages.
 
 ### P4-3 · Bring the six shipped A2 topics up to the hardened contract — `todo` (L)
 
@@ -149,6 +169,20 @@ insufficient.
 
 Only after a linear mission pilot shows that branching would improve rather than distract from the
 learning workflow.
+
+### P5-7 · Delayed evidence for listening — `todo` (M)
+
+One competence is probed per topic, and in every one of the sixteen topics the competence that
+answers "did this lesson stick" turned out to be a production one. So **no listening outcome has a
+retention curve** — listening is practised (`listen` dictation, `audio-comprehension`) but never
+re-checked after an interval. That is a real hole, and it is stated here rather than papered over.
+
+The fix is a second probe family per topic where a listening outcome deserves it (`probe-<topic>-hoeren`,
+three parallel `listen` or `audio-comprehension` variants). It is not free: a due probe opens the
+session and the cap is three, and sixteen families already arm at once. Do it after the first cohort
+reports, when the real probe load is known rather than guessed.
+
+- Accept: a listening outcome shows a 2/7/21-day curve; the probe load per session stays bounded.
 
 ### P5-6 · Recognition-only vocabulary cards — `deferred` (S)
 

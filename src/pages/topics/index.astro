@@ -1,10 +1,8 @@
 ---
-import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CurriculumPath from '../../components/atlas/CurriculumPath';
-import { getTopicNodes } from '../../lib/content';
+import { getCheckpoints, getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '../../lib/curriculum';
-import { withBase } from '../../lib/url';
 
 const curriculum = getCurriculum();
 const topicNodes = await getTopicNodes();
@@ -21,18 +19,15 @@ const units = curriculum.units.map((unit) => ({
   }),
 }));
 
-const checkpointSet = await getEntry('exercises', 'a1/checkpoint-a1');
-const checkpoint = !checkpointSet ? undefined : {
-  level: 'A1',
-  title: 'Checkpoint A1',
-  path: withBase('/checkpoint/a1'),
-  setId: 'a1/checkpoint-a1',
-  items: checkpointSet.data.items.map((item) => ({
-    id: item.id,
-    type: item.type,
-    outcomes: item.outcomes,
-  })),
-};
+// Every checkpoint the content owns; the Lernpfad shows each one's state (done,
+// due, or "n lessons to go"). A new checkpoint YAML appears here by itself.
+const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title, items }) => ({
+  setId,
+  level,
+  path,
+  title,
+  items,
+}));
 ---
 
 <Base title="Themen">
@@ -45,6 +40,6 @@ const checkpoint = !checkpointSet ? undefined : {
   </header>
 
   <div class="mt-6">
-    <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} checkpoint={checkpoint} />
+    <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} checkpoints={checkpoints} />
   </div>
 </Base>

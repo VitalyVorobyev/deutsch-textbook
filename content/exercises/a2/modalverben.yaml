@@ -5,7 +5,7 @@ title:
   ru: Практика — модальные глаголы
 items:
   - id: konjugation-koennen-muessen
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: table
     focus: modal-konjugation
     title: "können und müssen — Präsens"
@@ -31,7 +31,7 @@ items:
       ru: "В единственном числе меняется корневая гласная (können → kann, müssen → muss), а формы ich и er/sie/es совпадают и не имеют окончания -t: ich kann — er kann. Множественное число правильное: wir können, ihr könnt, sie können."
 
   - id: mc-verboten
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     focus: duerfen-muessen
     instruction:
@@ -48,7 +48,7 @@ items:
       ru: "Запрет — это всегда 'dürfen nicht': Hier darf man nicht rauchen. Русское «нельзя» = darf nicht. 'Muss nicht' означало бы совсем другое — «не обязан курить»."
 
   - id: mc-nicht-noetig
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
     focus: duerfen-muessen
     instruction:
@@ -65,7 +65,7 @@ items:
       ru: "'Musst nicht' = «не обязан» (нет необходимости) — вторая часть предложения говорит, что прийти всё-таки можно. 'Darfst nicht' означало бы запрет, а это противоречит словам 'du kannst gern kommen'."
 
   - id: cloze-koennen
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -80,7 +80,7 @@ items:
       ru: "ich kann — в единственном числе меняется гласная (ö → a), окончания нет. Инфинитив 'kommen' остаётся в конце предложения."
 
   - id: cloze-wollen-er
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -95,7 +95,7 @@ items:
       ru: "er will — форма er/sie/es у модальных глаголов не имеет -t и совпадает с формой ich: ich will, er will. Формы 'er willt' не существует."
 
   - id: cloze-moechten
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-hoefliche-wuensche]
     type: cloze
     focus: will-moechte
     instruction:
@@ -110,7 +110,7 @@ items:
       ru: "möchte — вежливое «хочу», именно эта форма используется в заказах и просьбах. 'Ich will einen Kaffee' в кафе звучит грубо."
 
   - id: cloze-duerfen-plural
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: cloze
     focus: modal-konjugation
     instruction:
@@ -125,7 +125,7 @@ items:
       ru: "'Die Kinder' — множественное число (= sie), поэтому нужна правильная форма 'dürfen'. Смена гласной (dürfen → darf) происходит только в единственном числе."
 
   - id: mc-er-kann
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: mc
     focus: modal-konjugation
     prompt: "Er ___ sehr gut kochen."
@@ -139,7 +139,7 @@ items:
       ru: "er kann — в форме er/sie/es нет окончания -t, она совпадает с ich kann. Формы 'kannt' не существует, а 'könnt' — это форма для ihr (ihr könnt)."
 
   - id: mc-magst
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-hoefliche-wuensche]
     type: mc
     focus: will-moechte
     instruction:
@@ -187,7 +187,7 @@ items:
       ru: "'Am Sonntag' занимает первое место, поэтому модальный глагол 'wollen' стоит вторым, а подлежащее 'wir' — третьим; инфинитив 'gehen' закрывает рамку в конце."
 
   - id: match-bedeutungen
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-erlaubnis-notwendigkeit]
     type: match
     instruction:
       en: Match each modal verb with its meaning.
@@ -204,7 +204,7 @@ items:
       ru: "können = мочь, уметь; müssen = быть должным (необходимость); wollen = хотеть; dürfen = «можно» (разрешение); sollen = следует (совет, поручение); mögen = любить, нравиться."
 
   - id: match-duerfen-formen
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation]
     type: match
     focus: modal-konjugation
     instruction:
@@ -252,7 +252,7 @@ items:
       ru: "Общий вопрос начинается с модального глагола: Kannst du …? Инфинитив helfen уходит в конец, а helfen требует Dativ — mir, а не mich."
 
   - id: uebersetzen-wollen
-    outcomes: [modal-satzklammer]
+    outcomes: [modal-konjugation, modal-satzklammer]
     type: translate
     focus: modal-konjugation
     instruction:
