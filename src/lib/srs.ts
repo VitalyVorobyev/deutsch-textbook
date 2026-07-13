@@ -2,7 +2,7 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs';
 import type { VocabEntry } from './schemas';
 import { shuffle } from './shuffle';
-import type { StoredCard } from './store';
+import { localDateString, type StoredCard } from './store';
 
 export { Rating, State };
 export type { Grade };
@@ -110,11 +110,54 @@ export function deserializeCard(stored: StoredCard): Card {
   };
 }
 
-/** Grade a card (existing state or fresh) and return its next stored state. */
+/**
+ * Grade a card (existing state or fresh) and return its next stored state.
+ *
+ * `introducedAt` is stamped on the very first grade and never touched again — it
+ * is what `introducedToday` counts, and it is the one thing about a card that FSRS
+ * does not already tell us. It is stored rather than derived, which is against the
+ * grain here (probe state is derived precisely so that `mergeSnapshot` has nothing
+ * to merge), because the obvious derivations are all wrong:
+ *   - `reps === 1 && last_review is today` misses a new card the learner failed —
+ *     FlashcardSession re-queues an "Again" card inside the same session, so it
+ *     reaches reps 2 on the day it was introduced. It undercounts, which lets *more*
+ *     new cards through: exactly the wrong direction for a flood guard.
+ *   - `elapsed_days === 0 && last_review is today` catches an *old* card that lapsed
+ *     today, because ts-fsrs zeroes elapsed_days for any same-day regrade.
+ * The cost of storing it is near nil: it lives inside the `cards` record that
+ * `mergeSnapshot` already merges whole (`moreAdvancedCard` picks one card object),
+ * so it adds no snapshot key and no merge rule. Absent on pre-existing cards, which
+ * is correct — they were not introduced today.
+ */
 export function gradeCard(stored: StoredCard | undefined, grade: Grade, now = new Date()): StoredCard {
   const card = stored ? deserializeCard(stored) : createEmptyCard(now);
   const next = scheduler.next(card, now, grade);
-  return serializeCard(next.card);
+  const out = serializeCard(next.card);
+
+  // Only a card with no state at all is being introduced *now*. An existing card
+  // whose `introducedAt` is absent predates the field, and must keep it absent:
+  // stamping it would charge today's new-card budget for a card the learner first
+  // met months ago, so a returning learner's first fifteen ordinary reviews would
+  // silently eat the whole day's allowance. `stored?.introducedAt ?? today` reads
+  // right and is exactly this bug.
+  if (stored === undefined) out.introducedAt = localDateString(now);
+  else if (stored.introducedAt !== undefined) out.introducedAt = stored.introducedAt;
+  return out;
+}
+
+/**
+ * How many never-seen cards the learner has already been dealt today, across every
+ * surface. `newLimit` alone cannot answer this: it caps a single *queue build*, and
+ * `planReview` re-runs on every mount, so reloading the review page five times used
+ * to introduce 75 new cards — a review debt FSRS would then faithfully deliver for
+ * months. With the A2 Wortliste closed the fresh pool triples, which is what turns
+ * that from a quirk into a trap.
+ */
+export function introducedToday(states: Record<string, StoredCard>, now = new Date()): number {
+  const today = localDateString(now);
+  let n = 0;
+  for (const s of Object.values(states)) if (s.introducedAt === today) n++;
+  return n;
 }
 
 // ---------------------------------------------------------------------------
