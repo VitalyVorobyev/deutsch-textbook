@@ -38,28 +38,22 @@ Goethe-Institut's A2 Wortliste — measured, not asserted.
   measure the practice, not the interval. Ten A1 probe families, three parallel variants each.
   Fortschritt reports the results apart from practice accuracy, at the interval that *actually*
   elapsed rather than the one that was scheduled.
-- **Delayed probes for A2 as well.** The six A2 topics had none, so weeks of dative and Perfekt
-  practice had produced no evidence that any of it survived. Six new families — production-led, not
-  multiple choice — arm off the practice already in the log, so the first checks fall due
-  immediately rather than after the next ten units are written.
-- **Three new A2 units.** *Wohnen & Umzug* (where things are and where they go — the German case
-  distinction Russian marks differently and English not at all), *Reisen & Verkehr* (planning a
-  journey and recovering when the train is cancelled), and *Einkaufen & Reklamation* (comparing two
-  products, buying one, and taking it back when it breaks). Each one is a single story told across
-  its article, its reading, its listening, its practice and its final task.
-- **A2 can now be listened to, written and spoken.** The six A2 topics were built before the rest of
-  the course was, and you had been practising all of them entirely by typing into boxes: no listening
-  with the transcript hidden, no writing that gets revised, and no speaking at all. Each one now has
+- **Delayed probes for A2 as well.** Sixteen families, one per unit — production-led, not multiple
+  choice. The six A2 topics that predated this release had none at all, so weeks of dative and
+  Perfekt practice had produced no evidence that any of it survived; those families arm off the
+  practice already in your log, so the first checks fell due immediately.
+- **A2 can now be listened to, written and spoken.** Six A2 topics were built before the rest of the
+  course was, and you had been practising them entirely by typing into boxes: no listening with the
+  transcript hidden, no writing that gets revised, and no speaking at all. Every A2 unit now has
   a listening task, a writing task with a checklist and a second draft, a speaking task you record
   and replay, and exercises that make you *choose* the rule rather than apply the one you were just
   shown — with the whole set built around one real situation, so the listening, the writing and the
   speaking are the same story rather than six unrelated drills.
 - **Lena's second episode.** A2's first long read: she has a bakery job that starts at five, an
   alarm at four, and a German course at six in the evening. Something has to give.
-- **An A2 vocabulary figure that is measured rather than claimed.** The Über page now reports A2
-  against the official Goethe-Institut A2 Wortliste, exactly as it already did for A1. It currently
-  says 45%, and that is the point: the number is computed from the content, so it cannot flatter the
-  course.
+- **An A2 vocabulary figure that is measured rather than claimed.** The Über page reports A2 against
+  the official Goethe-Institut A2 Wortliste, exactly as it already did for A1. The number is computed
+  from the content, so it cannot flatter the course — and when this release began it read 51%.
 - **An extensive reader.** "Lena in Bremen" — a longer text meant to be read straight through for
   meaning, with sparse glosses and no line-by-line quiz. Readings now declare whether they are
   intensive or extensive, and the validator holds the two apart.
