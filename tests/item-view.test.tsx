@@ -31,6 +31,32 @@ const view = (instanceKey: string) => (
   />
 );
 
+const berlin = translateItemSchema.parse({
+  id: 'berlin',
+  type: 'translate',
+  prompt_en: 'On Saturday I am travelling to Berlin with my friends.',
+  prompt_ru: 'В субботу я еду в Берлин с друзьями.',
+  answer: 'Ich fahre am Samstag mit meinen Freunden nach Berlin.',
+  accept: [
+    'Am Samstag fahre ich mit meinen Freunden nach Berlin.',
+    'Mit meinen Freunden fahre ich am Samstag nach Berlin.',
+  ],
+  key_tokens: ['meinen', 'Freunden'],
+  focus: 'dativ-artikel',
+});
+
+const berlinView = () => (
+  <ItemView
+    instanceKey="berlin-0"
+    item={berlin}
+    lang="en"
+    onResult={mock(() => {})}
+    locked={false}
+    onNext={mock(() => {})}
+    nextLabel="Weiter →"
+  />
+);
+
 const answerBox = () => screen.getByRole('textbox') as HTMLInputElement;
 
 afterEach(cleanup);
@@ -56,5 +82,47 @@ describe('ItemView', () => {
     rerender(view('round-0'));
 
     expect(answerBox().value).toBe('Ich habe Hunger.');
+  });
+
+  test('an item with one authored rendering shows no alternatives section', () => {
+    render(view('single-answer'));
+    fireEvent.change(answerBox(), { target: { value: 'Ich habe Hunger.' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Prüfen' }));
+
+    expect(screen.getByText(/Richtig!/)).toBeTruthy();
+    expect(screen.queryByText('Also possible:')).toBeNull();
+  });
+
+  test('a wrong translation is corrected against the closest authored rendering', () => {
+    const { container } = render(berlinView());
+    fireEvent.change(answerBox(), {
+      target: { value: 'Am Samstag fahre ich mit meine Freunde nach Berlin' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Prüfen' }));
+
+    expect(container.textContent).toContain(
+      'Correction: Am Samstag fahre ich mit meinen Freunden nach Berlin.',
+    );
+    expect(container.textContent).not.toContain(
+      'Correction: Ich fahre am Samstag mit meinen Freunden nach Berlin.',
+    );
+    expect(screen.getByText('Also possible:')).toBeTruthy();
+    expect(screen.getByText('Ich fahre am Samstag mit meinen Freunden nach Berlin.')).toBeTruthy();
+  });
+
+  test('an accepted rendering reveals the other authored answers after retrieval', () => {
+    render(berlinView());
+    fireEvent.change(answerBox(), {
+      target: { value: 'Am Samstag fahre ich mit meinen Freunden nach Berlin.' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Prüfen' }));
+
+    expect(screen.getByText(/Richtig!/)).toBeTruthy();
+    expect(screen.getByText('Also possible:')).toBeTruthy();
+    const alternatives = screen.getAllByRole('listitem').map((node) => node.textContent);
+    expect(alternatives).toEqual([
+      'Ich fahre am Samstag mit meinen Freunden nach Berlin.',
+      'Mit meinen Freunden fahre ich am Samstag nach Berlin.',
+    ]);
   });
 });

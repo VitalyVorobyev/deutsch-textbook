@@ -145,13 +145,17 @@ export function ActionRow({
 export function Feedback({
   correct,
   correctAnswer,
+  correctAnswerLabel,
   note,
   explain,
   lang,
   speakText,
+  alternatives,
 }: {
   correct: boolean;
   correctAnswer?: ReactNode;
+  /** Override the default "Correct answer" label, e.g. for a minimal correction. */
+  correctAnswerLabel?: string;
   /**
    * Shown whether or not the answer was correct — for the things worth saying about
    * an answer that still counts, such as the spelling of an otherwise right sentence.
@@ -161,9 +165,12 @@ export function Feedback({
   lang: ExplainLang;
   /** German text to offer for playback next to the correct answer */
   speakText?: string;
+  /** Other authored, equally correct renderings; shown only after submission. */
+  alternatives?: string[];
 }) {
   const showAnswer = !correct && !!correctAnswer;
-  if (!showAnswer && !note && !explain) return null;
+  const showAlternatives = !!alternatives?.length;
+  if (!showAnswer && !note && !explain && !showAlternatives) return null;
 
   return (
     <div
@@ -175,13 +182,21 @@ export function Feedback({
     >
       {showAnswer && (
         <p>
-          {lang === 'ru' ? 'Правильный ответ: ' : 'Correct answer: '}
+          {correctAnswerLabel ?? (lang === 'ru' ? 'Правильный ответ: ' : 'Correct answer: ')}
           <span lang="de" className="font-medium">{correctAnswer}</span>
           {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
       )}
       {note && <div className={showAnswer ? 'mt-2' : undefined}>{note}</div>}
-      {!correct && explain && <p className={showAnswer || note ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
+      {showAlternatives && (
+        <div className={showAnswer || note ? 'mt-2' : undefined}>
+          <p className="font-medium">{lang === 'ru' ? 'Также можно:' : 'Also possible:'}</p>
+          <ul className="mt-1 list-disc space-y-0.5 pl-5" lang="de">
+            {alternatives.map((alternative) => <li key={alternative}>{alternative}</li>)}
+          </ul>
+        </div>
+      )}
+      {!correct && explain && <p className={showAnswer || note || showAlternatives ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
       {correct && explain && (
         <details>
           <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">

@@ -296,9 +296,9 @@ export const translateItemSchema = z.object({
   prompt_en: z.string().min(1),
   /** source sentence, Russian version (shown when the explanation language is RU) */
   prompt_ru: z.string().min(1),
-  /** canonical German translation — shown as the correct answer on mistakes */
+  /** preferred German teaching model; feedback may use a closer accepted rendering */
   answer: z.string().min(1),
-  /** alternative accepted German translations (e.g. another valid V2 word order) */
+  /** equally correct, target-preserving German renderings (e.g. another valid V2 order) */
   accept: z.array(z.string().min(1)).default([]),
   /**
    * The tokens of `answer` whose exact form this item grades — typically the verb

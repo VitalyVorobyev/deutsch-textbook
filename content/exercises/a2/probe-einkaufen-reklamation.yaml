@@ -43,6 +43,8 @@ items:
     prompt_en: "The table here is bigger than the table over there. I need more space."
     prompt_ru: "Этот стол больше, чем тот. Мне нужно больше места."
     answer: "Der Tisch hier ist größer als der Tisch dort. Ich brauche mehr Platz."
+    accept:
+      - "Der Tisch hier ist größer als der dort. Ich brauche mehr Platz."
     key_tokens: ["größer", "als", "mehr"]
     explain:
       en: "Two comparatives that are built by two different mechanisms. groß is short, so it takes an Umlaut on the way up: größer, and als introduces the table it is measured against. viel does not take an ending at all — it is replaced by mehr, a form nobody could guess from the rule, which is why it has to be learned as a word. Note that mehr stands in front of a noun (mehr Platz) and never in front of an adjective: it is the comparative of viel, not a helper word for building other comparatives."

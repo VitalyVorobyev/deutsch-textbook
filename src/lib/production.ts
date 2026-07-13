@@ -178,6 +178,39 @@ export interface TranslationSpec {
   keyTokens?: string[];
 }
 
+/** Canonical answer plus authored alternatives, normalized-deduplicated in author order. */
+export function translationCandidates(spec: Pick<TranslationSpec, 'answer' | 'accept'>): string[] {
+  const seen = new Set<string>();
+  return [spec.answer, ...(spec.accept ?? [])].filter((candidate) => {
+    const key = normalizeTranslation(candidate);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/**
+ * The authored rendering that best preserves what the learner already wrote.
+ *
+ * This is feedback selection, not semantic grading: only exact authored candidates (plus the
+ * narrow spelling-slip rule below) can score correct. The same LCS alignment used for focus
+ * attribution chooses the model, so a valid fronted phrase is not "corrected" back into the
+ * canonical word order merely because another token is wrong.
+ */
+export function closestTranslationCandidate(
+  given: string,
+  spec: Pick<TranslationSpec, 'answer' | 'accept'>,
+): string {
+  const givenTokens = tokenize(given);
+  return translationCandidates(spec)
+    .map((candidate) => ({
+      candidate,
+      matched: diffExpectedWords(tokenize(candidate), givenTokens).filter((d) => !d).length,
+    }))
+    // Stable sort: the canonical answer wins a genuine tie.
+    .sort((a, b) => b.matched - a.matched)[0]!.candidate;
+}
+
 export interface SpellingCorrection {
   given: string;
   expected: string;
@@ -195,7 +228,7 @@ export type TranslationVerdict =
 export const verdictIsCorrect = (v: TranslationVerdict): boolean => v.kind !== 'wrong';
 
 export function gradeTranslation(given: string, spec: TranslationSpec): TranslationVerdict {
-  const candidates = [spec.answer, ...(spec.accept ?? [])];
+  const candidates = translationCandidates(spec);
   const normalized = normalizeTranslation(given);
   if (candidates.some((c) => normalizeTranslation(c) === normalized)) return { kind: 'correct' };
 
@@ -289,11 +322,7 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
    * Both would put a false entry in the one signal that steers training priority and drill
    * authoring, which is worse than no entry at all.
    */
-  const target = candidates
-    .map(tokenize)
-    .map((want) => ({ want, matched: diffExpectedWords(want, givenTokens).filter((d) => !d).length }))
-    // Stable sort, so `answer` wins a tie — it is the first candidate.
-    .sort((a, b) => b.matched - a.matched)[0]!.want;
+  const target = tokenize(closestTranslationCandidate(given, spec));
 
   const differs = diffExpectedWords(target, givenTokens);
 

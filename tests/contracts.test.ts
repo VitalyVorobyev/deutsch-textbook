@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
 import { getCurriculum } from '../src/lib/curriculum';
+import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
 import { attemptScore, verifiedOnly } from '../src/lib/scoring';
 import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/store';
 
@@ -64,6 +65,49 @@ describe('scoring and curriculum contracts', () => {
       node.outcomes.filter((o) => !measured.has(o.id)).map((o) => `${node.id}: ${o.id}`),
     );
     expect(orphans).toEqual([]);
+  });
+
+  test('every authored translation rendering is accepted, including the appointment regression', () => {
+    type Translate = {
+      id: string;
+      type: string;
+      answer: string;
+      accept?: string[];
+      focus?: string;
+      key_tokens?: string[];
+    };
+    type Set = { topic?: string; role?: string; items?: Translate[] };
+    const sets = contentFiles<Set>('exercises');
+    const translations = sets
+      .flatMap((set) => set.items ?? [])
+      .filter((item) => item.type === 'translate');
+
+    for (const item of translations) {
+      const spec = {
+        answer: item.answer,
+        accept: item.accept,
+        focus: item.focus,
+        keyTokens: item.key_tokens,
+      };
+      for (const rendering of [item.answer, ...(item.accept ?? [])])
+        expect(verdictIsCorrect(gradeTranslation(rendering, spec))).toBe(true);
+    }
+
+    const appointmentProbe = sets.find(
+      (set) => set.topic === 'termine-vereinbaren' && set.role === 'probe',
+    );
+    const variant = appointmentProbe?.items?.find((item) => item.id === 'variant-a');
+    expect(variant).toBeDefined();
+    expect(
+      verdictIsCorrect(
+        gradeTranslation('Der Dienstag passt uns nicht. Geht es am Mittwoch?', {
+          answer: variant!.answer,
+          accept: variant!.accept,
+          focus: variant!.focus,
+          keyTokens: variant!.key_tokens,
+        }),
+      ),
+    ).toBe(true);
   });
 
   test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
