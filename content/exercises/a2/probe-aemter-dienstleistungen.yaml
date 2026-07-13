@@ -1,0 +1,98 @@
+topic: aemter-dienstleistungen
+role: probe
+title:
+  en: "Probe — the polite chunks"
+  ru: "Проверка — вежливые обороты"
+
+# ONE competence, three parallel variants: producing the two polite chunks this unit exists
+# for — `Könnten Sie mir bitte …?` (a request aimed at the clerk, infinitive at the end) and
+# `Ich würde gern …` (an action you want, infinitive at the end). That is `hoeflich-konjunktiv`,
+# and it is the only thing the lesson is really about; everything else it uses — Sie, weil,
+# the dative prepositions — it inherits from topics that already own it.
+#
+# Why not `du-sie`, which is just as central here? Because it cannot be measured this way. A
+# learner who has forgotten nothing and a learner who has forgotten everything both write Sie
+# at a counter, since Sie is the safe default and the prompt names an official. The register
+# is hedgeable; the chunk is not — you either produce `Könnten` and `würde gern`, or you fall
+# back on `Können` and `Ich will`, and the difference is visible in a single word.
+#
+# All three variants are structurally IDENTICAL, so that difficulty cannot be confounded with
+# the delay: every one is two sentences, in this order —
+#   1. Könnten Sie mir bitte + Akkusativ-Objekt + Infinitiv?
+#   2. Ich würde gern + Akkusativ-Objekt + Infinitiv.
+# Same two decisions each time, same number of tokens (± one), and the lexis in all three is
+# language the learner already owns as flashcards from earlier decks.
+#
+# None of the three can be answered from memory of a practice item: the practice sets live in
+# the Bürgeramt and turn on the Anmeldung, while these are a bank, a library and a driving
+# school. Same rule, different scene, so what is measured is retention of the rule. This has to
+# hold for variant-a in particular — `nextVariant()` serves the first unused variant, so a
+# sentence the practice sets already drill would land at the 2-day interval and inflate the
+# first point of the retention curve by construction.
+#
+# No variant contains an attributive adjective (eine Karte, not eine neue Karte): the endings
+# are not taught at A2, and a probe that fails on ungraded, untaught grammar is measuring the
+# wrong thing.
+#
+# Only `Könnten` and `würde` are pinned — the words that ARE the politeness. The lexical verbs
+# (schicken, bestellen …) and the nouns are deliberately not graded: a learner who fumbles
+# `bestellen` has not failed at politeness, and `gern`/`gerne` are both correct, so pinning
+# `gern` would log a false error against this tag every time the learner wrote the longer form.
+
+items:
+  - id: variant-a
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are at the counter of a bank. Say both sentences politely."
+      ru: "Вы у окошка в банке. Скажите обе фразы вежливо."
+    prompt_en: "Could you send me the documents, please? I would like to order a card."
+    prompt_ru: "Не могли бы вы прислать мне документы? Я хотел(а) бы заказать карту."
+    answer: "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gern eine Karte bestellen."
+    accept:
+      - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gern eine Karte bestellen."
+      - "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gerne eine Karte bestellen."
+      - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gerne eine Karte bestellen."
+    key_tokens: ["Könnten", "würde"]
+    explain:
+      en: "Two chunks, and each one is carried by a single word. A request to the person opposite you opens with Könnten — Können Sie …? is grammatical and noticeably blunter, and at a counter that one vowel is the whole difference. Something you want to do yourself takes würde gern, and the infinitive waits at the very end: Ich würde gern eine Karte bestellen. Ich hätte gern would be wrong here, because that chunk takes a noun and stops — it cannot be followed by a verb. gern and gerne are both correct."
+      ru: "Два оборота, и каждый держится на одном слове. Просьба к человеку напротив начинается с Könnten — фраза Können Sie …? грамматически верна и заметно суше, а у окошка вся разница именно в этом гласном. То, что вы хотите сделать сами, требует würde gern, и инфинитив ждёт в самом конце: Ich würde gern eine Karte bestellen. Оборот Ich hätte gern здесь не подошёл бы: он берёт существительное и на нём останавливается — глагол за ним стоять не может. Формы gern и gerne равноправны."
+
+  - id: variant-b
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are at the counter of a library. Say both sentences politely."
+      ru: "Вы у стойки в библиотеке. Скажите обе фразы вежливо."
+    prompt_en: "Could you tell me the opening hours, please? I would like to apply for a library card."
+    prompt_ru: "Не могли бы вы сказать мне часы работы? Я хотел(а) бы оформить читательский билет."
+    answer: "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gern einen Ausweis beantragen."
+    accept:
+      - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gern einen Ausweis beantragen."
+      - "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gerne einen Ausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gerne einen Ausweis beantragen."
+    key_tokens: ["Könnten", "würde"]
+    explain:
+      en: "The polite request keeps its shape wherever you are: Könnten Sie mir bitte … — and the infinitive, here sagen, goes to the very end, behind the object. The second sentence names an action you want, so the chunk is würde gern and beantragen closes the sentence. Watch einen Ausweis: beantragen takes an accusative object, and the masculine article is the one that changes — ein becomes einen."
+      ru: "Вежливая просьба сохраняет свою форму где угодно: Könnten Sie mir bitte … — а инфинитив, здесь sagen, уходит в самый конец, за дополнение. Вторая фраза называет действие, которого вы хотите, поэтому нужен оборот würde gern, а beantragen закрывает предложение. Обратите внимание на einen Ausweis: beantragen требует дополнения в Akkusativ, а меняется в нём только мужской артикль — ein превращается в einen."
+
+  - id: variant-c
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are at the counter of a driving school. Say both sentences politely."
+      ru: "Вы у стойки в автошколе. Скажите обе фразы вежливо."
+    prompt_en: "Could you show me the prices, please? I would like to book a course."
+    prompt_ru: "Не могли бы вы показать мне цены? Я хотел(а) бы записаться на курс."
+    answer: "Könnten Sie mir bitte die Preise zeigen? Ich würde gern einen Kurs buchen."
+    accept:
+      - "Könnten Sie mir die Preise bitte zeigen? Ich würde gern einen Kurs buchen."
+      - "Könnten Sie mir bitte die Preise zeigen? Ich würde gerne einen Kurs buchen."
+      - "Könnten Sie mir die Preise bitte zeigen? Ich würde gerne einen Kurs buchen."
+    key_tokens: ["Könnten", "würde"]
+    explain:
+      en: "Both halves of the polite pair, one more time. Könnten Sie mir bitte …? is the request, with zeigen at the end of the clause — the same frame as any modal verb: conjugated form first in a question, infinitive last. Ich würde gern … is the wish, with buchen last. If you reached for Ich will einen Kurs buchen, the German is correct and the sentence is rude; if you reached for Ich hätte gern einen Kurs buchen, it is not a sentence at all, because hätte gern never takes a verb."
+      ru: "Обе половины вежливой пары ещё раз. Könnten Sie mir bitte …? — просьба, и zeigen стоит в конце придаточной части: рамка та же, что у любого модального глагола — спрягаемая форма впереди (это вопрос), инфинитив последним. Ich würde gern … — желание, и buchen замыкает фразу. Если вы потянулись к Ich will einen Kurs buchen, то немецкий верен, а фраза невежлива; а если к Ich hätte gern einen Kurs buchen — это вообще не предложение, потому что после hätte gern глагола не бывает."

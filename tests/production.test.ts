@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { gradeTranslation, isOneEdit, verdictIsCorrect } from '../src/lib/production';
+import { dictationSlip, gradeTranslation, isOneEdit, verdictIsCorrect } from '../src/lib/production';
 
 describe('one-edit near-miss detection', () => {
   test('accepts the slips a learner actually makes', () => {
@@ -299,5 +299,120 @@ describe('a graded token stays graded when an accept variant lowercases it', () 
       kind: 'wrong',
       focus: 'genus',
     });
+  });
+});
+
+describe('a displaced graded token is a word-order error, not an absent one', () => {
+  // The Satzklammer collapse: the infinitive should sit at the very end, and the learner
+  // pulls the modal in front of it. Both words are still present, so a diff that asks only
+  // "what is missing" finds nothing wrong with the pinned verb — and the tag never fires.
+  const weilClause: TranslationSpec = {
+    answer: 'Ich komme nicht mit, weil ich am Samstag arbeiten muss.',
+    accept: ['Weil ich am Samstag arbeiten muss, komme ich nicht mit.'],
+    keyTokens: ['muss'],
+    focus: 'nebensatz-verbende',
+  };
+
+  test('the canonical verb-final error is blamed on the rule it breaks', () => {
+    expect(gradeTranslation('Ich komme nicht mit, weil ich am Samstag muss arbeiten.', weilClause)).toEqual({
+      kind: 'wrong',
+      focus: 'nebensatz-verbende',
+    });
+  });
+
+  test('an error that leaves the graded verb in place is not blamed on word order', () => {
+    // `Sonntag` for `Samstag` is a lexical slip two edits away. The verb is exactly where it
+    // belongs, so nothing about the verb-final rule was got wrong, and the tag must stay off.
+    expect(gradeTranslation('Ich komme nicht mit, weil ich am Sonntag arbeiten muss.', weilClause)).toEqual({
+      kind: 'wrong',
+    });
+  });
+
+  test('a legitimately fronted accept variant is not read as a misplacement', () => {
+    // The learner fronts the clause (an accepted rendering, so every later word shifts) and
+    // then misses a different word. Measured against `answer` the shifted slots would all
+    // look misplaced; measured against the rendering they actually used, only the real error
+    // shows — and it is not a graded one.
+    expect(
+      gradeTranslation('Weil ich am Sonntag arbeiten muss, komme ich nicht mit.', weilClause),
+    ).toEqual({ kind: 'wrong' });
+  });
+
+  test('the modal bracket behaves the same way', () => {
+    const bracket: TranslationSpec = {
+      answer: 'Am Montag muss ich zum Arzt gehen.',
+      keyTokens: ['muss', 'gehen'],
+      focus: 'modal-satzklammer',
+    };
+    expect(gradeTranslation('Am Montag muss ich gehen zum Arzt.', bracket)).toEqual({
+      kind: 'wrong',
+      focus: 'modal-satzklammer',
+    });
+  });
+});
+
+describe('a dictation typo is not evidence about the grammar the dictation drills', () => {
+  const heard = 'Ich bringe dir einen Kuchen mit.';
+
+  test('a mistyped noun is a slip, so the item disclaims its focus tag', () => {
+    // Scored wrong either way — spelling IS the drill here. But `trennbar-wortstellung` must
+    // not be logged: the prefix went exactly where it belongs.
+    expect(dictationSlip('Ich bringe dir einen Kuhen mit.', heard)).toBe(true);
+  });
+
+  test('a closed-class swap is a choice, so the tag still fires', () => {
+    expect(dictationSlip('Ich bringe dir einem Kuchen mit.', heard)).toBe(false);
+  });
+
+  test('a misplaced separable prefix is attributed, not forgiven', () => {
+    expect(dictationSlip('Ich bringe mit dir einen Kuchen.', heard)).toBe(false);
+  });
+
+  test('two typos are no longer unmistakably a slip', () => {
+    expect(dictationSlip('Ich brige dir einen Kuhen mit.', heard)).toBe(false);
+  });
+});
+
+describe('attribution is judged against the rendering the learner aimed at', () => {
+  // The item pins `beginnt` but also accepts the synonym `anfängt` — which the course teaches.
+  const indirect: TranslationSpec = {
+    answer: 'Wissen Sie, wann die Prüfung beginnt?',
+    accept: ['Wissen Sie, wann die Prüfung anfängt?'],
+    keyTokens: ['beginnt'],
+    focus: 'indirekte-frage',
+  };
+
+  test('an accepted synonym in the right place is not read as the pinned verb going missing', () => {
+    // The learner used the accepted verb, put it exactly where it belongs, and fumbled an
+    // article. Measured against `answer`, the pinned `beginnt` looks absent — and the word
+    // order they got right would be logged as the word-order error they did not make.
+    expect(gradeTranslation('Wissen Sie, wann der Prüfung anfängt?', indirect)).toEqual({
+      kind: 'wrong',
+    });
+  });
+
+  test('the canonical verb-final error still fires, in the accepted rendering too', () => {
+    expect(gradeTranslation('Wissen Sie, wann die Prüfung anfängt nicht?', indirect)).toEqual({
+      kind: 'wrong',
+    });
+    expect(gradeTranslation('Wissen Sie, wann beginnt die Prüfung?', indirect)).toEqual({
+      kind: 'wrong',
+      focus: 'indirekte-frage',
+    });
+  });
+});
+
+describe('a dictation slip is measured the way a dictation is scored', () => {
+  // You cannot hear a comma, so `dictationMatches` strips all punctuation. The slip check has
+  // to strip it too, or a dropped comma counts as a second divergence and the typo stops
+  // looking like a typo — leaving exactly the false grammar attribution we set out to remove.
+  const heard = 'Ich weiß nicht, was dieses Wort bedeutet.';
+
+  test('a dropped comma plus one typo is still a slip', () => {
+    expect(dictationSlip('Ich weiß nicht was dieses Wort beduetet.', heard)).toBe(true);
+  });
+
+  test('a dropped comma alone leaves the answer otherwise intact', () => {
+    expect(dictationSlip('Ich weiß nicht was dieses Wort bedeutet.', heard)).toBe(false);
   });
 });

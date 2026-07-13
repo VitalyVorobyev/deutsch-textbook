@@ -96,7 +96,10 @@ items:
     prompt_en: "I can swim well."
     prompt_ru: "Я умею хорошо плавать."
     answer: "Ich kann gut schwimmen."
-    key_tokens: ["kann"]
+    # Both ends of the bracket. The modal never moves — it is position 2 either way — so the
+    # collapse the tag names (Ich kann schwimmen gut) is a displacement of the *infinitive*,
+    # and pinning only `kann` graded the one word this error leaves alone.
+    key_tokens: ["kann", "schwimmen"]
     explain: { en: "können in position 2, the bare infinitive at the very end: Ich kann gut schwimmen — never kann schwimme.", ru: "können на втором месте, инфинитив в самом конце: Ich kann gut schwimmen — не kann schwimme, хотя по-русски порядок свободный." }
   - id: translate-gern-fussball
     outcomes: [freizeit-hobbys]

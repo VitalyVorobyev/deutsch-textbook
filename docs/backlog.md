@@ -118,7 +118,7 @@ A2 extensive reader.
   existing topics — asserted, not assumed, because a new item in a `primaryPractice` set silently
   un-finishes a topic.
 
-### P4-4 · Author the ten A2 units — `doing` (L)
+### P4-4 · Author the ten A2 units — `done` (L)
 
 In spine order, in three bundles: `wohnen-umzug`, `reisen-verkehr`, `einkaufen-reklamation`; then
 `gesundheit-arzttermin`, `arbeit-beruf`, `nebensaetze-plaene`; then `biografie-erfahrungen`,
@@ -129,14 +129,49 @@ sets clearing the item-mix bar, a probe family, an intensive reading, a thin A2 
 against every existing deck, and its focus tags registered in both `CLAUDE.md` and
 `scripts/validate.ts`.
 
-Bundle 1 and bundle 2 have shipped: six of the ten units are authored, and with
-`nebensaetze-plaene` the subordinate-clause ban is lifted. The four units of bundle 3 may now use
-*weil* and *dass* freely, and should — the blueprint reordered the spine precisely so that they
-could stop tiptoeing.
+All three bundles have shipped. **A2 has its ten units**, the four units of bundle 3 use *weil* and
+*dass* throughout, and the reorder that made that possible has paid for itself.
+
+What bundle 3's review round found is worth recording, because it was not a content defect but an
+**instrument** defect, and it had been live since A1:
+
+> A `translate` item that grades word order could not attribute its own signature error.
+
+`diffExpectedWords` is an LCS alignment, and a transposition is not a missing word: `… weil ich am
+Samstag **arbeiten muss**` typed as `… muss arbeiten` still contains both words, so the diff matched
+the learner's `muss` to the expected `muss`, flagged only `arbeiten`, and — since the item pins the
+verb whose placement it grades — reported no graded token as diverged. The attempt was logged wrong
+but **unattributed**. Every verb-final family was affected (`nebensatz-verbende`, `indirekte-frage`,
+`modal-satzklammer`, `trennbar-modal`, `perfekt-satzklammer`), across practice, drill **and probe**
+items: 34 items in all, 12 of them probe variants. So the retention curve for a word-order rule was
+being read off items that could not measure it, and `weakFocuses()` could never see a learner who
+systematically collapses the Satzklammer. CLAUDE.md had told every author the opposite — "tokens are
+compared positionally" — which is the sentence that produced all 34.
+
+Fixed in the scorer rather than in the content: `gradeTranslation` now also asks whether the learner
+put something *else* into a slot the item grades, compared against the accepted rendering they came
+closest to. All 34 items attribute correctly with no content change. The same round fixed dictation
+attribution, where a mistyped noun was being logged as the *grammar* confusion the `listen` item
+drills (31 items, inherited from A1).
 
 - Depends on: P4-1, P4-2, P4-3.
 - Accept per unit: the twelve-point A2 unit quality gate in the audit; the learning-science review;
   the full repository gate.
+
+### P4-6 · Give the writing outcomes verified evidence — `todo` (S)
+
+Five A2 outcomes are measured *only* by a `write` item: `einladung-schreiben`,
+`kursanfrage-schreiben`, `formelle-nachricht-schreiben`, `krankmeldung-schreiben`, `nachbarn-bitte`.
+A `write` logs **unverified practice evidence** by design — it never affects accuracy or mastery — so
+these outcomes are legal, honest in the snapshot, and can never light up. That is not a bug, but it
+means "can write a short formal message" is an outcome the course claims and never measures.
+
+`profil-schreiben` (`biografie-erfahrungen`) shows the cheap fix: it is *also* carried by a
+third-person `translate` and by a reading question, so it has a verified source without pretending
+the `write` was scored.
+
+- Accept: every declared outcome has at least one verified measurement, or the Fortschritt page says
+  plainly which outcomes are practice-only.
 
 ### P4-5 · Close A2 — `todo` (M)
 

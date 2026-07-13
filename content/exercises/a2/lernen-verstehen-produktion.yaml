@@ -1,0 +1,188 @@
+topic: lernen-verstehen
+role: practice
+title:
+  en: "Practice — in the course: listening, writing, asking again"
+  ru: "Практика — на курсе: аудирование, письмо, переспрашивание"
+items:
+  # The task in this recording is NOT the task in the Lesetext. There the teacher tells the
+  # class to work in pairs and write five sentences; here he says in the first line that today
+  # they are NOT working in pairs, and the pair task is on the option list. An item whose key
+  # can be recovered from the reading measures memory of the reading, not listening — so the
+  # remembered answer is the trap, and only the ear can get past it. The third option (the
+  # dictionary) is in the recording too, as the thing that is postponed to homework.
+  - id: hoeren-kursanweisung
+    outcomes: [kursanweisungen-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "The teacher gives the class its task. Today's task is not the one you read in the Lesetext — listen, do not remember."
+      ru: "Преподаватель объясняет задание. Сегодняшнее задание — не то, о котором вы читали в тексте: слушайте, а не вспоминайте."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Kursleiter", text: "Guten Abend! Machen Sie bitte die Bücher zu. Heute arbeiten wir nicht zu zweit." }
+        - { speaker: "Kursleiter", text: "Sie hören einen kurzen Dialog und schreiben die Antworten in Ihr Heft." }
+        - { speaker: "Yusuf", text: "Entschuldigung, können Sie mir sagen, wie oft wir den Dialog hören?" }
+        - { speaker: "Kursleiter", text: "Zweimal. Und die neuen Wörter suchen Sie bitte erst zu Hause im Wörterbuch." }
+        - { speaker: "Elif", text: "Wie bitte? Können Sie das bitte wiederholen?" }
+        - { speaker: "Kursleiter", text: "Natürlich. Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft." }
+    question: "Was sollen die Teilnehmer jetzt machen?"
+    options:
+      - "Einen Dialog hören und die Antworten ins Heft schreiben."
+      - "Zu zweit fünf Sätze schreiben."
+      - "Die neuen Wörter im Wörterbuch suchen."
+    correct: 0
+    # No `max_replays`: the schema default (3) is what every other A2 audio item gets, and there
+    # is nothing about this recording that should make it easier or harder to hear than theirs.
+    # Listening difficulty must not differ between units by accident.
+    translation:
+      en: "What are the participants supposed to do now?"
+      ru: "Что участники должны сделать сейчас?"
+    explain:
+      en: "The teacher says it twice, and the second time is the repetition Elif asked for: Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft. Both wrong options are in the recording as well, and that is the point of them. Working in pairs is ruled out in the very first line — Heute arbeiten wir nicht zu zweit — so if you chose it, you answered from the Lesetext instead of from the audio. The dictionary is mentioned too, but for later: die neuen Wörter suchen Sie bitte erst zu Hause. Listen once more to what Yusuf does when he needs a detail: Können Sie mir sagen, wie oft wir den Dialog hören? — the wrapped verb hören at the very end."
+      ru: "Преподаватель говорит это дважды, и второй раз — как раз то повторение, о котором попросила Элиф: Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft. Оба неверных варианта в записи тоже звучат, и в этом весь смысл. Работа в парах отвергнута в самой первой реплике — Heute arbeiten wir nicht zu zweit, — так что, выбрав её, вы ответили по тексту для чтения, а не по записи. Словарь тоже упомянут, но на потом: die neuen Wörter suchen Sie bitte erst zu Hause. Послушайте ещё раз, как Юсуф уточняет деталь: Können Sie mir sagen, wie oft wir den Dialog hören? — «обёрнутый» глагол hören стоит в самом конце."
+
+  - id: mc-ob-oder-wenn
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    focus: indirekte-frage
+    instruction:
+      en: "Which word opens the clause?"
+      ru: "Какое слово открывает придаточное?"
+    prompt: "Ich weiß nicht, ___ der Kurs am Montag stattfindet."
+    options:
+      - "ob"
+      - "wenn"
+      - "dass"
+    correct: 0
+    translation:
+      en: "I do not know whether the course takes place on Monday."
+      ru: "Я не знаю, идёт ли курс в понедельник."
+    explain:
+      en: "Ask what the clause is doing. It reports a question — one you could answer with ja or nein — and a question with no question word of its own is opened by ob. wenn would name a condition instead (Wenn der Kurs am Montag stattfindet, komme ich — if it takes place, I'll come), which is a fine sentence and not what this one says. dass would report a statement you are sure of, and Ich weiß nicht, dass … says the opposite of what you mean. All three send the verb to the end; only one of them says the right thing."
+      ru: "Спросите себя, что делает придаточное. Оно передаёт вопрос — тот, на который отвечают ja или nein, — а вопрос без собственного вопросительного слова открывается союзом ob (по-русски это частица «ли»). wenn назвал бы условие (Wenn der Kurs am Montag stattfindet, komme ich — «если курс в понедельник идёт, я приду»): предложение правильное, но говорит оно не то. dass передал бы утверждение, в котором вы уверены, а Ich weiß nicht, dass … значит прямо противоположное тому, что вы хотите сказать. Глагол в конец отправляют все три слова; смысл верен только у одного."
+
+  - id: cloze-indirekte-frage-mit-modalverb
+    outcomes: [nachfragen-klaeren]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Two verbs inside the wrapped clause. Put them in the right order at the end."
+      ru: "Внутри придаточного два глагола. Поставьте их в конце в правильном порядке."
+    text: "Ich möchte wissen, ob ich die Aufgabe zu Hause {{machen}} {{kann}}. Können Sie mir sagen, wo ich die Hausaufgabe {{abgeben}} {{muss}}?"
+    translation:
+      en: "I would like to know whether I can do the task at home. Can you tell me where I have to hand the homework in?"
+      ru: "Я хотел бы узнать, могу ли я сделать задание дома. Вы не подскажете, куда нужно сдать домашнее задание?"
+    explain:
+      en: "The wrapped clause has two verbs, and only one of them is conjugated: kann, muss. The wall takes the conjugated one, so the infinitive queues up in front of it — machen kann, abgeben muss. As bare questions the same words come out back to front: Kann ich die Aufgabe zu Hause machen? / Wo muss ich die Hausaufgabe abgeben? That is the whole difficulty: the wrapper turns the bracket inside out. And abgeben keeps its prefix — in a Nebensatz there is no position 2 for it to be left behind in."
+      ru: "В придаточном два глагола, а спрягается только один: kann, muss. У стены стоит спрягаемый, поэтому инфинитив выстраивается перед ним — machen kann, abgeben muss. Самостоятельными вопросами те же слова идут в обратном порядке: Kann ich die Aufgabe zu Hause machen? / Wo muss ich die Hausaufgabe abgeben? В этом и вся трудность: рамка выворачивает глагольную рамку наизнанку. И приставка у abgeben остаётся на месте — в придаточном нет второго места, которое она могла бы покинуть."
+
+  - id: uebersetzen-wann-die-pruefung-beginnt
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Translate into German. You are asking the course teacher."
+      ru: "Переведите на немецкий. Вы спрашиваете преподавателя курса."
+    prompt_en: "Do you know when the exam starts?"
+    prompt_ru: "Вы не знаете, когда начинается экзамен?"
+    answer: "Wissen Sie, wann die Prüfung beginnt?"
+    accept:
+      - "Können Sie mir sagen, wann die Prüfung beginnt?"
+      - "Wissen Sie, wann die Prüfung anfängt?"
+      - "Können Sie mir sagen, wann die Prüfung anfängt?"
+    key_tokens: ["beginnt"]
+    explain:
+      en: "The wrapper Wissen Sie is a normal question and keeps its verb first. Everything after the comma is a Nebensatz, so beginnt travels all the way to the end — not wann beginnt die Prüfung, which is the bare question with its inversion still standing inside the wrapper. Only beginnt is graded: whether you say beginnt or anfängt is lexis, and both are accepted; where the verb lands is the rule."
+      ru: "Рамка Wissen Sie — обычный вопрос, и глагол в ней стоит первым. Всё после запятой — придаточное, поэтому beginnt уезжает в самый конец, а не wann beginnt die Prüfung: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки. Оценивается только beginnt: скажете вы beginnt или anfängt — дело словаря, оба варианта принимаются; правило же говорит о том, где приземляется глагол."
+
+  - id: uebersetzen-warum-ich-ueber
+    outcomes: [lernstrategien-sagen]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Say why you practise, using weil."
+      ru: "Переведите на немецкий. Назовите причину с помощью weil."
+    prompt_en: "I practise every day because I want to understand the news."
+    prompt_ru: "Я занимаюсь каждый день, потому что хочу понимать новости."
+    answer: "Ich übe jeden Tag, weil ich die Nachrichten verstehen möchte."
+    accept:
+      - "Jeden Tag übe ich, weil ich die Nachrichten verstehen möchte."
+      - "Ich übe jeden Tag, weil ich die Nachrichten verstehen will."
+      # lernen for üben is a legitimate reading of both prompts — the deck's own note on üben
+      # concedes the overlap, and the RU prompt («Я занимаюсь каждый день») does not choose
+      # between them. The item grades where the conjugated verb lands, not which lexical verb
+      # the learner picked, so rejecting these would write a false nebensatz-verbende error.
+      - "Ich lerne jeden Tag, weil ich die Nachrichten verstehen möchte."
+      - "Ich lerne jeden Tag, weil ich die Nachrichten verstehen will."
+      - "Jeden Tag lerne ich, weil ich die Nachrichten verstehen möchte."
+    key_tokens: ["möchte"]
+    explain:
+      en: "weil wraps a statement — your reason — and sends the conjugated verb to the end. There are two verbs in the clause and only möchte is conjugated, so the infinitive verstehen stands in front of it: verstehen möchte, never möchte verstehen. Say the reason as a main clause first (Ich möchte die Nachrichten verstehen) and you can watch the two swap places the moment weil appears. Only möchte is graded here: the rule is about where the conjugated verb lands."
+      ru: "weil оборачивает утверждение — вашу причину — и отправляет спрягаемый глагол в конец. Глаголов в придаточном два, а спрягается только möchte, поэтому инфинитив verstehen стоит перед ним: verstehen möchte, но никогда möchte verstehen. Проговорите причину сначала как главное предложение (Ich möchte die Nachrichten verstehen) — и увидите, как эти два слова меняются местами, едва впереди появляется weil. Оценивается здесь только möchte: правило говорит о том, куда приземляется спрягаемый глагол."
+
+  - id: schreiben-anfrage-sprachschule
+    outcomes: [kursanfrage-schreiben, nachfragen-klaeren]
+    type: write
+    instruction:
+      en: "Draft it, check it against the list, then write it again."
+      ru: "Напишите черновик, проверьте его по списку и перепишите."
+    prompt:
+      en: "You have seen an advert: the Sprachschule Mitte is offering an A2 course. Write a short e-mail to the school. You do not know the person you are writing to."
+      ru: "Вы увидели объявление: языковая школа Sprachschule Mitte набирает на курс A2. Напишите школе короткое письмо. Человека, которому вы пишете, вы не знаете."
+    goal:
+      en: "Introduce yourself, say why you are learning German, and get the two facts you need before you can sign up."
+      ru: "Представьтесь, объясните, зачем вы учите немецкий, и выясните два факта, без которых записаться нельзя."
+    requirements:
+      - en: "Say who you are and which course you mean."
+        ru: "Скажите, кто вы и о каком курсе идёт речь."
+      - en: "Give your reason for learning German in a weil-clause, with the conjugated verb at the very end (…, weil ich hier arbeiten möchte)."
+        ru: "Назовите причину придаточным с weil, поставив спрягаемый глагол в самый конец (…, weil ich hier arbeiten möchte)."
+      - en: "Ask when the course starts — as an indirect question, with the verb at the end (Können Sie mir sagen, wann der Kurs beginnt?)."
+        ru: "Спросите, когда начинается курс, — косвенным вопросом, с глаголом в конце (Können Sie mir sagen, wann der Kurs beginnt?)."
+      - en: "Ask whether there are any places left — a yes/no question, so it needs ob, and the verb still closes the clause."
+        ru: "Спросите, есть ли ещё места, — это вопрос «да/нет», поэтому нужен союз ob, а глагол по-прежнему закрывает придаточное."
+      - en: "Address the school with Sie, and end with Mit freundlichen Grüßen — no comma after it, and your name on the next line."
+        ru: "Обращайтесь к школе на Sie и закончите формулой Mit freundlichen Grüßen — запятая после неё не ставится, имя идёт следующей строкой."
+    min_words: 45
+    # No attributive adjective anywhere in the model (`ob es noch Plätze gibt`, not `freie Plätze`):
+    # adjective endings are not taught at A2 in this course, and a model the learner is invited to
+    # copy must stay inside the level. And no comma after `Mit freundlichen Grüßen` — German closing
+    # formulas never take one.
+    model_answer: "Sehr geehrte Damen und Herren, mein Name ist Anna Petrova. Ich habe Ihre Anzeige gelesen und möchte den Deutschkurs A2 machen. Ich lerne Deutsch, weil ich hier als Krankenschwester arbeiten möchte. Können Sie mir sagen, wann der Kurs beginnt? Und wissen Sie, ob es noch Plätze gibt? Ich möchte auch wissen, wie lange der Unterricht dauert. Vielen Dank für Ihre Antwort. Mit freundlichen Grüßen Anna Petrova"
+    model_translation:
+      en: "Dear Sir or Madam, my name is Anna Petrova. I have read your advertisement and would like to take the A2 German course. I am learning German because I want to work here as a nurse. Can you tell me when the course starts? And do you know whether there are any places left? I would also like to know how long the lessons last. Many thanks for your answer. Kind regards, Anna Petrova"
+      ru: "Уважаемые дамы и господа, меня зовут Анна Петрова. Я прочитала ваше объявление и хотела бы записаться на курс немецкого A2. Я учу немецкий, потому что хочу работать здесь медсестрой. Не подскажете, когда начинается курс? И не знаете ли вы, есть ли ещё места? Хотелось бы также узнать, сколько длятся занятия. Заранее благодарю за ответ. С уважением, Анна Петрова"
+    explain:
+      en: "Before you rewrite the draft, read every clause that follows a comma and find its conjugated verb. It must be the last word: weil ich hier arbeiten möchte (infinitive first, modal last), wann der Kurs beginnt, ob es noch Plätze gibt, wie lange der Unterricht dauert. If any of them still reads like a question you could ask on its own — wann beginnt der Kurs — the verb has been left in position 2 and the clause is broken. Check the two little opening words as well: a yes/no question needs ob, and it cannot be left out or replaced by wenn. One last detail, and it is the kind that marks a letter as foreign: Mit freundlichen Grüßen takes no comma. The name simply follows on the next line."
+      ru: "Прежде чем переписывать черновик, прочитайте каждое придаточное после запятой и найдите в нём спрягаемый глагол. Он обязан быть последним словом: weil ich hier arbeiten möchte (сначала инфинитив, модальный — последним), wann der Kurs beginnt, ob es noch Plätze gibt, wie lange der Unterricht dauert. Если какое-то из них по-прежнему читается как самостоятельный вопрос — wann beginnt der Kurs, — значит глагол остался на втором месте и придаточное сломано. Проверьте и вводные слова: вопросу «да/нет» нужен ob, выбросить его нельзя и заменить на wenn тоже. И последняя деталь, по которой письмо сразу выдаёт иностранца: после Mit freundlichen Grüßen запятая не ставится — в отличие от русского «С уважением,». Имя просто идёт следующей строкой."
+
+  - id: sprechen-dreimal-nachfragen
+    outcomes: [nachfragen-klaeren]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud, listen to yourself, then say it a second time."
+      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+    prompt:
+      en: "You are in your German course. The teacher has just explained a task, but three things went past you: she spoke too fast, the word „Bedeutung“ is new to you, and you did not catch when the homework has to be handed in. Repair all three, aloud, one after the other."
+      ru: "Вы на курсе немецкого. Преподавательница только что объяснила задание, но три вещи прошли мимо вас: она говорила слишком быстро, слово «Bedeutung» вам незнакомо, и вы не расслышали, когда нужно сдать домашнее задание. Устраните все три непонимания вслух, одно за другим."
+    goal:
+      en: "Ask again until you actually have the information — and name each time what exactly you did not understand."
+      ru: "Переспрашивайте, пока действительно не получите нужное, и каждый раз называйте, что именно осталось непонятным."
+    checklist:
+      - en: "I named what I did not understand instead of only saying Ich verstehe nicht."
+        ru: "Я назвал(а), что именно не понял(а), а не ограничился(лась) фразой Ich verstehe nicht."
+      - en: "I asked at least one indirect question, and the verb was the last word (Können Sie mir sagen, wann wir die Hausaufgabe abgeben müssen?)."
+        ru: "Я задал(а) хотя бы один косвенный вопрос, и глагол оказался последним словом (Können Sie mir sagen, wann wir die Hausaufgabe abgeben müssen?)."
+      - en: "I used a ready-made repair chunk: Wie bitte? / Können Sie das bitte wiederholen? / Können Sie bitte langsamer sprechen?"
+        ru: "Я использовал(а) готовый оборот для переспроса: Wie bitte? / Können Sie das bitte wiederholen? / Können Sie bitte langsamer sprechen?"
+      - en: "I used Sie throughout, because I am speaking to the teacher."
+        ru: "Я всё время обращался(лась) на Sie, ведь говорю с преподавателем."
+    model_answer: "Entschuldigung, ich habe eine Frage. Können Sie bitte langsamer sprechen? Ich habe die Aufgabe nicht ganz verstanden. Und was bedeutet das Wort „Bedeutung“? Können Sie mir auch sagen, wann wir die Hausaufgabe abgeben müssen? Vielen Dank!"
+    model_translation:
+      en: "Excuse me, I have a question. Could you speak more slowly, please? I did not fully understand the task. And what does the word „Bedeutung“ mean? Could you also tell me when we have to hand the homework in? Many thanks!"
+      ru: "Извините, у меня вопрос. Вы не могли бы говорить помедленнее? Я не совсем понял(а) задание. И что означает слово «Bedeutung»? А ещё не подскажете, когда нужно сдать домашнее задание? Большое спасибо!"
+    explain:
+      en: "Two things to listen for when you play yourself back. First, the end of your indirect question: the last word must be the conjugated verb — müssen, with the infinitive abgeben in front of it. If you hear wann müssen wir die Hausaufgabe abgeben, you have said the bare question inside the wrapper, and that is the mistake this topic is about. Second, whether you named the problem. Ich verstehe nicht gives the teacher nothing to work with; Was bedeutet das Wort „Bedeutung“? gets you an answer in one move."
+      ru: "Слушая запись, обратите внимание на две вещи. Во-первых, на конец вашего косвенного вопроса: последним словом должен быть спрягаемый глагол — müssen, а перед ним инфинитив abgeben. Если слышится wann müssen wir die Hausaufgabe abgeben, значит внутрь рамки попал самостоятельный вопрос, а это и есть та ошибка, ради которой существует тема. Во-вторых, назвали ли вы саму проблему. Фраза Ich verstehe nicht не даёт преподавателю ничего; вопрос Was bedeutet das Wort «Bedeutung»? приносит ответ с первого раза."

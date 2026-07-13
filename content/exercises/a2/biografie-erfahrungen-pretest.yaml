@@ -1,0 +1,59 @@
+topic: biografie-erfahrungen
+role: pretest
+title:
+  en: "Pretest — which past does German speak?"
+  ru: "Предтест — каким прошедшим говорит немецкий?"
+items:
+  - id: pretest-war
+    outcomes: [praeteritum-war-hatte]
+    type: mc
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+    prompt: "Vor zwei Jahren ___ ich zwei Wochen in Polen."
+    options: ["war", "bin", "habe"]
+    correct: 0
+    translation:
+      en: "Two years ago I was in Poland for two weeks."
+      ru: "Два года назад я две недели был в Польше."
+    explain:
+      en: "sein is one of the few verbs German does not put into the Perfekt when talking about the past in conversation. Its everyday past form is the Präteritum: ich war, du warst, er war. bin and habe are present-tense forms and leave the sentence without a past at all — and Ich bin zwei Wochen in Polen gewesen, the Perfekt of sein, is a sentence you will rarely hear anyone say. Note also that vor zwei Jahren fills position 1, so the verb comes straight after it."
+      ru: "sein — один из немногих глаголов, которые немец, говоря о прошлом в обычном разговоре, в Perfekt не ставит. Его повседневная форма прошедшего — Präteritum: ich war, du warst, er war. Формы bin и habe стоят в настоящем времени и оставляют предложение вовсе без прошедшего, а Perfekt от sein — Ich bin zwei Wochen in Polen gewesen — вы услышите крайне редко. И обратите внимание: vor zwei Jahren занимает первое место, поэтому глагол идёт сразу за ним."
+
+  - id: pretest-konnte
+    outcomes: [praeteritum-war-hatte]
+    type: mc
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "The sentence is about last year. Guess the form."
+      ru: "Речь о прошлом годе. Угадайте форму."
+    prompt: "Letztes Jahr ___ ich nicht nach Hause fahren."
+    options: ["konnte", "könnte", "gekonnt"]
+    correct: 0
+    translation:
+      en: "Last year I could not travel home."
+      ru: "В прошлом году я не мог поехать домой."
+    explain:
+      en: "The modal verbs build their past with the Präteritum and lose their umlaut on the way: können → konnte, müssen → musste, wollen → wollte. konnte is a fact about last year. könnte, with the umlaut, is a different form with a different job — it means 'would be able to', a possibility, and it says nothing about the past. gekonnt is a Partizip II, and it would need a haben in front of it, which is a construction almost nobody uses in speech."
+      ru: "Модальные глаголы строят прошедшее через Präteritum и по дороге теряют умлаут: können → konnte, müssen → musste, wollen → wollte. konnte — это факт о прошлом годе. Форма könnte, с умлаутом, выполняет совсем другую работу: она значит «мог бы», то есть возможность, и о прошлом не говорит ничего. А gekonnt — это Partizip II, ему потребовался бы haben впереди, но такой конструкцией в речи почти никто не пользуется."
+
+  - id: pretest-erzaehlung
+    outcomes: [lebensstationen-ordnen]
+    type: mc
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "A friend asks what you did last year. Which answer would a German actually say?"
+      ru: "Друг спрашивает, чем вы занимались в прошлом году. Что немец сказал бы на самом деле?"
+    prompt: "Und was hast du letztes Jahr gemacht? — „…“"
+    options:
+      - "Ich habe in Berlin gearbeitet, aber ich hatte wenig Zeit."
+      - "Ich arbeitete in Berlin, aber ich hatte wenig Zeit."
+      - "Ich habe in Berlin gearbeitet, aber ich bin wenig Zeit gehabt."
+    correct: 0
+    translation:
+      en: "And what did you do last year? — 'I worked in Berlin, but I had little time.'"
+      ru: "А чем ты занимался в прошлом году? — «Я работал в Берлине, но времени у меня было мало»."
+    explain:
+      en: "German splits the past by verb, not by time. An ordinary verb like arbeiten tells its story in the Perfekt: ich habe gearbeitet. haben tells its own story in the Präteritum: ich hatte. Option 1 gets both halves right. Option 2 is real German — but ich arbeitete is how a novel narrates, not how anybody answers a question over lunch. Option 3 pairs gehabt with the wrong auxiliary: haben takes haben, never sein, so ich bin … gehabt is simply broken."
+      ru: "Немецкий делит прошедшее не по времени, а по глаголу. Обычный глагол вроде arbeiten рассказывает свою историю в Perfekt: ich habe gearbeitet. А haben рассказывает свою в Präteritum: ich hatte. В варианте 1 обе половины верны. Вариант 2 — настоящий немецкий, но ich arbeitete — это язык романа, а не ответ на вопрос за обедом. В варианте 3 к gehabt приставлен не тот вспомогательный глагол: haben берёт haben и никогда sein, поэтому ich bin … gehabt — просто ошибка."
