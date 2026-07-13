@@ -1,0 +1,4 @@
+[test]
+# happy-dom's globals must exist before React is imported, so registration happens
+# in a preload rather than inside a test file (imports are hoisted).
+preload = ["./tests/setup-dom.ts"]
