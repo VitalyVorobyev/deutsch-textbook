@@ -46,12 +46,29 @@ export type AnswerVerdict =
  * Check a typed answer against the vocab entry's `de` headword.
  * Whitespace-normalized, case-sensitive, trailing . ! ? optional.
  * For nouns (pos === 'noun') the article is part of the answer and required.
+ *
+ * `accept` carries the entry's other correct forms, and it is checked *before* the
+ * article logic — otherwise a learner who writes `der Deutsche` for an adjectival
+ * noun whose shown answer is `die Deutsche` is told their article is wrong when it
+ * is not, and a learner who writes the full `sich ärgern` for the headword `ärgern`
+ * is simply marked wrong for knowing more German than the card asked for.
  */
-export function checkTypedAnswer(given: string, expectedDe: string, pos?: string): AnswerVerdict {
+export function checkTypedAnswer(
+  given: string,
+  expectedDe: string,
+  pos?: string,
+  accept: string[] = [],
+): AnswerVerdict {
   const input = normalizeTyped(given);
   const target = normalizeTyped(expectedDe);
   if (input === target) return { kind: 'correct' };
   if (input === '') return { kind: 'wrong' };
+
+  for (const alt of accept) {
+    const a = normalizeTyped(alt);
+    if (input === a) return { kind: 'correct' };
+    if (foldUmlauts(input) === foldUmlauts(a)) return { kind: 'umlaut' };
+  }
 
   const split = pos === 'noun' ? splitArticle(target) : null;
   if (split) {
