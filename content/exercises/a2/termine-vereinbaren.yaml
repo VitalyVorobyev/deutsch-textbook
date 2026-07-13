@@ -241,6 +241,9 @@ items:
     prompt_en: "Does Monday at 10 o'clock suit you? (formal)"
     prompt_ru: "Вам удобно в понедельник в 10 часов? (вежливая форма)"
     answer: "Passt es Ihnen am Montag um 10 Uhr?"
+    accept:
+      - "Passt Ihnen der Montag um 10 Uhr?"
+      - "Passt Ihnen Montag um 10 Uhr?"
     key_tokens: ["Ihnen"]
     explain:
       en: 'The subject is "es": Passt es Ihnen …? The polite pronoun is dative "Ihnen" — always capitalized. Days take "am" (am Montag), clock times take "um" (um 10 Uhr).'
@@ -271,6 +274,8 @@ items:
     prompt_en: "Can we move the appointment to Friday?"
     prompt_ru: "Мы можем перенести встречу на пятницу?"
     answer: "Können wir den Termin auf Freitag verschieben?"
+    accept:
+      - "Können wir den Termin auf Freitag verlegen?"
     key_tokens: ["Können", "verschieben"]
     explain:
       en: "A yes/no question puts the modal first, and the infinitive still closes the sentence: Können wir … verschieben? ver- is inseparable, so it never splits off."

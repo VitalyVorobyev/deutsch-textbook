@@ -21,6 +21,8 @@ items:
     prompt_en: "My day begins at six o'clock."
     prompt_ru: "Мой день начинается в шесть часов."
     answer: "Mein Tag beginnt um sechs Uhr."
+    accept:
+      - "Um sechs Uhr beginnt mein Tag."
     key_tokens: ["um"]
     explain:
       en: "A time on the clock always takes um: um sechs Uhr. Neither am nor im is possible here, whatever the sentence is about."
@@ -36,6 +38,9 @@ items:
     prompt_en: "The museum opens on Thursday at ten o'clock."
     prompt_ru: "Музей открывается в четверг в десять часов."
     answer: "Das Museum öffnet am Donnerstag um zehn Uhr."
+    accept:
+      - "Am Donnerstag öffnet das Museum um zehn Uhr."
+      - "Um zehn Uhr öffnet das Museum am Donnerstag."
     key_tokens: ["am", "um"]
     explain:
       en: "Two kinds of time in one sentence, and each picks its own preposition: a weekday takes am (am Donnerstag), a time on the clock takes um (um zehn Uhr). The day comes before the hour."

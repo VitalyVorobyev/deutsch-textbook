@@ -186,6 +186,8 @@ items:
     prompt_en: "The jacket is warmer than the pullover, but it is also more expensive."
     prompt_ru: "Куртка теплее, чем свитер, но она и дороже."
     answer: "Die Jacke ist wärmer als der Pullover, aber sie ist auch teurer."
+    accept:
+      - "Die Jacke ist wärmer als der Pullover, ist aber auch teurer."
     key_tokens: ["wärmer", "als", "teurer"]
     explain:
       en: "Both adjectives take the ending -er and nothing else: no helper word in front of them, however long the English comparative looks. warm adds an Umlaut on top (wärmer), and teuer drops the -e- of its stem (teurer, not teuerer). als introduces the second item, and der Pullover stays in the nominative behind it."
@@ -211,11 +213,13 @@ items:
     type: translate
     focus: passen-dativ
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
+      en: "Translate into German. Use passen and gefallen."
+      ru: "Переведите на немецкий. Используйте passen и gefallen."
     prompt_en: "The jacket fits me, but my husband doesn't like it."
     prompt_ru: "Куртка мне подходит по размеру, но моему мужу она не нравится."
     answer: "Die Jacke passt mir, aber sie gefällt meinem Mann nicht."
+    accept:
+      - "Die Jacke passt mir, aber meinem Mann gefällt sie nicht."
     key_tokens: ["passt", "mir"]
     explain:
       en: "This is the sentence the whole lesson turns on, and it is only sayable if both verbs are built the same way: the jacket is the subject twice over (passt, gefällt — third person singular), and the person is in the dative twice over (mir, meinem Mann). Ich passe die Jacke and Ich gefalle die Jacke are not weaker versions of this sentence; they are not German. Note that the dative object does not have to be a pronoun — meinem Mann is the same slot as mir, just filled with a noun."

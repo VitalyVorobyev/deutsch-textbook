@@ -1,8 +1,14 @@
 import { useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { translateItemSchema } from '../../lib/schemas';
-import { normalizeAnswer } from '../../lib/cloze';
-import { gradeTranslation, verdictIsCorrect, type TranslationVerdict } from '../../lib/production';
+import { normalizeAnswer, normalizeTranslation } from '../../lib/cloze';
+import {
+  closestTranslationCandidate,
+  gradeTranslation,
+  translationCandidates,
+  verdictIsCorrect,
+  type TranslationVerdict,
+} from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
@@ -58,7 +64,14 @@ export function Translate({
     });
   }
 
-  const answerWords = item.answer.split(/\s+/);
+  const feedbackTarget = closestTranslationCandidate(value, {
+    answer: item.answer,
+    accept: item.accept,
+  });
+  const answerWords = feedbackTarget.split(/\s+/);
+  const alternatives = translationCandidates({ answer: item.answer, accept: item.accept }).filter(
+    (candidate) => normalizeTranslation(candidate) !== normalizeTranslation(feedbackTarget),
+  );
   const differs =
     checked && !isCorrect
       ? diffExpectedWords(answerWords, normalizeAnswer(value).split(/\s+/))
@@ -114,6 +127,7 @@ export function Translate({
       {checked && (
         <Feedback
           correct={isCorrect}
+          correctAnswerLabel={lang === 'ru' ? 'Исправленный вариант: ' : 'Correction: '}
           correctAnswer={
             differs &&
             answerWords.map((w, i) => (
@@ -143,7 +157,8 @@ export function Translate({
           }
           explain={item.explain}
           lang={lang}
-          speakText={item.answer}
+          speakText={feedbackTarget}
+          alternatives={alternatives}
         />
       )}
     </div>

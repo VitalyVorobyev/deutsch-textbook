@@ -31,11 +31,22 @@ interface Answered {
   evidence?: 'verified' | 'practice';
 }
 
+interface ItemProps {
+  item: ExerciseItem;
+  lang: 'en' | 'ru';
+  onResult: (r: ItemResult) => void;
+  locked: boolean;
+  onNext: () => void;
+  nextLabel: string;
+  storageKey?: string;
+}
+
 /**
  * Renders a single exercise item of any type and reports the learner's answer.
  *
  * Exported for reuse outside ExerciseSet (e.g. a mixed-training page):
  * - `item` — any ExerciseItem from the content schema (discriminated by `type`).
+ * - `instanceKey` — the item's identity; see below.
  * - `lang` — explanation language, usually obtained via useExplainLang().
  * - `onResult` — called exactly once when the learner submits, with
  *   `{ correct, given }` (`given` = the answer serialized for the attempt log).
@@ -44,10 +55,23 @@ interface Answered {
  * - `onNext` / `nextLabel` — the advance action. The item renders it itself, in the
  *   same slot as its Prüfen button, so checking an answer never moves the button.
  *
- * Items keep internal state; remount with a fresh React `key` to reset one
- * for another attempt.
+ * An item keeps its answer in local state (the typed value, the `checked` flag), and a
+ * remount is the ONLY thing that clears it. `instanceKey` is that remount: it must be
+ * unique per item *and* change when the same item is presented afresh — which is what
+ * ExerciseSet's `round` counter is for. ItemView applies it as the React key on the item
+ * itself, so the requirement is a **type error** rather than a convention a caller can
+ * quietly skip. One did: ProbeStep advanced with no key, so the next probe opened holding
+ * the previous answer, already graded against the new item's answer key — and being
+ * `checked`, it could not be answered at all and never reported a result.
  */
 export function ItemView({
+  instanceKey,
+  ...props
+}: ItemProps & { instanceKey: string }): ReactElement {
+  return <ItemBody key={instanceKey} {...props} />;
+}
+
+function ItemBody({
   item,
   lang,
   onResult,
@@ -55,16 +79,8 @@ export function ItemView({
   onNext,
   nextLabel,
   storageKey,
-}: {
-  item: ExerciseItem;
-  lang: 'en' | 'ru';
-  onResult: (r: ItemResult) => void;
-  locked: boolean;
-  onNext: () => void;
-  nextLabel: string;
-  storageKey?: string;
   // explicit return type so a forgotten case fails the type check
-}): ReactElement {
+}: ItemProps): ReactElement {
   const props = { lang, onResult, locked, onNext, nextLabel };
   switch (item.type) {
     case 'mc':
@@ -213,7 +229,7 @@ export default function ExerciseSet({ setId, set }: Props) {
 
       {item && (
         <ItemView
-          key={`${round}-${item.id}`}
+          instanceKey={`${round}-${item.id}`}
           item={item}
           lang={lang}
           onResult={handleResult}

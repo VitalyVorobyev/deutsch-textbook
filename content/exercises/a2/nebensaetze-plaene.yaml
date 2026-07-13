@@ -209,6 +209,8 @@ items:
     prompt_en: "Nina is staying at home because she is ill."
     prompt_ru: "Нина остаётся дома, потому что она заболела."
     answer: "Nina bleibt zu Hause, weil sie krank ist."
+    accept:
+      - "Weil sie krank ist, bleibt Nina zu Hause."
     key_tokens: ["ist"]
     explain:
       en: "The clause after weil is a Nebensatz, so the conjugated verb has one place to be: the very end. sie krank ist, never sie ist krank. English keeps the verb exactly where it always was — 'because she is ill' — so nothing in the source sentence warns you that anything has to move. That is why the rule has to be applied on purpose until it becomes a habit."
