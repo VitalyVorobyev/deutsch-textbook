@@ -372,3 +372,47 @@ describe('a dictation typo is not evidence about the grammar the dictation drill
     expect(dictationSlip('Ich brige dir einen Kuhen mit.', heard)).toBe(false);
   });
 });
+
+describe('attribution is judged against the rendering the learner aimed at', () => {
+  // The item pins `beginnt` but also accepts the synonym `anfängt` — which the course teaches.
+  const indirect: TranslationSpec = {
+    answer: 'Wissen Sie, wann die Prüfung beginnt?',
+    accept: ['Wissen Sie, wann die Prüfung anfängt?'],
+    keyTokens: ['beginnt'],
+    focus: 'indirekte-frage',
+  };
+
+  test('an accepted synonym in the right place is not read as the pinned verb going missing', () => {
+    // The learner used the accepted verb, put it exactly where it belongs, and fumbled an
+    // article. Measured against `answer`, the pinned `beginnt` looks absent — and the word
+    // order they got right would be logged as the word-order error they did not make.
+    expect(gradeTranslation('Wissen Sie, wann der Prüfung anfängt?', indirect)).toEqual({
+      kind: 'wrong',
+    });
+  });
+
+  test('the canonical verb-final error still fires, in the accepted rendering too', () => {
+    expect(gradeTranslation('Wissen Sie, wann die Prüfung anfängt nicht?', indirect)).toEqual({
+      kind: 'wrong',
+    });
+    expect(gradeTranslation('Wissen Sie, wann beginnt die Prüfung?', indirect)).toEqual({
+      kind: 'wrong',
+      focus: 'indirekte-frage',
+    });
+  });
+});
+
+describe('a dictation slip is measured the way a dictation is scored', () => {
+  // You cannot hear a comma, so `dictationMatches` strips all punctuation. The slip check has
+  // to strip it too, or a dropped comma counts as a second divergence and the typo stops
+  // looking like a typo — leaving exactly the false grammar attribution we set out to remove.
+  const heard = 'Ich weiß nicht, was dieses Wort bedeutet.';
+
+  test('a dropped comma plus one typo is still a slip', () => {
+    expect(dictationSlip('Ich weiß nicht was dieses Wort beduetet.', heard)).toBe(true);
+  });
+
+  test('a dropped comma alone leaves the answer otherwise intact', () => {
+    expect(dictationSlip('Ich weiß nicht was dieses Wort bedeutet.', heard)).toBe(false);
+  });
+});
