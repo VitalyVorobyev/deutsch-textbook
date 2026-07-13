@@ -4,9 +4,17 @@
 # line, bare form matching the vocab `de` field. The first sections mirror the
 # PDF's own Wortgruppen (pp. 5-7); the rest re-groups the alphabetical list
 # (pp. 8-32) into themes we can build decks around. A word listed in several
-# sections counts once, for its first. A leading ~ marks words addressed by
-# grammar topics (prepositions, determiners, conjunctions, W-words, sein) -
-# the curriculum teaches them, no flashcard needed.
+# sections counts once, for its first.
+#
+# A leading ~ marks words addressed by grammar topics (prepositions, determiners,
+# conjunctions, W-words, sein) - the curriculum teaches them, no flashcard needed.
+# THE ~ IS CHECKED, NOT TRUSTED: `bun run validate` fails unless the word actually
+# occurs in a topic article (outside the En/Ru explanation blocks), a reading, or
+# a practice/drill item. It used to be a self-certification, and eight words were
+# marked here that appeared nowhere in content/ at all. A ~ you cannot pay for
+# with content is a word that needs a flashcard instead - which is why `wegen` and
+# `außerhalb` are now card words: they carry a translatable meaning ("because of",
+# "outside of") and teaching them as case grammar would drag the Genitiv into A2.
 #
 # Extracted from the official PDF (Goethe-Institut, 2016, "circa 1300
 # lexikalische Einheiten"); every headword below occurs verbatim in it.
@@ -344,7 +352,7 @@ wieder
 ~auf
 ~aus
 ~außer
-~außerhalb
+außerhalb
 ~bei
 ~bis
 ~dass
@@ -367,7 +375,7 @@ wieder
 ~unter
 ~von
 ~vor
-~wegen
+wegen
 ~weil
 ~wenn
 ~zu
