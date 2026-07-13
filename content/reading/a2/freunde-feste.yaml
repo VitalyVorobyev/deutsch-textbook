@@ -1,0 +1,70 @@
+topic: freunde-feste
+kind: intensive
+title_de: "Eine Einladung, eine Absage, ein Geschenk"
+text:
+  - >-
+    Anna hat am Samstag Geburtstag. Sie ist die
+    [[Gastgeberin::host (the woman giving the party)::хозяйка праздника]] und
+    [[organisiert::organizes, puts together::организует]] alles allein. Am Montag
+    schickt sie eine Einladung in den
+    [[Gruppenchat::group chat::групповой чат]]: „Hast du
+    [[Lust::Lust auf … = do you fancy …?::Lust auf … = есть желание, охота …]]
+    auf eine Party? Wir treffen uns am Samstag um acht bei mir.“
+  - >-
+    Yusuf antwortet: „Ich komme gern! Ich bringe dir einen Kuchen mit.“ Nina
+    schreibt: „Ich bringe uns die [[Getränke::drinks::напитки]] mit.“ Aber Tom
+    sagt ab: „Leider kann ich nicht kommen, weil ich am Samstag arbeiten muss.“
+    Er schickt Anna aber ein [[Geschenk::present::подарок]]. Nina bringt Anna das
+    Geschenk mit.
+  - >-
+    Am Samstag kommen alle Freunde. Yusuf gibt Anna den Kuchen und sagt:
+    „[[Herzlichen Glückwunsch::congratulations, many happy returns::поздравляю]]
+    zum Geburtstag!“ Anna freut sich sehr über das Geschenk von Tom. Es ist eine
+    [[Überraschung::surprise::сюрприз]]: zwei Karten für ein Konzert. Dann
+    [[stoßen alle an::everyone clinks glasses::все чокаются]]: „Prost! Auf Anna!“
+questions:
+  - id: frage-wer-bringt-was
+    outcomes: [absprachen-aushandeln]
+    type: mc
+    prompt: "Was bringt Nina zur Party mit?"
+    options:
+      - "Die Getränke."
+      - "Einen Kuchen."
+      - "Zwei Karten für ein Konzert."
+    correct: 0
+    translation:
+      en: What does Nina bring to the party?
+      ru: Что Нина приносит на вечеринку?
+    explain:
+      en: "Nina says it herself in the chat: „Ich bringe uns die Getränke mit.“ The cake is Yusuf's job — he announces it one line earlier and hands it over in person on Saturday. The concert tickets are Tom's present, and Nina only carries them: she brings Anna the present, but the present is not from her. Read the two-object sentences carefully and each one tells you who gives and who receives."
+      ru: "Нина сама говорит об этом в чате: „Ich bringe uns die Getränke mit.“ Торт — забота Юсуфа: он объявляет об этом строкой выше и в субботу вручает торт лично. А билеты на концерт — подарок Тома, Нина лишь передаёт его: подарок она Анне приносит, но подарок не от неё. Вчитайтесь в предложения с двумя дополнениями — каждое из них говорит, кто даёт и кто получает."
+  - id: frage-warum-sagt-tom-ab
+    outcomes: [einladen-zusagen-absagen]
+    type: mc
+    prompt: "Warum kommt Tom nicht zur Party?"
+    options:
+      - "Er muss am Samstag arbeiten."
+      - "Er hat kein Geschenk für Anna."
+      - "Er hat keine Lust auf eine Party."
+    correct: 0
+    translation:
+      en: Why is Tom not coming to the party?
+      ru: Почему Том не придёт на вечеринку?
+    explain:
+      en: "Tom gives the reason himself, and he gives it with weil: „Leider kann ich nicht kommen, weil ich am Samstag arbeiten muss.“ That is what a German refusal looks like — never a bare no, always a no with a reason attached. The present rules out the second option: he does have one, and Nina carries it for him. And nothing in the text says he does not want to come; the word leider says the opposite."
+      ru: "Причину Том называет сам, причём с помощью weil: „Leider kann ich nicht kommen, weil ich am Samstag arbeiten muss.“ Именно так выглядит немецкий отказ — не голое «нет», а «нет» с причиной. Подарок исключает второй вариант: подарок у него есть, и Нина передаёт его от его имени. А о нежелании прийти в тексте нет ни слова — напротив, об этом говорит leider."
+  - id: frage-glueckwunsch
+    outcomes: [glueckwuensche-formeln]
+    type: mc
+    prompt: "Was sagt Yusuf zu Anna, wenn er ihr den Kuchen gibt?"
+    options:
+      - "Herzlichen Glückwunsch zum Geburtstag!"
+      - "Danke für die Einladung!"
+      - "Viel Glück!"
+    correct: 0
+    translation:
+      en: What does Yusuf say to Anna as he hands her the cake?
+      ru: Что Юсуф говорит Анне, вручая ей торт?
+    explain:
+      en: "Each of the three is a real German formula, and each belongs to a different moment. Herzlichen Glückwunsch zum Geburtstag is the one for a birthday, and it is what Yusuf says. Danke für die Einladung is what a guest says to the host, not the other way round — Anna is the one being thanked here. And Viel Glück is a wish for something still ahead: an exam, a job interview, a driving test. A birthday needs no luck; it has already happened."
+      ru: "Все три — настоящие немецкие формулы, и каждая относится к своему моменту. Herzlichen Glückwunsch zum Geburtstag — формула для дня рождения, и произносит её именно Юсуф. Danke für die Einladung говорит гость хозяйке, а не наоборот: благодарят здесь как раз Анну. А Viel Glück — пожелание перед тем, что ещё предстоит: экзаменом, собеседованием, экзаменом на права. Дню рождения удача не нужна — он уже наступил."

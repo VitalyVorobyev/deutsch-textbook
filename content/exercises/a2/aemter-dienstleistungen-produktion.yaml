@@ -1,0 +1,200 @@
+topic: aemter-dienstleistungen
+role: practice
+title:
+  en: "Practice — at the counter, in writing, on the phone"
+  ru: "Практика — у окошка, письменно, по телефону"
+items:
+  # Both wrong options are things the clerk explicitly says are NOT needed — a Kopie and a
+  # Termin are both spoken aloud, so a learner who fishes for keywords lands on one of them.
+  # Only the one thing that is actually still missing (the signature) answers the question.
+  - id: hoeren-am-schalter
+    outcomes: [unterlagen-erfragen]
+    type: audio-comprehension
+    instruction:
+      en: "Frau Kowalski is registering her new address at the citizens' office. Listen for what she still has to do."
+      ru: "Госпожа Ковальская регистрирует новый адрес в бюргерамте. Слушайте, что ей ещё нужно сделать."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Sachbearbeiter", text: "Guten Tag! Bitte nehmen Sie Platz. Was kann ich für Sie tun?" }
+        - { speaker: "Frau Kowalski", text: "Guten Tag! Ich würde gern meine neue Adresse anmelden. Hier ist das Formular." }
+        - { speaker: "Sachbearbeiter", text: "Danke. Ihren Ausweis brauche ich auch, bitte. — Gut, eine Kopie mache ich selbst, die müssen Sie nicht mitbringen." }
+        - { speaker: "Frau Kowalski", text: "Ist das Formular so richtig?" }
+        - { speaker: "Sachbearbeiter", text: "Fast. Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier." }
+        - { speaker: "Frau Kowalski", text: "Und brauche ich noch einen Termin?" }
+        - { speaker: "Sachbearbeiter", text: "Nein, heute ist alles fertig. Die Bescheinigung bekommen Sie in zehn Minuten." }
+    question: "Was muss Frau Kowalski jetzt noch machen?"
+    options:
+      - "Sie muss das Formular unterschreiben."
+      - "Sie muss eine Kopie vom Ausweis machen."
+      - "Sie muss einen Termin vereinbaren."
+    correct: 0
+    translation:
+      en: "What does Frau Kowalski still have to do?"
+      ru: "Что госпоже Ковальской нужно сделать ещё?"
+    explain:
+      en: "One thing is missing and the clerk names it: Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier. The other two options are in the conversation as well — that is what makes them tempting — but both are explicitly ruled out: the copy the clerk makes himself (die müssen Sie nicht mitbringen), and an appointment is not needed at all (Nein, heute ist alles fertig). Catching the word Kopie or Termin is not the same as catching what was said about it, and this is exactly where listening for keywords goes wrong."
+      ru: "Не хватает одного, и сотрудник это называет: Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier. Два других варианта в диалоге тоже звучат — потому и соблазнительны, — но оба прямо отменены: копию сотрудник делает сам (die müssen Sie nicht mitbringen), а талон и вовсе не нужен (Nein, heute ist alles fertig). Расслышать слово Kopie или Termin — не то же самое, что расслышать, что именно про него сказали, и именно здесь ловля ключевых слов подводит."
+
+  - id: hoeren-diktat-unterlagen
+    outcomes: [unterlagen-erfragen]
+    type: listen
+    focus: trennbar-wortstellung
+    instruction:
+      en: "The clerk tells you what to bring. Listen and type it exactly."
+      ru: "Сотрудник говорит, что нужно принести. Прослушайте и запишите точно."
+    text: "Bitte bringen Sie Ihren Ausweis und eine Kopie mit."
+    translation:
+      en: "Please bring your ID card and a copy."
+      ru: "Пожалуйста, принесите удостоверение и копию."
+    explain:
+      en: "The verb is mitbringen, and it is separable: bringen holds its place near the front and the prefix mit waits at the very end, behind both objects. It is easy to hear the sentence as finished after eine Kopie and lose that last little word — but without it the verb means only bring, and what you are being told is bring along, bring with you. Note the capital letters: Sie and Ihren are the polite forms, and both keep their capital in writing."
+      ru: "Глагол здесь — mitbringen, и он отделяемый: bringen стоит впереди, а приставка mit ждёт в самом конце, за обоими дополнениями. Легко услышать, что предложение будто бы закончилось на eine Kopie, и потерять это последнее словечко — но без него глагол значит просто «принести», а вам говорят «принести с собой». Обратите внимание на заглавные буквы: Sie и Ihren — вежливые формы, и на письме они сохраняют заглавную."
+
+  - id: cloze-indirekte-frage
+    outcomes: [unterlagen-erfragen]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Put the verb at the end of the indirect question."
+      ru: "Поставьте глагол в конец косвенного вопроса."
+    text: "Entschuldigung, können Sie mir sagen, welche Unterlagen ich {{brauche}}? Und wissen Sie, wo ich das Formular {{bekomme}}?"
+    translation:
+      en: "Excuse me, can you tell me which documents I need? And do you know where I get the form?"
+      ru: "Извините, можете сказать, какие документы мне нужны? И не знаете ли, где взять бланк?"
+    explain:
+      en: "A question folded into a longer sentence stops behaving like a question. On its own it would be Welche Unterlagen brauche ich? — verb in second position, subject behind it. Tucked behind können Sie mir sagen, it becomes a subordinate clause: the subject comes first and the verb drops to the very end — welche Unterlagen ich brauche. The same happens after wissen Sie: wo ich das Formular bekomme. This is the politest way to ask an official anything, and it is worth having ready."
+      ru: "Вопрос, вложенный в другое предложение, перестаёт вести себя как вопрос. Сам по себе он звучал бы Welche Unterlagen brauche ich? — глагол на втором месте, подлежащее за ним. Но после können Sie mir sagen он превращается в придаточное: подлежащее выходит вперёд, а глагол падает в самый конец — welche Unterlagen ich brauche. То же и после wissen Sie: wo ich das Formular bekomme. Это самый вежливый способ о чём-либо спросить чиновника, и держать его наготове стоит."
+
+  - id: uebersetzen-indirekte-frage
+    outcomes: [unterlagen-erfragen]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Ask the clerk. Translate into German."
+      ru: "Спросите сотрудника. Переведите на немецкий."
+    prompt_en: "Can you tell me which documents I have to bring?"
+    prompt_ru: "Можете сказать, какие документы мне нужно принести?"
+    answer: "Können Sie mir sagen, welche Unterlagen ich mitbringen muss?"
+    accept:
+      - "Können Sie mir sagen, welche Unterlagen ich mitbringen soll?"
+    key_tokens: ["muss"]
+    explain:
+      en: "Everything after the comma is a subordinate clause, so the conjugated verb goes last of all: … welche Unterlagen ich mitbringen muss. The infinitive mitbringen does not shield it — muss still has to land behind it, at the very end. Writing welche Unterlagen muss ich mitbringen? here is the standard mistake: that word order belongs to the question when it stands alone."
+      ru: "Всё, что стоит после запятой, — придаточное предложение, поэтому спрягаемый глагол уходит последним: … welche Unterlagen ich mitbringen muss. Инфинитив mitbringen его не прикрывает: muss всё равно должен приземлиться за ним, в самом конце. Написать здесь welche Unterlagen muss ich mitbringen? — типичная ошибка: такой порядок слов принадлежит вопросу, когда тот стоит сам по себе."
+
+  - id: uebersetzen-weil-anliegen
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Say why you have come. Translate into German."
+      ru: "Скажите, зачем вы пришли. Переведите на немецкий."
+    prompt_en: "I am here because I would like to register."
+    prompt_ru: "Я здесь, потому что хочу зарегистрироваться."
+    answer: "Ich bin hier, weil ich mich anmelden möchte."
+    accept:
+      - "Ich bin hier, weil ich mich anmelden will."
+    key_tokens: ["möchte"]
+    explain:
+      en: "weil opens a subordinate clause, and in one of those the conjugated verb stands last — behind the reflexive pronoun, behind the infinitive, behind everything. Ich bin hier, weil ich möchte mich anmelden keeps the main-clause order and is the mistake to watch for. Read your own sentence backwards to check it: möchte — anmelden — mich — ich — weil. If the conjugated verb is not the last word, the clause is not finished. (will instead of möchte builds the same clause and is accepted here, but at a counter möchte is the one to say.)"
+      ru: "weil открывает придаточное, а в придаточном спрягаемый глагол стоит последним — за возвратным местоимением, за инфинитивом, за всем. Вариант Ich bin hier, weil ich möchte mich anmelden сохраняет порядок главного предложения — вот та ошибка, которой надо остерегаться. Проверяйте себя, читая фразу с конца: möchte — anmelden — mich — ich — weil. Если спрягаемый глагол не последнее слово, придаточное не достроено. (Форма will строит то же самое придаточное и здесь засчитывается, но у окошка говорить следует möchte.)"
+
+  - id: uebersetzen-wuerde-gern-transfer
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are at the counter. Say it politely — use Ich würde gern …"
+      ru: "Вы у окошка. Скажите это вежливо — оборотом Ich würde gern …"
+    prompt_en: "I would like to fill in the form here."
+    prompt_ru: "Я хотел(а) бы заполнить бланк здесь."
+    answer: "Ich würde gern das Formular hier ausfüllen."
+    accept:
+      - "Ich würde gerne das Formular hier ausfüllen."
+      - "Ich würde gern hier das Formular ausfüllen."
+      - "Ich würde gerne hier das Formular ausfüllen."
+    key_tokens: ["würde"]
+    explain:
+      en: "What you want is an action, so the chunk is würde gern — and the infinitive goes to the very end, exactly as after a modal verb. ausfüllen is separable, but after würde gern it is an infinitive and stays whole: Ich würde gern das Formular ausfüllen, never Ich würde gern das Formular füllen … aus. Ich hätte gern would be wrong here: that chunk takes a noun and stops, and it cannot be followed by a verb."
+      ru: "Вам нужно действие, значит, оборот — würde gern, а инфинитив уходит в самый конец, точно как после модального глагола. Глагол ausfüllen отделяемый, но после würde gern он стоит в инфинитиве и остаётся целым: Ich würde gern das Formular ausfüllen, а не Ich würde gern das Formular füllen … aus. Оборот Ich hätte gern здесь не подошёл бы: он берёт существительное и на нём останавливается, глагол за ним стоять не может."
+
+  # The transfer item: a counter the unit has never shown, an errand it has never named, and a
+  # sentence that appears nowhere else in the topic. Everything before this drills the chunks
+  # inside the Bürgeramt frame, where the noun and the verb are half-remembered from the article;
+  # here the learner has to reach for the frame with nothing else to lean on.
+  - id: uebersetzen-transfer-post
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are not at the citizens' office this time — you are at the counter of the post office. Say it politely."
+      ru: "На этот раз вы не в бюргерамте, а у окошка на почте. Скажите это вежливо."
+    prompt_en: "I would like to send a letter to Poland, because my father lives there."
+    prompt_ru: "Я хотел(а) бы отправить письмо в Польшу, потому что там живёт мой отец."
+    answer: "Ich würde gern einen Brief nach Polen schicken, weil mein Vater dort wohnt."
+    accept:
+      - "Ich würde gerne einen Brief nach Polen schicken, weil mein Vater dort wohnt."
+    key_tokens: ["würde"]
+    explain:
+      en: "A different counter, the same chunk. You want to do something, so it is würde gern — and the infinitive schicken drops to the end of the main clause, in front of the comma. Then weil opens the reason and the conjugated verb wohnt lands at the very end of its own clause. Ich will einen Brief schicken says the same thing to a post-office clerk and says it bluntly; Ich hätte gern einen Brief would mean you want to be handed a letter, which is not what you came for."
+      ru: "Другое окошко — тот же оборот. Вы хотите что-то сделать, значит, нужен würde gern, а инфинитив schicken падает в конец главного предложения, перед запятой. Дальше weil открывает причину, и спрягаемый глагол wohnt приземляется в самом конце своего придаточного. Фраза Ich will einen Brief schicken говорит почтовому работнику то же самое, но грубо; а Ich hätte gern einen Brief означало бы, что письмо должны выдать вам, — а вы пришли не за этим."
+
+  - id: schreiben-formelle-nachricht
+    outcomes: [formelle-nachricht-schreiben, anliegen-nennen]
+    type: write
+    instruction:
+      en: "Write the message yourself, then check it against the list and revise it."
+      ru: "Напишите сообщение сами, потом проверьте его по списку и перепишите."
+    prompt:
+      en: "You have an appointment at the Bürgeramt on Thursday at nine in the morning, but you have to work then. Write a short e-mail to the office."
+      ru: "У вас назначен приём в бюргерамте в четверг в девять утра, но в это время вы работаете. Напишите короткое письмо в учреждение."
+    goal:
+      en: "Ask for a new appointment in the afternoon, say why, and find out which documents you have to bring."
+      ru: "Попросите новую запись на вторую половину дня, объясните почему и выясните, какие документы нужно принести."
+    requirements:
+      - en: "Open with Sehr geehrte Damen und Herren, and give your name and your existing appointment."
+        ru: "Начните с Sehr geehrte Damen und Herren, назовите своё имя и уже назначенное время."
+      - en: "Say what you want with a polite chunk: Ich würde gern … (an action) or Könnten Sie … (a request)."
+        ru: "Скажите, чего вы хотите, вежливым оборотом: Ich würde gern … (действие) или Könnten Sie … (просьба)."
+      - en: "Give the reason in a weil-clause — the conjugated verb goes to the very end."
+        ru: "Назовите причину придаточным с weil — спрягаемый глагол уходит в самый конец."
+      - en: "Ask which documents you have to bring, and close with Mit freundlichen Grüßen and your name."
+        ru: "Спросите, какие документы нужно принести, и завершите письмо словами Mit freundlichen Grüßen и своим именем."
+    min_words: 40
+    model_answer: "Sehr geehrte Damen und Herren, mein Name ist Anna Nowak. Ich habe am Donnerstag um neun Uhr einen Termin im Bürgeramt. Leider kann ich nicht kommen, weil ich am Vormittag arbeiten muss. Ich würde gern einen Termin am Nachmittag vereinbaren. Könnten Sie mir bitte auch sagen, welche Unterlagen ich mitbringen muss? Im Anhang finden Sie das Formular. Vielen Dank für Ihre Hilfe! Mit freundlichen Grüßen Anna Nowak"
+    model_translation:
+      en: "Dear Sir or Madam, my name is Anna Nowak. I have an appointment at the citizens' office on Thursday at nine. Unfortunately I cannot come, because I have to work in the morning. I would like to make an appointment in the afternoon. Could you also tell me which documents I have to bring? You will find the form attached. Thank you very much for your help! Yours sincerely, Anna Nowak"
+      ru: "Уважаемые дамы и господа! Меня зовут Анна Новак. У меня назначен приём в бюргерамте в четверг в девять часов. К сожалению, я не смогу прийти, потому что в первой половине дня мне нужно работать. Я хотела бы записаться на приём во второй половине дня. Не могли бы вы также сказать, какие документы нужно принести? Во вложении вы найдёте бланк. Большое спасибо за вашу помощь! С уважением, Анна Новак"
+    explain:
+      en: "A formal message is a skeleton with your own sentences dropped into it, and this unit fills every slot. The greeting is fixed: Sehr geehrte Damen und Herren, — comma, and the next word starts small. Your request goes in a polite chunk (Ich würde gern … vereinbaren, with the infinitive at the end), the reason in a weil-clause (weil ich am Vormittag arbeiten muss — conjugated verb last), the question as an indirect one (welche Unterlagen ich mitbringen muss — verb last again). Im Anhang finden Sie … announces the attachment, and Mit freundlichen Grüßen closes it with no comma after it. Keep Sie and Ihre capitalized throughout: you are writing to strangers."
+      ru: "Официальное сообщение — это каркас, в который вы вставляете свои предложения, и этот урок заполняет каждую его клетку. Обращение фиксировано: Sehr geehrte Damen und Herren, — запятая, а следующее слово начинается со строчной буквы. Просьба оформляется вежливым оборотом (Ich würde gern … vereinbaren, инфинитив в конце), причина — придаточным с weil (weil ich am Vormittag arbeiten muss — спрягаемый глагол последним), вопрос — косвенным (welche Unterlagen ich mitbringen muss — снова глагол в конце). Фраза Im Anhang finden Sie … объявляет вложение, а Mit freundlichen Grüßen завершает письмо, и запятая после него не ставится. И всюду — Sie и Ihre с заглавной буквы: вы пишете незнакомым людям."
+
+  - id: sprechen-am-schalter
+    outcomes: [anliegen-nennen, unterlagen-erfragen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud, listen to yourself, then say it a second time."
+      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+    prompt:
+      en: "You have just moved to Hamburg and you are at the counter of the Bürgeramt. The clerk asks: „Guten Tag! Was kann ich für Sie tun?“ — and after your answer he says: „Das Formular müssen Sie noch ausfüllen.“ Speak both of your turns aloud."
+      ru: "Вы только что переехали в Гамбург и стоите у окошка в бюргерамте. Сотрудник спрашивает: «Guten Tag! Was kann ich für Sie tun?» — а после вашего ответа говорит: «Das Formular müssen Sie noch ausfüllen.» Произнесите вслух обе свои реплики."
+    goal:
+      en: "Say politely what you need, say why you have come, ask which documents you need — and then react to what the clerk tells you."
+      ru: "Вежливо скажите, что вам нужно, объясните, зачем вы пришли, спросите, какие документы нужны, — а затем отреагируйте на слова сотрудника."
+    checklist:
+      - en: "I opened with a polite chunk — Könnten Sie mir bitte helfen? or Ich würde gern …"
+        ru: "Я начал(а) с вежливого оборота — Könnten Sie mir bitte helfen? или Ich würde gern …"
+      - en: "I gave a reason with weil, and the conjugated verb was the last word of that clause."
+        ru: "Я назвал(а) причину через weil, и спрягаемый глагол оказался последним словом придаточного."
+      - en: "I asked which documents I need, and I used Sie (never du) from the first word to the last."
+        ru: "Я спросил(а), какие документы нужны, и обращался(лась) на Sie (никогда на du) с первого слова до последнего."
+    model_answer: "Guten Tag! Könnten Sie mir bitte helfen? Ich würde gern meine Wohnung anmelden, weil ich neu in Hamburg bin. Können Sie mir sagen, welche Unterlagen ich brauche? — Alles klar, dann fülle ich das Formular gleich hier aus. Ich hätte noch eine Frage: Was kostet die Bescheinigung?"
+    model_translation:
+      en: "Good afternoon! Could you help me, please? I would like to register my flat, because I am new in Hamburg. Can you tell me which documents I need? — All right, then I will fill in the form right here. I have one more question: how much does the certificate cost?"
+      ru: "Здравствуйте! Не могли бы вы мне помочь? Я хотел(а) бы зарегистрировать своё жильё, потому что я недавно в Гамбурге. Можете сказать, какие документы мне нужны? — Понятно, тогда я заполню бланк прямо здесь. У меня ещё один вопрос: сколько стоит справка?"
+    explain:
+      en: "A full turn at a counter has three moves, and all three are in this unit. Open politely — Könnten Sie mir bitte helfen? — then name your business with würde gern and an infinitive at the end (meine Wohnung anmelden). Give the reason with weil and let the verb fall to the end (weil ich neu in Hamburg bin). Ask for what you still do not know as an indirect question (welche Unterlagen ich brauche — verb last). Then answer the clerk like a person rather than a form: agree, say what you will do (dann fülle ich das Formular gleich hier aus — dann pushes the verb to position 2 and the separable prefix aus to the end), and ask the one thing you still want to know. Say it a second time and listen for Sie: every single one of them."
+      ru: "Полноценная реплика у окошка состоит из трёх ходов, и все три есть в этом уроке. Начните вежливо — Könnten Sie mir bitte helfen? — затем назовите своё дело оборотом würde gern с инфинитивом в конце (meine Wohnung anmelden). Причину дайте через weil, отправив глагол в конец (weil ich neu in Hamburg bin). А то, чего вы ещё не знаете, спросите косвенным вопросом (welche Unterlagen ich brauche — глагол последним). Дальше отвечайте сотруднику как человек, а не как анкета: согласитесь, скажите, что вы сделаете (dann fülle ich das Formular gleich hier aus — после dann глагол уходит на второе место, а отделяемая приставка aus в конец), и спросите то, что вам ещё нужно узнать. Повторите всё второй раз и вслушайтесь в каждое Sie."

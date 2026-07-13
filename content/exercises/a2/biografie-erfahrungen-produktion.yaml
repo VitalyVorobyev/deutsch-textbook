@@ -1,0 +1,187 @@
+topic: biografie-erfahrungen
+role: practice
+title:
+  en: "Practice — interviewing somebody, and writing their story"
+  ru: "Практика — интервью и портрет другого человека"
+items:
+  # The graded fact is WHY he became a cook, and the trap is the answer that sounds
+  # like a life story: "he always wanted to be a cook". In the recording he says the
+  # opposite — zuerst wollte ich Lehrer werden — and the reason is the money. Neither
+  # the article nor the Lesetext mentions Herr Nowak at all, so nothing here can be
+  # answered from memory of the reading; the learner has to hear the wollte and the
+  # hatte and keep them apart.
+  - id: hoeren-interview-nowak
+    outcomes: [erfahrungen-fragen, lebensstationen-ordnen]
+    type: audio-comprehension
+    instruction:
+      en: "A radio reporter interviews Mr Nowak about his life. Listen for the reason he gives."
+      ru: "Радиожурналистка расспрашивает господина Новака о его жизни. Слушайте, какую причину он называет."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Reporterin", text: "Herr Nowak, erzählen Sie doch mal: Wo sind Sie aufgewachsen?" }
+        - { speaker: "Herr Nowak", text: "Ich bin in einem Dorf in Polen aufgewachsen. Als Kind war ich fast immer draußen." }
+        - { speaker: "Reporterin", text: "Und was haben Sie nach der Schule gemacht?" }
+        - { speaker: "Herr Nowak", text: "Zuerst wollte ich Lehrer werden. Aber ich hatte kein Geld für die Universität. Deshalb habe ich eine Ausbildung als Koch gemacht." }
+        - { speaker: "Reporterin", text: "Und seit wann sind Sie in Deutschland?" }
+        - { speaker: "Herr Nowak", text: "Seit sechs Jahren. Vor sechs Jahren bin ich nach Hamburg gekommen, und heute habe ich ein kleines Restaurant." }
+    question: "Warum hat Herr Nowak eine Ausbildung als Koch gemacht?"
+    options:
+      - "Er hatte kein Geld für die Universität."
+      - "Er wollte schon als Kind Koch werden."
+      - "Er konnte in Polen keine Arbeit finden."
+    correct: 0
+    translation:
+      en: "Why did Mr Nowak train as a cook?"
+      ru: "Почему господин Новак выучился на повара?"
+    explain:
+      en: "He says it in one sentence: Aber ich hatte kein Geld für die Universität. Deshalb habe ich eine Ausbildung als Koch gemacht. Option 2 is the story you expect — and he tells the opposite one: Zuerst wollte ich Lehrer werden, so cooking was never the childhood plan. Option 3 is never mentioned at all; he left Poland six years ago, and the recording says nothing about looking for work there. Notice how much of his life runs on war, hatte and wollte, and how the events around them stay in the Perfekt: habe … gemacht, bin … gekommen."
+      ru: "Он говорит это одной фразой: Aber ich hatte kein Geld für die Universität. Deshalb habe ich eine Ausbildung als Koch gemacht. Вариант 2 — та история, которую ожидаешь услышать, но он рассказывает противоположную: Zuerst wollte ich Lehrer werden, значит поваром он в детстве стать не мечтал. Вариант 3 не звучит вовсе: он уехал из Польши шесть лет назад, и о поисках работы там в записи нет ни слова. Обратите внимание, насколько его рассказ держится на war, hatte и wollte — а события вокруг них остаются в Perfekt: habe … gemacht, bin … gekommen."
+
+  - id: mc-weil-wortstellung
+    outcomes: [lebensstationen-ordnen]
+    type: mc
+    focus: nebensatz-verbende
+    instruction:
+      en: "Somebody asks why you came to Germany. Which answer is built correctly?"
+      ru: "Вас спрашивают, почему вы приехали в Германию. Какой ответ построен правильно?"
+    prompt: "Warum bist du nach Deutschland gekommen? — „…“"
+    options:
+      - "Weil ich hier eine Ausbildung machen wollte."
+      - "Weil ich wollte hier eine Ausbildung machen."
+      - "Weil ich hier wollte eine Ausbildung machen."
+    correct: 0
+    translation:
+      en: "Why did you come to Germany? — 'Because I wanted to do an apprenticeship here.'"
+      ru: "Почему ты приехал в Германию? — «Потому что я хотел получить здесь профессию»."
+    explain:
+      en: "weil opens a Nebensatz, and a Nebensatz has one iron rule: the conjugated verb stands at the very end. Here the conjugated verb is the modal wollte, so it takes the last position and the infinitive machen lines up just in front of it — machen wollte. Options 2 and 3 leave wollte where it would stand in a main clause (in position 2, or after the first phrase), and that is exactly the word order weil forbids. The tail of the clause is the mirror image of a main clause: ich wollte hier eine Ausbildung machen → weil ich hier eine Ausbildung machen wollte."
+      ru: "weil вводит Nebensatz, а у придаточного одно железное правило: спрягаемый глагол стоит в самом конце. Здесь спрягаемый глагол — модальный wollte, значит он занимает последнее место, а инфинитив machen встаёт прямо перед ним: machen wollte. Варианты 2 и 3 оставляют wollte там, где он стоял бы в главном предложении (на втором месте или после первой группы слов), — а именно такой порядок weil и запрещает. Хвост придаточного — зеркальное отражение главного: ich wollte hier eine Ausbildung machen → weil ich hier eine Ausbildung machen wollte."
+
+  - id: cloze-anfang-in-deutschland
+    outcomes: [praeteritum-war-hatte]
+    type: cloze
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "No hints this time. Fill in war, hatte or konnte in the right form — the Perfekt around them is already there."
+      ru: "Подсказок больше нет. Вставьте war, hatte или konnte в нужной форме — Perfekt вокруг них уже стоит."
+    text: "Vor drei Jahren bin ich nach Deutschland gekommen. Am Anfang {{war}} alles schwer, denn ich {{hatte}} noch keine Freunde hier. Ich habe jeden Tag gelernt und {{konnte}} nach einem Jahr schon telefonieren."
+    translation:
+      en: "Three years ago I came to Germany. At the beginning everything was difficult, because I had no friends here yet. I studied every day and after a year I could already make phone calls."
+      ru: "Три года назад я приехал в Германию. Поначалу всё было тяжело, потому что друзей здесь у меня ещё не было. Я учился каждый день и через год уже мог говорить по телефону."
+    explain:
+      en: "Look at what is already printed and what is missing: the events — bin … gekommen, habe … gelernt — are in the Perfekt, and every gap is a state. States are exactly what sein, haben and the modals describe, and those three go into the Präteritum: war, hatte, konnte. alles is singular, so it is war, not waren. And konnte carries no umlaut: könnte would say 'I would be able to', which is not a report about the past at all. Note also denn: unlike weil, it leaves the word order of a main clause untouched, so hatte stays in position 2."
+      ru: "Посмотрите, что уже напечатано, а чего не хватает: события — bin … gekommen, habe … gelernt — стоят в Perfekt, а каждый пропуск — это состояние. Состояния как раз и описывают sein, haben и модальные, а они уходят в Präteritum: war, hatte, konnte. Слово alles — единственного числа, поэтому war, а не waren. И konnte пишется без умлаута: könnte значило бы «мог бы», а это вообще не рассказ о прошлом. Обратите внимание и на denn: в отличие от weil, он не трогает порядок слов главного предложения, поэтому hatte остаётся на втором месте."
+
+  - id: uebersetzen-konnte-nicht-besuchen
+    outcomes: [praeteritum-war-hatte]
+    type: translate
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "Two years ago I could not visit my family. I had no holiday."
+    prompt_ru: "Два года назад я не мог навестить семью. Отпуска у меня не было."
+    answer: "Vor zwei Jahren konnte ich meine Familie nicht besuchen. Ich hatte keinen Urlaub."
+    accept:
+      - "Ich konnte vor zwei Jahren meine Familie nicht besuchen. Ich hatte keinen Urlaub."
+      - "Ich konnte meine Familie vor zwei Jahren nicht besuchen. Ich hatte keinen Urlaub."
+    key_tokens: ["konnte", "hatte"]
+    explain:
+      en: "Both halves need the Präteritum, and for two different reasons that turn out to be one reason. können is a modal, haben is haben — and in speech neither of them takes the Perfekt: konnte, hatte, never habe … gekonnt or habe … gehabt. Two details are worth checking in your own sentence. konnte has no umlaut (könnte would mean 'I would be able to'), and it builds the same bracket as any modal: konnte in position 2, the infinitive besuchen at the very end. And vor zwei Jahren opens the sentence, so the verb comes straight after it — Vor zwei Jahren konnte ich …"
+      ru: "Обе части требуют Präteritum, и по двум разным причинам, которые на поверку одна и та же. können — модальный глагол, haben — это haben, и в речи ни тот, ни другой в Perfekt не ставится: konnte, hatte, но не habe … gekonnt и не habe … gehabt. В своём предложении проверьте две детали. У konnte нет умлаута (könnte значило бы «мог бы»), и он строит обычную модальную рамку: konnte на втором месте, инфинитив besuchen в самом конце. А vor zwei Jahren стоит в начале, поэтому глагол идёт сразу за ним: Vor zwei Jahren konnte ich …"
+
+  - id: uebersetzen-interview-frage
+    outcomes: [erfahrungen-fragen]
+    type: translate
+    focus: praeteritum-sein-haben
+    instruction:
+      en: "You are getting to know a new classmate. Ask her these two questions in German."
+      ru: "Вы знакомитесь с новой однокурсницей. Задайте ей эти два вопроса по-немецки."
+    prompt_en: "Where did you grow up? Were you happy there?"
+    prompt_ru: "Где ты выросла? Ты была там счастлива?"
+    answer: "Wo bist du aufgewachsen? Warst du dort glücklich?"
+    accept:
+      - "Wo bist du aufgewachsen? Und warst du dort glücklich?"
+    key_tokens: ["Warst"]
+    explain:
+      en: "Two questions, two pasts, and the choice is made by the verb. aufwachsen is an ordinary event, so it goes into the Perfekt — and it takes sein, because growing up is a change of state: Wo bist du aufgewachsen? sein itself never does that; its past is war, and the du-form is warst. In a question the verb simply moves to the front: du warst → Warst du …? Bist du dort glücklich gewesen? is the sentence a German would not say."
+      ru: "Два вопроса — два прошедших, и выбирает глагол. aufwachsen — обычное событие, поэтому идёт в Perfekt, причём со вспомогательным sein: взросление — это переход из одного состояния в другое. Отсюда Wo bist du aufgewachsen? А сам sein так себя не ведёт: его прошедшее — war, форма для du — warst. В вопросе глагол просто выходит вперёд: du warst → Warst du …? Фраза Bist du dort glücklich gewesen? — как раз то, чего немец не скажет."
+
+  - id: uebersetzen-portraet-heute
+    outcomes: [profil-schreiben, lebensstationen-ordnen]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: "You are writing about somebody else. Translate the last line of her profile."
+      ru: "Вы пишете о другом человеке. Переведите последнюю строку её портрета."
+    prompt_en: "Today Nina works as a teacher in Leipzig."
+    prompt_ru: "Сегодня Нина работает учительницей в Лейпциге."
+    answer: "Heute arbeitet Nina als Lehrerin in Leipzig."
+    accept:
+      - "Nina arbeitet heute als Lehrerin in Leipzig."
+    key_tokens: ["arbeitet"]
+    explain:
+      en: "A profile ends in the present, and the sentence that closes it is where the word order trips people up. Heute is not a decoration in front of a finished sentence: it fills position 1, so the conjugated verb arbeitet must come immediately after it and the subject Nina moves behind the verb. Heute Nina arbeitet … is the error the rule exists to prevent. If you would rather start with Nina, you may — Nina arbeitet heute … — and the verb is still in position 2. A profession after als takes no article: als Lehrerin, not als eine Lehrerin."
+      ru: "Портрет заканчивается настоящим временем, и именно на этой последней фразе чаще всего сбивается порядок слов. Heute — не украшение перед готовым предложением: оно занимает первое место, поэтому спрягаемый глагол arbeitet обязан идти сразу за ним, а подлежащее Nina уходит за глагол. Ошибка, ради которой и существует правило, — Heute Nina arbeitet … Хотите начать с Nina — пожалуйста: Nina arbeitet heute …, и глагол всё равно на втором месте. И профессия после als идёт без артикля: als Lehrerin, а не als eine Lehrerin."
+
+  - id: schreiben-profil-karim
+    outcomes: [profil-schreiben, lebensstationen-ordnen]
+    type: write
+    instruction:
+      en: "Write the profile yourself, then check it against the list and revise it."
+      ru: "Напишите портрет сами, потом проверьте его по списку и перепишите."
+    prompt:
+      en: "In your German course you interviewed Karim, and these are your notes: born 1996 in Tunis — grew up in Marseille — after school: apprenticeship as a mechanic — wanted to study, but no money — came to Germany four years ago — today: works in a garage in Bremen, a lot of experience. Write a short profile of him for the course newsletter."
+      ru: "На курсе немецкого вы взяли интервью у Карима, и вот ваши записи: родился в 1996 году в Тунисе — вырос в Марселе — после школы: обучение на автомеханика — хотел учиться в университете, но не было денег — четыре года назад приехал в Германию — сегодня: работает в автомастерской в Бремене, большой опыт. Напишите о нём короткий портрет для рассылки курса."
+    goal:
+      en: "Tell Karim's story in order, from his childhood to today — in the third person, as a portrait of somebody else."
+      ru: "Расскажите историю Карима по порядку, от детства до сегодняшнего дня, — в третьем лице, как портрет другого человека."
+    requirements:
+      - en: "Write about him (er), not about yourself, and keep the events in the Perfekt: er hat … gemacht, er ist … gekommen."
+        ru: "Пишите о нём (er), а не о себе, и держите события в Perfekt: er hat … gemacht, er ist … gekommen."
+      - en: "Use war, hatte or a modal in the Präteritum at least twice (er hatte kein Geld, er wollte studieren, am Anfang war es schwer)."
+        ru: "Не менее двух раз используйте war, hatte или модальный глагол в Präteritum (er hatte kein Geld, er wollte studieren, am Anfang war es schwer)."
+      - en: "Put the stages in order with at least two connectors: zuerst, dann, danach, später, heute."
+        ru: "Расставьте этапы по порядку минимум двумя коннекторами: zuerst, dann, danach, später, heute."
+      - en: "Say when he came to Germany with vor + Dativ (vor vier Jahren), and give one reason with weil — the verb goes to the end."
+        ru: "Скажите, когда он приехал в Германию, через vor + Dativ (vor vier Jahren), и назовите одну причину через weil — глагол уходит в конец."
+    min_words: 40
+    model_answer: "Karim ist 1996 in Tunis geboren, aber er ist in Marseille aufgewachsen. Nach der Schule hat er eine Ausbildung als Mechaniker gemacht. Er wollte auch studieren, aber er hatte kein Geld für die Universität. Vor vier Jahren ist er nach Deutschland gekommen. Am Anfang war alles schwer, weil er noch kein Deutsch konnte. Heute arbeitet er in einer Werkstatt in Bremen und hat viel Erfahrung."
+    model_translation:
+      en: "Karim was born in Tunis in 1996, but he grew up in Marseille. After school he did an apprenticeship as a mechanic. He also wanted to study, but he had no money for university. Four years ago he came to Germany. At the beginning everything was difficult, because he could not speak German yet. Today he works in a garage in Bremen and has a lot of experience."
+      ru: "Карим родился в Тунисе в 1996 году, но вырос в Марселе. После школы он выучился на автомеханика. Он хотел ещё и учиться в университете, но денег на это не было. Четыре года назад он приехал в Германию. Поначалу всё было тяжело, потому что он ещё не знал немецкого. Сегодня он работает в автомастерской в Бремене, и у него большой опыт."
+    explain:
+      en: "A portrait is the same grammar as your own story, moved into the third person — and the third person is where the Präteritum forms surprise people, because ich and er look identical: ich hatte, er hatte; ich wollte, er wollte; ich war, er war. No -t is added. Keep the two pasts apart: the things that happened are Perfekt (ist … geboren, ist … aufgewachsen, hat … gemacht, ist … gekommen), and the states are Präteritum (er wollte, er hatte, es war). One more detail worth copying from the model: weil sends its verb to the very end — weil er noch kein Deutsch konnte. Check your draft against all four points before you rewrite it."
+      ru: "Портрет — это та же грамматика, что и рассказ о себе, только в третьем лице, а третье лицо как раз и удивляет: формы Präteritum у ich и er совпадают — ich hatte, er hatte; ich wollte, er wollte; ich war, er war. Никакого -t не прибавляется. Держите два прошедших врозь: то, что произошло, — Perfekt (ist … geboren, ist … aufgewachsen, hat … gemacht, ist … gekommen), а состояния — Präteritum (er wollte, er hatte, es war). И ещё одна деталь, которую стоит перенять у образца: weil отправляет свой глагол в самый конец — weil er noch kein Deutsch konnte. Прежде чем переписывать черновик, сверьте его со всеми четырьмя пунктами."
+
+  - id: sprechen-interview-partner
+    outcomes: [erfahrungen-fragen, praeteritum-war-hatte]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud, listen to yourself, then say it a second time."
+      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+    prompt:
+      en: "It is the first day of a new German course. Elif is sitting next to you and you know nothing about her. Ask her about her life — and then tell her a little about your own. Speak both parts aloud."
+      ru: "Первый день нового курса немецкого. Рядом с вами сидит Элиф, и вы о ней ничего не знаете. Расспросите её о жизни, а потом немного расскажите о себе. Произнесите вслух обе роли."
+    goal:
+      en: "Ask at least three questions about her life, and answer the same kind of question about yourself in two or three sentences."
+      ru: "Задайте не меньше трёх вопросов о её жизни и в двух-трёх предложениях ответьте на такой же вопрос о себе."
+    checklist:
+      - en: "I asked at least one question in the Perfekt (Wo bist du aufgewachsen? Was hast du nach der Schule gemacht?)."
+        ru: "Я задал(а) хотя бы один вопрос в Perfekt (Wo bist du aufgewachsen? Was hast du nach der Schule gemacht?)."
+      - en: "I asked at least one question with war or hatte (Warst du schon einmal in Berlin? Hattest du als Kind ein Haustier?)."
+        ru: "Я задал(а) хотя бы один вопрос с war или hatte (Warst du schon einmal in Berlin? Hattest du als Kind ein Haustier?)."
+      - en: "I said how long or how long ago with seit or vor (seit zwei Jahren, vor drei Jahren)."
+        ru: "Я сказал(а), как долго или сколько лет назад, — через seit или vor (seit zwei Jahren, vor drei Jahren)."
+      - en: "In my own answer I used war, hatte or konnte at least once, and kept the events in the Perfekt."
+        ru: "В своём ответе я хотя бы раз использовал(а) war, hatte или konnte, а события оставил(а) в Perfekt."
+    model_answer: "Hallo Elif! Wo bist du aufgewachsen? — Und was hast du nach der Schule gemacht? Hattest du damals schon einen Plan? — Ich bin vor drei Jahren nach Deutschland gekommen. Am Anfang war alles neu, und ich konnte fast kein Wort Deutsch. Seit zwei Jahren arbeite ich hier als Ingenieur."
+    model_translation:
+      en: "Hello Elif! Where did you grow up? — And what did you do after school? Did you already have a plan back then? — I came to Germany three years ago. At the beginning everything was new, and I could hardly speak a word of German. I have been working here as an engineer for two years."
+      ru: "Привет, Элиф! Где ты выросла? — А чем ты занималась после школы? У тебя уже тогда был план? — Я приехал в Германию три года назад. Поначалу всё было новым, и по-немецки я почти не мог сказать ни слова. Уже два года я работаю здесь инженером."
+    explain:
+      en: "An interview needs both pasts, and the questions show the split as clearly as the answers do. An event is asked for in the Perfekt — Wo bist du aufgewachsen? Was hast du nach der Schule gemacht? A state is asked for in the Präteritum — Warst du …? Hattest du …? The verb comes first in both, so the two shapes are easy to say once you have heard them. Your own turn works the same way: the arrival is Perfekt (bin … gekommen), the beginning is war, the German you did not have is konnte. And when you say how long you have been doing something now, seit takes the present tense: Seit zwei Jahren arbeite ich hier — not arbeitete, and not habe gearbeitet. Say the whole thing a second time and listen for war and hatte."
+      ru: "Интервью требует обоих прошедших, и вопросы показывают этот раздел не хуже ответов. О событии спрашивают в Perfekt — Wo bist du aufgewachsen? Was hast du nach der Schule gemacht? О состоянии спрашивают в Präteritum — Warst du …? Hattest du …? В обоих случаях глагол выходит вперёд, так что обе формы легко произнести, стоит их один раз услышать. Ваша собственная реплика устроена так же: приезд — Perfekt (bin … gekommen), начало — war, немецкий, которого не было, — konnte. А когда говорите, как долго что-то длится сейчас, seit требует настоящего времени: Seit zwei Jahren arbeite ich hier — не arbeitete и не habe gearbeitet. Произнесите всё второй раз и вслушайтесь в war и hatte."

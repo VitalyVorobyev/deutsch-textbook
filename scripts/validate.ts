@@ -812,6 +812,10 @@ for (const [setId, { file, data }] of exerciseSets) {
         'nebensatz-verbende': 'nebensaetze-plaene',
         'weil-denn': 'nebensaetze-plaene',
         'nebensatz-vorfeld': 'nebensaetze-plaene',
+        'aber-sondern': 'freunde-feste',
+        'praeteritum-sein-haben': 'biografie-erfahrungen',
+        'indirekte-frage': 'lernen-verstehen',
+        'hoeflich-konjunktiv': 'aemter-dienstleistungen',
         // was escaping the spine check entirely while the table was a lookup, not an allowlist
         'haben-wendungen': 'essen-trinken',
       };

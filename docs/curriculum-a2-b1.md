@@ -103,10 +103,23 @@ in place, never duplicated under a thematic name.
 | 20 | `gesundheit-arzttermin` | communication | Imperativ, sollen, seit/vor + Dativ, reflexive chunks | termine-vereinbaren, dativ, modalverben |
 | 21 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf, termine-vereinbaren |
 | 22 | `nebensaetze-plaene` | grammar | weil, dass, wenn, denn; verb-final; the fronted subordinate clause | praesens-wortstellung, modalverben |
-| 23 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie |
-| 24 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ |
-| 25 | `lernen-verstehen` | communication | indirect questions, repair chunks, dass/weil frames | erste-schritte, modalverben |
-| 26 | `aemter-dienstleistungen` | communication | formal Sie, lexical könnte/würde gern, reason clauses | termine-vereinbaren, erste-schritte |
+| 23 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie, nebensaetze-plaene |
+| 24 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ, nebensaetze-plaene |
+| 25 | `lernen-verstehen` | communication | indirect questions, repair chunks, dass/weil frames | erste-schritte, modalverben, nebensaetze-plaene |
+| 26 | `aemter-dienstleistungen` | communication | formal Sie, lexical könnte/würde gern, reason clauses | termine-vereinbaren, erste-schritte, nebensaetze-plaene |
+
+`aemter-dienstleistungen` additionally `deepens: [lernen-verstehen]`: asking a clerk *Können Sie mir
+sagen, welche Unterlagen ich brauche?* is the indirect question taught one slot earlier, in the
+register this unit lives in.
+
+Rows 23–26 each gained `nebensaetze-plaene` as a prerequisite, which the first draft of this table
+did not give them. That was an oversight of exactly the kind the reorder exists to prevent: these are
+the four units that were *supposed* to stop tiptoeing around subordinate clauses, and every one of
+them now declines an invitation, gives a reason at a counter or asks an indirect question with the
+verb at the wall. A unit that cannot be written without *weil* depends on the unit that teaches it.
+Each of the four also `deepens: [nebensaetze-plaene]` on `nebensatz-verbende` — the shared tag is the
+edge's only runtime channel, so an error on the verb-final rule anywhere in these four resurfaces the
+Nebensatz lesson's own items in mixed training.
 
 ### Why Nebensätze sit in the middle
 
@@ -123,12 +136,13 @@ was supposed to serve moves to the cumulative A2 checkpoint, which is what a che
 
 ### Atlas groups
 
-Two new **leaf** groups are needed; a node must sit in a group that is nobody's parent, and its
+Three new **leaf** groups are needed; a node must sit in a group that is nobody's parent, and its
 strand must match the group's.
 
 | Group id | Strand | Parent | Holds |
 | --- | --- | --- | --- |
-| `arbeit-bildung` | vocabulary | `wortschatz` | `arbeit-beruf`, `lernen-verstehen` |
+| `arbeit-bildung` | vocabulary | `wortschatz` | `arbeit-beruf` |
+| `lernen-kurs` | communication | `kommunikation` | `lernen-verstehen` |
 | `behoerden-services` | communication | `kommunikation` | `aemter-dienstleistungen` |
 
 The rest fit existing leaves: `wohnen-umzug` → `wohnen-zuhause`; `reisen-verkehr` → `unterwegs`;
@@ -136,11 +150,17 @@ The rest fit existing leaves: `wohnen-umzug` → `wohnen-zuhause`; `reisen-verke
 `gesundheit-arzttermin` → `transaktionen-termine`; `biografie-erfahrungen` and `freunde-feste` →
 `person-alltag`.
 
-An earlier draft of this table gave `gesundheit-arzttermin` a `gesundheit-koerper` group of its own,
-under `wortschatz`. That cannot exist: the group would be `vocabulary`, the node is `communication`
-(it is a unit about *getting an appointment and understanding the advice*, not about a word field —
-the body-part lexis it needs is already taught by the A1 `koerper-gesundheit` deck), and the rule one
-line above forbids the mismatch. The unit sits in the communication leaf it belongs to.
+**The same mistake was made twice in this table, and the rule above is what catches it both times.**
+An earlier draft gave `gesundheit-arzttermin` a `gesundheit-koerper` group of its own under
+`wortschatz`. That cannot exist: the group would be `vocabulary`, the node is `communication` (it is
+a unit about *getting an appointment and understanding the advice*, not about a word field — the
+body-part lexis it needs is already taught by the A1 `koerper-gesundheit` deck). The unit sits in the
+communication leaf it belongs to. The draft then put `lernen-verstehen` into `arbeit-bildung`, which
+fails the same way: `arbeit-bildung` is `vocabulary`, and `lernen-verstehen` teaches indirect
+questions and repair strategies — it is a `communication` node, and no amount of shared subject
+matter ("Bildung") makes it a word field. It gets `lernen-kurs`, a communication leaf of its own,
+rather than being bent into a vocabulary one to satisfy a table. `arbeit-bildung` keeps only
+`arbeit-beruf`; a future B1 vocabulary node on education is its natural second tenant.
 
 ## Outcomes
 
@@ -185,6 +205,7 @@ one unit at a time. Each is registered in the pull request that lands its introd
 | `nebensatz-verbende` | `nebensaetze-plaene` | the conjugated verb goes last in a weil-, dass- or wenn-clause |
 | `weil-denn` | `nebensaetze-plaene` | *weil* sends the verb to the end, *denn* does not |
 | `nebensatz-vorfeld` | `nebensaetze-plaene` | a fronted subordinate clause fills position 1, so the main verb comes straight after it |
+| `aber-sondern` | `freunde-feste` | *sondern* only after a negation, replacing what was denied — elsewhere *aber* |
 | `praeteritum-sein-haben` | `biografie-erfahrungen` | war/hatte and the modal Präteritum, used where Perfekt is not |
 | `indirekte-frage` | `lernen-verstehen` | indirect questions send the verb to the end (Wissen Sie, wo der Kurs **ist**?) |
 | `hoeflich-konjunktiv` | `aemter-dienstleistungen` | the lexical polite forms *könnte* and *würde gern*, learned as chunks, not as a paradigm |
