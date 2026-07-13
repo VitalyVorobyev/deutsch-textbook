@@ -136,37 +136,42 @@ export function buildSession(
   const fromPriority = priority.slice(0, Math.max(0, count - reserved));
   const fromBroad = broad.slice(0, count - fromPriority.length);
 
-  return interleaveBySet([...fromPriority, ...fromBroad].slice(0, count));
+  return interleaveByTopic([...fromPriority, ...fromBroad].slice(0, count));
 }
 
 /**
- * Reorders a selection so that no two consecutive items come from the same set.
+ * Reorders a selection so that no two consecutive items come from the same **topic**.
  *
- * This replaces a hill-climbing swap repair that got stuck: it only ever tried to
- * relocate the *right-hand* member of a conflicting pair, and it only accepted a swap
- * that strictly reduced the conflict count, so a queue like `a b a b b a b a` was a
- * local minimum with nowhere to go. Every single swap of that stray `b` either kept the
- * count at one or made it worse — and moving the `b` to its *left* would have fixed it.
- * A third of four-and-four sessions came out with a same-topic pair in them, which is
- * the one thing interleaving exists to prevent.
+ * The topic is the right grain, and it was not always the one used. Grouping by set let
+ * `a2/dativ` and `a2/drill-mir-mich` sit next to each other — two different sets, but the
+ * same rule, back to back. Interleaving exists so the learner has to *choose* the rule
+ * before applying it; two dative items in a row hand them the choice for free, whichever
+ * file the items came from. `dativ` alone owns four sets, so this was not a corner case.
+ *
+ * It also replaces a hill-climbing swap repair that got stuck: it only ever tried to
+ * relocate the *right-hand* member of a conflicting pair, and only accepted a swap that
+ * strictly reduced the conflict count, so a queue like `a b a b b a b a` was a local
+ * minimum with nowhere to go. Every single swap of that stray `b` either kept the count at
+ * one or made it worse — and moving the `b` to its *left* would have fixed it. A third of
+ * four-and-four sessions came out with a same-topic pair in them.
  *
  * The greedy rule below cannot get stuck: at each step take the next item from whichever
- * set has the most items left, excluding the set just served. Always spending down the
- * largest remaining set is what keeps it from cornering itself, and it reaches zero
- * conflicts whenever zero is reachable at all — that is, whenever no single set holds
- * more than half the queue. When one set does dominate, the leftovers are unavoidable and
- * are appended; nothing is dropped.
+ * topic has the most items left, excluding the topic just served. Always spending down the
+ * largest remaining topic is what keeps it from cornering itself, and it reaches zero
+ * conflicts whenever zero is reachable at all — that is, whenever no single topic holds
+ * more than half the queue. When one topic does dominate, the leftovers are unavoidable and
+ * are appended; nothing is dropped, because a short session would be the worse failure.
  *
- * Order inside a set is preserved exactly, and ties between equally large sets go to
+ * Order inside a topic is preserved exactly, and ties between equally large topics go to
  * whichever one's next item came first, so the priority bands still decide who is served
  * early.
  */
-function interleaveBySet(items: readonly SessionItem[]): SessionItem[] {
+function interleaveByTopic(items: readonly SessionItem[]): SessionItem[] {
   const groups = new Map<string, SessionItem[]>();
   for (const item of items) {
-    const group = groups.get(item.setId);
+    const group = groups.get(item.topicId);
     if (group) group.push(item);
-    else groups.set(item.setId, [item]);
+    else groups.set(item.topicId, [item]);
   }
   const rank = new Map(items.map((item, i) => [item.uid, i]));
 
@@ -175,20 +180,20 @@ function interleaveBySet(items: readonly SessionItem[]): SessionItem[] {
   while (out.length < items.length) {
     let pick: SessionItem[] | undefined;
     let pickId: string | null = null;
-    for (const [setId, group] of groups) {
-      if (group.length === 0 || setId === previous) continue;
+    for (const [topicId, group] of groups) {
+      if (group.length === 0 || topicId === previous) continue;
       if (
         !pick ||
         group.length > pick.length ||
         (group.length === pick.length && rank.get(group[0]!.uid)! < rank.get(pick[0]!.uid)!)
       ) {
         pick = group;
-        pickId = setId;
+        pickId = topicId;
       }
     }
-    // Only the set we just served has anything left: one set holds more than half the
-    // queue, so a same-set pair is arithmetically unavoidable. Serve them rather than
-    // shorten the session.
+    // Only the topic we just served has anything left: it holds more than half the queue,
+    // so a same-topic pair is arithmetically unavoidable. Serve them rather than shorten
+    // the session.
     if (!pick) {
       out.push(...groups.get(previous!)!);
       break;

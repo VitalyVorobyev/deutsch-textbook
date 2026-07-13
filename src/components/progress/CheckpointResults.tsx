@@ -11,13 +11,13 @@ export interface CheckpointInfo {
   setId: string;
   path: string;
   items: CheckpointItemRef[];
-  /** outcome id → learner-facing can-do text */
-  labels: Record<string, { en: string; ru: string }>;
 }
 
 interface Props {
   checkpoint: CheckpointInfo;
   outcomeModes: Record<string, string>;
+  /** outcome id → learner-facing can-do text (shared by every checkpoint) */
+  outcomeLabels: Record<string, { en: string; ru: string }>;
   attempts: Attempt[];
 }
 
@@ -53,7 +53,7 @@ function OutcomeRow({ result, label }: { result: CheckpointOutcomeResult; label?
 }
 
 /** Latest checkpoint result per outcome, grouped by CEFR mode. Hidden until first taken. */
-export function CheckpointResults({ checkpoint, outcomeModes, attempts }: Props) {
+export function CheckpointResults({ checkpoint, outcomeModes, outcomeLabels, attempts }: Props) {
   const lang = useExplainLang();
   const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
   const summary = checkpointOutcomeResults(
@@ -94,7 +94,7 @@ export function CheckpointResults({ checkpoint, outcomeModes, attempts }: Props)
                 <OutcomeRow
                   key={result.outcome}
                   result={result}
-                  label={checkpoint.labels[result.outcome]?.[lang === 'ru' ? 'ru' : 'en']}
+                  label={outcomeLabels[result.outcome]?.[lang === 'ru' ? 'ru' : 'en']}
                 />
               ))}
             </ul>

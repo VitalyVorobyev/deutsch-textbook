@@ -277,6 +277,24 @@ for (const [id, { file, data }] of topics) {
   }
 }
 
+// Checkpoints are data, not wiring: `getCheckpoints()` (src/lib/content.ts) finds
+// every `role: checkpoint` set, reads its level off its directory and gives it the
+// page /checkpoint/<dir>. So the directory must name the level the checkpoint
+// covers, and a level can own only one — a second would fight for the same route.
+{
+  const byLevel = new Map<string, string>();
+  for (const [setId, { file, data }] of exerciseSets) {
+    if (data.role !== 'checkpoint') continue;
+    const dir = setId.split('/')[0]!;
+    const level = topics.get(data.topic)?.data.level;
+    if (level && dir.toUpperCase() !== level)
+      fail(file, `checkpoint directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /checkpoint/<level> route reads the level off the directory`);
+    const other = byLevel.get(dir);
+    if (other) fail(file, `a second ${dir.toUpperCase()} checkpoint ("${other}" already exists) — both would claim /checkpoint/${dir}`);
+    byLevel.set(dir, setId);
+  }
+}
+
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
   const standalone = data.role === 'checkpoint' || data.role === 'probe';
@@ -292,6 +310,35 @@ for (const [setId, { file, data }] of exerciseSets) {
   }
   if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
+
+  // A probe family's items are PARALLEL VARIANTS: different tasks, one competence.
+  //
+  // This is the whole basis of the retention measurement, and it is easy to get wrong in
+  // a way that looks fine. `dueProbe` serves one unused variant per interval, so if the
+  // variants test *different* things, the 2-day probe measures one skill, the 7-day probe
+  // measures another and the 21-day probe a third. Each competence is then measured
+  // exactly once, at exactly one delay — and a retention curve needs the same competence
+  // at several delays. There is nothing to compare, and the number that comes out looks
+  // like retention without being it.
+  //
+  // So every item in a probe family must carry the same `focus` and the same `outcomes`.
+  // A topic with two core competences worth delayed evidence owns two families
+  // (probe-<topic>-<competence>), not one family with two kinds of item in it.
+  if (data.role === 'probe' && data.items.length > 0) {
+    const key = (item: (typeof data.items)[number]): string =>
+      `${item.focus ?? '-'} :: ${[...item.outcomes].sort().join('+')}`;
+    const first = key(data.items[0]!);
+    for (const item of data.items.slice(1)) {
+      if (key(item) !== first)
+        fail(
+          `${file} → item "${item.id}"`,
+          `probe variants must be parallel — same focus and same outcomes as the other ` +
+            `variants ("${first}"), but this one is "${key(item)}". A family whose variants ` +
+            `test different competences measures each of them once, at one interval, and can ` +
+            `show no retention curve. Split it into one family per competence.`,
+        );
+    }
+  }
 
   const itemIds = new Set<string>();
   for (const item of data.items) {
@@ -651,6 +698,39 @@ for (const [setId, { file, data }] of exerciseSets) {
         }
       }
 
+      // Every declared outcome must be measured by something the learner works through.
+      //
+      // An outcome nothing references can never light up on the progress page, and the
+      // delayed probe on it can never arm — the topic promises a can-do the course never
+      // asks for. Only practice and drill items count, plus reading questions: a pretest
+      // is a guess taken *before* the lesson, and a checkpoint or probe *tests* an outcome
+      // rather than teaching it, so an outcome that is only ever tested was never
+      // practised. (A2 shipped four of these; A1 had none.)
+      {
+        const measured = new Set<string>();
+        for (const { data } of exerciseSets.values()) {
+          if (data.role !== 'practice' && data.role !== 'drill') continue;
+          for (const item of data.items) for (const outcome of item.outcomes) measured.add(outcome);
+        }
+        for (const { data } of readings.values()) {
+          for (const question of data.questions)
+            for (const outcome of question.outcomes) measured.add(outcome);
+        }
+        for (const node of atlas.nodes) {
+          for (const outcome of node.outcomes) {
+            if (measured.has(outcome.id)) continue;
+            fail(
+              AT,
+              `outcome "${outcome.id}" of topic "${node.id}" is measured by nothing — ` +
+                'reference it from an item in a role: practice or role: drill set, or from a ' +
+                'reading question. Pretests, checkpoints and probes do not count: an outcome ' +
+                'that is only ever tested was never practised, so it can never light up on the ' +
+                'progress page and its delayed probe can never arm.',
+            );
+          }
+        }
+      }
+
       // A focus tag cannot silently teach a structure whose owning topic is
       // later in the spine. Intentional preview items must say `preview: true`.
       const focusIntroducedBy: Record<string, string> = {
@@ -711,6 +791,53 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(
               `${file} → item "${item.id}"`,
               `focus "${item.focus}" is introduced later by "${intro}"; move it or declare preview: true`,
+            );
+        }
+      }
+
+      // A `deepens` edge must be one the training loop can act on.
+      //
+      // The edge has exactly one runtime channel, and it is the focus tag. Weakness is
+      // aggregated per tag and is blind to the topic an attempt came from
+      // (`focusStats` in src/lib/weakness.ts keys only by `a.focus`), so an error in a
+      // deepening topic marks that confusion weak across the whole course; mixed
+      // training's second band then pulls every item carrying it out of the entire
+      // eligible pool — the base topic's practice and drill sets among them
+      // (`buildSession` in src/lib/training.ts). That, and nothing else, is what makes a
+      // spiral revisit resurface its base. No other code reads `deepens`.
+      //
+      // So an edge whose two ends share no focus tag can resurface nothing. It renders in
+      // the relations pane and the spiral it claims to build does not exist. The base side
+      // counts only trainable roles — practice and drill are the only sets buildSession may
+      // draw from (`eligibleTrainingSets`) — while the deepening side counts every role,
+      // because an error anywhere in the topic, a pretest included, feeds weakness.
+      const TRAINABLE_ROLES = new Set(['practice', 'drill']);
+      const focusOfTopic = new Map<string, Set<string>>();
+      const trainableFocusOfTopic = new Map<string, Set<string>>();
+      const remember = (m: Map<string, Set<string>>, topic: string, focus: string) => {
+        const tags = m.get(topic);
+        if (tags) tags.add(focus);
+        else m.set(topic, new Set([focus]));
+      };
+      for (const { data } of exerciseSets.values()) {
+        for (const item of data.items) {
+          if (!item.focus) continue;
+          remember(focusOfTopic, data.topic, item.focus);
+          if (TRAINABLE_ROLES.has(data.role)) remember(trainableFocusOfTopic, data.topic, item.focus);
+        }
+      }
+      for (const node of atlas.nodes) {
+        for (const base of node.deepens) {
+          if (!nodeIds.has(base)) continue; // unknown target — already reported above
+          const mine = focusOfTopic.get(node.id) ?? new Set<string>();
+          const theirs = trainableFocusOfTopic.get(base) ?? new Set<string>();
+          if (![...mine].some((focus) => theirs.has(focus)))
+            fail(
+              AT,
+              `node "${node.id}" deepens "${base}", but no focus tag of "${node.id}" is drilled by a ` +
+                `practice or drill item of "${base}" — an error in "${node.id}" could never resurface a ` +
+                `"${base}" item, which is the whole runtime meaning of the edge. Tag an item of ` +
+                `"${node.id}" with one of the base's confusions, or drop the edge`,
             );
         }
       }

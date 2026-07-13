@@ -1,8 +1,16 @@
 topic: praesens-wortstellung
 role: probe
 title:
-  en: "Probe — present tense and word order"
-  ru: "Проверка — настоящее время и порядок слов"
+  en: "Probe — the verb in position 2"
+  ru: "Проверка — глагол на втором месте"
+
+# Three parallel variants of ONE competence: Verbzweit — the conjugated verb holds
+# position 2, whatever comes first. Three different sentence types (fronted time phrase,
+# W-question, second clause after dann), one rule, none of them an item from the lesson.
+#
+# All three are `translate`: word order cannot be probed by a cloze (the gap sits where
+# the text already puts it), and free production is the only format that shows whether
+# the learner still builds the sentence right.
 
 items:
   - id: variant-a
@@ -12,41 +20,42 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "Tomorrow I am working in Berlin."
-    prompt_ru: "Завтра я работаю в Берлине."
-    answer: "Morgen arbeite ich in Berlin."
-    key_tokens: ["arbeite"]
+    prompt_en: "On Monday my sister is learning German."
+    prompt_ru: "В понедельник моя сестра учит немецкий."
+    answer: "Am Montag lernt meine Schwester Deutsch."
+    key_tokens: ["lernt"]
     accept:
-      - "Ich arbeite morgen in Berlin."
+      - "Meine Schwester lernt am Montag Deutsch."
     explain:
-      en: "The conjugated verb holds position 2. Fronting Morgen pushes the subject behind the verb: Morgen arbeite ich — never Morgen ich arbeite."
-      ru: "Спрягаемый глагол стоит на втором месте. Если вынести Morgen вперёд, подлежащее уходит за глагол: Morgen arbeite ich — но не Morgen ich arbeite."
+      en: "Whatever opens the sentence, the conjugated verb stays in position 2. Putting Am Montag first pushes the subject behind the verb: Am Montag lernt meine Schwester — never Am Montag meine Schwester lernt."
+      ru: "Что бы ни стояло в начале, спрягаемый глагол остаётся на втором месте. Если вынести Am Montag вперёд, подлежащее уходит за глагол: Am Montag lernt meine Schwester — но не Am Montag meine Schwester lernt."
 
   - id: variant-b
-    outcomes: [praesens-konjugation]
-    type: cloze
-    focus: verb-endungen
-    instruction:
-      en: Fill the gaps with the correct present-tense form.
-      ru: Заполните пропуски правильной формой настоящего времени.
-    text: "Du {{sprichst}} sehr gut Deutsch. Er {{arbeitet}} in München und {{ist}} Lehrer."
-    explain:
-      en: "sprechen changes its stem vowel in the du/er forms: du sprichst, er spricht. arbeiten adds -et after the t-stem. sein is irregular: er ist."
-      ru: "У sprechen меняется корневая гласная во 2-м и 3-м лице: du sprichst, er spricht. У arbeiten после основы на -t добавляется -et. sein — неправильный глагол: er ist."
-
-  - id: variant-c
-    outcomes: [praesens-verneinung]
+    outcomes: [praesens-verbzweit]
     type: translate
-    focus: nicht-position
+    focus: verbzweit
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "She is not working today."
-    prompt_ru: "Сегодня она не работает."
-    answer: "Sie arbeitet heute nicht."
-    key_tokens: ["nicht"]
-    accept:
-      - "Heute arbeitet sie nicht."
+    prompt_en: "Where does your brother work?"
+    prompt_ru: "Где работает твой брат?"
+    answer: "Wo arbeitet dein Bruder?"
+    key_tokens: ["arbeitet"]
     explain:
-      en: "nicht negates the verb and goes to the end, after the time phrase: Sie arbeitet heute nicht — not Sie nicht arbeitet."
-      ru: "nicht отрицает глагол и ставится в конце, после обстоятельства времени: Sie arbeitet heute nicht — а не Sie nicht arbeitet."
+      en: "In a W-question the question word takes position 1 and the verb follows immediately: Wo arbeitet dein Bruder? English needs a helper verb here (does … work), German never does."
+      ru: "В вопросе с вопросительным словом оно занимает первое место, а глагол идёт сразу за ним: Wo arbeitet dein Bruder? Вспомогательный глагол, как в английском (does … work), немецкому не нужен."
+
+  - id: variant-c
+    outcomes: [praesens-verbzweit]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I drink coffee and then I read a book."
+    prompt_ru: "Я пью кофе, а потом читаю книгу."
+    answer: "Ich trinke Kaffee und dann lese ich ein Buch."
+    key_tokens: ["lese"]
+    explain:
+      en: "dann counts as the first element of its own clause, so the verb has to come next and the subject moves behind it: und dann lese ich — never und dann ich lese."
+      ru: "dann занимает первое место в своей части предложения, поэтому дальше обязан идти глагол, а подлежащее уходит за него: und dann lese ich — но не und dann ich lese."

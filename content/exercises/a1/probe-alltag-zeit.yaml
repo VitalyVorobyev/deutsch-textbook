@@ -1,8 +1,14 @@
 topic: alltag-zeit
 role: probe
 title:
-  en: "Probe — time and daily routine"
-  ru: "Проверка — время и распорядок дня"
+  en: "Probe — um, am and im"
+  ru: "Проверка — um, am и im"
+
+# Three parallel variants of ONE competence: choosing the time preposition by the kind of
+# time — um + clock time, am + day, im + month or season. That is the confusion this
+# topic exists to fix, and the one a Russian speaker keeps losing, because a single «в»
+# covers all three. Different days, different seasons, different situations from the
+# lesson's own items.
 
 items:
   - id: variant-a
@@ -12,35 +18,39 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "On Monday I work."
-    prompt_ru: "В понедельник я работаю."
-    answer: "Am Montag arbeite ich."
-    key_tokens: ["Am"]
-    accept:
-      - "Ich arbeite am Montag."
+    prompt_en: "My day begins at six o'clock."
+    prompt_ru: "Мой день начинается в шесть часов."
+    answer: "Mein Tag beginnt um sechs Uhr."
+    key_tokens: ["um"]
     explain:
-      en: "Days of the week take am: am Montag. Clock times take um, months take im — the preposition is chosen by the kind of time, not by meaning."
-      ru: "С днями недели употребляется am: am Montag. С часами — um, с месяцами — im. Предлог выбирается по типу времени, а не по смыслу."
+      en: "A time on the clock always takes um: um sechs Uhr. Neither am nor im is possible here, whatever the sentence is about."
+      ru: "Время на часах всегда идёт с предлогом um: um sechs Uhr. Ни am, ни im здесь невозможны, о чём бы ни говорилось в предложении."
 
   - id: variant-b
-    outcomes: [zeit-praepositionen, zeit-tagesablauf-beschreiben]
+    outcomes: [zeit-praepositionen]
     type: cloze
     focus: um-am-zeit
     instruction:
       en: Fill in um, am or im.
       ru: Вставьте um, am или im.
-    text: "{{Um}} acht Uhr frühstücke ich. {{Am}} Sonntag schlafe ich lange. {{Im}} Juli habe ich frei."
+    text: "{{Am|am}} Donnerstag koche ich {{um}} halb sieben. {{Im|im}} Winter esse ich oft Suppe."
     explain:
-      en: "um + clock time, am + day, im + month. Three different prepositions for three kinds of time — there is no single word for at."
-      ru: "um + время на часах, am + день, im + месяц. Три разных предлога для трёх типов времени — единого слова «в» здесь нет."
+      en: "All three rules in one text: am + weekday (am Donnerstag), um + clock time (um halb sieben), im + season (im Winter). The preposition follows the kind of time, never the meaning of the sentence."
+      ru: "Все три правила в одном тексте: am + день недели (am Donnerstag), um + время на часах (um halb sieben), im + время года (im Winter). Предлог зависит от типа времени, а не от смысла предложения."
 
   - id: variant-c
-    outcomes: [zeit-uhrzeit-verstehen]
-    type: listen
+    outcomes: [zeit-praepositionen]
+    type: translate
+    focus: um-am-zeit
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Der Kurs beginnt um neun Uhr."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "In July I have a lot of time, but on Wednesday I am working."
+    prompt_ru: "В июле у меня много времени, но в среду я работаю."
+    answer: "Im Juli habe ich viel Zeit, aber am Mittwoch arbeite ich."
+    key_tokens: ["Im", "am"]
+    accept:
+      - "Im Juli habe ich viel Zeit, aber ich arbeite am Mittwoch."
     explain:
-      en: "Clock times are announced with um: um neun Uhr."
-      ru: "Время на часах объявляют с предлогом um: um neun Uhr."
+      en: "One sentence, two kinds of time: a month takes im (im Juli), a weekday takes am (am Mittwoch). Note that a fronted time phrase still leaves the verb in position 2: Im Juli habe ich …"
+      ru: "Одно предложение — два типа времени: с месяцем идёт im (im Juli), с днём недели — am (am Mittwoch). И помните: если обстоятельство времени стоит впереди, глагол всё равно остаётся на втором месте: Im Juli habe ich …"

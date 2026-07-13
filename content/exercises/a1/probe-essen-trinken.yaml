@@ -1,8 +1,13 @@
 topic: essen-trinken
 role: probe
 title:
-  en: "Probe — food, drink and ordering"
-  ru: "Проверка — еда, напитки и заказ"
+  en: "Probe — ordering in a café"
+  ru: "Проверка — заказ в кафе"
+
+# Three parallel variants of ONE competence: placing an order — möchte / bestellen /
+# nehmen plus an accusative object with the right article. That is the topic's headline
+# can-do, and the article is its grammatical hinge. Three different orders, three
+# different sets of food and drink, none of them a sentence from the lesson.
 
 items:
   - id: variant-a
@@ -12,35 +17,42 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
-    prompt_en: "I would like a tea, please."
-    prompt_ru: "Я хотел бы чай, пожалуйста."
-    answer: "Ich möchte einen Tee, bitte."
-    key_tokens: ["einen"]
+    prompt_en: "I would like a salad and a water, please."
+    prompt_ru: "Я хотел бы салат и воду, пожалуйста."
+    answer: "Ich möchte einen Salat und ein Wasser, bitte."
+    key_tokens: ["einen", "ein"]
     accept:
-      - "Ich möchte einen Tee bitte."
-      - "Ich nehme einen Tee, bitte."
+      - "Ich möchte einen Salat und ein Wasser bitte."
+      - "Ich nehme einen Salat und ein Wasser, bitte."
     explain:
-      en: "möchte is the polite way to order. der Tee is masculine and it is the object, so ein becomes einen."
-      ru: "möchte — вежливая форма заказа. der Tee мужского рода и стоит в роли дополнения, поэтому ein превращается в einen."
+      en: "möchte is the polite way to order, and what you order is an accusative object: der Salat → einen Salat, while das Wasser keeps ein."
+      ru: "möchte — вежливая форма заказа, а то, что вы заказываете, стоит в винительном падеже: der Salat → einen Salat, а das Wasser сохраняет ein."
 
   - id: variant-b
-    outcomes: [essen-service-bezahlen]
+    outcomes: [essen-bestellen]
     type: cloze
+    focus: akkusativ-artikel
     instruction:
-      en: Fill the gaps.
-      ru: Заполните пропуски.
-    text: "Was {{kostet}} der Kaffee? — Ich {{zahle}} bitte."
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Im Restaurant bestelle ich {{eine}} Suppe, {{einen}} Fisch und {{ein}} Bier."
     explain:
-      en: "kosten agrees with its subject: der Kaffee kostet (singular). Zahlen bitte is the fixed chunk for asking for the bill."
-      ru: "kosten согласуется с подлежащим: der Kaffee kostet (ед. ч.). Zahlen bitte — устойчивая формула, чтобы попросить счёт."
+      en: "bestellen takes an accusative object, so each dish needs its article in the accusative: eine Suppe (feminine, unchanged), einen Fisch (masculine, changed), ein Bier (neuter, unchanged)."
+      ru: "bestellen требует винительного падежа, поэтому каждое блюдо получает артикль в Akkusativ: eine Suppe (женский род — без изменений), einen Fisch (мужской род — форма изменилась), ein Bier (средний род — без изменений)."
 
   - id: variant-c
-    outcomes: [essen-grundwortschatz, essen-vorlieben]
-    type: listen
+    outcomes: [essen-bestellen]
+    type: translate
+    focus: akkusativ-artikel
     instruction:
-      en: Listen and type what you hear.
-      ru: Послушайте и напишите то, что услышали.
-    text: "Ich trinke gern Milch und esse gern Brot."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I would like a coffee without sugar, please."
+    prompt_ru: "Я хотел бы кофе без сахара, пожалуйста."
+    answer: "Ich möchte einen Kaffee ohne Zucker, bitte."
+    key_tokens: ["einen"]
+    accept:
+      - "Ich möchte einen Kaffee ohne Zucker bitte."
     explain:
-      en: "gern follows the verb to say what you like doing: ich trinke gern, ich esse gern. The nouns need no article here."
-      ru: "gern стоит после глагола и выражает, что вам нравится делать: ich trinke gern, ich esse gern. Артикль здесь не нужен."
+      en: "der Kaffee is the object of möchte, so it appears as einen Kaffee. After ohne, Zucker stands with no article at all — a mass noun ordered as a plain quantity needs none."
+      ru: "der Kaffee — дополнение при möchte, поэтому в заказе он звучит как einen Kaffee. После ohne слово Zucker идёт вообще без артикля: с неисчисляемым существительным он здесь не нужен."

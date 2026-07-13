@@ -17,6 +17,14 @@ GitHub Release notes.
   measure the practice, not the interval. Ten A1 probe families, three parallel variants each.
   Fortschritt reports the results apart from practice accuracy, at the interval that *actually*
   elapsed rather than the one that was scheduled.
+- **Delayed probes for A2 as well.** The six A2 topics had none, so weeks of dative and Perfekt
+  practice had produced no evidence that any of it survived. Six new families — production-led, not
+  multiple choice — arm off the practice already in the log, so the first checks fall due
+  immediately rather than after the next ten units are written.
+- **An A2 vocabulary figure that is measured rather than claimed.** The Über page now reports A2
+  against the official Goethe-Institut A2 Wortliste, exactly as it already did for A1. It currently
+  says 45%, and that is the point: the number is computed from the content, so it cannot flatter the
+  course.
 - **An extensive reader.** "Lena in Bremen" — a longer text meant to be read straight through for
   meaning, with sparse glosses and no line-by-line quiz. Readings now declare whether they are
   intensive or extensive, and the validator holds the two apart.
@@ -56,7 +64,21 @@ GitHub Release notes.
   the whole point of mixed training — meeting a rule out of its own context is what forces you to
   choose it rather than merely apply it — and a third of sessions were quietly failing to do it. The
   queue is now built so that consecutive items come from different topics whenever the session's
-  composition allows it at all.
+  composition allows it at all. It also used to count two exercise files from the *same* topic as
+  different topics, which let two dative questions sit side by side; the dative alone owns four such
+  files.
+- **The delayed checks could not have shown whether anything stuck.** A check is supposed to ask the
+  same question again after two days, a week and three weeks, so that you can see what fades. They
+  were instead asking a *different* question each time — word order at two days, verb endings at a
+  week, negation at three weeks. Each skill was therefore tested exactly once, at exactly one delay,
+  and nothing could be compared with anything. Every check was rewritten so its three versions test
+  one skill in three different situations, and the result is the curve it was always meant to be.
+  Caught before a single check had been answered, so no history was lost.
+- **Four A2 can-dos were promised and never asked about.** *I can use the dative pronouns*, *…the
+  dative prepositions*, *…verbs like helfen and gefallen* and *…the modal forms* were listed on the
+  topic pages but tagged on no exercise, so they could never be marked as learned and no delayed
+  check could ever fire on them. The exercises that had been drilling them all along are now tagged
+  correctly, and a rule was added so a topic can no longer advertise a skill nothing measures.
 
 ## [0.2.0] — 2026-07-12
 
