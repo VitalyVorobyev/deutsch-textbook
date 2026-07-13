@@ -49,7 +49,16 @@ const { sections, ownedBy, total, cards, grammar, missing, unearned, percent } =
 // ---------------------------------------------------------------------------
 
 if (decksToCheck.length) {
-  const stillMissing = new Set(sections.flatMap((s) => s.missing));
+  // Every manifest word that is supposed to have a flashcard — `covered` plus
+  // `missing`, which is all of them except the `~` (grammar, no card) words.
+  //
+  // NOT just `missing`: goetheCoverage() reads all of content/vocab/, so once the
+  // deck under check is saved to its real path its own headwords are already
+  // `covered` and would every one of them be rejected as "not missing" — the guard
+  // would be unusable in exactly the workflow it exists for. Asking "is this a
+  // card-bearing manifest word that no *other* deck owns" is the question we
+  // actually mean, and it gives the same answer whether or not the file is on disk.
+  const cardWords = new Set(sections.flatMap((s) => [...s.covered, ...s.missing]));
   let bad = 0;
   for (const path of decksToCheck) {
     const deck = YAML.parse(readFileSync(path, 'utf8')) as {
@@ -61,10 +70,11 @@ if (decksToCheck.length) {
       if (others.length) {
         console.error(`✗ ${path}: "${de}" is already taught by ${others.join(', ')}`);
         bad++;
-      } else if (!stillMissing.has(de)) {
+      } else if (!cardWords.has(de)) {
         console.error(
-          `✗ ${path}: "${de}" is not on the Goethe-${level} missing list — ` +
-            `check the spelling against the manifest, or drop the entry`,
+          `✗ ${path}: "${de}" is not a Goethe-${level} headword that takes a flashcard — ` +
+            `check the spelling against the manifest, or drop the entry ` +
+            `(a "~" word is taught as grammar and must not get a card)`,
         );
         bad++;
       }
