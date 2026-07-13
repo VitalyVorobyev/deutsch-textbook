@@ -141,6 +141,31 @@ items:
       en: "A different counter, the same chunk. You want to do something, so it is würde gern — and the infinitive schicken drops to the end of the main clause, in front of the comma. Then weil opens the reason and the conjugated verb wohnt lands at the very end of its own clause. Ich will einen Brief schicken says the same thing to a post-office clerk and says it bluntly; Ich hätte gern einen Brief would mean you want to be handed a letter, which is not what you came for."
       ru: "Другое окошко — тот же оборот. Вы хотите что-то сделать, значит, нужен würde gern, а инфинитив schicken падает в конец главного предложения, перед запятой. Дальше weil открывает причину, и спрягаемый глагол wohnt приземляется в самом конце своего придаточного. Фраза Ich will einen Brief schicken говорит почтовому работнику то же самое, но грубо; а Ich hätte gern einen Brief означало бы, что письмо должны выдать вам, — а вы пришли не за этим."
 
+  # The verified half of `formelle-nachricht-schreiben`. The outcome was carried by the `write`
+  # item below and by nothing else, and a `write` logs unverified practice evidence by design —
+  # so the outcome could never light up. This grades the two chunks a formal message is actually
+  # made of, and it grades them apart: Könnten Sie …? asks somebody else to act, Ich würde gern …
+  # says what you want to do yourself. Both existing translate items here drill würde gern alone,
+  # so the request half had never been produced.
+  - id: uebersetzen-formelle-bitte-mail
+    outcomes: [formelle-nachricht-schreiben, anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are writing to the Bürgeramt, and you have never met the person who will read it. Translate the two lines into German."
+      ru: "Вы пишете в бюргерамт человеку, которого никогда не видели. Переведите обе строки на немецкий."
+    prompt_en: "Could you please send me the form? I would like to come by on Monday."
+    prompt_ru: "Не могли бы вы прислать мне бланк? Я хотел(а) бы зайти в понедельник."
+    answer: "Könnten Sie mir bitte das Formular schicken? Ich würde gern am Montag vorbeikommen."
+    accept:
+      - "Könnten Sie mir das Formular bitte schicken? Ich würde gern am Montag vorbeikommen."
+      - "Könnten Sie mir bitte das Formular schicken? Ich würde gerne am Montag vorbeikommen."
+      - "Könnten Sie mir das Formular bitte schicken? Ich würde gerne am Montag vorbeikommen."
+    key_tokens: ["Könnten", "würde"]
+    explain:
+      en: "A formal message is assembled out of two polite chunks, and the whole item turns on telling them apart. Könnten Sie …? is a request: somebody else is going to do the thing, and the infinitive schicken drops to the very end, exactly as it would after a modal. Ich würde gern … is a wish about yourself: you are the one who will act, and again the infinitive closes the clause. Swap them and the message says the wrong thing — Ich würde gern das Formular schicken would mean you want to do the sending, which is not what you came to ask. Watch the umlaut in the first word: Können Sie das Formular schicken? is a plain question about ability and lands blunter than anything you want to send to an office; the polite form is Könnten. And keep hätte gern away from a verb — that chunk takes a noun and stops (Ich hätte gern eine Bescheinigung), so Ich hätte gern vorbeikommen is not a sentence. vorbeikommen is separable, but after würde gern it is an infinitive and stays in one piece at the end."
+      ru: "Официальное сообщение собирается из двух вежливых оборотов, и весь смысл задания — научиться их различать. Könnten Sie …? — это просьба: действовать будет кто-то другой, а инфинитив schicken уходит в самый конец, ровно как после модального глагола. Ich würde gern … — это желание о себе: действовать будете вы, и инфинитив снова закрывает предложение. Поменяйте их местами — и сообщение скажет не то: Ich würde gern das Formular schicken означало бы, что отправить бланк хотите вы сами, а вы пришли просить не об этом. Следите за умлаутом в первом слове: Können Sie das Formular schicken? — обычный вопрос о возможности, и для письма в учреждение он звучит слишком резко; вежливая форма — Könnten (по-русски мы точно так же уходим в сослагательное: «не могли бы вы»). И держите hätte gern подальше от глагола: этот оборот берёт существительное и на нём останавливается (Ich hätte gern eine Bescheinigung), так что Ich hätte gern vorbeikommen — не предложение. Глагол vorbeikommen отделяемый, но после würde gern он стоит в инфинитиве и остаётся целым в конце."
+
   - id: schreiben-formelle-nachricht
     outcomes: [formelle-nachricht-schreiben, anliegen-nennen]
     type: write

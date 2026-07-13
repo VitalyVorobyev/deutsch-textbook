@@ -1,0 +1,90 @@
+topic: arbeit-beruf
+kind: extensive
+title_de: "Lena in Bremen (3): Die Bewerbung"
+
+# The third Lena episode and an extensive reader: read straight through for meaning
+# with the glosses closed — sparse glosses, two gist questions, no line-by-line
+# quizzing. It gives the professions and workplace field (Kollegin, Bäcker, Chefin,
+# Schicht, Pause, Bewerbung, Werkstatt, Angestellte) a story to live in instead of a
+# flashcard. Everything stays at or below unit 11 of A2: Präsens, Perfekt, modals,
+# separable verbs, Dativ, Komparativ, reflexive verbs, seit/vor, war/hatte/konnte and
+# the coordinating denn — and deliberately no subordinate clause (weil/dass/wenn come
+# in unit 12).
+# Episode 1: content/reading/a1/lena-1-der-erste-tag.yaml
+# Episode 2: content/reading/a2/lena-2-der-wecker-um-vier.yaml
+
+text:
+  - >-
+    Lena arbeitet jetzt seit acht Monaten in der Bäckerei. Der Wecker um vier Uhr
+    ist kein Problem mehr, aber die Frühschicht bleibt
+    [[anstrengend::tiring, exhausting::утомительный, изматывающий]]. Ihre
+    Kollegin Mira ist freundlich, der Bäcker Herr Ott auch. Um neun Uhr machen
+    sie zusammen Pause und trinken Kaffee im Hof. Lena mag die beiden sehr. Nur
+    die Arbeit mag sie nicht mehr so sehr.
+  - >-
+    In Polen hat ihr Vater eine kleine [[Werkstatt::workshop::мастерская]] für
+    Fahrräder. Lena hat dort als Kind jeden Sommer geholfen. Sie kann eine Kette
+    wechseln, eine Bremse einstellen, ein Rad reparieren. In Bremen hat sie das
+    niemandem erzählt. Auf Papier hatte sie diese
+    [[Kenntnisse::skills, know-how::знания, умения]] nicht.
+  - >-
+    Im März ist ihr Fahrrad kaputtgegangen. Sie hat es in eine Werkstatt in der
+    Nebenstraße gebracht. Der
+    [[Mitarbeiter::employee, member of staff::сотрудник]] wollte es erst am
+    Freitag reparieren. Lena hat lange auf die Kette gesehen. Dann hat sie
+    gefragt: „Darf ich?“ Nach zehn Minuten war das Fahrrad fertig. Der Mann hat
+    sie angesehen und nichts gesagt.
+  - >-
+    Zwei Tage später hat die Chefin angerufen. Frau Beck hat drei
+    [[Angestellte::employees::наёмные работники, служащие]], und eine geht im
+    Sommer weg. „Schreiben Sie mir eine
+    [[Bewerbung::job application::заявление о приёме на работу]]“, hat sie
+    gesagt. „Kurz. Eine Seite.“ Lena war nervös. Am Abend hat ihre Freundin Ola
+    geholfen. Ola arbeitet als [[Kellnerin::waitress::официантка]] im Café Sand
+    und schreibt schneller als Lena.
+  - >-
+    Am Montag hatte Lena ein Gespräch. Die Schicht in der Bäckerei war erst um
+    zwei Uhr zu Ende, und Lena musste sich beeilen. Sie hat sich schnell
+    umgezogen und ist mit dem Rad durch die halbe Stadt gefahren. Frau Beck hat
+    nur drei Fragen gestellt. Dann hat sie gesagt: „Sie fangen am ersten Juli an.
+    Drei Tage in der Woche, zwanzig Stunden.“
+  - >-
+    Herr Ott war zuerst still. Dann hat er gelacht: „Eine Bäckerei verliert eine
+    gute Mitarbeiterin. Aber ein Bäcker hat auch ein Fahrrad, oder?“ Lena macht
+    jetzt nur noch zwei Frühschichten in der Woche. Die Arbeit in der Werkstatt
+    ist schmutziger als die Arbeit hinter der Kasse, aber sie ist leichter für
+    Lena, denn sie kennt sie seit ihrer Kindheit. Und der Wecker? Der klingelt
+    jetzt nur noch am Dienstag und am Freitag um vier Uhr. An den anderen Tagen
+    steht Lena um sieben auf und freut sich auf den Tag.
+
+questions:
+  - id: q-warum-werkstatt
+    outcomes: [aufgaben-beschreiben]
+    type: mc
+    prompt: "Warum bekommt Lena die Arbeit in der Werkstatt?"
+    options:
+      - "Sie kann Fahrräder reparieren — das hat sie bei ihrem Vater gelernt."
+      - "Sie hat in Bremen eine Ausbildung als Mechanikerin gemacht."
+      - "Ihre Freundin Ola arbeitet auch in der Werkstatt."
+    correct: 0
+    translation:
+      en: "Why does Lena get the job at the workshop?"
+      ru: "Почему Лена получает работу в мастерской?"
+    explain:
+      en: "Lena grew up in her father's bicycle workshop in Poland and helped there every summer, so she repairs her own chain in ten minutes while the mechanic is still planning to do it on Friday. That is what gets her the phone call from Frau Beck — no diploma, no training course, and Ola only helps her write the application."
+      ru: "Лена выросла в велосипедной мастерской отца в Польше и каждое лето там помогала, поэтому она чинит свою цепь за десять минут, пока мастер собирается заняться этим только в пятницу. Именно за это ей и звонит фрау Бек — никакого диплома и никакого обучения, а Оля лишь помогает написать заявление."
+  - id: q-was-aendert-sich
+    outcomes: [arbeitszeit-aushandeln]
+    type: mc
+    prompt: "Was ist ab dem ersten Juli anders?"
+    options:
+      - "Lena arbeitet nur noch zweimal in der Woche früh in der Bäckerei."
+      - "Lena steht jetzt jeden Tag um vier Uhr auf."
+      - "Lena hört mit der Arbeit auf und geht nur noch in den Deutschkurs."
+    correct: 0
+    translation:
+      en: "What is different from the first of July?"
+      ru: "Что меняется с первого июля?"
+    explain:
+      en: "Lena keeps the bakery, but only for two early shifts a week; the other three days she is at the workshop, twenty hours in all. The four o'clock alarm from the last episode is not gone — it now rings on Tuesday and Friday only, and on the other days she gets up at seven."
+      ru: "Пекарню Лена не бросает, но остаётся там только на две утренние смены в неделю; остальные три дня она в мастерской — всего двадцать часов. Будильник из прошлой серии никуда не делся: теперь он звонит только во вторник и в пятницу, а в остальные дни она встаёт в семь."

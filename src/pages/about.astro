@@ -179,37 +179,37 @@ const principles = [
         </p>
       </article>
 
-      <article class="rounded-lg border-l-4 border-amber-500 bg-amber-50/60 p-5 dark:bg-amber-950/25">
+      <article class="rounded-lg border-l-4 border-emerald-500 bg-emerald-50/60 p-5 dark:bg-emerald-950/25">
         <h3 class="font-bold">
-          A2 — <span class="lang-en">in progress</span><span class="lang-ru">в работе</span>
+          A2 — <span class="lang-en">complete</span><span class="lang-ru">завершён</span>
         </h3>
         <p class="mt-2 max-w-prose text-sm text-stone-700 dark:text-stone-300">
           <span class="lang-en">
-            {a2.topics} topics are authored so far — the core grammar of the level (Dativ, Perfekt,
-            Modalverben, trennbare Verben) plus everyday routine and appointments. They are built to
-            the same standard as A1, but they are not yet the whole level.
+            All {a2.units} units are authored, from Dativ to Ämter &amp; Dienstleistungen. Each one has
+            a diagnostic pretest, a full article, a graded reading, exercises across several task
+            types including listening, writing and speaking, and a delayed probe that asks the same
+            competence again weeks later.
             {coverageA2 &&
-              ` Of the ${coverageA2.total} headwords on the official Goethe-Institut A2 Wortliste,
-              ${coverageA2.cards + coverageA2.grammar} are covered (${coverageA2.percent}%) —
-              ${coverageA2.cards} as flashcards and ${coverageA2.grammar} taught as grammar.`}
-            {checkpointA2
-              ? ` A cumulative ${checkpointA2.items.length}-item A2 checkpoint covers what is authored.`
-              : ' There is no A2 checkpoint yet.'} No claim is made that finishing what exists makes
-            you A2. Treat A2 as work in progress, and read the percentage above as exactly what it
-            says.
+              ` ${coverageA2.cards + coverageA2.grammar} of the ${coverageA2.total} headwords on the
+              official Goethe-Institut A2 Wortliste are covered (${coverageA2.percent}%) —
+              ${coverageA2.cards} as flashcards and ${coverageA2.grammar} taught as grammar rather
+              than as vocabulary.`}
+            {checkpointA2 && ` A cumulative ${checkpointA2.items.length}-item A2 checkpoint measures
+              the level end to end.`} What that does not mean is that finishing it makes you A2 —
+            that is a claim about you, not about the content, and no course can make it for you.
           </span>
           <span class="lang-ru">
-            Пока написано тем: {a2.topics} — ядро грамматики уровня (Dativ, Perfekt, Modalverben,
-            trennbare Verben), а также повседневный распорядок и назначение встреч. Они сделаны по
-            тем же требованиям, что и A1, но это ещё не весь уровень.
+            Все {a2.units} юнитов написаны — от «Dativ» до «Ämter &amp; Dienstleistungen». В каждом есть
+            диагностический претест, полная статья, текст для чтения, упражнения нескольких типов —
+            включая аудирование, письмо и говорение — и отложенная проверка, которая спрашивает то же
+            умение снова спустя недели.
             {coverageA2 &&
               ` Из ${coverageA2.total} слов официального списка Goethe-Institut A2 Wortliste охвачено
-              ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%):
-              ${coverageA2.cards} — карточками, ещё ${coverageA2.grammar} даются как грамматика.`}
-            {checkpointA2
-              ? ` Итоговая контрольная точка A2 из ${checkpointA2.items.length} заданий проверяет то, что уже написано.`
-              : ' Контрольной точки A2 пока нет.'} Мы не утверждаем, что, пройдя написанное, вы получите
-            A2. Считайте A2 незавершённым уровнем, а процент выше — ровно тем, что в нём сказано.
+              ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%): ${coverageA2.cards} —
+              карточками, ещё ${coverageA2.grammar} даются как грамматика, а не как лексика.`}
+            {checkpointA2 && ` Итоговая контрольная точка A2 из ${checkpointA2.items.length} заданий
+              проверяет уровень целиком.`} Это не значит, что, пройдя курс, вы автоматически получите
+            A2: это утверждение о вас, а не о содержании, и ни один курс не может сделать его за вас.
           </span>
         </p>
       </article>

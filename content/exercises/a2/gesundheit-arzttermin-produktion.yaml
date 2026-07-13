@@ -120,6 +120,31 @@ items:
       en: "sich fühlen keeps its reflexive pronoun in a question too, and the pronoun matches the person: du → dich. Fühlst du heute besser? is not a question about how you are — it is missing the word that makes the verb mean feel. Word order is ordinary yes-or-no question order: verb first, subject second, and dich right behind them."
       ru: "sich fühlen сохраняет возвратное местоимение и в вопросе, причём местоимение согласуется с лицом: du → dich. Вопрос Fühlst du heute besser? — это не вопрос о самочувствии: в нём нет слова, которое придаёт глаголу нужное значение. Порядок слов обычный для вопроса без вопросительного слова: сначала глагол, потом подлежащее, а сразу за ними — dich."
 
+  # The verified half of `krankmeldung-schreiben`. The outcome was carried by the `write` item
+  # below and by nothing else, and a `write` logs unverified practice evidence by design — so
+  # the outcome could never light up. The graded word is `seit`, because that is what a sick
+  # note stands or falls on: the fever has to be *still* true, or there is no reason to write.
+  # (`nebensatz-verbende` would be the obvious tag for a `weil`-clause here, but `weil` is
+  # introduced two units later, in nebensaetze-plaene — this topic has not taught it yet.)
+  - id: uebersetzen-krankmeldung-seit
+    outcomes: [krankmeldung-schreiben, beschwerden-beschreiben]
+    type: translate
+    focus: seit-vor-zeit
+    instruction:
+      en: "It is Tuesday morning and you are writing to your boss. Translate the message into German."
+      ru: "Утро вторника, вы пишете начальнице. Переведите сообщение на немецкий."
+    prompt_en: "I have had a fever for three days and cannot come to work today."
+    prompt_ru: "У меня уже три дня температура, и сегодня я не смогу прийти на работу."
+    answer: "Ich habe seit drei Tagen Fieber und kann heute nicht zur Arbeit kommen."
+    accept:
+      - "Seit drei Tagen habe ich Fieber und kann heute nicht zur Arbeit kommen."
+      - "Ich habe seit drei Tagen Fieber und kann heute nicht arbeiten."
+      - "Seit drei Tagen habe ich Fieber und kann heute nicht arbeiten."
+    key_tokens: ["seit"]
+    explain:
+      en: "The whole message hangs on one little word. seit says that something began in the past and is still true now — the fever started three days ago and you still have it, which is the entire reason you are writing. vor says the opposite: it points at a finished moment. vor drei Tagen would report that the fever turned up three days ago, as a piece of history, and a boss reading that has no idea whether you are coming in or not. Choose the wrong one and the sentence stops being a sick note. Two details to check in your own version. seit goes with the present tense — Ich habe Fieber — even though it describes something that started in the past; the Perfekt belongs to what is over and done with. And seit takes the dative, so the plural noun behind it adds -n: seit drei Tagen, never seit drei Tage. The second half is an ordinary modal bracket: kann in position 2, the infinitive kommen at the very end, and nicht just in front of it."
+      ru: "Всё сообщение держится на одном коротком слове. seit говорит, что нечто началось в прошлом и длится до сих пор: температура появилась три дня назад и есть сейчас — ровно поэтому вы и пишете. vor говорит обратное: оно указывает на завершённый момент. vor drei Tagen сообщило бы, что температура поднялась три дня назад, — как факт истории, и начальница, прочитав это, так и не поймёт, выйдете вы на работу или нет. Ошибётесь в выборе — и сообщение перестанет быть больничным уведомлением. Проверьте в своём варианте две детали. При seit стоит настоящее время — Ich habe Fieber, — хотя речь о том, что началось в прошлом; ровно как русское «у меня уже три дня температура», а не «была». Perfekt же принадлежит тому, что закончилось. И seit требует Dativ, поэтому существительное во множественном числе получает -n: seit drei Tagen, но никогда seit drei Tage. Вторая половина — обычная модальная рамка: kann на втором месте, инфинитив kommen в самом конце, а nicht — прямо перед ним."
+
   - id: schreiben-krankmeldung
     outcomes: [krankmeldung-schreiben, beschwerden-beschreiben]
     type: write
