@@ -405,12 +405,28 @@ for (const [setId, { file, data }] of exerciseSets) {
         // key_tokens names the tokens of `answer` the focus tag grades. A token that is
         // not in the answer grades nothing, and the item would silently lose both its
         // typo protection and its attribution — so a stale one has to fail the build.
-        const answerTokens = new Set(
-          canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, '')),
-        );
+        const answerTokens = canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, ''));
+        const occurrences = new Map<string, number>();
+        for (const w of answerTokens) occurrences.set(w, (occurrences.get(w) ?? 0) + 1);
         for (const t of item.key_tokens) {
-          if (!answerTokens.has(t.replace(/[.,!?;:]+$/, ''))) {
+          const bare = t.replace(/[.,!?;:]+$/, '');
+          const n = occurrences.get(bare) ?? 0;
+          if (n === 0) {
             fail(where, `key_tokens entry "${t}" does not occur in the answer`);
+          } else if (n > 1) {
+            // `graded` in src/lib/production.ts is a Set of strings tested per token, so a
+            // key token is matched by string, not by position: if it occurs twice, the focus
+            // tag grades BOTH occurrences. In "Nina stellt den Stuhl neben den Schrank." the
+            // second `den` is the direction case (wo-wohin), not the object article — so a
+            // learner who writes `neben dem Schrank` gets logged against akkusativ-artikel,
+            // and weakness-driven training then chases a confusion they do not have.
+            // A false entry in the signal is worse than a missing one.
+            fail(
+              where,
+              `key_tokens entry "${t}" occurs ${n}× in the answer, so the focus tag grades ` +
+                `every occurrence — including any that is a different decision. Rewrite the ` +
+                `sentence so the graded token appears once, or pin a token that is unique.`,
+            );
           }
         }
         if (item.key_tokens.length > 0 && !item.focus) {
