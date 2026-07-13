@@ -84,7 +84,7 @@ items:
   - id: translate-bahnhof
     outcomes: [stadt-weg-erfragen]
     type: translate
-    prompt_en: "Excuse me, where is the station?"
+    prompt_en: "Excuse me, where is the train station?"
     prompt_ru: "Извините, где вокзал?"
     answer: "Entschuldigung, wo ist der Bahnhof?"
     explain: { en: "Open politely with Entschuldigung, then a plain W-question: wo ist + article + noun. The article is not optional: der Bahnhof.", ru: "Начните вежливо с Entschuldigung, дальше обычный W-вопрос: wo ist + артикль + существительное. Артикль обязателен: der Bahnhof, а не просто Bahnhof." }

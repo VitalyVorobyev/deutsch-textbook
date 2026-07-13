@@ -221,11 +221,11 @@ abundant" as the operational rule and skip the theoretical baggage.
 the repo, and a reading declares which one it is (`kind: intensive | extensive`).
 Most of Deutsch-Atlas is **intensive graded input** (~90–130 words, 6–10
 glosses, comprehension questions), and good at it. Extensive reading now exists
-too, but barely: one A1 pilot reader ships (Lena in Bremen), and the validator
+as a small connected strand: five *Lena in Bremen* episodes across A1–A2. The validator
 holds the format to what makes it extensive — 250–400 words, at most two gist
 questions, roughly one gloss per 40 words. The honest statement of the gap is
-therefore no longer "no extensive reading" but **"one pilot, not a series"**;
-the series is deferred as backlog P5-2. Never describe an intensive reading as
+therefore no longer "no extensive reading" but **"one small strand, not a library"**;
+further expansion is backlog P5-2. Never describe an intensive reading as
 extensive: the difference is what the text is *for*, not how long it is.
 **Anti-pattern:** Above-level unglossed text (input stops being input); grammar
 taught only as paradigm tables with no contextualized examples; a "long reader"

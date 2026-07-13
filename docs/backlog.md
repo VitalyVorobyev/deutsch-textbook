@@ -9,8 +9,10 @@ preserve v1–v4 snapshot import and pass the full repository gate. What A2 teac
 with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
 before authoring anything.
 
-Phases 0–3 are done: the learning system, the Atlas, a complete A1 (v0.2.0), and the hardened A1
-learning loop.
+Phases 0–4 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines, and the
+hardened learning loop. B1 remains provisional until representative A2 use, its checkpoint and
+delayed evidence have been reviewed. Current authoring expands optional A1/A2 context without
+adding new spine topics.
 
 ## The open gate
 
@@ -42,7 +44,7 @@ before another unit is written.
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
   update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
 
-## Now — Phase 4: complete A2
+## Completed — Phase 4: complete A2
 
 ### P4-1 · Freeze the A2 curriculum contract — `done` (S)
 
@@ -217,10 +219,12 @@ Prefer generated assets with speech synthesis as a permanent fallback. Reconside
 that audio quality, rather than content coverage, is the limiting factor. It does not: `listen` sits
 at 76% and `audio-comprehension` at 8/8 on browser TTS.
 
-### P5-2 · Expand the extensive-reader series — `deferred` (M per reader)
+### P5-2 · Expand the extensive-reader series — `doing` (M per reader)
 
-Beyond the Phase 3 pilot: 500–800-word A2 episodes, once the vocabulary and grammar base is complete
-enough to keep them comprehensible.
+The A2 vocabulary and grammar base is now complete enough for connected, optional reading. The
+fifth Lena episode begins the post-spine enrichment pass with a Bremen civic errand and the Roland;
+future episodes keep the enforced extensive-reader contract: 250–400 words, sparse glossing and at
+most two gist questions. Evaluate readability and voluntary continuation, not completion as mastery.
 
 ### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
 
