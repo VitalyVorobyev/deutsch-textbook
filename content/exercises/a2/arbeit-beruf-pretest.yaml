@@ -1,0 +1,62 @@
+topic: arbeit-beruf
+role: pretest
+title:
+  en: "Pretest — what you must, what you may, and how you ask"
+  ru: "Предтест — что нужно, что можно и как попросить"
+items:
+  - id: pre-duerfen-muessen
+    outcomes: [aufgaben-beschreiben]
+    type: mc
+    focus: duerfen-muessen
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+    prompt: "An der Tür hängt ein Schild: „Rauchen verboten“. Im Büro ___ man nicht rauchen."
+    options: ["muss", "darf", "soll"]
+    correct: 1
+    translation:
+      en: 'There is a sign on the door: "No smoking". You are not allowed to smoke in the office.'
+      ru: "На двери висит табличка «Курить запрещено». В офисе курить нельзя."
+    explain:
+      en: "Verboten is a ban, and German expresses a ban with dürfen + nicht: man darf nicht rauchen. muss nicht would say the opposite of a ban — it would merely release you from an obligation to smoke, which no sign has ever imposed. soll nicht would report someone's instruction rather than state a rule of the house."
+      ru: "Verboten — это запрет, а запрет немецкий выражает через dürfen + nicht: man darf nicht rauchen. Вариант muss nicht сказал бы прямо противоположное: он всего лишь снимает обязанность курить, а такой обязанности ни одна табличка не устанавливала. А soll nicht передавал бы чьё-то распоряжение, а не правило заведения."
+
+  - id: pre-modal-satzklammer
+    outcomes: [aufgaben-beschreiben]
+    type: mc
+    focus: modal-satzklammer
+    instruction:
+      en: "Guess where the two verbs go. Getting it wrong now is part of how the rule sticks later."
+      ru: "Угадайте, где стоят оба глагола. Ошибка сейчас — часть того, как правило закрепится потом."
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Am Montag ich muss die Frühschicht übernehmen."
+      - "Am Montag muss ich die Frühschicht übernehmen."
+      - "Am Montag muss ich übernehmen die Frühschicht."
+    correct: 1
+    translation:
+      en: On Monday I have to take over the early shift.
+      ru: В понедельник мне придётся взять утреннюю смену.
+    explain:
+      en: "Two rules decide this at once. The conjugated verb — here the modal muss — stands in position 2, and Am Montag has already taken position 1, so the subject ich has to move behind the verb. And the infinitive closes the sentence: nothing may follow übernehmen. The first option puts two elements in front of the verb; the third leaves the bracket open."
+      ru: "Здесь сразу два правила. Спрягаемый глагол — в данном случае модальный muss — стоит на втором месте, а первое уже занято обстоятельством Am Montag, поэтому подлежащее ich уходит за глагол. И инфинитив замыкает предложение: после übernehmen не может стоять ничего. В первом варианте перед глаголом оказываются сразу два члена предложения, в третьем рамка остаётся незакрытой."
+
+  - id: pre-du-sie
+    outcomes: [arbeitszeit-aushandeln]
+    type: mc
+    focus: du-sie
+    instruction:
+      en: "Guess. Nothing here has been taught yet — answer from your instinct and see where it takes you."
+      ru: "Угадывайте. Ничего из этого ещё не проходили — отвечайте по наитию и посмотрите, куда оно вас приведёт."
+    prompt: "Sie sprechen zum ersten Mal mit dem Chef einer anderen Firma. Wie bitten Sie höflich?"
+    options:
+      - "Könnten Sie mir bitte helfen?"
+      - "Könntest du mir bitte helfen?"
+      - "Hilf mir bitte!"
+    correct: 0
+    translation:
+      en: Could you please help me?
+      ru: Не могли бы вы мне помочь?
+    explain:
+      en: "A stranger, and the boss of another company at that, is Sie — with a capital S — and the matching verb form is könnten. könntest belongs to du and would be far too familiar here. The third option is a du-imperative: perfectly normal among friends, but as an opening line to a manager you have never met it sounds like an order."
+      ru: "К незнакомому человеку, тем более к начальнику другой фирмы, обращаются на Sie — с большой буквы, — и соответствующая форма глагола здесь könnten. Форма könntest относится к du и прозвучала бы слишком фамильярно. Третий вариант — повелительное наклонение на du: среди друзей это совершенно нормально, но как первая фраза, обращённая к незнакомому начальнику, она звучит как приказ."

@@ -101,7 +101,7 @@ in place, never duplicated under a thematic name.
 | 18 | `reisen-verkehr` | communication | travel prepositions, movement Perfekt, sequence connectors | stadt-wege, perfekt-haben-sein, termine-vereinbaren |
 | 19 | `einkaufen-reklamation` | vocab-field | Komparativ/Superlativ, passen/gefallen + Dativ, zu + Adjektiv | essen-trinken, dativ, akkusativ |
 | 20 | `gesundheit-arzttermin` | communication | Imperativ, sollen, seit/vor + Dativ, reflexive chunks | termine-vereinbaren, dativ, modalverben |
-| 21 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf |
+| 21 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf, termine-vereinbaren |
 | 22 | `nebensaetze-plaene` | grammar | weil, dass, wenn, denn; verb-final; the fronted subordinate clause | praesens-wortstellung, modalverben |
 | 23 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie |
 | 24 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ |
@@ -123,18 +123,24 @@ was supposed to serve moves to the cumulative A2 checkpoint, which is what a che
 
 ### Atlas groups
 
-Three new **leaf** groups are needed; a node must sit in a group that is nobody's parent, and its
+Two new **leaf** groups are needed; a node must sit in a group that is nobody's parent, and its
 strand must match the group's.
 
 | Group id | Strand | Parent | Holds |
 | --- | --- | --- | --- |
-| `gesundheit-koerper` | vocabulary | `wortschatz` | `gesundheit-arzttermin` |
 | `arbeit-bildung` | vocabulary | `wortschatz` | `arbeit-beruf`, `lernen-verstehen` |
 | `behoerden-services` | communication | `kommunikation` | `aemter-dienstleistungen` |
 
 The rest fit existing leaves: `wohnen-umzug` → `wohnen-zuhause`; `reisen-verkehr` → `unterwegs`;
 `einkaufen-reklamation` → `essen-einkaufen`; `nebensaetze-plaene` → `satzbau`;
-`biografie-erfahrungen` and `freunde-feste` → `person-alltag`.
+`gesundheit-arzttermin` → `transaktionen-termine`; `biografie-erfahrungen` and `freunde-feste` →
+`person-alltag`.
+
+An earlier draft of this table gave `gesundheit-arzttermin` a `gesundheit-koerper` group of its own,
+under `wortschatz`. That cannot exist: the group would be `vocabulary`, the node is `communication`
+(it is a unit about *getting an appointment and understanding the advice*, not about a word field —
+the body-part lexis it needs is already taught by the A1 `koerper-gesundheit` deck), and the rule one
+line above forbids the mismatch. The unit sits in the communication leaf it belongs to.
 
 ## Outcomes
 

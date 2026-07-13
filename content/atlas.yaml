@@ -88,6 +88,12 @@ groups:
     title_de: Unterwegs
     title_en: Out and about
     title_ru: В городе и в пути
+  - id: arbeit-bildung
+    strand: vocabulary
+    parent: wortschatz
+    title_de: Arbeit & Bildung
+    title_en: Work & education
+    title_ru: Работа и образование
 
 nodes:
   # --- A1 ---
@@ -671,6 +677,105 @@ nodes:
         en: "I can write a short complaint."
         ru: "Я умею написать краткую рекламацию."
 
+  - id: gesundheit-arzttermin
+    level: A2
+    kind: communication
+    strand: communication
+    group: transaktionen-termine
+    prerequisites: [termine-vereinbaren, dativ, modalverben]
+    deepens: [termine-vereinbaren, dativ, modalverben]
+    outcomes:
+      - id: beschwerden-beschreiben
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann Beschwerden und ihre Dauer beschreiben."
+        en: "I can describe symptoms and how long I have had them."
+        ru: "Я умею описать жалобы и то, как долго они длятся."
+      - id: praxis-anweisungen-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann einfache Anweisungen in der Praxis und in der Apotheke verstehen."
+        en: "I can understand simple instructions at the doctor's and at the pharmacy."
+        ru: "Я понимаю простые указания в поликлинике и в аптеке."
+      - id: ratschlag-geben
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann einen Ratschlag geben und auf einen Ratschlag antworten."
+        en: "I can give a piece of advice and respond to one."
+        ru: "Я умею дать совет и ответить на совет."
+      - id: krankmeldung-schreiben
+        mode: writing
+        domain: professional
+        de: "Ich kann eine kurze Krankmeldung schreiben."
+        en: "I can write a short message saying I am ill and will not come in."
+        ru: "Я умею написать короткое сообщение о болезни и отсутствии."
+
+  - id: arbeit-beruf
+    level: A2
+    kind: vocab-field
+    strand: vocabulary
+    group: arbeit-bildung
+    prerequisites: [modalverben, alltag-tagesablauf, termine-vereinbaren]
+    deepens: [modalverben, alltag-tagesablauf, termine-vereinbaren]
+    outcomes:
+      - id: aufgaben-beschreiben
+        mode: spoken-production
+        domain: professional
+        de: "Ich kann meine Aufgaben und meine Arbeitszeiten beschreiben."
+        en: "I can describe my duties and my working hours."
+        ru: "Я умею описать свои обязанности и рабочее время."
+      - id: arbeitszeit-aushandeln
+        mode: spoken-interaction
+        domain: professional
+        de: "Ich kann eine Bitte am Arbeitsplatz aussprechen und eine Schicht tauschen."
+        en: "I can make a request at work and swap a shift."
+        ru: "Я умею обратиться с просьбой на работе и поменяться сменой."
+      - id: arbeitsanweisung-verstehen
+        mode: listening
+        domain: professional
+        de: "Ich kann Anweisungen und kurze Nachrichten am Arbeitsplatz verstehen."
+        en: "I can understand instructions and short messages at work."
+        ru: "Я понимаю указания и короткие сообщения на работе."
+      - id: berufliche-nachricht-schreiben
+        mode: writing
+        domain: professional
+        de: "Ich kann eine kurze berufliche Nachricht schreiben."
+        en: "I can write a short work message."
+        ru: "Я умею написать короткое рабочее сообщение."
+
+  - id: nebensaetze-plaene
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: satzbau
+    prerequisites: [praesens-wortstellung, modalverben, arbeit-beruf]
+    deepens: [praesens-wortstellung, modalverben]
+    outcomes:
+      - id: weil-grund
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann einen Grund mit weil nennen: Das Verb steht am Ende."
+        en: "I can give a reason with weil, with the verb at the end."
+        ru: "Я умею назвать причину с помощью weil: глагол уходит в конец."
+      - id: dass-satz
+        mode: writing
+        domain: personal
+        de: "Ich kann mit dass sagen, was ich denke, glaube und hoffe."
+        en: "I can use dass to say what I think, believe and hope."
+        ru: "Я умею с помощью dass сказать, что я думаю, считаю и надеюсь."
+      - id: wenn-bedingung
+        mode: writing
+        domain: personal
+        de: "Ich kann eine Bedingung mit wenn ausdrücken."
+        en: "I can express a condition with wenn."
+        ru: "Я умею выразить условие с помощью wenn."
+      - id: nebensatz-vorfeld-stellung
+        mode: writing
+        domain: personal
+        de: "Ich kann den Nebensatz an den Anfang stellen: Dann kommt das Verb sofort danach."
+        en: "I can front a subordinate clause, with the main verb coming straight after it."
+        ru: "Я умею ставить придаточное в начало: тогда сказуемое главного идёт сразу за ним."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -790,3 +895,21 @@ units:
     title_en: "Shopping & complaints"
     title_ru: "Покупки и рекламации"
     topics: [einkaufen-reklamation]
+  - id: gesundheit-arzttermin
+    level: A2
+    title_de: "Gesundheit & Arzttermin"
+    title_en: "Health & the doctor"
+    title_ru: "Здоровье и приём у врача"
+    topics: [gesundheit-arzttermin]
+  - id: arbeit-beruf
+    level: A2
+    title_de: "Arbeit & Beruf"
+    title_en: "Work & profession"
+    title_ru: "Работа и профессия"
+    topics: [arbeit-beruf]
+  - id: nebensaetze-plaene
+    level: A2
+    title_de: "Nebensätze & Pläne"
+    title_en: "Subordinate clauses & plans"
+    title_ru: "Придаточные предложения и планы"
+    topics: [nebensaetze-plaene]

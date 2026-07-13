@@ -1,0 +1,179 @@
+topic: gesundheit-arzttermin
+role: practice
+title:
+  en: "Practice — at the pharmacy, giving advice, calling in sick"
+  ru: "Практика — в аптеке, советы, сообщение о болезни"
+items:
+  # The graded fact is the OINTMENT, not the tablets. The Lesetext already quotes the
+  # pharmacist's tablet instruction word for word and already quizzes it (frage-apotheker),
+  # so an item keyed on "dreimal täglich, nach dem Essen" can be answered without listening
+  # at all — it measures memory of the reading. Here that remembered answer is option 2,
+  # and the tablets are still spoken, so all three doses compete in the ear and only the
+  # one attached to die Salbe is right.
+  - id: hoeren-in-der-apotheke
+    outcomes: [praxis-anweisungen-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "Herr Vogel is at the pharmacy with a prescription — tablets and an ointment. Listen for what he is told about the ointment."
+      ru: "Господин Фогель пришёл в аптеку с рецептом: таблетки и мазь. Слушайте, что ему говорят именно про мазь."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Apothekerin", text: "Guten Tag, Herr Vogel! Hier sind Ihre Tabletten. Nehmen Sie sie dreimal täglich, immer nach dem Essen." }
+        - { speaker: "Herr Vogel", text: "Vielen Dank. Und die Salbe für den Rücken?" }
+        - { speaker: "Apothekerin", text: "Die Salbe benutzen Sie nur am Abend, also einmal täglich." }
+        - { speaker: "Herr Vogel", text: "Alles klar. Und wie lange soll ich zu Hause bleiben?" }
+        - { speaker: "Apothekerin", text: "Bleiben Sie zwei Tage zu Hause. Dann geht es Ihnen bestimmt besser." }
+    question: "Wie oft benutzt Herr Vogel die Salbe?"
+    options:
+      - "Einmal täglich, am Abend."
+      - "Dreimal täglich, nach dem Essen."
+      - "Zweimal täglich, morgens und abends."
+    correct: 0
+    translation:
+      en: "How often does Mr Vogel use the ointment?"
+      ru: "Как часто господин Фогель пользуется мазью?"
+    explain:
+      en: "Two medicines, two different instructions, and the ear has to keep them apart. The ointment: Die Salbe benutzen Sie nur am Abend, also einmal täglich. Three times a day after meals is the tablets — a real instruction in this conversation, just not the one you were asked about, and the commonest way to get this item wrong is to answer with the dose you remember rather than the one you heard. The two days are how long he stays at home, not a dose at all. Note the verb the pharmacist uses for an ointment: you benutzen it — nehmen is for something you swallow."
+      ru: "Два лекарства, два разных указания — и слух должен их развести. Про мазь сказано: Die Salbe benutzen Sie nur am Abend, also einmal täglich. «Три раза в день после еды» — это про таблетки: указание в диалоге настоящее, просто спрашивают не о нём, и самый частый способ ошибиться здесь — ответить той дозой, которая запомнилась, а не той, которая прозвучала. А два дня — это срок, на который нужно остаться дома, и вовсе не доза. Обратите внимание на глагол, которым аптекарь говорит о мази: ею пользуются — benutzen; nehmen говорят о том, что глотают."
+
+  - id: cloze-seit-vor-diskriminierung
+    outcomes: [beschwerden-beschreiben]
+    type: cloze
+    focus: seit-vor-zeit
+    instruction:
+      en: "seit or vor? No hints this time — decide from the meaning alone."
+      ru: "seit или vor? Подсказок больше нет — решайте только по смыслу."
+    text: "Frau Bauer ist {{seit}} zwei Wochen krank. {{Vor}} zehn Tagen hat der Arzt sie untersucht. Sie nimmt die Tabletten {{seit}} Montag. {{Vor}} einer Woche hat sie die Salbe in der Apotheke gekauft."
+    translation:
+      en: "Mrs Bauer has been ill for two weeks. Ten days ago the doctor examined her. She has been taking the tablets since Monday. A week ago she bought the ointment at the pharmacy."
+      ru: "Госпожа Бауэр болеет уже две недели. Десять дней назад врач её осмотрел. Таблетки она принимает с понедельника. Неделю назад она купила мазь в аптеке."
+    explain:
+      en: "Ask one question at every gap: is it still going on? Mrs Bauer is ill now (seit zwei Wochen) and she is still taking the tablets now (seit Montag). The examination and the trip to the pharmacy happened once and are finished — vor zehn Tagen, vor einer Woche. The Perfekt is a good clue: a finished action with hat … untersucht, hat … gekauft almost always goes with vor, while a state that is still true goes with the present tense and seit. Both prepositions take the dative, and the plural adds -n: zwei Wochen, zehn Tagen."
+      ru: "У каждого пропуска задавайте один и тот же вопрос: это продолжается сейчас? Госпожа Бауэр больна сейчас (seit zwei Wochen) и таблетки принимает сейчас (seit Montag). А осмотр и поход в аптеку случились однажды и уже позади — vor zehn Tagen, vor einer Woche. Perfekt — хорошая подсказка: завершённое действие с hat … untersucht, hat … gekauft почти всегда идёт с vor, а состояние, которое длится до сих пор, — с настоящим временем и seit. Оба предлога требуют Dativ, а множественное число получает -n: zwei Wochen, zehn Tagen."
+
+  - id: uebersetzen-ratschlag-sie
+    outcomes: [ratschlag-geben]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: "You are the doctor. Give the advice."
+      ru: "Вы — врач. Дайте совет."
+    prompt_en: "You should take the medicine every evening."
+    prompt_ru: "Вам следует принимать лекарство каждый вечер."
+    answer: "Sie sollten das Medikament jeden Abend nehmen."
+    accept: ["Sie sollten jeden Abend das Medikament nehmen."]
+    key_tokens: ["sollten", "nehmen"]
+    explain:
+      en: "sollten is the soft, professional way to tell somebody what to do, and as a modal verb it opens a bracket: sollten in position 2, the bare infinitive nehmen at the very end, everything else in between. The two accepted word orders differ only in the middle field — das Medikament jeden Abend or jeden Abend das Medikament — because the bracket itself never moves. What is not allowed is nehmen next to sollten."
+      ru: "sollten — мягкий, профессиональный способ сказать, что нужно делать, и как модальный глагол он открывает рамку: sollten на втором месте, чистый инфинитив nehmen в самом конце, всё остальное между ними. Два принятых варианта различаются только серединой — das Medikament jeden Abend или jeden Abend das Medikament, — потому что сама рамка не двигается. Чего делать нельзя, так это ставить nehmen рядом с sollten."
+
+  - id: uebersetzen-ratschlag-du
+    outcomes: [ratschlag-geben]
+    type: translate
+    focus: imperativ-form
+    instruction:
+      en: "Now the same kind of advice, but to a friend. Translate into German."
+      ru: "Теперь такой же совет, но другу. Переведите на немецкий."
+    prompt_en: "Go to the doctor and take the tablets!"
+    prompt_ru: "Сходи к врачу и прими таблетки!"
+    answer: "Geh zum Arzt und nimm die Tabletten!"
+    key_tokens: ["Geh", "nimm"]
+    explain:
+      en: "A friend gets the du-imperative: the bare stem, first in its clause, with no pronoun at all — Geh …, nimm … Two traps sit in these two verbs. gehen is regular, so the stem is simply geh (an -e on the end, gehe, is old-fashioned). nehmen has the e → i change and keeps it in the imperative: nimm, never nehm. And the second imperative after und keeps its own first position — the sentence has two commands, not one."
+      ru: "Другу адресован императив на du: голая основа, первая в своей части предложения, вообще без местоимения — Geh …, nimm … В этих двух глаголах спрятаны две ловушки. gehen правильный, поэтому основа — просто geh (окончание -e, gehe, звучит старомодно). А у nehmen есть чередование e → i, и в императиве оно сохраняется: nimm, а не nehm. И второй императив после und тоже стоит на первом месте в своей части: здесь два указания, а не одно."
+
+  # The transfer task the unit is built around: you heard `Sie sollten …` at the surgery,
+  # and now you have to relay it at home as `Ich soll …`. The article teaches exactly this
+  # turn, and until this item nothing ever asked the learner to produce it — sollen was
+  # only ever received, never spoken.
+  - id: uebersetzen-soll-anweisung-weitergeben
+    outcomes: [ratschlag-geben]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: "You are back home from the surgery. Your flatmate asks what the doctor told you. Report the instruction with Ich soll …"
+      ru: "Вы вернулись домой от врача. Сосед спрашивает, что вам сказали. Перескажите указание оборотом Ich soll …"
+    prompt_en: "I am supposed to take the tablets three times a day."
+    prompt_ru: "Мне сказали принимать таблетки три раза в день."
+    answer: "Ich soll die Tabletten dreimal täglich nehmen."
+    accept:
+      - "Ich soll dreimal täglich die Tabletten nehmen."
+    key_tokens: ["soll", "nehmen"]
+    explain:
+      en: "sollen is how you pass on somebody else's instruction: the doctor said it, you are only reporting it. Ich muss would make the obligation your own, and Ich sollte would turn it back into advice — but what you were given was neither, it was an order from someone else, and that is precisely what soll carries. The bracket is the same as for any modal: soll in position 2, everything in between, and the bare infinitive nehmen at the very end. Note that soll takes no ending at all in the ich-form — never ich solle."
+      ru: "sollen — это способ передать чужое распоряжение: сказал врач, а вы лишь пересказываете. Ich muss сделало бы обязанность вашей собственной, а Ich sollte снова превратило бы её в совет; но вам дали не то и не другое, а именно указание от другого человека — его-то soll и передаёт. Рамка обычная, как у любого модального глагола: soll на втором месте, всё остальное в середине, а чистый инфинитив nehmen — в самом конце. И обратите внимание: в форме ich у soll нет окончания вовсе — никаких ich solle."
+
+  - id: uebersetzen-reflexiv-frage
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-akkusativ
+    instruction:
+      en: "You are asking a friend. Translate into German."
+      ru: "Вы спрашиваете друга. Переведите на немецкий."
+    prompt_en: "Do you feel better today?"
+    prompt_ru: "Ты сегодня чувствуешь себя лучше?"
+    answer: "Fühlst du dich heute besser?"
+    key_tokens: ["dich"]
+    explain:
+      en: "sich fühlen keeps its reflexive pronoun in a question too, and the pronoun matches the person: du → dich. Fühlst du heute besser? is not a question about how you are — it is missing the word that makes the verb mean feel. Word order is ordinary yes-or-no question order: verb first, subject second, and dich right behind them."
+      ru: "sich fühlen сохраняет возвратное местоимение и в вопросе, причём местоимение согласуется с лицом: du → dich. Вопрос Fühlst du heute besser? — это не вопрос о самочувствии: в нём нет слова, которое придаёт глаголу нужное значение. Порядок слов обычный для вопроса без вопросительного слова: сначала глагол, потом подлежащее, а сразу за ними — dich."
+
+  - id: schreiben-krankmeldung
+    outcomes: [krankmeldung-schreiben, beschwerden-beschreiben]
+    type: write
+    instruction:
+      en: "Write the message yourself, then check it against the list and revise it."
+      ru: "Напишите сообщение сами, потом проверьте его по списку и перепишите."
+    prompt:
+      en: "It is Tuesday morning. You have been ill since Sunday, and you have just come back from the doctor with a sick note. Write a short message to your boss, Frau Richter."
+      ru: "Утро вторника. Вы болеете с воскресенья и только что вернулись от врача с больничным. Напишите короткое сообщение начальнице, госпоже Рихтер."
+    goal:
+      en: "Tell Frau Richter that you are ill, what is wrong, how long it has been going on, and when you will be back at work."
+      ru: "Сообщите госпоже Рихтер, что вы больны, что именно у вас болит, как долго это длится и когда вы вернётесь на работу."
+    requirements:
+      - en: "Greet Frau Richter formally (Sie) and say that you are ill."
+        ru: "Обратитесь к госпоже Рихтер на Sie и скажите, что вы больны."
+      - en: "Name at least one complaint with Ich habe … or Mir tut … weh."
+        ru: "Назовите хотя бы одну жалобу оборотом Ich habe … или Mir tut … weh."
+      - en: "Say how long it has been going on, with seit + Dativ (mind the plural -n: seit drei Tagen)."
+        ru: "Скажите, как долго это длится, — через seit + Dativ (не забудьте -n во множественном числе: seit drei Tagen)."
+      - en: "Say that you have a Krankschreibung and when you will come back to the office."
+        ru: "Скажите, что у вас есть Krankschreibung (больничный), и когда вы вернётесь в офис."
+    min_words: 30
+    model_answer: "Guten Morgen, Frau Richter! Leider bin ich krank. Ich habe seit drei Tagen Fieber, und mir tut der Hals weh. Heute Morgen bin ich zum Arzt gegangen. Die Ärztin hat mich untersucht und eine Krankschreibung geschrieben. Ich komme erst am Donnerstag wieder ins Büro. Vielen Dank für Ihr Verständnis!"
+    model_translation:
+      en: "Good morning, Mrs Richter! Unfortunately I am ill. I have had a fever for three days and my throat hurts. This morning I went to the doctor. She examined me and wrote a sick note. I will not be back in the office until Thursday. Thank you for your understanding!"
+      ru: "Доброе утро, госпожа Рихтер! К сожалению, я болею. У меня уже три дня температура, и болит горло. Сегодня утром я ходил к врачу. Врач меня осмотрела и выписала больничный. Я вернусь в офис только в четверг. Спасибо за понимание!"
+    explain:
+      en: "A sick note in writing does four jobs, and the grammar of this unit does three of them. The complaint: Ich habe Fieber (haben + noun) or mir tut der Hals weh (body part as subject, you in the dative). The duration: seit drei Tagen — seit, because you are still ill, and the plural -n on Tagen. The trip to the doctor is finished, so it is Perfekt: bin ich zum Arzt gegangen, hat mich untersucht. Keep Sie throughout — this is your employer, not a friend. Check your draft against the four points before you rewrite it."
+      ru: "Письменное сообщение о болезни решает четыре задачи, и три из них — грамматика этого урока. Жалоба: Ich habe Fieber (haben + существительное) или mir tut der Hals weh (часть тела — подлежащее, вы — в Dativ). Длительность: seit drei Tagen — seit, потому что вы больны и сейчас, плюс -n во множественном числе у Tagen. Визит к врачу уже позади, поэтому Perfekt: bin ich zum Arzt gegangen, hat mich untersucht. И на протяжении всего сообщения — Sie: это начальница, а не подруга. Прежде чем переписывать черновик, сверьте его с четырьмя пунктами."
+
+  - id: sprechen-beim-arzt
+    outcomes: [beschwerden-beschreiben, ratschlag-geben]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud, listen to yourself, then say it a second time."
+      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+    prompt:
+      en: "You are at the surgery. You have had a sore throat and a fever since Friday. The doctor asks: „Guten Tag! Welche Beschwerden haben Sie?“ — and after your answer she says: „Sie sollten drei Tage zu Hause bleiben.“ Speak both of your turns aloud."
+      ru: "Вы в кабинете врача. С пятницы у вас болит горло и держится температура. Врач спрашивает: «Guten Tag! Welche Beschwerden haben Sie?» — а после вашего ответа говорит: «Sie sollten drei Tage zu Hause bleiben.» Произнесите вслух обе свои реплики."
+    goal:
+      en: "Name your symptoms, say how long you have had them, and then react to the doctor's advice — accept it and ask one thing you still need."
+      ru: "Назовите жалобы, скажите, как долго они длятся, а затем отреагируйте на совет врача — согласитесь и спросите то, что вам ещё нужно."
+    checklist:
+      - en: "I named at least one complaint with Mir tut … weh (dative pronoun) or Ich habe …"
+        ru: "Я назвал(а) хотя бы одну жалобу через Mir tut … weh (местоимение в Dativ) или Ich habe …"
+      - en: "I said how long, with seit + Dativ (seit Freitag, seit vier Tagen — with the plural -n)."
+        ru: "Я сказал(а), как долго, — через seit + Dativ (seit Freitag, seit vier Tagen — с -n во множественном числе)."
+      - en: "I answered the advice instead of only saying ja, and I asked for the one thing I need (a sick note)."
+        ru: "Я ответил(а) на совет, а не ограничился(лась) словом ja, и попросил(а) то, что мне нужно (больничный)."
+    model_answer: "Guten Tag! Ich fühle mich nicht gut. Mir tut der Hals weh, und ich habe seit Freitag Fieber. — Gut, dann bleibe ich zu Hause. Brauche ich eine Krankschreibung für meinen Chef?"
+    model_translation:
+      en: "Good afternoon! I do not feel well. My throat hurts and I have had a fever since Friday. — All right, then I will stay at home. Do I need a sick note for my boss?"
+      ru: "Здравствуйте! Я чувствую себя нехорошо. У меня болит горло, и с пятницы держится температура. — Хорошо, тогда я останусь дома. Нужен ли мне больничный для начальника?"
+    explain:
+      en: "A full turn at the doctor's has three parts, and you can build all three from this unit. How you feel: Ich fühle mich nicht gut — with the reflexive mich, which is not optional. What hurts: Mir tut der Hals weh — the body part is the subject and you are in the dative. Since when: seit Freitag. Then answer the advice like a person, not a form: agree (dann bleibe ich zu Hause — note that dann pushes the verb to position 2 and the subject behind it) and ask the one practical question you actually need answered. Say it a second time and listen for mir and mich."
+      ru: "Полноценная реплика в кабинете состоит из трёх частей, и все три можно построить средствами этого урока. Самочувствие: Ich fühle mich nicht gut — с возвратным mich, которое обязательно. Что болит: Mir tut der Hals weh — часть тела подлежащее, вы в Dativ. С каких пор: seit Freitag. А дальше отвечайте на совет как человек, а не как анкета: согласитесь (dann bleibe ich zu Hause — обратите внимание, что после dann глагол уходит на второе место, а подлежащее за него) и задайте тот практический вопрос, ответ на который вам действительно нужен. Произнесите всё второй раз и вслушайтесь в mir и mich."

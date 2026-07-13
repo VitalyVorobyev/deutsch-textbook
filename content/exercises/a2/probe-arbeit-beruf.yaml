@@ -1,0 +1,84 @@
+topic: arbeit-beruf
+role: probe
+title:
+  en: "Probe — a ban against a released obligation"
+  ru: "Проверка — запрет против снятой обязанности"
+
+# Three PARALLEL variants of ONE competence: producing `darf nicht` for a prohibition
+# and `muss nicht` for an obligation that has been lifted, in the same breath. One
+# variant is drawn per due interval (2, 7, 21 days), so the same skill is measured
+# three times, in three situations the learner has not seen.
+#
+# Why this competence and not modal-satzklammer or du-sie: the bracket is already
+# probed by probe-modalverben, and register is a choice the learner can hedge by
+# defaulting to Sie. darf nicht / muss nicht cannot be hedged — every sentence forces
+# a commitment, the two options are one word apart, and both English and Russian
+# blur exactly the distinction German draws. That is where a half-learned rule
+# collapses, and where a delayed measurement is worth taking.
+#
+# Every variant asks for BOTH modals in one item, so the learner cannot score by
+# guessing one of them; none of them reuses the workplace, the people or the lexis of
+# the practice sets (Nina, Jonas, Frau Kaufmann, the till, the rota, the office).
+#
+# The banned action is deliberately never smoking. `nicht rauchen` is the single most
+# repeated frame in this unit — the notice on the door, the manager's announcement, the
+# match item, the article's error list and the practice translate all use it — so a
+# probe built on it can be answered from memory of the practice item it copies, which
+# measures recognition of that item and not retention of the rule. A library, a fixed
+# holiday, an evening of television: three settings the unit never enters.
+
+items:
+  - id: variant-a
+    outcomes: [aufgaben-beschreiben]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: Translate into German. You work in a university library and you are showing two new students around.
+      ru: Переведите на немецкий. Вы работаете в университетской библиотеке и показываете двум новым студентам, что тут и как.
+    prompt_en: "The students are not allowed to eat in the library. But they do not have to pay anything for the books."
+    prompt_ru: "В библиотеке студентам нельзя есть. Но платить за книги они не обязаны."
+    answer: "In der Bibliothek dürfen die Studenten nicht essen. Aber sie müssen für die Bücher nichts bezahlen."
+    key_tokens: ["dürfen", "müssen"]
+    accept:
+      - "Die Studenten dürfen in der Bibliothek nicht essen. Aber sie müssen für die Bücher nichts bezahlen."
+      - "In der Bibliothek dürfen die Studenten nicht essen. Aber sie müssen nichts für die Bücher bezahlen."
+      - "Die Studenten dürfen in der Bibliothek nicht essen. Aber sie müssen nichts für die Bücher bezahlen."
+    explain:
+      en: "Two negated modals, and only one of them forbids anything. Eating is banned, and a ban is dürfen + nicht — never müssen + nicht, which would merely say that the students are not obliged to eat. Paying is the opposite case: nothing is being forbidden, a cost has simply been lifted, and that is müssen + nicht (here with nichts, because what is negated is the thing paid). Both verbs are plural (die Studenten, sie), so they carry the -en of the infinitive: dürfen, müssen. And both close a bracket — essen and bezahlen stand at the very end."
+      ru: "Два модальных глагола с отрицанием — и запрещает только один из них. Есть в библиотеке запрещено, а запрет — это dürfen + nicht, но никак не müssen + nicht, которое сказало бы лишь, что студенты не обязаны есть. С оплатой всё наоборот: ничего не запрещено, просто нет обязанности платить, а это müssen + nicht (здесь с nichts, потому что отрицается то, что платят). Оба глагола во множественном числе (die Studenten, sie), поэтому у них окончание инфинитива: dürfen, müssen. И оба закрывают рамку — essen и bezahlen стоят в самом конце."
+
+  - id: variant-b
+    outcomes: [aufgaben-beschreiben]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: Translate into German. You are telling a friend about your own summer.
+      ru: Переведите на немецкий. Вы рассказываете другу о своём лете.
+    prompt_en: "I don't have to work on Saturday. But I am not allowed to take a holiday in July."
+    prompt_ru: "В субботу мне не нужно работать. Но взять отпуск в июле мне нельзя."
+    answer: "Ich muss am Samstag nicht arbeiten. Aber ich darf im Juli keinen Urlaub nehmen."
+    key_tokens: ["muss", "darf"]
+    accept:
+      - "Am Samstag muss ich nicht arbeiten. Aber ich darf im Juli keinen Urlaub nehmen."
+      - "Ich muss am Samstag nicht arbeiten. Aber ich darf im Juli keinen Urlaub machen."
+      - "Am Samstag muss ich nicht arbeiten. Aber ich darf im Juli keinen Urlaub machen."
+    explain:
+      en: "This time the released obligation comes first: nobody is stopping you from working on Saturday, you are simply not required to — muss nicht. The holiday is the ban, and a ban is dürfen: ich darf keinen Urlaub nehmen. Notice that the negation there is keinen, not nicht, because what is being negated is a noun with an article (einen Urlaub) — but the modal is unchanged by that, and darf is still what makes the sentence a prohibition. In the singular both modals lose every ending: ich muss, ich darf."
+      ru: "На этот раз снятая обязанность идёт первой: работать в субботу вам никто не запрещает, просто вы не обязаны — muss nicht. Отпуск же — это запрет, а запрет выражается через dürfen: ich darf keinen Urlaub nehmen. Обратите внимание, что отрицание там keinen, а не nicht, потому что отрицается существительное с артиклем (einen Urlaub); на модальный глагол это никак не влияет, и запретом предложение делает именно darf. В единственном числе оба модальных глагола теряют всякое окончание: ich muss, ich darf."
+
+  - id: variant-c
+    outcomes: [aufgaben-beschreiben]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: Translate into German. A colleague is telling you about her daughter, and you repeat it back to check you understood.
+      ru: Переведите на немецкий. Коллега рассказывает вам о своей дочери, и вы повторяете услышанное, чтобы проверить, что всё поняли.
+    prompt_en: "Her daughter is not allowed to watch television today. But she does not have to get up early tomorrow."
+    prompt_ru: "Её дочери нельзя сегодня смотреть телевизор. Но вставать рано завтра ей не придётся."
+    answer: "Ihre Tochter darf heute nicht fernsehen. Aber sie muss morgen nicht früh aufstehen."
+    key_tokens: ["darf", "muss"]
+    accept:
+      - "Ihre Tochter darf heute nicht fernsehen. Aber morgen muss sie nicht früh aufstehen."
+    explain:
+      en: "Television is forbidden — a punishment, and therefore darf nicht. The early start is not forbidden, it is merely unnecessary: nothing stops her from getting up at six if she wants to, so it is muss nicht. Both modals are third person singular and take no ending at all: darf, muss — never darft or musst. Both infinitives are separable verbs, and neither of them splits, because a modal is holding the conjugated slot: fernsehen and aufstehen stay whole at the end."
+      ru: "Телевизор запрещён — это наказание, а значит, darf nicht. Ранний подъём не запрещён, он просто не нужен: встать в шесть ей никто не мешает, поэтому muss nicht. Оба модальных глагола стоят в третьем лице единственного числа и не имеют окончания вовсе: darf, muss — но не darft и не musst. Оба инфинитива — глаголы с отделяемой приставкой, и ни один из них не распадается, потому что спрягаемое место занято модальным: fernsehen и aufstehen остаются целыми в конце."

@@ -1,0 +1,245 @@
+topic: nebensaetze-plaene
+role: practice
+title:
+  en: "Practice — weil, dass, wenn: the verb goes to the end"
+  ru: "Практика — weil, dass, wenn: глагол уходит в конец"
+items:
+  - id: table-hauptsatz-zu-nebensatz
+    outcomes: [weil-grund]
+    type: table
+    focus: nebensatz-verbende
+    title: "Aus dem Hauptsatz wird ein Nebensatz"
+    instruction:
+      en: "Turn each main clause into a weil-clause. Write only the clause itself, starting with weil (no comma, no full stop)."
+      ru: "Превратите каждое главное предложение в придаточное с weil. Пишите только само придаточное, начиная с weil (без запятой и точки)."
+    columns: ["Hauptsatz", "Nebensatz: Ich komme nicht mit, …"]
+    rows:
+      - label: "Präsens"
+        cells:
+          - { answer: "Ich habe am Sonntag keine Zeit.", given: true }
+          - { answer: "weil ich am Sonntag keine Zeit habe" }
+      - label: "Modalverb"
+        cells:
+          - { answer: "Yusuf muss am Sonntag arbeiten.", given: true }
+          - { answer: "weil Yusuf am Sonntag arbeiten muss" }
+      - label: "Trennbares Verb"
+        cells:
+          - { answer: "Nina steht um sechs Uhr auf.", given: true }
+          - { answer: "weil Nina um sechs Uhr aufsteht" }
+      - label: "Perfekt"
+        cells:
+          - { answer: "Tobias hat den Zug verpasst.", given: true }
+          - { answer: "weil Tobias den Zug verpasst hat" }
+    explain:
+      en: "One rule, four shapes: the conjugated verb goes to the very end of the clause. In the present tense that is the whole verb (habe). With a modal, the conjugated verb is the modal, so the infinitive comes first and muss closes the clause: arbeiten muss — never muss arbeiten. A separable verb has nothing to separate from any more, because there is no position 2 left to leave behind, so the prefix rejoins it: aufsteht. And in the Perfekt the conjugated word is the auxiliary, so the participle comes first and habe/hat closes the clause: verpasst hat."
+      ru: "Одно правило, четыре формы: спрягаемый глагол уходит в самый конец придаточного. В настоящем времени это сам глагол (habe). При модальном спрягается модальный, поэтому сначала идёт инфинитив, а muss закрывает придаточное: arbeiten muss — но никогда muss arbeiten. Отделяемой приставке отделяться больше не от чего, ведь второго места, которое она покидала бы, здесь нет: приставка возвращается к глаголу — aufsteht. А в Perfekt спрягается вспомогательный глагол, поэтому сначала причастие, а закрывает придаточное habe/hat: verpasst hat."
+
+  - id: cloze-weil-verb-ans-ende
+    outcomes: [weil-grund]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Two people are giving their reason. Put the verb where a weil-clause needs it."
+      ru: "Двое называют свою причину. Поставьте глагол туда, где его требует придаточное с weil."
+    text: "Yusuf kommt nicht mit, weil er am Sonntag {{arbeitet}}. Nina hat auch keine Zeit, weil sie ihre Eltern {{besucht}}."
+    translation:
+      en: "Yusuf is not coming along, because he works on Sunday. Nina has no time either, because she is visiting her parents."
+      ru: "Юсуф не поедет с нами, потому что в воскресенье он работает. У Нины тоже нет времени, потому что она навещает родителей."
+    explain:
+      en: "Both gaps sit at the wall at the end of the clause, and that is not an accident — it is where a Nebensatz keeps its conjugated verb. As a main clause each half would read Er arbeitet am Sonntag and Sie besucht ihre Eltern, with the verb in position 2. The word weil is what moved it: everything after weil is a Nebensatz, and a Nebensatz ends with its verb."
+      ru: "Оба пропуска стоят у самой стены, в конце придаточного, и это не случайность: именно там придаточное держит спрягаемый глагол. Как самостоятельные предложения обе половины звучали бы Er arbeitet am Sonntag и Sie besucht ihre Eltern — глагол на втором месте. Сдвинуло его слово weil: всё, что идёт после weil, — придаточное, а придаточное заканчивается глаголом. Русское «потому что» так не делает, и подсказки от родного языка здесь ждать не приходится."
+
+  # focus is nebensatz-verbende, NOT modal-satzklammer: that tag names the main-clause
+  # bracket (modal in position 2, infinitive at the end), and this item drills the exact
+  # opposite placement — both verbs collapsed onto the end of the clause, conjugated one
+  # last. An error here is a failure of the Nebensatz rule, and that is what it must be
+  # logged as.
+  - id: cloze-weil-modal-am-ende
+    outcomes: [weil-grund]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "A modal verb in a weil-clause: the infinitive first, the modal at the very end."
+      ru: "Модальный глагол в придаточном с weil: сначала инфинитив, модальный — в самом конце."
+    text: "Ich komme nicht mit, weil ich am Samstag {{arbeiten}} {{muss}}. Yusuf sagt, dass er auch nicht {{kommen}} {{kann}}."
+    translation:
+      en: "I am not coming along, because I have to work on Saturday. Yusuf says that he cannot come either."
+      ru: "Я не поеду с вами, потому что в субботу мне нужно работать. Юсуф говорит, что он тоже не сможет приехать."
+    explain:
+      en: "In a main clause the modal holds position 2 and the infinitive closes the sentence: Ich muss am Samstag arbeiten. In a Nebensatz there is no position 2 to hold, so the whole bracket collapses to the end — and the order inside it stays the same: infinitive, then modal. arbeiten muss, kommen kann. The rule is simply 'the conjugated verb is last', applied honestly: muss and kann are the conjugated verbs here, so they are the last words."
+      ru: "В главном предложении модальный занимает второе место, а инфинитив закрывает предложение: Ich muss am Samstag arbeiten. В придаточном второго места нет, поэтому вся рамка складывается в конец — а порядок внутри неё сохраняется: сначала инфинитив, потом модальный. arbeiten muss, kommen kann. Правило работает буквально: последним стоит спрягаемый глагол, а спрягаемые здесь — muss и kann."
+
+  - id: mc-denn-hauptsatz
+    outcomes: [weil-grund]
+    type: mc
+    focus: weil-denn
+    instruction:
+      en: "Which continuation is correct German?"
+      ru: "Какое продолжение — правильный немецкий?"
+    prompt: "Ich fahre am Sonntag nicht zum See, ___"
+    options:
+      - "denn ich habe keine Zeit."
+      - "denn ich keine Zeit habe."
+      - "weil ich habe keine Zeit."
+    correct: 0
+    translation:
+      en: "I am not driving to the lake on Sunday, because I have no time."
+      ru: "В воскресенье я не поеду на озеро, потому что у меня нет времени."
+    explain:
+      en: "denn glues two main clauses together and changes nothing: the clause behind it looks exactly as it would standing alone — Ich habe keine Zeit, verb in position 2. Option 2 sends the verb to the end after denn, which is what weil would demand. Option 3 does the opposite: it writes weil and then leaves the verb in position 2. Cover the conjunction with your finger and read on — after denn what follows must be a complete German sentence."
+      ru: "denn склеивает два главных предложения и ничего не меняет: часть после него выглядит ровно так, как выглядела бы отдельно, — Ich habe keine Zeit, глагол на втором месте. Во втором варианте глагол после denn отправлен в конец — так требовал бы weil. В третьем ошибка зеркальная: написано weil, а глагол остался на втором месте. Проверка простая: закройте союз пальцем и прочитайте дальше — после denn должно звучать законченное немецкое предложение."
+
+  - id: cloze-weil-oder-denn
+    outcomes: [weil-grund]
+    type: cloze
+    focus: weil-denn
+    instruction:
+      en: "The word order is already there. Fill in the conjunction it belongs to: weil or denn."
+      ru: "Порядок слов уже задан. Вставьте союз, которому он принадлежит: weil или denn."
+    text: "Nina bleibt heute zu Hause, {{weil}} das Wetter schlecht ist. Yusuf kommt auch nicht, {{denn}} er hat viel Arbeit."
+    translation:
+      en: "Nina is staying at home today, because the weather is bad. Yusuf is not coming either, because he has a lot of work."
+      ru: "Нина сегодня остаётся дома, потому что погода плохая. Юсуф тоже не придёт — у него ведь много работы."
+    explain:
+      en: "Read the verb, then choose the word. In the first clause ist stands at the end, and only a subordinating conjunction puts it there: weil. In the second, hat stands in position 2, which is where a main clause keeps it — so the conjunction must be the coordinating one: denn. The two sentences mean the same thing; the syntax, not the meaning, decides which word you may write."
+      ru: "Сначала посмотрите на глагол, потом выбирайте слово. В первой части ist стоит в конце, а туда его отправляет только подчинительный союз — weil. Во второй hat стоит на втором месте, как и положено в главном предложении, — значит союз сочинительный: denn. Смысл у обоих предложений один и тот же; выбор слова определяет синтаксис, а не значение."
+
+  - id: mc-dass-verb-ans-ende
+    outcomes: [dass-satz]
+    type: mc
+    focus: nebensatz-verbende
+    instruction:
+      en: "Nina is giving her opinion. Which version is correct?"
+      ru: "Нина высказывает своё мнение. Какой вариант правильный?"
+    prompt: "Nina meint, ___"
+    options:
+      - "dass der Sonntag besser ist."
+      - "dass der Sonntag ist besser."
+      - "weil der Sonntag besser ist."
+    correct: 0
+    translation:
+      en: "Nina thinks that Sunday is better."
+      ru: "Нина считает, что воскресенье лучше."
+    explain:
+      en: "Two decisions in one item, and the wrong options take one each. Option 2 gets the conjunction right and the word order wrong: dass opens a Nebensatz, and a Nebensatz ends with its conjugated verb, so ist has to be the last word — leaving it in position 2 is the shape of a main clause, as if dass were not there. Option 3 does the reverse: the word order is flawless, but the conjunction is not the one this sentence needs. weil answers Warum? and gives a reason; dass reports the content of what somebody thinks, hopes or says. Nina meint, weil … would leave you waiting for the thought she actually had."
+      ru: "В одном задании два решения, и каждый неверный вариант ошибается ровно в одном. Во втором союз выбран правильно, а порядок слов — нет: dass вводит придаточное, а придаточное заканчивается спрягаемым глаголом, поэтому ist обязано быть последним словом; оставить его на втором месте — значит построить главное предложение, будто dass и нет вовсе. В третьем всё наоборот: порядок слов безупречен, а союз не тот. weil отвечает на вопрос Warum? и называет причину; dass передаёт содержание того, что человек думает, надеется или говорит. После Nina meint, weil … так и остаёшься в ожидании самой мысли."
+
+  - id: cloze-dass-meinung-hoffnung
+    outcomes: [dass-satz]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Say what you hope and what Yusuf thinks. Put the verb at the end of the dass-clause."
+      ru: "Скажите, на что вы надеетесь и что думает Юсуф. Поставьте глагол в конец придаточного с dass."
+    text: "Ich hoffe, dass die Sonne am Sonntag {{scheint}}. Yusuf meint, dass der See zu weit {{ist}}."
+    translation:
+      en: "I hope that the sun shines on Sunday. Yusuf thinks that the lake is too far away."
+      ru: "Надеюсь, что в воскресенье будет солнце. Юсуф считает, что до озера слишком далеко."
+    explain:
+      en: "hoffen, meinen, glauben and sagen all open a dass-clause, and the clause behaves the same way every time: the conjugated verb waits at the very end. Watch the second gap especially — ist is a tiny word and it is easy to leave it where English would put it (that the lake is too far). German finishes the clause with it: dass der See zu weit ist."
+      ru: "Глаголы hoffen, meinen, glauben и sagen вводят придаточное с dass, и оно каждый раз ведёт себя одинаково: спрягаемый глагол ждёт в самом конце. Особое внимание — на второй пропуск: ist слово короткое, и его легко оставить там, где его ставит русский («что до озера слишком далеко» — глагола нет вовсе, а «что озеро слишком далеко» его и не требует). Немецкий обязан закрыть придаточное глаголом: dass der See zu weit ist."
+
+  - id: cloze-wenn-bedingung
+    outcomes: [wenn-bedingung]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Two conditions, two plans. Complete the wenn-clauses."
+      ru: "Два условия, два плана. Дополните придаточные с wenn."
+    text: "Wir fahren zum See, wenn das Wetter gut {{ist}}. Wir gehen ins Museum, wenn es {{regnet}}."
+    translation:
+      en: "We will drive to the lake if the weather is good. We will go to the museum if it rains."
+      ru: "Мы поедем на озеро, если погода будет хорошая. Мы пойдём в музей, если пойдёт дождь."
+    explain:
+      en: "wenn is a subordinating conjunction like weil and dass, so the same rule applies: the verb closes the clause. Note the tense — German uses the plain present inside a wenn-clause even when the whole sentence is about the future. regnet, not any special conditional form: there is nothing extra to learn here beyond the position of the verb."
+      ru: "wenn — подчинительный союз, как weil и dass, поэтому правило то же: глагол закрывает придаточное. Обратите внимание на время: внутри придаточного с wenn немецкий ставит обычное настоящее, даже если всё предложение о будущем. Не «пойдёт дождь», а просто regnet — никакой особой формы учить не нужно, важна только позиция глагола."
+
+  # focus is verbzweit on purpose, and it is the one item in this topic where that tag is
+  # the honest one: the point being made is that the main verb is STILL in position 2 —
+  # nothing new has happened to it, the whole subordinate clause has merely become
+  # position 1. (The Nebensatz's own verb is not what is being chosen here; the options
+  # differ only in what follows the comma.) It is also the only channel by which an error
+  # here can resurface the base topic: weakness is aggregated per focus tag and is blind
+  # to the topic an attempt came from, so a verbzweit error logged here pulls
+  # praesens-wortstellung's practice items back into mixed training. That shared tag is
+  # the entire runtime meaning of this node's `deepens: [praesens-wortstellung]` edge —
+  # retag this item and the edge goes inert.
+  - id: mc-vorfeld-inversion
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: mc
+    focus: verbzweit
+    instruction:
+      en: "The wenn-clause comes first. What follows the comma?"
+      ru: "Придаточное с wenn стоит первым. Что идёт после запятой?"
+    prompt: "Wenn ich Zeit habe, ___"
+    options:
+      - "komme ich mit."
+      - "ich komme mit."
+      - "ich mitkomme."
+    correct: 0
+    translation:
+      en: "If I have time, I will come along."
+      ru: "Если у меня будет время, я поеду с вами."
+    explain:
+      en: "The conjugated verb of a main clause stands in position 2 — that rule has not changed since your very first German sentence. What has changed is what can fill position 1: here it is the entire clause Wenn ich Zeit habe. So position 2 belongs to komme, and the subject ich drops in behind it. It is exactly the inversion of Am Sonntag komme ich mit; only the size of position 1 is new."
+      ru: "Спрягаемый глагол главного предложения стоит на втором месте — это правило не менялось с вашего самого первого немецкого предложения. Изменилось другое: что именно может занимать первое место. Здесь его занимает всё придаточное целиком — Wenn ich Zeit habe. Значит, второе место принадлежит глаголу komme, а подлежащее ich уходит за него. Это ровно та же инверсия, что в Am Sonntag komme ich mit; ново лишь то, каким «большим» оказалось первое место."
+
+  - id: order-wenn-vorfeld
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: order
+    focus: nebensatz-vorfeld
+    instruction:
+      en: "Arrange the words into a correct sentence. The wenn-clause comes first."
+      ru: "Составьте правильное предложение. Придаточное с wenn стоит первым."
+    words: ["Wenn", "Yusuf", "Zeit", "hat,", "kommt", "er", "mit."]
+    translation:
+      en: "If Yusuf has time, he will come along."
+      ru: "Если у Юсуфа будет время, он поедет с нами."
+    explain:
+      en: "Two verb positions, two different rules, and they land next to each other across the comma. Inside the wenn-clause the verb goes last: hat. The clause then fills position 1 of the main clause, so the main verb takes position 2 immediately after the comma: kommt — and only then the subject er. hat, kommt side by side looks strange the first time and is completely ordinary German."
+      ru: "Две глагольные позиции, два разных правила — и оба глагола оказываются рядом, по обе стороны запятой. Внутри придаточного с wenn глагол идёт последним: hat. Само придаточное занимает первое место главного предложения, поэтому глагол главного встаёт на второе — сразу после запятой: kommt, — и только за ним подлежащее er. Соседство hat, kommt в первый раз выглядит странно, но для немецкого это совершенно нормально."
+
+  - id: uebersetzen-weil-krank
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Give the reason with weil."
+      ru: "Переведите на немецкий. Назовите причину с помощью weil."
+    prompt_en: "Nina is staying at home because she is ill."
+    prompt_ru: "Нина остаётся дома, потому что она заболела."
+    answer: "Nina bleibt zu Hause, weil sie krank ist."
+    key_tokens: ["ist"]
+    explain:
+      en: "The clause after weil is a Nebensatz, so the conjugated verb has one place to be: the very end. sie krank ist, never sie ist krank. English keeps the verb exactly where it always was — 'because she is ill' — so nothing in the source sentence warns you that anything has to move. That is why the rule has to be applied on purpose until it becomes a habit."
+      ru: "После weil идёт придаточное, а значит у спрягаемого глагола есть только одно место — самый конец: sie krank ist, а не sie ist krank. Русское «потому что она больна» глагол никуда не двигает, так что подсказки в исходном предложении нет вовсе. Именно поэтому правило приходится применять сознательно — пока оно не станет привычкой."
+
+  - id: uebersetzen-dass-wetter
+    outcomes: [dass-satz]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Use dass."
+      ru: "Переведите на немецкий. Используйте dass."
+    prompt_en: "I hope that the weather is good on Sunday."
+    prompt_ru: "Я надеюсь, что в воскресенье будет хорошая погода."
+    answer: "Ich hoffe, dass das Wetter am Sonntag gut ist."
+    key_tokens: ["ist"]
+    explain:
+      en: "Two things are easy to lose here. The comma before dass is compulsory in German. And the verb ist belongs at the very end of the dass-clause — dass das Wetter am Sonntag gut ist — not next to the subject where the English sentence keeps it. The time phrase am Sonntag simply sits inside the clause and changes nothing: only the verb has a fixed address."
+      ru: "Здесь легко потерять две вещи. Запятая перед dass в немецком обязательна. И глагол ist стоит в самом конце придаточного — dass das Wetter am Sonntag gut ist, — а не рядом с подлежащим, как это было бы по-русски («что погода будет хорошая»). Обстоятельство времени am Sonntag просто стоит внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола."
+
+  - id: hoeren-weil-arbeiten-muss
+    outcomes: [weil-grund]
+    type: listen
+    focus: nebensatz-verbende
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+    text: "Ich komme nicht mit, weil ich arbeiten muss."
+    translation:
+      en: "I am not coming along, because I have to work."
+      ru: "Я не поеду с вами, потому что мне нужно работать."
+    explain:
+      en: "Listen to the very end of the sentence: the last thing you hear is muss, and the infinitive arbeiten comes before it. That order — infinitive, then conjugated modal — is what tells you a Nebensatz is closing. The comma before weil belongs in the written sentence too, even though you cannot hear it."
+      ru: "Вслушайтесь в самый конец фразы: последним звучит muss, а инфинитив arbeiten стоит перед ним. Именно этот порядок — сначала инфинитив, потом спрягаемый модальный — и говорит, что придаточное закрывается. Запятая перед weil в записи тоже обязательна, хотя на слух её и не слышно."
