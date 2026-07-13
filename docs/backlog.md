@@ -158,7 +158,7 @@ drills (31 items, inherited from A1).
 - Accept per unit: the twelve-point A2 unit quality gate in the audit; the learning-science review;
   the full repository gate.
 
-### P4-6 · Give the writing outcomes verified evidence — `todo` (S)
+### P4-6 · Give the writing outcomes verified evidence — `done` (S)
 
 Five A2 outcomes are measured *only* by a `write` item: `einladung-schreiben`,
 `kursanfrage-schreiben`, `formelle-nachricht-schreiben`, `krankmeldung-schreiben`, `nachbarn-bitte`.
@@ -172,17 +172,42 @@ the `write` was scored.
 
 - Accept: every declared outcome has at least one verified measurement, or the Fortschritt page says
   plainly which outcomes are practice-only.
+- Done (PR #38). Each of the five now carries a verified `translate` alongside its `write`, on the
+  `profil-schreiben` model. **All 61 A2 outcomes have a verified measurement.** One correction to the
+  note above: `nachbarn-bitte` was carried by a `speak` item, not a `write` — the same defect, since
+  `speak` also logs unverified evidence. Both new items use a focus their own topic **owns** rather
+  than `preview: true`: tagging `hoeflich-konjunktiv` in unit 7 would have marked the learner weak on
+  a confusion the course does not teach until unit 16, and weakness is aggregated course-wide.
 
-### P4-5 · Close A2 — `todo` (M)
+### P4-5 · Close A2 — `done` (M)
 
 The cumulative A2 checkpoint and its page; the Goethe-A2 Wortliste completion pass; two or three A2
 extensive readers; the Über page's A2 card rewritten from a hand-written hedge to a computed claim;
-the 2026-08-02 probe report folded into the audit; a 0.3.0 release.
+a 0.3.0 release.
 
-- Depends on: P4-4, P3-6.
+- Depended on: P4-4. **P3-6 was re-read as advisory, not blocking** — see below.
 - Accept: the checkpoint is reachable only when the A2 path is done and never enters ordinary
   training; the Über page's A2 figures match `bun scripts/coverage.ts A2`; no page claims A2 is more
-  finished than it is.
+  finished than it is. All met.
+- Done in PRs #30, #31, #32–#37, #38. **A2: 1449/1449 (100%). A1: 673/673.**
+
+**Why P3-6 no longer blocks this.** The gate's stated purpose was *"if A1 misses the bar, authoring
+stops: the units written by then are revised against the finding, and the lesson pattern is fixed
+before another unit is written."* All sixteen A2 units were already written when this work began, so
+the gate can no longer protect what it was written to protect. It is now what it always really was: a
+**revision trigger**. The cohort is read on 2026-08-02 (P3-6, still open); if A1 misses ≥80% / ≥70%,
+that drives a 0.3.x revision of the lesson pattern across both levels. Releasing 0.3.0 first does not
+weaken that — a release is a distribution event, not a claim about retention, and the Über page makes
+no claim about retention.
+
+**What the work actually turned out to be about.** The Wortliste completion pass was the smaller half.
+The larger half was that the *instrument* could not be trusted with the claim it was about to make:
+a `~` in a manifest (taught as grammar, no flashcard) counted toward the published percentage on the
+manifest's own say-so, and nine of those marks were false — eight words that appeared nowhere in
+`content/`, and A1's `euer`, which appeared only inside English prose *about* German. A1's 100% was
+not fully earned. `bun run validate` now hard-fails an unearned `~`, and the check went on to refuse
+its author's own frozen plan (teaching `Disko`/`Klub` inside vocab example sentences — which
+`taughtSurface` excludes, correctly, because a word used in another word's example is not taught).
 
 ## Later — Phase 5 (deferred)
 
