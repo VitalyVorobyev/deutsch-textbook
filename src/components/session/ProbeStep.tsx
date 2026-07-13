@@ -143,6 +143,9 @@ export default function ProbeStep({ due, sets, onFinished }: Props) {
 
       <div className="mt-5">
         <ItemView
+          // Probe item ids are unique only inside their own family, and consecutive
+          // queue entries come from different families — so the set id belongs in the key.
+          instanceKey={`${current!.setId}::${current!.item.id}`}
           item={current!.item}
           lang={lang}
           onResult={handleResult}
