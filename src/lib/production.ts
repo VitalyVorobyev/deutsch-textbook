@@ -20,10 +20,13 @@
  * fallbacks are the old behaviour (attribute to the item's tag), so an unaudited item
  * is never made *worse* than it was — only a declared item gets the sharper treatment.
  *
- * Dictation (`listen`) deliberately uses none of this: there, spelling IS the drill.
+ * Dictation (`listen`) is *scored* by none of this: there, spelling IS the drill, and a typo
+ * is a miss. But it borrows rule 2's principle for *attribution* — see `dictationSlip` — because
+ * a `listen` item's `focus` is still a grammar tag, and a mistyped noun is not evidence about
+ * the grammar the dictation drills.
  */
 
-import { normalizeTranslation } from './cloze';
+import { normalizeDictation, normalizeTranslation } from './cloze';
 import { diffExpectedWords } from './worddiff';
 
 /** Strip attached punctuation, so `Bahnhof?` and `Bahnhof` are the same token. */
@@ -132,8 +135,14 @@ const isFunctionWordSwap = (typed: string, expected: string) =>
  * `dativ-artikel` dictation exists to grade — one edit apart *and* the thing being measured.
  */
 export function dictationSlip(given: string, expected: string): boolean {
-  const want = tokenize(expected);
-  const got = tokenize(given);
+  // Tokenized the way a dictation is *scored*, not the way a translation is. `dictationMatches`
+  // strips ALL punctuation — you cannot hear a comma — so a learner who omits one has done
+  // nothing wrong by that item's own rules. Tokenizing with `normalizeTranslation` (which
+  // strips only a trailing `.!?`) would leave `nicht,` attached, and on a comma-bearing
+  // sentence the missing comma plus one typo would read as *two* divergences — no longer a
+  // slip, and the false grammar attribution this function exists to prevent would survive.
+  const want = normalizeDictation(expected).split(/\s+/).filter(Boolean);
+  const got = normalizeDictation(given).split(/\s+/).filter(Boolean);
   if (want.length !== got.length) return false;
 
   const diverged = want.reduce<number[]>((acc, tok, i) => {
@@ -261,46 +270,58 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
   if (!spec.focus) return { kind: 'wrong' };
   if (graded.size === 0) return { kind: 'wrong', focus: spec.focus };
 
-  const answerTokens = tokenize(spec.answer);
-  const differs = diffExpectedWords(answerTokens, givenTokens);
-  if (answerTokens.some((_tok, i) => differs[i] && isGraded(answerTokens, i))) {
-    return { kind: 'wrong', focus: spec.focus };
-  }
+  /**
+   * Attribution is judged against the rendering the learner was actually aiming at — the
+   * accepted sentence their answer resembles most — and never against `answer` alone.
+   *
+   * Two different bugs come from measuring against `answer` when the learner aimed elsewhere:
+   *
+   * 1. An `accept` variant may substitute a *synonym for a graded token*. The lernen-verstehen
+   *    item pins `beginnt` and accepts `anfängt`. A learner who writes the accepted verb, in
+   *    the correct final position, and fumbles an unrelated article (`wann der Prüfung
+   *    anfängt?`) has made no word-order error at all — but measured against `answer`, the
+   *    pinned `beginnt` looks *missing*, and the attempt is logged against `indirekte-frage`.
+   *
+   * 2. An `accept` variant that legitimately fronts a time phrase shifts every later word by
+   *    one, so measured against `answer` every shifted slot looks misplaced — blaming the tag
+   *    for word order the learner got right.
+   *
+   * Both would put a false entry in the one signal that steers training priority and drill
+   * authoring, which is worse than no entry at all.
+   */
+  const target = candidates
+    .map(tokenize)
+    .map((want) => ({ want, matched: diffExpectedWords(want, givenTokens).filter((d) => !d).length }))
+    // Stable sort, so `answer` wins a tie — it is the first candidate.
+    .sort((a, b) => b.matched - a.matched)[0]!.want;
+
+  const differs = diffExpectedWords(target, givenTokens);
+
+  // Is a word this item grades simply *absent* from what the learner wrote?
+  const absentGraded = target.some((_tok, i) => differs[i] && isGraded(target, i));
 
   /**
-   * The diff above answers one question: which expected words are *missing* from what the
-   * learner wrote. A transposition is not a missing word. `… weil ich am Samstag arbeiten
-   * muss` typed as `… weil ich am Samstag muss arbeiten` still contains both words, so the
-   * alignment happily matches the learner's `muss` to the expected `muss` and reports only
-   * `arbeiten` as diverged. The item pins `muss` — the verb whose placement it grades — that
-   * verb is reported present, and the attempt is logged wrong but **unattributed**. The tag
-   * the item exists to measure never fires for the one error the item exists to catch.
+   * And the question an alignment diff structurally cannot answer: did the learner put
+   * something *else* into a slot this item grades?
+   *
+   * A transposition is not a missing word. `… weil ich am Samstag arbeiten muss` typed as
+   * `… weil ich am Samstag muss arbeiten` still contains both words, so the alignment matches
+   * the learner's `muss` to the expected `muss` and reports only `arbeiten` as diverged. The
+   * item pins `muss` — the verb whose placement it grades — that verb is reported present, and
+   * the attempt is logged wrong but **unattributed**. The tag never fires for the one error the
+   * item exists to catch.
    *
    * Every verb-final family was silently affected — `nebensatz-verbende`, `indirekte-frage`,
    * `modal-satzklammer`, `trennbar-modal`, `perfekt-satzklammer` — across practice, drill and
    * **probe** items alike. So the retention curve for a word-order rule was being read off
    * items that could not attribute their own signature error, and `weakFocuses()` could never
    * see a learner who systematically collapses the Satzklammer.
-   *
-   * So ask the other question too: did the learner put something *else* into a slot this item
-   * grades? That is what "word order" means here, and it is positional by nature.
-   *
-   * Compare against whichever accepted rendering the learner came closest to, not against
-   * `answer` alone: an `accept` variant that legitimately fronts a time phrase shifts every
-   * later word by one, and measured against `answer` those shifted slots would all look like
-   * misplacements — blaming the tag for word order the learner got right.
    */
-  const nearest = candidates
-    .map(tokenize)
-    .filter((want) => want.length === givenTokens.length)
-    .map((want) => ({
-      want,
-      off: want.reduce((n, tok, i) => (tok !== givenTokens[i] ? n + 1 : n), 0),
-    }))
-    .sort((a, b) => a.off - b.off)[0];
-
   const misplacedGraded =
-    nearest?.want.some((tok, i) => tok !== givenTokens[i] && isGraded(nearest.want, i)) ?? false;
+    target.length === givenTokens.length &&
+    target.some((tok, i) => tok !== givenTokens[i] && isGraded(target, i));
 
-  return misplacedGraded ? { kind: 'wrong', focus: spec.focus } : { kind: 'wrong' };
+  return absentGraded || misplacedGraded
+    ? { kind: 'wrong', focus: spec.focus }
+    : { kind: 'wrong' };
 }
