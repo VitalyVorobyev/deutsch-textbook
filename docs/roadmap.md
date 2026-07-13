@@ -1,6 +1,6 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **in progress** (updated 2026-07-12).
+Status: **in progress** (updated 2026-07-13). Phase 4 is complete and shipped as 0.3.0.
 
 A1 is content-complete and shipped (v0.2.0), and its learning loop has been hardened: free
 production is scored honestly, delayed parallel probes are running, open writing revises, speaking
@@ -54,11 +54,24 @@ measured Wortliste coverage — and the whole A1–A2 path is walkable end to en
   its bar: no `write`, no `speak`, no `audio-comprehension`, no probe families, no extensive reader,
   and four declared outcomes that nothing measures. Ten new units built on that foundation would
   inherit its gaps.
-- Build the A2 instrument: probe families for the existing topics, `deepens` semantics in training,
-  a Goethe-A2 Wortliste coverage manifest, and a checkpoint route that is not hard-wired to A1.
+- Build the A2 instrument: probe families for the existing topics, a Goethe-A2 Wortliste coverage
+  manifest, and a checkpoint route that is not hard-wired to A1. (`deepens` semantics in training was
+  on this list and was **deliberately not built** — P4-2 concluded that the focus tag already *is* the
+  edge's runtime channel, and that scoping a tag to a topic would narrow a signal that is meant to be
+  global. The validator instead enforces that every `deepens` edge shares a tag, so an inert edge
+  cannot be authored.)
 - Author the ten A2 units in spine order, one complete bundle each.
 - Close the level with the cumulative A2 checkpoint, the Wortliste completion pass, and an Über page
   whose A2 figures are computed rather than claimed.
+
+**All of it is done** (PRs #23–#38, shipped as 0.3.0). A2 is sixteen units, a twenty-item cumulative
+checkpoint, sixteen probe families, and **1449/1449 of the Goethe-A2 Wortliste**. The one thing the
+phase turned up that was not on the list: the coverage *instrument* could not be trusted with the
+claim it was about to make. A `~` in a manifest — a word the course teaches as grammar rather than as
+a flashcard — counted toward the published figure on the manifest's own say-so, and **nine of those
+marks were false**, one of them at A1. `bun run validate` now hard-fails a `~` that no article,
+reading or practice item actually contains, so the number on the Über page is a measurement rather
+than a promise. A1's 100% was not fully earned before this; it is now.
 
 Vocabulary grows with complete units, never as disconnected padding, and an A2 unit owns a thin new
 A2 deck rather than adopting an A1 one — the blueprint explains why that distinction is load-bearing.
