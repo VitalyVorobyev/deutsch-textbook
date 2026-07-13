@@ -1,0 +1,65 @@
+topic: aemter-dienstleistungen
+role: pretest
+title:
+  en: "Pretest — politeness at the counter"
+  ru: "Предтест — вежливость у окошка"
+items:
+  - id: pretest-du-sie
+    outcomes: [anliegen-nennen]
+    type: mc
+    focus: du-sie
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+    prompt: "Sie sind im Amt. Der Sachbearbeiter ist ein fremder Mann. Sie sagen: „…“"
+    options:
+      - "Könnten Sie mir bitte helfen?"
+      - "Kannst du mir bitte helfen?"
+      - "Hilf mir bitte!"
+    correct: 0
+    translation:
+      en: "You are at the public office. The clerk is a man you have never met. You say: 'Could you help me, please?'"
+      ru: "Вы в учреждении. За окошком — незнакомый мужчина. Вы говорите: «Не могли бы вы мне помочь?»"
+    explain:
+      en: "Everyone behind a counter is a stranger at work, and a stranger gets Sie. Könnten Sie …? is the polite request form and the one an official hears all day. Kannst du …? addresses a friend, and Hilf mir! is a bare command — both are the wrong register in an office, and neither is a softer way of saying the same thing."
+      ru: "Любой человек за окошком — незнакомый человек на работе, а незнакомому говорят Sie. Könnten Sie …? — это вежливая форма просьбы, и именно её чиновник слышит целый день. Kannst du …? обращено к другу, а Hilf mir! — голый приказ; и то и другое в учреждении — неверный регистр, и ни то ни другое не является «более мягким» вариантом той же фразы."
+
+  - id: pretest-haette-wuerde
+    outcomes: [anliegen-nennen]
+    type: mc
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "Guess the missing word."
+      ru: "Угадайте пропущенное слово."
+    prompt: "Am Schalter: „Ich ___ gern einen Termin vereinbaren.“"
+    options:
+      - "würde"
+      - "hätte"
+      - "könnte"
+    correct: 0
+    translation:
+      en: "At the counter: 'I would like to make an appointment.'"
+      ru: "У окошка: «Я хотел(а) бы записаться на приём»."
+    explain:
+      en: "German has two polite ways of saying what you want, and what follows decides between them. An action — here the infinitive vereinbaren at the end of the sentence — takes würde gern. A thing takes hätte gern, and then no verb follows: Ich hätte gern einen Termin. And könnte belongs to a request aimed at the other person: Könnten Sie …?"
+      ru: "В немецком есть два вежливых способа сказать, чего вы хотите, и выбор между ними решает то, что идёт следом. Действие — здесь инфинитив vereinbaren в конце предложения — требует würde gern. Предмет требует hätte gern, и тогда глагола за ним нет: Ich hätte gern einen Termin. А könnte принадлежит просьбе, обращённой к собеседнику: Könnten Sie …?"
+
+  - id: pretest-indirekte-frage
+    outcomes: [unterlagen-erfragen]
+    type: mc
+    focus: indirekte-frage
+    instruction:
+      en: "Guess. Which ending makes a correct German sentence?"
+      ru: "Угадывайте. Какое продолжение даёт правильное немецкое предложение?"
+    prompt: "Können Sie mir sagen, …?"
+    options:
+      - "welche Unterlagen ich brauche"
+      - "welche Unterlagen brauche ich"
+      - "brauche ich welche Unterlagen"
+    correct: 0
+    translation:
+      en: "Can you tell me which documents I need?"
+      ru: "Можете сказать, какие документы мне нужны?"
+    explain:
+      en: "On its own the question is Welche Unterlagen brauche ich? — verb second, subject behind it. Tucked into a longer sentence after Können Sie mir sagen, it stops being a question of its own: the subject comes first and the verb drops to the very end — welche Unterlagen ich brauche. This is the politest way to ask an official anything."
+      ru: "Сам по себе вопрос звучит Welche Unterlagen brauche ich? — глагол на втором месте, подлежащее за ним. Но внутри длинного предложения, после Können Sie mir sagen, он перестаёт быть самостоятельным вопросом: подлежащее выходит вперёд, а глагол падает в самый конец — welche Unterlagen ich brauche. Это самый вежливый способ о чём-либо спросить чиновника."

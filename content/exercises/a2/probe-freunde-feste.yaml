@@ -1,0 +1,101 @@
+topic: freunde-feste
+role: probe
+title:
+  en: "Probe — the person in the Dativ, the thing in the Akkusativ"
+  ru: "Проверка — человек в Dativ, предмет в Akkusativ"
+
+# ONE competence, three PARALLEL variants: building a two-object sentence — the person
+# in the Dativ and first, the thing in the Akkusativ and second. One variant is drawn per
+# due interval (2, 7, 21 days), so the same skill is measured three times, in three
+# situations the learner has not seen.
+#
+# Why this competence and not another. The unit teaches four things — the two-object
+# pattern, the weil-refusal, the reflexive social verbs and the congratulation formulas —
+# and only the first is a decision the learner cannot dodge. A refusal can be made with
+# denn (already known, and it moves nothing). A congratulation is a fixed block and either
+# comes out whole or does not come out at all. But a two-object sentence forces a case on
+# both objects and an order on the pair, every single time, and both English ("I bring you
+# a cake") and Russian (free word order) leave the learner without a habit to fall back on.
+# That is where a half-learned rule collapses, and where a delayed measurement is worth
+# taking. The other three outcomes get their evidence from practice, which is where outcome
+# mastery comes from anyway. `nebensatz-verbende` is probed already by probe-nebensaetze-plaene.
+#
+# How the three stay parallel — this matters more than it looks, because one variant is
+# served per interval, so anything that differs between them is confounded with the delay.
+# All three are the SAME SHAPE and carry the SAME NUMBER OF GRADED DECISIONS:
+#   Name (no case decision) + present-tense transfer verb + [dem + masculine person] +
+#   [masculine thing]. No adverbial, no subordinate clause, no separable verb, no weak
+#   noun. One graded case decision (dem) and one order decision (Dativ before Akkusativ,
+#   two nouns), in every variant. What varies is only the verb, the lexis and the setting.
+#
+# Why only `dem` is pinned, and never the article of the thing. The learner is
+# Russian-native and is shown `prompt_ru` — and Russian marks no article, so «фильм» is
+# both "a film" and "the film". `den Film` is therefore a completely correct rendering of
+# the sentence he is actually given, and pinning `einen` would score it wrong AND log a
+# wechsel-akk-dat error he did not make — into the very instrument the retention curve is
+# read off. Both articles are in `accept`; the Dativ marking of the person is what the tag
+# grades and what the item measures.
+#
+# None of the three may be answered from memory of a practice item. The practice sets live
+# entirely inside the birthday frame — Anna, Yusuf, Nina, Tom, the cake, the salad, the
+# drinks, the present, the group chat. A probe built on that frame would measure recall of
+# the item it copies, not retention of the rule. So the three settings here are a classroom,
+# a doctor's surgery and an office, with three people the unit never mentions.
+
+items:
+  - id: variant-a
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: wechsel-akk-dat
+    instruction:
+      en: Translate into German. You are describing a lesson you sat in on.
+      ru: Переведите на немецкий. Вы рассказываете об уроке, на котором побывали.
+    prompt_en: "Mr Vogel shows the pupil a film."
+    prompt_ru: "Господин Фогель показывает ученику фильм."
+    answer: "Herr Vogel zeigt dem Schüler einen Film."
+    key_tokens: ["dem"]
+    accept:
+      - "Herr Vogel zeigt dem Schüler den Film."
+      - "Dem Schüler zeigt Herr Vogel einen Film."
+      - "Dem Schüler zeigt Herr Vogel den Film."
+    explain:
+      en: "Two objects, two questions. Wem? — dem Schüler: he is the person, so he takes the Dativ and, with two nouns, he comes first. Was? — the film is the thing, so it takes the Akkusativ and comes second (einen Film or den Film — the sentence does not say which, and both are accepted). The one form that decides everything is dem: write den Schüler and the pupil becomes the thing being shown. Putting the film in front of the pupil breaks the other half of the rule."
+      ru: "Два дополнения — два вопроса. Wem? — dem Schüler: это человек, значит Dativ, и при двух существительных он идёт первым. Was? — фильм: это предмет, значит Akkusativ, и стоит он вторым (einen Film или den Film — предложение об этом не говорит, принимаются оба варианта). Всё решает одна форма — dem: напишите den Schüler, и показывать будут уже самого ученика. А поставить фильм перед учеником — значит нарушить вторую половину правила."
+
+  - id: variant-b
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: wechsel-akk-dat
+    instruction:
+      en: Translate into German. You are at the reception desk of a surgery and you report what you see.
+      ru: Переведите на немецкий. Вы стоите у стойки регистратуры и рассказываете, что видите.
+    prompt_en: "Mrs Winter brings the doctor a letter."
+    prompt_ru: "Госпожа Винтер приносит врачу письмо."
+    answer: "Frau Winter bringt dem Arzt einen Brief."
+    key_tokens: ["dem"]
+    accept:
+      - "Frau Winter bringt dem Arzt den Brief."
+      - "Dem Arzt bringt Frau Winter einen Brief."
+      - "Dem Arzt bringt Frau Winter den Brief."
+    explain:
+      en: "The doctor receives, so the doctor is the person: Dativ, and — two nouns — first: dem Arzt. The letter changes hands, so it is the thing: Akkusativ, and second (einen Brief or den Brief; the prompt does not decide, and both are accepted). Everything hangs on dem: den Arzt would make the doctor the thing being carried. Note that bringen behaves exactly like the mitbringen of the lesson: same two objects, same order, only without the prefix."
+      ru: "Врач получает — значит, врач и есть человек: Dativ, и при двух существительных он стоит первым: dem Arzt. Письмо переходит из рук в руки — значит, это предмет: Akkusativ, и стоит вторым (einen Brief или den Brief; задание этого не уточняет, принимаются оба варианта). Всё держится на dem: форма den Arzt превратила бы врача в то, что несут. Обратите внимание: bringen ведёт себя точно так же, как mitbringen из урока, — те же два дополнения, тот же порядок, только без приставки."
+
+  - id: variant-c
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: wechsel-akk-dat
+    instruction:
+      en: Translate into German. You are telling a colleague what happened at the office this morning.
+      ru: Переведите на немецкий. Вы рассказываете коллеге, что было утром в офисе.
+    prompt_en: "Mr Richter gives the boss a key."
+    prompt_ru: "Господин Рихтер даёт начальнику ключ."
+    answer: "Herr Richter gibt dem Chef einen Schlüssel."
+    key_tokens: ["dem"]
+    accept:
+      - "Herr Richter gibt dem Chef den Schlüssel."
+      - "Dem Chef gibt Herr Richter einen Schlüssel."
+      - "Dem Chef gibt Herr Richter den Schlüssel."
+    explain:
+      en: "geben is the plainest verb of this family, and the sentence is the plainest shape of the rule. The boss receives — Dativ, and first: dem Chef. The key is handed over — Akkusativ, and second (einen Schlüssel or den Schlüssel; both are accepted, since the prompt does not say which). The graded form is dem: den Chef would say that the boss is what is being handed over. The order is not negotiable either — with two nouns, the Dativ comes before the Akkusativ."
+      ru: "geben — самый простой глагол этой группы, а предложение — самая простая форма правила. Начальник получает: Dativ, и стоит первым — dem Chef. Ключ передают: Akkusativ, и стоит он вторым (einen Schlüssel или den Schlüssel; задание этого не уточняет, принимаются оба варианта). Оценивается форма dem: den Chef означало бы, что передают самого начальника. Порядок тоже не обсуждается: при двух существительных Dativ идёт перед Akkusativ."

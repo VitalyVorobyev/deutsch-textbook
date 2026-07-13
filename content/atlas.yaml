@@ -94,6 +94,22 @@ groups:
     title_de: Arbeit & Bildung
     title_en: Work & education
     title_ru: Работа и образование
+  # The blueprint planned for `lernen-verstehen` to join `arbeit-bildung`. It cannot: a node's
+  # strand must equal its group's, `arbeit-bildung` is vocabulary, and `lernen-verstehen` is a
+  # communication node — it teaches indirect questions and repair strategies, not a word field.
+  # It gets the communication leaf it belongs in rather than being bent into a vocabulary one.
+  - id: lernen-kurs
+    strand: communication
+    parent: kommunikation
+    title_de: Lernen & Kurs
+    title_en: Learning & the classroom
+    title_ru: Учёба и курс
+  - id: behoerden-services
+    strand: communication
+    parent: kommunikation
+    title_de: Behörden & Dienstleistungen
+    title_en: Public offices & services
+    title_ru: Учреждения и услуги
 
 nodes:
   # --- A1 ---
@@ -776,6 +792,146 @@ nodes:
         en: "I can front a subordinate clause, with the main verb coming straight after it."
         ru: "Я умею ставить придаточное в начало: тогда сказуемое главного идёт сразу за ним."
 
+  # The four units below all sit after `nebensaetze-plaene` in the spine, and that is the whole
+  # point of the reorder: they may use weil, dass and wenn freely, and they do. Each one therefore
+  # deepens `nebensaetze-plaene` on `nebensatz-verbende` — a real edge, because an error on the
+  # verb-final rule while declining an invitation resurfaces the Nebensatz lesson's own items.
+  - id: biografie-erfahrungen
+    level: A2
+    kind: communication
+    strand: communication
+    group: person-alltag
+    prerequisites: [perfekt-haben-sein, menschen-familie, nebensaetze-plaene]
+    deepens: [perfekt-haben-sein, nebensaetze-plaene]
+    outcomes:
+      - id: lebensstationen-ordnen
+        mode: writing
+        domain: personal
+        de: "Ich kann die Stationen eines Lebens in der richtigen Reihenfolge erzählen."
+        en: "I can recount the stages of a life in the right order."
+        ru: "Я умею рассказать об этапах жизни в правильной последовательности."
+      - id: praeteritum-war-hatte
+        mode: writing
+        domain: personal
+        de: "Ich kann mit war, hatte und konnte über früher sprechen."
+        en: "I can talk about the past using war, hatte and konnte."
+        ru: "Я умею говорить о прошлом с помощью war, hatte и konnte."
+      - id: erfahrungen-fragen
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann jemanden nach seinem Leben und seinen Erfahrungen fragen."
+        en: "I can ask somebody about their life and their experiences."
+        ru: "Я умею расспросить человека о его жизни и опыте."
+      - id: profil-schreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann ein kurzes Porträt über einen anderen Menschen schreiben."
+        en: "I can write a short profile of another person."
+        ru: "Я умею написать короткий портрет другого человека."
+
+  - id: freunde-feste
+    level: A2
+    kind: communication
+    strand: communication
+    group: person-alltag
+    prerequisites: [freizeit-koennen, dativ, nebensaetze-plaene]
+    deepens: [dativ, trennbare-verben, nebensaetze-plaene]
+    outcomes:
+      - id: einladen-zusagen-absagen
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann jemanden einladen, zusagen und höflich absagen."
+        en: "I can invite somebody, accept an invitation and decline one politely."
+        ru: "Я умею пригласить, принять приглашение и вежливо отказаться."
+      - id: absprachen-aushandeln
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann in einer Gruppe absprechen, wer was mitbringt."
+        en: "I can agree with a group about who brings what."
+        ru: "Я умею договориться в группе, кто что принесёт."
+      - id: glueckwuensche-formeln
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann gratulieren und gute Wünsche aussprechen."
+        en: "I can congratulate somebody and express good wishes."
+        ru: "Я умею поздравить и высказать добрые пожелания."
+      - id: einladung-schreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann eine kurze Einladung schreiben."
+        en: "I can write a short invitation."
+        ru: "Я умею написать короткое приглашение."
+
+  - id: lernen-verstehen
+    level: A2
+    kind: communication
+    strand: communication
+    group: lernen-kurs
+    prerequisites: [erste-schritte, modalverben, nebensaetze-plaene]
+    deepens: [praesens-wortstellung, termine-vereinbaren, nebensaetze-plaene]
+    outcomes:
+      - id: nachfragen-klaeren
+        mode: spoken-interaction
+        domain: educational
+        de: "Ich kann nachfragen, wenn ich etwas nicht verstanden habe."
+        en: "I can ask for clarification when I have not understood something."
+        ru: "Я умею переспросить, если чего-то не понял."
+      - id: kursanweisungen-verstehen
+        mode: listening
+        domain: educational
+        de: "Ich kann Anweisungen und Aufgaben im Kurs verstehen."
+        en: "I can understand instructions and tasks in a course."
+        ru: "Я понимаю указания и задания на курсе."
+      - id: lernstrategien-sagen
+        mode: spoken-production
+        domain: educational
+        de: "Ich kann sagen, wie und warum ich Deutsch lerne."
+        en: "I can say how and why I learn German."
+        ru: "Я умею рассказать, как и зачем я учу немецкий."
+      - id: kursanfrage-schreiben
+        mode: writing
+        domain: educational
+        de: "Ich kann eine kurze Anfrage an eine Sprachschule schreiben."
+        en: "I can write a short enquiry to a language school."
+        ru: "Я умею написать короткий запрос в языковую школу."
+
+  - id: aemter-dienstleistungen
+    level: A2
+    kind: communication
+    strand: communication
+    group: behoerden-services
+    prerequisites: [termine-vereinbaren, erste-schritte, nebensaetze-plaene]
+    # `lernen-verstehen` ships one slot earlier and teaches the indirect question; asking a
+    # clerk *Können Sie mir sagen, welche Unterlagen ich brauche?* is the same rule in the
+    # register this unit lives in, and four items here carry `indirekte-frage`. The shared tag
+    # is the edge's only runtime channel, so the spiral is real rather than decorative.
+    deepens: [termine-vereinbaren, dativ, nebensaetze-plaene, lernen-verstehen]
+    outcomes:
+      - id: formular-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann ein einfaches Formular verstehen und ausfüllen."
+        en: "I can understand a simple form and fill it in."
+        ru: "Я понимаю простой бланк и умею его заполнить."
+      - id: anliegen-nennen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann am Schalter höflich sagen, was ich brauche."
+        en: "I can politely say what I need at a counter."
+        ru: "Я умею вежливо объяснить у окошка, что мне нужно."
+      - id: unterlagen-erfragen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann fragen, welche Unterlagen ich mitbringen muss."
+        en: "I can ask which documents I have to bring."
+        ru: "Я умею спросить, какие документы нужно принести."
+      - id: formelle-nachricht-schreiben
+        mode: writing
+        domain: public
+        de: "Ich kann eine kurze formelle Nachricht an ein Amt schreiben."
+        en: "I can write a short formal message to a public office."
+        ru: "Я умею написать короткое официальное сообщение в учреждение."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -913,3 +1069,27 @@ units:
     title_en: "Subordinate clauses & plans"
     title_ru: "Придаточные предложения и планы"
     topics: [nebensaetze-plaene]
+  - id: biografie-erfahrungen
+    level: A2
+    title_de: "Biografie & Erfahrungen"
+    title_en: "Life story & experience"
+    title_ru: "Биография и опыт"
+    topics: [biografie-erfahrungen]
+  - id: freunde-feste
+    level: A2
+    title_de: "Freunde, Einladungen & Feste"
+    title_en: "Friends, invitations & celebrations"
+    title_ru: "Друзья, приглашения и праздники"
+    topics: [freunde-feste]
+  - id: lernen-verstehen
+    level: A2
+    title_de: "Lernen & Verstehen"
+    title_en: "Learning & understanding"
+    title_ru: "Учёба и понимание"
+    topics: [lernen-verstehen]
+  - id: aemter-dienstleistungen
+    level: A2
+    title_de: "Ämter & Dienstleistungen"
+    title_en: "Public offices & services"
+    title_ru: "Учреждения и услуги"
+    topics: [aemter-dienstleistungen]

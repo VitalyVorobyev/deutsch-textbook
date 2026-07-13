@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { listenItemSchema } from '../../lib/schemas';
 import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
+import { dictationSlip } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
@@ -35,7 +36,16 @@ export function Listen({
   function check() {
     if (checked || locked || value.trim() === '') return;
     setChecked(true);
-    onResult({ correct: isCorrect, given: normalizeAnswer(value) });
+    // The item is still wrong — dictation grades spelling. But its `focus` is a grammar tag,
+    // so a mistyped noun must not be logged as the grammar confusion the item drills; that
+    // would be a false entry in the one signal that steers training and drill authoring.
+    const slipped =
+      !isCorrect && [item.text, ...item.accept].some((target) => dictationSlip(value, target));
+    onResult({
+      correct: isCorrect,
+      given: normalizeAnswer(value),
+      ...(slipped ? { focus: null } : {}),
+    });
   }
 
   /** Insert a character at the caret position of the answer input. */

@@ -1,0 +1,223 @@
+topic: freunde-feste
+role: practice
+title:
+  en: "Practice — a voice message, an invitation, a table full of people"
+  ru: "Практика — голосовое сообщение, приглашение, полный стол гостей"
+items:
+  - id: hoeren-absage-sprachnachricht
+    outcomes: [einladen-zusagen-absagen]
+    type: audio-comprehension
+    instruction:
+      en: "Tom has sent Anna a voice message. Listen once. He mentions Saturday, a present and a coffee — but he does only one of those things himself, and only on one of the days."
+      ru: "Том прислал Анне голосовое сообщение. Прослушайте один раз. В нём звучат и суббота, и подарок, и кофе — но сам он делает только одно из этого и только в один из дней."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Tom", text: "Hallo Anna, hier ist Tom. Vielen Dank für die Einladung! Ich freue mich sehr für dich." }
+        - { speaker: "Tom", text: "Aber leider kann ich am Samstag nicht kommen, weil ich arbeiten muss. Meine Schicht endet erst um zweiundzwanzig Uhr." }
+        - { speaker: "Tom", text: "Ich habe ein Geschenk für dich. Nina bringt dir das Geschenk mit. Es ist eine Überraschung!" }
+        - { speaker: "Tom", text: "Am Sonntag habe ich Zeit. Trinken wir zusammen einen Kaffee? Herzlichen Glückwunsch zum Geburtstag!" }
+    question: "Was macht Tom am Samstag?"
+    options:
+      - "Er arbeitet bis zweiundzwanzig Uhr."
+      - "Er bringt Anna ein Geschenk mit."
+      - "Er trinkt mit Anna einen Kaffee."
+    correct: 0
+    translation:
+      en: "What is Tom doing on Saturday?"
+      ru: "Что Том делает в субботу?"
+    explain:
+      en: "All three options are made of words that really are in the message — a single familiar word decides nothing, and you have to hear who does what, and when. The present is real, but Tom is not the one who carries it: „Nina bringt dir das Geschenk mit.“ The coffee is real too, and it is his own suggestion — but it is for Sunday: „Am Sonntag habe ich Zeit.“ Saturday is the day he gives away, and he gives the reason in the sentence this whole lesson is built to produce: „…, weil ich arbeiten muss.“ Note also how he softens the refusal before making it: thanks first, then the bad news, then a present and a new date. That order is what turns a no into a polite no."
+      ru: "Все три варианта собраны из слов, которые в сообщении действительно звучат: одного знакомого слова недостаточно — нужно услышать, кто именно что делает и когда. Подарок есть, но несёт его не Том: „Nina bringt dir das Geschenk mit.“ Кофе тоже есть, и предлагает его сам Том — но в воскресенье: „Am Sonntag habe ich Zeit.“ А суббота — это тот день, от которого он отказывается, и причину называет ровно той конструкцией, ради которой затевался урок: „…, weil ich arbeiten muss.“ Обратите внимание и на порядок: сначала благодарность, потом плохая новость, потом подарок и новая дата. Именно этот порядок превращает отказ в вежливый отказ."
+
+  - id: hoeren-diktat-mitbringen
+    outcomes: [absprachen-aushandeln]
+    type: listen
+    focus: trennbar-wortstellung
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+    text: "Ich bringe dir einen Kuchen mit."
+    translation:
+      en: "I'll bring you a cake."
+      ru: "Я принесу тебе торт."
+    explain:
+      en: "There is no modal here, so mitbringen is the conjugated verb of the clause — and that means it splits: bringe holds position 2, and the prefix mit drops to the very end, behind both objects. Everything you have to type sits between them. Two spellings to watch: Kuchen is a noun and takes a capital K, and the person is dir with an r, not dich."
+      ru: "Модального глагола здесь нет, поэтому спрягаемым сказуемым выступает сам mitbringen — а значит, он распадается: bringe занимает второе место, а приставка mit уходит в самый конец, за оба дополнения. Всё, что нужно набрать, помещается между ними. Следите за двумя написаниями: Kuchen — существительное, оно с большой буквы, а человек — это dir с r на конце, а не dich."
+
+  - id: cloze-sich-freuen-treffen
+    outcomes: [einladen-zusagen-absagen]
+    type: cloze
+    focus: reflexiv-akkusativ
+    instruction:
+      en: "Anna's friends answer the invitation. Fill in the reflexive pronoun."
+      ru: "Друзья Анны отвечают на приглашение. Вставьте возвратное местоимение."
+    text: "Yusuf schreibt: „Ich freue {{mich}} auf die Party!“ Nina antwortet: „Wir treffen {{uns}} um acht bei Anna.“ Anna freut {{sich}} über die Geschenke. Und du? Freust du {{dich}} auch?"
+    translation:
+      en: "Yusuf writes: “I'm looking forward to the party!” Nina replies: “We're meeting at eight at Anna's.” Anna is delighted with the presents. And you? Are you looking forward to it too?"
+      ru: "Юсуф пишет: «Жду вечеринку с нетерпением!» Нина отвечает: «Встречаемся в восемь у Анны». Анна радуется подаркам. А ты? Ты тоже ждёшь с нетерпением?"
+    explain:
+      en: "The pronoun changes with the subject and it is never optional: mich for ich, dich for du, sich for er/sie, uns for wir. There is nothing in English to translate here, which is precisely why the word goes missing — Ich freue auf die Party is not a shortened sentence, it is a broken one. Note the two prepositions as well: sich freuen auf looks forward to something still ahead (the party), sich freuen über looks back at something that has already happened (the presents are already unwrapped). Both take the accusative after them."
+      ru: "Местоимение меняется по подлежащему и обязательно всегда: mich при ich, dich при du, sich при er/sie, uns при wir. В русском ему соответствует «-ся», приклеенное к глаголу, — отдельного слова там нет, и именно поэтому его теряют. Ich freue auf die Party — это не сокращённое предложение, а сломанное. Обратите внимание и на предлоги: sich freuen auf смотрит вперёд, на то, что ещё предстоит (вечеринка), а sich freuen über — назад, на то, что уже случилось (подарки уже развёрнуты). Оба требуют после себя Akkusativ."
+
+  - id: uebersetzen-absprache-chat
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: dativ-pronomen
+    instruction:
+      en: "Translate into German. You are settling who brings what, in the chat."
+      ru: "Переведите на немецкий. Вы договариваетесь в чате, кто что приносит."
+    prompt_en: "Can you bring me a salad? I'll bring you the drinks."
+    prompt_ru: "Ты можешь принести мне салат? А я принесу тебе напитки."
+    answer: "Kannst du mir einen Salat mitbringen? Ich bringe dir die Getränke mit."
+    key_tokens: ["mir", "dir"]
+    accept:
+      - "Kannst du mir bitte einen Salat mitbringen? Ich bringe dir die Getränke mit."
+      # The RU prompt opens its second sentence with «А …», so `Und ich bringe …` renders
+      # it faithfully; and Russian has no article, so «салат» licenses `den Salat` too.
+      - "Kannst du mir einen Salat mitbringen? Und ich bringe dir die Getränke mit."
+      - "Kannst du mir bitte einen Salat mitbringen? Und ich bringe dir die Getränke mit."
+      - "Kannst du mir den Salat mitbringen? Ich bringe dir die Getränke mit."
+      - "Kannst du mir den Salat mitbringen? Und ich bringe dir die Getränke mit."
+    explain:
+      en: "Two sentences and two shapes of the same verb. The first has a modal, so mitbringen stays whole at the end and kannst opens the question. The second has none, so the verb splits: bringe in position 2, mit at the very end. Through both of them the person keeps the same slot and the same case — mir when the salad comes to me, dir when the drinks go to you. Neither is mich or dich: the accusative belongs to the thing, and it is already taken."
+      ru: "Два предложения — две формы одного глагола. В первом есть модальный, поэтому mitbringen остаётся целым в конце, а вопрос открывает kannst. Во втором модального нет, и глагол распадается: bringe на втором месте, mit в самом конце. И в том и в другом человек сохраняет и своё место, и свой падеж: mir — когда салат несут мне, dir — когда напитки достаются тебе. Ни в коем случае не mich и не dich: Akkusativ принадлежит предмету, и он уже занят."
+
+  - id: cloze-plan-aendert-sich
+    outcomes: [absprachen-aushandeln, einladen-zusagen-absagen]
+    type: cloze
+    focus: aber-sondern
+    instruction:
+      en: "The plan keeps changing in the chat. Fill in aber or sondern."
+      ru: "План в чате всё время меняется. Вставьте aber или sondern."
+    text: "Anna schreibt: „Wir feiern nicht bei mir, {{sondern}} bei Yusuf.“ Nina antwortet: „Gern, {{aber}} ich komme erst um neun.“ Yusuf schreibt: „Ich bringe keine Getränke mit, {{sondern}} eine Torte.“ Tom schreibt: „Ich habe keine Zeit, {{aber}} ich rufe dich am Sonntag an.“"
+    translation:
+      en: "Anna writes: “We're not celebrating at my place, but at Yusuf's.” Nina replies: “Gladly, but I won't get there until nine.” Yusuf writes: “I'm not bringing drinks, but a cake.” Tom writes: “I haven't got time, but I'll call you on Sunday.”"
+      ru: "Анна пишет: «Празднуем не у меня, а у Юсуфа». Нина отвечает: «С удовольствием, но приду только к девяти». Юсуф пишет: «Напитки я не принесу, а принесу торт». Том пишет: «У меня нет времени, но я позвоню тебе в воскресенье»."
+    explain:
+      en: "Three of the four first halves contain a negation, and only two of them are corrected by what follows. Anna denies her flat and names another one instead — bei Yusuf takes the place of bei mir, so it is sondern. Yusuf denies the drinks and names the cake instead — same move, same word. Tom is the trap: he does say keine Zeit, but the phone call does not replace the time he hasn't got. He still isn't coming; the call is simply added on top. Two things side by side, both true: aber. Nina's line has no negation at all, so the question never even arises. The rule is not 'negation → sondern'. It is: does the second half step into the place the first half emptied?"
+      ru: "В трёх первых половинах из четырёх стоит отрицание, но исправляет его только вторая половина в двух случаях. Анна отвергает свою квартиру и называет другую: bei Yusuf занимает место bei mir — значит, sondern. Юсуф отвергает напитки и называет вместо них торт — тот же ход, то же слово. Том — ловушка: keine Zeit он действительно говорит, но звонок не заменяет то время, которого у него нет. Прийти он всё равно не сможет, а звонок просто добавляется сверху. Две вещи стоят рядом, и обе верны: aber. А в реплике Нины отрицания нет вовсе, так что вопрос и не возникает. Правило звучит не как «есть отрицание — ставь sondern», а так: встаёт ли вторая половина на то место, которое освободила первая?"
+
+  - id: uebersetzen-aber-sondern-chat
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: aber-sondern
+    instruction:
+      en: "Translate into German. You are correcting one detail of the plan and adding one condition of your own."
+      ru: "Переведите на немецкий. Одну деталь плана вы исправляете, одно условие добавляете от себя."
+    prompt_en: "We aren't meeting at eight, but at nine. I'll bring the drinks, but no cake."
+    prompt_ru: "Встречаемся не в восемь, а в девять. Напитки я принесу, но торт — нет."
+    answer: "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber keinen Kuchen."
+    key_tokens: ["sondern", "aber"]
+    accept:
+      - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe keinen Kuchen mit."
+    explain:
+      en: "One sentence of each kind, and the second one is where the rule is really tested. In the first, nicht um acht is denied and um neun steps straight into its place — a replacement, so sondern. In the second there is a negation too — keinen Kuchen — but look at where it sits: it comes after the connector, not before it. Nothing in the first half was denied for the cake to replace; the drinks and the missing cake simply stand side by side, and both are true. That is aber. The word to check is never the negation itself but what it is doing: sondern needs a negation in front of it that the following words correct."
+      ru: "По одному предложению каждого типа — и по-настоящему правило проверяется во втором. В первом отрицается nicht um acht, а um neun сразу встаёт на освободившееся место: это замена, значит sondern. Во втором отрицание тоже есть — keinen Kuchen, — но посмотрите, где оно стоит: после союза, а не перед ним. В первой половине ничего не отвергнуто, и торту нечего замещать; напитки и отсутствующий торт просто стоят рядом, и то и другое верно. Это aber. Смотреть надо не на само отрицание, а на то, что оно делает: для sondern нужно отрицание перед союзом, которое последующие слова исправляют."
+
+  - id: uebersetzen-transfer-blumen-karte
+    outcomes: [absprachen-aushandeln]
+    type: translate
+    focus: wechsel-akk-dat
+    # The transfer check of the lesson cycle, and the only free-production item in this
+    # topic whose sentence is not a rehearsal of one the learner has already met: every
+    # other translate answer here also appears in the article, the reading or a flashcard.
+    # New person (Clara appears nowhere else in the course), new objects, same rule — and
+    # both halves are two-object sentences: a noun person in the first, a pronoun person
+    # in the second.
+    instruction:
+      en: "Translate into German. Nothing here has come up in the exercises before — build it from the rule, not from memory."
+      ru: "Переведите на немецкий. Ничего из этого в упражнениях ещё не встречалось — стройте по правилу, а не по памяти."
+    prompt_en: "Clara is bringing her brother flowers and writing him a card."
+    prompt_ru: "Клара принесёт своему брату цветы и напишет ему открытку."
+    answer: "Clara bringt ihrem Bruder Blumen mit und schreibt ihm eine Karte."
+    key_tokens: ["ihrem", "ihm"]
+    accept:
+      - "Clara bringt ihrem Bruder Blumen mit und sie schreibt ihm eine Karte."
+      - "Clara bringt ihrem Bruder Blumen mit und schreibt ihm die Karte."
+      - "Clara bringt ihrem Bruder Blumen mit und sie schreibt ihm die Karte."
+    explain:
+      en: "Two two-object sentences in one line, and each shows a different half of the rule. In the first, both objects are nouns: the person goes into the Dativ and comes first — ihrem Bruder — and Blumen, the thing, follows in the Akkusativ (a bare plural, so nothing on it changes). In the second the person is a pronoun, ihm, and a pronoun goes in front of a noun object — so it stands before eine Karte. Neither ihm nor ihr: the brother is masculine and he is the one receiving, which is the Dativ, and for er that is ihm. And the separable mit closes the first clause, behind the flowers."
+      ru: "Две конструкции с двумя дополнениями в одной строке, и каждая показывает свою половину правила. В первой оба дополнения — существительные: человек стоит в Dativ и идёт первым (ihrem Bruder), а предмет, Blumen, следует за ним в Akkusativ (голое множественное число — там ничего не меняется). Во второй человек выражен местоимением ihm, а местоимение идёт впереди дополнения-существительного, поэтому стоит перед eine Karte. Не ihn и не ihr: брат — мужского рода и он получает, а это Dativ, и для er это ihm. Отделяемая приставка mit при этом закрывает первую часть — уже за цветами."
+
+  - id: schreiben-einladung
+    outcomes: [einladung-schreiben, absprachen-aushandeln]
+    type: write
+    prompt:
+      en: "It is your birthday on Saturday and you are having a party at your flat. Write a short invitation to your friends in the group chat: say what you are celebrating, when and where, ask them to come, and settle who brings what."
+      ru: "В субботу у вас день рождения, и вы устраиваете вечеринку у себя дома. Напишите короткое приглашение друзьям в групповой чат: скажите, что вы празднуете, когда и где, позовите их и договоритесь, кто что принесёт."
+    goal:
+      en: "Get your friends to come and to divide the food and drink between them, in a message they can answer with one line."
+      ru: "Добиться, чтобы друзья пришли и разобрали между собой еду и напитки, — сообщением, на которое можно ответить одной строкой."
+    requirements:
+      - en: "Open with the invitation itself (Hast du Lust auf eine Party? / Ich lade euch ein)."
+        ru: "Начните с самого приглашения (Hast du Lust auf eine Party? / Ich lade euch ein)."
+      - en: "Give the day, the time and the place in one sentence (Am Samstag um acht bei mir)."
+        ru: "Назовите день, время и место одним предложением (Am Samstag um acht bei mir)."
+      - en: "Write at least two sentences with two objects: the person first in the dative, the thing second in the accusative (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
+        ru: "Напишите минимум два предложения с двумя дополнениями: сначала человек в Dativ, потом предмет в Akkusativ (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
+      - en: "Close with a reflexive verb (Ich freue mich auf euch! / Wir treffen uns um acht)."
+        ru: "Завершите возвратным глаголом (Ich freue mich auf euch! / Wir treffen uns um acht)."
+    min_words: 40
+    model_answer: "Hallo zusammen! Am Samstag habe ich Geburtstag und ich lade euch ein. Habt ihr Lust auf eine Party? Wir treffen uns um acht in meiner Wohnung. Ich bringe euch die Getränke mit und mache auch einen Salat. Yusuf, bringst du mir bitte einen Kuchen mit? Nina, kannst du uns Musik mitbringen? Sagt mir bitte bis Donnerstag Bescheid. Ich freue mich sehr auf euch!"
+    model_translation:
+      en: "Hi everyone! It's my birthday on Saturday and I'm inviting you all. Do you fancy a party? We're meeting at eight at my flat. I'll bring the drinks and I'll make a salad too. Yusuf, could you bring me a cake? Nina, can you bring us some music? Let me know by Thursday, please. I'm really looking forward to seeing you!"
+      ru: "Всем привет! В субботу у меня день рождения, и я вас приглашаю. Хотите на вечеринку? Встречаемся в восемь у меня дома. Напитки принесу я и ещё сделаю салат. Юсуф, принесёшь мне торт? Нина, можешь принести нам музыку? Ответьте, пожалуйста, до четверга. Очень жду вас!"
+    explain:
+      en: "An invitation does four jobs in a handful of lines: what is being celebrated, when and where, come, and who brings what. The last of those is where the grammar of this lesson lives — every one of those sentences has two objects, and every one of them puts the person first, in the dative: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Before you send your revision, read it once looking only at the pronouns after the verb: if any of them is mich, dich or uns where the sense is 'to me / to you / to us', the case has slipped. And check the last word of each sentence — with a modal, mitbringen belongs there in one piece; without one, the bare mit does."
+      ru: "Приглашение делает четыре вещи за несколько строк: что празднуем, когда и где, приходите, кто что приносит. Именно в последнем и живёт грамматика урока: в каждом таком предложении по два дополнения, и в каждом человек стоит первым, в Dativ: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Перед отправкой правки перечитайте текст, глядя только на местоимения после глагола: если где-то стоит mich или dich там, где по смыслу «мне / тебе», падеж съехал. И проверьте последнее слово каждого предложения: при модальном глаголе там целиком стоит mitbringen, без модального — одна приставка mit."
+
+  - id: sprechen-gruppenchat-absprache
+    outcomes: [absprachen-aushandeln, einladen-zusagen-absagen]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "Your friend Anna is on the phone. She is celebrating her birthday on Saturday and wants to know whether you are coming and what you can bring. But your Saturday evening is already taken — you have to work until ten. Speak aloud: thank her, turn Saturday down and say why, and then offer something that still works — a present through a friend, or a coffee on Sunday."
+      ru: "Ваша подруга Анна звонит вам. В субботу она празднует день рождения и хочет знать, придёте ли вы и что можете принести. Но субботний вечер у вас занят: до десяти вы работаете. Скажите вслух: поблагодарите, откажитесь от субботы и назовите причину, а потом предложите то, что всё-таки получится, — передать подарок через друга или выпить кофе в воскресенье."
+    goal:
+      en: "Say no to the day without saying no to the person: a reason, and something you can still do."
+      ru: "Отказаться от дня, не отказываясь от человека: назвать причину и предложить то, что всё-таки возможно."
+    checklist:
+      - en: "I thanked her for the invitation before I refused (Vielen Dank für die Einladung!)."
+        ru: "Прежде чем отказаться, я поблагодарил(а) за приглашение (Vielen Dank für die Einladung!)."
+      - en: "I gave a reason with weil, and the conjugated verb went to the very end (…, weil ich am Samstag arbeiten muss)."
+        ru: "Я назвал(а) причину с помощью weil, и спрягаемый глагол ушёл в самый конец (…, weil ich am Samstag arbeiten muss)."
+      - en: "I offered an alternative with two objects — person first, thing second (Nina bringt dir mein Geschenk mit)."
+        ru: "Я предложил(а) выход, построив фразу с двумя дополнениями: сначала человек, потом предмет (Nina bringt dir mein Geschenk mit)."
+      - en: "I congratulated her before hanging up (Herzlichen Glückwunsch zum Geburtstag!)."
+        ru: "Перед тем как попрощаться, я поздравил(а) её (Herzlichen Glückwunsch zum Geburtstag!)."
+    model_answer: "Hallo Anna! Vielen Dank für die Einladung — ich freue mich sehr für dich. Aber leider kann ich am Samstag nicht kommen, weil ich bis zweiundzwanzig Uhr arbeiten muss. Das ist wirklich schade. Ich habe schon ein Geschenk für dich. Nina bringt dir das Geschenk mit, sie kommt ja am Samstag. Und am Sonntag habe ich Zeit: Trinken wir zusammen einen Kaffee? Herzlichen Glückwunsch zum Geburtstag!"
+    model_translation:
+      en: "Hi Anna! Thank you so much for the invitation — I'm really happy for you. But unfortunately I can't come on Saturday, because I have to work until ten. That's a real shame. I already have a present for you. Nina will bring you the present, since she's coming on Saturday anyway. And I'm free on Sunday — shall we have a coffee together? Happy birthday!"
+      ru: "Привет, Анна! Огромное спасибо за приглашение — я очень за тебя рад(а). Но в субботу я, к сожалению, не смогу прийти, потому что работаю до десяти вечера. Очень жаль. Подарок для тебя у меня уже есть. Нина принесёт тебе подарок — она ведь всё равно придёт в субботу. А в воскресенье я свободен(на): выпьем вместе кофе? С днём рождения!"
+    explain:
+      en: "Say it twice, and on the second take listen for three things. First, the end of the weil-clause: the last word must be the modal — arbeiten muss, not muss arbeiten. It is the one place where German will not let you say the words in the order you thought them. Second, the offer: Nina bringt dir das Geschenk mit — person before thing, and the prefix mit right at the end, behind both. Third, the shape of the whole turn. A refusal that is only a refusal sounds like a rejection of the person. Thanks, reason, alternative, congratulation: four short moves, and the no lands softly in the middle of them."
+      ru: "Проговорите дважды и на втором дубле слушайте три вещи. Первое — конец придаточного с weil: последним словом должен быть модальный глагол, arbeiten muss, а не muss arbeiten. Это единственное место, где немецкий не даст произнести слова в том порядке, в каком вы их подумали. Второе — само предложение выхода: Nina bringt dir das Geschenk mit — сначала человек, потом предмет, а приставка mit в самом конце, за обоими. Третье — форма всей реплики. Отказ, который состоит из одного отказа, звучит как отказ от человека. Благодарность, причина, альтернатива, поздравление — четыре коротких хода, и «нет» мягко приземляется где-то посередине."
+
+  - id: sprechen-glueckwunsch-tischrede
+    outcomes: [glueckwuensche-formeln]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "You are at Anna's birthday party. Everyone has a glass in their hand and the room goes quiet — it is your turn to say a few words. Speak aloud for three or four sentences: congratulate her, say what you have brought her, wish her something for the coming year, and raise your glass."
+      ru: "Вы на дне рождения у Анны. У всех в руках бокалы, и в комнате стало тихо — очередь сказать несколько слов дошла до вас. Произнесите вслух три-четыре предложения: поздравьте её, скажите, что вы ей принесли, пожелайте чего-нибудь на год вперёд и поднимите бокал."
+    goal:
+      en: "Fill fifteen seconds of silence with the fixed formulas a German-speaking room expects to hear."
+      ru: "Заполнить пятнадцать секунд тишины теми готовыми формулами, которых немецкоязычная компания и ждёт."
+    checklist:
+      - en: "I congratulated her with the whole formula, preposition and all (Herzlichen Glückwunsch zum Geburtstag!)."
+        ru: "Я поздравил(а) её формулой целиком, вместе с предлогом (Herzlichen Glückwunsch zum Geburtstag!)."
+      - en: "I said what I brought her, with the person first (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
+        ru: "Я сказал(а), что принёс(ла) ей, поставив человека на первое место (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
+      - en: "I added a wish (Alles Gute! / Viel Glück!)."
+        ru: "Я добавил(а) пожелание (Alles Gute! / Viel Glück!)."
+      - en: "I finished by raising the glass (Prost! / Auf Anna!)."
+        ru: "Я закончил(а), подняв бокал (Prost! / Auf Anna!)."
+    model_answer: "Liebe Anna, herzlichen Glückwunsch zum Geburtstag! Ich freue mich sehr, dass wir heute zusammen feiern. Ich schenke dir ein Buch — ich hoffe, es gefällt dir. Alles Gute, viel Glück und viel Gesundheit! Auf Anna! Prost!"
+    model_translation:
+      en: "Dear Anna, happy birthday! I'm really glad we're celebrating together today. I'm giving you a book — I hope you like it. All the best, good luck and good health! To Anna! Cheers!"
+      ru: "Дорогая Анна, с днём рождения! Я очень рад(а), что сегодня мы празднуем вместе. Дарю тебе книгу — надеюсь, она тебе понравится. Всего наилучшего, удачи и здоровья! За Анну! Ваше здоровье!"
+    explain:
+      en: "Nobody improvises a toast, in any language — you assemble it out of blocks, and the blocks are what this item is drilling. The one that must come out whole is the congratulation: Herzlichen Glückwunsch zum Geburtstag, with zum and not für. The one that must come out right is the gift sentence, because it is a two-object sentence like every other in this lesson: Ich schenke dir ein Buch — dir first, ein Buch second. Note es gefällt dir as well: gefallen is one of the verbs that takes a dative person and no accusative at all, so it is dir, never dich. Keep it short. A toast that runs past four sentences stops being a toast."
+      ru: "Тост не импровизируют ни на одном языке — его собирают из блоков, и именно эти блоки здесь и отрабатываются. Целиком должно вылететь поздравление: Herzlichen Glückwunsch zum Geburtstag — с zum, а не с für. А безошибочно должна прозвучать фраза о подарке, потому что это такое же предложение с двумя дополнениями, как и все остальные в уроке: Ich schenke dir ein Buch — сначала dir, потом ein Buch. Обратите внимание и на es gefällt dir: gefallen — из тех глаголов, при которых человек стоит в Dativ, а Akkusativ отсутствует вовсе, поэтому там dir, но никогда dich. И держите речь короткой: тост длиннее четырёх предложений перестаёт быть тостом."
