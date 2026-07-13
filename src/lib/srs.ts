@@ -132,10 +132,17 @@ export function deserializeCard(stored: StoredCard): Card {
 export function gradeCard(stored: StoredCard | undefined, grade: Grade, now = new Date()): StoredCard {
   const card = stored ? deserializeCard(stored) : createEmptyCard(now);
   const next = scheduler.next(card, now, grade);
-  return {
-    ...serializeCard(next.card),
-    introducedAt: stored?.introducedAt ?? localDateString(now),
-  };
+  const out = serializeCard(next.card);
+
+  // Only a card with no state at all is being introduced *now*. An existing card
+  // whose `introducedAt` is absent predates the field, and must keep it absent:
+  // stamping it would charge today's new-card budget for a card the learner first
+  // met months ago, so a returning learner's first fifteen ordinary reviews would
+  // silently eat the whole day's allowance. `stored?.introducedAt ?? today` reads
+  // right and is exactly this bug.
+  if (stored === undefined) out.introducedAt = localDateString(now);
+  else if (stored.introducedAt !== undefined) out.introducedAt = stored.introducedAt;
+  return out;
 }
 
 /**

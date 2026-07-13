@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { planReview, type ReviewContext, type ReviewGate } from '../src/lib/decks';
 import type { TopicNode } from '../src/lib/mastery';
-import type { CardDef } from '../src/lib/srs';
+import { gradeCard, Rating, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
 
 const topicNode = (id: string, deckId: string): TopicNode => ({
@@ -291,5 +291,49 @@ describe('completion decks rank behind the lesson decks', () => {
     expect(plan.freshCount).toBe(10);
     // every card dealt comes from the lesson deck, none from the completion deck
     expect(plan.queue.every((c) => c.deckId === 'zweit-deck')).toBe(true);
+  });
+});
+
+describe('gradeCard stamps introducedAt exactly once, and only on a real introduction', () => {
+  test('a never-seen card is stamped with today', () => {
+    const graded = gradeCard(undefined, Rating.Good);
+    expect(graded.introducedAt).toBe(today());
+  });
+
+  test('a legacy card (no introducedAt) is NOT stamped when reviewed', () => {
+    // The bug: `stored?.introducedAt ?? localDateString(now)` reads right and stamps
+    // every pre-existing card on its next ordinary review. A returning learner's
+    // first fifteen reviews would then eat the whole day's new-card budget.
+    const legacy = dueState(3);
+    expect(legacy.introducedAt).toBeUndefined();
+    const graded = gradeCard(legacy, Rating.Good);
+    expect(graded.introducedAt).toBeUndefined();
+  });
+
+  test("an already-stamped card keeps its original date, it is not re-stamped", () => {
+    const graded = gradeCard({ ...dueState(3), introducedAt: '2020-01-01' }, Rating.Good);
+    expect(graded.introducedAt).toBe('2020-01-01');
+  });
+
+  test('a new card failed on its first day still counts as introduced that day', () => {
+    // Why introducedAt is stored and not derived: FlashcardSession re-queues an
+    // "Again" inside the session, so a failed new card reaches reps 2 on day one.
+    // `reps === 1` would miss it and hand out extra new cards.
+    const first = gradeCard(undefined, Rating.Again);
+    const second = gradeCard(first, Rating.Good);
+    expect(second.reps).toBe(2);
+    expect(second.introducedAt).toBe(today());
+  });
+
+  test("a legacy card reviewed today does not spend the day's budget", () => {
+    // The end-to-end statement of the bug, through planReview: a returning learner
+    // whose profile predates the field works through fifteen old due cards, and must
+    // still be offered their full fifteen new ones.
+    const legacyCards = Array.from({ length: 15 }, (_, i) => card('basis-deck', `Alt${i}`));
+    const states = Object.fromEntries(
+      legacyCards.map((c) => [c.id, gradeCard(dueState(3), Rating.Good)]),
+    );
+    const plan = planReview([...legacyCards, ...fresh(30)], gate, ctx(states), { newLimit: 15 });
+    expect(plan.freshCount).toBe(15);
   });
 });
