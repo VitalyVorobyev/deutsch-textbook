@@ -216,6 +216,16 @@ provide:
 11. a connection to sustained reader/listener input where appropriate; and
 12. evidence labelled by actual response mode and verification quality.
 
+**On item 9, added 2026-07-12.** A mission here is a **content** rule, not a feature. The unit's
+article examples, reading, listening, practice and transfer task take place in one concrete scenario
+with the same people and the same problem, and the unit ends with a fresh-context production task in
+which the learner does the thing the scenario was about. That is what finding 4 asked for — a unit
+that combines several skills coherently rather than lengthening its article — and it costs no code.
+The mission *engine* (a resumable, presented mission layer) is a separate proposal and remains
+deferred as P5-4, because it adds no new retrieval opportunity and its premise is engagement, which
+is not the problem the data shows. Read as a demand for the engine, item 9 would have made every A2
+unit unpassable by construction.
+
 ## Evaluation
 
 Pilot evaluation compares immediate performance with parallel probes after approximately 2–3, 7

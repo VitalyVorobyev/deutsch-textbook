@@ -44,7 +44,9 @@ Language learning is not one activity. Every artifact serves (mostly) one of:
   meaning (dialogue-shaped tasks, appointment calls). A single-learner app can
   only approximate this; approximate it rather than dropping the mode.
 - **Production** — constructing German the learner was not just shown:
-  `translate`, dictated-from-meaning sentences, free writing (planned `write`).
+  `translate`, dictated-from-meaning sentences, free writing (`write`, which
+  requires draft → checklist → revision) and speaking (`speak`, with local
+  record/replay and a second attempt).
 
 A healthy **unit** feeds all four in a deliberate progression (below). A healthy
 **review session** is retrieval-centered. The old house rule "every touch must
@@ -101,10 +103,13 @@ cheap here, not because they are equally settled — never present them as such.
    and glosses are gone; support that outlives the novice stage *hurts*
    (expertise reversal).
 4. **Independent transfer** — production in contexts the learner has not seen:
-   `translate` with fresh sentences, `write` (planned) with a communicative
-   goal. New contexts, same rule — never a re-skin of a drilled item.
+   `translate` with fresh sentences, `write` with a communicative goal, `speak`
+   with a communicative task. New contexts, same rule — never a re-skin of a
+   drilled item.
 5. **Delayed check** — retention measured later: FSRS reviews, mastery's
-   ≥2-day requirement, delayed probes with parallel variants (Phase 3).
+   ≥2-day requirement, and the delayed probes (`src/lib/probes.ts`) that re-ask
+   an outcome after 2, 7 and 21 days with a parallel variant, opening the daily
+   session before any practice can contaminate the interval.
 
 When authoring, place every item you write on this arc; when reviewing, look
 for arcs that end at stage 2 (drilled but never transferred or re-checked).
@@ -132,8 +137,17 @@ sufficient.
   curriculum outcome IDs. `pretest`, `checkpoint`, and `probe` roles never enter
   ordinary mixed training.
 - **Mode fit (§1/§13):** choose the format for the skill: production formats
-  (`cloze`, `translate`, `listen`, `order`) when production is the goal; `mc`
-  for genuine discrimination/comprehension decisions.
+  (`translate`, `cloze`, `listen`, `write`, `speak`) when production is the
+  goal; `mc` for genuine discrimination/comprehension decisions. `order` hands
+  the learner every token and asks only for the sequence — it is scaffolded
+  first practice for a word-order rule, never a test of one.
+- **The item mix is a bar, not a preference (§12/§13):** over the union of a
+  topic's `role: practice` sets, `bun run validate` requires at least 2
+  `translate` items, keeps `mc` to at most a third, and caps
+  `mc`+`match`+`order` at 45%. Recognition items are cheap to write and cheap
+  to answer, so a catalog drifts toward them on its own until it stops
+  discriminating. Adding items to an existing topic is not free — see the
+  `primaryPractice` warning in `CLAUDE.md`.
 - **Explanatory feedback (§6):** every item needs a bilingual `explain` — this is
   where the teaching happens.
 - **Interleaving-ready (§3/§14):** single-confusion items get a `focus` tag;
@@ -161,13 +175,21 @@ sufficient.
   the productive card can't teach what the data doesn't hold.
 
 ### Reading text
-- **Intensive graded input (§11):** the current readings are *intensive* input —
-  ~90–130 words, glossed, mined by comprehension questions. Author them as
-  such: density of target structures is a feature. Do **not** call this
-  extensive reading; the extensive-reader gap (long, easy, volume-driven texts)
-  is a known hole scheduled as Phase 4 (backlog P4-2).
-- **Glossing (§11/§8):** 6–10 glosses so comprehension never breaks; an
-  unglossed above-level phrase is the main failure mode.
+- **Decide the `kind` first (§11):** a reading is either *intensive* or
+  *extensive*, and the two are different artifacts with different jobs. An
+  **intensive** reading (the default) is ~90–130 words, densely glossed and
+  mined by 2–4 comprehension questions; density of target structures is a
+  feature. An **extensive** reader is 250–400 words with at most 2 gist
+  questions and roughly one gloss per 40 words, read straight through for
+  meaning — the validator enforces those bounds, because a long text that is
+  quizzed line by line is a long intensive text and never delivers the volume
+  input it exists for. Never describe an intensive reading as extensive.
+- **The volume gap is narrowed, not closed:** one extensive reader ships
+  (Lena in Bremen, `content/reading/a1/lena-1-der-erste-tag.yaml`). A pilot is
+  not a series; the series is backlog P5-2. Say so honestly.
+- **Glossing (§11/§8):** enough glosses that comprehension never breaks — 6–10
+  in an intensive text, sparse in an extensive one; an unglossed above-level
+  phrase is the main failure mode either way.
 
 ### Audio (any artifact)
 Judge audio by its **listening/phonological purpose**, never as generic
@@ -209,7 +231,8 @@ RU halves; an EN reader who knows no Russian).
    `progress/<profile>/*.json`, report its export date, and warn explicitly when
    it is stale. Then report, as numbers:
    - **attempts per mode/itemType** (`mc`/`cloze`/`match`/`order`/`table`/
-     `translate`/`listen`, reading attempts under `reading:*`) — the mode
+     `translate`/`listen`/`audio-comprehension`/`write`/`speak`, reading
+     attempts under `reading:*`, probe attempts under `<level>/probe-*`) — the mode
      distribution is the headline finding;
    - attempts per topic (concentration vs spread) and per focus tag;
    - card evidence: graded cards per deck and direction, lapses;

@@ -2,16 +2,15 @@
 
 Status: **in progress** (updated 2026-07-12).
 
-A1 is content-complete and shipped (v0.2.0). The post-release
-[learning-system audit](a1-learning-audit.md) found that the lesson foundation is strong but the
-course loop still lacks delayed probes, production revision, spoken self-practice and sustained
-input. Re-examining it against a much larger snapshot (671 attempts, three consecutive days) then
-surfaced a deeper problem the thin early data had hidden: **the system was not measuring what it
-claimed to.** Free production was scored so that a typo counted as a grammar failure, and every
-sentence error was blamed on whichever confusion the item drilled — so the weakness signal that
-drives training and drill authoring was substantially wrong. The current milestone fixes that
-instrument, then hardens the loop, before either is scaled across A2. Executable work lives in
-[backlog.md](backlog.md); implementation history lives in
+A1 is content-complete and shipped (v0.2.0), and its learning loop has been hardened: free
+production is scored honestly, delayed parallel probes are running, open writing revises, speaking
+is practised locally, and the item mix is enforced rather than merely asked for. The
+[learning-system audit](a1-learning-audit.md) records why each of those was necessary — chiefly that
+the system had not been measuring what it claimed to.
+
+The current milestone completes A2 to that same bar. The unit order, the identities and the
+per-unit language are decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md); executable
+work lives in [backlog.md](backlog.md); implementation history lives in
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md).
 
 ## Product direction
@@ -41,64 +40,58 @@ curriculum/outcome contracts, the Lernpfad and Atlas, Üben navigation, and the 
 suite. Phase 2 completed A1 — ten units, the cumulative checkpoint, and full Goethe-A1 Wortliste
 coverage. Details and stable IDs are in the archive.
 
-## Current milestone — Phase 3: harden the A1 learning loop
+Phase 3 hardened that loop. Every engineering item shipped on 2026-07-12: the scorer, the probes,
+the enforced item mix, the extensive reader, the reserved broad-retrieval share, and mode-valid
+evidence. One criterion remains open, and it runs on wall-clock rather than on work — see the gate
+below.
 
-Outcome: A1 demonstrates a complete input → retrieval → interaction/production → revision → delayed
-transfer loop, **measured by an instrument that works**, and that loop becomes the required
-authoring contract for A2.
+## Current milestone — Phase 4: complete A2
 
-- **Fix free-production scoring and error attribution first.** The 671-attempt snapshot showed the
-  `translate` scorer was recording spelling slips as grammar failures and blaming every sentence
-  error on whichever confusion the item happened to drill. Weakness detection, training priority and
-  drill authoring all read that signal, and the most-practiced set in the corpus turned out to be a
-  drill for a confusion the learner does not have. Everything below consumes this signal, so it is
-  the gate.
-- Add local, snapshot-safe delayed probes with parallel variants — and start their clock early, as
-  a 21-day probe cannot report before 21 days.
-- Reserve a stable share of mixed sessions for broad cumulative retrieval.
-- Upgrade open writing to checklist-led revision and add local record/replay speaking practice.
-- Rebalance the item mix before A2 inherits it: `mc`+`match`+`order` are ~58% of all attempts at
-  93–100% accuracy, buying almost no information.
-- Pilot one late-A1 extensive reader.
-- Record actual response mode separately from the curriculum outcome's target mode.
+Outcome: A2 reaches the same bar as A1 — sixteen topics, a cumulative checkpoint, delayed probes,
+measured Wortliste coverage — and the whole A1–A2 path is walkable end to end.
 
-Mission grouping and reviewed multi-voice audio were **deferred out of this milestone** — neither is
-supported by the usage data, and both cost more than they would measurably teach. See P5-4 and P5-1.
+- **Fix the A2 foundation first.** The six shipped A2 topics predate the hardened loop and are below
+  its bar: no `write`, no `speak`, no `audio-comprehension`, no probe families, no extensive reader,
+  and four declared outcomes that nothing measures. Ten new units built on that foundation would
+  inherit its gaps.
+- Build the A2 instrument: probe families for the existing topics, `deepens` semantics in training,
+  a Goethe-A2 Wortliste coverage manifest, and a checkpoint route that is not hard-wired to A1.
+- Author the ten A2 units in spine order, one complete bundle each.
+- Close the level with the cumulative A2 checkpoint, the Wortliste completion pass, and an Über page
+  whose A2 figures are computed rather than claimed.
 
-**Status (2026-07-12): every engineering item is done.** The scorer is fixed, probes are running,
-the item mix is enforced, the extensive reader has shipped, and mixed sessions reserve a quarter of
-themselves for broad retrieval. What Phase 3 now waits on is *elapsed time*, not work.
+Vocabulary grows with complete units, never as disconnected padding, and an A2 unit owns a thin new
+A2 deck rather than adopting an A1 one — the blueprint explains why that distinction is load-bearing.
+Do not quote headword counts here; they go stale. The live figures are on the Über page.
 
-**Exit criteria:**
+**Exit criteria:** the A1–A2 path is complete; the A2 checkpoint and A2 probes run; every declared
+outcome is measured by something; weakness targeting cannot monopolize a session; verified and
+practice evidence remain distinct.
 
-1. The weak-focus signal is trustworthy — ✅ replaying the newest snapshot moves it, and the change
-   survived review (`trennbar-modal` was a phantom; `kein-nicht` and `dativ-artikel` are real).
-2. Due parallel probes run after a real interval and clear a stated numeric bar: **≥ 80% per A1
-   outcome, with free-production items ≥ 70%.** ⏳ The 21-day cohort completes **2026-08-02**. This
-   is the one criterion that can fail, and it is the gate on A2.
-3. Progress shows actual mode coverage without treating unverified production as mastery — ✅.
-4. The full repository gate passes — ✅.
+### The A1 retention gate, and why A2 authoring proceeds anyway
 
-A2 authoring does not begin before (2) reports. If A1 does not clear the bar, the lesson pattern
-about to be scaled tenfold is the thing to fix, and authoring faster would only multiply the defect.
+Phase 3's second exit criterion is the only one that can fail: **due parallel probes clear ≥ 80% per
+A1 outcome, with free-production items ≥ 70%.** The probes armed on 2026-07-12, so the 21-day cohort
+cannot report before **2026-08-02**.
 
-## Next milestone — Phase 4: complete A2 and retention
+This roadmap previously said that A2 authoring would not begin until it did. That rule is
+deliberately changed here rather than quietly broken, because the reasoning behind it turned out to
+be narrower than the rule it produced. The danger the gate names is real — scaling a lesson pattern
+tenfold before knowing whether it produces retention would multiply a defect rather than find it.
+But most of the A2 work in front of us is not that. Repairing the six existing A2 topics, arming
+their probes, measuring coverage and fixing the outcome layer are all things the probe report can
+only make *more* necessary, never less. Holding them for three weeks buys nothing and costs the
+learner three weeks of an A2 that is known to be broken.
 
-Outcome: the hardened course loop reaches an A2 checkpoint and measures retention beyond immediate
-practice.
+So the gate becomes a **revision trigger** with a consequence attached:
 
-- Author the revised A2 spine and strengthen the six existing A2 topics.
-- Implement `deepens` in training so relevant earlier focus areas resurface.
-- Author ten A2 units to the quality gate in the audit.
-- Add cumulative unit checkpoints and delayed probes with parallel variants.
-- Finish with a cumulative A2 checkpoint.
+> On 2026-08-02 the probe cohort is read and the audit updated. If A1 misses the bar, authoring
+> stops: the units written by then are revised against the finding, and the lesson pattern is fixed
+> before another unit is written.
 
-Vocabulary grows with complete units — topic, practice, reading, productive use and reviewed IPA —
-never as disconnected padding. Do not quote headword counts here; they go stale. The live figures
-are on the Über page, and `bun scripts/coverage-a1.ts` reports A1 against the Goethe Wortliste.
-
-**Exit criteria:** the A1–A2 path is complete; checkpoints and delayed probes run; weakness
-targeting cannot monopolize a session; verified and practice evidence remain distinct.
+The risk this accepts is explicit. If the pattern proves defective, the units authored in the
+meantime need rework, and that rework is the price of not idling. It is a bet on the pattern, made
+with open eyes, and it is recorded here so that the bill — if it comes — is not a surprise.
 
 ## Deferred — Phase 5
 
