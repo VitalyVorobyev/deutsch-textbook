@@ -1,0 +1,106 @@
+topic: lernen-verstehen
+role: probe
+title:
+  en: "Probe — the verb at the end of the wrapped question"
+  ru: "Проверка — глагол в конце вопроса с рамкой"
+
+# Three PARALLEL variants of ONE competence: THE INDIRECT QUESTION (`indirekte-frage`).
+# A question that is wrapped in a polite frame stops being a question and becomes a
+# Nebensatz, so its conjugated verb goes to the very end: Können Sie mir sagen, wann der
+# Zug nach Köln FÄHRT? — never … wann fährt der Zug nach Köln. That single decision is
+# what this whole unit exists for, and it is the one the learner gets wrong by doing
+# nothing: the bare question was right (Wann fährt der Zug?), and leaving its inversion
+# standing inside the wrapper produces the classic error.
+#
+# Why not `nebensatz-verbende`? Because `nebensaetze-plaene` already probes it, and it is a
+# different confusion: there a STATEMENT is wrapped (weil/dass/wenn), and nothing in the
+# statement had to move except the verb. Here a QUESTION is wrapped, and the learner must
+# undo an inversion they have spent two units automating. Same wall, different problem —
+# and two families measuring the same tag would tell us nothing new about either.
+#
+# Why not the `ob`-question? It is the same tag but NOT the same difficulty: wrapping a
+# yes/no question asks for one decision more than wrapping a W-question — the learner must
+# also SUPPLY the subordinator, which a W-question hands them for free. Variants are served
+# one per interval (2, 7, 21 days), so anything that differs between them is confounded with
+# the delay: an ob-variant at 7 days would sit lower than its neighbours whatever was
+# retained, and the curve would be a difficulty curve wearing a retention label. So all three
+# variants wrap a W-question. `ob` gets its evidence from practice, which is where outcome
+# mastery comes from anyway.
+#
+# ALL THREE VARIANTS ARE STRUCTURALLY IDENTICAL, deliberately and to the token:
+#   [Können Sie mir sagen,]  +  W-word  +  subject  +  one adverbial/object  +  ONE conjugated verb.
+# Same wrapper (so the wrapper contributes zero variance), same clause shape, one verb at the
+# wall in each — no modal cluster, no separable prefix, nothing that would import a second
+# competence. Only the situation and the lexis move, and all three situations are outside the
+# classroom on purpose: a station, a supermarket, a doctor's surgery. None of them can be
+# answered from memory of a practice item — the practice frame is the course, and the wrapped
+# content here is new every time.
+#
+# key_tokens pins ONLY the wrapped verb the rule drives to the wall — never the wrapper's
+# `Können`, which the learner is given, and never the W-word. `accept` is deliberately
+# generous (other polite wrappers, an equally correct verb): a probe that marks correct German
+# wrong corrupts the retention curve AND writes a false weakness entry under this tag.
+
+items:
+  - id: variant-a
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: Translate into German. You are asking a member of staff at the station.
+      ru: Переведите на немецкий. Вы спрашиваете сотрудника вокзала.
+    prompt_en: "Can you tell me when the train to Cologne leaves?"
+    prompt_ru: "Вы не подскажете, когда отправляется поезд на Кёльн?"
+    answer: "Können Sie mir sagen, wann der Zug nach Köln fährt?"
+    accept:
+      - "Können Sie mir bitte sagen, wann der Zug nach Köln fährt?"
+      - "Können Sie mir sagen, wann der Zug nach Köln abfährt?"
+      - "Können Sie mir bitte sagen, wann der Zug nach Köln abfährt?"
+      - "Wissen Sie, wann der Zug nach Köln fährt?"
+      - "Wissen Sie, wann der Zug nach Köln abfährt?"
+    key_tokens: ["fährt"]
+    explain:
+      en: "Two verbs, two addresses. The wrapper Können Sie mir sagen is an ordinary main clause and keeps its verb in position 2. Everything after the comma is a Nebensatz, so the wrapped verb travels to the very end: … wann der Zug nach Köln fährt. As a bare question the same words come out the other way round — Wann fährt der Zug nach Köln? — and that is exactly the shape you must not leave standing inside the wrapper. Cover the wrapper with your finger: what remains may not read as a question."
+      ru: "Два глагола — два адреса. Рамка Können Sie mir sagen — обычное главное предложение, и глагол в ней остаётся на втором месте. Всё после запятой — придаточное, поэтому «обёрнутый» глагол уезжает в самый конец: … wann der Zug nach Köln fährt. Самостоятельным вопросом те же слова идут в обратном порядке — Wann fährt der Zug nach Köln? — и вот эту форму как раз нельзя оставлять внутри рамки. Закройте рамку пальцем: остаток не должен читаться как вопрос."
+
+  - id: variant-b
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: Translate into German. You are asking an assistant in the supermarket.
+      ru: Переведите на немецкий. Вы спрашиваете продавца в супермаркете.
+    prompt_en: "Can you tell me when the shop closes on Saturday?"
+    prompt_ru: "Вы не подскажете, когда магазин закрывается в субботу?"
+    answer: "Können Sie mir sagen, wann das Geschäft am Samstag schließt?"
+    accept:
+      - "Können Sie mir bitte sagen, wann das Geschäft am Samstag schließt?"
+      - "Können Sie mir sagen, wann der Supermarkt am Samstag schließt?"
+      - "Können Sie mir bitte sagen, wann der Supermarkt am Samstag schließt?"
+      - "Wissen Sie, wann das Geschäft am Samstag schließt?"
+      - "Wissen Sie, wann der Supermarkt am Samstag schließt?"
+    key_tokens: ["schließt"]
+    explain:
+      en: "The wrapper is a question and keeps its own verb second; the wrapped clause is a Nebensatz and ends with its conjugated verb: … wann das Geschäft am Samstag schließt. The time phrase am Samstag simply sits inside the clause and changes nothing — only the verb has a fixed address, and that address is the wall. Wann schließt das Geschäft am Samstag? is the right question to ask on its own and the wrong thing to put behind a comma."
+      ru: "Рамка — вопрос, и свой глагол она держит на втором месте; «обёрнутое» придаточное закрывается спрягаемым глаголом: … wann das Geschäft am Samstag schließt. Обстоятельство времени am Samstag просто стоит внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола, и этот адрес — стена. Wann schließt das Geschäft am Samstag? — правильный самостоятельный вопрос и неправильное продолжение после запятой."
+
+  - id: variant-c
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: Translate into German. You are asking at the reception of a doctor's surgery.
+      ru: Переведите на немецкий. Вы спрашиваете в регистратуре у врача.
+    prompt_en: "Can you tell me when the surgery opens on Friday?"
+    prompt_ru: "Вы не подскажете, когда в пятницу открывается врачебная практика?"
+    answer: "Können Sie mir sagen, wann die Praxis am Freitag öffnet?"
+    accept:
+      - "Können Sie mir bitte sagen, wann die Praxis am Freitag öffnet?"
+      - "Können Sie mir sagen, wann die Praxis am Freitag aufmacht?"
+      - "Können Sie mir bitte sagen, wann die Praxis am Freitag aufmacht?"
+      - "Wissen Sie, wann die Praxis am Freitag öffnet?"
+      - "Wissen Sie, wann die Praxis am Freitag aufmacht?"
+    key_tokens: ["öffnet"]
+    explain:
+      en: "Same rule for the third time, in the third place: the wrapper takes position 2 for its own verb, and the wrapped question hands its conjugated verb to the end of the clause — … wann die Praxis am Freitag öffnet. Whether you say öffnet or aufmacht is lexis and both are accepted; where the verb lands is the rule, and only that is graded. If your sentence reads Können Sie mir sagen, wann öffnet die Praxis, the bare question is still sitting inside the wrapper."
+      ru: "То же правило в третий раз и в третьем месте: рамка держит свой глагол на втором месте, а «обёрнутый» вопрос отдаёт спрягаемый глагол в конец придаточного — … wann die Praxis am Freitag öffnet. Скажете вы öffnet или aufmacht — дело словаря, оба варианта принимаются; правило говорит лишь о том, где приземляется глагол, и только это и оценивается. Если получилось Können Sie mir sagen, wann öffnet die Praxis, значит внутри рамки по-прежнему сидит самостоятельный вопрос."

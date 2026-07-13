@@ -117,6 +117,36 @@ const isClosedClass = (token: string) => CLOSED_CLASS.has(bare(token).toLowerCas
 const isFunctionWordSwap = (typed: string, expected: string) =>
   isClosedClass(expected) && isClosedClass(typed);
 
+/**
+ * Was a wrong dictation a spelling slip rather than the confusion the item is tagged with?
+ *
+ * A `listen` item is scored on its spelling — there, spelling *is* the drill, and a typo is a
+ * miss. But its `focus` tag is a *grammar* tag, and `focusForAttempt` logs that tag on any
+ * wrong answer. So a learner who hears `Ich bringe dir einen Kuchen mit.` and types `Kuhen`
+ * was being recorded as failing separable-verb word order — a confusion they did not have —
+ * and `weakFocuses()` would then prioritise it in training and invite a drill for it.
+ *
+ * The item still counts as wrong. Only the *attribution* is withheld, and only when the miss
+ * is unmistakably a slip: exactly one token off, one edit away, and not a swap inside the
+ * closed class. `den` for `dem` stays attributed, because that is precisely the choice a
+ * `dativ-artikel` dictation exists to grade — one edit apart *and* the thing being measured.
+ */
+export function dictationSlip(given: string, expected: string): boolean {
+  const want = tokenize(expected);
+  const got = tokenize(given);
+  if (want.length !== got.length) return false;
+
+  const diverged = want.reduce<number[]>((acc, tok, i) => {
+    if (tok !== got[i]) acc.push(i);
+    return acc;
+  }, []);
+  if (diverged.length !== 1) return false;
+
+  const at = diverged[0]!;
+  if (isFunctionWordSwap(got[at]!, want[at]!)) return false;
+  return isOneEdit(got[at]!, want[at]!);
+}
+
 export interface TranslationSpec {
   /** canonical German answer */
   answer: string;
@@ -233,6 +263,44 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
 
   const answerTokens = tokenize(spec.answer);
   const differs = diffExpectedWords(answerTokens, givenTokens);
-  const hitGraded = answerTokens.some((_tok, i) => differs[i] && isGraded(answerTokens, i));
-  return hitGraded ? { kind: 'wrong', focus: spec.focus } : { kind: 'wrong' };
+  if (answerTokens.some((_tok, i) => differs[i] && isGraded(answerTokens, i))) {
+    return { kind: 'wrong', focus: spec.focus };
+  }
+
+  /**
+   * The diff above answers one question: which expected words are *missing* from what the
+   * learner wrote. A transposition is not a missing word. `… weil ich am Samstag arbeiten
+   * muss` typed as `… weil ich am Samstag muss arbeiten` still contains both words, so the
+   * alignment happily matches the learner's `muss` to the expected `muss` and reports only
+   * `arbeiten` as diverged. The item pins `muss` — the verb whose placement it grades — that
+   * verb is reported present, and the attempt is logged wrong but **unattributed**. The tag
+   * the item exists to measure never fires for the one error the item exists to catch.
+   *
+   * Every verb-final family was silently affected — `nebensatz-verbende`, `indirekte-frage`,
+   * `modal-satzklammer`, `trennbar-modal`, `perfekt-satzklammer` — across practice, drill and
+   * **probe** items alike. So the retention curve for a word-order rule was being read off
+   * items that could not attribute their own signature error, and `weakFocuses()` could never
+   * see a learner who systematically collapses the Satzklammer.
+   *
+   * So ask the other question too: did the learner put something *else* into a slot this item
+   * grades? That is what "word order" means here, and it is positional by nature.
+   *
+   * Compare against whichever accepted rendering the learner came closest to, not against
+   * `answer` alone: an `accept` variant that legitimately fronts a time phrase shifts every
+   * later word by one, and measured against `answer` those shifted slots would all look like
+   * misplacements — blaming the tag for word order the learner got right.
+   */
+  const nearest = candidates
+    .map(tokenize)
+    .filter((want) => want.length === givenTokens.length)
+    .map((want) => ({
+      want,
+      off: want.reduce((n, tok, i) => (tok !== givenTokens[i] ? n + 1 : n), 0),
+    }))
+    .sort((a, b) => a.off - b.off)[0];
+
+  const misplacedGraded =
+    nearest?.want.some((tok, i) => tok !== givenTokens[i] && isGraded(nearest.want, i)) ?? false;
+
+  return misplacedGraded ? { kind: 'wrong', focus: spec.focus } : { kind: 'wrong' };
 }
