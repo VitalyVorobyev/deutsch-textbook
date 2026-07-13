@@ -19,14 +19,16 @@ items:
     type: translate
     focus: passen-dativ
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
+      en: Translate into German. Use passen in the first sentence.
+      ru: Переведите на немецкий. В первом предложении используйте passen.
     prompt_en: "Tuesday doesn't suit us. Does Wednesday work too?"
     prompt_ru: "Вторник нам не подходит. А в среду получится?"
     answer: "Der Dienstag passt uns nicht. Klappt es auch am Mittwoch?"
     key_tokens: ["uns"]
     accept:
       - "Uns passt der Dienstag nicht. Klappt es auch am Mittwoch?"
+      - "Der Dienstag passt uns nicht. Geht es am Mittwoch?"
+      - "Uns passt der Dienstag nicht. Geht es am Mittwoch?"
     explain:
       en: "With passen the day is the subject and the people it suits are the dative object: der Dienstag passt uns. The person is never the subject — a sentence starting Wir passen … would say that we fit somewhere, which is not what is meant."
       ru: "При глаголе passen подлежащее — это день, а те, кому он подходит, стоят в дательном падеже: der Dienstag passt uns. Человек здесь никогда не подлежащее: фраза Wir passen … означала бы, что мы куда-то помещаемся, а не что нам удобно."
@@ -36,8 +38,8 @@ items:
     type: translate
     focus: passen-dativ
     instruction:
-      en: Translate into German. You are speaking to a friend.
-      ru: Переведите на немецкий. Вы говорите с другом.
+      en: Translate into German using passen. You are speaking to a friend.
+      ru: Переведите на немецкий с глаголом passen. Вы говорите с другом.
     prompt_en: "Does the appointment at ten o'clock suit you? It suits me well."
     prompt_ru: "Тебе подходит встреча в десять часов? Мне она вполне подходит."
     answer: "Passt dir der Termin um zehn Uhr? Er passt mir gut."
@@ -53,8 +55,8 @@ items:
     type: translate
     focus: passen-dativ
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
+      en: Translate into German. Use passen.
+      ru: Переведите на немецкий. Используйте passen.
     prompt_en: "Thursday doesn't suit my wife. Friday suits her better."
     prompt_ru: "Четверг моей жене не подходит. Пятница подходит ей лучше."
     answer: "Der Donnerstag passt meiner Frau nicht. Der Freitag passt ihr besser."

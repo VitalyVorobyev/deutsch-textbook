@@ -162,7 +162,7 @@ export default function ReadingText({ readingId, reading }: Props) {
         ) : (
           question && (
             <ItemView
-              key={question.id}
+              instanceKey={question.id}
               item={question}
               lang={lang}
               onResult={handleResult}

@@ -1,5 +1,12 @@
 import { describe, expect, test } from 'bun:test';
-import { dictationSlip, gradeTranslation, isOneEdit, verdictIsCorrect } from '../src/lib/production';
+import {
+  closestTranslationCandidate,
+  dictationSlip,
+  gradeTranslation,
+  isOneEdit,
+  translationCandidates,
+  verdictIsCorrect,
+} from '../src/lib/production';
 
 describe('one-edit near-miss detection', () => {
   test('accepts the slips a learner actually makes', () => {
@@ -45,6 +52,29 @@ describe('grading a typed German sentence', () => {
   test('an accepted variant is correct', () => {
     const spec = { answer: 'Gestern haben wir eine Pizza gegessen.', accept: ['Wir haben gestern eine Pizza gegessen.'] };
     expect(gradeTranslation('Wir haben gestern eine Pizza gegessen.', spec).kind).toBe('correct');
+  });
+});
+
+describe('authored translation candidates', () => {
+  const berlin = {
+    answer: 'Ich fahre am Samstag mit meinen Freunden nach Berlin.',
+    accept: [
+      'Am Samstag fahre ich mit meinen Freunden nach Berlin.',
+      'Ich fahre am Samstag mit meinen Freunden nach Berlin',
+    ],
+  };
+
+  test('deduplicates punctuation-only variants while preserving author order', () => {
+    expect(translationCandidates(berlin)).toEqual([
+      'Ich fahre am Samstag mit meinen Freunden nach Berlin.',
+      'Am Samstag fahre ich mit meinen Freunden nach Berlin.',
+    ]);
+  });
+
+  test('corrects against the rendering that preserves the learner’s valid word order', () => {
+    expect(
+      closestTranslationCandidate('Am Samstag fahre ich mit meine Freunde nach Berlin', berlin),
+    ).toBe('Am Samstag fahre ich mit meinen Freunden nach Berlin.');
   });
 });
 

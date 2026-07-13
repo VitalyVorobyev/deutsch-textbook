@@ -361,7 +361,7 @@ export default function MixedTraining({
 
       {entry && (
         <ItemView
-          key={`${round}-${entry.uid}`}
+          instanceKey={`${round}-${entry.uid}`}
           item={entry.item}
           lang={lang}
           onResult={handleResult}
