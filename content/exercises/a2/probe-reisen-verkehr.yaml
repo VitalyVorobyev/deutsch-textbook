@@ -1,0 +1,102 @@
+topic: reisen-verkehr
+role: probe
+title:
+  en: "Probe — telling a journey: haben or sein?"
+  ru: "Проверка — рассказ о поездке: haben или sein?"
+
+# Three PARALLEL variants of ONE competence: choosing the Perfekt auxiliary in a
+# travel narrative (and building the participle that goes with it). One variant is
+# drawn per due interval (2, 7, 21 days), so the same skill is measured three times,
+# in three journeys the learner has never seen.
+#
+# Why this competence: reporting a trip is the whole point of the unit, and the
+# auxiliary is the half of the tense that stays wrong longest — the participle is a
+# word the learner looks up, but haben/sein is a decision they have to make every
+# single sentence. Each variant therefore mixes movement verbs (sein) with ordinary
+# non-movement ones (haben) inside one story, and none of them repeats a practice item.
+#
+# All three are `translate`, and must stay that way: only the elapsed time may vary
+# across a probe family. A cloze hands the learner the whole sentence and asks for the
+# auxiliary alone, so a cloze at 7 days would outscore a translate at 2 and 21 whatever
+# was actually retained, and the retention curve would be measuring the format.
+#
+# All three are also subject-first, and none of them tells the learner to front the time
+# phrase — deliberately. The auxiliary is a `key_tokens` word, and tokens are compared by
+# position, so a learner who fronts `Am Montag` and then forgets the inversion has a
+# *word-order* failure attributed to `haben-sein`. Fronting is a real skill, it is graded
+# in the practice set (uebersetzen-angekommen, focus: perfekt-satzklammer), and it has no
+# business contaminating this retention curve. Both orders are still accepted.
+
+items:
+  - id: variant-a
+    outcomes: [reise-berichten]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "We flew to Vienna and stayed there for a week."
+    prompt_ru: "Мы полетели в Вену и пробыли там неделю."
+    answer: "Wir sind nach Wien geflogen und eine Woche dort geblieben."
+    key_tokens: ["sind", "geflogen", "geblieben"]
+    accept:
+      # The `sind` may be repeated after `und`, and dort/eine Woche may swap — both are
+      # ordinary German. A probe measures the auxiliary, so it must not fail a learner who
+      # picked the right one and put the adverb where a native also puts it.
+      #
+      # The canonical answer elides the second `sind` on purpose: repeated, it would put the
+      # graded token in the sentence twice, and `graded` in src/lib/production.ts matches by
+      # string rather than by position — so one auxiliary slip would be counted against
+      # haben-sein twice over. Here both occurrences would be the same decision, so nothing
+      # would be mis-attributed, but the probe would still weigh this item's aux error more
+      # heavily than its siblings', and a probe exists to be compared with its siblings.
+      - "Wir sind nach Wien geflogen und sind eine Woche dort geblieben."
+      - "Wir sind nach Wien geflogen und sind dort eine Woche geblieben."
+      - "Wir sind nach Wien geflogen und dort eine Woche geblieben."
+    explain:
+      en: "Two sein verbs for two different reasons. fliegen is movement from A to B — the standard case. bleiben is the opposite of movement, and it still takes sein: it belongs to the small group of state verbs (sein, bleiben, passieren) that never took haben in the first place. Learn that group as a list; there is no rule that predicts it."
+      ru: "Два глагола с sein — но по разным причинам. fliegen — движение из точки А в точку Б, обычный случай. А bleiben — прямая противоположность движению, и всё равно требует sein: он входит в небольшую группу глаголов состояния (sein, bleiben, passieren), которые никогда не брали haben. Эту группу нужно просто выучить списком — правила, которое её предсказывает, нет."
+
+  - id: variant-b
+    outcomes: [reise-berichten]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Monday I got up at six and took a taxi."
+    prompt_ru: "В понедельник я встал в шесть часов и взял такси."
+    answer: "Ich bin am Montag um sechs Uhr aufgestanden und habe ein Taxi genommen."
+    key_tokens: ["bin", "aufgestanden", "habe", "genommen"]
+    accept:
+      - "Am Montag bin ich um sechs Uhr aufgestanden und habe ein Taxi genommen."
+      - "Ich bin am Montag um sechs aufgestanden und habe ein Taxi genommen."
+      - "Am Montag bin ich um sechs aufgestanden und habe ein Taxi genommen."
+    explain:
+      en: "Two verbs in one sentence, and they take different auxiliaries. aufstehen moves you — out of bed, A to B — so it takes sein, and it is separable, so the -ge- sits inside the participle: ich bin aufgestanden. nehmen moves nobody at all; it has an accusative object (ein Taxi) and takes haben: ich habe ein Taxi genommen. A taxi in the sentence decides nothing — the verb does."
+      ru: "Два глагола в одном предложении — и вспомогательные глаголы у них разные. aufstehen перемещает вас (встать с кровати — тоже движение из точки А в точку Б), поэтому нужен sein, а глагол отделяемый, так что -ge- уходит внутрь причастия: ich bin aufgestanden. А nehmen не перемещает никого: у него дополнение в Akkusativ (ein Taxi) и вспомогательный глагол haben — ich habe ein Taxi genommen. Такси в предложении ничего не решает — решает глагол."
+
+  - id: variant-c
+    outcomes: [reise-berichten]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "In the morning we walked to the station and took the bus."
+    prompt_ru: "Утром мы дошли пешком до вокзала и сели на автобус."
+    answer: "Wir sind am Morgen zum Bahnhof gelaufen und haben den Bus genommen."
+    key_tokens: ["sind", "gelaufen", "haben", "genommen"]
+    accept:
+      # "walked" is gegangen just as much as it is gelaufen — and the article itself teaches
+      # `zu Fuß gehen`. Without these, a learner who chose the right auxiliary and the right
+      # participle form would be scored wrong AND logged as a haben-sein failure, because
+      # `gelaufen` is a graded token. That is the one error a probe may never make.
+      - "Wir sind am Morgen zum Bahnhof gegangen und haben den Bus genommen."
+      - "Am Morgen sind wir zum Bahnhof gelaufen und haben den Bus genommen."
+      - "Am Morgen sind wir zum Bahnhof gegangen und haben den Bus genommen."
+      - "Wir sind am Morgen zu Fuß zum Bahnhof gegangen und haben den Bus genommen."
+      - "Am Morgen sind wir zu Fuß zum Bahnhof gegangen und haben den Bus genommen."
+    explain:
+      en: "One sentence, both auxiliaries — and the topic is the same in both halves. laufen carries you from A to B, so it takes sein: wir sind gelaufen (gegangen works just as well — both are movement, both take sein). nehmen carries nothing anywhere; it has an accusative object and takes haben: wir haben den Bus genommen. Riding a bus is not what makes a sentence a sein sentence — the verb is."
+      ru: "Одно предложение — оба вспомогательных глагола, и тема у обеих половин одна и та же. laufen переносит вас из точки А в точку Б, поэтому нужен sein: wir sind gelaufen (форма gegangen подходит не хуже — оба глагола означают движение, оба требуют sein). А nehmen никого никуда не переносит: у него дополнение в Akkusativ и вспомогательный глагол haben — wir haben den Bus genommen. Предложение делает «sein-предложением» не автобус в нём, а глагол."

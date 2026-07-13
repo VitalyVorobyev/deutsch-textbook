@@ -7,8 +7,9 @@ title:
 # Three parallel variants of ONE competence: asking the way to a place — wie komme ich
 # zum/zur X, with the destination's gender deciding zum or zur. That is what the topic
 # exists for, and the chunk that decays: get zum/zur wrong and the question stops
-# working. Three fresh destinations (Supermarkt, Bank/Platz/Haltestelle, Zentrum), none
-# of them one of the places drilled in the lesson (Bahnhof, Apotheke, Hotel, Post).
+# working. Three fresh destinations, one per gender — der Supermarkt (zum), die Kirche
+# (zur), das Zentrum (zum) — and none of them one of the places drilled in the lesson
+# (Bahnhof, Apotheke, Hotel, Post).
 #
 # `preview: true` on every item: the focus tag dativ-praepositionen is introduced later
 # in the spine (by the A2 topic dativ), but at A1 this topic teaches zum/zur as a fixed
@@ -34,16 +35,19 @@ items:
 
   - id: variant-b
     outcomes: [stadt-weg-erfragen]
-    type: cloze
+    type: translate
     focus: dativ-praepositionen
     preview: true
     instruction:
-      en: Fill in zum or zur.
-      ru: Вставьте zum или zur.
-    text: "— Entschuldigung, wie komme ich {{zur}} Bank? — Gehen Sie geradeaus. Die Bank ist rechts. — Und wie komme ich {{zum}} Platz? — Gehen Sie {{zur}} Haltestelle und nehmen Sie den Bus."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Excuse me, how do I get to the church?"
+    prompt_ru: "Извините, как мне пройти к церкви?"
+    answer: "Entschuldigung, wie komme ich zur Kirche?"
+    key_tokens: ["zur"]
     explain:
-      en: "The gender of the destination decides: die Bank and die Haltestelle are feminine → zur, der Platz is masculine → zum. Learn the place together with its article and the question builds itself."
-      ru: "Выбор зависит от рода места назначения: die Bank и die Haltestelle — женского рода → zur, der Platz — мужского → zum. Если запоминать место сразу с артиклем, вопрос собирается сам."
+      en: "The frame never changes — Entschuldigung, wie komme ich zu … ? — only the contraction does, and the destination's gender decides it: die Kirche is feminine, so zu der becomes zur. Feminine is the one gender that gives zur; everything else gives zum."
+      ru: "Формула вопроса не меняется — Entschuldigung, wie komme ich zu … ? — меняется только стяжение, и выбирает его род места назначения: die Kirche женского рода, поэтому zu der превращается в zur. Только женский род даёт zur, все остальные — zum."
 
   - id: variant-c
     outcomes: [stadt-weg-erfragen]

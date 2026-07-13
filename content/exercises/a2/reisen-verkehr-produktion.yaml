@@ -1,0 +1,161 @@
+topic: reisen-verkehr
+role: practice
+title:
+  en: "Practice — the train is cancelled: listening, writing, speaking"
+  ru: "Практика — поезд отменён: аудирование, письмо, речь"
+items:
+  - id: hoeren-durchsage-schalter
+    outcomes: [durchsage-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "The story goes on where the Lesetext stopped: Timo has reached Bremen and is waiting for the connection to Hamburg. Listen to the announcement and to the conductor."
+      ru: "История продолжается там, где закончился Lesetext: Тимо доехал до Бремена и ждёт пересадку на Гамбург. Послушайте объявление и проводника."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Durchsage", text: "Achtung, bitte. Der Zug nach Hamburg fährt heute nicht von Gleis drei." }
+        - { speaker: "Timo", text: "Entschuldigung, ich habe die Durchsage nicht verstanden. Fährt mein Zug nach Hamburg nicht von Gleis drei?" }
+        - { speaker: "Schaffner", text: "Nein, heute nicht. Er fährt um zwölf Uhr fünf von Gleis neun ab." }
+        - { speaker: "Timo", text: "Und wann bin ich in Hamburg?" }
+        - { speaker: "Schaffner", text: "Um vierzehn Uhr zwanzig. Sie kommen mit einer Stunde Verspätung an." }
+    question: "Von welchem Gleis fährt der Zug nach Hamburg ab?"
+    options:
+      - "Von Gleis drei."
+      - "Von Gleis neun."
+      - "Von Gleis zwölf."
+    correct: 1
+    translation:
+      en: "Which platform does the train to Hamburg leave from?"
+      ru: "С какого пути отправляется поезд на Гамбург?"
+    explain:
+      en: "Three numbers are spoken and only one of them is a platform. Gleis drei is the one you hear first, and you hear it twice — and it is precisely the platform the train does not leave from today: „…fährt heute nicht von Gleis drei.“ zwölf belongs to the clock, not to the track: „um zwölf Uhr fünf“. The platform is the last number in the sentence: „Er fährt um zwölf Uhr fünf von Gleis neun ab.“ In a station the loudest, most repeated number is often the wrong one — the sentence has to be followed to its end, and there is no second look."
+      ru: "В записи звучат три числа, и только одно из них — номер пути. Gleis drei слышно первым и слышно дважды — и именно с этого пути поезд сегодня не идёт: „…fährt heute nicht von Gleis drei.“ zwölf относится к часам, а не к пути: „um zwölf Uhr fünf“. Номер пути — последнее число в предложении: „Er fährt um zwölf Uhr fünf von Gleis neun ab.“ На вокзале самое громкое и чаще всего повторённое число обычно оказывается не тем: предложение надо дослушать до конца, а перечитать его нельзя."
+
+  - id: cloze-hilfsverb-gemischt
+    outcomes: [reise-berichten]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: "Timo tells the whole story. Fill each gap with haben or sein in the correct form."
+      ru: "Тимо рассказывает всю историю. Вставьте в пропуски haben или sein в правильной форме."
+    text: "Zuerst {{habe}} ich eine Fahrkarte gekauft. Dann {{bin}} ich in Köln eingestiegen. In Hannover {{ist}} mein Zug ausgefallen. Am Ende {{bin}} ich mit einer Stunde Verspätung in Hamburg angekommen."
+    translation:
+      en: "First I bought a ticket. Then I got on the train in Cologne. In Hanover my train was cancelled. In the end I arrived in Hamburg an hour late."
+      ru: "Сначала я купил билет. Потом сел в поезд в Кёльне. В Ганновере мой поезд отменили. В итоге я приехал в Гамбург с опозданием на час."
+    explain:
+      en: "Four sentences, four decisions. kaufen moves nobody → haben. einsteigen and ankommen are movement from A to B → sein. ausfallen is the interesting one: nothing moves, and it still takes sein, because it belongs to the small group of things that simply happen — bleiben, passieren, ausfallen. Watch the subject too: in sentence three it is mein Zug, so the auxiliary is ist, not bin."
+      ru: "Четыре предложения — четыре решения. kaufen никого не перемещает → haben. einsteigen и ankommen — движение из точки А в точку Б → sein. Самый интересный случай — ausfallen: движения нет, а sein всё равно нужен, потому что этот глагол относится к небольшой группе «того, что просто происходит»: bleiben, passieren, ausfallen. И следите за подлежащим: в третьем предложении это mein Zug, поэтому вспомогательный глагол — ist, а не bin."
+
+  - id: uebersetzen-nach-der-durchsage
+    outcomes: [reise-problem-loesen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "After the announcement I went to the counter."
+    prompt_ru: "После объявления я пошёл к кассе."
+    answer: "Nach der Durchsage bin ich zum Schalter gegangen."
+    key_tokens: ["der", "zum"]
+    accept:
+      - "Ich bin nach der Durchsage zum Schalter gegangen."
+    explain:
+      en: "Two dative prepositions in one sentence. nach here means 'after' and takes the dative: die Durchsage → nach der Durchsage. zu takes the dative as well and contracts with the masculine article: zu dem Schalter → zum Schalter. And gehen is movement → bin, with the participle gegangen at the end."
+      ru: "Два дативных предлога в одном предложении. nach здесь значит «после» и требует Dativ: die Durchsage → nach der Durchsage. zu тоже требует Dativ и сливается с артиклем мужского рода: zu dem Schalter → zum Schalter. А gehen — движение → bin, и причастие gegangen стоит в конце."
+
+  - id: uebersetzen-ausgefallen-verpasst
+    outcomes: [reise-berichten]
+    type: translate
+    focus: haben-sein
+    instruction:
+      en: "Translate into German. Both halves need an auxiliary — and they are not the same one."
+      ru: "Переведите на немецкий. В обеих частях нужен вспомогательный глагол — и он разный."
+    prompt_en: "My train was cancelled and I missed the connection."
+    prompt_ru: "Мой поезд отменили, и я не успел на пересадку."
+    answer: "Mein Zug ist ausgefallen und ich habe den Anschluss verpasst."
+    key_tokens: ["ist", "ausgefallen", "habe", "verpasst"]
+    explain:
+      en: "One sentence, both auxiliaries. ausfallen belongs with bleiben and passieren — things that happen by themselves — and takes sein: mein Zug ist ausgefallen. verpassen is an ordinary transitive verb and takes haben: ich habe den Anschluss verpasst. Both participles close their half of the sentence, and neither of them has a ge-: ausgefallen keeps it inside (aus-ge-fallen), verpasst has none at all."
+      ru: "Одно предложение — оба вспомогательных глагола. ausfallen стоит в одном ряду с bleiben и passieren (то, что происходит само) и требует sein: mein Zug ist ausgefallen. А verpassen — обычный переходный глагол, он требует haben: ich habe den Anschluss verpasst. Оба причастия замыкают свою половину предложения, и приставки ge- впереди нет ни у одного: у ausgefallen она внутри (aus-ge-fallen), у verpasst её нет вовсе."
+
+  - id: schreiben-ankunft-nachricht
+    outcomes: [reise-berichten]
+    type: write
+    prompt:
+      en: "You are Timo. You are sitting in the connecting train to Hamburg. Write a message to your sister Katrin, who is waiting for you at the station."
+      ru: "Вы — Тимо. Вы сидите в поезде с пересадкой на Гамбург. Напишите сообщение сестре Катрин, которая ждёт вас на вокзале."
+    goal:
+      en: "Tell her what happened on the way and when you will arrive."
+      ru: "Расскажите ей, что случилось в дороге, и когда вы приедете."
+    requirements:
+      - en: "Say how you got to the station — use mit + Dativ and zu + Dativ (mit dem Bus, zum Bahnhof)."
+        ru: "Скажите, как вы добрались до вокзала, — с mit + Dativ и zu + Dativ (mit dem Bus, zum Bahnhof)."
+      - en: "Report the cancellation in the Perfekt: Mein Zug ist ausgefallen."
+        ru: "Сообщите об отмене в перфекте: Mein Zug ist ausgefallen."
+      - en: "Use at least three of zuerst, dann, danach, am Ende — and keep the verb in position 2 after them."
+        ru: "Используйте минимум три слова из zuerst, dann, danach, am Ende — и оставьте глагол на втором месте после них."
+      - en: "Say when you arrive and how big the delay is (Verspätung)."
+        ru: "Скажите, когда вы приедете и насколько большое опоздание (Verspätung)."
+    min_words: 35
+    model_answer: "Hallo Katrin! Zuerst bin ich mit dem Bus zum Hauptbahnhof gefahren. Dann bin ich in Köln eingestiegen. In Hannover ist mein Zug leider ausgefallen. Danach bin ich zum Schalter gegangen. Eine Frau hat mir geholfen. Jetzt fahre ich über Bremen. Am Ende komme ich mit einer Stunde Verspätung in Hamburg an. Ich bin um vierzehn Uhr zwanzig da. Bis bald!"
+    model_translation:
+      en: "Hi Katrin! First I took the bus to the main station. Then I got on the train in Cologne. In Hanover my train was unfortunately cancelled. After that I went to the counter. A woman helped me. Now I am travelling via Bremen. In the end I will arrive in Hamburg an hour late. I will be there at twenty past two. See you soon!"
+      ru: "Привет, Катрин! Сначала я поехал на автобусе на главный вокзал. Потом сел в поезд в Кёльне. В Ганновере мой поезд, к сожалению, отменили. После этого я пошёл к кассе. Мне помогла сотрудница. Сейчас я еду через Бремен. В итоге приеду в Гамбург с опозданием на час. Буду там в четырнадцать двадцать. До скорого!"
+    explain:
+      en: "A journey report runs on two engines. The connectors put the events in order — and each of them fills position 1, so the verb stays second: Zuerst bin ich …, Danach bin ich …. The auxiliaries mark what kind of event it was: movement takes sein (bin gefahren, bin eingestiegen, bin gegangen), and so does the cancellation (ist ausgefallen), while everything you did to something takes haben (hat mir geholfen). Read your draft once for the connectors and once for the auxiliaries — checking both at the same time is how mistakes survive."
+      ru: "Рассказ о поездке держится на двух вещах. Связки выстраивают события по порядку — и каждая из них занимает первое место, поэтому глагол остаётся на втором: Zuerst bin ich …, Danach bin ich …. А вспомогательные глаголы показывают, что это было за событие: движение требует sein (bin gefahren, bin eingestiegen, bin gegangen), отмена поезда — тоже (ist ausgefallen), а всё, что вы делали с чем-то, требует haben (hat mir geholfen). Перечитайте черновик дважды: один раз ради связок, другой — ради вспомогательных глаголов; ошибки выживают именно тогда, когда проверяют всё сразу."
+
+  - id: sprechen-am-schalter
+    outcomes: [reise-problem-loesen]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "You are Timo at the counter in Hanover. Frau Hoffmann asks: „Guten Tag, kann ich Ihnen helfen?“ Answer her aloud."
+      ru: "Вы — Тимо у кассы в Ганновере. Фрау Хоффманн спрашивает: «Guten Tag, kann ich Ihnen helfen?» Ответьте ей вслух."
+    goal:
+      en: "Explain the problem, ask for a new connection, and find out where you have to change and from which platform the train leaves."
+      ru: "Объясните проблему, попросите новую пересадку и выясните, где нужно пересаживаться и с какого пути отправляется поезд."
+    checklist:
+      - en: "I said what happened, in the Perfekt: Mein Zug ist ausgefallen."
+        ru: "Я сказал(а), что случилось, в перфекте: Mein Zug ist ausgefallen."
+      - en: "I asked for help with Sie, not du: Können Sie mir helfen?"
+        ru: "Я попросил(а) о помощи на Sie, а не на du: Können Sie mir helfen?"
+      - en: "I asked where I have to change: Wo muss ich umsteigen?"
+        ru: "Я спросил(а), где нужно делать пересадку: Wo muss ich umsteigen?"
+      - en: "I asked about the platform or the departure time (Gleis, abfahren)."
+        ru: "Я спросил(а) про путь или время отправления (Gleis, abfahren)."
+    model_answer: "Guten Tag! Mein Zug nach Hamburg ist ausgefallen. Können Sie mir helfen? Wo muss ich jetzt umsteigen? Und von welchem Gleis fährt der Zug ab?"
+    model_translation:
+      en: "Hello! My train to Hamburg has been cancelled. Can you help me? Where do I have to change now? And which platform does the train leave from?"
+      ru: "Здравствуйте! Мой поезд на Гамбург отменили. Вы можете мне помочь? Где мне теперь делать пересадку? И с какого пути отправляется поезд?"
+    explain:
+      en: "Three moves make this turn work: name the problem (Mein Zug ist ausgefallen — sein, because ausfallen belongs with passieren), ask for help (Können Sie mir helfen? — Sie with a stranger, and the dative mir after helfen), then ask the two questions that actually get you moving: where to change and from which platform. Say it a second time and listen for the Sie forms — under pressure the du forms slip out first."
+      ru: "Эта реплика работает за счёт трёх шагов: назвать проблему (Mein Zug ist ausgefallen — sein, потому что ausfallen стоит в одном ряду с passieren), попросить о помощи (Können Sie mir helfen? — с незнакомым человеком только Sie, а после helfen — Dativ mir) и задать два вопроса, которые действительно сдвинут вас с места: где пересадка и с какого пути. Проговорите ответ второй раз и вслушайтесь в формы Sie — в стрессовой ситуации первыми вырываются формы на du."
+
+  - id: sprechen-reise-berichten
+    outcomes: [reise-berichten]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "You have arrived. Katrin asks: „Und, wie war die Fahrt?“ Tell her about the journey aloud — from the bus at home to the arrival in Hamburg."
+      ru: "Вы приехали. Катрин спрашивает: «Und, wie war die Fahrt?» Расскажите ей о поездке вслух — от автобуса у дома до прибытия в Гамбург."
+    goal:
+      en: "Report the four stages of the journey in order and say how late you were."
+      ru: "Расскажите о четырёх этапах поездки по порядку и скажите, насколько вы опоздали."
+    checklist:
+      - en: "I ordered the story with zuerst, dann, danach and am Ende."
+        ru: "Я выстроил(а) рассказ через zuerst, dann, danach и am Ende."
+      - en: "After each connector the conjugated verb came second: Zuerst bin ich …"
+        ru: "После каждой связки спрягаемый глагол стоял на втором месте: Zuerst bin ich …"
+      - en: "I used sein for every movement (bin gefahren, bin umgestiegen, bin angekommen)."
+        ru: "Я использовал(а) sein для всех глаголов движения (bin gefahren, bin umgestiegen, bin angekommen)."
+      - en: "I said how big the delay was: mit einer Stunde Verspätung."
+        ru: "Я сказал(а), насколько велико было опоздание: mit einer Stunde Verspätung."
+    model_answer: "Zuerst bin ich mit dem Bus zum Bahnhof gefahren. Dann bin ich in Köln eingestiegen. In Hannover ist mein Zug ausgefallen. Danach bin ich über Bremen gefahren. Am Ende bin ich mit einer Stunde Verspätung in Hamburg angekommen."
+    model_translation:
+      en: "First I took the bus to the station. Then I got on the train in Cologne. In Hanover my train was cancelled. After that I travelled via Bremen. In the end I arrived in Hamburg an hour late."
+      ru: "Сначала я поехал на автобусе на вокзал. Потом сел в поезд в Кёльне. В Ганновере мой поезд отменили. После этого я поехал через Бремен. В итоге я приехал в Гамбург с опозданием на час."
+    explain:
+      en: "Five sentences and one grammatical decision repeated five times: which auxiliary? Four of them are movement, so they take sein, and the fifth — the cancelled train — takes sein too. That is why this story is where the rule finally pays off: told with haben, it is not merely wrong, it is unrecognizable as German. Say it twice; the second time, listen only to the word after zuerst, dann, danach and am Ende — it must be the verb."
+      ru: "Пять предложений и одно грамматическое решение, повторённое пять раз: какой вспомогательный глагол? Четыре из них — движение, значит sein; пятое — отменённый поезд — тоже sein. Именно поэтому такой рассказ и есть настоящая проверка правила: с haben он не просто неверен, он перестаёт звучать по-немецки. Проговорите его дважды; во второй раз вслушивайтесь только в слово после zuerst, dann, danach и am Ende — там должен стоять глагол."

@@ -1,0 +1,239 @@
+topic: einkaufen-reklamation
+role: practice
+title:
+  en: "Practice — two jackets in the department store"
+  ru: "Практика — две куртки в универмаге"
+items:
+  - id: table-komparativ-superlativ
+    outcomes: [produkte-vergleichen]
+    type: table
+    # Deliberately untagged: the two columns grade two different confusions
+    # (komparativ-als and superlativ-am) and the rows mix regular, Umlaut and
+    # irregular formation. A single tag on a 12-cell paradigm table would log a
+    # wrong `am liebsten` as a comparative error. Both confusions are measured
+    # cleanly by the single-focus items below.
+    title: "Komparativ und Superlativ"
+    instruction:
+      en: "Fill in the missing comparative and superlative forms. Watch out for the Umlaut and for the three irregular words."
+      ru: "Заполните пропущенные формы сравнительной и превосходной степени. Обратите внимание на умлаут и на три исключения."
+    columns: [Komparativ, Superlativ]
+    rows:
+      - label: billig
+        cells: [{ answer: billiger, given: true }, { answer: am billigsten }]
+      - label: günstig
+        cells: [{ answer: günstiger }, { answer: am günstigsten }]
+      - label: warm
+        cells: [{ answer: wärmer }, { answer: am wärmsten }]
+      - label: teuer
+        cells: [{ answer: teurer }, { answer: am teuersten }]
+      - label: gut
+        cells: [{ answer: besser }, { answer: am besten, given: true }]
+      - label: gern
+        cells: [{ answer: lieber }, { answer: am liebsten }]
+      - label: viel
+        cells: [{ answer: mehr }, { answer: am meisten }]
+    explain:
+      en: "The regular pattern is one ending in each column: -er and am …-sten. Two groups of words break it. Short adjectives with a, o or u add an Umlaut on the way (warm → wärmer → am wärmsten; also alt, lang, kurz, groß), and teuer drops the -e- of its stem: teurer, not teuerer — although the superlative keeps it: am teuersten. The last three rows are irregular through and through: gut → besser → am besten, gern → lieber → am liebsten, viel → mehr → am meisten. They are also the three you will use most often, so learn them as vocabulary rather than as a rule."
+      ru: "Правило простое: в каждом столбце по одному окончанию — -er и am …-sten. Ломают его две группы слов. Короткие прилагательные с a, o, u получают умлаут (warm → wärmer → am wärmsten; так же alt, lang, kurz, groß), а у teuer выпадает -e- в основе: teurer, а не teuerer — хотя в превосходной степени оно сохраняется: am teuersten. Три последние строки — исключения целиком: gut → besser → am besten, gern → lieber → am liebsten, viel → mehr → am meisten. Именно они встречаются чаще всего, поэтому учить их лучше как словарные слова, а не как правило."
+
+  - id: cloze-zwei-jacken
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: komparativ-als
+    instruction:
+      en: "Sara and Timo are comparing two jackets. Put the adjective in brackets into the comparative."
+      ru: "Сара и Тимо сравнивают две куртки. Поставьте прилагательное из скобок в сравнительную степень."
+    text: "Die Jacke hier kostet 95 Euro, die Jacke dort kostet 60 Euro. Die Jacke dort ist {{günstiger}} (günstig) als die Jacke hier. Aber die Jacke hier ist {{wärmer}} (warm), und die Qualität ist {{besser}} (gut)."
+    translation:
+      en: "The jacket here costs 95 euros, the jacket over there costs 60 euros. The jacket over there is cheaper than the jacket here. But the jacket here is warmer, and the quality is better."
+      ru: "Эта куртка стоит 95 евро, та — 60 евро. Та куртка дешевле, чем эта. Зато эта теплее, и качество лучше."
+    explain:
+      en: "Three comparatives, three different behaviours. günstig is regular and simply adds -er. warm is a short adjective with a, so it also takes an Umlaut: wärmer. gut is irregular and replaces itself: besser — a form with no -er ending of the usual kind at all. Only the first gap has an als-phrase after it, and that is normal: als is needed only when you name the thing you are comparing against."
+      ru: "Три сравнительные степени — три разных поведения. günstig образует форму по правилу, просто добавляя -er. warm — короткое прилагательное с a, поэтому появляется ещё и умлаут: wärmer. А gut — исключение, оно заменяется другим словом: besser. Только после первого пропуска стоит als, и это нормально: als нужен лишь тогда, когда вы называете то, с чем сравниваете."
+
+  - id: mc-als-oder-wie
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: komparativ-als
+    instruction:
+      en: "Both jackets cost 95 euros. Choose the phrase that fits."
+      ru: "Обе куртки стоят 95 евро. Выберите подходящий оборот."
+    prompt: "Beide Jacken kosten 95 Euro. Die Jacke hier ist ___ die Jacke dort."
+    options: ["so teuer wie", "teurer als", "am teuersten"]
+    correct: 0
+    translation:
+      en: "Both jackets cost 95 euros. The jacket here is as expensive as the jacket over there."
+      ru: "Обе куртки стоят 95 евро. Эта куртка такая же дорогая, как и та."
+    explain:
+      en: "The price decides which of the three patterns you need, and all three are real German. Equal values → the equality pattern so … wie, with the plain adjective inside it: so teuer wie (never so teurer wie). Unequal values, two items → the comparative with als: teurer als. One item against a whole group → the superlative: am teuersten, which cannot take an als-phrase at all. Both jackets cost the same, so nothing here is 'more' than anything."
+      ru: "Цена и решает, какой из трёх оборотов нужен, — а существуют все три. Значения равны → конструкция равенства so … wie, причём прилагательное внутри неё стоит в исходной форме: so teuer wie (а не so teurer wie). Значения разные, вещей две → сравнительная степень с als: teurer als. Одна вещь против целой группы → превосходная степень am teuersten, которая с als вообще не сочетается. Обе куртки стоят одинаково, значит, ничто здесь не «дороже» другого."
+
+  - id: cloze-superlativ-pullover
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: superlativ-am
+    instruction:
+      en: "Timo tries on three pullovers. Put the word in brackets into the superlative (am …-sten)."
+      ru: "Тимо примеряет три свитера. Поставьте слово из скобок в превосходную степень (am …-sten)."
+    text: "Timo probiert drei Pullover. Der Pullover hier gefällt ihm {{am besten}} (gut). Er ist auch {{am günstigsten}} (günstig)."
+    translation:
+      en: "Timo tries on three pullovers. He likes the pullover here best. It is also the cheapest."
+      ru: "Тимо примеряет три свитера. Больше всего ему нравится этот свитер. Он к тому же самый дешёвый."
+    explain:
+      en: "Three pullovers means one of them is at the top of the scale, and that is the superlative: am + …-sten. Both halves must be typed — am on its own is nothing, and besten on its own is not a sentence. gut is irregular: gut → besser → am besten. günstig is regular and simply carries the -sten ending. Note that gefallen names a taste, so the superlative describes what Timo likes most, not what is objectively best."
+      ru: "Свитера три, значит, один из них лучший — а это и есть превосходная степень: am + …-sten. Печатать нужно обе части: одно am ничего не значит, одно besten не образует предложения. gut — исключение: gut → besser → am besten. günstig образуется по правилу и просто получает окончание -sten. Обратите внимание: gefallen говорит о вкусе, поэтому превосходная степень описывает то, что Тимо нравится больше всего, а не то, что объективно лучше."
+
+  - id: mc-superlativ-form
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: superlativ-am
+    instruction:
+      en: "Three jackets cost 95, 80 and 60 euros. Choose the correct form."
+      ru: "Три куртки стоят 95, 80 и 60 евро. Выберите правильную форму."
+    prompt: "Die Jacke für 60 Euro ist ___."
+    options: ["am billigsten", "am billigste", "billigsten"]
+    correct: 0
+    translation:
+      en: "The jacket for 60 euros is the cheapest."
+      ru: "Куртка за 60 евро — самая дешёвая."
+    explain:
+      en: "After ist the superlative has one shape and no variants: am + adjective + -sten. am billigste is the half-finished version — the ending has to be -sten, always. And billigsten without am is not a German phrase at all: the two parts belong together, like a single word."
+      ru: "После ist превосходная степень имеет ровно один вид, без вариантов: am + прилагательное + -sten. Форма am billigste — «на полпути»: окончание всегда -sten. А billigsten без am по-немецки не существует вовсе: обе части работают только вместе, как одно слово."
+
+  - id: cloze-passen-gefallen
+    outcomes: [gefallen-passen-sagen]
+    type: cloze
+    focus: passen-dativ
+    instruction:
+      en: "Sara is trying the jacket on. Fill in passen or gefallen in the correct form."
+      ru: "Сара примеряет куртку. Вставьте passen или gefallen в правильной форме."
+    text: "Sara probiert Größe 38. Die Jacke ist zu eng — sie {{passt}} ihr nicht. Größe 40 ist gut, aber die Farbe {{gefällt}} ihr nicht."
+    translation:
+      en: "Sara tries size 38. The jacket is too tight — it doesn't fit her. Size 40 is fine, but she doesn't like the colour."
+      ru: "Сара примеряет размер 38. Куртка слишком узкая — она ей не подходит. Размер 40 хорош, но цвет ей не нравится."
+    explain:
+      en: "The two verbs answer two different questions. passen is about the size — the jacket is too tight, so it does not fit her. gefallen is about taste — the colour is not to her liking. In both sentences the thing is the subject and Sara is in the dative (ihr), which is why the verb is in the third person singular: die Jacke passt, die Farbe gefällt."
+      ru: "Эти два глагола отвечают на разные вопросы. passen — про размер: куртка узка, значит, она не подходит. gefallen — про вкус: цвет ей не нравится. В обоих предложениях подлежащее — вещь, а Сара стоит в дательном падеже (ihr); поэтому глагол в третьем лице единственного числа: die Jacke passt, die Farbe gefällt."
+
+  - id: mc-mir-oder-mich
+    outcomes: [gefallen-passen-sagen]
+    type: mc
+    focus: dativ-pronomen
+    instruction:
+      en: "Choose the correct pronoun."
+      ru: "Выберите правильное местоимение."
+    prompt: "Die Schuhe passen ___ nicht. Ich brauche Größe 44."
+    options: ["mich", "mir", "ich"]
+    correct: 1
+    translation:
+      en: "The shoes don't fit me. I need size 44."
+      ru: "Ботинки мне не подходят. Мне нужен размер 44."
+    explain:
+      en: "passen belongs to the same family as gefallen, gehören and schmecken: the person is a dative object, never the subject. So the pronoun is mir. mich is the accusative form and would answer wen? — but passen never asks that question."
+      ru: "passen относится к той же группе, что gefallen, gehören и schmecken: человек — дополнение в дательном падеже, а не подлежащее. Поэтому нужно mir. Форма mich — винительный падеж, она отвечает на вопрос wen?, а passen такого вопроса не задаёт."
+
+  - id: match-grund-satz
+    outcomes: [gefallen-passen-sagen, umtausch-begruenden]
+    type: match
+    instruction:
+      en: "Match each sentence with the situation it describes."
+      ru: "Соедините каждое предложение с ситуацией, которую оно описывает."
+    pairs:
+      - { left: "Die Jacke passt mir nicht.", right: "Größe 38 ist zu eng — ich brauche 40." }
+      - { left: "Die Jacke gefällt mir nicht.", right: "Die Farbe finde ich nicht schön." }
+      - { left: "Die Jacke ist mir zu teuer.", right: "Ich habe nur 60 Euro." }
+      - { left: "Die Jacke ist kaputt.", right: "Der Reißverschluss funktioniert nicht mehr." }
+    explain:
+      en: "Four sentences, four different reasons to leave a jacket in the shop — or to bring it back. passen is a question of size, gefallen a question of taste, zu teuer a question of money, and kaputt a question of a defect. Only the last one gives you a right to an exchange; the first three are simply reasons not to buy."
+      ru: "Четыре предложения — четыре разные причины оставить куртку в магазине или вернуть её. passen — вопрос размера, gefallen — вопрос вкуса, zu teuer — вопрос денег, kaputt — вопрос дефекта. Право на обмен даёт только последняя причина; первые три — просто основания не покупать."
+
+  - id: order-komparativ-satz
+    outcomes: [produkte-vergleichen]
+    type: order
+    focus: komparativ-als
+    instruction:
+      en: "Arrange the words into a correct sentence."
+      ru: "Составьте правильное предложение."
+    words: ["Der", "Pullover", "ist", "leichter", "als", "der", "Mantel."]
+    translation:
+      en: "The pullover is lighter than the coat."
+      ru: "Свитер легче, чем пальто."
+    explain:
+      en: "The comparison has a fixed shape: subject — ist — comparative — als — the thing compared against. leichter stands right after ist, and als opens the second half. Anything you put after als is simply named, not declined for comparison: der Mantel keeps the nominative form it would have as a subject."
+      ru: "У сравнения жёсткая структура: подлежащее — ist — сравнительная степень — als — то, с чем сравнивают. leichter стоит сразу после ist, а als открывает вторую часть. То, что идёт после als, просто называется: der Mantel сохраняет ту же форму именительного падежа, что и в роли подлежащего."
+
+  - id: cloze-zu-adjektiv
+    outcomes: [gefallen-passen-sagen]
+    type: cloze
+    instruction:
+      en: "Fill in the little word that turns a description into a problem."
+      ru: "Вставьте словечко, которое превращает описание в проблему."
+    text: "Größe 38 ist mir {{zu}} eng, und 95 Euro sind mir {{zu}} teuer. Ich kaufe die Jacke nicht."
+    translation:
+      en: "Size 38 is too tight for me, and 95 euros is too expensive for me. I am not buying the jacket."
+      ru: "Размер 38 мне тесноват, а 95 евро для меня слишком дорого. Я не куплю эту куртку."
+    explain:
+      en: "zu in front of an adjective means the limit has been crossed: too tight to wear, too expensive to buy. sehr would only intensify — Die Jacke ist sehr teuer leaves the purchase open, while zu teuer closes it, which is exactly what the last sentence says. Note the dative mir: the jacket is not too tight in general, it is too tight for me."
+      ru: "zu перед прилагательным означает, что предел перейдён: слишком узко, чтобы носить, слишком дорого, чтобы купить. sehr лишь усиливает: Die Jacke ist sehr teuer оставляет покупку возможной, а zu teuer её исключает — именно об этом и говорит последнее предложение. Обратите внимание на mir в дательном падеже: куртка узка не вообще, а лично мне."
+
+  - id: uebersetzen-komparativ-jacke
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "The jacket is warmer than the pullover, but it is also more expensive."
+    prompt_ru: "Куртка теплее, чем свитер, но она и дороже."
+    answer: "Die Jacke ist wärmer als der Pullover, aber sie ist auch teurer."
+    key_tokens: ["wärmer", "als", "teurer"]
+    explain:
+      en: "Both adjectives take the ending -er and nothing else: no helper word in front of them, however long the English comparative looks. warm adds an Umlaut on top (wärmer), and teuer drops the -e- of its stem (teurer, not teuerer). als introduces the second item, and der Pullover stays in the nominative behind it."
+      ru: "Оба прилагательных получают окончание -er и ничего больше: никакого вспомогательного слова перед ними, каким бы длинным ни казался русский вариант «более дорогая». У warm вдобавок появляется умлаут (wärmer), а у teuer выпадает -e- в основе (teurer, а не teuerer). als вводит второй предмет, и der Pullover после него остаётся в именительном падеже."
+
+  - id: uebersetzen-superlativ-gefallen
+    outcomes: [produkte-vergleichen, gefallen-passen-sagen]
+    type: translate
+    focus: superlativ-am
+    instruction:
+      en: "Translate into German. You are pointing at a shelf of shoes."
+      ru: "Переведите на немецкий. Вы показываете на полку с обувью."
+    prompt_en: "Which shoes do you like best?"
+    prompt_ru: "Какие ботинки нравятся тебе больше всего?"
+    answer: "Welche Schuhe gefallen dir am besten?"
+    key_tokens: ["am", "besten"]
+    explain:
+      en: "Best is the superlative of gut and comes out as the fixed pair am besten — two words, and neither of them works alone. The rest of the sentence is the gefallen pattern: the shoes are the subject, so the verb is plural (gefallen, not gefällt), and the person stands in the dative (dir)."
+      ru: "«Больше всего» здесь — превосходная степень от gut, и по-немецки это устойчивая пара am besten: два слова, ни одно из которых не работает по отдельности. Остальное предложение построено по схеме gefallen: подлежащее — ботинки, поэтому глагол во множественном числе (gefallen, а не gefällt), а человек стоит в дательном падеже (dir)."
+
+  - id: uebersetzen-passt-gefaellt
+    outcomes: [gefallen-passen-sagen]
+    type: translate
+    focus: passen-dativ
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "The jacket fits me, but my husband doesn't like it."
+    prompt_ru: "Куртка мне подходит по размеру, но моему мужу она не нравится."
+    answer: "Die Jacke passt mir, aber sie gefällt meinem Mann nicht."
+    key_tokens: ["passt", "mir"]
+    explain:
+      en: "This is the sentence the whole lesson turns on, and it is only sayable if both verbs are built the same way: the jacket is the subject twice over (passt, gefällt — third person singular), and the person is in the dative twice over (mir, meinem Mann). Ich passe die Jacke and Ich gefalle die Jacke are not weaker versions of this sentence; they are not German. Note that the dative object does not have to be a pronoun — meinem Mann is the same slot as mir, just filled with a noun."
+      ru: "Ради этого предложения и затевался весь урок, и построить его можно только одним способом: подлежащее в обеих частях — куртка (passt, gefällt — третье лицо единственного числа), а человек дважды стоит в дательном падеже (mir, meinem Mann). Фразы Ich passe die Jacke и Ich gefalle die Jacke — не «менее удачные» варианты, а просто не немецкий язык. Обратите внимание: дательное дополнение не обязано быть местоимением — meinem Mann занимает ту же позицию, что и mir, просто выражено существительным."
+
+  - id: uebersetzen-umtauschen-akkusativ
+    outcomes: [umtausch-begruenden, reklamation-schreiben]
+    type: translate
+    focus: akkusativ-artikel
+    instruction:
+      en: "Translate into German. You are at the returns counter."
+      ru: "Переведите на немецкий. Вы стоите у стойки возврата товара."
+    prompt_en: "I would like to exchange the pullover. It is too small."
+    prompt_ru: "Я хотел бы обменять свитер. Он слишком мал."
+    answer: "Ich möchte den Pullover umtauschen. Er ist zu klein."
+    key_tokens: ["den"]
+    accept:
+      - "Ich möchte den Pullover umtauschen. Er ist mir zu klein."
+    explain:
+      en: "umtauschen takes an accusative object, and der Pullover is the one gender that shows it: der → den. After the modal möchte the separable verb stays whole and closes the sentence — umtauschen, never tausche … um. In the second sentence the pullover is picked up by er, because Pullover is masculine."
+      ru: "umtauschen требует Akkusativ, а der Pullover — единственный род, который это показывает: der → den. После модального möchte глагол с отделяемой приставкой остаётся целым и замыкает предложение — umtauschen, а не tausche … um. Во втором предложении свитер заменяется местоимением er, потому что Pullover мужского рода."

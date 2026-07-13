@@ -27,15 +27,18 @@ items:
 
   - id: variant-b
     outcomes: [familie-vorstellen, menschen-beschreiben]
-    type: cloze
+    type: translate
     focus: possessivartikel
     instruction:
-      en: Fill in the correct possessive.
-      ru: Вставьте правильное притяжательное местоимение.
-    text: "Das sind {{meine}} Großeltern. {{Mein|mein}} Großvater ist ruhig und {{meine}} Großmutter ist sehr freundlich."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My grandfather is a shop assistant and my grandmother is a doctor."
+    prompt_ru: "Мой дедушка — продавец, а моя бабушка — врач."
+    answer: "Mein Großvater ist Verkäufer und meine Großmutter ist Ärztin."
+    key_tokens: ["Mein", "meine"]
     explain:
-      en: "The ending follows the noun: mein Großvater (masculine, no ending), meine Großmutter (feminine, -e), meine Großeltern (plural, -e). Plural behaves like the feminine here."
-      ru: "Окончание зависит от существительного: mein Großvater (мужской род, без окончания), meine Großmutter (женский род, -e), meine Großeltern (множественное число, -e). Во множественном числе окончание такое же, как в женском роде."
+      en: "One owner, two endings: the noun decides, not the speaker. der Großvater is masculine → mein Großvater with no ending; die Großmutter is feminine → meine Großmutter with -e. A profession after sein takes no article at all."
+      ru: "Владелец один, а окончания два: их задаёт существительное, а не говорящий. der Großvater — мужского рода → mein Großvater без окончания; die Großmutter — женского → meine Großmutter с -e. Перед названием профессии после sein артикль не ставится."
 
   - id: variant-c
     outcomes: [familie-vorstellen, menschen-beschreiben]

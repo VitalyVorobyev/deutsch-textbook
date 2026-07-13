@@ -110,7 +110,7 @@ A2 extensive reader.
   existing topics — asserted, not assumed, because a new item in a `primaryPractice` set silently
   un-finishes a topic.
 
-### P4-4 · Author the ten A2 units — `todo` (L)
+### P4-4 · Author the ten A2 units — `doing` (L)
 
 In spine order, in three bundles: `wohnen-umzug`, `reisen-verkehr`, `einkaufen-reklamation`; then
 `gesundheit-arzttermin`, `arbeit-beruf`, `nebensaetze-plaene`; then `biografie-erfahrungen`,

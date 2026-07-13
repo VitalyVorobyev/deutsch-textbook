@@ -28,15 +28,18 @@ items:
 
   - id: variant-b
     outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
-    type: cloze
+    type: translate
     focus: akkusativ-artikel
     instruction:
-      en: Fill in the correct article.
-      ru: Вставьте правильный артикль.
-    text: "Meine Tochter braucht {{einen}} Stuhl, {{eine}} Lampe und {{ein}} Buch."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "We are looking for the key and the bag."
+    prompt_ru: "Мы ищем ключ и сумку."
+    answer: "Wir suchen den Schlüssel und die Tasche."
+    key_tokens: ["den", "die"]
     explain:
-      en: "brauchen takes an accusative object, and all three genders line up in one sentence: einen Stuhl (masculine, changed), eine Lampe (feminine, unchanged), ein Buch (neuter, unchanged)."
-      ru: "brauchen требует винительного падежа, и все три рода стоят рядом в одном предложении: einen Stuhl (мужской род — форма изменилась), eine Lampe (женский род — без изменений), ein Buch (средний род — без изменений)."
+      en: "suchen takes an accusative object. Of the two objects only the masculine one moves: der Schlüssel → den Schlüssel, while die Tasche keeps die. The article, not the noun, carries the case."
+      ru: "suchen требует винительного падежа. Из двух дополнений форму меняет только мужской род: der Schlüssel → den Schlüssel, а die Tasche сохраняет die. В русском винительный виден как раз у женского рода («сумку»), в немецком — наоборот: меняется только мужской."
 
   - id: variant-c
     outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]

@@ -33,15 +33,20 @@ items:
 
   - id: variant-b
     outcomes: [dativ-artikel]
-    type: cloze
+    type: translate
     focus: dativ-artikel
     instruction:
-      en: Fill in the correct dative form of the word in brackets.
-      ru: Вставьте правильную форму слова из скобок в дательном падеже.
-    text: "Wir fahren mit {{dem}} Zug nach Hamburg. (der Zug) Ich komme gerade von {{der}} Bank. (die Bank) Das Zimmer gefällt {{den}} {{Gästen}} sehr gut. (die Gäste)"
+      en: Translate into German. Use the verbs gefallen and danken.
+      ru: Переведите на немецкий. Используйте глаголы gefallen и danken.
+    prompt_en: "The colleague likes the present. She thanks the boss."
+    prompt_ru: "Коллеге нравится подарок. Она благодарит начальника."
+    answer: "Das Geschenk gefällt der Kollegin. Sie dankt dem Chef."
+    key_tokens: ["der", "dem"]
+    accept:
+      - "Der Kollegin gefällt das Geschenk. Sie dankt dem Chef."
     explain:
-      en: "One set of forms, three different triggers: der → dem, die → der, and in the plural die → den with an -n added to the noun (Gäste → Gästen). What demands the dative — a preposition (mit, von) or a dative verb (gefallen) — changes nothing about the forms themselves. Learn the forms once and every trigger is served."
-      ru: "Один набор форм и три разных «спусковых крючка»: der → dem, die → der, а во множественном числе die → den, причём существительное получает -n (Gäste → Gästen). Что именно требует дательного падежа — предлог (mit, von) или глагол с дательным управлением (gefallen), — на сами формы не влияет. Выучив формы один раз, вы обслужите любой из этих случаев."
+      en: "Here the trigger is the verb, not a preposition: gefallen and danken both hand their person to the dative. With gefallen the person is not even the subject — the present does the pleasing, the colleague receives it. What has to come out right are the forms: feminine die Kollegin → der Kollegin, masculine der Chef → dem Chef. The feminine der is the expensive one, because it is spelled exactly like the masculine nominative (der Chef) and means the opposite of it — so it has to be produced on purpose, never by ear."
+      ru: "Падежа здесь требует не предлог, а сам глагол: и gefallen, и danken управляют дательным. С gefallen русский помогает — «нравится кому?», дательный и там и там. А danken — ловушка: по-русски «благодарить кого?», винительный, и рука сама тянется к ❌ Sie dankt den Chef. Нужны формы: женский род die Kollegin → der Kollegin, мужской der Chef → dem Chef. Женское der стоит дороже всего: пишется точно как мужской именительный (der Chef), а значит прямо противоположное, — поэтому ставить его приходится осознанно, а не «на слух»."
 
   - id: variant-c
     outcomes: [dativ-artikel]

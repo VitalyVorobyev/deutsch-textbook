@@ -28,15 +28,18 @@ items:
 
   - id: variant-b
     outcomes: [wohnen-beschreiben]
-    type: cloze
+    type: translate
     focus: akkusativ-artikel
     instruction:
-      en: Fill in the correct article.
-      ru: Вставьте правильный артикль.
-    text: "Das Haus ist alt. Es gibt {{einen}} Flur, {{ein}} Bad und {{eine}} Küche."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "In the room there is a bed, a television and a clock."
+    prompt_ru: "В комнате есть кровать, телевизор и часы."
+    answer: "Im Zimmer gibt es ein Bett, einen Fernseher und eine Uhr."
+    key_tokens: ["ein", "einen", "eine"]
     explain:
-      en: "es gibt is fixed: es never changes and what follows is always an object. der Flur therefore appears as einen Flur, while das Bad and die Küche keep ein and eine."
-      ru: "Оборот es gibt неизменен: es остаётся на месте, а то, что идёт дальше, всегда стоит в винительном падеже. Поэтому der Flur превращается в einen Flur, а das Bad и die Küche сохраняют ein и eine."
+      en: "es gibt is a fixed frame — es stays put, and everything listed after it is an object in the accusative. Of the three, only the masculine one changes: der Fernseher → einen Fernseher, while das Bett keeps ein and die Uhr keeps eine."
+      ru: "es gibt — застывшая формула: es не меняется, а всё перечисленное после него стоит в винительном падеже. Из трёх слов форму меняет только мужской род: der Fernseher → einen Fernseher, тогда как das Bett сохраняет ein, а die Uhr — eine."
 
   - id: variant-c
     outcomes: [wohnen-beschreiben]

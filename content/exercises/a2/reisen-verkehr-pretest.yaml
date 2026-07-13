@@ -1,0 +1,50 @@
+topic: reisen-verkehr
+role: pretest
+title:
+  en: "Pretest — travel and getting around"
+  ru: "Претест — путешествия и транспорт"
+items:
+  - id: pre-sein-gefahren
+    outcomes: [reise-berichten]
+    type: mc
+    focus: haben-sein
+    prompt: "Timo ___ am Montag mit dem Zug nach Hamburg gefahren."
+    options: ["hat", "ist", "war"]
+    correct: 1
+    translation:
+      en: On Monday Timo travelled to Hamburg by train.
+      ru: В понедельник Тимо поехал в Гамбург на поезде.
+    explain:
+      en: "fahren is movement from A to B, and every movement verb builds the Perfekt with sein: er ist gefahren. English uses 'have' for every perfect, so hat looks like the safe guess — it is exactly the wrong one here."
+      ru: "fahren — движение из точки А в точку Б, а все глаголы движения образуют перфект с sein: er ist gefahren. В русском вспомогательного глагола в прошедшем времени нет вовсе, поэтому выбор между haben и sein приходится делать заново — и hat здесь именно та ошибка, которую делают чаще всего."
+
+  - id: pre-mit-dativ
+    outcomes: [verbindung-waehlen]
+    type: mc
+    focus: dativ-praepositionen
+    prompt: "Ich fahre ___ Zug nach Bremen."
+    options: ["mit der", "mit dem", "mit den"]
+    correct: 1
+    translation:
+      en: I am going to Bremen by train.
+      ru: Я еду в Бремен на поезде.
+    explain:
+      en: "The vehicle is introduced by mit, and mit always takes the dative. der Zug is masculine, so the dative article is dem: mit dem Zug. mit den would be a dative plural (mit den Zügen)."
+      ru: "Транспорт вводится предлогом mit, а mit всегда требует Dativ. der Zug — мужского рода, значит артикль в Dativ — dem: mit dem Zug. Форма mit den — это множественное число (mit den Zügen)."
+
+  - id: pre-satzklammer
+    outcomes: [reise-berichten]
+    type: mc
+    focus: perfekt-satzklammer
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "In Hannover ich bin umgestiegen."
+      - "In Hannover bin ich umgestiegen."
+      - "In Hannover bin umgestiegen ich."
+    correct: 1
+    translation:
+      en: "Which sentence is correct? (I changed trains in Hanover.)"
+      ru: "Какое предложение построено правильно? (В Ганновере я сделал пересадку.)"
+    explain:
+      en: "In Hannover fills position 1, so the conjugated verb bin must stand second and the subject ich moves behind it. The Partizip II umgestiegen closes the bracket at the very end — nothing may follow it."
+      ru: "In Hannover занимает первое место, поэтому спрягаемый глагол bin стоит вторым, а подлежащее ich уходит за него. Partizip II umgestiegen замыкает рамку в самом конце — после него не стоит ничего."

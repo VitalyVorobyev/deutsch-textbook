@@ -338,6 +338,26 @@ for (const [setId, { file, data }] of exerciseSets) {
             `show no retention curve. Split it into one family per competence.`,
         );
     }
+
+    // ...and the same item TYPE, for the same reason one step further in.
+    //
+    // The variants are served one per interval, so anything that differs between them is
+    // confounded with the delay. A family running translate → cloze → translate asks for a
+    // whole sentence at 2 days, hands the learner the sentence frame at 7, and takes it away
+    // again at 21 — so the 7-day point would sit higher than the other two whatever the
+    // learner remembered, and the curve would show a recovery that is pure response format.
+    // The only thing allowed to vary across a probe family is the elapsed time.
+    const type = data.items[0]!.type;
+    for (const item of data.items.slice(1)) {
+      if (item.type !== type)
+        fail(
+          `${file} → item "${item.id}"`,
+          `probe variants must all be the same item type ("${type}"), but this one is ` +
+            `"${item.type}". One variant is served per interval, so a format that changes ` +
+            `between them is confounded with the delay — a cloze at 7 days scores higher than ` +
+            `a translate at 2 and 21 no matter what was retained.`,
+        );
+    }
   }
 
   const itemIds = new Set<string>();
@@ -385,12 +405,28 @@ for (const [setId, { file, data }] of exerciseSets) {
         // key_tokens names the tokens of `answer` the focus tag grades. A token that is
         // not in the answer grades nothing, and the item would silently lose both its
         // typo protection and its attribution — so a stale one has to fail the build.
-        const answerTokens = new Set(
-          canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, '')),
-        );
+        const answerTokens = canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, ''));
+        const occurrences = new Map<string, number>();
+        for (const w of answerTokens) occurrences.set(w, (occurrences.get(w) ?? 0) + 1);
         for (const t of item.key_tokens) {
-          if (!answerTokens.has(t.replace(/[.,!?;:]+$/, ''))) {
+          const bare = t.replace(/[.,!?;:]+$/, '');
+          const n = occurrences.get(bare) ?? 0;
+          if (n === 0) {
             fail(where, `key_tokens entry "${t}" does not occur in the answer`);
+          } else if (n > 1) {
+            // `graded` in src/lib/production.ts is a Set of strings tested per token, so a
+            // key token is matched by string, not by position: if it occurs twice, the focus
+            // tag grades BOTH occurrences. In "Nina stellt den Stuhl neben den Schrank." the
+            // second `den` is the direction case (wo-wohin), not the object article — so a
+            // learner who writes `neben dem Schrank` gets logged against akkusativ-artikel,
+            // and weakness-driven training then chases a confusion they do not have.
+            // A false entry in the signal is worse than a missing one.
+            fail(
+              where,
+              `key_tokens entry "${t}" occurs ${n}× in the answer, so the focus tag grades ` +
+                `every occurrence — including any that is a different decision. Rewrite the ` +
+                `sentence so the graded token appears once, or pin a token that is unique.`,
+            );
           }
         }
         if (item.key_tokens.length > 0 && !item.focus) {
@@ -765,6 +801,11 @@ for (const [setId, { file, data }] of exerciseSets) {
         'perfekt-satzklammer': 'perfekt-haben-sein',
         'um-am-zeit': 'alltag-zeit',
         'du-sie': 'termine-vereinbaren',
+        // --- A2 units ---
+        'wo-wohin': 'wohnen-umzug',
+        'stellen-stehen': 'wohnen-umzug',
+        'komparativ-als': 'einkaufen-reklamation',
+        'superlativ-am': 'einkaufen-reklamation',
         // was escaping the spine check entirely while the table was a lookup, not an allowlist
         'haben-wendungen': 'essen-trinken',
       };

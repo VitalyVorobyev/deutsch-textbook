@@ -1,0 +1,153 @@
+topic: wohnen-umzug
+role: practice
+title:
+  en: "Practice — moving day: listening, writing, speaking"
+  ru: "Практика — день переезда: аудирование, письмо, речь"
+items:
+  - id: hoeren-wohin-kommt-das-regal
+    outcomes: [wo-wohin-position]
+    type: audio-comprehension
+    focus: wo-wohin
+    instruction:
+      en: "It is moving day. Nina and Tobias are deciding where the furniture goes. Listen to their conversation."
+      ru: "День переезда. Нина и Тобиас решают, куда поставить мебель. Послушайте их разговор."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Nina", text: "Tobias, wohin kommt das Regal? Neben das Fenster?" }
+        - { speaker: "Tobias", text: "Nein, neben dem Fenster steht schon der Schrank. Ich stelle das Regal neben die Tür." }
+        - { speaker: "Nina", text: "Gut. Und der Teppich? Der liegt noch im Flur." }
+        - { speaker: "Tobias", text: "Den Teppich lege ich ins Wohnzimmer, vor das Sofa." }
+    question: "Wohin stellt Tobias das Regal?"
+    options:
+      - "Neben die Tür."
+      - "Neben das Fenster."
+      - "Ins Wohnzimmer."
+    correct: 0
+    translation:
+      en: "Where does Tobias put the shelf?"
+      ru: "Куда Тобиас ставит стеллаж?"
+    explain:
+      en: "All three places are named in the conversation, so only the ear decides. Nina suggests neben das Fenster, and Tobias rules it out: neben dem Fenster steht schon der Schrank — that dative is a position, the wardrobe is already there. His decision follows immediately: Ich stelle das Regal neben die Tür — accusative, a direction. The living room is where the carpet goes, not the shelf."
+      ru: "В разговоре названы все три места, так что решает только слух. Нина предлагает neben das Fenster, а Тобиас это отвергает: neben dem Fenster steht schon der Schrank — здесь Dativ, то есть положение: шкаф уже там стоит. И тут же звучит решение: Ich stelle das Regal neben die Tür — Akkusativ, направление. А в гостиную отправляется ковёр, а не стеллаж."
+
+  - id: cloze-mit-dem-auto
+    outcomes: [wo-wohin-position]
+    type: cloze
+    focus: wechsel-akk-dat
+    instruction:
+      en: "Careful: only one of these two prepositions has a choice to make."
+      ru: "Осторожно: выбор падежа есть только у одного из этих двух предлогов."
+    text: "Nina fährt mit {{dem}} Auto zum Supermarkt. Dann stellt sie die Kisten in {{den}} Keller."
+    translation:
+      en: "Nina drives to the supermarket by car. Then she puts the boxes down in the cellar."
+      ru: "Нина едет в супермаркет на машине. Потом она ставит коробки в подвал."
+    explain:
+      en: "Nina is moving in both halves of this text, and the case still comes out different — because movement is not what decides it. mit is one of the seven fixed dative prepositions: it is dem Auto whatever happens. in is a two-way preposition, and here the boxes really do travel somewhere: in den Keller, accusative. Ask Wo?/Wohin? only for the nine two-way prepositions; for aus, bei, mit, nach, seit, von, zu there is nothing to ask."
+      ru: "Движение есть в обеих половинах текста, а падежи всё равно разные — потому что решает не движение. mit входит в семёрку предлогов, всегда требующих Dativ: это dem Auto при любых обстоятельствах. А in — предлог двойного управления, и здесь коробки действительно перемещаются: in den Keller, Akkusativ. Вопрос Wo?/Wohin? задают только девяти предлогам двойного управления; у aus, bei, mit, nach, seit, von, zu спрашивать нечего."
+
+  - id: mc-wohin-schluessel
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: stellen-stehen
+    instruction:
+      en: "Choose the verb the question demands."
+      ru: "Выберите глагол, которого требует вопрос."
+    prompt: "Wohin ___ Nina die Schlüssel? — Auf den Tisch."
+    options: ["legt", "liegt", "steht"]
+    correct: 0
+    translation:
+      en: "Where does Nina put the keys? — On the table."
+      ru: "Куда Нина кладёт ключи? — На стол."
+    explain:
+      en: "The question word decides the verb. Wohin? asks about a movement, and a movement needs a placement verb with an object: Nina legt die Schlüssel auf den Tisch. liegt would answer a different question — Wo liegen die Schlüssel? — Auf dem Tisch. Notice how the answer changes with it: auf den Tisch (accusative) against auf dem Tisch (dative)."
+      ru: "Глагол определяется вопросительным словом. Wohin? спрашивает о перемещении, а перемещению нужен глагол с дополнением: Nina legt die Schlüssel auf den Tisch. Форма liegt отвечала бы на другой вопрос — Wo liegen die Schlüssel? — Auf dem Tisch. Обратите внимание, как вместе с глаголом меняется и ответ: auf den Tisch (Akkusativ) против auf dem Tisch (Dativ)."
+
+  - id: uebersetzen-stuhl-akkusativ-objekt
+    outcomes: [wohnung-beschreiben, wo-wohin-position]
+    type: translate
+    focus: akkusativ-artikel
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "Nina puts the chair in the kitchen."
+    prompt_ru: "Нина ставит стул на кухню."
+    answer: "Nina stellt den Stuhl in die Küche."
+    key_tokens: ["den"]
+    explain:
+      en: "The thing Nina moves is the direct object, and it takes the Akkusativ: der Stuhl → den Stuhl. That is the only article here that changes shape — die Küche is feminine, so its accusative is die, exactly as its nominative was. Masculine is the one gender where the accusative is visible, which is why it is the one you have to think about."
+      ru: "Предмет, который Нина перемещает, — прямое дополнение, и он стоит в Akkusativ: der Stuhl → den Stuhl. Это единственный артикль здесь, который меняет форму: die Küche — женского рода, и её Akkusativ — die, ровно как и Nominativ. Мужской род — единственный, где Akkusativ виден, поэтому думать приходится именно о нём."
+
+  - id: uebersetzen-stuhl-neben-den-schrank
+    outcomes: [wohnung-beschreiben, wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+    prompt_en: "Nina puts the lamp next to the wardrobe."
+    prompt_ru: "Нина ставит лампу рядом со шкафом."
+    answer: "Nina stellt die Lampe neben den Schrank."
+    key_tokens: ["den"]
+    explain:
+      en: "neben is one of the nine two-way prepositions, and the case is decided by the question, not by the preposition: Wohin? — the lamp is moving — so Akkusativ, der Schrank → neben den Schrank. Once the lamp is standing there, the same preposition takes the Dativ, because the question has become Wo?: Die Lampe steht neben dem Schrank. One word, two cases, and only the question tells them apart."
+      ru: "neben — один из девяти предлогов двойного управления, и падеж выбирает вопрос, а не предлог: Wohin? — лампа перемещается — значит Akkusativ, der Schrank → neben den Schrank. Когда лампа уже стоит, тот же предлог требует Dativ, потому что вопрос сменился на Wo?: Die Lampe steht neben dem Schrank. Осторожно: по-русски здесь творительный падеж — «рядом со шкафом», — и он никак не намекает на направление."
+
+  - id: schreiben-anfrage-vermieterin
+    outcomes: [wohnung-beschreiben, wo-wohin-position]
+    type: write
+    instruction:
+      en: "A new flat, a new landlady. Write the enquiry yourself."
+      ru: "Новая квартира, новая хозяйка. Напишите запрос сами."
+    prompt:
+      en: "You have found this listing: „3 Zimmer, 70 m², im zweiten Stock, Balkon, Keller. Miete: 700 Euro plus Nebenkosten. Kaution: zwei Monatsmieten. Kontakt: Frau Hoffmann.“ Write a short message to Frau Hoffmann."
+      ru: "Вы нашли такое объявление: «3 Zimmer, 70 m², im zweiten Stock, Balkon, Keller. Miete: 700 Euro plus Nebenkosten. Kaution: zwei Monatsmieten. Kontakt: Frau Hoffmann.» Напишите короткое сообщение госпоже Хоффманн."
+    goal:
+      en: "Say which flat you mean, ask the two things you still need to know, and ask politely to see the flat."
+      ru: "Скажите, о какой квартире идёт речь, спросите то, что вам ещё нужно знать, и вежливо попроситесь на просмотр."
+    requirements:
+      - en: "Greet Frau Hoffmann formally (Sie) and say that you have read her listing."
+        ru: "Обратитесь к госпоже Хоффманн на Sie и скажите, что прочитали её объявление."
+      - en: "Ask about the money with the chunk Wie hoch ist die Miete? or a question about the Nebenkosten."
+        ru: "Спросите о деньгах оборотом Wie hoch ist die Miete? или вопросом о Nebenkosten."
+      - en: "Ask one Wo?-question about the flat, with a two-way preposition in the dative (Was ist im Keller? Ist die Waschmaschine in der Wohnung?)."
+        ru: "Задайте один вопрос с Wo?-логикой о самой квартире — с предлогом двойного управления в Dativ (Was ist im Keller? Ist die Waschmaschine in der Wohnung?)."
+      - en: "Ask politely for a viewing with Könnten Sie bitte …?"
+        ru: "Вежливо попроситесь на просмотр оборотом Könnten Sie bitte …?"
+    min_words: 30
+    model_answer: "Guten Tag, Frau Hoffmann! Ich habe Ihre Anzeige gelesen. Die Wohnung im zweiten Stock gefällt mir sehr gut. Wie hoch ist die Miete mit Nebenkosten? Ist die Waschmaschine in der Wohnung oder im Keller? Könnten Sie mir die Wohnung bitte am Samstag zeigen? Vielen Dank! Mit freundlichen Grüßen"
+    model_translation:
+      en: "Good afternoon, Mrs Hoffmann! I have read your listing. I like the flat on the second floor very much. How much is the rent including utility costs? Is the washing machine in the flat or in the cellar? Could you please show me the flat on Saturday? Many thanks! Kind regards"
+      ru: "Добрый день, госпожа Хоффманн! Я прочитала ваше объявление. Квартира на втором этаже мне очень нравится. Какая аренда вместе с коммунальными платежами? Стиральная машина в квартире или в подвале? Не могли бы вы показать мне квартиру в субботу? Большое спасибо! С уважением"
+    explain:
+      en: "Every question in this message is a Wo?-question, and every one of them takes the dative: im zweiten Stock, in der Wohnung, im Keller — nothing is moving, you are asking where things are. The rent question has a fixed shape in German (Wie hoch …?, not Wie viel …?), and Könnten Sie bitte …? is the polite request formula: learn it whole and put the infinitive at the end. Check your draft requirement by requirement before you revise it."
+      ru: "Каждый вопрос в этом сообщении — вопрос типа Wo?, и каждый требует Dativ: im zweiten Stock, in der Wohnung, im Keller. Ничто не перемещается, вы спрашиваете, где что находится. У вопроса об аренде в немецком фиксированная форма (Wie hoch …?, а не Wie viel …?), а Könnten Sie bitte …? — готовая формула вежливой просьбы: учите её целиком и ставьте инфинитив в конец. Прежде чем переписывать черновик, проверьте его по пунктам списка."
+
+  - id: sprechen-heizung-kaputt
+    outcomes: [nachbarn-bitte]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud, listen to yourself, then say it a second time."
+      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+    prompt:
+      en: "You are Nina. You moved in on Saturday, and the heating in the bedroom does not work. Your landlord calls: „Guten Tag, Frau Kraus! Ist alles in Ordnung in der Wohnung?“ Answer him aloud."
+      ru: "Вы — Нина. Вы въехали в субботу, и в спальне не работает отопление. Звонит арендодатель: «Guten Tag, Frau Kraus! Ist alles in Ordnung in der Wohnung?» Ответьте ему вслух."
+    goal:
+      en: "Say what is broken and exactly where it is, ask politely for the repair, and offer a time."
+      ru: "Скажите, что сломалось и где именно, вежливо попросите о ремонте и предложите время."
+    checklist:
+      - en: "I said what is broken and where it is, with a Wo?-phrase in the dative (die Heizung im Schlafzimmer)."
+        ru: "Я сказал(а), что сломалось и где это находится, — с оборотом Wo? в Dativ (die Heizung im Schlafzimmer)."
+      - en: "I made the request politely with Könnten Sie bitte …? and the infinitive at the end."
+        ru: "Я вежливо попросил(а) оборотом Könnten Sie bitte …? с инфинитивом в конце."
+      - en: "I offered a concrete time (Am Freitag bin ich ab vierzehn Uhr zu Hause)."
+        ru: "Я предложил(а) конкретное время (Am Freitag bin ich ab vierzehn Uhr zu Hause)."
+    model_answer: "Guten Tag, Herr Weber! Fast alles ist gut, aber die Heizung im Schlafzimmer funktioniert nicht. Könnten Sie bitte die Heizung reparieren? Am Freitag bin ich ab vierzehn Uhr zu Hause."
+    model_translation:
+      en: "Good afternoon, Mr Weber! Almost everything is fine, but the heating in the bedroom does not work. Could you please repair the heating? On Friday I am at home from two p.m."
+      ru: "Добрый день, господин Вебер! Почти всё хорошо, но в спальне не работает отопление. Не могли бы вы починить отопление? В пятницу я дома с четырнадцати часов."
+    explain:
+      en: "A complete turn does three things: it names the problem, it locates it, and it asks for something. The location is a Wo?-phrase and therefore dative — im Schlafzimmer, not ins Schlafzimmer: the heating is not going anywhere. Könnten Sie bitte …? keeps the request polite without any grammar you have to build; the infinitive goes at the very end. Say it a second time and listen for that im."
+      ru: "Полноценная реплика делает три вещи: называет проблему, указывает место и содержит просьбу. Место — это оборот с Wo?, а значит Dativ: im Schlafzimmer, а не ins Schlafzimmer — отопление никуда не перемещается. Könnten Sie bitte …? делает просьбу вежливой без всякой грамматики, которую надо было бы строить; инфинитив уходит в самый конец. Произнесите ответ второй раз и вслушайтесь именно в это im."
