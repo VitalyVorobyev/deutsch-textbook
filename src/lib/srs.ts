@@ -39,6 +39,9 @@ export interface CardDef {
   pos: string;
   /** nouns only — the typed answer must include the matching article */
   gender?: 'm' | 'f' | 'n';
+  /** other correct typed answers (reflexive `sich …`, an adjectival noun's other
+      article forms) — see `accept` in schemas.ts */
+  accept?: string[];
 }
 
 function deDetail(e: VocabEntry): string | undefined {
@@ -69,6 +72,7 @@ export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
       exampleRu: e.example_ru,
       pos: e.pos,
       gender: e.pos === 'noun' ? e.gender : undefined,
+      accept: e.accept?.length ? e.accept : undefined,
     };
     cards.push({ ...base, id: cardId(deckId, e.de, 'de-x'), dir: 'de-x' });
     cards.push({ ...base, id: cardId(deckId, e.de, 'x-de'), dir: 'x-de' });

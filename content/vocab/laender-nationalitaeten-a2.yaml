@@ -9,9 +9,11 @@ level: A2
 entries:
   - de: Deutschland
     ipa: "ˈdɔʏ̯tʃˌlant"
-    pos: noun
-    gender: n
-    plural: "—"
+    # Article-free proper noun. Modelled as a phrase, not a noun, because the noun
+    # path prepends the article to the production card's answer — it would demand
+    # "das Deutschland", which is not German. `die Schweiz` below stays a noun: it
+    # really does take the article, and that card IS the lesson.
+    pos: phrase
     en: Germany
     ru: Германия
     example_de: Im Sommer fahre ich nach Deutschland.
@@ -25,6 +27,10 @@ entries:
     pos: noun
     gender: f
     plural: "die Deutschen"
+    # An adjectival noun has no single citation form: der Deutsche, ein Deutscher and
+    # eine Deutsche are all correct, and the bare plural too. The card shows one of
+    # them; it must not mark the others wrong.
+    accept: ["der Deutsche", "ein Deutscher", "eine Deutsche", "Deutsche"]
     en: German (person)
     ru: немец, немка
     example_de: Viele Deutsche machen im Sommer Urlaub am Meer.
@@ -57,9 +63,11 @@ entries:
       ru: 'Здесь язык — существительное, поэтому пишется с большой буквы, хотя прилагательное deutsch строчное: auf Deutsch, auf Englisch, auf Russisch. Обратите внимание и на предлог: именно auf, а не «in»: Der Kurs ist auf Deutsch. Schreiben Sie das bitte auf Deutsch.'
   - de: Österreich
     ipa: "ˈøːstɐˌʁaɪ̯ç"
-    pos: noun
-    gender: n
-    plural: "—"
+    # Article-free proper noun. Modelled as a phrase, not a noun, because the noun
+    # path prepends the article to the production card's answer — it would demand
+    # "das Deutschland", which is not German. `die Schweiz` below stays a noun: it
+    # really does take the article, and that card IS the lesson.
+    pos: phrase
     en: Austria
     ru: Австрия
     example_de: Meine Tante wohnt seit zehn Jahren in Österreich.
@@ -154,9 +162,11 @@ entries:
       ru: 'schweizerisch — регулярное прилагательное на -isch, но в живой речи оно встречается реже, чем можно подумать: о продуктах и повседневных вещах говорят через неизменяемое Schweizer (Schweizer Käse, Schweizer Uhren). schweizerisch остаётся для официальных контекстов — die schweizerische Regierung.'
   - de: Luxemburg
     ipa: "ˈlʊksəmˌbʊʁk"
-    pos: noun
-    gender: n
-    plural: "—"
+    # Article-free proper noun. Modelled as a phrase, not a noun, because the noun
+    # path prepends the article to the production card's answer — it would demand
+    # "das Deutschland", which is not German. `die Schweiz` below stays a noun: it
+    # really does take the article, and that card IS the lesson.
+    pos: phrase
     en: Luxembourg
     ru: Люксембург
     example_de: Luxemburg ist klein, aber sehr reich.
@@ -201,9 +211,11 @@ entries:
       ru: 'Как прилагательное — со строчной буквы, как название языка — с большой: Sie spricht Luxemburgisch. Это то же самое различие, что deutsch и Deutsch.'
   - de: Europa
     ipa: "ɔʏ̯ˈʁoːpa"
-    pos: noun
-    gender: n
-    plural: "—"
+    # Article-free proper noun. Modelled as a phrase, not a noun, because the noun
+    # path prepends the article to the production card's answer — it would demand
+    # "das Deutschland", which is not German. `die Schweiz` below stays a noun: it
+    # really does take the article, and that card IS the lesson.
+    pos: phrase
     en: Europe
     ru: Европа
     example_de: In Europa gibt es sehr viele Sprachen.

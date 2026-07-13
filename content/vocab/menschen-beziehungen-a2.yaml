@@ -81,6 +81,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Verwandten"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Verwandte", "ein Verwandter", "eine Verwandte", "Verwandte"]
     en: relative
     ru: родственник, родственница
     example_de: Wir haben viele Verwandte in Österreich.
@@ -157,6 +160,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Bekannten"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Bekannte", "ein Bekannter", "eine Bekannte", "Bekannte"]
     en: acquaintance
     ru: знакомый, знакомая
     example_de: Eine Bekannte von mir sucht gerade eine Wohnung.
@@ -222,6 +228,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Erwachsenen"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Erwachsene", "ein Erwachsener", "eine Erwachsene", "Erwachsene"]
     en: adult
     ru: взрослый, взрослая
     example_de: Für Erwachsene kostet die Karte zwölf Euro.
@@ -235,6 +244,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Jugendlichen"
+    # Adjectival noun: der/ein …-er and die/eine …-e are all correct. The card shows
+    # one form; it must not mark the others wrong.
+    accept: ["der Jugendliche", "ein Jugendlicher", "eine Jugendliche", "Jugendliche"]
     en: teenager, young person
     ru: подросток, молодой человек
     example_de: Viele Jugendliche treffen sich am Wochenende im Park.

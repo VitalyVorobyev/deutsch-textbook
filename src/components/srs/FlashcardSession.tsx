@@ -231,7 +231,7 @@ export default function FlashcardSession({
 
   function check() {
     if (!card) return;
-    setVerdict(checkTypedAnswer(typed, articledForm(card.de, card.gender), card.pos));
+    setVerdict(checkTypedAnswer(typed, articledForm(card.de, card.gender), card.pos, card.accept));
   }
 
   function insertChar(ch: string) {
