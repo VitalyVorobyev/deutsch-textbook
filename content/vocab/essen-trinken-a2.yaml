@@ -1,0 +1,350 @@
+# Goethe-A2 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). Drains the remaining
+# essen-trinken words of the manifest.
+id: essen-trinken-a2
+title_de: "Essen & Trinken (A2)"
+title_en: "Food & drink (A2)"
+title_ru: "Еда и напитки (A2)"
+level: A2
+entries:
+  - de: "Hamburger"
+    ipa: "ˈhambʊʁgɐ"
+    pos: noun
+    gender: m
+    plural: "die Hamburger"
+    en: "hamburger, burger"
+    ru: "гамбургер"
+    example_de: "Mein Sohn isst am liebsten einen Hamburger mit Pommes frites."
+    example_en: "My son likes a burger with fries best of all."
+    example_ru: "Больше всего мой сын любит гамбургер с картошкой фри."
+    note:
+      en: "Masculine, and the plural does not change: der Hamburger, die Hamburger. The same word also names a man from Hamburg — the menu and the city share the form."
+      ru: "Мужского рода, множественное не меняется: der Hamburger, die Hamburger. Так же называют и жителя Гамбурга — форма одна и та же."
+  - de: "Birne"
+    ipa: "ˈbɪʁnə"
+    pos: noun
+    gender: f
+    plural: "die Birnen"
+    en: "pear"
+    ru: "груша"
+    example_de: "Im Herbst sind die Birnen besonders süß."
+    example_en: "In autumn the pears are especially sweet."
+    example_ru: "Осенью груши особенно сладкие."
+    note:
+      en: "The fruit, feminine like most fruit names in -e: die Birne, die Birnen. A light bulb is also called eine Birne (die Glühbirne) — this card is about the fruit."
+      ru: "Фрукт, женского рода, как и почти все названия фруктов на -e: die Birne, die Birnen. Лампочку тоже называют eine Birne (die Glühbirne), но карточка — про фрукт."
+  - de: "Bohne"
+    ipa: "ˈboːnə"
+    pos: noun
+    gender: f
+    plural: "die Bohnen"
+    en: "bean"
+    ru: "боб; фасоль"
+    example_de: "Zum Fleisch gibt es grüne Bohnen und Kartoffeln."
+    example_en: "There are green beans and potatoes with the meat."
+    example_ru: "К мясу подают зелёную фасоль и картофель."
+    note:
+      en: "On a plate the word is nearly always plural: grüne Bohnen. The compound die Kaffeebohne is a coffee bean."
+      ru: "На тарелке слово почти всегда во множественном числе: grüne Bohnen. Сложное слово die Kaffeebohne — кофейное зерно."
+  - de: "Cafeteria"
+    ipa: "kafeteˈʁiːa"
+    pos: noun
+    gender: f
+    plural: "die Cafeterias"
+    en: "cafeteria, canteen (self-service)"
+    ru: "кафетерий, столовая (с самообслуживанием)"
+    example_de: "In der Pause essen wir in der Cafeteria."
+    example_en: "During the break we eat in the cafeteria."
+    example_ru: "В перерыв мы едим в кафетерии."
+    note:
+      en: "A self-service place to eat in a school, a university or a hospital. Do not mix it up with das Café, where you sit down and are served coffee and cake."
+      ru: "Место с самообслуживанием при школе, университете или больнице. Не путать с das Café, где вас обслуживают и подают кофе с пирожным."
+  - de: "Gericht"
+    ipa: "gəˈʁɪçt"
+    pos: noun
+    gender: n
+    plural: "die Gerichte"
+    en: "dish (a prepared meal)"
+    ru: "блюдо (приготовленная еда)"
+    example_de: "Auf der Speisekarte stehen viele warme Gerichte."
+    example_en: "There are many hot dishes on the menu."
+    example_ru: "В меню много горячих блюд."
+    note:
+      en: "One form, two everyday meanings: a dish on a menu, and a court of law (vor Gericht gehen). Both are neuter — das Gericht — and the context always tells them apart. This card is the dish."
+      ru: "Одна форма, два обиходных значения: блюдо в меню и суд (vor Gericht gehen). Оба среднего рода — das Gericht, — и контекст всегда всё различает. На карточке — блюдо."
+  - de: "Hähnchen"
+    ipa: "ˈhɛːnçən"
+    pos: noun
+    gender: n
+    plural: "die Hähnchen"
+    en: "chicken (as food)"
+    ru: "курица (как блюдо), цыплёнок"
+    example_de: "Wir grillen heute ein Hähnchen im Garten."
+    example_en: "We are grilling a chicken in the garden today."
+    example_ru: "Сегодня мы жарим курицу на гриле в саду."
+    note:
+      en: "A diminutive of der Hahn (the rooster) — and every -chen word is neuter, whatever the base noun's gender: das Hähnchen, das Brötchen, das Mädchen. The plural never changes."
+      ru: "Уменьшительное от der Hahn (петух) — а все слова на -chen среднего рода, независимо от рода исходного слова: das Hähnchen, das Brötchen, das Mädchen. Множественное не меняется."
+  # Plural-only in this sense, so it is declared the way Beschwerden, Eltern and Leute are:
+  # pos: phrase, no gender and no plural. As a noun it would declare a plural that merely
+  # repeats itself, and the EN/RU→DE card — which demands the article for a noun — would ask
+  # for one on a word that has no singular to take it.
+  - de: "Lebensmittel"
+    ipa: "ˈleːbn̩sˌmɪtl̩"
+    pos: phrase
+    en: "groceries, foodstuffs"
+    ru: "продукты (питания)"
+    example_de: "Am Samstag kaufe ich die Lebensmittel für die ganze Woche."
+    example_en: "On Saturday I buy the groceries for the whole week."
+    example_ru: "В субботу я покупаю продукты на всю неделю."
+    note:
+      en: "In this sense the word only lives in the plural: die Lebensmittel. The shop that sells them is der Supermarkt, and a small one is das Lebensmittelgeschäft."
+      ru: "В этом значении слово живёт только во множественном числе: die Lebensmittel. Магазин, где их покупают, — der Supermarkt, а маленький — das Lebensmittelgeschäft."
+  - de: "Mineralwasser"
+    ipa: "mineˈʁaːlˌvasɐ"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: "mineral water, sparkling water"
+    ru: "минеральная вода"
+    example_de: "Ich trinke lieber Mineralwasser als Cola."
+    example_en: "I would rather drink mineral water than cola."
+    example_ru: "Я предпочитаю минеральную воду коле."
+    note:
+      en: "Neuter, because the last part of the compound is das Wasser. In a restaurant you will be asked mit oder ohne Kohlensäure? — with or without bubbles. Still water is stilles Wasser."
+      ru: "Среднего рода, потому что последняя часть сложного слова — das Wasser. В ресторане спросят: mit oder ohne Kohlensäure? — с газом или без. Вода без газа — stilles Wasser."
+  - de: "Nudel"
+    ipa: "ˈnuːdl̩"
+    pos: noun
+    gender: f
+    plural: "die Nudeln"
+    en: "noodle; (pl.) pasta"
+    ru: "лапша, макароны"
+    example_de: "Die Kinder essen gern Nudeln mit Tomatensoße."
+    example_en: "The children like eating pasta with tomato sauce."
+    example_ru: "Дети любят есть макароны с томатным соусом."
+    note:
+      en: "As food it is almost always plural: Nudeln kochen, Nudeln essen. The singular die Nudel means one single noodle and is rare."
+      ru: "Как еда — почти всегда во множественном числе: Nudeln kochen, Nudeln essen. Единственное die Nudel значит «одна макаронина» и встречается редко."
+  - de: "Öl"
+    ipa: "ˈøːl"
+    pos: noun
+    gender: n
+    plural: "die Öle"
+    en: "oil"
+    ru: "масло (растительное)"
+    example_de: "Brate das Gemüse bitte in wenig Öl."
+    example_en: "Please fry the vegetables in a little oil."
+    example_ru: "Пожалуйста, обжарь овощи на небольшом количестве масла."
+    note:
+      en: "German keeps the two kinds of oil apart from butter: das Öl is the liquid kind (das Olivenöl), while die Butter is butter. The plural die Öle only appears when you mean several sorts."
+      ru: "Немецкий чётко разделяет масла: das Öl — жидкое растительное (das Olivenöl), а die Butter — сливочное. Множественное die Öle нужно только когда речь о разных сортах."
+  - de: "Pizza"
+    ipa: "ˈpɪtsa"
+    pos: noun
+    gender: f
+    plural: "die Pizzas"
+    en: "pizza"
+    ru: "пицца"
+    example_de: "Am Freitagabend bestellen wir oft eine Pizza."
+    example_en: "On Friday evenings we often order a pizza."
+    example_ru: "В пятницу вечером мы часто заказываем пиццу."
+    note:
+      en: "Two plurals are correct: die Pizzas (the everyday one, learn this) and die Pizzen (the more formal Italian one). Feminine, and the zz is spoken ts: ˈpɪtsa."
+      ru: "Правильны два варианта множественного: die Pizzas (обиходный, его и учите) и die Pizzen (более книжный, по-итальянски). Женского рода; zz произносится как ts: ˈpɪtsa."
+  # A two-word French loan and always plural, so — like Lebensmittel and Süßigkeiten — it is
+  # pos: phrase: there is no singular for an article to attach to, and no plural form to declare.
+  - de: "Pommes frites"
+    ipa: "pɔm ˈfʁɪt"
+    pos: phrase
+    en: "chips, French fries"
+    ru: "картофель фри"
+    example_de: "Zum Hähnchen möchte ich Pommes frites und einen Salat."
+    example_en: "With the chicken I would like fries and a salad."
+    example_ru: "К курице я хотел бы картофель фри и салат."
+    note:
+      en: "A French loan, spoken the French way: pɔm ˈfʁɪt — the final s of both words stays silent. Always plural, and in everyday speech people simply say Pommes."
+      ru: "Заимствование из французского и произносится по-французски: pɔm ˈfʁɪt — конечные s в обоих словах не читаются. Всегда во множественном числе; в разговоре говорят просто Pommes."
+  - de: "Portion"
+    ipa: "pɔʁˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Portionen"
+    en: "portion, serving"
+    ru: "порция"
+    example_de: "Eine Portion Pommes kostet drei Euro fünfzig."
+    example_en: "A portion of fries costs three euros fifty."
+    example_ru: "Порция картофеля фри стоит три евро пятьдесят."
+    note:
+      en: "Stress falls on the last syllable and -tion is spoken tsi̯oːn: pɔʁˈtsi̯oːn. What the portion is of follows without any preposition: eine Portion Eis, eine Portion Suppe."
+      ru: "Ударение на последний слог, а -tion произносится как tsi̯oːn: pɔʁˈtsi̯oːn. То, из чего порция, ставится сразу после слова, без предлога: eine Portion Eis, eine Portion Suppe."
+  - de: "Rind"
+    ipa: "ˈʁɪnt"
+    pos: noun
+    gender: n
+    plural: "die Rinder"
+    en: "cow, cattle; beef"
+    ru: "корова, крупный рогатый скот; говядина"
+    example_de: "Auf dem Feld stehen zwanzig Rinder."
+    example_en: "There are twenty cattle standing in the field."
+    example_ru: "На поле стоят двадцать коров."
+    note:
+      en: "The animal — das Rind, die Rinder — and, on a menu, the meat from it. A menu writes vom Rind or names it in full: das Rindfleisch. The final -d is spoken as t."
+      ru: "Животное — das Rind, die Rinder — и, в меню, мясо этого животного. В меню пишут vom Rind или полностью: das Rindfleisch. Конечное -d произносится как t."
+  - de: "Schwein"
+    ipa: "ˈʃvaɪ̯n"
+    pos: noun
+    gender: n
+    plural: "die Schweine"
+    en: "pig; pork"
+    ru: "свинья; свинина"
+    example_de: "Isst du lieber Rind oder Schwein?"
+    example_en: "Do you prefer beef or pork?"
+    example_ru: "Ты больше любишь говядину или свинину?"
+    note:
+      en: "Like Rind, it names the animal and the meat: das Schwein, and on a menu vom Schwein or das Schweinefleisch. When a waiter asks Rind oder Schwein? the question is about the meat, not the farm."
+      ru: "Как и Rind, обозначает и животное, и мясо: das Schwein, а в меню — vom Schwein или das Schweinefleisch. Когда официант спрашивает Rind oder Schwein?, речь о мясе, а не о ферме."
+  - de: "Speisekarte"
+    ipa: "ˈʃpaɪ̯zəˌkaʁtə"
+    pos: noun
+    gender: f
+    plural: "die Speisekarten"
+    en: "menu"
+    ru: "меню"
+    example_de: "Können wir bitte die Speisekarte haben?"
+    example_en: "Could we have the menu, please?"
+    example_ru: "Можно нам меню, пожалуйста?"
+    note:
+      en: "The list of dishes, feminine like die Karte. In a restaurant people usually shorten it: Die Karte, bitte! Do not confuse it with die Rechnung, the bill you ask for at the end."
+      ru: "Список блюд, женского рода, как die Karte. В ресторане обычно сокращают: Die Karte, bitte! Не путать с die Rechnung — счётом, который просят в конце."
+  # Plural-only, and handled like Lebensmittel above: pos: phrase, no gender, no plural.
+  - de: "Süßigkeiten"
+    ipa: "ˈzyːsɪçkaɪ̯tn̩"
+    pos: phrase
+    en: "sweets, candy"
+    ru: "сладости"
+    example_de: "Meine Tochter isst zu viele Süßigkeiten."
+    example_en: "My daughter eats too many sweets."
+    example_ru: "Моя дочь ест слишком много сладостей."
+    note:
+      en: "Plural only: die Süßigkeiten. It is the family of everything sweet — chocolate, gummy bears, biscuits — built from the adjective süß."
+      ru: "Только множественное число: die Süßigkeiten. Общее название всего сладкого — шоколад, мармелад, печенье; образовано от прилагательного süß."
+  - de: "Zitrone"
+    ipa: "tsiˈtʁoːnə"
+    pos: noun
+    gender: f
+    plural: "die Zitronen"
+    en: "lemon"
+    ru: "лимон"
+    example_de: "Möchten Sie den Tee mit Zitrone?"
+    example_en: "Would you like your tea with lemon?"
+    example_ru: "Хотите чай с лимоном?"
+    note:
+      en: "Feminine: die Zitrone. The initial Z is spoken ts — tsiˈtʁoːnə. After mit the noun stands alone here, with no article: Tee mit Zitrone."
+      ru: "Женского рода: die Zitrone. Начальная Z читается как ts — tsiˈtʁoːnə. После mit существительное стоит без артикля: Tee mit Zitrone."
+  - de: "Lokal"
+    ipa: "loˈkaːl"
+    pos: noun
+    gender: n
+    plural: "die Lokale"
+    en: "pub, restaurant (a place to eat and drink)"
+    ru: "заведение, кафе, пивная (где едят и пьют)"
+    example_de: "In diesem Lokal kann man gut und günstig essen."
+    example_en: "You can eat well and cheaply at this place."
+    example_ru: "В этом заведении можно вкусно и недорого поесть."
+    note:
+      en: "A general word for a place where you eat and drink — a pub, a bar, a small restaurant. Neuter: das Lokal, die Lokale. The adjective lokal (local) is spelled the same but written small."
+      ru: "Общее слово для места, где едят и пьют: пивная, бар, небольшой ресторан. Среднего рода: das Lokal, die Lokale. Прилагательное lokal («местный») пишется так же, но со строчной буквы."
+  - de: "backen"
+    ipa: "ˈbakn̩"
+    pos: verb
+    praesens_3sg: "backt"
+    partizip2: "gebacken"
+    aux: "haben"
+    valence: "+ Akk"
+    en: "to bake"
+    ru: "печь, выпекать"
+    example_de: "Meine Mutter backt jeden Sonntag einen Kuchen."
+    example_en: "My mother bakes a cake every Sunday."
+    example_ru: "Моя мама каждое воскресенье печёт пирог."
+    note:
+      en: "Present tense: er backt is the normal modern form, and the older er bäckt is still heard. The Partizip II is strong all the same: hat gebacken, never \"gebackt\"."
+      ru: "Настоящее время: er backt — обычная современная форма, а старое er bäckt ещё встречается. Причастие всё равно сильное: hat gebacken, а не «gebackt»."
+  - de: "braten"
+    ipa: "ˈbʁaːtn̩"
+    pos: verb
+    praesens_3sg: "brät"
+    partizip2: "gebraten"
+    aux: "haben"
+    valence: "+ Akk"
+    en: "to fry, to roast"
+    ru: "жарить (на сковороде или в духовке)"
+    example_de: "Ich brate den Fisch in der Pfanne."
+    example_en: "I am frying the fish in the pan."
+    example_ru: "Я жарю рыбу на сковороде."
+    note:
+      en: "Strong verb with a vowel change in the singular: du brätst, er brät. Keep the three cooking verbs apart: kochen is to boil or to cook in general, braten is in a pan or an oven, backen is with dough."
+      ru: "Сильный глагол с чередованием в единственном числе: du brätst, er brät. Различайте три «кулинарных» глагола: kochen — варить или готовить вообще, braten — жарить на сковороде или в духовке, backen — печь из теста."
+  - de: "grillen"
+    ipa: "ˈgʁɪlən"
+    pos: verb
+    praesens_3sg: "grillt"
+    partizip2: "gegrillt"
+    aux: "haben"
+    valence: "+ Akk"
+    en: "to grill, to barbecue"
+    ru: "жарить на гриле, готовить на мангале"
+    example_de: "Im Sommer grillen wir fast jedes Wochenende."
+    example_en: "In summer we have a barbecue almost every weekend."
+    example_ru: "Летом мы почти каждые выходные жарим на гриле."
+    note:
+      en: "A weak verb: grillt, hat gegrillt. It also works with no object at all, and then it names the whole social occasion: Wir grillen heute — we are having a barbecue today."
+      ru: "Слабый глагол: grillt, hat gegrillt. Может стоять и без дополнения — тогда он называет всё мероприятие целиком: Wir grillen heute — «у нас сегодня барбекю»."
+  - de: "probieren"
+    ipa: "pʁoˈbiːʁən"
+    pos: verb
+    praesens_3sg: "probiert"
+    partizip2: "probiert"
+    aux: "haben"
+    valence: "+ Akk"
+    en: "to try, to taste"
+    ru: "пробовать (на вкус); пытаться"
+    example_de: "Probier mal die Suppe, sie ist sehr scharf!"
+    example_en: "Try the soup — it is very spicy!"
+    example_ru: "Попробуй суп, он очень острый!"
+    note:
+      en: "An -ieren verb, so the Partizip II carries no ge-: hat probiert. The separable ausprobieren means to try something out and test how it works: Ich möchte das Handy ausprobieren."
+      ru: "Глагол на -ieren, поэтому причастие без ge-: hat probiert. Отделяемый ausprobieren значит «испытать, опробовать»: Ich möchte das Handy ausprobieren."
+  - de: "bitter"
+    ipa: "ˈbɪtɐ"
+    pos: adj
+    en: "bitter"
+    ru: "горький"
+    example_de: "Der Kaffee ist mir zu bitter."
+    example_en: "The coffee is too bitter for me."
+    example_ru: "Кофе для меня слишком горький."
+    note:
+      en: "One of the four basic tastes, with süß, salzig and sauer. Say who finds it too bitter with the dative: Der Kaffee ist mir zu bitter."
+      ru: "Один из четырёх основных вкусов, наряду с süß, salzig и sauer. Тот, кому «слишком горько», ставится в Dativ: Der Kaffee ist mir zu bitter."
+  - de: "fett"
+    ipa: "ˈfɛt"
+    pos: adj
+    en: "fatty, greasy; fat"
+    ru: "жирный"
+    example_de: "Das Fleisch war mir zu fett."
+    example_en: "The meat was too greasy for me."
+    example_ru: "Мясо оказалось для меня слишком жирным."
+    note:
+      en: "Of food it means greasy or high in fat: fettes Fleisch, fette Soße. The noun das Fett is the fat itself, and fettarm on a package means low-fat."
+      ru: "О еде значит «жирный, с высоким содержанием жира»: fettes Fleisch, fette Soße. Существительное das Fett — сам жир, а надпись fettarm на упаковке значит «обезжиренный»."
+  - de: "scharf"
+    ipa: "ˈʃaʁf"
+    pos: adj
+    en: "spicy, hot (of food); sharp (of a knife)"
+    ru: "острый (о еде); острый, наточенный (о ноже)"
+    example_de: "Die Suppe ist sehr scharf, aber sie schmeckt gut."
+    example_en: "The soup is very spicy, but it tastes good."
+    example_ru: "Суп очень острый, но вкусный."
+    note:
+      en: "Two senses, both A2: food that burns on the tongue (eine scharfe Soße) and a knife that cuts well (ein scharfes Messer). In a restaurant it is the food sense you need — Ist das scharf? Note that hot in the temperature sense is heiß, never scharf."
+      ru: "Два значения, оба на уровне A2: еда, которая жжёт язык (eine scharfe Soße), и хорошо наточенный нож (ein scharfes Messer). В ресторане нужно первое — Ist das scharf? «Горячий» по температуре — это heiß, а не scharf."
