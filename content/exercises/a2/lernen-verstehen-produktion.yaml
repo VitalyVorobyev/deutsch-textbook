@@ -121,6 +121,32 @@ items:
       en: "weil wraps a statement — your reason — and sends the conjugated verb to the end. There are two verbs in the clause and only möchte is conjugated, so the infinitive verstehen stands in front of it: verstehen möchte, never möchte verstehen. Say the reason as a main clause first (Ich möchte die Nachrichten verstehen) and you can watch the two swap places the moment weil appears. Only möchte is graded here: the rule is about where the conjugated verb lands."
       ru: "weil оборачивает утверждение — вашу причину — и отправляет спрягаемый глагол в конец. Глаголов в придаточном два, а спрягается только möchte, поэтому инфинитив verstehen стоит перед ним: verstehen möchte, но никогда möchte verstehen. Проговорите причину сначала как главное предложение (Ich möchte die Nachrichten verstehen) — и увидите, как эти два слова меняются местами, едва впереди появляется weil. Оценивается здесь только möchte: правило говорит о том, куда приземляется спрягаемый глагол."
 
+  # The verified half of `kursanfrage-schreiben`. The outcome was carried by the `write` item
+  # below and by nothing else, and a `write` logs unverified practice evidence by design — so
+  # the outcome could never light up, however well the learner wrote. The two questions here
+  # are the two the enquiry actually turns on, and neither of them appears in the write model:
+  # the price and the placement test are new, so nothing can be answered from memory of it.
+  - id: uebersetzen-anfrage-sprachschule
+    outcomes: [kursanfrage-schreiben, nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "You are writing to the language school. Translate both questions into German."
+      ru: "Вы пишете в языковую школу. Переведите оба вопроса на немецкий."
+    prompt_en: "Can you tell me what the course costs? I would also like to know whether I have to take a test."
+    prompt_ru: "Не подскажете, сколько стоит курс? Ещё хотелось бы узнать, нужно ли мне писать тест."
+    answer: "Können Sie mir sagen, was der Kurs kostet? Ich möchte auch wissen, ob ich einen Test machen muss."
+    accept:
+      # `wie viel` for `was` is lexis, not the rule — both are ordinary renderings of the same
+      # question, and rejecting one would write a false indirekte-frage error for a word choice.
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Ich möchte auch wissen, ob ich einen Test machen muss."
+      - "Können Sie mir sagen, was der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen muss."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen muss."
+    key_tokens: ["kostet", "ob", "muss"]
+    explain:
+      en: "Two questions folded into a longer sentence, and neither of them behaves like a question any more. On its own the first would be Was kostet der Kurs? — verb second, subject behind it. Tucked in behind Können Sie mir sagen, it turns into a subordinate clause: the subject comes first and the verb drops to the very end — was der Kurs kostet. Leaving kostet in second position inside the wrapper is the standard mistake, and it is the one this item grades. The second question has no question word of its own — you could answer it with ja or nein — so ob has to open it. ob is not decoration: drop it and the clause has no head, replace it with wenn and you have named a condition instead of asked a question. Inside that clause the conjugated verb is the modal muss, so the infinitive machen lines up in front of it: ob ich einen Test machen muss. Say the bare question out loud first — Muss ich einen Test machen? — and watch the two verbs trade places the moment ob appears."
+      ru: "Два вопроса, вложенных в другое предложение, — и ни один из них больше не ведёт себя как вопрос. Сам по себе первый звучал бы Was kostet der Kurs? — глагол на втором месте, подлежащее за ним. Но после Können Sie mir sagen он превращается в придаточное: подлежащее выходит вперёд, а глагол падает в самый конец — was der Kurs kostet. Оставить kostet на втором месте внутри рамки — типичная ошибка, и оценивается здесь именно это. У второго вопроса собственного вопросительного слова нет — на него отвечают ja или nein, — поэтому открывать его обязан ob (по-русски это частица «ли»: «нужно ли мне…»). ob — не украшение: выбросьте его, и у придаточного не останется головы; замените на wenn — и вместо вопроса получится условие. Внутри этого придаточного спрягается модальный глагол muss, поэтому инфинитив machen выстраивается перед ним: ob ich einen Test machen muss. Произнесите сначала самостоятельный вопрос — Muss ich einen Test machen? — и увидите, как оба глагола меняются местами, едва появляется ob."
+
   - id: schreiben-anfrage-sprachschule
     outcomes: [kursanfrage-schreiben, nachfragen-klaeren]
     type: write

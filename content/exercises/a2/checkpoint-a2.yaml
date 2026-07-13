@@ -1,0 +1,221 @@
+topic: aemter-dienstleistungen
+role: checkpoint
+title: { en: "Checkpoint A2 — the whole level in one test", ru: "Контрольный тест A2 — весь уровень в одном тесте" }
+items:
+  # --- Hören ---
+  - id: hoeren-durchsage-bahnhof
+    outcomes: [durchsage-verstehen, verbindung-waehlen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Durchsage", text: "Achtung an Gleis fünf: Der ICE nach Hamburg um zehn Uhr zwanzig fällt heute leider aus. Nehmen Sie bitte den Regionalzug um zehn Uhr fünfzig. Der Regionalzug fährt ab Gleis drei." }
+    question: "Was sollen die Reisenden machen?"
+    options: ["Den Regionalzug um 10:50 ab Gleis 3 nehmen.", "Auf Gleis 5 auf den ICE warten.", "Mit dem Bus nach Hamburg fahren."]
+    correct: 0
+    translation: { en: "What should the travellers do?", ru: "Что делать пассажирам?" }
+    explain: { en: "The one word that carries the whole announcement is ausfallen — der ICE fällt aus, the train is cancelled, so waiting on platform 5 is pointless. The instruction that follows is an imperative addressed to everyone: Nehmen Sie bitte den Regionalzug. Two numbers are read out and they belong to two different trains — zehn Uhr zwanzig is the cancelled ICE, zehn Uhr fünfzig the replacement. Nothing is said about a bus.", ru: "Всё объявление держится на одном слове: ausfallen — der ICE fällt aus, поезд отменён, так что ждать на пятом пути бессмысленно. Дальше идёт указание в повелительном наклонении, обращённое ко всем: Nehmen Sie bitte den Regionalzug. Прозвучали два времени, и они относятся к разным поездам: zehn Uhr zwanzig — это отменённый ICE, zehn Uhr fünfzig — замена. Про автобус не сказано ни слова." }
+  - id: hoeren-arztpraxis
+    outcomes: [praxis-anweisungen-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Praxis", text: "Praxis Doktor Wagner, guten Tag." }
+        - { speaker: "Herr Roth", text: "Guten Tag, hier ist Martin Roth. Ich habe seit drei Tagen starke Halsschmerzen. Könnte ich heute noch einen Termin bekommen?" }
+        - { speaker: "Praxis", text: "Heute ist es leider voll. Kommen Sie bitte morgen um Viertel nach acht. Und bringen Sie Ihre Karte von der Krankenkasse mit." }
+    question: "Was soll Herr Roth mitbringen?"
+    options: ["Seine Karte von der Krankenkasse.", "Ein Rezept vom Arzt.", "Eine Krankmeldung für seinen Chef."]
+    correct: 0
+    translation: { en: "What should Mr Roth bring with him?", ru: "Что Господин Рот должен взять с собой?" }
+    explain: { en: "The instruction is the last thing said, and it is a separable verb split across the whole clause: Bringen Sie Ihre Karte von der Krankenkasse mit. If you only listen for the front of the sentence you hear bringen and miss the mit at the end — and mitbringen is what the question asks about. A Rezept and a Krankmeldung are things you get from the doctor afterwards, not things you take with you.", ru: "Указание звучит в самом конце, и это отделяемый глагол, растянутый на всё предложение: Bringen Sie Ihre Karte von der Krankenkasse mit. Если слушать только начало фразы, вы услышите bringen и пропустите mit в конце — а вопрос как раз про mitbringen. Rezept и Krankmeldung — это то, что получают у врача потом, а не то, что берут с собой." }
+  - id: hoeren-buergeramt
+    outcomes: [unterlagen-erfragen, formular-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Herr Sanchez", text: "Guten Tag. Ich bin neu in der Stadt und möchte mich anmelden." }
+        - { speaker: "Beamtin", text: "Gern. Haben Sie das Formular schon ausgefüllt?" }
+        - { speaker: "Herr Sanchez", text: "Ja, hier ist es. Meinen Pass habe ich auch dabei." }
+        - { speaker: "Beamtin", text: "Sehr gut. Ich brauche aber noch den Mietvertrag von Ihrer Wohnung. Ohne den Mietvertrag kann ich Sie leider nicht anmelden." }
+    question: "Was fehlt Herrn Sanchez noch?"
+    options: ["Der Mietvertrag.", "Das Formular.", "Der Pass."]
+    correct: 0
+    translation: { en: "What is Mr Sanchez still missing?", ru: "Чего Господину Санчесу ещё не хватает?" }
+    explain: { en: "Listen for the little word aber: Ich brauche aber noch den Mietvertrag. It announces that something is still missing, and everything said before it — the form, the passport — Mr Sanchez already has. The clerk then repeats the point with ohne: Ohne den Mietvertrag kann ich Sie nicht anmelden. That is the shape a counter conversation almost always has — first what is fine, then the one document that is not there.", ru: "Слушайте маленькое слово aber: Ich brauche aber noch den Mietvertrag. Оно объявляет, что чего-то не хватает, а всё, что прозвучало до него — бланк, паспорт, — у господина Санчеса уже есть. Затем сотрудница повторяет это через ohne: Ohne den Mietvertrag kann ich Sie nicht anmelden. Разговор у окошка почти всегда так и устроен: сначала то, что в порядке, потом единственный документ, которого нет." }
+  - id: diktat-tagesablauf
+    outcomes: [trennbar-satz, alltag-zeit-haeufigkeit]
+    type: listen
+    focus: trennbar-wortstellung
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Ich stehe jeden Tag um sechs Uhr auf."
+    translation: { en: "Every day I get up at six o'clock.", ru: "Каждый день я встаю в шесть часов." }
+    explain: { en: "The verb is aufstehen, and in a main clause it comes apart: stehe takes position 2 and the prefix auf waits at the very end. Write the two halves as two words, in that order — never Ich aufstehe. The frequency phrase jeden Tag and the clock time um sechs Uhr sit comfortably in the middle, between the two halves of the verb.", ru: "Глагол здесь — aufstehen, и в главном предложении он распадается: stehe занимает второе место, а приставка auf ждёт в самом конце. Пишите обе половины отдельными словами и именно в таком порядке — никогда Ich aufstehe. Обозначение частоты jeden Tag и время um sechs Uhr спокойно располагаются посередине, между двумя половинами глагола." }
+  - id: diktat-dativ-nachricht
+    outcomes: [dativ-artikel]
+    type: listen
+    focus: dativ-artikel
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    text: "Ich schreibe meinem Chef eine kurze Nachricht."
+    translation: { en: "I am writing my boss a short message.", ru: "Я пишу своему начальнику короткое сообщение." }
+    explain: { en: "schreiben takes two objects: the person in the Dativ, the thing in the Akkusativ. So the boss (der Chef) becomes meinem Chef with -em, and the message (die Nachricht) stays eine kurze Nachricht. The trap is by ear: meinem and meinen differ by one quiet consonant at the end, and it is exactly that consonant which says who receives and what is received.", ru: "Глагол schreiben берёт два дополнения: адресата в Dativ, вещь в Akkusativ. Поэтому начальник (der Chef) превращается в meinem Chef с окончанием -em, а сообщение (die Nachricht) остаётся eine kurze Nachricht. Ловушка именно на слух: meinem и meinen различаются одним тихим согласным на конце — и как раз этот согласный говорит, кто получает, а что получают." }
+  # --- Grammatik ---
+  - id: luecke-modal-darf-muss
+    outcomes: [modal-erlaubnis-notwendigkeit, modal-konjugation]
+    type: cloze
+    focus: duerfen-muessen
+    instruction: { en: "dürfen or müssen? Fill in the correct form.", ru: "dürfen или müssen? Вставьте правильную форму." }
+    text: "Im Museum {{darf}} man nicht fotografieren, und rauchen {{dürfen}} Sie hier auch nicht. Aber keine Sorge: Sie {{müssen}} nichts bezahlen, der Eintritt ist frei."
+    translation: { en: "You are not allowed to take photographs in the museum, and you may not smoke here either. But don't worry: you don't have to pay anything, admission is free.", ru: "В музее нельзя фотографировать, и курить здесь тоже нельзя. Но не волнуйтесь: платить ничего не нужно, вход бесплатный." }
+    explain: { en: "darf nicht is a prohibition — it is forbidden. muss nicht is the absence of an obligation — nobody is asking you to. The two are worlds apart, and English hides the difference behind the same-looking pair 'must not' / 'don't have to': Sie müssen nichts bezahlen does not forbid paying, it releases you from it. Watch the forms too: man darf (no -t after a modal in the singular), Sie dürfen and Sie müssen (the plural/polite form is the plain infinitive).", ru: "darf nicht — это запрет, «нельзя». muss nicht — это отсутствие обязанности, «не нужно, не обязательно». Разница огромная, и русское «не должен» её как раз затемняет: Sie müssen nichts bezahlen не запрещает платить, а освобождает от оплаты. Следите и за формами: man darf (у модального глагола в единственном числе нет -t), Sie dürfen и Sie müssen (форма вежливого обращения совпадает с инфинитивом)." }
+  - id: luecke-partizip
+    outcomes: [perfekt-partizip]
+    type: cloze
+    focus: partizip2-form
+    instruction: { en: "Fill in the Partizip II.", ru: "Вставьте Partizip II." }
+    text: "Am Wochenende habe ich viel {{gemacht}}. Ich habe die Wohnung {{geputzt}}, ich habe lange mit meiner Mutter {{telefoniert}} und am Abend bin ich ins Kino {{gegangen}}."
+    translation: { en: "I did a lot at the weekend. I cleaned the flat, I talked to my mother on the phone for a long time and in the evening I went to the cinema.", ru: "На выходных я много всего сделал. Я убрал квартиру, долго говорил по телефону с мамой, а вечером сходил в кино." }
+    explain: { en: "Four participles, three different patterns. Regular verbs take ge- …-t: machen → gemacht, putzen → geputzt. Verbs in -ieren take no ge- at all: telefonieren → telefoniert — the missing ge- is the whole point, and it is what learners keep adding back. Strong verbs take ge- …-en, often with a new stem vowel: gehen → gegangen. Every one of them lands at the end of the sentence, behind everything else.", ru: "Четыре причастия — три разных модели. Слабые глаголы получают ge- …-t: machen → gemacht, putzen → geputzt. Глаголы на -ieren не получают ge- вовсе: telefonieren → telefoniert — отсутствие ge- и есть главное здесь, и именно его чаще всего возвращают на место по ошибке. Сильные глаголы получают ge- …-en, нередко с новой гласной в корне: gehen → gegangen. И все они встают в самый конец предложения, позади всего остального." }
+  - id: luecke-wo-wohin
+    outcomes: [wo-wohin-position, wohnung-beschreiben]
+    type: cloze
+    focus: wo-wohin
+    instruction: { en: "Wo? or Wohin? Fill in the article.", ru: "Wo? или Wohin? Вставьте артикль." }
+    text: "Wohin stellen wir die Lampe? — Wir stellen sie neben {{das}} Sofa. Und wo steht der Schrank? — Der Schrank steht neben {{dem}} Fenster."
+    translation: { en: "Where shall we put the lamp? — We'll put it next to the sofa. And where is the wardrobe? — The wardrobe is next to the window.", ru: "Куда мы поставим лампу? — Поставим её рядом с диваном. А где стоит шкаф? — Шкаф стоит рядом с окном." }
+    explain: { en: "neben is a two-way preposition, and the question the sentence answers decides its case. Wohin? — movement to a new place — takes the Akkusativ: neben das Sofa. Wo? — a position, nothing moves — takes the Dativ: neben dem Fenster. The verb tells you which question is being asked before you even look: stellen puts something somewhere (Wohin?), stehen says where something already is (Wo?).", ru: "neben — предлог двойного управления, и падеж выбирает тот вопрос, на который отвечает предложение. Wohin? — движение в новое место — требует Akkusativ: neben das Sofa. Wo? — положение, ничто не движется — требует Dativ: neben dem Fenster. Глагол подсказывает вопрос ещё до того, как вы задумались: stellen — «ставить» куда-то (Wohin?), stehen — «стоять» где-то (Wo?)." }
+  - id: luecke-praeteritum
+    outcomes: [praeteritum-war-hatte, lebensstationen-ordnen]
+    type: cloze
+    focus: praeteritum-sein-haben
+    instruction: { en: "Talk about the past: fill in the Präteritum of sein, haben and können.", ru: "Расскажите о прошлом: вставьте Präteritum глаголов sein, haben и können." }
+    text: "Vor zehn Jahren {{war}} ich zum ersten Mal in Deutschland. Ich {{hatte}} dort noch keine Wohnung und {{konnte}} fast kein Deutsch."
+    translation: { en: "Ten years ago I was in Germany for the first time. I had no flat there yet and could hardly speak any German.", ru: "Десять лет назад я впервые оказался в Германии. Квартиры у меня там ещё не было, и по-немецки я почти не говорил." }
+    explain: { en: "Three verbs that German simply does not put into the Perfekt when it tells a story: sein, haben and the modals. You say ich war, not ich bin gewesen; ich hatte, not ich habe gehabt; ich konnte, not ich habe gekonnt. Learn the three forms as they stand — they are irregular and they are the past tense you will use every single day. Note vor zehn Jahren as well: vor + Dativ means 'ago', a finished point in the past.", ru: "Три глагола, которые немецкий в рассказе о прошлом просто не ставит в Perfekt: sein, haben и модальные. Говорят ich war, а не ich bin gewesen; ich hatte, а не ich habe gehabt; ich konnte, а не ich habe gekonnt. Заучите эти формы как есть — они неправильные, и это то прошедшее время, которым вы будете пользоваться каждый день. Обратите внимание и на vor zehn Jahren: vor + Dativ — это «тому назад», законченная точка в прошлом." }
+  - id: luecke-imperativ-arzt
+    outcomes: [praxis-anweisungen-verstehen, ratschlag-geben]
+    type: cloze
+    focus: imperativ-form
+    instruction: { en: "The doctor is giving you instructions. Fill in the imperative (Sie-form).", ru: "Врач даёт вам указания. Вставьте повелительное наклонение (форма на Sie)." }
+    text: "{{Nehmen}} Sie die Tabletten dreimal am Tag. {{Trinken}} Sie viel Wasser und {{bleiben}} Sie zwei Tage zu Hause."
+    translation: { en: "Take the tablets three times a day. Drink plenty of water and stay at home for two days.", ru: "Принимайте таблетки три раза в день. Пейте много воды и оставайтесь два дня дома." }
+    explain: { en: "The Sie-imperative is the easiest form in German: take the infinitive, put it first, and keep Sie right behind it — Nehmen Sie …, Trinken Sie …, Bleiben Sie … The pronoun is never dropped, and that is what tells the sentence apart from a question: Nehmen Sie die Tabletten. is an instruction, Nehmen Sie die Tabletten? is a question. Every instruction you meet in a surgery, at a counter or on a form is built exactly this way.", ru: "Повелительное наклонение на Sie — самая простая форма в немецком: берёте инфинитив, ставите его на первое место, а Sie идёт сразу за ним — Nehmen Sie …, Trinken Sie …, Bleiben Sie … Местоимение никогда не опускается, и именно оно отличает эту фразу от вопроса: Nehmen Sie die Tabletten. — указание, Nehmen Sie die Tabletten? — вопрос. Все указания, которые вы встретите в поликлинике, у окошка или в анкете, построены ровно так." }
+  - id: mc-weil-verbende
+    outcomes: [weil-grund]
+    type: mc
+    focus: weil-denn
+    prompt: "„Warum kommst du nicht mit?“ — Welche Antwort ist richtig?"
+    options:
+      - "Ich komme nicht mit, weil ich morgen früh arbeiten muss."
+      - "Ich komme nicht mit, weil ich muss morgen früh arbeiten."
+      - "Ich komme nicht mit, denn ich morgen früh arbeiten muss."
+    correct: 0
+    translation: { en: "'Why aren't you coming along?' — Which answer is correct?", ru: "«Почему ты не пойдёшь с нами?» — Какой ответ правильный?" }
+    explain: { en: "weil opens a Nebensatz and sends the conjugated verb to the very end. With two verbs the order is fixed: the infinitive first, the conjugated one right at the wall — weil ich morgen früh arbeiten muss. The second option leaves muss in the middle, which is the collapse this rule exists to prevent. The third option gets the word order of a main clause but puts denn in front of it — and denn never moves a verb, so it needs denn ich muss morgen früh arbeiten.", ru: "weil открывает придаточное и отправляет спрягаемый глагол в самый конец. Если глаголов два, порядок жёсткий: сначала инфинитив, спрягаемый — у самой стены: weil ich morgen früh arbeiten muss. Во втором варианте muss осталось в середине — это и есть та ошибка, ради которой правило существует. В третьем варианте порядок слов как в главном предложении, но перед ним стоит denn — а denn глагол никуда не двигает, и потому нужно denn ich muss morgen früh arbeiten." }
+  - id: mc-arbeitsanweisung
+    outcomes: [arbeitsanweisung-verstehen]
+    type: mc
+    focus: trennbar-modal
+    prompt: "Ihre Chefin sagt: „Sie müssen das Formular heute noch ___.“"
+    options: ["ausfüllen", "füllen aus", "ausgefüllt"]
+    correct: 0
+    translation: { en: "Your boss says: 'You have to fill in the form today.'", ru: "Начальница говорит: «Вы должны сегодня же заполнить этот бланк»." }
+    explain: { en: "A separable verb only comes apart when it is the conjugated verb of the clause. Here müssen already holds position 2, so ausfüllen stays whole and waits at the end as a bare infinitive: Sie müssen das Formular heute noch ausfüllen. füllen aus splits a verb that has no reason to split, and ausgefüllt is a Partizip II — it belongs in the Perfekt (Sie haben das Formular ausgefüllt), never after a modal.", ru: "Отделяемый глагол распадается только тогда, когда он сам является спрягаемым глаголом предложения. Здесь второе место уже занято формой müssen, поэтому ausfüllen остаётся целым и ждёт в конце в виде чистого инфинитива: Sie müssen das Formular heute noch ausfüllen. Вариант füllen aus разделяет глагол, которому делиться незачем, а ausgefüllt — это Partizip II: его место в Perfekt (Sie haben das Formular ausgefüllt), но никак не после модального глагола." }
+  - id: mc-sondern-samstag
+    outcomes: [absprachen-aushandeln, einladen-zusagen-absagen]
+    type: mc
+    focus: aber-sondern
+    prompt: "Wir feiern nicht am Freitag, ___ am Samstag."
+    options: ["sondern", "aber", "denn"]
+    correct: 0
+    translation: { en: "We are not celebrating on Friday, but on Saturday.", ru: "Мы празднуем не в пятницу, а в субботу." }
+    explain: { en: "sondern is the word that corrects a negation: something was denied (nicht am Freitag) and sondern names what takes its place (am Samstag). The test is mechanical — is there a nicht or a kein in front of it, and does what follows replace exactly what was denied? Then it is sondern. aber contrasts two things that both stand: Wir feiern am Freitag, aber nur kurz. And denn gives a reason, which is not what this sentence is doing at all.", ru: "sondern — это слово, которое исправляет отрицание: что-то отвергли (nicht am Freitag), и sondern называет то, что встаёт на освободившееся место (am Samstag). Проверка механическая: стоит ли перед ним nicht или kein и заменяет ли следующая часть именно то, что было отвергнуто? Тогда нужно sondern. Союз aber противопоставляет два утверждения, каждое из которых остаётся в силе: Wir feiern am Freitag, aber nur kurz. А denn называет причину — а этого в нашем предложении нет вовсе." }
+  - id: satz-indirekte-frage
+    outcomes: [nachfragen-klaeren]
+    type: order
+    focus: indirekte-frage
+    instruction: { en: "Arrange the words into a correct polite question.", ru: "Составьте вежливый вопрос из этих слов." }
+    words: ["Können", "Sie", "mir", "sagen,", "wann", "der", "Kurs", "beginnt", "?"]
+    translation: { en: "Can you tell me when the course starts?", ru: "Не подскажете, когда начинается курс?" }
+    explain: { en: "One sentence, two verbs, two different addresses. The wrapper Können Sie mir sagen is an ordinary main clause, so können stands first (it is a question). Everything after the comma is a Nebensatz opened by the question word wann, and its verb goes to the very end: wann der Kurs beginnt. Cover the wrapper with your finger: what remains must not read as a question. If it still does (… wann beginnt der Kurs), the verb is in the wrong place.", ru: "Одно предложение, два глагола, два разных адреса. Рамка Können Sie mir sagen — обычное главное предложение, поэтому können стоит впереди (это вопрос). Всё после запятой — придаточное, которое открывает вопросительное слово wann, и его глагол уходит в самый конец: wann der Kurs beginnt. Закройте рамку пальцем: остаток не должен читаться как вопрос. Если он всё ещё звучит как вопрос (… wann beginnt der Kurs), значит глагол стоит не там." }
+  # --- Wortschatz & Kommunikation ---
+  - id: mc-telefon-register
+    outcomes: [termine-hoeflich-telefonieren, termine-organisieren]
+    type: mc
+    focus: du-sie
+    instruction: { en: "You are phoning a doctor's surgery. You have never met anyone there. What do you say?", ru: "Вы звоните в поликлинику. Никого из сотрудников вы не знаете. Что вы скажете?" }
+    prompt: "Am Telefon: „Guten Tag, hier ist Anna Weber. ___“"
+    options:
+      - "Könnten Sie mir bitte einen Termin geben?"
+      - "Könntest du mir bitte einen Termin geben?"
+      - "Könnt ihr mir bitte einen Termin geben?"
+    correct: 0
+    translation: { en: "On the phone: 'Good afternoon, this is Anna Weber. Could you give me an appointment, please?'", ru: "По телефону: «Здравствуйте, это Анна Вебер. Не могли бы вы записать меня на приём?»" }
+    explain: { en: "All three sentences are polite in shape, and only one is addressed to the right person. A stranger doing their job gets Sie — with a capital S — and the verb form that goes with it: Könnten Sie …? The du-form is for friends and family, the ihr-form for several of them at once, and neither is a warmer way of saying the same thing: in an office or a surgery it simply lands as disrespect. Learn Könnten Sie … as a fixed chunk and open every phone call with it.", ru: "По форме вежливы все три фразы — но лишь одна обращена к нужному человеку. Незнакомому человеку на работе говорят Sie, с заглавной S, и с соответствующей формой глагола: Könnten Sie …? Форма на du — для друзей и родных, форма на ihr — для нескольких таких же, и это не «более тёплый» вариант той же фразы: в учреждении или в поликлинике она звучит просто неуважительно. Заучите Könnten Sie … целиком и начинайте с этого каждый телефонный разговор." }
+  - id: uebersetzen-perfekt-italien
+    outcomes: [perfekt-vergangenheit-erzaehlen, perfekt-hilfsverb]
+    type: translate
+    focus: haben-sein
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий." }
+    prompt_en: "Last year I flew to Italy."
+    prompt_ru: "В прошлом году я летал в Италию."
+    answer: "Letztes Jahr bin ich nach Italien geflogen."
+    key_tokens: ["bin", "geflogen"]
+    accept: ["Ich bin letztes Jahr nach Italien geflogen."]
+    explain: { en: "fliegen is movement from A to B, so the Perfekt is built with sein: ich bin … geflogen, never ich habe … geflogen. The rule is worth saying out loud once more — sein for a change of place (fahren, gehen, fliegen, kommen) plus bleiben, sein and passieren; haben for everything else. And the bracket holds: the auxiliary bin in position 2 (the fronted time phrase pushes ich behind it), the participle geflogen at the very end.", ru: "fliegen — это перемещение из точки А в точку Б, поэтому Perfekt строится с sein: ich bin … geflogen, а не ich habe … geflogen. Правило стоит проговорить ещё раз: sein — при смене места (fahren, gehen, fliegen, kommen), плюс bleiben, sein и passieren; haben — во всех остальных случаях. И рамка на месте: вспомогательный глагол bin на втором месте (вынесенное вперёд обстоятельство времени сдвигает ich за него), причастие geflogen — в самом конце." }
+  - id: uebersetzen-weil-arbeiten
+    outcomes: [weil-grund, arbeitszeit-aushandeln]
+    type: translate
+    focus: nebensatz-verbende
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий." }
+    prompt_en: "I can't come on Friday because I have to work."
+    prompt_ru: "В пятницу я не могу прийти, потому что мне нужно работать."
+    answer: "Ich kann am Freitag nicht kommen, weil ich arbeiten muss."
+    key_tokens: ["weil", "muss"]
+    accept:
+      - "Am Freitag kann ich nicht kommen, weil ich arbeiten muss."
+      - "Ich kann nicht am Freitag kommen, weil ich arbeiten muss."
+    explain: { en: "Two clauses, two rules. In the main clause the modal kann sits in position 2 and the infinitive kommen waits at the end. In the weil-clause the verbs stack up against the wall in a fixed order: the infinitive arbeiten first, the conjugated muss absolutely last — weil ich arbeiten muss. The classic mistake is to keep the main-clause order after weil (❌ weil ich muss arbeiten): muss is the word that has to land last, and it is the word learners leave in the middle.", ru: "Два предложения — два правила. В главном модальный глагол kann стоит на втором месте, а инфинитив kommen ждёт в конце. В придаточном с weil глаголы выстраиваются у стены в строго определённом порядке: сначала инфинитив arbeiten, спрягаемый muss — самым последним: weil ich arbeiten muss. Классическая ошибка — сохранить после weil порядок главного предложения (❌ weil ich muss arbeiten): приземлиться последним должно именно muss, а его-то и оставляют в середине." }
+  - id: uebersetzen-vergleich-jacke
+    outcomes: [produkte-vergleichen, gefallen-passen-sagen]
+    type: translate
+    focus: komparativ-als
+    instruction: { en: "You are in a shop, comparing two jackets. Translate into German.", ru: "Вы в магазине и сравниваете две куртки. Переведите на немецкий." }
+    prompt_en: "The blue jacket is more expensive than the grey one."
+    prompt_ru: "Синяя куртка дороже серой."
+    answer: "Die blaue Jacke ist teurer als die graue."
+    key_tokens: ["teurer", "als"]
+    accept:
+      - "Die blaue Jacke ist teurer als die graue Jacke."
+    explain: { en: "German builds the comparative with an ending, not with a helper word: teuer → teurer, and there is no mehr teuer. What follows the comparison is always als — never wie. (wie belongs to the other comparison, the one that finds two things equal: so teuer wie.) Note the little spelling detail as well: teuer loses its -e- in the comparative, teurer, and the same happens to dunkel → dunkler.", ru: "Немецкий строит сравнительную степень окончанием, а не служебным словом: teuer → teurer, и никакого mehr teuer не бывает. За сравнением всегда следует als — и никогда wie. (wie принадлежит другому сравнению — тому, что приравнивает: so teuer wie.) Обратите внимание и на орфографию: teuer теряет -e- в сравнительной степени и превращается в teurer; так же ведёт себя dunkel → dunkler." }
+  - id: uebersetzen-amt-anmelden
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction: { en: "You are at the counter of the citizens' office. Say what you have come for — politely.", ru: "Вы у окошка в бюргерамте. Вежливо назовите своё дело." }
+    prompt_en: "I would like to register my new address."
+    prompt_ru: "Я хотел(а) бы зарегистрировать свой новый адрес."
+    answer: "Ich würde gern meine neue Adresse anmelden."
+    key_tokens: ["würde", "anmelden"]
+    accept:
+      - "Ich würde gerne meine neue Adresse anmelden."
+    explain: { en: "What you are naming is an action, and an action takes würde gern — with the infinitive parked at the very end, exactly like a modal verb: Ich würde gern … anmelden. hätte gern is the other chunk, and it takes a thing: Ich hätte gern eine Bescheinigung is fine, Ich hätte gern anmelden is not a sentence at all. Ich will meine Adresse anmelden says the same thing and says it bluntly — at a counter, the polite chunk is not decoration. gern and gerne are interchangeable.", ru: "Вы называете действие, а действие требует оборота würde gern — с инфинитивом в самом конце, точно как у модального глагола: Ich würde gern … anmelden. Оборот hätte gern — другой, он берёт предмет: Ich hätte gern eine Bescheinigung — нормально, а Ich hätte gern anmelden — вообще не предложение. Фраза Ich will meine Adresse anmelden говорит то же самое, но резко — у окошка вежливый оборот не украшение. Формы gern и gerne равноправны." }
+  # --- Schreiben ---
+  - id: schreiben-krankmeldung
+    outcomes: [krankmeldung-schreiben, berufliche-nachricht-schreiben]
+    type: write
+    prompt: { en: "You are ill and cannot come to work. Write a short message to your boss, Frau Berger.", ru: "Вы заболели и не можете выйти на работу. Напишите короткое сообщение своей начальнице, госпоже Бергер." }
+    goal: { en: "Write four to five sentences: say that you are ill, since when, why you cannot come, and when you will be back in touch.", ru: "Напишите четыре-пять предложений: что вы заболели, с какого дня, почему не можете прийти и когда снова дадите о себе знать." }
+    requirements:
+      - { en: "Address her formally and stay with Sie throughout — she is your boss, not a friend.", ru: "Обратитесь официально и выдерживайте Sie до конца — это начальница, а не подруга." }
+      - { en: "Say since when you have been ill, with seit + Dativ: seit Montag, seit drei Tagen.", ru: "Скажите, с какого дня вы больны, через seit + Dativ: seit Montag, seit drei Tagen." }
+      - { en: "Give the reason in a weil-clause — the conjugated verb goes to the very end.", ru: "Назовите причину в придаточном с weil — спрягаемый глагол уходит в самый конец." }
+      - { en: "Say what happens next: when you will send the sick note, or when you will be in touch again.", ru: "Скажите, что будет дальше: когда вы пришлёте больничный или когда снова свяжетесь." }
+    min_words: 30
+    model_answer: "Guten Morgen, Frau Berger, leider bin ich krank. Ich habe seit Montag Fieber und war heute Morgen beim Arzt. Ich kann diese Woche nicht ins Büro kommen, weil ich noch zwei Tage zu Hause bleiben muss. Die Krankmeldung schicke ich Ihnen heute per E-Mail. Am Donnerstag melde ich mich wieder. Viele Grüße, Anna Weber"
+    model_translation: { en: "Good morning, Frau Berger, unfortunately I am ill. I have had a fever since Monday and I went to the doctor this morning. I cannot come to the office this week, because I have to stay at home for another two days. I will send you the sick note by e-mail today. I will be in touch again on Thursday. Kind regards, Anna Weber", ru: "Доброе утро, госпожа Бергер, к сожалению, я заболела. У меня с понедельника температура, и сегодня утром я была у врача. На этой неделе я не смогу прийти в офис, потому что мне нужно побыть дома ещё два дня. Больничный пришлю вам сегодня по электронной почте. В четверг снова дам о себе знать. С уважением, Анна Вебер" }
+    explain: { en: "A sick note to an employer is the most useful thing you can write at A2, and it is built from four moves: the fact (ich bin krank), the time (seit Montag — seit + Dativ, and the illness is still going on), the reason (weil ich zu Hause bleiben muss, verb at the end), and what happens next (die Krankmeldung schicke ich Ihnen heute). Keep Sie and Ihnen capitalized throughout — that capital letter is the register, and it is the first thing a German reader notices.", ru: "Сообщение о болезни начальнику — самое полезное, что вы можете написать на уровне A2, и складывается оно из четырёх шагов: факт (ich bin krank), время (seit Montag — seit + Dativ, и болезнь продолжается), причина (weil ich zu Hause bleiben muss, глагол в конце) и что будет дальше (die Krankmeldung schicke ich Ihnen heute). Пишите Sie и Ihnen с заглавной буквы от начала до конца — эта заглавная буква и есть регистр, и немецкий читатель замечает её первой." }

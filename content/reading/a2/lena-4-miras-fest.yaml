@@ -1,0 +1,90 @@
+topic: freunde-feste
+kind: extensive
+title_de: "Lena in Bremen (4): Miras Fest"
+
+# The fourth Lena episode and an extensive reader: read straight through for meaning
+# with the glosses closed — sparse glosses, two gist questions, no line-by-line
+# quizzing. It gives the free-time, celebration and feelings field (Einladung, Gast,
+# Geschenk, Glückwunsch, Band, Lied, Witz, Spaß, sich unterhalten, sich freuen auf) a
+# story to live in instead of a flashcard. Everything stays at or below unit 14 of A2:
+# Präsens, Perfekt, modals, separable and reflexive verbs, Dativ, Komparativ,
+# war/hatte/konnte — plus the weil-, dass- and wenn-clauses of unit 12. No Genitiv, no
+# Passiv, no Relativsatz.
+# Episode 2: content/reading/a2/lena-2-der-wecker-um-vier.yaml
+# Episode 3: content/reading/a2/lena-3-die-bewerbung.yaml
+
+text:
+  - >-
+    Im August ist Mira dreißig geworden. Mira ist Lenas Kollegin aus der
+    Bäckerei, und sie hat Lena eine [[Einladung::invitation::приглашение]]
+    geschickt: Samstag, achtzehn Uhr, im
+    [[Vereinsheim::clubhouse of a sports club::клубный дом спортивного общества]]
+    vom SV Nord. Mira spielt dort seit zehn Jahren Fußball. Lena hat sofort
+    zugesagt. Dann hat sie zwei Tage lang Angst gehabt.
+  - >-
+    Sie hatte Angst, weil sie noch nie auf einem deutschen Fest war. Was schenkt
+    man? Wann kommt man? Frau Kern, ihre Nachbarin, hat nur gelacht. „Komm
+    pünktlich, das ist wichtig. Bring etwas Kleines mit. Und iss vorher nichts,
+    denn es gibt immer zu viel Kuchen.“ Lena hat am Freitag in der Bäckerei eine
+    Torte gebacken. Herr Ott hat geholfen und kein Geld dafür genommen.
+  - >-
+    Am Samstag war Lena nervös. Im Vereinsheim waren schon dreißig Gäste. Nach
+    dem Spiel ist auch die ganze [[Mannschaft::team::команда]] gekommen, in
+    kurzen Hosen und mit lauten Stimmen. Mira hat Lena umarmt. „Herzlichen
+    Glückwunsch!“, hat Lena gesagt und ihr Geschenk gegeben. Ein Mann hat
+    gerufen: „Die Torte ist aus der Bäckerei? Heute habe ich Glück!“ Alle haben
+    gelacht.
+  - >-
+    Später hat eine Band gespielt. Die Leute haben ein
+    [[Lied::song::песня]] gesungen, und alle haben den Text gewusst — nur Lena
+    nicht. Ein Mann hat einen [[Witz::joke::шутка, анекдот]] erzählt. Alle haben
+    gelacht, Lena hat auch gelacht, aber sie hat kein Wort verstanden. Das war
+    kein schönes Gefühl. Sie ist mit ihrem Glas nach draußen gegangen.
+  - >-
+    Dort hat der Torwart gestanden. Er heißt Timo, arbeitet in einer Werkstatt
+    und ist sehr [[sympathisch::likeable::приятный, располагающий к себе]]. Lena
+    hat sich fast eine Stunde lang mit ihm
+    [[unterhalten::chatted, had a conversation::беседовала, разговорилась]]. Er
+    hat langsam gesprochen, weil er gesehen hat, dass Lena manchmal ein Wort
+    nicht versteht. Sie haben über Fahrräder gesprochen, über Bremen und über
+    Polen. Dann hat Timo den Witz noch einmal erzählt — ganz langsam. Diesmal hat
+    Lena ihn verstanden. Der Witz war wirklich lustig.
+  - >-
+    Um Mitternacht hat Mira eine kleine Rede gehalten. Sie hat allen gedankt,
+    auch Lena. „Wenn du im Winter Geburtstag hast, feiern wir wieder hier“, hat
+    sie gesagt. Um zwei Uhr ist Lena nach Hause gefahren. Die Straße war leer,
+    das Fahrrad war leicht, und sie hat laut gesungen. So viel Spaß hatte sie in
+    Bremen noch nie. Am Sonntag hat der Wecker nicht geklingelt, und Lena freut
+    sich schon auf das nächste Fest.
+
+questions:
+  - id: q-angst
+    outcomes: [einladen-zusagen-absagen]
+    type: mc
+    prompt: "Warum hat Lena vor dem Fest Angst?"
+    options:
+      - "Sie war noch nie auf einem deutschen Fest und weiß nicht, wie man das macht."
+      - "Sie mag Mira nicht besonders und will eigentlich nicht kommen."
+      - "Sie muss am Sonntag um vier Uhr aufstehen und arbeiten."
+    correct: 0
+    translation:
+      en: "Why is Lena afraid before the party?"
+      ru: "Почему Лена боится идти на праздник?"
+    explain:
+      en: "Lena accepts the invitation at once — the fear comes afterwards, and it is not about Mira or about work. It is the two questions she cannot answer: what do you bring, and when do you turn up? Her neighbour Frau Kern answers both, and Lena bakes a cake."
+      ru: "Приглашение Лена принимает сразу — страх приходит потом, и он не про Миру и не про работу. Дело в двух вопросах, на которые она не знает ответа: что принести и во сколько прийти? На оба отвечает соседка, фрау Керн, и Лена печёт торт."
+  - id: q-abend
+    outcomes: [glueckwuensche-formeln]
+    type: mc
+    prompt: "Wie war der Abend für Lena?"
+    options:
+      - "Zuerst schwer — sie versteht den Witz nicht. Später unterhält sie sich lange mit Timo, und es macht ihr Spaß."
+      - "Sie gratuliert Mira und geht nach einer halben Stunde traurig nach Hause."
+      - "Sie hat den ganzen Abend Spaß und versteht jedes Wort."
+    correct: 0
+    translation:
+      en: "How was the evening for Lena?"
+      ru: "Каким получился вечер для Лены?"
+    explain:
+      en: "Both halves of the evening are true, and the story needs both. Lena congratulates Mira and hands over her present, but when everybody sings and laughs at a joke she has understood nothing, and she goes outside. Then comes the hour with Timo — and by the ride home she is singing herself."
+      ru: "В этом вечере правдивы обе половины, и рассказу нужны обе. Лена поздравляет Миру и вручает подарок, но, когда все поют и смеются над шуткой, она не понимает ни слова и выходит на улицу. А потом — час разговора с Тимо, и по дороге домой она уже поёт сама."

@@ -141,6 +141,28 @@ items:
       en: "Two two-object sentences in one line, and each shows a different half of the rule. In the first, both objects are nouns: the person goes into the Dativ and comes first — ihrem Bruder — and Blumen, the thing, follows in the Akkusativ (a bare plural, so nothing on it changes). In the second the person is a pronoun, ihm, and a pronoun goes in front of a noun object — so it stands before eine Karte. Neither ihm nor ihr: the brother is masculine and he is the one receiving, which is the Dativ, and for er that is ihm. And the separable mit closes the first clause, behind the flowers."
       ru: "Две конструкции с двумя дополнениями в одной строке, и каждая показывает свою половину правила. В первой оба дополнения — существительные: человек стоит в Dativ и идёт первым (ihrem Bruder), а предмет, Blumen, следует за ним в Akkusativ (голое множественное число — там ничего не меняется). Во второй человек выражен местоимением ihm, а местоимение идёт впереди дополнения-существительного, поэтому стоит перед eine Karte. Не ihn и не ihr: брат — мужского рода и он получает, а это Dativ, и для er это ihm. Отделяемая приставка mit при этом закрывает первую часть — уже за цветами."
 
+  # The verified half of `einladung-schreiben`. The outcome was carried by the `write` item
+  # below and by nothing else — and a `write` logs unverified practice evidence by design, so
+  # the outcome could never light up. The lesson claimed "I can write a short invitation" and
+  # then measured it with the one item type that is never scored. This translate grades the
+  # same competence in a form that counts.
+  - id: uebersetzen-einladung-hochzeit
+    outcomes: [einladung-schreiben, einladen-zusagen-absagen]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: "You are writing the invitation yourself, in the group chat. Translate it into German."
+      ru: "Приглашение вы пишете сами, в групповом чате. Переведите его на немецкий."
+    prompt_en: "I am inviting you to my wedding. We are celebrating on Saturday at eight."
+    prompt_ru: "Приглашаю тебя на свою свадьбу. Празднуем в субботу в восемь."
+    answer: "Ich lade dich zu meiner Hochzeit ein. Wir feiern am Samstag um acht."
+    accept:
+      - "Ich lade dich zu meiner Hochzeit ein. Wir feiern am Samstag um acht Uhr."
+    key_tokens: ["lade", "ein"]
+    explain:
+      en: "An invitation is built on einladen, and einladen is separable — so the moment it becomes the conjugated verb of the clause, it breaks in half. lade takes position 2, and the prefix ein falls to the very end, behind the person and behind the whole zu-phrase: Ich lade dich zu meiner Hochzeit ein. There are two ways to get this wrong and both are common. Ich einlade dich … keeps the verb in one piece, and that is no German sentence at all. Ich lade dich zu meiner Hochzeit — stopping before the ein — is worse, because it is a sentence that exists and means something else: laden on its own is to load. The prefix carries the meaning, and it is the last word you write. Two smaller checks: einladen takes the accusative for the person invited, so it is dich and never dir, and zu is one of the fixed dative prepositions, which is what turns the wedding into zu meiner Hochzeit."
+      ru: "Приглашение строится на глаголе einladen, а einladen — отделяемый: как только он становится спрягаемым сказуемым, он разламывается надвое. lade занимает второе место, а приставка ein падает в самый конец — за человека и за всю группу с zu: Ich lade dich zu meiner Hochzeit ein. Ошибиться можно двумя способами, и оба частые. Ich einlade dich … оставляет глагол целым — такого немецкого предложения попросту нет. А Ich lade dich zu meiner Hochzeit, оборванное перед ein, даже хуже: это существующее предложение, только значит оно другое — laden сам по себе означает «грузить». Смысл несёт приставка, и пишется она последним словом. По-русски приставка приклеена к глаголу намертво, поэтому конец фразы так легко потерять. Ещё две мелочи: einladen требует Akkusativ для приглашаемого — dich, а не dir; а zu входит в число предлогов, всегда требующих Dativ, отсюда zu meiner Hochzeit."
+
   - id: schreiben-einladung
     outcomes: [einladung-schreiben, absprachen-aushandeln]
     type: write
