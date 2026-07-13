@@ -31,15 +31,18 @@ items:
 
   - id: variant-b
     outcomes: [alltag-zeitpraepositionen]
-    type: cloze
+    type: translate
     focus: um-am-zeit
     instruction:
-      en: Fill in the correct time preposition.
-      ru: Вставьте правильный предлог времени.
-    text: "Mein Kurs beginnt {{im}} Februar. {{Am}} Dienstag und {{am}} Freitag habe ich Unterricht. Der Unterricht fängt {{um}} halb zehn an. {{In}} der Nacht lerne ich nie."
+      en: Translate into German. Begin each sentence with the time expression.
+      ru: Переведите на немецкий. Начните каждое предложение с обстоятельства времени.
+    prompt_en: "In the evening I cook at seven o'clock. At night it is very quiet here."
+    prompt_ru: "Вечером я готовлю в семь часов. Ночью здесь очень тихо."
+    answer: "Am Abend koche ich um sieben Uhr. In der Nacht ist es hier sehr ruhig."
+    key_tokens: ["Am", "um", "In"]
     explain:
-      en: "The whole system in four lines: im for a month or a season, am for a day or a part of the day, um for a point on the clock. The night is the one exception that has to be memorized as a chunk — in der Nacht, never am."
-      ru: "Вся система в четырёх строчках: im — с месяцем или временем года, am — с днём недели или частью дня, um — с точным временем на часах. Ночь — единственное исключение, которое приходится запомнить целиком: in der Nacht, но никогда am."
+      en: "A part of the day counts as a day, not as a period you are inside: am Abend, am Morgen, am Nachmittag — the same am as am Montag, and never the im that English 'in the evening' invites. The clock keeps its own preposition next to it (um sieben Uhr). And the night is the one exception in the system: in der Nacht, memorized as a chunk, because am Nacht does not exist."
+      ru: "Часть суток считается за день, а не за отрезок, внутри которого вы находитесь: am Abend, am Morgen, am Nachmittag — тот же am, что и в am Montag. Русское «вечером» никакого предлога не подсказывает, поэтому форму приходится помнить. Точное время рядом сохраняет свой предлог: um sieben Uhr. А ночь — единственное исключение системы: in der Nacht, запоминается целиком, потому что ❌ am Nacht не существует."
 
   - id: variant-c
     outcomes: [alltag-zeitpraepositionen]

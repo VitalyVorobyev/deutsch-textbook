@@ -33,15 +33,20 @@ items:
 
   - id: variant-b
     outcomes: [termine-organisieren]
-    type: cloze
+    type: translate
     focus: passen-dativ
     instruction:
-      en: Fill in the correct dative form of the person in brackets.
-      ru: Вставьте правильную форму лица из скобок в дательном падеже.
-    text: "Frau Berger, passt {{Ihnen}} der Termin am Montag? (Sie) — Nein, der Montag passt {{mir}} leider nicht. (ich) — Und Ihrem Mann? Passt {{ihm}} der Dienstag? (er)"
+      en: Translate into German. You are speaking to a friend.
+      ru: Переведите на немецкий. Вы говорите с другом.
+    prompt_en: "Does the appointment at ten o'clock suit you? It suits me well."
+    prompt_ru: "Тебе подходит встреча в десять часов? Мне она вполне подходит."
+    answer: "Passt dir der Termin um zehn Uhr? Er passt mir gut."
+    key_tokens: ["dir", "mir"]
+    accept:
+      - "Passt dir der Termin um zehn Uhr? Mir passt er gut."
     explain:
-      en: "Every person in this dialogue appears in the dative, because that is the only case passen offers them: Sie → Ihnen (capitalized), ich → mir, er → ihm. Answer with the accusative (Passt es Sie?) and the sentence stops being German."
-      ru: "Все участники диалога стоят в дательном падеже, потому что другого падежа глагол passen им не предлагает: Sie → Ihnen (с большой буквы), ich → mir, er → ihm. Винительный падеж (Passt es Sie?) превращает фразу в несуществующий немецкий."
+      en: "passen keeps the appointment as its subject and puts the person in the dative — du → dir, ich → mir. The trap is that English makes the person look like an object ('suits you'), and an object is what the accusative is for: ❌ Passt dich der Termin? The person after passen is never in the accusative. Note also that the answer keeps the appointment as the subject, now as the pronoun er (der Termin), and mir stays in the dative with it."
+      ru: "При passen подлежащее — это встреча, а человек стоит в дательном: du → dir, ich → mir. Ловушка в том, что по-русски человек выглядит как дополнение («тебе подходит» — да, дательный, но в вопросе «тебя устраивает?» уже винительный), а по-английски и подавно. Отсюда ❌ Passt dich der Termin? Человек после passen никогда не стоит в Akkusativ. И в ответе подлежащим остаётся сама встреча — теперь местоимение er (der Termin), — а mir рядом с ним остаётся в дательном."
 
   - id: variant-c
     outcomes: [termine-organisieren]

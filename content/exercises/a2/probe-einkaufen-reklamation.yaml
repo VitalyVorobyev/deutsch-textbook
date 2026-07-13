@@ -1,0 +1,67 @@
+topic: einkaufen-reklamation
+role: probe
+title:
+  en: "Probe — comparing two products"
+  ru: "Проверка — сравнение двух товаров"
+
+# Three PARALLEL variants of ONE competence: producing the comparative and joining
+# the two halves with `als`. One variant is drawn per due interval (2, 7, 21 days),
+# so the same skill is measured three times, in three shops the learner has not seen.
+#
+# Why this competence and not the superlative or passen/gefallen: choosing between two
+# products is what the whole unit is for, and it is the only thing here the learner
+# cannot get around. A superlative can be avoided by comparing pairwise; passen and
+# gefallen are single fixed patterns. The comparative has to be built, every time, out
+# of an adjective the learner picks — and the three irregulars (besser, lieber, mehr)
+# are exactly where a half-learned rule collapses. Each variant carries one.
+
+items:
+  - id: variant-a
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: Translate into German. You are in an electronics shop.
+      ru: Переведите на немецкий. Вы в магазине электроники.
+    prompt_en: "The laptop is better than the phone. But it is also more expensive."
+    prompt_ru: "Ноутбук лучше телефона. Но он и дороже."
+    answer: "Der Laptop ist besser als das Handy. Aber er ist auch teurer."
+    key_tokens: ["besser", "als", "teurer"]
+    accept:
+      - "Der Laptop ist besser als das Handy, aber er ist auch teurer."
+    explain:
+      en: "The irregular form is the one carrying als here, which is where a half-learned rule shows: gut takes no ending at all, it is replaced — besser als das Handy. The second sentence needs the regular machinery: teuer adds -er and loses the -e- of its stem on the way, giving teurer, not teuerer. And note what German never does: there is no helper word in front of the adjective, so 'more expensive' is one word. das Handy stands behind als unchanged, exactly as it would as a subject."
+      ru: "Именно на неправильной форме здесь и держится als — а это то место, где полузнание правила становится видно: gut никакого окончания не получает, оно просто заменяется — besser als das Handy. Второе предложение требует обычного механизма: teuer добавляет -er и теряет -e- в основе, получается teurer, а не teuerer. И обратите внимание на то, чего в немецком не бывает: перед прилагательным не ставят вспомогательного слова, поэтому «дороже» — одно слово. das Handy стоит после als без изменений — в той же форме, что и в роли подлежащего."
+
+  - id: variant-b
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: Translate into German. You are choosing a table in a furniture shop.
+      ru: Переведите на немецкий. Вы выбираете стол в мебельном магазине.
+    prompt_en: "The table here is bigger than the table over there. I need more space."
+    prompt_ru: "Этот стол больше, чем тот. Мне нужно больше места."
+    answer: "Der Tisch hier ist größer als der Tisch dort. Ich brauche mehr Platz."
+    key_tokens: ["größer", "als", "mehr"]
+    explain:
+      en: "Two comparatives that are built by two different mechanisms. groß is short, so it takes an Umlaut on the way up: größer, and als introduces the table it is measured against. viel does not take an ending at all — it is replaced by mehr, a form nobody could guess from the rule, which is why it has to be learned as a word. Note that mehr stands in front of a noun (mehr Platz) and never in front of an adjective: it is the comparative of viel, not a helper word for building other comparatives."
+      ru: "Две сравнительные степени, образованные по-разному. groß — короткое слово, поэтому получает умлаут: größer, а als вводит стол, с которым сравнивают. viel же окончания не получает вовсе — оно заменяется формой mehr, вывести которую из правила невозможно, её просто заучивают. И обратите внимание: mehr стоит перед существительным (mehr Platz), но никогда не перед прилагательным — это сравнительная степень от viel, а не служебное слово для образования других сравнительных степеней."
+
+  - id: variant-c
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: Translate into German. You are talking about where you buy your fruit.
+      ru: Переведите на немецкий. Вы говорите о том, где покупаете фрукты.
+    prompt_en: "I would rather buy fruit at the market than at the supermarket. There it is fresher."
+    prompt_ru: "Фрукты я предпочитаю покупать на рынке, а не в супермаркете. Там они свежее."
+    answer: "Ich kaufe Obst lieber auf dem Markt als im Supermarkt. Dort ist es frischer."
+    key_tokens: ["lieber", "als", "frischer"]
+    accept:
+      - "Obst kaufe ich lieber auf dem Markt als im Supermarkt. Dort ist es frischer."
+      - "Ich kaufe lieber Obst auf dem Markt als im Supermarkt. Dort ist es frischer."
+    explain:
+      en: "The comparison is not between two kinds of fruit but between two places, and it is carried by lieber — the irregular comparative of gern. It sits next to the verb (ich kaufe … lieber), and als introduces the alternative you turn down. The second sentence needs a comparative of its own: frisch → frischer, plain and regular."
+      ru: "Сравниваются здесь не два вида фруктов, а два места, и держится сравнение на слове lieber — это неправильная сравнительная степень от gern. Она стоит рядом с глаголом (ich kaufe … lieber), а als вводит отвергнутую альтернативу. Во втором предложении нужна ещё одна сравнительная степень: frisch → frischer, простая и правильная."

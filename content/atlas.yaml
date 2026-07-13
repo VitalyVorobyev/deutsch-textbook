@@ -572,6 +572,105 @@ nodes:
         en: "I can build the Perfekt bracket: haben or sein in second position, the participle at the end."
         ru: "Я умею строить рамочную конструкцию в перфекте: haben или sein на втором месте, причастие в конце."
 
+  - id: wohnen-umzug
+    level: A2
+    kind: vocab-field
+    strand: vocabulary
+    group: wohnen-zuhause
+    prerequisites: [wohnen, akkusativ, dativ]
+    deepens: [wohnen, akkusativ, dativ]
+    outcomes:
+      - id: wohnungsanzeige-lesen
+        mode: reading
+        domain: personal
+        de: "Ich kann eine Wohnungsanzeige lesen und die wichtigen Informationen finden."
+        en: "I can read a flat advertisement and find the information that matters."
+        ru: "Я умею читать объявление о сдаче квартиры и находить в нём главное."
+      - id: wohnung-beschreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann eine Wohnung und ihre Lage genauer beschreiben."
+        en: "I can describe a flat and where it is in more detail."
+        ru: "Я умею подробнее описать квартиру и её расположение."
+      - id: wo-wohin-position
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wo etwas steht und wohin es kommt."
+        en: "I can say where something is and where it is going."
+        ru: "Я умею сказать, где что-то стоит и куда это ставят."
+      - id: nachbarn-bitte
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann eine Bitte an Vermieter oder Nachbarn formulieren."
+        en: "I can make a request to a landlord or a neighbour."
+        ru: "Я умею обратиться с просьбой к арендодателю или соседям."
+
+  - id: reisen-verkehr
+    level: A2
+    kind: communication
+    strand: communication
+    group: unterwegs
+    prerequisites: [stadt-wege, perfekt-haben-sein, termine-vereinbaren]
+    deepens: [stadt-wege, perfekt-haben-sein, termine-vereinbaren]
+    outcomes:
+      - id: verbindung-waehlen
+        mode: reading
+        domain: public
+        de: "Ich kann eine Verbindung auswählen und die wichtigen Informationen im Fahrplan finden."
+        en: "I can choose a connection and find the information that matters in a timetable."
+        ru: "Я умею выбрать маршрут и найти нужную информацию в расписании."
+      - id: durchsage-verstehen
+        mode: listening
+        domain: public
+        de: "Ich kann wichtige Durchsagen am Bahnhof verstehen."
+        en: "I can understand the announcements that matter at a station."
+        ru: "Я понимаю важные объявления на вокзале."
+      - id: reise-problem-loesen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann ein Reiseproblem erklären und um Hilfe bitten."
+        en: "I can explain a travel problem and ask for help."
+        ru: "Я умею объяснить проблему в пути и попросить о помощи."
+      - id: reise-berichten
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann kurz von einer Reise berichten."
+        en: "I can give a short account of a journey."
+        ru: "Я умею коротко рассказать о поездке."
+
+  - id: einkaufen-reklamation
+    level: A2
+    kind: vocab-field
+    strand: vocabulary
+    group: essen-einkaufen
+    prerequisites: [essen-trinken, dativ, modalverben]
+    deepens: [essen-trinken, akkusativ, dativ]
+    outcomes:
+      - id: produkte-vergleichen
+        mode: writing
+        domain: personal
+        de: "Ich kann Preise, Größen und Produkte vergleichen."
+        en: "I can compare prices, sizes and products."
+        ru: "Я умею сравнивать цены, размеры и товары."
+      - id: gefallen-passen-sagen
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann sagen, was mir passt und was mir gefällt."
+        en: "I can say what fits me and what I like."
+        ru: "Я умею сказать, что мне подходит и что мне нравится."
+      - id: umtausch-begruenden
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann einen Umtausch begründen."
+        en: "I can give the reason for an exchange or a return."
+        ru: "Я умею объяснить причину обмена или возврата."
+      - id: reklamation-schreiben
+        mode: writing
+        domain: public
+        de: "Ich kann eine kurze Reklamation schreiben."
+        en: "I can write a short complaint."
+        ru: "Я умею написать краткую рекламацию."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -673,3 +772,21 @@ units:
     title_en: "Making appointments"
     title_ru: "Как договориться о встрече"
     topics: [termine-vereinbaren]
+  - id: wohnen-umzug
+    level: A2
+    title_de: "Wohnen & Umzug"
+    title_en: "Housing & moving"
+    title_ru: "Жильё и переезд"
+    topics: [wohnen-umzug]
+  - id: reisen-verkehr
+    level: A2
+    title_de: "Reisen & Verkehr"
+    title_en: "Travel & transport"
+    title_ru: "Путешествия и транспорт"
+    topics: [reisen-verkehr]
+  - id: einkaufen-reklamation
+    level: A2
+    title_de: "Einkaufen & Reklamation"
+    title_en: "Shopping & complaints"
+    title_ru: "Покупки и рекламации"
+    topics: [einkaufen-reklamation]

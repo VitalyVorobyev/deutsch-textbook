@@ -1,0 +1,62 @@
+topic: wohnen-umzug
+role: probe
+title:
+  en: "Probe — Wo? or Wohin?"
+  ru: "Проверка — Wo? или Wohin?"
+
+# Three PARALLEL variants of ONE competence: choosing the case after a two-way
+# preposition — Dativ for a position (Wo?), Akkusativ for a direction (Wohin?).
+# One variant is drawn per due interval (2, 7, 21 days), so the same skill is
+# measured three times, in three situations the learner has not seen.
+#
+# The situation deliberately leaves the flat — an office, a kitchen table, a
+# street — because the flat is where the lesson happened. What is graded is never
+# the vocabulary or the preposition, only the case-marked article: a learner who
+# still answers the Wo?/Wohin? question can say where anything is and where it
+# goes; a learner who has lost it can say neither.
+
+items:
+  - id: variant-a
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "Tom is hanging the calendar above the door."
+    prompt_ru: "Том вешает календарь над дверью."
+    answer: "Tom hängt den Kalender über die Tür."
+    key_tokens: ["die"]
+    explain:
+      en: "Tom is doing the hanging, so the calendar is on its way to a new place: Wohin? → accusative → über die Tür. über der Tür would say that the calendar is already up there and nobody is touching it. The verb form gives no help at all — hängen looks the same in both halves of the pair, so the article carries the entire meaning. den Kalender is accusative for a different reason: it is the object Tom moves."
+      ru: "Вешает Том — значит календарь перемещается на новое место: Wohin? → Akkusativ → über die Tür. Форма über der Tür сказала бы, что календарь уже висит и никто его не трогает. Здесь особая ловушка: по-русски «над дверью» — творительный падеж, и о направлении он не сообщает ничего. А глагол не поможет тем более: hängen в обеих половинах пары выглядит одинаково, так что весь смысл несёт артикль. Обратите внимание: den Kalender — тоже Akkusativ, но по другой причине: это дополнение, предмет, который Том перемещает."
+
+  - id: variant-b
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The newspaper is lying on the chair. I am putting it on the table."
+    prompt_ru: "Газета лежит на стуле. Я кладу её на стол."
+    answer: "Die Zeitung liegt auf dem Stuhl. Ich lege sie auf den Tisch."
+    key_tokens: ["dem", "den"]
+    explain:
+      en: "The same preposition twice, and it decides nothing: auf takes the dative in the first sentence and the accusative in the second, because only the question changes. The newspaper lies somewhere — Wo? → auf dem Stuhl. Then it travels to a new place — Wohin? → auf den Tisch. The verb is the giveaway English does not have: liegen is where something is, legen is where you send it, and the article has to follow that choice. der Stuhl → dem, der Tisch → den — both masculine, so both forms are visible."
+      ru: "Один и тот же предлог дважды — и сам по себе он не решает ничего: auf требует Dativ в первом предложении и Akkusativ во втором, потому что меняется только вопрос. Газета где-то лежит: Wo? → auf dem Stuhl. Потом она перемещается на новое место: Wohin? → auf den Tisch. По-русски разница тоже есть («на стуле» — «на стол»), и это редкий случай, когда родной язык помогает: сверяйтесь с ним. Подсказывает и глагол: liegen — где предмет находится, legen — куда его отправляют. Оба существительных мужского рода, поэтому обе формы видны: der Stuhl → dem, der Tisch → den."
+
+  - id: variant-c
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The bikes are standing in front of the house."
+    prompt_ru: "Велосипеды стоят перед домом."
+    answer: "Die Fahrräder stehen vor dem Haus."
+    key_tokens: ["dem"]
+    explain:
+      en: "Nothing moves: the bikes are simply somewhere, so vor answers Wo? and takes the dative — das Haus → vor dem Haus. vor das Haus would need somebody pushing them there (Tom stellt die Fahrräder vor das Haus). And stehen is the position verb, so the sentence has no object at all — that is the second clue that the dative is right."
+      ru: "Движения нет: велосипеды просто где-то находятся, поэтому vor отвечает на вопрос Wo? и требует Dativ — das Haus → vor dem Haus. Форма vor das Haus потребовала бы того, кто их туда ставит (Tom stellt die Fahrräder vor das Haus). И глагол stehen — глагол положения, у него нет дополнения: это вторая подсказка в пользу дательного падежа."

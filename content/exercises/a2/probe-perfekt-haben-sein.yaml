@@ -31,15 +31,26 @@ items:
 
   - id: variant-b
     outcomes: [perfekt-hilfsverb]
-    type: cloze
+    type: translate
     focus: haben-sein
     instruction:
-      en: Fill in the correct auxiliary — haben or sein.
-      ru: Вставьте правильный вспомогательный глагол — haben или sein.
-    text: "Am Samstag {{hat}} meine Schwester den ganzen Tag gelernt. Am Sonntag {{ist}} sie zu ihrer Freundin gefahren. Am Abend {{hat}} sie mit ihrer Mutter telefoniert. Um elf Uhr {{ist}} sie ins Bett gegangen."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Sunday I slept for a long time. In the afternoon I went to the swimming pool."
+    prompt_ru: "В воскресенье я долго спал. Днём я пошёл в бассейн."
+    answer: "Am Sonntag habe ich lange geschlafen. Am Nachmittag bin ich ins Schwimmbad gegangen."
+    key_tokens: ["habe", "geschlafen", "bin", "gegangen"]
+    accept:
+      # "went to the pool" is gefahren as readily as gegangen, and the time phrase may stay in
+      # the middle field. Both are ordinary German and neither touches the auxiliary — and the
+      # participle is a graded token, so without these a learner who chose the right auxiliary
+      # would be scored wrong AND logged as a haben-sein failure.
+      - "Am Sonntag habe ich lange geschlafen. Am Nachmittag bin ich ins Schwimmbad gefahren."
+      - "Ich habe am Sonntag lange geschlafen. Am Nachmittag bin ich ins Schwimmbad gegangen."
+      - "Ich habe am Sonntag lange geschlafen. Am Nachmittag bin ich ins Schwimmbad gefahren."
     explain:
-      en: "Four sentences, one question each time: did the subject move from one place to another? Learning and phoning happen on the spot, so they take haben. Driving to a friend and going to bed are movement from A to B, so they take sein. The auxiliary follows the movement, not the tense and not the person."
-      ru: "Четыре предложения — и каждый раз один и тот же вопрос: переместилось ли подлежащее из одной точки в другую? Учиться и говорить по телефону можно на месте — значит, haben. Поехать к подруге и уйти спать — это движение из точки А в точку Б, значит, sein. Выбор вспомогательного глагола зависит от перемещения, а не от времени и не от лица."
+      en: "Sleeping feels like a state, and states are where learners reach for sein — but sein is not for states, it is for movement from A to B, plus the three verbs that simply have to be memorized (sein, bleiben, passieren). schlafen is none of those and nobody goes anywhere: haben geschlafen. gehen does take you somewhere, so it takes sein: bin … gegangen. Ask the question about the movement, not about how still the verb sounds."
+      ru: "Спать — это состояние, а на состояниях рука и тянется к sein. Но sein нужен не для состояний, а для перемещения из точки А в точку Б плюс для трёх глаголов, которые надо просто запомнить (sein, bleiben, passieren). schlafen — ни то, ни другое, и никто никуда не двигается: haben geschlafen. А gehen действительно переносит вас в другое место, поэтому нужен sein: bin … gegangen. Вопрос задавайте о перемещении, а не о том, насколько «неподвижно» звучит глагол."
 
   - id: variant-c
     outcomes: [perfekt-hilfsverb]

@@ -30,15 +30,18 @@ items:
 
   - id: variant-b
     outcomes: [essen-bestellen]
-    type: cloze
+    type: translate
     focus: akkusativ-artikel
     instruction:
-      en: Fill in the correct article.
-      ru: Вставьте правильный артикль.
-    text: "Im Restaurant bestelle ich {{eine}} Suppe, {{einen}} Fisch und {{ein}} Bier."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "We are ordering a wine and a sausage."
+    prompt_ru: "Мы заказываем вино и сосиску."
+    answer: "Wir bestellen einen Wein und eine Wurst."
+    key_tokens: ["einen", "eine"]
     explain:
-      en: "bestellen takes an accusative object, so each dish needs its article in the accusative: eine Suppe (feminine, unchanged), einen Fisch (masculine, changed), ein Bier (neuter, unchanged)."
-      ru: "bestellen требует винительного падежа, поэтому каждое блюдо получает артикль в Akkusativ: eine Suppe (женский род — без изменений), einen Fisch (мужской род — форма изменилась), ein Bier (средний род — без изменений)."
+      en: "bestellen is the third ordering verb next to möchte and nehmen, and what is ordered is always an accusative object. Only the masculine article moves: der Wein → einen Wein, while die Wurst keeps eine."
+      ru: "bestellen — третий глагол заказа наряду с möchte и nehmen, и заказанное всегда стоит в винительном падеже. Форму меняет только мужской род: der Wein → einen Wein, а die Wurst сохраняет eine."
 
   - id: variant-c
     outcomes: [essen-bestellen]

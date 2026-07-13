@@ -13,15 +13,18 @@ title:
 items:
   - id: variant-a
     outcomes: [artikel-richtig-verwenden]
-    type: cloze
+    type: translate
     focus: genus
     instruction:
-      en: Fill in the correct article.
-      ru: Вставьте правильный артикль.
-    text: "{{Die|die}} Adresse ist neu. {{Der|der}} Name ist kurz. {{Das|das}} Land ist groß."
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The language is difficult, but the country is beautiful."
+    prompt_ru: "Язык трудный, но страна красивая."
+    answer: "Die Sprache ist schwer, aber das Land ist schön."
+    key_tokens: ["Die", "das"]
     explain:
-      en: "Every German noun carries a gender, and the article is part of the word: die Adresse, der Name, das Land. Learn a noun together with its article — there is no reliable way to guess it afterwards."
-      ru: "У каждого немецкого существительного есть род, и артикль — часть слова: die Adresse, der Name, das Land. Учите существительное сразу с артиклем: род русского слова здесь ничего не подсказывает."
+      en: "The article is part of the word and has to be learned with it: die Sprache is feminine, das Land is neuter. Nothing in the meaning predicts either one — and the English the hides the gender completely."
+      ru: "Артикль — часть слова, и учить его нужно вместе со словом: die Sprache — женского рода, das Land — среднего. Смысл ничего не подсказывает, и род русского слова тоже: «язык» мужского рода, а «страна» — женского."
 
   - id: variant-b
     outcomes: [artikel-richtig-verwenden]
