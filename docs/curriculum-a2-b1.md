@@ -84,6 +84,76 @@ item, not an authoring workaround.)
 of the level closes the remaining gap, and the Über page computes the real figure. No count on a
 user-facing page is ever hand-written.
 
+**And a `~` is measured too.** A manifest word marked `~` (addressed as grammar, no flashcard) counts
+toward that figure. It used to count on the manifest's say-so alone — nothing checked that the course
+taught the word — and when the claim was finally audited, **nine of the marks were false**: `außer`,
+`außerhalb`, `gegenüber`, `wegen`, `einig-`, `manch-`, `darauf` and `darüber` occurred nowhere in
+`content/` at all, and A1's `euer` occurred only inside English prose *about* German, because the
+possessive table in `menschen-familie.mdx` stopped at the `sie` row. A1's 100% was not fully earned.
+`goetheCoverage()` now demotes an unearned `~` into `missing` and `bun run validate` hard-fails on it
+(`taughtSurface` in `src/lib/coverage.ts`). A `~` you cannot pay for with an article table, a reading
+or a practice item is a word that needs a flashcard instead.
+
+## The Wortliste completion pass (A2)
+
+The units are authored; 716 headwords remain. This is the partition that closes them. It exists so
+that batches can be authored in parallel without colliding: the validator hard-fails a headword owned
+by two decks, and `bun scripts/coverage.ts A2 --check-deck <file>` rejects any entry that is not on
+the current missing list — which is, by construction, a word no other deck owns. **Run it per deck,
+before `bun run validate`.**
+
+Three rules govern the pass:
+
+1. **Every completion deck is unowned and `level: A2`.** No topic lists it in `vocab:`. Listing one
+   would flip its fresh-card gate from *"≥1 A2 topic opened"* to *"this topic opened"* — the same trap
+   that "recycle, never adopt" exists to prevent. The unit decks keep their 12–24 entries: completion
+   words are not lesson words.
+2. **Regroup, don't mirror the manifest.** Its sections are a transcription convenience (its own
+   header says so): four carry 60–92 missing words, six carry 1–5. Coverage is blind to filing —
+   `deckHeadwords()` unions every deck — so regrouping into decks of 15–45 entries costs the
+   measurement nothing.
+3. **A word gets a card iff an A2 learner could plausibly *produce* it.** Rarity is not a licence to
+   `~`. See the exclusions below — each one has to be paid for with content, and the validator checks.
+
+| deck | drains |
+| --- | --- |
+| `kleine-woerter-a2`, `richtung-position-a2`, `redemittel-chunks-a2` | funktionswoerter-chunks (72) |
+| `bewertung-a2`, `eigenschaften-dinge-a2`, `charakter-eigenschaften-a2` | eigenschaften-bewertung (60), personen-… adjectives (21) |
+| `verben-handlungen-a2-1`, `verben-handlungen-a2-2`, `dinge-sachen-a2` | alltag-handlungen (69) |
+| `menschen-beziehungen-a2`, `gefuehle-reflexive-a2` | personen-familie-gefuehle (39), Familienmitglieder (7), Familienstand (2) |
+| `berufe-a2`, `laender-nationalitaeten-a2` | Berufe (43), Länder und Nationalitäten (20) |
+| `schule-faecher-a2`, `arbeit-ausbildung-a2` | Schule und Schulfächer (16), arbeit-schule-ausbildung (27), Anweisungssprache (4) |
+| `sport-freizeit-a2`, `kultur-unterhaltung-a2`, `digital-medien-a2` | freizeit-sport-kultur-medien (92), Abkürzungen (5) |
+| `reisen-orte-a2`, `verkehr-unterwegs-a2`, `natur-tiere-a2` | reisen-verkehr-orte (34), Himmelsrichtungen (4), natur-wetter-tiere (14) |
+| `essen-trinken-a2`, `einkaufen-geld-a2`, `haushalt-geschirr-a2`, `koerper-pflege-a2` | essen-trinken (26), einkaufen-geld-… (27), wohnen-haushalt (21), koerper-gesundheit (15) |
+| `zeit-termine-a2`, `zeitadverbien-a2`, `zahlen-masse-a2` | zeit-termine (22), Tageszeiten/Wochentage (18 of 32), Zahlen (11), Feiertage (5), Währungen und Maße (3), Jahreszeiten/Zeitmaße/Uhrzeit (3) |
+| *(append to the unowned `kleidung-farben`)* | Farben (3) |
+
+### What does not get a flashcard
+
+Every exclusion below is a new `~`, and therefore a content debt the validator collects.
+
+| words | why no card | earned by |
+| --- | --- | --- |
+| `ca.`, `d.h.`, `usw.`, `z. B.` | written reading conventions — a production card would ask the learner to type a punctuation pattern | an article table |
+| `Antwortbogen`, `Prüfer`, `Prüferin` | exam-room language the learner only ever reads | the exam-orientation reading shipped with the checkpoint |
+| the fourteen `am Montag` / `am Abend` chunks | pure `um-am-zeit`, an existing focus tag; a card `am Montag` beside a card `montags` is two production cards for one rule | the existing um/am table (13 of the 14 already pass) |
+| `hin`, `her`, `heraus`, `herein` | directional grammar, no citation form to produce | a hin/her table in `trennbare-verben` |
+| `hunderteins`, `zweihundert`, `zweitausendeins` | the PDF's number-*formation* demos, not words | the number-building table |
+| `Lieblings-`, `einzel-` | word-formation prefixes, only alive in compounds | an article table |
+| `Disko`, `Klub` | spelling variants of `Disco`/`Club`; four production cards for two words is SRS interference | the `example_de` of `Disco` / `Club` |
+
+**But these keep their cards, against the temptation:** `PC`, `SMS`, `ICE`, `WC`, `Lkw` (spoken nouns
+with gender and plural — *Wo ist das WC?*; their IPA is hand-written as letter names, `veːˈtseː`);
+`markieren`, `Punkt`, `Teil`, `Text` (general vocabulary that merely also appears in rubrics —
+`~`-ing them would be laundering); the `-s` adverbs `montags`, `abends`, `tagsüber`; `raus` and
+`rein`; `eigen-`, `letzt-`, `lieb-` (real free forms — the manifest's trailing hyphen is a
+transcription artifact, not a grammar fact); all 43 **Berufe** (*Ich bin Krankenpfleger* is the A2
+speaking task); all 20 **Länder/Nationalitäten**; all 16 **Schulfächer**.
+
+`wegen` and `außerhalb` were `~` and are now **cards**: they carry translatable meanings ("because
+of", "outside of"), and teaching them as case grammar would drag the Genitiv into A2.
+
 ## The A2 spine
 
 The six A2 topics that already ship keep their ids and their spine positions. They are strengthened
