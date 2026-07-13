@@ -152,6 +152,12 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `stellen-stehen` | the placement/position verb pairs: stellen/stehen, legen/liegen, hängen |
 | `komparativ-als` | comparison with *als*, incl. the irregulars (gut → besser, gern → lieber, viel → mehr) |
 | `superlativ-am` | the superlative *am …-sten* |
+| `imperativ-form` | imperative forms for du, ihr and Sie (Nimm …, Nehmt …, Nehmen Sie …) |
+| `seit-vor-zeit` | *seit* + Dativ (since/for — still true) vs *vor* + Dativ (ago — finished) |
+| `reflexiv-akkusativ` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |
+| `nebensatz-verbende` | the conjugated verb goes last in a weil-, dass- or wenn-clause |
+| `weil-denn` | *weil* sends the verb to the end, *denn* does not |
+| `nebensatz-vorfeld` | a fronted subordinate clause fills position 1, so the main verb comes straight after it |
 
 **The tag is also what makes a `deepens` edge real.** Weakness is aggregated per tag and is blind to the topic an attempt came from (`focusStats` in `src/lib/weakness.ts` keys only by `focus`), so an error while practising a deepening topic marks that confusion weak *course-wide*; mixed training's second band then pulls every item carrying it out of the whole eligible pool — the base topic's practice and drill sets included. That is the entire runtime meaning of `deepens`, and nothing else reads the field. A spiral revisit whose two ends share no focus tag can therefore resurface nothing, so `bun run validate` requires each `deepens: [base]` edge to share at least one tag between the deepening topic's items and a `practice`/`drill` item of the base. Do **not** add `deepens`-aware special cases to weakness aggregation or training priority: scoping a tag to a topic would *narrow* a signal that is deliberately global.
 

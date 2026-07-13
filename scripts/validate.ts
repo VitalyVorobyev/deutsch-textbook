@@ -806,6 +806,12 @@ for (const [setId, { file, data }] of exerciseSets) {
         'stellen-stehen': 'wohnen-umzug',
         'komparativ-als': 'einkaufen-reklamation',
         'superlativ-am': 'einkaufen-reklamation',
+        'imperativ-form': 'gesundheit-arzttermin',
+        'seit-vor-zeit': 'gesundheit-arzttermin',
+        'reflexiv-akkusativ': 'gesundheit-arzttermin',
+        'nebensatz-verbende': 'nebensaetze-plaene',
+        'weil-denn': 'nebensaetze-plaene',
+        'nebensatz-vorfeld': 'nebensaetze-plaene',
         // was escaping the spine check entirely while the table was a lookup, not an allowlist
         'haben-wendungen': 'essen-trinken',
       };
