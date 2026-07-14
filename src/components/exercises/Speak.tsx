@@ -137,7 +137,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
             className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">
             {stage === 'first'
               ? (lang === 'ru' ? 'Сравнить с примером' : 'Compare with model')
-              : (lang === 'ru' ? 'Сохранить попытку' : 'Save attempt')}
+              : (lang === 'ru' ? 'Проверить вторую попытку' : 'Check the second attempt')}
           </button>
         </div>
       )}

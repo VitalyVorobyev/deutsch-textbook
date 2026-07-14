@@ -79,8 +79,16 @@ export function Write({
     setStage('reassess');
   }
 
+  // An honest after-rating is a rating *of a particular text*. Going back to edit therefore
+  // throws the rating away rather than trapping the learner with a typo they just spotted —
+  // and `Speak` already works this way (its recording panel disappears once the checklist is up).
+  function resumeRevision() {
+    setAfter(item.requirements.map(() => undefined));
+    setStage('revise');
+  }
+
   function submitRevision() {
-    if (!after.every(Boolean)) return;
+    if (!after.every(Boolean) || revisionWords < item.min_words) return;
     setStage('done');
     localStorage.removeItem(draftKey);
     onResult({
@@ -153,7 +161,7 @@ export function Write({
           minWords={item.min_words}
           lang={lang}
           label={lang === 'ru' ? 'Исправленный вариант' : 'Revised draft'}
-          disabled={stage === 'done' || locked}
+          disabled={stage === 'reassess' || stage === 'done' || locked}
         />
       )}
 
@@ -178,9 +186,23 @@ export function Write({
             {lang === 'ru' ? 'Проверить исправления' : 'Check revision'}
           </ActionButton>
         )}
-        {stage === 'reassess' && <ActionButton onClick={submitRevision} disabled={!after.every(Boolean)}>
-          {lang === 'ru' ? 'Сохранить исправленный вариант' : 'Save revised draft'}
-        </ActionButton>}
+        {stage === 'reassess' && (
+          <div className="flex flex-wrap items-center gap-3">
+            <ActionButton
+              onClick={submitRevision}
+              disabled={!after.every(Boolean) || revisionWords < item.min_words}
+            >
+              {lang === 'ru' ? 'Сохранить исправленный вариант' : 'Save revised draft'}
+            </ActionButton>
+            <button
+              type="button"
+              onClick={resumeRevision}
+              className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
+            >
+              {lang === 'ru' ? 'Ещё раз изменить текст' : 'Edit the text again'}
+            </button>
+          </div>
+        )}
         {stage === 'done' && (
           <ActionButton onClick={onNext}>{nextLabel}</ActionButton>
         )}

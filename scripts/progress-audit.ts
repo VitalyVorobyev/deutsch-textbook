@@ -249,8 +249,20 @@ export function readSnapshot(path: string): AuditSnapshot {
   };
 }
 
-function revisionMatches(attempt: AuditAttempt, item: CatalogItem): boolean {
-  return attempt.itemRevision !== undefined && attempt.itemRevision === (item.revision ?? 1);
+/**
+ * True only when the attempt names a revision and it is *not* the one the item ships today —
+ * i.e. the task contract demonstrably changed under the learner, so today's answer key would
+ * grade an answer to a question they were never asked.
+ *
+ * An **absent** revision is not a mismatch. No attempt logged before the v5 contract carries
+ * one (0 of 817 in the current snapshot), so treating "unknown" as "changed" would retire the
+ * whole history from this audit: the grading-review queue would be permanently empty and, worse,
+ * its `excluded` set would be too — re-admitting rejections that today's grader accepts back
+ * into the focus signal, which is exactly the false attribution the review exists to prevent.
+ * Replaying here is read-only analysis; it never rewrites a learner's logged result.
+ */
+function revisionKnownMismatch(attempt: AuditAttempt, item: CatalogItem): boolean {
+  return attempt.itemRevision !== undefined && attempt.itemRevision !== (item.revision ?? 1);
 }
 
 export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
@@ -347,9 +359,10 @@ function gradingReview(
     const ref = itemRef(attempt.setId, attempt.itemId);
     const item = catalog.get(ref);
     if (!item?.answer || item.type !== 'translate') continue;
-    // Old or changed task contracts retain their logged result. Replaying them
-    // against today's answer key would manufacture history.
-    if (!revisionMatches(attempt, item)) continue;
+    // A *changed* task contract retains its logged result: replaying it against today's
+    // answer key would grade an answer to a question the learner was never asked. An
+    // unknown revision is legacy, not changed, and stays in the review.
+    if (revisionKnownMismatch(attempt, item)) continue;
     groups.set(ref, [...(groups.get(ref) ?? []), attempt]);
   }
 
@@ -518,7 +531,7 @@ function delayedSummary(
   let focusFailed = 0;
   for (const attempt of probes) {
     const item = catalog.get(itemRef(attempt.setId, attempt.itemId));
-    if (attempt.itemType === 'translate' && item?.answer && revisionMatches(attempt, item)) {
+    if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
       const verdict = gradeTranslation(attempt.given, currentSpec(item));
       if (verdict.kind !== 'wrong') currentCorrect += 1;
       else if (verdict.focus) focusFailed += 1;
@@ -620,7 +633,7 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       gradingReviewExcluded: review.excluded.size,
       revisionKnown: attempts.filter((attempt) => attempt.itemRevision !== undefined).length,
       revisionMismatch: withCatalog.filter(({ attempt, item }) =>
-        attempt.itemRevision !== undefined && !revisionMatches(attempt, item)).length,
+        revisionKnownMismatch(attempt, item)).length,
       writingRevisions: writing.length,
       writingChanged: writing.filter((attempt) =>
         attempt.practice?.kind === 'writing' &&
@@ -711,9 +724,12 @@ export function renderMarkdown(audit: ProgressAudit): string {
       `historically logged correct; ${audit.delayed.probes.currentCorrect} correct under the current ` +
       `contract; ${audit.delayed.probes.focusRetained} retained the target but missed elsewhere; ` +
       `${audit.delayed.probes.focusFailed} failed the target.`,
+    // Reported bare, not against MAX_PROBES_PER_SESSION: that cap is per *session* and this
+    // count is per *day*, and a day may hold several sessions. Printing "4/3" made a normal
+    // day look like a violated invariant.
     `Probe workload: ${audit.delayed.probes.dueNow} due now; ${audit.delayed.probes.overdue} ` +
-      `overdue (max ${audit.delayed.probes.maxOverdueDays} day(s)); peak taken in one day ` +
-      `${audit.delayed.probes.maxTakenInOneDay}/${3}.`,
+      `overdue (max ${audit.delayed.probes.maxOverdueDays} day(s)); peak taken in one day: ` +
+      `${audit.delayed.probes.maxTakenInOneDay}.`,
     `Session workload: ${audit.sessionWorkload.averageReviewed.toFixed(1)} cards reviewed and ` +
       `${audit.sessionWorkload.averageTrained.toFixed(1)} training items on average across ` +
       `${audit.sessionWorkload.sessions} session(s).`,

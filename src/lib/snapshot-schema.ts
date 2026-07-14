@@ -25,8 +25,13 @@ const attemptSchema = z.object({
   itemType: z.string().min(1),
   itemRevision: z.number().int().min(1).optional(),
   correct: z.boolean(),
-  correctParts: z.number().finite().min(0).optional(),
-  totalParts: z.number().finite().min(1).optional(),
+  // Deliberately permissive: `sanitizeAttempts()` is the one rule for partial credit, and it
+  // strips exactly the malformed shapes history contains (`totalParts: 0`, one field without
+  // the other). Enforcing `min(1)` here would reject the whole snapshot at the import boundary
+  // before the sanitizer written to normalize it ever runs — losing every unrelated attempt in
+  // the file over one bad row.
+  correctParts: z.number().optional(),
+  totalParts: z.number().optional(),
   given: z.string(),
   focus: z.string().optional(),
   evidence: z.enum(['verified', 'practice']).optional(),

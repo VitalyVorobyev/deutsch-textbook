@@ -77,24 +77,62 @@ describe('progress audit', () => {
     }
   });
 
-  test('never replays legacy or mismatched attempts against the current key', () => {
+  test('never replays an attempt whose revision is known to have changed', () => {
     const item: CatalogItem = {
       setId: 'a2/x', id: 'changed', revision: 2, type: 'translate',
       answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
     };
-    const base = {
+    const audit = buildAudit(snapshot({ attempts: [{
       setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-      given: 'Ich fahre morgen.', focus: item.focus,
-    };
-    const audit = buildAudit(snapshot({ attempts: [
-      { ...base, itemRevision: undefined, ts: ts(10) },
-      { ...base, itemRevision: 1, ts: ts(11) },
-    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: 1, ts: ts(11),
+    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
 
+    // The learner answered revision 1; the item ships revision 2. Grading that answer against
+    // today's key would grade a question they were never asked, so it keeps its logged result.
     expect(audit.gradingCandidates).toEqual([]);
     expect(audit.counts.revisionKnown).toBe(1);
     expect(audit.counts.revisionMismatch).toBe(1);
-    expect(audit.delayed.probes.attempts).toBe(0);
+  });
+
+  // No attempt logged before the v5 contract carries a revision, so an absent one must mean
+  // "legacy", not "changed". Treating it as changed retired the entire history from this audit:
+  // the review queue went permanently empty, and its `excluded` set with it — quietly re-admitting
+  // rejections that today's grader accepts back into the focus signal.
+  test('keeps legacy attempts without a revision in the grading review', () => {
+    const item: CatalogItem = {
+      setId: 'a2/x', id: 'stable', type: 'translate',
+      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+    };
+    const audit = buildAudit(snapshot({ attempts: [{
+      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
+      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: undefined, ts: ts(10),
+    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    // logged wrong, but the current grader accepts it verbatim: surfaced for review …
+    expect(audit.gradingCandidates).toHaveLength(1);
+    expect(audit.gradingCandidates[0]?.ref).toBe('a2/x:stable');
+    expect(audit.counts.revisionKnown).toBe(0);
+    expect(audit.counts.revisionMismatch).toBe(0);
+    // … and withheld from the focus signal rather than counted as a `verb-position` failure
+    expect(audit.focusSignals.find((signal) => signal.focus === 'verb-position')).toBeUndefined();
+  });
+
+  test('regrades a legacy probe against the current key', () => {
+    // `delayedSummary` selects probes with /(^|\/)probe-/ — a setId that cannot match makes
+    // every probe assertion below vacuously true, which is how this path went untested.
+    const item: CatalogItem = {
+      setId: 'a2/probe-x', id: 'p1', type: 'translate',
+      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+    };
+    const audit = buildAudit(snapshot({ attempts: [{
+      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
+      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: undefined, ts: ts(10),
+    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    expect(audit.delayed.probes.attempts).toBe(1);
+    expect(audit.delayed.probes.loggedCorrect).toBe(0);
+    // "correct under the current contract" must mean that, not merely echo the logged grade
+    expect(audit.delayed.probes.currentCorrect).toBe(1);
   });
 
   test('aggregates partial credit, response modes, cards, probes and delayed evidence', () => {

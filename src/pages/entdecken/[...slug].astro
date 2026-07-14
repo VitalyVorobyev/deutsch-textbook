@@ -8,7 +8,9 @@ import ArtifactFeedback from '../../components/discovery/ArtifactFeedback';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('discovery');
+  // Same gate as the index. `status` defaults to 'draft', so building the unfiltered
+  // collection shipped unreviewed pieces live and crawlable — merely unlisted.
+  const entries = await getCollection('discovery', ({ data }) => data.status === 'reviewed');
   return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 const { entry } = Astro.props;
