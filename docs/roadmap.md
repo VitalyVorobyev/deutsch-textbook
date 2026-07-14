@@ -1,6 +1,8 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **in progress** (updated 2026-07-14). Phase 4 is complete and shipped as 0.3.0; Phase 5 follows the learner through the remaining A2 path.
+Status: **in progress** (updated 2026-07-14). Phase 4 shipped as 0.3.0 and Phase 5 is closed as a
+milestone; Phase 6 — finishing A2 on honest signal — is the current milestone, with Phases 7–9
+running as parallel tracks that never gate B1.
 
 A1 is content-complete and shipped (v0.2.0), and its learning loop has been hardened: free
 production is scored honestly, delayed parallel probes are running, open writing revises, speaking
@@ -114,16 +116,20 @@ The risk this accepts is explicit. If the pattern proves defective, the units au
 meantime need rework, and that rework is the price of not idling. It is a bet on the pattern, made
 with open eyes, and it is recorded here so that the bill — if it comes — is not a surprise.
 
-## Current milestone — Phase 5: learning-led pre-1.0 improvement
+## Completed milestone — Phase 5: learning-led pre-1.0 improvement
 
 The evidence foundation and three bounded pilots are implemented: revision-safe v5 snapshots and
 honest production review; a persistent train-document mission; a travel Wortfeld that enriches
 existing card backs without changing their identities; and one optional Entdecken piece with local,
 non-mastery feedback. Two more extensive-reader episodes and a canonical case lookup are available.
 
-Editorial work now follows the six learning windows in
-[the operating program](a2-learning-led-program.md). Each window starts with a just-in-time content
-audit and ends with the newest snapshot audit. B1 identities remain provisional until the A2
+Phase 5 closes as a milestone without closing its practice. The two-unit evidence cycle (P5-11) is
+recurring by nature and continues inside Phase 6's windows — it is how the learner's signal reaches
+the backlog, not a deliverable that can finish. P5-7 (delayed evidence for listening) keeps its ID
+and folds into Phase 6's schedule: it was always gated on the first probe cohort, and Phase 6 owns
+that calendar. P5-1/3/4/5/6 stay deferred with their reasons intact in the backlog — none of those
+reasons has changed. Editorial work continues to follow the six learning windows in
+[the operating program](a2-learning-led-program.md); B1 identities remain provisional until the A2
 checkpoint and its 2/7/21-day evidence have been reviewed.
 
 ## Deferred within Phase 5
@@ -132,6 +138,61 @@ Reconsider only after real A1 usage data exists: broader neural-audio replacemen
 series beyond the pilot, optional constrained AI feedback and pronunciation analysis. None may
 silently create verified evidence.
 
+## Current milestone — Phase 6: learning quality — finish A2 on honest signal
+
+The newest audit (2026-07-14, 879 attempts) does not show a content shortage; it shows an
+instrument backlog. Fourteen rejected production renderings await a linguistic ruling, and 35
+production attempts are withheld from the focus signals until they get one — the review queue is
+derived from the attempt log and has no memory, so it can never drain. Nine probes are due against
+a three-per-session cap that will compound once all seventeen A2 families arm. And the worst weak
+focus, `dativ-artikel`, stayed weak *despite an existing drill*. Phase 6 therefore works
+instrument-first: a drill authored against a distorted weak-focus table drills the wrong confusion.
+
+- **P6-1 · Grading-decisions instrument** — a committed home for linguistic rulings, so the review
+  queue reports only what is genuinely undecided.
+- **P6-2 · Triage the fourteen queued renderings** — every rendering gets its ruling and its paired
+  content edit; the audit is rerun before anything else is authored.
+- **P6-3 · Probe catch-up pacing** — a Heute "Probe-Rückstand" card drains probe debt in
+  measurement-clean probes-only runs; the ordinary per-session cap stays.
+- **P6-4 · Dative-cluster drill** — production-heavy, authored against the post-triage audit, with
+  a test that the drill actually gets served.
+- **P6-5 · Verb-forms drill** — conditional on what the post-triage signal still shows.
+- **P6-6 · Desktop microphone permission** — the config-only fix that lets `speak` record in the
+  desktop app.
+- **P5-7 · Delayed evidence for listening** — keeps its ID; scheduled after the 2026-08-02 cohort
+  read and P6-3, when the real probe load is known and paced.
+
+**The exit criterion is the B1 gate** (below, next to the definition of completion): Phase 6 is
+done when B1 authoring may honestly begin.
+
+## Parallel tracks
+
+Three phases run beside Phase 6 rather than after it. None of them gates B1 — they are listed here
+so their scope is decided once, in writing, rather than re-litigated per PR.
+
+**Phase 7 — Schreib-Assistent.** Local advisory feedback on `write` drafts: a runtime-only Ollama
+client that quotes the learner's own words and nudges with questions and rule pointers — it never
+rewrites, and its output is **advisory only, never evidence**: nothing it produces touches
+accuracy, mastery, attempts or the snapshot. It self-hides when no local model answers, so the
+course is complete without it. The Phase 5 deferral's own condition — reconsider constrained AI
+feedback only after real usage data exists — is now met; what stays deferred is P5-3's
+pronunciation half, which this phase deliberately does **not** reopen. Design:
+[assist-design.md](assist-design.md).
+
+**Phase 8 — Sprachen.** Two independent axes. A per-profile **UI language** (DE/EN/RU/UK) replaces
+the hardcoded German chrome — pure-German chrome becomes a selectable immersion mode and remains
+the default, so the change is invisible until chosen. And **Ukrainian** joins EN/RU as an
+explanation language at the same quality bar as Russian, with English as the fallback wherever `uk`
+is missing. The volume statement is honest: the machinery is ~5 PRs; the content is ~15–22
+translation waves that run concurrent with B1 authoring and never gate it. Design:
+[i18n-design.md](i18n-design.md).
+
+**Phase 9 — Entdecken & Referenz.** The discovery layer grows from one piece toward a small
+editorial strand — committed CC/PD assets with attribution and licence metadata, curated external
+links visibly marked online-only — and the reference layer gains lookup pages derived from
+canonical data rather than maintained by hand. Direction:
+[future-content-directions.md](future-content-directions.md); themes and pages in the backlog.
+
 ## Definition of roadmap completion
 
 A learner can start at Erste Schritte and reach the A2 checkpoint through a visible ordered path.
@@ -139,3 +200,27 @@ Sessions combine due review, eligible mixed practice and a clear next step. The 
 listens at useful volume, produces and revises language, rehearses spoken exchanges, and proves
 retention later in parallel contexts. Outcome progress is backed by mode-valid honest evidence, and
 snapshot-driven weakness drills continue to work throughout.
+
+## The B1 gate
+
+B1 authoring begins when all seven of these hold, and not before:
+
+1. **The A1 retention cohort has been read** (P3-6, on or after 2026-08-02) — and, if the
+   ≥80%/≥70% bar was missed, the revision it triggers has shipped.
+2. **The A2 checkpoint is completed** and window 6 of
+   [the operating program](a2-learning-led-program.md) — the checkpoint and delayed-evidence
+   review — is done.
+3. **The A2 probe evidence has been reviewed** under the operating program's rules.
+4. **The grading queue holds no undecided rendering**, and the post-triage audit has been re-read.
+5. **No persistent weak focus is without an owned drill in rotation.**
+6. **`data/goethe-b1-wortliste.txt` is acquired and `bun scripts/coverage.ts B1` reports against
+   it** — its own sizable PR. A level with no manifest has no coverage figure and must not claim
+   one.
+7. **The first B1 PR freezes the B1 identities in
+   [the curriculum blueprint](curriculum-a2-b1.md)** — ids become persisted keys in learner
+   progress the moment a unit ships, so freezing them is authoring work, not paperwork.
+
+Two things are explicitly **not** gates: the state of the Ukrainian translation waves, and the
+Schreib-Assistent. Both are parallel tracks, and B1 never waits for them. One soft preference is
+recorded: land P8-4 (the `uk` content machinery) before B1 unit 1, so B1 content carries `uk` from
+day one instead of being backfilled.

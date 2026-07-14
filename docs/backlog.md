@@ -9,10 +9,11 @@ preserve v1–v5 snapshot import and pass the full repository gate. What A2 teac
 with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
 before authoring anything.
 
-Phases 0–4 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines, and the
-hardened learning loop. B1 remains provisional until representative A2 use, its checkpoint and
-delayed evidence have been reviewed. Current authoring expands optional A1/A2 context without
-adding new spine topics.
+Phases 0–5 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines, the
+hardened learning loop, and the pre-1.0 evidence foundation. B1 remains provisional until
+representative A2 use, its checkpoint and delayed evidence have been reviewed. Phase 6 below leads
+the queue and exits through the B1 gate in [roadmap.md](roadmap.md); Phases 7–9 run in parallel and
+never gate B1.
 
 ## The open gate
 
@@ -43,6 +44,286 @@ before another unit is written.
 
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
   update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
+
+## Current — Phase 6: learning quality — finish A2 on honest signal
+
+Instrument first, then content. The 2026-07-14 audit shows fourteen rejected production renderings
+awaiting a linguistic ruling with 35 attempts withheld from the focus signals behind them, probe
+debt that will compound once all seventeen A2 families arm, and the worst weak focus staying weak
+*despite an existing drill*. A drill authored against a distorted weak-focus table drills the wrong
+confusion, so P6-1/P6-2 precede P6-4/P6-5. The phase's exit criterion is **the B1 gate** in
+[roadmap.md](roadmap.md).
+
+P5-7 (delayed evidence for listening) is scheduled inside this phase and keeps its ID: after the
+2026-08-02 cohort read (P3-6) **and** after P6-3, when the real probe load is known and paced.
+Precondition to verify first: `probeFamilies()` supports two families per topic
+(`probe-<topic>-hoeren` beside the production family) — a small code change if it turns out to be
+keyed per topic.
+
+### P6-1 · Grading-decisions instrument — `todo` (M)
+
+The grading-review queue is derived from the attempt log and has no memory: there is no place to
+record a linguistic ruling, so the queue can never drain. Fourteen rejected renderings across ten
+`translate` items currently hold 35 production attempts out of the focus signals. Give rulings a
+committed home.
+
+- `data/grading-decisions.yaml`, with a Zod schema in `src/lib/schemas.ts`: entries
+  `{item: <setId>:<itemId>, given, decision: accept|constrain|confirm, note, decidedAt}`; `given`
+  is matched via `normalizeTranslation`.
+- Decision semantics. **accept** — the rendering is correct, target-preserving German: the same PR
+  adds it to the item's `accept` list and bumps `revision`; the withheld attempts stay excluded,
+  because they were never errors. **constrain** — the rendering is good German that bypasses the
+  target: the same PR adds a bilingual `instruction` constraint and bumps `revision`; attempts stay
+  excluded. **confirm** — the rejection was right: the queue row clears and the attempts' exclusion
+  lifts, so they re-enter `focusSignals` — safe, because the scorer already logs out-of-focus
+  errors unattributed.
+- Audit integration: `gradingReview()` in `scripts/progress-audit.ts` loads the decisions and
+  reports **undecided renderings only**, applying the exclusion rules above.
+- Validator: a decision's item ref must exist; an `accept`-decided rendering must pass today's
+  grader (re-graded via `gradeTranslation` — an accepted rendering the scorer would still reject is
+  a stale claim); an orphaned decision, whose rendering is no longer queueable (e.g. after a future
+  normalization change), **warns rather than fails**.
+- `CLAUDE.md` gains its grading-decisions pointer in this PR: the rule ships with the instrument it
+  describes, not before it.
+
+- Accept: the audit reports undecided-only; each decision type demonstrably applies its exclusion
+  rule (tests in `tests/`); the validator fails on a dangling item ref and on an accept-decided
+  rendering the grader rejects, and warns on an orphan.
+
+### P6-2 · Triage the fourteen queued renderings — `todo` (M)
+
+All fourteen, using `--item <set>:<item>` evidence: each rendering gets a linguistic ruling in
+`data/grading-decisions.yaml` and — for accept/constrain — its paired content edit and `revision`
+bump in the same change. Notes record any real confusion worth a future drill item. After the
+merge: rerun `bun run progress:audit --profile vitaly` and re-read the weak-focus table **before
+any drill authoring** — 35 attempts entering or leaving the signals changes what the table says.
+
+- Depends on: P6-1.
+- Accept: zero undecided renderings; the withheld-attempts line drops accordingly; the post-triage
+  weak-focus table is recorded — it is the input to P6-4 and P6-5.
+
+### P6-3 · Probe catch-up pacing — `todo` (M)
+
+Nine probes due, three overdue, a cap of three per session — once seventeen A2 families arm, debt
+compounds faster than it drains. Chosen over raising the cap: nine probes before practice turns a
+session into an exam, and fatigue confounds the measurement.
+
+- When due probes exceed `MAX_PROBES_PER_SESSION`, Heute shows a **"Probe-Rückstand"** card that
+  opens a probes-only run: up to five, most-overdue first, nothing else in the visit —
+  measurement-clean by construction. Ordinary sessions keep the cap at three.
+- One new audit row: probe debt plus the distribution of actually-elapsed intervals. Its named
+  consumers are the P5-11 audits and the P5-7 expansion decision — audit extensions are added only
+  with named consumers.
+- Overdue probes are *not* invalid data: the probe report already reports the interval that
+  actually elapsed rather than the scheduled one. This item targets debt compounding, nothing else.
+
+- Accept: with more than three probes due, the card appears and its run drains most-overdue first;
+  ordinary sessions still open with at most three probes; the audit reports the debt row.
+
+### P6-4 · Dative-cluster drill — `todo` (M)
+
+`content/exercises/a2/drill-dativ-ausloeser.yaml` (`role: drill`, attached to `dativ`'s
+`exercises` — drills never touch `pathDone` or `primaryPractice`), authored against the
+**post-P6-2** audit rather than today's numbers. Production-heavy: `translate` items whose
+`key_tokens` pin the case-marked articles and pronouns (both ends wherever word order is graded),
+contrastive `cloze` on dative-vs-accusative triggers, and 2–3 `listen` dictations where the article
+is the point. Covers `verben-mit-dativ`, `dativ-praepositionen` and `dativ-artikel`.
+
+The same PR carries an instrument check: a test asserting the new items enter `buildSession`'s
+weak-focus band for these tags. `dativ-artikel` is the worst weak focus *despite an existing drill*
+(10/24) — before authoring more items, prove that drills are actually served, production-shaped,
+when their tag is weak.
+
+- Depends on: P6-2 (its audit rerun is this item's input).
+- Accept: the items clear the validator's `key_tokens` and item-mix rules; the `buildSession` test
+  proves weak-focus serving.
+
+### P6-5 · Verb-forms drill — `todo` (S, conditional)
+
+Only if the post-triage audit still shows the verb-morphology cluster (`modal-konjugation` 4/12
+and `verb-endungen` 6/33 on today's pre-triage table): `drill-verbformen.yaml` on `modalverben`,
+the same production-heavy shape as P6-4, in the same PR as P6-4 when the signal confirms.
+
+- Depends on: P6-2; ships with P6-4 when taken.
+- Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.
+
+### P6-6 · Desktop microphone permission — `todo` (S)
+
+`speak` recording works in the browser and fails in the desktop app, and the failure is
+config-only: `src-tauri/` has no `Info.plist`, so macOS has no `NSMicrophoneUsageDescription` to
+show. Add the plist (Tauri v2 merges it into the bundle); no app-code change expected. Test
+protocol: `bun tauri dev` → open a `speak` item → the permission prompt appears → record and replay
+work; `tccutil reset Microphone` between runs. If wry needs prompt handling beyond the plist
+(tauri#10898 / #11951), **report the finding and rescope the item — never silently expand the PR**.
+
+- Accept: the mic prompt appears in the desktop app and record/replay works — or the wry finding is
+  recorded and the item rescoped.
+
+## Parallel — Phase 7: Schreib-Assistent
+
+Local advisory feedback on `write` drafts, specified in [assist-design.md](assist-design.md) —
+read it before touching any of these items. The boundary is absolute and restated here: assist
+output is **advisory only, never evidence** — it never touches accuracy, mastery, attempts or the
+snapshot, and the feature self-hides when no local model answers. This phase does **not** reopen
+P5-3: pronunciation assistance stays deferred.
+
+### P7-1 · Assist library — `todo` (M)
+
+`src/lib/assist.ts` per [assist-design.md](assist-design.md): `probeAssist()` and `reviewDraft()`,
+the JSON-schema-constrained request, the hallucination filter with its single corrective retry, and
+the `da:assist` / `da:assist:model` device preferences. Tests with mocked fetch: probe, happy path,
+quote filter, retry, abort. No UI in this PR.
+
+- Accept: tests cover the design doc's failure-mode table; a test asserts nothing is written to
+  attempts or the snapshot.
+
+### P7-2 · Write.tsx advisory panel — `todo` (M)
+
+The revise-stage, on-demand panel per [assist-design.md](assist-design.md): praise line, hint list,
+failure states, the gear popover, and an "advisory — never a score" footnote mirroring the
+done-stage disclaimer. Pilot manually against the live local model with 2–3 real drafts **before**
+opening the PR — expect prompt iteration — and finalize the design doc with whatever the pilot
+changed.
+
+- Depends on: P7-1.
+- Accept: the panel is absent with Ollama stopped and renders hints with it running; it cannot open
+  before the before-assessment is complete; zero writes to attempts or the snapshot, verified in
+  test.
+
+### P7-3 · Tauri transport — `todo` (S)
+
+Per [assist-design.md](assist-design.md): `tauri-plugin-http` as a dependency, a capability scoped
+to `http://localhost:11434/*`, and the transport switch in `assist.ts` (behind `isTauri()`, like
+every other Tauri API in the repo).
+
+- Depends on: P7-1.
+- Accept: assist reaches a running Ollama from `bun tauri dev`; the capability allows the Ollama
+  origin and nothing else.
+
+## Parallel — Phase 8: Sprachen
+
+Two independent axes — per-profile UI language (chrome) and Ukrainian as a third explanation
+language (content) — specified in [i18n-design.md](i18n-design.md); read it first. Machinery is
+P8-1…P8-5 (~5 PRs); content is the C3 translation waves (~15–22 PRs), concurrent with B1 authoring
+and never gating it.
+
+### P8-1 · Strings module and per-profile language preferences — `todo` (M)
+
+Per [i18n-design.md](i18n-design.md): `src/lib/strings.ts` with `UiLang` (`de | en | ru | uk`),
+`t(key, uiLang)` and a `useUiLang()` hook; `<html data-ui-lang>` applied pre-paint; per-profile
+keys `da:lang:<profileId>` / `da:uilang:<profileId>` with the legacy device-level `da:lang` copied
+forward on first read (the legacy key remains as the device default for other profiles); static
+Astro chrome rendered as CSS-toggled spans. Default `uiLang: 'de'` — zero visual change.
+
+- Accept: the default build is visually unchanged; switching profiles re-applies both language
+  attributes; the copy-forward migration is tested.
+
+### P8-2 / P8-3 · The ternary sweep, in two halves — `todo` (M each)
+
+Mechanically replace the ~136 inline `lang === 'ru' ? … : …` ternaries with hoisted
+`pick(lang, {en, ru})` records, so `uk` later widens each record in exactly one place. Two PRs of
+roughly half the components each; lean on `bun run check`. `GRADE_BUTTONS` and `VerdictChip`
+labels are chrome, not content — they move to the strings table. See
+[i18n-design.md](i18n-design.md) for the sweep strategy.
+
+- Depends on: P8-1.
+- Accept: no visible change at the current languages; the swept components contain no inline
+  language ternaries.
+
+### P8-4 · Ukrainian content machinery — `todo` (L)
+
+Per [i18n-design.md](i18n-design.md): optional `uk` on `bilingualSchema` plus the parallel
+optionals (`title_uk`; vocab `uk` and `example_uk`; `prompt_uk`; outcome `uk`). Validator
+letter-set checks: і/ї/є/ґ in an `ru` field fails, ы/э/ъ/ё in a `uk` field fails — not watertight,
+but it catches cross-pasting. Parity is per-file — any `uk` in a file means every ru-bearing field
+in that file carries `uk` — and per-node for `content/atlas.yaml`. Glosses grow to
+`[[de::en::ru::uk]]`: three or four fields, all-or-none per reading. `Uk.astro` + `.lang-uk` CSS;
+`ExplainLang` gains `'uk'`; `pick()` falls back `uk→en` (decided — the design doc records why EN
+and not RU).
+
+- Depends on: P8-2/P8-3 (so `uk` lands in hoisted records, not in new ternaries).
+- Accept: a file with partial `uk` fails parity; a Ukrainian letter in an `ru` field fails; a
+  four-field gloss renders under `uk` and existing three-field glosses stay valid; zero changes
+  required to existing content.
+
+### P8-5 · Ukrainian UI surfaces — `todo` (S)
+
+The flashcard front becomes `${en} · ${pickSecond(card)}` — display-only: card identity
+`<deck>::<de>::<direction>` is untouched, so no SRS history resets (asserted in test, not
+assumed). The header language toggle gains UK, and the Über page gains a build-time UK-coverage
+figure — computed, never hand-written, per the earned-claims rule.
+
+- Depends on: P8-4.
+- Accept: card keys unchanged in test; the Über figure is computed at build time.
+
+### C3 · Ukrainian translation waves — `todo` (recurring)
+
+A1 first (~6–8 PRs), then A2 (~10–14). The quality bar is the same as Russian's: each wave is
+**authored** idiomatically — the `uk` half may contrast German with Ukrainian (відмінки,
+«бути»-dropping) — never machine-translationese; every wave passes the validator letter checks and
+a review before merge.
+
+- Depends on: P8-4.
+
+## Parallel — Phase 9: Entdecken & Referenz
+
+### P9-1 · Discovery schema evolution — `todo` (M)
+
+`images[]` entries carrying `sourceClass`, `attribution` and `licence`, with a `superRefine`
+mirroring `visualDocumentSchema` (real/adapted assets require attribution and licence metadata);
+`links[]` for curated external material, rendered visibly **online-only** so a dead link never
+breaks anything; migrate `berlin-ubahn-karte` and drop the bare `image` field. `CLAUDE.md` gains an
+"Entdecken & Dokumente" section in this PR — the rules ship with the schema that enforces them.
+
+- Accept: the validator rejects a real/adapted image without attribution and licence; the existing
+  piece renders unchanged after migration; links are visibly marked online-only.
+
+### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
+
+Optional editorial pieces from the fifteen-theme backlog, each passing the editorial test in
+[future-content-directions.md](future-content-directions.md) — a language reason to exist, level
+control, and no review obligation from opening it:
+
+1. die Berliner Mauer im Stadtbild
+2. das Ampelmännchen
+3. Pfand und Mülltrennung
+4. die Sonntagsruhe
+5. Schrebergärten
+6. Deutsch in Österreich und der Schweiz
+7. der Verein
+8. Brot als UNESCO-Kulturerbe
+9. das Deutschlandticket
+10. das Amt als Genre
+11. Bauhaus im Alltag — the movement through an everyday object
+12. der Döner — migration through a familiar food
+13. die Loreley — the Rhine through a place and a legend
+14. Moin, Servus, Grüß Gott — regional German through an encounter
+15. Tatort am Sonntag — a television ritual
+
+Two standing decisions are recorded here rather than as items. **Committed audio stays deferred**
+(P5-1 untouched): when the audio schema's `kind: asset` path needs exercising, the cheap path is
+one CC-licensed audio asset inside one Entdecken piece, not a TTS replacement program. **Audit
+extensions are added only with named consumers** — the grading-decisions integration names P6-1's
+queue; the probe-debt row names the P5-11 audits and the P5-7 decision.
+
+- Depends on: P9-1.
+- Accept per piece: the editorial test; the validator; no mastery or review-debt semantics.
+
+### P9-3 · Referenz lookup pages — `todo` (M)
+
+Three pages, each derived or canonical — never a second hand-maintained textbook:
+
+- `/referenz/verbformen` — build-time-derived from the vocab YAML (`praesens_3sg`, `partizip2`,
+  `aux`, `valence`); a verb table that cannot drift from the decks that teach the verbs.
+- `/referenz/zahlen-datum-zeit` — numbers, dates and clock time, from a new
+  `content/reference-data/` YAML shared with any lesson that needs it.
+- `/referenz/briefe` — letter and message conventions (greeting, closing, register).
+
+Lower priority, recorded so it is not re-invented as a page: a two-way-preposition visual belongs
+inside the existing kasus reference, not on a new route.
+
+- Accept: reference pages carry no completion state or evidence semantics; derived tables are
+  computed at build time.
 
 ## Completed — Phase 4: complete A2
 
@@ -263,6 +544,9 @@ The windows now include the learner-led `verben-mit-praepositionen` module after
 open until `einkaufen-reklamation` is completed. A2 closure remains open until the expanded
 checkpoint and this module's 2/7/21-day evidence have been reviewed.
 
+**Disposition (2026-07-14):** continues unchanged as recurring practice inside Phase 6 — the
+phase's items feed it (the P6-2 audit rerun, the P6-3 probe-debt row) rather than replace it.
+
 ### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
 
 Constrained local or optional AI pronunciation assistance. All resulting evidence stays unverified
@@ -295,6 +579,11 @@ The fix is a second probe family per topic where a listening outcome deserves it
 three parallel `listen` or `audio-comprehension` variants). It is not free: a due probe opens the
 session and the cap is three, and seventeen families can now arm. Do it after the first cohort
 reports, when the real probe load is known rather than guessed.
+
+**Disposition (2026-07-14):** scheduled inside Phase 6, keeping this ID — after the 2026-08-02
+cohort read (P3-6) and P6-3, when the real probe load is known and paced. Precondition to verify
+first: `probeFamilies()` supports two families per topic (`probe-<topic>-hoeren` beside the
+production family); a small code change if it turns out to be keyed per topic.
 
 - Accept: a listening outcome shows a 2/7/21-day curve; the probe load per session stays bounded.
 
