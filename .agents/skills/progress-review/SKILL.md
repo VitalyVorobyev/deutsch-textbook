@@ -41,7 +41,9 @@ Each rejected rendering in the audit's queue gets one linguistic ruling:
   `revision`.
 - **constrain** — good German that bypasses the target → add a bilingual `instruction` constraint
   and bump `revision`.
-- **confirm** — the rejection was right → no content change; the row clears.
+- **confirm** — the rejection was right → no content change; the row clears, and the attempts
+  re-enter the focus signals with attribution recomputed by today's grader (a stale stored
+  `focus` tag never re-enters on its own).
 
 The linguistic criteria are CLAUDE.md's `translate`/`accept` and `key_tokens` rules — apply those,
 do not restate or improvise them. (Planned: P6-1 gives rulings a committed decisions file so the

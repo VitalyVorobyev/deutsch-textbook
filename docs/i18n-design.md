@@ -79,10 +79,12 @@ so they move into the strings table rather than gaining `uk` fields.
 
 ## P8-5 — surfaces
 
-- **Flashcard front** becomes `${en} · ${pickSecond(card)}`, where `pickSecond` resolves the
-  ru/uk gloss by explanation language. This is **display-only**: card identity is
-  `<deck>::<de>::<direction>` and never carries a gloss language, so no SRS history resets —
-  asserted in a test, not assumed.
+- **The meaning side of a card** becomes `${en} · ${pickSecond(card)}`, where `pickSecond`
+  resolves the ru/uk gloss by explanation language. That is the **front of the `x-de` production
+  card and the back of the `de-x` recognition card** — and only those: the `de-x` front stays the
+  German answer, and the Hören input mode keeps its dictation behavior, exactly as today. The
+  change is **display-only**: card identity is `<deck>::<de>::<direction>` and never carries a
+  gloss language, so no SRS history resets — asserted in a test, not assumed.
 - The header language toggle gains UK.
 - The Über page gains a **build-time UK-coverage figure**, computed from content per the
   earned-claims rule — the page never hand-writes a count, and it never claims the translation is

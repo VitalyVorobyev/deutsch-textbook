@@ -75,8 +75,13 @@ committed home.
   because they were never errors. **constrain** — the rendering is good German that bypasses the
   target: the same PR adds a bilingual `instruction` constraint and bumps `revision`; attempts stay
   excluded. **confirm** — the rejection was right: the queue row clears and the attempts' exclusion
-  lifts, so they re-enter `focusSignals` — safe, because the scorer already logs out-of-focus
-  errors unattributed.
+  lifts — but they re-enter `focusSignals` with attribution **recomputed under today's grading
+  contract**, never with the stored historical `focus` tag. The audit already re-grades every
+  queued rendering, so it knows whether today's scorer attributes the divergence to the item's
+  focus; many rows are queued precisely because it does not, and a stale attribution from an older
+  grader re-entering the weak-focus table is exactly the false entry the weakness signal must not
+  contain. A confirmed attempt counts as wrong; it counts *against a focus* only if today's grader
+  says so.
 - Audit integration: `gradingReview()` in `scripts/progress-audit.ts` loads the decisions and
   reports **undecided renderings only**, applying the exclusion rules above.
 - Validator: a decision's item ref must exist; an `accept`-decided rendering must pass today's
@@ -87,8 +92,9 @@ committed home.
   describes, not before it.
 
 - Accept: the audit reports undecided-only; each decision type demonstrably applies its exclusion
-  rule (tests in `tests/`); the validator fails on a dangling item ref and on an accept-decided
-  rendering the grader rejects, and warns on an orphan.
+  rule, including that a confirmed attempt whose stored focus today's grader would not attribute
+  re-enters **unattributed** (tests in `tests/`); the validator fails on a dangling item ref and on
+  an accept-decided rendering the grader rejects, and warns on an orphan.
 
 ### P6-2 · Triage the fourteen queued renderings — `todo` (M)
 
@@ -248,7 +254,9 @@ and not RU).
 
 ### P8-5 · Ukrainian UI surfaces — `todo` (S)
 
-The flashcard front becomes `${en} · ${pickSecond(card)}` — display-only: card identity
+The meaning side of a card becomes `${en} · ${pickSecond(card)}` — the front of the `x-de`
+production card and the back of the `de-x` recognition card, and only those; the `de-x` front
+stays the German answer and the Hören dictation mode is unchanged. Display-only: card identity
 `<deck>::<de>::<direction>` is untouched, so no SRS history resets (asserted in test, not
 assumed). The header language toggle gains UK, and the Über page gains a build-time UK-coverage
 figure — computed, never hand-written, per the earned-claims rule.
