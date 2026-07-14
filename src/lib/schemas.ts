@@ -545,6 +545,38 @@ export const caseReferenceSchema = z.object({
 });
 export type CaseReference = z.infer<typeof caseReferenceSchema>;
 
+const referenceExampleSchema = z.object({
+  de: z.string().min(1),
+  en: z.string().min(1),
+  ru: z.string().min(1),
+});
+
+export const pronominalAdverbReferenceSchema = z.object({
+  id: z.literal('pronominal-adverbs'),
+  entries: z.array(z.object({
+    preposition: z.string().min(1),
+    status: z.enum(['productive', 'receptive']),
+    construction: z.string().min(1),
+    question: z.string().min(1),
+    thing: z.string().min(1),
+    person: z.string().min(1),
+    example: referenceExampleSchema,
+  })).min(1),
+  temporal: z.array(z.object({
+    form: z.enum(['vorher', 'zuvor', 'danach']),
+    status: z.enum(['productive', 'receptive']),
+    meaning: bilingualSchema,
+    example: referenceExampleSchema,
+  })).length(3),
+});
+export type PronominalAdverbReference = z.infer<typeof pronominalAdverbReferenceSchema>;
+
+export const referenceDataSchema = z.discriminatedUnion('id', [
+  caseReferenceSchema,
+  pronominalAdverbReferenceSchema,
+]);
+export type ReferenceData = z.infer<typeof referenceDataSchema>;
+
 // ---------------------------------------------------------------------------
 // Atlas graph + curriculum spine (content/atlas.yaml)
 // ---------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+topic: verben-mit-praepositionen
+role: pretest
+title: { en: "Pretest — what belongs together?", ru: "Предтест — что с чем сочетается?" }
+items:
+  - id: pretest-warten
+    type: mc
+    outcomes: [verb-praeposition-waehlen]
+    focus: verb-praeposition
+    prompt: "Wir warten ___ Mias Antwort."
+    options: ["auf", "über", "von"]
+    correct: 0
+    explain: { en: "Learn warten auf as one unit: auf + accusative.", ru: "Учите warten auf как единое целое: auf + Akkusativ." }
+  - id: pretest-worueber
+    type: mc
+    outcomes: [wo-wort-fragen]
+    focus: da-wo-woerter
+    prompt: "___ sprecht ihr? — Über den Ausflug."
+    options: ["Worüber", "Darüber", "Über ihn"]
+    correct: 0
+    explain: { en: "A question about a thing uses wo(r)-: worüber?", ru: "Вопрос о предмете строится с wo(r)-: worüber?" }
+  - id: pretest-person
+    type: mc
+    outcomes: [person-sache-unterscheiden]
+    focus: da-wo-woerter
+    prompt: "Wir sprechen über Jonas. Wir sprechen ___."
+    options: ["über ihn", "darüber", "worüber"]
+    correct: 0
+    explain: { en: "People are not replaced by da-words: über Jonas → über ihn.", ru: "Людей не заменяют da-словами: über Jonas → über ihn." }

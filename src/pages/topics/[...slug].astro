@@ -6,6 +6,7 @@ import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
 import ExampleQuote from '../../components/ExampleQuote.astro';
 import CaseTable from '../../components/reference/CaseTable.astro';
+import PronominalAdverbTable from '../../components/reference/PronominalAdverbTable.astro';
 import VocabTable from '../../components/VocabTable.astro';
 import WordField from '../../components/vocab/WordField.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
@@ -136,7 +137,7 @@ if (data.pretest && !pretestSet)
   }
 
   <article class="article-prose">
-    <Content components={{ Bilingual, En, Ru, CaseTable, blockquote: ExampleQuote }} />
+    <Content components={{ Bilingual, En, Ru, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }} />
   </article>
 
   {

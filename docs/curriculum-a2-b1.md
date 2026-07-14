@@ -190,12 +190,13 @@ in place, never duplicated under a thematic name.
 | 18 | `reisen-verkehr` | communication | travel prepositions, movement Perfekt, sequence connectors | stadt-wege, perfekt-haben-sein, termine-vereinbaren |
 | 19 | `einkaufen-reklamation` | vocab-field | Komparativ/Superlativ, passen/gefallen + Dativ, zu + Adjektiv | essen-trinken, dativ, akkusativ |
 | 20 | `gesundheit-arzttermin` | communication | Imperativ, sollen, seit/vor + Dativ, reflexive chunks | termine-vereinbaren, dativ, modalverben |
-| 21 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf, termine-vereinbaren |
-| 22 | `nebensaetze-plaene` | grammar | weil, dass, wenn, denn; verb-final; the fronted subordinate clause | praesens-wortstellung, modalverben |
-| 23 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie, nebensaetze-plaene |
-| 24 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ, nebensaetze-plaene |
-| 25 | `lernen-verstehen` | communication | indirect questions, repair chunks, dass/weil frames | erste-schritte, modalverben, nebensaetze-plaene |
-| 26 | `aemter-dienstleistungen` | communication | formal Sie, lexical könnte/würde gern, reason clauses | termine-vereinbaren, erste-schritte, nebensaetze-plaene |
+| 21 | `verben-mit-praepositionen` | grammar | governed prepositions; da(r)-/wo(r)-; thing/person selection | gesundheit-arzttermin |
+| 22 | `arbeit-beruf` | vocab-field | obligation and permission at work, polite requests, temporal order | modalverben, alltag-tagesablauf, termine-vereinbaren |
+| 23 | `nebensaetze-plaene` | grammar | weil, dass, wenn, denn; verb-final; the fronted subordinate clause | praesens-wortstellung, modalverben |
+| 24 | `biografie-erfahrungen` | communication | Präteritum of sein/haben/modals, vor/seit, narrative sequence | perfekt-haben-sein, menschen-familie, nebensaetze-plaene |
+| 25 | `freunde-feste` | communication | invitations, two-object patterns, weil/aber/sondern | freizeit-koennen, dativ, nebensaetze-plaene |
+| 26 | `lernen-verstehen` | communication | indirect questions, repair chunks, dass/weil frames | erste-schritte, modalverben, nebensaetze-plaene |
+| 27 | `aemter-dienstleistungen` | communication | formal Sie, lexical könnte/würde gern, reason clauses | termine-vereinbaren, erste-schritte, nebensaetze-plaene |
 
 `aemter-dienstleistungen` additionally `deepens: [lernen-verstehen]`: asking a clerk *Können Sie mir
 sagen, welche Unterlagen ich brauche?* is the indirect question taught one slot earlier, in the
@@ -387,7 +388,18 @@ already cards), `dativ-pronomen`.
 **Exclude:** diagnosis, emergency medicine beyond calling for help, anything that reads as medical
 advice, the full reflexive paradigm.
 
-### A2.5 · `arbeit-beruf` — Arbeit & Beruf
+### A2.5 · `verben-mit-praepositionen` — Darüber sprechen
+
+**Scenario:** a German-course group chooses an activity, asks what others think or wait for, and
+refers back to plans without repeating each noun.
+**Language:** six productive verb-preposition constructions; wo(r)- questions and da(r)- references;
+linking *r* before vowels; things versus people; productive *vorher/danach* against receptive *zuvor*.
+**New deck:** eight contextual phrase targets, each with a unique verb construction on the production cue.
+**Transfer:** ask about and respond to a fresh group plan in writing and speech.
+**Confusions:** `verb-praeposition`, `da-wo-woerter`.
+**Exclude:** exhaustive lists of governed verbs and productive formal *zuvor*.
+
+### A2.6 · `arbeit-beruf` — Arbeit & Beruf
 
 **Scenario:** describe what you do, then swap a shift with a colleague.
 **Input:** a job profile, a rota, a note, a short internal message, a spoken instruction.
@@ -402,7 +414,7 @@ cards), `termine-zeit`, `modalverben`.
 **Confusions:** `modal-satzklammer`, `duerfen-muessen`, `du-sie`, `trennbar-modal`.
 **Exclude:** applications and interviews (those are B1), labour law, specialist vocabulary.
 
-### A2.6 · `nebensaetze-plaene` — Nebensätze & Pläne
+### A2.7 · `nebensaetze-plaene` — Nebensätze & Pläne
 
 **Scenario:** explain a decision — why you cannot come, what you think, what you will do if it rains.
 **Input:** an advice exchange, a personal message, a short opinion, a planning dialogue.
@@ -417,7 +429,7 @@ the *syntax*, so it must not re-deck them), `praesens-wortstellung`, `modalverbe
 **Confusions:** `nebensatz-verbende`, `weil-denn`, `nebensatz-vorfeld`, `verbzweit`.
 **Exclude:** indirect speech, the Konjunktiv II paradigm, relative clauses, essay writing.
 
-### A2.7 · `biografie-erfahrungen` — Biografie & Erfahrungen
+### A2.8 · `biografie-erfahrungen` — Biografie & Erfahrungen
 
 **Scenario:** tell someone your story, and ask them for theirs.
 **Input:** a timeline, a profile, interview turns, a short narrative, a personal email.
@@ -432,7 +444,7 @@ where German actually uses the simple past in speech; *vor* and *seit*; sequence
 **Exclude:** *als*-clauses as a taught structure (they appear only as fixed chunks here), the
 literary Präteritum of full verbs, CV conventions.
 
-### A2.8 · `freunde-feste` — Freunde, Einladungen & Feste
+### A2.9 · `freunde-feste` — Freunde, Einladungen & Feste
 
 **Scenario:** organize a birthday in a group chat, and handle the person who has to cancel.
 **Input:** an invitation, a group chat, a notice, a voice message.
@@ -447,7 +459,7 @@ literary Präteritum of full verbs, CV conventions.
 **Confusions:** `nebensatz-verbende`, `wechsel-akk-dat`, `dativ-pronomen`, `trennbar-modal`.
 **Exclude:** slang, relationship talk, broad cultural surveys.
 
-### A2.9 · `lernen-verstehen` — Lernen & Verstehen
+### A2.10 · `lernen-verstehen` — Lernen & Verstehen
 
 **Scenario:** you are in a course and you did not understand — repair it.
 **Input:** a course description, spoken instructions, a feedback note, an email, a clarification
@@ -462,7 +474,7 @@ chunks; *dass* and *weil* in useful frames; pronoun reference across sentences.
 **Confusions:** `indirekte-frage`, `nebensatz-verbende`, `du-sie`, `verbzweit`.
 **Exclude:** academic argument, reported speech, abstract pedagogy vocabulary.
 
-### A2.10 · `aemter-dienstleistungen` — Ämter & Dienstleistungen
+### A2.11 · `aemter-dienstleistungen` — Ämter & Dienstleistungen
 
 **Scenario:** you must register your address; find out what you need and ask for it politely.
 **Input:** a form, an appointment letter, an opening-hours notice, a counter dialogue, a formal email.

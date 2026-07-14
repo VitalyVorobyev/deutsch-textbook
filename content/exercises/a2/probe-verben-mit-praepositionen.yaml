@@ -1,0 +1,32 @@
+topic: verben-mit-praepositionen
+role: probe
+title: { en: "Delayed check — refer to a thing", ru: "Отложенная проверка — ссылка на предмет" }
+items:
+  - id: probe-app
+    type: translate
+    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    focus: da-wo-woerter
+    prompt_en: "Which app do you work with? — I work with this one."
+    prompt_ru: "С каким приложением ты работаешь? — Я работаю с этим."
+    answer: "Womit arbeitest du? — Ich arbeite damit."
+    accept: ["Womit arbeiten Sie? — Ich arbeite damit."]
+    key_tokens: ["Womit", "damit"]
+    explain: { en: "mit begins with a consonant: womit asks, damit refers back; no linking r is needed.", ru: "mit начинается с согласной: womit спрашивает, damit отсылает; связующее r не нужно." }
+  - id: probe-film
+    type: translate
+    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    focus: da-wo-woerter
+    prompt_en: "What film are they talking about? — They are talking about it now."
+    prompt_ru: "О каком фильме они говорят? — Они сейчас говорят о нём."
+    answer: "Über welchen Film sprechen sie? — Sie sprechen jetzt darüber."
+    key_tokens: ["darüber"]
+    explain: { en: "The film is a thing, so über becomes the thing-reference darüber.", ru: "Фильм — предмет, поэтому über превращается в отсылку darüber." }
+  - id: probe-kollegin
+    type: translate
+    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    focus: da-wo-woerter
+    prompt_en: "Are you waiting for the result or for your colleague? — I am waiting for her."
+    prompt_ru: "Ты ждёшь результат или коллегу? — Я жду её."
+    answer: "Wartest du auf das Ergebnis oder auf deine Kollegin? — Ich warte auf sie."
+    key_tokens: ["Ergebnis", "Kollegin", "sie"]
+    explain: { en: "The colleague is a person, so German keeps auf + personal pronoun: auf sie, not darauf.", ru: "Коллега — человек, поэтому немецкий сохраняет auf + личное местоимение: auf sie, а не darauf." }

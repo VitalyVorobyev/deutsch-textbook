@@ -78,7 +78,7 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
       checkpoint,
       remaining: levelRemaining(checkpoint.level, topics, ctx),
       summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
-      // Heute offers the lowest unattempted checkpoint (`dueCheckpoint`); the Lernpfad must
+      // Heute offers the lowest incomplete checkpoint (`dueCheckpoint`); the Lernpfad must
       // say the same thing, or the two screens disagree about what to do next.
       blockedBy: blockedByEarlier(checkpoint, checkpoints, ctx),
     }));

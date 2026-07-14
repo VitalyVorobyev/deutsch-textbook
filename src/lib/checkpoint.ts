@@ -16,12 +16,21 @@ export interface CheckpointRef {
   level: string;
   path: string;
   title: string;
+  /** current content contract; legacy attempts count by stable item id */
+  items: readonly { id: string }[];
+}
+
+function checkpointCovered(checkpoint: CheckpointRef, attempts: readonly Attempt[]): boolean {
+  const attempted = new Set(
+    attempts.filter((attempt) => attempt.setId === checkpoint.setId).map((attempt) => attempt.itemId),
+  );
+  return checkpoint.items.every((item) => attempted.has(item.id));
 }
 
 /**
  * The checkpoint to offer the learner right now: the **lowest** level whose
- * lessons are all behind them (`levelPathDone`) and whose set has never been
- * attempted. Lowest wins so that a learner who finished A2 without ever taking
+ * lessons are all behind them (`levelPathDone`) and whose current item ids have not
+ * all been attempted. Lowest wins so that a learner who finished A2 without completing
  * the A1 checkpoint is not sent past it.
  */
 export function dueCheckpoint<T extends CheckpointRef>(
@@ -34,12 +43,12 @@ export function dueCheckpoint<T extends CheckpointRef>(
     .find(
       (checkpoint) =>
         levelPathDone(checkpoint.level, nodes, ctx) &&
-        !ctx.attempts.some((attempt) => attempt.setId === checkpoint.setId),
+        !checkpointCovered(checkpoint, ctx.attempts),
     );
 }
 
 /**
- * The earlier-level checkpoint that is still unattempted, if there is one.
+ * The earlier-level checkpoint whose current items are still incomplete, if there is one.
  *
  * `dueCheckpoint` already refuses to *offer* A2 while A1 is unstarted, but every surface
  * that renders a checkpoint has to agree with it. The Lernpfad used to decide each card
@@ -58,7 +67,7 @@ export function blockedByEarlier<T extends CheckpointRef>(
     .find(
       (other) =>
         other.level < checkpoint.level &&
-        !ctx.attempts.some((attempt) => attempt.setId === other.setId),
+        !checkpointCovered(other, ctx.attempts),
     );
 }
 

@@ -1,0 +1,29 @@
+topic: verben-mit-praepositionen
+title_de: "Ein Plan für die Kursgruppe"
+kind: intensive
+text:
+  - "Im Deutschkurs [[plant::plans::планирует]] die Gruppe einen gemeinsamen Samstag. Amir schlägt eine Radtour vor, aber Lea interessiert sich mehr für Fotografie. „[[Wofür::what for::чем]] interessiert ihr euch?“, fragt die Lehrerin. Jonas denkt an eine Ausstellung im Stadtmuseum. Lea ist sofort [[dafür::in favour of it::за это]], Amir ist nicht dagegen."
+  - "Die Gruppe spricht lange [[darüber::about it::об этом]]. Danach suchen alle nach einem Termin. Sie warten noch auf Mias Antwort. „[[Worauf::what … for::чего]] warten wir?“, fragt Jonas. „Auf ihre Nachricht. Ohne Mia entscheiden wir nichts.“"
+  - "Am Freitag schreibt Mia: Sie freut sich [[darauf::forward to it::этому заранее]], gemeinsam ins Museum zu gehen. Vorher muss sie aber arbeiten. Die Gruppe kauft die Tickets mit einer App und arbeitet [[damit::with it::с ним]] einen einfachen [[Tagesplan::day plan::план на день]] aus. Zuvor hatte Amir Zweifel; jetzt freut er sich auch auf den Ausflug."
+questions:
+  - id: lesen-vorschlag
+    type: mc
+    outcomes: [verb-praeposition-waehlen]
+    prompt: "Was schlägt Jonas vor?"
+    options: ["Eine Ausstellung im Stadtmuseum", "Eine lange Reise", "Einen Fotokurs"]
+    correct: 0
+    explain: { en: "Jonas thinks of an exhibition in the city museum; Amir proposed the bike tour.", ru: "Йонас думает о выставке в городском музее; велопрогулку предложил Амир." }
+  - id: lesen-warten
+    type: mc
+    outcomes: [wo-wort-fragen]
+    prompt: "Worauf wartet die Gruppe?"
+    options: ["Auf Mias Nachricht", "Auf die Lehrerin", "Auf neue Fahrräder"]
+    correct: 0
+    explain: { en: "The text answers the wo-question directly: auf Mias Antwort/Nachricht.", ru: "Текст прямо отвечает на вопрос с wo-: auf Mias Antwort/Nachricht." }
+  - id: lesen-vorher
+    type: mc
+    outcomes: [da-wort-sache]
+    prompt: "Was muss Mia vorher tun?"
+    options: ["Arbeiten", "Tickets kaufen", "Die Ausstellung besuchen"]
+    correct: 0
+    explain: { en: "Mia has to work before the museum visit; vorher establishes that order.", ru: "До похода в музей Мие нужно работать; порядок задаёт vorher." }

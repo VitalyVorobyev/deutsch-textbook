@@ -143,8 +143,8 @@ describe('level checkpoint gate', () => {
 // sees a *list*. dueCheckpoint is the one rule for which of them to offer.
 describe('dueCheckpoint', () => {
   const checkpoints: CheckpointRef[] = [
-    { setId: 'a2/checkpoint-a2', level: 'A2', path: '/checkpoint/a2', title: 'Checkpoint A2' },
-    { setId: 'a1/checkpoint-a1', level: 'A1', path: '/checkpoint/a1', title: 'Checkpoint A1' },
+    { setId: 'a2/checkpoint-a2', level: 'A2', path: '/checkpoint/a2', title: 'Checkpoint A2', items: [{ id: 'old-1' }, { id: 'old-2' }, { id: 'new-1' }, { id: 'new-2' }] },
+    { setId: 'a1/checkpoint-a1', level: 'A1', path: '/checkpoint/a1', title: 'Checkpoint A1', items: [{ id: 'hoeren-1' }] },
   ];
   const lesson = (id: string, level: string): TopicNode => ({
     id, path: `/topics/${level.toLowerCase()}/${id}`, level, kind: 'grammar',
@@ -171,7 +171,7 @@ describe('dueCheckpoint', () => {
     expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a1/checkpoint-a1');
   });
 
-  test('a taken checkpoint steps aside for the next level', () => {
+  test('a checkpoint with every current item attempted steps aside for the next level', () => {
     const ctx = ctxOf([
       ...done('a1/erste-schritte'),
       ...done('a2/dativ'),
@@ -180,12 +180,35 @@ describe('dueCheckpoint', () => {
     expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
   });
 
-  test('once every checkpoint has been taken, none is due', () => {
+  test('a partial checkpoint remains due', () => {
     const ctx = ctxOf([
       ...done('a1/erste-schritte'),
       ...done('a2/dativ'),
       attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
-      attempt('hoeren-1', 300, { setId: 'a2/checkpoint-a2' }),
+      attempt('old-1', 300, { setId: 'a2/checkpoint-a2' }),
+    ]);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+  });
+
+  test('all previous items do not complete a checkpoint after two additive items ship', () => {
+    const ctx = ctxOf([
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
+      attempt('old-1', 300, { setId: 'a2/checkpoint-a2' }),
+      attempt('old-2', 301, { setId: 'a2/checkpoint-a2' }),
+    ]);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+  });
+
+  test('once every current checkpoint item has been attempted, none is due', () => {
+    const ctx = ctxOf([
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
+      ...['old-1', 'old-2', 'new-1', 'new-2'].map((itemId, n) =>
+        attempt(itemId, 300 + n, { setId: 'a2/checkpoint-a2' }),
+      ),
     ]);
     expect(dueCheckpoint(checkpoints, nodes, ctx)).toBeUndefined();
   });
