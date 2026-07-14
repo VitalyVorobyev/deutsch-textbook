@@ -1,6 +1,6 @@
 topic: verben-mit-praepositionen
 role: practice
-title: { en: "Production — agree on the outing", ru: "Продукция — договоритесь о поездке" }
+title: { en: "Production — agree on the outing", ru: "Практика речи и письма — договоритесь о поездке" }
 items:
   - id: schreiben-gruppenplan
     type: write
@@ -13,8 +13,10 @@ items:
       - { en: "Use one wo-question and one da-word for a thing.", ru: "Используйте один вопрос с wo- и одно da-слово для предмета." }
       - { en: "Revise the draft after comparing it with the model.", ru: "Исправьте черновик после сравнения с образцом." }
     min_words: 25
-    model_answer: "Ich interessiere mich für die Ausstellung und freue mich darauf. Worauf warten wir noch? Wenn Mia Zeit hat, können wir die Tickets heute kaufen. Darüber können wir am Abend noch sprechen."
-    model_translation: { en: "I am interested in the exhibition and look forward to it. What are we still waiting for? If Mia has time, we can buy the tickets today. We can talk about that again this evening.", ru: "Мне интересна выставка, и я её с радостью жду. Чего мы ещё ждём? Если у Мии есть время, мы можем купить билеты сегодня. Об этом мы ещё можем поговорить вечером." }
+    # No wenn-/dass-clause in the model: `nebensatz-verbende` and `nebensatz-vorfeld` arrive with
+    # `nebensaetze-plaene`, two units later. A learner cannot imitate grammar they have not met.
+    model_answer: "Ich interessiere mich für die Ausstellung und freue mich darauf. Worauf warten wir noch? Mia hat vielleicht heute Zeit. Dann können wir die Tickets kaufen. Darüber können wir am Abend noch sprechen."
+    model_translation: { en: "I am interested in the exhibition and look forward to it. What are we still waiting for? Mia may have time today. Then we can buy the tickets. We can talk about that again this evening.", ru: "Мне интересна выставка, и я жду её с радостью. Чего мы ещё ждём? Возможно, у Мии сегодня есть время. Тогда мы сможем купить билеты. Об этом мы ещё можем поговорить вечером." }
     explain: { en: "A useful reply moves from the named plan to a da-reference, adds a wo-question, then revises any preposition or linking-r error after the model appears.", ru: "Полезный ответ переходит от названного плана к da-отсылке, добавляет вопрос с wo-, а после появления образца исправляет предлог или связующее r." }
   - id: sprechen-plan-vergleichen
     type: speak

@@ -99,26 +99,36 @@ items:
     explain: { en: "The plan becomes darüber, but Jonas becomes über ihn. German keeps the person visible as a pronoun.", ru: "План заменяется на darüber, но Йонас — на über ihn. Человек остаётся выражен местоимением." }
   - id: translate-davon
     type: translate
+    # The tag is `verb-praeposition`, not `da-wo-woerter`: what this item decides is which
+    # preposition träumen governs, and both graded tokens are that preposition — once bare,
+    # once fused into the da-word. A learner who writes `über … darüber` has a preposition
+    # confusion, and that is what the weakness signal should hear.
     outcomes: [da-wort-sache, verb-praeposition-waehlen]
-    focus: da-wo-woerter
+    focus: verb-praeposition
     instruction: { en: "The journey was just mentioned. Translate the response.", ru: "Путешествие только что упомянули. Переведите ответ." }
     prompt_en: "Mia dreams of the journey. She often dreams of it."
     prompt_ru: "Миа мечтает о путешествии. Она часто мечтает об этом."
     answer: "Mia träumt von der Reise. Sie träumt oft davon."
-    accept: ["Mia träumt von einer Reise. Sie träumt oft davon."]
-    key_tokens: ["davon"]
-    explain: { en: "träumen selects von, so the thing reference is davon—not darüber.", ru: "träumen требует von, поэтому отсылка к предмету — davon, а не darüber." }
+    key_tokens: ["von", "davon"]
+    explain: { en: "träumen selects von, so the thing reference is davon—not darüber, however natural 'about it' sounds.", ru: "träumen требует von, поэтому отсылка к предмету — davon, а не darüber, как подсказывало бы русское «об этом»." }
   - id: mc-zuvor
     type: mc
     outcomes: [da-wort-sache]
-    instruction: { en: "Choose the everyday word for 'before that'.", ru: "Выберите обычное разговорное слово «до этого»." }
+    focus: da-wo-woerter
+    # A discrimination item: all three options can open a German sentence, so the learner has to
+    # decide what the slot is *for* — a time relation or a verb's object — rather than parse
+    # syntax. The instruction must not name the answer.
+    instruction: { en: "Complete the sentence.", ru: "Дополните предложение." }
     prompt: "Wir treffen uns um acht. ___ kaufe ich die Tickets."
     options: ["Vorher", "Davon", "Darüber"]
     correct: 0
-    explain: { en: "vorher orders events in time. zuvor means much the same but is more written/formal and is receptive at A2.", ru: "vorher располагает события во времени. zuvor значит почти то же, но чаще письменно и формальнее; на A2 оно рецептивное." }
+    explain: { en: "vorher orders events in time. davon and darüber are da-words: they stand for a verb's object, and kaufen has its object already (die Tickets). zuvor would also fit, but it belongs to written and formal German — recognise it, say vorher.", ru: "vorher упорядочивает события во времени. davon и darüber — da-слова: они заменяют дополнение глагола, а у kaufen дополнение уже есть (die Tickets). Подошло бы и zuvor, но это слово письменной и официальной речи — узнавайте его, а говорите vorher." }
   - id: cloze-zeitfolge
     type: cloze
     outcomes: [da-wort-sache]
-    instruction: { en: "Complete the sequence with the everyday time words.", ru: "Дополните последовательность обычными временными словами." }
-    text: "Um zehn besuchen wir die Ausstellung. {{Vorher}} trinken wir einen Kaffee. {{Danach}} fährt die Gruppe nach Hause."
-    explain: { en: "vorher points to the time before the visit; danach points to the time after it. Neither word names a verb's object.", ru: "vorher указывает на время до посещения, danach — после него. Ни одно из слов не называет дополнение глагола." }
+    focus: da-wo-woerter
+    # Three gaps, two kinds of word: the item earns its `da-wort-sache` outcome because the
+    # learner must decide *which* slot takes a da-word and which take a time word.
+    instruction: { en: "One gap needs a da-word, two need a time word.", ru: "В один пропуск нужно da-слово, в два других — слово времени." }
+    text: "Am Sonntag gehen wir ins Konzert. Ich freue mich schon {{darauf}}. {{Vorher}} essen wir zusammen. {{Danach}} fahren wir nach Hause."
+    explain: { en: "sich freuen auf + a thing becomes darauf. vorher and danach only order the events in time — they never stand for the verb's object.", ru: "sich freuen auf + предмет превращается в darauf. Vorher и danach лишь упорядочивают события во времени — дополнение глагола они не заменяют." }

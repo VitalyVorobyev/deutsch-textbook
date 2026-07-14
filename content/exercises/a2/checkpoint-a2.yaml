@@ -216,17 +216,19 @@ items:
       - { label: "über", cells: [{ answer: "worüber" }, { answer: "darüber" }] }
       - { label: "mit", cells: [{ answer: "womit" }, { answer: "damit" }] }
     explain: { en: "wo(r)- asks about a thing and da(r)- refers back. Insert r before a vowel (auf, über), but not before a consonant (mit).", ru: "wo(r)- спрашивает о предмете, da(r)- отсылает к нему. Перед гласной (auf, über) вставляется r, перед согласной (mit) — нет." }
+  # A different lexical instance from the topic's practice item `translate-person-sache`
+  # (sprechen über → darüber / über ihn). A checkpoint that re-presents a practice sentence
+  # measures recognition of that sentence, not the competence behind it.
   - id: uebersetzen-sache-person
     outcomes: [person-sache-unterscheiden, da-wort-sache]
     type: translate
     focus: da-wo-woerter
-    instruction: { en: "A plan and a man were just mentioned. Translate the reply: first refer to the thing, then to the person.", ru: "План и мужчину только что упомянули. Переведите ответ: сначала сошлитесь на предмет, затем на человека." }
-    prompt_en: "We often talk about it, but we do not talk about him."
-    prompt_ru: "Мы часто говорим об этом, но не говорим о нём (человеке)."
-    answer: "Wir sprechen oft darüber, aber wir sprechen nicht über ihn."
-    accept: ["Wir sprechen oft darüber, aber nicht über ihn."]
-    key_tokens: ["darüber", "ihn"]
-    explain: { en: "The plan becomes darüber; a person remains preposition + pronoun: über ihn. The prompt marks the second referent as a person so the answer is unambiguous.", ru: "План заменяется на darüber; для человека остаются предлог и местоимение: über ihn. В задании прямо указано, что вторая отсылка — к человеку, поэтому ответ однозначен." }
+    instruction: { en: "A trip and a man were just mentioned. Translate the reply: first refer to the thing, then to the person.", ru: "Поездку и мужчину только что упомянули. Переведите ответ: сначала сошлитесь на предмет, затем на человека." }
+    prompt_en: "I often think about it, but I rarely think about him."
+    prompt_ru: "Я часто думаю об этом (о поездке), но редко думаю о нём (о человеке)."
+    answer: "Ich denke oft daran, aber ich denke selten an ihn."
+    key_tokens: ["daran", "ihn"]
+    explain: { en: "denken selects an. The trip is a thing, so it contracts into daran; the man is a person, so the preposition keeps a pronoun: an ihn.", ru: "denken требует an. Поездка — предмет, поэтому она стягивается в daran; мужчина — человек, поэтому предлог сохраняется с местоимением: an ihn." }
   # --- Schreiben ---
   - id: schreiben-krankmeldung
     outcomes: [krankmeldung-schreiben, berufliche-nachricht-schreiben]

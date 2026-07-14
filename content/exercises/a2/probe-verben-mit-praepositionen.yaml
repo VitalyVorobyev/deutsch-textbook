@@ -1,32 +1,38 @@
 topic: verben-mit-praepositionen
 role: probe
-title: { en: "Delayed check — refer to a thing", ru: "Отложенная проверка — ссылка на предмет" }
+title: { en: "Delayed check — ask about a thing and refer back to it", ru: "Отложенная проверка — спросить о предмете и сослаться на него" }
+# One competence, three parallel variants: build the wo-question and the da-reference for a
+# thing, with the linking r where the preposition takes a vowel. Every person and every object
+# below is new to this topic — none appears in a practice item, a reading sentence or a vocab
+# example — so a due variant measures the rule, not memory of a task already performed.
 items:
-  - id: probe-app
+  - id: probe-paket
     type: translate
-    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    outcomes: [wo-wort-fragen, da-wort-sache]
     focus: da-wo-woerter
-    prompt_en: "Which app do you work with? — I work with this one."
-    prompt_ru: "С каким приложением ты работаешь? — Я работаю с этим."
-    answer: "Womit arbeitest du? — Ich arbeite damit."
-    accept: ["Womit arbeiten Sie? — Ich arbeite damit."]
-    key_tokens: ["Womit", "damit"]
-    explain: { en: "mit begins with a consonant: womit asks, damit refers back; no linking r is needed.", ru: "mit начинается с согласной: womit спрашивает, damit отсылает; связующее r не нужно." }
-  - id: probe-film
+    instruction: { en: "Translate the exchange.", ru: "Переведите диалог." }
+    prompt_en: "What is Nina waiting for? — For the parcel. She has been waiting for it since Monday."
+    prompt_ru: "Чего ждёт Нина? — Посылку. Она ждёт её с понедельника."
+    answer: "Worauf wartet Nina? — Auf das Paket. Sie wartet seit Montag darauf."
+    key_tokens: ["Worauf", "darauf"]
+    explain: { en: "warten selects auf, and auf begins with a vowel: the question fuses to worauf and the thing-reference to darauf.", ru: "warten требует auf, а auf начинается с гласной: вопрос сращивается в worauf, а отсылка к предмету — в darauf." }
+  - id: probe-musik
     type: translate
-    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    outcomes: [wo-wort-fragen, da-wort-sache]
     focus: da-wo-woerter
-    prompt_en: "What film are they talking about? — They are talking about it now."
-    prompt_ru: "О каком фильме они говорят? — Они сейчас говорят о нём."
-    answer: "Über welchen Film sprechen sie? — Sie sprechen jetzt darüber."
-    key_tokens: ["darüber"]
-    explain: { en: "The film is a thing, so über becomes the thing-reference darüber.", ru: "Фильм — предмет, поэтому über превращается в отсылку darüber." }
-  - id: probe-kollegin
+    instruction: { en: "Translate the exchange.", ru: "Переведите диалог." }
+    prompt_en: "What is Paul interested in? — In music. He has been interested in it for years."
+    prompt_ru: "Чем интересуется Пауль? — Музыкой. Он интересуется ею уже много лет."
+    answer: "Wofür interessiert sich Paul? — Für Musik. Er interessiert sich seit Jahren dafür."
+    key_tokens: ["Wofür", "dafür"]
+    explain: { en: "sich interessieren selects für, and für begins with a consonant: no linking r, so wofür and dafür.", ru: "sich interessieren требует für, а für начинается с согласной: связующей r нет — wofür и dafür." }
+  - id: probe-haus-am-meer
     type: translate
-    outcomes: [da-wort-sache, wo-wort-fragen, person-sache-unterscheiden]
+    outcomes: [wo-wort-fragen, da-wort-sache]
     focus: da-wo-woerter
-    prompt_en: "Are you waiting for the result or for your colleague? — I am waiting for her."
-    prompt_ru: "Ты ждёшь результат или коллегу? — Я жду её."
-    answer: "Wartest du auf das Ergebnis oder auf deine Kollegin? — Ich warte auf sie."
-    key_tokens: ["Ergebnis", "Kollegin", "sie"]
-    explain: { en: "The colleague is a person, so German keeps auf + personal pronoun: auf sie, not darauf.", ru: "Коллега — человек, поэтому немецкий сохраняет auf + личное местоимение: auf sie, а не darauf." }
+    instruction: { en: "Translate the exchange.", ru: "Переведите диалог." }
+    prompt_en: "What does Frau Weber dream of? — Of a house by the sea. She dreams of it every night."
+    prompt_ru: "О чём мечтает госпожа Вебер? — О доме у моря. Она мечтает об этом каждую ночь."
+    answer: "Wovon träumt Frau Weber? — Von einem Haus am Meer. Sie träumt jede Nacht davon."
+    key_tokens: ["Wovon", "davon"]
+    explain: { en: "träumen selects von + Dativ. von begins with a consonant, so the forms are wovon and davon — not worüber/darüber, however natural 'about' sounds.", ru: "träumen требует von + Dativ. von начинается с согласной, поэтому формы — wovon и davon, а не worüber/darüber, как подсказывало бы русское «о чём»." }
