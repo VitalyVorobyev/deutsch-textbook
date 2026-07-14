@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { VocabWordTable } from '../../components/vocab/VocabMastery';
 import FlashcardSession from '../../components/srs/FlashcardSession';
-import { buildDeck } from '../../lib/srs';
+import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -13,7 +13,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const data = entry.data;
-const cards = buildDeck(data.id, data.entries);
+const fields = await getCollection('wortfelder');
+const cards = buildDeck(data.id, data.entries, wordFieldContexts(fields.map((field) => field.data)));
 ---
 
 <Base title={data.title_de}>

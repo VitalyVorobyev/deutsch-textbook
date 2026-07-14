@@ -21,6 +21,8 @@ import {
   type TranslationSpec,
 } from '../src/lib/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
+import { dueProbes, probeFamilies } from '../src/lib/probes';
+import type { Attempt } from '../src/lib/store';
 
 const DAY = 86_400_000;
 const RECENT_DAYS = 30;
@@ -30,6 +32,7 @@ export interface AuditAttempt {
   setId: string;
   itemId: string;
   itemType: string;
+  itemRevision?: number;
   correct: boolean;
   correctParts?: number;
   totalParts?: number;
@@ -37,6 +40,14 @@ export interface AuditAttempt {
   focus?: string;
   evidence?: 'verified' | 'practice';
   responseMode?: string;
+  outcomes?: string[];
+  practice?: {
+    kind: 'writing' | 'speaking';
+    draft?: string;
+    revision?: string;
+    before: Array<'met' | 'needs-work'>;
+    after: Array<'met' | 'needs-work'>;
+  };
   ts: number;
 }
 
@@ -52,12 +63,14 @@ export interface AuditSnapshot {
   profile?: string;
   attempts: AuditAttempt[];
   cards: Record<string, AuditCard>;
-  sessions?: unknown[];
+  sessions?: Array<{ date: string; reviewed: number | null; trained: number; ts: number }>;
   topics?: Record<string, unknown>;
+  feedback?: Record<string, { artifactId: string; difficulty?: string; useful?: boolean; wantsMore?: boolean; ts: number }>;
 }
 
 export interface ExerciseItem {
   id: string;
+  revision?: number;
   type: string;
   prompt?: string;
   prompt_en?: string;
@@ -66,11 +79,13 @@ export interface ExerciseItem {
   accept?: string[];
   focus?: string;
   key_tokens?: string[];
+  outcomes?: string[];
 }
 
 export interface CatalogItem extends ExerciseItem {
   setId: string;
   topic?: string;
+  role?: string;
 }
 
 export interface PerformanceRow {
@@ -133,10 +148,15 @@ export interface ProgressAudit {
     topics: number;
     readings: number;
     gradingReviewExcluded: number;
+    revisionKnown: number;
+    revisionMismatch: number;
+    writingRevisions: number;
+    writingChanged: number;
   };
   byItemType: PerformanceRow[];
   byResponseMode: PerformanceRow[];
   byTopic: PerformanceRow[];
+  byCycle: PerformanceRow[];
   cards: {
     graded: number;
     lapses: number;
@@ -153,10 +173,16 @@ export interface ProgressAudit {
       currentCorrect: number;
       focusRetained: number;
       focusFailed: number;
+      dueNow: number;
+      overdue: number;
+      maxOverdueDays: number;
+      maxTakenInOneDay: number;
     };
   };
+  sessionWorkload: { sessions: number; averageReviewed: number; averageTrained: number };
   gradingCandidates: GradingCandidate[];
   focusSignals: FocusSignal[];
+  feedback: AuditSnapshot['feedback'];
   detail?: ItemDetail;
 }
 
@@ -204,12 +230,12 @@ export function resolveSnapshotPath(root: string, profile?: string, explicit?: s
 export function readSnapshot(path: string): AuditSnapshot {
   const parsed = JSON.parse(readFileSync(path, 'utf8')) as Partial<AuditSnapshot>;
   if (
-    ![1, 2, 3, 4].includes(parsed.version ?? 0) ||
+    ![1, 2, 3, 4, 5].includes(parsed.version ?? 0) ||
     !Array.isArray(parsed.attempts) ||
     !parsed.cards ||
     typeof parsed.cards !== 'object'
   ) {
-    throw new Error(`Not a valid Deutsch-Atlas v1-v4 progress snapshot: ${path}`);
+    throw new Error(`Not a valid Deutsch-Atlas v1-v5 progress snapshot: ${path}`);
   }
   return {
     version: parsed.version!,
@@ -219,7 +245,24 @@ export function readSnapshot(path: string): AuditSnapshot {
     cards: parsed.cards,
     sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
     topics: parsed.topics && typeof parsed.topics === 'object' ? parsed.topics : {},
+    feedback: parsed.feedback && typeof parsed.feedback === 'object' ? parsed.feedback : {},
   };
+}
+
+/**
+ * True only when the attempt names a revision and it is *not* the one the item ships today —
+ * i.e. the task contract demonstrably changed under the learner, so today's answer key would
+ * grade an answer to a question they were never asked.
+ *
+ * An **absent** revision is not a mismatch. No attempt logged before the v5 contract carries
+ * one (0 of 817 in the current snapshot), so treating "unknown" as "changed" would retire the
+ * whole history from this audit: the grading-review queue would be permanently empty and, worse,
+ * its `excluded` set would be too — re-admitting rejections that today's grader accepts back
+ * into the focus signal, which is exactly the false attribution the review exists to prevent.
+ * Replaying here is read-only analysis; it never rewrites a learner's logged result.
+ */
+function revisionKnownMismatch(attempt: AuditAttempt, item: CatalogItem): boolean {
+  return attempt.itemRevision !== undefined && attempt.itemRevision !== (item.revision ?? 1);
 }
 
 export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
@@ -233,10 +276,11 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
       .split(sep).join('/').replace(/\.yaml$/, '');
     const data = YAML.parse(readFileSync(join(exerciseRoot, file), 'utf8')) as {
       topic?: string;
+      role?: string;
       items?: ExerciseItem[];
     };
     for (const item of data.items ?? [])
-      catalog.set(itemRef(setId, item.id), { ...item, setId, topic: data.topic });
+      catalog.set(itemRef(setId, item.id), { ...item, setId, topic: data.topic, role: data.role });
   }
 
   const readingRoot = join(root, 'content', 'reading');
@@ -315,6 +359,10 @@ function gradingReview(
     const ref = itemRef(attempt.setId, attempt.itemId);
     const item = catalog.get(ref);
     if (!item?.answer || item.type !== 'translate') continue;
+    // A *changed* task contract retains its logged result: replaying it against today's
+    // answer key would grade an answer to a question the learner was never asked. An
+    // unknown revision is legacy, not changed, and stays in the review.
+    if (revisionKnownMismatch(attempt, item)) continue;
     groups.set(ref, [...(groups.get(ref) ?? []), attempt]);
   }
 
@@ -462,7 +510,11 @@ function cardSummary(cards: Record<string, AuditCard>) {
   };
 }
 
-function delayedSummary(attempts: AuditAttempt[], catalog: Map<string, CatalogItem>) {
+function delayedSummary(
+  attempts: AuditAttempt[],
+  catalog: Map<string, CatalogItem>,
+  at: number,
+) {
   const firstByItem = new Map<string, number>();
   for (const attempt of attempts) {
     if (!isVerifiedEvidence(attempt)) continue;
@@ -479,7 +531,7 @@ function delayedSummary(attempts: AuditAttempt[], catalog: Map<string, CatalogIt
   let focusFailed = 0;
   for (const attempt of probes) {
     const item = catalog.get(itemRef(attempt.setId, attempt.itemId));
-    if (attempt.itemType === 'translate' && item?.answer) {
+    if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
       const verdict = gradeTranslation(attempt.given, currentSpec(item));
       if (verdict.kind !== 'wrong') currentCorrect += 1;
       else if (verdict.focus) focusFailed += 1;
@@ -490,6 +542,32 @@ function delayedSummary(attempts: AuditAttempt[], catalog: Map<string, CatalogIt
     else if (attempt.focus) focusFailed += 1;
     else focusRetained += 1;
   }
+  const sets = new Map<string, {
+    setId: string;
+    topicId: string;
+    role?: string;
+    items: Array<{ id: string; outcomes: string[] }>;
+  }>();
+  for (const item of catalog.values()) {
+    if (!item.topic || !item.role) continue;
+    const set = sets.get(item.setId) ?? {
+      setId: item.setId, topicId: item.topic, role: item.role, items: [],
+    };
+    set.items.push({ id: item.id, outcomes: item.outcomes ?? [] });
+    sets.set(item.setId, set);
+  }
+  const families = probeFamilies([...sets.values()]);
+  const schedulableAttempts: Attempt[] = attempts.map((attempt) => ({
+    ...attempt,
+    responseMode: attempt.responseMode as Attempt['responseMode'],
+    practice: undefined,
+  }));
+  const owed = dueProbes(families, schedulableAttempts, at);
+  const takenPerDay = new Map<string, number>();
+  for (const attempt of probes) {
+    const day = iso(attempt.ts).slice(0, 10);
+    takenPerDay.set(day, (takenPerDay.get(day) ?? 0) + 1);
+  }
   return {
     attempts: delayed.length,
     correct: delayed.filter((attempt) => attempt.correct).length,
@@ -499,6 +577,10 @@ function delayedSummary(attempts: AuditAttempt[], catalog: Map<string, CatalogIt
       currentCorrect,
       focusRetained,
       focusFailed,
+      dueNow: owed.length,
+      overdue: owed.filter((probe) => probe.overdueDays > 0).length,
+      maxOverdueDays: Math.max(0, ...owed.map((probe) => probe.overdueDays)),
+      maxTakenInOneDay: Math.max(0, ...takenPerDay.values()),
     },
   };
 }
@@ -510,6 +592,18 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
   if (!Number.isFinite(exportedAt)) throw new Error('Snapshot exportedAt is missing or invalid.');
   const attempts = [...snapshot.attempts].sort(compareAttempts);
   const review = gradingReview(attempts, options.catalog);
+  const withCatalog = attempts.flatMap((attempt) => {
+    const item = options.catalog.get(itemRef(attempt.setId, attempt.itemId));
+    return item ? [{ attempt, item }] : [];
+  });
+  const writing = attempts.filter((attempt) => attempt.practice?.kind === 'writing');
+  const cycleByTopic: Record<string, string> = {
+    'reisen-verkehr': '1 · Reisen + Einkaufen', 'einkaufen-reklamation': '1 · Reisen + Einkaufen',
+    'gesundheit-arzttermin': '2 · Gesundheit + Arbeit', 'arbeit-beruf': '2 · Gesundheit + Arbeit',
+    'nebensaetze-plaene': '3 · Nebensätze + Biografie', 'biografie-erfahrungen': '3 · Nebensätze + Biografie',
+    'freunde-feste': '4 · Freunde + Lernen', 'lernen-verstehen': '4 · Freunde + Lernen',
+    'aemter-dienstleistungen': '5 · Ämter + Checkpoint',
+  };
   let detail: ItemDetail | undefined;
   if (options.itemRef) {
     const parsed = parseItemRef(options.itemRef);
@@ -537,6 +631,13 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       topics: Object.keys(snapshot.topics ?? {}).length,
       readings: attempts.filter((attempt) => attempt.setId.startsWith('reading:')).length,
       gradingReviewExcluded: review.excluded.size,
+      revisionKnown: attempts.filter((attempt) => attempt.itemRevision !== undefined).length,
+      revisionMismatch: withCatalog.filter(({ attempt, item }) =>
+        revisionKnownMismatch(attempt, item)).length,
+      writingRevisions: writing.length,
+      writingChanged: writing.filter((attempt) =>
+        attempt.practice?.kind === 'writing' &&
+        normalizeTranslation(attempt.practice.draft ?? '') !== normalizeTranslation(attempt.practice.revision ?? '')).length,
     },
     byItemType: performance(attempts, (attempt) => attempt.itemType || 'unknown'),
     byResponseMode: performance(attempts, (attempt) =>
@@ -545,10 +646,27 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? attempt.setId)
       .sort((a, b) => b.attempts - a.attempts || a.name.localeCompare(b.name))
       .slice(0, limit),
+    byCycle: performance(attempts.filter((attempt) => {
+      const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic;
+      return !!topic && !!cycleByTopic[topic];
+    }), (attempt) => {
+      const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? '';
+      return cycleByTopic[topic] ?? 'other';
+    }),
     cards: cardSummary(snapshot.cards),
-    delayed: delayedSummary(attempts, options.catalog),
+    delayed: delayedSummary(attempts, options.catalog, exportedAt),
+    sessionWorkload: {
+      sessions: snapshot.sessions?.length ?? 0,
+      averageReviewed: snapshot.sessions?.length
+        ? snapshot.sessions.reduce((sum, session) => sum + (session.reviewed ?? 0), 0) / snapshot.sessions.length
+        : 0,
+      averageTrained: snapshot.sessions?.length
+        ? snapshot.sessions.reduce((sum, session) => sum + session.trained, 0) / snapshot.sessions.length
+        : 0,
+    },
     gradingCandidates: review.candidates.slice(0, limit),
     focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded),
+    feedback: snapshot.feedback ?? {},
     ...(detail ? { detail } : {}),
   };
 }
@@ -578,6 +696,10 @@ export function renderMarkdown(audit: ProgressAudit): string {
       `${audit.counts.readings} reading-question attempts, ${audit.counts.topics} touched topics.`,
     `${audit.counts.gradingReviewExcluded} rejected production attempt(s) are withheld from ` +
       'focus signals pending linguistic review.',
+    `Revision metadata: ${audit.counts.revisionKnown}/${audit.counts.attempts} attempts known; ` +
+      `${audit.counts.revisionMismatch} known mismatch(es) preserved without regrading.`,
+    `Open writing: ${audit.counts.writingRevisions} structured revision(s), ` +
+      `${audit.counts.writingChanged} changed between drafts.`,
     '',
     '## Attempts by item type',
     '',
@@ -591,6 +713,10 @@ export function renderMarkdown(audit: ProgressAudit): string {
     '',
     ...performanceTable(audit.byTopic),
     '',
+    '## Current A2 two-unit cycles',
+    '',
+    ...performanceTable(audit.byCycle),
+    '',
     '## Delayed and card evidence',
     '',
     `Delayed repeats (≥2 days): ${audit.delayed.correct}/${audit.delayed.attempts} logged correct.`,
@@ -598,6 +724,15 @@ export function renderMarkdown(audit: ProgressAudit): string {
       `historically logged correct; ${audit.delayed.probes.currentCorrect} correct under the current ` +
       `contract; ${audit.delayed.probes.focusRetained} retained the target but missed elsewhere; ` +
       `${audit.delayed.probes.focusFailed} failed the target.`,
+    // Reported bare, not against MAX_PROBES_PER_SESSION: that cap is per *session* and this
+    // count is per *day*, and a day may hold several sessions. Printing "4/3" made a normal
+    // day look like a violated invariant.
+    `Probe workload: ${audit.delayed.probes.dueNow} due now; ${audit.delayed.probes.overdue} ` +
+      `overdue (max ${audit.delayed.probes.maxOverdueDays} day(s)); peak taken in one day: ` +
+      `${audit.delayed.probes.maxTakenInOneDay}.`,
+    `Session workload: ${audit.sessionWorkload.averageReviewed.toFixed(1)} cards reviewed and ` +
+      `${audit.sessionWorkload.averageTrained.toFixed(1)} training items on average across ` +
+      `${audit.sessionWorkload.sessions} session(s).`,
     `Cards: ${audit.cards.graded} graded, ${audit.cards.lapses} lapses across ` +
       `${audit.cards.withLapses} cards.`,
     '',
@@ -643,6 +778,15 @@ export function renderMarkdown(audit: ProgressAudit): string {
     ...audit.focusSignals.map((row) =>
       `| ${md(row.focus)} | ${row.status} | ${row.wrong}/${row.attempts} | ${row.recentWrong} | ` +
       `${row.distinctWrongItems} | ${row.probeWrong} | ${row.recovered ? 'yes' : 'no'} |`),
+    '',
+  );
+  const feedback = Object.values(audit.feedback ?? {}).sort((a, b) => b.ts - a.ts);
+  out.push('## Optional-content feedback', '');
+  if (!feedback.length) out.push('No optional-artifact feedback logged yet.', '');
+  else out.push(
+    '| Artifact | Difficulty | Useful | Wants more |',
+    '| --- | --- | --- | --- |',
+    ...feedback.map((entry) => `| ${md(entry.artifactId)} | ${md(entry.difficulty ?? '—')} | ${entry.useful === undefined ? '—' : entry.useful ? 'yes' : 'no'} | ${entry.wantsMore === undefined ? '—' : entry.wantsMore ? 'yes' : 'no'} |`),
     '',
   );
   if (audit.detail) {

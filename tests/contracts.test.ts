@@ -6,6 +6,7 @@ import { getCurriculum } from '../src/lib/curriculum';
 import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
 import { attemptScore, verifiedOnly } from '../src/lib/scoring';
 import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/store';
+import { parseProgressSnapshot } from '../src/lib/snapshot-schema';
 
 /** The real content files under content/<dir>, parsed — the same source the validator reads. */
 function contentFiles<T>(dir: string): T[] {
@@ -199,13 +200,45 @@ describe('scoring and curriculum contracts', () => {
       .toContain('be alive');
   });
 
-  test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
-    for (const version of [1, 2, 3, 4])
+  test('v1-v5 snapshots remain accepted and malformed partial scores are sanitized', () => {
+    for (const version of [1, 2, 3, 4, 5])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);
     const bad: Attempt = {
       setId: 'x', itemId: 'y', itemType: 'table', correct: false,
       correctParts: 2, totalParts: 0, given: '', ts: 1,
     };
     expect(sanitizeAttempts([bad])[0]?.totalParts).toBeUndefined();
+  });
+
+  // The regression this file previously could not see: the two halves above never met.
+  // `isValidSnapshot` was only ever called with an EMPTY attempts array and `sanitizeAttempts`
+  // directly on a hand-built object, so a parse boundary stricter than the sanitizer it feeds
+  // passed both assertions while rejecting the whole import at runtime.
+  test('a legacy snapshot carrying malformed partial credit survives the import boundary', () => {
+    const legacy = {
+      version: 4,
+      exportedAt: '2026-01-01T00:00:00.000Z',
+      cards: {},
+      attempts: [
+        {
+          setId: 'a1/artikel', itemId: 'bad', itemType: 'table', correct: false,
+          correctParts: 2, totalParts: 0, given: '', ts: 1,
+        },
+        {
+          setId: 'a1/artikel', itemId: 'good', itemType: 'mc', correct: true, given: 'der', ts: 2,
+        },
+      ],
+    };
+
+    expect(isValidSnapshot(legacy)).toBe(true);
+
+    const parsed = parseProgressSnapshot(legacy);
+    const attempts = sanitizeAttempts(parsed.attempts);
+
+    // the malformed row is normalized, not rejected — and the healthy sibling survives with it
+    expect(attempts).toHaveLength(2);
+    expect(attempts[0]?.totalParts).toBeUndefined();
+    expect(attempts[0]?.correctParts).toBeUndefined();
+    expect(attempts[1]?.correct).toBe(true);
   });
 });

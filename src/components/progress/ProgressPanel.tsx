@@ -35,6 +35,26 @@ interface Data {
   topics: TopicsState;
 }
 
+/**
+ * The import boundary validates with Zod, and a ZodError's `message` is a JSON dump of every
+ * issue it found — useless to a learner who picked the wrong file. Say what actually happened.
+ */
+function importErrorReason(error: unknown): { en: string; ru: string } {
+  if (error instanceof SyntaxError) {
+    return { en: 'that file is not JSON.', ru: 'этот файл не является JSON.' };
+  }
+  if (error && typeof error === 'object' && 'issues' in error) {
+    return {
+      en: 'that file is not a valid Deutsch-Atlas progress snapshot.',
+      ru: 'этот файл не является корректным снимком прогресса Deutsch-Atlas.',
+    };
+  }
+  return {
+    en: error instanceof Error ? error.message : String(error),
+    ru: error instanceof Error ? error.message : String(error),
+  };
+}
+
 interface Props {
   nodes: TopicNode[];
   outcomeModes: Record<string, string>;
@@ -179,11 +199,9 @@ export default function ProgressPanel({
           : t('Progress merged.', 'Прогресс объединён.'),
       );
     } catch (e) {
+      const reason = importErrorReason(e);
       setMessage(
-        t(
-          `Import failed: ${e instanceof Error ? e.message : String(e)}`,
-          `Не удалось импортировать: ${e instanceof Error ? e.message : String(e)}`,
-        ),
+        t(`Import failed: ${reason.en}`, `Не удалось импортировать: ${reason.ru}`),
       );
     }
   }

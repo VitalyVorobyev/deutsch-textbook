@@ -7,13 +7,15 @@ import type { TrainingSet } from '../../components/training/MixedTraining';
 import { getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '../../lib/curriculum';
 
-const [nodes, exercises, topics] = await Promise.all([
+const [nodes, exercises, topics, documents] = await Promise.all([
   getTopicNodes(),
   getCollection('exercises'),
   getCollection('topics'),
+  getCollection('documents'),
 ]);
 const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const documentById = new Map(documents.map((document) => [document.id, document.data]));
 
 const sets: TrainingSet[] = exercises.map((e) => {
   const topic = topicById.get(e.data.topic);
@@ -27,6 +29,7 @@ const sets: TrainingSet[] = exercises.map((e) => {
     level: topic.level,
     role: e.data.role,
     items: e.data.items,
+    document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
   };
 });
 ---
