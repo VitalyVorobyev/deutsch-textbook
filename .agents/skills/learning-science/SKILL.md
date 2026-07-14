@@ -184,9 +184,9 @@ sufficient.
   meaning — the validator enforces those bounds, because a long text that is
   quizzed line by line is a long intensive text and never delivers the volume
   input it exists for. Never describe an intensive reading as extensive.
-- **The volume gap is narrowed, not closed:** one extensive reader ships
-  (Lena in Bremen, `content/reading/a1/lena-1-der-erste-tag.yaml`). A pilot is
-  not a series; the series is backlog P5-2. Say so honestly.
+- **The volume gap is narrowed, not closed:** five connected *Lena in Bremen*
+  episodes now ship across A1–A2. That is a small strand, not a complete extensive-reading
+  library; expansion remains backlog P5-2. Say so honestly.
 - **Glossing (§11/§8):** enough glosses that comprehension never breaks — 6–10
   in an intensive text, sparse in an extensive one; an unglossed above-level
   phrase is the main failure mode either way.

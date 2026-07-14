@@ -417,6 +417,11 @@ knowledge that changes interpretation or action.
 The next step should not be a large generic content framework. Five pilots would reveal most of the
 important design constraints:
 
+The 2026-07-13 enrichment pass starts two of them without adding a platform: a six-frame
+Dativ/Akkusativ phrase-card pilot keeps existing word identities intact, and *Lena in Bremen (5)*
+adds a level-controlled cultural episode to the connected reader strand. Both remain deliberately
+small until later retrieval and voluntary reading provide evidence for the next editorial step.
+
 1. **One mission-authored unit revision**  
    Use an existing A1/A2 unit such as appointments. Connect input, retrieval, response and a fresh
    final task without adding mission code.

@@ -1,6 +1,10 @@
 # A2–B1 curriculum blueprint
 
-Status: **A2 is an authoring contract; B1 is a provisional north star** (2026-07-12).
+Status: **The A2 authoring contract is complete; B1 remains a provisional north star** (2026-07-13).
+
+The required A1/A2 spine is now fully authored. Until representative A2 use, the A2 checkpoint and
+delayed evidence are reviewed, new work stays inside the existing levels: optional connected
+readings, cultural context, real-world documents and deliberately selected formulaic chunks.
 
 This is the source of truth for what A2 teaches, in what order, with which identities. It exists
 because the ten remaining A2 units share prerequisites, vocabulary and confusions, and deciding
