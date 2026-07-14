@@ -385,6 +385,7 @@ function gradingReview(
     decisionFor.set(decisionKey(decision.item, decision.given), decision);
 
   const groups = new Map<string, AuditAttempt[]>();
+  const excluded = new Set<string>();
   // Every logged rejected-translate rendering, stale revisions included — a decision on
   // a rendering whose item contract has since changed is applied history, not an orphan.
   const matchable = new Set<string>();
@@ -397,12 +398,21 @@ function gradingReview(
     // A *changed* task contract retains its logged result: replaying it against today's
     // answer key would grade an answer to a question the learner was never asked. An
     // unknown revision is legacy, not changed, and stays in the review.
-    if (revisionKnownMismatch(attempt, item)) continue;
+    if (revisionKnownMismatch(attempt, item)) {
+      // An accept/constrain ruling judges the rendering against the contract the learner
+      // actually faced, so its exclusion survives the paired revision bump — otherwise the
+      // content edit the ruling requires would put the attempt's stored focus right back
+      // into the signals the ruling withheld it from. confirm keeps the as-logged record:
+      // its attribution was real under the answered contract, and recomputing it against
+      // the changed item would replay.
+      const decision = decisionFor.get(decisionKey(ref, attempt.given));
+      if (decision && decision.decision !== 'confirm') excluded.add(attemptKey(attempt));
+      continue;
+    }
     groups.set(ref, [...(groups.get(ref) ?? []), attempt]);
   }
 
   const candidates: GradingCandidate[] = [];
-  const excluded = new Set<string>();
   const refocused = new Map<string, string | undefined>();
   let undecided = 0;
   for (const [ref, rejectedAttempts] of groups) {

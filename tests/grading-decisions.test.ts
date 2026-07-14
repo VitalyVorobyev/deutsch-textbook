@@ -235,6 +235,28 @@ describe('audit with grading decisions', () => {
     expect(audit.gradingCandidates).toEqual([]);
     expect(audit.gradingDecisions).toEqual({ ruled: 1, undecided: 0, orphaned: 0 });
   });
+
+  test('accept exclusion survives the revision bump the ruling itself causes', () => {
+    // The paired content edit bumps the revision, so the logged attempt is a known
+    // mismatch — but the ruling judged the rendering the learner actually faced, so
+    // its stored focus must stay withheld from the signals, not leak back in.
+    const bumped = { ...pizza, revision: 2 };
+    const audit = buildAudit(snapshot([
+      rejectedPizza('Gestern haben wir die Pizza gegessen.', 'haben-sein', 10),
+    ]), {
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(bumped),
+      decisions: [decision({
+        item: 'a2/perfekt:pizza',
+        given: 'Gestern haben wir die Pizza gegessen.',
+        decision: 'accept',
+      })],
+      now: ts(13),
+    });
+
+    expect(audit.counts.gradingReviewExcluded).toBe(1);
+    expect(audit.focusSignals.find((signal) => signal.focus === 'haben-sein')).toBeUndefined();
+  });
 });
 
 describe('checkGradingDecisions', () => {
