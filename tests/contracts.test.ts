@@ -173,6 +173,32 @@ describe('scoring and curriculum contracts', () => {
       .toBe('Excuse me, where is the train station?');
   });
 
+  test('vocabulary distinguishes clothing frames and the two senses of live', () => {
+    type Entry = {
+      de: string;
+      en: string;
+      accept?: string[];
+      valence?: string;
+      note?: { en?: string };
+    };
+    const decks = contentFiles<{ id: string; entries: Entry[] }>('vocab');
+    const clothing = decks.find((deck) => deck.id === 'kleidung-farben')!;
+    const firstSteps = decks.find((deck) => deck.id === 'erste-schritte')!;
+
+    expect(clothing.entries.find((entry) => entry.de === 'anziehen')).toMatchObject({
+      accept: ['sich anziehen'],
+      valence: '+ Akk / sich',
+    });
+    expect(clothing.entries.find((entry) => entry.de === 'ausziehen')).toMatchObject({
+      accept: ['sich ausziehen'],
+      valence: '+ Akk / sich',
+    });
+    expect(firstSteps.entries.find((entry) => entry.de === 'wohnen')?.en)
+      .toContain('home or place');
+    expect(firstSteps.entries.find((entry) => entry.de === 'leben')?.en)
+      .toContain('be alive');
+  });
+
   test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
     for (const version of [1, 2, 3, 4])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);

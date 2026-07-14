@@ -291,6 +291,10 @@ function keyTokensIntact(given: string, item: CatalogItem): boolean {
   const target = tokens(closestTranslationCandidate(given, currentSpec(item)));
   const got = tokens(given);
   const keys = new Set(item.key_tokens.map(bare));
+  const answerHead = bare(tokens(item.answer)[0] ?? '');
+  if (keys.has(answerHead)) {
+    keys.add(answerHead.charAt(0).toLowerCase() + answerHead.slice(1));
+  }
   return target.length === got.length && target.every((token, index) => {
     if (!keys.has(token) && !(index === 0 && keys.has(token.toLowerCase()))) return true;
     return token === got[index] || (index === 0 && token.toLowerCase() === got[index]?.toLowerCase());

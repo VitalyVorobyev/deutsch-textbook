@@ -168,6 +168,37 @@ describe('progress audit', () => {
     expect(audit.counts.gradingReviewExcluded).toBe(1);
   });
 
+  test('mirrors grader casing when a sentence-initial key token moves', () => {
+    const item: CatalogItem = {
+      setId: 'a2/probe-time',
+      id: 'wrong-preposition',
+      type: 'translate',
+      focus: 'um-am-zeit',
+      answer: 'Am Donnerstag mache ich um sechs Uhr Sport.',
+      accept: ['Ich mache am Donnerstag um sechs Uhr Sport.'],
+      key_tokens: ['Am', 'um'],
+    };
+    const audit = buildAudit(snapshot({ attempts: [
+      {
+        setId: item.setId,
+        itemId: item.id,
+        itemType: 'translate',
+        correct: false,
+        given: 'Ich mache im Donnerstag um sechs Uhr Sport.',
+        focus: item.focus,
+        ts: ts(12),
+      },
+    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    expect(audit.gradingCandidates).toEqual([]);
+    expect(audit.counts.gradingReviewExcluded).toBe(0);
+    expect(audit.focusSignals).toContainEqual(expect.objectContaining({
+      focus: 'um-am-zeit',
+      wrong: 1,
+      distinctWrongItems: 1,
+    }));
+  });
+
   test('replays probe translations against the current grading contract', () => {
     const items: CatalogItem[] = [
       { setId: 'a2/probe-time', id: 'accepted', type: 'translate', focus: 'um-am-zeit',
