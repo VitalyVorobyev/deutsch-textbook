@@ -1,0 +1,207 @@
+# Linguistic rulings on rejected translate renderings — the committed memory of the
+# audit's grading-review queue (schema: gradingDecisionSchema in src/lib/schemas.ts;
+# semantics: CLAUDE.md "Drills from progress" and .agents/skills/progress-review).
+#
+#   item:      <set-id>:<item-id> of the translate item
+#   given:     the rendering as logged; matched via normalizeTranslation
+#   decision:  accept    — correct, target-preserving German; must pass today's grader
+#                          (slip-forgiveness, or the item's accept list gains it in the
+#                          same change, with a revision bump)
+#              constrain — good German that bypasses the target; paired with a bilingual
+#                          instruction constraint and a revision bump
+#              confirm   — the rejection was right; attempts re-enter the focus signals
+#                          with attribution recomputed under today's grader
+#   note:      the linguistic reason. Confusions worth a future drill item are recorded
+#              here as "drill note: …" — drill authoring reads them.
+
+- item: a2/drill-mir-mich:uebersetzen-hilf-mir
+  given: "Kanst du mir bitte helfen?"
+  decision: accept
+  note: "Kanst is a non-word one edit from Kannst, outside the graded tokens (key_tokens: mir) — a spelling slip, not a choice. Today's grader forgives it; no accept entry needed."
+  decidedAt: 2026-07-14
+
+- item: a2/drill-mir-mich:uebersetzen-hilf-mir
+  given: "Kanns du mir bitte helfen?"
+  decision: accept
+  note: "Same class: Kanns is a non-word one edit from Kannst, outside the graded tokens. Today's grader forgives it."
+  decidedAt: 2026-07-14
+
+- item: a1/stadt-wege:translate-bahnhof
+  given: "Entschuldigung, wo ist die Station?"
+  decision: confirm
+  note: "Wrong lexis: die Station is a stop (bus, tram, ward), not the taught word for a train station — der Bahnhof. The rejection was right."
+  decidedAt: 2026-07-14
+
+- item: a1/stadt-wege:translate-bahnhof
+  given: "Entschudigung, wie komme ich zum Bahnhof?"
+  decision: confirm
+  note: "A different question: wie komme ich zum Bahnhof? asks for the way, the prompt asks where the station is. Meaning not preserved."
+  decidedAt: 2026-07-14
+
+- item: a1/wohnen:translate-balkon
+  given: "Im Wohnung gibt es einen Balkon"
+  decision: confirm
+  note: "die Wohnung is feminine: in der Wohnung. im contracts in + dem and cannot stand before a feminine noun — a real genus/dative-article error. Drill note: dativ-artikel with feminine nouns (in der …)."
+  decidedAt: 2026-07-14
+
+- item: a1/menschen-familie:translate-person
+  given: "Mein Vater ist Ingeneer. Er ist ruhig und freundlich"
+  decision: confirm
+  note: "Ingeneer is more than one edit from Ingenieur — beyond slip tolerance; a real spelling failure, not a typo."
+  decidedAt: 2026-07-14
+
+- item: a1/menschen-familie:translate-person
+  given: "Main Vater ist Ingineer"
+  decision: confirm
+  note: "Multiple errors (Main for Mein, Ingineer for Ingenieur) and the second sentence is missing entirely."
+  decidedAt: 2026-07-14
+
+- item: a1/erste-schritte:translate-language
+  given: "Ich sprache Russisch und ein bischen Deutsch"
+  decision: confirm
+  note: "sprache is a real conjugation error — the noun die Sprache interfering with ich spreche — plus a second misspelling (bischen). Two divergent tokens is never a slip."
+  decidedAt: 2026-07-14
+
+- item: a1/erste-schritte:translate-language
+  given: "Ich spreche Russisch und ein bischen Deutsch"
+  decision: accept
+  note: "Single non-word slip: bischen for bisschen, one edit, outside any graded token. Today's grader forgives it; no accept entry needed."
+  decidedAt: 2026-07-14
+
+- item: a2/perfekt-haben-sein:uebersetzen-pizza
+  given: "Gestern haben wir die Pizza gegessen"
+  decision: confirm
+  note: "The prompt says a pizza: eine Pizza. die changes definiteness and meaning — a determiner choice, not a slip. The Perfekt itself (haben … gegessen) was right."
+  decidedAt: 2026-07-14
+
+- item: a2/einkaufen-reklamation:uebersetzen-umtauschen-akkusativ
+  given: "Ich möchte den Pullover umtauschen. Er ist mir zu eng."
+  decision: accept
+  note: "zu eng is idiomatic, register-true and target-preserving German for a garment that does not fit — den stays intact. Added to the item's accept list together with the mir-less variant (mirroring the existing klein pair); revision bumped."
+  decidedAt: 2026-07-14
+
+- item: a2/einkaufen-reklamation:uebersetzen-passt-gefaellt
+  given: "Die Jacke passt mir mit der Große, aber sie gefällt meinen Mann nicht"
+  decision: confirm
+  note: "gefallen governs the dative: sie gefällt meinem Mann nicht — meinen Mann is a real case error; mit der Große is garbled (die Größe). Drill note: verben-mit-dativ (gefallen + Dativ)."
+  decidedAt: 2026-07-14
+
+- item: a2/einkaufen-reklamation:uebersetzen-komparativ-jacke
+  given: "Die Jacke ist wärmer als Pullover, aber sie ist teurer"
+  decision: confirm
+  note: "Dropped article after als — als der Pullover — and dropped auch. Drill note: komparativ-als plus artikel-pflicht (the article survives after als)."
+  decidedAt: 2026-07-14
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Der Zug fählt aus"
+  decision: confirm
+  note: "The prompt asks Perfekt: Mein Zug ist ausgefallen. Der Zug fällt aus (misspelled fählt) shifts the tense to Präsens, and Der for Mein drops the possessive — meaning changed twice over."
+  decidedAt: 2026-07-14
+
+- item: a2/reisen-verkehr:uebersetzen-zug-hamburg
+  given: "Ich bin nach Hamburg mit dem Zug gefahren"
+  decision: confirm
+  note: "Neutral adverbial order is modal before local: mit dem Zug nach Hamburg; the learner's order is marked. The haben-sein target (bin … gefahren) was met — re-enters unattributed."
+  decidedAt: 2026-07-14
+
+- item: a2/probe-perfekt-haben-sein:variant-a
+  given: "Die Kinder sind in der Schule gelaufen"
+  decision: confirm
+  note: "'ran to school' needs the directional zur Schule; in der Schule is locative and changes the meaning to running around inside the school. Drill note: wo-wohin with motion verbs."
+  decidedAt: 2026-07-14
+
+- item: a2/wohnen-umzug-produktion:uebersetzen-stuhl-akkusativ-objekt
+  given: "Nine stellt den Stuhl in der Küche"
+  decision: confirm
+  note: "stellen answers Wohin? → in die Küche; the dative in der is a wo-wohin error, outside this item's akkusativ-artikel focus (den was right). Drill note: wo-wohin after placement verbs."
+  decidedAt: 2026-07-14
+
+- item: a2/wohnen-umzug:uebersetzen-kueche-minimalpaar
+  given: "Nina steht in der Küche. Tobias geht in die Küche"
+  decision: accept
+  note: "stehen is an idiomatic German rendering of locative 'is' for a person, and both graded articles (der/die) are exactly right — the wechsel-akk-dat target is fully preserved. Added to the item's accept list; revision bumped."
+  decidedAt: 2026-07-14
+
+- item: a2/wohnen-umzug:uebersetzen-kiste-keller
+  given: "Tobias stellt den Kisten ins Keller"
+  decision: confirm
+  note: "die Kiste is feminine (Akkusativ unchanged: die Kiste), and der Keller is masculine → in den Keller; ins contracts a neuter in + das. Drill notes: genus, wechsel-akk-dat."
+  decidedAt: 2026-07-14
+
+- item: a1/checkpoint-a1:uebersetzen-fahrrad
+  given: "Wir fahren mit dem Fahrrad ins Supermarkt"
+  decision: confirm
+  note: "der Supermarkt → zum Supermarkt (or in den Supermarkt); ins is a neuter contraction. Drill note: dativ-praepositionen (zu + Dativ) / genus."
+  decidedAt: 2026-07-14
+
+- item: a2/probe-trennbare-verben:variant-a
+  given: "Am Samstag bringt meine Freundin den Kindern mit"
+  decision: confirm
+  note: "mitbringen takes an accusative object with the possessive from the prompt — ihre Kinder; den Kindern is dative plural and drops the possessive. The bracket (bringt … mit) was met — re-enters per today's attribution. Drill notes: possessivartikel, wechsel-akk-dat."
+  decidedAt: 2026-07-14
+
+- item: a2/probe-termine-vereinbaren:variant-a
+  given: "Der Dienstag passt uns nicht. Geht es am Mittwoch?"
+  decision: accept
+  note: "The item's accept list already carries this rendering; the rejection predates it. No content change."
+  decidedAt: 2026-07-14
+
+- item: a2/probe-alltag-tagesablauf:variant-a
+  given: "Am Donnerstag um sechs Uhr mache ich Sport"
+  decision: accept
+  note: "Same class: the item's accept list already carries this fronted variant; the rejection predates it. No content change."
+  decidedAt: 2026-07-14
+
+- item: a1/alltag-zeit:translate-januar
+  given: "Im Januar lerne ich der ganze Tag Deutsch"
+  decision: confirm
+  note: "'every day' = jeden Tag, an accusative time expression; der ganze Tag is both the wrong phrase (all day) and the wrong case. Drill note: accusative time expressions."
+  decidedAt: 2026-07-14
+
+- item: a1/alltag-zeit:translate-sonntag
+  given: "Ich arbeite am Sonntag nie"
+  decision: confirm
+  note: "nie (never) overstates the prompt's nicht — a lexical meaning shift, not a negation-placement error. Re-enters per today's attribution."
+  decidedAt: 2026-07-14
+
+- item: a2/drill-haben-sein:uebersetzen-geblieben
+  given: "Gestern sind we zu Hause geblieben"
+  decision: confirm
+  note: "English-interference we for wir — two edits, beyond slip tolerance. The haben-sein target (sind … geblieben) was met — unattributed."
+  decidedAt: 2026-07-14
+
+- item: a2/termine-vereinbaren:uebersetzen-absagen
+  given: "Ich möchte einen Termin absagen"
+  decision: confirm
+  note: "The prompt's 'the appointment' requires den Termin; einen changes definiteness, and einen/den is a closed-class choice, never a slip. Outside the trennbar-modal focus (möchte … absagen was right) — unattributed."
+  decidedAt: 2026-07-14
+
+- item: a2/modalverben:uebersetzen-helfen-frage
+  given: "Kannst do mir helfen?"
+  decision: accept
+  note: "Non-word slip: do for du, one edit, outside the graded tokens (mir was right). Scorer forgiveness endorsed; no content change."
+  decidedAt: 2026-07-14
+
+- item: a2/modalverben:uebersetzen-muessen
+  given: "Ich muss heite arbeiten"
+  decision: accept
+  note: "Non-word slip: heite for heute, one edit, outside the graded tokens (muss … arbeiten intact). No content change."
+  decidedAt: 2026-07-14
+
+- item: a2/drill-der-dem-den:uebersetzen-zum-arzt
+  given: "Sie geht zum Artzt"
+  decision: accept
+  note: "Non-word slip: Artzt for Arzt, one edit, outside the graded token (zum was right). No content change."
+  decidedAt: 2026-07-14
+
+- item: a2/dativ:uebersetzen-helfen
+  given: "Ich hilfe meinem Bruder"
+  decision: accept
+  note: "Endorsed, with a caveat: hilfe is plausibly a chosen stem-change overgeneralization (du hilfst → ✗ ich hilfe), not a pure typo. It is rightly unattributable here — the item grades verben-mit-dativ (meinem was right), and pinning the verb would create false attributions — so the signal lives in this note. Drill note: verb-endungen — stem change is singular du/er only, never ich."
+  decidedAt: 2026-07-14
+
+- item: a2/drill-mir-mich:uebersetzen-anrufen
+  given: "Ich rufe dich Morgen an"
+  decision: accept
+  note: "Orthographic slip: morgen (tomorrow) is an adverb and lowercase; capitalized it is the noun der Morgen. The graded akkusativ-pronomen (dich) was met; the correction shown to the learner suffices. No content change."
+  decidedAt: 2026-07-14

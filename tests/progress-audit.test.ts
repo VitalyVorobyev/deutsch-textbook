@@ -338,7 +338,7 @@ describe('progress audit', () => {
     expect(reverse).toEqual(forward);
   });
 
-  test('caps review candidates and focus signals and renders item detail on demand', () => {
+  test('caps focus signals but never the review queue, and renders item detail on demand', () => {
     const items: CatalogItem[] = [];
     const attempts: AuditAttempt[] = [];
     for (let index = 0; index < 12; index++) {
@@ -361,7 +361,9 @@ describe('progress audit', () => {
       now: ts(13),
       itemRef: 'a2/x:i0',
     });
-    expect(audit.gradingCandidates).toHaveLength(10);
+    // The queue is deliberately uncapped: a queue that hides rows cannot drain, and a
+    // hidden row once shipped a plan sized to a fourteen-rendering mirage of a 32-row queue.
+    expect(audit.gradingCandidates).toHaveLength(12);
     expect(audit.focusSignals).toHaveLength(10);
     expect(audit.detail?.attempts).toHaveLength(1);
     expect(renderMarkdown(audit)).toContain('Item detail');
