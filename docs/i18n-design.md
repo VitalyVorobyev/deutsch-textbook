@@ -16,8 +16,20 @@ The system has two language questions that look like one:
 They are independent and must never be conflated. A learner may want German chrome (immersion) with
 Russian explanations; a Ukrainian speaker may want Ukrainian chrome with Ukrainian explanations; a
 teacher demoing the app may want English chrome over any content language. **Full immersion is
-simply `uiLang: 'de'`** — which is today's exact UI, and stays the default. That makes P8-1 a
-zero-visual-change PR by construction: the feature ships dormant, and turning it on is a choice.
+simply `uiLang: 'de'`** — which is today's exact UI, and stays the default.
+
+**The classification rule that makes the default safe: a string is chrome iff it is German
+today.** The current UI is a two-tongue hybrid — German furniture (nav, `GRADE_BUTTONS`,
+`VerdictChip`) plus helper text that follows the explanation language ("Reveal/Показать" in
+`FlashcardSession`, section labels in `TopicProgressList`). Only the German-today strings enter
+the chrome table; a string that follows `ExplainLang` today **stays an `ExplainLang` surface** —
+the P8-2/P8-3 sweep moves it into a `pick()` record, never into chrome. Under that rule, default
+`uiLang: 'de'` is zero-visual-change *by construction*: chrome strings render the German they
+already are, helper strings keep following the explanation language, and nothing flips for a
+learner who never chose a UI language. (Seeding `UiLang` from `ExplainLang` was considered and
+rejected: it would flip the German furniture to EN/RU for existing users — a far larger change.)
+If the owner later wants helper text German too, that is a future explicit decision, not a side
+effect of this migration.
 
 ## P8-1 — the strings module
 

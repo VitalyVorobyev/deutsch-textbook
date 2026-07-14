@@ -223,7 +223,10 @@ Per [i18n-design.md](i18n-design.md): `src/lib/strings.ts` with `UiLang` (`de | 
 `t(key, uiLang)` and a `useUiLang()` hook; `<html data-ui-lang>` applied pre-paint; per-profile
 keys `da:lang:<profileId>` / `da:uilang:<profileId>` with the legacy device-level `da:lang` copied
 forward on first read (the legacy key remains as the device default for other profiles); static
-Astro chrome rendered as CSS-toggled spans. Default `uiLang: 'de'` — zero visual change.
+Astro chrome rendered as CSS-toggled spans. Default `uiLang: 'de'` — zero visual change under the
+classification rule in [i18n-design.md](i18n-design.md): a string is chrome iff it is German
+today; helper text that follows the explanation language stays an `ExplainLang` surface and is
+never reclassified by the sweep.
 
 - Accept: the default build is visually unchanged; switching profiles re-applies both language
   attributes; the copy-forward migration is tested.
