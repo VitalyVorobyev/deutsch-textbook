@@ -14,6 +14,9 @@ items:
     prompt_en: "What is Nina waiting for? — For the parcel. She has been waiting for it since Monday."
     prompt_ru: "Чего ждёт Нина? — Посылку. Она ждёт её с понедельника."
     answer: "Worauf wartet Nina? — Auf das Paket. Sie wartet seit Montag darauf."
+    # Fronting the time phrase is ordinary V2, not an error. Authoring it keeps the scorer from
+    # presenting a valid word-order choice as a failure of the rule the probe measures.
+    accept: ["Worauf wartet Nina? — Auf das Paket. Seit Montag wartet sie darauf."]
     key_tokens: ["Worauf", "darauf"]
     explain: { en: "warten selects auf, and auf begins with a vowel: the question fuses to worauf and the thing-reference to darauf.", ru: "warten требует auf, а auf начинается с гласной: вопрос сращивается в worauf, а отсылка к предмету — в darauf." }
   - id: probe-musik
@@ -24,6 +27,7 @@ items:
     prompt_en: "What is Paul interested in? — In music. He has been interested in it for years."
     prompt_ru: "Чем интересуется Пауль? — Музыкой. Он интересуется ею уже много лет."
     answer: "Wofür interessiert sich Paul? — Für Musik. Er interessiert sich seit Jahren dafür."
+    accept: ["Wofür interessiert sich Paul? — Für Musik. Seit Jahren interessiert er sich dafür."]
     key_tokens: ["Wofür", "dafür"]
     explain: { en: "sich interessieren selects für, and für begins with a consonant: no linking r, so wofür and dafür.", ru: "sich interessieren требует für, а für начинается с согласной: связующей r нет — wofür и dafür." }
   - id: probe-haus-am-meer
@@ -34,5 +38,6 @@ items:
     prompt_en: "What does Frau Weber dream of? — Of a house by the sea. She dreams of it every night."
     prompt_ru: "О чём мечтает госпожа Вебер? — О доме у моря. Она мечтает об этом каждую ночь."
     answer: "Wovon träumt Frau Weber? — Von einem Haus am Meer. Sie träumt jede Nacht davon."
+    accept: ["Wovon träumt Frau Weber? — Von einem Haus am Meer. Jede Nacht träumt sie davon."]
     key_tokens: ["Wovon", "davon"]
     explain: { en: "träumen selects von + Dativ. von begins with a consonant, so the forms are wovon and davon — not worüber/darüber, however natural 'about' sounds.", ru: "träumen требует von + Dativ. von начинается с согласной, поэтому формы — wovon и davon, а не worüber/darüber, как подсказывало бы русское «о чём»." }

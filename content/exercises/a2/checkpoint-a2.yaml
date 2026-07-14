@@ -227,6 +227,10 @@ items:
     prompt_en: "I often think about it, but I rarely think about him."
     prompt_ru: "Я часто думаю об этом (о поездке), но редко думаю о нём (о человеке)."
     answer: "Ich denke oft daran, aber ich denke selten an ihn."
+    # Dropping the repeated `ich denke` is the more natural German, and it preserves both graded
+    # tokens. Without it the ellipsis is scored wrong — and, in a checkpoint, logged as a
+    # da-wo-woerter failure the learner did not commit.
+    accept: ["Ich denke oft daran, aber selten an ihn."]
     key_tokens: ["daran", "ihn"]
     explain: { en: "denken selects an. The trip is a thing, so it contracts into daran; the man is a person, so the preposition keeps a pronoun: an ihn.", ru: "denken требует an. Поездка — предмет, поэтому она стягивается в daran; мужчина — человек, поэтому предлог сохраняется с местоимением: an ihn." }
   # --- Schreiben ---

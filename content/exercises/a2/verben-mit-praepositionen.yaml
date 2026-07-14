@@ -83,7 +83,12 @@ items:
     prompt_en: "What are you waiting for? — For the answer."
     prompt_ru: "Чего вы ждёте? — Ответа."
     answer: "Worauf wartet ihr? — Auf die Antwort."
-    accept: ["Worauf warten Sie? — Auf die Antwort."]
+    # English "you" does not choose a person, so du, ihr and Sie are all faithful renderings of
+    # the prompt. This item grades `Worauf`, not the verb ending — failing a learner over a
+    # person the prompt never fixed teaches them nothing about da-/wo- words.
+    accept:
+      - "Worauf warten Sie? — Auf die Antwort."
+      - "Worauf wartest du? — Auf die Antwort."
     key_tokens: ["Worauf"]
     explain: { en: "warten selects auf; a question about a thing is therefore worauf.", ru: "warten требует auf; поэтому вопрос о предмете — worauf." }
   - id: translate-person-sache
