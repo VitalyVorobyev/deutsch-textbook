@@ -321,3 +321,7 @@ listening purpose, makes it worse.
 - **Learning metrics rule.** When judging whether anything "works", delayed
   retention and novel transfer are the criteria; engagement numbers are never
   the success measure.
+- **Probe/pacing changes must protect measurement validity.** Probes run before
+  practice (practice first contaminates the interval), a catch-up must never
+  stack so many probes that fatigue confounds the result, and a seen variant is
+  never re-presented — that measures recognition of the item, not retention.
