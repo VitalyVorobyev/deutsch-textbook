@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import {
+  blockedByEarlier,
   checkpointCovered,
   checkpointOutcomeResults,
   dueCheckpoint,
@@ -200,6 +201,26 @@ describe('dueCheckpoint', () => {
       attempt('old-2', 301, { setId: 'a2/checkpoint-a2' }),
     ]);
     expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+  });
+
+  // A half-finished A2 whose A1 is still open must not read as actionable anywhere: Heute sends
+  // the learner back to A1 (dueCheckpoint takes the LOWEST incomplete level), so a Lernpfad card
+  // offering "Continue" on A2 would be the same cross-surface disagreement in a new costume.
+  test('an earlier incomplete checkpoint still blocks a partially-taken later one', () => {
+    const a2 = checkpoints.find((c) => c.setId === 'a2/checkpoint-a2')!;
+    const attempts = [
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      // A1 never attempted; A2 opened out of order and partially answered
+      attempt('old-1', 300, { setId: 'a2/checkpoint-a2' }),
+    ];
+    const ctx = ctxOf(attempts);
+
+    // A2 has a summary and is not covered — but A1 is what Heute offers …
+    expect(checkpointCovered(a2, attempts)).toBe(false);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a1/checkpoint-a1');
+    // … so every surface must see A2 as blocked by A1, not as the next thing to do.
+    expect(blockedByEarlier(a2, checkpoints, ctx)?.setId).toBe('a1/checkpoint-a1');
   });
 
   // The Lernpfad card used to tick a checkpoint off on the mere existence of a summary — fine

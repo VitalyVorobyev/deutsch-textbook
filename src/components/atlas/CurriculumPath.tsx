@@ -146,19 +146,12 @@ function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoin
       <a href={checkpoint.path} className="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold hover:border-amber-500 dark:border-stone-600">{lang === 'ru' ? 'Ещё раз →' : 'Retake →'}</a>
     </section>;
   }
-  // Taken, but the set has grown since. `dueCheckpoint` is reoffering it on Heute, so this card
-  // must not tick it off — it says what is left and sends the learner to finish it.
-  if (summary) {
-    return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
-      <div>
-        <h2 className="font-semibold">{checkpoint.title}</h2>
-        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru'
-          ? `С прошлой попытки здесь появились новые задания: выполнено ${summary.answered} из ${summary.total}.`
-          : `There are new tasks since your last attempt: ${summary.answered} of ${summary.total} done.`}</p>
-      </div>
-      <a href={checkpoint.path} className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">{lang === 'ru' ? 'Продолжить →' : 'Continue →'}</a>
-    </section>;
-  }
+  // Blocked/waiting is checked BEFORE the partial-attempt card below, and the order is the whole
+  // point: `dueCheckpoint` offers the *lowest* incomplete checkpoint, so a half-finished A2 whose
+  // A1 is still open is not what Heute is pointing at. Putting the actionable card first would
+  // hand the learner a live "Continue →" for A2 while Heute sent them back to A1 — the very
+  // cross-surface disagreement `blockedByEarlier` exists to prevent. (A *covered* checkpoint is
+  // handled above and needs no gate: it is done, and saying so cannot mislead anyone.)
   if (remaining > 0 || blockedBy) {
     const waiting = remaining > 0
       ? (lang === 'ru' ? `Ещё ${remaining} ${remaining === 1 ? 'урок' : remaining < 5 ? 'урока' : 'уроков'} до контрольной точки ${checkpoint.level}.` : `${remaining} lesson${remaining === 1 ? '' : 's'} to go before the ${checkpoint.level} checkpoint.`)
@@ -169,6 +162,19 @@ function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoin
         <p className="mt-1 text-sm text-stone-500">{waiting}</p>
       </div>
       <a href={checkpoint.path} className="text-sm font-medium text-stone-400 hover:text-amber-700 hover:underline dark:hover:text-amber-300">{lang === 'ru' ? 'Всё равно открыть' : 'Open anyway'}</a>
+    </section>;
+  }
+  // Taken, but the set has grown since — and nothing earlier is blocking it, so this is exactly
+  // what `dueCheckpoint` is offering on Heute. Say what is left rather than ticking it off.
+  if (summary) {
+    return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+      <div>
+        <h2 className="font-semibold">{checkpoint.title}</h2>
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru'
+          ? `С прошлой попытки здесь появились новые задания: выполнено ${summary.answered} из ${summary.total}.`
+          : `There are new tasks since your last attempt: ${summary.answered} of ${summary.total} done.`}</p>
+      </div>
+      <a href={checkpoint.path} className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">{lang === 'ru' ? 'Продолжить →' : 'Continue →'}</a>
     </section>;
   }
   return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">

@@ -114,6 +114,9 @@ items:
     prompt_en: "Mia dreams of the journey. She often dreams of it."
     prompt_ru: "Миа мечтает о путешествии. Она часто мечтает об этом."
     answer: "Mia träumt von der Reise. Sie träumt oft davon."
+    # Fronting the frequency adverb is ordinary V2. The item measures which preposition träumen
+    # governs, not where `oft` sits, so the middle-field order must not decide the score.
+    accept: ["Mia träumt von der Reise. Oft träumt sie davon."]
     key_tokens: ["von", "davon"]
     explain: { en: "träumen selects von, so the thing reference is davon—not darüber, however natural 'about it' sounds.", ru: "träumen требует von, поэтому отсылка к предмету — davon, а не darüber, как подсказывало бы русское «об этом»." }
   - id: mc-zuvor
