@@ -47,8 +47,10 @@ before another unit is written.
 
 ## Current — Phase 6: learning quality — finish A2 on honest signal
 
-Instrument first, then content. The 2026-07-14 audit shows fourteen rejected production renderings
-awaiting a linguistic ruling with 35 attempts withheld from the focus signals behind them, probe
+Instrument first, then content. The 2026-07-14 audit shows thirty-two rejected production
+renderings awaiting a linguistic ruling with 35 attempts withheld from the focus signals behind
+them (its own display showed fourteen — the queue section's silent top-ten cap, removed by P6-1,
+was hiding the rest), probe
 debt that will compound once all seventeen A2 families arm, and the worst weak focus staying weak
 *despite an existing drill*. A drill authored against a distorted weak-focus table drills the wrong
 confusion, so P6-1/P6-2 precede P6-4/P6-5. The phase's exit criterion is **the B1 gate** in
@@ -63,9 +65,10 @@ keyed per topic.
 ### P6-1 · Grading-decisions instrument — `todo` (M)
 
 The grading-review queue is derived from the attempt log and has no memory: there is no place to
-record a linguistic ruling, so the queue can never drain. Fourteen rejected renderings across ten
-`translate` items currently hold 35 production attempts out of the focus signals. Give rulings a
-committed home.
+record a linguistic ruling, so the queue can never drain. Thirty-two rejected renderings across
+twenty-eight `translate` items currently hold 35 production attempts out of the focus signals —
+the audit's queue section displays only the top ten items, a silent cap this item also removes: a
+queue that hides rows cannot drain. Give rulings a committed home.
 
 - `data/grading-decisions.yaml`, with a Zod schema in `src/lib/schemas.ts`: entries
   `{item: <setId>:<itemId>, given, decision: accept|constrain|confirm, note, decidedAt}`; `given`
@@ -96,9 +99,10 @@ committed home.
   re-enters **unattributed** (tests in `tests/`); the validator fails on a dangling item ref and on
   an accept-decided rendering the grader rejects, and warns on an orphan.
 
-### P6-2 · Triage the fourteen queued renderings — `todo` (M)
+### P6-2 · Triage the queued renderings — `todo` (M)
 
-All fourteen, using `--item <set>:<item>` evidence: each rendering gets a linguistic ruling in
+All of them — thirty-two once the queue is uncapped — using `--item <set>:<item>` evidence: each
+rendering gets a linguistic ruling in
 `data/grading-decisions.yaml` and — for accept/constrain — its paired content edit and `revision`
 bump in the same change. Notes record any real confusion worth a future drill item. After the
 merge: rerun `bun run progress:audit --profile vitaly` and re-read the weak-focus table **before

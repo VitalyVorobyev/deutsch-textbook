@@ -141,7 +141,7 @@ silently create verified evidence.
 ## Current milestone — Phase 6: learning quality — finish A2 on honest signal
 
 The newest audit (2026-07-14, 879 attempts) does not show a content shortage; it shows an
-instrument backlog. Fourteen rejected production renderings await a linguistic ruling, and 35
+instrument backlog. Thirty-two rejected production renderings await a linguistic ruling, and 35
 production attempts are withheld from the focus signals until they get one — the review queue is
 derived from the attempt log and has no memory, so it can never drain. Nine probes are due against
 a three-per-session cap that will compound once all seventeen A2 families arm. And the worst weak
@@ -150,7 +150,7 @@ instrument-first: a drill authored against a distorted weak-focus table drills t
 
 - **P6-1 · Grading-decisions instrument** — a committed home for linguistic rulings, so the review
   queue reports only what is genuinely undecided.
-- **P6-2 · Triage the fourteen queued renderings** — every rendering gets its ruling and its paired
+- **P6-2 · Triage the queued renderings** — every rendering gets its ruling and its paired
   content edit; the audit is rerun before anything else is authored.
 - **P6-3 · Probe catch-up pacing** — a Heute "Probe-Rückstand" card drains probe debt in
   measurement-clean probes-only runs; the ordinary per-session cap stays.
