@@ -21,6 +21,8 @@ import {
   type TranslationSpec,
 } from '../src/lib/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
+import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
+import type { GradingDecision } from '../src/lib/schemas';
 import { dueProbes, probeFamilies } from '../src/lib/probes';
 import type { Attempt } from '../src/lib/store';
 
@@ -181,6 +183,14 @@ export interface ProgressAudit {
   };
   sessionWorkload: { sessions: number; averageReviewed: number; averageTrained: number };
   gradingCandidates: GradingCandidate[];
+  gradingDecisions: {
+    /** decisions that matched a logged rejected rendering of their item */
+    ruled: number;
+    /** queueable renderings still awaiting a linguistic ruling */
+    undecided: number;
+    /** decisions matching no logged rendering (content or normalization moved on) */
+    orphaned: number;
+  };
   focusSignals: FocusSignal[];
   feedback: AuditSnapshot['feedback'];
   detail?: ItemDetail;
@@ -189,6 +199,8 @@ export interface ProgressAudit {
 export interface AuditOptions {
   snapshotPath: string;
   catalog: Map<string, CatalogItem>;
+  /** committed linguistic rulings (data/grading-decisions.yaml) */
+  decisions?: GradingDecision[];
   now?: number;
   limit?: number;
   itemRef?: string;
@@ -352,13 +364,36 @@ function attemptKey(attempt: AuditAttempt): string {
 function gradingReview(
   attempts: AuditAttempt[],
   catalog: Map<string, CatalogItem>,
-): { candidates: GradingCandidate[]; excluded: Set<string> } {
+  decisions: GradingDecision[],
+): {
+  candidates: GradingCandidate[];
+  excluded: Set<string>;
+  /**
+   * Confirmed attempts re-enter the focus signals with attribution recomputed under
+   * today's grading contract — never with the stored historical `focus` tag. Many
+   * renderings are queued precisely because today's grader leaves the divergence
+   * outside the targeted focus; a tag stored by an older grader would inject exactly
+   * the false entry the weakness signal must not contain.
+   */
+  refocused: Map<string, string | undefined>;
+  ruled: number;
+  undecided: number;
+  orphaned: number;
+} {
+  const decisionFor = new Map<string, GradingDecision>();
+  for (const decision of decisions)
+    decisionFor.set(decisionKey(decision.item, decision.given), decision);
+
   const groups = new Map<string, AuditAttempt[]>();
+  // Every logged rejected-translate rendering, stale revisions included — a decision on
+  // a rendering whose item contract has since changed is applied history, not an orphan.
+  const matchable = new Set<string>();
   for (const attempt of attempts) {
     if (attempt.itemType !== 'translate' || attempt.correct) continue;
     const ref = itemRef(attempt.setId, attempt.itemId);
     const item = catalog.get(ref);
     if (!item?.answer || item.type !== 'translate') continue;
+    matchable.add(decisionKey(ref, attempt.given));
     // A *changed* task contract retains its logged result: replaying it against today's
     // answer key would grade an answer to a question the learner was never asked. An
     // unknown revision is legacy, not changed, and stays in the review.
@@ -368,6 +403,8 @@ function gradingReview(
 
   const candidates: GradingCandidate[] = [];
   const excluded = new Set<string>();
+  const refocused = new Map<string, string | undefined>();
+  let undecided = 0;
   for (const [ref, rejectedAttempts] of groups) {
     const item = catalog.get(ref)!;
     const renderings = new Map<string, RejectedRendering & { attempts: AuditAttempt[] }>();
@@ -401,15 +438,31 @@ function gradingReview(
         );
       }
     }
+    const queuedRenderings: (RejectedRendering & { attempts: AuditAttempt[] })[] = [];
     for (const rendering of renderings.values()) {
       if (rendering.count > 1) rendering.reasons.push('the same rejected rendering recurs');
       rendering.reasons = [...new Set(rendering.reasons)].sort();
-      if (rendering.reasons.length) {
-        for (const attempt of rendering.attempts) excluded.add(attemptKey(attempt));
+      // Renderings without a queue reason keep today's behaviour: they feed the focus
+      // signals exactly as logged and are never the decisions file's business.
+      if (!rendering.reasons.length) continue;
+
+      const decision = decisionFor.get(decisionKey(ref, rendering.given));
+      if (decision?.decision === 'confirm') {
+        // The rejection was right: the exclusion lifts. Attribution is recomputed
+        // under today's grader (see the `refocused` contract above).
+        for (const attempt of rendering.attempts) {
+          const verdict = gradeTranslation(attempt.given, currentSpec(item));
+          refocused.set(attemptKey(attempt), verdict.kind === 'wrong' ? verdict.focus : undefined);
+        }
+        continue;
       }
+      // Undecided renderings stay withheld pending review; accept/constrain rulings
+      // keep them withheld for good — they were never the learner's grammar errors.
+      for (const attempt of rendering.attempts) excluded.add(attemptKey(attempt));
+      if (decision) continue;
+      undecided += 1;
+      queuedRenderings.push(rendering);
     }
-    const queuedRenderings = [...renderings.values()]
-      .filter((rendering) => rendering.reasons.length);
     if (queuedRenderings.length === 0) continue;
 
     candidates.push({
@@ -433,7 +486,9 @@ function gradingReview(
     const bLatest = b.rejected[0]?.latestAt ?? '';
     return bCount - aCount || bLatest.localeCompare(aLatest) || a.ref.localeCompare(b.ref);
   });
-  return { candidates, excluded };
+  const ruled = decisions
+    .filter((decision) => matchable.has(decisionKey(decision.item, decision.given))).length;
+  return { candidates, excluded, refocused, ruled, undecided, orphaned: decisions.length - ruled };
 }
 
 function focusSignals(
@@ -441,11 +496,18 @@ function focusSignals(
   exportedAt: number,
   limit: number,
   excluded: Set<string>,
+  refocused: Map<string, string | undefined>,
 ): FocusSignal[] {
   const groups = new Map<string, AuditAttempt[]>();
   for (const attempt of attempts) {
-    if (!attempt.focus || !isVerifiedEvidence(attempt) || excluded.has(attemptKey(attempt))) continue;
-    groups.set(attempt.focus, [...(groups.get(attempt.focus) ?? []), attempt]);
+    if (!isVerifiedEvidence(attempt)) continue;
+    const key = attemptKey(attempt);
+    if (excluded.has(key)) continue;
+    // A confirm-ruled attempt carries the attribution today's grader gives it, never
+    // the tag an older grader stored — see the `refocused` contract in gradingReview.
+    const focus = refocused.has(key) ? refocused.get(key) : attempt.focus;
+    if (!focus) continue;
+    groups.set(focus, [...(groups.get(focus) ?? []), attempt]);
   }
   const recentStart = exportedAt - RECENT_DAYS * DAY;
   return [...groups.entries()]
@@ -591,7 +653,7 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
   const exportedAt = Date.parse(snapshot.exportedAt);
   if (!Number.isFinite(exportedAt)) throw new Error('Snapshot exportedAt is missing or invalid.');
   const attempts = [...snapshot.attempts].sort(compareAttempts);
-  const review = gradingReview(attempts, options.catalog);
+  const review = gradingReview(attempts, options.catalog, options.decisions ?? []);
   const withCatalog = attempts.flatMap((attempt) => {
     const item = options.catalog.get(itemRef(attempt.setId, attempt.itemId));
     return item ? [{ attempt, item }] : [];
@@ -664,8 +726,16 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
         ? snapshot.sessions.reduce((sum, session) => sum + session.trained, 0) / snapshot.sessions.length
         : 0,
     },
-    gradingCandidates: review.candidates.slice(0, limit),
-    focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded),
+    // Never capped: a queue that hides rows cannot drain — the top-10 display cap is
+    // how "fourteen queued renderings" shipped as a plan while 32 existed. Decided
+    // rows leave the section, so it shrinks naturally instead.
+    gradingCandidates: review.candidates,
+    gradingDecisions: {
+      ruled: review.ruled,
+      undecided: review.undecided,
+      orphaned: review.orphaned,
+    },
+    focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded, review.refocused),
     feedback: snapshot.feedback ?? {},
     ...(detail ? { detail } : {}),
   };
@@ -695,7 +765,12 @@ export function renderMarkdown(audit: ProgressAudit): string {
     `Engagement: ${audit.counts.attempts} attempts, ${audit.counts.sessions} sessions, ` +
       `${audit.counts.readings} reading-question attempts, ${audit.counts.topics} touched topics.`,
     `${audit.counts.gradingReviewExcluded} rejected production attempt(s) are withheld from ` +
-      'focus signals pending linguistic review.',
+      'focus signals (ruled accept/constrain, or awaiting linguistic review).',
+    `Grading rulings: ${audit.gradingDecisions.ruled} rendering(s) ruled; ` +
+      `${audit.gradingDecisions.undecided} awaiting linguistic review` +
+      (audit.gradingDecisions.orphaned
+        ? `; ${audit.gradingDecisions.orphaned} ruling(s) match no logged rendering (orphaned).`
+        : '.'),
     `Revision metadata: ${audit.counts.revisionKnown}/${audit.counts.attempts} attempts known; ` +
       `${audit.counts.revisionMismatch} known mismatch(es) preserved without regrading.`,
     `Open writing: ${audit.counts.writingRevisions} structured revision(s), ` +
@@ -841,6 +916,7 @@ export function run(argv = process.argv.slice(2), root = process.cwd()): string 
   const audit = buildAudit(snapshot, {
     snapshotPath: relative(root, snapshotPath) || snapshotPath,
     catalog: loadExerciseCatalog(root),
+    decisions: loadGradingDecisions(root),
     itemRef: args.item,
   });
   return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit);

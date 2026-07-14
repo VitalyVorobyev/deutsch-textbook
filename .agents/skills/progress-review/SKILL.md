@@ -35,19 +35,26 @@ scorer, the validator or the manifest check (see backlog.md). Order of suspicion
 
 ## 3. Grading-review rulings
 
-Each rejected rendering in the audit's queue gets one linguistic ruling:
+Each rejected rendering in the audit's queue gets one linguistic ruling, committed to
+`data/grading-decisions.yaml` (`{item, given, decision, note, decidedAt}`; `given` is matched via
+`normalizeTranslation`). The queue is derived from the attempt log and has no memory — the
+committed ruling is what makes it drain. A decided rendering leaves the queue; the audit's
+"Grading rulings" line counts ruled vs awaiting.
 
-- **accept** — correct, target-preserving German → add it to the item's `accept` list and bump
-  `revision`.
+- **accept** — correct, target-preserving German. Paired in the same change: add it to the item's
+  `accept` list and bump `revision` — unless the scorer's slip-forgiveness already covers it (the
+  queue row says "current grader no longer rejects this response"), in which case the ruling alone
+  suffices. Either way `bun run validate` re-grades the rendering and fails a stale claim. The
+  attempts stay excluded from focus signals: they were never grammar errors.
 - **constrain** — good German that bypasses the target → add a bilingual `instruction` constraint
-  and bump `revision`.
-- **confirm** — the rejection was right → no content change; the row clears, and the attempts
-  re-enter the focus signals with attribution recomputed by today's grader (a stale stored
-  `focus` tag never re-enters on its own).
+  and bump `revision`. Attempts stay excluded, same reason.
+- **confirm** — the rejection was right → no content change. The exclusion lifts and the attempts
+  re-enter the focus signals with attribution recomputed under today's grader — never the stored
+  historical tag, which may be an older scorer's false attribution.
 
-The linguistic criteria are CLAUDE.md's `translate`/`accept` and `key_tokens` rules — apply those,
-do not restate or improvise them. (Planned: P6-1 gives rulings a committed decisions file so the
-queue can drain; until it ships, a ruling lands directly as its content edit.)
+Record any real confusion worth a future drill item in the `note` ("drill note: …") — drill
+authoring reads the notes. The linguistic criteria are CLAUDE.md's `translate`/`accept` and
+`key_tokens` rules — apply those, do not restate or improvise them.
 
 ## 4. Drills only after triage and an audit rerun
 
