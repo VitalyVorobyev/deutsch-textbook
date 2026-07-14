@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PronominalAdverbTable from '../../components/reference/PronominalAdverbTable.astro';
+import { pronominalAdverbReferenceSchema } from '../../lib/schemas';
+const entry = await getEntry('referenceData', 'pronominal-adverbs');
+if (!entry) throw new Error('Missing canonical pronominal-adverb reference data');
+const data = pronominalAdverbReferenceSchema.parse(entry.data);
+---
+
+<Base title="Da- & Wo-Wörter">
+  <h1 class="text-3xl font-bold tracking-tight">Da- & Wo-Wörter</h1>
+  <p class="mt-2 text-stone-500"><span class="lang-en"><strong>wo(r)-</strong> asks about a thing; <strong>da(r)-</strong> refers back to it. Before a vowel, insert <strong>r</strong>. People keep the preposition plus pronoun.</span><span class="lang-ru"><strong>wo(r)-</strong> спрашивает о предмете, <strong>da(r)-</strong> отсылает к нему. Перед гласной вставляется <strong>r</strong>. Для людей остаются предлог и местоимение.</span></p>
+  <section class="mt-8"><PronominalAdverbTable scope="all" /></section>
+  <section class="mt-10"><h2 class="text-2xl font-bold">Vorher, zuvor, danach</h2><div class="mt-4 grid gap-3 sm:grid-cols-3">{data.temporal.map((row) => <article class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">{row.form} {row.status === 'receptive' && <span class="text-xs font-normal text-stone-400">rezeptiv</span>}</h3><p class="mt-2 text-sm"><span class="lang-en">{row.meaning.en}</span><span class="lang-ru">{row.meaning.ru}</span></p><p lang="de" class="mt-2 text-sm italic">{row.example.de}</p></article>)}</div></section>
+</Base>

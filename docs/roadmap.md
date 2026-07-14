@@ -47,7 +47,7 @@ below.
 
 ## Completed milestone — Phase 4: complete A2
 
-Outcome: A2 reaches the same bar as A1 — sixteen topics, a cumulative checkpoint, delayed probes,
+Outcome: A2 reaches the same bar as A1 — seventeen topics, a cumulative checkpoint, delayed probes,
 measured Wortliste coverage — and the whole A1–A2 path is walkable end to end.
 
 - **Fix the A2 foundation first.** The six shipped A2 topics predate the hardened loop and are below
@@ -64,8 +64,9 @@ measured Wortliste coverage — and the whole A1–A2 path is walkable end to en
 - Close the level with the cumulative A2 checkpoint, the Wortliste completion pass, and an Über page
   whose A2 figures are computed rather than claimed.
 
-**All of it is done** (PRs #23–#38, shipped as 0.3.0). A2 is sixteen units, a twenty-item cumulative
-checkpoint, sixteen probe families, and **1449/1449 of the Goethe-A2 Wortliste**. The one thing the
+**The original milestone shipped** in PRs #23–#38 as 0.3.0. Learner evidence then justified a
+seventeenth required unit, `verben-mit-praepositionen`, and expanded the checkpoint to twenty-two
+items. A2 now has seventeen probe families and **1449/1449 of the Goethe-A2 Wortliste**. The one thing the
 phase turned up that was not on the list: the coverage *instrument* could not be trusted with the
 claim it was about to make. A `~` in a manifest — a word the course teaches as grammar rather than as
 a flashcard — counted toward the published figure on the manifest's own say-so, and **nine of those
@@ -120,7 +121,7 @@ honest production review; a persistent train-document mission; a travel Wortfeld
 existing card backs without changing their identities; and one optional Entdecken piece with local,
 non-mastery feedback. Two more extensive-reader episodes and a canonical case lookup are available.
 
-Editorial work now follows the five two-unit windows in
+Editorial work now follows the six learning windows in
 [the operating program](a2-learning-led-program.md). Each window starts with a just-in-time content
 audit and ends with the newest snapshot audit. B1 identities remain provisional until the A2
 checkpoint and its 2/7/21-day evidence have been reviewed.

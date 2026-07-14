@@ -197,4 +197,22 @@ describe('reporting', () => {
     ]);
     expect(result!.remaining).toBe(2);
   });
+
+  test('presents every stage and exposes the next due timestamp without erasing a failure', () => {
+    const log = [
+      practised,
+      attempt({ setId: family.setId, itemId: 'variant-a', ts: T0 + 4 * DAY, correct: false }),
+    ];
+    const [result] = probeResults([family], log, T0 + 6 * DAY);
+    expect(result!.nextStage).toBe(1);
+    expect(result!.nextDueAt).toBe(T0 + 7 * DAY);
+    expect(result!.stages.map((stage) => stage.status)).toEqual(['failed', 'scheduled', 'later']);
+    expect(result!.stages[0]!.actualDays).toBe(4);
+  });
+
+  test('marks only the next untaken stage due; later stages cannot be retried early', () => {
+    const [result] = probeResults([family], [practised], T0 + 3 * DAY);
+    expect(result!.stages.map((stage) => stage.status)).toEqual(['due', 'later', 'later']);
+    expect(result!.nextDueAt).toBe(T0 + 2 * DAY);
+  });
 });

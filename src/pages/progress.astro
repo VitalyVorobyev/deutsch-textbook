@@ -46,6 +46,7 @@ const titleByTopic = new Map(nodes.map((n) => [n.id, n.title_de]));
 const probeLabels = Object.fromEntries(
   families.map((f) => [f.setId, titleByTopic.get(f.topicId) ?? f.topicId]),
 );
+const probeTopicPaths = Object.fromEntries(nodes.map((node) => [node.id, node.path]));
 // One results panel per checkpoint in the content; each renders nothing until it
 // has been taken, so a level whose checkpoint is untouched stays silent.
 const checkpoints = (await getCheckpoints()).map(({ setId, title, path, items }) => ({
@@ -77,6 +78,6 @@ const outcomeLabels = Object.fromEntries(
   </p>
 
   <div class="mt-8">
-    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} />
+    <ProgressPanel client:only="react" nodes={nodes} outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} probeTopicPaths={probeTopicPaths} />
   </div>
 </Base>

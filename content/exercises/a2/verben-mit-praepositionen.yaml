@@ -1,0 +1,142 @@
+topic: verben-mit-praepositionen
+role: practice
+title: { en: "Practice — ask, refer back, decide", ru: "Практика — спросить, сослаться, решить" }
+items:
+  - id: match-verb-praeposition
+    type: match
+    outcomes: [verb-praeposition-waehlen]
+    focus: verb-praeposition
+    instruction: { en: "Match each verb to its governed preposition.", ru: "Соедините каждый глагол с его предлогом." }
+    pairs:
+      - { left: "denken", right: "an" }
+      - { left: "warten", right: "auf" }
+      - { left: "sprechen", right: "über" }
+      - { left: "träumen", right: "von" }
+      - { left: "sich interessieren", right: "für" }
+      - { left: "arbeiten", right: "mit" }
+    explain: { en: "Retrieve the construction as a chunk; a general translation of the preposition cannot predict it.", ru: "Вспоминайте конструкцию целиком: общий перевод предлога не позволяет его предсказать." }
+  - id: table-da-wo
+    type: table
+    outcomes: [da-wort-sache, wo-wort-fragen]
+    focus: da-wo-woerter
+    title: "Frage und Rückverweis"
+    instruction: { en: "Complete the question form and the thing form.", ru: "Дополните вопросительную форму и форму для предмета." }
+    columns: ["Frage", "Sache"]
+    rows:
+      - { label: "an", cells: [{ answer: "woran", given: true }, { answer: "daran" }] }
+      - { label: "auf", cells: [{ answer: "worauf" }, { answer: "darauf" }] }
+      - { label: "für", cells: [{ answer: "wofür" }, { answer: "dafür" }] }
+      - { label: "mit", cells: [{ answer: "womit" }, { answer: "damit" }] }
+      - { label: "über", cells: [{ answer: "worüber" }, { answer: "darüber" }] }
+      - { label: "von", cells: [{ answer: "wovon" }, { answer: "davon" }] }
+    explain: { en: "Insert r before a vowel: worauf/darauf, worüber/darüber. There is no r before a consonant: womit/damit.", ru: "Перед гласной вставляется r: worauf/darauf, worüber/darüber. Перед согласной r нет: womit/damit." }
+  - id: cloze-r-formation
+    type: cloze
+    outcomes: [da-wort-sache, wo-wort-fragen]
+    focus: da-wo-woerter
+    instruction: { en: "Complete the mini-dialogues.", ru: "Дополните мини-диалоги." }
+    text: "{{Woran}} denkst du? — An die Tickets. Ich denke {{daran}}. {{Womit}} arbeitet ihr? — Mit einer App. Wir arbeiten {{damit}}."
+    explain: { en: "an begins with a vowel and takes linking r; mit begins with a consonant and does not.", ru: "an начинается с гласной и требует связующего r; mit начинается с согласной и обходится без него." }
+  - id: mc-sache-person
+    type: mc
+    outcomes: [person-sache-unterscheiden]
+    focus: da-wo-woerter
+    instruction: { en: "The group is discussing Jonas, a person. Choose the natural continuation.", ru: "Группа обсуждает Йонаса, человека. Выберите естественное продолжение." }
+    prompt: "Wir sprechen über Jonas. Wir sprechen oft ___."
+    options: ["über ihn", "darüber", "worüber"]
+    correct: 0
+    explain: { en: "A person stays preposition + pronoun: über ihn. darüber replaces a thing or idea.", ru: "Для человека остаются предлог и местоимение: über ihn. darüber заменяет предмет или мысль." }
+  - id: cloze-fragen
+    type: cloze
+    outcomes: [wo-wort-fragen, verb-praeposition-waehlen]
+    focus: da-wo-woerter
+    text: "{{Worauf}} wartet ihr? — Auf Mias Antwort. {{Wofür}} interessiert sich Lea? — Für Fotografie. {{Wovon}} träumt Amir? — Von einer Radtour."
+    explain: { en: "The verb selects the preposition; wo(r)- turns that preposition into a question about a thing.", ru: "Глагол выбирает предлог; wo(r)- превращает его в вопрос о предмете." }
+  - id: hoeren-darueber
+    type: listen
+    outcomes: [da-wort-sache]
+    focus: da-wo-woerter
+    instruction: { en: "Listen and type the sentence.", ru: "Прослушайте и напечатайте предложение." }
+    text: "Wir sprechen morgen darüber."
+    translation: { en: "We will talk about it tomorrow.", ru: "Мы поговорим об этом завтра." }
+    explain: { en: "darüber is one stressed unit here: da-rü-ber.", ru: "darüber здесь звучит как одно ударное целое: da-rü-ber." }
+  - id: hoeren-worauf
+    type: audio-comprehension
+    outcomes: [wo-wort-fragen, da-wort-sache]
+    focus: da-wo-woerter
+    source:
+      kind: tts
+      rate: 0.86
+      turns:
+        - { speaker: Lea, text: "Worauf warten wir noch?" }
+        - { speaker: Amir, text: "Auf Mias Nachricht. Danach kaufen wir die Tickets." }
+    question: "Was fehlt der Gruppe noch?"
+    options: ["Mias Nachricht", "Die Tickets", "Eine neue App"]
+    correct: 0
+    translation: { en: "What is the group still missing?", ru: "Чего группе ещё не хватает?" }
+    explain: { en: "The transcript remains hidden while audio works. Worauf points forward to auf Mias Nachricht.", ru: "При работающем аудио транскрипт остаётся скрытым. Worauf отсылает вперёд к auf Mias Nachricht." }
+  - id: translate-worauf
+    type: translate
+    outcomes: [wo-wort-fragen, verb-praeposition-waehlen]
+    focus: da-wo-woerter
+    instruction: { en: "Translate the course-group question.", ru: "Переведите вопрос в группе курса." }
+    prompt_en: "What are you waiting for? — For the answer."
+    prompt_ru: "Чего вы ждёте? — Ответа."
+    answer: "Worauf wartet ihr? — Auf die Antwort."
+    # English "you" does not choose a person, so du, ihr and Sie are all faithful renderings of
+    # the prompt. This item grades `Worauf`, not the verb ending — failing a learner over a
+    # person the prompt never fixed teaches them nothing about da-/wo- words.
+    accept:
+      - "Worauf warten Sie? — Auf die Antwort."
+      - "Worauf wartest du? — Auf die Antwort."
+    key_tokens: ["Worauf"]
+    explain: { en: "warten selects auf; a question about a thing is therefore worauf.", ru: "warten требует auf; поэтому вопрос о предмете — worauf." }
+  - id: translate-person-sache
+    type: translate
+    outcomes: [person-sache-unterscheiden, da-wort-sache]
+    focus: da-wo-woerter
+    instruction: { en: "The plan and Jonas were just mentioned. Translate the reply; the first reference is a thing, the second a person.", ru: "План и Йонаса только что упомянули. Переведите ответ: первая отсылка — к предмету, вторая — к человеку." }
+    prompt_en: "We are talking about it, but not about him."
+    prompt_ru: "Мы говорим об этом, но не о нём."
+    answer: "Wir sprechen darüber, aber nicht über ihn."
+    accept: ["Wir sprechen darüber, aber wir sprechen nicht über ihn."]
+    key_tokens: ["darüber", "ihn"]
+    explain: { en: "The plan becomes darüber, but Jonas becomes über ihn. German keeps the person visible as a pronoun.", ru: "План заменяется на darüber, но Йонас — на über ihn. Человек остаётся выражен местоимением." }
+  - id: translate-davon
+    type: translate
+    # The tag is `verb-praeposition`, not `da-wo-woerter`: what this item decides is which
+    # preposition träumen governs, and both graded tokens are that preposition — once bare,
+    # once fused into the da-word. A learner who writes `über … darüber` has a preposition
+    # confusion, and that is what the weakness signal should hear.
+    outcomes: [da-wort-sache, verb-praeposition-waehlen]
+    focus: verb-praeposition
+    instruction: { en: "The journey was just mentioned. Translate the response.", ru: "Путешествие только что упомянули. Переведите ответ." }
+    prompt_en: "Mia dreams of the journey. She often dreams of it."
+    prompt_ru: "Миа мечтает о путешествии. Она часто мечтает об этом."
+    answer: "Mia träumt von der Reise. Sie träumt oft davon."
+    # Fronting the frequency adverb is ordinary V2. The item measures which preposition träumen
+    # governs, not where `oft` sits, so the middle-field order must not decide the score.
+    accept: ["Mia träumt von der Reise. Oft träumt sie davon."]
+    key_tokens: ["von", "davon"]
+    explain: { en: "träumen selects von, so the thing reference is davon—not darüber, however natural 'about it' sounds.", ru: "träumen требует von, поэтому отсылка к предмету — davon, а не darüber, как подсказывало бы русское «об этом»." }
+  - id: mc-zuvor
+    type: mc
+    outcomes: [da-wort-sache]
+    focus: da-wo-woerter
+    # A discrimination item: all three options can open a German sentence, so the learner has to
+    # decide what the slot is *for* — a time relation or a verb's object — rather than parse
+    # syntax. The instruction must not name the answer.
+    instruction: { en: "Complete the sentence.", ru: "Дополните предложение." }
+    prompt: "Wir treffen uns um acht. ___ kaufe ich die Tickets."
+    options: ["Vorher", "Davon", "Darüber"]
+    correct: 0
+    explain: { en: "vorher orders events in time. davon and darüber are da-words: they stand for a verb's object, and kaufen has its object already (die Tickets). zuvor would also fit, but it belongs to written and formal German — recognise it, say vorher.", ru: "vorher упорядочивает события во времени. davon и darüber — da-слова: они заменяют дополнение глагола, а у kaufen дополнение уже есть (die Tickets). Подошло бы и zuvor, но это слово письменной и официальной речи — узнавайте его, а говорите vorher." }
+  - id: cloze-zeitfolge
+    type: cloze
+    outcomes: [da-wort-sache]
+    focus: da-wo-woerter
+    # Three gaps, two kinds of word: the item earns its `da-wort-sache` outcome because the
+    # learner must decide *which* slot takes a da-word and which take a time word.
+    instruction: { en: "One gap needs a da-word, two need a time word.", ru: "В один пропуск нужно da-слово, в два других — слово времени." }
+    text: "Am Sonntag gehen wir ins Konzert. Ich freue mich schon {{darauf}}. {{Vorher}} essen wir zusammen. {{Danach}} fahren wir nach Hause."
+    explain: { en: "sich freuen auf + a thing becomes darauf. vorher and danach only order the events in time — they never stand for the verb's object.", ru: "sich freuen auf + предмет превращается в darauf. Vorher и danach лишь упорядочивают события во времени — дополнение глагола они не заменяют." }

@@ -204,6 +204,39 @@ items:
     accept:
       - "Ich würde gerne meine neue Adresse anmelden."
     explain: { en: "What you are naming is an action, and an action takes würde gern — with the infinitive parked at the very end, exactly like a modal verb: Ich würde gern … anmelden. hätte gern is the other chunk, and it takes a thing: Ich hätte gern eine Bescheinigung is fine, Ich hätte gern anmelden is not a sentence at all. Ich will meine Adresse anmelden says the same thing and says it bluntly — at a counter, the polite chunk is not decoration. gern and gerne are interchangeable.", ru: "Вы называете действие, а действие требует оборота würde gern — с инфинитивом в самом конце, точно как у модального глагола: Ich würde gern … anmelden. Оборот hätte gern — другой, он берёт предмет: Ich hätte gern eine Bescheinigung — нормально, а Ich hätte gern anmelden — вообще не предложение. Фраза Ich will meine Adresse anmelden говорит то же самое, но резко — у окошка вежливый оборот не украшение. Формы gern и gerne равноправны." }
+  - id: tabelle-da-wo
+    outcomes: [da-wort-sache, wo-wort-fragen]
+    type: table
+    focus: da-wo-woerter
+    title: "Da- und Wo-Wörter"
+    instruction: { en: "Complete both forms for each preposition.", ru: "Дополните обе формы для каждого предлога." }
+    columns: ["Frage", "Sache"]
+    rows:
+      - { label: "auf", cells: [{ answer: "worauf", given: true }, { answer: "darauf" }] }
+      - { label: "über", cells: [{ answer: "worüber" }, { answer: "darüber" }] }
+      - { label: "mit", cells: [{ answer: "womit" }, { answer: "damit" }] }
+    explain: { en: "wo(r)- asks about a thing and da(r)- refers back. Insert r before a vowel (auf, über), but not before a consonant (mit).", ru: "wo(r)- спрашивает о предмете, da(r)- отсылает к нему. Перед гласной (auf, über) вставляется r, перед согласной (mit) — нет." }
+  # A different lexical instance from the topic's practice item `translate-person-sache`
+  # (sprechen über → darüber / über ihn). A checkpoint that re-presents a practice sentence
+  # measures recognition of that sentence, not the competence behind it.
+  - id: uebersetzen-sache-person
+    outcomes: [person-sache-unterscheiden, da-wort-sache]
+    type: translate
+    focus: da-wo-woerter
+    instruction: { en: "A trip and a man were just mentioned. Translate the reply: first refer to the thing, then to the person.", ru: "Поездку и мужчину только что упомянули. Переведите ответ: сначала сошлитесь на предмет, затем на человека." }
+    prompt_en: "I often think about it, but I rarely think about him."
+    prompt_ru: "Я часто думаю об этом (о поездке), но редко думаю о нём (о человеке)."
+    answer: "Ich denke oft daran, aber ich denke selten an ihn."
+    # Every rendering here is ordinary German that preserves both graded tokens: dropping the
+    # repeated `ich denke` (the more natural of the two), fronting `oft` into the Vorfeld, or
+    # both. The item measures the da-word and the person pronoun, not the middle-field order —
+    # and a false negative in a *checkpoint* depresses a published level result.
+    accept:
+      - "Ich denke oft daran, aber selten an ihn."
+      - "Oft denke ich daran, aber selten an ihn."
+      - "Oft denke ich daran, aber ich denke selten an ihn."
+    key_tokens: ["daran", "ihn"]
+    explain: { en: "denken selects an. The trip is a thing, so it contracts into daran; the man is a person, so the preposition keeps a pronoun: an ihn.", ru: "denken требует an. Поездка — предмет, поэтому она стягивается в daran; мужчина — человек, поэтому предлог сохраняется с местоимением: an ihn." }
   # --- Schreiben ---
   - id: schreiben-krankmeldung
     outcomes: [krankmeldung-schreiben, berufliche-nachricht-schreiben]
