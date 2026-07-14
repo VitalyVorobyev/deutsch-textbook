@@ -186,13 +186,46 @@ function itemGerman(item: Record<string, unknown>): string[] {
  */
 export function taughtSurface(root = process.cwd()): string {
   const parts: string[] = [];
+  const caseViews = new Set<string>();
 
   for (const file of walk(join(root, 'content/topics'), '.mdx')) {
-    const body = readFileSync(file, 'utf8')
+    const source = readFileSync(file, 'utf8');
+    for (const match of source.matchAll(/<CaseTable\s+view=["']([^"']+)["']/g)) {
+      caseViews.add(match[1]!);
+    }
+    const body = source
       .replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '')
       .replace(/<En>[\s\S]*?<\/En>/g, ' ')
       .replace(/<Ru>[\s\S]*?<\/Ru>/g, ' ');
     parts.push(body);
+  }
+
+  // Structured tables rendered inside a topic are part of its taught surface.
+  // The standalone reference page is not: lookup alone must not earn coverage.
+  if (caseViews.size) {
+    const path = join(root, 'content/reference-data/cases.yaml');
+    const cases = YAML.parse(readFileSync(path, 'utf8')) as {
+      articles: Array<Record<string, string>>;
+      pronouns: Array<Record<string, string>>;
+      prepositions: Record<string, Array<{ form: string; example?: string }>>;
+    };
+    if (caseViews.has('articles-akk')) {
+      for (const row of cases.articles.filter((row) => row.case !== 'Dativ'))
+        parts.push(...Object.values(row));
+    }
+    if (caseViews.has('articles-dat')) {
+      for (const row of cases.articles) parts.push(...Object.values(row));
+    }
+    if (caseViews.has('pronouns-akk')) {
+      for (const row of cases.pronouns) parts.push(row.nominative, row.accusative);
+    }
+    if (caseViews.has('pronouns-dat')) {
+      for (const row of cases.pronouns) parts.push(row.nominative, row.dative);
+    }
+    if (caseViews.has('prepositions-dat')) {
+      for (const entry of cases.prepositions.dative ?? [])
+        parts.push(entry.form, entry.example ?? '');
+    }
   }
 
   for (const file of walk(join(root, 'content/reading'), '.yaml')) {

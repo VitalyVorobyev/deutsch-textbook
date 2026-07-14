@@ -1,6 +1,6 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
-import type { ExerciseItem, ExerciseRole, Level } from './schemas';
+import type { ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
 import type { Attempt } from './store';
 import { weakFocuses } from './weakness';
 import { shuffle } from './shuffle';
@@ -15,6 +15,7 @@ export interface TrainingSet {
   level: Level;
   role: ExerciseRole;
   items: ExerciseItem[];
+  document?: VisualDocument;
 }
 
 export interface SessionItem {
@@ -25,6 +26,7 @@ export interface SessionItem {
   title_de: string;
   level: Level;
   item: ExerciseItem;
+  document?: VisualDocument;
 }
 
 /**
@@ -113,7 +115,8 @@ export function buildSession(
       topicId: s.topicId,
       title_de: s.title_de,
       level: s.level,
-      item,
+        item,
+        document: s.document,
     })),
   );
 

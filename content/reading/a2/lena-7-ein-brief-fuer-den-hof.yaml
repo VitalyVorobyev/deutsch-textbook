@@ -1,0 +1,68 @@
+topic: aemter-dienstleistungen
+kind: extensive
+title_de: "Lena in Bremen (7): Ein Brief für den Hof"
+text:
+  - >-
+    Im Hof hinter Lenas Haus steht eine alte Bank. Früher saßen die Nachbarn dort
+    oft zusammen. Jetzt ist ein Brett kaputt, und nach Regen bleibt eine große
+    Pfütze vor der Bank. Frau Kern sagt seit Monaten: „Die Hausverwaltung muss
+    etwas tun.“ Aber niemand hat ihr geschrieben.
+  - >-
+    An einem Samstag treffen sich Lena, Timo und drei Nachbarn im Hof. Sie wollen
+    nicht nur über das Problem sprechen. Lena macht Fotos, Timo misst das kaputte
+    Brett, und Frau Aydin sammelt die Namen der Bewohner. Ein Kind zeichnet noch
+    einen kleinen Tisch neben die Bank. „Das gehört auch zum Plan“, sagt es
+    ernst. Alle lachen, aber die Zeichnung bleibt auf der Liste.
+  - >-
+    Lena schreibt eine formelle Nachricht an die [[Hausverwaltung::property
+    management company::управляющая компания]]. Im ersten Entwurf steht: „Die
+    Bank ist schlecht. Bitte machen Sie sie gut.“ Timo schüttelt den Kopf. „Man
+    versteht dich, aber die Firma muss genau wissen, was sie tun soll.“ Lena
+    schreibt neu: Ein Brett ist gebrochen, vor der Bank sammelt sich Wasser, und
+    ältere Bewohner können dort nicht mehr sicher sitzen.
+  - >-
+    Dann formuliert sie die Bitte: „Könnten Sie uns bitte mitteilen, wann die Bank
+    repariert wird?“ Sie hängt zwei Fotos und die Liste mit den
+    [[Unterschriften::signatures::подписи]] an. Die Zeichnung vom Tisch schickt
+    sie nicht mit. „Vielleicht später“, sagt das Kind.
+  - >-
+    Drei Tage später antwortet die Hausverwaltung. Eine Firma kommt am Freitag.
+    Sie repariert die Bank und verbessert den [[Abfluss::drain::водосток]], damit
+    das Wasser nicht mehr vor der Bank bleibt. Einen neuen Tisch kann die Firma
+    nicht bezahlen. Die Bewohner dürfen aber selbst einen wetterfesten Tisch
+    aufstellen.
+  - >-
+    Am Freitagabend sitzen alle wieder im Hof. Das Kind bringt seine Zeichnung
+    mit und legt sie auf die Bank. Frau Kern sagt zu Lena: „Dein Brief war
+    erfolgreich.“ Lena antwortet: „Unser Brief. Ohne die Fotos, Maße und
+    Unterschriften war er nur eine Beschwerde.“ Der Hof sieht fast gleich aus wie
+    vorher. Trotzdem fühlt er sich jetzt mehr wie ein gemeinsamer Ort an.
+questions:
+  - id: q-brief-besser
+    outcomes: [formelle-nachricht-schreiben]
+    type: mc
+    prompt: "Warum überarbeitet Lena ihren ersten Entwurf?"
+    options:
+      - "Die Hausverwaltung braucht eine genaue Beschreibung und eine klare Bitte."
+      - "Der Brief darf keine Fotos haben."
+      - "Timo möchte den Brief auf Russisch schreiben."
+    correct: 0
+    translation:
+      en: "Why does Lena revise her first draft?"
+      ru: "Почему Лена перерабатывает первый вариант?"
+    explain:
+      en: "The first version says only that the bench is bad. The revision names the damage, its consequence and the requested next step."
+      ru: "В первом варианте сказано лишь, что скамейка плохая. В исправленном тексте названы повреждение, его последствия и нужный следующий шаг."
+  - id: q-ergebnis
+    outcomes: [anliegen-nennen]
+    type: mc
+    prompt: "Was ist am Ende erlaubt, aber nicht bezahlt?"
+    options: ["Ein eigener wetterfester Tisch.", "Eine neue Straßenbahn.", "Ein zweiter Abfluss im Haus."]
+    correct: 0
+    translation:
+      en: "What is permitted but not paid for at the end?"
+      ru: "Что в конце разрешено, но не оплачивается?"
+    explain:
+      en: "The company repairs the bench and drainage. The residents may add a weatherproof table themselves."
+      ru: "Компания ремонтирует скамейку и водосток. Жильцы могут сами поставить стол, устойчивый к погоде."
+

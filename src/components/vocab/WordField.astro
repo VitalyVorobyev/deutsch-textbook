@@ -1,0 +1,20 @@
+---
+import type { WordField as WordFieldData } from '../../lib/schemas';
+
+interface Props { field: WordFieldData }
+const { field } = Astro.props;
+const active = field.members.filter((member) => member.kind === 'card' && member.role === 'active');
+const chunks = field.members.filter((member) => member.kind === 'card' && member.role === 'chunk');
+const receptive = field.members.filter((member) => member.kind === 'receptive');
+---
+
+<section class="rounded-xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-700 dark:bg-stone-900/40">
+  <h3 lang="de" class="text-xl font-bold">{field.title_de}</h3>
+  <p class="text-sm text-stone-500"><span class="lang-en">{field.title_en}</span><span class="lang-ru">{field.title_ru}</span></p>
+  <div class="mt-5 grid gap-5 md:grid-cols-3">
+    <div><h4 class="text-sm font-semibold">Aktiv lernen</h4><ul class="mt-2 space-y-2">{active.map((member) => member.kind === 'card' && <li><strong lang="de">{member.ref.de}</strong>{member.relations[0] && <span class="block text-xs text-stone-500"><span class="lang-en">{member.relations[0].explanation.en}</span><span class="lang-ru">{member.relations[0].explanation.ru}</span></span>}</li>)}</ul></div>
+    <div><h4 class="text-sm font-semibold">Chunks</h4><ul class="mt-2 space-y-2">{chunks.map((member) => member.kind === 'card' && <li lang="de" class="font-medium">{member.ref.de}</li>)}</ul></div>
+    <div><h4 class="text-sm font-semibold">Verstehen</h4><ul class="mt-2 space-y-2">{receptive.map((member) => member.kind === 'receptive' && <li><strong lang="de">{member.de}</strong><span class="block text-xs text-stone-500"><span class="lang-en">{member.en}</span><span class="lang-ru">{member.ru}</span></span></li>)}</ul></div>
+  </div>
+  <p class="mt-5 text-xs text-stone-400"><span class="lang-en">Only the active words and chunks already in a deck create cards. The receptive field adds no review debt.</span><span class="lang-ru">Карточки создаются только для активных слов и готовых фраз, уже входящих в колоду. Раздел для понимания не создаёт долгов по повторению.</span></p>
+</section>

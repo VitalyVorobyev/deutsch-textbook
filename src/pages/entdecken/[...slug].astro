@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Bilingual from '../../components/Bilingual.astro';
+import En from '../../components/En.astro';
+import Ru from '../../components/Ru.astro';
+import ArtifactFeedback from '../../components/discovery/ArtifactFeedback';
+import { withBase } from '../../lib/url';
+
+export async function getStaticPaths() {
+  // Same gate as the index. `status` defaults to 'draft', so building the unfiltered
+  // collection shipped unreviewed pieces live and crawlable — merely unlisted.
+  const entries = await getCollection('discovery', ({ data }) => data.status === 'reviewed');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={entry.data.title_de}>
+  <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/entdecken')} class="hover:text-stone-700">Entdecken</a> / {entry.data.level}</nav>
+  <header><span class="text-xs font-bold text-amber-700">{entry.data.level} · Entdecken</span><h1 lang="de" class="mt-2 text-3xl font-bold">{entry.data.title_de}</h1><p class="mt-1 text-stone-500"><span class="lang-en">{entry.data.title_en}</span><span class="lang-ru">{entry.data.title_ru}</span></p></header>
+  {entry.data.image && <a href={withBase(entry.data.image)} target="_blank" rel="noreferrer"><img src={withBase(entry.data.image)} alt={entry.data.summary.en} class="mt-7 w-full rounded-xl border border-stone-200 dark:border-stone-700" /></a>}
+  <article class="article-prose mt-8"><Content components={{ Bilingual, En, Ru }} /></article>
+  <ArtifactFeedback client:only="react" artifactId={`discovery:${entry.id}`} />
+</Base>

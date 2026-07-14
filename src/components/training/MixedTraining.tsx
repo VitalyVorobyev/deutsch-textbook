@@ -16,6 +16,7 @@ import { useExplainLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
+import DocumentStimulus from '../exercises/DocumentStimulus';
 
 // re-exported so the pages and SessionFlow keep importing it from here
 export type { TrainingSet } from '../../lib/training';
@@ -61,6 +62,7 @@ function restoreSession(
         title_de: s.title_de,
         level: s.level,
         item,
+        document: s.document,
       });
     }
   }
@@ -175,6 +177,7 @@ export default function MixedTraining({
       setId: entry.setId,
       itemId: entry.item.id,
       itemType: entry.item.type,
+      itemRevision: entry.item.revision,
       correct: result.correct,
       ...(result.totalParts !== undefined
         ? { correctParts: result.correctParts, totalParts: result.totalParts }
@@ -184,6 +187,7 @@ export default function MixedTraining({
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(entry.item),
       outcomes: entry.item.outcomes,
+      practice: result.practice,
       ts: Date.now(),
     });
   }
@@ -360,7 +364,9 @@ export default function MixedTraining({
       </div>
 
       {entry && (
-        <ItemView
+          <div className={entry.document ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
+          {entry.document && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={entry.document} /></div>}
+          <ItemView
           instanceKey={`${round}-${entry.uid}`}
           item={entry.item}
           lang={lang}
@@ -371,7 +377,8 @@ export default function MixedTraining({
             index + 1 < session.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
           }
           storageKey={entry.uid}
-        />
+          />
+          </div>
       )}
     </div>
   );

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseTable from '../../components/reference/CaseTable.astro';
+import { withBase } from '../../lib/url';
+---
+
+<Base title="Kasus & Präpositionen">
+  <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/topics')} class="hover:text-stone-700">Themen</a> / Referenz</nav>
+  <header><span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span><h1 class="mt-2 text-3xl font-bold">Kasus & Präpositionen</h1><p class="mt-2 text-stone-500"><span class="lang-en">The compact system for comparison. Lessons teach each part; this page only puts the forms next to each other.</span><span class="lang-ru">Компактная система для сравнения. Уроки объясняют части по отдельности; здесь формы просто собраны рядом.</span></p></header>
+  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Artikel</h2><CaseTable view="articles-dat" /></section>
+  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Personalpronomen</h2><div class="grid gap-6 md:grid-cols-2"><div><h3 class="mb-3 font-semibold">Akkusativ</h3><CaseTable view="pronouns-akk" /></div><div><h3 class="mb-3 font-semibold">Dativ</h3><CaseTable view="pronouns-dat" /></div></div></section>
+  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Präpositionen</h2><CaseTable view="prepositions" /></section>
+  <section class="mt-10 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25"><p><span class="lang-en">Looking something up is support, not evidence. Return to a fresh exercise when you want to check whether you can choose the form without the table.</span><span class="lang-ru">Справочник — это поддержка, а не доказательство знания. Чтобы проверить выбор без таблицы, вернитесь к новому упражнению.</span></p></section>
+</Base>
+

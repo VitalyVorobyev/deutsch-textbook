@@ -1,6 +1,6 @@
 /** Server-side helpers over the content collections (usable in .astro files only). */
 import { getCollection } from 'astro:content';
-import { buildDeck, type CardDef } from './srs';
+import { buildDeck, wordFieldContexts, type CardDef } from './srs';
 import { withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from './schemas';
@@ -39,8 +39,9 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
 }
 
 export async function getAllCards(): Promise<CardDef[]> {
-  const vocab = await getCollection('vocab');
-  return vocab.flatMap((v) => buildDeck(v.data.id, v.data.entries));
+  const [vocab, fields] = await Promise.all([getCollection('vocab'), getCollection('wortfelder')]);
+  const contexts = wordFieldContexts(fields.map((field) => field.data));
+  return vocab.flatMap((v) => buildDeck(v.data.id, v.data.entries, contexts));
 }
 
 /** deck id → CEFR level, for level-gating decks no topic owns (see src/lib/decks.ts). */

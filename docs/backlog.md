@@ -5,7 +5,7 @@ Companion to [roadmap.md](roadmap.md). Completed P0–P3 items keep their stable
 `done`; a finished item moves to the archive rather than accumulating here.
 
 Every content item must pass the learning-science review and `bun run validate`. Code changes must
-preserve v1–v4 snapshot import and pass the full repository gate. What A2 teaches, in what order,
+preserve v1–v5 snapshot import and pass the full repository gate. What A2 teaches, in what order,
 with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
 before authoring anything.
 
@@ -219,12 +219,42 @@ Prefer generated assets with speech synthesis as a permanent fallback. Reconside
 that audio quality, rather than content coverage, is the limiting factor. It does not: `listen` sits
 at 76% and `audio-comprehension` at 8/8 on browser TTS.
 
-### P5-2 · Expand the extensive-reader series — `doing` (M per reader)
+### P5-2 · Expand the extensive-reader series — `done` (M per reader)
 
 The A2 vocabulary and grammar base is now complete enough for connected, optional reading. The
 fifth Lena episode begins the post-spine enrichment pass with a Bremen civic errand and the Roland;
 future episodes keep the enforced extensive-reader contract: 250–400 words, sparse glossing and at
 most two gist questions. Evaluate readability and voluntary continuation, not completion as mastery.
+
+Episodes 6 and 7 now continue the civic-life strand through a lost-property report and a shared
+request to a property manager. They retain sparse glossing and two gist questions each.
+
+### P5-8 · Revision-safe evidence and honest production — `done` (L)
+
+Snapshot v5, explicit v1–v5 migrations, full nested validation and pure deterministic merge modules
+are shipped. New attempts carry the authored item revision; old/mismatched attempts remain historical.
+Writing and speaking persist structured before/after assessments and accept `needs work` without
+turning self-assessment into a score. The FSRS compatibility adapter has no deprecation diagnostics.
+
+### P5-9 · A2 context pilots — `done` (L)
+
+`reisen-verkehr` owns a transcript-equivalent disruption board that stays visible through lesson and
+mixed-training tasks. Its Wortfeld references existing cards and adds only answer-side context.
+Entdecken contains one original-map historical piece with optional retelling and local feedback.
+None of these passive surfaces creates mastery or review debt.
+
+### P5-10 · Canonical case reference — `done` (M)
+
+Articles, personal pronouns and preposition groups live in `content/reference-data/cases.yaml`.
+The Akkusativ/Dativ lessons and `/referenz/kasus-praepositionen` render the shared data. Lookup has no
+completion state or evidence semantics.
+
+### P5-11 · Two-unit A2 evidence cycles — `doing` (recurring)
+
+Run the just-in-time audit and post-pair snapshot review in
+[a2-learning-led-program.md](a2-learning-led-program.md). The audit reports revision coverage,
+response modes, overdue probes, productive-card lapses, persistent focus errors, structured
+production changes, session workload, pair windows and pilot feedback.
 
 ### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
 

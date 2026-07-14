@@ -50,12 +50,14 @@ export default function ReadingText({ readingId, reading }: Props) {
       setId: `reading:${readingId}`,
       itemId: question.id,
       itemType: question.type,
+      itemRevision: question.revision,
       correct: result.correct,
       given: result.given,
       focus: focusForAttempt(question, result),
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(question),
       outcomes: question.outcomes,
+      practice: result.practice,
       ts: Date.now(),
     });
   }

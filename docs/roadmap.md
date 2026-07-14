@@ -1,6 +1,6 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **in progress** (updated 2026-07-13). Phase 4 is complete and shipped as 0.3.0.
+Status: **in progress** (updated 2026-07-14). Phase 4 is complete and shipped as 0.3.0; Phase 5 follows the learner through the remaining A2 path.
 
 A1 is content-complete and shipped (v0.2.0), and its learning loop has been hardened: free
 production is scored honestly, delayed parallel probes are running, open writing revises, speaking
@@ -45,7 +45,7 @@ the enforced item mix, the extensive reader, the reserved broad-retrieval share,
 evidence. One criterion remains open, and it runs on wall-clock rather than on work — see the gate
 below.
 
-## Current milestone — Phase 4: complete A2
+## Completed milestone — Phase 4: complete A2
 
 Outcome: A2 reaches the same bar as A1 — sixteen topics, a cumulative checkpoint, delayed probes,
 measured Wortliste coverage — and the whole A1–A2 path is walkable end to end.
@@ -113,7 +113,19 @@ The risk this accepts is explicit. If the pattern proves defective, the units au
 meantime need rework, and that rework is the price of not idling. It is a bet on the pattern, made
 with open eyes, and it is recorded here so that the bill — if it comes — is not a surprise.
 
-## Deferred — Phase 5
+## Current milestone — Phase 5: learning-led pre-1.0 improvement
+
+The evidence foundation and three bounded pilots are implemented: revision-safe v5 snapshots and
+honest production review; a persistent train-document mission; a travel Wortfeld that enriches
+existing card backs without changing their identities; and one optional Entdecken piece with local,
+non-mastery feedback. Two more extensive-reader episodes and a canonical case lookup are available.
+
+Editorial work now follows the five two-unit windows in
+[the operating program](a2-learning-led-program.md). Each window starts with a just-in-time content
+audit and ends with the newest snapshot audit. B1 identities remain provisional until the A2
+checkpoint and its 2/7/21-day evidence have been reviewed.
+
+## Deferred within Phase 5
 
 Reconsider only after real A1 usage data exists: broader neural-audio replacement, longer reader
 series beyond the pilot, optional constrained AI feedback and pronunciation analysis. None may

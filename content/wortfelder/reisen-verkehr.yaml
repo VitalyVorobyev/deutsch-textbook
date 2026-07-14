@@ -1,0 +1,87 @@
+id: reisen-verkehr
+topic: reisen-verkehr
+level: A2
+title_de: "Unterwegs: Verbindungen und Störungen"
+title_en: "On the move: connections and disruptions"
+title_ru: "В пути: маршруты и сбои"
+members:
+  - kind: card
+    ref: { deck: reisen-verkehr, de: Verspätung }
+    role: active
+    relations:
+      - type: collocation
+        de: "Verspätung haben · mit Verspätung ankommen"
+        explanation:
+          en: "German says that a train 'has delay'; a passenger arrives 'with delay'."
+          ru: "Поезд по-немецки «имеет опоздание», а пассажир прибывает «с опозданием»."
+        example_de: "Der Zug hat zwanzig Minuten Verspätung. Wir kommen mit Verspätung an."
+        example:
+          en: "The train is twenty minutes late. We arrive late."
+          ru: "Поезд опаздывает на двадцать минут. Мы прибываем с опозданием."
+  - kind: card
+    ref: { deck: reisen-verkehr, de: Anschluss }
+    role: active
+    relations:
+      - type: collocation
+        de: "den Anschluss erreichen / verpassen"
+        explanation:
+          en: "You either catch the connecting service or miss it; both verbs take the accusative."
+          ru: "На пересадку либо успевают, либо опаздывают; оба глагола требуют Akkusativ."
+        example_de: "Erreichen wir den Anschluss in Bremen?"
+        example:
+          en: "Will we catch the connection in Bremen?"
+          ru: "Мы успеем на пересадку в Бремене?"
+  - kind: card
+    ref: { deck: reisen-verkehr, de: ausfallen }
+    role: active
+    relations:
+      - type: contrast
+        de: "ausfallen ≠ Verspätung haben"
+        explanation:
+          en: "ausfallen means the service does not run; a delayed service still runs later."
+          ru: "ausfallen означает полную отмену; опаздывающий транспорт всё-таки отправится позже."
+        example_de: "Der ICE fällt aus, aber der Regionalzug hat nur Verspätung."
+        example:
+          en: "The ICE is cancelled, but the regional train is only delayed."
+          ru: "ICE отменён, а региональный поезд лишь опаздывает."
+      - type: formation
+        de: "fällt … aus · ist ausgefallen"
+        explanation:
+          en: "The verb is separable in the present and takes sein in the perfect."
+          ru: "В Präsens глагол разделяется, а Perfekt образует с sein."
+  - kind: card
+    ref: { deck: reisen-verkehr, de: verpassen }
+    role: active
+    relations:
+      - type: contrast
+        de: "den Zug verpassen · den Anschluss nicht erreichen"
+        explanation:
+          en: "Both describe missing transport; verpassen is the compact everyday verb."
+          ru: "Оба оборота означают не успеть на транспорт; verpassen — обычный краткий вариант."
+  - kind: card
+    ref: { deck: reisen-verkehr, de: Wo muss ich umsteigen? }
+    role: chunk
+    relations: []
+  - kind: card
+    ref: { deck: reisen-verkehr, de: Der Zug fällt aus. }
+    role: chunk
+    relations: []
+  - kind: card
+    ref: { deck: reisen-verkehr, de: Ist hier noch frei? }
+    role: chunk
+    relations: []
+  - kind: receptive
+    de: "Ersatzverkehr"
+    en: "replacement transport"
+    ru: "замещающий транспорт"
+    note:
+      en: "Usually buses replacing a cancelled train section."
+      ru: "Обычно автобусы вместо отменённого участка железной дороги."
+  - kind: receptive
+    de: "Zugteilung"
+    en: "train splitting into different sections"
+    ru: "разделение состава на части"
+  - kind: receptive
+    de: "Wagenreihung"
+    en: "carriage order"
+    ru: "порядок вагонов в составе"

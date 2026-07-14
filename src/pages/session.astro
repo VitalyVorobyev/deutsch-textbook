@@ -6,15 +6,17 @@ import type { TrainingSet } from '../components/training/MixedTraining';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 
-const [cards, nodes, deckLevels, exercises, topics] = await Promise.all([
+const [cards, nodes, deckLevels, exercises, topics, documents] = await Promise.all([
   getAllCards(),
   getTopicNodes(),
   getDeckLevels(),
   getCollection('exercises'),
   getCollection('topics'),
+  getCollection('documents'),
 ]);
 const { spine } = getCurriculum();
 const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const documentById = new Map(documents.map((document) => [document.id, document.data]));
 
 // Same assembly as /training, but tolerant of in-flight content: an exercise
 // set whose topic hasn't landed yet is simply left out of the session.
@@ -29,6 +31,7 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
       level: topic.level,
       role: e.data.role,
       items: e.data.items,
+      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
     },
   ];
 });

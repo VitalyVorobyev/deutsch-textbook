@@ -20,6 +20,8 @@ interface NavItem {
 const nav: NavItem[] = [
   { href: home, label: 'Heute' },
   { href: withBase('/topics'), label: 'Themen' },
+  { href: withBase('/entdecken'), label: 'Entdecken' },
+  { href: withBase('/referenz/kasus-praepositionen'), label: 'Referenz' },
   { href: withBase('/ueben'), label: 'Üben', match: [withBase('/vocab')] },
   { href: withBase('/progress'), label: 'Fortschritt' },
   { href: withBase('/about'), label: 'Über' },

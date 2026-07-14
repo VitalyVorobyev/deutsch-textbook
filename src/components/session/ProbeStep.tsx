@@ -69,6 +69,7 @@ export default function ProbeStep({ due, sets, onFinished }: Props) {
       setId: current.setId,
       itemId: current.item.id,
       itemType: current.item.type,
+      itemRevision: current.item.revision,
       correct: result.correct,
       ...(result.totalParts !== undefined
         ? { correctParts: result.correctParts, totalParts: result.totalParts }
@@ -78,6 +79,7 @@ export default function ProbeStep({ due, sets, onFinished }: Props) {
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(current.item),
       outcomes: current.item.outcomes,
+      practice: result.practice,
       ts: Date.now(),
     });
   }

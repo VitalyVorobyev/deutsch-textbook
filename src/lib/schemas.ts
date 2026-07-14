@@ -212,6 +212,8 @@ const focusTag = z
 
 const itemBase = {
   id: slug,
+  /** Task contract version persisted with attempts. */
+  revision: z.number().int().min(1).default(1),
   /** stable curriculum outcomes this item provides evidence for */
   outcomes: z.array(slug).default([]),
   /** intentional preview of a structure taught later in the spine */
@@ -409,6 +411,8 @@ export const exerciseSetSchema = z.object({
   /** explicit learning role; controls training eligibility and evidence use */
   role: exerciseRoleSchema.default('practice'),
   title: bilingualSchema.optional(),
+  /** Reusable document kept visible while every item in this set is answered. */
+  stimulus: z.string().optional(),
   items: z.array(exerciseItemSchema).min(1),
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
@@ -444,6 +448,102 @@ export const readingSchema = z.object({
   questions: z.array(mcItemSchema).max(4).default([]),
 });
 export type Reading = z.infer<typeof readingSchema>;
+
+// ---------------------------------------------------------------------------
+// Visual documents (content/documents/<level>/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+export const visualDocumentSchema = z
+  .object({
+    topic: slug,
+    level: levelSchema,
+    title_de: z.string().min(1),
+    genre: z.enum(['notice', 'timetable', 'form', 'listing', 'letter', 'receipt', 'map', 'chat']),
+    sourceClass: z.enum(['real', 'adapted', 'simulated']),
+    asset: z.string().min(1),
+    description: bilingualSchema,
+    transcript: z.array(z.string().min(1)).min(1),
+    attribution: z.string().min(1).optional(),
+    license: z.string().min(1).optional(),
+  })
+  .superRefine((document, ctx) => {
+    if (document.sourceClass !== 'simulated' && (!document.attribution || !document.license)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'real/adapted documents require attribution and license',
+      });
+    }
+  });
+export type VisualDocument = z.infer<typeof visualDocumentSchema>;
+
+// ---------------------------------------------------------------------------
+// Vocabulary fields (content/wortfelder/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+const vocabRefSchema = z.object({ deck: slug, de: z.string().min(1) });
+const lexicalRelationSchema = z.object({
+  type: z.enum(['collocation', 'contrast', 'family', 'formation', 'register']),
+  de: z.string().min(1),
+  explanation: bilingualSchema,
+  example_de: z.string().min(1).optional(),
+  example: bilingualSchema.optional(),
+});
+const wordFieldMemberSchema = z.discriminatedUnion('kind', [
+  z.object({
+    kind: z.literal('card'),
+    ref: vocabRefSchema,
+    role: z.enum(['active', 'chunk']),
+    relations: z.array(lexicalRelationSchema).max(4).default([]),
+  }),
+  z.object({
+    kind: z.literal('receptive'),
+    de: z.string().min(1),
+    en: z.string().min(1),
+    ru: z.string().min(1),
+    note: bilingualSchema.optional(),
+  }),
+]);
+export const wordFieldSchema = z.object({
+  id: slug,
+  topic: slug,
+  level: levelSchema,
+  title_de: z.string().min(1),
+  title_en: z.string().min(1),
+  title_ru: z.string().min(1),
+  members: z.array(wordFieldMemberSchema).min(1),
+});
+export type WordField = z.infer<typeof wordFieldSchema>;
+
+// ---------------------------------------------------------------------------
+// Optional discovery/editorial pieces (content/discovery/<level>/<id>.mdx)
+// ---------------------------------------------------------------------------
+
+export const discoverySchema = z.object({
+  id: slug,
+  level: levelSchema,
+  title_de: z.string().min(1),
+  title_en: z.string().min(1),
+  title_ru: z.string().min(1),
+  summary: bilingualSchema,
+  image: z.string().min(1).optional(),
+  status: z.enum(['draft', 'reviewed']).default('draft'),
+});
+export type Discovery = z.infer<typeof discoverySchema>;
+
+export const caseReferenceSchema = z.object({
+  id: z.literal('cases'),
+  articles: z.array(z.object({
+    case: z.enum(['Nominativ', 'Akkusativ', 'Dativ']),
+    masculine: z.string(), feminine: z.string(), neuter: z.string(), plural: z.string(),
+  })).min(3),
+  pronouns: z.array(z.object({ nominative: z.string(), accusative: z.string(), dative: z.string() })).min(1),
+  prepositions: z.object({
+    accusative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
+    dative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
+    two_way: z.array(z.object({ form: z.string(), example: z.string().optional() })),
+  }),
+});
+export type CaseReference = z.infer<typeof caseReferenceSchema>;
 
 // ---------------------------------------------------------------------------
 // Atlas graph + curriculum spine (content/atlas.yaml)

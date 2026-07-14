@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content';
+type View = 'articles-akk' | 'articles-dat' | 'pronouns-akk' | 'pronouns-dat' | 'prepositions' | 'prepositions-dat';
+interface Props { view: View }
+const { view } = Astro.props;
+const entry = await getEntry('referenceData', 'cases');
+if (!entry) throw new Error('Missing canonical case reference data');
+const data = entry.data;
+const articleCases = view === 'articles-akk' ? ['Nominativ', 'Akkusativ'] : ['Nominativ', 'Akkusativ', 'Dativ'];
+const pronounCase = view === 'pronouns-akk' ? 'accusative' : 'dative';
+---
+
+{view.startsWith('articles') && <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr><th>Kasus</th><th>Maskulin</th><th>Feminin</th><th>Neutrum</th><th>Plural</th></tr></thead><tbody>{data.articles.filter((row) => articleCases.includes(row.case)).map((row) => <tr class:list={{ 'font-semibold text-amber-800 dark:text-amber-300': row.case !== 'Nominativ' }}><th>{row.case}</th><td>{row.masculine}</td><td>{row.feminine}</td><td>{row.neuter}</td><td>{row.plural}</td></tr>)}</tbody></table></div>}
+{view.startsWith('pronouns') && <div class="overflow-x-auto"><table class="w-full max-w-md text-sm"><thead><tr><th>Nominativ</th><th>{view === 'pronouns-akk' ? 'Akkusativ' : 'Dativ'}</th></tr></thead><tbody>{data.pronouns.map((row) => <tr><td>{row.nominative}</td><td class="font-semibold text-amber-800 dark:text-amber-300">{row[pronounCase]}</td></tr>)}</tbody></table></div>}
+{view === 'prepositions' && <div class="grid gap-4 sm:grid-cols-3"><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Immer Akkusativ</h3><p lang="de" class="mt-2">{data.prepositions.accusative.map((entry) => entry.form).join(' · ')}</p></section><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Immer Dativ</h3><p lang="de" class="mt-2">{data.prepositions.dative.map((entry) => entry.form).join(' · ')}</p></section><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Wechselpräpositionen</h3><p lang="de" class="mt-2">{data.prepositions.two_way.map((entry) => entry.form).join(' · ')}</p><p class="mt-2 text-xs text-stone-500">Wo? → Dativ · Wohin? → Akkusativ</p></section></div>}
+{view === 'prepositions-dat' && <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr><th>Präposition</th><th>Beispiel</th></tr></thead><tbody>{data.prepositions.dative.map((entry) => <tr><th>{entry.form}</th><td lang="de">{entry.example}</td></tr>)}</tbody></table></div>}

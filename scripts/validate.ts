@@ -16,11 +16,19 @@ import {
   readingSchema,
   topicSchema,
   vocabFileSchema,
+  visualDocumentSchema,
+  wordFieldSchema,
+  discoverySchema,
+  caseReferenceSchema,
+  type CaseReference,
+  type Discovery,
   type ExerciseSet,
   type Reading,
   type Topic,
   type VocabEntry,
   type VocabFile,
+  type VisualDocument,
+  type WordField,
 } from '../src/lib/schemas';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { parseGlosses } from '../src/lib/gloss';
@@ -205,6 +213,64 @@ for (const file of listFiles(join(CONTENT, 'reading'), '.yaml')) {
   readings.set(id, { file: rel(file), data });
 }
 
+const documents = new Map<string, { file: string; data: VisualDocument }>();
+for (const file of listFiles(join(CONTENT, 'documents'), '.yaml')) {
+  const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
+  const data = validateWith(visualDocumentSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'documents'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  documents.set(id, { file: rel(file), data });
+  if (!existsSync(join(ROOT, 'public', data.asset.replace(/^\//, ''))))
+    fail(rel(file), `asset "${data.asset}" does not exist under public/`);
+}
+
+const wordFields = new Map<string, { file: string; data: WordField }>();
+for (const file of listFiles(join(CONTENT, 'wortfelder'), '.yaml')) {
+  const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
+  const data = validateWith(wordFieldSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'wortfelder'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
+  wordFields.set(id, { file: rel(file), data });
+}
+
+const discoveries = new Map<string, { file: string; data: Discovery; body: string }>();
+for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
+  const src = readFileSync(file, 'utf8');
+  const raw = parseFrontmatter(src, rel(file));
+  if (raw === undefined) continue;
+  const data = validateWith(discoverySchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'discovery'), file).split(sep).join('/').replace(/\.mdx$/, '');
+  const basename = id.split('/').at(-1)!;
+  const levelDir = id.split('/')[0]?.toUpperCase();
+  if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
+  if (data.level !== levelDir) fail(rel(file), `level ${data.level} ≠ directory ${levelDir}`);
+  if (data.image && !existsSync(join(ROOT, 'public', data.image.replace(/^\//, ''))))
+    fail(rel(file), `image "${data.image}" does not exist under public/`);
+  discoveries.set(id, {
+    file: rel(file),
+    data,
+    body: src.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, ''),
+  });
+}
+
+const references = new Map<string, { file: string; data: CaseReference }>();
+for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
+  let raw: unknown;
+  try {
+    raw = YAML.parse(readFileSync(file, 'utf8'));
+  } catch (error) {
+    fail(rel(file), `YAML parse error: ${error instanceof Error ? error.message : error}`);
+    continue;
+  }
+  const data = validateWith(caseReferenceSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'reference-data'), file).replace(/\.yaml$/, '');
+  if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
+  references.set(id, { file: rel(file), data });
+}
+
 // ---------------------------------------------------------------------------
 // Cross-checks
 // ---------------------------------------------------------------------------
@@ -311,6 +377,12 @@ for (const [setId, { file, data }] of exerciseSets) {
   }
   if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
+  if (data.stimulus) {
+    const document = documents.get(data.stimulus);
+    if (!document) fail(file, `stimulus "${data.stimulus}" does not resolve to content/documents`);
+    else if (document.data.topic !== data.topic)
+      fail(file, `stimulus topic "${document.data.topic}" ≠ exercise topic "${data.topic}"`);
+  }
 
   // A probe family's items are PARALLEL VARIANTS: different tasks, one competence.
   //
@@ -479,6 +551,27 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
     }
     if (!item.explain) warn(where, 'no explain text (feedback on wrong answers will be thin)');
+  }
+}
+
+for (const { file, data } of documents.values()) {
+  const topic = topics.get(data.topic);
+  if (!topic) fail(file, `topic "${data.topic}" does not resolve`);
+  else if (topic.data.level !== data.level)
+    fail(file, `level ${data.level} ≠ topic level ${topic.data.level}`);
+}
+
+for (const { file, data } of wordFields.values()) {
+  const topic = topics.get(data.topic);
+  if (!topic) fail(file, `topic "${data.topic}" does not resolve`);
+  else if (topic.data.level !== data.level)
+    fail(file, `level ${data.level} ≠ topic level ${topic.data.level}`);
+  for (const member of data.members) {
+    if (member.kind !== 'card') continue;
+    const deck = vocabFiles.get(member.ref.deck)?.data;
+    if (!deck) fail(file, `card ref deck "${member.ref.deck}" does not resolve`);
+    else if (!deck.entries.some((entry) => entry.de === member.ref.de))
+      fail(file, `card ref "${member.ref.deck} / ${member.ref.de}" does not resolve`);
   }
 }
 
@@ -926,6 +1019,9 @@ for (const { file, data } of vocabFiles.values()) checkEnFields(file, data, '');
 for (const { file, data } of exerciseSets.values()) checkEnFields(file, data, '');
 for (const { file, data } of readings.values()) checkEnFields(file, data, '');
 for (const { file, data } of topics.values()) checkEnFields(file, data, '');
+for (const { file, data } of documents.values()) checkEnFields(file, data, '');
+for (const { file, data } of wordFields.values()) checkEnFields(file, data, '');
+for (const { file, data } of discoveries.values()) checkEnFields(file, data, '');
 
 // <En> blocks in topic article bodies
 for (const { file, body } of topics.values()) {
@@ -937,6 +1033,14 @@ for (const { file, body } of topics.values()) {
       if (CYRILLIC.test(line))
         fail(file, `Cyrillic inside <En> block ${i + 1}: "${line.trim().slice(0, 70)}"`);
     }
+  });
+}
+for (const { file, body } of discoveries.values()) {
+  const opens = (body.match(/<En>/g) ?? []).length;
+  const closes = (body.match(/<\/En>/g) ?? []).length;
+  if (opens !== closes) fail(file, `unbalanced <En> tags (${opens} open, ${closes} close)`);
+  (body.match(/<En>[\s\S]*?<\/En>/g) ?? []).forEach((block, index) => {
+    if (CYRILLIC.test(block)) fail(file, `Cyrillic inside <En> block ${index + 1}`);
   });
 }
 
@@ -969,7 +1073,7 @@ for (const level of MEASURED_LEVELS) {
 // ---------------------------------------------------------------------------
 
 console.log(
-  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets, ${readings.size} reading texts.`,
+  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets, ${readings.size} reading texts, ${documents.size} documents, ${wordFields.size} word fields, ${discoveries.size} discovery pieces, ${references.size} references.`,
 );
 if (warnings.length) {
   console.log(`\n⚠ ${warnings.length} warning(s):`);

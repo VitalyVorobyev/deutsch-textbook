@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import type { Bilingual } from '../../lib/schemas';
+import type { CriterionAssessment, PracticePayload } from '../../lib/store';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import SpeakerButton from '../SpeakerButton';
 
@@ -15,6 +16,7 @@ export interface ItemResult {
   evidence?: 'verified' | 'practice';
   /** what the learner actually did, independent of the target outcome's CEFR mode */
   responseMode?: 'selection' | 'writing' | 'listening' | 'spoken-production' | 'spoken-interaction';
+  practice?: PracticePayload;
   /**
    * Focus attribution. Undefined leaves the item's own `focus` tag in place; `null`
    * disclaims it, when the item was failed for a reason that tag is not about. See
@@ -38,6 +40,29 @@ export interface ItemProps<T> {
   onNext: () => void;
   /** label for the advance button — "Weiter →" or the runner's end-of-set wording */
   nextLabel: string;
+}
+
+/** Honest criterion review: every row must be considered, but none must be claimed as met. */
+export function CriterionReview({ entries, values, onChange, lang }: {
+  entries: Bilingual[];
+  values: Array<CriterionAssessment | undefined>;
+  onChange: (values: Array<CriterionAssessment | undefined>) => void;
+  lang: ExplainLang;
+}) {
+  return <div className="space-y-3">
+    {entries.map((entry, index) => <div key={index} className="rounded-md border border-stone-200 p-3 dark:border-stone-700">
+      <p className="text-sm">{pick(lang, entry)}</p>
+      <div className="mt-2 flex gap-2" role="group" aria-label={pick(lang, entry)}>
+        {(['met', 'needs-work'] as const).map((value) => <button
+          key={value}
+          type="button"
+          aria-pressed={values[index] === value}
+          onClick={() => onChange(values.map((current, i) => i === index ? value : current))}
+          className={`rounded-md border px-3 py-1.5 text-xs font-medium ${values[index] === value ? value === 'met' ? 'border-green-600 bg-green-50 text-green-800 dark:bg-green-950/30 dark:text-green-300' : 'border-amber-600 bg-amber-50 text-amber-800 dark:bg-amber-950/30 dark:text-amber-300' : 'border-stone-300 text-stone-500 dark:border-stone-600'}`}
+        >{value === 'met' ? (lang === 'ru' ? 'Получилось' : 'Met') : (lang === 'ru' ? 'Исправить' : 'Needs work')}</button>)}
+      </div>
+    </div>)}
+  </div>;
 }
 
 export function Instruction({ text, lang }: { text?: Bilingual; lang: ExplainLang }) {

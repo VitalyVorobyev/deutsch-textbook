@@ -1,10 +1,10 @@
 /** FSRS scheduling and deck building. */
-import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs';
-import type { VocabEntry } from './schemas';
+import { createEmptyCard, fsrs, type Card, type Grade } from 'ts-fsrs';
+import type { VocabEntry, WordField } from './schemas';
 import { shuffle } from './shuffle';
 import { localDateString, type StoredCard } from './store';
 
-export { Rating, State };
+export { Rating } from 'ts-fsrs';
 export type { Grade };
 
 export const scheduler = fsrs({ enable_fuzz: true });
@@ -42,6 +42,40 @@ export interface CardDef {
   /** other correct typed answers (reflexive `sich …`, an adjectival noun's other
       article forms) — see `accept` in schemas.ts */
   accept?: string[];
+  /** Optional answer-side context; never changes the scheduled lexical target. */
+  context?: LexicalContext[];
+}
+
+export interface LexicalContext {
+  type: 'collocation' | 'contrast' | 'family' | 'formation' | 'register';
+  de: string;
+  en: string;
+  ru: string;
+  exampleDe?: string;
+  exampleEn?: string;
+  exampleRu?: string;
+}
+
+export type LexicalContextMap = Record<string, LexicalContext[]>;
+const lexicalKey = (deck: string, de: string) => `${deck}::${de}`;
+
+export function wordFieldContexts(fields: WordField[]): LexicalContextMap {
+  const contexts: LexicalContextMap = {};
+  for (const field of fields) {
+    for (const member of field.members) {
+      if (member.kind !== 'card' || member.relations.length === 0) continue;
+      contexts[lexicalKey(member.ref.deck, member.ref.de)] = member.relations.map((relation) => ({
+        type: relation.type,
+        de: relation.de,
+        en: relation.explanation.en,
+        ru: relation.explanation.ru,
+        exampleDe: relation.example_de,
+        exampleEn: relation.example?.en,
+        exampleRu: relation.example?.ru,
+      }));
+    }
+  }
+  return contexts;
 }
 
 function deDetail(e: VocabEntry): string | undefined {
@@ -57,7 +91,11 @@ function deDetail(e: VocabEntry): string | undefined {
   return undefined;
 }
 
-export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
+export function buildDeck(
+  deckId: string,
+  entries: VocabEntry[],
+  contexts: LexicalContextMap = {},
+): CardDef[] {
   const cards: CardDef[] = [];
   for (const e of entries) {
     const base = {
@@ -73,6 +111,7 @@ export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
       pos: e.pos,
       gender: e.pos === 'noun' ? e.gender : undefined,
       accept: e.accept?.length ? e.accept : undefined,
+      context: contexts[lexicalKey(deckId, e.de)],
     };
     cards.push({ ...base, id: cardId(deckId, e.de, 'de-x'), dir: 'de-x' });
     cards.push({ ...base, id: cardId(deckId, e.de, 'x-de'), dir: 'x-de' });
@@ -85,11 +124,14 @@ export function buildDeck(deckId: string, entries: VocabEntry[]): CardDef[] {
 // ---------------------------------------------------------------------------
 
 export function serializeCard(card: Card): StoredCard {
+  // ts-fsrs v5 still requires this compatibility field while deprecating its
+  // public property ahead of v6. Isolate the adapter read from app code.
+  const elapsedDays = (card as unknown as { elapsed_days: number }).elapsed_days;
   return {
     due: card.due.toISOString(),
     stability: card.stability,
     difficulty: card.difficulty,
-    elapsed_days: card.elapsed_days,
+    elapsed_days: elapsedDays,
     scheduled_days: card.scheduled_days,
     learning_steps: card.learning_steps,
     reps: card.reps,
