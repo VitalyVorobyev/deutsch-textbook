@@ -1,6 +1,12 @@
 # Beyond the textbook: future content directions
 
-Status: product-direction note, not an implementation commitment (2026-07-12).
+Status: product direction with three bounded pilots implemented (2026-07-14).
+
+The first implementation deliberately stops short of a general platform: one reusable visual
+document in `reisen-verkehr`, one structured Wortfeld over stable cards, and one Entdecken piece.
+The case reference is also canonical structured data. Their evidence boundaries match this note:
+viewing and feedback are not mastery. Broader taxonomies, rewards, branching and automatic card
+creation remain deferred until use of these pilots justifies them.
 
 Deutsch-Atlas is becoming consistent, measurable and pedagogically careful. That is necessary, but
 it is not sufficient. A course can have correct German, complete metadata, good explanations,

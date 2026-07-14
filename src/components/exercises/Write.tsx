@@ -3,16 +3,18 @@ import type { z } from 'zod';
 import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
-import { Instruction, Translation, type ItemProps } from './shared';
+import type { CriterionAssessment } from '../../lib/store';
+import { CriterionReview, Instruction, Translation, type ItemProps } from './shared';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
-type Stage = 'draft' | 'reflect' | 'revise' | 'done';
+type Stage = 'draft' | 'reflect' | 'revise' | 'reassess' | 'done';
 
 interface SavedWriting {
   stage: Exclude<Stage, 'done'>;
   draft: string;
   revision: string;
-  checked: boolean[];
+  before: Array<CriterionAssessment | undefined>;
+  after: Array<CriterionAssessment | undefined>;
 }
 
 function wordCount(value: string): number {
@@ -41,22 +43,25 @@ export function Write({
     } catch {
       // Back compatibility: the old component stored the draft as a plain string.
       const legacy = localStorage.getItem(draftKey);
-      return legacy ? { stage: 'draft' as const, draft: legacy, revision: '', checked: [] } : null;
+      return legacy ? { stage: 'draft' as const, draft: legacy, revision: '', before: [], after: [] } : null;
     }
   })();
   const [stage, setStage] = useState<Stage>(locked ? 'done' : saved?.stage ?? 'draft');
   const [draft, setDraft] = useState(saved?.draft ?? '');
   const [revision, setRevision] = useState(saved?.revision ?? '');
-  const [checked, setChecked] = useState<boolean[]>(
-    item.requirements.map((_, i) => saved?.checked?.[i] ?? false),
+  const [before, setBefore] = useState<Array<CriterionAssessment | undefined>>(
+    item.requirements.map((_, i) => saved?.before?.[i]),
+  );
+  const [after, setAfter] = useState<Array<CriterionAssessment | undefined>>(
+    item.requirements.map((_, i) => saved?.after?.[i]),
   );
   const draftWords = wordCount(draft);
   const revisionWords = wordCount(revision);
 
   useEffect(() => {
     if (stage === 'done') return;
-    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, revision, checked }));
-  }, [checked, draft, draftKey, revision, stage]);
+    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, revision, before, after }));
+  }, [after, before, draft, draftKey, revision, stage]);
 
   function beginReflection() {
     if (draftWords < item.min_words) return;
@@ -65,19 +70,31 @@ export function Write({
   }
 
   function beginRevision() {
-    if (!checked.every(Boolean)) return;
+    if (!before.every(Boolean)) return;
     setStage('revise');
   }
 
-  function submitRevision() {
+  function beginReassessment() {
     if (revisionWords < item.min_words) return;
+    setStage('reassess');
+  }
+
+  function submitRevision() {
+    if (!after.every(Boolean)) return;
     setStage('done');
     localStorage.removeItem(draftKey);
     onResult({
       correct: true,
-      given: JSON.stringify({ draft: draft.trim(), revision: revision.trim(), checklist: checked }),
+      given: revision.trim(),
       evidence: 'practice',
       responseMode: 'writing',
+      practice: {
+        kind: 'writing',
+        draft: draft.trim(),
+        revision: revision.trim(),
+        before: before as CriterionAssessment[],
+        after: after as CriterionAssessment[],
+      },
     });
   }
 
@@ -92,6 +109,7 @@ export function Write({
 
       {stage === 'draft' && (
         <WritingArea
+          id={`${item.id}-draft`}
           value={draft}
           onChange={setDraft}
           words={draftWords}
@@ -102,7 +120,7 @@ export function Write({
         />
       )}
 
-      {(stage === 'reflect' || stage === 'revise' || stage === 'done') && (
+      {(stage === 'reflect' || stage === 'revise' || stage === 'reassess' || stage === 'done') && (
         <div className="mt-4 rounded-md border border-sky-200 bg-sky-50 px-4 py-3 dark:border-sky-800 dark:bg-sky-950/40">
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
             {lang === 'ru' ? 'Пример — сравните содержание и форму' : 'Model — compare content and form'}
@@ -120,28 +138,15 @@ export function Write({
           <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">
             {lang === 'ru'
               ? 'Сравните текст с заданием и примером. Отметьте каждый пункт перед исправлением.'
-              : 'Compare your text with the task and model. Confirm each point before revising.'}
+              : 'Compare your text with the task and model. Rate each point honestly before revising.'}
           </p>
-          <div className="space-y-3">
-            {item.requirements.map((requirement, i) => (
-              <label key={i} className="flex items-start gap-3 text-sm">
-                <input
-                  type="checkbox"
-                  checked={checked[i]}
-                  onChange={(event) =>
-                    setChecked((values) => values.map((value, j) => j === i ? event.target.checked : value))
-                  }
-                  className="mt-0.5 size-4 accent-amber-600"
-                />
-                <span>{pick(lang, requirement)}</span>
-              </label>
-            ))}
-          </div>
+          <CriterionReview entries={item.requirements} values={before} onChange={setBefore} lang={lang} />
         </fieldset>
       )}
 
-      {(stage === 'revise' || stage === 'done') && (
+      {(stage === 'revise' || stage === 'reassess' || stage === 'done') && (
         <WritingArea
+          id={`${item.id}-revision`}
           value={revision}
           onChange={setRevision}
           words={revisionWords}
@@ -152,6 +157,11 @@ export function Write({
         />
       )}
 
+      {stage === 'reassess' && <fieldset className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
+        <legend className="px-1 text-sm font-semibold">{lang === 'ru' ? 'Проверьте исправленный вариант' : 'Check the revision'}</legend>
+        <CriterionReview entries={item.requirements} values={after} onChange={setAfter} lang={lang} />
+      </fieldset>}
+
       <div className="mt-4">
         {stage === 'draft' && (
           <ActionButton onClick={beginReflection} disabled={draftWords < item.min_words}>
@@ -159,15 +169,18 @@ export function Write({
           </ActionButton>
         )}
         {stage === 'reflect' && (
-          <ActionButton onClick={beginRevision} disabled={!checked.every(Boolean)}>
+          <ActionButton onClick={beginRevision} disabled={!before.every(Boolean)}>
             {lang === 'ru' ? 'Исправить текст' : 'Revise draft'}
           </ActionButton>
         )}
         {stage === 'revise' && (
-          <ActionButton onClick={submitRevision} disabled={revisionWords < item.min_words}>
-            {lang === 'ru' ? 'Сохранить исправленный вариант' : 'Save revised draft'}
+          <ActionButton onClick={beginReassessment} disabled={revisionWords < item.min_words}>
+            {lang === 'ru' ? 'Проверить исправления' : 'Check revision'}
           </ActionButton>
         )}
+        {stage === 'reassess' && <ActionButton onClick={submitRevision} disabled={!after.every(Boolean)}>
+          {lang === 'ru' ? 'Сохранить исправленный вариант' : 'Save revised draft'}
+        </ActionButton>}
         {stage === 'done' && (
           <ActionButton onClick={onNext}>{nextLabel}</ActionButton>
         )}
@@ -183,7 +196,8 @@ export function Write({
   );
 }
 
-function WritingArea({ value, onChange, words, minWords, lang, label, disabled }: {
+function WritingArea({ id, value, onChange, words, minWords, lang, label, disabled }: {
+  id: string;
   value: string;
   onChange: (value: string) => void;
   words: number;
@@ -194,8 +208,9 @@ function WritingArea({ value, onChange, words, minWords, lang, label, disabled }
 }) {
   return (
     <div className="mt-4">
-      <label className="text-sm font-semibold">{label}</label>
+      <label htmlFor={id} className="text-sm font-semibold">{label}</label>
       <textarea
+        id={id}
         lang="de"
         value={value}
         onChange={(event) => onChange(event.target.value)}

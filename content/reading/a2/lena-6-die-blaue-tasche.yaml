@@ -1,0 +1,62 @@
+topic: aemter-dienstleistungen
+kind: extensive
+title_de: "Lena in Bremen (6): Die blaue Tasche"
+text:
+  - >-
+    Nach dem Kaffee am Marktplatz fährt Lena mit der Straßenbahn nach Hause. Am
+    Abend will sie ihre neue Meldebescheinigung in einen Ordner legen. Aber die
+    blaue Tasche mit den Unterlagen ist nicht da. Lena sucht unter dem Tisch, im
+    Flur und sogar im Kühlschrank. „Warum sollte sie im Kühlschrank sein?“, fragt
+    Frau Kern. Lena antwortet: „Ich weiß es nicht. Ich suche jetzt überall.“
+  - >-
+    Zuerst ruft Lena im Café an. Dort hat niemand eine Tasche gefunden. Dann
+    prüft sie die Internetseite vom [[Fundbüro::lost-property office::бюро находок]].
+    Das Büro ist schon geschlossen, aber man kann online eine
+    [[Verlustmeldung::loss report::заявление о пропаже]] schreiben. Das Formular
+    fragt nach Farbe, Größe, Inhalt und dem letzten Ort. Lena schreibt: „Blaue
+    Stofftasche, ungefähr dreißig Zentimeter breit. Inhalt: ein Formular, eine
+    Meldebescheinigung und ein roter Ordner.“
+  - >-
+    Bei „Verlustort“ ist Lena unsicher. Im Café hatte sie die Tasche noch. In der
+    Straßenbahn hat sie eine Nachricht geschrieben und nicht auf ihre Sachen
+    geachtet. Sie trägt deshalb beide Orte ein. Das System gibt ihr eine
+    [[Vorgangsnummer::case number::номер обращения]]. Frau Kern sagt: „Schreib die
+    Nummer sofort auf.“ Lena zeigt auf den Bildschirm. „Sie steht doch hier.“
+    „Genau“, sagt Frau Kern, „und morgen ist der Bildschirm nicht mehr hier.“
+  - >-
+    Am nächsten Morgen kommt eine E-Mail. Eine Fahrerin hat die Tasche in der
+    Straßenbahn gefunden. Lena kann sie im Servicezentrum am Hauptbahnhof
+    abholen. Sie muss ihren Pass und die Vorgangsnummer mitbringen. Am Schalter
+    beschreibt Lena die Tasche noch einmal. Die Mitarbeiterin vergleicht ihre
+    Angaben und gibt sie ihr zurück. Alles ist noch darin.
+  - >-
+    Auf dem Heimweg kauft Lena einen kleinen gelben Anhänger. Darauf schreibt sie
+    nur ihre Telefonnummer, nicht ihre Adresse. Frau Kern sieht den Anhänger und
+    nickt. „Das ist vernünftig.“ Lena lacht. „Und die Vorgangsnummer habe ich
+    auch gespeichert.“ Diesmal muss Frau Kern nichts mehr erklären.
+questions:
+  - id: q-fundort
+    outcomes: [formular-verstehen]
+    type: mc
+    prompt: "Wo wurde die Tasche gefunden?"
+    options: ["In der Straßenbahn.", "Im Kühlschrank.", "Vor dem Rathaus."]
+    correct: 0
+    translation:
+      en: "Where was the bag found?"
+      ru: "Где нашли сумку?"
+    explain:
+      en: "A driver found the bag in the tram and took it to the service centre."
+      ru: "Водительница нашла сумку в трамвае и передала её в сервисный центр."
+  - id: q-abholen
+    outcomes: [unterlagen-erfragen]
+    type: mc
+    prompt: "Was muss Lena zum Abholen mitbringen?"
+    options: ["Den Pass und die Vorgangsnummer.", "Nur einen gelben Anhänger.", "Eine neue Fahrkarte."]
+    correct: 0
+    translation:
+      en: "What must Lena bring when collecting the bag?"
+      ru: "Что Лена должна принести, когда будет забирать сумку?"
+    explain:
+      en: "The email names two proofs: her passport and the case number from the online report."
+      ru: "В письме названы два подтверждения: паспорт и номер обращения из онлайн-заявления."
+

@@ -1,5 +1,5 @@
 import { useState, type ReactElement } from 'react';
-import type { ExerciseItem, ExerciseSet as ExerciseSetData } from '../../lib/schemas';
+import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '../../lib/schemas';
 import { logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
@@ -17,10 +17,12 @@ import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
 import type { ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
+import DocumentStimulus from './DocumentStimulus';
 
 interface Props {
   setId: string;
   set: ExerciseSetData;
+  document?: VisualDocument;
 }
 
 interface Answered {
@@ -106,7 +108,7 @@ function ItemBody({
   }
 }
 
-export default function ExerciseSet({ setId, set }: Props) {
+export default function ExerciseSet({ setId, set, document }: Props) {
   const lang = useExplainLang();
   const items = set.items;
   const resumeSurface = `exset:${setId}`;
@@ -145,6 +147,7 @@ export default function ExerciseSet({ setId, set }: Props) {
       setId,
       itemId: item.id,
       itemType: item.type,
+      itemRevision: item.revision,
       correct: result.correct,
       ...(result.totalParts !== undefined
         ? { correctParts: result.correctParts, totalParts: result.totalParts }
@@ -154,6 +157,7 @@ export default function ExerciseSet({ setId, set }: Props) {
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(item),
       outcomes: item.outcomes,
+      practice: result.practice,
       ts: Date.now(),
     });
   }
@@ -227,7 +231,8 @@ export default function ExerciseSet({ setId, set }: Props) {
         </div>
       </div>
 
-      {item && (
+      {item && <div className={document ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
+        {document && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={document} /></div>}
         <ItemView
           instanceKey={`${round}-${item.id}`}
           item={item}
@@ -240,7 +245,7 @@ export default function ExerciseSet({ setId, set }: Props) {
           }
           storageKey={`${setId}::${item.id}`}
         />
-      )}
+      </div>}
     </div>
   );
 }

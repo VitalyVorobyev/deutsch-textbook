@@ -5,13 +5,15 @@ import Bilingual from '../../components/Bilingual.astro';
 import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
 import ExampleQuote from '../../components/ExampleQuote.astro';
+import CaseTable from '../../components/reference/CaseTable.astro';
 import VocabTable from '../../components/VocabTable.astro';
+import WordField from '../../components/vocab/WordField.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import { KIND_LABEL } from '../../lib/content';
-import { buildDeck } from '../../lib/srs';
+import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -22,6 +24,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const data = entry.data;
+const wordFields = (await getCollection('wortfelder')).filter((field) => field.data.topic === data.id);
+const lexicalContexts = wordFieldContexts(wordFields.map((field) => field.data));
 
 const allTopics = await getCollection('topics');
 const byId = new Map(allTopics.map((t) => [t.data.id, t]));
@@ -33,7 +37,10 @@ const exerciseSets = await Promise.all(
   data.exercises.map(async (id) => {
     const set = await getEntry('exercises', id);
     if (!set) throw new Error(`Topic ${data.id}: exercise set "${id}" not found`);
-    return { id, data: set.data };
+    const document = set.data.stimulus ? await getEntry('documents', set.data.stimulus) : undefined;
+    if (set.data.stimulus && !document)
+      throw new Error(`Topic ${data.id}: document "${set.data.stimulus}" not found`);
+    return { id, data: set.data, document: document?.data };
   }),
 );
 
@@ -129,7 +136,7 @@ if (data.pretest && !pretestSet)
   }
 
   <article class="article-prose">
-    <Content components={{ Bilingual, En, Ru, blockquote: ExampleQuote }} />
+    <Content components={{ Bilingual, En, Ru, CaseTable, blockquote: ExampleQuote }} />
   </article>
 
   {
@@ -146,6 +153,15 @@ if (data.pretest && !pretestSet)
   }
 
   {
+    wordFields.length > 0 && (
+      <section class="mt-12">
+        <h2 class="mb-4 text-2xl font-bold">Wortfeld</h2>
+        <div class="space-y-5">{wordFields.map((field) => <WordField field={field.data} />)}</div>
+      </section>
+    )
+  }
+
+  {
     vocabFiles.length > 0 && (
       <section class="mt-12">
         <h2 class="mb-4 text-2xl font-bold">Wortschatz</h2>
@@ -153,7 +169,7 @@ if (data.pretest && !pretestSet)
           <div class="mb-8">
             <div class="mb-2 flex items-center gap-3">
               <h3 lang="de" class="text-lg font-semibold">{v.title_de}</h3>
-              <DueBadge client:only="react" cards={buildDeck(v.id, v.entries)} />
+              <DueBadge client:only="react" cards={buildDeck(v.id, v.entries, lexicalContexts)} />
               <a
                 href={withBase(`/vocab/${v.id}`)}
                 class="ml-auto text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
@@ -174,7 +190,7 @@ if (data.pretest && !pretestSet)
         <h2 class="mb-4 text-2xl font-bold">Übungen</h2>
         <div class="flex flex-col gap-6">
           {exerciseSets.map((s) => (
-            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} />
+            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} />
           ))}
         </div>
       </section>

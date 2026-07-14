@@ -26,8 +26,8 @@ function tempRoot() {
 const ts = (day: number) => Date.UTC(2026, 6, day, 12);
 
 function snapshot(over: Partial<AuditSnapshot> = {}): AuditSnapshot {
-  return {
-    version: 4,
+  const value: AuditSnapshot = {
+    version: 5,
     exportedAt: new Date(ts(13)).toISOString(),
     profile: 'Vitaly',
     attempts: [],
@@ -36,10 +36,16 @@ function snapshot(over: Partial<AuditSnapshot> = {}): AuditSnapshot {
     topics: {},
     ...over,
   };
+  value.attempts = value.attempts.map((attempt) =>
+    'itemRevision' in attempt ? attempt : { ...attempt, itemRevision: 1 });
+  return value;
 }
 
 function catalog(...items: CatalogItem[]) {
-  return new Map(items.map((item) => [`${item.setId}:${item.id}`, item]));
+  return new Map(items.map((item) => [
+    `${item.setId}:${item.id}`,
+    { revision: 1, ...item },
+  ]));
 }
 
 describe('progress audit', () => {
@@ -54,9 +60,9 @@ describe('progress audit', () => {
       .toBe(join(dir, '2026-07-10.json'));
   });
 
-  test('reads v1-v4 and supplies fields missing from legacy snapshots', () => {
+  test('reads v1-v5 and supplies fields missing from legacy snapshots', () => {
     const root = tempRoot();
-    for (const version of [1, 2, 3, 4]) {
+    for (const version of [1, 2, 3, 4, 5]) {
       const path = join(root, `${version}.json`);
       writeFileSync(path, JSON.stringify({
         version,
@@ -69,6 +75,26 @@ describe('progress audit', () => {
       expect(parsed.sessions).toEqual([]);
       expect(parsed.topics).toEqual({});
     }
+  });
+
+  test('never replays legacy or mismatched attempts against the current key', () => {
+    const item: CatalogItem = {
+      setId: 'a2/x', id: 'changed', revision: 2, type: 'translate',
+      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+    };
+    const base = {
+      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
+      given: 'Ich fahre morgen.', focus: item.focus,
+    };
+    const audit = buildAudit(snapshot({ attempts: [
+      { ...base, itemRevision: undefined, ts: ts(10) },
+      { ...base, itemRevision: 1, ts: ts(11) },
+    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    expect(audit.gradingCandidates).toEqual([]);
+    expect(audit.counts.revisionKnown).toBe(1);
+    expect(audit.counts.revisionMismatch).toBe(1);
+    expect(audit.delayed.probes.attempts).toBe(0);
   });
 
   test('aggregates partial credit, response modes, cards, probes and delayed evidence', () => {
@@ -109,6 +135,10 @@ describe('progress audit', () => {
         currentCorrect: 1,
         focusRetained: 0,
         focusFailed: 0,
+        dueNow: 0,
+        overdue: 0,
+        maxOverdueDays: 0,
+        maxTakenInOneDay: 1,
       },
     });
   });
@@ -229,6 +259,10 @@ describe('progress audit', () => {
       currentCorrect: 1,
       focusRetained: 1,
       focusFailed: 1,
+      dueNow: 0,
+      overdue: 0,
+      maxOverdueDays: 0,
+      maxTakenInOneDay: 3,
     });
     expect(renderMarkdown(audit)).toContain('1 correct under the current contract');
   });

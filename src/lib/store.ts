@@ -2,6 +2,14 @@
 import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval';
 import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord } from './profile';
 import { scheduleAutoSync } from './autosync';
+import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
+import {
+  mergeAttempts,
+  mergeCards,
+  mergeFeedback,
+  mergeSessions,
+  mergeTopics,
+} from './snapshot-merge';
 
 // ---------------------------------------------------------------------------
 // Profile-aware store handle
@@ -40,6 +48,8 @@ export interface Attempt {
   setId: string;
   itemId: string;
   itemType: string;
+  /** Authored task contract used for this attempt; absent on v1-v4 history. */
+  itemRevision?: number;
   /** fully correct (partial credit lives in correctParts/totalParts) */
   correct: boolean;
   /** parts answered correctly, for multi-part items (cloze gaps, match pairs, table cells) */
@@ -56,10 +66,32 @@ export interface Attempt {
   responseMode?: 'selection' | 'writing' | 'listening' | 'spoken-production' | 'spoken-interaction';
   /** stable curriculum outcome ids exercised by this attempt */
   outcomes?: string[];
+  /** Structured open-production evidence. Never contributes verified accuracy. */
+  practice?: PracticePayload;
   ts: number;
 }
 
-export async function logAttempt(attempt: Attempt): Promise<void> {
+export type CriterionAssessment = 'met' | 'needs-work';
+
+export type PracticePayload =
+  | {
+      kind: 'writing';
+      draft: string;
+      revision: string;
+      before: CriterionAssessment[];
+      after: CriterionAssessment[];
+    }
+  | {
+      kind: 'speaking';
+      recorded: boolean;
+      before: CriterionAssessment[];
+      after: CriterionAssessment[];
+    };
+
+/** Write boundary: historical attempts may omit a revision; newly logged ones may not. */
+export type NewAttempt = Omit<Attempt, 'itemRevision'> & { itemRevision: number };
+
+export async function logAttempt(attempt: NewAttempt): Promise<void> {
   await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], await getStore());
   scheduleAutoSync();
 }
@@ -219,12 +251,43 @@ export async function setTopicManual(
 }
 
 // ---------------------------------------------------------------------------
+// Optional-artifact feedback (engagement/editorial signal, never mastery)
+// ---------------------------------------------------------------------------
+
+export interface ArtifactFeedback {
+  artifactId: string;
+  difficulty?: 'too-easy' | 'comfortable' | 'too-hard';
+  useful?: boolean;
+  wantsMore?: boolean;
+  ts: number;
+}
+
+export type ArtifactFeedbackState = Record<string, ArtifactFeedback>;
+
+export async function getArtifactFeedback(): Promise<ArtifactFeedbackState> {
+  return (await get<ArtifactFeedbackState>('feedback', await getStore())) ?? {};
+}
+
+export async function setArtifactFeedback(
+  entry: Omit<ArtifactFeedback, 'ts'>,
+): Promise<ArtifactFeedback> {
+  const stamped = { ...entry, ts: Date.now() };
+  await update<ArtifactFeedbackState>(
+    'feedback',
+    (current) => ({ ...(current ?? {}), [stamped.artifactId]: stamped }),
+    await getStore(),
+  );
+  scheduleAutoSync();
+  return stamped;
+}
+
+// ---------------------------------------------------------------------------
 // Export / import (the agent personalization loop reads these snapshots)
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 4; import accepts 1 (pre-sessions), 2 (pre-topics), 3 (pre-goal), 4 */
-  version: number;
+  /** written as 5; import accepts v1-v5 through explicit migration. */
+  version: 5;
   exportedAt: string;
   /** profile label, informational only */
   profile?: string;
@@ -233,11 +296,12 @@ export interface ProgressSnapshot {
   sessions: SessionLogEntry[];
   topics: TopicsState;
   goal?: LearningGoal;
+  feedback: ArtifactFeedbackState;
 }
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 4,
+    version: 5,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),
@@ -245,19 +309,12 @@ export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot
     sessions: await getSessionLog(),
     topics: await getTopicsState(),
     goal: await getLearningGoal(),
+    feedback: await getArtifactFeedback(),
   };
 }
 
-export function isValidSnapshot(s: unknown): s is ProgressSnapshot {
-  if (!s || typeof s !== 'object') return false;
-  const snap = s as Partial<ProgressSnapshot>;
-  const v = snap.version;
-  return (
-    (v === 1 || v === 2 || v === 3 || v === 4) &&
-    Array.isArray(snap.attempts) &&
-    typeof snap.cards === 'object' &&
-    snap.cards !== null
-  );
+export function isValidSnapshot(s: unknown): boolean {
+  return isProgressSnapshot(s);
 }
 
 /** Strip malformed partial-credit fields so attemptScore() can trust totalParts ≥ 1. */
@@ -278,108 +335,35 @@ export function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
   });
 }
 
-// --- merge helpers (pure) ---------------------------------------------------
-
-function attemptKey(a: Attempt): string {
-  return `${a.setId}|${a.itemId}|${a.ts}`;
-}
-
-function mergeAttempts(a: Attempt[], b: Attempt[]): Attempt[] {
-  const seen = new Set(a.map(attemptKey));
-  const out = [...a];
-  for (const x of b) {
-    const k = attemptKey(x);
-    if (!seen.has(k)) {
-      seen.add(k);
-      out.push(x);
-    }
-  }
-  out.sort((x, y) => x.ts - y.ts);
-  return out;
-}
-
-/** Keep the more-advanced FSRS state: later last_review, then reps, then stability. */
-function moreAdvancedCard(x: StoredCard, y: StoredCard): StoredCard {
-  const lx = x.last_review ? Date.parse(x.last_review) : 0;
-  const ly = y.last_review ? Date.parse(y.last_review) : 0;
-  if (lx !== ly) return lx > ly ? x : y;
-  if (x.reps !== y.reps) return x.reps > y.reps ? x : y;
-  return x.stability >= y.stability ? x : y;
-}
-
-function mergeCards(a: CardStates, b: CardStates): CardStates {
-  const out: CardStates = { ...a };
-  for (const [id, card] of Object.entries(b)) {
-    out[id] = out[id] ? moreAdvancedCard(out[id], card) : card;
-  }
-  return out;
-}
-
-function sessionKey(s: SessionLogEntry): string {
-  return `${s.date}|${s.ts}`;
-}
-
-function mergeSessions(a: SessionLogEntry[], b: SessionLogEntry[]): SessionLogEntry[] {
-  const seen = new Set(a.map(sessionKey));
-  const out = [...a];
-  for (const s of b) {
-    const k = sessionKey(s);
-    if (!seen.has(k)) {
-      seen.add(k);
-      out.push(s);
-    }
-  }
-  out.sort((x, y) => x.ts - y.ts);
-  return out;
-}
-
-function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
-  const out: TopicsState = { ...a };
-  for (const [id, tp] of Object.entries(b)) {
-    const prev = out[id];
-    if (!prev) {
-      out[id] = tp;
-      continue;
-    }
-    const readAt = Math.max(prev.readAt ?? 0, tp.readAt ?? 0) || undefined;
-    let manual = prev.manual;
-    let manualAt = prev.manualAt;
-    if ((tp.manualAt ?? 0) > (prev.manualAt ?? 0)) {
-      manual = tp.manual;
-      manualAt = tp.manualAt;
-    }
-    out[id] = {
-      ...(readAt ? { readAt } : {}),
-      ...(manual ? { manual, manualAt } : {}),
-    };
-  }
-  return out;
-}
-
 /**
  * Non-destructive merge: unions attempts/sessions (dedup), keeps the
  * more-advanced card state, and last-write-wins for topic manual overrides.
  * This is the default import so two devices/profiles don't clobber each other.
  */
-export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
-  if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
+export async function mergeSnapshot(snapshot: unknown): Promise<void> {
+  const migrated = parseProgressSnapshot(snapshot);
   const store = await getStore();
   await update<Attempt[]>(
     'attempts',
-    (cur) => mergeAttempts(cur ?? [], sanitizeAttempts(snapshot.attempts)),
+    (cur) => mergeAttempts(cur ?? [], sanitizeAttempts(migrated.attempts)),
     store,
   );
-  await update<CardStates>('cards', (cur) => mergeCards(cur ?? {}, snapshot.cards), store);
+  await update<CardStates>('cards', (cur) => mergeCards(cur ?? {}, migrated.cards), store);
   await update<SessionLogEntry[]>(
     'sessions',
-    (cur) => mergeSessions(cur ?? [], snapshot.sessions ?? []),
+    (cur) => mergeSessions(cur ?? [], migrated.sessions),
     store,
   );
-  await update<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, snapshot.topics ?? {}), store);
-  if (snapshot.goal) {
+  await update<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, migrated.topics), store);
+  await update<ArtifactFeedbackState>(
+    'feedback',
+    (cur) => mergeFeedback(cur ?? {}, migrated.feedback),
+    store,
+  );
+  if (migrated.goal) {
     await update<LearningGoal | undefined>(
       'goal',
-      (cur) => (!cur || snapshot.goal!.setAt > cur.setAt ? snapshot.goal : cur),
+      (cur) => (!cur || migrated.goal!.setAt > cur.setAt ? migrated.goal : cur),
       store,
     );
   }
@@ -387,22 +371,19 @@ export async function mergeSnapshot(snapshot: ProgressSnapshot): Promise<void> {
 }
 
 /** Destructive: replaces the whole store with the snapshot's contents. */
-export async function replaceSnapshot(snapshot: ProgressSnapshot): Promise<void> {
-  if (!isValidSnapshot(snapshot)) throw new Error('Not a valid Deutsch-Atlas progress snapshot');
+export async function replaceSnapshot(snapshot: unknown): Promise<void> {
+  const migrated = parseProgressSnapshot(snapshot);
   const store = await getStore();
   // The identity record names this database for discovery — it outlives its contents.
   const identity = await get<ProfileRecord>('profile', store);
   await clear(store);
   if (identity) await set('profile', identity, store);
-  await set('attempts', sanitizeAttempts(snapshot.attempts), store);
-  await set('cards', snapshot.cards, store);
-  await set('sessions', Array.isArray(snapshot.sessions) ? snapshot.sessions : [], store);
-  await set(
-    'topics',
-    snapshot.topics && typeof snapshot.topics === 'object' ? snapshot.topics : {},
-    store,
-  );
-  if (snapshot.goal) await set('goal', snapshot.goal, store);
+  await set('attempts', sanitizeAttempts(migrated.attempts), store);
+  await set('cards', migrated.cards, store);
+  await set('sessions', migrated.sessions, store);
+  await set('topics', migrated.topics, store);
+  await set('feedback', migrated.feedback, store);
+  if (migrated.goal) await set('goal', migrated.goal, store);
   scheduleAutoSync();
 }
 

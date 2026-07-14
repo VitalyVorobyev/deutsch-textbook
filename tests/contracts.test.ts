@@ -199,8 +199,8 @@ describe('scoring and curriculum contracts', () => {
       .toContain('be alive');
   });
 
-  test('v1-v4 snapshots remain accepted and malformed partial scores are sanitized', () => {
-    for (const version of [1, 2, 3, 4])
+  test('v1-v5 snapshots remain accepted and malformed partial scores are sanitized', () => {
+    for (const version of [1, 2, 3, 4, 5])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);
     const bad: Attempt = {
       setId: 'x', itemId: 'y', itemType: 'table', correct: false,
