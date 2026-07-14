@@ -33,6 +33,11 @@ import {
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { parseGlosses } from '../src/lib/gloss';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
+import {
+  checkGradingDecisions,
+  GRADING_DECISIONS_FILE,
+  loadGradingDecisions,
+} from '../src/lib/grading-decisions';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -1044,6 +1049,55 @@ for (const { file, body } of discoveries.values()) {
   (body.match(/<En>[\s\S]*?<\/En>/g) ?? []).forEach((block, index) => {
     if (CYRILLIC.test(block)) fail(file, `Cyrillic inside <En> block ${index + 1}`);
   });
+}
+
+// ---------------------------------------------------------------------------
+// Grading decisions: a committed linguistic ruling must stay true
+// ---------------------------------------------------------------------------
+
+/**
+ * `data/grading-decisions.yaml` is the committed memory of the audit's
+ * grading-review queue (see CLAUDE.md). Two of its claims are machine-checkable
+ * and enforced here via `checkGradingDecisions` (`src/lib/grading-decisions.ts`):
+ * a decision's item ref must exist (hard fail), and an `accept`-ruled rendering
+ * must pass today's grader (hard fail) — an accepted rendering the scorer still
+ * rejects is a stale claim, and the queue it was meant to drain would refill.
+ *
+ * `constrain` and `confirm` have no machine-checkable semantics: whether an
+ * `instruction` really pins the target, or a rejection was linguistically right,
+ * is a judgement about meaning — on the author. And whether a ruling still
+ * matches a *queueable* rendering is snapshot-relative, so that half of orphan
+ * detection lives in the audit; here, an item that is no longer a graded
+ * translate item warns rather than fails.
+ */
+{
+  let ruled = false;
+  try {
+    const decisions = loadGradingDecisions(ROOT);
+    ruled = true;
+    const checked = checkGradingDecisions(decisions, (ref) => {
+      const at = ref.lastIndexOf(':');
+      if (at <= 0) return undefined;
+      const item = exerciseSets
+        .get(ref.slice(0, at))
+        ?.data.items.find((candidate) => candidate.id === ref.slice(at + 1));
+      if (!item) return undefined;
+      return item.type === 'translate'
+        ? {
+            type: item.type,
+            answer: item.answer,
+            accept: item.accept,
+            focus: item.focus,
+            keyTokens: item.key_tokens,
+          }
+        : { type: item.type };
+    });
+    for (const message of checked.errors) fail(GRADING_DECISIONS_FILE, message);
+    for (const message of checked.warnings) warn(GRADING_DECISIONS_FILE, message);
+  } catch (e) {
+    if (!ruled) fail(GRADING_DECISIONS_FILE, `parse error: ${e instanceof Error ? e.message : e}`);
+    else throw e;
+  }
 }
 
 // ---------------------------------------------------------------------------

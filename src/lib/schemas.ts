@@ -640,3 +640,46 @@ export const atlasSchema = z.object({
   units: z.array(atlasUnitSchema).min(1),
 });
 export type Atlas = z.infer<typeof atlasSchema>;
+
+// ---------------------------------------------------------------------------
+// Grading decisions (data/grading-decisions.yaml)
+// ---------------------------------------------------------------------------
+
+export const GRADING_DECISION_RULINGS = ['accept', 'constrain', 'confirm'] as const;
+
+/**
+ * One committed linguistic ruling on a rejected `translate` rendering.
+ *
+ * The audit's grading-review queue is derived from the attempt log and has no
+ * memory, so without a committed home for rulings the same rendering returns for
+ * review on every run and the queue can never drain. This file is that memory —
+ * loaded by both `scripts/validate.ts` (which enforces the machine-checkable
+ * claims) and `scripts/progress-audit.ts` (which applies the exclusion semantics;
+ * see `src/lib/grading-decisions.ts`).
+ */
+export const gradingDecisionSchema = z.object({
+  /** `<set-id>:<item-id>` of the translate item the rendering answered */
+  item: z
+    .string()
+    .regex(/^[a-z0-9/-]+:[a-z0-9-]+$/, 'must be <set-id>:<item-id> (kebab-case path ids)'),
+  /** the rendering as logged; matched via `normalizeTranslation`, so spacing and
+      trailing sentence punctuation never distinguish two renderings */
+  given: z.string().min(1),
+  /**
+   * accept    — correct, target-preserving German. Must pass today's grader
+   *             (validator-enforced): either the scorer's slip-forgiveness covers
+   *             it or the item's `accept` list gains it in the same change.
+   * constrain — good German that bypasses the target; paired with a bilingual
+   *             `instruction` constraint on the item.
+   * confirm   — the rejection was linguistically right; the attempts re-enter the
+   *             focus signals with attribution recomputed under today's grader.
+   */
+  decision: z.enum(GRADING_DECISION_RULINGS),
+  /** the linguistic reason, stated so a future reviewer can re-check it */
+  note: z.string().min(1),
+  /** date of the ruling, YYYY-MM-DD */
+  decidedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'must be a YYYY-MM-DD date'),
+});
+export type GradingDecision = z.infer<typeof gradingDecisionSchema>;
+
+export const gradingDecisionsSchema = z.array(gradingDecisionSchema);

@@ -229,6 +229,8 @@ items:
     outcomes: [umtausch-begruenden, reklamation-schreiben]
     type: translate
     focus: akkusativ-artikel
+    # revision 2: accept gained the idiomatic "zu eng" pair (grading decision, 2026-07-14)
+    revision: 2
     instruction:
       en: "Translate into German. You are at the returns counter."
       ru: "Переведите на немецкий. Вы стоите у стойки возврата товара."
@@ -238,6 +240,8 @@ items:
     key_tokens: ["den"]
     accept:
       - "Ich möchte den Pullover umtauschen. Er ist mir zu klein."
+      - "Ich möchte den Pullover umtauschen. Er ist zu eng."
+      - "Ich möchte den Pullover umtauschen. Er ist mir zu eng."
     explain:
       en: "umtauschen takes an accusative object, and der Pullover is the one gender that shows it: der → den. After the modal möchte the separable verb stays whole and closes the sentence — umtauschen, never tausche … um. In the second sentence the pullover is picked up by er, because Pullover is masculine."
       ru: "umtauschen требует Akkusativ, а der Pullover — единственный род, который это показывает: der → den. После модального möchte глагол с отделяемой приставкой остаётся целым и замыкает предложение — umtauschen, а не tausche … um. Во втором предложении свитер заменяется местоимением er, потому что Pullover мужского рода."
