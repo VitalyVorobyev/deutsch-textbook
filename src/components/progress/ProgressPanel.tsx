@@ -67,6 +67,7 @@ interface Props {
   probeFamilies: ProbeFamily[];
   /** probe set id → the topic's German title, for the results list */
   probeLabels: Record<string, string>;
+  probeTopicPaths: Record<string, string>;
 }
 
 export default function ProgressPanel({
@@ -78,6 +79,7 @@ export default function ProgressPanel({
   outcomeLabels,
   probeFamilies,
   probeLabels,
+  probeTopicPaths,
 }: Props) {
   const lang = useExplainLang();
   const [data, setData] = useState<Data | null>(null);
@@ -325,6 +327,7 @@ export default function ProgressPanel({
         <ProbeResults
           families={probeFamilies}
           labels={probeLabels}
+          topicPaths={probeTopicPaths}
           attempts={data.attempts}
           lang={lang}
         />

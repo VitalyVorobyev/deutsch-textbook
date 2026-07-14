@@ -116,7 +116,7 @@ material. One shared real-world scenario per topic — the mission convention, s
 A2 extensive reader.
 
 - Depends on: P4-2 (the probe families land with it).
-- Accept: every A2 topic exercises every mode A1 does; `pathDone` is unchanged for all sixteen
+- Accept: every A2 topic exercises every mode A1 does; `pathDone` is unchanged for the original sixteen
   existing topics — asserted, not assumed, because a new item in a `primaryPractice` set silently
   un-finishes a topic.
 
@@ -131,7 +131,9 @@ sets clearing the item-mix bar, a probe family, an intensive reading, a thin A2 
 against every existing deck, and its focus tags registered in both `CLAUDE.md` and
 `scripts/validate.ts`.
 
-All three bundles have shipped. **A2 has its ten units**, the four units of bundle 3 use *weil* and
+All three bundles shipped. A learner-led seventeenth A2 unit, `verben-mit-praepositionen`, was later
+inserted after `gesundheit-arzttermin`; it preserves all existing identities and extends the current
+checkpoint by stable item IDs. **A2 has eleven expansion units**, and the four units of bundle 3 use *weil* and
 *dass* throughout, and the reorder that made that possible has paid for itself.
 
 What bundle 3's review round found is worth recording, because it was not a content defect but an
@@ -256,6 +258,11 @@ Run the just-in-time audit and post-pair snapshot review in
 response modes, overdue probes, productive-card lapses, persistent focus errors, structured
 production changes, session workload, pair windows and pilot feedback.
 
+The windows now include the learner-led `verben-mit-praepositionen` module after
+`gesundheit-arzttermin`; the operating program is authoritative. Keep the cycle-one snapshot review
+open until `einkaufen-reklamation` is completed. A2 closure remains open until the expanded
+checkpoint and this module's 2/7/21-day evidence have been reviewed.
+
 ### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
 
 Constrained local or optional AI pronunciation assistance. All resulting evidence stays unverified
@@ -279,14 +286,14 @@ learning workflow.
 
 ### P5-7 · Delayed evidence for listening — `todo` (M)
 
-One competence is probed per topic, and in every one of the sixteen topics the competence that
+One competence is probed per topic, and in every one of the original sixteen topics the competence that
 answers "did this lesson stick" turned out to be a production one. So **no listening outcome has a
 retention curve** — listening is practised (`listen` dictation, `audio-comprehension`) but never
 re-checked after an interval. That is a real hole, and it is stated here rather than papered over.
 
 The fix is a second probe family per topic where a listening outcome deserves it (`probe-<topic>-hoeren`,
 three parallel `listen` or `audio-comprehension` variants). It is not free: a due probe opens the
-session and the cap is three, and sixteen families already arm at once. Do it after the first cohort
+session and the cap is three, and seventeen families can now arm. Do it after the first cohort
 reports, when the real probe load is known rather than guessed.
 
 - Accept: a listening outcome shows a 2/7/21-day curve; the probe load per session stays bounded.

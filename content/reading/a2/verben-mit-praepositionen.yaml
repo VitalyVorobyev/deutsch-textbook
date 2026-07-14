@@ -1,0 +1,29 @@
+topic: verben-mit-praepositionen
+title_de: "Ein Plan für die Kursgruppe"
+kind: intensive
+text:
+  - "Im Deutschkurs [[plant::plans::планирует]] die Gruppe einen gemeinsamen Samstag. Amir schlägt eine Radtour vor, aber Lea interessiert sich mehr für Fotografie. „[[Wofür::what … in::чем]] interessiert ihr euch?“, fragt die Lehrerin. Jonas denkt an eine Ausstellung im Stadtmuseum. Lea ist sofort [[dafür::in favour of it::за это]], Amir ist nicht [[dagegen::against it::против этого]]."
+  - "Die Gruppe spricht lange [[darüber::about it::об этом]]. Danach suchen alle einen Termin. Sie warten noch auf Mias Antwort. „[[Worauf::what … for::чего]] warten wir?“, fragt Jonas. „Auf ihre Nachricht. Ohne Mia entscheiden wir nichts.“"
+  - "Am Freitag schreibt Mia: Sie freut sich sehr [[darauf::look forward to it::ждёт этого с радостью]]. Vorher muss sie aber arbeiten. Die Gruppe kauft die Tickets mit einer App und macht [[damit::with it::с его помощью]] auch einen einfachen [[Tagesplan::day plan::план на день]]. Zuvor wollte Amir nicht ins Museum; jetzt freut er sich auch auf den Ausflug."
+questions:
+  - id: lesen-vorschlag
+    type: mc
+    outcomes: [verb-praeposition-waehlen]
+    prompt: "Woran denkt Jonas?"
+    options: ["An eine Ausstellung im Stadtmuseum", "An eine lange Reise", "An einen Fotokurs"]
+    correct: 0
+    explain: { en: "The text says Jonas denkt an eine Ausstellung. The bike tour was Amir's proposal, and photography is Lea's interest.", ru: "В тексте сказано: Jonas denkt an eine Ausstellung. Велопрогулку предложил Амир, а фотография — интерес Леа." }
+  - id: lesen-warten
+    type: mc
+    outcomes: [wo-wort-fragen]
+    prompt: "Worauf wartet die Gruppe?"
+    options: ["Auf Mias Nachricht", "Auf die Lehrerin", "Auf neue Fahrräder"]
+    correct: 0
+    explain: { en: "The text answers the wo-question directly: auf ihre Nachricht.", ru: "Текст прямо отвечает на вопрос с wo-: auf ihre Nachricht." }
+  - id: lesen-vorher
+    type: mc
+    outcomes: [da-wort-sache]
+    prompt: "Was macht Mia vor dem Ausflug?"
+    options: ["Sie arbeitet", "Sie kauft die Tickets", "Sie besucht die Ausstellung"]
+    correct: 0
+    explain: { en: "Vorher muss sie aber arbeiten — vorher orders the events in time and does not refer to a thing, so it is not a da-word.", ru: "Vorher muss sie aber arbeiten — vorher упорядочивает события во времени и не отсылает к предмету, поэтому это не da-слово." }

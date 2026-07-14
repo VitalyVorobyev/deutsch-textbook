@@ -15,10 +15,12 @@ wrong.
 
 ## What's inside
 
-- **A complete A1 and a complete A2.** All ten A1 units and all sixteen A2 units
+- **A complete A1 and a complete A2.** All ten A1 units and all seventeen A2 units
   are authored — from Erste Schritte to Ämter & Dienstleistungen — each with a
   diagnostic pretest, a full article, a graded reading, exercises across several
-  task types, and its own vocabulary. A cumulative **checkpoint** measures each
+  task types, and its own vocabulary. The seventeenth unit, *Darüber sprechen*,
+  was added from learner evidence about da-/wo-words and verbs with prepositions.
+  A cumulative **checkpoint** measures each
   level end to end, and **every headword on the Goethe-Institut's A1 and A2
   Wortlisten is covered**. The Über page states exactly how far each level goes,
   with figures measured from the content itself — never hand-written, and a word

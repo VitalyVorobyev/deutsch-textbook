@@ -726,6 +726,39 @@ nodes:
         en: "I can write a short message saying I am ill and will not come in."
         ru: "Я умею написать короткое сообщение о болезни и отсутствии."
 
+  - id: verben-mit-praepositionen
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [gesundheit-arzttermin]
+    deepens: []
+    outcomes:
+      - id: verb-praeposition-waehlen
+        mode: writing
+        domain: educational
+        de: "Ich kann häufige Verben mit der passenden Präposition verwenden."
+        en: "I can use common verbs with the preposition they govern."
+        ru: "Я умею употреблять частые глаголы с нужным предлогом."
+      - id: da-wort-sache
+        mode: writing
+        domain: educational
+        de: "Ich kann mit einem da-Wort auf eine Sache oder einen Plan zurückverweisen."
+        en: "I can use a da-word to refer back to a thing or plan."
+        ru: "Я умею ссылаться на предмет или план с помощью da-слова."
+      - id: wo-wort-fragen
+        mode: spoken-interaction
+        domain: educational
+        de: "Ich kann mit einem wo-Wort nach einer Sache fragen."
+        en: "I can use a wo-word to ask about a thing."
+        ru: "Я умею задавать вопрос о предмете с помощью wo-слова."
+      - id: person-sache-unterscheiden
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann bei Präpositionalobjekten zwischen Personen und Sachen unterscheiden."
+        en: "I can distinguish people from things in prepositional objects."
+        ru: "Я умею различать людей и предметы в предложных дополнениях."
+
   - id: arbeit-beruf
     level: A2
     kind: vocab-field
@@ -1057,6 +1090,12 @@ units:
     title_en: "Health & the doctor"
     title_ru: "Здоровье и приём у врача"
     topics: [gesundheit-arzttermin]
+  - id: verben-mit-praepositionen
+    level: A2
+    title_de: "Darüber sprechen: Verben mit Präpositionen"
+    title_en: "Talking about it: verbs with prepositions"
+    title_ru: "Говорить об этом: глаголы с предлогами"
+    topics: [verben-mit-praepositionen]
   - id: arbeit-beruf
     level: A2
     title_de: "Arbeit & Beruf"

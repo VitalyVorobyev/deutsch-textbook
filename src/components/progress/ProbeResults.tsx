@@ -20,11 +20,12 @@ export interface ProbeFamilyLabel {
 interface Props {
   families: ProbeFamily[];
   labels: Record<string, string>;
+  topicPaths: Record<string, string>;
   attempts: Attempt[];
   lang: ExplainLang;
 }
 
-export function ProbeResults({ families, labels, attempts, lang }: Props) {
+export function ProbeResults({ families, labels, topicPaths, attempts, lang }: Props) {
   const results = probeResults(families, attempts).filter((r) => r.taken.length > 0);
 
   const answered = results.flatMap((r) => r.taken);
@@ -53,7 +54,7 @@ export function ProbeResults({ families, labels, attempts, lang }: Props) {
             <span className="text-2xl font-bold">
               {correct} / {answered.length}
             </span>{' '}
-            {lang === 'ru' ? 'после интервала' : 'after the interval'}
+            {lang === 'ru' ? 'успешных проверок за всё время' : 'lifetime delayed checks passed'}
           </p>
           <ul className="mt-3 space-y-2">
             {results.map((r) => (
@@ -61,34 +62,39 @@ export function ProbeResults({ families, labels, attempts, lang }: Props) {
                 key={r.family.setId}
                 className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-800"
               >
-                <span lang="de" className="text-sm font-medium">
-                  {labels[r.family.setId] ?? r.family.topicId}
+                <span className="text-sm">
+                  <span lang="de" className="font-medium">{labels[r.family.setId] ?? r.family.topicId}</span>
+                  {r.taken.some((t) => !t.correct) && topicPaths[r.family.topicId] && (
+                    <a href={topicPaths[r.family.topicId]} className="ml-2 text-xs text-amber-700 hover:underline dark:text-amber-400">
+                      {lang === 'ru' ? 'повторить тему' : 'review topic'}
+                    </a>
+                  )}
                 </span>
-                <span className="flex items-center gap-2">
-                  {r.taken.map((t) => (
+                <span className="flex flex-wrap items-center gap-2">
+                  {r.stages.map((stage) => (
                     <span
-                      key={t.itemId}
-                      title={
-                        lang === 'ru'
-                          ? `${t.days} дн. спустя — ${t.correct ? 'верно' : 'неверно'}`
-                          : `${t.days} days later — ${t.correct ? 'correct' : 'wrong'}`
-                      }
+                      key={stage.stage}
+                      title={stage.actualDays === undefined ? undefined : lang === 'ru'
+                        ? `Фактически через ${stage.actualDays} дн.`
+                        : `Actually taken after ${stage.actualDays} days`}
                       className={`rounded px-2 py-0.5 text-xs font-semibold ${
-                        t.correct
+                        stage.status === 'passed'
                           ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                          : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                          : stage.status === 'failed'
+                            ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                            : stage.status === 'due'
+                              ? 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
+                              : 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300'
                       }`}
                     >
-                      {/* the interval that actually elapsed, not the one that was scheduled */}
-                      {t.days}
-                      {lang === 'ru' ? 'д' : 'd'} {t.correct ? '✓' : '✗'}
+                      {stage.scheduledDays}{lang === 'ru' ? 'д' : 'd'}{' '}
+                      {stage.status === 'passed' ? '✓' : stage.status === 'failed' ? '✗' : stage.status === 'due'
+                        ? (lang === 'ru' ? 'сегодня' : 'due')
+                        : stage.status === 'scheduled' && stage.dueAt
+                          ? new Date(stage.dueAt).toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: '2-digit', month: '2-digit' })
+                          : (lang === 'ru' ? 'позже' : 'later')}
                     </span>
                   ))}
-                  {r.remaining > 0 && (
-                    <span className="text-xs text-stone-400">
-                      {lang === 'ru' ? `+${r.remaining} впереди` : `+${r.remaining} to come`}
-                    </span>
-                  )}
                 </span>
               </li>
             ))}

@@ -14,12 +14,13 @@ const deckLevels = await getDeckLevels();
 const { spine } = getCurriculum();
 
 // The card links to the checkpoint the learner is due for; the island decides
-// which (lowest level whose lessons are done and whose set is unattempted).
-const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title }) => ({
+// which (lowest level whose lessons are done and whose current item ids are not all covered).
+const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title, items }) => ({
   setId,
   level,
   path,
   title,
+  items,
 }));
 
 // Where a learner with no history starts — the FirstSteps card links straight to it.

@@ -7,6 +7,7 @@ import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
 import { attemptScore, verifiedOnly } from '../src/lib/scoring';
 import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/store';
 import { parseProgressSnapshot } from '../src/lib/snapshot-schema';
+import { buildDeck } from '../src/lib/srs';
 
 /** The real content files under content/<dir>, parsed — the same source the validator reads. */
 function contentFiles<T>(dir: string): T[] {
@@ -44,6 +45,26 @@ describe('scoring and curriculum contracts', () => {
       for (const related of node.related)
         expect(curriculum.nodes.find((candidate) => candidate.id === related)?.related).toContain(node.id);
     }
+  });
+
+  test('the learner-led module is the seventeenth A2 topic in its required position', () => {
+    const curriculum = getCurriculum();
+    const a2 = curriculum.spine.filter((id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2');
+    expect(a2).toHaveLength(17);
+    const position = a2.indexOf('verben-mit-praepositionen');
+    expect(a2[position - 1]).toBe('gesundheit-arzttermin');
+    expect(a2[position + 1]).toBe('arbeit-beruf');
+    expect(curriculum.nodes.find((node) => node.id === 'verben-mit-praepositionen')?.outcomes.map((outcome) => outcome.id)).toEqual([
+      'verb-praeposition-waehlen', 'da-wort-sache', 'wo-wort-fragen', 'person-sache-unterscheiden',
+    ]);
+  });
+
+  test('the current A2 checkpoint has twenty-two stable item ids including both additive checks', () => {
+    const checkpoint = contentFiles<{ topic: string; role: string; items: { id: string }[] }>('exercises')
+      .find((set) => set.role === 'checkpoint' && set.topic === 'aemter-dienstleistungen')!;
+    expect(checkpoint.items).toHaveLength(22);
+    expect(checkpoint.items.map((item) => item.id)).toContain('tabelle-da-wo');
+    expect(checkpoint.items.map((item) => item.id)).toContain('uebersetzen-sache-person');
   });
 
   test('every outcome in the real atlas is measured by practice, a drill or a reading', () => {
@@ -198,6 +219,21 @@ describe('scoring and curriculum contracts', () => {
       .toContain('home or place');
     expect(firstSteps.entries.find((entry) => entry.de === 'leben')?.en)
       .toContain('be alive');
+  });
+
+  test('the da/wo deck creates exactly sixteen contextual cards with stable phrase identities', () => {
+    type Entry = Parameters<typeof buildDeck>[1][number];
+    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab')
+      .find((candidate) => candidate.id === 'verben-mit-praepositionen')!;
+    expect(deck.entries.map((entry) => entry.de)).toEqual([
+      'daran denken', 'darauf warten', 'darüber sprechen', 'davon träumen',
+      'sich dafür interessieren', 'damit arbeiten', 'sich daran erinnern', 'sich darauf freuen',
+    ]);
+    expect(buildDeck(deck.id, deck.entries)).toHaveLength(16);
+    for (const entry of deck.entries) {
+      expect(entry.en).not.toMatch(/^about it$|^with it$|^for it$/i);
+      expect(entry.ru.length).toBeGreaterThan(8);
+    }
   });
 
   test('v1-v5 snapshots remain accepted and malformed partial scores are sanitized', () => {

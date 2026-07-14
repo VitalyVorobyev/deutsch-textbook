@@ -19,8 +19,8 @@ import {
   visualDocumentSchema,
   wordFieldSchema,
   discoverySchema,
-  caseReferenceSchema,
-  type CaseReference,
+  referenceDataSchema,
+  type ReferenceData,
   type Discovery,
   type ExerciseSet,
   type Reading,
@@ -255,7 +255,7 @@ for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
   });
 }
 
-const references = new Map<string, { file: string; data: CaseReference }>();
+const references = new Map<string, { file: string; data: ReferenceData }>();
 for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
   let raw: unknown;
   try {
@@ -264,7 +264,7 @@ for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
     fail(rel(file), `YAML parse error: ${error instanceof Error ? error.message : error}`);
     continue;
   }
-  const data = validateWith(caseReferenceSchema, raw, rel(file));
+  const data = validateWith(referenceDataSchema, raw, rel(file));
   if (!data) continue;
   const id = relative(join(CONTENT, 'reference-data'), file).replace(/\.yaml$/, '');
   if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
@@ -903,6 +903,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         'imperativ-form': 'gesundheit-arzttermin',
         'seit-vor-zeit': 'gesundheit-arzttermin',
         'reflexiv-akkusativ': 'gesundheit-arzttermin',
+        'verb-praeposition': 'verben-mit-praepositionen',
+        'da-wo-woerter': 'verben-mit-praepositionen',
         'nebensatz-verbende': 'nebensaetze-plaene',
         'weil-denn': 'nebensaetze-plaene',
         'nebensatz-vorfeld': 'nebensaetze-plaene',

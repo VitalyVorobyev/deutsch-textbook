@@ -3,13 +3,14 @@
 Status: active from 2026-07-14. This is the repeatable operating checklist; the roadmap owns product
 direction and the backlog owns implementation status.
 
-## The five windows
+## The six windows
 
 1. `reisen-verkehr` + `einkaufen-reklamation`
-2. `gesundheit-arzttermin` + `arbeit-beruf`
-3. `nebensaetze-plaene` + `biografie-erfahrungen`
-4. `freunde-feste` + `lernen-verstehen`
-5. `aemter-dienstleistungen` + A2 checkpoint
+2. `gesundheit-arzttermin` + `verben-mit-praepositionen`
+3. `arbeit-beruf` + `nebensaetze-plaene`
+4. `biografie-erfahrungen` + `freunde-feste`
+5. `lernen-verstehen` + `aemter-dienstleistungen`
+6. A2 checkpoint and delayed-evidence review
 
 Before opening either topic, audit its mission coherence, A2 ceiling, natural German, accepted
 renderings, distractors, audio purpose, explanatory feedback, and model → scaffold → fade → transfer

@@ -1,11 +1,12 @@
 ---
 import { getEntry } from 'astro:content';
+import { caseReferenceSchema } from '../../lib/schemas';
 type View = 'articles-akk' | 'articles-dat' | 'pronouns-akk' | 'pronouns-dat' | 'prepositions' | 'prepositions-dat';
 interface Props { view: View }
 const { view } = Astro.props;
 const entry = await getEntry('referenceData', 'cases');
 if (!entry) throw new Error('Missing canonical case reference data');
-const data = entry.data;
+const data = caseReferenceSchema.parse(entry.data);
 const articleCases = view === 'articles-akk' ? ['Nominativ', 'Akkusativ'] : ['Nominativ', 'Akkusativ', 'Dativ'];
 const pronounCase = view === 'pronouns-akk' ? 'accusative' : 'dative';
 ---

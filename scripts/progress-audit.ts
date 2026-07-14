@@ -599,10 +599,10 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
   const writing = attempts.filter((attempt) => attempt.practice?.kind === 'writing');
   const cycleByTopic: Record<string, string> = {
     'reisen-verkehr': '1 · Reisen + Einkaufen', 'einkaufen-reklamation': '1 · Reisen + Einkaufen',
-    'gesundheit-arzttermin': '2 · Gesundheit + Arbeit', 'arbeit-beruf': '2 · Gesundheit + Arbeit',
-    'nebensaetze-plaene': '3 · Nebensätze + Biografie', 'biografie-erfahrungen': '3 · Nebensätze + Biografie',
-    'freunde-feste': '4 · Freunde + Lernen', 'lernen-verstehen': '4 · Freunde + Lernen',
-    'aemter-dienstleistungen': '5 · Ämter + Checkpoint',
+    'gesundheit-arzttermin': '2 · Gesundheit + Präpositionen', 'verben-mit-praepositionen': '2 · Gesundheit + Präpositionen',
+    'arbeit-beruf': '3 · Arbeit + Nebensätze', 'nebensaetze-plaene': '3 · Arbeit + Nebensätze',
+    'biografie-erfahrungen': '4 · Biografie + Freunde', 'freunde-feste': '4 · Biografie + Freunde',
+    'lernen-verstehen': '5 · Lernen + Ämter', 'aemter-dienstleistungen': '5 · Lernen + Ämter',
   };
   let detail: ItemDetail | undefined;
   if (options.itemRef) {

@@ -8,7 +8,7 @@ import {
   visualDocumentSchema,
   wordFieldSchema,
   discoverySchema,
-  caseReferenceSchema,
+  referenceDataSchema,
 } from './lib/schemas';
 
 const topics = defineCollection({
@@ -48,7 +48,7 @@ const discovery = defineCollection({
 
 const referenceData = defineCollection({
   loader: glob({ pattern: '*.yaml', base: './content/reference-data' }),
-  schema: caseReferenceSchema,
+  schema: referenceDataSchema,
 });
 
 export const collections = { topics, vocab, exercises, reading, documents, wortfelder, discovery, referenceData };

@@ -1,0 +1,19 @@
+---
+import { getEntry } from 'astro:content';
+import { pronominalAdverbReferenceSchema } from '../../lib/schemas';
+interface Props { scope?: 'productive' | 'all' }
+const { scope = 'all' } = Astro.props;
+const entry = await getEntry('referenceData', 'pronominal-adverbs');
+if (!entry) throw new Error('Missing canonical pronominal-adverb reference data');
+const data = pronominalAdverbReferenceSchema.parse(entry.data);
+const rows = scope === 'productive'
+  ? data.entries.filter((row) => row.status === 'productive')
+  : data.entries;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full min-w-[42rem] text-sm">
+    <thead><tr><th>Präposition</th><th>Frage</th><th>Sache</th><th>Person</th><th>Beispiel</th></tr></thead>
+    <tbody>{rows.map((row) => <tr class:list={{ 'text-stone-500': row.status === 'receptive' }}><th lang="de">{row.preposition}</th><td lang="de" class="font-semibold text-amber-800 dark:text-amber-300">{row.question}</td><td lang="de" class="font-semibold">{row.thing}</td><td lang="de">{row.person}</td><td><span lang="de">{row.example.de}</span><span class="block text-xs text-stone-500 lang-en">{row.example.en}</span><span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span></td></tr>)}</tbody>
+  </table>
+</div>

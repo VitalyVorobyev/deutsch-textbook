@@ -209,6 +209,18 @@ export interface ProbeResult {
   taken: { stage: number; itemId: string; correct: boolean; ts: number; days: number }[];
   /** probes still owed before the family is complete */
   remaining: number;
+  /** zero-based next scheduled interval, absent once all three were taken */
+  nextStage?: number;
+  /** timestamp at which the next stage becomes due */
+  nextDueAt?: number;
+  stages: {
+    stage: number;
+    scheduledDays: number;
+    status: 'passed' | 'failed' | 'due' | 'scheduled' | 'later';
+    dueAt?: number;
+    takenAt?: number;
+    actualDays?: number;
+  }[];
 }
 
 /**
@@ -220,6 +232,7 @@ export interface ProbeResult {
 export function probeResults(
   families: readonly ProbeFamily[],
   attempts: readonly Attempt[],
+  now: number = Date.now(),
 ): ProbeResult[] {
   return families.map((family) => {
     const armed = armedAt(family, attempts);
@@ -230,10 +243,36 @@ export function probeResults(
       ts: a.ts,
       days: armed === undefined ? 0 : Math.round((a.ts - armed) / DAY_MS),
     }));
+    const nextStage = taken.length < PROBE_INTERVALS_DAYS.length ? taken.length : undefined;
+    const nextDueAt = armed === undefined || nextStage === undefined
+      ? undefined
+      : armed + PROBE_INTERVALS_DAYS[nextStage]! * DAY_MS;
+    const stages = PROBE_INTERVALS_DAYS.map((scheduledDays, stage) => {
+      const completed = taken[stage];
+      if (completed) return {
+        stage,
+        scheduledDays,
+        status: completed.correct ? 'passed' as const : 'failed' as const,
+        takenAt: completed.ts,
+        actualDays: completed.days,
+      };
+      const dueAt = armed === undefined ? undefined : armed + scheduledDays * DAY_MS;
+      return {
+        stage,
+        scheduledDays,
+        status: stage === nextStage
+          ? dueAt !== undefined && dueAt <= now ? 'due' as const : 'scheduled' as const
+          : 'later' as const,
+        dueAt,
+      };
+    });
     return {
       family,
       taken,
       remaining: Math.max(0, PROBE_INTERVALS_DAYS.length - taken.length),
+      nextStage,
+      nextDueAt,
+      stages,
     };
   });
 }
