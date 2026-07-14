@@ -9,7 +9,7 @@ import {
   type Completion, type TopicContext,
 } from '../../lib/mastery';
 import {
-  blockedByEarlier, checkpointOutcomeResults, type CheckpointSummary,
+  blockedByEarlier, checkpointCovered, checkpointOutcomeResults, type CheckpointSummary,
 } from '../../lib/checkpoint';
 import { useExplainLang } from '../hooks';
 import { TierBadge } from '../topic/TierBadge';
@@ -79,7 +79,10 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
       remaining: levelRemaining(checkpoint.level, topics, ctx),
       summary: checkpointOutcomeResults(checkpoint.items, ctx.attempts, checkpoint.setId),
       // Heute offers the lowest incomplete checkpoint (`dueCheckpoint`); the Lernpfad must
-      // say the same thing, or the two screens disagree about what to do next.
+      // say the same thing, or the two screens disagree about what to do next. That means
+      // asking `checkpointCovered` — the same rule `dueCheckpoint` asks — and not merely
+      // whether a summary exists: a checkpoint that gained an item has a summary *and* is due.
+      covered: checkpointCovered(checkpoint, ctx.attempts),
       blockedBy: blockedByEarlier(checkpoint, checkpoints, ctx),
     }));
   }, [checkpoints, ctx, topics]);
@@ -108,7 +111,7 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   </div>;
 }
 
-interface CheckpointCardData { checkpoint: PathCheckpoint; remaining: number; summary: CheckpointSummary | null; blockedBy?: PathCheckpoint }
+interface CheckpointCardData { checkpoint: PathCheckpoint; remaining: number; summary: CheckpointSummary | null; covered: boolean; blockedBy?: PathCheckpoint }
 function PathView({ next, goal, route, completions, lang, checkpointCards }: { next?: CourseTopic; goal?: ActiveGoal; route: CourseTopic[]; completions: Map<string, Completion>; lang: string; checkpointCards: CheckpointCardData[] }) {
   const cards = checkpointCards.map((card) => <CheckpointCard key={card.checkpoint.setId} checkpoint={card.checkpoint} state={card} lang={lang} />);
   if (!next) return <div className="mt-8"><p className="text-stone-500">Alle verfügbaren Themen sind gemeistert.</p>{cards}</div>;
@@ -131,8 +134,8 @@ function PathView({ next, goal, route, completions, lang, checkpointCards }: { n
 }
 
 function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoint; state: CheckpointCardData; lang: string }) {
-  const { remaining, summary, blockedBy } = state;
-  if (summary) {
+  const { remaining, summary, covered, blockedBy } = state;
+  if (summary && covered) {
     const pct = summary.total ? Math.round((summary.score / summary.total) * 100) : 0;
     const when = new Date(summary.lastTs).toLocaleDateString(lang === 'ru' ? 'ru' : 'en');
     return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-emerald-300 bg-emerald-50/60 p-5 dark:border-emerald-800 dark:bg-emerald-950/25">
@@ -141,6 +144,19 @@ function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoin
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru' ? `Последний результат: ${pct}% · задания: ${summary.answered}/${summary.total} · ${when}` : `Latest result: ${pct}% · ${summary.answered}/${summary.total} tasks · ${when}`}</p>
       </div>
       <a href={checkpoint.path} className="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold hover:border-amber-500 dark:border-stone-600">{lang === 'ru' ? 'Ещё раз →' : 'Retake →'}</a>
+    </section>;
+  }
+  // Taken, but the set has grown since. `dueCheckpoint` is reoffering it on Heute, so this card
+  // must not tick it off — it says what is left and sends the learner to finish it.
+  if (summary) {
+    return <section className="mt-6 flex flex-wrap items-center justify-between gap-3 border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+      <div>
+        <h2 className="font-semibold">{checkpoint.title}</h2>
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{lang === 'ru'
+          ? `С прошлой попытки здесь появились новые задания: выполнено ${summary.answered} из ${summary.total}.`
+          : `There are new tasks since your last attempt: ${summary.answered} of ${summary.total} done.`}</p>
+      </div>
+      <a href={checkpoint.path} className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">{lang === 'ru' ? 'Продолжить →' : 'Continue →'}</a>
     </section>;
   }
   if (remaining > 0 || blockedBy) {

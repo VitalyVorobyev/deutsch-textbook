@@ -20,7 +20,17 @@ export interface CheckpointRef {
   items: readonly { id: string }[];
 }
 
-function checkpointCovered(checkpoint: CheckpointRef, attempts: readonly Attempt[]): boolean {
+/**
+ * Every current item id has an attempt. **Exported because it is the one rule**: a checkpoint
+ * that grew (A2 went from 20 to 22 items) is due again, and every surface that draws one has
+ * to agree. The Lernpfad card used to show a ✓ on the mere existence of a summary — true when
+ * "attempted at all" meant "done", and wrong the moment the set could grow underneath it, which
+ * left Heute reoffering a checkpoint the Lernpfad had already ticked off.
+ */
+export function checkpointCovered(
+  checkpoint: CheckpointRef,
+  attempts: readonly Attempt[],
+): boolean {
   const attempted = new Set(
     attempts.filter((attempt) => attempt.setId === checkpoint.setId).map((attempt) => attempt.itemId),
   );

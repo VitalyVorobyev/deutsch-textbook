@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import {
+  checkpointCovered,
   checkpointOutcomeResults,
   dueCheckpoint,
   type CheckpointItemRef,
@@ -199,6 +200,33 @@ describe('dueCheckpoint', () => {
       attempt('old-2', 301, { setId: 'a2/checkpoint-a2' }),
     ]);
     expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+  });
+
+  // The Lernpfad card used to tick a checkpoint off on the mere existence of a summary — fine
+  // while "attempted at all" meant "done", wrong once a shipped set can grow. Heute would then
+  // reoffer a checkpoint the Lernpfad had already marked ✓. Both surfaces must ask one question.
+  test('a checkpoint that grew is NOT covered, so no surface may show it as done', () => {
+    const a2 = checkpoints.find((c) => c.setId === 'a2/checkpoint-a2')!;
+    const attempts = [
+      ...done('a1/erste-schritte'),
+      ...done('a2/dativ'),
+      attempt('hoeren-1', 200, { setId: 'a1/checkpoint-a1' }),
+      // the learner answered every item the set had when they took it
+      attempt('old-1', 300, { setId: 'a2/checkpoint-a2' }),
+      attempt('old-2', 301, { setId: 'a2/checkpoint-a2' }),
+    ];
+    const ctx = ctxOf(attempts);
+
+    expect(checkpointCovered(a2, attempts)).toBe(false);
+    expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
+
+    // …and it flips to covered exactly when the new items are answered, in step with dueCheckpoint
+    const complete = [...attempts,
+      attempt('new-1', 400, { setId: 'a2/checkpoint-a2' }),
+      attempt('new-2', 401, { setId: 'a2/checkpoint-a2' }),
+    ];
+    expect(checkpointCovered(a2, complete)).toBe(true);
+    expect(dueCheckpoint(checkpoints, nodes, ctxOf(complete))).toBeUndefined();
   });
 
   test('once every current checkpoint item has been attempted, none is due', () => {
