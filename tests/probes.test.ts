@@ -3,10 +3,13 @@ import {
   armedAt,
   dueProbe,
   dueProbes,
+  MAX_PROBES_PER_CATCHUP,
+  MAX_PROBES_PER_SESSION,
   nextVariant,
   probeFamilies,
   probeResults,
   PROBE_INTERVALS_DAYS,
+  servedProbes,
   type ProbeFamily,
 } from '../src/lib/probes';
 import type { Attempt } from '../src/lib/store';
@@ -182,6 +185,55 @@ describe('queueing', () => {
     ];
     const due = dueProbes([other, family], log, T0 + 30 * DAY);
     expect(due.map((d) => d.family.setId)).toEqual(['a1/probe-akkusativ', 'a1/probe-wohnen']);
+  });
+});
+
+describe('visit caps — the serving is bounded, the debt is not', () => {
+  const HOUR = 60 * 60 * 1000;
+  // Seven families armed an hour apart → seven due probes with strictly increasing dueAt,
+  // so "most overdue first" has one right answer.
+  const topics = ['t1', 't2', 't3', 't4', 't5', 't6', 't7'];
+  const families: ProbeFamily[] = topics.map((topic) => ({
+    setId: `a1/probe-${topic}`,
+    topicId: topic,
+    outcomes: [`${topic}-o1`],
+    armingSetIds: [`a1/${topic}`],
+    items: [{ id: 'v1', outcomes: [`${topic}-o1`] }],
+  }));
+  const log = topics.map((topic, i) =>
+    attempt({ setId: `a1/${topic}`, ts: T0 + i * HOUR, outcomes: [`${topic}-o1`] }));
+  // all seven 2-day probes are due; none of the 7-day ones is anywhere near
+  const now = T0 + 2 * DAY + 8 * HOUR;
+
+  test('an ordinary session serves at most 3, a catch-up visit at most 5', () => {
+    expect(MAX_PROBES_PER_SESSION).toBe(3);
+    expect(MAX_PROBES_PER_CATCHUP).toBe(5);
+    const due = dueProbes(families, log, now);
+    expect(due).toHaveLength(7);
+    expect(servedProbes(due, MAX_PROBES_PER_SESSION)).toHaveLength(3);
+    expect(servedProbes(due, MAX_PROBES_PER_CATCHUP)).toHaveLength(5);
+    expect(servedProbes(due, 99)).toHaveLength(7); // the cap never invents probes
+  });
+
+  test('a catch-up visit drains the most overdue probes first', () => {
+    const served = servedProbes(dueProbes(families, log, now), MAX_PROBES_PER_CATCHUP);
+    expect(served.map((d) => d.family.topicId)).toEqual(['t1', 't2', 't3', 't4', 't5']);
+    const dueAts = served.map((d) => d.dueAt);
+    expect([...dueAts].sort((a, b) => a - b)).toEqual(dueAts);
+  });
+
+  test('what the cap leaves unserved stays due — debt is deferred, never discarded', () => {
+    const due = dueProbes(families, log, now);
+    const served = servedProbes(due, MAX_PROBES_PER_CATCHUP);
+    // derivation is pure: serving consumed nothing
+    expect(dueProbes(families, log, now)).toHaveLength(7);
+    // answering the served five leaves exactly the two unserved probes due
+    const answered = [
+      ...log,
+      ...served.map((d) => attempt({ setId: d.family.setId, itemId: d.itemId, ts: now })),
+    ];
+    expect(dueProbes(families, answered, now).map((d) => d.family.topicId))
+      .toEqual(['t6', 't7']);
   });
 });
 

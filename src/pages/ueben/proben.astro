@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProbeCatchUp from '../../components/session/ProbeCatchUp';
+import type { TrainingSet } from '../../components/training/MixedTraining';
+
+// The probes-only catch-up run ("Probe-Rückstand"). Reached from the Heute card that
+// appears when more probes are due than one ordinary session serves. Deliberately
+// contains nothing else — no review, no training — so every answer is a cold-start
+// measurement of what survived the interval.
+const [exercises, topics, documents] = await Promise.all([
+  getCollection('exercises'),
+  getCollection('topics'),
+  getCollection('documents'),
+]);
+const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const documentById = new Map(documents.map((document) => [document.id, document.data]));
+
+// Same tolerant assembly as /session: a set whose topic hasn't landed yet is left out.
+const sets: TrainingSet[] = exercises.flatMap((e) => {
+  const topic = topicById.get(e.data.topic);
+  if (!topic) return [];
+  return [
+    {
+      setId: e.id,
+      topicId: topic.id,
+      title_de: topic.title_de,
+      level: topic.level,
+      role: e.data.role,
+      items: e.data.items,
+      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
+    },
+  ];
+});
+---
+
+<Base title="Probe-Rückstand">
+  <h1 class="text-3xl font-bold tracking-tight">Probe-Rückstand</h1>
+  <p class="mt-1 text-stone-500 dark:text-stone-400">
+    <span class="lang-en">
+      A probes-only visit: up to five delayed checks, most overdue first — and nothing else.
+      No practice comes before them, so every answer measures what actually survived the
+      interval. Whatever is left stays due and comes back on the Heute page.
+    </span>
+    <span class="lang-ru">
+      Визит только из отложенных проверок: до пяти за раз, сначала самые просроченные — и ничего
+      больше. Перед ними нет никакой практики, поэтому каждый ответ показывает, что действительно
+      сохранилось в памяти. Остальные проверки остаются в очереди и вернутся на странице «Heute».
+    </span>
+  </p>
+
+  <div class="mt-8">
+    <ProbeCatchUp client:only="react" sets={sets} />
+  </div>
+</Base>
