@@ -12,6 +12,17 @@
   display: none;
 }
 
+/* UI-language toggle: <html data-ui-lang="de|en|ru|uk"> controls which .ui-*
+   chrome spans are visible — same mechanism as .lang-*, but the other axis
+   (docs/i18n-design.md): chrome, not explanations. Default 'de' is today's
+   exact chrome. */
+[data-ui-lang="de"] :is(.ui-en, .ui-ru, .ui-uk),
+[data-ui-lang="en"] :is(.ui-de, .ui-ru, .ui-uk),
+[data-ui-lang="ru"] :is(.ui-de, .ui-en, .ui-uk),
+[data-ui-lang="uk"] :is(.ui-de, .ui-en, .ui-ru) {
+  display: none;
+}
+
 /* Tap-to-hear buttons (src/components/SpeakButton.astro) stay hidden until the
    page script confirms the browser can actually speak — no dead controls with
    JS off or no German voice installed. */

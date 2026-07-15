@@ -3,6 +3,7 @@ import '../styles/global.css';
 import ProfileSwitcher from '../components/ProfileSwitcher';
 import FirstRunGate from '../components/FirstRunGate';
 import { withBase } from '../lib/url';
+import { UI_LANGS, t, type StringKey } from '../lib/strings';
 
 interface Props {
   title: string;
@@ -13,18 +14,19 @@ const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch' } = A
 const home = withBase('/');
 interface NavItem {
   href: string;
-  label: string;
+  /** Chrome-string key: all UI languages render as CSS-toggled spans. */
+  label: StringKey;
   /** Extra path prefixes that also count as "this tab" (e.g. /vocab/<deck> → Üben). */
   match?: string[];
 }
 const nav: NavItem[] = [
-  { href: home, label: 'Heute' },
-  { href: withBase('/topics'), label: 'Themen' },
-  { href: withBase('/entdecken'), label: 'Entdecken' },
-  { href: withBase('/referenz'), label: 'Referenz' },
-  { href: withBase('/ueben'), label: 'Üben', match: [withBase('/vocab')] },
-  { href: withBase('/progress'), label: 'Fortschritt' },
-  { href: withBase('/about'), label: 'Über' },
+  { href: home, label: 'nav.heute' },
+  { href: withBase('/topics'), label: 'nav.themen' },
+  { href: withBase('/entdecken'), label: 'nav.entdecken' },
+  { href: withBase('/referenz'), label: 'nav.referenz' },
+  { href: withBase('/ueben'), label: 'nav.ueben', match: [withBase('/vocab')] },
+  { href: withBase('/progress'), label: 'nav.fortschritt' },
+  { href: withBase('/about'), label: 'nav.ueber' },
 ];
 const current = Astro.url.pathname;
 function isActive(item: NavItem): boolean {
@@ -34,7 +36,7 @@ function isActive(item: NavItem): boolean {
 ---
 
 <!doctype html>
-<html lang="en" data-explain-lang="en">
+<html lang="en" data-explain-lang="en" data-ui-lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,8 +48,34 @@ function isActive(item: NavItem): boolean {
         let theme = localStorage.getItem('da:theme');
         if (!theme) theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        const lang = localStorage.getItem('da:lang');
+        // Language prefs are profile-scoped; this mirrors resolveExplainLang/
+        // resolveUiLang in src/lib/prefs.ts (keep in sync) because a pre-paint
+        // script cannot import. Profile resolution mirrors getActiveProfileId
+        // in src/lib/profile.ts: da:profile, else first registered, else 'local'.
+        let pid = localStorage.getItem('da:profile');
+        if (!pid) {
+          try {
+            const list = JSON.parse(localStorage.getItem('da:profiles') || 'null');
+            if (Array.isArray(list) && list[0] && typeof list[0].id === 'string') pid = list[0].id;
+          } catch {
+            /* unreadable registry — fall through to the anonymous id */
+          }
+        }
+        if (!pid) pid = 'local';
+        let lang = localStorage.getItem('da:lang:' + pid);
+        if (lang !== 'ru' && lang !== 'en') {
+          // First read for this profile: copy the legacy device-level choice
+          // forward, but leave da:lang in place as the device default that the
+          // next new profile inherits.
+          const legacy = localStorage.getItem('da:lang');
+          if (legacy === 'ru' || legacy === 'en') {
+            lang = legacy;
+            localStorage.setItem('da:lang:' + pid, legacy);
+          }
+        }
         if (lang === 'ru' || lang === 'en') document.documentElement.dataset.explainLang = lang;
+        const ui = localStorage.getItem('da:uilang:' + pid);
+        if (ui === 'en' || ui === 'ru' || ui === 'uk') document.documentElement.dataset.uiLang = ui;
       })();
     </script>
   </head>
@@ -70,7 +98,9 @@ function isActive(item: NavItem): boolean {
                     : 'text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
                 ]}
               >
-                {item.label}
+                {UI_LANGS.map((l) => (
+                  <span class={`ui-${l}`}>{t(item.label, l)}</span>
+                ))}
               </a>
             ))
           }
