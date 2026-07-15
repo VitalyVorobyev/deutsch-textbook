@@ -130,7 +130,7 @@ session into an exam, and fatigue confounds the measurement.
 - Accept: with more than three probes due, the card appears and its run drains most-overdue first;
   ordinary sessions still open with at most three probes; the audit reports the debt row.
 
-### P6-4 · Dative-cluster drill — `todo` (M)
+### P6-4 · Dative-cluster drill — `done` 2026-07-15 (M)
 
 `content/exercises/a2/drill-dativ-ausloeser.yaml` (`role: drill`, attached to `dativ`'s
 `exercises` — drills never touch `pathDone` or `primaryPractice`), authored against the
@@ -148,7 +148,7 @@ when their tag is weak.
 - Accept: the items clear the validator's `key_tokens` and item-mix rules; the `buildSession` test
   proves weak-focus serving.
 
-### P6-5 · Verb-forms drill — `todo` (S, conditional)
+### P6-5 · Verb-forms drill — `done` 2026-07-15 (S, conditional)
 
 Only if the post-triage audit still shows the verb-morphology cluster (`modal-konjugation` 4/12
 and `verb-endungen` 6/33 on today's pre-triage table): `drill-verbformen.yaml` on `modalverben`,

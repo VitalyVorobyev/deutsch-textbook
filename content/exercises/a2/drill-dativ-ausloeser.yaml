@@ -1,0 +1,227 @@
+topic: dativ
+role: drill
+title:
+  en: Drill — what triggers the dative?
+  ru: Тренажёр — что требует Dativ?
+items:
+  - id: uebersetzen-gefallen-mann
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German. Use gefallen.
+      ru: Переведите на немецкий. Используйте gefallen.
+    prompt_en: "My husband doesn't like the film."
+    prompt_ru: "Моему мужу не нравится этот фильм."
+    answer: "Der Film gefällt meinem Mann nicht."
+    key_tokens: ["meinem"]
+    accept:
+      - "Meinem Mann gefällt der Film nicht."
+    explain:
+      en: "gefallen flips the sentence: the film is the subject, and the person who likes or dislikes it stands in the dative — mein Mann → meinem Mann. The form meinen Mann is accusative, and gefallen never takes one."
+      ru: "gefallen устроен как «нравиться»: фильм — подлежащее, а человек стоит в дательном падеже — mein Mann → meinem Mann. Русский здесь подсказывает верно: «нравится (кому?) мужу». Форма meinen Mann — это Akkusativ, после gefallen он невозможен."
+
+  - id: uebersetzen-helfen-schwester
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German. Use du.
+      ru: Переведите на немецкий. Обращение на «ты».
+    prompt_en: "Can you help my sister?"
+    prompt_ru: "Ты можешь помочь моей сестре?"
+    answer: "Kannst du meiner Schwester helfen?"
+    key_tokens: ["meiner"]
+    explain:
+      en: "helfen takes the dative: meine Schwester → meiner Schwester. English 'help my sister' looks like a direct object, but helfen means giving help TO someone — the wem?-answer is dative, and the feminine dative ending is -er."
+      ru: "helfen требует Dativ: meine Schwester → meiner Schwester — как и в русском: «помочь (кому?) сестре». В женском роде окончание Dativ — -er: meiner."
+
+  - id: uebersetzen-fruehstueck-kueche
+    outcomes: [dativ-artikel]
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German. Use frühstücken.
+      ru: Переведите на немецкий. Используйте frühstücken.
+    prompt_en: "We eat breakfast in the kitchen."
+    prompt_ru: "Мы завтракаем на кухне."
+    answer: "Wir frühstücken in der Küche."
+    key_tokens: ["der"]
+    accept:
+      - "In der Küche frühstücken wir."
+    explain:
+      en: "die Küche is feminine, and for a fixed location after in the article is dative: in der Küche. 'Im Küche' is impossible — im contracts in + dem and belongs to masculine and neuter nouns only."
+      ru: "die Küche — женский род, и при обозначении места после in стоит Dativ: in der Küche. «Im Küche» невозможно: im = in + dem, эта форма бывает только у мужского и среднего рода."
+
+  - id: uebersetzen-zum-supermarkt
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "How do I get to the supermarket?"
+    prompt_ru: "Как мне пройти к супермаркету?"
+    answer: "Wie komme ich zum Supermarkt?"
+    key_tokens: ["zum"]
+    accept:
+      - "Wie komme ich zu dem Supermarkt?"
+    explain:
+      en: "zu always takes the dative, and zu dem contracts to zum: zum Supermarkt. 'ins Supermarkt' is doubly wrong — ins is in + das, and der Supermarkt is masculine."
+      ru: "zu всегда требует Dativ, а zu dem сливается в zum: zum Supermarkt. «Ins Supermarkt» — двойная ошибка: ins = in + das, а der Supermarkt — мужской род."
+
+  - id: uebersetzen-beim-baecker
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German. Use bei + der Bäcker.
+      ru: Переведите на немецкий. Используйте bei + der Bäcker.
+    prompt_en: "I buy bread at the baker's."
+    prompt_ru: "Я покупаю хлеб в булочной."
+    answer: "Ich kaufe Brot beim Bäcker."
+    key_tokens: ["beim"]
+    accept:
+      - "Ich kaufe beim Bäcker Brot."
+      - "Ich kaufe Brot bei dem Bäcker."
+    explain:
+      en: "bei always takes the dative and merges with dem: bei dem Bäcker → beim Bäcker. German names the person, not the shop — beim Bäcker is where you buy your bread."
+      ru: "bei всегда требует Dativ и сливается с dem: bei dem Bäcker → beim Bäcker. По-немецки называют человека, а не магазин: beim Bäcker — «в булочной, у пекаря»."
+
+  - id: uebersetzen-schuelern-film
+    outcomes: [dativ-artikel]
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German. Use die Lehrerin and die Schüler.
+      ru: Переведите на немецкий. Используйте die Lehrerin и die Schüler.
+    prompt_en: "The teacher shows the students a film."
+    prompt_ru: "Учительница показывает ученикам фильм."
+    answer: "Die Lehrerin zeigt den Schülern einen Film."
+    key_tokens: ["den", "Schülern"]
+    explain:
+      en: "zeigen has two objects: the receivers are the wem?-answer and stand in the dative plural, where both parts change — die → den and the noun adds -n: den Schülern. The film is the was?-answer and stays accusative: einen Film."
+      ru: "У zeigen два дополнения: получатели отвечают на wem? и стоят в Dativ Plural — меняются обе части: die → den, а существительное получает -n: den Schülern. Фильм отвечает на was? и стоит в Akkusativ: einen Film."
+
+  - id: uebersetzen-u-bahn
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German. Use die U-Bahn.
+      ru: Переведите на немецкий. Используйте die U-Bahn.
+    prompt_en: "I take the underground to work."
+    prompt_ru: "Я езжу на работу на метро."
+    answer: "Ich fahre mit der U-Bahn zur Arbeit."
+    key_tokens: ["der", "zur"]
+    accept:
+      - "Zur Arbeit fahre ich mit der U-Bahn."
+      - "Mit der U-Bahn fahre ich zur Arbeit."
+    explain:
+      en: "Two dative prepositions in one sentence: mit der U-Bahn (die U-Bahn is feminine, so die → der) and zur Arbeit (zur = zu der). The usual order is how before where: mit der U-Bahn zur Arbeit."
+      ru: "Два дативных предлога в одном предложении: mit der U-Bahn (die U-Bahn — женский род, поэтому die → der) и zur Arbeit (zur = zu der). Обычный порядок — сначала как, потом куда: mit der U-Bahn zur Arbeit."
+
+  - id: uebersetzen-frau-kaffee
+    outcomes: [dativ-artikel]
+    type: translate
+    focus: dativ-artikel
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "He brings the woman a coffee."
+    prompt_ru: "Он приносит женщине кофе."
+    answer: "Er bringt der Frau einen Kaffee."
+    key_tokens: ["der"]
+    explain:
+      en: "bringen has two objects: the receiver is the wem?-answer and takes the dative — die Frau → der Frau. The coffee is the was?-answer and stays accusative: einen Kaffee."
+      ru: "У bringen два дополнения: получатель отвечает на wem? и стоит в Dativ — die Frau → der Frau (женское die превращается в der). Кофе отвечает на was? и стоит в Akkusativ: einen Kaffee."
+
+  - id: cloze-fuer-zu-opa
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct form of mein. Careful — the two prepositions take different cases.
+      ru: Вставьте mein в правильной форме. Осторожно — у этих двух предлогов разные падежи.
+    text: "Das Geschenk ist für meinen Opa. Am Sonntag fahre ich zu {{meinem}} Opa."
+    translation:
+      en: "The present is for my grandpa. On Sunday I am going to my grandpa's."
+      ru: "Подарок для моего дедушки. В воскресенье я поеду к дедушке."
+    explain:
+      en: "The same person, two different cases, chosen by the preposition alone: für always takes the accusative (für meinen Opa), zu always takes the dative — zu meinem Opa."
+      ru: "Один и тот же человек, но падежи разные, и выбирает их сам предлог: für всегда требует Akkusativ (für meinen Opa), а zu всегда требует Dativ — zu meinem Opa."
+
+  - id: cloze-nach-durch-park
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Nach dem Deutschkurs gehe ich durch {{den}} Park nach Hause."
+    translation:
+      en: "After the German course I walk home through the park."
+      ru: "После курса немецкого я иду домой через парк."
+    explain:
+      en: "durch takes the accusative: der Park → den Park. Do not let the dative rub off from nach dem Deutschkurs — nach is on the dative list, durch is not."
+      ru: "durch требует Akkusativ: der Park → den Park. Не переносите Dativ из nach dem Deutschkurs: nach входит в список дативных предлогов, durch — нет."
+
+  - id: cloze-fragen-antworten
+    outcomes: [dativ-verben]
+    type: cloze
+    focus: verben-mit-dativ
+    instruction:
+      en: Fill the gap with the correct article.
+      ru: Вставьте правильный артикль.
+    text: "Der Schüler fragt den Lehrer, und der Lehrer antwortet {{dem}} Schüler."
+    translation:
+      en: "The pupil asks the teacher, and the teacher answers the pupil."
+      ru: "Ученик спрашивает учителя, а учитель отвечает ученику."
+    explain:
+      en: "A minimal pair of verbs: fragen takes the accusative (den Lehrer), antworten takes the dative — dem Schüler. The verb, not the meaning, decides the case."
+      ru: "Минимальная пара глаголов: fragen требует Akkusativ (den Lehrer), а antworten — Dativ: dem Schüler. Русский совпадает лишь наполовину: «спрашивать (кого?)», но «отвечать (кому?)» — падеж выбирает немецкий глагол."
+
+  - id: hoeren-bild-mutter
+    outcomes: [dativ-verben]
+    type: listen
+    focus: verben-mit-dativ
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+    text: "Das Bild gefällt meiner Mutter sehr."
+    translation:
+      en: "My mother likes the picture a lot."
+      ru: "Картина очень нравится моей маме."
+    explain:
+      en: "gefallen puts the person in the dative: meiner Mutter — the feminine -er ending is what you must hear and spell. meine Mutter would be an accusative form, and gefallen never takes one. gefällt has an Umlaut: ä."
+      ru: "При gefallen человек стоит в дательном падеже: meiner Mutter — окончание -er нужно услышать и записать. Форма meine Mutter — Akkusativ, после gefallen она невозможна. В gefällt умлаут: ä."
+
+  - id: hoeren-aus-der-stadt
+    outcomes: [dativ-praepositionen]
+    type: listen
+    focus: dativ-praepositionen
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+    text: "Wir kommen gerade aus der Stadt."
+    translation:
+      en: "We are just coming back from town."
+      ru: "Мы как раз возвращаемся из города."
+    explain:
+      en: "aus always takes the dative: die Stadt → aus der Stadt. The -r at the end of der is the case signal to catch."
+      ru: "aus всегда требует Dativ: die Stadt → aus der Stadt. Сигнал падежа — конечное -r в der, его и нужно услышать."
+
+  - id: hoeren-kinder-wohnung
+    outcomes: [dativ-artikel]
+    type: listen
+    focus: dativ-artikel
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+    text: "Die Kinder spielen in der Wohnung."
+    translation:
+      en: "The children are playing in the flat."
+      ru: "Дети играют в квартире."
+    explain:
+      en: "die Wohnung is feminine, and the location takes the dative: in der Wohnung. 'Im Wohnung' is impossible — im is in + dem and never stands before a feminine noun."
+      ru: "die Wohnung — женский род, место действия стоит в Dativ: in der Wohnung. «Im Wohnung» невозможно: im = in + dem, перед существительным женского рода эта форма не встречается."
