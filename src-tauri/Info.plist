@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Merged by Tauri v2 into the macOS bundle's Info.plist (and embedded into the dev
+  binary), because an Info.plist sits next to tauri.conf.json. Without the usage
+  description, macOS refuses WKWebView microphone access outright, so the `speak`
+  items' record/replay works in the browser but silently fails in the desktop app.
+-->
+<plist version="1.0">
+<dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Die Sprechübungen nehmen deine Stimme lokal auf. Aufnahmen verlassen das Gerät nie.</string>
+</dict>
+</plist>

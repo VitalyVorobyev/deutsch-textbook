@@ -1,17 +1,36 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import DueBadge from '../components/srs/DueBadge';
 import FirstSteps from '../components/today/FirstSteps';
 import NextTopic from '../components/today/NextTopic';
+import ProbeBacklog from '../components/today/ProbeBacklog';
 import SessionDoneBadge from '../components/today/SessionDoneBadge';
 import { getAllCards, getCheckpoints, getDeckLevels, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
+import { probeFamilies } from '../lib/probes';
 import { withBase } from '../lib/url';
 
 const cards = await getAllCards();
 const nodes = await getTopicNodes();
 const deckLevels = await getDeckLevels();
 const { spine } = getCurriculum();
+
+// Probe families are pure content, so they are derived at build time; the backlog card
+// island only joins them against the attempt log (probe state is never stored). Same
+// tolerance as /session: a set whose topic hasn't landed yet is left out.
+const [exercises, topics] = await Promise.all([getCollection('exercises'), getCollection('topics')]);
+const topicIds = new Set(topics.map((t) => t.data.id));
+const families = probeFamilies(
+  exercises
+    .filter((e) => topicIds.has(e.data.topic))
+    .map((e) => ({
+      setId: e.id,
+      topicId: e.data.topic,
+      role: e.data.role,
+      items: e.data.items.map((item) => ({ id: item.id, outcomes: item.outcomes })),
+    })),
+);
 
 // The card links to the checkpoint the learner is due for; the island decides
 // which (lowest level whose lessons are done and whose current item ids are not all covered).
@@ -51,6 +70,8 @@ const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de 
     </p>
     <SessionDoneBadge client:only="react" />
   </a>
+
+  <ProbeBacklog client:only="react" families={families} />
 
   <div class="mt-4 grid gap-4 sm:grid-cols-2">
     <a

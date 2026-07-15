@@ -57,6 +57,7 @@ const sets = [setFor('a1/probe-one', ITEM_A), setFor('a1/probe-two', ITEM_B)];
 let ProbeStep: ComponentType<{
   due: DueProbe[];
   sets: TrainingSet[];
+  cap?: number;
   onFinished: (r: { answered: number; correct: number }) => void;
 }>;
 
@@ -110,6 +111,21 @@ describe('ProbeStep', () => {
     const logged = logAttempt.mock.calls.map(([a]: [{ setId: string; correct: boolean }]) => a);
     expect(logged.map((a) => a.setId)).toEqual(['a1/probe-one', 'a1/probe-two']);
     expect(logged.every((a) => a.correct)).toBe(true);
+  });
+
+  test('serves at most the visit cap — the session default, or the catch-up cap when passed', () => {
+    // four due probes from four families; the ordinary session must still open with 3
+    const names = ['one', 'two', 'three', 'four'];
+    const manyDue = names.map((n) => dueFor(`a1/probe-${n}`, ITEM_A));
+    const manySets = names.map((n) => setFor(`a1/probe-${n}`, ITEM_A));
+
+    render(<ProbeStep due={manyDue} sets={manySets} onFinished={() => {}} />);
+    expect(screen.getByText(/1 \/ 3/)).toBeTruthy();
+    cleanup();
+
+    // the probes-only catch-up run passes a higher cap and gets the rest of the queue
+    render(<ProbeStep due={manyDue} sets={manySets} cap={5} onFinished={() => {}} />);
+    expect(screen.getByText(/1 \/ 4/)).toBeTruthy();
   });
 
   test('the summary counts every answer, and finishes', async () => {

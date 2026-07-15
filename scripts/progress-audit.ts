@@ -23,7 +23,13 @@ import {
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
 import type { GradingDecision } from '../src/lib/schemas';
-import { dueProbes, probeFamilies } from '../src/lib/probes';
+import {
+  armedAt,
+  dueProbes,
+  probeAttempts,
+  probeFamilies,
+  PROBE_INTERVALS_DAYS,
+} from '../src/lib/probes';
 import type { Attempt } from '../src/lib/store';
 
 const DAY = 86_400_000;
@@ -179,6 +185,13 @@ export interface ProgressAudit {
       overdue: number;
       maxOverdueDays: number;
       maxTakenInOneDay: number;
+      /**
+       * Distribution of the intervals that actually elapsed for taken probes (days from
+       * arming to the probe attempt), vs the nominal 2/7/21. An overdue probe is valid
+       * data — the elapsed interval is the one reported — but the drift between the two
+       * is what the P5-11 window audits and the P5-7 expansion decision read.
+       */
+      actualIntervals: Array<{ days: number; count: number }>;
     };
   };
   sessionWorkload: { sessions: number; averageReviewed: number; averageTrained: number };
@@ -640,6 +653,20 @@ function delayedSummary(
     const day = iso(attempt.ts).slice(0, 10);
     takenPerDay.set(day, (takenPerDay.get(day) ?? 0) + 1);
   }
+  // The intervals that actually elapsed, derived exactly the way the scheduler sees them:
+  // arming timestamp → probe attempt, per family, from the attempt log alone.
+  const intervalCounts = new Map<number, number>();
+  for (const family of families) {
+    const armed = armedAt(family, schedulableAttempts);
+    if (armed === undefined) continue;
+    for (const taken of probeAttempts(family, schedulableAttempts)) {
+      const days = Math.round((taken.ts - armed) / DAY);
+      intervalCounts.set(days, (intervalCounts.get(days) ?? 0) + 1);
+    }
+  }
+  const actualIntervals = [...intervalCounts.entries()]
+    .map(([days, count]) => ({ days, count }))
+    .sort((a, b) => a.days - b.days);
   return {
     attempts: delayed.length,
     correct: delayed.filter((attempt) => attempt.correct).length,
@@ -653,6 +680,7 @@ function delayedSummary(
       overdue: owed.filter((probe) => probe.overdueDays > 0).length,
       maxOverdueDays: Math.max(0, ...owed.map((probe) => probe.overdueDays)),
       maxTakenInOneDay: Math.max(0, ...takenPerDay.values()),
+      actualIntervals,
     },
   };
 }
@@ -815,6 +843,13 @@ export function renderMarkdown(audit: ProgressAudit): string {
     `Probe workload: ${audit.delayed.probes.dueNow} due now; ${audit.delayed.probes.overdue} ` +
       `overdue (max ${audit.delayed.probes.maxOverdueDays} day(s)); peak taken in one day: ` +
       `${audit.delayed.probes.maxTakenInOneDay}.`,
+    // Overdue probes are valid data — the elapsed interval is what gets reported. The
+    // drift of this distribution from the nominal schedule is the catch-up pacing signal.
+    `Actual probe intervals (nominal ${PROBE_INTERVALS_DAYS.join('/')}): ` +
+      (audit.delayed.probes.actualIntervals.length
+        ? audit.delayed.probes.actualIntervals
+            .map((row) => `${row.days}d ×${row.count}`).join(' · ')
+        : 'none taken yet') + '.',
     `Session workload: ${audit.sessionWorkload.averageReviewed.toFixed(1)} cards reviewed and ` +
       `${audit.sessionWorkload.averageTrained.toFixed(1)} training items on average across ` +
       `${audit.sessionWorkload.sessions} session(s).`,

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { DueProbe } from '../../lib/probes';
-import { PROBE_INTERVALS_DAYS } from '../../lib/probes';
+import { MAX_PROBES_PER_SESSION, PROBE_INTERVALS_DAYS, servedProbes } from '../../lib/probes';
 import type { ExerciseItem } from '../../lib/schemas';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { attemptScore } from '../../lib/scoring';
@@ -26,11 +26,13 @@ import type { TrainingSet } from '../training/MixedTraining';
 interface Props {
   due: DueProbe[];
   sets: TrainingSet[];
+  /**
+   * How many of the due probes this visit serves. Defaults to the ordinary session cap
+   * (MAX_PROBES_PER_SESSION); the probes-only catch-up run passes MAX_PROBES_PER_CATCHUP.
+   */
+  cap?: number;
   onFinished: (result: { answered: number; correct: number }) => void;
 }
-
-/** Bounded share of the session — a probe backlog must never crowd out the lesson. */
-export const MAX_PROBES_PER_SESSION = 3;
 
 interface Queued {
   setId: string;
@@ -39,20 +41,19 @@ interface Queued {
   overdueDays: number;
 }
 
-export default function ProbeStep({ due, sets, onFinished }: Props) {
+export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onFinished }: Props) {
   const lang = useExplainLang();
 
   const queue = useMemo<Queued[]>(() => {
     const bySetId = new Map(sets.map((s) => [s.setId, s]));
-    return due
-      .slice(0, MAX_PROBES_PER_SESSION)
+    return servedProbes(due, cap)
       .flatMap((d) => {
         const item = bySetId.get(d.family.setId)?.items.find((i) => i.id === d.itemId);
         return item
           ? [{ setId: d.family.setId, item, stage: d.stage, overdueDays: d.overdueDays }]
           : [];
       });
-  }, [due, sets]);
+  }, [due, sets, cap]);
 
   const [index, setIndex] = useState(0);
   const [currentDone, setCurrentDone] = useState(false);
