@@ -9,6 +9,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { Write } from '../src/components/exercises/Write';
 import { resetAssistForTests } from '../src/lib/assist';
 import { ASSIST_KEY } from '../src/lib/prefs';
+import { getActiveProfileId } from '../src/lib/profile';
 
 const realFetch = globalThis.fetch;
 
@@ -96,15 +97,34 @@ describe('Write assist panel', () => {
     expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
   });
 
-  test('da:assist off hides the panel and skips even the probe', async () => {
+  test('da:assist off with Ollama unreachable renders nothing — not even the re-enable line', async () => {
     localStorage.setItem(ASSIST_KEY, 'off');
-    const fetchMock = mockOllama();
+    const fetchMock = mock(async () => {
+      throw new TypeError('fetch failed');
+    });
+    globalThis.fetch = fetchMock as unknown as typeof fetch;
     renderWrite();
     walkToRevise();
 
-    await Promise.resolve(); // let any (wrong) probe effect flush
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: /Assistent ist aus/ })).toBeNull();
+  });
+
+  test('da:assist off with Ollama reachable: a quiet re-enable line, and one click restores the panel', async () => {
+    // The gear's off switch is the only writer of the pref — without this
+    // affordance an accidental click would strand the learner in localStorage.
+    localStorage.setItem(ASSIST_KEY, 'off');
+    mockOllama();
+    renderWrite();
+    walkToRevise();
+
+    expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
+    fireEvent.click(await screen.findByRole('button', { name: 'Assistent ist aus — einschalten' }));
+
+    expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
+    expect(localStorage.getItem(ASSIST_KEY)).toBe('on');
+    expect(screen.queryByRole('button', { name: /Assistent ist aus/ })).toBeNull();
   });
 
   test('an unreachable Ollama hides the panel silently', async () => {
@@ -167,6 +187,56 @@ describe('Write assist panel', () => {
         after: ['met'],
       },
     });
+  });
+
+  test('fixing the quoted words retires the hint live — and full retirement is celebrated, praise kept', async () => {
+    mockOllama();
+    renderWrite();
+    walkToRevise();
+    fireEvent.click(await screen.findByRole('button', { name: ASSIST_BUTTON }));
+    expect(await screen.findByText('Check the verb form.')).toBeTruthy();
+
+    // the learner's edit removes the quoted words — the hint must not outlive them
+    fireEvent.change(screen.getByLabelText('Revised draft'), {
+      target: { value: 'Wir gehen morgen zusammen los.' },
+    });
+
+    expect(screen.queryByText('Check the verb form.')).toBeNull();
+    expect(screen.queryByText('Ich komme')).toBeNull();
+    expect(screen.getByText(/Alle Hinweise erledigt/)).toBeTruthy();
+    expect(screen.getByText(PRAISE)).toBeTruthy();
+
+    // undoing the edit brings the quoted words — and the hint — back
+    fireEvent.change(screen.getByLabelText('Revised draft'), {
+      target: { value: 'Ich komme heute.' },
+    });
+    expect(screen.getByText('Check the verb form.')).toBeTruthy();
+    expect(screen.queryByText(/Alle Hinweise erledigt/)).toBeNull();
+  });
+
+  test('a restore discards hints whose forText is not the saved revision', async () => {
+    // A record whose hints were generated for a different text than the one
+    // being restored — e.g. written by a pre-forText session or a racing tab.
+    const draftKey = `da:write:${getActiveProfileId()}:a2/test-produktion::message`;
+    localStorage.setItem(draftKey, JSON.stringify({
+      stage: 'revise',
+      draft: 'Ich komme heute.',
+      revision: 'Ich komme heute.',
+      before: ['met'],
+      after: [],
+      assist: {
+        forText: 'Ich komme morgen zu dir.',
+        praise: PRAISE,
+        hints: [{ quote: 'Ich komme', category: 'grammar', nudge: 'Check the verb form.' }],
+      },
+    }));
+    mockOllama();
+    renderWrite();
+
+    // stale hints are gone; the panel offers a fresh request instead
+    expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
+    expect(screen.queryByText(PRAISE)).toBeNull();
+    expect(screen.queryByText('Check the verb form.')).toBeNull();
   });
 
   test('a same-day reload keeps the fetched hints without re-billing the generation', async () => {

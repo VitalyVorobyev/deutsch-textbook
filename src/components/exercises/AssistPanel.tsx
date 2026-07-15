@@ -16,10 +16,11 @@ import {
   hideAssistForSession,
   noteAssistFailure,
   probeAssist,
+  quoteAnchored,
   reviewDraft,
   type AssistProbe,
+  type ReviewedHints,
   type WriteHintCategory,
-  type WriteHints,
 } from '../../lib/assist';
 import { getAssistEnabled, pick, setAssistEnabled, setAssistModel, type ExplainLang } from '../../lib/prefs';
 
@@ -44,8 +45,8 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
   /** the topic's CEFR level, e.g. "A2" */
   level: string;
   /** lifted hint state — Write persists it into SavedWriting for same-day reloads */
-  hints: WriteHints | null;
-  onHints: (hints: WriteHints) => void;
+  hints: ReviewedHints | null;
+  onHints: (hints: ReviewedHints) => void;
 }) {
   const [enabled, setEnabled] = useState(getAssistEnabled);
   const [probe, setProbe] = useState<AssistProbe | null>(null);
@@ -54,8 +55,9 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
   const abortRef = useRef<AbortController | null>(null);
   const disposedRef = useRef(false);
 
+  // Probed even while the pref is off: the re-enable affordance below must
+  // appear only where the assistant could actually answer.
   useEffect(() => {
-    if (!enabled) return;
     let cancelled = false;
     void probeAssist().then((result) => {
       if (!cancelled) setProbe(result);
@@ -63,7 +65,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
     return () => {
       cancelled = true;
     };
-  }, [enabled]);
+  }, []);
 
   // Abort an in-flight review when the learner moves on; the disposed flag
   // keeps that unmount-abort from counting as a session failure.
@@ -75,13 +77,38 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
     [],
   );
 
-  if (!enabled) return null;
+  // The gear's off switch is the only writer of the pref, so switching off must
+  // not remove the way back: where the assistant could answer, the pref being
+  // off renders one quiet re-enable line instead of nothing.
+  if (!enabled) {
+    if (!probe?.reachable || probe.models.length === 0 || assistHiddenForSession()) return null;
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          setAssistEnabled(true);
+          setEnabled(true);
+        }}
+        title={
+          lang === 'ru'
+            ? 'Снова включить подсказки локального ассистента'
+            : 'Turn local assistant hints back on'
+        }
+        className="mt-4 block text-xs text-stone-400 hover:text-stone-600 hover:underline dark:text-stone-500 dark:hover:text-stone-300"
+      >
+        Assistent ist aus — einschalten
+      </button>
+    );
+  }
   const showingStored = status === 'shown' && hints !== null;
   if (!showingStored) {
     if (!probe?.reachable || probe.models.length === 0) return null;
     if (assistHiddenForSession() && status === 'idle') return null;
   }
   const activeModel = model ?? (probe ? chooseAssistModel(probe.models) : null);
+  // A hint retires the moment the learner's edit removes its quoted words —
+  // fixing a quoted error makes its hint disappear, which is the feedback.
+  const liveHints = hints ? hints.hints.filter((hint) => quoteAnchored(hint.quote, text)) : [];
 
   async function request() {
     if (!activeModel) return;
@@ -103,7 +130,8 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
       );
       if (disposedRef.current) return;
       if (result) {
-        onHints(result);
+        // Pinned to the reviewed text: a re-request replaces the whole set.
+        onHints({ ...result, forText: text });
         setStatus('shown');
       } else {
         // Nothing usable despite the corrective retry — apologize once, then
@@ -224,9 +252,16 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
             <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
               {lang === 'ru' ? 'Ассистент не нашёл, к чему придраться.' : 'The assistant found nothing to flag.'}
             </p>
+          ) : liveHints.length === 0 ? (
+            <p className="mt-1 text-sm text-green-800 dark:text-green-300">
+              Alle Hinweise erledigt.{' '}
+              {lang === 'ru'
+                ? 'В тексте больше нет мест, которые ассистент отмечал.'
+                : 'Your text no longer contains anything the assistant flagged.'}
+            </p>
           ) : (
             <ul className="mt-2 space-y-2">
-              {hints.hints.map((hint, index) => (
+              {liveHints.map((hint, index) => (
                 <li key={index} className="rounded-md border border-stone-200 px-3 py-2 dark:border-stone-700">
                   <span className="text-[10px] font-semibold uppercase tracking-wide text-stone-400 dark:text-stone-500">
                     {CATEGORY_LABELS[hint.category]}

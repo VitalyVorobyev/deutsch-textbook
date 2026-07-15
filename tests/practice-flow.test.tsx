@@ -1,13 +1,23 @@
 import { afterEach, beforeEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Write } from '../src/components/exercises/Write';
+import { resetAssistForTests } from '../src/lib/assist';
 
-// These tests walk Write into the revise stage, where the assist panel would
-// probe the real local Ollama (tests/write-assist.test.tsx owns that surface,
-// with fetch mocked). Keep the network out of this suite.
-beforeEach(() => localStorage.setItem('da:assist', 'off'));
+// These tests walk Write into the revise stage, where the assist panel probes
+// for a local Ollama — even with the pref off, since the probe gates the
+// re-enable affordance. Unit tests must not touch the network (nor depend on
+// whether this machine runs Ollama), so the probe gets a refused connection;
+// tests/write-assist.test.tsx owns the panel, with fetch mocked properly.
+const realFetch = globalThis.fetch;
+beforeEach(() => {
+  resetAssistForTests();
+  globalThis.fetch = (async () => {
+    throw new TypeError('fetch failed');
+  }) as unknown as typeof fetch;
+});
 
 afterEach(() => {
+  globalThis.fetch = realFetch;
   cleanup();
   localStorage.clear();
 });

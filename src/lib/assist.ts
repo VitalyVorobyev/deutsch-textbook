@@ -54,6 +54,25 @@ export const writeHintsSchema = z.object({
 export type WriteHints = z.infer<typeof writeHintsSchema>;
 
 /**
+ * Hints pinned to the exact text they reviewed. `forText` is what keeps a hint
+ * from outliving its subject: the panel retires any hint whose quote no longer
+ * occurs in the current revision, and a restore from SavedWriting discards the
+ * whole set when the saved revision is not the text the hints were made for.
+ */
+export const reviewedHintsSchema = writeHintsSchema.extend({ forText: z.string() });
+export type ReviewedHints = z.infer<typeof reviewedHintsSchema>;
+
+/**
+ * Is `quote` still a verbatim substring of `text`, after trivial whitespace
+ * normalization? The reviewDraft hallucination filter and the panel's live
+ * hint retirement are the same question, so they share this one predicate.
+ */
+export function quoteAnchored(quote: string, text: string): boolean {
+  const needle = normalize(quote);
+  return needle.length > 0 && normalize(text).includes(needle);
+}
+
+/**
  * Hand-written JSON-schema mirror of writeHintsSchema for Ollama's `format`
  * structured-output constraint (kept literal — no schema-conversion dependency).
  */
@@ -272,11 +291,7 @@ async function attempt(
 
   // Hallucination filter: the quote is the only thing anchoring a hint to
   // reality — a hint about words the learner never wrote is noise at best.
-  const haystack = normalize(draft);
-  const anchored = checked.data.hints.filter((hint) => {
-    const quote = normalize(hint.quote);
-    return quote.length > 0 && haystack.includes(quote);
-  });
+  const anchored = checked.data.hints.filter((hint) => quoteAnchored(hint.quote, draft));
   // Zero hints *returned* is a legitimate outcome (a good draft earns praise
   // only); zero hints *surviving* means every quote was hallucinated.
   if (checked.data.hints.length > 0 && anchored.length === 0) {

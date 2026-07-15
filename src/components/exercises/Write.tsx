@@ -4,7 +4,7 @@ import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import type { CriterionAssessment } from '../../lib/store';
-import { writeHintsSchema, type WriteHints } from '../../lib/assist';
+import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
 import { CriterionReview, Instruction, Translation, type ItemProps } from './shared';
 import { AssistPanel } from './AssistPanel';
 
@@ -19,10 +19,12 @@ interface SavedWriting {
   after: Array<CriterionAssessment | undefined>;
   /**
    * Advisory assistant hints, kept so a same-day reload does not re-bill a slow
-   * generation. Display-only: submitRevision never reads this field, so it can
-   * never reach attempts or the snapshot (docs/assist-design.md).
+   * generation — but only while `forText` still matches the saved revision, so
+   * hints never outlive the text they quote. Display-only: submitRevision never
+   * reads this field, so it can never reach attempts or the snapshot
+   * (docs/assist-design.md).
    */
-  assist?: WriteHints | null;
+  assist?: ReviewedHints | null;
 }
 
 function wordCount(value: string): number {
@@ -63,9 +65,11 @@ export function Write({
   const [after, setAfter] = useState<Array<CriterionAssessment | undefined>>(
     item.requirements.map((_, i) => saved?.after?.[i]),
   );
-  const [assist, setAssist] = useState<WriteHints | null>(() => {
-    const parsed = writeHintsSchema.safeParse(saved?.assist);
-    return parsed.success ? parsed.data : null;
+  const [assist, setAssist] = useState<ReviewedHints | null>(() => {
+    const parsed = reviewedHintsSchema.safeParse(saved?.assist);
+    // Hints made for a different text than the one being restored are stale —
+    // their quotes may point at words the learner has already fixed.
+    return parsed.success && parsed.data.forText === (saved?.revision ?? '') ? parsed.data : null;
   });
   const draftWords = wordCount(draft);
   const revisionWords = wordCount(revision);
