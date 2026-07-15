@@ -395,7 +395,7 @@ describe('uk reaches the runtime surfaces', () => {
             {
               type: 'collocation',
               de: 'am Bahnhof',
-              explanation: { en: 'at the station', ru: 'на вокзале', uk: 'на вокзалі' },
+              explanation: { en: 'at the station', ru: 'на вокзале', uk: 'на вокзалі', de: 'ein fester Ausdruck des Ortes' },
               example_de: 'Wir treffen uns am Bahnhof.',
               example: { en: 'We meet at the station.', ru: 'Встречаемся на вокзале.', uk: 'Зустрічаємось на вокзалі.' },
             },
@@ -406,6 +406,31 @@ describe('uk reaches the runtime surfaces', () => {
     const context = wordFieldContexts([field])['reisen::Bahnhof']![0]!;
     expect(context.uk).toBe('на вокзалі');
     expect(context.exampleUk).toBe('Зустрічаємось на вокзалі.');
+    // the German explanation half cannot ride the `de` key (that is the phrase
+    // itself), so it travels as explanationDe — the flashcard context pick
+    // reads { …, de: context.explanationDe }
+    expect(context.de).toBe('am Bahnhof');
+    expect(context.explanationDe).toBe('ein fester Ausdruck des Ortes');
+    expect(pick('de', { en: context.en, ru: context.ru, uk: context.uk, de: context.explanationDe })).toBe(
+      'ein fester Ausdruck des Ortes',
+    );
+  });
+
+  test('Fortschritt outcome labels carry all four halves — de is the can-do itself', () => {
+    const outcome = outcomeSchema.parse({
+      id: 'termin-vereinbaren',
+      mode: 'spoken-interaction',
+      de: 'Ich kann einen Termin vereinbaren.',
+      en: 'I can arrange an appointment.',
+      ru: 'Я могу договориться о встрече.',
+      uk: 'Я можу домовитися про зустріч.',
+    });
+    // the record progress.astro builds for CheckpointResults' pick()
+    const label = { en: outcome.en, ru: outcome.ru, uk: outcome.uk, de: outcome.de };
+    expect(pick('de', label)).toBe('Ich kann einen Termin vereinbaren.');
+    expect(pick('uk', label)).toBe('Я можу домовитися про зустріч.');
+    expect(pick('uk', { ...label, uk: undefined })).toBe('I can arrange an appointment.');
+    expect(pick('ru', label)).toBe('Я могу договориться о встрече.');
   });
 
   test('reference examples keep uk through the schema, so reference uk-parity is satisfiable', () => {

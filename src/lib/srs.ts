@@ -58,6 +58,9 @@ export interface LexicalContext {
   en: string;
   ru: string;
   uk?: string;
+  /** the explanation's German-medium half (bilingualSchema `de`) — it cannot
+      live on the `de` key, which the phrase above already occupies */
+  explanationDe?: string;
   exampleDe?: string;
   exampleEn?: string;
   exampleRu?: string;
@@ -78,6 +81,7 @@ export function wordFieldContexts(fields: WordField[]): LexicalContextMap {
         en: relation.explanation.en,
         ru: relation.explanation.ru,
         uk: relation.explanation.uk,
+        explanationDe: relation.explanation.de,
         exampleDe: relation.example_de,
         exampleEn: relation.example?.en,
         exampleRu: relation.example?.ru,

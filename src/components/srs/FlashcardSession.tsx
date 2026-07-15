@@ -286,8 +286,9 @@ export default function FlashcardSession({
           <strong lang="de">{context.de}</strong>
           {/* Destructured, never pick(lang, context): the context record's `de`
               key is the related German word itself, and under ExplainLang 'de'
-              pick() would show it as its own gloss (same trap as reading glosses). */}
-          <span className="ml-2 text-stone-500 dark:text-stone-400">{pick(lang, { en: context.en, ru: context.ru, uk: context.uk })}</span>
+              pick() would show it as its own gloss (same trap as reading
+              glosses). The German explanation half travels as explanationDe. */}
+          <span className="ml-2 text-stone-500 dark:text-stone-400">{pick(lang, { en: context.en, ru: context.ru, uk: context.uk, de: context.explanationDe })}</span>
           {context.exampleDe && <p lang="de" className="mt-1 text-xs italic text-stone-500">{context.exampleDe} — {pick(lang, { en: context.exampleEn ?? '', ru: context.exampleRu ?? '', uk: context.exampleUk })}</p>}
         </div>)}
       </div> : null}

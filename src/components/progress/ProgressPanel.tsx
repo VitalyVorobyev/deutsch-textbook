@@ -16,7 +16,7 @@ import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainText } from '../../lib/prefs';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
 import { Heatmap } from './Heatmap';
@@ -121,7 +121,7 @@ interface Props {
   /** every level checkpoint in the content — each panel hides itself until taken */
   checkpoints?: CheckpointInfo[];
   /** outcome id → learner-facing can-do text, shared by every checkpoint panel */
-  outcomeLabels: Record<string, { en: string; ru: string }>;
+  outcomeLabels: Record<string, ExplainText>;
   probeFamilies: ProbeFamily[];
   /** probe set id → the topic's German title, for the results list */
   probeLabels: Record<string, string>;

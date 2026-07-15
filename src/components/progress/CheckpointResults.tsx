@@ -4,7 +4,7 @@ import {
   type CheckpointItemRef,
   type CheckpointOutcomeResult,
 } from '../../lib/checkpoint';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainText } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
 export interface CheckpointInfo {
@@ -17,8 +17,9 @@ export interface CheckpointInfo {
 interface Props {
   checkpoint: CheckpointInfo;
   outcomeModes: Record<string, string>;
-  /** outcome id → learner-facing can-do text (shared by every checkpoint) */
-  outcomeLabels: Record<string, { en: string; ru: string }>;
+  /** outcome id → learner-facing can-do text (shared by every checkpoint);
+      the `de` half is the German can-do itself, so 'de' mode needs no fallback */
+  outcomeLabels: Record<string, ExplainText>;
   attempts: Attempt[];
 }
 
