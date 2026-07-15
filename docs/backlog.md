@@ -130,7 +130,7 @@ session into an exam, and fatigue confounds the measurement.
 - Accept: with more than three probes due, the card appears and its run drains most-overdue first;
   ordinary sessions still open with at most three probes; the audit reports the debt row.
 
-### P6-4 · Dative-cluster drill — `todo` (M)
+### P6-4 · Dative-cluster drill — `done` 2026-07-15 (M)
 
 `content/exercises/a2/drill-dativ-ausloeser.yaml` (`role: drill`, attached to `dativ`'s
 `exercises` — drills never touch `pathDone` or `primaryPractice`), authored against the
@@ -148,11 +148,16 @@ when their tag is weak.
 - Accept: the items clear the validator's `key_tokens` and item-mix rules; the `buildSession` test
   proves weak-focus serving.
 
-### P6-5 · Verb-forms drill — `todo` (S, conditional)
+### P6-5 · Verb-forms drill — `done` 2026-07-15 (S, conditional)
 
 Only if the post-triage audit still shows the verb-morphology cluster (`modal-konjugation` 4/12
 and `verb-endungen` 6/33 on today's pre-triage table): `drill-verbformen.yaml` on `modalverben`,
 the same production-heavy shape as P6-4, in the same PR as P6-4 when the signal confirms.
+
+Shipped split by tag ownership: the `verb-endungen` half lives in `a1/drill-verbendungen` on
+`praesens-wortstellung`, the tag's owning topic — probe-arming hygiene, since probes arm from the
+earliest verified attempt on any of a topic's practice/drill sets, so a set may only contain items
+practising its own topic's competence (`drill-verbformen` stays modal-only).
 
 - Depends on: P6-2; ships with P6-4 when taken.
 - Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.

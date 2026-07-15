@@ -1,0 +1,101 @@
+topic: modalverben
+role: drill
+title:
+  en: "Drill — modal verb forms: ich kann, er muss"
+  ru: "Тренажёр — формы модальных глаголов: ich kann, er muss"
+items:
+  - id: uebersetzen-tochter-darf
+    outcomes: [modal-konjugation]
+    type: translate
+    focus: modal-konjugation
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My daughter is allowed to eat ice cream today."
+    prompt_ru: "Моей дочери сегодня можно съесть мороженое."
+    answer: "Meine Tochter darf heute Eis essen."
+    key_tokens: ["darf"]
+    accept:
+      - "Heute darf meine Tochter Eis essen."
+    explain:
+      en: "meine Tochter = sie, and the er/sie/es form of a modal verb has no -t and is identical to the ich form: ich darf — sie darf. The vowel also changes: dürfen → darf."
+      ru: "meine Tochter = sie, а форма er/sie/es у модальных глаголов не имеет -t и совпадает с формой ich: ich darf — sie darf. Меняется и гласная: dürfen → darf."
+
+  - id: uebersetzen-wir-muessen
+    outcomes: [modal-konjugation]
+    type: translate
+    focus: modal-konjugation
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "We have to go now."
+    prompt_ru: "Нам нужно сейчас идти."
+    answer: "Wir müssen jetzt gehen."
+    key_tokens: ["müssen"]
+    accept:
+      - "Jetzt müssen wir gehen."
+    explain:
+      en: "The vowel change happens only in the singular: ich muss, du musst — but wir müssen, with the umlaut back and the regular -en ending. 'Wir mussen' mixes the two."
+      ru: "Смена гласной бывает только в единственном числе: ich muss, du musst — но wir müssen: умлаут возвращается, окончание правильное -en. «Wir mussen» — смесь двух форм."
+
+  - id: uebersetzen-schwester-kann
+    outcomes: [modal-konjugation]
+    type: translate
+    focus: modal-konjugation
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "My sister can't come today."
+    prompt_ru: "Моя сестра сегодня не может прийти."
+    answer: "Meine Schwester kann heute nicht kommen."
+    key_tokens: ["kann"]
+    accept:
+      - "Heute kann meine Schwester nicht kommen."
+    explain:
+      en: "meine Schwester = sie, so the modal takes no ending: sie kann, exactly like ich kann. 'Kannt' does not exist, and könnt is the ihr form."
+      ru: "meine Schwester = sie, поэтому у модального глагола нет окончания: sie kann — точно как ich kann. Формы «kannt» не существует, а könnt — форма для ihr."
+
+  - id: cloze-ich-will
+    outcomes: [modal-konjugation]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Ich {{will}} (wollen) am Wochenende nur schlafen."
+    translation:
+      en: "At the weekend I just want to sleep."
+      ru: "В выходные я хочу только спать."
+    explain:
+      en: "ich will — in the singular the modal changes its vowel (wollen → will) and the ich form takes no ending: not 'ich wolle', not 'ich wille'."
+      ru: "ich will — в единственном числе меняется гласная (wollen → will), а форма ich не имеет окончания: не «ich wolle» и не «ich wille»."
+
+  - id: cloze-wir-koennen
+    outcomes: [modal-konjugation]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill the gap with the correct form of the verb in brackets.
+      ru: Вставьте правильную форму глагола, указанного в скобках.
+    text: "Wir {{können}} (können) am Samstag kommen, aber Tom kann nicht."
+    translation:
+      en: "We can come on Saturday, but Tom can't."
+      ru: "Мы можем прийти в субботу, а Том не может."
+    explain:
+      en: "wir können — the plural is regular: the umlaut is back and the ending is -en. The vowel change (kann) lives only in the singular, and this sentence shows both forms at once."
+      ru: "wir können — множественное число правильное: умлаут на месте, окончание -en. Смена гласной (kann) бывает только в единственном числе — в предложении обе формы стоят рядом."
+
+  - id: hoeren-darf-parken
+    outcomes: [modal-konjugation]
+    type: listen
+    focus: modal-konjugation
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+    text: "Hier darf man nicht parken."
+    translation:
+      en: "You are not allowed to park here."
+      ru: "Здесь нельзя парковаться."
+    explain:
+      en: "man counts as er/sie/es, so the modal has no -t: man darf. Listen for the bare form — 'darft' does not exist."
+      ru: "man ведёт себя как er/sie/es, поэтому у модального глагола нет -t: man darf. Ловите на слух краткую форму — «darft» не существует."
