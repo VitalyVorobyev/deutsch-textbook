@@ -84,6 +84,8 @@ items:
     accept:
       - "Ich kaufe beim Bäcker Brot."
       - "Ich kaufe Brot bei dem Bäcker."
+      - "Beim Bäcker kaufe ich Brot."
+      - "Brot kaufe ich beim Bäcker."
     explain:
       en: "bei always takes the dative and merges with dem: bei dem Bäcker → beim Bäcker. German names the person, not the shop — beim Bäcker is where you buy your bread."
       ru: "bei всегда требует Dativ и сливается с dem: bei dem Bäcker → beim Bäcker. По-немецки называют человека, а не магазин: beim Bäcker — «в булочной, у пекаря»."
@@ -99,6 +101,8 @@ items:
     prompt_ru: "Учительница показывает ученикам фильм."
     answer: "Die Lehrerin zeigt den Schülern einen Film."
     key_tokens: ["den", "Schülern"]
+    accept:
+      - "Den Schülern zeigt die Lehrerin einen Film."
     explain:
       en: "zeigen has two objects: the receivers are the wem?-answer and stand in the dative plural, where both parts change — die → den and the noun adds -n: den Schülern. The film is the was?-answer and stays accusative: einen Film."
       ru: "У zeigen два дополнения: получатели отвечают на wem? и стоят в Dativ Plural — меняются обе части: die → den, а существительное получает -n: den Schülern. Фильм отвечает на was? и стоит в Akkusativ: einen Film."
@@ -132,6 +136,8 @@ items:
     prompt_ru: "Он приносит женщине кофе."
     answer: "Er bringt der Frau einen Kaffee."
     key_tokens: ["der"]
+    accept:
+      - "Der Frau bringt er einen Kaffee."
     explain:
       en: "bringen has two objects: the receiver is the wem?-answer and takes the dative — die Frau → der Frau. The coffee is the was?-answer and stays accusative: einen Kaffee."
       ru: "У bringen два дополнения: получатель отвечает на wem? и стоит в Dativ — die Frau → der Frau (женское die превращается в der). Кофе отвечает на was? и стоит в Akkusativ: einen Kaffee."

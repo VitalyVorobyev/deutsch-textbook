@@ -154,6 +154,11 @@ Only if the post-triage audit still shows the verb-morphology cluster (`modal-ko
 and `verb-endungen` 6/33 on today's pre-triage table): `drill-verbformen.yaml` on `modalverben`,
 the same production-heavy shape as P6-4, in the same PR as P6-4 when the signal confirms.
 
+Shipped split by tag ownership: the `verb-endungen` half lives in `a1/drill-verbendungen` on
+`praesens-wortstellung`, the tag's owning topic — probe-arming hygiene, since probes arm from the
+earliest verified attempt on any of a topic's practice/drill sets, so a set may only contain items
+practising its own topic's competence (`drill-verbformen` stays modal-only).
+
 - Depends on: P6-2; ships with P6-4 when taken.
 - Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.
 
