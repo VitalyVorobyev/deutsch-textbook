@@ -18,7 +18,16 @@ import {
   mdxLangProblems,
   ukParityProblems,
 } from '../src/lib/langcheck';
-import { bilingualSchema, outcomeSchema, topicSchema, translateItemSchema } from '../src/lib/schemas';
+import {
+  bilingualSchema,
+  outcomeSchema,
+  topicSchema,
+  translateItemSchema,
+  type VocabEntry,
+  type WordField,
+} from '../src/lib/schemas';
+import { buildDeck, wordFieldContexts } from '../src/lib/srs';
+import type { TopicNode } from '../src/lib/mastery';
 
 beforeEach(() => {
   localStorage.clear();
@@ -273,7 +282,7 @@ describe('schema widening', () => {
     expect(bilingualSchema.safeParse({ en: 'e', ru: 'r', de: '' }).success).toBe(false);
   });
 
-  test('translate items may carry prompt_uk', () => {
+  test('translate items may carry prompt_uk, and the prompt pick serves it', () => {
     const item = translateItemSchema.parse({
       id: 'probe-1',
       type: 'translate',
@@ -283,6 +292,11 @@ describe('schema widening', () => {
       answer: 'Ich bin müde.',
     });
     expect(item.prompt_uk).toBe('Я втомився.');
+    // the record Translate.tsx builds for its prompt line
+    const prompt = { en: item.prompt_en, ru: item.prompt_ru, uk: item.prompt_uk };
+    expect(pick('uk', prompt)).toBe('Я втомився.');
+    // no prompt_de exists by design — 'de' mode falls back to the EN prompt
+    expect(pick('de', prompt)).toBe('I am tired.');
   });
 
   test('topics and outcomes may carry uk titles/halves', () => {
@@ -306,5 +320,92 @@ describe('schema widening', () => {
       uk: 'Я можу вживати знахідний відмінок.',
     });
     expect(outcome.uk).toContain('відмінок');
+  });
+});
+
+describe('uk reaches the runtime surfaces', () => {
+  const entry: VocabEntry = {
+    de: 'Bahnhof',
+    ipa: 'ˈbaːnhoːf',
+    pos: 'noun',
+    gender: 'm',
+    plural: 'die Bahnhöfe',
+    en: 'train station',
+    ru: 'вокзал',
+    uk: 'вокзал',
+    example_de: 'Der Bahnhof ist neu.',
+    example_en: 'The station is new.',
+    example_ru: 'Вокзал новый.',
+    example_uk: 'Вокзал новий.',
+    accept: [],
+  };
+
+  test('buildDeck carries uk/exampleUk into both card directions', () => {
+    const cards = buildDeck('reisen', [entry]);
+    expect(cards).toHaveLength(2);
+    for (const card of cards) {
+      expect(card.uk).toBe('вокзал');
+      expect(card.exampleUk).toBe('Вокзал новий.');
+    }
+  });
+
+  test('uk never enters card identity: ids are the same with and without it', () => {
+    const withUk = buildDeck('reisen', [entry]).map((c) => c.id);
+    const withoutUk = buildDeck('reisen', [{ ...entry, uk: undefined, example_uk: undefined }]).map(
+      (c) => c.id,
+    );
+    expect(withUk).toEqual(['reisen::Bahnhof::de-x', 'reisen::Bahnhof::x-de']);
+    expect(withoutUk).toEqual(withUk);
+  });
+
+  test('wordFieldContexts carries the relation explanation/example uk halves', () => {
+    const field: WordField = {
+      id: 'reisen-feld',
+      topic: 'reisen',
+      level: 'A1',
+      title_de: 'Reisen',
+      title_en: 'Travel',
+      title_ru: 'Путешествия',
+      members: [
+        {
+          kind: 'card',
+          ref: { deck: 'reisen', de: 'Bahnhof' },
+          role: 'active',
+          relations: [
+            {
+              type: 'collocation',
+              de: 'am Bahnhof',
+              explanation: { en: 'at the station', ru: 'на вокзале', uk: 'на вокзалі' },
+              example_de: 'Wir treffen uns am Bahnhof.',
+              example: { en: 'We meet at the station.', ru: 'Встречаемся на вокзале.', uk: 'Зустрічаємось на вокзалі.' },
+            },
+          ],
+        },
+      ],
+    };
+    const context = wordFieldContexts([field])['reisen::Bahnhof']![0]!;
+    expect(context.uk).toBe('на вокзалі');
+    expect(context.exampleUk).toBe('Зустрічаємось на вокзалі.');
+  });
+
+  test('TopicNode carries title_uk and title picks fall back to en without it', () => {
+    const node: TopicNode = {
+      id: 'akkusativ',
+      path: '/topics/a1/akkusativ',
+      level: 'A1',
+      kind: 'grammar',
+      title_de: 'Akkusativ',
+      title_en: 'The accusative',
+      title_ru: 'Аккузатив',
+      title_uk: 'Знахідний відмінок',
+      prerequisites: [],
+      exerciseSets: [],
+      vocabIds: [],
+      readingIds: [],
+    };
+    // the record every topic-title surface builds (NextTopic, TopicDetail, OverviewTable, CurriculumPath)
+    const title = { en: node.title_en, ru: node.title_ru, uk: node.title_uk };
+    expect(pick('uk', title)).toBe('Знахідний відмінок');
+    expect(pick('uk', { ...title, uk: undefined })).toBe('The accusative');
   });
 });

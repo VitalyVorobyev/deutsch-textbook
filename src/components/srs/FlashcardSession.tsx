@@ -203,6 +203,9 @@ export default function FlashcardSession({
   const answerDe = articledForm(card.de, card.gender);
   // In dictation the German side is the (hidden) audio prompt, so the visible
   // "front" after answering is the meaning instead.
+  // The en·ru concatenation deliberately ignores uk/de for now: switching the
+  // meaning side to the explanation language is P8-5's pickSecond item, with
+  // its own card-identity test.
   const front = card.dir === 'de-x' && !listening ? answerDe : `${card.en} · ${card.ru}`;
   const back = card.dir === 'de-x' ? `${card.en} · ${card.ru}` : answerDe;
 
@@ -275,14 +278,17 @@ export default function FlashcardSession({
         <SpeakerButton text={card.exampleDe} className="ml-1 not-italic text-stone-400" />
       </p>
       <p className="mt-1 text-xs text-stone-400">
-        {pick(lang, { en: card.exampleEn, ru: card.exampleRu })}
+        {pick(lang, { en: card.exampleEn, ru: card.exampleRu, uk: card.exampleUk })}
       </p>
       {card.context?.length ? <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
         {card.context.slice(0, 3).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
           <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">{context.type}</span>
           <strong lang="de">{context.de}</strong>
-          <span className="ml-2 text-stone-500 dark:text-stone-400">{pick(lang, context)}</span>
-          {context.exampleDe && <p lang="de" className="mt-1 text-xs italic text-stone-500">{context.exampleDe} — {pick(lang, { en: context.exampleEn ?? '', ru: context.exampleRu ?? '' })}</p>}
+          {/* Destructured, never pick(lang, context): the context record's `de`
+              key is the related German word itself, and under ExplainLang 'de'
+              pick() would show it as its own gloss (same trap as reading glosses). */}
+          <span className="ml-2 text-stone-500 dark:text-stone-400">{pick(lang, { en: context.en, ru: context.ru, uk: context.uk })}</span>
+          {context.exampleDe && <p lang="de" className="mt-1 text-xs italic text-stone-500">{context.exampleDe} — {pick(lang, { en: context.exampleEn ?? '', ru: context.exampleRu ?? '', uk: context.exampleUk })}</p>}
         </div>)}
       </div> : null}
     </>

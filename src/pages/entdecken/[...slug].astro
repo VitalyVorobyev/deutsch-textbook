@@ -21,7 +21,7 @@ const { Content } = await render(entry);
 
 <Base title={entry.data.title_de}>
   <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/entdecken')} class="hover:text-stone-700">Entdecken</a> / {entry.data.level}</nav>
-  <header><span class="text-xs font-bold text-amber-700">{entry.data.level} · Entdecken</span><h1 lang="de" class="mt-2 text-3xl font-bold">{entry.data.title_de}</h1><p class="mt-1 text-stone-500"><span class="lang-en">{entry.data.title_en}</span><span class="lang-ru">{entry.data.title_ru}</span></p></header>
+  <header><span class="text-xs font-bold text-amber-700">{entry.data.level} · Entdecken</span><h1 lang="de" class="mt-2 text-3xl font-bold">{entry.data.title_de}</h1><p class="mt-1 text-stone-500"><span class="lang-en">{entry.data.title_en}</span><span class="lang-ru">{entry.data.title_ru}</span>{entry.data.title_uk && <span class="lang-uk">{entry.data.title_uk}</span>}</p></header>
   {entry.data.images.map((image) => (
     <figure class="mt-7">
       <a href={withBase(image.src)} target="_blank" rel="noreferrer"><img src={withBase(image.src)} alt={image.alt} class="w-full rounded-xl border border-stone-200 dark:border-stone-700" /></a>
@@ -37,7 +37,7 @@ const { Content } = await render(entry);
         {entry.data.links.map((link) => (
           <li>
             <a href={link.url} target="_blank" rel="noreferrer" class="font-medium text-amber-700 hover:underline">{link.label} ↗</a>
-            {link.note && <span class="ml-2 text-sm text-stone-500"><span class="lang-en">{link.note.en}</span><span class="lang-ru">{link.note.ru}</span></span>}
+            {link.note && <span class="ml-2 text-sm text-stone-500"><span class="lang-en">{link.note.en}</span><span class="lang-ru">{link.note.ru}</span>{link.note.uk && <span class="lang-uk">{link.note.uk}</span>}</span>}
           </li>
         ))}
       </ul>
