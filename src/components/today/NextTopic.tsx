@@ -58,7 +58,7 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
               {suggestion.title_de}
             </span>
             <span className="mt-0.5 block text-sm text-stone-500 dark:text-stone-400">
-              {pick(lang, { en: suggestion.title_en, ru: suggestion.title_ru })} · {suggestion.level}
+              {pick(lang, { en: suggestion.title_en, ru: suggestion.title_ru, uk: suggestion.title_uk })} · {suggestion.level}
             </span>
           </a>
         </>

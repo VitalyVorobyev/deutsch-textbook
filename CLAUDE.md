@@ -2,8 +2,9 @@
 
 An agent-authored German learning system: wiki-like textbook + interactive exercises +
 FSRS flashcards. The course currently targets A1–A2; the learner (Vitaly) has B2 as a
-longer-term goal. Explanations are bilingual **EN + RU**. The repo is both the knowledge
-base (`content/`) and the Astro site that renders it.
+longer-term goal. Explanations are bilingual **EN + RU**, with optional **UK** arriving in
+translation waves and, from B1 onward, an optional German-medium explanation half. The repo is
+both the knowledge base (`content/`) and the Astro site that renders it.
 
 This file is the **authoring contract**: how any single artifact must be written. Three companions
 decide the rest, and they are not optional reading. [`docs/curriculum-a2-b1.md`](docs/curriculum-a2-b1.md)
@@ -62,9 +63,9 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - Every German example sentence gets EN and RU translations.
 
 ### Bilingual voice
-- Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX).
+- Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX). Two optional halves may join them: `<Uk>` (Ukrainian, arriving in translation waves — per-file all-or-none, validator-enforced) and `<De>` (the German-medium explanation for advanced learners — authored from B1 onward, never backfilled to A1/A2). A missing half falls back to EN at render time.
 - EN and RU halves are each a complete, self-sufficient explanation of the same point — write both from scratch. They **may diverge** where it helps their reader: the RU half may contrast German with Russian («быть», падежи); the EN half may contrast with English ("must not" ≠ *muss nicht*) or use German-internal hooks (the wem?-question test). Never assume an EN reader knows Russian or vice versa.
-- **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Enforced by `bun run validate`.
+- **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Likewise no Cyrillic in `de`/`*_de` fields, no Ukrainian-only letters (і/ї/є/ґ) in `ru` fields, no Russian-only letters (ы/э/ъ/ё) in `uk` fields. Enforced by `bun run validate`.
 - German content (examples, tables, headings like "Beispiele") stays outside Bilingual blocks — it is always visible.
 - Grammar terminology: use German terms with a per-language gloss on first use — in En blocks "der Kasus (case)", in Ru blocks "der Kasus (падеж)".
 
@@ -95,7 +96,7 @@ Section order (H2 headings, in German):
 - `mc` has exactly one correct answer (`correct` = index into `options`).
 - `listen` items (dictation): `text` is spoken via browser TTS and is also the canonical typed answer — keep it ≤ ~10 words at the set's level, write numbers as words (validate fails on digits), gloss nothing. Matching ignores punctuation but keeps case (noun capitalization is part of the drill); `accept` is for real spelling variants only.
 - `speak` items: declare `mode: spoken-production|spoken-interaction`, a bilingual communicative `prompt` and `goal`, 2–4 bilingual self-check points (rendered as guidance on the compare screen, never as a gated form), and a concise German `model_answer`. Recording is optional and local-only; a stopped take auto-plays and the learner may re-record freely, including after seeing the model. Audio is never uploaded, persisted or automatically scored.
-- Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — exactly three non-empty `::`-separated fields; every reading should gloss 6–10 phrases.
+- Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — three non-empty `::`-separated fields, or four with a trailing `uk` gloss (`[[de::en::ru::uk]]`), all-or-none per reading; every reading should gloss 6–10 phrases.
 - Every exercise set declares `role: pretest|practice|drill|checkpoint|probe`. Pretests are 3-item sets at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`, never mixed into training, and never counted as `Geübt`.
 - **Every topic must own at least one `role: practice` set** (validator-enforced). Its first one is the topic's `primaryPractice` — the set whose completion advances the Lernpfad. A topic with only drills or Hören sets could never be completed, and the recommended path would stop on it forever.
 - Every item declares `outcomes: [stable-outcome-id]`; ids, modes and domains live in `content/atlas.yaml`. Use `preview: true` only when an item intentionally uses a focus introduced later in the spine; the validator otherwise rejects curriculum-order leakage.

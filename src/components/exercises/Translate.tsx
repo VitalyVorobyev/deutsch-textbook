@@ -91,7 +91,9 @@ export function Translate({
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      <p className="mb-4 text-lg font-medium">{pick(lang, { en: item.prompt_en, ru: item.prompt_ru })}</p>
+      {/* No prompt_de exists by design (German→German is nonsense): 'de' mode
+          falls back to the EN prompt inside pick(). */}
+      <p className="mb-4 text-lg font-medium">{pick(lang, { en: item.prompt_en, ru: item.prompt_ru, uk: item.prompt_uk })}</p>
       <input
         ref={inputRef}
         type="text"

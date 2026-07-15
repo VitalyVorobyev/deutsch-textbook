@@ -24,6 +24,7 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
     title_de: t.data.title_de,
     title_en: t.data.title_en,
     title_ru: t.data.title_ru,
+    title_uk: t.data.title_uk,
     prerequisites: t.data.prerequisites,
     exerciseSets: t.data.exercises,
     vocabIds: t.data.vocab,

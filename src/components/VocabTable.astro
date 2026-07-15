@@ -35,7 +35,14 @@ function forms(e: VocabEntry): string {
         <th class="py-2 pr-4 font-semibold">Wort</th>
         <th class="py-2 pr-4 font-semibold">Formen</th>
         <th class="py-2 pr-4 font-semibold">
+          {/* .lang-uk spans are conditional: where an entry has no uk gloss the
+              EN span stays visible under uk mode (the :has() fallback in
+              global.css), so the header only claims Ukrainian when some entry
+              actually carries it. The gloss and example columns have no
+              .lang-de spans — a vocab entry has no German gloss by design —
+              but the bilingual `note` record below may carry a de half. */}
           <span class="lang-en">English</span><span class="lang-ru">Русский</span>
+          {entries.some((e) => e.uk) && <span class="lang-uk">Українська</span>}
         </th>
         <th class="py-2 font-semibold">Beispiel</th>
       </tr>
@@ -59,10 +66,13 @@ function forms(e: VocabEntry): string {
             <td class="py-2 pr-4 max-sm:block max-sm:py-0.5 max-sm:pr-0">
               <span class="lang-en">{e.en}</span>
               <span class="lang-ru">{e.ru}</span>
+              {e.uk && <span class="lang-uk">{e.uk}</span>}
               {e.note && (
                 <span class="block text-xs text-stone-400">
                   <span class="lang-en">{e.note.en}</span>
                   <span class="lang-ru">{e.note.ru}</span>
+                  {e.note.uk && <span class="lang-uk">{e.note.uk}</span>}
+                  {e.note.de && <span class="lang-de">{e.note.de}</span>}
                 </span>
               )}
             </td>
@@ -78,6 +88,7 @@ function forms(e: VocabEntry): string {
               <span class="block text-xs italic text-stone-400">
                 <span class="lang-en">{e.example_en}</span>
                 <span class="lang-ru">{e.example_ru}</span>
+                {e.example_uk && <span class="lang-uk">{e.example_uk}</span>}
               </span>
             </td>
           </tr>

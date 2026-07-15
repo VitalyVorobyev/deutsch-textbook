@@ -26,6 +26,8 @@ export interface TopicNode extends TopicRollup {
   title_de: string;
   title_en: string;
   title_ru: string;
+  /** optional Ukrainian title (translation waves); render sites fall back to en via pick() */
+  title_uk?: string;
   prerequisites: string[];
   strand?: CurriculumStrand;
   group?: string;

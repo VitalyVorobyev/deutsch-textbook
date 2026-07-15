@@ -29,6 +29,10 @@ export interface CardDef {
   de: string;
   en: string;
   ru: string;
+  /** Optional Ukrainian gloss (translation waves) — display-only, like en/ru.
+      Never part of card identity: cardId() keys on deckId + de + dir alone,
+      and stored state (StoredCard) holds FSRS fields only. */
+  uk?: string;
   /** Lautschrift of the headword alone, bare — the UI adds the brackets */
   ipa?: string;
   /** display form with article/plural for nouns, aux+partizip for verbs */
@@ -36,6 +40,7 @@ export interface CardDef {
   exampleDe: string;
   exampleEn: string;
   exampleRu: string;
+  exampleUk?: string;
   pos: string;
   /** nouns only — the typed answer must include the matching article */
   gender?: 'm' | 'f' | 'n';
@@ -48,12 +53,18 @@ export interface CardDef {
 
 export interface LexicalContext {
   type: 'collocation' | 'contrast' | 'family' | 'formation' | 'register';
+  /** the related German word/phrase — content, not an explanation half */
   de: string;
   en: string;
   ru: string;
+  uk?: string;
+  /** the explanation's German-medium half (bilingualSchema `de`) — it cannot
+      live on the `de` key, which the phrase above already occupies */
+  explanationDe?: string;
   exampleDe?: string;
   exampleEn?: string;
   exampleRu?: string;
+  exampleUk?: string;
 }
 
 export type LexicalContextMap = Record<string, LexicalContext[]>;
@@ -69,9 +80,12 @@ export function wordFieldContexts(fields: WordField[]): LexicalContextMap {
         de: relation.de,
         en: relation.explanation.en,
         ru: relation.explanation.ru,
+        uk: relation.explanation.uk,
+        explanationDe: relation.explanation.de,
         exampleDe: relation.example_de,
         exampleEn: relation.example?.en,
         exampleRu: relation.example?.ru,
+        exampleUk: relation.example?.uk,
       }));
     }
   }
@@ -103,11 +117,13 @@ export function buildDeck(
       de: e.de,
       en: e.en,
       ru: e.ru,
+      uk: e.uk,
       ipa: e.ipa,
       deDetail: deDetail(e),
       exampleDe: e.example_de,
       exampleEn: e.example_en,
       exampleRu: e.example_ru,
+      exampleUk: e.example_uk,
       pos: e.pos,
       gender: e.pos === 'noun' ? e.gender : undefined,
       accept: e.accept?.length ? e.accept : undefined,
