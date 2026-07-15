@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import { getExplainLang, type ExplainLang } from '../lib/prefs';
+import { getExplainLang, getUiLang, type ExplainLang } from '../lib/prefs';
+import type { UiLang } from '../lib/strings';
 
 function subscribe(onChange: () => void): () => void {
   window.addEventListener('da:langchange', onChange);
@@ -12,4 +13,15 @@ function subscribe(onChange: () => void): () => void {
     external-store subscription — no state to sync in an effect. */
 export function useExplainLang(): ExplainLang {
   return useSyncExternalStore(subscribe, getExplainLang, () => 'en');
+}
+
+function subscribeUiLang(onChange: () => void): () => void {
+  window.addEventListener('da:uilangchange', onChange);
+  return () => window.removeEventListener('da:uilangchange', onChange);
+}
+
+/** Current UI (chrome) language — the other axis (docs/i18n-design.md).
+    Same external-store pattern: <html data-ui-lang> is the store. */
+export function useUiLang(): UiLang {
+  return useSyncExternalStore(subscribeUiLang, getUiLang, () => 'de');
 }
