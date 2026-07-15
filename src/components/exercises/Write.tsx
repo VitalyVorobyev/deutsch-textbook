@@ -3,28 +3,61 @@ import type { z } from 'zod';
 import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
-import type { CriterionAssessment } from '../../lib/store';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
-import { CriterionReview, Instruction, Translation, type ItemProps } from './shared';
+import { Instruction, Translation, type ItemProps } from './shared';
 import { AssistPanel } from './AssistPanel';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
-type Stage = 'draft' | 'reflect' | 'revise' | 'reassess' | 'done';
+type Stage = 'draft' | 'compare' | 'done';
+
+/**
+ * Deliberately minimal ceremony: the app cannot verify free writing, so it never
+ * charges steps for feedback it cannot give. The flow is write → one press →
+ * model answer beside the learner's own text, which stays editable — revision is
+ * an option, not a stage. The requirements render as guidance text, never as a
+ * gated form. The one real feedback channel, the advisory Schreib-Assistent,
+ * attaches to the compare screen.
+ */
 
 interface SavedWriting {
   stage: Exclude<Stage, 'done'>;
+  /** The text as first submitted for comparison ('' while still drafting). */
   draft: string;
-  revision: string;
-  before: Array<CriterionAssessment | undefined>;
-  after: Array<CriterionAssessment | undefined>;
+  /** The live text — equal to `draft` until the learner edits on the compare screen. */
+  text: string;
   /**
    * Advisory assistant hints, kept so a same-day reload does not re-bill a slow
-   * generation — but only while `forText` still matches the saved revision, so
-   * hints never outlive the text they quote. Display-only: submitRevision never
-   * reads this field, so it can never reach attempts or the snapshot
+   * generation — but only while `forText` still matches the saved text, so
+   * hints never outlive the text they quote. Display-only: submit never reads
+   * this field, so it can never reach attempts or the snapshot
    * (docs/assist-design.md).
    */
   assist?: ReviewedHints | null;
+}
+
+/** The retired staged flow's localStorage record, still restorable. */
+interface LegacySavedWriting {
+  stage: 'draft' | 'reflect' | 'revise' | 'reassess';
+  draft: string;
+  revision: string;
+  assist?: ReviewedHints | null;
+}
+
+function restoreSaved(raw: string | null): SavedWriting | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== 'object') return null;
+    if ('text' in parsed) return parsed as SavedWriting;
+    // Legacy staged record: anything past drafting resumes on the compare screen.
+    const legacy = parsed as LegacySavedWriting;
+    return legacy.stage === 'draft'
+      ? { stage: 'draft', draft: '', text: legacy.draft, assist: legacy.assist }
+      : { stage: 'compare', draft: legacy.draft, text: legacy.revision || legacy.draft, assist: legacy.assist };
+  } catch {
+    // Back compatibility: the oldest component stored the draft as a plain string.
+    return { stage: 'draft', draft: '', text: raw };
+  }
 }
 
 function wordCount(value: string): number {
@@ -46,81 +79,45 @@ export function Write({
   // resume state tracks where you are in a lesson, but a draft is work, and silently
   // deleting someone's unfinished paragraph overnight is worse than keeping it.
   const draftKey = `da:write:${getActiveProfileId()}:${storageKey}`;
-  const saved = (() => {
-    if (typeof localStorage === 'undefined') return null;
-    try {
-      return JSON.parse(localStorage.getItem(draftKey) ?? 'null') as SavedWriting | null;
-    } catch {
-      // Back compatibility: the old component stored the draft as a plain string.
-      const legacy = localStorage.getItem(draftKey);
-      return legacy ? { stage: 'draft' as const, draft: legacy, revision: '', before: [], after: [] } : null;
-    }
-  })();
+  const saved = typeof localStorage === 'undefined' ? null : restoreSaved(localStorage.getItem(draftKey));
   const [stage, setStage] = useState<Stage>(locked ? 'done' : saved?.stage ?? 'draft');
   const [draft, setDraft] = useState(saved?.draft ?? '');
-  const [revision, setRevision] = useState(saved?.revision ?? '');
-  const [before, setBefore] = useState<Array<CriterionAssessment | undefined>>(
-    item.requirements.map((_, i) => saved?.before?.[i]),
-  );
-  const [after, setAfter] = useState<Array<CriterionAssessment | undefined>>(
-    item.requirements.map((_, i) => saved?.after?.[i]),
-  );
+  const [text, setText] = useState(saved?.text ?? '');
   const [assist, setAssist] = useState<ReviewedHints | null>(() => {
     const parsed = reviewedHintsSchema.safeParse(saved?.assist);
     // Hints made for a different text than the one being restored are stale —
     // their quotes may point at words the learner has already fixed.
-    return parsed.success && parsed.data.forText === (saved?.revision ?? '') ? parsed.data : null;
+    return parsed.success && parsed.data.forText === (saved?.text ?? '') ? parsed.data : null;
   });
-  const draftWords = wordCount(draft);
-  const revisionWords = wordCount(revision);
+  const words = wordCount(text);
   // The set id prefixes the storage key (`<level>/<set>::<item>`), and the set's
   // level directory is the topic's level — the ceiling the assistant reviews at.
   const level = /^([ab][12])\//i.exec(storageKey)?.[1]?.toUpperCase() ?? 'A2';
 
   useEffect(() => {
     if (stage === 'done') return;
-    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, revision, before, after, assist }));
-  }, [after, assist, before, draft, draftKey, revision, stage]);
+    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, text, assist } satisfies SavedWriting));
+  }, [assist, draft, draftKey, stage, text]);
 
-  function beginReflection() {
-    if (draftWords < item.min_words) return;
-    setRevision(draft);
-    setStage('reflect');
+  function beginComparison() {
+    if (words < item.min_words) return;
+    setDraft(text);
+    setStage('compare');
   }
 
-  function beginRevision() {
-    if (!before.every(Boolean)) return;
-    setStage('revise');
-  }
-
-  function beginReassessment() {
-    if (revisionWords < item.min_words) return;
-    setStage('reassess');
-  }
-
-  // An honest after-rating is a rating *of a particular text*. Going back to edit therefore
-  // throws the rating away rather than trapping the learner with a typo they just spotted —
-  // and `Speak` already works this way (its recording panel disappears once the checklist is up).
-  function resumeRevision() {
-    setAfter(item.requirements.map(() => undefined));
-    setStage('revise');
-  }
-
-  function submitRevision() {
-    if (!after.every(Boolean) || revisionWords < item.min_words) return;
+  function submit() {
+    if (words < item.min_words) return;
     setStage('done');
     localStorage.removeItem(draftKey);
     onResult({
       correct: true,
-      given: revision.trim(),
+      given: text.trim(),
       evidence: 'practice',
       responseMode: 'writing',
       practice: {
         kind: 'writing',
         draft: draft.trim(),
-        revision: revision.trim(),
-        before: before as CriterionAssessment[],
-        after: after as CriterionAssessment[],
+        revision: text.trim(),
       },
     });
   }
@@ -134,20 +131,7 @@ export function Write({
         {item.requirements.map((r, i) => <li key={i}>{pick(lang, r)}</li>)}
       </ul>
 
-      {stage === 'draft' && (
-        <WritingArea
-          id={`${item.id}-draft`}
-          value={draft}
-          onChange={setDraft}
-          words={draftWords}
-          minWords={item.min_words}
-          lang={lang}
-          label={lang === 'ru' ? 'Первый вариант' : 'First draft'}
-          disabled={locked}
-        />
-      )}
-
-      {(stage === 'reflect' || stage === 'revise' || stage === 'reassess' || stage === 'done') && (
+      {stage !== 'draft' && (
         <div className="mt-4 rounded-md border border-sky-200 bg-sky-50 px-4 py-3 dark:border-sky-800 dark:bg-sky-950/40">
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
             {lang === 'ru' ? 'Пример — сравните содержание и форму' : 'Model — compare content and form'}
@@ -157,40 +141,31 @@ export function Write({
         </div>
       )}
 
-      {stage === 'reflect' && (
-        <fieldset className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
-          <legend className="px-1 text-sm font-semibold">
-            {lang === 'ru' ? 'Проверьте свой вариант' : 'Check your draft'}
-          </legend>
-          <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">
-            {lang === 'ru'
-              ? 'Сравните текст с заданием и примером. Отметьте каждый пункт перед исправлением.'
-              : 'Compare your text with the task and model. Rate each point honestly before revising.'}
-          </p>
-          <CriterionReview entries={item.requirements} values={before} onChange={setBefore} lang={lang} />
-        </fieldset>
+      <WritingArea
+        id={`${item.id}-text`}
+        value={text}
+        onChange={setText}
+        words={words}
+        minWords={item.min_words}
+        lang={lang}
+        label={lang === 'ru' ? 'Ваш текст' : 'Your text'}
+        disabled={stage === 'done' || locked}
+      />
+
+      {stage === 'compare' && (
+        <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
+          {lang === 'ru'
+            ? 'Сравните свой текст с заданием и примером — при желании исправьте его прямо здесь.'
+            : 'Compare your text with the task and the model — edit it right here if you like.'}
+        </p>
       )}
 
-      {(stage === 'revise' || stage === 'reassess' || stage === 'done') && (
-        <WritingArea
-          id={`${item.id}-revision`}
-          value={revision}
-          onChange={setRevision}
-          words={revisionWords}
-          minWords={item.min_words}
-          lang={lang}
-          label={lang === 'ru' ? 'Исправленный вариант' : 'Revised draft'}
-          disabled={stage === 'reassess' || stage === 'done' || locked}
-        />
-      )}
-
-      {/* Revise stage only, on demand, and by construction after the before-
-          assessment: feedback shown earlier would anchor the calibration
-          ratings the reflect stage exists to measure (docs/assist-design.md). */}
-      {stage === 'revise' && (
+      {/* Compare screen only, on demand: hints while drafting would replace the
+          learner's own retrieval attempt (docs/assist-design.md). */}
+      {stage === 'compare' && (
         <AssistPanel
           item={item}
-          text={revision}
+          text={text}
           lang={lang}
           level={level}
           hints={assist}
@@ -198,43 +173,16 @@ export function Write({
         />
       )}
 
-      {stage === 'reassess' && <fieldset className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
-        <legend className="px-1 text-sm font-semibold">{lang === 'ru' ? 'Проверьте исправленный вариант' : 'Check the revision'}</legend>
-        <CriterionReview entries={item.requirements} values={after} onChange={setAfter} lang={lang} />
-      </fieldset>}
-
       <div className="mt-4">
         {stage === 'draft' && (
-          <ActionButton onClick={beginReflection} disabled={draftWords < item.min_words}>
-            {lang === 'ru' ? 'Сравнить и проверить' : 'Compare and check'}
+          <ActionButton onClick={beginComparison} disabled={words < item.min_words}>
+            {lang === 'ru' ? 'Сравнить с примером' : 'Compare with model'}
           </ActionButton>
         )}
-        {stage === 'reflect' && (
-          <ActionButton onClick={beginRevision} disabled={!before.every(Boolean)}>
-            {lang === 'ru' ? 'Исправить текст' : 'Revise draft'}
+        {stage === 'compare' && (
+          <ActionButton onClick={submit} disabled={words < item.min_words}>
+            {lang === 'ru' ? 'Сохранить' : 'Save'}
           </ActionButton>
-        )}
-        {stage === 'revise' && (
-          <ActionButton onClick={beginReassessment} disabled={revisionWords < item.min_words}>
-            {lang === 'ru' ? 'Проверить исправления' : 'Check revision'}
-          </ActionButton>
-        )}
-        {stage === 'reassess' && (
-          <div className="flex flex-wrap items-center gap-3">
-            <ActionButton
-              onClick={submitRevision}
-              disabled={!after.every(Boolean) || revisionWords < item.min_words}
-            >
-              {lang === 'ru' ? 'Сохранить исправленный вариант' : 'Save revised draft'}
-            </ActionButton>
-            <button
-              type="button"
-              onClick={resumeRevision}
-              className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
-            >
-              {lang === 'ru' ? 'Ещё раз изменить текст' : 'Edit the text again'}
-            </button>
-          </div>
         )}
         {stage === 'done' && (
           <ActionButton onClick={onNext}>{nextLabel}</ActionButton>
@@ -243,8 +191,8 @@ export function Write({
       {stage === 'done' && (
         <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
           {lang === 'ru'
-            ? 'Оба варианта сохранены как практика письма, а не автоматически проверенная оценка.'
-            : 'Both drafts are saved as writing practice, not as an automatically verified score.'}
+            ? 'Текст сохранён как практика письма, а не автоматически проверенная оценка.'
+            : 'The text is saved as writing practice, not as an automatically verified score.'}
         </p>
       )}
     </div>

@@ -51,8 +51,8 @@ writeHintsSchema = {
 }
 ```
 
-At most four hints: a wall of feedback gets skimmed, and the revise stage should stay a revision,
-not a correction transcript. The category enum both constrains the model and gives the panel a
+At most four hints: a wall of feedback gets skimmed, and an optional revision should stay a
+revision, not a correction transcript. The category enum both constrains the model and gives the panel a
 label per hint.
 
 ## Prompt design
@@ -65,7 +65,7 @@ reliably — and says, in substance:
 - Every hint must **quote the learner's exact words** — a verbatim substring of the draft.
 - **Never rewrite. Never supply the corrected sentence.** The pedagogy is the point: the revision
   must be the learner's own retrieval. A model that hands over the corrected sentence turns the
-  revise stage into a copy edit, which is precisely the practice value the stage exists to create.
+  learner's revision into a copy edit, which is precisely the practice value it exists to create.
 - Nudges are questions or rule pointers — "Which case does *mit* take?" — written in the learner's
   explanation language. German is quoted, never corrected.
 
@@ -100,20 +100,16 @@ Structured output constrains the shape, not the truth, and small local models wi
 
 ## Where it attaches, and why exactly there
 
-**Revise stage only, on demand (a button), and only after the before-assessment is complete.**
+**The compare screen only, on demand (a button) — never while drafting.**
 
-- The **before-ratings are a calibration instrument**: they measure the learner's own judgment of
-  the draft. Feedback shown before them would anchor them — the rating would then measure the
-  model's opinion rather than the learner's calibration. So the assist button stays disabled until
-  the before-assessment is submitted.
-- The **after-ratings rate the revised text** and are legitimately feedback-informed: the learner
-  saw the checklist and possibly the hints, revised, and rates the result — that is what the stage
-  is for. **This is accepted by design and stated here so a future audit does not rediscover it as
-  a defect:** in snapshots from assist-enabled sessions, after-ratings may be feedback-informed;
-  before-ratings never are.
-- On demand rather than automatic: generation costs tens of seconds (below), and the checklist is
-  the primary instrument — the model is a second opinion the learner asks for, not a gate they wait
-  behind.
+- Hints shown while the learner is still drafting would replace the retrieval attempt the item
+  exists to provoke; the assistant only ever comments on a full first draft. (The original staged
+  flow additionally gated the panel behind a before-assessment; that checklist ceremony was retired
+  in 2026-07 — open production is minimal-ceremony now, and Write's compare screen keeps the text
+  editable, so a revision is an option rather than a stage.)
+- On demand rather than automatic: generation costs tens of seconds (below), and the model
+  comparison is the primary instrument — the assistant is a second opinion the learner asks for,
+  not a gate they wait behind.
 
 ## Storage
 

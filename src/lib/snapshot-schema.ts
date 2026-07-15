@@ -3,19 +3,21 @@ import type { ProgressSnapshot } from './store';
 
 const criterionSchema = z.enum(['met', 'needs-work']);
 
+// `before`/`after` are legacy: the staged self-assessment that produced them was retired
+// (open production is minimal-ceremony now), but imported snapshots still carry them.
 const practiceSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('writing'),
     draft: z.string(),
     revision: z.string(),
-    before: z.array(criterionSchema),
-    after: z.array(criterionSchema),
+    before: z.array(criterionSchema).optional(),
+    after: z.array(criterionSchema).optional(),
   }),
   z.object({
     kind: z.literal('speaking'),
     recorded: z.boolean(),
-    before: z.array(criterionSchema),
-    after: z.array(criterionSchema),
+    before: z.array(criterionSchema).optional(),
+    after: z.array(criterionSchema).optional(),
   }),
 ]);
 

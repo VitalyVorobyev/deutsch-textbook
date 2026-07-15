@@ -1,5 +1,5 @@
 /**
- * The advisory panel's boundary (docs/assist-design.md): revise stage only, on
+ * The advisory panel's boundary (docs/assist-design.md): compare screen only, on
  * demand, gated on the probe and the da:assist pref — and **nothing the
  * assistant produces enters the submitted payload**. The last test locks that
  * with exact equality: hints on screen, byte-identical onResult.
@@ -13,8 +13,8 @@ import { getActiveProfileId } from '../src/lib/profile';
 
 const realFetch = globalThis.fetch;
 
-// Before as well as after: any earlier test file that mounted Write's revise
-// stage may have primed the module-level probe cache with its own fetch.
+// Before as well as after: any earlier test file that mounted Write's compare
+// screen may have primed the module-level probe cache with its own fetch.
 beforeEach(resetAssistForTests);
 
 afterEach(() => {
@@ -70,30 +70,21 @@ function renderWrite(onResult = mock()) {
   return onResult;
 }
 
-function walkToRevise() {
-  fireEvent.change(screen.getByLabelText('First draft'), { target: { value: 'Ich komme heute.' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Compare and check' }));
-  fireEvent.click(screen.getByRole('button', { name: 'Met' }));
-  fireEvent.click(screen.getByRole('button', { name: 'Revise draft' }));
+function walkToCompare() {
+  fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich komme heute.' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Compare with model' }));
 }
 
 describe('Write assist panel', () => {
-  test('the button exists only in the revise stage — never before the before-assessment', async () => {
+  test('the button exists only on the compare screen — never while drafting', async () => {
     mockOllama();
     renderWrite();
 
-    // draft stage: no assistant
+    // draft stage: no assistant — hints there would replace the retrieval attempt
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
-    fireEvent.change(screen.getByLabelText('First draft'), { target: { value: 'Ich komme heute.' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Compare and check' }));
+    walkToCompare();
 
-    // reflect stage (before-assessment in progress): still no assistant
-    expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: 'Met' }));
-    expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: 'Revise draft' }));
-
-    // revise stage, probe resolved: the on-demand button appears
+    // compare screen, probe resolved: the on-demand button appears
     expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
   });
 
@@ -104,7 +95,7 @@ describe('Write assist panel', () => {
     });
     globalThis.fetch = fetchMock as unknown as typeof fetch;
     renderWrite();
-    walkToRevise();
+    walkToCompare();
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
@@ -117,7 +108,7 @@ describe('Write assist panel', () => {
     localStorage.setItem(ASSIST_KEY, 'off');
     mockOllama();
     renderWrite();
-    walkToRevise();
+    walkToCompare();
 
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
     fireEvent.click(await screen.findByRole('button', { name: 'Assistent ist aus — einschalten' }));
@@ -133,7 +124,7 @@ describe('Write assist panel', () => {
     });
     globalThis.fetch = fetchMock as unknown as typeof fetch;
     renderWrite();
-    walkToRevise();
+    walkToCompare();
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
@@ -143,7 +134,7 @@ describe('Write assist panel', () => {
     // every quote hallucinated — reviewDraft retries once internally, then null
     mockOllama({ praise: 'Gut!', hints: [{ quote: 'nie geschrieben', category: 'task', nudge: 'x' }] });
     renderWrite();
-    walkToRevise();
+    walkToCompare();
 
     fireEvent.click(await screen.findByRole('button', { name: ASSIST_BUTTON }));
 
@@ -151,10 +142,10 @@ describe('Write assist panel', () => {
     expect(screen.queryByRole('button', { name: ASSIST_BUTTON })).toBeNull();
   });
 
-  test('hints render as advisory — and submitRevision\'s payload is byte-identical to a run without them', async () => {
+  test('hints render as advisory — and the submitted payload is byte-identical to a run without them', async () => {
     mockOllama();
     const onResult = renderWrite();
-    walkToRevise();
+    walkToCompare();
 
     fireEvent.click(await screen.findByRole('button', { name: ASSIST_BUTTON }));
 
@@ -166,9 +157,7 @@ describe('Write assist panel', () => {
     expect(screen.getByText(/keine Bewertung/)).toBeTruthy();
 
     // finish the item with the hints on screen
-    fireEvent.click(screen.getByRole('button', { name: 'Check revision' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Met' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Save revised draft' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
 
     // Exact equality, not objectContaining: the payload of an assist-enabled run
     // carries no assist field, no hints, nothing — advisory output never becomes
@@ -183,8 +172,6 @@ describe('Write assist panel', () => {
         kind: 'writing',
         draft: 'Ich komme heute.',
         revision: 'Ich komme heute.',
-        before: ['met'],
-        after: ['met'],
       },
     });
   });
@@ -192,12 +179,12 @@ describe('Write assist panel', () => {
   test('fixing the quoted words retires the hint live — and full retirement is celebrated, praise kept', async () => {
     mockOllama();
     renderWrite();
-    walkToRevise();
+    walkToCompare();
     fireEvent.click(await screen.findByRole('button', { name: ASSIST_BUTTON }));
     expect(await screen.findByText('Check the verb form.')).toBeTruthy();
 
     // the learner's edit removes the quoted words — the hint must not outlive them
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
+    fireEvent.change(screen.getByLabelText('Your text'), {
       target: { value: 'Wir gehen morgen zusammen los.' },
     });
 
@@ -207,16 +194,16 @@ describe('Write assist panel', () => {
     expect(screen.getByText(PRAISE)).toBeTruthy();
 
     // undoing the edit brings the quoted words — and the hint — back
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
+    fireEvent.change(screen.getByLabelText('Your text'), {
       target: { value: 'Ich komme heute.' },
     });
     expect(screen.getByText('Check the verb form.')).toBeTruthy();
     expect(screen.queryByText(/Alle Hinweise erledigt/)).toBeNull();
   });
 
-  test('a restore discards hints whose forText is not the saved revision', async () => {
-    // A record whose hints were generated for a different text than the one
-    // being restored — e.g. written by a pre-forText session or a racing tab.
+  test('a restore discards hints whose forText is not the saved text — including from a legacy staged record', async () => {
+    // A legacy record from the retired staged flow, whose hints were generated
+    // for a different text than the one being restored.
     const draftKey = `da:write:${getActiveProfileId()}:a2/test-produktion::message`;
     localStorage.setItem(draftKey, JSON.stringify({
       stage: 'revise',
@@ -233,7 +220,9 @@ describe('Write assist panel', () => {
     mockOllama();
     renderWrite();
 
-    // stale hints are gone; the panel offers a fresh request instead
+    // the legacy record resumes on the compare screen with the revision text …
+    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe('Ich komme heute.');
+    // … and the stale hints are gone; the panel offers a fresh request instead
     expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
     expect(screen.queryByText(PRAISE)).toBeNull();
     expect(screen.queryByText('Check the verb form.')).toBeNull();
@@ -243,7 +232,7 @@ describe('Write assist panel', () => {
     mockOllama();
     const onResult = mock();
     renderWrite(onResult);
-    walkToRevise();
+    walkToCompare();
     fireEvent.click(await screen.findByRole('button', { name: ASSIST_BUTTON }));
     await screen.findByText(PRAISE);
 

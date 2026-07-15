@@ -1,9 +1,16 @@
+/**
+ * Write's minimal-ceremony flow: draft → one press → model beside the learner's
+ * own, still-editable text → save. The app cannot verify free writing, so the
+ * flow never charges steps for feedback it cannot give — no gated checklists,
+ * no staged revision.
+ */
 import { afterEach, beforeEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Write } from '../src/components/exercises/Write';
 import { resetAssistForTests } from '../src/lib/assist';
+import { getActiveProfileId } from '../src/lib/profile';
 
-// These tests walk Write into the revise stage, where the assist panel probes
+// These tests walk Write onto the compare screen, where the assist panel probes
 // for a local Ollama — even with the pref off, since the probe gates the
 // re-enable affordance. Unit tests must not touch the network (nor depend on
 // whether this machine runs Ollama), so the probe gets a refused connection;
@@ -43,85 +50,64 @@ function renderWrite(onResult = mock(), minWords = 2) {
   return onResult;
 }
 
-describe('honest open-production review', () => {
-  test('needs-work is valid, but revision and reassessment remain required', () => {
+describe('minimal-ceremony writing flow', () => {
+  test('min_words gates the comparison; one press reaches the model, and the text stays editable', () => {
+    renderWrite();
+
+    fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich' } });
+    const compare = screen.getByRole('button', { name: 'Compare with model' }) as HTMLButtonElement;
+    expect(compare.disabled).toBe(true);
+    expect(screen.queryByText('Ich komme später.')).toBeNull();
+
+    fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich komme.' } });
+    fireEvent.click(compare);
+
+    expect(screen.getByText('Ich komme später.')).toBeTruthy();
+    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).disabled).toBe(false);
+  });
+
+  test('saving logs the submitted draft and the final text — an edit on the compare screen is the revision', () => {
     const onResult = renderWrite();
 
-    fireEvent.change(screen.getByLabelText('First draft'), { target: { value: 'Ich komme.' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Compare and check' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Needs work' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Revise draft' }));
+    fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich komme.' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Compare with model' }));
     expect(onResult).not.toHaveBeenCalled();
 
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
-      target: { value: 'Ich komme später.' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'Check revision' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Needs work' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Save revised draft' }));
+    fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich komme später.' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
 
-    expect(onResult).toHaveBeenCalledWith(expect.objectContaining({
-      evidence: 'practice',
+    // Exact equality: the payload is the whole contract — no checklist fields,
+    // nothing unverified pretending to be assessment.
+    expect(onResult).toHaveBeenCalledTimes(1);
+    expect(onResult.mock.calls[0]![0]).toEqual({
+      correct: true,
       given: 'Ich komme später.',
+      evidence: 'practice',
+      responseMode: 'writing',
       practice: {
         kind: 'writing',
         draft: 'Ich komme.',
         revision: 'Ich komme später.',
-        before: ['needs-work'],
-        after: ['needs-work'],
       },
-    }));
-  });
-
-  // An after-rating is a rating *of a particular text*. The revision therefore freezes once the
-  // checklist is up: otherwise a learner could rate the text, then edit or gut it below min_words,
-  // and the logged `practice.revision` would no longer be the text the checklist describes.
-  test('the revision is frozen while it is being assessed', () => {
-    renderWrite();
-
-    fireEvent.change(screen.getByLabelText('First draft'), { target: { value: 'Ich komme.' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Compare and check' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Met' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Revise draft' }));
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
-      target: { value: 'Ich komme später.' },
     });
-    fireEvent.click(screen.getByRole('button', { name: 'Check revision' }));
-
-    expect((screen.getByLabelText('Revised draft') as HTMLTextAreaElement).disabled).toBe(true);
   });
 
-  test('editing again clears the rating that described the old text', () => {
+  test('a legacy staged record resumes on the compare screen with its revision text', () => {
+    const draftKey = `da:write:${getActiveProfileId()}:test:message`;
+    localStorage.setItem(draftKey, JSON.stringify({
+      stage: 'reassess',
+      draft: 'Ich komme.',
+      revision: 'Ich komme später.',
+      before: ['met'],
+      after: [],
+    }));
     const onResult = renderWrite();
 
-    fireEvent.change(screen.getByLabelText('First draft'), { target: { value: 'Ich komme.' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Compare and check' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Met' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Revise draft' }));
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
-      target: { value: 'Ich komme später.' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'Check revision' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Met' }));
+    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe('Ich komme später.');
+    expect(screen.getByText('Ich komme später.', { selector: 'p' })).toBeTruthy();
 
-    // rated and ready to save — now go back and change the very text that was rated
-    fireEvent.click(screen.getByRole('button', { name: 'Edit the text again' }));
-    fireEvent.change(screen.getByLabelText('Revised draft'), {
-      target: { value: 'Ich komme viel später.' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'Check revision' }));
-
-    // the rating is gone, so it cannot be inherited by a text it never described
-    fireEvent.click(screen.getByRole('button', { name: 'Save revised draft' }));
-    expect(onResult).not.toHaveBeenCalled();
-
-    fireEvent.click(screen.getByRole('button', { name: 'Needs work' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Save revised draft' }));
-    expect(onResult).toHaveBeenCalledWith(expect.objectContaining({
-      practice: expect.objectContaining({
-        revision: 'Ich komme viel später.',
-        after: ['needs-work'],
-      }),
-    }));
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+    expect(onResult).toHaveBeenCalledTimes(1);
+    expect((onResult.mock.calls[0]![0] as { practice: { draft: string } }).practice.draft).toBe('Ich komme.');
   });
 });

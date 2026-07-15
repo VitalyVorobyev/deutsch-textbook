@@ -162,7 +162,7 @@ practising its own topic's competence (`drill-verbformen` stays modal-only).
 - Depends on: P6-2; ships with P6-4 when taken.
 - Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.
 
-### P6-6 · Desktop microphone permission — `doing` (S)
+### P6-6 · Desktop microphone permission — `done` 2026-07-15 (S)
 
 `speak` recording works in the browser and fails in the desktop app, and the failure is
 config-only: `src-tauri/` has no `Info.plist`, so macOS has no `NSMicrophoneUsageDescription` to
@@ -178,6 +178,36 @@ work; `tccutil reset Microphone` between runs. If wry needs prompt handling beyo
 media-capture delegate with auto-grant, so the OS-level TCC prompt — which is what needed the
 usage description — should be the whole story. `doing` until the manual protocol above has been
 run on a real macOS session; flip to `done` after that verification, not before.
+
+**Verified (2026-07-15):** the manual protocol ran on a real macOS session — record and replay
+work in the desktop app. The learner's verdict on the *flow* ("there is no automatic feedback on
+the recording, and I can hear myself without recorded sound") became P6-7.
+
+### P6-7 · Minimal-ceremony open production — `done` 2026-07-15 (M)
+
+The P6-6 verification found the speak item technically working and didactically hollow — and the
+owner's ruling cut deeper than the widget: **the app cannot verify free speech or free writing**
+(speech is too variative to compare against a model answer; a multimodal grader is out of scope),
+so the staged self-assessment flows — mandatory before/after checklists, forced second attempts —
+were fake ceremony: many button presses charged for feedback that never actually happens.
+
+Both open-production items are now single-pass. `Speak.tsx`: speak (recording optional) → one
+press → model answer beside the learner's own take; a stopped take **auto-plays** (autoplay refusal
+falls back to a prominent listen button — the `onstop` handler can outlive the Stop click's
+transient activation, especially in WKWebView), and re-recording stays available on the compare
+screen, where a new take auto-plays but the old one is never replayed. `Write.tsx`: draft → one
+press → model beside the learner's text, which **stays editable** — revision is an option, not a
+stage — with the Schreib-Assistent (the one real feedback channel) attached right there.
+`checklist`/`requirements` render as guidance text, never as gated forms; the schema fields are
+unchanged, so no content was touched. Payloads slim to `{kind: 'writing', draft, revision}` /
+`{kind: 'speaking', recorded}`; `before`/`after` stay in the snapshot schema as optional legacy
+fields, and legacy staged `SavedWriting` records restore onto the compare screen. Typical speak
+run: 4 presses, down from ~11.
+
+- Accept: `tests/speak.test.tsx` and the rewritten `tests/practice-flow.test.tsx` /
+  `tests/write-assist.test.tsx` cover auto-replay, the blocked-autoplay fallback, the ungated
+  advance, guidance-not-buttons criteria, byte-exact minimal payloads, legacy-record restore, and
+  unmount URL revocation. CLAUDE.md's open-production contract rewritten to match.
 
 ## Parallel — Phase 7: Schreib-Assistent
 
