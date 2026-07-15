@@ -1,6 +1,11 @@
-import { afterEach, describe, expect, mock, test } from 'bun:test';
+import { afterEach, beforeEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Write } from '../src/components/exercises/Write';
+
+// These tests walk Write into the revise stage, where the assist panel would
+// probe the real local Ollama (tests/write-assist.test.tsx owns that surface,
+// with fetch mocked). Keep the network out of this suite.
+beforeEach(() => localStorage.setItem('da:assist', 'off'));
 
 afterEach(() => {
   cleanup();

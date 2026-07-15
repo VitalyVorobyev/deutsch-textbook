@@ -4,7 +4,9 @@ import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import type { CriterionAssessment } from '../../lib/store';
+import { writeHintsSchema, type WriteHints } from '../../lib/assist';
 import { CriterionReview, Instruction, Translation, type ItemProps } from './shared';
+import { AssistPanel } from './AssistPanel';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
 type Stage = 'draft' | 'reflect' | 'revise' | 'reassess' | 'done';
@@ -15,6 +17,12 @@ interface SavedWriting {
   revision: string;
   before: Array<CriterionAssessment | undefined>;
   after: Array<CriterionAssessment | undefined>;
+  /**
+   * Advisory assistant hints, kept so a same-day reload does not re-bill a slow
+   * generation. Display-only: submitRevision never reads this field, so it can
+   * never reach attempts or the snapshot (docs/assist-design.md).
+   */
+  assist?: WriteHints | null;
 }
 
 function wordCount(value: string): number {
@@ -55,13 +63,20 @@ export function Write({
   const [after, setAfter] = useState<Array<CriterionAssessment | undefined>>(
     item.requirements.map((_, i) => saved?.after?.[i]),
   );
+  const [assist, setAssist] = useState<WriteHints | null>(() => {
+    const parsed = writeHintsSchema.safeParse(saved?.assist);
+    return parsed.success ? parsed.data : null;
+  });
   const draftWords = wordCount(draft);
   const revisionWords = wordCount(revision);
+  // The set id prefixes the storage key (`<level>/<set>::<item>`), and the set's
+  // level directory is the topic's level — the ceiling the assistant reviews at.
+  const level = /^([ab][12])\//i.exec(storageKey)?.[1]?.toUpperCase() ?? 'A2';
 
   useEffect(() => {
     if (stage === 'done') return;
-    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, revision, before, after }));
-  }, [after, before, draft, draftKey, revision, stage]);
+    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, revision, before, after, assist }));
+  }, [after, assist, before, draft, draftKey, revision, stage]);
 
   function beginReflection() {
     if (draftWords < item.min_words) return;
@@ -162,6 +177,20 @@ export function Write({
           lang={lang}
           label={lang === 'ru' ? 'Исправленный вариант' : 'Revised draft'}
           disabled={stage === 'reassess' || stage === 'done' || locked}
+        />
+      )}
+
+      {/* Revise stage only, on demand, and by construction after the before-
+          assessment: feedback shown earlier would anchor the calibration
+          ratings the reflect stage exists to measure (docs/assist-design.md). */}
+      {stage === 'revise' && (
+        <AssistPanel
+          item={item}
+          text={revision}
+          lang={lang}
+          level={level}
+          hints={assist}
+          onHints={setAssist}
         />
       )}
 
