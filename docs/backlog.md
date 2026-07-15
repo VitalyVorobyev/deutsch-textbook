@@ -162,7 +162,7 @@ practising its own topic's competence (`drill-verbformen` stays modal-only).
 - Depends on: P6-2; ships with P6-4 when taken.
 - Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.
 
-### P6-6 · Desktop microphone permission — `doing` (S)
+### P6-6 · Desktop microphone permission — `done` 2026-07-15 (S)
 
 `speak` recording works in the browser and fails in the desktop app, and the failure is
 config-only: `src-tauri/` has no `Info.plist`, so macOS has no `NSMicrophoneUsageDescription` to
@@ -178,6 +178,28 @@ work; `tccutil reset Microphone` between runs. If wry needs prompt handling beyo
 media-capture delegate with auto-grant, so the OS-level TCC prompt — which is what needed the
 usage description — should be the whole story. `doing` until the manual protocol above has been
 run on a real macOS session; flip to `done` after that verification, not before.
+
+**Verified (2026-07-15):** the manual protocol ran on a real macOS session — record and replay
+work in the desktop app. The learner's verdict on the *flow* ("there is no automatic feedback on
+the recording, and I can hear myself without recorded sound") became P6-7.
+
+### P6-7 · Speak feedback loop — `done` 2026-07-15 (S)
+
+The P6-6 verification found the speak item technically working and didactically empty: after Stop,
+the recording sat in a small native `<audio>` widget nothing pointed at, and the self-check stage
+never offered the learner's own take next to the model answer — so recording added nothing over
+speaking aloud. Fixed in `Speak.tsx`: a stopped take **auto-plays** (autoplay refusal falls back to
+a prominent listen button — the `onstop` handler can outlive the Stop click's transient activation,
+especially in WKWebView); the stage advance is **gated on having heard the take to the end** once,
+because the listen-back is the only feedback this exercise has; and reflect/reassess keep the
+take(s) playable beside the model — `beginSecondAttempt` now keeps the first recording, since "did
+the second attempt improve?" is unanswerable from memory. The hard boundary is unchanged and locked
+in a byte-exact test: audio is never persisted or scored, and the logged payload keeps the v5 shape
+`{kind: 'speaking', recorded, before, after}`.
+
+- Accept: `tests/speak.test.tsx` covers auto-replay, the listen gate, the blocked-autoplay
+  fallback, both-takes reassess, unmount URL revocation, the exact payload, and the no-mic
+  fallback path staying ungated.
 
 ## Parallel — Phase 7: Schreib-Assistent
 
