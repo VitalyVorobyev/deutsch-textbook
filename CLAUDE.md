@@ -201,6 +201,14 @@ Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` 
   An **article-free proper noun** is not solved with `accept`: it is `pos: phrase`, so the noun path never prepends an article. `das Deutschland` is not German. `die Schweiz` stays a noun — it really does take the article, and that card *is* the lesson.
 - **Card identity**: flashcard history is keyed by `<vocab-file-id>::<de>::<direction>`. Renaming a headword or the vocab file id resets the learner's SRS history for it — avoid unless the entry was wrong.
 
+### Entdecken & Dokumente
+
+Entdecken pieces (`content/discovery/<level>/<id>.mdx`) are optional editorial material outside the spine: no mastery, no review debt, no completion bar, and opening one obligates the learner to nothing. Only `status: reviewed` ships — a draft piece is neither listed nor built (`getStaticPaths` filters it, so it is not merely unlisted). Every piece must pass the editorial test in [`docs/future-content-directions.md`](docs/future-content-directions.md): a language reason to exist, full CEFR discipline at its level, and no obligation created by opening it.
+
+- **`images[]`** — every image declares `sourceClass: real|adapted|simulated`. Real and adapted assets are someone else's work: they require `attribution` and `license` (validator-enforced, the same contract as `content/documents/`), and the attribution renders visibly under the image. `src` is a committed local path under `public/` — never a hotlink — and every image carries an `alt`. The schema is strict, so the retired bare `image` field fails loudly instead of silently dropping a piece's picture.
+- **`links[]`** — curated external material, `https` only. Links render in a visibly online-only section and are never load-bearing: a dead link may disappoint, but nothing in the course may depend on one.
+- **Dokumente** (`content/documents/`) carry the same provenance rules with one addition: the `transcript` is the equivalent non-visual route and must stand in fully for the asset, and viewing a document is never learning evidence.
+
 ### Checklists
 
 New topic — a topic is not done until every line here is:
