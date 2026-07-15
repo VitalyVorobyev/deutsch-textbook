@@ -53,8 +53,9 @@ export interface AuditAttempt {
     kind: 'writing' | 'speaking';
     draft?: string;
     revision?: string;
-    before: Array<'met' | 'needs-work'>;
-    after: Array<'met' | 'needs-work'>;
+    /** Legacy only: written by the retired staged self-assessment. */
+    before?: Array<'met' | 'needs-work'>;
+    after?: Array<'met' | 'needs-work'>;
   };
   ts: number;
 }

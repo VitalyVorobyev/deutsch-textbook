@@ -183,23 +183,31 @@ run on a real macOS session; flip to `done` after that verification, not before.
 work in the desktop app. The learner's verdict on the *flow* ("there is no automatic feedback on
 the recording, and I can hear myself without recorded sound") became P6-7.
 
-### P6-7 · Speak feedback loop — `done` 2026-07-15 (S)
+### P6-7 · Minimal-ceremony open production — `done` 2026-07-15 (M)
 
-The P6-6 verification found the speak item technically working and didactically empty: after Stop,
-the recording sat in a small native `<audio>` widget nothing pointed at, and the self-check stage
-never offered the learner's own take next to the model answer — so recording added nothing over
-speaking aloud. Fixed in `Speak.tsx`: a stopped take **auto-plays** (autoplay refusal falls back to
-a prominent listen button — the `onstop` handler can outlive the Stop click's transient activation,
-especially in WKWebView); the stage advance is **gated on having heard the take to the end** once,
-because the listen-back is the only feedback this exercise has; and reflect/reassess keep the
-take(s) playable beside the model — `beginSecondAttempt` now keeps the first recording, since "did
-the second attempt improve?" is unanswerable from memory. The hard boundary is unchanged and locked
-in a byte-exact test: audio is never persisted or scored, and the logged payload keeps the v5 shape
-`{kind: 'speaking', recorded, before, after}`.
+The P6-6 verification found the speak item technically working and didactically hollow — and the
+owner's ruling cut deeper than the widget: **the app cannot verify free speech or free writing**
+(speech is too variative to compare against a model answer; a multimodal grader is out of scope),
+so the staged self-assessment flows — mandatory before/after checklists, forced second attempts —
+were fake ceremony: many button presses charged for feedback that never actually happens.
 
-- Accept: `tests/speak.test.tsx` covers auto-replay, the listen gate, the blocked-autoplay
-  fallback, both-takes reassess, unmount URL revocation, the exact payload, and the no-mic
-  fallback path staying ungated.
+Both open-production items are now single-pass. `Speak.tsx`: speak (recording optional) → one
+press → model answer beside the learner's own take; a stopped take **auto-plays** (autoplay refusal
+falls back to a prominent listen button — the `onstop` handler can outlive the Stop click's
+transient activation, especially in WKWebView), and re-recording stays available on the compare
+screen, where a new take auto-plays but the old one is never replayed. `Write.tsx`: draft → one
+press → model beside the learner's text, which **stays editable** — revision is an option, not a
+stage — with the Schreib-Assistent (the one real feedback channel) attached right there.
+`checklist`/`requirements` render as guidance text, never as gated forms; the schema fields are
+unchanged, so no content was touched. Payloads slim to `{kind: 'writing', draft, revision}` /
+`{kind: 'speaking', recorded}`; `before`/`after` stay in the snapshot schema as optional legacy
+fields, and legacy staged `SavedWriting` records restore onto the compare screen. Typical speak
+run: 4 presses, down from ~11.
+
+- Accept: `tests/speak.test.tsx` and the rewritten `tests/practice-flow.test.tsx` /
+  `tests/write-assist.test.tsx` cover auto-replay, the blocked-autoplay fallback, the ungated
+  advance, guidance-not-buttons criteria, byte-exact minimal payloads, legacy-record restore, and
+  unmount URL revocation. CLAUDE.md's open-production contract rewritten to match.
 
 ## Parallel — Phase 7: Schreib-Assistent
 
