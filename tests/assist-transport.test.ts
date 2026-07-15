@@ -20,6 +20,8 @@ const pluginFetch = mock(async () =>
 mock.module('@tauri-apps/plugin-http', () => ({ fetch: pluginFetch }));
 
 beforeEach(() => {
+  // Same entry-state pinning as assist.test.ts: never inherit a Tauri marker.
+  delete (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__;
   resetAssistForTests();
   pluginFetch.mockClear();
 });
