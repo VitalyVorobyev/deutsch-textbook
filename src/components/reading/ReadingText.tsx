@@ -3,7 +3,7 @@ import type { Reading } from '../../lib/schemas';
 import { parseGlosses } from '../../lib/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
-import { pick } from '../../lib/prefs';
+import { pick, pickLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
@@ -115,6 +115,14 @@ export default function ReadingText({ readingId, reading }: Props) {
               if (seg.kind === 'text') return <Fragment key={si}>{seg.text}</Fragment>;
               const key = `${pi}:${si}`;
               const shown = openGlosses.has(key);
+              // Destructured, never seg.gloss itself: the gloss record's `de`
+              // key is the glossed German phrase, and under ExplainLang 'de'
+              // pick() would reveal the phrase as its own gloss — 'de' falls
+              // back to the EN gloss instead. pickLang stamps the language the
+              // pick actually resolved to (a three-field gloss under 'uk', and
+              // every gloss under 'de', shows English), so screen readers never
+              // pronounce the EN fallback with Ukrainian/German rules.
+              const glossText = { en: seg.gloss.en, ru: seg.gloss.ru, uk: seg.gloss.uk };
               return (
                 <Fragment key={si}>
                   <button
@@ -127,15 +135,10 @@ export default function ReadingText({ readingId, reading }: Props) {
                   </button>
                   {shown && (
                     <span
-                      lang={lang}
+                      lang={pickLang(lang, glossText)}
                       className="mx-1 rounded bg-amber-100 px-1.5 py-0.5 text-sm text-amber-900 dark:bg-amber-900 dark:text-amber-100"
                     >
-                      {/* Destructured, never pick(lang, seg.gloss): the gloss
-                          record's `de` key is the glossed German phrase itself,
-                          and under ExplainLang 'de' pick() would reveal the
-                          phrase as its own gloss. 'de' falls back to the EN
-                          gloss instead. */}
-                      {pick(lang, { en: seg.gloss.en, ru: seg.gloss.ru, uk: seg.gloss.uk })}
+                      {pick(lang, glossText)}
                     </span>
                   )}
                 </Fragment>

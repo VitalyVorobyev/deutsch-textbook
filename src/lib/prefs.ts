@@ -162,3 +162,18 @@ export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
   if (lang === 'de') return text.de ?? text.en;
   return text.en;
 }
+
+/**
+ * The language pick() actually resolves to for this record — for the `lang`
+ * attribute of an element showing picked text. Under 'uk'/'de' the text may be
+ * the EN fallback, and stamping the raw ExplainLang there would have a screen
+ * reader pronounce English with Ukrainian/German rules. Keep the branches in
+ * lockstep with pick() above.
+ */
+export function pickLang(lang: ExplainLang, text: ExplainText | undefined): ExplainLang {
+  if (!text) return 'en';
+  if (lang === 'ru') return 'ru';
+  if (lang === 'uk') return text.uk ? 'uk' : 'en';
+  if (lang === 'de') return text.de ? 'de' : 'en';
+  return 'en';
+}

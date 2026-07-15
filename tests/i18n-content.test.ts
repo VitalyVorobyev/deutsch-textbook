@@ -6,8 +6,10 @@ import {
   getExplainLang,
   isExplainLang,
   pick,
+  pickLang,
   resolveExplainLang,
   setExplainLang,
+  type ExplainText,
 } from '../src/lib/prefs';
 import { PROFILE_KEY, PROFILES_KEY } from '../src/lib/profile';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
@@ -21,6 +23,7 @@ import {
 import {
   bilingualSchema,
   outcomeSchema,
+  pronominalAdverbReferenceSchema,
   topicSchema,
   translateItemSchema,
   type VocabEntry,
@@ -64,6 +67,23 @@ describe('pick over the four explanation languages', () => {
     expect(pick('en', undefined)).toBe('');
     expect(pick('uk', undefined)).toBe('');
     expect(pick('de', undefined)).toBe('');
+  });
+
+  test('pickLang names the language pick actually resolved to (for lang attributes)', () => {
+    expect(pickLang('en', full)).toBe('en');
+    expect(pickLang('ru', full)).toBe('ru');
+    expect(pickLang('uk', full)).toBe('uk');
+    expect(pickLang('de', full)).toBe('de');
+    // fallbacks: the shown text is English, so the attribute must say so
+    expect(pickLang('uk', core)).toBe('en');
+    expect(pickLang('de', core)).toBe('en');
+    expect(pickLang('uk', undefined)).toBe('en');
+    // lockstep with pick(): whatever pick returns, pickLang names its language
+    for (const lang of ['en', 'ru', 'uk', 'de'] as const) {
+      for (const text of [full, core] as ExplainText[]) {
+        expect(pick(lang, text)).toBe(text[pickLang(lang, text)] ?? '');
+      }
+    }
   });
 });
 
@@ -386,6 +406,48 @@ describe('uk reaches the runtime surfaces', () => {
     const context = wordFieldContexts([field])['reisen::Bahnhof']![0]!;
     expect(context.uk).toBe('на вокзалі');
     expect(context.exampleUk).toBe('Зустрічаємось на вокзалі.');
+  });
+
+  test('reference examples keep uk through the schema, so reference uk-parity is satisfiable', () => {
+    const reference = {
+      id: 'pronominal-adverbs',
+      entries: [
+        {
+          preposition: 'auf',
+          status: 'productive',
+          construction: 'warten auf',
+          question: 'Worauf?',
+          thing: 'darauf',
+          person: 'auf wen',
+          example: { de: 'Ich warte darauf.', en: 'I am waiting for it.', ru: 'Я жду этого.', uk: 'Я чекаю на це.' },
+        },
+      ],
+      temporal: (['vorher', 'zuvor', 'danach'] as const).map((form) => ({
+        form,
+        status: 'productive',
+        meaning: { en: 'before/after', ru: 'до/после', uk: 'до/після' },
+        example: { de: 'Vorher esse ich.', en: 'I eat before.', ru: 'Сначала я ем.', uk: 'Спершу я їм.' },
+      })),
+    };
+    // the P2 regression: zod used to strip example.uk, so parity on the PARSED
+    // data was permanently unsatisfiable once any meaning.uk existed
+    const parsed = pronominalAdverbReferenceSchema.parse(reference);
+    expect(parsed.entries[0]!.example.uk).toBe('Я чекаю на це.');
+    expect(ukParityProblems(parsed)).toEqual([]);
+
+    // half-translated: meaning has uk, an example does not — parity must fail
+    const half = pronominalAdverbReferenceSchema.parse({
+      ...reference,
+      entries: [
+        {
+          ...reference.entries[0]!,
+          example: { de: 'Ich warte darauf.', en: 'I am waiting for it.', ru: 'Я жду этого.' },
+        },
+      ],
+    });
+    const problems = ukParityProblems(half);
+    expect(problems.length).toBeGreaterThan(0);
+    expect(problems.join('\n')).toContain('entries[0].example.ru');
   });
 
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {

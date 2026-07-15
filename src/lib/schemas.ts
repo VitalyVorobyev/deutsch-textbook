@@ -596,10 +596,17 @@ export const caseReferenceSchema = z.object({
 });
 export type CaseReference = z.infer<typeof caseReferenceSchema>;
 
+/** A German example sentence with its translations. `de` is content (the
+    sentence itself), never a German explanation half — which is why
+    content/reference-data is exempt from deParityProblems. `uk` exists for
+    parity satisfiability: zod strips unknown keys, so without this slot a
+    reference file gaining `meaning.uk` could never satisfy the validator's
+    uk-parity rule (its examples' uk would be stripped before the check). */
 const referenceExampleSchema = z.object({
   de: z.string().min(1),
   en: z.string().min(1),
   ru: z.string().min(1),
+  uk: z.string().min(1).optional(),
 });
 
 export const pronominalAdverbReferenceSchema = z.object({

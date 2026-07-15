@@ -1051,11 +1051,13 @@ for (const [setId, { file, data }] of exerciseSets) {
 
 /**
  * Letter sets and parity for one YAML/frontmatter tree. `deParity: false`
- * exempts content/reference-data: its {de,en,ru} referenceExampleSchema
- * records are German example sentences with translations — German *content*,
- * not bilingual explanation records — and they legitimately sit beside
- * de-less bilingual `meaning` records, which is the one false positive of
- * deParityProblems' structural shape test.
+ * exempts content/reference-data: its referenceExampleSchema records
+ * (de/en/ru, optionally uk) are German example sentences with translations —
+ * the `de` is German *content*, not a bilingual explanation half — and they
+ * legitimately sit beside de-less bilingual `meaning` records, which is the
+ * one false positive of deParityProblems' structural shape test. uk parity
+ * still applies: the example schema carries a `uk` slot exactly so a
+ * translated reference file can satisfy it.
  *
  * Readings are handled inside the reading loop above, where 4-field glosses
  * (invisible to the YAML walker) bridge into uk parity. Atlas is handled in
