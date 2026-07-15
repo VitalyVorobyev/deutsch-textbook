@@ -1,27 +1,45 @@
 import { useEffect, useState } from 'react';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t, type StringKey } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 
 interface Props {
   /** the first topic of the curriculum spine — where a new learner starts */
   first?: { path: string; title_de: string };
 }
 
-const STEPS: Array<{ de: string; en: string; ru: string }> = [
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  loop: {
+    en: 'Three moves, in a loop. Everything you do stays on this device.',
+    ru: 'Три шага по кругу. Всё, что вы делаете, остаётся на этом устройстве.',
+  },
+  startWith: { en: 'Start with', ru: 'Начните с' },
+} as const satisfies Record<string, { en: string; ru: string }>;
+
+/** Step names are chrome (German today); their explanations follow the explanation language. */
+const STEPS: Array<{ label: StringKey; text: { en: string; ru: string } }> = [
   {
-    de: 'Lesen',
-    en: 'Read a topic. Every rule is explained twice — in English and in Russian — while the German examples stay in German.',
-    ru: 'Прочитайте тему. Каждое правило объясняется дважды — по-английски и по-русски, — а немецкие примеры остаются на немецком.',
+    label: 'today.stepRead',
+    text: {
+      en: 'Read a topic. Every rule is explained twice — in English and in Russian — while the German examples stay in German.',
+      ru: 'Прочитайте тему. Каждое правило объясняется дважды — по-английски и по-русски, — а немецкие примеры остаются на немецком.',
+    },
   },
   {
-    de: 'Üben',
-    en: 'Answer the exercises. You type the German yourself, and a wrong answer explains the rule you tripped over instead of just marking it red.',
-    ru: 'Решайте упражнения. Немецкий вы печатаете сами, а при ошибке появляется объяснение правила, а не просто красная пометка.',
+    label: 'today.stepPractice',
+    text: {
+      en: 'Answer the exercises. You type the German yourself, and a wrong answer explains the rule you tripped over instead of just marking it red.',
+      ru: 'Решайте упражнения. Немецкий вы печатаете сами, а при ошибке появляется объяснение правила, а не просто красная пометка.',
+    },
   },
   {
-    de: 'Wiederholen',
-    en: 'Review the flashcards. They come back exactly when you are about to forget them — that spacing is what turns practice into memory.',
-    ru: 'Повторяйте карточки. Они возвращаются ровно тогда, когда вы вот-вот забудете слово, — именно этот интервал превращает практику в память.',
+    label: 'today.stepReview',
+    text: {
+      en: 'Review the flashcards. They come back exactly when you are about to forget them — that spacing is what turns practice into memory.',
+      ru: 'Повторяйте карточки. Они возвращаются ровно тогда, когда вы вот-вот забудете слово, — именно этот интервал превращает практику в память.',
+    },
   },
 ];
 
@@ -32,6 +50,7 @@ const STEPS: Array<{ de: string; en: string; ru: string }> = [
  */
 export default function FirstSteps({ first }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [fresh, setFresh] = useState(false);
 
   useEffect(() => {
@@ -47,32 +66,28 @@ export default function FirstSteps({ first }: Props) {
   }, []);
 
   if (!fresh) return null;
-  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
 
   return (
     <section className="mt-8 rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-      <h2 lang="de" className="text-lg font-bold">
-        So funktioniert&apos;s
+      <h2 lang={uiLang} className="text-lg font-bold">
+        {t('today.howItWorks', uiLang)}
       </h2>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-        {t(
-          'Three moves, in a loop. Everything you do stays on this device.',
-          'Три шага по кругу. Всё, что вы делаете, остаётся на этом устройстве.',
-        )}
+        {pick(lang, UI.loop)}
       </p>
       <ol className="mt-5 grid gap-5 sm:grid-cols-3">
         {STEPS.map((step, i) => (
-          <li key={step.de}>
+          <li key={step.label}>
             <p className="flex items-center gap-2">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
                 {i + 1}
               </span>
-              <strong lang="de" className="font-semibold">
-                {step.de}
+              <strong lang={uiLang} className="font-semibold">
+                {t(step.label, uiLang)}
               </strong>
             </p>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
-              {t(step.en, step.ru)}
+              {pick(lang, step.text)}
             </p>
           </li>
         ))}
@@ -82,7 +97,7 @@ export default function FirstSteps({ first }: Props) {
           href={first.path}
           className="mt-6 inline-flex rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
         >
-          {t('Start with', 'Начните с')} <span lang="de" className="ml-1">{first.title_de}</span> →
+          {pick(lang, UI.startWith)} <span lang="de" className="ml-1">{first.title_de}</span> →
         </a>
       )}
     </section>

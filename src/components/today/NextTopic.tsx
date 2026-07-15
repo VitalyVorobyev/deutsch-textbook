@@ -2,7 +2,20 @@ import { useEffect, useState } from 'react';
 import { recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
 import { dueCheckpoint, type CheckpointRef } from '../../lib/checkpoint';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+    `{…}` placeholders are replaced by the caller. */
+const UI = {
+  nextTopic: { en: 'Suggested next topic', ru: 'Следующая тема' },
+  allLessons: { en: 'All lessons complete', ru: 'Все уроки пройдены' },
+  measure: {
+    en: 'Measure what you can already do at this level.',
+    ru: 'Проверьте, что вы уже умеете на этом уровне.',
+  },
+  masteredOf: { en: 'Topics mastered: {done} of {total}', ru: 'Освоено тем: {done} из {total}' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Props {
   /** topic ids in recommended-path order (getCurriculum().spine) */
@@ -38,14 +51,14 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
       {suggestion && (
         <>
           <p className="text-xs uppercase tracking-wide text-stone-400">
-            {lang === 'ru' ? 'Следующая тема' : 'Suggested next topic'}
+            {pick(lang, UI.nextTopic)}
           </p>
           <a href={suggestion.path} className="mt-1 block">
             <span lang="de" className="text-xl font-bold text-amber-700 hover:underline dark:text-amber-400">
               {suggestion.title_de}
             </span>
             <span className="mt-0.5 block text-sm text-stone-500 dark:text-stone-400">
-              {lang === 'ru' ? suggestion.title_ru : suggestion.title_en} · {suggestion.level}
+              {pick(lang, { en: suggestion.title_en, ru: suggestion.title_ru })} · {suggestion.level}
             </span>
           </a>
         </>
@@ -53,24 +66,20 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
       {checkpoint && (
         <div className={suggestion ? 'mt-4 border-t border-stone-200 pt-3 dark:border-stone-700' : ''}>
           <p className="text-xs uppercase tracking-wide text-stone-400">
-            {lang === 'ru' ? 'Все уроки пройдены' : 'All lessons complete'}
+            {pick(lang, UI.allLessons)}
           </p>
           <a href={checkpoint.path} className="mt-1 block">
             <span className="text-xl font-bold text-amber-700 hover:underline dark:text-amber-400">
               {checkpoint.title} →
             </span>
             <span className="mt-0.5 block text-sm text-stone-500 dark:text-stone-400">
-              {lang === 'ru'
-                ? 'Проверьте, что вы уже умеете на этом уровне.'
-                : 'Measure what you can already do at this level.'}
+              {pick(lang, UI.measure)}
             </span>
           </a>
         </div>
       )}
       <p className="mt-3 text-xs text-stone-400">
-        {lang === 'ru'
-          ? `Освоено тем: ${mastered} из ${nodes.length}`
-          : `Topics mastered: ${mastered} of ${nodes.length}`}
+        {pick(lang, UI.masteredOf).replace('{done}', String(mastered)).replace('{total}', String(nodes.length))}
       </p>
     </div>
   );
