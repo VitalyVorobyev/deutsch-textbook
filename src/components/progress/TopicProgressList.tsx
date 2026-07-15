@@ -1,7 +1,13 @@
 import { topicCompletion, topicEvidence, type TopicContext, type TopicNode } from '../../lib/mastery';
+import { pick } from '../../lib/prefs';
 import { EvidenceChips } from '../topic/EvidenceChips';
 import { SelfAssessedMark, TierBadge } from '../topic/TierBadge';
 import { useExplainLang } from '../hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  title: { en: 'Progress by topic', ru: 'Прогресс по темам' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: TopicContext }) {
   const lang = useExplainLang();
@@ -12,7 +18,7 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
   return (
     <div>
       <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-        {lang === 'ru' ? 'Прогресс по темам' : 'Progress by topic'}
+        {pick(lang, UI.title)}
       </h2>
       <ul className="mt-3">
         {rows.map((n) => {

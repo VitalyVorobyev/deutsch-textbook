@@ -1,9 +1,12 @@
 # Sprachen: per-profile UI language and Ukrainian
 
 Status: design accepted 2026-07-14; P8-1 (strings module, per-profile keys, pre-paint attribute,
-nav as the first chrome surface, picker in the ProfileSwitcher dropdown) shipped 2026-07-15.
-Remaining implementation is P8-2…P8-5 and the C3 translation waves in [backlog.md](backlog.md);
-this document is the contract those items implement.
+nav as the first chrome surface, picker in the ProfileSwitcher dropdown) and the P8-2/P8-3
+ternary sweep (35 components: hoisted `pick()` records; ~130 chrome keys in the strings table)
+shipped 2026-07-15. Chrome residue in never-ternary components (TierBadge, EvidenceChips) and
+static `.astro` pages moves with P8-5. Remaining implementation is P8-4/P8-5 and the C3
+translation waves in [backlog.md](backlog.md); this document is the contract those items
+implement.
 
 ## The two axes, and why they never merge
 

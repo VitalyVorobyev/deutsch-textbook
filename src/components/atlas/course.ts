@@ -35,16 +35,12 @@ export type LevelFilter = 'all' | 'A1' | 'A2';
 /** `open` is every tier below mastered — "what's still left for me". */
 export type StatusFilter = 'all' | 'open' | Tier;
 
-export const STRANDS: Array<[CurriculumStrand, string]> = [
-  ['foundations', 'Grundlagen'],
-  ['grammar', 'Grammatik'],
-  ['communication', 'Kommunikation'],
-  ['vocabulary', 'Wortschatz'],
+/** Display order of the strands. Labels are chrome now — STRAND_KEYS in
+    TopicDetail.tsx maps these ids into the strings table (the per-tier action
+    labels moved the same way, to TIER_ACTION_KEYS in OverviewTable.tsx). */
+export const STRANDS: readonly CurriculumStrand[] = [
+  'foundations',
+  'grammar',
+  'communication',
+  'vocabulary',
 ];
-
-export const actionLabel: Record<Tier, string> = {
-  untouched: 'Starten',
-  read: 'Fortsetzen',
-  practiced: 'Weiter üben',
-  mastered: 'Wiederholen',
-};
