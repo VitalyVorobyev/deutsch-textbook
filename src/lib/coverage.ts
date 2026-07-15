@@ -36,7 +36,7 @@ import type { Level } from './schemas';
 const VOCAB_DIR = 'content/vocab';
 
 /** Levels that have a committed Wortliste manifest to be measured against. */
-export const MEASURED_LEVELS = ['A1', 'A2'] as const;
+export const MEASURED_LEVELS = ['A1', 'A2', 'B1'] as const;
 export type MeasuredLevel = (typeof MEASURED_LEVELS)[number];
 
 const manifestPath = (level: Level): string =>

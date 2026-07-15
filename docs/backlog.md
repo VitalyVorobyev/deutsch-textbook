@@ -209,6 +209,31 @@ run: 4 presses, down from ~11.
   advance, guidance-not-buttons criteria, byte-exact minimal payloads, legacy-record restore, and
   unmount URL revocation. CLAUDE.md's open-production contract rewritten to match.
 
+### P6-8 · Goethe-B1 Wortliste manifest — `done` 2026-07-15 (M)
+
+B1 gate #6 in [roadmap.md](roadmap.md), verbatim: `data/goethe-b1-wortliste.txt` is acquired and
+`bun scripts/coverage.ts B1` reports against it. Transcribed headwords-only from the official PDF
+(Goethe-Institut / Universität Freiburg / ÖSD, 2016, "circa 2400 lexikalische Einheiten"; the PDF
+itself stays untracked — it is copyrighted, and `.gitignore` now says so): **3,416 headwords**
+after the A2 normalization rules — m/f pairs split, collapsed entries expanded, and B1's many
+D/A/CH cross-references each contributing their word (Treppe + Stiege, Kartoffel + Erdapfel),
+which is why the headword count runs well above the official unit count. Wortgruppen sections
+mirror the PDF (pp. 8–15); the alphabetical list (pp. 16–102) keeps per-letter sections so
+completeness stays checkable page by page. Verified by two full sample-page audits (pp. 33, 88:
+every headword present, regional variants included). **`~` marks are inherited only** (Codex
+review finding on #52): a B1 headword is `~`-marked iff the same word carries a `~` in the A1/A2
+manifests — the grammar-taught, no-flashcard decision is frozen there, and leaving those lines
+plain both undercounted the head start and put grammar words on the missing list a future
+`--check-deck` run would card. 64 marks inherited, each still paying the taught-surface check;
+B1-only words stay unmarked until B1 content earns them. The same audit surfaced four stale A1/A2
+marks (`dass`, `denn`, `weil`, `wenn` — `~`-marked but deck-owned by `kernwortschatz-a2` since it
+shipped), fixed in the same change. Wiring was one line (`MEASURED_LEVELS` gains `'B1'`); the
+Über page's B1 card gains a computed sentence — 41% of the B1 Wortliste is already covered by
+A1/A2 material, stated as a head start on the level's lexis, never as progress on the level.
+
+- Accept: `bun scripts/coverage.ts B1` reports; A1 and A2 stay 100%; the Über figure is computed,
+  not asserted; the validator's earned-`~` check passes over the new manifest's inherited marks.
+
 ## Parallel — Phase 7: Schreib-Assistent
 
 Local advisory feedback on `write` drafts, specified in [assist-design.md](assist-design.md) —
