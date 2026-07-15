@@ -1,7 +1,17 @@
 import { useMemo } from 'react';
 import { localDateString, type Attempt, type SessionLogEntry } from '../../lib/store';
 import { attemptScore, isVerifiedEvidence } from '../../lib/scoring';
+import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  title: { en: 'Session history', ru: 'История занятий' },
+  date: { en: 'Date', ru: 'Дата' },
+  reviewed: { en: 'Reviewed', ru: 'Повторено' },
+  trained: { en: 'Trained', ru: 'Упражнений' },
+  accuracy: { en: 'Accuracy', ru: 'Точность' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 export function SessionLog({
   attempts,
@@ -11,7 +21,6 @@ export function SessionLog({
   sessions: SessionLogEntry[];
 }) {
   const lang = useExplainLang();
-  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
 
   const accByDate = useMemo(() => {
     const m = new Map<string, { correct: number; total: number }>();
@@ -33,16 +42,16 @@ export function SessionLog({
   return (
     <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-        {t('Session history', 'История занятий')}
+        {pick(lang, UI.title)}
       </h2>
       <div className="mt-3 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wide text-stone-400">
-              <th className="py-1 pr-4 font-medium">{t('Date', 'Дата')}</th>
-              <th className="py-1 pr-4 text-right font-medium">{t('Reviewed', 'Повторено')}</th>
-              <th className="py-1 pr-4 text-right font-medium">{t('Trained', 'Упражнений')}</th>
-              <th className="py-1 text-right font-medium">{t('Accuracy', 'Точность')}</th>
+              <th className="py-1 pr-4 font-medium">{pick(lang, UI.date)}</th>
+              <th className="py-1 pr-4 text-right font-medium">{pick(lang, UI.reviewed)}</th>
+              <th className="py-1 pr-4 text-right font-medium">{pick(lang, UI.trained)}</th>
+              <th className="py-1 text-right font-medium">{pick(lang, UI.accuracy)}</th>
             </tr>
           </thead>
           <tbody>

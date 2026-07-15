@@ -306,7 +306,7 @@ never reclassified by the sweep.
   `resolveUiLang` (the inline script cannot import; the mirror is documented on both sides).
   Copy-forward and per-profile isolation are pinned in `tests/uilang.test.ts`.
 
-### P8-2 / P8-3 · The ternary sweep, in two halves — P8-2 `done` 2026-07-15, P8-3 `todo` (M each)
+### P8-2 / P8-3 · The ternary sweep, in two halves — `done` 2026-07-15 (M each)
 
 Mechanically replace the ~136 inline `lang === 'ru' ? … : …` ternaries with hoisted
 `pick(lang, {en, ru})` records, so `uk` later widens each record in exactly one place. Two PRs of
@@ -324,9 +324,16 @@ labels are chrome, not content — they move to the strings table. See
   interpolate a count where RU/UK word order or numeral agreement diverges are full `{n}` templates
   the caller `.replace()`s (`session.moreCardsDue`, `flashcards.due`/`new`), not bare suffixes —
   "1 новых" is not Russian. AssistPanel's `CATEGORY_LABELS` (Grammatik, Wortstellung …) stay
-  German: grammar terms are object language, not furniture. P8-3 is the remaining half:
-  `atlas/`, `progress/`, `today/`, `vocab/`, `discovery/`, `topic/`, ProfileSwitcher, FirstRunGate,
-  and `assist.ts`'s prompt-language name.
+  German: grammar terms are object language, not furniture.
+- P8-3 (the remaining half: `atlas/`, `progress/`, `today/`, `vocab/`, `discovery/`, `topic/`,
+  ProfileSwitcher, FirstRunGate — 18 components + `assist.ts`'s prompt-language name, ~90
+  ternaries) shipped the same way: 73 more chrome keys (Themen tabs, filters, strand names,
+  tier-action labels, vocab tables, mastery gate). `course.ts`'s German `actionLabel`/strand
+  labels are replaced by key maps (`TIER_ACTION_KEYS`, `STRAND_KEYS`) into the strings table.
+  One deliberate visible change (RU only): TopicProgress's Reopen/Mark-as-learned buttons showed
+  *German* in the ru slot — an authoring slip the inline ternaries hid; fixed, not preserved.
+  Chrome in components that never had a ternary (TierBadge, EvidenceChips) and in static `.astro`
+  pages is **not** converted by the sweep — that residue moves with P8-5's surface work.
 
 ### P8-4 · Ukrainian content machinery — `todo` (L)
 

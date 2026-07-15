@@ -15,7 +15,9 @@ import {
   type MasteryReq,
   type TopicRollup,
 } from '../../lib/mastery';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t, type StringKey } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { SelfAssessedMark, TierBadge } from './TierBadge';
 
 interface Props {
@@ -26,12 +28,25 @@ interface Props {
   pretestId?: string;
 }
 
-const REQ_LABEL: Record<MasteryReq, string> = {
-  attempts: 'Aufgaben gelöst',
-  accuracy: 'richtig',
-  days: 'an 2 Tagen geübt',
-  cards: 'Vokabeln wiederholt',
+const REQ_KEYS: Record<MasteryReq, StringKey> = {
+  attempts: 'mastery.reqAttempts',
+  accuracy: 'mastery.reqAccuracy',
+  days: 'mastery.reqDays',
+  cards: 'mastery.reqCards',
 };
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  // The ru values were German before the sweep (an authoring slip the inline
+  // ternaries hid) — fixed here rather than preserved byte-exact.
+  reopen: { en: 'Reopen', ru: 'Открыть заново' },
+  markLearned: { en: 'Mark as learned', ru: 'Отметить как изученное' },
+  clearManual: {
+    en: 'Clear manual state — use activity-based tier',
+    ru: 'Сбросить ручной статус — по активности',
+  },
+  auto: { en: 'auto', ru: 'авто' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 function reqValue(g: MasteryGap): string {
   if (g.req === 'accuracy') return `${g.have}%`;
@@ -65,6 +80,7 @@ const REQ_HINT: Record<MasteryReq, { en: string; ru: string }> = {
  */
 export default function TopicProgress(props: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const node: TopicRollup = {
     id: props.topicId,
     exerciseSets: props.exerciseSets,
@@ -99,8 +115,6 @@ export default function TopicProgress(props: Props) {
     await refresh();
   }
 
-  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
-
   if (!done) {
     return <span className="inline-block h-5 w-16 animate-pulse rounded-full bg-stone-200 dark:bg-stone-700" />;
   }
@@ -124,7 +138,7 @@ export default function TopicProgress(props: Props) {
             onClick={() => void setManual('reopened')}
             className="rounded-md border border-stone-300 px-2.5 py-1 text-xs font-medium text-stone-600 hover:border-amber-500 dark:border-stone-600 dark:text-stone-300"
           >
-            {t('Reopen', 'Wieder öffnen')}
+            {pick(lang, UI.reopen)}
           </button>
         ) : (
           !selfLearned && (
@@ -133,7 +147,7 @@ export default function TopicProgress(props: Props) {
               onClick={() => void setManual('learned')}
               className="rounded-md border border-stone-300 px-2.5 py-1 text-xs font-medium text-stone-600 hover:border-emerald-500 dark:border-stone-600 dark:text-stone-300"
             >
-              {t('Mark as learned', 'Als gelernt markieren')}
+              {pick(lang, UI.markLearned)}
             </button>
           )
         )}
@@ -142,17 +156,17 @@ export default function TopicProgress(props: Props) {
             type="button"
             onClick={() => void setManual(null)}
             className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
-            title={t('Clear manual state — use activity-based tier', 'Сбросить ручной статус — по активности')}
+            title={pick(lang, UI.clearManual)}
           >
-            ↺ {t('auto', 'авто')}
+            ↺ {pick(lang, UI.auto)}
           </button>
         )}
       </div>
 
       {showGaps && (
         <div className="max-w-prose rounded-md border border-stone-200 bg-stone-50 px-3 py-2 text-xs dark:border-stone-700 dark:bg-stone-800/60">
-          <p lang="de" className="font-medium text-stone-600 dark:text-stone-300">
-            Für „Gemeistert“ fehlt noch:
+          <p lang={uiLang} className="font-medium text-stone-600 dark:text-stone-300">
+            {t('mastery.missingHeader', uiLang)}
           </p>
           <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
             {gaps.map((g) => (
@@ -165,13 +179,13 @@ export default function TopicProgress(props: Props) {
                 }
               >
                 <span aria-hidden="true">{g.met ? '✓' : '✗'}</span>{' '}
-                <span lang="de">{REQ_LABEL[g.req]}</span>{' '}
+                <span lang={uiLang}>{t(REQ_KEYS[g.req], uiLang)}</span>{' '}
                 <span className="tabular-nums opacity-70">{reqValue(g)}</span>
               </li>
             ))}
           </ul>
           <p className="mt-1.5 text-stone-500 dark:text-stone-400">
-            {t(REQ_HINT[missing[0]!.req].en, REQ_HINT[missing[0]!.req].ru)}
+            {pick(lang, REQ_HINT[missing[0]!.req])}
           </p>
         </div>
       )}

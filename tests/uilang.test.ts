@@ -144,4 +144,56 @@ describe('chrome strings table', () => {
     expect(t('assist.allDone', 'de')).toBe('Alle Hinweise erledigt.');
     expect(t('assist.disclaimer', 'de')).toBe('Hinweise sind Vorschläge — keine Bewertung.');
   });
+
+  test('the de column of the Themen/Heute/Fortschritt chrome is byte-exact with the strings it replaced', () => {
+    // Themen tabs (CurriculumPath).
+    expect(t('topics.tabPath', 'de')).toBe('Lernpfad');
+    expect(t('topics.tabAtlas', 'de')).toBe('Atlas');
+    expect(t('topics.tabOverview', 'de')).toBe('Alle Themen');
+    // Filters.
+    expect(t('filter.all', 'de')).toBe('Alle');
+    expect(t('filter.level', 'de')).toBe('Niveau');
+    expect(t('filter.strand', 'de')).toBe('Strang');
+    expect(t('filter.status', 'de')).toBe('Status');
+    // Strand names.
+    expect(t('strand.foundations', 'de')).toBe('Grundlagen');
+    expect(t('strand.grammar', 'de')).toBe('Grammatik');
+    expect(t('strand.communication', 'de')).toBe('Kommunikation');
+    expect(t('strand.vocabulary', 'de')).toBe('Wortschatz');
+    // Tier/status labels (OverviewTable status filter).
+    expect(t('topics.statusOpen', 'de')).toBe('Offen');
+    expect(t('topics.statusNew', 'de')).toBe('Neu');
+    expect(t('topics.statusRead', 'de')).toBe('Gelesen');
+    expect(t('topics.statusPracticed', 'de')).toBe('Geübt');
+    expect(t('topics.statusMastered', 'de')).toBe('Gemeistert');
+    // Per-tier action labels (was actionLabel in course.ts).
+    expect(t('topics.actionStart', 'de')).toBe('Starten');
+    expect(t('topics.actionContinue', 'de')).toBe('Fortsetzen');
+    expect(t('topics.actionPractice', 'de')).toBe('Weiter üben');
+    expect(t('topics.actionReview', 'de')).toBe('Wiederholen');
+    // Lernpfad furniture and count templates.
+    expect(t('topics.nextStep', 'de')).toBe('Nächster Schritt');
+    expect(t('topics.goal', 'de')).toBe('Ziel');
+    expect(t('topics.current', 'de')).toBe('aktuell');
+    expect(t('topics.masteredOf', 'de')).toBe('{done}/{total} gemeistert');
+    expect(t('topics.masteredCount', 'de')).toBe('{n} gemeistert');
+    expect(t('topics.countAll', 'de')).toBe('{n} Themen');
+    expect(t('topics.countFiltered', 'de')).toBe('{shown} von {total} Themen');
+    expect(t('topics.search', 'de')).toBe('Thema suchen');
+    // Card labels (checkpoint card, probe backlog, first steps).
+    expect(t('checkpoint.start', 'de')).toBe('Checkpoint starten →');
+    expect(t('probe.backlogTitle', 'de')).toBe('Probe-Rückstand');
+    expect(t('today.howItWorks', 'de')).toBe("So funktioniert's");
+    expect(t('today.stepRead', 'de')).toBe('Lesen');
+    expect(t('today.stepPractice', 'de')).toBe('Üben');
+    expect(t('today.stepReview', 'de')).toBe('Wiederholen');
+    // Vocabulary mastery furniture.
+    expect(t('vocab.byArea', 'de')).toBe('Wortschatz nach Bereichen');
+    expect(t('vocab.dueChip', 'de')).toBe('fällig');
+    expect(t('vocab.deckSummary', 'de')).toBe('{due} Wörter fällig · {strong} sicher');
+    expect(t('vocab.cardStats', 'de')).toBe('{reps} Wiederholungen · Intervall {days} T. · {lapses} Fehler');
+    // Mastery gate.
+    expect(t('mastery.missingHeader', 'de')).toBe('Für „Gemeistert“ fehlt noch:');
+    expect(t('mastery.reqDays', 'de')).toBe('an 2 Tagen geübt');
+  });
 });

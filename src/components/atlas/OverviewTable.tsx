@@ -1,13 +1,21 @@
 import { useMemo, useState } from 'react';
 import type { AtlasGroup } from '../../lib/schemas';
-import { topicEvidence, type Completion, type TopicContext, type TopicEvidence } from '../../lib/mastery';
+import { topicEvidence, type Completion, type Tier, type TopicContext, type TopicEvidence } from '../../lib/mastery';
+import { pick, type ExplainLang } from '../../lib/prefs';
+import { t, type StringKey } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import { EvidenceChips } from '../topic/EvidenceChips';
 import { TierBadge } from '../topic/TierBadge';
 import { Filter, TopicDetail } from './TopicDetail';
-import {
-  actionLabel, type ActiveGoal, type CourseTopic, type CourseUnit, type LevelFilter,
-  type StatusFilter,
-} from './course';
+import type { ActiveGoal, CourseTopic, CourseUnit, LevelFilter, StatusFilter } from './course';
+
+/** Chrome keys for the per-tier next-action label (was `actionLabel` in course.ts). */
+export const TIER_ACTION_KEYS: Record<Tier, StringKey> = {
+  untouched: 'topics.actionStart',
+  read: 'topics.actionContinue',
+  practiced: 'topics.actionPractice',
+  mastered: 'topics.actionReview',
+};
 
 interface Props {
   units: CourseUnit[];
@@ -20,7 +28,7 @@ interface Props {
   goal?: ActiveGoal;
   routeIds: Set<string>;
   query: string;
-  lang: string;
+  lang: ExplainLang;
   onQuery: (value: string) => void;
   onSelect: (id: string) => void;
   onGoal: (id?: string) => Promise<void>;
@@ -30,10 +38,9 @@ const NO_EVIDENCE: TopicEvidence = {
   read: false, practiced: false, spaced: false, hasVocab: false, vocab: false,
 };
 
-const LEVELS: Array<readonly [LevelFilter, string]> = [['all', 'Alle'], ['A1', 'A1'], ['A2', 'A2']];
-const STATUSES: Array<readonly [StatusFilter, string]> = [
-  ['all', 'Alle'], ['open', 'Offen'], ['untouched', 'Neu'], ['read', 'Gelesen'],
-  ['practiced', 'Geübt'], ['mastered', 'Gemeistert'],
+const STATUSES: Array<readonly [StatusFilter, StringKey]> = [
+  ['all', 'filter.all'], ['open', 'topics.statusOpen'], ['untouched', 'topics.statusNew'],
+  ['read', 'topics.statusRead'], ['practiced', 'topics.statusPracticed'], ['mastered', 'topics.statusMastered'],
 ];
 
 /**
@@ -48,6 +55,7 @@ const STATUSES: Array<readonly [StatusFilter, string]> = [
 export default function OverviewTable({
   units, groups, ctx, completions, nextId, goal, routeIds, query, lang, onQuery, onSelect, onGoal,
 }: Props) {
+  const uiLang = useUiLang();
   const [level, setLevel] = useState<LevelFilter>('all');
   const [status, setStatus] = useState<StatusFilter>('all');
   const [expandedId, setExpandedId] = useState<string>();
@@ -81,26 +89,28 @@ export default function OverviewTable({
   return <div className="mt-6">
     <div className="flex flex-wrap items-end justify-between gap-4">
       <div className="flex flex-wrap items-center gap-4">
-        <Filter label="Niveau" value={level} onChange={setLevel} options={LEVELS} />
-        <Filter label="Status" value={status} onChange={setStatus} options={STATUSES} />
+        <Filter label={t('filter.level', uiLang)} value={level} onChange={setLevel} options={[['all', t('filter.all', uiLang)], ['A1', 'A1'], ['A2', 'A2']]} />
+        <Filter label={t('filter.status', uiLang)} value={status} onChange={setStatus} options={STATUSES.map(([id, key]) => [id, t(key, uiLang)] as const)} />
         <label className="text-sm font-medium text-stone-500">
-          <span className="sr-only">Thema suchen</span>
+          <span className="sr-only">{t('topics.search', uiLang)}</span>
           <input
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Thema suchen…"
+            placeholder={`${t('topics.search', uiLang)}…`}
             className="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-stone-800 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100"
           />
         </label>
       </div>
-      <p lang="de" className="text-sm text-stone-500 dark:text-stone-400">
-        {shown.length === topics.length ? `${topics.length} Themen` : `${shown.length} von ${topics.length} Themen`}
-        {' · '}<strong className="font-semibold text-emerald-700 dark:text-emerald-400">{mastered} gemeistert</strong>
+      <p lang={uiLang} className="text-sm text-stone-500 dark:text-stone-400">
+        {shown.length === topics.length
+          ? t('topics.countAll', uiLang).replace('{n}', String(topics.length))
+          : t('topics.countFiltered', uiLang).replace('{shown}', String(shown.length)).replace('{total}', String(topics.length))}
+        {' · '}<strong className="font-semibold text-emerald-700 dark:text-emerald-400">{t('topics.masteredCount', uiLang).replace('{n}', String(mastered))}</strong>
       </p>
     </div>
 
     {shown.length === 0
-      ? <p className="mt-8 text-stone-500">Keine Themen mit diesem Filter.</p>
+      ? <p className="mt-8 text-stone-500">{t('topics.emptyFilter', uiLang)}</p>
       : <div className="mt-5 overflow-hidden rounded-xl border border-stone-200 dark:border-stone-700">
         {levels.map((lvl) => {
           const rows = shown.filter((t) => t.level === lvl);
@@ -110,12 +120,12 @@ export default function OverviewTable({
           return <section key={lvl} aria-labelledby={`overview-${lvl}`}>
             <h2
               id={`overview-${lvl}`}
-              lang="de"
+              lang={uiLang}
               className="flex items-baseline gap-2 border-b border-stone-200 bg-stone-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500 dark:border-stone-700 dark:bg-stone-900/60 dark:text-stone-400"
             >
               {lvl}
               <span className="font-normal normal-case tracking-normal text-stone-400">
-                {lvlMastered}/{lvlTotal} gemeistert
+                {t('topics.masteredOf', uiLang).replace('{done}', String(lvlMastered)).replace('{total}', String(lvlTotal))}
               </span>
             </h2>
             <ul>
@@ -153,12 +163,13 @@ interface RowProps {
   isGoal: boolean;
   onRoute: boolean;
   expanded: boolean;
-  lang: string;
+  lang: ExplainLang;
   onToggle: () => void;
   onGoal: (id?: string) => Promise<void>;
 }
 
 function Row({ topic, index, topics, groups, completion, evidence, current, isGoal, onRoute, expanded, lang, onToggle, onGoal }: RowProps) {
+  const uiLang = useUiLang();
   const tier = completion?.tier ?? 'untouched';
   const panelId = `overview-panel-${topic.id}`;
   const tabId = `overview-row-${topic.id}`;
@@ -181,12 +192,12 @@ function Row({ topic, index, topics, groups, completion, evidence, current, isGo
         <span className="min-w-0">
           <span lang="de" className="flex items-center gap-1.5 font-medium">
             <span className="truncate">{topic.title_de}</span>
-            {current && <span className="shrink-0 rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">aktuell</span>}
-            {isGoal && <span className="shrink-0 rounded border border-amber-400 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-300">Ziel</span>}
+            {current && <span className="shrink-0 rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">{t('topics.current', uiLang)}</span>}
+            {isGoal && <span className="shrink-0 rounded border border-amber-400 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-300">{t('topics.goal', uiLang)}</span>}
             {onRoute && !current && <span aria-hidden="true" className="shrink-0 text-amber-600">◆</span>}
           </span>
           <span className="block truncate text-xs text-stone-500 dark:text-stone-400">
-            {lang === 'ru' ? topic.title_ru : topic.title_en}
+            {pick(lang, { en: topic.title_en, ru: topic.title_ru })}
           </span>
         </span>
         <span aria-hidden="true" className="ml-auto shrink-0 text-stone-400 sm:hidden">{expanded ? '−' : '+'}</span>
@@ -198,10 +209,10 @@ function Row({ topic, index, topics, groups, completion, evidence, current, isGo
       <EvidenceChips evidence={evidence} className="hidden md:flex" />
       <a
         href={topic.path}
-        lang="de"
+        lang={uiLang}
         className="shrink-0 whitespace-nowrap text-sm font-semibold text-amber-700 hover:underline focus-visible:outline-2 focus-visible:outline-amber-500 dark:text-amber-400"
       >
-        {actionLabel[tier]} →
+        {t(TIER_ACTION_KEYS[tier], uiLang)} →
       </a>
     </div>
     {expanded && <div

@@ -14,7 +14,7 @@
  * origin rules cannot reach. See `assistFetch` below.
  */
 import { z } from 'zod';
-import { getAssistModel } from './prefs';
+import { getAssistModel, type ExplainLang } from './prefs';
 import { isTauri } from './syncdir';
 
 export const OLLAMA_BASE = 'http://localhost:11434';
@@ -355,12 +355,11 @@ function combineWithTimeout(
 // array is a good outcome.
 // ---------------------------------------------------------------------------
 
-function languageName(lang: 'en' | 'ru'): string {
-  return lang === 'ru' ? 'Russian' : 'English';
-}
+/** Prompt-language names for the local model (not display text) — P8-4 adds Ukrainian here. */
+const PROMPT_LANGUAGE_NAME: Record<ExplainLang, string> = { en: 'English', ru: 'Russian' };
 
 function systemPrompt(req: ReviewRequest): string {
-  const lang = languageName(req.hintLang);
+  const lang = PROMPT_LANGUAGE_NAME[req.hintLang];
   return [
     `You are a supportive German teacher. The learner is at CEFR level ${req.level}. Review their short German text and return JSON with one sentence of genuine praise and at most 4 hints on the most important problems.`,
     'Rules:',

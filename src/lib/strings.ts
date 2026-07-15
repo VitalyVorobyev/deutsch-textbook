@@ -224,6 +224,232 @@ export const STRINGS = {
     ru: 'Подсказки — это предложения, а не оценка.',
     uk: 'Підказки — це пропозиції, а не оцінка.',
   },
+
+  // Shared filters (Themen tabs, vocabulary tables).
+  'filter.all': { de: 'Alle', en: 'All', ru: 'Все', uk: 'Усі' },
+  'filter.level': { de: 'Niveau', en: 'Level', ru: 'Уровень', uk: 'Рівень' },
+  'filter.strand': { de: 'Strang', en: 'Strand', ru: 'Направление', uk: 'Напрям' },
+  'filter.status': { de: 'Status', en: 'Status', ru: 'Статус', uk: 'Статус' },
+
+  // Curriculum strand names (ids in course.ts).
+  'strand.foundations': { de: 'Grundlagen', en: 'Foundations', ru: 'Основы', uk: 'Основи' },
+  'strand.grammar': { de: 'Grammatik', en: 'Grammar', ru: 'Грамматика', uk: 'Граматика' },
+  'strand.communication': {
+    de: 'Kommunikation',
+    en: 'Communication',
+    ru: 'Коммуникация',
+    uk: 'Комунікація',
+  },
+  'strand.vocabulary': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+
+  // Themen island (CurriculumPath / TopicDetail / OverviewTable).
+  'topics.tabPath': { de: 'Lernpfad', en: 'Learning path', ru: 'Учебный путь', uk: 'Навчальний шлях' },
+  'topics.tabAtlas': { de: 'Atlas', en: 'Atlas', ru: 'Атлас', uk: 'Атлас' },
+  'topics.tabOverview': { de: 'Alle Themen', en: 'All topics', ru: 'Все темы', uk: 'Усі теми' },
+  'topics.viewsAria': { de: 'Themenansicht', en: 'Topics view', ru: 'Вид списка тем', uk: 'Вигляд списку тем' },
+  'topics.goal': { de: 'Ziel', en: 'Goal', ru: 'Цель', uk: 'Мета' },
+  'topics.clearGoalAria': {
+    de: 'Lernziel löschen',
+    en: 'Clear the learning goal',
+    ru: 'Сбросить учебную цель',
+    uk: 'Скинути навчальну мету',
+  },
+  'topics.allMastered': {
+    de: 'Alle verfügbaren Themen sind gemeistert.',
+    en: 'All available topics are mastered.',
+    ru: 'Все доступные темы освоены.',
+    uk: 'Усі доступні теми опановано.',
+  },
+  'topics.nextStep': { de: 'Nächster Schritt', en: 'Next step', ru: 'Следующий шаг', uk: 'Наступний крок' },
+  'topics.goalRouteTitle': {
+    de: 'Weg zu deinem Ziel',
+    en: 'The way to your goal',
+    ru: 'Путь к вашей цели',
+    uk: 'Шлях до вашої мети',
+  },
+  'topics.howPathTitle': {
+    de: 'So funktioniert der Lernpfad',
+    en: 'How the learning path works',
+    ru: 'Как устроен учебный путь',
+    uk: 'Як влаштовано навчальний шлях',
+  },
+  'topics.pathExplainer': {
+    de: 'Der nächste Schritt folgt dem Lehrplan und deinem gemessenen Lernstand. Im Atlas kannst du stattdessen ein eigenes Ziel wählen.',
+    en: 'The next step follows the curriculum and your measured progress. In the Atlas you can pick a goal of your own instead.',
+    ru: 'Следующий шаг определяется учебным планом и вашим измеренным прогрессом. В Атласе можно вместо этого выбрать собственную цель.',
+    uk: 'Наступний крок визначається навчальним планом і вашим виміряним прогресом. В Атласі можна натомість обрати власну мету.',
+  },
+  // Per-tier next-action labels (TIER_ACTION_KEYS in OverviewTable.tsx).
+  'topics.actionStart': { de: 'Starten', en: 'Start', ru: 'Начать', uk: 'Почати' },
+  'topics.actionContinue': { de: 'Fortsetzen', en: 'Continue', ru: 'Продолжить', uk: 'Продовжити' },
+  'topics.actionPractice': {
+    de: 'Weiter üben',
+    en: 'Keep practicing',
+    ru: 'Продолжить упражнения',
+    uk: 'Продовжити вправи',
+  },
+  'topics.actionReview': { de: 'Wiederholen', en: 'Review', ru: 'Повторить', uk: 'Повторити' },
+  // Full `{…}` templates: Russian and Ukrainian flip to the tabular colon form
+  // where an invariant word after a count would be agrammatical.
+  'topics.masteredOf': {
+    de: '{done}/{total} gemeistert',
+    en: '{done}/{total} mastered',
+    ru: 'освоено: {done}/{total}',
+    uk: 'опановано: {done}/{total}',
+  },
+  'topics.masteredCount': { de: '{n} gemeistert', en: '{n} mastered', ru: 'освоено: {n}', uk: 'опановано: {n}' },
+  'topics.prereqCountOne': {
+    de: '{n} Voraussetzung',
+    en: '{n} prerequisite',
+    ru: 'предварительных тем: {n}',
+    uk: 'попередніх тем: {n}',
+  },
+  'topics.prereqCountMany': {
+    de: '{n} Voraussetzungen',
+    en: '{n} prerequisites',
+    ru: 'предварительных тем: {n}',
+    uk: 'попередніх тем: {n}',
+  },
+  'topics.unlocksCount': { de: 'öffnet {n}', en: 'unlocks {n}', ru: 'открывает {n}', uk: 'відкриває {n}' },
+  'topics.current': { de: 'aktuell', en: 'current', ru: 'сейчас', uk: 'зараз' },
+  'topics.openDetails': { de: 'Details öffnen ↑', en: 'Open details ↑', ru: 'Открыть детали ↑', uk: 'Відкрити деталі ↑' },
+  'topics.collapse': { de: 'Einklappen', en: 'Collapse', ru: 'Свернуть', uk: 'Згорнути' },
+  'topics.closeDetailsAria': { de: 'Details schließen', en: 'Close details', ru: 'Закрыть детали', uk: 'Закрити деталі' },
+  'topics.relPrereqs': {
+    de: 'Voraussetzungen',
+    en: 'Prerequisites',
+    ru: 'Предварительные темы',
+    uk: 'Попередні теми',
+  },
+  'topics.relUnlocks': {
+    de: 'Baut darauf auf',
+    en: 'Builds on this',
+    ru: 'Опирается на эту тему',
+    uk: 'Спирається на цю тему',
+  },
+  'topics.relDeepens': { de: 'Vertieft', en: 'Deepens', ru: 'Углубляет', uk: 'Поглиблює' },
+  'topics.relDeepenedBy': {
+    de: 'Wird vertieft durch',
+    en: 'Deepened by',
+    ru: 'Углубляется темами',
+    uk: 'Поглиблюється темами',
+  },
+  'topics.relRelated': { de: 'Verwandte Themen', en: 'Related topics', ru: 'Связанные темы', uk: 'Пов’язані теми' },
+  'topics.none': { de: 'Keine', en: 'None', ru: 'Нет', uk: 'Немає' },
+  'topics.openTopic': { de: 'Thema öffnen', en: 'Open the topic', ru: 'Открыть тему', uk: 'Відкрити тему' },
+  'topics.setGoal': { de: 'Als Ziel setzen', en: 'Set as goal', ru: 'Сделать целью', uk: 'Зробити метою' },
+  // Status filter options (OverviewTable) — deliberately their own keys, not a
+  // future TierBadge's: filter options read plural in ru/uk, a badge reads singular.
+  'topics.statusOpen': { de: 'Offen', en: 'Open', ru: 'Открытые', uk: 'Відкриті' },
+  'topics.statusNew': { de: 'Neu', en: 'New', ru: 'Новые', uk: 'Нові' },
+  'topics.statusRead': { de: 'Gelesen', en: 'Read', ru: 'Прочитанные', uk: 'Прочитані' },
+  'topics.statusPracticed': { de: 'Geübt', en: 'Practiced', ru: 'Отработанные', uk: 'Відпрацьовані' },
+  'topics.statusMastered': { de: 'Gemeistert', en: 'Mastered', ru: 'Освоенные', uk: 'Опановані' },
+  'topics.search': { de: 'Thema suchen', en: 'Search topics', ru: 'Поиск темы', uk: 'Пошук теми' },
+  'topics.countAll': { de: '{n} Themen', en: '{n} topics', ru: 'тем: {n}', uk: 'тем: {n}' },
+  'topics.countFiltered': {
+    de: '{shown} von {total} Themen',
+    en: '{shown} of {total} topics',
+    ru: '{shown} из {total} тем',
+    uk: '{shown} з {total} тем',
+  },
+  'topics.emptyFilter': {
+    de: 'Keine Themen mit diesem Filter.',
+    en: 'No topics match this filter.',
+    ru: 'Нет тем с таким фильтром.',
+    uk: 'Немає тем із таким фільтром.',
+  },
+
+  // Checkpoint card (Lernpfad).
+  'checkpoint.start': {
+    de: 'Checkpoint starten →',
+    en: 'Start the checkpoint →',
+    ru: 'Начать контрольную точку →',
+    uk: 'Розпочати контрольну точку →',
+  },
+
+  // Probe backlog card (Heute).
+  'probe.backlogTitle': {
+    de: 'Probe-Rückstand',
+    en: 'Delayed-check backlog',
+    ru: 'Очередь отложенных проверок',
+    uk: 'Черга відкладених перевірок',
+  },
+
+  // First-steps onboarding card (Heute).
+  'today.howItWorks': { de: "So funktioniert's", en: 'How it works', ru: 'Как это работает', uk: 'Як це працює' },
+  // Onboarding step names — their own keys, not nav.ueben/session.stepReview:
+  // the role differs (loop step, imperative in ru/uk) and the translations diverge.
+  'today.stepRead': { de: 'Lesen', en: 'Read', ru: 'Читайте', uk: 'Читайте' },
+  'today.stepPractice': { de: 'Üben', en: 'Practice', ru: 'Упражняйтесь', uk: 'Вправляйтеся' },
+  'today.stepReview': { de: 'Wiederholen', en: 'Review', ru: 'Повторяйте', uk: 'Повторюйте' },
+
+  // Vocabulary mastery tables (VocabMastery.tsx).
+  'vocab.loading': {
+    de: 'Lernstand wird geladen…',
+    en: 'Loading your progress…',
+    ru: 'Загрузка прогресса…',
+    uk: 'Завантаження прогресу…',
+  },
+  'vocab.search': { de: 'Wort suchen…', en: 'Search words…', ru: 'Поиск слова…', uk: 'Пошук слова…' },
+  'vocab.allStatuses': { de: 'Alle Lernstände', en: 'All statuses', ru: 'Все статусы', uk: 'Усі статуси' },
+  'vocab.allPos': {
+    de: 'Alle Wortarten',
+    en: 'All parts of speech',
+    ru: 'Все части речи',
+    uk: 'Усі частини мови',
+  },
+  'vocab.dueChip': { de: 'fällig', en: 'due', ru: 'к повторению', uk: 'до повторення' },
+  'vocab.dirRecognize': {
+    de: 'Erkennen · DE→EN/RU',
+    en: 'Recognize · DE→EN/RU',
+    ru: 'Узнавание · DE→EN/RU',
+    uk: 'Розпізнавання · DE→EN/RU',
+  },
+  'vocab.dirProduce': {
+    de: 'Produzieren · EN/RU→DE',
+    en: 'Produce · EN/RU→DE',
+    ru: 'Воспроизведение · EN/RU→DE',
+    uk: 'Відтворення · EN/RU→DE',
+  },
+  'vocab.cardStats': {
+    de: '{reps} Wiederholungen · Intervall {days} T. · {lapses} Fehler',
+    en: '{reps} reviews · interval {days} d · {lapses} lapses',
+    ru: 'повторений: {reps} · интервал: {days} дн. · ошибок: {lapses}',
+    uk: 'повторень: {reps} · інтервал: {days} дн. · помилок: {lapses}',
+  },
+  'vocab.notStarted': { de: 'Noch nicht begonnen', en: 'Not started yet', ru: 'Ещё не начато', uk: 'Ще не розпочато' },
+  'vocab.dueDate': { de: 'Fällig: {date}', en: 'Due: {date}', ru: 'Повторить: {date}', uk: 'Повторити: {date}' },
+  'vocab.emptyFilter': {
+    de: 'Keine Wörter entsprechen den Filtern.',
+    en: 'No words match the filters.',
+    ru: 'Нет слов, соответствующих фильтрам.',
+    uk: 'Немає слів, що відповідають фільтрам.',
+  },
+  'vocab.byArea': {
+    de: 'Wortschatz nach Bereichen',
+    en: 'Vocabulary by area',
+    ru: 'Лексика по разделам',
+    uk: 'Лексика за розділами',
+  },
+  'vocab.deckSummary': {
+    de: '{due} Wörter fällig · {strong} sicher',
+    en: '{due} words due · {strong} secure',
+    ru: 'слов к повторению: {due} · надёжных: {strong}',
+    uk: 'слів до повторення: {due} · надійних: {strong}',
+  },
+
+  // Mastery gate (TopicProgress.tsx).
+  'mastery.missingHeader': {
+    de: 'Für „Gemeistert“ fehlt noch:',
+    en: 'Still missing for “Mastered”:',
+    ru: 'Для «Освоено» ещё не хватает:',
+    uk: 'Для «Опановано» ще бракує:',
+  },
+  'mastery.reqAttempts': { de: 'Aufgaben gelöst', en: 'items answered', ru: 'заданий решено', uk: 'завдань розв’язано' },
+  'mastery.reqAccuracy': { de: 'richtig', en: 'correct', ru: 'верно', uk: 'правильно' },
+  'mastery.reqDays': { de: 'an 2 Tagen geübt', en: 'practised on 2 days', ru: 'занятия в 2 разных дня', uk: 'заняття у 2 різні дні' },
+  'mastery.reqCards': { de: 'Vokabeln wiederholt', en: 'flashcards reviewed', ru: 'карточки повторены', uk: 'картки повторено' },
 } as const satisfies Record<string, ChromeString>;
 
 export type StringKey = keyof typeof STRINGS;

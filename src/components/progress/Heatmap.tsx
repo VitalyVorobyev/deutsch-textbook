@@ -1,7 +1,16 @@
 import { useMemo } from 'react';
 import { dailyActivity, activeDateSet, currentStreak, mondayOf, addDays } from '../../lib/trends';
 import { localDateString, type Attempt, type CardStates, type SessionLogEntry } from '../../lib/store';
+import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  title: { en: 'Activity', ru: 'Активность' },
+  dayStreak: { en: 'day streak', ru: 'дн. подряд' },
+  exercises: { en: 'exercises', ru: 'упр.' },
+  cards: { en: 'cards', ru: 'карт.' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 const WEEKS = 13;
 
@@ -36,18 +45,16 @@ export function Heatmap({
     weeks.push(col);
   }
 
-  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
-
   return (
     <div>
       <div className="flex items-baseline justify-between">
         <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-          {t('Activity', 'Активность')}
+          {pick(lang, UI.title)}
         </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400">
           🔥{' '}
           <span className="font-semibold tabular-nums">{streak}</span>{' '}
-          {t(streak === 1 ? 'day streak' : 'day streak', 'дн. подряд')}
+          {pick(lang, UI.dayStreak)}
         </p>
       </div>
       <div className="mt-3 overflow-x-auto">
@@ -60,7 +67,7 @@ export function Heatmap({
                 const cls = future ? 'bg-transparent' : intensity(day?.total ?? 0);
                 const title = future
                   ? ''
-                  : `${date}: ${day?.attempts ?? 0} ${t('exercises', 'упр.')}, ${Math.max(day?.reviewed ?? 0, day?.cardReviews ?? 0)} ${t('cards', 'карт.')}`;
+                  : `${date}: ${day?.attempts ?? 0} ${pick(lang, UI.exercises)}, ${Math.max(day?.reviewed ?? 0, day?.cardReviews ?? 0)} ${pick(lang, UI.cards)}`;
                 return <div key={date} title={title} className={`h-3 w-3 rounded-sm ${cls}`} />;
               })}
             </div>

@@ -6,7 +6,41 @@ import {
   reconnectProfile,
   type DiscoveredProfile,
 } from '../lib/profile';
+import { pick, type ExplainLang } from '../lib/prefs';
 import { useExplainLang } from './hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+    `{…}` placeholders are replaced by the caller. */
+const UI = {
+  welcome: { en: 'Welcome to Deutsch-Atlas', ru: 'Добро пожаловать в Deutsch-Atlas' },
+  whoLearning: { en: 'Who is learning?', ru: 'Кто занимается?' },
+  someoneElse: { en: 'Someone else', ru: 'Кто-то другой' },
+  claimSaved: {
+    en: 'Progress is already saved in this browser. What should we call you? It will be kept under that name.',
+    ru: 'В этом браузере уже сохранён прогресс. Как вас зовут? Он останется под этим именем.',
+  },
+  callYou: {
+    en: 'What should we call you? Your progress is stored only on this device.',
+    ru: 'Как вас зовут? Прогресс хранится только на этом устройстве.',
+  },
+  foundOnDevice: {
+    en: 'Found on this device: {n} exercises answered.',
+    ru: 'Найдено на этом устройстве: {n} выполненных упражнений.',
+  },
+  yourName: { en: 'Your name', ru: 'Ваше имя' },
+  keepProgress: { en: 'Keep this progress', ru: 'Продолжить с этим прогрессом' },
+  startLearning: { en: 'Start learning', ru: 'Начать учиться' },
+  startFresh: { en: 'Start fresh instead', ru: 'Начать с нуля' },
+  reconnectHint: {
+    en: 'Used Deutsch-Atlas on this device before? Enter the same name to reconnect your progress.',
+    ru: 'Уже занимались на этом устройстве? Введите то же имя, чтобы вернуть прогресс.',
+  },
+  noExercises: { en: 'no exercises yet', ru: 'пока без упражнений' },
+  profileSummary: {
+    en: '{n} exercises · last active {date}',
+    ru: 'упражнений: {n} · последний раз {date}',
+  },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 /**
  * Blocking first-run dialog: shown whenever no profile is registered — it asks
@@ -31,8 +65,6 @@ export default function FirstRunGate() {
   }, []);
 
   if (!show) return null;
-
-  const t = (en: string, ru: string) => (lang === 'ru' ? ru : en);
 
   // A database that holds progress but was never named — the learner claims it by name.
   const unnamed = found.find((f) => !f.id);
@@ -72,13 +104,13 @@ export default function FirstRunGate() {
         className="w-full max-w-sm rounded-lg border border-stone-200 bg-white p-6 shadow-xl dark:border-stone-700 dark:bg-stone-800"
       >
         <h2 className="text-lg font-bold">
-          {t('Welcome to Deutsch-Atlas', 'Добро пожаловать в Deutsch-Atlas')}
+          {pick(lang, UI.welcome)}
         </h2>
 
         {named.length > 0 && (
           <>
             <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-              {t('Who is learning?', 'Кто занимается?')}
+              {pick(lang, UI.whoLearning)}
             </p>
             <ul className="mt-3 space-y-1">
               {named.map((p) => (
@@ -91,38 +123,27 @@ export default function FirstRunGate() {
                   >
                     <span className="font-semibold">{p.label ?? p.id}</span>
                     <span className="ml-2 text-xs text-stone-500 dark:text-stone-400">
-                      {summary(p, t)}
+                      {summary(p, lang)}
                     </span>
                   </button>
                 </li>
               ))}
             </ul>
             <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-stone-400">
-              {t('Someone else', 'Кто-то другой')}
+              {pick(lang, UI.someoneElse)}
             </p>
           </>
         )}
 
         {named.length === 0 && (
           <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-            {unnamed
-              ? t(
-                  'Progress is already saved in this browser. What should we call you? It will be kept under that name.',
-                  'В этом браузере уже сохранён прогресс. Как вас зовут? Он останется под этим именем.',
-                )
-              : t(
-                  'What should we call you? Your progress is stored only on this device.',
-                  'Как вас зовут? Прогресс хранится только на этом устройстве.',
-                )}
+            {unnamed ? pick(lang, UI.claimSaved) : pick(lang, UI.callYou)}
           </p>
         )}
 
         {unnamed && (
           <p className="mt-2 rounded bg-amber-50 px-2 py-1 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
-            {t(
-              `Found on this device: ${unnamed.attempts} exercises answered.`,
-              `Найдено на этом устройстве: ${unnamed.attempts} выполненных упражнений.`,
-            )}
+            {pick(lang, UI.foundOnDevice).replace('{n}', String(unnamed.attempts))}
           </p>
         )}
 
@@ -130,7 +151,7 @@ export default function FirstRunGate() {
           autoFocus
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder={t('Your name', 'Ваше имя')}
+          placeholder={pick(lang, UI.yourName)}
           className="mt-3 w-full rounded border border-stone-300 px-3 py-2 text-sm dark:border-stone-600 dark:bg-stone-900"
         />
         <button
@@ -138,9 +159,7 @@ export default function FirstRunGate() {
           disabled={!name.trim() || busy}
           className="mt-3 w-full rounded bg-amber-600 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50"
         >
-          {unnamed
-            ? t('Keep this progress', 'Продолжить с этим прогрессом')
-            : t('Start learning', 'Начать учиться')}
+          {unnamed ? pick(lang, UI.keepProgress) : pick(lang, UI.startLearning)}
         </button>
 
         {unnamed ? (
@@ -150,14 +169,11 @@ export default function FirstRunGate() {
             disabled={busy}
             className="mt-2 w-full text-center text-xs text-stone-400 underline hover:text-stone-600 disabled:opacity-50 dark:hover:text-stone-200"
           >
-            {t('Start fresh instead', 'Начать с нуля')}
+            {pick(lang, UI.startFresh)}
           </button>
         ) : (
           <p className="mt-2 text-xs text-stone-400">
-            {t(
-              'Used Deutsch-Atlas on this device before? Enter the same name to reconnect your progress.',
-              'Уже занимались на этом устройстве? Введите то же имя, чтобы вернуть прогресс.',
-            )}
+            {pick(lang, UI.reconnectHint)}
           </p>
         )}
       </form>
@@ -166,11 +182,8 @@ export default function FirstRunGate() {
 }
 
 /** "312 exercises · last active 2026-07-02" — enough to tell two learners apart. */
-function summary(p: DiscoveredProfile, t: (en: string, ru: string) => string): string {
-  if (!p.attempts || !p.lastActivity) return t('no exercises yet', 'пока без упражнений');
+function summary(p: DiscoveredProfile, lang: ExplainLang): string {
+  if (!p.attempts || !p.lastActivity) return pick(lang, UI.noExercises);
   const date = new Date(p.lastActivity).toISOString().slice(0, 10);
-  return t(
-    `${p.attempts} exercises · last active ${date}`,
-    `упражнений: ${p.attempts} · последний раз ${date}`,
-  );
+  return pick(lang, UI.profileSummary).replace('{n}', String(p.attempts)).replace('{date}', date);
 }

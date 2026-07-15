@@ -7,7 +7,19 @@ import {
 } from '../../lib/probes';
 import { getAttempts } from '../../lib/store';
 import { withBase } from '../../lib/url';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+    `{n}` is replaced by the caller. */
+const UI = {
+  waiting: {
+    en: '{n} delayed checks are waiting — more than one ordinary session serves.',
+    ru: 'Отложенных проверок в очереди: {n} — больше, чем помещается в обычную сессию.',
+  },
+  clear: { en: 'Clear up to five in one visit', ru: 'Разобрать до пяти за один визит' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Props {
   /** derived at build time from the content (probeFamilies in src/lib/probes.ts) */
@@ -27,6 +39,7 @@ interface Props {
  */
 export default function ProbeBacklog({ families }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [state, setState] = useState<{ due: number; budget: number } | null>(null);
 
   useEffect(() => {
@@ -50,16 +63,14 @@ export default function ProbeBacklog({ families }: Props) {
       href={withBase('/ueben/proben')}
       className="mt-4 block rounded-lg border border-amber-300 bg-amber-50 p-6 hover:border-amber-500 dark:border-amber-800 dark:bg-amber-900/20 dark:hover:border-amber-500"
     >
-      <p lang="de" className="font-bold text-stone-900 dark:text-stone-100">
-        Probe-Rückstand
+      <p lang={uiLang} className="font-bold text-stone-900 dark:text-stone-100">
+        {t('probe.backlogTitle', uiLang)}
       </p>
       <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-        {lang === 'ru'
-          ? `Отложенных проверок в очереди: ${state.due} — больше, чем помещается в обычную сессию.`
-          : `${state.due} delayed checks are waiting — more than one ordinary session serves.`}
+        {pick(lang, UI.waiting).replace('{n}', String(state.due))}
       </p>
       <p className="mt-2 text-sm font-semibold text-amber-700 dark:text-amber-400">
-        {lang === 'ru' ? 'Разобрать до пяти за один визит' : 'Clear up to five in one visit'} →
+        {pick(lang, UI.clear)} →
       </p>
     </a>
   );
