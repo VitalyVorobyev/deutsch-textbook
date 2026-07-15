@@ -30,6 +30,17 @@ import { isVerifiedEvidence } from './scoring';
 /** Days after the outcome was first practiced at which each probe falls due. */
 export const PROBE_INTERVALS_DAYS = [2, 7, 21] as const;
 
+/** Bounded share of an ordinary session — a probe backlog must never crowd out the lesson. */
+export const MAX_PROBES_PER_SESSION = 3;
+
+/**
+ * Bounded size of a probes-only catch-up visit (the "Probe-Rückstand" run). Larger than
+ * the session cap because the visit contains nothing else, but still bounded: nine probes
+ * in a row is an exam, and fatigue confounds the very measurement a probe exists to make.
+ * The session cap itself is deliberately never raised — this run is how debt drains.
+ */
+export const MAX_PROBES_PER_CATCHUP = 5;
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 /** A probe set: one family of parallel variants over a shared set of outcomes. */
@@ -201,6 +212,58 @@ export function dueProbes(
     .map((f) => dueProbe(f, attempts, now))
     .filter((p): p is DueProbe => p !== undefined)
     .sort((a, b) => a.dueAt - b.dueAt);
+}
+
+/**
+ * What one visit actually serves: the first `cap` entries of the due queue. `dueProbes`
+ * is already most-overdue-first, so a bounded visit always drains the oldest debt first.
+ * The cap bounds the serving, never the debt — a probe left unserved stays due (`dueProbe`
+ * counts probes *taken*, not offered), and the Heute backlog card keeps reporting it.
+ */
+export function servedProbes(due: readonly DueProbe[], cap: number): DueProbe[] {
+  return due.slice(0, Math.max(0, cap));
+}
+
+/** Same day convention as sessions and the heatmap (localDateString in store.ts): local midnight. */
+function sameLocalDay(a: number, b: number): boolean {
+  const da = new Date(a);
+  const db = new Date(b);
+  return (
+    da.getFullYear() === db.getFullYear() &&
+    da.getMonth() === db.getMonth() &&
+    da.getDate() === db.getDate()
+  );
+}
+
+/**
+ * How many probes were answered today — derived from the attempt log like every other
+ * piece of probe state, so the daily budget below survives export/import with nothing
+ * new to store or merge.
+ */
+export function probesTakenToday(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+  now: number = Date.now(),
+): number {
+  const probeSetIds = new Set(families.map((f) => f.setId));
+  return attempts.filter((a) => probeSetIds.has(a.setId) && sameLocalDay(a.ts, now)).length;
+}
+
+/**
+ * How many probes today may still serve. MAX_PROBES_PER_CATCHUP is a ceiling per *day*,
+ * not per visit: without it, finishing a catch-up run landed back on Heute, where a
+ * still-over-cap backlog re-showed the card — and a nine-probe debt could be chained
+ * back-to-back in one sitting, which is exactly the exam-with-fatigue the caps exist to
+ * prevent. An ordinary session serves at most MAX_PROBES_PER_SESSION (< the ceiling), so
+ * an exhausted budget means a catch-up already ran today; the rest of the debt stays due
+ * (`dueProbe` counts probes taken, not offered) and drains tomorrow.
+ */
+export function remainingProbeBudget(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+  now: number = Date.now(),
+): number {
+  return Math.max(0, MAX_PROBES_PER_CATCHUP - probesTakenToday(families, attempts, now));
 }
 
 export interface ProbeResult {

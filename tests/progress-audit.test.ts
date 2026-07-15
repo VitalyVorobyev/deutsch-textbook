@@ -177,6 +177,7 @@ describe('progress audit', () => {
         overdue: 0,
         maxOverdueDays: 0,
         maxTakenInOneDay: 1,
+        actualIntervals: [],
       },
     });
   });
@@ -301,8 +302,50 @@ describe('progress audit', () => {
       overdue: 0,
       maxOverdueDays: 0,
       maxTakenInOneDay: 3,
+      actualIntervals: [],
     });
     expect(renderMarkdown(audit)).toContain('1 correct under the current contract');
+  });
+
+  test('reports probe debt and the actually-elapsed interval distribution', () => {
+    // Two probe families derived from the catalog, armed by their topics' practice sets —
+    // everything below is computed from the attempt log, exactly like the scheduler does.
+    const items: CatalogItem[] = [
+      { setId: 'a1/akkusativ', id: 'p1', type: 'cloze', topic: 'akkusativ', role: 'practice' },
+      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe' },
+      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe' },
+      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe' },
+      { setId: 'a1/wohnen', id: 'p1', type: 'cloze', topic: 'wohnen', role: 'practice' },
+      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe' },
+      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe' },
+    ];
+    const attempts: AuditAttempt[] = [
+      // both topics practised on day 1 → both families armed at ts(1)
+      { setId: 'a1/akkusativ', itemId: 'p1', itemType: 'cloze', correct: true, given: '', ts: ts(1) },
+      { setId: 'a1/wohnen', itemId: 'p1', itemType: 'cloze', correct: true, given: '', ts: ts(1) },
+      // the 2-day probes actually happened after 3 days …
+      { setId: 'a1/probe-akkusativ', itemId: 'variant-a', itemType: 'mc', correct: true, given: '', ts: ts(4) },
+      { setId: 'a1/probe-wohnen', itemId: 'variant-a', itemType: 'mc', correct: true, given: '', ts: ts(4) },
+      // … and akkusativ's 7-day probe after 11
+      { setId: 'a1/probe-akkusativ', itemId: 'variant-b', itemType: 'mc', correct: false, given: '', ts: ts(12) },
+    ];
+    const audit = buildAudit(snapshot({ attempts }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+    });
+
+    expect(audit.delayed.probes).toMatchObject({
+      // wohnen's 7-day probe fell due on day 8 and is still open at the day-13 export;
+      // akkusativ's 21-day probe is not due yet
+      dueNow: 1,
+      overdue: 1,
+      maxOverdueDays: 5,
+      actualIntervals: [
+        { days: 3, count: 2 },
+        { days: 11, count: 1 },
+      ],
+    });
+    expect(renderMarkdown(audit))
+      .toContain('Actual probe intervals (nominal 2/7/21): 3d ×2 · 11d ×1.');
   });
 
   test('requires distinct items plus recency or a probe for a persistent focus', () => {

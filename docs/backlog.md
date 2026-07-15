@@ -62,7 +62,7 @@ Precondition to verify first: `probeFamilies()` supports two families per topic
 (`probe-<topic>-hoeren` beside the production family) — a small code change if it turns out to be
 keyed per topic.
 
-### P6-1 · Grading-decisions instrument — `todo` (M)
+### P6-1 · Grading-decisions instrument — `done` 2026-07-14 (M)
 
 The grading-review queue is derived from the attempt log and has no memory: there is no place to
 record a linguistic ruling, so the queue can never drain. Thirty-two rejected renderings across
@@ -99,7 +99,7 @@ queue that hides rows cannot drain. Give rulings a committed home.
   re-enters **unattributed** (tests in `tests/`); the validator fails on a dangling item ref and on
   an accept-decided rendering the grader rejects, and warns on an orphan.
 
-### P6-2 · Triage the queued renderings — `todo` (M)
+### P6-2 · Triage the queued renderings — `done` 2026-07-14 (M)
 
 All of them — thirty-two once the queue is uncapped — using `--item <set>:<item>` evidence: each
 rendering gets a linguistic ruling in
@@ -112,7 +112,7 @@ any drill authoring** — 35 attempts entering or leaving the signals changes wh
 - Accept: zero undecided renderings; the withheld-attempts line drops accordingly; the post-triage
   weak-focus table is recorded — it is the input to P6-4 and P6-5.
 
-### P6-3 · Probe catch-up pacing — `todo` (M)
+### P6-3 · Probe catch-up pacing — `done` 2026-07-15 (M)
 
 Nine probes due, three overdue, a cap of three per session — once seventeen A2 families arm, debt
 compounds faster than it drains. Chosen over raising the cap: nine probes before practice turns a
@@ -157,7 +157,7 @@ the same production-heavy shape as P6-4, in the same PR as P6-4 when the signal 
 - Depends on: P6-2; ships with P6-4 when taken.
 - Accept: as P6-4 — or a recorded decision that the post-triage signal did not justify the drill.
 
-### P6-6 · Desktop microphone permission — `todo` (S)
+### P6-6 · Desktop microphone permission — `doing` (S)
 
 `speak` recording works in the browser and fails in the desktop app, and the failure is
 config-only: `src-tauri/` has no `Info.plist`, so macOS has no `NSMicrophoneUsageDescription` to
@@ -168,6 +168,11 @@ work; `tccutil reset Microphone` between runs. If wry needs prompt handling beyo
 
 - Accept: the mic prompt appears in the desktop app and record/replay works — or the wry finding is
   recorded and the item rescoped.
+
+**Status note (2026-07-15):** the plist shipped. The pinned wry (0.55.1) implements the WKWebView
+media-capture delegate with auto-grant, so the OS-level TCC prompt — which is what needed the
+usage description — should be the whole story. `doing` until the manual protocol above has been
+run on a real macOS session; flip to `done` after that verification, not before.
 
 ## Parallel — Phase 7: Schreib-Assistent
 
