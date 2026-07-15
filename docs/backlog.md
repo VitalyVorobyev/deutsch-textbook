@@ -280,9 +280,13 @@ working. The plugin's fetch honors `RequestInit.signal`, so abort/timeout semant
 
 ## Parallel — Phase 8: Sprachen
 
-Two independent axes — per-profile UI language (chrome) and Ukrainian as a third explanation
-language (content) — specified in [i18n-design.md](i18n-design.md); read it first. Machinery is
-P8-1…P8-5 (~5 PRs); content is the C3 translation waves (~15–22 PRs), concurrent with B1 authoring
+The objective is the learner's language: **Ukrainian as an explanation language** beside EN/RU —
+UK+EN units for a Ukrainian reader, wanted for real sharing, not as parked machinery — and
+**German-medium explanations** for advanced learners from B1 onward. The per-profile UI language
+(chrome) was the foundation, not the objective (course correction 2026-07-15: a Ukrainian menu
+over Russian unit material is not the deliverable). Specified in [i18n-design.md](i18n-design.md);
+read it first. Machinery is P8-1…P8-5; content is the C3 translation waves (~7–8 large waves, each
+doubling as a review-and-improve pass over the existing RU prose), concurrent with B1 authoring
 and never gating it.
 
 ### P8-1 · Strings module and per-profile language preferences — `done` 2026-07-15 (M)
@@ -335,21 +339,40 @@ labels are chrome, not content — they move to the strings table. See
   Chrome in components that never had a ternary (TierBadge, EvidenceChips) and in static `.astro`
   pages is **not** converted by the sweep — that residue moves with P8-5's surface work.
 
-### P8-4 · Ukrainian content machinery — `todo` (L)
+### P8-4 · Content-language machinery: `uk` and `de` — `done` 2026-07-15 (L)
 
-Per [i18n-design.md](i18n-design.md): optional `uk` on `bilingualSchema` plus the parallel
-optionals (`title_uk`; vocab `uk` and `example_uk`; `prompt_uk`; outcome `uk`). Validator
-letter-set checks: і/ї/є/ґ in an `ru` field fails, ы/э/ъ/ё in a `uk` field fails — not watertight,
-but it catches cross-pasting. Parity is per-file — any `uk` in a file means every ru-bearing field
-in that file carries `uk` — and per-node for `content/atlas.yaml`. Glosses grow to
-`[[de::en::ru::uk]]`: three or four fields, all-or-none per reading. `Uk.astro` + `.lang-uk` CSS;
-`ExplainLang` gains `'uk'`; `pick()` falls back `uk→en` (decided — the design doc records why EN
-and not RU).
+Per [i18n-design.md](i18n-design.md), extended by the same-day course correction: this item ships
+**both** new explanation halves, because the learner's language is the phase's objective. Optional
+`uk` on `bilingualSchema` plus the parallel optionals (`title_uk`; vocab `uk` and `example_uk`;
+`prompt_uk`; outcome `uk`), **and** an optional `de` half — German-medium explanations, authored
+for B1 from day one and never backfilled to A1/A2 (a hide-the-EN/RU-prose immersion mode was
+considered and rejected). Validator letter-set checks: і/ї/є/ґ in an `ru` field fails, ы/э/ъ/ё in
+a `uk` field fails, Cyrillic in a `de` field fails — not watertight, but it catches cross-pasting.
+Parity is per-file — any `uk` in a file means every ru-bearing field in that file carries `uk` —
+and per-node for `content/atlas.yaml`. Glosses grow to `[[de::en::ru::uk]]`: three or four fields,
+all-or-none per reading. `Uk.astro`/`De.astro` + `.lang-uk`/`.lang-de` CSS; `ExplainLang` becomes
+`en | ru | uk | de`; `pick()` falls back `uk→en` and `de→en` (decided — the design doc records why
+EN and not RU).
 
-- Depends on: P8-2/P8-3 (so `uk` lands in hoisted records, not in new ternaries).
+- Depends on: P8-2/P8-3 (so `uk`/`de` land in hoisted records, not in new ternaries).
 - Accept: a file with partial `uk` fails parity; a Ukrainian letter in an `ru` field fails; a
   four-field gloss renders under `uk` and existing three-field glosses stay valid; zero changes
-  required to existing content.
+  required to existing content. All met.
+- Shipped as designed, plus what the build surfaced. The CSS fallback is pure `:has()` — the EN
+  half hides only where a same-parent `uk`/`de` sibling exists — so ~20 CSS-only surfaces
+  (VocabTable, WordField, static pages) fall back to EN with zero component edits; the
+  direct-sibling contract is commented in `global.css`. Parity satisfiability forced `title_uk`
+  onto every `title_ru`-bearing schema (vocab files, wortfelder, discovery, atlas groups/units) —
+  zod strips unknown keys, so an author could never comply otherwise. `content/reference-data` is
+  exempt from `de` parity: its `{de,en,ru}` records are German example sentences, not explanation
+  records. Two traps fixed in the same change: a reading gloss's `de` field is the glossed phrase
+  itself, so `ReadingText` destructures to `{en, ru, uk}` before `pick()` — under `de` mode the
+  phrase would have been revealed as its own gloss; and widening `ExplainLang` flushed out the
+  last three hand-narrowed `'en' | 'ru'` types (`ItemProps.lang`, `WritingArea.lang`, the assist
+  prompt-language map, which gained Ukrainian and German hint languages) — `bun run check` caught
+  all three, as the plan predicted. The header toggle is now EN/RU/UK/DE (pulled forward from
+  P8-5). No `prompt_de` (a translate prompt exists to be translated *into* German — `de` mode
+  serves the EN prompt) and no vocab `de` gloss (a card's meaning side is never German).
 
 ### P8-5 · Ukrainian UI surfaces — `todo` (S)
 
@@ -357,20 +380,26 @@ The meaning side of a card becomes `${en} · ${pickSecond(card)}` — the front 
 production card and the back of the `de-x` recognition card, and only those; the `de-x` front
 stays the German answer and the Hören dictation mode is unchanged. Display-only: card identity
 `<deck>::<de>::<direction>` is untouched, so no SRS history resets (asserted in test, not
-assumed). The header language toggle gains UK, and the Über page gains a build-time UK-coverage
-figure — computed, never hand-written, per the earned-claims rule.
+assumed). `pickSecond` renders EN alone under `de` — a card's meaning side is never German. The
+header toggle already gained UK and DE with P8-4; what remains here is the Über page's build-time
+UK-coverage figure — computed, never hand-written, per the earned-claims rule — and the chrome
+residue in never-ternary components and static `.astro` pages.
 
-- Depends on: P8-4.
+- Depends on: P8-4 (met).
 - Accept: card keys unchanged in test; the Über figure is computed at build time.
 
-### C3 · Ukrainian translation waves — `todo` (recurring)
+### C3 · Ukrainian translation waves — `todo` (recurring, starts now)
 
-A1 first (~6–8 PRs), then A2 (~10–14). The quality bar is the same as Russian's: each wave is
-**authored** idiomatically — the `uk` half may contrast German with Ukrainian (відмінки,
-«бути»-dropping) — never machine-translationese; every wave passes the validator letter checks and
-a review before merge.
+A1 in ~3 large waves, then A2 in ~4–5 (owner decision 2026-07-15: fewer, larger chunks — the UK
+version is wanted for sharing with real Ukrainian readers, not as parked machinery). Each wave
+carries two jobs in one review pass: it **authors** the `uk` half idiomatically — never
+machine-translationese; the `uk` half may contrast German with Ukrainian (відмінки,
+«бути»-dropping) — and it **reviews and improves the existing `ru` (and `en`) prose** of the same
+files while they are open. Every wave passes the validator letter and parity checks and a review
+before merge; per-file parity means each of a wave's files is fully translated or not started,
+never half.
 
-- Depends on: P8-4.
+- Depends on: P8-4 (met).
 
 ## Parallel — Phase 9: Entdecken & Referenz
 

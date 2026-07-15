@@ -62,18 +62,21 @@ function isActive(item: NavItem): boolean {
           }
         }
         if (!pid) pid = 'local';
+        // Own-key check mirrors isExplainLang: the four-value EXPLAIN_LANGS set.
         let lang = localStorage.getItem('da:lang:' + pid);
-        if (lang !== 'ru' && lang !== 'en') {
+        if (lang !== 'en' && lang !== 'ru' && lang !== 'uk' && lang !== 'de') {
           // First read for this profile: copy the legacy device-level choice
           // forward, but leave da:lang in place as the device default that the
-          // next new profile inherits.
+          // next new profile inherits. The legacy key predates uk/de and is
+          // never written anymore, so it deliberately stays en/ru-only.
           const legacy = localStorage.getItem('da:lang');
           if (legacy === 'ru' || legacy === 'en') {
             lang = legacy;
             localStorage.setItem('da:lang:' + pid, legacy);
           }
         }
-        if (lang === 'ru' || lang === 'en') document.documentElement.dataset.explainLang = lang;
+        if (lang === 'en' || lang === 'ru' || lang === 'uk' || lang === 'de')
+          document.documentElement.dataset.explainLang = lang;
         const ui = localStorage.getItem('da:uilang:' + pid);
         if (ui === 'en' || ui === 'ru' || ui === 'uk') document.documentElement.dataset.uiLang = ui;
       })();
@@ -110,6 +113,8 @@ function isActive(item: NavItem): boolean {
           <div class="flex overflow-hidden rounded-md border border-stone-300 text-xs dark:border-stone-600" role="group" aria-label="Explanation language">
             <button type="button" data-lang-btn="en" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">EN</button>
             <button type="button" data-lang-btn="ru" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">RU</button>
+            <button type="button" data-lang-btn="uk" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">UK</button>
+            <button type="button" data-lang-btn="de" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">DE</button>
           </div>
           <button
             type="button"

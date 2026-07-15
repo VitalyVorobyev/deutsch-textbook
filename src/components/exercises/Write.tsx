@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import type { z } from 'zod';
 import type { writeItemSchema } from '../../lib/schemas';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainLang } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
 import { t } from '../../lib/strings';
@@ -224,7 +224,7 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
   onChange: (value: string) => void;
   words: number;
   minWords: number;
-  lang: 'en' | 'ru';
+  lang: ExplainLang;
   label: string;
   disabled: boolean;
 }) {

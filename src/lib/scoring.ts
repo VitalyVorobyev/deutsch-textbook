@@ -48,5 +48,7 @@ export function scoreTotal(items: readonly Scorable[]): number {
 export function formatScore(n: number, lang: ExplainLang = 'en'): string {
   const r = Math.round(n * 10) / 10;
   const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
+  // Binary on purpose: RU, UK and DE all write the decimal comma, so the
+  // en-vs-rest split stays correct for all four explanation languages.
   return lang === 'en' ? s : s.replace('.', ',');
 }

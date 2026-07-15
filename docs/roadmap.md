@@ -179,13 +179,17 @@ feedback only after real usage data exists — is now met; what stays deferred i
 pronunciation half, which this phase deliberately does **not** reopen. Design:
 [assist-design.md](assist-design.md).
 
-**Phase 8 — Sprachen.** Two independent axes. A per-profile **UI language** (DE/EN/RU/UK) replaces
-the hardcoded German chrome — pure-German chrome becomes a selectable immersion mode and remains
-the default, so the change is invisible until chosen. And **Ukrainian** joins EN/RU as an
-explanation language at the same quality bar as Russian, with English as the fallback wherever `uk`
-is missing. The volume statement is honest: the machinery is ~5 PRs; the content is ~15–22
-translation waves that run concurrent with B1 authoring and never gate it. Design:
-[i18n-design.md](i18n-design.md).
+**Phase 8 — Sprachen.** The objective is the **learner's language**, on two axes — restated after
+a 2026-07-15 course correction, because the chrome-first sequencing had made the UI language look
+like the point. **Ukrainian** joins EN/RU as an explanation language at the same quality bar as
+Russian — a Ukrainian learner reads UK+EN units the way today's learner reads RU+EN — with English
+as the fallback wherever `uk` is missing; the waves start now, in large chunks (A1 ~3, A2 ~4–5),
+and each doubles as a review-and-improve pass over the existing RU prose. **German-medium
+explanations** serve advanced learners: an optional `de` half authored for B1 content from day
+one, never backfilled to A1/A2. The per-profile **UI language** (DE/EN/RU/UK chrome) that shipped
+first is the foundation for both, not the objective; pure-German chrome remains the default. The
+machinery is 5 PRs (P8-4, both axes' content machinery, shipped 2026-07-15); the waves run
+concurrent with B1 authoring and never gate it. Design: [i18n-design.md](i18n-design.md).
 
 **Phase 9 — Entdecken & Referenz.** The discovery layer grows from one piece toward a small
 editorial strand — committed CC/PD assets with attribution and licence metadata, curated external
@@ -223,6 +227,7 @@ B1 authoring begins when all seven of these hold, and not before:
    progress the moment a unit ships, so freezing them is authoring work, not paperwork.
 
 Two things are explicitly **not** gates: the state of the Ukrainian translation waves, and the
-Schreib-Assistent. Both are parallel tracks, and B1 never waits for them. One soft preference is
-recorded: land P8-4 (the `uk` content machinery) before B1 unit 1, so B1 content carries `uk` from
-day one instead of being backfilled.
+Schreib-Assistent. Both are parallel tracks, and B1 never waits for them. One soft preference was
+recorded and is now **met** (P8-4 shipped 2026-07-15): the content-language machinery landed
+before B1 unit 1, so B1 content carries `uk` — and its German-medium `<De>` explanation half,
+a standing decision of the same date — from day one instead of being backfilled.

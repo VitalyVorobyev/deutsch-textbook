@@ -73,7 +73,7 @@ export default function OverviewTable({
     const tier = completions.get(topic.id)?.tier ?? 'untouched';
     if (level !== 'all' && topic.level !== level) return false;
     if (status === 'open' ? tier === 'mastered' : status !== 'all' && tier !== status) return false;
-    return !q || `${topic.title_de} ${topic.title_en} ${topic.title_ru}`.toLocaleLowerCase('de').includes(q);
+    return !q || `${topic.title_de} ${topic.title_en} ${topic.title_ru} ${topic.title_uk ?? ''}`.toLocaleLowerCase('de').includes(q);
   };
 
   const shown = topics.filter(matches);
@@ -197,7 +197,7 @@ function Row({ topic, index, topics, groups, completion, evidence, current, isGo
             {onRoute && !current && <span aria-hidden="true" className="shrink-0 text-amber-600">◆</span>}
           </span>
           <span className="block truncate text-xs text-stone-500 dark:text-stone-400">
-            {pick(lang, { en: topic.title_en, ru: topic.title_ru })}
+            {pick(lang, { en: topic.title_en, ru: topic.title_ru, uk: topic.title_uk })}
           </span>
         </span>
         <span aria-hidden="true" className="ml-auto shrink-0 text-stone-400 sm:hidden">{expanded ? '−' : '+'}</span>

@@ -55,9 +55,14 @@ const checkpoints = (await getCheckpoints()).map(({ setId, title, path, items })
   path,
   items,
 }));
+// All four halves travel: uk is the optional translation, and the outcome's
+// `de` is the German can-do itself — exactly what 'de' mode should show.
 const outcomeLabels = Object.fromEntries(
   curriculum.nodes.flatMap((node) =>
-    node.outcomes.map((outcome) => [outcome.id, { en: outcome.en, ru: outcome.ru }]),
+    node.outcomes.map((outcome) => [
+      outcome.id,
+      { en: outcome.en, ru: outcome.ru, uk: outcome.uk, de: outcome.de },
+    ]),
   ),
 );
 ---

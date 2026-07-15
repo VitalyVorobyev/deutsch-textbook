@@ -216,7 +216,7 @@ export interface ReviewRequest {
   /** the topic's CEFR level, e.g. "A2" — the ceiling the review must respect */
   level: string;
   /** praise and nudges are written in this language */
-  hintLang: 'en' | 'ru';
+  hintLang: ExplainLang;
 }
 
 interface ChatMessage {
@@ -355,8 +355,15 @@ function combineWithTimeout(
 // array is a good outcome.
 // ---------------------------------------------------------------------------
 
-/** Prompt-language names for the local model (not display text) — P8-4 adds Ukrainian here. */
-const PROMPT_LANGUAGE_NAME: Record<ExplainLang, string> = { en: 'English', ru: 'Russian' };
+/** Prompt-language names for the local model (not display text). Under the
+    'de' explanation language the hints are themselves German — immersion, and
+    the one language every local model handles at least as well as English. */
+const PROMPT_LANGUAGE_NAME: Record<ExplainLang, string> = {
+  en: 'English',
+  ru: 'Russian',
+  uk: 'Ukrainian',
+  de: 'German',
+};
 
 function systemPrompt(req: ReviewRequest): string {
   const lang = PROMPT_LANGUAGE_NAME[req.hintLang];

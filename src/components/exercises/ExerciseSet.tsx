@@ -3,7 +3,7 @@ import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } fro
 import { logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import { Cloze } from './Cloze';
@@ -51,7 +51,7 @@ interface Answered {
 
 interface ItemProps {
   item: ExerciseItem;
-  lang: 'en' | 'ru';
+  lang: ExplainLang;
   onResult: (r: ItemResult) => void;
   locked: boolean;
   onNext: () => void;

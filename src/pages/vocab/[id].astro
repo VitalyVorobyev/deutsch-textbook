@@ -30,6 +30,7 @@ const cards = buildDeck(data.id, data.entries, wordFieldContexts(fields.map((fie
     <p class="mt-1 text-stone-500 dark:text-stone-400">
       <span class="lang-en">{data.title_en}</span>
       <span class="lang-ru">{data.title_ru}</span>
+      {data.title_uk && <span class="lang-uk">{data.title_uk}</span>}
     </p>
   </header>
 

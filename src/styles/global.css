@@ -3,12 +3,34 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Explanation-language toggle: <html data-explain-lang="en|ru"> controls
-   which .lang-en / .lang-ru blocks are visible. German content is always shown. */
-[data-explain-lang="en"] .lang-ru {
+/* Explanation-language toggle: <html data-explain-lang="en|ru|uk|de"> controls
+   which .lang-* blocks are visible. German content is always shown. en and ru
+   are fully authored; uk and de are optional per element, so those two modes
+   fall back to EN element-by-element via :has() — the EN half hides only where
+   a same-parent uk/de sibling exists.
+
+   Contract: a .lang-uk / .lang-de element must be a DIRECT SIBLING of its
+   .lang-en (true of Bilingual.astro children and of every table span today) —
+   the fallback rules match `parent:has(> .lang-uk) > .lang-en`, so a uk/de
+   half nested one level deeper would leave its EN half visible beside it.
+   Where :has() is unsupported, EN simply shows beside UK/DE — readable, not
+   broken. */
+[data-explain-lang="en"] :is(.lang-ru, .lang-uk, .lang-de) {
   display: none;
 }
-[data-explain-lang="ru"] .lang-en {
+[data-explain-lang="ru"] :is(.lang-en, .lang-uk, .lang-de) {
+  display: none;
+}
+[data-explain-lang="uk"] :is(.lang-ru, .lang-de) {
+  display: none;
+}
+[data-explain-lang="uk"] :has(> .lang-uk) > .lang-en {
+  display: none;
+}
+[data-explain-lang="de"] :is(.lang-ru, .lang-uk) {
+  display: none;
+}
+[data-explain-lang="de"] :has(> .lang-de) > .lang-en {
   display: none;
 }
 

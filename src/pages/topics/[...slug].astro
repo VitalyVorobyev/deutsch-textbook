@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import Bilingual from '../../components/Bilingual.astro';
 import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
+import Uk from '../../components/Uk.astro';
+import De from '../../components/De.astro';
 import ExampleQuote from '../../components/ExampleQuote.astro';
 import CaseTable from '../../components/reference/CaseTable.astro';
 import PronominalAdverbTable from '../../components/reference/PronominalAdverbTable.astro';
@@ -98,6 +100,7 @@ if (data.pretest && !pretestSet)
     <p class="mt-1 text-stone-500 dark:text-stone-400">
       <span class="lang-en">{data.title_en}</span>
       <span class="lang-ru">{data.title_ru}</span>
+      {data.title_uk && <span class="lang-uk">{data.title_uk}</span>}
     </p>
     {
       prerequisites.length > 0 && (
@@ -137,7 +140,7 @@ if (data.pretest && !pretestSet)
   }
 
   <article class="article-prose">
-    <Content components={{ Bilingual, En, Ru, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }} />
+    <Content components={{ Bilingual, En, Ru, Uk, De, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }} />
   </article>
 
   {
