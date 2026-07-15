@@ -215,7 +215,9 @@ B1 authoring begins when all seven of these hold, and not before:
 5. **No persistent weak focus is without an owned drill in rotation.**
 6. **`data/goethe-b1-wortliste.txt` is acquired and `bun scripts/coverage.ts B1` reports against
    it** — its own sizable PR. A level with no manifest has no coverage figure and must not claim
-   one.
+   one. **Met 2026-07-15 (P6-8):** 3,416 headwords transcribed from the official PDF; the report
+   runs, and the Über page states the honest head start (41% already covered by A1/A2 material —
+   cards plus the inherited grammar-word `~` marks).
 7. **The first B1 PR freezes the B1 identities in
    [the curriculum blueprint](curriculum-a2-b1.md)** — ids become persisted keys in learner
    progress the moment a unit ships, so freezing them is authoring work, not paperwork.

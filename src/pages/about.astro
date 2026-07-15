@@ -21,6 +21,10 @@ const coverage = goetheCoverage('A1');
 // A level with no committed Wortliste manifest has no coverage figure, and must not
 // invent one. A2 gets its sentence only once data/goethe-a2-wortliste.txt exists.
 const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
+// B1 has a manifest but no units: the figure below measures how much of the B1
+// Wortliste the A1/A2 decks already teach — a claim about the learner's lexis,
+// never about B1 completeness.
+const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
 
 const levels = ['A1', 'A2'] as const;
 const stats = levels.map((level) => {
@@ -223,10 +227,19 @@ const principles = [
           <span class="lang-en">
             Nothing above A2 exists yet. The long-term aim is B2, and the course is built so that
             levels can be added without disturbing what you have already learned.
+            {coverageB1 &&
+              ` ${coverageB1.cards + coverageB1.grammar} of the ${coverageB1.total} headwords on the
+              official Goethe-Institut B1 Wortliste are already covered by A1/A2 material
+              (${coverageB1.percent}%) — a head start on the level's vocabulary, not progress on the
+              level itself.`}
           </span>
           <span class="lang-ru">
             Выше A2 пока ничего нет. Долгосрочная цель — B2, и курс построен так, чтобы новые уровни
             добавлялись, не затрагивая уже пройденное.
+            {coverageB1 &&
+              ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste
+              ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) уже охвачены
+              материалами A1–A2 — это задел по лексике уровня, а не прогресс по самому уровню.`}
           </span>
         </p>
       </article>
