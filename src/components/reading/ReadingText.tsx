@@ -3,7 +3,9 @@ import type { Reading } from '../../lib/schemas';
 import { parseGlosses } from '../../lib/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import SpeakerButton from '../SpeakerButton';
@@ -14,6 +16,16 @@ interface Props {
   reading: Reading;
 }
 
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  extensiveNote: {
+    en: 'A longer text, meant to be read for pleasure. Read it straight through once. Not knowing every word is fine — leave the glosses closed while the meaning still carries.',
+    ru: 'Длинный текст для чтения ради удовольствия. Прочитайте его один раз, не останавливаясь. Незнакомые слова — это нормально: не открывайте подсказки, пока смысл понятен.',
+  },
+  comprehension: { en: 'comprehension questions correct.', ru: 'правильных ответов по тексту.' },
+  results: { en: 'Results', ru: 'Результат' },
+} as const satisfies Record<string, { en: string; ru: string }>;
+
 /**
  * A graded reading text with click-to-reveal glosses, followed by its
  * comprehension questions one at a time (same "Weiter →" flow as ExerciseSet).
@@ -22,6 +34,7 @@ interface Props {
  */
 export default function ReadingText({ readingId, reading }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const paragraphs = useMemo(() => reading.text.map((p) => parseGlosses(p).segments), [reading]);
   const [openGlosses, setOpenGlosses] = useState<ReadonlySet<string>>(new Set());
 
@@ -86,9 +99,7 @@ export default function ReadingText({ readingId, reading }: Props) {
       */}
       {extensive && (
         <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Длинный текст для чтения ради удовольствия. Прочитайте его один раз, не останавливаясь. Незнакомые слова — это нормально: не открывайте подсказки, пока смысл понятен.'
-            : 'A longer text, meant to be read for pleasure. Read it straight through once. Not knowing every word is fine — leave the glosses closed while the meaning still carries.'}
+          {pick(lang, UI.extensiveNote)}
         </p>
       )}
       {!extensive && <div className="mb-4" />}
@@ -119,7 +130,7 @@ export default function ReadingText({ readingId, reading }: Props) {
                       lang={lang}
                       className="mx-1 rounded bg-amber-100 px-1.5 py-0.5 text-sm text-amber-900 dark:bg-amber-900 dark:text-amber-100"
                     >
-                      {lang === 'ru' ? seg.gloss.ru : seg.gloss.en}
+                      {pick(lang, seg.gloss)}
                     </span>
                   )}
                 </Fragment>
@@ -132,9 +143,9 @@ export default function ReadingText({ readingId, reading }: Props) {
       {questions.length === 0 ? null : (
       <div className="mt-6 border-t border-stone-200 pt-4 dark:border-stone-700">
         <div className="mb-4 flex items-center justify-between">
-          <p lang="de" className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+          <p lang={uiLang} className="text-sm font-semibold text-stone-600 dark:text-stone-300">
             {/* one gist question, not an interrogation of every sentence */}
-            {extensive ? 'Worum geht es?' : 'Fragen zum Text'}
+            {extensive ? t('reading.gist', uiLang) : t('reading.questions', uiLang)}
           </p>
           <div className="flex items-center gap-1" aria-label="progress">
             {questions.map((q, i) => (
@@ -159,7 +170,7 @@ export default function ReadingText({ readingId, reading }: Props) {
             <span className="font-bold">
               {correctCount} / {questions.length}
             </span>{' '}
-            {lang === 'ru' ? 'правильных ответов по тексту.' : 'comprehension questions correct.'}
+            {pick(lang, UI.comprehension)}
           </p>
         ) : (
           question && (
@@ -171,7 +182,7 @@ export default function ReadingText({ readingId, reading }: Props) {
               locked={currentDone}
               onNext={next}
               nextLabel={
-                index + 1 < questions.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
+                index + 1 < questions.length ? t('action.next', uiLang) : pick(lang, UI.results)
               }
             />
           )
