@@ -11,7 +11,7 @@ const pieces = await getCollection('discovery', ({ data }) => data.status === 'r
   <p class="mt-2 max-w-2xl text-stone-500"><span class="lang-en">German worth reading for its own sake: places, people, documents and stories. Optional, with no completion bar and no review debt.</span><span class="lang-ru">Немецкий, который интересен сам по себе: места, люди, документы и истории. Всё необязательно — без шкалы прохождения и долгов по повторению.</span></p>
   <div class="mt-8 grid gap-4 sm:grid-cols-2">
     {pieces.map((piece) => <a href={withBase(`/entdecken/${piece.id}`)} class="overflow-hidden rounded-xl border border-stone-200 bg-white hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800">
-      {piece.data.image && <img src={withBase(piece.data.image)} alt={piece.data.summary.en} class="aspect-[16/9] w-full object-cover" />}
+      {piece.data.images[0] && <img src={withBase(piece.data.images[0].src)} alt={piece.data.images[0].alt} class="aspect-[16/9] w-full object-cover" />}
       <div class="p-5"><span class="text-xs font-bold text-amber-700">{piece.data.level} · Entdecken</span><h2 lang="de" class="mt-1 text-xl font-bold">{piece.data.title_de}</h2><p class="mt-2 text-sm text-stone-500"><span class="lang-en">{piece.data.summary.en}</span><span class="lang-ru">{piece.data.summary.ru}</span></p></div>
     </a>)}
   </div>
