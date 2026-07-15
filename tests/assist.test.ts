@@ -4,7 +4,7 @@
  * the quote filter, garbage earns exactly one corrective retry, and an abort
  * propagates to the caller. All network is mocked — no test talks to Ollama.
  */
-import { afterEach, describe, expect, mock, test } from 'bun:test';
+import { afterEach, beforeEach, describe, expect, mock, test } from 'bun:test';
 import {
   assistHiddenForSession,
   chooseAssistModel,
@@ -19,6 +19,20 @@ import {
 import { ASSIST_MODEL_KEY } from '../src/lib/prefs';
 
 const realFetch = globalThis.fetch;
+
+// The probe short-circuits without ever fetching when it believes it runs under
+// Tauri (the plugin-fetch path) or on an https page (the mixed-content guard).
+// Both are ambient state — the Tauri marker on `window`, the happy-dom URL —
+// that other files toggle (assist-transport.test.ts runs right before this one).
+// The 'reachable Ollama' test flaked exactly that way twice in CI, so this file
+// pins its own entry state instead of trusting every predecessor's afterEach.
+beforeEach(() => {
+  delete (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__;
+  (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } }).happyDOM.setURL(
+    'about:blank',
+  );
+  resetAssistForTests();
+});
 
 afterEach(() => {
   globalThis.fetch = realFetch;
