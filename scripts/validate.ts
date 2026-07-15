@@ -251,8 +251,12 @@ for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
   const levelDir = id.split('/')[0]?.toUpperCase();
   if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
   if (data.level !== levelDir) fail(rel(file), `level ${data.level} ≠ directory ${levelDir}`);
-  if (data.image && !existsSync(join(ROOT, 'public', data.image.replace(/^\//, ''))))
-    fail(rel(file), `image "${data.image}" does not exist under public/`);
+  for (const image of data.images) {
+    if (!image.src.startsWith('/'))
+      fail(rel(file), `image src "${image.src}" must be a local /path under public/ (committed asset, never a hotlink)`);
+    else if (!existsSync(join(ROOT, 'public', image.src.replace(/^\//, ''))))
+      fail(rel(file), `image "${image.src}" does not exist under public/`);
+  }
   discoveries.set(id, {
     file: rel(file),
     data,

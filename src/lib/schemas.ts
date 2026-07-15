@@ -518,16 +518,49 @@ export type WordField = z.infer<typeof wordFieldSchema>;
 // Optional discovery/editorial pieces (content/discovery/<level>/<id>.mdx)
 // ---------------------------------------------------------------------------
 
-export const discoverySchema = z.object({
-  id: slug,
-  level: levelSchema,
-  title_de: z.string().min(1),
-  title_en: z.string().min(1),
-  title_ru: z.string().min(1),
-  summary: bilingualSchema,
-  image: z.string().min(1).optional(),
-  status: z.enum(['draft', 'reviewed']).default('draft'),
+/** Same provenance contract as visualDocumentSchema: a real or adapted asset
+    is someone else's work, so shipping it without attribution and license is
+    not an option the schema offers. Simulated assets are the course's own. */
+const discoveryImageSchema = z
+  .object({
+    src: z.string().min(1),
+    alt: z.string().min(1),
+    sourceClass: z.enum(['real', 'adapted', 'simulated']),
+    attribution: z.string().min(1).optional(),
+    license: z.string().min(1).optional(),
+  })
+  .superRefine((image, ctx) => {
+    if (image.sourceClass !== 'simulated' && (!image.attribution || !image.license)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'real/adapted images require attribution and license',
+      });
+    }
+  });
+
+/** Curated external material. Links are rendered visibly online-only and are
+    never load-bearing: a dead link may disappoint, but nothing breaks. */
+const discoveryLinkSchema = z.object({
+  url: z.string().url().startsWith('https://'),
+  label: z.string().min(1),
+  note: bilingualSchema.optional(),
 });
+
+// Strict on purpose: the retired bare `image` field must fail loudly in old
+// frontmatter, not be silently stripped and leave a piece without its picture.
+export const discoverySchema = z
+  .object({
+    id: slug,
+    level: levelSchema,
+    title_de: z.string().min(1),
+    title_en: z.string().min(1),
+    title_ru: z.string().min(1),
+    summary: bilingualSchema,
+    images: z.array(discoveryImageSchema).default([]),
+    links: z.array(discoveryLinkSchema).default([]),
+    status: z.enum(['draft', 'reviewed']).default('draft'),
+  })
+  .strict();
 export type Discovery = z.infer<typeof discoverySchema>;
 
 export const caseReferenceSchema = z.object({

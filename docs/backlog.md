@@ -350,7 +350,7 @@ a review before merge.
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
-### P9-1 · Discovery schema evolution — `todo` (M)
+### P9-1 · Discovery schema evolution — `done` 2026-07-15 (M)
 
 `images[]` entries carrying `sourceClass`, `attribution` and `licence`, with a `superRefine`
 mirroring `visualDocumentSchema` (real/adapted assets require attribution and licence metadata);
@@ -360,6 +360,14 @@ breaks anything; migrate `berlin-ubahn-karte` and drop the bare `image` field. `
 
 - Accept: the validator rejects a real/adapted image without attribution and licence; the existing
   piece renders unchanged after migration; links are visibly marked online-only.
+- Shipped as designed, plus three hardenings the acceptance run suggested: the discovery schema is
+  **strict**, so a leftover bare `image:` field fails loudly instead of being silently stripped
+  (a piece quietly losing its picture is the failure mode strictness buys off); image `src` must
+  be a committed local path under `public/` (hotlinks rejected by the validator); every image
+  carries its own `alt` (previously all images shared `summary.en`). Attribution renders visibly
+  under real/adapted images — metadata the page never shows is not attribution. Verified
+  end-to-end: flipping the migrated piece to `sourceClass: real` fails `bun run validate`;
+  the built page renders the same image; `tests/discovery-schema.test.ts` pins the contract.
 
 ### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
 
