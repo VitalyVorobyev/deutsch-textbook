@@ -9,7 +9,9 @@
  * Transport is plain browser fetch to http://localhost:11434 (dev server or any
  * http: origin). On a deployed https page the probe never runs — an https page
  * cannot call http://localhost (mixed content) — unless the app runs under
- * Tauri, whose transport is P7-3 and not wired yet.
+ * Tauri, where the same requests route through tauri-plugin-http (Rust-side
+ * fetch, scoped by capability to exactly the Ollama origin), which the webview's
+ * origin rules cannot reach. See `assistFetch` below.
  */
 import { z } from 'zod';
 import { getAssistModel } from './prefs';
@@ -18,6 +20,24 @@ import { isTauri } from './syncdir';
 export const OLLAMA_BASE = 'http://localhost:11434';
 const PROBE_TIMEOUT_MS = 1200;
 const REVIEW_TIMEOUT_MS = 60_000;
+
+let tauriFetch: Promise<typeof fetch> | null = null;
+
+/**
+ * The one transport seam. Under Tauri the request goes through
+ * `@tauri-apps/plugin-http` — dynamically imported, like every Tauri API in the
+ * repo (src/lib/syncdir.ts), so the web bundle never loads the plugin. Its
+ * `fetch` is WHATWG-compatible and honors `RequestInit.signal`, so the abort
+ * and timeout semantics here are identical on both paths. Everywhere else this
+ * resolves the global fetch at call time, which is what lets tests swap it.
+ */
+async function assistFetch(input: string, init?: RequestInit): Promise<Response> {
+  if (isTauri()) {
+    tauriFetch ??= import('@tauri-apps/plugin-http').then((m) => m.fetch as typeof fetch);
+    return (await tauriFetch)(input, init);
+  }
+  return globalThis.fetch(input, init);
+}
 
 // ---------------------------------------------------------------------------
 // The hints shape
@@ -125,7 +145,7 @@ async function runProbe(): Promise<AssistProbe> {
     return { reachable: false, models: [] };
   }
   try {
-    const res = await fetch(`${OLLAMA_BASE}/api/tags`, {
+    const res = await assistFetch(`${OLLAMA_BASE}/api/tags`, {
       signal: AbortSignal.timeout(PROBE_TIMEOUT_MS),
     });
     if (!res.ok) return { reachable: false, models: [] };
@@ -177,6 +197,7 @@ export function resetAssistForTests(): void {
   probeCache = null;
   failures = 0;
   hidden = false;
+  tauriFetch = null;
 }
 
 // ---------------------------------------------------------------------------
@@ -256,7 +277,7 @@ async function attempt(
 ): Promise<Attempt> {
   let raw: string;
   try {
-    const res = await fetch(`${OLLAMA_BASE}/api/chat`, {
+    const res = await assistFetch(`${OLLAMA_BASE}/api/chat`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({

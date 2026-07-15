@@ -240,11 +240,14 @@ changed.
   before the before-assessment is complete; zero writes to attempts or the snapshot, verified in
   test.
 
-### P7-3 · Tauri transport — `todo` (S)
+### P7-3 · Tauri transport — `done` 2026-07-15 (S)
 
 Per [assist-design.md](assist-design.md): `tauri-plugin-http` as a dependency, a capability scoped
 to `http://localhost:11434/*`, and the transport switch in `assist.ts` (behind `isTauri()`, like
-every other Tauri API in the repo).
+every other Tauri API in the repo). Shipped as `assistFetch`, the one transport seam used by both
+fetch sites: under Tauri it dynamically imports the plugin (the web bundle never loads it, same
+pattern as syncdir.ts), elsewhere it resolves the global fetch at call time so test mocks keep
+working. The plugin's fetch honors `RequestInit.signal`, so abort/timeout semantics are unchanged.
 
 - Depends on: P7-1.
 - Accept: assist reaches a running Ollama from `bun tauri dev`; the capability allows the Ollama
