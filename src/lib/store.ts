@@ -78,14 +78,16 @@ export type PracticePayload =
       kind: 'writing';
       draft: string;
       revision: string;
-      before: CriterionAssessment[];
-      after: CriterionAssessment[];
+      /** Legacy only: the retired staged self-assessment logged these; nothing writes them now. */
+      before?: CriterionAssessment[];
+      after?: CriterionAssessment[];
     }
   | {
       kind: 'speaking';
       recorded: boolean;
-      before: CriterionAssessment[];
-      after: CriterionAssessment[];
+      /** Legacy only: the retired staged self-assessment logged these; nothing writes them now. */
+      before?: CriterionAssessment[];
+      after?: CriterionAssessment[];
     };
 
 /** Write boundary: historical attempts may omit a revision; newly logged ones may not. */
