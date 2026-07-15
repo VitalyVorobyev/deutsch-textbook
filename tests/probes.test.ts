@@ -8,7 +8,9 @@ import {
   nextVariant,
   probeFamilies,
   probeResults,
+  probesTakenToday,
   PROBE_INTERVALS_DAYS,
+  remainingProbeBudget,
   servedProbes,
   type ProbeFamily,
 } from '../src/lib/probes';
@@ -234,6 +236,69 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
     ];
     expect(dueProbes(families, answered, now).map((d) => d.family.topicId))
       .toEqual(['t6', 't7']);
+  });
+});
+
+describe('daily probe budget — derived from the attempt log, never stored', () => {
+  const wohnen: ProbeFamily = {
+    setId: 'a1/probe-wohnen',
+    topicId: 'wohnen',
+    outcomes: ['wohnen-beschreiben'],
+    armingSetIds: ['a1/wohnen'],
+    items: [
+      { id: 'v1', outcomes: ['wohnen-beschreiben'] },
+      { id: 'v2', outcomes: ['wohnen-beschreiben'] },
+    ],
+  };
+  const budgetFamilies = [family, wohnen];
+  // Local-time constructors on purpose: the budget rolls over at *local* midnight — the
+  // same day convention as sessions and the heatmap (localDateString in store.ts).
+  const at = (day: number, hour: number, minute = 0) =>
+    new Date(2026, 5, day, hour, minute).getTime();
+
+  test('a full catch-up spends the budget — the card gate closes, the route serves nothing', () => {
+    const catchUp = [
+      attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 9) }),
+      attempt({ setId: family.setId, itemId: 'variant-b', ts: at(15, 9, 5) }),
+      attempt({ setId: family.setId, itemId: 'variant-c', ts: at(15, 9, 10) }),
+      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 9, 15) }),
+      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 9, 20) }),
+    ];
+    expect(probesTakenToday(budgetFamilies, catchUp, at(15, 21))).toBe(5);
+    expect(remainingProbeBudget(budgetFamilies, catchUp, at(15, 21))).toBe(0);
+  });
+
+  test('an ordinary session’s three probes leave a two-probe catch-up, never five more', () => {
+    const session = [
+      attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 8) }),
+      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 8, 5) }),
+      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 8, 10) }),
+    ];
+    expect(remainingProbeBudget(budgetFamilies, session, at(15, 21))).toBe(2);
+  });
+
+  test('the budget reopens past local midnight — remaining debt drains tomorrow', () => {
+    const lateNight = [
+      attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 22) }),
+      attempt({ setId: family.setId, itemId: 'variant-b', ts: at(15, 22, 30) }),
+      attempt({ setId: family.setId, itemId: 'variant-c', ts: at(15, 23) }),
+      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 23, 15) }),
+      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 23, 30) }),
+    ];
+    // 23:45 the same day: spent
+    expect(remainingProbeBudget(budgetFamilies, lateNight, at(15, 23, 45))).toBe(0);
+    // 00:30 the next day: a fresh budget, one hour later
+    expect(probesTakenToday(budgetFamilies, lateNight, at(16, 0, 30))).toBe(0);
+    expect(remainingProbeBudget(budgetFamilies, lateNight, at(16, 0, 30))).toBe(5);
+  });
+
+  test('only probe attempts spend the budget — practice and review never do', () => {
+    const practiceDay = [
+      attempt({ setId: 'a1/akkusativ', ts: at(15, 9) }),
+      attempt({ setId: 'a1/wohnen', ts: at(15, 10), outcomes: ['wohnen-beschreiben'] }),
+    ];
+    expect(probesTakenToday(budgetFamilies, practiceDay, at(15, 21))).toBe(0);
+    expect(remainingProbeBudget(budgetFamilies, practiceDay, at(15, 21))).toBe(5);
   });
 });
 
