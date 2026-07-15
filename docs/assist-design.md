@@ -1,8 +1,9 @@
 # Schreib-Assistent: local advisory writing feedback
 
-Status: design accepted 2026-07-14. Implementation is Phase 7 (P7-1…P7-3) in
-[backlog.md](backlog.md); this document is the contract those items implement, and P7-2 finalizes
-it with whatever the manual pilot changes.
+Status: design accepted 2026-07-14; P7-1/P7-2 implemented and piloted against the live model
+2026-07-15 (findings folded in below — see *Prompt design* and *Latency*). Implementation is
+Phase 7 (P7-1…P7-3) in [backlog.md](backlog.md); this document is the contract those items
+implement. P7-3 (Tauri transport) remains open.
 
 ## What it is, and the one rule it lives under
 
@@ -67,6 +68,23 @@ reliably — and says, in substance:
   revise stage into a copy edit, which is precisely the practice value the stage exists to create.
 - Nudges are questions or rule pointers — "Which case does *mit* take?" — written in the learner's
   explanation language. German is quoted, never corrected.
+
+Three rules were **earned in the 2026-07-15 pilot** against `gemma4:e4b` (two synthetic A2 drafts —
+one with planted errors, one near-perfect — on the real `alltag-produktion` write task). The model
+quoted flawlessly and never rewrote, but it padded the near-perfect draft with invented problems
+("räume ich immer die Küche auf" flagged for a separable-prefix rule the learner had followed)
+until the rubric said, in substance:
+
+- Flag only errors you can name precisely; if you cannot name a definite error in the quoted
+  words, do not give the hint.
+- A fronted time phrase with verb-then-subject is correct German; a separable prefix at the
+  sentence end is correct — two concrete false-positive patterns the pilot surfaced.
+- Returning `"hints": []` is a good and common outcome; never pad the list.
+
+With those rules the error draft got 4/4 anchored, real hints (in idiomatic English and Russian
+alike) and the near-perfect draft got zero. A praise-only reply (`hints: []`) is therefore a
+**legitimate result, not a filter failure** — the corrective retry fires only when returned hints
+all fail the quote filter or the JSON is malformed.
 
 ## Hallucination filter
 
@@ -141,6 +159,10 @@ complicates the quote filter. The panel shows a spinner and an **Abbrechen** but
 request carries the 60-second abort. A machine that needs longer than that will not make this
 feature pleasant — fail fast rather than wait.
 
+The request sends **`think: false`**: the pilot measured ~20–30 s per review with `gemma4:e4b`'s
+reasoning on and 1–6 s with it off, at identical hint quality on both drafts. Ollama ignores a
+false `think` on models without the thinking capability, so the flag is safe to send always.
+
 ## Open risk
 
 The feedback quality of a small local model is unknown until piloted. The design makes failure
@@ -149,3 +171,10 @@ therefore requires a manual pilot against the live model with two or three real 
 the PR opens, and expects prompt iteration. If the pilot shows the model cannot produce useful
 nudges at this level, the honest outcome is to record that finding here and stop after P7-1 — the
 library costs nothing to keep.
+
+**Pilot outcome (2026-07-15, three prompt iterations):** useful. On the planted-error draft the
+final prompt caught the V2 violation, the um/am confusion and *mit* + Dativ with verbatim quotes
+and genuinely Socratic nudges, in both English and Russian; on the near-perfect draft it returned
+praise and an empty hint list. Residual risk, accepted: an occasional mild false positive survives
+(the Russian run flagged one correct adverb placement with a question the learner can answer and
+thereby confirm their text) — tolerable for an advisory panel whose footnote says it never scores.
