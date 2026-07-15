@@ -4,7 +4,8 @@ import { logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { pick } from '../../lib/prefs';
-import { useExplainLang } from '../hooks';
+import { t } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { Cloze } from './Cloze';
 import { Listen } from './Listen';
 import { Match } from './Match';
@@ -24,6 +25,21 @@ interface Props {
   set: ExerciseSetData;
   document?: VisualDocument;
 }
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  practiceSaved: {
+    en: 'Practice saved; there is no automatic score.',
+    ru: 'Практика сохранена; автоматической оценки нет.',
+  },
+  scoreHigh: { en: 'Great — this topic is sinking in.', ru: 'Отлично! Тема усваивается.' },
+  scoreLow: {
+    en: 'Worth re-reading the article and trying again.',
+    ru: 'Стоит повторить материал и попробовать ещё раз.',
+  },
+  tryAgain: { en: 'Try again', ru: 'Ещё раз' },
+  results: { en: 'Results', ru: 'Результат' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Answered {
   itemId: string;
@@ -110,6 +126,7 @@ function ItemBody({
 
 export default function ExerciseSet({ setId, set, document }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const items = set.items;
   const resumeSurface = `exset:${setId}`;
   // Resume today's run at the first unanswered item (a reload — mobile tab
@@ -186,23 +203,17 @@ export default function ExerciseSet({ setId, set, document }: Props) {
         </p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
           {verified.length === 0
-            ? lang === 'ru'
-              ? 'Практика сохранена; автоматической оценки нет.'
-              : 'Practice saved; there is no automatic score.'
+            ? pick(lang, UI.practiceSaved)
             : pct >= 80
-            ? lang === 'ru'
-              ? 'Отлично! Тема усваивается.'
-              : 'Great — this topic is sinking in.'
-            : lang === 'ru'
-              ? 'Стоит повторить материал и попробовать ещё раз.'
-              : 'Worth re-reading the article and trying again.'}
+            ? pick(lang, UI.scoreHigh)
+            : pick(lang, UI.scoreLow)}
         </p>
         <button
           type="button"
           onClick={restart}
           className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
         >
-          {lang === 'ru' ? 'Ещё раз' : 'Try again'}
+          {pick(lang, UI.tryAgain)}
         </button>
       </div>
     );
@@ -241,7 +252,7 @@ export default function ExerciseSet({ setId, set, document }: Props) {
           locked={currentDone}
           onNext={next}
           nextLabel={
-            index + 1 < items.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
+            index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)
           }
           storageKey={`${setId}::${item.id}`}
         />

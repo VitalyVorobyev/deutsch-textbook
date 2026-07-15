@@ -12,7 +12,9 @@ import {
   type TrainingSet,
 } from '../../lib/training';
 import { withBase } from '../../lib/url';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
@@ -22,6 +24,18 @@ import DocumentStimulus from '../exercises/DocumentStimulus';
 export type { TrainingSet } from '../../lib/training';
 
 const SESSION_SIZE = 15;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  building: { en: 'Building your session…', ru: 'Собираем тренировку…' },
+  emptyHint: {
+    en: 'Open a topic and read its article — its exercises will show up in training.',
+    ru: 'Откройте тему и прочитайте статью — её упражнения появятся в тренировке.',
+  },
+  byTopic: { en: 'Breakdown by topic:', ru: 'Результат по темам:' },
+  practice: { en: 'practice', ru: 'практика' },
+  results: { en: 'Results', ru: 'Результат' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Answered {
   uid: string;
@@ -106,6 +120,7 @@ export default function MixedTraining({
   resumeKey,
 }: MixedTrainingProps) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
 
   const surface = resumeKey ? `training:${resumeKey}` : null;
   // Only the initial mount may resume; the eligibility check below decides
@@ -209,7 +224,7 @@ export default function MixedTraining({
   if (!session) {
     return (
       <p className="text-sm text-stone-500 dark:text-stone-400">
-        {lang === 'ru' ? 'Собираем тренировку…' : 'Building your session…'}
+        {pick(lang, UI.building)}
       </p>
     );
   }
@@ -219,19 +234,17 @@ export default function MixedTraining({
     if (onFinished) {
       return (
         <p className="rounded-lg border border-stone-200 bg-white p-6 text-center text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
-          <span lang="de">Noch keine Übungen — weiter zum nächsten Schritt …</span>
+          <span lang={uiLang}>{t('training.emptyNext', uiLang)}</span>
         </p>
       );
     }
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-800">
-        <p lang="de" className="font-semibold">
-          Noch nichts zu üben
+        <p lang={uiLang} className="font-semibold">
+          {t('training.emptyTitle', uiLang)}
         </p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Откройте тему и прочитайте статью — её упражнения появятся в тренировке.'
-            : 'Open a topic and read its article — its exercises will show up in training.'}
+          {pick(lang, UI.emptyHint)}
         </p>
         {suggestion && (
           <a
@@ -280,7 +293,7 @@ export default function MixedTraining({
           {formatScore(score, lang)} / {verified.length}
         </p>
         <p className="mt-1 text-center text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru' ? 'Результат по темам:' : 'Breakdown by topic:'}
+          {pick(lang, UI.byTopic)}
         </p>
         <ul className="mx-auto mt-4 max-w-md divide-y divide-stone-100 text-sm dark:divide-stone-700">
           {[...byTopic.entries()].map(([topicId, row]) => (
@@ -302,7 +315,7 @@ export default function MixedTraining({
                     : 'text-stone-600 dark:text-stone-300'
                 }`}
               >
-                {row.total > 0 ? `${formatScore(row.score, lang)} / ${row.total}` : lang === 'ru' ? 'практика' : 'practice'}
+                {row.total > 0 ? `${formatScore(row.score, lang)} / ${row.total}` : pick(lang, UI.practice)}
               </span>
             </li>
           ))}
@@ -317,7 +330,7 @@ export default function MixedTraining({
               }}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >
-              Weiter →
+              {t('action.next', uiLang)}
             </button>
           ) : (
             <button
@@ -325,7 +338,7 @@ export default function MixedTraining({
               onClick={restart}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >
-              Nochmal
+              {t('action.again', uiLang)}
             </button>
           )}
         </div>
@@ -374,7 +387,7 @@ export default function MixedTraining({
           locked={currentDone}
           onNext={next}
           nextLabel={
-            index + 1 < session.length ? 'Weiter →' : lang === 'ru' ? 'Результат' : 'Results'
+            index + 1 < session.length ? t('action.next', uiLang) : pick(lang, UI.results)
           }
           storageKey={entry.uid}
           />

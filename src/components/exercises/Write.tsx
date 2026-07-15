@@ -4,11 +4,34 @@ import type { writeItemSchema } from '../../lib/schemas';
 import { pick } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import { Instruction, Translation, type ItemProps } from './shared';
 import { AssistPanel } from './AssistPanel';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
 type Stage = 'draft' | 'compare' | 'done';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  modelHeading: {
+    en: 'Model — compare content and form',
+    ru: 'Пример — сравните содержание и форму',
+  },
+  yourText: { en: 'Your text', ru: 'Ваш текст' },
+  compareHint: {
+    en: 'Compare your text with the task and the model — edit it right here if you like.',
+    ru: 'Сравните свой текст с заданием и примером — при желании исправьте его прямо здесь.',
+  },
+  compareButton: { en: 'Compare with model', ru: 'Сравнить с примером' },
+  save: { en: 'Save', ru: 'Сохранить' },
+  savedNote: {
+    en: 'The text is saved as writing practice, not as an automatically verified score.',
+    ru: 'Текст сохранён как практика письма, а не автоматически проверенная оценка.',
+  },
+  placeholder: { en: 'Write your answer in German…', ru: 'Напишите ответ по-немецки…' },
+  draftSaved: { en: 'Draft saved on this device', ru: 'Черновик сохраняется на этом устройстве' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 /**
  * Deliberately minimal ceremony: the app cannot verify free writing, so it never
@@ -134,7 +157,7 @@ export function Write({
       {stage !== 'draft' && (
         <div className="mt-4 rounded-md border border-sky-200 bg-sky-50 px-4 py-3 dark:border-sky-800 dark:bg-sky-950/40">
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
-            {lang === 'ru' ? 'Пример — сравните содержание и форму' : 'Model — compare content and form'}
+            {pick(lang, UI.modelHeading)}
           </p>
           <p lang="de" className="mt-2">{item.model_answer}</p>
           <Translation text={item.model_translation} lang={lang} />
@@ -148,15 +171,13 @@ export function Write({
         words={words}
         minWords={item.min_words}
         lang={lang}
-        label={lang === 'ru' ? 'Ваш текст' : 'Your text'}
+        label={pick(lang, UI.yourText)}
         disabled={stage === 'done' || locked}
       />
 
       {stage === 'compare' && (
         <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Сравните свой текст с заданием и примером — при желании исправьте его прямо здесь.'
-            : 'Compare your text with the task and the model — edit it right here if you like.'}
+          {pick(lang, UI.compareHint)}
         </p>
       )}
 
@@ -176,12 +197,12 @@ export function Write({
       <div className="mt-4">
         {stage === 'draft' && (
           <ActionButton onClick={beginComparison} disabled={words < item.min_words}>
-            {lang === 'ru' ? 'Сравнить с примером' : 'Compare with model'}
+            {pick(lang, UI.compareButton)}
           </ActionButton>
         )}
         {stage === 'compare' && (
           <ActionButton onClick={submit} disabled={words < item.min_words}>
-            {lang === 'ru' ? 'Сохранить' : 'Save'}
+            {pick(lang, UI.save)}
           </ActionButton>
         )}
         {stage === 'done' && (
@@ -190,9 +211,7 @@ export function Write({
       </div>
       {stage === 'done' && (
         <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Текст сохранён как практика письма, а не автоматически проверенная оценка.'
-            : 'The text is saved as writing practice, not as an automatically verified score.'}
+          {pick(lang, UI.savedNote)}
         </p>
       )}
     </div>
@@ -209,6 +228,7 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
   label: string;
   disabled: boolean;
 }) {
+  const uiLang = useUiLang();
   return (
     <div className="mt-4">
       <label htmlFor={id} className="text-sm font-semibold">{label}</label>
@@ -220,11 +240,11 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
         disabled={disabled}
         rows={5}
         className="mt-2 w-full resize-y rounded-md border-2 border-stone-300 bg-transparent px-3 py-2 text-base outline-none focus:border-amber-500 disabled:opacity-80 dark:border-stone-600"
-        placeholder={lang === 'ru' ? 'Напишите ответ по-немецки…' : 'Write your answer in German…'}
+        placeholder={pick(lang, UI.placeholder)}
       />
       <div className="mt-2 flex items-center justify-between text-xs text-stone-400">
-        <span>{words} / {minWords} Wörter</span>
-        {!disabled && <span>{lang === 'ru' ? 'Черновик сохраняется на этом устройстве' : 'Draft saved on this device'}</span>}
+        <span>{words} / {minWords} {t('exercise.words', uiLang)}</span>
+        {!disabled && <span>{pick(lang, UI.draftSaved)}</span>}
       </div>
     </div>
   );

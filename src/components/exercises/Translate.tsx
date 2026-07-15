@@ -10,12 +10,22 @@ import {
   type TranslationVerdict,
 } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
 
 /** Characters that are awkward to type on a non-German keyboard. */
 const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  placeholder: { en: 'Type the German sentence…', ru: 'Введите немецкое предложение…' },
+  correctionLabel: { en: 'Correction: ', ru: 'Исправленный вариант: ' },
+  spellingNote: { en: 'Watch the spelling: ', ru: 'Обратите внимание на написание: ' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 export function Translate({
   item,
@@ -25,6 +35,7 @@ export function Translate({
   onNext,
   nextLabel,
 }: ItemProps<TranslateItem>) {
+  const uiLang = useUiLang();
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +91,7 @@ export function Translate({
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      <p className="mb-4 text-lg font-medium">{lang === 'ru' ? item.prompt_ru : item.prompt_en}</p>
+      <p className="mb-4 text-lg font-medium">{pick(lang, { en: item.prompt_en, ru: item.prompt_ru })}</p>
       <input
         ref={inputRef}
         type="text"
@@ -89,7 +100,7 @@ export function Translate({
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && check()}
         disabled={checked}
-        placeholder={lang === 'ru' ? 'Введите немецкое предложение…' : 'Type the German sentence…'}
+        placeholder={pick(lang, UI.placeholder)}
         className={`w-full rounded-md border-2 bg-transparent px-3 py-2 text-lg outline-none ${
           checked
             ? isCorrect
@@ -101,7 +112,7 @@ export function Translate({
         autoComplete="off"
         spellCheck={false}
       />
-      <div className="mt-2 flex gap-1.5" aria-label="Sonderzeichen">
+      <div className="mt-2 flex gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
         {SPECIAL_CHARS.map((ch) => (
           <button
             key={ch}
@@ -127,7 +138,7 @@ export function Translate({
       {checked && (
         <Feedback
           correct={isCorrect}
-          correctAnswerLabel={lang === 'ru' ? 'Исправленный вариант: ' : 'Correction: '}
+          correctAnswerLabel={pick(lang, UI.correctionLabel)}
           correctAnswer={
             differs &&
             answerWords.map((w, i) => (
@@ -146,7 +157,7 @@ export function Translate({
           note={
             verdict.kind === 'spelling' && (
               <p>
-                {lang === 'ru' ? 'Обратите внимание на написание: ' : 'Watch the spelling: '}
+                {pick(lang, UI.spellingNote)}
                 <span lang="de">
                   <s className="opacity-70">{verdict.correction.given}</s>
                   {' → '}

@@ -23,8 +23,41 @@ import {
   type WriteHintCategory,
 } from '../../lib/assist';
 import { getAssistEnabled, pick, setAssistEnabled, setAssistModel, type ExplainLang } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  reenableTitle: {
+    en: 'Turn local assistant hints back on',
+    ru: 'Снова включить подсказки локального ассистента',
+  },
+  title: { en: 'Local assistant', ru: 'Локальный ассистент' },
+  settings: { en: 'Assistant settings', ru: 'Настройки ассистента' },
+  model: { en: 'Model', ru: 'Модель' },
+  turnOff: { en: 'Turn the assistant off', ru: 'Выключить ассистента' },
+  reading: { en: 'The assistant is reading your text…', ru: 'Ассистент читает ваш текст…' },
+  noAnswer: { en: 'The assistant did not answer.', ru: 'Ассистент не ответил.' },
+  retry: { en: 'Try again', ru: 'Попробовать ещё раз' },
+  gone: {
+    en: 'The assistant cannot produce useful hints right now — carry on without it.',
+    ru: 'Ассистент сейчас не может дать полезные подсказки — продолжайте без него.',
+  },
+  nothingFlagged: {
+    en: 'The assistant found nothing to flag.',
+    ru: 'Ассистент не нашёл, к чему придраться.',
+  },
+  allResolved: {
+    en: 'Your text no longer contains anything the assistant flagged.',
+    ru: 'В тексте больше нет мест, которые ассистент отмечал.',
+  },
+  advisory: {
+    en: 'The assistant never scores your writing and never affects progress.',
+    ru: 'Ассистент не выставляет оценок и не влияет на прогресс.',
+  },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 /** German labels stay always-visible, like every German content string. */
 const CATEGORY_LABELS: Record<WriteHintCategory, string> = {
@@ -48,6 +81,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
   hints: ReviewedHints | null;
   onHints: (hints: ReviewedHints) => void;
 }) {
+  const uiLang = useUiLang();
   const [enabled, setEnabled] = useState(getAssistEnabled);
   const [probe, setProbe] = useState<AssistProbe | null>(null);
   const [status, setStatus] = useState<Status>(hints ? 'shown' : 'idle');
@@ -89,14 +123,10 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
           setAssistEnabled(true);
           setEnabled(true);
         }}
-        title={
-          lang === 'ru'
-            ? 'Снова включить подсказки локального ассистента'
-            : 'Turn local assistant hints back on'
-        }
+        title={pick(lang, UI.reenableTitle)}
         className="mt-4 block text-xs text-stone-400 hover:text-stone-600 hover:underline dark:text-stone-500 dark:hover:text-stone-300"
       >
-        Assistent ist aus — einschalten
+        {t('assist.reenable', uiLang)}
       </button>
     );
   }
@@ -151,19 +181,19 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
     <div className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
       <div className="flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
-          {lang === 'ru' ? 'Локальный ассистент' : 'Local assistant'}
+          {pick(lang, UI.title)}
         </p>
         {probe && activeModel && status !== 'gone' && (
           <details className="relative ml-auto">
             <summary
-              aria-label={lang === 'ru' ? 'Настройки ассистента' : 'Assistant settings'}
+              aria-label={pick(lang, UI.settings)}
               className="cursor-pointer list-none rounded px-1 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
             >
               ⚙
             </summary>
             <div className="absolute right-0 z-10 mt-1 w-60 rounded-md border border-stone-200 bg-white p-3 shadow-md dark:border-stone-600 dark:bg-stone-800">
               <label htmlFor={`${item.id}-assist-model`} className="text-xs font-medium">
-                {lang === 'ru' ? 'Модель' : 'Model'}
+                {pick(lang, UI.model)}
               </label>
               <select
                 id={`${item.id}-assist-model`}
@@ -186,7 +216,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
                 }}
                 className="mt-3 text-xs font-medium text-red-700 hover:underline dark:text-red-400"
               >
-                {lang === 'ru' ? 'Выключить ассистента' : 'Turn the assistant off'}
+                {pick(lang, UI.turnOff)}
               </button>
             </div>
           </details>
@@ -199,7 +229,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
           onClick={() => void request()}
           className="mt-2 min-h-11 rounded-md border border-stone-300 px-4 py-2 text-sm font-medium hover:border-amber-500 hover:text-amber-700 dark:border-stone-600 dark:hover:text-amber-400 sm:min-h-0 sm:py-1.5"
         >
-          Hinweise vom lokalen Assistenten
+          {t('assist.request', uiLang)}
         </button>
       )}
 
@@ -210,14 +240,14 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
             className="h-4 w-4 animate-spin rounded-full border-2 border-stone-300 border-t-amber-600"
           />
           <span className="text-sm text-stone-500 dark:text-stone-400">
-            {lang === 'ru' ? 'Ассистент читает ваш текст…' : 'The assistant is reading your text…'}
+            {pick(lang, UI.reading)}
           </span>
           <button
             type="button"
             onClick={() => abortRef.current?.abort()}
             className="text-sm font-medium text-stone-600 hover:underline dark:text-stone-300"
           >
-            Abbrechen
+            {t('action.cancel', uiLang)}
           </button>
         </div>
       )}
@@ -225,23 +255,21 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
       {status === 'failed' && (
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
           <span className="text-stone-500 dark:text-stone-400">
-            {lang === 'ru' ? 'Ассистент не ответил.' : 'The assistant did not answer.'}
+            {pick(lang, UI.noAnswer)}
           </span>
           <button
             type="button"
             onClick={() => void request()}
             className="font-medium text-amber-700 hover:underline dark:text-amber-400"
           >
-            {lang === 'ru' ? 'Попробовать ещё раз' : 'Try again'}
+            {pick(lang, UI.retry)}
           </button>
         </div>
       )}
 
       {status === 'gone' && (
         <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Ассистент сейчас не может дать полезные подсказки — продолжайте без него.'
-            : 'The assistant cannot produce useful hints right now — carry on without it.'}
+          {pick(lang, UI.gone)}
         </p>
       )}
 
@@ -250,14 +278,12 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
           {hints.praise && <p className="text-sm text-green-800 dark:text-green-300">{hints.praise}</p>}
           {hints.hints.length === 0 ? (
             <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-              {lang === 'ru' ? 'Ассистент не нашёл, к чему придраться.' : 'The assistant found nothing to flag.'}
+              {pick(lang, UI.nothingFlagged)}
             </p>
           ) : liveHints.length === 0 ? (
             <p className="mt-1 text-sm text-green-800 dark:text-green-300">
-              Alle Hinweise erledigt.{' '}
-              {lang === 'ru'
-                ? 'В тексте больше нет мест, которые ассистент отмечал.'
-                : 'Your text no longer contains anything the assistant flagged.'}
+              {t('assist.allDone', uiLang)}{' '}
+              {pick(lang, UI.allResolved)}
             </p>
           ) : (
             <ul className="mt-2 space-y-2">
@@ -275,10 +301,8 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
             </ul>
           )}
           <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
-            Hinweise sind Vorschläge — keine Bewertung.{' '}
-            {lang === 'ru'
-              ? 'Ассистент не выставляет оценок и не влияет на прогресс.'
-              : 'The assistant never scores your writing and never affects progress.'}
+            {t('assist.disclaimer', uiLang)}{' '}
+            {pick(lang, UI.advisory)}
           </p>
         </div>
       )}
