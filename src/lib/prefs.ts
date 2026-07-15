@@ -3,7 +3,18 @@
 import { getActiveProfileId } from './profile';
 import { UILANG_KEY_PREFIX, isUiLang, type UiLang } from './strings';
 
-export type ExplainLang = 'en' | 'ru';
+/**
+ * Content explanation languages (the other axis from UiLang chrome — see
+ * docs/i18n-design.md). `en` and `ru` are fully authored; `uk` and `de` are
+ * optional per field and fall back to `en` at render time (see pick()).
+ * Mirrors the UI_LANGS/isUiLang pattern in src/lib/strings.ts.
+ */
+export const EXPLAIN_LANGS = ['en', 'ru', 'uk', 'de'] as const;
+export type ExplainLang = (typeof EXPLAIN_LANGS)[number];
+
+export function isExplainLang(v: unknown): v is ExplainLang {
+  return (EXPLAIN_LANGS as readonly unknown[]).includes(v);
+}
 export type Theme = 'light' | 'dark';
 /**
  * Flashcard answer mode: 'typed'/'reveal' apply to the x-de (production)
@@ -40,7 +51,11 @@ export function uiLangKeyFor(profileId: string): string {
  */
 export function resolveExplainLang(profileId: string): ExplainLang | null {
   const own = localStorage.getItem(langKeyFor(profileId));
-  if (own === 'en' || own === 'ru') return own;
+  if (isExplainLang(own)) return own;
+  // The legacy device key predates uk/de and is never written anymore, so it
+  // deliberately stays en/ru-only: a wider value there could only be
+  // hand-edited storage, and copying it forward would launder it into a
+  // profile choice the learner never made.
   const legacy = localStorage.getItem(LANG_KEY);
   if (legacy === 'en' || legacy === 'ru') {
     localStorage.setItem(langKeyFor(profileId), legacy);
@@ -59,7 +74,8 @@ export function resolveUiLang(profileId: string): UiLang {
 
 export function getExplainLang(): ExplainLang {
   if (typeof document === 'undefined') return 'en';
-  return document.documentElement.dataset.explainLang === 'ru' ? 'ru' : 'en';
+  const v = document.documentElement.dataset.explainLang;
+  return isExplainLang(v) ? v : 'en';
 }
 
 export function setExplainLang(lang: ExplainLang): void {
@@ -120,8 +136,29 @@ export function setAssistModel(tag: string): void {
   localStorage.setItem(ASSIST_MODEL_KEY, tag);
 }
 
-/** Pick the current-language variant of a bilingual text. */
-export function pick(lang: ExplainLang, text: { en: string; ru: string } | undefined): string {
+/**
+ * An explanation text: `en`/`ru` always authored, `uk`/`de` optional halves
+ * that arrive content-wave by content-wave and fall back to `en`.
+ *
+ * WARNING: never pass a record whose `de` key is German *content* rather than
+ * a German explanation half — e.g. a reading gloss, where `de` is the glossed
+ * phrase itself. Under ExplainLang 'de', pick() would reveal the phrase as
+ * its own gloss. Destructure such records to {en, ru, uk} at the call site
+ * (see src/components/reading/ReadingText.tsx). Outcome records are fine:
+ * their `de` is the German can-do, which IS the 'de'-mode explanation.
+ */
+export interface ExplainText {
+  en: string;
+  ru: string;
+  uk?: string;
+  de?: string;
+}
+
+/** Pick the current-language variant of an explanation text. */
+export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
   if (!text) return '';
-  return lang === 'ru' ? text.ru : text.en;
+  if (lang === 'ru') return text.ru;
+  if (lang === 'uk') return text.uk ?? text.en;
+  if (lang === 'de') return text.de ?? text.en;
+  return text.en;
 }

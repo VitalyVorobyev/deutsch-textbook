@@ -130,7 +130,12 @@ export default function ReadingText({ readingId, reading }: Props) {
                       lang={lang}
                       className="mx-1 rounded bg-amber-100 px-1.5 py-0.5 text-sm text-amber-900 dark:bg-amber-900 dark:text-amber-100"
                     >
-                      {pick(lang, seg.gloss)}
+                      {/* Destructured, never pick(lang, seg.gloss): the gloss
+                          record's `de` key is the glossed German phrase itself,
+                          and under ExplainLang 'de' pick() would reveal the
+                          phrase as its own gloss. 'de' falls back to the EN
+                          gloss instead. */}
+                      {pick(lang, { en: seg.gloss.en, ru: seg.gloss.ru, uk: seg.gloss.uk })}
                     </span>
                   )}
                 </Fragment>

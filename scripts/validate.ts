@@ -3,8 +3,9 @@
  *
  * Checks: schema conformance, id/filename/level consistency, reference resolution
  * (prerequisites, vocab, exercises, reading, pretest), exercise answer-key sanity,
- * reading gloss markup, prerequisite cycles, and atlas.yaml consistency with
- * topic frontmatter.
+ * reading gloss markup, prerequisite cycles, atlas.yaml consistency with topic
+ * frontmatter, and language discipline (letter-set purity and uk/de parity —
+ * src/lib/langcheck.ts).
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
@@ -31,7 +32,14 @@ import {
   type WordField,
 } from '../src/lib/schemas';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
-import { parseGlosses } from '../src/lib/gloss';
+import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
+import {
+  deParityProblems,
+  hasUkField,
+  langFieldProblems,
+  mdxLangProblems,
+  ukParityProblems,
+} from '../src/lib/langcheck';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
 import {
   checkGradingDecisions,
@@ -87,9 +95,6 @@ function validateWith<S extends z.ZodTypeAny>(
 }
 
 const rel = (f: string) => relative(ROOT, f);
-
-/** English-facing text must contain no Cyrillic (see CLAUDE.md, bilingual voice). */
-const CYRILLIC = /[Ѐ-ӿ]/;
 
 // ---------------------------------------------------------------------------
 // Load everything
@@ -599,8 +604,11 @@ for (const [readingId, { file, data }] of readings) {
     const { segments, errors: glossErrors } = parseGlosses(para);
     for (const e of glossErrors) fail(`${file} → paragraph ${i + 1}`, e);
     for (const s of segments) {
-      if (s.kind === 'gloss' && CYRILLIC.test(s.gloss.en))
-        fail(`${file} → paragraph ${i + 1}`, `Cyrillic in en gloss field: "${s.gloss.en}"`);
+      // Letter-set checks per gloss field (en: no Cyrillic, ru: no і/ї/є/ґ,
+      // uk: no ы/э/ъ/ё, de: no Cyrillic) — glosses live inside text strings,
+      // where the YAML walker below cannot see them.
+      if (s.kind === 'gloss')
+        for (const p of langFieldProblems(s.gloss)) fail(`${file} → paragraph ${i + 1}`, p);
     }
     glossCount += segments.filter((s) => s.kind === 'gloss').length;
     // the German the learner actually reads: gloss markers flattened to their German half
@@ -649,6 +657,30 @@ for (const [readingId, { file, data }] of readings) {
     if (new Set(q.options).size !== q.options.length) fail(where, 'duplicate options');
     if (!q.explain) warn(where, 'no explain text (feedback on wrong answers will be thin)');
   }
+
+  // Language discipline for this reading — handled here rather than in the bulk
+  // loop below, because gloss `uk` lives inside `text` strings where the YAML
+  // walker cannot see it and must bridge into YAML parity in both directions:
+  // any uk anywhere in the reading (YAML field or 4-field gloss) makes uk
+  // required everywhere in it.
+  const glossParity = glossFieldParity(data.text);
+  if (glossParity.mixed)
+    fail(
+      file,
+      `mixes ${glossParity.withUk} four-field and ${glossParity.withoutUk} three-field glosses — ` +
+        'uk glosses are all-or-none per reading',
+    );
+  const anyUkYaml = hasUkField(data);
+  if (anyUkYaml && glossParity.withUk === 0 && glossParity.withoutUk > 0)
+    fail(
+      file,
+      `reading carries uk YAML fields but its ${glossParity.withoutUk} glosses have no uk field — ` +
+        'add the fourth [[…::uk]] field to every gloss',
+    );
+  for (const p of langFieldProblems(data)) fail(file, p);
+  for (const p of ukParityProblems(data, { forceUk: anyUkYaml || glossParity.withUk > 0 }))
+    fail(file, p);
+  for (const p of deParityProblems(data)) fail(file, p);
 }
 
 // Orphan exercise sets (not referenced by any topic)
@@ -998,61 +1030,66 @@ for (const [setId, { file, data }] of exerciseSets) {
         }
       }
 
-      checkEnFields(AT, atlas, '');
+      // Language discipline: letter sets over the whole file; uk parity per
+      // node/group/unit (not per file), so translating one topic's outcomes
+      // does not demand the entire atlas in the same change.
+      for (const p of langFieldProblems(atlas)) fail(AT, p);
+      for (const group of atlas.groups)
+        for (const p of ukParityProblems(group)) fail(AT, `group "${group.id}": ${p}`);
+      for (const node of atlas.nodes)
+        for (const p of ukParityProblems(node)) fail(AT, `node "${node.id}": ${p}`);
+      for (const unit of atlas.units)
+        for (const p of ukParityProblems(unit)) fail(AT, `unit "${unit.id}": ${p}`);
+      for (const p of deParityProblems(atlas)) fail(AT, p);
     }
   }
 }
 
 // ---------------------------------------------------------------------------
-// EN-half purity: no Cyrillic anywhere an EN-only reader looks
+// Language discipline: letter-set purity and uk/de parity (src/lib/langcheck.ts)
 // ---------------------------------------------------------------------------
 
-/** Recursively flags Cyrillic in any string under a key named `en` or ending in `_en`. */
-function checkEnFields(file: string, node: unknown, path: string): void {
-  if (Array.isArray(node)) {
-    node.forEach((v, i) => checkEnFields(file, v, `${path}[${i}]`));
-    return;
-  }
-  if (node && typeof node === 'object') {
-    for (const [key, value] of Object.entries(node)) {
-      const p = path ? `${path}.${key}` : key;
-      if ((key === 'en' || key.endsWith('_en')) && typeof value === 'string') {
-        if (CYRILLIC.test(value))
-          fail(file, `Cyrillic in English-facing field ${p}: "${value.slice(0, 70)}"`);
-      } else {
-        checkEnFields(file, value, p);
-      }
-    }
-  }
+/**
+ * Letter sets and parity for one YAML/frontmatter tree. `deParity: false`
+ * exempts content/reference-data: its {de,en,ru} referenceExampleSchema
+ * records are German example sentences with translations — German *content*,
+ * not bilingual explanation records — and they legitimately sit beside
+ * de-less bilingual `meaning` records, which is the one false positive of
+ * deParityProblems' structural shape test.
+ *
+ * Readings are handled inside the reading loop above, where 4-field glosses
+ * (invisible to the YAML walker) bridge into uk parity. Atlas is handled in
+ * the atlas block, where uk parity is per node/group/unit.
+ */
+function checkLangDiscipline(file: string, data: unknown, opts: { deParity?: boolean } = {}): void {
+  for (const p of langFieldProblems(data)) fail(file, p);
+  for (const p of ukParityProblems(data)) fail(file, p);
+  if (opts.deParity ?? true) for (const p of deParityProblems(data)) fail(file, p);
 }
 
-for (const { file, data } of vocabFiles.values()) checkEnFields(file, data, '');
-for (const { file, data } of exerciseSets.values()) checkEnFields(file, data, '');
-for (const { file, data } of readings.values()) checkEnFields(file, data, '');
-for (const { file, data } of topics.values()) checkEnFields(file, data, '');
-for (const { file, data } of documents.values()) checkEnFields(file, data, '');
-for (const { file, data } of wordFields.values()) checkEnFields(file, data, '');
-for (const { file, data } of discoveries.values()) checkEnFields(file, data, '');
+for (const { file, data } of vocabFiles.values()) checkLangDiscipline(file, data);
+for (const { file, data } of exerciseSets.values()) checkLangDiscipline(file, data);
+for (const { file, data } of topics.values()) checkLangDiscipline(file, data);
+for (const { file, data } of documents.values()) checkLangDiscipline(file, data);
+for (const { file, data } of wordFields.values()) checkLangDiscipline(file, data);
+for (const { file, data } of discoveries.values()) checkLangDiscipline(file, data);
+for (const { file, data } of references.values()) checkLangDiscipline(file, data, { deParity: false });
 
-// <En> blocks in topic article bodies
+// Language blocks in MDX bodies: <En>/<Ru>/<Uk>/<De> tag balance, letter sets
+// inside each, and all-or-none parity for the optional <Uk>/<De> halves.
+// Balance stays a warning for topic bodies and an error for discovery pieces —
+// the pre-existing <En> contract.
 for (const { file, body } of topics.values()) {
-  const opens = (body.match(/<En>/g) ?? []).length;
-  const closes = (body.match(/<\/En>/g) ?? []).length;
-  if (opens !== closes) warn(file, `unbalanced <En> tags (${opens} open, ${closes} close)`);
-  (body.match(/<En>[\s\S]*?<\/En>/g) ?? []).forEach((block, i) => {
-    for (const line of block.split('\n')) {
-      if (CYRILLIC.test(line))
-        fail(file, `Cyrillic inside <En> block ${i + 1}: "${line.trim().slice(0, 70)}"`);
-    }
-  });
+  const report = mdxLangProblems(body);
+  for (const p of report.balance) warn(file, p);
+  for (const p of report.letters) fail(file, p);
+  for (const p of report.parity) fail(file, p);
 }
 for (const { file, body } of discoveries.values()) {
-  const opens = (body.match(/<En>/g) ?? []).length;
-  const closes = (body.match(/<\/En>/g) ?? []).length;
-  if (opens !== closes) fail(file, `unbalanced <En> tags (${opens} open, ${closes} close)`);
-  (body.match(/<En>[\s\S]*?<\/En>/g) ?? []).forEach((block, index) => {
-    if (CYRILLIC.test(block)) fail(file, `Cyrillic inside <En> block ${index + 1}`);
-  });
+  const report = mdxLangProblems(body);
+  for (const p of report.balance) fail(file, p);
+  for (const p of report.letters) fail(file, p);
+  for (const p of report.parity) fail(file, p);
 }
 
 // ---------------------------------------------------------------------------

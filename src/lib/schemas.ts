@@ -11,10 +11,15 @@ export type CurriculumStrand = (typeof CURRICULUM_STRANDS)[number];
 export const topicKindSchema = z.enum(TOPIC_KINDS);
 export type TopicKind = z.infer<typeof topicKindSchema>;
 
-/** Text that exists in both explanation languages. */
+/** Text that exists in both core explanation languages. `uk` (translation
+    waves) and `de` (German-medium halves, B1 onward) are optional and fall
+    back to `en` at render time (`pick` in src/lib/prefs.ts). Parity is
+    enforced per file by the validator, not per record here. */
 export const bilingualSchema = z.object({
   en: z.string().min(1),
   ru: z.string().min(1),
+  uk: z.string().min(1).optional(),
+  de: z.string().min(1).optional(),
 });
 export type Bilingual = z.infer<typeof bilingualSchema>;
 
@@ -29,6 +34,7 @@ export const topicSchema = z.object({
   title_de: z.string().min(1),
   title_en: z.string().min(1),
   title_ru: z.string().min(1),
+  title_uk: z.string().min(1).optional(),
   level: levelSchema,
   kind: topicKindSchema,
   prerequisites: z.array(slug).default([]),
@@ -137,9 +143,13 @@ export const vocabEntrySchema = z
     plural: z.string().optional(),
     en: z.string().min(1),
     ru: z.string().min(1),
+    /** optional Ukrainian gloss (translation waves); no `de` gloss exists —
+        a German gloss of a German headword is nonsense */
+    uk: z.string().min(1).optional(),
     example_de: z.string().min(1),
     example_en: z.string().min(1),
     example_ru: z.string().min(1),
+    example_uk: z.string().min(1).optional(),
     /** verbs */
     partizip2: z.string().optional(),
     aux: z.enum(['haben', 'sein', 'haben/sein']).optional(),
@@ -196,6 +206,7 @@ export const vocabFileSchema = z.object({
   title_de: z.string().min(1),
   title_en: z.string().min(1),
   title_ru: z.string().min(1),
+  title_uk: z.string().min(1).optional(),
   level: levelSchema,
   entries: z.array(vocabEntrySchema).min(1),
 });
@@ -298,6 +309,10 @@ export const translateItemSchema = z.object({
   prompt_en: z.string().min(1),
   /** source sentence, Russian version (shown when the explanation language is RU) */
   prompt_ru: z.string().min(1),
+  /** source sentence, Ukrainian version (optional; uk mode falls back to the EN
+      prompt). There is deliberately no prompt_de: a German→German translation
+      prompt is nonsense, so de mode also falls back to the EN prompt. */
+  prompt_uk: z.string().min(1).optional(),
   /** preferred German teaching model; feedback may use a closer accepted rendering */
   answer: z.string().min(1),
   /** equally correct, target-preserving German renderings (e.g. another valid V2 order) */
@@ -500,6 +515,7 @@ const wordFieldMemberSchema = z.discriminatedUnion('kind', [
     de: z.string().min(1),
     en: z.string().min(1),
     ru: z.string().min(1),
+    uk: z.string().min(1).optional(),
     note: bilingualSchema.optional(),
   }),
 ]);
@@ -510,6 +526,7 @@ export const wordFieldSchema = z.object({
   title_de: z.string().min(1),
   title_en: z.string().min(1),
   title_ru: z.string().min(1),
+  title_uk: z.string().min(1).optional(),
   members: z.array(wordFieldMemberSchema).min(1),
 });
 export type WordField = z.infer<typeof wordFieldSchema>;
@@ -555,6 +572,7 @@ export const discoverySchema = z
     title_de: z.string().min(1),
     title_en: z.string().min(1),
     title_ru: z.string().min(1),
+    title_uk: z.string().min(1).optional(),
     summary: bilingualSchema,
     images: z.array(discoveryImageSchema).default([]),
     links: z.array(discoveryLinkSchema).default([]),
@@ -620,9 +638,11 @@ export const outcomeSchema = z.object({
   id: slug,
   mode: z.enum(['listening', 'reading', 'writing', 'spoken-production', 'spoken-interaction']),
   domain: z.enum(['personal', 'public', 'educational', 'professional']).optional(),
+  /** the German can-do itself — under ExplainLang 'de' it doubles as the explanation */
   de: z.string().min(1),
   en: z.string().min(1),
   ru: z.string().min(1),
+  uk: z.string().min(1).optional(),
 });
 export type Outcome = z.infer<typeof outcomeSchema>;
 
@@ -633,6 +653,9 @@ export const atlasGroupSchema = z.object({
   title_de: z.string().min(1),
   title_en: z.string().min(1),
   title_ru: z.string().min(1),
+  // zod strips unknown keys, so without this slot a title_ru-bearing group
+  // could never satisfy the validator's per-file uk-parity rule.
+  title_uk: z.string().min(1).optional(),
 });
 export type AtlasGroup = z.infer<typeof atlasGroupSchema>;
 
@@ -662,6 +685,8 @@ export const atlasUnitSchema = z.object({
   title_de: z.string().min(1),
   title_en: z.string().min(1),
   title_ru: z.string().min(1),
+  // parity satisfiability, same as atlasGroupSchema
+  title_uk: z.string().min(1).optional(),
   /** topic ids in teaching order within the unit */
   topics: z.array(slug).min(1),
 });

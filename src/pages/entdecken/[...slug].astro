@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import Bilingual from '../../components/Bilingual.astro';
 import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
+import Uk from '../../components/Uk.astro';
+import De from '../../components/De.astro';
 import ArtifactFeedback from '../../components/discovery/ArtifactFeedback';
 import { withBase } from '../../lib/url';
 
@@ -26,7 +28,7 @@ const { Content } = await render(entry);
       {image.attribution && <figcaption class="mt-1 text-xs text-stone-400">{image.attribution}{image.license && ` · ${image.license}`}</figcaption>}
     </figure>
   ))}
-  <article class="article-prose mt-8"><Content components={{ Bilingual, En, Ru }} /></article>
+  <article class="article-prose mt-8"><Content components={{ Bilingual, En, Ru, Uk, De }} /></article>
   {entry.data.links.length > 0 && (
     <section class="mt-10 rounded-xl border border-stone-200 p-5 dark:border-stone-700">
       <h2 class="text-lg font-bold">Links</h2>
