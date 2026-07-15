@@ -3,7 +3,10 @@
 Status: design accepted 2026-07-14; P7-1/P7-2 implemented and piloted against the live model
 2026-07-15 (findings folded in below — see *Prompt design* and *Latency*). Implementation is
 Phase 7 (P7-1…P7-3) in [backlog.md](backlog.md); this document is the contract those items
-implement. P7-3 (Tauri transport) remains open.
+implement. All three are shipped: P7-3 (Tauri transport) routes both assist requests through
+`tauri-plugin-http` behind `isTauri()`, capability-scoped to exactly `http://localhost:11434/*`;
+the plugin's fetch honors `RequestInit.signal`, so the abort and timeout semantics are identical
+on both transports.
 
 ## What it is, and the one rule it lives under
 
