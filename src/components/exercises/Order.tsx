@@ -3,9 +3,15 @@ import type { z } from 'zod';
 import type { orderItemSchema } from '../../lib/schemas';
 import { normalizeSentence } from '../../lib/cloze';
 import { shuffle } from '../../lib/shuffle';
+import { pick } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type OrderItem = z.infer<typeof orderItemSchema>;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  emptyState: { en: 'Build the sentence…', ru: 'Соберите предложение…' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Chip {
   word: string;
@@ -50,7 +56,7 @@ export function Order({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       >
         {answer.length === 0 && (
           <span className="text-sm text-stone-400">
-            {lang === 'ru' ? 'Соберите предложение…' : 'Build the sentence…'}
+            {pick(lang, UI.emptyState)}
           </span>
         )}
         {answer.map((chip) => (

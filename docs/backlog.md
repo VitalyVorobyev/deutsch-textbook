@@ -306,7 +306,7 @@ never reclassified by the sweep.
   `resolveUiLang` (the inline script cannot import; the mirror is documented on both sides).
   Copy-forward and per-profile isolation are pinned in `tests/uilang.test.ts`.
 
-### P8-2 / P8-3 · The ternary sweep, in two halves — `todo` (M each)
+### P8-2 / P8-3 · The ternary sweep, in two halves — P8-2 `done` 2026-07-15, P8-3 `todo` (M each)
 
 Mechanically replace the ~136 inline `lang === 'ru' ? … : …` ternaries with hoisted
 `pick(lang, {en, ru})` records, so `uk` later widens each record in exactly one place. Two PRs of
@@ -317,6 +317,16 @@ labels are chrome, not content — they move to the strings table. See
 - Depends on: P8-1.
 - Accept: no visible change at the current languages; the swept components contain no inline
   language ternaries.
+- P8-2 (lesson runtime: `exercises/`, `srs/`, `session/`, `training/`, `reading/` — 17 components,
+  ~87 ternaries) shipped as designed: per-file hoisted `UI` records for the explain-lang pairs, and
+  the German furniture of those files (grade buttons, VerdictChip, Prüfen/Weiter/Fertig, step
+  titles, empty states — 53 keys) moved to the chrome strings table with de/en/ru/uk. Strings that
+  interpolate a count where RU/UK word order or numeral agreement diverges are full `{n}` templates
+  the caller `.replace()`s (`session.moreCardsDue`, `flashcards.due`/`new`), not bare suffixes —
+  "1 новых" is not Russian. AssistPanel's `CATEGORY_LABELS` (Grammatik, Wortstellung …) stay
+  German: grammar terms are object language, not furniture. P8-3 is the remaining half:
+  `atlas/`, `progress/`, `today/`, `vocab/`, `discovery/`, `topic/`, ProfileSwitcher, FirstRunGate,
+  and `assist.ts`'s prompt-language name.
 
 ### P8-4 · Ukrainian content machinery — `todo` (L)
 

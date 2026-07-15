@@ -8,6 +8,31 @@ import { Instruction, Translation, type ItemProps } from './shared';
 type SpeakItem = z.infer<typeof speakItemSchema>;
 type Stage = 'attempt' | 'compare';
 
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  playing: { en: 'Playing your recording…', ru: 'Играет ваша запись…' },
+  listenBack: { en: 'Listen to your recording', ru: 'Прослушайте свою запись' },
+  record: { en: 'Record', ru: 'Записать' },
+  recordAgain: { en: 'Record again', ru: 'Записать ещё раз' },
+  stop: { en: 'Stop', ru: 'Остановить' },
+  speakHint: {
+    en: 'Say your answer out loud — recording is optional and plays back as soon as you stop.',
+    ru: 'Скажите ответ вслух — запись по желанию, она проигрывается сразу после остановки.',
+  },
+  noRecording: {
+    en: 'Recording is unavailable in this browser. Just say the answer aloud.',
+    ru: 'Запись недоступна в этом браузере. Просто произнесите ответ вслух.',
+  },
+  yourRecording: { en: 'Your recording', ru: 'Ваша запись' },
+  showModel: { en: 'Show model', ru: 'Показать пример' },
+  modelResponse: { en: 'Model response', ru: 'Пример ответа' },
+  checkYourself: { en: 'Check for yourself', ru: 'Проверьте себя' },
+  privacyNote: {
+    en: 'The recording stayed in this tab and does not affect your score.',
+    ru: 'Запись осталась только в этой вкладке и не влияет на оценку.',
+  },
+} as const satisfies Record<string, { en: string; ru: string }>;
+
 /**
  * Deliberately minimal ceremony: the app cannot verify free speech, so it never
  * charges steps for feedback it cannot give. The flow is speak (recording
@@ -62,7 +87,7 @@ function RecordingPlayer({ src, label, lang, played }: {
       />
       {playing && (
         <p className="mt-1 text-xs text-stone-500 dark:text-stone-400" role="status">
-          {lang === 'ru' ? 'Играет ваша запись…' : 'Playing your recording…'}
+          {pick(lang, UI.playing)}
         </p>
       )}
       {blocked && (
@@ -74,7 +99,7 @@ function RecordingPlayer({ src, label, lang, played }: {
           }}
           className="mt-2 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
         >
-          ▶ {lang === 'ru' ? 'Прослушайте свою запись' : 'Listen to your recording'}
+          ▶ {pick(lang, UI.listenBack)}
         </button>
       )}
     </div>
@@ -149,13 +174,11 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
     <div className="flex flex-wrap items-center gap-3">
       {!recording ? (
         <button type="button" onClick={() => void startRecording()} className="min-h-11 rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800">
-          ● {audioUrl
-            ? (lang === 'ru' ? 'Записать ещё раз' : 'Record again')
-            : (lang === 'ru' ? 'Записать' : 'Record')}
+          ● {audioUrl ? pick(lang, UI.recordAgain) : pick(lang, UI.record)}
         </button>
       ) : (
         <button type="button" onClick={stopRecording} className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900">
-          ■ {lang === 'ru' ? 'Остановить' : 'Stop'}
+          ■ {pick(lang, UI.stop)}
         </button>
       )}
     </div>
@@ -170,20 +193,14 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       {stage === 'attempt' && (
         <div className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
           <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">
-            {supported
-              ? (lang === 'ru'
-                ? 'Скажите ответ вслух — запись по желанию, она проигрывается сразу после остановки.'
-                : 'Say your answer out loud — recording is optional and plays back as soon as you stop.')
-              : (lang === 'ru'
-                ? 'Запись недоступна в этом браузере. Просто произнесите ответ вслух.'
-                : 'Recording is unavailable in this browser. Just say the answer aloud.')}
+            {supported ? pick(lang, UI.speakHint) : pick(lang, UI.noRecording)}
           </p>
           {recordControls}
           {audioUrl && (
             <div className="mt-3">
               <RecordingPlayer
                 src={audioUrl}
-                label={lang === 'ru' ? 'Ваша запись' : 'Your recording'}
+                label={pick(lang, UI.yourRecording)}
                 lang={lang}
                 played={played}
               />
@@ -191,7 +208,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
           )}
           <button type="button" onClick={showModel} disabled={recording}
             className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">
-            {lang === 'ru' ? 'Показать пример' : 'Show model'}
+            {pick(lang, UI.showModel)}
           </button>
         </div>
       )}
@@ -202,7 +219,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
             {audioUrl && (
               <RecordingPlayer
                 src={audioUrl}
-                label={lang === 'ru' ? 'Ваша запись' : 'Your recording'}
+                label={pick(lang, UI.yourRecording)}
                 lang={lang}
                 played={played}
               />
@@ -210,7 +227,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
             <div className="min-w-0 flex-1 rounded-md border border-sky-200 bg-sky-50 px-4 py-3 dark:border-sky-800 dark:bg-sky-950/40">
               <div className="flex items-center gap-2">
                 <p className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
-                  {lang === 'ru' ? 'Пример ответа' : 'Model response'}
+                  {pick(lang, UI.modelResponse)}
                 </p>
                 <SpeakerButton text={item.model_answer} />
               </div>
@@ -220,7 +237,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
           </div>
 
           <div className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
-            <p className="text-sm font-semibold">{lang === 'ru' ? 'Проверьте себя' : 'Check for yourself'}</p>
+            <p className="text-sm font-semibold">{pick(lang, UI.checkYourself)}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-300">
               {item.checklist.map((entry, index) => <li key={index}>{pick(lang, entry)}</li>)}
             </ul>
@@ -233,9 +250,7 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
 
           <div className="mt-4">
             <p className="mb-3 text-xs text-stone-500 dark:text-stone-400">
-              {lang === 'ru'
-                ? 'Запись осталась только в этой вкладке и не влияет на оценку.'
-                : 'The recording stayed in this tab and does not affect your score.'}
+              {pick(lang, UI.privacyNote)}
             </p>
             <button type="button" onClick={onNext} className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900">{nextLabel}</button>
           </div>

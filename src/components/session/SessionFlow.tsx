@@ -14,7 +14,9 @@ import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import type { TopicNode } from '../../lib/mastery';
 import { dueProbes, probeFamilies, type DueProbe } from '../../lib/probes';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t, type StringKey } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import FlashcardSession from '../srs/FlashcardSession';
 import MixedTraining, { type TrainingSet } from '../training/MixedTraining';
 import NextTopic from '../today/NextTopic';
@@ -44,12 +46,29 @@ const TRAINING_COUNT = 8;
  */
 type Step = 0 | 1 | 2 | 3;
 
-const STEP_LABELS: Record<Step, string> = {
-  0: 'Rückblick',
-  1: 'Wiederholen',
-  2: 'Training',
-  3: 'Weiter lernen',
+const STEP_LABELS: Record<Step, StringKey> = {
+  0: 'session.stepProbes',
+  1: 'session.stepReview',
+  2: 'session.stepTraining',
+  3: 'session.stepLearn',
 };
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  skipped: { en: 'skipped', ru: 'пропущено' },
+  doneTodayHint: {
+    en: "Today's session is already done. Want to run another one anyway?",
+    ru: 'Сессия на сегодня уже завершена. Хотите пройти ещё одну?',
+  },
+  learnHint: {
+    en: "Read the article and try the exercises on its page — that's your learning step for today.",
+    ru: 'Прочитайте статью и выполните упражнения на её странице — это ваш учебный шаг на сегодня.',
+  },
+  summary: { en: 'Session summary', ru: 'Итог сессии' },
+  delayedChecks: { en: 'Delayed checks', ru: 'Проверок через время' },
+  cardsReviewed: { en: 'Cards reviewed', ru: 'Карточек повторено' },
+  itemsAnswered: { en: 'Exercise items answered', ru: 'Упражнений отвечено' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 const RESUME_SURFACE = 'session';
 
@@ -69,6 +88,7 @@ interface SessionResume {
 
 export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   // a reload mid-session (mobile tab discard, opening a topic page) returns
   // to the saved lesson point; step 3 is never saved — by then the session is
   // already logged and the "done today" gate takes over
@@ -220,7 +240,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
 
   const skipTarget: Step | null =
     step === 0 ? 1 : step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
-  const skippedLabel = lang === 'ru' ? 'пропущено' : 'skipped';
+  const skippedLabel = pick(lang, UI.skipped);
 
   // Step 0 exists only on days a probe is actually due.
   const steps: Step[] = due !== null && due.length > 0 ? [0, 1, 2, 3] : [1, 2, 3];
@@ -234,13 +254,11 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-800">
         <p className="text-2xl text-green-600 dark:text-green-400">✓</p>
-        <p lang="de" className="mt-2 font-semibold">
-          Heute schon erledigt
+        <p lang={uiLang} className="mt-2 font-semibold">
+          {t('session.doneToday', uiLang)}
         </p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {lang === 'ru'
-            ? 'Сессия на сегодня уже завершена. Хотите пройти ещё одну?'
-            : "Today's session is already done. Want to run another one anyway?"}
+          {pick(lang, UI.doneTodayHint)}
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
           <button
@@ -248,10 +266,10 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             onClick={() => setRepeatAnyway(true)}
             className="rounded-md border border-stone-300 px-5 py-2 text-sm font-semibold text-stone-700 hover:border-amber-500 dark:border-stone-600 dark:text-stone-200 dark:hover:border-amber-500"
           >
-            Nochmal üben
+            {t('session.repeat', uiLang)}
           </button>
           <a href={withBase('/')} className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
-            Zur Startseite
+            {t('session.toHome', uiLang)}
           </a>
         </div>
       </div>
@@ -279,14 +297,14 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                   {i + 1}
                 </span>
                 <span
-                  lang="de"
+                  lang={uiLang}
                   className={
                     step === n
                       ? 'font-semibold text-stone-900 dark:text-stone-100'
                       : 'text-stone-400 dark:text-stone-500'
                   }
                 >
-                  {STEP_LABELS[n]}
+                  {t(STEP_LABELS[n], uiLang)}
                 </span>
               </span>
             </li>
@@ -298,7 +316,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             onClick={() => skip(skipTarget)}
             className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
           >
-            Überspringen →
+            {t('action.skip', uiLang)}
           </button>
         )}
       </div>
@@ -311,7 +329,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             <p className="text-sm text-stone-500 dark:text-stone-400">…</p>
           ) : plan.total === 0 ? (
             <p className="rounded-lg border border-stone-200 bg-white p-6 text-center text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
-              <span lang="de">Keine Karten fällig — weiter zum Training …</span>
+              <span lang={uiLang}>{t('session.noCardsDue', uiLang)}</span>
             </p>
           ) : (
             <>
@@ -328,18 +346,18 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                     onClick={() => setStep(2)}
                     className="rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700"
                   >
-                    Weiter →
+                    {t('action.next', uiLang)}
                   </button>
                   {plan.dueRemaining > 0 && (
                     <button
                       type="button"
                       onClick={continueReview}
-                      lang="de"
+                      lang={uiLang}
                       className="text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
                     >
                       {plan.dueRemaining === 1
-                        ? 'Noch 1 Karte fällig — weiter wiederholen'
-                        : `Noch ${plan.dueRemaining} Karten fällig — weiter wiederholen`}
+                        ? t('session.oneCardDue', uiLang)
+                        : t('session.moreCardsDue', uiLang).replace('{n}', String(plan.dueRemaining))}
                     </button>
                   )}
                 </div>
@@ -364,29 +382,27 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
               <NextTopic spine={spine} nodes={nodes} />
               <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">
-                {lang === 'ru'
-                  ? 'Прочитайте статью и выполните упражнения на её странице — это ваш учебный шаг на сегодня.'
-                  : "Read the article and try the exercises on its page — that's your learning step for today."}
+                {pick(lang, UI.learnHint)}
               </p>
             </div>
 
             <div className="mt-4 rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
               <p className="text-xs uppercase tracking-wide text-stone-400">
-                {lang === 'ru' ? 'Итог сессии' : 'Session summary'}
+                {pick(lang, UI.summary)}
               </p>
               <ul className="mt-2 space-y-1 text-sm text-stone-600 dark:text-stone-300">
                 {probedCount !== null && (
                   <li>
-                    {lang === 'ru' ? 'Проверок через время' : 'Delayed checks'}:{' '}
+                    {pick(lang, UI.delayedChecks)}:{' '}
                     <span className="font-semibold">{probedCount}</span>
                   </li>
                 )}
                 <li>
-                  {lang === 'ru' ? 'Карточек повторено' : 'Cards reviewed'}:{' '}
+                  {pick(lang, UI.cardsReviewed)}:{' '}
                   <span className="font-semibold">{reviewedCount ?? skippedLabel}</span>
                 </li>
                 <li>
-                  {lang === 'ru' ? 'Упражнений отвечено' : 'Exercise items answered'}:{' '}
+                  {pick(lang, UI.itemsAnswered)}:{' '}
                   <span className="font-semibold">{trainedCount ?? skippedLabel}</span>
                 </li>
               </ul>
@@ -397,7 +413,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                 href={withBase('/')}
                 className="inline-block rounded-md bg-amber-600 px-6 py-2 text-sm font-semibold text-white hover:bg-amber-700"
               >
-                Fertig
+                {t('action.done', uiLang)}
               </a>
             </div>
           </div>

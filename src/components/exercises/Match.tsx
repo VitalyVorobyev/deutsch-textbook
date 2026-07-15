@@ -2,9 +2,15 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { matchItemSchema } from '../../lib/schemas';
 import { shuffle } from '../../lib/shuffle';
+import { pick } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type MatchItem = z.infer<typeof matchItemSchema>;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  errors: { en: 'Errors', ru: 'Ошибки' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<MatchItem>) {
   const rights = useMemo(() => shuffle(item.pairs.map((p) => p.right)), [item]);
@@ -89,7 +95,7 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       </div>
       {/* height reserved even at zero errors, so the counter appearing cannot shove the action row down */}
       <p className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400">
-        {errors > 0 && !done && (lang === 'ru' ? `Ошибки: ${errors}` : `Errors: ${errors}`)}
+        {errors > 0 && !done && `${pick(lang, UI.errors)}: ${errors}`}
       </p>
       <ActionRow
         checked={done}

@@ -3,12 +3,24 @@ import type { z } from 'zod';
 import type { audioComprehensionItemSchema } from '../../lib/schemas';
 import { speakGermanSequence, ttsAvailable } from '../../lib/speech';
 import { shuffle } from '../../lib/shuffle';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type AudioItem = z.infer<typeof audioComprehensionItemSchema>;
 
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  noAudio: {
+    en: 'Audio unavailable: this task is scored as reading.',
+    ru: 'Аудио недоступно: это задание проверяет чтение.',
+  },
+} as const satisfies Record<string, { en: string; ru: string }>;
+
 export function AudioComprehension(props: ItemProps<AudioItem>) {
   const { item, lang, onResult, locked, onNext, nextLabel } = props;
+  const uiLang = useUiLang();
   const [chosen, setChosen] = useState<number | null>(null);
   const [plays, setPlays] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -56,13 +68,13 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
         <div className="mb-4 flex items-center gap-3">
           <button type="button" onClick={play} disabled={playing || plays >= item.max_replays}
             className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 dark:bg-stone-200 dark:text-stone-900 sm:min-h-0">
-            {playing ? '…' : '▶ Anhören'}
+            {playing ? '…' : t('action.play', uiLang)}
           </button>
           <span className="text-xs text-stone-400">{plays} / {item.max_replays}</span>
         </div>
       ) : (
         <p className="mb-3 rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-800 dark:bg-sky-950 dark:text-sky-200">
-          {lang === 'ru' ? 'Аудио недоступно: это задание проверяет чтение.' : 'Audio unavailable: this task is scored as reading.'}
+          {pick(lang, UI.noAudio)}
         </p>
       )}
       {(!audioAvailable || checked) && (

@@ -5,12 +5,24 @@ import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
 import { dictationSlip } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ListenItem = z.infer<typeof listenItemSchema>;
 
 /** Characters that are awkward to type on a non-German keyboard. */
 const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  noTts: {
+    en: 'Audio is not available on this device — copy the sentence instead.',
+    ru: 'Аудио на этом устройстве недоступно — перепишите предложение.',
+  },
+  placeholder: { en: 'Type what you hear…', ru: 'Напишите, что вы слышите…' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 /**
  * Dictation: the sentence is spoken via browser TTS (replayable, with a slow
@@ -26,6 +38,7 @@ export function Listen({
   onNext,
   nextLabel,
 }: ItemProps<ListenItem>) {
+  const uiLang = useUiLang();
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -77,22 +90,20 @@ export function Listen({
             onClick={() => speakGerman(item.text)}
             className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-700 sm:min-h-0 sm:py-1.5 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
           >
-            ▶ Anhören
+            {t('action.play', uiLang)}
           </button>
           <button
             type="button"
             onClick={() => speakGerman(item.text, { rate: SLOW_RATE })}
             className="min-h-11 rounded-md border border-stone-300 px-4 py-2 text-sm font-semibold hover:border-amber-500 sm:min-h-0 sm:py-1.5 dark:border-stone-600"
           >
-            🐢 Langsam
+            {t('action.playSlow', uiLang)}
           </button>
         </div>
       ) : (
         <div className="mb-4">
           <p className="text-xs text-stone-400">
-            {lang === 'ru'
-              ? 'Аудио на этом устройстве недоступно — перепишите предложение.'
-              : 'Audio is not available on this device — copy the sentence instead.'}
+            {pick(lang, UI.noTts)}
           </p>
           <p lang="de" className="mt-1 text-lg font-medium">
             {item.text}
@@ -107,7 +118,7 @@ export function Listen({
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && check()}
         disabled={checked}
-        placeholder={lang === 'ru' ? 'Напишите, что вы слышите…' : 'Type what you hear…'}
+        placeholder={pick(lang, UI.placeholder)}
         className={`w-full rounded-md border-2 bg-transparent px-3 py-2 text-lg outline-none ${
           checked
             ? isCorrect
@@ -119,7 +130,7 @@ export function Listen({
         autoComplete="off"
         spellCheck={false}
       />
-      <div className="mt-2 flex gap-1.5" aria-label="Sonderzeichen">
+      <div className="mt-2 flex gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
         {SPECIAL_CHARS.map((ch) => (
           <button
             key={ch}

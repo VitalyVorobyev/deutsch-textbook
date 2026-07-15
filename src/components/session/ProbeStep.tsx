@@ -5,7 +5,9 @@ import type { ExerciseItem } from '../../lib/schemas';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { attemptScore } from '../../lib/scoring';
 import { logAttempt } from '../../lib/store';
-import { useExplainLang } from '../hooks';
+import { pick } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import type { TrainingSet } from '../training/MixedTraining';
@@ -41,8 +43,25 @@ interface Queued {
   overdueDays: number;
 }
 
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+    `{n}` is replaced by the caller. */
+const UI = {
+  probeResult: {
+    en: '— that is what survived the interval, not what you knew right after the lesson.',
+    ru: '— это то, что осталось спустя время, а не сразу после занятия.',
+  },
+  delayedCheck: { en: 'Delayed check', ru: 'Проверка через время' },
+  interval: { en: '{n}-day interval', ru: 'спустя {n} дн.' },
+  overdue: { en: ' (+{n} late)', ru: ' (+{n})' },
+  fromMemory: {
+    en: 'You have learned this before. Answer from memory — there are no hints.',
+    ru: 'Вы это уже проходили. Отвечайте по памяти — подсказок не будет.',
+  },
+} as const satisfies Record<string, { en: string; ru: string }>;
+
 export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onFinished }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
 
   const queue = useMemo<Queued[]>(() => {
     const bySetId = new Map(sets.map((s) => [s.setId, s]));
@@ -93,7 +112,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
   if (queue.length === 0) {
     return (
       <p className="rounded-lg border border-stone-200 bg-white p-6 text-center text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
-        <span lang="de">Keine Rückfragen fällig — weiter …</span>
+        <span lang={uiLang}>{t('session.noProbesDue', uiLang)}</span>
       </p>
     );
   }
@@ -102,21 +121,19 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
     const correct = answered.filter((a) => a.correct).length;
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-        <p lang="de" className="font-semibold">
-          Rückblick abgeschlossen
+        <p lang={uiLang} className="font-semibold">
+          {t('session.probesDone', uiLang)}
         </p>
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
           {correct} / {answered.length}{' '}
-          {lang === 'ru'
-            ? '— это то, что осталось спустя время, а не сразу после занятия.'
-            : '— that is what survived the interval, not what you knew right after the lesson.'}
+          {pick(lang, UI.probeResult)}
         </p>
         <button
           type="button"
           onClick={() => onFinished({ answered: answered.length, correct })}
           className="mt-4 rounded-md bg-amber-600 px-5 py-2 text-sm font-semibold text-white hover:bg-amber-700"
         >
-          Weiter →
+          {t('action.next', uiLang)}
         </button>
       </div>
     );
@@ -128,20 +145,16 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
     <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-xs uppercase tracking-wide text-stone-400">
-          {lang === 'ru' ? 'Проверка через время' : 'Delayed check'} · {index + 1} / {queue.length}
+          {pick(lang, UI.delayedCheck)} · {index + 1} / {queue.length}
         </p>
         <p className="text-xs text-stone-400">
-          {lang === 'ru' ? `спустя ${scheduled} дн.` : `${scheduled}-day interval`}
+          {pick(lang, UI.interval).replace('{n}', String(scheduled))}
           {current!.overdueDays > 0 &&
-            (lang === 'ru'
-              ? ` (+${current!.overdueDays})`
-              : ` (+${current!.overdueDays} late)`)}
+            pick(lang, UI.overdue).replace('{n}', String(current!.overdueDays))}
         </p>
       </div>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-        {lang === 'ru'
-          ? 'Вы это уже проходили. Отвечайте по памяти — подсказок не будет.'
-          : 'You have learned this before. Answer from memory — there are no hints.'}
+        {pick(lang, UI.fromMemory)}
       </p>
 
       <div className="mt-5">
@@ -154,7 +167,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
           onResult={handleResult}
           locked={currentDone}
           onNext={next}
-          nextLabel={index === queue.length - 1 ? 'Fertig →' : 'Weiter →'}
+          nextLabel={index === queue.length - 1 ? t('action.doneArrow', uiLang) : t('action.next', uiLang)}
         />
       </div>
     </div>

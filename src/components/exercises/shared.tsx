@@ -2,7 +2,17 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import type { Bilingual } from '../../lib/schemas';
 import type { CriterionAssessment, PracticePayload } from '../../lib/store';
 import { pick, type ExplainLang } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 import SpeakerButton from '../SpeakerButton';
+
+/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+const UI = {
+  criterionMet: { en: 'Met', ru: 'Получилось' },
+  criterionNeedsWork: { en: 'Needs work', ru: 'Исправить' },
+  correctAnswer: { en: 'Correct answer: ', ru: 'Правильный ответ: ' },
+  alsoPossible: { en: 'Also possible:', ru: 'Также можно:' },
+} as const satisfies Record<string, { en: string; ru: string }>;
 
 export interface ItemResult {
   /** fully correct */
@@ -59,7 +69,7 @@ export function CriterionReview({ entries, values, onChange, lang }: {
           aria-pressed={values[index] === value}
           onClick={() => onChange(values.map((current, i) => i === index ? value : current))}
           className={`rounded-md border px-3 py-1.5 text-xs font-medium ${values[index] === value ? value === 'met' ? 'border-green-600 bg-green-50 text-green-800 dark:bg-green-950/30 dark:text-green-300' : 'border-amber-600 bg-amber-50 text-amber-800 dark:bg-amber-950/30 dark:text-amber-300' : 'border-stone-300 text-stone-500 dark:border-stone-600'}`}
-        >{value === 'met' ? (lang === 'ru' ? 'Получилось' : 'Met') : (lang === 'ru' ? 'Исправить' : 'Needs work')}</button>)}
+        >{value === 'met' ? pick(lang, UI.criterionMet) : pick(lang, UI.criterionNeedsWork)}</button>)}
       </div>
     </div>)}
   </div>;
@@ -87,14 +97,15 @@ const ACTION_BUTTON = 'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disab
 const SWAP_GUARD_MS = 500;
 
 function VerdictChip({ correct }: { correct: boolean }) {
+  const uiLang = useUiLang();
   return (
     <span
-      lang="de"
+      lang={uiLang}
       className={`text-sm font-semibold ${
         correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'
       }`}
     >
-      {correct ? 'Richtig! ✓' : 'Leider falsch ✗'}
+      {correct ? t('verdict.correct', uiLang) : t('verdict.wrong', uiLang)}
     </span>
   );
 }
@@ -123,6 +134,7 @@ export function ActionRow({
   onNext: () => void;
   nextLabel: string;
 }) {
+  const uiLang = useUiLang();
   // Only the Prüfen→Weiter swap needs the guard; items that submit on click (mc,
   // match) never had a button in this slot to double-click in the first place.
   const swappedAt = useRef(0);
@@ -144,7 +156,7 @@ export function ActionRow({
           disabled={checkDisabled}
           className={`${ACTION_BUTTON} bg-amber-600 text-white hover:bg-amber-700`}
         >
-          Prüfen
+          {t('action.check', uiLang)}
         </button>
       ) : (
         <button
@@ -193,6 +205,7 @@ export function Feedback({
   /** Other authored, equally correct renderings; shown only after submission. */
   alternatives?: string[];
 }) {
+  const uiLang = useUiLang();
   const showAnswer = !correct && !!correctAnswer;
   const showAlternatives = !!alternatives?.length;
   if (!showAnswer && !note && !explain && !showAlternatives) return null;
@@ -207,7 +220,7 @@ export function Feedback({
     >
       {showAnswer && (
         <p>
-          {correctAnswerLabel ?? (lang === 'ru' ? 'Правильный ответ: ' : 'Correct answer: ')}
+          {correctAnswerLabel ?? pick(lang, UI.correctAnswer)}
           <span lang="de" className="font-medium">{correctAnswer}</span>
           {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
@@ -215,7 +228,7 @@ export function Feedback({
       {note && <div className={showAnswer ? 'mt-2' : undefined}>{note}</div>}
       {showAlternatives && (
         <div className={showAnswer || note ? 'mt-2' : undefined}>
-          <p className="font-medium">{lang === 'ru' ? 'Также можно:' : 'Also possible:'}</p>
+          <p className="font-medium">{pick(lang, UI.alsoPossible)}</p>
           <ul className="mt-1 list-disc space-y-0.5 pl-5" lang="de">
             {alternatives.map((alternative) => <li key={alternative}>{alternative}</li>)}
           </ul>
@@ -225,7 +238,7 @@ export function Feedback({
       {correct && explain && (
         <details>
           <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">
-            Warum?
+            {t('verdict.why', uiLang)}
           </summary>
           <p className="mt-1">{pick(lang, explain)}</p>
         </details>
