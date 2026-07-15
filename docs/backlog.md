@@ -285,7 +285,7 @@ language (content) — specified in [i18n-design.md](i18n-design.md); read it fi
 P8-1…P8-5 (~5 PRs); content is the C3 translation waves (~15–22 PRs), concurrent with B1 authoring
 and never gating it.
 
-### P8-1 · Strings module and per-profile language preferences — `todo` (M)
+### P8-1 · Strings module and per-profile language preferences — `done` 2026-07-15 (M)
 
 Per [i18n-design.md](i18n-design.md): `src/lib/strings.ts` with `UiLang` (`de | en | ru | uk`),
 `t(key, uiLang)` and a `useUiLang()` hook; `<html data-ui-lang>` applied pre-paint; per-profile
@@ -298,6 +298,13 @@ never reclassified by the sweep.
 
 - Accept: the default build is visually unchanged; switching profiles re-applies both language
   attributes; the copy-forward migration is tested.
+- Shipped as designed. The nav is the first converted chrome surface (CSS-toggled `.ui-*` spans
+  from the `STRINGS` table — no React island); the rest of the chrome moves with the P8-2/P8-3
+  sweep. The per-profile picker lives in the ProfileSwitcher dropdown (the profile-scoped home).
+  Profile switching re-applies both attributes via the reload `switchProfile` already does — the
+  pre-paint script is the single re-application path, mirroring `resolveExplainLang`/
+  `resolveUiLang` (the inline script cannot import; the mirror is documented on both sides).
+  Copy-forward and per-profile isolation are pinned in `tests/uilang.test.ts`.
 
 ### P8-2 / P8-3 · The ternary sweep, in two halves — `todo` (M each)
 

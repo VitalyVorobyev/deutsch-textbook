@@ -8,11 +8,15 @@ import {
   resolveProfileState,
   type Profile,
 } from '../lib/profile';
-import { useExplainLang } from './hooks';
+import { setUiLang } from '../lib/prefs';
+import { UI_LANGS } from '../lib/strings';
+import { useExplainLang, useUiLang } from './hooks';
 
-/** Header dropdown to switch, create, and delete local learner profiles. */
+/** Header dropdown to switch, create, and delete local learner profiles,
+    and the per-profile UI-language (chrome) setting. */
 export default function ProfileSwitcher() {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [activeId, setActiveId] = useState('');
@@ -104,6 +108,28 @@ export default function ProfileSwitcher() {
               )}
             </div>
           ))}
+
+          <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
+            <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+              {t('Interface language', 'Язык интерфейса')}
+            </p>
+            <div className="flex gap-1 px-2 pb-1" role="group" aria-label={t('Interface language', 'Язык интерфейса')}>
+              {UI_LANGS.map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setUiLang(l)}
+                  className={`flex-1 rounded px-1.5 py-1 text-xs font-semibold uppercase ${
+                    l === uiLang
+                      ? 'bg-amber-600 text-white'
+                      : 'text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-700'
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
             {adding ? (
