@@ -187,7 +187,7 @@ output is **advisory only, never evidence** — it never touches accuracy, maste
 snapshot, and the feature self-hides when no local model answers. This phase does **not** reopen
 P5-3: pronunciation assistance stays deferred.
 
-### P7-1 · Assist library — `todo` (M)
+### P7-1 · Assist library — `done` (M)
 
 `src/lib/assist.ts` per [assist-design.md](assist-design.md): `probeAssist()` and `reviewDraft()`,
 the JSON-schema-constrained request, the hallucination filter with its single corrective retry, and
@@ -197,7 +197,7 @@ quote filter, retry, abort. No UI in this PR.
 - Accept: tests cover the design doc's failure-mode table; a test asserts nothing is written to
   attempts or the snapshot.
 
-### P7-2 · Write.tsx advisory panel — `todo` (M)
+### P7-2 · Write.tsx advisory panel — `done` (M)
 
 The revise-stage, on-demand panel per [assist-design.md](assist-design.md): praise line, hint list,
 failure states, the gear popover, and an "advisory — never a score" footnote mirroring the
