@@ -220,13 +220,19 @@ D/A/CH cross-references each contributing their word (Treppe + Stiege, Kartoffel
 which is why the headword count runs well above the official unit count. Wortgruppen sections
 mirror the PDF (pp. 8–15); the alphabetical list (pp. 16–102) keeps per-letter sections so
 completeness stays checkable page by page. Verified by two full sample-page audits (pp. 33, 88:
-every headword present, regional variants included). **Zero `~` marks** — none are earned until
-B1 content exists. Wiring was one line (`MEASURED_LEVELS` gains `'B1'`); the Über page's B1 card
-gains a computed sentence — 39% of the B1 Wortliste is already covered by A1/A2 material, stated
-as a head start on the level's lexis, never as progress on the level.
+every headword present, regional variants included). **`~` marks are inherited only** (Codex
+review finding on #52): a B1 headword is `~`-marked iff the same word carries a `~` in the A1/A2
+manifests — the grammar-taught, no-flashcard decision is frozen there, and leaving those lines
+plain both undercounted the head start and put grammar words on the missing list a future
+`--check-deck` run would card. 64 marks inherited, each still paying the taught-surface check;
+B1-only words stay unmarked until B1 content earns them. The same audit surfaced four stale A1/A2
+marks (`dass`, `denn`, `weil`, `wenn` — `~`-marked but deck-owned by `kernwortschatz-a2` since it
+shipped), fixed in the same change. Wiring was one line (`MEASURED_LEVELS` gains `'B1'`); the
+Über page's B1 card gains a computed sentence — 41% of the B1 Wortliste is already covered by
+A1/A2 material, stated as a head start on the level's lexis, never as progress on the level.
 
 - Accept: `bun scripts/coverage.ts B1` reports; A1 and A2 stay 100%; the Über figure is computed,
-  not asserted; the validator's earned-`~` check runs over the new manifest (vacuously, zero `~`).
+  not asserted; the validator's earned-`~` check passes over the new manifest's inherited marks.
 
 ## Parallel — Phase 7: Schreib-Assistent
 

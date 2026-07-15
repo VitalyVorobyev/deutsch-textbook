@@ -7,9 +7,18 @@
 # the PDF page by page. A word listed in several sections counts once, for its
 # first.
 #
-# There are deliberately NO ~ marks yet: a ~ must be paid for with taught
-# surface (`bun run validate` checks it), and no B1 content exists. B1 units
-# earn them later, the same way A1/A2 did.
+# The only ~ marks here are INHERITED: a B1 headword carries a ~ iff the same
+# word is ~-marked in the A1 or A2 manifest — the course already teaches it as
+# grammar and the no-flashcard decision is frozen there (a plain line would
+# undercount the head start and invite a future B1 deck to card grammar the
+# course teaches without cards). Every inherited ~ still pays the taught-surface
+# check (`bun run validate`). B1-only words get NO ~ yet: no B1 content exists
+# to earn one, and their card-vs-grammar classification happens when B1 units
+# are planned. Two near-matches deliberately stay plain: B1 `lieb` (A2's
+# ~lieb- is the letter salutation stem; B1 lists the standalone adjective — a
+# different word, card-worthy) and B1 `geehrt` (A2's ~geehrt- earns via the
+# inflected `geehrte`; the bare form is not in the taught surface, so the ~
+# would be unearned).
 #
 # Extracted from the official PDF (Goethe-Institut / Universität Freiburg/
 # Schweiz / ÖSD, 2016, "circa 2400 lexikalische Einheiten"); every headword
@@ -44,7 +53,7 @@ Azubi
 Auszubildende
 bzw.
 beziehungsweise
-ca.
+~ca.
 circa
 zirka
 d. h.
@@ -68,12 +77,12 @@ Personenkraftwagen
 SMS
 Textnachricht
 TV
-usw.
+~usw.
 vgl.
 WC
 WG
 Wohngemeinschaft
-z. B.
+~z. B.
 
 # --- Anglizismen ---
 Baby
@@ -159,7 +168,7 @@ Userin
 # --- Anweisungssprache ---
 Aufgabe
 ankreuzen
-Antwortbogen
+~Antwortbogen
 Anzeige
 Aussage
 Durchsage
@@ -409,7 +418,7 @@ einundzwanzig
 dreißig
 hundert
 einhundert
-zweihundert
+~zweihundert
 tausend
 eintausend
 Million
@@ -515,11 +524,11 @@ Jahrhundert
 Jahrtausend
 
 # --- A ---
-ab
+~ab
 abbiegen
 Abbildung
 Abenteuer
-aber
+~aber
 abfahren
 Abfahrt
 Abfall
@@ -563,7 +572,7 @@ aktuell
 akzeptieren
 Alarm
 Alkohol
-all-
+~all-
 allein
 aller-
 allerdings
@@ -571,7 +580,7 @@ allgemein
 Alltag
 alltäglich
 Alphabet
-als
+~als
 als ob
 also
 alt
@@ -583,12 +592,12 @@ Alternative
 Ampel
 Amt
 sich amüsieren
-an
+~an
 analysieren
 anbieten
 Anbieter
 Angebot
-ander-
+~ander-
 andererseits
 ändern
 Änderung
@@ -671,7 +680,7 @@ Asyl
 atmen
 Atem
 auch
-auf
+~auf
 Aufenthalt
 auffallen
 auffordern
@@ -699,7 +708,7 @@ Aufzug
 Lift
 Auge
 Augenblick
-aus
+~aus
 Ausbildung
 ausgebildet
 ausdrucken
@@ -731,7 +740,7 @@ aussehen
 außen
 außerhalb
 äußerlich
-außer
+~außer
 außerdem
 Aussicht
 aussprechen
@@ -815,7 +824,7 @@ behaupten
 behindern
 behindert
 Behörde
-bei
+~bei
 beid-
 Bein
 beinahe
@@ -913,7 +922,7 @@ Bio-
 bio
 biologisch
 Birne
-bis
+~bis
 bisher
 ein bisschen
 bitten
@@ -1062,7 +1071,7 @@ direkt
 Direktor
 Direktorin
 Diskothek
-Disko
+~Disko
 diskutieren
 Diskussion
 Distanz
@@ -1093,7 +1102,7 @@ Druck
 dumm
 dunkel
 dünn
-durch
+~durch
 durcheinander
 Durchschnitt
 durchschnittlich
@@ -1123,13 +1132,13 @@ Ehepaar
 eher
 ehrlich
 Ei
-eigen-
+~eigen-
 eigentlich
 sich eignen
 eilen
 Eile
 eilig
-ein-
+~ein-
 Einbahnstraße
 einbrechen
 Einbrecher
@@ -1148,7 +1157,7 @@ einführen
 Einführung
 Eingang
 einheitlich
-einig-
+~einig-
 sich einigen
 einkaufen
 Einkauf
@@ -1176,7 +1185,7 @@ Einwohnerin
 einzahlen
 Einzahlung
 einzeln
-Einzel-
+~Einzel-
 Einzelheit
 einzig-
 einziehen
@@ -1283,7 +1292,7 @@ erzählen
 Erzählung
 erziehen
 Erziehung
-es
+~es
 essen
 Essen
 Essig
@@ -1465,7 +1474,7 @@ Führerschein
 Führung
 Fundbüro
 funktionieren
-für
+~für
 furchtbar
 fürchten
 Fuß
@@ -1511,13 +1520,13 @@ gefallen
 sich etwas gefallen lassen
 Gefängnis
 Gefühl
-gegen
+~gegen
 Gegner
 Gegend
 Gegensatz
 Gegenstand
 Gegenteil
-gegenüber
+~gegenüber
 Gehalt
 Geheimnis
 geheim
@@ -1692,13 +1701,13 @@ helfen
 Hilfe
 hell
 Hemd
-her
-heraus
+~her
+~heraus
 raus
 herausfinden
 Herausforderung
 Herd
-herein
+~herein
 rein
 Herkunft
 Herr
@@ -1717,7 +1726,7 @@ hierher
 Himmel
 runterwerfen
 hinten
-hinter
+~hinter
 hinterlassen
 hinterher
 hinweisen
@@ -1766,7 +1775,7 @@ Znüni
 Zvieri
 immer
 Import
-in
+~in
 indem
 individuell
 Industrie
@@ -1810,7 +1819,7 @@ Jacke
 je
 je … desto …
 Jeans
-jeder
+~jeder
 jederzeit
 jedes Mal
 jedoch
@@ -1864,7 +1873,7 @@ Kauf
 Käufer
 Käuferin
 kaum
-kein-
+~kein-
 Keller
 Kellner
 Kellnerin
@@ -2068,14 +2077,14 @@ Lernerin
 lesen
 Leser
 Leserin
-letzt-
+~letzt-
 Leute
 Lexikon
 Licht
 lieben
 lieb
 Liebe
-Lieblings-
+~Lieblings-
 Lied
 liefern
 Lieferung
@@ -2116,8 +2125,8 @@ Mal
 malen
 Maler
 Malerin
-man
-manch-
+~man
+~manch-
 manchmal
 Mangel
 Mann
@@ -2149,7 +2158,7 @@ Mehrwertsteuer
 meinen
 meinetwegen
 Meinung
-meist-
+~meist-
 meist
 meistens
 Meister
@@ -2183,7 +2192,7 @@ Mineralwasser
 minimal
 mischen
 miss-
-mit
+~mit
 Mitarbeiter
 Mitarbeiterin
 miteinander
@@ -2232,7 +2241,7 @@ mutig
 Mutter
 
 # --- N ---
-nach
+~nach
 Nachbar
 Nachbarin
 nachdem
@@ -2264,7 +2273,7 @@ Natur
 natürlich
 Nebel
 neblig
-neben
+~neben
 nebenan
 nebenbei
 Neffe
@@ -2281,7 +2290,7 @@ neu
 Neuigkeit
 neugierig
 neulich
-nicht
+~nicht
 Nichte
 Nichtraucher
 Nichtraucherin
@@ -2325,7 +2334,7 @@ Schlagsahne
 Rahm
 Schlagrahm
 obwohl
-oder
+~oder
 Ofen
 Backofen
 Rohr
@@ -2338,7 +2347,7 @@ offenbar
 offiziell
 öffnen
 oft
-ohne
+~ohne
 Ohr
 Öko-
 ökologisch
@@ -2725,8 +2734,8 @@ sehen
 Sehenswürdigkeit
 sehr
 Seife
-sein
-seit
+~sein
+~seit
 seitdem
 Seite
 Sekretär
@@ -3057,7 +3066,7 @@ typisch
 # --- U ---
 üben
 Übung
-über
+~über
 überall
 überfahren
 überhaupt
@@ -3088,7 +3097,7 @@ typisch
 übrig
 übrigens
 Ufer
-um
+~um
 umarmen
 um … zu
 umdrehen
@@ -3110,7 +3119,7 @@ Umzug
 sich umziehen
 un-
 unbedingt
-und
+~und
 Unfall
 ungefähr
 ungewöhnlich
@@ -3119,7 +3128,7 @@ Unglück
 unheimlich
 Uniform
 unten
-unter
+~unter
 unter-
 unterbrechen
 unterhalten
@@ -3274,9 +3283,9 @@ voll
 Vollzeit
 Volleyball
 völlig
-von
+~von
 voneinander
-vor
+~vor
 vor allem
 voraus
 Voraussetzung
@@ -3324,14 +3333,14 @@ Wald
 Wand
 wandern
 Wanderung
-wann
+~wann
 Ware
 warm
 Wärme
 warnen
 warten
-warum
-was
+~warum
+~was
 was für ein-
 waschen
 Wäsche
@@ -3355,14 +3364,14 @@ weinen
 weit
 weiter
 Weiterbildung
-welcher
+~welcher
 Welt
 weltweit
 wenden
 wenig
 wenigstens
 wenn
-wer
+~wer
 Werbung
 werden
 werfen
@@ -3381,7 +3390,7 @@ Wetterbericht
 Wettervorhersage
 wichtig
 widersprechen
-wie
+~wie
 wieder
 wiederholen
 Wiederholung
@@ -3389,7 +3398,7 @@ wiegen
 wild
 Wiese
 wieso
-wie viel
+~wie viel
 wie viele
 willkommen
 Wind
@@ -3408,9 +3417,9 @@ Wissenschaft
 Wissenschaftler
 Wissenschaftlerin
 Witz
-wo
-woher
-wohin
+~wo
+~woher
+~wohin
 wohl
 wohnen
 Wohnsitz
@@ -3478,7 +3487,7 @@ Zitrone
 Zoll
 Zone
 Zoo
-zu
+~zu
 zubereiten
 Zucker
 zuerst
@@ -3525,4 +3534,4 @@ zweifeln
 Zweifel
 Zwiebel
 zwingen
-zwischen
+~zwischen
