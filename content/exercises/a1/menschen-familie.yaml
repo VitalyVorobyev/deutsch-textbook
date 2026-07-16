@@ -5,12 +5,13 @@ items:
   - id: match-family
     outcomes: [familie-vorstellen]
     type: match
+    revision: 2
     pairs:
-      - { left: "die Mutter", right: "mother" }
-      - { left: "der Vater", right: "father" }
-      - { left: "die Tochter", right: "daughter" }
-      - { left: "der Sohn", right: "son" }
-    explain: { en: "Learn family nouns together with their article.", ru: "Учите названия членов семьи вместе с артиклем.", uk: "Вчіть назви членів сім'ї разом з артиклем." }
+      - { left: "die Mutter", right: "der Vater" }
+      - { left: "die Tochter", right: "der Sohn" }
+      - { left: "die Schwester", right: "der Bruder" }
+      - { left: "die Großmutter", right: "der Großvater" }
+    explain: { en: "Match each family member to the male counterpart. Learn the nouns together with their article: the female family words take die, their counterparts der.", ru: "Соедините каждого члена семьи с парным словом мужского рода. Учите слова вместе с артиклем: женские — с die, парные мужские — с der.", uk: "З'єднайте кожного члена сім'ї з парним словом чоловічого роду. Вчіть слова разом з артиклем: жіночі — з die, парні чоловічі — з der." }
   - id: cloze-possessives
     outcomes: [familie-vorstellen]
     type: cloze

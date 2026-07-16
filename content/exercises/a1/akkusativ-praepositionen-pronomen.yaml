@@ -147,18 +147,16 @@ items:
     outcomes: [akkusativ-praepositionen]
     type: translate
     focus: akkusativ-praepositionen
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
-    prompt_en: "The flowers are for you."
+    prompt_en: "The flowers are for you (one person, informal)."
     prompt_ru: "Цветы для тебя."
     prompt_uk: "Квіти для тебе."
     answer: "Die Blumen sind für dich."
     key_tokens: ["für", "dich"]
-    accept:
-      - "Die Blumen sind für euch."
-      - "Die Blumen sind für Sie."
     explain:
       en: "für + accusative: du → dich. The pronoun changes just like the article does — für dich, für mich, für ihn."
       ru: "für + Akkusativ: du → dich. Русское «для тебя» — родительный падеж, а в немецком für всегда требует винительный: für dich."

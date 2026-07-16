@@ -424,6 +424,11 @@ never half.
   landed a handful of fixes (formality markers, a Vorname/heißen blur); no German content, ids,
   answers, `key_tokens` or revisions touched — verified by a frozen-surface diff, not by reading.
 - Wave 2 — `todo`: next A1 spine topics (continue in spine order).
+- **Known instrument gap (pre-A2-waves)**: `matchItemSchema` pairs are plain strings with no
+  per-language structure, so a translation-flavored right side is invisible to the parity and
+  letter-set checks. Wave 1's `match-family` was reshaped German↔German (Codex finding, PR #60);
+  `a2/modalverben.yaml` still carries the `"ability / умение"` slash-hack and needs either the
+  same reshape or a small schema+`Match.tsx` machinery PR before its A2 wave reaches it.
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
