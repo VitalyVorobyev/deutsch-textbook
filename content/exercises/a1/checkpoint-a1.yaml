@@ -1,6 +1,6 @@
 topic: freizeit-koennen
 role: checkpoint
-title: { en: "Checkpoint A1 — the whole level in one test", ru: "Контрольный тест A1 — весь уровень в одном тесте" }
+title: { en: "Checkpoint A1 — the whole level in one test", ru: "Контрольный тест A1 — весь уровень в одном тесте", uk: "Контрольний тест A1 — весь рівень в одному тесті" }
 items:
   # --- Hören ---
   - id: hoeren-ansage-supermarkt
@@ -14,8 +14,8 @@ items:
     question: "Bis wann ist der Supermarkt heute geöffnet?"
     options: ["Bis zwanzig Uhr (20:00).", "Bis zwölf Uhr (12:00).", "Bis sieben Uhr (7:00)."]
     correct: 0
-    translation: { en: "Until when is the supermarket open today?", ru: "До какого часа супермаркет работает сегодня?" }
-    explain: { en: "The announcement says: heute bis zwanzig Uhr geöffnet. Don't confuse zwanzig (20) and zwölf (12) — they sound similar. Sieben Uhr is tomorrow's opening time, not today's closing time.", ru: "В объявлении сказано: heute bis zwanzig Uhr geöffnet. Не путайте на слух zwanzig (20) и zwölf (12). Sieben Uhr — это время открытия завтра, а не закрытия сегодня." }
+    translation: { en: "Until when is the supermarket open today?", ru: "До какого часа супермаркет работает сегодня?", uk: "До котрої години супермаркет працює сьогодні?" }
+    explain: { en: "The announcement says: heute bis zwanzig Uhr geöffnet. Don't confuse zwanzig (20) and zwölf (12) — they sound similar. Sieben Uhr is tomorrow's opening time, not today's closing time.", ru: "В объявлении сказано: heute bis zwanzig Uhr geöffnet. Не путайте на слух zwanzig (20) и zwölf (12). Sieben Uhr — это время открытия завтра, а не закрытия сегодня.", uk: "В оголошенні сказано: heute bis zwanzig Uhr geöffnet. Не плутайте на слух zwanzig (20) і zwölf (12). Sieben Uhr — це час відкриття завтра, а не закриття сьогодні." }
   - id: hoeren-weg-bibliothek
     outcomes: [stadt-wegbeschreibung-verstehen, stadt-weg-erfragen]
     type: audio-comprehension
@@ -29,8 +29,8 @@ items:
     question: "Wie kommt der Tourist zur Bibliothek?"
     options: ["Geradeaus und dann die erste Straße rechts.", "Geradeaus und dann die zweite Straße links.", "Mit dem Bus bis zum Platz."]
     correct: 0
-    translation: { en: "How does the tourist get to the library?", ru: "Как туристу пройти к библиотеке?" }
-    explain: { en: "The woman says: Gehen Sie geradeaus und dann die erste Straße rechts. The polite way to ask for directions is a complete W-question: Entschuldigung, wo ist …?", ru: "Женщина говорит: Gehen Sie geradeaus und dann die erste Straße rechts. Дорогу спрашивают вежливо, полным W-вопросом: Entschuldigung, wo ist …?" }
+    translation: { en: "How does the tourist get to the library?", ru: "Как туристу пройти к библиотеке?", uk: "Як туристові пройти до бібліотеки?" }
+    explain: { en: "The woman says: Gehen Sie geradeaus und dann die erste Straße rechts. The polite way to ask for directions is a complete W-question: Entschuldigung, wo ist …?", ru: "Женщина говорит: Gehen Sie geradeaus und dann die erste Straße rechts. Дорогу спрашивают вежливо, полным W-вопросом: Entschuldigung, wo ist …?", uk: "Жінка каже: Gehen Sie geradeaus und dann die erste Straße rechts. Дорогу питають ввічливо, повним W-питанням: Entschuldigung, wo ist …?" }
   - id: hoeren-verabredung-schwimmen
     outcomes: [freizeit-gespraech-verstehen, freizeit-verabredung]
     type: audio-comprehension
@@ -44,22 +44,22 @@ items:
     question: "Wann gehen Paul und Nina schwimmen?"
     options: ["Am Freitag.", "Am Donnerstag.", "Am Samstag."]
     correct: 0
-    translation: { en: "When are Paul and Nina going swimming?", ru: "Когда Пауль и Нина пойдут плавать?" }
-    explain: { en: "Nina turns Thursday down politely — Am Donnerstag kann ich leider nicht — and suggests Friday: Hast du am Freitag Zeit? Paul agrees: Ja, Freitag ist super.", ru: "Нина вежливо отказывается от четверга — Am Donnerstag kann ich leider nicht — и предлагает пятницу: Hast du am Freitag Zeit? Пауль соглашается: Ja, Freitag ist super." }
+    translation: { en: "When are Paul and Nina going swimming?", ru: "Когда Пауль и Нина пойдут плавать?", uk: "Коли Пауль і Ніна підуть плавати?" }
+    explain: { en: "Nina turns Thursday down politely — Am Donnerstag kann ich leider nicht — and suggests Friday: Hast du am Freitag Zeit? Paul agrees: Ja, Freitag ist super.", ru: "Нина вежливо отказывается от четверга — Am Donnerstag kann ich leider nicht — и предлагает пятницу: Hast du am Freitag Zeit? Пауль соглашается: Ja, Freitag ist super.", uk: "Ніна ввічливо відмовляється від четверга — Am Donnerstag kann ich leider nicht — і пропонує п'ятницю: Hast du am Freitag Zeit? Пауль погоджується: Ja, Freitag ist super." }
   - id: diktat-telefonnummer
     outcomes: [erste-zahlen-verstehen]
     type: listen
-    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите.", uk: "Прослухайте та напишіть, що ви чуєте." }
     text: "Meine Telefonnummer ist null vier acht sieben neun."
-    translation: { en: "My telephone number is zero four eight seven nine.", ru: "Мой номер телефона — ноль четыре восемь семь девять." }
-    explain: { en: "Phone numbers are read digit by digit: null vier acht sieben neun. The number words stay lowercase; Telefonnummer is a noun and is capitalized.", ru: "Телефонные номера называют по одной цифре: null vier acht sieben neun. Числительные пишутся со строчной буквы, а существительное Telefonnummer — с заглавной." }
+    translation: { en: "My telephone number is zero four eight seven nine.", ru: "Мой номер телефона — ноль четыре восемь семь девять.", uk: "Мій номер телефону — нуль чотири вісім сім дев'ять." }
+    explain: { en: "Phone numbers are read digit by digit: null vier acht sieben neun. The number words stay lowercase; Telefonnummer is a noun and is capitalized.", ru: "Телефонные номера называют по одной цифре: null vier acht sieben neun. Числительные пишутся со строчной буквы, а существительное Telefonnummer — с заглавной.", uk: "Телефонні номери називають по одній цифрі: null vier acht sieben neun. Числівники пишуться з малої літери, а іменник Telefonnummer — з великої." }
   - id: diktat-familie
     outcomes: [familie-verstehen]
     type: listen
-    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите." }
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите.", uk: "Прослухайте та напишіть, що ви чуєте." }
     text: "Mein Bruder wohnt in Hamburg und hat zwei Kinder."
-    translation: { en: "My brother lives in Hamburg and has two children.", ru: "Мой брат живёт в Гамбурге, и у него двое детей." }
-    explain: { en: "Third-person -t twice: er wohnt, er hat. The nouns Bruder, Hamburg and Kinder are capitalized; the possessive mein stays lowercase.", ru: "Дважды окончание третьего лица -t: er wohnt, er hat. Существительные Bruder, Hamburg и Kinder — с заглавной буквы, притяжательное mein — со строчной." }
+    translation: { en: "My brother lives in Hamburg and has two children.", ru: "Мой брат живёт в Гамбурге, и у него двое детей.", uk: "Мій брат живе в Гамбурзі, і в нього двоє дітей." }
+    explain: { en: "Third-person -t twice: er wohnt, er hat. The nouns Bruder, Hamburg and Kinder are capitalized; the possessive mein stays lowercase.", ru: "Дважды окончание третьего лица -t: er wohnt, er hat. Существительные Bruder, Hamburg и Kinder — с заглавной буквы, притяжательное mein — со строчной.", uk: "Двічі закінчення третьої особи -t: er wohnt, er hat. Іменники Bruder, Hamburg і Kinder — з великої літери, присвійне mein — з малої." }
   # --- Lesen ---
   - id: lesen-wohnungsanzeige
     outcomes: [wohnen-anzeige-verstehen]
@@ -67,113 +67,116 @@ items:
     prompt: "Sie lesen eine Anzeige: „3-Zimmer-Wohnung in Dresden, 71 Quadratmeter. Das Wohnzimmer ist groß und hell, das Bad ist neu. Es gibt keinen Balkon, aber einen Garten. Miete: 820 Euro. Frei ab Oktober.“ Was ist richtig?"
     options: ["Die Wohnung hat einen Garten, aber keinen Balkon.", "Die Wohnung hat einen Balkon, aber keinen Garten.", "Das Bad ist alt, aber das Wohnzimmer ist neu."]
     correct: 0
-    translation: { en: "You read a housing ad. What is correct?", ru: "Вы читаете объявление о квартире. Что верно?" }
-    explain: { en: "The ad says: Es gibt keinen Balkon, aber einen Garten — a garden yes, a balcony no. And das Bad ist neu, so the option with alt contradicts the ad.", ru: "В объявлении сказано: Es gibt keinen Balkon, aber einen Garten — сад есть, балкона нет. И das Bad ist neu, поэтому вариант с alt противоречит объявлению." }
+    translation: { en: "You read a housing ad. What is correct?", ru: "Вы читаете объявление о квартире. Что верно?", uk: "Ви читаєте оголошення про квартиру. Що правильно?" }
+    explain: { en: "The ad says: Es gibt keinen Balkon, aber einen Garten — a garden yes, a balcony no. And das Bad ist neu, so the option with alt contradicts the ad.", ru: "В объявлении сказано: Es gibt keinen Balkon, aber einen Garten — сад есть, балкона нет. И das Bad ist neu, поэтому вариант с alt противоречит объявлению.", uk: "В оголошенні сказано: Es gibt keinen Balkon, aber einen Garten — сад є, балкона немає. І das Bad ist neu, тому варіант з alt суперечить оголошенню." }
   - id: lesen-oeffnungszeiten
     outcomes: [zeit-wochenplan-lesen]
     type: mc
     prompt: "Sie lesen die Öffnungszeiten: „Schwimmbad Nordstadt. Montag bis Freitag: 7–21 Uhr. Samstag: 9–18 Uhr. Sonntag: geschlossen.“ Es ist Samstag. Was ist richtig?"
     options: ["Das Schwimmbad ist von neun bis achtzehn Uhr geöffnet.", "Das Schwimmbad ist heute geschlossen.", "Das Schwimmbad ist von sieben bis einundzwanzig Uhr geöffnet."]
     correct: 0
-    translation: { en: "You read the opening hours of a swimming pool. It is Saturday. What is correct?", ru: "Вы читаете часы работы бассейна. Сегодня суббота. Что верно?" }
-    explain: { en: "Saturday has its own line: 9–18 Uhr, that is von neun bis achtzehn Uhr. 7–21 Uhr is the Monday-to-Friday schedule, and geschlossen applies only to Sunday.", ru: "У субботы своя строка: 9–18 Uhr, то есть von neun bis achtzehn Uhr. 7–21 Uhr — расписание с понедельника по пятницу, а geschlossen относится только к воскресенью." }
+    translation: { en: "You read the opening hours of a swimming pool. It is Saturday. What is correct?", ru: "Вы читаете часы работы бассейна. Сегодня суббота. Что верно?", uk: "Ви читаєте години роботи басейну. Сьогодні субота. Що правильно?" }
+    explain: { en: "Saturday has its own line: 9–18 Uhr, that is von neun bis achtzehn Uhr. 7–21 Uhr is the Monday-to-Friday schedule, and geschlossen applies only to Sunday.", ru: "У субботы своя строка: 9–18 Uhr, то есть von neun bis achtzehn Uhr. 7–21 Uhr — расписание с понедельника по пятницу, а geschlossen относится только к воскресенью.", uk: "У суботи свій рядок: 9–18 Uhr, тобто von neun bis achtzehn Uhr. 7–21 Uhr — розклад з понеділка по п'ятницю, а geschlossen стосується лише неділі." }
   - id: lesen-schild-haltestelle
     outcomes: [stadt-schilder-verstehen]
     type: mc
     prompt: "An der Haltestelle steht ein Schild: „Die Buslinie acht fährt heute nicht. Bitte nehmen Sie die U-Bahn.“ Was bedeutet das?"
     options: ["Der Bus fährt heute nicht, und die Leute nehmen die U-Bahn.", "Die U-Bahn fährt heute nicht, und die Leute nehmen den Bus.", "Die Haltestelle ist heute neu."]
     correct: 0
-    translation: { en: "There is a sign at the bus stop. What does it mean?", ru: "На остановке висит табличка. Что это значит?" }
-    explain: { en: "fährt heute nicht means the bus line is not running today; the sign asks you to take the U-Bahn instead: Bitte nehmen Sie die U-Bahn.", ru: "fährt heute nicht значит, что автобус сегодня не ходит; табличка просит поехать на метро: Bitte nehmen Sie die U-Bahn." }
+    translation: { en: "There is a sign at the bus stop. What does it mean?", ru: "На остановке висит табличка. Что это значит?", uk: "На зупинці висить табличка. Що це означає?" }
+    explain: { en: "fährt heute nicht means the bus line is not running today; the sign asks you to take the U-Bahn instead: Bitte nehmen Sie die U-Bahn.", ru: "fährt heute nicht значит, что автобус сегодня не ходит; табличка просит поехать на метро: Bitte nehmen Sie die U-Bahn.", uk: "fährt heute nicht означає, що автобус сьогодні не ходить; табличка просить поїхати на метро: Bitte nehmen Sie die U-Bahn." }
   - id: lesen-personaltext
     outcomes: [essen-grundwortschatz]
     type: mc
     prompt: "Sie lesen einen Text: „Ich heiße Marco und komme aus Italien. Ich wohne jetzt in Köln. Ich esse gern Käse und Brot, aber ich trinke keinen Kaffee — ich trinke lieber Tee. Meine Schwester Paula kocht sehr gern.“ Was ist richtig?"
     options: ["Marco trinkt lieber Tee.", "Marco trinkt gern Kaffee.", "Paula kocht nicht gern."]
     correct: 0
-    translation: { en: "You read a short personal text about Marco. What is correct?", ru: "Вы читаете короткий текст о Марко. Что верно?" }
-    explain: { en: "Marco says: ich trinke keinen Kaffee — ich trinke lieber Tee. lieber marks his preference. And Paula kocht sehr gern, so nicht gern is the opposite of the text.", ru: "Марко говорит: ich trinke keinen Kaffee — ich trinke lieber Tee. lieber выражает предпочтение. А Paula kocht sehr gern, поэтому вариант с nicht gern противоречит тексту." }
+    translation: { en: "You read a short personal text about Marco. What is correct?", ru: "Вы читаете короткий текст о Марко. Что верно?", uk: "Ви читаєте короткий текст про Марко. Що правильно?" }
+    explain: { en: "Marco says: ich trinke keinen Kaffee — ich trinke lieber Tee. lieber marks his preference. And Paula kocht sehr gern, so nicht gern is the opposite of the text.", ru: "Марко говорит: ich trinke keinen Kaffee — ich trinke lieber Tee. lieber выражает предпочтение. А Paula kocht sehr gern, поэтому вариант с nicht gern противоречит тексту.", uk: "Марко каже: ich trinke keinen Kaffee — ich trinke lieber Tee. lieber виражає перевагу. А Paula kocht sehr gern, тому варіант з nicht gern суперечить тексту." }
   # --- Grammatik ---
   - id: luecke-sprechen
     outcomes: [praesens-konjugation]
     type: cloze
     focus: verb-endungen
-    instruction: { en: "Fill in the correct present-tense form of sprechen.", ru: "Вставьте правильную форму глагола sprechen в настоящем времени." }
+    instruction: { en: "Fill in the correct present-tense form of sprechen.", ru: "Вставьте правильную форму глагола sprechen в настоящем времени.", uk: "Вставте правильну форму дієслова sprechen у теперішньому часі." }
     text: "Ich {{spreche}} Russisch und Englisch. Mein Vater {{spricht}} auch Italienisch. Welche Sprachen {{sprichst}} du?"
-    translation: { en: "I speak Russian and English. My father also speaks Italian. Which languages do you speak?", ru: "Я говорю по-русски и по-английски. Мой отец говорит ещё и по-итальянски. А на каких языках говоришь ты?" }
-    explain: { en: "sprechen changes its stem vowel only in the singular: ich spreche, du sprichst, er spricht. The du-form always ends in -st.", ru: "У sprechen гласная в корне меняется только в единственном числе: ich spreche, du sprichst, er spricht. Форма на du всегда оканчивается на -st." }
+    translation: { en: "I speak Russian and English. My father also speaks Italian. Which languages do you speak?", ru: "Я говорю по-русски и по-английски. Мой отец говорит ещё и по-итальянски. А на каких языках говоришь ты?", uk: "Я говорю російською та англійською. Мій батько говорить ще й італійською. А якими мовами говориш ти?" }
+    explain: { en: "sprechen changes its stem vowel only in the singular: ich spreche, du sprichst, er spricht. The du-form always ends in -st.", ru: "У sprechen гласная в корне меняется только в единственном числе: ich spreche, du sprichst, er spricht. Форма на du всегда оканчивается на -st.", uk: "У sprechen голосна в корені змінюється лише в однині: ich spreche, du sprichst, er spricht. Форма на du завжди закінчується на -st." }
   - id: luecke-artikel-kein
     outcomes: [artikel-richtig-verwenden, artikel-kein-verwenden]
     type: cloze
-    instruction: { en: "Fill in der, die, das or the correct form of kein.", ru: "Вставьте der, die, das или правильную форму kein." }
+    instruction: { en: "Fill in der, die, das or the correct form of kein.", ru: "Вставьте der, die, das или правильную форму kein.", uk: "Вставте der, die, das або правильну форму kein." }
     text: "Hier ist {{die}} Küche. Sie ist klein, aber das ist {{kein}} Problem. Rechts ist {{das}} Zimmer für die Kinder."
-    translation: { en: "Here is the kitchen. It is small, but that is no problem. On the right is the room for the children.", ru: "Вот кухня. Она маленькая, но это не проблема. Справа — комната для детей." }
-    explain: { en: "die Küche and das Zimmer — the gender belongs to the noun, and the article cannot be dropped. A noun is negated with kein, never with nicht: Das ist kein Problem.", ru: "die Küche и das Zimmer — род запоминается вместе со словом, и артикль нельзя опускать, хотя русский без него обходится. Существительное отрицается через kein, а не nicht: Das ist kein Problem." }
+    translation: { en: "Here is the kitchen. It is small, but that is no problem. On the right is the room for the children.", ru: "Вот кухня. Она маленькая, но это не проблема. Справа — комната для детей.", uk: "Ось кухня. Вона маленька, але це не проблема. Праворуч — кімната для дітей." }
+    explain: { en: "die Küche and das Zimmer — the gender belongs to the noun, and the article cannot be dropped. A noun is negated with kein, never with nicht: Das ist kein Problem.", ru: "die Küche и das Zimmer — род запоминается вместе со словом, и артикль нельзя опускать, хотя русский без него обходится. Существительное отрицается через kein, а не nicht: Das ist kein Problem.", uk: "die Küche і das Zimmer — рід запам'ятовується разом зі словом, і артикль не можна опускати, хоча українська без нього обходиться. Іменник заперечується через kein, а не nicht: Das ist kein Problem." }
   - id: luecke-akkusativ
     outcomes: [akkusativ-artikel, akkusativ-praepositionen]
     type: cloze
     focus: akkusativ-artikel
-    instruction: { en: "Fill in ein or mein in the correct accusative form.", ru: "Вставьте ein или mein в правильной форме аккузатива." }
+    instruction: { en: "Fill in ein or mein in the correct accusative form.", ru: "Вставьте ein или mein в правильной форме аккузатива.", uk: "Вставте ein або mein у правильній формі акузатива." }
     text: "Ich kaufe {{einen}} Kuchen und {{ein}} Brot für {{meinen}} Vater."
-    translation: { en: "I am buying a cake and a loaf of bread for my father.", ru: "Я покупаю пирог и хлеб для моего отца." }
-    explain: { en: "kaufen takes an accusative object, and für always governs the accusative too. Only the masculine changes: ein → einen, mein → meinen; neuter das Brot stays ein Brot.", ru: "После kaufen дополнение стоит в Akkusativ, и für тоже всегда требует Akkusativ. Меняется только мужской род: ein → einen, mein → meinen; средний род не меняется: ein Brot." }
+    translation: { en: "I am buying a cake and a loaf of bread for my father.", ru: "Я покупаю пирог и хлеб для моего отца.", uk: "Я купую пиріг і хліб для мого батька." }
+    explain: { en: "kaufen takes an accusative object, and für always governs the accusative too. Only the masculine changes: ein → einen, mein → meinen; neuter das Brot stays ein Brot.", ru: "После kaufen дополнение стоит в Akkusativ, и für тоже всегда требует Akkusativ. Меняется только мужской род: ein → einen, mein → meinen; средний род не меняется: ein Brot.", uk: "Після kaufen додаток стоїть в Akkusativ, і für теж завжди вимагає Akkusativ. Змінюється лише чоловічий рід: ein → einen, mein → meinen; середній рід не змінюється: ein Brot." }
   - id: luecke-um-am-im
     outcomes: [zeit-praepositionen]
     type: cloze
     focus: um-am-zeit
-    instruction: { en: "um, am or im?", ru: "um, am или im?" }
+    instruction: { en: "um, am or im?", ru: "um, am или im?", uk: "um, am чи im?" }
     text: "Das Konzert beginnt {{um}} acht Uhr. Ich spiele {{am}} Mittwoch Fußball, und ich habe {{im}} August Urlaub."
-    translation: { en: "The concert begins at eight o'clock. On Wednesday I play football, and in August I am on holiday.", ru: "Концерт начинается в восемь часов. В среду я играю в футбол, а в августе у меня отпуск." }
-    explain: { en: "um + clock time (um acht Uhr), am + day of the week (am Mittwoch), im + month or season (im August).", ru: "um + время по часам (um acht Uhr), am + день недели (am Mittwoch), im + месяц или время года (im August). По-русски везде «в», в немецком — три разных предлога." }
+    translation: { en: "The concert begins at eight o'clock. On Wednesday I play football, and in August I am on holiday.", ru: "Концерт начинается в восемь часов. В среду я играю в футбол, а в августе у меня отпуск.", uk: "Концерт починається о восьмій годині. У середу я граю у футбол, а в серпні в мене відпустка." }
+    explain: { en: "um + clock time (um acht Uhr), am + day of the week (am Mittwoch), im + month or season (im August).", ru: "um + время по часам (um acht Uhr), am + день недели (am Mittwoch), im + месяц или время года (im August). По-русски везде «в», в немецком — три разных предлога.", uk: "um + час за годинником (um acht Uhr), am + день тижня (am Mittwoch), im + місяць чи пора року (im August). Українською скрізь «в/у», у німецькій — три різні прийменники." }
   - id: satz-koennen
     outcomes: [freizeit-koennen-satz]
     type: order
     focus: modal-satzklammer
     words: ["Meine", "Schwester", "kann", "sehr", "gut", "singen", "."]
-    translation: { en: "My sister can sing very well.", ru: "Моя сестра умеет очень хорошо петь." }
-    explain: { en: "The bracket: kann in position 2, the infinitive singen at the very end — Meine Schwester kann sehr gut singen.", ru: "Рамка: kann на втором месте, инфинитив singen в самом конце — Meine Schwester kann sehr gut singen." }
+    translation: { en: "My sister can sing very well.", ru: "Моя сестра умеет очень хорошо петь.", uk: "Моя сестра вміє дуже добре співати." }
+    explain: { en: "The bracket: kann in position 2, the infinitive singen at the very end — Meine Schwester kann sehr gut singen.", ru: "Рамка: kann на втором месте, инфинитив singen в самом конце — Meine Schwester kann sehr gut singen.", uk: "Рамка: kann на другому місці, інфінітив singen у самому кінці — Meine Schwester kann sehr gut singen." }
   # --- Produktion ---
   - id: uebersetzen-tennis
     outcomes: [praesens-verbzweit, freizeit-hobbys]
     type: translate
     focus: verbzweit
-    instruction: { en: "Translate into German.", ru: "Переведите на немецкий." }
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
     prompt_en: "On Saturday I play tennis."
     prompt_ru: "В субботу я играю в теннис."
+    prompt_uk: "У суботу я граю в теніс."
     answer: "Am Samstag spiele ich Tennis."
     key_tokens: ["spiele"]
     accept: ["Ich spiele am Samstag Tennis."]
-    explain: { en: "After a fronted time phrase the verb still stands in position 2, so the subject moves behind it: Am Samstag spiele ich — never Am Samstag ich spiele.", ru: "После вынесенного вперёд обстоятельства времени глагол всё равно стоит на втором месте, поэтому подлежащее уходит за него: Am Samstag spiele ich — не Am Samstag ich spiele, как подсказывает русский порядок слов." }
+    explain: { en: "After a fronted time phrase the verb still stands in position 2, so the subject moves behind it: Am Samstag spiele ich — never Am Samstag ich spiele.", ru: "После вынесенного вперёд обстоятельства времени глагол всё равно стоит на втором месте, поэтому подлежащее уходит за него: Am Samstag spiele ich — не Am Samstag ich spiele, как подсказывает русский порядок слов.", uk: "Після винесеної на початок обставини часу дієслово все одно стоїть на другому місці, тому підмет іде за нього: Am Samstag spiele ich — не Am Samstag ich spiele, як підказує український порядок слів." }
   - id: uebersetzen-fahrrad
     outcomes: [stadt-verkehrsmittel-nennen]
     type: translate
-    instruction: { en: "Translate into German.", ru: "Переведите на немецкий." }
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
     prompt_en: "We go to the supermarket by bike."
     prompt_ru: "Мы ездим в супермаркет на велосипеде."
+    prompt_uk: "Ми їздимо в супермаркет на велосипеді."
     answer: "Wir fahren mit dem Fahrrad zum Supermarkt."
     accept: ["Wir fahren zum Supermarkt mit dem Fahrrad.", "Zum Supermarkt fahren wir mit dem Fahrrad.", "Mit dem Fahrrad fahren wir zum Supermarkt."]
-    explain: { en: "'By bike' is the fixed chunk mit dem Fahrrad — always with the article. Places with der or das take zum: zum Supermarkt.", ru: "«На велосипеде» — устойчивая связка mit dem Fahrrad, обязательно с артиклем. Слова с der и das присоединяются через zum: zum Supermarkt." }
+    explain: { en: "'By bike' is the fixed chunk mit dem Fahrrad — always with the article. Places with der or das take zum: zum Supermarkt.", ru: "«На велосипеде» — устойчивая связка mit dem Fahrrad, обязательно с артиклем. Слова с der и das присоединяются через zum: zum Supermarkt.", uk: "«На велосипеді» — стала зв'язка mit dem Fahrrad, обов'язково з артиклем. Слова з der і das приєднуються через zum: zum Supermarkt." }
   - id: uebersetzen-orangensaft
     outcomes: [essen-bestellen, akkusativ-objekte]
     type: translate
     focus: akkusativ-artikel
-    instruction: { en: "Translate into German.", ru: "Переведите на немецкий." }
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
     prompt_en: "I'll take an orange juice, please."
     prompt_ru: "Я возьму апельсиновый сок, пожалуйста."
+    prompt_uk: "Я візьму апельсиновий сік, будь ласка."
     answer: "Ich nehme einen Orangensaft, bitte."
     key_tokens: ["einen"]
     accept: ["Ich nehme einen Orangensaft bitte."]
-    explain: { en: "Ich nehme … is the standard café ordering formula, and nehmen takes the accusative: der Orangensaft → einen Orangensaft.", ru: "Ich nehme … — стандартная формула заказа в кафе, а nehmen требует Akkusativ: der Orangensaft → einen Orangensaft." }
+    explain: { en: "Ich nehme … is the standard café ordering formula, and nehmen takes the accusative: der Orangensaft → einen Orangensaft.", ru: "Ich nehme … — стандартная формула заказа в кафе, а nehmen требует Akkusativ: der Orangensaft → einen Orangensaft.", uk: "Ich nehme … — стандартна формула замовлення в кафе, а nehmen вимагає Akkusativ: der Orangensaft → einen Orangensaft." }
   - id: schreiben-mein-tag
     outcomes: [zeit-tagesablauf-beschreiben, essen-vorlieben]
     type: write
-    prompt: { en: "Mein Tag — describe a normal day for your German course group.", ru: "Mein Tag — опишите обычный день для группы курса немецкого." }
-    goal: { en: "Write three to four simple sentences about your day.", ru: "Напишите три-четыре простых предложения о своём дне." }
+    prompt: { en: "Mein Tag — describe a normal day for your German course group.", ru: "Mein Tag — опишите обычный день для группы курса немецкого.", uk: "Mein Tag — опишіть звичайний день для групи курсу німецької." }
+    goal: { en: "Write three to four simple sentences about your day.", ru: "Напишите три-четыре простых предложения о своём дне.", uk: "Напишіть три-чотири прості речення про свій день." }
     requirements:
-      - { en: "Use at least two time phrases with um or am: um sieben Uhr, am Abend.", ru: "Используйте минимум два указания времени с um или am: um sieben Uhr, am Abend." }
-      - { en: "Start at least one sentence with a time phrase — the verb stays in position 2.", ru: "Начните хотя бы одно предложение с указания времени — глагол остаётся на втором месте." }
-      - { en: "Write one sentence about food or drink with gern: Ich trinke gern …", ru: "Напишите одно предложение о еде или напитках с gern: Ich trinke gern …" }
+      - { en: "Use at least two time phrases with um or am: um sieben Uhr, am Abend.", ru: "Используйте минимум два указания времени с um или am: um sieben Uhr, am Abend.", uk: "Використайте щонайменше два позначення часу з um або am: um sieben Uhr, am Abend." }
+      - { en: "Start at least one sentence with a time phrase — the verb stays in position 2.", ru: "Начните хотя бы одно предложение с указания времени — глагол остаётся на втором месте.", uk: "Почніть хоча б одне речення з позначення часу — дієслово залишається на другому місці." }
+      - { en: "Write one sentence about food or drink with gern: Ich trinke gern …", ru: "Напишите одно предложение о еде или напитках с gern: Ich trinke gern …", uk: "Напишіть одне речення про їжу чи напої з gern: Ich trinke gern …" }
     min_words: 18
     model_answer: "Um sieben Uhr trinke ich Kaffee und esse ein Brötchen. Am Vormittag arbeite ich zu Hause. Um ein Uhr koche ich Suppe, denn ich esse gern Suppe. Am Abend lese ich oder höre Musik."
-    model_translation: { en: "At seven o'clock I drink coffee and eat a roll. In the morning I work at home. At one o'clock I cook soup, because I like eating soup. In the evening I read or listen to music.", ru: "В семь часов я пью кофе и ем булочку. До обеда я работаю дома. В час я готовлю суп — я люблю суп. Вечером я читаю или слушаю музыку." }
-    explain: { en: "Pattern: a time phrase first, the verb right after it in position 2 — Um sieben Uhr trinke ich Kaffee. Liking food or drink is essen/trinken + gern.", ru: "Схема: сначала указание времени, сразу за ним глагол на втором месте — Um sieben Uhr trinke ich Kaffee. Любимая еда и напитки — это essen/trinken + gern." }
+    model_translation: { en: "At seven o'clock I drink coffee and eat a roll. In the morning I work at home. At one o'clock I cook soup, because I like eating soup. In the evening I read or listen to music.", ru: "В семь часов я пью кофе и ем булочку. До обеда я работаю дома. В час я готовлю суп — я люблю суп. Вечером я читаю или слушаю музыку.", uk: "О сьомій годині я п'ю каву та їм булочку. До обіду я працюю вдома. О першій я варю суп — я люблю суп. Увечері я читаю або слухаю музику." }
+    explain: { en: "Pattern: a time phrase first, the verb right after it in position 2 — Um sieben Uhr trinke ich Kaffee. Liking food or drink is essen/trinken + gern.", ru: "Схема: сначала указание времени, сразу за ним глагол на втором месте — Um sieben Uhr trinke ich Kaffee. Любимая еда и напитки — это essen/trinken + gern.", uk: "Схема: спочатку позначення часу, одразу за ним дієслово на другому місці — Um sieben Uhr trinke ich Kaffee. Улюблена їжа та напої — це essen/trinken + gern." }
