@@ -1,6 +1,6 @@
 topic: wohnen
 role: practice
-title: { en: "Practice — housing", ru: "Практика — жильё" }
+title: { en: "Practice — housing", ru: "Практика — жильё", uk: "Практика — житло" }
 items:
   - id: mc-genus-bad
     outcomes: [wohnen-beschreiben]
@@ -9,8 +9,8 @@ items:
     prompt: "___ Bad ist klein und hat kein Fenster."
     options: ["Das", "Der", "Die"]
     correct: 0
-    translation: { en: "The bathroom is small and has no window.", ru: "Ванная маленькая, и окна в ней нет." }
-    explain: { en: "das Bad is neuter. Learn every room together with its article — English 'the' hides the gender.", ru: "das Bad — среднего рода. Учите каждую комнату сразу с артиклем: род из русского не переносится («ванная» женского рода, но das Bad)." }
+    translation: { en: "The bathroom is small and has no window.", ru: "Ванная маленькая, и окна в ней нет.", uk: "Ванна маленька, і вікна в ній немає." }
+    explain: { en: "das Bad is neuter. Learn every room together with its article — English 'the' hides the gender.", ru: "das Bad — среднего рода. Учите каждую комнату сразу с артиклем: род из русского не переносится («ванная» женского рода, но das Bad).", uk: "das Bad — середнього роду. Вчіть кожну кімнату одразу з артиклем: рід з української не переноситься («ванна» жіночого роду, але das Bad)." }
   - id: mc-genus-schrank
     outcomes: [wohnen-beschreiben]
     type: mc
@@ -18,96 +18,98 @@ items:
     prompt: "Ist ___ Schrank neu? — Ja, er ist neu."
     options: ["der", "die", "das"]
     correct: 0
-    translation: { en: "Is the wardrobe new? — Yes, it is new.", ru: "Шкаф новый? — Да, новый." }
-    explain: { en: "der Schrank is masculine — the answer even shows it: er ist neu.", ru: "der Schrank — мужского рода, подсказка прямо в ответе: er ist neu." }
+    translation: { en: "Is the wardrobe new? — Yes, it is new.", ru: "Шкаф новый? — Да, новый.", uk: "Шафа нова? — Так, нова." }
+    explain: { en: "der Schrank is masculine — the answer even shows it: er ist neu.", ru: "der Schrank — мужского рода, подсказка прямо в ответе: er ist neu.", uk: "der Schrank — чоловічого роду (хоча українська «шафа» жіночого), підказка просто у відповіді: er ist neu." }
   - id: cloze-es-gibt-balkon
     outcomes: [wohnen-beschreiben]
     type: cloze
     focus: akkusativ-artikel
-    instruction: { en: "Fill in the article after es gibt.", ru: "Вставьте артикль после es gibt." }
+    instruction: { en: "Fill in the article after es gibt.", ru: "Вставьте артикль после es gibt.", uk: "Вставте артикль після es gibt." }
     text: "In der Wohnung gibt es {{einen}} Balkon und {{eine}} Küche."
-    translation: { en: "In the apartment there is a balcony and a kitchen.", ru: "В квартире есть балкон и кухня." }
-    explain: { en: "es gibt takes the Akkusativ: masculine ein → einen (einen Balkon); feminine eine does not change.", ru: "После es gibt всегда Akkusativ: в мужском роде ein → einen (einen Balkon), в женском eine не меняется." }
+    translation: { en: "In the apartment there is a balcony and a kitchen.", ru: "В квартире есть балкон и кухня.", uk: "У квартирі є балкон і кухня." }
+    explain: { en: "es gibt takes the Akkusativ: masculine ein → einen (einen Balkon); feminine eine does not change.", ru: "После es gibt всегда Akkusativ: в мужском роде ein → einen (einen Balkon), в женском eine не меняется.", uk: "Після es gibt завжди Akkusativ: у чоловічому роді ein → einen (einen Balkon), у жіночому eine не змінюється." }
   - id: cloze-es-gibt-garten
     outcomes: [wohnen-beschreiben]
     type: cloze
     focus: akkusativ-artikel
-    instruction: { en: "Fill in the missing articles.", ru: "Вставьте пропущенные артикли." }
+    instruction: { en: "Fill in the missing articles.", ru: "Вставьте пропущенные артикли.", uk: "Вставте пропущені артиклі." }
     text: "Es gibt {{einen}} Garten, aber {{der}} Garten ist klein."
-    translation: { en: "There is a garden, but the garden is small.", ru: "Есть сад, но сад маленький." }
-    explain: { en: "After es gibt the noun stands in the Akkusativ: einen Garten. As the subject of the next clause it is back in the Nominativ: der Garten.", ru: "После es gibt существительное стоит в Akkusativ: einen Garten. А в роли подлежащего оно снова в Nominativ: der Garten." }
+    translation: { en: "There is a garden, but the garden is small.", ru: "Есть сад, но сад маленький.", uk: "Є сад, але сад маленький." }
+    explain: { en: "After es gibt the noun stands in the Akkusativ: einen Garten. As the subject of the next clause it is back in the Nominativ: der Garten.", ru: "После es gibt существительное стоит в Akkusativ: einen Garten. А в роли подлежащего оно снова в Nominativ: der Garten.", uk: "Після es gibt іменник стоїть в Akkusativ: einen Garten. А в ролі підмета він знову в Nominativ: der Garten." }
   - id: cloze-es-gibt-fenster
     outcomes: [wohnen-beschreiben]
     type: cloze
     focus: akkusativ-artikel
-    instruction: { en: "Fill in the article after es gibt.", ru: "Вставьте артикль после es gibt." }
+    instruction: { en: "Fill in the article after es gibt.", ru: "Вставьте артикль после es gibt.", uk: "Вставте артикль після es gibt." }
     text: "Im Schlafzimmer gibt es {{ein}} Fenster und {{einen}} Schrank."
-    translation: { en: "In the bedroom there is a window and a wardrobe.", ru: "В спальне есть окно и шкаф." }
-    explain: { en: "Only the masculine article changes in the Akkusativ: einen Schrank. Neuter ein Fenster stays ein.", ru: "В Akkusativ меняется только мужской род: einen Schrank. Средний род не меняется: ein Fenster." }
+    translation: { en: "In the bedroom there is a window and a wardrobe.", ru: "В спальне есть окно и шкаф.", uk: "У спальні є вікно і шафа." }
+    explain: { en: "Only the masculine article changes in the Akkusativ: einen Schrank. Neuter ein Fenster stays ein.", ru: "В Akkusativ меняется только мужской род: einen Schrank. Средний род не меняется: ein Fenster.", uk: "В Akkusativ змінюється лише чоловічий рід: einen Schrank. Середній рід не змінюється: ein Fenster." }
   - id: match-zimmer-moebel
     outcomes: [wohnen-lage-sagen]
     type: match
-    instruction: { en: "Which piece of furniture belongs in which room? Match them.", ru: "Какая мебель в какой комнате? Соотнесите." }
+    instruction: { en: "Which piece of furniture belongs in which room? Match them.", ru: "Какая мебель в какой комнате? Соотнесите.", uk: "Які меблі в якій кімнаті? З'єднайте." }
     pairs:
       - { left: "das Schlafzimmer", right: "das Bett" }
       - { left: "das Wohnzimmer", right: "das Sofa" }
       - { left: "die Küche", right: "der Tisch" }
       - { left: "der Flur", right: "der Schrank" }
-    explain: { en: "As in the article: Im Schlafzimmer steht ein Bett, im Wohnzimmer steht ein Sofa, in der Küche gibt es einen Tisch, im Flur steht ein Schrank.", ru: "Как в статье: Im Schlafzimmer steht ein Bett, im Wohnzimmer steht ein Sofa, in der Küche gibt es einen Tisch, im Flur steht ein Schrank." }
+    explain: { en: "As in the article: Im Schlafzimmer steht ein Bett, im Wohnzimmer steht ein Sofa, in der Küche gibt es einen Tisch, im Flur steht ein Schrank.", ru: "Как в статье: Im Schlafzimmer steht ein Bett, im Wohnzimmer steht ein Sofa, in der Küche gibt es einen Tisch, im Flur steht ein Schrank.", uk: "Як у статті: Im Schlafzimmer steht ein Bett, im Wohnzimmer steht ein Sofa, in der Küche gibt es einen Tisch, im Flur steht ein Schrank." }
   - id: order-wohnzimmer
     outcomes: [wohnen-lage-sagen]
     type: order
     focus: verbzweit
     words: ["Im", "Wohnzimmer", "ist", "ein", "Sofa", "."]
-    translation: { en: "There is a sofa in the living room.", ru: "В гостиной стоит диван." }
-    explain: { en: "The location chunk Im Wohnzimmer fills position 1, so the verb ist stays second: Im Wohnzimmer ist ein Sofa.", ru: "Формула места Im Wohnzimmer занимает первую позицию, поэтому глагол ist остаётся на втором месте: Im Wohnzimmer ist ein Sofa." }
+    translation: { en: "There is a sofa in the living room.", ru: "В гостиной стоит диван.", uk: "У вітальні стоїть диван." }
+    explain: { en: "The location chunk Im Wohnzimmer fills position 1, so the verb ist stays second: Im Wohnzimmer ist ein Sofa.", ru: "Формула места Im Wohnzimmer занимает первую позицию, поэтому глагол ist остаётся на втором месте: Im Wohnzimmer ist ein Sofa.", uk: "Формула місця Im Wohnzimmer займає першу позицію, тому дієслово ist залишається на другому місці: Im Wohnzimmer ist ein Sofa." }
   - id: mc-es-gibt-satz
     outcomes: [wohnen-beschreiben]
     type: mc
     prompt: "Welcher Satz ist richtig?"
     options: ["In der Wohnung gibt es einen Balkon.", "In der Wohnung ist Balkon.", "In der Wohnung gibt es ein Balkon."]
     correct: 0
-    translation: { en: "Which sentence is correct? — There is a balcony in the apartment.", ru: "Какое предложение правильное? — В квартире есть балкон." }
-    explain: { en: "'There is' = es gibt + Akkusativ, and a singular countable noun needs its article: einen Balkon (masculine).", ru: "«В квартире есть балкон» — это es gibt + Akkusativ, и артикль обязателен: einen Balkon. Вариант с ist и без артикля — калька с русского." }
+    translation: { en: "Which sentence is correct? — There is a balcony in the apartment.", ru: "Какое предложение правильное? — В квартире есть балкон.", uk: "Яке речення правильне? — У квартирі є балкон." }
+    explain: { en: "'There is' = es gibt + Akkusativ, and a singular countable noun needs its article: einen Balkon (masculine).", ru: "«В квартире есть балкон» — это es gibt + Akkusativ, и артикль обязателен: einen Balkon. Вариант с ist и без артикля — калька с русского.", uk: "«У квартирі є балкон» — це es gibt + Akkusativ, і артикль обов'язковий: einen Balkon. Варіант з ist і без артикля — калька з української." }
   - id: mc-anzeige
     outcomes: [wohnen-anzeige-verstehen]
     type: mc
     prompt: "In der Anzeige steht: „2-Zimmer-Wohnung, 60 qm, Miete: 700 Euro, frei ab August.“ Was ist richtig?"
     options: ["Die Wohnung kostet 700 Euro pro Monat.", "Die Wohnung hat zwei Schlafzimmer und ein Wohnzimmer.", "Die Wohnung ist ab Januar frei."]
     correct: 0
-    translation: { en: "The ad says: 2-room apartment, 60 sqm, rent 700 euros, available from August. What is correct?", ru: "В объявлении: 2-Zimmer-Wohnung, 60 qm, Miete: 700 Euro, frei ab August. Что верно?" }
-    explain: { en: "Miete: 700 Euro is the monthly rent. A 2-Zimmer-Wohnung counts ALL rooms — a living room plus one bedroom, not two bedrooms.", ru: "Miete: 700 Euro — плата за месяц. 2-Zimmer-Wohnung считает ВСЕ комнаты: гостиная плюс одна спальня, а не две спальни." }
+    translation: { en: "The ad says: 2-room apartment, 60 sqm, rent 700 euros, available from August. What is correct?", ru: "В объявлении: 2-Zimmer-Wohnung, 60 qm, Miete: 700 Euro, frei ab August. Что верно?", uk: "В оголошенні: 2-Zimmer-Wohnung, 60 qm, Miete: 700 Euro, frei ab August. Що правильно?" }
+    explain: { en: "Miete: 700 Euro is the monthly rent. A 2-Zimmer-Wohnung counts ALL rooms — a living room plus one bedroom, not two bedrooms.", ru: "Miete: 700 Euro — плата за месяц. 2-Zimmer-Wohnung считает ВСЕ комнаты: гостиная плюс одна спальня, а не две спальни.", uk: "Miete: 700 Euro — плата за місяць. 2-Zimmer-Wohnung рахує ВСІ кімнати: вітальня плюс одна спальня, а не дві спальні." }
   - id: translate-balkon
     outcomes: [wohnen-beschreiben]
     type: translate
     focus: akkusativ-artikel
     prompt_en: "There is a balcony in the apartment."
     prompt_ru: "В квартире есть балкон."
+    prompt_uk: "У квартирі є балкон."
     answer: "In der Wohnung gibt es einen Balkon."
     key_tokens: ["einen"]
     accept: ["Es gibt einen Balkon in der Wohnung."]
-    explain: { en: "'There is' = es gibt + Akkusativ: einen Balkon. Don't build it with ist.", ru: "«Есть» здесь — оборот es gibt + Akkusativ: einen Balkon. Вариант с ist и без артикля — калька с русского." }
+    explain: { en: "'There is' = es gibt + Akkusativ: einen Balkon. Don't build it with ist.", ru: "«Есть» здесь — оборот es gibt + Akkusativ: einen Balkon. Вариант с ist и без артикля — калька с русского.", uk: "«Є» тут — зворот es gibt + Akkusativ: einen Balkon. Варіант з ist і без артикля — калька з української." }
   - id: translate-bad
     outcomes: [wohnen-beschreiben]
     type: translate
     focus: kopula-sein
     prompt_en: "The bathroom is small and dark."
     prompt_ru: "Ванная маленькая и тёмная."
+    prompt_uk: "Ванна кімната маленька і темна."
     answer: "Das Bad ist klein und dunkel."
     key_tokens: ["ist"]
     accept: ["Das Badezimmer ist klein und dunkel."]
-    explain: { en: "After ist the adjective never changes its form: klein, dunkel.", ru: "Глагол ist обязателен: по-русски «ванная маленькая» — без глагола, по-немецки так нельзя. Прилагательное после ist не меняется." }
+    explain: { en: "After ist the adjective never changes its form: klein, dunkel.", ru: "Глагол ist обязателен: по-русски «ванная маленькая» — без глагола, по-немецки так нельзя. Прилагательное после ist не меняется.", uk: "Дієслово ist обов'язкове: українською «ванна маленька» — без дієслова, німецькою так не можна. Прикметник після ist не змінюється." }
   - id: schreiben-meine-wohnung
     outcomes: [wohnen-beschreiben]
     type: write
-    prompt: { en: "Meine Wohnung — describe your home for your course group.", ru: "Meine Wohnung — опишите своё жильё для группы курса." }
-    goal: { en: "Describe your apartment in four simple sentences.", ru: "Опишите свою квартиру в четырёх простых предложениях." }
+    prompt: { en: "Meine Wohnung — describe your home for your course group.", ru: "Meine Wohnung — опишите своё жильё для группы курса.", uk: "Meine Wohnung — опишіть своє житло для групи курсу." }
+    goal: { en: "Describe your apartment in four simple sentences.", ru: "Опишите свою квартиру в четырёх простых предложениях.", uk: "Опишіть свою квартиру в чотирьох простих реченнях." }
     requirements:
-      - { en: "Say how many rooms your apartment has.", ru: "Скажите, сколько комнат в вашей квартире." }
-      - { en: "Use es gibt + Akkusativ at least once (Es gibt einen Balkon).", ru: "Хотя бы раз используйте es gibt + Akkusativ (Es gibt einen Balkon)." }
-      - { en: "Describe one room with sein + adjective (Das Bad ist klein).", ru: "Опишите одну комнату через sein + прилагательное (Das Bad ist klein)." }
-      - { en: "Say where one piece of furniture is, using a fixed chunk (Im Wohnzimmer steht …).", ru: "Скажите, где стоит один предмет мебели, — готовой формулой (Im Wohnzimmer steht …)." }
+      - { en: "Say how many rooms your apartment has.", ru: "Скажите, сколько комнат в вашей квартире.", uk: "Скажіть, скільки кімнат у вашій квартирі." }
+      - { en: "Use es gibt + Akkusativ at least once (Es gibt einen Balkon).", ru: "Хотя бы раз используйте es gibt + Akkusativ (Es gibt einen Balkon).", uk: "Принаймні раз використайте es gibt + Akkusativ (Es gibt einen Balkon)." }
+      - { en: "Describe one room with sein + adjective (Das Bad ist klein).", ru: "Опишите одну комнату через sein + прилагательное (Das Bad ist klein).", uk: "Опишіть одну кімнату через sein + прикметник (Das Bad ist klein)." }
+      - { en: "Say where one piece of furniture is, using a fixed chunk (Im Wohnzimmer steht …).", ru: "Скажите, где стоит один предмет мебели, — готовой формулой (Im Wohnzimmer steht …).", uk: "Скажіть, де стоїть один предмет меблів, — готовою формулою (Im Wohnzimmer steht …)." }
     min_words: 20
     model_answer: "Meine Wohnung hat drei Zimmer. Es gibt einen Balkon und eine Küche. Das Wohnzimmer ist groß und hell. Im Wohnzimmer steht ein Sofa."
-    model_translation: { en: "My apartment has three rooms. There is a balcony and a kitchen. The living room is big and bright. In the living room there is a sofa.", ru: "В моей квартире три комнаты. Есть балкон и кухня. Гостиная большая и светлая. В гостиной стоит диван." }
-    explain: { en: "Three tools: haben / es gibt for what exists, sein + adjective for what it is like, and the fixed im / in der chunks for where things stand.", ru: "Три инструмента: haben / es gibt — что имеется, sein + прилагательное — какое оно, и готовые формулы im / in der — где что стоит." }
+    model_translation: { en: "My apartment has three rooms. There is a balcony and a kitchen. The living room is big and bright. In the living room there is a sofa.", ru: "В моей квартире три комнаты. Есть балкон и кухня. Гостиная большая и светлая. В гостиной стоит диван.", uk: "У моїй квартирі три кімнати. Є балкон і кухня. Вітальня велика і світла. У вітальні стоїть диван." }
+    explain: { en: "Three tools: haben / es gibt for what exists, sein + adjective for what it is like, and the fixed im / in der chunks for where things stand.", ru: "Три инструмента: haben / es gibt — что имеется, sein + прилагательное — какое оно, и готовые формулы im / in der — где что стоит.", uk: "Три інструменти: haben / es gibt — що є, sein + прикметник — яке воно, і готові формули im / in der — де що стоїть." }

@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — asking the way: zum or zur"
   ru: "Проверка — как спросить дорогу: zum или zur"
+  uk: "Перевірка — як спитати дорогу: zum чи zur"
 
 # Three parallel variants of ONE competence: asking the way to a place — wie komme ich
 # zum/zur X, with the destination's gender deciding zum or zur. That is what the topic
@@ -25,13 +26,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Excuse me, how do I get to the supermarket?"
     prompt_ru: "Извините, как мне попасть в супермаркет?"
+    prompt_uk: "Вибачте, як мені потрапити до супермаркету?"
     answer: "Entschuldigung, wie komme ich zum Supermarkt?"
     key_tokens: ["zum"]
     explain:
       en: "The question is a fixed frame — Entschuldigung, wie komme ich zu … ? — and only the ending moves: der Supermarkt is masculine, so zu dem contracts to zum."
       ru: "Вопрос строится по готовой формуле — Entschuldigung, wie komme ich zu … ? — и меняется только окончание: der Supermarkt мужского рода, поэтому zu dem стягивается в zum."
+      uk: "Питання будується за готовою формулою — Entschuldigung, wie komme ich zu … ? — і змінюється лише закінчення: der Supermarkt чоловічого роду, тому zu dem стягується в zum."
 
   - id: variant-b
     outcomes: [stadt-weg-erfragen]
@@ -41,13 +45,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Excuse me, how do I get to the church?"
     prompt_ru: "Извините, как мне пройти к церкви?"
+    prompt_uk: "Вибачте, як мені пройти до церкви?"
     answer: "Entschuldigung, wie komme ich zur Kirche?"
     key_tokens: ["zur"]
     explain:
       en: "The frame never changes — Entschuldigung, wie komme ich zu … ? — only the contraction does, and the destination's gender decides it: die Kirche is feminine, so zu der becomes zur. Feminine is the one gender that gives zur; everything else gives zum."
       ru: "Формула вопроса не меняется — Entschuldigung, wie komme ich zu … ? — меняется только стяжение, и выбирает его род места назначения: die Kirche женского рода, поэтому zu der превращается в zur. Только женский род даёт zur, все остальные — zum."
+      uk: "Формула питання не змінюється — Entschuldigung, wie komme ich zu … ? — змінюється лише стягнення, і вибирає його рід місця призначення: die Kirche жіночого роду, тому zu der перетворюється на zur. Лише жіночий рід дає zur, усі решта — zum."
 
   - id: variant-c
     outcomes: [stadt-weg-erfragen]
@@ -57,10 +64,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Excuse me, which bus goes to the centre?"
     prompt_ru: "Извините, какой автобус идёт в центр?"
+    prompt_uk: "Вибачте, який автобус їде до центру?"
     answer: "Entschuldigung, welcher Bus fährt zum Zentrum?"
     key_tokens: ["zum"]
     explain:
       en: "A different way to ask for the same thing: welcher Bus fährt zu … ? The destination still governs the contraction — das Zentrum is neuter, and zu dem is zum for neuter as well as masculine."
       ru: "Другой способ спросить о том же: welcher Bus fährt zu … ? Место назначения по-прежнему определяет форму: das Zentrum среднего рода, а zu dem даёт zum и для среднего рода, и для мужского."
+      uk: "Інший спосіб спитати про те саме: welcher Bus fährt zu … ? Місце призначення так само визначає форму: das Zentrum середнього роду, а zu dem дає zum і для середнього роду, і для чоловічого."

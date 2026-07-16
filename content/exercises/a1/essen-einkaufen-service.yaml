@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — quantities, ordering and paying
   ru: Практика — количество, заказ и оплата
+  uk: Практика — кількість, замовлення та оплата
 items:
   - id: match-mengen
     outcomes: [essen-service-bezahlen]
@@ -10,6 +11,7 @@ items:
     instruction:
       en: Match each quantity with the product it typically goes with.
       ru: Соедините меру с продуктом, с которым она обычно употребляется.
+      uk: З'єднайте міру з продуктом, з яким вона зазвичай вживається.
     pairs:
       - { left: "eine Flasche", right: "Wasser" }
       - { left: "ein Stück", right: "Kuchen" }
@@ -17,6 +19,7 @@ items:
     explain:
       en: "You buy liquids by the bottle (eine Flasche Wasser), cake by the piece (ein Stück Kuchen) and fruit by weight (ein Kilo Äpfel). German puts the two nouns directly next to each other — no 'of': eine Flasche Wasser."
       ru: "Жидкости покупают бутылками (eine Flasche Wasser), пирог — кусками (ein Stück Kuchen), фрукты — на вес (ein Kilo Äpfel). Немецкий ставит два существительных подряд: eine Flasche Wasser — второе слово не меняется, никакого родительного падежа, как в «бутылка воды»."
+      uk: "Рідини купують пляшками (eine Flasche Wasser), пиріг — шматками (ein Stück Kuchen), фрукти — на вагу (ein Kilo Äpfel). Німецька ставить два іменники поспіль: eine Flasche Wasser — друге слово не змінюється, жодного родового відмінка, як в «пляшка води»."
 
   - id: cloze-nehmen
     outcomes: [essen-service-bezahlen]
@@ -25,13 +28,16 @@ items:
     instruction:
       en: Fill in the article.
       ru: Вставьте артикль.
+      uk: Вставте артикль.
     text: "Ich nehme {{einen}} Kaffee und ein Stück Kuchen."
     translation:
       en: I'll take a coffee and a piece of cake.
       ru: Я возьму кофе и кусок пирога.
+      uk: Я візьму каву і шматок пирога.
     explain:
       en: "nehmen takes the accusative: der Kaffee → einen Kaffee. Only masculine changes — neuter ein Stück stays ein."
       ru: "После nehmen — Akkusativ: der Kaffee → einen Kaffee. Меняется только мужской род; средний род не меняется: ein Stück."
+      uk: "Після nehmen — Akkusativ: der Kaffee → einen Kaffee. Змінюється лише чоловічий рід; середній рід не змінюється: ein Stück."
 
   - id: mc-es-gibt
     outcomes: [essen-service-bezahlen]
@@ -43,9 +49,11 @@ items:
     translation:
       en: Is there also a salad without meat?
       ru: А есть салат без мяса?
+      uk: А є салат без м'яса?
     explain:
       en: "Gibt es …? is the standard way to ask for an alternative, and es gibt always takes the accusative: der Salat → einen Salat."
       ru: "Gibt es …? — стандартный способ спросить про альтернативу, и после es gibt всегда стоит Akkusativ: der Salat → einen Salat."
+      uk: "Gibt es …? — стандартний спосіб запитати про альтернативу, і після es gibt завжди стоїть Akkusativ: der Salat → einen Salat."
 
   - id: cloze-kostet
     outcomes: [essen-service-bezahlen]
@@ -54,13 +62,16 @@ items:
     instruction:
       en: Fill in the article.
       ru: Вставьте артикль.
+      uk: Вставте артикль.
     text: "Was kostet {{der}} Kaffee? — Zwei Euro fünfzig."
     translation:
       en: How much is the coffee? — Two euros fifty.
       ru: Сколько стоит кофе? — Два евро пятьдесят.
+      uk: Скільки коштує кава? — Два євро п'ятдесят.
     explain:
       en: "With kosten the item is the subject of the sentence, so it stays nominative: Was kostet der Kaffee? Don't switch to den — nothing here takes an accusative object article."
       ru: "При kosten предмет — подлежащее, поэтому он остаётся в Nominativ: Was kostet der Kaffee? Не ставьте den: кофе здесь сам «действует» — стоит денег, а не является объектом."
+      uk: "При kosten предмет — підмет речення, тому він залишається в Nominativ: Was kostet der Kaffee? Не ставте den: кава тут сама «діє» — коштує грошей, а не є об'єктом."
 
   - id: match-dialog
     outcomes: [essen-service-bezahlen]
@@ -68,6 +79,7 @@ items:
     instruction:
       en: Match each line in the shop or café with the fitting reply.
       ru: Соедините реплику в магазине или кафе с подходящим ответом.
+      uk: З'єднайте репліку в магазині чи кафе з доречною відповіддю.
     pairs:
       - { left: "Sonst noch etwas?", right: "Nein, danke. Das ist alles." }
       - { left: "Wo bezahle ich?", right: "An der Kasse." }
@@ -75,6 +87,7 @@ items:
     explain:
       en: "Sonst noch etwas? (anything else?) comes while you order; Das macht … announces the total; die Kasse is the checkout, so An der Kasse answers the question wo?."
       ru: "Sonst noch etwas? («что-нибудь ещё?») звучит во время заказа; Das macht … называет итоговую сумму; die Kasse — касса, поэтому An der Kasse отвечает на вопрос wo?."
+      uk: "Sonst noch etwas? («щось іще?») звучить під час замовлення; Das macht … називає підсумкову суму; die Kasse — каса, тому An der Kasse відповідає на питання wo?."
 
   - id: mc-zahlen
     outcomes: [essen-service-bezahlen]
@@ -85,9 +98,11 @@ items:
     translation:
       en: "At the café: you are done. What do you say?"
       ru: "В кафе: вы закончили. Что вы говорите?"
+      uk: "У кафе: ви закінчили. Що ви кажете?"
     explain:
       en: "To ask for the bill you say Zahlen, bitte! or Die Rechnung, bitte! — die Rechnung is the bill (US: the check). Guten Appetit! is said at the start of the meal, and Sonst noch etwas? is the server's line."
       ru: "Чтобы попросить счёт, говорят Zahlen, bitte! или Die Rechnung, bitte! — как наше «Счёт, пожалуйста!». Zahlen, bitte — буквально «платить, пожалуйста»; в русском такой формулы нет. Guten Appetit! говорят в начале еды, а Sonst noch etwas? — реплика официанта."
+      uk: "Щоб попросити рахунок, кажуть Zahlen, bitte! або Die Rechnung, bitte! — як наше «Рахунок, будь ласка!». Zahlen, bitte — буквально «платити, будь ласка»; в українській такої формули немає. Guten Appetit! кажуть на початку їжі, а Sonst noch etwas? — репліка офіціанта."
 
   - id: mc-getrennt
     outcomes: [essen-service-bezahlen]
@@ -98,9 +113,11 @@ items:
     translation:
       en: "The waitress asks: 'Together or separately?' You are not paying together. What do you answer?"
       ru: "Официантка спрашивает: «Вместе или раздельно?» Вы платите не вместе. Что вы отвечаете?"
+      uk: "Офіціантка питає: «Разом чи окремо?» Ви платите не разом. Що ви відповідаєте?"
     explain:
       en: "Zusammen oder getrennt? is an either-or question — answer with one of the two options, never with ja or nein: Getrennt, bitte."
       ru: "В Германии официант по умолчанию спрашивает, платите вы вместе или раздельно — платить каждый за себя совершенно нормально. На альтернативный вопрос нельзя ответить ja или nein: выберите вариант — Getrennt, bitte."
+      uk: "У Німеччині офіціант за замовчуванням питає, платите ви разом чи окремо — платити кожному за себе цілком нормально. На альтернативне питання не можна відповісти ja чи nein: виберіть варіант — Getrennt, bitte."
 
   - id: audio-zahlen-was
     outcomes: [essen-service-bezahlen]
@@ -124,9 +141,11 @@ items:
     translation:
       en: What does the guest pay for?
       ru: За что платит посетитель?
+      uk: За що платить відвідувач?
     explain:
       en: "The waitress repeats the order when she brings the bill: Das war ein Kaffee und ein Stück Kuchen. Listen for the two items after Das war."
-      ru: "Официантка повторяет заказ, когда называет счёт: Das war ein Kaffee und ein Stück Kuchen. Услышьте два пункта после Das war."
+      ru: "Официантка повторяет заказ, когда называет счёт: Das war ein Kaffee und ein Stück Kuchen. Прислушайтесь к двум пунктам после Das war."
+      uk: "Офіціантка повторює замовлення, коли називає рахунок: Das war ein Kaffee und ein Stück Kuchen. Прислухайтеся до двох пунктів після Das war."
 
   - id: audio-zahlen-preis
     outcomes: [essen-service-bezahlen]
@@ -150,9 +169,11 @@ items:
     translation:
       en: How much does everything cost together?
       ru: Сколько стоит всё вместе?
+      uk: Скільки коштує все разом?
     explain:
       en: "The total comes after Das macht …: fünf Euro neunzig. The guest hands over six euros and says Stimmt so (keep the change) — in Germany you tip by rounding up when you pay, not by leaving money on the table."
       ru: "Итог звучит после Das macht …: fünf Euro neunzig. Гость даёт шесть евро и говорит Stimmt so — «сдачи не надо»: в Германии чаевые обычно дают, округляя сумму при оплате, а не оставляя деньги на столе."
+      uk: "Підсумок звучить після Das macht …: fünf Euro neunzig. Гість дає шість євро і каже Stimmt so — «решти не треба»: у Німеччині чайові зазвичай дають, округлюючи суму під час оплати, а не залишаючи гроші на столі."
 
   - id: uebersetzen-flasche
     outcomes: [essen-service-bezahlen]
@@ -161,8 +182,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "A bottle of water, please."
     prompt_ru: "Бутылку воды, пожалуйста."
+    prompt_uk: "Пляшку води, будь ласка."
     answer: "Eine Flasche Wasser, bitte."
     key_tokens: ["Eine"]
     accept:
@@ -170,6 +193,7 @@ items:
     explain:
       en: "The article is needed even in a short request: eine Flasche, not just Flasche. And there is no 'of' — the two nouns stand side by side: eine Flasche Wasser."
       ru: "Артикль нужен даже в короткой просьбе: eine Flasche, а не просто Flasche, как подсказывает русское «бутылку воды». Второе слово не меняется: eine Flasche Wasser — без родительного падежа."
+      uk: "Артикль потрібен навіть у короткому проханні: eine Flasche, а не просто Flasche, як підказує українське «пляшку води». Друге слово не змінюється: eine Flasche Wasser — без родового відмінка."
 
   - id: uebersetzen-kosten
     outcomes: [essen-service-bezahlen]
@@ -177,11 +201,14 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "How much are the apples?"
     prompt_ru: "Сколько стоят яблоки?"
+    prompt_uk: "Скільки коштують яблука?"
     answer: "Was kosten die Äpfel?"
     accept:
       - "Wie viel kosten die Äpfel?"
     explain:
       en: "The everyday question is Was kosten …? The subject die Äpfel is plural, so the verb is kosten, not kostet. Wie viel kosten die Äpfel? is also correct."
       ru: "Обиходный вопрос — Was kosten …? Подлежащее die Äpfel во множественном числе, поэтому глагол kosten, а не kostet. Вариант Wie viel kosten die Äpfel? тоже правильный."
+      uk: "Повсякденне питання — Was kosten …? Підмет die Äpfel у множині, тому дієслово kosten, а не kostet. Варіант Wie viel kosten die Äpfel? теж правильний."
