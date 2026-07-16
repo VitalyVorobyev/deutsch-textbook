@@ -1,0 +1,119 @@
+topic: freizeit-koennen
+role: drill
+title:
+  en: Drill — the modal bracket, no zu
+  ru: Тренажёр — модальная рамка без zu
+  uk: Тренажер — модальна рамка без zu
+items:
+  - id: uebersetzen-kochen
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "My brother can cook very well."
+    prompt_ru: "Мой брат умеет очень хорошо готовить."
+    prompt_uk: "Мій брат вміє дуже добре готувати."
+    answer: "Mein Bruder kann sehr gut kochen."
+    key_tokens: ["kann", "kochen"]
+    explain:
+      en: "The modal kann sits in position 2 and the bare infinitive kochen closes the sentence — nothing between them moves either verb. No zu: English says 'is able TO cook', German never puts zu after a modal."
+      ru: "Модальный kann стоит на втором месте, а голый инфинитив kochen закрывает предложение — рамка. Никакого zu: после модального глагола инфинитив всегда голый."
+      uk: "Модальне kann стоїть на другому місці, а голий інфінітив kochen закриває речення — рамка. Жодного zu: після модального дієслова інфінітив завжди голий."
+  - id: uebersetzen-arbeiten
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "Today I cannot work for a long time."
+    prompt_ru: "Сегодня я не могу долго работать."
+    prompt_uk: "Сьогодні я не можу довго працювати."
+    answer: "Heute kann ich nicht lange arbeiten."
+    accept:
+      - "Ich kann heute nicht lange arbeiten."
+    key_tokens: ["kann", "arbeiten"]
+    explain:
+      en: "kann in position 2 (after fronted Heute the subject follows the verb), arbeiten bare at the very end — nicht sits inside the bracket, never behind it. kann … zu arbeiten is the classic trap: modals never take zu."
+      ru: "kann на втором месте (после вынесенного Heute подлежащее идёт за глаголом), голый arbeiten в самом конце — nicht стоит внутри рамки, а не за ней. kann … zu arbeiten — классическая ловушка: модальные глаголы не сочетаются с zu."
+      uk: "kann на другому місці (після винесеного Heute підмет іде за дієсловом), голий arbeiten у самому кінці — nicht стоїть усередині рамки, а не за нею. kann … zu arbeiten — класична пастка: модальні дієслова не поєднуються з zu."
+  - id: uebersetzen-film
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "We can watch a film this evening."
+    prompt_ru: "Мы можем сегодня вечером посмотреть фильм."
+    prompt_uk: "Ми можемо сьогодні ввечері подивитися фільм."
+    answer: "Wir können heute Abend einen Film sehen."
+    accept:
+      - "Heute Abend können wir einen Film sehen."
+    key_tokens: ["können", "sehen"]
+    explain:
+      en: "English 'able TO watch' plants the trap: German können takes a bare infinitive, and it goes to the very end — können … sehen, never können zu sehen."
+      ru: "Английское able TO watch подсказывает ловушку, но по-немецки können требует голый инфинитив, и он уходит в самый конец: können … sehen, никогда können zu sehen."
+      uk: "Англійське able TO watch підказує пастку, але німецькою können вимагає голий інфінітив, і він іде в самий кінець: können … sehen, ніколи können zu sehen."
+  - id: uebersetzen-fragen
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "Can I ask something?"
+    prompt_ru: "Можно мне кое-что спросить?"
+    prompt_uk: "Можна мені дещо запитати?"
+    answer: "Kann ich etwas fragen?"
+    key_tokens: ["Kann", "fragen"]
+    explain:
+      en: "In a yes/no question the modal opens the sentence, but the far end of the bracket stays put: the bare infinitive fragen is still the last word."
+      ru: "В вопросе без вопросительного слова модальный глагол выходит на первое место, но дальний конец рамки не двигается: голый инфинитив fragen по-прежнему стоит последним."
+      uk: "У питанні без питального слова модальне дієслово виходить на перше місце, але дальній кінець рамки не рухається: голий інфінітив fragen так само стоїть останнім."
+  - id: cloze-kein-zu
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-satzklammer
+    text: "Ich kann heute nicht {{kommen}}, aber wir können morgen zusammen {{lernen}}."
+    translation:
+      en: "I cannot come today, but we can study together tomorrow."
+      ru: "Сегодня я не могу прийти, но завтра мы можем позаниматься вместе."
+      uk: "Сьогодні я не можу прийти, але завтра ми можемо повчитися разом."
+    explain:
+      en: "Both gaps are the far end of a modal bracket: a bare infinitive, no zu, nothing after it."
+      ru: "Оба пропуска — дальний конец модальной рамки: голый инфинитив, без zu, и после него ничего не стоит."
+      uk: "Обидва пропуски — дальній кінець модальної рамки: голий інфінітив, без zu, і після нього нічого не стоїть."
+  - id: mc-kein-zu
+    outcomes: [freizeit-koennen-satz]
+    type: mc
+    focus: modal-satzklammer
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich kann gut kochen."
+      - "Ich kann gut zu kochen."
+      - "Ich kann zu kochen gut."
+    correct: 0
+    explain:
+      en: "A modal takes a bare infinitive at the very end: kann … kochen. zu never follows a modal — kann zu kochen is not German."
+      ru: "После модального глагола — голый инфинитив в самом конце: kann … kochen. zu после модального не ставится — kann zu kochen не по-немецки."
+      uk: "Після модального дієслова — голий інфінітив у самому кінці: kann … kochen. zu після модального не ставиться — kann zu kochen не німецькою."
+  - id: diktat-musik
+    outcomes: [freizeit-koennen-satz]
+    type: listen
+    focus: modal-satzklammer
+    text: "Wir können am Samstag Fußball spielen."
+    explain:
+      en: "können in position 2, the bare infinitive spielen at the end — the bracket you hear is the bracket you write."
+      ru: "können на втором месте, голый инфинитив spielen в конце — рамка, которую слышишь, и есть рамка, которую пишешь."
+      uk: "können на другому місці, голий інфінітив spielen у кінці — рамка, яку чуєш, і є рамка, яку пишеш."

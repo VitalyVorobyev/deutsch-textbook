@@ -16,6 +16,7 @@ items:
     outcomes: [zeit-praepositionen]
     type: translate
     focus: um-am-zeit
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -26,6 +27,9 @@ items:
     answer: "Mein Tag beginnt um sechs Uhr."
     accept:
       - "Um sechs Uhr beginnt mein Tag."
+      # anfangen is the everyday synonym of beginnen and equally demonstrates um +
+      # clock time — the graded competence. A learner produced it (2026-07 audit).
+      - "Mein Tag fängt um sechs Uhr an."
     key_tokens: ["um"]
     explain:
       en: "A time on the clock always takes um: um sechs Uhr. Neither am nor im is possible here, whatever the sentence is about."

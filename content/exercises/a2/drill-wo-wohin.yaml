@@ -1,0 +1,110 @@
+topic: wohnen-umzug
+role: drill
+title:
+  en: Drill — Wo? or Wohin?
+  ru: Тренажёр — Wo? или Wohin?
+items:
+  - id: uebersetzen-bahnhof
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "I am waiting at the station."
+    prompt_ru: "Я жду на вокзале."
+    answer: "Ich warte am Bahnhof."
+    key_tokens: ["am"]
+    explain:
+      en: "Waiting is a position, not a movement: Wo? takes the dative, and an + dem contracts to am. English hides the difference — 'at the station' and 'to the station' look alike in a sentence — so run the question test: waiting answers Wo?, never Wohin?"
+      ru: "Ждать — это положение, а не движение: Wo? требует Dativ, an + dem стягивается в am. Работает то же различие, что и в русском: «на вокзале» (где?), а не «на вокзал» (куда?)."
+  - id: uebersetzen-stadt
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "On Saturday we are driving into the city."
+    prompt_ru: "В субботу мы едем в город."
+    answer: "Am Samstag fahren wir in die Stadt."
+    accept:
+      - "Wir fahren am Samstag in die Stadt."
+    key_tokens: ["die"]
+    explain:
+      en: "Driving somewhere is a direction: Wohin? takes the accusative — in die Stadt. The feminine article shows the case here: in der Stadt would mean being there, not going there."
+      ru: "Ехать куда-то — это направление: Wohin? требует Akkusativ — in die Stadt. Падеж здесь виден по артиклю женского рода: in der Stadt значило бы «в городе», а не «в город»."
+  - id: uebersetzen-garten-wo
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The children are in the garden."
+    prompt_ru: "Дети в саду."
+    answer: "Die Kinder sind im Garten."
+    key_tokens: ["im"]
+    explain:
+      en: "Being somewhere is a position: Wo? + Dativ, and in + dem contracts to im — im Garten. sein never moves anything anywhere, so its location always answers Wo?"
+      ru: "Находиться где-то — это положение: Wo? + Dativ, in + dem стягивается в im — im Garten, ровно как русское «в саду» (предложный падеж)."
+  - id: uebersetzen-garten-wohin
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: wo-wohin
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+    prompt_en: "The children are running into the garden."
+    prompt_ru: "Дети бегут в сад."
+    answer: "Die Kinder laufen in den Garten."
+    key_tokens: ["den"]
+    explain:
+      en: "The same garden, but now a direction: Wohin? + Akkusativ — in den Garten. The pair with the previous sentence is the whole rule: im Garten (where) vs in den Garten (where to)."
+      ru: "Тот же сад, но теперь направление: Wohin? + Akkusativ — in den Garten. Пара с предыдущим предложением и есть всё правило: im Garten («в саду») против in den Garten («в сад»)."
+  - id: cloze-buero-cafe
+    outcomes: [wo-wohin-position]
+    type: cloze
+    focus: wo-wohin
+    text: "Ich arbeite {{im}} Büro. Nach der Arbeit gehe ich {{ins}} Café."
+    translation:
+      en: "I work at the office. After work I go to the café."
+      ru: "Я работаю в офисе. После работы я иду в кафе."
+    explain:
+      en: "arbeiten is a position (im = in + dem), gehen is a direction (ins = in + das). The verb decides the question — Wo? or Wohin? — and the question decides the case."
+      ru: "arbeiten — положение (im = in + dem), gehen — направление (ins = in + das). Глагол определяет вопрос — Wo? или Wohin? — а вопрос определяет падеж."
+  - id: cloze-sofa-boden
+    outcomes: [wo-wohin-position]
+    type: cloze
+    focus: wo-wohin
+    text: "Die Katze sitzt auf {{dem}} Sofa. Dann springt sie auf {{den}} Boden."
+    translation:
+      en: "The cat is sitting on the sofa. Then it jumps onto the floor."
+      ru: "Кошка сидит на диване. Потом она прыгает на пол."
+    explain:
+      en: "sitzen is a position — auf dem Sofa (Dativ); springen is a movement to a goal — auf den Boden (Akkusativ). Same preposition, two cases, two meanings."
+      ru: "sitzen — положение: auf dem Sofa (Dativ); springen — движение к цели: auf den Boden (Akkusativ). Один предлог, два падежа, два смысла — как «на диване» и «на пол»."
+  - id: mc-see
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: wo-wohin
+    instruction:
+      en: Choose the correct form.
+      ru: Выберите правильную форму.
+    prompt: "Wohin fahrt ihr am Sonntag? — ___ See."
+    options:
+      - "An den"
+      - "Am"
+      - "An das"
+    correct: 0
+    explain:
+      en: "The question is Wohin?, so the answer is a direction: an + Akkusativ — an den See. Am See answers a different question (Wo?), and der See is masculine, so an das is out either way."
+      ru: "Вопрос Wohin?, значит в ответе направление: an + Akkusativ — an den See. Am See отвечает на другой вопрос (Wo?), а der See мужского рода, так что an das не подходит в любом случае."
+  - id: diktat-park
+    outcomes: [wo-wohin-position]
+    type: listen
+    focus: wo-wohin
+    text: "Wir gehen am Sonntag in den Park."
+    explain:
+      en: "gehen is a direction, so you hear the accusative: in den Park. Writing in dem here is a case choice, not a typo — that is exactly what this dictation grades."
+      ru: "gehen — направление, поэтому звучит Akkusativ: in den Park. Написать здесь in dem — это выбор падежа, а не опечатка: именно его и проверяет этот диктант."

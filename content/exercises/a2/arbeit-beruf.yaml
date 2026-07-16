@@ -182,6 +182,7 @@ items:
     outcomes: [arbeitszeit-aushandeln, berufliche-nachricht-schreiben]
     type: translate
     focus: verbzweit
+    revision: 2
     instruction:
       en: "Translate into German. You are texting a colleague."
       ru: "Переведите на немецкий. Вы пишете коллеге сообщение."
@@ -191,6 +192,8 @@ items:
     key_tokens: ["denn", "habe"]
     accept:
       - "Heute komme ich später, denn ich habe einen Termin beim Arzt."
+      - "Ich komme heute später, denn ich habe einen Arzttermin."
+      - "Heute komme ich später, denn ich habe einen Arzttermin."
     explain:
       en: "denn does not reorder anything. The clause it introduces is a complete main clause and behaves like one: ich in position 1, the conjugated habe in position 2, the object behind it. That is why denn is the cheapest way to give a reason at this level — you already know how to build the sentence that follows it. Two habits to fix now: a comma always goes in front of denn, and denn never opens a sentence."
       ru: "denn ничего не переставляет. Введённая им часть — полноценное главное предложение и ведёт себя как таковое: ich на первом месте, спрягаемое habe на втором, дополнение за ним. Именно поэтому denn — самый дешёвый способ назвать причину на этом уровне: предложение после него вы уже умеете строить. Две привычки стоит закрепить сразу: перед denn всегда запятая, и denn никогда не начинает предложение."
