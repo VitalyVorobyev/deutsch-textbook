@@ -264,8 +264,56 @@ export const matchItemSchema = z.object({
   ...itemBase,
   type: z.literal('match'),
   pairs: z
-    .array(z.object({ left: z.string().min(1), right: z.string().min(1) }))
-    .min(2),
+    .array(
+      z.object({
+        left: z.string().min(1),
+        /** A German↔German pair keeps a plain string. A meaning-side right is a
+            per-language record — never a mixed "en / ru" string, which no
+            language mode can render and the parity/letter-set checks cannot
+            see. The record's `en` doubles as the pair's stable identity in
+            Match.tsx, so edit it as carefully as an answer. */
+        right: z.union([
+          z.string().min(1),
+          z
+            .object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+            .strict(),
+        ]),
+      }),
+    )
+    .min(2)
+    // Identity must be unique on both columns — and for the right column,
+    // unique as *rendered under every language mode*, not merely as identity:
+    // matching keys on the record's `en`, so two rights whose ru (or uk)
+    // labels coincide would show the learner two indistinguishable buttons of
+    // which one is "wrong". The uk label falls back to en exactly as pick()
+    // renders it. (de mode renders en, so the en pass covers it.)
+    .superRefine((pairs, ctx) => {
+      const lefts = new Set<string>();
+      for (const p of pairs) {
+        if (lefts.has(p.left))
+          ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate left "${p.left}" — pair identity must be unique` });
+        lefts.add(p.left);
+      }
+      for (const mode of ['en', 'ru', 'uk'] as const) {
+        const seen = new Set<string>();
+        for (const p of pairs) {
+          const label =
+            typeof p.right === 'string'
+              ? p.right
+              : mode === 'ru'
+                ? p.right.ru
+                : mode === 'uk'
+                  ? (p.right.uk ?? p.right.en)
+                  : p.right.en;
+          if (seen.has(label))
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `duplicate right label "${label}" under ${mode} mode — rights must render distinct in every language`,
+            });
+          seen.add(label);
+        }
+      }
+    }),
 });
 
 export const orderItemSchema = z.object({

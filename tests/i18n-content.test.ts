@@ -23,6 +23,7 @@ import {
 } from '../src/lib/langcheck';
 import {
   bilingualSchema,
+  matchItemSchema,
   outcomeSchema,
   pronominalAdverbReferenceSchema,
   topicSchema,
@@ -343,6 +344,105 @@ describe('mdxLangProblems', () => {
 });
 
 describe('schema widening', () => {
+  test('match rights: German stays a plain string, a meaning side is a per-language record', () => {
+    const base = { id: 'm1', type: 'match', outcomes: [] };
+    const german = matchItemSchema.parse({
+      ...base,
+      pairs: [
+        { left: 'der', right: 'den' },
+        { left: 'ein', right: 'einen' },
+      ],
+    });
+    expect(german.pairs[0]!.right).toBe('den');
+    const meaning = matchItemSchema.parse({
+      ...base,
+      pairs: [
+        { left: 'können', right: { en: 'ability', ru: 'умение' } },
+        { left: 'dürfen', right: { en: 'permission', ru: 'разрешение', uk: 'дозвіл' } },
+      ],
+    });
+    expect(meaning.pairs[1]!.right).toEqual({ en: 'permission', ru: 'разрешение', uk: 'дозвіл' });
+    // A record right must be complete (en + ru) and closed — no stray keys, no de.
+    expect(matchItemSchema.safeParse({ ...base, pairs: [{ left: 'x', right: { en: 'a' } }, { left: 'y', right: 'z' }] }).success).toBe(false);
+    expect(matchItemSchema.safeParse({ ...base, pairs: [{ left: 'x', right: { en: 'a', ru: 'б', de: 'c' } }, { left: 'y', right: 'z' }] }).success).toBe(false);
+  });
+
+  test('match pair identities must be unique on both columns', () => {
+    const base = { id: 'm1', type: 'match', outcomes: [] };
+    // Two record rights sharing en collapse to one UI identity — rejected.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'du', right: { en: 'you', ru: 'ты' } },
+          { left: 'Sie', right: { en: 'you', ru: 'вы' } },
+        ],
+      }).success,
+    ).toBe(false);
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'der', right: 'den' },
+          { left: 'der', right: 'dem' },
+        ],
+      }).success,
+    ).toBe(false);
+    // Distinct en identities but colliding ru labels: in ru mode the learner
+    // sees two identical buttons while matching still keys on en — rejected.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'mögen', right: { en: 'liking', ru: 'нравится' } },
+          { left: 'gern', right: { en: 'gladly', ru: 'нравится' } },
+        ],
+      }).success,
+    ).toBe(false);
+    // A missing uk falls back to en at render time — a collision through the
+    // fallback is a collision.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'a', right: { en: 'x', ru: 'р1' } },
+          { left: 'b', right: { en: 'y', ru: 'р2', uk: 'x' } },
+        ],
+      }).success,
+    ).toBe(false);
+  });
+
+  test('a record match right never enters de parity', () => {
+    // Shape-identical to an explanation record, but the strict schema forbids de —
+    // counting it would make de parity unsatisfiable for a B1 set with record rights.
+    const file = {
+      items: [
+        {
+          id: 'm',
+          type: 'match',
+          pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение' } }],
+          explain: { en: 'e', ru: 'р', de: 'd' },
+        },
+      ],
+    };
+    expect(deParityProblems(file)).toEqual([]);
+  });
+
+  test('a record match right is visible to the parity walker', () => {
+    // The point of the record shape: a translated file whose match right lacks uk fails
+    // parity — the slash-hack string ("ability / умение") was invisible to this check.
+    const file = {
+      title: { en: 'T', ru: 'Т', uk: 'Т' },
+      items: [{ id: 'm', type: 'match', pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение' } }] }],
+    };
+    expect(ukParityProblems(file).length).toBeGreaterThan(0);
+    const done = {
+      ...file,
+      items: [{ id: 'm', type: 'match', pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение', uk: 'вміння' } }] }],
+    };
+    expect(ukParityProblems(done)).toEqual([]);
+  });
+
   test('bilingualSchema accepts the optional halves and rejects empty ones', () => {
     expect(bilingualSchema.parse({ en: 'e', ru: 'r', uk: 'u', de: 'd' })).toEqual({
       en: 'e',

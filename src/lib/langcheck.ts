@@ -153,10 +153,18 @@ function isExplainRecord(obj: object): boolean {
  * German example sentences with translations — the one shape this structural
  * test cannot tell apart from an explanation record.
  */
+/** A match pair's meaning-side right ({en, ru, uk?}) is shape-identical to an
+    explanation record but never carries de by design — a meaning gloss is not
+    an explanation, and the strict schema forbids the key, so counting it here
+    would make de parity unsatisfiable for any set that has both a de half and
+    a record right (the P8-4 satisfiability trap). */
+const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
+
 export function deParityProblems(node: unknown): string[] {
   const withDe: string[] = [];
   const withoutDe: string[] = [];
   walkObjects(node, '', (obj, path) => {
+    if (MATCH_RIGHT_PATH.test(path)) return;
     if (!isExplainRecord(obj)) return;
     const de = (obj as Record<string, unknown>).de;
     if (typeof de === 'string' && de.length > 0) withDe.push(path || '(root)');

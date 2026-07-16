@@ -132,6 +132,8 @@ function itemGerman(item: Record<string, unknown>): string[] {
     case 'match':
       for (const p of (item.pairs ?? []) as Array<Record<string, unknown>>) {
         push(p.left);
+        // A record right ({en, ru, uk?}) is a meaning gloss, not German taught
+        // surface — push's string guard skips it, and that is intentional.
         push(p.right);
       }
       break;
