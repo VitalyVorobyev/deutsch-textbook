@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import DueBadge from '../../components/srs/DueBadge';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
+import { UI_LANGS, t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
 import { DeckMasterySummary } from '../../components/vocab/VocabMastery';
 
@@ -16,7 +18,7 @@ const decks = vocab
 
 <Base title="Wortschatz">
   <UebenNav active="wortschatz" />
-  <h1 class="text-3xl font-bold tracking-tight">Wortschatz</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="ueben.tabWortschatz" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">Flashcard decks built from the vocabulary base.</span>
     <span class="lang-ru">Колоды карточек, собранные из словарной базы.</span>
@@ -42,7 +44,13 @@ const decks = vocab
             {data.title_uk && <span class="lang-uk">{data.title_uk}</span>}
           </p>
           <p class="mt-2 text-xs text-stone-400">
-            {data.entries.length} Wörter · {cards.length} Karten
+            {UI_LANGS.map((l) => (
+              <span class={`ui-${l}`}>
+                {t('vocab.deckSize', l)
+                  .replace('{words}', String(data.entries.length))
+                  .replace('{cards}', String(cards.length))}
+              </span>
+            ))}
           </p>
           <DeckMasterySummary client:only="react" cards={cards} />
         </a>

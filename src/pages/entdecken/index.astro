@@ -1,13 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import { withBase } from '../../lib/url';
 
 const pieces = await getCollection('discovery', ({ data }) => data.status === 'reviewed');
 ---
 
 <Base title="Entdecken">
-  <h1 class="text-3xl font-bold">Entdecken</h1>
+  <h1 class="text-3xl font-bold"><Chrome k="nav.entdecken" /></h1>
   <p class="mt-2 max-w-2xl text-stone-500"><span class="lang-en">German worth reading for its own sake: places, people, documents and stories. Optional, with no completion bar and no review debt.</span><span class="lang-ru">Немецкий, который интересен сам по себе: места, люди, документы и истории. Всё необязательно — без шкалы прохождения и долгов по повторению.</span></p>
   <div class="mt-8 grid gap-4 sm:grid-cols-2">
     {pieces.map((piece) => <a href={withBase(`/entdecken/${piece.id}`)} class="overflow-hidden rounded-xl border border-stone-200 bg-white hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800">
@@ -21,7 +22,7 @@ const pieces = await getCollection('discovery', ({ data }) => data.status === 'r
           )}
         </div>
       )}
-      <div class="p-5"><span class="text-xs font-bold text-amber-700">{piece.data.level} · Entdecken</span><h2 lang="de" class="mt-1 text-xl font-bold">{piece.data.title_de}</h2><p class="mt-2 text-sm text-stone-500"><span class="lang-en">{piece.data.summary.en}</span><span class="lang-ru">{piece.data.summary.ru}</span>{piece.data.summary.uk && <span class="lang-uk">{piece.data.summary.uk}</span>}{piece.data.summary.de && <span class="lang-de">{piece.data.summary.de}</span>}</p></div>
+      <div class="p-5"><span class="text-xs font-bold text-amber-700">{piece.data.level} · <Chrome k="nav.entdecken" /></span><h2 lang="de" class="mt-1 text-xl font-bold">{piece.data.title_de}</h2><p class="mt-2 text-sm text-stone-500"><span class="lang-en">{piece.data.summary.en}</span><span class="lang-ru">{piece.data.summary.ru}</span>{piece.data.summary.uk && <span class="lang-uk">{piece.data.summary.uk}</span>}{piece.data.summary.de && <span class="lang-de">{piece.data.summary.de}</span>}</p></div>
     </a>)}
   </div>
 </Base>

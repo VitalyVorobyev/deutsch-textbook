@@ -133,7 +133,7 @@ function isActive(item: NavItem): boolean {
     </main>
 
     <footer class="border-t border-stone-200 py-6 text-center text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
-      Deutsch-Atlas · ein agentengeschriebenes Lehrbuch · A1 → B2
+      {UI_LANGS.map((l) => <span class={`ui-${l}`}>{t('footer.tagline', l)}</span>)}
     </footer>
 
     <script>

@@ -31,6 +31,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
+import { hasRuField, hasUkField, ukParityProblems } from './langcheck';
 import type { Level } from './schemas';
 
 const VOCAB_DIR = 'content/vocab';
@@ -317,6 +318,64 @@ export function addresses(surface: string, word: string): boolean {
 
 export function hasManifest(level: Level, root = process.cwd()): boolean {
   return existsSync(join(root, manifestPath(level)));
+}
+
+// ---------------------------------------------------------------------------
+// Ukrainian translation coverage — how far the C3 waves have progressed
+// ---------------------------------------------------------------------------
+
+export interface UkCoverage {
+  /** ru-bearing content files that carry the uk half */
+  translated: number;
+  /** all ru-bearing content files */
+  total: number;
+}
+
+/**
+ * The Über page's UK-translation figure, computed from content per the
+ * earned-claims rule — the page never hand-writes it. The unit is the file:
+ * per-file parity is validator-enforced (src/lib/langcheck.ts), so any `uk`
+ * in a file means the file is fully translated — a wave's file is translated
+ * or not started, never half. Two refinements keep the count honest:
+ *
+ * - `content/atlas.yaml` has per-NODE parity by design (one file holds every
+ *   topic), so a single translated node must not count the whole atlas: it
+ *   counts as translated only when every ru field in it has its uk sibling
+ *   (`ukParityProblems` under `forceUk`).
+ * - An `.mdx` file has two ru-bearing sides — frontmatter fields and body
+ *   `<Ru>` blocks — and counts as translated only when EVERY ru-bearing side
+ *   it has is translated. The validator bridges the two sides into one parity
+ *   scope, so a half-done file cannot ship; this rule keeps the figure robust
+ *   on its own, per the earned-claims rule, rather than trusting the bridge.
+ */
+export function ukTranslationCoverage(root = process.cwd()): UkCoverage {
+  let translated = 0;
+  let total = 0;
+  const count = (ruBearing: boolean, uk: boolean): void => {
+    if (!ruBearing) return;
+    total += 1;
+    if (uk) translated += 1;
+  };
+
+  for (const file of walk(join(root, 'content'), '.yaml')) {
+    const data = YAML.parse(readFileSync(file, 'utf8')) as unknown;
+    const fullyTranslated = file.endsWith(join('content', 'atlas.yaml'))
+      ? hasUkField(data) && ukParityProblems(data, { forceUk: true }).length === 0
+      : hasUkField(data);
+    count(hasRuField(data), fullyTranslated);
+  }
+  for (const file of walk(join(root, 'content'), '.mdx')) {
+    const source = readFileSync(file, 'utf8');
+    const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(\r?\n|$)/);
+    const fm = frontmatter ? (YAML.parse(frontmatter[1]!) as unknown) : undefined;
+    const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '');
+    const fmRu = hasRuField(fm);
+    const bodyRu = body.includes('<Ru>');
+    const fmDone = !fmRu || hasUkField(fm);
+    const bodyDone = !bodyRu || body.includes('<Uk>');
+    count(fmRu || bodyRu, fmDone && bodyDone);
+  }
+  return { translated, total };
 }
 
 export function goetheCoverage(level: Level, root = process.cwd()): Coverage {

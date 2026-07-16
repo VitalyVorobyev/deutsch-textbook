@@ -9,7 +9,7 @@ import {
   setCardState,
   type CardStates,
 } from '../../lib/store';
-import { getCardInputMode, pick, setCardInputMode, type CardInputMode } from '../../lib/prefs';
+import { getCardInputMode, pick, pickSecond, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import {
   articledForm,
@@ -201,13 +201,17 @@ export default function FlashcardSession({
 
   // Nouns are shown and must be answered WITH their article ("der Apfel").
   const answerDe = articledForm(card.de, card.gender);
-  // In dictation the German side is the (hidden) audio prompt, so the visible
-  // "front" after answering is the meaning instead.
-  // The en·ru concatenation deliberately ignores uk/de for now: switching the
-  // meaning side to the explanation language is P8-5's pickSecond item, with
-  // its own card-identity test.
-  const front = card.dir === 'de-x' && !listening ? answerDe : `${card.en} · ${card.ru}`;
-  const back = card.dir === 'de-x' ? `${card.en} · ${card.ru}` : answerDe;
+  // The meaning side: EN plus the explanation-language gloss (pickSecond) —
+  // `en · ru` today, `en · uk` where a wave authored it, EN alone under 'uk'
+  // without a gloss and always under 'de' (a meaning side is never German).
+  // Used by the x-de front and the de-x back only; the de-x front stays the
+  // German answer, and dictation keeps its behavior (the German side is the
+  // hidden audio prompt, so the visible "front" after answering is the
+  // meaning). Display-only: card identity never carries a gloss language.
+  const second = pickSecond(lang, { ru: card.ru, uk: card.uk });
+  const meaning = second ? `${card.en} · ${second}` : card.en;
+  const front = card.dir === 'de-x' && !listening ? answerDe : meaning;
+  const back = card.dir === 'de-x' ? meaning : answerDe;
 
   async function grade(g: Grade) {
     if (!card) return;
