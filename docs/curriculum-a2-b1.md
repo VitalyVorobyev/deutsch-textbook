@@ -50,12 +50,13 @@ remains deferred.
 ## Vocabulary policy
 
 **The lexical fields are already ~85% spent.** Twenty-five decks hold 711 headwords, and the
-validator hard-fails a headword that appears in two decks. Twelve of those decks are deliberately
+validator hard-fails a headword that appears in two decks. Eleven of those decks are deliberately
 *unowned* — they were authored for the Goethe-A1 Wortliste completion pass and gate their fresh
-cards on the learner's level rather than on a topic (`eligibleFreshCards`, `src/lib/decks.ts`).
+cards on the learner's level rather than on a topic (`eligibleFreshCards`, `src/lib/decks.ts`);
+`termine-zeit`, once counted among them, is `level: A2` and owned by `termine-vereinbaren`.
 They already own most of the words a new A2 unit reaches for: `umsteigen`, `Gleis` and `Fahrplan`
 (reisen-urlaub); `stehen`, `stellen`, `legen` and `liegen` (wohnen, verben-grundwortschatz);
-`passen` (termine-zeit); `weil`, `dass`, `wenn` and `denn` (kernwortschatz-a2); `bedeuten` and
+`passen` (termine-zeit, owned); `weil`, `dass`, `wenn` and `denn` (kernwortschatz-a2); `bedeuten` and
 `wiederholen` (kommunikation-medien).
 
 Two rules follow, and they are not negotiable.
