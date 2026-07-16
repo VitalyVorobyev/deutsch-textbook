@@ -280,7 +280,22 @@ export const matchItemSchema = z.object({
         ]),
       }),
     )
-    .min(2),
+    .min(2)
+    // Identity must be unique on both columns: the UI keys matching on `left`
+    // and on the right's identity (the string itself, or the record's `en`),
+    // so two pairs sharing either would cross-accept and mis-mark as matched.
+    .superRefine((pairs, ctx) => {
+      const seen = { left: new Set<string>(), right: new Set<string>() };
+      for (const p of pairs) {
+        const rightId = typeof p.right === 'string' ? p.right : p.right.en;
+        if (seen.left.has(p.left))
+          ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate left "${p.left}" — pair identity must be unique` });
+        if (seen.right.has(rightId))
+          ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate right identity "${rightId}" — for a record right the en field is the identity` });
+        seen.left.add(p.left);
+        seen.right.add(rightId);
+      }
+    }),
 });
 
 export const orderItemSchema = z.object({

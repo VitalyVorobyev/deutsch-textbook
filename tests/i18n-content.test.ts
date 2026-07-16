@@ -367,6 +367,45 @@ describe('schema widening', () => {
     expect(matchItemSchema.safeParse({ ...base, pairs: [{ left: 'x', right: { en: 'a', ru: 'б', de: 'c' } }, { left: 'y', right: 'z' }] }).success).toBe(false);
   });
 
+  test('match pair identities must be unique on both columns', () => {
+    const base = { id: 'm1', type: 'match', outcomes: [] };
+    // Two record rights sharing en collapse to one UI identity — rejected.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'du', right: { en: 'you', ru: 'ты' } },
+          { left: 'Sie', right: { en: 'you', ru: 'вы' } },
+        ],
+      }).success,
+    ).toBe(false);
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'der', right: 'den' },
+          { left: 'der', right: 'dem' },
+        ],
+      }).success,
+    ).toBe(false);
+  });
+
+  test('a record match right never enters de parity', () => {
+    // Shape-identical to an explanation record, but the strict schema forbids de —
+    // counting it would make de parity unsatisfiable for a B1 set with record rights.
+    const file = {
+      items: [
+        {
+          id: 'm',
+          type: 'match',
+          pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение' } }],
+          explain: { en: 'e', ru: 'р', de: 'd' },
+        },
+      ],
+    };
+    expect(deParityProblems(file)).toEqual([]);
+  });
+
   test('a record match right is visible to the parity walker', () => {
     // The point of the record shape: a translated file whose match right lacks uk fails
     // parity — the slash-hack string ("ability / умение") was invisible to this check.
