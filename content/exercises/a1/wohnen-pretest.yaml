@@ -8,8 +8,8 @@ items:
     prompt: "In der Wohnung gibt es ___ Balkon."
     options: ["ein", "einen", "eine"]
     correct: 1
-    translation: { en: "There is a balcony in the apartment.", ru: "В квартире есть балкон." }
-    explain: { en: "es gibt always takes the Akkusativ; Balkon is masculine, so ein → einen.", ru: "После es gibt всегда стоит Akkusativ; Balkon мужского рода, поэтому ein → einen." }
+    translation: { en: "There is a balcony in the apartment.", ru: "В квартире есть балкон.", uk: "У квартирі є балкон." }
+    explain: { en: "es gibt always takes the Akkusativ; Balkon is masculine, so ein → einen.", ru: "После es gibt всегда стоит Akkusativ; Balkon мужского рода, поэтому ein → einen.", uk: "Після es gibt завжди стоїть Akkusativ; Balkon чоловічого роду, тому ein → einen." }
   - id: pre-genus-kueche
     outcomes: [wohnen-beschreiben]
     type: mc
@@ -17,13 +17,13 @@ items:
     prompt: "___ Küche ist klein, aber neu."
     options: ["Der", "Die", "Das"]
     correct: 1
-    translation: { en: "The kitchen is small, but new.", ru: "Кухня маленькая, но новая." }
-    explain: { en: "Küche is feminine: die Küche. Learn every room together with its article.", ru: "Küche женского рода: die Küche. Учите каждую комнату сразу с артиклем." }
+    translation: { en: "The kitchen is small, but new.", ru: "Кухня маленькая, но новая.", uk: "Кухня маленька, але нова." }
+    explain: { en: "Küche is feminine: die Küche. Learn every room together with its article.", ru: "Küche женского рода: die Küche. Учите каждую комнату сразу с артиклем.", uk: "Küche жіночого роду: die Küche. Вчіть кожну кімнату одразу з артиклем." }
   - id: pre-anzeige-qm
     outcomes: [wohnen-anzeige-verstehen]
     type: mc
     prompt: "In einer Anzeige steht: „3 Zimmer, 70 qm“. Was bedeutet „qm“?"
     options: ["Quadratmeter", "Kilometer", "Quartal"]
     correct: 0
-    translation: { en: "An ad says: 3 rooms, 70 qm. What does qm mean?", ru: "В объявлении написано: 3 Zimmer, 70 qm. Что значит qm?" }
-    explain: { en: "qm is the common ad abbreviation for Quadratmeter — the size of the apartment in square metres.", ru: "qm — обычное для объявлений сокращение слова Quadratmeter: площадь квартиры в квадратных метрах." }
+    translation: { en: "An ad says: 3 rooms, 70 qm. What does qm mean?", ru: "В объявлении написано: 3 Zimmer, 70 qm. Что значит qm?", uk: "В оголошенні написано: 3 Zimmer, 70 qm. Що означає qm?" }
+    explain: { en: "qm is the common ad abbreviation for Quadratmeter — the size of the apartment in square metres.", ru: "qm — обычное для объявлений сокращение слова Quadratmeter: площадь квартиры в квадратных метрах.", uk: "qm — звичне для оголошень скорочення слова Quadratmeter: площа квартири у квадратних метрах." }

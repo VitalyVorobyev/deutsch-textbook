@@ -423,7 +423,14 @@ never half.
   decks, atlas outcomes for the five nodes). Über figure moved to 35 of 264. RU/EN review pass
   landed a handful of fixes (formality markers, a Vorname/heißen blur); no German content, ids,
   answers, `key_tokens` or revisions touched — verified by a frozen-surface diff, not by reading.
-- Wave 2 — `todo`: next A1 spine topics (continue in spine order).
+- **Wave 2 — `done` 2026-07-16**: the last five A1 spine topics (essen-trinken, alltag-zeit,
+  wohnen, stadt-wege, freizeit-koennen) — 38 content files fully translated, including the shared
+  Lena extensive reader. The A1 spine's topic files are now fully Ukrainian; Über figure 73 of
+  264. RU review pass: three fixes (an overstated *sehr* in a hoeren translation, two
+  unidiomatic «услышьте» imperatives). No frozen surfaces touched — verified mechanically.
+- Wave 3 — `todo`: the non-topic A1 files — the twelve unowned Wortliste completion decks,
+  `checkpoint-a1`, and any remaining ru-bearing A1 artifacts (discovery, documents, wortfelder,
+  reference-data as applicable). Then A2 in ~4–5 waves.
 - **Known instrument gap (pre-A2-waves)**: `matchItemSchema` pairs are plain strings with no
   per-language structure, so a translation-flavored right side is invisible to the parity and
   letter-set checks. Wave 1's `match-family` was reshaped German↔German (Codex finding, PR #60);

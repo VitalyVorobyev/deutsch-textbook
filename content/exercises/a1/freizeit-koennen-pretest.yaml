@@ -8,8 +8,8 @@ items:
     prompt: "Er ___ gut schwimmen."
     options: ["kann", "kannt", "könnt"]
     correct: 0
-    translation: { en: "He can swim well.", ru: "Он умеет хорошо плавать." }
-    explain: { en: "Modal verbs take no ending in the 3rd person singular: er kann, exactly like ich kann. kannt does not exist, and könnt is the ihr-form: ihr könnt.", ru: "У модальных глаголов в 3-м лице единственного числа нет окончания: er kann — так же, как ich kann. Формы kannt не существует, а könnt — это форма ihr: ihr könnt." }
+    translation: { en: "He can swim well.", ru: "Он умеет хорошо плавать.", uk: "Він уміє добре плавати." }
+    explain: { en: "Modal verbs take no ending in the 3rd person singular: er kann, exactly like ich kann. kannt does not exist, and könnt is the ihr-form: ihr könnt.", ru: "У модальных глаголов в 3-м лице единственного числа нет окончания: er kann — так же, как ich kann. Формы kannt не существует, а könnt — это форма ihr: ihr könnt.", uk: "У модальних дієслів у 3-й особі однини немає закінчення: er kann — так само, як ich kann. Форми kannt не існує, а könnt — це форма ihr: ihr könnt." }
   - id: pre-infinitiv-ende
     outcomes: [freizeit-koennen-satz]
     type: mc
@@ -17,8 +17,8 @@ items:
     prompt: "Welcher Satz ist richtig?"
     options: ["Ich kann heute nicht kommen.", "Ich kann heute nicht komme.", "Ich komme kann heute nicht."]
     correct: 0
-    translation: { en: "Which sentence is correct? — I cannot come today.", ru: "Какое предложение правильное? — Я сегодня не могу прийти." }
-    explain: { en: "können sits in position 2 and the second verb goes to the very end as a bare infinitive: Ich kann heute nicht kommen. The second verb never conjugates and never takes position 2.", ru: "können стоит на втором месте, а второй глагол уходит в самый конец в форме инфинитива: Ich kann heute nicht kommen. Второй глагол не спрягается и не занимает второе место." }
+    translation: { en: "Which sentence is correct? — I cannot come today.", ru: "Какое предложение правильное? — Я сегодня не могу прийти.", uk: "Яке речення правильне? — Я сьогодні не можу прийти." }
+    explain: { en: "können sits in position 2 and the second verb goes to the very end as a bare infinitive: Ich kann heute nicht kommen. The second verb never conjugates and never takes position 2.", ru: "können стоит на втором месте, а второй глагол уходит в самый конец в форме инфинитива: Ich kann heute nicht kommen. Второй глагол не спрягается и не занимает второе место.", uk: "können стоїть на другому місці, а друге дієслово йде в самий кінець у формі інфінітива: Ich kann heute nicht kommen. Друге дієслово не відмінюється і не займає друге місце." }
   - id: pre-gern-position
     outcomes: [freizeit-hobbys]
     type: mc
@@ -26,5 +26,5 @@ items:
     prompt: "Welcher Satz ist richtig?"
     options: ["Ich spiele gern Fußball.", "Ich gern spiele Fußball.", "Ich liebe spielen Fußball."]
     correct: 0
-    translation: { en: "Which sentence is correct? — I like playing football.", ru: "Какое предложение правильное? — Я люблю играть в футбол." }
-    explain: { en: "Liking an activity is verb + gern, with gern after the conjugated verb: Ich spiele gern Fußball. The verb keeps position 2, and lieben + infinitive is not how German says it.", ru: "«Люблю что-то делать» — это глагол + gern, причём gern стоит после спрягаемого глагола: Ich spiele gern Fußball. Глагол остаётся на втором месте, а конструкции «lieben + инфинитив» (как русское «люблю играть») в немецком нет." }
+    translation: { en: "Which sentence is correct? — I like playing football.", ru: "Какое предложение правильное? — Я люблю играть в футбол.", uk: "Яке речення правильне? — Я люблю грати у футбол." }
+    explain: { en: "Liking an activity is verb + gern, with gern after the conjugated verb: Ich spiele gern Fußball. The verb keeps position 2, and lieben + infinitive is not how German says it.", ru: "«Люблю что-то делать» — это глагол + gern, причём gern стоит после спрягаемого глагола: Ich spiele gern Fußball. Глагол остаётся на втором месте, а конструкции «lieben + инфинитив» (как русское «люблю играть») в немецком нет.", uk: "«Люблю щось робити» — це дієслово + gern, причому gern стоїть після відмінюваного дієслова: Ich spiele gern Fußball. Дієслово залишається на другому місці, а конструкції «lieben + інфінітив» (як українське «люблю грати») у німецькій немає." }
