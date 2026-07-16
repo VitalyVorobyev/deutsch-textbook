@@ -8,9 +8,8 @@ import {
   resolveProfileState,
   type Profile,
 } from '../lib/profile';
-import { pick, setUiLang } from '../lib/prefs';
-import { UI_LANGS } from '../lib/strings';
-import { useExplainLang, useUiLang } from './hooks';
+import { EXPLAIN_LANGS, pick, setExplainLang } from '../lib/prefs';
+import { useExplainLang } from './hooks';
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
     `{label}` is replaced by the caller. */
@@ -22,17 +21,17 @@ const UI = {
   },
   profile: { en: 'Profile', ru: 'Профиль' },
   deleteProfile: { en: 'Delete profile', ru: 'Удалить профиль' },
-  uiLanguage: { en: 'Interface language', ru: 'Язык интерфейса' },
+  learningLanguage: { en: 'Learning language', ru: 'Язык обучения' },
   name: { en: 'Name', ru: 'Имя' },
   add: { en: 'Add', ru: 'Добавить' },
   newProfile: { en: 'New profile', ru: 'Новый профиль' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 /** Header dropdown to switch, create, and delete local learner profiles,
-    and the per-profile UI-language (chrome) setting. */
+    and the per-profile learning-language (explanation) setting — the one
+    language selector; the chrome is pinned German (src/lib/prefs.ts). */
 export default function ProfileSwitcher() {
   const lang = useExplainLang();
-  const uiLang = useUiLang();
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [activeId, setActiveId] = useState('');
@@ -124,16 +123,16 @@ export default function ProfileSwitcher() {
 
           <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
             <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
-              {pick(lang, UI.uiLanguage)}
+              {pick(lang, UI.learningLanguage)}
             </p>
-            <div className="flex gap-1 px-2 pb-1" role="group" aria-label={pick(lang, UI.uiLanguage)}>
-              {UI_LANGS.map((l) => (
+            <div className="flex gap-1 px-2 pb-1" role="group" aria-label={pick(lang, UI.learningLanguage)}>
+              {EXPLAIN_LANGS.map((l) => (
                 <button
                   key={l}
                   type="button"
-                  onClick={() => setUiLang(l)}
+                  onClick={() => setExplainLang(l)}
                   className={`flex-1 rounded px-1.5 py-1 text-xs font-semibold uppercase ${
-                    l === uiLang
+                    l === lang
                       ? 'bg-amber-600 text-white'
                       : 'text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-700'
                   }`}

@@ -34,6 +34,23 @@ simply `uiLang: 'de'`** — today's exact UI, and still the default. Content imm
 `explainLang: 'de'` — the German explanation half below, real only where content carries it
 (B1 onward), an honest EN fallback everywhere else.
 
+**Owner decision 2026-07-16 — one selector, chrome pinned German.** Two four-way selectors (the
+header `ExplainLang` toggle and the ProfileSwitcher's `UiLang` picker) exposed the two axes as two
+user decisions, and that was redundant clutter: nobody wants to control them independently, and the
+one imagined use case (a teacher demoing in English chrome) never outweighed the cost. The UI now
+has **one** selector — **Lernsprache** (the `ExplainLang`, per-profile, in the ProfileSwitcher
+dropdown) — and the chrome is **pinned to German**: `resolveUiLang`/`getUiLang`/`useUiLang` return
+`'de'` unconditionally, the retired `da:uilang:<profileId>` keys are ignored and never written, the
+header toggle and the `.ui-*` span mechanism are gone (static chrome renders `t(key, 'de')`
+directly). German-always chrome is not a loss: the default was already `'de'` for everyone, so no
+learner's first-run experience changed, and the nav labels are high-frequency sight vocabulary —
+the immersion argument this document already made for the default. The two-axis *architecture*
+stays (the strings table keeps all four languages as dormant data; `UiLang` remains a type), so
+the pin is a one-line reversal if it is ever wrong. The same ruling fixed `pickSecond`: the
+meaning side of a card under `en` was still `en · ru` (P8-5's zero-visual-change reading), which
+leaked Russian into the EN surface — under `en` the second half is now `undefined`, and only the
+chosen language's gloss ever joins the EN one.
+
 **The classification rule that makes the default safe: a string is chrome iff it is German
 today.** The current UI is a two-tongue hybrid — German furniture (nav, `GRADE_BUTTONS`,
 `VerdictChip`) plus helper text that follows the explanation language ("Reveal/Показать" in
