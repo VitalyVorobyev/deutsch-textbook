@@ -44,9 +44,14 @@ const load = (rel: string): TrainingSet => {
 const dativDrill = load('a2/drill-dativ-ausloeser.yaml');
 const verbDrill = load('a2/drill-verbformen.yaml');
 const endungenDrill = load('a1/drill-verbendungen.yaml');
-const drills = [dativDrill, verbDrill, endungenDrill];
+// The 2026-07-16 triage's drills: wo-wohin (worst post-triage signal, no drill existed)
+// and modal-satzklammer (the zu-after-modal confusion, unattributed by design so it can
+// never surface in the weak-focus table — the ruling drill notes are its evidence).
+const woWohinDrill = load('a2/drill-wo-wohin.yaml');
+const satzklammerDrill = load('a1/drill-modal-satzklammer.yaml');
+const drills = [dativDrill, verbDrill, endungenDrill, woWohinDrill, satzklammerDrill];
 
-const WEAK_TAGS = ['dativ-artikel', 'modal-konjugation', 'verb-endungen'];
+const WEAK_TAGS = ['dativ-artikel', 'modal-konjugation', 'verb-endungen', 'wo-wohin', 'modal-satzklammer'];
 
 const mc = (id: string): ExerciseItem =>
   ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0 }) as ExerciseItem;
@@ -82,6 +87,8 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     expect(weakTagged(dativDrill, 'dativ-artikel').length).toBeGreaterThanOrEqual(3);
     expect(weakTagged(verbDrill, 'modal-konjugation').length).toBeGreaterThanOrEqual(3);
     expect(weakTagged(endungenDrill, 'verb-endungen').length).toBeGreaterThanOrEqual(3);
+    expect(weakTagged(woWohinDrill, 'wo-wohin').length).toBeGreaterThanOrEqual(3);
+    expect(weakTagged(satzklammerDrill, 'modal-satzklammer').length).toBeGreaterThanOrEqual(3);
     for (const drill of drills) expect(drill.role).toBe('drill');
   });
 
@@ -92,6 +99,10 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     expect(new Set(verbDrill.items.map((i) => i.focus))).toEqual(new Set(['modal-konjugation']));
     expect(new Set(endungenDrill.items.map((i) => i.focus))).toEqual(new Set(['verb-endungen']));
     expect(endungenDrill.topicId).toBe('praesens-wortstellung');
+    expect(new Set(woWohinDrill.items.map((i) => i.focus))).toEqual(new Set(['wo-wohin']));
+    expect(woWohinDrill.topicId).toBe('wohnen-umzug');
+    expect(new Set(satzklammerDrill.items.map((i) => i.focus))).toEqual(new Set(['modal-satzklammer']));
+    expect(satzklammerDrill.topicId).toBe('freizeit-koennen');
   });
 
   test('eligible exactly when the owning topic is opened', () => {
@@ -99,7 +110,13 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     const opened: TopicContext = {
       attempts: [],
       cards: {},
-      topics: { dativ: { readAt: 1 }, modalverben: { readAt: 1 }, 'praesens-wortstellung': { readAt: 1 } },
+      topics: {
+        dativ: { readAt: 1 },
+        modalverben: { readAt: 1 },
+        'praesens-wortstellung': { readAt: 1 },
+        'wohnen-umzug': { readAt: 1 },
+        'freizeit-koennen': { readAt: 1 },
+      },
     };
     expect(eligibleTrainingSets(drills, [], [], closed)).toEqual([]);
     expect(eligibleTrainingSets(drills, [], [], opened)).toEqual(drills);
@@ -109,7 +126,9 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     const wanted =
       weakTagged(dativDrill, 'dativ-artikel').length +
       weakTagged(verbDrill, 'modal-konjugation').length +
-      weakTagged(endungenDrill, 'verb-endungen').length;
+      weakTagged(endungenDrill, 'verb-endungen').length +
+      weakTagged(woWohinDrill, 'wo-wohin').length +
+      weakTagged(satzklammerDrill, 'modal-satzklammer').length;
     const queue = buildSession([...drills, distractor], wanted, weakEvidence);
 
     // Band 1 (last answered wrong) is empty — no pool item was ever attempted — and the

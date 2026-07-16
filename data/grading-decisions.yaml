@@ -205,3 +205,83 @@
   decision: accept
   note: "Orthographic slip: morgen (tomorrow) is an adverb and lowercase; capitalized it is the noun der Morgen. The graded akkusativ-pronomen (dich) was met; the correction shown to the learner suffices. No content change."
   decidedAt: 2026-07-14
+
+# ── 2026-07-16 triage (13 renderings from the 2026-07-16 snapshot's queue) ──
+
+- item: a2/gesundheit-arzttermin-produktion:uebersetzen-ratschlag-sie
+  given: "Sie sollten der Tablete jeden Abend nehmen"
+  decision: confirm
+  note: "The prompt's noun is das Medikament; der Tablete swaps the noun and gets its gender wrong (die Tablette) — a choice, not a slip. The graded modal bracket (sollten … nehmen) was correct. drill note: genus of Tablette (die) under production pressure."
+  decidedAt: 2026-07-16
+
+- item: a2/gesundheit-arzttermin-produktion:uebersetzen-ratschlag-sie
+  given: "Sie sollten die Medikamente jeden Abend zu nehmen"
+  decision: confirm
+  note: "zu after a modal: sollten takes a bare infinitive — the Satzklammer closes with nehmen, never zu nehmen. drill note: modal + zu-Infinitiv (sollten … zu nehmen); the same error appears in uebersetzen-krankmeldung-seit — drill the bare-infinitive rule under modal-satzklammer."
+  decidedAt: 2026-07-16
+
+- item: a2/arbeit-beruf:uebersetzen-denn-termin
+  given: "Heute komme ich später, denn ich habe einen Artztermin"
+  decision: accept
+  note: "einen Arzttermin is idiomatic, register-true German for 'an appointment at the doctor's', and both graded tokens (denn, habe — V2 after denn) are demonstrated. The accept list gains the compound rendering in both orders (revision 2); Artztermin is then a one-token transposition slip outside the graded tokens, which today's grader forgives."
+  decidedAt: 2026-07-16
+
+- item: a2/probe-reisen-verkehr:variant-a
+  given: "Wir sind nach View geflogen und wir sind da eine Woche geblieben"
+  decision: confirm
+  note: "View is two edits from Wien — beyond slip forgiveness, and a probe cannot pass a non-word proper noun. The haben-sein target itself (sind … geflogen … geblieben) was produced correctly, so the miss is orthography, not the auxiliary. The learner's clause shape (repeated subject, colloquial da) was good German — the accept list gains it (revision 2) so a correctly spelled repeat passes."
+  decidedAt: 2026-07-16
+
+- item: a2/verben-mit-praepositionen:translate-davon
+  given: "Mia träumt von eine Reise. Sie träumt oft davon"
+  decision: confirm
+  note: "von governs the dative — von einer Reise — and the prompt's die Reise is definite (von der Reise). The graded preposition tokens (von, davon) were produced; the case on the article is the real error. drill note: dativ-praepositionen — article left in the nominative/accusative after von."
+  decidedAt: 2026-07-16
+
+- item: a2/verben-mit-praepositionen:translate-person-sache
+  given: "Wir sprechen darüber, nicht über ihn"
+  decision: accept
+  note: "Asyndetic contrast — darüber, nicht über ihn — is idiomatic German; the comma carries the 'but'. Meaning, register and both graded tokens (darüber, ihn) preserved. The accept list gains the rendering (revision 2)."
+  decidedAt: 2026-07-16
+
+- item: a2/verben-mit-praepositionen:translate-worauf
+  given: "Worauf wartet ihr? Auf den Antwort"
+  decision: confirm
+  note: "die Antwort is feminine: auf die Antwort. den is a gender/case choice, not a slip (article swaps are graded, not forgiven). The graded Worauf was correct. drill note: genus die Antwort."
+  decidedAt: 2026-07-16
+
+- item: a2/gesundheit-arzttermin-produktion:uebersetzen-krankmeldung-seit
+  given: "Ich habe seit drei Tagen Fieber und kann nicht heute zur Arbeit zu kommen"
+  decision: confirm
+  note: "Two real errors: kann … zu kommen (a modal takes the bare infinitive) and nicht placed before the time adverb (kann heute nicht …). The graded seit was correct. drill note: modal + zu-Infinitiv — second sighting (see uebersetzen-ratschlag-sie); also nicht-position relative to time adverbs."
+  decidedAt: 2026-07-16
+
+- item: a2/gesundheit-arzttermin-produktion:uebersetzen-ratschlag-du
+  given: "Geh zum Artz und nimm die Tablete!"
+  decision: confirm
+  note: "Two misspelled tokens (Artz, Tablete) — slip forgiveness covers one near-miss token, not two. The imperative targets (Geh, nimm) were correct: the miss is orthography, not imperativ-form. drill note: spelling of Arzt and Tablette(n) under production — part of a recurring orthography cluster (Ingenieur, Wien, fängt)."
+  decidedAt: 2026-07-16
+
+- item: a1/probe-alltag-zeit:variant-a
+  given: "Main Tag fangt um sechs Uhr an"
+  decision: confirm
+  note: "The anfangen rendering is good German and the accept list now carries it (Mein Tag fängt um sechs Uhr an. — revision 2), but this rendering misspells two tokens (Main for Mein, fangt for fängt) — beyond the one-slip allowance. The graded um was correct. drill note: umlaut discipline in stem-changing verbs (fängt)."
+  decidedAt: 2026-07-16
+
+- item: a1/probe-freizeit-koennen:variant-a
+  given: "Morgen kann meine Schwester ins Park fotografieren"
+  decision: confirm
+  note: "Location takes in + Dativ: im Park. ins Park is direction (and the wrong contraction — der Park). The graded modal bracket (kann … fotografieren) was intact. drill note: wo-wohin — im/ins with Park-class masculines; sighted inside a modal probe, so the confusion is live outside its home topic."
+  decidedAt: 2026-07-16
+
+- item: a1/probe-menschen-familie:variant-a
+  given: "Mein Sohn ist Ingenear. Er wohnt in Köln"
+  decision: confirm
+  note: "Ingenear is more than one edit from Ingenieur — not a forgivable slip. The graded possessive (Mein) was correct; the miss is orthography. drill note: spelling of Beruf nouns (Ingenieur) — orthography cluster."
+  decidedAt: 2026-07-16
+
+- item: a1/probe-erste-schritte:variant-a
+  given: "Ich heiße Sofia. Ich komme aus Italien und spreche Italienisch"
+  decision: accept
+  note: "Subject ellipsis in the second conjunct (und spreche) is standard German — the shared subject need not repeat. Meaning, register and all three chunks preserved. The accept list gains the rendering (revision 2)."
+  decidedAt: 2026-07-16

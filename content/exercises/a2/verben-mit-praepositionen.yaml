@@ -95,11 +95,14 @@ items:
     type: translate
     outcomes: [person-sache-unterscheiden, da-wort-sache]
     focus: da-wo-woerter
+    revision: 2
     instruction: { en: "The plan and Jonas were just mentioned. Translate the reply; the first reference is a thing, the second a person.", ru: "План и Йонаса только что упомянули. Переведите ответ: первая отсылка — к предмету, вторая — к человеку." }
     prompt_en: "We are talking about it, but not about him."
     prompt_ru: "Мы говорим об этом, но не о нём."
     answer: "Wir sprechen darüber, aber nicht über ihn."
-    accept: ["Wir sprechen darüber, aber wir sprechen nicht über ihn."]
+    accept:
+      - "Wir sprechen darüber, aber wir sprechen nicht über ihn."
+      - "Wir sprechen darüber, nicht über ihn."
     key_tokens: ["darüber", "ihn"]
     explain: { en: "The plan becomes darüber, but Jonas becomes über ihn. German keeps the person visible as a pronoun.", ru: "План заменяется на darüber, но Йонас — на über ihn. Человек остаётся выражен местоимением." }
   - id: translate-davon
