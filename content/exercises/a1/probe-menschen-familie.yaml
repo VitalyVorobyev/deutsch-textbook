@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — introducing people with mein, dein, ihr"
   ru: "Проверка — представляем людей: mein, dein, ihr"
+  uk: "Перевірка — представляємо людей: mein, dein, ihr"
 
 # Three parallel variants of ONE competence: introducing a person with the right
 # possessive article. Each variant introduces a family member and adds one simple
@@ -17,13 +18,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My son is an engineer. He lives in Cologne."
     prompt_ru: "Мой сын — инженер. Он живёт в Кёльне."
+    prompt_uk: "Мій син — інженер. Він живе в Кельні."
     answer: "Mein Sohn ist Ingenieur. Er wohnt in Köln."
     key_tokens: ["Mein"]
     explain:
       en: "mein is declined like ein: der Sohn is masculine, so the possessive stays bare — mein Sohn. Note also that a profession takes no article after sein: er ist Ingenieur."
       ru: "mein склоняется как ein: der Sohn мужского рода, поэтому притяжательное слово остаётся без окончания — mein Sohn. И помните: перед профессией после sein артикль не ставится — er ist Ingenieur."
+      uk: "mein відмінюється як ein: der Sohn чоловічого роду, тому присвійне слово лишається без закінчення — mein Sohn. І пам'ятайте: перед професією після sein артикль не ставиться — er ist Ingenieur."
 
   - id: variant-b
     outcomes: [familie-vorstellen, menschen-beschreiben]
@@ -32,13 +36,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My grandfather is a shop assistant and my grandmother is a doctor."
     prompt_ru: "Мой дедушка — продавец, а моя бабушка — врач."
+    prompt_uk: "Мій дідусь — продавець, а моя бабуся — лікарка."
     answer: "Mein Großvater ist Verkäufer und meine Großmutter ist Ärztin."
     key_tokens: ["Mein", "meine"]
     explain:
       en: "One owner, two endings: the noun decides, not the speaker. der Großvater is masculine → mein Großvater with no ending; die Großmutter is feminine → meine Großmutter with -e. A profession after sein takes no article at all."
       ru: "Владелец один, а окончания два: их задаёт существительное, а не говорящий. der Großvater — мужского рода → mein Großvater без окончания; die Großmutter — женского → meine Großmutter с -e. Перед названием профессии после sein артикль не ставится."
+      uk: "Власник один, а закінчення два: їх задає іменник, а не мовець. der Großvater — чоловічого роду → mein Großvater без закінчення; die Großmutter — жіночого → meine Großmutter з -e. Перед назвою професії після sein артикль не ставиться."
 
   - id: variant-c
     outcomes: [familie-vorstellen, menschen-beschreiben]
@@ -47,10 +54,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "That is my daughter. Her husband is a doctor."
     prompt_ru: "Это моя дочь. Её муж — врач."
+    prompt_uk: "Це моя донька. Її чоловік — лікар."
     answer: "Das ist meine Tochter. Ihr Mann ist Arzt."
     key_tokens: ["meine", "Ihr"]
     explain:
       en: "Two possessives at once: meine Tochter (my + feminine noun → -e) and ihr Mann (her + masculine noun → no ending). The owner picks the word (mein/ihr); the noun picks the ending."
       ru: "Здесь сразу два притяжательных слова: meine Tochter (моя + женский род → -e) и ihr Mann (её + мужской род → без окончания). Владелец определяет слово (mein/ihr), а существительное — окончание."
+      uk: "Тут одразу два присвійні слова: meine Tochter (моя + жіночий рід → -e) та ihr Mann (її + чоловічий рід → без закінчення). Власник визначає слово (mein/ihr), а іменник — закінчення."

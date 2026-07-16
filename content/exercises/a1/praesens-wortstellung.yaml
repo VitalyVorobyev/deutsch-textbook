@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — present tense and word order
   ru: Практика — настоящее время и порядок слов
+  uk: Практика — теперішній час і порядок слів
 items:
   - id: konjugation-wohnen
     outcomes: [praesens-verbzweit]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: Fill in the missing present-tense forms of "wohnen".
       ru: Заполните пропущенные формы глагола "wohnen" в настоящем времени.
+      uk: Заповніть пропущені форми дієслова "wohnen" у теперішньому часі.
     columns: [wohnen]
     rows:
       - label: ich
@@ -29,6 +31,7 @@ items:
     explain:
       en: "Stem wohn- + endings: -e, -st, -t, -en, -t, -en. Note that er/sie/es and ihr share the ending -t."
       ru: "Основа wohn- + окончания: -e, -st, -t, -en, -t, -en. Обратите внимание: у er/sie/es и ihr одинаковое окончание -t."
+      uk: "Основа wohn- + закінчення: -e, -st, -t, -en, -t, -en. Зверніть увагу: в er/sie/es та ihr однакове закінчення -t."
 
   - id: cloze-kommen
     outcomes: [praesens-verbzweit]
@@ -37,13 +40,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
+      uk: Вставте правильну форму дієслова, поданого в дужках.
     text: "Ich {{komme}} (kommen) aus Russland."
     translation:
       en: I come from Russia.
       ru: Я из России.
+      uk: Я з Росії.
     explain:
       en: "ich → stem + -e: ich komme."
       ru: "ich → основа + -e: ich komme."
+      uk: "ich → основа + -e: ich komme."
 
   - id: mc-sprichst
     outcomes: [praesens-verbzweit]
@@ -55,9 +61,11 @@ items:
     translation:
       en: Do you speak German?
       ru: Ты говоришь по-немецки?
+      uk: Ти розмовляєш німецькою?
     explain:
       en: "sprechen changes its stem vowel: du sprichst, er spricht. 'Sprechst' does not exist, and 'spricht' is the er/sie/es form."
       ru: "У sprechen меняется корневая гласная: du sprichst, er spricht. Формы 'sprechst' не существует, а 'spricht' — форма для er/sie/es."
+      uk: "У sprechen змінюється коренева голосна: du sprichst, er spricht. Форми 'sprechst' не існує, а 'spricht' — форма для er/sie/es."
 
   - id: order-heute
     outcomes: [praesens-verbzweit]
@@ -66,13 +74,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Heute", "gehe", "ich", "ins", "Kino."]
     translation:
       en: Today I am going to the cinema.
       ru: Сегодня я иду в кино.
+      uk: Сьогодні я йду в кіно.
     explain:
       en: "'Heute' takes position 1, so the verb 'gehe' must come second and the subject 'ich' third — inversion."
       ru: "'Heute' занимает первое место, поэтому глагол 'gehe' обязан стоять вторым, а подлежащее 'ich' — третьим. Это инверсия."
+      uk: "'Heute' посідає перше місце, тому дієслово 'gehe' мусить стояти другим, а підмет 'ich' — третім. Це інверсія."
 
   - id: cloze-sein-wir
     outcomes: [praesens-verbzweit]
@@ -81,13 +92,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "sein".
       ru: Вставьте правильную форму глагола "sein".
+      uk: Вставте правильну форму дієслова "sein".
     text: "Wir {{sind}} müde."
     translation:
       en: We are tired.
       ru: Мы устали.
+      uk: Ми втомлені.
     explain:
       en: "sein is irregular: ich bin, du bist, er ist, wir sind, ihr seid, sie sind."
       ru: "sein — неправильный глагол: ich bin, du bist, er ist, wir sind, ihr seid, sie sind."
+      uk: "sein — неправильне дієслово: ich bin, du bist, er ist, wir sind, ihr seid, sie sind."
 
   - id: mc-wortstellung
     outcomes: [praesens-verbzweit]
@@ -96,6 +110,7 @@ items:
     instruction:
       en: Which sentence has correct word order?
       ru: В каком предложении правильный порядок слов?
+      uk: У якому реченні правильний порядок слів?
     prompt: "Wie ist die Wortstellung richtig?"
     options:
       - "Am Abend ich lese ein Buch."
@@ -105,6 +120,7 @@ items:
     explain:
       en: "After a fronted time expression (Am Abend) the conjugated verb must stay in position 2: Am Abend lese ich…"
       ru: "После обстоятельства времени в начале (Am Abend) спрягаемый глагол должен остаться на втором месте: Am Abend lese ich…"
+      uk: "Після обставини часу на початку (Am Abend) відмінюване дієслово має лишитися на другому місці: Am Abend lese ich…"
 
   - id: match-endungen
     outcomes: [praesens-verbzweit]
@@ -113,6 +129,7 @@ items:
     instruction:
       en: Match each pronoun with the correct verb form.
       ru: Соедините каждое местоимение с правильной формой глагола.
+      uk: З'єднайте кожен займенник із правильною формою дієслова.
     pairs:
       - { left: "ich", right: "lerne" }
       - { left: "du", right: "lernst" }
@@ -121,6 +138,7 @@ items:
     explain:
       en: "Endings: ich -e, du -st, er/sie/es -t, wir -en."
       ru: "Окончания: ich -e, du -st, er/sie/es -t, wir -en."
+      uk: "Закінчення: ich -e, du -st, er/sie/es -t, wir -en."
 
   - id: order-frage
     outcomes: [praesens-verbzweit]
@@ -129,13 +147,16 @@ items:
     instruction:
       en: Build a W-question.
       ru: Составьте вопрос с вопросительным словом.
+      uk: Складіть питання з питальним словом.
     words: ["Wo", "wohnst", "du", "?"]
     translation:
       en: Where do you live?
       ru: Где ты живёшь?
+      uk: Де ти живеш?
     explain:
       en: "W-word first, verb second, subject third: Wo wohnst du?"
       ru: "Вопросительное слово — первое, глагол — второй, подлежащее — третье: Wo wohnst du?"
+      uk: "Питальне слово — перше, дієслово — друге, підмет — третій: Wo wohnst du?"
 
   - id: cloze-haben-ihr
     outcomes: [praesens-verbzweit]
@@ -144,13 +165,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "haben".
       ru: Вставьте правильную форму глагола "haben".
+      uk: Вставте правильну форму дієслова "haben".
     text: "Ihr {{habt}} ein Auto."
     translation:
       en: You (plural) have a car.
       ru: У вас (мн. ч.) есть машина.
+      uk: У вас (мн.) є машина.
     explain:
       en: "haben is irregular: du hast, er hat — but ihr habt keeps the regular -t ending."
       ru: "haben — неправильный глагол: du hast, er hat — но форма ihr habt сохраняет обычное окончание -t."
+      uk: "haben — неправильне дієслово: du hast, er hat — але форма ihr habt зберігає звичайне закінчення -t."
 
   - id: mc-spielen
     outcomes: [praesens-verbzweit]
@@ -162,9 +186,11 @@ items:
     translation:
       en: On Monday we play football.
       ru: В понедельник мы играем в футбол.
+      uk: У понеділок ми граємо у футбол.
     explain:
       en: "wir always takes the -en form: wir spielen."
       ru: "С wir всегда используется форма на -en: wir spielen."
+      uk: "З wir завжди вживається форма на -en: wir spielen."
 
   - id: konjugation-sein
     outcomes: [praesens-verbzweit]
@@ -174,6 +200,7 @@ items:
     instruction:
       en: Fill in the missing forms of "sein".
       ru: Заполните пропущенные формы глагола "sein".
+      uk: Заповніть пропущені форми дієслова "sein".
     columns: [sein]
     rows:
       - label: ich
@@ -191,6 +218,7 @@ items:
     explain:
       en: "sein must be memorized: bin, bist, ist, sind, seid, sind."
       ru: "Формы sein нужно выучить наизусть: bin, bist, ist, sind, seid, sind."
+      uk: "Форми sein треба вивчити напам'ять: bin, bist, ist, sind, seid, sind."
 
   - id: order-zuhause
     outcomes: [praesens-verbzweit]
@@ -199,10 +227,13 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Ich", "bin", "heute", "zu", "Hause."]
     translation:
       en: I am at home today.
       ru: Я сегодня дома.
+      uk: Я сьогодні вдома.
     explain:
       en: "Subject first, verb second. Remember: German never drops 'sein' — 'Ich heute zu Hause' is impossible."
       ru: "Подлежащее — первое, глагол — второй. Помните: в немецком 'sein' не опускается — сказать 'Ich heute zu Hause' нельзя."
+      uk: "Підмет — перший, дієслово — друге. Пам'ятайте: у німецькій 'sein' не опускається — сказати 'Ich heute zu Hause' не можна."

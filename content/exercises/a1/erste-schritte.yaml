@@ -1,6 +1,6 @@
 topic: erste-schritte
 role: practice
-title: { en: "Practice — introductions and personal details", ru: "Практика — знакомство и личные данные" }
+title: { en: "Practice — introductions and personal details", ru: "Практика — знакомство и личные данные", uk: "Практика — знайомство й особисті дані" }
 items:
   - id: mc-greeting
     outcomes: [erste-sich-vorstellen]
@@ -8,14 +8,14 @@ items:
     prompt: "Sie sprechen mit einer Mitarbeiterin im Bürgerbüro."
     options: ["Guten Tag!", "Tschüs!", "Gute Nacht!"]
     correct: 0
-    translation: { en: "You are speaking with an employee at the citizens' office.", ru: "Вы разговариваете с сотрудницей ведомства." }
-    explain: { en: "Guten Tag is the neutral formal greeting.", ru: "Guten Tag — нейтральное официальное приветствие." }
+    translation: { en: "You are speaking with an employee at the citizens' office.", ru: "Вы разговариваете с сотрудницей ведомства.", uk: "Ви розмовляєте зі співробітницею відомства." }
+    explain: { en: "Guten Tag is the neutral formal greeting.", ru: "Guten Tag — нейтральное официальное приветствие.", uk: "Guten Tag — нейтральне офіційне вітання." }
   - id: cloze-intro
     outcomes: [erste-sich-vorstellen]
     type: cloze
     text: "Guten Tag. Ich {{heiße}} Amir und ich {{komme}} aus Syrien."
-    translation: { en: "Hello. My name is Amir and I come from Syria.", ru: "Добрый день. Меня зовут Амир, я из Сирии." }
-    explain: { en: "Use heiße for the name and komme aus for origin.", ru: "Для имени используется heiße, для происхождения — komme aus." }
+    translation: { en: "Hello. My name is Amir and I come from Syria.", ru: "Добрый день. Меня зовут Амир, я из Сирии.", uk: "Добрий день. Мене звати Амір, я з Сирії." }
+    explain: { en: "Use heiße for the name and komme aus for origin.", ru: "Для имени используется heiße, для происхождения — komme aus.", uk: "Для імені вживається heiße, для походження — komme aus." }
   - id: match-numbers
     outcomes: [erste-zahlen-verstehen]
     type: match
@@ -24,27 +24,28 @@ items:
       - { left: "5", right: "fünf" }
       - { left: "8", right: "acht" }
       - { left: "0", right: "null" }
-    explain: { en: "These digits are often heard in telephone numbers.", ru: "Эти цифры часто встречаются в номерах телефонов." }
+    explain: { en: "These digits are often heard in telephone numbers.", ru: "Эти цифры часто встречаются в номерах телефонов.", uk: "Ці цифри часто трапляються в номерах телефонів." }
   - id: order-question
     outcomes: [erste-sich-vorstellen]
     type: order
     words: ["Wie", "heißen", "Sie", "?"]
-    translation: { en: "What is your name? (formal)", ru: "Как вас зовут?" }
-    explain: { en: "In this question the W-word comes first, then the verb: Wie heißen Sie?", ru: "Сначала вопросительное слово, затем глагол: Wie heißen Sie?" }
+    translation: { en: "What is your name? (formal)", ru: "Как вас зовут? (вежливая форма)", uk: "Як вас звати? (ввічлива форма)" }
+    explain: { en: "In this question the W-word comes first, then the verb: Wie heißen Sie?", ru: "Сначала вопросительное слово, затем глагол: Wie heißen Sie?", uk: "Спершу питальне слово, потім дієслово: Wie heißen Sie?" }
   - id: translate-language
     outcomes: [erste-sich-vorstellen]
     type: translate
     prompt_en: "I speak Russian and a little German."
     prompt_ru: "Я говорю по-русски и немного по-немецки."
+    prompt_uk: "Я розмовляю російською і трохи німецькою."
     answer: "Ich spreche Russisch und ein bisschen Deutsch."
     accept:
       - "Ich spreche Russisch und ein wenig Deutsch."
-    explain: { en: "Language names are capitalized: Russisch, Deutsch.", ru: "Названия языков пишутся с заглавной буквы: Russisch, Deutsch." }
+    explain: { en: "Language names are capitalized: Russisch, Deutsch.", ru: "Названия языков пишутся с заглавной буквы: Russisch, Deutsch.", uk: "Назви мов пишуться з великої літери: Russisch, Deutsch." }
   - id: cloze-spell
     outcomes: [erste-buchstabieren]
     type: cloze
     text: "— Wie schreibt man das? — Lena: {{L}} – {{E}} – {{N}} – {{A}}."
-    explain: { en: "Say one letter at a time when spelling a name.", ru: "При диктовке имени произносите каждую букву отдельно." }
+    explain: { en: "Say one letter at a time when spelling a name.", ru: "При диктовке имени произносите каждую букву отдельно.", uk: "Диктуючи ім'я, вимовляйте кожну літеру окремо." }
   - id: audio-phone
     outcomes: [erste-zahlen-verstehen]
     type: audio-comprehension
@@ -57,42 +58,42 @@ items:
     question: "Welche Ziffer kommt nach fünf?"
     options: ["sieben", "drei", "neun"]
     correct: 0
-    translation: { en: "Which digit comes after five?", ru: "Какая цифра идёт после пяти?" }
-    explain: { en: "The number begins null – eins – fünf – sieben.", ru: "Номер начинается: null – eins – fünf – sieben." }
+    translation: { en: "Which digit comes after five?", ru: "Какая цифра идёт после пяти?", uk: "Яка цифра йде після п'яти?" }
+    explain: { en: "The number begins null – eins – fünf – sieben.", ru: "Номер начинается: null – eins – fünf – sieben.", uk: "Номер починається: null – eins – fünf – sieben." }
   - id: mc-email
     outcomes: [erste-buchstabieren]
     type: mc
     prompt: "maria@example.de: Wie spricht man den Punkt?"
     options: ["Punkt", "Komma", "Strich"]
     correct: 0
-    translation: { en: "How do you say the dot?", ru: "Как произносится точка?" }
-    explain: { en: "A dot in an email address is Punkt.", ru: "Точка в электронном адресе — Punkt." }
+    translation: { en: "How do you say the dot?", ru: "Как произносится точка?", uk: "Як вимовляється крапка?" }
+    explain: { en: "A dot in an email address is Punkt.", ru: "Точка в электронном адресе — Punkt.", uk: "Крапка в електронній адресі — Punkt." }
   - id: write-profile
     outcomes: [erste-sich-vorstellen]
     type: write
-    prompt: { en: "Write a short profile for your German course.", ru: "Напишите короткую анкету для курса немецкого." }
-    goal: { en: "Introduce yourself in three simple sentences.", ru: "Представьтесь в трёх простых предложениях." }
+    prompt: { en: "Write a short profile for your German course.", ru: "Напишите короткую анкету для курса немецкого.", uk: "Напишіть коротку анкету для курсу німецької." }
+    goal: { en: "Introduce yourself in three simple sentences.", ru: "Представьтесь в трёх простых предложениях.", uk: "Представтеся у трьох простих реченнях." }
     requirements:
-      - { en: "Give your name.", ru: "Назовите имя." }
-      - { en: "Say where you come from or live.", ru: "Скажите, откуда вы или где живёте." }
-      - { en: "Name one language you speak.", ru: "Назовите язык, на котором говорите." }
+      - { en: "Give your name.", ru: "Назовите имя.", uk: "Назвіть своє ім'я." }
+      - { en: "Say where you come from or live.", ru: "Скажите, откуда вы или где живёте.", uk: "Скажіть, звідки ви або де живете." }
+      - { en: "Name one language you speak.", ru: "Назовите язык, на котором говорите.", uk: "Назвіть мову, якою розмовляєте." }
     min_words: 10
     model_answer: "Ich heiße Olga. Ich komme aus Lettland und wohne in Berlin. Ich spreche Russisch und Deutsch."
-    model_translation: { en: "My name is Olga. I come from Latvia and live in Berlin. I speak Russian and German.", ru: "Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и по-немецки." }
-    explain: { en: "Use one clear sentence for name, origin/home and language.", ru: "Используйте по одному ясному предложению для имени, страны/места жительства и языка." }
+    model_translation: { en: "My name is Olga. I come from Latvia and live in Berlin. I speak Russian and German.", ru: "Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и по-немецки.", uk: "Мене звати Ольга. Я з Латвії, живу в Берліні. Я розмовляю російською та німецькою." }
+    explain: { en: "Use one clear sentence for name, origin/home and language.", ru: "Используйте по одному ясному предложению для имени, страны/места жительства и языка.", uk: "На ім'я, країну чи місто та мову — по одному простому реченню." }
   - id: speak-introduction
     outcomes: [erste-sich-vorstellen]
     type: speak
     mode: spoken-production
-    prompt: { en: "You meet a new person in your German course. Introduce yourself aloud.", ru: "Вы знакомитесь с новым человеком на курсе немецкого. Представьтесь вслух." }
-    goal: { en: "Speak without reading a prepared sentence, then listen and improve your answer.", ru: "Говорите без чтения готового предложения, затем прослушайте запись и улучшите ответ." }
+    prompt: { en: "You meet a new person in your German course. Introduce yourself aloud.", ru: "Вы знакомитесь с новым человеком на курсе немецкого. Представьтесь вслух.", uk: "Ви знайомитеся з новою людиною на курсі німецької. Представтеся вголос." }
+    goal: { en: "Speak without reading a prepared sentence, then listen and improve your answer.", ru: "Говорите без чтения готового предложения, затем прослушайте запись и улучшите ответ.", uk: "Говоріть, не читаючи готового речення, потім прослухайте запис і покращте відповідь." }
     checklist:
-      - { en: "I gave my name.", ru: "Я назвал(а) своё имя." }
-      - { en: "I said where I come from or live.", ru: "Я сказал(а), откуда я или где живу." }
-      - { en: "I named at least one language.", ru: "Я назвал(а) хотя бы один язык." }
+      - { en: "I gave my name.", ru: "Я назвал(а) своё имя.", uk: "Я назвав/назвала своє ім'я." }
+      - { en: "I said where I come from or live.", ru: "Я сказал(а), откуда я или где живу.", uk: "Я сказав/сказала, звідки я або де живу." }
+      - { en: "I named at least one language.", ru: "Я назвал(а) хотя бы один язык.", uk: "Я назвав/назвала принаймні одну мову." }
     model_answer: "Guten Tag! Ich heiße Olga. Ich komme aus Lettland und wohne in Berlin. Ich spreche Russisch und ein bisschen Deutsch."
-    model_translation: { en: "Hello! My name is Olga. I come from Latvia and live in Berlin. I speak Russian and a little German.", ru: "Добрый день! Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и немного по-немецки." }
-    explain: { en: "A short introduction is built from reusable chunks: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …", ru: "Короткое представление строится из готовых связок: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …" }
+    model_translation: { en: "Hello! My name is Olga. I come from Latvia and live in Berlin. I speak Russian and a little German.", ru: "Добрый день! Меня зовут Ольга. Я из Латвии и живу в Берлине. Я говорю по-русски и немного по-немецки.", uk: "Добрий день! Мене звати Ольга. Я з Латвії, живу в Берліні. Я розмовляю російською і трохи німецькою." }
+    explain: { en: "A short introduction is built from reusable chunks: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …", ru: "Короткое представление строится из готовых связок: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …", uk: "Коротке представлення складається з готових формул: Ich heiße …, ich komme aus …, ich wohne in …, ich spreche …" }
 
   # Untagged on purpose: erste-schritte comes before any focus tag is introduced, and an
   # introduction is formulaic language — a reusable chunk, not one confusion to drill.
@@ -102,14 +103,17 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I live in Berlin and I speak a little German."
     prompt_ru: "Я живу в Берлине и немного говорю по-немецки."
+    prompt_uk: "Я живу в Берліні і трохи розмовляю німецькою."
     answer: "Ich wohne in Berlin und ich spreche ein bisschen Deutsch."
     accept:
       - "Ich wohne in Berlin und spreche ein bisschen Deutsch."
     explain:
       en: "Both verbs take the ich-ending -e: wohne, spreche. ein bisschen is a fixed chunk — learn it whole."
       ru: "Оба глагола получают окончание 1-го лица -e: wohne, spreche. ein bisschen — устойчивое сочетание, запоминается целиком."
+      uk: "Обидва дієслова мають закінчення 1-ї особи -e: wohne, spreche. ein bisschen — стала сполука, запам'ятовуйте її цілком."
 
   - id: cloze-vorstellung-chunks
     outcomes: [erste-sich-vorstellen]
@@ -117,7 +121,9 @@ items:
     instruction:
       en: Fill the gaps.
       ru: Заполните пропуски.
+      uk: Заповніть пропуски.
     text: "Ich {{heiße}} Marek. Ich {{komme}} aus Polen. Ich {{bin}} Ingenieur."
     explain:
       en: "Three chunks that carry every introduction: ich heiße + name, ich komme aus + country, ich bin + profession (no article)."
       ru: "Три связки, на которых держится любое представление: ich heiße + имя, ich komme aus + страна, ich bin + профессия (без артикля)."
+      uk: "Три формули, на яких тримається будь-яке представлення: ich heiße + ім'я, ich komme aus + країна, ich bin + професія (без артикля)."

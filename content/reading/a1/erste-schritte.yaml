@@ -1,8 +1,8 @@
 topic: erste-schritte
 title_de: "Im Deutschkurs"
 text:
-  - "Heute ist der erste Tag im Deutschkurs. Die Lehrerin sagt: „Guten Morgen! Ich heiße Frau Klein.“ Dann stellt sich Anna vor: „[[Ich komme aus::I come from::я из]] Polen und [[ich wohne in::I live in::я живу в]] Hamburg. Ich spreche Polnisch und Englisch.“"
-  - "Die Lehrerin fragt: „Wie schreibt man deinen [[Nachnamen::surname::фамилию]]?“ Anna antwortet: „Nowak: N – O – W – A – K.“ Danach gibt sie ihre [[Telefonnummer::telephone number::номер телефона]] an: null eins sieben sechs, vier drei zwei eins. Auf dem Formular stehen auch [[Vorname::first name::имя]], [[Adresse::address::адрес]] und Sprache."
+  - "Heute ist der erste Tag im Deutschkurs. Die Lehrerin sagt: „Guten Morgen! Ich heiße Frau Klein.“ Dann stellt sich Anna vor: „[[Ich komme aus::I come from::я из::я з]] Polen und [[ich wohne in::I live in::я живу в::я живу в]] Hamburg. Ich spreche Polnisch und Englisch.“"
+  - "Die Lehrerin fragt: „Wie schreibt man deinen [[Nachnamen::surname::фамилию::прізвище]]?“ Anna antwortet: „Nowak: N – O – W – A – K.“ Danach gibt sie ihre [[Telefonnummer::telephone number::номер телефона::номер телефону]] an: null eins sieben sechs, vier drei zwei eins. Auf dem Formular stehen auch [[Vorname::first name::имя::ім'я]], [[Adresse::address::адрес::адреса]] und Sprache."
 questions:
   - id: q-origin
     outcomes: [erste-sich-vorstellen]
@@ -10,18 +10,18 @@ questions:
     prompt: "Woher kommt Anna?"
     options: ["Aus Polen.", "Aus Deutschland.", "Aus England."]
     correct: 0
-    explain: { en: "Anna says: Ich komme aus Polen.", ru: "Анна говорит: Ich komme aus Polen." }
+    explain: { en: "Anna says: Ich komme aus Polen.", ru: "Анна говорит: Ich komme aus Polen.", uk: "Анна каже: Ich komme aus Polen." }
   - id: q-city
     outcomes: [erste-sich-vorstellen]
     type: mc
     prompt: "Wo wohnt Anna?"
     options: ["In Hamburg.", "In Berlin.", "In Warschau."]
     correct: 0
-    explain: { en: "She says: ich wohne in Hamburg.", ru: "Она говорит: ich wohne in Hamburg." }
+    explain: { en: "She says: ich wohne in Hamburg.", ru: "Она говорит: ich wohne in Hamburg.", uk: "Вона каже: ich wohne in Hamburg." }
   - id: q-spelling
     outcomes: [erste-buchstabieren]
     type: mc
     prompt: "Wie schreibt man Annas Nachnamen?"
     options: ["N – O – W – A – K", "K – L – E – I – N", "A – N – N – A"]
     correct: 0
-    explain: { en: "Anna spells Nowak letter by letter.", ru: "Анна диктует Nowak по буквам." }
+    explain: { en: "Anna spells Nowak letter by letter.", ru: "Анна диктует Nowak по буквам.", uk: "Анна диктує Nowak по літерах." }
