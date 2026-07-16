@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — introducing yourself"
   ru: "Проверка — как представиться"
+  uk: "Перевірка — як представитися"
 
 # Three parallel variants of ONE competence: producing a self-introduction
 # (name → origin/residence → language). Different people, different situations,
@@ -22,14 +23,17 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My name is Sofia. I come from Italy and I speak Italian."
     prompt_ru: "Меня зовут София. Я из Италии и говорю по-итальянски."
+    prompt_uk: "Мене звати Софія. Я з Італії і розмовляю італійською."
     answer: "Ich heiße Sofia. Ich komme aus Italien und ich spreche Italienisch."
     accept:
       - "Mein Name ist Sofia. Ich komme aus Italien und ich spreche Italienisch."
     explain:
       en: "A German introduction rests on three fixed chunks: ich heiße + name, ich komme aus + country, ich spreche + language. After aus the country takes no article (aus Italien), and the language is a bare capitalized noun."
       ru: "Немецкое представление держится на трёх устойчивых формулах: ich heiße + имя, ich komme aus + страна, ich spreche + язык. После aus страна стоит без артикля (aus Italien), название языка тоже идёт без артикля и пишется с большой буквы."
+      uk: "Німецьке представлення тримається на трьох сталих формулах: ich heiße + ім'я, ich komme aus + країна, ich spreche + мова. Після aus країна стоїть без артикля (aus Italien), назва мови теж без артикля і з великої літери."
 
   - id: variant-b
     outcomes: [erste-sich-vorstellen]
@@ -37,14 +41,17 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Hello! My name is Marta. I come from Spain and I live in Hamburg."
     prompt_ru: "Привет! Меня зовут Марта. Я из Испании и живу в Гамбурге."
+    prompt_uk: "Привіт! Мене звати Марта. Я з Іспанії і живу в Гамбурзі."
     answer: "Hallo! Ich heiße Marta. Ich komme aus Spanien und ich wohne in Hamburg."
     accept:
       - "Hallo! Mein Name ist Marta. Ich komme aus Spanien und ich wohne in Hamburg."
     explain:
       en: "Where you are from and where you live are two different chunks: kommen aus + country (ich komme aus Spanien) and wohnen in + town (ich wohne in Hamburg). Both prepositions are fixed parts of the chunk, and the country stands with no article."
       ru: "Откуда вы родом и где вы живёте — две разные формулы: kommen aus + страна (ich komme aus Spanien) и wohnen in + город (ich wohne in Hamburg). Предлог входит в формулу и не выбирается заново, а страна стоит без артикля. По-русски здесь «из» и «в», но опираться нужно на немецкую формулу, а не на русский предлог."
+      uk: "Звідки ви родом і де ви живете — дві різні формули: kommen aus + країна (ich komme aus Spanien) і wohnen in + місто (ich wohne in Hamburg). Прийменник — частина формули, його не добирають щоразу, а країна стоїть без артикля. Українською тут «з» і «в», але спиратися треба на німецьку формулу, а не на український прийменник."
 
   - id: variant-c
     outcomes: [erste-sich-vorstellen]
@@ -52,11 +59,14 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Good morning! My name is Viktor. I live in Vienna and I am learning German."
     prompt_ru: "Доброе утро! Меня зовут Виктор. Я живу в Вене и учу немецкий."
+    prompt_uk: "Доброго ранку! Мене звати Віктор. Я живу у Відні і вчу німецьку."
     answer: "Guten Morgen! Ich heiße Viktor. Ich wohne in Wien und ich lerne Deutsch."
     accept:
       - "Guten Morgen! Mein Name ist Viktor. Ich wohne in Wien und ich lerne Deutsch."
     explain:
       en: "Two different chunks of the same introduction: wohnen takes in + the city you live in (ich wohne in Wien), and lernen names what you are studying (ich lerne Deutsch). Present tense covers both — German has no separate continuous form."
       ru: "Две другие формулы того же представления: wohnen требует in + город (ich wohne in Wien), а lernen называет то, что вы изучаете (ich lerne Deutsch). Обе — в настоящем времени: отдельной формы «продолженного» времени в немецком нет."
+      uk: "Дві інші формули того самого представлення: wohnen вимагає in + місто (ich wohne in Wien), а lernen називає те, що ви вивчаєте (ich lerne Deutsch). Обидві — в теперішньому часі: окремої «тривалої» форми в німецькій немає."

@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the accusative article"
   ru: "Проверка — артикль в винительном падеже"
+  uk: "Перевірка — артикль у знахідному відмінку"
 
 # Three parallel variants of ONE competence: the accusative article after a transitive
 # verb — der → den, ein → einen, and every other gender unchanged. Each variant puts a
@@ -18,13 +19,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I see the teacher and the girl."
     prompt_ru: "Я вижу учителя и девочку."
+    prompt_uk: "Я бачу вчителя і дівчинку."
     answer: "Ich sehe den Lehrer und das Mädchen."
     key_tokens: ["den", "das"]
     explain:
       en: "sehen takes an accusative object. der Lehrer is masculine, so der becomes den; das Mädchen is neuter and keeps das unchanged."
       ru: "sehen требует винительного падежа. der Lehrer — мужского рода, поэтому der превращается в den; das Mädchen — среднего рода, и das остаётся без изменений."
+      uk: "sehen вимагає знахідного відмінка. der Lehrer — чоловічого роду, тому der перетворюється на den; das Mädchen — середнього роду, і das лишається без змін."
 
   - id: variant-b
     outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
@@ -33,13 +37,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "We are looking for the key and the bag."
     prompt_ru: "Мы ищем ключ и сумку."
+    prompt_uk: "Ми шукаємо ключ і сумку."
     answer: "Wir suchen den Schlüssel und die Tasche."
     key_tokens: ["den", "die"]
     explain:
       en: "suchen takes an accusative object. Of the two objects only the masculine one moves: der Schlüssel → den Schlüssel, while die Tasche keeps die. The article, not the noun, carries the case."
       ru: "suchen требует винительного падежа. Из двух дополнений форму меняет только мужской род: der Schlüssel → den Schlüssel, а die Tasche сохраняет die. В русском винительный виден как раз у женского рода («сумку»), в немецком — наоборот: меняется только мужской."
+      uk: "suchen вимагає знахідного відмінка. З двох додатків форму змінює лише чоловічий рід: der Schlüssel → den Schlüssel, а die Tasche зберігає die. В українській знахідний видно якраз на жіночому роді («сумку»), у німецькій — навпаки: змінюється лише чоловічий."
 
   - id: variant-c
     outcomes: [akkusativ-artikel, akkusativ-maskulin, akkusativ-objekte]
@@ -48,10 +55,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My sister has a son and a daughter."
     prompt_ru: "У моей сестры есть сын и дочь."
+    prompt_uk: "У моєї сестри є син і донька."
     answer: "Meine Schwester hat einen Sohn und eine Tochter."
     key_tokens: ["einen", "eine"]
     explain:
       en: "haben always takes an accusative object, even where English says there is: der Sohn → einen Sohn, while die Tochter keeps eine. Only the masculine ever changes."
       ru: "haben всегда управляет винительным падежом, хотя по-русски мы говорим «у сестры есть»: der Sohn → einen Sohn, а die Tochter сохраняет eine. Меняется только мужской род."
+      uk: "haben завжди керує знахідним відмінком, хоча українською ми кажемо «у сестри є»: der Sohn → einen Sohn, а die Tochter зберігає eine. Змінюється лише чоловічий рід."

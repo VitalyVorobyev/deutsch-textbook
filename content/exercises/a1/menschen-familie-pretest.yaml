@@ -7,21 +7,21 @@ items:
     prompt: "Das ist ___ Schwester."
     options: ["mein", "meine", "meinen"]
     correct: 1
-    translation: { en: "This is my sister.", ru: "Это моя сестра." }
-    explain: { en: "Schwester is feminine, so mein takes -e: meine Schwester.", ru: "Schwester женского рода, поэтому mein получает -e: meine Schwester." }
+    translation: { en: "This is my sister.", ru: "Это моя сестра.", uk: "Це моя сестра." }
+    explain: { en: "Schwester is feminine, so mein takes -e: meine Schwester.", ru: "Schwester женского рода, поэтому mein получает -e: meine Schwester.", uk: "Schwester жіночого роду, тому mein отримує -e: meine Schwester." }
   - id: pre-ihr-vater
     outcomes: [familie-vorstellen]
     type: mc
     prompt: "Anna und ___ Vater wohnen in Bonn."
     options: ["sein", "ihr", "dein"]
     correct: 1
-    translation: { en: "Anna and her father live in Bonn.", ru: "Анна и её отец живут в Бонне." }
-    explain: { en: "The owner is Anna, so her is ihr: ihr Vater.", ru: "Владелец — Анна, поэтому «её отец» — ihr Vater." }
+    translation: { en: "Anna and her father live in Bonn.", ru: "Анна и её отец живут в Бонне.", uk: "Анна та її батько живуть у Бонні." }
+    explain: { en: "The owner is Anna, so her is ihr: ihr Vater.", ru: "Владелец — Анна, поэтому «её отец» — ihr Vater.", uk: "Власниця — Анна, тому «її батько» — ihr Vater." }
   - id: pre-occupation
     outcomes: [menschen-beschreiben]
     type: mc
     prompt: "Mila ist ___. Das ist ihr Beruf."
     options: ["Ärztin", "Bruder", "blond"]
     correct: 0
-    translation: { en: "Mila is a doctor. That is her occupation.", ru: "Мила — врач. Это её профессия." }
-    explain: { en: "Ärztin is the feminine occupation; after ist it has no article here.", ru: "Ärztin — название профессии в женском роде; после ist артикль здесь не нужен." }
+    translation: { en: "Mila is a doctor. That is her occupation.", ru: "Мила — врач. Это её профессия.", uk: "Міла — лікарка. Це її професія." }
+    explain: { en: "Ärztin is the feminine occupation; after ist it has no article here.", ru: "Ärztin — название профессии в женском роде; после ist артикль здесь не нужен.", uk: "Ärztin — назва професії в жіночому роді; після ist артикль тут не потрібен." }

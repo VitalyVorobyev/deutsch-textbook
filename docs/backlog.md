@@ -405,7 +405,7 @@ residue in never-ternary components and static `.astro` pages.
   and table headers, article H2s — object language, the `CATEGORY_LABELS` precedent), and the
   `Checkpoint` badge word (matches the computed `Checkpoint <level>` data string).
 
-### C3 · Ukrainian translation waves — `todo` (recurring, starts now)
+### C3 · Ukrainian translation waves — `in progress` (recurring; wave 1 shipped 2026-07-16)
 
 A1 in ~3 large waves, then A2 in ~4–5 (owner decision 2026-07-15: fewer, larger chunks — the UK
 version is wanted for sharing with real Ukrainian readers, not as parked machinery). Each wave
@@ -417,6 +417,13 @@ before merge; per-file parity means each of a wave's files is fully translated o
 never half.
 
 - Depends on: P8-4 (met).
+- **Wave 1 — `done` 2026-07-16**: the first five A1 spine topics (erste-schritte,
+  praesens-wortstellung, artikel-genus, menschen-familie, akkusativ) — 35 content files fully
+  translated (articles, exercise sets, pretests, probes, readings with 4-field glosses, two vocab
+  decks, atlas outcomes for the five nodes). Über figure moved to 35 of 264. RU/EN review pass
+  landed a handful of fixes (formality markers, a Vorname/heißen blur); no German content, ids,
+  answers, `key_tokens` or revisions touched — verified by a frozen-surface diff, not by reading.
+- Wave 2 — `todo`: next A1 spine topics (continue in spine order).
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
