@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — questions and negation
   ru: Практика — вопросы и отрицание
+  uk: Практика — питання та заперечення
 items:
   - id: order-kommst-du
     outcomes: [praesens-fragen]
@@ -11,13 +12,16 @@ items:
     instruction:
       en: Build a yes/no question.
       ru: Составьте общий вопрос (да/нет).
+      uk: Складіть загальне питання (так/ні).
     words: ["Kommst", "du", "aus", "Russland", "?"]
     translation:
       en: Do you come from Russia?
       ru: Ты из России?
+      uk: Ти з Росії?
     explain:
       en: "A yes/no question starts with the conjugated verb: Kommst du aus Russland? German has no helper like the English 'do' — the verb itself moves to position 1."
       ru: "Общий вопрос начинается со спрягаемого глагола: Kommst du aus Russland? Подлежащее идёт сразу после глагола."
+      uk: "Загальне питання починається з відмінюваного дієслова: Kommst du aus Russland? Підмет іде одразу після дієслова — питальної частки «чи» на початку німецька не потребує."
 
   - id: order-wann-lernst
     outcomes: [praesens-fragen, praesens-verbzweit]
@@ -26,13 +30,16 @@ items:
     instruction:
       en: Build a W-question.
       ru: Составьте вопрос с вопросительным словом.
+      uk: Складіть питання з питальним словом.
     words: ["Wann", "lernst", "du", "Deutsch", "?"]
     translation:
       en: When do you study German?
       ru: Когда ты учишь немецкий?
+      uk: Коли ти вчиш німецьку?
     explain:
       en: "In a W-question the question word takes position 1 and the verb stays in position 2: Wann lernst du Deutsch? 'Wann du lernst …' is impossible."
       ru: "В вопросе с вопросительным словом первым идёт вопросительное слово, глагол — вторым: Wann lernst du Deutsch? Порядок «Wann du lernst …» невозможен."
+      uk: "У питанні з питальним словом першим іде питальне слово, дієслово — другим: Wann lernst du Deutsch? Порядок «Wann du lernst …» неможливий."
 
   - id: mc-nicht-satzende
     outcomes: [praesens-verneinung]
@@ -41,6 +48,7 @@ items:
     instruction:
       en: Which sentence is correctly negated?
       ru: В каком предложении отрицание стоит правильно?
+      uk: У якому реченні заперечення стоїть правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich nicht arbeite heute."
@@ -50,9 +58,11 @@ items:
     translation:
       en: I am not working today.
       ru: Я сегодня не работаю.
+      uk: Я сьогодні не працюю.
     explain:
       en: "nicht comes after the conjugated verb — here it lands at the very end: Ich arbeite heute nicht. English negates before the verb (I do not work), German does not. 'Heute ich arbeite nicht' also breaks the verb-second rule."
       ru: "По-русски «не» стоит перед глаголом («я не работаю»), поэтому хочется сказать «Ich nicht arbeite» — но в немецком nicht стоит после спрягаемого глагола, здесь — в самом конце: Ich arbeite heute nicht. Вариант «Heute ich arbeite nicht» к тому же нарушает правило второго места."
+      uk: "Українською «не» стоїть перед дієсловом («я не працюю»), тому хочеться сказати «Ich nicht arbeite» — але в німецькій nicht іде після відмінюваного дієслова, тут — у самому кінці: Ich arbeite heute nicht. Варіант «Heute ich arbeite nicht» до того ж порушує правило другого місця."
 
   - id: cloze-fragewoerter
     outcomes: [praesens-fragen]
@@ -60,13 +70,16 @@ items:
     instruction:
       en: Fill in the question words (wer, wo or was). Each one starts a sentence, so write it with a capital letter.
       ru: Вставьте вопросительные слова (wer, wo или was). Каждое стоит в начале предложения — пишите с заглавной буквы.
+      uk: Вставте питальні слова (wer, wo або was). Кожне стоїть на початку речення — пишіть з великої літери.
     text: "— {{Wer}} ist das? — Das ist Tom. — {{Wo}} wohnt er? — Er wohnt in Berlin. — {{Was}} lernt er? — Er lernt Deutsch."
     translation:
       en: "— Who is that? — That is Tom. — Where does he live? — He lives in Berlin. — What is he learning? — He is learning German."
       ru: "— Кто это? — Это Том. — Где он живёт? — Он живёт в Берлине. — Что он учит? — Он учит немецкий."
+      uk: "— Хто це? — Це Том. — Де він живе? — Він живе в Берліні. — Що він вчить? — Він вчить німецьку."
     explain:
       en: "Wer asks about a person, wo about a place, was about a thing. The question word takes position 1 and the verb follows in position 2."
       ru: "Wer спрашивает о человеке, wo — о месте, was — о предмете. Вопросительное слово занимает первое место, глагол идёт сразу за ним."
+      uk: "Wer питає про людину, wo — про місце, was — про предмет. Питальне слово посідає перше місце, дієслово йде одразу за ним."
 
   - id: cloze-nicht-muede
     outcomes: [praesens-verneinung]
@@ -75,13 +88,16 @@ items:
     instruction:
       en: Complete the negative answer — put each word in the right gap.
       ru: Дополните отрицательный ответ — поставьте каждое слово в нужный пропуск.
+      uk: Доповніть заперечну відповідь — поставте кожне слово в потрібний пропуск.
     text: "— Bist du müde? — Nein, ich {{bin}} {{nicht}} müde."
     translation:
       en: "— Are you tired? — No, I am not tired."
       ru: "— Ты устал? — Нет, я не устал."
+      uk: "— Ти втомився? — Ні, я не втомлений."
     explain:
       en: "The verb keeps position 2 and nicht comes directly before the adjective: ich bin nicht müde. 'Ich nicht bin müde' is impossible."
       ru: "Глагол остаётся на втором месте, а nicht стоит непосредственно перед прилагательным: ich bin nicht müde. По-русски «я не устал» — без связки и с «не» перед глаголом; по-немецки bin обязателен, а nicht идёт после него."
+      uk: "Дієслово лишається на другому місці, а nicht стоїть безпосередньо перед прикметником: ich bin nicht müde. Українською «я не втомлений» — без зв'язки; німецькою bin обов'язкове, а nicht іде після нього."
 
   - id: order-seid-ihr
     outcomes: [praesens-fragen]
@@ -90,13 +106,16 @@ items:
     instruction:
       en: Build a yes/no question.
       ru: Составьте общий вопрос (да/нет).
+      uk: Складіть загальне питання (так/ні).
     words: ["Seid", "ihr", "heute", "zu", "Hause", "?"]
     translation:
       en: Are you (plural) at home today?
       ru: Вы (мн. ч.) сегодня дома?
+      uk: Ви (мн.) сьогодні вдома?
     explain:
       en: "Verb first in a yes/no question — and sein is never dropped: Seid ihr heute zu Hause?"
       ru: "В общем вопросе глагол стоит первым, и sein не опускается: Seid ihr heute zu Hause? По-русски можно спросить «Вы сегодня дома?» без глагола — по-немецки нельзя."
+      uk: "У загальному питанні дієслово стоїть першим, і sein не опускається: Seid ihr heute zu Hause? Українською можна спитати «Ви сьогодні вдома?» без дієслова — німецькою не можна."
 
   - id: mc-nicht-adjektiv
     outcomes: [praesens-verneinung]
@@ -105,6 +124,7 @@ items:
     instruction:
       en: Which sentence is correctly negated?
       ru: В каком предложении отрицание стоит правильно?
+      uk: У якому реченні заперечення стоїть правильно?
     prompt: "Wie ist die Verneinung richtig?"
     options:
       - "Das ist gut nicht."
@@ -114,9 +134,11 @@ items:
     translation:
       en: That is not good.
       ru: Это нехорошо.
+      uk: Це недобре.
     explain:
       en: "Before an adjective, nicht goes directly in front of it — nicht gut, just like English 'not good'. The verb ist must stay in position 2."
       ru: "Перед прилагательным nicht стоит непосредственно перед ним: nicht gut — здесь немецкий совпадает с русским («не хорошо»). Но глагол ist обязан остаться на втором месте: Das ist nicht gut."
+      uk: "Перед прикметником nicht стоїть безпосередньо перед ним: nicht gut — тут німецька збігається з українською («не добре»). Але дієслово ist мусить лишитися на другому місці: Das ist nicht gut."
 
   - id: cloze-liest
     outcomes: [praesens-konjugation, praesens-fragen]
@@ -125,13 +147,16 @@ items:
     instruction:
       en: Fill each gap with the correct form of "lesen".
       ru: Вставьте правильную форму глагола "lesen".
+      uk: Вставте правильну форму дієслова "lesen".
     text: "— Was {{liest}} (lesen) du? — Ich {{lese}} (lesen) ein Buch."
     translation:
       en: "— What are you reading? — I am reading a book."
       ru: "— Что ты читаешь? — Я читаю книгу."
+      uk: "— Що ти читаєш? — Я читаю книжку."
     explain:
       en: "lesen changes its stem vowel: du liest ('du lest' does not exist — lest is the ihr form). The ich form stays regular: ich lese."
       ru: "lesen меняет корневую гласную: du liest (форма lest — это ihr lest, для du она не подходит). Форма ich остаётся правильной: ich lese."
+      uk: "lesen змінює кореневу голосну: du liest (форма lest — це ihr lest, для du вона не годиться). Форма ich лишається правильною: ich lese."
 
   - id: translate-kommt-nicht
     outcomes: [praesens-verneinung]
@@ -139,6 +164,7 @@ items:
     focus: nicht-position
     prompt_en: "He is not coming today."
     prompt_ru: "Он сегодня не придёт."
+    prompt_uk: "Він сьогодні не прийде."
     answer: "Er kommt heute nicht."
     key_tokens: ["nicht"]
     accept:
@@ -146,6 +172,7 @@ items:
     explain:
       en: "nicht follows the conjugated verb — with a time adverb it lands at the very end: Er kommt heute nicht. German uses the present tense here; no helper verb is needed."
       ru: "По-русски «не» стоит перед глаголом («не придёт»); по-немецки nicht идёт после глагола, здесь — в самый конец: Er kommt heute nicht. Будущее событие выражается настоящим временем."
+      uk: "Українською «не» стоїть перед дієсловом («не прийде»); німецькою nicht іде після дієслова, тут — у самий кінець: Er kommt heute nicht. Майбутня подія виражається теперішнім часом."
 
   - id: translate-wo-wohnt
     outcomes: [praesens-fragen, praesens-verbzweit]
@@ -153,11 +180,13 @@ items:
     focus: verbzweit
     prompt_en: "Where does she live?"
     prompt_ru: "Где она живёт?"
+    prompt_uk: "Де вона живе?"
     answer: "Wo wohnt sie?"
     key_tokens: ["wohnt"]
     explain:
       en: "Question word first, conjugated verb second, subject third: Wo wohnt sie? German has no helper like 'does' — the main verb itself takes position 2."
       ru: "Русский порядок «Где она живёт?» подталкивает к «Wo sie wohnt?» — но в немецком глагол обязан стоять сразу после вопросительного слова: Wo wohnt sie?"
+      uk: "Український порядок «Де вона живе?» підштовхує до «Wo sie wohnt?» — але в німецькій дієслово мусить стояти одразу після питального слова: Wo wohnt sie?"
 
   - id: uebersetzen-arbeitet-nicht
     outcomes: [praesens-verneinung]
@@ -166,8 +195,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Today my brother is not working."
     prompt_ru: "Сегодня мой брат не работает."
+    prompt_uk: "Сьогодні мій брат не працює."
     answer: "Heute arbeitet mein Bruder nicht."
     key_tokens: ["nicht"]
     accept:
@@ -175,6 +206,7 @@ items:
     explain:
       en: "nicht negates the verb, so it goes to the end — after the subject and the time phrase. Putting it before the verb (Mein Bruder nicht arbeitet) is the commonest slip."
       ru: "nicht отрицает глагол и потому уходит в конец — после подлежащего и обстоятельства времени. Русское «не работает» подталкивает поставить nicht перед глаголом: ❌ Mein Bruder nicht arbeitet."
+      uk: "nicht заперечує дієслово й тому йде в кінець — після підмета та обставини часу. Українське «не працює» підштовхує поставити nicht перед дієсловом: ❌ Mein Bruder nicht arbeitet."
 
   - id: uebersetzen-woher-kommst
     outcomes: [praesens-fragen]
@@ -183,13 +215,16 @@ items:
     instruction:
       en: Translate into German. Use du.
       ru: Переведите на немецкий. Обратитесь на du.
+      uk: Перекладіть німецькою. Звертайтеся на du.
     prompt_en: "Where do you come from?"
     prompt_ru: "Откуда ты?"
+    prompt_uk: "Звідки ти?"
     answer: "Woher kommst du?"
     key_tokens: ["kommst"]
     explain:
       en: "The W-word takes position 1 and the conjugated verb position 2 — the subject follows it. German has no auxiliary 'do': the main verb does the work itself."
       ru: "Вопросительное слово стоит на первом месте, спрягаемый глагол — на втором, подлежащее идёт после него. Вспомогательного «do», как в английском, нет — работает сам смысловой глагол."
+      uk: "Питальне слово стоїть на першому місці, відмінюване дієслово — на другому, підмет іде після нього. Жодного допоміжного слова не потрібно — працює сам смисловий дієслівний присудок."
 
   - id: uebersetzen-trinkst-du-kaffee
     outcomes: [praesens-fragen]
@@ -198,13 +233,16 @@ items:
     instruction:
       en: Translate into German. Use du.
       ru: Переведите на немецкий. Обратитесь на du.
+      uk: Перекладіть німецькою. Звертайтеся на du.
     prompt_en: "Do you drink coffee?"
     prompt_ru: "Ты пьёшь кофе?"
+    prompt_uk: "Ти п'єш каву?"
     answer: "Trinkst du Kaffee?"
     key_tokens: ["Trinkst"]
     explain:
       en: "A yes/no question simply starts with the conjugated verb: Trinkst du …? Nothing is added in front of it."
       ru: "Вопрос без вопросительного слова начинается прямо со спрягаемого глагола: Trinkst du …? Никакой частицы «ли» и никакого вспомогательного слова не нужно."
+      uk: "Питання без питального слова починається прямо з відмінюваного дієслова: Trinkst du …? Жодної частки «чи» і жодного допоміжного слова не потрібно."
 
   - id: cloze-fragen-w-woerter
     outcomes: [praesens-fragen]
@@ -213,10 +251,12 @@ items:
     instruction:
       en: Fill in the question word and the verb.
       ru: Вставьте вопросительное слово и глагол.
+      uk: Вставте питальне слово та дієслово.
     text: "{{Wo}} wohnst du? — {{Wie}} heißt deine Schwester? — {{Was}} machst du am Montag?"
     explain:
       en: "wo asks for a place, wie for a name or manner, was for a thing. In all three the verb stays glued to position 2."
       ru: "wo спрашивает о месте, wie — об имени или способе, was — о предмете. Во всех трёх глагол остаётся строго на втором месте."
+      uk: "wo питає про місце, wie — про ім'я чи спосіб, was — про предмет. В усіх трьох дієслово лишається строго на другому місці."
 
   - id: cloze-verneinung-nicht-stellung
     outcomes: [praesens-verneinung]
@@ -225,7 +265,9 @@ items:
     instruction:
       en: Put nicht in the right place.
       ru: Поставьте nicht на правильное место.
+      uk: Поставте nicht на правильне місце.
     text: "Ich arbeite heute {{nicht}}. Er kommt am Montag {{nicht}}. Sie ist {{nicht}} müde."
     explain:
       en: "nicht goes after the verb and its time phrase, but *before* a predicative adjective: er kommt … nicht, yet sie ist nicht müde."
       ru: "nicht ставится после глагола и обстоятельства времени, но перед прилагательным-сказуемым: er kommt … nicht, однако sie ist nicht müde."
+      uk: "nicht ставиться після дієслова та обставини часу, але перед прикметником-присудком: er kommt … nicht, проте sie ist nicht müde."

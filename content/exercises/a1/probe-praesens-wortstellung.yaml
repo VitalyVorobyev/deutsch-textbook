@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the verb in position 2"
   ru: "Проверка — глагол на втором месте"
+  uk: "Перевірка — дієслово на другому місці"
 
 # Three parallel variants of ONE competence: Verbzweit — the conjugated verb holds
 # position 2, whatever comes first. Three different sentence types (fronted time phrase,
@@ -20,8 +21,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "On Monday my sister is learning German."
     prompt_ru: "В понедельник моя сестра учит немецкий."
+    prompt_uk: "У понеділок моя сестра вчить німецьку."
     answer: "Am Montag lernt meine Schwester Deutsch."
     key_tokens: ["lernt"]
     accept:
@@ -29,6 +32,7 @@ items:
     explain:
       en: "Whatever opens the sentence, the conjugated verb stays in position 2. Putting Am Montag first pushes the subject behind the verb: Am Montag lernt meine Schwester — never Am Montag meine Schwester lernt."
       ru: "Что бы ни стояло в начале, спрягаемый глагол остаётся на втором месте. Если вынести Am Montag вперёд, подлежащее уходит за глагол: Am Montag lernt meine Schwester — но не Am Montag meine Schwester lernt."
+      uk: "Хоч би що стояло на початку, відмінюване дієслово лишається на другому місці. Якщо винести Am Montag уперед, підмет іде за дієслово: Am Montag lernt meine Schwester — але не Am Montag meine Schwester lernt."
 
   - id: variant-b
     outcomes: [praesens-verbzweit]
@@ -37,13 +41,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Where does your brother work?"
     prompt_ru: "Где работает твой брат?"
+    prompt_uk: "Де працює твій брат?"
     answer: "Wo arbeitet dein Bruder?"
     key_tokens: ["arbeitet"]
     explain:
       en: "In a W-question the question word takes position 1 and the verb follows immediately: Wo arbeitet dein Bruder? English needs a helper verb here (does … work), German never does."
       ru: "В вопросе с вопросительным словом оно занимает первое место, а глагол идёт сразу за ним: Wo arbeitet dein Bruder? Вспомогательный глагол, как в английском (does … work), немецкому не нужен."
+      uk: "У питанні з питальним словом воно посідає перше місце, а дієслово йде одразу за ним: Wo arbeitet dein Bruder? Жодного допоміжного дієслова німецькій тут не треба."
 
   - id: variant-c
     outcomes: [praesens-verbzweit]
@@ -52,10 +59,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I drink coffee and then I read a book."
     prompt_ru: "Я пью кофе, а потом читаю книгу."
+    prompt_uk: "Я п'ю каву, а потім читаю книжку."
     answer: "Ich trinke Kaffee und dann lese ich ein Buch."
     key_tokens: ["lese"]
     explain:
       en: "dann counts as the first element of its own clause, so the verb has to come next and the subject moves behind it: und dann lese ich — never und dann ich lese."
       ru: "dann занимает первое место в своей части предложения, поэтому дальше обязан идти глагол, а подлежащее уходит за него: und dann lese ich — но не und dann ich lese."
+      uk: "dann посідає перше місце у своїй частині речення, тому далі мусить іти дієслово, а підмет іде за нього: und dann lese ich — але не und dann ich lese."

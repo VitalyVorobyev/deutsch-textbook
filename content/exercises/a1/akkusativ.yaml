@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — the accusative case
   ru: Практика — винительный падеж (Akkusativ)
+  uk: Практика — знахідний відмінок (Akkusativ)
 items:
   - id: tabelle-bestimmter-artikel
     outcomes: [akkusativ-objekte]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: Fill in the missing definite articles.
       ru: Заполните пропущенные определённые артикли.
+      uk: Заповніть пропущені означені артиклі.
     columns: [Nominativ, Akkusativ]
     rows:
       - label: maskulin
@@ -25,6 +27,7 @@ items:
     explain:
       en: "Only the masculine changes in the accusative: der → den. Feminine (die), neuter (das) and plural (die) are identical to the nominative."
       ru: "В Akkusativ меняется только мужской род: der → den. Женский род (die), средний род (das) и множественное число (die) совпадают с именительным падежом."
+      uk: "В Akkusativ змінюється лише чоловічий рід: der → den. Жіночий рід (die), середній рід (das) і множина (die) збігаються з називним відмінком."
 
   - id: cloze-bruder
     outcomes: [akkusativ-objekte]
@@ -33,13 +36,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
+      uk: Вставте правильну форму артикля "ein".
     text: "Ich habe {{einen}} Bruder."
     translation:
       en: I have a brother.
       ru: У меня есть брат.
+      uk: У мене є брат.
     explain:
       en: "haben takes the accusative, and der Bruder is masculine: ein → einen."
       ru: "Глагол haben требует Akkusativ, а der Bruder — мужского рода: ein → einen."
+      uk: "Дієслово haben вимагає Akkusativ, а der Bruder — чоловічого роду: ein → einen."
 
   - id: mc-mann
     outcomes: [akkusativ-objekte]
@@ -51,9 +57,11 @@ items:
     translation:
       en: I see the man.
       ru: Я вижу мужчину.
+      uk: Я бачу чоловіка.
     explain:
       en: "The man is the direct object of 'sehen', so the masculine article changes: der → den."
       ru: "Мужчина — прямое дополнение при глаголе 'sehen', поэтому артикль мужского рода меняется: der → den."
+      uk: "Чоловік — прямий додаток при дієслові 'sehen', тому артикль чоловічого роду змінюється: der → den."
 
   - id: cloze-es-gibt
     outcomes: [akkusativ-objekte]
@@ -62,13 +70,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
+      uk: Вставте правильну форму артикля "ein".
     text: "Es gibt hier {{einen}} Supermarkt."
     translation:
       en: There is a supermarket here.
       ru: Здесь есть супермаркет.
+      uk: Тут є супермаркет.
     explain:
       en: "'es gibt' always takes the accusative; der Supermarkt is masculine, so ein → einen."
       ru: "После 'es gibt' всегда стоит Akkusativ; der Supermarkt — мужского рода, поэтому ein → einen."
+      uk: "Після 'es gibt' завжди стоїть Akkusativ; der Supermarkt — чоловічого роду, тому ein → einen."
 
   - id: match-pronomen
     outcomes: [akkusativ-objekte]
@@ -77,6 +88,7 @@ items:
     instruction:
       en: Match each nominative pronoun with its accusative form.
       ru: Соедините каждое местоимение в именительном падеже с его формой в винительном.
+      uk: З'єднайте кожен займенник у називному відмінку з його формою в знахідному.
     pairs:
       - { left: "ich", right: "mich" }
       - { left: "du", right: "dich" }
@@ -86,6 +98,7 @@ items:
     explain:
       en: "Accusative pronouns: ich → mich, du → dich, er → ihn, wir → uns, ihr → euch. Note that sie and es do not change."
       ru: "Местоимения в Akkusativ: ich → mich, du → dich, er → ihn, wir → uns, ihr → euch. Обратите внимание: sie и es не меняются."
+      uk: "Займенники в Akkusativ: ich → mich, du → dich, er → ihn, wir → uns, ihr → euch. Зверніть увагу: sie та es не змінюються."
 
   - id: mc-lampe
     outcomes: [akkusativ-objekte]
@@ -97,9 +110,11 @@ items:
     translation:
       en: We need a lamp.
       ru: Нам нужна лампа.
+      uk: Нам потрібна лампа.
     explain:
       en: "die Lampe is feminine, and feminine forms do not change in the accusative: eine stays eine. Only the masculine takes -en."
       ru: "die Lampe — женского рода, а женский род в Akkusativ не меняется: eine остаётся eine. Окончание -en получает только мужской род."
+      uk: "die Lampe — жіночого роду, а жіночий рід в Akkusativ не змінюється: eine лишається eine. Закінчення -en отримує лише чоловічий рід."
 
   - id: cloze-fruehstueck
     outcomes: [akkusativ-objekte]
@@ -108,13 +123,16 @@ items:
     instruction:
       en: Fill the gaps with the correct forms of "ein".
       ru: Вставьте правильные формы артикля "ein".
+      uk: Вставте правильні форми артикля "ein".
     text: "Er trinkt {{einen}} Kaffee und isst {{ein}} Brötchen."
     translation:
       en: He is drinking a coffee and eating a bread roll.
       ru: Он пьёт кофе и ест булочку.
+      uk: Він п'є каву і їсть булочку.
     explain:
       en: "der Kaffee is masculine (ein → einen), but das Brötchen is neuter and keeps ein unchanged."
       ru: "der Kaffee — мужского рода (ein → einen), а das Brötchen — среднего, поэтому ein не меняется."
+      uk: "der Kaffee — чоловічого роду (ein → einen), а das Brötchen — середнього, тому ein не змінюється."
 
   - id: order-stuhl
     outcomes: [akkusativ-objekte]
@@ -123,13 +141,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Heute", "kaufe", "ich", "einen", "Stuhl."]
     translation:
       en: Today I am buying a chair.
       ru: Сегодня я покупаю стул.
+      uk: Сьогодні я купую стілець.
     explain:
       en: "'Heute' takes position 1, so the verb comes second and 'ich' third. The chair is the direct object: der Stuhl → einen Stuhl."
       ru: "'Heute' занимает первое место, поэтому глагол стоит вторым, а 'ich' — третьим. Стул — прямое дополнение: der Stuhl → einen Stuhl."
+      uk: "'Heute' посідає перше місце, тому дієслово стоїть другим, а 'ich' — третім. Стілець — прямий додаток: der Stuhl → einen Stuhl."
 
   - id: mc-pronomen-ihn
     outcomes: [akkusativ-objekte]
@@ -141,9 +162,11 @@ items:
     translation:
       en: That is my brother. I see him often.
       ru: Это мой брат. Я часто его вижу.
+      uk: Це мій брат. Я часто його бачу.
     explain:
       en: "The pronoun is the direct object, so the masculine form changes: er → ihn — just like der → den."
       ru: "Местоимение здесь — прямое дополнение, поэтому мужской род меняется: er → ihn — точно так же, как der → den."
+      uk: "Займенник тут — прямий додаток, тому чоловічий рід змінюється: er → ihn — точно так само, як der → den."
 
   - id: cloze-kein-hund
     outcomes: [akkusativ-objekte]
@@ -152,13 +175,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "kein".
       ru: Вставьте правильную форму отрицания "kein".
+      uk: Вставте правильну форму заперечення "kein".
     text: "Wir haben {{keinen}} Hund."
     translation:
       en: We don't have a dog.
       ru: У нас нет собаки.
+      uk: У нас немає собаки.
     explain:
       en: "kein follows the same pattern as ein: der Hund is masculine, so in the accusative it becomes keinen."
       ru: "kein изменяется так же, как ein: der Hund — мужского рода, поэтому в Akkusativ получается keinen."
+      uk: "kein змінюється так само, як ein: der Hund — чоловічого роду, тому в Akkusativ виходить keinen."
 
   - id: mc-buch
     outcomes: [akkusativ-objekte]
@@ -167,6 +193,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение правильное?
+      uk: Яке речення правильне?
     prompt: "Was ist richtig?"
     options:
       - "Ich lese das Buch."
@@ -176,6 +203,7 @@ items:
     explain:
       en: "das Buch is neuter, and neuter forms are identical in nominative and accusative: das stays das. The -en change applies only to the masculine."
       ru: "das Buch — среднего рода, а средний род в Nominativ и Akkusativ совпадает: das остаётся das. Изменение на -en касается только мужского рода."
+      uk: "das Buch — середнього роду, а середній рід у Nominativ і Akkusativ збігається: das лишається das. Зміна на -en стосується лише чоловічого роду."
 
   - id: match-artikel
     outcomes: [akkusativ-objekte]
@@ -184,6 +212,7 @@ items:
     instruction:
       en: Match each nominative form with its accusative form.
       ru: Соедините каждую форму именительного падежа с её формой в винительном.
+      uk: З'єднайте кожну форму називного відмінка з її формою в знахідному.
     pairs:
       - { left: "der", right: "den" }
       - { left: "ein (maskulin)", right: "einen" }
@@ -193,6 +222,7 @@ items:
     explain:
       en: "The accusative trio to memorize is den – einen – keinen. Feminine and neuter forms stay unchanged."
       ru: "Тройка Akkusativ, которую нужно запомнить: den – einen – keinen. Формы женского и среднего рода не меняются."
+      uk: "Трійка Akkusativ, яку треба запам'ятати: den – einen – keinen. Форми жіночого й середнього роду не змінюються."
 
   - id: cloze-verstehen
     outcomes: [akkusativ-objekte]
@@ -201,13 +231,16 @@ items:
     instruction:
       en: Fill the gap with the accusative form of the pronoun in brackets.
       ru: Вставьте форму винительного падежа местоимения, указанного в скобках.
+      uk: Вставте форму знахідного відмінка займенника, поданого в дужках.
     text: "Verstehst du {{mich}}? (ich)"
     translation:
       en: Do you understand me?
       ru: Ты меня понимаешь?
+      uk: Ти мене розумієш?
     explain:
       en: "The person being understood is the direct object: ich → mich."
       ru: "Тот, кого понимают, — прямое дополнение: ich → mich."
+      uk: "Той, кого розуміють, — прямий додаток: ich → mich."
 
   - id: tabelle-ein-kein
     outcomes: [akkusativ-objekte]
@@ -217,6 +250,7 @@ items:
     instruction:
       en: Fill in the accusative forms of "ein" and "kein".
       ru: Заполните формы "ein" и "kein" в винительном падеже.
+      uk: Заповніть форми "ein" і "kein" у знахідному відмінку.
     columns: [maskulin, feminin, neutral]
     rows:
       - label: ein
@@ -226,6 +260,7 @@ items:
     explain:
       en: "ein and kein decline the same way: only the masculine adds -en (einen, keinen). Feminine (eine/keine) and neuter (ein/kein) match the nominative."
       ru: "ein и kein склоняются одинаково: окончание -en появляется только в мужском роде (einen, keinen). Женский (eine/keine) и средний род (ein/kein) совпадают с именительным падежом."
+      uk: "ein і kein відмінюються однаково: закінчення -en з'являється лише в чоловічому роді (einen, keinen). Жіночий (eine/keine) і середній рід (ein/kein) збігаються з називним відмінком."
 
   - id: uebersetzen-hund
     outcomes: [akkusativ-objekte]
@@ -234,13 +269,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I have a dog."
     prompt_ru: "У меня есть собака."
+    prompt_uk: "У мене є собака."
     answer: "Ich habe einen Hund."
     key_tokens: ["einen"]
     explain:
       en: "haben always takes the accusative, and der Hund is masculine, so ein → einen: Ich habe einen Hund."
       ru: "Глагол haben всегда требует Akkusativ, а der Hund — мужского рода, поэтому ein → einen: Ich habe einen Hund."
+      uk: "Дієслово haben завжди вимагає Akkusativ, а der Hund — чоловічого роду, тому ein → einen: Ich habe einen Hund."
 
   - id: uebersetzen-kaffee
     outcomes: [akkusativ-objekte]
@@ -249,13 +287,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "He is drinking a coffee."
     prompt_ru: "Он пьёт кофе."
+    prompt_uk: "Він п'є каву."
     answer: "Er trinkt einen Kaffee."
     key_tokens: ["einen"]
     explain:
       en: "The coffee is the direct object of trinken, and der Kaffee is masculine: ein → einen. And remember the capital K — every German noun is capitalized."
       ru: "Кофе — прямое дополнение при глаголе trinken, а der Kaffee — мужского рода: ein → einen. И не забудьте заглавную K — все существительные в немецком пишутся с большой буквы."
+      uk: "Кава — прямий додаток при дієслові trinken, а der Kaffee — чоловічого роду: ein → einen. І не забудьте велику K — усі іменники в німецькій пишуться з великої літери. Зверніть увагу: українська «кава» жіночого роду, а der Kaffee — чоловічого."
 
   - id: uebersetzen-lampe
     outcomes: [akkusativ-objekte]
@@ -264,8 +305,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Tomorrow I am buying a lamp."
     prompt_ru: "Завтра я куплю лампу."
+    prompt_uk: "Завтра я куплю лампу."
     answer: "Morgen kaufe ich eine Lampe."
     key_tokens: ["kaufe"]
     accept:
@@ -273,3 +316,4 @@ items:
     explain:
       en: "Both word orders are correct: Morgen kaufe ich … (the verb stays second, the subject moves behind it) and Ich kaufe morgen …. die Lampe is feminine, so eine does not change in the accusative."
       ru: "Правильны оба порядка слов: Morgen kaufe ich … (глагол остаётся на втором месте, подлежащее уходит за него) и Ich kaufe morgen …. die Lampe — женского рода, поэтому eine в Akkusativ не меняется."
+      uk: "Правильні обидва порядки слів: Morgen kaufe ich … (дієслово лишається на другому місці, підмет іде за нього) та Ich kaufe morgen …. die Lampe — жіночого роду, тому eine в Akkusativ не змінюється."

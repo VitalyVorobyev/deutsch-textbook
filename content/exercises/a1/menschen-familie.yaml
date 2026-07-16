@@ -1,23 +1,24 @@
 topic: menschen-familie
 role: practice
-title: { en: "Practice — people and family", ru: "Практика — люди и семья" }
+title: { en: "Practice — people and family", ru: "Практика — люди и семья", uk: "Практика — люди та сім'я" }
 items:
   - id: match-family
     outcomes: [familie-vorstellen]
     type: match
+    revision: 2
     pairs:
-      - { left: "die Mutter", right: "mother" }
-      - { left: "der Vater", right: "father" }
-      - { left: "die Tochter", right: "daughter" }
-      - { left: "der Sohn", right: "son" }
-    explain: { en: "Learn family nouns together with their article.", ru: "Учите названия членов семьи вместе с артиклем." }
+      - { left: "die Mutter", right: "der Vater" }
+      - { left: "die Tochter", right: "der Sohn" }
+      - { left: "die Schwester", right: "der Bruder" }
+      - { left: "die Großmutter", right: "der Großvater" }
+    explain: { en: "Match each family member to the male counterpart. Learn the nouns together with their article: the female family words take die, their counterparts der.", ru: "Соедините каждого члена семьи с парным словом мужского рода. Учите слова вместе с артиклем: женские — с die, парные мужские — с der.", uk: "З'єднайте кожного члена сім'ї з парним словом чоловічого роду. Вчіть слова разом з артиклем: жіночі — з die, парні чоловічі — з der." }
   - id: cloze-possessives
     outcomes: [familie-vorstellen]
     type: cloze
     focus: possessivartikel
     text: "Das ist {{mein}} Bruder Leo und das ist {{meine}} Schwester Mia."
-    translation: { en: "This is my brother Leo and this is my sister Mia.", ru: "Это мой брат Лео, а это моя сестра Миа." }
-    explain: { en: "Bruder is masculine: mein. Schwester is feminine: meine.", ru: "Bruder мужского рода: mein. Schwester женского рода: meine." }
+    translation: { en: "This is my brother Leo and this is my sister Mia.", ru: "Это мой брат Лео, а это моя сестра Миа.", uk: "Це мій брат Лео, а це моя сестра Мія." }
+    explain: { en: "Bruder is masculine: mein. Schwester is feminine: meine.", ru: "Bruder мужского рода: mein. Schwester женского рода: meine.", uk: "Bruder чоловічого роду: mein. Schwester жіночого роду: meine." }
   - id: mc-owner
     outcomes: [familie-vorstellen]
     type: mc
@@ -25,29 +26,30 @@ items:
     prompt: "Paul zeigt ein Foto: ‚Das ist ___ Mutter.‘"
     options: ["seine", "ihre", "deine"]
     correct: 0
-    translation: { en: "Paul shows a photo: This is his mother.", ru: "Пауль показывает фотографию: Это его мама." }
-    explain: { en: "Paul is the male owner and Mutter is feminine: seine Mutter.", ru: "Владелец — Пауль, Mutter женского рода: seine Mutter." }
+    translation: { en: "Paul shows a photo: This is his mother.", ru: "Пауль показывает фотографию: Это его мама.", uk: "Пауль показує фотографію: Це його мама." }
+    explain: { en: "Paul is the male owner and Mutter is feminine: seine Mutter.", ru: "Владелец — Пауль, Mutter женского рода: seine Mutter.", uk: "Власник — Пауль, Mutter жіночого роду: seine Mutter." }
   - id: order-description
     outcomes: [menschen-beschreiben]
     type: order
     focus: kopula-sein
     words: ["Meine", "Schwester", "ist", "sehr", "freundlich", "."]
-    translation: { en: "My sister is very friendly.", ru: "Моя сестра очень дружелюбная." }
-    explain: { en: "The conjugated verb ist stays in position 2: Meine Schwester ist …", ru: "Спрягаемый глагол ist стоит на втором месте: Meine Schwester ist …" }
+    translation: { en: "My sister is very friendly.", ru: "Моя сестра очень дружелюбная.", uk: "Моя сестра дуже привітна." }
+    explain: { en: "The conjugated verb ist stays in position 2: Meine Schwester ist …", ru: "Спрягаемый глагол ist стоит на втором месте: Meine Schwester ist …", uk: "Відмінюване дієслово ist стоїть на другому місці: Meine Schwester ist …" }
   - id: cloze-professions
     outcomes: [menschen-beschreiben]
     type: cloze
     text: "Jonas ist {{Lehrer}}. Nina ist {{Lehrerin}}."
-    translation: { en: "Jonas is a teacher. Nina is a teacher.", ru: "Йонас — учитель. Нина — учительница." }
-    explain: { en: "Many feminine occupation names add -in: Lehrer → Lehrerin.", ru: "Многие профессии женского рода получают -in: Lehrer → Lehrerin." }
+    translation: { en: "Jonas is a teacher. Nina is a teacher.", ru: "Йонас — учитель. Нина — учительница.", uk: "Йонас — учитель. Ніна — вчителька." }
+    explain: { en: "Many feminine occupation names add -in: Lehrer → Lehrerin.", ru: "Многие профессии женского рода получают -in: Lehrer → Lehrerin.", uk: "Багато назв професій жіночого роду отримують -in: Lehrer → Lehrerin." }
   - id: translate-person
     outcomes: [menschen-beschreiben]
     type: translate
     prompt_en: "My father is an engineer. He is calm and friendly."
     prompt_ru: "Мой отец — инженер. Он спокойный и дружелюбный."
+    prompt_uk: "Мій батько — інженер. Він спокійний і привітний."
     answer: "Mein Vater ist Ingenieur. Er ist ruhig und freundlich."
     accept: ["Mein Vater ist Ingenieur. Er ist freundlich und ruhig."]
-    explain: { en: "Use mein Vater, then ist + occupation without an article, and ist + adjectives.", ru: "Используйте mein Vater, затем ist + профессия без артикля и ist + прилагательные." }
+    explain: { en: "Use mein Vater, then ist + occupation without an article, and ist + adjectives.", ru: "Используйте mein Vater, затем ist + профессия без артикля и ist + прилагательные.", uk: "Вживайте mein Vater, далі ist + професія без артикля та ist + прикметники." }
   - id: audio-family
     outcomes: [familie-verstehen]
     type: audio-comprehension
@@ -61,27 +63,27 @@ items:
     question: "Wer arbeitet als Lehrerin?"
     options: ["Eva", "Tim", "Lena"]
     correct: 0
-    translation: { en: "Who works as a teacher?", ru: "Кто работает учительницей?" }
-    explain: { en: "Lena says that her sister Eva works as a teacher.", ru: "Лена говорит, что её сестра Ева работает учительницей." }
+    translation: { en: "Who works as a teacher?", ru: "Кто работает учительницей?", uk: "Хто працює вчителькою?" }
+    explain: { en: "Lena says that her sister Eva works as a teacher.", ru: "Лена говорит, что её сестра Ева работает учительницей.", uk: "Лена каже, що її сестра Ева працює вчителькою." }
   - id: mc-description
     outcomes: [familie-verstehen]
     type: mc
     prompt: "‚Er hat kurze braune Haare und ist groß.‘ Welche Beschreibung passt?"
     options: ["Der Mann ist groß und hat kurze braune Haare.", "Die Frau ist klein und hat lange Haare.", "Das Kind ist blond und klein."]
     correct: 0
-    translation: { en: "Which description matches?", ru: "Какое описание подходит?" }
-    explain: { en: "The sentence describes a tall man with short brown hair.", ru: "В предложении описан высокий мужчина с короткими каштановыми волосами." }
+    translation: { en: "Which description matches?", ru: "Какое описание подходит?", uk: "Який опис підходить?" }
+    explain: { en: "The sentence describes a tall man with short brown hair.", ru: "В предложении описан высокий мужчина с короткими каштановыми волосами.", uk: "У реченні описано високого чоловіка з коротким каштановим волоссям." }
   - id: write-family-card
     outcomes: [familie-vorstellen, menschen-beschreiben]
     type: write
-    prompt: { en: "Add one important person to a course introduction board.", ru: "Добавьте близкого человека на доску знакомств вашего курса." }
-    goal: { en: "Introduce and describe the person in four simple sentences.", ru: "Представьте и опишите человека в четырёх простых предложениях." }
+    prompt: { en: "Add one important person to a course introduction board.", ru: "Добавьте близкого человека на доску знакомств вашего курса.", uk: "Додайте близьку людину на дошку знайомств вашого курсу." }
+    goal: { en: "Introduce and describe the person in four simple sentences.", ru: "Представьте и опишите человека в четырёх простых предложениях.", uk: "Представте й опишіть людину в чотирьох простих реченнях." }
     requirements:
-      - { en: "State your relationship to the person.", ru: "Назовите, кем вам приходится этот человек." }
-      - { en: "Give the person's name.", ru: "Назовите имя." }
-      - { en: "Mention an occupation or activity.", ru: "Укажите профессию или занятие." }
-      - { en: "Add one character or appearance detail.", ru: "Добавьте одну черту характера или внешности." }
+      - { en: "State your relationship to the person.", ru: "Назовите, кем вам приходится этот человек.", uk: "Назвіть, ким вам доводиться ця людина." }
+      - { en: "Give the person's name.", ru: "Назовите имя.", uk: "Назвіть ім'я." }
+      - { en: "Mention an occupation or activity.", ru: "Укажите профессию или занятие.", uk: "Вкажіть професію або заняття." }
+      - { en: "Add one character or appearance detail.", ru: "Добавьте одну черту характера или внешности.", uk: "Додайте одну рису характеру чи зовнішності." }
     min_words: 18
     model_answer: "Das ist meine Schwester Katja. Sie ist Ingenieurin. Sie arbeitet in Köln. Katja ist ruhig und hat lange braune Haare."
-    model_translation: { en: "This is my sister Katja. She is an engineer. She works in Cologne. Katja is calm and has long brown hair.", ru: "Это моя сестра Катя. Она инженер. Она работает в Кёльне. Катя спокойная, у неё длинные каштановые волосы." }
-    explain: { en: "Use possessive + family noun, ist for occupation/character and hat for a visible feature.", ru: "Используйте притяжательное слово с родством, ist для профессии/характера и hat для внешнего признака." }
+    model_translation: { en: "This is my sister Katja. She is an engineer. She works in Cologne. Katja is calm and has long brown hair.", ru: "Это моя сестра Катя. Она инженер. Она работает в Кёльне. Катя спокойная, у неё длинные каштановые волосы.", uk: "Це моя сестра Катя. Вона інженерка. Вона працює в Кельні. Катя спокійна, у неї довге каштанове волосся." }
+    explain: { en: "Use possessive + family noun, ist for occupation/character and hat for a visible feature.", ru: "Используйте притяжательное слово с родством, ist для профессии/характера и hat для внешнего признака.", uk: "Вживайте присвійне слово з назвою спорідненості, ist для професії/характеру та hat для зовнішньої ознаки." }
