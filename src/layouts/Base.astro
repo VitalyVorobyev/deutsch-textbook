@@ -3,7 +3,7 @@ import '../styles/global.css';
 import ProfileSwitcher from '../components/ProfileSwitcher';
 import FirstRunGate from '../components/FirstRunGate';
 import { withBase } from '../lib/url';
-import { UI_LANGS, t, type StringKey } from '../lib/strings';
+import { t, type StringKey } from '../lib/strings';
 
 interface Props {
   title: string;
@@ -14,7 +14,7 @@ const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch' } = A
 const home = withBase('/');
 interface NavItem {
   href: string;
-  /** Chrome-string key: all UI languages render as CSS-toggled spans. */
+  /** Chrome-string key, rendered in German — the pinned chrome language. */
   label: StringKey;
   /** Extra path prefixes that also count as "this tab" (e.g. /vocab/<deck> → Üben). */
   match?: string[];
@@ -36,7 +36,7 @@ function isActive(item: NavItem): boolean {
 ---
 
 <!doctype html>
-<html lang="en" data-explain-lang="en" data-ui-lang="de">
+<html lang="en" data-explain-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,10 +48,12 @@ function isActive(item: NavItem): boolean {
         let theme = localStorage.getItem('da:theme');
         if (!theme) theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        // Language prefs are profile-scoped; this mirrors resolveExplainLang/
-        // resolveUiLang in src/lib/prefs.ts (keep in sync) because a pre-paint
-        // script cannot import. Profile resolution mirrors getActiveProfileId
-        // in src/lib/profile.ts: da:profile, else first registered, else 'local'.
+        // The learning language is profile-scoped; this mirrors
+        // resolveExplainLang in src/lib/prefs.ts (keep in sync) because a
+        // pre-paint script cannot import. Profile resolution mirrors
+        // getActiveProfileId in src/lib/profile.ts: da:profile, else first
+        // registered, else 'local'. The chrome language is pinned German —
+        // no ui-lang attribute to stamp (resolveUiLang has the rationale).
         let pid = localStorage.getItem('da:profile');
         if (!pid) {
           try {
@@ -77,8 +79,6 @@ function isActive(item: NavItem): boolean {
         }
         if (lang === 'en' || lang === 'ru' || lang === 'uk' || lang === 'de')
           document.documentElement.dataset.explainLang = lang;
-        const ui = localStorage.getItem('da:uilang:' + pid);
-        if (ui === 'en' || ui === 'ru' || ui === 'uk') document.documentElement.dataset.uiLang = ui;
       })();
     </script>
   </head>
@@ -101,21 +101,13 @@ function isActive(item: NavItem): boolean {
                     : 'text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
                 ]}
               >
-                {UI_LANGS.map((l) => (
-                  <span class={`ui-${l}`}>{t(item.label, l)}</span>
-                ))}
+                {t(item.label, 'de')}
               </a>
             ))
           }
         </nav>
         <div class="ml-auto flex items-center gap-2">
           <ProfileSwitcher client:only="react" />
-          <div class="flex overflow-hidden rounded-md border border-stone-300 text-xs dark:border-stone-600" role="group" aria-label="Explanation language">
-            <button type="button" data-lang-btn="en" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">EN</button>
-            <button type="button" data-lang-btn="ru" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">RU</button>
-            <button type="button" data-lang-btn="uk" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">UK</button>
-            <button type="button" data-lang-btn="de" class="px-2.5 py-1.5 font-semibold sm:px-2 sm:py-1">DE</button>
-          </div>
           <button
             type="button"
             id="theme-toggle"
@@ -133,34 +125,16 @@ function isActive(item: NavItem): boolean {
     </main>
 
     <footer class="border-t border-stone-200 py-6 text-center text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
-      {UI_LANGS.map((l) => <span class={`ui-${l}`}>{t('footer.tagline', l)}</span>)}
+      {t('footer.tagline', 'de')}
     </footer>
 
     <script>
-      import { setExplainLang, setTheme, getExplainLang, type ExplainLang } from '../lib/prefs';
-
-      function paintLangButtons() {
-        const active = getExplainLang();
-        document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
-          const isActive = btn.dataset.langBtn === active;
-          btn.classList.toggle('bg-amber-500', isActive);
-          btn.classList.toggle('text-white', isActive);
-        });
-      }
-
-      document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          setExplainLang(btn.dataset.langBtn as ExplainLang);
-          paintLangButtons();
-        });
-      });
+      import { setTheme } from '../lib/prefs';
 
       document.getElementById('theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         setTheme(next);
       });
-
-      paintLangButtons();
     </script>
   </body>
 </html>

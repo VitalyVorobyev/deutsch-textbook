@@ -77,9 +77,10 @@ describe('pick over the four explanation languages', () => {
   test('pickSecond picks the second half of a card meaning side', () => {
     const gloss = { ru: 'вокзал', uk: 'вокзал (uk)' };
     const ruOnly = { ru: 'вокзал' };
-    // en and ru both show the Russian gloss — today's exact `en · ru` view
-    expect(pickSecond('en', gloss)).toBe('вокзал');
+    // ru shows the Russian gloss; en shows nothing — an EN-mode learner is
+    // never assumed to read Russian or Ukrainian (owner ruling 2026-07-16)
     expect(pickSecond('ru', gloss)).toBe('вокзал');
+    expect(pickSecond('en', gloss)).toBeUndefined();
     // uk shows the Ukrainian gloss only where authored — never RU for a UK reader
     expect(pickSecond('uk', gloss)).toBe('вокзал (uk)');
     expect(pickSecond('uk', ruOnly)).toBeUndefined();
@@ -95,9 +96,9 @@ describe('pick over the four explanation languages', () => {
       return second ? `${card.en} · ${second}` : card.en;
     };
     const card = { en: 'train station', ru: 'вокзал' };
-    // byte-identical to today's `${en} · ${ru}` for en/ru learners
-    expect(meaning('en', card)).toBe('train station · вокзал');
+    // ru keeps its dual view; en is EN alone — never assumed to read Russian
     expect(meaning('ru', card)).toBe('train station · вокзал');
+    expect(meaning('en', card)).toBe('train station');
     expect(meaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe('train station · вокзал (uk)');
     // no uk gloss → EN alone, never `en · en` and never RU
     expect(meaning('uk', card)).toBe('train station');

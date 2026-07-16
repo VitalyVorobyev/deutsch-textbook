@@ -1,12 +1,10 @@
 ---
 /**
- * One chrome string as CSS-toggled `.ui-*` spans — the P8-1 static-Astro
- * pattern (see the nav in src/layouts/Base.astro): all four UI languages
- * render, `<html data-ui-lang>` shows one, so a static label never costs a
- * React island. For strings with `{n}`-style templates, inline the map and
- * `.replace()` per language instead.
+ * One chrome string, rendered in German — the pinned chrome language
+ * (resolveUiLang in src/lib/prefs.ts has the rationale). Kept as a component
+ * so static pages have one seam if the pin is ever lifted.
  */
-import { UI_LANGS, t, type StringKey } from '../lib/strings';
+import { t, type StringKey } from '../lib/strings';
 
 interface Props {
   k: StringKey;
@@ -14,4 +12,4 @@ interface Props {
 const { k } = Astro.props;
 ---
 
-{UI_LANGS.map((l) => <span class={`ui-${l}`}>{t(k, l)}</span>)}
+{t(k, 'de')}

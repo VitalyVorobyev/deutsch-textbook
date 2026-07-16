@@ -3,11 +3,9 @@ import { beforeEach, describe, expect, test } from 'bun:test';
 import {
   LANG_KEY,
   langKeyFor,
-  uiLangKeyFor,
   resolveExplainLang,
   resolveUiLang,
   setExplainLang,
-  setUiLang,
   getUiLang,
 } from '../src/lib/prefs';
 import { PROFILE_KEY, PROFILES_KEY } from '../src/lib/profile';
@@ -48,24 +46,17 @@ describe('per-profile explanation language (copy-forward migration)', () => {
   });
 });
 
-describe('per-profile UI language', () => {
-  test('defaults to de with nothing stored', () => {
+describe('chrome language pinned to German', () => {
+  test('resolves to de with nothing stored', () => {
     expect(resolveUiLang('vitaly')).toBe('de');
     expect(getUiLang()).toBe('de');
   });
 
-  test('setUiLang stamps the root attribute and persists under the active profile only', () => {
-    registerActiveProfile('anna');
-    setUiLang('uk');
-    expect(document.documentElement.dataset.uiLang).toBe('uk');
-    expect(getUiLang()).toBe('uk');
-    expect(localStorage.getItem(uiLangKeyFor('anna'))).toBe('uk');
-    expect(resolveUiLang('boris')).toBe('de');
-  });
-
-  test('garbage in storage resolves to de', () => {
-    localStorage.setItem(uiLangKeyFor('vitaly'), 'xx');
+  test('a legacy stored ui-language choice is ignored — the pin wins', () => {
+    // The retired per-profile key may survive in learners' localStorage.
+    localStorage.setItem('da:uilang:vitaly', 'uk');
     expect(resolveUiLang('vitaly')).toBe('de');
+    expect(getUiLang()).toBe('de');
   });
 });
 
