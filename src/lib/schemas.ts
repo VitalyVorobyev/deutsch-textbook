@@ -281,19 +281,37 @@ export const matchItemSchema = z.object({
       }),
     )
     .min(2)
-    // Identity must be unique on both columns: the UI keys matching on `left`
-    // and on the right's identity (the string itself, or the record's `en`),
-    // so two pairs sharing either would cross-accept and mis-mark as matched.
+    // Identity must be unique on both columns — and for the right column,
+    // unique as *rendered under every language mode*, not merely as identity:
+    // matching keys on the record's `en`, so two rights whose ru (or uk)
+    // labels coincide would show the learner two indistinguishable buttons of
+    // which one is "wrong". The uk label falls back to en exactly as pick()
+    // renders it. (de mode renders en, so the en pass covers it.)
     .superRefine((pairs, ctx) => {
-      const seen = { left: new Set<string>(), right: new Set<string>() };
+      const lefts = new Set<string>();
       for (const p of pairs) {
-        const rightId = typeof p.right === 'string' ? p.right : p.right.en;
-        if (seen.left.has(p.left))
+        if (lefts.has(p.left))
           ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate left "${p.left}" — pair identity must be unique` });
-        if (seen.right.has(rightId))
-          ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate right identity "${rightId}" — for a record right the en field is the identity` });
-        seen.left.add(p.left);
-        seen.right.add(rightId);
+        lefts.add(p.left);
+      }
+      for (const mode of ['en', 'ru', 'uk'] as const) {
+        const seen = new Set<string>();
+        for (const p of pairs) {
+          const label =
+            typeof p.right === 'string'
+              ? p.right
+              : mode === 'ru'
+                ? p.right.ru
+                : mode === 'uk'
+                  ? (p.right.uk ?? p.right.en)
+                  : p.right.en;
+          if (seen.has(label))
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `duplicate right label "${label}" under ${mode} mode — rights must render distinct in every language`,
+            });
+          seen.add(label);
+        }
       }
     }),
 });

@@ -388,6 +388,28 @@ describe('schema widening', () => {
         ],
       }).success,
     ).toBe(false);
+    // Distinct en identities but colliding ru labels: in ru mode the learner
+    // sees two identical buttons while matching still keys on en — rejected.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'mögen', right: { en: 'liking', ru: 'нравится' } },
+          { left: 'gern', right: { en: 'gladly', ru: 'нравится' } },
+        ],
+      }).success,
+    ).toBe(false);
+    // A missing uk falls back to en at render time — a collision through the
+    // fallback is a collision.
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'a', right: { en: 'x', ru: 'р1' } },
+          { left: 'b', right: { en: 'y', ru: 'р2', uk: 'x' } },
+        ],
+      }).success,
+    ).toBe(false);
   });
 
   test('a record match right never enters de parity', () => {
