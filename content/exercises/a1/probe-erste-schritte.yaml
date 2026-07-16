@@ -20,6 +20,7 @@ items:
   - id: variant-a
     outcomes: [erste-sich-vorstellen]
     type: translate
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -30,6 +31,7 @@ items:
     answer: "Ich heiße Sofia. Ich komme aus Italien und ich spreche Italienisch."
     accept:
       - "Mein Name ist Sofia. Ich komme aus Italien und ich spreche Italienisch."
+      - "Ich heiße Sofia. Ich komme aus Italien und spreche Italienisch."
     explain:
       en: "A German introduction rests on three fixed chunks: ich heiße + name, ich komme aus + country, ich spreche + language. After aus the country takes no article (aus Italien), and the language is a bare capitalized noun."
       ru: "Немецкое представление держится на трёх устойчивых формулах: ich heiße + имя, ich komme aus + страна, ich spreche + язык. После aus страна стоит без артикля (aus Italien), название языка тоже идёт без артикля и пишется с большой буквы."
