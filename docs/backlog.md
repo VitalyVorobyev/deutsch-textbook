@@ -86,9 +86,11 @@ letter/parity checks and a review before merge.
 - **Wave 1 — `done` 2026-07-16** (PR #60): the first five A1 spine topics, 35 files; Über 35/264.
 - **Wave 2 — `done` 2026-07-16** (PR #61): the last five A1 spine topics, 38 files — the A1 spine's
   topic files are fully Ukrainian; Über 73/264.
-- Wave 3 — `todo`: the non-topic A1 files — the twelve unowned Wortliste completion decks,
-  `checkpoint-a1`, and any remaining ru-bearing A1 artifacts (discovery, documents, wortfelder,
-  reference-data as applicable). Then A2 in ~4–5 waves.
+- **Wave 3 — `done` 2026-07-16**: the A1 residue — the eleven unowned A1 completion decks
+  (341 entries), `checkpoint-a1`, `reference-data/pronominal-adverbs`; Über 87/266. A1 is
+  fully Ukrainian except `atlas.yaml`, which counts only when its A2 nodes translate.
+- Wave 4+ — `todo`: A2 in ~4–5 waves; fix the match-schema gap before the wave that reaches
+  `a2/modalverben.yaml`.
 - **Known instrument gap (pre-A2-waves)**: `matchItemSchema` pairs are plain strings with no
   per-language structure, so a translation-flavored right side is invisible to the parity and
   letter-set checks. Wave 1's `match-family` was reshaped German↔German (Codex finding, PR #60);
