@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — food and drink
   ru: Практика — еда и напитки
+  uk: Практика — їжа та напої
 items:
   - id: match-artikel
     outcomes: [essen-vorlieben]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: Match each noun with its article.
       ru: Соедините каждое существительное с его артиклем.
+      uk: З'єднайте кожен іменник з його артиклем.
     pairs:
       - { left: "Apfel", right: "der" }
       - { left: "Milch", right: "die" }
@@ -18,6 +20,7 @@ items:
     explain:
       en: "der Apfel (masculine), die Milch (feminine), das Brot (neuter). Learn every noun together with its article."
       ru: "der Apfel (мужской род), die Milch (женский род), das Brot (средний род). Учите каждое существительное вместе с артиклем."
+      uk: "der Apfel (чоловічий рід), die Milch (жіночий рід), das Brot (середній рід). Вчіть кожен іменник разом з артиклем."
 
   - id: cloze-hunger
     outcomes: [essen-vorlieben]
@@ -26,13 +29,16 @@ items:
     instruction:
       en: Complete the fixed expression.
       ru: Дополните устойчивое выражение.
+      uk: Доповніть усталений вислів.
     text: "Ich habe {{Hunger}} — wann essen wir?"
     translation:
       en: I'm hungry — when are we eating?
       ru: Я голоден — когда мы будем есть?
+      uk: Я голодний — коли ми будемо їсти?
     explain:
       en: '"Hunger haben" = to be hungry. Hunger is a noun, so it is capitalized.'
       ru: '"Hunger haben" = быть голодным. Hunger — существительное, поэтому пишется с заглавной буквы.'
+      uk: '"Hunger haben" = бути голодним. Hunger — іменник, тому пишеться з великої літери.'
 
   - id: mc-getraenk
     outcomes: [essen-vorlieben]
@@ -43,9 +49,11 @@ items:
     translation:
       en: Which one is not a drink?
       ru: Что из этого не напиток?
+      uk: Що з цього не напій?
     explain:
       en: "Brot (bread) is food; Kaffee and Tee are drinks (Getränke)."
       ru: "Brot (хлеб) — еда; Kaffee и Tee — напитки (Getränke)."
+      uk: "Brot (хліб) — їжа; Kaffee і Tee — напої (Getränke)."
 
   - id: cloze-fruehstueck
     outcomes: [essen-vorlieben]
@@ -54,13 +62,16 @@ items:
     instruction:
       en: Fill in the correct form of "essen".
       ru: Вставьте правильную форму глагола "essen".
+      uk: Вставте правильну форму дієслова "essen".
     text: "Zum Frühstück {{esse}} ich Brötchen mit Käse."
     translation:
       en: For breakfast I eat rolls with cheese.
       ru: На завтрак я ем булочки с сыром.
+      uk: На сніданок я їм булочки з сиром.
     explain:
       en: "ich esse — the stem change (e → i) only happens with du (isst) and er/sie/es (isst)."
       ru: "ich esse — смена гласной (e → i) происходит только в формах du (isst) и er/sie/es (isst)."
+      uk: "ich esse — зміна голосної (e → i) відбувається лише у формах du (isst) та er/sie/es (isst)."
 
   - id: order-kaffee
     outcomes: [essen-vorlieben]
@@ -69,13 +80,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Zum", "Frühstück", "trinke", "ich", "Kaffee."]
     translation:
       en: For breakfast I drink coffee.
       ru: На завтрак я пью кофе.
+      uk: На сніданок я п'ю каву.
     explain:
       en: '"Zum Frühstück" fills position 1, so the verb "trinke" comes second and "ich" third.'
       ru: '"Zum Frühstück" занимает первую позицию, поэтому глагол "trinke" стоит вторым, а "ich" — третьим.'
+      uk: '"Zum Frühstück" займає першу позицію, тому дієслово "trinke" стоїть другим, а "ich" — третім.'
 
   - id: mc-schmecken
     outcomes: [essen-vorlieben]
@@ -87,9 +101,11 @@ items:
     translation:
       en: The soup tastes very good.
       ru: Суп очень вкусный.
+      uk: Суп дуже смачний.
     explain:
       en: "The subject is 'die Suppe' (er/sie/es form): schmeckt. 'isst' would mean the soup is eating something."
       ru: "Подлежащее — 'die Suppe' (форма er/sie/es): schmeckt. 'isst' означало бы, что суп сам что-то ест."
+      uk: "Підмет — 'die Suppe' (форма er/sie/es): schmeckt. 'isst' означало б, що суп сам щось їсть."
 
   - id: match-mahlzeiten
     outcomes: [essen-vorlieben]
@@ -97,6 +113,7 @@ items:
     instruction:
       en: Match each meal with its time of day.
       ru: Соедините приём пищи со временем суток.
+      uk: З'єднайте прийом їжі з часом доби.
     pairs:
       - { left: "das Frühstück", right: "am Morgen" }
       - { left: "das Mittagessen", right: "am Mittag" }
@@ -104,6 +121,7 @@ items:
     explain:
       en: "The meal names contain their time: Früh(stück) — early, Mittag(essen) — midday, Abend(essen) — evening."
       ru: "Названия приёмов пищи содержат время: Früh(stück) — рано, Mittag(essen) — полдень, Abend(essen) — вечер."
+      uk: "Назви прийомів їжі містять час: Früh(stück) — рано, Mittag(essen) — полудень, Abend(essen) — вечір."
 
   - id: cloze-isst
     outcomes: [essen-vorlieben]
@@ -112,13 +130,16 @@ items:
     instruction:
       en: Fill in the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
+      uk: Вставте правильну форму дієслова, вказаного в дужках.
     text: "Er {{isst}} (essen) kein Fleisch."
     translation:
       en: He doesn't eat meat.
       ru: Он не ест мясо.
+      uk: Він не їсть м'яса.
     explain:
       en: "essen changes its stem in the er/sie/es form: er isst."
       ru: "У essen меняется корневая гласная в форме er/sie/es: er isst."
+      uk: "У essen змінюється коренева голосна у формі er/sie/es: er isst."
 
   - id: mc-bezahlen
     outcomes: [essen-vorlieben]
@@ -129,9 +150,11 @@ items:
     translation:
       en: The food was delicious. We would like to pay now, please.
       ru: Еда была вкусной. Мы хотели бы теперь расплатиться, пожалуйста.
+      uk: Їжа була смачна. Ми хотіли б тепер розрахуватися, будь ласка.
     explain:
       en: "After the meal you pay (bezahlen). You order (bestellen) at the start, and the kitchen cooks (kochen)."
       ru: "После еды платят (bezahlen). Заказывают (bestellen) в начале, а готовит (kochen) кухня."
+      uk: "Після їжі платять (bezahlen). Замовляють (bestellen) на початку, а готує (kochen) кухня."
 
   - id: cloze-durst
     outcomes: [essen-vorlieben]
@@ -140,13 +163,16 @@ items:
     instruction:
       en: Complete the fixed expression.
       ru: Дополните устойчивое выражение.
+      uk: Доповніть усталений вислів.
     text: "Hast du {{Durst}}? Hier ist ein Glas Wasser."
     translation:
       en: Are you thirsty? Here is a glass of water.
       ru: Хочешь пить? Вот стакан воды.
+      uk: Хочеш пити? Ось склянка води.
     explain:
       en: '"Durst haben" = to be thirsty — the same pattern as "Hunger haben".'
       ru: '"Durst haben" = хотеть пить — та же модель, что и "Hunger haben".'
+      uk: '"Durst haben" = хотіти пити — та сама модель, що й "Hunger haben".'
 
   - id: order-frage
     outcomes: [essen-vorlieben]
@@ -155,13 +181,16 @@ items:
     instruction:
       en: Build the question.
       ru: Составьте вопрос.
+      uk: Складіть питання.
     words: ["Was", "isst", "du", "zum", "Frühstück", "?"]
     translation:
       en: What do you eat for breakfast?
       ru: Что ты ешь на завтрак?
+      uk: Що ти їси на сніданок?
     explain:
       en: "W-question: question word first, verb second — Was isst du…?"
       ru: "Вопрос с вопросительным словом: вопросительное слово — первое, глагол — второй: Was isst du…?"
+      uk: "Питання з питальним словом: питальне слово — перше, дієслово — друге: Was isst du…?"
 
   - id: mc-wasser
     outcomes: [essen-vorlieben]
@@ -173,9 +202,11 @@ items:
     translation:
       en: The water is cold.
       ru: Вода холодная.
+      uk: Вода холодна.
     explain:
       en: "Wasser is neuter: das Wasser."
       ru: "Wasser — среднего рода: das Wasser."
+      uk: "Wasser — середнього роду: das Wasser."
 
   - id: audio-im-cafe
     outcomes: [essen-bestellen]
@@ -197,9 +228,11 @@ items:
     translation:
       en: What does the guest order?
       ru: Что заказывает посетитель?
+      uk: Що замовляє відвідувач?
     explain:
       en: "The guest says directly: Ich möchte eine Suppe und ein Wasser. Listen for the two nouns after möchte."
-      ru: "Посетитель прямо говорит: Ich möchte eine Suppe und ein Wasser. Услышьте два существительных после möchte."
+      ru: "Посетитель прямо говорит: Ich möchte eine Suppe und ein Wasser. Прислушайтесь к двум существительным после möchte."
+      uk: "Відвідувач прямо каже: Ich möchte eine Suppe und ein Wasser. Прислухайтеся до двох іменників після möchte."
 
   - id: schreiben-bestellung
     outcomes: [essen-bestellen]
@@ -207,18 +240,22 @@ items:
     prompt:
       en: "You are ordering a simple breakfast in a café. Write what you say to the server."
       ru: "Вы заказываете простой завтрак в кафе. Напишите, что вы скажете официанту."
+      uk: "Ви замовляєте простий сніданок у кафе. Напишіть, що ви скажете офіціантові."
     goal:
       en: "Make a polite, complete order in German."
       ru: "Сделайте вежливый и полный заказ по-немецки."
+      uk: "Зробіть ввічливе й повне замовлення німецькою."
     requirements:
-      - { en: "Greet the server.", ru: "Поздоровайтесь." }
-      - { en: "Order one food and one drink with möchte.", ru: "Закажите еду и напиток с möchte." }
-      - { en: "Finish politely.", ru: "Вежливо завершите реплику." }
+      - { en: "Greet the server.", ru: "Поздоровайтесь.", uk: "Привітайтеся." }
+      - { en: "Order one food and one drink with möchte.", ru: "Закажите еду и напиток с möchte.", uk: "Замовте страву й напій з möchte." }
+      - { en: "Finish politely.", ru: "Вежливо завершите реплику.", uk: "Ввічливо завершіть репліку." }
     min_words: 10
     model_answer: "Guten Morgen. Ich möchte ein Brötchen mit Käse und einen Kaffee, bitte. Danke!"
     model_translation:
       en: "Good morning. I would like a bread roll with cheese and a coffee, please. Thank you!"
       ru: "Доброе утро. Я хотел бы булочку с сыром и кофе, пожалуйста. Спасибо!"
+      uk: "Доброго ранку. Я хотів би булочку з сиром і каву, будь ласка. Дякую!"
     explain:
       en: "A useful café frame is greeting + Ich möchte …, bitte + Danke. Your own food and drink may differ from the model."
       ru: "Удобная схема для кафе: приветствие + Ich möchte …, bitte + Danke. Еда и напиток в вашем варианте могут отличаться от примера."
+      uk: "Зручна схема для кафе: привітання + Ich möchte …, bitte + Danke. Страва й напій у вашому варіанті можуть відрізнятися від зразка."

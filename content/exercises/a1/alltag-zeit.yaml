@@ -1,23 +1,23 @@
 topic: alltag-zeit
 role: practice
-title: { en: "Practice — everyday life and time", ru: "Практика — будни и время" }
+title: { en: "Practice — everyday life and time", ru: "Практика — будни и время", uk: "Практика — будні та час" }
 items:
   - id: match-uhrzeiten
     outcomes: [zeit-uhrzeit-verstehen]
     type: match
-    instruction: { en: "Match each clock time with the German words.", ru: "Соотнесите время на часах с немецкими словами." }
+    instruction: { en: "Match each clock time with the German words.", ru: "Соотнесите время на часах с немецкими словами.", uk: "З'єднайте час на годиннику з німецькими словами." }
     pairs:
       - { left: "8:00", right: "acht Uhr" }
       - { left: "8:30", right: "halb neun" }
       - { left: "9:30", right: "halb zehn" }
       - { left: "10:00", right: "zehn Uhr" }
-    explain: { en: "halb looks forward to the coming hour: halb neun = 8:30, halb zehn = 9:30. British 'half nine' (9:30) is exactly one hour off.", ru: "halb смотрит вперёд, на следующий час: halb neun = 8:30, halb zehn = 9:30 — как русское «половина девятого»." }
+    explain: { en: "halb looks forward to the coming hour: halb neun = 8:30, halb zehn = 9:30. British 'half nine' (9:30) is exactly one hour off.", ru: "halb смотрит вперёд, на следующий час: halb neun = 8:30, halb zehn = 9:30 — как русское «половина девятого».", uk: "halb дивиться вперед, на наступну годину: halb neun = 8:30, halb zehn = 9:30 — як українське «пів на дев'яту»." }
   - id: table-um-am-im
     outcomes: [zeit-praepositionen]
     type: table
     focus: um-am-zeit
     title: "um, am oder im?"
-    instruction: { en: "Fill in the right time preposition, like the example in the first row.", ru: "Впишите правильный предлог времени, как в примере в первой строке." }
+    instruction: { en: "Fill in the right time preposition, like the example in the first row.", ru: "Впишите правильный предлог времени, как в примере в первой строке.", uk: "Впишіть правильний прийменник часу, як у прикладі в першому рядку." }
     columns: ["Präposition"]
     rows:
       - label: "acht Uhr"
@@ -34,52 +34,52 @@ items:
         cells: [{ answer: "im" }]
       - label: "Nacht"
         cells: [{ answer: "in der" }]
-    explain: { en: "um + clock time, am + day or part of the day (also am Wochenende), im + month or season — and the one exception: in der Nacht.", ru: "um + время по часам, am + день или часть суток (также am Wochenende), im + месяц или время года — и единственное исключение: in der Nacht." }
+    explain: { en: "um + clock time, am + day or part of the day (also am Wochenende), im + month or season — and the one exception: in der Nacht.", ru: "um + время по часам, am + день или часть суток (также am Wochenende), im + месяц или время года — и единственное исключение: in der Nacht.", uk: "um + час за годинником, am + день або частина доби (також am Wochenende), im + місяць або пора року — і єдиний виняток: in der Nacht." }
   - id: cloze-praeposition-wahl
     outcomes: [zeit-praepositionen]
     type: cloze
     focus: um-am-zeit
-    instruction: { en: "Fill in um, am or im.", ru: "Вставьте um, am или im." }
+    instruction: { en: "Fill in um, am or im.", ru: "Вставьте um, am или im.", uk: "Вставте um, am або im." }
     text: "Der Deutschkurs beginnt {{um}} neun Uhr. Ich lerne {{am}} Dienstag, und {{im}} Sommer lerne ich viel."
-    translation: { en: "The German course begins at nine o'clock. I study on Tuesday, and in summer I study a lot.", ru: "Курс немецкого начинается в девять часов. Я занимаюсь во вторник, а летом занимаюсь много." }
-    explain: { en: "Three rules in one text: um + clock time (um neun Uhr), am + day (am Dienstag), im + season (im Sommer).", ru: "Три правила в одном тексте: um + время по часам (um neun Uhr), am + день (am Dienstag), im + время года (im Sommer). Русское «в» здесь не подсказка — предлог зависит от типа времени." }
+    translation: { en: "The German course begins at nine o'clock. I study on Tuesday, and in summer I study a lot.", ru: "Курс немецкого начинается в девять часов. Я занимаюсь во вторник, а летом занимаюсь много.", uk: "Курс німецької починається о дев'ятій годині. Я займаюся у вівторок, а влітку займаюся багато." }
+    explain: { en: "Three rules in one text: um + clock time (um neun Uhr), am + day (am Dienstag), im + season (im Sommer).", ru: "Три правила в одном тексте: um + время по часам (um neun Uhr), am + день (am Dienstag), im + время года (im Sommer). Русское «в» здесь не подсказка — предлог зависит от типа времени.", uk: "Три правила в одному тексті: um + час за годинником (um neun Uhr), am + день (am Dienstag), im + пора року (im Sommer). Українське «у» тут не підказка — прийменник залежить від типу часу." }
   - id: cloze-nacht
     outcomes: [zeit-praepositionen]
     type: cloze
     focus: um-am-zeit
-    instruction: { en: "Fill in the missing words.", ru: "Вставьте пропущенные слова." }
+    instruction: { en: "Fill in the missing words.", ru: "Вставьте пропущенные слова.", uk: "Вставте пропущені слова." }
     text: "Am Morgen trinke ich Kaffee, aber {{in der}} Nacht schlafe ich."
-    translation: { en: "In the morning I drink coffee, but at night I sleep.", ru: "Утром я пью кофе, а ночью я сплю." }
-    explain: { en: "die Nacht is the one exception in the system: not am, but the fixed chunk in der Nacht — learn it whole.", ru: "die Nacht — единственное исключение: не am, а фиксированное сочетание in der Nacht. Запомните его целиком." }
+    translation: { en: "In the morning I drink coffee, but at night I sleep.", ru: "Утром я пью кофе, а ночью я сплю.", uk: "Вранці я п'ю каву, а вночі я сплю." }
+    explain: { en: "die Nacht is the one exception in the system: not am, but the fixed chunk in der Nacht — learn it whole.", ru: "die Nacht — единственное исключение: не am, а фиксированное сочетание in der Nacht. Запомните его целиком.", uk: "die Nacht — єдиний виняток у системі: не am, а фіксоване сполучення in der Nacht. Запам'ятайте його цілком." }
   - id: cloze-nie
     outcomes: [zeit-tagesablauf-beschreiben]
     type: cloze
-    instruction: { en: "Fill in the frequency adverb that matches the translation.", ru: "Вставьте наречие частотности, соответствующее переводу." }
+    instruction: { en: "Fill in the frequency adverb that matches the translation.", ru: "Вставьте наречие частотности, соответствующее переводу.", uk: "Вставте прислівник частотності, що відповідає перекладу." }
     text: "Ich arbeite {{nie}} am Sonntag."
-    translation: { en: "I never work on Sunday.", ru: "Я никогда не работаю по воскресеньям." }
-    explain: { en: "Frequency adverbs stand right after the verb, and nie negates on its own — no extra nicht.", ru: "Наречия частотности стоят сразу после глагола, и nie отрицает сам по себе: двойного отрицания, как в русском «никогда не работаю», в немецком нет." }
+    translation: { en: "I never work on Sunday.", ru: "Я никогда не работаю по воскресеньям.", uk: "Я ніколи не працюю в неділю." }
+    explain: { en: "Frequency adverbs stand right after the verb, and nie negates on its own — no extra nicht.", ru: "Наречия частотности стоят сразу после глагола, и nie отрицает сам по себе: двойного отрицания, как в русском «никогда не работаю», в немецком нет.", uk: "Прислівники частотності стоять одразу після дієслова, а nie заперечує сам собою: подвійного заперечення, як в українському «ніколи не працюю», у німецькій немає." }
   - id: order-sonntag
     outcomes: [zeit-tagesablauf-beschreiben]
     type: order
     focus: verbzweit
     words: ["Am", "Sonntag", "koche", "ich", "für", "meine", "Familie", "."]
-    translation: { en: "On Sunday I cook for my family.", ru: "В воскресенье я готовлю для своей семьи." }
-    explain: { en: "Am Sonntag fills position 1, so the verb koche comes second and ich third: Am Sonntag koche ich …", ru: "Am Sonntag занимает первую позицию, поэтому глагол koche стоит на втором месте, а ich — после него: Am Sonntag koche ich …" }
+    translation: { en: "On Sunday I cook for my family.", ru: "В воскресенье я готовлю для своей семьи.", uk: "У неділю я готую для своєї сім'ї." }
+    explain: { en: "Am Sonntag fills position 1, so the verb koche comes second and ich third: Am Sonntag koche ich …", ru: "Am Sonntag занимает первую позицию, поэтому глагол koche стоит на втором месте, а ich — после него: Am Sonntag koche ich …", uk: "Am Sonntag займає першу позицію, тому дієслово koche стоїть на другому місці, а ich — після нього: Am Sonntag koche ich …" }
   - id: order-halb
     outcomes: [zeit-tagesablauf-beschreiben]
     type: order
     focus: verbzweit
     words: ["Um", "halb", "sieben", "frühstücke", "ich", "."]
-    translation: { en: "At half past six (6:30) I have breakfast.", ru: "В половине седьмого (6:30) я завтракаю." }
-    explain: { en: "The whole time phrase Um halb sieben is one unit in position 1; the verb stays second: … frühstücke ich.", ru: "Всё выражение Um halb sieben целиком занимает первую позицию; глагол остаётся на втором месте: … frühstücke ich." }
+    translation: { en: "At half past six (6:30) I have breakfast.", ru: "В половине седьмого (6:30) я завтракаю.", uk: "О пів на сьому (6:30) я снідаю." }
+    explain: { en: "The whole time phrase Um halb sieben is one unit in position 1; the verb stays second: … frühstücke ich.", ru: "Всё выражение Um halb sieben целиком занимает первую позицию; глагол остаётся на втором месте: … frühstücke ich.", uk: "Увесь вираз Um halb sieben цілком займає першу позицію; дієслово залишається на другому місці: … frühstücke ich." }
   - id: mc-halb-verstehen
     outcomes: [zeit-uhrzeit-verstehen]
     type: mc
     prompt: "Der Film beginnt um halb zehn. Wann beginnt der Film?"
     options: ["um neun Uhr dreißig (9:30)", "um zehn Uhr dreißig (10:30)", "um zehn Uhr (10:00)"]
     correct: 0
-    translation: { en: "The film begins at halb zehn. When does the film begin?", ru: "Фильм начинается в halb zehn. Когда начинается фильм?" }
-    explain: { en: "halb zehn = half of the tenth hour = 9:30. British 'half ten' (10:30) is a false friend — German halb zehn is an hour earlier.", ru: "halb zehn = «половина десятого» = 9:30 — русская логика здесь совпадает с немецкой." }
+    translation: { en: "The film begins at halb zehn. When does the film begin?", ru: "Фильм начинается в halb zehn. Когда начинается фильм?", uk: "Фільм починається о halb zehn. Коли починається фільм?" }
+    explain: { en: "halb zehn = half of the tenth hour = 9:30. British 'half ten' (10:30) is a false friend — German halb zehn is an hour earlier.", ru: "halb zehn = «половина десятого» = 9:30 — русская логика здесь совпадает с немецкой.", uk: "halb zehn = «пів на десяту» = 9:30 — українська логіка тут збігається з німецькою." }
   - id: mc-fehler-satz
     outcomes: [zeit-tagesablauf-beschreiben]
     type: mc
@@ -87,39 +87,41 @@ items:
     prompt: "Welcher Satz ist richtig?"
     options: ["Am Abend koche ich Suppe.", "Am Abend ich koche Suppe.", "Am Abend ich Suppe koche."]
     correct: 0
-    translation: { en: "Which sentence is correct? — In the evening I cook soup.", ru: "Какое предложение правильное? — Вечером я варю суп." }
-    explain: { en: "After a fronted time phrase the conjugated verb must stay in position 2: Am Abend koche ich Suppe. The subject moves behind the verb.", ru: "После вынесенного времени спрягаемый глагол обязан стоять на втором месте: Am Abend koche ich Suppe. В русском порядок слов свободный, в немецком правило V2 жёсткое." }
+    translation: { en: "Which sentence is correct? — In the evening I cook soup.", ru: "Какое предложение правильное? — Вечером я варю суп.", uk: "Яке речення правильне? — Увечері я варю суп." }
+    explain: { en: "After a fronted time phrase the conjugated verb must stay in position 2: Am Abend koche ich Suppe. The subject moves behind the verb.", ru: "После вынесенного времени спрягаемый глагол обязан стоять на втором месте: Am Abend koche ich Suppe. В русском порядок слов свободный, в немецком правило V2 жёсткое.", uk: "Після винесеного часу відмінюване дієслово мусить стояти на другому місці: Am Abend koche ich Suppe. В українській порядок слів вільний, у німецькій правило V2 жорстке." }
   - id: translate-sonntag
     outcomes: [zeit-praepositionen]
     type: translate
     focus: um-am-zeit
     prompt_en: "On Sunday I don't work."
     prompt_ru: "В воскресенье я не работаю."
+    prompt_uk: "У неділю я не працюю."
     answer: "Am Sonntag arbeite ich nicht."
     key_tokens: ["Am"]
     accept: ["Ich arbeite am Sonntag nicht.", "Ich arbeite nicht am Sonntag."]
-    explain: { en: "Days take am: am Sonntag. If the time phrase opens the sentence, the verb keeps position 2: Am Sonntag arbeite ich nicht.", ru: "С днями недели — am: am Sonntag, не in. Если время стоит в начале, глагол всё равно на втором месте: Am Sonntag arbeite ich nicht." }
+    explain: { en: "Days take am: am Sonntag. If the time phrase opens the sentence, the verb keeps position 2: Am Sonntag arbeite ich nicht.", ru: "С днями недели — am: am Sonntag, не in. Если время стоит в начале, глагол всё равно на втором месте: Am Sonntag arbeite ich nicht.", uk: "З днями тижня — am: am Sonntag, не in. Якщо час стоїть на початку, дієслово все одно на другому місці: Am Sonntag arbeite ich nicht." }
   - id: translate-januar
     outcomes: [zeit-praepositionen]
     type: translate
     focus: um-am-zeit
     prompt_en: "In January I study German every day."
     prompt_ru: "В январе я каждый день учу немецкий."
+    prompt_uk: "У січні я щодня вчу німецьку."
     answer: "Im Januar lerne ich jeden Tag Deutsch."
     key_tokens: ["Im"]
     accept: ["Ich lerne im Januar jeden Tag Deutsch."]
-    explain: { en: "Months take im: im Januar. jeden Tag needs no preposition at all.", ru: "С месяцами — im: im Januar. «Каждый день» — просто jeden Tag, без предлога." }
+    explain: { en: "Months take im: im Januar. jeden Tag needs no preposition at all.", ru: "С месяцами — im: im Januar. «Каждый день» — просто jeden Tag, без предлога.", uk: "З місяцями — im: im Januar. «Щодня» — просто jeden Tag, без прийменника." }
   - id: schreiben-tagesplan
     outcomes: [zeit-tagesablauf-beschreiben]
     type: write
-    prompt: { en: "Mein Tagesplan — describe your typical day for your course group.", ru: "Mein Tagesplan — опишите свой обычный день для группы курса." }
-    goal: { en: "Write three to four simple sentences about your day with time phrases.", ru: "Напишите три-четыре простых предложения о своём дне с указанием времени." }
+    prompt: { en: "Mein Tagesplan — describe your typical day for your course group.", ru: "Mein Tagesplan — опишите свой обычный день для группы курса.", uk: "Mein Tagesplan — опишіть свій звичайний день для групи курсу." }
+    goal: { en: "Write three to four simple sentences about your day with time phrases.", ru: "Напишите три-четыре простых предложения о своём дне с указанием времени.", uk: "Напишіть три-чотири прості речення про свій день із зазначенням часу." }
     requirements:
-      - { en: "Use um with a clock time (um acht Uhr, um halb neun).", ru: "Используйте um со временем по часам (um acht Uhr, um halb neun)." }
-      - { en: "Use am with a day or part of the day (am Montag, am Abend).", ru: "Используйте am с днём недели или частью суток (am Montag, am Abend)." }
-      - { en: "Use one frequency adverb: immer, oft, manchmal or nie.", ru: "Используйте одно наречие частотности: immer, oft, manchmal или nie." }
-      - { en: "Start at least one sentence with a time phrase — verb in position 2.", ru: "Начните хотя бы одно предложение со времени — глагол на втором месте." }
+      - { en: "Use um with a clock time (um acht Uhr, um halb neun).", ru: "Используйте um со временем по часам (um acht Uhr, um halb neun).", uk: "Використайте um з часом за годинником (um acht Uhr, um halb neun)." }
+      - { en: "Use am with a day or part of the day (am Montag, am Abend).", ru: "Используйте am с днём недели или частью суток (am Montag, am Abend).", uk: "Використайте am з днем тижня або частиною доби (am Montag, am Abend)." }
+      - { en: "Use one frequency adverb: immer, oft, manchmal or nie.", ru: "Используйте одно наречие частотности: immer, oft, manchmal или nie.", uk: "Використайте один прислівник частотності: immer, oft, manchmal або nie." }
+      - { en: "Start at least one sentence with a time phrase — verb in position 2.", ru: "Начните хотя бы одно предложение со времени — глагол на втором месте.", uk: "Почніть принаймні одне речення з часу — дієслово на другому місці." }
     min_words: 18
     model_answer: "Um sieben Uhr frühstücke ich. Am Vormittag arbeite ich immer. Um halb eins koche ich Suppe. Am Abend lerne ich oft Deutsch."
-    model_translation: { en: "At seven o'clock I have breakfast. Before noon I always work. At half past twelve I cook soup. In the evening I often study German.", ru: "В семь часов я завтракаю. В первой половине дня я всегда работаю. В половине первого я варю суп. Вечером я часто учу немецкий." }
-    explain: { en: "Pattern: time phrase first, verb second — Um sieben Uhr frühstücke ich. Pick um for clock times, am for days and parts of the day, im for months and seasons.", ru: "Схема: время в начале, глагол на втором месте — Um sieben Uhr frühstücke ich. Для часов — um, для дней и частей суток — am, для месяцев и времён года — im." }
+    model_translation: { en: "At seven o'clock I have breakfast. Before noon I always work. At half past twelve I cook soup. In the evening I often study German.", ru: "В семь часов я завтракаю. В первой половине дня я всегда работаю. В половине первого я варю суп. Вечером я часто учу немецкий.", uk: "О сьомій годині я снідаю. У першій половині дня я завжди працюю. О пів на першу я варю суп. Увечері я часто вчу німецьку." }
+    explain: { en: "Pattern: time phrase first, verb second — Um sieben Uhr frühstücke ich. Pick um for clock times, am for days and parts of the day, im for months and seasons.", ru: "Схема: время в начале, глагол на втором месте — Um sieben Uhr frühstücke ich. Для часов — um, для дней и частей суток — am, для месяцев и времён года — im.", uk: "Схема: час на початку, дієслово на другому місці — Um sieben Uhr frühstücke ich. Для годин — um, для днів і частин доби — am, для місяців і пір року — im." }

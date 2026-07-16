@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Production — describe your home yourself"
   ru: "Продукция — опишите жильё сами"
+  uk: "Продукування — опишіть житло самі"
 
 items:
   - id: uebersetzen-wohnung-gross
@@ -12,8 +13,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The apartment is big and bright."
     prompt_ru: "Квартира большая и светлая."
+    prompt_uk: "Квартира велика і світла."
     answer: "Die Wohnung ist groß und hell."
     accept:
       - "Die Wohnung ist hell und groß."
@@ -21,6 +24,7 @@ items:
     explain:
       en: "die Wohnung (the -ung ending is always feminine), and the linking verb is compulsory: die Wohnung ist groß."
       ru: "die Wohnung (окончание -ung всегда женского рода), и глагол-связка обязателен: die Wohnung ist groß — по-русски «квартира большая» обходится без «есть», по-немецки нет."
+      uk: "die Wohnung (закінчення -ung завжди жіночого роду), і дієслово-зв'язка обов'язкове: die Wohnung ist groß — українською «квартира велика» обходиться без «є», німецькою ні."
 
   - id: uebersetzen-es-gibt-kueche
     outcomes: [wohnen-beschreiben, wohnen-lage-sagen]
@@ -29,13 +33,16 @@ items:
     instruction:
       en: Translate into German. Use "es gibt".
       ru: Переведите на немецкий. Используйте «es gibt».
+      uk: Перекладіть німецькою. Використайте «es gibt».
     prompt_en: "There is a garden and a kitchen."
     prompt_ru: "Здесь есть сад и кухня."
+    prompt_uk: "Тут є сад і кухня."
     answer: "Es gibt einen Garten und eine Küche."
     key_tokens: ["einen"]
     explain:
       en: "es gibt always takes an accusative object — but the accusative only *shows* on masculine nouns. der Garten is masculine, so ein becomes einen. die Küche is feminine, and eine stays eine: nothing happens to it. That asymmetry is the whole rule. The accusative is not an ending you add everywhere; it is a form that surfaces on der-words and hides on the others."
       ru: "После es gibt всегда стоит винительный падеж — но виден он только у существительных мужского рода. der Garten — мужской род, поэтому ein превращается в einen. die Küche — женский, и eine остаётся eine: с ней не происходит ничего. В этой асимметрии и состоит всё правило. Винительный падеж — не окончание, которое дописывают ко всему подряд, а форма, которая проявляется у слов с der и прячется у остальных."
+      uk: "Після es gibt завжди стоїть знахідний відмінок — але видно його лише в іменників чоловічого роду. der Garten — чоловічий рід, тому ein перетворюється на einen. die Küche — жіночий, і eine залишається eine: з нею не відбувається нічого. У цій асиметрії і полягає все правило. Знахідний відмінок — не закінчення, яке дописують до всього поспіль, а форма, яка проявляється у слів із der і ховається в решти."
 
   - id: cloze-wohnung-zimmer
     outcomes: [wohnen-lage-sagen, wohnen-beschreiben]
@@ -44,7 +51,9 @@ items:
     instruction:
       en: Fill in the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "{{Die}} Küche ist klein. {{Das}} Bad ist neu. {{Der}} Balkon ist groß."
     explain:
       en: "Three rooms, three genders — they must simply be learned with the noun: die Küche, das Bad, der Balkon."
       ru: "Три комнаты — три рода. Их нужно заучивать вместе с существительным: die Küche, das Bad, der Balkon."
+      uk: "Три кімнати — три роди. Їх треба заучувати разом з іменником: die Küche, das Bad, der Balkon."

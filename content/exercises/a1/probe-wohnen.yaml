@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — describing a home with es gibt"
   ru: "Проверка — описываем жильё с оборотом es gibt"
+  uk: "Перевірка — описуємо житло зі зворотом es gibt"
 
 # Three parallel variants of ONE competence: describing a home with es gibt + an
 # accusative object, article and all. es gibt is the construction the whole topic hangs
@@ -18,13 +19,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In the living room there is a chair, a sofa and a lamp."
     prompt_ru: "В гостиной есть стул, диван и лампа."
+    prompt_uk: "У вітальні є стілець, диван і лампа."
     answer: "Im Wohnzimmer gibt es einen Stuhl, ein Sofa und eine Lampe."
     key_tokens: ["einen", "ein", "eine"]
     explain:
       en: "es gibt takes an accusative object, so the three genders appear side by side: einen Stuhl (masculine, changed), ein Sofa (neuter), eine Lampe (feminine). Only the masculine ever moves."
       ru: "После es gibt стоит винительный падеж, и все три рода оказываются рядом: einen Stuhl (мужской род — форма изменилась), ein Sofa (средний род), eine Lampe (женский род). Меняется только мужской род."
+      uk: "Після es gibt стоїть знахідний відмінок, і всі три роди опиняються поруч: einen Stuhl (чоловічий рід — форма змінилася), ein Sofa (середній рід), eine Lampe (жіночий рід). Змінюється лише чоловічий рід."
 
   - id: variant-b
     outcomes: [wohnen-beschreiben]
@@ -33,13 +37,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In the room there is a bed, a television and a clock."
     prompt_ru: "В комнате есть кровать, телевизор и часы."
+    prompt_uk: "У кімнаті є ліжко, телевізор і годинник."
     answer: "Im Zimmer gibt es ein Bett, einen Fernseher und eine Uhr."
     key_tokens: ["ein", "einen", "eine"]
     explain:
       en: "es gibt is a fixed frame — es stays put, and everything listed after it is an object in the accusative. Of the three, only the masculine one changes: der Fernseher → einen Fernseher, while das Bett keeps ein and die Uhr keeps eine."
       ru: "es gibt — застывшая формула: es не меняется, а всё перечисленное после него стоит в винительном падеже. Из трёх слов форму меняет только мужской род: der Fernseher → einen Fernseher, тогда как das Bett сохраняет ein, а die Uhr — eine."
+      uk: "es gibt — застигла формула: es не змінюється, а все перелічене після нього стоїть у знахідному відмінку. З трьох слів форму змінює лише чоловічий рід: der Fernseher → einen Fernseher, тоді як das Bett зберігає ein, а die Uhr — eine."
 
   - id: variant-c
     outcomes: [wohnen-beschreiben]
@@ -48,10 +55,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In the kitchen there is a table, but no chair."
     prompt_ru: "На кухне есть стол, но нет стула."
+    prompt_uk: "На кухні є стіл, але немає стільця."
     answer: "In der Küche gibt es einen Tisch, aber keinen Stuhl."
     key_tokens: ["einen", "keinen"]
     explain:
       en: "kein- carries exactly the endings of ein-, so in the accusative a masculine noun gives keinen: einen Tisch, aber keinen Stuhl. A missing thing is negated with kein-, never with nicht."
       ru: "kein- получает те же окончания, что и ein-, поэтому в винительном падеже мужской род даёт keinen: einen Tisch, aber keinen Stuhl. Отсутствие предмета выражается через kein-, а не через nicht."
+      uk: "kein- отримує ті самі закінчення, що й ein-, тому в знахідному відмінку чоловічий рід дає keinen: einen Tisch, aber keinen Stuhl. Відсутність предмета виражається через kein-, а не через nicht."

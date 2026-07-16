@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the können bracket"
   ru: "Проверка — рамочная конструкция с können"
+  uk: "Перевірка — рамкова конструкція з können"
 
 # Three parallel variants of ONE competence: the Satzklammer — können in position 2 (or
 # position 1 in a yes/no question) and the bare infinitive at the very end. Three
@@ -22,8 +23,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Tomorrow my sister can take photos in the park."
     prompt_ru: "Завтра моя сестра может пофотографировать в парке."
+    prompt_uk: "Завтра моя сестра може пофотографувати в парку."
     answer: "Morgen kann meine Schwester im Park fotografieren."
     key_tokens: ["kann", "fotografieren"]
     accept:
@@ -31,6 +34,7 @@ items:
     explain:
       en: "The bracket holds even when something else opens the sentence: kann stays in position 2 (so the subject follows it) and the bare infinitive closes everything — kann … fotografieren."
       ru: "Рамка сохраняется, даже если предложение начинается не с подлежащего: kann остаётся на втором месте (подлежащее уходит за него), а инфинитив без zu замыкает предложение — kann … fotografieren."
+      uk: "Рамка зберігається, навіть якщо речення починається не з підмета: kann залишається на другому місці (підмет іде за нього), а інфінітив без zu замикає речення — kann … fotografieren."
 
   - id: variant-b
     outcomes: [freizeit-koennen-satz]
@@ -39,25 +43,32 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Can your parents dance?"
     prompt_ru: "Твои родители умеют танцевать?"
+    prompt_uk: "Твої батьки вміють танцювати?"
     answer: "Können deine Eltern tanzen?"
     key_tokens: ["Können", "tanzen"]
     explain:
       en: "In a yes/no question the modal opens the sentence, but the far end of the bracket does not move: the infinitive is still the last word — Können … tanzen?"
       ru: "В вопросе без вопросительного слова модальный глагол выходит на первое место, но дальний конец рамки не сдвигается: инфинитив по-прежнему стоит последним — Können … tanzen?"
+      uk: "У питанні без питального слова модальне дієслово виходить на перше місце, але дальній кінець рамки не зсувається: інфінітив так само стоїть останнім — Können … tanzen?"
 
   - id: variant-c
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My girlfriend can sing very well."
-    prompt_ru: "Моя девушка очень хорошо поёт."
+    prompt_ru: "Моя девушка умеет очень хорошо петь."
+    prompt_uk: "Моя дівчина вміє дуже добре співати."
     answer: "Meine Freundin kann sehr gut singen."
     key_tokens: ["kann", "singen"]
     explain:
       en: "The adverbs sit inside the bracket, not after it: kann sehr gut singen. The infinitive keeps its -en ending and never takes a personal ending of its own."
       ru: "Наречия стоят внутри рамки, а не после неё: kann sehr gut singen. Инфинитив сохраняет окончание -en и никогда не получает личного окончания."
+      uk: "Прислівники стоять усередині рамки, а не після неї: kann sehr gut singen. Інфінітив зберігає закінчення -en і ніколи не отримує особового закінчення."

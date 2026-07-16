@@ -7,16 +7,16 @@ items:
     prompt: "Entschuldigung, wie komme ich ___ Bahnhof?"
     options: ["zum", "zur", "nach"]
     correct: 0
-    translation: { en: "Excuse me, how do I get to the station?", ru: "Извините, как мне пройти к вокзалу?" }
-    explain: { en: "der Bahnhof is a der-word, so the question formula is zum: Wie komme ich zum Bahnhof? zur belongs to die-words (zur Post), and nach goes with city names: nach Berlin.", ru: "der Bahnhof — слово с der, поэтому формула вопроса — zum: Wie komme ich zum Bahnhof? zur — для слов с die (zur Post), а nach — для названий городов: nach Berlin." }
+    translation: { en: "Excuse me, how do I get to the station?", ru: "Извините, как мне пройти к вокзалу?", uk: "Вибачте, як мені пройти до вокзалу?" }
+    explain: { en: "der Bahnhof is a der-word, so the question formula is zum: Wie komme ich zum Bahnhof? zur belongs to die-words (zur Post), and nach goes with city names: nach Berlin.", ru: "der Bahnhof — слово с der, поэтому формула вопроса — zum: Wie komme ich zum Bahnhof? zur — для слов с die (zur Post), а nach — для названий городов: nach Berlin.", uk: "der Bahnhof — слово з der, тому формула питання — zum: Wie komme ich zum Bahnhof? zur — для слів із die (zur Post), а nach — для назв міст: nach Berlin." }
   - id: pre-geradeaus
     outcomes: [stadt-wegbeschreibung-verstehen]
     type: mc
     prompt: "»Gehen Sie geradeaus, dann die erste Straße links.« Wohin gehen Sie zuerst?"
     options: ["geradeaus", "links", "rechts"]
     correct: 0
-    translation: { en: "'Go straight ahead, then the first street on the left.' Where do you go first?", ru: "«Идите прямо, потом первая улица налево». Куда вы идёте сначала?" }
-    explain: { en: "geradeaus means straight ahead. The directions say: first straight ahead, and only then the first street on the left.", ru: "geradeaus — «прямо». По описанию сначала идут прямо и только потом сворачивают на первую улицу налево." }
+    translation: { en: "'Go straight ahead, then the first street on the left.' Where do you go first?", ru: "«Идите прямо, потом первая улица налево». Куда вы идёте сначала?", uk: "«Ідіть прямо, потім перша вулиця ліворуч». Куди ви йдете спочатку?" }
+    explain: { en: "geradeaus means straight ahead. The directions say: first straight ahead, and only then the first street on the left.", ru: "geradeaus — «прямо». По описанию сначала идут прямо и только потом сворачивают на первую улицу налево.", uk: "geradeaus — «прямо». За описом спочатку йдуть прямо і лише потім звертають на першу вулицю ліворуч." }
   - id: pre-den-bus
     outcomes: [stadt-verkehrsmittel-nennen]
     type: mc
@@ -24,5 +24,5 @@ items:
     prompt: "Ich nehme ___ Bus."
     options: ["den", "der", "dem"]
     correct: 0
-    translation: { en: "I take the bus.", ru: "Я поеду на автобусе." }
-    explain: { en: "nehmen takes an accusative object, and masculine der becomes den: Ich nehme den Bus.", ru: "nehmen требует аккузатива, а мужской артикль der превращается в den: Ich nehme den Bus." }
+    translation: { en: "I take the bus.", ru: "Я поеду на автобусе.", uk: "Я поїду автобусом." }
+    explain: { en: "nehmen takes an accusative object, and masculine der becomes den: Ich nehme den Bus.", ru: "nehmen требует аккузатива, а мужской артикль der превращается в den: Ich nehme den Bus.", uk: "nehmen вимагає Akkusativ, а чоловічий артикль der перетворюється на den: Ich nehme den Bus." }

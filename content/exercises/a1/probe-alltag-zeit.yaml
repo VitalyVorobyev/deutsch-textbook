@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — um, am and im"
   ru: "Проверка — um, am и im"
+  uk: "Перевірка — um, am та im"
 
 # Three parallel variants of ONE competence: choosing the time preposition by the kind of
 # time — um + clock time, am + day, im + month or season. That is the confusion this
@@ -18,8 +19,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My day begins at six o'clock."
     prompt_ru: "Мой день начинается в шесть часов."
+    prompt_uk: "Мій день починається о шостій годині."
     answer: "Mein Tag beginnt um sechs Uhr."
     accept:
       - "Um sechs Uhr beginnt mein Tag."
@@ -27,6 +30,7 @@ items:
     explain:
       en: "A time on the clock always takes um: um sechs Uhr. Neither am nor im is possible here, whatever the sentence is about."
       ru: "Время на часах всегда идёт с предлогом um: um sechs Uhr. Ни am, ни im здесь невозможны, о чём бы ни говорилось в предложении."
+      uk: "Час на годиннику завжди йде з прийменником um: um sechs Uhr. Ні am, ні im тут неможливі, хоч би про що йшлося в реченні."
 
   - id: variant-b
     outcomes: [zeit-praepositionen]
@@ -35,8 +39,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The museum opens on Thursday at ten o'clock."
     prompt_ru: "Музей открывается в четверг в десять часов."
+    prompt_uk: "Музей відчиняється в четвер о десятій годині."
     answer: "Das Museum öffnet am Donnerstag um zehn Uhr."
     accept:
       - "Am Donnerstag öffnet das Museum um zehn Uhr."
@@ -45,6 +51,7 @@ items:
     explain:
       en: "Two kinds of time in one sentence, and each picks its own preposition: a weekday takes am (am Donnerstag), a time on the clock takes um (um zehn Uhr). The day comes before the hour."
       ru: "В одном предложении два типа времени, и каждый требует своего предлога: день недели идёт с am (am Donnerstag), время на часах — с um (um zehn Uhr). По-русски и там и там «в», поэтому выбор нужно делать по типу времени, а не по русскому предлогу. День недели ставится перед часом."
+      uk: "В одному реченні два типи часу, і кожен вимагає свого прийменника: день тижня іде з am (am Donnerstag), час на годиннику — з um (um zehn Uhr). Українське «о десятій» тут добра підказка для um, але день тижня — не «в», а am. День тижня ставиться перед годиною."
 
   - id: variant-c
     outcomes: [zeit-praepositionen]
@@ -53,8 +60,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In July I have a lot of time, but on Wednesday I am working."
     prompt_ru: "В июле у меня много времени, но в среду я работаю."
+    prompt_uk: "У липні я маю багато часу, але в середу я працюю."
     answer: "Im Juli habe ich viel Zeit, aber am Mittwoch arbeite ich."
     key_tokens: ["Im", "am"]
     accept:
@@ -62,3 +71,4 @@ items:
     explain:
       en: "One sentence, two kinds of time: a month takes im (im Juli), a weekday takes am (am Mittwoch). Note that a fronted time phrase still leaves the verb in position 2: Im Juli habe ich …"
       ru: "Одно предложение — два типа времени: с месяцем идёт im (im Juli), с днём недели — am (am Mittwoch). И помните: если обстоятельство времени стоит впереди, глагол всё равно остаётся на втором месте: Im Juli habe ich …"
+      uk: "Одне речення — два типи часу: з місяцем іде im (im Juli), з днем тижня — am (am Mittwoch). І пам'ятайте: якщо обставина часу стоїть попереду, дієслово все одно залишається на другому місці: Im Juli habe ich …"

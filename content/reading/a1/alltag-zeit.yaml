@@ -1,8 +1,8 @@
 topic: alltag-zeit
 title_de: "Paulas Woche"
 text:
-  - "Paula wohnt in Bremen und arbeitet viel. Ihre Woche hat einen [[Plan::schedule::план]]. Ihr Tag beginnt [[früh::early::рано]]: Um halb sieben frühstückt sie und trinkt Kaffee. Die Arbeit beginnt um acht Uhr und [[endet::ends::заканчивается]] um vier Uhr. Am Mittag isst Paula [[zu Hause::at home::дома]] — sie wohnt nicht [[weit::far::далеко]]."
-  - "Paula lernt Deutsch. Der Kurs ist am Montag und am Mittwoch am Abend. Er beginnt um halb sieben und endet um neun Uhr. Am Samstag [[besucht::visits::навещает]] sie Freunde, und am Sonntag arbeitet sie [[nie::never::никогда]]. Sie schläft lange, kocht Suppe und liest. [[In der Nacht::at night::ночью]] schläft Paula gut. [[Ihre Straße::her street::её улица]] ist ruhig."
+  - "Paula wohnt in Bremen und arbeitet viel. Ihre Woche hat einen [[Plan::schedule::план::план]]. Ihr Tag beginnt [[früh::early::рано::рано]]: Um halb sieben frühstückt sie und trinkt Kaffee. Die Arbeit beginnt um acht Uhr und [[endet::ends::заканчивается::закінчується]] um vier Uhr. Am Mittag isst Paula [[zu Hause::at home::дома::вдома]] — sie wohnt nicht [[weit::far::далеко::далеко]]."
+  - "Paula lernt Deutsch. Der Kurs ist am Montag und am Mittwoch am Abend. Er beginnt um halb sieben und endet um neun Uhr. Am Samstag [[besucht::visits::навещает::відвідує]] sie Freunde, und am Sonntag arbeitet sie [[nie::never::никогда::ніколи]]. Sie schläft lange, kocht Suppe und liest. [[In der Nacht::at night::ночью::вночі]] schläft Paula gut. [[Ihre Straße::her street::её улица::її вулиця]] ist ruhig."
 questions:
   - id: q-kurs-tage
     outcomes: [zeit-wochenplan-lesen]
@@ -10,18 +10,18 @@ questions:
     prompt: "Wann ist Paulas Deutschkurs?"
     options: ["am Montag und am Mittwoch", "am Samstag und am Sonntag", "am Dienstag und am Freitag"]
     correct: 0
-    explain: { en: "The text says: Der Kurs ist am Montag und am Mittwoch am Abend.", ru: "В тексте сказано: Der Kurs ist am Montag und am Mittwoch am Abend." }
+    explain: { en: "The text says: Der Kurs ist am Montag und am Mittwoch am Abend.", ru: "В тексте сказано: Der Kurs ist am Montag und am Mittwoch am Abend.", uk: "У тексті сказано: Der Kurs ist am Montag und am Mittwoch am Abend." }
   - id: q-fruehstueck
     outcomes: [zeit-wochenplan-lesen]
     type: mc
     prompt: "Um wie viel Uhr frühstückt Paula?"
     options: ["um halb sieben (6:30)", "um halb acht (7:30)", "um acht Uhr (8:00)"]
     correct: 0
-    explain: { en: "Um halb sieben frühstückt sie — and halb sieben is 6:30, half of the seventh hour. At eight the work begins.", ru: "Um halb sieben frühstückt sie — halb sieben это 6:30, «половина седьмого». В восемь начинается работа." }
+    explain: { en: "Um halb sieben frühstückt sie — and halb sieben is 6:30, half of the seventh hour. At eight the work begins.", ru: "Um halb sieben frühstückt sie — halb sieben это 6:30, «половина седьмого». В восемь начинается работа.", uk: "Um halb sieben frühstückt sie — halb sieben це 6:30, «пів на сьому». О восьмій починається робота." }
   - id: q-sonntag
     outcomes: [zeit-wochenplan-lesen]
     type: mc
     prompt: "Was macht Paula am Sonntag?"
     options: ["Sie schläft lange, kocht und liest.", "Sie arbeitet.", "Sie lernt Deutsch."]
     correct: 0
-    explain: { en: "Am Sonntag arbeitet sie nie — she sleeps in, cooks soup and reads.", ru: "Am Sonntag arbeitet sie nie — она долго спит, варит суп и читает." }
+    explain: { en: "Am Sonntag arbeitet sie nie — she sleeps in, cooks soup and reads.", ru: "Am Sonntag arbeitet sie nie — она долго спит, варит суп и читает.", uk: "Am Sonntag arbeitet sie nie — вона довго спить, варить суп і читає." }

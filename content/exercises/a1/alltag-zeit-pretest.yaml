@@ -8,16 +8,16 @@ items:
     prompt: "Der Kurs beginnt ___ neun Uhr."
     options: ["um", "am", "im"]
     correct: 0
-    translation: { en: "The course begins at nine o'clock.", ru: "Курс начинается в девять часов." }
-    explain: { en: "Clock times always take um: um neun Uhr. am is for days, im for months.", ru: "Время по часам всегда вводит um: um neun Uhr. am — для дней, im — для месяцев." }
+    translation: { en: "The course begins at nine o'clock.", ru: "Курс начинается в девять часов.", uk: "Курс починається о дев'ятій годині." }
+    explain: { en: "Clock times always take um: um neun Uhr. am is for days, im for months.", ru: "Время по часам всегда вводит um: um neun Uhr. am — для дней, im — для месяцев.", uk: "Час за годинником завжди вводить um: um neun Uhr. am — для днів, im — для місяців." }
   - id: pre-halb-acht
     outcomes: [zeit-uhrzeit-verstehen]
     type: mc
     prompt: "Es ist halb acht. Wie spät ist es?"
     options: ["sieben Uhr dreißig", "acht Uhr dreißig", "acht Uhr"]
     correct: 0
-    translation: { en: "It is halb acht. What time is it?", ru: "Es ist halb acht. Который час?" }
-    explain: { en: "halb counts toward the coming hour: halb acht = half of the eighth hour = 7:30.", ru: "halb смотрит вперёд, на следующий час: halb acht = «половина восьмого» = 7:30." }
+    translation: { en: "It is halb acht. What time is it?", ru: "Es ist halb acht. Который час?", uk: "Es ist halb acht. Котра година?" }
+    explain: { en: "halb counts toward the coming hour: halb acht = half of the eighth hour = 7:30.", ru: "halb смотрит вперёд, на следующий час: halb acht = «половина восьмого» = 7:30.", uk: "halb дивиться вперед, на наступну годину: halb acht = «пів на восьму» = 7:30." }
   - id: pre-inversion
     outcomes: [zeit-tagesablauf-beschreiben]
     type: mc
@@ -25,5 +25,5 @@ items:
     prompt: "Wie geht der Satz richtig weiter? ‚Am Montag …‘"
     options: ["… lerne ich Deutsch.", "… ich lerne Deutsch.", "… ich Deutsch lerne."]
     correct: 0
-    translation: { en: "How does the sentence continue correctly? 'On Monday …'", ru: "Как правильно продолжить предложение? «В понедельник …»" }
-    explain: { en: "Am Montag fills position 1, so the verb comes second and the subject third: Am Montag lerne ich Deutsch.", ru: "Am Montag занимает первую позицию, поэтому глагол стоит вторым, а подлежащее третьим: Am Montag lerne ich Deutsch." }
+    translation: { en: "How does the sentence continue correctly? 'On Monday …'", ru: "Как правильно продолжить предложение? «В понедельник …»", uk: "Як правильно продовжити речення? «У понеділок …»" }
+    explain: { en: "Am Montag fills position 1, so the verb comes second and the subject third: Am Montag lerne ich Deutsch.", ru: "Am Montag занимает первую позицию, поэтому глагол стоит вторым, а подлежащее третьим: Am Montag lerne ich Deutsch.", uk: "Am Montag займає першу позицію, тому дієслово стоїть другим, а підмет третім: Am Montag lerne ich Deutsch." }
