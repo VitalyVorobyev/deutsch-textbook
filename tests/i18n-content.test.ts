@@ -7,6 +7,7 @@ import {
   isExplainLang,
   pick,
   pickLang,
+  pickSecond,
   resolveExplainLang,
   setExplainLang,
   type ExplainText,
@@ -30,7 +31,11 @@ import {
   type WordField,
 } from '../src/lib/schemas';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
+import { ukTranslationCoverage } from '../src/lib/coverage';
 import type { TopicNode } from '../src/lib/mastery';
+import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 beforeEach(() => {
   localStorage.clear();
@@ -67,6 +72,36 @@ describe('pick over the four explanation languages', () => {
     expect(pick('en', undefined)).toBe('');
     expect(pick('uk', undefined)).toBe('');
     expect(pick('de', undefined)).toBe('');
+  });
+
+  test('pickSecond picks the second half of a card meaning side', () => {
+    const gloss = { ru: 'вокзал', uk: 'вокзал (uk)' };
+    const ruOnly = { ru: 'вокзал' };
+    // en and ru both show the Russian gloss — today's exact `en · ru` view
+    expect(pickSecond('en', gloss)).toBe('вокзал');
+    expect(pickSecond('ru', gloss)).toBe('вокзал');
+    // uk shows the Ukrainian gloss only where authored — never RU for a UK reader
+    expect(pickSecond('uk', gloss)).toBe('вокзал (uk)');
+    expect(pickSecond('uk', ruOnly)).toBeUndefined();
+    // a card's meaning side is never German
+    expect(pickSecond('de', gloss)).toBeUndefined();
+    expect(pickSecond('en', undefined)).toBeUndefined();
+  });
+
+  test('the meaning-side composition: `en · second`, or EN alone with no separator', () => {
+    // exactly the expression FlashcardSession builds
+    const meaning = (lang: Parameters<typeof pickSecond>[0], card: { en: string; ru: string; uk?: string }) => {
+      const second = pickSecond(lang, { ru: card.ru, uk: card.uk });
+      return second ? `${card.en} · ${second}` : card.en;
+    };
+    const card = { en: 'train station', ru: 'вокзал' };
+    // byte-identical to today's `${en} · ${ru}` for en/ru learners
+    expect(meaning('en', card)).toBe('train station · вокзал');
+    expect(meaning('ru', card)).toBe('train station · вокзал');
+    expect(meaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe('train station · вокзал (uk)');
+    // no uk gloss → EN alone, never `en · en` and never RU
+    expect(meaning('uk', card)).toBe('train station');
+    expect(meaning('de', { ...card, uk: 'вокзал (uk)' })).toBe('train station');
   });
 
   test('pickLang names the language pick actually resolved to (for lang attributes)', () => {
@@ -370,6 +405,9 @@ describe('uk reaches the runtime surfaces', () => {
   });
 
   test('uk never enters card identity: ids are the same with and without it', () => {
+    // The P8-5 meaning side (`${en} · ${pickSecond(...)}`) is display-only:
+    // identity stays <deck>::<de>::<direction>, no gloss language, so no SRS
+    // history resets when a wave adds uk or a learner switches ExplainLang.
     const withUk = buildDeck('reisen', [entry]).map((c) => c.id);
     const withoutUk = buildDeck('reisen', [{ ...entry, uk: undefined, example_uk: undefined }]).map(
       (c) => c.id,
@@ -473,6 +511,39 @@ describe('uk reaches the runtime surfaces', () => {
     const problems = ukParityProblems(half);
     expect(problems.length).toBeGreaterThan(0);
     expect(problems.join('\n')).toContain('entries[0].example.ru');
+  });
+
+  test('ukTranslationCoverage counts ru-bearing files, uk-carrying files, per-node atlas honestly', () => {
+    const root = mkdtempSync(join(tmpdir(), 'uk-coverage-'));
+    const content = join(root, 'content');
+    mkdirSync(join(content, 'vocab'), { recursive: true });
+    mkdirSync(join(content, 'topics', 'a1'), { recursive: true });
+    // ru-bearing, untranslated
+    writeFileSync(join(content, 'vocab', 'a.yaml'), 'title_ru: Тема\nentries:\n  - ru: да\n');
+    // ru-bearing, translated (per-file parity is validator-enforced, so any uk counts)
+    writeFileSync(join(content, 'vocab', 'b.yaml'), 'title_ru: Тема\ntitle_uk: Тема\n');
+    // not ru-bearing — not in the denominator
+    writeFileSync(join(content, 'vocab', 'c.yaml'), 'id: nothing-ru\n');
+    // atlas has per-NODE parity: one translated node must not count the file
+    writeFileSync(
+      join(content, 'atlas.yaml'),
+      'nodes:\n  - outcomes:\n      - ru: могу\n        uk: можу\n  - outcomes:\n      - ru: могу\n',
+    );
+    // mdx: Russian lives in the body, so <Ru> alone puts the file in the denominator
+    writeFileSync(
+      join(content, 'topics', 'a1', 'x.mdx'),
+      '---\ntitle_ru: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru></Bilingual>\n',
+    );
+    const { translated, total } = ukTranslationCoverage(root);
+    expect(total).toBe(4); // a.yaml, b.yaml, atlas.yaml, x.mdx — not c.yaml
+    expect(translated).toBe(1); // b.yaml only
+
+    // the fully translated atlas counts
+    writeFileSync(
+      join(content, 'atlas.yaml'),
+      'nodes:\n  - outcomes:\n      - ru: могу\n        uk: можу\n',
+    );
+    expect(ukTranslationCoverage(root).translated).toBe(2);
   });
 
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {

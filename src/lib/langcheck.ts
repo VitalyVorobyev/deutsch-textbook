@@ -71,19 +71,29 @@ export function langFieldProblems(node: unknown): string[] {
   return problems;
 }
 
-/** Whether any `uk`/`*_uk` key with a string value exists anywhere in the tree. */
-export function hasUkField(node: unknown): boolean {
+function hasLangStringField(node: unknown, lang: Lang): boolean {
   let found = false;
   walkObjects(node, '', (obj) => {
     if (found) return;
     for (const [key, value] of Object.entries(obj)) {
-      if (typeof value === 'string' && langOfKey(key) === 'uk') {
+      if (typeof value === 'string' && langOfKey(key) === lang) {
         found = true;
         return;
       }
     }
   });
   return found;
+}
+
+/** Whether any `uk`/`*_uk` key with a string value exists anywhere in the tree. */
+export function hasUkField(node: unknown): boolean {
+  return hasLangStringField(node, 'uk');
+}
+
+/** Whether any `ru`/`*_ru` key with a string value exists anywhere in the tree —
+    the denominator of the Über page's UK-translation figure (src/lib/coverage.ts). */
+export function hasRuField(node: unknown): boolean {
+  return hasLangStringField(node, 'ru');
 }
 
 /**

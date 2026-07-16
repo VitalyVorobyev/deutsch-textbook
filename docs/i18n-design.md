@@ -4,10 +4,10 @@ Status: design accepted 2026-07-14; P8-1 (strings module, per-profile keys, pre-
 nav as the first chrome surface, picker in the ProfileSwitcher dropdown), the P8-2/P8-3
 ternary sweep (35 components: hoisted `pick()` records; ~130 chrome keys in the strings table)
 and P8-4 (the content-language machinery, extended with the German explanation half — see below)
-shipped 2026-07-15. Chrome residue in never-ternary components (TierBadge, EvidenceChips) and
-static `.astro` pages moves with P8-5. Remaining implementation is P8-5 and the C3
-translation waves in [backlog.md](backlog.md); this document is the contract those items
-implement.
+shipped 2026-07-15; P8-5 (the card meaning side via `pickSecond`, the Über page's computed
+UK-coverage figure, and the chrome residue in never-ternary components and static `.astro`
+pages) shipped 2026-07-16. The machinery is complete: the only remaining implementation is the
+C3 translation waves in [backlog.md](backlog.md); this document is the contract they implement.
 
 **The objective, restated after a course correction (2026-07-15):** the point of this phase is
 the *learner's* language — Ukrainian + English explanations for a Ukrainian reader the way
@@ -135,7 +135,7 @@ its explanation prose is not immersion, it is a table collection.
   commented in `global.css`. Where `:has()` is unsupported, EN shows beside the chosen half:
   readable, not broken.
 
-## P8-5 — surfaces
+## P8-5 — surfaces (shipped 2026-07-16)
 
 - **The meaning side of a card** becomes `${en} · ${pickSecond(card)}`, where `pickSecond`
   resolves the ru/uk gloss by explanation language — and renders EN alone under `de`, because a

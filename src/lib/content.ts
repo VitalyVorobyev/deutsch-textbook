@@ -6,13 +6,6 @@ import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from './schemas';
 import type { TopicNode } from './mastery';
 
-export const KIND_LABEL: Record<string, string> = {
-  grammar: 'Grammatik',
-  'vocab-field': 'Wortschatz',
-  communication: 'Kommunikation',
-  phonetics: 'Aussprache',
-};
-
 export async function getTopicNodes(): Promise<TopicNode[]> {
   const [topics, exercises] = await Promise.all([getCollection('topics'), getCollection('exercises')]);
   const exerciseById = new Map(exercises.map((exercise) => [exercise.id, exercise.data]));

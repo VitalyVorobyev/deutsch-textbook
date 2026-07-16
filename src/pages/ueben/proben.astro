@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import ProbeCatchUp from '../../components/session/ProbeCatchUp';
 import type { TrainingSet } from '../../components/training/MixedTraining';
 
@@ -35,7 +36,7 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
 ---
 
 <Base title="Probe-Rückstand">
-  <h1 class="text-3xl font-bold tracking-tight">Probe-Rückstand</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="probe.backlogTitle" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       A probes-only visit: up to five delayed checks, most overdue first — and nothing else.
