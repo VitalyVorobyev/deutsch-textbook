@@ -20,8 +20,9 @@
 export type UiLang = 'de' | 'en' | 'ru' | 'uk';
 export const UI_LANGS: readonly UiLang[] = ['de', 'en', 'ru', 'uk'];
 
-/** Per-profile localStorage key: `da:uilang:<profileId>`. */
-export const UILANG_KEY_PREFIX = 'da:uilang:';
+// The per-profile `da:uilang:<profileId>` key is retired: the chrome language
+// is pinned to German (resolveUiLang in src/lib/prefs.ts has the rationale).
+// Old keys in learners' localStorage are ignored and never written.
 
 type ChromeString = Record<UiLang, string>;
 

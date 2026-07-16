@@ -69,7 +69,10 @@ before another unit is written.
   the objective is the learner's language, not the chrome. P8-1 strings module + per-profile
   language preferences; P8-2/P8-3 the ternary sweep (~136 ternaries → hoisted `pick()` records);
   P8-4 content-language machinery for `uk` **and** the B1-onward German-medium `de` half;
-  P8-5 card meaning side + computed Über UK-coverage figure + chrome residue.
+  P8-5 card meaning side + computed Über UK-coverage figure + chrome residue. **Post-scriptum
+  2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
+  (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
+  [i18n-design.md](i18n-design.md).
 
 ## Current — C3 · Ukrainian translation waves — `in progress` (recurring)
 

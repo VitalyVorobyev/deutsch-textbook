@@ -1,7 +1,7 @@
 /** Client-side preferences persisted in localStorage and mirrored as <html> attributes. */
 
 import { getActiveProfileId } from './profile';
-import { UILANG_KEY_PREFIX, isUiLang, type UiLang } from './strings';
+import type { UiLang } from './strings';
 
 /**
  * Content explanation languages (the other axis from UiLang chrome — see
@@ -36,10 +36,6 @@ export function langKeyFor(profileId: string): string {
   return `${LANG_KEY}:${profileId}`;
 }
 
-export function uiLangKeyFor(profileId: string): string {
-  return `${UILANG_KEY_PREFIX}${profileId}`;
-}
-
 /**
  * Stored explanation language for a profile, migrating the legacy
  * device-level key forward on the profile's first read. The legacy `da:lang`
@@ -64,12 +60,13 @@ export function resolveExplainLang(profileId: string): ExplainLang | null {
   return null;
 }
 
-/** Stored UI (chrome) language for a profile. 'de' — today's exact chrome —
-    is the default; there is no legacy key to migrate. Mirrored by the
-    pre-paint inline script in src/layouts/Base.astro — keep in sync. */
-export function resolveUiLang(profileId: string): UiLang {
-  const v = localStorage.getItem(uiLangKeyFor(profileId));
-  return isUiLang(v) ? v : 'de';
+/** The chrome language is pinned to German (owner decision 2026-07-16: one
+    Lernsprache selector; German chrome is deliberate immersion — nav labels
+    are high-frequency sight vocabulary). The strings table keeps its four
+    languages as dormant data so this stays a one-line reversal; stored legacy
+    `da:uilang:<profileId>` keys are ignored and never written. */
+export function resolveUiLang(_profileId: string): UiLang {
+  return 'de';
 }
 
 export function getExplainLang(): ExplainLang {
@@ -84,16 +81,9 @@ export function setExplainLang(lang: ExplainLang): void {
   window.dispatchEvent(new CustomEvent('da:langchange', { detail: lang }));
 }
 
+/** Pinned to 'de' — see resolveUiLang above. */
 export function getUiLang(): UiLang {
-  if (typeof document === 'undefined') return 'de';
-  const v = document.documentElement.dataset.uiLang;
-  return isUiLang(v) ? v : 'de';
-}
-
-export function setUiLang(lang: UiLang): void {
-  document.documentElement.dataset.uiLang = lang;
-  localStorage.setItem(uiLangKeyFor(getActiveProfileId()), lang);
-  window.dispatchEvent(new CustomEvent('da:uilangchange', { detail: lang }));
+  return 'de';
 }
 
 export function setTheme(theme: Theme): void {
@@ -165,23 +155,25 @@ export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
 
 /**
  * The second half of a flashcard's meaning side (`${en} · ${second}`) — the
- * gloss shown beside the always-present EN one. 'en' and 'ru' both show the
- * Russian gloss (today's exact `en · ru` view, byte-identical for en-mode
- * learners); 'uk' shows the Ukrainian gloss only where a translation wave has
- * authored it — never Russian for a Ukrainian reader; 'de' shows nothing — a
- * card's meaning side is never German by construction (docs/i18n-design.md).
- * `undefined` means "no second half": the caller renders EN alone, with no
- * separator — never `en · en`. Display-only; card identity never carries a
- * gloss language. Keep the branches in lockstep with pick()/pickLang().
+ * gloss shown beside the always-present EN one. Each language sees only what
+ * it chose: 'ru' shows the Russian gloss; 'uk' shows the Ukrainian one where
+ * a translation wave has authored it — never Russian for a Ukrainian reader.
+ * 'en' shows nothing: an EN-mode learner is never assumed to read Russian or
+ * Ukrainian (owner ruling 2026-07-16 — the earlier `en · ru` view leaked
+ * Russian into the EN surface). 'de' shows nothing — a card's meaning side is
+ * never German by construction (docs/i18n-design.md). `undefined` means "no
+ * second half": the caller renders EN alone, with no separator — never
+ * `en · en`. Display-only; card identity never carries a gloss language.
+ * Keep the branches in lockstep with pick()/pickLang().
  */
 export function pickSecond(
   lang: ExplainLang,
   text: { ru: string; uk?: string } | undefined,
 ): string | undefined {
   if (!text) return undefined;
-  if (lang === 'de') return undefined;
+  if (lang === 'ru') return text.ru;
   if (lang === 'uk') return text.uk || undefined;
-  return text.ru;
+  return undefined;
 }
 
 /**

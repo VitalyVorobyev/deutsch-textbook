@@ -5,7 +5,7 @@ import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import DueBadge from '../../components/srs/DueBadge';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
-import { UI_LANGS, t } from '../../lib/strings';
+import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
 import { DeckMasterySummary } from '../../components/vocab/VocabMastery';
 
@@ -44,13 +44,9 @@ const decks = vocab
             {data.title_uk && <span class="lang-uk">{data.title_uk}</span>}
           </p>
           <p class="mt-2 text-xs text-stone-400">
-            {UI_LANGS.map((l) => (
-              <span class={`ui-${l}`}>
-                {t('vocab.deckSize', l)
-                  .replace('{words}', String(data.entries.length))
-                  .replace('{cards}', String(cards.length))}
-              </span>
-            ))}
+            {t('vocab.deckSize', 'de')
+              .replace('{words}', String(data.entries.length))
+              .replace('{cards}', String(cards.length))}
           </p>
           <DeckMasterySummary client:only="react" cards={cards} />
         </a>
