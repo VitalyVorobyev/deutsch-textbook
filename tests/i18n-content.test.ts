@@ -309,6 +309,23 @@ describe('mdxLangProblems', () => {
     expect(mdxLangProblems('<En>дом</En>').letters).toHaveLength(1);
   });
 
+  test('frontmatter uk and body <Uk> bridge into one parity scope (the MDX file rule)', () => {
+    const ukLessBody = '<Bilingual><En>a</En><Ru>б</Ru></Bilingual>';
+    // title_uk alone (forceUk) demands a <Uk> half in every Bilingual block …
+    const forced = mdxLangProblems(ukLessBody, { forceUk: true });
+    expect(forced.parity).toHaveLength(1);
+    expect(forced.parity[0]).toContain('uk in its frontmatter');
+    // … and is satisfied only by a translated body
+    expect(
+      mdxLangProblems('<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>', { forceUk: true })
+        .parity,
+    ).toEqual([]);
+    expect(mdxLangProblems(ukLessBody).parity).toEqual([]);
+    // the reverse direction: a <Uk> body forces frontmatter parity via the
+    // ukParityProblems forceUk the validator passes (body.includes('<Uk>'))
+    expect(ukParityProblems({ title_ru: 'Тема' }, { forceUk: true })).toHaveLength(1);
+  });
+
   test('any <Uk> in a body demands one in every <Bilingual> block (same for <De>)', () => {
     const half =
       '<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>\n' +
@@ -534,16 +551,32 @@ describe('uk reaches the runtime surfaces', () => {
       join(content, 'topics', 'a1', 'x.mdx'),
       '---\ntitle_ru: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru></Bilingual>\n',
     );
+    // an mdx file counts only when EVERY ru-bearing side is translated:
+    // title_uk with a uk-less body must not count (the frontmatter/body hole)
+    writeFileSync(
+      join(content, 'topics', 'a1', 'y.mdx'),
+      '---\ntitle_ru: Тема\ntitle_uk: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru></Bilingual>\n',
+    );
+    // …and the reverse: a translated body with an untranslated frontmatter
+    writeFileSync(
+      join(content, 'topics', 'a1', 'w.mdx'),
+      '---\ntitle_ru: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>\n',
+    );
+    // fully translated on both sides
+    writeFileSync(
+      join(content, 'topics', 'a1', 'z.mdx'),
+      '---\ntitle_ru: Тема\ntitle_uk: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>\n',
+    );
     const { translated, total } = ukTranslationCoverage(root);
-    expect(total).toBe(4); // a.yaml, b.yaml, atlas.yaml, x.mdx — not c.yaml
-    expect(translated).toBe(1); // b.yaml only
+    expect(total).toBe(7); // a.yaml, b.yaml, atlas.yaml, x/y/w/z.mdx — not c.yaml
+    expect(translated).toBe(2); // b.yaml and z.mdx only
 
     // the fully translated atlas counts
     writeFileSync(
       join(content, 'atlas.yaml'),
       'nodes:\n  - outcomes:\n      - ru: могу\n        uk: можу\n',
     );
-    expect(ukTranslationCoverage(root).translated).toBe(2);
+    expect(ukTranslationCoverage(root).translated).toBe(3);
   });
 
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {

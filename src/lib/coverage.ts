@@ -342,9 +342,11 @@ export interface UkCoverage {
  *   topic), so a single translated node must not count the whole atlas: it
  *   counts as translated only when every ru field in it has its uk sibling
  *   (`ukParityProblems` under `forceUk`).
- * - An `.mdx` file's Ukrainian may live in the body (`<Uk>` blocks) rather
- *   than the frontmatter, and its Russian always does (`<Ru>`), so both are
- *   consulted.
+ * - An `.mdx` file has two ru-bearing sides — frontmatter fields and body
+ *   `<Ru>` blocks — and counts as translated only when EVERY ru-bearing side
+ *   it has is translated. The validator bridges the two sides into one parity
+ *   scope, so a half-done file cannot ship; this rule keeps the figure robust
+ *   on its own, per the earned-claims rule, rather than trusting the bridge.
  */
 export function ukTranslationCoverage(root = process.cwd()): UkCoverage {
   let translated = 0;
@@ -367,7 +369,11 @@ export function ukTranslationCoverage(root = process.cwd()): UkCoverage {
     const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(\r?\n|$)/);
     const fm = frontmatter ? (YAML.parse(frontmatter[1]!) as unknown) : undefined;
     const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '');
-    count(hasRuField(fm) || body.includes('<Ru>'), hasUkField(fm) || body.includes('<Uk>'));
+    const fmRu = hasRuField(fm);
+    const bodyRu = body.includes('<Ru>');
+    const fmDone = !fmRu || hasUkField(fm);
+    const bodyDone = !bodyRu || body.includes('<Uk>');
+    count(fmRu || bodyRu, fmDone && bodyDone);
   }
   return { translated, total };
 }

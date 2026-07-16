@@ -1061,7 +1061,9 @@ for (const [setId, { file, data }] of exerciseSets) {
  *
  * Readings are handled inside the reading loop above, where 4-field glosses
  * (invisible to the YAML walker) bridge into uk parity. Atlas is handled in
- * the atlas block, where uk parity is per node/group/unit.
+ * the atlas block, where uk parity is per node/group/unit. Topics and
+ * discovery pieces are handled by checkMdxLangDiscipline below, where
+ * frontmatter and body bridge into one parity scope.
  */
 function checkLangDiscipline(file: string, data: unknown, opts: { deParity?: boolean } = {}): void {
   for (const p of langFieldProblems(data)) fail(file, p);
@@ -1071,28 +1073,39 @@ function checkLangDiscipline(file: string, data: unknown, opts: { deParity?: boo
 
 for (const { file, data } of vocabFiles.values()) checkLangDiscipline(file, data);
 for (const { file, data } of exerciseSets.values()) checkLangDiscipline(file, data);
-for (const { file, data } of topics.values()) checkLangDiscipline(file, data);
 for (const { file, data } of documents.values()) checkLangDiscipline(file, data);
 for (const { file, data } of wordFields.values()) checkLangDiscipline(file, data);
-for (const { file, data } of discoveries.values()) checkLangDiscipline(file, data);
 for (const { file, data } of references.values()) checkLangDiscipline(file, data, { deParity: false });
 
-// Language blocks in MDX bodies: <En>/<Ru>/<Uk>/<De> tag balance, letter sets
-// inside each, and all-or-none parity for the optional <Uk>/<De> halves.
-// Balance stays a warning for topic bodies and an error for discovery pieces —
-// the pre-existing <En> contract.
-for (const { file, body } of topics.values()) {
-  const report = mdxLangProblems(body);
-  for (const p of report.balance) warn(file, p);
+/**
+ * MDX files: frontmatter and body are ONE parity scope — the contract is per
+ * file ("any uk in a file means every ru-bearing field in that file carries
+ * uk", docs/i18n-design.md), and the frontmatter/body split must not open a
+ * hole in it. So uk on either side forces parity on both — the same bridge as
+ * reading glosses ↔ YAML above: `title_uk` alone demands a <Uk> half in every
+ * <Bilingual> block, and a <Uk> block alone demands `title_uk`. Otherwise a
+ * wave could translate the title, skip the article, and both validate and be
+ * counted as translated by the Über figure. Balance stays a warning for topic
+ * bodies and an error for discovery pieces — the pre-existing <En> contract.
+ */
+function checkMdxLangDiscipline(
+  file: string,
+  data: unknown,
+  body: string,
+  balance: (file: string, msg: string) => void,
+): void {
+  for (const p of langFieldProblems(data)) fail(file, p);
+  for (const p of ukParityProblems(data, { forceUk: body.includes('<Uk>') })) fail(file, p);
+  for (const p of deParityProblems(data)) fail(file, p);
+  const report = mdxLangProblems(body, { forceUk: hasUkField(data) });
+  for (const p of report.balance) balance(file, p);
   for (const p of report.letters) fail(file, p);
   for (const p of report.parity) fail(file, p);
 }
-for (const { file, body } of discoveries.values()) {
-  const report = mdxLangProblems(body);
-  for (const p of report.balance) fail(file, p);
-  for (const p of report.letters) fail(file, p);
-  for (const p of report.parity) fail(file, p);
-}
+
+for (const { file, data, body } of topics.values()) checkMdxLangDiscipline(file, data, body, warn);
+for (const { file, data, body } of discoveries.values())
+  checkMdxLangDiscipline(file, data, body, fail);
 
 // ---------------------------------------------------------------------------
 // Grading decisions: a committed linguistic ruling must stay true

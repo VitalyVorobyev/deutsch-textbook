@@ -186,8 +186,15 @@ export interface MdxLangReport {
  * blocks, letter sets inside each (`<En>`/`<De>`: no Cyrillic; `<Ru>`: no
  * Ukrainian-only letters; `<Uk>`: no Russian-only letters), and per-body
  * parity for the optional halves.
+ *
+ * `forceUk` bridges frontmatter uk the body scan cannot see: parity is
+ * per FILE (docs/i18n-design.md), so a `title_uk` alone must demand a `<Uk>`
+ * half in every `<Bilingual>` block — otherwise a wave could translate the
+ * title, skip the article, and both validate and count as translated. The
+ * reverse bridge (body `<Uk>` forcing frontmatter parity) is the caller's:
+ * pass the body's `<Uk>` presence as `forceUk` to `ukParityProblems`.
  */
-export function mdxLangProblems(body: string): MdxLangReport {
+export function mdxLangProblems(body: string, opts: { forceUk?: boolean } = {}): MdxLangReport {
   const balance: string[] = [];
   const letters: string[] = [];
   const parity: string[] = [];
@@ -217,12 +224,15 @@ export function mdxLangProblems(body: string): MdxLangReport {
   checkLetters('Uk', RU_ONLY, 'Russian-only letters');
 
   const bilinguals = body.match(/<Bilingual>[\s\S]*?<\/Bilingual>/g) ?? [];
-  for (const tag of ['Uk', 'De']) {
-    if (!body.includes(`<${tag}>`)) continue;
+  for (const tag of ['Uk', 'De'] as const) {
+    const inBody = body.includes(`<${tag}>`);
+    const forced = tag === 'Uk' && (opts.forceUk ?? false);
+    if (!inBody && !forced) continue;
+    const carrier = inBody ? `<${tag}> elsewhere` : 'uk in its frontmatter';
     bilinguals.forEach((block, i) => {
       if (!block.includes(`<${tag}>`))
         parity.push(
-          `<Bilingual> block ${i + 1} has no <${tag}> half, but the body carries <${tag}> elsewhere — the optional halves are all-or-none per article`,
+          `<Bilingual> block ${i + 1} has no <${tag}> half, but this file carries ${carrier} — the optional halves are all-or-none per file`,
         );
     });
   }
