@@ -30,17 +30,17 @@ items:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
-    prompt_en: "Today I have to work for a long time."
-    prompt_ru: "Сегодня мне нужно долго работать."
-    prompt_uk: "Сьогодні мені треба довго працювати."
-    answer: "Heute muss ich lange arbeiten."
+    prompt_en: "Today I cannot work for a long time."
+    prompt_ru: "Сегодня я не могу долго работать."
+    prompt_uk: "Сьогодні я не можу довго працювати."
+    answer: "Heute kann ich nicht lange arbeiten."
     accept:
-      - "Ich muss heute lange arbeiten."
-    key_tokens: ["muss", "arbeiten"]
+      - "Ich kann heute nicht lange arbeiten."
+    key_tokens: ["kann", "arbeiten"]
     explain:
-      en: "muss in position 2 (after fronted Heute the subject follows the verb), arbeiten bare at the very end. muss … zu arbeiten is the classic trap — modals never take zu."
-      ru: "muss на втором месте (после вынесенного Heute подлежащее идёт за глаголом), голый arbeiten в самом конце. muss … zu arbeiten — классическая ловушка: модальные глаголы не сочетаются с zu."
-      uk: "muss на другому місці (після винесеного Heute підмет іде за дієсловом), голий arbeiten у самому кінці. muss … zu arbeiten — класична пастка: модальні дієслова не поєднуються з zu."
+      en: "kann in position 2 (after fronted Heute the subject follows the verb), arbeiten bare at the very end — nicht sits inside the bracket, never behind it. kann … zu arbeiten is the classic trap: modals never take zu."
+      ru: "kann на втором месте (после вынесенного Heute подлежащее идёт за глаголом), голый arbeiten в самом конце — nicht стоит внутри рамки, а не за ней. kann … zu arbeiten — классическая ловушка: модальные глаголы не сочетаются с zu."
+      uk: "kann на другому місці (після винесеного Heute підмет іде за дієсловом), голий arbeiten у самому кінці — nicht стоїть усередині рамки, а не за нею. kann … zu arbeiten — класична пастка: модальні дієслова не поєднуються з zu."
   - id: uebersetzen-film
     outcomes: [freizeit-koennen-satz]
     type: translate
@@ -49,17 +49,17 @@ items:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
-    prompt_en: "We want to watch a film this evening."
-    prompt_ru: "Мы хотим сегодня вечером посмотреть фильм."
-    prompt_uk: "Ми хочемо сьогодні ввечері подивитися фільм."
-    answer: "Wir wollen heute Abend einen Film sehen."
+    prompt_en: "We can watch a film this evening."
+    prompt_ru: "Мы можем сегодня вечером посмотреть фильм."
+    prompt_uk: "Ми можемо сьогодні ввечері подивитися фільм."
+    answer: "Wir können heute Abend einen Film sehen."
     accept:
-      - "Heute Abend wollen wir einen Film sehen."
-    key_tokens: ["wollen", "sehen"]
+      - "Heute Abend können wir einen Film sehen."
+    key_tokens: ["können", "sehen"]
     explain:
-      en: "English 'want TO watch' plants the trap: German wollen takes a bare infinitive, and it goes to the very end — wollen … sehen, never wollen zu sehen."
-      ru: "Английское want TO watch подсказывает ловушку, но по-немецки wollen требует голый инфинитив, и он уходит в самый конец: wollen … sehen, никогда wollen zu sehen."
-      uk: "Англійське want TO watch підказує пастку, але німецькою wollen вимагає голий інфінітив, і він іде в самий кінець: wollen … sehen, ніколи wollen zu sehen."
+      en: "English 'able TO watch' plants the trap: German können takes a bare infinitive, and it goes to the very end — können … sehen, never können zu sehen."
+      ru: "Английское able TO watch подсказывает ловушку, но по-немецки können требует голый инфинитив, и он уходит в самый конец: können … sehen, никогда können zu sehen."
+      uk: "Англійське able TO watch підказує пастку, але німецькою können вимагає голий інфінітив, і він іде в самий кінець: können … sehen, ніколи können zu sehen."
   - id: uebersetzen-fragen
     outcomes: [freizeit-koennen-satz]
     type: translate
@@ -68,11 +68,11 @@ items:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
-    prompt_en: "May I ask something?"
+    prompt_en: "Can I ask something?"
     prompt_ru: "Можно мне кое-что спросить?"
     prompt_uk: "Можна мені дещо запитати?"
-    answer: "Darf ich etwas fragen?"
-    key_tokens: ["Darf", "fragen"]
+    answer: "Kann ich etwas fragen?"
+    key_tokens: ["Kann", "fragen"]
     explain:
       en: "In a yes/no question the modal opens the sentence, but the far end of the bracket stays put: the bare infinitive fragen is still the last word."
       ru: "В вопросе без вопросительного слова модальный глагол выходит на первое место, но дальний конец рамки не двигается: голый инфинитив fragen по-прежнему стоит последним."
@@ -81,11 +81,11 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: cloze
     focus: modal-satzklammer
-    text: "Wir können am Sonntag lange {{schlafen}}. Am Montag müssen wir wieder {{lernen}}."
+    text: "Ich kann heute nicht {{kommen}}, aber wir können morgen zusammen {{lernen}}."
     translation:
-      en: "We can sleep long on Sunday. On Monday we have to study again."
-      ru: "В воскресенье мы можем долго спать. В понедельник нам снова нужно заниматься."
-      uk: "У неділю ми можемо довго спати. У понеділок нам знову треба вчитися."
+      en: "I cannot come today, but we can study together tomorrow."
+      ru: "Сегодня я не могу прийти, но завтра мы можем позаниматься вместе."
+      uk: "Сьогодні я не можу прийти, але завтра ми можемо повчитися разом."
     explain:
       en: "Both gaps are the far end of a modal bracket: a bare infinitive, no zu, nothing after it."
       ru: "Оба пропуска — дальний конец модальной рамки: голый инфинитив, без zu, и после него ничего не стоит."
@@ -112,8 +112,8 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: listen
     focus: modal-satzklammer
-    text: "Meine Schwester will heute Musik hören."
+    text: "Wir können am Samstag Fußball spielen."
     explain:
-      en: "will in position 2, the bare infinitive hören at the end — the bracket you hear is the bracket you write."
-      ru: "will на втором месте, голый инфинитив hören в конце — рамка, которую слышишь, и есть рамка, которую пишешь."
-      uk: "will на другому місці, голий інфінітив hören у кінці — рамка, яку чуєш, і є рамка, яку пишеш."
+      en: "können in position 2, the bare infinitive spielen at the end — the bracket you hear is the bracket you write."
+      ru: "können на втором месте, голый инфинитив spielen в конце — рамка, которую слышишь, и есть рамка, которую пишешь."
+      uk: "können на другому місці, голий інфінітив spielen у кінці — рамка, яку чуєш, і є рамка, яку пишеш."
