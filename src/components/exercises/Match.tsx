@@ -2,10 +2,15 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { matchItemSchema } from '../../lib/schemas';
 import { shuffle } from '../../lib/shuffle';
-import { pick } from '../../lib/prefs';
+import { pick, pickLang } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type MatchItem = z.infer<typeof matchItemSchema>;
+type RightSide = MatchItem['pairs'][number]['right'];
+
+/** A record right's `en` is its stable identity (matching, keys, shuffle);
+    a plain-string right is its own identity. Display resolves separately. */
+const rightKey = (r: RightSide): string => (typeof r === 'string' ? r : r.en);
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
 const UI = {
@@ -14,16 +19,17 @@ const UI = {
 
 export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<MatchItem>) {
   const rights = useMemo(() => shuffle(item.pairs.map((p) => p.right)), [item]);
+  const rightText = (r: RightSide): string => (typeof r === 'string' ? r : pick(lang, r));
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [matched, setMatched] = useState<Set<string>>(new Set());
   const [errors, setErrors] = useState(0);
   const [wrongFlash, setWrongFlash] = useState<string | null>(null);
   const done = matched.size === item.pairs.length;
 
-  function clickRight(right: string) {
+  function clickRight(right: RightSide) {
     if (!selectedLeft || locked || done) return;
     const pair = item.pairs.find((p) => p.left === selectedLeft);
-    if (pair?.right === right) {
+    if (pair && rightKey(pair.right) === rightKey(right)) {
       const next = new Set(matched).add(selectedLeft);
       setMatched(next);
       setSelectedLeft(null);
@@ -38,7 +44,7 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       }
     } else {
       setErrors((e) => e + 1);
-      setWrongFlash(right);
+      setWrongFlash(rightKey(right));
       setTimeout(() => setWrongFlash(null), 400);
     }
   }
@@ -72,22 +78,24 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
         </div>
         <div className="flex flex-col gap-2">
           {rights.map((right) => {
-            const isMatched = item.pairs.some((p) => p.right === right && matched.has(p.left));
+            const key = rightKey(right);
+            const isMatched = item.pairs.some((p) => rightKey(p.right) === key && matched.has(p.left));
             return (
               <button
-                key={right}
+                key={key}
                 type="button"
+                lang={typeof right === 'string' ? 'de' : pickLang(lang, right)}
                 disabled={isMatched || done}
                 onClick={() => clickRight(right)}
                 className={`min-h-11 break-words rounded-md border px-2.5 py-2 text-left text-sm leading-snug sm:min-h-0 sm:px-3 ${
                   isMatched
                     ? 'border-green-400 bg-green-50 opacity-60 dark:bg-green-950'
-                    : wrongFlash === right
+                    : wrongFlash === key
                       ? 'border-red-500 bg-red-50 dark:bg-red-950'
                       : 'border-stone-300 hover:border-amber-400 dark:border-stone-600'
                 }`}
               >
-                {right}
+                {rightText(right)}
               </button>
             );
           })}

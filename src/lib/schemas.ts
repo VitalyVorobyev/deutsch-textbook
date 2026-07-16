@@ -264,7 +264,22 @@ export const matchItemSchema = z.object({
   ...itemBase,
   type: z.literal('match'),
   pairs: z
-    .array(z.object({ left: z.string().min(1), right: z.string().min(1) }))
+    .array(
+      z.object({
+        left: z.string().min(1),
+        /** A German↔German pair keeps a plain string. A meaning-side right is a
+            per-language record — never a mixed "en / ru" string, which no
+            language mode can render and the parity/letter-set checks cannot
+            see. The record's `en` doubles as the pair's stable identity in
+            Match.tsx, so edit it as carefully as an answer. */
+        right: z.union([
+          z.string().min(1),
+          z
+            .object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+            .strict(),
+        ]),
+      }),
+    )
     .min(2),
 });
 
