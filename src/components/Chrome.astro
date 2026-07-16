@@ -1,0 +1,17 @@
+---
+/**
+ * One chrome string as CSS-toggled `.ui-*` spans — the P8-1 static-Astro
+ * pattern (see the nav in src/layouts/Base.astro): all four UI languages
+ * render, `<html data-ui-lang>` shows one, so a static label never costs a
+ * React island. For strings with `{n}`-style templates, inline the map and
+ * `.replace()` per language instead.
+ */
+import { UI_LANGS, t, type StringKey } from '../lib/strings';
+
+interface Props {
+  k: StringKey;
+}
+const { k } = Astro.props;
+---
+
+{UI_LANGS.map((l) => <span class={`ui-${l}`}>{t(k, l)}</span>)}

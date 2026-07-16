@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Chrome from '../components/Chrome.astro';
 import { getCheckpoints } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
-import { goetheCoverage, hasManifest } from '../lib/coverage';
+import { goetheCoverage, hasManifest, ukTranslationCoverage } from '../lib/coverage';
 import { withBase } from '../lib/url';
 
 const REPO = 'https://github.com/VitalyVorobyev/deutsch-textbook';
@@ -25,6 +26,9 @@ const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
 // Wortliste the A1/A2 decks already teach — a claim about the learner's lexis,
 // never about B1 completeness.
 const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
+// The Ukrainian-translation figure, same earned-claims rule: measured from the
+// content files at build time, never hand-written — and 0 is stated as 0.
+const ukCoverage = ukTranslationCoverage();
 
 const levels = ['A1', 'A2'] as const;
 const stats = levels.map((level) => {
@@ -91,7 +95,7 @@ const principles = [
 ---
 
 <Base title="Über Deutsch-Atlas">
-  <h1 class="text-3xl font-bold tracking-tight">Über Deutsch-Atlas</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="about.pageTitle" /></h1>
   <p class="mt-2 max-w-prose text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       A free, local-first German course: a textbook, interactive exercises and spaced-repetition
@@ -244,6 +248,21 @@ const principles = [
         </p>
       </article>
     </div>
+
+    <p class="mt-4 max-w-prose text-sm text-stone-500 dark:text-stone-400">
+      <span class="lang-en">
+        Explanations are written in English and Russian throughout; a Ukrainian translation is
+        arriving in waves and is measured like everything on this page — {ukCoverage.translated} of
+        {' '}{ukCoverage.total} content files carry the Ukrainian half so far, and where it is
+        missing the app shows English.
+      </span>
+      <span class="lang-ru">
+        Пояснения написаны на английском и русском по всему курсу; украинский перевод выходит
+        волнами и измеряется так же, как всё на этой странице, — украинская половина пока есть в
+        {' '}{ukCoverage.translated} из {ukCoverage.total} файлов контента, а там, где её нет,
+        показывается английский.
+      </span>
+    </p>
 
     <dl class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
       {[

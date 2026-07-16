@@ -17,6 +17,7 @@ import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
 import { pick, type ExplainText } from '../../lib/prefs';
+import type { StringKey } from '../../lib/strings';
 import type { TopicNode } from '../../lib/mastery';
 import { useExplainLang } from '../hooks';
 import { Heatmap } from './Heatmap';
@@ -117,7 +118,8 @@ interface Props {
   nodes: TopicNode[];
   outcomeModes: Record<string, string>;
   cards: CardDef[];
-  vocabularyGroups: Array<{ title: string; items: VocabGroup[] }>;
+  /** group titles are chrome-string keys, rendered by VocabularyProgress */
+  vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }>;
   /** every level checkpoint in the content — each panel hides itself until taken */
   checkpoints?: CheckpointInfo[];
   /** outcome id → learner-facing can-do text, shared by every checkpoint panel */

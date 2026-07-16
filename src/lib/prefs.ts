@@ -164,6 +164,27 @@ export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
 }
 
 /**
+ * The second half of a flashcard's meaning side (`${en} · ${second}`) — the
+ * gloss shown beside the always-present EN one. 'en' and 'ru' both show the
+ * Russian gloss (today's exact `en · ru` view, byte-identical for en-mode
+ * learners); 'uk' shows the Ukrainian gloss only where a translation wave has
+ * authored it — never Russian for a Ukrainian reader; 'de' shows nothing — a
+ * card's meaning side is never German by construction (docs/i18n-design.md).
+ * `undefined` means "no second half": the caller renders EN alone, with no
+ * separator — never `en · en`. Display-only; card identity never carries a
+ * gloss language. Keep the branches in lockstep with pick()/pickLang().
+ */
+export function pickSecond(
+  lang: ExplainLang,
+  text: { ru: string; uk?: string } | undefined,
+): string | undefined {
+  if (!text) return undefined;
+  if (lang === 'de') return undefined;
+  if (lang === 'uk') return text.uk || undefined;
+  return text.ru;
+}
+
+/**
  * The language pick() actually resolves to for this record — for the `lang`
  * attribute of an element showing picked text. Under 'uk'/'de' the text may be
  * the EN fallback, and stamping the raw ExplainLang there would have a screen

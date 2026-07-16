@@ -71,19 +71,29 @@ export function langFieldProblems(node: unknown): string[] {
   return problems;
 }
 
-/** Whether any `uk`/`*_uk` key with a string value exists anywhere in the tree. */
-export function hasUkField(node: unknown): boolean {
+function hasLangStringField(node: unknown, lang: Lang): boolean {
   let found = false;
   walkObjects(node, '', (obj) => {
     if (found) return;
     for (const [key, value] of Object.entries(obj)) {
-      if (typeof value === 'string' && langOfKey(key) === 'uk') {
+      if (typeof value === 'string' && langOfKey(key) === lang) {
         found = true;
         return;
       }
     }
   });
   return found;
+}
+
+/** Whether any `uk`/`*_uk` key with a string value exists anywhere in the tree. */
+export function hasUkField(node: unknown): boolean {
+  return hasLangStringField(node, 'uk');
+}
+
+/** Whether any `ru`/`*_ru` key with a string value exists anywhere in the tree —
+    the denominator of the Über page's UK-translation figure (src/lib/coverage.ts). */
+export function hasRuField(node: unknown): boolean {
+  return hasLangStringField(node, 'ru');
 }
 
 /**
@@ -176,8 +186,15 @@ export interface MdxLangReport {
  * blocks, letter sets inside each (`<En>`/`<De>`: no Cyrillic; `<Ru>`: no
  * Ukrainian-only letters; `<Uk>`: no Russian-only letters), and per-body
  * parity for the optional halves.
+ *
+ * `forceUk` bridges frontmatter uk the body scan cannot see: parity is
+ * per FILE (docs/i18n-design.md), so a `title_uk` alone must demand a `<Uk>`
+ * half in every `<Bilingual>` block — otherwise a wave could translate the
+ * title, skip the article, and both validate and count as translated. The
+ * reverse bridge (body `<Uk>` forcing frontmatter parity) is the caller's:
+ * pass the body's `<Uk>` presence as `forceUk` to `ukParityProblems`.
  */
-export function mdxLangProblems(body: string): MdxLangReport {
+export function mdxLangProblems(body: string, opts: { forceUk?: boolean } = {}): MdxLangReport {
   const balance: string[] = [];
   const letters: string[] = [];
   const parity: string[] = [];
@@ -207,12 +224,15 @@ export function mdxLangProblems(body: string): MdxLangReport {
   checkLetters('Uk', RU_ONLY, 'Russian-only letters');
 
   const bilinguals = body.match(/<Bilingual>[\s\S]*?<\/Bilingual>/g) ?? [];
-  for (const tag of ['Uk', 'De']) {
-    if (!body.includes(`<${tag}>`)) continue;
+  for (const tag of ['Uk', 'De'] as const) {
+    const inBody = body.includes(`<${tag}>`);
+    const forced = tag === 'Uk' && (opts.forceUk ?? false);
+    if (!inBody && !forced) continue;
+    const carrier = inBody ? `<${tag}> elsewhere` : 'uk in its frontmatter';
     bilinguals.forEach((block, i) => {
       if (!block.includes(`<${tag}>`))
         parity.push(
-          `<Bilingual> block ${i + 1} has no <${tag}> half, but the body carries <${tag}> elsewhere — the optional halves are all-or-none per article`,
+          `<Bilingual> block ${i + 1} has no <${tag}> half, but this file carries ${carrier} — the optional halves are all-or-none per file`,
         );
     });
   }

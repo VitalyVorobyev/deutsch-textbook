@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../../lib/content';
@@ -15,7 +16,7 @@ const { spine } = getCurriculum();
 
 <Base title="Wiederholen">
   <UebenNav active="wiederholen" />
-  <h1 class="text-3xl font-bold tracking-tight">Wiederholen</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="ueben.tabWiederholen" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">Your daily review across all decks — due cards first, then a few new ones.</span>
     <span class="lang-ru">Ежедневное повторение по всем колодам — сначала карточки к повторению, затем немного новых.</span>

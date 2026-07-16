@@ -450,6 +450,69 @@ export const STRINGS = {
   'mastery.reqAccuracy': { de: 'richtig', en: 'correct', ru: 'верно', uk: 'правильно' },
   'mastery.reqDays': { de: 'an 2 Tagen geübt', en: 'practised on 2 days', ru: 'занятия в 2 разных дня', uk: 'заняття у 2 різні дні' },
   'mastery.reqCards': { de: 'Vokabeln wiederholt', en: 'flashcards reviewed', ru: 'карточки повторены', uk: 'картки повторено' },
+
+  // Chrome residue (P8-5): components that never had a language ternary, and
+  // static .astro page furniture.
+  // Tier badge on a single topic — singular forms; topics.status* above are
+  // the OverviewTable filter labels and deliberately plural.
+  'tier.untouched': { de: 'Neu', en: 'New', ru: 'Новая', uk: 'Нова' },
+  'tier.read': { de: 'Gelesen', en: 'Read', ru: 'Прочитана', uk: 'Прочитана' },
+  'tier.practiced': { de: 'Geübt', en: 'Practiced', ru: 'Отработана', uk: 'Відпрацьована' },
+  'tier.mastered': { de: 'Gemeistert', en: 'Mastered', ru: 'Освоена', uk: 'Опанована' },
+  'tier.manual': { de: 'manuell', en: 'manual', ru: 'вручную', uk: 'вручну' },
+  'tier.selfLearned': { de: 'gelernt', en: 'learned', ru: 'изучено', uk: 'вивчено' },
+  'tier.selfLearnedTitle': {
+    de: 'Selbsteinschätzung – ändert den gemessenen Stand nicht',
+    en: 'Self-assessment — does not change the measured state',
+    ru: 'Самооценка — не меняет измеренный статус',
+    uk: 'Самооцінка — не змінює виміряний стан',
+  },
+  'evidence.read': { de: 'Gelesen', en: 'Read', ru: 'Прочитано', uk: 'Прочитано' },
+  'evidence.practiced': { de: 'Geübt', en: 'Practiced', ru: 'Отработано', uk: 'Відпрацьовано' },
+  'evidence.spaced': { de: '2 Tage', en: '2 days', ru: '2 дня', uk: '2 дні' },
+  'evidence.vocab': { de: 'Vokabeln', en: 'Vocab', ru: 'Слова', uk: 'Слова' },
+  // Static pages: Heute, Session, Üben, topic/vocab/discovery furniture, footer.
+  'today.greeting': { de: 'Guten Tag!', en: 'Good day!', ru: 'Добрый день!', uk: 'Доброго дня!' },
+  'today.startSession': { de: 'Session starten →', en: 'Start session →', ru: 'Начать сессию →', uk: 'Почати сесію →' },
+  'today.quickAccess': { de: 'Schnellzugriff', en: 'Quick access', ru: 'Быстрый доступ', uk: 'Швидкий доступ' },
+  'session.pageTitle': { de: 'Tägliche Session', en: 'Daily session', ru: 'Ежедневная сессия', uk: 'Щоденна сесія' },
+  'training.pageTitle': { de: 'Gemischtes Training', en: 'Mixed training', ru: 'Смешанная тренировка', uk: 'Змішане тренування' },
+  'about.pageTitle': { de: 'Über Deutsch-Atlas', en: 'About Deutsch-Atlas', ru: 'О Deutsch-Atlas', uk: 'Про Deutsch-Atlas' },
+  'ueben.tabWiederholen': { de: 'Wiederholen', en: 'Review', ru: 'Повторение', uk: 'Повторення' },
+  'ueben.tabTraining': { de: 'Training', en: 'Training', ru: 'Тренировка', uk: 'Тренування' },
+  'ueben.tabWortschatz': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'vocab.allWords': { de: 'Alle Wörter', en: 'All words', ru: 'Все слова', uk: 'Усі слова' },
+  // Colon style in ru/uk on purpose: it sidesteps numeral agreement, which a
+  // flat template cannot carry ("21 слов" is not Russian).
+  'vocab.deckSize': {
+    de: '{words} Wörter · {cards} Karten',
+    en: '{words} words · {cards} cards',
+    ru: 'Слов: {words} · Карточек: {cards}',
+    uk: 'Слів: {words} · Карток: {cards}',
+  },
+  'vocab.groupTopic': { de: 'Thema', en: 'Topic', ru: 'Тема', uk: 'Тема' },
+  'vocab.groupPos': { de: 'Wortart', en: 'Part of speech', ru: 'Часть речи', uk: 'Частина мови' },
+  'topic.prerequisites': { de: 'Voraussetzungen:', en: 'Prerequisites:', ru: 'Предварительные темы:', uk: 'Попередні теми:' },
+  'topic.draft': { de: 'Entwurf', en: 'Draft', ru: 'Черновик', uk: 'Чернетка' },
+  'topic.pretestTitle': { de: 'Was weißt du schon?', en: 'What do you already know?', ru: 'Что вы уже знаете?', uk: 'Що ви вже знаєте?' },
+  'topic.sectionReading': { de: 'Lesetext', en: 'Reading', ru: 'Текст для чтения', uk: 'Текст для читання' },
+  'topic.sectionWordField': { de: 'Wortfeld', en: 'Word field', ru: 'Лексическое поле', uk: 'Лексичне поле' },
+  'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
+  // Topic-kind badge (grammar/vocab-field/communication/phonetics). Dedicated
+  // keys rather than reusing strand.*: kinds and strands are different
+  // taxonomies that merely share three German words today.
+  'kind.grammar': { de: 'Grammatik', en: 'Grammar', ru: 'Грамматика', uk: 'Граматика' },
+  'kind.vocabField': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'kind.communication': { de: 'Kommunikation', en: 'Communication', ru: 'Коммуникация', uk: 'Комунікація' },
+  'kind.phonetics': { de: 'Aussprache', en: 'Pronunciation', ru: 'Произношение', uk: 'Вимова' },
+  'discovery.links': { de: 'Links', en: 'Links', ru: 'Ссылки', uk: 'Посилання' },
+  'footer.tagline': {
+    de: 'Deutsch-Atlas · ein agentengeschriebenes Lehrbuch · A1 → B2',
+    en: 'Deutsch-Atlas · an agent-written textbook · A1 → B2',
+    ru: 'Deutsch-Atlas · учебник, написанный агентами · A1 → B2',
+    uk: 'Deutsch-Atlas · підручник, написаний агентами · A1 → B2',
+  },
 } as const satisfies Record<string, ChromeString>;
 
 export type StringKey = keyof typeof STRINGS;

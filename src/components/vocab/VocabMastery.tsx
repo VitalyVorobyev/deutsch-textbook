@@ -3,7 +3,7 @@ import type { CardDef } from '../../lib/srs';
 import { getCardStates, type CardStates } from '../../lib/store';
 import { masteryCounts, rollupWords, type MasteryCounts, type WordMastery } from '../../lib/vocab-mastery';
 import { pick } from '../../lib/prefs';
-import { t } from '../../lib/strings';
+import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 
 const ORDER: WordMastery[] = ['new', 'learning', 'established', 'strong'];
@@ -77,9 +77,11 @@ export function VocabWordTable({ cards }: { cards: CardDef[] }) {
 
 export interface VocabGroup { id: string; label: string; cardIds: string[] }
 // Card states come in as a prop (not via useStates) so the Fortschritt import
-// flow's refresh() re-renders the bars with the merged data.
-export function VocabularyProgress({ cards, groups, states }: { cards: CardDef[]; groups: Array<{ title: string; items: VocabGroup[] }>; states: CardStates }) {
+// flow's refresh() re-renders the bars with the merged data. Group titles are
+// chrome-string keys (P8-5): the .astro page passes keys, this island renders
+// them in the profile's UI language.
+export function VocabularyProgress({ cards, groups, states }: { cards: CardDef[]; groups: Array<{ title: StringKey; items: VocabGroup[] }>; states: CardStates }) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
-  return <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800"><h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{t('vocab.byArea', uiLang)}</h2><p className="mt-2 max-w-3xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">{pick(lang, UI.uniqueWords)}</p><div className="mt-3"><MasteryLegend /></div>{groups.map((group) => <div key={group.title} className="mt-5"><h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{group.title}{group.title === 'Niveau' && <span className="ml-2 font-normal normal-case tracking-normal">· {pick(lang, UI.currentlyAuthored)}</span>}</h3><div className="mt-2 grid gap-3 sm:grid-cols-2">{group.items.map((item) => { const ids = new Set(item.cardIds); const words = rollupWords(cards.filter((card) => ids.has(card.id)), states); return words.length ? <div key={item.id} className="rounded-md bg-stone-50 p-3 dark:bg-stone-900/50"><div className="mb-2 flex justify-between gap-2 text-sm"><span className="font-medium">{item.label}</span><span className="text-stone-400">{words.length}</span></div><MasteryBar counts={masteryCounts(words)} compact /></div> : null; })}</div></div>)}</section>;
+  return <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800"><h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{t('vocab.byArea', uiLang)}</h2><p className="mt-2 max-w-3xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">{pick(lang, UI.uniqueWords)}</p><div className="mt-3"><MasteryLegend /></div>{groups.map((group) => <div key={group.title} className="mt-5"><h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{t(group.title, uiLang)}{group.title === 'filter.level' && <span className="ml-2 font-normal normal-case tracking-normal">· {pick(lang, UI.currentlyAuthored)}</span>}</h3><div className="mt-2 grid gap-3 sm:grid-cols-2">{group.items.map((item) => { const ids = new Set(item.cardIds); const words = rollupWords(cards.filter((card) => ids.has(card.id)), states); return words.length ? <div key={item.id} className="rounded-md bg-stone-50 p-3 dark:bg-stone-900/50"><div className="mb-2 flex justify-between gap-2 text-sm"><span className="font-medium">{item.label}</span><span className="text-stone-400">{words.length}</span></div><MasteryBar counts={masteryCounts(words)} compact /></div> : null; })}</div></div>)}</section>;
 }

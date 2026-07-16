@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import MixedTraining from '../../components/training/MixedTraining';
 import type { TrainingSet } from '../../components/training/MixedTraining';
@@ -36,7 +37,7 @@ const sets: TrainingSet[] = exercises.map((e) => {
 
 <Base title="Gemischtes Training">
   <UebenNav active="training" />
-  <h1 class="text-3xl font-bold tracking-tight">Gemischtes Training</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="training.pageTitle" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       A mixed session across all topics — constantly switching rules forces you to recognize

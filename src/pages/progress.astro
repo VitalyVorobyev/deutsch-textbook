@@ -1,31 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
+import Chrome from '../components/Chrome.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
 import { getCheckpoints, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { getAllCards } from '../lib/content';
 import { getCollection } from 'astro:content';
 import { probeFamilies } from '../lib/probes';
+import type { VocabGroup } from '../components/vocab/VocabMastery';
+import type { StringKey } from '../lib/strings';
 
 const nodes = await getTopicNodes();
 const cards = await getAllCards();
 const vocab = await getCollection('vocab');
 const cardsByDeck = new Map<string, string[]>();
 for (const card of cards) cardsByDeck.set(card.deckId, [...(cardsByDeck.get(card.deckId) ?? []), card.id]);
-const vocabularyGroups = [
+// Group titles are chrome-string keys (rendered via t() in VocabularyProgress).
+const vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }> = [
   {
-    title: 'Niveau',
+    title: 'filter.level',
     items: ['A1', 'A2'].map((level) => ({
       id: level, label: level,
       cardIds: vocab.filter((deck) => deck.data.level === level).flatMap((deck) => cardsByDeck.get(deck.data.id) ?? []),
     })),
   },
   {
-    title: 'Thema',
+    title: 'vocab.groupTopic',
     items: vocab.map((deck) => ({ id: deck.data.id, label: deck.data.title_de, cardIds: cardsByDeck.get(deck.data.id) ?? [] })),
   },
   {
-    title: 'Wortart',
+    title: 'vocab.groupPos',
     items: [...new Set(cards.map((card) => card.pos))].sort().map((pos) => ({ id: pos, label: pos, cardIds: cards.filter((card) => card.pos === pos).map((card) => card.id) })),
   },
 ];
@@ -68,7 +72,7 @@ const outcomeLabels = Object.fromEntries(
 ---
 
 <Base title="Fortschritt">
-  <h1 class="text-3xl font-bold tracking-tight">Fortschritt</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.fortschritt" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       Your activity, streak, per-topic progress, and weak spots for the active profile — all stored

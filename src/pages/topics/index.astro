@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
 import CurriculumPath from '../../components/atlas/CurriculumPath';
 import { getCheckpoints, getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '../../lib/curriculum';
@@ -32,7 +33,7 @@ const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title, i
 
 <Base title="Themen">
   <header>
-    <h1 class="text-3xl font-bold tracking-tight">Themen</h1>
+    <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.themen" /></h1>
     <p class="mt-1 text-stone-500 dark:text-stone-400">
       <span class="lang-en">Your course path — continue clearly, explore freely.</span>
       <span class="lang-ru">Ваш учебный путь: понятный следующий шаг и свободный выбор тем.</span>

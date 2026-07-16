@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Chrome from '../components/Chrome.astro';
 import SessionFlow from '../components/session/SessionFlow';
 import type { TrainingSet } from '../components/training/MixedTraining';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
@@ -38,7 +39,7 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
 ---
 
 <Base title="Session">
-  <h1 class="text-3xl font-bold tracking-tight">Tägliche Session</h1>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="session.pageTitle" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       One guided session — review, mixed training, then your next topic. About 15 minutes,

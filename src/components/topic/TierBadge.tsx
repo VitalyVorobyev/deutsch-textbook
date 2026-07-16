@@ -1,11 +1,15 @@
 import type { Tier } from '../../lib/mastery';
+import { t, type StringKey } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 
-const META: Record<Tier, { label: string; cls: string }> = {
-  untouched: { label: 'Neu', cls: 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300' },
-  read: { label: 'Gelesen', cls: 'bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-200' },
-  practiced: { label: 'Geübt', cls: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200' },
+// Labels live in the chrome strings table (tier.* — singular forms; the plural
+// topics.status* keys are the OverviewTable filter labels).
+const META: Record<Tier, { label: StringKey; cls: string }> = {
+  untouched: { label: 'tier.untouched', cls: 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300' },
+  read: { label: 'tier.read', cls: 'bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-200' },
+  practiced: { label: 'tier.practiced', cls: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200' },
   mastered: {
-    label: 'Gemeistert',
+    label: 'tier.mastered',
     cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200',
   },
 };
@@ -21,15 +25,16 @@ export function TierBadge({
   manual?: boolean;
   className?: string;
 }) {
+  const uiLang = useUiLang();
   const m = META[tier];
   return (
     <span
-      lang="de"
+      lang={uiLang}
       className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${m.cls} ${className}`}
     >
-      {m.label}
+      {t(m.label, uiLang)}
       {manual && (
-        <span className="opacity-60" title="manuell">
+        <span className="opacity-60" title={t('tier.manual', uiLang)}>
           ✎
         </span>
       )}
@@ -40,13 +45,14 @@ export function TierBadge({
 /** Self-rating marker: the learner marked the topic learned — shown next to the
     measured tier, which it never changes. */
 export function SelfAssessedMark({ className = '' }: { className?: string }) {
+  const uiLang = useUiLang();
   return (
     <span
-      lang="de"
-      title="Selbsteinschätzung – ändert den gemessenen Stand nicht"
+      lang={uiLang}
+      title={t('tier.selfLearnedTitle', uiLang)}
       className={`inline-flex items-center gap-1 rounded-full border border-emerald-300 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-700 dark:text-emerald-300 ${className}`}
     >
-      ✎ gelernt
+      ✎ {t('tier.selfLearned', uiLang)}
     </span>
   );
 }

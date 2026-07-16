@@ -374,7 +374,7 @@ EN and not RU).
   P8-5). No `prompt_de` (a translate prompt exists to be translated *into* German — `de` mode
   serves the EN prompt) and no vocab `de` gloss (a card's meaning side is never German).
 
-### P8-5 · Ukrainian UI surfaces — `todo` (S)
+### P8-5 · Ukrainian UI surfaces — `done` 2026-07-16 (S)
 
 The meaning side of a card becomes `${en} · ${pickSecond(card)}` — the front of the `x-de`
 production card and the back of the `de-x` recognition card, and only those; the `de-x` front
@@ -386,7 +386,24 @@ UK-coverage figure — computed, never hand-written, per the earned-claims rule 
 residue in never-ternary components and static `.astro` pages.
 
 - Depends on: P8-4 (met).
-- Accept: card keys unchanged in test; the Über figure is computed at build time.
+- Accept: card keys unchanged in test; the Über figure is computed at build time. All met.
+- Shipped as designed. `pickSecond` (beside `pick`/`pickLang` in `src/lib/prefs.ts`): `en`/`ru`
+  → the RU gloss (today's `en · ru` view byte-identical, pinned in test), `uk` → the authored
+  gloss or **EN alone** — never RU for a Ukrainian reader — `de` → EN alone; an absent second
+  half drops the separator too. The Über figure is `ukTranslationCoverage()` in
+  `src/lib/coverage.ts`: ru-bearing content files that carry `uk`, over all ru-bearing files —
+  sound because per-file parity is validator-enforced, with one honest refinement:
+  `content/atlas.yaml` has per-*node* parity, so it counts only when every `ru` in it has its
+  `uk` sibling. The page states today's figure as 0. The chrome residue moved to the strings
+  table (~35 keys): TierBadge and EvidenceChips (dedicated singular `tier.*` keys —
+  `topics.status*` are the OverviewTable's plural filter labels), page h1s/section headings,
+  the Üben tabs, the Heute furniture, the footer tagline, the topic-kind badge (retiring
+  `KIND_LABEL`), and the Fortschritt vocabulary-group titles (passed as string keys, rendered
+  by the island). A one-line `Chrome.astro` factors the P8-1 span pattern for static pages.
+  Judged **not** chrome and left alone: document `<title>`s and `aria-label`s (single-string
+  attributes — the CSS span mechanism cannot reach them), grammar-term surfaces (Referenz page
+  and table headers, article H2s — object language, the `CATEGORY_LABELS` precedent), and the
+  `Checkpoint` badge word (matches the computed `Checkpoint <level>` data string).
 
 ### C3 · Ukrainian translation waves — `todo` (recurring, starts now)
 

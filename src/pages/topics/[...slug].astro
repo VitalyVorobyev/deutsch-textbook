@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Bilingual from '../../components/Bilingual.astro';
+import Chrome from '../../components/Chrome.astro';
 import En from '../../components/En.astro';
 import Ru from '../../components/Ru.astro';
 import Uk from '../../components/Uk.astro';
@@ -15,7 +16,7 @@ import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
-import { KIND_LABEL } from '../../lib/content';
+import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { withBase } from '../../lib/url';
 
@@ -66,11 +67,19 @@ const readings = await Promise.all(
 const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : undefined;
 if (data.pretest && !pretestSet)
   throw new Error(`Topic ${data.id}: pretest set "${data.pretest}" not found`);
+
+/** Topic-kind badge, keyed into the chrome strings table (replaced KIND_LABEL). */
+const KIND_KEY: Record<string, StringKey> = {
+  grammar: 'kind.grammar',
+  'vocab-field': 'kind.vocabField',
+  communication: 'kind.communication',
+  phonetics: 'kind.phonetics',
+};
 ---
 
 <Base title={data.title_de}>
   <nav class="mb-4 text-sm text-stone-400">
-    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
+    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="nav.themen" /></a>
     <span> / {data.level}</span>
   </nav>
 
@@ -80,11 +89,11 @@ if (data.pretest && !pretestSet)
         {data.level}
       </span>
       <span class="rounded-full bg-stone-200 px-2.5 py-0.5 font-medium text-stone-600 dark:bg-stone-700 dark:text-stone-300">
-        {KIND_LABEL[data.kind]}
+        <Chrome k={KIND_KEY[data.kind]} />
       </span>
       {data.status === 'draft' && (
         <span class="rounded-full border border-stone-300 px-2.5 py-0.5 text-stone-400 dark:border-stone-600">
-          Entwurf
+          <Chrome k="topic.draft" />
         </span>
       )}
       <TopicProgress
@@ -105,7 +114,7 @@ if (data.pretest && !pretestSet)
     {
       prerequisites.length > 0 && (
         <p class="mt-3 text-sm text-stone-500 dark:text-stone-400">
-          Voraussetzungen:
+          <Chrome k="topic.prerequisites" />
           {prerequisites.map((p) => (
             <a
               href={withBase(`/topics/${p.id}`)}
@@ -123,7 +132,7 @@ if (data.pretest && !pretestSet)
   {
     data.pretest && pretestSet && (
       <aside class="mb-10 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/60 p-5 dark:border-amber-700 dark:bg-amber-950/40">
-        <h2 lang="de" class="text-lg font-bold">Was weißt du schon?</h2>
+        <h2 class="text-lg font-bold"><Chrome k="topic.pretestTitle" /></h2>
         <p class="mt-1 mb-4 text-sm text-stone-600 dark:text-stone-400">
           <span class="lang-en">
             Try to answer before you read — guessing first, even wrongly, measurably improves what
@@ -146,7 +155,7 @@ if (data.pretest && !pretestSet)
   {
     readings.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold">Lesetext</h2>
+        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionReading" /></h2>
         <div class="flex flex-col gap-6">
           {readings.map((r) => (
             <ReadingTextIsland client:only="react" readingId={r.id} reading={r.data} />
@@ -159,7 +168,7 @@ if (data.pretest && !pretestSet)
   {
     wordFields.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold">Wortfeld</h2>
+        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionWordField" /></h2>
         <div class="space-y-5">{wordFields.map((field) => <WordField field={field.data} />)}</div>
       </section>
     )
@@ -168,7 +177,7 @@ if (data.pretest && !pretestSet)
   {
     vocabFiles.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold">Wortschatz</h2>
+        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionVocab" /></h2>
         {vocabFiles.map((v) => (
           <div class="mb-8">
             <div class="mb-2 flex items-center gap-3">
@@ -191,7 +200,7 @@ if (data.pretest && !pretestSet)
   {
     exerciseSets.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold">Übungen</h2>
+        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
         <div class="flex flex-col gap-6">
           {exerciseSets.map((s) => (
             <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} />
