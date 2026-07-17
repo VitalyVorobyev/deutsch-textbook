@@ -74,34 +74,14 @@ before another unit is written.
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
   [i18n-design.md](i18n-design.md).
 
-## Current — C3 · Ukrainian translation waves — `in progress` (recurring)
+## C3 · Ukrainian translation — A1 + A2 complete — `done` 2026-07-18
 
-A1 first, then A2 in ~4–5 waves (owner decision 2026-07-15: fewer, larger chunks — the UK version
-is wanted for sharing with real Ukrainian readers). Each wave **authors** the `uk` half
-idiomatically — never machine-translationese; it may contrast German with Ukrainian the way the ru
-half contrasts Russian — and **reviews the existing `ru`/`en` prose** of the same files. Per-file
-parity: each file fully translated or not started, never half. Every wave passes the validator
-letter/parity checks and a review before merge.
-
-- **Wave 1 — `done` 2026-07-16** (PR #60): the first five A1 spine topics, 35 files; Über 35/264.
-- **Wave 2 — `done` 2026-07-16** (PR #61): the last five A1 spine topics, 38 files — the A1 spine's
-  topic files are fully Ukrainian; Über 73/264.
-- **Wave 3 — `done` 2026-07-16**: the A1 residue — the eleven unowned A1 completion decks
-  (341 entries), `checkpoint-a1`, `reference-data/pronominal-adverbs`; Über 87/266. A1 is
-  fully Ukrainian except `atlas.yaml`, which counts only when its A2 nodes translate.
-- **Wave 4 — `done` 2026-07-17** (PR #66): the first four A2 spine topics — dativ, trennbare-verben,
-  alltag-tagesablauf, modalverben — 42 files incl. their atlas outcomes; Über 128/266.
-- **Wave 5 — `done` 2026-07-17** (PR #67): the next seven A2 spine topics — perfekt-haben-sein,
-  termine-vereinbaren, wohnen-umzug, reisen-verkehr, einkaufen-reklamation, gesundheit-arzttermin,
-  verben-mit-praepositionen — 56 files incl. their atlas outcomes; Über 183/266.
-- **Wave 6 — `done` 2026-07-17** (PR #68): the last six A2 spine topics — aemter-dienstleistungen,
-  biografie-erfahrungen, lernen-verstehen, arbeit-beruf, freunde-feste, nebensaetze-plaene — plus
-  `checkpoint-a2` and their atlas outcomes; every A2 topic file is now Ukrainian; Über 226/266.
-- Wave 7 — `todo`: the A2 completion decks and the atlas.yaml residue (incl. `reference-data/cases`,
-  the wortfelder, document and discovery files, schema permitting).
-- ~~Known instrument gap~~ — closed 2026-07-16: match rights may be `{en, ru, uk?}` records
-  (schema + `Match.tsx` + parity visibility); `a2/modalverben.yaml`'s slash-hack migrated, and a
-  repo sweep found no other non-German right side. The A2 waves are unblocked.
+The `uk` explanation half is authored across **every** ru-bearing A1 and A2 file (Über **266/266**),
+idiomatic and per-file-parity throughout, `en`/`ru` prose left byte-identical: the A1 spine + residue
+(waves 1–3, PRs #60/#61), the 21 A2 spine topics + `checkpoint-a2` (waves 4–6, PRs #66/#67/#68), and
+the 29 A2 completion decks + wortfelder/document/discovery + atlas group/unit titles (wave 7, PR #69).
+`reference-data/cases.yaml` carries no `ru`, so it is not a translation target. B1 `uk` waves follow
+when B1 content exists. (Match rights gained the `{en, ru, uk?}` record shape 2026-07-16.)
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
