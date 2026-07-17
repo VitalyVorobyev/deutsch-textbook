@@ -4,25 +4,29 @@ title_de: "Tim geht zum Arzt"
 text:
   - >-
     Tim hat seit drei Tagen Husten und Schnupfen. Am Montag ruft er in der Praxis
-    an. Der [[Anrufbeantworter::answerphone::автоответчик]] sagt: „Guten Tag, hier
-    ist die Praxis Dr. Weiß. Die [[Sprechstunde::consultation hours::часы
-    приёма]] ist von acht bis zwölf Uhr. Bitte bringen Sie Ihre
-    [[Versichertenkarte::health insurance card::карта медицинского страхования]]
-    mit.“
+    an. Der [[Anrufbeantworter::answerphone::автоответчик::автовідповідач]] sagt:
+    „Guten Tag, hier ist die Praxis Dr. Weiß. Die
+    [[Sprechstunde::consultation hours::часы приёма::години прийому]] ist von
+    acht bis zwölf Uhr. Bitte bringen Sie Ihre
+    [[Versichertenkarte::health insurance card::карта медицинского
+    страхования::картка медичного страхування]] mit.“
   - >-
-    Um neun Uhr sitzt Tim im Wartezimmer. Dann [[untersucht::examines::осматривает]]
-    ihn die Ärztin. „Seit wann haben Sie die
-    [[Beschwerden::symptoms, complaints::жалобы, симптомы]]?“, fragt sie. „Seit
-    Freitag“, sagt Tim. „Sie haben eine Erkältung“, sagt die Ärztin. „Sie sollten
-    viel Wasser trinken und [[sich ausruhen::rest::отдыхать]]. Bleiben Sie zwei
-    Tage zu Hause!“
+    Um neun Uhr sitzt Tim im Wartezimmer. Dann
+    [[untersucht::examines::осматривает::оглядає]] ihn die Ärztin. „Seit wann
+    haben Sie die
+    [[Beschwerden::symptoms, complaints::жалобы, симптомы::скарги, симптоми]]?“,
+    fragt sie. „Seit Freitag“, sagt Tim. „Sie haben eine Erkältung“, sagt die
+    Ärztin. „Sie sollten viel Wasser trinken und
+    [[sich ausruhen::rest::отдыхать::відпочивати]]. Bleiben Sie zwei Tage zu
+    Hause!“
   - >-
-    Die Ärztin schreibt ein [[Rezept::prescription::рецепт]] und eine
+    Die Ärztin schreibt ein [[Rezept::prescription::рецепт::рецепт]] und eine
     [[Krankschreibung::sick note for the employer::больничный лист для
-    работодателя]] für den Chef. In der Apotheke sagt der Apotheker: „Nehmen Sie
-    die Tabletten [[dreimal täglich::three times a day::три раза в день]], immer
-    nach dem Essen.“ Am Abend schreibt Tim eine Nachricht an seinen Chef: „Ich
-    bin krank. Ich komme erst am Donnerstag wieder ins Büro.“
+    работодателя::лікарняний лист для роботодавця]] für den Chef. In der
+    Apotheke sagt der Apotheker: „Nehmen Sie die Tabletten
+    [[dreimal täglich::three times a day::три раза в день::тричі на день]],
+    immer nach dem Essen.“ Am Abend schreibt Tim eine Nachricht an seinen Chef:
+    „Ich bin krank. Ich komme erst am Donnerstag wieder ins Büro.“
 questions:
   - id: frage-seit-wann
     outcomes: [beschwerden-beschreiben]
@@ -36,9 +40,11 @@ questions:
     translation:
       en: How long has Tim had his symptoms?
       ru: С каких пор у Тима жалобы?
+      uk: Відколи в Тіма скарги?
     explain:
       en: "Tim answers the doctor himself: „Seit Freitag.“ The first line of the text says the same thing the other way round — seit drei Tagen — and the two agree: from Friday to Monday is three days. Monday is the day he phones the surgery, and the two days are how long he should stay at home; neither of them answers Seit wann? Note that seit is what the question and the answer both use: the cough is still there, so nothing here is in the past."
       ru: "Тим сам отвечает врачу: «Seit Freitag». Первая строка текста говорит о том же, только иначе — seit drei Tagen, — и одно с другим сходится: от пятницы до понедельника как раз три дня. Понедельник — это день, когда он звонит в поликлинику, а два дня — срок, на который ему нужно остаться дома; ни то ни другое на вопрос Seit wann? не отвечает. Обратите внимание: и вопрос, и ответ используют seit — кашель есть до сих пор, поэтому прошедшего времени здесь нет вовсе."
+      uk: "Тім сам відповідає лікарці: «Seit Freitag». Перший рядок тексту каже те саме, тільки інакше — seit drei Tagen, — і одне з іншим сходиться: від п'ятниці до понеділка якраз три дні. Понеділок — це день, коли він телефонує до поліклініки, а два дні — строк, на який йому треба лишитися вдома; ні те, ні інше на питання Seit wann? не відповідає. Зверніть увагу: і питання, і відповідь використовують seit — кашель є досі, тому минулого часу тут немає зовсім."
 
   - id: frage-apotheker
     outcomes: [praxis-anweisungen-verstehen]
@@ -52,9 +58,11 @@ questions:
     translation:
       en: What does the pharmacist say?
       ru: Что говорит аптекарь?
+      uk: Що каже аптекар?
     explain:
       en: "The pharmacist gives the instruction as a Sie-imperative: „Nehmen Sie die Tabletten dreimal täglich, immer nach dem Essen.“ Reported back with a modal, it becomes Tim soll die Tabletten dreimal täglich nehmen — soll in position 2, the infinitive at the end. The trap is nach dem Essen: the pharmacist says after meals, not before."
       ru: "Аптекарь даёт указание императивом на Sie: «Nehmen Sie die Tabletten dreimal täglich, immer nach dem Essen.» В пересказе с модальным глаголом это превращается в Tim soll die Tabletten dreimal täglich nehmen — soll на втором месте, инфинитив в конце. Ловушка — в nach dem Essen: аптекарь говорит «после еды», а не «до»."
+      uk: "Аптекар дає вказівку імперативом на Sie: «Nehmen Sie die Tabletten dreimal täglich, immer nach dem Essen.» У переказі з модальним дієсловом це перетворюється на Tim soll die Tabletten dreimal täglich nehmen — soll на другому місці, інфінітив у кінці. Пастка — у nach dem Essen: аптекар каже «після їжі», а не «до»."
 
   - id: frage-ratschlag
     outcomes: [ratschlag-geben]
@@ -68,6 +76,8 @@ questions:
     translation:
       en: What advice does the doctor give?
       ru: Какой совет даёт врач?
+      uk: Яку пораду дає лікарка?
     explain:
       en: "„Sie sollten viel Wasser trinken und sich ausruhen“ — advice with sollten, the modal in position 2 and both infinitives at the very end. Nobody mentions sport or a hospital: Tim has a cold, and the doctor sends him home for two days, not to a clinic. Notice the reflexive pronoun travelling with the verb — sich ausruhen, never just ausruhen."
       ru: "«Sie sollten viel Wasser trinken und sich ausruhen» — совет через sollten: модальный глагол на втором месте, оба инфинитива в самом конце. Ни о спорте, ни о больнице речи нет: у Тима простуда, и врач отправляет его домой на два дня, а не в клинику. Обратите внимание, что возвратное местоимение путешествует вместе с глаголом: sich ausruhen, а не просто ausruhen."
+      uk: "«Sie sollten viel Wasser trinken und sich ausruhen» — порада через sollten: модальне дієслово на другому місці, обидва інфінітиви в самому кінці. Ні про спорт, ні про лікарню не йдеться: у Тіма застуда, і лікарка відправляє його додому на два дні, а не до клініки. Зверніть увагу, що зворотний займенник мандрує разом із дієсловом: sich ausruhen, а не просто ausruhen."

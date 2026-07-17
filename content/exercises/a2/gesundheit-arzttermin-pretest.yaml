@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — what hurts, since when, and what to do"
   ru: "Предтест — что болит, с каких пор и что делать"
+  uk: "Передтест — що болить, відколи і що робити"
 items:
   - id: pretest-mir-tut-weh
     outcomes: [beschwerden-beschreiben]
@@ -11,15 +12,18 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "___ tut der Kopf weh."
     options: ["Ich", "Mir", "Mich"]
     correct: 1
     translation:
       en: "My head hurts."
       ru: "У меня болит голова."
+      uk: "У мене болить голова."
     explain:
       en: "In this sentence the head is the subject — der Kopf — and the verb tut agrees with it. The person the pain happens to is in the dative: mir. Ich would need a second subject, and mich is the accusative, which this construction never takes."
       ru: "Подлежащее в этом предложении — голова, der Kopf, и глагол tut согласуется именно с ней. Человек, у которого болит, стоит в Dativ: mir. Форма Ich потребовала бы второго подлежащего, а mich — это Akkusativ, который в такой конструкции невозможен."
+      uk: "Підмет у цьому реченні — голова, der Kopf, і дієслово tut узгоджується саме з нею. Людина, у якої болить, стоїть у Dativ: mir. Форма Ich потребувала б другого підмета, а mich — це Akkusativ, який у такій конструкції неможливий."
 
   - id: pretest-seit-vor
     outcomes: [beschwerden-beschreiben]
@@ -28,15 +32,18 @@ items:
     instruction:
       en: "You are still ill today. Guess the preposition."
       ru: "Вы больны и сегодня. Угадайте предлог."
+      uk: "Ви хворі й сьогодні. Вгадайте прийменник."
     prompt: "Ich bin ___ drei Tagen krank."
     options: ["vor", "seit", "in"]
     correct: 1
     translation:
       en: "I have been ill for three days."
       ru: "Я болею уже три дня."
+      uk: "Я хворію вже три дні."
     explain:
       en: "The illness began three days ago and is still there, so German uses seit + Dativ. vor drei Tagen would mean it happened once and is over, and in drei Tagen points into the future — in three days from now."
       ru: "Болезнь началась три дня назад и продолжается, поэтому нужен seit + Dativ. Оборот vor drei Tagen означал бы, что всё случилось однажды и уже позади, а in drei Tagen смотрит в будущее — «через три дня»."
+      uk: "Хвороба почалася три дні тому й триває, тому потрібен seit + Dativ. Зворот vor drei Tagen означав би, що все сталося одного разу й уже позаду, а in drei Tagen дивиться в майбутнє — «через три дні»."
 
   - id: pretest-imperativ-sie
     outcomes: [ratschlag-geben]
@@ -45,12 +52,15 @@ items:
     instruction:
       en: "The doctor is speaking to a new patient. Guess the form."
       ru: "Врач обращается к новому пациенту. Угадайте форму."
+      uk: "Лікар звертається до нового пацієнта. Вгадайте форму."
     prompt: "Der Arzt sagt: „___ Sie viel Wasser!“"
     options: ["Trinken", "Trink", "Trinkt"]
     correct: 0
     translation:
       en: "The doctor says: 'Drink a lot of water!'"
       ru: "Врач говорит: «Пейте много воды!»"
+      uk: "Лікар каже: «Пийте багато води!»"
     explain:
       en: "The pronoun Sie is already in the sentence, and only one imperative keeps its pronoun: the polite one, built from the infinitive — Trinken Sie! Trink is the du-form and Trinkt the ihr-form, and neither of them is ever followed by Sie."
       ru: "Местоимение Sie уже стоит в предложении, а сохраняет местоимение только один императив — вежливый, образованный от инфинитива: Trinken Sie! Форма Trink — это du, Trinkt — это ihr, и после них Sie не ставится никогда."
+      uk: "Займенник Sie вже стоїть у реченні, а зберігає займенник лише один імператив — ввічливий, утворений від інфінітива: Trinken Sie! Форма Trink — це du, Trinkt — це ihr, і після них Sie не ставиться ніколи."
