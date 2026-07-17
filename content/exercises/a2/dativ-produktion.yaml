@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — after the move: listening, writing, speaking"
   ru: "Практика — после переезда: аудирование, письмо, речь"
+  uk: "Практика — після переїзду: аудіювання, письмо, мовлення"
 items:
   - id: hoeren-kiste-lampe
     outcomes: [dativ-verben, dativ-pronomen]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Jonas has moved into his new flat. The next morning one box is still standing in the hall. Listen to his phone call with Lena."
       ru: "Йонас переехал в новую квартиру. На следующее утро в прихожей всё ещё стоит одна коробка. Послушайте его телефонный разговор с Леной."
+      uk: "Йонас переїхав до нової квартири. Наступного ранку в передпокої досі стоїть одна коробка. Послухайте його телефонну розмову з Леною."
     source:
       kind: tts
       rate: 0.9
@@ -28,9 +30,11 @@ items:
     translation:
       en: "Who does the lamp belong to?"
       ru: "Кому принадлежит лампа?"
+      uk: "Кому належить лампа?"
     explain:
       en: "All three candidates are named in the call, so only the ear decides. Lena rules herself out — „mir gehört sie nicht“ — and the sister owns the books, not the lamp: „die Bücher sind von ihr“. The last sentence gives the answer: „Die Lampe gehört Paul.“ Every one of these sentences answers the question wem?, and that is why the person is in the dative."
       ru: "В разговоре названы все три кандидата, так что решить может только слух. Лена отводит себя сама — „mir gehört sie nicht“, — а сестре принадлежат книги, а не лампа: „die Bücher sind von ihr“. Ответ звучит в последней фразе: „Die Lampe gehört Paul.“ Каждое из этих предложений отвечает на вопрос wem? — поэтому человек и стоит в дательном падеже."
+      uk: "У розмові названо всіх трьох кандидатів, тож вирішити може лише слух. Лена відводить себе сама — „mir gehört sie nicht“, — а сестрі належать книжки, а не лампа: „die Bücher sind von ihr“. Відповідь звучить в останній фразі: „Die Lampe gehört Paul.“ Кожне з цих речень відповідає на питання wem? — тому людина й стоїть у давальному відмінку."
 
   - id: cloze-sehen-helfen
     outcomes: [dativ-verben, dativ-pronomen]
@@ -39,13 +43,16 @@ items:
     instruction:
       en: "Paul arrives to pick up his lamp. Fill each gap with the correct pronoun — the verb decides the case."
       ru: "Пауль приезжает за лампой. Вставьте нужное местоимение — падеж выбирает глагол."
+      uk: "Пауль приїжджає по лампу. Вставте потрібний займенник — відмінок вибирає дієслово."
     text: "Lena sieht {{ihn}} beim Auto und hilft {{ihm}} mit der Kiste."
     translation:
       en: "Lena sees him by the car and helps him with the box."
       ru: "Лена видит его у машины и помогает ему с коробкой."
+      uk: "Лена бачить його біля машини і допомагає йому з коробкою."
     explain:
       en: "Two verbs side by side, two different cases: sehen takes an accusative object (ihn — wen sieht sie?), helfen takes a dative one (ihm — wem hilft sie?). English hides the difference completely: 'sees him' and 'helps him' are the same word, so the case has to come from the German verb, never from the translation. beim Auto and mit der Kiste are dative too — bei and mit are on the fixed list."
       ru: "Два глагола рядом — два разных падежа: sehen требует Akkusativ (ihn — кого она видит?), а helfen — Dativ (ihm — кому она помогает?). Русский здесь подсказывает верно: «видит (кого?) его» — винительный, «помогает (кому?) ему» — дательный. Опасность в другом: формы ihn и ihm отличаются одной буквой, и по-немецки их легко перепутать. beim Auto и mit der Kiste — тоже Dativ: bei и mit входят в список семи предлогов."
+      uk: "Два дієслова поруч — два різні відмінки: sehen вимагає Akkusativ (ihn — кого вона бачить?), а helfen — Dativ (ihm — кому вона допомагає?). Українська тут підказує правильно: «бачить (кого?) його» — знахідний, «допомагає (кому?) йому» — давальний. Небезпека в іншому: форми ihn та ihm відрізняються однією літерою, і німецькою їх легко сплутати. beim Auto і mit der Kiste — теж Dativ: bei та mit входять до списку семи прийменників."
 
   - id: cloze-nach-umzug-pizza
     outcomes: [dativ-artikel, dativ-praepositionen]
@@ -54,13 +61,16 @@ items:
     instruction:
       en: "Fill in the two articles. Careful — one preposition in this text takes the accusative."
       ru: "Вставьте два артикля. Осторожно: один предлог в этом тексте требует Akkusativ."
+      uk: "Вставте два артиклі. Обережно: один прийменник у цьому тексті вимагає Akkusativ."
     text: "Nach {{dem}} Umzug bestellt Jonas Pizza für seine Freunde. Die Pizza schmeckt {{den}} Freunden sehr gut."
     translation:
       en: "After the move Jonas orders pizza for his friends. The friends like the pizza a lot."
       ru: "После переезда Йонас заказывает пиццу для друзей. Друзьям пицца очень нравится."
+      uk: "Після переїзду Йонас замовляє піцу для друзів. Друзям піца дуже смакує."
     explain:
       en: "nach is one of the seven fixed dative prepositions, so der Umzug → nach dem Umzug. schmecken takes a dative object, and in the dative plural both parts change: die Freunde → den Freunden — the article becomes den and the noun itself adds -n. The contrast is right there in the same text: für seine Freunde keeps its accusative form, because für never takes the dative."
       ru: "nach — один из семи предлогов, всегда требующих Dativ: der Umzug → nach dem Umzug. Глагол schmecken тоже управляет дательным падежом, а в Dativ Plural меняются обе части: die Freunde → den Freunden — артикль становится den, и само существительное получает -n. Контраст стоит прямо в этом же тексте: für seine Freunde остаётся в Akkusativ, потому что für никогда не требует Dativ."
+      uk: "nach — один із семи прийменників, що завжди вимагають Dativ: der Umzug → nach dem Umzug. Дієслово schmecken теж керує давальним відмінком, а в Dativ Plural змінюються обидві частини: die Freunde → den Freunden — артикль стає den, і сам іменник отримує -n. Контраст стоїть просто в цьому ж тексті: für seine Freunde залишається в Akkusativ, бо für ніколи не вимагає Dativ."
 
   - id: uebersetzen-danken-freunde
     outcomes: [dativ-artikel, dativ-verben]
@@ -69,13 +79,16 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "Jonas thanks his friends for the help."
     prompt_ru: "Йонас благодарит друзей за помощь."
+    prompt_uk: "Йонас дякує друзям за допомогу."
     answer: "Jonas dankt seinen Freunden für die Hilfe."
     key_tokens: ["seinen", "Freunden"]
     explain:
       en: "danken takes the dative, so 'his friends' cannot stay the plain object it is in English: the dative plural is seinen Freunden — the possessive ends in -en and the noun itself adds -n. The accusative seine Freunde would be the mistake here. Note that für die Hilfe stays accusative in the same sentence: für is not on the dative list."
       ru: "danken требует Dativ, и это как раз ловушка: по-русски «благодарит (кого?) друзей» — винительный падеж. По-немецки — только дательный: seinen Freunden. Меняются обе части: у притяжательного артикля окончание -en, и само существительное получает -n. Форма seine Freunde (Akkusativ) здесь была бы ошибкой. А für die Hilfe в том же предложении остаётся в Akkusativ: für не входит в список дативных предлогов."
+      uk: "danken вимагає Dativ — українське «дякує (кому?) друзям» підказує правильно: seinen Freunden. Змінюються обидві частини: у присвійного артикля закінчення -en, і сам іменник отримує -n. Форма seine Freunde (Akkusativ) тут була б помилкою. А für die Hilfe в тому самому реченні залишається в Akkusativ: für не входить до списку дативних прийменників."
 
   - id: uebersetzen-schluessel-geben
     outcomes: [dativ-artikel]
@@ -84,13 +97,16 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "Jonas gives his friend the key."
     prompt_ru: "Йонас даёт другу ключ."
+    prompt_uk: "Йонас дає другові ключ."
     answer: "Jonas gibt seinem Freund den Schlüssel."
     key_tokens: ["seinem", "den"]
     explain:
       en: "One sentence, both cases. The person is the wem?-answer and goes into the dative: seinem Freund. The thing is the was?-answer and goes into the accusative: den Schlüssel. With two noun objects the dative comes first. Watch the two articles — seinem and den are exactly the forms that get swapped."
       ru: "Одно предложение — сразу оба падежа. Человек отвечает на вопрос wem? и стоит в Dativ: seinem Freund. Предмет отвечает на вопрос was? и стоит в Akkusativ: den Schlüssel. При двух дополнениях-существительных Dativ идёт первым. Следите за артиклями: именно seinem и den чаще всего меняют местами."
+      uk: "Одне речення — одразу обидва відмінки. Людина відповідає на питання wem? і стоїть у Dativ: seinem Freund. Предмет відповідає на питання was? і стоїть в Akkusativ: den Schlüssel. Із двома додатками-іменниками Dativ іде першим. Стежте за артиклями: саме seinem і den найчастіше міняють місцями."
 
   - id: schreiben-dank-nachricht
     outcomes: [dativ-verben, dativ-artikel]
@@ -98,26 +114,34 @@ items:
     prompt:
       en: "You are Jonas. The move is done. Write a short message to Paul and Lena in your group chat."
       ru: "Вы — Йонас. Переезд позади. Напишите короткое сообщение Паулю и Лене в общий чат."
+      uk: "Ви — Йонас. Переїзд позаду. Напишіть коротке повідомлення Паулю і Лені в спільний чат."
     goal:
       en: "Thank your friends, say how you like the flat, and settle who the leftover lamp belongs to."
       ru: "Поблагодарите друзей, скажите, как вам нравится квартира, и решите, кому принадлежит оставшаяся лампа."
+      uk: "Подякуйте друзям, скажіть, як вам подобається квартира, і з'ясуйте, кому належить лампа, що залишилася."
     requirements:
       - en: "Thank both friends with danken + Dativ (Ich danke euch …)."
         ru: "Поблагодарите обоих через danken + Dativ (Ich danke euch …)."
+        uk: "Подякуйте обом через danken + Dativ (Ich danke euch …)."
       - en: "Say how you like the flat with gefallen + Dativ (Die Wohnung gefällt mir …)."
         ru: "Скажите, как вам нравится квартира, через gefallen + Dativ (Die Wohnung gefällt mir …)."
+        uk: "Скажіть, як вам подобається квартира, через gefallen + Dativ (Die Wohnung gefällt mir …)."
       - en: "Say who the lamp belongs to, using gehören + Dativ."
         ru: "Скажите, кому принадлежит лампа, — через gehören + Dativ."
+        uk: "Скажіть, кому належить лампа, — через gehören + Dativ."
       - en: "Say how you will bring it back — use one dative preposition (mit dem Auto, zu dir)."
         ru: "Скажите, как вы её вернёте, — с одним дативным предлогом (mit dem Auto, zu dir)."
+        uk: "Скажіть, як ви її повернете, — з одним дативним прийменником (mit dem Auto, zu dir)."
     min_words: 25
     model_answer: "Hallo Paul, hallo Lena! Ich danke euch sehr für die Hilfe. Die Wohnung gefällt mir gut. Hier steht noch eine Kiste. In der Kiste ist eine Lampe. Sie gehört dir, Paul. Ich bringe sie dir am Samstag mit dem Auto."
     model_translation:
       en: "Hello Paul, hello Lena! Thank you very much for your help. I like the flat. There is still a box here. There is a lamp in the box. It belongs to you, Paul. I will bring it to you on Saturday by car."
       ru: "Привет, Пауль, привет, Лена! Большое спасибо за помощь. Квартира мне нравится. Здесь ещё стоит коробка. В коробке лампа. Она твоя, Пауль. Я привезу её тебе в субботу на машине."
+      uk: "Привіт, Паулю, привіт, Лено! Дуже дякую вам за допомогу. Квартира мені подобається. Тут ще стоїть коробка. У коробці лампа. Вона твоя, Паулю. Я привезу її тобі в суботу машиною."
     explain:
       en: "Four dative tools in one short message: danken + Dativ for the thanks (euch), gefallen + Dativ for the opinion (mir), gehören + Dativ for the owner (dir), and mit + Dativ for the means of transport (mit dem Auto). Check your draft against them one by one — the person you thank, please or give to is never an accusative object."
       ru: "Четыре дативных инструмента в одном коротком сообщении: danken + Dativ для благодарности (euch), gefallen + Dativ для оценки (mir), gehören + Dativ для владельца (dir) и mit + Dativ для транспорта (mit dem Auto). Проверьте черновик по этому списку: тот, кого благодарят, кому нравится и кому принадлежит вещь, никогда не стоит в Akkusativ."
+      uk: "Чотири дативні інструменти в одному короткому повідомленні: danken + Dativ для подяки (euch), gefallen + Dativ для оцінки (mir), gehören + Dativ для власника (dir) і mit + Dativ для транспорту (mit dem Auto). Перевірте чернетку за цим списком: той, кому дякують, кому подобається і кому належить річ, ніколи не стоїть в Akkusativ."
 
   - id: sprechen-lampe-zurueckbringen
     outcomes: [dativ-verben, dativ-praepositionen]
@@ -126,20 +150,27 @@ items:
     prompt:
       en: "Paul calls you: „Hallo! Ich suche meine Lampe. Ist sie noch bei dir?“ Answer him aloud."
       ru: "Пауль звонит вам: «Hallo! Ich suche meine Lampe. Ist sie noch bei dir?» Ответьте ему вслух."
+      uk: "Пауль дзвонить вам: «Hallo! Ich suche meine Lampe. Ist sie noch bei dir?» Дайте йому відповідь уголос."
     goal:
       en: "Confirm that the lamp is his, thank him for helping with the move, and arrange how and when you bring it back."
       ru: "Подтвердите, что лампа его, поблагодарите за помощь с переездом и договоритесь, как и когда вы её вернёте."
+      uk: "Підтвердіть, що лампа його, подякуйте за допомогу з переїздом і домовтеся, як і коли ви її повернете."
     checklist:
       - en: "I said the lamp is his with gehören + Dativ (Die Lampe gehört dir)."
         ru: "Я сказал(а), что лампа принадлежит ему, через gehören + Dativ (Die Lampe gehört dir)."
+        uk: "Я сказав(-ла), що лампа належить йому, через gehören + Dativ (Die Lampe gehört dir)."
       - en: "I thanked him with danken + Dativ (Ich danke dir für die Hilfe)."
         ru: "Я поблагодарил(а) его через danken + Dativ (Ich danke dir für die Hilfe)."
+        uk: "Я подякував(-ла) йому через danken + Dativ (Ich danke dir für die Hilfe)."
       - en: "I said how or when I bring it, with a dative preposition (mit dem Auto, zu dir)."
         ru: "Я сказал(а), как или когда привезу её, — с дативным предлогом (mit dem Auto, zu dir)."
+        uk: "Я сказав(-ла), як або коли привезу її, — з дативним прийменником (mit dem Auto, zu dir)."
     model_answer: "Ja, die Lampe ist noch hier. Sie gehört dir. Ich danke dir noch einmal für die Hilfe. Am Samstag komme ich mit dem Auto zu dir und bringe sie dir."
     model_translation:
       en: "Yes, the lamp is still here. It belongs to you. Thank you again for your help. On Saturday I will come to your place by car and bring it to you."
       ru: "Да, лампа ещё здесь. Она твоя. Спасибо тебе ещё раз за помощь. В субботу я приеду к тебе на машине и привезу её."
+      uk: "Так, лампа ще тут. Вона твоя. Ще раз дякую тобі за допомогу. У суботу я приїду до тебе машиною і привезу її."
     explain:
       en: "A complete turn does three things: it answers the question, it settles the ownership (gehören + Dativ: dir), and it makes a concrete offer (zu dir, mit dem Auto — both dative prepositions). Say it a second time and listen for the endings: dir, not dich; mit dem Auto, not mit das Auto."
       ru: "Полноценная реплика делает три вещи: отвечает на вопрос, решает вопрос принадлежности (gehören + Dativ: dir) и содержит конкретное предложение (zu dir, mit dem Auto — оба предлога требуют Dativ). Проговорите ответ второй раз и вслушайтесь в окончания: dir, а не dich; mit dem Auto, а не mit das Auto."
+      uk: "Повноцінна репліка робить три речі: відповідає на питання, з'ясовує належність (gehören + Dativ: dir) і містить конкретну пропозицію (zu dir, mit dem Auto — обидва прийменники вимагають Dativ). Промовте відповідь удруге і вслухайтеся в закінчення: dir, а не dich; mit dem Auto, а не mit das Auto."

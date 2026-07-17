@@ -3,6 +3,7 @@ role: drill
 title:
   en: Drill — mir or mich?
   ru: Тренажёр — mir или mich?
+  uk: Тренажер — mir чи mich?
 items:
   - id: mc-helfen-mir
     outcomes: [dativ-verben, dativ-pronomen]
@@ -14,9 +15,11 @@ items:
     translation:
       en: Can you please help me?
       ru: Ты можешь мне помочь, пожалуйста?
+      uk: Ти можеш мені допомогти, будь ласка?
     explain:
       en: "helfen takes the dative: mir. English 'help ME' looks like a direct object, but helfen works like giving help TO someone — ask wem? (to whom?), the answer is dative."
       ru: "helfen требует Dativ: mir. Русский здесь подсказывает: «помогать (кому?) мне» — тоже дательный падеж."
+      uk: "helfen вимагає Dativ: mir. Українська тут підказує: «допомагати (кому?) мені» — теж давальний відмінок."
 
   - id: mc-anrufen-dich
     outcomes: [dativ-verben]
@@ -28,9 +31,11 @@ items:
     translation:
       en: I'll call you tonight.
       ru: Я позвоню тебе сегодня вечером.
+      uk: Я подзвоню тобі сьогодні ввечері.
     explain:
       en: "anrufen takes the accusative: dich. English gets this right — you call SOMEONE, a plain direct object: jemanden anrufen. Never 'dir anrufen'."
       ru: "anrufen требует Akkusativ: dich. Классическая ловушка — по-русски «звонить (кому?) тебе», дательный падеж, но по-немецки jemanden anrufen. «Dir anrufen» — ошибка."
+      uk: "anrufen вимагає Akkusativ: dich. Класична пастка — українською «дзвонити (кому?) тобі», давальний відмінок, але німецькою jemanden anrufen. «Dir anrufen» — помилка."
 
   - id: mc-danken-dir
     outcomes: [dativ-verben, dativ-pronomen]
@@ -42,9 +47,11 @@ items:
     translation:
       en: Thank you for the present.
       ru: Спасибо тебе за подарок.
+      uk: Дякую тобі за подарунок.
     explain:
       en: "danken takes the dative: dir. English misleads here — 'thank YOU' looks like a direct object, but German insists on the dative: Ich danke dir."
       ru: "danken требует Dativ: dir. Здесь русский сбивает: «благодарить (кого?) тебя» — винительный падеж, а в немецком только дательный."
+      uk: "danken вимагає Dativ: dir. Українська тут на вашому боці: «дякувати (кому?) тобі» — теж давальний: Ich danke dir."
 
   - id: mc-sehen-ihn
     outcomes: [dativ-verben]
@@ -56,9 +63,11 @@ items:
     translation:
       en: There is Mr Braun. Do you see him?
       ru: Вон господин Браун. Ты его видишь?
+      uk: Он пан Браун. Ти його бачиш?
     explain:
       en: "sehen takes the accusative: er → ihn. You see SOMEONE — a plain direct object, just as in English. ihm would be dative."
       ru: "sehen требует Akkusativ: er → ihn. Как и в русском: «видеть (кого?) его». Форма ihm — это Dativ."
+      uk: "sehen вимагає Akkusativ: er → ihn. Як і в українській: «бачити (кого?) його». Форма ihm — це Dativ."
 
   - id: mc-gehoeren-ihm
     outcomes: [dativ-verben, dativ-pronomen]
@@ -70,9 +79,11 @@ items:
     translation:
       en: That is Peter's bag. It belongs to him.
       ru: Это сумка Петера. Она принадлежит ему.
+      uk: Це сумка Петера. Вона належить йому.
     explain:
       en: "gehören takes the dative: er → ihm — think 'it belongs TO him'; the owner is the wem?-answer."
       ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
+      uk: "gehören вимагає Dativ: er → ihm — як і в українській: «належить (кому?) йому»."
 
   - id: mc-fragen-sie
     outcomes: [dativ-verben]
@@ -84,9 +95,11 @@ items:
     translation:
       en: Excuse me, may I ask you something?
       ru: Извините, можно Вас кое о чём спросить?
+      uk: Вибачте, можна Вас дещо спитати?
     explain:
       en: "fragen takes the accusative: jemanden fragen → Sie. You ask SOMEONE — a plain direct object, as in English. Ihnen would be dative — wrong after fragen."
       ru: "fragen требует Akkusativ: jemanden fragen → Sie. Русский здесь совпадает: «спросить (кого?) Вас». Ihnen — это Dativ, после fragen он не нужен."
+      uk: "fragen вимагає Akkusativ: jemanden fragen → Sie. Українська тут збігається: «спитати (кого?) Вас». Ihnen — це Dativ, після fragen він не потрібен."
 
   - id: cloze-passen-mir
     outcomes: [dativ-verben, dativ-pronomen]
@@ -95,13 +108,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Die Schuhe sind schön, aber sie passen {{mir}} nicht. (ich)"
     translation:
       en: The shoes are nice, but they don't fit me.
       ru: Туфли красивые, но они мне не подходят.
+      uk: Туфлі гарні, але вони мені не підходять.
     explain:
       en: "passen takes the dative: ich → mir. Think 'they work FOR me' — the shoes are the subject, and the person is the dative wem?-answer."
       ru: "passen требует Dativ: ich → mir. Как и «подходить (кому?) мне» — русский здесь подсказывает правильно."
+      uk: "passen вимагає Dativ: ich → mir. Як і «підходити (кому?) мені» — українська тут підказує правильно."
 
   - id: cloze-gefallen-ihr
     outcomes: [dativ-pronomen, dativ-verben]
@@ -110,13 +126,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Meine Schwester liebt Musik. Das Konzert gefällt {{ihr}} sehr. (sie)"
     translation:
       en: My sister loves music. She likes the concert a lot.
       ru: Моя сестра любит музыку. Концерт ей очень нравится.
+      uk: Моя сестра любить музику. Концерт їй дуже подобається.
     explain:
       en: "gefallen works like English 'it appeals to her': the concert is the subject, the person is dative — sie → ihr."
       ru: "gefallen устроен как «нравиться»: концерт — подлежащее, а человек стоит в дательном падеже — sie → ihr."
+      uk: "gefallen влаштований як «подобатися»: концерт — підмет, а людина стоїть у давальному відмінку — sie → ihr."
 
   - id: cloze-anrufen-ihn
     outcomes: [dativ-verben]
@@ -125,13 +144,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Max wartet auf deine Antwort. Warum rufst du {{ihn}} nicht an? (er)"
     translation:
       en: Max is waiting for your answer. Why don't you call him?
       ru: Макс ждёт твоего ответа. Почему ты ему не звонишь?
+      uk: Макс чекає на твою відповідь. Чому ти йому не дзвониш?
     explain:
       en: "anrufen takes the accusative: er → ihn. In German you call someone, not to someone — a plain direct object: ihn anrufen."
       ru: "anrufen требует Akkusativ: er → ihn. Русское «звонить ему» сбивает — по-немецки «звонят кого-то», а не «кому-то»: ihn anrufen."
+      uk: "anrufen вимагає Akkusativ: er → ihn. Українське «дзвонити йому» збиває — німецькою «дзвонять когось», а не «комусь»: ihn anrufen."
 
   - id: mc-helfen-ihnen
     outcomes: [dativ-pronomen, dativ-verben]
@@ -143,9 +165,11 @@ items:
     translation:
       en: Mrs Müller, I'm happy to help you.
       ru: Госпожа Мюллер, я с удовольствием Вам помогу.
+      uk: Пані Мюллер, я залюбки Вам допоможу.
     explain:
       en: "helfen takes the dative, and the dative of formal Sie is Ihnen (always capitalized): Ich helfe Ihnen."
       ru: "helfen требует Dativ, а дательная форма вежливого Sie — Ihnen (всегда с заглавной буквы): Ich helfe Ihnen."
+      uk: "helfen вимагає Dativ, а давальна форма ввічливого Sie — Ihnen (завжди з великої літери): Ich helfe Ihnen."
 
   - id: mc-satz-gefallen
     outcomes: [dativ-pronomen, dativ-verben]
@@ -154,6 +178,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Der Film gefällt mir."
@@ -162,6 +187,7 @@ items:
     explain:
       en: "gefallen takes the dative: mir. The film is the subject and I am the experiencer — 'it appeals TO me' — so 'gefällt mich' is impossible."
       ru: "gefallen требует Dativ: mir. Русский устроен так же — «фильм нравится (кому?) мне», поэтому «gefällt mich» невозможно."
+      uk: "gefallen вимагає Dativ: mir. Українська влаштована так само — «фільм подобається (кому?) мені», тому «gefällt mich» неможливо."
 
   - id: uebersetzen-anrufen
     outcomes: [dativ-verben]
@@ -170,8 +196,10 @@ items:
     instruction:
       en: Translate into German. Use du.
       ru: Переведите на немецкий. Обращение на «ты».
+      uk: Перекладіть німецькою. Звертання на «ти».
     prompt_en: "I will call you tomorrow."
     prompt_ru: "Я позвоню тебе завтра."
+    prompt_uk: "Я подзвоню тобі завтра."
     answer: "Ich rufe dich morgen an."
     key_tokens: ["dich"]
     accept:
@@ -179,6 +207,7 @@ items:
     explain:
       en: "anrufen takes the accusative — dich, not dir — because you call SOMEONE (a direct object). And the separable prefix an goes to the end: Ich rufe dich morgen an."
       ru: "anrufen требует Akkusativ — dich, а не dir, — и отделяемая приставка an уходит в конец: Ich rufe dich morgen an. Русское «позвоню тебе» здесь сбивает."
+      uk: "anrufen вимагає Akkusativ — dich, а не dir, — і відокремлюваний префікс an іде в кінець: Ich rufe dich morgen an. Українське «подзвоню тобі» тут збиває."
 
   - id: cloze-speisekarte-mir
     outcomes: [dativ-pronomen]
@@ -187,13 +216,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Kannst du {{mir}} bitte die Speisekarte geben? (ich)"
     translation:
       en: Can you please give me the menu?
       ru: Ты можешь дать мне меню, пожалуйста?
+      uk: Ти можеш дати мені меню, будь ласка?
     explain:
       en: "geben has two objects: the thing is accusative (die Speisekarte), the receiver is dative — ich → mir."
       ru: "У geben два дополнения: предмет — Akkusativ (die Speisekarte), получатель — Dativ: ich → mir, как и в русском «дать (кому?) мне»."
+      uk: "У geben два додатки: предмет — Akkusativ (die Speisekarte), отримувач — Dativ: ich → mir, як і в українському «дати (кому?) мені»."
 
   - id: cloze-verstehe-dich
     outcomes: [dativ-verben]
@@ -202,13 +234,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Sprich bitte langsamer, ich verstehe {{dich}} nicht. (du)"
     translation:
       en: Please speak more slowly, I don't understand you.
       ru: Говори, пожалуйста, медленнее, я тебя не понимаю.
+      uk: Говори, будь ласка, повільніше, я тебе не розумію.
     explain:
       en: "verstehen takes the accusative: du → dich. You understand SOMEONE — a plain direct object, as in English."
       ru: "verstehen требует Akkusativ: du → dich. Как и в русском: «понимать (кого?) тебя»."
+      uk: "verstehen вимагає Akkusativ: du → dich. Як і в українській: «розуміти (кого?) тебе»."
 
   - id: cloze-danken-ihnen
     outcomes: [dativ-pronomen, dativ-verben]
@@ -217,13 +252,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в правильном падеже.
+      uk: Вставте займенник із дужок у правильному відмінку.
     text: "Meine Nachbarn haben mir geholfen. Ich danke {{ihnen}} sehr. (sie, Plural)"
     translation:
       en: My neighbours helped me. I thank them a lot.
       ru: Соседи мне помогли. Я им очень благодарен.
+      uk: Сусіди мені допомогли. Я їм дуже вдячний.
     explain:
       en: "danken takes the dative; plural sie → ihnen (lowercase — it means 'them', not the formal Sie)."
       ru: "danken требует Dativ; множественное sie → ihnen (со строчной буквы — это «им», а не вежливое Sie)."
+      uk: "danken вимагає Dativ; множинне sie → ihnen (з малої літери — це «їм», а не ввічливе Sie)."
 
   - id: uebersetzen-hilf-mir
     outcomes: [dativ-verben, dativ-pronomen]
@@ -232,8 +270,10 @@ items:
     instruction:
       en: Translate into German. Use du.
       ru: Переведите на немецкий. Обращение на «ты».
+      uk: Перекладіть німецькою. Звертання на «ти».
     prompt_en: "Can you please help me?"
     prompt_ru: "Ты можешь мне помочь, пожалуйста?"
+    prompt_uk: "Ти можеш мені допомогти, будь ласка?"
     answer: "Kannst du mir bitte helfen?"
     key_tokens: ["mir"]
     accept:
@@ -241,6 +281,7 @@ items:
     explain:
       en: "helfen takes the dative: mir, not mich. The modal kannst sits in position 2, helfen goes to the end."
       ru: "helfen требует Dativ: mir, а не mich — как и русское «помочь (кому?) мне». Модальный kannst — на втором месте, helfen — в конце."
+      uk: "helfen вимагає Dativ: mir, а не mich — як і українське «допомогти (кому?) мені». Модальне kannst — на другому місці, helfen — у кінці."
 
   - id: uebersetzen-abholen-dich
     outcomes: [dativ-verben]
@@ -249,8 +290,10 @@ items:
     instruction:
       en: Translate into German. Use du.
       ru: Переведите на немецкий. Обращение на «ты».
+      uk: Перекладіть німецькою. Звертання на «ти».
     prompt_en: "I'll pick you up from the station."
     prompt_ru: "Я встречу тебя на вокзале."
+    prompt_uk: "Я зустріну тебе на вокзалі."
     answer: "Ich hole dich vom Bahnhof ab."
     key_tokens: ["dich"]
     accept:
@@ -258,3 +301,4 @@ items:
     explain:
       en: "abholen takes the accusative: dich. The prefix ab goes to the end, and vom Bahnhof = von dem Bahnhof (dative after von)."
       ru: "abholen требует Akkusativ: dich — «встретить (кого?) тебя». Приставка ab уходит в конец, а vom Bahnhof = von dem Bahnhof (Dativ после von)."
+      uk: "abholen вимагає Akkusativ: dich — «зустріти (кого?) тебе». Префікс ab іде в кінець, а vom Bahnhof = von dem Bahnhof (Dativ після von)."

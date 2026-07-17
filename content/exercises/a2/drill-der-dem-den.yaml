@@ -3,6 +3,7 @@ role: drill
 title:
   en: Drill — der, dem or den?
   ru: Тренажёр — der, dem или den?
+  uk: Тренажер — der, dem чи den?
 items:
   - id: mc-mit-auto
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -14,9 +15,11 @@ items:
     translation:
       en: We are driving to Hamburg in the car.
       ru: Мы едем в Гамбург на машине.
+      uk: Ми їдемо до Гамбурга машиною.
     explain:
       en: "mit always takes the dative: das Auto → dem Auto. 'mit das Auto' is impossible — after mit there is no accusative."
       ru: "mit всегда требует Dativ: das Auto → dem Auto. «mit das Auto» невозможно — после mit винительного падежа не бывает."
+      uk: "mit завжди вимагає Dativ: das Auto → dem Auto. «mit das Auto» неможливо — після mit знахідного відмінка не буває."
 
   - id: mc-fuer-vater
     outcomes: [dativ-artikel]
@@ -28,9 +31,11 @@ items:
     translation:
       en: The present is for the father.
       ru: Подарок для отца.
+      uk: Подарунок для батька.
     explain:
       en: "für always takes the accusative: der Vater → den Vater. für, ohne, durch never take the dative — 'für dem' is impossible."
       ru: "für всегда требует Akkusativ: der Vater → den Vater. für, ohne, durch никогда не сочетаются с Dativ — «für dem» невозможно."
+      uk: "für завжди вимагає Akkusativ: der Vater → den Vater. für, ohne, durch ніколи не поєднуються з Dativ — «für dem» неможливо."
 
   - id: mc-nach-arbeit
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -42,9 +47,11 @@ items:
     translation:
       en: After work I go shopping.
       ru: После работы я иду за покупками.
+      uk: Після роботи я йду за покупками.
     explain:
       en: "nach always takes the dative: die Arbeit → der Arbeit. In the dative, feminine die becomes der."
       ru: "nach всегда требует Dativ: die Arbeit → der Arbeit. В дательном падеже женский артикль die превращается в der."
+      uk: "nach завжди вимагає Dativ: die Arbeit → der Arbeit. У давальному відмінку жіночий артикль die перетворюється на der."
 
   - id: mc-durch-stadt
     outcomes: [dativ-artikel]
@@ -56,9 +63,11 @@ items:
     translation:
       en: The bus goes through the city.
       ru: Автобус едет через город.
+      uk: Автобус їде через місто.
     explain:
       en: "durch always takes the accusative: die Stadt stays die Stadt (feminine doesn't change in the accusative). 'durch der Stadt' would be dative — wrong here."
       ru: "durch всегда требует Akkusativ: die Stadt остаётся die Stadt (женский род в винительном не меняется). «durch der Stadt» — это Dativ, здесь он неверен."
+      uk: "durch завжди вимагає Akkusativ: die Stadt залишається die Stadt (жіночий рід у знахідному не змінюється). «durch der Stadt» — це Dativ, тут він неправильний."
 
   - id: cloze-bei-eltern
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -67,13 +76,16 @@ items:
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "Er wohnt noch bei {{den}} Eltern. (die Eltern)"
     translation:
       en: He still lives with his parents.
       ru: Он всё ещё живёт у родителей.
+      uk: Він досі живе в батьків.
     explain:
       en: "bei always takes the dative; in the plural die → den: bei den Eltern. (The noun Eltern already ends in -n.)"
       ru: "bei всегда требует Dativ; во множественном числе die → den: bei den Eltern. (Существительное Eltern уже заканчивается на -n.)"
+      uk: "bei завжди вимагає Dativ; у множині die → den: bei den Eltern. (Іменник Eltern уже закінчується на -n.)"
 
   - id: mc-ohne-kinder
     outcomes: [dativ-artikel]
@@ -85,9 +97,11 @@ items:
     translation:
       en: We are going on the trip without the children.
       ru: Мы едем на экскурсию без детей.
+      uk: Ми їдемо на екскурсію без дітей.
     explain:
       en: "ohne always takes the accusative; the plural accusative article is die: ohne die Kinder. den Kindern would be dative — never after ohne."
       ru: "ohne всегда требует Akkusativ; во множественном числе винительный артикль — die: ohne die Kinder. den Kindern — это Dativ, после ohne он невозможен."
+      uk: "ohne завжди вимагає Akkusativ; у множині знахідний артикль — die: ohne die Kinder. den Kindern — це Dativ, після ohne він неможливий."
 
   - id: mc-helfen-mann
     outcomes: [dativ-artikel, dativ-verben]
@@ -99,9 +113,11 @@ items:
     translation:
       en: I am helping the man.
       ru: Я помогаю мужчине.
+      uk: Я допомагаю чоловікові.
     explain:
       en: "helfen takes the dative: der Mann → dem Mann. English 'help the man' looks like a direct object, but helfen means giving help TO someone — ask wem? (to whom?)."
       ru: "helfen требует Dativ: der Mann → dem Mann. Русский подсказывает: «помогать (кому?) мужчине» — тоже дательный падеж."
+      uk: "helfen вимагає Dativ: der Mann → dem Mann. Українська підказує: «допомагати (кому?) чоловікові» — теж давальний відмінок."
 
   - id: mc-sehen-mann
     outcomes: [dativ-artikel]
@@ -113,9 +129,11 @@ items:
     translation:
       en: I see the man over there.
       ru: Я вижу вон того мужчину.
+      uk: Я бачу он того чоловіка.
     explain:
       en: "sehen takes the accusative: der Mann → den Mann. Compare the minimal pair: Ich helfe dem Mann (dative) — Ich sehe den Mann (accusative)."
       ru: "sehen требует Akkusativ: der Mann → den Mann. Сравните минимальную пару: Ich helfe dem Mann (Dativ) — Ich sehe den Mann (Akkusativ)."
+      uk: "sehen вимагає Akkusativ: der Mann → den Mann. Порівняйте мінімальну пару: Ich helfe dem Mann (Dativ) — Ich sehe den Mann (Akkusativ)."
 
   - id: cloze-zum-arzt
     outcomes: [dativ-praepositionen]
@@ -124,13 +142,16 @@ items:
     instruction:
       en: Fill the gap with the contracted form of preposition + article.
       ru: Вставьте слитную форму предлога с артиклем.
+      uk: Вставте злиту форму прийменника з артиклем.
     text: "Ich gehe heute {{zum}} Arzt. (zu + dem)"
     translation:
       en: I'm going to the doctor today.
       ru: Я сегодня иду к врачу.
+      uk: Я сьогодні йду до лікаря.
     explain:
       en: "zu always takes the dative; zu dem contracts to zum: Ich gehe zum Arzt."
       ru: "zu всегда требует Dativ; zu dem сливается в zum: Ich gehe zum Arzt."
+      uk: "zu завжди вимагає Dativ; zu dem зливається в zum: Ich gehe zum Arzt."
 
   - id: mc-kindern
     outcomes: [dativ-artikel]
@@ -142,9 +163,11 @@ items:
     translation:
       en: The teacher is helping the children.
       ru: Учительница помогает детям.
+      uk: Учителька допомагає дітям.
     explain:
       en: "helfen takes the dative. In the dative plural two things change: die → den and the noun adds -n — den Kindern. 'den Kinder' is the classic half-way mistake."
       ru: "helfen требует Dativ. В Dativ Plural меняются две вещи: die → den, а существительное получает -n — den Kindern. «den Kinder» — классическая ошибка «на полпути»."
+      uk: "helfen вимагає Dativ. У Dativ Plural змінюються дві речі: die → den, а іменник отримує -n — den Kindern. «den Kinder» — класична помилка «на півдорозі»."
 
   - id: uebersetzen-helfen-mann
     outcomes: [dativ-artikel, dativ-verben]
@@ -153,13 +176,16 @@ items:
     instruction:
       en: Translate into German. Use the definite article (der Mann).
       ru: Переведите на немецкий. Используйте определённый артикль (der Mann).
+      uk: Перекладіть німецькою. Використайте означений артикль (der Mann).
     prompt_en: "I am helping the man."
     prompt_ru: "Я помогаю мужчине."
+    prompt_uk: "Я допомагаю чоловікові."
     answer: "Ich helfe dem Mann."
     key_tokens: ["dem"]
     explain:
       en: "helfen takes the dative: der Mann → dem Mann. Think of it as giving help TO the man — the wem? (to whom?) answer is always dative."
       ru: "helfen требует Dativ: der Mann → dem Mann. В русском так же — «помогаю (кому?) мужчине»."
+      uk: "helfen вимагає Dativ: der Mann → dem Mann. В українській так само — «допомагаю (кому?) чоловікові»."
 
   - id: uebersetzen-sehen-mann
     outcomes: [dativ-artikel]
@@ -168,13 +194,16 @@ items:
     instruction:
       en: Translate into German. Use the definite article (der Mann).
       ru: Переведите на немецкий. Используйте определённый артикль (der Mann).
+      uk: Перекладіть німецькою. Використайте означений артикль (der Mann).
     prompt_en: "I see the man."
     prompt_ru: "Я вижу мужчину."
+    prompt_uk: "Я бачу чоловіка."
     answer: "Ich sehe den Mann."
     key_tokens: ["den"]
     explain:
       en: "sehen takes the accusative: der Mann → den Mann. Only the masculine article changes in the accusative — and that is exactly the der/dem/den choice this drill trains."
       ru: "sehen требует Akkusativ: der Mann → den Mann. В винительном падеже меняется только мужской артикль — именно этот выбор der/dem/den мы и тренируем."
+      uk: "sehen вимагає Akkusativ: der Mann → den Mann. У знахідному відмінку змінюється лише чоловічий артикль — саме цей вибір der/dem/den ми й тренуємо."
 
   - id: cloze-von-oma
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -183,13 +212,16 @@ items:
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "Das Geschenk ist von {{der}} Oma. (die Oma)"
     translation:
       en: The present is from grandma.
       ru: Подарок от бабушки.
+      uk: Подарунок від бабусі.
     explain:
       en: "von always takes the dative; feminine die → der: von der Oma."
       ru: "von всегда требует Dativ; женский род die → der: von der Oma."
+      uk: "von завжди вимагає Dativ; жіночий рід die → der: von der Oma."
 
   - id: cloze-gast-suppe
     outcomes: [dativ-artikel]
@@ -198,13 +230,16 @@ items:
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "Der Kellner bringt {{dem}} Gast die Suppe. (der Gast)"
     translation:
       en: The waiter brings the guest the soup.
       ru: Официант приносит гостю суп.
+      uk: Офіціант приносить гостеві суп.
     explain:
       en: "Two objects: the guest is the wem?-answer (dative, der → dem), the soup is the was?-answer (accusative). The person comes first."
       ru: "Два дополнения: гость — ответ на wem? (Dativ, der → dem), суп — ответ на was? (Akkusativ). Сначала кому, потом что."
+      uk: "Два додатки: гість — відповідь на wem? (Dativ, der → dem), суп — відповідь на was? (Akkusativ). Спершу кому, потім що."
 
   - id: cloze-siehst-bus
     outcomes: [dativ-artikel]
@@ -213,13 +248,16 @@ items:
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "Siehst du {{den}} Bus dort? (der Bus)"
     translation:
       en: Do you see the bus over there?
       ru: Ты видишь вон тот автобус?
+      uk: Ти бачиш он той автобус?
     explain:
       en: "sehen takes the accusative: der Bus → den Bus. Compare: Wir fahren mit dem Bus (dative after mit)."
       ru: "sehen требует Akkusativ: der Bus → den Bus. Сравните: Wir fahren mit dem Bus (Dativ после mit)."
+      uk: "sehen вимагає Akkusativ: der Bus → den Bus. Порівняйте: Wir fahren mit dem Bus (Dativ після mit)."
 
   - id: uebersetzen-zum-arzt
     outcomes: [dativ-praepositionen]
@@ -228,8 +266,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "She is going to the doctor."
     prompt_ru: "Она идёт к врачу."
+    prompt_uk: "Вона йде до лікаря."
     answer: "Sie geht zum Arzt."
     key_tokens: ["zum"]
     accept:
@@ -237,6 +277,7 @@ items:
     explain:
       en: "zu always takes the dative, and zu dem contracts to zum: Sie geht zum Arzt."
       ru: "zu всегда требует Dativ, а zu dem сливается в zum: Sie geht zum Arzt."
+      uk: "zu завжди вимагає Dativ, а zu dem зливається в zum: Sie geht zum Arzt."
 
   - id: uebersetzen-hilft-kindern
     outcomes: [dativ-artikel, dativ-verben]
@@ -245,10 +286,13 @@ items:
     instruction:
       en: Translate into German. Use die Lehrerin for "the teacher".
       ru: Переведите на немецкий. «Учительница» — die Lehrerin.
+      uk: Перекладіть німецькою. «Учителька» — die Lehrerin.
     prompt_en: "The teacher is helping the children."
     prompt_ru: "Учительница помогает детям."
+    prompt_uk: "Учителька допомагає дітям."
     answer: "Die Lehrerin hilft den Kindern."
     key_tokens: ["den", "Kindern"]
     explain:
       en: "helfen takes the dative; in the dative plural both things change: die → den AND the noun adds -n — den Kindern."
       ru: "helfen требует Dativ; в Dativ Plural меняются две вещи: die → den И существительное получает -n — den Kindern."
+      uk: "helfen вимагає Dativ; у Dativ Plural змінюються дві речі: die → den І іменник отримує -n — den Kindern."

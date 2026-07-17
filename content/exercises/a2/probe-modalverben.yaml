@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — modal verbs"
   ru: "Проверка — модальные глаголы"
+  uk: "Перевірка — модальні дієслова"
 
 # Three PARALLEL variants of ONE competence: the modal Satzklammer — the modal verb
 # conjugated in position 2, the bare infinitive at the very end. It is what makes a
@@ -18,11 +19,18 @@ items:
     outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    # The RU/UK prompts spell out the motion verb («пойти»/«піти»): the elliptical
+    # «мне нужно к врачу» invites the equally elliptical — and idiomatic — Am Montag
+    # muss ich zum Arzt, which has no infinitive and so cannot demonstrate the bracket
+    # this probe measures.
     prompt_en: "On Monday I have to go to the doctor."
-    prompt_ru: "В понедельник мне нужно к врачу."
+    prompt_ru: "В понедельник мне нужно пойти к врачу."
+    prompt_uk: "У понеділок мені треба піти до лікаря."
     answer: "Am Montag muss ich zum Arzt gehen."
     key_tokens: ["muss", "gehen"]
     accept:
@@ -30,6 +38,7 @@ items:
     explain:
       en: "The modal is the conjugated verb, so it holds position 2 — and because Am Montag is fronted, the subject ich follows it. The bare infinitive gehen closes the sentence: muss … gehen. The infinitive is the last word, never the second."
       ru: "Модальный глагол — спрягаемый, поэтому он занимает второе место, а из-за вынесенного вперёд Am Montag подлежащее ich идёт за ним. Инфинитив без zu замыкает предложение: muss … gehen. Инфинитив — последнее слово, а не второе."
+      uk: "Модальне дієслово — відмінюване, тому воно займає друге місце, а через винесене наперед Am Montag підмет ich іде за ним. Інфінітив без zu замикає речення: muss … gehen. Інфінітив — останнє слово, а не друге."
 
   - id: variant-b
     outcomes: [modal-satzklammer]
@@ -38,8 +47,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My brother wants to cook a soup this evening."
     prompt_ru: "Сегодня вечером мой брат хочет приготовить суп."
+    prompt_uk: "Сьогодні ввечері мій брат хоче приготувати суп."
     answer: "Mein Bruder will heute Abend eine Suppe kochen."
     key_tokens: ["will", "kochen"]
     accept:
@@ -53,6 +64,7 @@ items:
     explain:
       en: "The modal is the only verb that gets conjugated, and it claims position 2 — everything the sentence actually says (when, what) then piles up in the middle, and the infinitive is pushed out to the very end: will … kochen. The longer the middle field, the stronger the pull to put the infinitive next to the modal, the way English does ('wants to cook a soup'). German makes you hold it back to the last word."
       ru: "Спрягается только модальный глагол, и он занимает второе место. Всё содержание предложения — когда, что — набивается в середину, а инфинитив выталкивается в самый конец: will … kochen. Чем длиннее середина, тем сильнее соблазн поставить инфинитив сразу за модальным глаголом, как в русском («хочет приготовить суп»). Немецкий заставляет придержать его до последнего слова."
+      uk: "Відмінюється лише модальне дієслово, і воно займає друге місце. Увесь зміст речення — коли, що — збирається в середині, а інфінітив виштовхується в самий кінець: will … kochen. Що довша середина, то сильніша спокуса поставити інфінітив одразу за модальним дієсловом, як в українській («хоче приготувати суп»). Німецька змушує притримати його до останнього слова."
 
   - id: variant-c
     outcomes: [modal-satzklammer]
@@ -61,10 +73,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Where can I buy tickets?"
     prompt_ru: "Где я могу купить билеты?"
+    prompt_uk: "Де я можу купити квитки?"
     answer: "Wo kann ich Fahrkarten kaufen?"
     key_tokens: ["kann", "kaufen"]
     explain:
       en: "A W-question changes nothing about the bracket: the question word takes position 1, the modal kann is still the second element, and the infinitive kaufen still ends the sentence. English puts 'buy' right after 'I' — German makes you wait for it."
       ru: "Вопрос с вопросительным словом ничего не меняет в рамке: вопросительное слово занимает первое место, модальный глагол kann остаётся вторым, а инфинитив kaufen по-прежнему замыкает предложение. По-русски «купить» стоит сразу после «могу» — по-немецки его приходится ждать до конца."
+      uk: "Питання з питальним словом нічого не змінює в рамці: питальне слово займає перше місце, модальне дієслово kann залишається другим, а інфінітив kaufen так само замикає речення. Українською «купити» стоїть одразу після «можу» — німецькою на нього доводиться чекати до кінця."
