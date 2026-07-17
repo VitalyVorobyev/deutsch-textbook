@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the dative"
   ru: "Проверка — дательный падеж"
+  uk: "Перевірка — давальний відмінок"
 
 # Three PARALLEL variants of ONE competence: producing the dative article and noun
 # ending (dem, der, den …-n). One variant is drawn per due interval (2, 7, 21 days),
@@ -21,8 +22,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "On Saturday I am travelling to Berlin with my friends."
     prompt_ru: "В субботу я еду в Берлин с друзьями."
+    prompt_uk: "У суботу я їду до Берліна з друзями."
     answer: "Ich fahre am Samstag mit meinen Freunden nach Berlin."
     key_tokens: ["meinen", "Freunden"]
     accept:
@@ -30,6 +33,7 @@ items:
     explain:
       en: "The dative plural marks itself twice: the article takes -en (meinen) and the noun adds an -n of its own (Freunde → Freunden). Leave out either half and the case is not there. This is also the only plural that changes at all — in the nominative and the accusative it stays meine Freunde."
       ru: "Дательный падеж множественного числа отмечается дважды: артикль получает -en (meinen), а существительное — собственное -n (Freunde → Freunden). Пропустите одну из двух половин — и падежа нет. Это к тому же единственная форма множественного числа, которая вообще меняется: в именительном и винительном остаётся meine Freunde."
+      uk: "Давальний відмінок множини позначається двічі: артикль отримує -en (meinen), а іменник — власне -n (Freunde → Freunden). Пропустіть одну з двох половин — і відмінка немає. Це до того ж єдина форма множини, яка взагалі змінюється: у називному і знахідному залишається meine Freunde."
 
   - id: variant-b
     outcomes: [dativ-artikel]
@@ -38,8 +42,10 @@ items:
     instruction:
       en: Translate into German. Use the verbs gefallen and danken.
       ru: Переведите на немецкий. Используйте глаголы gefallen и danken.
+      uk: Перекладіть німецькою. Використайте дієслова gefallen і danken.
     prompt_en: "The colleague likes the present. She thanks the boss."
     prompt_ru: "Коллеге нравится подарок. Она благодарит начальника."
+    prompt_uk: "Колезі подобається подарунок. Вона дякує начальникові."
     answer: "Das Geschenk gefällt der Kollegin. Sie dankt dem Chef."
     key_tokens: ["der", "dem"]
     accept:
@@ -47,6 +53,7 @@ items:
     explain:
       en: "Here the trigger is the verb, not a preposition: gefallen and danken both hand their person to the dative. With gefallen the person is not even the subject — the present does the pleasing, the colleague receives it. What has to come out right are the forms: feminine die Kollegin → der Kollegin, masculine der Chef → dem Chef. The feminine der is the expensive one, because it is spelled exactly like the masculine nominative (der Chef) and means the opposite of it — so it has to be produced on purpose, never by ear."
       ru: "Падежа здесь требует не предлог, а сам глагол: и gefallen, и danken управляют дательным. С gefallen русский помогает — «нравится кому?», дательный и там и там. А danken — ловушка: по-русски «благодарить кого?», винительный, и рука сама тянется к ❌ Sie dankt den Chef. Нужны формы: женский род die Kollegin → der Kollegin, мужской der Chef → dem Chef. Женское der стоит дороже всего: пишется точно как мужской именительный (der Chef), а значит прямо противоположное, — поэтому ставить его приходится осознанно, а не «на слух»."
+      uk: "Відмінка тут вимагає не прийменник, а саме дієслово: і gefallen, і danken керують давальним. Українська допомагає з обома — «подобається кому?», «дякує кому?», давальний і там, і там. Але потрібні німецькі форми: жіночий рід die Kollegin → der Kollegin, чоловічий der Chef → dem Chef. Жіноче der коштує найдорожче: пишеться точно як чоловічий називний (der Chef), а означає прямо протилежне, — тому ставити його доводиться свідомо, а не «на слух»."
 
   - id: variant-c
     outcomes: [dativ-artikel]
@@ -55,8 +62,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "After the concert we drive home with my sister."
     prompt_ru: "После концерта мы едем домой с моей сестрой."
+    prompt_uk: "Після концерту ми їдемо додому з моєю сестрою."
     answer: "Nach dem Konzert fahren wir mit meiner Schwester nach Hause."
     key_tokens: ["dem", "meiner"]
     accept:
@@ -64,3 +73,4 @@ items:
     explain:
       en: "Two dative slots in one sentence, and the two forms look nothing alike: neuter das Konzert → dem, feminine die Schwester → meiner. The feminine ending is the trap, because -er is what the masculine looks like in the nominative (der Mann) — in the dative it means the opposite. And the fronted phrase keeps the verb in position 2: Nach dem Konzert fahren wir …"
       ru: "Два дательных слова в одном предложении, и формы у них совершенно разные: средний род das Konzert → dem, женский die Schwester → meiner. Женское окончание — главная ловушка: -er выглядит как мужской именительный (der Mann), а в дательном означает прямо противоположное. И не забудьте про порядок слов: вынесенная вперёд группа оставляет глагол на втором месте — Nach dem Konzert fahren wir …"
+      uk: "Два давальні слова в одному реченні, і форми в них зовсім різні: середній рід das Konzert → dem, жіночий die Schwester → meiner. Жіноче закінчення — головна пастка: -er виглядає як чоловічий називний (der Mann), а в давальному означає прямо протилежне. І не забудьте про порядок слів: винесена наперед група залишає дієслово на другому місці — Nach dem Konzert fahren wir …"

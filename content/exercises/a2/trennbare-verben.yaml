@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — separable verbs
   ru: Практика — глаголы с отделяемыми приставками
+  uk: Практика — дієслова з відокремлюваними префіксами
 items:
   - id: order-aufstehen
     outcomes: [trennbar-satz]
@@ -11,13 +12,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Ich", "stehe", "um", "7", "Uhr", "auf."]
     translation:
       en: I get up at 7 o'clock.
       ru: Я встаю в 7 часов.
+      uk: Я встаю о 7 годині.
     explain:
       en: "Conjugated verb in position 2, separable prefix at the very end: Ich stehe … auf. The two parts form the sentence bracket."
       ru: "Спрягаемый глагол на втором месте, отделяемая приставка в самом конце: Ich stehe … auf. Две части образуют глагольную рамку."
+      uk: "Відмінюване дієслово на другому місці, відокремлюваний префікс у самому кінці: Ich stehe … auf. Дві частини утворюють дієслівну рамку."
 
   - id: cloze-anrufen
     outcomes: [trennbar-satz]
@@ -26,13 +30,16 @@ items:
     instruction:
       en: Complete the sentence with the separable prefix.
       ru: Вставьте отделяемую приставку.
+      uk: Вставте відокремлюваний префікс.
     text: "Er ruft seine Mutter {{an}}. (anrufen)"
     translation:
       en: He calls his mother.
       ru: Он звонит своей маме.
+      uk: Він дзвонить своїй мамі.
     explain:
       en: "anrufen splits in the present tense: er ruft … an. The prefix an- closes the bracket at the end of the clause."
       ru: "anrufen в настоящем времени разделяется: er ruft … an. Приставка an- закрывает рамку в конце предложения."
+      uk: "anrufen у теперішньому часі розділяється: er ruft … an. Префікс an- закриває рамку в кінці речення."
 
   - id: mc-satzklammer
     outcomes: [trennbar-satz]
@@ -47,6 +54,7 @@ items:
     explain:
       en: "In the present tense the prefix must split off AND go to the very end of the clause — not stay glued to the verb and not sit right after it: Ich stehe um 7 Uhr auf."
       ru: "В настоящем времени приставка обязана отделиться И уйти в самый конец предложения — она не остаётся при глаголе и не стоит сразу после него: Ich stehe um 7 Uhr auf."
+      uk: "У теперішньому часі префікс мусить відокремитися І піти в самий кінець речення — він не залишається при дієслові й не стоїть одразу після нього: Ich stehe um 7 Uhr auf."
 
   - id: match-praefixe
     outcomes: [trennbar-satz]
@@ -55,6 +63,7 @@ items:
     instruction:
       en: Match each sentence with its separable prefix.
       ru: Подберите к каждому предложению его отделяемую приставку.
+      uk: Доберіть до кожного речення його відокремлюваний префікс.
     pairs:
       - { left: "Ich stehe um sieben Uhr ___.", right: "auf" }
       - { left: "Er ruft seine Oma ___.", right: "an" }
@@ -64,6 +73,7 @@ items:
     explain:
       en: "aufstehen (to get up), anrufen (to call), einkaufen (to shop), fernsehen (to watch TV), abholen (to pick up) — the conjugated stem stays in position 2, the prefix ends the sentence."
       ru: "aufstehen (вставать), anrufen (звонить), einkaufen (делать покупки), fernsehen (смотреть телевизор), abholen (забирать) — спрягаемая часть остаётся на втором месте, приставка завершает предложение."
+      uk: "aufstehen (вставати), anrufen (дзвонити), einkaufen (робити покупки), fernsehen (дивитися телевізор), abholen (забирати) — відмінювана частина залишається на другому місці, префікс завершує речення."
 
   - id: order-modal
     outcomes: [trennbar-satz]
@@ -72,13 +82,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Ich", "muss", "morgen", "früh", "aufstehen."]
     translation:
       en: I have to get up early tomorrow.
       ru: Завтра мне нужно рано вставать.
+      uk: Завтра мені треба рано вставати.
     explain:
       en: "With a modal verb the modal takes position 2 and the separable verb goes to the end as ONE unbroken infinitive: … muss … aufstehen."
       ru: "С модальным глаголом на втором месте стоит модальный глагол, а глагол с приставкой уходит в конец ЦЕЛИКОМ, одним инфинитивом: … muss … aufstehen."
+      uk: "З модальним дієсловом на другому місці стоїть модальне дієслово, а дієслово з префіксом іде в кінець ЦІЛКОМ, одним інфінітивом: … muss … aufstehen."
 
   - id: cloze-anfangen
     outcomes: [trennbar-satz]
@@ -87,13 +100,16 @@ items:
     instruction:
       en: Fill both gaps with the correct forms of the verb in brackets.
       ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
+      uk: Заповніть обидва пропуски правильними формами дієслова, вказаного в дужках.
     text: "Der Film {{fängt}} um acht Uhr {{an}}. (anfangen)"
     translation:
       en: The film starts at eight o'clock.
       ru: Фильм начинается в восемь часов.
+      uk: Фільм починається о восьмій годині.
     explain:
       en: "anfangen changes its stem vowel (er/es fängt) and its prefix an- moves to the end: Der Film fängt … an."
       ru: "У anfangen меняется корневая гласная (er/es fängt), а приставка an- уходит в конец: Der Film fängt … an."
+      uk: "У anfangen змінюється коренева голосна (er/es fängt), а префікс an- іде в кінець: Der Film fängt … an."
 
   - id: mc-untrennbar
     outcomes: [trennbar-satz]
@@ -108,6 +124,7 @@ items:
     explain:
       en: "be- is an inseparable prefix (like ver-, er-, ent-, ge-): it is unstressed and never splits off — bezahlen stays in one piece."
       ru: "be- — неотделяемая приставка (как ver-, er-, ent-, ge-): она безударная и никогда не отделяется — bezahlen остаётся единым словом."
+      uk: "be- — невідокремлюваний префікс (як ver-, er-, ent-, ge-): він ненаголошений і ніколи не відокремлюється — bezahlen залишається одним словом."
 
   - id: order-frage
     outcomes: [trennbar-satz]
@@ -116,13 +133,16 @@ items:
     instruction:
       en: Build a yes/no question. Start with the capitalized word.
       ru: Составьте вопрос без вопросительного слова. Начните со слова с заглавной буквы.
+      uk: Складіть питання без питального слова. Почніть зі слова з великої літери.
     words: ["Kommst", "du", "heute", "Abend", "mit?"]
     translation:
       en: Are you coming along tonight?
       ru: Ты пойдёшь сегодня вечером с нами?
+      uk: Ти підеш сьогодні ввечері з нами?
     explain:
       en: "In a yes/no question the verb comes first, but the prefix still goes to the very end: Kommst du … mit?"
       ru: "В вопросе без вопросительного слова глагол стоит первым, но приставка всё равно уходит в самый конец: Kommst du … mit?"
+      uk: "У питанні без питального слова дієслово стоїть першим, але префікс усе одно йде в самий кінець: Kommst du … mit?"
 
   - id: cloze-fernsehen
     outcomes: [trennbar-satz]
@@ -131,13 +151,16 @@ items:
     instruction:
       en: Fill both gaps with the correct forms of the verb in brackets.
       ru: Заполните оба пропуска правильными формами глагола, указанного в скобках.
+      uk: Заповніть обидва пропуски правильними формами дієслова, вказаного в дужках.
     text: "Wann {{siehst}} du {{fern}}? (fernsehen)"
     translation:
       en: When do you watch TV?
       ru: Когда ты смотришь телевизор?
+      uk: Коли ти дивишся телевізор?
     explain:
       en: "fernsehen splits like any separable verb, and sehen changes its vowel: du siehst … fern. In a W-question the verb is second, the prefix last."
       ru: "fernsehen разделяется, как любой глагол с отделяемой приставкой, а у sehen меняется гласная: du siehst … fern. В вопросе с вопросительным словом глагол второй, приставка — последняя."
+      uk: "fernsehen розділяється, як будь-яке дієслово з відокремлюваним префіксом, а в sehen змінюється голосна: du siehst … fern. У питанні з питальним словом дієслово друге, префікс — останній."
 
   - id: table-satzklammer
     outcomes: [trennbar-satz]
@@ -147,6 +170,7 @@ items:
     instruction:
       en: "Conjugate each verb for the given person: the verb form goes in position 2, the prefix at the end of the sentence."
       ru: "Проспрягайте каждый глагол для указанного лица: форма глагола — на второе место, приставка — в конец предложения."
+      uk: "Провідміняйте кожне дієслово для вказаної особи: форма дієслова — на друге місце, префікс — у кінець речення."
     columns: ["Position 2", "Satzende"]
     rows:
       - label: ich / anrufen
@@ -162,6 +186,7 @@ items:
     explain:
       en: "The stem is conjugated normally (du holst, er sieht, wir gehen, ihr macht) and sits in position 2; the prefix (ab, fern, aus, auf) always closes the sentence."
       ru: "Основа спрягается как обычно (du holst, er sieht, wir gehen, ihr macht) и стоит на втором месте; приставка (ab, fern, aus, auf) всегда закрывает предложение."
+      uk: "Основа відмінюється як звичайно (du holst, er sieht, wir gehen, ihr macht) і стоїть на другому місці; префікс (ab, fern, aus, auf) завжди закриває речення."
 
   - id: mc-modal-infinitiv
     outcomes: [trennbar-satz]
@@ -173,9 +198,11 @@ items:
     translation:
       en: I have to get up early tomorrow.
       ru: Завтра мне нужно рано вставать.
+      uk: Завтра мені треба рано вставати.
     explain:
       en: "After a modal verb the separable verb stands at the end as one whole infinitive — no personal ending, no splitting: aufstehen."
       ru: "После модального глагола глагол с приставкой стоит в конце целым инфинитивом — без личного окончания и без разделения: aufstehen."
+      uk: "Після модального дієслова дієслово з префіксом стоїть у кінці цілим інфінітивом — без особового закінчення і без розділення: aufstehen."
 
   - id: order-inversion
     outcomes: [trennbar-satz]
@@ -184,13 +211,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Am", "Samstag", "gehen", "wir", "aus."]
     translation:
       en: On Saturday we go out.
       ru: В субботу мы идём развлекаться.
+      uk: У суботу ми йдемо розважатися.
     explain:
       en: "Fronted time expression → inversion: Am Samstag gehen wir … But the prefix aus still takes the last position."
       ru: "Обстоятельство времени на первом месте → инверсия: Am Samstag gehen wir … Но приставка aus всё равно занимает последнее место."
+      uk: "Обставина часу на першому місці → інверсія: Am Samstag gehen wir … Але префікс aus усе одно займає останнє місце."
 
   - id: cloze-zumachen
     outcomes: [trennbar-satz]
@@ -199,13 +229,16 @@ items:
     instruction:
       en: Complete the sentence with the separable prefix.
       ru: Вставьте отделяемую приставку.
+      uk: Вставте відокремлюваний префікс.
     text: "Sie macht das Fenster {{zu}}. (zumachen)"
     translation:
       en: She closes the window.
       ru: Она закрывает окно.
+      uk: Вона зачиняє вікно.
     explain:
       en: "zumachen (to close) splits: sie macht … zu. Its opposite works the same way: sie macht das Fenster auf (aufmachen — to open)."
       ru: "zumachen (закрывать) разделяется: sie macht … zu. Его антоним ведёт себя так же: sie macht das Fenster auf (aufmachen — открывать)."
+      uk: "zumachen (зачиняти) розділяється: sie macht … zu. Його антонім поводиться так само: sie macht das Fenster auf (aufmachen — відчиняти)."
 
   - id: uebersetzen-ruft-an
     outcomes: [trennbar-satz]
@@ -214,8 +247,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "She calls her mother every day."
     prompt_ru: "Она каждый день звонит маме."
+    prompt_uk: "Вона щодня дзвонить мамі."
     answer: "Sie ruft ihre Mutter jeden Tag an."
     key_tokens: ["ruft", "an"]
     accept:
@@ -223,6 +258,7 @@ items:
     explain:
       en: "anrufen splits: ruft takes position 2, and the prefix an goes to the very end — behind the object and the time phrase, however long the middle grows."
       ru: "anrufen разделяется: ruft занимает второе место, а приставка an уходит в самый конец — за дополнение и обстоятельство времени, каким бы длинным ни была середина."
+      uk: "anrufen розділяється: ruft займає друге місце, а префікс an іде в самий кінець — за додаток і обставину часу, хоч би якою довгою була середина."
 
   - id: uebersetzen-einkaufen-gehen
     outcomes: [trennbar-satz, trennbar-tagesablauf]
@@ -231,8 +267,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I have to shop today."
     prompt_ru: "Сегодня я должен сделать покупки."
+    prompt_uk: "Сьогодні я мушу зробити покупки."
     answer: "Ich muss heute einkaufen."
     key_tokens: ["muss", "einkaufen"]
     accept:
@@ -240,6 +278,7 @@ items:
     explain:
       en: "After a modal the separable verb stays whole at the end: muss … einkaufen, never *muss … kaufe ein. Only a finite separable verb splits."
       ru: "После модального глагола отделяемый глагол остаётся целым в конце: muss … einkaufen, а не *muss … kaufe ein. Разделяется только спрягаемая форма."
+      uk: "Після модального дієслова відокремлюване дієслово залишається цілим у кінці: muss … einkaufen, а не *muss … kaufe ein. Розділяється лише відмінювана форма."
 
   - id: uebersetzen-steht-auf-frueh
     outcomes: [trennbar-satz, trennbar-tagesablauf]
@@ -248,13 +287,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My father gets up early."
     prompt_ru: "Мой отец встаёт рано."
+    prompt_uk: "Мій батько встає рано."
     answer: "Mein Vater steht früh auf."
     key_tokens: ["steht", "auf"]
     explain:
       en: "steht in position 2, auf at the end. The adverb früh sits inside the bracket the two of them make."
       ru: "steht на втором месте, auf — в конце. Наречие früh стоит внутри рамки, которую они образуют."
+      uk: "steht на другому місці, auf — у кінці. Прислівник früh стоїть усередині рамки, яку вони утворюють."
 
   - id: cloze-trennbar-satzende
     outcomes: [trennbar-satz]
@@ -263,10 +305,12 @@ items:
     instruction:
       en: Fill in the verb and its prefix.
       ru: Вставьте глагол и его приставку.
+      uk: Вставте дієслово та його префікс.
     text: "Der Zug {{fährt}} um acht Uhr {{ab}}. Ich {{kaufe}} am Samstag {{ein}}."
     explain:
       en: "abfahren and einkaufen both split: the conjugated part holds position 2, the prefix waits at the end of the clause."
       ru: "И abfahren, и einkaufen разделяются: спрягаемая часть стоит на втором месте, приставка ждёт в конце предложения."
+      uk: "І abfahren, і einkaufen розділяються: відмінювана частина стоїть на другому місці, префікс чекає в кінці речення."
 
   - id: cloze-trennbar-untrennbar
     outcomes: [trennbar-erkennen]
@@ -275,7 +319,9 @@ items:
     instruction:
       en: "Fill the gaps. Careful — not every prefix separates."
       ru: "Заполните пропуски. Внимание: не всякая приставка отделяется."
+      uk: "Заповніть пропуски. Увага: не кожен префікс відокремлюється."
     text: "Ich {{verstehe}} die Frage nicht. Er {{bekommt}} morgen ein Paket. Wir {{stehen}} um sechs Uhr {{auf}}."
     explain:
       en: "ver- and be- are inseparable and never move: ich verstehe, er bekommt. Only auf- and its kind split off to the end."
       ru: "Приставки ver- и be- неотделяемые и никуда не уходят: ich verstehe, er bekommt. Отделяются только приставки вроде auf-."
+      uk: "Префікси ver- і be- невідокремлювані й нікуди не йдуть: ich verstehe, er bekommt. Відокремлюються лише префікси на кшталт auf-."

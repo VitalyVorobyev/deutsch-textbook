@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — separable verbs"
   ru: "Проверка — глаголы с отделяемой приставкой"
+  uk: "Перевірка — дієслова з відокремлюваним префіксом"
 
 # Three PARALLEL variants of ONE competence: the Satzklammer of a conjugated separable
 # verb — the verb in position 2, its prefix at the very end of the clause. That is what
@@ -20,8 +21,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "On Saturday my friend is bringing her children along."
     prompt_ru: "В субботу моя подруга приведёт с собой детей."
+    prompt_uk: "У суботу моя подруга приведе з собою дітей."
     answer: "Am Samstag bringt meine Freundin ihre Kinder mit."
     key_tokens: ["bringt", "mit"]
     accept:
@@ -29,6 +32,7 @@ items:
     explain:
       en: "mitbringen splits: bringt is the conjugated verb and holds position 2, and the prefix mit waits at the very end, behind the object. Everything the sentence says — who, when, what — sits inside that bracket, and the prefix closes it."
       ru: "mitbringen отделяемый: bringt — спрягаемая часть, она стоит на втором месте, а приставка mit ждёт в самом конце, за дополнением. Всё содержание предложения — кто, когда, что — оказывается внутри этой рамки, и приставка её закрывает."
+      uk: "mitbringen відокремлюваний: bringt — відмінювана частина, вона стоїть на другому місці, а префікс mit чекає в самому кінці, за додатком. Увесь зміст речення — хто, коли, що — опиняється всередині цієї рамки, і префікс її закриває."
 
   - id: variant-b
     outcomes: [trennbar-satz]
@@ -37,13 +41,16 @@ items:
     instruction:
       en: Translate into German. Use the verbs aufmachen and mitnehmen.
       ru: Переведите на немецкий. Используйте глаголы aufmachen и mitnehmen.
+      uk: Перекладіть німецькою. Використайте дієслова aufmachen і mitnehmen.
     prompt_en: "When does the bank open? I am taking my passport with me."
     prompt_ru: "Когда открывается банк? Я возьму с собой паспорт."
+    prompt_uk: "Коли відчиняється банк? Я візьму з собою паспорт."
     answer: "Wann macht die Bank auf? Ich nehme meinen Pass mit."
     key_tokens: ["macht", "auf", "nehme", "mit"]
     explain:
       en: "A question does not loosen the bracket. The W-word takes position 1, so the conjugated part macht is still the second element and the prefix auf still waits at the very end: Wann macht die Bank auf? In the statement the same rule pushes mit behind the object — nehme … meinen Pass mit. Whatever stands between them, the two halves of the verb are the first and the last thing the clause says."
       ru: "Вопрос рамку не ослабляет. Вопросительное слово занимает первое место, спрягаемая часть macht остаётся вторым элементом, а приставка auf ждёт в самом конце: Wann macht die Bank auf? В повествовательном предложении то же правило отправляет mit за дополнение — nehme … meinen Pass mit. Что бы ни стояло между ними, две половины глагола — это первое и последнее, что произносит предложение."
+      uk: "Питання рамку не послаблює. Питальне слово займає перше місце, відмінювана частина macht залишається другим елементом, а префікс auf чекає в самому кінці: Wann macht die Bank auf? У розповідному реченні те саме правило відправляє mit за додаток — nehme … meinen Pass mit. Хоч би що стояло між ними, дві половини дієслова — це перше й останнє, що промовляє речення."
 
   - id: variant-c
     outcomes: [trennbar-satz]
@@ -52,8 +59,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "My sister is not coming along this evening. She has to work."
     prompt_ru: "Сегодня вечером моя сестра не пойдёт с нами. Ей нужно работать."
+    prompt_uk: "Сьогодні ввечері моя сестра не піде з нами. Їй треба працювати."
     answer: "Meine Schwester kommt heute Abend nicht mit. Sie muss arbeiten."
     key_tokens: ["kommt", "mit"]
     accept:
@@ -61,3 +70,4 @@ items:
     explain:
       en: "The prefix stays at the end even when the sentence is negated: nicht comes before mit, never after it. The bracket is the last thing to close — kommt … nicht mit — and nothing may follow the prefix."
       ru: "Приставка остаётся в конце и при отрицании: nicht ставится перед mit, а не после. Рамка закрывается в самую последнюю очередь — kommt … nicht mit, — и после приставки уже ничего стоять не может."
+      uk: "Префікс залишається в кінці й при запереченні: nicht ставиться перед mit, а не після. Рамка закривається в саму останню чергу — kommt … nicht mit, — і після префікса вже нічого стояти не може."
