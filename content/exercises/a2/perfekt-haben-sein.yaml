@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — perfect tense with haben and sein
   ru: Практика — перфект с haben и sein
+  uk: Практика — перфект із haben і sein
 items:
   - id: partizip2-tabelle
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: Fill in the Partizip II of each verb.
       ru: Впишите Partizip II каждого глагола.
+      uk: Впишіть Partizip II кожного дієслова.
     columns: [Partizip II]
     rows:
       - label: machen
@@ -29,6 +31,7 @@ items:
     explain:
       en: "Regular verbs: ge-…-t (gemacht, gekauft). Strong verbs: ge-…-en, often with a vowel change (gegessen, getrunken, gegangen, geschrieben)."
       ru: "Правильные глаголы: ge-…-t (gemacht, gekauft). Сильные глаголы: ge-…-en, часто со сменой гласной (gegessen, getrunken, gegangen, geschrieben)."
+      uk: "Правильні дієслова: ge-…-t (gemacht, gekauft). Сильні дієслова: ge-…-en, часто зі зміною голосної (gegessen, getrunken, gegangen, geschrieben)."
 
   - id: mc-nach-hause
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -40,9 +43,11 @@ items:
     translation:
       en: I went home yesterday.
       ru: Вчера я пошёл домой.
+      uk: Вчора я пішов додому.
     explain:
       en: "gehen describes movement from A to B, so it forms the Perfekt with sein: ich bin gegangen. 'Ist' is the er/sie/es form, and 'habe' is the classic learner mistake — English 'I have gone' pulls you toward haben."
       ru: "gehen обозначает движение из точки А в точку Б, поэтому перфект образуется с sein: ich bin gegangen. 'Ist' — форма для er/sie/es, а 'habe' — типичная ошибка русскоязычных."
+      uk: "gehen означає рух із точки А в точку Б, тому перфект утворюється із sein: ich bin gegangen. 'Ist' — форма для er/sie/es, а 'habe' — типова помилка: в українському минулому часі допоміжного дієслова немає, і haben здається безпечним вибором."
 
   - id: cloze-gefahren
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -51,13 +56,16 @@ items:
     instruction:
       en: Fill the gap with the correct auxiliary (haben or sein).
       ru: Вставьте правильный вспомогательный глагол (haben или sein).
+      uk: Вставте правильне допоміжне дієслово (haben або sein).
     text: "Wir {{sind}} am Sonntag nach Berlin gefahren."
     translation:
       en: On Sunday we went to Berlin.
       ru: В воскресенье мы поехали в Берлин.
+      uk: У неділю ми поїхали до Берліна.
     explain:
       en: "fahren is a verb of movement from A to B, so it takes sein: wir sind gefahren."
       ru: "fahren — глагол движения из точки А в точку Б, поэтому вспомогательный глагол — sein: wir sind gefahren."
+      uk: "fahren — дієслово руху з точки А в точку Б, тому допоміжне дієслово — sein: wir sind gefahren."
 
   - id: mc-gegessen
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -69,9 +77,11 @@ items:
     translation:
       en: He ate a pizza.
       ru: Он съел пиццу.
+      uk: Він з'їв піцу.
     explain:
       en: "essen is neither movement nor a change of state, so it takes haben: er hat gegessen. 'Habt' is the ihr form."
       ru: "essen — не движение и не смена состояния, поэтому перфект образуется с haben: er hat gegessen. 'Habt' — форма для ihr."
+      uk: "essen — не рух і не зміна стану, тому перфект утворюється з haben: er hat gegessen. 'Habt' — форма для ihr."
 
   - id: match-partizip
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -80,6 +90,7 @@ items:
     instruction:
       en: Match each infinitive with its Partizip II.
       ru: Соедините каждый инфинитив с его Partizip II.
+      uk: З'єднайте кожен інфінітив із його Partizip II.
     pairs:
       - { left: "kaufen", right: "gekauft" }
       - { left: "trinken", right: "getrunken" }
@@ -89,6 +100,7 @@ items:
     explain:
       en: "kaufen is regular (ge-…-t), trinken is strong (ge-…-en with vowel change), aufstehen is separable (-ge- goes inside: aufgestanden). bezahlen has an inseparable prefix and studieren ends in -ieren — both take no ge-."
       ru: "kaufen — правильный глагол (ge-…-t), trinken — сильный (ge-…-en со сменой гласной), aufstehen — с отделяемой приставкой (-ge- вставляется внутрь: aufgestanden). У bezahlen неотделяемая приставка, а studieren оканчивается на -ieren — оба без ge-."
+      uk: "kaufen — правильне дієслово (ge-…-t), trinken — сильне (ge-…-en зі зміною голосної), aufstehen — з відокремлюваним префіксом (-ge- вставляється всередину: aufgestanden). У bezahlen невідокремлюваний префікс, а studieren закінчується на -ieren — обидва без ge-."
 
   - id: order-brot
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -97,13 +109,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Ich", "habe", "ein", "Brot", "gekauft."]
     translation:
       en: I bought a loaf of bread.
       ru: Я купил хлеб.
+      uk: Я купив хліб.
     explain:
       en: "Sentence bracket: 'habe' in position 2, the participle 'gekauft' strictly at the end. 'Ich habe gekauft ein Brot' is impossible in German."
       ru: "Глагольная рамка: 'habe' на втором месте, причастие 'gekauft' — строго в конце. Сказать 'Ich habe gekauft ein Brot' по-немецки нельзя."
+      uk: "Дієслівна рамка: 'habe' на другому місці, дієприкметник 'gekauft' — строго в кінці. Сказати 'Ich habe gekauft ein Brot' німецькою не можна."
 
   - id: cloze-studiert
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -112,13 +127,16 @@ items:
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
+      uk: Вставте Partizip II дієслова, зазначеного в дужках.
     text: "Ich habe in München {{studiert}} (studieren)."
     translation:
       en: I studied (at university) in Munich.
       ru: Я учился в университете в Мюнхене.
+      uk: Я навчався в університеті в Мюнхені.
     explain:
       en: "Verbs ending in -ieren form the participle without ge-: studiert, telefoniert. 'Gestudiert' does not exist."
       ru: "Глаголы на -ieren образуют причастие без ge-: studiert, telefoniert. Формы 'gestudiert' не существует."
+      uk: "Дієслова на -ieren утворюють дієприкметник без ge-: studiert, telefoniert. Форми 'gestudiert' не існує."
 
   - id: mc-gemacht
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -130,9 +148,11 @@ items:
     translation:
       en: What did you do at the weekend?
       ru: Что ты делал на выходных?
+      uk: Що ти робив на вихідних?
     explain:
       en: "The Perfekt needs the Partizip II: ge- + mach + -t = gemacht. 'Macht' is a present-tense form and 'machen' is the infinitive — don't drop the ge-."
       ru: "Для перфекта нужен Partizip II: ge- + mach + -t = gemacht. 'Macht' — форма настоящего времени, 'machen' — инфинитив; не теряйте ge-."
+      uk: "Для перфекта потрібен Partizip II: ge- + mach + -t = gemacht. 'Macht' — форма теперішнього часу, 'machen' — інфінітив; не губіть ge-."
 
   - id: cloze-aufgestanden
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -141,13 +161,16 @@ items:
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
+      uk: Вставте Partizip II дієслова, зазначеного в дужках.
     text: "Sie ist um sieben Uhr {{aufgestanden}} (aufstehen)."
     translation:
       en: She got up at seven o'clock.
       ru: Она встала в семь часов.
+      uk: Вона встала о сьомій годині.
     explain:
       en: "Separable verbs put -ge- between prefix and stem: auf + ge + standen. As a change of state, aufstehen also takes sein."
       ru: "У глаголов с отделяемой приставкой -ge- вставляется между приставкой и основой: auf + ge + standen. Как смена состояния, aufstehen к тому же образует перфект с sein."
+      uk: "У дієслів із відокремлюваним префіксом -ge- вставляється між префіксом і основою: auf + ge + standen. Як зміна стану, aufstehen до того ж утворює перфект із sein."
 
   - id: order-gestern
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -156,13 +179,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Gestern", "ist", "er", "nach", "Berlin", "gefahren."]
     translation:
       en: Yesterday he went to Berlin.
       ru: Вчера он поехал в Берлин.
+      uk: Вчора він поїхав до Берліна.
     explain:
       en: "'Gestern' takes position 1, so the auxiliary 'ist' stays in position 2 (inversion), and the participle 'gefahren' closes the sentence."
       ru: "'Gestern' занимает первое место, поэтому вспомогательный глагол 'ist' остаётся на втором (инверсия), а причастие 'gefahren' замыкает предложение."
+      uk: "'Gestern' займає перше місце, тому допоміжне дієслово 'ist' залишається на другому (інверсія), а дієприкметник 'gefahren' замикає речення."
 
   - id: mc-geblieben
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -174,9 +200,11 @@ items:
     translation:
       en: We stayed at home at the weekend.
       ru: На выходных мы остались дома.
+      uk: На вихідних ми залишилися вдома.
     explain:
       en: "bleiben is one of the exceptions that always take sein (together with sein and passieren), even though there is no movement: wir sind geblieben."
       ru: "bleiben — одно из исключений, которые всегда образуют перфект с sein (вместе с sein и passieren), хотя движения здесь нет: wir sind geblieben."
+      uk: "bleiben — один із винятків, які завжди утворюють перфект із sein (разом із sein і passieren), хоча руху тут немає: wir sind geblieben."
 
   - id: cloze-bezahlt
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -185,13 +213,16 @@ items:
     instruction:
       en: Fill the gap with the Partizip II of the verb in brackets.
       ru: Вставьте Partizip II глагола, указанного в скобках.
+      uk: Вставте Partizip II дієслова, зазначеного в дужках.
     text: "Hast du schon {{bezahlt}} (bezahlen)?"
     translation:
       en: Have you paid yet?
       ru: Ты уже заплатил?
+      uk: Ти вже заплатив?
     explain:
       en: "Inseparable prefixes (be-, ver-, er- …) block ge-: bezahlt, verstanden. 'Gebezahlt' does not exist."
       ru: "Неотделяемые приставки (be-, ver-, er- …) не допускают ge-: bezahlt, verstanden. Формы 'gebezahlt' не существует."
+      uk: "Невідокремлювані префікси (be-, ver-, er- …) не допускають ge-: bezahlt, verstanden. Форми 'gebezahlt' не існує."
 
   - id: tabelle-haben-sein
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -201,6 +232,7 @@ items:
     instruction:
       en: Write the correct auxiliary (haben or sein) for each verb.
       ru: Впишите правильный вспомогательный глагол (haben или sein) для каждого глагола.
+      uk: Впишіть правильне допоміжне дієслово (haben або sein) для кожного дієслова.
     columns: ["haben oder sein?"]
     rows:
       - label: gehen
@@ -218,6 +250,7 @@ items:
     explain:
       en: "sein for movement from A to B (gehen, kommen) and for the exceptions bleiben, sein, passieren; everything else — including kaufen, trinken, schreiben — takes haben."
       ru: "sein — для движения из точки А в точку Б (gehen, kommen) и для исключений bleiben, sein, passieren; всё остальное — в том числе kaufen, trinken, schreiben — образует перфект с haben."
+      uk: "sein — для руху з точки А в точку Б (gehen, kommen) і для винятків bleiben, sein, passieren; усе інше — зокрема kaufen, trinken, schreiben — утворює перфект із haben."
 
   - id: uebersetzen-pizza
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -226,8 +259,10 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "Yesterday we ate a pizza."
     prompt_ru: "Вчера мы съели пиццу."
+    prompt_uk: "Вчора ми з'їли піцу."
     answer: "Gestern haben wir eine Pizza gegessen."
     key_tokens: ["haben", "gegessen"]
     accept:
@@ -235,6 +270,7 @@ items:
     explain:
       en: "essen takes haben, and the participle is strong: gegessen. Both word orders are correct — with Gestern first, haben stays in position 2 and the participle closes the sentence."
       ru: "essen образует перфект с haben, причастие сильное: gegessen. Оба порядка слов правильны — если Gestern стоит в начале, haben остаётся на втором месте, а причастие замыкает предложение."
+      uk: "essen утворює перфект із haben, дієприкметник сильний: gegessen. Обидва порядки слів правильні — якщо Gestern стоїть на початку, haben залишається на другому місці, а дієприкметник замикає речення."
 
   - id: uebersetzen-geblieben
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -243,8 +279,10 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "She stayed at home."
     prompt_ru: "Она осталась дома."
+    prompt_uk: "Вона залишилася вдома."
     answer: "Sie ist zu Hause geblieben."
     key_tokens: ["ist", "geblieben"]
     accept:
@@ -252,3 +290,4 @@ items:
     explain:
       en: "bleiben is one of the exceptions that always take sein, even though there is no movement: sie ist geblieben. «Sie hat geblieben» is a typical mistake."
       ru: "bleiben — одно из исключений, которые всегда образуют перфект с sein, хотя движения здесь нет: sie ist geblieben. «Sie hat geblieben» — типичная ошибка."
+      uk: "bleiben — один із винятків, які завжди утворюють перфект із sein, хоча руху тут немає: sie ist geblieben. «Sie hat geblieben» — типова помилка."

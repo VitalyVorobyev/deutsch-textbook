@@ -5,24 +5,27 @@ text:
   - >-
     Nina sucht eine Wohnung. Am Montag liest sie eine Anzeige: „Zwei Zimmer,
     Küche, Bad. Die Wohnung liegt [[im dritten Stock::on the third floor::на
-    третьем этаже]] und ist hell und ruhig. Miete: 620 Euro plus
-    [[Nebenkosten::utility costs on top of the rent::коммунальные платежи сверх
-    аренды]]. [[Kaution::deposit paid to the landlord::залог за квартиру]]: 1240
-    Euro.“ Nina schreibt an den [[Vermieter::landlord::арендодатель, хозяин
-    квартиры]].
+    третьем этаже::на третьому поверсі]] und ist hell und ruhig. Miete: 620
+    Euro plus [[Nebenkosten::utility costs on top of the rent::коммунальные
+    платежи сверх аренды::комунальні платежі понад оренду]].
+    [[Kaution::deposit paid to the landlord::залог за квартиру::застава за
+    квартиру]]: 1240 Euro.“ Nina schreibt an den
+    [[Vermieter::landlord::арендодатель, хозяин квартиры::орендодавець,
+    господар квартири]].
   - >-
     Am Mittwoch zeigt Herr Weber ihr die Wohnung. Im Haus gibt es keinen
-    [[Aufzug::lift, elevator::лифт]], und die
-    [[Treppe::staircase, stairs::лестница]] ist dunkel. Aber die Zimmer sind
-    groß. Frau Kern wohnt
-    [[im Erdgeschoss::on the ground floor::на первом этаже]]. „Die Fahrräder
-    kommen in den [[Keller::cellar, basement::подвал]]“, sagt Herr Weber.
+    [[Aufzug::lift, elevator::лифт::ліфт]], und die
+    [[Treppe::staircase, stairs::лестница::сходи]] ist dunkel. Aber die Zimmer
+    sind groß. Frau Kern wohnt
+    [[im Erdgeschoss::on the ground floor::на первом этаже::на першому
+    поверсі]]. „Die Fahrräder kommen in den
+    [[Keller::cellar, basement::подвал::підвал]]“, sagt Herr Weber.
   - >-
-    Am Samstag ist der [[Umzug::move into a new home::переезд]]. Tobias hilft. Er
-    stellt den Schrank ins Schlafzimmer, und die Bücher kommen ins Regal. Nina
-    legt den [[Teppich::carpet, rug::ковёр]] ins Wohnzimmer und hängt ein Bild an
-    die Wand. Am Abend steht alles an seinem Platz. Nur die Heizung im
-    Schlafzimmer funktioniert nicht.
+    Am Samstag ist der [[Umzug::move into a new home::переезд::переїзд]].
+    Tobias hilft. Er stellt den Schrank ins Schlafzimmer, und die Bücher
+    kommen ins Regal. Nina legt den [[Teppich::carpet, rug::ковёр::килим]] ins
+    Wohnzimmer und hängt ein Bild an die Wand. Am Abend steht alles an seinem
+    Platz. Nur die Heizung im Schlafzimmer funktioniert nicht.
 questions:
   - id: frage-anzeige
     outcomes: [wohnungsanzeige-lesen]
@@ -36,9 +39,11 @@ questions:
     translation:
       en: What does the listing say?
       ru: Что написано в объявлении?
+      uk: Що написано в оголошенні?
     explain:
       en: "The listing gives four facts: two rooms, kitchen and bathroom, third floor, and the money. 620 euros is the rent — the deposit is 1240. A balcony is never mentioned; a listing tells you what is there, so what is not written is not there."
       ru: "В объявлении четыре факта: две комнаты, кухня и ванная, третий этаж и деньги. 620 евро — это аренда, а залог составляет 1240. Балкон не упомянут вовсе: объявление перечисляет то, что есть, и чего в нём нет, того нет и в квартире."
+      uk: "В оголошенні чотири факти: дві кімнати, кухня і ванна, третій поверх і гроші. 620 євро — це оренда, а застава становить 1240. Балкон не згаданий узагалі: оголошення перелічує те, що є, а чого в ньому немає, того немає і в квартирі."
 
   - id: frage-schrank
     outcomes: [wo-wohin-position]
@@ -52,9 +57,11 @@ questions:
     translation:
       en: Where does Tobias put the wardrobe?
       ru: Куда Тобиас ставит шкаф?
+      uk: Куди Тобіас ставить шафу?
     explain:
       en: "„Er stellt den Schrank ins Schlafzimmer“ — the accusative ins answers Wohin?. The living room is where the carpet goes (Nina legt den Teppich ins Wohnzimmer), and the cellar is for the bikes."
       ru: "«Er stellt den Schrank ins Schlafzimmer» — форма ins (Akkusativ) отвечает на вопрос Wohin?. В гостиную отправляется ковёр (Nina legt den Teppich ins Wohnzimmer), а подвал предназначен для велосипедов."
+      uk: "«Er stellt den Schrank ins Schlafzimmer» — форма ins (Akkusativ, знахідний відмінок) відповідає на питання Wohin?. До вітальні потрапляє килим (Nina legt den Teppich ins Wohnzimmer), а підвал призначений для велосипедів."
 
   - id: frage-heizung
     outcomes: [wohnung-beschreiben]
@@ -68,6 +75,8 @@ questions:
     translation:
       en: What does not work in the evening?
       ru: Что вечером не работает?
+      uk: Що ввечері не працює?
     explain:
       en: "The last sentence: „Nur die Heizung im Schlafzimmer funktioniert nicht.“ The building has no lift at all, so nothing about it can break, and the light in the hallway is never mentioned. Note the dative im Schlafzimmer — it says where the heating is, not where it is going."
       ru: "Последнее предложение: «Nur die Heizung im Schlafzimmer funktioniert nicht.» Лифта в доме вообще нет, поэтому сломаться он не может, а про свет в прихожей не сказано ни слова. Обратите внимание на Dativ в im Schlafzimmer: он говорит, где отопление находится, а не куда оно движется."
+      uk: "Останнє речення: «Nur die Heizung im Schlafzimmer funktioniert nicht.» Ліфта в будинку взагалі немає, тому зламатися він не може, а про світло в передпокої не сказано ані слова. Зверніть увагу на Dativ (давальний відмінок) в im Schlafzimmer: він каже, де опалення розташоване, а не куди воно рухається."

@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — making appointments
   ru: Практика — как договориться о встрече
+  uk: Практика — як домовитися про зустріч
 items:
   - id: mc-register
     outcomes: [termine-organisieren]
@@ -17,9 +18,11 @@ items:
     translation:
       en: You are calling a doctor's office. What do you say?
       ru: Вы звоните в приёмную врача. Что вы скажете?
+      uk: Ви телефонуєте до приймальні лікаря. Що ви скажете?
     explain:
       en: "With a receptionist or any stranger you must use the Sie-form. Both du-options are impolite in this situation, even though they are grammatically fine."
       ru: "С регистратором и вообще с незнакомыми людьми обязательна форма Sie. Оба варианта с du в этой ситуации невежливы, хотя грамматически они правильные."
+      uk: "З реєстратором і взагалі з незнайомими людьми обов'язкова форма Sie. Обидва варіанти з du у цій ситуації неввічливі, хоча граматично вони правильні."
 
   - id: mc-hoeflich
     outcomes: [termine-organisieren]
@@ -34,9 +37,11 @@ items:
     translation:
       en: What is polite?
       ru: Какой вариант вежливый?
+      uk: Який варіант ввічливий?
     explain:
       en: '"Ich möchte…" is the polite standard for wishes. "Ich will…" sounds blunt, and a bare imperative with "!" sounds like an order.'
       ru: '"Ich möchte…" — вежливый стандарт для выражения желания. "Ich will…" звучит грубо, а голый императив с "!" — как приказ.'
+      uk: '"Ich möchte…" — ввічливий стандарт для висловлення бажання. "Ich will…" звучить грубо, а голий імператив з "!" — як наказ.'
 
   - id: mc-passt-form
     outcomes: [termine-organisieren]
@@ -48,9 +53,11 @@ items:
     translation:
       en: Does 3 p.m. suit you?
       ru: Вам удобно в 15 часов?
+      uk: Вам зручно о 15 годині?
     explain:
       en: 'The subject is "es" (er/sie/es form), so the verb is "passt". "Ihnen" is a dative object, not the subject.'
       ru: 'Подлежащее — "es" (форма er/sie/es), поэтому глагол — "passt". "Ihnen" — дополнение в дательном падеже, а не подлежащее.'
+      uk: 'Підмет — "es" (форма er/sie/es), тому дієслово — "passt". "Ihnen" — додаток у давальному відмінку, а не підмет.'
 
   - id: mc-um
     outcomes: [termine-organisieren]
@@ -62,9 +69,11 @@ items:
     translation:
       en: The appointment is at 2:30 p.m.
       ru: Приём в 14:30.
+      uk: Прийом о 14:30.
     explain:
       en: 'Clock times take "um": um 14:30 Uhr. "am" is for days and parts of the day (am Montag, am Nachmittag).'
       ru: 'Со временем по часам используется "um": um 14:30 Uhr. "am" употребляется с днями и частями дня (am Montag, am Nachmittag).'
+      uk: 'З часом за годинником уживається "um": um 14:30 Uhr. "am" уживається з днями і частинами дня (am Montag, am Nachmittag).'
 
   - id: cloze-mir
     outcomes: [termine-organisieren]
@@ -73,13 +82,16 @@ items:
     instruction:
       en: Fill in the correct pronoun.
       ru: Вставьте правильное местоимение.
+      uk: Вставте правильний займенник.
     text: "Der Termin am Freitag passt {{mir}} sehr gut."
     translation:
       en: The appointment on Friday suits me very well.
       ru: Встреча в пятницу мне очень подходит.
+      uk: Зустріч у п'ятницю мені дуже підходить.
     explain:
       en: '"passen" takes the dative: mir, not mich. Think "it works FOR me" — the appointment is the subject, the person is dative.'
       ru: '"passen" требует дательного падежа: mir, а не mich. Русский здесь подсказывает — «подходит мне» тоже дательный.'
+      uk: '"passen" вимагає давального відмінка: mir, а не mich. Українська тут підказує — «підходить мені» теж давальний.'
 
   - id: cloze-ihnen
     outcomes: [termine-organisieren]
@@ -88,13 +100,16 @@ items:
     instruction:
       en: Fill in the polite pronoun in the correct case.
       ru: Вставьте вежливое местоимение в правильном падеже.
+      uk: Вставте ввічливий займенник у правильному відмінку.
     text: "Passt es {{Ihnen}} am Donnerstag um 10 Uhr?"
     translation:
       en: Does Thursday at 10 o'clock suit you?
       ru: Вам удобно в четверг в 10 часов?
+      uk: Вам зручно в четвер о 10 годині?
     explain:
       en: 'Dative of the polite "Sie" is "Ihnen" — always capitalized. "Passt es Sie?" is a classic mistake.'
       ru: 'Дательный падеж вежливого "Sie" — "Ihnen", всегда с заглавной буквы. "Passt es Sie?" — классическая ошибка.'
+      uk: 'Давальний відмінок ввічливого "Sie" — "Ihnen", завжди з великої літери. "Passt es Sie?" — класична помилка.'
 
   - id: cloze-absagen
     outcomes: [termine-organisieren]
@@ -103,13 +118,16 @@ items:
     instruction:
       en: Complete the separable verb.
       ru: Дополните глагол с отделяемой приставкой.
+      uk: Доповніть дієслово з відокремлюваним префіксом.
     text: "Es klappt morgen leider nicht. Ich sage den Termin {{ab}}."
     translation:
       en: Unfortunately it won't work out tomorrow. I am cancelling the appointment.
       ru: Завтра, к сожалению, не получится. Я отменяю встречу.
+      uk: Завтра, на жаль, не вийде. Я скасовую зустріч.
     explain:
       en: '"absagen" is separable: in a main clause the prefix "ab" moves to the end — ich sage … ab.'
       ru: 'У "absagen" отделяемая приставка: в главном предложении "ab" уходит в конец — ich sage … ab.'
+      uk: 'У "absagen" відокремлюваний префікс: у головному реченні "ab" іде в кінець — ich sage … ab.'
 
   - id: cloze-dialog
     outcomes: [termine-organisieren]
@@ -118,13 +136,16 @@ items:
     instruction:
       en: Complete the mini-dialogue.
       ru: Дополните мини-диалог.
+      uk: Доповніть міні-діалог.
     text: "— Guten Tag, ich möchte einen Termin {{vereinbaren}}. — Gern! Passt es Ihnen {{am}} Freitag {{um}} 15 Uhr?"
     translation:
       en: "— Hello, I would like to make an appointment. — Certainly! Does Friday at 3 p.m. suit you?"
       ru: "— Добрый день, я хотел бы записаться на приём. — Конечно! Вам удобно в пятницу в 15 часов?"
+      uk: "— Добрий день, я хотів би записатися на прийом. — Звичайно! Вам зручно в п'ятницю о 15 годині?"
     explain:
       en: 'The fixed formula is "einen Termin vereinbaren"; days take "am" (am Freitag) and clock times take "um" (um 15 Uhr).'
       ru: 'Устойчивая формула — "einen Termin vereinbaren"; с днями недели употребляется "am" (am Freitag), со временем по часам — "um" (um 15 Uhr).'
+      uk: 'Усталена формула — "einen Termin vereinbaren"; з днями тижня вживається "am" (am Freitag), з часом за годинником — "um" (um 15 Uhr).'
 
   - id: match-dialog
     outcomes: [termine-organisieren]
@@ -132,6 +153,7 @@ items:
     instruction:
       en: Match each question with its answer.
       ru: Соедините каждый вопрос с подходящим ответом.
+      uk: З'єднайте кожне питання з відповідною відповіддю.
     pairs:
       - { left: "Haben Sie am Montag Zeit?", right: "Nein, am Montag bin ich leider beschäftigt." }
       - { left: "Passt es Ihnen um 15 Uhr?", right: "Ja, 15 Uhr passt mir gut." }
@@ -140,6 +162,7 @@ items:
     explain:
       en: "Typical appointment exchanges: time questions get time answers (with passen + dative), and a yes/no question about urgency gets a reason."
       ru: "Типичные реплики при записи на приём: на вопросы о времени отвечают о времени (с passen + дательный), а на вопрос о срочности — называют причину."
+      uk: "Типові репліки під час запису на прийом: на питання про час відповідають про час (з passen + давальний), а на питання про терміновість — називають причину."
 
   - id: match-funktion
     outcomes: [termine-organisieren]
@@ -147,6 +170,7 @@ items:
     instruction:
       en: What is the speaker doing? Match each sentence with its function.
       ru: Что делает говорящий? Соедините каждое предложение с его функцией.
+      uk: Що робить мовець? З'єднайте кожне речення з його функцією.
     pairs:
       - { left: "Ich möchte einen Termin vereinbaren.", right: "nach einem Termin fragen" }
       - { left: "Es tut mir leid, ich kann morgen nicht kommen.", right: "einen Termin absagen" }
@@ -155,6 +179,7 @@ items:
     explain:
       en: "These four moves cover almost every appointment call: ask for an appointment, cancel, suggest another time, confirm."
       ru: "Эти четыре хода покрывают почти любой звонок о встрече: попросить о приёме, отменить, предложить другое время, подтвердить."
+      uk: "Ці чотири ходи покривають майже будь-який дзвінок про зустріч: попросити про прийом, скасувати, запропонувати інший час, підтвердити."
 
   - id: order-moechte
     outcomes: [termine-organisieren]
@@ -163,13 +188,16 @@ items:
     instruction:
       en: Arrange the words into a polite sentence.
       ru: Составьте вежливое предложение.
+      uk: Складіть ввічливе речення.
     words: ["Ich", "möchte", "einen", "Termin", "vereinbaren."]
     translation:
       en: I would like to make an appointment.
       ru: Я хотел бы записаться на приём.
+      uk: Я хотів би записатися на прийом.
     explain:
       en: '"möchte" is the conjugated verb in position 2; the infinitive "vereinbaren" goes to the end of the sentence.'
       ru: '"möchte" — спрягаемый глагол на второй позиции; инфинитив "vereinbaren" уходит в конец предложения.'
+      uk: '"möchte" — відмінюване дієслово на другій позиції; інфінітив "vereinbaren" іде в кінець речення.'
 
   - id: order-koennten
     outcomes: [termine-organisieren]
@@ -178,13 +206,16 @@ items:
     instruction:
       en: Build the polite question.
       ru: Составьте вежливый вопрос.
+      uk: Складіть ввічливе питання.
     words: ["Könnten", "wir", "den", "Termin", "auf", "Freitag", "verschieben", "?"]
     translation:
       en: Could we move the appointment to Friday?
       ru: Мы могли бы перенести встречу на пятницу?
+      uk: Ми могли б перенести зустріч на п'ятницю?
     explain:
       en: 'A yes/no question starts with the conjugated verb ("Könnten"); the infinitive "verschieben" stands at the end, and the new day takes "auf".'
       ru: 'Общий вопрос начинается со спрягаемого глагола ("Könnten"); инфинитив "verschieben" стоит в конце, а новый день вводится через "auf".'
+      uk: 'Загальне питання починається з відмінюваного дієслова ("Könnten"); інфінітив "verschieben" стоїть у кінці, а новий день вводиться через "auf".'
 
   - id: table-verben
     outcomes: [termine-organisieren]
@@ -194,6 +225,7 @@ items:
     instruction:
       en: Fill in the missing verb forms.
       ru: Заполните недостающие формы глаголов.
+      uk: Заповніть відсутні форми дієслів.
     columns: ["er/sie/es (Präsens)", "Partizip II"]
     rows:
       - label: vereinbaren
@@ -215,6 +247,7 @@ items:
     explain:
       en: 'Separable "absagen": er sagt ab, hat abgesagt (ge- inside). Inseparable "vereinbaren"/"verschieben": no ge- at all — vereinbart, verschoben.'
       ru: 'Отделяемый "absagen": er sagt ab, hat abgesagt (ge- внутри). Неотделяемые "vereinbaren"/"verschieben": без ge- вообще — vereinbart, verschoben.'
+      uk: 'Відокремлюваний "absagen": er sagt ab, hat abgesagt (ge- всередині). Невідокремлювані "vereinbaren"/"verschieben": без ge- взагалі — vereinbart, verschoben.'
 
   - id: uebersetzen-absagen
     outcomes: [termine-organisieren]
@@ -223,13 +256,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I would like to cancel the appointment."
     prompt_ru: "Я хотел бы отменить встречу."
+    prompt_uk: "Я хотів би скасувати зустріч."
     answer: "Ich möchte den Termin absagen."
     key_tokens: ["möchte", "absagen"]
     explain:
       en: 'The polite wish is "Ich möchte …" with the infinitive absagen at the end. After möchte the separable verb stays in one piece — the prefix moves away only when the verb itself is conjugated (ich sage den Termin ab).'
       ru: 'Вежливое желание — "Ich möchte …", инфинитив absagen стоит в конце. После möchte отделяемый глагол не разделяется — приставка уходит в конец, только когда глагол спрягается сам (ich sage den Termin ab).'
+      uk: 'Ввічливе бажання — "Ich möchte …", інфінітив absagen стоїть у кінці. Після möchte відокремлюване дієслово не розділяється — префікс іде в кінець лише тоді, коли дієслово відмінюється саме (ich sage den Termin ab).'
 
   - id: uebersetzen-passt-ihnen
     outcomes: [termine-organisieren]
@@ -238,8 +274,10 @@ items:
     instruction:
       en: Translate into German. Use the verb "passen".
       ru: Переведите на немецкий. Используйте глагол "passen".
+      uk: Перекладіть німецькою. Використайте дієслово "passen".
     prompt_en: "Does Monday at 10 o'clock suit you? (formal)"
     prompt_ru: "Вам удобно в понедельник в 10 часов? (вежливая форма)"
+    prompt_uk: "Вам зручно в понеділок о 10 годині? (ввічлива форма)"
     answer: "Passt es Ihnen am Montag um 10 Uhr?"
     accept:
       - "Passt Ihnen der Montag um 10 Uhr?"
@@ -248,6 +286,7 @@ items:
     explain:
       en: 'The subject is "es": Passt es Ihnen …? The polite pronoun is dative "Ihnen" — always capitalized. Days take "am" (am Montag), clock times take "um" (um 10 Uhr).'
       ru: 'Подлежащее — "es": Passt es Ihnen …? Вежливое местоимение стоит в дательном падеже — "Ihnen", всегда с заглавной буквы. С днями недели используется "am" (am Montag), со временем по часам — "um" (um 10 Uhr).'
+      uk: 'Підмет — "es": Passt es Ihnen …? Ввічливий займенник стоїть у давальному відмінку — "Ihnen", завжди з великої літери. З днями тижня вживається "am" (am Montag), з часом за годинником — "um" (um 10 Uhr).'
 
   - id: uebersetzen-termin-freitag
     outcomes: [termine-organisieren]
@@ -256,13 +295,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The appointment is on Friday at 3 p.m."
     prompt_ru: "Приём в пятницу в 15 часов."
+    prompt_uk: "Прийом у п'ятницю о 15 годині."
     answer: "Der Termin ist am Freitag um 15 Uhr."
     key_tokens: ["am", "um"]
     explain:
       en: 'Days take "am" and clock times take "um": am Freitag um 15 Uhr. The usual order is day before time, and German schedules use the 24-hour clock: 3 p.m. = 15 Uhr.'
       ru: 'С днями недели используется "am", со временем по часам — "um": am Freitag um 15 Uhr. Обычный порядок — сначала день, потом время; в расписаниях немцы используют 24-часовой формат: 15 Uhr.'
+      uk: 'З днями тижня вживається "am", з часом за годинником — "um": am Freitag um 15 Uhr. Звичайний порядок — спочатку день, потім час; у розкладах німці використовують 24-годинний формат: 15 Uhr.'
 
   - id: uebersetzen-termin-verschieben
     outcomes: [termine-organisieren]
@@ -271,8 +313,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Can we move the appointment to Friday?"
     prompt_ru: "Мы можем перенести встречу на пятницу?"
+    prompt_uk: "Ми можемо перенести зустріч на п'ятницю?"
     answer: "Können wir den Termin auf Freitag verschieben?"
     accept:
       - "Können wir den Termin auf Freitag verlegen?"
@@ -280,6 +324,7 @@ items:
     explain:
       en: "A yes/no question puts the modal first, and the infinitive still closes the sentence: Können wir … verschieben? ver- is inseparable, so it never splits off."
       ru: "В вопросе без вопросительного слова модальный глагол стоит первым, а инфинитив по-прежнему замыкает предложение: Können wir … verschieben? Приставка ver- неотделяемая и не отходит."
+      uk: "У питанні без питального слова модальне дієслово стоїть першим, а інфінітив, як і раніше, замикає речення: Können wir … verschieben? Префікс ver- невідокремлюваний і нікуди не відходить."
 
   - id: uebersetzen-wann-passt
     outcomes: [termine-organisieren, termine-hoeflich-telefonieren]
@@ -288,10 +333,13 @@ items:
     instruction:
       en: Translate into German. Use "passen" and address the person formally.
       ru: Переведите на немецкий. Используйте «passen» и обратитесь на «Вы».
+      uk: Перекладіть німецькою. Використайте «passen» і зверніться на «Ви».
     prompt_en: "When does it suit you?"
     prompt_ru: "Когда Вам удобно?"
+    prompt_uk: "Коли Вам зручно?"
     answer: "Wann passt es Ihnen?"
     key_tokens: ["passt", "Ihnen"]
     explain:
       en: "passen governs the dative, so the formal you is Ihnen, never Sie: Passt es Ihnen? The question word takes position 1 and the verb position 2."
       ru: "passen управляет дательным падежом, поэтому вежливое «Вам» — это Ihnen, а не Sie: Passt es Ihnen? Вопросительное слово на первом месте, глагол — на втором."
+      uk: "passen керує давальним відмінком, тому ввічливе «Вам» — це Ihnen, а не Sie: Passt es Ihnen? Питальне слово на першому місці, дієслово — на другому."
