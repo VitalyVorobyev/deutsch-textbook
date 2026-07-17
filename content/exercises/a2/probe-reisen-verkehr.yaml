@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — telling a journey: haben or sein?"
   ru: "Проверка — рассказ о поездке: haben или sein?"
+  uk: "Перевірка — розповідь про поїздку: haben чи sein?"
 
 # Three PARALLEL variants of ONE competence: choosing the Perfekt auxiliary in a
 # travel narrative (and building the participle that goes with it). One variant is
@@ -36,8 +37,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "We flew to Vienna and stayed there for a week."
     prompt_ru: "Мы полетели в Вену и пробыли там неделю."
+    prompt_uk: "Ми полетіли до Відня і пробули там тиждень."
     answer: "Wir sind nach Wien geflogen und eine Woche dort geblieben."
     key_tokens: ["sind", "geflogen", "geblieben"]
     accept:
@@ -60,6 +63,7 @@ items:
     explain:
       en: "Two sein verbs for two different reasons. fliegen is movement from A to B — the standard case. bleiben is the opposite of movement, and it still takes sein: it belongs to the small group of state verbs (sein, bleiben, passieren) that never took haben in the first place. Learn that group as a list; there is no rule that predicts it."
       ru: "Два глагола с sein — но по разным причинам. fliegen — движение из точки А в точку Б, обычный случай. А bleiben — прямая противоположность движению, и всё равно требует sein: он входит в небольшую группу глаголов состояния (sein, bleiben, passieren), которые никогда не брали haben. Эту группу нужно просто выучить списком — правила, которое её предсказывает, нет."
+      uk: "Два дієслова із sein — але з різних причин. fliegen — рух із точки А в точку Б, звичайний випадок. А bleiben — пряма протилежність рухові, і все одно вимагає sein: воно входить до невеликої групи дієслів стану (sein, bleiben, passieren), які ніколи не брали haben. Цю групу треба просто вивчити списком — правила, яке її передбачає, немає."
 
   - id: variant-b
     outcomes: [reise-berichten]
@@ -68,8 +72,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "On Monday I got up at six and took a taxi."
     prompt_ru: "В понедельник я встал в шесть часов и взял такси."
+    prompt_uk: "У понеділок я встав о шостій годині і взяв таксі."
     answer: "Ich bin am Montag um sechs Uhr aufgestanden und habe ein Taxi genommen."
     key_tokens: ["bin", "aufgestanden", "habe", "genommen"]
     accept:
@@ -79,6 +85,7 @@ items:
     explain:
       en: "Two verbs in one sentence, and they take different auxiliaries. aufstehen moves you — out of bed, A to B — so it takes sein, and it is separable, so the -ge- sits inside the participle: ich bin aufgestanden. nehmen moves nobody at all; it has an accusative object (ein Taxi) and takes haben: ich habe ein Taxi genommen. A taxi in the sentence decides nothing — the verb does."
       ru: "Два глагола в одном предложении — и вспомогательные глаголы у них разные. aufstehen перемещает вас (встать с кровати — тоже движение из точки А в точку Б), поэтому нужен sein, а глагол отделяемый, так что -ge- уходит внутрь причастия: ich bin aufgestanden. А nehmen не перемещает никого: у него дополнение в Akkusativ (ein Taxi) и вспомогательный глагол haben — ich habe ein Taxi genommen. Такси в предложении ничего не решает — решает глагол."
+      uk: "Два дієслова в одному реченні — і допоміжні дієслова в них різні. aufstehen переміщує вас (встати з ліжка — теж рух із точки А в точку Б), тому потрібен sein, а дієслово відокремлюване, тож -ge- іде всередину дієприкметника: ich bin aufgestanden. А nehmen не переміщує нікого: в нього додаток в Akkusativ (ein Taxi) і допоміжне дієслово haben — ich habe ein Taxi genommen. Таксі в реченні нічого не вирішує — вирішує дієслово."
 
   - id: variant-c
     outcomes: [reise-berichten]
@@ -87,8 +94,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In the morning we walked to the station and took the bus."
     prompt_ru: "Утром мы дошли пешком до вокзала и сели на автобус."
+    prompt_uk: "Вранці ми дійшли пішки до вокзалу і сіли на автобус."
     answer: "Wir sind am Morgen zum Bahnhof gelaufen und haben den Bus genommen."
     key_tokens: ["sind", "gelaufen", "haben", "genommen"]
     accept:
@@ -104,3 +113,4 @@ items:
     explain:
       en: "One sentence, both auxiliaries — and the topic is the same in both halves. laufen carries you from A to B, so it takes sein: wir sind gelaufen (gegangen works just as well — both are movement, both take sein). nehmen carries nothing anywhere; it has an accusative object and takes haben: wir haben den Bus genommen. Riding a bus is not what makes a sentence a sein sentence — the verb is."
       ru: "Одно предложение — оба вспомогательных глагола, и тема у обеих половин одна и та же. laufen переносит вас из точки А в точку Б, поэтому нужен sein: wir sind gelaufen (форма gegangen подходит не хуже — оба глагола означают движение, оба требуют sein). А nehmen никого никуда не переносит: у него дополнение в Akkusativ и вспомогательный глагол haben — wir haben den Bus genommen. Предложение делает «sein-предложением» не автобус в нём, а глагол."
+      uk: "Одне речення — обидва допоміжні дієслова, і тема в обох половин одна й та сама. laufen переносить вас із точки А в точку Б, тому потрібен sein: wir sind gelaufen (форма gegangen підходить не гірше — обидва дієслова означають рух, обидва вимагають sein). А nehmen нікого нікуди не переносить: у нього додаток в Akkusativ і допоміжне дієслово haben — wir haben den Bus genommen. Речення робить «sein-реченням» не автобус у ньому, а дієслово."

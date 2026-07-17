@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — the return: listening, writing, speaking"
   ru: "Практика — возврат товара: аудирование, письмо, речь"
+  uk: "Практика — повернення товару: аудіювання, письмо, мовлення"
 items:
   - id: hoeren-service-schalter
     outcomes: [umtausch-begruenden]
@@ -10,6 +11,7 @@ items:
     instruction:
       en: "The zip of Sara's jacket has broken and she is back at the service counter of the Kaufhaus Nordstern. You already know what she wants — listen for why she wants it."
       ru: "У куртки Сары сломалась молния, и она снова стоит у стойки обслуживания универмага «Нордштерн». Чего она хочет, вы уже знаете, — слушайте, почему."
+      uk: "У куртки Сари зламалася блискавка, і вона знову стоїть біля стійки обслуговування універмагу «Нордштерн». Чого вона хоче, ви вже знаєте, — слухайте, чому."
     source:
       kind: tts
       rate: 0.9
@@ -30,9 +32,11 @@ items:
     translation:
       en: "Why doesn't Sara want her money back?"
       ru: "Почему Сара не хочет вернуть деньги?"
+      uk: "Чому Сара не хоче повернути гроші?"
     explain:
       en: "Every option is built out of words you can hear in the dialogue, so catching a single one of them decides nothing — you have to follow who says what. The assistant does offer the money („Möchten Sie das Geld zurück?“), so he is not refusing it. Sara does hand over her receipt („Ja, hier ist die Quittung“), so she has not lost it. She turns the money down for a reason she says herself: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ The jacket is right — only this one is broken, so she wants the same jacket again."
       ru: "Каждый вариант собран из слов, которые в диалоге звучат, поэтому поймать одно знакомое слово недостаточно — нужно проследить, кто что говорит. Деньги продавец как раз предлагает („Möchten Sie das Geld zurück?“), значит, он не отказывает. Чек Сара как раз подаёт („Ja, hier ist die Quittung“), значит, он у неё есть. От денег она отказывается по причине, которую называет сама: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ Куртка ей подходит — сломан только этот экземпляр, поэтому ей нужна такая же."
+      uk: "Кожен варіант зібраний зі слів, які в діалозі звучать, тому впіймати одне знайоме слово недостатньо — треба простежити, хто що каже. Гроші продавець якраз пропонує („Möchten Sie das Geld zurück?“), отже, він не відмовляє. Чек Сара якраз подає („Ja, hier ist die Quittung“), отже, він у неї є. Від грошей вона відмовляється з причини, яку називає сама: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ Куртка їй підходить — зламаний лише цей примірник, тому їй потрібна така сама."
 
   - id: cloze-timo-schuhe
     outcomes: [gefallen-passen-sagen]
@@ -41,13 +45,16 @@ items:
     instruction:
       en: "Timo is trying on shoes. Fill in passen or gefallen in the correct form."
       ru: "Тимо примеряет ботинки. Вставьте passen или gefallen в правильной форме."
+      uk: "Тімо приміряє черевики. Вставте passen або gefallen у правильній формі."
     text: "Timo probiert Größe 44. Die Schuhe {{passen}} ihm gut. Aber sie sind grau, und Grau {{gefällt}} ihm nicht."
     translation:
       en: "Timo tries size 44. The shoes fit him well. But they are grey, and he doesn't like grey."
       ru: "Тимо примеряет размер 44. Ботинки ему впору. Но они серые, а серый цвет ему не нравится."
+      uk: "Тімо приміряє розмір 44. Черевики йому якраз. Але вони сірі, а сірий колір йому не подобається."
     explain:
       en: "Two traps in three lines. The shoes are plural, so passen is plural too — die Schuhe passen, not die Schuhe passt. In the second sentence the subject is the colour, a single thing, so gefallen goes back to the singular: Grau gefällt ihm nicht. The verb follows the product, and the product changes number between the sentences; Timo stays in the dative throughout (ihm)."
       ru: "Две ловушки в трёх строчках. Ботинки — множественное число, поэтому и passen во множественном: die Schuhe passen, а не die Schuhe passt. Во втором предложении подлежащее — цвет, то есть одно понятие, и gefallen возвращается в единственное число: Grau gefällt ihm nicht. Глагол согласуется с товаром, а товар меняет число от предложения к предложению; Тимо же всё время стоит в дательном падеже (ihm)."
+      uk: "Дві пастки в трьох рядках. Черевики — множина, тому й passen у множині: die Schuhe passen, а не die Schuhe passt. У другому реченні підмет — колір, тобто одне поняття, і gefallen повертається в однину: Grau gefällt ihm nicht. Дієслово узгоджується з товаром, а товар змінює число від речення до речення; Тімо ж увесь час стоїть у давальному відмінку (ihm)."
 
   - id: mc-gefallen-plural
     outcomes: [gefallen-passen-sagen]
@@ -59,15 +66,18 @@ items:
     instruction:
       en: "Choose the correct verb form."
       ru: "Выберите правильную форму глагола."
+      uk: "Виберіть правильну форму дієслова."
     prompt: "Die Schuhe ___ mir sehr gut. Ich nehme sie."
     options: ["gefällt", "gefallen", "gefalle"]
     correct: 1
     translation:
       en: "I like the shoes very much. I'll take them."
       ru: "Ботинки мне очень нравятся. Я их беру."
+      uk: "Черевики мені дуже подобаються. Я їх беру."
     explain:
       en: "The subject of gefallen is the thing, and here the thing is plural: die Schuhe gefallen. The singular gefällt would need a singular product (der Schuh gefällt mir). gefalle is the ich-form, and it would claim that I am the one being liked — a sentence about me, not about the shoes."
       ru: "Подлежащее при gefallen — вещь, а здесь вещь во множественном числе: die Schuhe gefallen. Форма единственного числа gefällt потребовала бы товара в единственном числе (der Schuh gefällt mir). А gefalle — форма первого лица: она означала бы, что нравлюсь я сам, то есть предложение было бы обо мне, а не о ботинках."
+      uk: "Підмет при gefallen — річ, а тут річ у множині: die Schuhe gefallen. Форма однини gefällt вимагала б товару в однині (der Schuh gefällt mir). А gefalle — форма першої особи: вона означала б, що подобаюся я сам, тобто речення було б про мене, а не про черевики."
 
   - id: uebersetzen-guenstiger-aber-besser
     outcomes: [produkte-vergleichen, gefallen-passen-sagen]
@@ -76,8 +86,10 @@ items:
     instruction:
       en: "Translate into German. You are choosing between two things in a shop."
       ru: "Переведите на немецкий. Вы выбираете в магазине между двумя вещами."
+      uk: "Перекладіть німецькою. Ви вибираєте в магазині між двома речами."
     prompt_en: "This pullover is cheaper, but I like the jacket better."
     prompt_ru: "Этот свитер дешевле, но куртка нравится мне больше."
+    prompt_uk: "Цей светр дешевший, але куртка подобається мені більше."
     answer: "Dieser Pullover ist günstiger, aber die Jacke gefällt mir besser."
     key_tokens: ["günstiger", "besser"]
     accept:
@@ -89,6 +101,7 @@ items:
     explain:
       en: "Two comparatives, and they are built by two different mechanisms. günstig is regular: günstiger. better is the irregular comparative of gut and comes out as besser — a word you cannot derive, only remember. Neither of them needs als here, because the thing being compared against is already in the sentence. And gefallen keeps its usual shape: the jacket is the subject, the person is in the dative (mir)."
       ru: "Две сравнительные степени — и образованы они по-разному. günstig подчиняется правилу: günstiger. А besser — исключение, сравнительная степень от gut; вывести её нельзя, можно только запомнить. Слово als здесь не нужно ни в одном случае, потому что предмет сравнения уже назван в предложении. И gefallen сохраняет свою обычную схему: подлежащее — куртка, человек — в дательном падеже (mir)."
+      uk: "Два вищі ступені — і утворені вони по-різному. günstig підкоряється правилу: günstiger. А besser — виняток, вищий ступінь від gut; вивести його не можна, лише запам'ятати. Слово als тут не потрібне в жодному випадку, бо предмет порівняння вже названий у реченні. І gefallen зберігає свою звичну схему: підмет — куртка, людина — у давальному відмінку (mir)."
 
   - id: schreiben-reklamation-online-shop
     outcomes: [reklamation-schreiben]
@@ -96,26 +109,34 @@ items:
     prompt:
       en: "You ordered a pullover from an online shop. It arrived on Monday, it is too tight, and there is a fault in the material. Write a short complaint (eine Reklamation) to the shop."
       ru: "Вы заказали свитер в интернет-магазине. Он пришёл в понедельник, оказался тесным, и в материале есть дефект. Напишите короткую рекламацию в магазин."
+      uk: "Ви замовили светр в інтернет-магазині. Він прийшов у понеділок, виявився затісним, і в матеріалі є дефект. Напишіть коротку рекламацію в магазин."
     goal:
       en: "Say what you ordered and when it arrived, name the two problems, and say what you want the shop to do."
       ru: "Скажите, что вы заказали и когда это пришло, назовите обе проблемы и скажите, чего вы ждёте от магазина."
+      uk: "Скажіть, що ви замовили і коли це прийшло, назвіть обидві проблеми та скажіть, чого ви чекаєте від магазину."
     requirements:
       - en: "Say what you bought and when it arrived (Ich habe … bestellt / Der Pullover ist am Montag gekommen)."
         ru: "Скажите, что вы купили и когда это пришло (Ich habe … bestellt / Der Pullover ist am Montag gekommen)."
+        uk: "Скажіть, що ви купили і коли це прийшло (Ich habe … bestellt / Der Pullover ist am Montag gekommen)."
       - en: "Name the size problem with zu + adjective (Der Pullover ist mir zu eng / zu klein)."
         ru: "Назовите проблему с размером через zu + прилагательное (Der Pullover ist mir zu eng / zu klein)."
+        uk: "Назвіть проблему з розміром через zu + прикметник (Der Pullover ist mir zu eng / zu klein)."
       - en: "Use one comparative with -er to say what you need instead (eine Größe größer, ein Pullover in Größe 42)."
         ru: "Используйте одну сравнительную степень на -er, чтобы сказать, что вам нужно взамен (eine Größe größer, ein Pullover in Größe 42)."
+        uk: "Використайте один вищий ступінь на -er, щоб сказати, що вам потрібно натомість (eine Größe größer, ein Pullover in Größe 42)."
       - en: "Say what you want, with the accusative article: Ich möchte den Pullover umtauschen — or zurückgeben."
         ru: "Скажите, чего вы хотите, с артиклем в Akkusativ: Ich möchte den Pullover umtauschen — или zurückgeben."
+        uk: "Скажіть, чого ви хочете, з артиклем в Akkusativ: Ich möchte den Pullover umtauschen — або zurückgeben."
     min_words: 30
     model_answer: "Sehr geehrte Damen und Herren, ich habe bei Ihnen einen Pullover in Größe 40 bestellt. Der Pullover ist am Montag gekommen. Leider ist er mir zu eng. Ich brauche eine Größe größer. Der Pullover hat auch einen Fehler: Er ist am Arm kaputt. Ich möchte den Pullover umtauschen. Die Quittung liegt im Paket. Mit freundlichen Grüßen Sara Berger"
     model_translation:
       en: "Dear Sir or Madam, I ordered a pullover in size 40 from you. The pullover arrived on Monday. Unfortunately it is too tight for me. I need one size bigger. The pullover also has a fault: it is damaged on the sleeve. I would like to exchange the pullover. The receipt is in the parcel. Yours faithfully, Sara Berger"
       ru: "Уважаемые дамы и господа! Я заказала у вас свитер 40-го размера. Свитер пришёл в понедельник. К сожалению, он мне тесен. Мне нужен размер побольше. Кроме того, у свитера дефект: рукав повреждён. Я хотела бы обменять свитер. Квитанция лежит в посылке. С уважением, Сара Бергер"
+      uk: "Шановні пані та панове! Я замовила у вас светр 40-го розміру. Светр прийшов у понеділок. На жаль, він мені затісний. Мені потрібен розмір більший. До того ж у светра дефект: рукав пошкоджений. Я хотіла б обміняти светр. Квитанція лежить у посилці. З повагою, Сара Бергер"
     explain:
       en: "A complaint is short and it does exactly four things: it says what you bought, it names the problem, it says what you want, and it mentions the receipt. The grammar of this lesson carries all four. zu + adjective states the problem (zu eng — not sehr eng, which would be no reason to complain). The comparative states the remedy (eine Größe größer). And the request needs the accusative article, because umtauschen governs it: den Pullover. Before you send it, read your draft once looking only at der/den — that single letter is what a shop assistant reads first."
       ru: "Рекламация коротка и делает ровно четыре вещи: называет покупку, называет проблему, называет требование и упоминает чек. Вся грамматика этого урока работает именно на них. zu + прилагательное формулирует проблему (zu eng — а не sehr eng, что не было бы причиной для претензии). Сравнительная степень формулирует решение (eine Größe größer). А в самой просьбе нужен артикль в Akkusativ, потому что umtauschen управляет винительным падежом: den Pullover. Перед отправкой перечитайте черновик, глядя только на der/den: именно эта одна буква сразу бросается в глаза сотруднику магазина."
+      uk: "Рекламація коротка і робить рівно чотири речі: називає покупку, називає проблему, називає вимогу та згадує чек. Уся граматика цього уроку працює саме на них. zu + прикметник формулює проблему (zu eng — а не sehr eng, що не було б причиною для претензії). Вищий ступінь формулює розв'язання (eine Größe größer). А в самому проханні потрібен артикль в Akkusativ, бо umtauschen керує знахідним відмінком: den Pullover. Перед відправленням перечитайте чернетку, дивлячись лише на der/den: саме ця одна літера одразу впадає в око працівникові магазину."
 
   - id: sprechen-umtausch-sportladen
     outcomes: [umtausch-begruenden, gefallen-passen-sagen]
@@ -124,22 +145,30 @@ items:
     prompt:
       en: "A different shop, a different problem: last week you bought running shoes at the sports shop Aktiv. They are too tight, and one shoe is already broken. You are standing at the counter and the assistant asks: „Guten Tag! Was kann ich für Sie tun?“ Answer him aloud."
       ru: "Другой магазин, другая проблема: на прошлой неделе вы купили кроссовки в спортивном магазине «Актив». Они жмут, и один ботинок уже сломался. Вы стоите у стойки, и продавец спрашивает: «Guten Tag! Was kann ich für Sie tun?» Ответьте ему вслух."
+      uk: "Інший магазин, інша проблема: минулого тижня ви купили кросівки в спортивному магазині «Актив». Вони тиснуть, і один черевик уже зламався. Ви стоїте біля стійки, і продавець запитує: «Guten Tag! Was kann ich für Sie tun?» Відповідайте йому вголос."
     goal:
       en: "Say what you bought and when, give both reasons for the return, and say clearly what you want — an exchange in a bigger size."
       ru: "Скажите, что и когда вы купили, назовите обе причины возврата и чётко сформулируйте, чего вы хотите: обмена на больший размер."
+      uk: "Скажіть, що і коли ви купили, назвіть обидві причини повернення та чітко сформулюйте, чого ви хочете: обміну на більший розмір."
     checklist:
       - en: "I said what I bought and when (Ich habe diese Schuhe letzte Woche hier gekauft)."
         ru: "Я сказал(а), что и когда купил(а) (Ich habe diese Schuhe letzte Woche hier gekauft)."
+        uk: "Я сказав (сказала), що і коли купив (купила) (Ich habe diese Schuhe letzte Woche hier gekauft)."
       - en: "I gave the size reason with passen + Dativ and zu + adjective (Sie passen mir nicht — sie sind zu eng)."
         ru: "Я назвал(а) причину, связанную с размером, через passen + Dativ и zu + прилагательное (Sie passen mir nicht — sie sind zu eng)."
+        uk: "Я назвав (назвала) причину, пов'язану з розміром, через passen + Dativ і zu + прикметник (Sie passen mir nicht — sie sind zu eng)."
       - en: "I named the defect (Ein Schuh ist kaputt) and offered the receipt (Hier ist der Bon)."
         ru: "Я назвал(а) дефект (Ein Schuh ist kaputt) и предложил(а) чек (Hier ist der Bon)."
+        uk: "Я назвав (назвала) дефект (Ein Schuh ist kaputt) і запропонував (запропонувала) чек (Hier ist der Bon)."
       - en: "I said what I want, with a comparative or a size (Ich möchte die Schuhe umtauschen — ich brauche Größe 44)."
         ru: "Я сказал(а), чего хочу, употребив сравнительную степень или размер (Ich möchte die Schuhe umtauschen — ich brauche Größe 44)."
+        uk: "Я сказав (сказала), чого хочу, вживши вищий ступінь або розмір (Ich möchte die Schuhe umtauschen — ich brauche Größe 44)."
     model_answer: "Guten Tag. Ich habe diese Schuhe letzte Woche hier gekauft. Leider passen sie mir nicht — sie sind mir zu eng. Ich brauche eine Größe größer, also Größe 44. Ein Schuh ist auch kaputt. Hier ist der Bon. Ich möchte die Schuhe umtauschen."
     model_translation:
       en: "Hello. I bought these shoes here last week. Unfortunately they don't fit me — they are too tight for me. I need one size bigger, so size 44. One shoe is also broken. Here is the receipt. I would like to exchange the shoes."
       ru: "Здравствуйте. Я купил эти ботинки здесь на прошлой неделе. К сожалению, они мне не подходят — они мне жмут. Мне нужен размер побольше, то есть 44-й. К тому же один ботинок сломан. Вот чек. Я хотел бы обменять ботинки."
+      uk: "Добрий день. Я купив ці черевики тут минулого тижня. На жаль, вони мені не підходять — вони мені тиснуть. Мені потрібен розмір більший, тобто 44-й. До того ж один черевик зламаний. Ось чек. Я хотів би обміняти черевики."
     explain:
       en: "A return is won on three sentences: what you bought, why you are bringing it back, and what you want instead. Say them in that order and the assistant has everything he needs. Watch two forms as you record yourself the second time. The shoes are plural, so it is sie passen mir nicht — never sie passt. And the request is Ich möchte die Schuhe umtauschen, with the separable verb whole and at the end after the modal."
       ru: "Возврат решается тремя предложениями: что вы купили, почему возвращаете и что хотите взамен. Скажите их именно в таком порядке — и продавцу больше ничего не нужно. Записывая себя во второй раз, следите за двумя формами. Ботинки — множественное число, поэтому sie passen mir nicht, а не sie passt. И сама просьба звучит как Ich möchte die Schuhe umtauschen: глагол с отделяемой приставкой остаётся целым и стоит в конце после модального."
+      uk: "Повернення вирішується трьома реченнями: що ви купили, чому повертаєте і що хочете натомість. Скажіть їх саме в такому порядку — і продавцеві більше нічого не потрібно. Записуючи себе вдруге, стежте за двома формами. Черевики — множина, тому sie passen mir nicht, а не sie passt. І саме прохання звучить як Ich möchte die Schuhe umtauschen: дієслово з відокремлюваним префіксом залишається цілим і стоїть у кінці після модального."
