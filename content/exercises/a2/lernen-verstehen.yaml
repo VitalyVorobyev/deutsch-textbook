@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — the wrapped question: the verb goes to the end"
   ru: "Практика — вопрос в рамке: глагол уходит в конец"
+  uk: "Практика — питання в рамці: дієслово йде в кінець"
 items:
   - id: table-direkt-zu-indirekt
     outcomes: [nachfragen-klaeren]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: "Wrap each direct question politely. Write only the clause after the comma — no comma, no question mark."
       ru: "Оберните каждый прямой вопрос вежливой рамкой. Пишите только часть после запятой — без запятой и без вопросительного знака."
+      uk: "Обгорніть кожне пряме питання ввічливою рамкою. Пишіть лише частину після коми — без коми і без питального знака."
     columns: ["Direkte Frage", "Können Sie mir sagen, …"]
     rows:
       - label: "Präsens"
@@ -33,6 +35,7 @@ items:
     explain:
       en: "One rule, four shapes. The wrapper Können Sie mir sagen already has its verb in position 2, so everything after the comma is a Nebensatz — and a Nebensatz ends with its conjugated verb. In the present tense that is the whole verb (beginnt). A separable verb has no position 2 left to leave its prefix behind in, so the prefix rejoins it: anfängt, stattfindet. With a modal the bracket collapses onto the end, infinitive first and the conjugated modal last: kaufen kann. And the last row has no question word of its own — a yes/no question brings none — so ob has to open the clause."
       ru: "Одно правило, четыре формы. У рамки Können Sie mir sagen глагол уже стоит на втором месте, поэтому всё после запятой — придаточное, а придаточное заканчивается спрягаемым глаголом. В настоящем времени это сам глагол (beginnt). У отделяемого глагола больше нет второго места, которое покидала бы приставка, — она возвращается на место: anfängt, stattfindet. С модальным рамка складывается в конец: сначала инфинитив, спрягаемый модальный последним — kaufen kann. А в последней строке своего вопросительного слова нет вовсе: у вопроса «да/нет» его и не бывает, поэтому придаточное открывает ob."
+      uk: "Одне правило, чотири форми. У рамки Können Sie mir sagen дієслово вже стоїть на другому місці, тому все після коми — підрядне, а підрядне закінчується відмінюваним дієсловом. У теперішньому часі це саме дієслово (beginnt). У відокремлюваного дієслова більше немає другого місця, яке покидав би префікс, — він повертається на місце: anfängt, stattfindet. З модальним рамка складається в кінець: спочатку інфінітив, відмінюваний модальний останнім — kaufen kann. А в останньому рядку свого питального слова немає зовсім: у питання «так/ні» його й не буває, тому підрядне відкриває ob."
 
   - id: cloze-w-frage-verb-ans-ende
     outcomes: [nachfragen-klaeren]
@@ -41,13 +44,16 @@ items:
     instruction:
       en: "Both questions are already wrapped. Put the verb where the wrapped clause needs it."
       ru: "Оба вопроса уже в рамке. Поставьте глагол туда, где его требует придаточное."
+      uk: "Обидва питання вже в рамці. Поставте дієслово туди, де його вимагає підрядне."
     text: "Weißt du, wann der Unterricht {{beginnt}}? Ich weiß nicht, was dieses Wort {{bedeutet}}."
     translation:
       en: "Do you know when the lesson starts? I do not know what this word means."
       ru: "Ты не знаешь, когда начинается занятие? Я не знаю, что означает это слово."
+      uk: "Ти не знаєш, коли починається заняття? Я не знаю, що означає це слово."
     explain:
       en: "Both gaps sit at the wall, at the very end of the clause, and that is not an accident. As bare questions these would read Wann beginnt der Unterricht? and Was bedeutet dieses Wort? — verb in position 2, right behind the question word. The wrapper is what moved it: after Weißt du, / Ich weiß nicht, the question word takes over the job of weil and dass, and the conjugated verb goes last. Note the second sentence closes with a full stop: the wrapper is a statement, so the whole sentence is one — even though an indirect question sits inside it."
       ru: "Оба пропуска стоят у самой стены, в конце придаточного, и это не случайность. Отдельными вопросами они звучали бы так: Wann beginnt der Unterricht? и Was bedeutet dieses Wort? — глагол на втором месте, сразу за вопросительным словом. Сдвинула его рамка: после Weißt du, / Ich weiß nicht, вопросительное слово берёт на себя роль weil и dass, и спрягаемый глагол уходит последним. Обратите внимание: второе предложение заканчивается точкой — рамка в нём утвердительная, поэтому и всё предложение утвердительное, хотя внутри и сидит косвенный вопрос."
+      uk: "Обидва пропуски стоять біля самої стіни, у кінці підрядного, і це не випадковість. Окремими питаннями вони звучали б так: Wann beginnt der Unterricht? і Was bedeutet dieses Wort? — дієслово на другому місці, одразу за питальним словом. Зсунула його рамка: після Weißt du, / Ich weiß nicht, питальне слово бере на себе роль weil і dass, і відмінюване дієслово йде останнім. Зверніть увагу: друге речення закінчується крапкою — рамка в ньому стверджувальна, тому й усе речення стверджувальне, хоча всередині й сидить непряме питання."
 
   - id: cloze-ob-ja-nein-frage
     outcomes: [nachfragen-klaeren]
@@ -56,13 +62,16 @@ items:
     instruction:
       en: "Two yes/no questions, wrapped. Fill in the word that opens the clause — and the verb that closes it."
       ru: "Два вопроса «да/нет» в рамке. Вставьте слово, которое открывает придаточное, и глагол, который его закрывает."
+      uk: "Два питання «так/ні» в рамці. Вставте слово, яке відкриває підрядне, і дієслово, яке його закриває."
     text: "Wissen Sie, {{ob}} der Kurs heute stattfindet? Ich möchte wissen, {{ob}} wir am Freitag eine Prüfung {{schreiben}}."
     translation:
       en: "Do you know whether the course is taking place today? I would like to know whether we are writing an exam on Friday."
       ru: "Вы не знаете, идёт ли сегодня курс? Я хотел бы узнать, будет ли у нас в пятницу экзамен."
+      uk: "Ви не знаєте, чи сьогодні йде курс? Я хотів би дізнатися, чи буде в нас у п'ятницю іспит."
     explain:
       en: "A W-question brings its own opening word. A yes/no question brings none — Findet der Kurs heute statt? begins with the verb, and a Nebensatz may never begin with the verb. So German supplies ob, whose only job is to open the clause. It is not optional and there is nothing to put in its place. Careful with wenn: that word names a condition (Wenn der Kurs stattfindet, komme ich), and it cannot wrap a question. The third gap is the same wall as always: schreiben closes the clause."
       ru: "У W-вопроса есть своё вводное слово. У вопроса «да/нет» его нет: Findet der Kurs heute statt? начинается с глагола, а придаточное с глагола начинаться не может. Поэтому немецкий даёт слово ob, вся работа которого — открыть придаточное. Оно обязательно, и заменить его нечем. По-русски эту роль играет частица «ли»: «Вы не знаете, идёт ли сегодня курс?» И не подставляйте сюда wenn: это «если», оно вводит условие (Wenn der Kurs stattfindet, komme ich), а вопрос обернуть не может. Третий пропуск — та же стена: schreiben закрывает придаточное."
+      uk: "У W-питання є своє вступне слово. У питання «так/ні» його немає: Findet der Kurs heute statt? починається з дієслова, а підрядне з дієслова починатися не може. Тому німецька дає слово ob, уся робота якого — відкрити підрядне. Воно обов'язкове, і замінити його нічим. Українською цю роль грає частка «чи»: «Ви не знаєте, чи сьогодні йде курс?» І не підставляйте сюди wenn: це «якщо», воно вводить умову (Wenn der Kurs stattfindet, komme ich), а питання обгорнути не може. Третій пропуск — та сама стіна: schreiben закриває підрядне."
 
   - id: mc-indirekte-frage-wrapper
     outcomes: [nachfragen-klaeren]
@@ -71,6 +80,7 @@ items:
     instruction:
       en: "You want to know the starting time. Which question do you ask the teacher?"
       ru: "Вы хотите узнать время начала. Какой вопрос вы зададите преподавателю?"
+      uk: "Ви хочете дізнатися час початку. Яке питання ви поставите викладачеві?"
     prompt: "Sie wissen nicht, wann der Unterricht anfängt. ___"
     options:
       - "Wissen Sie, wann der Unterricht beginnt?"
@@ -80,9 +90,11 @@ items:
     translation:
       en: "Do you know when the lesson starts?"
       ru: "Вы не знаете, когда начинается занятие?"
+      uk: "Ви не знаєте, коли починається заняття?"
     explain:
       en: "The two wrong options fail in two different ways, and both are worth seeing. Option 2 keeps the inversion inside the wrapper — wann beginnt der Unterricht was the right shape as a bare question, but the wrapper has turned it into a Nebensatz, so the conjugated verb has to close it: wann der Unterricht beginnt. Option 3 is perfectly good German and asks the wrong thing: ob wraps a yes/no question, so it asks whether the lesson starts at all, not when. Choose the opening word by what you want to know, and place the verb by the rule."
       ru: "Два неверных варианта ошибаются по-разному, и увидеть стоит оба. Во втором инверсия осталась внутри рамки: как самостоятельный вопрос wann beginnt der Unterricht было правильно, но рамка превратила его в придаточное, а придаточное закрывается спрягаемым глаголом — wann der Unterricht beginnt. Третий вариант — совершенно правильный немецкий, но спрашивает он не о том: ob оборачивает вопрос «да/нет», то есть спрашивает, начнётся ли занятие вообще, а не когда. Вводное слово выбирайте по смыслу вопроса, а глагол ставьте по правилу."
+      uk: "Два неправильні варіанти помиляються по-різному, і побачити варто обидва. У другому інверсія залишилася всередині рамки: як самостійне питання wann beginnt der Unterricht було правильно, але рамка перетворила його на підрядне, а підрядне закривається відмінюваним дієсловом — wann der Unterricht beginnt. Третій варіант — цілком правильна німецька, але запитує він не про те: ob обгортає питання «так/ні», тобто запитує, чи почнеться заняття взагалі, а не коли. Вступне слово вибирайте за змістом питання, а дієслово ставте за правилом."
 
   # focus is `verbzweit` on purpose, and this is the one item in the topic where that tag is
   # the honest one: the options differ only in where the conjugated verb of a DIRECT question
@@ -99,6 +111,7 @@ items:
     instruction:
       en: "No wrapper this time — you ask straight out. Which question is correct?"
       ru: "На этот раз без рамки — вы спрашиваете напрямую. Какой вопрос правильный?"
+      uk: "Цього разу без рамки — ви запитуєте прямо. Яке питання правильне?"
     prompt: "Sie fragen direkt: ___"
     options:
       - "Wann schreiben wir den Test?"
@@ -108,9 +121,11 @@ items:
     translation:
       en: "When are we writing the test?"
       ru: "Когда мы будем писать тест?"
+      uk: "Коли ми будемо писати тест?"
     explain:
       en: "Take the wrapper away and the old rule is back, untouched: the conjugated verb of a main clause stands in position 2. The question word wann fills position 1, so schreiben comes second and the subject wir drops in behind it — exactly like Am Montag schreiben wir den Test. Option 2 leaves the subject in front of the verb (position 3, which German does not allow); option 3 sends the verb to the end, which is what the wrapped version would need — Wissen Sie, wann wir den Test schreiben? — but there is no wrapper here. Two shapes, one difference: is there something in front of the comma or not?"
       ru: "Уберите рамку — и старое правило возвращается в неприкосновенности: спрягаемый глагол главного предложения стоит на втором месте. Первое место занимает вопросительное слово wann, значит schreiben идёт вторым, а подлежащее wir уходит за него — ровно как в Am Montag schreiben wir den Test. Во втором варианте подлежащее осталось перед глаголом, и глагол оказался на третьем месте, чего немецкий не допускает. В третьем глагол ушёл в конец — так было бы нужно в вопросе с рамкой (Wissen Sie, wann wir den Test schreiben?), но рамки здесь нет. Две формы, одно различие: есть перед запятой рамка или нет."
+      uk: "Приберіть рамку — і старе правило повертається в недоторканності: відмінюване дієслово головного речення стоїть на другому місці. Перше місце займає питальне слово wann, отже schreiben іде другим, а підмет wir іде за нього — рівно як у Am Montag schreiben wir den Test. У другому варіанті підмет залишився перед дієсловом, і дієслово опинилося на третьому місці, чого німецька не допускає. У третьому дієслово пішло в кінець — так було б потрібно в питанні з рамкою (Wissen Sie, wann wir den Test schreiben?), але рамки тут немає. Дві форми, одна відмінність: є перед комою рамка чи ні?"
 
   # focus is `du-sie`: the gaps are the wrapper's verb form, and the wrapper is where the
   # register is decided — the wrapped clause is word-for-word identical in both sentences.
@@ -123,13 +138,16 @@ items:
     instruction:
       en: "The same question, two people. Open each wrapper with the right form of address — pronoun and verb together."
       ru: "Один и тот же вопрос, два собеседника. Откройте каждую рамку правильным обращением — местоимение вместе с глаголом."
+      uk: "Одне й те саме питання, двоє співрозмовників. Відкрийте кожну рамку правильним звертанням — займенник разом із дієсловом."
     text: "Sie fragen die Kursleiterin: „Entschuldigung, {{können Sie}} mir sagen, wann die Prüfung ist?“ Sie fragen Yusuf, Ihren Nachbarn im Kurs: „Hallo Yusuf, {{kannst du}} mir sagen, wann die Prüfung ist?“"
     translation:
       en: "You ask the course teacher: 'Excuse me, can you tell me when the exam is?' You ask Yusuf, the person sitting next to you: 'Hi Yusuf, can you tell me when the exam is?'"
       ru: "Вы спрашиваете преподавательницу: «Извините, вы не подскажете, когда экзамен?» Вы спрашиваете Юсуфа, вашего соседа по курсу: «Привет, Юсуф, не скажешь, когда экзамен?»"
+      uk: "Ви запитуєте викладачку: «Вибачте, чи не підкажете, коли іспит?» Ви запитуєте Юсуфа, вашого сусіда по курсу: «Привіт, Юсуфе, не скажеш, коли іспит?»"
     explain:
       en: "Look at what does not change: wann die Prüfung ist is word for word the same in both sentences, verb at the end. The register lives entirely in the wrapper. The course teacher is somebody you address as Sie, so the wrapper opens können Sie; Yusuf sits next to you every week, so it opens kannst du. Decide who you are talking to first — the verb ending simply follows the pronoun you chose. Getting this wrong is not a grammar mistake but a social one, and it is the more visible of the two."
       ru: "Посмотрите, что здесь не меняется: wann die Prüfung ist — слово в слово одно и то же в обоих предложениях, глагол в конце. Регистр целиком живёт в рамке. К преподавательнице обращаются на Sie, поэтому рамка открывается формой können Sie; Юсуф сидит рядом с вами каждую неделю — значит, kannst du. Сначала решите, с кем вы говорите, а окончание глагола просто последует за выбранным местоимением. Ошибка здесь не грамматическая, а социальная, и заметна она куда сильнее."
+      uk: "Подивіться, що тут не змінюється: wann die Prüfung ist — слово в слово те саме в обох реченнях, дієслово в кінці. Регістр цілком живе в рамці. До викладачки звертаються на Sie, тому рамка відкривається формою können Sie; Юсуф сидить поряд із вами щотижня — отже, kannst du. Спочатку вирішіть, з ким ви говорите, а закінчення дієслова просто піде за вибраним займенником. Помилка тут не граматична, а соціальна, і помітна вона значно сильніше."
 
   # focus is `nebensatz-verbende`, NOT `indirekte-frage`: a weil-clause wraps a STATEMENT
   # (the reason), not a question. Same wall, different confusion — and the learner meets them
@@ -142,13 +160,16 @@ items:
     instruction:
       en: "Say why you ask and why you learn. Put the verb at the end of the weil-clause."
       ru: "Скажите, почему вы спрашиваете и почему учитесь. Поставьте глагол в конец придаточного с weil."
+      uk: "Скажіть, чому ви запитуєте і чому вчитеся. Поставте дієслово в кінець підрядного з weil."
     text: "Ich frage oft, weil ich nicht alles {{verstehe}}. Ich lerne Deutsch, weil ich hier {{arbeiten}} {{möchte}}."
     translation:
       en: "I ask often because I do not understand everything. I am learning German because I want to work here."
       ru: "Я часто переспрашиваю, потому что понимаю не всё. Я учу немецкий, потому что хочу здесь работать."
+      uk: "Я часто перепитую, бо розумію не все. Я вчу німецьку, бо хочу тут працювати."
     explain:
       en: "weil is a subordinator like ob and the question words, so the wall is the same: the conjugated verb goes last. In the first sentence that is verstehe. In the second there are two verbs and only one of them is conjugated — möchte — so the infinitive arbeiten queues up in front of it: arbeiten möchte, never möchte arbeiten. What weil does not do is wrap a question: it gives a reason, and the reason is a statement. That is the difference between this clause and Ich weiß nicht, ob ich alles verstehe."
       ru: "weil — подчинительный союз, как ob и вопросительные слова, поэтому стена та же: спрягаемый глагол уходит последним. В первом предложении это verstehe. Во втором глагола два, а спрягается только один — möchte, — поэтому инфинитив arbeiten выстраивается перед ним: arbeiten möchte, но никогда möchte arbeiten. Чего weil не делает, так это не оборачивает вопрос: он называет причину, а причина — утверждение. В этом и разница между этим придаточным и оборотом Ich weiß nicht, ob ich alles verstehe."
+      uk: "weil — підрядний сполучник, як ob і питальні слова, тому стіна та сама: відмінюване дієслово йде останнім. У першому реченні це verstehe. У другому дієслова два, а відмінюється лише одне — möchte, — тому інфінітив arbeiten вишиковується перед ним: arbeiten möchte, але ніколи möchte arbeiten. Чого weil не робить, так це не обгортає питання: він називає причину, а причина — твердження. У цьому й різниця між цим підрядним і зворотом Ich weiß nicht, ob ich alles verstehe."
 
   - id: order-ob-frage-bauen
     outcomes: [nachfragen-klaeren]
@@ -157,13 +178,16 @@ items:
     instruction:
       en: "Arrange the words into a correct question."
       ru: "Составьте правильный вопрос."
+      uk: "Складіть правильне питання."
     words: ["Wissen", "Sie,", "ob", "der", "Kurs", "heute", "stattfindet?"]
     translation:
       en: "Do you know whether the course is taking place today?"
       ru: "Вы не знаете, идёт ли сегодня курс?"
+      uk: "Ви не знаєте, чи сьогодні йде курс?"
     explain:
       en: "Two clauses, two rules. The wrapper Wissen Sie is an ordinary question: the verb is first, the subject behind it. After the comma comes the Nebensatz, and it needs a word to open it — ob, because there is no question word to do the job. Everything else lines up inside, and the conjugated verb closes it: stattfindet, prefix and all. In a Nebensatz there is no position 2 for a separable prefix to be left behind in, so it comes home."
       ru: "Два предложения — два правила. Рамка Wissen Sie — обычный вопрос: глагол первым, подлежащее за ним. После запятой идёт придаточное, и открыть его чем-то нужно — этим «чем-то» будет ob, ведь вопросительного слова здесь нет. Всё остальное выстраивается внутри, а спрягаемый глагол закрывает придаточное: stattfindet, вместе с приставкой. В придаточном нет второго места, которое отделяемая приставка могла бы покинуть, — и она возвращается к глаголу."
+      uk: "Два речення — два правила. Рамка Wissen Sie — звичайне питання: дієслово першим, підмет за ним. Після коми йде підрядне, і відкрити його чимось потрібно — цим «чимось» буде ob, адже питального слова тут немає. Усе інше вишиковується всередині, а відмінюване дієслово закриває підрядне: stattfindet, разом із префіксом. У підрядному немає другого місця, яке відокремлюваний префікс міг би покинути, — і він повертається до дієслова."
 
   - id: uebersetzen-wie-lange-der-kurs-dauert
     outcomes: [nachfragen-klaeren]
@@ -172,8 +196,10 @@ items:
     instruction:
       en: "Translate into German. You are speaking to the woman at the language school's reception."
       ru: "Переведите на немецкий. Вы говорите с сотрудницей на ресепшене языковой школы."
+      uk: "Перекладіть німецькою. Ви говорите зі співробітницею на ресепшені мовної школи."
     prompt_en: "Can you tell me how long the course lasts?"
     prompt_ru: "Вы не подскажете, сколько длится курс?"
+    prompt_uk: "Чи не підкажете, скільки триває курс?"
     answer: "Können Sie mir sagen, wie lange der Kurs dauert?"
     accept:
       - "Können Sie mir bitte sagen, wie lange der Kurs dauert?"
@@ -183,6 +209,7 @@ items:
     explain:
       en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. Only dauert is graded here — the rule is about where the wrapped verb lands."
       ru: "Одно предложение, два глагола, два адреса. Глагол рамки Können остаётся на втором месте, как в любом главном предложении. «Обёрнутый» глагол dauert обязан уйти в самый конец, потому что после запятой стоит придаточное. Никогда … wie lange dauert der Kurs: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки, — та самая ошибка, ради которой существует вся тема. Оценивается здесь только dauert: правило говорит о том, куда приземляется «обёрнутый» глагол."
+      uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється тут лише dauert: правило говорить про те, куди приземляється «обгорнуте» дієслово."
 
   - id: uebersetzen-ob-der-test-schwer-ist
     outcomes: [nachfragen-klaeren]
@@ -191,8 +218,10 @@ items:
     instruction:
       en: "Translate into German. You are asking Yusuf, who sits next to you in the course."
       ru: "Переведите на немецкий. Вы спрашиваете Юсуфа, вашего соседа по курсу."
+      uk: "Перекладіть німецькою. Ви запитуєте Юсуфа, вашого сусіда по курсу."
     prompt_en: "Do you know whether the test is difficult?"
     prompt_ru: "Не знаешь, трудный ли тест?"
+    prompt_uk: "Не знаєш, чи важкий тест?"
     answer: "Weißt du, ob der Test schwer ist?"
     accept:
       - "Weißt du, ob der Test schwierig ist?"
@@ -200,6 +229,7 @@ items:
     explain:
       en: "Two decisions, and the item grades both. First the opening word: this is a yes/no question, so there is no question word to open the clause and ob has to do it. Leaving it out is not possible, and wenn cannot take its place — wenn names a condition, not a question. Second the wall: ist closes the clause. Weißt du, ob der Test ist schwer would be the bare question smuggled in behind ob. Note the wrapper is the du-form, because you are asking a classmate; to the teacher it would be Wissen Sie, ob …"
       ru: "Здесь два решения, и задание оценивает оба. Первое — вводное слово: это вопрос «да/нет», своего вопросительного слова у него нет, и открывать придаточное придётся союзу ob. Выбросить его нельзя, а wenn его не заменит: wenn — это «если», условие, а не вопрос. По-русски роль ob играет частица «ли». Второе — стена: придаточное закрывает ist. Вариант Weißt du, ob der Test ist schwer — это самостоятельный вопрос, тайком пронесённый внутрь после ob. И обратите внимание на рамку: она в форме du, ведь вы спрашиваете соседа по курсу; преподавателю вы сказали бы Wissen Sie, ob …"
+      uk: "Тут два рішення, і завдання оцінює обидва. Перше — вступне слово: це питання «так/ні», свого питального слова в нього немає, і відкривати підрядне доведеться сполучнику ob. Викинути його не можна, а wenn його не замінить: wenn — це «якщо», умова, а не питання. Українською роль ob грає частка «чи». Друге — стіна: підрядне закриває ist. Варіант Weißt du, ob der Test ist schwer — це самостійне питання, потайки пронесене всередину після ob. І зверніть увагу на рамку: вона у формі du, адже ви запитуєте сусіда по курсу; викладачеві ви сказали б Wissen Sie, ob …"
 
   - id: hoeren-ich-weiss-nicht
     outcomes: [nachfragen-klaeren]
@@ -208,10 +238,13 @@ items:
     instruction:
       en: "Listen and type the sentence exactly."
       ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
     text: "Ich weiß nicht, was dieses Wort bedeutet."
     translation:
       en: "I do not know what this word means."
       ru: "Я не знаю, что означает это слово."
+      uk: "Я не знаю, що означає це слово."
     explain:
       en: "Listen to the very end of the sentence: the last thing you hear is bedeutet. That is the signature of an indirect question — the verb arrives after everything else, not straight after the question word. The comma before was belongs in the written sentence too, even though you cannot hear it, and the sentence ends with a full stop: the wrapper Ich weiß nicht is a statement, so nothing here is being asked."
       ru: "Вслушайтесь в самый конец фразы: последним звучит bedeutet. Это и есть примета косвенного вопроса — глагол приходит после всего остального, а не сразу за вопросительным словом. Запятая перед was в записи тоже обязательна, хотя на слух её и не слышно, а в конце стоит точка: рамка Ich weiß nicht — утверждение, и ничего в этом предложении не спрашивается."
+      uk: "Вслухайтеся в самий кінець фрази: останнім звучить bedeutet. Це й є прикмета непрямого питання — дієслово приходить після всього іншого, а не одразу за питальним словом. Кома перед was у записі теж обов'язкова, хоча на слух її й не чути, а в кінці стоїть крапка: рамка Ich weiß nicht — твердження, і нічого в цьому реченні не запитується."

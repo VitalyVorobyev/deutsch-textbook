@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — the polite chunks at the counter"
   ru: "Практика — вежливые обороты у окошка"
+  uk: "Практика — ввічливі звороти біля віконця"
 items:
   # The chunk drill, reduced to the one decision each row makes: does what follows name a
   # THING (hätte gern), an ACTION (würde gern), or is it a request aimed at the clerk
@@ -15,6 +16,7 @@ items:
     instruction:
       en: "Complete the beginning of each sentence. Write only the missing words — the rest of the sentence is already there."
       ru: "Достройте начало каждого предложения. Пишите только недостающие слова — остальная часть предложения уже дана."
+      uk: "Добудуйте початок кожного речення. Пишіть лише слова, яких бракує — решта речення вже дана."
     columns: ["Anfang"]
     rows:
       - label: "… einen Termin am Nachmittag."
@@ -30,6 +32,7 @@ items:
     explain:
       en: "Three chunks, one decision. What comes after the gap is a noun (einen Termin, eine Bescheinigung) — then it is Ich hätte gern …, which takes a thing and never a verb. What comes after the gap ends in an infinitive (vereinbaren, ausfüllen) — then it is Ich würde gern …, which takes an action and parks the infinitive at the very end, exactly like a modal verb. And when you are asking the clerk to do something, the sentence starts with Könnten and Sie follows it: Könnten Sie mir bitte helfen? Learn the three whole; do not try to build them."
       ru: "Три оборота — одно решение. После пропуска стоит существительное (einen Termin, eine Bescheinigung) — значит, нужен Ich hätte gern …: он берёт предмет и никогда не берёт глагол. После пропуска фраза заканчивается инфинитивом (vereinbaren, ausfüllen) — значит, нужен Ich würde gern …: он берёт действие и оставляет инфинитив в самом конце, точно как модальный глагол. А когда вы просите что-то сделать самого сотрудника, предложение начинается с Könnten, а за ним идёт Sie: Könnten Sie mir bitte helfen? Заучивайте все три целиком, не пытайтесь их «вывести»."
+      uk: "Три звороти — одне рішення. Після пропуску стоїть іменник (einen Termin, eine Bescheinigung) — отже, потрібен Ich hätte gern …: він бере предмет і ніколи не бере дієслова. Після пропуску фраза закінчується інфінітивом (vereinbaren, ausfüllen) — отже, потрібен Ich würde gern …: він бере дію і залишає інфінітив у самому кінці, точно як модальне дієслово. А коли ви просите щось зробити самого працівника, речення починається з Könnten, а за ним іде Sie: Könnten Sie mir bitte helfen? Заучуйте всі три цілком, не намагайтеся їх «вивести»."
 
   - id: cloze-koennten-wuerde-haette
     outcomes: [anliegen-nennen]
@@ -38,13 +41,16 @@ items:
     instruction:
       en: "You are at the counter of the citizens' office. Fill in the polite chunks."
       ru: "Вы у окошка в бюргерамте. Вставьте вежливые обороты."
+      uk: "Ви біля віконця в бюргерамті. Вставте ввічливі звороти."
     text: "Guten Tag! {{Könnten}} Sie mir bitte helfen? Ich {{würde}} gern meine neue Adresse anmelden. Und ich {{hätte}} gern eine Bescheinigung für meinen Chef."
     translation:
       en: "Good afternoon! Could you help me, please? I would like to register my new address. And I would like a certificate for my employer."
       ru: "Здравствуйте! Не могли бы вы мне помочь? Я хотел(а) бы зарегистрировать свой новый адрес. И мне нужна справка для начальника."
+      uk: "Доброго дня! Чи не могли б ви мені допомогти? Я хотів(ла) би зареєструвати свою нову адресу. І мені потрібна довідка для начальника."
     explain:
       en: "Read what follows each gap and the chunk chooses itself. A request to the other person opens with Könnten Sie …? — the politer twin of Können Sie …?, built the same way, with the infinitive (helfen) at the end. An action of your own — anmelden, an infinitive at the very end — takes würde gern. A thing you want handed to you — eine Bescheinigung, a noun in the accusative — takes hätte gern. Swapping the last two gives Ich hätte gern anmelden, which is not a sentence."
       ru: "Прочитайте, что идёт после каждого пропуска, — и оборот выберется сам. Просьба к собеседнику начинается с Könnten Sie …? — это вежливый близнец Können Sie …?, устроенный так же, с инфинитивом (helfen) в конце. Ваше собственное действие — anmelden, инфинитив в самом конце — требует würde gern. Предмет, который вам должны выдать, — eine Bescheinigung, существительное в Akkusativ — требует hätte gern. Если поменять последние два местами, получится Ich hätte gern anmelden, а это не предложение."
+      uk: "Прочитайте, що йде після кожного пропуску, — і зворот вибереться сам. Прохання до співрозмовника починається з Könnten Sie …? — це ввічливий близнюк Können Sie …?, побудований так само, з інфінітивом (helfen) у кінці. Ваша власна дія — anmelden, інфінітив у самому кінці — вимагає würde gern. Предмет, який вам мають видати, — eine Bescheinigung, іменник в Akkusativ — вимагає hätte gern. Якщо поміняти два останні місцями, вийде Ich hätte gern anmelden, а це не речення."
 
   # The `dativ` deepens edge: zum / bei / mit / nach, all of them Dativ, all of them the
   # language of the errand itself.
@@ -55,13 +61,16 @@ items:
     instruction:
       en: "Fill in the preposition: mit, nach, bei or zu (one of them contracts with the article). Watch the capital letter at the start of a sentence."
       ru: "Вставьте предлог: mit, nach, bei или zu (один из них сливается с артиклем). Следите за заглавной буквой в начале предложения."
+      uk: "Вставте прийменник: mit, nach, bei або zu (один із них зливається з артиклем). Стежте за великою літерою на початку речення."
     text: "Am Dienstag gehe ich {{zum}} Bürgeramt. {{Bei}} der Anmeldung brauche ich meinen Ausweis. Ich komme also {{mit}} dem Formular und einer Kopie. {{Nach}} dem Termin bekomme ich die Bescheinigung."
     translation:
       en: "On Tuesday I am going to the citizens' office. For the registration I need my ID card. So I am coming with the form and a copy. After the appointment I will get the certificate."
       ru: "Во вторник я иду в бюргерамт. Для регистрации мне нужно удостоверение. Поэтому я приду с бланком и копией. После приёма я получу справку."
+      uk: "У вівторок я йду до бюргерамту. Для реєстрації мені потрібне посвідчення. Тому я прийду з бланком і копією. Після прийому я отримаю довідку."
     explain:
       en: "Four prepositions, one case: zu, bei, mit and nach always take the Dativ, without a single exception and whatever they mean. Two of them are contracted here — zu dem Bürgeramt becomes zum Bürgeramt, and you will practically never hear the long form. Watch the endings they force: der Anmeldung (feminine, so bei der), dem Formular and dem Termin (neuter and masculine, so mit dem, nach dem)."
       ru: "Четыре предлога — один падеж: zu, bei, mit и nach всегда требуют Dativ, без единого исключения и независимо от значения. Два из них здесь стянуты: zu dem Bürgeramt превращается в zum Bürgeramt, и полную форму вы едва ли услышите. Следите за окончаниями, которых они требуют: der Anmeldung (женский род, поэтому bei der), dem Formular и dem Termin (средний и мужской, поэтому mit dem, nach dem)."
+      uk: "Чотири прийменники — один відмінок: zu, bei, mit і nach завжди вимагають Dativ, без жодного винятку й незалежно від значення. Два з них тут стягнуті: zu dem Bürgeramt перетворюється на zum Bürgeramt, і повну форму ви навряд чи почуєте. Стежте за закінченнями, яких вони вимагають: der Anmeldung (жіночий рід, тому bei der), dem Formular і dem Termin (середній і чоловічий, тому mit dem, nach dem)."
 
   # The `termine-vereinbaren` deepens edge. The three options differ in exactly one thing —
   # who is being addressed — so a wrong answer is a register error and nothing else.
@@ -72,6 +81,7 @@ items:
     instruction:
       en: "You are at the citizens' office for the first time. The clerk is a man you have never met. What do you say?"
       ru: "Вы впервые пришли в бюргерамт. За окошком — незнакомый мужчина. Что вы скажете?"
+      uk: "Ви вперше прийшли до бюргерамту. За віконцем — незнайомий чоловік. Що ви скажете?"
     prompt: "Sie kommen an den Schalter: „…“"
     options:
       - "Könnten Sie mir bitte helfen?"
@@ -81,9 +91,11 @@ items:
     translation:
       en: "You come up to the counter: 'Could you help me, please?'"
       ru: "Вы подходите к окошку: «Не могли бы вы мне помочь?»"
+      uk: "Ви підходите до віконця: «Чи не могли б ви мені допомогти?»"
     explain:
       en: "All three sentences are polite in shape; only one is addressed to the right person. A clerk is a stranger doing his job, and a stranger gets Sie — with a capital S. The du-form belongs to friends and family, the ihr-form to several of them at once, and neither has any place in an office: it is not a friendlier way of saying the same thing, it is the wrong register, and it lands as disrespect. In practice you only ever need one of these three forms at a counter, so learn Könnten Sie … as a fixed phrase and never take it apart."
       ru: "Все три предложения по форме вежливы — но лишь одно обращено к нужному человеку. Сотрудник за окошком — незнакомый человек на работе, а незнакомому говорят Sie, с заглавной S. Форма на du — для друзей и родных, форма на ihr — для нескольких таких же, и в учреждении им места нет: это не «более дружелюбный» вариант той же фразы, а неверный регистр, и звучит он как неуважение. На практике у окошка нужна только одна из трёх форм, поэтому заучите Könnten Sie … целиком и не разбирайте её на части."
+      uk: "Усі три речення за формою ввічливі — але лише одне звернене до потрібної людини. Працівник за віконцем — незнайома людина на роботі, а незнайомому кажуть Sie, з великою S. Форма на du — для друзів і рідних, форма на ihr — для кількох таких самих, і в установі їм місця немає: це не «дружніший» варіант тієї самої фрази, а неправильний регістр, і звучить він як неповага. На практиці біля віконця потрібна лише одна з трьох форм, тому заучіть Könnten Sie … цілком і не розбирайте її на частини."
 
   # The `nebensaetze-plaene` deepens edge.
   - id: cloze-weil-verbende
@@ -93,13 +105,16 @@ items:
     instruction:
       en: "Put the verbs at the end of the weil-clause, in the right order."
       ru: "Поставьте глаголы в конец придаточного с weil, в правильном порядке."
+      uk: "Поставте дієслова в кінець підрядного з weil, у правильному порядку."
     text: "Guten Tag! Ich komme, weil ich mich {{anmelden}} {{möchte}}. Ich brauche auch eine Bescheinigung, weil mein Chef sie {{braucht}}."
     translation:
       en: "Good afternoon! I have come because I would like to register. I also need a certificate, because my employer needs it."
       ru: "Здравствуйте! Я пришёл(шла), потому что хочу зарегистрироваться. Мне также нужна справка, потому что она нужна моему начальнику."
+      uk: "Доброго дня! Я прийшов(шла), бо хочу зареєструватися. Мені також потрібна довідка, бо вона потрібна моєму начальникові."
     explain:
       en: "weil sends the conjugated verb to the very end of its clause. In the second weil-clause there is only one verb, so it simply goes last: … weil mein Chef sie braucht. In the first there are two, and then the order is fixed: the infinitive first, the conjugated verb behind it, right at the end — … weil ich mich anmelden möchte. Say it out loud a few times: the little word möchte is the one that has to land last, and it is the one learners keep leaving in the middle."
       ru: "weil отправляет спрягаемый глагол в самый конец своего придаточного. Во втором придаточном глагол один — он просто становится последним: … weil mein Chef sie braucht. В первом их два, и тогда порядок жёсткий: сначала инфинитив, за ним спрягаемый глагол, в самом конце — … weil ich mich anmelden möchte. Проговорите это вслух несколько раз: приземлиться последним должно именно маленькое möchte, а его-то и оставляют в середине."
+      uk: "weil відправляє відмінюване дієслово в самий кінець свого підрядного. У другому підрядному дієслово одне — воно просто стає останнім: … weil mein Chef sie braucht. У першому їх два, і тоді порядок жорсткий: спочатку інфінітив, за ним відмінюване дієслово, у самому кінці — … weil ich mich anmelden möchte. Проговоріть це вголос кілька разів: приземлитися останнім має саме маленьке möchte, а його якраз і залишають посередині."
 
   - id: mc-haette-oder-wuerde
     outcomes: [anliegen-nennen]
@@ -108,6 +123,7 @@ items:
     instruction:
       en: "Which word fits? Look at what comes after the gap."
       ru: "Какое слово подходит? Посмотрите, что стоит после пропуска."
+      uk: "Яке слово підходить? Подивіться, що стоїть після пропуску."
     prompt: "Am Schalter: „Ich ___ gern den Antrag hier unterschreiben.“"
     options:
       - "würde"
@@ -117,9 +133,11 @@ items:
     translation:
       en: "At the counter: 'I would like to sign the application here.'"
       ru: "У окошка: «Я хотел(а) бы подписать заявление здесь»."
+      uk: "Біля віконця: «Я хотів(ла) би підписати заяву тут»."
     explain:
       en: "The sentence ends in an infinitive — unterschreiben — so it names an action, and an action takes würde gern: Ich würde gern den Antrag hier unterschreiben. hätte gern takes a thing and stops there: Ich hätte gern den Antrag is a fine sentence, but Ich hätte gern den Antrag unterschreiben is not. And könnte belongs to the other chunk entirely: Könnten Sie …? is a request aimed at the person opposite you, not a wish of your own."
       ru: "Предложение заканчивается инфинитивом — unterschreiben, — то есть называет действие, а действие требует würde gern: Ich würde gern den Antrag hier unterschreiben. Оборот hätte gern берёт предмет и на нём останавливается: Ich hätte gern den Antrag — нормальная фраза, а Ich hätte gern den Antrag unterschreiben — нет. Что до könnte, оно принадлежит совсем другому обороту: Könnten Sie …? — это просьба к человеку напротив, а не ваше собственное желание."
+      uk: "Речення закінчується інфінітивом — unterschreiben, — тобто називає дію, а дія вимагає würde gern: Ich würde gern den Antrag hier unterschreiben. Зворот hätte gern бере предмет і на ньому зупиняється: Ich hätte gern den Antrag — нормальна фраза, а Ich hätte gern den Antrag unterschreiben — ні. Що ж до könnte, воно належить зовсім іншому звороту: Könnten Sie …? — це прохання до людини навпроти, а не ваше власне бажання."
 
   - id: order-koennten-satzklammer
     outcomes: [anliegen-nennen]
@@ -128,14 +146,17 @@ items:
     instruction:
       en: "Arrange the words into a correct sentence."
       ru: "Составьте правильное предложение."
+      uk: "Складіть правильне речення."
     words: ["Könnten", "Sie", "mir", "bitte", "das", "Formular", "geben?"]
     accept: ["Könnten Sie mir das Formular bitte geben?"]
     translation:
       en: "Could you give me the form, please?"
       ru: "Не могли бы вы дать мне бланк?"
+      uk: "Чи не могли б ви дати мені бланк?"
     explain:
       en: "Könnten builds the same bracket as any modal verb: the conjugated form first (this is a question, so it opens the sentence), Sie right behind it, and the infinitive geben waiting at the very end. Everything else — mir, bitte, das Formular — lines up in the middle. bitte is movable and can stand either before or after the object; the bracket around it never moves."
       ru: "Könnten строит ту же рамку, что и любой модальный глагол: спрягаемая форма впереди (это вопрос, поэтому она открывает предложение), сразу за ней Sie, а инфинитив geben ждёт в самом конце. Всё остальное — mir, bitte, das Formular — выстраивается в середине. Слово bitte подвижно и может стоять как до дополнения, так и после него; сама рамка при этом не двигается."
+      uk: "Könnten будує ту саму рамку, що й будь-яке модальне дієслово: відмінювана форма попереду (це питання, тому вона відкриває речення), одразу за нею Sie, а інфінітив geben чекає в самому кінці. Усе інше — mir, bitte, das Formular — вишиковується посередині. Слово bitte рухоме й може стояти як до додатка, так і після нього; сама рамка при цьому не рухається."
 
   - id: uebersetzen-koennten-sie
     outcomes: [anliegen-nennen]
@@ -144,8 +165,10 @@ items:
     instruction:
       en: "You are at the counter. Ask politely — use Könnten Sie …"
       ru: "Вы у окошка. Попросите вежливо — оборотом Könnten Sie …"
+      uk: "Ви біля віконця. Попросіть ввічливо — зворотом Könnten Sie …"
     prompt_en: "Could you give me the form, please?"
     prompt_ru: "Не могли бы вы дать мне бланк?"
+    prompt_uk: "Чи не могли б ви дати мені бланк?"
     answer: "Könnten Sie mir bitte das Formular geben?"
     accept:
       - "Könnten Sie mir das Formular bitte geben?"
@@ -153,6 +176,7 @@ items:
     explain:
       en: "The whole politeness of the sentence sits in one word: Könnten. Können Sie mir das Formular geben? is perfectly grammatical and noticeably blunter — the extra ö-vowel is the entire difference, and it is the difference an official hears. The frame is the modal frame you already know: conjugated verb first in a question, Sie behind it, the infinitive geben at the very end."
       ru: "Вся вежливость предложения держится на одном слове: Könnten. Фраза Können Sie mir das Formular geben? грамматически безупречна и заметно суше — вся разница в одном гласном, и именно её слышит чиновник. Рамка вам знакома по модальным глаголам: спрягаемый глагол впереди (это вопрос), за ним Sie, а инфинитив geben — в самом конце."
+      uk: "Уся ввічливість речення тримається на одному слові: Könnten. Фраза Können Sie mir das Formular geben? граматично бездоганна й помітно сухіша — уся різниця в одному голосному, і саме її чує чиновник. Рамка вам знайома з модальних дієслів: відмінюване дієслово попереду (це питання), за ним Sie, а інфінітив geben — у самому кінці."
 
   - id: uebersetzen-haette-gern
     outcomes: [anliegen-nennen]
@@ -161,8 +185,10 @@ items:
     instruction:
       en: "Ask for it politely at the counter — use Ich hätte gern …"
       ru: "Попросите это вежливо у окошка — оборотом Ich hätte gern …"
+      uk: "Попросіть це ввічливо біля віконця — зворотом Ich hätte gern …"
     prompt_en: "I would like a certificate for my employer."
     prompt_ru: "Я хотел(а) бы получить справку для начальника."
+    prompt_uk: "Я хотів(ла) би отримати довідку для начальника."
     answer: "Ich hätte gern eine Bescheinigung für meinen Chef."
     accept:
       - "Ich hätte gerne eine Bescheinigung für meinen Chef."
@@ -171,6 +197,7 @@ items:
     explain:
       en: "Ich hätte gern … is the counter phrase for anything you want handed to you, and what follows it is a noun in the accusative — eine Bescheinigung — with no verb behind it. Ich will eine Bescheinigung says the same thing and says it rudely. Note für meinen Chef: für always takes the accusative, so the possessive is meinen, not meinem. gern and gerne are both correct and interchangeable."
       ru: "Ich hätte gern … — это фраза у окошка для всего, что вам должны выдать, и после неё идёт существительное в Akkusativ — eine Bescheinigung — без всякого глагола. Фраза Ich will eine Bescheinigung говорит то же самое и говорит грубо. Обратите внимание на für meinen Chef: für всегда требует Akkusativ, поэтому meinen, а не meinem. Формы gern и gerne равноправны и взаимозаменяемы."
+      uk: "Ich hätte gern … — це фраза біля віконця для всього, що вам мають видати, і після неї йде іменник в Akkusativ — eine Bescheinigung — без жодного дієслова. Фраза Ich will eine Bescheinigung каже те саме й каже грубо. Зверніть увагу на für meinen Chef: für завжди вимагає Akkusativ, тому meinen, а не meinem. Форми gern і gerne рівноправні й взаємозамінні."
 
   - id: uebersetzen-dativ-weg-zum-amt
     outcomes: [anliegen-nennen]
@@ -179,8 +206,10 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "On Monday I am going to the public office with my ID card."
     prompt_ru: "В понедельник я иду в учреждение с удостоверением."
+    prompt_uk: "У понеділок я йду до установи з посвідченням."
     answer: "Am Montag gehe ich mit meinem Ausweis zum Amt."
     accept:
       - "Ich gehe am Montag mit meinem Ausweis zum Amt."
@@ -190,3 +219,4 @@ items:
     explain:
       en: "Two dative prepositions in one short sentence, and the case is all this item is about. mit takes the Dativ, so the possessive ends in -em: mit meinem Ausweis, never mit mein Ausweis. zu takes the Dativ too and contracts with the article: zu dem Amt becomes zum Amt, and the long form is practically never said. The order of the two phrases is free — mit meinem Ausweis zum Amt and zum Amt mit meinem Ausweis are both correct German, and both are accepted here. The time phrase Am Montag may open the sentence or sit after the verb; either way gehe stays in position 2, because that is where the conjugated verb lives."
       ru: "Два дательных предлога в одном коротком предложении — и весь этот пункт только о падеже. mit требует Dativ, поэтому притяжательное местоимение получает окончание -em: mit meinem Ausweis, а не mit mein Ausweis. zu тоже требует Dativ и стягивается с артиклем: zu dem Amt превращается в zum Amt, и полную форму практически никто не произносит. Порядок двух оборотов свободен: и mit meinem Ausweis zum Amt, и zum Amt mit meinem Ausweis — правильный немецкий, и оба варианта здесь засчитываются. Обстоятельство времени Am Montag может стоять и в начале, и после глагола — gehe в любом случае остаётся на втором месте, потому что там и живёт спрягаемый глагол."
+      uk: "Два давальні прийменники в одному короткому реченні — і весь цей пункт лише про відмінок. mit вимагає Dativ, тому присвійний займенник отримує закінчення -em: mit meinem Ausweis, а не mit mein Ausweis. zu теж вимагає Dativ і стягується з артиклем: zu dem Amt перетворюється на zum Amt, і повну форму практично ніхто не вимовляє. Порядок двох зворотів вільний: і mit meinem Ausweis zum Amt, і zum Amt mit meinem Ausweis — правильна німецька, і обидва варіанти тут зараховуються. Обставина часу Am Montag може стояти і на початку, і після дієслова — gehe в будь-якому разі залишається на другому місці, бо там і живе відмінюване дієслово."

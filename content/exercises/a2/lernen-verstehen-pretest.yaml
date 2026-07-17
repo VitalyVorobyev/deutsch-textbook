@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — where does the verb go in a wrapped question?"
   ru: "Предтест — где стоит глагол в вопросе с рамкой?"
+  uk: "Передтест — де стоїть дієслово в питанні з рамкою?"
 items:
   - id: pretest-indirekte-w-frage
     outcomes: [nachfragen-klaeren]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "Können Sie mir sagen, ___"
     options:
       - "wo der Kurs ist?"
@@ -20,9 +22,11 @@ items:
     translation:
       en: "Can you tell me where the course is?"
       ru: "Вы не подскажете, где проходит курс?"
+      uk: "Чи не підкажете, де відбувається курс?"
     explain:
       en: "Können Sie mir sagen is already a main clause with its verb in position 2. Everything after the comma is therefore a Nebensatz, and a Nebensatz ends with its conjugated verb: wo der Kurs ist. Option 2 is the bare question Wo ist der Kurs? left standing inside the wrapper — right on its own, wrong here. Option 3 drops the verb altogether, and German never does that: the clause needs ist, and it needs it at the end."
       ru: "Können Sie mir sagen — это уже главное предложение, и глагол в нём стоит на втором месте. Значит, всё после запятой — придаточное, а придаточное заканчивается спрягаемым глаголом: wo der Kurs ist. Во втором варианте внутри рамки остался самостоятельный вопрос Wo ist der Kurs? — сам по себе он правильный, а здесь нет. В третьем глагол выброшен вовсе: по-русски «где курс?» звучит нормально, но немецкий без глагола-связки не обходится — ist обязательно, и стоять оно должно в конце."
+      uk: "Können Sie mir sagen — це вже головне речення, і дієслово в ньому стоїть на другому місці. Отже, все після коми — підрядне, а підрядне закінчується відмінюваним дієсловом: wo der Kurs ist. У другому варіанті всередині рамки залишилося самостійне питання Wo ist der Kurs? — саме по собі воно правильне, а тут ні. У третьому дієслово викинуте зовсім: українською «де курс?» звучить нормально, але німецька без дієслова-зв'язки не обходиться — ist обов'язкове, і стояти воно має в кінці."
 
   - id: pretest-ob-oder-wenn
     outcomes: [nachfragen-klaeren]
@@ -31,6 +35,7 @@ items:
     instruction:
       en: "Guess which word opens the clause."
       ru: "Угадайте, какое слово открывает придаточное."
+      uk: "Вгадайте, яке слово відкриває підрядне."
     prompt: "Wissen Sie, ___ der Unterricht heute stattfindet?"
     options:
       - "ob"
@@ -40,9 +45,11 @@ items:
     translation:
       en: "Do you know whether the lesson is taking place today?"
       ru: "Вы не знаете, идёт ли сегодня занятие?"
+      uk: "Ви не знаєте, чи сьогодні йде заняття?"
     explain:
       en: "The clause reports a question you could answer with ja or nein, and such a question has no question word of its own — so German supplies ob to open the clause. wenn names a condition (if it takes place, then …), and dass reports a statement you are sure of. All three send the verb to the end; only ob asks."
       ru: "Придаточное передаёт вопрос, на который отвечают ja или nein, а у такого вопроса нет своего вопросительного слова — поэтому немецкий даёт для этого союз ob (по-русски частица «ли»). wenn называет условие («если состоится, тогда …»), dass передаёт утверждение, в котором вы уверены. Глагол в конец отправляют все три; спрашивает только ob."
+      uk: "Підрядне передає питання, на яке відповідають ja або nein, а в такого питання немає свого питального слова — тому німецька дає для цього сполучник ob (українською частка «чи»). wenn називає умову («якщо відбудеться, тоді …»), dass передає твердження, у якому ви впевнені. Дієслово в кінець відправляють усі три; запитує лише ob."
 
   - id: pretest-direkte-frage
     outcomes: [nachfragen-klaeren]
@@ -51,6 +58,7 @@ items:
     instruction:
       en: "Guess. This time there is no wrapper — you are asking straight out."
       ru: "Угадывайте. На этот раз рамки нет — вы спрашиваете напрямую."
+      uk: "Вгадуйте. Цього разу рамки немає — ви запитуєте прямо."
     prompt: "Sie fragen direkt: ___"
     options:
       - "Wann beginnt der Unterricht?"
@@ -60,6 +68,8 @@ items:
     translation:
       en: "When does the lesson start?"
       ru: "Когда начинается занятие?"
+      uk: "Коли починається заняття?"
     explain:
       en: "Without a wrapper the ordinary rule holds: the conjugated verb of a main clause stands in position 2. The question word wann takes position 1, so beginnt comes second and the subject follows it. Option 2 puts the verb at the end, which is what a wrapped question needs — Wissen Sie, wann der Unterricht beginnt? — and that contrast is the whole of this lesson."
       ru: "Без рамки действует обычное правило: спрягаемый глагол главного предложения стоит на втором месте. Первое место занимает вопросительное слово wann, значит beginnt идёт вторым, а подлежащее — за ним. Во втором варианте глагол ушёл в конец: так нужно в вопросе с рамкой — Wissen Sie, wann der Unterricht beginnt? — и весь этот урок как раз о таком противопоставлении."
+      uk: "Без рамки діє звичайне правило: відмінюване дієслово головного речення стоїть на другому місці. Перше місце займає питальне слово wann, отже beginnt іде другим, а підмет — за ним. У другому варіанті дієслово пішло в кінець: так потрібно в питанні з рамкою — Wissen Sie, wann der Unterricht beginnt? — і весь цей урок якраз про таке протиставлення."
