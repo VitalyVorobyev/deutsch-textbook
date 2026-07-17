@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — politeness at the counter"
   ru: "Предтест — вежливость у окошка"
+  uk: "Передтест — ввічливість біля віконця"
 items:
   - id: pretest-du-sie
     outcomes: [anliegen-nennen]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "Sie sind im Amt. Der Sachbearbeiter ist ein fremder Mann. Sie sagen: „…“"
     options:
       - "Könnten Sie mir bitte helfen?"
@@ -20,9 +22,11 @@ items:
     translation:
       en: "You are at the public office. The clerk is a man you have never met. You say: 'Could you help me, please?'"
       ru: "Вы в учреждении. За окошком — незнакомый мужчина. Вы говорите: «Не могли бы вы мне помочь?»"
+      uk: "Ви в установі. За віконцем — незнайомий чоловік. Ви кажете: «Чи не могли б ви мені допомогти?»"
     explain:
       en: "Everyone behind a counter is a stranger at work, and a stranger gets Sie. Könnten Sie …? is the polite request form and the one an official hears all day. Kannst du …? addresses a friend, and Hilf mir! is a bare command — both are the wrong register in an office, and neither is a softer way of saying the same thing."
       ru: "Любой человек за окошком — незнакомый человек на работе, а незнакомому говорят Sie. Könnten Sie …? — это вежливая форма просьбы, и именно её чиновник слышит целый день. Kannst du …? обращено к другу, а Hilf mir! — голый приказ; и то и другое в учреждении — неверный регистр, и ни то ни другое не является «более мягким» вариантом той же фразы."
+      uk: "Будь-яка людина за віконцем — незнайома людина на роботі, а незнайомому кажуть Sie. Könnten Sie …? — це ввічлива форма прохання, і саме її чиновник чує цілий день. Kannst du …? звернене до друга, а Hilf mir! — голий наказ; і те, і те в установі — неправильний регістр, і ні те, ні те не є «м'якшим» варіантом тієї самої фрази."
 
   - id: pretest-haette-wuerde
     outcomes: [anliegen-nennen]
@@ -31,6 +35,7 @@ items:
     instruction:
       en: "Guess the missing word."
       ru: "Угадайте пропущенное слово."
+      uk: "Вгадайте пропущене слово."
     prompt: "Am Schalter: „Ich ___ gern einen Termin vereinbaren.“"
     options:
       - "würde"
@@ -40,9 +45,11 @@ items:
     translation:
       en: "At the counter: 'I would like to make an appointment.'"
       ru: "У окошка: «Я хотел(а) бы записаться на приём»."
+      uk: "Біля віконця: «Я хотів(ла) би записатися на прийом»."
     explain:
       en: "German has two polite ways of saying what you want, and what follows decides between them. An action — here the infinitive vereinbaren at the end of the sentence — takes würde gern. A thing takes hätte gern, and then no verb follows: Ich hätte gern einen Termin. And könnte belongs to a request aimed at the other person: Könnten Sie …?"
       ru: "В немецком есть два вежливых способа сказать, чего вы хотите, и выбор между ними решает то, что идёт следом. Действие — здесь инфинитив vereinbaren в конце предложения — требует würde gern. Предмет требует hätte gern, и тогда глагола за ним нет: Ich hätte gern einen Termin. А könnte принадлежит просьбе, обращённой к собеседнику: Könnten Sie …?"
+      uk: "У німецькій є два ввічливі способи сказати, чого ви хочете, і вибір між ними вирішує те, що йде далі. Дія — тут інфінітив vereinbaren у кінці речення — вимагає würde gern. Предмет вимагає hätte gern, і тоді дієслова за ним немає: Ich hätte gern einen Termin. А könnte належить проханню, зверненому до співрозмовника: Könnten Sie …?"
 
   - id: pretest-indirekte-frage
     outcomes: [unterlagen-erfragen]
@@ -51,6 +58,7 @@ items:
     instruction:
       en: "Guess. Which ending makes a correct German sentence?"
       ru: "Угадывайте. Какое продолжение даёт правильное немецкое предложение?"
+      uk: "Вгадуйте. Яке продовження дає правильне німецьке речення?"
     prompt: "Können Sie mir sagen, …?"
     options:
       - "welche Unterlagen ich brauche"
@@ -60,6 +68,8 @@ items:
     translation:
       en: "Can you tell me which documents I need?"
       ru: "Можете сказать, какие документы мне нужны?"
+      uk: "Чи можете сказати, які документи мені потрібні?"
     explain:
       en: "On its own the question is Welche Unterlagen brauche ich? — verb second, subject behind it. Tucked into a longer sentence after Können Sie mir sagen, it stops being a question of its own: the subject comes first and the verb drops to the very end — welche Unterlagen ich brauche. This is the politest way to ask an official anything."
       ru: "Сам по себе вопрос звучит Welche Unterlagen brauche ich? — глагол на втором месте, подлежащее за ним. Но внутри длинного предложения, после Können Sie mir sagen, он перестаёт быть самостоятельным вопросом: подлежащее выходит вперёд, а глагол падает в самый конец — welche Unterlagen ich brauche. Это самый вежливый способ о чём-либо спросить чиновника."
+      uk: "Сам по собі питання звучить Welche Unterlagen brauche ich? — дієслово на другому місці, підмет за ним. Але всередині довгого речення, після Können Sie mir sagen, воно перестає бути самостійним питанням: підмет виходить уперед, а дієслово падає в самий кінець — welche Unterlagen ich brauche. Це найввічливіший спосіб про будь-що спитати чиновника."

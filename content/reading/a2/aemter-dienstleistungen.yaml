@@ -3,23 +3,23 @@ kind: intensive
 title_de: "Ein Termin im Bürgeramt"
 text:
   - >-
-    Am Eingang vom Bürgeramt hängt ein [[Aushang::notice::объявление]]:
-    „[[Öffnungszeiten::opening hours::часы работы]]: Montag bis Freitag von acht
+    Am Eingang vom Bürgeramt hängt ein [[Aushang::notice::объявление::оголошення]]:
+    „[[Öffnungszeiten::opening hours::часы работы::години роботи]]: Montag bis Freitag von acht
     bis zwölf Uhr. Am Donnerstag auch von vierzehn bis achtzehn Uhr. Bitte kommen
     Sie nur mit Termin!“
   - >-
     Frau Nowak bekommt einen Brief: „Sehr geehrte Frau Nowak, Ihr Termin ist am
     Donnerstag um neun Uhr, Zimmer zwölf. Bitte bringen Sie diese
-    [[Unterlagen::documents::документы]] mit: Ihren Ausweis, das Formular
+    [[Unterlagen::documents::документы::документи]] mit: Ihren Ausweis, das Formular
     „Anmeldung“ und eine Kopie [[vom Mietvertrag::of the rental contract::договора
-    аренды]]. Die Bescheinigung kostet fünf Euro. Die [[Gebühr::fee::пошлина,
-    сбор]] bezahlen Sie am Schalter.“
+    аренды::договору оренди]]. Die Bescheinigung kostet fünf Euro. Die [[Gebühr::fee::пошлина,
+    сбор::мито, збір]] bezahlen Sie am Schalter.“
   - >-
     Zu Hause füllt Frau Nowak das Formular aus:
-    [[Familienname::surname::фамилия]], Vorname,
-    [[Geburtsdatum::date of birth::дата рождения]],
-    [[Staatsangehörigkeit::nationality::гражданство]]. Unten schreibt sie das Datum
-    und ihre [[Unterschrift::signature::подпись]]. Aber am Donnerstag um neun Uhr
+    [[Familienname::surname::фамилия::прізвище]], Vorname,
+    [[Geburtsdatum::date of birth::дата рождения::дата народження]],
+    [[Staatsangehörigkeit::nationality::гражданство::громадянство]]. Unten schreibt sie das Datum
+    und ihre [[Unterschrift::signature::подпись::підпис]]. Aber am Donnerstag um neun Uhr
     arbeitet sie. Am Mittwoch ruft sie an: „Guten Tag! Könnten Sie mir bitte
     helfen? Ich hätte gern einen Termin am Nachmittag, weil ich am Vormittag
     arbeite.“
@@ -36,9 +36,11 @@ questions:
     translation:
       en: What does Frau Nowak have to bring to her appointment?
       ru: Что госпожа Новак должна принести на приём?
+      uk: Що пані Новак має принести на прийом?
     explain:
       en: "The letter lists all three, one after the other: Ihren Ausweis, das Formular „Anmeldung“ und eine Kopie vom Mietvertrag. The five euros are in the letter too, but they are the fee for the certificate, not something you bring — and the copy is of the rental contract, not of the ID card. A letter from an office is read exactly like this: find the list and take it item by item, because leaving one out means coming back another day."
       ru: "В письме перечислены все три пункта подряд: Ihren Ausweis, das Formular «Anmeldung» und eine Kopie vom Mietvertrag. Пять евро в письме тоже упомянуты, но это сбор за справку, а не то, что нужно принести; а копия снимается с договора аренды, а не с удостоверения. Письмо из учреждения читают именно так: находят список и разбирают его по пунктам — забыть один означает прийти ещё раз."
+      uk: "У листі перелічені всі три пункти поспіль: Ihren Ausweis, das Formular «Anmeldung» und eine Kopie vom Mietvertrag. П'ять євро в листі теж згадані, але це збір за довідку, а не те, що треба принести; а копію знімають із договору оренди, а не з посвідчення. Лист з установи читають саме так: знаходять список і розбирають його по пунктах — забути один означає прийти ще раз."
 
   - id: frage-formular-unten
     outcomes: [formular-verstehen]
@@ -52,9 +54,11 @@ questions:
     translation:
       en: What does Frau Nowak write at the bottom of the form?
       ru: Что госпожа Новак пишет внизу бланка?
+      uk: Що пані Новак пише внизу бланка?
     explain:
       en: "The text says it in one short sentence: Unten schreibt sie das Datum und ihre Unterschrift. Every German form ends the same way — Datum, Unterschrift — and a form without a signature is not valid, which is why a clerk checks the bottom line first. The words higher up on the form are the ones asked earlier: Familienname, Vorname, Geburtsdatum, Staatsangehörigkeit."
       ru: "В тексте это сказано одной короткой фразой: Unten schreibt sie das Datum und ihre Unterschrift. Любой немецкий бланк заканчивается одинаково — Datum, Unterschrift, — и бланк без подписи недействителен, поэтому сотрудник первым делом смотрит на нижнюю строку. Слова, стоящие выше, спрашивают о другом: Familienname, Vorname, Geburtsdatum, Staatsangehörigkeit."
+      uk: "У тексті це сказано однією короткою фразою: Unten schreibt sie das Datum und ihre Unterschrift. Будь-який німецький бланк закінчується однаково — Datum, Unterschrift, — і бланк без підпису недійсний, тому працівник передусім дивиться на нижній рядок. Слова, що стоять вище, запитують про інше: Familienname, Vorname, Geburtsdatum, Staatsangehörigkeit."
 
   - id: frage-anruf
     outcomes: [anliegen-nennen]
@@ -68,6 +72,8 @@ questions:
     translation:
       en: Why does Frau Nowak telephone on Wednesday?
       ru: Почему госпожа Новак звонит в среду?
+      uk: Чому пані Новак телефонує в середу?
     explain:
       en: "She says it herself, and she says it politely: Ich hätte gern einen Termin am Nachmittag, weil ich am Vormittag arbeite. Her appointment is on Thursday at nine — and on Thursday morning she is at work, so the time does not fit. The notice at the entrance is what makes the request possible in the first place: on Thursdays the office is also open from two until six. The copy and the fee are both in the letter, but neither is a reason to telephone."
       ru: "Она сама это говорит — и говорит вежливо: Ich hätte gern einen Termin am Nachmittag, weil ich am Vormittag arbeite. Приём назначен на четверг, на девять утра, а в четверг утром она работает — время не подходит. Возможной эту просьбу делает как раз объявление у входа: по четвергам учреждение работает и с четырнадцати до восемнадцати часов. Копия и сбор в письме тоже упомянуты, но ни то ни другое не повод для звонка."
+      uk: "Вона сама це каже — і каже ввічливо: Ich hätte gern einen Termin am Nachmittag, weil ich am Vormittag arbeite. Прийом призначено на четвер, на дев'яту ранку, а в четвер уранці вона працює — час не підходить. Можливим це прохання робить якраз оголошення біля входу: щочетверга установа працює і з чотирнадцятої до вісімнадцятої години. Копія і збір у листі теж згадані, але ні те, ні те не привід для дзвінка."

@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — what you must, what you may, and how you ask"
   ru: "Предтест — что нужно, что можно и как попросить"
+  uk: "Передтест — що треба, що можна і як попросити"
 items:
   - id: pre-duerfen-muessen
     outcomes: [aufgaben-beschreiben]
@@ -11,15 +12,18 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "An der Tür hängt ein Schild: „Rauchen verboten“. Im Büro ___ man nicht rauchen."
     options: ["muss", "darf", "soll"]
     correct: 1
     translation:
       en: 'There is a sign on the door: "No smoking". You are not allowed to smoke in the office.'
       ru: "На двери висит табличка «Курить запрещено». В офисе курить нельзя."
+      uk: "На дверях висить табличка «Курити заборонено». В офісі курити не можна."
     explain:
       en: "Verboten is a ban, and German expresses a ban with dürfen + nicht: man darf nicht rauchen. muss nicht would say the opposite of a ban — it would merely release you from an obligation to smoke, which no sign has ever imposed. soll nicht would report someone's instruction rather than state a rule of the house."
       ru: "Verboten — это запрет, а запрет немецкий выражает через dürfen + nicht: man darf nicht rauchen. Вариант muss nicht сказал бы прямо противоположное: он всего лишь снимает обязанность курить, а такой обязанности ни одна табличка не устанавливала. А soll nicht передавал бы чьё-то распоряжение, а не правило заведения."
+      uk: "Verboten — це заборона, а заборону німецька виражає через dürfen + nicht: man darf nicht rauchen. Варіант muss nicht сказав би прямо протилежне: він лише знімає обов'язок курити, а такого обов'язку жодна табличка не встановлювала. А soll nicht передавав би чиєсь розпорядження, а не правило закладу."
 
   - id: pre-modal-satzklammer
     outcomes: [aufgaben-beschreiben]
@@ -28,6 +32,7 @@ items:
     instruction:
       en: "Guess where the two verbs go. Getting it wrong now is part of how the rule sticks later."
       ru: "Угадайте, где стоят оба глагола. Ошибка сейчас — часть того, как правило закрепится потом."
+      uk: "Вгадайте, де стоять обидва дієслова. Помилка зараз — частина того, як правило закріпиться потім."
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Am Montag ich muss die Frühschicht übernehmen."
@@ -37,9 +42,11 @@ items:
     translation:
       en: On Monday I have to take over the early shift.
       ru: В понедельник мне придётся взять утреннюю смену.
+      uk: У понеділок мені доведеться взяти ранкову зміну.
     explain:
       en: "Two rules decide this at once. The conjugated verb — here the modal muss — stands in position 2, and Am Montag has already taken position 1, so the subject ich has to move behind the verb. And the infinitive closes the sentence: nothing may follow übernehmen. The first option puts two elements in front of the verb; the third leaves the bracket open."
       ru: "Здесь сразу два правила. Спрягаемый глагол — в данном случае модальный muss — стоит на втором месте, а первое уже занято обстоятельством Am Montag, поэтому подлежащее ich уходит за глагол. И инфинитив замыкает предложение: после übernehmen не может стоять ничего. В первом варианте перед глаголом оказываются сразу два члена предложения, в третьем рамка остаётся незакрытой."
+      uk: "Тут одразу два правила. Відмінюване дієслово — у цьому разі модальне muss — стоїть на другому місці, а перше вже зайняте обставиною Am Montag, тому підмет ich іде за дієслово. І інфінітив замикає речення: після übernehmen не може стояти нічого. У першому варіанті перед дієсловом опиняються одразу два члени речення, у третьому рамка залишається незакритою."
 
   - id: pre-du-sie
     outcomes: [arbeitszeit-aushandeln]
@@ -48,6 +55,7 @@ items:
     instruction:
       en: "Guess. Nothing here has been taught yet — answer from your instinct and see where it takes you."
       ru: "Угадывайте. Ничего из этого ещё не проходили — отвечайте по наитию и посмотрите, куда оно вас приведёт."
+      uk: "Вгадуйте. Нічого з цього ще не проходили — відповідайте за чуттям і подивіться, куди воно вас приведе."
     prompt: "Sie sprechen zum ersten Mal mit dem Chef einer anderen Firma. Wie bitten Sie höflich?"
     options:
       - "Könnten Sie mir bitte helfen?"
@@ -57,6 +65,8 @@ items:
     translation:
       en: Could you please help me?
       ru: Не могли бы вы мне помочь?
+      uk: Чи не могли б ви мені допомогти?
     explain:
       en: "A stranger, and the boss of another company at that, is Sie — with a capital S — and the matching verb form is könnten. könntest belongs to du and would be far too familiar here. The third option is a du-imperative: perfectly normal among friends, but as an opening line to a manager you have never met it sounds like an order."
       ru: "К незнакомому человеку, тем более к начальнику другой фирмы, обращаются на Sie — с большой буквы, — и соответствующая форма глагола здесь könnten. Форма könntest относится к du и прозвучала бы слишком фамильярно. Третий вариант — повелительное наклонение на du: среди друзей это совершенно нормально, но как первая фраза, обращённая к незнакомому начальнику, она звучит как приказ."
+      uk: "До незнайомої людини, тим паче до начальника іншої фірми, звертаються на Sie — з великої літери, — і відповідна форма дієслова тут könnten. Форма könntest стосується du і прозвучала б надто фамільярно. Третій варіант — наказовий спосіб на du: серед друзів це цілком нормально, але як перша фраза, звернена до незнайомого начальника, вона звучить як наказ."

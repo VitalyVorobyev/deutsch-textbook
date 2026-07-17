@@ -94,9 +94,11 @@ letter/parity checks and a review before merge.
 - **Wave 5 — `done` 2026-07-17** (PR #67): the next seven A2 spine topics — perfekt-haben-sein,
   termine-vereinbaren, wohnen-umzug, reisen-verkehr, einkaufen-reklamation, gesundheit-arzttermin,
   verben-mit-praepositionen — 56 files incl. their atlas outcomes; Über 183/266.
-- Waves 6–7 — `todo`: the last six A2 topics + `checkpoint-a2`, then the A2 completion decks and
-  the atlas.yaml residue (incl. `reference-data/cases`, the wortfelder, document and discovery
-  files, schema permitting).
+- **Wave 6 — `done` 2026-07-17** (PR #68): the last six A2 spine topics — aemter-dienstleistungen,
+  biografie-erfahrungen, lernen-verstehen, arbeit-beruf, freunde-feste, nebensaetze-plaene — plus
+  `checkpoint-a2` and their atlas outcomes; every A2 topic file is now Ukrainian; Über 226/266.
+- Wave 7 — `todo`: the A2 completion decks and the atlas.yaml residue (incl. `reference-data/cases`,
+  the wortfelder, document and discovery files, schema permitting).
 - ~~Known instrument gap~~ — closed 2026-07-16: match rights may be `{en, ru, uk?}` records
   (schema + `Match.tsx` + parity visibility); `a2/modalverben.yaml`'s slash-hack migrated, and a
   repo sweep found no other non-German right side. The A2 waves are unblocked.

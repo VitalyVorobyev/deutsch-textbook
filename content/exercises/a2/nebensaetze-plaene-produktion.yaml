@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — planning the Sunday: listening, writing, speaking"
   ru: "Практика — планируем воскресенье: аудирование, письмо, речь"
+  uk: "Практика — плануємо неділю: аудіювання, письмо, мовлення"
 items:
   # The rainy-day fallback in this conversation is NOT the one in the Lesetext. There
   # Tobias proposes the museum; here the museum is shut and he proposes the cinema — and
@@ -16,6 +17,7 @@ items:
     instruction:
       en: "Nina, Yusuf and Tobias are planning a day trip. Their plan for rain is not the one you read in the Lesetext — listen, do not remember."
       ru: "Нина, Юсуф и Тобиас планируют поездку. План на случай дождя здесь не тот, что был в тексте для чтения, — слушайте, а не вспоминайте."
+      uk: "Ніна, Юсуф і Тобіас планують поїздку. План на випадок дощу тут не той, що був у тексті для читання, — слухайте, а не пригадуйте."
     source:
       kind: tts
       rate: 0.9
@@ -36,9 +38,11 @@ items:
     translation:
       en: "What are the three of them doing on Saturday if it rains?"
       ru: "Что все трое будут делать в субботу, если пойдёт дождь?"
+      uk: "Що всі троє робитимуть у суботу, якщо піде дощ?"
     explain:
       en: "Every word you need is in Tobias's turn, and the museum is in it too — as the thing that is ruled out: Das Museum ist am Samstag leider geschlossen. So he proposes something else: Wenn es regnet, gehen wir ins Kino. The lake is the good-weather plan, and Nina says so in the last line. If you picked the museum, you answered from the Lesetext instead of from the recording — and that is the habit this item exists to break. Listen once more to the shape of both conditions: the wenn-clause first, its verb at the very end (regnet, scheint), and the main verb straight after the comma — gehen wir, fahren wir."
       ru: "Всё нужное звучит в реплике Тобиаса — и музей в ней тоже есть, но как раз в качестве отпавшего варианта: Das Museum ist am Samstag leider geschlossen. Поэтому он предлагает другое: Wenn es regnet, gehen wir ins Kino. Озеро — план на хорошую погоду, и об этом говорит Нина в последней фразе. Если вы выбрали музей, значит, ответили по тексту для чтения, а не по записи, — именно эту привычку задание и призвано сломать. Послушайте ещё раз, как устроены оба условия: сначала придаточное с wenn, глагол в самом его конце (regnet, scheint), а сразу после запятой — глагол главного предложения: gehen wir, fahren wir."
+      uk: "Усе потрібне звучить у репліці Тобіаса — і музей у ній теж є, але саме як варіант, що відпав: Das Museum ist am Samstag leider geschlossen. Тому він пропонує інше: Wenn es regnet, gehen wir ins Kino. Озеро — план на гарну погоду, і про це каже Ніна в останній фразі. Якщо ви вибрали музей, значить, відповіли за текстом для читання, а не за записом, — саме цю звичку завдання й покликане зламати. Послухайте ще раз, як влаштовані обидві умови: спочатку підрядне з wenn, дієслово в самому його кінці (regnet, scheint), а одразу після коми — дієслово головного речення: gehen wir, fahren wir."
 
   - id: cloze-vorfeld-verb-nach-komma
     outcomes: [nebensatz-vorfeld-stellung, wenn-bedingung]
@@ -47,13 +51,16 @@ items:
     instruction:
       en: "The wenn-clause is already in position 1. Fill in the verb of the main clause."
       ru: "Придаточное с wenn уже стоит на первом месте. Вставьте глагол главного предложения."
+      uk: "Підрядне з wenn уже стоїть на першому місці. Вставте дієслово головного речення."
     text: "Wenn ich Zeit habe, {{komme}} ich mit. Wenn Yusuf am Samstag frei hat, {{fahren}} wir zum See."
     translation:
       en: "If I have time, I will come along. If Yusuf is free on Saturday, we will drive to the lake."
       ru: "Если у меня будет время, я поеду с вами. Если в субботу Юсуф будет свободен, мы поедем на озеро."
+      uk: "Якщо в мене буде час, я поїду з вами. Якщо в суботу Юсуф буде вільний, ми поїдемо на озеро."
     explain:
       en: "Both gaps sit immediately after the comma, before the subject — and that is the whole point of the exercise. The fronted wenn-clause has taken position 1 of the main clause, so the conjugated verb must take position 2, which is now the first slot after the comma: komme ich, fahren wir. Write ich komme or wir fahren there and the verb has slipped to position 3, which German does not allow."
       ru: "Оба пропуска стоят сразу после запятой, перед подлежащим, — и в этом весь смысл упражнения. Вынесенное вперёд придаточное с wenn заняло первое место главного предложения, поэтому спрягаемый глагол обязан занять второе, а второе место — это теперь первый слот после запятой: komme ich, fahren wir. Напишете ich komme или wir fahren — и глагол окажется на третьем месте, чего немецкий не допускает. Русский здесь как раз и подводит: «Если у меня будет время, я приеду» — подлежащее спокойно стоит впереди."
+      uk: "Обидва пропуски стоять одразу після коми, перед підметом, — і в цьому весь сенс вправи. Винесене вперед підрядне з wenn зайняло перше місце головного речення, тому відмінюване дієслово зобов'язане зайняти друге, а друге місце — це тепер перший слот після коми: komme ich, fahren wir. Напишете ich komme або wir fahren — і дієслово опиниться на третьому місці, чого німецька не допускає. Українська тут якраз і підводить: «Якщо в мене буде час, я приїду» — підмет спокійно стоїть попереду."
 
   - id: mc-denn-oder-weil-bett
     outcomes: [weil-grund]
@@ -62,6 +69,7 @@ items:
     instruction:
       en: "All three say the same thing. Only one is correct German."
       ru: "Все три варианта означают одно и то же. Правильный по-немецки только один."
+      uk: "Усі три варіанти означають одне й те саме. Правильний німецькою лише один."
     prompt: "Ich gehe heute früh ins Bett, ___"
     options:
       - "denn ich muss morgen früh aufstehen."
@@ -71,9 +79,11 @@ items:
     translation:
       en: "I am going to bed early today, because I have to get up early tomorrow."
       ru: "Сегодня я лягу спать рано, потому что завтра мне нужно рано вставать."
+      uk: "Сьогодні я ляжу спати рано, бо завтра мені треба рано вставати."
     explain:
       en: "The meaning cannot decide this — all three say exactly the same thing. Only the syntax can. denn opens a main clause, so the modal muss stays in position 2 and the infinitive aufstehen closes the sentence, just as it would on its own: Ich muss morgen früh aufstehen. Option 2 gives denn a Nebensatz, which belongs to weil. Option 3 gives weil a main clause, which belongs to denn. Choose the conjunction, and the word order follows — or read the word order, and it tells you which conjunction was meant."
       ru: "Смысл здесь ничего не решает — все три варианта говорят одно и то же. Решает только синтаксис. denn вводит главное предложение, поэтому модальный muss остаётся на втором месте, а инфинитив aufstehen закрывает фразу — ровно так же, как в самостоятельном предложении: Ich muss morgen früh aufstehen. Во втором варианте denn получил придаточное, которое принадлежит weil. В третьем weil получил главное предложение, которое принадлежит denn. Выбрали союз — порядок слов следует за ним; увидели порядок слов — он сам называет союз."
+      uk: "Зміст тут нічого не вирішує — усі три варіанти кажуть одне й те саме. Вирішує лише синтаксис. denn вводить головне речення, тому модальне muss залишається на другому місці, а інфінітив aufstehen закриває фразу — рівно так само, як у самостійному реченні: Ich muss morgen früh aufstehen. У другому варіанті denn отримав підрядне, яке належить weil. У третьому weil отримав головне речення, яке належить denn. Вибрали сполучник — порядок слів іде за ним; побачили порядок слів — він сам називає сполучник."
 
   - id: uebersetzen-vorfeld-museum
     outcomes: [nebensatz-vorfeld-stellung]
@@ -82,8 +92,10 @@ items:
     instruction:
       en: "Translate into German. Begin with the wenn-clause."
       ru: "Переведите на немецкий. Начните с придаточного с wenn."
+      uk: "Перекладіть німецькою. Почніть з підрядного з wenn."
     prompt_en: "If the weather is bad, we are going to the museum."
     prompt_ru: "Если погода будет плохая, мы пойдём в музей."
+    prompt_uk: "Якщо погода буде погана, ми підемо в музей."
     answer: "Wenn das Wetter schlecht ist, gehen wir ins Museum."
     accept:
       - "Wenn das Wetter schlecht ist, dann gehen wir ins Museum."
@@ -91,6 +103,7 @@ items:
     explain:
       en: "Two rules meet across the comma. Inside the wenn-clause the verb goes last: schlecht ist. And because that whole clause now fills position 1 of the main clause, the main verb must come second — straight after the comma, in front of its own subject: gehen wir, not wir gehen. You may also insert dann (Wenn …, dann gehen wir ins Museum): dann then holds position 1 and the verb is still second."
       ru: "Через запятую здесь встречаются два правила. Внутри придаточного с wenn глагол уходит в конец: schlecht ist. А поскольку всё это придаточное занимает теперь первое место главного предложения, глагол главного обязан быть вторым — сразу после запятой, перед собственным подлежащим: gehen wir, а не wir gehen. Можно вставить и dann (Wenn …, dann gehen wir ins Museum): тогда первое место занимает dann, а глагол по-прежнему стоит вторым."
+      uk: "Через кому тут зустрічаються два правила. Усередині підрядного з wenn дієслово йде в кінець: schlecht ist. А оскільки все це підрядне займає тепер перше місце головного речення, дієслово головного зобов'язане бути другим — одразу після коми, перед власним підметом: gehen wir, а не wir gehen. Можна вставити й dann (Wenn …, dann gehen wir ins Museum): тоді перше місце займає dann, а дієслово як і раніше стоїть другим."
 
   - id: uebersetzen-denn-muede
     outcomes: [weil-grund]
@@ -99,13 +112,16 @@ items:
     instruction:
       en: "Translate into German. Give the reason with denn, not with weil."
       ru: "Переведите на немецкий. Назовите причину с помощью denn, а не weil."
+      uk: "Перекладіть німецькою. Назвіть причину за допомогою denn, а не weil."
     prompt_en: "Tobias is staying at home, because he is tired."
     prompt_ru: "Тобиас остаётся дома — он ведь устал."
+    prompt_uk: "Тобіас залишається вдома — він же втомився."
     answer: "Tobias bleibt zu Hause, denn er ist müde."
     key_tokens: ["denn"]
     explain:
       en: "denn and weil translate the same way and build different sentences. This item asks for denn, so the clause behind it is an ordinary main clause: er ist müde, verb in position 2, nothing moved. With weil you would have had to write weil er müde ist. Both are correct German; only one of them is what the task asked for, and the conjunction you choose is what commits you to the word order."
       ru: "denn и weil переводятся одинаково, а предложения строят разные. Здесь требуется denn, поэтому после него идёт обычное главное предложение: er ist müde — глагол на втором месте, ничего не сдвинуто. С weil пришлось бы написать weil er müde ist. Оба варианта — правильный немецкий; заданию отвечает только один, и именно выбор союза обязывает вас к тому или иному порядку слов."
+      uk: "denn і weil перекладаються однаково, а речення будують різні. Тут потрібне denn, тому після нього йде звичайне головне речення: er ist müde — дієслово на другому місці, нічого не зсунуто. З weil довелося б написати weil er müde ist. Обидва варіанти — правильна німецька; завданню відповідає лише один, і саме вибір сполучника зобов'язує вас до того чи іншого порядку слів."
 
   # The next two items are a deliberate minimal pair, and they are meant to be met in this
   # order. Same two verbs (müssen + arbeiten), same day, same content — and the conjunction
@@ -120,8 +136,10 @@ items:
     instruction:
       en: "Translate into German. Give the reason with weil."
       ru: "Переведите на немецкий. Назовите причину с помощью weil."
+      uk: "Перекладіть німецькою. Назвіть причину за допомогою weil."
     prompt_en: "I am not coming along, because I have to work on Saturday."
     prompt_ru: "Я не поеду с вами, потому что в субботу мне нужно работать."
+    prompt_uk: "Я не поїду з вами, бо в суботу мені треба працювати."
     answer: "Ich komme nicht mit, weil ich am Samstag arbeiten muss."
     accept:
       - "Ich komme nicht, weil ich am Samstag arbeiten muss."
@@ -130,6 +148,7 @@ items:
     explain:
       en: "The clause has two verbs and only one of them is conjugated: muss. weil sends the conjugated verb to the very end, so it goes behind the infinitive — arbeiten muss. Say the main clause to yourself first (Ich muss am Samstag arbeiten) and you can watch the two swap places as soon as weil is put in front. Only muss is graded here: the rule is about where the conjugated verb lands, not about which verb it happens to be."
       ru: "В придаточном два глагола, а спрягается только один — muss. weil отправляет спрягаемый глагол в самый конец, поэтому он встаёт за инфинитивом: arbeiten muss. Проговорите сначала главное предложение (Ich muss am Samstag arbeiten) — и увидите, как эти два слова меняются местами, едва впереди появляется weil. Оценивается здесь только muss: правило говорит о том, куда приземляется спрягаемый глагол, а не о том, какой именно это глагол."
+      uk: "У підрядному два дієслова, а відмінюється лише одне — muss. weil відправляє відмінюване дієслово в самий кінець, тому воно стає за інфінітивом: arbeiten muss. Проговоріть спочатку головне речення (Ich muss am Samstag arbeiten) — і побачите, як ці два слова міняються місцями, щойно попереду з'являється weil. Оцінюється тут лише muss: правило говорить про те, куди приземляється відмінюване дієслово, а не про те, яке саме це дієслово."
 
   - id: uebersetzen-modal-hauptsatz-kontrast
     outcomes: [weil-grund]
@@ -138,8 +157,10 @@ items:
     instruction:
       en: "The same two verbs as in the item before — but this time there is no conjunction. Translate into German."
       ru: "Те же два глагола, что и в предыдущем задании, — но союза здесь нет. Переведите на немецкий."
+      uk: "Ті самі два дієслова, що й у попередньому завданні, — але сполучника тут немає. Перекладіть німецькою."
     prompt_en: "On Saturday I have to work until eight."
     prompt_ru: "В субботу мне нужно работать до восьми."
+    prompt_uk: "У суботу мені треба працювати до восьмої."
     answer: "Am Samstag muss ich bis acht arbeiten."
     accept:
       - "Ich muss am Samstag bis acht arbeiten."
@@ -147,6 +168,7 @@ items:
     explain:
       en: "Compare this with the sentence you have just written. The verbs are the same — müssen and arbeiten — and their order is the exact reverse. This is a main clause, so the modal claims position 2 and the infinitive waits at the very end: Am Samstag muss ich bis acht arbeiten. Put weil in front of it and the bracket collapses onto the end of the clause: weil ich am Samstag bis acht arbeiten muss. Nothing about the verbs changes; the conjunction alone decides whether muss stands second or last, and that is the one thing worth taking away from both items. Note the inversion too: Am Samstag fills position 1, so the subject ich drops in behind the verb."
       ru: "Сравните это предложение с тем, которое вы только что написали. Глаголы те же — müssen и arbeiten, — а порядок их прямо противоположный. Здесь главное предложение, поэтому модальный глагол занимает второе место, а инфинитив ждёт в самом конце: Am Samstag muss ich bis acht arbeiten. Поставьте впереди weil — и рамка схлопнется в конец придаточного: weil ich am Samstag bis acht arbeiten muss. С самими глаголами не происходит ничего; всё решает союз — именно он определяет, стоит muss вторым или последним, и это единственное, что стоит вынести из обоих заданий. Обратите внимание и на инверсию: первое место занято обстоятельством Am Samstag, поэтому подлежащее ich уходит за глагол."
+      uk: "Порівняйте це речення з тим, яке ви щойно написали. Дієслова ті самі — müssen і arbeiten, — а порядок їхній прямо протилежний. Тут головне речення, тому модальне дієслово займає друге місце, а інфінітив чекає в самому кінці: Am Samstag muss ich bis acht arbeiten. Поставте попереду weil — і рамка схлопнеться в кінець підрядного: weil ich am Samstag bis acht arbeiten muss. Із самими дієсловами не відбувається нічого; усе вирішує сполучник — саме він визначає, стоїть muss другим чи останнім, і це єдине, що варто винести з обох завдань. Зверніть увагу й на інверсію: перше місце зайняте обставиною Am Samstag, тому підмет ich іде за дієслово."
 
   - id: schreiben-absage-mit-vorschlag
     outcomes: [dass-satz, weil-grund, wenn-bedingung]
@@ -154,29 +176,38 @@ items:
     instruction:
       en: "Draft it, check it against the list, then write it again."
       ru: "Напишите черновик, проверьте его по списку и перепишите."
+      uk: "Напишіть чернетку, перевірте її за списком і перепишіть."
     prompt:
       en: "Nina writes to you: „Hallo! Am Sonntag fahren wir zum See. Kommst du mit?“ You would love to come, but on Sunday you have to work. Write her an answer."
       ru: "Нина пишет вам: «Hallo! Am Sonntag fahren wir zum See. Kommst du mit?» Вы бы с удовольствием поехали, но в воскресенье вам нужно работать. Напишите ей ответ."
+      uk: "Ніна пише вам: «Hallo! Am Sonntag fahren wir zum See. Kommst du mit?» Ви б із задоволенням поїхали, але в неділю вам треба працювати. Напишіть їй відповідь."
     goal:
       en: "Turn the invitation down, say why, and save the trip with a suggestion of your own."
       ru: "Откажитесь от приглашения, объясните причину и спасите поездку собственным предложением."
+      uk: "Відмовтеся від запрошення, поясніть причину і врятуйте поїздку власною пропозицією."
     requirements:
       - en: "Say you would like to come, using the chunk Ich würde gern …"
         ru: "Скажите, что охотно поехали бы, оборотом Ich würde gern …"
+        uk: "Скажіть, що охоче поїхали б, зворотом Ich würde gern …"
       - en: "Give your reason in a weil-clause, with the conjugated verb at the very end (… , weil ich arbeiten muss)."
         ru: "Назовите причину придаточным с weil, поставив спрягаемый глагол в самый конец (… , weil ich arbeiten muss)."
+        uk: "Назвіть причину підрядним з weil, поставивши відмінюване дієслово в самий кінець (… , weil ich arbeiten muss)."
       - en: "Say what you think with a dass-clause (Ich glaube, dass …)."
         ru: "Выскажите своё мнение придаточным с dass (Ich glaube, dass …)."
+        uk: "Висловте свою думку підрядним з dass (Ich glaube, dass …)."
       - en: "Make a suggestion for Saturday with a condition: begin the sentence with Wenn … , and put the main verb straight after the comma."
         ru: "Предложите вариант на субботу с условием: начните предложение с Wenn … и поставьте глагол главного предложения сразу после запятой."
+        uk: "Запропонуйте варіант на суботу з умовою: почніть речення з Wenn … і поставте дієслово головного речення одразу після коми."
     min_words: 35
     model_answer: "Hallo Nina, vielen Dank für die Einladung! Ich würde gern mitkommen, aber am Sonntag geht es leider nicht, weil ich arbeiten muss. Ich glaube, dass der Samstag für alle besser ist. Ich habe einen Vorschlag: Wenn das Wetter am Samstag gut ist, fahren wir zum See. Und wenn es regnet, gehen wir ins Museum. Was meinst du?"
     model_translation:
       en: "Hello Nina, many thanks for the invitation! I would love to come along, but Sunday unfortunately does not work, because I have to work. I think Saturday is better for everyone. I have a suggestion: if the weather is good on Saturday, we will drive to the lake. And if it rains, we will go to the museum. What do you think?"
       ru: "Привет, Нина, большое спасибо за приглашение! Я бы с удовольствием поехал(а), но в воскресенье, к сожалению, не получится, потому что мне нужно работать. Думаю, что суббота удобнее для всех. У меня есть предложение: если в субботу погода будет хорошая, поедем на озеро. А если пойдёт дождь, пойдём в музей."
+      uk: "Привіт, Ніно, велике спасибі за запрошення! Я б із задоволенням поїхав(ла), але в неділю, на жаль, не вийде, бо мені треба працювати. Думаю, що субота зручніша для всіх. У мене є пропозиція: якщо в суботу погода буде гарна, поїдемо на озеро. А якщо піде дощ, підемо в музей."
     explain:
       en: "Check your draft clause by clause before you rewrite it. Every weil-, dass- and wenn-clause must end with its conjugated verb: weil ich arbeiten muss (infinitive first, modal last), dass der Samstag besser ist, wenn das Wetter gut ist. And every sentence that begins with a wenn-clause must have its main verb right after the comma: fahren wir, gehen wir — never wir fahren. If a sentence breaks either rule, it is not a style problem, it is a grammar mistake, and it is the one thing this task is measuring."
       ru: "Прежде чем переписывать черновик, проверьте его по частям. Каждое придаточное с weil, dass и wenn обязано заканчиваться спрягаемым глаголом: weil ich arbeiten muss (сначала инфинитив, модальный — последним), dass der Samstag besser ist, wenn das Wetter gut ist. А каждое предложение, начатое с придаточного с wenn, обязано ставить глагол главного сразу после запятой: fahren wir, gehen wir — но не wir fahren. Нарушение любого из этих двух правил — не стилистическая шероховатость, а грамматическая ошибка, и именно её проверяет это задание."
+      uk: "Перш ніж переписувати чернетку, перевірте її по частинах. Кожне підрядне з weil, dass і wenn зобов'язане закінчуватися відмінюваним дієсловом: weil ich arbeiten muss (спочатку інфінітив, модальне — останнім), dass der Samstag besser ist, wenn das Wetter gut ist. А кожне речення, почате з підрядного з wenn, зобов'язане ставити дієслово головного одразу після коми: fahren wir, gehen wir — але не wir fahren. Порушення будь-якого з цих двох правил — не стилістична шорсткість, а граматична помилка, і саме її перевіряє це завдання."
 
   - id: sprechen-grund-und-vorschlag
     outcomes: [weil-grund]
@@ -185,23 +216,31 @@ items:
     instruction:
       en: "Say it aloud, listen to yourself, then say it a second time."
       ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
+      uk: "Скажіть уголос, послухайте себе і промовте ще раз."
     prompt:
       en: "A colleague asks you: „Wir feiern am Freitag im Büro. Kommst du?“ You cannot come — on Friday you are picking your parents up from the station. Answer aloud."
       ru: "Коллега спрашивает вас: «Wir feiern am Freitag im Büro. Kommst du?» Вы не можете прийти: в пятницу вы встречаете родителей на вокзале. Ответьте вслух."
+      uk: "Колега запитує вас: «Wir feiern am Freitag im Büro. Kommst du?» Ви не можете прийти: у п'ятницю ви зустрічаєте батьків на вокзалі. Відповідайте вголос."
     goal:
       en: "Turn the invitation down politely, give your reason, and propose something else."
       ru: "Вежливо откажитесь, назовите причину и предложите другой вариант."
+      uk: "Ввічливо відмовтеся, назвіть причину і запропонуйте інший варіант."
     checklist:
       - en: "I said I would like to come, with Ich würde gern …"
         ru: "Я сказал(а), что охотно пришёл(ла) бы, оборотом Ich würde gern …"
+        uk: "Я сказав(-ла), що охоче прийшов(-ла) би, зворотом Ich würde gern …"
       - en: "I gave the reason in a weil-clause and the conjugated verb was the last word (… , weil ich meine Eltern abhole)."
         ru: "Я назвал(а) причину придаточным с weil, и спрягаемый глагол оказался последним словом (… , weil ich meine Eltern abhole)."
+        uk: "Я назвав(-ла) причину підрядним з weil, і відмінюване дієслово виявилося останнім словом (… , weil ich meine Eltern abhole)."
       - en: "I made a suggestion with a wenn-clause and put the main verb straight after the comma."
         ru: "Я сделал(а) предложение с придаточным wenn и поставил(а) глагол главного сразу после запятой."
+        uk: "Я зробив(-ла) пропозицію з підрядним wenn і поставив(-ла) дієслово головного одразу після коми."
     model_answer: "Ich würde gern kommen, aber am Freitag geht es leider nicht, weil ich meine Eltern vom Bahnhof abhole. Ich habe einen Vorschlag: Wenn ihr am Samstag feiert, komme ich gern mit. Ich glaube, dass der Samstag für alle gut ist."
     model_translation:
       en: "I would love to come, but Friday unfortunately does not work, because I am picking my parents up from the station. I have a suggestion: if you celebrate on Saturday, I will gladly join. I think Saturday is good for everyone."
       ru: "Я бы с удовольствием пришёл, но в пятницу, к сожалению, не получится, потому что я встречаю родителей на вокзале. У меня есть предложение: если вы будете праздновать в субботу, я охотно приду. Думаю, что суббота удобна для всех."
+      uk: "Я б із задоволенням прийшов, але в п'ятницю, на жаль, не вийде, бо я зустрічаю батьків на вокзалі. У мене є пропозиція: якщо ви святкуватимете в суботу, я охоче прийду. Думаю, що субота зручна для всіх."
     explain:
       en: "Two things to listen for when you play yourself back. First, the last word of your weil-clause: it must be the conjugated verb — abhole, with the separable prefix back on the front of it, because a Nebensatz has no position 2 for it to leave behind. Second, the sentence that starts with Wenn: after the comma comes the verb, not the subject — komme ich, not ich komme. Say it a second time and hear that both walls hold."
       ru: "Слушая запись, обратите внимание на две вещи. Во-первых, на последнее слово вашего придаточного с weil: это должен быть спрягаемый глагол — abhole, с приставкой, вернувшейся на место, ведь в придаточном нет второго места, которое она могла бы покинуть. Во-вторых, на предложение, начатое с Wenn: после запятой идёт глагол, а не подлежащее, — komme ich, а не ich komme. Произнесите ответ второй раз и проверьте на слух, что обе стенки стоят."
+      uk: "Слухаючи запис, зверніть увагу на дві речі. По-перше, на останнє слово вашого підрядного з weil: це має бути відмінюване дієслово — abhole, з префіксом, що повернувся на місце, адже в підрядному немає другого місця, яке він міг би покинути. По-друге, на речення, почате з Wenn: після коми йде дієслово, а не підмет, — komme ich, а не ich komme. Промовте відповідь удруге і перевірте на слух, що обидві стінки стоять."

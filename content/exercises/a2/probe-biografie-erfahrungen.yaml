@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — war, hatte and the modal Präteritum"
   ru: "Проверка — war, hatte и Präteritum модальных"
+  uk: "Перевірка — war, hatte і Präteritum модальних"
 
 # ONE competence: `praeteritum-sein-haben` — telling a past story in the Perfekt while
 # sein, haben and the modals go into the Präteritum (war, hatte, konnte / musste / wollte).
@@ -58,8 +59,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Three years ago Mareike moved to Hamburg. At first she was alone. She had no job and she had to learn a lot of German."
     prompt_ru: "Три года назад Марайке переехала в Гамбург. Сначала она была одна. Работы у неё не было, и ей приходилось много учить немецкий."
+    prompt_uk: "Три роки тому Марайке переїхала до Гамбурга. Спочатку вона була сама. Роботи в неї не було, і їй доводилося багато вчити німецьку."
     answer: "Vor drei Jahren ist Mareike nach Hamburg umgezogen. Zuerst war sie allein. Sie hatte keine Arbeit und sie musste viel Deutsch lernen."
     accept:
       - "Mareike ist vor drei Jahren nach Hamburg umgezogen. Zuerst war sie allein. Sie hatte keine Arbeit und sie musste viel Deutsch lernen."
@@ -72,6 +75,7 @@ items:
     explain:
       en: "The move is an event, so it goes into the Perfekt — and umziehen takes sein, because it carries somebody from A to B: ist … umgezogen. Everything after it is a state, and states belong to the three verbs German keeps in the Präteritum: war (not ist gewesen), hatte (not hat gehabt), musste (not hat gemusst). Check the modal for its umlaut: musste is the past, müsste would be a possibility. And like every modal it opens a bracket — musste in position 2, the infinitive lernen at the very end. Zuerst fills position 1, so war comes straight after it and the subject moves behind the verb."
       ru: "Переезд — событие, поэтому он идёт в Perfekt, а umziehen берёт sein: он переносит человека из точки А в точку Б — ist … umgezogen. Всё, что дальше, — состояния, а состояния принадлежат тем трём глаголам, которые немецкий держит в Präteritum: war (а не ist gewesen), hatte (а не hat gehabt), musste (а не hat gemusst). Проверьте у модального глагола умлаут: musste — это прошедшее, а müsste было бы возможностью. И, как всякий модальный, он открывает рамку: musste на втором месте, инфинитив lernen — в самом конце. Слово Zuerst занимает первое место, поэтому war идёт сразу за ним, а подлежащее уходит за глагол."
+      uk: "Переїзд — подія, тому він іде в Perfekt, а umziehen бере sein: він переносить людину з точки А в точку Б — ist … umgezogen. Усе, що далі, — стани, а стани належать тим трьом дієсловам, які німецька тримає в Präteritum: war (а не ist gewesen), hatte (а не hat gehabt), musste (а не hat gemusst). Перевірте в модального дієслова умлаут: musste — це минуле, а müsste було б можливістю. І, як усяке модальне, воно відкриває рамку: musste на другому місці, інфінітив lernen — у самому кінці. Слово Zuerst займає перше місце, тому war іде одразу за ним, а підмет іде за дієслово."
 
   - id: variant-b
     outcomes: [praeteritum-war-hatte]
@@ -80,8 +84,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Two years ago Tobias moved to Vienna. At first he was tired. He had no flat and he could not sleep well."
     prompt_ru: "Два года назад Тобиас переехал в Вену. Сначала он был уставшим. Квартиры у него не было, и он не мог хорошо спать."
+    prompt_uk: "Два роки тому Тобіас переїхав до Відня. Спочатку він був утомлений. Квартири в нього не було, і він не міг добре спати."
     answer: "Vor zwei Jahren ist Tobias nach Wien umgezogen. Zuerst war er müde. Er hatte keine Wohnung und er konnte nicht gut schlafen."
     accept:
       - "Tobias ist vor zwei Jahren nach Wien umgezogen. Zuerst war er müde. Er hatte keine Wohnung und er konnte nicht gut schlafen."
@@ -94,6 +100,7 @@ items:
     explain:
       en: "One event and three states, and the split runs straight down the middle. The move is Perfekt with sein — ist … umgezogen — because umziehen takes somebody from one place to another. Being tired, having no flat and not being able to sleep are states, and German tells those with the Präteritum: war, hatte, konnte. konnte carries no umlaut: könnte would mean 'would be able to', which is a possibility, not a report about the past. The modal opens the usual bracket — konnte in position 2, the infinitive schlafen at the very end."
       ru: "Одно событие и три состояния — раздел проходит ровно посередине. Переезд — это Perfekt со вспомогательным sein: ist … umgezogen, ведь umziehen переносит человека с места на место. А быть уставшим, не иметь квартиры и не мочь уснуть — состояния, и о них немецкий говорит через Präteritum: war, hatte, konnte. У konnte нет умлаута: könnte значило бы «мог бы», то есть возможность, а не рассказ о прошлом. Модальный глагол открывает обычную рамку: konnte на втором месте, инфинитив schlafen — в самом конце."
+      uk: "Одна подія і три стани — поділ проходить рівно посередині. Переїзд — це Perfekt з допоміжним sein: ist … umgezogen, адже umziehen переносить людину з місця на місце. А бути втомленим, не мати квартири і не могти заснути — стани, і про них німецька говорить через Präteritum: war, hatte, konnte. У konnte немає умлаута: könnte означало б «міг би», тобто можливість, а не розповідь про минуле. Модальне дієслово відкриває звичайну рамку: konnte на другому місці, інфінітив schlafen — у самому кінці."
 
   - id: variant-c
     outcomes: [praeteritum-war-hatte]
@@ -102,8 +109,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Four years ago Yasmin moved to Munich. At first she was ill. She had no friends and she wanted to go home."
     prompt_ru: "Четыре года назад Ясмин переехала в Мюнхен. Сначала она была больна. Друзей у неё не было, и она хотела уехать домой."
+    prompt_uk: "Чотири роки тому Ясмін переїхала до Мюнхена. Спочатку вона була хвора. Друзів у неї не було, і вона хотіла поїхати додому."
     answer: "Vor vier Jahren ist Yasmin nach München umgezogen. Zuerst war sie krank. Sie hatte keine Freunde und sie wollte nach Hause fahren."
     accept:
       - "Yasmin ist vor vier Jahren nach München umgezogen. Zuerst war sie krank. Sie hatte keine Freunde und sie wollte nach Hause fahren."
@@ -116,3 +125,4 @@ items:
     explain:
       en: "The arrival is the only event in the story, so it is the only Perfekt: ist … umgezogen, with sein, because umziehen moves somebody from one place to another. The rest is how she felt and what she did not have, and that is Präteritum territory: war, hatte, wollte. wollte has no umlaut either — the modals lose it in the past across the board. It takes an infinitive at the end of its clause (wollte … fahren), exactly the bracket you know from the present tense. And nach Hause is the way home; zu Hause would mean she was already there."
       ru: "Приезд — единственное событие в этой истории, поэтому и Perfekt здесь единственный: ist … umgezogen, со вспомогательным sein, ведь umziehen переносит человека с места на место. Всё остальное — то, как ей было и чего у неё не было, а это территория Präteritum: war, hatte, wollte. У wollte умлаута тоже нет: в прошедшем времени модальные теряют его все без исключения. Он требует инфинитива в конце своей части (wollte … fahren) — той же рамки, что и в настоящем времени. И nach Hause — это «домой», путь; zu Hause значило бы, что она уже дома."
+      uk: "Приїзд — єдина подія в цій історії, тому й Perfekt тут єдиний: ist … umgezogen, з допоміжним sein, адже umziehen переносить людину з місця на місце. Усе інше — те, як їй було і чого в неї не було, а це територія Präteritum: war, hatte, wollte. У wollte умлаута теж немає: у минулому часі модальні втрачають його всі без винятку. Воно вимагає інфінітива в кінці своєї частини (wollte … fahren) — тієї самої рамки, що й у теперішньому часі. І nach Hause — це «додому», шлях; zu Hause означало б, що вона вже вдома."

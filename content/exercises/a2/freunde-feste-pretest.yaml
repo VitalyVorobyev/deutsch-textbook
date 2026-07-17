@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — who gets what, and why you cannot come"
   ru: "Предтест — кому что достаётся и почему вы не придёте"
+  uk: "Передтест — кому що дістається і чому ви не прийдете"
 items:
   - id: pre-zwei-objekte-artikel
     outcomes: [absprachen-aushandeln]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess now is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Tom schenkt seine Freundin ein Buch."
@@ -20,9 +22,11 @@ items:
     translation:
       en: "Tom is giving his girlfriend a book."
       ru: "Том дарит своей девушке книгу."
+      uk: "Том дарує своїй дівчині книгу."
     explain:
       en: "The sentence has two objects, and German gives each of them its own case. The person who receives goes into the Dativ: seiner Freundin. The thing that changes hands goes into the Akkusativ: ein Buch. The first option leaves the person in the nominative, which would mean the girlfriend is what is being given away. The third puts the book into the dative as well, and a sentence cannot have two datives any more than it can have two accusatives — one slot, one case, one job."
       ru: "В предложении два дополнения, и каждому немецкий даёт свой падеж. Тот, кто получает, стоит в Dativ: seiner Freundin. То, что переходит из рук в руки, стоит в Akkusativ: ein Buch. В первом варианте человек остался в именительном падеже — получилось бы, что дарят саму девушку. В третьем книга тоже попала в Dativ, а двух Dativ в предложении быть не может, ровно как и двух Akkusativ: одно место — один падеж — одна роль."
+      uk: "У реченні два додатки, і кожному німецька дає свій відмінок. Той, хто отримує, стоїть у Dativ: seiner Freundin. Те, що переходить із рук у руки, стоїть у Akkusativ: ein Buch. У першому варіанті людина залишилася в називному відмінку — вийшло б, що дарують саму дівчину. У третьому книга теж потрапила в Dativ, а двох Dativ у реченні бути не може, рівно як і двох Akkusativ: одне місце — один відмінок — одна роль."
 
   - id: pre-dativ-pronomen-mitbringen
     outcomes: [absprachen-aushandeln]
@@ -31,15 +35,18 @@ items:
     instruction:
       en: "Guess which pronoun the sentence needs. There is a reason two of these are only one letter apart."
       ru: "Угадайте, какое местоимение нужно предложению. Два из них отличаются на одну букву — и это не случайность."
+      uk: "Вгадайте, який займенник потрібен реченню. Два з них відрізняються на одну літеру — і це не випадковість."
     prompt: "Bringst du ___ bitte einen Salat mit?"
     options: ["mir", "mich", "ich"]
     correct: 0
     translation:
       en: "Could you bring me a salad?"
       ru: "Принесёшь мне, пожалуйста, салат?"
+      uk: "Принесеш мені, будь ласка, салат?"
     explain:
       en: "The salad is the thing being brought, so the salad has the Akkusativ — einen Salat. That leaves the person, and the person who receives something is always in the Dativ: mir. mich is the accusative form and would be asking you to bring me somewhere, not to bring something to me. ich is the nominative and cannot be an object at all: it is the form of the subject, and the subject of this sentence is du."
       ru: "Салат — это то, что приносят, значит, салат стоит в Akkusativ: einen Salat. Остаётся человек, а тот, кому что-то передают, всегда стоит в Dativ: mir. Форма mich — это Akkusativ, и с ней вышло бы, что приносят меня самого, а не мне. А ich — именительный падеж, дополнением он быть не может вовсе: это форма подлежащего, а подлежащее здесь — du."
+      uk: "Салат — це те, що приносять, значить, салат стоїть у Akkusativ: einen Salat. Залишається людина, а той, кому щось передають, завжди стоїть у Dativ: mir. Форма mich — це Akkusativ, і з нею вийшло б, що приносять мене самого, а не мені. А ich — називний відмінок, додатком він бути не може зовсім: це форма підмета, а підмет тут — du."
 
   - id: pre-weil-verbende
     outcomes: [einladen-zusagen-absagen]
@@ -48,12 +55,15 @@ items:
     instruction:
       en: "Guess where the two verbs go at the end. Getting it wrong now is part of how the rule sticks later."
       ru: "Угадайте, как в конце встанут два глагола. Ошибка сейчас — часть того, как правило закрепится потом."
+      uk: "Вгадайте, як у кінці стануть два дієслова. Помилка зараз — частина того, як правило закріпиться потім."
     prompt: "Leider kann ich nicht kommen, weil ich am Samstag ___."
     options: ["muss arbeiten", "arbeiten muss", "arbeite muss"]
     correct: 1
     translation:
       en: "Unfortunately I can't come, because I have to work on Saturday."
       ru: "К сожалению, я не смогу прийти, потому что в субботу мне нужно работать."
+      uk: "На жаль, я не зможу прийти, бо в суботу мені треба працювати."
     explain:
       en: "weil sends the conjugated verb of its clause to the very last position — and the conjugated verb here is the modal muss, not arbeiten. So arbeiten ends up second-to-last and muss closes the sentence. The first option keeps the order a main clause would have had (ich muss arbeiten), which is exactly the habit weil breaks. The third conjugates both verbs at once, and a German clause has room for only one finite verb."
       ru: "weil отправляет спрягаемый глагол своего придаточного на самое последнее место — а спрягаемым здесь оказывается модальный muss, а не arbeiten. Поэтому arbeiten встаёт предпоследним, а закрывает предложение muss. В первом варианте сохранён порядок главного предложения (ich muss arbeiten) — именно эту привычку weil и ломает. В третьем спрягаются сразу оба глагола, а место для спрягаемого глагола в немецком предложении только одно."
+      uk: "weil відправляє відмінюване дієслово свого підрядного на найостанніше місце — а відмінюваним тут виявляється модальне muss, а не arbeiten. Тому arbeiten стає передостаннім, а закриває речення muss. У першому варіанті збережено порядок головного речення (ich muss arbeiten) — саме цю звичку weil і ламає. У третьому відмінюються одразу обидва дієслова, а місце для відмінюваного дієслова в німецькому реченні тільки одне."

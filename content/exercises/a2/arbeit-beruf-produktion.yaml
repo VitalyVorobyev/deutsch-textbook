@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — instructions, a message, a shift swap"
   ru: "Практика — указания, сообщение, обмен сменами"
+  uk: "Практика — вказівки, повідомлення, обмін змінами"
 items:
   - id: hoeren-anweisung-chefin
     outcomes: [arbeitsanweisung-verstehen]
@@ -10,6 +11,7 @@ items:
     instruction:
       en: "Nina's manager stops her at the door of the office on Friday morning. Listen once. You are not being asked what Nina must do — you are being asked what she is free not to do."
       ru: "В пятницу утром начальница останавливает Нину у двери офиса. Прослушайте один раз. Вопрос не о том, что Нина обязана сделать, а о том, чего она может не делать."
+      uk: "У п'ятницю вранці начальниця зупиняє Ніну біля дверей офісу. Прослухайте один раз. Питання не про те, що Ніна зобов'язана зробити, а про те, чого вона може не робити."
     source:
       kind: tts
       rate: 0.9
@@ -29,9 +31,11 @@ items:
     translation:
       en: "What does Nina NOT have to do today?"
       ru: "Чего Нина сегодня делать НЕ обязана?"
+      uk: "Чого Ніна сьогодні робити НЕ зобов'язана?"
     explain:
       en: "Every option repeats something that is actually said, so a single familiar word decides nothing — you have to hear which sentence carries the negation. The till is an instruction: „Sie sollen heute die Kasse aufmachen“ — she does have to open it. Telling Jonas is Nina's own idea, and she announces it herself at the end. The one thing lifted from her is the overtime: „Sie müssen nicht länger bleiben.“ Note what the manager does not say — she does not forbid Nina to stay. muss nicht removes an obligation; only darf nicht would have banned it, and that verb is used in this dialogue for something else entirely: „im Büro darf niemand rauchen.“"
       ru: "Каждый вариант повторяет то, что в диалоге действительно звучит, поэтому одного знакомого слова мало — нужно услышать, в каком предложении стоит отрицание. Касса — это указание: „Sie sollen heute die Kasse aufmachen“, открыть её она обязана. Сказать Йонасу — идея самой Нины, она объявляет об этом в конце. Снята с неё только одна вещь — сверхурочные: „Sie müssen nicht länger bleiben.“ Обратите внимание, чего начальница не говорит: она не запрещает Нине оставаться. muss nicht снимает обязанность; запретить могло бы только darf nicht — а этот глагол звучит в диалоге совсем по другому поводу: „im Büro darf niemand rauchen.“"
+      uk: "Кожен варіант повторює те, що в діалозі справді звучить, тому одного знайомого слова замало — треба почути, в якому реченні стоїть заперечення. Каса — це вказівка: „Sie sollen heute die Kasse aufmachen“, відкрити її вона зобов'язана. Сказати Йонасові — ідея самої Ніни, вона оголошує про це в кінці. Знято з неї лише одну річ — понаднормові: „Sie müssen nicht länger bleiben.“ Зверніть увагу, чого начальниця не каже: вона не забороняє Ніні залишатися. muss nicht знімає обов'язок; заборонити могло б лише darf nicht — а це дієслово звучить у діалозі зовсім з іншого приводу: „im Büro darf niemand rauchen.“"
 
   - id: hoeren-diktat-anfangen
     outcomes: [arbeitsanweisung-verstehen]
@@ -40,13 +44,16 @@ items:
     instruction:
       en: "Listen and type what you hear."
       ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть те, що ви чуєте."
     text: "Am Montag fange ich um sechs Uhr an."
     translation:
       en: "On Monday I start at six o'clock."
       ru: "В понедельник я начинаю в шесть часов."
+      uk: "У понеділок я починаю о шостій годині."
     explain:
       en: "There is no modal in this sentence, so anfangen is the conjugated verb — and that means it splits: fange stays in position 2 and the prefix an drops to the very end. Am Montag fills position 1, which is why the subject ich comes after the verb. Two spellings to watch: Montag is a noun and takes a capital M, and Uhr does too."
       ru: "Модального глагола в этом предложении нет, поэтому anfangen — само спрягаемое сказуемое, а значит, оно распадается: fange остаётся на втором месте, а приставка an уходит в самый конец. Am Montag занимает первое место, поэтому подлежащее ich стоит после глагола. Следите за двумя написаниями: Montag — существительное, оно с большой буквы, и Uhr тоже."
+      uk: "Модального дієслова в цьому реченні немає, тому anfangen — сам відмінюваний присудок, а отже, воно розпадається: fange залишається на другому місці, а префікс an іде в самий кінець. Am Montag займає перше місце, тому підмет ich стоїть після дієслова. Стежте за двома написаннями: Montag — іменник, він з великої літери, і Uhr теж."
 
   - id: cloze-arbeitszeit-um-am
     outcomes: [aufgaben-beschreiben]
@@ -55,13 +62,16 @@ items:
     instruction:
       en: "Jonas describes his working week. Fill in the time preposition."
       ru: "Йонас рассказывает о своей рабочей неделе. Вставьте предлог времени."
+      uk: "Йонас розповідає про свій робочий тиждень. Вставте прийменник часу."
     text: "{{Am}} Dienstag habe ich Spätschicht. Ich fange {{um}} vierzehn Uhr an. {{Am}} Wochenende arbeite ich nicht."
     translation:
       en: "On Tuesday I am on the late shift. I start at two o'clock. At the weekend I don't work."
       ru: "Во вторник у меня вечерняя смена. Я начинаю в четырнадцать часов. В выходные я не работаю."
+      uk: "У вівторок у мене вечірня зміна. Я починаю о чотирнадцятій годині. На вихідних я не працюю."
     explain:
       en: "The clock takes um and nothing else: um vierzehn Uhr. Days and parts of the day take am: am Dienstag, am Abend — and am Wochenende joins that group even though a weekend is not a single day. The two are not interchangeable: um Dienstag and am vierzehn Uhr are both impossible. A useful check as you write a rota: if you can point at it on a clock face, it is um; if you can point at it in a calendar, it is am."
       ru: "Часы требуют um и ничего другого: um vierzehn Uhr. Дни и части суток требуют am: am Dienstag, am Abend — и am Wochenende примыкает к этой же группе, хотя выходные и не один день. Взаимозаменяемости здесь нет: сочетания um Dienstag и am vierzehn Uhr одинаково невозможны. Удобная проверка при записи графика: если это можно показать на циферблате — um; если это можно показать в календаре — am."
+      uk: "Годинник вимагає um і нічого іншого: um vierzehn Uhr. Дні і частини доби вимагають am: am Dienstag, am Abend — і am Wochenende прилягає до цієї ж групи, хоча вихідні й не один день. Взаємозамінності тут немає: сполучення um Dienstag і am vierzehn Uhr однаково неможливі. Зручна перевірка при записі графіка: якщо це можна показати на циферблаті — um; якщо це можна показати в календарі — am."
 
   - id: uebersetzen-verbot-und-freiheit
     outcomes: [aufgaben-beschreiben]
@@ -70,8 +80,10 @@ items:
     instruction:
       en: "Translate into German. You are showing a new colleague around."
       ru: "Переведите на немецкий. Вы показываете новому коллеге, что тут и как."
+      uk: "Перекладіть німецькою. Ви показуєте новому колезі, що тут і як."
     prompt_en: "You are not allowed to smoke here. But you don't have to work longer today."
     prompt_ru: "Здесь нельзя курить. Но сегодня тебе не нужно работать дольше."
+    prompt_uk: "Тут не можна курити. Але сьогодні тобі не треба працювати довше."
     answer: "Hier darfst du nicht rauchen. Aber heute musst du nicht länger arbeiten."
     key_tokens: ["darfst", "musst"]
     accept:
@@ -79,6 +91,7 @@ items:
     explain:
       en: "The two halves of this sentence are the whole lesson in miniature, and only the modal tells them apart. The first half is a ban, and a ban is dürfen + nicht: darfst du nicht rauchen. The second half bans nothing — it lifts an obligation, and that is müssen + nicht: musst du nicht länger arbeiten. Swap the two verbs and you have told your new colleague that smoking is optional and that overtime is prohibited. Note the bracket in both halves: the modal is second (after Hier, after Aber heute), and the infinitive closes the clause."
       ru: "Две половины этого предложения — весь урок в миниатюре, и различает их только модальный глагол. Первая половина — запрет, а запрет выражается через dürfen + nicht: darfst du nicht rauchen. Вторая половина ничего не запрещает — она снимает обязанность, а это müssen + nicht: musst du nicht länger arbeiten. Поменяйте глаголы местами — и вы сообщите новому коллеге, что курить необязательно, а сверхурочные запрещены. Обратите внимание на рамку в обеих половинах: модальный глагол стоит вторым (после Hier, после Aber heute), а инфинитив закрывает предложение."
+      uk: "Дві половини цього речення — весь урок у мініатюрі, і розрізняє їх лише модальне дієслово. Перша половина — заборона, а заборона виражається через dürfen + nicht: darfst du nicht rauchen. Друга половина нічого не забороняє — вона знімає обов'язок, а це müssen + nicht: musst du nicht länger arbeiten. Поміняйте дієслова місцями — і ви повідомите новому колезі, що курити необов'язково, а понаднормові заборонені. Зверніть увагу на рамку в обох половинах: модальне дієслово стоїть другим (після Hier, після Aber heute), а інфінітив закриває речення."
 
   - id: schreiben-nachricht-schichttausch
     outcomes: [berufliche-nachricht-schreiben, arbeitszeit-aushandeln]
@@ -86,26 +99,34 @@ items:
     prompt:
       en: "On Thursday you have an appointment at the doctor's in the morning, so you cannot start your early shift at six. Write a short message to your manager, Ms Kaufmann. Ask her politely whether your colleague Jonas may take over the shift."
       ru: "В четверг утром у вас приём у врача, поэтому вы не сможете выйти на утреннюю смену к шести. Напишите короткое сообщение начальнице, госпоже Кауфман. Вежливо спросите, может ли смену взять ваш коллега Йонас."
+      uk: "У четвер уранці у вас прийом у лікаря, тому ви не зможете вийти на ранкову зміну о шостій. Напишіть коротке повідомлення начальниці, пані Кауфман. Ввічливо запитайте, чи може зміну взяти ваш колега Йонас."
     goal:
       en: "Say what the problem is and why, propose a solution, and make the request politely enough for a manager."
       ru: "Назовите проблему и её причину, предложите решение и сформулируйте просьбу так, как обращаются к начальнице."
+      uk: "Назвіть проблему та її причину, запропонуйте рішення і сформулюйте прохання так, як звертаються до начальниці."
     requirements:
       - en: "Address her formally and stay with Sie for the whole message (Sehr geehrte Frau Kaufmann …)."
         ru: "Обратитесь официально и выдержите Sie до конца сообщения (Sehr geehrte Frau Kaufmann …)."
+        uk: "Зверніться офіційно і витримайте Sie до кінця повідомлення (Sehr geehrte Frau Kaufmann …)."
       - en: "Give the reason with denn — and keep the verb in position 2 after it (…, denn ich habe einen Termin)."
         ru: "Назовите причину с помощью denn — и не забудьте, что глагол после него остаётся на втором месте (…, denn ich habe einen Termin)."
+        uk: "Назвіть причину за допомогою denn — і не забудьте, що дієслово після нього залишається на другому місці (…, denn ich habe einen Termin)."
       - en: "Use one modal bracket for the problem: the modal second, the infinitive at the end (Ich kann am Donnerstag nicht um sechs Uhr anfangen)."
         ru: "Постройте одну рамку с модальным глаголом: сам модальный — вторым, инфинитив — в конце (Ich kann am Donnerstag nicht um sechs Uhr anfangen)."
+        uk: "Побудуйте одну рамку з модальним дієсловом: сам модальний — другим, інфінітив — у кінці (Ich kann am Donnerstag nicht um sechs Uhr anfangen)."
       - en: "Make the request with the polite form: Könnten Sie …? — or ask whether Jonas may take over (Darf Jonas die Schicht übernehmen?)."
         ru: "Сформулируйте просьбу вежливо: Könnten Sie …? — или спросите, может ли смену взять Йонас (Darf Jonas die Schicht übernehmen?)."
+        uk: "Сформулюйте прохання ввічливо: Könnten Sie …? — або запитайте, чи може зміну взяти Йонас (Darf Jonas die Schicht übernehmen?)."
     min_words: 35
     model_answer: "Sehr geehrte Frau Kaufmann, ich kann am Donnerstag nicht um sechs Uhr anfangen, denn ich habe am Morgen einen Termin beim Arzt. Jonas hat am Donnerstag frei. Könnten Sie ihn fragen? Er kann die Frühschicht übernehmen. Ich mache dafür am Freitag Überstunden. Ich sage Ihnen morgen Bescheid. Mit freundlichen Grüßen Nina Berger"
     model_translation:
       en: "Dear Ms Kaufmann, I cannot start at six o'clock on Thursday, because I have an appointment at the doctor's in the morning. Jonas is off on Thursday. Could you ask him? He can take over the early shift. In return I will work overtime on Friday. I will let you know tomorrow. Kind regards, Nina Berger"
       ru: "Уважаемая госпожа Кауфман, в четверг я не смогу начать в шесть, потому что утром у меня приём у врача. У Йонаса в четверг выходной. Не могли бы вы у него спросить? Он может взять утреннюю смену. Взамен я выйду на сверхурочные в пятницу. Завтра я вам сообщу. С уважением, Нина Бергер"
+      uk: "Шановна пані Кауфман, у четвер я не зможу почати о шостій, бо вранці в мене прийом у лікаря. У Йонаса в четвер вихідний. Чи не могли б ви в нього запитати? Він може взяти ранкову зміну. Натомість я вийду на понаднормові в п'ятницю. Завтра я вам повідомлю. З повагою, Ніна Бергер"
     explain:
       en: "A work message of this kind does four things in four short sentences: the problem, the reason, the solution, the request. Do not bury the request at the bottom — a manager reads the first two lines and decides. Two forms carry the whole message. denn lets you give the reason without touching the word order: …, denn ich habe einen Termin. And Könnten Sie …? is the difference between a request and an instruction — Sie with a capital S, and the infinitive at the end. Before you send the revision, read it once looking only at the pronouns: one slip into du undoes the whole register."
       ru: "Рабочее сообщение такого рода делает четыре вещи в четырёх коротких предложениях: проблема, причина, решение, просьба. Не прячьте просьбу в конец — начальница читает первые две строки и принимает решение. Всё сообщение держится на двух формах. denn позволяет назвать причину, не трогая порядок слов: …, denn ich habe einen Termin. А Könnten Sie …? — это и есть разница между просьбой и распоряжением: Sie с большой буквы, инфинитив в конце. Перед отправкой правки перечитайте текст, глядя только на местоимения: одно случайное du разрушает весь регистр."
+      uk: "Робоче повідомлення такого штибу робить чотири речі в чотирьох коротких реченнях: проблема, причина, рішення, прохання. Не ховайте прохання в кінець — начальниця читає перші два рядки і ухвалює рішення. Усе повідомлення тримається на двох формах. denn дозволяє назвати причину, не чіпаючи порядку слів: …, denn ich habe einen Termin. А Könnten Sie …? — це і є різниця між проханням і розпорядженням: Sie з великої літери, інфінітив у кінці. Перед відправленням правки перечитайте текст, дивлячись лише на займенники: одне випадкове du руйнує весь регістр."
 
   - id: sprechen-aufgaben-beschreiben
     outcomes: [aufgaben-beschreiben]
@@ -114,23 +135,30 @@ items:
     prompt:
       en: "It is your first day in a new team and everyone introduces themselves at the morning meeting. Describe your job in four or five sentences: your department, what you are responsible for, when your shift starts and ends, and one thing you have to do every day."
       ru: "Это ваш первый день в новой команде, и на утренней встрече все представляются. Опишите свою работу в четырёх-пяти предложениях: отдел, за что вы отвечаете, когда начинается и заканчивается ваша смена и что вам приходится делать каждый день."
+      uk: "Це ваш перший день у новій команді, і на ранковій зустрічі всі представляються. Опишіть свою роботу в чотирьох-п'яти реченнях: відділ, за що ви відповідаєте, коли починається і закінчується ваша зміна і що вам доводиться робити щодня."
     goal:
       en: "Give a colleague a clear picture of your duties and your hours, without notes."
       ru: "Дать коллеге ясное представление о своих обязанностях и рабочем времени — без опоры на записи."
+      uk: "Дати колезі ясне уявлення про свої обов'язки і робочий час — без опори на записи."
     checklist:
       - en: "I named my department and my duty (Ich arbeite in der Abteilung … / Ich bin zuständig für …)."
         ru: "Я назвал(а) свой отдел и свою обязанность (Ich arbeite in der Abteilung … / Ich bin zuständig für …)."
+        uk: "Я назвав(-ла) свій відділ і свій обов'язок (Ich arbeite in der Abteilung … / Ich bin zuständig für …)."
       - en: "I gave my hours with um and am (Ich fange um sechs Uhr an. Am Wochenende arbeite ich nicht)."
         ru: "Я назвал(а) рабочее время с помощью um и am (Ich fange um sechs Uhr an. Am Wochenende arbeite ich nicht)."
+        uk: "Я назвав(-ла) робочий час за допомогою um і am (Ich fange um sechs Uhr an. Am Wochenende arbeite ich nicht)."
       - en: "I used at least one modal bracket, with the infinitive at the very end (Ich muss jeden Tag die Kasse aufmachen)."
         ru: "Я построил(а) хотя бы одну рамку с модальным глаголом, поставив инфинитив в самый конец (Ich muss jeden Tag die Kasse aufmachen)."
+        uk: "Я побудував(-ла) хоча б одну рамку з модальним дієсловом, поставивши інфінітив у самий кінець (Ich muss jeden Tag die Kasse aufmachen)."
     model_answer: "Guten Morgen. Ich heiße Nina und ich arbeite in der Abteilung Kundenservice. Ich bin zuständig für die Kasse. Am Montag und am Dienstag habe ich Frühschicht: Ich fange um sechs Uhr an und höre um vierzehn Uhr auf. Ich muss jeden Morgen die Kasse aufmachen. Am Wochenende arbeite ich nicht."
     model_translation:
       en: "Good morning. My name is Nina and I work in the customer service department. I am responsible for the till. On Monday and Tuesday I am on the early shift: I start at six and finish at two. Every morning I have to open the till. At the weekend I don't work."
       ru: "Доброе утро. Меня зовут Нина, я работаю в отделе обслуживания клиентов. Я отвечаю за кассу. В понедельник и вторник у меня утренняя смена: начинаю в шесть, заканчиваю в четырнадцать. Каждое утро я должна открывать кассу. В выходные я не работаю."
+      uk: "Доброго ранку. Мене звати Ніна, я працюю у відділі обслуговування клієнтів. Я відповідаю за касу. У понеділок і вівторок у мене ранкова зміна: починаю о шостій, закінчую о чотирнадцятій. Щоранку я мушу відкривати касу. На вихідних я не працюю."
     explain:
       en: "Say it out loud twice, and listen for two things on the second take. First, the separable verbs: without a modal they split (ich fange … an, ich höre … auf), and with a modal they do not (ich muss … aufmachen). Getting that wrong is the most audible mistake in this speech. Second, the bracket must close: if a time or a place slides out behind the infinitive — muss die Kasse aufmachen jeden Morgen — the sentence stays open, and a German ear hears it immediately. Keep the sentences short; a work introduction is not a story."
       ru: "Проговорите вслух дважды и на втором дубле слушайте две вещи. Первое — глаголы с отделяемой приставкой: без модального они распадаются (ich fange … an, ich höre … auf), а с модальным — нет (ich muss … aufmachen). Ошибка здесь слышнее всего. Второе — рамка должна закрыться: если обстоятельство выскользнет за инфинитив (muss die Kasse aufmachen jeden Morgen), предложение останется незакрытым, и немецкое ухо это сразу поймает. Держите фразы короткими: рассказ о работе — не история."
+      uk: "Проговоріть уголос двічі і на другому дублі слухайте дві речі. Перше — дієслова з відокремлюваним префіксом: без модального вони розпадаються (ich fange … an, ich höre … auf), а з модальним — ні (ich muss … aufmachen). Помилка тут чутна найбільше. Друге — рамка повинна закритися: якщо обставина вислизне за інфінітив (muss die Kasse aufmachen jeden Morgen), речення залишиться незакритим, і німецьке вухо це одразу вловить. Тримайте фрази короткими: розповідь про роботу — не історія."
 
   - id: sprechen-schicht-tauschen
     outcomes: [arbeitszeit-aushandeln]
@@ -139,22 +167,30 @@ items:
     prompt:
       en: "Your colleague Jonas is standing at the coffee machine. On Saturday you have a family celebration, so you cannot do your late shift. Speak to him aloud: greet him, ask him to swap the shift, give your reason, and offer him something in return."
       ru: "Ваш коллега Йонас стоит у кофемашины. В субботу у вас семейный праздник, и вечернюю смену вы отработать не сможете. Обратитесь к нему вслух: поздоровайтесь, попросите поменяться сменами, назовите причину и предложите что-то взамен."
+      uk: "Ваш колега Йонас стоїть біля кавомашини. У суботу у вас сімейне свято, і вечірню зміну ви відпрацювати не зможете. Зверніться до нього вголос: привітайтеся, попросіть помінятися змінами, назвіть причину і запропонуйте щось натомість."
     goal:
       en: "Get a shift swapped in the register a colleague expects — friendly, direct, and with a reason he can accept."
       ru: "Договориться об обмене сменами в том регистре, которого ждёт коллега: по-дружески, прямо и с причиной, которую он примет."
+      uk: "Домовитися про обмін змінами в тому регістрі, якого чекає колега: по-дружньому, прямо і з причиною, яку він прийме."
     checklist:
       - en: "I used du with a colleague, not Sie (Kannst du …? / Könntest du …?)."
         ru: "С коллегой я говорил(а) на du, а не на Sie (Kannst du …? / Könntest du …?)."
+        uk: "З колегою я говорив(-ла) на du, а не на Sie (Kannst du …? / Könntest du …?)."
       - en: "I asked for the swap with a modal bracket (Könntest du am Samstag meine Schicht übernehmen?)."
         ru: "Я попросил(а) об обмене, построив рамку с модальным глаголом (Könntest du am Samstag meine Schicht übernehmen?)."
+        uk: "Я попросив(-ла) про обмін, побудувавши рамку з модальним дієсловом (Könntest du am Samstag meine Schicht übernehmen?)."
       - en: "I gave the reason with denn, keeping the verb in position 2 (…, denn ich habe am Samstag ein Fest)."
         ru: "Я назвал(а) причину с помощью denn, оставив глагол на втором месте (…, denn ich habe am Samstag ein Fest)."
+        uk: "Я назвав(-ла) причину за допомогою denn, залишивши дієслово на другому місці (…, denn ich habe am Samstag ein Fest)."
       - en: "I offered something back (Ich übernehme dafür deine Frühschicht am Montag)."
         ru: "Я предложил(а) что-то взамен (Ich übernehme dafür deine Frühschicht am Montag)."
+        uk: "Я запропонував(-ла) щось натомість (Ich übernehme dafür deine Frühschicht am Montag)."
     model_answer: "Hallo Jonas, hast du kurz Zeit? Könntest du am Samstag meine Spätschicht übernehmen? Ich kann leider nicht kommen, denn ich habe am Samstag ein Fest in der Familie. Ich übernehme dafür deine Frühschicht am Montag. Sag mir bitte heute Bescheid — dann sage ich Frau Kaufmann Bescheid."
     model_translation:
       en: "Hi Jonas, have you got a moment? Could you take over my late shift on Saturday? Unfortunately I can't come, because I have a family celebration on Saturday. In return I'll take your early shift on Monday. Let me know today — then I'll tell Ms Kaufmann."
       ru: "Привет, Йонас, есть минутка? Ты не мог бы взять в субботу мою вечернюю смену? Я, к сожалению, не смогу прийти, потому что в субботу у меня семейный праздник. Взамен я возьму твою утреннюю смену в понедельник. Скажи мне сегодня — а я тогда скажу госпоже Кауфман."
+      uk: "Привіт, Йонасе, є хвилинка? Ти не міг би взяти в суботу мою вечірню зміну? Я, на жаль, не зможу прийти, бо в суботу в мене сімейне свято. Натомість я візьму твою ранкову зміну в понеділок. Скажи мені сьогодні — а я тоді скажу пані Кауфман."
     explain:
       en: "The same request, two different people, two different sentences: Könntest du …? to Jonas, Könnten Sie …? to Frau Kaufmann. Choosing the wrong one is not a grammar mistake — it is a social one, and it is the mistake German speakers notice first. Two more things to hear on your second take. The infinitive must land at the end of the question: übernehmen, not übernehmen am Samstag. And after denn the verb stays second (denn ich habe), because denn joins two main clauses and moves nothing. A swap is a trade, so name what you give back — it is what turns a favour into an agreement."
       ru: "Одна и та же просьба, два разных адресата, два разных предложения: Könntest du …? — Йонасу, Könnten Sie …? — госпоже Кауфман. Ошибиться здесь — не грамматический промах, а социальный, и именно его немцы замечают первым. Ещё две вещи, которые стоит услышать на втором дубле. Инфинитив должен приземлиться в конце вопроса: übernehmen, а не übernehmen am Samstag. И после denn глагол остаётся вторым (denn ich habe), потому что denn соединяет два главных предложения и ничего не двигает. Обмен — это сделка, поэтому назовите, что даёте взамен: именно это превращает одолжение в договорённость."
+      uk: "Одне й те саме прохання, два різні адресати, два різні речення: Könntest du …? — Йонасові, Könnten Sie …? — пані Кауфман. Помилитися тут — не граматичний промах, а соціальний, і саме його німці помічають першим. Ще дві речі, які варто почути на другому дублі. Інфінітив повинен приземлитися в кінці питання: übernehmen, а не übernehmen am Samstag. І після denn дієслово залишається другим (denn ich habe), бо denn поєднує два головні речення і нічого не рухає. Обмін — це угода, тому назвіть, що даєте натомість: саме це перетворює послугу на домовленість."
