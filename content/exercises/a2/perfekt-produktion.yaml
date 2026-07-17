@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Monday morning at the office — 'What did you do at the weekend?'"
   ru: "Утро понедельника в офисе — «Что ты делал на выходных?»"
+  uk: "Ранок понеділка в офісі — «Що ти робив на вихідних?»"
 
 items:
   - id: uebersetzen-kino-gegangen
@@ -12,8 +13,10 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "Yesterday I went to the cinema."
     prompt_ru: "Вчера я ходил в кино."
+    prompt_uk: "Вчора я ходив у кіно."
     answer: "Gestern bin ich ins Kino gegangen."
     key_tokens: ["bin", "gegangen"]
     accept:
@@ -21,6 +24,7 @@ items:
     explain:
       en: "gehen is movement from A to B, so the auxiliary is sein: ich bin … gegangen. With Gestern in front, bin still holds position 2 and the participle closes the sentence."
       ru: "gehen — движение из A в B, поэтому вспомогательный глагол sein: ich bin … gegangen. Если Gestern стоит первым, bin остаётся на втором месте, а причастие замыкает предложение."
+      uk: "gehen — рух із A в B, тому допоміжне дієслово sein: ich bin … gegangen. Якщо Gestern стоїть першим, bin залишається на другому місці, а дієприкметник замикає речення."
 
   - id: uebersetzen-brief-geschrieben
     outcomes: [perfekt-partizip, perfekt-hilfsverb]
@@ -29,13 +33,16 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "I have written a letter."
     prompt_ru: "Я написал письмо."
+    prompt_uk: "Я написав листа."
     answer: "Ich habe einen Brief geschrieben."
     key_tokens: ["geschrieben"]
     explain:
       en: "schreiben is strong: the participle is geschrieben, not *geschreibt. It takes haben, since nothing moves anywhere."
       ru: "schreiben — сильный глагол: причастие geschrieben, а не *geschreibt. Вспомогательный глагол haben, так как никакого перемещения нет."
+      uk: "schreiben — сильне дієслово: дієприкметник geschrieben, а не *geschreibt. Допоміжне дієслово haben, бо жодного переміщення немає."
 
   - id: cloze-perfekt-hilfsverb
     outcomes: [perfekt-hilfsverb]
@@ -44,10 +51,12 @@ items:
     instruction:
       en: Fill in haben or sein in the correct form.
       ru: Вставьте haben или sein в правильной форме.
+      uk: Вставте haben або sein у правильній формі.
     text: "Wir {{sind}} nach Berlin gefahren. Dort {{haben}} wir viel gesehen. Am Abend {{sind}} wir müde gewesen."
     explain:
       en: "fahren moves you from A to B → sein. sehen does not → haben. And sein itself takes sein in the Perfekt: wir sind … gewesen."
       ru: "fahren — перемещение из A в B → sein. sehen — нет → haben. А сам глагол sein образует перфект с sein: wir sind … gewesen."
+      uk: "fahren — переміщення з A в B → sein. sehen — ні → haben. А саме дієслово sein утворює перфект із sein: wir sind … gewesen."
 
   # --- Montagmorgen im Büro: Julia und Markus am Kaffeeautomaten ---
 
@@ -70,9 +79,11 @@ items:
     translation:
       en: "What did Markus do on Sunday?"
       ru: "Что Маркус делал в воскресенье?"
+      uk: "Що Маркус робив у неділю?"
     explain:
       en: "Every option is spoken aloud somewhere in the dialogue, so single words are not enough — you have to hear who did what, and when. Hamburg comes up only as Julia's guess, and Markus rejects it: Nein, dieses Wochenende nicht. Sleeping until eleven is Julia's own Sunday. Markus says about himself: Am Sonntag bin ich früh aufgestanden und habe im Park Sport gemacht — and notice the auxiliary switching mid-sentence: bin with aufstehen (a change of state), habe with Sport machen."
       ru: "Все три варианта звучат в диалоге, поэтому отдельных слов недостаточно — нужно услышать, кто что сделал и когда. Гамбург — лишь догадка Юлии, и Маркус её отвергает: Nein, dieses Wochenende nicht. Спала до одиннадцати сама Юлия. О себе Маркус говорит: Am Sonntag bin ich früh aufgestanden und habe im Park Sport gemacht — обратите внимание, как вспомогательный глагол меняется внутри одного предложения: bin с aufstehen (смена состояния), habe с Sport machen."
+      uk: "Усі три варіанти звучать у діалозі, тому окремих слів недостатньо — треба почути, хто що зробив і коли. Гамбург — лише здогад Юлії, і Маркус його відкидає: Nein, dieses Wochenende nicht. Спала до одинадцятої сама Юлія. Про себе Маркус каже: Am Sonntag bin ich früh aufgestanden und habe im Park Sport gemacht — зверніть увагу, як допоміжне дієслово змінюється всередині одного речення: bin з aufstehen (зміна стану), habe зі Sport machen."
 
   - id: uebersetzen-sport-gemacht
     outcomes: [perfekt-hilfsverb]
@@ -81,8 +92,10 @@ items:
     instruction:
       en: Markus tells you about his Saturday. Translate into German. Use the Perfekt.
       ru: Маркус рассказывает про свою субботу. Переведите на немецкий. Используйте перфект.
+      uk: Маркус розповідає про свою суботу. Перекладіть німецькою. Використайте перфект.
     prompt_en: "On Saturday I did sport."
     prompt_ru: "В субботу я занимался спортом."
+    prompt_uk: "У суботу я займався спортом."
     answer: "Am Samstag habe ich Sport gemacht."
     key_tokens: ["habe", "gemacht"]
     accept:
@@ -90,6 +103,7 @@ items:
     explain:
       en: "The trap is that sport feels like movement — but the rule is not about how much you move, it is about whether the verb takes you from A to B. Sport machen has an object (Sport) and no destination, so the auxiliary is haben: ich habe … gemacht. Compare: Ich bin ins Stadion gegangen (gehen → a destination → sein)."
       ru: "Ловушка в том, что спорт кажется движением, — но правило не о том, много ли вы двигались, а о том, ведёт ли глагол из точки А в точку Б. У Sport machen есть дополнение (Sport) и нет пункта назначения, поэтому вспомогательный глагол haben: ich habe … gemacht. Сравните: Ich bin ins Stadion gegangen (gehen → есть пункт назначения → sein)."
+      uk: "Пастка в тому, що спорт здається рухом, — але правило не про те, чи багато ви рухалися, а про те, чи веде дієслово з точки А в точку Б. У Sport machen є додаток (Sport) і немає пункту призначення, тому допоміжне дієслово haben: ich habe … gemacht. Порівняйте: Ich bin ins Stadion gegangen (gehen → є пункт призначення → sein)."
 
   - id: uebersetzen-wochenende-geblieben
     outcomes: [perfekt-hilfsverb]
@@ -98,8 +112,10 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "At the weekend I stayed at home."
     prompt_ru: "На выходных я остался дома."
+    prompt_uk: "На вихідних я залишився вдома."
     answer: "Am Wochenende bin ich zu Hause geblieben."
     key_tokens: ["bin", "geblieben"]
     accept:
@@ -107,6 +123,7 @@ items:
     explain:
       en: "The mirror image of the previous item: staying at home is the opposite of movement, and still bleiben takes sein — ich bin … geblieben. It belongs to the three exceptions you simply learn by heart: bleiben, sein, passieren. So the auxiliary is never decided by the feeling of the sentence, only by the verb."
       ru: "Зеркальное отражение предыдущего задания: остаться дома — полная противоположность движению, и всё же bleiben требует sein: ich bin … geblieben. Это один из трёх глаголов-исключений, которые просто заучиваются: bleiben, sein, passieren. Значит, вспомогательный глагол определяется не «ощущением» фразы, а самим глаголом."
+      uk: "Дзеркальне відображення попереднього завдання: залишитися вдома — цілковита протилежність рухові, і все ж bleiben вимагає sein: ich bin … geblieben. Це одне з трьох дієслів-винятків, які просто заучують: bleiben, sein, passieren. Отже, допоміжне дієслово визначається не «відчуттям» фрази, а самим дієсловом."
 
   - id: uebersetzen-aufgestanden-telefoniert
     outcomes: [perfekt-partizip, perfekt-satzklammer]
@@ -115,8 +132,10 @@ items:
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
+      uk: Перекладіть німецькою. Використайте перфект.
     prompt_en: "On Sunday I got up early and phoned my mother."
     prompt_ru: "В воскресенье я рано встал и позвонил маме."
+    prompt_uk: "У неділю я рано встав і подзвонив мамі."
     answer: "Am Sonntag bin ich früh aufgestanden und habe mit meiner Mutter telefoniert."
     key_tokens: ["aufgestanden", "telefoniert"]
     accept:
@@ -124,6 +143,7 @@ items:
     explain:
       en: "Two participles, two different rules in one sentence. aufstehen is separable, so -ge- goes inside the word: auf + ge + standen = aufgestanden. telefonieren ends in -ieren and therefore takes no ge- at all: telefoniert, never *getelefoniert. The auxiliaries differ too — bin for the change of state, habe for the phone call — and each participle still closes its own half of the sentence."
       ru: "Два причастия — два разных правила в одном предложении. aufstehen — глагол с отделяемой приставкой, поэтому -ge- встаёт внутрь слова: auf + ge + standen = aufgestanden. telefonieren оканчивается на -ieren и потому обходится вовсе без ge-: telefoniert, а не *getelefoniert. Вспомогательные глаголы тоже разные — bin при смене состояния, habe при звонке, — и каждое причастие по-прежнему замыкает свою половину предложения."
+      uk: "Два дієприкметники — два різні правила в одному реченні. aufstehen — дієслово з відокремлюваним префіксом, тому -ge- стає всередину слова: auf + ge + standen = aufgestanden. telefonieren закінчується на -ieren і тому обходиться зовсім без ge-: telefoniert, а не *getelefoniert. Допоміжні дієслова теж різні — bin при зміні стану, habe при дзвінку, — і кожен дієприкметник, як і раніше, замикає свою половину речення."
 
   - id: cloze-partizip-vier-regeln
     outcomes: [perfekt-partizip]
@@ -132,13 +152,16 @@ items:
     instruction:
       en: Markus tells the story of his Saturday. Put the verb in brackets into the Partizip II.
       ru: Маркус рассказывает о своей субботе. Поставьте глагол из скобок в Partizip II.
+      uk: Маркус розповідає про свою суботу. Поставте дієслово з дужок у Partizip II.
     text: "Am Vormittag habe ich im Supermarkt {{eingekauft}} (einkaufen) und alles mit Karte {{bezahlt}} (bezahlen). Am Nachmittag habe ich im Park {{fotografiert}} (fotografieren). Am Abend habe ich einen Film {{gesehen}} (sehen)."
     translation:
       en: "In the morning I did the shopping at the supermarket and paid for everything by card. In the afternoon I took photos in the park. In the evening I watched a film."
       ru: "Утром я сделал покупки в супермаркете и всё оплатил картой. Днём я фотографировал в парке. Вечером я посмотрел фильм."
+      uk: "Вранці я зробив покупки в супермаркеті й усе оплатив карткою. Удень я фотографував у парку. Увечері я подивився фільм."
     explain:
       en: "Four verbs, four different rules — you have to decide which one applies each time. einkaufen is separable: -ge- slips inside, eingekauft. bezahlen has the inseparable prefix be-, which blocks ge- entirely: bezahlt. fotografieren ends in -ieren, so again no ge-: fotografiert. Only sehen is a plain strong verb and gets the full frame ge-…-en with a vowel change: gesehen."
       ru: "Четыре глагола — четыре разных правила, и каждый раз нужно решить, какое из них работает. einkaufen — с отделяемой приставкой: -ge- уходит внутрь, eingekauft. У bezahlen неотделяемая приставка be-, которая полностью запрещает ge-: bezahlt. fotografieren оканчивается на -ieren, значит, снова без ge-: fotografiert. И только sehen — обычный сильный глагол, он получает полную рамку ge-…-en со сменой гласной: gesehen."
+      uk: "Чотири дієслова — чотири різні правила, і щоразу треба вирішити, яке з них працює. einkaufen — з відокремлюваним префіксом: -ge- іде всередину, eingekauft. У bezahlen невідокремлюваний префікс be-, який повністю забороняє ge-: bezahlt. fotografieren закінчується на -ieren, отже, знову без ge-: fotografiert. І лише sehen — звичайне сильне дієслово, воно отримує повну рамку ge-…-en зі зміною голосної: gesehen."
 
   - id: schreiben-chat-wochenende
     outcomes: [perfekt-vergangenheit-erzaehlen, perfekt-satzklammer]
@@ -146,22 +169,26 @@ items:
     prompt:
       en: "Julia has written in the team chat: „Guten Morgen! Was hast du am Wochenende gemacht?“ Write her an answer."
       ru: "Юлия написала в командный чат: «Guten Morgen! Was hast du am Wochenende gemacht?» Напишите ей ответ."
+      uk: "Юлія написала в командний чат: «Guten Morgen! Was hast du am Wochenende gemacht?» Напишіть їй відповідь."
     goal:
       en: "Tell a colleague in four or five sentences what you did on Saturday and Sunday."
       ru: "Расскажите коллеге в четырёх-пяти предложениях, что вы делали в субботу и в воскресенье."
+      uk: "Розкажіть колезі в чотирьох-п'яти реченнях, що ви робили в суботу і в неділю."
     requirements:
-      - { en: "Write at least four sentences in the Perfekt, and mention both Saturday and Sunday.", ru: "Напишите минимум четыре предложения в перфекте и упомяните и субботу, и воскресенье." }
-      - { en: "Use sein at least once (bin … gefahren / gegangen / geblieben / aufgestanden) and haben at least twice.", ru: "Хотя бы раз используйте sein (bin … gefahren / gegangen / geblieben / aufgestanden) и минимум дважды — haben." }
-      - { en: "Check every sentence: the participle must be the last word.", ru: "Проверьте каждое предложение: причастие должно стоять последним словом." }
-      - { en: "Start at least one sentence with a time phrase (Am Samstag …) and keep the auxiliary in second position, right after it.", ru: "Начните хотя бы одно предложение с обстоятельства времени (Am Samstag …) и оставьте вспомогательный глагол на втором месте, сразу после него." }
+      - { en: "Write at least four sentences in the Perfekt, and mention both Saturday and Sunday.", ru: "Напишите минимум четыре предложения в перфекте и упомяните и субботу, и воскресенье.", uk: "Напишіть щонайменше чотири речення в перфекті та згадайте і суботу, і неділю." }
+      - { en: "Use sein at least once (bin … gefahren / gegangen / geblieben / aufgestanden) and haben at least twice.", ru: "Хотя бы раз используйте sein (bin … gefahren / gegangen / geblieben / aufgestanden) и минимум дважды — haben.", uk: "Хоча б раз використайте sein (bin … gefahren / gegangen / geblieben / aufgestanden) і щонайменше двічі — haben." }
+      - { en: "Check every sentence: the participle must be the last word.", ru: "Проверьте каждое предложение: причастие должно стоять последним словом.", uk: "Перевірте кожне речення: дієприкметник має стояти останнім словом." }
+      - { en: "Start at least one sentence with a time phrase (Am Samstag …) and keep the auxiliary in second position, right after it.", ru: "Начните хотя бы одно предложение с обстоятельства времени (Am Samstag …) и оставьте вспомогательный глагол на втором месте, сразу после него.", uk: "Почніть хоча б одне речення з обставини часу (Am Samstag …) і залиште допоміжне дієслово на другому місці, одразу після неї." }
     min_words: 25
     model_answer: "Guten Morgen, Julia! Am Samstag bin ich lange im Bett geblieben. Danach habe ich die Wohnung geputzt und im Supermarkt eingekauft. Am Sonntag bin ich früh aufgestanden und habe im Park Sport gemacht. Am Abend habe ich einen Film gesehen. Und du?"
     model_translation:
       en: "Good morning, Julia! On Saturday I stayed in bed for a long time. After that I cleaned the apartment and did the shopping at the supermarket. On Sunday I got up early and did sport in the park. In the evening I watched a film. And you?"
       ru: "Доброе утро, Юлия! В субботу я долго не вставал с постели. Потом я убрал квартиру и сходил за покупками в супермаркет. В воскресенье я рано встал и позанимался спортом в парке. Вечером я посмотрел фильм. А ты?"
+      uk: "Доброго ранку, Юліє! У суботу я довго не вставав із ліжка. Потім я прибрав квартиру і сходив за покупками в супермаркет. У неділю я рано встав і позаймався спортом у парку. Увечері я подивився фільм. А ти?"
     explain:
       en: "A weekend report is a chain of Perfekt brackets: the auxiliary lands in position 2 and the participle waits at the very end, no matter how much you put in between. Two decisions repeat in every sentence — which auxiliary the verb takes, and how its participle is built. Ending with a question back (Und du?) is what turns a report into a conversation."
       ru: "Рассказ о выходных — это цепочка перфектных рамок: вспомогательный глагол на втором месте, причастие ждёт в самом конце, сколько бы слов вы ни поставили между ними. В каждом предложении повторяются два решения: какой вспомогательный глагол берёт этот глагол и как строится его причастие. А встречный вопрос в конце (Und du?) превращает отчёт в разговор."
+      uk: "Розповідь про вихідні — це ланцюжок перфектних рамок: допоміжне дієслово на другому місці, дієприкметник чекає в самому кінці, хай скільки слів ви поставите між ними. У кожному реченні повторюються два рішення: яке допоміжне дієслово бере це дієслово і як будується його дієприкметник. А зустрічне питання наприкінці (Und du?) перетворює звіт на розмову."
 
   - id: sprechen-kaffeeautomat
     outcomes: [perfekt-vergangenheit-erzaehlen]
@@ -170,18 +197,22 @@ items:
     prompt:
       en: "Monday morning, you meet Julia at the coffee machine. She asks: „Und du? Was hast du am Wochenende gemacht?“ Answer aloud, in three or four sentences."
       ru: "Утро понедельника, вы встречаете Юлию у кофемашины. Она спрашивает: «Und du? Was hast du am Wochenende gemacht?» Ответьте вслух, в трёх-четырёх предложениях."
+      uk: "Ранок понеділка, ви зустрічаєте Юлію біля кавомашини. Вона питає: «Und du? Was hast du am Wochenende gemacht?» Дайте відповідь уголос, у трьох-чотирьох реченнях."
     goal:
       en: "Talk about your own weekend in the Perfekt, without reading from a script."
       ru: "Расскажите о своих выходных в перфекте, не читая с листа."
+      uk: "Розкажіть про свої вихідні в перфекті, не читаючи з аркуша."
     checklist:
-      - { en: "I named at least three things I did, each one in the Perfekt.", ru: "Я назвал(а) минимум три занятия, каждое — в перфекте." }
-      - { en: "I used sein at least once (Ich bin … gefahren / gegangen / geblieben).", ru: "Я хотя бы раз использовал(а) sein (Ich bin … gefahren / gegangen / geblieben)." }
-      - { en: "In every sentence the participle came last — I did not stop the sentence after the auxiliary.", ru: "В каждом предложении причастие оказалось последним — я не оборвал(а) предложение после вспомогательного глагола." }
-      - { en: "I said when it happened (am Samstag, am Sonntag, am Abend).", ru: "Я сказал(а), когда это было (am Samstag, am Sonntag, am Abend)." }
+      - { en: "I named at least three things I did, each one in the Perfekt.", ru: "Я назвал(а) минимум три занятия, каждое — в перфекте.", uk: "Я назвав(-ла) щонайменше три заняття, кожне — в перфекті." }
+      - { en: "I used sein at least once (Ich bin … gefahren / gegangen / geblieben).", ru: "Я хотя бы раз использовал(а) sein (Ich bin … gefahren / gegangen / geblieben).", uk: "Я хоча б раз використав(-ла) sein (Ich bin … gefahren / gegangen / geblieben)." }
+      - { en: "In every sentence the participle came last — I did not stop the sentence after the auxiliary.", ru: "В каждом предложении причастие оказалось последним — я не оборвал(а) предложение после вспомогательного глагола.", uk: "У кожному реченні дієприкметник опинився останнім — я не обірвав(-ла) речення після допоміжного дієслова." }
+      - { en: "I said when it happened (am Samstag, am Sonntag, am Abend).", ru: "Я сказал(а), когда это было (am Samstag, am Sonntag, am Abend).", uk: "Я сказав(-ла), коли це було (am Samstag, am Sonntag, am Abend)." }
     model_answer: "Am Samstag bin ich zu Hause geblieben. Ich habe ein Buch gelesen und Musik gehört. Am Sonntag bin ich mit dem Rad zum See gefahren. Das war wirklich schön!"
     model_translation:
       en: "On Saturday I stayed at home. I read a book and listened to music. On Sunday I cycled to the lake. That was really nice!"
       ru: "В субботу я остался дома. Я читал книгу и слушал музыку. В воскресенье я поехал на велосипеде к озеру. Это было по-настоящему здорово!"
+      uk: "У суботу я залишився вдома. Я читав книжку і слухав музику. У неділю я поїхав велосипедом до озера. Це було справді чудово!"
     explain:
       en: "Speaking is where the Perfekt bracket really gets tested: you have to keep the participle in your head while you say everything else. Plan each sentence as a frame — auxiliary now, participle last — and pick the auxiliary as you choose the verb, not afterwards. A closing reaction (Das war wirklich schön!) makes the answer sound like a person, not a drill."
       ru: "Именно в устной речи перфектная рамка проверяется по-настоящему: причастие приходится держать в голове, пока вы произносите всё остальное. Стройте каждое предложение как рамку — вспомогательный глагол сейчас, причастие в конце — и выбирайте вспомогательный глагол вместе с самим глаголом, а не потом. А финальная реакция (Das war wirklich schön!) делает ответ живым, а не заученным."
+      uk: "Саме в усному мовленні перфектна рамка перевіряється по-справжньому: дієприкметник доводиться тримати в голові, поки ви промовляєте все інше. Будуйте кожне речення як рамку — допоміжне дієслово зараз, дієприкметник у кінці — і вибирайте допоміжне дієслово разом із самим дієсловом, а не потім. А фінальна реакція (Das war wirklich schön!) робить відповідь живою, а не завченою."

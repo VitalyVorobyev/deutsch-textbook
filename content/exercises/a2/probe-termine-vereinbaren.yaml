@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — making appointments"
   ru: "Проверка — как договориться о встрече"
+  uk: "Перевірка — як домовитися про зустріч"
 
 # Three PARALLEL variants of ONE competence: passen + Dativ — saying whether a time
 # suits someone. It is the move the whole topic turns on (you cannot offer, refuse or
@@ -21,8 +22,10 @@ items:
     instruction:
       en: Translate into German. Use passen in the first sentence.
       ru: Переведите на немецкий. В первом предложении используйте passen.
+      uk: Перекладіть німецькою. У першому реченні використайте passen.
     prompt_en: "Tuesday doesn't suit us. Does Wednesday work too?"
     prompt_ru: "Вторник нам не подходит. А в среду получится?"
+    prompt_uk: "Вівторок нам не підходить. А в середу вийде?"
     answer: "Der Dienstag passt uns nicht. Klappt es auch am Mittwoch?"
     key_tokens: ["uns"]
     accept:
@@ -32,6 +35,7 @@ items:
     explain:
       en: "With passen the day is the subject and the people it suits are the dative object: der Dienstag passt uns. The person is never the subject — a sentence starting Wir passen … would say that we fit somewhere, which is not what is meant."
       ru: "При глаголе passen подлежащее — это день, а те, кому он подходит, стоят в дательном падеже: der Dienstag passt uns. Человек здесь никогда не подлежащее: фраза Wir passen … означала бы, что мы куда-то помещаемся, а не что нам удобно."
+      uk: "При дієслові passen підмет — це день, а ті, кому він підходить, стоять у давальному відмінку: der Dienstag passt uns. Людина тут ніколи не підмет: фраза Wir passen … означала б, що ми кудись поміщаємося, а не що нам зручно."
 
   - id: variant-b
     outcomes: [termine-organisieren]
@@ -40,8 +44,10 @@ items:
     instruction:
       en: Translate into German using passen. You are speaking to a friend.
       ru: Переведите на немецкий с глаголом passen. Вы говорите с другом.
+      uk: Перекладіть німецькою з дієсловом passen. Ви говорите з другом.
     prompt_en: "Does the appointment at ten o'clock suit you? It suits me well."
     prompt_ru: "Тебе подходит встреча в десять часов? Мне она вполне подходит."
+    prompt_uk: "Тобі підходить зустріч о десятій годині? Мені вона цілком підходить."
     answer: "Passt dir der Termin um zehn Uhr? Er passt mir gut."
     key_tokens: ["dir", "mir"]
     accept:
@@ -49,6 +55,7 @@ items:
     explain:
       en: "passen keeps the appointment as its subject and puts the person in the dative — du → dir, ich → mir. The trap is that English makes the person look like an object ('suits you'), and an object is what the accusative is for: ❌ Passt dich der Termin? The person after passen is never in the accusative. Note also that the answer keeps the appointment as the subject, now as the pronoun er (der Termin), and mir stays in the dative with it."
       ru: "При passen подлежащее — это встреча, а человек стоит в дательном: du → dir, ich → mir. Ловушка в том, что по-русски человек выглядит как дополнение («тебе подходит» — да, дательный, но в вопросе «тебя устраивает?» уже винительный), а по-английски и подавно. Отсюда ❌ Passt dich der Termin? Человек после passen никогда не стоит в Akkusativ. И в ответе подлежащим остаётся сама встреча — теперь местоимение er (der Termin), — а mir рядом с ним остаётся в дательном."
+      uk: "При passen підмет — це зустріч, а людина стоїть у давальному: du → dir, ich → mir. Пастка в тому, що українською людина виглядає як додаток («тобі підходить» — так, давальний, але в питанні «тебе влаштовує?» вже знахідний). Звідси ❌ Passt dich der Termin? Людина після passen ніколи не стоїть в Akkusativ. І у відповіді підметом залишається сама зустріч — тепер займенник er (der Termin), — а mir поряд із ним залишається в давальному."
 
   - id: variant-c
     outcomes: [termine-organisieren]
@@ -57,8 +64,10 @@ items:
     instruction:
       en: Translate into German. Use passen.
       ru: Переведите на немецкий. Используйте passen.
+      uk: Перекладіть німецькою. Використайте passen.
     prompt_en: "Thursday doesn't suit my wife. Friday suits her better."
     prompt_ru: "Четверг моей жене не подходит. Пятница подходит ей лучше."
+    prompt_uk: "Четвер моїй дружині не підходить. П'ятниця підходить їй краще."
     answer: "Der Donnerstag passt meiner Frau nicht. Der Freitag passt ihr besser."
     key_tokens: ["meiner", "ihr"]
     accept:
@@ -66,3 +75,4 @@ items:
     explain:
       en: "The dative is not only for pronouns: a whole noun phrase goes into it just as readily — meine Frau → meiner Frau. The second sentence replaces it with the matching pronoun, ihr, and the case does not change with it."
       ru: "Дательный падеж — не только для местоимений: целая именная группа переходит в него точно так же — meine Frau → meiner Frau. Во втором предложении она заменяется соответствующим местоимением ihr, и падеж при этом не меняется."
+      uk: "Давальний відмінок — не лише для займенників: ціла іменна група переходить у нього точно так само — meine Frau → meiner Frau. У другому реченні вона замінюється відповідним займенником ihr, і відмінок при цьому не змінюється."
