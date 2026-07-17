@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — picking Ben up from the station"
   ru: "Практика — встречаем Бена на вокзале"
+  uk: "Практика — зустрічаємо Бена на вокзалі"
 items:
   - id: hoeren-anruf-bahnhof
     outcomes: [trennbar-erkennen]
@@ -21,9 +22,11 @@ items:
     translation:
       en: "When does Ben arrive in Munich?"
       ru: "Когда Бен приезжает в Мюнхен?"
+      uk: "Коли Бен приїжджає до Мюнхена?"
     explain:
       en: "All three times are spoken, and each belongs to a different verb: the train leaves Hamburg at three (fährt … ab), Anna works until six, and Ben arrives at seven (kommt … an). abfahren and ankommen are opposites — the prefix carries the whole meaning, and it comes at the very end of the sentence, so you have to listen to the end."
       ru: "В диалоге звучат все три времени, и каждое относится к своему глаголу: поезд отходит из Гамбурга в три (fährt … ab), Анна работает до шести, а Бен приезжает в семь (kommt … an). abfahren и ankommen — противоположности, и весь смысл несёт приставка, которая стоит в самом конце предложения: дослушивать нужно до конца."
+      uk: "У діалозі звучать усі три часи, і кожен стосується свого дієслова: потяг відходить із Гамбурга о третій (fährt … ab), Анна працює до шостої, а Бен приїжджає о сьомій (kommt … an). abfahren і ankommen — протилежності, і весь зміст несе префікс, який стоїть у самому кінці речення: дослухати треба до кінця."
 
   - id: uebersetzen-bezahlen-fahrkarte
     outcomes: [trennbar-erkennen]
@@ -32,8 +35,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Ben pays for the ticket at the station."
     prompt_ru: "Бен оплачивает билет на вокзале."
+    prompt_uk: "Бен оплачує квиток на вокзалі."
     answer: "Ben bezahlt die Fahrkarte am Bahnhof."
     key_tokens: ["bezahlt"]
     accept:
@@ -41,16 +46,23 @@ items:
     explain:
       en: "be- is an inseparable prefix: it is unstressed and stays glued to the verb, so nothing travels to the end — Ben bezahlt die Fahrkarte. Only stressed prefixes such as ab-, an-, um- split off."
       ru: "be- — неотделяемая приставка: она безударная и остаётся при глаголе, поэтому в конец ничего не уходит — Ben bezahlt die Fahrkarte. Отделяются только ударные приставки вроде ab-, an-, um-."
+      uk: "be- — невідокремлюваний префікс: він ненаголошений і залишається при дієслові, тому в кінець нічого не йде — Ben bezahlt die Fahrkarte. Відокремлюються лише наголошені префікси на кшталт ab-, an-, um-."
 
   - id: uebersetzen-abholen-sieben
     outcomes: [trennbar-satz]
     type: translate
     focus: trennbar-wortstellung
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    # «забирает»/«забирає» are pickup-specific: the earlier «встречает»/«зустрічає»
+    # also mean plain "meets", so a correct Anna trifft Ben … was rejected and logged
+    # as a separable-verb failure.
     prompt_en: "Anna picks Ben up at seven o'clock."
-    prompt_ru: "Анна встречает Бена в семь часов."
+    prompt_ru: "Анна забирает Бена в семь часов."
+    prompt_uk: "Анна забирає Бена о сьомій годині."
     answer: "Anna holt Ben um sieben Uhr ab."
     key_tokens: ["holt", "ab"]
     accept:
@@ -58,6 +70,7 @@ items:
     explain:
       en: "abholen is the conjugated verb here, so it splits: holt takes position 2 and the prefix ab closes the sentence behind the object and the time phrase."
       ru: "abholen здесь — спрягаемый глагол, поэтому он разделяется: holt занимает второе место, а приставка ab закрывает предложение за дополнением и обстоятельством времени."
+      uk: "abholen тут — відмінюване дієслово, тому воно розділяється: holt займає друге місце, а префікс ab закриває речення за додатком і обставиною часу."
 
   - id: uebersetzen-modal-umsteigen
     outcomes: [trennbar-satz]
@@ -66,8 +79,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Ben has to change trains in Nuremberg."
     prompt_ru: "Бену нужно сделать пересадку в Нюрнберге."
+    prompt_uk: "Бенові треба зробити пересадку в Нюрнберзі."
     answer: "Ben muss in Nürnberg umsteigen."
     key_tokens: ["muss", "umsteigen"]
     accept:
@@ -75,6 +90,7 @@ items:
     explain:
       en: "The modal muss is the conjugated verb, so it takes position 2 and umsteigen goes to the end as one whole infinitive — never *muss … steigt um and never *muss … um steigen."
       ru: "Спрягаемый глагол здесь — модальный muss, он занимает второе место, а umsteigen уходит в конец целым инфинитивом — не *muss … steigt um и не *muss … um steigen."
+      uk: "Відмінюване дієслово тут — модальне muss, воно займає друге місце, а umsteigen іде в кінець цілим інфінітивом — не *muss … steigt um і не *muss … um steigen."
 
   - id: cloze-modal-oder-finit
     outcomes: [trennbar-satz]
@@ -83,13 +99,16 @@ items:
     instruction:
       en: "Ben writes to Anna. Fill the gaps: first sentence müssen + umsteigen, second sentence abholen."
       ru: "Бен пишет Анне. Заполните пропуски: в первом предложении müssen + umsteigen, во втором — abholen."
+      uk: "Бен пише Анні. Заповніть пропуски: у першому реченні müssen + umsteigen, у другому — abholen."
     text: "In Nürnberg {{muss}} ich {{umsteigen}}. Du {{holst}} mich dann in München {{ab}}."
     translation:
       en: "I have to change trains in Nuremberg. You will then pick me up in Munich."
       ru: "В Нюрнберге мне нужно сделать пересадку. А в Мюнхене ты меня встретишь."
+      uk: "У Нюрнберзі мені треба зробити пересадку. А в Мюнхені ти мене зустрінеш."
     explain:
       en: "Two sentences, two different jobs for the same kind of verb. In the first the modal muss is conjugated, so umsteigen stays whole at the end. In the second abholen is itself the conjugated verb, so it splits: holst in position 2, ab at the very end."
       ru: "Два предложения — две разные роли у глагола одного и того же типа. В первом спрягается модальный muss, поэтому umsteigen стоит в конце целиком. Во втором спрягается сам abholen, поэтому он разделяется: holst на втором месте, ab — в самом конце."
+      uk: "Два речення — дві різні ролі в дієслова одного й того самого типу. У першому відмінюється модальне muss, тому umsteigen стоїть у кінці цілком. У другому відмінюється сам abholen, тому він розділяється: holst на другому місці, ab — у самому кінці."
 
   - id: schreiben-nachricht-an-anna
     outcomes: [trennbar-satz, trennbar-tagesablauf]
@@ -97,26 +116,34 @@ items:
     prompt:
       en: "You are Ben. Write a short message to Anna about your trip and about the pick-up at the station."
       ru: "Вы — Бен. Напишите Анне короткое сообщение о своей поездке и о встрече на вокзале."
+      uk: "Ви — Бен. Напишіть Анні коротке повідомлення про свою поїздку і про зустріч на вокзалі."
     goal:
       en: "Write four to five simple sentences with separable verbs."
       ru: "Напишите четыре-пять простых предложений с глаголами с отделяемой приставкой."
+      uk: "Напишіть чотири-п'ять простих речень із дієсловами з відокремлюваним префіксом."
     requirements:
       - en: "Say when your train departs — use abfahren with the prefix ab at the end of the sentence."
         ru: "Скажите, когда отправляется ваш поезд, — используйте abfahren, приставка ab в конце предложения."
+        uk: "Скажіть, коли відправляється ваш потяг, — використайте abfahren, префікс ab у кінці речення."
       - en: "Say when you arrive — use ankommen with the prefix an at the end of the sentence."
         ru: "Скажите, когда вы приезжаете, — используйте ankommen, приставка an в конце предложения."
+        uk: "Скажіть, коли ви приїжджаєте, — використайте ankommen, префікс an у кінці речення."
       - en: "Ask Anna to pick you up: a question with a modal verb, so abholen stays whole at the end (Kannst du mich … abholen?)."
         ru: "Попросите Анну вас встретить: вопрос с модальным глаголом, поэтому abholen стоит в конце целиком (Kannst du mich … abholen?)."
+        uk: "Попросіть Анну вас зустріти: питання з модальним дієсловом, тому abholen стоїть у кінці цілком (Kannst du mich … abholen?)."
       - en: "Add one more sentence with a separable verb — for example anrufen or umsteigen."
         ru: "Добавьте ещё одно предложение с глаголом с отделяемой приставкой — например, anrufen или umsteigen."
+        uk: "Додайте ще одне речення з дієсловом із відокремлюваним префіксом — наприклад, anrufen або umsteigen."
     min_words: 25
     model_answer: "Hallo Anna! Mein Zug fährt um drei Uhr ab. In Nürnberg steige ich um. Um sieben Uhr komme ich in München an. Kannst du mich am Bahnhof abholen? Ich rufe dich aus dem Zug an."
     model_translation:
       en: "Hello Anna! My train leaves at three. I change trains in Nuremberg. I arrive in Munich at seven. Can you pick me up at the station? I will call you from the train."
       ru: "Привет, Анна! Мой поезд отправляется в три. В Нюрнберге я делаю пересадку. В семь часов я приезжаю в Мюнхен. Ты можешь встретить меня на вокзале? Я позвоню тебе из поезда."
+      uk: "Привіт, Анно! Мій потяг відправляється о третій. У Нюрнберзі я роблю пересадку. О сьомій годині я приїжджаю до Мюнхена. Ти можеш зустріти мене на вокзалі? Я подзвоню тобі з потяга."
     explain:
       en: "Every sentence here is the same bracket. Where the separable verb is conjugated, the prefix waits at the end: fährt … ab, komme … an, rufe … an. Where a modal is conjugated, the separable verb is an untouched infinitive at the end: Kannst du mich … abholen?"
       ru: "Все предложения здесь — одна и та же рамка. Там, где спрягается сам отделяемый глагол, приставка ждёт в конце: fährt … ab, komme … an, rufe … an. Там, где спрягается модальный глагол, отделяемый стоит в конце нетронутым инфинитивом: Kannst du mich … abholen?"
+      uk: "Усі речення тут — одна й та сама рамка. Там, де відмінюється саме відокремлюване дієслово, префікс чекає в кінці: fährt … ab, komme … an, rufe … an. Там, де відмінюється модальне дієслово, відокремлюване стоїть у кінці неторканим інфінітивом: Kannst du mich … abholen?"
 
   - id: sprechen-am-telefon
     outcomes: [trennbar-tagesablauf]
@@ -125,22 +152,30 @@ items:
     prompt:
       en: "Anna calls you from the station: „Hallo! Ich bin schon am Bahnhof. Wann kommt dein Zug an?“ Answer aloud."
       ru: "Анна звонит вам с вокзала: «Hallo! Ich bin schon am Bahnhof. Wann kommt dein Zug an?» Ответьте вслух."
+      uk: "Анна дзвонить вам із вокзалу: «Hallo! Ich bin schon am Bahnhof. Wann kommt dein Zug an?» Дайте відповідь уголос."
     goal:
       en: "Give her your arrival time and arrange where she picks you up."
       ru: "Назовите время прибытия и договоритесь, где она вас встретит."
+      uk: "Назвіть час прибуття і домовтеся, де вона вас зустріне."
     checklist:
       - en: "I named my arrival time with ankommen and put the prefix an at the end (Mein Zug kommt um … an)."
         ru: "Я назвал(а) время прибытия с ankommen и поставил(а) приставку an в конец (Mein Zug kommt um … an)."
+        uk: "Я назвав(-ла) час прибуття з ankommen і поставив(-ла) префікс an у кінець (Mein Zug kommt um … an)."
       - en: "I said where I get off or where I wait (Ich steige am Gleis … aus)."
         ru: "Я сказал(а), где выхожу или где жду (Ich steige am Gleis … aus)."
+        uk: "Я сказав(-ла), де виходжу або де чекаю (Ich steige am Gleis … aus)."
       - en: "I asked her to pick me up with a modal, so abholen stayed whole at the end (Kannst du mich … abholen?)."
         ru: "Я попросил(а) встретить меня, использовав модальный глагол, поэтому abholen остался целым в конце (Kannst du mich … abholen?)."
+        uk: "Я попросив(-ла) зустріти мене, використавши модальне дієслово, тому abholen залишився цілим у кінці (Kannst du mich … abholen?)."
       - en: "I spoke in whole sentences and finished each one — the prefix comes last, so I did not stop early."
         ru: "Я говорил(а) законченными предложениями и договаривал(а) их до конца — приставка стоит последней, поэтому обрывать фразу нельзя."
+        uk: "Я говорив(-ла) закінченими реченнями і промовляв(-ла) їх до кінця — префікс стоїть останнім, тому обривати фразу не можна."
     model_answer: "Hallo Anna! Mein Zug kommt um sieben Uhr an. Ich steige am Gleis vier aus. Kannst du mich am Ausgang abholen?"
     model_translation:
       en: "Hello Anna! My train arrives at seven. I get off at platform four. Can you pick me up at the exit?"
       ru: "Привет, Анна! Мой поезд приезжает в семь часов. Я выхожу на четвёртом пути. Ты можешь встретить меня у выхода?"
+      uk: "Привіт, Анно! Мій потяг приїжджає о сьомій годині. Я виходжу на четвертій колії. Ти можеш зустріти мене біля виходу?"
     explain:
       en: "Spoken German keeps the same bracket as written German, and the prefix is stressed: kommt um sieben Uhr AN, steige am Gleis vier AUS. Say the whole sentence to its end — the last word is what carries the meaning."
       ru: "В устной речи рамка та же, что и в письменной, а приставка ударная: kommt um sieben Uhr AN, steige am Gleis vier AUS. Договаривайте предложение до конца — именно последнее слово несёт смысл."
+      uk: "В усному мовленні рамка та сама, що й у письмовому, а префікс наголошений: kommt um sieben Uhr AN, steige am Gleis vier AUS. Промовляйте речення до кінця — саме останнє слово несе зміст."

@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — everyday life and daily routine
   ru: Практика — повседневная жизнь и распорядок дня
+  uk: Практика — повсякденне життя і розпорядок дня
 items:
   - id: cloze-aufstehen
     outcomes: [alltag-beschreiben]
@@ -11,13 +12,16 @@ items:
     instruction:
       en: Fill in both parts of the separable verb "aufstehen".
       ru: Вставьте обе части глагола с отделяемой приставкой "aufstehen".
+      uk: Вставте обидві частини дієслова з відокремлюваним префіксом "aufstehen".
     text: "Ich {{stehe}} jeden Morgen um sieben Uhr {{auf}}."
     translation:
       en: I get up at seven o'clock every morning.
       ru: Я встаю каждое утро в семь часов.
+      uk: Я встаю щоранку о сьомій годині.
     explain:
       en: 'aufstehen is separable: the conjugated part "stehe" sits in second position, the prefix "auf" goes to the very end of the sentence.'
       ru: 'aufstehen — глагол с отделяемой приставкой: спрягаемая часть "stehe" стоит на втором месте, а приставка "auf" уходит в самый конец предложения.'
+      uk: 'aufstehen — дієслово з відокремлюваним префіксом: відмінювана частина "stehe" стоїть на другому місці, а префікс "auf" іде в самий кінець речення.'
 
   - id: order-dann
     outcomes: [alltag-beschreiben]
@@ -26,13 +30,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Dann", "frühstücke", "ich", "in", "der", "Küche."]
     translation:
       en: Then I have breakfast in the kitchen.
       ru: Потом я завтракаю на кухне.
+      uk: Потім я снідаю на кухні.
     explain:
       en: '"Dann" fills position 1, so the verb "frühstücke" must come second and the subject "ich" third — this is the inversion that sequencers trigger.'
       ru: '"Dann" занимает первую позицию, поэтому глагол "frühstücke" стоит вторым, а подлежащее "ich" — третьим. Это инверсия, которую вызывают слова-связки.'
+      uk: '"Dann" займає першу позицію, тому дієслово "frühstücke" стоїть другим, а підмет "ich" — третім. Це інверсія, яку викликають слова-зв''язки.'
 
   - id: mc-fernsehen
     outcomes: [alltag-beschreiben]
@@ -44,9 +51,11 @@ items:
     translation:
       en: In the evening I watch a bit of TV.
       ru: Вечером я немного смотрю телевизор.
+      uk: Увечері я трохи дивлюся телевізор.
     explain:
       en: 'fernsehen splits: the conjugated form for "ich" is "sehe", and "fern" already stands at the end. The unseparated "fernsehe" cannot sit in second position, and "sieht" is the er/sie/es form.'
       ru: 'fernsehen разделяется: спрягаемая форма для "ich" — "sehe", а "fern" уже стоит в конце. Слитная форма "fernsehe" не может занимать второе место, а "sieht" — форма er/sie/es.'
+      uk: 'fernsehen розділяється: відмінювана форма для "ich" — "sehe", а "fern" уже стоїть у кінці. Злита форма "fernsehe" не може займати друге місце, а "sieht" — форма er/sie/es.'
 
   - id: match-tageszeiten
     outcomes: [alltag-beschreiben]
@@ -54,6 +63,7 @@ items:
     instruction:
       en: Match each time of day with the typical activity.
       ru: Соедините время суток с типичным занятием.
+      uk: З'єднайте час доби з типовим заняттям.
     pairs:
       - { left: "am Morgen", right: "frühstücken" }
       - { left: "am Mittag", right: "Pause machen" }
@@ -62,6 +72,7 @@ items:
     explain:
       en: 'Parts of the day take "am": am Morgen, am Mittag, am Abend. Only the night takes "in": in der Nacht.'
       ru: 'С частями суток используется "am": am Morgen, am Mittag, am Abend. Только с ночью — "in": in der Nacht.'
+      uk: 'З частинами доби вживається "am": am Morgen, am Mittag, am Abend. Лише з ніччю — "in": in der Nacht.'
 
   - id: table-trennbare
     outcomes: [alltag-beschreiben]
@@ -71,6 +82,7 @@ items:
     instruction:
       en: Fill in the er/sie/es present form — two words, with the prefix at the end, like the example in the first row.
       ru: Впишите форму er/sie/es в презенсе — два слова, приставка в конце, как в примере в первой строке.
+      uk: Впишіть форму er/sie/es у презенсі — два слова, префікс у кінці, як у прикладі в першому рядку.
     columns: ["er/sie/es"]
     rows:
       - label: aufstehen
@@ -84,6 +96,7 @@ items:
     explain:
       en: 'In the present tense the prefix separates: er kauft ein, er sieht fern (stem change e → ie), er schläft ein (stem change a → ä).'
       ru: 'В презенсе приставка отделяется: er kauft ein, er sieht fern (чередование e → ie), er schläft ein (чередование a → ä).'
+      uk: 'У презенсі префікс відокремлюється: er kauft ein, er sieht fern (чергування e → ie), er schläft ein (чергування a → ä).'
 
   - id: cloze-um
     outcomes: [alltag-beschreiben]
@@ -92,13 +105,16 @@ items:
     instruction:
       en: Fill in the correct preposition (the same one twice).
       ru: Вставьте правильный предлог (один и тот же дважды).
+      uk: Вставте правильний прийменник (той самий двічі).
     text: "Ich stehe {{um}} sieben Uhr auf und fahre {{um}} acht Uhr zur Arbeit."
     translation:
       en: I get up at seven o'clock and go to work at eight o'clock.
       ru: Я встаю в семь часов и еду на работу в восемь часов.
+      uk: Я встаю о сьомій годині і їду на роботу о восьмій годині.
     explain:
       en: 'Clock times always take "um": um sieben Uhr. English helps here — "AT seven" — um = at; "in sieben Uhr" is wrong.'
       ru: 'С точным временем всегда "um": um sieben Uhr. Русское «в семь часов» подталкивает к "in", но "in sieben Uhr" — ошибка.'
+      uk: 'З точним часом завжди "um": um sieben Uhr. Українське «о сьомій годині» німецького прийменника не підказує, а "in sieben Uhr" — помилка.'
 
   - id: mc-meistens
     outcomes: [alltag-beschreiben]
@@ -113,9 +129,11 @@ items:
     translation:
       en: Which sentence is correct? — Usually I shower in the morning.
       ru: Какое предложение правильное? — Обычно я принимаю душ утром.
+      uk: Яке речення правильне? — Зазвичай я приймаю душ уранці.
     explain:
       en: '"Meistens" may start the sentence, but then the verb follows immediately: Meistens dusche ich… Inside the sentence it stands after the verb (Ich dusche meistens…), never between subject and verb.'
       ru: '"Meistens" может начинать предложение, но тогда сразу за ним идёт глагол: Meistens dusche ich… Внутри предложения оно стоит после глагола (Ich dusche meistens…), но никогда между подлежащим и глаголом.'
+      uk: '"Meistens" може починати речення, але тоді одразу за ним іде дієслово: Meistens dusche ich… Усередині речення воно стоїть після дієслова (Ich dusche meistens…), але ніколи між підметом і дієсловом.'
 
   - id: cloze-feierabend
     outcomes: [alltag-beschreiben]
@@ -124,13 +142,16 @@ items:
     instruction:
       en: Complete the fixed expression.
       ru: Дополните устойчивое выражение.
+      uk: Доповніть усталений вислів.
     text: "Um fünf Uhr habe ich {{Feierabend}} und fahre nach Hause."
     translation:
       en: At five o'clock I finish work and go home.
       ru: В пять часов я заканчиваю работу и еду домой.
+      uk: О п'ятій годині я закінчую роботу і їду додому.
     explain:
       en: '"Feierabend haben" = to be done with work for the day. Feierabend is a noun, so it is capitalized.'
       ru: '"Feierabend haben" = закончить рабочий день. Feierabend — существительное, поэтому пишется с заглавной буквы.'
+      uk: '"Feierabend haben" = закінчити робочий день. Feierabend — іменник, тому пишеться з великої літери.'
 
   - id: order-danach
     outcomes: [alltag-beschreiben]
@@ -139,13 +160,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Danach", "räume", "ich", "die", "Küche", "auf."]
     translation:
       en: After that I tidy up the kitchen.
       ru: После этого я убираю кухню.
+      uk: Після цього я прибираю кухню.
     explain:
       en: 'Two rules at once: "Danach" takes position 1, so the verb "räume" stays second — and the separable prefix "auf" goes to the very end.'
       ru: 'Два правила сразу: "Danach" занимает первую позицию, поэтому глагол "räume" остаётся на втором месте, а отделяемая приставка "auf" уходит в самый конец.'
+      uk: 'Два правила одразу: "Danach" займає першу позицію, тому дієслово "räume" залишається на другому місці, а відокремлюваний префікс "auf" іде в самий кінець.'
 
   - id: mc-perfekt-aufstehen
     outcomes: [alltag-beschreiben]
@@ -157,9 +181,11 @@ items:
     translation:
       en: Today I got up as early as six o'clock.
       ru: Сегодня я встал уже в шесть часов.
+      uk: Сьогодні я встав уже о шостій годині.
     explain:
       en: 'aufstehen describes a change of position/state and forms the Perfekt with sein: ich bin aufgestanden. "habe" is the wrong auxiliary, and "ist" does not agree with "ich".'
       ru: 'aufstehen обозначает смену положения/состояния и образует перфект с sein: ich bin aufgestanden. "habe" — неправильный вспомогательный глагол, а "ist" не согласуется с "ich".'
+      uk: 'aufstehen позначає зміну положення/стану і утворює перфект із sein: ich bin aufgestanden. "habe" — неправильне допоміжне дієслово, а "ist" не узгоджується з "ich".'
 
   - id: match-praefixe
     outcomes: [alltag-beschreiben]
@@ -168,6 +194,7 @@ items:
     instruction:
       en: Match each sentence beginning with its separable prefix.
       ru: Соедините начало предложения с его отделяемой приставкой.
+      uk: З'єднайте початок речення з його відокремлюваним префіксом.
     pairs:
       - { left: "Ich kaufe am Samstag …", right: "ein." }
       - { left: "Er sieht am Abend …", right: "fern." }
@@ -176,6 +203,7 @@ items:
     explain:
       en: 'einkaufen, fernsehen, sich anziehen, aufstehen — in the present tense the separable prefix stands at the end of the sentence.'
       ru: 'einkaufen, fernsehen, sich anziehen, aufstehen — в презенсе отделяемая приставка стоит в конце предложения.'
+      uk: 'einkaufen, fernsehen, sich anziehen, aufstehen — у презенсі відокремлюваний префікс стоїть у кінці речення.'
 
   - id: cloze-zuerst
     outcomes: [alltag-beschreiben]
@@ -183,13 +211,16 @@ items:
     instruction:
       en: Fill in the sequencing words that match the translation.
       ru: Вставьте слова-связки, соответствующие переводу.
+      uk: Вставте слова-зв'язки, що відповідають перекладу.
     text: "{{Zuerst}} dusche ich, {{dann|danach}} ziehe ich mich an."
     translation:
       en: First I shower, then I get dressed.
       ru: Сначала я принимаю душ, потом одеваюсь.
+      uk: Спочатку я приймаю душ, потім одягаюся.
     explain:
       en: 'zuerst → dann/danach chain the actions into a narrative. Note the word order after them: verb second, subject third (dusche ich, ziehe ich).'
       ru: 'zuerst → dann/danach выстраивают действия в рассказ. Обратите внимание на порядок слов после них: глагол на втором месте, подлежащее — на третьем (dusche ich, ziehe ich).'
+      uk: 'zuerst → dann/danach вибудовують дії в розповідь. Зверніть увагу на порядок слів після них: дієслово на другому місці, підмет — на третьому (dusche ich, ziehe ich).'
 
   - id: mc-wochenende
     outcomes: [alltag-beschreiben]
@@ -201,9 +232,11 @@ items:
     translation:
       en: On the weekend I sleep until ten o'clock.
       ru: В выходные я сплю до десяти часов.
+      uk: У вихідні я сплю до десятої години.
     explain:
       en: '"am Wochenende" — like the parts of the day (am Morgen, am Abend), the weekend takes "am". "um" is only for clock times, and "in" would need an article (in der Nacht).'
       ru: '"am Wochenende" — как и с частями суток (am Morgen, am Abend), с выходными используется "am". "um" — только для точного времени, а "in" требует артикля (in der Nacht).'
+      uk: '"am Wochenende" — як і з частинами доби (am Morgen, am Abend), із вихідними вживається "am". "um" — лише для точного часу, а "in" вимагає артикля (in der Nacht).'
 
   - id: uebersetzen-stehe-auf
     outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
@@ -212,8 +245,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I get up at seven o'clock."
     prompt_ru: "Я встаю в семь часов."
+    prompt_uk: "Я встаю о сьомій годині."
     answer: "Ich stehe um sieben Uhr auf."
     key_tokens: ["stehe", "auf"]
     accept:
@@ -221,6 +256,7 @@ items:
     explain:
       en: "aufstehen splits: stehe holds position 2 and the prefix auf drops to the very end, behind the time phrase."
       ru: "aufstehen разделяется: stehe стоит на втором месте, а приставка auf уходит в самый конец, за обстоятельство времени."
+      uk: "aufstehen розділяється: stehe стоїть на другому місці, а префікс auf іде в самий кінець, за обставину часу."
 
   - id: uebersetzen-abends-fernsehen
     outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
@@ -229,8 +265,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In the evening I often watch television."
     prompt_ru: "Вечером я часто смотрю телевизор."
+    prompt_uk: "Увечері я часто дивлюся телевізор."
     answer: "Am Abend sehe ich oft fern."
     key_tokens: ["Am"]
     accept:
@@ -238,6 +276,7 @@ items:
     explain:
       en: "Parts of the day take am: am Abend. fernsehen is separable, so fern closes the sentence — even behind the adverb oft."
       ru: "С частями суток употребляется am: am Abend. fernsehen — отделяемый глагол, поэтому fern замыкает предложение, даже после наречия oft."
+      uk: "З частинами доби вживається am: am Abend. fernsehen — відокремлюване дієслово, тому fern замикає речення, навіть після прислівника oft."
 
   - id: cloze-tagesablauf-zeiten
     outcomes: [alltag-zeitpraepositionen]
@@ -246,7 +285,9 @@ items:
     instruction:
       en: Fill in um, am or im.
       ru: Вставьте um, am или im.
+      uk: Вставте um, am або im.
     text: "{{Um}} halb acht frühstücke ich. {{Am}} Mittwoch habe ich einen Kurs. {{Im}} Sommer stehe ich früh auf."
     explain:
       en: "um + clock time, am + day or part of day, im + month or season. The preposition follows the kind of time, not the meaning."
       ru: "um + время на часах, am + день или часть суток, im + месяц или время года. Предлог выбирается по типу времени, а не по смыслу."
+      uk: "um + час на годиннику, am + день або частина доби, im + місяць або пора року. Прийменник обирається за типом часу, а не за змістом."

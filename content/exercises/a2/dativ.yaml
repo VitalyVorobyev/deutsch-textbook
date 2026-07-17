@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — the dative case
   ru: Практика — дательный падеж
+  uk: Практика — давальний відмінок
 items:
   - id: artikel-dativ
     outcomes: [dativ-artikel]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: Fill in the dative form of each definite article.
       ru: Впишите форму определённого артикля в дательном падеже.
+      uk: Впишіть форму означеного артикля в давальному відмінку.
     columns: [Nominativ, Dativ]
     rows:
       - label: Maskulin
@@ -25,6 +27,7 @@ items:
     explain:
       en: "Dative articles: der/das → dem, die → der, plural die → den (and the noun adds -n: den Kindern)."
       ru: "Артикли в Dativ: der/das → dem, die → der, во множественном числе die → den (а существительное получает -n: den Kindern)."
+      uk: "Артиклі в Dativ: der/das → dem, die → der, у множині die → den (а іменник отримує -n: den Kindern)."
 
   - id: pronomen-dativ
     outcomes: [dativ-pronomen]
@@ -34,6 +37,7 @@ items:
     instruction:
       en: Fill in the dative form of each pronoun. Mind the capital letter in the formal form.
       ru: Впишите дательную форму каждого местоимения. Не забудьте заглавную букву в вежливой форме.
+      uk: Впишіть давальну форму кожного займенника. Не забудьте велику літеру у ввічливій формі.
     columns: [Dativ]
     rows:
       - label: ich
@@ -55,6 +59,7 @@ items:
     explain:
       en: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — and capitalized Ihnen for formal Sie. Hook: -m marks masculine and neuter (ihm), -r feminine (ihr), and plural ihnen echoes the Dativ-Plural -n ending."
       ru: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — и Ihnen с заглавной буквы для вежливого Sie. Прямые аналоги русских «мне, тебе, ему, ей, нам, вам, им»."
+      uk: "mir, dir, ihm, ihr, ihm, uns, euch, ihnen — та Ihnen з великої літери для ввічливого Sie. Прямі відповідники українських «мені, тобі, йому, їй, нам, вам, їм»."
 
   - id: cloze-antworten
     outcomes: [dativ-verben, dativ-artikel]
@@ -63,13 +68,16 @@ items:
     instruction:
       en: Fill the gap with the correct article.
       ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
     text: "Der Schüler antwortet {{der}} Lehrerin."
     translation:
       en: The pupil answers the teacher.
       ru: Ученик отвечает учительнице.
+      uk: Учень відповідає вчительці.
     explain:
       en: "antworten takes the dative. die Lehrerin is feminine, so die → der: der Lehrerin."
       ru: "antworten требует Dativ. die Lehrerin — женский род, поэтому die → der: der Lehrerin."
+      uk: "antworten вимагає Dativ. die Lehrerin — жіночий рід, тому die → der: der Lehrerin."
 
   - id: cloze-gefallen
     outcomes: [dativ-pronomen, dativ-verben]
@@ -78,13 +86,16 @@ items:
     instruction:
       en: Fill the gap with the dative form of the pronoun in brackets.
       ru: Вставьте местоимение из скобок в дательном падеже.
+      uk: Вставте займенник із дужок у давальному відмінку.
     text: "Der Film gefällt {{mir}} (ich) sehr gut."
     translation:
       en: I like the film a lot.
       ru: Фильм мне очень нравится.
+      uk: Фільм мені дуже подобається.
     explain:
       en: "gefallen flips subject and experiencer, like English 'it appeals to me': the film is the subject, the person is in the dative — ich → mir."
       ru: "gefallen устроен как «нравиться»: фильм — подлежащее, а человек стоит в дательном падеже — ich → mir."
+      uk: "gefallen влаштований як «подобатися»: фільм — підмет, а людина стоїть у давальному відмінку — ich → mir."
 
   - id: cloze-kindern
     outcomes: [dativ-artikel]
@@ -93,13 +104,16 @@ items:
     instruction:
       en: Put the noun in brackets into the dative plural.
       ru: Поставьте существительное из скобок в Dativ множественного числа.
+      uk: Поставте іменник із дужок у Dativ множини.
     text: "Die Mutter hilft den {{Kindern}} (Kinder)."
     translation:
       en: The mother is helping the children.
       ru: Мама помогает детям.
+      uk: Мама допомагає дітям.
     explain:
       en: "In the dative plural the noun itself takes -n: die Kinder → den Kindern."
       ru: "В Dativ Plural окончание -n получает и само существительное: die Kinder → den Kindern."
+      uk: "У Dativ Plural закінчення -n отримує і сам іменник: die Kinder → den Kindern."
 
   - id: cloze-seit
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -108,13 +122,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of "ein".
       ru: Вставьте правильную форму артикля "ein".
+      uk: Вставте правильну форму артикля "ein".
     text: "Er wohnt seit {{einem}} Jahr in Berlin."
     translation:
       en: He has been living in Berlin for a year.
       ru: Он живёт в Берлине уже год.
+      uk: Він живе в Берліні вже рік.
     explain:
       en: "seit always takes the dative; das Jahr is neuter, so ein → einem."
       ru: "После seit всегда стоит Dativ; das Jahr — средний род, поэтому ein → einem."
+      uk: "Після seit завжди стоїть Dativ; das Jahr — середній рід, тому ein → einem."
 
   - id: mc-danken
     outcomes: [dativ-verben, dativ-pronomen]
@@ -126,9 +143,11 @@ items:
     translation:
       en: I thank you (formal) for the help.
       ru: Благодарю Вас за помощь.
+      uk: Дякую Вам за допомогу.
     explain:
       en: "danken takes the dative: Sie → Ihnen. Careful: English 'I thank YOU' looks like a direct object, so 'Ich danke Sie' is a very common learner mistake."
       ru: "danken требует Dativ: Sie → Ihnen. Осторожно: по-русски «благодарю (кого?) вас» — винительный падеж, поэтому «Ich danke Sie» — типичная ошибка."
+      uk: "danken вимагає Dativ: Sie → Ihnen. Українська підказує правильно: «дякую (кому?) вам» — теж давальний, тож не піддавайтеся на зразок «Ich danke Sie»."
 
   - id: mc-mit-bus
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -140,9 +159,11 @@ items:
     translation:
       en: We take the bus to school.
       ru: Мы едем в школу на автобусе.
+      uk: Ми їдемо до школи автобусом.
     explain:
       en: "mit always takes the dative; der Bus is masculine, so der → dem. 'den Bus' would be accusative."
       ru: "mit всегда требует Dativ; der Bus — мужской род, поэтому der → dem. Форма «den Bus» — это Akkusativ."
+      uk: "mit завжди вимагає Dativ; der Bus — чоловічий рід, тому der → dem. Форма «den Bus» — це Akkusativ."
 
   - id: mc-gehoert
     outcomes: [dativ-verben, dativ-pronomen]
@@ -154,9 +175,11 @@ items:
     translation:
       en: This is my brother. The bicycle belongs to him.
       ru: Это мой брат. Велосипед принадлежит ему.
+      uk: Це мій брат. Велосипед належить йому.
     explain:
       en: "gehören takes the dative: er → ihm — think 'it belongs TO him'; the owner is the wem?-answer."
       ru: "gehören требует Dativ: er → ihm — как и в русском: «принадлежит (кому?) ему»."
+      uk: "gehören вимагає Dativ: er → ihm — як і в українській: «належить (кому?) йому»."
 
   - id: mc-zwei-objekte
     outcomes: [dativ-artikel]
@@ -165,6 +188,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich zeige meinem Vater den Brief."
@@ -174,6 +198,7 @@ items:
     explain:
       en: "The person is dative (meinem Vater — to whom?), the thing is accusative (den Brief — what?). With two noun objects the dative comes first."
       ru: "Человек стоит в Dativ (meinem Vater — кому?), предмет — в Akkusativ (den Brief — что?). При двух дополнениях-существительных Dativ идёт первым."
+      uk: "Людина стоїть у Dativ (meinem Vater — кому?), предмет — в Akkusativ (den Brief — що?). Із двома додатками-іменниками Dativ іде першим."
 
   - id: match-kontraktionen
     outcomes: [dativ-praepositionen]
@@ -182,6 +207,7 @@ items:
     instruction:
       en: Match each preposition + article with its contracted form.
       ru: Соедините предлог с артиклем и его краткую (слитную) форму.
+      uk: З'єднайте прийменник з артиклем та його коротку (злиту) форму.
     pairs:
       - { left: "zu dem", right: "zum" }
       - { left: "zu der", right: "zur" }
@@ -190,6 +216,7 @@ items:
     explain:
       en: "The dative prepositions merge with the article: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
       ru: "Дативные предлоги сливаются с артиклем: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
+      uk: "Дативні прийменники зливаються з артиклем: zu dem → zum, zu der → zur, bei dem → beim, von dem → vom."
 
   - id: match-praepositionen
     outcomes: [dativ-praepositionen]
@@ -198,6 +225,7 @@ items:
     instruction:
       en: Match each preposition with the sentence it fits.
       ru: Подберите к каждому предлогу подходящее предложение.
+      uk: Доберіть до кожного прийменника відповідне речення.
     pairs:
       - { left: "aus", right: "Er kommt ___ der Schweiz." }
       - { left: "seit", right: "Wir lernen ___ einem Jahr Deutsch." }
@@ -206,6 +234,7 @@ items:
     explain:
       en: "All of aus, bei, mit, nach, seit, von, zu take the dative: aus der Schweiz (origin), seit einem Jahr (for/since a time), bei ihren Eltern (at someone's place), nach dem Essen (after something)."
       ru: "Все предлоги aus, bei, mit, nach, seit, von, zu требуют Dativ: aus der Schweiz (откуда), seit einem Jahr (с какого времени), bei ihren Eltern (у кого), nach dem Essen (после чего)."
+      uk: "Усі прийменники aus, bei, mit, nach, seit, von, zu вимагають Dativ: aus der Schweiz (звідки), seit einem Jahr (відколи), bei ihren Eltern (у кого), nach dem Essen (після чого)."
 
   - id: order-geben
     outcomes: [dativ-artikel]
@@ -214,13 +243,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Ich", "gebe", "dem", "Kind", "einen", "Apfel."]
     translation:
       en: I give the child an apple.
       ru: Я даю ребёнку яблоко.
+      uk: Я даю дитині яблуко.
     explain:
       en: "With two noun objects the dative comes before the accusative: dem Kind (to whom?) before einen Apfel (what?)."
       ru: "При двух дополнениях-существительных Dativ стоит перед Akkusativ: dem Kind (кому?) перед einen Apfel (что?)."
+      uk: "Із двома додатками-іменниками Dativ стоїть перед Akkusativ: dem Kind (кому?) перед einen Apfel (що?)."
 
   - id: order-bus
     outcomes: [dativ-praepositionen]
@@ -229,13 +261,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Sie", "fährt", "mit", "dem", "Bus", "zur", "Arbeit."]
     translation:
       en: She takes the bus to work.
       ru: Она едет на работу на автобусе.
+      uk: Вона їде на роботу автобусом.
     explain:
       en: "Both prepositions take the dative: mit dem Bus (der Bus → dem) and zur Arbeit (zur = zu der). The usual order is how before where: mit dem Bus zur Arbeit."
       ru: "Оба предлога требуют Dativ: mit dem Bus (der Bus → dem) и zur Arbeit (zur = zu der). Обычный порядок — сначала как, потом куда: mit dem Bus zur Arbeit."
+      uk: "Обидва прийменники вимагають Dativ: mit dem Bus (der Bus → dem) і zur Arbeit (zur = zu der). Звичний порядок — спершу як, потім куди: mit dem Bus zur Arbeit."
 
   - id: uebersetzen-helfen
     outcomes: [dativ-verben, dativ-artikel]
@@ -244,13 +279,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I am helping my brother."
     prompt_ru: "Я помогаю своему брату."
+    prompt_uk: "Я допомагаю своєму братові."
     answer: "Ich helfe meinem Bruder."
     key_tokens: ["meinem"]
     explain:
       en: "helfen takes the dative: mein Bruder → meinem Bruder. English 'help HIM' looks like a direct object, but helfen means giving help TO someone — ask wem? (to whom?)."
       ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
+      uk: "helfen вимагає Dativ: mein Bruder → meinem Bruder. Українська тут підказує: «допомагаю (кому?) братові» — теж давальний відмінок."
 
   - id: uebersetzen-gehoeren
     outcomes: [dativ-verben, dativ-artikel]
@@ -259,13 +297,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The car belongs to my father."
     prompt_ru: "Машина принадлежит моему отцу."
+    prompt_uk: "Машина належить моєму батькові."
     answer: "Das Auto gehört meinem Vater."
     key_tokens: ["meinem"]
     explain:
       en: "gehören takes the dative: mein Vater → meinem Vater — 'it belongs TO my father'. das Auto is the subject and stays in the nominative."
       ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
+      uk: "gehören вимагає Dativ: mein Vater → meinem Vater — як в українській: «належить (кому?) батькові». das Auto — підмет, він залишається в Nominativ."
 
   - id: uebersetzen-nach-arbeit
     outcomes: [dativ-praepositionen, dativ-artikel]
@@ -274,8 +315,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "After work I go home."
     prompt_ru: "После работы я иду домой."
+    prompt_uk: "Після роботи я йду додому."
     answer: "Nach der Arbeit gehe ich nach Hause."
     key_tokens: ["Nach", "der"]
     accept:
@@ -283,3 +326,4 @@ items:
     explain:
       en: "nach always takes the dative: die Arbeit → der Arbeit. When Nach der Arbeit opens the sentence, the verb stays second: … gehe ich …. The subject-first order Ich gehe nach der Arbeit nach Hause is also correct."
       ru: "nach всегда требует Dativ: die Arbeit → der Arbeit. Если Nach der Arbeit стоит в начале, глагол остаётся на втором месте: … gehe ich …. Порядок с подлежащим в начале — Ich gehe nach der Arbeit nach Hause — тоже правильный."
+      uk: "nach завжди вимагає Dativ: die Arbeit → der Arbeit. Якщо Nach der Arbeit стоїть на початку, дієслово залишається на другому місці: … gehe ich …. Порядок із підметом на початку — Ich gehe nach der Arbeit nach Hause — теж правильний."

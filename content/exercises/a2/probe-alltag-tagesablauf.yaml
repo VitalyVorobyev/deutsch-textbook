@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — everyday life and daily routine"
   ru: "Проверка — повседневная жизнь и распорядок дня"
+  uk: "Перевірка — повсякденне життя і розпорядок дня"
 
 # Three PARALLEL variants of ONE competence: choosing the time preposition —
 # um + clock time, am + day or part of day, im + month or season, and in der Nacht.
@@ -19,8 +20,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "On Thursday I do sport at six o'clock."
     prompt_ru: "В четверг я в шесть часов занимаюсь спортом."
+    prompt_uk: "У четвер я о шостій годині займаюся спортом."
     answer: "Am Donnerstag mache ich um sechs Uhr Sport."
     key_tokens: ["Am", "um"]
     accept:
@@ -29,6 +32,7 @@ items:
     explain:
       en: "The kind of time chooses the preposition, not the meaning: am for a day (am Donnerstag), um for a clock time (um sechs Uhr). Both stand in one sentence here, which is exactly where they get swapped. Do not let English 'in the morning' pull you towards im either — a part of the day is still am: am Morgen."
       ru: "Предлог выбирается по типу времени, а не по смыслу: am — с днём недели (am Donnerstag), um — с точным временем (um sechs Uhr). Здесь они стоят в одном предложении, и именно тут их чаще всего путают: по-русски и там и там просто «в», так что подсказки от родного языка ждать не приходится."
+      uk: "Прийменник обирається за типом часу, а не за змістом: am — із днем тижня (am Donnerstag), um — із точним часом (um sechs Uhr). Тут вони стоять в одному реченні, і саме тут їх найчастіше міняють місцями. Українська, до речі, теж їх розводить — «у четвер», але «о шостій» — тож нехай це нагадує: два типи часу, два різні слова."
 
   - id: variant-b
     outcomes: [alltag-zeitpraepositionen]
@@ -37,13 +41,16 @@ items:
     instruction:
       en: Translate into German. Begin each sentence with the time expression.
       ru: Переведите на немецкий. Начните каждое предложение с обстоятельства времени.
+      uk: Перекладіть німецькою. Почніть кожне речення з обставини часу.
     prompt_en: "In the evening I cook at seven o'clock. At night it is very quiet here."
     prompt_ru: "Вечером я готовлю в семь часов. Ночью здесь очень тихо."
+    prompt_uk: "Увечері я готую о сьомій годині. Вночі тут дуже тихо."
     answer: "Am Abend koche ich um sieben Uhr. In der Nacht ist es hier sehr ruhig."
     key_tokens: ["Am", "um", "In"]
     explain:
       en: "A part of the day counts as a day, not as a period you are inside: am Abend, am Morgen, am Nachmittag — the same am as am Montag, and never the im that English 'in the evening' invites. The clock keeps its own preposition next to it (um sieben Uhr). And the night is the one exception in the system: in der Nacht, memorized as a chunk, because am Nacht does not exist."
       ru: "Часть суток считается за день, а не за отрезок, внутри которого вы находитесь: am Abend, am Morgen, am Nachmittag — тот же am, что и в am Montag. Русское «вечером» никакого предлога не подсказывает, поэтому форму приходится помнить. Точное время рядом сохраняет свой предлог: um sieben Uhr. А ночь — единственное исключение системы: in der Nacht, запоминается целиком, потому что ❌ am Nacht не существует."
+      uk: "Частина доби рахується як день, а не як відрізок, усередині якого ви перебуваєте: am Abend, am Morgen, am Nachmittag — той самий am, що і в am Montag. Українське «ввечері» жодного прийменника не підказує, тому форму доводиться пам'ятати. Точний час поруч зберігає свій прийменник: um sieben Uhr. А ніч — єдиний виняток системи: in der Nacht, запам'ятовується цілком, бо ❌ am Nacht не існує."
 
   - id: variant-c
     outcomes: [alltag-zeitpraepositionen]
@@ -52,8 +59,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "In winter it is already dark at five o'clock."
     prompt_ru: "Зимой в пять часов уже темно."
+    prompt_uk: "Взимку о п'ятій годині вже темно."
     answer: "Im Winter ist es um fünf Uhr schon dunkel."
     key_tokens: ["Im", "um"]
     accept:
@@ -61,3 +70,4 @@ items:
     explain:
       en: "A season takes im, like a month: im Winter, im Januar. The clock time next to it still takes um — the two prepositions do not agree with each other, each one follows its own kind of time."
       ru: "Время года требует im — так же, как месяц: im Winter, im Januar. Стоящее рядом точное время всё равно требует um: предлоги не «согласуются» друг с другом, каждый следует своему типу времени."
+      uk: "Пора року вимагає im — так само, як місяць: im Winter, im Januar. Точний час поруч однаково вимагає um: прийменники не «узгоджуються» один з одним, кожен іде за своїм типом часу."

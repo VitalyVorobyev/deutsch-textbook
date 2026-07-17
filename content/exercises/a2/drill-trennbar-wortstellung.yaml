@@ -3,6 +3,7 @@ role: drill
 title:
   en: Drill — where does the prefix go?
   ru: Тренажёр — куда идёт приставка?
+  uk: Тренажер — куди йде префікс?
 items:
   - id: mc-einkaufen-v2
     outcomes: [trennbar-satz]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich kaufe am Samstag ein."
@@ -19,6 +21,7 @@ items:
     explain:
       en: "In a main clause the separable prefix splits off and goes to the very end: Ich kaufe … ein. The verb never stays in one piece in position 2."
       ru: "В главном предложении отделяемая приставка отрывается и уходит в самый конец: Ich kaufe … ein. Целиком на втором месте такой глагол стоять не может."
+      uk: "У головному реченні відокремлюваний префікс відривається і йде в самий кінець: Ich kaufe … ein. Цілком на другому місці таке дієслово стояти не може."
 
   - id: mc-muss-aufstehen
     outcomes: [trennbar-satz]
@@ -27,6 +30,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Er muss um sechs Uhr aufstehen."
@@ -35,6 +39,7 @@ items:
     explain:
       en: "After a modal the separable verb stays in one piece as an infinitive at the end: muss … aufstehen. Only the modal is conjugated."
       ru: "После модального глагола отделяемый глагол стоит целиком в форме инфинитива в конце: muss … aufstehen. Спрягается только модальный глагол."
+      uk: "Після модального дієслова відокремлюване дієслово стоїть цілком у формі інфінітива в кінці: muss … aufstehen. Відмінюється лише модальне дієслово."
 
   - id: mc-verstehen
     outcomes: [trennbar-satz]
@@ -43,6 +48,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Ich verstehe die Frage nicht."
@@ -51,6 +57,7 @@ items:
     explain:
       en: "ver- is an inseparable prefix: be-, ver-, er-, ent- never split off. verstehen stays in one piece: Ich verstehe …"
       ru: "ver- — неотделяемая приставка: be-, ver-, er-, ent- никогда не отрываются. verstehen остаётся целым: Ich verstehe …"
+      uk: "ver- — невідокремлюваний префікс: be-, ver-, er-, ent- ніколи не відриваються. verstehen залишається цілим: Ich verstehe …"
 
   - id: cloze-anfangen
     outcomes: [trennbar-satz]
@@ -59,13 +66,16 @@ items:
     instruction:
       en: Fill the gaps with the correct forms of the verb in brackets.
       ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+      uk: Вставте дієслово з дужок у правильній формі та на правильних місцях.
     text: "Die Schule {{fängt}} um acht Uhr {{an}}. (anfangen)"
     translation:
       en: School starts at eight o'clock.
       ru: Занятия в школе начинаются в восемь часов.
+      uk: Заняття в школі починаються о восьмій годині.
     explain:
       en: "anfangen splits: the conjugated part fängt takes position 2 (with the vowel change a → ä), the prefix an goes to the end."
       ru: "anfangen разделяется: спрягаемая часть fängt стоит на втором месте (со сменой гласной a → ä), приставка an уходит в конец."
+      uk: "anfangen розділяється: відмінювана частина fängt стоїть на другому місці (зі зміною голосної a → ä), префікс an іде в кінець."
 
   - id: mc-fenster-aufmachen
     outcomes: [trennbar-satz]
@@ -77,9 +87,11 @@ items:
     translation:
       en: Can you please open the window?
       ru: Ты можешь, пожалуйста, открыть окно?
+      uk: Ти можеш, будь ласка, відчинити вікно?
     explain:
       en: "kannst is the conjugated verb in position 2, so aufmachen stays whole as an infinitive at the end — it does not split after a modal."
       ru: "Спрягаемый глагол здесь kannst (второе место), поэтому aufmachen стоит целиком в инфинитиве в конце — после модального глагола он не разделяется."
+      uk: "Відмінюване дієслово тут kannst (друге місце), тому aufmachen стоїть цілком в інфінітиві в кінці — після модального дієслова воно не розділяється."
 
   - id: cloze-bezahlen
     outcomes: [trennbar-satz]
@@ -88,13 +100,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте глагол из скобок в правильной форме.
+      uk: Вставте дієслово з дужок у правильній формі.
     text: "Er {{bezahlt}} die Rechnung. (bezahlen)"
     translation:
       en: He pays the bill.
       ru: Он оплачивает счёт.
+      uk: Він оплачує рахунок.
     explain:
       en: "be- is an inseparable prefix — nothing moves to the end: Er bezahlt die Rechnung. Compare separable aufmachen: Er macht die Tür auf."
       ru: "be- — неотделяемая приставка, в конец ничего не уходит: Er bezahlt die Rechnung. Сравните с отделяемым aufmachen: Er macht die Tür auf."
+      uk: "be- — невідокремлюваний префікс, у кінець нічого не йде: Er bezahlt die Rechnung. Порівняйте з відокремлюваним aufmachen: Er macht die Tür auf."
 
   - id: order-aufstehen
     outcomes: [trennbar-satz]
@@ -103,15 +118,18 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Ich", "stehe", "jeden", "Tag", "um", "sechs", "Uhr", "auf."]
     accept:
       - "Jeden Tag stehe ich um sechs Uhr auf."
     translation:
       en: I get up at six o'clock every day.
       ru: Я встаю в шесть часов каждый день.
+      uk: Я встаю о шостій годині щодня.
     explain:
       en: "The two parts of aufstehen form the bracket: stehe in position 2, auf at the very end — everything else sits in between."
       ru: "Две части aufstehen образуют рамку: stehe на втором месте, auf в самом конце — всё остальное стоит между ними."
+      uk: "Дві частини aufstehen утворюють рамку: stehe на другому місці, auf у самому кінці — все інше стоїть між ними."
 
   - id: order-einkaufen-modal
     outcomes: [trennbar-satz]
@@ -120,15 +138,18 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Wir", "müssen", "heute", "noch", "einkaufen."]
     accept:
       - "Heute müssen wir noch einkaufen."
     translation:
       en: We still have to do the shopping today.
       ru: Нам сегодня ещё нужно сходить за покупками.
+      uk: Нам сьогодні ще треба сходити за покупками.
     explain:
       en: "With a modal the bracket is modal + whole infinitive: müssen in position 2, einkaufen unsplit at the end."
       ru: "С модальным глаголом рамку образуют модальный глагол и целый инфинитив: müssen на втором месте, einkaufen в конце без разрыва."
+      uk: "З модальним дієсловом рамку утворюють модальне дієслово і цілий інфінітив: müssen на другому місці, einkaufen у кінці без розриву."
 
   - id: mc-fernsehen
     outcomes: [trennbar-satz]
@@ -140,9 +161,11 @@ items:
     translation:
       en: He watches TV in the evening.
       ru: Вечером он смотрит телевизор.
+      uk: Увечері він дивиться телевізор.
     explain:
       en: "The prefix fern is already at the end, so position 2 holds only the conjugated stem: Er sieht … fern. 'Er fernsieht' is impossible."
       ru: "Приставка fern уже стоит в конце, поэтому на втором месте — только спрягаемая часть: Er sieht … fern. «Er fernsieht» невозможно."
+      uk: "Префікс fern уже стоїть у кінці, тому на другому місці — лише відмінювана частина: Er sieht … fern. «Er fernsieht» неможливо."
 
   - id: mc-ausgehen-modal
     outcomes: [trennbar-satz]
@@ -154,9 +177,11 @@ items:
     translation:
       en: I would like to go out on Saturday.
       ru: В субботу я хочу куда-нибудь сходить.
+      uk: У суботу я хочу кудись сходити.
     explain:
       en: "möchte already fills position 2, so ausgehen stays whole at the end. The verb splits only when it is the conjugated verb itself."
       ru: "Второе место уже занято möchte, поэтому ausgehen стоит целиком в конце. Глагол разделяется только тогда, когда он сам спрягается."
+      uk: "Друге місце вже зайняте möchte, тому ausgehen стоїть цілком у кінці. Дієслово розділяється лише тоді, коли воно саме відмінюється."
 
   - id: mc-erklaeren
     outcomes: [trennbar-satz]
@@ -165,6 +190,7 @@ items:
     instruction:
       en: Which sentence is correct?
       ru: Какое предложение построено правильно?
+      uk: Яке речення побудоване правильно?
     prompt: "Welcher Satz ist richtig?"
     options:
       - "Die Lehrerin erklärt die Grammatik."
@@ -173,6 +199,7 @@ items:
     explain:
       en: "er- is inseparable — erklären never splits: Die Lehrerin erklärt … Unlike separable prefixes, be-, ver-, er- are unstressed and glued to the verb."
       ru: "er- — неотделяемая приставка, erklären никогда не разделяется: Die Lehrerin erklärt … В отличие от отделяемых приставок, be-, ver-, er- безударны и «приклеены» к глаголу."
+      uk: "er- — невідокремлюваний префікс, erklären ніколи не розділяється: Die Lehrerin erklärt … На відміну від відокремлюваних префіксів, be-, ver-, er- ненаголошені й «приклеєні» до дієслова."
 
   - id: cloze-anrufen-frage
     outcomes: [trennbar-satz]
@@ -181,13 +208,16 @@ items:
     instruction:
       en: Fill the gaps with the correct forms of the verb in brackets.
       ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+      uk: Вставте дієслово з дужок у правильній формі та на правильних місцях.
     text: "Wann {{rufst}} du deine Oma {{an}}? (anrufen)"
     translation:
       en: When are you going to call your grandma?
       ru: Когда ты позвонишь бабушке?
+      uk: Коли ти подзвониш бабусі?
     explain:
       en: "In a W-question the conjugated part is second, the prefix last: Wann rufst du … an?"
       ru: "В вопросе с вопросительным словом спрягаемая часть стоит на втором месте, приставка — в конце: Wann rufst du … an?"
+      uk: "У питанні з питальним словом відмінювана частина стоїть на другому місці, префікс — у кінці: Wann rufst du … an?"
 
   - id: cloze-zug-abfahren
     outcomes: [trennbar-satz]
@@ -196,13 +226,16 @@ items:
     instruction:
       en: Fill the gaps with the correct forms of the verb in brackets.
       ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+      uk: Вставте дієслово з дужок у правильній формі та на правильних місцях.
     text: "Der Zug {{fährt}} um sieben Uhr {{ab}}. (abfahren)"
     translation:
       en: The train departs at seven o'clock.
       ru: Поезд отправляется в семь часов.
+      uk: Потяг відправляється о сьомій годині.
     explain:
       en: "abfahren splits: fährt in position 2 (with the Umlaut ä), the prefix ab at the very end."
       ru: "abfahren разделяется: fährt на втором месте (с умлаутом ä), приставка ab — в самом конце."
+      uk: "abfahren розділяється: fährt на другому місці (з умлаутом ä), префікс ab — у самому кінці."
 
   - id: cloze-einladen-party
     outcomes: [trennbar-satz]
@@ -211,13 +244,16 @@ items:
     instruction:
       en: Fill the gaps with the correct forms of the verb in brackets.
       ru: Вставьте глагол из скобок в правильной форме и на правильных местах.
+      uk: Вставте дієслово з дужок у правильній формі та на правильних місцях.
     text: "Ich {{lade}} dich zu meiner Party {{ein}}. (einladen)"
     translation:
       en: I'm inviting you to my party.
       ru: Я приглашаю тебя на свою вечеринку.
+      uk: Я запрошую тебе на свою вечірку.
     explain:
       en: "einladen splits: lade in position 2, ein at the end — Ich lade dich … ein."
       ru: "einladen разделяется: lade на втором месте, ein — в конце: Ich lade dich … ein."
+      uk: "einladen розділяється: lade на другому місці, ein — у кінці: Ich lade dich … ein."
 
   - id: order-aufstehen-frage
     outcomes: [trennbar-satz]
@@ -226,13 +262,16 @@ items:
     instruction:
       en: Arrange the words into a correct question.
       ru: Составьте правильный вопрос.
+      uk: Складіть правильне питання.
     words: ["Wann", "stehst", "du", "am", "Sonntag", "auf?"]
     translation:
       en: When do you get up on Sunday?
       ru: Когда ты встаёшь в воскресенье?
+      uk: Коли ти встаєш у неділю?
     explain:
       en: "W-word first, conjugated part second, prefix last: Wann stehst du … auf?"
       ru: "Вопросительное слово — первым, спрягаемая часть — на втором месте, приставка — в конце: Wann stehst du … auf?"
+      uk: "Питальне слово — першим, відмінювана частина — на другому місці, префікс — у кінці: Wann stehst du … auf?"
 
   - id: uebersetzen-supermarkt-zu
     outcomes: [trennbar-satz]
@@ -241,8 +280,10 @@ items:
     instruction:
       en: Translate into German. Use zumachen.
       ru: Переведите на немецкий. Используйте zumachen.
+      uk: Перекладіть німецькою. Використайте zumachen.
     prompt_en: "The supermarket closes at eight o'clock."
     prompt_ru: "Супермаркет закрывается в восемь часов."
+    prompt_uk: "Супермаркет зачиняється о восьмій годині."
     answer: "Der Supermarkt macht um acht Uhr zu."
     key_tokens: ["macht", "zu"]
     accept:
@@ -250,6 +291,7 @@ items:
     explain:
       en: "zumachen splits: macht in position 2, zu at the very end — Der Supermarkt macht … zu."
       ru: "zumachen разделяется: macht на втором месте, zu — в самом конце: Der Supermarkt macht … zu."
+      uk: "zumachen розділяється: macht на другому місці, zu — у самому кінці: Der Supermarkt macht … zu."
 
   - id: uebersetzen-muss-aufstehen
     outcomes: [trennbar-satz]
@@ -258,8 +300,10 @@ items:
     instruction:
       en: Translate into German. Use müssen and aufstehen.
       ru: Переведите на немецкий. Используйте müssen и aufstehen.
+      uk: Перекладіть німецькою. Використайте müssen і aufstehen.
     prompt_en: "I have to get up early tomorrow."
     prompt_ru: "Завтра мне нужно рано встать."
+    prompt_uk: "Завтра мені треба рано встати."
     answer: "Ich muss morgen früh aufstehen."
     key_tokens: ["muss", "aufstehen"]
     accept:
@@ -267,3 +311,4 @@ items:
     explain:
       en: "After the modal muss the separable verb stays whole at the end: … muss … aufstehen — it does not split."
       ru: "После модального muss отделяемый глагол стоит целиком в конце: … muss … aufstehen — он не разделяется."
+      uk: "Після модального muss відокремлюване дієслово стоїть цілком у кінці: … muss … aufstehen — воно не розділяється."

@@ -3,6 +3,7 @@ role: practice
 title:
   en: Practice — modal verbs
   ru: Практика — модальные глаголы
+  uk: Практика — модальні дієслова
 items:
   - id: konjugation-koennen-muessen
     outcomes: [modal-konjugation]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: Fill in the missing present-tense forms of "können" and "müssen".
       ru: Заполните пропущенные формы глаголов "können" и "müssen" в настоящем времени.
+      uk: Заповніть пропущені форми дієслів "können" і "müssen" у теперішньому часі.
     columns: [können, müssen]
     rows:
       - label: ich
@@ -29,6 +31,7 @@ items:
     explain:
       en: "In the singular the stem vowel changes (können → kann, müssen → muss) and the ich and er/sie/es forms are identical with no -t: ich kann — er kann. The plural is regular: wir können, ihr könnt, sie können."
       ru: "В единственном числе меняется корневая гласная (können → kann, müssen → muss), а формы ich и er/sie/es совпадают и не имеют окончания -t: ich kann — er kann. Множественное число правильное: wir können, ihr könnt, sie können."
+      uk: "В однині змінюється коренева голосна (können → kann, müssen → muss), а форми ich та er/sie/es збігаються і не мають закінчення -t: ich kann — er kann. Множина правильна: wir können, ihr könnt, sie können."
 
   - id: mc-verboten
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -37,15 +40,18 @@ items:
     instruction:
       en: Choose the correct modal verb.
       ru: Выберите правильный модальный глагол.
+      uk: Виберіть правильне модальне дієслово.
     prompt: "Hier ___ man nicht rauchen. (Rauchen ist hier verboten.)"
     options: ["muss", "darf", "will"]
     correct: 1
     translation:
       en: You are not allowed to smoke here. (Smoking is forbidden here.)
       ru: Здесь нельзя курить. (Курить здесь запрещено.)
+      uk: Тут не можна курити. (Курити тут заборонено.)
     explain:
       en: "A prohibition is always 'dürfen nicht': Hier darf man nicht rauchen. 'Muss nicht' would mean the opposite of what you want — 'you don't have to smoke'."
       ru: "Запрет — это всегда 'dürfen nicht': Hier darf man nicht rauchen. Русское «нельзя» = darf nicht. 'Muss nicht' означало бы совсем другое — «не обязан курить»."
+      uk: "Заборона — це завжди 'dürfen nicht': Hier darf man nicht rauchen. Українське «не можна» = darf nicht. 'Muss nicht' означало б зовсім інше — «не зобов'язаний курити»."
 
   - id: mc-nicht-noetig
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -54,15 +60,18 @@ items:
     instruction:
       en: Choose the modal verb that means "it is not necessary".
       ru: Выберите модальный глагол со значением «это необязательно».
+      uk: Виберіть модальне дієслово зі значенням «це необов'язково».
     prompt: "Du ___ nicht kommen, aber du kannst gern kommen."
     options: ["musst", "darfst", "sollst"]
     correct: 0
     translation:
       en: You don't have to come, but you're welcome to.
       ru: Ты не обязан приходить, но можешь прийти, если хочешь.
+      uk: Ти не зобов'язаний приходити, але можеш прийти, якщо хочеш.
     explain:
       en: "'Musst nicht' = don't have to (no necessity) — the second half of the sentence says you may still come. 'Darfst nicht' would forbid it, which contradicts 'du kannst gern kommen'."
       ru: "'Musst nicht' = «не обязан» (нет необходимости) — вторая часть предложения говорит, что прийти всё-таки можно. 'Darfst nicht' означало бы запрет, а это противоречит словам 'du kannst gern kommen'."
+      uk: "'Musst nicht' = «не зобов'язаний» (немає необхідності) — друга частина речення каже, що прийти все-таки можна. 'Darfst nicht' означало б заборону, а це суперечить словам 'du kannst gern kommen'."
 
   - id: cloze-koennen
     outcomes: [modal-konjugation]
@@ -71,13 +80,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
+      uk: Вставте правильну форму дієслова, вказаного в дужках.
     text: "Ich {{kann}} (können) heute nicht kommen."
     translation:
       en: I can't come today.
       ru: Я сегодня не могу прийти.
+      uk: Я сьогодні не можу прийти.
     explain:
       en: "ich kann — the singular changes the vowel (ö → a) and takes no ending. The infinitive 'kommen' stays at the end of the sentence."
       ru: "ich kann — в единственном числе меняется гласная (ö → a), окончания нет. Инфинитив 'kommen' остаётся в конце предложения."
+      uk: "ich kann — в однині змінюється голосна (ö → a), закінчення немає. Інфінітив 'kommen' залишається в кінці речення."
 
   - id: cloze-wollen-er
     outcomes: [modal-konjugation]
@@ -86,13 +98,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
+      uk: Вставте правильну форму дієслова, вказаного в дужках.
     text: "Er {{will}} (wollen) ein Eis essen."
     translation:
       en: He wants to eat an ice cream.
       ru: Он хочет съесть мороженое.
+      uk: Він хоче з'їсти морозиво.
     explain:
       en: "er will — the er/sie/es form of a modal verb has no -t and is identical to the ich form: ich will, er will. 'Er willt' does not exist."
       ru: "er will — форма er/sie/es у модальных глаголов не имеет -t и совпадает с формой ich: ich will, er will. Формы 'er willt' не существует."
+      uk: "er will — форма er/sie/es у модальних дієслів не має -t і збігається з формою ich: ich will, er will. Форми 'er willt' не існує."
 
   - id: cloze-moechten
     outcomes: [modal-hoefliche-wuensche]
@@ -101,13 +116,16 @@ items:
     instruction:
       en: Fill the gap with the polite form — you are ordering in a café.
       ru: Вставьте вежливую форму — вы делаете заказ в кафе.
+      uk: Вставте ввічливу форму — ви робите замовлення в кафе.
     text: "Ich {{möchte}} (möchten) einen Kaffee, bitte."
     translation:
       en: I would like a coffee, please.
       ru: Я хотел бы кофе, пожалуйста.
+      uk: Я хотів би кави, будь ласка.
     explain:
       en: "möchte is the polite 'want' — the right choice for ordering and requests. 'Ich will einen Kaffee' sounds blunt and rude in a café."
       ru: "möchte — вежливое «хочу», именно эта форма используется в заказах и просьбах. 'Ich will einen Kaffee' в кафе звучит грубо."
+      uk: "möchte — ввічливе «хочу», саме ця форма вживається в замовленнях і проханнях. 'Ich will einen Kaffee' у кафе звучить грубо."
 
   - id: cloze-duerfen-plural
     outcomes: [modal-konjugation]
@@ -116,13 +134,16 @@ items:
     instruction:
       en: Fill the gap with the correct form of the verb in brackets.
       ru: Вставьте правильную форму глагола, указанного в скобках.
+      uk: Вставте правильну форму дієслова, вказаного в дужках.
     text: "Die Kinder {{dürfen}} (dürfen) heute lange fernsehen."
     translation:
       en: The children are allowed to watch TV for a long time today.
       ru: Детям сегодня можно долго смотреть телевизор.
+      uk: Дітям сьогодні можна довго дивитися телевізор.
     explain:
       en: "'Die Kinder' is plural (= sie), so the form is the regular plural 'dürfen'. The vowel change (dürfen → darf) happens only in the singular."
       ru: "'Die Kinder' — множественное число (= sie), поэтому нужна правильная форма 'dürfen'. Смена гласной (dürfen → darf) происходит только в единственном числе."
+      uk: "'Die Kinder' — множина (= sie), тому потрібна правильна форма 'dürfen'. Зміна голосної (dürfen → darf) відбувається лише в однині."
 
   - id: mc-er-kann
     outcomes: [modal-konjugation]
@@ -134,9 +155,11 @@ items:
     translation:
       en: He can cook very well.
       ru: Он очень хорошо умеет готовить.
+      uk: Він дуже добре вміє готувати.
     explain:
       en: "er kann — no -t in the er/sie/es form: it is identical to ich kann. 'Kannt' does not exist, and 'könnt' is the ihr form (ihr könnt)."
       ru: "er kann — в форме er/sie/es нет окончания -t, она совпадает с ich kann. Формы 'kannt' не существует, а 'könnt' — это форма для ihr (ihr könnt)."
+      uk: "er kann — у формі er/sie/es немає закінчення -t, вона збігається з ich kann. Форми 'kannt' не існує, а 'könnt' — це форма для ihr (ihr könnt)."
 
   - id: mc-magst
     outcomes: [modal-hoefliche-wuensche]
@@ -145,15 +168,18 @@ items:
     instruction:
       en: Choose the verb that fits the answer.
       ru: Выберите глагол, который подходит к ответу.
+      uk: Виберіть дієслово, яке пасує до відповіді.
     prompt: "___ du Tee? — Ja, ich trinke jeden Tag Tee."
     options: ["Magst", "Möchtest", "Musst"]
     correct: 0
     translation:
       en: Do you like tea? — Yes, I drink tea every day.
       ru: Ты любишь чай? — Да, я пью чай каждый день.
+      uk: Ти любиш чай? — Так, я п'ю чай щодня.
     explain:
       en: "mögen + noun = to like something in general, and the answer ('I drink tea every day') is about a general preference. 'Möchtest du Tee?' would be an offer right now — would you like some tea?"
       ru: "mögen + существительное = «нравится вообще», и ответ («я пью чай каждый день») говорит именно об общем вкусе. 'Möchtest du Tee?' — это предложение прямо сейчас: «хочешь чаю?»."
+      uk: "mögen + іменник = «подобається взагалі», і відповідь («я п'ю чай щодня») говорить саме про загальний смак. 'Möchtest du Tee?' — це пропозиція просто зараз: «хочеш чаю?»."
 
   - id: order-infinitiv-ende
     outcomes: [modal-satzklammer]
@@ -162,14 +188,17 @@ items:
     instruction:
       en: Arrange the words into a correct sentence.
       ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
     words: ["Ich", "kann", "gut", "Deutsch", "sprechen."]
     accept: ["Ich kann Deutsch gut sprechen."]
     translation:
       en: I can speak German well.
       ru: Я хорошо говорю по-немецки (умею хорошо говорить).
+      uk: Я добре говорю німецькою (вмію добре говорити).
     explain:
       en: "The modal 'kann' takes position 2 and the infinitive 'sprechen' goes strictly last — 'Ich kann Deutsch sprechen gut' is impossible."
       ru: "Модальный глагол 'kann' стоит на втором месте, а инфинитив 'sprechen' — строго в конце. Сказать 'Ich kann Deutsch sprechen gut' нельзя."
+      uk: "Модальне дієслово 'kann' стоїть на другому місці, а інфінітив 'sprechen' — строго в кінці. Сказати 'Ich kann Deutsch sprechen gut' не можна."
 
   - id: order-inversion
     outcomes: [modal-satzklammer]
@@ -178,13 +207,16 @@ items:
     instruction:
       en: Arrange the words into a correct sentence. Start with the capitalized word.
       ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
+      uk: Складіть правильне речення. Почніть зі слова з великої літери.
     words: ["Am", "Sonntag", "wollen", "wir", "ins", "Kino", "gehen."]
     translation:
       en: On Sunday we want to go to the cinema.
       ru: В воскресенье мы хотим пойти в кино.
+      uk: У неділю ми хочемо піти в кіно.
     explain:
       en: "'Am Sonntag' fills position 1, so the modal 'wollen' must come second and the subject 'wir' third; the infinitive 'gehen' closes the bracket at the end."
       ru: "'Am Sonntag' занимает первое место, поэтому модальный глагол 'wollen' стоит вторым, а подлежащее 'wir' — третьим; инфинитив 'gehen' закрывает рамку в конце."
+      uk: "'Am Sonntag' займає перше місце, тому модальне дієслово 'wollen' стоїть другим, а підмет 'wir' — третім; інфінітив 'gehen' закриває рамку в кінці."
 
   - id: match-bedeutungen
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -192,16 +224,18 @@ items:
     instruction:
       en: Match each modal verb with its meaning.
       ru: Соедините каждый модальный глагол с его значением.
+      uk: З'єднайте кожне модальне дієслово з його значенням.
     pairs:
-      - { left: "können", right: { en: "ability", ru: "умение" } }
-      - { left: "müssen", right: { en: "necessity", ru: "необходимость" } }
-      - { left: "wollen", right: { en: "wish, plan", ru: "желание" } }
-      - { left: "dürfen", right: { en: "permission", ru: "разрешение" } }
-      - { left: "sollen", right: { en: "advice", ru: "совет" } }
-      - { left: "mögen", right: { en: "liking", ru: "нравится" } }
+      - { left: "können", right: { en: "ability", ru: "умение", uk: "уміння" } }
+      - { left: "müssen", right: { en: "necessity", ru: "необходимость", uk: "необхідність" } }
+      - { left: "wollen", right: { en: "wish, plan", ru: "желание", uk: "бажання" } }
+      - { left: "dürfen", right: { en: "permission", ru: "разрешение", uk: "дозвіл" } }
+      - { left: "sollen", right: { en: "advice", ru: "совет", uk: "порада" } }
+      - { left: "mögen", right: { en: "liking", ru: "нравится", uk: "подобається" } }
     explain:
       en: "können = can (ability), müssen = must (necessity), wollen = want (wish), dürfen = may (permission), sollen = should (advice or a task from someone else), mögen = like."
       ru: "können = мочь, уметь; müssen = быть должным (необходимость); wollen = хотеть; dürfen = «можно» (разрешение); sollen = следует (совет, поручение); mögen = любить, нравиться."
+      uk: "können = могти, вміти; müssen = мусити (необхідність); wollen = хотіти; dürfen = «можна» (дозвіл); sollen = слід (порада, доручення); mögen = любити, подобатися."
 
   - id: match-duerfen-formen
     outcomes: [modal-konjugation]
@@ -210,6 +244,7 @@ items:
     instruction:
       en: Match each pronoun with the correct form of "dürfen".
       ru: Соедините каждое местоимение с правильной формой глагола "dürfen".
+      uk: З'єднайте кожен займенник із правильною формою дієслова "dürfen".
     pairs:
       - { left: "ich", right: "darf" }
       - { left: "du", right: "darfst" }
@@ -218,6 +253,7 @@ items:
     explain:
       en: "Singular: ich darf, du darfst, er darf (vowel change ü → a, no -t for er). Plural: wir dürfen, ihr dürft, sie dürfen — regular endings with the umlaut back."
       ru: "Единственное число: ich darf, du darfst, er darf (смена гласной ü → a, у er нет -t). Множественное: wir dürfen, ihr dürft, sie dürfen — правильные окончания, умлаут возвращается."
+      uk: "Однина: ich darf, du darfst, er darf (зміна голосної ü → a, в er немає -t). Множина: wir dürfen, ihr dürft, sie dürfen — правильні закінчення, умлаут повертається."
 
   - id: uebersetzen-muessen
     outcomes: [modal-satzklammer]
@@ -226,8 +262,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "I have to work today."
     prompt_ru: "Я должен сегодня работать."
+    prompt_uk: "Я мушу сьогодні працювати."
     answer: "Ich muss heute arbeiten."
     key_tokens: ["muss", "arbeiten"]
     accept:
@@ -235,6 +273,7 @@ items:
     explain:
       en: "The modal muss takes position 2 and the infinitive arbeiten goes to the end. Both Ich muss heute arbeiten and Heute muss ich arbeiten are correct — with heute first, the subject moves behind the verb."
       ru: "Модальный глагол muss стоит на втором месте, а инфинитив arbeiten уходит в конец. Правильны оба варианта: Ich muss heute arbeiten и Heute muss ich arbeiten — если heute в начале, подлежащее встаёт после глагола."
+      uk: "Модальне дієслово muss стоїть на другому місці, а інфінітив arbeiten іде в кінець. Правильні обидва варіанти: Ich muss heute arbeiten і Heute muss ich arbeiten — якщо heute на початку, підмет стає після дієслова."
 
   - id: uebersetzen-helfen-frage
     outcomes: [modal-satzklammer]
@@ -243,13 +282,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Can you help me?"
     prompt_ru: "Ты можешь мне помочь?"
+    prompt_uk: "Ти можеш мені допомогти?"
     answer: "Kannst du mir helfen?"
     key_tokens: ["mir"]
     explain:
       en: "A yes/no question starts with the modal: Kannst du …? The infinitive helfen goes to the end, and helfen takes the dative — mir, not mich."
       ru: "Общий вопрос начинается с модального глагола: Kannst du …? Инфинитив helfen уходит в конец, а helfen требует Dativ — mir, а не mich."
+      uk: "Загальне питання починається з модального дієслова: Kannst du …? Інфінітив helfen іде в кінець, а helfen вимагає Dativ — mir, а не mich."
 
   - id: uebersetzen-wollen
     outcomes: [modal-konjugation, modal-satzklammer]
@@ -258,13 +300,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "He wants to buy a car."
     prompt_ru: "Он хочет купить машину."
+    prompt_uk: "Він хоче купити машину."
     answer: "Er will ein Auto kaufen."
     key_tokens: ["will"]
     explain:
       en: "er will — the er/sie/es form of a modal verb has no -t. The infinitive kaufen closes the sentence, and das Auto is neuter, so ein stays unchanged in the accusative."
       ru: "er will — у модальных глаголов форма er/sie/es не имеет окончания -t. Инфинитив kaufen замыкает предложение, а das Auto — среднего рода, поэтому ein в Akkusativ не меняется."
+      uk: "er will — у модальних дієслів форма er/sie/es не має закінчення -t. Інфінітив kaufen замикає речення, а das Auto — середнього роду, тому ein в Akkusativ не змінюється."
 
   - id: uebersetzen-darf-nicht
     outcomes: [modal-erlaubnis-notwendigkeit, modal-satzklammer]
@@ -273,8 +318,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "You must not smoke here."
     prompt_ru: "Здесь нельзя курить."
+    prompt_uk: "Тут не можна курити."
     answer: "Hier darf man nicht rauchen."
     key_tokens: ["darf"]
     accept:
@@ -282,6 +329,7 @@ items:
     explain:
       en: "A prohibition is darf nicht, not muss nicht — English 'must not' is a false friend here, because muss nicht means only that something is not necessary."
       ru: "Запрет — это darf nicht, а не muss nicht. «Нельзя» передаётся через dürfen: muss nicht означало бы всего лишь «не обязательно»."
+      uk: "Заборона — це darf nicht, а не muss nicht. Українське «не можна» передається через dürfen: muss nicht означало б лише «не обов'язково»."
 
   - id: uebersetzen-moechte-bestellen
     outcomes: [modal-hoefliche-wuensche, modal-satzklammer]
@@ -290,10 +338,13 @@ items:
     instruction:
       en: Translate into German. Be polite.
       ru: Переведите на немецкий. Вежливо.
+      uk: Перекладіть німецькою. Ввічливо.
     prompt_en: "I would like to order a coffee."
     prompt_ru: "Я хотел бы заказать кофе."
+    prompt_uk: "Я хотів би замовити каву."
     answer: "Ich möchte einen Kaffee bestellen."
     key_tokens: ["möchte"]
     explain:
       en: "möchte is the polite wish; ich will would sound blunt, almost like a demand. The infinitive still closes the bracket: möchte … bestellen."
       ru: "möchte — вежливое желание; ich will прозвучало бы резко, почти как требование. Инфинитив по-прежнему замыкает рамку: möchte … bestellen."
+      uk: "möchte — ввічливе бажання; ich will прозвучало б різко, майже як вимога. Інфінітив, як і раніше, замикає рамку: möchte … bestellen."

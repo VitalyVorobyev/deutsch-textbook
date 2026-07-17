@@ -3,21 +3,22 @@ title_de: "Herr Braun ist krank"
 text:
   - >-
     Herr Braun wacht auf und [[fühlt sich schlecht::feels ill, feels
-    bad::плохо себя чувствует]]. [[Der Kopf tut weh::his head
-    hurts::болит голова]], und er hat [[Fieber::fever::температура,
-    жар]]. Er kann heute nicht arbeiten. Er ruft seine [[Chefin::boss
-    (female)::начальница]] an: „Ich bin krank. Ich muss leider zu Hause
-    bleiben.“
+    bad::плохо себя чувствует::почувається погано]]. [[Der Kopf tut weh::his
+    head hurts::болит голова::болить голова]], und er hat
+    [[Fieber::fever::температура, жар::температура, гарячка]]. Er kann heute
+    nicht arbeiten. Er ruft seine [[Chefin::boss
+    (female)::начальница::начальниця]] an: „Ich bin krank. Ich muss leider zu
+    Hause bleiben.“
   - >-
     Am Mittag geht er zum Arzt. Der Arzt sagt: „Sie haben eine
-    [[Grippe::flu::грипп]]. Sie müssen viel trinken und sollen drei Tage
+    [[Grippe::flu::грипп::грип]]. Sie müssen viel trinken und sollen drei Tage
     im Bett bleiben. Sie dürfen nicht arbeiten — und Sport dürfen Sie
     auch nicht machen.“
   - >-
     Zu Hause trinkt Herr Braun Tee und schläft viel. Nach drei Tagen
-    [[geht es ihm besser::he is feeling better::ему лучше]]. Er möchte
-    wieder arbeiten, aber seine Frau sagt: „Du sollst noch einen Tag
-    warten. [[Gesundheit::health::здоровье]] ist wichtig!“
+    [[geht es ihm besser::he is feeling better::ему лучше::йому краще]]. Er
+    möchte wieder arbeiten, aber seine Frau sagt: „Du sollst noch einen Tag
+    warten. [[Gesundheit::health::здоровье::здоров'я]] ist wichtig!“
 questions:
   - id: frage-chefin
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -31,9 +32,11 @@ questions:
     translation:
       en: Why does Herr Braun call his boss?
       ru: Почему господин Браун звонит своей начальнице?
+      uk: Чому пан Браун дзвонить своїй начальниці?
     explain:
       en: "He calls her and says: „Ich bin krank. Ich muss leider zu Hause bleiben.“ He is not asking for a holiday, and the doctor's visit comes only later, at midday."
       ru: "Он звонит ей и говорит: „Ich bin krank. Ich muss leider zu Hause bleiben.“ Об отпуске речи нет, а к врачу он идёт только позже, в обед."
+      uk: "Він дзвонить їй і каже: „Ich bin krank. Ich muss leider zu Hause bleiben.“ Про відпустку не йдеться, а до лікаря він іде лише пізніше, опівдні."
   - id: frage-arzt
     outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
@@ -46,9 +49,11 @@ questions:
     translation:
       en: What does the doctor say?
       ru: Что говорит врач?
+      uk: Що каже лікар?
     explain:
       en: "The doctor says: „Sie müssen viel trinken und sollen drei Tage im Bett bleiben.“ Working and sport are exactly what he is not allowed to do: „Sie dürfen nicht arbeiten — und Sport dürfen Sie auch nicht machen.“ Remember: darf nicht = is forbidden, must not."
       ru: "Врач говорит: „Sie müssen viel trinken und sollen drei Tage im Bett bleiben.“ Работа и спорт как раз запрещены: „Sie dürfen nicht arbeiten — und Sport dürfen Sie auch nicht machen.“ Помните: darf nicht = «нельзя»."
+      uk: "Лікар каже: „Sie müssen viel trinken und sollen drei Tage im Bett bleiben.“ Робота і спорт якраз заборонені: „Sie dürfen nicht arbeiten — und Sport dürfen Sie auch nicht machen.“ Пам'ятайте: darf nicht = «не можна»."
   - id: frage-frau
     outcomes: [modal-erlaubnis-notwendigkeit]
     type: mc
@@ -61,6 +66,8 @@ questions:
     translation:
       en: What does his wife say after three days?
       ru: Что говорит его жена через три дня?
+      uk: Що каже його дружина через три дні?
     explain:
       en: "His wife says: „Du sollst noch einen Tag warten. Gesundheit ist wichtig!“ He already wants to work again (er möchte wieder arbeiten), but she asks him to wait one more day."
       ru: "Жена говорит: „Du sollst noch einen Tag warten. Gesundheit ist wichtig!“ Он уже хочет работать (er möchte wieder arbeiten), но она просит подождать ещё день."
+      uk: "Дружина каже: „Du sollst noch einen Tag warten. Gesundheit ist wichtig!“ Він уже хоче знову працювати (er möchte wieder arbeiten), але вона просить почекати ще день."
