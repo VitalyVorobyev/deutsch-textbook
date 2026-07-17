@@ -19,13 +19,18 @@ items:
     outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
+    # The RU/UK prompts spell out the motion verb («пойти»/«піти»): the elliptical
+    # «мне нужно к врачу» invites the equally elliptical — and idiomatic — Am Montag
+    # muss ich zum Arzt, which has no infinitive and so cannot demonstrate the bracket
+    # this probe measures.
     prompt_en: "On Monday I have to go to the doctor."
-    prompt_ru: "В понедельник мне нужно к врачу."
-    prompt_uk: "У понеділок мені треба до лікаря."
+    prompt_ru: "В понедельник мне нужно пойти к врачу."
+    prompt_uk: "У понеділок мені треба піти до лікаря."
     answer: "Am Montag muss ich zum Arzt gehen."
     key_tokens: ["muss", "gehen"]
     accept:

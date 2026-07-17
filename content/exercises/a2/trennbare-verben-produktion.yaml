@@ -52,13 +52,17 @@ items:
     outcomes: [trennbar-satz]
     type: translate
     focus: trennbar-wortstellung
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
+    # «забирает»/«забирає» are pickup-specific: the earlier «встречает»/«зустрічає»
+    # also mean plain "meets", so a correct Anna trifft Ben … was rejected and logged
+    # as a separable-verb failure.
     prompt_en: "Anna picks Ben up at seven o'clock."
-    prompt_ru: "Анна встречает Бена в семь часов."
-    prompt_uk: "Анна зустрічає Бена о сьомій годині."
+    prompt_ru: "Анна забирает Бена в семь часов."
+    prompt_uk: "Анна забирає Бена о сьомій годині."
     answer: "Anna holt Ben um sieben Uhr ab."
     key_tokens: ["holt", "ab"]
     accept:
