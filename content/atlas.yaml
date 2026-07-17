@@ -13,87 +13,102 @@ groups:
     title_de: Grundlagen
     title_en: Foundations
     title_ru: Основы
+    title_uk: Основи
   - id: einstieg
     strand: foundations
     parent: grundlagen
     title_de: Einstieg
     title_en: Getting started
     title_ru: Начало
+    title_uk: Початок
   - id: grammatik
     strand: grammar
     title_de: Grammatik
     title_en: Grammar
     title_ru: Грамматика
+    title_uk: Граматика
   - id: satzbau
     strand: grammar
     parent: grammatik
     title_de: Satzbau
     title_en: Sentence structure
     title_ru: Структура предложения
+    title_uk: Структура речення
   - id: nomen-kasus
     strand: grammar
     parent: grammatik
     title_de: Nomen & Kasus
     title_en: Nouns & cases
     title_ru: Существительные и падежи
+    title_uk: Іменники та відмінки
   - id: verbformen-zeit
     strand: grammar
     parent: grammatik
     title_de: Verbformen & Zeit
     title_en: Verb forms & tense
     title_ru: Формы глагола и время
+    title_uk: Форми дієслова та час
   - id: kommunikation
     strand: communication
     title_de: Kommunikation
     title_en: Communication
     title_ru: Общение
+    title_uk: Спілкування
   - id: person-alltag
     strand: communication
     parent: kommunikation
     title_de: Person & Alltag
     title_en: People & everyday life
     title_ru: Люди и повседневная жизнь
+    title_uk: Люди та повсякденне життя
   - id: transaktionen-termine
     strand: communication
     parent: kommunikation
     title_de: Transaktionen & Termine
     title_en: Transactions & appointments
     title_ru: Покупки и договорённости
+    title_uk: Покупки та домовленості
   - id: wortschatz
     strand: vocabulary
     title_de: Wortschatz
     title_en: Vocabulary
     title_ru: Лексика
+    title_uk: Лексика
   - id: essen-einkaufen
     strand: vocabulary
     parent: wortschatz
     title_de: Essen & Einkaufen
     title_en: Food & shopping
     title_ru: Еда и покупки
+    title_uk: Їжа та покупки
   - id: alltag-wortschatz
     strand: vocabulary
     parent: wortschatz
     title_de: Alltag
     title_en: Everyday life
     title_ru: Повседневная жизнь
+    title_uk: Повсякденне життя
   - id: wohnen-zuhause
     strand: vocabulary
     parent: wortschatz
     title_de: Wohnen & Zuhause
     title_en: Home & living
     title_ru: Дом и жильё
+    title_uk: Дім та житло
   - id: unterwegs
     strand: communication
     parent: kommunikation
     title_de: Unterwegs
     title_en: Out and about
     title_ru: В городе и в пути
+    title_uk: У місті та в дорозі
   - id: arbeit-bildung
     strand: vocabulary
     parent: wortschatz
     title_de: Arbeit & Bildung
     title_en: Work & education
     title_ru: Работа и образование
+    title_uk: Робота та освіта
   # The blueprint planned for `lernen-verstehen` to join `arbeit-bildung`. It cannot: a node's
   # strand must equal its group's, `arbeit-bildung` is vocabulary, and `lernen-verstehen` is a
   # communication node — it teaches indirect questions and repair strategies, not a word field.
@@ -104,12 +119,14 @@ groups:
     title_de: Lernen & Kurs
     title_en: Learning & the classroom
     title_ru: Учёба и курс
+    title_uk: Навчання та курс
   - id: behoerden-services
     strand: communication
     parent: kommunikation
     title_de: Behörden & Dienstleistungen
     title_en: Public offices & services
     title_ru: Учреждения и услуги
+    title_uk: Установи та послуги
 
 nodes:
   # --- A1 ---
@@ -1076,60 +1093,70 @@ units:
     title_de: "Erste Schritte"
     title_en: "First steps"
     title_ru: "Первые шаги"
+    title_uk: "Перші кроки"
     topics: [erste-schritte]
   - id: praesens-wortstellung
     level: A1
     title_de: "Präsens & Wortstellung"
     title_en: "Present tense & word order"
     title_ru: "Настоящее время и порядок слов"
+    title_uk: "Теперішній час і порядок слів"
     topics: [praesens-wortstellung]
   - id: artikel-genus
     level: A1
     title_de: "Artikel & Genus"
     title_en: "Articles & gender"
     title_ru: "Артикли и род существительных"
+    title_uk: "Артиклі та рід іменників"
     topics: [artikel-genus]
   - id: menschen-familie
     level: A1
     title_de: "Menschen & Familie"
     title_en: "People & family"
     title_ru: "Люди и семья"
+    title_uk: "Люди та сім’я"
     topics: [menschen-familie]
   - id: akkusativ
     level: A1
     title_de: "Der Akkusativ"
     title_en: "The accusative case"
     title_ru: "Винительный падеж (Akkusativ)"
+    title_uk: "Знахідний відмінок (Akkusativ)"
     topics: [akkusativ]
   - id: essen-einkaufen
     level: A1
     title_de: "Essen & Einkaufen"
     title_en: "Food & shopping"
     title_ru: "Еда и покупки"
+    title_uk: "Їжа та покупки"
     topics: [essen-trinken]
   - id: alltag-zeit
     level: A1
     title_de: "Alltag & Zeit"
     title_en: "Everyday life & time"
     title_ru: "Будни и время"
+    title_uk: "Будні та час"
     topics: [alltag-zeit]
   - id: wohnen
     level: A1
     title_de: "Wohnen"
     title_en: "Housing"
     title_ru: "Жильё"
+    title_uk: "Житло"
     topics: [wohnen]
   - id: stadt-wege
     level: A1
     title_de: "Stadt & Wege"
     title_en: "City & directions"
     title_ru: "Город и дороги"
+    title_uk: "Місто та дороги"
     topics: [stadt-wege]
   - id: freizeit-koennen
     level: A1
     title_de: "Freizeit & Können"
     title_en: "Free time & können"
     title_ru: "Свободное время и können"
+    title_uk: "Вільний час і können"
     topics: [freizeit-koennen]
   # --- A2 ---
   - id: dativ
@@ -1137,100 +1164,117 @@ units:
     title_de: "Der Dativ"
     title_en: "The dative case"
     title_ru: "Дательный падеж (Dativ)"
+    title_uk: "Давальний відмінок (Dativ)"
     topics: [dativ]
   - id: trennbare-verben
     level: A2
     title_de: "Trennbare Verben"
     title_en: "Separable verbs"
     title_ru: "Глаголы с отделяемыми приставками"
+    title_uk: "Дієслова з відокремлюваними префіксами"
     topics: [trennbare-verben]
   - id: modalverben
     level: A2
     title_de: "Modalverben"
     title_en: "Modal verbs"
     title_ru: "Модальные глаголы"
+    title_uk: "Модальні дієслова"
     topics: [modalverben]
   - id: perfekt-haben-sein
     level: A2
     title_de: "Das Perfekt mit haben und sein"
     title_en: "The perfect tense with haben and sein"
     title_ru: "Перфект с haben и sein"
+    title_uk: "Перфект із haben і sein"
     topics: [perfekt-haben-sein]
   - id: alltag-tagesablauf
     level: A2
     title_de: "Alltag & Tagesablauf"
     title_en: "Everyday life & daily routine"
     title_ru: "Повседневная жизнь и распорядок дня"
+    title_uk: "Повсякдення та розпорядок дня"
     topics: [alltag-tagesablauf]
   - id: termine-vereinbaren
     level: A2
     title_de: "Termine vereinbaren"
     title_en: "Making appointments"
     title_ru: "Как договориться о встрече"
+    title_uk: "Як домовитися про зустріч"
     topics: [termine-vereinbaren]
   - id: wohnen-umzug
     level: A2
     title_de: "Wohnen & Umzug"
     title_en: "Housing & moving"
     title_ru: "Жильё и переезд"
+    title_uk: "Житло та переїзд"
     topics: [wohnen-umzug]
   - id: reisen-verkehr
     level: A2
     title_de: "Reisen & Verkehr"
     title_en: "Travel & transport"
     title_ru: "Путешествия и транспорт"
+    title_uk: "Подорожі та транспорт"
     topics: [reisen-verkehr]
   - id: einkaufen-reklamation
     level: A2
     title_de: "Einkaufen & Reklamation"
     title_en: "Shopping & complaints"
     title_ru: "Покупки и рекламации"
+    title_uk: "Покупки та рекламації"
     topics: [einkaufen-reklamation]
   - id: gesundheit-arzttermin
     level: A2
     title_de: "Gesundheit & Arzttermin"
     title_en: "Health & the doctor"
     title_ru: "Здоровье и приём у врача"
+    title_uk: "Здоров’я та візит до лікаря"
     topics: [gesundheit-arzttermin]
   - id: verben-mit-praepositionen
     level: A2
     title_de: "Darüber sprechen: Verben mit Präpositionen"
     title_en: "Talking about it: verbs with prepositions"
     title_ru: "Говорить об этом: глаголы с предлогами"
+    title_uk: "Говорити про це: дієслова з прийменниками"
     topics: [verben-mit-praepositionen]
   - id: arbeit-beruf
     level: A2
     title_de: "Arbeit & Beruf"
     title_en: "Work & profession"
     title_ru: "Работа и профессия"
+    title_uk: "Робота та професія"
     topics: [arbeit-beruf]
   - id: nebensaetze-plaene
     level: A2
     title_de: "Nebensätze & Pläne"
     title_en: "Subordinate clauses & plans"
     title_ru: "Придаточные предложения и планы"
+    title_uk: "Підрядні речення та плани"
     topics: [nebensaetze-plaene]
   - id: biografie-erfahrungen
     level: A2
     title_de: "Biografie & Erfahrungen"
     title_en: "Life story & experience"
     title_ru: "Биография и опыт"
+    title_uk: "Біографія та досвід"
     topics: [biografie-erfahrungen]
   - id: freunde-feste
     level: A2
     title_de: "Freunde, Einladungen & Feste"
     title_en: "Friends, invitations & celebrations"
     title_ru: "Друзья, приглашения и праздники"
+    title_uk: "Друзі, запрошення та свята"
     topics: [freunde-feste]
   - id: lernen-verstehen
     level: A2
     title_de: "Lernen & Verstehen"
     title_en: "Learning & understanding"
     title_ru: "Учёба и понимание"
+    title_uk: "Навчання та розуміння"
     topics: [lernen-verstehen]
   - id: aemter-dienstleistungen
     level: A2
     title_de: "Ämter & Dienstleistungen"
     title_en: "Public offices & services"
     title_ru: "Учреждения и услуги"
+    title_uk: "Установи та послуги"
     topics: [aemter-dienstleistungen]
