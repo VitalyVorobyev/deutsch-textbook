@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Production & listening — the gym rules"
   ru: "Продукция и аудирование — правила фитнес-клуба"
+  uk: "Продукування та аудіювання — правила фітнес-клубу"
 items:
   - id: hoeren-studio-regeln
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -24,9 +25,11 @@ items:
     translation:
       en: "What does Frau Berger say about the towel?"
       ru: "Что госпожа Бергер говорит о полотенце?"
+      uk: "Що пані Берґер каже про рушник?"
     explain:
       en: "Two rules pass by in one breath, and they pull in opposite directions. „Sie müssen kein Handtuch kaufen“ removes an obligation — buying one is simply unnecessary, the studio lends them out. „Ohne Handtuch dürfen Sie nicht trainieren“ is a prohibition — a towel is compulsory on the equipment. So Tom needs a towel every time, but he never has to pay for one. All three options are perfectly good German; only the audio tells you which is true."
       ru: "Два правила проговариваются подряд и тянут в разные стороны. «Sie müssen kein Handtuch kaufen» снимает обязанность: покупать полотенце не нужно, клуб выдаёт свои. «Ohne Handtuch dürfen Sie nicht trainieren» — это запрет: без полотенца на тренажёрах нельзя. Значит, полотенце Тому нужно всегда, но покупать его не надо. Все три варианта — правильный немецкий; какой из них верен, известно только из аудио."
+      uk: "Два правила звучать одне за одним і тягнуть у протилежні боки. «Sie müssen kein Handtuch kaufen» знімає обов'язок: купувати рушник не потрібно, клуб видає свої. «Ohne Handtuch dürfen Sie nicht trainieren» — це заборона: без рушника тренуватися не можна. Отже, рушник Томові потрібен щоразу, але платити за нього не доведеться. Усі три варіанти — бездоганна німецька; який із них правдивий, відомо лише з аудіо."
 
   - id: cloze-regeln-darf-muss
     outcomes: [modal-erlaubnis-notwendigkeit]
@@ -35,13 +38,16 @@ items:
     instruction:
       en: "Fill each gap with dürfen or müssen in the right form. The sentence after the gap tells you which one."
       ru: "Вставьте dürfen или müssen в нужной форме. Подсказка — предложение после пропуска."
+      uk: "Вставте dürfen або müssen у потрібній формі. Підказка — речення після пропуску."
     text: "Regel 1: Im Trainingsraum {{darfst}} du nicht essen. Essen ist dort verboten. Regel 2: Du {{musst}} kein Handtuch kaufen. Das Studio hat genug Handtücher."
     translation:
       en: "Rule 1: You may not eat in the training room. Eating is forbidden there. Rule 2: You don't have to buy a towel. The studio has plenty of towels."
       ru: "Правило 1: В тренажёрном зале нельзя есть. Есть там запрещено. Правило 2: Полотенце покупать не обязательно. В клубе полотенец достаточно."
+      uk: "Правило 1: У тренажерному залі не можна їсти. Їсти там заборонено. Правило 2: Рушник купувати не обов'язково. У клубі рушників достатньо."
     explain:
       en: "The gaps look alike and mean opposite things. Gap 1 is backed by „Essen ist dort verboten“ — a ban, and a ban is always darf nicht. Gap 2 is backed by „Das Studio hat genug Handtücher“ — nothing is banned, buying a towel is just pointless, and that is muss nicht (or muss kein before a noun). Swap them and you get sentences that are still grammatical but say the wrong thing: „Du darfst kein Handtuch kaufen“ would forbid the purchase."
       ru: "Пропуски выглядят одинаково, а смысл у них противоположный. Первый опирается на «Essen ist dort verboten» — это запрет, а запрет по-немецки всегда darf nicht. Второй опирается на «Das Studio hat genug Handtücher» — ничего не запрещено, покупка просто не нужна, и это muss nicht (перед существительным — muss kein). Русское «нельзя» — это darf nicht, а «не обязательно» — muss nicht; если поменять их местами, предложения останутся грамматически верными, но скажут совсем не то: «Du darfst kein Handtuch kaufen» означало бы запрет покупать полотенце."
+      uk: "Пропуски виглядають однаково, а зміст у них протилежний. Перший спирається на «Essen ist dort verboten» — це заборона, а заборона німецькою завжди darf nicht. Другий спирається на «Das Studio hat genug Handtücher» — нічого не заборонено, купувати рушник просто немає потреби, і це muss nicht (перед іменником — muss kein). Українське «не можна» — це darf nicht, а «не обов'язково» — muss nicht; поміняйте їх місцями — і речення залишаться граматично правильними, але скажуть зовсім не те: «Du darfst kein Handtuch kaufen» означало б заборону купувати рушник."
 
   - id: uebersetzen-muss-nicht-kommen
     outcomes: [modal-erlaubnis-notwendigkeit, modal-satzklammer]
@@ -50,13 +56,16 @@ items:
     instruction:
       en: "Translate into German. Ben asks whether he now has to train every day."
       ru: "Переведите на немецкий. Бен спрашивает, обязан ли он теперь тренироваться каждый день."
+      uk: "Перекладіть німецькою. Бен запитує, чи мусить він тепер тренуватися щодня."
     prompt_en: "You don't have to come every day."
     prompt_ru: "Тебе не обязательно приходить каждый день."
+    prompt_uk: "Тобі не обов'язково приходити щодня."
     answer: "Du musst nicht jeden Tag kommen."
     key_tokens: ["musst"]
     explain:
       en: "No necessity — the door is open every day, Ben simply need not walk through it. That is muss nicht. „Du darfst nicht jeden Tag kommen“ is the trap: it would ban him from the gym on most days, which is the opposite of a reassurance. The bracket holds either way: the modal in position 2, the infinitive kommen right at the end."
       ru: "Речь идёт об отсутствии необходимости: клуб открыт каждый день, просто ходить туда каждый день не обязательно. Это muss nicht. Ловушка — «Du darfst nicht jeden Tag kommen»: так получился бы запрет ходить в клуб почти всегда, то есть ровно наоборот. Русское «не обязательно» — это müssen + nicht, а не dürfen. Рамка в любом случае сохраняется: модальный глагол на втором месте, инфинитив kommen — в самом конце."
+      uk: "Ідеться про відсутність необхідності: клуб відчинений щодня, просто ходити туди щодня не обов'язково. Це muss nicht. Пастка — «Du darfst nicht jeden Tag kommen»: так вийшла б заборона ходити до клубу майже завжди, тобто рівно навпаки. Українське «не обов'язково» — це müssen + nicht, а не dürfen. Рамка в будь-якому разі зберігається: модальне дієслово на другому місці, інфінітив kommen — у самому кінці."
 
   - id: cloze-mag-moechte-will
     outcomes: [modal-hoefliche-wuensche]
@@ -65,13 +74,16 @@ items:
     instruction:
       en: "Fill the gaps: mag, möchte or will?"
       ru: "Вставьте: mag, möchte или will?"
+      uk: "Вставте: mag, möchte чи will?"
     text: "Tom {{mag}} Fitness und Sport. An der Rezeption sagt er höflich: „Guten Tag, ich {{möchte}} eine Mitgliedskarte.“"
     translation:
       en: "Tom likes fitness and sport. At the reception desk he says politely: „Good afternoon, I would like a membership card.“"
       ru: "Том любит фитнес и спорт. На ресепшене он вежливо говорит: «Добрый день, я хотел бы абонемент»."
+      uk: "Том любить фітнес і спорт. На рецепції він увічливо каже: «Добрий день, я хотів би абонемент»."
     explain:
       en: "Three verbs, three different jobs. Gap 1 is a standing taste, not a request — mögen + noun: Tom mag Fitness. Möchte there would mean he wants some fitness handed to him right now. Gap 2 is a request at a counter, and a request is möchte. Ich will eine Mitgliedskarte is flawless grammar and lands like a demand — the receptionist hears a rude customer, not a mistake, which is exactly why the wrong choice here costs more than a red mark."
       ru: "Три глагола — три разные работы. Первый пропуск — устойчивый вкус, а не просьба: mögen + существительное, Tom mag Fitness. Möchte здесь означало бы, что фитнес нужно подать ему прямо сейчас. Второй пропуск — просьба у стойки, а просьба — это möchte. Фраза Ich will eine Mitgliedskarte грамматически безупречна и звучит как требование: администратор услышит невежливого клиента, а не ошибку, — поэтому неверный выбор здесь стоит дороже, чем просто «неправильно»."
+      uk: "Три дієслова — три різні ролі. Перший пропуск — стала вподоба, а не прохання: mögen + іменник, Tom mag Fitness. Möchte тут означало б, що фітнес треба подати йому просто зараз. Другий пропуск — прохання біля стійки, а прохання — це möchte. Фраза Ich will eine Mitgliedskarte граматично бездоганна, але звучить як вимога: адміністратор почує нечемного клієнта, а не помилку, — тому неправильний вибір тут коштує дорожче, ніж просто «неправильно»."
 
   - id: uebersetzen-moechte-handtuch
     outcomes: [modal-hoefliche-wuensche]
@@ -80,13 +92,16 @@ items:
     instruction:
       en: "Translate into German. You are standing at the reception desk, speaking to the trainer."
       ru: "Переведите на немецкий. Вы стоите у стойки и обращаетесь к тренеру."
+      uk: "Перекладіть німецькою. Ви стоїте біля стійки і звертаєтеся до тренера."
     prompt_en: "I want a towel, please."
     prompt_ru: "Я хочу полотенце, пожалуйста."
+    prompt_uk: "Я хочу рушник, будь ласка."
     answer: "Ich möchte ein Handtuch, bitte."
     key_tokens: ["möchte"]
     explain:
       en: "The English prompt says want, and the temptation is to reach for will. Do not: at a counter, ich will is a demand, and bitte glued to a demand only makes it sharper. Ich möchte ein Handtuch, bitte is what a member of staff expects to hear. Möchte needs no second verb here — the towel is its direct object."
       ru: "В задании стоит «хочу», и рука сама тянется к will. Не поддавайтесь: у стойки ich will звучит как требование, а вежливое bitte рядом с требованием делает фразу только резче. Ich möchte ein Handtuch, bitte — именно это ожидает услышать сотрудник. Второй глагол здесь не нужен: полотенце — прямое дополнение при möchte."
+      uk: "У завданні стоїть «хочу», і рука сама тягнеться до will. Не піддавайтеся: біля стійки ich will звучить як вимога, а ввічливе bitte поруч із вимогою робить фразу лише різкішою. Ich möchte ein Handtuch, bitte — саме це очікує почути працівник. Друге дієслово тут не потрібне: рушник — прямий додаток при möchte."
 
   - id: schreiben-regeln-fuer-ben
     outcomes: [modal-satzklammer, modal-erlaubnis-notwendigkeit]
@@ -94,26 +109,34 @@ items:
     prompt:
       en: "Your friend Ben wants to join your gym. Write him a short message and explain the rules."
       ru: "Ваш друг Бен хочет ходить в тот же фитнес-клуб. Напишите ему короткое сообщение и объясните правила."
+      uk: "Ваш друг Бен хоче ходити до того самого фітнес-клубу. Напишіть йому коротке повідомлення і поясніть правила."
     goal:
       en: "Explain three rules in four to five short sentences, then invite Ben."
       ru: "Объясните три правила в четырёх-пяти коротких предложениях и позовите Бена."
+      uk: "Поясніть три правила в чотирьох-п'яти коротких реченнях і запросіть Бена."
     requirements:
       - en: "Name one thing Ben has to do — müssen in position 2, the infinitive at the very end."
         ru: "Назовите одно обязательное правило — müssen на втором месте, инфинитив в самом конце."
+        uk: "Назвіть одне обов'язкове правило — müssen на другому місці, інфінітив у самому кінці."
       - en: "Name one thing that is forbidden — with darf nicht, not muss nicht."
         ru: "Назовите один запрет — через darf nicht, а не muss nicht."
+        uk: "Назвіть одну заборону — через darf nicht, а не muss nicht."
       - en: "Name one thing that is not necessary — with muss nicht or muss kein."
         ru: "Назовите одно необязательное правило — через muss nicht или muss kein."
+        uk: "Назвіть одне необов'язкове правило — через muss nicht або muss kein."
       - en: "Invite Ben with möchte and name a day."
         ru: "Позовите Бена с помощью möchte и назовите день."
+        uk: "Запросіть Бена за допомогою möchte і назвіть день."
     min_words: 25
     model_answer: "Hallo Ben! Das Fitnessstudio ist super. Du musst immer Sportschuhe tragen. Im Trainingsraum darfst du nicht essen. Ein Handtuch musst du nicht kaufen — das Studio hat genug Handtücher. Ich möchte am Samstag mit dir trainieren. Kommst du mit?"
     model_translation:
       en: "Hi Ben! The gym is great. You always have to wear sports shoes. You may not eat in the training room. You don't have to buy a towel — the studio has plenty of towels. I'd like to train with you on Saturday. Are you coming along?"
       ru: "Привет, Бен! Фитнес-клуб отличный. Спортивную обувь нужно носить всегда. В тренажёрном зале нельзя есть. Полотенце покупать не обязательно — в клубе их достаточно. В субботу я хотел бы потренироваться с тобой. Пойдёшь со мной?"
+      uk: "Привіт, Бене! Фітнес-клуб чудовий. Спортивне взуття треба носити завжди. У тренажерному залі не можна їсти. Рушник купувати не обов'язково — у клубі їх достатньо. У суботу я хотів би потренуватися з тобою. Підеш зі мною?"
     explain:
       en: "Read your draft back and check the three rules against each other: one obligation (musst … tragen), one ban (darfst nicht … essen), one thing you are free to skip (musst nicht kaufen). If your ban and your non-necessity both start with muss, one of them is saying the wrong thing. Then check every sentence ends on its infinitive — that is where the bracket closes."
       ru: "Перечитайте черновик и сверьте три правила друг с другом: одна обязанность (musst … tragen), один запрет (darfst nicht … essen) и одно необязательное действие (musst nicht kaufen). Если и запрет, и «необязательно» у вас начинаются с muss, значит, одно из правил говорит не то, что вы имели в виду. Затем проверьте, что каждое предложение заканчивается инфинитивом: именно там закрывается рамка."
+      uk: "Перечитайте чернетку і звірте три правила одне з одним: один обов'язок (musst … tragen), одна заборона (darfst nicht … essen) і одна необов'язкова дія (musst nicht kaufen). Якщо і заборона, і «не обов'язково» у вас починаються з muss, значить, одне з правил каже не те, що ви мали на увазі. Потім перевірте, що кожне речення закінчується інфінітивом: саме там закривається рамка."
 
   - id: sprechen-an-der-rezeption
     outcomes: [modal-hoefliche-wuensche]
@@ -122,20 +145,27 @@ items:
     prompt:
       en: "You are new at the gym. The trainer asks: „Haben Sie noch Fragen?“ Answer aloud."
       ru: "Вы новичок в фитнес-клубе. Тренер спрашивает: «Haben Sie noch Fragen?» Ответьте вслух."
+      uk: "Ви новачок у фітнес-клубі. Тренерка запитує: «Haben Sie noch Fragen?» Дайте відповідь уголос."
     goal:
       en: "Ask two questions about the rules with modal verbs and say politely what you would like to do."
       ru: "Задайте два вопроса о правилах с модальными глаголами и вежливо скажите, чего вы хотели бы."
+      uk: "Поставте два запитання про правила з модальними дієсловами і ввічливо скажіть, чого ви хотіли б."
     checklist:
       - en: "I asked at least one question with a modal verb: the modal first, the infinitive at the very end (Darf ich …? / Muss ich …?)."
         ru: "Я задал(а) хотя бы один вопрос с модальным глаголом: модальный глагол в начале, инфинитив в самом конце (Darf ich …? / Muss ich …?)."
+        uk: "Я поставив(-ла) хоча б одне запитання з модальним дієсловом: модальне дієслово на початку, інфінітив у самому кінці (Darf ich …? / Muss ich …?)."
       - en: "I addressed the trainer with Sie, not du — she is a member of staff."
         ru: "Я обращался(-ась) к тренеру на Sie, а не на du: это сотрудница клуба."
+        uk: "Я звертався(-лася) до тренерки на Sie, а не на du: це працівниця клубу."
       - en: "I said what I want with möchte, not with will."
         ru: "Своё желание я выразил(а) через möchte, а не через will."
+        uk: "Своє бажання я висловив(-ла) через möchte, а не через will."
     model_answer: "Guten Tag! Ich habe zwei Fragen. Darf ich im Trainingsraum Wasser trinken? Und muss ich Sportschuhe mitbringen? Ich möchte am Abend trainieren."
     model_translation:
       en: "Good afternoon! I have two questions. May I drink water in the training room? And do I have to bring sports shoes? I'd like to train in the evening."
       ru: "Добрый день! У меня два вопроса. Можно ли пить воду в тренажёрном зале? И нужно ли приносить спортивную обувь? Я хотел бы тренироваться по вечерам."
+      uk: "Добрий день! У мене два запитання. Чи можна пити воду в тренажерному залі? І чи треба приносити спортивне взуття? Я хотів би тренуватися вечорами."
     explain:
       en: "In a yes/no question the modal jumps to the front and the infinitive still waits at the end: Darf ich hier Wasser trinken? Everything else sits between them. Two things mark you as a stranger at a counter faster than any grammar error: du to a member of staff, and ich will instead of ich möchte."
       ru: "В общем вопросе модальный глагол выходит на первое место, а инфинитив всё равно ждёт в конце: Darf ich hier Wasser trinken? Всё остальное стоит между ними. Две вещи выдают чужака у стойки быстрее любой грамматической ошибки: обращение на du к сотруднику и ich will вместо ich möchte."
+      uk: "У загальному запитанні модальне дієслово виходить на перше місце, а інфінітив однаково чекає в кінці: Darf ich hier Wasser trinken? Усе інше стоїть між ними. Дві речі видають чужинця біля стійки швидше за будь-яку граматичну помилку: звертання на du до працівниці та ich will замість ich möchte."
