@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the person in the Dativ, the thing in the Akkusativ"
   ru: "Проверка — человек в Dativ, предмет в Akkusativ"
+  uk: "Перевірка — людина в Dativ, предмет у Akkusativ"
 
 # ONE competence, three PARALLEL variants: building a two-object sentence — the person
 # in the Dativ and first, the thing in the Akkusativ and second. One variant is drawn per
@@ -50,8 +51,10 @@ items:
     instruction:
       en: Translate into German. You are describing a lesson you sat in on.
       ru: Переведите на немецкий. Вы рассказываете об уроке, на котором побывали.
+      uk: Перекладіть німецькою. Ви розповідаєте про урок, на якому побували.
     prompt_en: "Mr Vogel shows the pupil a film."
     prompt_ru: "Господин Фогель показывает ученику фильм."
+    prompt_uk: "Пан Фогель показує учневі фільм."
     answer: "Herr Vogel zeigt dem Schüler einen Film."
     key_tokens: ["dem"]
     accept:
@@ -61,6 +64,7 @@ items:
     explain:
       en: "Two objects, two questions. Wem? — dem Schüler: he is the person, so he takes the Dativ and, with two nouns, he comes first. Was? — the film is the thing, so it takes the Akkusativ and comes second (einen Film or den Film — the sentence does not say which, and both are accepted). The one form that decides everything is dem: write den Schüler and the pupil becomes the thing being shown. Putting the film in front of the pupil breaks the other half of the rule."
       ru: "Два дополнения — два вопроса. Wem? — dem Schüler: это человек, значит Dativ, и при двух существительных он идёт первым. Was? — фильм: это предмет, значит Akkusativ, и стоит он вторым (einen Film или den Film — предложение об этом не говорит, принимаются оба варианта). Всё решает одна форма — dem: напишите den Schüler, и показывать будут уже самого ученика. А поставить фильм перед учеником — значит нарушить вторую половину правила."
+      uk: "Два додатки — два питання. Wem? — dem Schüler: це людина, значить Dativ, і при двох іменниках він іде першим. Was? — фільм: це предмет, значить Akkusativ, і стоїть він другим (einen Film або den Film — речення про це не каже, приймаються обидва варіанти). Усе вирішує одна форма — dem: напишіть den Schüler, і показувати будуть уже самого учня. А поставити фільм перед учнем — значить порушити другу половину правила."
 
   - id: variant-b
     outcomes: [absprachen-aushandeln]
@@ -69,8 +73,10 @@ items:
     instruction:
       en: Translate into German. You are at the reception desk of a surgery and you report what you see.
       ru: Переведите на немецкий. Вы стоите у стойки регистратуры и рассказываете, что видите.
+      uk: Перекладіть німецькою. Ви стоїте біля стійки реєстратури і розповідаєте, що бачите.
     prompt_en: "Mrs Winter brings the doctor a letter."
     prompt_ru: "Госпожа Винтер приносит врачу письмо."
+    prompt_uk: "Пані Вінтер приносить лікареві листа."
     answer: "Frau Winter bringt dem Arzt einen Brief."
     key_tokens: ["dem"]
     accept:
@@ -80,6 +86,7 @@ items:
     explain:
       en: "The doctor receives, so the doctor is the person: Dativ, and — two nouns — first: dem Arzt. The letter changes hands, so it is the thing: Akkusativ, and second (einen Brief or den Brief; the prompt does not decide, and both are accepted). Everything hangs on dem: den Arzt would make the doctor the thing being carried. Note that bringen behaves exactly like the mitbringen of the lesson: same two objects, same order, only without the prefix."
       ru: "Врач получает — значит, врач и есть человек: Dativ, и при двух существительных он стоит первым: dem Arzt. Письмо переходит из рук в руки — значит, это предмет: Akkusativ, и стоит вторым (einen Brief или den Brief; задание этого не уточняет, принимаются оба варианта). Всё держится на dem: форма den Arzt превратила бы врача в то, что несут. Обратите внимание: bringen ведёт себя точно так же, как mitbringen из урока, — те же два дополнения, тот же порядок, только без приставки."
+      uk: "Лікар отримує — значить, лікар і є людина: Dativ, і при двох іменниках він стоїть першим: dem Arzt. Лист переходить із рук у руки — значить, це предмет: Akkusativ, і стоїть другим (einen Brief або den Brief; завдання цього не уточнює, приймаються обидва варіанти). Усе тримається на dem: форма den Arzt перетворила б лікаря на те, що несуть. Зверніть увагу: bringen поводиться точно так само, як mitbringen з уроку, — ті самі два додатки, той самий порядок, тільки без префікса."
 
   - id: variant-c
     outcomes: [absprachen-aushandeln]
@@ -88,8 +95,10 @@ items:
     instruction:
       en: Translate into German. You are telling a colleague what happened at the office this morning.
       ru: Переведите на немецкий. Вы рассказываете коллеге, что было утром в офисе.
+      uk: Перекладіть німецькою. Ви розповідаєте колезі, що було вранці в офісі.
     prompt_en: "Mr Richter gives the boss a key."
     prompt_ru: "Господин Рихтер даёт начальнику ключ."
+    prompt_uk: "Пан Ріхтер дає начальникові ключ."
     answer: "Herr Richter gibt dem Chef einen Schlüssel."
     key_tokens: ["dem"]
     accept:
@@ -99,3 +108,4 @@ items:
     explain:
       en: "geben is the plainest verb of this family, and the sentence is the plainest shape of the rule. The boss receives — Dativ, and first: dem Chef. The key is handed over — Akkusativ, and second (einen Schlüssel or den Schlüssel; both are accepted, since the prompt does not say which). The graded form is dem: den Chef would say that the boss is what is being handed over. The order is not negotiable either — with two nouns, the Dativ comes before the Akkusativ."
       ru: "geben — самый простой глагол этой группы, а предложение — самая простая форма правила. Начальник получает: Dativ, и стоит первым — dem Chef. Ключ передают: Akkusativ, и стоит он вторым (einen Schlüssel или den Schlüssel; задание этого не уточняет, принимаются оба варианта). Оценивается форма dem: den Chef означало бы, что передают самого начальника. Порядок тоже не обсуждается: при двух существительных Dativ идёт перед Akkusativ."
+      uk: "geben — найпростіше дієслово цієї групи, а речення — найпростіша форма правила. Начальник отримує: Dativ, і стоїть першим — dem Chef. Ключ передають: Akkusativ, і стоїть він другим (einen Schlüssel або den Schlüssel; завдання цього не уточнює, приймаються обидва варіанти). Оцінюється форма dem: den Chef означало б, що передають самого начальника. Порядок теж не обговорюється: при двох іменниках Dativ іде перед Akkusativ."

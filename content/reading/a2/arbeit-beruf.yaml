@@ -4,23 +4,23 @@ title_de: "Eine Schicht, ein Termin, ein Tausch"
 text:
   - >-
     Nina arbeitet bei der Firma Nordwind. Sie ist in der
-    [[Abteilung::department (of a company)::отдел (в фирме)]] Kundenservice und
-    sie ist [[zuständig::responsible (for)::ответственный (за)]] für die Kasse.
-    Am Montag hat sie [[Frühschicht::early shift::утренняя смена]]: Sie muss um
+    [[Abteilung::department (of a company)::отдел (в фирме)::відділ (у фірмі)]] Kundenservice und
+    sie ist [[zuständig::responsible (for)::ответственный (за)::відповідальний (за)]] für die Kasse.
+    Am Montag hat sie [[Frühschicht::early shift::утренняя смена::ранкова зміна]]: Sie muss um
     sechs Uhr anfangen und kann um vierzehn Uhr aufhören.
   - >-
     Am Donnerstag hat Nina einen Termin beim Arzt. Sie schreibt ihrem Kollegen
-    Jonas: „Könntest du am Donnerstag meine [[Schicht::shift::смена]]
-    [[übernehmen::to take over, to take on::взять на себя, перенять]]? Ich komme
+    Jonas: „Könntest du am Donnerstag meine [[Schicht::shift::смена::зміна]]
+    [[übernehmen::to take over, to take on::взять на себя, перенять::взяти на себе, перейняти]]? Ich komme
     später, denn ich habe am Morgen einen Termin.“ Jonas antwortet: „Kein
     Problem. Ich sage der Chefin [[Bescheid::Bescheid sagen = to let someone
-    know::Bescheid sagen = сообщить, дать знать]].“
+    know::Bescheid sagen = сообщить, дать знать::Bescheid sagen = повідомити, дати знати]].“
   - >-
     Frau Kaufmann schreibt zurück: „Gut. Jonas macht am Donnerstag zwei Stunden
-    [[Überstunden::overtime::сверхурочные]]. Er muss aber nicht bis
+    [[Überstunden::overtime::сверхурочные::понаднормові]]. Er muss aber nicht bis
     zweiundzwanzig Uhr bleiben. Und noch etwas für alle: Im Büro darf ab Montag
     niemand mehr rauchen.“ Nina hängt den neuen [[Dienstplan::rota, shift
-    schedule::график смен]] an die Tür.
+    schedule::график смен::графік змін]] an die Tür.
 questions:
   - id: frage-ninas-aufgabe
     outcomes: [aufgaben-beschreiben]
@@ -34,9 +34,11 @@ questions:
     translation:
       en: What does Nina do at the Nordwind company?
       ru: Чем Нина занимается в фирме «Нордвинд»?
+      uk: Чим Ніна займається у фірмі «Нордвінд»?
     explain:
       en: "The first paragraph says it in one line: „sie ist zuständig für die Kasse“. The rota does appear in the text, but Nina only hangs it on the door at the very end — writing it is the manager's job, and it is Frau Kaufmann who decides what goes on it. And the shift she has on Monday is the Frühschicht, from six until two, not the late one."
       ru: "Первый абзац говорит об этом прямо: „sie ist zuständig für die Kasse“. График смен в тексте есть, но Нина лишь вешает его на дверь в самом конце — составляет его начальница, и решает, что там будет, именно Frau Kaufmann. А смена у неё в понедельник утренняя, Frühschicht, с шести до четырнадцати, а вовсе не вечерняя."
+      uk: "Перший абзац говорить про це прямо: „sie ist zuständig für die Kasse“. Графік змін у тексті є, але Ніна лише вішає його на двері в самому кінці — складає його начальниця, і вирішує, що там буде, саме Frau Kaufmann. А зміна в неї в понеділок ранкова, Frühschicht, із шостої до чотирнадцятої, а зовсім не вечірня."
   - id: frage-warum-schreibt-nina
     outcomes: [arbeitszeit-aushandeln]
     type: mc
@@ -49,9 +51,11 @@ questions:
     translation:
       en: Why does Nina ask her colleague Jonas for a swap?
       ru: Почему Нина просит коллегу Йонаса поменяться?
+      uk: Чому Ніна просить колегу Йонаса помінятися?
     explain:
       en: "Nina gives the reason herself, and she gives it with denn: „Ich komme später, denn ich habe am Morgen einen Termin.“ The appointment is at the doctor's, and it is in the morning — which is exactly when the early shift starts. She is not ill: she is coming in, just later. And the overtime is not hers at all — it is Jonas who ends up working two extra hours."
       ru: "Причину Нина называет сама, причём с помощью denn: „Ich komme später, denn ich habe am Morgen einen Termin.“ Приём у врача — утром, то есть ровно тогда, когда начинается утренняя смена. Она не больна: она придёт, просто позже. А сверхурочные вообще не её — лишние два часа в итоге работает Йонас."
+      uk: "Причину Ніна називає сама, причому за допомогою denn: „Ich komme später, denn ich habe am Morgen einen Termin.“ Прийом у лікаря — уранці, тобто рівно тоді, коли починається ранкова зміна. Вона не хвора: вона прийде, просто пізніше. А понаднормові взагалі не її — зайві дві години зрештою працює Йонас."
   - id: frage-was-muss-jonas-nicht
     outcomes: [arbeitsanweisung-verstehen]
     type: mc
@@ -64,6 +68,8 @@ questions:
     translation:
       en: What does Jonas NOT have to do on Thursday?
       ru: Чего Йонас в четверг делать НЕ обязан?
+      uk: Чого Йонас у четвер робити НЕ зобов'язаний?
     explain:
       en: "Frau Kaufmann says two things about Jonas in one breath, and they pull in opposite directions: „Jonas macht am Donnerstag zwei Stunden Überstunden. Er muss aber nicht bis zweiundzwanzig Uhr bleiben.“ So the overtime is real — two hours of it — but the full late shift is not required of him. The little word aber is what marks the turn. The till is never mentioned in connection with Jonas at all; that is Nina's job."
       ru: "Про Йонаса Frau Kaufmann говорит сразу две вещи, и они тянут в разные стороны: „Jonas macht am Donnerstag zwei Stunden Überstunden. Er muss aber nicht bis zweiundzwanzig Uhr bleiben.“ Значит, сверхурочные действительно есть — целых два часа, — но полная вечерняя смена от него не требуется. Поворот обозначен словечком aber. А касса с Йонасом в тексте вообще не связана: это обязанность Нины."
+      uk: "Про Йонаса Frau Kaufmann каже одразу дві речі, і вони тягнуть у різні боки: „Jonas macht am Donnerstag zwei Stunden Überstunden. Er muss aber nicht bis zweiundzwanzig Uhr bleiben.“ Отже, понаднормові справді є — цілих дві години, — але повна вечірня зміна від нього не вимагається. Поворот позначений словечком aber. А каса з Йонасом у тексті взагалі не пов'язана: це обов'язок Ніни."
