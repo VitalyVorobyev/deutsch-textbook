@@ -10,9 +10,9 @@ text:
     Frau Kern. Lena antwortet: „Ich weiß es nicht. Ich suche jetzt überall.“
   - >-
     Zuerst ruft Lena im Café an. Dort hat niemand eine Tasche gefunden. Dann
-    prüft sie die Internetseite vom [[Fundbüro::lost-property office::бюро находок]].
+    prüft sie die Internetseite vom [[Fundbüro::lost-property office::бюро находок::бюро знахідок]].
     Das Büro ist schon geschlossen, aber man kann online eine
-    [[Verlustmeldung::loss report::заявление о пропаже]] schreiben. Das Formular
+    [[Verlustmeldung::loss report::заявление о пропаже::заява про втрату]] schreiben. Das Formular
     fragt nach Farbe, Größe, Inhalt und dem letzten Ort. Lena schreibt: „Blaue
     Stofftasche, ungefähr dreißig Zentimeter breit. Inhalt: ein Formular, eine
     Meldebescheinigung und ein roter Ordner.“
@@ -20,7 +20,7 @@ text:
     Bei „Verlustort“ ist Lena unsicher. Im Café hatte sie die Tasche noch. In der
     Straßenbahn hat sie eine Nachricht geschrieben und nicht auf ihre Sachen
     geachtet. Sie trägt deshalb beide Orte ein. Das System gibt ihr eine
-    [[Vorgangsnummer::case number::номер обращения]]. Frau Kern sagt: „Schreib die
+    [[Vorgangsnummer::case number::номер обращения::номер звернення]]. Frau Kern sagt: „Schreib die
     Nummer sofort auf.“ Lena zeigt auf den Bildschirm. „Sie steht doch hier.“
     „Genau“, sagt Frau Kern, „und morgen ist der Bildschirm nicht mehr hier.“
   - >-
@@ -44,9 +44,11 @@ questions:
     translation:
       en: "Where was the bag found?"
       ru: "Где нашли сумку?"
+      uk: "Де знайшли сумку?"
     explain:
       en: "A driver found the bag in the tram and took it to the service centre."
       ru: "Водительница нашла сумку в трамвае и передала её в сервисный центр."
+      uk: "Водійка знайшла сумку в трамваї й передала її до сервісного центру."
   - id: q-abholen
     outcomes: [unterlagen-erfragen]
     type: mc
@@ -56,7 +58,9 @@ questions:
     translation:
       en: "What must Lena bring when collecting the bag?"
       ru: "Что Лена должна принести, когда будет забирать сумку?"
+      uk: "Що Лена має принести, коли забиратиме сумку?"
     explain:
       en: "The email names two proofs: her passport and the case number from the online report."
       ru: "В письме названы два подтверждения: паспорт и номер обращения из онлайн-заявления."
+      uk: "У листі названо два підтвердження: паспорт і номер звернення з онлайн-заяви."
 
