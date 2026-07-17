@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — telling a life story: Perfekt, war, hatte, konnte"
   ru: "Практика — рассказ о жизни: Perfekt, war, hatte, konnte"
+  uk: "Практика — розповідь про життя: Perfekt, war, hatte, konnte"
 items:
   - id: table-praeteritum-formen
     outcomes: [praeteritum-war-hatte]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: "Fill in the Präteritum form for each person. Write only the verb form."
       ru: "Впишите форму Präteritum для каждого лица. Пишите только глагольную форму."
+      uk: "Впишіть форму Präteritum для кожної особи. Пишіть лише дієслівну форму."
     columns: ["sein", "haben", "können"]
     rows:
       - label: "ich"
@@ -25,6 +27,7 @@ items:
     explain:
       en: "Two surprises live in this table. First, ich and er/sie share one form: ich war — er war, ich hatte — sie hatte, ich konnte — er konnte. There is no -t on the third person, which is exactly the opposite of the present tense (er hat, er kann). Second, können loses its umlaut in the Präteritum: konnte, not könnte. könnte is a different form with a different meaning — a possibility, not a past. müssen behaves the same way: musste, never müsste. Everything else is regular: the endings are -e, -st, -e, -en."
       ru: "В этой таблице спрятаны две неожиданности. Первая: у ich и er/sie форма одна и та же — ich war — er war, ich hatte — sie hatte, ich konnte — er konnte. Никакого -t в третьем лице нет, и это прямо противоположно настоящему времени (er hat, er kann). Вторая: können в Präteritum теряет умлаут — konnte, а не könnte. Форма könnte — это другое: возможность, а не прошедшее. С müssen то же самое: musste, но не müsste. Всё остальное регулярно: окончания -e, -st, -e, -en."
+      uk: "У цій таблиці сховані дві несподіванки. Перша: у ich і er/sie форма та сама — ich war — er war, ich hatte — sie hatte, ich konnte — er konnte. Жодного -t у третій особі немає, і це прямо протилежно теперішньому часу (er hat, er kann). Друга: können у Präteritum втрачає умлаут — konnte, а не könnte. Форма könnte — це інше: можливість, а не минуле. З müssen те саме: musste, але не müsste. Усе інше регулярне: закінчення -e, -st, -e, -en."
 
   - id: cloze-als-kind
     outcomes: [praeteritum-war-hatte]
@@ -33,13 +36,16 @@ items:
     instruction:
       en: "Somebody is talking about their childhood. Fill in war, hatte or konnte in the right form."
       ru: "Человек рассказывает о своём детстве. Вставьте war, hatte или konnte в нужной форме."
+      uk: "Людина розповідає про своє дитинство. Вставте war, hatte або konnte в потрібній формі."
     text: "Als Kind {{war}} ich oft bei meinen Großeltern. Wir {{hatten}} kein Auto, und ich {{konnte}} noch nicht Fahrrad fahren."
     translation:
       en: "As a child I was often at my grandparents' place. We had no car, and I could not ride a bike yet."
       ru: "В детстве я часто бывал у бабушки с дедушкой. Машины у нас не было, и на велосипеде я ещё не умел ездить."
+      uk: "У дитинстві я часто бував у бабусі з дідусем. Машини в нас не було, і на велосипеді я ще не вмів їздити."
     explain:
       en: "Three gaps, one rule: sein, haben and the modals tell their past with the Präteritum, not the Perfekt. Ich war — never ich bin gewesen. Wir hatten — never wir haben gehabt: watch the plural ending, hatten with wir. And ich konnte — with no umlaut, because könnte would turn a fact about the past into a possibility. Note that Als Kind is a fixed chunk here: learn it whole and let the sentence continue with war, hatte or a modal."
       ru: "Три пропуска — одно правило: sein, haben и модальные рассказывают о прошлом через Präteritum, а не через Perfekt. Ich war — и никогда ich bin gewesen. Wir hatten — и никогда wir haben gehabt; следите за окончанием множественного числа: с wir нужно hatten. И ich konnte — без умлаута, потому что könnte превратило бы факт о прошлом в возможность. Обратите внимание: Als Kind — готовый блок; заучите его целиком, а дальше идёт war, hatte или модальный глагол."
+      uk: "Три пропуски — одне правило: sein, haben і модальні розповідають про минуле через Präteritum, а не через Perfekt. Ich war — і ніколи ich bin gewesen. Wir hatten — і ніколи wir haben gehabt; стежте за закінченням множини: з wir потрібно hatten. І ich konnte — без умлаута, бо könnte перетворило б факт про минуле на можливість. Зверніть увагу: Als Kind — готовий блок; заучіть його цілком, а далі йде war, hatte або модальне дієслово."
 
   - id: cloze-perfekt-erzaehlung
     outcomes: [lebensstationen-ordnen]
@@ -48,13 +54,16 @@ items:
     instruction:
       en: "The events of a life run on the Perfekt. Fill in the auxiliary: haben or sein."
       ru: "События жизни рассказываются в Perfekt. Вставьте вспомогательный глагол: haben или sein."
+      uk: "Події життя розповідаються в Perfekt. Вставте допоміжне дієслово: haben або sein."
     text: "Nach der Schule {{habe}} ich in Kiew studiert. Danach {{bin}} ich nach Deutschland gekommen. Dort {{habe}} ich einen Deutschkurs gemacht, und meine Familie {{ist}} in der Ukraine geblieben."
     translation:
       en: "After school I studied in Kyiv. Then I came to Germany. There I did a German course, and my family stayed in Ukraine."
       ru: "После школы я учился в Киеве. Потом я приехал в Германию. Здесь я прошёл курс немецкого, а моя семья осталась в Украине."
+      uk: "Після школи я навчався в Києві. Потім я приїхав до Німеччини. Тут я пройшов курс німецької, а моя сім'я залишилася в Україні."
     explain:
       en: "The auxiliary is chosen by the verb, not by the sentence. studieren and machen are ordinary activities, so they take haben: habe … studiert, habe … gemacht. kommen is a movement from A to B, so it takes sein: bin … gekommen. And bleiben belongs to the small group that takes sein although nobody moves anywhere — bleiben, sein and passieren are the exceptions worth memorizing: ist … geblieben. Notice the bracket in every sentence: the auxiliary in position 2, the participle at the very end."
       ru: "Вспомогательный глагол выбирает глагол, а не предложение. studieren и machen — обычные действия, поэтому берут haben: habe … studiert, habe … gemacht. kommen — перемещение из точки А в точку Б, поэтому берёт sein: bin … gekommen. А bleiben входит в маленькую группу глаголов, которые берут sein, хотя никто никуда не двигается: bleiben, sein и passieren — исключения, которые стоит запомнить: ist … geblieben. И обратите внимание на рамку в каждом предложении: вспомогательный глагол на втором месте, причастие — в самом конце."
+      uk: "Допоміжне дієслово вибирає дієслово, а не речення. studieren і machen — звичайні дії, тому беруть haben: habe … studiert, habe … gemacht. kommen — переміщення з точки А в точку Б, тому бере sein: bin … gekommen. А bleiben входить у маленьку групу дієслів, які беруть sein, хоча ніхто нікуди не рухається: bleiben, sein і passieren — винятки, які варто запам'ятати: ist … geblieben. І зверніть увагу на рамку в кожному реченні: допоміжне дієслово на другому місці, дієприкметник — у самому кінці."
 
   - id: order-danach-ausbildung
     outcomes: [lebensstationen-ordnen]
@@ -63,13 +72,16 @@ items:
     instruction:
       en: "Arrange the words into a correct sentence."
       ru: "Составьте правильное предложение."
+      uk: "Складіть правильне речення."
     words: ["Danach", "habe", "ich", "eine", "Ausbildung", "gemacht."]
     translation:
       en: "After that I did an apprenticeship."
       ru: "После этого я получил профессию."
+      uk: "Після цього я здобув професію."
     explain:
       en: "Danach is not an extra word bolted onto the front of a finished sentence — it fills position 1 all by itself. The conjugated verb habe therefore takes position 2, and the subject ich moves behind it. Danach ich habe … is the classic mistake, and it is the same mistake after zuerst, dann, später and heute. The participle gemacht keeps its place at the very end: the Perfekt bracket is untouched by any of this."
       ru: "Danach — не лишнее слово, приставленное к готовому предложению: оно само по себе занимает первое место. Поэтому спрягаемый глагол habe встаёт на второе, а подлежащее ich уходит за него. Danach ich habe … — классическая ошибка, и точно такая же получается после zuerst, dann, später и heute. Причастие gemacht остаётся в самом конце: рамка Perfekt от всего этого не меняется."
+      uk: "Danach — не зайве слово, приставлене до готового речення: воно само по собі займає перше місце. Тому відмінюване дієслово habe стає на друге, а підмет ich іде за нього. Danach ich habe … — класична помилка, і точно така сама виходить після zuerst, dann, später і heute. Дієприкметник gemacht залишається в самому кінці: рамка Perfekt від усього цього не змінюється."
 
   - id: order-weil-verbende
     outcomes: [lebensstationen-ordnen]
@@ -78,13 +90,16 @@ items:
     instruction:
       en: "Arrange the words into a correct sentence. Where does the conjugated verb go in a weil-clause?"
       ru: "Составьте правильное предложение. Куда уходит спрягаемый глагол в придаточном с weil?"
+      uk: "Складіть правильне речення. Куди йде відмінюване дієслово в підрядному з weil?"
     words: ["Ich", "bin", "nach", "Deutschland", "gekommen,", "weil", "ich", "hier", "studieren", "wollte."]
     translation:
       en: "I came to Germany because I wanted to study here."
       ru: "Я приехал в Германию, потому что хотел здесь учиться."
+      uk: "Я приїхав до Німеччини, бо хотів тут навчатися."
     explain:
       en: "Two clauses, two different word orders. The main clause keeps the Perfekt bracket: bin in position 2, gekommen at the end. The weil-clause sends its conjugated verb — wollte — to the very last position, and the infinitive studieren stands in front of it. Read the end of the clause aloud: studieren wollte, exactly the mirror image of the main-clause order ich wollte studieren. The comma marks where the switch happens."
       ru: "Две части — два разных порядка слов. В главном предложении сохраняется рамка Perfekt: bin на втором месте, gekommen в конце. Придаточное с weil отправляет свой спрягаемый глагол — wollte — на самое последнее место, а инфинитив studieren встаёт перед ним. Проговорите конец придаточного вслух: studieren wollte — зеркальное отражение главного предложения ich wollte studieren. Запятая как раз и отмечает место переключения."
+      uk: "Дві частини — два різні порядки слів. У головному реченні зберігається рамка Perfekt: bin на другому місці, gekommen у кінці. Підрядне з weil відправляє своє відмінюване дієслово — wollte — на найостанніше місце, а інфінітив studieren стає перед ним. Проговоріть кінець підрядного вголос: studieren wollte — дзеркальне відображення головного речення ich wollte studieren. Кома якраз і позначає місце перемикання."
 
   - id: mc-hatten-konnte
     outcomes: [praeteritum-war-hatte]
@@ -93,6 +108,7 @@ items:
     instruction:
       en: "A colleague talks about her student days. Which pair of forms is right?"
       ru: "Коллега рассказывает о студенческих годах. Какая пара форм верна?"
+      uk: "Колега розповідає про студентські роки. Яка пара форм правильна?"
     prompt: "Damals ___ wir kein Geld, und ich ___ nicht ins Ausland fahren."
     options:
       - "hatten … konnte"
@@ -102,9 +118,11 @@ items:
     translation:
       en: "Back then we had no money, and I could not travel abroad."
       ru: "Тогда у нас не было денег, и я не мог поехать за границу."
+      uk: "Тоді в нас не було грошей, і я не міг поїхати за кордон."
     explain:
       en: "damals points into the past, so both verbs must be in the Präteritum: hatten (wir) and konnte (ich). Option 2 leaves both in the present — haben, kann — and the sentence then says the opposite of what it means. Option 3 gets haben right but writes könnte with an umlaut, and that is a different form altogether: könnte means 'would be able to', a possibility, not a past. In the Präteritum the modals have no umlaut at all: konnte, musste, wollte, durfte."
       ru: "Слово damals указывает в прошлое, значит оба глагола должны стоять в Präteritum: hatten (при wir) и konnte (при ich). Вариант 2 оставляет оба в настоящем — haben, kann, — и предложение начинает говорить обратное тому, что имелось в виду. В варианте 3 haben стоит верно, но könnte написано с умлаутом, а это уже совсем другая форма: könnte значит «мог бы», то есть возможность, а не прошедшее. В Präteritum у модальных глаголов умлаута нет вовсе: konnte, musste, wollte, durfte."
+      uk: "Слово damals указує в минуле, отже обидва дієслова мають стояти в Präteritum: hatten (при wir) і konnte (при ich). Варіант 2 залишає обидва в теперішньому — haben, kann, — і речення починає говорити протилежне тому, що малося на увазі. У варіанті 3 haben стоїть правильно, але könnte написано з умлаутом, а це вже зовсім інша форма: könnte означає «міг би», тобто можливість, а не минуле. У Präteritum у модальних дієслів умлаута немає взагалі: konnte, musste, wollte, durfte."
 
   - id: mc-hattest-du-frage
     outcomes: [erfahrungen-fragen]
@@ -113,6 +131,7 @@ items:
     instruction:
       en: "You are asking a colleague about her childhood. Which question is right?"
       ru: "Вы расспрашиваете коллегу о её детстве. Какой вопрос верен?"
+      uk: "Ви розпитуєте колегу про її дитинство. Яке питання правильне?"
     prompt: "„___ du als Kind viele Freunde?“"
     options:
       - "Hattest"
@@ -122,9 +141,11 @@ items:
     translation:
       en: "Did you have a lot of friends as a child?"
       ru: "У тебя было много друзей в детстве?"
+      uk: "У тебе було багато друзів у дитинстві?"
     explain:
       en: "Als Kind puts the whole question in the past, so haben must appear in the Präteritum — and the du-form of hatte is hattest. Hast du …? asks about now, which contradicts als Kind. Warst du …? is the Präteritum of the wrong verb: Warst du als Kind viele Freunde? would say you were friends, not that you had them. The question form is easy once the statement is: du hattest → Hattest du …?, verb first, subject second."
       ru: "Оборот Als Kind переводит весь вопрос в прошлое, поэтому haben должен стоять в Präteritum, а форма для du — hattest. Hast du …? спрашивает о настоящем и противоречит als Kind. Warst du …? — Präteritum, но не того глагола: Warst du als Kind viele Freunde? означало бы, что вы были друзьями, а не что они у вас были. Вопросительная форма получается сама собой из утверждения: du hattest → Hattest du …?, глагол на первом месте, подлежащее на втором."
+      uk: "Зворот Als Kind переводить усе питання в минуле, тому haben має стояти в Präteritum, а форма для du — hattest. Hast du …? запитує про теперішнє й суперечить als Kind. Warst du …? — Präteritum, але не того дієслова: Warst du als Kind viele Freunde? означало б, що ви були друзями, а не що вони у вас були. Питальна форма виходить сама собою з твердження: du hattest → Hattest du …?, дієслово на першому місці, підмет на другому."
 
   - id: cloze-vor-seit-biografie
     outcomes: [lebensstationen-ordnen]
@@ -133,13 +154,16 @@ items:
     instruction:
       en: "Fill each gap with vor or seit. Watch the capital letter at the start of a sentence."
       ru: "Вставьте vor или seit. Следите за заглавной буквой в начале предложения."
+      uk: "Вставте vor або seit. Стежте за великою літерою на початку речення."
     text: "{{Vor}} zehn Jahren bin ich nach München gekommen. {{Seit}} acht Jahren arbeite ich bei einer Bank. Meine Frau kenne ich {{seit}} fünf Jahren."
     translation:
       en: "Ten years ago I came to Munich. I have been working at a bank for eight years. I have known my wife for five years."
       ru: "Десять лет назад я приехал в Мюнхен. Уже восемь лет я работаю в банке. Свою жену я знаю пять лет."
+      uk: "Десять років тому я приїхав до Мюнхена. Уже вісім років я працюю в банку. Свою дружину я знаю п'ять років."
     explain:
       en: "One question decides all three gaps: is it over? The arrival happened once and is finished — vor zehn Jahren, and the verb around it is in the Perfekt (bin … gekommen). The job and the marriage are still true today — seit acht Jahren, seit fünf Jahren — and the verbs around them stay in the present tense, because nothing has ended. Both prepositions take the dative, so the forms never tell them apart: vor zehn Jahren and seit acht Jahren look identical apart from the preposition, and the plural noun adds -n either way (Jahren, not Jahre)."
       ru: "Все три пропуска решает один вопрос: закончилось ли это? Приезд состоялся однажды и уже позади — vor zehn Jahren, и глагол рядом стоит в Perfekt (bin … gekommen). А работа и брак верны и сегодня — seit acht Jahren, seit fünf Jahren, — и глаголы рядом остаются в настоящем времени, потому что ничего не завершилось. Оба предлога требуют Dativ, поэтому по форме их не различить: vor zehn Jahren и seit acht Jahren отличаются только предлогом, а существительное во множественном числе в обоих случаях получает -n (Jahren, а не Jahre)."
+      uk: "Усі три пропуски вирішує одне питання: чи закінчилося це? Приїзд стався одного разу й уже позаду — vor zehn Jahren, і дієслово поряд стоїть у Perfekt (bin … gekommen). А робота і шлюб правдиві й сьогодні — seit acht Jahren, seit fünf Jahren, — і дієслова поряд залишаються в теперішньому часі, бо ніщо не завершилося. Обидва прийменники вимагають Dativ, тому за формою їх не розрізнити: vor zehn Jahren і seit acht Jahren відрізняються лише прийменником, а іменник у множині в обох випадках отримує -n (Jahren, а не Jahre)."
 
   - id: uebersetzen-damals-war-hatte
     outcomes: [praeteritum-war-hatte]
@@ -148,8 +172,10 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "Back then I was a student and I had no money."
     prompt_ru: "Тогда я был студентом, и денег у меня не было."
+    prompt_uk: "Тоді я був студентом, і грошей у мене не було."
     answer: "Damals war ich Student und ich hatte kein Geld."
     accept:
       - "Damals war ich Student und hatte kein Geld."
@@ -159,6 +185,7 @@ items:
     explain:
       en: "sein and haben are the two verbs a German never puts into the Perfekt when talking about their life, so both go into the Präteritum: war and hatte. Ich bin Student gewesen und ich habe kein Geld gehabt is grammatically possible and nobody says it. Note also that damals in position 1 pushes the verb straight after it — Damals war ich … — while the second clause starts again from the subject: und ich hatte … A job title after sein takes no article in German: ich war Student, not ich war ein Student."
       ru: "sein и haben — те два глагола, которые немец, рассказывая о своей жизни, в Perfekt не ставит никогда, поэтому оба уходят в Präteritum: war и hatte. Фраза Ich bin Student gewesen und ich habe kein Geld gehabt грамматически возможна — и так никто не говорит. Обратите внимание и на порядок: damals на первом месте выталкивает глагол сразу за собой — Damals war ich …, — а вторая часть начинается заново с подлежащего: und ich hatte … И ещё: название профессии после sein идёт без артикля — ich war Student, а не ich war ein Student."
+      uk: "sein і haben — ті два дієслова, які німець, розповідаючи про своє життя, у Perfekt не ставить ніколи, тому обидва йдуть у Präteritum: war і hatte. Фраза Ich bin Student gewesen und ich habe kein Geld gehabt граматично можлива — і так ніхто не говорить. Зверніть увагу й на порядок: damals на першому місці виштовхує дієслово одразу за собою — Damals war ich …, — а друга частина починається заново з підмета: und ich hatte … І ще: назва професії після sein іде без артикля — ich war Student, а не ich war ein Student."
 
   - id: uebersetzen-perfekt-station
     outcomes: [lebensstationen-ordnen]
@@ -167,8 +194,10 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "After school I moved to Berlin and worked there for two years."
     prompt_ru: "После школы я переехал в Берлин и два года там работал."
+    prompt_uk: "Після школи я переїхав до Берліна і два роки там працював."
     answer: "Nach der Schule bin ich nach Berlin umgezogen und habe dort zwei Jahre gearbeitet."
     accept:
       - "Nach der Schule bin ich nach Berlin umgezogen und ich habe dort zwei Jahre gearbeitet."
@@ -180,3 +209,4 @@ items:
     explain:
       en: "Two events, two different auxiliaries — and the verb decides, not the sentence. umziehen is a movement from A to B, so it takes sein: bin … umgezogen. arbeiten is an activity that goes nowhere, so it takes haben: habe … gearbeitet. Both keep the bracket: the auxiliary in position 2 (or straight after und), the participle at the very end. Watch the participle of the separable verb: the ge- climbs inside the word — umgezogen, not geumzogen."
       ru: "Два события — два разных вспомогательных глагола, и выбирает их сам глагол, а не предложение. umziehen — перемещение из точки А в точку Б, поэтому берёт sein: bin … umgezogen. arbeiten — действие, которое никуда не ведёт, поэтому берёт haben: habe … gearbeitet. Оба сохраняют рамку: вспомогательный глагол на втором месте (или сразу после und), причастие — в самом конце. И следите за причастием отделяемого глагола: ge- забирается внутрь слова — umgezogen, а не geumzogen."
+      uk: "Дві події — два різні допоміжні дієслова, і вибирає їх саме дієслово, а не речення. umziehen — переміщення з точки А в точку Б, тому бере sein: bin … umgezogen. arbeiten — дія, яка нікуди не веде, тому бере haben: habe … gearbeitet. Обидва зберігають рамку: допоміжне дієслово на другому місці (або одразу після und), дієприкметник — у самому кінці. І стежте за дієприкметником відокремлюваного дієслова: ge- забирається всередину слова — umgezogen, а не geumzogen."

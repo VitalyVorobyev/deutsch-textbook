@@ -3,6 +3,7 @@ role: pretest
 title:
   en: "Pretest — where does the verb go?"
   ru: "Предтест — где стоит глагол?"
+  uk: "Передтест — де стоїть дієслово?"
 items:
   - id: pretest-weil-modal
     outcomes: [weil-grund]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
     prompt: "Ich komme nicht mit, weil ich am Sonntag ___."
     options:
       - "arbeiten muss"
@@ -20,9 +22,11 @@ items:
     translation:
       en: "I am not coming along, because I have to work on Sunday."
       ru: "Я не поеду с вами, потому что в воскресенье мне нужно работать."
+      uk: "Я не поїду з вами, бо в неділю мені треба працювати."
     explain:
       en: "weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb. The conjugated verb here is the modal muss, so muss is the last word and the infinitive arbeiten stands in front of it. In a main clause it is the other way round: Ich muss am Sonntag arbeiten."
       ru: "weil вводит придаточное, а придаточное заканчивается спрягаемым глаголом. Спрягаемый здесь — модальный muss, поэтому muss стоит последним, а инфинитив arbeiten — перед ним. В главном предложении всё наоборот: Ich muss am Sonntag arbeiten."
+      uk: "weil вводить підрядне, а підрядне закінчується відмінюваним дієсловом. Відмінюване тут — модальне muss, тому muss стоїть останнім, а інфінітив arbeiten — перед ним. У головному реченні все навпаки: Ich muss am Sonntag arbeiten."
 
   - id: pretest-weil-denn
     outcomes: [weil-grund]
@@ -31,6 +35,7 @@ items:
     instruction:
       en: "Guess which continuation is correct German."
       ru: "Угадайте, какое продолжение — правильный немецкий."
+      uk: "Вгадайте, яке продовження — правильна німецька."
     prompt: "Ich bleibe heute zu Hause, ___"
     options:
       - "denn ich bin krank."
@@ -40,9 +45,11 @@ items:
     translation:
       en: "I am staying at home today, because I am ill."
       ru: "Сегодня я остаюсь дома, потому что я болен."
+      uk: "Сьогодні я залишаюся вдома, бо я хворий."
     explain:
       en: "denn and weil mean the same thing and treat the verb differently. denn simply joins two main clauses, so the verb stays in position 2: denn ich bin krank. weil would send it to the end: weil ich krank bin. The two wrong options each take one conjunction and give it the other one's word order."
       ru: "denn и weil значат одно и то же, а с глаголом обращаются по-разному. denn просто соединяет два главных предложения, поэтому глагол остаётся на втором месте: denn ich bin krank. weil отправил бы его в конец: weil ich krank bin. В обоих неверных вариантах союз взят один, а порядок слов — от другого."
+      uk: "denn і weil значать одне й те саме, а з дієсловом поводяться по-різному. denn просто поєднує два головні речення, тому дієслово залишається на другому місці: denn ich bin krank. weil відправив би його в кінець: weil ich krank bin. В обох неправильних варіантах сполучник узято один, а порядок слів — від іншого."
 
   - id: pretest-vorfeld
     outcomes: [nebensatz-vorfeld-stellung]
@@ -51,6 +58,7 @@ items:
     instruction:
       en: "Guess what follows the comma."
       ru: "Угадайте, что идёт после запятой."
+      uk: "Вгадайте, що йде після коми."
     prompt: "Wenn es regnet, ___"
     options:
       - "gehen wir ins Museum."
@@ -60,6 +68,8 @@ items:
     translation:
       en: "If it rains, we will go to the museum."
       ru: "Если пойдёт дождь, мы пойдём в музей."
+      uk: "Якщо піде дощ, ми підемо в музей."
     explain:
       en: "The whole wenn-clause counts as position 1 of the sentence, so the conjugated verb of the main clause has to take position 2 — the first slot after the comma — and the subject follows it: gehen wir. It is the same inversion as in Am Sonntag gehen wir ins Museum."
       ru: "Всё придаточное с wenn считается первым местом предложения, поэтому спрягаемый глагол главного обязан занять второе — первый слот после запятой, — а подлежащее идёт за ним: gehen wir. Это та же инверсия, что и в Am Sonntag gehen wir ins Museum."
+      uk: "Усе підрядне з wenn вважається першим місцем речення, тому відмінюване дієслово головного зобов'язане зайняти друге — перший слот після коми, — а підмет іде за ним: gehen wir. Це та сама інверсія, що й в Am Sonntag gehen wir ins Museum."

@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the verb at the end of the Nebensatz"
   ru: "Проверка — глагол в конце придаточного"
+  uk: "Перевірка — дієслово в кінці підрядного"
 
 # Three PARALLEL variants of ONE competence: the COLLAPSED BRACKET. A Nebensatz with
 # two verbs — a modal plus an infinitive, or an auxiliary plus a Partizip II — puts the
@@ -47,8 +48,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Lena is not coming to the cinema today, because she has to pick up her daughter."
     prompt_ru: "Лена сегодня не пойдёт в кино, потому что ей нужно забрать дочь."
+    prompt_uk: "Лена сьогодні не піде в кіно, бо їй треба забрати доньку."
     answer: "Lena kommt heute nicht ins Kino, weil sie ihre Tochter abholen muss."
     accept:
       - "Lena geht heute nicht ins Kino, weil sie ihre Tochter abholen muss."
@@ -58,6 +61,7 @@ items:
     explain:
       en: "Two verbs, and only one of them is conjugated: muss. weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive abholen queues up in front of it: … weil sie ihre Tochter abholen muss. As a main clause the very same words come out back to front: Sie muss ihre Tochter abholen. That is the whole difficulty here — the conjunction turns the bracket inside out. Note also that abholen keeps its prefix: a separable verb has no position 2 to leave behind in a Nebensatz."
       ru: "Глагола два, но спрягается только один — muss. weil вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив abholen выстраивается перед ним — … weil sie ihre Tochter abholen muss. В главном предложении те же самые слова идут в обратном порядке: Sie muss ihre Tochter abholen. В этом и вся трудность: союз выворачивает рамку наизнанку. Обратите внимание и на abholen — приставка остаётся на месте: в придаточном нет второго места, которое она могла бы покинуть."
+      uk: "Дієслів два, але відмінюється лише одне — muss. weil вводить підрядне, а підрядне закінчується відмінюваним дієсловом: значить, muss стоїть найостаннішим, а інфінітив abholen вишиковується перед ним — … weil sie ihre Tochter abholen muss. У головному реченні ті самі слова йдуть у зворотному порядку: Sie muss ihre Tochter abholen. У цьому й уся складність: сполучник вивертає рамку навиворіт. Зверніть увагу й на abholen — префікс залишається на місці: у підрядному немає другого місця, яке він міг би покинути."
 
   - id: variant-b
     outcomes: [weil-grund]
@@ -66,8 +70,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Mr Bauer says that he has to learn more German."
     prompt_ru: "Господин Бауэр говорит, что ему нужно больше учить немецкий."
+    prompt_uk: "Пан Бауер каже, що йому треба більше вчити німецьку."
     answer: "Herr Bauer sagt, dass er mehr Deutsch lernen muss."
     # No `accept` list: there is no second natural word order for this sentence. The one other
     # thing a learner might write — `Herr Bauer sagt, er muss mehr Deutsch lernen.` — is correct
@@ -78,6 +84,7 @@ items:
     explain:
       en: "Two verbs, and only one of them is conjugated: muss. dass opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive lernen queues up in front of it: … dass er mehr Deutsch lernen muss. Standing alone the clause would come out back to front: Er muss mehr Deutsch lernen. The conjunction turns the bracket inside out. Keep the comma before dass — German never leaves it out."
       ru: "Глагола два, но спрягается только один — muss. dass вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив lernen выстраивается перед ним — … dass er mehr Deutsch lernen muss. Само по себе это предложение звучало бы наоборот: Er muss mehr Deutsch lernen. Союз выворачивает рамку наизнанку. И не теряйте запятую перед dass: в немецком она обязательна."
+      uk: "Дієслів два, але відмінюється лише одне — muss. dass вводить підрядне, а підрядне закінчується відмінюваним дієсловом: значить, muss стоїть найостаннішим, а інфінітив lernen вишиковується перед ним — … dass er mehr Deutsch lernen muss. Само по собі це речення звучало б навпаки: Er muss mehr Deutsch lernen. Сполучник вивертає рамку навиворіт. І не губіть кому перед dass: у німецькій вона обов'язкова."
 
   - id: variant-c
     outcomes: [weil-grund]
@@ -86,8 +93,10 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "We'll take a taxi if you have to be at the office at six o'clock."
     prompt_ru: "Мы возьмём такси, если тебе нужно быть в офисе в шесть часов."
+    prompt_uk: "Ми візьмемо таксі, якщо тобі треба бути в офісі о шостій годині."
     answer: "Wir nehmen ein Taxi, wenn du um sechs Uhr im Büro sein musst."
     accept:
       - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein musst."
@@ -97,3 +106,4 @@ items:
     explain:
       en: "wenn is the third conjunction of the set and it behaves exactly like the other two: the conjugated verb closes the clause. The conjugated verb is the modal musst, so the infinitive sein stands in front of it — … wenn du um sechs Uhr im Büro sein musst. Everything else, um sechs Uhr and im Büro, simply lines up inside the clause and changes nothing: only the verb has a fixed address. And note the tense — German uses the plain present inside a wenn-clause even when the sentence is about tomorrow."
       ru: "wenn — третий союз из этой тройки, и ведёт он себя точно так же, как два других: спрягаемый глагол закрывает придаточное. Спрягаемый здесь — модальный musst, поэтому инфинитив sein стоит перед ним: … wenn du um sechs Uhr im Büro sein musst. Всё остальное — um sechs Uhr, im Büro — просто выстраивается внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола. Обратите внимание и на время: внутри придаточного с wenn немецкий ставит обычное настоящее, даже если речь о завтрашнем дне."
+      uk: "wenn — третій сполучник із цієї трійки, і поводиться він точно так само, як два інші: відмінюване дієслово закриває підрядне. Відмінюване тут — модальне musst, тому інфінітив sein стоїть перед ним: … wenn du um sechs Uhr im Büro sein musst. Усе інше — um sechs Uhr, im Büro — просто вишиковується всередині підрядного і ні на що не впливає: фіксована адреса є лише в дієслова. Зверніть увагу й на час: усередині підрядного з wenn німецька ставить звичайний теперішній, навіть якщо йдеться про завтрашній день."

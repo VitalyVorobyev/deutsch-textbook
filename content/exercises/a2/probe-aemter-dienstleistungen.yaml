@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — the polite chunks"
   ru: "Проверка — вежливые обороты"
+  uk: "Перевірка — ввічливі звороти"
 
 # ONE competence, three parallel variants: producing the two polite chunks this unit exists
 # for — `Könnten Sie mir bitte …?` (a request aimed at the clerk, infinitive at the end) and
@@ -47,8 +48,10 @@ items:
     instruction:
       en: "You are at the counter of a bank. Say both sentences politely."
       ru: "Вы у окошка в банке. Скажите обе фразы вежливо."
+      uk: "Ви біля віконця в банку. Скажіть обидві фрази ввічливо."
     prompt_en: "Could you send me the documents, please? I would like to order a card."
     prompt_ru: "Не могли бы вы прислать мне документы? Я хотел(а) бы заказать карту."
+    prompt_uk: "Чи не могли б ви надіслати мені документи? Я хотів(ла) би замовити картку."
     answer: "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gern eine Karte bestellen."
     accept:
       - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gern eine Karte bestellen."
@@ -58,6 +61,7 @@ items:
     explain:
       en: "Two chunks, and each one is carried by a single word. A request to the person opposite you opens with Könnten — Können Sie …? is grammatical and noticeably blunter, and at a counter that one vowel is the whole difference. Something you want to do yourself takes würde gern, and the infinitive waits at the very end: Ich würde gern eine Karte bestellen. Ich hätte gern would be wrong here, because that chunk takes a noun and stops — it cannot be followed by a verb. gern and gerne are both correct."
       ru: "Два оборота, и каждый держится на одном слове. Просьба к человеку напротив начинается с Könnten — фраза Können Sie …? грамматически верна и заметно суше, а у окошка вся разница именно в этом гласном. То, что вы хотите сделать сами, требует würde gern, и инфинитив ждёт в самом конце: Ich würde gern eine Karte bestellen. Оборот Ich hätte gern здесь не подошёл бы: он берёт существительное и на нём останавливается — глагол за ним стоять не может. Формы gern и gerne равноправны."
+      uk: "Два звороти, і кожен тримається на одному слові. Прохання до людини навпроти починається з Könnten — фраза Können Sie …? граматично правильна й помітно сухіша, а біля віконця вся різниця саме в цьому голосному. Те, що ви хочете зробити самі, вимагає würde gern, і інфінітив чекає в самому кінці: Ich würde gern eine Karte bestellen. Зворот Ich hätte gern тут не підійшов би: він бере іменник і на ньому зупиняється — дієслово за ним стояти не може. Форми gern і gerne рівноправні."
 
   - id: variant-b
     outcomes: [anliegen-nennen]
@@ -66,8 +70,10 @@ items:
     instruction:
       en: "You are at the counter of a library. Say both sentences politely."
       ru: "Вы у стойки в библиотеке. Скажите обе фразы вежливо."
+      uk: "Ви біля стійки в бібліотеці. Скажіть обидві фрази ввічливо."
     prompt_en: "Could you tell me the opening hours, please? I would like to apply for a library card."
     prompt_ru: "Не могли бы вы сказать мне часы работы? Я хотел(а) бы оформить читательский билет."
+    prompt_uk: "Чи не могли б ви сказати мені години роботи? Я хотів(ла) би оформити читацький квиток."
     answer: "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gern einen Ausweis beantragen."
     accept:
       - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gern einen Ausweis beantragen."
@@ -77,6 +83,7 @@ items:
     explain:
       en: "The polite request keeps its shape wherever you are: Könnten Sie mir bitte … — and the infinitive, here sagen, goes to the very end, behind the object. The second sentence names an action you want, so the chunk is würde gern and beantragen closes the sentence. Watch einen Ausweis: beantragen takes an accusative object, and the masculine article is the one that changes — ein becomes einen."
       ru: "Вежливая просьба сохраняет свою форму где угодно: Könnten Sie mir bitte … — а инфинитив, здесь sagen, уходит в самый конец, за дополнение. Вторая фраза называет действие, которого вы хотите, поэтому нужен оборот würde gern, а beantragen закрывает предложение. Обратите внимание на einen Ausweis: beantragen требует дополнения в Akkusativ, а меняется в нём только мужской артикль — ein превращается в einen."
+      uk: "Ввічливе прохання зберігає свою форму будь-де: Könnten Sie mir bitte … — а інфінітив, тут sagen, іде в самий кінець, за додаток. Друга фраза називає дію, якої ви хочете, тому потрібен зворот würde gern, а beantragen закриває речення. Зверніть увагу на einen Ausweis: beantragen вимагає додатка в Akkusativ, а змінюється в ньому лише чоловічий артикль — ein перетворюється на einen."
 
   - id: variant-c
     outcomes: [anliegen-nennen]
@@ -85,8 +92,10 @@ items:
     instruction:
       en: "You are at the counter of a driving school. Say both sentences politely."
       ru: "Вы у стойки в автошколе. Скажите обе фразы вежливо."
+      uk: "Ви біля стійки в автошколі. Скажіть обидві фрази ввічливо."
     prompt_en: "Could you show me the prices, please? I would like to book a course."
     prompt_ru: "Не могли бы вы показать мне цены? Я хотел(а) бы записаться на курс."
+    prompt_uk: "Чи не могли б ви показати мені ціни? Я хотів(ла) би записатися на курс."
     answer: "Könnten Sie mir bitte die Preise zeigen? Ich würde gern einen Kurs buchen."
     accept:
       - "Könnten Sie mir die Preise bitte zeigen? Ich würde gern einen Kurs buchen."
@@ -96,3 +105,4 @@ items:
     explain:
       en: "Both halves of the polite pair, one more time. Könnten Sie mir bitte …? is the request, with zeigen at the end of the clause — the same frame as any modal verb: conjugated form first in a question, infinitive last. Ich würde gern … is the wish, with buchen last. If you reached for Ich will einen Kurs buchen, the German is correct and the sentence is rude; if you reached for Ich hätte gern einen Kurs buchen, it is not a sentence at all, because hätte gern never takes a verb."
       ru: "Обе половины вежливой пары ещё раз. Könnten Sie mir bitte …? — просьба, и zeigen стоит в конце придаточной части: рамка та же, что у любого модального глагола — спрягаемая форма впереди (это вопрос), инфинитив последним. Ich würde gern … — желание, и buchen замыкает фразу. Если вы потянулись к Ich will einen Kurs buchen, то немецкий верен, а фраза невежлива; а если к Ich hätte gern einen Kurs buchen — это вообще не предложение, потому что после hätte gern глагола не бывает."
+      uk: "Обидві половини ввічливої пари ще раз. Könnten Sie mir bitte …? — прохання, і zeigen стоїть у кінці підрядної частини: рамка та сама, що в будь-якого модального дієслова — відмінювана форма попереду (це питання), інфінітив останнім. Ich würde gern … — бажання, і buchen замикає фразу. Якщо ви потягнулися до Ich will einen Kurs buchen, то німецька правильна, а фраза неввічлива; а якщо до Ich hätte gern einen Kurs buchen — це взагалі не речення, бо після hätte gern дієслова не буває."

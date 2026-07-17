@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — a ban against a released obligation"
   ru: "Проверка — запрет против снятой обязанности"
+  uk: "Перевірка — заборона проти знятого обов'язку"
 
 # Three PARALLEL variants of ONE competence: producing `darf nicht` for a prohibition
 # and `muss nicht` for an obligation that has been lifted, in the same breath. One
@@ -35,8 +36,10 @@ items:
     instruction:
       en: Translate into German. You work in a university library and you are showing two new students around.
       ru: Переведите на немецкий. Вы работаете в университетской библиотеке и показываете двум новым студентам, что тут и как.
+      uk: Перекладіть німецькою. Ви працюєте в університетській бібліотеці і показуєте двом новим студентам, що тут і як.
     prompt_en: "The students are not allowed to eat in the library. But they do not have to pay anything for the books."
     prompt_ru: "В библиотеке студентам нельзя есть. Но платить за книги они не обязаны."
+    prompt_uk: "У бібліотеці студентам не можна їсти. Але платити за книги вони не зобов'язані."
     answer: "In der Bibliothek dürfen die Studenten nicht essen. Aber sie müssen für die Bücher nichts bezahlen."
     key_tokens: ["dürfen", "müssen"]
     accept:
@@ -54,6 +57,7 @@ items:
     explain:
       en: "Two negated modals, and only one of them forbids anything. Eating is banned, and a ban is dürfen + nicht — never müssen + nicht, which would merely say that the students are not obliged to eat. Paying is the opposite case: nothing is being forbidden, a cost has simply been lifted, and that is müssen + nicht (here with nichts, because what is negated is the thing paid). Both verbs are plural (die Studenten, sie), so they carry the -en of the infinitive: dürfen, müssen. And both close a bracket — essen and bezahlen stand at the very end."
       ru: "Два модальных глагола с отрицанием — и запрещает только один из них. Есть в библиотеке запрещено, а запрет — это dürfen + nicht, но никак не müssen + nicht, которое сказало бы лишь, что студенты не обязаны есть. С оплатой всё наоборот: ничего не запрещено, просто нет обязанности платить, а это müssen + nicht (здесь с nichts, потому что отрицается то, что платят). Оба глагола во множественном числе (die Studenten, sie), поэтому у них окончание инфинитива: dürfen, müssen. И оба закрывают рамку — essen и bezahlen стоят в самом конце."
+      uk: "Два модальні дієслова із запереченням — і забороняє лише одне з них. Їсти в бібліотеці заборонено, а заборона — це dürfen + nicht, але аж ніяк не müssen + nicht, яке сказало б лише, що студенти не зобов'язані їсти. З оплатою все навпаки: нічого не заборонено, просто немає обов'язку платити, а це müssen + nicht (тут із nichts, бо заперечується те, що платять). Обидва дієслова в множині (die Studenten, sie), тому в них закінчення інфінітива: dürfen, müssen. І обидва закривають рамку — essen і bezahlen стоять у самому кінці."
 
   - id: variant-b
     outcomes: [aufgaben-beschreiben]
@@ -62,8 +66,10 @@ items:
     instruction:
       en: Translate into German. You are telling a friend about your own summer.
       ru: Переведите на немецкий. Вы рассказываете другу о своём лете.
+      uk: Перекладіть німецькою. Ви розповідаєте другові про своє літо.
     prompt_en: "I don't have to work on Saturday. But I am not allowed to take a holiday in July."
     prompt_ru: "В субботу мне не нужно работать. Но взять отпуск в июле мне нельзя."
+    prompt_uk: "У суботу мені не треба працювати. Але взяти відпустку в липні мені не можна."
     answer: "Ich muss am Samstag nicht arbeiten. Aber ich darf im Juli keinen Urlaub nehmen."
     key_tokens: ["muss", "darf"]
     accept:
@@ -73,6 +79,7 @@ items:
     explain:
       en: "This time the released obligation comes first: nobody is stopping you from working on Saturday, you are simply not required to — muss nicht. The holiday is the ban, and a ban is dürfen: ich darf keinen Urlaub nehmen. Notice that the negation there is keinen, not nicht, because what is being negated is a noun with an article (einen Urlaub) — but the modal is unchanged by that, and darf is still what makes the sentence a prohibition. In the singular both modals lose every ending: ich muss, ich darf."
       ru: "На этот раз снятая обязанность идёт первой: работать в субботу вам никто не запрещает, просто вы не обязаны — muss nicht. Отпуск же — это запрет, а запрет выражается через dürfen: ich darf keinen Urlaub nehmen. Обратите внимание, что отрицание там keinen, а не nicht, потому что отрицается существительное с артиклем (einen Urlaub); на модальный глагол это никак не влияет, и запретом предложение делает именно darf. В единственном числе оба модальных глагола теряют всякое окончание: ich muss, ich darf."
+      uk: "Цього разу знятий обов'язок іде першим: працювати в суботу вам ніхто не забороняє, просто ви не зобов'язані — muss nicht. Відпустка ж — це заборона, а заборона виражається через dürfen: ich darf keinen Urlaub nehmen. Зверніть увагу, що заперечення там keinen, а не nicht, бо заперечується іменник з артиклем (einen Urlaub); на модальне дієслово це ніяк не впливає, і забороною речення робить саме darf. В однині обидва модальні дієслова втрачають будь-яке закінчення: ich muss, ich darf."
 
   - id: variant-c
     outcomes: [aufgaben-beschreiben]
@@ -81,8 +88,10 @@ items:
     instruction:
       en: Translate into German. A colleague is telling you about her daughter, and you repeat it back to check you understood.
       ru: Переведите на немецкий. Коллега рассказывает вам о своей дочери, и вы повторяете услышанное, чтобы проверить, что всё поняли.
+      uk: Перекладіть німецькою. Колега розповідає вам про свою доньку, і ви повторюєте почуте, щоб перевірити, що все зрозуміли.
     prompt_en: "Her daughter is not allowed to watch television today. But she does not have to get up early tomorrow."
     prompt_ru: "Её дочери нельзя сегодня смотреть телевизор. Но вставать рано завтра ей не придётся."
+    prompt_uk: "Її доньці не можна сьогодні дивитися телевізор. Але вставати рано завтра їй не доведеться."
     answer: "Ihre Tochter darf heute nicht fernsehen. Aber sie muss morgen nicht früh aufstehen."
     key_tokens: ["darf", "muss"]
     accept:
@@ -90,3 +99,4 @@ items:
     explain:
       en: "Television is forbidden — a punishment, and therefore darf nicht. The early start is not forbidden, it is merely unnecessary: nothing stops her from getting up at six if she wants to, so it is muss nicht. Both modals are third person singular and take no ending at all: darf, muss — never darft or musst. Both infinitives are separable verbs, and neither of them splits, because a modal is holding the conjugated slot: fernsehen and aufstehen stay whole at the end."
       ru: "Телевизор запрещён — это наказание, а значит, darf nicht. Ранний подъём не запрещён, он просто не нужен: встать в шесть ей никто не мешает, поэтому muss nicht. Оба модальных глагола стоят в третьем лице единственного числа и не имеют окончания вовсе: darf, muss — но не darft и не musst. Оба инфинитива — глаголы с отделяемой приставкой, и ни один из них не распадается, потому что спрягаемое место занято модальным: fernsehen и aufstehen остаются целыми в конце."
+      uk: "Телевізор заборонений — це покарання, а отже, darf nicht. Ранній підйом не заборонений, він просто не потрібний: встати о шостій їй ніхто не заважає, тому muss nicht. Обидва модальні дієслова стоять у третій особі однини і не мають закінчення взагалі: darf, muss — але не darft і не musst. Обидва інфінітиви — дієслова з відокремлюваним префіксом, і жодне з них не розпадається, бо відмінюване місце зайняте модальним: fernsehen і aufstehen залишаються цілими в кінці."
