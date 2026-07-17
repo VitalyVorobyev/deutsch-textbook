@@ -91,8 +91,12 @@ letter/parity checks and a review before merge.
   fully Ukrainian except `atlas.yaml`, which counts only when its A2 nodes translate.
 - **Wave 4 — `done` 2026-07-17** (PR #66): the first four A2 spine topics — dativ, trennbare-verben,
   alltag-tagesablauf, modalverben — 42 files incl. their atlas outcomes; Über 128/266.
-- Waves 5–7 — `todo`: the remaining thirteen A2 topics, then the A2 completion decks and the
-  atlas.yaml residue.
+- **Wave 5 — `done` 2026-07-17** (PR #67): the next seven A2 spine topics — perfekt-haben-sein,
+  termine-vereinbaren, wohnen-umzug, reisen-verkehr, einkaufen-reklamation, gesundheit-arzttermin,
+  verben-mit-praepositionen — 56 files incl. their atlas outcomes; Über 183/266.
+- Waves 6–7 — `todo`: the last six A2 topics + `checkpoint-a2`, then the A2 completion decks and
+  the atlas.yaml residue (incl. `reference-data/cases`, the wortfelder, document and discovery
+  files, schema permitting).
 - ~~Known instrument gap~~ — closed 2026-07-16: match rights may be `{en, ru, uk?}` records
   (schema + `Match.tsx` + parity visibility); `a2/modalverben.yaml`'s slash-hack migrated, and a
   repo sweep found no other non-German right side. The A2 waves are unblocked.
