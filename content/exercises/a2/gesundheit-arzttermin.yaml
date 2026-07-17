@@ -3,6 +3,7 @@ role: practice
 title:
   en: "Practice — symptoms, duration, instructions"
   ru: "Практика — жалобы, длительность, указания"
+  uk: "Практика — скарги, тривалість, вказівки"
 items:
   - id: table-imperativ
     outcomes: [ratschlag-geben]
@@ -12,6 +13,7 @@ items:
     instruction:
       en: "Fill in the imperative of each verb. Write only the verb form (with Sie where it belongs) — the rest of the sentence is already there."
       ru: "Впишите форму императива для каждого глагола. Пишите только глагольную форму (с Sie там, где она нужна) — остальная часть предложения уже дана."
+      uk: "Впишіть форму імператива для кожного дієслова. Пишіть лише дієслівну форму (із Sie там, де воно потрібне) — решта речення вже дана."
     columns: ["du", "ihr", "Sie"]
     rows:
       - label: "trinken … viel Wasser!"
@@ -25,6 +27,7 @@ items:
     explain:
       en: "Three forms, three rules. The du-form is the bare stem with no pronoun at all: trink, bleib, fahr. A verb with the e → i change keeps it (nehmen → nimm), but a verb with the a → ä change loses it in the imperative (fahren → fahr, never fähr). The ihr-form is the ordinary ihr-form of the verb, again without the pronoun: trinkt, bleibt, nehmt, fahrt. And the Sie-form is the infinitive with Sie behind it — Trinken Sie! — the one imperative that keeps its pronoun, and the one you hear at the doctor's."
       ru: "Три формы — три правила. Форма для du — голая основа, без всякого местоимения: trink, bleib, fahr. Глагол с чередованием e → i его сохраняет (nehmen → nimm), а глагол с чередованием a → ä в императиве его теряет (fahren → fahr, но не fähr). Форма для ihr — обычная форма глагола для ihr, снова без местоимения: trinkt, bleibt, nehmt, fahrt. А форма для Sie — это инфинитив с Sie после него: Trinken Sie! Это единственный императив, сохраняющий местоимение, и именно его вы услышите у врача."
+      uk: "Три форми — три правила. Форма для du — гола основа, без жодного займенника: trink, bleib, fahr. Дієслово з чергуванням e → i його зберігає (nehmen → nimm), а дієслово з чергуванням a → ä в імперативі його втрачає (fahren → fahr, але не fähr). Форма для ihr — звичайна форма дієслова для ihr, знову без займенника: trinkt, bleibt, nehmt, fahrt. А форма для Sie — це інфінітив із Sie після нього: Trinken Sie! Це єдиний імператив, що зберігає займенник, і саме його ви почуєте в лікаря."
 
   - id: cloze-mir-tut-weh
     outcomes: [beschwerden-beschreiben]
@@ -33,13 +36,16 @@ items:
     instruction:
       en: "You are at the surgery with your son. Fill in the dative pronoun."
       ru: "Вы в кабинете врача вместе с сыном. Вставьте местоимение в Dativ."
+      uk: "Ви в кабінеті лікаря разом із сином. Вставте займенник у Dativ."
     text: "Guten Tag, Frau Doktor! {{Mir}} tut der Hals weh. Mein Sohn hat auch Beschwerden: {{ihm}} tut der Bauch weh."
     translation:
       en: "Good afternoon, doctor! My throat hurts. My son has symptoms too: his stomach hurts."
       ru: "Здравствуйте, доктор! У меня болит горло. У сына тоже жалобы: у него болит живот."
+      uk: "Добрий день, пані лікарко! У мене болить горло. У сина теж скарги: у нього болить живіт."
     explain:
       en: "wehtun turns the sentence around: the subject is the body part (der Hals, der Bauch), the verb agrees with it (tut), and the person who suffers goes into the dative — mir for ich, ihm for er. These are the same dative pronouns as after helfen and gefallen; nothing new, only a new place to use them. English hides the dative behind a possessive ('my throat'), so the pronoun is easy to drop."
       ru: "wehtun переворачивает предложение: подлежащее — часть тела (der Hals, der Bauch), глагол согласуется с ней (tut), а тот, у кого болит, уходит в Dativ — mir для ich, ihm для er. Это те же дательные местоимения, что после helfen и gefallen; ничего нового, просто новое место для них. В русском «у меня» / «у него» — родительный с предлогом, поэтому дательное местоимение легко потерять."
+      uk: "wehtun перевертає речення: підмет — частина тіла (der Hals, der Bauch), дієслово узгоджується з нею (tut), а той, у кого болить, іде в Dativ — mir для ich, ihm для er. Це ті самі давальні займенники, що після helfen і gefallen; нічого нового, просто нове місце для них. В українському «у мене» / «у нього» — родовий відмінок із прийменником, тому давальний займенник легко втратити."
 
   - id: cloze-seit-vor
     outcomes: [beschwerden-beschreiben]
@@ -48,13 +54,16 @@ items:
     instruction:
       en: "Fill each gap with seit or vor. Watch the capital letter at the start of a sentence."
       ru: "Вставьте seit или vor. Следите за заглавной буквой в начале предложения."
+      uk: "Вставте seit або vor. Стежте за великою літерою на початку речення."
     text: "Ich habe {{seit}} vier Tagen Husten. {{Vor}} zwei Tagen bin ich zum Arzt gegangen. Meine Frau ist {{seit}} einer Woche krank."
     translation:
       en: "I have had a cough for four days. Two days ago I went to the doctor. My wife has been ill for a week."
       ru: "У меня уже четыре дня кашель. Два дня назад я ходил к врачу. Моя жена болеет уже неделю."
+      uk: "У мене вже чотири дні кашель. Два дні тому я ходив до лікаря. Моя дружина хворіє вже тиждень."
     explain:
       en: "One question decides all three gaps: is it over? The cough started four days ago and is still here today — seit. The visit to the doctor happened once and is finished — vor. The wife fell ill a week ago and is still ill — seit. Both prepositions take the dative, so the forms do not tell them apart: seit vier Tagen and vor zwei Tagen look identical apart from the preposition. Note the plural -n: Tagen, not Tage."
       ru: "Все три пропуска решает один вопрос: закончилось ли это? Кашель начался четыре дня назад и есть до сих пор — seit. Визит к врачу состоялся один раз и уже позади — vor. Жена заболела неделю назад и болеет сейчас — seit. Оба предлога требуют Dativ, поэтому по форме их не различить: seit vier Tagen и vor zwei Tagen отличаются только предлогом. Обратите внимание на -n во множественном числе: Tagen, а не Tage."
+      uk: "Усі три пропуски вирішує одне питання: чи це закінчилося? Кашель почався чотири дні тому і є досі — seit. Візит до лікаря відбувся один раз і вже позаду — vor. Дружина захворіла тиждень тому й хворіє зараз — seit. Обидва прийменники вимагають Dativ, тому за формою їх не розрізнити: seit vier Tagen і vor zwei Tagen відрізняються лише прийменником. Зверніть увагу на -n у множині: Tagen, а не Tage."
 
   - id: cloze-reflexiv
     outcomes: [beschwerden-beschreiben]
@@ -63,13 +72,16 @@ items:
     instruction:
       en: "Fill in the reflexive pronoun: mich, dich or sich."
       ru: "Вставьте возвратное местоимение: mich, dich или sich."
+      uk: "Вставте зворотний займенник: mich, dich або sich."
     text: "Ich fühle {{mich}} heute nicht gut. Mein Mann fühlt {{sich}} auch schlecht. Er ruht {{sich}} im Bett aus."
     translation:
       en: "I do not feel well today. My husband does not feel well either. He is resting in bed."
       ru: "Сегодня я чувствую себя плохо. Мой муж тоже чувствует себя плохо. Он отдыхает в постели."
+      uk: "Сьогодні я почуваюся погано. Мій чоловік теж почувається зле. Він відпочиває в ліжку."
     explain:
       en: "sich fühlen and sich ausruhen carry a reflexive pronoun in the accusative, and it changes with the person: ich → mich, du → dich, er/sie/Sie → sich. It is part of the verb, not an extra word you may leave out — Ich fühle gut would mean you are feeling something with your fingers. In the last sentence ausruhen is separable as well, so the pronoun follows the verb and the prefix aus- waits at the very end."
       ru: "У sich fühlen и sich ausruhen есть возвратное местоимение в Akkusativ, и оно меняется по лицам: ich → mich, du → dich, er/sie/Sie → sich. Это часть глагола, а не лишнее слово: Ich fühle gut означало бы, что вы что-то ощупываете пальцами. В последнем предложении ausruhen ещё и отделяемый, поэтому местоимение идёт сразу за глаголом, а приставка aus- ждёт в самом конце."
+      uk: "У sich fühlen і sich ausruhen є зворотний займенник в Akkusativ, і він змінюється за особами: ich → mich, du → dich, er/sie/Sie → sich. Це частина дієслова, а не зайве слово: Ich fühle gut означало б, що ви щось обмацуєте пальцями. В останньому реченні ausruhen ще й відокремлюване, тому займенник іде одразу за дієсловом, а префікс aus- чекає в самому кінці."
 
   - id: mc-sollten-satzklammer
     outcomes: [ratschlag-geben]
@@ -78,6 +90,7 @@ items:
     instruction:
       en: "The doctor gives you a piece of advice. Which sentence is correct?"
       ru: "Врач даёт вам совет. Какое предложение построено правильно?"
+      uk: "Лікар дає вам пораду. Яке речення побудоване правильно?"
     prompt: "Die Ärztin sagt: „…“"
     options:
       - "Sie sollten viel Wasser trinken."
@@ -87,9 +100,11 @@ items:
     translation:
       en: "The doctor says: 'You should drink a lot of water.'"
       ru: "Врач говорит: «Вам следует много пить»."
+      uk: "Лікарка каже: «Вам слід пити багато води»."
     explain:
       en: "sollten is a modal verb, so it builds the Satzklammer: the conjugated form holds position 2 and the plain infinitive waits at the very end. Everything else — the object, the time, the place — lines up in between. trinken cannot stand next to sollten (option 2), and sollten cannot be pushed to the end (option 3): that word order belongs to a subordinate clause, which is not what this is."
       ru: "sollten — модальный глагол, поэтому он строит Satzklammer: спрягаемая форма стоит на втором месте, а чистый инфинитив ждёт в самом конце. Всё остальное — дополнение, время, место — выстраивается между ними. trinken не может стоять рядом с sollten (вариант 2), и sollten нельзя отправить в конец (вариант 3): такой порядок слов принадлежит придаточному предложению, а это не оно."
+      uk: "sollten — модальне дієслово, тому воно будує Satzklammer: відмінювана форма стоїть на другому місці, а чистий інфінітив чекає в самому кінці. Усе інше — додаток, час, місце — шикується між ними. trinken не може стояти поруч із sollten (варіант 2), і sollten не можна відправити в кінець (варіант 3): такий порядок слів належить підрядному реченню, а це не воно."
 
   - id: mc-du-sie-imperativ
     outcomes: [ratschlag-geben]
@@ -98,6 +113,7 @@ items:
     instruction:
       en: "You are at a new surgery for the first time. What does the doctor say to you?"
       ru: "Вы впервые пришли в новую поликлинику. Что говорит вам врач?"
+      uk: "Ви вперше прийшли до нової поліклініки. Що каже вам лікар?"
     prompt: "Die Ärztin gibt Ihnen ein Rezept: „…“"
     options:
       - "Nehmen Sie die Tabletten dreimal täglich."
@@ -107,9 +123,11 @@ items:
     translation:
       en: "The doctor gives you a prescription: 'Take the tablets three times a day.'"
       ru: "Врач выдаёт вам рецепт: «Принимайте таблетки три раза в день»."
+      uk: "Лікарка видає вам рецепт: «Приймайте таблетки тричі на день»."
     explain:
       en: "A doctor you have never met addresses you with Sie, and the Sie-imperative is the infinitive with Sie behind it: Nehmen Sie … Nimm is the du-form — a doctor would only use it with a child or a close friend — and Nehmt addresses several people you are on du terms with. Register is not decoration here: it tells you who the instruction is meant for, and answering a Sie with a du sounds rude in a surgery."
       ru: "Врач, которого вы видите впервые, обращается к вам на Sie, а императив на Sie — это инфинитив с Sie после него: Nehmen Sie … Форма Nimm — это du: так врач сказал бы ребёнку или близкому другу. Форма Nehmt обращена к нескольким людям, с которыми вы на «ты». Регистр здесь не украшение: он показывает, кому адресовано указание, и ответить на Sie формой du в кабинете звучит невежливо."
+      uk: "Лікар, якого ви бачите вперше, звертається до вас на Sie, а імператив на Sie — це інфінітив із Sie після нього: Nehmen Sie … Форма Nimm — це du: так лікар сказав би дитині або близькому другові. Форма Nehmt звернена до кількох людей, з якими ви на «ти». Регістр тут не прикраса: він показує, кому адресована вказівка, і відповісти на Sie формою du в кабінеті звучить неввічливо."
 
   - id: order-sollten-zu-hause
     outcomes: [ratschlag-geben]
@@ -118,13 +136,16 @@ items:
     instruction:
       en: "Arrange the words into a correct sentence."
       ru: "Составьте правильное предложение."
+      uk: "Складіть правильне речення."
     words: ["Sie", "sollten", "eine", "Woche", "zu", "Hause", "bleiben."]
     translation:
       en: "You should stay at home for a week."
       ru: "Вам следует неделю побыть дома."
+      uk: "Вам слід тиждень побути вдома."
     explain:
       en: "The bracket again: sollten in position 2, bleiben at the very end, and the two pieces of information — how long (eine Woche) and where (zu Hause) — in the middle. Read the finished sentence backwards and you can hear the frame: sollten … bleiben."
       ru: "Снова рамка: sollten на втором месте, bleiben в самом конце, а две части информации — сколько (eine Woche) и где (zu Hause) — в середине. Прочитайте готовое предложение с конца и услышите каркас: sollten … bleiben."
+      uk: "Знову рамка: sollten на другому місці, bleiben у самому кінці, а дві частини інформації — скільки (eine Woche) і де (zu Hause) — посередині. Прочитайте готове речення з кінця — і почуєте каркас: sollten … bleiben."
 
   - id: match-beschwerde-ratschlag
     outcomes: [ratschlag-geben]
@@ -132,6 +153,7 @@ items:
     instruction:
       en: "Match each complaint with the advice that fits it."
       ru: "Соедините каждую жалобу с подходящим советом."
+      uk: "З'єднайте кожну скаргу з порадою, що їй пасує."
     pairs:
       - { left: "Ich habe Fieber.", right: "Bleiben Sie im Bett!" }
       - { left: "Mir tut der Zahn weh.", right: "Gehen Sie zum Zahnarzt!" }
@@ -140,6 +162,7 @@ items:
     explain:
       en: "Every piece of advice on the right is a Sie-imperative — infinitive plus Sie — and that is exactly the shape advice takes in a German surgery. Read the pairs as chunks and reuse them: a complaint (Ich habe … / Mir tut … weh) is answered by an instruction with the verb in first position. Watch the verb that goes with each remedy: tablets and tea you nehmen or trinken, but an ointment you benutzen — you rub it on, you do not take it."
       ru: "Каждый совет справа — это императив на Sie: инфинитив плюс Sie. Именно такую форму принимает совет в немецком кабинете врача. Читайте пары как готовые блоки и переиспользуйте их: на жалобу (Ich habe … / Mir tut … weh) отвечают указанием, где глагол стоит на первом месте. Следите за глаголом при каждом средстве: таблетки принимают (nehmen), чай пьют (trinken), а мазью пользуются — benutzen: её наносят, а не «принимают»."
+      uk: "Кожна порада праворуч — це імператив на Sie: інфінітив плюс Sie. Саме такої форми набуває порада в німецькому кабінеті лікаря. Читайте пари як готові блоки й використовуйте їх повторно: на скаргу (Ich habe … / Mir tut … weh) відповідають вказівкою, де дієслово стоїть на першому місці. Стежте за дієсловом при кожному засобі: таблетки приймають (nehmen), чай п'ють (trinken), а маззю користуються — benutzen: її наносять, а не «приймають»."
 
   - id: uebersetzen-mir-tut-weh
     outcomes: [beschwerden-beschreiben]
@@ -148,14 +171,17 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "My throat hurts."
     prompt_ru: "У меня болит горло."
+    prompt_uk: "У мене болить горло."
     answer: "Mir tut der Hals weh."
     accept: ["Der Hals tut mir weh."]
     key_tokens: ["Mir"]
     explain:
       en: "Build the German sentence around the body part: der Hals is the subject, tut agrees with it, and you — the person who feels it — go into the dative: mir. Mich tut der Hals weh is not German; the dative is what marks the person a feeling happens to, exactly as after helfen or gefallen. Der Hals tut mir weh is the same sentence with the subject in front, and it is just as good."
       ru: "Стройте немецкое предложение вокруг части тела: подлежащее — der Hals, глагол tut согласуется с ним, а вы — тот, кто чувствует боль, — уходите в Dativ: mir. Форма Mich tut der Hals weh невозможна: именно дательный падеж отмечает человека, с которым что-то происходит, — как после helfen или gefallen. Вариант Der Hals tut mir weh — то же предложение с подлежащим впереди, и он ничем не хуже."
+      uk: "Будуйте німецьке речення навколо частини тіла: підмет — der Hals, дієслово tut узгоджується з ним, а ви — той, хто відчуває біль, — ідете в Dativ: mir. Форма Mich tut der Hals weh неможлива: саме давальний відмінок позначає людину, з якою щось відбувається, — як після helfen чи gefallen. Варіант Der Hals tut mir weh — те саме речення з підметом попереду, і він нічим не гірший."
 
   - id: uebersetzen-seit-drei-tagen
     outcomes: [beschwerden-beschreiben]
@@ -164,14 +190,17 @@ items:
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
     prompt_en: "I have had a cough for three days."
     prompt_ru: "У меня уже три дня кашель."
+    prompt_uk: "У мене вже три дні кашель."
     answer: "Ich habe seit drei Tagen Husten."
     accept: ["Seit drei Tagen habe ich Husten."]
     key_tokens: ["seit", "Tagen"]
     explain:
       en: "The cough started three days ago and it is still here, so the preposition is seit — vor would mean the cough is over. seit takes the dative, and a plural noun in the dative adds -n: drei Tagen, not drei Tage. The time phrase may also open the sentence (Seit drei Tagen habe ich Husten), and then habe still holds position 2."
       ru: "Кашель начался три дня назад и никуда не делся, поэтому нужен предлог seit — vor означал бы, что кашель уже прошёл. seit требует Dativ, а существительное во множественном числе в дательном падеже получает -n: drei Tagen, а не drei Tage. Обстоятельство времени может стоять и в начале (Seit drei Tagen habe ich Husten) — тогда habe всё равно остаётся на втором месте."
+      uk: "Кашель почався три дні тому й нікуди не подівся, тому потрібен прийменник seit — vor означав би, що кашель уже минув. seit вимагає Dativ, а іменник у множині в давальному відмінку отримує -n: drei Tagen, а не drei Tage. Обставина часу може стояти й на початку (Seit drei Tagen habe ich Husten) — тоді habe все одно лишається на другому місці."
 
   - id: uebersetzen-imperativ-sie
     outcomes: [ratschlag-geben]
@@ -180,14 +209,17 @@ items:
     instruction:
       en: "You are the pharmacist. Say it to a customer."
       ru: "Вы — аптекарь. Скажите это покупателю."
+      uk: "Ви — аптекар. Скажіть це покупцеві."
     prompt_en: "Take the tablets three times a day."
     prompt_ru: "Принимайте таблетки три раза в день."
+    prompt_uk: "Приймайте таблетки тричі на день."
     answer: "Nehmen Sie die Tabletten dreimal täglich."
     accept: ["Nehmen Sie dreimal täglich die Tabletten."]
     key_tokens: ["Nehmen", "Sie"]
     explain:
       en: "A pharmacist speaks to a customer with Sie, and the Sie-imperative is the plainest form in German: take the infinitive, put it first, put Sie right behind it. Nehmen Sie … Do not drop the pronoun — without Sie the sentence is not a polite command, it is broken. And nehmen keeps its infinitive shape here: the e → i change (nimm) belongs to the du-form only."
       ru: "Аптекарь обращается к покупателю на Sie, а императив на Sie — самая простая форма в немецком: берёте инфинитив, ставите его на первое место, а сразу за ним — Sie. Nehmen Sie … Местоимение опускать нельзя: без Sie это не вежливое указание, а просто ошибка. И nehmen здесь сохраняет форму инфинитива: чередование e → i (nimm) бывает только в форме на du."
+      uk: "Аптекар звертається до покупця на Sie, а імператив на Sie — найпростіша форма в німецькій: берете інфінітив, ставите його на перше місце, а одразу за ним — Sie. Nehmen Sie … Займенник опускати не можна: без Sie це не ввічлива вказівка, а просто помилка. І nehmen тут зберігає форму інфінітива: чергування e → i (nimm) буває лише у формі на du."
 
   - id: hoeren-anweisung-zu-hause
     outcomes: [praxis-anweisungen-verstehen]
@@ -196,10 +228,13 @@ items:
     instruction:
       en: "The doctor gives you an instruction. Listen and type it exactly."
       ru: "Врач даёт вам указание. Прослушайте и запишите его точно."
+      uk: "Лікар дає вам вказівку. Прослухайте й запишіть її точно."
     text: "Bitte bleiben Sie eine Woche zu Hause."
     translation:
       en: "Please stay at home for a week."
       ru: "Пожалуйста, оставайтесь дома неделю."
+      uk: "Будь ласка, залишайтеся вдома тиждень."
     explain:
       en: "bitte may step in front of the imperative — it softens the instruction and changes nothing else. The verb still comes before its pronoun: bleiben Sie. Listen for that Sie: without it you would have written a du-form, and a doctor does not say du to a new patient. Note zu Hause (two words, capital H) — it means at home, while nach Hause means the way there."
       ru: "Слово bitte может встать перед императивом — оно смягчает указание и больше ничего не меняет. Глагол по-прежнему стоит перед своим местоимением: bleiben Sie. Вслушайтесь именно в это Sie: без него получилась бы форма на du, а врач не говорит новому пациенту «ты». Обратите внимание на zu Hause (два слова, с заглавной H) — это «дома», тогда как nach Hause значит «домой»."
+      uk: "Слово bitte може стати перед імперативом — воно пом'якшує вказівку й більше нічого не змінює. Дієслово, як і раніше, стоїть перед своїм займенником: bleiben Sie. Вслухайтеся саме в це Sie: без нього вийшла б форма на du, а лікар не каже новому пацієнтові «ти». Зверніть увагу на zu Hause (два слова, з великої H) — це «вдома», тоді як nach Hause означає «додому»."

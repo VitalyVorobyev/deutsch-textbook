@@ -4,6 +4,7 @@ stimulus: a2/reisen-zugausfall
 title:
   en: "Mission — the direct train is cancelled"
   ru: "Задача — прямой поезд отменён"
+  uk: "Завдання — прямий потяг скасовано"
 items:
   - id: dokument-schnellste-verbindung
     outcomes: [verbindung-waehlen]
@@ -11,6 +12,7 @@ items:
     instruction:
       en: "Keep the board open. You want to arrive as early as possible. Which connection do you take?"
       ru: "Не закрывайте табло. Вы хотите приехать как можно раньше. Какой маршрут вы выберете?"
+      uk: "Не закривайте табло. Ви хочете приїхати якомога раніше. Який маршрут ви виберете?"
     prompt: "Welche Alternative bringt Sie am frühesten nach Hamburg?"
     options:
       - "RE 8 und ICE 610 über Bremen."
@@ -20,9 +22,11 @@ items:
     translation:
       en: "Which alternative gets you to Hamburg earliest?"
       ru: "С каким альтернативным маршрутом вы приедете в Гамбург раньше всего?"
+      uk: "З яким альтернативним маршрутом ви приїдете до Гамбурга найраніше?"
     explain:
       en: "Alternative 1 arrives at 14:02; alternative 2 arrives at 14:21. ICE 772 is not an option because it is cancelled. The fastest usable connection is therefore the RE to Bremen followed by ICE 610."
       ru: "Первый маршрут прибывает в 14:02, второй — в 14:21. ICE 772 выбрать нельзя: он отменён. Значит, самый быстрый реальный маршрут — RE до Бремена, затем ICE 610."
+      uk: "Перший маршрут прибуває о 14:02, другий — о 14:21. ICE 772 вибрати не можна: його скасовано. Отже, найшвидший реальний маршрут — RE до Бремена, далі ICE 610."
 
   - id: dokument-erklaeren
     outcomes: [reise-problem-loesen, verbindung-waehlen]
@@ -31,8 +35,10 @@ items:
     instruction:
       en: "Explain your decision to the person travelling with you. Translate into German."
       ru: "Объясните решение своему спутнику. Переведите на немецкий."
+      uk: "Поясніть рішення своєму супутнику. Перекладіть німецькою."
     prompt_en: "Our direct train is cancelled. We leave from platform four and change in Bremen."
     prompt_ru: "Наш прямой поезд отменён. Мы отправляемся с четвёртого пути и пересаживаемся в Бремене."
+    prompt_uk: "Наш прямий потяг скасовано. Ми відправляємося з четвертої колії та пересідаємо в Бремені."
     answer: "Unser direkter Zug fällt aus. Wir fahren von Gleis vier ab und steigen in Bremen um."
     accept:
       - "Unser direkter Zug fällt aus. Von Gleis vier fahren wir ab und in Bremen steigen wir um."
@@ -40,6 +46,7 @@ items:
     explain:
       en: "The board gives the facts, but you must build the response. ausfallen, abfahren and umsteigen are separable: the conjugated stem takes position 2 and the prefix closes its clause."
       ru: "Табло даёт факты, но реплику нужно построить самому. ausfallen, abfahren и umsteigen — отделяемые глаголы: спрягаемая часть стоит на втором месте, приставка замыкает свою часть предложения."
+      uk: "Табло дає факти, але репліку треба побудувати самому. ausfallen, abfahren і umsteigen — відокремлювані дієслова: відмінювана частина стоїть на другому місці, префікс замикає свою частину речення."
 
   - id: dokument-nachricht
     outcomes: [verbindung-waehlen, reise-berichten]
@@ -47,24 +54,31 @@ items:
     prompt:
       en: "Write a message to the person meeting you in Hamburg. Use the board, but do not copy its lines."
       ru: "Напишите тому, кто встречает вас в Гамбурге. Используйте табло, но не переписывайте его строки."
+      uk: "Напишіть тому, хто зустрічає вас у Гамбурзі. Використовуйте табло, але не переписуйте його рядки."
     goal:
       en: "Explain the cancellation, name the new route and give the new arrival time."
       ru: "Сообщите об отмене, назовите новый маршрут и новое время прибытия."
+      uk: "Повідомте про скасування, назвіть новий маршрут і новий час прибуття."
     requirements:
       - en: "Report the cancellation in the Perfekt or present: Der Zug ist ausgefallen / fällt aus."
         ru: "Сообщите об отмене в Perfekt или Präsens: Der Zug ist ausgefallen / fällt aus."
+        uk: "Повідомте про скасування в Perfekt або Präsens: Der Zug ist ausgefallen / fällt aus."
       - en: "Say that you change in Bremen and name the departure platform."
         ru: "Скажите, что пересаживаетесь в Бремене, и назовите путь отправления."
+        uk: "Скажіть, що пересідаєте в Бремені, і назвіть колію відправлення."
       - en: "Give the new arrival time, 14:02."
         ru: "Назовите новое время прибытия — 14:02."
+        uk: "Назвіть новий час прибуття — 14:02."
     min_words: 25
     model_answer: "Hallo Mia! Mein direkter Zug nach Hamburg ist leider ausgefallen. Ich fahre jetzt um elf Uhr fünfunddreißig von Gleis vier nach Bremen. Dort steige ich in den ICE 610 um. Ich komme um vierzehn Uhr zwei in Hamburg an. Bis später!"
     model_translation:
       en: "Hi Mia! Unfortunately my direct train to Hamburg was cancelled. I am now travelling to Bremen at 11:35 from platform four. There I change to ICE 610. I arrive in Hamburg at 14:02. See you later!"
       ru: "Привет, Миа! Мой прямой поезд на Гамбург, к сожалению, отменили. Теперь я еду в 11:35 с четвёртого пути до Бремена. Там пересаживаюсь на ICE 610. В Гамбург приезжаю в 14:02. До встречи!"
+      uk: "Привіт, Міа! Мій прямий потяг на Гамбург, на жаль, скасували. Тепер я їду об 11:35 з четвертої колії до Бремена. Там пересідаю на ICE 610. До Гамбурга приїжджаю о 14:02. До зустрічі!"
     explain:
       en: "The document supplies the facts, while the message must connect them for another person: problem, chosen action, change and arrival. Compare each requirement before revising; copying the board alone does not complete the communicative task."
       ru: "Документ даёт факты, а сообщение должно связать их для другого человека: проблема, выбранное действие, пересадка и прибытие. Перед исправлением проверьте каждый пункт; простое переписывание табло коммуникативную задачу не решает."
+      uk: "Документ дає факти, а повідомлення має зв'язати їх для іншої людини: проблема, вибрана дія, пересадка та прибуття. Перед виправленням перевірте кожен пункт; просте переписування табло комунікативного завдання не розв'язує."
 
   - id: dokument-am-schalter
     outcomes: [reise-problem-loesen]
@@ -73,20 +87,27 @@ items:
     prompt:
       en: "At the counter, confirm that your ticket is valid and ask where you have to change. Answer aloud using the board."
       ru: "У кассы уточните, действует ли ваш билет, и спросите, где пересаживаться. Ответьте вслух, используя табло."
+      uk: "Біля каси уточніть, чи дійсний ваш квиток, і запитайте, де пересідати. Відповідайте вголос, використовуючи табло."
     goal:
       en: "Explain which alternative you chose and ask the two questions you still need answered."
       ru: "Объясните, какой маршрут вы выбрали, и задайте два оставшихся вопроса."
+      uk: "Поясніть, який маршрут ви вибрали, і поставте два питання, що залишилися."
     checklist:
       - en: "I named the RE 8 and the departure platform."
         ru: "Я назвал(а) RE 8 и путь отправления."
+        uk: "Я назвав (назвала) RE 8 і колію відправлення."
       - en: "I asked whether my ticket is valid."
         ru: "Я спросил(а), действует ли мой билет."
+        uk: "Я запитав (запитала), чи дійсний мій квиток."
       - en: "I asked where I have to change."
         ru: "Я спросил(а), где нужно пересаживаться."
+        uk: "Я запитав (запитала), де потрібно пересідати."
     model_answer: "Ich möchte den RE 8 von Gleis vier nehmen. Gilt meine Fahrkarte für diese Verbindung? Und wo muss ich umsteigen?"
     model_translation:
       en: "I would like to take RE 8 from platform four. Is my ticket valid for this connection? And where do I have to change?"
       ru: "Я хотел(а) бы поехать на RE 8 с четвёртого пути. Мой билет действует на этот маршрут? И где мне нужно пересаживаться?"
+      uk: "Я хотів (хотіла) би поїхати на RE 8 з четвертої колії. Чи дійсний мій квиток на цей маршрут? І де мені потрібно пересідати?"
     explain:
       en: "A useful counter turn separates what the board already tells you from what it does not. Name your selected train, then ask about ticket validity and the change; these questions move the journey forward."
       ru: "Полезная реплика у кассы отделяет сведения с табло от того, чего на нём нет. Назовите выбранный поезд, затем спросите про действие билета и пересадку — именно эти вопросы помогают продолжить поездку."
+      uk: "Корисна репліка біля каси відділяє відомості з табло від того, чого на ньому немає. Назвіть вибраний потяг, потім запитайте про дію квитка та пересадку — саме ці питання допомагають продовжити поїздку."

@@ -3,27 +3,31 @@ title_de: "Herr Orlow verschiebt seinen Termin"
 text:
   - >-
     Herr Orlow hat am Donnerstag um 9 Uhr einen Termin bei Dr. Weber. Aber
-    es gibt ein Problem: Die [[Heizung::heating::отопление]] in seiner
-    Wohnung [[ist kaputt::is broken::не работает, сломалось]], und der
-    Techniker kommt genau am Donnerstagvormittag.
+    es gibt ein Problem: Die [[Heizung::heating::отопление::опалення]] in
+    seiner Wohnung [[ist kaputt::is broken::не работает, сломалось::не
+    працює, зламалося]], und der Techniker kommt genau am
+    Donnerstagvormittag.
   - >-
     Deshalb ruft er am Mittwoch in der
-    [[Arztpraxis::doctor's practice::приёмная врача]] an. „Guten Tag, mein
-    Name ist Orlow. Ich habe morgen um 9 Uhr einen Termin, aber ich kann
-    leider nicht kommen. Können wir den Termin [[verschieben::to move to
-    another time::перенести на другое время]]?“
+    [[Arztpraxis::doctor's practice::приёмная врача::приймальня лікаря]] an.
+    „Guten Tag, mein Name ist Orlow. Ich habe morgen um 9 Uhr einen Termin,
+    aber ich kann leider nicht kommen. Können wir den Termin
+    [[verschieben::to move to another time::перенести на другое
+    время::перенести на інший час]]?“
   - >-
     Die [[Mitarbeiterin::employee (here: the receptionist)::сотрудница (здесь:
-    регистратор)]] schaut in den Kalender. „Kein Problem. Ist es
-    [[dringend::urgent::срочно]]?“ — „Nein, gar nicht.“ — „Passt es Ihnen
-    am Dienstag um 14 Uhr?“ — „Ja, das passt mir sehr gut.“
+    регистратор)::співробітниця (тут: реєстраторка)]] schaut in den Kalender.
+    „Kein Problem. Ist es [[dringend::urgent::срочно::терміново]]?“ — „Nein,
+    gar nicht.“ — „Passt es Ihnen am Dienstag um 14 Uhr?“ — „Ja, das passt
+    mir sehr gut.“
   - >-
     Sie [[trägt den neuen Termin ein::writes the new appointment
-    in the calendar::записывает новый приём в календарь]]. „Dann bis Dienstag!
-    Bitte bringen Sie Ihre [[Versichertenkarte::health insurance card::карта
-    медицинского страхования]] mit.“ — „Mache ich. Vielen Dank und
-    [[auf Wiederhören::goodbye (only on the phone)::до свидания (только по
-    телефону)]]!“
+    in the calendar::записывает новый приём в календарь::записує новий прийом
+    у календар]]. „Dann bis Dienstag! Bitte bringen Sie Ihre
+    [[Versichertenkarte::health insurance card::карта медицинского
+    страхования::картка медичного страхування]] mit.“ — „Mache ich. Vielen
+    Dank und [[auf Wiederhören::goodbye (only on the phone)::до свидания
+    (только по телефону)::до побачення (лише по телефону)]]!“
 questions:
   - id: frage-warum
     outcomes: [termine-zeit-verstehen]
@@ -37,9 +41,11 @@ questions:
     translation:
       en: Why can't Mr Orlov go to the doctor on Thursday?
       ru: Почему господин Орлов не может пойти к врачу в четверг?
+      uk: Чому пан Орлов не може піти до лікаря в четвер?
     explain:
       en: "The heating in his flat is broken, so the technician is coming on Thursday morning — exactly when the appointment was. The text says nothing about illness or a closed practice."
       ru: "У него дома не работает отопление, поэтому в четверг утром придёт техник — как раз тогда, когда назначен приём. Про болезнь или закрытую практику в тексте ничего нет."
+      uk: "У нього вдома не працює опалення, тому в четвер уранці прийде технік — саме тоді, коли призначено прийом. Про хворобу чи зачинену практику в тексті нічого немає."
   - id: frage-mittwoch
     outcomes: [termine-zeit-verstehen]
     type: mc
@@ -52,9 +58,11 @@ questions:
     translation:
       en: What does Mr Orlov do on Wednesday?
       ru: Что делает господин Орлов в среду?
+      uk: Що робить пан Орлов у середу?
     explain:
       en: "He calls the practice and moves the appointment (verschieben) — he does not cancel it (absagen). Moving keeps the appointment, cancelling removes it."
       ru: "Он звонит в приёмную и переносит приём (verschieben), а не отменяет его (absagen). При переносе запись сохраняется, при отмене — исчезает."
+      uk: "Він телефонує до приймальні і переносить прийом (verschieben), а не скасовує його (absagen). При перенесенні запис зберігається, при скасуванні — зникає."
   - id: frage-neuer-termin
     outcomes: [termine-zeit-verstehen]
     type: mc
@@ -67,6 +75,8 @@ questions:
     translation:
       en: When is the new appointment?
       ru: Когда новый приём?
+      uk: Коли новий прийом?
     explain:
       en: "The receptionist offers Tuesday at 2 p.m. — „Passt es Ihnen am Dienstag um 14 Uhr?“ — and Mr Orlov agrees. Thursday at 9 was the old appointment."
       ru: "Сотрудница предлагает вторник, 14 часов — „Passt es Ihnen am Dienstag um 14 Uhr?“ — и господин Орлов соглашается. Четверг, 9 часов — это старый приём."
+      uk: "Співробітниця пропонує вівторок, 14 годину — „Passt es Ihnen am Dienstag um 14 Uhr?“ — і пан Орлов погоджується. Четвер, 9 година — це старий прийом."

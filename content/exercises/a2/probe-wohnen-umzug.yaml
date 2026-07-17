@@ -3,6 +3,7 @@ role: probe
 title:
   en: "Probe — Wo? or Wohin?"
   ru: "Проверка — Wo? или Wohin?"
+  uk: "Перевірка — Wo? чи Wohin?"
 
 # Three PARALLEL variants of ONE competence: choosing the case after a two-way
 # preposition — Dativ for a position (Wo?), Akkusativ for a direction (Wohin?).
@@ -23,13 +24,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "Tom is hanging the calendar above the door."
     prompt_ru: "Том вешает календарь над дверью."
+    prompt_uk: "Том вішає календар над дверима."
     answer: "Tom hängt den Kalender über die Tür."
     key_tokens: ["die"]
     explain:
       en: "Tom is doing the hanging, so the calendar is on its way to a new place: Wohin? → accusative → über die Tür. über der Tür would say that the calendar is already up there and nobody is touching it. The verb form gives no help at all — hängen looks the same in both halves of the pair, so the article carries the entire meaning. den Kalender is accusative for a different reason: it is the object Tom moves."
       ru: "Вешает Том — значит календарь перемещается на новое место: Wohin? → Akkusativ → über die Tür. Форма über der Tür сказала бы, что календарь уже висит и никто его не трогает. Здесь особая ловушка: по-русски «над дверью» — творительный падеж, и о направлении он не сообщает ничего. А глагол не поможет тем более: hängen в обеих половинах пары выглядит одинаково, так что весь смысл несёт артикль. Обратите внимание: den Kalender — тоже Akkusativ, но по другой причине: это дополнение, предмет, который Том перемещает."
+      uk: "Вішає Том — отже календар переміщується на нове місце: Wohin? → Akkusativ → über die Tür. Форма über der Tür сказала б, що календар уже висить і ніхто його не торкається. Тут особлива пастка: українською «над дверима» — орудний відмінок, і про напрямок він не повідомляє нічого. А дієслово не допоможе тим паче: hängen в обох половинах пари виглядає однаково, тож увесь зміст несе артикль. Зверніть увагу: den Kalender — теж Akkusativ, але з іншої причини: це додаток, предмет, який Том переміщує."
 
   - id: variant-b
     outcomes: [wo-wohin-position]
@@ -38,13 +42,16 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The newspaper is lying on the chair. I am putting it on the table."
     prompt_ru: "Газета лежит на стуле. Я кладу её на стол."
+    prompt_uk: "Газета лежить на стільці. Я кладу її на стіл."
     answer: "Die Zeitung liegt auf dem Stuhl. Ich lege sie auf den Tisch."
     key_tokens: ["dem", "den"]
     explain:
       en: "The same preposition twice, and it decides nothing: auf takes the dative in the first sentence and the accusative in the second, because only the question changes. The newspaper lies somewhere — Wo? → auf dem Stuhl. Then it travels to a new place — Wohin? → auf den Tisch. The verb is the giveaway English does not have: liegen is where something is, legen is where you send it, and the article has to follow that choice. der Stuhl → dem, der Tisch → den — both masculine, so both forms are visible."
       ru: "Один и тот же предлог дважды — и сам по себе он не решает ничего: auf требует Dativ в первом предложении и Akkusativ во втором, потому что меняется только вопрос. Газета где-то лежит: Wo? → auf dem Stuhl. Потом она перемещается на новое место: Wohin? → auf den Tisch. По-русски разница тоже есть («на стуле» — «на стол»), и это редкий случай, когда родной язык помогает: сверяйтесь с ним. Подсказывает и глагол: liegen — где предмет находится, legen — куда его отправляют. Оба существительных мужского рода, поэтому обе формы видны: der Stuhl → dem, der Tisch → den."
+      uk: "Один і той самий прийменник двічі — і сам по собі він не вирішує нічого: auf вимагає Dativ у першому реченні й Akkusativ у другому, бо змінюється лише питання. Газета десь лежить: Wo? → auf dem Stuhl. Потім вона переміщується на нове місце: Wohin? → auf den Tisch. Українською різниця теж є («на стільці» — «на стіл»), і це рідкісний випадок, коли рідна мова допомагає: звіряйтеся з нею. Підказує й дієслово: liegen — де предмет перебуває, legen — куди його відправляють. Обидва іменники чоловічого роду, тому обидві форми видно: der Stuhl → dem, der Tisch → den."
 
   - id: variant-c
     outcomes: [wo-wohin-position]
@@ -53,10 +60,13 @@ items:
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
     prompt_en: "The bikes are standing in front of the house."
     prompt_ru: "Велосипеды стоят перед домом."
+    prompt_uk: "Велосипеди стоять перед будинком."
     answer: "Die Fahrräder stehen vor dem Haus."
     key_tokens: ["dem"]
     explain:
       en: "Nothing moves: the bikes are simply somewhere, so vor answers Wo? and takes the dative — das Haus → vor dem Haus. vor das Haus would need somebody pushing them there (Tom stellt die Fahrräder vor das Haus). And stehen is the position verb, so the sentence has no object at all — that is the second clue that the dative is right."
       ru: "Движения нет: велосипеды просто где-то находятся, поэтому vor отвечает на вопрос Wo? и требует Dativ — das Haus → vor dem Haus. Форма vor das Haus потребовала бы того, кто их туда ставит (Tom stellt die Fahrräder vor das Haus). И глагол stehen — глагол положения, у него нет дополнения: это вторая подсказка в пользу дательного падежа."
+      uk: "Руху немає: велосипеди просто десь перебувають, тому vor відповідає на питання Wo? і вимагає Dativ — das Haus → vor dem Haus. Форма vor das Haus потребувала б того, хто їх туди ставить (Tom stellt die Fahrräder vor das Haus). І дієслово stehen — дієслово положення, у нього немає додатка: це друга підказка на користь давального відмінка."
