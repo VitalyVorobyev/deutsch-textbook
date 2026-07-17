@@ -89,7 +89,10 @@ letter/parity checks and a review before merge.
 - **Wave 3 — `done` 2026-07-16**: the A1 residue — the eleven unowned A1 completion decks
   (341 entries), `checkpoint-a1`, `reference-data/pronominal-adverbs`; Über 87/266. A1 is
   fully Ukrainian except `atlas.yaml`, which counts only when its A2 nodes translate.
-- Wave 4+ — `todo`: A2 in ~4–5 waves.
+- **Wave 4 — `done` 2026-07-17**: the first four A2 spine topics — dativ, trennbare-verben,
+  alltag-tagesablauf, modalverben — 42 files incl. their atlas outcomes; Über 128/266.
+- Waves 5–7 — `todo`: the remaining thirteen A2 topics, then the A2 completion decks and the
+  atlas.yaml residue.
 - ~~Known instrument gap~~ — closed 2026-07-16: match rights may be `{en, ru, uk?}` records
   (schema + `Match.tsx` + parity visibility); `a2/modalverben.yaml`'s slash-hack migrated, and a
   repo sweep found no other non-German right side. The A2 waves are unblocked.
