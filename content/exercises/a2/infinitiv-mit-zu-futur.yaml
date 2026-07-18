@@ -74,9 +74,9 @@ items:
       ru: "Завтра я еду в Берлин."
       uk: "Завтра я їду до Берліна."
     explain:
-      en: "Option 2 is correct German and nobody would say it here — with morgen already in the sentence, the present tense carries the future on its own, and that is what a German speaker uses for a plan. Futur I is kept for predictions and promises, where it adds something. Option 3 puts a participle where an infinitive belongs, and option 4 leaves the subject in front of the verb after a fronted time phrase."
-      ru: "Второй вариант — правильный немецкий, и здесь так никто не скажет: раз в предложении уже есть morgen, будущее несёт само настоящее время, и именно так носитель говорит о плане. Futur I остаётся для прогнозов и обещаний, где он что-то добавляет. В третьем варианте вместо инфинитива стоит причастие, а в четвёртом подлежащее осталось перед глаголом после вынесенного вперёд обстоятельства времени."
-      uk: "Другий варіант — правильна німецька, і тут так ніхто не скаже: якщо в реченні вже є morgen, майбутнє несе сам теперішній час, і саме так носій говорить про план. Futur I залишається для прогнозів та обіцянок, де він щось додає. У третьому варіанті замість інфінітива стоїть дієприкметник, а в четвертому підмет залишився перед дієсловом після винесеної вперед обставини часу."
+      en: "Options 1 and 2 are both correct German, and the question is which sounds most natural for simply fixing a plan. With morgen already in the sentence the present tense carries the future on its own, so option 1 is what a German speaker reaches for; option 2 is not an error, it just adds emphasis the situation does not call for. Options 3 and 4 are genuinely wrong — a participle where an infinitive belongs, and the subject left in front of the verb after a fronted time phrase."
+      ru: "Первый и второй варианты — оба правильный немецкий, и вопрос в том, какой звучит естественнее, когда нужно просто зафиксировать план. Раз в предложении уже есть morgen, будущее несёт само настоящее время, поэтому носитель возьмёт первый; второй не ошибка — он лишь добавляет нажим, которого ситуация не требует. А третий и четвёртый неверны по-настоящему: причастие вместо инфинитива и подлежащее перед глаголом после вынесенного вперёд обстоятельства времени."
+      uk: "Перший і другий варіанти — обидва правильна німецька, і питання в тому, який звучить природніше, коли треба просто зафіксувати план. Якщо в реченні вже є morgen, майбутнє несе сам теперішній час, тому носій візьме перший; другий не помилка — він лише додає натиск, якого ситуація не вимагає. А третій і четвертий хибні по-справжньому: дієприкметник замість інфінітива і підмет перед дієсловом після винесеної вперед обставини часу."
 
   - id: uebersetzen-versprechen-futur
     outcomes: [zukunft-werden]
@@ -90,6 +90,11 @@ items:
     prompt_ru: "Обещаю: я позвоню тебе завтра."
     prompt_uk: "Обіцяю: я зателефоную тобі завтра."
     answer: "Ich verspreche es: Ich werde dich morgen anrufen."
+    # The promise frame is scaffolding, not the target — es, dir and the bare verb are
+    # all ordinary German, and only the Futur I bracket after the colon is graded.
+    accept:
+      - "Ich verspreche dir: Ich werde dich morgen anrufen."
+      - "Ich verspreche: Ich werde dich morgen anrufen."
     key_tokens: ["werde", "anrufen"]
     explain:
       en: "Both ends of the bracket are graded, because both are where it breaks: werde second, anrufen last and whole. A promise is one of the places Futur I earns its keep — it is not just information about tomorrow, it is a commitment, and the tense marks that."

@@ -57,7 +57,7 @@ items:
     outcomes: [beschwerden-beschreiben]
     type: mc
     focus: reflexiv-dativ
-    prompt: "Welcher Satz ist richtig?"
+    prompt: "Alle vier sind verständlich. Welcher Satz ist der normale deutsche Satz?"
     options:
       - "Ich wasche mir vor dem Essen die Hände."
       - "Ich wasche meine Hände vor dem Essen."
@@ -69,9 +69,9 @@ items:
       ru: "Я мою руки перед едой."
       uk: "Я мию руки перед їжею."
     explain:
-      en: "Option 2 is the English sentence translated word for word, and it is the mistake an English speaker makes every time: English marks the owner with my, German marks it with the dative pronoun and then uses a plain die. Option 3 keeps the accusative even though die Hände is already the object, and option 4 does the job twice over — mir and meine both say whose hands they are, and German only says it once."
-      ru: "Второй вариант — английское предложение, переведённое слово в слово, и это ошибка, которую англоговорящий делает всякий раз: английский обозначает владельца словом my, а немецкий — дательным местоимением, после которого идёт обычное die. В третьем варианте оставлен винительный, хотя дополнением уже служит die Hände, а в четвёртом работа сделана дважды: и mir, и meine говорят, чьи это руки, а немецкий говорит это один раз."
-      uk: "Другий варіант — англійське речення, перекладене слово в слово, і це помилка, яку англомовний робить щоразу: англійська позначає власника словом my, а німецька — давальним займенником, після якого йде звичайне die. У третьому варіанті залишено знахідний, хоча додатком уже є die Hände, а в четвертому роботу зроблено двічі: і mir, і meine кажуть, чиї це руки, а німецька каже це один раз."
+      en: "Option 2 is not ungrammatical — it is the English sentence translated word for word, and a German would understand it and would use that shape themselves to stress ownership (meine Hände, nicht deine). It is simply not how the everyday sentence is built: English marks the owner with my, German marks it with the dative pronoun and then uses a plain die. Options 3 and 4 are the real errors — 3 keeps the accusative even though die Hände is already the object, and 4 says whose hands they are twice over, with mir and meine both doing a job German does once."
+      ru: "Второй вариант не безграмотен: это английское предложение, переведённое слово в слово, немец его поймёт и сам скажет так, если нужно подчеркнуть принадлежность (meine Hände, nicht deine). Просто обиходная фраза строится иначе: английский обозначает владельца словом my, а немецкий — дательным местоимением, после которого идёт обычное die. По-настоящему неверны третий и четвёртый: в третьем оставлен винительный, хотя дополнением уже служит die Hände, а в четвёртом работа сделана дважды — и mir, и meine говорят, чьи это руки, а немецкий говорит это один раз."
+      uk: "Другий варіант не безграмотний: це англійське речення, перекладене слово в слово, німець його зрозуміє і сам скаже так, якщо треба підкреслити належність (meine Hände, nicht deine). Просто побутова фраза будується інакше: англійська позначає власника словом my, а німецька — давальним займенником, після якого йде звичайне die. По-справжньому хибні третій і четвертий: у третьому залишено знахідний, хоча додатком уже є die Hände, а в четвертому роботу зроблено двічі — і mir, і meine кажуть, чиї це руки, а німецька каже це один раз."
 
   - id: uebersetzen-zaehne-putzen
     outcomes: [beschwerden-beschreiben]
