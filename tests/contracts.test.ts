@@ -47,10 +47,14 @@ describe('scoring and curriculum contracts', () => {
     }
   });
 
-  test('the learner-led module is the seventeenth A2 topic in its required position', () => {
+  // The length assertion is a tripwire, not a fact worth preserving: it makes any
+  // insertion into the A2 spine a deliberate, reviewed act rather than a silent one.
+  // Update it together with the unit you added. What the test actually protects is
+  // the learner-led module's neighbours and its frozen outcome ids.
+  test('the learner-led module keeps its required position in the A2 spine', () => {
     const curriculum = getCurriculum();
     const a2 = curriculum.spine.filter((id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2');
-    expect(a2).toHaveLength(17);
+    expect(a2).toHaveLength(18);
     const position = a2.indexOf('verben-mit-praepositionen');
     expect(a2[position - 1]).toBe('gesundheit-arzttermin');
     expect(a2[position + 1]).toBe('arbeit-beruf');

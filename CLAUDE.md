@@ -163,6 +163,9 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `stellen-stehen` | the placement/position verb pairs: stellen/stehen, legen/liegen, hängen |
 | `komparativ-als` | comparison with *als*, incl. the irregulars (gut → besser, gern → lieber, viel → mehr) |
 | `superlativ-am` | the superlative *am …-sten* |
+| `adjektiv-praedikativ` | an adjective after *sein/werden/bleiben* takes **no** ending (❌ Das Zimmer ist kleines) |
+| `adjektiv-bestimmt` | adjective endings after *der/die/das/dieser*: **-e** in the five nominative-singular and feminine/neuter-accusative boxes, **-en** everywhere else |
+| `adjektiv-unbestimmt` | adjective endings after *ein/kein/mein*, where the adjective supplies the gender the article hides (ein neu**er** Tisch, ein neu**es** Bett) |
 | `imperativ-form` | imperative forms for du, ihr and Sie (Nimm …, Nehmt …, Nehmen Sie …) |
 | `seit-vor-zeit` | *seit* + Dativ (since/for — still true) vs *vor* + Dativ (ago — finished) |
 | `reflexiv-akkusativ` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |

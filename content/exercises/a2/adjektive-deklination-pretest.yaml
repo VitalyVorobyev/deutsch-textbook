@@ -1,0 +1,42 @@
+topic: adjektive-deklination
+role: pretest
+title:
+  en: "Before we start — adjective endings"
+  ru: "Перед началом — окончания прилагательных"
+  uk: "Перед початком — закінчення прикметників"
+items:
+  - id: pretest-praedikativ
+    outcomes: [adjektiv-beschreiben]
+    type: mc
+    focus: adjektiv-praedikativ
+    prompt: "Die Wohnung ist ___."
+    options: ["hell", "helle", "hellen", "helles"]
+    correct: 0
+    explain:
+      en: "After sein the adjective takes no ending at all, in any gender and any number."
+      ru: "После sein прилагательное не получает окончания вообще — ни в одном роде, ни в одном числе."
+      uk: "Після sein прикметник не отримує закінчення взагалі — у жодному роді, у жодному числі."
+
+  - id: pretest-bestimmt
+    outcomes: [adjektiv-beschreiben]
+    type: mc
+    focus: adjektiv-bestimmt
+    prompt: "Ich kenne den ___ Kollegen schon."
+    options: ["neuen", "neue", "neuer", "neues"]
+    correct: 0
+    explain:
+      en: "den marks the masculine accusative, and outside the nominative singular the ending after a definite article is -en."
+      ru: "den отмечает винительный падеж мужского рода, а вне именительного единственного окончание после определённого артикля — -en."
+      uk: "den позначає знахідний відмінок чоловічого роду, а поза називним однини закінчення після означеного артикля — -en."
+
+  - id: pretest-unbestimmt
+    outcomes: [adjektiv-wunsch-sagen]
+    type: mc
+    focus: adjektiv-unbestimmt
+    prompt: "Das ist ein ___ Problem."
+    options: ["großes", "große", "großer", "großen"]
+    correct: 0
+    explain:
+      en: "Problem is neuter and ein does not show that, so the adjective takes over the marker: -es."
+      ru: "Problem — среднего рода, а ein этого не показывает, поэтому признак берёт на себя прилагательное: -es."
+      uk: "Problem — середнього роду, а ein цього не показує, тому ознаку бере на себе прикметник: -es."

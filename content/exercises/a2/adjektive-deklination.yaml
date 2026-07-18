@@ -1,0 +1,197 @@
+topic: adjektive-deklination
+role: practice
+title:
+  en: "Practice — adjective endings before the noun"
+  ru: "Практика — окончания прилагательных перед существительным"
+  uk: "Практика — закінчення прикметників перед іменником"
+items:
+  - id: table-bestimmter-artikel
+    outcomes: [adjektiv-beschreiben]
+    type: table
+    focus: adjektiv-bestimmt
+    title: "Nach der / die / das"
+    instruction:
+      en: "Fill in the adjective with its ending. Write the whole phrase, article included."
+      ru: "Впишите прилагательное с окончанием. Пишите всю группу целиком, вместе с артиклем."
+      uk: "Впишіть прикметник із закінченням. Пишіть усю групу цілком, разом з артиклем."
+    columns: ["Nominativ", "Akkusativ", "Dativ"]
+    rows:
+      - label: "maskulin — der Tisch (neu)"
+        cells:
+          - { answer: "der neue Tisch", given: true }
+          - { answer: "den neuen Tisch" }
+          - { answer: "dem neuen Tisch" }
+      - label: "feminin — die Lampe (klein)"
+        cells:
+          - { answer: "die kleine Lampe" }
+          - { answer: "die kleine Lampe" }
+          - { answer: "der kleinen Lampe" }
+      - label: "neutral — das Bett (groß)"
+        cells:
+          - { answer: "das große Bett" }
+          - { answer: "das große Bett" }
+          - { answer: "dem großen Bett" }
+      - label: "Plural — die Stühle (alt)"
+        cells:
+          - { answer: "die alten Stühle" }
+          - { answer: "die alten Stühle" }
+          - { answer: "den alten Stühlen" }
+    explain:
+      en: "Two endings, and one of them does most of the work. -e appears in exactly five places: the nominative singular of all three genders, plus the accusative of feminine and neuter. Everywhere else — the whole dative, the masculine accusative, the whole plural — the ending is -en. Notice that feminine and neuter look the same in the nominative and the accusative, which is why those two columns repeat: it is the masculine that changes case visibly, here and everywhere else in German."
+      ru: "Два окончания, и одно из них делает бо́льшую часть работы. -e стоит ровно в пяти местах: именительный падеж единственного числа во всех трёх родах плюс винительный женского и среднего. Везде остальное — весь дательный, винительный мужского, всё множественное — окончание -en. Обратите внимание: женский и средний род в именительном и винительном выглядят одинаково, поэтому эти два столбца повторяются. Видимо меняет падеж именно мужской род — здесь, как и везде в немецком."
+      uk: "Два закінчення, і одне з них робить більшу частину роботи. -e стоїть рівно в п'ятьох місцях: називний відмінок однини в усіх трьох родах плюс знахідний жіночого й середнього. Усе решта — увесь давальний, знахідний чоловічого, уся множина — закінчення -en. Зверніть увагу: жіночий і середній рід у називному та знахідному виглядають однаково, тому ці два стовпці повторюються. Видимо змінює відмінок саме чоловічий рід — тут, як і всюди в німецькій."
+
+  - id: cloze-praedikativ-oder-attributiv
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-praedikativ
+    instruction:
+      en: "The same adjective twice in each pair — once after ist, once before the noun. Only one of the two takes an ending."
+      ru: "Одно и то же прилагательное дважды в каждой паре: один раз после ist, один раз перед существительным. Окончание получает только одно из двух."
+      uk: "Той самий прикметник двічі в кожній парі: один раз після ist, один раз перед іменником. Закінчення отримує лише одне з двох."
+    text: "Die Wohnung ist {{hell}}. Wir suchen eine {{helle}} Wohnung. Der Tisch ist {{alt}}. Ich verkaufe den {{alten}} Tisch."
+    translation:
+      en: "The flat is bright. We are looking for a bright flat. The table is old. I am selling the old table."
+      ru: "Квартира светлая. Мы ищем светлую квартиру. Стол старый. Я продаю старый стол."
+      uk: "Квартира світла. Ми шукаємо світлу квартиру. Стіл старий. Я продаю старий стіл."
+    explain:
+      en: "After ist the adjective is the predicate and stays completely bare — hell, alt, for every gender and every number. In front of the noun it has joined the noun phrase, and there an ending is compulsory: helle after eine (feminine accusative), alten after den (masculine accusative). The test is mechanical: if you can say ist in front of the adjective, take the ending off."
+      ru: "После ist прилагательное — сказуемое, и оно стоит совершенно голым: hell, alt, для любого рода и любого числа. Перед существительным оно вошло в именную группу, и там окончание обязательно: helle после eine (винительный женского), alten после den (винительный мужского). Проверка механическая: если перед прилагательным можно сказать ist, окончание надо снять. Русский здесь подсказывает неверно — «квартира светлая» окончание сохраняет."
+      uk: "Після ist прикметник — присудок, і він стоїть цілком голим: hell, alt, для будь-якого роду й будь-якого числа. Перед іменником він увійшов до іменної групи, і там закінчення обов'язкове: helle після eine (знахідний жіночого), alten після den (знахідний чоловічого). Перевірка механічна: якщо перед прикметником можна сказати ist, закінчення треба зняти. Українська тут підказує невірно — «квартира світла» закінчення зберігає."
+
+  - id: mc-ein-neuer-tisch
+    outcomes: [adjektiv-wunsch-sagen]
+    type: mc
+    focus: adjektiv-unbestimmt
+    prompt: "___ Tisch kostet 200 Euro."
+    options: ["Ein neuer", "Ein neue", "Ein neues", "Einen neuen"]
+    correct: 0
+    translation:
+      en: "A new table costs 200 euros."
+      ru: "Новый стол стоит 200 евро."
+      uk: "Новий стіл коштує 200 євро."
+    explain:
+      en: "Tisch is masculine and it is the subject, so this is the masculine nominative — and that is exactly the box where ein cannot help. Compare der Tisch, which announces the gender openly: ein does not, so the adjective supplies the missing -er. That is the whole logic of the ein-table. Einen neuen would be the accusative, which a subject cannot be."
+      ru: "Tisch — мужского рода и здесь подлежащее, значит это именительный падеж мужского рода — ровно та клетка, где ein не помогает. Сравните der Tisch: этот артикль род называет открыто, а ein — нет, поэтому недостающее -er берёт на себя прилагательное. В этом вся логика таблицы с ein. Вариант einen neuen — винительный падеж, а подлежащее в нём стоять не может."
+      uk: "Tisch — чоловічого роду і тут підмет, отже це називний відмінок чоловічого роду — саме та клітинка, де ein не допомагає. Порівняйте der Tisch: цей артикль рід називає відкрито, а ein — ні, тому відсутнє -er бере на себе прикметник. У цьому вся логіка таблиці з ein. Варіант einen neuen — знахідний відмінок, а підмет у ньому стояти не може."
+
+  - id: cloze-der-artikel-hat-es-gesagt
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-bestimmt
+    instruction:
+      en: "After der, die, das the article has already marked the case. Add the adjective ending."
+      ru: "После der, die, das артикль уже отметил падеж. Добавьте окончание прилагательного."
+      uk: "Після der, die, das артикль уже позначив відмінок. Додайте закінчення прикметника."
+    text: "Der {{neue}} Kollege heißt Tobias. Ich habe den {{neuen}} Kollegen schon getroffen. Mit dem {{neuen}} Kollegen arbeite ich seit Montag."
+    translation:
+      en: "The new colleague is called Tobias. I have already met the new colleague. I have been working with the new colleague since Monday."
+      ru: "Нового коллегу зовут Тобиас. Я уже познакомился с новым коллегой. С новым коллегой я работаю с понедельника."
+      uk: "Нового колегу звати Тобіас. Я вже познайомився з новим колегою. З новим колегою я працюю з понеділка."
+    explain:
+      en: "One noun, three cases, and the ending moves only once. Nominative der → neue. Then accusative den and dative dem both take neuen — because outside the five -e boxes everything is -en. This is why the der-table is worth holding as a shape rather than a list: after the nominative singular, the answer is almost always -en."
+      ru: "Одно существительное, три падежа, а окончание меняется лишь однажды. Именительный der → neue. Дальше винительный den и дательный dem оба дают neuen: за пределами пяти клеток с -e всё остальное — -en. Именно поэтому таблицу с der удобнее держать как форму, а не как список: после именительного единственного ответ почти всегда -en."
+      uk: "Один іменник, три відмінки, а закінчення змінюється лише один раз. Називний der → neue. Далі знахідний den і давальний dem обидва дають neuen: поза межами п'ятьох клітинок з -e все інше — -en. Саме тому таблицю з der зручніше тримати як форму, а не як список: після називного однини відповідь майже завжди -en."
+
+  - id: cloze-ein-springt-ein
+    outcomes: [adjektiv-wunsch-sagen]
+    type: cloze
+    focus: adjektiv-unbestimmt
+    instruction:
+      en: "After ein, kein and mein the adjective sometimes has to show the gender itself."
+      ru: "После ein, kein и mein прилагательному иногда приходится самому показывать род."
+      uk: "Після ein, kein і mein прикметникові іноді доводиться самому показувати рід."
+    text: "Das ist ein {{großes}} Problem. Ich habe ein {{kleines}} Zimmer. Mein {{älterer}} Bruder wohnt in Köln. Wir haben keine {{freien}} Termine mehr."
+    translation:
+      en: "That is a big problem. I have a small room. My older brother lives in Cologne. We have no free appointments left."
+      ru: "Это большая проблема. У меня маленькая комната. Мой старший брат живёт в Кёльне. Свободных приёмов у нас больше нет."
+      uk: "Це велика проблема. У мене маленька кімната. Мій старший брат живе в Кельні. Вільних прийомів у нас більше немає."
+    explain:
+      en: "Problem and Zimmer are neuter, and ein hides that, so the adjective shows it: -es. Bruder is masculine nominative, the other blind box: -er. The plural is different — keine already marks it clearly, so the adjective falls back to the default -en, exactly as after die. Three of these four gaps are the only endings where the ein-table and the der-table disagree at all."
+      ru: "Problem и Zimmer — среднего рода, а ein это скрывает, поэтому род показывает прилагательное: -es. Bruder — мужской род, именительный падеж, вторая «слепая» клетка: -er. Множественное число устроено иначе: keine отмечает его ясно, и прилагательное возвращается к обычному -en, ровно как после die. Три из этих четырёх пропусков — единственные окончания, где таблицы с ein и с der вообще расходятся."
+      uk: "Problem і Zimmer — середнього роду, а ein це приховує, тому рід показує прикметник: -es. Bruder — чоловічий рід, називний відмінок, друга «сліпа» клітинка: -er. Множина влаштована інакше: keine позначає її ясно, і прикметник повертається до звичайного -en, рівно як після die. Три з цих чотирьох пропусків — єдині закінчення, де таблиці з ein і з der узагалі розходяться."
+
+  - id: order-wohnungsanzeige
+    outcomes: [adjektiv-anzeige-verstehen]
+    type: order
+    focus: adjektiv-unbestimmt
+    instruction:
+      en: "Put the sentence from a flat listing in order."
+      ru: "Составьте предложение из объявления о квартире."
+      uk: "Складіть речення з оголошення про квартиру."
+    words: ["Wir", "vermieten", "eine", "helle", "Wohnung", "mit", "einem", "kleinen", "Balkon"]
+    translation:
+      en: "We are letting a bright flat with a small balcony."
+      ru: "Сдаём светлую квартиру с маленьким балконом."
+      uk: "Здаємо світлу квартиру з маленьким балконом."
+    explain:
+      en: "Two noun phrases, two different jobs. eine helle Wohnung is the accusative object of vermieten; feminine accusative takes -e. einem kleinen Balkon follows mit, which always governs the dative, and the dative is -en everywhere. Once you know the case, the ending follows automatically — which is why case practice and adjective practice are really the same practice."
+      ru: "Две именные группы, две разные роли. eine helle Wohnung — винительное дополнение при vermieten; винительный женского рода даёт -e. einem kleinen Balkon стоит после mit, а mit всегда требует дательного, и в дательном везде -en. Как только падеж известен, окончание следует автоматически — поэтому отработка падежей и отработка прилагательных на деле одно и то же."
+      uk: "Дві іменні групи, дві різні ролі. eine helle Wohnung — знахідний додаток при vermieten; знахідний жіночого роду дає -e. einem kleinen Balkon стоїть після mit, а mit завжди вимагає давального, і в давальному всюди -en. Щойно відмінок відомий, закінчення випливає автоматично — тому відпрацювання відмінків і відпрацювання прикметників насправді одне й те саме."
+
+  # key_tokens pins the adjective, and for this topic that is not optional. "neue"
+  # for "neuer" is a single edit, so without the pin the scorer would forgive it as
+  # a spelling slip and mark the attempt correct — the exact error this lesson
+  # exists to catch would become invisible. `teuer` is deliberately NOT pinned: it
+  # is predicative and the adjektiv-unbestimmt tag is not about it.
+  - id: translate-neuer-tisch
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-unbestimmt
+    prompt_en: "A new table is expensive."
+    prompt_ru: "Новый стол стоит дорого."
+    prompt_uk: "Новий стіл коштує дорого."
+    answer: "Ein neuer Tisch ist teuer."
+    key_tokens: ["neuer"]
+    explain:
+      en: "Two adjectives, two opposite treatments in one short sentence. neuer stands in front of Tisch and must show the masculine nominative that ein leaves unmarked. teuer stands after ist and takes nothing at all. Getting one right and the other wrong is the normal way this sentence fails."
+      ru: "Два прилагательных и два противоположных решения в одном коротком предложении. neuer стоит перед Tisch и обязано показать мужской именительный, который ein не отмечает. teuer стоит после ist и не получает ничего. Обычная ошибка здесь — сделать верно одно и неверно другое."
+      uk: "Два прикметники й два протилежні рішення в одному короткому реченні. neuer стоїть перед Tisch і мусить показати чоловічий називний, який ein не позначає. teuer стоїть після ist і не отримує нічого. Звична помилка тут — зробити правильно одне й неправильно інше."
+
+  - id: translate-der-neue-kollege
+    outcomes: [adjektiv-beschreiben]
+    type: translate
+    focus: adjektiv-bestimmt
+    prompt_en: "The new colleague is very friendly."
+    prompt_ru: "Новый коллега очень приветливый."
+    prompt_uk: "Новий колега дуже привітний."
+    answer: "Der neue Kollege ist sehr freundlich."
+    key_tokens: ["neue"]
+    explain:
+      en: "der has already said masculine nominative, so the adjective needs nothing more than the light -e. And freundlich, sitting after ist, stays bare. Note that Kollege ends in -n in every case except this one (den Kollegen, dem Kollegen) — it is an n-Nomen, which is worth recognising but is not what this item grades."
+      ru: "der уже сказал: мужской род, именительный падеж — поэтому прилагательному хватает лёгкого -e. А freundlich стоит после ist и остаётся голым. Заметьте: Kollege во всех падежах, кроме этого, оканчивается на -n (den Kollegen, dem Kollegen) — это n-Nomen; знать это полезно, но данное задание проверяет не его."
+      uk: "der уже сказав: чоловічий рід, називний відмінок — тому прикметникові вистачає легкого -e. А freundlich стоїть після ist і залишається голим. Зауважте: Kollege в усіх відмінках, крім цього, закінчується на -n (den Kollegen, dem Kollegen) — це n-Nomen; знати це корисно, але це завдання перевіряє не його."
+
+  - id: listen-diktat-zimmer
+    outcomes: [adjektiv-beschreiben]
+    type: listen
+    focus: adjektiv-bestimmt
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите то, что услышали."
+      uk: "Прослухайте і напишіть те, що почули."
+    text: "Wir haben die alten Fenster repariert."
+    translation:
+      en: "We repaired the old windows."
+      ru: "Мы отремонтировали старые окна."
+      uk: "Ми відремонтували старі вікна."
+    explain:
+      en: "The plural is -en after every article: die alten Fenster. A written -e here would be the commonest plural slip, and it is audible — alten and alte do not sound the same."
+      ru: "Множественное число после любого артикля даёт -en: die alten Fenster. Написать здесь -e — самая частая ошибка во множественном, и она слышна: alten и alte звучат по-разному."
+      uk: "Множина після будь-якого артикля дає -en: die alten Fenster. Написати тут -e — найчастіша помилка в множині, і вона чутна: alten і alte звучать по-різному."
+
+  - id: mc-dativ-immer-en
+    outcomes: [adjektiv-wunsch-sagen]
+    type: mc
+    focus: adjektiv-bestimmt
+    prompt: "Ich fahre mit ___ Zug."
+    options: ["dem schnellen", "dem schnelle", "den schnellen", "der schnelle"]
+    correct: 0
+    translation:
+      en: "I take the fast train."
+      ru: "Я еду скорым поездом."
+      uk: "Я їду швидким потягом."
+    explain:
+      en: "mit always governs the dative, Zug is masculine, so the article is dem — and the dative takes -en in every gender and in the plural, without a single exception. If you can identify the case, this box needs no memorisation at all."
+      ru: "mit всегда требует дательного, Zug — мужского рода, поэтому артикль dem, а дательный даёт -en во всех родах и во множественном числе, без единого исключения. Если падеж определён, эту клетку заучивать вообще не нужно."
+      uk: "mit завжди вимагає давального, Zug — чоловічого роду, тому артикль dem, а давальний дає -en в усіх родах і в множині, без жодного винятку. Якщо відмінок визначено, цю клітинку заучувати взагалі не потрібно."
