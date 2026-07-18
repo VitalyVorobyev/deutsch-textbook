@@ -12,13 +12,13 @@ named high-risk findings but did not yet justify marking every unaffected row co
 
 | Manifest point | QA result | Ruling |
 | --- | --- | --- |
-| `praeteritum` | pending full pass | Verify scope, models, accepted variants and translations. |
+| `praeteritum` | corrected | Neutral productive register guidance replaces universal bans; regional variation and grammatical Perfekt alternatives are explicit. |
 | `dativ-artikel` | pending full pass | Verify article and plural-noun forms across the dense dative cluster. |
 | `dativ-pronomen` | pending full pass | Verify pronoun selection and case contrasts. |
 | `dativ-verben` | pending full pass | Verify that governed dative is taught lexically, not inferred from translation. |
 | `dativ-praepositionen` | pending full pass | Verify fixed government, contractions and cross-topic reuse. |
 | `wechselpraepositionen` | pending full pass | Verify location vs directed change without a static/motion shortcut. |
-| `seit-vor` | pending full pass | Verify ongoing duration vs completed distance-in-time. |
+| `seit-vor` | corrected | `vor` locates a past event/point; `seit` marks a starting point or duration continuing to the reference time. |
 | `komparativ` | pending full pass | Verify productive forms, irregular models and natural comparisons. |
 | `superlativ` | pending full pass | Verify the productive `am …-sten` scope and spelling variants. |
 | `adjektiv-praedikativ` | pending full pass | Verify predicative models stay uninflected. |
@@ -81,6 +81,26 @@ Corrections so far:
 - repaired reading feedback that inferred facts not licensed by the source text;
 - clarified that dative roles are governed by constructions, verbs and prepositions rather than a
   universal “indirect object” meaning.
+
+### 2026-07-18 — past-time narration cluster (complete)
+
+Checked `biografie-erfahrungen.mdx`, its pretest, practice, production, reading and probe family,
+all health-unit `seit-vor-zeit` items and probes, and the corresponding A2 checkpoint items.
+
+Corrections:
+
+- turned “Perfekt for everything except *sein*, *haben* and modals” into explicit neutral A2
+  production guidance, with register and regional variation kept receptive;
+- removed false claims that grammatical forms such as *ich bin gewesen* or *ich habe gehabt* are
+  things German speakers do not say;
+- corrected modal-Perfekt feedback to show the standard replacement infinitive
+  (*ich habe … fahren können*) when a modal governs another verb;
+- defined *vor* as locating a past event or point rather than asserting that all consequences are
+  finished;
+- defined *seit* through a starting point or duration continuing to the reference time, and removed
+  the false shortcut that tense alone selects *seit* or *vor*;
+- repaired the same rules in the checkpoint so high-stakes review no longer contradicts the
+  lessons.
 
 Future findings append a dated note and update the row; the ledger is not replaced by the grammar
 coverage percentage.
