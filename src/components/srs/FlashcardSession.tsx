@@ -50,11 +50,12 @@ interface SessionStats {
   again: number;
 }
 
+// Two-button grading: recall failed vs. recalled. FSRS still receives valid
+// Grades; the noisier Hard/Easy self-ratings are dropped — and on the typed
+// production direction the objective verdict already pre-selects Good/Again.
 const GRADE_BUTTONS: Array<{ grade: Grade; label: StringKey; cls: string }> = [
   { grade: Rating.Again, label: 'grade.again', cls: 'bg-red-600 hover:bg-red-700' },
-  { grade: Rating.Hard, label: 'grade.hard', cls: 'bg-orange-500 hover:bg-orange-600' },
   { grade: Rating.Good, label: 'grade.good', cls: 'bg-green-600 hover:bg-green-700' },
-  { grade: Rating.Easy, label: 'grade.easy', cls: 'bg-sky-600 hover:bg-sky-700' },
 ];
 
 const UMLAUT_KEYS = ['ä', 'ö', 'ü', 'ß'];
@@ -152,13 +153,14 @@ export default function FlashcardSession({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card?.id, listening, verdict === null]);
 
-  // Keyboard grading once the back side is visible: 1–4 pick a grade,
+  // Keyboard grading once the back side is visible: number keys pick a grade
+  // (bounded to GRADE_BUTTONS so 3/4 don't index past the array),
   // Enter confirms the suggested grade (typed mode only).
   useEffect(() => {
     if (!answered) return;
     const onKey = (ev: KeyboardEvent) => {
       if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
-      if (ev.key >= '1' && ev.key <= '4') {
+      if (ev.key >= '1' && ev.key <= String(GRADE_BUTTONS.length)) {
         ev.preventDefault();
         void grade(GRADE_BUTTONS[Number(ev.key) - 1].grade);
       } else if (ev.key === 'Enter' && verdict !== null) {
@@ -319,7 +321,7 @@ export default function FlashcardSession({
       </div>
       {withSuggestion && (
         <p className="mt-3 text-[11px] text-stone-400">
-          ↵ {suggested === Rating.Good ? t('grade.good', uiLang) : t('grade.again', uiLang)} · 1–4
+          ↵ {suggested === Rating.Good ? t('grade.good', uiLang) : t('grade.again', uiLang)} · 1–2
         </p>
       )}
     </>
