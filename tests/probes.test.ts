@@ -44,6 +44,39 @@ function attempt(over: Partial<Attempt> & { setId: string; ts: number }): Attemp
 
 const practised = attempt({ setId: 'a1/akkusativ', ts: T0 });
 
+describe('a topic with two probe families arms them separately', () => {
+  // The set-level fallback names the whole topic, so with two families on one topic it
+  // would arm both the moment either structure was practised — and a probe would come
+  // due for material never studied. Real case: verbindungen-folgen teaches inversion
+  // and als/wenn, with one family each.
+  const sets = [
+    { setId: 'a2/t', topicId: 't', role: 'practice', items: [
+      { id: 'i1', outcomes: ['one'] },
+      { id: 'i2', outcomes: ['two'] },
+    ] },
+    { setId: 'a2/probe-t-one', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['one'] }] },
+    { setId: 'a2/probe-t-two', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['two'] }] },
+  ];
+
+  test('neither family falls back to the whole topic', () => {
+    for (const f of probeFamilies(sets)) expect(f.armingSetIds).toEqual([]);
+  });
+
+  test('practising one structure arms only its own family', () => {
+    const [one, two] = probeFamilies(sets);
+    const didOne = attempt({ setId: 'a2/t', ts: T0, outcomes: ['one'] });
+    expect(armedAt(one, [didOne])).toBe(T0);
+    expect(armedAt(two, [didOne])).toBeUndefined();
+  });
+
+  test('a single-family topic keeps the set-level fallback for outcome-less attempts', () => {
+    const solo = probeFamilies(sets.slice(0, 2))[0]; // only probe sets become families
+    expect(solo.armingSetIds).toEqual(['a2/t']);
+    const legacy = attempt({ setId: 'a2/t', ts: T0, outcomes: undefined });
+    expect(armedAt(solo, [legacy])).toBe(T0);
+  });
+});
+
 describe('arming — practice starts the retention clock', () => {
   test('an outcome never practised is never probed', () => {
     expect(armedAt(family, [])).toBeUndefined();
