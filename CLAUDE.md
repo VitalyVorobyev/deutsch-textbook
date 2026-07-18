@@ -181,6 +181,8 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `um-zu-zweck` | purpose is the two-ended frame *um … zu*, never *für* + infinitive and never *um* alone |
 | `konjunktionaladverb-inversion` | *deshalb*, *deswegen*, *trotzdem*, *dann*, *schließlich* are **adverbs**: they fill position 1, so the verb comes second (❌ *Deshalb ich komme*) |
 | `als-wenn-vergangenheit` | past *when*: **als** for a single occasion, **wenn** for a repeated one — neither EN nor RU marks the difference |
+| `indefinitpronomen` | *man* is a subject German cannot omit and takes the *er*-form; *jemand*/*niemand*/*etwas*/*nichts* carry their own negation, so no second negative joins them |
+| `genitiv-eigenname` | possession is name + **-s** with no apostrophe (*Annas Auto*) — everything else is **von + Dativ** |
 | `relativpronomen-kasus` | the relative pronoun takes its gender/number from the noun outside but its **case from the role inside** its own clause (*der Mann, **den** ich kenne*) |
 | `aber-sondern` | *sondern* only after a negation, replacing what was denied (Nicht am Freitag, **sondern** am Samstag) — elsewhere it is *aber* |
 | `praeteritum-sein-haben` | *war*, *hatte* and the modal Präteritum — the past German actually speaks, where Perfekt is not used |

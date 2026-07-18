@@ -1,0 +1,52 @@
+topic: man-und-besitz
+role: probe
+title:
+  en: "Delayed check — man in a rule"
+  ru: "Отложенная проверка — man в правиле"
+  uk: "Відкладена перевірка — man у правилі"
+# One of this topic's two families: whether an impersonal rule gets the subject
+# German requires and the er-form that goes with it. Possession is probed by
+# probe-man-und-besitz-genitiv.
+items:
+  - id: probe-man-rauchen
+    outcomes: [regeln-mit-man]
+    type: translate
+    focus: indefinitpronomen
+    prompt_en: "You are not allowed to smoke here."
+    prompt_ru: "Здесь нельзя курить."
+    prompt_uk: "Тут не можна курити."
+    answer: "Hier darf man nicht rauchen."
+    accept: ["Man darf hier nicht rauchen."]
+    key_tokens: ["man"]
+    explain:
+      en: "Neither source names a subject, and German needs one: man fills the slot."
+      ru: "Ни одно исходное предложение подлежащего не называет, а немецкому оно нужно: место занимает man."
+      uk: "Жодне вихідне речення підмета не називає, а німецькій він потрібен: місце займає man."
+
+  - id: probe-man-anmelden
+    outcomes: [regeln-mit-man]
+    type: translate
+    focus: indefinitpronomen
+    prompt_en: "In Austria people have lunch at twelve."
+    prompt_ru: "В Австрии обедают в двенадцать."
+    prompt_uk: "В Австрії обідають о дванадцятій."
+    answer: "In Österreich isst man um zwölf zu Mittag."
+    key_tokens: ["man", "isst"]
+    explain:
+      en: "A custom rather than a rule, and it takes the same shape. isst is graded too, because man is a third-person subject and essen changes its vowel there."
+      ru: "Обычай, а не правило, но форма та же. Проверяется и isst: man — подлежащее третьего лица, а essen там меняет гласную."
+      uk: "Звичай, а не правило, але форма та сама. Перевіряється й isst: man — підмет третьої особи, а essen там змінює голосну."
+
+  - id: probe-man-warten
+    outcomes: [regeln-mit-man]
+    type: translate
+    focus: indefinitpronomen
+    prompt_en: "At the doctor's you often have to wait a long time."
+    prompt_ru: "У врача часто приходится долго ждать."
+    prompt_uk: "У лікаря часто доводиться довго чекати."
+    answer: "Beim Arzt muss man oft lange warten."
+    key_tokens: ["man"]
+    explain:
+      en: "Another subjectless source, another slot that German fills with man — this time after a fronted prepositional phrase, so it lands behind the verb."
+      ru: "Ещё одно исходное предложение без подлежащего и ещё одно место, которое немецкий заполняет словом man, — на этот раз после вынесенного вперёд предложного оборота, поэтому оно встаёт за глаголом."
+      uk: "Ще одне вихідне речення без підмета і ще одне місце, яке німецька заповнює словом man, — цього разу після винесеного вперед прийменникового звороту, тому воно стає за дієсловом."

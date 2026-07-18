@@ -1,0 +1,70 @@
+topic: man-und-besitz
+kind: intensive
+title_de: "Der Garten, der allen gehört"
+text:
+  - >-
+    Hinter dem Haus in der Lindenstraße liegt ein Garten. Er gehört niemandem
+    allein: zwölf Familien teilen ihn sich. Man kann dort Gemüse
+    [[anbauen::to grow (plants)::выращивать::вирощувати]], aber man muss sich zuerst bei
+    Frau Özdemir anmelden.
+  - >-
+    Die Regeln stehen an der Tür. Nach zwanzig Uhr soll man leise sein.
+    [[Werkzeug::tools::инструменты::інструменти]] darf man
+    [[ausleihen::to borrow::брать на время::брати на час]], aber man bringt es am selben Tag
+    zurück. „Am Anfang hat das nicht [[geklappt::worked out::получалось::виходило]]“, sagt
+    Frau Özdemir. „Jemand hat immer etwas mitgenommen und nichts zurückgebracht.“
+  - >-
+    Deswegen gibt es jetzt eine Liste. Darauf schreibt man seinen Namen. Seitdem
+    [[fehlt::is missing::пропадает::зникає]] fast nichts mehr. Die Schaufel von Familie
+    Weber ist trotzdem [[verschwunden::disappeared::исчезла::зникла]] — aber das war vor
+    drei Jahren.
+  - >-
+    Am schönsten ist es im Juni. Dann sitzt man abends draußen, und die Kinder
+    spielen zwischen den [[Beeten::beds (in a garden)::грядки::грядки]]. Marek aus dem
+    dritten Stock bringt oft seine Gitarre mit. „Mareks Musik gehört inzwischen
+    [[dazu::is part of it::к этому::до цього]]“, sagt Frau Özdemir.
+questions:
+  - id: q-wem-gehoert-garten
+    type: mc
+    outcomes: [besitz-ausdruecken]
+    prompt: "Wem gehört der Garten?"
+    options:
+      - "Niemandem allein — zwölf Familien teilen ihn sich."
+      - "Frau Özdemir."
+      - "Familie Weber."
+      - "Marek aus dem dritten Stock."
+    correct: 0
+    explain:
+      en: "Er gehört niemandem allein — and note the form: gehören takes the dative, so niemand becomes niemandem. Frau Özdemir only keeps the list, and the Webers appear because of a shovel."
+      ru: "Er gehört niemandem allein — и обратите внимание на форму: gehören требует дательного, поэтому niemand становится niemandem. Госпожа Оздемир только ведёт список, а семья Вебер появляется из-за лопаты."
+      uk: "Er gehört niemandem allein — і зверніть увагу на форму: gehören вимагає давального, тому niemand стає niemandem. Пані Оздемір лише веде список, а родина Вебер з'являється через лопату."
+
+  - id: q-was-muss-man-zuerst
+    type: mc
+    outcomes: [regeln-mit-man]
+    prompt: "Was muss man tun, bevor man im Garten Gemüse anbaut?"
+    options:
+      - "Man muss sich bei Frau Özdemir anmelden."
+      - "Man muss zwölf Euro bezahlen."
+      - "Man muss eine Schaufel mitbringen."
+      - "Man muss auf der Liste unterschreiben."
+    correct: 0
+    explain:
+      en: "man muss sich zuerst bei Frau Özdemir anmelden. The list in the third paragraph is for borrowing tools, not for joining — a nearby fact attached to the wrong question is what the distractors are made of."
+      ru: "man muss sich zuerst bei Frau Özdemir anmelden. Список из третьего абзаца нужен для инструментов, а не для вступления: неверные варианты как раз и собраны из соседних фактов, отнесённых не к тому вопросу."
+      uk: "man muss sich zuerst bei Frau Özdemir anmelden. Список із третього абзацу потрібен для інструментів, а не для вступу: невірні варіанти якраз і зібрані з сусідніх фактів, віднесених не до того питання."
+
+  - id: q-warum-liste
+    type: mc
+    outcomes: [unbestimmt-sprechen]
+    prompt: "Warum gibt es jetzt eine Liste?"
+    options:
+      - "Weil jemand Werkzeug mitgenommen und nichts zurückgebracht hat."
+      - "Weil die Familien zu laut waren."
+      - "Weil Frau Özdemir es so wollte."
+      - "Weil die Schaufel von Familie Weber verschwunden ist."
+    correct: 0
+    explain:
+      en: "Jemand hat immer etwas mitgenommen und nichts zurückgebracht — three indefinite words in one sentence, and each does a different job: jemand is a person nobody identified, etwas is an unnamed thing, nichts is the absence of one. The shovel is a tempting answer because it is also missing, but the text dates it to three years ago and marks it off with trotzdem."
+      ru: "Jemand hat immer etwas mitgenommen und nichts zurückgebracht — три неопределённых слова в одной фразе, и каждое делает своё: jemand — человек, которого никто не опознал, etwas — неназванная вещь, nichts — её отсутствие. Лопата соблазняет, потому что тоже пропала, но текст относит её к событиям трёхлетней давности и отделяет словом trotzdem."
+      uk: "Jemand hat immer etwas mitgenommen und nichts zurückgebracht — три неозначені слова в одній фразі, і кожне робить своє: jemand — людина, яку ніхто не впізнав, etwas — неназвана річ, nichts — її відсутність. Лопата спокушає, бо теж зникла, але текст відносить її до подій трирічної давнини і відокремлює словом trotzdem."

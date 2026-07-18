@@ -1026,6 +1026,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         'als-wenn-vergangenheit': 'verbindungen-folgen',
         'futur-werden': 'infinitiv-mit-zu',
         'reflexiv-dativ': 'gesundheit-arzttermin',
+        'indefinitpronomen': 'man-und-besitz',
+        'genitiv-eigenname': 'man-und-besitz',
         'aber-sondern': 'freunde-feste',
         'praeteritum-sein-haben': 'biografie-erfahrungen',
         'indirekte-frage': 'lernen-verstehen',

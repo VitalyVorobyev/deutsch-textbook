@@ -1,0 +1,54 @@
+topic: man-und-besitz
+role: pretest
+title:
+  en: "Before we start — man and whose it is"
+  ru: "Перед началом — man и чьё это"
+  uk: "Перед початком — man і чиє це"
+items:
+  - id: pretest-man-verbform
+    outcomes: [regeln-mit-man]
+    type: mc
+    focus: indefinitpronomen
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Hier darf man nicht parken."
+      - "Hier man darf nicht parken."
+      - "Hier darf man nicht parkst."
+      - "Hier darf nicht parken."
+    correct: 0
+    explain:
+      en: "man is an ordinary subject, so after the fronted Hier it goes behind the verb, and it takes the er-form. The last option leaves the subject out altogether, which German never does."
+      ru: "man — обычное подлежащее, поэтому после вынесенного вперёд Hier оно идёт за глаголом, а форма глагола при нём как при er. В последнем варианте подлежащего нет вовсе, а немецкий так не строит предложений."
+      uk: "man — звичайний підмет, тому після винесеного вперед Hier воно йде за дієсловом, а форма дієслова при ньому як при er. В останньому варіанті підмета немає зовсім, а німецька так речень не будує."
+
+  - id: pretest-apostroph
+    outcomes: [besitz-ausdruecken]
+    type: mc
+    focus: genitiv-eigenname
+    prompt: "Welche Schreibweise ist richtig?"
+    options:
+      - "Annas Auto"
+      - "Anna's Auto"
+      - "Anna Auto"
+      - "Auto von Anna's"
+    correct: 0
+    explain:
+      en: "German writes the -s straight onto the name, with no apostrophe: Annas Auto."
+      ru: "Немецкий пишет -s прямо на имени, без апострофа: Annas Auto."
+      uk: "Німецька пише -s прямо на імені, без апострофа: Annas Auto."
+
+  - id: pretest-von-dativ
+    outcomes: [besitz-ausdruecken]
+    type: mc
+    focus: genitiv-eigenname
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Das ist das Auto von meinem Bruder."
+      - "Das ist das Auto meinem Bruders."
+      - "Das ist mein Bruders Auto."
+      - "Das ist das Auto von mein Bruder."
+    correct: 0
+    explain:
+      en: "The owner is not a bare name, so -s is not available and von + Dativ takes over — and von governs the dative, so it is meinem, not mein."
+      ru: "Владелец здесь не голое имя, поэтому путь через -s закрыт и работает von + Dativ, а von требует дательного: meinem, а не mein."
+      uk: "Власник тут не голе ім'я, тому шлях через -s закритий і працює von + Dativ, а von вимагає давального: meinem, а не mein."
