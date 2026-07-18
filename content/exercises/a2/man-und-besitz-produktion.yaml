@@ -24,6 +24,10 @@ items:
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
+    instruction:
+      en: "Use the name with -s (not von)."
+      ru: "Используйте имя с -s (не von)."
+      uk: "Використайте ім'я з -s (не von)."
     prompt_en: "That is Anna's bike."
     prompt_ru: "Это велосипед Анны."
     prompt_uk: "Це велосипед Анни."
@@ -141,7 +145,11 @@ items:
       uk: "Перечитайте свій текст, дивлячись лише на дієслова після man: усі вони мають стояти у формі er — muss, darf, kann, bringt, stellt, — і ніколи у формі du, хоч би як підказувало англійське you. Потім перевірте два способи сказати, чиє це: у von Familie Weber перед прізвищем стоїть артикль, тому потрібен von, а Herrn Bergers Platz — голе ім'я, і воно бере -s. Обидва випадки у зразку стоять навмисно."
 
   - id: speak-regeln-erklaeren
-    outcomes: [unbestimmt-sprechen]
+    # regeln-mit-man, not unbestimmt-sprechen: this task is an oral explanation of rules
+    # built on man, and it is the only speaking attempt the topic produces. Tagging it with
+    # the indefinite-pronoun outcome would have given a writing outcome unrelated spoken
+    # evidence while the spoken-production outcome got none.
+    outcomes: [regeln-mit-man]
     type: speak
     mode: spoken-interaction
     prompt:
