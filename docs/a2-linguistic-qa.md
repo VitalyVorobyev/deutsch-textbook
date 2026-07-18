@@ -1,7 +1,7 @@
 # A2 linguistic QA ledger
 
-Status: **systematic corpus verification in progress**. The targeted findings from 2026-07-18 are
-closed; unmarked points are being re-read across the full artifact set before sign-off.
+Status: **19/30 manifest points signed off; systematic corpus verification in progress**. The
+remaining 11 points are being re-read across the full artifact set before sign-off.
 
 This ledger will become the linguistic sign-off that structural coverage cannot provide. `30/30` means
 every manifest point has teaching evidence; it does not mean that explanations are exception-safe,
@@ -13,17 +13,17 @@ named high-risk findings but did not yet justify marking every unaffected row co
 | Manifest point | QA result | Ruling |
 | --- | --- | --- |
 | `praeteritum` | corrected | Neutral productive register guidance replaces universal bans; regional variation and grammatical Perfekt alternatives are explicit. |
-| `dativ-artikel` | pending full pass | Verify article and plural-noun forms across the dense dative cluster. |
-| `dativ-pronomen` | pending full pass | Verify pronoun selection and case contrasts. |
-| `dativ-verben` | pending full pass | Verify that governed dative is taught lexically, not inferred from translation. |
-| `dativ-praepositionen` | pending full pass | Verify fixed government, contractions and cross-topic reuse. |
-| `wechselpraepositionen` | pending full pass | Verify location vs directed change without a static/motion shortcut. |
+| `dativ-artikel` | corrected | Article and plural-noun forms are consistent; case is tied to the governing frame rather than a broad person/recipient meaning. |
+| `dativ-pronomen` | corrected | The complete personal-pronoun paradigm is shown; contrasts are governed by verb/construction and neutral order is not presented as the only grammatical order. |
+| `dativ-verben` | corrected | Dative frames are taught lexically; `passen`/`gefallen` claims are scoped to the intended meanings and two-object verbs to their valency. |
+| `dativ-praepositionen` | corrected | Fixed government is explicit and contractions are neutral unstressed defaults, not universal bans on full forms. |
+| `wechselpraepositionen` | corrected | Case distinguishes an existing location from establishing a new spatial relation; visible movement is not the deciding test. |
 | `seit-vor` | corrected | `vor` locates a past event/point; `seit` marks a starting point or duration continuing to the reference time. |
-| `komparativ` | pending full pass | Verify productive forms, irregular models and natural comparisons. |
-| `superlativ` | pending full pass | Verify the productive `am …-sten` scope and spelling variants. |
-| `adjektiv-praedikativ` | pending full pass | Verify predicative models stay uninflected. |
-| `adjektiv-bestimmt` | pending full pass | Verify case/gender endings across models and answers. |
-| `adjektiv-unbestimmt` | pending full pass | Verify the mixed paradigm stays within taught cases and determiners. |
+| `komparativ` | corrected | Productive `-er`, common stem changes and irregular forms are distinguished; `als` is not falsely presented as case-governing. |
+| `superlativ` | corrected | Productive predicative/adverbial `am …-(e)sten` is scoped separately from receptive attributive inflection. |
+| `adjektiv-praedikativ` | verified | Predicative models remain uninflected and are explicitly contrasted with attributive position. |
+| `adjektiv-bestimmt` | corrected | Definite-determiner endings are consistent and broad `-en` shortcuts are scoped to the taught determiner paradigms. |
+| `adjektiv-unbestimmt` | corrected | Mixed endings stay within taught cases/determiners; no-article strong inflection is receptive rather than dismissed as non-everyday. |
 | `nebensatz-verbende` | pending full pass | Verify subordinators, finite-verb placement and accepted word orders. |
 | `indirekte-frage` | pending full pass | Verify `ob` and interrogative-word clauses across listening and production. |
 | `aber-sondern` | pending full pass | Verify `sondern` follows a corrected negated alternative. |
@@ -62,11 +62,38 @@ files checked, so a green validator cannot substitute for a linguistic read.
 
 ## Corpus pass log
 
-### 2026-07-18 — dative and location cluster (in progress)
+### 2026-07-18 — adjective and comparison cluster (complete)
+
+Checked the adjective-declension article, pretest, practice, production, probe and reading, plus the
+shopping article, pretest, practice, production, probe and checkpoint reuse for `komparativ`,
+`superlativ`, `adjektiv-praedikativ`, `adjektiv-bestimmt` and `adjektiv-unbestimmt`.
+
+Corrections:
+
+- separated the productive comparative pattern from irregular lexical forms instead of implying
+  that every adjective has exactly one mechanically predictable form;
+- corrected comparison feedback: `als` does not govern case; the compared phrase receives the case
+  required by its role in the understood full comparison;
+- scoped `am …-(e)sten` to predicative/adverbial use and kept attributive superlatives receptive;
+- kept predicative adjectives explicitly uninflected and separated that rule from attributive
+  declension;
+- scoped the “plural/dative `-en`” shortcuts to the taught determiner paradigms and acknowledged
+  strong no-article inflection as grammatical receptive material;
+- corrected the Russian and Ukrainian gender bridge for “big problem”: both source languages mark
+  feminine agreement, while German `Problem` is neuter.
+
+Rulings follow the official IDS descriptions of
+[comparison morphology](https://grammis.ids-mannheim.de/terms/view/124),
+[predicative versus attributive superlatives](https://grammis.ids-mannheim.de/progr%40mm/6759),
+[`als` as an Adjunktor rather than a case-governing preposition](https://grammis.ids-mannheim.de/terminologie/9),
+and [adjective inflection](https://grammis.ids-mannheim.de/progr%40mm/4067).
+
+### 2026-07-18 — dative and location cluster (complete)
 
 Checked the owning articles and core practice, drill, production and reading artifacts for
 `dativ-artikel`, `dativ-pronomen`, `dativ-verben`, `dativ-praepositionen` and
-`wechselpraepositionen`. Cross-topic reuse is still being checked, so these rows remain pending.
+`wechselpraepositionen`, including checkpoint and cross-topic reuse in shopping, health, housing,
+travel, offices and celebrations.
 
 Corrections so far:
 
@@ -81,6 +108,17 @@ Corrections so far:
 - repaired reading feedback that inferred facts not licensed by the source text;
 - clarified that dative roles are governed by constructions, verbs and prepositions rather than a
   universal “indirect object” meaning.
+- completed the dative personal-pronoun table with `es → ihm` and plural `sie → ihnen`;
+- scoped recipient-dative/thing-accusative advice to the valency of verbs such as `schenken` and
+  `mitbringen`, and presented dative-before-accusative as a neutral production order rather than
+  the only grammatical order;
+- replaced semantic auxiliary shortcuts encountered in the travel reuse with lexical Perfekt
+  frames, so “movement” does not masquerade as a universal `sein` rule;
+- corrected a mismatched RU/UK floor-number translation in a production task.
+
+The case rulings follow the official IDS account that
+[case is determined by the syntactic environment](https://grammis.ids-mannheim.de/sgt/2218) and
+the documented [`gefallen` subject-plus-dative frame](https://grammis.ids-mannheim.de/verbs/view/400650/1).
 
 ### 2026-07-18 — past-time narration cluster (complete)
 
