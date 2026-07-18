@@ -4,8 +4,8 @@ Status: **A1 and A2 are structurally complete on both coverage measures** (updat
 Wortliste 100% at each level *and* every grammar point of each level's standard taught, 22/22 at
 A1 and 30/30 at A2, verified by `bun scripts/grammar-coverage.ts`. These figures mean the manifest
 is taught; they do **not** assert learner mastery or replace linguistic QA. A2's 30-point
-[linguistic QA ledger](a2-linguistic-qa.md) is undergoing a systematic corpus pass; the targeted
-2026-07-18 findings are closed, but unaffected rows are not signed off by inference. The second
+[linguistic QA ledger](a2-linguistic-qa.md) completed its systematic corpus pass on 2026-07-18:
+all points are signed off and all high/medium findings are closed. The second
 half of the structural claim is new: A2 was
 called content-complete for months on its lexical figure alone, and when structure was finally
 measured it was **67%**, with six A2 structures unwritten and several of them scheduled inside B1
@@ -120,9 +120,8 @@ B1 authoring begins when all eight hold, and not before:
    it.** — **met 2026-07-15:** 3,416 headwords transcribed; the Über page states the honest head
    start (~41% already covered by A1/A2 material).
 7. **Every A2 manifest point has linguistic sign-off, all high/medium findings are fixed, and
-   structural coverage language remains explicitly separate from mastery.** — *in progress:*
-   [the 30-point ledger](a2-linguistic-qa.md) distinguishes closed targeted findings from rows
-   still awaiting full corpus verification.
+   structural coverage language remains explicitly separate from mastery.** — **met
+   2026-07-18:** [the 30-point ledger](a2-linguistic-qa.md) records the completed corpus pass.
 8. **The first B1 PR freezes the B1 identities in [the blueprint](curriculum-a2-b1.md)** — ids
    become persisted learner-progress keys the moment a unit ships. — *authoring work, gated on
    1–7.*

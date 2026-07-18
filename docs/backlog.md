@@ -20,18 +20,9 @@ lives in [roadmap.md](roadmap.md).
 ## Completed work — one line here, detail in the archive
 
 - **Phase 10 · close the A2 grammar standard** — `done` 2026-07-18. Structural coverage moved from 20/30 to 30/30; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
+- **P11 · A2 linguistic corpus pass** — `done` 2026-07-18. All 30 manifest points are signed off with zero open high/medium findings; see [the QA ledger](a2-linguistic-qa.md).
 
 ## The open gate
-
-### P11 · Complete the A2 linguistic corpus pass — `doing`
-
-Re-read all 30 manifest points across their owning articles, 105 A2 exercise sets and 35 A2
-readings. Record checked files and classify every point as verified, corrected or intentionally
-simplified in [the QA ledger](a2-linguistic-qa.md). The targeted 2026-07-18 findings are closed,
-but B1 remains blocked until the unaffected rows have direct corpus evidence too.
-
-- Accept: all 30 rows signed off; zero open high/medium findings; validator, tests, check, lint and
-  build pass; grading queue remains empty.
 
 ### P3-6 · Read the A1 retention cohort — `blocked on 2026-08-02` (a calendar gate, not a task)
 

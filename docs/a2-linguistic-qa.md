@@ -1,7 +1,7 @@
 # A2 linguistic QA ledger
 
-Status: **19/30 manifest points signed off; systematic corpus verification in progress**. The
-remaining 11 points are being re-read across the full artifact set before sign-off.
+Status: **30/30 manifest points linguistically signed off; zero open high/medium findings**.
+Structural coverage, corpus correctness and learner mastery remain three separate claims.
 
 This ledger will become the linguistic sign-off that structural coverage cannot provide. `30/30` means
 every manifest point has teaching evidence; it does not mean that explanations are exception-safe,
@@ -24,24 +24,24 @@ named high-risk findings but did not yet justify marking every unaffected row co
 | `adjektiv-praedikativ` | verified | Predicative models remain uninflected and are explicitly contrasted with attributive position. |
 | `adjektiv-bestimmt` | corrected | Definite-determiner endings are consistent and broad `-en` shortcuts are scoped to the taught determiner paradigms. |
 | `adjektiv-unbestimmt` | corrected | Mixed endings stay within taught cases/determiners; no-article strong inflection is receptive rather than dismissed as non-everyday. |
-| `nebensatz-verbende` | pending full pass | Verify subordinators, finite-verb placement and accepted word orders. |
-| `indirekte-frage` | pending full pass | Verify `ob` and interrogative-word clauses across listening and production. |
-| `aber-sondern` | pending full pass | Verify `sondern` follows a corrected negated alternative. |
-| `reflexiv-akkusativ` | pending full pass | Verify lexically reflexive constructions are not generalized mechanically. |
+| `nebensatz-verbende` | corrected | Finite-verb-final guidance is scoped to subordinate clauses; neutral subject-first models are not presented as the only internal order, and `weil`/`denn` are not called identical. |
+| `indirekte-frage` | corrected | Embedded clauses remain interrogative in meaning while taking subordinate syntax; `ob` and W-word questions are consistent across practice, checkpoint and probes. |
+| `aber-sondern` | verified | `sondern` consistently corrects an explicitly negated alternative; ordinary contrast remains with `aber`. |
+| `reflexiv-akkusativ` | corrected | Reflexive forms are tied to lexical constructions and compatible frames; pronoun case is not derived from a broad mechanical object rule. |
 | `reflexiv-dativ` | corrected | Scoped to compatible body-part/personal-domain constructions; neutral possessive and contrastive forms are distinguished. |
-| `verb-praeposition` | pending full pass | Verify verb–preposition–case frames as lexical units. |
-| `da-wo-woerter` | pending full pass | Verify thing/question reference and vowel-triggered `r`. |
-| `hoeflich-konjunktiv` | pending full pass | Verify the intended chunk-only A2 boundary. |
-| `trennbar-untrennbar` | pending full pass | Verify separation, participles and lexicalized prefix meanings. |
+| `verb-praeposition` | corrected | Meaning + verb + preposition is the lexical unit; underdetermined bare-verb matching and the false `denken`/`über` ban were repaired. |
+| `da-wo-woerter` | corrected | Productive thing/person guidance is explicitly neutral A2 advice; contextual group, emphasis and spatial exceptions remain receptive. |
+| `hoeflich-konjunktiv` | corrected | Three fixed A2 chunks remain productive; `Sie` is a first-contact default and `Können Sie …?` is not falsely labelled inherently rude. |
+| `trennbar-untrennbar` | corrected | Separation is scoped to the finite verb and right bracket; stress/dictionary evidence and lexicalized meanings prevent prefix equations. |
 | `infinitiv-mit-zu` | corrected | Governed frames replace “everything except modals”; receptive bare-infinitive exceptions, comma boundary and same-subject alternatives are explicit. |
-| `um-zu` | pending full pass | Verify purpose, subject control and accepted alternatives across the full set. |
+| `um-zu` | corrected | The target purpose construction requires `um … zu`; same understood actor is safe productive advice, with `damit` for an explicitly different actor. |
 | `relativsatz` | corrected | Leading/closing comma rule is precise; object clues are determinate; reading feedback matches its text. |
 | `konjunktionaladverb` | corrected | Fronted adverbs occupy position 1 and trigger inversion; they are not claimed to be immovably first. |
 | `als-wenn` | corrected | `als` is tied to a bounded past occurrence; `wann` covers direct and indirect questions. |
 | `futur-werden` | corrected | Natural promise/intention models replace the awkward colon construction. |
-| `indefinitpronomen` | pending full pass | Verify productive scope and case behavior beyond the corrected possession material. |
+| `indefinitpronomen` | corrected | `man` is subject-only with `einen`/`einem` replacements; `jemand`/`niemand` case variants and neutral standard negation are represented without false logical rules. |
 | `genitiv-eigenname` | corrected | `von + Dativ` is safe productive advice, not the only grammar; common-noun genitive is shown receptively. |
-| `passiv-praesens` | pending full pass | Verify that every task remains receptive and B1 owns production. |
+| `passiv-praesens` | corrected | A2 remains receptive and process-passive-focused; `werden` is contrasted with state/result `sein`, and the `man` bridge is not universalized. |
 
 ## Corpus inventory
 
@@ -61,6 +61,40 @@ files checked, so a green validator cannot substitute for a linguistic read.
   recovery task. Existing drills continue to own the other persistent foci.
 
 ## Corpus pass log
+
+### 2026-07-18 — clause, lexical-frame and voice cluster (complete)
+
+Checked the owning articles, pretests, practice and production sets, readings, checkpoint reuse and
+delayed probes for the final eleven points: `nebensatz-verbende`, `indirekte-frage`,
+`aber-sondern`, `reflexiv-akkusativ`, `verb-praeposition`, `da-wo-woerter`,
+`hoeflich-konjunktiv`, `trennbar-untrennbar`, `um-zu`, `indefinitpronomen` and
+`passiv-praesens`.
+
+Corrections:
+
+- distinguished an embedded interrogative clause from a direct question without erasing its
+  question meaning, and kept finite-verb-final guidance separate from a false subject-first law;
+- preserved `aber`/`sondern` as an evidence-backed verified contrast while correcting the broader
+  `weil`/`denn` claim that had called the conjunctions identical;
+- tied reflexive and prepositional frames to their lexical meanings, repaired an underdetermined
+  matching task, and scoped da/wo person-versus-thing advice as a neutral productive pattern;
+- retained `Könnten Sie …?`, `hätte gern` and `würde gern` as compact productive chunks, while
+  replacing absolute register judgements with safe first-contact advice;
+- scoped separable-verb placement to the finite/right-bracket environment and added an explicit
+  lexicalization warning so prefix bridges cannot masquerade as productive meaning rules;
+- scoped `um … zu` actor control to the productive A2 purpose frame and kept `damit` available for
+  an explicitly different actor;
+- documented `man` replacement forms and `jemand`/`niemand` case variation, and replaced the false
+  “double negation always reverses the meaning” rule with neutral-standard production guidance;
+- contrasted process passive with state/result `sein + Partizip II`, kept every passive task
+  receptive, and limited the `man` paraphrase bridge to the agentless process examples it fits.
+
+These rulings follow the official IDS accounts of
+[indirect interrogatives with verb-final order](https://grammis.ids-mannheim.de/sgt/2269),
+[pronominal adverbs and their contextual distribution](https://grammis.ids-mannheim.de/systematische-grammatik/1428),
+[`man` and its replacement forms](https://grammis.ids-mannheim.de/kontrastive-grammatik/3607),
+[`jemand`/`niemand` inflection](https://grammis.ids-mannheim.de/kontrastive-grammatik/3673), and
+[process versus state passive](https://grammis.ids-mannheim.de/sgt/2237).
 
 ### 2026-07-18 — adjective and comparison cluster (complete)
 
