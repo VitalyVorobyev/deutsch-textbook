@@ -1,0 +1,46 @@
+id: gebrauchsverben
+kind: meaning-contrast
+level: B1
+title_de: "verwenden, benutzen oder gebrauchen?"
+title: { en: "Three ways to say use", ru: "Три глагола со значением «использовать»", uk: "Три дієслова зі значенням «використовувати»" }
+introduction: { en: "These verbs overlap. Choose by the typical object, purpose and expression rather than by a rigid physical-versus-abstract rule.", ru: "Эти глаголы пересекаются. Выбирайте по типичному объекту, цели и устойчивому выражению, а не по жёсткому правилу «физическое против абстрактного».", uk: "Ці дієслова перетинаються. Обирайте за типовим об'єктом, метою та сталим виразом, а не за жорстким правилом «фізичне проти абстрактного»." }
+members:
+  - kind: receptive
+    id: verwenden
+    status: receptive
+    de: "verwenden"
+    gloss: { en: "to use; employ", ru: "использовать; применять", uk: "використовувати; застосовувати" }
+    usage: { en: "Often foregrounds a purpose, material, method, word, time or resource.", ru: "Часто выделяет цель, материал, метод, слово, время или ресурс.", uk: "Часто виділяє мету, матеріал, метод, слово, час або ресурс." }
+    collocations: ["Material verwenden", "eine Methode verwenden", "ein Wort verwenden"]
+    example: { de: "Im Unterricht verwenden wir dieses Buch.", en: "We use this book in class.", ru: "На занятии мы используем эту книгу.", uk: "На занятті ми використовуємо цю книжку." }
+  - kind: card
+    id: benutzen
+    status: productive
+    ref: { deck: verben-handlungen-a2-1, de: "benutzen" }
+    usage: { en: "Broad everyday use of an object, entrance, room, vehicle, word or opportunity.", ru: "Широкое бытовое использование предмета, входа, помещения, транспорта, слова или возможности.", uk: "Широке побутове використання предмета, входу, приміщення, транспорту, слова або можливості." }
+    collocations: ["den Eingang benutzen", "ein Werkzeug benutzen", "ein Wort benutzen"]
+    example: { de: "Bitte benutzen Sie den vorderen Eingang.", en: "Please use the front entrance.", ru: "Пожалуйста, воспользуйтесь передним входом.", uk: "Будь ласка, скористайтеся переднім входом." }
+  - kind: receptive
+    id: gebrauchen
+    status: receptive
+    de: "gebrauchen"
+    gloss: { en: "to use; have a use for", ru: "использовать; быть нужным", uk: "використовувати; бути потрібним" }
+    usage: { en: "Less neutral in ordinary use statements, but common in useful chunks such as Das kann ich gut gebrauchen.", ru: "Менее нейтрально в обычных фразах об использовании, но часто в оборотах вроде Das kann ich gut gebrauchen.", uk: "Менш нейтрально у звичайних фразах про використання, але часто у зворотах на кшталт Das kann ich gut gebrauchen." }
+    collocations: ["etwas gut gebrauchen können", "den Verstand gebrauchen"]
+    example: { de: "Eine Pause kann ich jetzt gut gebrauchen.", en: "I could really use a break now.", ru: "Сейчас мне очень пригодился бы перерыв.", uk: "Зараз мені дуже знадобилася б перерва." }
+relations:
+  - from: benutzen
+    to: verwenden
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "They overlap strongly. verwenden often highlights what is deployed for a purpose; benutzen is broad and is not limited to physical objects.", ru: "Они сильно пересекаются. verwenden часто подчёркивает, что именно направлено на цель; benutzen широко употребляется и не ограничено физическими предметами.", uk: "Вони сильно перетинаються. verwenden часто підкреслює, що саме спрямовано на мету; benutzen широко вживається й не обмежене фізичними предметами." }
+  - from: benutzen
+    to: gebrauchen
+    type: register
+    basis: current-meaning
+    explanation: { en: "For neutral everyday use, benutzen is usually safer. Learn gebrauchen especially in fixed chunks such as Das kann ich gut gebrauchen.", ru: "Для нейтрального бытового «использовать» обычно безопаснее benutzen. gebrauchen особенно полезно учить в устойчивых оборотах вроде Das kann ich gut gebrauchen.", uk: "Для нейтрального побутового «використовувати» зазвичай безпечніше benutzen. gebrauchen особливо корисно вчити у сталих зворотах на кшталт Das kann ich gut gebrauchen." }
+  - from: verwenden
+    to: gebrauchen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "Both can mean use, but gebrauchen also appears in the sense have a use for or need.", ru: "Оба могут значить «использовать», но gebrauchen также встречается в значении «пригодиться, быть нужным».", uk: "Обидва можуть означати «використовувати», але gebrauchen також трапляється у значенні «знадобитися, бути потрібним»." }

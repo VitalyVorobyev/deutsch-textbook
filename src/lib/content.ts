@@ -1,6 +1,12 @@
 /** Server-side helpers over the content collections (usable in .astro files only). */
 import { getCollection } from 'astro:content';
-import { buildDeck, wordFieldContexts, type CardDef } from './srs';
+import {
+  buildDeck,
+  mergeLexicalContexts,
+  wordFieldContexts,
+  wortnetzContexts,
+  type CardDef,
+} from './srs';
 import { withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from './schemas';
@@ -33,8 +39,15 @@ export async function getTopicNodes(): Promise<TopicNode[]> {
 }
 
 export async function getAllCards(): Promise<CardDef[]> {
-  const [vocab, fields] = await Promise.all([getCollection('vocab'), getCollection('wortfelder')]);
-  const contexts = wordFieldContexts(fields.map((field) => field.data));
+  const [vocab, fields, networks] = await Promise.all([
+    getCollection('vocab'),
+    getCollection('wortfelder'),
+    getCollection('wortnetze'),
+  ]);
+  const contexts = mergeLexicalContexts(
+    wordFieldContexts(fields.map((field) => field.data)),
+    wortnetzContexts(networks.map((network) => network.data)),
+  );
   return vocab.flatMap((v) => buildDeck(v.data.id, v.data.entries, contexts));
 }
 

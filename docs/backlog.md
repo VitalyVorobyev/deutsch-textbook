@@ -3,7 +3,7 @@
 Companion to [roadmap.md](roadmap.md). Statuses are `todo` → `doing` → `done`. **A finished item
 moves to an archive, keeping at most one line here** — done entries never accumulate detail in this
 file. Completed P0–P3 items: [the learning-foundations archive](archive/2026-07-learning-foundations.md);
-completed Phase 4–9 items: [the phases 4–9 archive](archive/2026-07-phases-4-9.md).
+completed Phase 4–10 items: [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 
 Every content item must pass the learning-science review and `bun run validate`. Code changes must
 preserve v1–v5 snapshot import and pass the full repository gate. What A2 teaches, in what order,
@@ -17,85 +17,21 @@ Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. B1 r
 until representative A2 use, its checkpoint and delayed evidence have been reviewed — the B1 gate
 lives in [roadmap.md](roadmap.md).
 
-## Phase 10 · Close the A2 grammar standard — `done`
+## Completed work — one line here, detail in the archive
 
-A2 was called content-complete on the strength of its **lexical** figure (Wortliste 100%). Nothing
-measured *structure*, and when a manifest was finally written the honest number was **20/30 —
-67%**. The gap is not scattered: the B1 blueprint plans to teach `als`/`wenn`, relative clauses,
-infinitive with *zu*, future intention and *trotzdem* inside B1 units, so six A2-standard
-structures had been pushed a level up and would have stayed invisible as A2 debt.
-
-Closing them is therefore not a detour from B1 — it **de-duplicates** B1, which then spends its
-grammar budget on the Konjunktiv II paradigm, full Passiv, proper Genitiv, indirect speech and
-n-Deklination instead of re-teaching A2. Owner ruling 2026-07-18: **A2 closes fully before B1
-authoring starts**, and a documented deferral is not a defence when the standard requires the
-structure.
-
-Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
-`tests/grammar-coverage.test.ts`, so each closed point is a visible, deliberate change.
-
-- **P10-1 · the manifest** — `done` 2026-07-18. `data/grammar-inventory.yaml`,
-  `src/lib/grammar-coverage.ts`, the report script, validator wiring and the tripwire test.
-- **P10-2 · `infinitiv-mit-zu`** — `done` 2026-07-18. Infinitiv mit *zu* + *um … zu*, tags
-  `zu-infinitiv` and `um-zu-zweck`; A2 grammar 67% → **73%**. Inserted after `nebensaetze-plaene`
-  rather than appended: the topic is taught against the modal's bare infinitive and the
-  *dass*-clause it alternates with, both of which must already be there. It `deepens`
-  `nebensaetze-plaene` on `nebensatz-verbende` — a real edge, since the zu-versus-*dass* choice
-  keeps the learner building *dass*-clauses. The deck is 13 entries and thin on purpose:
-  *versuchen*, *hoffen*, *planen*, *anfangen*, *vergessen*, *Lust*, *Zeit* and *wichtig* are all
-  already taught, so the unit recycles them and owns only the language of intending and deciding
-  — headed by *vorhaben*, the flagship verb of the structure, which appeared nowhere in the course.
-- **P10-3 · `relativsaetze`** — `done` 2026-07-18. Nominativ + Akkusativ only, tag
-  `relativpronomen-kasus`; A2 grammar 73% → **77%**. The A2 blueprint's "relative clauses"
-  exclusion is corrected rather than deleted: it recorded an assumption that they belonged to B1,
-  which the manifest showed to be a gap. `deepens: [nebensaetze-plaene]` on `nebensatz-verbende`
-  (a Relativsatz *is* a Nebensatz); `akkusativ` is a prerequisite but deliberately not deepened,
-  because the confusion added here is where the case *comes from*, not how `den` is built.
-  `vocab: []` — pure syntax, and the lexis it describes people and things with is already taught.
-- **P10-4 · `verbindungen-folgen`** — `done` 2026-07-18. Konjunktionaladverbien with inversion
-  (*deshalb*, *deswegen*, *trotzdem*, *schließlich*) and *als* vs *wenn* for past time; tags
-  `konjunktionaladverb-inversion` and `als-wenn-vergangenheit`. A2 grammar 77% → **83%**.
-  Placed after `biografie-erfahrungen`, because every *als*-clause worth writing needs a past to
-  talk about and that is the unit teaching *war*/*hatte*. **First topic in the course with two
-  probe families** — it teaches two independent structures and closes two manifest points, and
-  one mixed family would measure each competence at only one interval, which is not a retention
-  curve. `probeFamilies` keys by setId, so the two are discovered and armed independently
-  (verified at runtime, not assumed). B1 keeps *obwohl*; only the adverb *trotzdem* moves to A2.
-- **P10-5 · extensions, not units** — `done` 2026-07-18. A2 grammar 83% → **90%**. Futur I
-  (`futur-werden`) joins **`infinitiv-mit-zu`**, not `nebensaetze-plaene` as first planned: that
-  node is already at the four-outcome maximum, and the plans-and-intentions topic is the better
-  host anyway, since stating an intention is what A2 Futur I is for. Reflexiv im Dativ
-  (`reflexiv-dativ`) joins `gesundheit-arzttermin` as planned, reusing `beschwerden-beschreiben`
-  (*Ich habe mir den Fuß verletzt* is a symptom description) rather than adding a fifth outcome.
-  Both are **non-primary** sets appended after the existing ones, and both host articles gained an
-  Erklärung section — a structure that is drilled but never explained is not taught.
-  **The four-outcome ceiling is worth remembering when planning an extension**: it decides where
-  new grammar can go, and it is easy to discover only after the content is written.
-- **P10-6 · `man` und Besitz** — `done` 2026-07-18. A2 grammar 90% → **97%**. `man` had been used
-  in eight A2 articles and taught in none. `vocab: []`: `man` and `jeder` are both `~` in the
-  Wortliste (grammar, no card) and *jemand*, *niemand*, *etwas*, *nichts* are already decked, so
-  there was nothing left to own — the same `~als` trap checked for before writing, not after.
-  Second topic with two probe families. `deepens: [dativ]` was rejected as inert on first attempt
-  and earned honestly instead, with an item that grades the case after *von*.
-- **P10-7 · Passiv Präsens, rezeptiv** — `done` 2026-07-18. Tag `passiv-rezeptiv`; A2 grammar
-  97% → **100%**. An extension of `man-und-besitz`, because `man` and the Passiv are the two ways
-  German avoids naming an agent and rebuilding one as the other is how a learner reads it. Every
-  item is a recognition task — mc, match, audio-comprehension, no production — which is what the
-  standard asks for, but they exist at all because a structure only ever read and never checked
-  leaves no evidence it was understood. The article gains the table that finally separates the
-  three jobs of `werden`: Partizip II → Passiv, Infinitiv → Futur I, Nomen → *to become*.
-- **P10-8 · publish the figure** — `done` 2026-07-18. Über states the computed grammar coverage
-  beside the Wortliste one, from `grammarCoverage()` at build time — no hand-written count. The
-  roadmap's status line now names both measures and records what the old one concealed. The B1
-  blueprint is corrected in the same change: six structures left its table for A2, and the rows
-  now say which half B1 may still revisit (the dative relative pronoun, the produced passive,
-  *obwohl* as a conjunction) so B1 deepens rather than re-teaches.
-
-**Phase 10 is complete.** A2 went from a measured 67% to 100% of its grammar standard across seven
-changes. The tripwire in `tests/grammar-coverage.test.ts` was lowered once per point, each in the
-commit that shipped the unit closing it, and has now become a ratchet asserting completeness.
+- **Phase 10 · close the A2 grammar standard** — `done` 2026-07-18. Structural coverage moved from 20/30 to 30/30; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 
 ## The open gate
+
+### P11 · Complete the A2 linguistic corpus pass — `doing`
+
+Re-read all 30 manifest points across their owning articles, 105 A2 exercise sets and 35 A2
+readings. Record checked files and classify every point as verified, corrected or intentionally
+simplified in [the QA ledger](a2-linguistic-qa.md). The targeted 2026-07-18 findings are closed,
+but B1 remains blocked until the unaffected rows have direct corpus evidence too.
+
+- Accept: all 30 rows signed off; zero open high/medium findings; validator, tests, check, lint and
+  build pass; grading queue remains empty.
 
 ### P3-6 · Read the A1 retention cohort — `blocked on 2026-08-02` (a calendar gate, not a task)
 
@@ -125,7 +61,7 @@ before another unit is written.
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
   update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
 
-## Done phases — one line per item, details in [the archive](archive/2026-07-phases-4-9.md)
+## Done phases — one line per item, details in [the phases 4–10 archive](archive/2026-07-phases-4-9.md)
 
 - **Phase 4 · complete A2** — `done`. P4-1 froze the A2 curriculum contract; P4-2 built the A2
   instrument (outcome-measurement rule, probe families, A2 Wortliste manifest, checkpoint
@@ -161,6 +97,10 @@ before another unit is written.
 P9-1 (discovery schema: provenance-checked `images[]`, online-only `links[]`) — `done` 2026-07-15,
 archived.
 
+P9-4 (canonical multilingual Wortnetze schema, four pilot networks, reference page and compact
+card-back context) — `done` 2026-07-18, archived. It remains a parallel reference track and does
+not gate B1.
+
 ### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
 
 Optional editorial pieces from the fifteen-theme backlog, each passing the editorial test in
@@ -192,7 +132,7 @@ queue; the probe-debt row names the P5-11 audits and the P5-7 decision.
 - Depends on: P9-1.
 - Accept per piece: the editorial test; the validator; no mastery or review-debt semantics.
 
-### P9-3 · Referenz lookup pages — `next` (M) — the current build target
+### P9-3 · Referenz lookup pages — `next` (M)
 
 The largest non-blocked, learner-facing work that does not gate B1. Three pages, each derived or
 canonical — never a second hand-maintained textbook. Ship one at a time (each is independently

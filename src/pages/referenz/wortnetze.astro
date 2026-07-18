@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/url';
+
+const entries = await getCollection('wortnetze');
+const networks = entries
+  .map((entry) => entry.data)
+  .sort((a, b) => a.level.localeCompare(b.level) || a.title_de.localeCompare(b.title_de, 'de'));
+
+const memberDe = (member: (typeof networks)[number]['members'][number]) =>
+  member.kind === 'card' ? member.ref.de : member.de;
+---
+
+<Base title="Wortnetze">
+  <nav class="mb-5 text-sm text-stone-400">
+    <a href={withBase('/referenz')} class="hover:text-stone-700">Referenz</a> / Wortnetze
+  </nav>
+
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-2 text-3xl font-bold">Wortnetze</h1>
+    <p class="mt-2 max-w-3xl text-stone-500">
+      <span class="lang-en">Word families and close meanings, organised around structure, usage and contrast. A memory bridge is a recall aid, never a promise that a prefix lets you calculate the meaning.</span>
+      <span class="lang-ru">Семьи слов и близкие значения через структуру, употребление и контраст. Мостик для памяти помогает вспомнить слово, но не обещает, что значение можно вычислить по приставке.</span>
+      <span class="lang-uk">Родини слів і близькі значення через структуру, уживання та контраст. Місток для пам'яті допомагає згадати слово, але не обіцяє, що значення можна обчислити за префіксом.</span>
+    </p>
+  </header>
+
+  <div class="mt-8 flex flex-wrap gap-2">
+    {networks.map((network) => (
+      <a href={`#${network.id}`} class="rounded-full border border-stone-200 px-3 py-1.5 text-sm hover:border-amber-500 dark:border-stone-700">
+        <span class="mr-1 text-xs font-bold text-amber-700">{network.level}</span>
+        {network.title_de}
+      </a>
+    ))}
+  </div>
+
+  {networks.map((network) => {
+    const members = new Map(network.members.map((member) => [member.id, member]));
+    return (
+      <section id={network.id} class="scroll-mt-6 border-b border-stone-200 py-12 last:border-b-0 dark:border-stone-700">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="rounded bg-amber-100 px-2 py-1 text-xs font-bold text-amber-800 dark:bg-amber-950 dark:text-amber-300">{network.level}</span>
+          <span class="rounded bg-stone-100 px-2 py-1 text-xs uppercase tracking-wide text-stone-500 dark:bg-stone-800">
+            {network.kind === 'family' ? 'Wortfamilie' : 'Bedeutungskontrast'}
+          </span>
+        </div>
+        <h2 class="mt-3 text-2xl font-bold">{network.title_de}</h2>
+        <p class="mt-2 max-w-3xl text-stone-500">
+          <span class="lang-en">{network.introduction.en}</span>
+          <span class="lang-ru">{network.introduction.ru}</span>
+          <span class="lang-uk">{network.introduction.uk}</span>
+        </p>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {network.members.map((member) => (
+            <article class="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+              <div class="flex items-start justify-between gap-3">
+                <h3 lang="de" class="text-xl font-bold">{memberDe(member)}</h3>
+                <span class:list={[
+                  'rounded px-2 py-1 text-[10px] font-bold uppercase tracking-wide',
+                  member.status === 'productive'
+                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                    : 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300',
+                ]}>{member.status === 'productive' ? 'aktiv' : 'rezeptiv'}</span>
+              </div>
+              {member.kind === 'receptive' && (
+                <p class="mt-1 text-sm text-stone-500">
+                  <span class="lang-en">{member.gloss.en}</span>
+                  <span class="lang-ru">{member.gloss.ru}</span>
+                  <span class="lang-uk">{member.gloss.uk}</span>
+                </p>
+              )}
+              <p class="mt-3 text-sm">
+                <span class="lang-en">{member.usage.en}</span>
+                <span class="lang-ru">{member.usage.ru}</span>
+                <span class="lang-uk">{member.usage.uk}</span>
+              </p>
+              {member.collocations.length > 0 && (
+                <p lang="de" class="mt-3 text-xs text-stone-500">{member.collocations.join(' · ')}</p>
+              )}
+              <blockquote lang="de" class="mt-3 border-l-2 border-amber-400 pl-3 text-sm italic">{member.example.de}</blockquote>
+              <p class="mt-1 pl-3 text-xs text-stone-400">
+                <span class="lang-en">{member.example.en}</span>
+                <span class="lang-ru">{member.example.ru}</span>
+                <span class="lang-uk">{member.example.uk}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-7 space-y-3">
+          <h3 class="text-lg font-bold">Verbindungen</h3>
+          {network.relations.map((relation) => {
+            const from = members.get(relation.from)!;
+            const to = members.get(relation.to)!;
+            return (
+              <div class="rounded-lg border border-stone-200 p-4 dark:border-stone-700">
+                <div class="flex flex-wrap items-center gap-2">
+                  <strong lang="de">{memberDe(from)}</strong>
+                  <span aria-hidden="true" class="text-amber-600">→</span>
+                  <strong lang="de">{memberDe(to)}</strong>
+                  <span class:list={[
+                    'rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide',
+                    relation.basis === 'mnemonic'
+                      ? 'bg-violet-100 text-violet-700 dark:bg-violet-950 dark:text-violet-300'
+                      : 'bg-stone-100 text-stone-500 dark:bg-stone-800',
+                  ]}>
+                    {relation.basis === 'mnemonic' ? 'Merkbrücke' : relation.type}
+                  </span>
+                </div>
+                <p class="mt-2 text-sm text-stone-600 dark:text-stone-300">
+                  <span class="lang-en">{relation.explanation.en}</span>
+                  <span class="lang-ru">{relation.explanation.ru}</span>
+                  <span class="lang-uk">{relation.explanation.uk}</span>
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="mt-4 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <p>
+      <span class="lang-en">Opening a network is lookup and elaboration, not retrieval evidence. Only an exercise or card response can change progress.</span>
+      <span class="lang-ru">Просмотр сети — это справка и осмысление, а не проверка памяти. Прогресс меняет только ответ в упражнении или на карточке.</span>
+      <span class="lang-uk">Перегляд мережі — це довідка й осмислення, а не перевірка пам'яті. Прогрес змінює лише відповідь у вправі або на картці.</span>
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,74 @@
+topic: artikel-genus
+role: drill
+title:
+  en: "Productive drill — der, die or das?"
+  ru: "Активный тренажёр — der, die или das?"
+  uk: "Активний тренажер — der, die чи das?"
+items:
+  - id: uebersetzen-problem
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    prompt_en: "The problem is new."
+    prompt_ru: "Проблема новая."
+    prompt_uk: "Проблема нова."
+    answer: "Das Problem ist neu."
+    key_tokens: ["Das"]
+    explain: { en: "Problem is neuter: das Problem. Do not transfer the gender of problem in another language.", ru: "Problem среднего рода: das Problem. Русский женский род слова «проблема» сюда не переносится.", uk: "Problem середнього роду: das Problem. Український жіночий рід слова «проблема» сюди не переноситься." }
+  - id: uebersetzen-antwort
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    prompt_en: "The answer is correct."
+    prompt_ru: "Ответ правильный."
+    prompt_uk: "Відповідь правильна."
+    answer: "Die Antwort ist richtig."
+    key_tokens: ["Die"]
+    explain: { en: "Antwort is feminine: die Antwort.", ru: "Antwort женского рода: die Antwort, несмотря на мужской род русского «ответ».", uk: "Antwort жіночого роду: die Antwort." }
+  - id: uebersetzen-termin
+    revision: 2
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate using Termin with the correct definite article.", ru: "Переведите со словом Termin и правильным определённым артиклем.", uk: "Перекладіть зі словом Termin і правильним означеним артиклем." }
+    prompt_en: "The appointment is important."
+    prompt_ru: "Встреча важная."
+    prompt_uk: "Зустріч важлива."
+    answer: "Der Termin ist wichtig."
+    key_tokens: ["Der"]
+    explain: { en: "Termin is masculine: der Termin.", ru: "Termin мужского рода: der Termin. Род русского слова «встреча» не является подсказкой.", uk: "Termin чоловічого роду: der Termin. Рід українського слова «зустріч» не є підказкою." }
+  - id: uebersetzen-maedchen
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    prompt_en: "The girl is six years old."
+    prompt_ru: "Девочке шесть лет."
+    prompt_uk: "Дівчинці шість років."
+    answer: "Das Mädchen ist sechs Jahre alt."
+    key_tokens: ["Das"]
+    explain: { en: "The diminutive suffix -chen always makes a noun neuter: das Mädchen.", ru: "Уменьшительный суффикс -chen всегда делает существительное средним: das Mädchen.", uk: "Зменшувальний суфікс -chen завжди робить іменник середнього роду: das Mädchen." }
+  - id: uebersetzen-zeitung
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    prompt_en: "The newspaper is here."
+    prompt_ru: "Газета здесь."
+    prompt_uk: "Газета тут."
+    answer: "Die Zeitung ist hier."
+    key_tokens: ["Die"]
+    explain: { en: "Nouns in -ung are feminine: die Zeitung.", ru: "Существительные на -ung женского рода: die Zeitung.", uk: "Іменники на -ung жіночого роду: die Zeitung." }
+  - id: uebersetzen-schluessel
+    outcomes: [artikel-genus-erkennen]
+    type: translate
+    focus: genus
+    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    prompt_en: "The key is here."
+    prompt_ru: "Ключ здесь."
+    prompt_uk: "Ключ тут."
+    answer: "Der Schlüssel ist hier."
+    key_tokens: ["Der"]
+    explain: { en: "Schlüssel is masculine: der Schlüssel. Learn the article with the noun.", ru: "Schlüssel мужского рода: der Schlüssel. Учите артикль вместе со словом.", uk: "Schlüssel чоловічого роду: der Schlüssel. Учіть артикль разом зі словом." }

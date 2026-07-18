@@ -1,0 +1,77 @@
+id: nehmen-familie
+kind: family
+level: B1
+title_de: "Die Wortfamilie nehmen"
+title: { en: "The nehmen word family", ru: "Семья слова nehmen", uk: "Родина слова nehmen" }
+introduction: { en: "The shared stem makes the forms easier to remember, but each prefix creates a lexical verb with its own valence and typical contexts.", ru: "Общая основа облегчает запоминание форм, но каждая приставка создаёт отдельный глагол со своим управлением и контекстами.", uk: "Спільна основа полегшує запам'ятовування форм, але кожен префікс створює окреме дієслово зі своїм керуванням і контекстами." }
+members:
+  - kind: card
+    id: nehmen
+    status: productive
+    ref: { deck: perfekt-verben, de: "nehmen" }
+    usage: { en: "Take, choose or use something; the broad base verb.", ru: "Брать, выбирать или пользоваться чем-то; широкий базовый глагол.", uk: "Брати, обирати або користуватися чимось; широке базове дієслово." }
+    collocations: ["ein Taxi nehmen", "Urlaub nehmen", "Medikamente nehmen"]
+    example: { de: "Ich nehme heute den Bus.", en: "I am taking the bus today.", ru: "Сегодня я еду на автобусе.", uk: "Сьогодні я їду автобусом." }
+  - kind: receptive
+    id: mitnehmen
+    status: receptive
+    de: "mitnehmen"
+    gloss: { en: "to take along", ru: "брать с собой", uk: "брати із собою" }
+    usage: { en: "Take a person or thing with you.", ru: "Взять человека или предмет с собой.", uk: "Взяти людину або предмет із собою." }
+    collocations: ["einen Pass mitnehmen", "jemanden mitnehmen"]
+    example: { de: "Nimm bitte deinen Pass mit.", en: "Please take your passport with you.", ru: "Возьми, пожалуйста, паспорт с собой.", uk: "Візьми, будь ласка, паспорт із собою." }
+  - kind: receptive
+    id: annehmen
+    status: receptive
+    de: "annehmen"
+    gloss: { en: "to accept; assume", ru: "принимать; предполагать", uk: "приймати; припускати" }
+    usage: { en: "Accept an offer or parcel; in another common sense, assume something.", ru: "Принять предложение или посылку; в другом частом значении — предположить.", uk: "Прийняти пропозицію або посилку; в іншому частому значенні — припустити." }
+    collocations: ["ein Angebot annehmen", "ein Paket annehmen"]
+    example: { de: "Sie hat das Angebot angenommen.", en: "She accepted the offer.", ru: "Она приняла предложение.", uk: "Вона прийняла пропозицію." }
+  - kind: card
+    id: abnehmen
+    status: productive
+    ref: { deck: infinitiv-mit-zu, de: "abnehmen" }
+    usage: { en: "Lose weight; also remove or take something off in other contexts.", ru: "Худеть; в других контекстах также снимать или убирать.", uk: "Худнути; в інших контекстах також знімати або прибирати." }
+    collocations: ["fünf Kilo abnehmen", "den Deckel abnehmen"]
+    example: { de: "Er möchte fünf Kilo abnehmen.", en: "He wants to lose five kilos.", ru: "Он хочет похудеть на пять килограммов.", uk: "Він хоче схуднути на п'ять кілограмів." }
+  - kind: card
+    id: zunehmen
+    status: productive
+    ref: { deck: infinitiv-mit-zu, de: "zunehmen" }
+    usage: { en: "Gain weight; also increase in strength or amount.", ru: "Набирать вес; также увеличиваться по силе или количеству.", uk: "Набирати вагу; також збільшуватися за силою або кількістю." }
+    collocations: ["zwei Kilo zunehmen", "Der Wind nimmt zu."]
+    example: { de: "Im Winter habe ich zwei Kilo zugenommen.", en: "I gained two kilos in winter.", ru: "Зимой я набрал два килограмма.", uk: "Узимку я набрав два кілограми." }
+  - kind: card
+    id: uebernehmen
+    status: productive
+    ref: { deck: arbeit-beruf, de: "übernehmen" }
+    usage: { en: "Take over a task, responsibility, shift or role.", ru: "Брать на себя задачу, ответственность, смену или роль.", uk: "Брати на себе завдання, відповідальність, зміну або роль." }
+    collocations: ["eine Aufgabe übernehmen", "Verantwortung übernehmen", "eine Schicht übernehmen"]
+    example: { de: "Kannst du meine Schicht übernehmen?", en: "Can you take over my shift?", ru: "Ты можешь взять мою смену?", uk: "Ти можеш взяти мою зміну?" }
+relations:
+  - from: nehmen
+    to: mitnehmen
+    type: formation
+    basis: current-meaning
+    explanation: { en: "mit- contributes the transparent idea along: take something with you.", ru: "mit- прозрачно добавляет идею «с собой»: взять что-то с собой.", uk: "mit- прозоро додає ідею «із собою»: взяти щось із собою." }
+  - from: nehmen
+    to: annehmen
+    type: family
+    basis: current-meaning
+    explanation: { en: "annehmen is lexicalised: learn accept an offer as a whole chunk.", ru: "annehmen лексикализован: учите ein Angebot annehmen как цельный оборот.", uk: "annehmen лексикалізований: учіть ein Angebot annehmen як цілісний зворот." }
+  - from: nehmen
+    to: abnehmen
+    type: family
+    basis: current-meaning
+    explanation: { en: "In the health context abnehmen means lose weight; the wider verb also means remove or take off.", ru: "В теме здоровья abnehmen значит «худеть»; шире глагол также означает «снимать, убирать».", uk: "У темі здоров'я abnehmen означає «худнути»; ширше дієслово також означає «знімати, прибирати»." }
+  - from: nehmen
+    to: zunehmen
+    type: family
+    basis: current-meaning
+    explanation: { en: "zunehmen contrasts with abnehmen: gain weight or increase.", ru: "zunehmen противопоставлено abnehmen: набирать вес или увеличиваться.", uk: "zunehmen протиставлене abnehmen: набирати вагу або збільшуватися." }
+  - from: nehmen
+    to: uebernehmen
+    type: family
+    basis: current-meaning
+    explanation: { en: "übernehmen means taking responsibility or control over something, not simply carrying it across.", ru: "übernehmen значит принять ответственность или контроль, а не просто перенести что-то через препятствие.", uk: "übernehmen означає прийняти відповідальність або контроль, а не просто перенести щось через перешкоду." }

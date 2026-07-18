@@ -121,9 +121,9 @@ items:
           - { answer: "Der Hund gehört unseren Nachbarn.", given: true }
           - { answer: "der Hund von unseren Nachbarn" }
     explain:
-      en: "The split is by what the owner is, not by what is owned. A bare name takes -s and goes in front: Annas Fahrrad, Mareks Wohnung, with no apostrophe at any point. Anything else — a noun with an article, a possessive, a plural — takes von + Dativ and goes behind: von meinem Bruder, von unseren Nachbarn. Note that gehören already gave you the dative in the left column, so von changes nothing about the case."
-      ru: "Деление проходит по владельцу, а не по тому, чем владеют. Голое имя получает -s и встаёт впереди: Annas Fahrrad, Mareks Wohnung, и никакого апострофа. Всё остальное — существительное с артиклем, притяжательное местоимение, множественное число — берёт von + Dativ и встаёт позади: von meinem Bruder, von unseren Nachbarn. Заметьте, что дательный в левом столбце уже дал глагол gehören, так что von падежа не меняет."
-      uk: "Поділ проходить за власником, а не за тим, чим володіють. Голе ім'я отримує -s і стає попереду: Annas Fahrrad, Mareks Wohnung, і жодного апострофа. Усе інше — іменник з артиклем, присвійний займенник, множина — бере von + Dativ і стає позаду: von meinem Bruder, von unseren Nachbarn. Зауважте, що давальний у лівому стовпці вже дало дієслово gehören, тож von відмінка не змінює."
+      en: "This table practises the two A2 production routes. A bare name takes -s and goes in front: Annas Fahrrad, Mareks Wohnung, with no ordinary possessive apostrophe. For a noun phrase, use the safe spoken pattern von + Dativ: von meinem Bruder, von unseren Nachbarn. A full genitive such as das Auto meines Bruders is also grammatical but remains a recognition form here."
+      ru: "Таблица тренирует две активные модели A2. Голое имя получает -s и встаёт впереди: Annas Fahrrad, Mareks Wohnung, без обычного притяжательного апострофа. Для группы с существительным используйте безопасную разговорную модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Полный Genitiv, например das Auto meines Bruders, тоже грамматически правилен, но здесь достаточно его узнавать."
+      uk: "Таблиця тренує дві активні моделі A2. Голе ім'я отримує -s і стає попереду: Annas Fahrrad, Mareks Wohnung, без звичайного присвійного апострофа. Для групи з іменником використовуйте безпечну розмовну модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Повний Genitiv, наприклад das Auto meines Bruders, теж граматично правильний, але тут достатньо його впізнавати."
 
   - id: mc-apostroph
     outcomes: [besitz-ausdruecken]
@@ -178,9 +178,14 @@ items:
       uk: "Жодне вихідне речення не дає підмета, який можна було б просто перенести: українське «треба записатися» обходиться без нього зовсім, а англійське you значить тут «люди загалом», а не співрозмовника. Німецькій підмет необхідний, і ним стає man. Заразом перевіряється muss: при man дієслово стоїть у формі er, і Man müssen було б тією самою помилкою, що й Er müssen."
 
   - id: uebersetzen-von-dativ
+    revision: 2
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
+    instruction:
+      en: "Translate using von + Dativ."
+      ru: "Переведите, используя von + Dativ."
+      uk: "Перекладіть, використовуючи von + Dativ."
     prompt_en: "I am driving my brother's car."
     prompt_ru: "Я еду на машине брата."
     prompt_uk: "Я їду машиною брата."
@@ -188,9 +193,9 @@ items:
     accept: ["Ich fahre das Auto von meinem Bruder."]
     key_tokens: ["von"]
     explain:
-      en: "The owner is not a bare name, so the -s route is closed and von + Dativ is the one to take. Both sources push against it — English attaches an -s to brother, Russian puts the noun in the genitive — and neither offers a word that corresponds to von, which is why that one word is what the item grades."
-      ru: "Владелец здесь не голое имя, поэтому путь через -s закрыт и остаётся von + Dativ. Оба исходных языка толкают в другую сторону: английский вешает -s на brother, а русский ставит существительное в родительный падеж, и ни в одном нет слова, которому соответствовало бы von. Именно это слово задание и проверяет."
-      uk: "Власник тут не голе ім'я, тому шлях через -s закритий і залишається von + Dativ. Обидві вихідні мови штовхають в інший бік: англійська вішає -s на brother, а українська ставить іменник у родовий відмінок, і в жодній немає слова, якому відповідало б von. Саме це слово завдання й перевіряє."
+      en: "This A2 item explicitly asks for the productive von + Dativ route: von meinem Bruder. A full genitive, mit dem Auto meines Bruders, is grammatical German but would bypass the construction this item measures."
+      ru: "Это задание A2 прямо тренирует активную модель von + Dativ: von meinem Bruder. Полный Genitiv — mit dem Auto meines Bruders — грамматически правилен, но обходит конструкцию, которую здесь проверяют."
+      uk: "Це завдання A2 прямо тренує активну модель von + Dativ: von meinem Bruder. Повний Genitiv — mit dem Auto meines Bruders — граматично правильний, але обходить конструкцію, яку тут перевіряють."
 
   - id: hoeren-man-sagt
     outcomes: [regeln-mit-man]

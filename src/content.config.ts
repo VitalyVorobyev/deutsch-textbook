@@ -7,6 +7,7 @@ import {
   readingSchema,
   visualDocumentSchema,
   wordFieldSchema,
+  wortnetzSchema,
   discoverySchema,
   referenceDataSchema,
 } from './lib/schemas';
@@ -41,6 +42,11 @@ const wortfelder = defineCollection({
   schema: wordFieldSchema,
 });
 
+const wortnetze = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './content/wortnetze' }),
+  schema: wortnetzSchema,
+});
+
 const discovery = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './content/discovery' }),
   schema: discoverySchema,
@@ -51,4 +57,14 @@ const referenceData = defineCollection({
   schema: referenceDataSchema,
 });
 
-export const collections = { topics, vocab, exercises, reading, documents, wortfelder, discovery, referenceData };
+export const collections = {
+  topics,
+  vocab,
+  exercises,
+  reading,
+  documents,
+  wortfelder,
+  wortnetze,
+  discovery,
+  referenceData,
+};
