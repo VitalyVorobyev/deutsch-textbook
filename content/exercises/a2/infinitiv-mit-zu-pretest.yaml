@@ -1,0 +1,54 @@
+topic: infinitiv-mit-zu
+role: pretest
+title:
+  en: "Before we start — zu or no zu?"
+  ru: "Перед началом — zu или без zu?"
+  uk: "Перед початком — zu чи без zu?"
+items:
+  - id: pretest-zu-nach-vorhaben
+    outcomes: [zu-oder-ohne-zu]
+    type: mc
+    focus: zu-infinitiv
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich habe vor, im Sommer nach Wien zu fahren."
+      - "Ich habe vor, im Sommer nach Wien fahren."
+      - "Ich habe vor, im Sommer zu nach Wien fahren."
+      - "Ich habe vor zu, im Sommer nach Wien fahren."
+    correct: 0
+    explain:
+      en: "vorhaben is an ordinary verb, not a modal, so its infinitive needs zu — and zu belongs immediately in front of the infinitive at the end of the clause, not anywhere earlier."
+      ru: "vorhaben — обычный глагол, а не модальный, поэтому его инфинитиву нужен zu, и стоит zu вплотную перед инфинитивом в конце оборота, а не где-то раньше."
+      uk: "vorhaben — звичайне дієслово, а не модальне, тому його інфінітиву потрібне zu, і стоїть zu впритул перед інфінітивом у кінці звороту, а не десь раніше."
+
+  - id: pretest-trennbar-zu-innen
+    outcomes: [zu-oder-ohne-zu]
+    type: mc
+    focus: zu-infinitiv
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich habe vergessen, dich anzurufen."
+      - "Ich habe vergessen, dich zu anrufen."
+      - "Ich habe vergessen, dich an zu rufen."
+      - "Ich habe vergessen, dich anrufen zu."
+    correct: 0
+    explain:
+      en: "anrufen is separable, so zu does not stand in front of it — it moves inside, between the prefix and the stem, and the whole thing is written as one word: anzurufen."
+      ru: "anrufen отделяемый, поэтому zu не стоит перед ним — он уходит внутрь, между приставкой и основой, и всё пишется одним словом: anzurufen."
+      uk: "anrufen відокремлюваний, тому zu не стоїть перед ним — воно йде всередину, між префіксом і основою, і все пишеться одним словом: anzurufen."
+
+  - id: pretest-um-zu-zweck
+    outcomes: [zweck-um-zu]
+    type: mc
+    focus: um-zu-zweck
+    prompt: "Wozu fährt Ali in die Stadt? Welcher Satz ist richtig?"
+    options:
+      - "Ali fährt in die Stadt, um ein Geschenk zu kaufen."
+      - "Ali fährt in die Stadt, für ein Geschenk kaufen."
+      - "Ali fährt in die Stadt, um ein Geschenk kaufen."
+      - "Ali fährt in die Stadt, zu ein Geschenk kaufen."
+    correct: 0
+    explain:
+      en: "Purpose needs both ends of the frame: um opens it and zu + infinitive closes it. German never puts an infinitive after für, and um on its own leaves the frame unfinished."
+      ru: "Цели нужны оба конца рамки: um её открывает, zu + инфинитив закрывает. Инфинитив после für по-немецки невозможен, а одно только um оставляет рамку незакрытой."
+      uk: "Меті потрібні обидва кінці рамки: um її відкриває, zu + інфінітив закриває. Інфінітив після für німецькою неможливий, а саме лише um залишає рамку незакритою."

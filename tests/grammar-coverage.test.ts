@@ -49,14 +49,12 @@ describe('grammar coverage', () => {
       'futur-werden',
       'genitiv-eigenname',
       'indefinitpronomen',
-      'infinitiv-mit-zu',
       'konjunktionaladverb',
       'passiv-praesens',
       'reflexiv-dativ',
       'relativsatz',
-      'um-zu',
     ]);
-    expect(coverage.percent).toBe(67);
+    expect(coverage.percent).toBe(73);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {
