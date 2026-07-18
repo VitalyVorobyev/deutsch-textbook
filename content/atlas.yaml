@@ -969,6 +969,44 @@ nodes:
         ru: "Я умею ставить придаточное в начало: тогда сказуемое главного идёт сразу за ним."
         uk: "Я вмію ставити підрядне на початок: тоді присудок головного йде одразу за ним."
 
+  - id: infinitiv-mit-zu
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: satzbau
+    prerequisites: [modalverben, trennbare-verben, nebensaetze-plaene]
+    # A real `deepens` edge, and it is real for the reason the validator checks: this topic's
+    # production set drills `nebensatz-verbende` honestly. The choice between a zu-infinitive and
+    # a dass-clause is decided by whether the two halves share a subject, so a learner working
+    # here keeps building dass-clauses — and putting their verb anywhere but last is the same
+    # error `nebensaetze-plaene` teaches against. `modalverben` and `trennbare-verben` are
+    # prerequisites but NOT deepened: the confusions this topic adds (does the infinitive take
+    # zu, and where does zu go in a separable verb) are new tags, and claiming an edge that
+    # shares no tag would be inert — an edge whose only runtime channel is the tag.
+    deepens: [nebensaetze-plaene]
+    outcomes:
+      - id: plan-zu-infinitiv
+        mode: writing
+        domain: personal
+        de: "Ich kann mit vorhaben, versuchen und Lust haben sagen, was ich plane."
+        en: "I can say what I am planning, using vorhaben, versuchen and Lust haben."
+        ru: "Я умею рассказать о своих планах с помощью vorhaben, versuchen и Lust haben."
+        uk: "Я вмію розповісти про свої плани за допомогою vorhaben, versuchen і Lust haben."
+      - id: zweck-um-zu
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann mit um … zu sagen, wozu ich etwas mache."
+        en: "I can use um … zu to say what I am doing something for."
+        ru: "Я умею с помощью um … zu сказать, зачем я что-то делаю."
+        uk: "Я вмію за допомогою um … zu сказати, навіщо я щось роблю."
+      - id: zu-oder-ohne-zu
+        mode: writing
+        domain: personal
+        de: "Ich kann entscheiden, ob ein Infinitiv zu braucht — und wo das zu steht."
+        en: "I can decide whether an infinitive needs zu, and where the zu goes."
+        ru: "Я умею определить, нужен ли инфинитиву zu и где этот zu стоит."
+        uk: "Я вмію визначити, чи потрібне інфінітиву zu і де це zu стоїть."
+
   # The four units below all sit after `nebensaetze-plaene` in the spine, and that is the whole
   # point of the reorder: they may use weil, dass and wenn freely, and they do. Each one therefore
   # deepens `nebensaetze-plaene` on `nebensatz-verbende` — a real edge, because an error on the
@@ -1298,6 +1336,17 @@ units:
     title_ru: "Придаточные предложения и планы"
     title_uk: "Підрядні речення та плани"
     topics: [nebensaetze-plaene]
+  # Straight after the Nebensatz unit, and inserted rather than appended: the zu-infinitive is
+  # taught against two things the learner must already have — the modal's bare infinitive and
+  # the dass-clause it alternates with — so it cannot sit at the end of A2 behind material that
+  # does not bear on it.
+  - id: infinitiv-mit-zu
+    level: A2
+    title_de: "Infinitiv mit zu & um … zu"
+    title_en: "The zu-infinitive & purpose"
+    title_ru: "Инфинитив с zu и цель"
+    title_uk: "Інфінітив із zu та мета"
+    topics: [infinitiv-mit-zu]
   - id: biografie-erfahrungen
     level: A2
     title_de: "Biografie & Erfahrungen"

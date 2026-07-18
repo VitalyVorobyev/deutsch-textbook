@@ -175,6 +175,8 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `nebensatz-verbende` | the conjugated verb goes last in a weil-, dass- or wenn-clause |
 | `weil-denn` | *weil* sends the verb to the end, *denn* does not |
 | `nebensatz-vorfeld` | a fronted subordinate clause fills position 1, so the main verb comes straight after it |
+| `zu-infinitiv` | an infinitive governed by an ordinary verb takes *zu* (and a modal's does not); in a separable verb the *zu* goes inside — an**zu**rufen |
+| `um-zu-zweck` | purpose is the two-ended frame *um … zu*, never *für* + infinitive and never *um* alone |
 | `aber-sondern` | *sondern* only after a negation, replacing what was denied (Nicht am Freitag, **sondern** am Samstag) — elsewhere it is *aber* |
 | `praeteritum-sein-haben` | *war*, *hatte* and the modal Präteritum — the past German actually speaks, where Perfekt is not used |
 | `indirekte-frage` | an indirect question sends the verb to the end (Wissen Sie, wo der Kurs **ist**?) |

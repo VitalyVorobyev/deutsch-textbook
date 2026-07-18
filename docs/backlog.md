@@ -36,8 +36,15 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
 
 - **P10-1 · the manifest** — `done` 2026-07-18. `data/grammar-inventory.yaml`,
   `src/lib/grammar-coverage.ts`, the report script, validator wiring and the tripwire test.
-- **P10-2 · `infinitiv-mit-zu`** — `todo`. Infinitiv mit *zu* + *um … zu*. Tags `zu-infinitiv`,
-  `um-zu-zweck`. One unit: the two structures are the same shape.
+- **P10-2 · `infinitiv-mit-zu`** — `done` 2026-07-18. Infinitiv mit *zu* + *um … zu*, tags
+  `zu-infinitiv` and `um-zu-zweck`; A2 grammar 67% → **73%**. Inserted after `nebensaetze-plaene`
+  rather than appended: the topic is taught against the modal's bare infinitive and the
+  *dass*-clause it alternates with, both of which must already be there. It `deepens`
+  `nebensaetze-plaene` on `nebensatz-verbende` — a real edge, since the zu-versus-*dass* choice
+  keeps the learner building *dass*-clauses. The deck is 13 entries and thin on purpose:
+  *versuchen*, *hoffen*, *planen*, *anfangen*, *vergessen*, *Lust*, *Zeit* and *wichtig* are all
+  already taught, so the unit recycles them and owns only the language of intending and deciding
+  — headed by *vorhaben*, the flagship verb of the structure, which appeared nowhere in the course.
 - **P10-3 · `relativsaetze`** — `todo`. Nominativ + Akkusativ only. Tag `relativpronomen-kasus`.
   Remove the "relative clauses" exclusion from the A2 blueprint in the same change.
 - **P10-4 · `verbindungen-folgen`** — `todo`. Konjunktionaladverbien with inversion

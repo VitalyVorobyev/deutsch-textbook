@@ -1,0 +1,155 @@
+topic: infinitiv-mit-zu
+role: practice
+title:
+  en: "Plans in context — listen, write, speak"
+  ru: "Планы в контексте — слушать, писать, говорить"
+  uk: "Плани в контексті — слухати, писати, говорити"
+items:
+  - id: uebersetzen-abzunehmen
+    outcomes: [plan-zu-infinitiv]
+    type: translate
+    focus: zu-infinitiv
+    prompt_en: "I am trying to lose a little weight."
+    prompt_ru: "Я стараюсь немного похудеть."
+    prompt_uk: "Я намагаюся трохи схуднути."
+    answer: "Ich versuche, ein bisschen abzunehmen."
+    accept: ["Ich versuche, etwas abzunehmen."]
+    key_tokens: ["abzunehmen"]
+    explain:
+      en: "One word carries the whole rule: abnehmen is separable, so zu goes between the prefix and the stem and the result is written solid — abzunehmen. Neither zu abnehmen nor ab zu nehmen is German. Only that word is graded here; the rest of the sentence is yours to build."
+      ru: "Всё правило держится на одном слове: abnehmen отделяемый, поэтому zu встаёт между приставкой и основой, и всё пишется слитно — abzunehmen. Ни zu abnehmen, ни ab zu nehmen по-немецки не бывает. Проверяется здесь только это слово, остальное предложение вы строите сами."
+      uk: "Усе правило тримається на одному слові: abnehmen відокремлюваний, тому zu стає між префіксом і основою, і все пишеться разом — abzunehmen. Ні zu abnehmen, ні ab zu nehmen німецькою не буває. Перевіряється тут лише це слово, решту речення ви будуєте самі."
+
+  - id: uebersetzen-dass-anderer-subjekt
+    outcomes: [plan-zu-infinitiv]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Two different people are involved, so a zu-infinitive will not work here — use dass."
+      ru: "Здесь действуют двое, поэтому инфинитивный оборот не подойдёт — используйте dass."
+      uk: "Тут діють двоє, тому інфінітивний зворот не підійде — використайте dass."
+    prompt_en: "I hope that my train arrives on time."
+    prompt_ru: "Надеюсь, что мой поезд придёт вовремя."
+    prompt_uk: "Сподіваюся, що мій потяг прибуде вчасно."
+    answer: "Ich hoffe, dass mein Zug pünktlich ankommt."
+    key_tokens: ["ankommt"]
+    explain:
+      en: "I hope, but the train arrives — two subjects, so the zu-infinitive is unavailable and dass takes over. And a dass-clause obeys the rule you already know: the conjugated verb goes to the very end, so the separable ankommen rejoins itself there as ankommt. That final position is the only thing graded here."
+      ru: "Надеюсь я, а приходит поезд — подлежащих два, поэтому инфинитивный оборот невозможен, и его место занимает dass. А придаточное с dass подчиняется уже знакомому правилу: спрягаемый глагол уходит в самый конец, и отделяемый ankommen там снова собирается воедино — ankommt. Проверяется здесь только эта конечная позиция."
+      uk: "Сподіваюся я, а приходить потяг — підметів два, тому інфінітивний зворот неможливий, і його місце займає dass. А підрядне з dass підкоряється вже знайомому правилу: відмінюване дієслово йде в самий кінець, і відокремлюваний ankommen там знову збирається докупи — ankommt. Перевіряється тут лише ця кінцева позиція."
+
+  - id: audio-wochenendplaene
+    outcomes: [plan-zu-infinitiv]
+    type: audio-comprehension
+    source:
+      kind: tts
+      turns:
+        - speaker: "Lena"
+          text: "Was hast du am Wochenende vor?"
+        - speaker: "Marek"
+          text: "Am Samstag muss ich leider arbeiten. Aber am Sonntag habe ich vor, mit dem Rad an den See zu fahren."
+        - speaker: "Lena"
+          text: "Das klingt gut. Hast du Lust, mich mitzunehmen?"
+        - speaker: "Marek"
+          text: "Klar. Ich schlage vor, uns um neun am Bahnhof zu treffen. Dann sind wir früh da."
+        - speaker: "Lena"
+          text: "Um neun? Dann muss ich sehr früh aufstehen. Aber gut, es lohnt sich bestimmt."
+    question: "Was machen Lena und Marek am Sonntag?"
+    options:
+      - "Sie fahren mit dem Rad an den See."
+      - "Sie arbeiten zusammen."
+      - "Sie treffen sich am See um neun."
+      - "Sie bleiben zu Hause."
+    correct: 0
+    translation:
+      en: "They cycle to the lake. Saturday is the working day, and nine o'clock is when they meet at the station — not at the lake."
+      ru: "Они едут на велосипедах к озеру. Работа — в субботу, а девять часов — это встреча на вокзале, а не у озера."
+      uk: "Вони їдуть на велосипедах до озера. Робота — у суботу, а дев'ята година — це зустріч на вокзалі, а не біля озера."
+    explain:
+      en: "Every plan in this dialogue arrives in the same shape — vorhaben, Lust haben, vorschlagen, sich lohnen, each followed by a comma and a zu-infinitive at the end. The one exception is Marek's muss ich arbeiten, a modal with a bare infinitive, and it is also the only sentence that is not a plan. The two distractors are built from details that are in the audio but attached to the wrong thing: Saturday is work, and nine is the station."
+      ru: "Каждый план в этом диалоге приходит в одной и той же форме — vorhaben, Lust haben, vorschlagen, sich lohnen, и за каждым запятая и инфинитив с zu в конце. Единственное исключение — реплика Марека muss ich arbeiten, модальный глагол с голым инфинитивом, и это же единственная фраза, которая планом не является. Два неверных варианта собраны из деталей, которые в записи есть, но отнесены не к тому: суббота — это работа, а девять — вокзал."
+      uk: "Кожен план у цьому діалозі приходить в одній і тій самій формі — vorhaben, Lust haben, vorschlagen, sich lohnen, і за кожним кома та інфінітив із zu в кінці. Єдиний виняток — репліка Марека muss ich arbeiten, модальне дієслово з голим інфінітивом, і це ж єдина фраза, яка планом не є. Два невірні варіанти зібрані з деталей, які в записі є, але віднесені не до того: субота — це робота, а дев'ята — вокзал."
+
+  - id: mc-diskriminierung-zweck-oder-plan
+    outcomes: [zweck-um-zu]
+    type: mc
+    focus: um-zu-zweck
+    prompt: "Nur ein Satz sagt, WOZU Sara Deutsch lernt. Welcher?"
+    options:
+      - "Sara lernt Deutsch, um in Wien zu studieren."
+      - "Sara lernt Deutsch, weil sie in Wien studiert."
+      - "Sara hat vor, in Wien zu studieren."
+      - "Sara hofft, dass sie in Wien studieren kann."
+    correct: 0
+    translation:
+      en: "Sara is learning German in order to study in Vienna. — The other three say a reason, a plan and a hope, but not a purpose."
+      ru: "Сара учит немецкий, чтобы учиться в Вене. — Остальные три называют причину, план и надежду, но не цель."
+      uk: "Сара вчить німецьку, щоб навчатися у Відні. — Решта три називають причину, план і надію, але не мету."
+    explain:
+      en: "All four are correct German, which is the point — the item asks what each one means, not which is well formed. Only um … zu answers Wozu?. The weil-clause answers Warum? and states a fact that is already true; vorhaben announces a plan; hoffen dass expresses a hope. Three of these use a zu-infinitive or a subordinate clause, so the shape alone will not tell you which is which."
+      ru: "Все четыре — правильный немецкий, и в этом суть: задание спрашивает, что каждый вариант значит, а не какой из них построен верно. На вопрос Wozu? отвечает только um … zu. Придаточное с weil отвечает на Warum? и сообщает уже свершившийся факт; vorhaben объявляет план; hoffen dass выражает надежду. В трёх из четырёх есть инфинитивный оборот или придаточное — по одной только форме их не различить."
+      uk: "Усі чотири — правильна німецька, і в цьому суть: завдання питає, що кожен варіант означає, а не який із них побудований правильно. На питання Wozu? відповідає лише um … zu. Підрядне з weil відповідає на Warum? і повідомляє вже наявний факт; vorhaben оголошує план; hoffen dass виражає надію. У трьох із чотирьох є інфінітивний зворот або підрядне — за самою лише формою їх не розрізнити."
+
+  - id: write-plaene-naechster-monat
+    outcomes: [plan-zu-infinitiv]
+    type: write
+    prompt:
+      en: "A friend in another city writes: \"Was hast du eigentlich für den nächsten Monat vor?\" Write a short reply."
+      ru: "Друг из другого города пишет: «Was hast du eigentlich für den nächsten Monat vor?» Напишите короткий ответ."
+      uk: "Друг з іншого міста пише: «Was hast du eigentlich für den nächsten Monat vor?» Напишіть коротку відповідь."
+    goal:
+      en: "Tell someone what you are planning, and what one of those plans is for."
+      ru: "Рассказать, что вы планируете, и зачем нужен один из этих планов."
+      uk: "Розповісти, що ви плануєте, і навіщо потрібен один із цих планів."
+    requirements:
+      - en: "Name at least two plans with vorhaben, versuchen, hoffen or Lust haben + zu."
+        ru: "Назовите минимум два плана с vorhaben, versuchen, hoffen или Lust haben + zu."
+        uk: "Назвіть щонайменше два плани з vorhaben, versuchen, hoffen або Lust haben + zu."
+      - en: "Say what one of them is for, using um … zu."
+        ru: "Скажите, зачем нужен один из них, используя um … zu."
+        uk: "Скажіть, навіщо потрібен один із них, використовуючи um … zu."
+      - en: "Include one thing you have to do, with a modal — and no zu there."
+        ru: "Добавьте одно дело, которое вы обязаны сделать, с модальным глаголом — и там zu не нужен."
+        uk: "Додайте одну справу, яку ви мусите зробити, з модальним дієсловом — і там zu не потрібне."
+    model_answer: "Im nächsten Monat habe ich ziemlich viel vor. Ich versuche, endlich mit dem Sport anzufangen, und ich hoffe, zweimal pro Woche ins Schwimmbad zu gehen. Am zwölften muss ich zum Amt, weil mein Ausweis alt ist. Und am Wochenende danach fahre ich zu meiner Schwester, um ihr beim Umzug zu helfen. Hast du Lust, im Mai mal vorbeizukommen?"
+    model_translation:
+      en: "I have quite a lot planned for next month. I am trying to finally start doing sport, and I hope to go to the swimming pool twice a week. On the twelfth I have to go to the public office, because my ID is old. And the weekend after that I am going to my sister's to help her with the move. Do you feel like coming over in May?"
+      ru: "На следующий месяц у меня довольно много планов. Я стараюсь наконец заняться спортом и надеюсь ходить в бассейн два раза в неделю. Двенадцатого мне нужно в ведомство, потому что мой документ старый. А в следующие выходные я еду к сестре, чтобы помочь ей с переездом. Не хочешь заглянуть в мае?"
+      uk: "На наступний місяць у мене доволі багато планів. Я намагаюся нарешті зайнятися спортом і сподіваюся ходити в басейн двічі на тиждень. Дванадцятого мені треба до відомства, бо мій документ старий. А наступних вихідних я їду до сестри, щоб допомогти їй з переїздом. Не хочеш зазирнути в травні?"
+    min_words: 35
+    explain:
+      en: "Read your draft back looking only at the infinitives at the ends of clauses. Each one should have a zu unless a modal put it there. In the model: anzufangen, zu gehen, zu helfen, vorbeizukommen all take it; muss zum Amt has no infinitive at all, and if you wrote muss … gehen there, it would correctly have none. Check the two separable verbs especially — anzufangen and vorbeizukommen are single words with the zu inside."
+      ru: "Перечитайте свой текст, глядя только на инфинитивы в концах оборотов. У каждого должен быть zu — кроме тех, что поставил модальный глагол. В образце: anzufangen, zu gehen, zu helfen, vorbeizukommen — все с zu; при muss zum Amt инфинитива нет вовсе, а если вы написали там muss … gehen, то zu справедливо нет. Особенно проверьте два отделяемых: anzufangen и vorbeizukommen — это по одному слову, и zu у них внутри."
+      uk: "Перечитайте свій текст, дивлячись лише на інфінітиви в кінцях зворотів. У кожного має бути zu — окрім тих, що поставило модальне дієслово. У зразку: anzufangen, zu gehen, zu helfen, vorbeizukommen — усі із zu; при muss zum Amt інфінітива немає зовсім, а якщо ви написали там muss … gehen, то zu справедливо немає. Особливо перевірте два відокремлювані: anzufangen і vorbeizukommen — це по одному слову, і zu в них усередині."
+
+  - id: speak-wozu-lernen-sie-deutsch
+    outcomes: [zweck-um-zu]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "Someone in your course asks: \"Wozu lernst du eigentlich Deutsch?\" Answer in a few sentences."
+      ru: "Кто-то на курсе спрашивает: «Wozu lernst du eigentlich Deutsch?» Ответьте в нескольких предложениях."
+      uk: "Хтось на курсі питає: «Wozu lernst du eigentlich Deutsch?» Дайте відповідь у кількох реченнях."
+    goal:
+      en: "Explain what you are learning German for, so that the reason is clear and personal."
+      ru: "Объяснить, зачем вы учите немецкий, так, чтобы причина была понятной и личной."
+      uk: "Пояснити, навіщо ви вчите німецьку, так, щоб причина була зрозумілою й особистою."
+    checklist:
+      - en: "Give at least one purpose with um … zu."
+        ru: "Назовите минимум одну цель с um … zu."
+        uk: "Назвіть щонайменше одну мету з um … zu."
+      - en: "Add a plan with vorhaben or hoffen + zu."
+        ru: "Добавьте план с vorhaben или hoffen + zu."
+        uk: "Додайте план з vorhaben або hoffen + zu."
+      - en: "Say one thing that is difficult for you."
+        ru: "Скажите об одной вещи, которая даётся вам трудно."
+        uk: "Скажіть про одну річ, яка дається вам важко."
+    model_answer: "Ich lerne Deutsch, um hier zu arbeiten. Ich bin Ingenieur und ich habe vor, mich im Herbst bei einer Firma in München zu bewerben. Dafür brauche ich mindestens B1. Am schwersten finde ich das Sprechen — ich verstehe ziemlich viel, aber ich brauche zu lange, um einen Satz zu bauen. Deshalb versuche ich, jeden Tag ein bisschen laut zu lesen."
+    model_translation:
+      en: "I am learning German in order to work here. I am an engineer and I plan to apply to a company in Munich in the autumn. For that I need at least B1. I find speaking the hardest — I understand quite a lot, but I take too long to build a sentence. So I try to read aloud a little every day."
+      ru: "Я учу немецкий, чтобы здесь работать. Я инженер и осенью собираюсь подать заявку в фирму в Мюнхене. Для этого мне нужен минимум B1. Труднее всего мне даётся говорение — понимаю я довольно много, но слишком долго собираю фразу. Поэтому я стараюсь каждый день немного читать вслух."
+      uk: "Я вчу німецьку, щоб тут працювати. Я інженер і восени збираюся подати заявку до фірми в Мюнхені. Для цього мені потрібен щонайменше B1. Найважче мені дається говоріння — розумію я доволі багато, але надто довго складаю фразу. Тому я намагаюся щодня трохи читати вголос."
+    explain:
+      en: "Listen back for the two um … zu frames in the model — um hier zu arbeiten, um einen Satz zu bauen — and notice that the infinitive is the last word every time, with nothing after it. The other pattern to hear is mich … zu bewerben: a reflexive verb keeps its pronoun early in the clause while zu stays glued to the infinitive at the end."
+      ru: "Прослушайте запись и обратите внимание на рамки um … zu в образце — um hier zu arbeiten, um einen Satz zu bauen: инфинитив каждый раз последнее слово, после него ничего. Второй образец для слуха — mich … zu bewerben: у возвратного глагола местоимение остаётся в начале оборота, а zu держится вплотную к инфинитиву в конце."
+      uk: "Прослухайте запис і зверніть увагу на рамки um … zu у зразку — um hier zu arbeiten, um einen Satz zu bauen: інфінітив щоразу останнє слово, після нього нічого. Другий зразок для слуху — mich … zu bewerben: у зворотного дієслова займенник залишається на початку звороту, а zu тримається впритул до інфінітива в кінці."
