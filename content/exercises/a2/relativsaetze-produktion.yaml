@@ -1,0 +1,154 @@
+topic: relativsaetze
+role: practice
+title:
+  en: "Describing in context — listen, write, speak"
+  ru: "Описание в контексте — слушать, писать, говорить"
+  uk: "Опис у контексті — слухати, писати, говорити"
+items:
+  - id: uebersetzen-definition-fahrrad
+    outcomes: [sache-definieren]
+    type: translate
+    focus: relativpronomen-kasus
+    instruction:
+      en: "Describe the person instead of naming the profession — use a relative clause."
+      ru: "Опишите человека вместо названия профессии — используйте относительное придаточное."
+      uk: "Опишіть людину замість назви професії — використайте відносне підрядне."
+    prompt_en: "I am looking for someone who repairs bicycles."
+    prompt_ru: "Я ищу человека, который чинит велосипеды."
+    prompt_uk: "Я шукаю людину, яка ремонтує велосипеди."
+    answer: "Ich suche jemanden, der Fahrräder repariert."
+    key_tokens: ["der"]
+    explain:
+      en: "This is the sentence to keep when a word escapes you: describe what the person does instead. The pronoun does the repairing, so it is the subject of its clause — der. Note that jemanden is accusative because suche demands it, and once again the pronoun ignores that entirely."
+      ru: "Вот предложение, которое стоит держать наготове, когда слово не вспоминается: опишите, что человек делает. Чинит именно он, значит местоимение — подлежащее своего придаточного: der. Обратите внимание, что jemanden стоит в винительном, потому что этого требует suche, — и местоимение снова на это никак не реагирует."
+      uk: "Ось речення, яке варто тримати напоготові, коли слово не згадується: опишіть, що людина робить. Ремонтує саме він, отже займенник — підмет свого підрядного: der. Зверніть увагу, що jemanden стоїть у знахідному, бо цього вимагає suche, — і займенник знову на це ніяк не реагує."
+
+  - id: uebersetzen-wohnung-verbende
+    outcomes: [relativ-satzbau]
+    type: translate
+    focus: nebensatz-verbende
+    prompt_en: "The flat we have rented is very bright."
+    prompt_ru: "Квартира, которую мы сняли, очень светлая."
+    prompt_uk: "Квартира, яку ми зняли, дуже світла."
+    answer: "Die Wohnung, die wir gemietet haben, ist sehr hell."
+    key_tokens: ["haben"]
+    explain:
+      en: "In the Perfekt the conjugated word is the auxiliary, so gemietet comes first and haben closes the clause — the same order a weil- or dass-clause takes. What is graded here is only that final position: put haben anywhere earlier and the clause stops being a Nebensatz, whichever pronoun opened it."
+      ru: "В Perfekt спрягается вспомогательный глагол, поэтому сначала идёт gemietet, а закрывает придаточное haben — тот же порядок, что после weil или dass. Проверяется здесь только эта конечная позиция: поставьте haben раньше, и придаточное перестанет быть придаточным, каким бы местоимением оно ни открывалось."
+      uk: "У Perfekt відмінюється допоміжне дієслово, тому спочатку йде gemietet, а закриває підрядне haben — той самий порядок, що після weil або dass. Перевіряється тут лише ця кінцева позиція: поставте haben раніше, і підрядне перестане бути підрядним, яким би займенником воно не відкривалося."
+
+  - id: audio-wohnungssuche
+    outcomes: [person-beschreiben-relativ]
+    type: audio-comprehension
+    source:
+      kind: tts
+      turns:
+        - speaker: "Makler"
+          text: "Guten Tag. Sie suchen also eine Wohnung, die nicht zu teuer ist?"
+        - speaker: "Frau Kern"
+          text: "Genau. Und sie soll in einem Haus sein, das einen Aufzug hat. Meine Mutter wohnt bei mir."
+        - speaker: "Makler"
+          text: "Ich habe hier eine Wohnung, die im dritten Stock liegt. Aber das Haus, das ich meine, hat leider keinen Aufzug."
+        - speaker: "Frau Kern"
+          text: "Dann geht das nicht. Haben Sie etwas im Erdgeschoss?"
+        - speaker: "Makler"
+          text: "Ja, eine kleine Wohnung, die ich Ihnen am Freitag zeigen kann. Die Miete ist auch günstiger."
+    question: "Warum passt die Wohnung im dritten Stock nicht?"
+    options:
+      - "Das Haus hat keinen Aufzug."
+      - "Die Wohnung ist zu teuer."
+      - "Die Wohnung ist zu klein."
+      - "Sie liegt im Erdgeschoss."
+    correct: 0
+    translation:
+      en: "The house has no lift, and Frau Kern needs one because her mother lives with her."
+      ru: "В доме нет лифта, а госпоже Керн он нужен, потому что с ней живёт мать."
+      uk: "У будинку немає ліфта, а пані Керн він потрібен, бо з нею живе мати."
+    explain:
+      en: "Almost every requirement in this conversation is carried by a relative clause — eine Wohnung, die nicht zu teuer ist; ein Haus, das einen Aufzug hat; eine Wohnung, die im dritten Stock liegt. That is what the structure is for in real speech: naming exactly which flat you mean. The answer is in the agent's own correction: das Haus, das ich meine, hat leider keinen Aufzug."
+      ru: "Почти каждое требование в этом разговоре несёт относительное придаточное — eine Wohnung, die nicht zu teuer ist; ein Haus, das einen Aufzug hat; eine Wohnung, die im dritten Stock liegt. Именно для этого конструкция и нужна в живой речи: назвать, о какой именно квартире идёт речь. Ответ содержится в поправке самого маклера: das Haus, das ich meine, hat leider keinen Aufzug."
+      uk: "Майже кожна вимога в цій розмові несе відносне підрядне — eine Wohnung, die nicht zu teuer ist; ein Haus, das einen Aufzug hat; eine Wohnung, die im dritten Stock liegt. Саме для цього конструкція й потрібна в живому мовленні: назвати, про яку саме квартиру йдеться. Відповідь міститься у виправленні самого маклера: das Haus, das ich meine, hat leider keinen Aufzug."
+
+  - id: mc-diskriminierung-rolle
+    outcomes: [relativ-kasus-waehlen]
+    type: mc
+    focus: relativpronomen-kasus
+    prompt: "In welchem Satz ist das Relativpronomen ein Objekt (Akkusativ)?"
+    options:
+      - "Der Film, den wir gestern gesehen haben, war sehr gut."
+      - "Der Film, der um acht Uhr anfängt, ist neu."
+      - "Der Mann, der neben mir sitzt, ist mein Chef."
+      - "Der Zug, der nach Hamburg fährt, hat Verspätung."
+    correct: 0
+    translation:
+      en: "The film we saw yesterday was very good. — In the other three the pronoun is the subject: the film starts, the man sits, the train goes."
+      ru: "Фильм, который мы вчера посмотрели, был очень хорош. — В остальных трёх местоимение это подлежащее: фильм начинается, мужчина сидит, поезд идёт."
+      uk: "Фільм, який ми вчора подивилися, був дуже добрий. — У решті трьох займенник це підмет: фільм починається, чоловік сидить, потяг іде."
+    explain:
+      en: "All four antecedents are masculine, so the form alone tells you the answer — but the point is to see why. Look for a second subject inside the clause: in the first, wir is already the subject, so the film can only be the object, and the pronoun must be den. In the other three nothing else could be the subject, so the pronoun is it, and der is right."
+      ru: "Все четыре существительных мужского рода, так что ответ виден и по одной форме, — но смысл в том, чтобы понять почему. Ищите внутри придаточного второе подлежащее: в первом варианте это wir, значит фильм может быть только дополнением и местоимение обязано быть den. В остальных трёх подлежащим быть больше некому, поэтому им и оказывается местоимение — der."
+      uk: "Усі чотири іменники чоловічого роду, тож відповідь видно й за самою формою, — але сенс у тому, щоб зрозуміти чому. Шукайте всередині підрядного другий підмет: у першому варіанті це wir, отже фільм може бути лише додатком і займенник мусить бути den. У решті трьох підметом бути більше нікому, тому ним і виявляється займенник — der."
+
+  - id: write-nachbarn-beschreiben
+    outcomes: [person-beschreiben-relativ]
+    type: write
+    prompt:
+      en: "A friend is moving into your building and asks who lives there. Write a short reply describing two or three neighbours."
+      ru: "Друг переезжает в ваш дом и спрашивает, кто там живёт. Напишите короткий ответ с описанием двух-трёх соседей."
+      uk: "Друг переїжджає у ваш будинок і питає, хто там живе. Напишіть коротку відповідь з описом двох-трьох сусідів."
+    goal:
+      en: "Describe people precisely enough that your friend would recognise them on the stairs."
+      ru: "Описать людей так точно, чтобы друг узнал их на лестнице."
+      uk: "Описати людей так точно, щоб друг упізнав їх на сходах."
+    requirements:
+      - en: "Use at least two relative clauses, one with a subject pronoun (der/die/das) and one with an object pronoun (den)."
+        ru: "Используйте минимум два относительных придаточных: одно с подлежащим (der/die/das), одно с дополнением (den)."
+        uk: "Використайте щонайменше два відносні підрядні: одне з підметом (der/die/das), одне з додатком (den)."
+      - en: "Put the verb at the end of every relative clause."
+        ru: "Ставьте глагол в конец каждого относительного придаточного."
+        uk: "Ставте дієслово в кінець кожного відносного підрядного."
+      - en: "Mention one neighbour you like and one you rarely see."
+        ru: "Упомяните одного соседа, который вам нравится, и одного, которого вы редко видите."
+        uk: "Згадайте одного сусіда, який вам подобається, і одного, якого ви рідко бачите."
+    model_answer: "Im Erdgeschoss wohnt eine Frau, die einen kleinen Hund hat. Sie ist sehr nett und grüßt immer. Über mir wohnt ein Mann, den ich fast nie sehe — er arbeitet nachts. Und im dritten Stock wohnt eine Familie, die zwei Kinder hat. Die Kinder, die oft im Hof spielen, sind ziemlich laut, aber das stört mich nicht."
+    model_translation:
+      en: "On the ground floor there is a woman who has a small dog. She is very nice and always says hello. Above me lives a man whom I almost never see — he works nights. And on the third floor there is a family that has two children. The children, who often play in the yard, are quite loud, but that does not bother me."
+      ru: "На первом этаже живёт женщина, у которой маленькая собака. Она очень приветливая и всегда здоровается. Надо мной живёт мужчина, которого я почти никогда не вижу, — он работает по ночам. А на третьем этаже живёт семья, у которой двое детей. Дети, которые часто играют во дворе, довольно шумные, но меня это не раздражает."
+      uk: "На першому поверсі живе жінка, у якої маленький собака. Вона дуже привітна і завжди вітається. Наді мною живе чоловік, якого я майже ніколи не бачу, — він працює ночами. А на третьому поверсі живе сім'я, у якої двоє дітей. Діти, які часто граються у дворі, доволі галасливі, але мене це не дратує."
+    min_words: 35
+    explain:
+      en: "Read your draft back looking only at the relative clauses. For each one ask the two questions separately: gender and number from the noun in front, case from the job inside. In the model, den ich fast nie sehe is the only object pronoun — ich is already the subject there. Everywhere else the pronoun is doing the acting, so it stays der/die/das. Then check that every one of those clauses ends in its verb: hat, sehe, hat, spielen."
+      ru: "Перечитайте свой текст, глядя только на относительные придаточные. Для каждого задайте два вопроса по отдельности: род и число — от существительного впереди, падеж — от роли внутри. В образце den ich fast nie sehe — единственное местоимение-дополнение: подлежащее там уже занято словом ich. Во всех остальных действует само местоимение, поэтому остаётся der/die/das. Затем проверьте, что каждое такое придаточное заканчивается глаголом: hat, sehe, hat, spielen."
+      uk: "Перечитайте свій текст, дивлячись лише на відносні підрядні. Для кожного поставте два питання окремо: рід і число — від іменника попереду, відмінок — від ролі всередині. У зразку den ich fast nie sehe — єдиний займенник-додаток: підмет там уже зайнятий словом ich. У всіх інших діє сам займенник, тому залишається der/die/das. Потім перевірте, що кожне таке підрядне закінчується дієсловом: hat, sehe, hat, spielen."
+
+  - id: speak-etwas-erklaeren
+    outcomes: [sache-definieren]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "You are in a shop and the German word will not come to you. Describe three everyday things without naming them, so that the assistant can work out what you mean."
+      ru: "Вы в магазине, и немецкое слово не вспоминается. Опишите три бытовые вещи, не называя их, чтобы продавец понял, что вам нужно."
+      uk: "Ви в магазині, і німецьке слово не згадується. Опишіть три побутові речі, не називаючи їх, щоб продавець зрозумів, що вам потрібно."
+    goal:
+      en: "Get what you need without knowing the word — the single most useful thing a relative clause does."
+      ru: "Получить нужное, не зная слова, — самое полезное, что умеет относительное придаточное."
+      uk: "Отримати потрібне, не знаючи слова, — найкорисніше, що вміє відносне підрядне."
+    checklist:
+      - en: "Start each one with Ich suche etwas / ein Ding / einen Menschen, …"
+        ru: "Начинайте каждое с Ich suche etwas / ein Ding / einen Menschen, …"
+        uk: "Починайте кожне з Ich suche etwas / ein Ding / einen Menschen, …"
+      - en: "Put the verb at the end of the relative clause."
+        ru: "Ставьте глагол в конец относительного придаточного."
+        uk: "Ставте дієслово в кінець відносного підрядного."
+      - en: "Say what the thing is for, or where you use it."
+        ru: "Скажите, для чего эта вещь или где вы ею пользуетесь."
+        uk: "Скажіть, для чого ця річ або де ви нею користуєтеся."
+    model_answer: "Entschuldigung, ich suche ein Ding, das man für Flaschen braucht. Es ist klein und nicht teuer. Dann brauche ich noch etwas, das man in die Küche stellt und das Brot frisch hält. Und haben Sie eine Lampe, die man an die Wand hängen kann?"
+    model_translation:
+      en: "Excuse me, I am looking for a thing that you need for bottles. It is small and not expensive. Then I also need something that you put in the kitchen and that keeps bread fresh. And do you have a lamp that you can hang on the wall?"
+      ru: "Извините, я ищу такую штуку, которая нужна для бутылок. Она маленькая и недорогая. Ещё мне нужно что-то, что ставят на кухню и что сохраняет хлеб свежим. И есть ли у вас лампа, которую можно повесить на стену?"
+      uk: "Вибачте, я шукаю таку річ, яка потрібна для пляшок. Вона маленька й недорога. Ще мені потрібно щось, що ставлять на кухню і що зберігає хліб свіжим. І чи є у вас лампа, яку можна повісити на стіну?"
+    explain:
+      en: "Listen back for the pattern that repeats: a vague noun — ein Ding, etwas, eine Lampe — followed straight away by a relative clause that does the actual describing. Every pronoun in the model is settled the same way: das and die are objects here because man is the subject in each clause. Getting that far is enough to be understood, and being understood without the word is the whole point."
+      ru: "Прослушайте запись и обратите внимание на повторяющийся приём: расплывчатое существительное — ein Ding, etwas, eine Lampe — и сразу за ним придаточное, которое и делает всю описательную работу. Все местоимения в образце определяются одинаково: das и die здесь дополнения, потому что подлежащее в каждом придаточном — man. Дойти до этого уже достаточно, чтобы вас поняли, а быть понятым без нужного слова — в этом и весь смысл."
+      uk: "Прослухайте запис і зверніть увагу на прийом, що повторюється: розпливчастий іменник — ein Ding, etwas, eine Lampe — і одразу за ним підрядне, яке й робить усю описову роботу. Усі займенники у зразку визначаються однаково: das і die тут додатки, бо підмет у кожному підрядному — man. Дійти до цього вже достатньо, щоб вас зрозуміли, а бути зрозумілим без потрібного слова — у цьому й весь сенс."

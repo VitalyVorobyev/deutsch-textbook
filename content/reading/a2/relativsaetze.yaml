@@ -1,0 +1,68 @@
+topic: relativsaetze
+kind: intensive
+title_de: "Das Café, das allen gehört"
+text:
+  - >-
+    In der Bergstraße gibt es ein kleines Café, das anders ist als andere. Sechs
+    Personen haben es vor drei Jahren [[gegründet::founded, set up::основали::заснували]],
+    und es gehört den Leuten, die dort arbeiten.
+  - >-
+    „Wir wollten einen Ort, den man auch ohne viel Geld besuchen kann“, sagt
+    Marek, der die Idee hatte. Wer gerade keine Arbeit hat,
+    [[zahlt::pays::платит::платить]] weniger. „Das ist eine Regel, die wir von Anfang
+    an hatten.“
+  - >-
+    Am Nachmittag kommen Familien. Die Kinder, die im hinteren Zimmer spielen,
+    machen [[Lärm::noise::шум::шум]], aber das stört niemanden. „Ein Café, in dem
+    Kinder leise sein müssen, wollten wir nicht“, sagt Sofia, die hinter der
+    [[Theke::counter, bar::стойка::стійка]] steht.
+  - >-
+    Zweimal im Monat gibt es abends Musik. Die Gruppen, die hier spielen,
+    [[verdienen::earn::зарабатывают::заробляють]] nichts, aber sie bekommen Essen. „Das
+    ist ein Ort, den die Stadt braucht und der wirklich allen
+    [[offensteht::is open to::открыт для::відкритий для]]“, sagt eine Nachbarin.
+questions:
+  - id: q-wem-gehoert
+    type: mc
+    outcomes: [person-beschreiben-relativ]
+    prompt: "Wem gehört das Café?"
+    options:
+      - "Den Leuten, die dort arbeiten."
+      - "Einer großen Firma."
+      - "Marek allein."
+      - "Der Stadt."
+    correct: 0
+    explain:
+      en: "The first paragraph says it directly: Es gehört keiner Firma, sondern den Leuten, die dort arbeiten. Note that the relative pronoun is die even though the noun in front is dative — den Leuten. Case does not travel across the comma; only gender and number do, and Leute is plural."
+      ru: "Первый абзац говорит прямо: Es gehört keiner Firma, sondern den Leuten, die dort arbeiten. Заметьте, что местоимение die, хотя существительное впереди стоит в дательном — den Leuten. Падеж через запятую не переходит; переходят только род и число, а Leute — множественное."
+      uk: "Перший абзац каже прямо: Es gehört keiner Firma, sondern den Leuten, die dort arbeiten. Зауважте, що займенник die, хоча іменник попереду стоїть у давальному — den Leuten. Відмінок через кому не переходить; переходять лише рід і число, а Leute — множина."
+
+  - id: q-wer-zahlt-weniger
+    type: mc
+    outcomes: [relativ-kasus-waehlen]
+    prompt: "Wer zahlt im Café weniger?"
+    options:
+      - "Wer gerade keine Arbeit hat."
+      - "Die Kinder."
+      - "Die Musikgruppen."
+      - "Die Nachbarn."
+    correct: 0
+    explain:
+      en: "Wer gerade keine Arbeit hat, zahlt weniger — and Marek then calls it eine Regel, die wir von Anfang an hatten. The bands are a different arrangement: they earn nothing but get food and drinks."
+      ru: "Wer gerade keine Arbeit hat, zahlt weniger — и Марек называет это eine Regel, die wir von Anfang an hatten. У музыкальных групп договорённость другая: они ничего не зарабатывают, но получают еду и напитки."
+      uk: "Wer gerade keine Arbeit hat, zahlt weniger — і Марек називає це eine Regel, die wir von Anfang an hatten. У музичних гуртів домовленість інша: вони нічого не заробляють, але отримують їжу й напої."
+
+  - id: q-was-wollten-sie-nicht
+    type: mc
+    outcomes: [sache-definieren]
+    prompt: "Was für ein Café wollten die Gründer nicht?"
+    options:
+      - "Ein Café, in dem Kinder leise sein müssen."
+      - "Ein Café, in dem es Musik gibt."
+      - "Ein Café, das am Wochenende offen ist."
+      - "Ein Café, das billigen Kaffee verkauft."
+    correct: 0
+    explain:
+      en: "Sofia says it in exactly those words. This is the one relative clause in the text whose pronoun is neither nominative nor accusative — in dem, after a preposition — and it is here to be understood, not produced: at this level you read it and move on. Every pronoun you are asked to write is still der, die, das or den."
+      ru: "София говорит это дословно. Это единственное относительное придаточное в тексте, местоимение которого не именительное и не винительное — in dem, после предлога, — и оно здесь для понимания, а не для производства: на этом уровне его достаточно прочитать. Все местоимения, которые вас просят написать, по-прежнему der, die, das или den."
+      uk: "Софія каже це дослівно. Це єдине відносне підрядне в тексті, займенник якого не називний і не знахідний — in dem, після прийменника, — і воно тут для розуміння, а не для продукування: на цьому рівні його достатньо прочитати. Усі займенники, які вас просять написати, і далі der, die, das або den."

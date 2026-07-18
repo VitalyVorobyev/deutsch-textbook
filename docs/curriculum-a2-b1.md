@@ -428,7 +428,11 @@ the *syntax*, so it must not re-deck them), `praesens-wortstellung`, `modalverbe
 *Wenn …, dann …*, *Ich würde gern …*, *Deshalb …*
 **Transfer:** solve a familiar planning problem in several connected sentences.
 **Confusions:** `nebensatz-verbende`, `weil-denn`, `nebensatz-vorfeld`, `verbzweit`.
-**Exclude:** indirect speech, the Konjunktiv II paradigm, relative clauses, essay writing.
+**Exclude:** indirect speech, the Konjunktiv II paradigm, essay writing. Relative clauses are *not*
+excluded from A2 — they were, on the assumption that they belonged to B1, and the grammar manifest
+showed that to be a gap rather than a decision. They now have their own A2 unit (`relativsaetze`,
+Nominativ and Akkusativ only) immediately after this one; what this unit must not do is teach them
+early, which is a different claim.
 
 ### A2.8 · `biografie-erfahrungen` — Biografie & Erfahrungen
 
