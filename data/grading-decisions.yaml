@@ -14,6 +14,84 @@
 #   note:      the linguistic reason. Confusions worth a future drill item are recorded
 #              here as "drill note: …" — drill authoring reads them.
 
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-interview-frage
+  given: "Wo hast du aufgewachsend? Warst du dort glücklich?"
+  decision: confirm
+  note: "aufwachsen forms the Perfekt with sein and the participle aufgewachsen: Wo bist du aufgewachsen? The learner's auxiliary and participle are both wrong."
+  decidedAt: 2026-07-18
+
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-konnte-nicht-besuchen
+  given: "Vor zwei Jahren konnte ich meine Familia besuchen. Ich hatte keinen Urlaub"
+  decision: confirm
+  note: "The rendering omits nicht and reverses the first sentence's meaning; Familia is also not the German word Familie."
+  decidedAt: 2026-07-18
+
+- item: a2/biografie-erfahrungen:uebersetzen-damals-war-hatte
+  given: "Ich war damals einen Student, und ich hatte kein Geld"
+  decision: confirm
+  note: "A profession or status after sein normally has no article: Ich war Student. einen Student is an accusative noun phrase and is ungrammatical here."
+  decidedAt: 2026-07-18
+
+- item: a2/probe-modalverben:variant-b
+  given: "Heute Abend will main Bruder die Suppe kochen"
+  decision: confirm
+  note: "main is not German mein, and die Suppe changes the prompt's indefinite a soup to a specific soup. The rejection was right even though the modal bracket is intact."
+  decidedAt: 2026-07-18
+
+- item: a2/einkaufen-reklamation:uebersetzen-passt-gefaellt
+  given: "Die Jacke passt mir, aber die gefällt meinen Mann nicht"
+  decision: confirm
+  note: "gefallen governs the dative: meinem Mann, not meinen Mann. The demonstrative die can refer to the jacket colloquially, but it does not repair the real case error."
+  decidedAt: 2026-07-18
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Mein Zug ist ab"
+  decision: confirm
+  note: "ist ab is incomplete and does not express the prompt's Perfekt ist ausgefallen. The second sentence is not grammatical or meaning-complete."
+  decidedAt: 2026-07-18
+
+- item: a2/probe-trennbare-verben:variant-b
+  given: "Wann macht der Bank auf? Ich nehme den Pass mit."
+  decision: confirm
+  note: "die Bank requires die in the nominative, and den Pass drops the prompt's possessive meinen. The separable verbs are placed correctly, but the whole rendering is not correct and equivalent."
+  decidedAt: 2026-07-18
+
+- item: a2/nebensaetze-plaene-produktion:uebersetzen-weil-arbeiten-muss
+  given: "Ich komme nicht mit euch mit, weil ich am Samstag arbeiten muss"
+  decision: accept
+  note: "mit euch is an idiomatic explicit complement of mitkommen and preserves the prompt's coming along with the group. Added as an accepted rendering; revision bumped."
+  decidedAt: 2026-07-18
+
+- item: a2/nebensaetze-plaene-produktion:uebersetzen-denn-muede
+  given: "Tobies bleibt zu Hauise, denn er ist möde"
+  decision: confirm
+  note: "The rendering contains three spelling failures (Tobies, Hauise, möde), not one isolated near-miss. The rejection was right."
+  decidedAt: 2026-07-18
+
+- item: a2/nebensaetze-plaene:uebersetzen-dass-wetter
+  given: "Ich hoffe, dass am Sonntag gutte Wetter ist"
+  decision: confirm
+  note: "Wetter requires the article das here and the adjective form is gute, not gutte: dass das Wetter am Sonntag gut ist. The clause is not grammatical."
+  decidedAt: 2026-07-18
+
+- item: a2/nebensaetze-plaene:uebersetzen-weil-krank
+  given: "Nina bleibt zu Hause, while sie krank ist"
+  decision: confirm
+  note: "while is an English word, not the required German conjunction weil. The rejection was right."
+  decidedAt: 2026-07-18
+
+- item: a2/probe-termine-vereinbaren:variant-b
+  given: "Passt es zu dir die Treffe um zehn Uhe? Sie passt mir gut"
+  decision: confirm
+  note: "The prompt requires Passt dir der Termin ...; zu dir, die Treffe and Uhe are incorrect, and the feminine Sie has no valid antecedent. This is not an alternative rendering."
+  decidedAt: 2026-07-18
+
+- item: a2/probe-einkaufen-reklamation:variant-a
+  given: "Der Laptop ist besser als Handy. Aber er ist auch teurer"
+  decision: confirm
+  note: "The singular count noun requires its article: besser als das Handy. Dropping it is a real article error."
+  decidedAt: 2026-07-18
+
 - item: a2/drill-mir-mich:uebersetzen-hilf-mir
   given: "Kanst du mir bitte helfen?"
   decision: accept

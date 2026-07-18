@@ -19,9 +19,9 @@ items:
     answer: "Ich warte am Bahnhof."
     key_tokens: ["am"]
     explain:
-      en: "Waiting is a position, not a movement: Wo? takes the dative, and an + dem contracts to am. English hides the difference — 'at the station' and 'to the station' look alike in a sentence — so run the question test: waiting answers Wo?, never Wohin?"
-      ru: "Ждать — это положение, а не движение: Wo? требует Dativ, an + dem стягивается в am. Работает то же различие, что и в русском: «на вокзале» (где?), а не «на вокзал» (куда?)."
-      uk: "Чекати — це положення, а не рух: Wo? вимагає Dativ, an + dem стягується в am. Працює те саме розрізнення, що й в українській: «на вокзалі» (де?), а не «на вокзал» (куди?)."
+      en: "The station phrase names where the waiting happens: Wo? takes the dative, and an + dem contracts to am. English hides the case difference, so run the question test: at the station, not to the station."
+      ru: "Группа с вокзалом называет место ожидания: Wo? требует Dativ, an + dem стягивается в am. Работает то же различие, что и в русском: «на вокзале» (где?), а не «на вокзал» (куда?)."
+      uk: "Група з вокзалом називає місце очікування: Wo? вимагає Dativ, an + dem стягується в am. Працює те саме розрізнення, що й в українській: «на вокзалі» (де?), а не «на вокзал» (куди?)."
   - id: uebersetzen-stadt
     outcomes: [wo-wohin-position]
     type: translate
@@ -38,9 +38,9 @@ items:
       - "Wir fahren am Samstag in die Stadt."
     key_tokens: ["die"]
     explain:
-      en: "Driving somewhere is a direction: Wohin? takes the accusative — in die Stadt. The feminine article shows the case here: in der Stadt would mean being there, not going there."
-      ru: "Ехать куда-то — это направление: Wohin? требует Akkusativ — in die Stadt. Падеж здесь виден по артиклю женского рода: in der Stadt значило бы «в городе», а не «в город»."
-      uk: "Їхати кудись — це напрямок: Wohin? вимагає Akkusativ — in die Stadt. Відмінок тут видно за артиклем жіночого роду: in der Stadt означало б «у місті», а не «в місто»."
+      en: "The city is the destination: Wohin? takes the accusative — in die Stadt. The feminine article shows the case here: in der Stadt would name the place where the driving happens."
+      ru: "Город здесь цель: Wohin? требует Akkusativ — in die Stadt. Падеж виден по артиклю женского рода: in der Stadt называло бы место, где происходит поездка."
+      uk: "Місто тут є ціллю: Wohin? вимагає Akkusativ — in die Stadt. Відмінок видно за артиклем жіночого роду: in der Stadt називало б місце, де відбувається поїздка."
   - id: uebersetzen-garten-wo
     outcomes: [wo-wohin-position]
     type: translate
@@ -55,7 +55,7 @@ items:
     answer: "Die Kinder sind im Garten."
     key_tokens: ["im"]
     explain:
-      en: "Being somewhere is a position: Wo? + Dativ, and in + dem contracts to im — im Garten. sein never moves anything anywhere, so its location always answers Wo?"
+      en: "The phrase names where the children are: Wo? + Dativ, and in + dem contracts to im — im Garten."
       ru: "Находиться где-то — это положение: Wo? + Dativ, in + dem стягивается в im — im Garten, ровно как русское «в саду» (предложный падеж)."
       uk: "Перебувати десь — це положення: Wo? + Dativ, in + dem стягується в im — im Garten, рівно як українське «в саду» (місцевий відмінок)."
   - id: uebersetzen-garten-wohin
@@ -85,9 +85,9 @@ items:
       ru: "Я работаю в офисе. После работы я иду в кафе."
       uk: "Я працюю в офісі. Після роботи я йду в кафе."
     explain:
-      en: "arbeiten is a position (im = in + dem), gehen is a direction (ins = in + das). The verb decides the question — Wo? or Wohin? — and the question decides the case."
-      ru: "arbeiten — положение (im = in + dem), gehen — направление (ins = in + das). Глагол определяет вопрос — Wo? или Wohin? — а вопрос определяет падеж."
-      uk: "arbeiten — положення (im = in + dem), gehen — напрямок (ins = in + das). Дієслово визначає питання — Wo? чи Wohin? — а питання визначає відмінок."
+      en: "The office is where the work happens (Wo?: im = in + dem); the café is the destination (Wohin?: ins = in + das). The meaning of the whole phrase decides the question and case."
+      ru: "Офис — место работы (Wo?: im = in + dem), а кафе — цель (Wohin?: ins = in + das). Вопрос и падеж определяет смысл всей группы."
+      uk: "Офіс — місце роботи (Wo?: im = in + dem), а кафе — ціль (Wohin?: ins = in + das). Питання й відмінок визначає зміст усієї групи."
   - id: cloze-sofa-boden
     outcomes: [wo-wohin-position]
     type: cloze
@@ -125,6 +125,6 @@ items:
     focus: wo-wohin
     text: "Wir gehen am Sonntag in den Park."
     explain:
-      en: "gehen is a direction, so you hear the accusative: in den Park. Writing in dem here is a case choice, not a typo — that is exactly what this dictation grades."
-      ru: "gehen — направление, поэтому звучит Akkusativ: in den Park. Написать здесь in dem — это выбор падежа, а не опечатка: именно его и проверяет этот диктант."
-      uk: "gehen — напрямок, тому звучить Akkusativ: in den Park. Написати тут in dem — це вибір відмінка, а не одрук: саме його й перевіряє цей диктант."
+      en: "The park is the destination, so you hear the accusative: in den Park. Writing in dem here is a case choice, not a typo — that is exactly what this dictation grades."
+      ru: "Парк здесь цель, поэтому звучит Akkusativ: in den Park. Написать здесь in dem — это выбор падежа, а не опечатка: именно его и проверяет этот диктант."
+      uk: "Парк тут є ціллю, тому звучить Akkusativ: in den Park. Написати тут in dem — це вибір відмінка, а не одрук: саме його й перевіряє цей диктант."

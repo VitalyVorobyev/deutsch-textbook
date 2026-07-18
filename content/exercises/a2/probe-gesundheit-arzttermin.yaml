@@ -12,7 +12,7 @@ title:
 # situations the learner has not seen.
 #
 # Each variant contains both halves of the choice in one item: a state that still
-# holds (seit) and a finished event (vor). Nothing about it can be answered from
+# holds (seit) and an event located before now (vor). Nothing about it can be answered from
 # memory of a practice item — those are single-structure sentences in the first
 # person, and these are third-person pairs with people, illnesses and time spans
 # that appear nowhere else in the topic. What is graded is only the preposition
@@ -36,9 +36,9 @@ items:
     accept: ["Lena hat seit zwei Tagen Fieber. Vor einer Woche ist sie zum Arzt gegangen."]
     key_tokens: ["seit", "Tagen", "vor", "einer"]
     explain:
-      en: "One question at each time phrase: is it still true? Lena's fever is there now — seit zwei Tagen. The visit happened once and is finished — vor einer Woche. Both prepositions take the dative, so they never differ in form, only in meaning, and the plural noun adds -n: Tagen. The Perfekt in the second sentence is the giveaway: a completed action almost always goes with vor, while a state that still holds stays in the present with seit."
-      ru: "У каждого обстоятельства времени задавайте один вопрос: это верно и сейчас? Температура у Лены есть сегодня — seit zwei Tagen. А визит состоялся однажды и уже позади — vor einer Woche. Оба предлога требуют Dativ, поэтому по форме они не различаются — только по смыслу, — а существительное во множественном числе получает -n: Tagen. Perfekt во втором предложении подсказывает: завершённое действие почти всегда идёт с vor, а состояние, которое длится, остаётся в настоящем времени и с seit."
-      uk: "Біля кожної обставини часу ставте одне питання: чи це правда й зараз? Температура в Лени є сьогодні — seit zwei Tagen. А візит відбувся одного разу й уже позаду — vor einer Woche. Обидва прийменники вимагають Dativ, тому за формою вони не різняться — лише за змістом, — а іменник у множині отримує -n: Tagen. Perfekt у другому реченні підказує: завершена дія майже завжди йде з vor, а стан, який триває, лишається в теперішньому часі та із seit."
+      en: "seit zwei Tagen gives the duration of the fever that continues now. vor einer Woche locates the visit one week before now. Both prepositions take the dative, so meaning—not case or tense alone—distinguishes them; the dative plural adds -n in Tagen."
+      ru: "seit zwei Tagen называет длительность температуры, которая сохраняется сейчас. vor einer Woche помещает визит за неделю до настоящего. Оба предлога требуют Dativ, поэтому различает их смысл, а не только падеж или время глагола; Dativ Plural получает -n в Tagen."
+      uk: "seit zwei Tagen називає тривалість температури, що зберігається зараз. vor einer Woche розміщує візит за тиждень до теперішнього. Обидва прийменники вимагають Dativ, тому їх розрізняє зміст, а не лише відмінок або час дієслова; Dativ Plural отримує -n у Tagen."
 
   - id: variant-b
     outcomes: [beschwerden-beschreiben]
@@ -74,6 +74,6 @@ items:
     accept: ["Frau Sommer hat seit einer Woche eine Erkältung. Vor zwei Tagen hat sie die Tabletten gekauft."]
     key_tokens: ["seit", "einer", "vor", "Tagen"]
     explain:
-      en: "The cold is still with her today — seit einer Woche, with the dative einer after seit. The purchase is done and behind her — vor zwei Tagen, dative again, and the plural -n on Tagen. The two prepositions look interchangeable because they govern the same case; what separates them is only whether the thing is over. Ask that question before you write either of them. Note the article: eine Erkältung is a countable illness and keeps its article, unlike Husten or Fieber, which follow haben bare."
-      ru: "Простуда у неё и сегодня — seit einer Woche, с формой einer в Dativ после seit. А покупка уже позади — vor zwei Tagen, снова Dativ, и снова -n во множественном числе у Tagen. Предлоги выглядят взаимозаменяемыми, потому что управляют одним и тем же падежом; различает их только одно: закончилось ли действие. Задайте этот вопрос прежде, чем написать любой из них. Обратите внимание на артикль: eine Erkältung — исчисляемая болезнь и артикль сохраняет, в отличие от Husten или Fieber, которые стоят после haben без артикля."
-      uk: "Застуда в неї й сьогодні — seit einer Woche, з формою einer у Dativ після seit. А покупка вже позаду — vor zwei Tagen, знову Dativ, і знову -n у множині в Tagen. Прийменники здаються взаємозамінними, бо керують тим самим відмінком; розрізняє їх лише одне: чи дія закінчилася. Ставте це питання, перш ніж написати будь-який із них. Зверніть увагу на артикль: eine Erkältung — обчислювана хвороба й артикль зберігає, на відміну від Husten чи Fieber, які стоять після haben без артикля."
+      en: "seit einer Woche gives the duration of the cold that continues now; einer is dative. vor zwei Tagen locates the purchase two days before now; Tagen carries the dative-plural -n. The distinction is temporal function, not whether all consequences are over. eine Erkältung keeps its article, unlike the bare illness nouns Husten and Fieber in these haben phrases."
+      ru: "seit einer Woche называет длительность простуды, которая сохраняется сейчас; einer стоит в Dativ. vor zwei Tagen помещает покупку за два дня до настоящего; Tagen получает -n Dativ Plural. Различие — во временной функции, а не в том, закончились ли все последствия. eine Erkältung сохраняет артикль, в отличие от Husten и Fieber в этих оборотах с haben."
+      uk: "seit einer Woche називає тривалість застуди, що зберігається зараз; einer стоїть у Dativ. vor zwei Tagen розміщує купівлю за два дні до теперішнього; Tagen отримує -n Dativ Plural. Різниця — у часовій функції, а не в тому, чи завершилися всі наслідки. eine Erkältung зберігає артикль, на відміну від Husten і Fieber у цих зворотах із haben."

@@ -89,11 +89,11 @@ items:
     prompt_en: "I promise: I will call you tomorrow."
     prompt_ru: "Обещаю: я позвоню тебе завтра."
     prompt_uk: "Обіцяю: я зателефоную тобі завтра."
-    answer: "Ich verspreche es: Ich werde dich morgen anrufen."
-    # The promise frame is scaffolding, not the target — es, dir and the bare verb are
+    answer: "Ich verspreche dir: Ich werde dich morgen anrufen."
+    revision: 2
+    # The promise frame is scaffolding, not the target — dir and the bare verb are
     # all ordinary German, and only the Futur I bracket after the colon is graded.
     accept:
-      - "Ich verspreche dir: Ich werde dich morgen anrufen."
       - "Ich verspreche: Ich werde dich morgen anrufen."
     key_tokens: ["werde", "anrufen"]
     explain:

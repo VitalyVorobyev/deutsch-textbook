@@ -1,6 +1,6 @@
 /** FSRS scheduling and deck building. */
 import { createEmptyCard, fsrs, type Card, type Grade } from 'ts-fsrs';
-import type { VocabEntry, WordField } from './schemas';
+import type { VocabEntry, WordField, Wortnetz } from './schemas';
 import { shuffle } from './shuffle';
 import { localDateString, type StoredCard } from './store';
 
@@ -52,7 +52,7 @@ export interface CardDef {
 }
 
 export interface LexicalContext {
-  type: 'collocation' | 'contrast' | 'family' | 'formation' | 'register';
+  type: 'collocation' | 'contrast' | 'meaning-contrast' | 'family' | 'formation' | 'register';
   /** the related German word/phrase — content, not an explanation half */
   de: string;
   en: string;
@@ -90,6 +90,46 @@ export function wordFieldContexts(fields: WordField[]): LexicalContextMap {
     }
   }
   return contexts;
+}
+
+/** Cross-topic network relations shown on an existing card's answer side.
+    Receptive members remain context only: this function never builds cards. */
+export function wortnetzContexts(networks: Wortnetz[]): LexicalContextMap {
+  const contexts: LexicalContextMap = {};
+  for (const network of networks) {
+    const members = new Map(network.members.map((member) => [member.id, member]));
+    for (const relation of network.relations) {
+      const source = members.get(relation.from);
+      const target = members.get(relation.to);
+      if (!source || source.kind !== 'card' || !target) continue;
+      const key = lexicalKey(source.ref.deck, source.ref.de);
+      const targetDe = target.kind === 'card' ? target.ref.de : target.de;
+      const entry: LexicalContext = {
+        type: relation.type,
+        de: targetDe,
+        en: relation.explanation.en,
+        ru: relation.explanation.ru,
+        uk: relation.explanation.uk,
+        explanationDe: relation.explanation.de,
+        exampleDe: target.example.de,
+        exampleEn: target.example.en,
+        exampleRu: target.example.ru,
+        exampleUk: target.example.uk,
+      };
+      (contexts[key] ??= []).push(entry);
+    }
+  }
+  return contexts;
+}
+
+export function mergeLexicalContexts(...maps: LexicalContextMap[]): LexicalContextMap {
+  const merged: LexicalContextMap = {};
+  for (const map of maps) {
+    for (const [key, entries] of Object.entries(map)) {
+      (merged[key] ??= []).push(...entries);
+    }
+  }
+  return merged;
 }
 
 function deDetail(e: VocabEntry): string | undefined {

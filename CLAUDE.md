@@ -6,8 +6,10 @@ longer-term goal. Explanations are bilingual **EN + RU**, with optional **UK** a
 translation waves and, from B1 onward, an optional German-medium explanation half. The repo is
 both the knowledge base (`content/`) and the Astro site that renders it.
 
-This file is the **authoring contract**: how any single artifact must be written. Three companions
-decide the rest, and they are not optional reading. [`docs/curriculum-a2-b1.md`](docs/curriculum-a2-b1.md)
+This file is the **authoring contract**: how any single artifact must be written. The implemented
+system map lives in [`docs/design.md`](docs/design.md); it describes architecture without
+duplicating these rules. Three planning companions decide the rest, and they are not optional
+reading. [`docs/curriculum-a2-b1.md`](docs/curriculum-a2-b1.md)
 decides *what* A2 teaches, in what order, with which frozen identities.
 [`docs/a1-learning-audit.md`](docs/a1-learning-audit.md) holds the twelve-point quality gate a
 finished unit must clear. [`docs/backlog.md`](docs/backlog.md) is the execution queue.
@@ -36,7 +38,12 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `content/exercises/<level>/<set-id>.yaml` — exercise sets, embedded automatically on the owning topic's page.
 - `content/reading/<level>/<id>.yaml` — graded reading texts (comprehensible input). `kind: intensive` (the default) is the topic's "Lesetext": glossed paragraphs + 2–4 `mc` comprehension questions, ~90–130 words. `kind: extensive` is a **different artifact for a different purpose** — 250–400 words, ≤2 questions, ~1 gloss per 40 words, bounds enforced by the validator — meant to be read straight through for meaning with the glosses closed. A long text quizzed line by line is just a long intensive text, and the volume input it exists to provide never happens; the reader UI says so to the learner. Rendered by `src/components/reading/ReadingText.tsx`; attempts log under `reading:<path-id>`.
 - `content/documents/` — reusable real/adapted/simulated visual stimuli. A set may name one with `stimulus`; it remains visible in lessons and mixed training, and its transcript is the equivalent non-visual route. Viewing is never evidence. Real/adapted assets require attribution and licence metadata.
-- `content/wortfelder/` — lexical overlays over stable `(deck, de)` card identities. Relations enrich only the answer side; receptive members create no cards or mastery. `content/discovery/` is optional Entdecken material outside the spine. `content/reference-data/` is canonical lookup data shared by references and lessons.
+- `content/wortfelder/` — topical lexical overlays over stable `(deck, de)` card identities.
+  `content/wortnetze/` — cross-topic word families and meaning contrasts; historical relations
+  require sources and mnemonic relations are labelled memory bridges. Both enrich only the answer
+  side; receptive members create no cards or mastery. `content/discovery/` is optional Entdecken
+  material outside the spine. `content/reference-data/` is canonical lookup data shared by
+  references and lessons. See `docs/design.md` for the technical contracts.
 - `content/atlas.yaml` — the topic relationships **and the curriculum spine**. Per node: id/level/kind/prerequisites, optional `deepens: [base-topic-ids]` (spiral revisits — targets must appear earlier in the spine, **and must share a focus tag the base drills**: the tag is the edge's only runtime channel, so an edge without one is inert — see below), and 2–4 `outcomes` (learner-facing "Ich kann …" can-do statements with independently written `en`/`ru`). `units:` is the ordered spine — file order IS the recommended path (A1 units before A2; insert, never renumber); every topic lives in exactly one unit of its own level, never before a prerequisite. All of it is enforced by `bun run validate`. Runtime: `getCurriculum()` in `src/lib/curriculum.ts` provides the flattened spine, and `recommendedNext()` in `src/lib/mastery.ts` selects the first topic the learner has not put behind them (`pathDone`, below) for Heute and Themen. The path is soft: it guides navigation but never unlocks unread material for automatic training or fresh-card selection.
 - `progress/<profile>/*.json` — learner progress snapshots, **one folder per local profile**. The folder name is the slug of whatever name the learner chose at first run; this repo's historical learner folder is `progress/vitaly/`. v5 snapshots carry `attempts`, `cards`, `sessions`, `topics`, the profile-scoped goal and optional-artifact `feedback`; import back-compat reads v1–v5. Audit the newest snapshot with `bun run progress:audit --profile <slug>` rather than loading the raw JSON wholesale; use `--item <set-id>:<item-id>` only for focused evidence. Snapshots sync **automatically** on two paths (`src/lib/autosync.ts`, debounced full-snapshot on every progress write): under `bun run dev` via POST to the dev-only `POST /__progress/<profile>` middleware (`src/integrations/progress-writer.ts`), which writes `progress/<profile>/<date>.json` into the repo; in the desktop app via the Tauri fs plugin into the configurable sync folder (`src/lib/syncdir.ts`, localStorage `da:syncdir`, default app-data — point it at a repo clone's `progress/` on the Fortschritt page). The Fortschritt page's Export button does the same on demand; on the plain deployed website it falls back to a file download. Import is a **non-destructive merge** by default (Replace is confirm-gated).
 - `src/lib/schemas.ts` — Zod schemas, the single source of truth for all content shapes (shared by `src/content.config.ts` and `scripts/validate.ts`).
@@ -169,7 +176,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `adjektiv-unbestimmt` | adjective endings after *ein/kein/mein*, where the adjective supplies the gender the article hides (ein neu**er** Tisch, ein neu**es** Bett) |
 | `imperativ-form` | imperative forms for du, ihr and Sie (Nimm …, Nehmt …, Nehmen Sie …) |
 | `seit-vor-zeit` | *seit* + Dativ (since/for — still true) vs *vor* + Dativ (ago — finished) |
-| `reflexiv-dativ` | the reflexive pronoun drops to the dative once the clause has its own direct object (*Ich wasche **mir** die Hände*), and the body part keeps a plain article, never a possessive |
+| `reflexiv-dativ` | in body-part/personal-domain constructions, the affected person is dative while the body part is the accusative object (*Ich wasche **mir** die Hände*); the neutral form uses a plain article, while a possessive is possible under contrast |
 | `futur-werden` |  Futur I is *werden* + bare infinitive in the bracket — and is used for a prediction or promise, not for a plan a time phrase already dates |
 | `reflexiv-akkusativ` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |
 | `verb-praeposition` | choosing the preposition governed by a verb: warten **auf**, träumen **von** |
@@ -182,7 +189,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `konjunktionaladverb-inversion` | *deshalb*, *deswegen*, *trotzdem*, *dann*, *schließlich* are **adverbs**: they fill position 1, so the verb comes second (❌ *Deshalb ich komme*) |
 | `als-wenn-vergangenheit` | past *when*: **als** for a single occasion, **wenn** for a repeated one — neither EN nor RU marks the difference |
 | `indefinitpronomen` | *man* is a subject German cannot omit and takes the *er*-form; *jemand*/*niemand*/*etwas*/*nichts* carry their own negation, so no second negative joins them |
-| `genitiv-eigenname` | possession is name + **-s** with no apostrophe (*Annas Auto*) — everything else is **von + Dativ** |
+| `genitiv-eigenname` | A2 possession production: name + **-s** without an ordinary possessive apostrophe (*Annas Auto*), or the safe spoken route **von + Dativ** for noun phrases; full Genitiv is recognised, not rejected as ungrammatical |
 | `passiv-rezeptiv` | reading *werden* + Partizip II as a passive (*Hier wird gebaut*) and telling it from *werden* + Infinitiv (Futur) and *werden* + noun (*to become*) — recognition only at A2 |
 | `relativpronomen-kasus` | the relative pronoun takes its gender/number from the noun outside but its **case from the role inside** its own clause (*der Mann, **den** ich kenne*) |
 | `aber-sondern` | *sondern* only after a negation, replacing what was denied (Nicht am Freitag, **sondern** am Samstag) — elsewhere it is *aber* |

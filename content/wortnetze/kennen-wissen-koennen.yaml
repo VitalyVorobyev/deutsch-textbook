@@ -1,0 +1,44 @@
+id: kennen-wissen-koennen
+kind: meaning-contrast
+level: A2
+title_de: "kennen, wissen oder können?"
+title: { en: "Knowing people, facts and how", ru: "Знать людей, факты и уметь", uk: "Знати людей, факти й уміти" }
+introduction: { en: "English and Russian can cover these meanings with fewer everyday verbs. German separates familiarity, factual knowledge and ability.", ru: "Русское «знать» охватывает больше значений. Немецкий разделяет знакомство, знание факта и умение.", uk: "Українське «знати» охоплює більше значень. Німецька розділяє знайомство, знання факту й уміння." }
+members:
+  - kind: card
+    id: kennen
+    status: productive
+    ref: { deck: kernwortschatz-a2, de: "kennen" }
+    usage: { en: "Be familiar with a person, place, work or thing.", ru: "Быть знакомым с человеком, местом, произведением или предметом.", uk: "Бути знайомим із людиною, місцем, твором або предметом." }
+    collocations: ["jemanden kennen", "Berlin gut kennen"]
+    example: { de: "Kennst du diese Frau?", en: "Do you know this woman?", ru: "Ты знаешь эту женщину?", uk: "Ти знаєш цю жінку?" }
+  - kind: card
+    id: wissen
+    status: productive
+    ref: { deck: kernwortschatz-a2, de: "wissen" }
+    usage: { en: "Know a fact or the answer to a question; often followed by a clause.", ru: "Знать факт или ответ на вопрос; часто перед придаточным.", uk: "Знати факт або відповідь на питання; часто перед підрядним." }
+    collocations: ["die Antwort wissen", "wissen, dass ...", "wissen, wo ..."]
+    example: { de: "Ich weiß, wo der Schlüssel ist.", en: "I know where the key is.", ru: "Я знаю, где ключ.", uk: "Я знаю, де ключ." }
+  - kind: card
+    id: koennen
+    status: productive
+    ref: { deck: modalverben, de: "können" }
+    usage: { en: "Have the ability or practical know-how to do something.", ru: "Уметь или быть способным что-то сделать.", uk: "Уміти або бути здатним щось зробити." }
+    collocations: ["Deutsch sprechen können", "schwimmen können"]
+    example: { de: "Ich kann gut schwimmen.", en: "I can swim well.", ru: "Я хорошо умею плавать.", uk: "Я добре вмію плавати." }
+relations:
+  - from: kennen
+    to: wissen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "kennen takes a person or familiar thing; wissen takes a fact, answer or clause.", ru: "kennen относится к знакомому человеку или объекту; wissen — к факту, ответу или придаточному.", uk: "kennen стосується знайомої людини чи об'єкта; wissen — факту, відповіді або підрядного." }
+  - from: wissen
+    to: koennen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "Knowing that something is true is wissen; knowing how and being able to do it is usually können + infinitive.", ru: "Знать факт — wissen; знать как и уметь сделать — обычно können + инфинитив.", uk: "Знати факт — wissen; знати як і вміти зробити — зазвичай können + інфінітив." }
+  - from: koennen
+    to: kennen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "können expresses ability; kennen expresses familiarity, not a skill.", ru: "können выражает умение; kennen — знакомство, а не навык.", uk: "können виражає вміння; kennen — знайомство, а не навичку." }
