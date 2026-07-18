@@ -1024,6 +1024,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         'relativpronomen-kasus': 'relativsaetze',
         'konjunktionaladverb-inversion': 'verbindungen-folgen',
         'als-wenn-vergangenheit': 'verbindungen-folgen',
+        'futur-werden': 'infinitiv-mit-zu',
+        'reflexiv-dativ': 'gesundheit-arzttermin',
         'aber-sondern': 'freunde-feste',
         'praeteritum-sein-haben': 'biografie-erfahrungen',
         'indirekte-frage': 'lernen-verstehen',

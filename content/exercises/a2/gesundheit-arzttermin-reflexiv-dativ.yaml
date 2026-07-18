@@ -1,0 +1,121 @@
+topic: gesundheit-arzttermin
+role: practice
+title:
+  en: "Reflexive in the dative — sich die Hände waschen"
+  ru: "Возвратное местоимение в дательном — sich die Hände waschen"
+  uk: "Зворотний займенник у давальному — sich die Hände waschen"
+# A NON-PRIMARY set, appended after the topic's existing two, so the topic's
+# primaryPractice — and with it anyone's completed Lernpfad step — is untouched.
+items:
+  - id: table-mich-oder-mir
+    outcomes: [beschwerden-beschreiben]
+    type: table
+    focus: reflexiv-dativ
+    title: "Ohne Objekt mich, mit Objekt mir"
+    instruction:
+      en: "Add the direct object. The reflexive pronoun changes case."
+      ru: "Добавьте прямое дополнение. Возвратное местоимение меняет падеж."
+      uk: "Додайте прямий додаток. Зворотний займенник змінює відмінок."
+    columns: ["ohne Objekt (Akkusativ)", "mit Objekt (Dativ)"]
+    rows:
+      - label: "waschen"
+        cells:
+          - { answer: "Ich wasche mich.", given: true }
+          - { answer: "Ich wasche mir die Hände." }
+      - label: "anziehen"
+        cells:
+          - { answer: "Ich ziehe mich an.", given: true }
+          - { answer: "Ich ziehe mir die Schuhe an." }
+      - label: "waschen (du)"
+        cells:
+          - { answer: "Du wäschst dich.", given: true }
+          - { answer: "Du wäschst dir die Haare." }
+    explain:
+      en: "The rule is mechanical: as soon as the sentence has a direct object of its own, that object takes the accusative and the reflexive pronoun steps down into the dative. Only ich and du show it — mich becomes mir, dich becomes dir — and every other person keeps the same word, which is why this is easy to miss. Note also that German uses the definite article for the body part, not a possessive."
+      ru: "Правило механическое: как только в предложении появляется собственное прямое дополнение, оно забирает винительный падеж, а возвратное местоимение уходит в дательный. Видно это только у ich и du — mich становится mir, dich становится dir, — у всех остальных лиц слово не меняется, потому ошибку и легко не заметить. И обратите внимание: часть тела идёт с определённым артиклем, а не с притяжательным местоимением."
+      uk: "Правило механічне: щойно в реченні з'являється власний прямий додаток, він забирає знахідний відмінок, а зворотний займенник іде в давальний. Видно це лише в ich і du — mich стає mir, dich стає dir, — у решти осіб слово не змінюється, тому помилку й легко не помітити. І зверніть увагу: частина тіла йде з означеним артиклем, а не з присвійним займенником."
+
+  - id: cloze-koerperpflege
+    outcomes: [beschwerden-beschreiben]
+    type: cloze
+    focus: reflexiv-dativ
+    instruction:
+      en: "mich or mir? dich or dir? Look for a direct object."
+      ru: "mich или mir? dich или dir? Ищите прямое дополнение."
+      uk: "mich чи mir? dich чи dir? Шукайте прямий додаток."
+    text: "Ich putze {{mir}} zweimal am Tag die Zähne. Danach wasche ich {{mich}} und ziehe {{mir}} die Schuhe an."
+    translation:
+      en: "I brush my teeth twice a day. Then I wash and put my shoes on."
+      ru: "Я чищу зубы дважды в день. Потом я моюсь и надеваю обувь."
+      uk: "Я чищу зуби двічі на день. Потім я вмиваюся і взуваюся."
+    explain:
+      en: "Three gaps, one question each time: is there a direct object? die Zähne and die Schuhe are objects, so those two take mir. The middle sentence has none — washing is simply something I do to myself — so it takes mich. Nothing about the verb decides this; the same verb waschen appears on both sides of the rule."
+      ru: "Три пропуска, и каждый раз один и тот же вопрос: есть ли прямое дополнение? die Zähne и die Schuhe — дополнения, поэтому там mir. В среднем предложении дополнения нет — мыться это просто действие над собой, — поэтому mich. Сам глагол здесь ни при чём: waschen встречается по обе стороны правила."
+      uk: "Три пропуски, і щоразу одне й те саме питання: чи є прямий додаток? die Zähne і die Schuhe — додатки, тому там mir. У середньому реченні додатка немає — митися це просто дія над собою, — тому mich. Саме дієслово тут ні до чого: waschen трапляється по обидва боки правила."
+
+  - id: mc-meine-haende
+    outcomes: [beschwerden-beschreiben]
+    type: mc
+    focus: reflexiv-dativ
+    prompt: "Alle vier sind verständlich. Welcher Satz ist der normale deutsche Satz?"
+    options:
+      - "Ich wasche mir vor dem Essen die Hände."
+      - "Ich wasche meine Hände vor dem Essen."
+      - "Ich wasche mich vor dem Essen die Hände."
+      - "Ich wasche mir vor dem Essen meine Hände."
+    correct: 0
+    translation:
+      en: "I wash my hands before eating."
+      ru: "Я мою руки перед едой."
+      uk: "Я мию руки перед їжею."
+    explain:
+      en: "Option 2 is not ungrammatical — it is the English sentence translated word for word, and a German would understand it and would use that shape themselves to stress ownership (meine Hände, nicht deine). It is simply not how the everyday sentence is built: English marks the owner with my, German marks it with the dative pronoun and then uses a plain die. Options 3 and 4 are the real errors — 3 keeps the accusative even though die Hände is already the object, and 4 says whose hands they are twice over, with mir and meine both doing a job German does once."
+      ru: "Второй вариант не безграмотен: это английское предложение, переведённое слово в слово, немец его поймёт и сам скажет так, если нужно подчеркнуть принадлежность (meine Hände, nicht deine). Просто обиходная фраза строится иначе: английский обозначает владельца словом my, а немецкий — дательным местоимением, после которого идёт обычное die. По-настоящему неверны третий и четвёртый: в третьем оставлен винительный, хотя дополнением уже служит die Hände, а в четвёртом работа сделана дважды — и mir, и meine говорят, чьи это руки, а немецкий говорит это один раз."
+      uk: "Другий варіант не безграмотний: це англійське речення, перекладене слово в слово, німець його зрозуміє і сам скаже так, якщо треба підкреслити належність (meine Hände, nicht deine). Просто побутова фраза будується інакше: англійська позначає власника словом my, а німецька — давальним займенником, після якого йде звичайне die. По-справжньому хибні третій і четвертий: у третьому залишено знахідний, хоча додатком уже є die Hände, а в четвертому роботу зроблено двічі — і mir, і meine кажуть, чиї це руки, а німецька каже це один раз."
+
+  - id: uebersetzen-zaehne-putzen
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-dativ
+    prompt_en: "I brush my teeth every morning."
+    prompt_ru: "Я чищу зубы каждое утро."
+    prompt_uk: "Я чищу зуби щоранку."
+    answer: "Ich putze mir jeden Morgen die Zähne."
+    accept: ["Jeden Morgen putze ich mir die Zähne."]
+    key_tokens: ["mir"]
+    explain:
+      en: "die Zähne is the direct object, so the reflexive pronoun is dative: mir. The English source pushes hard the other way — my teeth invites meine Zähne — which is exactly why this one word is what the item grades."
+      ru: "die Zähne — прямое дополнение, поэтому возвратное местоимение в дательном: mir. По-русски местоимения здесь нет вовсе («чищу зубы»), так что немецкое mir приходится добавлять из ниоткуда — и именно это слово задание и проверяет."
+      uk: "die Zähne — прямий додаток, тому зворотний займенник у давальному: mir. Українською займенника тут немає зовсім («чищу зуби»), тож німецьке mir доводиться додавати нізвідки — і саме це слово завдання й перевіряє."
+
+  - id: uebersetzen-fuss-verletzt
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-dativ
+    prompt_en: "I have hurt my foot."
+    prompt_ru: "Я повредил ногу."
+    prompt_uk: "Я пошкодив ногу."
+    answer: "Ich habe mir den Fuß verletzt."
+    key_tokens: ["mir"]
+    explain:
+      en: "This is the sentence to have ready at a doctor's, and it is built on the dative reflexive: the foot is what got hurt, so it is the object, and mir says whose it is. The same frame gives you Ich habe mir den Arm gebrochen and Ich habe mir wehgetan."
+      ru: "Именно это предложение нужно иметь наготове у врача, и построено оно на возвратном дательном: повреждена нога, значит она дополнение, а mir говорит, чья она. Та же рамка даёт Ich habe mir den Arm gebrochen и Ich habe mir wehgetan."
+      uk: "Саме це речення треба мати напоготові в лікаря, і побудоване воно на зворотному давальному: пошкоджена нога, отже вона додаток, а mir каже, чия вона. Та сама рамка дає Ich habe mir den Arm gebrochen і Ich habe mir wehgetan."
+
+  - id: hoeren-haende-waschen
+    outcomes: [beschwerden-beschreiben]
+    type: listen
+    focus: reflexiv-dativ
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Waschen Sie sich bitte die Hände."
+    translation:
+      en: Please wash your hands.
+      ru: Пожалуйста, вымойте руки.
+      uk: Будь ласка, помийте руки.
+    explain:
+      en: "An instruction you will actually hear in a practice. With Sie the reflexive pronoun is sich in both cases, so nothing on the surface reveals the dative — it is die Hände standing there as the object that tells you which case sich is in. That invisibility is why the rule has to be known rather than heard."
+      ru: "Указание, которое действительно можно услышать в кабинете врача. При Sie возвратное местоимение в обоих падежах выглядит как sich, поэтому на поверхности дательный никак не проявляется — на него указывает только стоящее рядом дополнение die Hände. Из-за этой невидимости правило приходится знать, а не слышать."
+      uk: "Вказівка, яку справді можна почути в кабінеті лікаря. При Sie зворотний займенник в обох відмінках виглядає як sich, тому на поверхні давальний ніяк не проявляється — на нього вказує лише додаток die Hände поруч. Через цю невидимість правило доводиться знати, а не чути."

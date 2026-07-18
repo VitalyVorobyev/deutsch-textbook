@@ -61,10 +61,16 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
   one mixed family would measure each competence at only one interval, which is not a retention
   curve. `probeFamilies` keys by setId, so the two are discovered and armed independently
   (verified at runtime, not assumed). B1 keeps *obwohl*; only the adverb *trotzdem* moves to A2.
-- **P10-5 · extensions, not units** — `todo`. Futur I (`futur-werden`) joins `nebensaetze-plaene`,
-  which already teaches plans as present + time phrase; Reflexiv im Dativ (`reflexiv-dativ`) joins
-  `gesundheit-arzttermin`, which owns `reflexiv-akkusativ`. Both as **non-primary** practice sets,
-  so neither un-finishes a topic the learner has completed.
+- **P10-5 · extensions, not units** — `done` 2026-07-18. A2 grammar 83% → **90%**. Futur I
+  (`futur-werden`) joins **`infinitiv-mit-zu`**, not `nebensaetze-plaene` as first planned: that
+  node is already at the four-outcome maximum, and the plans-and-intentions topic is the better
+  host anyway, since stating an intention is what A2 Futur I is for. Reflexiv im Dativ
+  (`reflexiv-dativ`) joins `gesundheit-arzttermin` as planned, reusing `beschwerden-beschreiben`
+  (*Ich habe mir den Fuß verletzt* is a symptom description) rather than adding a fifth outcome.
+  Both are **non-primary** sets appended after the existing ones, and both host articles gained an
+  Erklärung section — a structure that is drilled but never explained is not taught.
+  **The four-outcome ceiling is worth remembering when planning an extension**: it decides where
+  new grammar can go, and it is easy to discover only after the content is written.
 - **P10-6 · `man` und Besitz** — `todo`. Indefinitpronomen (`indefinitpronomen`) and the Genitiv-s
   on proper names with *von* + Dativ as the everyday alternative (`genitiv-eigenname`). `man` is
   used in eight A2 articles already and taught in none.
