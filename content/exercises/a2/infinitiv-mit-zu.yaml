@@ -1,0 +1,206 @@
+topic: infinitiv-mit-zu
+role: practice
+title:
+  en: "Practice — zu or no zu, and um … zu for purpose"
+  ru: "Практика — zu или без zu, и um … zu для цели"
+  uk: "Практика — zu чи без zu, і um … zu для мети"
+items:
+  - id: table-modal-zu-infinitiv
+    outcomes: [zu-oder-ohne-zu]
+    type: table
+    focus: zu-infinitiv
+    title: "Vom Modalverb zum Infinitiv mit zu"
+    instruction:
+      en: "Say the same thing with Ich habe vor, … Write only the part after the comma (no comma, no full stop)."
+      ru: "Скажите то же самое с помощью Ich habe vor, … Пишите только часть после запятой (без запятой и точки)."
+      uk: "Скажіть те саме за допомогою Ich habe vor, … Пишіть лише частину після коми (без коми й крапки)."
+    columns: ["Mit Modalverb", "Ich habe vor, …"]
+    rows:
+      - label: "Einfaches Verb"
+        cells:
+          - { answer: "Ich will Deutsch lernen.", given: true }
+          - { answer: "Deutsch zu lernen" }
+      - label: "Trennbares Verb"
+        cells:
+          - { answer: "Ich muss früh aufstehen.", given: true }
+          - { answer: "früh aufzustehen" }
+      - label: "Untrennbares Verb"
+        cells:
+          - { answer: "Ich will die Rechnung bezahlen.", given: true }
+          - { answer: "die Rechnung zu bezahlen" }
+      - label: "sein"
+        cells:
+          - { answer: "Ich möchte pünktlich sein.", given: true }
+          - { answer: "pünktlich zu sein" }
+    explain:
+      en: "The left column never has zu, the right column always does — that is the whole rule, because vorhaben is not a modal. Where zu lands depends only on the prefix: lernen and bezahlen and sein take it in front, while aufstehen takes it inside, because auf- is a separable prefix and separable prefixes carry the stress (ÁUFstehen, but beZÁHlen). It is the same test that decides whether the Partizip II gets a ge-."
+      ru: "В левом столбце zu нет никогда, в правом — всегда, и это всё правило: vorhaben не модальный глагол. А куда встаёт zu, зависит только от приставки: у lernen, bezahlen и sein — впереди, у aufstehen — внутрь, потому что auf- отделяемая, а отделяемые приставки ударные (ÁUFstehen, но beZÁHlen). Это та же проверка, по которой в Partizip II появляется ge-."
+      uk: "У лівому стовпці zu немає ніколи, у правому — завжди, і це все правило: vorhaben не модальне дієслово. А куди стає zu, залежить лише від префікса: у lernen, bezahlen і sein — попереду, у aufstehen — усередину, бо auf- відокремлюваний, а відокремлювані префікси наголошені (ÁUFstehen, але beZÁHlen). Це та сама перевірка, за якою в Partizip II з'являється ge-."
+
+  - id: cloze-zu-innen-trennbar
+    outcomes: [zu-oder-ohne-zu]
+    type: cloze
+    focus: zu-infinitiv
+    instruction:
+      en: "Both verbs are separable. Write the full infinitive with zu in the right place."
+      ru: "Оба глагола отделяемые. Напишите полный инфинитив с zu на нужном месте."
+      uk: "Обидва дієслова відокремлювані. Напишіть повний інфінітив із zu на потрібному місці."
+    text: "Es tut mir leid — ich habe vergessen, dich {{anzurufen}}. Ab Montag versuche ich, jeden Tag früher {{aufzustehen}}."
+    translation:
+      en: "I am sorry — I forgot to call you. From Monday I will try to get up earlier every day."
+      ru: "Извини — я забыл тебе позвонить. С понедельника я постараюсь каждый день вставать пораньше."
+      uk: "Вибач — я забув тобі зателефонувати. З понеділка я намагатимуся щодня вставати раніше."
+    explain:
+      en: "anrufen and aufstehen split in a main clause (ich rufe dich an, ich stehe früh auf), but here they do not split at all: zu moves into the word instead, and the result is written as one word — anzurufen, aufzustehen. Not zu anrufen, and not anzurufen written apart."
+      ru: "anrufen и aufstehen в главном предложении распадаются (ich rufe dich an, ich stehe früh auf), но здесь они не распадаются вовсе: вместо этого zu уходит внутрь слова, и всё пишется слитно — anzurufen, aufzustehen. Не zu anrufen и не anzurufen раздельно."
+      uk: "anrufen і aufstehen в головному реченні розпадаються (ich rufe dich an, ich stehe früh auf), але тут вони не розпадаються зовсім: натомість zu йде всередину слова, і все пишеться разом — anzurufen, aufzustehen. Не zu anrufen і не anzurufen окремо."
+
+  - id: cloze-zu-oder-nichts
+    outcomes: [zu-oder-ohne-zu]
+    type: cloze
+    focus: zu-infinitiv
+    instruction:
+      en: "Put in the infinitive — with zu or without, whichever the sentence needs."
+      ru: "Вставьте инфинитив — с zu или без, смотря что требуется в предложении."
+      uk: "Вставте інфінітив — із zu чи без, залежно від того, що потрібно в реченні."
+    text: "Am Samstag muss ich {{arbeiten}}, aber am Sonntag habe ich Lust, ins Schwimmbad {{zu gehen}}. Kannst du {{mitkommen}}? Ich verspreche dir, nicht zu lange {{zu bleiben}}."
+    translation:
+      en: "On Saturday I have to work, but on Sunday I feel like going to the swimming pool. Can you come along? I promise you not to stay too long."
+      ru: "В субботу мне нужно работать, а в воскресенье мне хочется сходить в бассейн. Ты сможешь пойти со мной? Обещаю, что не задержусь надолго."
+      uk: "У суботу мені треба працювати, а в неділю мені хочеться сходити в басейн. Ти зможеш піти зі мною? Обіцяю, що не затримаюся надовго."
+    explain:
+      en: "Four infinitives, and only the verb in front decides. muss and kannst are modals, so their infinitive stays bare. Lust haben and versprechen are ordinary expressions, so theirs takes zu. Nothing about the infinitive itself — its meaning, its length, its position — changes the answer: look left, find the governing verb, and ask whether it is a modal."
+      ru: "Четыре инфинитива, и решает только глагол слева. muss и kannst — модальные, поэтому их инфинитив остаётся голым. Lust haben и versprechen — обычные выражения, у них zu нужен. Сам инфинитив — его значение, длина, место — на ответ не влияет никак: смотрите влево, находите управляющий глагол и спрашивайте, модальный ли он."
+      uk: "Чотири інфінітиви, і вирішує лише дієслово ліворуч. muss і kannst — модальні, тому їхній інфінітив залишається голим. Lust haben і versprechen — звичайні вирази, у них zu потрібне. Сам інфінітив — його значення, довжина, місце — на відповідь не впливає ніяк: дивіться ліворуч, знаходьте керівне дієслово і питайте, чи модальне воно."
+
+  - id: mc-modal-ohne-zu
+    outcomes: [zu-oder-ohne-zu]
+    type: mc
+    focus: zu-infinitiv
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich muss morgen früh aufstehen."
+      - "Ich muss morgen früh zu aufstehen."
+      - "Ich muss morgen früh aufzustehen."
+      - "Ich muss morgen früh zu aufzustehen."
+    correct: 0
+    translation:
+      en: "I have to get up early tomorrow."
+      ru: "Завтра мне нужно рано вставать."
+      uk: "Завтра мені треба рано вставати."
+    explain:
+      en: "müssen is a modal, so no zu appears anywhere — the separable verb simply stands whole at the end. The three wrong options are the three ways of putting a zu in: in front, inside, and both at once. If the sentence began Ich habe vor, the third option would be the correct one, and that single difference is the thing worth remembering."
+      ru: "müssen — модальный глагол, поэтому zu не появляется нигде: отделяемый глагол просто стоит целиком в конце. Три неверных варианта — это три способа всё-таки вставить zu: спереди, внутрь и сразу оба. Если бы предложение начиналось с Ich habe vor, правильным был бы третий вариант, и именно эта разница и стоит запоминания."
+      uk: "müssen — модальне дієслово, тому zu не з'являється ніде: відокремлюване дієслово просто стоїть цілим у кінці. Три невірні варіанти — це три способи все ж таки вставити zu: спереду, всередину і одразу обидва. Якби речення починалося з Ich habe vor, правильним був би третій варіант, і саме ця різниця варта запам'ятовування."
+
+  - id: cloze-um-zu-rahmen
+    outcomes: [zweck-um-zu]
+    type: cloze
+    focus: um-zu-zweck
+    instruction:
+      en: "Complete the purpose frame."
+      ru: "Дополните конструкцию цели."
+      uk: "Доповніть конструкцію мети."
+    text: "Ich fahre in die Stadt, {{um}} ein Geschenk {{zu}} kaufen. Nina lernt jeden Abend, {{um}} die Prüfung {{zu}} bestehen."
+    translation:
+      en: "I am going into town to buy a present. Nina studies every evening in order to pass the exam."
+      ru: "Я еду в город, чтобы купить подарок. Нина занимается каждый вечер, чтобы сдать экзамен."
+      uk: "Я їду до міста, щоб купити подарунок. Ніна вчиться щовечора, щоб скласти іспит."
+    explain:
+      en: "Purpose comes in a frame with two ends: um opens it, zu + infinitive closes it, and the object sits inside. English often reduces in order to down to a bare to — I'm going into town to buy a present — but German has no such short form: leaving out the um is not an option."
+      ru: "Цель выражается рамкой с двумя концами: um её открывает, zu + инфинитив закрывает, дополнение стоит внутри. Русское «чтобы» — одно слово, и рука тянется поставить одно слово и по-немецки, а чаще всего — предлог für. Ни того, ни другого здесь быть не может: рамке нужны обе половины."
+      uk: "Мета виражається рамкою з двома кінцями: um її відкриває, zu + інфінітив закриває, додаток стоїть усередині. Українське «щоб» — одне слово, і рука тягнеться поставити одне слово й німецькою, а найчастіше — прийменник für. Ні того, ні іншого тут бути не може: рамці потрібні обидві половини."
+
+  - id: order-um-zu-arzt
+    outcomes: [zweck-um-zu]
+    type: order
+    focus: um-zu-zweck
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
+    words: ["Ich", "gehe", "zum", "Arzt,", "um", "ein", "Rezept", "zu", "holen."]
+    translation:
+      en: I am going to the doctor to get a prescription.
+      ru: Я иду к врачу, чтобы получить рецепт.
+      uk: Я йду до лікаря, щоб отримати рецепт.
+    explain:
+      en: "The main clause finishes first and is complete on its own — Ich gehe zum Arzt. Then the comma, then um, then everything the purpose needs, and zu holen last of all. The infinitive is always the final word of an um-clause; nothing may follow it."
+      ru: "Сначала заканчивается главное предложение, и оно самодостаточно — Ich gehe zum Arzt. Затем запятая, затем um, затем всё, что нужно цели, и в самом конце zu holen. Инфинитив — всегда последнее слово оборота с um; после него не стоит ничего."
+      uk: "Спочатку закінчується головне речення, і воно самодостатнє — Ich gehe zum Arzt. Потім кома, потім um, потім усе, що потрібно меті, і в самому кінці zu holen. Інфінітив — завжди останнє слово звороту з um; після нього не стоїть нічого."
+
+  - id: mc-wozu-oder-warum
+    outcomes: [zweck-um-zu]
+    type: mc
+    focus: um-zu-zweck
+    prompt: "Wozu geht Herr Yilmaz zum Amt? Welcher Satz ist richtig?"
+    options:
+      - "Herr Yilmaz geht zum Amt, um seine Adresse anzumelden."
+      - "Herr Yilmaz geht zum Amt, für seine Adresse anmelden."
+      - "Herr Yilmaz geht zum Amt, um seine Adresse anmelden."
+      - "Herr Yilmaz geht zum Amt, zu seine Adresse anzumelden."
+    correct: 0
+    translation:
+      en: "Mr Yilmaz is going to the public office to register his address."
+      ru: "Господин Йылмаз идёт в ведомство, чтобы зарегистрировать свой адрес."
+      uk: "Пан Їлмаз іде до відомства, щоб зареєструвати свою адресу."
+    explain:
+      en: "Two halves, and each wrong option drops one of them. The second uses für with an infinitive, which German never does. The third has the um but no zu, so the frame stays open. The fourth replaces um with zu and ends up with the word twice over. Only the first has both ends — and note that anmelden is separable, so its zu goes inside: anzumelden."
+      ru: "Две половины, и каждый неверный вариант теряет одну. Во втором стоит für с инфинитивом — по-немецки так не бывает. В третьем есть um, но нет zu, и рамка остаётся незакрытой. В четвёртом um заменено на zu, и слово получается дважды. Обе половины есть только в первом — и заметьте, что anmelden отделяемый, поэтому zu уходит внутрь: anzumelden."
+      uk: "Дві половини, і кожен невірний варіант втрачає одну. У другому стоїть für з інфінітивом — німецькою так не буває. У третьому є um, але немає zu, і рамка залишається незакритою. У четвертому um замінено на zu, і слово виходить двічі. Обидві половини є лише в першому — і зауважте, що anmelden відокремлюваний, тому zu йде всередину: anzumelden."
+
+  - id: uebersetzen-vorhaben-wien
+    outcomes: [plan-zu-infinitiv]
+    type: translate
+    focus: zu-infinitiv
+    prompt_en: "I am planning to travel to Vienna in the summer."
+    prompt_ru: "Летом я собираюсь поехать в Вену."
+    prompt_uk: "Улітку я збираюся поїхати до Відня."
+    answer: "Ich habe vor, im Sommer nach Wien zu fahren."
+    accept:
+      - "Ich habe vor, nach Wien im Sommer zu fahren."
+      - "Im Sommer habe ich vor, nach Wien zu fahren."
+    key_tokens: ["zu", "fahren"]
+    explain:
+      en: "vorhaben is not a modal, so the infinitive needs its zu, and the whole group goes to the end after a comma: … nach Wien zu fahren. Notice how far the two halves of vorhaben itself end up apart — habe in position 2, vor at the end of the main clause, and only then the infinitive group."
+      ru: "vorhaben не модальный глагол, поэтому инфинитиву нужен zu, и вся группа уходит в конец после запятой: … nach Wien zu fahren. Обратите внимание, как далеко расходятся сами половины vorhaben: habe на втором месте, vor в конце главного предложения — и только потом инфинитивная группа."
+      uk: "vorhaben не модальне дієслово, тому інфінітиву потрібне zu, і вся група йде в кінець після коми: … nach Wien zu fahren. Зверніть увагу, як далеко розходяться самі половини vorhaben: habe на другому місці, vor у кінці головного речення — і лише потім інфінітивна група."
+
+  - id: uebersetzen-um-zu-geschenk
+    outcomes: [zweck-um-zu]
+    type: translate
+    focus: um-zu-zweck
+    instruction:
+      en: "Say what for — use um … zu."
+      ru: "Скажите, зачем, — используйте um … zu."
+      uk: "Скажіть, навіщо, — використайте um … zu."
+    prompt_en: "I am going into town to buy a present."
+    prompt_ru: "Я еду в город, чтобы купить подарок."
+    prompt_uk: "Я їду до міста, щоб купити подарунок."
+    answer: "Ich fahre in die Stadt, um ein Geschenk zu kaufen."
+    # "going into town" is genuinely either verb, and the choice has nothing to do with
+    # the purpose frame this item grades.
+    accept: ["Ich gehe in die Stadt, um ein Geschenk zu kaufen."]
+    key_tokens: ["um", "zu", "kaufen"]
+    explain:
+      en: "Both ends of the frame are graded here, because both are where the mistake happens: um must open the purpose clause and zu kaufen must close it. The source sentence gives you neither — English says only to, and there is no word in it that corresponds to um."
+      ru: "Здесь проверяются оба конца рамки, потому что именно на них и случается ошибка: um должно открыть оборот цели, а zu kaufen — закрыть его. Исходное предложение не подсказывает ни того, ни другого: русское «чтобы» — одно слово, и никакого отдельного соответствия для um в нём нет."
+      uk: "Тут перевіряються обидва кінці рамки, бо саме на них і трапляється помилка: um має відкрити зворот мети, а zu kaufen — закрити його. Вихідне речення не підказує ні того, ні іншого: українське «щоб» — одне слово, і жодної окремої відповідності для um в ньому немає."
+
+  - id: hoeren-vergessen-anzurufen
+    outcomes: [plan-zu-infinitiv]
+    type: listen
+    focus: zu-infinitiv
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Ich habe vergessen, dich anzurufen."
+    translation:
+      en: I forgot to call you.
+      ru: Я забыл тебе позвонить.
+      uk: Я забув тобі зателефонувати.
+    explain:
+      en: "The one word to get right is anzurufen — one word, with the zu buried in the middle of it. In speech there is no pause around it at all, which is exactly why it is worth hearing before it is worth writing: an-zu-rufen arrives as a single stressed block, ÁNzurufen."
+      ru: "Единственное слово, которое здесь важно записать верно, — anzurufen: одно слово, и zu спрятано у него в середине. В речи никакой паузы вокруг zu нет — именно поэтому это стоит сначала услышать, а уже потом писать: an-zu-rufen звучит одним ударным блоком, ÁNzurufen."
+      uk: "Єдине слово, яке тут важливо записати правильно, — anzurufen: одне слово, і zu сховане в нього посередині. У мовленні жодної паузи навколо zu немає — саме тому це варто спершу почути, а вже потім писати: an-zu-rufen звучить одним наголошеним блоком, ÁNzurufen."

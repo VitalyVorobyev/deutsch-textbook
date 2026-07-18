@@ -1019,6 +1019,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         'nebensatz-verbende': 'nebensaetze-plaene',
         'weil-denn': 'nebensaetze-plaene',
         'nebensatz-vorfeld': 'nebensaetze-plaene',
+        'zu-infinitiv': 'infinitiv-mit-zu',
+        'um-zu-zweck': 'infinitiv-mit-zu',
         'aber-sondern': 'freunde-feste',
         'praeteritum-sein-haben': 'biografie-erfahrungen',
         'indirekte-frage': 'lernen-verstehen',

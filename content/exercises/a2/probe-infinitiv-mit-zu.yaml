@@ -1,0 +1,52 @@
+topic: infinitiv-mit-zu
+role: probe
+title:
+  en: "Delayed check — the zu-infinitive"
+  ru: "Отложенная проверка — инфинитив с zu"
+  uk: "Відкладена перевірка — інфінітив із zu"
+# Three parallel variants of ONE competence: does this infinitive need zu, and
+# where does it go. Same focus, same outcome, three unrelated situations — none
+# of them answerable from memory of a practice item, because none of the verbs,
+# people or settings appears in the topic's own sets.
+items:
+  - id: probe-umzuziehen
+    outcomes: [zu-oder-ohne-zu]
+    type: translate
+    focus: zu-infinitiv
+    prompt_en: "We have decided to move to Bremen."
+    prompt_ru: "Мы решили переехать в Бремен."
+    prompt_uk: "Ми вирішили переїхати до Бремена."
+    answer: "Wir haben beschlossen, nach Bremen umzuziehen."
+    key_tokens: ["umzuziehen"]
+    explain:
+      en: "beschließen is not a modal, so the infinitive takes zu — and umziehen is separable, so the zu goes inside: umzuziehen, one word."
+      ru: "beschließen не модальный глагол, поэтому инфинитив берёт zu, а umziehen отделяемый, поэтому zu уходит внутрь: umzuziehen, одним словом."
+      uk: "beschließen не модальне дієслово, тому інфінітив бере zu, а umziehen відокремлюваний, тому zu йде всередину: umzuziehen, одним словом."
+
+  - id: probe-zusammen-kochen
+    outcomes: [zu-oder-ohne-zu]
+    type: translate
+    focus: zu-infinitiv
+    prompt_en: "Do you feel like cooking together this evening?"
+    prompt_ru: "Хочешь сегодня вечером вместе приготовить еду?"
+    prompt_uk: "Хочеш сьогодні ввечері разом приготувати їжу?"
+    answer: "Hast du Lust, heute Abend zusammen zu kochen?"
+    key_tokens: ["zu", "kochen"]
+    explain:
+      en: "Lust haben opens a zu-infinitive, and kochen has no prefix, so zu simply stands in front of it at the end of the clause."
+      ru: "Lust haben вводит инфинитив с zu, а у kochen приставки нет, поэтому zu просто стоит перед ним в конце оборота."
+      uk: "Lust haben вводить інфінітив із zu, а в kochen префікса немає, тому zu просто стоїть перед ним у кінці звороту."
+
+  - id: probe-kuchen-mitzubringen
+    outcomes: [zu-oder-ohne-zu]
+    type: translate
+    focus: zu-infinitiv
+    prompt_en: "She promised to bring a cake."
+    prompt_ru: "Она обещала принести пирог."
+    prompt_uk: "Вона обіцяла принести пиріг."
+    answer: "Sie hat versprochen, einen Kuchen mitzubringen."
+    key_tokens: ["mitzubringen"]
+    explain:
+      en: "versprechen opens a zu-infinitive, and mitbringen is separable, so the zu is buried inside the word: mitzubringen."
+      ru: "versprechen вводит инфинитив с zu, а mitbringen отделяемый, поэтому zu спрятан внутри слова: mitzubringen."
+      uk: "versprechen вводить інфінітив із zu, а mitbringen відокремлюваний, тому zu сховане всередині слова: mitzubringen."
