@@ -52,9 +52,8 @@ describe('grammar coverage', () => {
       'konjunktionaladverb',
       'passiv-praesens',
       'reflexiv-dativ',
-      'relativsatz',
     ]);
-    expect(coverage.percent).toBe(73);
+    expect(coverage.percent).toBe(77);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

@@ -1,0 +1,58 @@
+topic: relativsaetze
+role: probe
+title:
+  en: "Delayed check — choosing the relative pronoun"
+  ru: "Отложенная проверка — выбор относительного местоимения"
+  uk: "Відкладена перевірка — вибір відносного займенника"
+# Three parallel variants of ONE competence: does the case of the relative
+# pronoun come from the role inside its own clause. Each variant needs the
+# opposite answer for a masculine antecedent, so a learner who copies the
+# article from the noun in front is caught by two of the three regardless of
+# which one comes due. New people, new settings, none of them recoverable from
+# memory of a practice item.
+items:
+  - id: probe-nachbar-nominativ
+    outcomes: [relativ-kasus-waehlen]
+    type: translate
+    focus: relativpronomen-kasus
+    prompt_en: "I have a neighbour who plays the guitar every evening."
+    prompt_ru: "У меня есть сосед, который каждый вечер играет на гитаре."
+    prompt_uk: "У мене є сусід, який щовечора грає на гітарі."
+    answer: "Ich habe einen Nachbarn, der jeden Abend Gitarre spielt."
+    key_tokens: ["der"]
+    explain:
+      en: "The neighbour does the playing, so the pronoun is the subject of its clause: der. The noun itself is accusative after habe, and that has no effect on the pronoun."
+      ru: "Играет сосед сам, значит местоимение — подлежащее своего придаточного: der. Само существительное стоит в винительном после habe, и на местоимение это не влияет."
+      uk: "Грає сусід сам, отже займенник — підмет свого підрядного: der. Сам іменник стоїть у знахідному після habe, і на займенник це не впливає."
+
+  - id: probe-koffer-akkusativ
+    outcomes: [relativ-kasus-waehlen]
+    type: translate
+    focus: relativpronomen-kasus
+    prompt_en: "The suitcase I bought last year is already broken."
+    prompt_ru: "Чемодан, который я купил в прошлом году, уже сломан."
+    prompt_uk: "Валіза, яку я купив торік, уже зламана."
+    answer: "Der Koffer, den ich letztes Jahr gekauft habe, ist schon kaputt."
+    key_tokens: ["den"]
+    explain:
+      en: "ich is the subject inside the clause, so the suitcase is what was bought — masculine accusative, den. Both this and the neighbour sentence open with a masculine noun, and they take opposite pronouns."
+      ru: "Подлежащее внутри придаточного — ich, значит чемодан это то, что купили: мужской род, винительный — den. И это предложение, и предложение про соседа начинаются с существительного мужского рода, а местоимения у них противоположные."
+      uk: "Підмет усередині підрядного — ich, отже валіза це те, що купили: чоловічий рід, знахідний — den. І це речення, і речення про сусіда починаються з іменника чоловічого роду, а займенники в них протилежні."
+
+  - id: probe-kurs-akkusativ
+    outcomes: [relativ-kasus-waehlen]
+    type: translate
+    focus: relativpronomen-kasus
+    prompt_en: "The course I am looking for starts in September."
+    prompt_ru: "Курс, который я ищу, начинается в сентябре."
+    prompt_uk: "Курс, який я шукаю, починається у вересні."
+    answer: "Der Kurs, den ich suche, fängt im September an."
+    # beginnen is taught (A1, alltag-zeit) and preserves the probed decision exactly.
+    # A probe measures retention, so a false negative does not just annoy — it corrupts
+    # the curve the family exists to produce.
+    accept: ["Der Kurs, den ich suche, beginnt im September."]
+    key_tokens: ["den"]
+    explain:
+      en: "Again ich is the subject inside the clause, so the course is the object: den. Note the main clause after the second comma — the separable verb splits as usual, anfangen giving fängt … an, because the main clause was never a Nebensatz."
+      ru: "Снова подлежащее внутри придаточного — ich, значит курс это дополнение: den. Обратите внимание на главное предложение после второй запятой: отделяемый глагол там распадается как обычно — anfangen даёт fängt … an, ведь главное предложение придаточным никогда не было."
+      uk: "Знову підмет усередині підрядного — ich, отже курс це додаток: den. Зверніть увагу на головне речення після другої коми: відокремлюване дієслово там розпадається як завжди — anfangen дає fängt … an, адже головне речення підрядним ніколи не було."
