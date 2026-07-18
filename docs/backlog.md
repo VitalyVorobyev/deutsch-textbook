@@ -17,6 +17,46 @@ Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. B1 r
 until representative A2 use, its checkpoint and delayed evidence have been reviewed — the B1 gate
 lives in [roadmap.md](roadmap.md).
 
+## Phase 10 · Close the A2 grammar standard — `doing`
+
+A2 was called content-complete on the strength of its **lexical** figure (Wortliste 100%). Nothing
+measured *structure*, and when a manifest was finally written the honest number was **20/30 —
+67%**. The gap is not scattered: the B1 blueprint plans to teach `als`/`wenn`, relative clauses,
+infinitive with *zu*, future intention and *trotzdem* inside B1 units, so six A2-standard
+structures had been pushed a level up and would have stayed invisible as A2 debt.
+
+Closing them is therefore not a detour from B1 — it **de-duplicates** B1, which then spends its
+grammar budget on the Konjunktiv II paradigm, full Passiv, proper Genitiv, indirect speech and
+n-Deklination instead of re-teaching A2. Owner ruling 2026-07-18: **A2 closes fully before B1
+authoring starts**, and a documented deferral is not a defence when the standard requires the
+structure.
+
+Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
+`tests/grammar-coverage.test.ts`, so each closed point is a visible, deliberate change.
+
+- **P10-1 · the manifest** — `done` 2026-07-18. `data/grammar-inventory.yaml`,
+  `src/lib/grammar-coverage.ts`, the report script, validator wiring and the tripwire test.
+- **P10-2 · `infinitiv-mit-zu`** — `todo`. Infinitiv mit *zu* + *um … zu*. Tags `zu-infinitiv`,
+  `um-zu-zweck`. One unit: the two structures are the same shape.
+- **P10-3 · `relativsaetze`** — `todo`. Nominativ + Akkusativ only. Tag `relativpronomen-kasus`.
+  Remove the "relative clauses" exclusion from the A2 blueprint in the same change.
+- **P10-4 · `verbindungen-folgen`** — `todo`. Konjunktionaladverbien with inversion
+  (*deshalb*, *deswegen*, *trotzdem*, *dann*) and *als* vs *wenn* for past time. Tags
+  `konjunktionaladverb-inversion`, `als-wenn-vergangenheit`.
+- **P10-5 · extensions, not units** — `todo`. Futur I (`futur-werden`) joins `nebensaetze-plaene`,
+  which already teaches plans as present + time phrase; Reflexiv im Dativ (`reflexiv-dativ`) joins
+  `gesundheit-arzttermin`, which owns `reflexiv-akkusativ`. Both as **non-primary** practice sets,
+  so neither un-finishes a topic the learner has completed.
+- **P10-6 · `man` und Besitz** — `todo`. Indefinitpronomen (`indefinitpronomen`) and the Genitiv-s
+  on proper names with *von* + Dativ as the everyday alternative (`genitiv-eigenname`). `man` is
+  used in eight A2 articles already and taught in none.
+- **P10-7 · Passiv Präsens, rezeptiv** — `todo`. Tag `passiv-rezeptiv`. The exam wants
+  comprehension, not production — but recognition that is never checked is not evidence, so it
+  still needs drilled items, and it still needs no deck.
+- **P10-8 · publish the figure** — `todo`. Über states the computed grammar coverage beside the
+  Wortliste one, and the roadmap's "A1 and A2 are content-complete" line is corrected until it is
+  true again.
+
 ## The open gate
 
 ### P3-6 · Read the A1 retention cohort — `blocked on 2026-08-02` (a calendar gate, not a task)

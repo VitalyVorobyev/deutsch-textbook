@@ -1,0 +1,355 @@
+# The grammar inventory the course measures itself against — the structural
+# companion to data/goethe-<level>-wortliste.txt, which measures only lexis.
+#
+# It exists because "A1 and A2 are content-complete" was an *asserted* claim for
+# months while six A2-standard structures (Infinitiv mit zu, Relativsätze,
+# als/wenn, Konjunktionaladverbien, Futur I, Reflexiv im Dativ) sat undone —
+# several of them scheduled to be taught in B1 units instead. A published figure
+# has to be checked against content or it drifts toward flattery, so this file is
+# read by `bun scripts/grammar-coverage.ts` and the point is not to be flattering.
+#
+# HOW A POINT IS COUNTED AS COVERED — the evidence channel is the focus-tag
+# taxonomy in CLAUDE.md, exactly as the Wortliste's `~` is paid for in taught
+# surface. A point is covered iff **every** tag in its `focus` list is registered
+# in `focusIntroducedBy` (scripts/validate.ts) *and* is carried by at least one
+# `practice` or `drill` item. Checkpoints, pretests and probes deliberately do
+# not count: they test rather than teach.
+#
+# `reference_only: true` is for points that are real knowledge but name no
+# confusion — the clock, ordinal numbers. They are paid for with `taught_in`,
+# a topic or reference page that must exist. Use it sparingly: if a point can
+# fail in a way worth drilling, it wants a tag, not this escape hatch.
+#
+# `standard_level` is where the exam standard puts the point; the report also
+# prints where the course actually teaches it, so a point taught *late* (Perfekt
+# is A1 in the Goethe list and A2 here) shows up as `late` rather than silently
+# passing or silently failing. Late is a sequencing decision, not a gap.
+#
+# Sources: Goethe-Zertifikat A1/A2 Prüfungsziele, cross-checked against the
+# structural progressions of Schritte plus A1/A2 and Menschen A1/A2. Where the
+# coursebooks disagree with the exam list the entry carries a `note`.
+
+points:
+  # ---------------------------------------------------------------- A1
+  - id: praesens-regelmaessig
+    standard_level: A1
+    de: "Präsens: regelmäßige Verben und Personalendungen"
+    en: "Present tense: regular verbs and person endings"
+    focus: [verb-endungen]
+
+  - id: praesens-unregelmaessig
+    standard_level: A1
+    de: "Präsens: Vokalwechsel (du sprichst, er fährt)"
+    en: "Present tense: stem-vowel change"
+    focus: [verb-endungen]
+
+  - id: sein-haben
+    standard_level: A1
+    de: "sein und haben als Vollverben"
+    en: "sein and haben as full verbs"
+    focus: [kopula-sein]
+
+  - id: verbzweit
+    standard_level: A1
+    de: "Verbzweitstellung im Aussagesatz, Inversion nach Vorfeld"
+    en: "Verb-second in statements, inversion after a fronted element"
+    focus: [verbzweit]
+
+  - id: fragen
+    standard_level: A1
+    de: "W-Fragen und Ja/Nein-Fragen"
+    en: "W-questions and yes/no questions"
+    focus: [verbzweit]
+
+  - id: imperativ
+    standard_level: A1
+    de: "Imperativ: du, ihr, Sie"
+    en: "Imperative: du, ihr, Sie"
+    focus: [imperativ-form]
+
+  - id: genus-artikel
+    standard_level: A1
+    de: "Genus und bestimmter/unbestimmter Artikel"
+    en: "Gender and the definite/indefinite article"
+    focus: [genus, artikel-pflicht]
+
+  - id: plural
+    standard_level: A1
+    de: "Pluralformen und der Plural-Artikel die"
+    en: "Plural forms and the plural article die"
+    focus: [plural-artikel]
+
+  - id: akkusativ-artikel
+    standard_level: A1
+    de: "Akkusativ: Artikelformen (den, einen, keinen)"
+    en: "Accusative: article forms"
+    focus: [akkusativ-artikel]
+
+  - id: akkusativ-pronomen
+    standard_level: A1
+    de: "Akkusativ: Personalpronomen (mich, dich, ihn)"
+    en: "Accusative: personal pronouns"
+    focus: [akkusativ-pronomen]
+
+  - id: akkusativ-praepositionen
+    standard_level: A1
+    de: "Präpositionen mit Akkusativ: für, ohne, um"
+    en: "Prepositions governing the accusative"
+    focus: [akkusativ-praepositionen]
+
+  - id: negation-nicht
+    standard_level: A1
+    de: "Negation mit nicht und seine Position"
+    en: "Negation with nicht and its position"
+    focus: [nicht-position]
+
+  - id: negation-kein
+    standard_level: A1
+    de: "Negation von Nomen mit kein-"
+    en: "Negating nouns with kein-"
+    focus: [kein-nicht]
+
+  - id: possessivartikel
+    standard_level: A1
+    de: "Possessivartikel im Nominativ"
+    en: "Possessive articles in the nominative"
+    focus: [possessivartikel]
+
+  - id: modalverben
+    standard_level: A1
+    de: "Modalverben: Formen und Satzklammer"
+    en: "Modal verbs: forms and the sentence bracket"
+    focus: [modal-konjugation, modal-satzklammer]
+
+  - id: duerfen-muessen
+    standard_level: A1
+    de: "darf nicht gegen muss nicht"
+    en: "darf nicht vs muss nicht"
+    focus: [duerfen-muessen]
+
+  - id: trennbare-verben
+    standard_level: A1
+    de: "Trennbare Verben: Präfix am Satzende"
+    en: "Separable verbs: the prefix goes to the end"
+    focus: [trennbar-wortstellung, trennbar-modal]
+
+  - id: zeitangaben
+    standard_level: A1
+    de: "Temporale Präpositionen: um, am, im, in der Nacht"
+    en: "Time prepositions: um, am, im"
+    focus: [um-am-zeit]
+
+  - id: gern
+    standard_level: A1
+    de: "Vorlieben mit gern ausdrücken"
+    en: "Expressing preference with gern"
+    focus: [gern-moegen]
+
+  - id: anrede-du-sie
+    standard_level: A1
+    de: "Anrede: du gegen Sie"
+    en: "Register: du vs Sie"
+    focus: [du-sie]
+
+  - id: zahlen-uhrzeit
+    standard_level: A1
+    de: "Zahlen, Uhrzeit und Datum"
+    en: "Numbers, clock time and dates"
+    reference_only: true
+    taught_in: [alltag-zeit]
+
+  # ---------------------------------------------------------------- A2
+  - id: perfekt
+    standard_level: A1
+    de: "Perfekt: Hilfsverb, Partizip II und Satzklammer"
+    en: "Perfect tense: auxiliary, past participle and bracket"
+    focus: [haben-sein, partizip2-form, perfekt-satzklammer]
+    note: "The Goethe A1 list already includes the Perfekt of regular verbs; this course teaches the whole tense once, at A2. Reported as late rather than missing."
+
+  - id: praeteritum
+    standard_level: A2
+    de: "Präteritum von sein, haben und den Modalverben"
+    en: "Past simple of sein, haben and the modals"
+    focus: [praeteritum-sein-haben]
+
+  - id: dativ-artikel
+    standard_level: A2
+    de: "Dativ: Artikel- und Nomenformen (dem, der, den …-n)"
+    en: "Dative: article and noun forms"
+    focus: [dativ-artikel]
+
+  - id: dativ-pronomen
+    standard_level: A2
+    de: "Dativ: Personalpronomen (mir, dir, ihm)"
+    en: "Dative: personal pronouns"
+    focus: [dativ-pronomen]
+
+  - id: dativ-verben
+    standard_level: A2
+    de: "Verben mit Dativ: helfen, danken, gefallen, gehören"
+    en: "Dative-governing verbs"
+    focus: [verben-mit-dativ, passen-dativ]
+
+  - id: dativ-praepositionen
+    standard_level: A2
+    de: "Präpositionen mit Dativ: aus, bei, mit, nach, seit, von, zu"
+    en: "Prepositions governing the dative"
+    focus: [dativ-praepositionen]
+
+  - id: wechselpraepositionen
+    standard_level: A2
+    de: "Wechselpräpositionen: Wo? + Dativ gegen Wohin? + Akkusativ"
+    en: "Two-way prepositions: Wo? vs Wohin?"
+    focus: [wo-wohin, stellen-stehen]
+
+  - id: seit-vor
+    standard_level: A2
+    de: "seit gegen vor bei Zeitangaben"
+    en: "seit vs vor in time expressions"
+    focus: [seit-vor-zeit]
+
+  - id: komparativ
+    standard_level: A2
+    de: "Komparativ mit als, einschließlich der unregelmäßigen Formen"
+    en: "Comparative with als, including irregulars"
+    focus: [komparativ-als]
+
+  - id: superlativ
+    standard_level: A2
+    de: "Superlativ: am …-sten"
+    en: "Superlative: am …-sten"
+    focus: [superlativ-am]
+
+  - id: adjektiv-praedikativ
+    standard_level: A2
+    de: "Prädikatives Adjektiv ohne Endung"
+    en: "Predicative adjective takes no ending"
+    focus: [adjektiv-praedikativ]
+
+  - id: adjektiv-bestimmt
+    standard_level: A2
+    de: "Adjektivdeklination nach bestimmtem Artikel"
+    en: "Adjective declension after the definite article"
+    focus: [adjektiv-bestimmt]
+
+  - id: adjektiv-unbestimmt
+    standard_level: A2
+    de: "Adjektivdeklination nach ein-, kein-, Possessivartikel"
+    en: "Adjective declension after ein-, kein-, possessives"
+    focus: [adjektiv-unbestimmt]
+
+  - id: adjektiv-nullartikel
+    standard_level: B1
+    de: "Adjektivdeklination ohne Artikel (starke Deklination)"
+    en: "Adjective declension with no article (strong)"
+    focus: [adjektiv-nullartikel]
+    note: "Deliberately deferred to B1 and stated as such in the adjektive-deklination article. Listed here so the deferral is visible rather than forgotten."
+
+  - id: nebensatz-verbende
+    standard_level: A2
+    de: "Nebensatz mit weil, dass, wenn: Verb am Ende"
+    en: "Subordinate clauses with weil, dass, wenn: verb-final"
+    focus: [nebensatz-verbende, weil-denn, nebensatz-vorfeld]
+
+  - id: indirekte-frage
+    standard_level: A2
+    de: "Indirekte Fragesätze mit ob und W-Wort"
+    en: "Indirect questions with ob and question words"
+    focus: [indirekte-frage]
+
+  - id: aber-sondern
+    standard_level: A2
+    de: "aber gegen sondern nach einer Verneinung"
+    en: "aber vs sondern after a negation"
+    focus: [aber-sondern]
+
+  - id: reflexiv-akkusativ
+    standard_level: A2
+    de: "Reflexive Verben mit Akkusativpronomen"
+    en: "Reflexive verbs with accusative pronouns"
+    focus: [reflexiv-akkusativ]
+
+  - id: reflexiv-dativ
+    standard_level: A2
+    de: "Reflexivpronomen im Dativ (ich wasche mir die Hände)"
+    en: "Reflexive pronouns in the dative"
+    focus: [reflexiv-dativ]
+
+  - id: verb-praeposition
+    standard_level: A2
+    de: "Verben mit festen Präpositionen"
+    en: "Verbs with fixed prepositions"
+    focus: [verb-praeposition]
+
+  - id: da-wo-woerter
+    standard_level: A2
+    de: "da(r)- und wo(r)-Wörter"
+    en: "da- and wo- compounds"
+    focus: [da-wo-woerter]
+
+  - id: hoeflich-konjunktiv
+    standard_level: A2
+    de: "Höfliches könnte und würde gern als Chunks"
+    en: "Polite könnte and würde gern as chunks"
+    focus: [hoeflich-konjunktiv]
+
+  - id: trennbar-untrennbar
+    standard_level: A2
+    de: "Trennbare gegen untrennbare Präfixe"
+    en: "Separable vs inseparable prefixes"
+    focus: [trennbar-untrennbar]
+
+  - id: infinitiv-mit-zu
+    standard_level: A2
+    de: "Infinitiv mit zu (Ich habe vor, … zu …)"
+    en: "Infinitive with zu"
+    focus: [zu-infinitiv]
+
+  - id: um-zu
+    standard_level: A2
+    de: "Finalsatz mit um … zu"
+    en: "Purpose clause with um … zu"
+    focus: [um-zu-zweck]
+
+  - id: relativsatz
+    standard_level: A2
+    de: "Relativsätze im Nominativ und Akkusativ"
+    en: "Relative clauses in the nominative and accusative"
+    focus: [relativpronomen-kasus]
+
+  - id: konjunktionaladverb
+    standard_level: A2
+    de: "Konjunktionaladverbien: deshalb, deswegen, trotzdem, dann — mit Inversion"
+    en: "Conjunctional adverbs with inversion"
+    focus: [konjunktionaladverb-inversion]
+
+  - id: als-wenn
+    standard_level: A2
+    de: "als für einmalige Vergangenheit gegen wenn für Wiederholung"
+    en: "als for a single past event vs wenn for repetition"
+    focus: [als-wenn-vergangenheit]
+
+  - id: futur-werden
+    standard_level: A2
+    de: "Futur I mit werden + Infinitiv"
+    en: "Future with werden + infinitive"
+    focus: [futur-werden]
+
+  - id: indefinitpronomen
+    standard_level: A2
+    de: "Indefinitpronomen: man, jemand, niemand, etwas, nichts"
+    en: "Indefinite pronouns"
+    focus: [indefinitpronomen]
+
+  - id: genitiv-eigenname
+    standard_level: A2
+    de: "Genitiv-s bei Eigennamen (Annas Auto) und von + Dativ als Ersatz"
+    en: "Genitive -s on proper names, and von + dative as the alternative"
+    focus: [genitiv-eigenname]
+
+  - id: passiv-praesens
+    standard_level: A2
+    de: "Passiv Präsens — rezeptiv (Hier wird gebaut.)"
+    en: "Present passive — recognition only"
+    focus: [passiv-rezeptiv]
+    note: "The exam lists it for comprehension rather than production; a receptive-only point still needs a drilled tag, because recognition that is never checked is not evidence."
