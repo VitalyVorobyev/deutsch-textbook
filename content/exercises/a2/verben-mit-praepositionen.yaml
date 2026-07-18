@@ -3,18 +3,19 @@ role: practice
 title: { en: "Practice — ask, refer back, decide", ru: "Практика — спросить, сослаться, решить", uk: "Практика — спитати, послатися, вирішити" }
 items:
   - id: match-verb-praeposition
+    revision: 2
     type: match
     outcomes: [verb-praeposition-waehlen]
     focus: verb-praeposition
-    instruction: { en: "Match each verb to its governed preposition.", ru: "Соедините каждый глагол с его предлогом.", uk: "З'єднайте кожне дієслово з його прийменником." }
+    instruction: { en: "Match each target meaning to the preposition used in that verb frame.", ru: "Соедините каждое целевое значение с предлогом в соответствующей глагольной модели.", uk: "З'єднайте кожне цільове значення з прийменником у відповідній дієслівній моделі." }
     pairs:
-      - { left: "denken", right: "an" }
-      - { left: "warten", right: "auf" }
-      - { left: "sprechen", right: "über" }
-      - { left: "träumen", right: "von" }
-      - { left: "sich interessieren", right: "für" }
-      - { left: "arbeiten", right: "mit" }
-    explain: { en: "Retrieve the construction as a chunk; a general translation of the preposition cannot predict it.", ru: "Вспоминайте конструкцию целиком: общий перевод предлога не позволяет его предсказать.", uk: "Пригадуйте конструкцію цілком: загальний переклад прийменника не дає його передбачити." }
+      - { left: "denken — etwas im Kopf haben", right: "an" }
+      - { left: "warten — eine Antwort erwarten", right: "auf" }
+      - { left: "sprechen — ein Thema besprechen", right: "über" }
+      - { left: "träumen — einen Traum haben", right: "von" }
+      - { left: "sich interessieren — Interesse haben", right: "für" }
+      - { left: "arbeiten — ein Werkzeug/eine App benutzen", right: "mit" }
+    explain: { en: "Retrieve meaning + verb + preposition as a chunk. Several of these verbs allow other prepositions with other meanings, so a bare verb or a translated preposition cannot predict the frame.", ru: "Вспоминайте одним блоком значение, глагол и предлог. Несколько этих глаголов допускают другие предлоги в других значениях, поэтому голый глагол или перевод предлога модель не предсказывает.", uk: "Пригадуйте одним блоком значення, дієслово та прийменник. Кілька цих дієслів допускають інші прийменники в інших значеннях, тому саме дієслово або переклад прийменника модель не передбачає." }
   - id: table-da-wo
     type: table
     outcomes: [da-wort-sache, wo-wort-fragen]
