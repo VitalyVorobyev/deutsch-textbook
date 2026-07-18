@@ -677,9 +677,33 @@ export const pronominalAdverbReferenceSchema = z.object({
 });
 export type PronominalAdverbReference = z.infer<typeof pronominalAdverbReferenceSchema>;
 
+export const zahlenDatumZeitReferenceSchema = z.object({
+  id: z.literal('zahlen-datum-zeit'),
+  /** cardinal numbers: numeral → spelled-out word (German only, no gloss) */
+  cardinals: z.array(z.object({ value: z.string().min(1), word: z.string().min(1) })).min(1),
+  /** ordinal numbers: "1." → "erste" */
+  ordinals: z.array(z.object({ value: z.string().min(1), word: z.string().min(1) })).min(1),
+  /** clock times: 24-hour value, its formal reading, and the everyday one */
+  clock: z.array(z.object({
+    time: z.string().min(1),
+    formal: z.string().min(1),
+    colloquial: z.string().min(1).optional(),
+  })).min(1),
+  weekdays: z.array(z.string().min(1)).length(7),
+  months: z.array(z.string().min(1)).length(12),
+  /** the formation rules — bilingual, with an optional German example */
+  notes: z.array(z.object({
+    heading: bilingualSchema,
+    body: bilingualSchema,
+    example: referenceExampleSchema.optional(),
+  })).min(1),
+});
+export type ZahlenDatumZeitReference = z.infer<typeof zahlenDatumZeitReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
+  zahlenDatumZeitReferenceSchema,
 ]);
 export type ReferenceData = z.infer<typeof referenceDataSchema>;
 
