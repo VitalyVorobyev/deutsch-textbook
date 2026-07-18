@@ -1,0 +1,69 @@
+topic: verbindungen-folgen
+kind: intensive
+title_de: "Wie Nadja Bäckerin wurde"
+text:
+  - >-
+    Als Nadja ein Kind war, hat ihre Familie neben einer Bäckerei gewohnt. Immer
+    wenn sie morgens zur Schule ging, hat es nach frischem Brot
+    [[gerochen::smelled::пахло::пахло]]. „Das ist eine meiner schönsten Erinnerungen“,
+    sagt sie heute.
+  - >-
+    In der Schule war sie nicht besonders gut. Deswegen hat ihr niemand zu einem
+    Studium [[geraten::advised::советовал::радив]]. Mit siebzehn hat sie in der Bäckerei
+    gefragt, ob sie dort arbeiten kann. Der Chef hat Ja gesagt.
+  - >-
+    Die Arbeit war hart. Immer wenn sie Frühschicht hatte, musste sie um halb
+    vier aufstehen. Trotzdem ist sie geblieben. „Am Anfang war ich ständig
+    müde“, sagt Nadja. „Schließlich habe ich mich daran
+    [[gewöhnt::got used to::привыкла::звикла]].“
+  - >-
+    Als sie ihre Prüfung [[bestanden::passed::сдала::склала]] hat, war sie
+    zweiundzwanzig. Heute gehört ihr die Bäckerei. Neulich hat sie eine junge
+    [[Auszubildende::apprentice, trainee::ученица::учениця]] eingestellt. „Sie war in der
+    Schule auch nicht gut“, sagt Nadja und lacht. „Deshalb habe ich sie
+    genommen.“
+questions:
+  - id: q-warum-kein-studium
+    type: mc
+    outcomes: [folge-ausdruecken]
+    prompt: "Warum hat niemand Nadja zu einem Studium geraten?"
+    options:
+      - "Weil sie in der Schule nicht besonders gut war."
+      - "Weil ihre Familie kein Geld hatte."
+      - "Weil sie schon in der Bäckerei gearbeitet hat."
+      - "Weil sie lieber Bäckerin werden wollte."
+    correct: 0
+    explain:
+      en: "The text puts the reason first as its own sentence and then names the consequence with deswegen: In der Schule war sie nicht besonders gut. Deswegen hat ihr niemand … That is the direction these adverbs always run — reason before, consequence after — and it is why the verb hat stands second in the following sentence."
+      ru: "Текст сначала называет причину отдельным предложением, а затем вводит следствие через deswegen: In der Schule war sie nicht besonders gut. Deswegen hat ihr niemand … Именно в этом направлении и работают эти наречия — причина до, следствие после, — и поэтому глагол hat стоит вторым в следующем предложении."
+      uk: "Текст спочатку називає причину окремим реченням, а потім вводить наслідок через deswegen: In der Schule war sie nicht besonders gut. Deswegen hat ihr niemand … Саме в цьому напрямку й працюють ці прислівники — причина до, наслідок після, — і тому дієслово hat стоїть другим у наступному реченні."
+
+  - id: q-fruehschicht
+    type: mc
+    outcomes: [vergangenheit-erzaehlen]
+    prompt: "Wann musste Nadja um halb vier aufstehen?"
+    options:
+      - "Jedes Mal, wenn sie Frühschicht hatte."
+      - "Nur einmal, am ersten Arbeitstag."
+      - "Als sie ihre Prüfung gemacht hat."
+      - "Immer, seit ihr die Bäckerei gehört."
+    correct: 0
+    explain:
+      en: "Immer wenn sie Frühschicht hatte — the clause takes wenn because it happened on every early shift, not once. Compare the two als-clauses in the text: being a child and passing the exam each happened only once, which is exactly why those take als instead."
+      ru: "Immer wenn sie Frühschicht hatte — придаточное берёт wenn, потому что это повторялось при каждой ранней смене, а не случилось однажды. Сравните с двумя придаточными на als в тексте: детство и сданный экзамен были по одному разу — именно поэтому там als."
+      uk: "Immer wenn sie Frühschicht hatte — підрядне бере wenn, бо це повторювалося при кожній ранній зміні, а не сталося одного разу. Порівняйте з двома підрядними на als у тексті: дитинство і складений іспит були по одному разу — саме тому там als."
+
+  - id: q-auszubildende
+    type: mc
+    outcomes: [folge-ausdruecken]
+    prompt: "Warum hat Nadja die junge Auszubildende eingestellt?"
+    options:
+      - "Weil das Mädchen in der Schule auch nicht gut war."
+      - "Weil das Mädchen sehr gute Noten hatte."
+      - "Weil das Mädchen ihre Nachbarin ist."
+      - "Weil sie dringend Hilfe brauchte."
+    correct: 0
+    explain:
+      en: "Deshalb habe ich sie genommen — and the reason is the sentence before it, which is that the girl was no good at school either. The joke of the ending is that the same fact once cost Nadja the advice to study, and now buys someone else a job: the story uses the same connector for both turns."
+      ru: "Deshalb habe ich sie genommen — а причина в предыдущем предложении: девочка тоже не блистала в школе. Соль концовки в том, что один и тот же факт когда-то лишил Надю совета учиться, а теперь дал работу другой: рассказ использует один и тот же коннектор в обоих поворотах."
+      uk: "Deshalb habe ich sie genommen — а причина в попередньому реченні: дівчина теж не блищала в школі. Сіль кінцівки в тому, що той самий факт колись позбавив Надю поради вчитися, а тепер дав роботу іншій: розповідь використовує той самий конектор в обох поворотах."

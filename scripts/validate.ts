@@ -1022,6 +1022,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         'zu-infinitiv': 'infinitiv-mit-zu',
         'um-zu-zweck': 'infinitiv-mit-zu',
         'relativpronomen-kasus': 'relativsaetze',
+        'konjunktionaladverb-inversion': 'verbindungen-folgen',
+        'als-wenn-vergangenheit': 'verbindungen-folgen',
         'aber-sondern': 'freunde-feste',
         'praeteritum-sein-haben': 'biografie-erfahrungen',
         'indirekte-frage': 'lernen-verstehen',

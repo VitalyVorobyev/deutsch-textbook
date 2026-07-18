@@ -1,0 +1,197 @@
+topic: verbindungen-folgen
+role: practice
+title:
+  en: "Practice — deshalb and trotzdem, als and wenn"
+  ru: "Практика — deshalb и trotzdem, als и wenn"
+  uk: "Практика — deshalb і trotzdem, als і wenn"
+items:
+  - id: table-drei-wortarten
+    outcomes: [folge-ausdruecken]
+    type: table
+    focus: konjunktionaladverb-inversion
+    title: "Dieselbe Aussage, drei Verbindungen"
+    instruction:
+      en: "Say the same thing three ways. Write the second half of each sentence only."
+      ru: "Скажите одно и то же тремя способами. Пишите только вторую половину каждого предложения."
+      uk: "Скажіть те саме трьома способами. Пишіть лише другу половину кожного речення."
+    columns: ["Verbindung", "Ich arbeite heute. / Ich komme nicht."]
+    rows:
+      - label: "weil (Nebensatz)"
+        cells:
+          - { answer: "Ich komme nicht, weil …", given: true }
+          - { answer: "weil ich heute arbeite" }
+      - label: "denn (Hauptsatz)"
+        cells:
+          - { answer: "Ich komme nicht, denn …", given: true }
+          - { answer: "denn ich arbeite heute" }
+      - label: "deshalb (Adverb)"
+        cells:
+          - { answer: "Ich arbeite heute. Deshalb …", given: true }
+          - { answer: "deshalb komme ich nicht" }
+    explain:
+      en: "Three word classes, three word orders, one meaning — all three rows say that working today is why you are not coming. weil is a conjunction that opens a Nebensatz, so arbeite goes to the end. denn is a conjunction too, but it opens a main clause and changes nothing. deshalb is neither: it is an adverb sitting in position 1, so the verb takes position 2 and the subject falls in behind it — komme ich, not ich komme. Note also that deshalb swaps the halves round: the reason comes first as its own sentence, and the adverb introduces the consequence. trotzdem shares that syntax exactly but not the meaning, which is why it is not a fourth row here — it would state the opposite: that you are coming despite the work."
+      ru: "Три части речи, три порядка слов, один смысл — все три строки говорят, что вы не придёте из-за сегодняшней работы. weil — союз, вводящий придаточное, поэтому arbeite уходит в конец. denn тоже союз, но он вводит главное предложение и не меняет ничего. deshalb ни то ни другое: это наречие на первом месте, поэтому глагол занимает второе, а подлежащее встаёт за ним — komme ich, а не ich komme. Заметьте и другое: при deshalb половины меняются местами — причина идёт первой отдельным предложением, а наречие вводит следствие. У trotzdem синтаксис ровно тот же, а смысл нет — потому оно и не стало четвёртой строкой: получилось бы обратное, что вы придёте несмотря на работу."
+      uk: "Три частини мови, три порядки слів, один зміст — усі три рядки кажуть, що ви не прийдете через сьогоднішню роботу. weil — сполучник, що вводить підрядне, тому arbeite йде в кінець. denn теж сполучник, але він вводить головне речення й не змінює нічого. deshalb ні те, ні інше: це прислівник на першому місці, тому дієслово займає друге, а підмет стає за ним — komme ich, а не ich komme. Зауважте й інше: при deshalb половини міняються місцями — причина йде першою окремим реченням, а прислівник вводить наслідок. У trotzdem синтаксис рівно той самий, а зміст ні — тому воно й не стало четвертим рядком: вийшло б протилежне, що ви прийдете попри роботу."
+
+  - id: cloze-inversion-nach-adverb
+    outcomes: [folge-ausdruecken]
+    type: cloze
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Put the subject and the verb in the right order after each adverb."
+      ru: "Поставьте подлежащее и глагол в правильном порядке после каждого наречия."
+      uk: "Поставте підмет і присудок у правильному порядку після кожного прислівника."
+    text: "Der Zug hatte Verspätung. Deshalb {{bin ich}} zu spät gekommen. Es hat stark geregnet. Trotzdem {{sind wir}} spazieren gegangen."
+    translation:
+      en: "The train was late. That is why I arrived late. It rained heavily. We went for a walk all the same."
+      ru: "Поезд опоздал. Поэтому я пришёл поздно. Шёл сильный дождь. Мы всё равно пошли гулять."
+      uk: "Потяг запізнився. Тому я прийшов пізно. Ішов сильний дощ. Ми все одно пішли гуляти."
+    explain:
+      en: "Both adverbs occupy position 1, so both push the verb into position 2 and the subject behind it. It is the same inversion you already make after a fronted time phrase — Gestern bin ich zu spät gekommen — and deshalb behaves exactly like Gestern. The meanings differ (deshalb expected, trotzdem unexpected) but the word order does not."
+      ru: "Оба наречия занимают первое место, поэтому оба выталкивают глагол на второе, а подлежащее — за него. Это та же инверсия, которую вы уже делаете после вынесенного вперёд обстоятельства времени — Gestern bin ich zu spät gekommen, — и deshalb ведёт себя точно как Gestern. Значения разные (deshalb — ожидаемо, trotzdem — неожиданно), а порядок слов один и тот же."
+      uk: "Обидва прислівники займають перше місце, тому обидва виштовхують дієслово на друге, а підмет — за нього. Це та сама інверсія, яку ви вже робите після винесеної вперед обставини часу — Gestern bin ich zu spät gekommen, — і deshalb поводиться точно як Gestern. Значення різні (deshalb — очікувано, trotzdem — несподівано), а порядок слів один і той самий."
+
+  - id: mc-deshalb-oder-weil
+    outcomes: [folge-ausdruecken]
+    type: mc
+    focus: konjunktionaladverb-inversion
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich habe keine Zeit. Deswegen kann ich nicht kommen."
+      - "Ich habe keine Zeit. Deswegen ich kann nicht kommen."
+      - "Ich habe keine Zeit. Deswegen ich nicht kommen kann."
+      - "Ich kann nicht kommen, deswegen ich keine Zeit habe."
+    correct: 0
+    translation:
+      en: "I have no time. For that reason I cannot come."
+      ru: "У меня нет времени. Из-за этого я не могу прийти."
+      uk: "У мене немає часу. Через це я не можу прийти."
+    explain:
+      en: "Option 2 leaves the subject in front of the verb, which is the commonest form of this mistake. Option 3 treats deswegen as if it were weil and sends the verb to the end. Option 4 gets the direction backwards as well — it says the lack of time is the consequence of not coming. deswegen is an adverb, it names the consequence, and it puts the verb second."
+      ru: "Во втором варианте подлежащее осталось перед глаголом — самая частая форма этой ошибки. В третьем deswegen принято за weil, и глагол отправлен в конец. В четвёртом вдобавок перепутано направление: получается, что нехватка времени — следствие того, что вы не пришли. deswegen — наречие, оно вводит следствие и ставит глагол вторым."
+      uk: "У другому варіанті підмет залишився перед дієсловом — найчастіша форма цієї помилки. У третьому deswegen прийнято за weil, і дієслово відправлено в кінець. У четвертому додатково переплутано напрямок: виходить, що брак часу — наслідок того, що ви не прийшли. deswegen — прислівник, воно вводить наслідок і ставить дієслово другим."
+
+  - id: order-schliesslich
+    outcomes: [ereignisse-ordnen]
+    type: order
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
+    words: ["Schließlich", "haben", "wir", "die", "Wohnung", "gefunden."]
+    translation:
+      en: In the end we found the flat.
+      ru: В конце концов мы нашли квартиру.
+      uk: Врешті-решт ми знайшли квартиру.
+    explain:
+      en: "Schließlich fills position 1, so the conjugated verb haben must be the second element and wir comes third. The participle gefunden closes the Perfekt bracket at the end, exactly as it would in any main clause."
+      ru: "Schließlich занимает первое место, поэтому спрягаемый глагол haben обязан быть вторым членом, а wir идёт третьим. Причастие gefunden закрывает рамку Perfekt в конце — ровно так же, как в любом главном предложении."
+      uk: "Schließlich займає перше місце, тому відмінюване дієслово haben мусить бути другим членом, а wir іде третім. Дієприкметник gefunden закриває рамку Perfekt у кінці — так само, як у будь-якому головному реченні."
+
+  - id: cloze-als-oder-wenn
+    outcomes: [vergangenheit-erzaehlen]
+    type: cloze
+    focus: als-wenn-vergangenheit
+    instruction:
+      en: "als or wenn? Ask whether it happened once or every time."
+      ru: "als или wenn? Спросите себя, случилось это один раз или каждый раз."
+      uk: "als чи wenn? Запитайте себе, чи сталося це один раз, чи щоразу."
+    text: "{{Als}} ich sechs Jahre alt war, bin ich in die Schule gekommen. Immer {{wenn}} ich krank war, hat meine Mutter Tee gekocht. {{Wenn}} ich morgen früh aufstehe, rufe ich dich an."
+    translation:
+      en: "When I was six, I started school. Whenever I was ill, my mother made tea. If I get up early tomorrow, I will call you."
+      ru: "Когда мне было шесть, я пошёл в школу. Каждый раз, когда я болел, мама заваривала чай. Если я завтра встану рано, я тебе позвоню."
+      uk: "Коли мені було шість, я пішов до школи. Щоразу, коли я хворів, мама заварювала чай. Якщо я завтра встану рано, я тобі зателефоную."
+    explain:
+      en: "Three gaps, three different reasons. You turned six exactly once, so the first is als. Being ill happened again and again — and Immer in front of the gap says so outright — so the second is wenn. The third is about tomorrow, and als is never used outside the past, so anything present or future is wenn regardless of how often it happens."
+      ru: "Три пропуска — три разные причины. Шесть лет вам исполнилось ровно однажды, поэтому первый — als. Болезни повторялись, и стоящее перед пропуском Immer говорит об этом прямо, поэтому второй — wenn. Третий про завтра, а als о непрошедшем не употребляется вовсе: всё настоящее и будущее берёт wenn независимо от повторяемости. Русское «когда» все три случая покрывает одинаково — подсказки от родного языка здесь нет."
+      uk: "Три пропуски — три різні причини. Шість років вам виповнилося рівно одного разу, тому перший — als. Хвороби повторювалися, і Immer перед пропуском каже про це прямо, тому другий — wenn. Третій про завтра, а als про непроминуле не вживається зовсім: усе теперішнє й майбутнє бере wenn незалежно від повторюваності. Українське «коли» всі три випадки покриває однаково — підказки від рідної мови тут немає."
+
+  - id: mc-jedes-mal-test
+    outcomes: [vergangenheit-erzaehlen]
+    type: mc
+    focus: als-wenn-vergangenheit
+    prompt: "In welchem Satz ist wenn richtig?"
+    options:
+      - "Immer wenn wir Ferien hatten, sind wir ans Meer gefahren."
+      - "Wenn ich letzten Sommer nach Wien gefahren bin, war es sehr heiß."
+      - "Wenn meine Tochter geboren wurde, war ich sehr glücklich."
+      - "Wenn der Krieg zu Ende war, sind viele Menschen zurückgekommen."
+    correct: 0
+    translation:
+      en: "Whenever we had holidays, we went to the sea. — The other three each describe something that happened once, so they need als."
+      ru: "Каждый раз, когда у нас были каникулы, мы ездили на море. — Остальные три описывают то, что случилось один раз, поэтому им нужен als."
+      uk: "Щоразу, коли в нас були канікули, ми їздили до моря. — Решта три описують те, що сталося один раз, тому їм потрібен als."
+    explain:
+      en: "Apply the jedes Mal test to each one. Holidays came round again and again, so wenn is right and Immer confirms it. But last summer happened once, your daughter was born once, and the war ended once — every time in front of any of those turns the sentence into nonsense, so all three take als."
+      ru: "Примените к каждому проверку через jedes Mal. Каникулы повторялись, поэтому wenn верен, и Immer это подтверждает. А прошлое лето было одно, дочь родилась однажды, и война закончилась один раз — «каждый раз» перед любым из этих предложений превращает его в бессмыслицу, значит всем трём нужен als."
+      uk: "Застосуйте до кожного перевірку через jedes Mal. Канікули повторювалися, тому wenn правильний, і Immer це підтверджує. А минуле літо було одне, донька народилася одного разу, і війна закінчилася один раз — «щоразу» перед будь-яким із цих речень перетворює його на нісенітницю, отже всім трьом потрібен als."
+
+  - id: cloze-verbende-als
+    outcomes: [vergangenheit-erzaehlen]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Put the verb where an als-clause needs it."
+      ru: "Поставьте глагол туда, где его требует придаточное с als."
+      uk: "Поставте дієслово туди, де його вимагає підрядне з als."
+    text: "Als ich gestern nach Hause {{kam}}, war niemand da. Als wir in Bremen {{gewohnt haben}}, hatten wir einen großen Garten."
+    translation:
+      en: "When I got home yesterday, nobody was there. When we lived in Bremen, we had a big garden."
+      ru: "Когда я вчера пришёл домой, никого не было. Когда мы жили в Бремене, у нас был большой сад."
+      uk: "Коли я вчора прийшов додому, нікого не було. Коли ми жили в Бремені, у нас був великий сад."
+    explain:
+      en: "als is a conjunction, so its clause is a Nebensatz and the conjugated verb waits at the very end — the rule you already have from weil and dass. In the Perfekt that means the participle first and the auxiliary last: gewohnt haben, never haben gewohnt. And because the als-clause comes first here, it fills position 1 of the whole sentence, so war and hatten follow straight after the comma."
+      ru: "als — союз, поэтому его придаточное это Nebensatz, и спрягаемый глагол ждёт в самом конце по уже знакомому правилу от weil и dass. В Perfekt это значит: сначала причастие, вспомогательный последним — gewohnt haben, а не haben gewohnt. А поскольку придаточное с als стоит здесь первым, оно занимает первое место всего предложения, и war и hatten идут сразу после запятой."
+      uk: "als — сполучник, тому його підрядне це Nebensatz, і відмінюване дієслово чекає в самому кінці за вже знайомим правилом від weil і dass. У Perfekt це значить: спочатку дієприкметник, допоміжне останнім — gewohnt haben, а не haben gewohnt. А оскільки підрядне з als стоїть тут першим, воно займає перше місце всього речення, і war та hatten ідуть одразу після коми."
+
+  - id: uebersetzen-deshalb-inversion
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Use deshalb for the second sentence."
+      ru: "Для второго предложения используйте deshalb."
+      uk: "Для другого речення використайте deshalb."
+    prompt_en: "I have no time. That is why I am not coming on Saturday."
+    prompt_ru: "У меня нет времени. Поэтому в субботу я не приду."
+    prompt_uk: "У мене немає часу. Тому в суботу я не прийду."
+    answer: "Ich habe keine Zeit. Deshalb komme ich am Samstag nicht."
+    key_tokens: ["Deshalb", "komme", "ich"]
+    explain:
+      en: "The three graded words are the whole point: Deshalb in position 1, komme in position 2, ich third. Writing Deshalb ich komme is the single commonest error with these adverbs, and it is graded here precisely because the source sentence gives you no warning — neither English nor Russian inverts after that is why."
+      ru: "Три проверяемых слова и есть вся суть: Deshalb на первом месте, komme на втором, ich третьим. Написать Deshalb ich komme — самая частая ошибка с этими наречиями, и проверяется она здесь именно потому, что исходное предложение ни о чём не предупреждает: ни английский, ни русский после «поэтому» инверсии не делают."
+      uk: "Три перевірювані слова і є вся суть: Deshalb на першому місці, komme на другому, ich третім. Написати Deshalb ich komme — найчастіша помилка з цими прислівниками, і перевіряється вона тут саме тому, що вихідне речення ні про що не попереджає: ні англійська, ні українська після «тому» інверсії не роблять."
+
+  - id: uebersetzen-als-kindheit
+    outcomes: [vergangenheit-erzaehlen]
+    type: translate
+    focus: als-wenn-vergangenheit
+    prompt_en: "When I was little, I often went to my grandmother's."
+    prompt_ru: "Когда я был маленьким, я часто ездил к бабушке."
+    prompt_uk: "Коли я був малим, я часто їздив до бабусі."
+    answer: "Als ich klein war, bin ich oft zu meiner Oma gefahren."
+    accept: ["Ich bin oft zu meiner Oma gefahren, als ich klein war."]
+    key_tokens: ["Als"]
+    explain:
+      en: "The trap is oft. Going to your grandmother's happened many times — but als does not describe the visits, it describes being little, and you were little exactly once. The rule looks at the als-clause itself, not at what the main clause says about frequency. Both orders are good German; the accepted variant simply puts the main clause first."
+      ru: "Ловушка в слове oft. К бабушке вы ездили много раз, — но als описывает не поездки, а то, что вы были маленьким, а маленьким вы были ровно один раз. Правило смотрит на само придаточное с als, а не на то, что о частотности говорит главное предложение. Оба порядка — хороший немецкий; принимаемый вариант просто ставит главное предложение первым."
+      uk: "Пастка у слові oft. До бабусі ви їздили багато разів, — але als описує не поїздки, а те, що ви були малим, а малим ви були рівно один раз. Правило дивиться на саме підрядне з als, а не на те, що про частотність каже головне речення. Обидва порядки — гарна німецька; прийнятий варіант просто ставить головне речення першим."
+
+  - id: hoeren-trotzdem
+    outcomes: [folge-ausdruecken]
+    type: listen
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Es hat geregnet. Trotzdem sind wir spazieren gegangen."
+    translation:
+      en: It rained. We went for a walk all the same.
+      ru: Шёл дождь. Мы всё равно пошли гулять.
+      uk: Ішов дощ. Ми все одно пішли гуляти.
+    explain:
+      en: "Listen for the order after Trotzdem: sind comes before wir, and in speech that pair runs together as one unstressed block. Hearing it that way is the fastest route to producing it — the inversion is not something German speakers think about, it is simply how the sentence sounds."
+      ru: "Вслушайтесь в порядок после Trotzdem: sind идёт перед wir, и в речи эта пара сливается в один безударный блок. Услышать это — самый короткий путь к тому, чтобы начать так говорить: носители об инверсии не думают, просто предложение так звучит."
+      uk: "Вслухайтеся в порядок після Trotzdem: sind іде перед wir, і в мовленні ця пара зливається в один ненаголошений блок. Почути це — найкоротший шлях до того, щоб почати так говорити: носії про інверсію не думають, просто речення так звучить."

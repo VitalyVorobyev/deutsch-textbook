@@ -45,15 +45,13 @@ describe('grammar coverage', () => {
     const coverage = grammarCoverage('A2');
     const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
     expect(missing).toEqual([
-      'als-wenn',
       'futur-werden',
       'genitiv-eigenname',
       'indefinitpronomen',
-      'konjunktionaladverb',
       'passiv-praesens',
       'reflexiv-dativ',
     ]);
-    expect(coverage.percent).toBe(77);
+    expect(coverage.percent).toBe(83);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

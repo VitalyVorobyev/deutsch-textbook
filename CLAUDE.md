@@ -177,6 +177,8 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `nebensatz-vorfeld` | a fronted subordinate clause fills position 1, so the main verb comes straight after it |
 | `zu-infinitiv` | an infinitive governed by an ordinary verb takes *zu* (and a modal's does not); in a separable verb the *zu* goes inside — an**zu**rufen |
 | `um-zu-zweck` | purpose is the two-ended frame *um … zu*, never *für* + infinitive and never *um* alone |
+| `konjunktionaladverb-inversion` | *deshalb*, *deswegen*, *trotzdem*, *dann*, *schließlich* are **adverbs**: they fill position 1, so the verb comes second (❌ *Deshalb ich komme*) |
+| `als-wenn-vergangenheit` | past *when*: **als** for a single occasion, **wenn** for a repeated one — neither EN nor RU marks the difference |
 | `relativpronomen-kasus` | the relative pronoun takes its gender/number from the noun outside but its **case from the role inside** its own clause (*der Mann, **den** ich kenne*) |
 | `aber-sondern` | *sondern* only after a negation, replacing what was denied (Nicht am Freitag, **sondern** am Samstag) — elsewhere it is *aber* |
 | `praeteritum-sein-haben` | *war*, *hatte* and the modal Präteritum — the past German actually speaks, where Perfekt is not used |

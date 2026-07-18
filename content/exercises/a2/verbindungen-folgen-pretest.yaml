@@ -1,0 +1,54 @@
+topic: verbindungen-folgen
+role: pretest
+title:
+  en: "Before we start — connecting sentences"
+  ru: "Перед началом — связь предложений"
+  uk: "Перед початком — зв'язок речень"
+items:
+  - id: pretest-deshalb-inversion
+    outcomes: [folge-ausdruecken]
+    type: mc
+    focus: konjunktionaladverb-inversion
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Der Bus hatte Verspätung. Deshalb bin ich zu spät gekommen."
+      - "Der Bus hatte Verspätung. Deshalb ich bin zu spät gekommen."
+      - "Der Bus hatte Verspätung. Deshalb ich zu spät gekommen bin."
+      - "Der Bus hatte Verspätung, deshalb ich bin zu spät gekommen."
+    correct: 0
+    explain:
+      en: "deshalb is an adverb, not a conjunction. It fills position 1, so the conjugated verb must be second and the subject third: Deshalb bin ich."
+      ru: "deshalb — наречие, а не союз. Оно занимает первое место, поэтому спрягаемый глагол обязан быть вторым, а подлежащее третьим: Deshalb bin ich."
+      uk: "deshalb — прислівник, а не сполучник. Воно займає перше місце, тому відмінюване дієслово мусить бути другим, а підмет третім: Deshalb bin ich."
+
+  - id: pretest-als-einmal
+    outcomes: [vergangenheit-erzaehlen]
+    type: mc
+    focus: als-wenn-vergangenheit
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Als ich sechs Jahre alt war, bin ich in die Schule gekommen."
+      - "Wenn ich sechs Jahre alt war, bin ich in die Schule gekommen."
+      - "Als ich sechs Jahre alt war, ich bin in die Schule gekommen."
+      - "Wann ich sechs Jahre alt war, bin ich in die Schule gekommen."
+    correct: 0
+    explain:
+      en: "You turned six exactly once, so the past clause takes als, not wenn. And a fronted clause fills position 1, so the main verb follows straight after the comma. wann is only for questions."
+      ru: "Шесть лет вам исполнилось ровно один раз, поэтому придаточное о прошлом берёт als, а не wenn. А вынесенное вперёд придаточное занимает первое место, и глагол главного идёт сразу после запятой. wann употребляется только в вопросах."
+      uk: "Шість років вам виповнилося рівно один раз, тому підрядне про минуле бере als, а не wenn. А винесене вперед підрядне займає перше місце, і дієслово головного йде одразу після коми. wann вживається лише в питаннях."
+
+  - id: pretest-wenn-wiederholt
+    outcomes: [vergangenheit-erzaehlen]
+    type: mc
+    focus: als-wenn-vergangenheit
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Immer wenn ich krank war, hat meine Mutter Tee gekocht."
+      - "Immer als ich krank war, hat meine Mutter Tee gekocht."
+      - "Immer wenn ich krank war, meine Mutter hat Tee gekocht."
+      - "Immer wenn ich war krank, hat meine Mutter Tee gekocht."
+    correct: 0
+    explain:
+      en: "Being ill happened again and again, and Immer says so — repeated events in the past take wenn. The clause is a Nebensatz, so war goes to its end, and the main verb follows the comma."
+      ru: "Болезни повторялись, и Immer говорит об этом прямо — повторяющиеся события в прошлом берут wenn. Придаточное это Nebensatz, поэтому war уходит в его конец, а глагол главного идёт после запятой."
+      uk: "Хвороби повторювалися, і Immer каже про це прямо — повторювані події в минулому беруть wenn. Підрядне це Nebensatz, тому war іде в його кінець, а дієслово головного йде після коми."

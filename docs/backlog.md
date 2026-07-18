@@ -52,9 +52,15 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
   (a Relativsatz *is* a Nebensatz); `akkusativ` is a prerequisite but deliberately not deepened,
   because the confusion added here is where the case *comes from*, not how `den` is built.
   `vocab: []` — pure syntax, and the lexis it describes people and things with is already taught.
-- **P10-4 · `verbindungen-folgen`** — `todo`. Konjunktionaladverbien with inversion
-  (*deshalb*, *deswegen*, *trotzdem*, *dann*) and *als* vs *wenn* for past time. Tags
-  `konjunktionaladverb-inversion`, `als-wenn-vergangenheit`.
+- **P10-4 · `verbindungen-folgen`** — `done` 2026-07-18. Konjunktionaladverbien with inversion
+  (*deshalb*, *deswegen*, *trotzdem*, *schließlich*) and *als* vs *wenn* for past time; tags
+  `konjunktionaladverb-inversion` and `als-wenn-vergangenheit`. A2 grammar 77% → **83%**.
+  Placed after `biografie-erfahrungen`, because every *als*-clause worth writing needs a past to
+  talk about and that is the unit teaching *war*/*hatte*. **First topic in the course with two
+  probe families** — it teaches two independent structures and closes two manifest points, and
+  one mixed family would measure each competence at only one interval, which is not a retention
+  curve. `probeFamilies` keys by setId, so the two are discovered and armed independently
+  (verified at runtime, not assumed). B1 keeps *obwohl*; only the adverb *trotzdem* moves to A2.
 - **P10-5 · extensions, not units** — `todo`. Futur I (`futur-werden`) joins `nebensaetze-plaene`,
   which already teaches plans as present + time phrase; Reflexiv im Dativ (`reflexiv-dativ`) joins
   `gesundheit-arzttermin`, which owns `reflexiv-akkusativ`. Both as **non-primary** practice sets,

@@ -85,17 +85,33 @@ const ARMING_ROLES = new Set(['practice', 'drill']);
  * family probes arms it.
  */
 export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
-  return sets
-    .filter((s) => s.role === 'probe')
-    .map((s) => ({
-      setId: s.setId,
-      topicId: s.topicId,
-      outcomes: [...new Set(s.items.flatMap((i) => i.outcomes))],
-      armingSetIds: sets
-        .filter((o) => o.topicId === s.topicId && ARMING_ROLES.has(o.role ?? 'practice'))
-        .map((o) => o.setId),
-      items: s.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
-    }));
+  const probes = sets.filter((s) => s.role === 'probe');
+  const familiesPerTopic = new Map<string, number>();
+  for (const p of probes) familiesPerTopic.set(p.topicId, (familiesPerTopic.get(p.topicId) ?? 0) + 1);
+
+  return probes.map((s) => ({
+    setId: s.setId,
+    topicId: s.topicId,
+    outcomes: [...new Set(s.items.flatMap((i) => i.outcomes))],
+    /**
+     * The set-level fallback names the whole *topic*, so it cannot tell two families
+     * of the same topic apart: practising either structure would arm both, and two
+     * days later a probe would come due for material the learner never studied —
+     * measuring guessing and calling it retention.
+     *
+     * So a topic that owns more than one family arms by outcome only. That is safe
+     * precisely where it applies: the fallback exists for historical attempts carrying
+     * no outcomes, and a multi-family topic is new by construction, so every attempt
+     * on it names the outcomes its items declare.
+     */
+    armingSetIds:
+      (familiesPerTopic.get(s.topicId) ?? 1) > 1
+        ? []
+        : sets
+            .filter((o) => o.topicId === s.topicId && ARMING_ROLES.has(o.role ?? 'practice'))
+            .map((o) => o.setId),
+    items: s.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
+  }));
 }
 
 export interface DueProbe {
