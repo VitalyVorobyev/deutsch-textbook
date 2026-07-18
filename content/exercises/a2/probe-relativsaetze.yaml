@@ -47,6 +47,10 @@ items:
     prompt_ru: "Курс, который я ищу, начинается в сентябре."
     prompt_uk: "Курс, який я шукаю, починається у вересні."
     answer: "Der Kurs, den ich suche, fängt im September an."
+    # beginnen is taught (A1, alltag-zeit) and preserves the probed decision exactly.
+    # A probe measures retention, so a false negative does not just annoy — it corrupts
+    # the curve the family exists to produce.
+    accept: ["Der Kurs, den ich suche, beginnt im September."]
     key_tokens: ["den"]
     explain:
       en: "Again ich is the subject inside the clause, so the course is the object: den. Note the main clause after the second comma — the separable verb splits as usual, anfangen giving fängt … an, because the main clause was never a Nebensatz."
