@@ -30,7 +30,9 @@ import {
   type VocabFile,
   type VisualDocument,
   type WordField,
+  LEVELS,
 } from '../src/lib/schemas';
+import type { GrammarPoint } from '../src/lib/grammar-coverage';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
@@ -216,6 +218,36 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
         .map((d) => `content/vocab/${d}.yaml`)
         .join(', ')} — every headword lives in exactly one deck`,
     );
+  }
+}
+
+// The grammar inventory is the structural counterpart to the Wortliste: it is
+// what makes "this level is complete" a measured claim instead of an asserted
+// one. It cannot be checked against the focus taxonomy — a point whose tag is
+// unregistered is the normal way an unwritten structure shows up — so what is
+// enforced here is only that the file itself stays trustworthy: unique ids,
+// real levels, and reference-only points that name a topic which exists.
+{
+  const file = join(ROOT, 'data', 'grammar-inventory.yaml');
+  try {
+    const points = (YAML.parse(readFileSync(file, 'utf8')) as { points?: GrammarPoint[] }).points ?? [];
+    const seen = new Set<string>();
+    for (const point of points) {
+      if (seen.has(point.id)) fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
+      seen.add(point.id);
+      if (!(LEVELS as readonly string[]).includes(point.standard_level))
+        fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown standard_level "${point.standard_level}"`);
+      if (!point.reference_only && !point.focus?.length)
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" declares neither focus tags nor reference_only — nothing could ever mark it taught`,
+        );
+      for (const topic of point.taught_in ?? [])
+        if (!topics.has(topic))
+          fail('data/grammar-inventory.yaml', `point "${point.id}" is taught_in unknown topic "${topic}"`);
+    }
+  } catch (e) {
+    fail('data/grammar-inventory.yaml', `unreadable: ${e instanceof Error ? e.message : e}`);
   }
 }
 
