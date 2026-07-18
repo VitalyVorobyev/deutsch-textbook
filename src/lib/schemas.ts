@@ -102,6 +102,11 @@ export function ipaProblems(de: string, ipa: string | undefined): string[] {
   if (ipa !== ipa.normalize('NFC')) problems.push(`${at} is not NFC-normalized`);
   if (ipa === de) problems.push(`${at} is identical to the headword (generator echoed the word?)`);
 
+  // The contract keeps the glottal stop before a word-internal stressed vowel
+  // (bəˈʔantvɔʁtn̩) and drops it word-initially — but the two look identical in a
+  // transcription, so the wrong one slipped through twice before this check existed.
+  if (/^ʔ/.test(ipa))
+    problems.push(`${at} starts with ʔ — a word-initial glottal stop is not transcribed`);
   if (/ɡ/.test(ipa)) problems.push(`${at} uses ɡ (U+0261) — house style is ASCII g`);
   if (/[rʀ]/.test(ipa)) problems.push(`${at} uses r/ʀ — German /r/ is ʁ (ɐ̯ when vocalized)`);
   if (/͡/.test(ipa)) problems.push(`${at} uses a tie bar — write ts / pf / tʃ untied`);
