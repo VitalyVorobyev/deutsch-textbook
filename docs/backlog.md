@@ -17,7 +17,7 @@ Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. B1 r
 until representative A2 use, its checkpoint and delayed evidence have been reviewed — the B1 gate
 lives in [roadmap.md](roadmap.md).
 
-## Phase 10 · Close the A2 grammar standard — `doing`
+## Phase 10 · Close the A2 grammar standard — `done`
 
 A2 was called content-complete on the strength of its **lexical** figure (Wortliste 100%). Nothing
 measured *structure*, and when a manifest was finally written the honest number was **20/30 —
@@ -77,12 +77,23 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
   there was nothing left to own — the same `~als` trap checked for before writing, not after.
   Second topic with two probe families. `deepens: [dativ]` was rejected as inert on first attempt
   and earned honestly instead, with an item that grades the case after *von*.
-- **P10-7 · Passiv Präsens, rezeptiv** — `todo`. Tag `passiv-rezeptiv`. The exam wants
-  comprehension, not production — but recognition that is never checked is not evidence, so it
-  still needs drilled items, and it still needs no deck.
-- **P10-8 · publish the figure** — `todo`. Über states the computed grammar coverage beside the
-  Wortliste one, and the roadmap's "A1 and A2 are content-complete" line is corrected until it is
-  true again.
+- **P10-7 · Passiv Präsens, rezeptiv** — `done` 2026-07-18. Tag `passiv-rezeptiv`; A2 grammar
+  97% → **100%**. An extension of `man-und-besitz`, because `man` and the Passiv are the two ways
+  German avoids naming an agent and rebuilding one as the other is how a learner reads it. Every
+  item is a recognition task — mc, match, audio-comprehension, no production — which is what the
+  standard asks for, but they exist at all because a structure only ever read and never checked
+  leaves no evidence it was understood. The article gains the table that finally separates the
+  three jobs of `werden`: Partizip II → Passiv, Infinitiv → Futur I, Nomen → *to become*.
+- **P10-8 · publish the figure** — `done` 2026-07-18. Über states the computed grammar coverage
+  beside the Wortliste one, from `grammarCoverage()` at build time — no hand-written count. The
+  roadmap's status line now names both measures and records what the old one concealed. The B1
+  blueprint is corrected in the same change: six structures left its table for A2, and the rows
+  now say which half B1 may still revisit (the dative relative pronoun, the produced passive,
+  *obwohl* as a conjunction) so B1 deepens rather than re-teaches.
+
+**Phase 10 is complete.** A2 went from a measured 67% to 100% of its grammar standard across seven
+changes. The tripwire in `tests/grammar-coverage.test.ts` was lowered once per point, each in the
+commit that shipped the unit closing it, and has now become a ratchet asserting completeness.
 
 ## The open gate
 

@@ -5,6 +5,7 @@ import Chrome from '../components/Chrome.astro';
 import { getCheckpoints } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { goetheCoverage, hasManifest, ukTranslationCoverage } from '../lib/coverage';
+import { grammarCoverage } from '../lib/grammar-coverage';
 import { withBase } from '../lib/url';
 
 const REPO = 'https://github.com/VitalyVorobyev/deutsch-textbook';
@@ -26,6 +27,12 @@ const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
 // Wortliste the A1/A2 decks already teach — a claim about the learner's lexis,
 // never about B1 completeness.
 const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
+// The structural counterpart to the Wortliste figure, and it exists because the lexical
+// one was carrying the whole claim: A2 was called content-complete for months on the
+// strength of 100% vocabulary while six A2-standard structures were unwritten. Computed
+// from the content at build time, like every other number on this page.
+const grammarA1 = grammarCoverage('A1');
+const grammarA2 = grammarCoverage('A2');
 // The Ukrainian-translation figure, same earned-claims rule: measured from the
 // content files at build time, never hand-written — and 0 is stated as 0.
 const ukCoverage = ukTranslationCoverage();
@@ -170,7 +177,9 @@ const principles = [
             types, and its own vocabulary. {coverage.cards + coverage.grammar} of the
             {' '}{coverage.total} headwords on the official Goethe-Institut A1 Wortliste are covered
             ({coverage.percent}%) — {coverage.cards} as flashcards and {coverage.grammar} taught as
-            grammar rather than as vocabulary. A cumulative
+            grammar rather than as vocabulary. All {grammarA1.total} grammar points the A1 standard
+            expects are taught, {grammarA1.late} of them at A2 — a sequencing choice this course
+            makes deliberately and does not hide. A cumulative
             {checkpointA1 && ` ${checkpointA1.items.length}-item`} A1 checkpoint measures the
             level end to end.
           </span>
@@ -180,7 +189,9 @@ const principles = [
             типов и собственный словарь. Из {coverage.total} слов официального списка Goethe-Institut
             A1 Wortliste охвачено {coverage.cards + coverage.grammar} ({coverage.percent}%):
             {' '}{coverage.cards} — карточками, ещё {coverage.grammar} даются как грамматика, а не как
-            лексика. Итоговая контрольная точка A1
+            лексика. Все {grammarA1.total} грамматических пунктов стандарта A1 охвачены, {grammarA1.late}
+            из них даются на A2 — это осознанный выбор последовательности, и он не скрывается.
+            Итоговая контрольная точка A1
             {checkpointA1 && ` из ${checkpointA1.items.length} заданий`} проверяет уровень
             целиком.
           </span>
@@ -202,6 +213,9 @@ const principles = [
               official Goethe-Institut A2 Wortliste are covered (${coverageA2.percent}%) —
               ${coverageA2.cards} as flashcards and ${coverageA2.grammar} taught as grammar rather
               than as vocabulary.`}
+            {` All ${grammarA2.total} grammar points the A2 standard expects are taught
+              (${grammarA2.percent}%), each one measured by a practice or drill item that names the
+              confusion it drills — testing a structure in a checkpoint does not count as teaching it.`}
             {checkpointA2 && ` A cumulative ${checkpointA2.items.length}-item A2 checkpoint measures
               the level end to end.`} What that does not mean is that finishing it makes you A2 —
             that is a claim about you, not about the content, and no course can make it for you.
@@ -215,6 +229,9 @@ const principles = [
               ` Из ${coverageA2.total} слов официального списка Goethe-Institut A2 Wortliste охвачено
               ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%): ${coverageA2.cards} —
               карточками, ещё ${coverageA2.grammar} даются как грамматика, а не как лексика.`}
+            {` Все ${grammarA2.total} грамматических пунктов стандарта A2 охвачены (${grammarA2.percent}%),
+              и каждый подтверждён упражнением, которое называет соответствующую трудность:
+              проверить структуру в контрольной точке не значит её обучить.`}
             {checkpointA2 && ` Итоговая контрольная точка A2 из ${checkpointA2.items.length} заданий
               проверяет уровень целиком.`} Это не значит, что, пройдя курс, вы автоматически получите
             A2: это утверждение о вас, а не о содержании, и ни один курс не может сделать его за вас.

@@ -1,7 +1,13 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **A1 and A2 are content-complete** (updated 2026-07-18), including the Ukrainian explanation
-half across every ru-bearing A1/A2 file. The system is in the **pre-B1 evidence window**: almost
+Status: **A1 and A2 are content-complete on both measures** (updated 2026-07-18) — Wortliste 100%
+at each level *and* every grammar point of each level's standard taught, 22/22 at A1 and 30/30 at
+A2, verified by `bun scripts/grammar-coverage.ts`. The second half of that claim is new: A2 was
+called content-complete for months on its lexical figure alone, and when structure was finally
+measured it was **67%**, with six A2 structures unwritten and several of them scheduled inside B1
+units. Phase 10 closed all ten gaps. Both figures are computed from the content and published on
+Über; neither is hand-written anywhere. Also included: the Ukrainian explanation half across every
+ru-bearing A1/A2 file. The system is in the **pre-B1 evidence window**: almost
 every remaining gate is calendar- or learner-evidence-bound rather than authoring work. Phase
 history lives in [archive/2026-07-phases-4-9.md](archive/2026-07-phases-4-9.md) and
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md); *what* A2/B1

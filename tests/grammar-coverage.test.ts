@@ -38,16 +38,20 @@ describe('grammar coverage', () => {
     expect(coverage.late).toBeGreaterThan(0);
   });
 
-  // This number is a tripwire, like the A2 spine length in contracts.test.ts:
-  // closing an A2 gap is supposed to be a deliberate, visible change. Lower it
-  // in the same commit that ships the unit which closes the point.
-  test('A2 grammar coverage is measured, and the open gaps are the known ones', () => {
+  // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a
+  // ratchet: A2 is complete against the standard, and it must stay that way. The
+  // number was lowered ten times, once per point, each in the commit that shipped the
+  // unit closing it — that visibility was the whole purpose, and it still is. If this
+  // fails, either a structure was silently dropped or a point was added to the
+  // inventory without the content to pay for it, and both want noticing.
+  test('A2 teaches every structure its standard expects', () => {
     const coverage = grammarCoverage('A2');
-    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
-    expect(missing).toEqual([
-      'passiv-praesens',
-    ]);
-    expect(coverage.percent).toBe(97);
+    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id);
+    expect(missing).toEqual([]);
+    expect(coverage.percent).toBe(100);
+    // Nothing is merely late either: a point taught above its standard level would
+    // still count toward the percentage, so it has to be asserted separately.
+    expect(coverage.late).toBe(0);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {
