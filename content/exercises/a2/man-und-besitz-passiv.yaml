@@ -28,9 +28,9 @@ items:
       ru: "Улицу ремонтируют. — В остальных werden это полнозначный глагол «становиться» и будущее время."
       uk: "Вулицю ремонтують. — У решті werden це повнозначне дієслово «ставати» і майбутній час."
     explain:
-      en: "One word, three jobs, and what follows it decides which. A Partizip II — repariert — makes it the passive. A bare infinitive — fahren, schaffen — makes it Futur I. A noun — Ärztin — makes it the full verb to become. You now have all three, so the test is simply: look at the end of the sentence and see what kind of word is waiting there."
-      ru: "Одно слово, три работы, и решает то, что стоит после него. Partizip II — repariert — даёт пассив. Голый инфинитив — fahren, schaffen — даёт Futur I. Существительное — Ärztin — даёт полнозначный глагол «становиться». Все три вы уже знаете, поэтому проверка простая: посмотрите в конец предложения и увидьте, какое слово там ждёт."
-      uk: "Одне слово, три роботи, і вирішує те, що стоїть після нього. Partizip II — repariert — дає пасив. Голий інфінітив — fahren, schaffen — дає Futur I. Іменник — Ärztin — дає повнозначне дієслово «ставати». Усі три ви вже знаєте, тому перевірка проста: подивіться в кінець речення і побачте, яке слово там чекає."
+      en: "One word, three jobs, and what follows it decides which. A Partizip II — repariert — makes it the passive. A bare infinitive — fahren, schaffen — makes it Futur I. A noun or an adjective — Ärztin, and equally Es wird kalt — makes it the full verb to become. You now have all three, so the test is simply: look at the end of the sentence and see what kind of word is waiting there."
+      ru: "Одно слово, три работы, и решает то, что стоит после него. Partizip II — repariert — даёт пассив. Голый инфинитив — fahren, schaffen — даёт Futur I. Существительное или прилагательное — Ärztin, и точно так же Es wird kalt — даёт полнозначный глагол «становиться». Все три вы уже знаете, поэтому проверка простая: посмотрите в конец предложения и увидьте, какое слово там ждёт."
+      uk: "Одне слово, три роботи, і вирішує те, що стоїть після нього. Partizip II — repariert — дає пасив. Голий інфінітив — fahren, schaffen — дає Futur I. Іменник або прикметник — Ärztin, і так само Es wird kalt — дає повнозначне дієслово «ставати». Усі три ви вже знаєте, тому перевірка проста: подивіться в кінець речення і побачте, яке слово там чекає."
 
   - id: match-passiv-man
     outcomes: [passiv-verstehen]
@@ -112,18 +112,18 @@ items:
           text: "Der Parkplatz hinter dem Haus wird zurzeit renoviert. Bitte parken Sie an der Straße."
         - speaker: "Durchsage"
           text: "Vielen Dank für Ihr Verständnis."
-    question: "Was soll man am Parkplatz hinter dem Haus tun?"
+    question: "Warum soll man zurzeit nicht hinter dem Haus parken?"
     options:
-      - "Dort nicht parken, sondern an der Straße."
-      - "Dort nur bis achtzehn Uhr parken."
-      - "Dort zu den Kassen eins bis drei gehen."
-      - "Dort am Samstag parken."
+      - "Weil der Parkplatz renoviert wird."
+      - "Weil der Parkplatz am Samstag geschlossen wird."
+      - "Weil dort nur Mitarbeiter parken dürfen."
+      - "Weil der Parkplatz zu klein ist."
     correct: 0
     translation:
-      en: "Not park there but in the street — the car park is being renovated at the moment."
-      ru: "Не парковаться там, а на улице: парковку сейчас ремонтируют."
-      uk: "Не паркуватися там, а на вулиці: парковку зараз ремонтують."
+      en: "Because the car park is being renovated. The announcement says where to park instead, but not why — that is only in the passive clause."
+      ru: "Потому что парковку ремонтируют. Где парковаться вместо неё, объявление говорит прямо, а вот почему — только в пассивной фразе."
+      uk: "Бо парковку ремонтують. Де паркуватися замість неї, оголошення каже прямо, а от чому — лише в пасивній фразі."
     explain:
-      en: "Announcements are the other place this structure lives, and this one has four passives in a row — wird geschlossen twice, wird renoviert, and each time the speaker is telling you what is happening to something without naming anyone responsible. Note that the two geschlossen sentences mean different things only because of their time phrases: in wenigen Minuten is one till closing now, am Samstag is the shop closing early that day."
-      ru: "Объявления — второе место, где живёт эта конструкция, и в этом их четыре подряд: дважды wird geschlossen, затем wird renoviert, и каждый раз говорящий сообщает, что с чем-то происходит, не называя ответственного. Обратите внимание, что два предложения с geschlossen различаются только обстоятельствами времени: in wenigen Minuten — это закрытие кассы сейчас, am Samstag — магазин в этот день закроется раньше."
-      uk: "Оголошення — друге місце, де живе ця конструкція, і в цьому їх чотири поспіль: двічі wird geschlossen, потім wird renoviert, і щоразу мовець повідомляє, що з чимось відбувається, не називаючи відповідального. Зверніть увагу, що два речення з geschlossen різняться лише обставинами часу: in wenigen Minuten — це закриття каси зараз, am Samstag — магазин того дня зачиниться раніше."
+      en: "The question deliberately asks for the one thing the announcement does not spell out. Where to park instead is stated outright — Bitte parken Sie an der Straße — but the reason lives only in the passive clause, der Parkplatz wird zurzeit renoviert, so the item cannot be answered by picking up an instruction. Announcements are the other place this structure lives, and this one has three passives: wird geschlossen twice and wird renoviert, each telling you what is happening to something without naming anyone responsible. Note that the two geschlossen sentences differ only by their time phrases — in wenigen Minuten is one till closing now, am Samstag is the shop closing early that day."
+      ru: "Вопрос намеренно спрашивает о том единственном, чего объявление прямо не проговаривает. Где парковаться вместо этого, сказано открытым текстом — Bitte parken Sie an der Straße, — а вот причина живёт только в пассивной фразе der Parkplatz wird zurzeit renoviert, так что ответить, подхватив указание, не получится. Объявления — второе место, где живёт эта конструкция, и здесь их три: дважды wird geschlossen и wird renoviert, и каждый раз говорящий сообщает, что с чем-то происходит, не называя ответственного. Обратите внимание, что два предложения с geschlossen различаются только обстоятельствами времени: in wenigen Minuten — закрытие кассы сейчас, am Samstag — магазин в этот день закроется раньше."
+      uk: "Питання навмисно запитує про те єдине, чого оголошення прямо не промовляє. Де паркуватися замість цього, сказано відкритим текстом — Bitte parken Sie an der Straße, — а от причина живе лише в пасивній фразі der Parkplatz wird zurzeit renoviert, тож відповісти, підхопивши вказівку, не вийде. Оголошення — друге місце, де живе ця конструкція, і тут їх три: двічі wird geschlossen і wird renoviert, і щоразу мовець повідомляє, що з чимось відбувається, не називаючи відповідального. Зверніть увагу, що два речення з geschlossen різняться лише обставинами часу: in wenigen Minuten — закриття каси зараз, am Samstag — магазин того дня зачиниться раніше."
