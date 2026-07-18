@@ -1,0 +1,53 @@
+topic: verbindungen-folgen
+role: probe
+title:
+  en: "Delayed check — als or wenn in the past"
+  ru: "Отложенная проверка — als или wenn в прошедшем"
+  uk: "Відкладена перевірка — als чи wenn у минулому"
+# The topic's second probe family. See probe-verbindungen-folgen for why there are
+# two. All three variants are the same competence — does this past clause describe
+# one occasion or a repeated one — and each is a situation the practice sets do not
+# use, so none is recoverable from memory of an item.
+items:
+  - id: probe-als-hochzeit
+    outcomes: [vergangenheit-erzaehlen]
+    type: translate
+    focus: als-wenn-vergangenheit
+    prompt_en: "When my sister got married, the whole family came."
+    prompt_ru: "Когда моя сестра выходила замуж, приехала вся семья."
+    prompt_uk: "Коли моя сестра виходила заміж, приїхала вся родина."
+    answer: "Als meine Schwester geheiratet hat, ist die ganze Familie gekommen."
+    key_tokens: ["Als"]
+    explain:
+      en: "A wedding happens once, so the clause takes als. Put every time in front of it and the sentence stops making sense — that is the test."
+      ru: "Свадьба бывает один раз, поэтому придаточное берёт als. Подставьте «каждый раз» — и предложение теряет смысл; это и есть проверка."
+      uk: "Весілля буває один раз, тому підрядне бере als. Підставте «щоразу» — і речення втрачає сенс; це й є перевірка."
+
+  - id: probe-wenn-ferien
+    outcomes: [vergangenheit-erzaehlen]
+    type: translate
+    focus: als-wenn-vergangenheit
+    prompt_en: "Whenever we had holidays, we went to the sea."
+    prompt_ru: "Каждый раз, когда у нас были каникулы, мы ездили на море."
+    prompt_uk: "Щоразу, коли в нас були канікули, ми їздили до моря."
+    answer: "Immer wenn wir Ferien hatten, sind wir ans Meer gefahren."
+    accept: ["Wenn wir Ferien hatten, sind wir ans Meer gefahren."]
+    key_tokens: ["wenn"]
+    explain:
+      en: "The holidays came round again and again, so the past clause takes wenn — the half of the rule that is easy to forget, because als feels like the word for the past."
+      ru: "Каникулы повторялись, поэтому придаточное о прошлом берёт wenn — ту половину правила, которую легко забыть, ведь als ощущается как «слово для прошедшего»."
+      uk: "Канікули повторювалися, тому підрядне про минуле бере wenn — ту половину правила, яку легко забути, адже als відчувається як «слово для минулого»."
+
+  - id: probe-als-unfall
+    outcomes: [vergangenheit-erzaehlen]
+    type: translate
+    focus: als-wenn-vergangenheit
+    prompt_en: "When I got my first job, I was twenty-two."
+    prompt_ru: "Когда я получил первую работу, мне было двадцать два."
+    prompt_uk: "Коли я отримав першу роботу, мені було двадцять два."
+    answer: "Als ich meine erste Stelle bekommen habe, war ich zweiundzwanzig."
+    key_tokens: ["Als"]
+    explain:
+      en: "A first job is by definition a single occasion, and the word erste says so outright. The clause therefore takes als, and its verb waits at the end: bekommen habe."
+      ru: "Первая работа по определению бывает однажды, и слово erste говорит об этом прямо. Поэтому придаточное берёт als, а его глагол ждёт в конце: bekommen habe."
+      uk: "Перша робота за визначенням буває одного разу, і слово erste каже про це прямо. Тому підрядне бере als, а його дієслово чекає в кінці: bekommen habe."

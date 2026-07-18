@@ -1,0 +1,157 @@
+topic: verbindungen-folgen
+role: practice
+title:
+  en: "Telling a story — listen, write, speak"
+  ru: "Рассказ — слушать, писать, говорить"
+  uk: "Розповідь — слухати, писати, говорити"
+items:
+  - id: uebersetzen-wenn-wiederholt
+    outcomes: [vergangenheit-erzaehlen]
+    type: translate
+    focus: als-wenn-vergangenheit
+    prompt_en: "Whenever it rained, we stayed at home."
+    prompt_ru: "Каждый раз, когда шёл дождь, мы оставались дома."
+    prompt_uk: "Щоразу, коли йшов дощ, ми залишалися вдома."
+    answer: "Immer wenn es geregnet hat, sind wir zu Hause geblieben."
+    accept: ["Wenn es geregnet hat, sind wir zu Hause geblieben."]
+    key_tokens: ["wenn"]
+    explain:
+      en: "It rained repeatedly, so the clause takes wenn even though the whole sentence is in the past — this is the half of the rule that gets forgotten, because als feels like the past-tense word. Immer is optional and only makes the repetition explicit; both renderings are accepted."
+      ru: "Дождь шёл много раз, поэтому придаточное берёт wenn, хотя всё предложение о прошлом — именно эту половину правила обычно и забывают, потому что als ощущается как «слово для прошедшего». Immer необязательно и лишь делает повторяемость явной; принимаются оба варианта."
+      uk: "Дощ ішов багато разів, тому підрядне бере wenn, хоча все речення про минуле — саме цю половину правила зазвичай і забувають, бо als відчувається як «слово для минулого». Immer необов'язкове і лише робить повторюваність явною; приймаються обидва варіанти."
+
+  - id: uebersetzen-trotzdem
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Use trotzdem for the second sentence."
+      ru: "Для второго предложения используйте trotzdem."
+      uk: "Для другого речення використайте trotzdem."
+    prompt_en: "The film was long. We watched it to the end all the same."
+    prompt_ru: "Фильм был длинный. Мы всё равно досмотрели его до конца."
+    prompt_uk: "Фільм був довгий. Ми все одно додивилися його до кінця."
+    answer: "Der Film war lang. Trotzdem haben wir ihn bis zum Ende gesehen."
+    key_tokens: ["Trotzdem", "haben", "wir"]
+    explain:
+      en: "trotzdem takes the same three-word shape as deshalb — adverb, verb, subject — and the meaning is the only difference: this consequence is the one you would not expect. In the Perfekt it is the auxiliary haben that has to be second, with the participle waiting at the end."
+      ru: "trotzdem даёт ту же трёхсловную схему, что и deshalb — наречие, глагол, подлежащее, — и различие только в значении: это следствие, которого не ожидаешь. В Perfekt вторым обязан стоять именно вспомогательный haben, а причастие ждёт в конце."
+      uk: "trotzdem дає ту саму трислівну схему, що й deshalb — прислівник, дієслово, підмет, — і різниця лише у значенні: це наслідок, якого не очікуєш. У Perfekt другим мусить стояти саме допоміжне haben, а дієприкметник чекає в кінці."
+
+  - id: audio-umzug-geschichte
+    outcomes: [vergangenheit-erzaehlen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      turns:
+        - speaker: "Lena"
+          text: "Du hast doch früher in Leipzig gewohnt, oder?"
+        - speaker: "Tarek"
+          text: "Ja, als ich studiert habe. Das waren vier gute Jahre."
+        - speaker: "Lena"
+          text: "Und warum bist du weggegangen?"
+        - speaker: "Tarek"
+          text: "Ich habe hier eine Stelle bekommen. Deswegen bin ich vor zwei Jahren nach Bremen gezogen. Die Wohnung war teuer, aber die Arbeit war gut."
+        - speaker: "Lena"
+          text: "Fährst du noch manchmal hin?"
+        - speaker: "Tarek"
+          text: "Selten. Aber immer wenn ich dort bin, treffe ich meine alten Freunde. Das ist mir wichtig."
+    question: "Warum ist Tarek nach Bremen gezogen?"
+    options:
+      - "Er hat dort eine Stelle bekommen."
+      - "Die Wohnungen sind dort billiger."
+      - "Seine Freunde wohnen dort."
+      - "Er wollte dort studieren."
+    correct: 0
+    translation:
+      en: "He got a job there. The flat was expensive, so cost was not the reason; his old friends are in Leipzig, not Bremen."
+      ru: "Он получил там работу. Квартира была дорогой, так что дело не в цене; старые друзья живут в Лейпциге, а не в Бремене."
+      uk: "Він отримав там роботу. Квартира була дорогою, тож річ не в ціні; старі друзі живуть у Лейпцигу, а не в Бремені."
+    explain:
+      en: "Both structures of this unit run through the dialogue and each does its own job. Deswegen bin ich … nach Bremen gezogen names the consequence, with the verb second. And the two time clauses split exactly along the rule: als ich studiert habe is one stretch of life that happened once, while immer wenn ich dort bin repeats every visit. Two distractors are built from details that are in the audio but attached to the wrong thing — the flat was expensive, not cheap, and the friends are in the city he left."
+      ru: "Обе конструкции темы проходят через диалог, и каждая делает свою работу. Deswegen bin ich … nach Bremen gezogen называет следствие, глагол вторым. А два временных придаточных расходятся ровно по правилу: als ich studiert habe — один отрезок жизни, случившийся однажды, тогда как immer wenn ich dort bin повторяется с каждым приездом. Два неверных варианта собраны из деталей, которые в записи есть, но отнесены не к тому: квартира была дорогой, а не дешёвой, а друзья живут в городе, из которого он уехал."
+      uk: "Обидві конструкції теми проходять через діалог, і кожна робить свою роботу. Deswegen bin ich … nach Bremen gezogen називає наслідок, дієслово другим. А два часові підрядні розходяться рівно за правилом: als ich studiert habe — один відрізок життя, що стався одного разу, тоді як immer wenn ich dort bin повторюється з кожним приїздом. Два невірні варіанти зібрані з деталей, які в записі є, але віднесені не до того: квартира була дорогою, а не дешевою, а друзі живуть у місті, з якого він поїхав."
+
+  - id: mc-diskriminierung-richtung
+    outcomes: [folge-ausdruecken]
+    type: mc
+    focus: konjunktionaladverb-inversion
+    prompt: "Der Grund ist: Es hat geschneit. Welcher Satz sagt das richtig?"
+    options:
+      - "Es hat geschneit. Deshalb sind die Züge ausgefallen."
+      - "Die Züge sind ausgefallen. Deshalb hat es geschneit."
+      - "Es hat geschneit. Deshalb es sind die Züge ausgefallen."
+      - "Es hat geschneit, deshalb die Züge ausgefallen sind."
+    correct: 0
+    translation:
+      en: "It snowed. That is why the trains were cancelled."
+      ru: "Шёл снег. Поэтому поезда отменили."
+      uk: "Ішов сніг. Тому потяги скасували."
+    explain:
+      en: "Two things can go wrong and this item tests both. Option 2 is perfect German and completely false — it says the snow was caused by the cancellations, because deshalb always introduces the consequence and never the reason. Options 3 and 4 get the direction right but the word order wrong, one leaving the subject in front of the verb and the other sending the verb to the end as if deshalb were weil."
+      ru: "Ошибиться можно двумя способами, и задание проверяет оба. Второй вариант — безупречный немецкий и полная неправда: он утверждает, что снег вызван отменой поездов, ведь deshalb всегда вводит следствие и никогда причину. Третий и четвёртый берут направление верно, а порядок слов нет: в одном подлежащее осталось перед глаголом, в другом глагол отправлен в конец, как будто deshalb это weil."
+      uk: "Помилитися можна двома способами, і завдання перевіряє обидва. Другий варіант — бездоганна німецька і повна неправда: він стверджує, що сніг спричинений скасуванням потягів, адже deshalb завжди вводить наслідок і ніколи причину. Третій і четвертий беруть напрямок правильно, а порядок слів ні: в одному підмет залишився перед дієсловом, в іншому дієслово відправлене в кінець, ніби deshalb це weil."
+
+  - id: write-kindheit-erzaehlen
+    outcomes: [vergangenheit-erzaehlen]
+    type: write
+    prompt:
+      en: "A friend asks: \"Wie war das bei dir, als du ein Kind warst?\" Write a short reply about your childhood."
+      ru: "Друг спрашивает: «Wie war das bei dir, als du ein Kind warst?» Напишите короткий ответ о своём детстве."
+      uk: "Друг питає: «Wie war das bei dir, als du ein Kind warst?» Напишіть коротку відповідь про своє дитинство."
+    goal:
+      en: "Tell someone what your childhood was like, with one thing that happened once and one that happened every time."
+      ru: "Рассказать, каким было ваше детство: об одном случае и об одном, что повторялось."
+      uk: "Розповісти, яким було ваше дитинство: про один випадок і про одне, що повторювалося."
+    requirements:
+      - en: "Use als for something that happened once (als ich acht war, als wir umgezogen sind)."
+        ru: "Используйте als для того, что случилось один раз (als ich acht war, als wir umgezogen sind)."
+        uk: "Використайте als для того, що сталося один раз (als ich acht war, als wir umgezogen sind)."
+      - en: "Use wenn for something that happened every time (immer wenn …)."
+        ru: "Используйте wenn для того, что случалось каждый раз (immer wenn …)."
+        uk: "Використайте wenn для того, що ставалося щоразу (immer wenn …)."
+      - en: "Link two sentences with deshalb or trotzdem, keeping the verb in second place."
+        ru: "Свяжите два предложения через deshalb или trotzdem, оставив глагол на втором месте."
+        uk: "Зв'яжіть два речення через deshalb або trotzdem, залишивши дієслово на другому місці."
+    model_answer: "Als ich klein war, haben wir auf dem Land gewohnt. Das Haus war alt und im Winter ziemlich kalt. Immer wenn es geschneit hat, sind wir mit dem Schlitten den Berg hinuntergefahren. Als ich zehn war, sind wir in die Stadt gezogen. Am Anfang habe ich meine alten Freunde sehr vermisst. Trotzdem habe ich mich schnell an die neue Schule gewöhnt. Heute habe ich an beides gute Erinnerungen."
+    model_translation:
+      en: "When I was little, we lived in the countryside. The house was old and quite cold in winter. Whenever it snowed, we went down the hill on the sledge. When I was ten, we moved to the city. At first I missed my old friends a lot. All the same, I got used to the new school quickly. Today I have good memories of both."
+      ru: "Когда я был маленьким, мы жили в деревне. Дом был старый и зимой довольно холодный. Каждый раз, когда шёл снег, мы съезжали с горы на санках. Когда мне было десять, мы переехали в город. Сначала я очень скучал по старым друзьям. Тем не менее к новой школе я привык быстро. Сегодня у меня хорошие воспоминания и о том, и о другом."
+      uk: "Коли я був малим, ми жили в селі. Будинок був старий і взимку доволі холодний. Щоразу, коли йшов сніг, ми з'їжджали з гори на санчатах. Коли мені було десять, ми переїхали до міста. Спочатку я дуже сумував за старими друзями. Попри це до нової школи я звик швидко. Сьогодні в мене гарні спогади і про те, і про інше."
+    min_words: 40
+    explain:
+      en: "Read your draft back twice, once for each rule. First, put jedes Mal in front of every als and wenn clause: where it fits, the word should be wenn; where it turns nonsense, als. In the model, being little and turning ten each happened once, while the snow came back every winter. Second, look at every sentence that starts with deshalb, trotzdem, dann or danach and check that the verb is the very next word — Trotzdem habe ich, not Trotzdem ich habe."
+      ru: "Перечитайте свой текст дважды, по разу на каждое правило. Сначала подставьте jedes Mal перед каждым придаточным с als и wenn: где оно встаёт — нужен wenn, где получается бессмыслица — als. В образце «быть маленьким» и «десять лет» случились по одному разу, а снег возвращался каждую зиму. Затем найдите все предложения, начинающиеся с deshalb, trotzdem, dann или danach, и проверьте, что глагол идёт следующим словом: Trotzdem habe ich, а не Trotzdem ich habe."
+      uk: "Перечитайте свій текст двічі, по разу на кожне правило. Спочатку підставте jedes Mal перед кожним підрядним з als і wenn: де воно стає — потрібен wenn, де виходить нісенітниця — als. У зразку «бути малим» і «десять років» сталися по одному разу, а сніг повертався щозими. Потім знайдіть усі речення, що починаються з deshalb, trotzdem, dann або danach, і перевірте, що дієслово йде наступним словом: Trotzdem habe ich, а не Trotzdem ich habe."
+
+  - id: speak-warum-hier
+    outcomes: [folge-ausdruecken, ereignisse-ordnen]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "Someone asks why you moved to this city and how it has been. Answer in a few sentences."
+      ru: "Вас спрашивают, почему вы переехали в этот город и как всё сложилось. Ответьте несколькими предложениями."
+      uk: "Вас питають, чому ви переїхали до цього міста і як усе склалося. Дайте відповідь кількома реченнями."
+    goal:
+      en: "Explain a decision and its consequences so that the sequence of events is clear."
+      ru: "Объяснить решение и его последствия так, чтобы последовательность событий была понятна."
+      uk: "Пояснити рішення та його наслідки так, щоб послідовність подій була зрозуміла."
+    checklist:
+      - en: "Give a reason and its consequence with deshalb or deswegen — verb second."
+        ru: "Назовите причину и следствие через deshalb или deswegen — глагол вторым."
+        uk: "Назвіть причину і наслідок через deshalb або deswegen — дієслово другим."
+      - en: "Say one thing that was difficult, and follow it with trotzdem."
+        ru: "Скажите об одной трудности и продолжите через trotzdem."
+        uk: "Скажіть про одну труднощі й продовжте через trotzdem."
+      - en: "Use als for the moment you arrived."
+        ru: "Используйте als для момента приезда."
+        uk: "Використайте als для моменту приїзду."
+    model_answer: "Ich habe hier eine Stelle bekommen. Deswegen bin ich vor zwei Jahren hergekommen. Als ich angekommen bin, habe ich niemanden gekannt, und mein Deutsch war noch ziemlich schlecht. Am Anfang war das sehr schwer. Trotzdem bin ich geblieben. Immer wenn ich Zeit hatte, bin ich in den Sprachkurs gegangen. Schließlich habe ich hier gute Freunde gefunden."
+    model_translation:
+      en: "I got a job here. For that reason I came two years ago. When I arrived, I did not know anybody, and my German was still quite bad. At first that was very hard. All the same, I stayed. Whenever I had time, I went to the language course. In the end I found good friends here."
+      ru: "Я получил здесь работу. Из-за этого я приехал сюда два года назад. Когда я приехал, я никого не знал, и мой немецкий был ещё довольно плохим. Сначала было очень тяжело. Тем не менее я остался. Каждый раз, когда у меня было время, я ходил на языковые курсы. В конце концов я нашёл здесь хороших друзей."
+      uk: "Я отримав тут роботу. Через це я приїхав сюди два роки тому. Коли я приїхав, я нікого не знав, і моя німецька була ще доволі поганою. Спочатку було дуже важко. Попри це я залишився. Щоразу, коли в мене був час, я ходив на мовні курси. Врешті-решт я знайшов тут гарних друзів."
+    explain:
+      en: "Listen back for the four adverbs that open a sentence in the model — Deswegen, Trotzdem, Schließlich and the Immer of immer wenn — and check that the verb follows each one immediately. Then listen for the two time clauses: Als ich angekommen bin is a single moment, immer wenn ich Zeit hatte is a habit, and the sentence would be wrong the other way round."
+      ru: "Прослушайте запись и обратите внимание на четыре наречия, открывающих предложение в образце, — Deswegen, Trotzdem, Schließlich и Immer в immer wenn: проверьте, что за каждым сразу идёт глагол. Затем послушайте два временных придаточных: Als ich angekommen bin — единичный момент, immer wenn ich Zeit hatte — привычка, и поменять их местами было бы ошибкой."
+      uk: "Прослухайте запис і зверніть увагу на чотири прислівники, що відкривають речення у зразку, — Deswegen, Trotzdem, Schließlich і Immer в immer wenn: перевірте, що за кожним одразу йде дієслово. Потім послухайте два часові підрядні: Als ich angekommen bin — поодинокий момент, immer wenn ich Zeit hatte — звичка, і поміняти їх місцями було б помилкою."

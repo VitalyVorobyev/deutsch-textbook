@@ -1092,6 +1092,43 @@ nodes:
         ru: "Я умею написать короткий портрет другого человека."
         uk: "Я вмію написати короткий портрет іншої людини."
 
+  - id: verbindungen-folgen
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: satzbau
+    prerequisites: [nebensaetze-plaene, biografie-erfahrungen]
+    # Both edges are real and each carries a different tag. `nebensaetze-plaene` shares
+    # `nebensatz-verbende` — als and wenn are conjunctions, so their clauses are Nebensätze and
+    # the verb-final rule is the base topic's unchanged. `biografie-erfahrungen` shares
+    # `verbzweit`: the inversion after deshalb is the position-2 rule the learner already has for
+    # a fronted time phrase, and an error on it here should resurface those items too. The topic's
+    # *own* two confusions get their own tags, because neither is quite either of these — the
+    # question is which word class deshalb belongs to, and whether a past event happened once.
+    deepens: [nebensaetze-plaene, biografie-erfahrungen]
+    outcomes:
+      - id: folge-ausdruecken
+        mode: writing
+        domain: personal
+        de: "Ich kann eine Folge mit deshalb, deswegen oder trotzdem ausdrücken — mit dem Verb an zweiter Stelle."
+        en: "I can express a consequence with deshalb, deswegen or trotzdem, keeping the verb second."
+        ru: "Я умею выразить следствие через deshalb, deswegen или trotzdem, оставляя глагол на втором месте."
+        uk: "Я вмію виразити наслідок через deshalb, deswegen або trotzdem, залишаючи дієслово на другому місці."
+      - id: vergangenheit-erzaehlen
+        mode: writing
+        domain: personal
+        de: "Ich kann von früher erzählen und dabei als und wenn richtig wählen."
+        en: "I can talk about the past and choose correctly between als and wenn."
+        ru: "Я умею рассказывать о прошлом, правильно выбирая между als и wenn."
+        uk: "Я вмію розповідати про минуле, правильно обираючи між als і wenn."
+      - id: ereignisse-ordnen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann Ereignisse ordnen: zuerst, dann, danach, schließlich."
+        en: "I can put events in order: zuerst, dann, danach, schließlich."
+        ru: "Я умею упорядочить события: zuerst, dann, danach, schließlich."
+        uk: "Я вмію впорядкувати події: zuerst, dann, danach, schließlich."
+
   - id: freunde-feste
     level: A2
     kind: communication
@@ -1408,6 +1445,16 @@ units:
     title_ru: "Биография и опыт"
     title_uk: "Біографія та досвід"
     topics: [biografie-erfahrungen]
+  # After `biografie-erfahrungen` and not before it, because `als` needs a past to talk about:
+  # every als-clause worth writing uses war, hatte or a Perfekt, and that is the unit that
+  # teaches the Präteritum of sein and haben.
+  - id: verbindungen-folgen
+    level: A2
+    title_de: "Verbindungen & Folgen"
+    title_en: "Connections & consequences"
+    title_ru: "Связки и следствия"
+    title_uk: "Зв'язки та наслідки"
+    topics: [verbindungen-folgen]
   - id: freunde-feste
     level: A2
     title_de: "Freunde, Einladungen & Feste"

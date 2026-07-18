@@ -1,0 +1,66 @@
+topic: verbindungen-folgen
+role: probe
+title:
+  en: "Delayed check — inversion after deshalb and trotzdem"
+  ru: "Отложенная проверка — инверсия после deshalb и trotzdem"
+  uk: "Відкладена перевірка — інверсія після deshalb і trotzdem"
+# This topic owns TWO probe families, which is deliberate and is what the rule
+# asks for: it teaches two independent structures and closes two manifest points,
+# and a single family mixing them would measure each competence at only one
+# interval — a retention curve needs the same competence at several delays.
+# This family is the word order after a Konjunktionaladverb; the als/wenn choice
+# is probed by probe-verbindungen-folgen-zeit.
+items:
+  - id: probe-inversion-krank
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Use deshalb for the second sentence."
+      ru: "Для второго предложения используйте deshalb."
+      uk: "Для другого речення використайте deshalb."
+    prompt_en: "My daughter is ill. That is why I am staying at home today."
+    prompt_ru: "Моя дочь заболела. Поэтому сегодня я остаюсь дома."
+    prompt_uk: "Моя донька захворіла. Тому сьогодні я залишаюся вдома."
+    answer: "Meine Tochter ist krank. Deshalb bleibe ich heute zu Hause."
+    key_tokens: ["Deshalb", "bleibe", "ich"]
+    explain:
+      en: "deshalb fills position 1, so the verb is second and the subject third: Deshalb bleibe ich."
+      ru: "deshalb занимает первое место, поэтому глагол вторым, подлежащее третьим: Deshalb bleibe ich."
+      uk: "deshalb займає перше місце, тому дієслово другим, підмет третім: Deshalb bleibe ich."
+
+  - id: probe-inversion-teuer
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Use trotzdem for the second sentence."
+      ru: "Для второго предложения используйте trotzdem."
+      uk: "Для другого речення використайте trotzdem."
+    prompt_en: "The jacket was expensive. I bought it all the same."
+    prompt_ru: "Куртка была дорогой. Я всё равно её купил."
+    prompt_uk: "Куртка була дорога. Я все одно її купив."
+    answer: "Die Jacke war teuer. Trotzdem habe ich sie gekauft."
+    key_tokens: ["Trotzdem", "habe", "ich"]
+    explain:
+      en: "trotzdem takes the same shape as deshalb — adverb, verb, subject. In the Perfekt the auxiliary habe is the word that must stand second."
+      ru: "trotzdem даёт ту же схему, что и deshalb: наречие, глагол, подлежащее. В Perfekt вторым обязан стоять вспомогательный habe."
+      uk: "trotzdem дає ту саму схему, що й deshalb: прислівник, дієслово, підмет. У Perfekt другим мусить стояти допоміжне habe."
+
+  - id: probe-inversion-schliesslich
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Use schließlich for the second sentence."
+      ru: "Для второго предложения используйте schließlich."
+      uk: "Для другого речення використайте schließlich."
+    prompt_en: "We waited an hour. In the end we took a taxi."
+    prompt_ru: "Мы прождали час. В конце концов мы взяли такси."
+    prompt_uk: "Ми прочекали годину. Врешті-решт ми взяли таксі."
+    answer: "Wir haben eine Stunde gewartet. Schließlich haben wir ein Taxi genommen."
+    key_tokens: ["Schließlich", "wir"]
+    explain:
+      en: "schließlich belongs to the same class as deshalb and trotzdem, so it inverts in the same way: Schließlich haben wir. Note that haben appears twice in the answer, so only the adverb and the subject are graded — the position of wir after the verb is what shows the inversion happened."
+      ru: "schließlich относится к тому же классу, что deshalb и trotzdem, и вызывает ту же инверсию: Schließlich haben wir. Заметьте, что haben встречается в ответе дважды, поэтому проверяются только наречие и подлежащее: положение wir после глагола и показывает, что инверсия произошла."
+      uk: "schließlich належить до того самого класу, що deshalb і trotzdem, і викликає ту саму інверсію: Schließlich haben wir. Зауважте, що haben трапляється у відповіді двічі, тому перевіряються лише прислівник і підмет: положення wir після дієслова й показує, що інверсія відбулася."
