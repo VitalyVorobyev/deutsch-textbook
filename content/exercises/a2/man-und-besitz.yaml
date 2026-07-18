@@ -178,9 +178,14 @@ items:
       uk: "Жодне вихідне речення не дає підмета, який можна було б просто перенести: українське «треба записатися» обходиться без нього зовсім, а англійське you значить тут «люди загалом», а не співрозмовника. Німецькій підмет необхідний, і ним стає man. Заразом перевіряється muss: при man дієслово стоїть у формі er, і Man müssen було б тією самою помилкою, що й Er müssen."
 
   - id: uebersetzen-von-dativ
+    revision: 2
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
+    instruction:
+      en: "Translate using von + Dativ."
+      ru: "Переведите, используя von + Dativ."
+      uk: "Перекладіть, використовуючи von + Dativ."
     prompt_en: "I am driving my brother's car."
     prompt_ru: "Я еду на машине брата."
     prompt_uk: "Я їду машиною брата."

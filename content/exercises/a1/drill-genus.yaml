@@ -28,10 +28,11 @@ items:
     key_tokens: ["Die"]
     explain: { en: "Antwort is feminine: die Antwort.", ru: "Antwort женского рода: die Antwort, несмотря на мужской род русского «ответ».", uk: "Antwort жіночого роду: die Antwort." }
   - id: uebersetzen-termin
+    revision: 2
     outcomes: [artikel-genus-erkennen]
     type: translate
     focus: genus
-    instruction: { en: "Translate with the correct definite article.", ru: "Переведите с правильным определённым артиклем.", uk: "Перекладіть із правильним означеним артиклем." }
+    instruction: { en: "Translate using Termin with the correct definite article.", ru: "Переведите со словом Termin и правильным определённым артиклем.", uk: "Перекладіть зі словом Termin і правильним означеним артиклем." }
     prompt_en: "The appointment is important."
     prompt_ru: "Встреча важная."
     prompt_uk: "Зустріч важлива."
