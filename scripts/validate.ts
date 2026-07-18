@@ -242,6 +242,15 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
           'data/grammar-inventory.yaml',
           `point "${point.id}" declares neither focus tags nor reference_only — nothing could ever mark it taught`,
         );
+      // reference_only is the escape hatch for knowledge that names no
+      // confusion, and `taught_in` is the price of using it. Without one the
+      // point would be asserted rather than earned — the exact failure mode
+      // the inventory was built to end.
+      if (point.reference_only && !point.taught_in?.length)
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" is reference_only but names no taught_in topic — the escape hatch still has to be paid for`,
+        );
       for (const topic of point.taught_in ?? [])
         if (!topics.has(topic))
           fail('data/grammar-inventory.yaml', `point "${point.id}" is taught_in unknown topic "${topic}"`);

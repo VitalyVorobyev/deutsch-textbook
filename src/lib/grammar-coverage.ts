@@ -64,12 +64,21 @@ function walk(dir: string): string[] {
  * Every focus tag carried by a `practice` or `drill` item, mapped to the levels
  * whose exercise directories teach it. A tag drilled only by a checkpoint or a
  * probe is absent by design.
+ *
+ * `preview: true` items are skipped, and the flag's own definition is the
+ * reason: it marks an item that *intentionally* uses a focus introduced later
+ * in the spine, and exists so the validator will permit that one leak. Counting
+ * it as teaching evidence would therefore contradict the thing it declares.
+ * This is not hypothetical — the single A1 preview item for `du-sie` in
+ * `stadt-wege.yaml` was enough to report `anrede-du-sie` as covered-on-time
+ * while every real drill of it sits at A2, hiding a genuine sequencing fact
+ * from the one category that exists to show it.
  */
 export function drilledFocusTags(root = process.cwd()): Map<string, Set<Level>> {
   const tags = new Map<string, Set<Level>>();
   const base = join(root, 'content', 'exercises');
   for (const file of walk(base)) {
-    let doc: { role?: string; items?: { focus?: string }[] };
+    let doc: { role?: string; items?: { focus?: string; preview?: boolean }[] };
     try {
       doc = YAML.parse(readFileSync(file, 'utf8'));
     } catch {
@@ -78,7 +87,7 @@ export function drilledFocusTags(root = process.cwd()): Map<string, Set<Level>> 
     if (doc.role !== 'practice' && doc.role !== 'drill') continue;
     const level = file.slice(base.length + 1).split('/')[0].toUpperCase() as Level;
     for (const item of doc.items ?? []) {
-      if (!item.focus) continue;
+      if (!item.focus || item.preview) continue;
       if (!tags.has(item.focus)) tags.set(item.focus, new Set());
       tags.get(item.focus)!.add(level);
     }
@@ -96,11 +105,15 @@ const LEVEL_ORDER: readonly Level[] = LEVELS;
 
 export function grammarCoverage(level: Level, root = process.cwd()): GrammarCoverage {
   const drilled = drilledFocusTags(root);
-  const topicDirs = new Set<string>();
+  // Topic → the level that owns it. A plain set of ids would say whether a
+  // reference-only point's evidence exists but not *where* it is, which is
+  // half the question: a point the standard puts at A2 and a B1 topic teaches
+  // is taught late, exactly as it would be if a focus tag carried it.
+  const topicLevel = new Map<string, Level>();
   try {
     for (const lvl of readdirSync(join(root, 'content', 'topics')))
       for (const f of readdirSync(join(root, 'content', 'topics', lvl)))
-        topicDirs.add(f.replace(/\.mdx$/, ''));
+        topicLevel.set(f.replace(/\.mdx$/, ''), lvl.toUpperCase() as Level);
   } catch {
     /* no topics yet */
   }
@@ -109,8 +122,18 @@ export function grammarCoverage(level: Level, root = process.cwd()): GrammarCove
     .filter((p) => p.standard_level === level)
     .map((point): GrammarPointResult => {
       if (point.reference_only) {
-        const taught = (point.taught_in ?? []).every((t) => topicDirs.has(t));
-        return { point, status: taught ? 'covered' : 'missing', unmetTags: [] };
+        // An empty `taught_in` must not pass. `[].every(...)` is vacuously
+        // true, so the escape hatch would otherwise cover a point with no
+        // evidence whatsoever — a self-certifying claim, which is the one
+        // thing this whole file exists to prevent.
+        const where = (point.taught_in ?? []).map((t) => topicLevel.get(t));
+        if (!where.length || where.some((l) => !l))
+          return { point, status: 'missing', unmetTags: [] };
+        const taughtAt = where.reduce((a, b) =>
+          LEVEL_ORDER.indexOf(a!) >= LEVEL_ORDER.indexOf(b!) ? a : b,
+        )!;
+        const onTime = LEVEL_ORDER.indexOf(taughtAt) <= LEVEL_ORDER.indexOf(level);
+        return { point, status: onTime ? 'covered' : 'late', taughtAt, unmetTags: [] };
       }
       const declared = point.focus ?? [];
       const unmetTags = declared.filter((tag) => !drilled.has(tag));
