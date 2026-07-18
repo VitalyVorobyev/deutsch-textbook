@@ -1,8 +1,11 @@
 # Deutsch-Atlas Roadmap: complete the A1–A2 course
 
-Status: **A1 and A2 are content-complete on both measures** (updated 2026-07-18) — Wortliste 100%
-at each level *and* every grammar point of each level's standard taught, 22/22 at A1 and 30/30 at
-A2, verified by `bun scripts/grammar-coverage.ts`. The second half of that claim is new: A2 was
+Status: **A1 and A2 are structurally complete on both coverage measures** (updated 2026-07-18) —
+Wortliste 100% at each level *and* every grammar point of each level's standard taught, 22/22 at
+A1 and 30/30 at A2, verified by `bun scripts/grammar-coverage.ts`. These figures mean the manifest
+is taught; they do **not** assert learner mastery or replace linguistic QA. A2's 30-point
+[linguistic QA ledger](a2-linguistic-qa.md) was signed off separately on 2026-07-18. The second
+half of the structural claim is new: A2 was
 called content-complete for months on its lexical figure alone, and when structure was finally
 measured it was **67%**, with six A2 structures unwritten and several of them scheduled inside B1
 units. Phase 10 closed all ten gaps. Both figures are computed from the content and published on
@@ -54,8 +57,8 @@ translation (Phase 8 + C3).
   review that carries the learner's signal into the backlog; it feeds everything else.
 - **P5-7 — delayed evidence for listening.** Scheduled *after* the cohort read, when the real probe
   load is known and can be paced.
-- **Phase 9 — Entdecken & Referenz** (parallel, never gates B1): recurring editorial pieces (P9-2)
-  and the three derived/canonical reference pages (P9-3, the current build target).
+- **Phase 9 — Entdecken & Referenz** (parallel, never gates B1): recurring editorial pieces
+  (P9-2), derived/canonical reference pages (P9-3), and multilingual Wortnetze (P9-4).
 
 ## The retention gate
 
@@ -88,7 +91,8 @@ produced a single answer, so each family now runs parallel checks of *one* compe
 - **Phase 9 — Entdecken & Referenz** — *open.* The discovery layer grows from one piece toward a
   small editorial strand (committed CC/PD assets with attribution + licence, online-only links),
   and the reference layer gains lookup pages **derived from canonical data** rather than
-  hand-maintained. Direction: [future-content-directions.md](future-content-directions.md).
+  hand-maintained. P9-4's first four multilingual Wortnetze are shipped in parallel and carry no
+  progress semantics. Direction: [future-content-directions.md](future-content-directions.md).
 
 ## Definition of roadmap completion
 
@@ -100,7 +104,7 @@ snapshot-driven weakness drills keep working throughout.
 
 ## The B1 gate
 
-B1 authoring begins when all seven hold, and not before:
+B1 authoring begins when all eight hold, and not before:
 
 1. **The A1 retention cohort has been read** (P3-6, on or after 2026-08-02) — and, if the
    ≥80%/≥70% bar was missed, the revision it triggers has shipped. — *pending (calendar).*
@@ -114,9 +118,14 @@ B1 authoring begins when all seven hold, and not before:
 6. **`data/goethe-b1-wortliste.txt` is acquired and `bun scripts/coverage.ts B1` reports against
    it.** — **met 2026-07-15:** 3,416 headwords transcribed; the Über page states the honest head
    start (~41% already covered by A1/A2 material).
-7. **The first B1 PR freezes the B1 identities in [the blueprint](curriculum-a2-b1.md)** — ids
-   become persisted learner-progress keys the moment a unit ships. — *authoring work, gated on 1–6.*
+7. **Every A2 manifest point has linguistic sign-off, all high/medium findings are fixed, and
+   structural coverage language remains explicitly separate from mastery.** — **met 2026-07-18:**
+   [the 30-point ledger](a2-linguistic-qa.md) is complete.
+8. **The first B1 PR freezes the B1 identities in [the blueprint](curriculum-a2-b1.md)** — ids
+   become persisted learner-progress keys the moment a unit ships. — *authoring work, gated on
+   1–7.*
 
 Two things are explicitly **not** gates: the Ukrainian translation waves and the Schreib-Assistent.
-One soft preference is **met** — the content-language machinery landed before B1 unit 1, so B1
+Wortnetze are also explicitly a parallel track, not a gate. One soft preference is **met** — the
+content-language machinery landed before B1 unit 1, so B1
 content carries `uk` and its `<De>` half from day one instead of being backfilled.

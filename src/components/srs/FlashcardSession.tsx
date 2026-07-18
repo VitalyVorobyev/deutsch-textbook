@@ -287,7 +287,7 @@ export default function FlashcardSession({
         {pick(lang, { en: card.exampleEn, ru: card.exampleRu, uk: card.exampleUk })}
       </p>
       {card.context?.length ? <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
-        {card.context.slice(0, 3).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
+        {card.context.slice(0, 2).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
           <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">{context.type}</span>
           <strong lang="de">{context.de}</strong>
           {/* Destructured, never pick(lang, context): the context record's `de`

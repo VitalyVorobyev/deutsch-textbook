@@ -19,6 +19,7 @@ import {
   vocabFileSchema,
   visualDocumentSchema,
   wordFieldSchema,
+  wortnetzSchema,
   discoverySchema,
   referenceDataSchema,
   type ReferenceData,
@@ -30,6 +31,7 @@ import {
   type VocabFile,
   type VisualDocument,
   type WordField,
+  type Wortnetz,
   LEVELS,
 } from '../src/lib/schemas';
 import type { GrammarPoint } from '../src/lib/grammar-coverage';
@@ -48,6 +50,7 @@ import {
   GRADING_DECISIONS_FILE,
   loadGradingDecisions,
 } from '../src/lib/grading-decisions';
+import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -311,6 +314,22 @@ for (const file of listFiles(join(CONTENT, 'wortfelder'), '.yaml')) {
   wordFields.set(id, { file: rel(file), data });
 }
 
+const wortnetze = new Map<string, { file: string; data: Wortnetz }>();
+for (const file of listFiles(join(CONTENT, 'wortnetze'), '.yaml')) {
+  let raw: unknown;
+  try {
+    raw = YAML.parse(readFileSync(file, 'utf8'));
+  } catch (error) {
+    fail(rel(file), `YAML parse error: ${error instanceof Error ? error.message : error}`);
+    continue;
+  }
+  const data = validateWith(wortnetzSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'wortnetze'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
+  wortnetze.set(id, { file: rel(file), data });
+}
+
 const discoveries = new Map<string, { file: string; data: Discovery; body: string }>();
 for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
   const src = readFileSync(file, 'utf8');
@@ -422,6 +441,24 @@ for (const [id, { file, data }] of topics) {
     }
     if (data.exercises.includes(data.pretest))
       fail(file, `pretest set "${data.pretest}" must not also be listed in exercises`);
+  }
+}
+
+const canonicalNetworkRelations = new Map<string, string>();
+const vocabHeadwords = new Map(
+  [...vocabFiles].map(([id, entry]) => [id, new Set(entry.data.entries.map((word) => word.de))]),
+);
+for (const { file, data } of wortnetze.values()) {
+  const members = new Map(data.members.map((member) => [
+    member.id,
+    member.kind === 'card' ? member.ref.de : member.de,
+  ]));
+  for (const problem of wortnetzCardRefProblems(data, vocabHeadwords)) fail(file, problem);
+  for (const relation of data.relations) {
+    const key = `${members.get(relation.from)}::${members.get(relation.to)}::${relation.type}`;
+    const previous = canonicalNetworkRelations.get(key);
+    if (previous) fail(file, `canonical relation "${key}" duplicates ${previous}`);
+    else canonicalNetworkRelations.set(key, file);
   }
 }
 
@@ -1155,6 +1192,12 @@ for (const { file, data } of vocabFiles.values()) checkLangDiscipline(file, data
 for (const { file, data } of exerciseSets.values()) checkLangDiscipline(file, data);
 for (const { file, data } of documents.values()) checkLangDiscipline(file, data);
 for (const { file, data } of wordFields.values()) checkLangDiscipline(file, data);
+// A network's example records contain German source sentences beside their
+// translations. Structurally those look like German-medium explanation records,
+// but `de` is content here, not a language-mode half. EN/RU/UK parity still
+// applies; German explanations remain optional for this reference layer.
+for (const { file, data } of wortnetze.values())
+  checkLangDiscipline(file, data, { deParity: false });
 for (const { file, data } of references.values()) checkLangDiscipline(file, data, { deParity: false });
 
 /**
@@ -1265,7 +1308,7 @@ for (const level of MEASURED_LEVELS) {
 // ---------------------------------------------------------------------------
 
 console.log(
-  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets, ${readings.size} reading texts, ${documents.size} documents, ${wordFields.size} word fields, ${discoveries.size} discovery pieces, ${references.size} references.`,
+  `Validated ${topics.size} topics, ${vocabFiles.size} vocab files, ${exerciseSets.size} exercise sets, ${readings.size} reading texts, ${documents.size} documents, ${wordFields.size} word fields, ${wortnetze.size} word networks, ${discoveries.size} discovery pieces, ${references.size} references.`,
 );
 if (warnings.length) {
   console.log(`\n⚠ ${warnings.length} warning(s):`);

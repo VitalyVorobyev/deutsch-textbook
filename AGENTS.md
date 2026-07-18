@@ -1,8 +1,11 @@
 # Deutsch-Atlas — agent instructions
 
-The instructions live in **[CLAUDE.md](CLAUDE.md)**: architecture, the authoring rules that make
-the content the product (bilingual voice, CEFR discipline, focus tags, Lautschrift), the lesson
-cycle, and the checklists.
+Read both documents before changing the project:
 
-Read that file. This one is a pointer, not a summary — it used to be a second copy, and it drifted
-behind the real rules, which is worse than not having a copy at all.
+- **[CLAUDE.md](CLAUDE.md)** is authoritative for authoring and operational rules: bilingual
+  voice, CEFR discipline, focus tags, Lautschrift, the lesson cycle and checklists.
+- **[docs/design.md](docs/design.md)** is the stable technical map: pipelines, identities,
+  evidence, storage, validation and extension points.
+
+This file is only a pointer. Do not copy either document's rules here; duplicated instructions
+drift.

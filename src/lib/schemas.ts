@@ -585,6 +585,106 @@ export const wordFieldSchema = z.object({
 export type WordField = z.infer<typeof wordFieldSchema>;
 
 // ---------------------------------------------------------------------------
+// Cross-topic lexical networks (content/wortnetze/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+const wortnetzMemberBaseSchema = z.object({
+  id: slug,
+  status: z.enum(['productive', 'receptive']),
+  usage: bilingualSchema,
+  collocations: z.array(z.string().min(1)).max(5).default([]),
+  example: z.object({
+    de: z.string().min(1),
+    en: z.string().min(1),
+    ru: z.string().min(1),
+    uk: z.string().min(1),
+  }),
+});
+
+const wortnetzMemberSchema = z.discriminatedUnion('kind', [
+  wortnetzMemberBaseSchema.extend({
+    kind: z.literal('card'),
+    ref: vocabRefSchema,
+  }),
+  wortnetzMemberBaseSchema.extend({
+    kind: z.literal('receptive'),
+    de: z.string().min(1),
+    gloss: bilingualSchema.extend({ uk: z.string().min(1) }),
+  }),
+]);
+
+const wortnetzRelationSchema = z
+  .object({
+    from: slug,
+    to: slug,
+    type: z.enum(['family', 'formation', 'meaning-contrast', 'register', 'collocation']),
+    basis: z.enum(['current-meaning', 'historical', 'mnemonic']),
+    explanation: bilingualSchema.extend({ uk: z.string().min(1) }),
+    source_note: z.string().min(1).optional(),
+  })
+  .superRefine((relation, ctx) => {
+    if (relation.basis === 'historical' && !relation.source_note) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['source_note'],
+        message: 'historical relations require an authoring source note',
+      });
+    }
+  });
+
+export const wortnetzSchema = z
+  .object({
+    id: slug,
+    kind: z.enum(['family', 'meaning-contrast']),
+    level: levelSchema,
+    title_de: z.string().min(1),
+    title: bilingualSchema.extend({ uk: z.string().min(1) }),
+    introduction: bilingualSchema.extend({ uk: z.string().min(1) }),
+    members: z.array(wortnetzMemberSchema).min(2),
+    relations: z.array(wortnetzRelationSchema).min(1),
+  })
+  .superRefine((network, ctx) => {
+    const ids = new Set<string>();
+    for (const [index, member] of network.members.entries()) {
+      if (ids.has(member.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['members', index, 'id'],
+          message: `duplicate member id "${member.id}"`,
+        });
+      }
+      ids.add(member.id);
+    }
+    const relations = new Set<string>();
+    for (const [index, relation] of network.relations.entries()) {
+      if (!ids.has(relation.from)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['relations', index, 'from'],
+          message: `unknown member "${relation.from}"`,
+        });
+      }
+      if (!ids.has(relation.to)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['relations', index, 'to'],
+          message: `unknown member "${relation.to}"`,
+        });
+      }
+      const key = `${relation.from}::${relation.to}::${relation.type}`;
+      if (relations.has(key)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['relations', index],
+          message: `duplicate canonical relation "${key}"`,
+        });
+      }
+      relations.add(key);
+    }
+  });
+export type Wortnetz = z.infer<typeof wortnetzSchema>;
+
+// ---------------------------------------------------------------------------
 // Optional discovery/editorial pieces (content/discovery/<level>/<id>.mdx)
 // ---------------------------------------------------------------------------
 
