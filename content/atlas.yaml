@@ -1173,6 +1173,16 @@ nodes:
         en: "I can say whose something is: Annas Auto or das Auto von meinem Bruder."
         ru: "Я умею сказать, кому что принадлежит: Annas Auto или das Auto von meinem Bruder."
         uk: "Я вмію сказати, кому що належить: Annas Auto або das Auto von meinem Bruder."
+      # Receptive by design, and the mode says so: the standard lists the present passive for
+      # comprehension. It lives here because `man` and the Passiv are the two ways German
+      # avoids naming an agent, and rebuilding one as the other is how a learner reads it.
+      - id: passiv-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann Schilder und Durchsagen im Passiv verstehen: Hier wird gebaut."
+        en: "I can understand signs and announcements in the passive: Hier wird gebaut."
+        ru: "Я умею понимать таблички и объявления в пассиве: Hier wird gebaut."
+        uk: "Я вмію розуміти таблички й оголошення в пасиві: Hier wird gebaut."
 
   - id: freunde-feste
     level: A2

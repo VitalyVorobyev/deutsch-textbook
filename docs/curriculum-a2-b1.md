@@ -513,17 +513,25 @@ badge to read *mastered*.
 until representative A2 usage and the A2 checkpoint have been reviewed. B1 grows discourse length,
 independence and genre range; it is not simply more grammar.
 
+**Six structures left this table in Phase 10 and are now taught at A2**, where the standard puts
+them: relative clauses (Nom/Akk), the *zu*-infinitive and *um … zu*, *als* vs *wenn*, Futur I, the
+adverb *trotzdem*, and passive recognition. They were listed here because A2 was believed complete
+on the strength of its Wortliste figure, and nothing measured structure until the grammar manifest
+was written. The rows below are corrected: B1 may **revisit** any of them at greater depth — the
+dative relative pronoun, the produced passive, *obwohl* as a conjunction — but must not re-teach
+them from scratch, and the language column now says which half is which.
+
 | Proposed id | Mission | Language and discourse | Depends on / uncertainty |
 | --- | --- | --- | --- |
-| `erfahrungen-erzaehlen` | Tell a connected story, understand an interview, write a narrative message | als/wenn time relations, the Perfekt–Präteritum distribution, reference across sentences | A2 biography; confirm narrative control is retained |
-| `leben-veraendern` | Discuss housing and relocation, compare options, justify a choice | useful relative clauses, comparison, infinitive with *zu* | A2 housing and reasons; keep the boundary practical |
+| `erfahrungen-erzaehlen` | Tell a connected story, understand an interview, write a narrative message | the Perfekt–Präteritum distribution, reference across sentences (als/wenn moved to A2 — revisit, do not re-teach) | A2 biography; confirm narrative control is retained |
+| `leben-veraendern` | Discuss housing and relocation, compare options, justify a choice | relative clauses in the **Dativ** and after prepositions, comparison (Nom/Akk relatives and the *zu*-infinitive moved to A2) | A2 housing and reasons; keep the boundary practical |
 | `arbeit-bewerbung` | Read a vacancy, present experience, write an application, handle interview turns | formal register, broader subordinate clauses, polite Konjunktiv II | A2 work and public services; depth depends on the learner's goals |
 | `gesundheit-wohlbefinden` | Explain a history, understand recommendations, discuss habits | reflexive and prepositional verbs, advice, cause and effect | A2 health; stays non-diagnostic |
 | `meinung-medien` | Understand a report, summarize its point, support an opinion | opinion frames, connectors, indirect questions, reported information | A2 reasons and plans; test the mediation load |
-| `konsum-umwelt` | Compare choices, understand notices, negotiate a practical solution | passive recognition, relative clauses, consequences | A2 shopping and housing; avoid abstract policy |
+| `konsum-umwelt` | Compare choices, understand notices, negotiate a practical solution | **producing** the passive and its past, consequences (passive *recognition* moved to A2) | A2 shopping and housing; avoid abstract policy |
 | `reisen-probleme` | Manage less predictable disruption and make a complaint | narrative plus formal request, prepositional verbs, hypotheticals | A2 travel and complaints; exclude legal detail |
-| `lernen-zukunft` | Discuss learning and career goals, summarize, plan next steps | infinitive clauses, future intention, conditions, justification | confirm whether work and education need separate variants |
-| `gesellschaft-zusammenleben` | Join a familiar community discussion and resolve a disagreement | obwohl/trotzdem, modal nuance, relative clauses | cultural content must stay action-oriented |
+| `lernen-zukunft` | Discuss learning and career goals, summarize, plan next steps | conditions, justification (infinitive clauses and Futur I moved to A2) | confirm whether work and education need separate variants |
+| `gesellschaft-zusammenleben` | Join a familiar community discussion and resolve a disagreement | **obwohl** as a conjunction, modal nuance (the adverb *trotzdem* moved to A2) | cultural content must stay action-oriented |
 | `informationen-vermitteln` | Relay the main points of a notice, message or conversation | paraphrase, reported information, reference control, summary | cumulative; needs a workable task and rubric model |
 
 Pronunciation shifts toward clause grouping, sentence accent, reductions and connected speech. No B1
