@@ -1,0 +1,129 @@
+topic: man-und-besitz
+role: practice
+title:
+  en: "Understanding the passive — Hier wird gebaut"
+  ru: "Понимать пассив — Hier wird gebaut"
+  uk: "Розуміти пасив — Hier wird gebaut"
+# A NON-PRIMARY set, appended after the topic's existing two.
+#
+# Every item here is a RECOGNITION task, and that is deliberate rather than lazy:
+# the standard lists the present passive for comprehension, not production. But a
+# structure that is only ever read and never checked leaves no evidence it was
+# understood, which is why these items exist at all — the point is drilled, just
+# never asked for in output.
+items:
+  - id: mc-futur-oder-passiv
+    outcomes: [passiv-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "In welchem Satz ist werden das Passiv — also: jemand tut etwas, aber wir erfahren nicht wer?"
+    options:
+      - "Die Straße wird repariert."
+      - "Meine Schwester wird Ärztin."
+      - "Wir werden im Sommer nach Wien fahren."
+      - "Du wirst das schaffen."
+    correct: 0
+    translation:
+      en: "The road is being repaired. — The others are werden as a full verb (becoming a doctor) and werden as the future tense."
+      ru: "Улицу ремонтируют. — В остальных werden это полнозначный глагол «становиться» и будущее время."
+      uk: "Вулицю ремонтують. — У решті werden це повнозначне дієслово «ставати» і майбутній час."
+    explain:
+      en: "One word, three jobs, and what follows it decides which. A Partizip II — repariert — makes it the passive. A bare infinitive — fahren, schaffen — makes it Futur I. A noun — Ärztin — makes it the full verb to become. You now have all three, so the test is simply: look at the end of the sentence and see what kind of word is waiting there."
+      ru: "Одно слово, три работы, и решает то, что стоит после него. Partizip II — repariert — даёт пассив. Голый инфинитив — fahren, schaffen — даёт Futur I. Существительное — Ärztin — даёт полнозначный глагол «становиться». Все три вы уже знаете, поэтому проверка простая: посмотрите в конец предложения и увидьте, какое слово там ждёт."
+      uk: "Одне слово, три роботи, і вирішує те, що стоїть після нього. Partizip II — repariert — дає пасив. Голий інфінітив — fahren, schaffen — дає Futur I. Іменник — Ärztin — дає повнозначне дієслово «ставати». Усі три ви вже знаєте, тому перевірка проста: подивіться в кінець речення і побачте, яке слово там чекає."
+
+  - id: match-passiv-man
+    outcomes: [passiv-verstehen]
+    type: match
+    focus: passiv-rezeptiv
+    instruction:
+      en: "Match each passive sentence to the man-sentence that says the same thing."
+      ru: "Сопоставьте каждое предложение в пассиве с предложением на man, которое значит то же самое."
+      uk: "Зіставте кожне речення в пасиві з реченням на man, яке значить те саме."
+    pairs:
+      - left: "Hier wird gebaut."
+        right: "Hier baut man."
+      - left: "Das Formular wird ausgefüllt."
+        right: "Man füllt das Formular aus."
+      - left: "Die Bibliothek wird renoviert."
+        right: "Man renoviert die Bibliothek."
+      - left: "Der Müll wird am Montag abgeholt."
+        right: "Man holt den Müll am Montag ab."
+    explain:
+      en: "These are two ways of saying the same thing, and that is the most useful fact about the passive at this level: whenever you meet one, you can rebuild it as a man-sentence and the meaning survives. Notice what moves — the thing being acted on is the subject in the passive (das Formular wird …) and the object in the man-version (man füllt das Formular aus). Neither version says who is doing it, which is exactly why both exist."
+      ru: "Это два способа сказать одно и то же, и на этом уровне именно это про пассив полезнее всего знать: встретив пассивную фразу, её всегда можно перестроить в предложение с man, и смысл сохранится. Обратите внимание, что при этом переезжает: то, над чем совершается действие, в пассиве подлежащее (das Formular wird …), а в варианте с man — дополнение (man füllt das Formular aus). Ни та ни другая версия не называет исполнителя — ради этого обе и существуют. По-русски обеим соответствует «здесь строят», «формуляр заполняют»."
+      uk: "Це два способи сказати одне й те саме, і на цьому рівні саме це про пасив найкорисніше знати: зустрівши пасивну фразу, її завжди можна перебудувати в речення з man, і зміст збережеться. Зверніть увагу, що при цьому переїжджає: те, над чим виконується дія, у пасиві підмет (das Formular wird …), а у варіанті з man — додаток (man füllt das Formular aus). Ані та, ані інша версія не називає виконавця — заради цього обидві й існують. Українською обом відповідає «тут будують», «формуляр заповнюють»."
+
+  - id: mc-schild-lesen
+    outcomes: [passiv-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "An der Tür der Bibliothek steht: „Die Bibliothek wird im August renoviert.“ Was bedeutet das?"
+    options:
+      - "Im August arbeiten Handwerker in der Bibliothek."
+      - "Die Bibliothek hat im August länger geöffnet."
+      - "Die Bibliothek wird im August neu gebaut."
+      - "Im August kann man in der Bibliothek arbeiten."
+    correct: 0
+    translation:
+      en: "In August workmen will be working in the library — it is being renovated, not rebuilt."
+      ru: "В августе в библиотеке будут работать мастера — её ремонтируют, а не строят заново."
+      uk: "У серпні в бібліотеці працюватимуть майстри — її ремонтують, а не будують заново."
+    explain:
+      en: "Signs and notices are where you will actually meet this structure, and they use it precisely because nobody needs to know who does the work. renovieren is to refurbish something that already exists, so option 3 goes too far — neu gebaut would be a different notice. Option 4 mistakes the sentence for a permission, which is what a man-sentence with kann would have said."
+      ru: "Объявления и таблички — это и есть то место, где вы реально встретите эту конструкцию, и используют её как раз потому, что исполнителя знать никому не нужно. renovieren — это ремонт уже существующего, поэтому третий вариант заходит слишком далеко: neu gebaut было бы другим объявлением. Четвёртый принимает фразу за разрешение — а так сказало бы предложение с man и kann."
+      uk: "Оголошення й таблички — це і є те місце, де ви реально зустрінете цю конструкцію, і використовують її саме тому, що виконавця знати нікому не потрібно. renovieren — це ремонт уже наявного, тому третій варіант заходить надто далеко: neu gebaut було б іншим оголошенням. Четвертий приймає фразу за дозвіл — а так сказало б речення з man і kann."
+
+  - id: match-passiv-partizip
+    outcomes: [passiv-verstehen]
+    type: match
+    focus: passiv-rezeptiv
+    instruction:
+      en: "Match each notice to the place you would read it."
+      ru: "Сопоставьте каждое объявление с местом, где вы бы его прочитали."
+      uk: "Зіставте кожне оголошення з місцем, де ви б його прочитали."
+    pairs:
+      - left: "Hier wird gebaut."
+        right: "an einer Baustelle"
+      - left: "Heute wird nicht geliefert."
+        right: "an einer Bäckerei"
+      - left: "Das Zimmer wird gerade geputzt."
+        right: "im Hotel"
+      - left: "Die Formulare werden hier abgegeben."
+        right: "im Amt"
+    explain:
+      en: "Four real notices, and every one of them is built the same way: a form of werden and a Partizip II at the end. Reading them is a matter of finding those two words and ignoring everything else — the participle tells you what is happening, and nobody is going to tell you who is doing it. Note the plural in the last one: die Formulare werden, because the subject is plural, exactly as in any other sentence."
+      ru: "Четыре настоящих объявления, и все построены одинаково: форма werden и Partizip II в конце. Чтобы их прочитать, достаточно найти эти два слова и не обращать внимания на остальное: причастие говорит, что происходит, а кто это делает, вам никто сообщать не собирается. Обратите внимание на множественное число в последнем: die Formulare werden, потому что подлежащее во множественном, — как и в любом другом предложении."
+      uk: "Чотири справжні оголошення, і всі побудовані однаково: форма werden і Partizip II у кінці. Щоб їх прочитати, достатньо знайти ці два слова й не зважати на решту: дієприкметник каже, що відбувається, а хто це робить, вам ніхто повідомляти не збирається. Зверніть увагу на множину в останньому: die Formulare werden, бо підмет у множині, — як і в будь-якому іншому реченні."
+
+  - id: audio-durchsage-passiv
+    outcomes: [passiv-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      turns:
+        - speaker: "Durchsage"
+          text: "Achtung, eine Information für unsere Kundinnen und Kunden."
+        - speaker: "Durchsage"
+          text: "Die Kasse vier wird in wenigen Minuten geschlossen. Bitte gehen Sie zu den Kassen eins bis drei."
+        - speaker: "Durchsage"
+          text: "Außerdem: Am Samstag wird das Geschäft schon um achtzehn Uhr geschlossen."
+        - speaker: "Durchsage"
+          text: "Der Parkplatz hinter dem Haus wird zurzeit renoviert. Bitte parken Sie an der Straße."
+        - speaker: "Durchsage"
+          text: "Vielen Dank für Ihr Verständnis."
+    question: "Was soll man am Parkplatz hinter dem Haus tun?"
+    options:
+      - "Dort nicht parken, sondern an der Straße."
+      - "Dort nur bis achtzehn Uhr parken."
+      - "Dort zu den Kassen eins bis drei gehen."
+      - "Dort am Samstag parken."
+    correct: 0
+    translation:
+      en: "Not park there but in the street — the car park is being renovated at the moment."
+      ru: "Не парковаться там, а на улице: парковку сейчас ремонтируют."
+      uk: "Не паркуватися там, а на вулиці: парковку зараз ремонтують."
+    explain:
+      en: "Announcements are the other place this structure lives, and this one has four passives in a row — wird geschlossen twice, wird renoviert, and each time the speaker is telling you what is happening to something without naming anyone responsible. Note that the two geschlossen sentences mean different things only because of their time phrases: in wenigen Minuten is one till closing now, am Samstag is the shop closing early that day."
+      ru: "Объявления — второе место, где живёт эта конструкция, и в этом их четыре подряд: дважды wird geschlossen, затем wird renoviert, и каждый раз говорящий сообщает, что с чем-то происходит, не называя ответственного. Обратите внимание, что два предложения с geschlossen различаются только обстоятельствами времени: in wenigen Minuten — это закрытие кассы сейчас, am Samstag — магазин в этот день закроется раньше."
+      uk: "Оголошення — друге місце, де живе ця конструкція, і в цьому їх чотири поспіль: двічі wird geschlossen, потім wird renoviert, і щоразу мовець повідомляє, що з чимось відбувається, не називаючи відповідального. Зверніть увагу, що два речення з geschlossen різняться лише обставинами часу: in wenigen Minuten — це закриття каси зараз, am Samstag — магазин того дня зачиниться раніше."

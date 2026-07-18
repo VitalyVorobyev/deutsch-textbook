@@ -1028,6 +1028,7 @@ for (const [setId, { file, data }] of exerciseSets) {
         'reflexiv-dativ': 'gesundheit-arzttermin',
         'indefinitpronomen': 'man-und-besitz',
         'genitiv-eigenname': 'man-und-besitz',
+        'passiv-rezeptiv': 'man-und-besitz',
         'aber-sondern': 'freunde-feste',
         'praeteritum-sein-haben': 'biografie-erfahrungen',
         'indirekte-frage': 'lernen-verstehen',
