@@ -1,0 +1,211 @@
+topic: man-und-besitz
+role: practice
+title:
+  en: "Practice — man, jemand, niemand, and whose it is"
+  ru: "Практика — man, jemand, niemand и чьё это"
+  uk: "Практика — man, jemand, niemand і чиє це"
+items:
+  - id: table-man-konjugation
+    outcomes: [regeln-mit-man]
+    type: table
+    focus: indefinitpronomen
+    title: "man nimmt die er-Form"
+    instruction:
+      en: "Rewrite each sentence with man. Write the whole sentence."
+      ru: "Перепишите каждое предложение с man. Пишите предложение целиком."
+      uk: "Перепишіть кожне речення з man. Пишіть речення повністю."
+    columns: ["mit ich / du", "mit man"]
+    rows:
+      - label: "Präsens"
+        cells:
+          - { answer: "Ich arbeite hier viel.", given: true }
+          - { answer: "Man arbeitet hier viel." }
+      - label: "Modalverb"
+        cells:
+          - { answer: "Du kannst hier gut essen.", given: true }
+          - { answer: "Man kann hier gut essen." }
+      - label: "Vokalwechsel"
+        cells:
+          - { answer: "Du sprichst hier Deutsch.", given: true }
+          - { answer: "Man spricht hier Deutsch." }
+      - label: "haben"
+        cells:
+          - { answer: "Ich habe wenig Zeit.", given: true }
+          - { answer: "Man hat wenig Zeit." }
+    explain:
+      en: "man is a third-person singular subject, so it takes exactly the er/sie/es form — arbeitet, kann, spricht, hat — including the vowel change in sprechen. The English translation is usually you, and that is the trap: you would give kannst and sprichst, which are the du forms and wrong here."
+      ru: "man — подлежащее третьего лица единственного числа, поэтому глагол при нём стоит ровно в форме er/sie/es: arbeitet, kann, spricht, hat, включая чередование гласной у sprechen. Английский переводит man словом you, и это ловушка: you тянет за собой kannst и sprichst, а это формы du и здесь они неверны."
+      uk: "man — підмет третьої особи однини, тому дієслово при ньому стоїть рівно у формі er/sie/es: arbeitet, kann, spricht, hat, включно з чергуванням голосної у sprechen. Англійська перекладає man словом you, і це пастка: you тягне за собою kannst і sprichst, а це форми du і тут вони хибні."
+
+  - id: cloze-man-wortstellung
+    outcomes: [regeln-mit-man]
+    type: cloze
+    focus: indefinitpronomen
+    instruction:
+      en: "Put man where the sentence needs it."
+      ru: "Поставьте man туда, где его требует предложение."
+      uk: "Поставте man туди, де його вимагає речення."
+    text: "Hier darf {{man}} nicht parken. In Deutschland isst {{man}} um zwölf zu Mittag. Wie sagt {{man}} das auf Deutsch?"
+    translation:
+      en: "You cannot park here. In Germany people have lunch at twelve. How do you say that in German?"
+      ru: "Здесь нельзя парковаться. В Германии обедают в двенадцать. Как это сказать по-немецки?"
+      uk: "Тут не можна паркуватися. У Німеччині обідають о дванадцятій. Як це сказати німецькою?"
+    explain:
+      en: "All three gaps sit just after the verb, and none of them is optional. Each sentence opens with something else — Hier, In Deutschland, Wie — so the verb takes position 2 and the subject follows it, exactly as ich or er would. The point of the item is that the subject cannot simply be left out: German sentences need one, and man is what fills the slot when nobody in particular is meant."
+      ru: "Все три пропуска стоят сразу за глаголом, и ни один из них не факультативен. Каждое предложение начинается с другого элемента — Hier, In Deutschland, Wie, — поэтому глагол занимает второе место, а подлежащее идёт за ним, как шло бы ich или er. Смысл задания в том, что подлежащее нельзя просто опустить: немецкому предложению оно нужно, и когда никто конкретный не имеется в виду, это место занимает man. По-русски все три фразы обходятся без подлежащего — отсюда и соблазн."
+      uk: "Усі три пропуски стоять одразу за дієсловом, і жоден із них не факультативний. Кожне речення починається з іншого елемента — Hier, In Deutschland, Wie, — тому дієслово займає друге місце, а підмет іде за ним, як ішло б ich або er. Сенс завдання в тому, що підмет не можна просто пропустити: німецькому реченню він потрібен, і коли нікого конкретного не мають на увазі, це місце займає man. Українською всі три фрази обходяться без підмета — звідси й спокуса."
+
+  - id: mc-man-oder-jemand
+    outcomes: [regeln-mit-man]
+    type: mc
+    focus: indefinitpronomen
+    prompt: "Das Telefon hat geklingelt. Welcher Satz passt?"
+    options:
+      - "Jemand hat angerufen, aber ich weiß nicht, wer."
+      - "Man hat angerufen, aber ich weiß nicht, wer."
+      - "Niemand hat angerufen, aber ich weiß nicht, wer."
+      - "Etwas hat angerufen, aber ich weiß nicht, wer."
+    correct: 0
+    translation:
+      en: "Somebody called, but I do not know who."
+      ru: "Кто-то звонил, но я не знаю кто."
+      uk: "Хтось телефонував, але я не знаю хто."
+    explain:
+      en: "One specific person made that call and you simply do not know which — that is jemand. man would say something different and false: that calling is what people in general do here. niemand contradicts the phone having rung at all, and etwas is for things, not callers. The distinction is worth holding: man is people in general, jemand is one person unidentified."
+      ru: "Звонил один конкретный человек, просто неизвестно какой, — это jemand. man сказал бы другое и неверное: что здесь принято звонить. niemand противоречит тому, что телефон вообще звонил, а etwas относится к вещам, а не к звонящим. Различие стоит удержать: man — люди вообще, jemand — один неизвестный человек."
+      uk: "Телефонувала одна конкретна людина, просто невідомо яка, — це jemand. man сказав би інше й хибне: що тут заведено телефонувати. niemand суперечить тому, що телефон узагалі дзвонив, а etwas стосується речей, а не тих, хто телефонує. Різницю варто втримати: man — люди загалом, jemand — одна невідома людина."
+
+  - id: cloze-jemand-niemand-etwas
+    outcomes: [unbestimmt-sprechen]
+    type: cloze
+    focus: indefinitpronomen
+    instruction:
+      en: "jemand, niemand, etwas or nichts?"
+      ru: "jemand, niemand, etwas или nichts?"
+      uk: "jemand, niemand, etwas чи nichts?"
+    text: "Am Sonntag war {{niemand}} im Büro. Ich habe {{etwas}} vergessen, aber ich weiß nicht mehr, was. Und im Kühlschrank war {{nichts}} mehr."
+    translation:
+      en: "On Sunday nobody was in the office. I have forgotten something, but I no longer know what. And there was nothing left in the fridge."
+      ru: "В воскресенье в офисе никого не было. Я что-то забыл, но уже не помню что. А в холодильнике ничего не осталось."
+      uk: "У неділю в офісі нікого не було. Я щось забув, але вже не пам'ятаю що. А в холодильнику нічого не залишилося."
+    explain:
+      en: "Two pairs, split the same way: jemand/niemand are people, etwas/nichts are things, and the second of each pair is the negative one. Note that the negative words carry the negation on their own — German does not add a second nicht, and Niemand war nicht im Büro would say the opposite of what you mean."
+      ru: "Две пары, устроенные одинаково: jemand/niemand — о людях, etwas/nichts — о вещах, и вторые в каждой паре отрицательные. Обратите внимание: отрицание несут сами эти слова, второго nicht немецкий не добавляет, и Niemand war nicht im Büro сказало бы обратное тому, что вы имеете в виду."
+      uk: "Дві пари, влаштовані однаково: jemand/niemand — про людей, etwas/nichts — про речі, і другі в кожній парі заперечні. Зверніть увагу: заперечення несуть самі ці слова, другого nicht німецька не додає, і Niemand war nicht im Büro сказало б протилежне тому, що ви маєте на увазі."
+
+  - id: table-wem-gehoert
+    outcomes: [besitz-ausdruecken]
+    type: table
+    focus: genitiv-eigenname
+    title: "Name oder von + Dativ?"
+    instruction:
+      en: "Say whose it is. Write the whole phrase."
+      ru: "Скажите, чьё это. Напишите всю группу целиком."
+      uk: "Скажіть, чиє це. Напишіть усю групу повністю."
+    columns: ["Wem gehört es?", "Wessen …?"]
+    rows:
+      - label: "Name"
+        cells:
+          - { answer: "Das Fahrrad gehört Anna.", given: true }
+          - { answer: "Annas Fahrrad" }
+      - label: "Name"
+        cells:
+          - { answer: "Die Wohnung gehört Marek.", given: true }
+          - { answer: "Mareks Wohnung" }
+      - label: "kein Name"
+        cells:
+          - { answer: "Das Auto gehört meinem Bruder.", given: true }
+          - { answer: "das Auto von meinem Bruder" }
+      - label: "kein Name"
+        cells:
+          - { answer: "Der Hund gehört unseren Nachbarn.", given: true }
+          - { answer: "der Hund von unseren Nachbarn" }
+    explain:
+      en: "The split is by what the owner is, not by what is owned. A bare name takes -s and goes in front: Annas Fahrrad, Mareks Wohnung, with no apostrophe at any point. Anything else — a noun with an article, a possessive, a plural — takes von + Dativ and goes behind: von meinem Bruder, von unseren Nachbarn. Note that gehören already gave you the dative in the left column, so von changes nothing about the case."
+      ru: "Деление проходит по владельцу, а не по тому, чем владеют. Голое имя получает -s и встаёт впереди: Annas Fahrrad, Mareks Wohnung, и никакого апострофа. Всё остальное — существительное с артиклем, притяжательное местоимение, множественное число — берёт von + Dativ и встаёт позади: von meinem Bruder, von unseren Nachbarn. Заметьте, что дательный в левом столбце уже дал глагол gehören, так что von падежа не меняет."
+      uk: "Поділ проходить за власником, а не за тим, чим володіють. Голе ім'я отримує -s і стає попереду: Annas Fahrrad, Mareks Wohnung, і жодного апострофа. Усе інше — іменник з артиклем, присвійний займенник, множина — бере von + Dativ і стає позаду: von meinem Bruder, von unseren Nachbarn. Зауважте, що давальний у лівому стовпці вже дало дієслово gehören, тож von відмінка не змінює."
+
+  - id: mc-apostroph
+    outcomes: [besitz-ausdruecken]
+    type: mc
+    focus: genitiv-eigenname
+    prompt: "Welche Schreibweise ist auf Deutsch richtig?"
+    options:
+      - "Das ist Annas Fahrrad."
+      - "Das ist Anna's Fahrrad."
+      - "Das ist Annas' Fahrrad."
+      - "Das ist das Fahrrad Annas."
+    correct: 0
+    translation:
+      en: "That is Anna's bike."
+      ru: "Это велосипед Анны."
+      uk: "Це велосипед Анни."
+    explain:
+      en: "German writes the possessive -s straight onto the name, with nothing between: Annas. The apostrophe in option 2 is English spelling and is simply not German — it appears only after a name that already ends in an s-sound, as in Tobias' Buch, and there it replaces the -s rather than joining it. Option 4 puts the name behind the noun, which is where von + Dativ goes, not a name."
+      ru: "Немецкий пишет -s прямо на имени, без всего между: Annas. Апостроф во втором варианте — английское правописание, по-немецки его нет; он появляется только после имени, которое уже оканчивается на s-звук, как в Tobias' Buch, и там он заменяет -s, а не присоединяется к нему. В четвёртом варианте имя стоит после существительного — а туда ставится von + Dativ, но не имя."
+      uk: "Німецька пише -s прямо на імені, без нічого між: Annas. Апостроф у другому варіанті — англійський правопис, німецькою його немає; він з'являється лише після імені, що вже закінчується на s-звук, як у Tobias' Buch, і там він замінює -s, а не приєднується до нього. У четвертому варіанті ім'я стоїть після іменника — а туди ставиться von + Dativ, але не ім'я."
+
+  - id: order-man-inversion
+    outcomes: [regeln-mit-man]
+    type: order
+    focus: indefinitpronomen
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
+    words: ["In", "der", "Bibliothek", "darf", "man", "nicht", "essen."]
+    translation:
+      en: You are not allowed to eat in the library.
+      ru: В библиотеке нельзя есть.
+      uk: У бібліотеці не можна їсти.
+    explain:
+      en: "In der Bibliothek fills position 1, so darf takes position 2 and man follows it — a rule stated about a place, in the ordinary main-clause order. man behaves like any other subject here; nothing about it is special except that it names nobody in particular."
+      ru: "In der Bibliothek занимает первое место, поэтому darf встаёт на второе, а man идёт за ним — правило о конкретном месте в обычном порядке главного предложения. man ведёт себя как любое другое подлежащее; особенного в нём только то, что оно никого конкретно не называет."
+      uk: "In der Bibliothek займає перше місце, тому darf стає на друге, а man іде за ним — правило про конкретне місце у звичайному порядку головного речення. man поводиться як будь-який інший підмет; особливого в ньому лише те, що воно нікого конкретно не називає."
+
+  - id: uebersetzen-man-regel
+    outcomes: [regeln-mit-man]
+    type: translate
+    focus: indefinitpronomen
+    prompt_en: "You have to register beforehand."
+    prompt_ru: "Нужно записаться заранее."
+    prompt_uk: "Треба записатися заздалегідь."
+    answer: "Man muss sich vorher anmelden."
+    key_tokens: ["Man", "muss"]
+    explain:
+      en: "Neither source sentence contains a subject you can copy: English you means people in general here rather than the listener, and the Russian has no subject at all. German needs one, and man is it. muss is graded alongside because man takes the er-form — Man müssen would be the same error as Er müssen."
+      ru: "Ни одно исходное предложение не даёт подлежащего, которое можно было бы просто перенести: русское «нужно записаться» обходится без него вовсе, а английское you значит здесь «люди вообще», а не собеседника. Немецкому подлежащее необходимо, и им становится man. Заодно проверяется muss: при man глагол стоит в форме er, и Man müssen было бы той же ошибкой, что и Er müssen."
+      uk: "Жодне вихідне речення не дає підмета, який можна було б просто перенести: українське «треба записатися» обходиться без нього зовсім, а англійське you значить тут «люди загалом», а не співрозмовника. Німецькій підмет необхідний, і ним стає man. Заразом перевіряється muss: при man дієслово стоїть у формі er, і Man müssen було б тією самою помилкою, що й Er müssen."
+
+  - id: uebersetzen-von-dativ
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    prompt_en: "I am driving my brother's car."
+    prompt_ru: "Я еду на машине брата."
+    prompt_uk: "Я їду машиною брата."
+    answer: "Ich fahre mit dem Auto von meinem Bruder."
+    accept: ["Ich fahre das Auto von meinem Bruder."]
+    key_tokens: ["von"]
+    explain:
+      en: "The owner is not a bare name, so the -s route is closed and von + Dativ is the one to take. Both sources push against it — English attaches an -s to brother, Russian puts the noun in the genitive — and neither offers a word that corresponds to von, which is why that one word is what the item grades."
+      ru: "Владелец здесь не голое имя, поэтому путь через -s закрыт и остаётся von + Dativ. Оба исходных языка толкают в другую сторону: английский вешает -s на brother, а русский ставит существительное в родительный падеж, и ни в одном нет слова, которому соответствовало бы von. Именно это слово задание и проверяет."
+      uk: "Власник тут не голе ім'я, тому шлях через -s закритий і залишається von + Dativ. Обидві вихідні мови штовхають в інший бік: англійська вішає -s на brother, а українська ставить іменник у родовий відмінок, і в жодній немає слова, якому відповідало б von. Саме це слово завдання й перевіряє."
+
+  - id: hoeren-man-sagt
+    outcomes: [regeln-mit-man]
+    type: listen
+    focus: indefinitpronomen
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Wie sagt man das auf Deutsch?"
+    translation:
+      en: How do you say that in German?
+      ru: Как это сказать по-немецки?
+      uk: Як це сказати німецькою?
+    explain:
+      en: "The single most useful sentence in this unit, and worth being able to produce without thinking. Note the spelling: man with one n and a small m — der Mann with two is a different word entirely, and they sound almost the same."
+      ru: "Самое полезное предложение всей темы, и произносить его стоит уметь не задумываясь. Обратите внимание на написание: man с одной n и со строчной буквы — der Mann с двумя это совсем другое слово, а звучат они почти одинаково."
+      uk: "Найкорисніше речення всієї теми, і вимовляти його варто вміти не замислюючись. Зверніть увагу на написання: man з однією n і з малої літери — der Mann з двома це зовсім інше слово, а звучать вони майже однаково."

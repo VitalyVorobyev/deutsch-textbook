@@ -1,0 +1,50 @@
+topic: man-und-besitz
+role: probe
+title:
+  en: "Delayed check — saying whose it is"
+  ru: "Отложенная проверка — чьё это"
+  uk: "Відкладена перевірка — чиє це"
+# The topic's second family: choosing between the name + -s and von + Dativ.
+# See probe-man-und-besitz for why the topic owns two.
+items:
+  - id: probe-genitiv-name
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    prompt_en: "That is Marek's flat."
+    prompt_ru: "Это квартира Марека."
+    prompt_uk: "Це квартира Марека."
+    answer: "Das ist Mareks Wohnung."
+    key_tokens: ["Mareks"]
+    explain:
+      en: "A bare name, so the -s route: Mareks, written onto the name with no apostrophe, and standing in front of the noun."
+      ru: "Голое имя, значит путь через -s: Mareks — прямо на имени, без апострофа, и перед существительным."
+      uk: "Голе ім'я, отже шлях через -s: Mareks — прямо на імені, без апострофа, і перед іменником."
+
+  - id: probe-genitiv-von-nachbarn
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    prompt_en: "That is our neighbours' dog."
+    prompt_ru: "Это собака наших соседей."
+    prompt_uk: "Це собака наших сусідів."
+    answer: "Das ist der Hund von unseren Nachbarn."
+    key_tokens: ["von"]
+    explain:
+      en: "Not a name, so von + Dativ — and the dative plural of Nachbarn is what von governs."
+      ru: "Не имя, значит von + Dativ, и von требует именно дательного множественного: unseren Nachbarn."
+      uk: "Не ім'я, отже von + Dativ, і von вимагає саме давального множини: unseren Nachbarn."
+
+  - id: probe-genitiv-von-kollegin
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    prompt_en: "I am reading my colleague's book."
+    prompt_ru: "Я читаю книгу коллеги."
+    prompt_uk: "Я читаю книжку колеги."
+    answer: "Ich lese das Buch von meiner Kollegin."
+    key_tokens: ["von"]
+    explain:
+      en: "A noun with a possessive in front of it is not a name, so the -s is unavailable and von + Dativ is the only A2 route."
+      ru: "Существительное с притяжательным местоимением именем не является, поэтому -s недоступно и остаётся von + Dativ — единственный путь на уровне A2."
+      uk: "Іменник із присвійним займенником іменем не є, тому -s недоступне і залишається von + Dativ — єдиний шлях на рівні A2."
