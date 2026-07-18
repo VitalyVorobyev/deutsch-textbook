@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../lib/url';
+
+// Derived at build time from the vocab decks: this table is generated from the
+// same YAML that builds the flashcards, so the forms here cannot drift from the
+// cards that teach the verbs. Nothing is hand-maintained.
+const vocab = await getCollection('vocab');
+
+interface VerbRow {
+  de: string;
+  ipa?: string;
+  praesens_3sg?: string;
+  partizip2?: string;
+  aux?: string;
+  valence?: string;
+  en: string;
+  ru: string;
+  uk?: string;
+  level: string;
+}
+
+const verbs: VerbRow[] = vocab.flatMap((v) =>
+  v.data.entries
+    .filter((e) => e.pos === 'verb')
+    .map((e) => ({
+      de: e.de,
+      ipa: e.ipa,
+      praesens_3sg: e.praesens_3sg,
+      partizip2: e.partizip2,
+      aux: e.aux,
+      valence: e.valence,
+      en: e.en,
+      ru: e.ru,
+      uk: e.uk,
+      level: v.data.level,
+    })),
+);
+
+// The Perfekt auxiliary as the course writes it (mirrors the flashcard back).
+const AUX_PREFIX: Record<string, string> = { haben: 'hat', sein: 'ist', 'haben/sein': 'hat/ist' };
+const perfekt = (r: VerbRow) => (r.partizip2 ? `${AUX_PREFIX[r.aux ?? 'haben']} ${r.partizip2}` : '—');
+
+const byLevel = [...new Set(verbs.map((v) => v.level))]
+  .sort()
+  .map((level) => ({
+    level,
+    rows: verbs.filter((v) => v.level === level).sort((a, b) => a.de.localeCompare(b.de, 'de')),
+  }));
+---
+
+<Base title="Verbformen">
+  <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700">Referenz</a> / Verbformen</nav>
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-2 text-3xl font-bold">Verbformen</h1>
+    <p class="mt-2 max-w-2xl text-stone-500">
+      <span class="lang-en">Every verb the course teaches, with its 3rd-person present and its Perfekt. The table is built from the vocabulary decks, so the forms here are exactly the ones on the flashcards.</span>
+      <span class="lang-ru">Все глаголы курса с формой 3-го лица настоящего времени и Perfekt. Таблица собирается из словарных колод, поэтому формы здесь те же, что и на карточках.</span>
+      <span class="lang-uk">Усі дієслова курсу з формою 3-ї особи теперішнього часу та Perfekt. Таблиця збирається зі словникових колод, тож форми тут ті самі, що й на картках.</span>
+    </p>
+  </header>
+
+  {byLevel.map((group) => (
+    <section class="mt-10">
+      <h2 class="mb-4 text-2xl font-bold">{group.level} · {group.rows.length} Verben</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[36rem] border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-stone-300 text-left align-bottom dark:border-stone-600">
+              <th class="py-2 pr-4 font-semibold">Infinitiv</th>
+              <th class="py-2 pr-4 font-semibold">Präsens<span class="ml-1 font-normal text-stone-400">er/sie/es</span></th>
+              <th class="py-2 pr-4 font-semibold">Perfekt</th>
+              <th class="py-2 font-semibold">Bedeutung</th>
+            </tr>
+          </thead>
+          <tbody>
+            {group.rows.map((r) => (
+              <tr class="border-b border-stone-100 align-top dark:border-stone-800">
+                <td class="py-2 pr-4">
+                  <span lang="de" class="font-semibold">{r.de}</span>
+                  {r.valence && <span class="ml-2 whitespace-nowrap rounded bg-stone-100 px-1.5 py-0.5 text-xs text-stone-500 dark:bg-stone-800 dark:text-stone-400">{r.valence}</span>}
+                  {r.ipa && <span class="mt-0.5 block text-xs text-stone-400">[{r.ipa}]</span>}
+                </td>
+                <td class="py-2 pr-4" lang="de">{r.praesens_3sg ?? '—'}</td>
+                <td class="py-2 pr-4 whitespace-nowrap" lang="de">{perfekt(r)}</td>
+                <td class="py-2">
+                  <span class="lang-en">{r.en}</span>
+                  <span class="lang-ru">{r.ru}</span>
+                  {r.uk && <span class="lang-uk">{r.uk}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+
+  <section class="mt-10 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <p>
+      <span class="lang-en">Looking a form up is support, not evidence. To check whether you can produce it yourself, go back to a flashcard or a translation exercise.</span>
+      <span class="lang-ru">Справочник — это поддержка, а не доказательство знания. Чтобы проверить, что вы можете образовать форму сами, вернитесь к карточке или упражнению на перевод.</span>
+      <span class="lang-uk">Довідник — це підтримка, а не доказ знання. Щоб перевірити, що ви можете утворити форму самі, поверніться до картки або вправи на переклад.</span>
+    </p>
+  </section>
+</Base>
