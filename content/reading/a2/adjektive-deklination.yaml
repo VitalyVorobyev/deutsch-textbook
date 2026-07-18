@@ -1,0 +1,77 @@
+topic: adjektive-deklination
+kind: intensive
+title_de: "Die erste eigene Wohnung"
+text:
+  - >-
+    Lena sucht eine Wohnung. Sie hat wenig Geld, deshalb soll die
+    [[Miete::rent::аренда, квартплата::оренда, квартплата]] günstig sein. „Ich brauche kein
+    großes Zimmer“, sagt sie. „Aber es soll hell sein.“
+  - >-
+    Am Montag sieht sie die erste Wohnung. Das Zimmer ist groß, aber sehr
+    [[dunkel::dark::тёмный::темний]]. Die alten Fenster gehen zum Hof. Die
+    [[Vermieterin::landlady::хозяйка (сдающая жильё)::господиня (яка здає житло)]] sagt: „Der Herd
+    ist neu, die Küche ist leider alt.“ Lena findet die Wohnung nicht schön.
+  - >-
+    Am Mittwoch sieht sie eine kleine Wohnung im vierten Stock. Es gibt keinen
+    [[Aufzug::lift, elevator::лифт::ліфт]], aber ein großes Fenster und einen
+    [[ruhigen::quiet::тихий::тихий]] Balkon. „Ein heller Raum ist mir wichtiger als ein großer“,
+    denkt Lena.
+  - >-
+    Sie [[unterschreibt::signs::подписывает::підписує]] am Freitag den
+    [[Vertrag::contract::договор::договір]]. Am Samstag kommen zwei nette Freunde und helfen ihr.
+    Sie tragen den alten Tisch von ihrer Oma in die neue Küche. Am Abend sitzt Lena
+    auf dem kleinen Balkon und ist sehr [[zufrieden::content, satisfied::довольный::задоволений]].
+questions:
+  - id: frage-warum-nicht
+    outcomes: [adjektiv-anzeige-verstehen]
+    type: mc
+    prompt: "Warum gefällt Lena die erste Wohnung nicht?"
+    options:
+      - "Weil das Zimmer dunkel ist."
+      - "Weil das Zimmer zu klein ist."
+      - "Weil die Miete zu hoch ist."
+    correct: 0
+    translation:
+      en: Why does Lena not like the first flat?
+      ru: Почему Лене не нравится первая квартира?
+      uk: Чому Лені не подобається перша квартира?
+    explain:
+      en: "The text says the room is groß but sehr dunkel, and the old windows face the courtyard. Size is not the problem — Lena had already said she does not need a big room. Notice how the two adjectives are built differently in that sentence: groß and dunkel come after ist and stay bare, while die alten Fenster has the plural -en."
+      ru: "В тексте сказано, что комната groß, но sehr dunkel, а старые окна выходят во двор. Размер здесь ни при чём — Лена заранее сказала, что большая комната ей не нужна. Обратите внимание, как по-разному устроены прилагательные в этих фразах: groß и dunkel стоят после ist и остаются голыми, а в die alten Fenster есть окончание множественного числа -en."
+      uk: "У тексті сказано, що кімната groß, але sehr dunkel, а старі вікна виходять у двір. Розмір тут ні до чого — Лена заздалегідь сказала, що велика кімната їй не потрібна. Зверніть увагу, як по-різному влаштовані прикметники в цих фразах: groß і dunkel стоять після ist і залишаються голими, а в die alten Fenster є закінчення множини -en."
+
+  - id: frage-zweite-wohnung
+    outcomes: [adjektiv-anzeige-verstehen]
+    type: mc
+    prompt: "Was hat die zweite Wohnung nicht?"
+    options:
+      - "Einen Aufzug"
+      - "Einen Balkon"
+      - "Ein Fenster"
+    correct: 0
+    translation:
+      en: What does the second flat not have?
+      ru: Чего нет во второй квартире?
+      uk: Чого немає в другій квартирі?
+    explain:
+      en: "Es gibt keinen Aufzug — and the flat is on the fourth floor. It does have ein großes Fenster and einen ruhigen Balkon. The three options here are a small declension lesson in themselves: keinen and einen are masculine accusative, ein is neuter, and the adjective endings follow from exactly that."
+      ru: "Es gibt keinen Aufzug — а квартира на четвёртом этаже. Зато есть ein großes Fenster и einen ruhigen Balkon. Три варианта ответа сами по себе небольшой урок склонения: keinen и einen — винительный мужского рода, ein — средний, и окончания прилагательных следуют ровно отсюда."
+      uk: "Es gibt keinen Aufzug — а квартира на четвертому поверсі. Зате є ein großes Fenster і einen ruhigen Balkon. Три варіанти відповіді самі по собі невеликий урок відмінювання: keinen і einen — знахідний чоловічого роду, ein — середній, і закінчення прикметників випливають саме звідси."
+
+  - id: frage-was-ist-lena-wichtig
+    outcomes: [adjektiv-beschreiben]
+    type: mc
+    prompt: "Was ist Lena wichtiger?"
+    options:
+      - "Ein heller Raum"
+      - "Ein großer Raum"
+      - "Ein neuer Herd"
+    correct: 0
+    translation:
+      en: What matters more to Lena?
+      ru: Что для Лены важнее?
+      uk: Що для Лени важливіше?
+    explain:
+      en: "She says it herself: „Ein heller Raum ist mir wichtiger als ein großer.“ The new cooker belonged to the first flat, and it did not persuade her. Both phrases in her sentence sit in the masculine nominative, which is why both adjectives end in -er — heller and großer. That -er is the article's own ending, borrowed by the adjective because ein cannot carry it."
+      ru: "Она говорит это сама: «Ein heller Raum ist mir wichtiger als ein großer». Новая плита была в первой квартире и её не убедила. Обе группы в этой фразе стоят в именительном падеже мужского рода — потому оба прилагательных и оканчиваются на -er: heller и großer. Это -er принадлежит самому артиклю, а прилагательное берёт его взаймы, потому что ein нести его не может."
+      uk: "Вона каже це сама: «Ein heller Raum ist mir wichtiger als ein großer». Нова плита була в першій квартирі і її не переконала. Обидві групи в цій фразі стоять у називному відмінку чоловічого роду — тому обидва прикметники й закінчуються на -er: heller і großer. Це -er належить самому артиклю, а прикметник бере його в борг, бо ein нести його не може."

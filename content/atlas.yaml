@@ -780,6 +780,47 @@ nodes:
         ru: "Я умею написать краткую рекламацию."
         uk: "Я вмію написати коротку рекламацію."
 
+  # Placed straight after `einkaufen-reklamation` because that unit is where
+  # adjectives first carry real weight (Komparativ, gefallen/passen) — but it
+  # compares them predicatively, where German needs no ending. The declension is
+  # the other half of the same skill.
+  #
+  # Deliberately no `deepens` edge to the Kasus topics, though the dependency is
+  # real: all three of this topic's confusions are *new* ones, so it shares no
+  # focus tag with artikel-genus, akkusativ or dativ, and an edge without a
+  # shared tag can resurface nothing. The alternative — tagging an item here
+  # with `dativ-artikel` to make an edge light up — would log an adjective-ending
+  # error as a case confusion the learner did not have. An honest gap in the
+  # weakness signal beats a false entry in it.
+  - id: adjektive-deklination
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [artikel-genus, akkusativ, dativ]
+    outcomes:
+      - id: adjektiv-beschreiben
+        mode: writing
+        domain: personal
+        de: "Ich kann Personen, Wohnungen und Dinge mit Adjektiven genau beschreiben."
+        en: "I can describe people, homes and things precisely, using adjectives."
+        ru: "Я умею подробно описывать людей, жильё и вещи с помощью прилагательных."
+        uk: "Я вмію докладно описувати людей, житло й речі за допомогою прикметників."
+      - id: adjektiv-wunsch-sagen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann sagen, was für eine Wohnung oder welches Gerät ich suche."
+        en: "I can say what kind of flat or device I am looking for."
+        ru: "Я умею сказать, какую квартиру или какой прибор я ищу."
+        uk: "Я вмію сказати, яку квартиру чи який прилад я шукаю."
+      - id: adjektiv-anzeige-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann in einer Anzeige verstehen, welche Eigenschaften beschrieben werden."
+        en: "I can understand which features a listing describes."
+        ru: "Я умею понять, какие свойства описаны в объявлении."
+        uk: "Я вмію зрозуміти, які властивості описано в оголошенні."
+
   - id: gesundheit-arzttermin
     level: A2
     kind: communication
@@ -1222,6 +1263,13 @@ units:
     title_ru: "Покупки и рекламации"
     title_uk: "Покупки та рекламації"
     topics: [einkaufen-reklamation]
+  - id: adjektive-deklination
+    level: A2
+    title_de: "Beschreiben: Adjektive vor dem Nomen"
+    title_en: "Describing: adjectives before the noun"
+    title_ru: "Описание: прилагательные перед существительным"
+    title_uk: "Опис: прикметники перед іменником"
+    topics: [adjektive-deklination]
   - id: gesundheit-arzttermin
     level: A2
     title_de: "Gesundheit & Arzttermin"
