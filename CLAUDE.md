@@ -169,6 +169,8 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `adjektiv-unbestimmt` | adjective endings after *ein/kein/mein*, where the adjective supplies the gender the article hides (ein neu**er** Tisch, ein neu**es** Bett) |
 | `imperativ-form` | imperative forms for du, ihr and Sie (Nimm …, Nehmt …, Nehmen Sie …) |
 | `seit-vor-zeit` | *seit* + Dativ (since/for — still true) vs *vor* + Dativ (ago — finished) |
+| `reflexiv-dativ` | the reflexive pronoun drops to the dative once the clause has its own direct object (*Ich wasche **mir** die Hände*), and the body part keeps a plain article, never a possessive |
+| `futur-werden` |  Futur I is *werden* + bare infinitive in the bracket — and is used for a prediction or promise, not for a plan a time phrase already dates |
 | `reflexiv-akkusativ` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |
 | `verb-praeposition` | choosing the preposition governed by a verb: warten **auf**, träumen **von** |
 | `da-wo-woerter` | wo(r)- questions, da(r)- references, linking r, and thing/person selection |
