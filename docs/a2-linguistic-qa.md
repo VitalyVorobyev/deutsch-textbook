@@ -1,45 +1,54 @@
 # A2 linguistic QA ledger
 
-Status: **complete for the 30-point A2 manifest on 2026-07-18**.
+Status: **systematic corpus verification in progress**. The targeted findings from 2026-07-18 are
+closed; unmarked points are being re-read across the full artifact set before sign-off.
 
-This ledger is the linguistic sign-off that structural coverage cannot provide. `30/30` means
+This ledger will become the linguistic sign-off that structural coverage cannot provide. `30/30` means
 every manifest point has teaching evidence; it does not mean that explanations are exception-safe,
-examples are natural, or a learner has mastered them. The review covered the owning articles,
-practice/drill prompts, accepted answers, feedback and linked readings in EN/RU/UK. Findings were
-classified as `correct`, `corrected`, or `intentionally simplified`.
+examples are natural, or a learner has mastered them. A row becomes `verified`, `corrected`, or
+`intentionally simplified` only after its owning articles, practice/drill prompts, accepted
+answers, feedback and linked readings have been checked in EN/RU/UK. The initial pass closed the
+named high-risk findings but did not yet justify marking every unaffected row correct.
 
 | Manifest point | QA result | Ruling |
 | --- | --- | --- |
-| `praeteritum` | correct | A2 scope stays with *sein*, *haben* and modal preterites. |
-| `dativ-artikel` | correct | Article and plural-noun forms agree with prompts and feedback. |
-| `dativ-pronomen` | correct | Pronoun selection and case contrasts are consistent. |
-| `dativ-verben` | correct | Governed dative is taught lexically, not inferred from translation. |
-| `dativ-praepositionen` | correct | Fixed dative government and contractions remain in A2 scope. |
-| `wechselpraepositionen` | correct | Location vs directed change is used instead of a static/motion shortcut. |
-| `seit-vor` | correct | Ongoing duration and completed distance-in-time are distinguished. |
-| `komparativ` | correct | Productive forms and irregular models are natural. |
-| `superlativ` | correct | A2 productive scope is `am …-sten` with required spelling variants. |
-| `adjektiv-praedikativ` | correct | Predicative adjectives remain uninflected. |
-| `adjektiv-bestimmt` | correct | Case/gender endings agree across models and answers. |
-| `adjektiv-unbestimmt` | correct | The mixed paradigm is scoped to taught cases and determiners. |
-| `nebensatz-verbende` | correct | Subordinator and finite-verb placement are consistent. |
-| `indirekte-frage` | correct | `ob` and interrogative-word clauses retain indirect-question status. |
-| `aber-sondern` | correct | `sondern` is tied to a corrected negated alternative. |
-| `reflexiv-akkusativ` | correct | Lexically reflexive constructions are not generalized mechanically. |
+| `praeteritum` | pending full pass | Verify scope, models, accepted variants and translations. |
+| `dativ-artikel` | pending full pass | Verify article and plural-noun forms across the dense dative cluster. |
+| `dativ-pronomen` | pending full pass | Verify pronoun selection and case contrasts. |
+| `dativ-verben` | pending full pass | Verify that governed dative is taught lexically, not inferred from translation. |
+| `dativ-praepositionen` | pending full pass | Verify fixed government, contractions and cross-topic reuse. |
+| `wechselpraepositionen` | pending full pass | Verify location vs directed change without a static/motion shortcut. |
+| `seit-vor` | pending full pass | Verify ongoing duration vs completed distance-in-time. |
+| `komparativ` | pending full pass | Verify productive forms, irregular models and natural comparisons. |
+| `superlativ` | pending full pass | Verify the productive `am …-sten` scope and spelling variants. |
+| `adjektiv-praedikativ` | pending full pass | Verify predicative models stay uninflected. |
+| `adjektiv-bestimmt` | pending full pass | Verify case/gender endings across models and answers. |
+| `adjektiv-unbestimmt` | pending full pass | Verify the mixed paradigm stays within taught cases and determiners. |
+| `nebensatz-verbende` | pending full pass | Verify subordinators, finite-verb placement and accepted word orders. |
+| `indirekte-frage` | pending full pass | Verify `ob` and interrogative-word clauses across listening and production. |
+| `aber-sondern` | pending full pass | Verify `sondern` follows a corrected negated alternative. |
+| `reflexiv-akkusativ` | pending full pass | Verify lexically reflexive constructions are not generalized mechanically. |
 | `reflexiv-dativ` | corrected | Scoped to compatible body-part/personal-domain constructions; neutral possessive and contrastive forms are distinguished. |
-| `verb-praeposition` | correct | Verb–preposition–case frames are learned as lexical units. |
-| `da-wo-woerter` | correct | Thing/question reference and vowel-triggered `r` are aligned. |
-| `hoeflich-konjunktiv` | intentionally simplified | `könnte` and `würde gern` remain safe A2 chunks, not a full Konjunktiv-II paradigm. |
-| `trennbar-untrennbar` | correct | Separation and participle behavior are not presented as freely predictable semantics. |
+| `verb-praeposition` | pending full pass | Verify verb–preposition–case frames as lexical units. |
+| `da-wo-woerter` | pending full pass | Verify thing/question reference and vowel-triggered `r`. |
+| `hoeflich-konjunktiv` | pending full pass | Verify the intended chunk-only A2 boundary. |
+| `trennbar-untrennbar` | pending full pass | Verify separation, participles and lexicalized prefix meanings. |
 | `infinitiv-mit-zu` | corrected | Governed frames replace “everything except modals”; receptive bare-infinitive exceptions, comma boundary and same-subject alternatives are explicit. |
-| `um-zu` | correct | Purpose and same-subject availability are taught without banning grammatical alternatives. |
+| `um-zu` | pending full pass | Verify purpose, subject control and accepted alternatives across the full set. |
 | `relativsatz` | corrected | Leading/closing comma rule is precise; object clues are determinate; reading feedback matches its text. |
 | `konjunktionaladverb` | corrected | Fronted adverbs occupy position 1 and trigger inversion; they are not claimed to be immovably first. |
 | `als-wenn` | corrected | `als` is tied to a bounded past occurrence; `wann` covers direct and indirect questions. |
 | `futur-werden` | corrected | Natural promise/intention models replace the awkward colon construction. |
-| `indefinitpronomen` | correct | Indefinite pronouns and their case behavior stay within productive A2 use. |
+| `indefinitpronomen` | pending full pass | Verify productive scope and case behavior beyond the corrected possession material. |
 | `genitiv-eigenname` | corrected | `von + Dativ` is safe productive advice, not the only grammar; common-noun genitive is shown receptively. |
-| `passiv-praesens` | intentionally simplified | Present passive is receptive at A2; production remains a B1 deepening. |
+| `passiv-praesens` | pending full pass | Verify that every task remains receptive and B1 owns production. |
+
+## Corpus inventory
+
+The sign-off surface is larger than the 30-row manifest: 22 A2 topics, 105 exercise sets with 750
+items, and 35 A2 readings. The exercise roles are 50 practice sets, 24 probe families, 22 pretests,
+8 drills and 1 checkpoint. Verification proceeds in bounded topic/point batches and records the
+files checked, so a green validator cannot substitute for a linguistic read.
 
 ## Findings closed in this pass
 
@@ -50,6 +59,28 @@ classified as `correct`, `corrected`, or `intentionally simplified`.
   genuine errors were confirmed. The post-triage audit reports zero undecided renderings.
 - Added a non-primary productive genus drill because `genus` remained persistent without an owned
   recovery task. Existing drills continue to own the other persistent foci.
+
+## Corpus pass log
+
+### 2026-07-18 — dative and location cluster (in progress)
+
+Checked the owning articles and core practice, drill, production and reading artifacts for
+`dativ-artikel`, `dativ-pronomen`, `dativ-verben`, `dativ-praepositionen` and
+`wechselpraepositionen`. Cross-topic reuse is still being checked, so these rows remain pending.
+
+Corrections so far:
+
+- replaced the false movement/absence-of-movement shortcut with the location versus destination or
+  new-spatial-relation distinction, including a moving-within-a-location counterexample;
+- framed contractions as neutral unstressed defaults rather than claiming that full forms are
+  broadly wrong;
+- removed categorical claims about position verbs and the grammatical sentence
+  *Im Wohnzimmer ist ein Teppich*;
+- corrected an implausible driving-into-a-supermarket example and clarified *beim Bäcker* versus
+  *in der Bäckerei*;
+- repaired reading feedback that inferred facts not licensed by the source text;
+- clarified that dative roles are governed by constructions, verbs and prepositions rather than a
+  universal “indirect object” meaning.
 
 Future findings append a dated note and update the row; the ledger is not replaced by the grammar
 coverage percentage.
