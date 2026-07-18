@@ -10,11 +10,12 @@ preserve v1–v5 snapshot import and pass the full repository gate. What A2 teac
 with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
 before authoring anything.
 
-Phases 0–7 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines, the
-hardened learning loop, the pre-1.0 evidence foundation, the honest-signal instrument pass and the
-Schreib-Assistent. Phase 8's machinery is done; its content (the C3 waves) and Phase 9 run in
-parallel and never gate B1. B1 remains provisional until representative A2 use, its checkpoint and
-delayed evidence have been reviewed — the B1 gate lives in [roadmap.md](roadmap.md).
+Phases 0–8 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines (including
+the Ukrainian explanation half), the hardened learning loop, the pre-1.0 evidence foundation, the
+honest-signal instrument pass, the Schreib-Assistent, and the learner-language machinery. Only
+Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. B1 remains provisional
+until representative A2 use, its checkpoint and delayed evidence have been reviewed — the B1 gate
+lives in [roadmap.md](roadmap.md).
 
 ## The open gate
 
@@ -73,15 +74,9 @@ before another unit is written.
   2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
   [i18n-design.md](i18n-design.md).
-
-## C3 · Ukrainian translation — A1 + A2 complete — `done` 2026-07-18
-
-The `uk` explanation half is authored across **every** ru-bearing A1 and A2 file (Über **266/266**),
-idiomatic and per-file-parity throughout, `en`/`ru` prose left byte-identical: the A1 spine + residue
-(waves 1–3, PRs #60/#61), the 21 A2 spine topics + `checkpoint-a2` (waves 4–6, PRs #66/#67/#68), and
-the 29 A2 completion decks + wortfelder/document/discovery + atlas group/unit titles (wave 7, PR #69).
-`reference-data/cases.yaml` carries no `ru`, so it is not a translation target. B1 `uk` waves follow
-when B1 content exists. (Match rights gained the `{en, ru, uk?}` record shape 2026-07-16.)
+- **C3 · Ukrainian A1+A2 explanation half** — `done` 2026-07-18. Authored across every ru-bearing
+  A1/A2 file (Über **266/266**), idiomatic and per-file-parity, `en`/`ru` prose byte-identical
+  (waves 1–7, PRs #60/#61/#66/#67/#68/#69). B1 `uk` waves follow B1 content.
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
@@ -119,9 +114,11 @@ queue; the probe-debt row names the P5-11 audits and the P5-7 decision.
 - Depends on: P9-1.
 - Accept per piece: the editorial test; the validator; no mastery or review-debt semantics.
 
-### P9-3 · Referenz lookup pages — `todo` (M)
+### P9-3 · Referenz lookup pages — `next` (M) — the current build target
 
-Three pages, each derived or canonical — never a second hand-maintained textbook:
+The largest non-blocked, learner-facing work that does not gate B1. Three pages, each derived or
+canonical — never a second hand-maintained textbook. Ship one at a time (each is independently
+shippable); match the existing `src/pages/referenz/*.astro` pattern.
 
 - `/referenz/verbformen` — build-time-derived from the vocab YAML (`praesens_3sg`, `partizip2`,
   `aux`, `valence`); a verb table that cannot drift from the decks that teach the verbs.

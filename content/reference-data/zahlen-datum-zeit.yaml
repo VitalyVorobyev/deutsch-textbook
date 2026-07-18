@@ -1,0 +1,171 @@
+id: zahlen-datum-zeit
+
+# Cardinal numbers — numeral → spelled-out German word.
+cardinals:
+  - { value: "0", word: "null" }
+  - { value: "1", word: "eins" }
+  - { value: "2", word: "zwei" }
+  - { value: "3", word: "drei" }
+  - { value: "4", word: "vier" }
+  - { value: "5", word: "fünf" }
+  - { value: "6", word: "sechs" }
+  - { value: "7", word: "sieben" }
+  - { value: "8", word: "acht" }
+  - { value: "9", word: "neun" }
+  - { value: "10", word: "zehn" }
+  - { value: "11", word: "elf" }
+  - { value: "12", word: "zwölf" }
+  - { value: "13", word: "dreizehn" }
+  - { value: "14", word: "vierzehn" }
+  - { value: "15", word: "fünfzehn" }
+  - { value: "16", word: "sechzehn" }
+  - { value: "17", word: "siebzehn" }
+  - { value: "18", word: "achtzehn" }
+  - { value: "19", word: "neunzehn" }
+  - { value: "20", word: "zwanzig" }
+  - { value: "21", word: "einundzwanzig" }
+  - { value: "30", word: "dreißig" }
+  - { value: "40", word: "vierzig" }
+  - { value: "50", word: "fünfzig" }
+  - { value: "60", word: "sechzig" }
+  - { value: "70", word: "siebzig" }
+  - { value: "80", word: "achtzig" }
+  - { value: "90", word: "neunzig" }
+  - { value: "100", word: "(ein)hundert" }
+  - { value: "1000", word: "(ein)tausend" }
+  - { value: "1 000 000", word: "eine Million" }
+
+# Ordinal numbers — the dot after the numeral is what marks it as an ordinal.
+ordinals:
+  - { value: "1.", word: "erste" }
+  - { value: "2.", word: "zweite" }
+  - { value: "3.", word: "dritte" }
+  - { value: "4.", word: "vierte" }
+  - { value: "5.", word: "fünfte" }
+  - { value: "6.", word: "sechste" }
+  - { value: "7.", word: "siebte" }
+  - { value: "8.", word: "achte" }
+  - { value: "9.", word: "neunte" }
+  - { value: "10.", word: "zehnte" }
+  - { value: "11.", word: "elfte" }
+  - { value: "12.", word: "zwölfte" }
+  - { value: "13.", word: "dreizehnte" }
+  - { value: "19.", word: "neunzehnte" }
+  - { value: "20.", word: "zwanzigste" }
+  - { value: "21.", word: "einundzwanzigste" }
+  - { value: "100.", word: "hundertste" }
+
+# Clock times: 24-hour value, the formal reading, and the everyday one.
+clock:
+  - { time: "07:00", formal: "sieben Uhr", colloquial: "sieben" }
+  - { time: "07:05", formal: "sieben Uhr fünf", colloquial: "fünf nach sieben" }
+  - { time: "07:15", formal: "sieben Uhr fünfzehn", colloquial: "Viertel nach sieben" }
+  - { time: "07:30", formal: "sieben Uhr dreißig", colloquial: "halb acht" }
+  - { time: "07:45", formal: "sieben Uhr fünfundvierzig", colloquial: "Viertel vor acht" }
+  - { time: "12:00", formal: "zwölf Uhr", colloquial: "Mittag" }
+  - { time: "13:45", formal: "dreizehn Uhr fünfundvierzig", colloquial: "Viertel vor zwei" }
+  - { time: "20:30", formal: "zwanzig Uhr dreißig", colloquial: "halb neun" }
+  - { time: "00:00", formal: "null Uhr", colloquial: "Mitternacht" }
+
+weekdays:
+  - Montag
+  - Dienstag
+  - Mittwoch
+  - Donnerstag
+  - Freitag
+  - Samstag
+  - Sonntag
+
+months:
+  - Januar
+  - Februar
+  - März
+  - April
+  - Mai
+  - Juni
+  - Juli
+  - August
+  - September
+  - Oktober
+  - November
+  - Dezember
+
+notes:
+  - heading:
+      en: "Numbers over 20"
+      ru: "Числа больше 20"
+      uk: "Числа понад 20"
+    body:
+      en: "The unit is named before the ten and the two are joined with und, all as one word — 21 = einundzwanzig, 47 = siebenundvierzig. This 'back-to-front' order holds for every two-digit number."
+      ru: "Единицы называются перед десятками и соединяются словом und, всё пишется слитно — 21 = einundzwanzig, 47 = siebenundvierzig. Такой «обратный» порядок сохраняется для всех двузначных чисел."
+      uk: "Одиниці називають перед десятками й з'єднують словом und, усе пишеться разом — 21 = einundzwanzig, 47 = siebenundvierzig. Такий «зворотний» порядок зберігається для всіх двоцифрових чисел."
+    example:
+      de: "Ich bin einunddreißig Jahre alt."
+      en: "I am thirty-one years old."
+      ru: "Мне тридцать один год."
+      uk: "Мені тридцять один рік."
+  - heading:
+      en: "Forming ordinals"
+      ru: "Образование порядковых числительных"
+      uk: "Утворення порядкових числівників"
+    body:
+      en: "Up to 19, add -te to the number; from 20 on, add -ste. They then take adjective endings, so the form shifts with the case. Learn the irregulars — erste (1.), dritte (3.), siebte (7.), achte (8.)."
+      ru: "До 19 к числу добавляется -te, начиная с 20 — -ste. Дальше они склоняются как прилагательные, поэтому форма меняется по падежам. Запомните исключения — erste (1.), dritte (3.), siebte (7.), achte (8.)."
+      uk: "До 19 до числа додається -te, починаючи з 20 — -ste. Далі вони відмінюються як прикметники, тож форма змінюється за відмінками. Запам'ятайте винятки — erste (1.), dritte (3.), siebte (7.), achte (8.)."
+    example:
+      de: "Das ist heute schon mein zweiter Kaffee."
+      en: "That's already my second coffee today."
+      ru: "Это уже мой второй кофе сегодня."
+      uk: "Це вже моя друга кава сьогодні."
+  - heading:
+      en: "The date"
+      ru: "Дата"
+      uk: "Дата"
+    body:
+      en: "The question is Der Wievielte ist heute?, and the answer uses the ordinal — Heute ist der erste März. For 'on' a date, use am + the -en form — am ersten März, vom ersten bis zum dritten Mai."
+      ru: "Вопрос звучит Der Wievielte ist heute?, в ответе — порядковое числительное — Heute ist der erste März. Для «(такого-то) числа» используется am + форма на -en — am ersten März, vom ersten bis zum dritten Mai."
+      uk: "Запитання звучить Der Wievielte ist heute?, у відповіді — порядковий числівник — Heute ist der erste März. Для «(такого-то) числа» вживається am + форма на -en — am ersten März, vom ersten bis zum dritten Mai."
+    example:
+      de: "Mein Geburtstag ist am dritten Oktober."
+      en: "My birthday is on the third of October."
+      ru: "Мой день рождения — третьего октября."
+      uk: "Мій день народження — третього жовтня."
+  - heading:
+      en: "Telling the half hour"
+      ru: "Половина часа"
+      uk: "Половина години"
+    body:
+      en: "In everyday speech halb points forward to the coming full hour, so halb drei is 2:30, not 3:30. Around the hour, use Viertel nach (quarter past) and Viertel vor (quarter to)."
+      ru: "В разговорной речи halb указывает на приближающийся полный час, поэтому halb drei — это 2:30, а не 3:30. Рядом с часом используются Viertel nach (четверть после) и Viertel vor (без четверти)."
+      uk: "У розмовному мовленні halb вказує на наступну повну годину, тож halb drei — це 2:30, а не 3:30. Біля години вживають Viertel nach (чверть по) та Viertel vor (за чверть)."
+    example:
+      de: "Der Zug fährt um halb neun."
+      en: "The train leaves at half past eight (8:30)."
+      ru: "Поезд отправляется в половине девятого (8:30)."
+      uk: "Потяг вирушає о пів на дев'яту (8:30)."
+  - heading:
+      en: "Official time vs. everyday time"
+      ru: "Официальное и разговорное время"
+      uk: "Офіційний та розмовний час"
+    body:
+      en: "Timetables, opening hours and appointments use the 24-hour clock, read as Zahl + Uhr + Minuten — 13:45 = dreizehn Uhr fünfundvierzig. In conversation people stay with 1–12 and use nach, vor and halb — 13:45 = Viertel vor zwei."
+      ru: "Расписания, часы работы и встречи используют 24-часовой формат, Zahl + Uhr + Minuten — 13:45 = dreizehn Uhr fünfundvierzig. В разговоре остаются числа 1–12 с nach, vor и halb — 13:45 = Viertel vor zwei."
+      uk: "Розклади, години роботи та зустрічі використовують 24-годинний формат, Zahl + Uhr + Minuten — 13:45 = dreizehn Uhr fünfundvierzig. У розмові залишаються числа 1–12 з nach, vor і halb — 13:45 = Viertel vor zwei."
+    example:
+      de: "Die Sprechstunde ist von acht bis sechzehn Uhr."
+      en: "Consultation hours are from 8 a.m. to 4 p.m."
+      ru: "Приёмные часы — с восьми до шестнадцати часов."
+      uk: "Години прийому — з восьмої до шістнадцятої години."
+  - heading:
+      en: "Writing numbers, dates and prices"
+      ru: "Запись чисел, дат и цен"
+      uk: "Запис чисел, дат і цін"
+    body:
+      en: "A dot after a numeral marks an ordinal, so a date is written 1.1.2026 or 01.01.2026 (day.month.year). Prices use a comma for the decimal — 3,50 € is read drei Euro fünfzig — and large numbers are grouped with a dot, as in 1.000."
+      ru: "Точка после числа обозначает порядковое числительное, поэтому дата пишется 1.1.2026 или 01.01.2026 (день.месяц.год). В ценах десятичный разделитель — запятая, 3,50 € читается drei Euro fünfzig, а большие числа разделяются точкой, например 1.000."
+      uk: "Крапка після числа позначає порядковий числівник, тож дата пишеться 1.1.2026 або 01.01.2026 (день.місяць.рік). У цінах десятковий роздільник — кома, 3,50 € читається drei Euro fünfzig, а великі числа розділяють крапкою, наприклад 1.000."
+    example:
+      de: "Der Termin ist am 5.11. um 9.30 Uhr."
+      en: "The appointment is on 5 November at 9:30."
+      ru: "Приём назначен на 5 ноября в 9:30."
+      uk: "Приймання призначено на 5 листопада о 9:30."

@@ -140,6 +140,31 @@ function checkIpa(where: string, e: VocabEntry): void {
     warn(at, 'de and ipa disagree on word count');
 }
 
+// A reflexive verb's form fields must carry `sich`, because both consumers
+// *compose* a claim out of them: the flashcard back (`deDetail` in
+// src/lib/srs.ts) and the Verbformen reference page both render
+// `hat ${partizip2}`. A bare participle there does not merely omit the
+// pronoun — it teaches `hat gefreut`, and it collapses the minimal pairs the
+// decks are built on (`treffen`/`sich treffen`, `anziehen`/`sich anziehen`
+// otherwise print the same Perfekt). Reflexivity counts as declared when the
+// headword carries `sich` or the valence leads with it; a verb whose valence
+// offers both readings ("+ Akk / sich") is genuinely dual and stays bare.
+function checkReflexiveForms(where: string, e: VocabEntry): void {
+  if (e.pos !== 'verb') return;
+  const declared = /^sich\s/.test(e.de) || /^sich\b/.test(e.valence ?? '');
+  if (!declared) return;
+  for (const [field, value] of [
+    ['praesens_3sg', e.praesens_3sg],
+    ['partizip2', e.partizip2],
+  ] as const) {
+    if (value && !/\bsich\b/.test(value))
+      fail(
+        `${where} → "${e.de}"`,
+        `reflexive verb but ${field} "${value}" has no "sich" — the flashcard and Verbformen compose it into a form the learner is meant to produce`,
+      );
+  }
+}
+
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
 for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   let raw: unknown;
@@ -161,6 +186,7 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
     if (seen.has(e.de)) fail(rel(file), `duplicate entry "${e.de}" (card ids must be unique)`);
     seen.add(e.de);
     checkIpa(rel(file), e);
+    checkReflexiveForms(rel(file), e);
   }
 }
 

@@ -3,69 +3,55 @@
 [![CI](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml/badge.svg)](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml)
 
 A free, local-first app for learning German — a structured textbook, interactive
-exercises, and spaced-repetition flashcards in one place. Explanations are
-bilingual: every topic is written twice, in English and in Russian, and you can
-switch between the two at any time. The German itself — examples, tables,
-readings — is always visible.
+exercises, and spaced-repetition flashcards in one place. It runs in your browser
+or as a desktop app and keeps everything on your device. Explanations are
+bilingual: every topic is written twice, in English and in Russian (Ukrainian
+too), and you switch between them at any time. The German itself — examples,
+tables, readings — is always visible.
 
-There are no ads, no accounts, and no gamification. The design follows what
-learning research actually supports: active recall, typed answers, spaced
-review, interleaved practice, and immediate explanations when you get something
-wrong.
+![Deutsch-Atlas — the daily “Heute” session screen](docs/ui.png)
+
+*The Heute (Today) screen is the front door: one button starts a ~15-minute
+guided session, while the app keeps track of what's due for review, what you've
+mastered, and the next topic to learn.*
+
+> **Why it's different.** No ads, no accounts, no gamification. The design
+> follows what learning research actually supports — active recall, typed
+> answers, spaced review, interleaved practice, and an explanation the moment
+> you get something wrong. And automatically scored answers are kept visibly
+> apart from your own writing and speaking: the app never dresses up practice as
+> a verified result.
 
 ## What's inside
 
-- **A complete A1 and a complete A2.** All ten A1 units and all seventeen A2 units
-  are authored — from Erste Schritte to Ämter & Dienstleistungen — each with a
-  diagnostic pretest, a full article, a graded reading, exercises across several
-  task types, and its own vocabulary. The seventeenth unit, *Darüber sprechen*,
-  was added from learner evidence about da-/wo-words and verbs with prepositions.
-  A cumulative **checkpoint** measures each
-  level end to end, and **every headword on the Goethe-Institut's A1 and A2
-  Wortlisten is covered**. The Über page states exactly how far each level goes,
-  with figures measured from the content itself — never hand-written, and a word
-  the course claims to teach without a flashcard has to actually appear in an
-  article, a reading or a practice item, or the build fails.
-- **Themen shows the course three ways** — an ordered Lernpfad with one
-  recommended next action, an Atlas of how the topics relate, and *Alle Themen*:
-  every topic in curriculum order with the status you have earned on it.
-- **Interactive exercises on every topic** — multiple choice, fill-in-the-gap,
+- **A complete A1 and A2 course** — ten A1 and seventeen A2 units, each with a
+  diagnostic pretest, a full article, a graded reading, exercises, and its own
+  vocabulary. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
+  covered, and the Über page reports how far each level goes with figures
+  measured from the content itself, not hand-written.
+- **Interactive exercises with instant feedback** — multiple choice, gap-fill,
   matching, word order, tables, translation, open writing, speaking, and
-  listening or reading comprehension. A wrong answer immediately shows a short
-  explanation of the rule you tripped over, in English or Russian. Speaking
-  tasks record and replay in the browser, and nothing is uploaded. Open
-  production is saved locally and shown as practice without pretending it was
-  automatically verified.
-- **Flashcards with real recall.** Vocabulary becomes flashcards in both
-  directions, scheduled by FSRS (a modern spaced-repetition algorithm). In the
-  production direction you type the German — article included for nouns —
-  instead of just flipping the card. Words come with pronunciation (IPA) and
-  audio.
-- **Delayed checks that ask what actually stuck.** Two, seven and twenty-one
-  days after you learn something, the app asks about it again — in a fresh
-  variant, never the item you already practised, so the answer has to come from
-  the rule rather than from remembering the question. A due check opens the
-  daily session, before any review or practice: taken afterwards, it would
-  measure the warm-up instead of the interval.
-- **A ~15-minute guided daily session**: up to three of those delayed checks if
-  any are due, then due flashcards, then a short mixed-exercise workout, then a
-  suggestion for what to read next.
-- **Reading you work through, and reading you just read.** Each topic has a
-  short glossed text with comprehension questions. Alongside them, *Lena in
-  Bremen* is a longer, easier story — sparse glosses, one question about the
-  gist — meant to be read straight through for meaning, which is the kind of
-  reading that builds fluency rather than testing it.
-- **Mixed training that targets your weak spots.** Exercises from different
-  topics are interleaved, and the queue prioritizes what you recently got wrong
-  and the specific confusions (dative pronouns, haben/sein, word order …) your
-  error history shows. A quarter of every session is nevertheless reserved for
-  material you last answered *correctly*, longest ago — otherwise the loudest
-  problems would crowd out everything you are quietly forgetting.
-- **An evidence-aware progress dashboard** with an activity heatmap, streak,
-  per-topic completion, skill-mode coverage, delayed-check results kept apart
-  from your practice accuracy, and trends for each confusion the exercises
-  measure. Automatically scored evidence and unverified production remain
-  visibly distinct.
+  listening or reading comprehension. Get one wrong and a short explanation of
+  the rule appears at once, in English or Russian.
+- **Flashcards with real recall** — vocabulary becomes flashcards both ways,
+  scheduled by FSRS (modern spaced repetition). In the production direction you
+  *type* the German — article included — instead of just flipping the card, and
+  every word comes with pronunciation (IPA) and audio.
+- **Reading you work through, and reading you just read** — every topic has a
+  short glossed text with comprehension questions, and alongside them a longer,
+  easier story to read straight through for meaning, the kind of reading that
+  builds fluency rather than testing it.
+- **A ~15-minute guided daily session** — any due retention checks first, then
+  due flashcards, a short mixed-exercise workout, and a suggestion for what to
+  read next.
+- **Delayed checks that ask what actually stuck** — two, seven and twenty-one
+  days after you learn something, the app asks again in a fresh variant, so the
+  answer has to come from the rule rather than from remembering the question.
+- **Weak-spot training and an honest progress dashboard** — exercises from
+  different topics are interleaved, prioritizing what you recently got wrong and
+  the specific confusions your history shows (dative pronouns, haben/sein, word
+  order …). Fortschritt shows an activity heatmap, streak, per-topic completion,
+  and trends for each of those confusions.
 
 ## Getting it
 
