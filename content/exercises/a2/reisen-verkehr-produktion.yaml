@@ -50,9 +50,9 @@ items:
       ru: "Сначала я купил билет. Потом сел в поезд в Кёльне. В Ганновере мой поезд отменили. В итоге я приехал в Гамбург с опозданием на час."
       uk: "Спочатку я купив квиток. Потім сів у потяг у Кельні. У Ганновері мій потяг скасували. Урешті я приїхав до Гамбурга із запізненням на годину."
     explain:
-      en: "Four sentences, four decisions. kaufen moves nobody → haben. einsteigen and ankommen are movement from A to B → sein. ausfallen is the interesting one: nothing moves, and it still takes sein, because it belongs to the small group of things that simply happen — bleiben, passieren, ausfallen. Watch the subject too: in sentence three it is mein Zug, so the auxiliary is ist, not bin."
-      ru: "Четыре предложения — четыре решения. kaufen никого не перемещает → haben. einsteigen и ankommen — движение из точки А в точку Б → sein. Самый интересный случай — ausfallen: движения нет, а sein всё равно нужен, потому что этот глагол относится к небольшой группе «того, что просто происходит»: bleiben, passieren, ausfallen. И следите за подлежащим: в третьем предложении это mein Zug, поэтому вспомогательный глагол — ist, а не bin."
-      uk: "Чотири речення — чотири рішення. kaufen нікого не переміщує → haben. einsteigen і ankommen — рух із точки А в точку Б → sein. Найцікавіший випадок — ausfallen: руху немає, а sein усе одно потрібен, бо це дієслово належить до невеликої групи «того, що просто відбувається»: bleiben, passieren, ausfallen. І стежте за підметом: у третьому реченні це mein Zug, тому допоміжне дієслово — ist, а не bin."
+      en: "Learn the auxiliaries with the verb frames used here: etwas kaufen → hat gekauft; in einen Zug einsteigen → ist eingestiegen; ein Zug fällt aus → ist ausgefallen; in einer Stadt ankommen → ist angekommen. Change of place is a useful cue for einsteigen and ankommen, but it is not a universal auxiliary rule. Watch the subject too: mein Zug requires ist, not bin."
+      ru: "Учите вспомогательные глаголы вместе с моделями: etwas kaufen → hat gekauft; in einen Zug einsteigen → ist eingestiegen; ein Zug fällt aus → ist ausgefallen; in einer Stadt ankommen → ist angekommen. Смена места помогает запомнить einsteigen и ankommen, но не является универсальным правилом выбора. Следите и за подлежащим: mein Zug требует ist, а не bin."
+      uk: "Учіть допоміжні дієслова разом із моделями: etwas kaufen → hat gekauft; in einen Zug einsteigen → ist eingestiegen; ein Zug fällt aus → ist ausgefallen; in einer Stadt ankommen → ist angekommen. Зміна місця допомагає запам'ятати einsteigen й ankommen, але не є універсальним правилом вибору. Стежте й за підметом: mein Zug вимагає ist, а не bin."
 
   - id: uebersetzen-nach-der-durchsage
     outcomes: [reise-problem-loesen]
@@ -70,9 +70,9 @@ items:
     accept:
       - "Ich bin nach der Durchsage zum Schalter gegangen."
     explain:
-      en: "Two dative prepositions in one sentence. nach here means 'after' and takes the dative: die Durchsage → nach der Durchsage. zu takes the dative as well and contracts with the masculine article: zu dem Schalter → zum Schalter. And gehen is movement → bin, with the participle gegangen at the end."
-      ru: "Два дативных предлога в одном предложении. nach здесь значит «после» и требует Dativ: die Durchsage → nach der Durchsage. zu тоже требует Dativ и сливается с артиклем мужского рода: zu dem Schalter → zum Schalter. А gehen — движение → bin, и причастие gegangen стоит в конце."
-      uk: "Два прийменники з Dativ в одному реченні. nach тут означає «після» і вимагає Dativ: die Durchsage → nach der Durchsage. zu теж вимагає Dativ і зливається з артиклем чоловічого роду: zu dem Schalter → zum Schalter. А gehen — рух → bin, і дієприкметник gegangen стоїть у кінці."
+      en: "Two dative prepositions: nach der Durchsage and zum Schalter (zu dem → zum). In this change-of-place use, gehen forms the Perfekt with sein: bin gegangen, with the participle at the end."
+      ru: "Два предлога с Dativ: nach der Durchsage и zum Schalter (zu dem → zum). В этом употреблении со сменой места gehen образует Perfekt с sein: bin gegangen, а причастие стоит в конце."
+      uk: "Два прийменники з Dativ: nach der Durchsage і zum Schalter (zu dem → zum). У цьому вживанні зі зміною місця gehen утворює Perfekt із sein: bin gegangen, а дієприкметник стоїть у кінці."
 
   - id: uebersetzen-ausgefallen-verpasst
     outcomes: [reise-berichten]
@@ -93,6 +93,7 @@ items:
       uk: "Одне речення — обидва допоміжні дієслова. ausfallen стоїть в одному ряду з bleiben і passieren (те, що відбувається саме) і вимагає sein: mein Zug ist ausgefallen. А verpassen — звичайне перехідне дієслово, воно вимагає haben: ich habe den Anschluss verpasst. Обидва дієприкметники замикають свою половину речення, і префікса ge- попереду немає в жодного: в ausgefallen він усередині (aus-ge-fallen), у verpasst його немає зовсім."
 
   - id: schreiben-ankunft-nachricht
+    revision: 2
     outcomes: [reise-berichten]
     type: write
     prompt:
@@ -123,9 +124,9 @@ items:
       ru: "Привет, Катрин! Сначала я поехал на автобусе на главный вокзал. Потом сел в поезд в Кёльне. В Ганновере мой поезд, к сожалению, отменили. После этого я пошёл к кассе. Мне помогла сотрудница. Сейчас я еду через Бремен. В итоге приеду в Гамбург с опозданием на час. Буду там в четырнадцать двадцать. До скорого!"
       uk: "Привіт, Катрін! Спочатку я поїхав автобусом на головний вокзал. Потім сів у потяг у Кельні. У Ганновері мій потяг, на жаль, скасували. Після цього я пішов до каси. Мені допомогла працівниця. Зараз я їду через Бремен. Урешті приїду до Гамбурга із запізненням на годину. Буду там о чотирнадцятій двадцять. До скорого!"
     explain:
-      en: "A journey report runs on two engines. The connectors put the events in order — and each of them fills position 1, so the verb stays second: Zuerst bin ich …, Danach bin ich …. The auxiliaries mark what kind of event it was: movement takes sein (bin gefahren, bin eingestiegen, bin gegangen), and so does the cancellation (ist ausgefallen), while everything you did to something takes haben (hat mir geholfen). Read your draft once for the connectors and once for the auxiliaries — checking both at the same time is how mistakes survive."
-      ru: "Рассказ о поездке держится на двух вещах. Связки выстраивают события по порядку — и каждая из них занимает первое место, поэтому глагол остаётся на втором: Zuerst bin ich …, Danach bin ich …. А вспомогательные глаголы показывают, что это было за событие: движение требует sein (bin gefahren, bin eingestiegen, bin gegangen), отмена поезда — тоже (ist ausgefallen), а всё, что вы делали с чем-то, требует haben (hat mir geholfen). Перечитайте черновик дважды: один раз ради связок, другой — ради вспомогательных глаголов; ошибки выживают именно тогда, когда проверяют всё сразу."
-      uk: "Розповідь про поїздку тримається на двох речах. Зв'язки вибудовують події по порядку — і кожна з них займає перше місце, тому дієслово залишається на другому: Zuerst bin ich …, Danach bin ich …. А допоміжні дієслова показують, що це була за подія: рух вимагає sein (bin gefahren, bin eingestiegen, bin gegangen), скасування потяга — теж (ist ausgefallen), а все, що ви робили з чимось, вимагає haben (hat mir geholfen). Перечитайте чернетку двічі: один раз заради зв'язок, другий — заради допоміжних дієслів; помилки виживають саме тоді, коли перевіряють усе одразу."
+      en: "A journey report runs on connectors and learned verb frames. A fronted connector fills position 1, so the conjugated verb stays second: Zuerst bin ich …, Danach bin ich …. In this model the relevant Perfekt forms are bin gefahren, bin eingestiegen, ist ausgefallen, bin gegangen and hat geholfen. Change of place is a useful cue for several of them, but the reliable habit is to learn the auxiliary with each verb and use. Read your draft once for the connectors and once for the auxiliaries."
+      ru: "Рассказ о поездке держится на связках и выученных глагольных моделях. Связка в начале занимает позицию 1, поэтому спрягаемый глагол остаётся вторым: Zuerst bin ich …, Danach bin ich …. В образце нужны формы bin gefahren, bin eingestiegen, ist ausgefallen, bin gegangen и hat geholfen. Смена места помогает запомнить несколько из них, но надёжнее учить вспомогательный глагол вместе с каждым глаголом и его употреблением. Перечитайте черновик один раз ради связок и один раз ради вспомогательных глаголов."
+      uk: "Розповідь про поїздку тримається на зв'язках і вивчених дієслівних моделях. Зв'язка на початку займає позицію 1, тому відмінюване дієслово залишається другим: Zuerst bin ich …, Danach bin ich …. У зразку потрібні форми bin gefahren, bin eingestiegen, ist ausgefallen, bin gegangen і hat geholfen. Зміна місця допомагає запам'ятати кілька з них, але надійніше вчити допоміжне дієслово разом із кожним дієсловом та його вживанням. Перечитайте чернетку один раз заради зв'язок і один раз заради допоміжних дієслів."
 
   - id: sprechen-am-schalter
     outcomes: [reise-problem-loesen]
@@ -163,6 +164,7 @@ items:
       uk: "Ця репліка працює завдяки трьом крокам: назвати проблему (Mein Zug ist ausgefallen — sein, бо ausfallen стоїть в одному ряду з passieren), попросити про допомогу (Können Sie mir helfen? — з незнайомою людиною тільки Sie, а після helfen — Dativ mir) і поставити два питання, які справді зрушать вас із місця: де пересадка і з якої колії. Проговоріть відповідь удруге і вслухайтеся у форми Sie — у стресовій ситуації першими вириваються форми на du."
 
   - id: sprechen-reise-berichten
+    revision: 2
     outcomes: [reise-berichten]
     type: speak
     mode: spoken-production
@@ -181,9 +183,9 @@ items:
       - en: "After each connector the conjugated verb came second: Zuerst bin ich …"
         ru: "После каждой связки спрягаемый глагол стоял на втором месте: Zuerst bin ich …"
         uk: "Після кожної зв'язки відмінюване дієслово стояло на другому місці: Zuerst bin ich …"
-      - en: "I used sein for every movement (bin gefahren, bin umgestiegen, bin angekommen)."
-        ru: "Я использовал(а) sein для всех глаголов движения (bin gefahren, bin umgestiegen, bin angekommen)."
-        uk: "Я використав (використала) sein для всіх дієслів руху (bin gefahren, bin umgestiegen, bin angekommen)."
+      - en: "I used the learned Perfekt frames correctly: bin gefahren, bin umgestiegen, bin angekommen."
+        ru: "Я правильно использовал(а) выученные модели Perfekt: bin gefahren, bin umgestiegen, bin angekommen."
+        uk: "Я правильно використав (використала) вивчені моделі Perfekt: bin gefahren, bin umgestiegen, bin angekommen."
       - en: "I said how big the delay was: mit einer Stunde Verspätung."
         ru: "Я сказал(а), насколько велико было опоздание: mit einer Stunde Verspätung."
         uk: "Я сказав (сказала), наскільки великим було запізнення: mit einer Stunde Verspätung."
@@ -193,6 +195,6 @@ items:
       ru: "Сначала я поехал на автобусе на вокзал. Потом сел в поезд в Кёльне. В Ганновере мой поезд отменили. После этого я поехал через Бремен. В итоге я приехал в Гамбург с опозданием на час."
       uk: "Спочатку я поїхав автобусом на вокзал. Потім сів у потяг у Кельні. У Ганновері мій потяг скасували. Після цього я поїхав через Бремен. Урешті я приїхав до Гамбурга із запізненням на годину."
     explain:
-      en: "Five sentences and one grammatical decision repeated five times: which auxiliary? Four of them are movement, so they take sein, and the fifth — the cancelled train — takes sein too. That is why this story is where the rule finally pays off: told with haben, it is not merely wrong, it is unrecognizable as German. Say it twice; the second time, listen only to the word after zuerst, dann, danach and am Ende — it must be the verb."
-      ru: "Пять предложений и одно грамматическое решение, повторённое пять раз: какой вспомогательный глагол? Четыре из них — движение, значит sein; пятое — отменённый поезд — тоже sein. Именно поэтому такой рассказ и есть настоящая проверка правила: с haben он не просто неверен, он перестаёт звучать по-немецки. Проговорите его дважды; во второй раз вслушивайтесь только в слово после zuerst, dann, danach и am Ende — там должен стоять глагол."
-      uk: "П'ять речень і одне граматичне рішення, повторене п'ять разів: яке допоміжне дієслово? Чотири з них — рух, отже sein; п'яте — скасований потяг — теж sein. Саме тому така розповідь і є справжньою перевіркою правила: з haben вона не просто неправильна — вона перестає звучати по-німецьки. Проговоріть її двічі; удруге вслухайтеся лише в слово після zuerst, dann, danach і am Ende — там має стояти дієслово."
+      en: "The five sentences repeatedly retrieve the learned frames ist gefahren, ist eingestiegen, ist ausgefallen and ist angekommen. Their shared auxiliary makes the story useful practice, but it is a property of these verbs and uses—not a rule for every action involving motion. Say the story twice; the second time, listen only to the conjugated verb after zuerst, dann, danach and am Ende."
+      ru: "В пяти предложениях несколько раз извлекаются из памяти модели ist gefahren, ist eingestiegen, ist ausgefallen и ist angekommen. Общий вспомогательный глагол делает рассказ полезной тренировкой, но это свойство данных глаголов и употреблений, а не правило для любого действия с движением. Проговорите рассказ дважды; во второй раз слушайте только спрягаемый глагол после zuerst, dann, danach и am Ende."
+      uk: "У п'яти реченнях кілька разів відтворюються з пам'яті моделі ist gefahren, ist eingestiegen, ist ausgefallen та ist angekommen. Спільне допоміжне дієслово робить розповідь корисним тренуванням, але це властивість цих дієслів і вживань, а не правило для будь-якої дії з рухом. Проговоріть розповідь двічі; удруге слухайте лише відмінюване дієслово після zuerst, dann, danach та am Ende."

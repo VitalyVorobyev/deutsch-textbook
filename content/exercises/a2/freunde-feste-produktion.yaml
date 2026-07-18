@@ -189,6 +189,7 @@ items:
       uk: "Запрошення будується на дієслові einladen, а einladen — відокремлюване: щойно воно стає відмінюваним присудком, воно розламується надвоє. lade займає друге місце, а префікс ein падає в самий кінець — за людину і за всю групу з zu: Ich lade dich zu meiner Hochzeit ein. Помилитися можна двома способами, і обидва часті. Ich einlade dich … залишає дієслово цілим — такого німецького речення просто немає. А Ich lade dich zu meiner Hochzeit, обірване перед ein, навіть гірше: це наявне речення, тільки значить воно інше — laden саме по собі означає «вантажити». Зміст несе префікс, і пишеться він останнім словом. Українською префікс приклеєний до дієслова намертво, тому кінець фрази так легко втратити. Ще дві дрібниці: einladen вимагає Akkusativ для запрошуваного — dich, а не dir; а zu входить до числа прийменників, що завжди вимагають Dativ, звідси zu meiner Hochzeit."
 
   - id: schreiben-einladung
+    revision: 2
     outcomes: [einladung-schreiben, absprachen-aushandeln]
     type: write
     prompt:
@@ -206,9 +207,9 @@ items:
       - en: "Give the day, the time and the place in one sentence (Am Samstag um acht bei mir)."
         ru: "Назовите день, время и место одним предложением (Am Samstag um acht bei mir)."
         uk: "Назвіть день, час і місце одним реченням (Am Samstag um acht bei mir)."
-      - en: "Write at least two sentences with two objects: the person first in the dative, the thing second in the accusative (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
-        ru: "Напишите минимум два предложения с двумя дополнениями: сначала человек в Dativ, потом предмет в Akkusativ (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
-        uk: "Напишіть щонайменше два речення з двома додатками: спочатку людина в Dativ, потім предмет у Akkusativ (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
+      - en: "Write at least two sentences with the schenken/mitbringen frame: recipient in the dative, thing in the accusative; use the neutral dative-before-accusative order shown here (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
+        ru: "Напишите минимум два предложения по модели schenken/mitbringen: получатель в Dativ, предмет в Akkusativ; используйте показанный здесь нейтральный порядок Dativ перед Akkusativ (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
+        uk: "Напишіть щонайменше два речення за моделлю schenken/mitbringen: одержувач у Dativ, предмет в Akkusativ; використайте показаний тут нейтральний порядок Dativ перед Akkusativ (Bringst du mir einen Salat mit? / Ich bringe euch die Getränke mit)."
       - en: "Close with a reflexive verb (Ich freue mich auf euch! / Wir treffen uns um acht)."
         ru: "Завершите возвратным глаголом (Ich freue mich auf euch! / Wir treffen uns um acht)."
         uk: "Завершіть зворотним дієсловом (Ich freue mich auf euch! / Wir treffen uns um acht)."
@@ -219,11 +220,12 @@ items:
       ru: "Всем привет! В субботу у меня день рождения, и я вас приглашаю. Хотите на вечеринку? Встречаемся в восемь у меня дома. Напитки принесу я и ещё сделаю салат. Юсуф, принесёшь мне торт? Нина, можешь принести нам музыку? Ответьте, пожалуйста, до четверга. Очень жду вас!"
       uk: "Усім привіт! У суботу в мене день народження, і я вас запрошую. Хочете на вечірку? Зустрічаємося о восьмій у мене вдома. Напої принесу я і ще зроблю салат. Юсуфе, принесеш мені торт? Ніно, можеш принести нам музику? Відповідайте, будь ласка, до четверга. Дуже чекаю на вас!"
     explain:
-      en: "An invitation does four jobs in a handful of lines: what is being celebrated, when and where, come, and who brings what. The last of those is where the grammar of this lesson lives — every one of those sentences has two objects, and every one of them puts the person first, in the dative: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Before you send your revision, read it once looking only at the pronouns after the verb: if any of them is mich, dich or uns where the sense is 'to me / to you / to us', the case has slipped. And check the last word of each sentence — with a modal, mitbringen belongs there in one piece; without one, the bare mit does."
-      ru: "Приглашение делает четыре вещи за несколько строк: что празднуем, когда и где, приходите, кто что приносит. Именно в последнем и живёт грамматика урока: в каждом таком предложении по два дополнения, и в каждом человек стоит первым, в Dativ: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Перед отправкой правки перечитайте текст, глядя только на местоимения после глагола: если где-то стоит mich или dich там, где по смыслу «мне / тебе», падеж съехал. И проверьте последнее слово каждого предложения: при модальном глаголе там целиком стоит mitbringen, без модального — одна приставка mit."
-      uk: "Запрошення робить чотири речі за кілька рядків: що святкуємо, коли і де, приходьте, хто що приносить. Саме в останньому й живе граматика уроку: у кожному такому реченні по два додатки, і в кожному людина стоїть першою, у Dativ: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Перед відправленням правки перечитайте текст, дивлячись лише на займенники після дієслова: якщо десь стоїть mich або dich там, де за змістом «мені / тобі», відмінок з'їхав. І перевірте останнє слово кожного речення: при модальному дієслові там цілком стоїть mitbringen, без модального — один префікс mit."
+      en: "An invitation says what is being celebrated, when and where, asks people to come, and coordinates who brings what. In the schenken/mitbringen frames, the recipient is dative and the thing is accusative; the models use the neutral dative-before-accusative order: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Check the case required by the verb frame, then check the last word: with a modal, mitbringen stays whole at the end; without one, mit separates."
+      ru: "В приглашении сообщают, что празднуют, когда и где, зовут прийти и договариваются, кто что приносит. В моделях schenken/mitbringen получатель стоит в Dativ, а предмет — в Akkusativ; образцы используют нейтральный порядок Dativ перед Akkusativ: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Проверьте падеж по глагольной модели, затем последнее слово: с модальным глаголом mitbringen целиком стоит в конце, без модального mit отделяется."
+      uk: "У запрошенні повідомляють, що святкують, коли й де, кличуть прийти та домовляються, хто що приносить. У моделях schenken/mitbringen одержувач стоїть у Dativ, а предмет — в Akkusativ; зразки використовують нейтральний порядок Dativ перед Akkusativ: Ich bringe euch die Getränke mit. Bringst du mir einen Kuchen mit? Kannst du uns Musik mitbringen? Перевірте відмінок за дієслівною моделлю, потім останнє слово: із модальним дієсловом mitbringen цілком стоїть у кінці, без модального mit відокремлюється."
 
   - id: sprechen-gruppenchat-absprache
+    revision: 2
     outcomes: [absprachen-aushandeln, einladen-zusagen-absagen]
     type: speak
     mode: spoken-interaction
@@ -242,9 +244,9 @@ items:
       - en: "I gave a reason with weil, and the conjugated verb went to the very end (…, weil ich am Samstag arbeiten muss)."
         ru: "Я назвал(а) причину с помощью weil, и спрягаемый глагол ушёл в самый конец (…, weil ich am Samstag arbeiten muss)."
         uk: "Я назвав(-ла) причину за допомогою weil, і відмінюване дієслово пішло в самий кінець (…, weil ich am Samstag arbeiten muss)."
-      - en: "I offered an alternative with two objects — person first, thing second (Nina bringt dir mein Geschenk mit)."
-        ru: "Я предложил(а) выход, построив фразу с двумя дополнениями: сначала человек, потом предмет (Nina bringt dir mein Geschenk mit)."
-        uk: "Я запропонував(-ла) вихід, побудувавши фразу з двома додатками: спочатку людина, потім предмет (Nina bringt dir mein Geschenk mit)."
+      - en: "I offered an alternative with the mitbringen frame: recipient in the dative, thing in the accusative, in neutral dative-before-accusative order (Nina bringt dir mein Geschenk mit)."
+        ru: "Я предложил(а) выход по модели mitbringen: получатель в Dativ, предмет в Akkusativ, в нейтральном порядке Dativ перед Akkusativ (Nina bringt dir mein Geschenk mit)."
+        uk: "Я запропонував(-ла) вихід за моделлю mitbringen: одержувач у Dativ, предмет в Akkusativ, у нейтральному порядку Dativ перед Akkusativ (Nina bringt dir mein Geschenk mit)."
       - en: "I congratulated her before hanging up (Herzlichen Glückwunsch zum Geburtstag!)."
         ru: "Перед тем как попрощаться, я поздравил(а) её (Herzlichen Glückwunsch zum Geburtstag!)."
         uk: "Перед тим як попрощатися, я привітав(-ла) її (Herzlichen Glückwunsch zum Geburtstag!)."
@@ -254,11 +256,12 @@ items:
       ru: "Привет, Анна! Огромное спасибо за приглашение — я очень за тебя рад(а). Но в субботу я, к сожалению, не смогу прийти, потому что работаю до десяти вечера. Очень жаль. Подарок для тебя у меня уже есть. Нина принесёт тебе подарок — она ведь всё равно придёт в субботу. А в воскресенье я свободен(на): выпьем вместе кофе? С днём рождения!"
       uk: "Привіт, Анно! Величезне спасибі за запрошення — я дуже за тебе рад(а). Але в суботу я, на жаль, не зможу прийти, бо працюю до десятої вечора. Дуже шкода. Подарунок для тебе в мене вже є. Ніна принесе тобі подарунок — вона ж усе одно прийде в суботу. А в неділю я вільний(-на): вип'ємо разом кави? З днем народження!"
     explain:
-      en: "Say it twice, and on the second take listen for three things. First, the end of the weil-clause: the last word must be the modal — arbeiten muss, not muss arbeiten. It is the one place where German will not let you say the words in the order you thought them. Second, the offer: Nina bringt dir das Geschenk mit — person before thing, and the prefix mit right at the end, behind both. Third, the shape of the whole turn. A refusal that is only a refusal sounds like a rejection of the person. Thanks, reason, alternative, congratulation: four short moves, and the no lands softly in the middle of them."
-      ru: "Проговорите дважды и на втором дубле слушайте три вещи. Первое — конец придаточного с weil: последним словом должен быть модальный глагол, arbeiten muss, а не muss arbeiten. Это единственное место, где немецкий не даст произнести слова в том порядке, в каком вы их подумали. Второе — само предложение выхода: Nina bringt dir das Geschenk mit — сначала человек, потом предмет, а приставка mit в самом конце, за обоими. Третье — форма всей реплики. Отказ, который состоит из одного отказа, звучит как отказ от человека. Благодарность, причина, альтернатива, поздравление — четыре коротких хода, и «нет» мягко приземляется где-то посередине."
-      uk: "Проговоріть двічі і на другому дублі слухайте три речі. Перше — кінець підрядного з weil: останнім словом має бути модальне дієслово, arbeiten muss, а не muss arbeiten. Це єдине місце, де німецька не дасть вимовити слова в тому порядку, у якому ви їх подумали. Друге — саме речення виходу: Nina bringt dir das Geschenk mit — спочатку людина, потім предмет, а префікс mit у самому кінці, за обома. Третє — форма всієї репліки. Відмова, що складається з однієї відмови, звучить як відмова від людини. Подяка, причина, альтернатива, привітання — чотири короткі ходи, і «ні» м'яко приземляється десь посередині."
+      en: "Say it twice, and on the second take listen for three things. First, the end of the weil-clause: arbeiten muss, not muss arbeiten. Second, the offer: Nina bringt dir das Geschenk mit. The verb frame assigns dative to dir and accusative to das Geschenk; the model uses neutral dative-before-accusative order, and mit closes the clause. Third, the social shape: thanks, reason, alternative, congratulation."
+      ru: "Проговорите дважды и на втором дубле слушайте три вещи. Первое — конец придаточного с weil: arbeiten muss, а не muss arbeiten. Второе — предложение выхода: Nina bringt dir das Geschenk mit. Глагольная модель задаёт Dativ для dir и Akkusativ для das Geschenk; в образце нейтральный порядок Dativ перед Akkusativ, а mit замыкает предложение. Третье — социальная форма: благодарность, причина, альтернатива, поздравление."
+      uk: "Проговоріть двічі й на другому дублі слухайте три речі. Перше — кінець підрядного з weil: arbeiten muss, а не muss arbeiten. Друге — речення виходу: Nina bringt dir das Geschenk mit. Дієслівна модель задає Dativ для dir та Akkusativ для das Geschenk; у зразку нейтральний порядок Dativ перед Akkusativ, а mit замикає речення. Третє — соціальна форма: подяка, причина, альтернатива, привітання."
 
   - id: sprechen-glueckwunsch-tischrede
+    revision: 2
     outcomes: [glueckwuensche-formeln]
     type: speak
     mode: spoken-production
@@ -274,9 +277,9 @@ items:
       - en: "I congratulated her with the whole formula, preposition and all (Herzlichen Glückwunsch zum Geburtstag!)."
         ru: "Я поздравил(а) её формулой целиком, вместе с предлогом (Herzlichen Glückwunsch zum Geburtstag!)."
         uk: "Я привітав(-ла) її формулою цілком, разом із прийменником (Herzlichen Glückwunsch zum Geburtstag!)."
-      - en: "I said what I brought her, with the person first (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
-        ru: "Я сказал(а), что принёс(ла) ей, поставив человека на первое место (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
-        uk: "Я сказав(-ла), що приніс(-ла) їй, поставивши людину на перше місце (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
+      - en: "I used the mitbringen/schenken frame correctly: recipient in the dative, thing in the accusative, with neutral dative-before-accusative order (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
+        ru: "Я правильно использовал(а) модель mitbringen/schenken: получатель в Dativ, предмет в Akkusativ, нейтральный порядок Dativ перед Akkusativ (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
+        uk: "Я правильно використав(-ла) модель mitbringen/schenken: одержувач у Dativ, предмет в Akkusativ, нейтральний порядок Dativ перед Akkusativ (Ich bringe dir einen Kuchen mit / Ich schenke dir ein Buch)."
       - en: "I added a wish (Alles Gute! / Viel Glück!)."
         ru: "Я добавил(а) пожелание (Alles Gute! / Viel Glück!)."
         uk: "Я додав(-ла) побажання (Alles Gute! / Viel Glück!)."
