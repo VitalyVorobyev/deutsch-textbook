@@ -1,0 +1,130 @@
+topic: infinitiv-mit-zu
+role: practice
+title:
+  en: "Futur I — werden + infinitive"
+  ru: "Futur I — werden + инфинитив"
+  uk: "Futur I — werden + інфінітив"
+# A NON-PRIMARY set, appended after the topic's existing two. primaryPractice is the
+# first practice set in the topic's `exercises:` list, and adding to that one would
+# silently un-finish the topic for anyone who had completed it.
+items:
+  - id: table-werden-formen
+    outcomes: [zukunft-werden]
+    type: table
+    focus: futur-werden
+    title: "werden + Infinitiv"
+    instruction:
+      en: "Put the sentence into Futur I. The infinitive goes to the end."
+      ru: "Поставьте предложение в Futur I. Инфинитив уходит в конец."
+      uk: "Поставте речення у Futur I. Інфінітив іде в кінець."
+    columns: ["Präsens", "Futur I"]
+    rows:
+      - label: "ich"
+        cells:
+          - { answer: "Ich rufe dich an.", given: true }
+          - { answer: "Ich werde dich anrufen." }
+      - label: "du"
+        cells:
+          - { answer: "Du findest eine Wohnung.", given: true }
+          - { answer: "Du wirst eine Wohnung finden." }
+      - label: "es"
+        cells:
+          - { answer: "Es regnet.", given: true }
+          - { answer: "Es wird regnen." }
+      - label: "wir"
+        cells:
+          - { answer: "Wir bleiben zu Hause.", given: true }
+          - { answer: "Wir werden zu Hause bleiben." }
+    explain:
+      en: "One irregular form to watch: du wirst and er/sie wird, without the -e- you might expect. Everything else is the bracket you already build for modals — the conjugated verb in position 2, the bare infinitive at the very end, and no zu anywhere. Note what happens to the separable verb: anrufen stays whole at the end, exactly as it does after a modal."
+      ru: "Одна форма требует внимания: du wirst и er/sie wird — без -e-, которое напрашивается. Всё остальное — уже знакомая рамка от модальных глаголов: спрягаемый глагол на втором месте, голый инфинитив в самом конце, и никакого zu. Обратите внимание на отделяемый глагол: anrufen остаётся целым в конце, ровно как после модального."
+      uk: "Одна форма вимагає уваги: du wirst і er/sie wird — без -e-, яке напрошується. Усе інше — вже знайома рамка від модальних дієслів: відмінюване дієслово на другому місці, голий інфінітив у самому кінці, і жодного zu. Зверніть увагу на відокремлюване дієслово: anrufen залишається цілим у кінці, рівно як після модального."
+
+  - id: cloze-werden-konjugation
+    outcomes: [zukunft-werden]
+    type: cloze
+    focus: futur-werden
+    instruction:
+      en: "Put in the right form of werden."
+      ru: "Вставьте нужную форму глагола werden."
+      uk: "Вставте потрібну форму дієслова werden."
+    text: "Ich {{werde}} dir morgen Bescheid sagen. Du {{wirst}} sehen: alles klappt. Und wenn nicht, {{werden}} wir eine andere Lösung finden."
+    translation:
+      en: "I will let you know tomorrow. You will see: everything will work out. And if not, we will find another solution."
+      ru: "Я сообщу тебе завтра. Вот увидишь: всё получится. А если нет, мы найдём другое решение."
+      uk: "Я повідомлю тобі завтра. Ось побачиш: усе вийде. А якщо ні, ми знайдемо інше рішення."
+    explain:
+      en: "werden is irregular exactly where it is easy to get wrong: du wirst and er wird lose the -e- of the stem, while ich werde and wir werden keep it. The third gap sits after a fronted wenn-clause, so the conjugated verb comes straight after the comma — the position-1 rule, unchanged by the tense."
+      ru: "werden неправильный ровно там, где легко ошибиться: du wirst и er wird теряют -e- основы, а ich werde и wir werden его сохраняют. Третий пропуск стоит после вынесенного вперёд придаточного с wenn, поэтому спрягаемый глагол идёт сразу после запятой — правило первого места, от времени не зависящее."
+      uk: "werden неправильне рівно там, де легко помилитися: du wirst і er wird втрачають -e- основи, а ich werde і wir werden його зберігають. Третій пропуск стоїть після винесеного вперед підрядного з wenn, тому відмінюване дієслово йде одразу після коми — правило першого місця, від часу не залежне."
+
+  - id: mc-praesens-reicht
+    outcomes: [zukunft-werden]
+    type: mc
+    focus: futur-werden
+    prompt: "Sie machen einen Termin aus. Welcher Satz klingt am natürlichsten?"
+    options:
+      - "Morgen fahre ich nach Berlin."
+      - "Morgen werde ich nach Berlin fahren."
+      - "Morgen werde ich nach Berlin gefahren."
+      - "Morgen ich werde nach Berlin fahren."
+    correct: 0
+    translation:
+      en: "Tomorrow I am going to Berlin."
+      ru: "Завтра я еду в Берлин."
+      uk: "Завтра я їду до Берліна."
+    explain:
+      en: "Option 2 is correct German and nobody would say it here — with morgen already in the sentence, the present tense carries the future on its own, and that is what a German speaker uses for a plan. Futur I is kept for predictions and promises, where it adds something. Option 3 puts a participle where an infinitive belongs, and option 4 leaves the subject in front of the verb after a fronted time phrase."
+      ru: "Второй вариант — правильный немецкий, и здесь так никто не скажет: раз в предложении уже есть morgen, будущее несёт само настоящее время, и именно так носитель говорит о плане. Futur I остаётся для прогнозов и обещаний, где он что-то добавляет. В третьем варианте вместо инфинитива стоит причастие, а в четвёртом подлежащее осталось перед глаголом после вынесенного вперёд обстоятельства времени."
+      uk: "Другий варіант — правильна німецька, і тут так ніхто не скаже: якщо в реченні вже є morgen, майбутнє несе сам теперішній час, і саме так носій говорить про план. Futur I залишається для прогнозів та обіцянок, де він щось додає. У третьому варіанті замість інфінітива стоїть дієприкметник, а в четвертому підмет залишився перед дієсловом після винесеної вперед обставини часу."
+
+  - id: uebersetzen-versprechen-futur
+    outcomes: [zukunft-werden]
+    type: translate
+    focus: futur-werden
+    instruction:
+      en: "It is a promise, so use Futur I."
+      ru: "Это обещание, поэтому используйте Futur I."
+      uk: "Це обіцянка, тому використайте Futur I."
+    prompt_en: "I promise: I will call you tomorrow."
+    prompt_ru: "Обещаю: я позвоню тебе завтра."
+    prompt_uk: "Обіцяю: я зателефоную тобі завтра."
+    answer: "Ich verspreche es: Ich werde dich morgen anrufen."
+    key_tokens: ["werde", "anrufen"]
+    explain:
+      en: "Both ends of the bracket are graded, because both are where it breaks: werde second, anrufen last and whole. A promise is one of the places Futur I earns its keep — it is not just information about tomorrow, it is a commitment, and the tense marks that."
+      ru: "Проверяются оба конца рамки, потому что именно на них она и ломается: werde вторым, anrufen последним и целым. Обещание — один из случаев, где Futur I оправдан: это не просто сообщение о завтрашнем дне, а обязательство, и время это подчёркивает. Русское будущее «позвоню» здесь ничем не отличается от обычного, поэтому подсказки нет."
+      uk: "Перевіряються обидва кінці рамки, бо саме на них вона й ламається: werde другим, anrufen останнім і цілим. Обіцянка — один із випадків, де Futur I виправданий: це не просто повідомлення про завтрашній день, а зобов'язання, і час це підкреслює. Українське майбутнє «зателефоную» тут нічим не відрізняється від звичайного, тому підказки немає."
+
+  - id: uebersetzen-vorhersage-futur
+    outcomes: [zukunft-werden]
+    type: translate
+    focus: futur-werden
+    prompt_en: "It will probably rain tomorrow."
+    prompt_ru: "Завтра, наверное, будет дождь."
+    prompt_uk: "Завтра, мабуть, буде дощ."
+    answer: "Morgen wird es wahrscheinlich regnen."
+    accept: ["Es wird morgen wahrscheinlich regnen."]
+    key_tokens: ["wird", "regnen"]
+    explain:
+      en: "A forecast is the other place Futur I belongs: you are not reporting a plan, you are predicting. Note the form — wird, not werdet or werde — and that the whole infinitive regnen waits at the end. Fronting morgen or leaving it inside are both good German, so both are accepted."
+      ru: "Прогноз — второй случай, где Futur I на своём месте: вы не сообщаете о плане, а предсказываете. Обратите внимание на форму — wird, а не werdet или werde, — и на то, что инфинитив regnen ждёт в конце. Вынести morgen вперёд или оставить внутри — одинаково хороший немецкий, поэтому принимаются оба варианта."
+      uk: "Прогноз — другий випадок, де Futur I на своєму місці: ви не повідомляєте про план, а передбачаєте. Зверніть увагу на форму — wird, а не werdet чи werde, — і на те, що інфінітив regnen чекає в кінці. Винести morgen вперед або залишити всередині — однаково гарна німецька, тому приймаються обидва варіанти."
+
+  - id: hoeren-futur-loesung
+    outcomes: [zukunft-werden]
+    type: listen
+    focus: futur-werden
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Wir werden eine Lösung finden."
+    translation:
+      en: We will find a solution.
+      ru: Мы найдём решение.
+      uk: Ми знайдемо рішення.
+    explain:
+      en: "Four words, and the shape is the whole lesson: werden in position 2, finden at the end. Said aloud it is the same rhythm as Wir müssen eine Lösung finden — which is the point, because it is the same bracket."
+      ru: "Четыре слова, и в их расстановке весь урок: werden на втором месте, finden в конце. Вслух это тот же ритм, что и Wir müssen eine Lösung finden, — и в этом суть: рамка одна и та же."
+      uk: "Чотири слова, і в їх розстановці весь урок: werden на другому місці, finden у кінці. Уголос це той самий ритм, що й Wir müssen eine Lösung finden, — і в цьому суть: рамка та сама."
