@@ -1007,6 +1007,50 @@ nodes:
         ru: "Я умею определить, нужен ли инфинитиву zu и где этот zu стоит."
         uk: "Я вмію визначити, чи потрібне інфінітиву zu і де це zu стоїть."
 
+  - id: relativsaetze
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: satzbau
+    prerequisites: [artikel-genus, akkusativ, nebensaetze-plaene]
+    # Real edge, on `nebensatz-verbende`: a Relativsatz *is* a Nebensatz, and the verb-final rule
+    # is the base topic's, unchanged — so an error on it here is the same confusion and should
+    # resurface the same items. `akkusativ` is a prerequisite but NOT deepened, and the distinction
+    # matters: the form `den` is indeed the accusative article, but the confusion this topic adds
+    # is about *where the case comes from*, not about building the form. Tagging it
+    # `akkusativ-artikel` would file a relative-clause error under a confusion the learner may not
+    # have, and weakness aggregation is course-wide and blind to the topic it came from.
+    deepens: [nebensaetze-plaene]
+    outcomes:
+      - id: person-beschreiben-relativ
+        mode: writing
+        domain: personal
+        de: "Ich kann mit einem Relativsatz sagen, welche Person oder Sache ich meine."
+        en: "I can use a relative clause to say which person or thing I mean."
+        ru: "Я умею с помощью относительного придаточного сказать, какого человека или какую вещь я имею в виду."
+        uk: "Я вмію за допомогою відносного підрядного сказати, яку людину чи яку річ я маю на увазі."
+      - id: sache-definieren
+        mode: spoken-production
+        domain: public
+        de: "Ich kann eine Sache beschreiben, wenn mir das Wort fehlt (Ich suche ein Ding, das …)."
+        en: "I can describe a thing when the word escapes me (Ich suche ein Ding, das …)."
+        ru: "Я умею описать предмет, когда не могу вспомнить слово (Ich suche ein Ding, das …)."
+        uk: "Я вмію описати предмет, коли не можу згадати слово (Ich suche ein Ding, das …)."
+      - id: relativ-kasus-waehlen
+        mode: writing
+        domain: personal
+        de: "Ich kann der und den unterscheiden: Der Kasus kommt aus der Rolle im Relativsatz."
+        en: "I can tell der from den: the case comes from the role inside the relative clause."
+        ru: "Я умею различать der и den: падеж определяется ролью внутри придаточного."
+        uk: "Я вмію розрізняти der і den: відмінок визначається роллю всередині підрядного."
+      - id: relativ-satzbau
+        mode: writing
+        domain: personal
+        de: "Ich kann den Relativsatz richtig bauen: Verb am Ende, Kommas auf beiden Seiten."
+        en: "I can build a relative clause correctly: verb at the end, commas on both sides."
+        ru: "Я умею правильно строить относительное придаточное: глагол в конце, запятые с обеих сторон."
+        uk: "Я вмію правильно будувати відносне підрядне: дієслово в кінці, коми з обох боків."
+
   # The four units below all sit after `nebensaetze-plaene` in the spine, and that is the whole
   # point of the reorder: they may use weil, dass and wenn freely, and they do. Each one therefore
   # deepens `nebensaetze-plaene` on `nebensatz-verbende` — a real edge, because an error on the
@@ -1347,6 +1391,16 @@ units:
     title_ru: "Инфинитив с zu и цель"
     title_uk: "Інфінітив із zu та мета"
     topics: [infinitiv-mit-zu]
+  # Also a Nebensatz unit, so it belongs beside the other two rather than at the end of A2:
+  # the verb-final rule it relies on is `nebensaetze-plaene`'s, and the pronoun forms are the
+  # article forms the learner has had since A1.
+  - id: relativsaetze
+    level: A2
+    title_de: "Relativsätze: der, die, das"
+    title_en: "Relative clauses"
+    title_ru: "Относительные придаточные"
+    title_uk: "Відносні підрядні"
+    topics: [relativsaetze]
   - id: biografie-erfahrungen
     level: A2
     title_de: "Biografie & Erfahrungen"

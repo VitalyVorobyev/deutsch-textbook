@@ -1,0 +1,191 @@
+topic: relativsaetze
+role: practice
+title:
+  en: "Practice — der or den, and the verb at the end"
+  ru: "Практика — der или den, и глагол в конце"
+  uk: "Практика — der чи den, і дієслово в кінці"
+# Authoring note: the translate items below all use an INDEFINITE antecedent
+# (einen Freund, eine Frau) rather than a definite one. With `der Mann, der …`
+# the pronoun and the article are the same string twice over, and a key_tokens
+# entry that occurs twice in the answer grades both occurrences — so a slip on
+# the article would be logged as a relative-pronoun error. The validator rejects
+# that outright; an indefinite antecedent keeps the pronoun unique.
+items:
+  - id: table-relativpronomen
+    outcomes: [relativ-kasus-waehlen]
+    type: table
+    focus: relativpronomen-kasus
+    title: "Nominativ oder Akkusativ?"
+    instruction:
+      en: "Fill in the relative pronoun. Ask twice: which gender/number (outside), and which case (inside)?"
+      ru: "Впишите относительное местоимение. Задайте два вопроса: род и число (снаружи) и падеж (внутри)."
+      uk: "Впишіть відносний займенник. Поставте два питання: рід і число (зовні) та відмінок (всередині)."
+    columns: ["Satz", "Relativpronomen"]
+    rows:
+      - label: "maskulin, Subjekt"
+        cells:
+          - { answer: "Ich habe einen Freund, … in Wien arbeitet.", given: true }
+          - { answer: "der" }
+      - label: "maskulin, Objekt"
+        cells:
+          - { answer: "Ich habe einen Freund, … ich sehr mag.", given: true }
+          - { answer: "den" }
+      - label: "feminin, Objekt"
+        cells:
+          - { answer: "Das ist eine Stadt, … ich gut kenne.", given: true }
+          - { answer: "die" }
+      - label: "neutral, Subjekt"
+        cells:
+          - { answer: "Wir haben ein Auto, … sehr alt ist.", given: true }
+          - { answer: "das" }
+      - label: "Plural, Subjekt"
+        cells:
+          - { answer: "Das sind Kinder, … im Hof spielen.", given: true }
+          - { answer: "die" }
+    explain:
+      en: "Two rows share a noun and still take different pronouns — that is the whole lesson. einen Freund is masculine both times; in row 1 he does the working, so he is the subject (der), and in row 2 I do the liking and he is what I like, so he is the object (den). Everywhere else in this table the two cases look identical, which is why masculine is the only place the mistake can show."
+      ru: "Две строки делят одно существительное и всё равно получают разные местоимения — в этом весь урок. einen Freund оба раза мужского рода; в первой строке работает он сам, значит он подлежащее (der), а во второй нравится он мне, значит он дополнение (den). Во всех остальных клетках таблицы два падежа выглядят одинаково — потому ошибка и может проявиться только в мужском роде."
+      uk: "Два рядки ділять один іменник і все одно отримують різні займенники — у цьому весь урок. einen Freund обидва рази чоловічого роду; у першому рядку працює він сам, отже він підмет (der), а в другому подобається він мені, отже він додаток (den). У всіх інших клітинках таблиці два відмінки виглядають однаково — тому помилка й може проявитися лише в чоловічому роді."
+
+  - id: cloze-der-oder-den
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: "Both nouns are masculine. Only the job inside the clause differs."
+      ru: "Оба существительных мужского рода. Различается только роль внутри придаточного."
+      uk: "Обидва іменники чоловічого роду. Різниться лише роль усередині підрядного."
+    text: "Der Kollege, {{der}} neben mir sitzt, kommt aus Polen. Der Kollege, {{den}} du gestern getroffen hast, arbeitet erst seit Mai hier."
+    translation:
+      en: "The colleague who sits next to me is from Poland. The colleague you met yesterday has only worked here since May."
+      ru: "Коллега, который сидит рядом со мной, из Польши. Коллега, которого ты вчера встретил, работает здесь только с мая."
+      uk: "Колега, який сидить поруч зі мною, з Польщі. Колега, якого ти вчора зустрів, працює тут лише з травня."
+    explain:
+      en: "Identical opening, opposite answers. In the first clause nobody acts on the colleague — he does the sitting, so he is the subject: der. In the second, du is the subject and the colleague is what you met, so he is the object: den. Nothing outside the commas changes between the two sentences, which is the point: the noun in front cannot tell you the case."
+      ru: "Начало одинаковое, ответы противоположные. В первом придаточном над коллегой никто ничего не совершает — сидит он сам, значит он подлежащее: der. Во втором подлежащее — du, а коллега это тот, кого ты встретил, значит он дополнение: den. За пределами запятых между предложениями не меняется ничего — в этом и суть: существительное впереди падежа не подсказывает."
+      uk: "Початок однаковий, відповіді протилежні. У першому підрядному над колегою ніхто нічого не робить — сидить він сам, отже він підмет: der. У другому підмет — du, а колега це той, кого ти зустрів, отже він додаток: den. За межами ком між реченнями не змінюється нічого — у цьому й суть: іменник попереду відмінка не підказує."
+
+  - id: cloze-genus-plural
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: "Three different nouns. Take the gender and number from outside the comma."
+      ru: "Три разных существительных. Род и число берите за пределами запятой."
+      uk: "Три різні іменники. Рід і число беріть за межами коми."
+    text: "Das ist die Bäckerei, {{die}} um sechs Uhr aufmacht. Wir wohnen in einem Haus, {{das}} sehr alt ist. Die Leute, {{die}} über uns wohnen, sind sehr nett."
+    translation:
+      en: "That is the bakery that opens at six. We live in a house that is very old. The people who live above us are very nice."
+      ru: "Это пекарня, которая открывается в шесть. Мы живём в доме, который очень старый. Люди, которые живут над нами, очень приятные."
+      uk: "Це пекарня, яка відчиняється о шостій. Ми живемо в будинку, який дуже старий. Люди, які живуть над нами, дуже приємні."
+    explain:
+      en: "All three pronouns are subjects, so the case is settled and only gender and number are in play — and both come from the noun outside. Note the middle one: the noun sits in the dative (in einem Haus), and the pronoun ignores that completely. Only gender and number travel across the comma; the case never does."
+      ru: "Все три местоимения — подлежащие, поэтому падеж определён, и в игре остаются только род и число, а они берутся от существительного снаружи. Обратите внимание на среднее предложение: существительное стоит в дательном (in einem Haus), а местоимение это полностью игнорирует. Через запятую переходят только род и число; падеж — никогда."
+      uk: "Усі три займенники — підмети, тому відмінок визначений, і в грі залишаються лише рід і число, а вони беруться від іменника зовні. Зверніть увагу на середнє речення: іменник стоїть у давальному (in einem Haus), а займенник це повністю ігнорує. Через кому переходять лише рід і число; відмінок — ніколи."
+
+  - id: mc-kasus-von-innen
+    outcomes: [relativ-kasus-waehlen]
+    type: mc
+    focus: relativpronomen-kasus
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich suche den Schlüssel, den ich gestern verloren habe."
+      - "Ich suche den Schlüssel, der ich gestern verloren habe."
+      - "Ich suche der Schlüssel, den ich gestern verloren habe."
+      - "Ich suche den Schlüssel, den habe ich gestern verloren."
+    correct: 0
+    translation:
+      en: "I am looking for the key that I lost yesterday."
+      ru: "Я ищу ключ, который вчера потерял."
+      uk: "Я шукаю ключ, який учора загубив."
+    explain:
+      en: "Two dens in the right answer, and they are settled by two separate questions. The first belongs to suchen, which takes an accusative object. The second is the relative pronoun, accusative because ich is the subject inside the clause and the key is what got lost. Option 2 copies nothing correctly; option 3 breaks the main clause; option 4 has the pronoun right but leaves the verb in position 2, where a Nebensatz never keeps it."
+      ru: "В правильном ответе два den, и определяются они двумя разными вопросами. Первый принадлежит глаголу suchen, который требует винительного дополнения. Второй — относительное местоимение, винительный, потому что подлежащее внутри придаточного это ich, а ключ — то, что потеряли. Второй вариант неверен в местоимении, третий ломает главное предложение, а в четвёртом местоимение верное, но глагол остался на втором месте, где придаточное его никогда не держит."
+      uk: "У правильній відповіді два den, і визначаються вони двома різними питаннями. Перший належить дієслову suchen, яке вимагає знахідного додатка. Другий — відносний займенник, знахідний, бо підмет усередині підрядного це ich, а ключ — те, що загубили. Другий варіант хибний у займеннику, третій ламає головне речення, а в четвертому займенник правильний, але дієслово залишилося на другому місці, де підрядне його ніколи не тримає."
+
+  - id: order-relativsatz-verbende
+    outcomes: [relativ-satzbau]
+    type: order
+    focus: nebensatz-verbende
+    instruction:
+      en: Arrange the words into a correct sentence.
+      ru: Составьте правильное предложение.
+      uk: Складіть правильне речення.
+    words: ["Ich", "nehme", "den", "Zug,", "der", "um", "acht", "Uhr", "fährt."]
+    translation:
+      en: I am taking the train that leaves at eight.
+      ru: Я поеду на поезде, который отправляется в восемь.
+      uk: Я поїду потягом, який відправляється о восьмій.
+    explain:
+      en: "The main clause is complete before the comma — Ich nehme den Zug. Then the relative pronoun opens the Nebensatz, the time phrase sits in the middle, and fährt waits at the very end. A Relativsatz is a Nebensatz and takes the same word order as one with weil or dass; the pronoun is simply what opens it instead of a conjunction."
+      ru: "Главное предложение заканчивается до запятой — Ich nehme den Zug. Затем относительное местоимение открывает придаточное, обстоятельство времени стоит посередине, а fährt ждёт в самом конце. Relativsatz — это Nebensatz, и порядок слов у него тот же, что после weil или dass; просто открывает его местоимение, а не союз."
+      uk: "Головне речення закінчується до коми — Ich nehme den Zug. Потім відносний займенник відкриває підрядне, обставина часу стоїть посередині, а fährt чекає в самому кінці. Relativsatz — це Nebensatz, і порядок слів у нього той самий, що після weil або dass; просто відкриває його займенник, а не сполучник."
+
+  - id: match-definitionen
+    outcomes: [sache-definieren]
+    type: match
+    focus: relativpronomen-kasus
+    instruction:
+      en: "Match each person to what they do."
+      ru: "Сопоставьте каждого человека с тем, что он делает."
+      uk: "Зіставте кожну людину з тим, що вона робить."
+    pairs:
+      - left: "Ein Mechaniker ist jemand,"
+        right: "der Autos repariert."
+      - left: "Eine Ärztin ist jemand,"
+        right: "die im Krankenhaus arbeitet."
+      - left: "Ein Kellner ist jemand,"
+        right: "der das Essen bringt."
+      - left: "Eine Verkäuferin ist jemand,"
+        right: "die Kleidung verkauft."
+    explain:
+      en: "This is the survival use of a relative clause: when the word will not come, describe what the thing does. Every pronoun here is a subject, so the choice is purely gender — der for the masculine job titles, die for the feminine ones. And every verb sits at the end of its clause, which is what lets you hear that these are Nebensätze."
+      ru: "Вот оно, спасительное применение относительного придаточного: когда слово не вспоминается, опишите, что этот предмет или человек делает. Все местоимения здесь подлежащие, поэтому выбор чисто родовой — der для названий профессий мужского рода, die для женского. И каждый глагол стоит в конце своего придаточного — по этому и слышно, что перед нами Nebensätze."
+      uk: "Ось воно, рятівне застосування відносного підрядного: коли слово не згадується, опишіть, що цей предмет або людина робить. Усі займенники тут підмети, тому вибір суто родовий — der для назв професій чоловічого роду, die для жіночого. І кожне дієслово стоїть у кінці свого підрядного — з цього й чути, що перед нами Nebensätze."
+
+  - id: uebersetzen-freund-nominativ
+    outcomes: [person-beschreiben-relativ]
+    type: translate
+    focus: relativpronomen-kasus
+    prompt_en: "I have a friend who works in Vienna."
+    prompt_ru: "У меня есть друг, который работает в Вене."
+    prompt_uk: "У мене є друг, який працює у Відні."
+    answer: "Ich habe einen Freund, der in Wien arbeitet."
+    key_tokens: ["der"]
+    explain:
+      en: "The friend does the working, so the pronoun is the subject of its clause: der. Note that the noun itself is accusative — einen Freund, object of habe — and the pronoun pays no attention to that at all. Case does not cross the comma."
+      ru: "Работает именно друг, поэтому местоимение — подлежащее своего придаточного: der. Заметьте, что само существительное стоит в винительном — einen Freund, дополнение при habe, — и местоимение на это совершенно не смотрит. Падеж через запятую не переходит."
+      uk: "Працює саме друг, тому займенник — підмет свого підрядного: der. Зауважте, що сам іменник стоїть у знахідному — einen Freund, додаток при habe, — і займенник на це зовсім не дивиться. Відмінок через кому не переходить."
+
+  - id: uebersetzen-mann-akkusativ
+    outcomes: [person-beschreiben-relativ]
+    type: translate
+    focus: relativpronomen-kasus
+    prompt_en: "The man I know lives in Bremen."
+    prompt_ru: "Человек, которого я знаю, живёт в Бремене."
+    prompt_uk: "Людина, яку я знаю, живе в Бремені."
+    answer: "Der Mann, den ich kenne, wohnt in Bremen."
+    accept: ["Der Mann, den ich kenne, lebt in Bremen."]
+    key_tokens: ["den"]
+    explain:
+      en: "ich is the subject inside the clause, so the man is the object and the pronoun is den. English gives you no signal here — the pronoun is missing from the source sentence entirely, because English is allowed to drop it. German is not, and it must also choose a case for it."
+      ru: "Подлежащее внутри придаточного — ich, значит человек это дополнение, и местоимение будет den. Русский здесь как раз подсказывает верно: вы говорите «которого», а не «который», и это ровно то же решение. А вот английский не подсказывает ничего — там местоимение вообще опущено."
+      uk: "Підмет усередині підрядного — ich, отже людина це додаток, і займенник буде den. Українська тут якраз підказує правильно: ви кажете «яку», а не «яка», і це рівно те саме рішення. А от англійська не підказує нічого — там займенник взагалі пропущено."
+
+  - id: hoeren-relativsatz-bahn
+    outcomes: [relativ-satzbau]
+    type: listen
+    focus: relativpronomen-kasus
+    instruction:
+      en: Listen and type what you hear.
+      ru: Прослушайте и напишите, что вы слышите.
+      uk: Прослухайте і напишіть, що ви чуєте.
+    text: "Ich nehme die Bahn, die um acht Uhr fährt."
+    translation:
+      en: I am taking the train that leaves at eight.
+      ru: Я поеду на электричке, которая отправляется в восемь.
+      uk: Я поїду електричкою, яка відправляється о восьмій.
+    explain:
+      en: "Two dies in a row, and they sound the same because they are the same word — the article of die Bahn and then the relative pronoun that repeats its gender. Feminine hides the case entirely, which is why the sentence is easy to hear and the masculine ones are not."
+      ru: "Два die подряд, и звучат они одинаково, потому что это одно и то же слово — артикль при die Bahn и следом относительное местоимение, повторяющее род. В женском роде падеж не виден вовсе — потому это предложение и легко расслышать, в отличие от мужского."
+      uk: "Два die поспіль, і звучать вони однаково, бо це одне й те саме слово — артикль при die Bahn і слідом відносний займенник, що повторює рід. У жіночому роді відмінок не видно зовсім — тому це речення й легко розчути, на відміну від чоловічого."

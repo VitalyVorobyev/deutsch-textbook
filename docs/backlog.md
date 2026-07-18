@@ -45,8 +45,13 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
   *versuchen*, *hoffen*, *planen*, *anfangen*, *vergessen*, *Lust*, *Zeit* and *wichtig* are all
   already taught, so the unit recycles them and owns only the language of intending and deciding
   — headed by *vorhaben*, the flagship verb of the structure, which appeared nowhere in the course.
-- **P10-3 · `relativsaetze`** — `todo`. Nominativ + Akkusativ only. Tag `relativpronomen-kasus`.
-  Remove the "relative clauses" exclusion from the A2 blueprint in the same change.
+- **P10-3 · `relativsaetze`** — `done` 2026-07-18. Nominativ + Akkusativ only, tag
+  `relativpronomen-kasus`; A2 grammar 73% → **77%**. The A2 blueprint's "relative clauses"
+  exclusion is corrected rather than deleted: it recorded an assumption that they belonged to B1,
+  which the manifest showed to be a gap. `deepens: [nebensaetze-plaene]` on `nebensatz-verbende`
+  (a Relativsatz *is* a Nebensatz); `akkusativ` is a prerequisite but deliberately not deepened,
+  because the confusion added here is where the case *comes from*, not how `den` is built.
+  `vocab: []` — pure syntax, and the lexis it describes people and things with is already taught.
 - **P10-4 · `verbindungen-folgen`** — `todo`. Konjunktionaladverbien with inversion
   (*deshalb*, *deswegen*, *trotzdem*, *dann*) and *als* vs *wenn* for past time. Tags
   `konjunktionaladverb-inversion`, `als-wenn-vergangenheit`.

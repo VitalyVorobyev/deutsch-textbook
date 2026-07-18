@@ -1,0 +1,54 @@
+topic: relativsaetze
+role: pretest
+title:
+  en: "Before we start — which pronoun?"
+  ru: "Перед началом — какое местоимение?"
+  uk: "Перед початком — який займенник?"
+items:
+  - id: pretest-nominativ
+    outcomes: [relativ-kasus-waehlen]
+    type: mc
+    focus: relativpronomen-kasus
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Der Mann, der hier wohnt, ist mein Nachbar."
+      - "Der Mann, den hier wohnt, ist mein Nachbar."
+      - "Der Mann, das hier wohnt, ist mein Nachbar."
+      - "Der Mann, die hier wohnt, ist mein Nachbar."
+    correct: 0
+    explain:
+      en: "Masculine from the noun outside, nominative from the job inside — the man does the living, so he is the subject of his clause: der."
+      ru: "Мужской род — от существительного снаружи, именительный падеж — от роли внутри: живёт он сам, значит он подлежащее своего придаточного: der."
+      uk: "Чоловічий рід — від іменника зовні, називний відмінок — від ролі всередині: живе він сам, отже він підмет свого підрядного: der."
+
+  - id: pretest-akkusativ
+    outcomes: [relativ-kasus-waehlen]
+    type: mc
+    focus: relativpronomen-kasus
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Der Film, den wir gestern gesehen haben, war gut."
+      - "Der Film, der wir gestern gesehen haben, war gut."
+      - "Der Film, die wir gestern gesehen haben, war gut."
+      - "Der Film, dem wir gestern gesehen haben, war gut."
+    correct: 0
+    explain:
+      en: "wir is already the subject inside the clause, so the film can only be the object — masculine accusative, den."
+      ru: "Подлежащее внутри придаточного уже занято словом wir, поэтому фильм может быть только дополнением — мужской род, винительный: den."
+      uk: "Підмет усередині підрядного вже зайнятий словом wir, тому фільм може бути лише додатком — чоловічий рід, знахідний: den."
+
+  - id: pretest-verbende
+    outcomes: [relativ-satzbau]
+    type: mc
+    focus: nebensatz-verbende
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich nehme den Zug, der um acht Uhr fährt."
+      - "Ich nehme den Zug, der fährt um acht Uhr."
+      - "Ich nehme den Zug, der um acht Uhr fahren."
+      - "Ich nehme den Zug, um acht Uhr fährt."
+    correct: 0
+    explain:
+      en: "A Relativsatz is a Nebensatz, so the conjugated verb goes to the very end — fährt, after the time phrase, not before it. And the pronoun can never be left out."
+      ru: "Relativsatz — это Nebensatz, поэтому спрягаемый глагол уходит в самый конец: fährt после обстоятельства времени, а не перед ним. И местоимение опускать нельзя."
+      uk: "Relativsatz — це Nebensatz, тому відмінюване дієслово йде в самий кінець: fährt після обставини часу, а не перед нею. І займенник пропускати не можна."
