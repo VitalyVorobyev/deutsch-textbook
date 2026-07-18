@@ -1,0 +1,148 @@
+topic: adjektive-deklination
+role: practice
+title:
+  en: "Describing in context — listen, write, speak"
+  ru: "Описание в контексте — слушать, писать, говорить"
+  uk: "Опис у контексті — слухати, писати, говорити"
+items:
+  - id: translate-grosses-problem
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-unbestimmt
+    prompt_en: "That is a big problem."
+    prompt_ru: "Это большая проблема."
+    prompt_uk: "Це велика проблема."
+    answer: "Das ist ein großes Problem."
+    key_tokens: ["großes"]
+    explain:
+      en: "Problem is neuter, and ein gives that away no more than it does for a masculine noun — so the adjective carries the marker: -es. The English and the Russian both say nothing about gender here, which is exactly why this box has to be learned rather than reasoned out from the source sentence."
+      ru: "Problem — среднего рода, и ein выдаёт это ничуть не больше, чем для мужского, поэтому признак несёт прилагательное: -es. Ни английский, ни русский про род здесь ничего не сообщают — именно поэтому эту клетку приходится выучить, а не вывести из исходного предложения."
+      uk: "Problem — середнього роду, і ein видає це анітрохи не більше, ніж для чоловічого, тому ознаку несе прикметник: -es. Ні англійська, ні українська про рід тут нічого не повідомляють — саме тому цю клітинку доводиться вивчити, а не вивести з вихідного речення."
+
+  - id: translate-schneller-zug
+    outcomes: [adjektiv-beschreiben]
+    type: translate
+    focus: adjektiv-bestimmt
+    prompt_en: "I take the fast train."
+    prompt_ru: "Я еду скорым поездом."
+    prompt_uk: "Я їду швидким потягом."
+    answer: "Ich fahre mit dem schnellen Zug."
+    accept: ["Mit dem schnellen Zug fahre ich."]
+    key_tokens: ["schnellen"]
+    explain:
+      en: "mit forces the dative and the dative is -en throughout, so the ending is settled before you have even thought about gender. Fronting the phrase — Mit dem schnellen Zug fahre ich — is equally good German and changes nothing about the ending."
+      ru: "mit требует дательного, а в дательном везде -en, так что окончание определено ещё до того, как вы задумались о роде. Вынести группу вперёд — Mit dem schnellen Zug fahre ich — столь же правильный немецкий, и на окончание это никак не влияет."
+      uk: "mit вимагає давального, а в давальному всюди -en, тож закінчення визначене ще до того, як ви замислилися про рід. Винести групу вперед — Mit dem schnellen Zug fahre ich — так само правильна німецька, і на закінчення це ніяк не впливає."
+
+  - id: audio-anzeige-wohnung
+    outcomes: [adjektiv-anzeige-verstehen]
+    type: audio-comprehension
+    focus: adjektiv-unbestimmt
+    source:
+      kind: tts
+      turns:
+        - speaker: "Vermieterin"
+          text: "Guten Tag, Sie haben wegen der Wohnung angerufen?"
+        - speaker: "Herr Adam"
+          text: "Ja, genau. Ich suche eine kleine Wohnung mit einem ruhigen Zimmer zum Arbeiten."
+        - speaker: "Vermieterin"
+          text: "Die Wohnung hat zwei Zimmer. Das größere Zimmer geht zur Straße, das kleinere zum Hof. Da ist es sehr ruhig."
+        - speaker: "Herr Adam"
+          text: "Und die Küche? Ist sie neu?"
+        - speaker: "Vermieterin"
+          text: "Die Küche ist alt, aber der Herd ist neu. Wir haben letzten Monat einen neuen Herd gekauft."
+    question: "Was ist in der Wohnung neu?"
+    options: ["Der Herd", "Die Küche", "Das kleinere Zimmer", "Die Fenster"]
+    correct: 0
+    translation:
+      en: "Only the cooker is new — the landlady says the kitchen itself is old."
+      ru: "Новая только плита — хозяйка говорит, что сама кухня старая."
+      uk: "Нова лише плита — господиня каже, що сама кухня стара."
+    explain:
+      en: "The answer turns on one contrast the speaker makes explicitly: die Küche ist alt, aber der Herd ist neu. Both of those adjectives are predicative and bare, which is what makes them easy to hear. Then the same fact returns attributively — einen neuen Herd — with the ending the accusative demands. Hearing the same word in both shapes in two consecutive sentences is the point of the item."
+      ru: "Ответ держится на одном противопоставлении, которое собеседница проговаривает прямо: die Küche ist alt, aber der Herd ist neu. Оба прилагательных здесь предикативные и голые — потому их и легко расслышать. Затем тот же факт возвращается в определении — einen neuen Herd — с окончанием, которого требует винительный падеж. Услышать одно и то же слово в двух формах в двух соседних предложениях — и есть смысл задания."
+      uk: "Відповідь тримається на одному протиставленні, яке співрозмовниця проговорює прямо: die Küche ist alt, aber der Herd ist neu. Обидва прикметники тут предикативні й голі — тому їх і легко розчути. Потім той самий факт повертається в означенні — einen neuen Herd — із закінченням, якого вимагає знахідний відмінок. Почути одне й те саме слово у двох формах у двох сусідніх реченнях — і є сенс завдання."
+
+  - id: mc-diskriminierung-ist-oder-nomen
+    outcomes: [adjektiv-beschreiben]
+    type: mc
+    focus: adjektiv-praedikativ
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Das Zimmer ist klein, aber es hat ein großes Fenster."
+      - "Das Zimmer ist kleines, aber es hat ein großes Fenster."
+      - "Das Zimmer ist klein, aber es hat ein groß Fenster."
+      - "Das Zimmer ist kleines, aber es hat ein groß Fenster."
+    correct: 0
+    translation:
+      en: "The room is small, but it has a big window."
+      ru: "Комната маленькая, но в ней большое окно."
+      uk: "Кімната маленька, але в ній велике вікно."
+    explain:
+      en: "One sentence, both rules, and the two wrong options each break exactly one of them. klein follows ist and takes nothing; großes precedes Fenster and must take the -es that ein cannot supply for a neuter noun. The fourth option breaks both at once — which is the shape the mistake usually has before either rule is secure."
+      ru: "Одно предложение, оба правила, и каждый неверный вариант нарушает ровно одно из них. klein стоит после ist и не получает ничего; großes стоит перед Fenster и обязано взять то -es, которое ein для среднего рода дать не может. Четвёртый вариант нарушает оба сразу — так эта ошибка обычно и выглядит, пока ни одно из правил ещё не закрепилось."
+      uk: "Одне речення, обидва правила, і кожен невірний варіант порушує рівно одне з них. klein стоїть після ist і не отримує нічого; großes стоїть перед Fenster і мусить узяти те -es, якого ein для середнього роду дати не може. Четвертий варіант порушує обидва одразу — так ця помилка зазвичай і виглядає, поки жодне з правил ще не закріпилося."
+
+  - id: write-zimmer-beschreiben
+    outcomes: [adjektiv-beschreiben]
+    type: write
+    prompt:
+      en: "A friend is coming to visit and asks what your flat is like. Write a short reply describing two rooms."
+      ru: "Друг собирается в гости и спрашивает, какая у вас квартира. Напишите короткий ответ с описанием двух комнат."
+      uk: "Друг збирається в гості й питає, яка у вас квартира. Напишіть коротку відповідь з описом двох кімнат."
+    goal:
+      en: "Describe your home so that someone who has never seen it can picture it."
+      ru: "Описать своё жильё так, чтобы человек, никогда его не видевший, смог его представить."
+      uk: "Описати своє житло так, щоб людина, яка ніколи його не бачила, змогла його уявити."
+    requirements:
+      - en: "Use at least three adjectives in front of a noun (eine helle Küche, ein kleines Bad)."
+        ru: "Используйте минимум три прилагательных перед существительным (eine helle Küche, ein kleines Bad)."
+        uk: "Використайте щонайменше три прикметники перед іменником (eine helle Küche, ein kleines Bad)."
+      - en: "Use at least one adjective after ist or sind, where it takes no ending."
+        ru: "Используйте минимум одно прилагательное после ist или sind — там окончания нет."
+        uk: "Використайте щонайменше один прикметник після ist або sind — там закінчення немає."
+      - en: "Mention one thing you like and one thing you would change."
+        ru: "Назовите одно, что вам нравится, и одно, что вы бы изменили."
+        uk: "Назвіть одне, що вам подобається, і одне, що ви б змінили."
+    model_answer: "Meine Wohnung ist nicht groß, aber sehr gemütlich. Die Küche ist hell und ich koche dort gern. Das Wohnzimmer hat ein großes Fenster und einen alten Tisch von meiner Oma. Das Schlafzimmer ist leider ziemlich dunkel. Ich hätte gern ein helleres Zimmer, aber die Miete ist günstig und die Nachbarn sind nett."
+    model_translation:
+      en: "My flat is not big, but very cosy. The kitchen is bright and I like cooking there. The living room has a big window and an old table from my grandmother. The bedroom is unfortunately rather dark. I would like a brighter room, but the rent is affordable and the neighbours are nice."
+      ru: "Моя квартира небольшая, но очень уютная. Кухня светлая, и я люблю там готовить. В гостиной большое окно и старый стол от бабушки. Спальня, к сожалению, довольно тёмная. Мне бы хотелось комнату посветлее, но аренда недорогая, а соседи приятные."
+      uk: "Моя квартира невелика, але дуже затишна. Кухня світла, і я люблю там готувати. У вітальні велике вікно і старий стіл від бабусі. Спальня, на жаль, доволі темна. Мені б хотілося світлішу кімнату, але оренда недорога, а сусіди приємні."
+    min_words: 30
+    explain:
+      en: "Read your own draft back looking only at the adjectives. Every one that sits after ist or sind should be bare; every one in front of a noun should carry an ending. In the model those are gemütlich, hell, dunkel, günstig and nett on one side, and ein großes Fenster, einen alten Tisch, ein helleres Zimmer on the other."
+      ru: "Перечитайте свой текст, глядя только на прилагательные. Все, что стоят после ist или sind, должны быть голыми; все, что перед существительным, — с окончанием. В образце это gemütlich, hell, dunkel, günstig и nett с одной стороны и ein großes Fenster, einen alten Tisch, ein helleres Zimmer — с другой."
+      uk: "Перечитайте свій текст, дивлячись лише на прикметники. Усі, що стоять після ist або sind, мають бути голими; усі, що перед іменником, — із закінченням. У зразку це gemütlich, hell, dunkel, günstig і nett з одного боку і ein großes Fenster, einen alten Tisch, ein helleres Zimmer — з іншого."
+
+  - id: speak-was-suchen-sie
+    outcomes: [adjektiv-wunsch-sagen]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "You are at a furniture shop. Tell the assistant what you are looking for and answer the question \"Wie groß soll er sein?\""
+      ru: "Вы в мебельном магазине. Скажите продавцу, что вы ищете, и ответьте на вопрос «Wie groß soll er sein?»"
+      uk: "Ви в меблевому магазині. Скажіть продавцеві, що ви шукаєте, і дайте відповідь на питання «Wie groß soll er sein?»"
+    goal:
+      en: "Say what kind of thing you want, precisely enough that someone could fetch it for you."
+      ru: "Сказать, какая именно вещь вам нужна, — достаточно точно, чтобы её могли принести."
+      uk: "Сказати, яка саме річ вам потрібна, — досить точно, щоб її могли принести."
+    checklist:
+      - en: "Name the thing with at least one adjective in front of it (einen kleinen Tisch)."
+        ru: "Назовите предмет минимум с одним прилагательным перед ним (einen kleinen Tisch)."
+        uk: "Назвіть предмет щонайменше з одним прикметником перед ним (einen kleinen Tisch)."
+      - en: "Give a second detail — colour, price or size."
+        ru: "Добавьте вторую деталь — цвет, цену или размер."
+        uk: "Додайте другу деталь — колір, ціну або розмір."
+      - en: "Ask one question back."
+        ru: "Задайте один встречный вопрос."
+        uk: "Поставте одне зустрічне питання."
+    model_answer: "Guten Tag, ich suche einen kleinen Tisch für die Küche. Er soll nicht zu teuer sein — vielleicht bis achtzig Euro. Haben Sie auch einen runden Tisch? Ein heller Tisch wäre schön, aber das ist nicht so wichtig."
+    model_translation:
+      en: "Hello, I am looking for a small table for the kitchen. It should not be too expensive — maybe up to eighty euros. Do you also have a round table? A light-coloured table would be nice, but that is not so important."
+      ru: "Здравствуйте, я ищу маленький стол для кухни. Он не должен быть слишком дорогим — скажем, до восьмидесяти евро. У вас есть круглый стол? Светлый стол был бы кстати, но это не так важно."
+      uk: "Доброго дня, я шукаю маленький стіл для кухні. Він не має бути надто дорогим — скажімо, до вісімдесяти євро. У вас є круглий стіл? Світлий стіл був би доречним, але це не так важливо."
+    explain:
+      en: "Listen back for the two shapes. einen kleinen Tisch and einen runden Tisch are accusative objects of suchen and haben, so both take -en. Ein heller Tisch is the subject of a new sentence, and there the masculine nominative needs -er. Meanwhile teuer, after sein soll, stays bare."
+      ru: "Прослушайте запись и обратите внимание на две формы. einen kleinen Tisch и einen runden Tisch — винительные дополнения при suchen и haben, поэтому оба дают -en. Ein heller Tisch — подлежащее нового предложения, и там мужской именительный требует -er. А teuer после sein soll остаётся голым."
+      uk: "Прослухайте запис і зверніть увагу на дві форми. einen kleinen Tisch і einen runden Tisch — знахідні додатки при suchen і haben, тому обидва дають -en. Ein heller Tisch — підмет нового речення, і там чоловічий називний вимагає -er. А teuer після sein soll залишається голим."

@@ -1,0 +1,55 @@
+# Probed competence: supplying the gender marker that an ein-word cannot show —
+# the masculine nominative -er and the neuter -es. That is the one box where the
+# ein-table and the der-table actually disagree, and it is what this lesson is
+# about. All three variants carry the same focus and the same outcome, and each
+# uses people, things and adjectives that appear in no practice item of this
+# topic, so a correct answer cannot come from remembering a drilled sentence.
+topic: adjektive-deklination
+role: probe
+title:
+  en: "Delayed check — the ending ein cannot supply"
+  ru: "Отложенная проверка — окончание, которое ein дать не может"
+  uk: "Відкладена перевірка — закінчення, якого ein дати не може"
+items:
+  - id: probe-adjektiv-unbestimmt-v1
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-unbestimmt
+    prompt_en: "A young doctor is working today."
+    prompt_ru: "Сегодня работает молодой врач."
+    prompt_uk: "Сьогодні працює молодий лікар."
+    answer: "Ein junger Arzt arbeitet heute."
+    accept: ["Heute arbeitet ein junger Arzt."]
+    key_tokens: ["junger"]
+    explain:
+      en: "Arzt is masculine and it is the subject, so this is the masculine nominative — the box where ein shows nothing and the adjective must show it instead: -er."
+      ru: "Arzt — мужского рода и здесь подлежащее, значит это именительный падеж мужского рода: та самая клетка, где ein не показывает ничего и род должно показать прилагательное: -er."
+      uk: "Arzt — чоловічого роду і тут підмет, отже це називний відмінок чоловічого роду: та сама клітинка, де ein не показує нічого і рід має показати прикметник: -er."
+
+  - id: probe-adjektiv-unbestimmt-v2
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-unbestimmt
+    prompt_en: "That is a lovely present."
+    prompt_ru: "Это прекрасный подарок."
+    prompt_uk: "Це прекрасний подарунок."
+    answer: "Das ist ein schönes Geschenk."
+    key_tokens: ["schönes"]
+    explain:
+      en: "Geschenk is neuter. ein looks exactly the same as it would for a masculine noun, so the neuter marker has to appear on the adjective: -es."
+      ru: "Geschenk — среднего рода. Артикль ein выглядит ровно так же, как выглядел бы при мужском, поэтому признак среднего рода должен появиться на прилагательном: -es."
+      uk: "Geschenk — середнього роду. Артикль ein виглядає точно так само, як виглядав би при чоловічому, тому ознака середнього роду має з'явитися на прикметнику: -es."
+
+  - id: probe-adjektiv-unbestimmt-v3
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-unbestimmt
+    prompt_en: "I am buying a red bike."
+    prompt_ru: "Я покупаю красный велосипед."
+    prompt_uk: "Я купую червоний велосипед."
+    answer: "Ich kaufe ein rotes Fahrrad."
+    key_tokens: ["rotes"]
+    explain:
+      en: "Fahrrad is neuter, and the neuter accusative looks identical to the neuter nominative — ein either way. So the ending stays -es: the case changed, but the gender the article hides did not."
+      ru: "Fahrrad — среднего рода, а винительный среднего выглядит так же, как именительный: ein в обоих случаях. Поэтому окончание остаётся -es: падеж изменился, а скрытый артиклем род — нет."
+      uk: "Fahrrad — середнього роду, а знахідний середнього виглядає так само, як називний: ein в обох випадках. Тому закінчення залишається -es: відмінок змінився, а прихований артиклем рід — ні."
