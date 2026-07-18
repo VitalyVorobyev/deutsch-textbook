@@ -71,9 +71,12 @@ Measured with `bun scripts/grammar-coverage.ts A2`; the count is pinned in
   Erklärung section — a structure that is drilled but never explained is not taught.
   **The four-outcome ceiling is worth remembering when planning an extension**: it decides where
   new grammar can go, and it is easy to discover only after the content is written.
-- **P10-6 · `man` und Besitz** — `todo`. Indefinitpronomen (`indefinitpronomen`) and the Genitiv-s
-  on proper names with *von* + Dativ as the everyday alternative (`genitiv-eigenname`). `man` is
-  used in eight A2 articles already and taught in none.
+- **P10-6 · `man` und Besitz** — `done` 2026-07-18. A2 grammar 90% → **97%**. `man` had been used
+  in eight A2 articles and taught in none. `vocab: []`: `man` and `jeder` are both `~` in the
+  Wortliste (grammar, no card) and *jemand*, *niemand*, *etwas*, *nichts* are already decked, so
+  there was nothing left to own — the same `~als` trap checked for before writing, not after.
+  Second topic with two probe families. `deepens: [dativ]` was rejected as inert on first attempt
+  and earned honestly instead, with an item that grades the case after *von*.
 - **P10-7 · Passiv Präsens, rezeptiv** — `todo`. Tag `passiv-rezeptiv`. The exam wants
   comprehension, not production — but recognition that is never checked is not evidence, so it
   still needs drilled items, and it still needs no deck.

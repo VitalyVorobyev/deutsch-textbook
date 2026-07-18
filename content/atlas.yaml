@@ -1139,6 +1139,41 @@ nodes:
         ru: "Я умею упорядочить события: zuerst, dann, danach, schließlich."
         uk: "Я вмію впорядкувати події: zuerst, dann, danach, schließlich."
 
+  - id: man-und-besitz
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [modalverben, dativ, verbindungen-folgen]
+    # Real edge on `dativ`, via `dativ-praepositionen`: `von + Dativ` is the everyday way to say
+    # whose something is, and choosing the dative after `von` is the base topic's confusion
+    # unchanged. `modalverben` is a prerequisite but not deepened — `man darf` uses the modal the
+    # learner already has and adds no confusion about it; the new confusion is that the sentence
+    # needs a subject at all.
+    deepens: [dativ]
+    outcomes:
+      - id: regeln-mit-man
+        mode: spoken-production
+        domain: public
+        de: "Ich kann mit man sagen, was man wo darf, muss und nicht darf."
+        en: "I can use man to say what is allowed, required and forbidden somewhere."
+        ru: "Я умею с помощью man сказать, что где можно, нужно и нельзя."
+        uk: "Я вмію за допомогою man сказати, що де можна, треба і не можна."
+      - id: unbestimmt-sprechen
+        mode: writing
+        domain: personal
+        de: "Ich kann mit jemand, niemand, etwas und nichts über Unbestimmtes sprechen."
+        en: "I can talk about the unspecified with jemand, niemand, etwas and nichts."
+        ru: "Я умею говорить о неопределённом с помощью jemand, niemand, etwas и nichts."
+        uk: "Я вмію говорити про неозначене за допомогою jemand, niemand, etwas і nichts."
+      - id: besitz-ausdruecken
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wem etwas gehört: Annas Auto oder das Auto von meinem Bruder."
+        en: "I can say whose something is: Annas Auto or das Auto von meinem Bruder."
+        ru: "Я умею сказать, кому что принадлежит: Annas Auto или das Auto von meinem Bruder."
+        uk: "Я вмію сказати, кому що належить: Annas Auto або das Auto von meinem Bruder."
+
   - id: freunde-feste
     level: A2
     kind: communication
@@ -1465,6 +1500,16 @@ units:
     title_ru: "Связки и следствия"
     title_uk: "Зв'язки та наслідки"
     topics: [verbindungen-folgen]
+  # Last of the A2 grammar units, and it sits after `verbindungen-folgen` because `von + Dativ`
+  # leans on the Dativ unit while `man` is most useful once the learner can already state rules
+  # and their consequences.
+  - id: man-und-besitz
+    level: A2
+    title_de: "man, jemand & Besitz"
+    title_en: "man, jemand & possession"
+    title_ru: "man, jemand и принадлежность"
+    title_uk: "man, jemand і належність"
+    topics: [man-und-besitz]
   - id: freunde-feste
     level: A2
     title_de: "Freunde, Einladungen & Feste"

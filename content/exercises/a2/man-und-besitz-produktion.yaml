@@ -1,0 +1,181 @@
+topic: man-und-besitz
+role: practice
+title:
+  en: "Rules and belongings — listen, write, speak"
+  ru: "Правила и вещи — слушать, писать, говорить"
+  uk: "Правила та речі — слухати, говорити, писати"
+items:
+  - id: uebersetzen-man-hier
+    outcomes: [regeln-mit-man]
+    type: translate
+    focus: indefinitpronomen
+    prompt_en: "You cannot park here."
+    prompt_ru: "Здесь нельзя парковаться."
+    prompt_uk: "Тут не можна паркуватися."
+    answer: "Hier darf man nicht parken."
+    accept: ["Man darf hier nicht parken."]
+    key_tokens: ["man"]
+    explain:
+      en: "The whole item is the one word neither source sentence contains. English cannot park has no subject to copy either — you is understood — and German cannot leave the slot empty. Both word orders are good German: fronting Hier pushes man behind the verb, and starting with man keeps it in front."
+      ru: "Всё задание держится на одном слове, которого нет ни в одном исходном предложении. Русское «здесь нельзя парковаться» подлежащего не имеет вовсе, а немецкое предложение оставить это место пустым не может. Оба порядка слов — хороший немецкий: вынесенное вперёд Hier отправляет man за глагол, а начало с man оставляет его впереди."
+      uk: "Усе завдання тримається на одному слові, якого немає в жодному вихідному реченні. Українське «тут не можна паркуватися» підмета не має зовсім, а німецьке речення залишити це місце порожнім не може. Обидва порядки слів — гарна німецька: винесене вперед Hier відправляє man за дієслово, а початок із man залишає його попереду."
+
+  - id: uebersetzen-annas-fahrrad
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    instruction:
+      en: "Use the name with -s (not von)."
+      ru: "Используйте имя с -s (не von)."
+      uk: "Використайте ім'я з -s (не von)."
+    prompt_en: "That is Anna's bike."
+    prompt_ru: "Это велосипед Анны."
+    prompt_uk: "Це велосипед Анни."
+    answer: "Das ist Annas Fahrrad."
+    key_tokens: ["Annas"]
+    explain:
+      en: "One word carries it: Annas, with the -s written straight onto the name and no apostrophe. English spells the same thing Anna's, which is exactly why the apostrophe is the error to expect here rather than the -s itself."
+      ru: "Всё держится на одном слове: Annas, где -s пишется прямо на имени, без апострофа. По-русски здесь родительный падеж — «велосипед Анны», и порядок слов обратный немецкому: имя стоит после предмета, а по-немецки перед ним."
+      uk: "Усе тримається на одному слові: Annas, де -s пишеться прямо на імені, без апострофа. Українською тут родовий відмінок — «велосипед Анни», і порядок слів зворотний німецькому: ім'я стоїть після предмета, а німецькою перед ним."
+
+  - id: audio-hausordnung
+    outcomes: [regeln-mit-man]
+    type: audio-comprehension
+    source:
+      kind: tts
+      turns:
+        - speaker: "Hausmeister"
+          text: "Guten Tag, Sie sind neu hier? Dann erkläre ich Ihnen kurz die Hausordnung."
+        - speaker: "Frau Lang"
+          text: "Ja, gern."
+        - speaker: "Hausmeister"
+          text: "Nach zweiundzwanzig Uhr soll man leise sein. Und im Treppenhaus darf man keine Fahrräder abstellen."
+        - speaker: "Frau Lang"
+          text: "Und wo kann man das Fahrrad hinstellen?"
+        - speaker: "Hausmeister"
+          text: "Im Keller. Der Schlüssel ist beim Briefkasten von Familie Weber, die wohnen im Erdgeschoss."
+        - speaker: "Frau Lang"
+          text: "Alles klar. Und der Müll?"
+        - speaker: "Hausmeister"
+          text: "Die Tonnen stehen hinten im Hof. Am Sonntag macht man das aber nicht — da ist Ruhetag."
+    question: "Wo soll Frau Lang ihr Fahrrad abstellen?"
+    options:
+      - "Im Keller."
+      - "Im Treppenhaus."
+      - "Hinten im Hof."
+      - "Bei Familie Weber."
+    correct: 0
+    translation:
+      en: "In the cellar. The stairwell is where bikes are not allowed, the yard is for the bins, and the Webers only have the key."
+      ru: "В подвале. На лестнице велосипеды как раз запрещены, во дворе стоят баки, а у семьи Вебер только ключ."
+      uk: "У підвалі. На сходах велосипеди якраз заборонені, у дворі стоять баки, а в родини Вебер лише ключ."
+    explain:
+      en: "House rules are where man lives, and almost every sentence here uses it: soll man leise sein, darf man keine Fahrräder abstellen, kann man das Fahrrad hinstellen, macht man das nicht. Nobody in particular is meant — that is the point of the word. Note also the caretaker saying von Familie Weber rather than a genitive: with a family name and an article in front, von + Dativ is what people say."
+      ru: "Правила дома — родная стихия слова man, и здесь оно почти в каждой фразе: soll man leise sein, darf man keine Fahrräder abstellen, kann man das Fahrrad hinstellen, macht man das nicht. Никто конкретный не имеется в виду — в этом и смысл слова. Обратите внимание и на von Familie Weber вместо родительного: при фамилии с артиклем говорят именно von + Dativ."
+      uk: "Правила будинку — рідна стихія слова man, і тут воно майже в кожній фразі: soll man leise sein, darf man keine Fahrräder abstellen, kann man das Fahrrad hinstellen, macht man das nicht. Ніхто конкретний не мається на увазі — у цьому й сенс слова. Зверніть увагу й на von Familie Weber замість родового: при прізвищі з артиклем кажуть саме von + Dativ."
+
+  - id: mc-doppelte-verneinung
+    outcomes: [unbestimmt-sprechen]
+    type: mc
+    focus: indefinitpronomen
+    prompt: "Sie waren allein im Büro. Welcher Satz sagt das richtig?"
+    options:
+      - "Niemand hat etwas gesagt."
+      - "Niemand hat nichts gesagt."
+      - "Niemand hat nicht etwas gesagt."
+      - "Keiner hat nichts gesagt."
+    correct: 0
+    translation:
+      en: "Nobody said anything."
+      ru: "Никто ничего не сказал."
+      uk: "Ніхто нічого не сказав."
+    explain:
+      en: "German uses one negative word per sentence and lets it do the whole job. niemand has already made the sentence negative, so what follows is the positive etwas. Options 2 and 4 add a second negative, which in German cancels rather than reinforces — Niemand hat nichts gesagt literally says everyone said something. Option 3 stacks nicht on top of niemand for the same reason."
+      ru: "Немецкий обходится одним отрицательным словом на предложение и поручает ему всю работу. niemand уже сделало фразу отрицательной, поэтому дальше идёт положительное etwas. Второй и четвёртый варианты добавляют второе отрицание, а в немецком оно не усиливает, а снимает первое: Niemand hat nichts gesagt буквально значит «все что-то сказали». В третьем на niemand навешено ещё и nicht. По-русски двойное отрицание обязательно — «никто ничего не сказал», — и в этом вся трудность."
+      uk: "Німецька обходиться одним заперечним словом на речення і доручає йому всю роботу. niemand уже зробило фразу заперечною, тому далі йде стверджувальне etwas. Другий і четвертий варіанти додають друге заперечення, а в німецькій воно не підсилює, а знімає перше: Niemand hat nichts gesagt буквально значить «усі щось сказали». У третьому на niemand навішено ще й nicht. Українською подвійне заперечення обов'язкове — «ніхто нічого не сказав», — і в цьому вся складність."
+
+  - id: cloze-von-welcher-kasus
+    outcomes: [besitz-ausdruecken]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: "von governs one case. Put in the right form."
+      ru: "von управляет одним падежом. Впишите нужную форму."
+      uk: "von керує одним відмінком. Впишіть потрібну форму."
+    text: "Das ist das Auto von {{meinem}} Bruder. Der Hund von {{unseren}} Nachbarn bellt viel. Und die Wohnung von {{der}} Familie Klein ist im dritten Stock."
+    translation:
+      en: "That is my brother's car. Our neighbours' dog barks a lot. And the Klein family's flat is on the third floor."
+      ru: "Это машина моего брата. Собака наших соседей много лает. А квартира семьи Кляйн на четвёртом этаже."
+      uk: "Це машина мого брата. Собака наших сусідів багато гавкає. А квартира родини Кляйн на четвертому поверсі."
+    explain:
+      en: "Choosing von is only half the job — von is one of the prepositions that always govern the dative, so what follows it has to be in that case: meinem, unseren, der. This is the same rule as bei, mit, nach and zu, and it does not relax because the phrase happens to be about possession."
+      ru: "Выбрать von — это только половина дела: von относится к предлогам, которые всегда требуют дательного, поэтому то, что за ним стоит, должно быть в этом падеже: meinem, unseren, der. Правило то же, что у bei, mit, nach и zu, и оно не смягчается оттого, что группа выражает принадлежность."
+      uk: "Обрати von — це лише половина справи: von належить до прийменників, які завжди вимагають давального, тому те, що за ним стоїть, має бути в цьому відмінку: meinem, unseren, der. Правило те саме, що в bei, mit, nach і zu, і воно не пом'якшується від того, що група виражає належність."
+
+  - id: write-hausordnung
+    outcomes: [regeln-mit-man]
+    type: write
+    prompt:
+      en: "A friend is moving into your building and asks what the rules are. Write a short message explaining three or four of them."
+      ru: "Друг въезжает в ваш дом и спрашивает, какие здесь правила. Напишите короткое сообщение и объясните три-четыре из них."
+      uk: "Друг заїжджає у ваш будинок і питає, які тут правила. Напишіть коротке повідомлення й поясніть три-чотири з них."
+    goal:
+      en: "State the rules of a place so that someone new would not get them wrong."
+      ru: "Изложить правила места так, чтобы новый человек в них не ошибся."
+      uk: "Викласти правила місця так, щоб нова людина в них не помилилася."
+    requirements:
+      - en: "Use man at least three times, with the er-form of the verb."
+        ru: "Используйте man минимум три раза, с формой глагола как при er."
+        uk: "Використайте man щонайменше тричі, з формою дієслова як при er."
+      - en: "Include one thing that is not allowed and one that is."
+        ru: "Назовите одно, что запрещено, и одно, что разрешено."
+        uk: "Назвіть одне, що заборонено, і одне, що дозволено."
+      - en: "Say who something belongs to, with a name + -s or with von + Dativ."
+        ru: "Скажите, кому что принадлежит, — через имя + -s или через von + Dativ."
+        uk: "Скажіть, кому що належить, — через ім'я + -s або через von + Dativ."
+    model_answer: "Hallo! Hier die wichtigsten Regeln: Nach zweiundzwanzig Uhr muss man leise sein, das nehmen die Nachbarn ernst. Im Treppenhaus darf man keine Fahrräder abstellen, aber im Keller kann man sie hinstellen. Den Schlüssel bekommst du von Familie Weber im Erdgeschoss. Den Müll bringt man hinten in den Hof, sonntags aber nicht. Und der Parkplatz neben der Tür ist Herrn Bergers Platz — da stellt man sich besser nicht hin!"
+    model_translation:
+      en: "Hi! Here are the most important rules: after ten pm you have to be quiet, the neighbours take that seriously. You are not allowed to leave bikes in the stairwell, but you can put them in the cellar. You get the key from the Weber family on the ground floor. The rubbish goes round the back into the yard, but not on Sundays. And the parking space next to the door is Mr Berger's — better not park there!"
+      ru: "Привет! Вот главные правила: после двадцати двух нужно вести себя тихо, соседи к этому относятся серьёзно. На лестнице велосипеды ставить нельзя, а в подвале можно. Ключ получишь у семьи Вебер на первом этаже. Мусор выносят на задний двор, но не по воскресеньям. А парковочное место у двери — место господина Бергера, туда лучше не вставать!"
+      uk: "Привіт! Ось головні правила: після двадцять другої треба поводитися тихо, сусіди ставляться до цього серйозно. На сходах велосипеди ставити не можна, а в підвалі можна. Ключ отримаєш у родини Вебер на першому поверсі. Сміття виносять на задній двір, але не в неділю. А паркувальне місце біля дверей — місце пана Бергера, туди краще не ставати!"
+    min_words: 40
+    explain:
+      en: "Read your draft back looking only at the verbs that follow man: every one should be the er-form — muss, darf, kann, bringt, stellt — never the du-form, however much an English you suggests otherwise. Then check the two ways of saying whose something is: von Familie Weber has an article in front of the name, so it takes von, while Herrn Bergers Platz is a bare name and takes the -s. Both appear in the model on purpose."
+      ru: "Перечитайте свой текст, глядя только на глаголы после man: все они должны стоять в форме er — muss, darf, kann, bringt, stellt, — и никогда в форме du, как бы ни подсказывало английское you. Затем проверьте два способа сказать, чьё это: в von Familie Weber перед фамилией стоит артикль, поэтому нужен von, а Herrn Bergers Platz — голое имя, и оно берёт -s. Оба случая в образце стоят намеренно."
+      uk: "Перечитайте свій текст, дивлячись лише на дієслова після man: усі вони мають стояти у формі er — muss, darf, kann, bringt, stellt, — і ніколи у формі du, хоч би як підказувало англійське you. Потім перевірте два способи сказати, чиє це: у von Familie Weber перед прізвищем стоїть артикль, тому потрібен von, а Herrn Bergers Platz — голе ім'я, і воно бере -s. Обидва випадки у зразку стоять навмисно."
+
+  - id: speak-regeln-erklaeren
+    # regeln-mit-man, not unbestimmt-sprechen: this task is an oral explanation of rules
+    # built on man, and it is the only speaking attempt the topic produces. Tagging it with
+    # the indefinite-pronoun outcome would have given a writing outcome unrelated spoken
+    # evidence while the spoken-production outcome got none.
+    outcomes: [regeln-mit-man]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "A visitor asks how something works where you live or work — a library, a swimming pool, an office. Explain the rules."
+      ru: "Гость спрашивает, как всё устроено там, где вы живёте или работаете, — в библиотеке, бассейне, офисе. Объясните правила."
+      uk: "Гість питає, як усе влаштовано там, де ви живете чи працюєте, — у бібліотеці, басейні, офісі. Поясніть правила."
+    goal:
+      en: "Explain how a place works to somebody who has never been there."
+      ru: "Объяснить, как устроено место, человеку, который там никогда не был."
+      uk: "Пояснити, як влаштоване місце, людині, яка там ніколи не була."
+    checklist:
+      - en: "Use man with darf, kann and muss."
+        ru: "Используйте man с darf, kann и muss."
+        uk: "Використайте man з darf, kann і muss."
+      - en: "Say one thing nobody does there (niemand or man … nicht)."
+        ru: "Скажите об одном, чего там никто не делает (niemand или man … nicht)."
+        uk: "Скажіть про одне, чого там ніхто не робить (niemand або man … nicht)."
+      - en: "Answer a question the visitor might ask back."
+        ru: "Ответьте на встречный вопрос, который может задать гость."
+        uk: "Дайте відповідь на зустрічне питання, яке може поставити гість."
+    model_answer: "Also, in unserer Bibliothek muss man sich zuerst anmelden, das dauert fünf Minuten. Dann bekommt man einen Ausweis und kann bis zu zehn Bücher mitnehmen. Essen darf man drinnen nicht, trinken schon, aber nur Wasser. Und laut sprechen macht man da natürlich auch nicht. Wenn man ein Buch zu spät zurückbringt, zahlt man einen Euro pro Woche. Ach, und der Computerraum im ersten Stock — den Schlüssel holt man bei Frau Sommer."
+    model_translation:
+      en: "So, in our library you first have to register, that takes five minutes. Then you get a card and can take out up to ten books. You are not allowed to eat inside, drinking is fine but only water. And of course nobody talks loudly in there either. If you bring a book back late, you pay a euro a week. Oh, and the computer room on the first floor — you get the key from Frau Sommer."
+      ru: "Итак, в нашей библиотеке сначала нужно записаться, это занимает пять минут. Потом выдают читательский билет, и можно брать до десяти книг. Есть внутри нельзя, пить можно, но только воду. И громко разговаривать там, конечно, тоже не принято. Если сдать книгу с опозданием, платишь евро в неделю. А, и компьютерный зал на втором этаже — ключ берут у госпожи Зоммер."
+      uk: "Отже, у нашій бібліотеці спочатку треба записатися, це триває п'ять хвилин. Потім видають читацький квиток, і можна брати до десяти книжок. Їсти всередині не можна, пити можна, але лише воду. І голосно розмовляти там, звісно, теж не заведено. Якщо здати книжку із запізненням, платиш євро на тиждень. А, і комп'ютерна зала на другому поверсі — ключ беруть у пані Зоммер."
+    explain:
+      en: "Listen back and count the man sentences — the model has seven, and that density is normal when explaining how a place works, because none of it is about any particular person. Check that every verb after it is the er-form: muss, bekommt, kann, darf, macht, zahlt, holt. And notice bei Frau Sommer at the end: the key belongs to nobody, you simply fetch it from her, so no possessive is needed at all."
+      ru: "Прослушайте запись и посчитайте предложения с man — в образце их семь, и такая плотность нормальна, когда объясняешь устройство места: речь ведь не идёт ни о ком конкретно. Проверьте, что каждый глагол после него стоит в форме er: muss, bekommt, kann, darf, macht, zahlt, holt. И обратите внимание на bei Frau Sommer в конце: ключ никому не принадлежит, его просто у неё берут, так что притяжательная конструкция здесь вообще не нужна."
+      uk: "Прослухайте запис і порахуйте речення з man — у зразку їх сім, і така щільність нормальна, коли пояснюєш устрій місця: мова ж не йде ні про кого конкретно. Перевірте, що кожне дієслово після нього стоїть у формі er: muss, bekommt, kann, darf, macht, zahlt, holt. І зверніть увагу на bei Frau Sommer у кінці: ключ нікому не належить, його просто в неї беруть, тож присвійна конструкція тут узагалі не потрібна."
