@@ -1,7 +1,13 @@
 /** Word-level answer diffing shared by Translate and Listen renderers. */
 
-/** Strip attached punctuation so "Hund." and "Hund" count as the same word in the diff. */
-const wordKey = (w: string) => w.replace(/[.,!?;:]+$/, '');
+/** Strip attached punctuation so "Hund." and "Hund" count as the same word in the
+    diff, folding the typographic variants the grader also folds. A word that was
+    nothing but punctuation (the dialogue "—") keys to '' and is never marked. */
+const wordKey = (w: string) => {
+  const folded = w.replace(/[’‚‘]/g, "'").replace(/[„“”«»]/g, '').replace(/[–—]/g, '-');
+  if (/^[-.,!?;:…']*$/.test(folded)) return '';
+  return folded.replace(/[.,!?;:…]+$/, '');
+};
 
 /**
  * Word-level diff via longest common subsequence: returns one flag per word of
@@ -32,5 +38,7 @@ export function diffExpectedWords(expected: string[], given: string[]): boolean[
       j += 1;
     }
   }
+  // Punctuation is not graded, so an omitted "—" is not the learner's miss.
+  for (let k = 0; k < a.length; k++) if (a[k] === '') differs[k] = false;
   return differs;
 }

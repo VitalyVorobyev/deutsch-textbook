@@ -16,6 +16,11 @@
  *     logged wrong but *unattributed*: an honest gap beats a false signal.
  *     `Sie ist zu Hause gebliebt` is not evidence about `haben-sein` — `ist` is right.
  *
+ * Underneath both: punctuation and typography are not part of the graded surface at
+ * all (`normalizeTranslation` removes them before tokens are compared). No focus tag
+ * grades a comma, and an omitted dialogue "—" used to change the token count — which
+ * silently disabled rule 1 for the sentence the learner actually wrote.
+ *
  * `key_tokens` on the item names the tokens it actually grades. Where it is absent the
  * fallbacks are the old behaviour (attribute to the item's tag), so an unaudited item
  * is never made *worse* than it was — only a declared item gets the sharper treatment.
@@ -136,11 +141,9 @@ const isFunctionWordSwap = (typed: string, expected: string) =>
  */
 export function dictationSlip(given: string, expected: string): boolean {
   // Tokenized the way a dictation is *scored*, not the way a translation is. `dictationMatches`
-  // strips ALL punctuation — you cannot hear a comma — so a learner who omits one has done
-  // nothing wrong by that item's own rules. Tokenizing with `normalizeTranslation` (which
-  // strips only a trailing `.!?`) would leave `nicht,` attached, and on a comma-bearing
-  // sentence the missing comma plus one typo would read as *two* divergences — no longer a
-  // slip, and the false grammar attribution this function exists to prevent would survive.
+  // strips ALL punctuation everywhere — you cannot hear a comma, and word-internal hyphens
+  // and apostrophes go too — where `normalizeTranslation` keeps `E-Mail` and `geht's` whole.
+  // The slip question must be asked against the same surface the score was decided on.
   const want = normalizeDictation(expected).split(/\s+/).filter(Boolean);
   const got = normalizeDictation(given).split(/\s+/).filter(Boolean);
   if (want.length !== got.length) return false;

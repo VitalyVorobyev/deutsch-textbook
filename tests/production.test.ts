@@ -446,3 +446,52 @@ describe('a dictation slip is measured the way a dictation is scored', () => {
     expect(dictationSlip('Ich weiß nicht was dieses Wort bedeutet.', heard)).toBe(false);
   });
 });
+
+describe('punctuation and typography are not part of the graded surface', () => {
+  // Real complaint: `-` typed for the dialogue `—` was rejected, and so was a
+  // missing internal period. The dash is the sharpest case: omitted entirely, it
+  // changed the token count, so the one-slip rule never even ran.
+  const dialog = {
+    answer: 'Worauf wartet ihr? — Auf die Antwort.',
+    focus: 'verb-praeposition',
+    keyTokens: ['Worauf'],
+  };
+
+  test('omitting the dialogue dash is not an error', () => {
+    expect(gradeTranslation('Worauf wartet ihr? Auf die Antwort.', dialog).kind).toBe('correct');
+  });
+
+  test('a plain hyphen for the em-dash is not an error and burns no slip budget', () => {
+    // Before: `-` for `—` consumed the one-slip budget, so this typo sank the item.
+    const verdict = gradeTranslation('Worauf wartet ihr? - Auf die Antwrot.', dialog);
+    expect(verdict.kind).toBe('spelling');
+  });
+
+  test('the graded token is still graded with the dash gone', () => {
+    expect(gradeTranslation('Wofür wartet ihr? Auf die Antwort.', dialog)).toEqual({
+      kind: 'wrong',
+      focus: 'verb-praeposition',
+    });
+  });
+
+  test('a missing internal period is not an error', () => {
+    const spec = { answer: 'Ich komme später. Ich rufe dich an.' };
+    expect(gradeTranslation('Ich komme später Ich rufe dich an', spec).kind).toBe('correct');
+  });
+
+  test('a missing comma before weil neither fails nor burns the slip budget', () => {
+    const spec = {
+      answer: 'Ich bleibe zu Hause, weil ich krank bin.',
+      focus: 'nebensatz-verbende',
+      keyTokens: ['bin'],
+    };
+    expect(gradeTranslation('Ich bleibe zu Hause weil ich krank bin', spec).kind).toBe('correct');
+    // Comma missing AND one typo: before, two divergences — no longer a slip.
+    expect(gradeTranslation('Ich bleibe zu Hasue weil ich krank bin', spec).kind).toBe('spelling');
+  });
+
+  test('a typographic apostrophe matches the straight one', () => {
+    const spec = { answer: "Wie geht's dir?" };
+    expect(gradeTranslation('Wie geht’s dir?', spec).kind).toBe('correct');
+  });
+});

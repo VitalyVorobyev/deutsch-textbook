@@ -25,7 +25,6 @@ items:
     answer: "Ich möchte einen Salat und ein Wasser, bitte."
     key_tokens: ["einen", "ein"]
     accept:
-      - "Ich möchte einen Salat und ein Wasser bitte."
       - "Ich nehme einen Salat und ein Wasser, bitte."
     explain:
       en: "möchte is the polite way to order, and what you order is an accusative object: der Salat → einen Salat, while das Wasser keeps ein."
@@ -63,8 +62,6 @@ items:
     prompt_uk: "Я хотів би каву без цукру, будь ласка."
     answer: "Ich möchte einen Kaffee ohne Zucker, bitte."
     key_tokens: ["einen"]
-    accept:
-      - "Ich möchte einen Kaffee ohne Zucker bitte."
     explain:
       en: "der Kaffee is the object of möchte, so it appears as einen Kaffee. After ohne, Zucker stands with no article at all — a mass noun ordered as a plain quantity needs none."
       ru: "der Kaffee — дополнение при möchte, поэтому в заказе он звучит как einen Kaffee. После ohne слово Zucker идёт вообще без артикля: с неисчисляемым существительным он здесь не нужен."

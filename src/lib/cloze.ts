@@ -33,9 +33,39 @@ export function normalizeAnswer(s: string): string {
   return s.trim().replace(/\s+/g, ' ');
 }
 
+/**
+ * Typography the learner cannot be expected to reproduce on their keyboard: curly
+ * quotes and apostrophes, en/em dashes. Folded to plain ASCII before any comparison.
+ */
+function foldTypography(s: string): string {
+  return s
+    .replace(/[’‚‘]/g, "'")
+    .replace(/[„“”«»]/g, ' ')
+    .replace(/[–—]/g, '-');
+}
+
+/**
+ * One token of the graded surface. Attached sentence punctuation goes (`Hause,` and
+ * `Hause` are the same word), and a token that was nothing *but* punctuation dissolves
+ * entirely — the dialogue dash in `Worauf wartet ihr? — Auf die Antwort.` used to
+ * change the token count, which silently disabled slip forgiveness for anyone who
+ * left it out. A word-internal hyphen or apostrophe stays: `E-Mail` and `geht's`
+ * are spelling, not typography.
+ */
+function stripTokenPunctuation(w: string): string {
+  if (/^[-.,!?;:…']+$/.test(w)) return '';
+  return w.replace(/[.,!?;:…]+$/, '').replace(/^[.,!?;:…¿¡]+/, '');
+}
+
 export function answerMatches(given: string, accepted: string[]): boolean {
-  const g = normalizeAnswer(given);
-  return accepted.some((a) => normalizeAnswer(a) === g);
+  const g = normalizeTranslation(given);
+  return accepted.some((a) => {
+    const key = normalizeTranslation(a);
+    // An answer that IS punctuation would dissolve to '' and match empty input —
+    // no such gap exists today, but if one is authored it must stay exact.
+    if (key.length === 0) return normalizeAnswer(a) === normalizeAnswer(given);
+    return key === g;
+  });
 }
 
 /** Normalize an assembled sentence: join tokens, tidy space before punctuation. */
@@ -44,11 +74,18 @@ export function normalizeSentence(tokens: string[]): string {
 }
 
 /**
- * Normalize a free-typed German sentence for comparison: whitespace-normalized,
- * trailing sentence punctuation (. ! ?) optional. Case matters in German.
+ * Normalize a free-typed German sentence for comparison. Case matters in German;
+ * punctuation and typography do not — they are not part of the graded surface.
+ * No focus tag grades a comma or a dash, the model answer is always displayed
+ * fully punctuated, and before this rule a missing internal period or dialogue
+ * dash consumed the one-slip budget that exists for real typos.
  */
 export function normalizeTranslation(s: string): string {
-  return normalizeAnswer(s).replace(/[.!?]+$/, '').trim();
+  return foldTypography(s)
+    .split(/\s+/)
+    .map(stripTokenPunctuation)
+    .filter(Boolean)
+    .join(' ');
 }
 
 /** True if a typed translation matches any of the accepted German sentences. */

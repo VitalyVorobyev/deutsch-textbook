@@ -302,11 +302,12 @@ items:
     outcomes: [trennbar-satz]
     type: cloze
     focus: trennbar-wortstellung
+    revision: 2
     instruction:
       en: Fill in the verb and its prefix.
       ru: Вставьте глагол и его приставку.
       uk: Вставте дієслово та його префікс.
-    text: "Der Zug {{fährt}} um acht Uhr {{ab}}. Ich {{kaufe}} am Samstag {{ein}}."
+    text: "Der Zug {{fährt}} um acht Uhr {{ab}}. (abfahren) Ich {{kaufe}} am Samstag {{ein}}. (einkaufen)"
     explain:
       en: "abfahren and einkaufen both split: the conjugated part holds position 2, the prefix waits at the end of the clause."
       ru: "И abfahren, и einkaufen разделяются: спрягаемая часть стоит на втором месте, приставка ждёт в конце предложения."
@@ -316,11 +317,12 @@ items:
     outcomes: [trennbar-erkennen]
     type: cloze
     focus: trennbar-untrennbar
+    revision: 2
     instruction:
       en: "Fill the gaps. Careful — not every prefix separates."
       ru: "Заполните пропуски. Внимание: не всякая приставка отделяется."
       uk: "Заповніть пропуски. Увага: не кожен префікс відокремлюється."
-    text: "Ich {{verstehe}} die Frage nicht. Er {{bekommt}} morgen ein Paket. Wir {{stehen}} um sechs Uhr {{auf}}."
+    text: "Ich {{verstehe}} die Frage nicht. (verstehen) Er {{bekommt}} morgen ein Paket. (bekommen) Wir {{stehen}} um sechs Uhr {{auf}}. (aufstehen)"
     explain:
       en: "ver- and be- are inseparable and never move: ich verstehe, er bekommt. Only auf- and its kind split off to the end."
       ru: "Приставки ver- и be- неотделяемые и никуда не уходят: ich verstehe, er bekommt. Отделяются только приставки вроде auf-."
