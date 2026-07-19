@@ -13,6 +13,7 @@ items:
     outcomes: [menschen-beschreiben]
     type: translate
     focus: possessivartikel
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -22,6 +23,8 @@ items:
     prompt_uk: "Мій брат — лікар. Йому тридцять."
     answer: "Mein Bruder ist Arzt. Er ist dreißig."
     key_tokens: ["Mein"]
+    accept:
+      - "Mein Bruder ist Arzt. Er ist dreißig Jahre alt."
     explain:
       en: "No article before a profession: er ist Arzt, not ein Arzt. And age is stated with sein, never with haben: er ist dreißig."
       ru: "Перед профессией артикль не ставится: er ist Arzt, а не ein Arzt. Возраст выражается глаголом sein, а не haben: er ist dreißig — «ему тридцать»."
@@ -31,6 +34,7 @@ items:
     outcomes: [familie-vorstellen, menschen-beschreiben]
     type: translate
     focus: possessivartikel
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -40,6 +44,8 @@ items:
     prompt_uk: "Це моя мама. Вона живе в Гамбурзі."
     answer: "Das ist meine Mutter. Sie wohnt in Hamburg."
     key_tokens: ["meine"]
+    accept:
+      - "Das ist meine Mutter. Sie lebt in Hamburg."
     explain:
       en: "die Mutter is feminine, so mein takes -e: meine Mutter. The pointing phrase stays das ist, whatever the gender of what follows."
       ru: "die Mutter — женского рода, поэтому mein получает -e: meine Mutter. Указательный оборот всегда das ist, независимо от рода того, на что указывают."

@@ -56,15 +56,18 @@ items:
     outcomes: [praesens-verbzweit]
     type: translate
     focus: verbzweit
+    revision: 2
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: Translate into German. Begin the second clause with dann.
+      ru: Переведите на немецкий. Начните вторую часть предложения с dann.
+      uk: Перекладіть німецькою. Почніть другу частину речення з dann.
     prompt_en: "I drink coffee and then I read a book."
     prompt_ru: "Я пью кофе, а потом читаю книгу."
     prompt_uk: "Я п'ю каву, а потім читаю книжку."
     answer: "Ich trinke Kaffee und dann lese ich ein Buch."
     key_tokens: ["lese"]
+    accept:
+      - "Ich trinke Kaffee, dann lese ich ein Buch."
     explain:
       en: "dann counts as the first element of its own clause, so the verb has to come next and the subject moves behind it: und dann lese ich — never und dann ich lese."
       ru: "dann занимает первое место в своей части предложения, поэтому дальше обязан идти глагол, а подлежащее уходит за него: und dann lese ich — но не und dann ich lese."
