@@ -1,0 +1,52 @@
+id: sagen-erzaehlen
+kind: meaning-contrast
+level: A2
+title_de: "sagen, erzählen oder berichten?"
+title: { en: "Saying, telling, reporting and mentioning", ru: "Сказать, рассказать, сообщить и упомянуть", uk: "Сказати, розповісти, повідомити й згадати" }
+introduction: { en: "English picks between say and tell mostly by grammar. German picks by the kind of speech: a short utterance, a full story, a factual report or a passing mention.", ru: "Русские «сказать» и «рассказать» делят эту территорию похоже: sagen — «сказать», erzählen — «рассказать»; berichten добавляет официальное сообщение, erwähnen — беглое упоминание.", uk: "Українські «сказати» й «розповісти» ділять цю територію схоже: sagen — «сказати», erzählen — «розповісти»; berichten додає офіційне повідомлення, erwähnen — побіжну згадку." }
+members:
+  - kind: card
+    id: sagen
+    status: productive
+    ref: { deck: kernwortschatz-a2, de: "sagen" }
+    usage: { en: "Say something: a short utterance, an answer or an opinion; often with a dass-clause.", ru: "Сказать что-то: короткую реплику, ответ или мнение; часто с придаточным с dass.", uk: "Сказати щось: коротку репліку, відповідь або думку; часто з підрядним із dass." }
+    collocations: ["die Wahrheit sagen", "sagen, dass ...", "Was hast du gesagt?"]
+    example: { de: "Er sagt, dass er keine Zeit hat.", en: "He says that he has no time.", ru: "Он говорит, что у него нет времени.", uk: "Він каже, що не має часу." }
+  - kind: card
+    id: erzaehlen
+    status: productive
+    ref: { deck: verben-handlungen-a2-1, de: "erzählen" }
+    usage: { en: "Tell at length: a story, an experience, how something happened; the listener often stands in the dative.", ru: "Рассказывать подробно: историю, случай, как что-то произошло; слушатель часто в дативе.", uk: "Розповідати докладно: історію, випадок, як щось сталося; слухач часто в давальному відмінку." }
+    collocations: ["eine Geschichte erzählen", "von der Reise erzählen", "jemandem etwas erzählen"]
+    example: { de: "Oma erzählt den Kindern eine Geschichte.", en: "Grandma is telling the children a story.", ru: "Бабушка рассказывает детям историю.", uk: "Бабуся розповідає дітям історію." }
+  - kind: card
+    id: berichten
+    status: productive
+    ref: { deck: verben-handlungen-a2-1, de: "berichten" }
+    usage: { en: "Report facts in a neutral or formal way, as in the news or at work; often with über + accusative or von + dative.", ru: "Сообщать о фактах нейтрально или официально, как в новостях или на работе; часто с über + Akkusativ или von + Dativ.", uk: "Повідомляти про факти нейтрально або офіційно, як у новинах чи на роботі; часто з über + Akkusativ або von + Dativ." }
+    collocations: ["über den Unfall berichten", "von der Reise berichten"]
+    example: { de: "Die Zeitung berichtet über das Konzert.", en: "The newspaper reports on the concert.", ru: "Газета сообщает о концерте.", uk: "Газета повідомляє про концерт." }
+  - kind: receptive
+    id: erwaehnen
+    status: receptive
+    de: "erwähnen"
+    gloss: { en: "to mention", ru: "упоминать", uk: "згадувати" }
+    usage: { en: "Name something briefly and in passing, without telling more about it.", ru: "Кратко, мимоходом назвать что-то, не рассказывая подробнее.", uk: "Коротко, побіжно назвати щось, не розповідаючи докладніше." }
+    collocations: ["einen Namen erwähnen", "nur kurz erwähnen"]
+    example: { de: "Sie hat deinen Namen kurz erwähnt.", en: "She briefly mentioned your name.", ru: "Она мельком упомянула твоё имя.", uk: "Вона побіжно згадала твоє ім'я." }
+relations:
+  - from: sagen
+    to: erzaehlen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "sagen delivers a short utterance or piece of information; erzählen unfolds a story or experience with details, often to somebody in the dative.", ru: "sagen передаёт короткую реплику или информацию — как «сказать»; erzählen разворачивает историю с подробностями — как «рассказать».", uk: "sagen передає коротку репліку чи інформацію — як «сказати»; erzählen розгортає історію з подробицями — як «розповісти»." }
+  - from: erzaehlen
+    to: berichten
+    type: register
+    basis: current-meaning
+    explanation: { en: "Both introduce a longer account, but berichten is neutral-to-formal and fact-centred (news, police, work); erzählen is personal and lively.", ru: "Оба вводят длинный рассказ, но berichten — нейтрально-официальное изложение фактов (новости, полиция, работа); erzählen — личный, живой рассказ.", uk: "Обидва вводять довшу розповідь, але berichten — нейтрально-офіційний виклад фактів (новини, поліція, робота); erzählen — особиста, жива розповідь." }
+  - from: sagen
+    to: erwaehnen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "erwähnen is even shorter than sagen: the thing is only named in passing, not actually discussed.", ru: "erwähnen ещё короче, чем sagen: предмет лишь называют мимоходом, не обсуждая.", uk: "erwähnen ще коротше, ніж sagen: предмет лише називають побіжно, не обговорюючи." }

@@ -1,0 +1,39 @@
+id: wohnen-leben
+kind: meaning-contrast
+level: A2
+title_de: "wohnen, leben oder übernachten?"
+title: { en: "Residing, living and staying overnight", ru: "Проживать, жить и ночевать", uk: "Мешкати, жити й ночувати" }
+introduction: { en: "English live covers both your address and your whole life. German splits the two — and keeps a separate verb for spending the night somewhere.", ru: "Русское «жить» покрывает и адрес, и жизнь в целом. Немецкий разделяет: wohnen — о жилье, leben — о жизни, а для ночёвки есть отдельный глагол übernachten.", uk: "Українське «жити» покриває і адресу, і життя загалом. Німецька розділяє: wohnen — про житло, leben — про життя, а для ночівлі є окреме дієслово übernachten." }
+members:
+  - kind: card
+    id: wohnen
+    status: productive
+    ref: { deck: erste-schritte, de: "wohnen" }
+    usage: { en: "Reside somewhere: your home, address, street or flat; the verb of the question Wo wohnst du?", ru: "Проживать где-то: дом, адрес, улица, квартира; глагол вопроса Wo wohnst du?", uk: "Мешкати десь: дім, адреса, вулиця, квартира; дієслово запитання Wo wohnst du?" }
+    collocations: ["in Berlin wohnen", "bei den Eltern wohnen", "im dritten Stock wohnen"]
+    example: { de: "Wir wohnen seit einem Jahr in dieser Straße.", en: "We have been living on this street for a year.", ru: "Мы живём на этой улице уже год.", uk: "Ми живемо на цій вулиці вже рік." }
+  - kind: card
+    id: leben
+    status: productive
+    ref: { deck: erste-schritte, de: "leben" }
+    usage: { en: "Be alive or lead one's life; also live in a country or in a certain way.", ru: "Быть живым или вести свою жизнь; также жить в стране или определённым образом.", uk: "Бути живим або провадити своє життя; також жити в країні чи певним чином." }
+    collocations: ["gesund leben", "allein leben", "in Deutschland leben"]
+    example: { de: "Meine Großeltern leben noch.", en: "My grandparents are still alive.", ru: "Мои бабушка и дедушка ещё живы.", uk: "Мої бабуся й дідусь ще живі." }
+  - kind: card
+    id: uebernachten
+    status: productive
+    ref: { deck: reisen-orte-a2, de: "übernachten" }
+    usage: { en: "Spend the night somewhere temporarily: in a hotel, with friends, on a trip.", ru: "Переночевать где-то временно: в отеле, у друзей, в поездке.", uk: "Переночувати десь тимчасово: у готелі, у друзів, у подорожі." }
+    collocations: ["im Hotel übernachten", "bei Freunden übernachten"]
+    example: { de: "Auf der Reise übernachten wir zwei Nächte im Hotel.", en: "On the trip we are staying two nights in a hotel.", ru: "В поездке мы две ночи ночуем в отеле.", uk: "У подорожі ми дві ночі ночуємо в готелі." }
+relations:
+  - from: wohnen
+    to: leben
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "wohnen is about your home and address; leben is broader — being alive, a way of life, living in a country. In Berlin wohnen points at your flat; in Berlin leben at your whole life there.", ru: "wohnen — о жилье и адресе; leben шире: быть живым, образ жизни, жизнь в стране. In Berlin wohnen — про квартиру; in Berlin leben — про всю жизнь там.", uk: "wohnen — про житло й адресу; leben ширше: бути живим, спосіб життя, життя в країні. In Berlin wohnen — про квартиру; in Berlin leben — про все життя там." }
+  - from: wohnen
+    to: uebernachten
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "wohnen is where you regularly live; übernachten is one night or a few. A hotel guest übernachtet, a tenant wohnt.", ru: "wohnen — где вы постоянно живёте; übernachten — одна ночь или несколько. Гость отеля übernachtet, жилец wohnt.", uk: "wohnen — де ви постійно живете; übernachten — одна ніч або кілька. Гість готелю übernachtet, мешканець wohnt." }
