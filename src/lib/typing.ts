@@ -1,16 +1,13 @@
 /** Pure matching/diff logic for typed flashcard answers (x-de production direction). */
 
-/** Normalize typed input: collapse whitespace, drop optional trailing sentence
-    punctuation, fold typographic apostrophes/dashes to their ASCII keys — the
-    learner's keyboard produces `'` and `-`, never `’` or `–`. */
+import { normalizeTranslation } from './cloze';
+
+/** Normalize typed input the same way every other typed answer is normalized:
+    punctuation and typography are not graded anywhere, including *inside* a
+    phrase card — `Ja, gern!` typed as `Ja gern` is the phrase, not a miss.
+    Case survives, so noun capitalization stays part of the answer. */
 export function normalizeTyped(s: string): string {
-  return s
-    .replace(/[’‚‘]/g, "'")
-    .replace(/[–—]/g, '-')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .replace(/[.!?,;:]+$/, '')
-    .trim();
+  return normalizeTranslation(s);
 }
 
 /** Fold umlaut substitutes into a comparable space: ä↔ae, ö↔oe, ü↔ue, ß↔ss.
