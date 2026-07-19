@@ -40,6 +40,7 @@ items:
     outcomes: [zeit-praepositionen]
     type: translate
     focus: um-am-zeit
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -51,6 +52,10 @@ items:
     accept:
       - "Am Donnerstag öffnet das Museum um zehn Uhr."
       - "Um zehn Uhr öffnet das Museum am Donnerstag."
+      # aufmachen is the everyday synonym of öffnen and demonstrates the same am/um
+      # choice — the graded competence.
+      - "Das Museum macht am Donnerstag um zehn Uhr auf."
+      - "Am Donnerstag macht das Museum um zehn Uhr auf."
     key_tokens: ["am", "um"]
     explain:
       en: "Two kinds of time in one sentence, and each picks its own preposition: a weekday takes am (am Donnerstag), a time on the clock takes um (um zehn Uhr). The day comes before the hour."
