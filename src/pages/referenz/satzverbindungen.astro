@@ -1,0 +1,239 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { sentenceConnectorsReferenceSchema } from '../../lib/schemas';
+import { withBase } from '../../lib/url';
+
+const entry = await getEntry('referenceData', 'sentence-connectors');
+if (!entry) throw new Error('Missing canonical sentence-connectors reference data');
+const data = sentenceConnectorsReferenceSchema.parse(entry.data);
+
+const syntaxLabels = {
+  coordinating: { de: 'Hauptsatz + Hauptsatz', en: 'coordinating', ru: 'сочинительная связь' },
+  subordinating: { de: 'Nebensatz · Verb am Ende', en: 'subordinating · verb last', ru: 'придаточное · глагол в конце' },
+  adverbial: { de: 'Adverb · Verb auf Position 2', en: 'adverb · verb second', ru: 'наречие · глагол на втором месте' },
+  prepositional: { de: 'Präposition', en: 'preposition', ru: 'предлог' },
+  paired: { de: 'zweiteilige Verbindung', en: 'paired connector', ru: 'парная связка' },
+} as const;
+
+const registerLabels = {
+  spoken: { en: 'spoken', ru: 'разговорное', de: 'gesprochen' },
+  written: { en: 'more written', ru: 'чаще письменно', de: 'eher schriftlich' },
+  formal: { en: 'formal', ru: 'формальное', de: 'formell' },
+} as const;
+
+const levelClasses: Record<string, string> = {
+  A1: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300',
+  A2: 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300',
+  B1: 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300',
+  B2: 'bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-300',
+};
+---
+
+<Base title="Satzverbindungen">
+  <nav class="mb-5 text-sm text-stone-400">
+    <a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a>
+    <span> / Satzverbindungen</span>
+  </nav>
+
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight">Satzverbindungen</h1>
+    <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
+      <span class="lang-en">A map of the logical relations between statements—and the word order each German connector requires. The level badge shows the first Atlas stage at which productive use is expected; later forms are here for recognition and comparison.</span>
+      <span class="lang-ru">Карта логических связей между высказываниями и порядка слов, которого требует каждая немецкая связка. Значок уровня показывает первую ступень Atlas, где ожидается активное употребление; более поздние формы уже показаны для узнавания и сравнения.</span>
+    </p>
+  </header>
+
+  <section class="mt-8 rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+    <h2 class="font-bold">Stufen auf dieser Seite</h2>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2">
+      <div class="flex gap-3">
+        <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.A1]}>A1</span>
+        <p class="text-sm"><span class="lang-en">basic joining words for everyday sentences</span><span class="lang-ru">базовые связки для повседневных предложений</span></p>
+      </div>
+      <div class="flex gap-3">
+        <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.A2]}>A2</span>
+        <p class="text-sm"><span class="lang-en">the current productive core: reasons, results, conditions and concession</span><span class="lang-ru">нынешнее активное ядро: причины, следствия, условия и уступка</span></p>
+      </div>
+      <div class="flex gap-3">
+        <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.B1]}>B1</span>
+        <p class="text-sm"><span class="lang-en">broader argument and more precise written connections</span><span class="lang-ru">более широкая аргументация и точные письменные связи</span></p>
+      </div>
+      <div class="flex gap-3">
+        <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.B2]}>B2</span>
+        <p class="text-sm"><span class="lang-en">formal precision; mainly useful receptively before that stage</span><span class="lang-ru">формальная точность; до этого уровня прежде всего для узнавания</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Schnell wählen</h2>
+    <p class="mt-2 text-sm text-stone-500">
+      <span class="lang-en">Start with the relation you mean, then check the sentence pattern.</span>
+      <span class="lang-ru">Сначала определите нужную связь, затем проверьте структуру предложения.</span>
+    </p>
+    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+      {data.relations.map((relation) => (
+        <a href={`#${relation.id}`} class="group rounded-xl border border-stone-200 bg-white p-4 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800">
+          <div class="flex items-center justify-between gap-3">
+            <strong>
+              <span class="lang-en">{relation.title.en}</span>
+              <span class="lang-ru">{relation.title.ru}</span>
+              {relation.title.uk && <span class="lang-uk">{relation.title.uk}</span>}
+              {relation.title.de && <span class="lang-de">{relation.title.de}</span>}
+            </strong>
+            <span aria-hidden="true" class="text-amber-600 transition-transform group-hover:translate-x-0.5">→</span>
+          </div>
+          <p class="mt-1 text-sm text-stone-500">
+            <span class="lang-en">{relation.cue.en}</span>
+            <span class="lang-ru">{relation.cue.ru}</span>
+            {relation.cue.uk && <span class="lang-uk">{relation.cue.uk}</span>}
+            {relation.cue.de && <span class="lang-de">{relation.cue.de}</span>}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-xl border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <h2 class="font-bold">Drei Satzmuster zuerst</h2>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Konjunktion</p>
+        <p lang="de" class="mt-1 font-medium">aber ich <strong>komme</strong></p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">Main-clause order stays intact.</span><span class="lang-ru">Порядок главного предложения сохраняется.</span></p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Nebensatz</p>
+        <p lang="de" class="mt-1 font-medium">weil ich <strong>komme</strong></p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The conjugated verb closes the clause.</span><span class="lang-ru">Спрягаемый глагол замыкает придаточное.</span></p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Adverb auf Position 1</p>
+        <p lang="de" class="mt-1 font-medium">Deshalb <strong>komme</strong> ich</p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The connector fills position 1; the verb remains second.</span><span class="lang-ru">Связка занимает первое место; глагол остаётся вторым.</span></p>
+      </div>
+    </div>
+  </section>
+
+  {data.relations.map((relation) => (
+    <section id={relation.id} class="scroll-mt-6 border-b border-stone-200 py-12 last:border-b-0 dark:border-stone-700">
+      <h2 class="text-2xl font-bold">
+        <span class="lang-en">{relation.title.en}</span>
+        <span class="lang-ru">{relation.title.ru}</span>
+        {relation.title.uk && <span class="lang-uk">{relation.title.uk}</span>}
+        {relation.title.de && <span class="lang-de">{relation.title.de}</span>}
+      </h2>
+      <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
+        <span class="lang-en">{relation.description.en}</span>
+        <span class="lang-ru">{relation.description.ru}</span>
+        {relation.description.uk && <span class="lang-uk">{relation.description.uk}</span>}
+        {relation.description.de && <span class="lang-de">{relation.description.de}</span>}
+      </p>
+
+      <div class="mt-6 overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+        <table class="w-full min-w-[48rem] border-collapse text-sm">
+          <thead class="bg-stone-50 text-left dark:bg-stone-800">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Verbindung</th>
+              <th class="px-4 py-3 font-semibold">Bedeutung &amp; Nuance</th>
+              <th class="px-4 py-3 font-semibold">Satzmuster</th>
+              <th class="px-4 py-3 font-semibold">Beispiel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {relation.entries.map((connector) => {
+              const syntax = syntaxLabels[connector.syntax];
+              const register = connector.register === 'neutral' ? undefined : registerLabels[connector.register];
+              return (
+                <tr class="border-t border-stone-200 align-top dark:border-stone-700">
+                  <td class="px-4 py-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <strong lang="de" class="text-base">{connector.form}</strong>
+                      <span class:list={['rounded px-2 py-0.5 text-[10px] font-bold', levelClasses[connector.level]]}>{connector.level}</span>
+                    </div>
+                    {register && <span class="mt-2 inline-block rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300"><span class="lang-en">{register.en}</span><span class="lang-ru">{register.ru}</span></span>}
+                  </td>
+                  <td class="px-4 py-4">
+                    <p>
+                      <span class="lang-en">{connector.meaning.en}</span>
+                      <span class="lang-ru">{connector.meaning.ru}</span>
+                      {connector.meaning.uk && <span class="lang-uk">{connector.meaning.uk}</span>}
+                      {connector.meaning.de && <span class="lang-de">{connector.meaning.de}</span>}
+                    </p>
+                    {connector.note && (
+                      <p class="mt-2 text-xs leading-relaxed text-stone-500">
+                        <span class="lang-en">{connector.note.en}</span>
+                        <span class="lang-ru">{connector.note.ru}</span>
+                        {connector.note.uk && <span class="lang-uk">{connector.note.uk}</span>}
+                        {connector.note.de && <span class="lang-de">{connector.note.de}</span>}
+                      </p>
+                    )}
+                  </td>
+                  <td class="px-4 py-4">
+                    <span class="font-medium">{syntax.de}</span>
+                    <span class="mt-1 block text-xs text-stone-500"><span class="lang-en">{syntax.en}</span><span class="lang-ru">{syntax.ru}</span></span>
+                  </td>
+                  <td class="px-4 py-4">
+                    <p lang="de" class="font-medium">{connector.example.de}</p>
+                    <p class="mt-1 text-xs text-stone-500">
+                      <span class="lang-en">{connector.example.en}</span>
+                      <span class="lang-ru">{connector.example.ru}</span>
+                      {connector.example.uk && <span class="lang-uk">{connector.example.uk}</span>}
+                    </p>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+
+  <section class="py-12">
+    <h2 class="text-2xl font-bold">Die wichtigen Unterschiede</h2>
+    <p class="mt-2 text-stone-500">
+      <span class="lang-en">These are the choices where translation alone is least reliable.</span>
+      <span class="lang-ru">Здесь перевод особенно плохо помогает выбрать правильную связку.</span>
+    </p>
+    <div class="mt-6 grid gap-5">
+      {data.comparisons.map((comparison) => (
+        <article id={comparison.id} class="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+          <h3 class="text-lg font-bold">
+            <span class="lang-en">{comparison.title.en}</span>
+            <span class="lang-ru">{comparison.title.ru}</span>
+            {comparison.title.uk && <span class="lang-uk">{comparison.title.uk}</span>}
+            {comparison.title.de && <span class="lang-de">{comparison.title.de}</span>}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed">
+            <span class="lang-en">{comparison.explanation.en}</span>
+            <span class="lang-ru">{comparison.explanation.ru}</span>
+            {comparison.explanation.uk && <span class="lang-uk">{comparison.explanation.uk}</span>}
+            {comparison.explanation.de && <span class="lang-de">{comparison.explanation.de}</span>}
+          </p>
+          <div class="mt-4 grid gap-3 lg:grid-cols-3">
+            {comparison.examples.map((example) => (
+              <div class="rounded-lg bg-stone-50 p-4 dark:bg-stone-900/60">
+                <p lang="de" class="font-medium">{example.de}</p>
+                <p class="mt-2 text-xs text-stone-500">
+                  <span class="lang-en">{example.en}</span>
+                  <span class="lang-ru">{example.ru}</span>
+                  {example.uk && <span class="lang-uk">{example.uk}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <p>
+      <span class="lang-en">This page is a map, not a learning claim. The A2 lesson <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/topics/verbindungen-folgen')}>Verbindungen &amp; Folgen</a> practises the productive core; B1 and B2 forms remain lookup support until their own lessons arrive.</span>
+      <span class="lang-ru">Эта страница — карта, а не заявление об освоении. Тема A2 <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/topics/verbindungen-folgen')}>Verbindungen &amp; Folgen</a> тренирует активное ядро; формы B1 и B2 остаются справочным материалом, пока не появятся их собственные темы.</span>
+    </p>
+  </section>
+</Base>
