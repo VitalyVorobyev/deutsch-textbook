@@ -1,0 +1,52 @@
+id: denken-glauben-meinen
+kind: meaning-contrast
+level: A2
+title_de: "denken, glauben oder meinen?"
+title: { en: "Thinking, believing and having an opinion", ru: "Думать, полагать и считать", uk: "Думати, вважати й гадати" }
+introduction: { en: "All three introduce a thought, but they differ in what stands behind it: a mental process, something held true without proof, or a personal opinion.", ru: "Все три вводят мысль, но за ней стоит разное: процесс мышления, вера без доказательств или личное мнение.", uk: "Усі три вводять думку, але за нею стоїть різне: процес мислення, віра без доказів або особиста думка." }
+members:
+  - kind: card
+    id: denken
+    status: productive
+    ref: { deck: kernwortschatz-a2, de: "denken" }
+    usage: { en: "The mental process of thinking; denken an + accusative means having somebody or something on your mind.", ru: "Процесс мышления; denken an + Akkusativ — думать о ком-то или о чём-то.", uk: "Процес мислення; denken an + Akkusativ — думати про когось або про щось." }
+    collocations: ["an die Familie denken", "logisch denken", "Ich denke, dass ..."]
+    example: { de: "Ich denke oft an meine Heimat.", en: "I often think of my home country.", ru: "Я часто думаю о родине.", uk: "Я часто думаю про батьківщину." }
+  - kind: card
+    id: glauben
+    status: productive
+    ref: { deck: kernwortschatz-a2, de: "glauben" }
+    usage: { en: "Hold something to be true without proof; also believe somebody (dative).", ru: "Считать что-то правдой без доказательств; также верить кому-то (датив).", uk: "Вважати щось правдою без доказів; також вірити комусь (давальний відмінок)." }
+    collocations: ["Ich glaube, dass ...", "jemandem glauben", "an etwas glauben"]
+    example: { de: "Ich glaube, dass es morgen regnet.", en: "I think it will rain tomorrow.", ru: "Я думаю, что завтра будет дождь.", uk: "Я думаю, що завтра буде дощ." }
+  - kind: card
+    id: meinen
+    status: productive
+    ref: { deck: nebensaetze-plaene, de: "meinen" }
+    usage: { en: "State a personal opinion or clarify what you mean; the verb behind die Meinung.", ru: "Высказать личное мнение или уточнить, что имеешь в виду; глагол, стоящий за die Meinung.", uk: "Висловити особисту думку або уточнити, що маєш на увазі; дієслово, що стоїть за die Meinung." }
+    collocations: ["Ich meine, dass ...", "Was meinst du?", "Wie meinen Sie das?"]
+    example: { de: "Was meinst du: Zug oder Auto?", en: "What do you think: train or car?", ru: "Как ты считаешь: поезд или машина?", uk: "Як ти вважаєш: потяг чи машина?" }
+  - kind: receptive
+    id: nachdenken
+    status: receptive
+    de: "nachdenken"
+    gloss: { en: "to think something over, to reflect", ru: "обдумывать, размышлять", uk: "обмірковувати, розмірковувати" }
+    usage: { en: "Think about something actively for a while: über + accusative; the prefix is separable.", ru: "Активно обдумывать что-то в течение какого-то времени: über + Akkusativ; приставка отделяемая.", uk: "Активно обмірковувати щось упродовж якогось часу: über + Akkusativ; префікс відокремлюваний." }
+    collocations: ["über ein Angebot nachdenken", "kurz nachdenken"]
+    example: { de: "Ich muss über deine Frage nachdenken.", en: "I have to think your question over.", ru: "Мне нужно обдумать твой вопрос.", uk: "Мені треба обміркувати твоє запитання." }
+relations:
+  - from: denken
+    to: glauben
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "denken reports what goes on in your head; glauben adds that you hold it true without being sure. In Ich denke / Ich glaube, dass ... both soften a claim, and glauben sounds slightly less certain.", ru: "denken сообщает, что происходит в голове; glauben добавляет, что вы считаете это правдой, не будучи уверены. В Ich denke / Ich glaube, dass ... оба смягчают утверждение, и glauben звучит чуть менее уверенно.", uk: "denken повідомляє, що відбувається в голові; glauben додає, що ви вважаєте це правдою, не будучи впевнені. В Ich denke / Ich glaube, dass ... обидва пом'якшують твердження, і glauben звучить трохи менш упевнено." }
+  - from: glauben
+    to: meinen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "glauben is about what you hold true; meinen is about your opinion or what you meant. Was meinst du? asks for a view, not for belief.", ru: "glauben — о том, что вы считаете правдой; meinen — о мнении или о том, что вы имели в виду. Was meinst du? спрашивает точку зрения, а не веру.", uk: "glauben — про те, що ви вважаєте правдою; meinen — про думку або про те, що ви мали на увазі. Was meinst du? питає точку зору, а не віру." }
+  - from: denken
+    to: nachdenken
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "denken an is having something on your mind; nachdenken über is working on it deliberately for a while before deciding or answering.", ru: "denken an — что-то у вас на уме; nachdenken über — сознательная работа над этим какое-то время, прежде чем решить или ответить.", uk: "denken an — щось у вас на думці; nachdenken über — свідома робота над цим якийсь час, перш ніж вирішити або відповісти." }

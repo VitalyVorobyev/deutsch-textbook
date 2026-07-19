@@ -1,0 +1,44 @@
+id: machen-tun
+kind: meaning-contrast
+level: A2
+title_de: "machen, tun oder erledigen?"
+title: { en: "Making, doing and getting things done", ru: "Три глагола со значением «делать»", uk: "Три дієслова зі значенням «робити»" }
+introduction: { en: "machen covers most everyday doing and making. tun lives in fixed expressions and abstract contexts, and erledigen means finishing a task off.", ru: "machen покрывает почти всё бытовое «делать». tun живёт в устойчивых оборотах и абстрактных контекстах, а erledigen значит довести дело до конца.", uk: "machen покриває майже все побутове «робити». tun живе у сталих зворотах і абстрактних контекстах, а erledigen означає довести справу до кінця." }
+members:
+  - kind: card
+    id: machen
+    status: productive
+    ref: { deck: perfekt-verben, de: "machen" }
+    usage: { en: "The default verb for doing or making something concrete: homework, food, photos, plans.", ru: "Основной глагол для «делать» или «изготавливать» что-то конкретное: уроки, еду, фото, планы.", uk: "Основне дієслово для «робити» або «виготовляти» щось конкретне: уроки, їжу, фото, плани." }
+    collocations: ["Hausaufgaben machen", "ein Foto machen", "eine Pause machen", "das Essen machen"]
+    example: { de: "Ich mache heute das Abendessen.", en: "I am making dinner today.", ru: "Сегодня ужин готовлю я.", uk: "Сьогодні вечерю готую я." }
+  - kind: card
+    id: tun
+    status: productive
+    ref: { deck: verben-handlungen-a2-2, de: "tun" }
+    usage: { en: "Do in an abstract or general sense; strong in fixed chunks: etwas tun, nichts tun, weh tun.", ru: "«Делать» в абстрактном или общем смысле; силён в устойчивых оборотах: etwas tun, nichts tun, weh tun.", uk: "«Робити» в абстрактному чи загальному сенсі; сильне у сталих зворотах: etwas tun, nichts tun, weh tun." }
+    collocations: ["etwas für die Gesundheit tun", "nichts tun", "Was kann ich für Sie tun?"]
+    example: { de: "Was kann ich für Sie tun?", en: "What can I do for you?", ru: "Что я могу для вас сделать?", uk: "Що я можу для вас зробити?" }
+  - kind: card
+    id: erledigen
+    status: productive
+    ref: { deck: arbeit-beruf, de: "erledigen" }
+    usage: { en: "Deal with a task and finish it: errands, paperwork, shopping; the result matters.", ru: "Выполнить и закрыть задачу: дела, документы, покупки; важен результат.", uk: "Виконати й закрити завдання: справи, документи, покупки; важливий результат." }
+    collocations: ["eine Aufgabe erledigen", "Einkäufe erledigen", "etwas schnell erledigen"]
+    example: { de: "Ich muss noch ein paar Dinge erledigen.", en: "I still have to take care of a few things.", ru: "Мне ещё нужно сделать несколько дел.", uk: "Мені ще треба залагодити кілька справ." }
+relations:
+  - from: machen
+    to: tun
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "When something concrete is produced, only machen works (ein Foto machen, das Essen machen); tun is action in general and fixed expressions such as nichts tun or weh tun.", ru: "Когда создаётся что-то конкретное, работает только machen (ein Foto machen, das Essen machen); tun — действие вообще и устойчивые обороты вроде nichts tun или weh tun.", uk: "Коли створюється щось конкретне, працює лише machen (ein Foto machen, das Essen machen); tun — дія загалом і сталі звороти на кшталт nichts tun або weh tun." }
+  - from: machen
+    to: erledigen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "machen names the activity; erledigen stresses completing a task from your list — closer to get done than to do.", ru: "machen называет само занятие; erledigen подчёркивает завершение задачи из списка — скорее «разделаться», чем «делать».", uk: "machen називає саме заняття; erledigen підкреслює завершення завдання зі списку — радше «залагодити», ніж «робити»." }
+  - from: tun
+    to: erledigen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "etwas tun stays vague about the outcome; etwas erledigen promises a finished result you can tick off.", ru: "etwas tun ничего не говорит о результате; etwas erledigen обещает готовый результат, который можно вычеркнуть из списка.", uk: "etwas tun нічого не каже про результат; etwas erledigen обіцяє готовий результат, який можна викреслити зі списку." }

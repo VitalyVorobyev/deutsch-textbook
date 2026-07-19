@@ -1,0 +1,44 @@
+id: sprechen-reden
+kind: meaning-contrast
+level: A2
+title_de: "sprechen, reden oder sich unterhalten?"
+title: { en: "Speaking, talking and having a conversation", ru: "Говорить, разговаривать и беседовать", uk: "Говорити, розмовляти й вести бесіду" }
+introduction: { en: "All three describe speech. They differ in register and focus: the neutral act of speaking, informal open-ended talking, or a relaxed two-sided conversation.", ru: "Все три описывают речь, но различаются регистром и фокусом: нейтральное «говорить», неформальное «разговаривать» и непринуждённая беседа двух сторон.", uk: "Усі три описують мовлення, але різняться регістром і фокусом: нейтральне «говорити», неформальне «розмовляти» й невимушена бесіда двох сторін." }
+members:
+  - kind: card
+    id: sprechen
+    status: productive
+    ref: { deck: erste-schritte, de: "sprechen" }
+    usage: { en: "The neutral verb of speaking: languages, speaking with somebody, on the phone; also the ability to speak.", ru: "Нейтральный глагол речи: языки, разговор с кем-то, по телефону; также способность говорить.", uk: "Нейтральне дієслово мовлення: мови, розмова з кимось, по телефону; також здатність говорити." }
+    collocations: ["Deutsch sprechen", "mit dem Chef sprechen", "über ein Problem sprechen"]
+    example: { de: "Kann ich bitte mit Frau Berg sprechen?", en: "May I speak with Ms Berg, please?", ru: "Можно мне, пожалуйста, поговорить с госпожой Берг?", uk: "Можна мені, будь ласка, поговорити з пані Берг?" }
+  - kind: card
+    id: reden
+    status: productive
+    ref: { deck: verben-handlungen-a2-2, de: "reden" }
+    usage: { en: "Everyday talking, often informal and open-ended; also talking a lot or talking about somebody.", ru: "Повседневное «разговаривать», часто неформально и без чёткой цели; также «болтать» или говорить о ком-то.", uk: "Повсякденне «розмовляти», часто неформально й без чіткої мети; також «балакати» або говорити про когось." }
+    collocations: ["über Fußball reden", "mit Freunden reden", "viel reden"]
+    example: { de: "Wir haben lange über das Wetter geredet.", en: "We talked about the weather for a long time.", ru: "Мы долго разговаривали о погоде.", uk: "Ми довго розмовляли про погоду." }
+  - kind: card
+    id: unterhalten
+    status: productive
+    ref: { deck: verben-handlungen-a2-2, de: "unterhalten" }
+    usage: { en: "Have a conversation: two or more people talking with each other, usually relaxed; always reflexive in this sense (sich unterhalten).", ru: "Беседовать: двое или несколько человек говорят друг с другом, обычно непринуждённо; в этом значении всегда возвратный (sich unterhalten).", uk: "Вести бесіду: двоє або кілька людей говорять одне з одним, зазвичай невимушено; у цьому значенні завжди зворотне (sich unterhalten)." }
+    collocations: ["sich mit jemandem unterhalten", "sich über Filme unterhalten"]
+    example: { de: "Auf der Party haben wir uns gut unterhalten.", en: "We had a nice chat at the party.", ru: "На вечеринке мы хорошо поболтали.", uk: "На вечірці ми добре поспілкувалися." }
+relations:
+  - from: sprechen
+    to: reden
+    type: register
+    basis: current-meaning
+    explanation: { en: "Often interchangeable; sprechen is the more neutral, slightly more formal choice (mit dem Arzt sprechen), while reden leans colloquial and open-ended.", ru: "Часто взаимозаменяемы; sprechen нейтральнее и чуть формальнее (mit dem Arzt sprechen), а reden звучит разговорнее и свободнее.", uk: "Часто взаємозамінні; sprechen нейтральніше й трохи формальніше (mit dem Arzt sprechen), а reden звучить розмовніше й вільніше." }
+  - from: reden
+    to: unterhalten
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "reden can be one-sided; sich unterhalten is by definition mutual — a conversation between people, with mit + dative for the partner.", ru: "reden может быть односторонним; sich unterhalten по определению взаимно — беседа между людьми, собеседник вводится через mit + Dativ.", uk: "reden може бути одностороннім; sich unterhalten за визначенням взаємне — бесіда між людьми, співрозмовник вводиться через mit + Dativ." }
+  - from: sprechen
+    to: unterhalten
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "sprechen mit often opens a serious, goal-directed talk; sich unterhalten suggests relaxed, social conversation without an agenda.", ru: "sprechen mit часто открывает серьёзный разговор с целью; sich unterhalten — непринуждённое общение без повестки.", uk: "sprechen mit часто відкриває серйозну розмову з метою; sich unterhalten — невимушене спілкування без порядку денного." }

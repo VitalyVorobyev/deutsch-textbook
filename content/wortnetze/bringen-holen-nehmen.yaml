@@ -1,0 +1,76 @@
+id: bringen-holen-nehmen
+kind: meaning-contrast
+level: A2
+title_de: "bringen, holen oder mitnehmen?"
+title: { en: "Bringing, fetching, picking up and taking along", ru: "Принести, сходить за чем-то, забрать и взять с собой", uk: "Принести, піти по щось, забрати й узяти із собою" }
+introduction: { en: "These verbs sort the movement of things and people by direction: one way to a goal (bringen), there and back (holen), and what travels with you (mitnehmen, mitbringen).", ru: "Эти глаголы различают направление движения вещей и людей: в одну сторону к цели (bringen), туда и обратно (holen) и то, что едет с вами (mitnehmen, mitbringen).", uk: "Ці дієслова розрізняють напрямок руху речей і людей: в один бік до цілі (bringen), туди й назад (holen) і те, що їде з вами (mitnehmen, mitbringen)." }
+members:
+  - kind: card
+    id: bringen
+    status: productive
+    ref: { deck: verben-grundwortschatz, de: "bringen" }
+    usage: { en: "Carry or take something to a place or person: movement toward a goal.", ru: "Отнести или отвезти что-то к месту или человеку: движение к цели.", uk: "Віднести або відвезти щось до місця чи людини: рух до цілі." }
+    collocations: ["das Essen bringen", "jemanden nach Hause bringen", "das Paket zur Post bringen"]
+    example: { de: "Der Kellner bringt uns die Rechnung.", en: "The waiter brings us the bill.", ru: "Официант приносит нам счёт.", uk: "Офіціант приносить нам рахунок." }
+  - kind: card
+    id: holen
+    status: productive
+    ref: { deck: verben-grundwortschatz, de: "holen" }
+    usage: { en: "Go somewhere, get something and come back with it: there and back.", ru: "Пойти куда-то, взять что-то и вернуться с ним: туда и обратно.", uk: "Піти кудись, узяти щось і повернутися з ним: туди й назад." }
+    collocations: ["Brötchen holen", "Hilfe holen", "etwas aus dem Keller holen"]
+    example: { de: "Ich hole schnell Brot aus der Küche.", en: "I will quickly get some bread from the kitchen.", ru: "Я быстро принесу хлеб из кухни.", uk: "Я швидко принесу хліб із кухні." }
+  - kind: card
+    id: abholen
+    status: productive
+    ref: { deck: trennbare-verben, de: "abholen" }
+    usage: { en: "Pick up a person or thing at an agreed place: the station, school, the post office.", ru: "Забрать человека или вещь в условленном месте: на вокзале, из школы, с почты.", uk: "Забрати людину або річ в умовленому місці: на вокзалі, зі школи, з пошти." }
+    collocations: ["jemanden vom Bahnhof abholen", "das Paket abholen"]
+    example: { de: "Ich hole dich um sieben vom Bahnhof ab.", en: "I will pick you up from the station at seven.", ru: "Я заберу тебя с вокзала в семь.", uk: "Я заберу тебе з вокзалу о сьомій." }
+  - kind: card
+    id: mitbringen
+    status: productive
+    ref: { deck: trennbare-verben, de: "mitbringen" }
+    usage: { en: "Bring something along when you come, often for somebody: a gift, something from the shop.", ru: "Принести что-то с собой, когда приходишь, часто для кого-то: подарок, что-то из магазина.", uk: "Принести щось із собою, коли приходиш, часто для когось: подарунок, щось із крамниці." }
+    collocations: ["ein Geschenk mitbringen", "etwas vom Markt mitbringen"]
+    example: { de: "Bringst du mir Schokolade aus dem Urlaub mit?", en: "Will you bring me some chocolate back from your holiday?", ru: "Привезёшь мне шоколад из отпуска?", uk: "Привезеш мені шоколад із відпустки?" }
+  - kind: receptive
+    id: mitnehmen
+    status: receptive
+    de: "mitnehmen"
+    gloss: { en: "to take along", ru: "брать с собой", uk: "брати із собою" }
+    usage: { en: "Take a person or thing with you when you leave: the perspective of departure.", ru: "Взять человека или вещь с собой, когда уходишь: перспектива отправления.", uk: "Узяти людину або річ із собою, коли йдеш: перспектива відправлення." }
+    collocations: ["einen Regenschirm mitnehmen", "jemanden im Auto mitnehmen"]
+    example: { de: "Nimm einen Regenschirm mit, es regnet gleich.", en: "Take an umbrella with you, it is about to rain.", ru: "Возьми с собой зонт, скоро пойдёт дождь.", uk: "Візьми із собою парасольку, скоро піде дощ." }
+  - kind: card
+    id: nehmen
+    status: productive
+    ref: { deck: perfekt-verben, de: "nehmen" }
+    usage: { en: "Take, choose or use something: the bus, a room, medicine; no direction of its own.", ru: "Взять, выбрать или использовать что-то: автобус, комнату, лекарство; без собственного направления.", uk: "Узяти, вибрати або використати щось: автобус, кімнату, ліки; без власного напрямку." }
+    collocations: ["den Bus nehmen", "ein Zimmer nehmen", "Tabletten nehmen"]
+    example: { de: "Wir nehmen den Zug um acht.", en: "We are taking the eight o'clock train.", ru: "Мы едем поездом в восемь.", uk: "Ми їдемо потягом о восьмій." }
+relations:
+  - from: bringen
+    to: holen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "bringen moves something one way, to a goal; holen is a round trip — you go, get it and come back. The bakery run is holen; delivering soup to grandma is bringen.", ru: "bringen — движение в одну сторону, к цели; holen — туда и обратно: пойти, взять и вернуться. Сходить за булочками — holen; отнести суп бабушке — bringen.", uk: "bringen — рух в один бік, до цілі; holen — туди й назад: піти, взяти й повернутися. Піти по булочки — holen; віднести суп бабусі — bringen." }
+  - from: holen
+    to: abholen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "abholen adds an agreed pick-up: the person or parcel is waiting for you at a known place, often at a fixed time.", ru: "abholen добавляет условленность: человек или посылка ждёт вас в известном месте, часто к определённому времени.", uk: "abholen додає умовленість: людина або посилка чекає на вас у відомому місці, часто на визначений час." }
+  - from: mitbringen
+    to: mitnehmen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "Both travel with you: mitbringen looks at arrival — what you bring when you come; mitnehmen looks at departure — what you take when you go.", ru: "Оба «едут с вами»: mitbringen смотрит на прибытие — что вы приносите, когда приходите; mitnehmen — на отправление: что вы берёте, когда уходите.", uk: "Обидва «їдуть з вами»: mitbringen дивиться на прибуття — що ви приносите, коли приходите; mitnehmen — на відправлення: що ви берете, коли йдете." }
+  - from: nehmen
+    to: mitnehmen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "nehmen alone is taking, choosing or using (den Bus nehmen); only mitnehmen says that something travels along with you.", ru: "nehmen само по себе — взять, выбрать или использовать (den Bus nehmen); только mitnehmen говорит, что что-то едет вместе с вами.", uk: "nehmen саме по собі — взяти, вибрати або використати (den Bus nehmen); лише mitnehmen каже, що щось їде разом із вами." }
+  - from: bringen
+    to: mitbringen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "mitbringen is bringen plus along: you were coming anyway and bring something on the way, often as a small gift.", ru: "mitbringen — это bringen плюс «с собой»: вы всё равно идёте и по пути приносите что-то, часто в подарок.", uk: "mitbringen — це bringen плюс «із собою»: ви все одно йдете й дорогою приносите щось, часто як подарунок." }
