@@ -264,6 +264,7 @@ items:
     outcomes: [trennbar-satz, trennbar-tagesablauf]
     type: translate
     focus: trennbar-modal
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -275,6 +276,10 @@ items:
     key_tokens: ["muss", "einkaufen"]
     accept:
       - "Heute muss ich einkaufen."
+      # einkaufen gehen is the everyday rendering of the same errand, and einkaufen
+      # still stands whole at the clause end — the competence the tag grades.
+      - "Ich muss heute einkaufen gehen."
+      - "Heute muss ich einkaufen gehen."
     explain:
       en: "After a modal the separable verb stays whole at the end: muss … einkaufen, never *muss … kaufe ein. Only a finite separable verb splits."
       ru: "После модального глагола отделяемый глагол остаётся целым в конце: muss … einkaufen, а не *muss … kaufe ein. Разделяется только спрягаемая форма."

@@ -45,6 +45,7 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -55,6 +56,10 @@ items:
     answer: "Wir können heute Abend einen Film sehen."
     accept:
       - "Heute Abend können wir einen Film sehen."
+      # einen Film schauen is equally ordinary German and closes the same bracket —
+      # rejecting it would log a correct bracket as a modal-satzklammer failure.
+      - "Wir können heute Abend einen Film schauen."
+      - "Heute Abend können wir einen Film schauen."
     key_tokens: ["können", "sehen"]
     explain:
       en: "English 'able TO watch' plants the trap: German können takes a bare infinitive, and it goes to the very end — können … sehen, never können zu sehen."

@@ -315,6 +315,7 @@ items:
     outcomes: [modal-erlaubnis-notwendigkeit, modal-satzklammer]
     type: translate
     focus: duerfen-muessen
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -326,6 +327,11 @@ items:
     key_tokens: ["darf"]
     accept:
       - "Man darf hier nicht rauchen."
+      # The EN prompt's "you" honestly admits the du-reading, which demonstrates the
+      # same dürfen-not-müssen choice; without these a correct darfst was logged as a
+      # duerfen-muessen failure via the missing key token.
+      - "Du darfst hier nicht rauchen."
+      - "Hier darfst du nicht rauchen."
     explain:
       en: "A prohibition is darf nicht, not muss nicht — English 'must not' is a false friend here, because muss nicht means only that something is not necessary."
       ru: "Запрет — это darf nicht, а не muss nicht. «Нельзя» передаётся через dürfen: muss nicht означало бы всего лишь «не обязательно»."

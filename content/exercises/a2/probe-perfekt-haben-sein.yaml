@@ -19,6 +19,7 @@ items:
     outcomes: [perfekt-hilfsverb]
     type: translate
     focus: haben-sein
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -28,6 +29,14 @@ items:
     prompt_uk: "Діти побігли до школи."
     answer: "Die Kinder sind zur Schule gelaufen."
     key_tokens: ["sind", "gelaufen"]
+    accept:
+      # "to school" is in die Schule as readily as zur Schule, and «побежали» is rennen
+      # as readily as laufen — both keep sein + A→B movement, the graded competence.
+      # The participle is a key token, so without these a correct auxiliary choice
+      # would be logged as a haben-sein failure.
+      - "Die Kinder sind in die Schule gelaufen."
+      - "Die Kinder sind zur Schule gerannt."
+      - "Die Kinder sind in die Schule gerannt."
     explain:
       en: "laufen moves the subject from one place to another, so the auxiliary is sein: die Kinder sind … gelaufen. haben would be wrong here however ordinary the action looks — what decides is the movement from A to B, not the meaning of the verb in isolation."
       ru: "laufen перемещает подлежащее из одной точки в другую, поэтому вспомогательный глагол — sein: die Kinder sind … gelaufen. haben здесь неверно, каким бы обычным ни казалось действие: решает именно перемещение из точки А в точку Б, а не значение глагола само по себе."

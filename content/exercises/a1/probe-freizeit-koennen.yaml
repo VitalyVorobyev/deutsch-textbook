@@ -20,6 +20,7 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -31,6 +32,12 @@ items:
     key_tokens: ["kann", "fotografieren"]
     accept:
       - "Meine Schwester kann morgen im Park fotografieren."
+      # "take photos" / «пофотографировать» is Fotos machen as readily as fotografieren,
+      # and the bracket — the graded competence — is intact either way. Without these a
+      # learner who built the bracket correctly would be logged as a modal-satzklammer
+      # failure via the missing key token.
+      - "Morgen kann meine Schwester im Park Fotos machen."
+      - "Meine Schwester kann morgen im Park Fotos machen."
     explain:
       en: "The bracket holds even when something else opens the sentence: kann stays in position 2 (so the subject follows it) and the bare infinitive closes everything — kann … fotografieren."
       ru: "Рамка сохраняется, даже если предложение начинается не с подлежащего: kann остаётся на втором месте (подлежащее уходит за него), а инфинитив без zu замыкает предложение — kann … fotografieren."
