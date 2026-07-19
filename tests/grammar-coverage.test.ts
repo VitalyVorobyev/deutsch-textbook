@@ -2,7 +2,11 @@ import { describe, expect, test } from 'bun:test';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { grammarCoverage, loadGrammarInventory } from '../src/lib/grammar-coverage';
+import {
+  exerciseLevelFromPath,
+  grammarCoverage,
+  loadGrammarInventory,
+} from '../src/lib/grammar-coverage';
 
 /** A throwaway content tree, so the escape-hatch rules can be tested on shapes
  *  the real inventory must never contain. */
@@ -19,6 +23,21 @@ function fixture(points: unknown[], topics: Record<string, string[]> = {}): stri
 }
 
 describe('grammar coverage', () => {
+  test('exercise levels resolve with POSIX and Windows path separators', () => {
+    expect(
+      exerciseLevelFromPath(
+        '/repo/content/exercises/a2/practice.yaml',
+        '/repo/content/exercises',
+      ),
+    ).toBe('A2');
+    expect(
+      exerciseLevelFromPath(
+        String.raw`C:\repo\content\exercises\a2\practice.yaml`,
+        String.raw`C:\repo\content\exercises`,
+      ),
+    ).toBe('A2');
+  });
+
   test('inventory point ids are unique and every point can be marked taught', () => {
     const points = loadGrammarInventory();
     const ids = points.map((p) => p.id);

@@ -60,6 +60,12 @@ function walk(dir: string): string[] {
   });
 }
 
+export function exerciseLevelFromPath(file: string, base: string): Level {
+  // `join()` follows the host platform. Accept both separators here so the
+  // coverage result is also testable independently of the machine running it.
+  return file.slice(base.length + 1).split(/[\\/]/)[0].toUpperCase() as Level;
+}
+
 /**
  * Every focus tag carried by a `practice` or `drill` item, mapped to the levels
  * whose exercise directories teach it. A tag drilled only by a checkpoint or a
@@ -85,7 +91,7 @@ export function drilledFocusTags(root = process.cwd()): Map<string, Set<Level>> 
       continue;
     }
     if (doc.role !== 'practice' && doc.role !== 'drill') continue;
-    const level = file.slice(base.length + 1).split('/')[0].toUpperCase() as Level;
+    const level = exerciseLevelFromPath(file, base);
     for (const item of doc.items ?? []) {
       if (!item.focus || item.preview) continue;
       if (!tags.has(item.focus)) tags.set(item.focus, new Set());
