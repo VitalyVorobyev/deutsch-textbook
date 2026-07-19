@@ -45,7 +45,7 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
-    revision: 2
+    revision: 3
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -60,7 +60,7 @@ items:
       # rejecting it would log a correct bracket as a modal-satzklammer failure.
       - "Wir können heute Abend einen Film schauen."
       - "Heute Abend können wir einen Film schauen."
-    key_tokens: ["können", "sehen"]
+    key_tokens: ["können", "sehen", "schauen"]
     explain:
       en: "English 'able TO watch' plants the trap: German können takes a bare infinitive, and it goes to the very end — können … sehen, never können zu sehen."
       ru: "Английское able TO watch подсказывает ловушку, но по-немецки können требует голый инфинитив, и он уходит в самый конец: können … sehen, никогда können zu sehen."

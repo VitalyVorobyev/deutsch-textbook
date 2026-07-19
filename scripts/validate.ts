@@ -593,18 +593,33 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
           seen.add(n);
         }
-        // key_tokens names the tokens of `answer` the focus tag grades. A token that is
-        // not in the answer grades nothing, and the item would silently lose both its
-        // typo protection and its attribution — so a stale one has to fail the build.
-        const answerTokens = canonical.split(/\s+/).map((w) => w.replace(/[.,!?;:]+$/, ''));
-        const occurrences = new Map<string, number>();
-        for (const w of answerTokens) occurrences.set(w, (occurrences.get(w) ?? 0) + 1);
+        // key_tokens names the tokens of `answer` OR an authored accept rendering that
+        // the focus tag grades. Synonymous accepted forms must be pinned too; otherwise
+        // a malformed form can be forgiven as a spelling slip. A stale token still has
+        // to fail the build. The existing uniqueness guard remains anchored to `answer`;
+        // for an alternative-only token, its accepted rendering is the equivalent anchor.
+        const renderings = [item.answer, ...item.accept].map((rendering) => ({
+          rendering,
+          tokens: normalizeTranslation(rendering)
+            .split(/\s+/)
+            .map((w) => w.replace(/[.,!?;:]+$/, '')),
+        }));
         for (const t of item.key_tokens) {
           const bare = t.replace(/[.,!?;:]+$/, '');
-          const n = occurrences.get(bare) ?? 0;
-          if (n === 0) {
-            fail(where, `key_tokens entry "${t}" does not occur in the answer`);
-          } else if (n > 1) {
+          const counts = renderings.map(({ tokens }) =>
+            tokens.reduce((count, token) => count + Number(token === bare), 0),
+          );
+          if (counts.every((count) => count === 0)) {
+            fail(where, `key_tokens entry "${t}" does not occur in the answer or accept list`);
+          }
+          const repeatedAt =
+            counts[0]! > 1
+              ? 0
+              : counts[0] === 0
+                ? counts.findIndex((count, index) => index > 0 && count > 1)
+                : -1;
+          if (repeatedAt >= 0) {
+            const n = counts[repeatedAt]!;
             // `graded` in src/lib/production.ts is a Set of strings tested per token, so a
             // key token is matched by string, not by position: if it occurs twice, the focus
             // tag grades BOTH occurrences. In "Nina stellt den Stuhl neben den Schrank." the
@@ -614,9 +629,10 @@ for (const [setId, { file, data }] of exerciseSets) {
             // A false entry in the signal is worse than a missing one.
             fail(
               where,
-              `key_tokens entry "${t}" occurs ${n}× in the answer, so the focus tag grades ` +
-                `every occurrence — including any that is a different decision. Rewrite the ` +
-                `sentence so the graded token appears once, or pin a token that is unique.`,
+              `key_tokens entry "${t}" occurs ${n}× in rendering ` +
+                `"${renderings[repeatedAt]!.rendering}", so the focus tag grades every ` +
+                `occurrence — including any that is a different decision. Rewrite the sentence ` +
+                `so the graded token appears once, or pin a token that is unique.`,
             );
           }
         }

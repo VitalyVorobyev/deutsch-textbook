@@ -20,7 +20,7 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
-    revision: 2
+    revision: 3
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -29,7 +29,7 @@ items:
     prompt_ru: "Завтра моя сестра может пофотографировать в парке."
     prompt_uk: "Завтра моя сестра може пофотографувати в парку."
     answer: "Morgen kann meine Schwester im Park fotografieren."
-    key_tokens: ["kann", "fotografieren"]
+    key_tokens: ["kann", "fotografieren", "machen"]
     accept:
       - "Meine Schwester kann morgen im Park fotografieren."
       # "take photos" / «пофотографировать» is Fotos machen as readily as fotografieren,

@@ -19,7 +19,7 @@ items:
     outcomes: [perfekt-hilfsverb]
     type: translate
     focus: haben-sein
-    revision: 2
+    revision: 3
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -28,7 +28,7 @@ items:
     prompt_ru: "Дети побежали в школу."
     prompt_uk: "Діти побігли до школи."
     answer: "Die Kinder sind zur Schule gelaufen."
-    key_tokens: ["sind", "gelaufen"]
+    key_tokens: ["sind", "gelaufen", "gerannt"]
     accept:
       # "to school" is in die Schule as readily as zur Schule, and «побежали» is rennen
       # as readily as laufen — both keep sein + A→B movement, the graded competence.

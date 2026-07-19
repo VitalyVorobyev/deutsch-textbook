@@ -83,7 +83,7 @@ items:
     outcomes: [ratschlag-geben]
     type: translate
     focus: imperativ-form
-    revision: 2
+    revision: 3
     instruction:
       en: "Now the same kind of advice, but to a friend. Translate into German."
       ru: "Теперь такой же совет, но другу. Переведите на немецкий."
@@ -92,7 +92,7 @@ items:
     prompt_ru: "Сходи к врачу и прими таблетки!"
     prompt_uk: "Сходи до лікаря і прийми таблетки!"
     answer: "Geh zum Arzt und nimm die Tabletten!"
-    key_tokens: ["Geh", "nimm"]
+    key_tokens: ["Geh", "Gehe", "nimm"]
     accept:
       # The du-imperative with -e (Gehe …) is stylistically marked but correct German —
       # the explain says so itself — and it demonstrates the same imperative competence.

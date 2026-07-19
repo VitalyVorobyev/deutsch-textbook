@@ -315,7 +315,7 @@ items:
     outcomes: [modal-erlaubnis-notwendigkeit, modal-satzklammer]
     type: translate
     focus: duerfen-muessen
-    revision: 2
+    revision: 3
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -324,7 +324,7 @@ items:
     prompt_ru: "Здесь нельзя курить."
     prompt_uk: "Тут не можна курити."
     answer: "Hier darf man nicht rauchen."
-    key_tokens: ["darf"]
+    key_tokens: ["darf", "darfst"]
     accept:
       - "Man darf hier nicht rauchen."
       # The EN prompt's "you" honestly admits the du-reading, which demonstrates the
