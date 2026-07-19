@@ -83,6 +83,7 @@ items:
     outcomes: [ratschlag-geben]
     type: translate
     focus: imperativ-form
+    revision: 3
     instruction:
       en: "Now the same kind of advice, but to a friend. Translate into German."
       ru: "Теперь такой же совет, но другу. Переведите на немецкий."
@@ -91,7 +92,11 @@ items:
     prompt_ru: "Сходи к врачу и прими таблетки!"
     prompt_uk: "Сходи до лікаря і прийми таблетки!"
     answer: "Geh zum Arzt und nimm die Tabletten!"
-    key_tokens: ["Geh", "nimm"]
+    key_tokens: ["Geh", "Gehe", "nimm"]
+    accept:
+      # The du-imperative with -e (Gehe …) is stylistically marked but correct German —
+      # the explain says so itself — and it demonstrates the same imperative competence.
+      - "Gehe zum Arzt und nimm die Tabletten!"
     explain:
       en: "A friend gets the du-imperative: the bare stem, first in its clause, with no pronoun at all — Geh …, nimm … Two traps sit in these two verbs. gehen is regular, so the stem is simply geh (an -e on the end, gehe, is old-fashioned). nehmen has the e → i change and keeps it in the imperative: nimm, never nehm. And the second imperative after und keeps its own first position — the sentence has two commands, not one."
       ru: "Другу адресован императив на du: голая основа, первая в своей части предложения, вообще без местоимения — Geh …, nimm … В этих двух глаголах спрятаны две ловушки. gehen правильный, поэтому основа — просто geh (окончание -e, gehe, звучит старомодно). А у nehmen есть чередование e → i, и в императиве оно сохраняется: nimm, а не nehm. И второй императив после und тоже стоит на первом месте в своей части: здесь два указания, а не одно."

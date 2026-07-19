@@ -18,6 +18,7 @@ items:
     outcomes: [trennbar-satz]
     type: translate
     focus: trennbar-wortstellung
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -29,6 +30,11 @@ items:
     key_tokens: ["bringt", "mit"]
     accept:
       - "Meine Freundin bringt am Samstag ihre Kinder mit."
+      # «с собой» reads as mitnehmen as readily as mitbringen, and the bracket — the
+      # graded competence — is identical; without these a correct bracket would be
+      # logged as a trennbar-wortstellung failure via the missing key token.
+      - "Am Samstag nimmt meine Freundin ihre Kinder mit."
+      - "Meine Freundin nimmt am Samstag ihre Kinder mit."
     explain:
       en: "mitbringen splits: bringt is the conjugated verb and holds position 2, and the prefix mit waits at the very end, behind the object. Everything the sentence says — who, when, what — sits inside that bracket, and the prefix closes it."
       ru: "mitbringen отделяемый: bringt — спрягаемая часть, она стоит на втором месте, а приставка mit ждёт в самом конце, за дополнением. Всё содержание предложения — кто, когда, что — оказывается внутри этой рамки, и приставка её закрывает."

@@ -167,10 +167,12 @@ export interface TranslationSpec {
   /** the confusion this item drills */
   focus?: string;
   /**
-   * The tokens of `answer` whose exact *form* this item grades. A divergence here is
-   * a real error and is attributed to `focus`; a near-miss here is never forgiven as
-   * a typo (`geflügen` for `geflogen` is a participle the learner built wrong, not a
-   * slip). Everything else is scaffolding and gets typo tolerance.
+   * The tokens of `answer` or an authored `accept` rendering whose exact *form* this
+   * item grades. Every synonymous form that carries the same graded decision must be
+   * listed: if `sehen` and `schauen` both close a modal bracket, pin both. A divergence
+   * here is a real error and is attributed to `focus`; a near-miss here is never
+   * forgiven as a typo (`geflügen` for `geflogen` is a participle the learner built
+   * wrong, not a slip). Everything else is scaffolding and gets typo tolerance.
    *
    * Word order needs no declaration: tokens are compared by position, so a reordered
    * sentence can never look like a one-token slip. An item that grades only placement
