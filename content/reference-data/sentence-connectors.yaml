@@ -5,7 +5,7 @@ id: sentence-connectors
 # into a current-level learning target.
 relations:
   - id: addition
-    title: { en: "Addition", ru: "Добавление" }
+    title: { de: "Ergänzung", en: "Addition", ru: "Добавление" }
     cue: { en: "Add another fact or argument?", ru: "Добавить ещё один факт или аргумент?" }
     description:
       en: "The second part adds information without changing or opposing the first."
@@ -46,7 +46,7 @@ relations:
         example: { de: "Der Weg ist kurz. Zudem ist er gut ausgeschildert.", en: "The route is short. Moreover, it is well signposted.", ru: "Маршрут короткий. Кроме того, он хорошо обозначен." }
 
   - id: contrast
-    title: { en: "Contrast and correction", ru: "Противопоставление и исправление" }
+    title: { de: "Gegensatz & Korrektur", en: "Contrast and correction", ru: "Противопоставление и исправление" }
     cue: { en: "Put two facts against each other—or replace a denied one?", ru: "Противопоставить два факта — или заменить отвергнутый?" }
     description:
       en: "Simple contrast keeps both statements true. Correction with sondern replaces what a negation rejected."
@@ -79,7 +79,7 @@ relations:
         example: { de: "Der Weg ist kurz. Jedoch ist er ziemlich steil.", en: "The route is short. However, it is quite steep.", ru: "Маршрут короткий. Однако он довольно крутой." }
 
   - id: cause
-    title: { en: "Cause", ru: "Причина" }
+    title: { de: "Grund", en: "Cause", ru: "Причина" }
     cue: { en: "Explain why?", ru: "Объяснить почему?" }
     description:
       en: "These introduce the reason. Their meaning overlaps, but their sentence structure and discourse use differ."
@@ -112,7 +112,7 @@ relations:
         example: { de: "Da der Zug ausfällt, nehmen wir den Bus.", en: "Since the train is cancelled, we are taking the bus.", ru: "Так как поезд отменён, мы поедем на автобусе." }
 
   - id: result
-    title: { en: "Result and conclusion", ru: "Следствие и вывод" }
+    title: { de: "Folge & Schluss", en: "Result and conclusion", ru: "Следствие и вывод" }
     cue: { en: "Say what follows from it?", ru: "Сказать, что из этого следует?" }
     description:
       en: "The reason normally comes first; the connector points forward to its consequence."
@@ -154,7 +154,7 @@ relations:
         example: { de: "Die Nachfrage ist sehr hoch. Daher verlängern wir die Öffnungszeiten.", en: "Demand is very high. Therefore, we are extending the opening hours.", ru: "Спрос очень высокий. Поэтому мы продлеваем часы работы." }
 
   - id: condition
-    title: { en: "Condition", ru: "Условие" }
+    title: { de: "Bedingung", en: "Condition", ru: "Условие" }
     cue: { en: "Under what condition?", ru: "При каком условии?" }
     description:
       en: "The main statement is valid only if the condition is met."
@@ -187,7 +187,7 @@ relations:
         example: { de: "Sie können teilnehmen, sofern noch Plätze frei sind.", en: "You may take part provided that places are still available.", ru: "Вы можете участвовать при условии, что ещё есть свободные места." }
 
   - id: alternative
-    title: { en: "Alternative", ru: "Альтернатива" }
+    title: { de: "Alternative", en: "Alternative", ru: "Альтернатива" }
     cue: { en: "Offer a choice?", ru: "Предложить выбор?" }
     description:
       en: "Two or more possibilities are presented as alternatives."
@@ -211,7 +211,7 @@ relations:
         example: { de: "Wir fahren entweder mit dem Zug oder mit dem Bus.", en: "We are travelling either by train or by bus.", ru: "Мы поедем либо на поезде, либо на автобусе." }
 
   - id: exception
-    title: { en: "Exception", ru: "Исключение" }
+    title: { de: "Ausnahme", en: "Exception", ru: "Исключение" }
     cue: { en: "Exclude one case from a general statement?", ru: "Исключить один случай из общего утверждения?" }
     description:
       en: "An otherwise general statement is narrowed by naming what does not belong to it."
@@ -235,7 +235,7 @@ relations:
         example: { de: "Die Wohnung gefällt mir, außer dass die Küche sehr klein ist.", en: "I like the flat, except that the kitchen is very small.", ru: "Мне нравится квартира, если не считать того, что кухня очень маленькая." }
 
   - id: otherwise
-    title: { en: "Otherwise", ru: "Иначе" }
+    title: { de: "Andernfalls", en: "Otherwise", ru: "Иначе" }
     cue: { en: "Warn what happens if the first instruction is not followed?", ru: "Предупредить, что случится, если первое не выполнить?" }
     description:
       en: "Sonst points to the alternative consequence: if not X, then Y."
@@ -251,7 +251,7 @@ relations:
         example: { de: "Beeil dich, sonst verpassen wir den Zug.", en: "Hurry up, otherwise we will miss the train.", ru: "Поторопись, иначе мы опоздаем на поезд." }
 
   - id: concession
-    title: { en: "Concession: an unexpected result", ru: "Уступка: неожиданное следствие" }
+    title: { de: "Einräumung: unerwartete Folge", en: "Concession: an unexpected result", ru: "Уступка: неожиданное следствие" }
     cue: { en: "Did the second fact happen despite the first?", ru: "Второй факт произошёл вопреки первому?" }
     description:
       en: "The first fact creates an expectation; the second says that reality went the other way."
@@ -293,7 +293,7 @@ relations:
         example: { de: "Es gab erhebliche Zweifel. Gleichwohl wurde der Plan umgesetzt.", en: "There were considerable doubts. Even so, the plan was implemented.", ru: "Были серьёзные сомнения. Тем не менее план осуществили." }
 
   - id: qualification
-    title: { en: "Qualification and limitation", ru: "Оговорка и ограничение" }
+    title: { de: "Einschränkung", en: "Qualification and limitation", ru: "Оговорка и ограничение" }
     cue: { en: "Accept the first statement, but narrow it?", ru: "Признать первую часть, но ограничить её?" }
     description:
       en: "The second statement does not overturn an expectation; it adds a reservation to the first."

@@ -8,19 +8,6 @@ const entry = await getEntry('referenceData', 'sentence-connectors');
 if (!entry) throw new Error('Missing canonical sentence-connectors reference data');
 const data = sentenceConnectorsReferenceSchema.parse(entry.data);
 
-const relationDe: Record<string, string> = {
-  addition: 'Ergänzung',
-  contrast: 'Gegensatz & Korrektur',
-  cause: 'Grund',
-  result: 'Folge & Schluss',
-  condition: 'Bedingung',
-  alternative: 'Alternative',
-  exception: 'Ausnahme',
-  otherwise: 'Andernfalls',
-  concession: 'Einräumung: unerwartete Folge',
-  qualification: 'Einschränkung',
-};
-
 const syntaxLabels = {
   coordinating: { de: 'Hauptsatz + Hauptsatz', en: 'coordinating', ru: 'сочинительная связь' },
   subordinating: { de: 'Nebensatz · Verb am Ende', en: 'subordinating · verb last', ru: 'придаточное · глагол в конце' },
@@ -90,10 +77,20 @@ const levelClasses: Record<string, string> = {
       {data.relations.map((relation) => (
         <a href={`#${relation.id}`} class="group rounded-xl border border-stone-200 bg-white p-4 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800">
           <div class="flex items-center justify-between gap-3">
-            <strong>{relationDe[relation.id] ?? relation.title.en}</strong>
+            <strong>
+              <span class="lang-en">{relation.title.en}</span>
+              <span class="lang-ru">{relation.title.ru}</span>
+              {relation.title.uk && <span class="lang-uk">{relation.title.uk}</span>}
+              {relation.title.de && <span class="lang-de">{relation.title.de}</span>}
+            </strong>
             <span aria-hidden="true" class="text-amber-600 transition-transform group-hover:translate-x-0.5">→</span>
           </div>
-          <p class="mt-1 text-sm text-stone-500"><span class="lang-en">{relation.cue.en}</span><span class="lang-ru">{relation.cue.ru}</span></p>
+          <p class="mt-1 text-sm text-stone-500">
+            <span class="lang-en">{relation.cue.en}</span>
+            <span class="lang-ru">{relation.cue.ru}</span>
+            {relation.cue.uk && <span class="lang-uk">{relation.cue.uk}</span>}
+            {relation.cue.de && <span class="lang-de">{relation.cue.de}</span>}
+          </p>
         </a>
       ))}
     </div>
@@ -122,10 +119,17 @@ const levelClasses: Record<string, string> = {
 
   {data.relations.map((relation) => (
     <section id={relation.id} class="scroll-mt-6 border-b border-stone-200 py-12 last:border-b-0 dark:border-stone-700">
-      <h2 class="text-2xl font-bold">{relationDe[relation.id] ?? relation.title.en}</h2>
+      <h2 class="text-2xl font-bold">
+        <span class="lang-en">{relation.title.en}</span>
+        <span class="lang-ru">{relation.title.ru}</span>
+        {relation.title.uk && <span class="lang-uk">{relation.title.uk}</span>}
+        {relation.title.de && <span class="lang-de">{relation.title.de}</span>}
+      </h2>
       <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
         <span class="lang-en">{relation.description.en}</span>
         <span class="lang-ru">{relation.description.ru}</span>
+        {relation.description.uk && <span class="lang-uk">{relation.description.uk}</span>}
+        {relation.description.de && <span class="lang-de">{relation.description.de}</span>}
       </p>
 
       <div class="mt-6 overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
@@ -152,8 +156,20 @@ const levelClasses: Record<string, string> = {
                     {register && <span class="mt-2 inline-block rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300"><span class="lang-en">{register.en}</span><span class="lang-ru">{register.ru}</span></span>}
                   </td>
                   <td class="px-4 py-4">
-                    <p><span class="lang-en">{connector.meaning.en}</span><span class="lang-ru">{connector.meaning.ru}</span></p>
-                    {connector.note && <p class="mt-2 text-xs leading-relaxed text-stone-500"><span class="lang-en">{connector.note.en}</span><span class="lang-ru">{connector.note.ru}</span></p>}
+                    <p>
+                      <span class="lang-en">{connector.meaning.en}</span>
+                      <span class="lang-ru">{connector.meaning.ru}</span>
+                      {connector.meaning.uk && <span class="lang-uk">{connector.meaning.uk}</span>}
+                      {connector.meaning.de && <span class="lang-de">{connector.meaning.de}</span>}
+                    </p>
+                    {connector.note && (
+                      <p class="mt-2 text-xs leading-relaxed text-stone-500">
+                        <span class="lang-en">{connector.note.en}</span>
+                        <span class="lang-ru">{connector.note.ru}</span>
+                        {connector.note.uk && <span class="lang-uk">{connector.note.uk}</span>}
+                        {connector.note.de && <span class="lang-de">{connector.note.de}</span>}
+                      </p>
+                    )}
                   </td>
                   <td class="px-4 py-4">
                     <span class="font-medium">{syntax.de}</span>
@@ -161,7 +177,11 @@ const levelClasses: Record<string, string> = {
                   </td>
                   <td class="px-4 py-4">
                     <p lang="de" class="font-medium">{connector.example.de}</p>
-                    <p class="mt-1 text-xs text-stone-500"><span class="lang-en">{connector.example.en}</span><span class="lang-ru">{connector.example.ru}</span></p>
+                    <p class="mt-1 text-xs text-stone-500">
+                      <span class="lang-en">{connector.example.en}</span>
+                      <span class="lang-ru">{connector.example.ru}</span>
+                      {connector.example.uk && <span class="lang-uk">{connector.example.uk}</span>}
+                    </p>
                   </td>
                 </tr>
               );
@@ -181,13 +201,27 @@ const levelClasses: Record<string, string> = {
     <div class="mt-6 grid gap-5">
       {data.comparisons.map((comparison) => (
         <article id={comparison.id} class="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
-          <h3 lang="de" class="text-lg font-bold">{comparison.title.de ?? comparison.title.en}</h3>
-          <p class="mt-2 text-sm leading-relaxed"><span class="lang-en">{comparison.explanation.en}</span><span class="lang-ru">{comparison.explanation.ru}</span></p>
+          <h3 class="text-lg font-bold">
+            <span class="lang-en">{comparison.title.en}</span>
+            <span class="lang-ru">{comparison.title.ru}</span>
+            {comparison.title.uk && <span class="lang-uk">{comparison.title.uk}</span>}
+            {comparison.title.de && <span class="lang-de">{comparison.title.de}</span>}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed">
+            <span class="lang-en">{comparison.explanation.en}</span>
+            <span class="lang-ru">{comparison.explanation.ru}</span>
+            {comparison.explanation.uk && <span class="lang-uk">{comparison.explanation.uk}</span>}
+            {comparison.explanation.de && <span class="lang-de">{comparison.explanation.de}</span>}
+          </p>
           <div class="mt-4 grid gap-3 lg:grid-cols-3">
             {comparison.examples.map((example) => (
               <div class="rounded-lg bg-stone-50 p-4 dark:bg-stone-900/60">
                 <p lang="de" class="font-medium">{example.de}</p>
-                <p class="mt-2 text-xs text-stone-500"><span class="lang-en">{example.en}</span><span class="lang-ru">{example.ru}</span></p>
+                <p class="mt-2 text-xs text-stone-500">
+                  <span class="lang-en">{example.en}</span>
+                  <span class="lang-ru">{example.ru}</span>
+                  {example.uk && <span class="lang-uk">{example.uk}</span>}
+                </p>
               </div>
             ))}
           </div>

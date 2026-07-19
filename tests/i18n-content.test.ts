@@ -646,11 +646,12 @@ describe('uk reaches the runtime surfaces', () => {
               form: 'deshalb',
               level: 'A2',
               syntax: 'adverbial',
-              meaning: { en: 'therefore', ru: 'поэтому' },
+              meaning: { en: 'therefore', ru: 'поэтому', de: 'Folge' },
               example: {
                 de: 'Ich bin krank. Deshalb bleibe ich zu Hause.',
                 en: 'I am ill. Therefore, I am staying at home.',
                 ru: 'Я болен. Поэтому остаюсь дома.',
+                uk: 'Я хворію. Тому залишаюся вдома.',
               },
             },
           ],
@@ -676,6 +677,8 @@ describe('uk reaches the runtime surfaces', () => {
       register: 'neutral',
     });
     expect(parsed.relations[0]!.entries[0]!.example.ru).toContain('Поэтому');
+    expect(parsed.relations[0]!.entries[0]!.example.uk).toContain('Тому');
+    expect(parsed.relations[0]!.entries[0]!.meaning.de).toBe('Folge');
   });
 
   test('ukTranslationCoverage counts ru-bearing files, uk-carrying files, per-node atlas honestly', () => {
