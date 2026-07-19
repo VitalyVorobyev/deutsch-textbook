@@ -119,6 +119,60 @@ describe('scoring and curriculum contracts', () => {
         expect(verdictIsCorrect(gradeTranslation(rendering, spec))).toBe(true);
     }
 
+    const alternativeTokenRegressions = [
+      {
+        topic: 'freizeit-koennen',
+        role: 'probe',
+        id: 'variant-a',
+        given: 'Morgen kann meine Schwester im Park Fotos mache.',
+        focus: 'modal-satzklammer',
+      },
+      {
+        topic: 'freizeit-koennen',
+        role: 'drill',
+        id: 'uebersetzen-film',
+        given: 'Wir können heute Abend einen Film schaue.',
+        focus: 'modal-satzklammer',
+      },
+      {
+        topic: 'modalverben',
+        role: 'practice',
+        id: 'uebersetzen-darf-nicht',
+        given: 'Du darfs hier nicht rauchen.',
+        focus: 'duerfen-muessen',
+      },
+      {
+        topic: 'gesundheit-arzttermin',
+        role: 'practice',
+        id: 'uebersetzen-ratschlag-du',
+        given: 'Gehee zum Arzt und nimm die Tabletten!',
+        focus: 'imperativ-form',
+      },
+      {
+        topic: 'perfekt-haben-sein',
+        role: 'probe',
+        id: 'variant-a',
+        given: 'Die Kinder sind zur Schule gerant.',
+        focus: 'haben-sein',
+      },
+    ] as const;
+
+    for (const regression of alternativeTokenRegressions) {
+      const item = sets
+        .filter((set) => set.topic === regression.topic && set.role === regression.role)
+        .flatMap((set) => set.items ?? [])
+        .find((candidate) => candidate.id === regression.id);
+      expect(item).toBeDefined();
+      expect(
+        gradeTranslation(regression.given, {
+          answer: item!.answer,
+          accept: item!.accept,
+          focus: item!.focus,
+          keyTokens: item!.key_tokens,
+        }),
+      ).toEqual({ kind: 'wrong', focus: regression.focus });
+    }
+
     const appointmentProbe = sets.find(
       (set) => set.topic === 'termine-vereinbaren' && set.role === 'probe',
     );
