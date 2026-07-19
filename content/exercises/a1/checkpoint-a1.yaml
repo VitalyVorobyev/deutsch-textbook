@@ -108,7 +108,7 @@ items:
     instruction: { en: "Fill in der, die, das or the correct form of kein.", ru: "Вставьте der, die, das или правильную форму kein.", uk: "Вставте der, die, das або правильну форму kein." }
     text: "Hier ist {{die}} Küche. Sie ist klein, aber das ist {{kein}} Problem. Rechts ist {{das}} Zimmer für die Kinder."
     translation: { en: "Here is the kitchen. It is small, but that is no problem. On the right is the room for the children.", ru: "Вот кухня. Она маленькая, но это не проблема. Справа — комната для детей.", uk: "Ось кухня. Вона маленька, але це не проблема. Праворуч — кімната для дітей." }
-    explain: { en: "die Küche and das Zimmer — the gender belongs to the noun, and the article cannot be dropped. A noun is negated with kein, never with nicht: Das ist kein Problem.", ru: "die Küche и das Zimmer — род запоминается вместе со словом, и артикль нельзя опускать, хотя русский без него обходится. Существительное отрицается через kein, а не nicht: Das ist kein Problem.", uk: "die Küche і das Zimmer — рід запам'ятовується разом зі словом, і артикль не можна опускати, хоча українська без нього обходиться. Іменник заперечується через kein, а не nicht: Das ist kein Problem." }
+    explain: { en: "die Küche and das Zimmer — the gender belongs to the noun, and the article cannot be dropped. A noun with ein or no article is negated with kein, not with nicht: Das ist kein Problem.", ru: "die Küche и das Zimmer — род запоминается вместе со словом, и артикль нельзя опускать, хотя русский без него обходится. Существительное с ein или без артикля отрицается через kein, а не через nicht: Das ist kein Problem.", uk: "die Küche і das Zimmer — рід запам'ятовується разом зі словом, і артикль не можна опускати, хоча українська без нього обходиться. Іменник з ein або без артикля заперечується через kein, а не через nicht: Das ist kein Problem." }
   - id: luecke-akkusativ
     outcomes: [akkusativ-artikel, akkusativ-praepositionen]
     type: cloze
@@ -159,7 +159,8 @@ items:
     outcomes: [essen-bestellen, akkusativ-objekte]
     type: translate
     focus: akkusativ-artikel
-    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    revision: 2
+    instruction: { en: "Translate into German. Use the indefinite article (ein-).", ru: "Переведите на немецкий. Используйте неопределённый артикль (ein-).", uk: "Перекладіть німецькою. Вживайте неозначений артикль (ein-)." }
     prompt_en: "I'll take an orange juice, please."
     prompt_ru: "Я возьму апельсиновый сок, пожалуйста."
     prompt_uk: "Я візьму апельсиновий сік, будь ласка."
