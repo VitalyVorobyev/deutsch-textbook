@@ -48,8 +48,10 @@ export default function ArtifactFeedback({ artifactId }: { artifactId: string })
       ] as const).map(([value, label]) => <button key={value} onClick={() => void save({ difficulty: value })} aria-pressed={entry?.difficulty === value} className={`rounded-md border px-3 py-2 text-sm ${entry?.difficulty === value ? 'border-amber-600 bg-amber-50 dark:bg-amber-950/30' : 'border-stone-300 dark:border-stone-600'}`}>{label}</button>)}
     </div>
     <div className="mt-4 flex flex-wrap gap-2">
-      <button onClick={() => void save({ useful: !(entry?.useful ?? false) })} aria-pressed={entry?.useful ?? false} className="rounded-md border border-stone-300 px-3 py-2 text-sm dark:border-stone-600">{pick(lang, UI.useful)}</button>
-      <button onClick={() => void save({ wantsMore: !(entry?.wantsMore ?? false) })} aria-pressed={entry?.wantsMore ?? false} className="rounded-md border border-stone-300 px-3 py-2 text-sm dark:border-stone-600">{pick(lang, UI.wantsMore)}</button>
+      {/* Same pressed styling as the difficulty row: a toggle that persists but
+          shows no visual response reads as a dead button. */}
+      <button onClick={() => void save({ useful: !(entry?.useful ?? false) })} aria-pressed={entry?.useful ?? false} className={`rounded-md border px-3 py-2 text-sm ${entry?.useful ? 'border-amber-600 bg-amber-50 dark:bg-amber-950/30' : 'border-stone-300 dark:border-stone-600'}`}>{pick(lang, UI.useful)}</button>
+      <button onClick={() => void save({ wantsMore: !(entry?.wantsMore ?? false) })} aria-pressed={entry?.wantsMore ?? false} className={`rounded-md border px-3 py-2 text-sm ${entry?.wantsMore ? 'border-amber-600 bg-amber-50 dark:bg-amber-950/30' : 'border-stone-300 dark:border-stone-600'}`}>{pick(lang, UI.wantsMore)}</button>
     </div>
   </aside>;
 }
