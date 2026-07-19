@@ -1,9 +1,9 @@
 id: bringen-holen-nehmen
 kind: meaning-contrast
 level: A2
-title_de: "bringen, holen oder mitnehmen?"
-title: { en: "Bringing, fetching, picking up and taking along", ru: "Принести, сходить за чем-то, забрать и взять с собой", uk: "Принести, піти по щось, забрати й узяти із собою" }
-introduction: { en: "These verbs sort the movement of things and people by direction: one way to a goal (bringen), there and back (holen), and what travels with you (mitnehmen, mitbringen).", ru: "Эти глаголы различают направление движения вещей и людей: в одну сторону к цели (bringen), туда и обратно (holen) и то, что едет с вами (mitnehmen, mitbringen).", uk: "Ці дієслова розрізняють напрямок руху речей і людей: в один бік до цілі (bringen), туди й назад (holen) і те, що їде з вами (mitnehmen, mitbringen)." }
+title_de: "bringen, holen, bekommen oder mitnehmen?"
+title: { en: "Bringing, fetching, receiving and taking along", ru: "Принести, сходить за чем-то, получить и взять с собой", uk: "Принести, піти по щось, отримати й узяти із собою" }
+introduction: { en: "Most of these verbs sort movement by direction: one way to a goal (bringen), there and back (holen), or along with you (mitnehmen, mitbringen). bekommen changes the question: it names the recipient and result, not who moved the thing.", ru: "Большинство этих глаголов различают направление движения: в одну сторону к цели (bringen), туда и обратно (holen) или вместе с вами (mitnehmen, mitbringen). bekommen меняет вопрос: он называет получателя и результат, а не того, кто перемещал вещь.", uk: "Більшість цих дієслів розрізняють напрямок руху: в один бік до цілі (bringen), туди й назад (holen) або разом із вами (mitnehmen, mitbringen). bekommen змінює запитання: воно називає одержувача й результат, а не того, хто переміщував річ." }
 members:
   - kind: card
     id: bringen
@@ -19,6 +19,13 @@ members:
     usage: { en: "Go somewhere, get something and come back with it: there and back.", ru: "Пойти куда-то, взять что-то и вернуться с ним: туда и обратно.", uk: "Піти кудись, узяти щось і повернутися з ним: туди й назад." }
     collocations: ["Brötchen holen", "Hilfe holen", "etwas aus dem Keller holen"]
     example: { de: "Ich hole schnell Brot aus der Küche.", en: "I will quickly get some bread from the kitchen.", ru: "Я быстро принесу хлеб из кухни.", uk: "Я швидко принесу хліб із кухні." }
+  - kind: card
+    id: bekommen
+    status: productive
+    ref: { deck: perfekt-verben, de: "bekommen" }
+    usage: { en: "Receive or obtain something: the subject is the recipient. The verb says nothing about who fetched, brought or sent it.", ru: "Получить что-то: подлежащее — получатель. Глагол не говорит, кто сходил за вещью, принёс или отправил её.", uk: "Отримати щось: підмет — одержувач. Дієслово не говорить, хто пішов по річ, приніс або надіслав її." }
+    collocations: ["ein Paket bekommen", "eine Antwort bekommen", "Hilfe bekommen"]
+    example: { de: "Ich bekomme das Paket morgen.", en: "I will receive the parcel tomorrow.", ru: "Я получу посылку завтра.", uk: "Я отримаю посилку завтра." }
   - kind: card
     id: abholen
     status: productive
@@ -54,6 +61,11 @@ relations:
     type: meaning-contrast
     basis: current-meaning
     explanation: { en: "bringen moves something one way, to a goal; holen is a round trip — you go, get it and come back. The bakery run is holen; delivering soup to grandma is bringen.", ru: "bringen — движение в одну сторону, к цели; holen — туда и обратно: пойти, взять и вернуться. Сходить за булочками — holen; отнести суп бабушке — bringen.", uk: "bringen — рух в один бік, до цілі; holen — туди й назад: піти, взяти й повернутися. Піти по булочки — holen; віднести суп бабусі — bringen." }
+  - from: holen
+    to: bekommen
+    type: meaning-contrast
+    basis: current-meaning
+    explanation: { en: "holen focuses on your action: you go and fetch the parcel from the post office. bekommen focuses on your result: you receive the parcel, whether it arrives by courier or somebody brings it. Compare Ich hole das Paket bei der Post with Ich bekomme das Paket morgen.", ru: "holen показывает ваше действие: вы идёте на почту и забираете посылку. bekommen показывает ваш результат: вы получаете посылку — её может доставить курьер или принести другой человек. Сравните Ich hole das Paket bei der Post и Ich bekomme das Paket morgen.", uk: "holen показує вашу дію: ви йдете на пошту й забираєте посилку. bekommen показує ваш результат: ви отримуєте посилку — її може доставити кур'єр або принести інша людина. Порівняйте Ich hole das Paket bei der Post та Ich bekomme das Paket morgen." }
   - from: holen
     to: abholen
     type: meaning-contrast

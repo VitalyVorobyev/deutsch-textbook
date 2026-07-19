@@ -1,0 +1,346 @@
+id: sentence-connectors
+
+# The level is the first Atlas stage at which the form is expected productively.
+# A reference page may show later language early, but it never turns that language
+# into a current-level learning target.
+relations:
+  - id: addition
+    title: { de: "Ergänzung", en: "Addition", ru: "Добавление" }
+    cue: { en: "Add another fact or argument?", ru: "Добавить ещё один факт или аргумент?" }
+    description:
+      en: "The second part adds information without changing or opposing the first."
+      ru: "Вторая часть добавляет информацию, не изменяя первую и не споря с ней."
+    entries:
+      - form: und
+        level: A1
+        syntax: coordinating
+        meaning: { en: "and; the neutral connection", ru: "и; нейтральное соединение" }
+        note:
+          en: "It joins equal words, phrases or clauses and does not change their word order."
+          ru: "Соединяет равноправные слова, группы или предложения и не меняет порядок слов."
+        example: { de: "Ich lerne Deutsch und ich lese jeden Abend.", en: "I learn German and I read every evening.", ru: "Я учу немецкий и каждый вечер читаю." }
+      - form: auch
+        level: A1
+        syntax: adverbial
+        meaning: { en: "also, too", ru: "тоже, также" }
+        note:
+          en: "Usually stands inside the clause next to the information it adds; it is not normally a sentence-opening connector like außerdem."
+          ru: "Обычно стоит внутри предложения рядом с добавляемой информацией; это не обычная связка в начале предложения, как außerdem."
+        example: { de: "Ich lerne Deutsch und lese auch deutsche Nachrichten.", en: "I learn German and also read German news.", ru: "Я учу немецкий и также читаю новости по-немецки." }
+      - form: außerdem
+        level: A2
+        syntax: adverbial
+        meaning: { en: "in addition, besides", ru: "кроме того, к тому же" }
+        note:
+          en: "In position 1 it is followed immediately by the verb: Außerdem ist sie hell."
+          ru: "На первом месте за ним сразу идёт глагол: Außerdem ist sie hell."
+        example: { de: "Die Wohnung ist groß. Außerdem ist sie sehr hell.", en: "The flat is large. In addition, it is very bright.", ru: "Квартира большая. Кроме того, она очень светлая." }
+      - form: zudem
+        level: B1
+        syntax: adverbial
+        register: written
+        meaning: { en: "moreover, in addition", ru: "вдобавок, кроме того" }
+        note:
+          en: "Close to außerdem but more typical of structured or written argument. Fronted zudem is followed by the verb."
+          ru: "Близко к außerdem, но чаще встречается в структурированной или письменной аргументации. После zudem в начале идёт глагол."
+        example: { de: "Der Weg ist kurz. Zudem ist er gut ausgeschildert.", en: "The route is short. Moreover, it is well signposted.", ru: "Маршрут короткий. Кроме того, он хорошо обозначен." }
+
+  - id: contrast
+    title: { de: "Gegensatz & Korrektur", en: "Contrast and correction", ru: "Противопоставление и исправление" }
+    cue: { en: "Put two facts against each other—or replace a denied one?", ru: "Противопоставить два факта — или заменить отвергнутый?" }
+    description:
+      en: "Simple contrast keeps both statements true. Correction with sondern replaces what a negation rejected."
+      ru: "При простом противопоставлении обе части остаются верными. Sondern после отрицания заменяет отвергнутый вариант."
+    entries:
+      - form: aber
+        level: A1
+        syntax: coordinating
+        meaning: { en: "but; neutral contrast", ru: "но; нейтральное противопоставление" }
+        note:
+          en: "Both parts remain true, and the clause after aber keeps normal main-clause order."
+          ru: "Обе части остаются верными, а после aber сохраняется обычный порядок главного предложения."
+        example: { de: "Das Zimmer ist klein, aber es ist ruhig.", en: "The room is small, but it is quiet.", ru: "Комната маленькая, но тихая." }
+      - form: sondern
+        level: A2
+        syntax: coordinating
+        meaning: { en: "but rather; correction after negation", ru: "а, а наоборот; исправление после отрицания" }
+        note:
+          en: "Use it only when the first part explicitly denies X and the second replaces X with Y."
+          ru: "Употребляется, только когда первая часть явно отрицает X, а вторая заменяет X на Y."
+        example: { de: "Wir treffen uns nicht am Freitag, sondern am Samstag.", en: "We are not meeting on Friday but on Saturday.", ru: "Мы встречаемся не в пятницу, а в субботу." }
+      - form: jedoch
+        level: B1
+        syntax: adverbial
+        register: written
+        meaning: { en: "however, yet", ru: "однако, всё же" }
+        note:
+          en: "More typical of writing than aber. In position 1 it takes the verb with it: Jedoch ist der Weg steil."
+          ru: "Характернее для письма, чем aber. На первом месте за ним идёт глагол: Jedoch ist der Weg steil."
+        example: { de: "Der Weg ist kurz. Jedoch ist er ziemlich steil.", en: "The route is short. However, it is quite steep.", ru: "Маршрут короткий. Однако он довольно крутой." }
+
+  - id: cause
+    title: { de: "Grund", en: "Cause", ru: "Причина" }
+    cue: { en: "Explain why?", ru: "Объяснить почему?" }
+    description:
+      en: "These introduce the reason. Their meaning overlaps, but their sentence structure and discourse use differ."
+      ru: "Эти слова вводят причину. Значение похоже, но структура предложения и употребление различаются."
+    entries:
+      - form: weil
+        level: A2
+        syntax: subordinating
+        meaning: { en: "because; the normal productive choice", ru: "потому что; обычный активный вариант" }
+        note:
+          en: "It opens a subordinate clause, so the conjugated verb goes to the end."
+          ru: "Вводит придаточное, поэтому спрягаемый глагол уходит в конец."
+        example: { de: "Ich bleibe zu Hause, weil ich krank bin.", en: "I am staying at home because I am ill.", ru: "Я остаюсь дома, потому что болен." }
+      - form: denn
+        level: A2
+        syntax: coordinating
+        meaning: { en: "because, for", ru: "ведь, потому что" }
+        note:
+          en: "It connects a following main clause and changes nothing in its word order."
+          ru: "Присоединяет следующее главное предложение и не меняет его порядок слов."
+        example: { de: "Ich bleibe zu Hause, denn ich bin krank.", en: "I am staying at home because I am ill.", ru: "Я остаюсь дома, ведь я болен." }
+      - form: da
+        level: B1
+        syntax: subordinating
+        register: written
+        meaning: { en: "since, as; a reason treated as known or backgrounded", ru: "так как, поскольку; причина как известный фон" }
+        note:
+          en: "This is causal da, not locative da. Its subordinate clause is often placed first, and its verb goes to the end."
+          ru: "Это причинное da, а не da со значением места. Такое придаточное часто ставят первым, а глагол уходит в конец."
+        example: { de: "Da der Zug ausfällt, nehmen wir den Bus.", en: "Since the train is cancelled, we are taking the bus.", ru: "Так как поезд отменён, мы поедем на автобусе." }
+
+  - id: result
+    title: { de: "Folge & Schluss", en: "Result and conclusion", ru: "Следствие и вывод" }
+    cue: { en: "Say what follows from it?", ru: "Сказать, что из этого следует?" }
+    description:
+      en: "The reason normally comes first; the connector points forward to its consequence."
+      ru: "Причина обычно стоит первой, а связка указывает вперёд на следствие."
+    entries:
+      - form: deshalb
+        level: A2
+        syntax: adverbial
+        meaning: { en: "therefore, that is why", ru: "поэтому" }
+        note:
+          en: "It introduces the consequence, not the reason. In position 1 it is followed by the verb."
+          ru: "Вводит следствие, а не причину. На первом месте за ним сразу идёт глагол."
+        example: { de: "Ich bin krank. Deshalb bleibe ich zu Hause.", en: "I am ill. That is why I am staying at home.", ru: "Я болен. Поэтому остаюсь дома." }
+      - form: deswegen
+        level: A2
+        syntax: adverbial
+        meaning: { en: "that is why, for that reason", ru: "поэтому, из-за этого" }
+        note:
+          en: "Interchangeable with deshalb in most everyday contexts and follows the same verb-second pattern."
+          ru: "В большинстве бытовых контекстов взаимозаменяемо с deshalb и требует того же порядка с глаголом на втором месте."
+        example: { de: "Der Bus hatte Verspätung. Deswegen kam ich zu spät.", en: "The bus was late. That is why I arrived late.", ru: "Автобус опоздал. Поэтому я пришёл поздно." }
+      - form: darum
+        level: B1
+        syntax: adverbial
+        register: spoken
+        meaning: { en: "that is why, so", ru: "поэтому, вот почему" }
+        note:
+          en: "Common in speech. Here it means consequence; darum can also be a pronominal adverb in Worum geht es? — Darum."
+          ru: "Часто встречается в речи. Здесь оно выражает следствие; darum бывает и местоименным наречием: Worum geht es? — Darum."
+        example: { de: "Morgen ist ein Feiertag. Darum bleibt das Geschäft zu.", en: "Tomorrow is a public holiday. That is why the shop is closed.", ru: "Завтра праздник. Поэтому магазин будет закрыт." }
+      - form: daher
+        level: B1
+        syntax: adverbial
+        register: written
+        meaning: { en: "therefore, hence", ru: "поэтому, отсюда" }
+        note:
+          en: "Frequent in explanations and written conclusions. Fronted daher is followed by the verb."
+          ru: "Часто встречается в объяснениях и письменных выводах. После daher в начале идёт глагол."
+        example: { de: "Die Nachfrage ist sehr hoch. Daher verlängern wir die Öffnungszeiten.", en: "Demand is very high. Therefore, we are extending the opening hours.", ru: "Спрос очень высокий. Поэтому мы продлеваем часы работы." }
+
+  - id: condition
+    title: { de: "Bedingung", en: "Condition", ru: "Условие" }
+    cue: { en: "Under what condition?", ru: "При каком условии?" }
+    description:
+      en: "The main statement is valid only if the condition is met."
+      ru: "Главная часть действует, только если условие выполнено."
+    entries:
+      - form: wenn
+        level: A2
+        syntax: subordinating
+        meaning: { en: "if; also when/whenever", ru: "если; также когда" }
+        note:
+          en: "The verb closes the wenn-clause. When that clause comes first, the main verb follows directly after the comma."
+          ru: "Глагол замыкает придаточное с wenn. Если оно стоит первым, глагол главного идёт сразу после запятой."
+        example: { de: "Wenn ich Zeit habe, komme ich mit.", en: "If I have time, I will come along.", ru: "Если у меня будет время, я пойду с вами." }
+      - form: falls
+        level: B1
+        syntax: subordinating
+        meaning: { en: "if, in case; presents the condition as a possibility", ru: "если, в случае если; условие как возможность" }
+        note:
+          en: "Often close to wenn, but it more clearly leaves open whether the condition will happen."
+          ru: "Часто близко к wenn, но яснее подчёркивает, что неизвестно, наступит ли условие."
+        example: { de: "Falls du später kommst, ruf mich bitte an.", en: "If you are going to be late, please call me.", ru: "Если ты опоздаешь, пожалуйста, позвони мне." }
+      - form: sofern
+        level: B2
+        syntax: subordinating
+        register: formal
+        meaning: { en: "provided that, insofar as", ru: "при условии что, поскольку" }
+        note:
+          en: "Typical of formal conditions, rules and careful qualifications; not an everyday replacement for wenn."
+          ru: "Характерно для формальных условий, правил и точных оговорок; это не бытовая замена wenn."
+        example: { de: "Sie können teilnehmen, sofern noch Plätze frei sind.", en: "You may take part provided that places are still available.", ru: "Вы можете участвовать при условии, что ещё есть свободные места." }
+
+  - id: alternative
+    title: { de: "Alternative", en: "Alternative", ru: "Альтернатива" }
+    cue: { en: "Offer a choice?", ru: "Предложить выбор?" }
+    description:
+      en: "Two or more possibilities are presented as alternatives."
+      ru: "Две или несколько возможностей представлены как варианты выбора."
+    entries:
+      - form: oder
+        level: A1
+        syntax: coordinating
+        meaning: { en: "or", ru: "или" }
+        note:
+          en: "It joins equal alternatives and does not change their word order."
+          ru: "Соединяет равноправные варианты и не меняет их порядок слов."
+        example: { de: "Fahren wir mit dem Zug oder nehmen wir den Bus?", en: "Shall we go by train or take the bus?", ru: "Мы поедем на поезде или на автобусе?" }
+      - form: entweder … oder
+        level: B1
+        syntax: paired
+        meaning: { en: "either … or", ru: "либо … либо" }
+        note:
+          en: "The two halves mark the alternatives explicitly; keep the structures after them parallel."
+          ru: "Две части явно отмечают варианты; конструкции после них лучше строить параллельно."
+        example: { de: "Wir fahren entweder mit dem Zug oder mit dem Bus.", en: "We are travelling either by train or by bus.", ru: "Мы поедем либо на поезде, либо на автобусе." }
+
+  - id: exception
+    title: { de: "Ausnahme", en: "Exception", ru: "Исключение" }
+    cue: { en: "Exclude one case from a general statement?", ru: "Исключить один случай из общего утверждения?" }
+    description:
+      en: "An otherwise general statement is narrowed by naming what does not belong to it."
+      ru: "Общее утверждение сужается: называется то, что в него не входит."
+    entries:
+      - form: außer
+        level: A2
+        syntax: prepositional
+        meaning: { en: "except, apart from", ru: "кроме, за исключением" }
+        note:
+          en: "As a preposition it normally takes the dative: außer mir, außer dem Kind."
+          ru: "Как предлог обычно требует Dativ: außer mir, außer dem Kind."
+        example: { de: "Außer mir kommen alle.", en: "Everyone is coming except me.", ru: "Все придут, кроме меня." }
+      - form: außer dass
+        level: B1
+        syntax: subordinating
+        meaning: { en: "except that, apart from the fact that", ru: "кроме того что, если не считать что" }
+        note:
+          en: "It introduces a whole exceptional fact, so the conjugated verb goes to the end of the dass-clause."
+          ru: "Вводит целый факт-исключение, поэтому спрягаемый глагол уходит в конец придаточного с dass."
+        example: { de: "Die Wohnung gefällt mir, außer dass die Küche sehr klein ist.", en: "I like the flat, except that the kitchen is very small.", ru: "Мне нравится квартира, если не считать того, что кухня очень маленькая." }
+
+  - id: otherwise
+    title: { de: "Andernfalls", en: "Otherwise", ru: "Иначе" }
+    cue: { en: "Warn what happens if the first instruction is not followed?", ru: "Предупредить, что случится, если первое не выполнить?" }
+    description:
+      en: "Sonst points to the alternative consequence: if not X, then Y."
+      ru: "Sonst указывает на альтернативное следствие: если не X, то Y."
+    entries:
+      - form: sonst
+        level: A2
+        syntax: adverbial
+        meaning: { en: "otherwise, or else; also else", ru: "иначе, а то; также ещё" }
+        note:
+          en: "As a connector it introduces the consequence if the first part fails. In questions such as Sonst noch etwas? it simply means else."
+          ru: "Как связка вводит следствие при невыполнении первой части. В вопросах вроде Sonst noch etwas? оно просто означает «ещё»."
+        example: { de: "Beeil dich, sonst verpassen wir den Zug.", en: "Hurry up, otherwise we will miss the train.", ru: "Поторопись, иначе мы опоздаем на поезд." }
+
+  - id: concession
+    title: { de: "Einräumung: unerwartete Folge", en: "Concession: an unexpected result", ru: "Уступка: неожиданное следствие" }
+    cue: { en: "Did the second fact happen despite the first?", ru: "Второй факт произошёл вопреки первому?" }
+    description:
+      en: "The first fact creates an expectation; the second says that reality went the other way."
+      ru: "Первый факт создаёт ожидание, а второй сообщает, что всё вышло наоборот."
+    entries:
+      - form: trotzdem
+        level: A2
+        syntax: adverbial
+        meaning: { en: "nevertheless, all the same", ru: "несмотря на это, всё равно" }
+        note:
+          en: "It introduces an unexpected consequence and follows the verb-second pattern: Trotzdem gehen wir."
+          ru: "Вводит неожиданное следствие и требует глагол на втором месте: Trotzdem gehen wir."
+        example: { de: "Es regnet. Trotzdem gehen wir spazieren.", en: "It is raining. We are going for a walk all the same.", ru: "Идёт дождь. Несмотря на это, мы идём гулять." }
+      - form: dennoch
+        level: B1
+        syntax: adverbial
+        register: written
+        meaning: { en: "nevertheless, nonetheless", ru: "тем не менее, всё же" }
+        note:
+          en: "Very close to trotzdem, but more typical of written or carefully structured language."
+          ru: "Очень близко к trotzdem, но характернее для письменной или тщательно выстроенной речи."
+        example: { de: "Er war müde. Dennoch arbeitete er weiter.", en: "He was tired. Nevertheless, he continued working.", ru: "Он устал. Тем не менее он продолжил работать." }
+      - form: obwohl
+        level: B1
+        syntax: subordinating
+        meaning: { en: "although, even though", ru: "хотя, несмотря на то что" }
+        note:
+          en: "It expresses the same logical relation inside a subordinate clause, so the conjugated verb goes to the end."
+          ru: "Выражает ту же логическую связь внутри придаточного, поэтому спрягаемый глагол уходит в конец."
+        example: { de: "Obwohl es regnet, gehen wir spazieren.", en: "Although it is raining, we are going for a walk.", ru: "Хотя идёт дождь, мы идём гулять." }
+      - form: gleichwohl
+        level: B2
+        syntax: adverbial
+        register: formal
+        meaning: { en: "nevertheless, even so", ru: "всё же, тем не менее" }
+        note:
+          en: "A distinctly formal or literary alternative; recognise it, but prefer trotzdem or dennoch in ordinary communication."
+          ru: "Явно формальный или книжный вариант; его полезно узнавать, но в обычной речи лучше trotzdem или dennoch."
+        example: { de: "Es gab erhebliche Zweifel. Gleichwohl wurde der Plan umgesetzt.", en: "There were considerable doubts. Even so, the plan was implemented.", ru: "Были серьёзные сомнения. Тем не менее план осуществили." }
+
+  - id: qualification
+    title: { de: "Einschränkung", en: "Qualification and limitation", ru: "Оговорка и ограничение" }
+    cue: { en: "Accept the first statement, but narrow it?", ru: "Признать первую часть, но ограничить её?" }
+    description:
+      en: "The second statement does not overturn an expectation; it adds a reservation to the first."
+      ru: "Вторая часть не ломает ожидание, а добавляет к первой оговорку."
+    entries:
+      - form: allerdings
+        level: B1
+        syntax: adverbial
+        meaning: { en: "however, admittedly; yes, but …", ru: "правда, однако; да, но…" }
+        note:
+          en: "It acknowledges the first assessment and then limits it. Unlike trotzdem, it need not describe a surprising action despite an obstacle."
+          ru: "Подтверждает первую оценку, а затем ограничивает её. В отличие от trotzdem, не обязано описывать неожиданное действие вопреки препятствию."
+        example: { de: "Das Hotel ist schön. Allerdings ist es ziemlich teuer.", en: "The hotel is nice. It is rather expensive, however.", ru: "Отель хороший. Правда, он довольно дорогой." }
+
+comparisons:
+  - id: reason-result
+    title: { de: "weil, denn oder deshalb?", en: "weil, denn or deshalb?", ru: "weil, denn или deshalb?" }
+    explanation:
+      en: "Weil and denn introduce the reason; deshalb introduces the result. Weil sends its verb to the end, denn leaves main-clause order unchanged, and deshalb in position 1 is followed by the verb."
+      ru: "Weil и denn вводят причину, deshalb — следствие. Weil отправляет глагол в конец, denn сохраняет порядок главного предложения, а после deshalb на первом месте сразу идёт глагол."
+    examples:
+      - { de: "Ich bleibe zu Hause, weil ich krank bin.", en: "I am staying at home because I am ill.", ru: "Я остаюсь дома, потому что болен." }
+      - { de: "Ich bleibe zu Hause, denn ich bin krank.", en: "I am staying at home because I am ill.", ru: "Я остаюсь дома, ведь я болен." }
+      - { de: "Ich bin krank. Deshalb bleibe ich zu Hause.", en: "I am ill. That is why I am staying at home.", ru: "Я болен. Поэтому остаюсь дома." }
+  - id: expected-unexpected
+    title: { de: "deshalb oder trotzdem?", en: "deshalb or trotzdem?", ru: "deshalb или trotzdem?" }
+    explanation:
+      en: "Both introduce a consequence and both use verb-second order. Deshalb gives the expected consequence; trotzdem gives the one that contradicts the expectation."
+      ru: "Оба вводят следствие и требуют глагол на втором месте. Deshalb называет ожидаемое следствие, trotzdem — то, которое противоречит ожиданию."
+    examples:
+      - { de: "Es regnet. Deshalb bleiben wir zu Hause.", en: "It is raining. Therefore, we are staying at home.", ru: "Идёт дождь. Поэтому мы остаёмся дома." }
+      - { de: "Es regnet. Trotzdem gehen wir spazieren.", en: "It is raining. We are going for a walk all the same.", ru: "Идёт дождь. Несмотря на это, мы идём гулять." }
+  - id: contrast-correction-qualification
+    title: { de: "aber, sondern oder allerdings?", en: "aber, sondern or allerdings?", ru: "aber, sondern или allerdings?" }
+    explanation:
+      en: "Aber contrasts two true facts. Sondern replaces something explicitly denied. Allerdings accepts an assessment and then adds a limiting reservation."
+      ru: "Aber противопоставляет два верных факта. Sondern заменяет явно отвергнутый вариант. Allerdings принимает оценку и затем добавляет ограничивающую оговорку."
+    examples:
+      - { de: "Das Zimmer ist klein, aber es ist ruhig.", en: "The room is small, but it is quiet.", ru: "Комната маленькая, но тихая." }
+      - { de: "Das Zimmer ist nicht groß, sondern nur praktisch eingerichtet.", en: "The room is not large; rather, it is merely furnished practically.", ru: "Комната не большая, а просто практично обставлена." }
+      - { de: "Das Zimmer ist schön. Allerdings ist es teuer.", en: "The room is nice. It is expensive, however.", ru: "Комната хорошая. Правда, она дорогая." }
+  - id: concession-otherwise
+    title: { de: "trotzdem, dennoch oder sonst?", en: "trotzdem, dennoch or sonst?", ru: "trotzdem, dennoch или sonst?" }
+    explanation:
+      en: "Trotzdem and dennoch both mean that something happened despite the first fact; dennoch is more written. Sonst does not express concession: it names what will happen if the first condition is not met."
+      ru: "Trotzdem и dennoch сообщают, что нечто произошло вопреки первому факту; dennoch более книжное. Sonst не выражает уступку: оно называет то, что случится, если первое условие не выполнить."
+    examples:
+      - { de: "Es regnet. Trotzdem gehen wir.", en: "It is raining. We are going all the same.", ru: "Идёт дождь. Мы всё равно идём." }
+      - { de: "Es regnet. Dennoch gehen wir.", en: "It is raining. Nevertheless, we are going.", ru: "Идёт дождь. Тем не менее мы идём." }
+      - { de: "Nimm einen Schirm mit, sonst wirst du nass.", en: "Take an umbrella, otherwise you will get wet.", ru: "Возьми зонт, иначе промокнешь." }

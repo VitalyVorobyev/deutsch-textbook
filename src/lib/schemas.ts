@@ -805,10 +805,45 @@ export const zahlenDatumZeitReferenceSchema = z.object({
 });
 export type ZahlenDatumZeitReference = z.infer<typeof zahlenDatumZeitReferenceSchema>;
 
+const connectorSyntaxSchema = z.enum([
+  'coordinating',
+  'subordinating',
+  'adverbial',
+  'prepositional',
+  'paired',
+]);
+
+export const sentenceConnectorsReferenceSchema = z.object({
+  id: z.literal('sentence-connectors'),
+  relations: z.array(z.object({
+    id: slug,
+    title: bilingualSchema,
+    cue: bilingualSchema,
+    description: bilingualSchema,
+    entries: z.array(z.object({
+      form: z.string().min(1),
+      level: levelSchema,
+      syntax: connectorSyntaxSchema,
+      register: z.enum(['neutral', 'spoken', 'written', 'formal']).default('neutral'),
+      meaning: bilingualSchema,
+      note: bilingualSchema.optional(),
+      example: referenceExampleSchema,
+    })).min(1),
+  })).min(1),
+  comparisons: z.array(z.object({
+    id: slug,
+    title: bilingualSchema,
+    explanation: bilingualSchema,
+    examples: z.array(referenceExampleSchema).min(2),
+  })).min(1),
+});
+export type SentenceConnectorsReference = z.infer<typeof sentenceConnectorsReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
   zahlenDatumZeitReferenceSchema,
+  sentenceConnectorsReferenceSchema,
 ]);
 export type ReferenceData = z.infer<typeof referenceDataSchema>;
 
