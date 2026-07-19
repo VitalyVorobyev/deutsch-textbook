@@ -16,6 +16,7 @@ items:
     outcomes: [artikel-richtig-verwenden]
     type: translate
     focus: genus
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -25,6 +26,8 @@ items:
     prompt_uk: "Мова важка, але країна гарна."
     answer: "Die Sprache ist schwer, aber das Land ist schön."
     key_tokens: ["Die", "das"]
+    accept:
+      - "Die Sprache ist schwierig, aber das Land ist schön."
     explain:
       en: "The article is part of the word and has to be learned with it: die Sprache is feminine, das Land is neuter. Nothing in the meaning predicts either one — and the English the hides the gender completely."
       ru: "Артикль — часть слова, и учить его нужно вместе со словом: die Sprache — женского рода, das Land — среднего. Смысл ничего не подсказывает, и род русского слова тоже: «язык» мужского рода, а «страна» — женского."
@@ -52,6 +55,7 @@ items:
     outcomes: [artikel-richtig-verwenden]
     type: translate
     focus: genus
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -61,6 +65,8 @@ items:
     prompt_uk: "Номер телефону довгий, а ім'я коротке."
     answer: "Die Telefonnummer ist lang, aber der Vorname ist kurz."
     key_tokens: ["Die", "der"]
+    accept:
+      - "Die Telefonnummer ist lang, aber der Name ist kurz."
     explain:
       en: "A compound takes the gender of its last part: die Nummer → die Telefonnummer, der Name → der Vorname. That last element is the one to check."
       ru: "Сложное слово получает род последней части: die Nummer → die Telefonnummer, der Name → der Vorname. Смотреть нужно именно на последний элемент."

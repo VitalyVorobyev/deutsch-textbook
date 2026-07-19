@@ -15,6 +15,7 @@ items:
     outcomes: [familie-vorstellen, menschen-beschreiben]
     type: translate
     focus: possessivartikel
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -24,6 +25,8 @@ items:
     prompt_uk: "Мій син — інженер. Він живе в Кельні."
     answer: "Mein Sohn ist Ingenieur. Er wohnt in Köln."
     key_tokens: ["Mein"]
+    accept:
+      - "Mein Sohn ist Ingenieur. Er lebt in Köln."
     explain:
       en: "mein is declined like ein: der Sohn is masculine, so the possessive stays bare — mein Sohn. Note also that a profession takes no article after sein: er ist Ingenieur."
       ru: "mein склоняется как ein: der Sohn мужского рода, поэтому притяжательное слово остаётся без окончания — mein Sohn. И помните: перед профессией после sein артикль не ставится — er ist Ingenieur."
