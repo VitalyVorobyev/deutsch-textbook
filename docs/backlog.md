@@ -100,18 +100,18 @@ control, and no review obligation from opening it:
 
 1. die Berliner Mauer im Stadtbild
 2. das Ampelmännchen
-3. Pfand und Mülltrennung
+3. Pfand und Mülltrennung — shipped
 4. die Sonntagsruhe
 5. Schrebergärten
 6. Deutsch in Österreich und der Schweiz
 7. der Verein
 8. Brot als UNESCO-Kulturerbe
-9. das Deutschlandticket
+9. das Deutschlandticket — shipped
 10. das Amt als Genre
 11. Bauhaus im Alltag — the movement through an everyday object
-12. der Döner — migration through a familiar food
+12. der Döner — migration through a familiar food — shipped
 13. die Loreley — the Rhine through a place and a legend
-14. Moin, Servus, Grüß Gott — regional German through an encounter
+14. Moin, Servus, Grüß Gott — regional German through an encounter — shipped
 15. Tatort am Sonntag — a television ritual
 
 Two standing decisions are recorded here rather than as items. **Committed audio stays deferred**
