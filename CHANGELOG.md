@@ -7,6 +7,73 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [0.4.0] — 2026-07-19
+
+**A course that now speaks to Ukrainian learners, teaches the complete A2 grammar standard, and
+has had every A1 and A2 grammar claim read by a human rather than merely accepted by a schema.**
+
+### Added
+
+- **The complete Ukrainian explanation half for A1 and A2.** All 266 content files that carry a
+  Russian explanation now carry an idiomatic Ukrainian one too: articles, exercises, readings,
+  vocabulary, checkpoints and supporting material. A single *Lernsprache* selector switches among
+  English, Russian and Ukrainian while the German examples and course chrome stay visible.
+- **The rest of the A2 grammar curriculum.** Adjective declension, `zu`-infinitives and
+  `um … zu`, nominative and accusative relative clauses, conjunctional adverbs with inversion,
+  `als` versus `wenn`, Futur I, dative reflexives, `man`/`jemand`/`niemand`, possession and
+  receptive passive close the measured A2 standard from 20/30 to **30/30**. The new material has
+  pretests, productive practice, readings, vocabulary and delayed probes rather than reference
+  prose alone.
+- **A linguistic QA gate for both completed levels.** Every one of the 22 A1 and 30 A2 grammar
+  points has been checked across its EN/RU/UK teaching text, prompts, accepted answers, feedback
+  and readings. The resulting ledgers distinguish structural coverage, corpus correctness and
+  learner mastery instead of treating one as proof of another.
+- **Seven focused reference pages:** cases and prepositions, pronominal `da`/`wo` words, verb
+  forms, numbers/dates/time, sentence connections, meaning-contrast *Wortnetze*, and their index.
+  The connector reference tells the full A2-to-B2 story in one place while labelling the level at
+  which each form becomes a learning target.
+- **Ten multilingual Wortnetze** for distinctions a dictionary translation tends to flatten:
+  among them *kennen/wissen/können*, *machen/tun*, *denken/glauben/meinen*,
+  *sagen/erzählen*, *sprechen/reden* and *wohnen/leben*. Compact reminders also appear on relevant
+  vocabulary cards.
+- **Five A2 Entdecken pieces** built around real language in context: Berlin's U-Bahn map,
+  Pfand and waste sorting, the Deutschlandticket, the migration history of the Döner, and regional
+  greetings from *Moin* to *Grüß Gott*. Opening them creates no review debt.
+- **The Schreib-Assistent.** Open writing can request advisory hints before submission in both the
+  browser and desktop app. Its suggestions remain visibly unverified and never become mastery
+  evidence.
+- A compact progress audit, a committed queue of grading rulings, catch-up pacing for overdue
+  delayed probes, and targeted production drills for persistent dative, verb-form, location and
+  noun-gender weaknesses.
+- The official Goethe-B1 Wortliste manifest (3,416 headwords), ready to measure B1 coverage when
+  B1 authoring begins.
+
+### Changed
+
+- **Grading now asks one honest question: right or not yet.** The exercise result surface uses two
+  actions rather than a confidence scale, and open writing/speaking use a single-pass flow with
+  optional repetition instead of requiring a ceremonial second attempt.
+- **Punctuation and typography are presentation, not hidden answer keys.** Quotes, commas,
+  sentence-final punctuation, apostrophes and dash variants no longer turn an otherwise correct
+  target rendering into a grammar failure; actual words, endings and word order remain graded.
+- Correct alternative renderings found in the grading-review queue and the two linguistic corpus
+  passes are now accepted without weakening the focus being measured. Any scoring-contract change
+  carries an item revision so old evidence is not silently reinterpreted.
+- *Alle Themen* is quieter: mastered rows collapse into a persisted summary, practised rows show
+  only what is still missing, and completed evidence is not repeated beside the mastery badge.
+- Discovery content now supports provenance-checked images and clearly online-only external links.
+
+### Fixed
+
+- The delayed-probe step could re-grade the previous answer after advancing to the next item.
+- Desktop writing assistance now uses Tauri's HTTP transport instead of relying on browser fetch
+  behaviour inside the webview.
+- Entdecken feedback buttons persisted a click without showing a pressed state.
+- A long corpus pass corrected over-broad or false explanations around case, movement/location,
+  adjective endings, comparisons, subordinate clauses, reflexive and prepositional verbs,
+  imperatives, modal verbs, time expressions, negation, passive and register. It also removed
+  underdetermined prompts that could record valid German as a false weakness.
+
 ## [0.3.0] — 2026-07-13
 
 **A complete A2.** Sixteen units, a cumulative checkpoint, and every word of the
@@ -182,6 +249,7 @@ The A1 release. Version 0.1.0 shipped the desktop shell; almost the entire cours
 - FSRS flashcards with typed production, Lautschrift (IPA) and tap-to-hear audio.
 - Progress snapshots: export, and a non-destructive merge on import.
 
+[0.4.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.4.0
 [0.3.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.3.0
 [0.2.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.2.0
 [0.1.0]: https://github.com/VitalyVorobyev/deutsch-textbook/releases/tag/v0.1.0
