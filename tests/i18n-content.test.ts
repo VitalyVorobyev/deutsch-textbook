@@ -26,6 +26,7 @@ import {
   matchItemSchema,
   outcomeSchema,
   pronominalAdverbReferenceSchema,
+  sentenceConnectorsReferenceSchema,
   topicSchema,
   translateItemSchema,
   type VocabEntry,
@@ -629,6 +630,52 @@ describe('uk reaches the runtime surfaces', () => {
     const problems = ukParityProblems(half);
     expect(problems.length).toBeGreaterThan(0);
     expect(problems.join('\n')).toContain('entries[0].example.ru');
+  });
+
+  test('connector references preserve Atlas levels, syntax and translated examples', () => {
+    const parsed = sentenceConnectorsReferenceSchema.parse({
+      id: 'sentence-connectors',
+      relations: [
+        {
+          id: 'result',
+          title: { en: 'Result', ru: 'Следствие' },
+          cue: { en: 'What follows?', ru: 'Что следует?' },
+          description: { en: 'Points to a consequence.', ru: 'Указывает на следствие.' },
+          entries: [
+            {
+              form: 'deshalb',
+              level: 'A2',
+              syntax: 'adverbial',
+              meaning: { en: 'therefore', ru: 'поэтому' },
+              example: {
+                de: 'Ich bin krank. Deshalb bleibe ich zu Hause.',
+                en: 'I am ill. Therefore, I am staying at home.',
+                ru: 'Я болен. Поэтому остаюсь дома.',
+              },
+            },
+          ],
+        },
+      ],
+      comparisons: [
+        {
+          id: 'result-concession',
+          title: { en: 'deshalb or trotzdem?', ru: 'deshalb или trotzdem?' },
+          explanation: { en: 'Expected versus unexpected.', ru: 'Ожидаемое и неожиданное.' },
+          examples: [
+            { de: 'Deshalb bleibe ich.', en: 'Therefore I stay.', ru: 'Поэтому я остаюсь.' },
+            { de: 'Trotzdem gehe ich.', en: 'I go all the same.', ru: 'Я всё равно иду.' },
+          ],
+        },
+      ],
+    });
+
+    expect(parsed.relations[0]!.entries[0]).toMatchObject({
+      form: 'deshalb',
+      level: 'A2',
+      syntax: 'adverbial',
+      register: 'neutral',
+    });
+    expect(parsed.relations[0]!.entries[0]!.example.ru).toContain('Поэтому');
   });
 
   test('ukTranslationCoverage counts ru-bearing files, uk-carrying files, per-node atlas honestly', () => {
