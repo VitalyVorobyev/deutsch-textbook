@@ -1,8 +1,16 @@
 /** Pure matching/diff logic for typed flashcard answers (x-de production direction). */
 
-/** Normalize typed input: collapse whitespace, drop optional trailing . ! ? */
+/** Normalize typed input: collapse whitespace, drop optional trailing sentence
+    punctuation, fold typographic apostrophes/dashes to their ASCII keys — the
+    learner's keyboard produces `'` and `-`, never `’` or `–`. */
 export function normalizeTyped(s: string): string {
-  return s.replace(/\s+/g, ' ').trim().replace(/[.!?]+$/, '').trim();
+  return s
+    .replace(/[’‚‘]/g, "'")
+    .replace(/[–—]/g, '-')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.!?,;:]+$/, '')
+    .trim();
 }
 
 /** Fold umlaut substitutes into a comparable space: ä↔ae, ö↔oe, ü↔ue, ß↔ss.

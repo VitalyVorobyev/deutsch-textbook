@@ -71,3 +71,17 @@ describe('an article-free country name demands no article', () => {
     expect(checkTypedAnswer('die Schweiz', 'die Schweiz', 'noun').kind).toBe('correct');
   });
 });
+
+describe('typography folds to what the keyboard produces', () => {
+  test('a typographic apostrophe matches the straight one', () => {
+    expect(checkTypedAnswer("Wie geht’s?", "Wie geht's?", 'phrase').kind).toBe('correct');
+  });
+
+  test('an en/em dash matches the plain hyphen', () => {
+    expect(checkTypedAnswer('die E–Mail', 'die E-Mail', 'noun').kind).toBe('correct');
+  });
+
+  test('a trailing comma is not an error', () => {
+    expect(checkTypedAnswer('der Apfel,', 'der Apfel', 'noun').kind).toBe('correct');
+  });
+});
