@@ -15,6 +15,7 @@ import {
   articledForm,
   checkTypedAnswer,
   diffExpected,
+  GERMAN_INPUT_KEYS,
   normalizeTyped,
   type AnswerVerdict,
 } from '../../lib/typing';
@@ -57,8 +58,6 @@ const GRADE_BUTTONS: Array<{ grade: Grade; label: StringKey; cls: string }> = [
   { grade: Rating.Again, label: 'grade.again', cls: 'bg-red-600 hover:bg-red-700' },
   { grade: Rating.Good, label: 'grade.good', cls: 'bg-green-600 hover:bg-green-700' },
 ];
-
-const UMLAUT_KEYS = ['ä', 'ö', 'ü', 'ß'];
 
 function verdictHint(v: AnswerVerdict, canonical: string, given: string): string | null {
   if (v.kind === 'article') {
@@ -286,6 +285,15 @@ export default function FlashcardSession({
       <p className="mt-1 text-xs text-stone-400">
         {pick(lang, { en: card.exampleEn, ru: card.exampleRu, uk: card.exampleUk })}
       </p>
+      {/* The usage note — how the word is actually constructed (reflexive
+          pronoun, fixed chunk, position). Answer side only: on the question
+          side it would hand over the target, which is exactly the defect this
+          field exists to remove (see CardDef.note). */}
+      {card.note && (
+        <p className="mt-3 text-left text-xs text-stone-500 dark:text-stone-400">
+          {pick(lang, card.note)}
+        </p>
+      )}
       {card.context?.length ? <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
         {card.context.slice(0, 2).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
           <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">{context.type}</span>
@@ -439,8 +447,12 @@ export default function FlashcardSession({
                   {t('action.check', uiLang)}
                 </button>
               </div>
-              <div className="mt-2 flex justify-center gap-2">
-                {UMLAUT_KEYS.map((ch) => (
+              {/* flex-wrap, not flex: the bar carries eight keys since Ä/Ö/Ü and
+                  é were added, and 8×w-10 + 7×gap-2 is 376px — wider than the
+                  card at a 320–375px viewport. Without wrapping the last keys
+                  clip off, which is the very defect the extra keys fixed. */}
+              <div className="mt-2 flex flex-wrap justify-center gap-2">
+                {GERMAN_INPUT_KEYS.map((ch) => (
                   <button
                     key={ch}
                     type="button"

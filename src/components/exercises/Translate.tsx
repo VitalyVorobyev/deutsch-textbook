@@ -10,15 +10,13 @@ import {
   type TranslationVerdict,
 } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
+import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
-
-/** Characters that are awkward to type on a non-German keyboard. */
-const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
 const UI = {
@@ -114,7 +112,9 @@ export function Translate({
         autoComplete="off"
         spellCheck={false}
       />
-      <div className="mt-2 flex gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
+      {/* flex-wrap: eight keys since Ä/Ö/Ü and é joined GERMAN_INPUT_KEYS, which
+          overflows a narrow viewport if the row cannot break. */}
+      <div className="mt-2 flex flex-wrap gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
         {SPECIAL_CHARS.map((ch) => (
           <button
             key={ch}

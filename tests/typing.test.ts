@@ -6,7 +6,7 @@
  * For three classes they do not, and the card used to mark correct German wrong.
  */
 import { describe, expect, test } from 'bun:test';
-import { articledForm, checkTypedAnswer } from '../src/lib/typing';
+import { articledForm, checkTypedAnswer, GERMAN_INPUT_KEYS } from '../src/lib/typing';
 
 describe('the article rules that already worked', () => {
   test('a noun needs its article', () => {
@@ -94,5 +94,27 @@ describe('punctuation inside a phrase card is not graded', () => {
   });
   test('the fully punctuated rendering also matches', () => {
     expect(checkTypedAnswer('Ja, gern!', 'Ja, gern!', 'phrase').kind).toBe('correct');
+  });
+});
+
+describe('a German answer must be typeable on a non-German keyboard', () => {
+  // Reported by the learner: the `Café` card could not be answered at all,
+  // because the insert bar offered ä/ö/ü/ß and nothing else — the card graded
+  // keyboard layout, not German. `Café` is the only accented headword in the
+  // A1, A2 and B1 Goethe Wortlisten, and no graded answer in the exercise
+  // corpus contains one, so one key covers the course through B1.
+  test('every character a headword needs is on the insert bar', () => {
+    expect(GERMAN_INPUT_KEYS).toContain('é');
+    for (const ch of ['ä', 'ö', 'ü', 'ß']) expect(GERMAN_INPUT_KEYS).toContain(ch);
+  });
+
+  test('the accent-less loanword spelling is accepted, the article still is not', () => {
+    const accept = ['das Cafe'];
+    expect(checkTypedAnswer('das Café', 'das Café', 'noun', accept).kind).toBe('correct');
+    expect(checkTypedAnswer('das Cafe', 'das Café', 'noun', accept).kind).toBe('correct');
+    // é is a French diacritic on a loanword, not German orthography — but the
+    // article is German and stays required in both spellings.
+    expect(checkTypedAnswer('Café', 'das Café', 'noun', accept).kind).toBe('article');
+    expect(checkTypedAnswer('der Café', 'das Café', 'noun', accept).kind).toBe('article');
   });
 });

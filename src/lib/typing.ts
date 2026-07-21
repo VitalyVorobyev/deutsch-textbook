@@ -24,6 +24,33 @@ export function foldUmlauts(s: string): string {
     .replace(/ß/g, 'ss');
 }
 
+/**
+ * Characters a German answer may need that a non-German keyboard layout cannot
+ * type. Rendered as an insert bar under every typed field (flashcards, Translate,
+ * Listen), which is why it lives here rather than being redeclared in each — it
+ * was three separate copies of `['ä','ö','ü','ß']` before, free to drift.
+ *
+ * `é` is here because the learner reported being unable to answer the `Café`
+ * card at all: the bar offered no way to type the accent, so the card was
+ * ungradeable regardless of what they knew — difficulty from the keyboard, not
+ * from the German. Measured before adding it: `Café` is the ONLY accented
+ * headword in the A1, A2 *and* B1 Goethe Wortlisten, and no graded answer
+ * anywhere in the exercise corpus contains one (the 28 `Café` occurrences are
+ * English prose, instructions, or an untyped cloze frame).
+ *
+ * **Ä/Ö/Ü were missing too**, and that is the more serious half — found not by
+ * inspection but by `checkAnswerIsTypeable` in scripts/validate.ts, written to
+ * stop the *next* `Café`, which failed on eleven existing cards the moment it
+ * ran. German capitalizes its nouns, so `die Ärztin`, `Österreich`, `die Übung`
+ * and `die Öffnungszeiten` all need a capital umlaut, the grader is
+ * case-sensitive, and the bar offered only the lowercase forms. Every one of
+ * those cards was a permanent soft miss — `foldUmlauts` turns `Aerztin` into an
+ * `umlaut` verdict, which suggests Again — for any learner without a German
+ * keyboard layout. Nobody reported it, because a card that is merely *hard to
+ * type* looks like a card you keep getting wrong.
+ */
+export const GERMAN_INPUT_KEYS = ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü', 'é'] as const;
+
 const ARTICLES = { m: 'der', f: 'die', n: 'das' } as const;
 
 /** Answer/display form of a headword: nouns get their article prepended
