@@ -376,6 +376,59 @@ describe('scoring and curriculum contracts', () => {
       .toContain('be alive');
   });
 
+  // Pinned here as well as in the validator, deliberately: the same redundancy
+  // the connector-determinacy and table-ellipsis properties get. The defect this
+  // guards was found by the learner, not by a gate — an x-de card whose meaning
+  // side read "gladly; (verb + gern) to like doing something" and graded `gern`.
+  test('no vocabulary gloss names its own headword in a metalinguistic aside', () => {
+    type Entry = { de: string; en: string; ru: string; uk?: string; note?: unknown };
+    const offenders: string[] = [];
+    for (const deck of contentFiles<{ id: string; entries: Entry[] }>('vocab')) {
+      for (const entry of deck.entries) {
+        const headwords = entry.de.split(/[^A-Za-zÄÖÜäöüß]+/).filter((w) => w.length > 2);
+        for (const lang of ['en', 'ru', 'uk'] as const) {
+          const gloss = entry[lang];
+          if (!gloss) continue;
+          // An aside is a parenthetical or an em-dash restatement. The running
+          // text is exempt: ~104 glosses ARE their headword (Kiosk → "kiosk"),
+          // which costs German spelling and is not a leak.
+          const asides = [...gloss.matchAll(/\(([^)]*)\)/g)].map((m) => m[1]);
+          const dash = gloss.indexOf('—');
+          if (dash > 0) asides.push(gloss.slice(0, dash));
+          for (const w of headwords) {
+            // trailing letters too: `lang` was glossed "(variant of lange)",
+            // which names the answer and then marks `lange` wrong.
+            const re = new RegExp(
+              `(^|[^A-Za-zÄÖÜäöüß])${w}[A-Za-zÄÖÜäöüß]{0,3}([^A-Za-zÄÖÜäöüß]|$)`,
+              'i',
+            );
+            if (asides.some((aside) => re.test(aside)))
+              offenders.push(`${deck.id}::${entry.de}::${lang}`);
+          }
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  // The usage note is the reason a gloss ever carried a construction hint: it
+  // was visible in the Wortschatz table and nowhere on a card. buildDeck must
+  // keep carrying it, or the pressure that produced the leak comes back.
+  test('a usage note reaches the card, where it can only be read after answering', () => {
+    type Entry = Parameters<typeof buildDeck>[1][number];
+    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab')
+      .find((candidate) => candidate.id === 'freizeit-koennen')!;
+    const cards = buildDeck(deck.id, deck.entries);
+    const production = cards.find((c) => c.de === 'gern' && c.dir === 'x-de')!;
+    expect(production.note?.en).toContain('after the conjugated verb');
+    // The prompt side of that same card must not contain the answer.
+    expect(production.en).not.toMatch(/\bgern\b/i);
+    expect(production.ru).not.toMatch(/\bgern\b/i);
+    // `gerne` is called an equally correct variant in the note, so the card has
+    // to accept it — otherwise the note promises German the grader marks wrong.
+    expect(production.accept).toContain('gerne');
+  });
+
   test('the da/wo deck creates exactly sixteen contextual cards with stable phrase identities', () => {
     type Entry = Parameters<typeof buildDeck>[1][number];
     const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab')

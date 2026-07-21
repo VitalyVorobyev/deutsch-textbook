@@ -286,6 +286,15 @@ export default function FlashcardSession({
       <p className="mt-1 text-xs text-stone-400">
         {pick(lang, { en: card.exampleEn, ru: card.exampleRu, uk: card.exampleUk })}
       </p>
+      {/* The usage note — how the word is actually constructed (reflexive
+          pronoun, fixed chunk, position). Answer side only: on the question
+          side it would hand over the target, which is exactly the defect this
+          field exists to remove (see CardDef.note). */}
+      {card.note && (
+        <p className="mt-3 text-left text-xs text-stone-500 dark:text-stone-400">
+          {pick(lang, card.note)}
+        </p>
+      )}
       {card.context?.length ? <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
         {card.context.slice(0, 2).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
           <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">{context.type}</span>

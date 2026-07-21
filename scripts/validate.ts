@@ -250,6 +250,60 @@ function checkReflexiveForms(where: string, e: VocabEntry): void {
   }
 }
 
+/**
+ * A gloss must not print the answer it is asking for.
+ *
+ * `en`/`ru`/`uk` are the QUESTION side of the x-de production card, so a German
+ * headword appearing there hands the learner the target and the card measures
+ * copying instead of recall. Eight entries did exactly that — `gern` read
+ * "gladly; (verb + gern) to like doing something" — and the learner, reasoning
+ * that a prompt showing `gern` could not be asking for `gern`, typed `lieber`
+ * (whose gloss carried the identical defect) and took a lapse for it.
+ *
+ * The rule is narrow on purpose, because the naive version is unusable: ~104
+ * glosses legitimately contain their headword because the word IS the
+ * translation (`Kiosk` → "kiosk", `Portion` → "portion, serving", `Post` →
+ * "post office"). Those cost the learner German spelling and capitalisation and
+ * must not be "fixed". What separates the eight defects from the 104 cognates is
+ * *where* the word sits: every real leak put it in a metalinguistic aside — a
+ * parenthetical ("(sich unterhalten)", "(in ein bisschen)") or an em-dash
+ * restatement ("Abitur — the German school-leaving exam …") — while a cognate
+ * gloss has it in the running text. Measured against the corpus both ways: this
+ * rule flags 22 gloss fields before the fix and 0 after, with no cognate caught
+ * in either direction.
+ *
+ * What it cannot see, stated rather than implied: a TRANSLITERATED headword in a
+ * Cyrillic gloss ("абитур — выпускной экзамен …") is the same defect in a script
+ * this test cannot match. That stays an authoring judgement.
+ */
+function checkGlossDoesNotLeakAnswer(where: string, e: VocabEntry): void {
+  const headwords = e.de.split(/[^A-Za-zÄÖÜäöüß]+/).filter((w) => w.length > 2);
+  if (!headwords.length) return;
+  for (const lang of ['en', 'ru', 'uk'] as const) {
+    const gloss = e[lang];
+    if (!gloss) continue;
+    const asides = [...gloss.matchAll(/\(([^)]*)\)/g)].map((m) => m[1]);
+    const dash = gloss.indexOf('—');
+    if (dash > 0) asides.push(gloss.slice(0, dash));
+    if (!asides.length) continue;
+    for (const w of headwords) {
+      // Up to three trailing letters, so an aside naming an inflected form is
+      // caught too: `lang` glossed "for a long time (variant of lange)" both
+      // handed over the answer AND then marked `lange` wrong. Measured: the
+      // widening adds exactly that one entry and no false positive anywhere in
+      // the 1619-entry corpus.
+      const re = new RegExp(`(^|[^A-Za-zÄÖÜäöüß])${w}[A-Za-zÄÖÜäöüß]{0,3}([^A-Za-zÄÖÜäöüß]|$)`, 'i');
+      if (asides.some((aside) => re.test(aside)))
+        fail(
+          `${where} → "${e.de}"`,
+          `the ${lang} gloss names "${w}" in an aside — ${lang} is the question side of the ` +
+            'x-de card, so this prints the answer in its own prompt. Move the usage hint to ' +
+            '`note` (it renders on the card back) and leave the gloss as meaning alone',
+        );
+    }
+  }
+}
+
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
 for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   let raw: unknown;
@@ -272,6 +326,7 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
     seen.add(e.de);
     checkIpa(rel(file), e);
     checkReflexiveForms(rel(file), e);
+    checkGlossDoesNotLeakAnswer(rel(file), e);
   }
 }
 

@@ -67,6 +67,50 @@ before another unit is written.
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
   update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
 
+## Open — found in the 2026-07-21 pre-B1 review
+
+### P14-1 · Vocabulary cards that print their own answer — **done 2026-07-21**
+
+Found by the learner, in the app, by writing plausible German and being told it was wrong. The x-de
+card for `gern` showed *“gladly; (verb + **gern**) to like doing something · охотно; (глагол +
+**gern**) любить что-то делать”* and graded the typed answer `gern`. They typed `lieber` — reasoning
+that a prompt already showing `gern` could not be asking for it — and `lieber`'s gloss carried the
+identical defect.
+
+**The instrument produced it, which is why the fix is not just eight edits.** `note` renders in the
+Wortschatz table and **nowhere on a card**, so an author who wanted a construction hint where the
+learner would actually meet it had only one place to put it: the gloss — which is the *question*
+side of the production card. `CardDef.note` now carries it to the card back, beside `deDetail` and
+the example, and `FlashcardSession` renders it after answering only.
+
+**Measured across all 67 vocab files, both before and after.** 68 raw hits for “headword appears in
+its own gloss”, and the naive rule is unusable: **~104 glosses legitimately contain their headword**
+because the word *is* the translation (`Kiosk` → “kiosk”, `Post` → “post office”). What separates
+the defects is *where* the word sits — every real leak put it in a metalinguistic aside
+(a parenthetical, or an em-dash restatement) while a cognate has it in the running text. That rule
+flags **22 gloss fields before the fix and 0 after**, catching no cognate in either direction, and is
+enforced in `scripts/validate.ts` plus pinned independently in `contracts.test.ts`. Watched failing
+before being trusted.
+
+Three more entries were found by the same pass, all “the card marks correct German wrong”:
+
+| Entry | Defect | Fix |
+| --- | --- | --- |
+| `lang` | glossed *“for a long time (variant of **lange**)”* — names the variant **and** rejects it | gloss cleaned, `accept: [lange]` |
+| `vorn` | note says *“the variant vorne is just as common”*, `accept` was empty | `accept: [vorne]` |
+| `Frühjahr` | prompt *“spring · весна”* is **character-identical to `Frühling`'s** in another deck, with mutually exclusive answers | gloss disambiguated to “the more official word”; the unmarked prompt stays with the unmarked word |
+
+`gern` gained `accept: [gerne]` for the same reason — its own note calls `gerne` “an equally correct
+variant”, and the grader was rejecting it.
+
+**Verified:** all **3238** card ids unchanged across the change (`<deck>::<de>::<dir>` — glosses and
+`accept` are not in the key), so no SRS history moved.
+
+- Not repaired, and recorded so the number is not misread: at least one of the 53 x-de lapses is
+  instrument rather than learner. There is no retraction mechanism for card attempts —
+  `data/grading-decisions.yaml` rules `translate` renderings only — the same gap the P12-6 `table`
+  note names.
+
 ## Open — found in the 2026-07-20 instrument review
 
 ### P12-1 · The probe channel is a `translate` monoculture — **A1 + 16 A2 topics done 2026-07-20**, 4 topics blocked
