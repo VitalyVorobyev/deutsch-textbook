@@ -447,7 +447,11 @@ export default function FlashcardSession({
                   {t('action.check', uiLang)}
                 </button>
               </div>
-              <div className="mt-2 flex justify-center gap-2">
+              {/* flex-wrap, not flex: the bar carries eight keys since Ä/Ö/Ü and
+                  é were added, and 8×w-10 + 7×gap-2 is 376px — wider than the
+                  card at a 320–375px viewport. Without wrapping the last keys
+                  clip off, which is the very defect the extra keys fixed. */}
+              <div className="mt-2 flex flex-wrap justify-center gap-2">
                 {GERMAN_INPUT_KEYS.map((ch) => (
                   <button
                     key={ch}
