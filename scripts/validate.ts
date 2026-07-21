@@ -545,6 +545,21 @@ for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
 // Cross-checks
 // ---------------------------------------------------------------------------
 
+// A briefe template walks the same sections the page lists above it, so a line naming a
+// section that does not exist would render an unlabelled row and silently break the
+// column-wise register contrast the templates exist for. zod cannot see across the two
+// arrays; this can.
+for (const { file, data } of references.values()) {
+  if (data.id !== 'briefe') continue;
+  const sectionIds = new Set(data.sections.map((section) => section.id));
+  for (const template of data.templates) {
+    for (const line of template.lines) {
+      if (!sectionIds.has(line.section))
+        fail(file, `template "${template.id}" has a line in section "${line.section}", which is not one of: ${[...sectionIds].join(', ')}`);
+    }
+  }
+}
+
 // A discovery piece's `topics` must resolve, exactly like a topic's own refs. Checked in
 // the cross-check pass rather than in the loader because the topic map is only complete
 // here. The edge is deliberately ONE-WAY and non-blocking: a topic never lists its pieces,
