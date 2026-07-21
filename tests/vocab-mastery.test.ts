@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test';
 import { State } from 'ts-fsrs';
-import { rankDueCards, type CardDef } from '../src/lib/srs';
+import { buildDeck, rankDueCards, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
-import { STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
+import { rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
 
 function state(overrides: Partial<StoredCard> = {}): StoredCard {
   return {
@@ -57,5 +57,33 @@ describe('recognition-only entries', () => {
 
   test('an ordinary entry is unaffected — the missing production card still means learning', () => {
     expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined)).toBe('learning');
+  });
+});
+
+// Codex review, PR #92: `recognitionOnly` was computed and never consumed. The per-deck
+// page (/vocab/[id] → VocabWordTable) iterated both directions unconditionally and rendered
+// the absent x-de card as "not started", so exactly the words this feature exists for —
+// the unowned Wortliste completion decks, which never render VocabTable.astro — looked
+// permanently half-finished. The rollup has to carry the flag for the UI to act on.
+describe('rollupWords reports which words have no production card', () => {
+  const entry = {
+    de: 'Zuschlag', pos: 'noun', gender: 'm', plural: 'die Zuschläge', ipa: 'ˈtsuːʃlaːk',
+    en: 'surcharge', ru: 'доплата',
+    example_de: 'Der Zuschlag kostet drei Euro.',
+    example_en: 'The surcharge costs three euros.',
+    example_ru: 'Доплата стоит три евро.',
+  };
+
+  test('a recognition-only entry is flagged and has no x-de direction', () => {
+    const cards = buildDeck('d', [{ ...entry, cards: 'recognition' }] as never);
+    const [word] = rollupWords(cards, {});
+    expect(word!.recognitionOnly).toBe(true);
+    expect(word!.directions['x-de'].card).toBeUndefined();
+  });
+
+  test('an ordinary entry is not flagged', () => {
+    const cards = buildDeck('d', [{ ...entry, cards: 'both' }] as never);
+    const [word] = rollupWords(cards, {});
+    expect(word!.recognitionOnly).toBe(false);
   });
 });

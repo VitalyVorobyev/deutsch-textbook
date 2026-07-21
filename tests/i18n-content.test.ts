@@ -16,6 +16,7 @@ import { PROFILE_KEY, PROFILES_KEY } from '../src/lib/profile';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
   deParityProblems,
+  hasDeExplanation,
   hasUkField,
   langFieldProblems,
   mdxLangProblems,
@@ -749,5 +750,61 @@ describe('uk reaches the runtime surfaces', () => {
     const title = { en: node.title_en, ru: node.title_ru, uk: node.title_uk };
     expect(pick('uk', title)).toBe('Знахідний відмінок');
     expect(pick('uk', { ...title, uk: undefined })).toBe('The accusative');
+  });
+});
+
+/**
+ * The frontmatter↔body parity bridge, for BOTH optional halves.
+ *
+ * `docs/i18n-design.md` and the comment in `scripts/validate.ts` both say frontmatter and
+ * body are one parity scope. That was true of `uk` only: `mdxLangProblems` hardcoded its
+ * force to `tag === 'Uk'`, and `deParityProblems` never saw the body at all. So a file
+ * could ship a fully German-medium article under an English-only summary card, or the
+ * reverse, and validation was silent — a `de` reader would then get German prose with an
+ * English card, or an English article after a German card.
+ *
+ * Found by the first content in the repo to use `de` (content/discovery/b1/sonntagsruhe.mdx),
+ * which is exactly what that pilot was for. Both directions were reproduced passing before
+ * the fix.
+ */
+describe('de parity bridges frontmatter and body, like uk', () => {
+  const block = (halves: string) => `<Bilingual>${halves}</Bilingual>`;
+  const enRu = '<En>Rest</En><Ru>Отдых</Ru>';
+
+  test('a body carrying <De> forces de on the frontmatter records', () => {
+    const frontmatter = { summary: { en: 'Rest', ru: 'Отдых' } };
+    expect(deParityProblems(frontmatter)).toEqual([]); // no de anywhere → nothing to enforce
+    const problems = deParityProblems(frontmatter, { forceDe: true });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain('a <De> half in its body');
+  });
+
+  test('frontmatter carrying de forces a <De> half in every block', () => {
+    const body = `${block(`${enRu}<De>Ruhe</De>`)}\n${block(enRu)}`;
+    expect(mdxLangProblems(body, { forceDe: true }).parity).toHaveLength(1);
+    // …and the message names the frontmatter as the carrier, not a stray body tag.
+    const noDeAnywhere = `${block(enRu)}\n${block(enRu)}`;
+    expect(mdxLangProblems(noDeAnywhere, { forceDe: true }).parity[0])
+      .toContain('de in its frontmatter');
+  });
+
+  test('with neither, nothing is demanded — the halves stay optional', () => {
+    const body = `${block(enRu)}\n${block(enRu)}`;
+    expect(mdxLangProblems(body).parity).toEqual([]);
+    expect(deParityProblems({ summary: { en: 'Rest', ru: 'Отдых' } })).toEqual([]);
+  });
+
+  /**
+   * The trigger is an explanation record carrying `de`, NOT any `*_de` key — because
+   * `title_de` is the German NAME of the thing and every content file has one. Using the
+   * broad test (the way the uk bridge legitimately can, since `title_uk` really is a
+   * translation) demanded a `<De>` half in every block of every file in the repo, and the
+   * A1 Ampelmännchen piece failed instantly. That is how this was caught.
+   */
+  test('title_de alone is German content, not a German explanation half', () => {
+    expect(hasDeExplanation({ title_de: 'Das Ampelmännchen', summary: { en: 'a', ru: 'б' } }))
+      .toBe(false);
+    expect(hasDeExplanation({ title_de: 'x', summary: { en: 'a', ru: 'б', de: 'c' } }))
+      .toBe(true);
   });
 });

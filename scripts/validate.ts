@@ -39,6 +39,7 @@ import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
   deParityProblems,
+  hasDeExplanation,
   hasUkField,
   langFieldProblems,
   mdxLangProblems,
@@ -1436,7 +1437,8 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(
               `${file} → item "${item.id}"`,
               `focus "${item.focus}" is not in the focus-tag table — add it to docs/focus-tags.md ` +
-                'and to focusIntroducedBy in scripts/validate.ts, naming the topic that introduces it',
+                'and to focusIntroducedBy in src/lib/focus-tags.ts, naming the topic that introduces it — ' +
+                  'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
             );
             continue;
           }
@@ -1568,8 +1570,18 @@ function checkMdxLangDiscipline(
 ): void {
   for (const p of langFieldProblems(data)) fail(file, p);
   for (const p of ukParityProblems(data, { forceUk: body.includes('<Uk>') })) fail(file, p);
-  for (const p of deParityProblems(data)) fail(file, p);
-  const report = mdxLangProblems(body, { forceUk: hasUkField(data) });
+  // Both bridges, both ways. `de` had neither until the first content to use it
+  // (content/discovery/b1/sonntagsruhe.mdx) was written to look for exactly this: a file
+  // could carry `summary.de` with a wholly English article, or German article halves under
+  // an English summary card, and validate said nothing — while the comment above and
+  // docs/i18n-design.md both claimed frontmatter and body were ONE parity scope. They were,
+  // for uk alone.
+  const bodyHasDe = body.includes('<De>');
+  for (const p of deParityProblems(data, { forceDe: bodyHasDe })) fail(file, p);
+  const report = mdxLangProblems(body, {
+    forceUk: hasUkField(data),
+    forceDe: hasDeExplanation(data),
+  });
   for (const p of report.balance) balance(file, p);
   for (const p of report.letters) fail(file, p);
   for (const p of report.parity) fail(file, p);
