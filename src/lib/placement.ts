@@ -78,6 +78,25 @@ export function hasStartedLearning(
 }
 
 /**
+ * Is the test finished, with nothing left to write?
+ *
+ * Deliberately **not** "something was applied". A learner who answers every item and passes
+ * *nothing* has an empty pending list and no placement of their own — and that is the
+ * ordinary outcome for the beginner the entry test is offered to on day one. Keying the
+ * results panel's completion state on `alreadyApplied` left exactly that learner looking at
+ * a permanently disabled Apply button with no link onward: the advertised flow could not be
+ * finished by the person most likely to be in it.
+ *
+ * `answered === total` is what keeps a half-finished test out of the completion state.
+ */
+export function placementSettled(
+  summary: Pick<PlacementSummary, 'answered' | 'total'>,
+  pendingCount: number,
+): boolean {
+  return summary.answered === summary.total && pendingCount === 0;
+}
+
+/**
  * Which topic a placement item decides. The validator guarantees every item's outcomes
  * belong to exactly one topic, so the first resolvable owner is the answer; an item whose
  * outcomes resolve to nothing is skipped rather than filed under a made-up topic.

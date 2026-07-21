@@ -84,14 +84,21 @@ const MAX_ORDER_PER_SET = 2;
  * training then serves the item stripped of that context, after *weil* has been taught, and
  * a learner who picks the harder construction and builds it correctly is marked wrong.
  *
- * Each group is a set of interchangeable members, never a list of near-synonyms: *da* is
- * left out because clause-initial *Da* is far more often "then/there", and the concessive
- * pair *obwohl* / *trotzdem* is left out because the prompt itself distinguishes them
- * («хотя» vs «несмотря на это»). Widen it only on evidence of a real rejection.
+ * Each group is a set of interchangeable members, never a list of near-synonyms, and a word
+ * with a second sense does not belong in one at all:
+ *
+ *  - *da* — clause-initial *Da* is far more often "then/there" than causal;
+ *  - *darum* — dropped after review, because it is also the pronominal adverb (*Darum geht
+ *    es* = "that is what this is about"), where neither *deshalb* nor *deswegen* preserves
+ *    the meaning and the rule would demand a rendering that is simply wrong;
+ *  - *obwohl* / *trotzdem* — the prompt itself distinguishes them («хотя» vs «несмотря на
+ *    это»), so there is nothing for the learner to guess.
+ *
+ * Widen it only on evidence of a real rejection, and only for a word with one sense.
  */
 const INTERCHANGEABLE_CONNECTORS: readonly (readonly string[])[] = [
   ['denn', 'weil'],
-  ['deshalb', 'deswegen', 'darum'],
+  ['deshalb', 'deswegen'],
 ];
 
 /**
@@ -726,7 +733,10 @@ for (const [setId, { file, data }] of exerciseSets) {
             if (pinned.length !== 1) continue;
             const sibling = group.filter((c) => c !== pinned[0]);
             if (sibling.some((c) => renderings.some((r) => introducesClause(r, c)))) continue;
-            if (instruction.includes(pinned[0])) continue;
+            // Whole word, not substring: `dennoch` contains `denn`, and a German-medium
+            // instruction that happens to contain the letters would silently exempt an
+            // item that still rejects the other connector.
+            if (new RegExp(`\\b${pinned[0]}\\b`, 'iu').test(instruction)) continue;
             const deferred = CONNECTOR_DETERMINACY_DEFERRED.get(`${setId}:${item.id}`);
             const message =
               `every accepted rendering uses "${pinned[0]}" and none uses ${sibling
@@ -795,15 +805,22 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(where, `row "${row.label}" has ${row.cells.length} cells, expected ${item.columns.length}`);
           asked += row.cells.filter((c) => !c.given).length;
 
-          // A `given` cell ending in an ellipsis is a *continuation prompt*: the learner
-          // reads the row as one sentence and carries it on. Repeating the word the stub
-          // just handed over is then the unnatural reading, and grading it as the only
-          // right one fails a learner whose word order — the thing the row exists to
-          // drill — was perfect. `Ich komme nicht, weil …` + `weil ich heute arbeite`
-          // reads back as "…, weil weil ich heute arbeite".
+          // **A trailing ellipsis in a `given` cell declares a continuation prompt.** That
+          // is a contract on authors, not an inference from the rendering: `TableFill`
+          // draws cells as independent `<td>`s, so nothing in the schema concatenates
+          // them, and an author could otherwise use `…` as a morphological placeholder
+          // (`Superlativ: am …` beside `am besten`) and trip this rule.
           //
-          // The ellipsis is what distinguishes this from a paradigm table, where two
-          // cells legitimately hold the same form (Nominativ `die`, Akkusativ `die`).
+          // Stated as a contract because the alternative reading is bad for the learner
+          // either way: shown `Ich komme nicht, weil …` next to an input, they cannot tell
+          // whether to type the connector again, and the item grades the guess. An author
+          // who wants a pattern rather than a continuation writes it without the ellipsis —
+          // which the failure message says, so the escape is one edit and never silent.
+          //
+          // The real cost of getting it wrong: `weil ich heute arbeite` after that stub
+          // reads back as "…, weil weil ich heute arbeite", and the learner who continued
+          // the sentence correctly was marked wrong on all three rows while every word
+          // order the item drills was right.
           for (let i = 0; i < row.cells.length - 1; i++) {
             const stub = row.cells[i];
             const next = row.cells[i + 1];

@@ -126,9 +126,11 @@ describe('scoring and curriculum contracts', () => {
     // curriculum order — a2/arbeit-beruf teaches denn and says weil "comes later", which
     // is true on its own page and false in mixed training, where the item is served
     // without that context after weil has been taught.
+    // Mirrors INTERCHANGEABLE_CONNECTORS. `darum` is absent on purpose — it is also the
+    // pronominal adverb (Darum geht es), where deshalb/deswegen do not preserve the meaning.
     const GROUPS = [
       ['denn', 'weil'],
-      ['deshalb', 'deswegen', 'darum'],
+      ['deshalb', 'deswegen'],
     ];
     // The frozen probe: constraining it needs a revision bump, which drops its attempt out
     // of the re-graded retention reading before the 2026-08-02 cohort read. The validator
@@ -156,7 +158,8 @@ describe('scoring and curriculum contracts', () => {
           const pinned = group.filter((c) => renderings.every((r) => introduces(r, c)));
           if (pinned.length !== 1) continue;
           if (group.some((c) => c !== pinned[0] && renderings.some((r) => introduces(r, c)))) continue;
-          if (instruction.includes(pinned[0]!)) continue;
+          // whole word: `dennoch` contains `denn`
+          if (new RegExp(`\\b${pinned[0]}\\b`, 'iu').test(instruction)) continue;
           offenders.push(`${ref} pins "${pinned[0]}"`);
           break;
         }

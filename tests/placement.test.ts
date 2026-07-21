@@ -1,5 +1,10 @@
 import { describe, expect, test } from 'bun:test';
-import { hasStartedLearning, placementResults, PLACEMENT_PASS_RATIO } from '../src/lib/placement';
+import {
+  hasStartedLearning,
+  placementResults,
+  placementSettled,
+  PLACEMENT_PASS_RATIO,
+} from '../src/lib/placement';
 import type { CheckpointItemRef } from '../src/lib/checkpoint';
 import {
   MASTERY_ACCURACY,
@@ -257,5 +262,31 @@ describe('hasStartedLearning — what keeps the entry test reachable', () => {
     // Guards the wiring: if index.astro ever stops passing setIds, the predicate must fail
     // closed (hide the card) rather than show it to a learner who is well underway.
     expect(hasStartedLearning([at('a1/placement-a1')], [], {}, [])).toBe(true);
+  });
+});
+
+describe('placementSettled — finishing a test that placed you out of nothing', () => {
+  // Codex, second pass on PR #89. The panel gated its completion state on
+  // `pending.length === 0 && alreadyApplied`, so a learner who answered every item and
+  // passed no topic hit `pending: []` with `alreadyApplied: false` — a permanently
+  // disabled Apply button and no link onward. That is not an edge case: it is the ordinary
+  // outcome for the beginner the entry test is offered to on their first day.
+  test('a completed test with no passes is settled', () => {
+    expect(placementSettled({ answered: 4, total: 4 }, 0)).toBe(true);
+  });
+
+  test('a half-finished test is not, even with nothing pending', () => {
+    // the guard that keeps "answered two, passed neither topic yet" out of the end state
+    expect(placementSettled({ answered: 2, total: 4 }, 0)).toBe(false);
+  });
+
+  test('a completed test with results still to write is not settled', () => {
+    expect(placementSettled({ answered: 4, total: 4 }, 1)).toBe(false);
+  });
+
+  test('a retake that newly passes a topic re-opens it', () => {
+    // setTopicPlacement is monotone, so a better retake must be appliable — the panel is
+    // the only screen that can reach that rule.
+    expect(placementSettled({ answered: 4, total: 4 }, 2)).toBe(false);
   });
 });

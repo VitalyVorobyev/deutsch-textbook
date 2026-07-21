@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { placementResults, type PlacementTopicResult } from '../../lib/placement';
+import {
+  placementResults,
+  placementSettled,
+  type PlacementTopicResult,
+} from '../../lib/placement';
 import type { CheckpointItemRef } from '../../lib/checkpoint';
 import {
   ATTEMPT_EVENT,
@@ -153,6 +157,10 @@ export default function PlacementResults({
     (row) => ctx.topics[row.topicId]?.placement?.setId === setId,
   );
 
+  // Rule in `placementSettled` (src/lib/placement.ts), where it is documented and tested:
+  // finished with nothing left to write, which is deliberately not "something was applied".
+  const settled = placementSettled(summary, pending.length);
+
   async function apply() {
     setBusy(true);
     for (const row of pending) {
@@ -183,11 +191,15 @@ export default function PlacementResults({
                 .replace('{total}', String(summary.topics.length))}
       </p>
 
-      {pending.length === 0 && alreadyApplied ? (
+      {settled ? (
         <div className="mt-4 space-y-3">
-          <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
-            ✓ {pick(lang, UI.appliedNote)}
-          </p>
+          {/* Only when something was actually written — the note claims a result was
+              applied, and for a learner who placed out of nothing that would be a lie. */}
+          {alreadyApplied && (
+            <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+              ✓ {pick(lang, UI.appliedNote)}
+            </p>
+          )}
           <a
             href={nextPath}
             className="inline-flex rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
