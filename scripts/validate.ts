@@ -545,6 +545,18 @@ for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
 // Cross-checks
 // ---------------------------------------------------------------------------
 
+// A discovery piece's `topics` must resolve, exactly like a topic's own refs. Checked in
+// the cross-check pass rather than in the loader because the topic map is only complete
+// here. The edge is deliberately ONE-WAY and non-blocking: a topic never lists its pieces,
+// and neither side is required to exist — the piece is an aside on the lesson page, not a
+// step in it, and opening one still writes no attempt, card, readAt or mastery.
+for (const [id, { file, data }] of discoveries) {
+  for (const topicId of data.topics) {
+    if (!topics.has(topicId))
+      fail(file, `topics ref "${topicId}" does not resolve to a topic (discovery "${id}")`);
+  }
+}
+
 for (const [id, { file, data }] of topics) {
   for (const p of data.prerequisites) {
     if (!topics.has(p)) fail(file, `prerequisite "${p}" does not resolve to a topic`);

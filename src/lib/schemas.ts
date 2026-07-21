@@ -769,6 +769,21 @@ export const discoverySchema = z
     title_ru: z.string().min(1),
     title_uk: z.string().min(1).optional(),
     summary: bilingualSchema,
+    /**
+     * Topics this piece sits beside, so it can be reached from the lesson instead of only
+     * from /entdecken. Optional and non-blocking in both directions: a piece needs no
+     * topic, a topic needs no piece, and the link is one-way navigation.
+     *
+     * The structural gap was bigger than the content gap. Five pieces shipped with no way
+     * to reach any of them except by going looking, which is a likelier reading of the one
+     * "useful: no" datum than the writing was — and that datum is itself untrustworthy
+     * (recorded 4h38m before #85 fixed the toggles it was entered through).
+     *
+     * This changes NOTHING about the evidence model: opening a piece still writes no
+     * attempt, no card, no `readAt` and no mastery, and the topic page renders the link as
+     * an aside rather than as a step. Discoverability is not obligation.
+     */
+    topics: z.array(slug).default([]),
     images: z.array(discoveryImageSchema).default([]),
     links: z.array(discoveryLinkSchema).default([]),
     status: z.enum(['draft', 'reviewed']).default('draft'),
