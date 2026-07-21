@@ -1,0 +1,73 @@
+topic: akkusativ
+role: probe
+title:
+  en: "Probe — für and ohne take the accusative"
+  ru: "Проверка — für и ohne с винительным падежом"
+  uk: "Перевірка — für та ohne зі знахідним відмінком"
+
+# Three parallel variants of ONE competence: für and ohne govern the accusative, always —
+# so the article after them is den/einen/meinen when the noun is masculine, and unchanged
+# otherwise. The topic's other probe family measures akkusativ-artikel, the accusative that
+# comes from being the *object* of a verb; this one measures the accusative that comes from
+# a preposition, which is a different trigger and fails independently.
+#
+# Every variant pairs a masculine noun with a feminine or neuter one, because the whole
+# rule is invisible unless something is seen NOT to change: if only masculine nouns appeared,
+# a learner could pass by adding -n everywhere.
+#
+# New objects and new people throughout — no practice item can be recalled to answer these.
+
+items:
+  - id: variant-a
+    outcomes: [akkusativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill in the correct article.
+      ru: Вставьте правильный артикль.
+      uk: Вставте правильний артикль.
+    text: "Der Kuchen ist für {{den}} Lehrer und die Blumen sind für {{die}} Lehrerin."
+    translation:
+      en: "The cake is for the teacher and the flowers are for the teacher."
+      ru: "Торт для учителя, а цветы для учительницы."
+      uk: "Торт для вчителя, а квіти для вчительки."
+    explain:
+      en: "für always takes the accusative, but only the masculine article looks different there: der Lehrer becomes für den Lehrer, while die Lehrerin stays die. Same preposition, same case, two different-looking results — because the feminine form simply has nothing to change."
+      ru: "für всегда требует винительного падежа, но по-другому выглядит только артикль мужского рода: der Lehrer превращается в für den Lehrer, а die Lehrerin остаётся die. Один и тот же предлог, один и тот же падеж, а результат выглядит по-разному — просто потому, что женской форме нечего менять."
+      uk: "für завжди вимагає знахідного відмінка, але інакше виглядає лише артикль чоловічого роду: der Lehrer перетворюється на für den Lehrer, а die Lehrerin залишається die. Той самий прийменник, той самий відмінок, а результат виглядає по-різному — просто тому, що жіночій формі нічого міняти."
+
+  - id: variant-b
+    outcomes: [akkusativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill in the correct possessive.
+      ru: Вставьте правильное притяжательное местоимение.
+      uk: Вставте правильний присвійний займенник.
+    text: "Ohne {{meinen}} Schlüssel kann ich nicht ins Haus. Ohne {{mein}} Handy geht es aber."
+    translation:
+      en: "Without my key I cannot get into the house. But without my phone it is fine."
+      ru: "Без ключа я не попаду в дом. А без телефона обойдусь."
+      uk: "Без ключа я не потраплю до будинку. А без телефона обійдуся."
+    explain:
+      en: "ohne governs the accusative just as für does, and the possessive follows the article pattern exactly: der Schlüssel is masculine, so ohne meinen Schlüssel; das Handy is neuter, so mein stays as it is. The preposition is the same in both halves — only the gender of the noun differs."
+      ru: "ohne требует винительного падежа так же, как и für, а притяжательное местоимение ведёт себя в точности как артикль: der Schlüssel мужского рода, поэтому ohne meinen Schlüssel; das Handy среднего рода, поэтому mein остаётся без изменений. Предлог в обеих частях один и тот же — различается только род существительного."
+      uk: "ohne вимагає знахідного відмінка так само, як і für, а присвійний займенник поводиться точнісінько як артикль: der Schlüssel чоловічого роду, тому ohne meinen Schlüssel; das Handy середнього роду, тому mein залишається без змін. Прийменник в обох частинах той самий — різниться лише рід іменника."
+
+  - id: variant-c
+    outcomes: [akkusativ-praepositionen]
+    type: cloze
+    focus: akkusativ-praepositionen
+    instruction:
+      en: Fill in the correct article or possessive.
+      ru: Вставьте правильный артикль или притяжательное местоимение.
+      uk: Вставте правильний артикль або присвійний займенник.
+    text: "Das Buch ist für {{einen}} Freund. Sie kommt heute ohne {{ihren}} Hund."
+    translation:
+      en: "The book is for a friend. She is coming without her dog today."
+      ru: "Книга для друга. Сегодня она придёт без собаки."
+      uk: "Книжка для друга. Сьогодні вона прийде без свого пса."
+    explain:
+      en: "Both nouns are masculine, so both change, and they show that the same -en ending appears on every kind of article word: ein becomes einen, ihr becomes ihren. What triggers it is the preposition, not the verb — nothing in either sentence is an object."
+      ru: "Оба существительных мужского рода, поэтому меняются оба, и на них видно, что одно и то же окончание -en появляется у всех типов артиклевых слов: ein превращается в einen, ihr — в ihren. Причина здесь — предлог, а не глагол: ни в одном из предложений нет дополнения."
+      uk: "Обидва іменники чоловічого роду, тому змінюються обидва, і на них видно, що те саме закінчення -en з'являється в усіх типів артиклевих слів: ein перетворюється на einen, ihr — на ihren. Причина тут — прийменник, а не дієслово: у жодному з речень немає додатка."

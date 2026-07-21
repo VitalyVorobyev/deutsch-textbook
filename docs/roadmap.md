@@ -63,9 +63,43 @@ translation (Phase 8 + C3).
 
 ## The retention gate
 
-Phase 3's second exit criterion is the only one that can fail: **due parallel probes clear ≥ 80%
-per probed competence, with free-production items ≥ 70%.** It is a **revision trigger**, not a
-blocker on authoring:
+Phase 3's second exit criterion is the only one that can fail:
+
+> **The A1 delayed probes retain their target competence in ≥ 80% of readable competences, with the
+> free-production channel at ≥ 70%.**
+>
+> A probe counts as **retained** when the item's graded target survived — correct under today's
+> contract, or wrong with the divergence outside the tokens the item's `focus` grades. It counts as
+> **failed** only when the target itself diverged. Whole-sentence flawlessness is not the measure: a
+> probe of `akkusativ-artikel` whose article is right and whose noun is misspelled is evidence that
+> the accusative was retained.
+>
+> Competences group by **focus tag**, pooled across the families carrying it, read **per level**. A
+> competence is **readable** only once it holds at least as many attempts as there are scheduled
+> intervals (3); below that it is reported as pending, excluded from the percentage, and never
+> counted as a pass — 2/2 is two data points, not 100% retention. A family whose items carry no
+> `focus` cannot fail its target by construction, so it is likewise excluded and named as an
+> instrument gap.
+
+`bun run progress:audit` computes this directly — see *Retention by competence*.
+
+**Why the restatement.** The bar previously read "due parallel probes clear ≥ 80%", where *clear*
+meant `correct`: the whole typed sentence flawless. A probe item asks for eight or so independent
+correctness decisions at once, so that number measures sentence-building, not retention of the one
+competence the interval is testing. Read that way the A1 cohort sits at **18%**; read against target
+retention it sits at **59%**. Those are different findings and the gate must not conflate them.
+The restatement does **not** rescue the gate — 59% still misses 80%, and the expected 2026-08-02
+outcome is a **fail → revision trigger**. Tuning the bar until it passes would manufacture exactly
+the *number that looks like retention without being it* this document warns about elsewhere.
+
+**Two limits of the instrument, recorded rather than hidden.** A family serves one variant per
+interval, so a competence carried by a single family can never exceed three attempts — the gate is
+thin by construction, and at the cohort's current depth only `akkusativ-artikel` (carried by three
+families) is readable at all. And `a1/probe-erste-schritte` carries no `focus` on any variant, so it
+can never fail its target and reads as 100% retained; it is excluded by name. Both are arguments for
+widening the probe channel (P5-7 and the second-family work), not for lowering the bar.
+
+It is a **revision trigger**, not a blocker on authoring:
 
 > On 2026-08-02 the probe cohort is read and [the audit](a1-learning-audit.md) updated. If A1 misses
 > the bar, authoring stops: the units written by then are revised against the finding, and the

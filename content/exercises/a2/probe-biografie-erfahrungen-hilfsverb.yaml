@@ -1,0 +1,77 @@
+topic: biografie-erfahrungen
+role: probe
+title:
+  en: "Probe — haben or sein in a life story"
+  ru: "Проверка — haben или sein в рассказе о жизни"
+  uk: "Перевірка — haben чи sein у розповіді про життя"
+
+# The second family on this topic. probe-biografie-erfahrungen probes praeteritum-sein-haben
+# (war and hatte — the past German actually speaks). This one probes haben-sein: the Perfekt
+# auxiliary choice, which the topic drills but nothing checks after a delay here.
+#
+# The two are worth separating even though both are "the past": one is a form to recall, the
+# other is a decision to make about every verb. A learner can be fluent in war/hatte and
+# still write "ich habe nach Berlin gezogen".
+#
+# The competence is also probed by probe-reisen-verkehr as a translate family. This one is a
+# cloze on a different topic, which is deliberate: a competence carried by one family caps at
+# three attempts ever, below the readability floor the retention gate applies. Two families in
+# two formats make the figure readable and let a format effect be seen rather than pooled away.
+#
+# Every variant pairs a movement verb (sein) with a non-movement one (haben) in a single
+# biography sentence, so a learner who has settled on one auxiliary cannot score.
+
+items:
+  - id: variant-a
+    outcomes: [lebensstationen-ordnen]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill in the correct auxiliary verb.
+      ru: Вставьте правильный вспомогательный глагол.
+      uk: Вставте правильне допоміжне дієслово.
+    text: "Nach der Schule {{bin}} ich nach Hamburg gezogen. Dort {{habe}} ich drei Jahre studiert."
+    translation:
+      en: "After school I moved to Hamburg. I studied there for three years."
+      ru: "После школы я переехал в Гамбург. Там я три года учился."
+      uk: "Після школи я переїхав до Гамбурга. Там я три роки навчався."
+    explain:
+      en: "ziehen in the sense of moving house is a change of place — A to B — so it takes sein. studieren describes an activity with no movement, so it takes haben. The test is not whether something happened over time but whether the subject ended up somewhere new."
+      ru: "ziehen в значении «переезжать» — это перемещение из точки A в точку B, поэтому вспомогательный глагол sein. studieren описывает деятельность без перемещения, поэтому haben. Проверять нужно не длительность, а то, оказался ли субъект в новом месте."
+      uk: "ziehen у значенні «переїжджати» — це переміщення з точки A в точку B, тому допоміжне дієслово sein. studieren описує діяльність без переміщення, тому haben. Перевіряти треба не тривалість, а те, чи опинився суб'єкт у новому місці."
+
+  - id: variant-b
+    outcomes: [lebensstationen-ordnen]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill in the correct auxiliary verb.
+      ru: Вставьте правильный вспомогательный глагол.
+      uk: Вставте правильне допоміжне дієслово.
+    text: "Meine Eltern {{sind}} vor zwanzig Jahren nach Deutschland gekommen. Sie {{haben}} zuerst in einer Fabrik gearbeitet."
+    translation:
+      en: "My parents came to Germany twenty years ago. At first they worked in a factory."
+      ru: "Мои родители приехали в Германию двадцать лет назад. Сначала они работали на фабрике."
+      uk: "Мої батьки приїхали до Німеччини двадцять років тому. Спочатку вони працювали на фабриці."
+    explain:
+      en: "kommen is the clearest movement verb of all, so sein — and it stays sein in the plural: sind gekommen. arbeiten takes haben, like almost every verb describing what someone did rather than where they went. Note vor zwanzig Jahren for a finished point in the past, not seit."
+      ru: "kommen — самый очевидный глагол движения, поэтому sein, и во множественном числе тоже: sind gekommen. arbeiten требует haben, как почти любой глагол, описывающий, чем человек занимался, а не куда он перемещался. Обратите внимание на vor zwanzig Jahren для завершённой точки в прошлом — не seit."
+      uk: "kommen — найочевидніше дієслово руху, тому sein, і в множині так само: sind gekommen. arbeiten вимагає haben, як майже будь-яке дієслово, що описує, чим людина займалася, а не куди переміщувалася. Зверніть увагу на vor zwanzig Jahren для завершеної точки в минулому — не seit."
+
+  - id: variant-c
+    outcomes: [lebensstationen-ordnen]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: Fill in the correct auxiliary verb.
+      ru: Вставьте правильный вспомогательный глагол.
+      uk: Вставте правильне допоміжне дієслово.
+    text: "Ich {{habe}} zwei Jahre in Wien gelebt und {{bin}} dann nach München umgezogen."
+    translation:
+      en: "I lived in Vienna for two years and then moved to Munich."
+      ru: "Я два года прожил в Вене, а потом переехал в Мюнхен."
+      uk: "Я два роки прожив у Відні, а потім переїхав до Мюнхена."
+    explain:
+      en: "This is the pair that catches most learners: leben and umziehen sit in the same sentence and take different auxiliaries. leben says where someone was, with no change of place, so haben. umziehen says they changed it, so sein. The separable prefix makes no difference to the choice — the -ge- simply moves inside: umgezogen."
+      ru: "Именно эта пара сбивает чаще всего: leben и umziehen стоят в одном предложении и требуют разных вспомогательных глаголов. leben говорит, где человек находился, без смены места, — отсюда haben. umziehen говорит, что место сменилось, — отсюда sein. Отделяемая приставка на выбор не влияет: -ge- просто уходит внутрь слова: umgezogen."
+      uk: "Саме ця пара збиває найчастіше: leben і umziehen стоять в одному реченні й вимагають різних допоміжних дієслів. leben каже, де людина була, без зміни місця, — звідси haben. umziehen каже, що місце змінилося, — звідси sein. Відокремлюваний префікс на вибір не впливає: -ge- просто йде всередину слова: umgezogen."

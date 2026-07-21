@@ -1,0 +1,317 @@
+topic: freizeit-koennen
+role: placement
+title: { en: "Placement test A1 — what you already know", ru: "Тест на уровень A1 — что вы уже знаете", uk: "Тест на рівень A1 — що ви вже знаєте" }
+
+# The A1 entry test. Two or three tasks per A1 topic; a topic is placed only when every
+# one of its tasks is answered and the parts-weighted ratio reaches 0.8 — at two items,
+# both right.
+#
+# Anchored to `freizeit-koennen` for the same reason the checkpoint is: it is the last A1
+# topic in the spine, so every focus tag introduced anywhere in A1 passes the curriculum-
+# order check. The one exception is `dativ-praepositionen`, introduced by the A2 topic
+# `dativ`, which carries `preview: true` here exactly as it does in the stadt-wege lesson
+# that teaches zum/zur as a fixed chunk.
+#
+# Item mix, deliberately production-heavy: 10 translate, 5 cloze, 4 audio-comprehension,
+# 4 mc, 1 match. That is 62% free or gap production against 21% selection — the caps are
+# 25% mc and 40% selection, tighter than a practice set's, because a guessed answer here
+# costs the learner teaching rather than a point.
+#
+# Every item's outcomes belong to exactly ONE topic: the item's score decides that topic's
+# verdict, and an item counted toward two would blur both.
+
+items:
+  # --- erste-schritte ---
+  - id: erste-telefonnummer
+    outcomes: [erste-zahlen-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Ansage", text: "Guten Tag, hier ist die Sprachschule Nord. Unsere Telefonnummer ist null drei zwei acht sechs. Wir sind von neun bis sechzehn Uhr für Sie da." }
+    question: "Wie ist die Telefonnummer der Sprachschule?"
+    options: ["null drei zwei acht sechs", "null drei acht zwei sechs", "null neun zwei acht sechs"]
+    correct: 0
+    translation: { en: "What is the language school's telephone number?", ru: "Какой номер телефона у языковой школы?", uk: "Який номер телефону в мовної школи?" }
+    explain: { en: "Phone numbers are read digit by digit. The order matters: zwei acht, not acht zwei. The last number in the announcement, sechzehn, is the closing time, not part of the number.", ru: "Номера телефонов называют по одной цифре. Порядок важен: zwei acht, а не acht zwei. Последнее число в объявлении, sechzehn, — это время закрытия, а не часть номера.", uk: "Номери телефонів називають по одній цифрі. Порядок важливий: zwei acht, а не acht zwei. Останнє число в оголошенні, sechzehn, — це час закриття, а не частина номера." }
+
+  - id: erste-herkunft-sprachen
+    outcomes: [erste-sich-vorstellen]
+    type: translate
+    focus: verb-endungen
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I come from Poland and speak Polish and German."
+    prompt_ru: "Я из Польши и говорю по-польски и по-немецки."
+    prompt_uk: "Я з Польщі й розмовляю польською та німецькою."
+    answer: "Ich komme aus Polen und spreche Polnisch und Deutsch."
+    key_tokens: ["komme", "spreche"]
+    accept: ["Ich komme aus Polen und ich spreche Polnisch und Deutsch."]
+    explain: { en: "Origin is aus + country: aus Polen. Both verbs belong to ich and both take -e: ich komme, ich spreche. Language names are nouns in German and are capitalized — Polnisch, Deutsch.", ru: "Происхождение выражается через aus + страна: aus Polen. Оба глагола относятся к ich и получают -e: ich komme, ich spreche. Названия языков в немецком — существительные и пишутся с заглавной буквы: Polnisch, Deutsch.", uk: "Походження виражається через aus + країна: aus Polen. Обидва дієслова стосуються ich і отримують -e: ich komme, ich spreche. Назви мов у німецькій — іменники й пишуться з великої літери: Polnisch, Deutsch." }
+
+  # --- praesens-wortstellung ---
+  - id: praesens-endungen-arbeiten
+    outcomes: [praesens-konjugation]
+    type: cloze
+    focus: verb-endungen
+    instruction: { en: "Fill in the correct present-tense form of arbeiten.", ru: "Вставьте правильную форму глагола arbeiten в настоящем времени.", uk: "Вставте правильну форму дієслова arbeiten у теперішньому часі." }
+    text: "Ich {{arbeite}} in einem Büro. Meine Schwester {{arbeitet}} in einer Schule. Wo {{arbeitest}} du?"
+    translation: { en: "I work in an office. My sister works in a school. Where do you work?", ru: "Я работаю в офисе. Моя сестра работает в школе. А где работаешь ты?", uk: "Я працюю в офісі. Моя сестра працює в школі. А де працюєш ти?" }
+    explain: { en: "A stem ending in -t inserts an -e- before the ending, so the forms are arbeitest and arbeitet, not arbeitst and arbeitt. The endings themselves are the regular ones: ich -e, du -st, er/sie -t.", ru: "Если основа оканчивается на -t, перед окончанием вставляется -e-, поэтому формы arbeitest и arbeitet, а не arbeitst и arbeitt. Сами окончания обычные: ich -e, du -st, er/sie -t.", uk: "Якщо основа закінчується на -t, перед закінченням вставляється -e-, тому форми arbeitest і arbeitet, а не arbeitst і arbeitt. Самі закінчення звичайні: ich -e, du -st, er/sie -t." }
+
+  - id: praesens-verbzweit-abend
+    outcomes: [praesens-verbzweit]
+    type: translate
+    focus: verbzweit
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "In the evening I read a book."
+    prompt_ru: "Вечером я читаю книгу."
+    prompt_uk: "Увечері я читаю книжку."
+    answer: "Am Abend lese ich ein Buch."
+    key_tokens: ["lese", "ich"]
+    accept: ["Ich lese am Abend ein Buch."]
+    explain: { en: "Only one element may stand before the conjugated verb. If the time phrase takes that slot, the subject moves behind the verb: Am Abend lese ich — never Am Abend ich lese.", ru: "Перед спрягаемым глаголом может стоять только один член предложения. Если это место занимает обстоятельство времени, подлежащее уходит за глагол: Am Abend lese ich — но не Am Abend ich lese, как подсказывает русский порядок слов.", uk: "Перед відмінюваним дієсловом може стояти лише один член речення. Якщо це місце займає обставина часу, підмет іде за дієслово: Am Abend lese ich — але не Am Abend ich lese, як підказує український порядок слів." }
+
+  - id: praesens-negation-sonntag
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I don't work on Sunday."
+    prompt_ru: "В воскресенье я не работаю."
+    prompt_uk: "У неділю я не працюю."
+    answer: "Am Sonntag arbeite ich nicht."
+    key_tokens: ["arbeite", "nicht"]
+    accept: ["Ich arbeite am Sonntag nicht."]
+    explain: { en: "German has no helper verb for negation: the conjugated verb stays where it is and nicht comes after it, at the end of this sentence. Putting nicht in front of the verb copies a pattern German does not have.", ru: "В немецком нет вспомогательного глагола для отрицания: спрягаемый глагол остаётся на своём месте, а nicht идёт после него — здесь в конце предложения. Постановка nicht перед глаголом копирует русское «не работаю», чего немецкий не допускает.", uk: "У німецькій немає допоміжного дієслова для заперечення: відмінюване дієслово залишається на своєму місці, а nicht іде після нього — тут у кінці речення. Постановка nicht перед дієсловом копіює українське «не працюю», чого німецька не допускає." }
+
+  # --- artikel-genus ---
+  - id: artikel-genus-wohnung
+    outcomes: [artikel-richtig-verwenden]
+    type: cloze
+    focus: genus
+    instruction: { en: "Fill in der, die or das.", ru: "Вставьте der, die или das.", uk: "Вставте der, die або das." }
+    text: "Hier ist {{die}} Wohnung. Links steht {{der}} Tisch, und rechts ist {{das}} Fenster."
+    translation: { en: "Here is the flat. On the left stands the table, and on the right is the window.", ru: "Вот квартира. Слева стоит стол, а справа — окно.", uk: "Ось квартира. Ліворуч стоїть стіл, а праворуч — вікно." }
+    explain: { en: "Gender belongs to the word and has to be learned with it: die Wohnung, der Tisch, das Fenster. One signal is reliable, though — every noun ending in -ung is feminine.", ru: "Род принадлежит самому слову и запоминается вместе с ним: die Wohnung, der Tisch, das Fenster. Он не совпадает с русским: «стол» мужского рода и в немецком тоже, а «окно» среднего — но так везёт далеко не всегда. Один признак надёжен: все существительные на -ung женского рода.", uk: "Рід належить самому слову й запам'ятовується разом з ним: die Wohnung, der Tisch, das Fenster. Він не збігається з українським: «стіл» чоловічого роду й у німецькій теж, а «вікно» середнього — але так щастить далеко не завжди. Одна ознака надійна: усі іменники на -ung жіночого роду." }
+
+  - id: artikel-genus-endungen
+    outcomes: [artikel-genus-erkennen]
+    type: mc
+    prompt: "Welche Reihe ist richtig?"
+    options: ["die Zeitung, das Mädchen, die Wohnung", "der Zeitung, die Mädchen, das Wohnung", "das Zeitung, der Mädchen, die Wohnung"]
+    correct: 0
+    translation: { en: "Which row is correct?", ru: "Какой ряд верный?", uk: "Який ряд правильний?" }
+    explain: { en: "Two endings give the gender away with no exceptions worth worrying about at A1: -ung is always feminine (die Zeitung, die Wohnung) and -chen is always neuter (das Mädchen) — even when, as here, the person meant is a girl.", ru: "Два окончания выдают род без исключений, о которых стоило бы думать на уровне A1: -ung всегда женского рода (die Zeitung, die Wohnung), а -chen всегда среднего (das Mädchen) — даже когда речь, как здесь, идёт о девочке.", uk: "Два закінчення видають рід без винятків, про які варто було б думати на рівні A1: -ung завжди жіночого роду (die Zeitung, die Wohnung), а -chen завжди середнього (das Mädchen) — навіть коли йдеться, як тут, про дівчинку." }
+
+  - id: artikel-kein-zeit
+    outcomes: [artikel-kein-verwenden]
+    type: translate
+    focus: kein-nicht
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I have no time today."
+    prompt_ru: "Сегодня у меня нет времени."
+    prompt_uk: "Сьогодні в мене немає часу."
+    answer: "Ich habe heute keine Zeit."
+    key_tokens: ["keine"]
+    accept: ["Heute habe ich keine Zeit."]
+    explain: { en: "A noun is negated with kein-, not with nicht, and kein- takes the same endings as ein-: die Zeit is feminine, so keine Zeit. Also note that German cannot drop haben here the way some languages drop the verb of possession.", ru: "Существительное отрицается через kein-, а не через nicht, и kein- получает те же окончания, что и ein-: die Zeit женского рода, поэтому keine Zeit. Обратите также внимание: конструкция «у меня нет» передаётся глаголом haben, который в немецком опустить нельзя.", uk: "Іменник заперечується через kein-, а не через nicht, і kein- отримує ті самі закінчення, що й ein-: die Zeit жіночого роду, тому keine Zeit. Зверніть також увагу: конструкція «у мене немає» передається дієсловом haben, яке в німецькій опустити не можна." }
+
+  # --- menschen-familie ---
+  - id: familie-possessiv-vorstellen
+    outcomes: [menschen-beschreiben]
+    type: cloze
+    focus: possessivartikel
+    instruction: { en: "Fill in the correct form of mein.", ru: "Вставьте правильную форму mein.", uk: "Вставте правильну форму mein." }
+    text: "Hier ist {{mein}} Bruder. Rechts steht {{meine}} Schwester, und hinten sind {{meine}} Eltern."
+    translation: { en: "Here is my brother. On the right stands my sister, and at the back are my parents.", ru: "Вот мой брат. Справа стоит моя сестра, а сзади — мои родители.", uk: "Ось мій брат. Праворуч стоїть моя сестра, а позаду — мої батьки." }
+    explain: { en: "mein takes the same endings as ein: no ending before a masculine or neuter noun (mein Bruder), -e before a feminine one (meine Schwester). The plural is the one place ein has no form of its own — there mein simply takes -e as well: meine Eltern.", ru: "mein получает те же окончания, что и ein: без окончания перед мужским и средним родом (mein Bruder), с -e перед женским (meine Schwester). Множественное число — единственное место, где у ein своей формы нет; там mein тоже получает -e: meine Eltern.", uk: "mein отримує ті самі закінчення, що й ein: без закінчення перед чоловічим і середнім родом (mein Bruder), із -e перед жіночим (meine Schwester). Множина — єдине місце, де в ein своєї форми немає; там mein теж отримує -e: meine Eltern." }
+
+  - id: familie-hoeren-geschwister
+    outcomes: [familie-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Lena", text: "Hast du Geschwister, Jan?" }
+        - { speaker: "Jan", text: "Ja, ich habe einen Bruder und zwei Schwestern. Mein Bruder ist Lehrer und wohnt in Wien." }
+        - { speaker: "Lena", text: "Und deine Schwestern?" }
+        - { speaker: "Jan", text: "Die sind noch Studentinnen. Sie wohnen bei unseren Eltern." }
+    question: "Was ist richtig über Jans Familie?"
+    options: ["Sein Bruder ist Lehrer und wohnt in Wien.", "Seine Schwestern sind Lehrerinnen in Wien.", "Er hat zwei Brüder und eine Schwester."]
+    correct: 0
+    translation: { en: "What is correct about Jan's family?", ru: "Что верно о семье Яна?", uk: "Що правильно про сім'ю Яна?" }
+    explain: { en: "Jan says: Mein Bruder ist Lehrer und wohnt in Wien. The numbers are the other thing to catch — einen Bruder und zwei Schwestern, so one brother and two sisters, not the other way round.", ru: "Ян говорит: Mein Bruder ist Lehrer und wohnt in Wien. Второе, что важно расслышать, — числа: einen Bruder und zwei Schwestern, то есть один брат и две сестры, а не наоборот.", uk: "Ян каже: Mein Bruder ist Lehrer und wohnt in Wien. Друге, що важливо розчути, — числа: einen Bruder und zwei Schwestern, тобто один брат і дві сестри, а не навпаки." }
+
+  # --- akkusativ ---
+  - id: akkusativ-artikel-kaufen
+    outcomes: [akkusativ-artikel]
+    type: cloze
+    focus: akkusativ-artikel
+    instruction: { en: "Fill in ein in the correct form.", ru: "Вставьте ein в правильной форме.", uk: "Вставте ein у правильній формі." }
+    text: "Für die Wohnung kaufe ich {{einen}} Tisch, {{eine}} Lampe und {{ein}} Bett."
+    translation: { en: "For the flat I am buying a table, a lamp and a bed.", ru: "Для квартиры я покупаю стол, лампу и кровать.", uk: "Для квартири я купую стіл, лампу та ліжко." }
+    explain: { en: "kaufen takes an accusative object, but only the masculine article actually changes: der Tisch → einen Tisch. die Lampe stays eine and das Bett stays ein — the feminine and neuter forms look exactly like the nominative.", ru: "kaufen требует дополнения в Akkusativ, но реально меняется только мужской артикль: der Tisch → einen Tisch. die Lampe остаётся eine, а das Bett — ein: женская и средняя формы выглядят точно так же, как в номинативе.", uk: "kaufen вимагає додатка в Akkusativ, але реально змінюється лише чоловічий артикль: der Tisch → einen Tisch. die Lampe залишається eine, а das Bett — ein: жіноча й середня форми виглядають точно так само, як у номінативі." }
+
+  - id: akkusativ-fuer-vater
+    outcomes: [akkusativ-praepositionen]
+    type: translate
+    focus: akkusativ-praepositionen
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I'm buying a book for my father."
+    prompt_ru: "Я покупаю книгу для моего отца."
+    prompt_uk: "Я купую книжку для мого батька."
+    answer: "Ich kaufe ein Buch für meinen Vater."
+    key_tokens: ["meinen"]
+    accept: ["Ich kaufe für meinen Vater ein Buch."]
+    explain: { en: "für always governs the accusative — there is no second reading to weigh up, unlike the two-way prepositions. der Vater is masculine, so mein becomes meinen.", ru: "für всегда требует Akkusativ — здесь нет второго варианта, как у предлогов с двойным управлением. der Vater мужского рода, поэтому mein превращается в meinen.", uk: "für завжди вимагає Akkusativ — тут немає другого варіанта, як у прийменників із подвійним керуванням. der Vater чоловічого роду, тому mein перетворюється на meinen." }
+
+  # --- essen-trinken ---
+  - id: essen-bestellen-kaffee
+    outcomes: [essen-bestellen]
+    type: translate
+    instruction: { en: "Translate into German. Use möchten.", ru: "Переведите на немецкий. Используйте möchten.", uk: "Перекладіть німецькою. Вживайте möchten." }
+    prompt_en: "I would like a coffee and a piece of cake, please."
+    prompt_ru: "Я бы хотел кофе и кусок торта, пожалуйста."
+    prompt_uk: "Я хотів би каву та шматок торта, будь ласка."
+    answer: "Ich möchte einen Kaffee und ein Stück Kuchen, bitte."
+    # Deliberately untagged, so no key_tokens either: an order is a communicative chunk
+    # (möchte + accusative + a quantity phrase) rather than one confusion, and tagging it
+    # would file any of those three failures under whichever tag was picked.
+    accept: ["Ich möchte bitte einen Kaffee und ein Stück Kuchen."]
+    explain: { en: "möchte is the polite way to order, and the ich-form has no ending: ich möchte, never ich möchte-e or ich möchten. der Kaffee is masculine, so it becomes einen Kaffee after it.", ru: "möchte — вежливая форма заказа, и в форме ich у неё нет окончания: ich möchte, а не ich möchten. der Kaffee мужского рода, поэтому после möchte он превращается в einen Kaffee.", uk: "möchte — ввічлива форма замовлення, і у формі ich вона не має закінчення: ich möchte, а не ich möchten. der Kaffee чоловічого роду, тому після möchte він перетворюється на einen Kaffee." }
+
+  - id: essen-grundwortschatz-match
+    outcomes: [essen-grundwortschatz]
+    type: match
+    instruction: { en: "Match each German word with its meaning.", ru: "Соедините каждое немецкое слово с его значением.", uk: "З'єднайте кожне німецьке слово з його значенням." }
+    pairs:
+      - { left: "das Brötchen", right: { en: "bread roll", ru: "булочка", uk: "булочка" } }
+      - { left: "der Käse", right: { en: "cheese", ru: "сыр", uk: "сир" } }
+      - { left: "das Ei", right: { en: "egg", ru: "яйцо", uk: "яйце" } }
+      - { left: "der Saft", right: { en: "juice", ru: "сок", uk: "сік" } }
+      - { left: "das Gemüse", right: { en: "vegetables", ru: "овощи", uk: "овочі" } }
+    explain: { en: "Everyday food words. Note that das Gemüse is singular in German where English uses a plural, so it takes a singular verb: Das Gemüse ist frisch.", ru: "Базовые слова о еде. Обратите внимание: das Gemüse в немецком стоит в единственном числе, хотя по-русски «овощи» — множественное, поэтому и глагол единственного числа: Das Gemüse ist frisch.", uk: "Базові слова про їжу. Зверніть увагу: das Gemüse у німецькій стоїть в однині, хоча українською «овочі» — множина, тому й дієслово в однині: Das Gemüse ist frisch." }
+
+  # --- alltag-zeit ---
+  - id: zeit-um-am-im
+    outcomes: [zeit-praepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction: { en: "um, am or im?", ru: "um, am или im?", uk: "um, am чи im?" }
+    text: "Der Kurs beginnt {{um}} neun Uhr. {{Am}} Freitag habe ich frei, und {{im}} Juli fahre ich nach Spanien."
+    translation: { en: "The course begins at nine o'clock. On Friday I am off, and in July I am going to Spain.", ru: "Курс начинается в девять часов. В пятницу у меня выходной, а в июле я еду в Испанию.", uk: "Курс починається о дев'ятій годині. У п'ятницю в мене вихідний, а в липні я їду до Іспанії." }
+    explain: { en: "Three different prepositions where English uses at, on and in: um + clock time, am + day, im + month or season. The one to watch is am for days, since a day is a point in time in German thinking, not a container.", ru: "Три разных предлога там, где по-русски везде «в»: um + время по часам, am + день, im + месяц или время года. Труднее всего запомнить am для дней недели.", uk: "Три різні прийменники там, де українською скрізь «в/у»: um + час за годинником, am + день, im + місяць або пора року. Найважче запам'ятати am для днів тижня." }
+
+  - id: zeit-oeffnungszeiten-lesen
+    outcomes: [zeit-wochenplan-lesen]
+    type: mc
+    prompt: "Sie lesen ein Schild: „Bibliothek. Montag bis Donnerstag: 10–19 Uhr. Freitag: 10–14 Uhr. Samstag und Sonntag: geschlossen.“ Es ist Freitag, 16 Uhr. Was ist richtig?"
+    options: ["Die Bibliothek ist jetzt geschlossen.", "Die Bibliothek ist noch drei Stunden geöffnet.", "Die Bibliothek ist bis neunzehn Uhr geöffnet."]
+    correct: 0
+    translation: { en: "You read a sign at a library. It is Friday, 4 p.m. What is correct?", ru: "Вы читаете табличку у библиотеки. Сейчас пятница, 16 часов. Что верно?", uk: "Ви читаєте табличку біля бібліотеки. Зараз п'ятниця, 16 година. Що правильно?" }
+    explain: { en: "Friday has its own, shorter line: 10–14 Uhr. At 16 Uhr that is already past, so the library is closed. The 19 Uhr closing time applies from Monday to Thursday only.", ru: "У пятницы своя, более короткая строка: 10–14 Uhr. В 16 часов это время уже прошло, значит библиотека закрыта. Закрытие в 19 часов относится только к периоду с понедельника по четверг.", uk: "У п'ятниці свій, коротший рядок: 10–14 Uhr. О 16 годині цей час уже минув, отже бібліотека зачинена. Закриття о 19 годині стосується лише періоду з понеділка по четвер." }
+
+  # --- wohnen ---
+  - id: wohnen-zimmer-beschreiben
+    outcomes: [wohnen-beschreiben]
+    type: translate
+    focus: kopula-sein
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "My room is small but bright."
+    prompt_ru: "Моя комната маленькая, но светлая."
+    prompt_uk: "Моя кімната маленька, але світла."
+    answer: "Mein Zimmer ist klein, aber hell."
+    key_tokens: ["ist"]
+    explain: { en: "German cannot leave the linking verb out: an adjective describing the subject always needs sein. And an adjective after sein takes no ending at all — klein and hell stay bare, however the noun behaves.", ru: "В немецком глагол-связку опустить нельзя: прилагательное, описывающее подлежащее, всегда требует sein — «моя комната маленькая» превращается в Mein Zimmer ist klein. При этом после sein прилагательное не получает никакого окончания.", uk: "У німецькій дієслово-зв'язку опустити не можна: прикметник, що описує підмет, завжди вимагає sein — «моя кімната маленька» перетворюється на Mein Zimmer ist klein. При цьому після sein прикметник не отримує жодного закінчення." }
+
+  - id: wohnen-anzeige-lesen
+    outcomes: [wohnen-anzeige-verstehen]
+    type: mc
+    prompt: "Sie lesen eine Anzeige: „2-Zimmer-Wohnung in Leipzig, 54 Quadratmeter, vierter Stock ohne Aufzug. Küche und Bad sind neu. Miete: 590 Euro. Frei ab März.“ Was ist richtig?"
+    options: ["Die Wohnung hat keinen Aufzug.", "Die Wohnung ist im ersten Stock.", "Die Wohnung ist ab Mai frei."]
+    correct: 0
+    translation: { en: "You read a housing advertisement. What is correct?", ru: "Вы читаете объявление о квартире. Что верно?", uk: "Ви читаєте оголошення про квартиру. Що правильно?" }
+    explain: { en: "ohne Aufzug means there is no lift, and vierter Stock is the fourth floor, not the first. Frei ab März gives March as the date the flat becomes available.", ru: "ohne Aufzug значит, что лифта нет, а vierter Stock — четвёртый этаж, а не первый. Frei ab März указывает, что квартира освобождается в марте.", uk: "ohne Aufzug означає, що ліфта немає, а vierter Stock — четвертий поверх, а не перший. Frei ab März вказує, що квартира звільняється в березні." }
+
+  # --- stadt-wege ---
+  - id: stadt-weg-bahnhof
+    outcomes: [stadt-weg-erfragen]
+    type: translate
+    focus: dativ-praepositionen
+    preview: true
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "Excuse me, how do I get to the station?"
+    prompt_ru: "Извините, как мне добраться до вокзала?"
+    prompt_uk: "Вибачте, як мені дістатися до вокзалу?"
+    answer: "Entschuldigung, wie komme ich zum Bahnhof?"
+    key_tokens: ["zum"]
+    explain: { en: "Asking the way is the fixed question wie komme ich zu …?, and zu merges with the article: zu + dem Bahnhof becomes zum Bahnhof. With a feminine place it would be zur: zur Post.", ru: "Дорогу спрашивают устойчивым вопросом wie komme ich zu …?, а zu сливается с артиклем: zu + dem Bahnhof даёт zum Bahnhof. С женским родом было бы zur: zur Post.", uk: "Дорогу питають сталим питанням wie komme ich zu …?, а zu зливається з артиклем: zu + dem Bahnhof дає zum Bahnhof. З жіночим родом було б zur: zur Post." }
+
+  - id: stadt-wegbeschreibung-hoeren
+    outcomes: [stadt-wegbeschreibung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Mann", text: "Entschuldigung, wo ist die Apotheke?" }
+        - { speaker: "Frau", text: "Gehen Sie hier geradeaus bis zur Ampel. Dann die zweite Straße links. Die Apotheke ist neben dem Supermarkt." }
+        - { speaker: "Mann", text: "Danke schön!" }
+    question: "Wo ist die Apotheke?"
+    options: ["Nach der Ampel die zweite Straße links, neben dem Supermarkt.", "Nach der Ampel die zweite Straße rechts, neben der Schule.", "Direkt an der Ampel, gegenüber dem Supermarkt."]
+    correct: 0
+    translation: { en: "Where is the pharmacy?", ru: "Где находится аптека?", uk: "Де знаходиться аптека?" }
+    explain: { en: "Three details have to survive the listening: geradeaus bis zur Ampel, then die zweite Straße links — not rechts, and not the first street — and finally neben dem Supermarkt.", ru: "На слух нужно удержать три детали: geradeaus bis zur Ampel, затем die zweite Straße links — не rechts и не первая улица — и наконец neben dem Supermarkt.", uk: "На слух потрібно втримати три деталі: geradeaus bis zur Ampel, потім die zweite Straße links — не rechts і не перша вулиця — і нарешті neben dem Supermarkt." }
+
+  - id: stadt-schild-lesen
+    outcomes: [stadt-schilder-verstehen]
+    type: mc
+    prompt: "An der Tür steht ein Schild: „Kein Eingang. Bitte benutzen Sie den Eingang an der Marktstraße.“ Was bedeutet das?"
+    options: ["Man muss den anderen Eingang an der Marktstraße nehmen.", "Der Eingang an der Marktstraße ist geschlossen.", "Das Geschäft ist heute geschlossen."]
+    correct: 0
+    translation: { en: "There is a sign on the door. What does it mean?", ru: "На двери висит табличка. Что это значит?", uk: "На дверях висить табличка. Що це означає?" }
+    explain: { en: "Kein Eingang says this door is not an entrance; the second sentence sends you to the other one — benutzen Sie den Eingang an der Marktstraße. Nothing on the sign says the shop is shut.", ru: "Kein Eingang сообщает, что эта дверь — не вход; второе предложение отправляет к другому: benutzen Sie den Eingang an der Marktstraße. О том, что магазин закрыт, на табличке ничего нет.", uk: "Kein Eingang повідомляє, що ці двері — не вхід; друге речення відправляє до іншого: benutzen Sie den Eingang an der Marktstraße. Про те, що магазин зачинений, на табличці нічого немає." }
+
+  # --- freizeit-koennen ---
+  - id: freizeit-koennen-schwimmen
+    outcomes: [freizeit-koennen-satz]
+    type: translate
+    focus: modal-satzklammer
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "My brother can cook very well."
+    prompt_ru: "Мой брат умеет очень хорошо готовить."
+    prompt_uk: "Мій брат уміє дуже добре готувати."
+    answer: "Mein Bruder kann sehr gut kochen."
+    key_tokens: ["kann", "kochen"]
+    explain: { en: "The modal bracket: kann in position 2 and the infinitive kochen at the very end, with everything else in between. Note also that kann has no -t in the er-form.", ru: "Модальная рамка: kann на втором месте, а инфинитив kochen — в самом конце, всё остальное между ними. Обратите также внимание, что в форме er у kann нет окончания -t.", uk: "Модальна рамка: kann на другому місці, а інфінітив kochen — у самому кінці, усе інше між ними. Зверніть також увагу, що у формі er у kann немає закінчення -t." }
+
+  - id: freizeit-hobbys-gern
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    instruction: { en: "Translate into German. Use gern.", ru: "Переведите на немецкий. Используйте gern.", uk: "Перекладіть німецькою. Вживайте gern." }
+    prompt_en: "I like playing football."
+    prompt_ru: "Я люблю играть в футбол."
+    prompt_uk: "Я люблю грати у футбол."
+    answer: "Ich spiele gern Fußball."
+    key_tokens: ["spiele", "gern"]
+    explain: { en: "Liking an activity is expressed with the ordinary verb plus gern — the activity is not turned into an object. There is no German sentence built like 'I love to play', so mögen with an infinitive is not the route here.", ru: "Любимое занятие выражается обычным глаголом плюс gern — само занятие не превращается в дополнение. Конструкции вроде «люблю играть» в немецком нет, поэтому mögen с инфинитивом здесь не подходит.", uk: "Улюблене заняття виражається звичайним дієсловом плюс gern — саме заняття не перетворюється на додаток. Конструкції на кшталт «люблю грати» у німецькій немає, тому mögen з інфінітивом тут не підходить." }
+
+  - id: freizeit-verabredung-hoeren
+    outcomes: [freizeit-gespraech-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Sara", text: "Hallo Tim! Gehen wir am Samstag ins Kino?" }
+        - { speaker: "Tim", text: "Am Samstag kann ich leider nicht, da arbeite ich. Aber am Sonntag habe ich Zeit." }
+        - { speaker: "Sara", text: "Gut, dann gehen wir am Sonntag. Um sieben Uhr?" }
+        - { speaker: "Tim", text: "Ja, gern. Bis Sonntag!" }
+    question: "Wann gehen Sara und Tim ins Kino?"
+    options: ["Am Sonntag um sieben Uhr.", "Am Samstag um sieben Uhr.", "Am Sonntag um sechs Uhr."]
+    correct: 0
+    translation: { en: "When are Sara and Tim going to the cinema?", ru: "Когда Сара и Тим идут в кино?", uk: "Коли Сара й Тім ідуть у кіно?" }
+    explain: { en: "Tim turns Saturday down — am Samstag kann ich leider nicht, da arbeite ich — and offers Sunday instead. The time is agreed at the end: Um sieben Uhr? — Ja, gern.", ru: "Тим отказывается от субботы — am Samstag kann ich leider nicht, da arbeite ich — и предлагает вместо неё воскресенье. Время договаривают в конце: Um sieben Uhr? — Ja, gern.", uk: "Тім відмовляється від суботи — am Samstag kann ich leider nicht, da arbeite ich — і пропонує натомість неділю. Час домовляють у кінці: Um sieben Uhr? — Ja, gern." }

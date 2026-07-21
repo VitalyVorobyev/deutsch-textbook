@@ -363,3 +363,128 @@
   decision: accept
   note: "Subject ellipsis in the second conjunct (und spreche) is standard German — the shared subject need not repeat. Meaning, register and all three chunks preserved. The accept list gains the rendering (revision 2)."
   decidedAt: 2026-07-16
+
+# --- 2026-07-20 triage of the instrument-review queue -------------------------------------
+# Probe items: `confirm` only. An `accept` or `constrain` there needs a revision bump, and a
+# bumped revision drops the attempt out of the re-graded retention figure (revisionKnownMismatch)
+# — which is the reading the 2026-08-02 cohort gate depends on. Held until after that date.
+
+- item: a2/verbindungen-folgen-produktion:uebersetzen-trotzdem
+  given: "Der Film war lang. Trotzdem haben wir er zum Ende geschauen"
+  decision: confirm
+  note: "Three real errors: er for the accusative ihn, geschauen for the participle gesehen/geschaut, and zum Ende without bis. The graded inversion after Trotzdem is intact, so the miss is not attributed to konjunktionaladverb-inversion. drill note: accusative personal pronoun ihn in the Perfekt bracket."
+  decidedAt: 2026-07-20
+
+- item: a2/verbindungen-folgen-produktion:uebersetzen-wenn-wiederholt
+  given: "Immer wenn es regnet war, haven wir zu Hause gebileben."
+  decision: confirm
+  note: "regnet war is not a German tense — the Perfekt is es geregnet hat — and bleiben takes sein, not haben. haven and gebileben are further misspellings. The wenn itself was right, so the error is not about als/wenn. drill note: haben/sein with bleiben."
+  decidedAt: 2026-07-20
+
+- item: a2/verbindungen-folgen:uebersetzen-als-kindheit
+  given: "Als ich ein Kind war, bin ich oft zur Großmutter gefahren"
+  decision: confirm
+  note: "Grammatical German and the graded Als is correct, but the rendering drifts from the prompt: zur Großmutter drops the possessive of my grandmother's, and ein Kind war is a different predication than klein war. Not equivalent enough for the accept list; today's grader logs it unattributed, so no false als-wenn-vergangenheit signal is created."
+  decidedAt: 2026-07-20
+
+- item: a2/relativsaetze-produktion:uebersetzen-definition-fahrrad
+  given: "Ich suche einen Mensch, der Fahrräder repariert"
+  decision: confirm
+  note: "Mensch is an n-declension (weak) masculine: the accusative is einen Menschen. The relative pronoun der — what the item grades — was correct. drill note: n-Deklination in the accusative (Mensch, Kollege, Student, Nachbar)."
+  decidedAt: 2026-07-20
+
+- item: a2/relativsaetze:uebersetzen-mann-akkusativ
+  given: "Der Mensch, den ich kenne, wohnt in Bremen"
+  decision: confirm
+  note: "Mensch is a human being in general, not the prompt's man — der Mann. The relative clause is faultless and den is right, so the miss is lexical and today's grader attributes nothing to relativpronomen-kasus."
+  decidedAt: 2026-07-20
+
+- item: a2/infinitiv-mit-zu-futur:uebersetzen-vorhersage-futur
+  given: "Morgen wird wascheinlich regnen"
+  decision: confirm
+  note: "Weather verbs need the expletive subject es, which German cannot drop: Morgen wird es wahrscheinlich regnen. wascheinlich is also more than one edit from wahrscheinlich. drill note: obligatory es with weather verbs — Russian and English both allow a different subject strategy."
+  decidedAt: 2026-07-20
+
+- item: a2/infinitiv-mit-zu-futur:uebersetzen-versprechen-futur
+  given: "Verspreche: ich werde dir morgen anrufen"
+  decision: confirm
+  note: "Two errors: the subject Ich is missing before verspreche (German is not a pro-drop language), and anrufen governs the accusative — dich, not dir. The Futur bracket itself was built correctly. drill note: anrufen + Akkusativ against helfen/antworten + Dativ."
+  decidedAt: 2026-07-20
+
+- item: a2/infinitiv-mit-zu-produktion:uebersetzen-abzunehmen
+  given: "Ich versuche, ein bishen abzunehmen"
+  decision: confirm
+  note: "bishen is two edits from bisschen, so it is not a forgivable slip. The graded abzunehmen — zu inside the separable verb — was correct, and nothing is attributed to zu-infinitiv."
+  decidedAt: 2026-07-20
+
+- item: a2/infinitiv-mit-zu:uebersetzen-um-zu-geschenk
+  given: "Ich fahre in der Stadt um ein Geschenk zu kaufen"
+  decision: confirm
+  note: "fahren into town is a direction, so the two-way preposition takes the accusative: in die Stadt. The um … zu frame the item grades is complete and correct. drill note: wo-wohin after a movement verb — in die Stadt against in der Stadt."
+  decidedAt: 2026-07-20
+
+- item: a2/infinitiv-mit-zu:uebersetzen-vorhaben-wien
+  given: "Ich have vor, im Sommer in Wien zu fahren"
+  decision: confirm
+  note: "have is not habe, and a city as destination takes nach, not in: nach Wien fahren. The zu-infinitive itself was placed correctly. drill note: nach + city/country for direction against in + Dativ for location."
+  decidedAt: 2026-07-20
+
+- item: a1/stadt-wege:translate-bahnhof
+  given: "Entschuldigung, wie komme ich zum Bahnfoh?"
+  decision: confirm
+  note: "The prompt asks where the station is; the rendering asks how to get there. Both are useful German, but the item measures the wo ist … question, and Bahnfoh is misspelled besides."
+  decidedAt: 2026-07-20
+
+- item: a2/adjektive-deklination:translate-der-neue-kollege
+  given: "Der neue Kollege ist sehr nett."
+  decision: accept
+  note: "nett and freundlich are interchangeable here; register, person and tense are unchanged, and the graded adjective neue is identical. The accept list gains the rendering (revision 2)."
+  decidedAt: 2026-07-20
+
+- item: a2/arbeit-beruf-produktion:uebersetzen-verbot-und-freiheit
+  given: "Du darfst hier nicht rauchen. Aber du musst heute nicht länge arbeiten"
+  decision: accept
+  note: "Subject-first Du darfst hier … is as good V2 as the authored fronted Hier darfst du …, and both modals stay in position 2 — the only thing duerfen-muessen grades. The sole remaining divergence, länge for länger, is a one-edit slip on an ungraded token. The accept list gains the subject-first renderings (revision 2)."
+  decidedAt: 2026-07-20
+
+- item: a2/probe-nebensaetze-plaene:variant-a
+  given: "Lena geht heute ins Kino nicht, weil sie ihre Tochte abholen muss"
+  decision: confirm
+  note: "nicht follows the verb but must precede the prepositional complement it negates: geht heute nicht ins Kino. Tochte is also not Tochter. The weil-clause with muss at the end — what the probe measures — was correct. drill note: position of nicht before a directional prepositional phrase."
+  decidedAt: 2026-07-20
+
+- item: a1/probe-stadt-wege:variant-b
+  given: "Entschuldigung, wie geht mann zur Kurche?"
+  decision: confirm
+  note: "mann is the noun, the indefinite pronoun is man; Kurche is not Kirche. wie geht man zu … is also not the idiomatic way to ask directions — wie komme ich zu …. The graded zur was right."
+  decidedAt: 2026-07-20
+
+- item: a1/probe-menschen-familie:variant-b
+  given: "Mein Großvater ist Verkauver und meine Großmutter ist Ärztin"
+  decision: confirm
+  note: "Verkauver is well beyond one edit from Verkäufer and loses the umlaut the word turns on. Both graded possessives, Mein and meine, were correct, so nothing is attributed to possessivartikel. drill note: -äu- spellings in Beruf nouns (Verkäufer, Käufer)."
+  decidedAt: 2026-07-20
+
+- item: a1/probe-praesens-wortstellung:variant-b
+  given: "Wo arbeitet deinen Bruder?"
+  decision: confirm
+  note: "The subject of the question is nominative: dein Bruder, not the accusative deinen Bruder. Verb-second placement — what the probe measures — was correct, so the miss belongs to the possessive, not to verbzweit. drill note: nominative possessive on a subject after a fronted W-word."
+  decidedAt: 2026-07-20
+
+- item: a2/probe-arbeit-beruf:variant-a
+  given: "Die Studenten dürfen nicht in der Bibliothek essen. Sie müssen nicht für den Bücher bezahlen"
+  decision: confirm
+  note: "für governs the accusative and Bücher is plural: für die Bücher. The adversative Aber is also dropped, which loses the contrast the prompt makes. Both modals were correct."
+  decidedAt: 2026-07-20
+
+# --- 2026-07-21: the connector-determinacy class -------------------------------------------
+# Two renderings from the same session, both correct German, both rejected because the item
+# pinned one of two equally valid ways to say the same thing and never said which. The
+# rulings differ because the *tag* differs: where the connector carries the focus it is
+# constrained, where it is carrier material the accept list simply grows.
+
+- item: a2/arbeit-beruf:uebersetzen-denn-termin
+  given: "Ich komme heute später, weil ich einen Arzttermin habe"
+  decision: constrain
+  note: "Correct German and a faithful rendering of «потому что» — but the item's focus is verbzweit, and a weil-clause sends the conjugated verb to the end, which is the opposite of what the tag measures. Accepting it would leave the item tagged verbzweit while grading nothing about position 2. The item looked determinate to its author because arbeit-beruf precedes nebensaetze-plaene in the spine and its article says weil 'comes later'; mixed training serves the item without that context, months after weil was taught. Instruction now names denn (revision 3). drill note: denn vs weil as a free choice — the learner picked the harder construction and built it correctly."
+  decidedAt: 2026-07-21

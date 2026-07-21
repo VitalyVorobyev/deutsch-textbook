@@ -7,15 +7,18 @@ title:
 items:
   - id: pretest-deshalb-inversion
     outcomes: [folge-ausdruecken]
-    type: mc
+    type: cloze
     focus: konjunktionaladverb-inversion
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Der Bus hatte Verspätung. Deshalb bin ich zu spät gekommen."
-      - "Der Bus hatte Verspätung. Deshalb ich bin zu spät gekommen."
-      - "Der Bus hatte Verspätung. Deshalb ich zu spät gekommen bin."
-      - "Der Bus hatte Verspätung, deshalb ich bin zu spät gekommen."
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Der Bus hatte Verspätung. Deshalb {{bin}} ich zu spät gekommen."
+    translation:
+      en: "The bus was late. That is why I arrived too late."
+      ru: "Автобус опоздал. Поэтому я пришёл слишком поздно."
+      uk: "Автобус запізнився. Тому я прийшов надто пізно."
     explain:
       en: "deshalb is an adverb, not a conjunction. It fills position 1, so the conjugated verb must be second and the subject third: Deshalb bin ich."
       ru: "deshalb — наречие, а не союз. Оно занимает первое место, поэтому спрягаемый глагол обязан быть вторым, а подлежащее третьим: Deshalb bin ich."

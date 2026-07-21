@@ -7,7 +7,7 @@ import FirstSteps from '../components/today/FirstSteps';
 import NextTopic from '../components/today/NextTopic';
 import ProbeBacklog from '../components/today/ProbeBacklog';
 import SessionDoneBadge from '../components/today/SessionDoneBadge';
-import { getAllCards, getCheckpoints, getDeckLevels, getTopicNodes } from '../lib/content';
+import { getAllCards, getCheckpoints, getDeckLevels, getPlacements, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
 import { probeFamilies } from '../lib/probes';
 import { withBase } from '../lib/url';
@@ -46,6 +46,19 @@ const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title, i
 // Where a learner with no history starts — the FirstSteps card links straight to it.
 const firstNode = nodes.find((node) => node.id === spine[0]);
 const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de };
+// …and the alternative for someone who does not start from zero. The lowest level's test:
+// the entry point must not let a learner skip straight to A2 while A1 is untouched, which
+// is the same rule dueCheckpoint encodes.
+//
+// Every level's setId goes with it, because FirstSteps has to tell a placement attempt
+// apart from having started learning — counting one hid this card, and the only link back
+// into a half-finished test with it.
+const placements = await getPlacements();
+const firstPlacement = placements[0];
+const placement = firstPlacement && {
+  path: firstPlacement.path,
+  setIds: placements.map((p) => p.setId),
+};
 ---
 
 <Base title="Heute">
@@ -55,7 +68,7 @@ const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de 
     <span class="lang-ru">Ваш атлас немецкого — учебник, упражнения и карточки в одном месте.</span>
   </p>
 
-  <FirstSteps client:only="react" first={first} />
+  <FirstSteps client:only="react" first={first} placement={placement} />
   <a
     href={withBase('/session')}
     class="mt-8 block rounded-lg bg-amber-600 p-6 text-white shadow-sm hover:bg-amber-700"

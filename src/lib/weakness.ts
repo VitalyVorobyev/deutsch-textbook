@@ -2,13 +2,33 @@
  * Confusion-level weakness detection over the attempt log.
  *
  * Attempts carry an optional `focus` tag (the confusion an exercise item
- * drills, e.g. "haben-sein" — see the focus-tag table in CLAUDE.md). These
+ * drills, e.g. "haben-sein" — see the focus-tag table in docs/focus-tags.md). These
  * pure functions aggregate recent error rates per tag; MixedTraining and the
  * progress page use them to steer practice toward weak confusions.
  */
 import type { Attempt } from './store';
 import { attemptScore } from './scoring';
 import { isVerifiedEvidence } from './scoring';
+
+/**
+ * A pretest attempt — excluded from every weakness signal.
+ *
+ * A pretest is taken **before** the lesson, which is why it is already excluded from mastery,
+ * from `Geübt`, from mixed training, from outcome measurement and from both coverage figures.
+ * Leaving it in the weakness signal was an oversight, not a decision, and it was not harmless:
+ * all 96 pretest items are `mc`, the one format the pilot learner scores ~93% on, so 91 easy
+ * recognition attempts sat in the denominators of a signal that exists to find **production**
+ * confusion. Measured against this repo's log, removing them changes the error rate of 27 tags
+ * and swaps a member of the weak set outright — `nebensatz-vorfeld` was masked below the
+ * threshold and `konjunktionaladverb-inversion` was pushed above it. Both directions are wrong,
+ * and `weakFocuses` drives mixed-training priority and drill authoring.
+ *
+ * Identified by the path, which `bun run validate` enforces both ways (a `role: pretest` set
+ * must be named `-pretest`, and a set so named must declare the role), so this is a checked
+ * contract rather than a naming habit the runtime quietly depends on.
+ */
+export const isPretestAttempt = (attempt: Pick<Attempt, 'setId'>): boolean =>
+  attempt.setId.endsWith('-pretest');
 
 export interface FocusStat {
   focus: string;
@@ -37,7 +57,7 @@ const DEFAULT_WINDOW = 30;
 export function focusStats(attempts: Attempt[], window = DEFAULT_WINDOW): FocusStat[] {
   const byFocus = new Map<string, Attempt[]>();
   for (const a of attempts) {
-    if (!a.focus || !isVerifiedEvidence(a)) continue;
+    if (!a.focus || !isVerifiedEvidence(a) || isPretestAttempt(a)) continue;
     const arr = byFocus.get(a.focus);
     if (arr) arr.push(a);
     else byFocus.set(a.focus, [a]);

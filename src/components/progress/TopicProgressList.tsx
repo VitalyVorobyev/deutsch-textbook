@@ -1,7 +1,7 @@
 import { topicCompletion, topicEvidence, type TopicContext, type TopicNode } from '../../lib/mastery';
 import { pick } from '../../lib/prefs';
 import { EvidenceChips } from '../topic/EvidenceChips';
-import { SelfAssessedMark, TierBadge } from '../topic/TierBadge';
+import { PlacedMark, SelfAssessedMark, TierBadge } from '../topic/TierBadge';
 import { useExplainLang } from '../hooks';
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
@@ -40,6 +40,7 @@ export function TopicProgressList({ nodes, ctx }: { nodes: TopicNode[]; ctx: Top
                 <EvidenceChips evidence={topicEvidence(n, ctx)} />
                 <TierBadge tier={done.tier} manual={done.manual === 'reopened'} className="ml-1" />
                 {done.manual === 'learned' && <SelfAssessedMark />}
+                {done.placement && <PlacedMark />}
               </div>
             </li>
           );

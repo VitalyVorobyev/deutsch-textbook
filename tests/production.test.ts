@@ -79,10 +79,9 @@ describe('authored translation candidates', () => {
 });
 
 describe('rule 1 — a slipped token is a spelling note, not a grammar error', () => {
-  test('a placement item forgives a misspelled infinitive — the bracket still holds', () => {
-    // Real attempt: logged as a modal-satzklammer error, though the bracket is perfect.
-    // modal-satzklammer grades *placement*, and placement is enforced by comparing
-    // tokens positionally — so the infinitive's spelling is not a graded token.
+  test('an unpinned placement item forgives a misspelled infinitive', () => {
+    // With nothing pinned, the infinitive is scaffolding and the slip is forgiven.
+    // NOTE: this is *not* how the shipped item behaves — see the pair of tests below.
     const verdict = gradeTranslation('Ich kann gut schimmen', {
       answer: 'Ich kann gut schwimmen.',
       focus: 'modal-satzklammer',
@@ -90,6 +89,48 @@ describe('rule 1 — a slipped token is a spelling note, not a grammar error', (
     expect(verdict).toEqual({
       kind: 'spelling',
       correction: { given: 'schimmen', expected: 'schwimmen' },
+    });
+  });
+
+  /**
+   * The trade the pins buy, pinned so it cannot be "simplified" away.
+   *
+   * `a1/freizeit-koennen:translate-kann-schwimmen` really does pin both bracket ends, so
+   * the real attempt above is scored wrong and blamed on `modal-satzklammer` in production.
+   * That is a false entry and it is the known residual of P12-4 — but the obvious fix of
+   * dropping the pins is ~10× worse, because `graded.size === 0` then blanket-attributes
+   * every real error to the tag. Reviewed one by one over this repo's log: 5 wrong
+   * attributions with the pins, 52 without. Both halves are asserted here so neither can
+   * be changed in isolation.
+   */
+  describe('pinning both bracket ends — the measured trade behind P12-4', () => {
+    const shipped = {
+      answer: 'Ich kann gut schwimmen.',
+      focus: 'modal-satzklammer',
+      keyTokens: ['kann', 'schwimmen'],
+    };
+
+    test('costs a false tag on a typo in the pinned infinitive — the known residual', () => {
+      expect(gradeTranslation('Ich kann gut schimmen', shipped)).toEqual({
+        kind: 'wrong',
+        focus: 'modal-satzklammer',
+      });
+    });
+
+    test('but dropping the pins blames the tag for an error it is not about', () => {
+      // The bracket is perfect; only the adverb is wrong, and it is no typo of `gut`.
+      const unrelated = 'Ich kann besonders schwimmen.';
+      expect(gradeTranslation(unrelated, shipped)).toEqual({ kind: 'wrong' });
+      expect(
+        gradeTranslation(unrelated, { ...shipped, keyTokens: undefined }),
+      ).toEqual({ kind: 'wrong', focus: 'modal-satzklammer' });
+    });
+
+    test('and the pins are what let the collapse be attributed at all', () => {
+      expect(gradeTranslation('Ich kann schwimmen gut.', shipped)).toEqual({
+        kind: 'wrong',
+        focus: 'modal-satzklammer',
+      });
     });
   });
 

@@ -1,0 +1,76 @@
+topic: termine-vereinbaren
+role: probe
+title:
+  en: "Probe — du or Sie when arranging an appointment"
+  ru: "Проверка — du или Sie при записи на приём"
+  uk: "Перевірка — du чи Sie при записі на прийом"
+
+# The second family on this topic. probe-termine-vereinbaren probes passen-dativ (Passt es
+# Ihnen? and not Passt es Sie?). This one probes du-sie, which is by far the most-drilled tag
+# here — fifteen practice items — and which nothing checks after a delay.
+#
+# du-sie is also one of the five Goethe-A1 points this course teaches at A2, so its retention
+# carries more weight than the item count alone suggests.
+#
+# cloze rather than translate: a register error shows up as a wrong verb form after the right
+# pronoun, and a gap grades exactly that.
+#
+# The verbs deliberately do not overlap with probe-arbeit-beruf-anrede, the other du-sie
+# family (können, haben, arbeiten there; möchten, müssen, nehmen here). Two families probing
+# one competence must not be answerable from memory of each other, and the modal and
+# stem-changing paradigms fail in different ways than the regular ones do.
+
+items:
+  - id: variant-a
+    outcomes: [termine-hoeflich-telefonieren]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Wann {{möchten}} Sie kommen, Frau Ludwig? Und wann {{möchtest}} du kommen, Jonas?"
+    translation:
+      en: "When would you like to come, Ms Ludwig? And when would you like to come, Jonas?"
+      ru: "Когда вы хотели бы прийти, госпожа Людвиг? А ты когда хочешь прийти, Йонас?"
+      uk: "Коли ви хотіли б прийти, пані Людвіг? А ти коли хочеш прийти, Йонасе?"
+    explain:
+      en: "möchten follows the Sie rule like every other verb: the form is identical to the infinitive. The du form takes -st on the möcht- stem: möchtest. The two questions are word for word the same otherwise, which is the point — the only thing that changed is who is being asked."
+      ru: "möchten подчиняется правилу для Sie, как и любой другой глагол: форма совпадает с инфинитивом. Форма du получает -st к основе möcht-: möchtest. В остальном оба вопроса дословно одинаковы, и в этом суть: изменился только адресат."
+      uk: "möchten підпорядковується правилу для Sie, як і будь-яке інше дієслово: форма збігається з інфінітивом. Форма du отримує -st до основи möcht-: möchtest. В іншому обидва питання дослівно однакові, і в цьому суть: змінився лише адресат."
+
+  - id: variant-b
+    outcomes: [termine-hoeflich-telefonieren]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Herr Sommer, {{müssen}} Sie den Termin wirklich absagen? Lena, {{musst}} du auch absagen?"
+    translation:
+      en: "Mr Sommer, do you really have to cancel the appointment? Lena, do you have to cancel too?"
+      ru: "Господин Зоммер, вам действительно нужно отменить приём? Лена, тебе тоже нужно отменить?"
+      uk: "Пане Зоммере, вам справді потрібно скасувати прийом? Лено, тобі теж потрібно скасувати?"
+    explain:
+      en: "müssen is a modal, and modals change their vowel in the singular: ich muss, du musst. The double s belongs to the changed stem, so musst has three s in a row only in the old spelling — today it is muss + st. With Sie nothing changes at all, because the Sie form is always the infinitive."
+      ru: "müssen — модальный глагол, а у модальных в единственном числе меняется гласный: ich muss, du musst. Двойное s принадлежит изменённой основе, поэтому в musst нет трёх s подряд — это muss + st. С Sie не меняется ничего, потому что форма для Sie всегда совпадает с инфинитивом."
+      uk: "müssen — модальне дієслово, а в модальних в однині змінюється голосний: ich muss, du musst. Подвійне s належить зміненій основі, тому в musst немає трьох s поспіль — це muss + st. Із Sie не змінюється нічого, бо форма для Sie завжди збігається з інфінітивом."
+
+  - id: variant-c
+    outcomes: [termine-hoeflich-telefonieren]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Herr Sommer, {{nehmen}} Sie den Termin um neun? Lena, {{nimmst}} du den um zehn?"
+    translation:
+      en: "Mr Sommer, will you take the nine o'clock appointment? Lena, will you take the ten o'clock one?"
+      ru: "Господин Зоммер, вы возьмёте приём на девять? Лена, а ты возьмёшь на десять?"
+      uk: "Пане Зоммере, ви візьмете прийом на дев'яту? Лено, а ти візьмеш на десяту?"
+    explain:
+      en: "This is where the two forms diverge most visibly. nehmen has an e→i stem change, but it only ever happens in the du and er forms: du nimmst. The Sie form is the untouched infinitive nehmen, so the stem change is invisible there — writing nimmen for Sie is the mistake this pairing is built to catch."
+      ru: "Именно здесь формы расходятся заметнее всего. У nehmen есть чередование e→i, но оно бывает только в формах du и er: du nimmst. Форма для Sie — нетронутый инфинитив nehmen, поэтому там чередование не проявляется; написать nimmen для Sie — как раз та ошибка, ради которой построена эта пара."
+      uk: "Саме тут форми розходяться найпомітніше. У nehmen є чергування e→i, але воно буває лише у формах du та er: du nimmst. Форма для Sie — недоторканий інфінітив nehmen, тому там чергування не виявляється; написати nimmen для Sie — якраз та помилка, заради якої побудована ця пара."

@@ -70,7 +70,7 @@ export const POS = [
 ] as const;
 export const posSchema = z.enum(POS);
 
-/** The German IPA inventory, in house style — see CLAUDE.md → Lautschrift.
+/** The German IPA inventory, in house style — see docs/lautschrift.md.
     ʁ not r, ASCII g not ɡ, no tie bars; ɑ and the nasal exist only for French
     loans (ʁɛstoˈʁɑ̃ː). The three combining marks (U+0303 nasal, U+032F
     non-syllabic, U+0329 syllabic) are standalone members of the set and written
@@ -221,7 +221,7 @@ export type VocabFile = z.infer<typeof vocabFileSchema>;
 // Exercises (content/exercises/<level>/<set-id>.yaml)
 // ---------------------------------------------------------------------------
 
-/** Canonical confusion tag, e.g. "haben-sein" — see the focus-tag table in CLAUDE.md. */
+/** Canonical confusion tag, e.g. "haben-sein" — see the focus-tag table in docs/focus-tags.md. */
 const focusTag = z
   .string()
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'must be a kebab-case ASCII focus tag');
@@ -239,7 +239,7 @@ const itemBase = {
   /** shown when the learner answers incorrectly */
   explain: bilingualSchema.optional(),
   /**
-   * The one confusion this item drills (canonical tag from CLAUDE.md).
+   * The one confusion this item drills (canonical tag from docs/focus-tags.md).
    * Attempts carry it into the progress log; weakness detection and
    * training prioritization aggregate error rates per tag.
    */
@@ -469,7 +469,14 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
 
-export const EXERCISE_ROLES = ['pretest', 'practice', 'drill', 'checkpoint', 'probe'] as const;
+export const EXERCISE_ROLES = [
+  'pretest',
+  'practice',
+  'drill',
+  'checkpoint',
+  'probe',
+  'placement',
+] as const;
 export const exerciseRoleSchema = z.enum(EXERCISE_ROLES);
 export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
 

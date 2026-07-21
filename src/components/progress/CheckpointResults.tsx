@@ -5,6 +5,7 @@ import {
   type CheckpointOutcomeResult,
 } from '../../lib/checkpoint';
 import { pick, type ExplainText } from '../../lib/prefs';
+import { barColor } from '../../lib/bars';
 import { useExplainLang } from '../hooks';
 
 export interface CheckpointInfo {
@@ -40,12 +41,6 @@ const MODE_LABELS: Record<string, { en: string; ru: string }> = {
   'spoken-production': { en: 'Spoken production', ru: 'Устная речь' },
   'spoken-interaction': { en: 'Spoken interaction', ru: 'Диалог' },
 };
-
-function barColor(ratio: number): string {
-  if (ratio >= 0.8) return 'bg-emerald-500';
-  if (ratio >= 0.5) return 'bg-amber-500';
-  return 'bg-red-500';
-}
 
 function OutcomeRow({ result, label }: { result: CheckpointOutcomeResult; label?: string }) {
   const ratio = result.items ? result.score / result.items : 0;

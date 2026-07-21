@@ -3,18 +3,18 @@ role: pretest
 items:
   - id: pre-praesens-klammer
     outcomes: [trennbar-satz]
-    type: mc
+    type: cloze
     focus: trennbar-wortstellung
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Ich aufstehe um 7 Uhr."
-      - "Ich stehe auf um 7 Uhr."
-      - "Ich stehe um 7 Uhr auf."
-    correct: 2
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich {{stehe}} um sieben Uhr auf. (aufstehen)"
     translation:
-      en: Which sentence is correct? (I get up at 7 o'clock.)
-      ru: Какое предложение правильное? (Я встаю в 7 часов.)
-      uk: Яке речення правильне? (Я встаю о 7 годині.)
+      en: "I get up at seven."
+      ru: "Я встаю в семь часов."
+      uk: "Я встаю о сьомій годині."
     explain:
       en: 'In the present tense a separable prefix breaks off and goes to the very end of the clause: "Ich stehe um 7 Uhr auf." Keeping the verb in one piece (aufstehe) or parking the prefix right after the verb are the two classic mistakes.'
       ru: 'В настоящем времени отделяемая приставка отрывается и уходит в самый конец предложения: "Ich stehe um 7 Uhr auf." Оставить глагол целым (aufstehe) или поставить приставку сразу после глагола — две классические ошибки.'

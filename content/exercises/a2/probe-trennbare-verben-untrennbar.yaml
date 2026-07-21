@@ -1,0 +1,77 @@
+topic: trennbare-verben
+role: probe
+title:
+  en: "Probe — which prefixes split and which never do"
+  ru: "Проверка — какие приставки отделяются, а какие нет"
+  uk: "Перевірка — які префікси відокремлюються, а які ні"
+
+# The second family on this topic. probe-trennbare-verben probes trennbar-wortstellung (the
+# prefix splits off and goes to the clause end). This one probes trennbar-untrennbar: which
+# prefixes do that at all, and which — be-, ver-, er-, ent-, ge- — never split.
+#
+# Design note, because the obvious approach is wrong: the natural way to test separability
+# with a gap looks like the Partizip II, since ge- goes inside a separable verb (angerufen)
+# and is absent from an inseparable one (verstanden). But the taxonomy files exactly that
+# under partizip2-form, so tagging it trennbar-untrennbar would log a participle error under
+# the wrong confusion. Instead each gap is the CONJUGATED verb in position 2, and the
+# learner has to decide whether the prefix travels with it: for a separable verb the prefix
+# is already printed at the end of the sentence, so writing "anrufe" produces an extra one
+# and the gap catches it; for an inseparable verb nothing is printed at the end, and the
+# whole verb has to go in the gap.
+#
+# Each variant pairs one of each, so a learner who splits everything — or nothing — cannot score.
+
+items:
+  - id: variant-a
+    outcomes: [trennbar-erkennen]
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: Fill in the correct form of the verb.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Ich {{verstehe}} die Frage nicht. Ich {{rufe}} dich später an. (verstehen, anrufen)"
+    translation:
+      en: "I don't understand the question. I'll call you later."
+      ru: "Я не понимаю вопрос. Я позвоню тебе позже."
+      uk: "Я не розумію запитання. Я зателефоную тобі пізніше."
+    explain:
+      en: "ver- is one of the prefixes that never separates, so verstehen stays whole in position 2: verstehe. an- does separate, and the an is already sitting at the end of the second sentence — so only the stem goes in the gap: rufe. Writing anrufe there would leave the sentence with two an."
+      ru: "ver- — одна из приставок, которые никогда не отделяются, поэтому verstehen остаётся целым на втором месте: verstehe. an- отделяется, и an уже стоит в конце второго предложения, так что в пропуск идёт только основа: rufe. Написать там anrufe значило бы оставить в предложении два an."
+      uk: "ver- — один із префіксів, які ніколи не відокремлюються, тому verstehen залишається цілим на другому місці: verstehe. an- відокремлюється, і an уже стоїть у кінці другого речення, тож у пропуск іде лише основа: rufe. Написати там anrufe означало б залишити в реченні два an."
+
+  - id: variant-b
+    outcomes: [trennbar-erkennen]
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: Fill in the correct form of the verb.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Wir {{bekommen}} morgen Besuch. Ich {{kaufe}} noch schnell ein. (bekommen, einkaufen)"
+    translation:
+      en: "We're having visitors tomorrow. I'll quickly do some shopping first."
+      ru: "Завтра у нас гости. Я быстренько схожу за покупками."
+      uk: "Завтра у нас гості. Я швиденько збігаю за покупками."
+    explain:
+      en: "be- never separates, so bekommen keeps its prefix in position 2 — and note that its wir form happens to look identical to the infinitive, which is normal rather than a sign that something is wrong. ein- separates, and the ein is already at the end, so the gap takes kaufe alone."
+      ru: "be- никогда не отделяется, поэтому bekommen сохраняет приставку на втором месте — и обратите внимание, что форма wir совпадает по виду с инфинитивом; это нормально, а не признак ошибки. ein- отделяется, и ein уже стоит в конце, поэтому в пропуск идёт только kaufe."
+      uk: "be- ніколи не відокремлюється, тому bekommen зберігає префікс на другому місці — і зверніть увагу, що форма wir збігається на вигляд з інфінітивом; це нормально, а не ознака помилки. ein- відокремлюється, і ein уже стоїть у кінці, тому в пропуск іде лише kaufe."
+
+  - id: variant-c
+    outcomes: [trennbar-erkennen]
+    type: cloze
+    focus: trennbar-untrennbar
+    instruction:
+      en: Fill in the correct form of the verb.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Der Bus {{fährt}} um sieben ab. Die Fahrt {{beginnt}} immer pünktlich. (abfahren, beginnen)"
+    translation:
+      en: "The bus leaves at seven. The journey always starts on time."
+      ru: "Автобус отправляется в семь. Поездка всегда начинается вовремя."
+      uk: "Автобус вирушає о сьомій. Поїздка завжди починається вчасно."
+    explain:
+      en: "ab- separates, so only the conjugated stem goes in the gap — and abfahren has a stem change in the er form, which the separation does not cancel: fährt, with the umlaut, plus ab at the end. beginnen starts with be-, so it never splits and the whole verb stands in position 2."
+      ru: "ab- отделяется, поэтому в пропуск идёт только спрягаемая основа — а у abfahren в форме er есть чередование, которое отделение приставки не отменяет: fährt, с умлаутом, плюс ab в конце. beginnen начинается с be-, поэтому не разделяется никогда, и весь глагол стоит на втором месте."
+      uk: "ab- відокремлюється, тому в пропуск іде лише відмінювана основа — а в abfahren у формі er є чергування, якого відокремлення префікса не скасовує: fährt, з умлаутом, плюс ab у кінці. beginnen починається з be-, тому не розділяється ніколи, і все дієслово стоїть на другому місці."

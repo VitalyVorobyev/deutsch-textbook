@@ -1,0 +1,78 @@
+topic: infinitiv-mit-zu
+role: probe
+title:
+  en: "Probe — Futur I with werden"
+  ru: "Проверка — Futur I с werden"
+  uk: "Перевірка — Futur I з werden"
+
+# The second family on this topic. probe-infinitiv-mit-zu probes zu-infinitiv (an infinitive
+# governed by an ordinary verb takes zu, a modal's does not, and in a separable verb the zu
+# goes inside). This one probes futur-werden, which the topic drills across six practice
+# items and which nothing checks after a delay.
+#
+# The two are worth separating because they compete for the same slot at the end of the
+# clause and a learner can build one correctly while collapsing the other — "ich werde zu
+# kommen" is exactly what happens when the two rules blur.
+#
+# cloze rather than translate: werden's conjugation is a FORM, and it is the half that fails.
+# The bracket position is not gradeable by a gap, but it is also not where this rule breaks
+# down: learners put the infinitive at the end readily and then write "ich werde" as "ich
+# wirde" or reach for "wird" with a plural subject.
+#
+# Every variant pairs two different persons, and each sits in a use Futur I is actually for —
+# a forecast, a promise, a reassurance — never a dated plan, which German says in the present.
+
+items:
+  - id: variant-a
+    outcomes: [zukunft-werden]
+    type: cloze
+    focus: futur-werden
+    instruction:
+      en: Fill in the correct form of werden.
+      ru: Вставьте правильную форму werden.
+      uk: Вставте правильну форму werden.
+    text: "Morgen {{wird}} es wahrscheinlich regnen. Am Wochenende {{werden}} die Temperaturen steigen."
+    translation:
+      en: "It will probably rain tomorrow. Temperatures will rise at the weekend."
+      ru: "Завтра, вероятно, будет дождь. На выходных температура поднимется."
+      uk: "Завтра, ймовірно, буде дощ. На вихідних температура підніметься."
+    explain:
+      en: "A weather forecast is a prediction, which is what Futur I is really for. es is third person singular, so wird; die Temperaturen is plural, so werden. The infinitives regnen and steigen stay bare at the end of the clause — Futur I never takes zu."
+      ru: "Прогноз погоды — это предсказание, а именно для него Futur I и нужен. es — третье лицо единственного числа, отсюда wird; die Temperaturen — множественное число, отсюда werden. Инфинитивы regnen и steigen остаются без частицы в конце предложения: в Futur I zu не бывает."
+      uk: "Прогноз погоди — це передбачення, а саме для нього Futur I і потрібен. es — третя особа однини, звідси wird; die Temperaturen — множина, звідси werden. Інфінітиви regnen і steigen залишаються без частки в кінці речення: у Futur I zu не буває."
+
+  - id: variant-b
+    outcomes: [zukunft-werden]
+    type: cloze
+    focus: futur-werden
+    instruction:
+      en: Fill in the correct form of werden.
+      ru: Вставьте правильную форму werden.
+      uk: Вставте правильну форму werden.
+    text: "Ich verspreche dir: Ich {{werde}} dich morgen anrufen. Du {{wirst}} sehen, alles klappt."
+    translation:
+      en: "I promise you: I will call you tomorrow. You'll see, everything will work out."
+      ru: "Обещаю тебе: я позвоню тебе завтра. Вот увидишь, всё получится."
+      uk: "Обіцяю тобі: я зателефоную тобі завтра. Ось побачиш, усе вийде."
+    explain:
+      en: "A promise is the second thing Futur I is for. ich werde is regular, but the du form is irregular: wirst, not werdest. Note that anrufen is separable and yet stays whole at the end — the prefix only splits off when the verb itself is the conjugated one, which here is werden."
+      ru: "Обещание — второе назначение Futur I. ich werde образуется обычно, а форма du неправильная: wirst, а не werdest. Обратите внимание, что anrufen — глагол с отделяемой приставкой, но остаётся целым в конце: приставка отделяется только тогда, когда спрягается сам этот глагол, а здесь спрягается werden."
+      uk: "Обіцянка — друге призначення Futur I. ich werde утворюється звичайно, а форма du неправильна: wirst, а не werdest. Зверніть увагу, що anrufen — дієслово з відокремлюваним префіксом, але залишається цілим у кінці: префікс відокремлюється лише тоді, коли відмінюється саме це дієслово, а тут відмінюється werden."
+
+  - id: variant-c
+    outcomes: [zukunft-werden]
+    type: cloze
+    focus: futur-werden
+    instruction:
+      en: Fill in the correct form of werden.
+      ru: Вставьте правильную форму werden.
+      uk: Вставте правильну форму werden.
+    text: "Keine Sorge, das {{wird}} nicht lange dauern. Wir {{werden}} pünktlich fertig sein."
+    translation:
+      en: "Don't worry, it won't take long. We'll be finished on time."
+      ru: "Не волнуйтесь, это не займёт много времени. Мы закончим вовремя."
+      uk: "Не хвилюйтеся, це не забере багато часу. Ми закінчимо вчасно."
+    explain:
+      en: "Reassurance is a prediction too, so Futur I again. das takes wird, wir takes werden — the plural and the infinitive happen to be the same word, which is why the subject has to be read rather than guessed. sein at the end is the bare infinitive, exactly like any other verb in this frame."
+      ru: "Успокоение — тоже предсказание, поэтому снова Futur I. das требует wird, wir требует werden; форма множественного числа совпадает с инфинитивом, и именно поэтому подлежащее нужно читать, а не угадывать. sein в конце — чистый инфинитив, как и любой другой глагол в этой конструкции."
+      uk: "Заспокоєння — теж передбачення, тому знову Futur I. das вимагає wird, wir вимагає werden; форма множини збігається з інфінітивом, і саме тому підмет треба читати, а не вгадувати. sein у кінці — чистий інфінітив, як і будь-яке інше дієслово в цій конструкції."

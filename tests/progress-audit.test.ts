@@ -135,6 +135,84 @@ describe('progress audit', () => {
     expect(audit.delayed.probes.currentCorrect).toBe(1);
   });
 
+  // The gate asks whether the *competence* survived the interval, not whether the sentence did.
+  // Read against whole-attempt correctness the A1 cohort scores 18%; read against target retention
+  // it scores 59%. Those are different findings, and the audit must not conflate them.
+  test('counts a target-retained miss as retention, not as a failure', () => {
+    const item: CatalogItem = {
+      setId: 'a1/probe-x', id: 'p1', type: 'translate',
+      answer: 'Ich fahre mit dem Bus.', key_tokens: ['fahre'], focus: 'verbzweit',
+    };
+    const audit = buildAudit(snapshot({ attempts: [{
+      // `fahre` — the token `verbzweit` grades — is right and in position 2. The error is `den`
+      // for `dem`: a real one (closed-class swaps are never forgiven as typos), but a dative
+      // error, not a word-order one. So the attempt is wrong, and `verbzweit` was retained.
+      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
+      given: 'Ich fahre mit den Bus.', focus: item.focus, itemRevision: undefined, ts: ts(10),
+    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    expect(audit.delayed.probes.focusFailed).toBe(0);
+    expect(audit.delayed.probes.focusRetained).toBe(1);
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'verbzweit');
+    expect(row?.level).toBe('A1');
+    expect(row?.retained).toBe(1);
+    expect(row?.retentionPct).toBe(100);
+  });
+
+  // A family serves one variant per interval, so a single-family competence caps at one attempt
+  // per scheduled interval. A row below that floor is mid-schedule, not evidence — and 2/2 is two
+  // data points, never a 100% pass.
+  test('reports a competence below the interval count as pending, never as a pass', () => {
+    const items: CatalogItem[] = [
+      { setId: 'a1/probe-a', id: 'v1', type: 'translate', answer: 'Ich bin da.', focus: 'kopula-sein' },
+      { setId: 'a1/probe-a', id: 'v2', type: 'translate', answer: 'Du bist da.', focus: 'kopula-sein' },
+      { setId: 'a1/probe-b', id: 'v1', type: 'translate', answer: 'Ich habe Zeit.', focus: 'genus' },
+      { setId: 'a1/probe-b', id: 'v2', type: 'translate', answer: 'Er hat Zeit.', focus: 'genus' },
+      { setId: 'a1/probe-b', id: 'v3', type: 'translate', answer: 'Wir haben Zeit.', focus: 'genus' },
+    ];
+    const audit = buildAudit(snapshot({
+      attempts: items.map((item, i) => ({
+        setId: item.setId, itemId: item.id, itemType: 'translate' as const, correct: true,
+        given: item.answer!, focus: item.focus, itemRevision: undefined, ts: ts(8 + i),
+      })),
+    }), { snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13) });
+
+    const kopula = audit.delayed.probes.byCompetence.find((r) => r.focus === 'kopula-sein');
+    const genus = audit.delayed.probes.byCompetence.find((r) => r.focus === 'genus');
+    // Both are at 100%; only the one with an attempt per interval may be read as such.
+    expect(kopula?.attempts).toBe(2);
+    expect(kopula?.readable).toBe(false);
+    expect(genus?.attempts).toBe(3);
+    expect(genus?.readable).toBe(true);
+
+    const report = renderMarkdown(audit);
+    expect(report).toContain('## Retention by competence');
+    expect(report).toContain('**A1: 1/1 readable competences at ≥80% retention** (1 pending');
+  });
+
+  // An untagged family has no tag to attribute a miss to, so every miss lands in `retained` and
+  // the row reads 100% however badly it went. That is an instrument gap and must never be readable.
+  test('never lets an untagged probe family count toward the gate', () => {
+    const item: CatalogItem = {
+      setId: 'a1/probe-untagged', id: 'p1', type: 'translate', answer: 'Hallo, ich heiße Marta.',
+    };
+    const audit = buildAudit(snapshot({
+      attempts: [10, 11, 12].map((day) => ({
+        setId: item.setId, itemId: item.id, itemType: 'translate' as const, correct: false,
+        given: 'völlig falsch', focus: undefined, itemRevision: undefined, ts: ts(day),
+      })),
+    }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === undefined);
+    expect(row?.attempts).toBe(3); // enough attempts …
+    expect(row?.retentionPct).toBe(100); // … and a perfect score it did not earn …
+    expect(row?.readable).toBe(false); // … which is exactly why it is excluded.
+    // With nothing readable left, the level verdict must say so outright rather than print a
+    // percentage over an empty set.
+    expect(renderMarkdown(audit)).toContain('**A1: no competence is readable yet**');
+    expect(renderMarkdown(audit)).toContain('carry no focus tag (1)');
+  });
+
   test('aggregates partial credit, response modes, cards, probes and delayed evidence', () => {
     const audit = buildAudit(snapshot({
       attempts: [
@@ -173,6 +251,12 @@ describe('progress audit', () => {
         currentCorrect: 1,
         focusRetained: 0,
         focusFailed: 0,
+        byCompetence: [{
+          level: 'A1', focus: undefined, families: 1, attempts: 1,
+          correct: 1, retained: 0, failed: 0,
+          retentionPct: 100, maxElapsedDays: 0, readable: false,
+          formats: { translate: { attempts: 1, survived: 1 } },
+        }],
         dueNow: 0,
         overdue: 0,
         maxOverdueDays: 0,
@@ -298,6 +382,22 @@ describe('progress audit', () => {
       currentCorrect: 1,
       focusRetained: 1,
       focusFailed: 1,
+      // The same three verdicts, split by the competence each was aimed at — one row per focus,
+      // and each row is one attempt deep, so none of them is readable.
+      byCompetence: [
+        { level: 'A2', focus: 'dativ-artikel', families: 1, attempts: 1,
+          correct: 0, retained: 0, failed: 1,
+          retentionPct: 0, maxElapsedDays: 0, readable: false,
+          formats: { translate: { attempts: 1, survived: 0 } } },
+        { level: 'A2', focus: 'trennbar-wortstellung', families: 1, attempts: 1,
+          correct: 0, retained: 1, failed: 0,
+          retentionPct: 100, maxElapsedDays: 0, readable: false,
+          formats: { translate: { attempts: 1, survived: 1 } } },
+        { level: 'A2', focus: 'um-am-zeit', families: 1, attempts: 1,
+          correct: 1, retained: 0, failed: 0,
+          retentionPct: 100, maxElapsedDays: 0, readable: false,
+          formats: { translate: { attempts: 1, survived: 1 } } },
+      ],
       dueNow: 0,
       overdue: 0,
       maxOverdueDays: 0,
@@ -305,6 +405,50 @@ describe('progress audit', () => {
       actualIntervals: [],
     });
     expect(renderMarkdown(audit)).toContain('1 correct under the current contract');
+  });
+
+  /**
+   * A competence probed by two families of different type is measured through two response
+   * demands, and a `cloze` gap is the easier one — the frame is handed over and only the
+   * graded token is asked for. Pooling is the right headline, but pooling silently would let
+   * the percentage rise when the second format is added and read as improved retention. The
+   * split is the check on the headline, so it has to survive in the data, not just the render.
+   */
+  test('splits a competence by response format so a format effect cannot hide', () => {
+    const items: CatalogItem[] = [
+      { setId: 'a1/probe-zeit', id: 'variant-a', type: 'translate', topic: 'alltag-zeit',
+        role: 'probe', focus: 'um-am-zeit', answer: 'Der Bus fährt um elf Uhr.',
+        key_tokens: ['um'] },
+      { setId: 'a1/probe-zeit-luecken', id: 'variant-a', type: 'cloze', topic: 'alltag-zeit',
+        role: 'probe', focus: 'um-am-zeit' },
+      { setId: 'a1/probe-zeit-luecken', id: 'variant-b', type: 'cloze', topic: 'alltag-zeit',
+        role: 'probe', focus: 'um-am-zeit' },
+    ];
+    const attempts: AuditAttempt[] = [
+      // the hard format missed the target …
+      { setId: 'a1/probe-zeit', itemId: 'variant-a', itemType: 'translate', correct: false,
+        given: 'Der Bus fährt am elf Uhr.', ts: ts(4) },
+      // … while the easy one carried it twice
+      { setId: 'a1/probe-zeit-luecken', itemId: 'variant-a', itemType: 'cloze', correct: true,
+        given: 'um', ts: ts(4) },
+      { setId: 'a1/probe-zeit-luecken', itemId: 'variant-b', itemType: 'cloze', correct: true,
+        given: 'im', ts: ts(9) },
+    ];
+    const audit = buildAudit(snapshot({ attempts }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(10),
+    });
+
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'um-am-zeit')!;
+    // Pooled, the competence reads 67% — a figure two thirds built from the easier format.
+    expect(row.attempts).toBe(3);
+    expect(row.retentionPct).toBe(67);
+    expect(row.formats).toEqual({
+      translate: { attempts: 1, survived: 0 },
+      cloze: { attempts: 2, survived: 2 },
+    });
+    const md = renderMarkdown(audit);
+    expect(md).toContain('cloze 2/2 · translate 0/1');
+    expect(md).toContain('read a rise against the split');
   });
 
   test('reports probe debt and the actually-elapsed interval distribution', () => {

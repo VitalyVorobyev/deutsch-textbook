@@ -1,0 +1,77 @@
+topic: freunde-feste
+role: probe
+title:
+  en: "Probe — dative pronouns: mir, dir, ihm, ihr, uns, Ihnen"
+  ru: "Проверка — местоимения в дативе: mir, dir, ihm, ihr, uns, Ihnen"
+  uk: "Перевірка — займенники в давальному: mir, dir, ihm, ihr, uns, Ihnen"
+
+# The second family on this topic. probe-freunde-feste probes wechsel-akk-dat (choosing
+# between accusative and dative in a two-object sentence). This one probes dativ-pronomen —
+# producing the pronoun form itself, which the topic drills but nothing checks after a delay.
+#
+# The split is real: knowing that schenken gives its recipient the dative is one thing, and
+# reaching for ihr rather than sie under time pressure is another. The second is the half
+# that fails in speech.
+#
+# cloze rather than translate: a pronoun is a FORM, the gap grades exactly it, and a miss is
+# always attributable. It is also the item type where the closed-class rule bites hardest —
+# ihn/ihm and sie/ihr are one edit apart, so a translate probe would either forgive a real
+# case error as a typo or need pins on every pronoun in the sentence.
+#
+# Every variant contrasts two different persons or genders in one situation, so a learner who
+# has collapsed the paradigm onto a single favourite pronoun cannot score.
+
+items:
+  - id: variant-a
+    outcomes: [einladen-zusagen-absagen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill in the correct pronoun.
+      ru: Вставьте правильное местоимение.
+      uk: Вставте правильний займенник.
+    text: "Ich schicke {{dir}} die Adresse. Kannst du {{mir}} sagen, wann du kommst?"
+    translation:
+      en: "I'll send you the address. Can you tell me when you're coming?"
+      ru: "Я пришлю тебе адрес. Ты можешь сказать мне, когда придёшь?"
+      uk: "Я надішлю тобі адресу. Чи можеш ти сказати мені, коли прийдеш?"
+    explain:
+      en: "schicken and sagen both hand something over to a person, and that person is the dative object: dir in the first sentence, mir in the second. The two swap because the speaker swaps — the form follows the role in its own clause, not the person who started the conversation."
+      ru: "schicken и sagen оба передают что-то человеку, и этот человек — дополнение в дативе: dir в первом предложении, mir во втором. Формы меняются местами, потому что меняется говорящий: форма зависит от роли в своём предложении, а не от того, кто начал разговор."
+      uk: "schicken і sagen обидва передають щось людині, і ця людина — додаток у давальному: dir у першому реченні, mir у другому. Форми міняються місцями, бо міняється мовець: форма залежить від ролі у своєму реченні, а не від того, хто почав розмову."
+
+  - id: variant-b
+    outcomes: [einladen-zusagen-absagen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill in the correct pronoun.
+      ru: Вставьте правильное местоимение.
+      uk: Вставте правильний займенник.
+    text: "Anna hat Geburtstag, also schenken wir {{ihr}} ein Buch. Ihr Bruder feiert mit, und wir bringen {{ihm}} einen Kuchen mit."
+    translation:
+      en: "It's Anna's birthday, so we're giving her a book. Her brother is celebrating too, and we're bringing him a cake."
+      ru: "У Анны день рождения, поэтому мы дарим ей книгу. Её брат празднует вместе с ней, и ему мы принесём торт."
+      uk: "У Анни день народження, тому ми даруємо їй книжку. Її брат святкує разом з нею, і йому ми принесемо торт."
+    explain:
+      en: "This is the pair that decays first: feminine ihr against masculine ihm. Both are dative, both are recipients, and only the gender differs — so there is no rule to fall back on, only the form. Note that the ihr in Ihr Bruder is a different word entirely, a possessive, which is exactly why the two get confused."
+      ru: "Именно эта пара разрушается первой: ihr женского рода против ihm мужского. Оба датив, оба получатели, различается только род — так что опереться не на что, кроме самой формы. Обратите внимание, что ihr в Ihr Bruder — совсем другое слово, притяжательное, и именно поэтому их путают."
+      uk: "Саме ця пара руйнується першою: ihr жіночого роду проти ihm чоловічого. Обидва давальний, обидва одержувачі, різниться лише рід — тож спертися немає на що, крім самої форми. Зверніть увагу, що ihr у Ihr Bruder — зовсім інше слово, присвійне, і саме тому їх плутають."
+
+  - id: variant-c
+    outcomes: [einladen-zusagen-absagen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: Fill in the correct pronoun.
+      ru: Вставьте правильное местоимение.
+      uk: Вставте правильний займенник.
+    text: "Frau Klein, ich sage {{Ihnen}} morgen Bescheid. Können Sie {{uns}} bitte die Adresse schicken?"
+    translation:
+      en: "Ms Klein, I'll let you know tomorrow. Could you please send us the address?"
+      ru: "Госпожа Кляйн, я сообщу вам завтра. Не могли бы вы прислать нам адрес?"
+      uk: "Пані Кляйн, я повідомлю вам завтра. Чи не могли б ви надіслати нам адресу?"
+    explain:
+      en: "The polite dative is Ihnen with a capital I — the same word as the plural ihnen, and the capital is the only thing distinguishing them in writing. uns serves as both accusative and dative, so there is nothing to choose there; the work is in recognising that schicken puts the recipient in the dative at all."
+      ru: "Вежливый датив — Ihnen с прописной буквы, то же слово, что и ihnen во множественном числе; на письме их различает только заглавная буква. uns совпадает в винительном и дательном, поэтому выбирать там нечего — вся работа в том, чтобы увидеть, что schicken вообще ставит получателя в датив."
+      uk: "Ввічливий давальний — Ihnen з великої літери, те саме слово, що й ihnen у множині; на письмі їх розрізняє лише велика літера. uns збігається у знахідному та давальному, тому вибирати там нічого — уся робота в тому, щоб побачити, що schicken взагалі ставить одержувача в давальний."

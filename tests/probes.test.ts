@@ -49,10 +49,16 @@ describe('a topic with two probe families arms them separately', () => {
   // would arm both the moment either structure was practised — and a probe would come
   // due for material never studied. Real case: verbindungen-folgen teaches inversion
   // and als/wenn, with one family each.
+  //
+  // The set mixes both competences plus one item neither family probes, because that is
+  // the shape the real content has: measured across both multi-family topics, *every*
+  // practice set contains items for both families' outcomes. So "the sets that teach this
+  // family" is not a discriminating question — only "the items that do" is.
   const sets = [
     { setId: 'a2/t', topicId: 't', role: 'practice', items: [
       { id: 'i1', outcomes: ['one'] },
       { id: 'i2', outcomes: ['two'] },
+      { id: 'i3', outcomes: ['three'] },
     ] },
     { setId: 'a2/probe-t-one', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['one'] }] },
     { setId: 'a2/probe-t-two', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['two'] }] },
@@ -62,11 +68,41 @@ describe('a topic with two probe families arms them separately', () => {
     for (const f of probeFamilies(sets)) expect(f.armingSetIds).toEqual([]);
   });
 
+  test('each family arms from the items that teach its own competence', () => {
+    const [one, two] = probeFamilies(sets);
+    expect(one!.armingItemKeys).toEqual(['a2/t::i1']);
+    expect(two!.armingItemKeys).toEqual(['a2/t::i2']);
+  });
+
   test('practising one structure arms only its own family', () => {
     const [one, two] = probeFamilies(sets);
     const didOne = attempt({ setId: 'a2/t', ts: T0, outcomes: ['one'] });
     expect(armedAt(one, [didOne])).toBe(T0);
     expect(armedAt(two, [didOne])).toBeUndefined();
+  });
+
+  /**
+   * The landmine this fix defused, and the one case the outcome path cannot cover.
+   *
+   * `armingSetIds: []` was justified by "a multi-family topic is new by construction, so
+   * every attempt on it names its outcomes". 552 of 1221 attempts in the real snapshot
+   * carry none — so adding a second family to an *older* topic would have left both
+   * families unarmable from history, silently resetting the first family's 2/7/21 clock
+   * and discarding its cohort. No error, no warning, just a retention curve that quietly
+   * restarted.
+   */
+  test('an outcome-less attempt arms only the family whose item it answered', () => {
+    const [one, two] = probeFamilies(sets);
+    const legacy = attempt({ setId: 'a2/t', itemId: 'i1', ts: T0, outcomes: undefined });
+    expect(armedAt(one!, [legacy])).toBe(T0);
+    expect(armedAt(two!, [legacy])).toBeUndefined();
+  });
+
+  test('an outcome-less attempt on an item neither family probes arms neither', () => {
+    const [one, two] = probeFamilies(sets);
+    const unrelated = attempt({ setId: 'a2/t', itemId: 'i3', ts: T0, outcomes: undefined });
+    expect(armedAt(one!, [unrelated])).toBeUndefined();
+    expect(armedAt(two!, [unrelated])).toBeUndefined();
   });
 
   test('a single-family topic keeps the set-level fallback for outcome-less attempts', () => {

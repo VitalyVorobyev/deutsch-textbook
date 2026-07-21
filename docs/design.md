@@ -36,7 +36,8 @@ The principal sources are:
 
 - `content/topics/`: curriculum articles and their owned artifact references;
 - `content/vocab/`: canonical flashcard entries;
-- `content/exercises/`: pretests, practice, drills, checkpoints and delayed probes;
+- `content/exercises/`: pretests, practice, drills, checkpoints, delayed probes and level
+  placement tests;
 - `content/reading/` and `content/documents/`: comprehensible input and reusable stimuli;
 - `content/atlas.yaml`: graph relationships, outcomes and ordered curriculum spine;
 - `content/wortfelder/`: topical lexical overlays;
@@ -75,6 +76,11 @@ A normal learning cycle combines:
 5. an optional level checkpoint;
 6. novel 2/7/21-day probes of one competence per family.
 
+A learner who does not start from zero may take the level's placement test first. It decides per
+topic rather than per level, and a passed topic leaves the recommended path without being taught.
+`src/lib/placement.ts` owns that rule; `getPlacements()` discovers the sets by role, so a new
+level's entry test is content rather than code.
+
 `src/lib/training.ts` builds interleaved sessions. `src/lib/decks.ts` owns the SRS queue rule and
 daily new-card budget. `src/lib/probes.ts` derives delayed-probe state from attempts; probe state is
 not stored separately.
@@ -90,13 +96,18 @@ Self-assessed speech is therefore useful activity, not a correctness measurement
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;
 the progress audit is the decision surface for remediation.
 
+A passed placement is a third evidence class. It is real evidence and it removes a topic from the
+recommended path, but it is not a measurement of mastery and never raises the measured tier — a
+placement set belongs to no topic, so topic tier derivation cannot observe it at all. Navigation
+and the badge deliberately answer different questions.
+
 Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery nor review debt.
 
 ## Progress and storage
 
 `src/lib/profile.ts` resolves local profiles. Each profile owns an IndexedDB database managed by
 `src/lib/store.ts`; same-day UI resume state lives separately in localStorage. Snapshot validation
-and explicit v1–v5 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
+and explicit v1–v6 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
 semantics in `src/lib/snapshot-merge.ts`.
 
 The web app exports snapshots. Development middleware and the Tauri filesystem path can

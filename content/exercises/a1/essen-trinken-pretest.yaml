@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-hunger-haben
     outcomes: [essen-vorlieben]
-    type: mc
+    type: cloze
     focus: haben-wendungen
-    prompt: "Ich ___ Hunger. Was gibt es zum Mittagessen?"
-    options: ["bin", "habe", "mache"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich {{habe}} Hunger. Was gibt es zum Mittagessen?"
     translation:
       en: I'm hungry. What's for lunch?
       ru: Я голоден. Что на обед?

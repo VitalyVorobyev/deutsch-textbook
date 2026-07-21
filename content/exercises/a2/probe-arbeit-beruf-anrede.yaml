@@ -1,0 +1,76 @@
+topic: arbeit-beruf
+role: probe
+title:
+  en: "Probe — du or Sie at work"
+  ru: "Проверка — du или Sie на работе"
+  uk: "Перевірка — du чи Sie на роботі"
+
+# The second family on this topic. probe-arbeit-beruf probes duerfen-muessen (darf nicht as
+# prohibition against muss nicht as absence of necessity). This one probes du-sie, which the
+# topic drills but nothing checks after a delay.
+#
+# Register is worth delayed evidence precisely because it is not a rule you can derive: it is
+# a habit, and habits decay differently from paradigms. It is also one of the five Goethe-A1
+# points this course teaches at A2, so it carries more weight than its item count suggests.
+#
+# cloze rather than translate: what a du/Sie error actually looks like is a wrong verb form
+# after the right pronoun (or the reverse), and a gap grades exactly that. Each variant puts
+# the two addresses side by side in one situation — a named colleague and a named
+# superior — so answering both gaps the same way cannot score.
+#
+# New people and new workplaces throughout; none of these situations appears in the lesson.
+
+items:
+  - id: variant-a
+    outcomes: [arbeitszeit-aushandeln]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Herr Weber, {{können}} Sie mir bitte den Plan schicken? Lisa, {{kannst}} du mir auch einen schicken?"
+    translation:
+      en: "Mr Weber, could you please send me the plan? Lisa, can you send me one too?"
+      ru: "Господин Вебер, пришлите мне, пожалуйста, план. Лиза, а ты можешь мне тоже прислать?"
+      uk: "Пане Вебере, надішліть мені, будь ласка, план. Лізо, а ти можеш мені теж надіслати?"
+    explain:
+      en: "Sie always takes the infinitive form of the verb — können, not könnt — and it is capitalised wherever it stands. du takes -st, and könenn is a modal, so its singular stem changes: kannst. The choice is not about politeness in the abstract: Herr Weber is addressed by surname, which is the signal for Sie, while a colleague introduced by first name gets du."
+      ru: "Sie всегда требует формы инфинитива — können, а не könnt — и пишется с большой буквы в любой позиции. du требует -st, а können — модальный глагол, у которого в единственном числе меняется гласная: kannst. Дело здесь не в вежливости вообще: к господину Веберу обращаются по фамилии, а это и есть сигнал для Sie, тогда как коллеге, представившейся по имени, говорят du."
+      uk: "Sie завжди вимагає форми інфінітива — können, а не könnt — і пишеться з великої літери в будь-якій позиції. du вимагає -st, а können — модальне дієслово, у якого в однині змінюється голосний: kannst. Річ тут не у ввічливості взагалі: до пана Вебера звертаються на прізвище, а це і є сигнал для Sie, тоді як колезі, що представилася на ім'я, кажуть du."
+
+  - id: variant-b
+    outcomes: [arbeitszeit-aushandeln]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Frau Bauer, {{haben}} Sie morgen Zeit für ein Gespräch? Tom, {{hast}} du am Freitag Zeit?"
+    translation:
+      en: "Ms Bauer, do you have time for a conversation tomorrow? Tom, do you have time on Friday?"
+      ru: "Госпожа Бауэр, у вас найдётся завтра время для разговора? Том, у тебя есть время в пятницу?"
+      uk: "Пані Бауер, чи знайдеться у вас завтра час для розмови? Томе, чи маєш ти час у п'ятницю?"
+    explain:
+      en: "haben is irregular in the du form: hast, not habst. With Sie it is simply the infinitive haben. Both questions ask the same thing, and the only difference is who is being asked — which is the point: the verb form is the visible half of a decision made about the person, not about the sentence."
+      ru: "haben неправильный в форме du: hast, а не habst. С Sie это просто инфинитив haben. Оба вопроса спрашивают об одном и том же, и различаются только адресатом — в этом и суть: форма глагола лишь видимая часть решения, принятого о человеке, а не о предложении."
+      uk: "haben неправильний у формі du: hast, а не habst. З Sie це просто інфінітив haben. Обидва питання про одне й те саме, і різняться лише адресатом — у цьому й суть: форма дієслова лише видима частина рішення, ухваленого про людину, а не про речення."
+
+  - id: variant-c
+    outcomes: [arbeitszeit-aushandeln]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: Fill in the correct verb form.
+      ru: Вставьте правильную форму глагола.
+      uk: Вставте правильну форму дієслова.
+    text: "Herr Schneider, {{arbeiten}} Sie auch am Wochenende? Maria, {{arbeitest}} du samstags?"
+    translation:
+      en: "Mr Schneider, do you work at the weekend too? Maria, do you work on Saturdays?"
+      ru: "Господин Шнайдер, вы работаете и в выходные? Мария, ты работаешь по субботам?"
+      uk: "Пане Шнайдере, ви працюєте і у вихідні? Маріє, ти працюєш по суботах?"
+    explain:
+      en: "arbeiten has a stem ending in -t, so the du form adds an extra e for pronunciation: arbeitest, not arbeitst. The Sie form is again the plain infinitive. Note that both questions are yes/no questions, so the verb comes first in each — the register changes the form, never the word order."
+      ru: "Основа arbeiten оканчивается на -t, поэтому в форме du добавляется соединительное e: arbeitest, а не arbeitst. Форма для Sie — снова чистый инфинитив. Обратите внимание, что оба вопроса общие, поэтому глагол в каждом стоит на первом месте: регистр меняет форму, но никогда не меняет порядок слов."
+      uk: "Основа arbeiten закінчується на -t, тому у формі du додається сполучне e: arbeitest, а не arbeitst. Форма для Sie — знову чистий інфінітив. Зверніть увагу, що обидва питання загальні, тому дієслово в кожному стоїть на першому місці: регістр змінює форму, але ніколи не змінює порядок слів."

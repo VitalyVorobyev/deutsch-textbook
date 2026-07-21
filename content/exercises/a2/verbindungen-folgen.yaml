@@ -9,6 +9,7 @@ items:
     outcomes: [folge-ausdruecken]
     type: table
     focus: konjunktionaladverb-inversion
+    revision: 2
     title: "Dieselbe Aussage, drei Verbindungen"
     instruction:
       en: "Say the same thing three ways. Write the second half of each sentence only."
@@ -16,18 +17,22 @@ items:
       uk: "Скажіть те саме трьома способами. Пишіть лише другу половину кожного речення."
     columns: ["Verbindung", "Ich arbeite heute. / Ich komme nicht."]
     rows:
+      # The stub ends in an ellipsis, so it is a continuation prompt and the graded cell
+      # continues it — repeating the connector would read as "…, weil weil ich heute
+      # arbeite". Every word-order decision the row exists to drill is still graded:
+      # verb-final after weil, V2 after denn, inversion after deshalb.
       - label: "weil (Nebensatz)"
         cells:
           - { answer: "Ich komme nicht, weil …", given: true }
-          - { answer: "weil ich heute arbeite" }
+          - { answer: "ich heute arbeite" }
       - label: "denn (Hauptsatz)"
         cells:
           - { answer: "Ich komme nicht, denn …", given: true }
-          - { answer: "denn ich arbeite heute" }
+          - { answer: "ich arbeite heute" }
       - label: "deshalb (Adverb)"
         cells:
           - { answer: "Ich arbeite heute. Deshalb …", given: true }
-          - { answer: "deshalb komme ich nicht" }
+          - { answer: "komme ich nicht" }
     explain:
       en: "Three word classes, three word orders, one meaning — all three rows say that working today is why you are not coming. weil is a conjunction that opens a Nebensatz, so arbeite goes to the end. denn is a conjunction too, but it opens a main clause and changes nothing. deshalb is neither: it is an adverb sitting in position 1, so the verb takes position 2 and the subject falls in behind it — komme ich, not ich komme. Note also that deshalb swaps the halves round: the reason comes first as its own sentence, and the adverb introduces the consequence. trotzdem shares that syntax exactly but not the meaning, which is why it is not a fourth row here — it would state the opposite: that you are coming despite the work."
       ru: "Три части речи, три порядка слов, один смысл — все три строки говорят, что вы не придёте из-за сегодняшней работы. weil — союз, вводящий придаточное, поэтому arbeite уходит в конец. denn тоже союз, но он вводит главное предложение и не меняет ничего. deshalb ни то ни другое: это наречие на первом месте, поэтому глагол занимает второе, а подлежащее встаёт за ним — komme ich, а не ich komme. Заметьте и другое: при deshalb половины меняются местами — причина идёт первой отдельным предложением, а наречие вводит следствие. У trotzdem синтаксис ровно тот же, а смысл нет — потому оно и не стало четвёртой строкой: получилось бы обратное, что вы придёте несмотря на работу."

@@ -279,7 +279,7 @@ evidence because the outcome it serves says `spoken-interaction`.
 
 ## Focus tags
 
-The taxonomy is an allowlist. A tag must appear in the CLAUDE.md table **and** in
+The taxonomy is an allowlist. A tag must appear in the [focus-tag table](focus-tags.md) **and** in
 `focusIntroducedBy` (`scripts/validate.ts`), naming the topic that introduces it, or validation
 fails. These are the A2 additions, decided here so the taxonomy stays coherent instead of accreting
 one unit at a time. Each is registered in the pull request that lands its introducing topic.
@@ -542,7 +542,8 @@ unit may assume that a structure met once at A2 was retained.
 1. Freeze the identities above before authoring. Never rename a persisted id for tidiness.
 2. Author one complete unit per bundle: atlas node and unit slot, article, three-item pretest,
    practice sets clearing the item-mix bar, a probe family, an intensive reading, the thin vocab
-   deck, and the focus tags registered in both CLAUDE.md and `scripts/validate.ts`.
+   deck, and the focus tags registered in both [`focus-tags.md`](focus-tags.md) and
+   `scripts/validate.ts`.
 3. Review each unit against the twelve-point A2 unit quality gate in the audit and the
    `learning-science` skill before it lands.
 4. Run the full gate: `bun run validate && bun test && bun run check && bun run lint && bun run build`.

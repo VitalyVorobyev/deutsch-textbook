@@ -7,11 +7,18 @@ title:
 items:
   - id: pretest-praedikativ
     outcomes: [adjektiv-beschreiben]
-    type: mc
+    type: cloze
     focus: adjektiv-praedikativ
-    prompt: "Die Wohnung ist ___."
-    options: ["hell", "helle", "hellen", "helles"]
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Die Wohnung ist {{hell}} und ruhig."
+    translation:
+      en: "The flat is bright and quiet."
+      ru: "Квартира светлая и тихая."
+      uk: "Квартира світла й тиха."
     explain:
       en: "After sein the adjective takes no ending at all, in any gender and any number."
       ru: "После sein прилагательное не получает окончания вообще — ни в одном роде, ни в одном числе."

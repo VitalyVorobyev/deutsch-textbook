@@ -128,17 +128,18 @@ items:
 
   - id: order-frage
     outcomes: [trennbar-satz]
-    type: order
+    type: translate
+    revision: 2
     focus: trennbar-wortstellung
     instruction:
-      en: Build a yes/no question. Start with the capitalized word.
-      ru: Составьте вопрос без вопросительного слова. Начните со слова с заглавной буквы.
-      uk: Складіть питання без питального слова. Почніть зі слова з великої літери.
-    words: ["Kommst", "du", "heute", "Abend", "mit?"]
-    translation:
-      en: Are you coming along tonight?
-      ru: Ты пойдёшь сегодня вечером с нами?
-      uk: Ти підеш сьогодні ввечері з нами?
+      en: Translate into German. Write a yes/no question.
+      ru: Переведите на немецкий. Составьте вопрос без вопросительного слова.
+      uk: Перекладіть німецькою. Складіть питання без питального слова.
+    prompt_en: Are you coming along tonight?
+    prompt_ru: Ты пойдёшь сегодня вечером с нами?
+    prompt_uk: Ти підеш сьогодні ввечері з нами?
+    answer: "Kommst du heute Abend mit?"
+    key_tokens: ["Kommst", "mit"]
     explain:
       en: "In a yes/no question the verb comes first, but the prefix still goes to the very end: Kommst du … mit?"
       ru: "В вопросе без вопросительного слова глагол стоит первым, но приставка всё равно уходит в самый конец: Kommst du … mit?"
@@ -206,17 +207,19 @@ items:
 
   - id: order-inversion
     outcomes: [trennbar-satz]
-    type: order
+    type: translate
+    revision: 2
     focus: trennbar-wortstellung
     instruction:
-      en: Arrange the words into a correct sentence. Start with the capitalized word.
-      ru: Составьте правильное предложение. Начните со слова с заглавной буквы.
-      uk: Складіть правильне речення. Почніть зі слова з великої літери.
-    words: ["Am", "Samstag", "gehen", "wir", "aus."]
-    translation:
-      en: On Saturday we go out.
-      ru: В субботу мы идём развлекаться.
-      uk: У суботу ми йдемо розважатися.
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: On Saturday we go out.
+    prompt_ru: В субботу мы идём развлекаться.
+    prompt_uk: У суботу ми йдемо розважатися.
+    answer: "Am Samstag gehen wir aus."
+    key_tokens: ["gehen", "aus"]
+    accept: ["Wir gehen am Samstag aus."]
     explain:
       en: "Fronted time expression → inversion: Am Samstag gehen wir … But the prefix aus still takes the last position."
       ru: "Обстоятельство времени на первом месте → инверсия: Am Samstag gehen wir … Но приставка aus всё равно занимает последнее место."

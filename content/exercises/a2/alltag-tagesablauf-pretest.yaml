@@ -3,18 +3,18 @@ role: pretest
 items:
   - id: pre-fernsehen
     outcomes: [alltag-beschreiben]
-    type: mc
+    type: cloze
     focus: trennbar-wortstellung
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Ich fernsehe am Abend ein bisschen."
-      - "Ich sehe am Abend ein bisschen fern."
-      - "Ich sehe fern am Abend ein bisschen."
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich {{sehe}} am Abend ein bisschen fern. (fernsehen)"
     translation:
-      en: Which sentence is correct? (I watch a bit of TV in the evening.)
-      ru: Какое предложение построено правильно? (Вечером я немного смотрю телевизор.)
-      uk: Яке речення побудоване правильно? (Увечері я трохи дивлюся телевізор.)
+      en: "In the evening I watch a bit of TV."
+      ru: "Вечером я немного смотрю телевизор."
+      uk: "Увечері я трохи дивлюся телевізор."
     explain:
       en: "fernsehen is separable (trennbar): the conjugated part sits in position 2 and the prefix fern- goes to the very end of the sentence — „Ich sehe am Abend ein bisschen fern.“ The same happens with aufstehen, einkaufen, aufräumen."
       ru: "fernsehen — глагол с отделяемой приставкой (trennbar): спрягаемая часть стоит на втором месте, а приставка fern- уходит в самый конец предложения — „Ich sehe am Abend ein bisschen fern.“ Так же ведут себя aufstehen, einkaufen, aufräumen."

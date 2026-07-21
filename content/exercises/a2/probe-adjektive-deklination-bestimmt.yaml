@@ -1,0 +1,79 @@
+topic: adjektive-deklination
+role: probe
+title:
+  en: "Probe — adjective endings after der, die, das"
+  ru: "Проверка — окончания прилагательных после der, die, das"
+  uk: "Перевірка — закінчення прикметників після der, die, das"
+
+# The second family on this topic. probe-adjektive-deklination probes adjektiv-unbestimmt
+# (the endings after ein/kein/mein, where the adjective supplies the gender the article
+# hides). This one probes the OTHER half of the paradigm: adjektiv-bestimmt — -e in the
+# five nominative-singular and feminine/neuter-accusative boxes, -en everywhere else.
+#
+# Why a second competence rather than a second format: the definite-article endings are
+# taught by six practice items here and nothing checks them after a delay. The indefinite
+# and definite paradigms are also exactly the pair a learner collapses, so evidence on one
+# says little about the other.
+#
+# cloze rather than translate: the ending is a FORM, and a gap grades a form cleanly —
+# the miss can only be the ending, never "the sentence went wrong somewhere else". Each
+# variant pairs an -e box with an -en box so a learner who has flattened the paradigm to
+# one ending cannot score by guessing the same answer twice.
+#
+# New rooms, furniture and people throughout: nothing here is answerable from memory of
+# the topic's practice items.
+
+items:
+  - id: variant-a
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-bestimmt
+    instruction:
+      en: Put the adjective in the correct form.
+      ru: Поставьте прилагательное в правильную форму.
+      uk: Поставте прикметник у правильну форму.
+    text: "Der {{neue}} Schrank steht im Flur. Die {{alten}} Stühle stehen im Keller. (neu, alt)"
+    translation:
+      en: "The new wardrobe is in the hall. The old chairs are in the cellar."
+      ru: "Новый шкаф стоит в коридоре. Старые стулья стоят в подвале."
+      uk: "Нова шафа стоїть у коридорі. Старі стільці стоять у підвалі."
+    explain:
+      en: "Der Schrank is masculine and the phrase is the subject, so it sits in a nominative-singular box: the ending is -e. Die Stühle is plural, and every plural box takes -en, whatever the case. That is the whole rule after der/die/das — five boxes with -e, everything else -en."
+      ru: "Der Schrank мужского рода и стоит в роли подлежащего, то есть в клетке именительного падежа единственного числа: окончание -e. Die Stühle — множественное число, а во множественном числе всегда -en, независимо от падежа. В этом и состоит всё правило после der/die/das: пять клеток с -e, остальные с -en."
+      uk: "Der Schrank чоловічого роду й стоїть у ролі підмета, тобто в клітинці називного відмінка однини: закінчення -e. Die Stühle — множина, а в множині завжди -en, незалежно від відмінка. У цьому й полягає все правило після der/die/das: п'ять клітинок з -e, решта з -en."
+
+  - id: variant-b
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-bestimmt
+    instruction:
+      en: Put the adjective in the correct form.
+      ru: Поставьте прилагательное в правильную форму.
+      uk: Поставте прикметник у правильну форму.
+    text: "Ich habe das {{kleine}} Zimmer genommen. Den {{großen}} Balkon finde ich zu laut. (klein, groß)"
+    translation:
+      en: "I took the small room. I find the big balcony too noisy."
+      ru: "Я взял маленькую комнату. Большой балкон кажется мне слишком шумным."
+      uk: "Я взяв маленьку кімнату. Великий балкон здається мені надто гучним."
+    explain:
+      en: "Both phrases are accusative objects, and that is exactly where the two endings part company. Neuter accusative is one of the five -e boxes, so das kleine Zimmer. Masculine accusative is not, so den großen Balkon takes -en. The article already tells you which: das keeps its form, der changes to den."
+      ru: "Оба словосочетания — дополнения в винительном падеже, и именно здесь два окончания расходятся. Винительный падеж среднего рода — одна из пяти клеток с -e, поэтому das kleine Zimmer. Винительный мужского рода в эти клетки не входит, поэтому den großen Balkon получает -en. Артикль сам подсказывает, что происходит: das не меняется, а der превращается в den."
+      uk: "Обидві сполуки — додатки у знахідному відмінку, і саме тут два закінчення розходяться. Знахідний відмінок середнього роду — одна з п'яти клітинок з -e, тому das kleine Zimmer. Знахідний чоловічого роду до них не належить, тому den großen Balkon має -en. Артикль сам підказує, що відбувається: das не змінюється, а der перетворюється на den."
+
+  - id: variant-c
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-bestimmt
+    instruction:
+      en: Put the adjective in the correct form.
+      ru: Поставьте прилагательное в правильную форму.
+      uk: Поставте прикметник у правильну форму.
+    text: "Die {{junge}} Kollegin sitzt neben mir. Mit dem {{neuen}} Chef spreche ich morgen. (jung, neu)"
+    translation:
+      en: "The young colleague sits next to me. I am speaking with the new boss tomorrow."
+      ru: "Молодая коллега сидит рядом со мной. С новым начальником я поговорю завтра."
+      uk: "Молода колега сидить поруч зі мною. З новим начальником я поговорю завтра."
+    explain:
+      en: "Feminine nominative singular is an -e box, so die junge Kollegin. The second phrase is dative after mit, and no dative box ever takes -e — dem neuen Chef. A useful check: once the article is anything other than der, die or das, the adjective is almost always -en."
+      ru: "Именительный падеж женского рода единственного числа — клетка с -e, поэтому die junge Kollegin. Второе словосочетание стоит в дативе после mit, а в дативе -e не бывает никогда: dem neuen Chef. Полезная проверка: как только артикль отличается от der, die или das, у прилагательного почти всегда -en."
+      uk: "Називний відмінок жіночого роду однини — клітинка з -e, тому die junge Kollegin. Друга сполука стоїть у давальному після mit, а в давальному -e не буває ніколи: dem neuen Chef. Корисна перевірка: щойно артикль відрізняється від der, die чи das, у прикметника майже завжди -en."
