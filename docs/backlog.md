@@ -97,6 +97,10 @@ it; everything else lives in the archive.
     revision mismatch and still reads as a real error in the weak-focus table. `data/grading-decisions.yaml`
     rules `translate` renderings only, so there is no mechanism to retract a `table` attempt. Weight that
     tag accordingly until it has post-fix evidence.
+- **P5-6 · Recognition-only vocabulary cards** — `done` 2026-07-21 (PR #92). `cards: recognition`
+  makes one card instead of two for understand-only language; defaulted `both` and never
+  retrofitted, because the direction lives in the card id. Contract in CLAUDE.md; built for B1's
+  Wortliste tail.
 - **P13 · Level placement tests** — `done` 2026-07-20. `role: placement`, one set per level, discovered like checkpoints; per-topic verdicts that take a topic off the path without ever raising its measured tier. 70 items shipped (A1 24, A2 46). Contract in CLAUDE.md; two open limitations below (P13-1 spoken modes, P13-2 offering the next level's test).
 - **P13-2 (first half) · An interrupted placement test could not be resumed** — `done` 2026-07-21,
   found by Codex on PR #89. `FirstSteps` gated on `attempts.length === 0` and `logAttempt` fires per
@@ -392,13 +396,3 @@ insufficient.
 Only after a linear mission pilot shows that branching would improve rather than distract from the
 learning workflow.
 
-### P5-6 · Recognition-only vocabulary cards — `deferred` (S)
-
-`buildDeck()` turns every vocab entry into two cards, so there is no way to teach a word for
-recognition alone. Language the learner must understand but will never produce — station
-announcements, listing abbreviations, form headings — therefore lives in readings and article tables
-and never in a deck. If A2 usage shows the review load is genuinely inflated by words that only need
-recognition, a `cards: recognition | both` field on a vocab entry is the fix.
-
-- Accept, when taken up: a recognition-only entry produces one card rather than two; existing card
-  ids are unchanged; the Wortschatz table says which words are recognition-only.
