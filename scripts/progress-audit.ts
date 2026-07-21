@@ -10,6 +10,7 @@
  *   bun run progress:audit --profile vitaly --json
  *   bun run progress:audit --snapshot progress/vitaly/2026-07-13.json
  *   bun run progress:audit --profile vitaly --item a2/perfekt-haben-sein:uebersetzen-pizza
+ *   bun run progress:audit --profile vitaly --project 2026-08-02
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -189,6 +190,14 @@ export interface ProgressAudit {
        * both levels, and P3-6 is an A1 gate.
        */
       byCompetence: CompetenceRetention[];
+      /**
+       * Whether each competence *can* be readable by the projection date — the question
+       * that decides whether the gate can be read at all, and one the retention table
+       * cannot answer because it is keyed off attempts that have already happened.
+       */
+      byReadability: CompetenceReadability[];
+      /** the projection horizon, ISO date */
+      projectTo: string;
       dueNow: number;
       overdue: number;
       maxOverdueDays: number;
@@ -225,6 +234,13 @@ export interface AuditOptions {
   now?: number;
   limit?: number;
   itemRef?: string;
+  /**
+   * Horizon for the readability projection, as an epoch ms. Defaults to the snapshot's
+   * export date plus the longest scheduled interval — the point by which a family armed on
+   * export day would have completed its schedule. Pass the retention-gate date to ask the
+   * question that actually matters: can the gate be read when it is due?
+   */
+  projectTo?: number;
 }
 
 const itemRef = (setId: string, itemId: string) => `${setId}:${itemId}`;
@@ -676,10 +692,58 @@ export interface CompetenceRetention {
   formats: Record<string, { attempts: number; survived: number }>;
 }
 
+/**
+ * Can this competence still become readable, and by when?
+ *
+ * The retention gate is read on a fixed date, and a competence below
+ * `PROBE_READABLE_MIN` is excluded from the verdict rather than counted as a pass. So the
+ * question that decides whether the gate can be read at all is not "what is the retention
+ * percentage" but "how many competences can hold three attempts by then" — and that is
+ * answerable **now**, from arming timestamps and the interval schedule alone, without
+ * assuming anything about how often the learner studies.
+ *
+ * Two ceilings, because they fail for different reasons and have different remedies:
+ *
+ * - `ceilingEver` = families × intervals. A competence carried by one family caps at
+ *   exactly three attempts, so it is readable only if all three are actually taken; it has
+ *   no margin for a missed probe. The remedy is a second family, which is authoring work.
+ * - `ceilingByTarget` counts only the intervals whose due date has arrived by the target.
+ *   A family armed eight days ago cannot have served its 21-day probe, whatever anyone
+ *   does. The remedy is time, or a target further out — never effort.
+ *
+ * A row where `ceilingByTarget < PROBE_READABLE_MIN` is **structurally unreachable**: no
+ * amount of studying makes it readable by that date. Reporting that separately from
+ * "pending" matters, because the two look identical in the retention table and only one of
+ * them is something the learner can act on.
+ */
+export interface CompetenceReadability {
+  level: string;
+  focus: string | undefined;
+  families: number;
+  /** probe attempts logged so far */
+  attempts: number;
+  /** most attempts this competence could ever hold: families × scheduled intervals */
+  ceilingEver: number;
+  /** most it could hold by the projection target, given each family's arming date */
+  ceilingByTarget: number;
+  /** probes of this competence that are due and unanswered right now */
+  dueNow: number;
+  /**
+   * How many of this competence's families have never armed — their topic has not been
+   * practised. Their share of `ceilingByTarget` assumes arming on the snapshot date, so a
+   * row with unarmed families is reporting what is reachable *if the lesson is opened now*.
+   */
+  unarmedFamilies: number;
+  readableToday: boolean;
+  /** false when the schedule alone rules it out by the target date */
+  reachableByTarget: boolean;
+}
+
 function delayedSummary(
   attempts: AuditAttempt[],
   catalog: Map<string, CatalogItem>,
   at: number,
+  projectTo: number,
 ) {
   const firstByItem = new Map<string, number>();
   for (const attempt of attempts) {
@@ -794,6 +858,56 @@ function delayedSummary(
   const actualIntervals = [...intervalCounts.entries()]
     .map(([days, count]) => ({ days, count }))
     .sort((a, b) => a.days - b.days);
+
+  // Readability projection. Built over ALL families, not only those with attempts: a
+  // competence whose family has never been probed is precisely the one at risk of being
+  // unreadable on the gate date, and it is invisible in the retention table by
+  // construction (that table is keyed off attempts).
+  const dueSetIds = new Set(owed.map((probe) => probe.family.setId));
+  const readability = new Map<string, CompetenceReadability>();
+  for (const family of families) {
+    // The family's competence is its variants' shared focus — one per family, which the
+    // validator enforces precisely so this reads unambiguously. Taken from the catalog
+    // rather than from an attempt, for the same reason the retention rows are.
+    const focus = family.items
+      .map((item) => catalog.get(itemRef(family.setId, item.id))?.focus)
+      .find((tag) => tag !== undefined);
+    const level = family.setId.split('/')[0]!.toUpperCase();
+    const key = `${level}\u0000${focus ?? ''}`;
+    const row = readability.get(key) ?? {
+      level, focus, families: 0, attempts: 0, ceilingEver: 0, ceilingByTarget: 0,
+      dueNow: 0, unarmedFamilies: 0, readableToday: false, reachableByTarget: false,
+    };
+    row.families += 1;
+    row.ceilingEver += PROBE_INTERVALS_DAYS.length;
+    const armed = armedByFamily.get(family.setId);
+    // An unarmed family has not started its schedule, but that is a *conditional* ceiling,
+    // not a closed door: the topic has simply never been practised, and practising it today
+    // arms the clock today. Counting it as zero would report "unreachable by date" for a
+    // competence the learner could still reach by opening the lesson — the opposite of
+    // actionable. So an unarmed family is projected from the snapshot date, the earliest it
+    // could arm, and the row says how many of its families that assumption covers.
+    if (armed === undefined) row.unarmedFamilies += 1;
+    const start = armed ?? at;
+    row.ceilingByTarget += PROBE_INTERVALS_DAYS.filter(
+      (days) => start + days * DAY <= projectTo).length;
+    row.attempts += probeAttempts(family, schedulableAttempts).length;
+    if (dueSetIds.has(family.setId)) row.dueNow += 1;
+    readability.set(key, row);
+  }
+  const byReadability = [...readability.values()]
+    .map((row) => ({
+      ...row,
+      readableToday: row.focus !== undefined && row.attempts >= PROBE_READABLE_MIN,
+      // An untagged family can never fail its target, so it is never readable however many
+      // attempts it holds — the same exclusion the retention rows make, applied here so a
+      // projection cannot promise readability the verdict will refuse.
+      reachableByTarget:
+        row.focus !== undefined && row.ceilingByTarget >= PROBE_READABLE_MIN,
+    }))
+    .sort((a, b) =>
+      a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
+
   return {
     attempts: delayed.length,
     correct: delayed.filter((attempt) => attempt.correct).length,
@@ -804,6 +918,8 @@ function delayedSummary(
       focusRetained,
       focusFailed,
       byCompetence,
+      byReadability,
+      projectTo: iso(projectTo).slice(0, 10),
       dueNow: owed.length,
       overdue: owed.filter((probe) => probe.overdueDays > 0).length,
       maxOverdueDays: Math.max(0, ...owed.map((probe) => probe.overdueDays)),
@@ -882,7 +998,12 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       return cycleByTopic[topic] ?? 'other';
     }),
     cards: cardSummary(snapshot.cards),
-    delayed: delayedSummary(attempts, options.catalog, exportedAt),
+    delayed: delayedSummary(
+      attempts,
+      options.catalog,
+      exportedAt,
+      options.projectTo ?? exportedAt + PROBE_INTERVALS_DAYS[PROBE_INTERVALS_DAYS.length - 1]! * DAY,
+    ),
     sessionWorkload: {
       sessions: snapshot.sessions?.length ?? 0,
       averageReviewed: snapshot.sessions?.length
@@ -984,6 +1105,66 @@ function retentionSection(rows: CompetenceRetention[]): string[] {
   return out;
 }
 
+function readabilitySection(
+  rows: CompetenceReadability[],
+  projectTo: string,
+  intervals: readonly number[],
+): string[] {
+  if (!rows.length) return [];
+  const out = [
+    '## Can the gate be read?',
+    '',
+    `Projected to **${projectTo}**. A competence enters the verdict only at ` +
+      `${PROBE_READABLE_MIN} attempts, so before asking what the retention percentage is, ask ` +
+      'how many competences can hold that many by then. This is derived from arming dates and ' +
+      'the scheduled intervals alone — it assumes nothing about how often the learner studies.',
+    '',
+    '| Level | Competence | Families | n now | Max by date | Max ever | Due now | Verdict |',
+    '| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |',
+    ...rows.map((row) => {
+      const unarmed = row.unarmedFamilies
+        ? ` (${row.unarmedFamilies} unarmed — needs the lesson opened)`
+        : '';
+      const verdict = row.readableToday
+        ? 'readable'
+        : row.focus === undefined
+          ? 'untagged — never readable'
+          : row.reachableByTarget
+            ? `needs ${PROBE_READABLE_MIN - row.attempts} more${unarmed}`
+            : `**unreachable by date**${unarmed}`;
+      return `| ${md(row.level)} | ${md(row.focus ?? '(untagged)')} | ${row.families} ` +
+        `| ${row.attempts} | ${row.ceilingByTarget} | ${row.ceilingEver} | ${row.dueNow} ` +
+        `| ${verdict} |`;
+    }),
+    '',
+  ];
+  for (const level of [...new Set(rows.map((row) => row.level))].sort()) {
+    const own = rows.filter((row) => row.level === level);
+    const readable = own.filter((row) => row.readableToday);
+    const reachable = own.filter((row) => !row.readableToday && row.reachableByTarget);
+    const blocked = own.filter((row) => !row.readableToday && !row.reachableByTarget);
+    const owed = reachable.reduce(
+      (sum, row) => sum + Math.max(0, PROBE_READABLE_MIN - row.attempts), 0);
+    out.push(
+      `**${level}: ${readable.length} readable now, ${reachable.length} still reachable by ` +
+        `${projectTo}, ${blocked.length} not.** Reaching them needs ${owed} more probe ` +
+        'attempt(s) to actually be taken.',
+    );
+  }
+  out.push(
+    '',
+    'A row is *unreachable by date* when the schedule alone rules it out — a family armed ' +
+      `eight days ago cannot have served its ${intervals[intervals.length - 1]}-day probe, ` +
+      'whatever anyone does. That is a different problem from *needs N more*, which effort ' +
+      'fixes, and the retention table shows both as "pending". A competence carried by one ' +
+      `family caps at ${intervals.length} attempts ever, exactly the readability floor, so it ` +
+      'has no margin for a probe that is never taken — widening that is authoring work, not ' +
+      'study.',
+    '',
+  );
+  return out;
+}
+
 export function renderMarkdown(audit: ProgressAudit): string {
   const out: string[] = [
     '# Progress audit',
@@ -1059,6 +1240,11 @@ export function renderMarkdown(audit: ProgressAudit): string {
     ...audit.cards.byDeck.map((row) => `| ${md(row.deck)} | ${row.cards} | ${row.lapses} |`),
     '',
     ...retentionSection(audit.delayed.probes.byCompetence),
+    ...readabilitySection(
+      audit.delayed.probes.byReadability,
+      audit.delayed.probes.projectTo,
+      PROBE_INTERVALS_DAYS,
+    ),
     '## Grading-review queue — needs linguistic review',
     '',
   ];
@@ -1129,6 +1315,7 @@ interface CliArgs {
   profile?: string;
   snapshot?: string;
   item?: string;
+  project?: string;
   json: boolean;
 }
 
@@ -1144,19 +1331,46 @@ function cliArgs(argv: string[]): CliArgs {
     profile: value('--profile'),
     snapshot: value('--snapshot'),
     item: value('--item'),
+    project: value('--project'),
     json: argv.includes('--json'),
   };
+}
+
+/**
+ * `--project` date → end-of-day epoch ms, rejecting a date that does not exist.
+ *
+ * `Date.parse` alone is not enough, and the failure is silent rather than loud:
+ * `2026-02-30T23:59:59Z` does not throw, it **rolls over** to 2026-03-02, and
+ * `2026-02-29` in a non-leap year rolls to 2026-03-01 (measured, not assumed — the ISO
+ * branch of the spec should return NaN, but V8's fallback parser normalizes instead). The
+ * whole section is a projection *to a named date*, so a typo would publish reachability
+ * figures for a horizon nobody asked about. Codex review, PR #91.
+ *
+ * The round-trip is the check: reformat what was parsed and require it to equal the input.
+ */
+function parseProjectDate(value: string): number {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) throw new Error(`Invalid --project "${value}"; expected YYYY-MM-DD`);
+  const ts = Date.parse(`${value}T23:59:59Z`);
+  if (!Number.isFinite(ts)) throw new Error(`Invalid --project "${value}"; expected YYYY-MM-DD`);
+  if (iso(ts).slice(0, 10) !== value)
+    throw new Error(
+      `Invalid --project "${value}": no such date (it would roll over to ${iso(ts).slice(0, 10)})`,
+    );
+  return ts;
 }
 
 export function run(argv = process.argv.slice(2), root = process.cwd()): string {
   const args = cliArgs(argv);
   const snapshotPath = resolveSnapshotPath(root, args.profile, args.snapshot);
   const snapshot = readSnapshot(snapshotPath);
+  const projectTo = args.project === undefined ? undefined : parseProjectDate(args.project);
   const audit = buildAudit(snapshot, {
     snapshotPath: relative(root, snapshotPath) || snapshotPath,
     catalog: loadExerciseCatalog(root),
     decisions: loadGradingDecisions(root),
     itemRef: args.item,
+    projectTo,
   });
   return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit);
 }

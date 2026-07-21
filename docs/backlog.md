@@ -69,6 +69,66 @@ before another unit is written.
 
 ## Open — found in the 2026-07-21 pre-B1 review
 
+### P14-3 · Ask whether the gate can be read, not only what it says — **done 2026-07-21**
+
+The retention table answers *what is the percentage*. It cannot answer *will there be a
+percentage*, because it is keyed off attempts that already happened: a competence whose family has
+never been probed does not appear in it at all. Yet the P3-6 verdict counts only competences at
+`PROBE_READABLE_MIN` attempts, so whether 2026-08-02 produces a readable answer is decided by arming
+dates and the interval schedule — which is knowable **now**.
+
+`bun run progress:audit --project YYYY-MM-DD` adds *Can the gate be read?*. It assumes nothing about
+study frequency: two ceilings per competence, `ceilingEver` (families × intervals) and
+`ceilingByTarget` (only the intervals whose due date has arrived by the target).
+
+Measured for the gate date, from the 2026-07-20 snapshot:
+
+> **A1: 1 readable now, 8 still reachable by 2026-08-02, 4 not** — reaching them needs **12 more
+> probe attempts actually taken**. A2: 1 readable, 8 reachable, 25 not.
+
+So the read is *possible* — 12 attempts in 12 days is about four sessions at
+`MAX_PROBES_PER_SESSION`, against 19 due and 16 overdue. Nine of thirteen A1 competences can
+contribute; four cannot, whatever anyone does. That is worth knowing on 07-21 rather than on 08-02.
+
+Three distinctions the report makes that the retention table cannot:
+
+- **unreachable by date** (the schedule rules it out — only time or a later target helps) versus
+  **needs N more** (effort helps). Both read as "pending" in the retention table.
+- **unarmed families** are projected from the snapshot date, not written off: their topic has simply
+  never been practised, and opening the lesson today starts the clock today. Counting them as zero
+  would report "unreachable" for a competence one lesson away.
+- **untagged is never reachable**, however much time remains — the same exclusion the verdict makes,
+  applied here so a projection cannot promise readability the verdict will refuse.
+
+A single-family competence caps at exactly the readability floor, so it has no margin for a probe
+that is never taken. Widening that is authoring work (a second family), not study — which is the
+P12-1 second-family programme, and this report is how to tell which competences still need it.
+
+### P14-4 · Two learning-science findings, recorded rather than acted on
+
+Both are measurements from the 2026-07-20 snapshot. Neither is fixed here, and the reasons differ.
+
+**Open production's revision loop produces no revisions — investigated, no defect found.** The audit
+reports **7 structured revisions, 0 changed between drafts**. The suspicion was an invisible
+affordance, and it was not idle: the Entdecken *Useful* toggles persisted their clicks while
+rendering nothing and were reported as "not clickable" until #85. `Write.tsx` is not that. On the
+compare screen the learner's `WritingArea` stays enabled, and `UI.compareHint` sits directly beneath
+it saying *"edit it right here if you like"*. The mechanism is present, labelled and working; the
+honest reading is that the learner read the model and judged the draft finished. Left alone
+deliberately — minimal ceremony is the contract, seven data points on an optional step are not
+grounds to add a stage, and "fixing" a working mechanism is how a good flow becomes a gated one.
+
+**Two more formats have stopped discriminating.** `audio-comprehension` is **25/25 = 100%** and
+`match` **97%** over 55 attempts — the saturation signature that got `order` capped at 2 per set in
+P12-3. Not acted on in this window: converting items is a `revision` bump, which drops their
+attempts out of the re-graded retention reading before 2026-08-02. Revisit with P12-4.
+
+**And one number in the audit that is not evidence.** The *Optional-content feedback* table reports
+`discovery:a2/berlin-ubahn-karte` as *comfortable / useful: no / wants more: no*, which reads as a
+verdict on the whole Entdecken strand. Its timestamp is **2026-07-19T09:22Z — 4h38m before #85**
+fixed the invisible toggles, and "off" is exactly what a double-press on an unresponsive toggle
+produces. Treat Entdecken feedback as starting from #85; do not plan authoring volume against it.
+
 ### P14-1 · Vocabulary cards that print their own answer — **done 2026-07-21**
 
 Found by the learner, in the app, by writing plausible German and being told it was wrong. The x-de
