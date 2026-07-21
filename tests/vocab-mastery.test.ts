@@ -38,3 +38,24 @@ describe('combined vocabulary mastery', () => {
     expect(rankDueCards(cards, states).map((c) => c.id)).toEqual(['earlier', 'later']);
   });
 });
+
+// `cards: recognition` exists because two-cards-per-entry does not survive B1: 1996 more
+// Goethe-B1 headwords at two cards each is ~7230 cards and ~460 days of introduction at
+// DAILY_NEW_CARDS = 15. The mechanism has two hazards, and both are pinned here.
+describe('recognition-only entries', () => {
+  test('a one-direction word is graded on the direction it has', () => {
+    // Without this the two-direction rule parks every recognition-only word at `learning`
+    // forever — "one direction unstarted" is exactly how that state is defined — and the
+    // B1 long tail would report hundreds of fully-learned words as half-learned.
+    const opts = { hasProduction: false };
+    expect(wordMastery(undefined, undefined, opts)).toBe('new');
+    expect(wordMastery(state({ state: State.Learning }), undefined, opts)).toBe('learning');
+    expect(wordMastery(state({ scheduled_days: 7 }), undefined, opts)).toBe('established');
+    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined, opts))
+      .toBe('strong');
+  });
+
+  test('an ordinary entry is unaffected — the missing production card still means learning', () => {
+    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined)).toBe('learning');
+  });
+});

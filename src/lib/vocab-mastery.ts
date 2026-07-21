@@ -16,6 +16,8 @@ export interface WordRollup {
   de: string;
   pos: string;
   status: WordMastery;
+  /** true when the entry is `cards: recognition` — understood, never produced */
+  recognitionOnly: boolean;
   due: boolean;
   directions: Record<Direction, DirectionEvidence>;
 }
@@ -24,11 +26,30 @@ function started(card?: StoredCard): boolean {
   return !!card && card.reps > 0;
 }
 
-export function wordMastery(recognition?: StoredCard, production?: StoredCard): WordMastery {
-  if (!started(recognition) && !started(production)) return 'new';
-  if (!started(recognition) || !started(production)) return 'learning';
-  if (recognition!.state !== State.Review || production!.state !== State.Review) return 'learning';
-  return Math.min(recognition!.scheduled_days, production!.scheduled_days) >= STRONG_INTERVAL_DAYS
+/**
+ * Word status from its cards' FSRS state.
+ *
+ * The two-direction rule — "one direction unstarted means `learning`" — is right for an
+ * ordinary entry and wrong for a `cards: recognition` one, whose production card does not
+ * exist and never will. Applying it there would park every recognition-only word at
+ * `learning` permanently, inflating that bucket with words the learner has fully learned to
+ * the depth intended. Since the whole point of recognition-only entries is the B1 long
+ * tail, that would be hundreds of words misreported, which is a calibration failure
+ * introduced by a fix — grade a one-direction word on the direction it has.
+ *
+ * The caller says which case it is by passing the directions the entry actually has;
+ * `rollupWords` reads that off the built deck rather than re-reading the schema.
+ */
+export function wordMastery(recognition?: StoredCard, production?: StoredCard, options: {
+  /** false for a `cards: recognition` entry, whose x-de card was never built */
+  hasProduction?: boolean;
+} = {}): WordMastery {
+  const hasProduction = options.hasProduction ?? true;
+  const evidence = hasProduction ? [recognition, production] : [recognition];
+  if (!evidence.some(started)) return 'new';
+  if (!evidence.every(started)) return 'learning';
+  if (evidence.some((card) => card!.state !== State.Review)) return 'learning';
+  return Math.min(...evidence.map((card) => card!.scheduled_days)) >= STRONG_INTERVAL_DAYS
     ? 'strong'
     : 'established';
 }
@@ -49,7 +70,11 @@ export function rollupWords(cards: CardDef[], states: CardStates, now = new Date
       deckId: defs[0].deckId,
       de: defs[0].de,
       pos: defs[0].pos,
-      status: wordMastery(recognition, production),
+      // `buildDeck` omits the x-de card for a `cards: recognition` entry, so the built deck
+      // is the authority on which directions exist — no second read of the schema, and no
+      // way for the two to disagree.
+      status: wordMastery(recognition, production, { hasProduction: !!productionDef }),
+      recognitionOnly: !productionDef,
       due: [recognition, production].some((card) => !!card && new Date(card.due) <= now),
       directions: {
         'de-x': { direction: 'de-x', card: recognition },

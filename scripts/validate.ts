@@ -51,6 +51,7 @@ import {
   loadGradingDecisions,
 } from '../src/lib/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
+import { focusIntroducedBy } from '../src/lib/focus-tags';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 
@@ -140,6 +141,7 @@ const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'p
  * ones whose job is to span the level.
  */
 const CROSS_TOPIC_ROLES = STANDALONE_ROLES;
+
 
 const fail = (file: string, msg: string) => errors.push(`${file}: ${msg}`);
 const warn = (file: string, msg: string) => warnings.push(`${file}: ${msg}`);
@@ -1420,73 +1422,6 @@ for (const [setId, { file, data }] of exerciseSets) {
           );
       }
 
-      // A focus tag cannot silently teach a structure whose owning topic is
-      // later in the spine. Intentional preview items must say `preview: true`.
-      const focusIntroducedBy: Record<string, string> = {
-        verbzweit: 'praesens-wortstellung',
-        'verb-endungen': 'praesens-wortstellung',
-        'kopula-sein': 'praesens-wortstellung',
-        'nicht-position': 'praesens-wortstellung',
-        genus: 'artikel-genus',
-        'plural-artikel': 'artikel-genus',
-        'artikel-pflicht': 'artikel-genus',
-        'kein-nicht': 'artikel-genus',
-        possessivartikel: 'menschen-familie',
-        'akkusativ-artikel': 'akkusativ',
-        'akkusativ-pronomen': 'akkusativ',
-        'akkusativ-praepositionen': 'akkusativ',
-        'dativ-artikel': 'dativ',
-        'dativ-pronomen': 'dativ',
-        'dativ-praepositionen': 'dativ',
-        'verben-mit-dativ': 'dativ',
-        'passen-dativ': 'dativ',
-        'wechsel-akk-dat': 'dativ',
-        'trennbar-wortstellung': 'trennbare-verben',
-        'trennbar-modal': 'trennbare-verben',
-        'trennbar-untrennbar': 'trennbare-verben',
-        'modal-satzklammer': 'freizeit-koennen',
-        'modal-konjugation': 'freizeit-koennen',
-        'gern-moegen': 'freizeit-koennen',
-        'duerfen-muessen': 'modalverben',
-        'will-moechte': 'modalverben',
-        'haben-sein': 'perfekt-haben-sein',
-        'partizip2-form': 'perfekt-haben-sein',
-        'perfekt-satzklammer': 'perfekt-haben-sein',
-        'um-am-zeit': 'alltag-zeit',
-        'du-sie': 'termine-vereinbaren',
-        // --- A2 units ---
-        'wo-wohin': 'wohnen-umzug',
-        'stellen-stehen': 'wohnen-umzug',
-        'komparativ-als': 'einkaufen-reklamation',
-        'superlativ-am': 'einkaufen-reklamation',
-        'adjektiv-praedikativ': 'adjektive-deklination',
-        'adjektiv-bestimmt': 'adjektive-deklination',
-        'adjektiv-unbestimmt': 'adjektive-deklination',
-        'imperativ-form': 'gesundheit-arzttermin',
-        'seit-vor-zeit': 'gesundheit-arzttermin',
-        'reflexiv-akkusativ': 'gesundheit-arzttermin',
-        'verb-praeposition': 'verben-mit-praepositionen',
-        'da-wo-woerter': 'verben-mit-praepositionen',
-        'nebensatz-verbende': 'nebensaetze-plaene',
-        'weil-denn': 'nebensaetze-plaene',
-        'nebensatz-vorfeld': 'nebensaetze-plaene',
-        'zu-infinitiv': 'infinitiv-mit-zu',
-        'um-zu-zweck': 'infinitiv-mit-zu',
-        'relativpronomen-kasus': 'relativsaetze',
-        'konjunktionaladverb-inversion': 'verbindungen-folgen',
-        'als-wenn-vergangenheit': 'verbindungen-folgen',
-        'futur-werden': 'infinitiv-mit-zu',
-        'reflexiv-dativ': 'gesundheit-arzttermin',
-        'indefinitpronomen': 'man-und-besitz',
-        'genitiv-eigenname': 'man-und-besitz',
-        'passiv-rezeptiv': 'man-und-besitz',
-        'aber-sondern': 'freunde-feste',
-        'praeteritum-sein-haben': 'biografie-erfahrungen',
-        'indirekte-frage': 'lernen-verstehen',
-        'hoeflich-konjunktiv': 'aemter-dienstleistungen',
-        // was escaping the spine check entirely while the table was a lookup, not an allowlist
-        'haben-wendungen': 'essen-trinken',
-      };
       for (const { file, data } of exerciseSets.values()) {
         const ownerAt = spinePos.get(data.topic);
         for (const item of data.items) {
