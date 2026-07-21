@@ -257,6 +257,8 @@ describe('progress audit', () => {
           retentionPct: 100, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 1 } },
         }],
+        byReadability: [],
+        projectTo: '2026-08-03',
         dueNow: 0,
         overdue: 0,
         maxOverdueDays: 0,
@@ -398,6 +400,8 @@ describe('progress audit', () => {
           retentionPct: 100, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 1 } } },
       ],
+      byReadability: [],
+      projectTo: '2026-08-03',
       dueNow: 0,
       overdue: 0,
       maxOverdueDays: 0,
@@ -554,5 +558,94 @@ describe('progress audit', () => {
     expect(audit.focusSignals).toHaveLength(10);
     expect(audit.detail?.attempts).toHaveLength(1);
     expect(renderMarkdown(audit)).toContain('Item detail');
+  });
+});
+
+// The retention table answers "what is the percentage" and cannot answer "will there BE a
+// percentage" — it is keyed off attempts that have already happened, so a competence whose
+// family has never been probed is invisible in it. The gate is read on a fixed date, and a
+// competence below the floor is excluded from the verdict rather than counted, so whether
+// the gate can be read at all is decided by arming dates and the schedule, not by effort.
+describe('the readability projection', () => {
+  const probeItems: CatalogItem[] = [
+    { setId: 'a1/probe-a', id: 'v1', type: 'translate', answer: 'Ich bin da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
+    { setId: 'a1/probe-a', id: 'v2', type: 'translate', answer: 'Du bist da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
+    { setId: 'a1/probe-a', id: 'v3', type: 'translate', answer: 'Er ist da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
+  ];
+  const practice: CatalogItem = {
+    setId: 'a1/t1-practice', id: 'p1', type: 'translate', answer: 'Ich bin hier.',
+    focus: 'kopula-sein', topic: 't1', role: 'practice', outcomes: ['o1'],
+  };
+
+  test('an armed family that cannot serve its longest interval is unreachable by that date', () => {
+    // Armed on day 12, projected to day 20: the 2- and 7-day probes fit, the 21-day one
+    // cannot. No amount of studying changes that, and the retention table would call it
+    // "pending" — the same word it uses for a row that effort would fix.
+    const audit = buildAudit(snapshot({
+      attempts: [{
+        setId: practice.setId, itemId: practice.id, itemType: 'translate' as const,
+        correct: true, given: 'Ich bin hier.', focus: 'kopula-sein', ts: ts(12),
+      }],
+    }), {
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...probeItems, practice),
+      now: ts(13),
+      projectTo: ts(20),
+    });
+    const row = audit.delayed.probes.byReadability.find((r) => r.focus === 'kopula-sein');
+    expect(row?.ceilingEver).toBe(3);
+    expect(row?.ceilingByTarget).toBe(2);
+    expect(row?.reachableByTarget).toBe(false);
+    expect(renderMarkdown(audit)).toContain('unreachable by date');
+  });
+
+  test('the same family reaches the floor when the horizon is far enough out', () => {
+    const audit = buildAudit(snapshot({
+      attempts: [{
+        setId: practice.setId, itemId: practice.id, itemType: 'translate' as const,
+        correct: true, given: 'Ich bin hier.', focus: 'kopula-sein', ts: ts(12),
+      }],
+    }), {
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...probeItems, practice),
+      now: ts(13),
+      projectTo: ts(40),
+    });
+    const row = audit.delayed.probes.byReadability.find((r) => r.focus === 'kopula-sein');
+    expect(row?.ceilingByTarget).toBe(3);
+    expect(row?.reachableByTarget).toBe(true);
+  });
+
+  // An unarmed family has not started its schedule, but that is a door the learner can still
+  // open by practising the topic. Projecting it as zero would report "unreachable" for a
+  // competence that is one lesson away — the opposite of actionable.
+  test('an unarmed family is projected from today, not written off', () => {
+    const audit = buildAudit(snapshot({ attempts: [] }), {
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...probeItems, practice),
+      now: ts(13),
+      projectTo: ts(40),
+    });
+    const row = audit.delayed.probes.byReadability.find((r) => r.focus === 'kopula-sein');
+    expect(row?.unarmedFamilies).toBe(1);
+    expect(row?.attempts).toBe(0);
+    expect(row?.ceilingByTarget).toBe(3);
+    expect(row?.reachableByTarget).toBe(true);
+    expect(renderMarkdown(audit)).toContain('unarmed — needs the lesson opened');
+  });
+
+  test('an untagged family is never reachable, however much time is left', () => {
+    const untagged: CatalogItem[] = probeItems.map((item) => ({
+      ...item, setId: 'a1/probe-untagged', focus: undefined,
+    }));
+    const audit = buildAudit(snapshot({ attempts: [] }), {
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...untagged),
+      now: ts(13),
+      projectTo: ts(90),
+    });
+    const row = audit.delayed.probes.byReadability.find((r) => r.focus === undefined);
+    expect(row?.ceilingByTarget).toBe(3);
+    expect(row?.reachableByTarget).toBe(false);
   });
 });
