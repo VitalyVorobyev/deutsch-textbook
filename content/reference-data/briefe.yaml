@@ -26,7 +26,7 @@ sections:
         Петровна!» — восклицательный знак и дальше прописная; по-немецки оба этих шага делаются
         иначе.
     entries:
-      - form: "Betreff: Termin am 14. Mai"
+      - form: "Termin am 14. Mai"
         register: neutral
         channel: [email]
         level: B1
@@ -35,15 +35,18 @@ sections:
           ru: "Любое письмо в учреждение или фирму. Сообщение без темы обычно дольше ждёт ответа."
         note:
           en: >-
-            A subject line is a label, not a sentence: a short noun phrase, no verb, no full stop,
-            and above all no greeting — Hallo and Sehr geehrte Damen und Herren belong in the
-            message, never in the subject. Name the matter and the date and the reader can find
-            your mail again in a week.
+            Write the subject alone: your mail program already labels the field Betreff, so typing
+            the word into it gives you Betreff: Betreff: … A subject line is a label, not a
+            sentence — a short noun phrase, no verb, no full stop, and above all no greeting, since
+            Hallo and Sehr geehrte Damen und Herren belong in the message. Name the matter and the
+            date and the reader can find your mail again in a week.
           ru: >-
-            Тема письма — это ярлык, а не предложение: короткая именная группа, без глагола, без
-            точки и, главное, без приветствия. Hallo и Sehr geehrte Damen und Herren — место в
-            тексте письма, а не в теме. Назовите дело и дату, и через неделю адресат снова найдёт
-            ваше письмо.
+            Пишите только саму тему: почтовая программа уже подписывает это поле словом Betreff,
+            и если вписать его ещё раз, получится Betreff: Betreff: … Тема письма — это ярлык, а
+            не предложение: короткая именная группа, без глагола, без точки и, главное, без
+            приветствия, потому что Hallo и Sehr geehrte Damen und Herren — место в тексте
+            письма, а не в теме. Назовите дело и дату, и через неделю адресат снова найдёт ваше
+            письмо.
       - form: "Sehr geehrte Damen und Herren,"
         register: formal
         channel: [brief, email]
@@ -650,7 +653,7 @@ templates:
     channel: email
     lines:
       - section: anrede
-        de: "Betreff: Termin am 14. Mai"
+        de: "Termin am 14. Mai"
         en: "Subject: Appointment on 14 May"
         ru: "Тема: приём 14 мая"
       - section: anrede
@@ -701,7 +704,7 @@ templates:
     channel: email
     lines:
       - section: anrede
-        de: "Betreff: Frage zu den Nebenkosten"
+        de: "Frage zu den Nebenkosten"
         en: "Subject: Question about the service charges"
         ru: "Тема: вопрос о коммунальных платежах"
       - section: anrede

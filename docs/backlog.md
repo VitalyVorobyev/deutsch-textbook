@@ -309,6 +309,12 @@ than the writing was. The edge is one-way and optional on both sides, and `.stri
 keep a `required`/`completed`/`readAt` field from ever being added: discoverability is not
 obligation.
 
+**The `<De>` cost, reproducibly.** `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`
+→ **1.98x** localised, **1.55x** overall. The same measure over the six three-half pieces gives
+**1.47x** localised, so `uk` costs about +47% and `de` costs roughly that again on top. The script
+exists because the first version of these figures reached the roadmap with no command behind
+them — which is the rule CLAUDE.md states and this repo keeps breaking.
+
 **Do not plan volume against the existing feedback.** The single datum
 (`discovery:a2/berlin-ubahn-karte`, *comfortable / useful: no / wants more: no*) was recorded
 2026-07-19T09:22Z — 4h38m before #85 fixed the invisible toggles it was entered through, and

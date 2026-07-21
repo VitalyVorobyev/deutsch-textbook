@@ -128,10 +128,17 @@ produced a single answer, so each family now runs parallel checks of *one* compe
   derived/canonical lookup pages have shipped, the last being `/referenz/briefe` (2026-07-21). The
   discovery layer is at seven pieces spanning A1–B1 and is now reachable **from the lesson** — a
   piece may name its `topics`, and the topic page renders it as an aside that creates no
-  obligation. P9-4's Wortnetze carry no progress semantics either. One measured figure to carry
-  into B1: the `<De>` pilot (`b1/sonntagsruhe`) put the cost of four explanation halves at
-  **1.54x** overall and **1.97x** on the localised surface — the number the "B1 carries `de` from
-  day one" preference should be decided against. Direction:
+  obligation. P9-4's Wortnetze carry no progress semantics either.
+
+  **What the `<De>` pilot cost, and the command that says so** —
+  `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`, which counts words per
+  explanation half (the method is stated at the top of the script). The four-half B1 piece is
+  **1.98x** on the localised surface and **1.55x** overall once the invariant German article is
+  folded back in. Run against the six three-half pieces
+  (`bun scripts/lang-cost.ts content/discovery/a[12]/*.mdx`) the same measure gives **1.47x**
+  localised — so `uk` costs about +47%, and adding `de` costs roughly that much again on top.
+  That pair, not either number alone, is what the "B1 carries `de` from day one" preference
+  should be decided against. Direction:
   [future-content-directions.md](future-content-directions.md).
 
 ## Definition of roadmap completion
