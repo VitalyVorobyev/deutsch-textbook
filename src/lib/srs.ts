@@ -47,6 +47,19 @@ export interface CardDef {
   /** other correct typed answers (reflexive `sich …`, an adjectival noun's other
       article forms) — see `accept` in schemas.ts */
   accept?: string[];
+  /**
+   * The entry's usage note, rendered on the ANSWER side only.
+   *
+   * It lives here because it had nowhere else to go: before this field a note
+   * was visible in the Wortschatz table and nowhere on a card, so authors who
+   * wanted a construction hint on a card inlined it into the `en`/`ru` gloss —
+   * which is the question side of the x-de card. Eight entries ended up
+   * printing their own answer in their own prompt (`gern` → "gladly; (verb +
+   * gern) to like doing something"), and the learner typed `lieber`, reasoning
+   * that a prompt showing `gern` could not be asking for `gern`. Giving the
+   * note a home on the back removes the pressure that produced that.
+   */
+  note?: { en: string; ru: string; uk?: string; de?: string };
   /** Optional answer-side context; never changes the scheduled lexical target. */
   context?: LexicalContext[];
 }
@@ -167,6 +180,7 @@ export function buildDeck(
       pos: e.pos,
       gender: e.pos === 'noun' ? e.gender : undefined,
       accept: e.accept?.length ? e.accept : undefined,
+      note: e.note,
       context: contexts[lexicalKey(deckId, e.de)],
     };
     cards.push({ ...base, id: cardId(deckId, e.de, 'de-x'), dir: 'de-x' });

@@ -51,6 +51,7 @@ import {
   loadGradingDecisions,
 } from '../src/lib/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
+import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 
 const ROOT = join(import.meta.dirname, '..');
@@ -250,6 +251,90 @@ function checkReflexiveForms(where: string, e: VocabEntry): void {
   }
 }
 
+/**
+ * A gloss must not print the answer it is asking for.
+ *
+ * `en`/`ru`/`uk` are the QUESTION side of the x-de production card, so a German
+ * headword appearing there hands the learner the target and the card measures
+ * copying instead of recall. Eight entries did exactly that — `gern` read
+ * "gladly; (verb + gern) to like doing something" — and the learner, reasoning
+ * that a prompt showing `gern` could not be asking for `gern`, typed `lieber`
+ * (whose gloss carried the identical defect) and took a lapse for it.
+ *
+ * The rule is narrow on purpose, because the naive version is unusable: ~104
+ * glosses legitimately contain their headword because the word IS the
+ * translation (`Kiosk` → "kiosk", `Portion` → "portion, serving", `Post` →
+ * "post office"). Those cost the learner German spelling and capitalisation and
+ * must not be "fixed". What separates the eight defects from the 104 cognates is
+ * *where* the word sits: every real leak put it in a metalinguistic aside — a
+ * parenthetical ("(sich unterhalten)", "(in ein bisschen)") or an em-dash
+ * restatement ("Abitur — the German school-leaving exam …") — while a cognate
+ * gloss has it in the running text. Measured against the corpus both ways: this
+ * rule flags 22 gloss fields before the fix and 0 after, with no cognate caught
+ * in either direction.
+ *
+ * What it cannot see, stated rather than implied: a TRANSLITERATED headword in a
+ * Cyrillic gloss ("абитур — выпускной экзамен …") is the same defect in a script
+ * this test cannot match. That stays an authoring judgement.
+ */
+function checkGlossDoesNotLeakAnswer(where: string, e: VocabEntry): void {
+  const headwords = e.de.split(/[^A-Za-zÄÖÜäöüß]+/).filter((w) => w.length > 2);
+  if (!headwords.length) return;
+  for (const lang of ['en', 'ru', 'uk'] as const) {
+    const gloss = e[lang];
+    if (!gloss) continue;
+    const asides = [...gloss.matchAll(/\(([^)]*)\)/g)].map((m) => m[1]);
+    const dash = gloss.indexOf('—');
+    if (dash > 0) asides.push(gloss.slice(0, dash));
+    if (!asides.length) continue;
+    for (const w of headwords) {
+      // Up to three trailing letters, so an aside naming an inflected form is
+      // caught too: `lang` glossed "for a long time (variant of lange)" both
+      // handed over the answer AND then marked `lange` wrong. Measured: the
+      // widening adds exactly that one entry and no false positive anywhere in
+      // the 1619-entry corpus.
+      const re = new RegExp(`(^|[^A-Za-zÄÖÜäöüß])${w}[A-Za-zÄÖÜäöüß]{0,3}([^A-Za-zÄÖÜäöüß]|$)`, 'i');
+      if (asides.some((aside) => re.test(aside)))
+        fail(
+          `${where} → "${e.de}"`,
+          `the ${lang} gloss names "${w}" in an aside — ${lang} is the question side of the ` +
+            'x-de card, so this prints the answer in its own prompt. Move the usage hint to ' +
+            '`note` (it renders on the card back) and leave the gloss as meaning alone',
+        );
+    }
+  }
+}
+
+/**
+ * Every character the learner must TYPE has to be reachable from their keyboard.
+ *
+ * The learner reported that the `Café` card could not be answered at all: the
+ * insert bar under the answer field offered ä/ö/ü/ß and nothing else, so there
+ * was no way to produce the é on a non-German layout. The card was grading
+ * keyboard access rather than German, and nothing noticed — the entry is
+ * perfectly well-formed, correctly spelled, and passes every other check.
+ *
+ * The test runs on the NORMALIZED answer, which is what grading compares, so
+ * characters that dissolve before comparison are not falsely demanded: the two
+ * `arbeit-beruf` phrase headwords ending in `…` are fine, because
+ * `stripTokenPunctuation` removes a token that is nothing but punctuation.
+ */
+const TYPEABLE = new RegExp(`^[A-Za-z0-9 '\\-/.,!?:;()${GERMAN_INPUT_KEYS.join('')}]*$`);
+function checkAnswerIsTypeable(where: string, e: VocabEntry): void {
+  const forms = [articledForm(e.de, e.pos === 'noun' ? e.gender : undefined), ...(e.accept ?? [])];
+  for (const form of forms) {
+    const normalized = normalizeTyped(form);
+    if (TYPEABLE.test(normalized)) continue;
+    const missing = [...new Set([...normalized].filter((ch) => !TYPEABLE.test(ch)))];
+    fail(
+      `${where} → "${e.de}"`,
+      `the typed answer "${form}" needs ${missing.map((c) => `"${c}"`).join(', ')}, which is ` +
+        'not on a standard keyboard and not on the insert bar (GERMAN_INPUT_KEYS in ' +
+        'src/lib/typing.ts) — add the character there, or accept a typeable spelling',
+    );
+  }
+}
+
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
 for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   let raw: unknown;
@@ -272,6 +357,8 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
     seen.add(e.de);
     checkIpa(rel(file), e);
     checkReflexiveForms(rel(file), e);
+    checkGlossDoesNotLeakAnswer(rel(file), e);
+    checkAnswerIsTypeable(rel(file), e);
   }
 }
 

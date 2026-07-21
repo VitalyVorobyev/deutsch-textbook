@@ -4,6 +4,7 @@ import type { listenItemSchema } from '../../lib/schemas';
 import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
 import { dictationSlip } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
+import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
@@ -11,9 +12,6 @@ import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ListenItem = z.infer<typeof listenItemSchema>;
-
-/** Characters that are awkward to type on a non-German keyboard. */
-const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
 const UI = {
@@ -130,7 +128,9 @@ export function Listen({
         autoComplete="off"
         spellCheck={false}
       />
-      <div className="mt-2 flex gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
+      {/* flex-wrap: eight keys since Ä/Ö/Ü and é joined GERMAN_INPUT_KEYS, which
+          overflows a narrow viewport if the row cannot break. */}
+      <div className="mt-2 flex flex-wrap gap-1.5" aria-label={t('exercise.specialChars', uiLang)}>
         {SPECIAL_CHARS.map((ch) => (
           <button
             key={ch}
