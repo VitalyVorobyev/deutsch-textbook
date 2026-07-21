@@ -59,7 +59,8 @@ translation (Phase 8 + C3).
 - **P5-7 — delayed evidence for listening.** Scheduled *after* the cohort read, when the real probe
   load is known and can be paced.
 - **Phase 9 — Entdecken & Referenz** (parallel, never gates B1): recurring editorial pieces
-  (P9-2), derived/canonical reference pages (P9-3), and multilingual Wortnetze (P9-4).
+  (P9-2) are the only half still open. The reference layer is **complete** — P9-3's third and
+  last page, `/referenz/briefe`, shipped 2026-07-21 — and P9-4's Wortnetze are done.
 
 ## The retention gate
 
@@ -123,11 +124,15 @@ produced a single answer, so each family now runs parallel checks of *one* compe
   German-medium `<De>` explanations are authored for B1 onward, never backfilled. The per-profile
   UI language is the foundation, not the objective; chrome stays pinned German by default. B1 `uk`
   waves follow B1 content. Design: [i18n-design.md](i18n-design.md).
-- **Phase 9 — Entdecken & Referenz** — *open.* The discovery layer grows from one piece toward a
-  small editorial strand (committed CC/PD assets with attribution + licence, online-only links),
-  and the reference layer gains lookup pages **derived from canonical data** rather than
-  hand-maintained. P9-4's first four multilingual Wortnetze are shipped in parallel and carry no
-  progress semantics. Direction: [future-content-directions.md](future-content-directions.md).
+- **Phase 9 — Entdecken & Referenz** — *reference layer done; editorial strand open.* All three
+  derived/canonical lookup pages have shipped, the last being `/referenz/briefe` (2026-07-21). The
+  discovery layer is at seven pieces spanning A1–B1 and is now reachable **from the lesson** — a
+  piece may name its `topics`, and the topic page renders it as an aside that creates no
+  obligation. P9-4's Wortnetze carry no progress semantics either. One measured figure to carry
+  into B1: the `<De>` pilot (`b1/sonntagsruhe`) put the cost of four explanation halves at
+  **1.54x** overall and **1.97x** on the localised surface — the number the "B1 carries `de` from
+  day one" preference should be decided against. Direction:
+  [future-content-directions.md](future-content-directions.md).
 
 ## Definition of roadmap completion
 
