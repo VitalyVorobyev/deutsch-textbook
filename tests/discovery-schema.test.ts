@@ -63,3 +63,28 @@ describe('discoverySchema defaults', () => {
     expect(parsed.status).toBe('draft');
   });
 });
+
+// The topic link exists so a piece can be reached from the lesson instead of only from
+// /entdecken — five pieces shipped with no route to them at all, which is a likelier
+// reading of the single "useful: no" datum than the writing was. What it must NOT do is
+// turn optional material into an obligation, so the contract is: optional on both sides,
+// one-way, and carrying no progress semantics whatsoever.
+describe('the topic link is navigation, never obligation', () => {
+  test('topics defaults to empty — a piece belongs to no lesson unless it says so', () => {
+    expect(discoverySchema.parse(base).topics).toEqual([]);
+  });
+
+  test('topics accepts kebab-case slugs and rejects anything else', () => {
+    expect(discoverySchema.parse({ ...base, topics: ['stadt-wege'] }).topics)
+      .toEqual(['stadt-wege']);
+    expect(discoverySchema.safeParse({ ...base, topics: ['Stadt Wege'] }).success).toBe(false);
+  });
+
+  test('the link carries no progress fields — the schema is strict, so it cannot', () => {
+    // A `completed`/`required`/`readAt` field on a discovery piece would be the moment
+    // exploration became debt. .strict() means any such addition fails loudly here.
+    for (const smuggled of ['required', 'completed', 'readAt', 'mastery']) {
+      expect(discoverySchema.safeParse({ ...base, [smuggled]: true }).success).toBe(false);
+    }
+  });
+});

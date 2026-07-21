@@ -1,0 +1,149 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { briefeReferenceSchema } from '../../lib/schemas';
+import { withBase } from '../../lib/url';
+
+const entry = await getEntry('referenceData', 'briefe');
+if (!entry) throw new Error('Missing canonical briefe reference data');
+const data = briefeReferenceSchema.parse(entry.data);
+
+// Register is the axis the whole page turns on, so it is a label, not a colour alone: a
+// learner who picks the wrong one has written a different message, not a worse one.
+const registerLabels = {
+  formal: { de: 'Sie · formell', en: 'formal (Sie)', ru: 'формальное (Sie)' },
+  neutral: { de: 'Sie · neutral', en: 'neutral (Sie)', ru: 'нейтральное (Sie)' },
+  vertraut: { de: 'du · vertraut', en: 'familiar (du)', ru: 'близкое (du)' },
+} as const;
+
+const registerClasses = {
+  formal: 'bg-stone-200 text-stone-800 dark:bg-stone-700 dark:text-stone-200',
+  neutral: 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300',
+  vertraut: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300',
+} as const;
+
+const channelLabels = {
+  brief: { de: 'Brief', en: 'letter', ru: 'письмо' },
+  email: { de: 'E-Mail', en: 'e-mail', ru: 'эл. почта' },
+  nachricht: { de: 'Nachricht', en: 'message', ru: 'сообщение' },
+} as const;
+
+const levelClasses: Record<string, string> = {
+  A1: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300',
+  A2: 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300',
+  B1: 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300',
+  B2: 'bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-300',
+};
+
+const sectionTitle = new Map(data.sections.map((section) => [section.id, section.title.de]));
+---
+
+<Base title="Briefe & Nachrichten">
+  <nav class="mb-5 text-sm text-stone-400">
+    <a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a>
+    <span> / Briefe &amp; Nachrichten</span>
+  </nav>
+
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-1 text-3xl font-bold tracking-tight">Briefe &amp; Nachrichten</h1>
+    <p class="mt-2 max-w-2xl text-stone-500">
+      <span class="lang-en">The parts a German message is built from, in the order they appear — and three complete models at three registers. Choose <b>du</b> or <b>Sie</b> once and hold it to the last line.</span>
+      <span class="lang-ru">Части, из которых строится немецкое сообщение, в порядке их следования — и три полных образца в трёх регистрах. Выберите <b>du</b> или <b>Sie</b> один раз и держитесь этого до последней строки.</span>
+    </p>
+  </header>
+
+  {
+    data.sections.map((section) => (
+      <section class="mt-12">
+        <h2 lang="de" class="text-2xl font-bold">{section.title.de}</h2>
+        <p class="mt-2 max-w-3xl text-sm text-stone-500">
+          <span class="lang-en">{section.description.en}</span>
+          <span class="lang-ru">{section.description.ru}</span>
+          {section.description.uk && <span class="lang-uk">{section.description.uk}</span>}
+          {section.description.de && <span class="lang-de">{section.description.de}</span>}
+        </p>
+        <div class="mt-4 divide-y divide-stone-200 rounded-xl border border-stone-200 dark:divide-stone-700 dark:border-stone-700">
+          {section.entries.map((item) => (
+            <div class="p-4">
+              <div class="flex flex-wrap items-baseline gap-2">
+                {/*
+                  `form` is rendered verbatim, and that is load-bearing. The opening lines are
+                  authored lowercase (`ich schreibe Ihnen, weil …`) because that is how they
+                  really appear after the greeting comma — which is the page's main teaching
+                  point. Any sentence-casing here would quietly delete it.
+                */}
+                <code lang="de" class="rounded bg-stone-100 px-2 py-1 text-base font-semibold dark:bg-stone-800">{item.form}</code>
+                <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${registerClasses[item.register]}`}>
+                  <span class="lang-en">{registerLabels[item.register].en}</span>
+                  <span class="lang-ru">{registerLabels[item.register].ru}</span>
+                </span>
+                <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${levelClasses[item.level]}`}>{item.level}</span>
+                <span class="text-xs text-stone-400">
+                  {item.channel.map((c) => channelLabels[c].de).join(' · ')}
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-stone-600 dark:text-stone-300">
+                <span class="lang-en">{item.use.en}</span>
+                <span class="lang-ru">{item.use.ru}</span>
+                {item.use.uk && <span class="lang-uk">{item.use.uk}</span>}
+                {item.use.de && <span class="lang-de">{item.use.de}</span>}
+              </p>
+              {item.note && (
+                <p class="mt-2 text-sm text-stone-500">
+                  <span class="lang-en">{item.note.en}</span>
+                  <span class="lang-ru">{item.note.ru}</span>
+                  {item.note.uk && <span class="lang-uk">{item.note.uk}</span>}
+                  {item.note.de && <span class="lang-de">{item.note.de}</span>}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold">Drei Beispiele</h2>
+    <p class="mt-2 max-w-3xl text-sm text-stone-500">
+      <span class="lang-en">The same six parts, walked end to end at three registers. Read them down the column: the message does not get shorter as it gets less formal, it gets different.</span>
+      <span class="lang-ru">Те же шесть частей, пройденные целиком в трёх регистрах. Читайте по столбцу: чем менее формально сообщение, тем оно не короче, а другое.</span>
+    </p>
+    <div class="mt-5 grid gap-5 lg:grid-cols-3">
+      {data.templates.map((template) => (
+        <article class="rounded-xl border border-stone-200 p-5 dark:border-stone-700">
+          <div class="flex flex-wrap items-baseline gap-2">
+            <h3 lang="de" class="text-lg font-bold">{template.title.de}</h3>
+            <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${registerClasses[template.register]}`}>
+              <span class="lang-en">{registerLabels[template.register].en}</span>
+              <span class="lang-ru">{registerLabels[template.register].ru}</span>
+            </span>
+            <span class="text-xs text-stone-400">{channelLabels[template.channel].de}</span>
+          </div>
+          <p class="mt-1 text-sm text-stone-500">
+            <span class="lang-en">{template.situation.en}</span>
+            <span class="lang-ru">{template.situation.ru}</span>
+            {template.situation.uk && <span class="lang-uk">{template.situation.uk}</span>}
+            {template.situation.de && <span class="lang-de">{template.situation.de}</span>}
+          </p>
+          <ol class="mt-4 space-y-3">
+            {template.lines.map((line) => (
+              <li>
+                <span class="text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+                  {sectionTitle.get(line.section)}
+                </span>
+                <p lang="de" class="text-sm font-medium">{line.de}</p>
+                <p class="text-xs text-stone-500">
+                  <span class="lang-en">{line.en}</span>
+                  <span class="lang-ru">{line.ru}</span>
+                  {line.uk && <span class="lang-uk">{line.uk}</span>}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

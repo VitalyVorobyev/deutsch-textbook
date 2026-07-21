@@ -277,9 +277,9 @@ Optional editorial pieces from the fifteen-theme backlog, each passing the edito
 control, and no review obligation from opening it:
 
 1. die Berliner Mauer im Stadtbild
-2. das Ampelmännchen
+2. das Ampelmännchen — shipped (A1)
 3. Pfand und Mülltrennung — shipped
-4. die Sonntagsruhe
+4. die Sonntagsruhe — shipped (B1, the `<De>` pilot)
 5. Schrebergärten
 6. Deutsch in Österreich und der Schweiz
 7. der Verein
@@ -301,24 +301,40 @@ queue; the probe-debt row names the P5-11 audits and the P5-7 decision.
 - Depends on: P9-1.
 - Accept per piece: the editorial test; the validator; no mastery or review-debt semantics.
 
-### P9-3 · Referenz lookup pages — `next` (S — one page left)
+**Discoverability shipped 2026-07-21, and it was the bigger half.** `discoverySchema` gained an
+optional `topics: []`; topic pages render an Entdecken aside listing the reviewed pieces that name
+them, and `/entdecken` groups by level. Five pieces had shipped with no route to any of them
+except deliberately opening the index — a likelier reading of the strand's one *useful: no* datum
+than the writing was. The edge is one-way and optional on both sides, and `.strict()` plus a test
+keep a `required`/`completed`/`readAt` field from ever being added: discoverability is not
+obligation.
 
-Three pages were planned, each derived or canonical — never a second hand-maintained textbook.
-**Two shipped in PR #70**: `/referenz/verbformen` (build-time-derived from the vocab YAML —
-`praesens_3sg`, `partizip2`, `aux`, `valence` — so the verb table cannot drift from the decks that
-teach the verbs) and `/referenz/zahlen-datum-zeit` (numbers, dates and clock time from
-`content/reference-data/zahlen-datum-zeit.yaml`, shared with any lesson that needs it). One remains;
-match the existing `src/pages/referenz/*.astro` pattern.
+**The `<De>` cost, reproducibly.** `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`
+→ **1.98x** localised, **1.55x** overall. The same measure over the six three-half pieces gives
+**1.47x** localised, so `uk` costs about +47% and `de` costs roughly that again on top. The script
+exists because the first version of these figures reached the roadmap with no command behind
+them — which is the rule CLAUDE.md states and this repo keeps breaking.
 
-- `/referenz/briefe` — letter and message conventions (greeting, closing, register).
+**Do not plan volume against the existing feedback.** The single datum
+(`discovery:a2/berlin-ubahn-karte`, *comfortable / useful: no / wants more: no*) was recorded
+2026-07-19T09:22Z — 4h38m before #85 fixed the invisible toggles it was entered through, and
+"off" is what a double-press on an unresponsive toggle produces. Entdecken feedback starts at #85.
 
-Lower priority, recorded so it is not re-invented as a page: a two-way-preposition visual belongs
-inside the existing kasus reference, not on a new route.
+### P9-3 · Referenz lookup pages — **done 2026-07-21**
 
-- Accept: reference pages carry no completion state or evidence semantics; derived tables are
-  computed at build time.
+All three shipped. `/referenz/verbformen` and `/referenz/zahlen-datum-zeit` in PR #70;
+`/referenz/briefe` closes it — six sections in message order (35 entries) plus three complete
+templates walking those sections at three registers, from `content/reference-data/briefe.yaml`.
+Each page is derived or canonical, never a second hand-maintained textbook, and none carries
+completion state or evidence semantics.
 
-## Phase 5 — the entries still open
+Recorded because it is easy to undo by accident: the opening lines are authored **lowercase**
+(`ich schreibe Ihnen, weil …`), since that is how they appear after the greeting comma — the
+page's main teaching point. The renderer prints `form` verbatim and says so; sentence-casing it
+would silently delete the lesson.
+
+Lower priority, still not a page: a two-way-preposition visual belongs inside the existing kasus
+reference.
 
 ### P5-11 · Two-unit A2 evidence cycles — `doing` (recurring)
 
