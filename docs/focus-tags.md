@@ -10,7 +10,7 @@ authoring is driven by it, and the grammar inventory counts a structure as taugh
 worse than no tag — it sends training and drill authoring after a confusion the learner does not
 have.
 
-Use existing tags whenever possible; add a new one only for a genuinely new confusion, and add it to this table in the same change. The table is an **allowlist**: `bun run validate` rejects a focus tag that is not also registered in `focusIntroducedBy` (`scripts/validate.ts`) with the topic that introduces it, so a typo or an undeclared confusion cannot slip through unchecked.
+Use existing tags whenever possible; add a new one only for a genuinely new confusion, and add it to this table in the same change. The table is an **allowlist**: `bun run validate` rejects a focus tag that is not also registered in `focusIntroducedBy` (`src/lib/focus-tags.ts`) with the topic that introduces it, so a typo or an undeclared confusion cannot slip through unchecked. The two lists are held equal **in both directions** by `tests/focus-tags.test.ts` — which matters because only one direction was ever loud: a tag registered but undocumented is invisible, so an author never learns the confusion exists and reaches for a near-miss tag instead.
 
 | Tag | Confusion it names |
 | --- | --- |

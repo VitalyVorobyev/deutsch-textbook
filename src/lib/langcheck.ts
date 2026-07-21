@@ -160,7 +160,31 @@ function isExplainRecord(obj: object): boolean {
     a record right (the P8-4 satisfiability trap). */
 const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
 
-export function deParityProblems(node: unknown): string[] {
+/**
+ * Whether any bilingual EXPLANATION record in the tree carries a German half — the
+ * frontmatter side of the de parity bridge (`forceDe` in mdxLangProblems).
+ *
+ * Deliberately not `hasLangStringField(node, 'de')`, the way the uk bridge works. That
+ * matches any `*_de` key, and **every content file has `title_de`** — the German name of
+ * the thing, present whether or not a German explanation half exists anywhere. Using it
+ * demanded a `<De>` half in every `<Bilingual>` block of every file in the repo; the A1
+ * Ampelmännchen piece failed instantly, which is how this was caught. The uk bridge is
+ * right to use the broad test, because `title_uk` genuinely IS a Ukrainian translation and
+ * its presence means the file is in a translation wave. `title_de` means nothing of the
+ * kind, so the de trigger has to be the same explanation-record shape deParityProblems
+ * itself counts.
+ */
+export function hasDeExplanation(node: unknown): boolean {
+  let found = false;
+  walkObjects(node, '', (obj, path) => {
+    if (found || MATCH_RIGHT_PATH.test(path) || !isExplainRecord(obj)) return;
+    const de = (obj as Record<string, unknown>).de;
+    if (typeof de === 'string' && de.length > 0) found = true;
+  });
+  return found;
+}
+
+export function deParityProblems(node: unknown, opts: { forceDe?: boolean } = {}): string[] {
   const withDe: string[] = [];
   const withoutDe: string[] = [];
   walkObjects(node, '', (obj, path) => {
@@ -170,10 +194,15 @@ export function deParityProblems(node: unknown): string[] {
     if (typeof de === 'string' && de.length > 0) withDe.push(path || '(root)');
     else withoutDe.push(path || '(root)');
   });
-  if (withDe.length === 0 || withoutDe.length === 0) return [];
+  // `forceDe` is the body→frontmatter half of the bridge, and it is the reason the walker
+  // cannot decide alone: `<De>` halves live in an MDX body this function never sees, so
+  // without it a file could carry a fully German-medium article under an English-only
+  // summary card and validate silently. The mirror of `forceUk` above.
+  if ((withDe.length === 0 && !opts.forceDe) || withoutDe.length === 0) return [];
+  const carrier = withDe[0] ? `e.g. ${withDe[0]}` : 'a <De> half in its body';
   return withoutDe.map(
     (at) =>
-      `${at} has no de half — this scope carries de (e.g. ${withDe[0]}), so parity requires de on every bilingual explanation record`,
+      `${at} has no de half — this scope carries de (${carrier}), so parity requires de on every bilingual explanation record`,
   );
 }
 
@@ -202,7 +231,10 @@ export interface MdxLangReport {
  * reverse bridge (body `<Uk>` forcing frontmatter parity) is the caller's:
  * pass the body's `<Uk>` presence as `forceUk` to `ukParityProblems`.
  */
-export function mdxLangProblems(body: string, opts: { forceUk?: boolean } = {}): MdxLangReport {
+export function mdxLangProblems(
+  body: string,
+  opts: { forceUk?: boolean; forceDe?: boolean } = {},
+): MdxLangReport {
   const balance: string[] = [];
   const letters: string[] = [];
   const parity: string[] = [];
@@ -232,11 +264,19 @@ export function mdxLangProblems(body: string, opts: { forceUk?: boolean } = {}):
   checkLetters('Uk', RU_ONLY, 'Russian-only letters');
 
   const bilinguals = body.match(/<Bilingual>[\s\S]*?<\/Bilingual>/g) ?? [];
+  const forcedBy = { Uk: opts.forceUk ?? false, De: opts.forceDe ?? false } as const;
   for (const tag of ['Uk', 'De'] as const) {
     const inBody = body.includes(`<${tag}>`);
-    const forced = tag === 'Uk' && (opts.forceUk ?? false);
+    // Was `tag === 'Uk' && opts.forceUk`, so the frontmatter→body bridge existed for uk
+    // alone: a file could carry `summary.de` and a wholly English article, or German
+    // article halves under an English summary card, and validate said nothing — while
+    // docs/i18n-design.md and the comment in scripts/validate.ts both assert frontmatter
+    // and body are ONE parity scope. That was true of uk only. Found by the first content
+    // ever to use `de` (content/discovery/b1/sonntagsruhe.mdx), which is what the pilot
+    // was for; both directions were reproduced passing before the fix.
+    const forced = forcedBy[tag];
     if (!inBody && !forced) continue;
-    const carrier = inBody ? `<${tag}> elsewhere` : 'uk in its frontmatter';
+    const carrier = inBody ? `<${tag}> elsewhere` : `${tag.toLowerCase()} in its frontmatter`;
     bilinguals.forEach((block, i) => {
       if (!block.includes(`<${tag}>`))
         parity.push(
