@@ -280,7 +280,7 @@ evidence because the outcome it serves says `spoken-interaction`.
 ## Focus tags
 
 The taxonomy is an allowlist. A tag must appear in the [focus-tag table](focus-tags.md) **and** in
-`focusIntroducedBy` (`scripts/validate.ts`), naming the topic that introduces it, or validation
+`focusIntroducedBy` (`src/lib/focus-tags.ts`), naming the topic that introduces it, or validation
 fails. These are the A2 additions, decided here so the taxonomy stays coherent instead of accreting
 one unit at a time. Each is registered in the pull request that lands its introducing topic.
 

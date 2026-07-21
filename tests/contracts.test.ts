@@ -486,3 +486,40 @@ describe('scoring and curriculum contracts', () => {
     expect(attempts[1]?.correct).toBe(true);
   });
 });
+
+// The recognition-only mechanism is defaulted, never retrofitted: card identity is
+// `<deck>::<de>::<direction>`, so flipping a shipped entry to `recognition` would delete
+// the learner's SRS history for its production card. These two tests are the guard.
+describe('cards: recognition | both', () => {
+  test('no shipped entry has been retrofitted — every deck still builds two cards per entry', () => {
+    type Entry = Parameters<typeof buildDeck>[1][number];
+    let entries = 0;
+    let cards = 0;
+    for (const deck of contentFiles<{ id: string; entries: Entry[] }>('vocab')) {
+      entries += deck.entries.length;
+      cards += buildDeck(deck.id, deck.entries).length;
+    }
+    // If this ever fails, an existing entry was switched to recognition-only and a learner
+    // lost the FSRS history of its x-de card. New B1 decks may of course lower the ratio —
+    // update the assertion in the same change that ships them, deliberately.
+    expect(cards).toBe(entries * 2);
+  });
+
+  test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
+    type Entry = Parameters<typeof buildDeck>[1][number];
+    const base = {
+      de: 'Zuschlag', pos: 'noun', gender: 'm', plural: 'die Zuschläge', ipa: 'ˈtsuːʃlaːk',
+      en: 'surcharge', ru: 'доплата',
+      example_de: 'Der Zuschlag kostet drei Euro.',
+      example_en: 'The surcharge costs three euros.',
+      example_ru: 'Доплата стоит три евро.',
+    } as unknown as Entry;
+    const both = buildDeck('d', [{ ...base, cards: 'both' } as Entry]);
+    const recognition = buildDeck('d', [{ ...base, cards: 'recognition' } as Entry]);
+    expect(both.map((c) => c.dir)).toEqual(['de-x', 'x-de']);
+    expect(recognition.map((c) => c.dir)).toEqual(['de-x']);
+    // The surviving card keeps the id it would have had either way, so switching an entry
+    // BEFORE it ships costs nothing and the recognition card's history is never at risk.
+    expect(recognition[0]!.id).toBe(both[0]!.id);
+  });
+});

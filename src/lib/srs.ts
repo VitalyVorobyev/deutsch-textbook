@@ -184,7 +184,12 @@ export function buildDeck(
       context: contexts[lexicalKey(deckId, e.de)],
     };
     cards.push({ ...base, id: cardId(deckId, e.de, 'de-x'), dir: 'de-x' });
-    cards.push({ ...base, id: cardId(deckId, e.de, 'x-de'), dir: 'x-de' });
+    // `cards: recognition` yields the DE→meaning card alone. Defaulted to `both` in the
+    // schema, so every entry authored so far is untouched and no card id moves — see the
+    // field's comment there for why retrofitting one would destroy SRS history.
+    if (e.cards !== 'recognition') {
+      cards.push({ ...base, id: cardId(deckId, e.de, 'x-de'), dir: 'x-de' });
+    }
   }
   return cards;
 }

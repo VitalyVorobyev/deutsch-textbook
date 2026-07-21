@@ -121,7 +121,7 @@ Section order (H2 headings, in German):
 ### Focus tags → [`docs/focus-tags.md`](docs/focus-tags.md)
 
 The table there is an **allowlist**: `bun run validate` rejects a tag not registered in
-`focusIntroducedBy` (`scripts/validate.ts`) with the topic that introduces it. Use an existing tag
+`focusIntroducedBy` (`src/lib/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
 whenever possible; a new one is for a genuinely new confusion and joins both places in the same
 change. Leave genuinely mixed or pure-comprehension items untagged — **a false tag is worse than no
 tag**, because it sends training and drill authoring after a confusion the learner does not have.
@@ -130,6 +130,8 @@ tag**, because it sends training and drill authoring after a confusion the learn
 
 - Nouns need `gender` + `plural` (with article); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed. Every entry except sentence-length `phrase`s needs a reviewed `ipa`.
 - **`accept` exists because `de` is three things at once** — the Wortliste key, the answer shown, and the answer typed. Reflexive verbs, adjectival nouns and course-taught spelling variants need it, or the card marks correct German **wrong**. A reflexive verb's form fields must carry `sich` too (validator-enforced when reflexivity is declared).
+- **A gloss is the question side of the production card, so it must never contain the answer.** A usage hint — reflexivity, a governing frame, a fixed chunk — goes in `note`, which renders on the card back. The headword may appear in a gloss only as the translation itself (`Kiosk` → "kiosk"); inside a parenthetical or an em-dash aside it is validator-rejected. Every character of a typed answer must also be on the insert bar (`GERMAN_INPUT_KEYS`, `src/lib/typing.ts`), likewise enforced — `Ä/Ö/Ü` were missing for eleven cards and made them a permanent soft miss.
+- **`cards: recognition` makes one card instead of two**, for language the learner must understand but will never produce. It is **defaulted (`both`) and never retrofitted**: the direction is in the card id, so flipping a shipped entry deletes its production-card SRS history. Use it in new decks — B1's Wortliste tail is what it exists for.
 - **Card identity is `<vocab-file-id>::<de>::<direction>`.** Renaming a headword or file id resets the learner's SRS history — avoid unless the entry was wrong.
 - **A2 vocabulary recycles, never adopts**, and **Wortliste completion decks stay unowned** — listing one in a topic's `vocab:` flips its fresh-card gate and buries hundreds of words behind that topic.
 

@@ -61,6 +61,16 @@ function forms(e: VocabEntry): string {
                   [{e.ipa}]
                 </span>
               )}
+              {/* A recognition-only entry makes one card, not two, so it can never show
+                  production evidence. Saying so here is what keeps that from reading as a
+                  word stuck half-learned — the status is correct, the ceiling is lower. */}
+              {e.cards === 'recognition' && (
+                <span class="block text-xs text-stone-400 dark:text-stone-500">
+                  <span class="lang-en">understand only — no production card</span>
+                  <span class="lang-ru">только на понимание — без карточки на воспроизведение</span>
+                  <span class="lang-uk">лише на розуміння — без картки на відтворення</span>
+                </span>
+              )}
             </td>
             <td lang="de" class="py-2 pr-4 text-stone-500 max-sm:block max-sm:py-0.5 max-sm:pr-0 dark:text-stone-400">{forms(e)}</td>
             <td class="py-2 pr-4 max-sm:block max-sm:py-0.5 max-sm:pr-0">

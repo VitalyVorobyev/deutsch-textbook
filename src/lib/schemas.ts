@@ -178,8 +178,43 @@ export const vocabEntrySchema = z
      */
     accept: z.array(z.string().min(1)).default([]),
     note: bilingualSchema.optional(),
+    /**
+     * How many flashcards this entry becomes.
+     *
+     * `both` (the default, and every entry shipped so far) makes the recognition card
+     * DE→EN/RU and the production card EN/RU→DE. `recognition` makes only the first, for
+     * language the learner must **understand but will never produce** — station
+     * announcements, form headings, listing abbreviations, the long tail of a Wortliste.
+     *
+     * This exists because the two-cards-per-entry rule does not survive B1. The corpus is
+     * 1619 entries → 3238 cards today; the Goethe B1 list is missing 1996 more headwords,
+     * which at two cards each would mean ~7230 cards and ~460 days of introduction at
+     * `DAILY_NEW_CARDS = 15` before anything else is added. A queue that long is not a
+     * curriculum, and its tail is exactly the receptive vocabulary this field describes.
+     *
+     * **It is defaulted, never retrofitted.** Card identity is `<deck>::<de>::<direction>`,
+     * so flipping a shipped entry to `recognition` would delete the learner's SRS history
+     * for its production card. Every existing entry keeps `both` and every existing card id
+     * survives; this is for decks authored from here on. `wordMastery` grades a
+     * one-direction word on the direction it has — otherwise a recognition-only word would
+     * sit at `learning` forever, because "one direction unstarted" is how that state is
+     * defined.
+     */
+    cards: z.enum(['recognition', 'both']).default('both'),
   })
   .superRefine((entry, ctx) => {
+    // `accept` feeds exactly one consumer: the typed production card's grader
+    // (`checkTypedAnswer`). On a recognition-only entry that card does not exist, so the
+    // pair is a contradiction — an author who wrote both meant one of them, and silently
+    // ignoring the alternatives is the failure mode `accept` was added to prevent.
+    if (entry.cards === 'recognition' && entry.accept.length > 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          `"${entry.de}" is cards: recognition but declares accept — accept only ever feeds ` +
+          'the typed production card, which a recognition-only entry does not have',
+      });
+    }
     if (entry.pos === 'noun' && !entry.gender) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
