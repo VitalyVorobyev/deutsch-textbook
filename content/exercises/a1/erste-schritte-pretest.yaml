@@ -3,11 +3,17 @@ role: pretest
 items:
   - id: pre-name
     outcomes: [erste-sich-vorstellen]
-    type: mc
-    prompt: "Ich ___ Maria."
-    options: ["heiße", "komme", "spreche"]
-    correct: 0
-    translation: { en: "My name is Maria.", ru: "Меня зовут Мария.", uk: "Мене звати Марія." }
+    type: cloze
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich {{heiße|bin}} Maria. Und wie heißt du?"
+    translation:
+      en: "My name is Maria. And what is your name?"
+      ru: "Меня зовут Мария. А как тебя зовут?"
+      uk: "Мене звати Марія. А як тебе звати?"
     explain:
       en: "heißen means to be called: Ich heiße Maria."
       ru: "heißen означает «называться»: Ich heiße Maria."

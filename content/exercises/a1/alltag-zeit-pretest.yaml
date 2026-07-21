@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-um-uhrzeit
     outcomes: [zeit-praepositionen]
-    type: mc
+    type: cloze
     focus: um-am-zeit
-    prompt: "Der Kurs beginnt ___ neun Uhr."
-    options: ["um", "am", "im"]
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Der Kurs beginnt {{um}} neun Uhr."
     translation: { en: "The course begins at nine o'clock.", ru: "Курс начинается в девять часов.", uk: "Курс починається о дев'ятій годині." }
     explain: { en: "Clock times always take um: um neun Uhr. am is for days, im for months.", ru: "Время по часам всегда вводит um: um neun Uhr. am — для дней, im — для месяцев.", uk: "Час за годинником завжди вводить um: um neun Uhr. am — для днів, im — для місяців." }
   - id: pre-halb-acht

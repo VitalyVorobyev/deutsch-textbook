@@ -353,3 +353,221 @@ points:
     en: "Present passive — recognition only"
     focus: [passiv-rezeptiv]
     note: "The exam lists it for comprehension rather than production; a receptive-only point still needs a drilled tag, because recognition that is never checked is not evidence."
+
+  # ---------------------------------------------------------------- B1
+  #
+  # Authored 2026-07-20, before any B1 content exists, and that is the point: this
+  # section reports 0% and makes the size of the B1 job visible. The A2 story is the
+  # argument for it — A2 was called content-complete for months on the strength of its
+  # Wortliste figure, and turned out to be at 67% of its structural standard with six
+  # points unwritten, several of them scheduled inside B1 units where they would never
+  # have shown up as A2 debt. A level with no manifest cannot notice that happening.
+  #
+  # The tags below are PROPOSED and none is registered in `focusIntroducedBy` yet, so
+  # every point reports `missing`. That is the normal way an unwritten structure shows
+  # up (see the validator's inventory block); a tag becomes real in the commit that
+  # ships the unit teaching it, and the B1 figure rises by exactly that much.
+  #
+  # Scope boundary: six structures once believed to be B1 are taught at A2 here and are
+  # listed in the A2 section — relative clauses (Nom/Akk), Infinitiv mit zu, um … zu,
+  # als/wenn, Futur I and passive recognition. B1 revisits them at greater depth (the
+  # dative relative pronoun, the produced passive, obwohl as a conjunction) and must not
+  # re-teach them from scratch; the points below name only the added depth, never the A2
+  # structure again. `adjektiv-nullartikel` sits with the other adjective points above.
+  #
+  # Sources: Goethe-Zertifikat B1 Prüfungsziele / Wortschatz- und Strukturenliste,
+  # cross-checked against Schritte plus B1/1–B1/2 and Menschen B1.
+
+  - id: praeteritum-vollverben
+    standard_level: B1
+    de: "Präteritum der Vollverben (schriftliches Erzählen)"
+    en: "Preterite of full verbs — the written narrative past"
+    focus: [praeteritum-vollverben]
+    note: "A2 teaches only war, hatte and the modals, because those are the Präteritum German actually speaks. B1 adds the rest for written narrative, which is a genuinely new competence and not a completion of the A2 one."
+
+  - id: plusquamperfekt
+    standard_level: B1
+    de: "Plusquamperfekt und nachdem (Vorzeitigkeit)"
+    en: "Past perfect with nachdem — one past event before another"
+    focus: [plusquamperfekt-nachdem]
+
+  - id: konjunktiv2-irreal
+    standard_level: B1
+    de: "Konjunktiv II: irreale Bedingungen und Wünsche (Wenn ich Zeit hätte, würde ich …)"
+    en: "Konjunktiv II: unreal conditions and wishes"
+    focus: [konjunktiv2-form, irreale-bedingung]
+
+  - id: konjunktiv2-ratschlag
+    standard_level: B1
+    de: "Konjunktiv II für Ratschläge (An deiner Stelle würde ich …, du solltest …)"
+    en: "Konjunktiv II for advice"
+    focus: [konjunktiv2-ratschlag]
+    note: "A2 teaches könnte and würde gern as fixed politeness chunks (hoeflich-konjunktiv). This point is the productive paradigm behind them, so it must not be marked covered by the A2 tag."
+
+  - id: passiv-produktion
+    standard_level: B1
+    de: "Passiv Präsens — produktiv (Das Formular wird ausgefüllt.)"
+    en: "Present passive — produced, not merely recognised"
+    focus: [passiv-bildung]
+    note: "The A2 point passiv-praesens is recognition only and is satisfied by passiv-rezeptiv. Producing the passive is a separate competence and needs its own tag, or the A2 tag would silently close a B1 gap."
+
+  - id: passiv-vergangenheit
+    standard_level: B1
+    de: "Passiv in der Vergangenheit (wurde gebaut, ist gebaut worden)"
+    en: "Past passive"
+    focus: [passiv-vergangenheit]
+
+  - id: passiv-modal
+    standard_level: B1
+    de: "Passiv mit Modalverben (Das muss heute gemacht werden.)"
+    en: "Passive with modal verbs"
+    focus: [passiv-modal]
+
+  - id: lassen
+    standard_level: B1
+    de: "lassen: erlauben und veranlassen (Ich lasse mir die Haare schneiden.)"
+    en: "lassen: permitting and having something done"
+    focus: [lassen-verwendung]
+
+  - id: reflexiv-praeposition
+    standard_level: B1
+    de: "Reflexive Verben mit Präposition (sich freuen auf, sich interessieren für)"
+    en: "Reflexive verbs governing a preposition"
+    focus: [reflexiv-praeposition]
+
+  - id: verb-praeposition-erweitert
+    standard_level: B1
+    de: "Erweiterte Verb-Präposition-Verbindungen mit da(r)- und wo(r)-Verweis"
+    en: "Extended verb + preposition inventory, with da(r)-/wo(r)- reference"
+    focus: [verb-praeposition-b1]
+    note: "A2 teaches the mechanism (verb-praeposition, da-wo-woerter) on a small inventory. B1 widens the inventory and uses it across clauses; only the new tag is listed, so the A2 tags cannot close this point on their own."
+
+  - id: genitiv-vollstaendig
+    standard_level: B1
+    de: "Genitiv: Formen und Gebrauch (das Auto des Mannes, die Farbe der Wand)"
+    en: "Full genitive: forms and use"
+    focus: [genitiv-form]
+    note: "A2 covers only name + -s and the spoken von + Dativ route (genitiv-eigenname). The declined genitive is B1."
+
+  - id: praeposition-genitiv
+    standard_level: B1
+    de: "Präpositionen mit Genitiv (wegen, trotz, während, statt)"
+    en: "Prepositions governing the genitive"
+    focus: [praeposition-genitiv]
+
+  - id: n-deklination
+    standard_level: B1
+    de: "n-Deklination (der Student → den Studenten, der Kollege → dem Kollegen)"
+    en: "Weak masculine nouns (n-declension)"
+    focus: [n-deklination]
+
+  - id: adjektiv-nomen
+    standard_level: B1
+    de: "Adjektive und Partizipien als Nomen (der Bekannte, das Wichtigste, etwas Neues)"
+    en: "Adjectives and participles used as nouns"
+    focus: [adjektiv-nomen]
+    note: "Partly pre-empted by A2 vocabulary, which already teaches Angestellte, Verwandte and Erwachsene as headwords with an accept list. B1 owes the rule those entries are exceptions to."
+
+  - id: komparativ-attributiv
+    standard_level: B1
+    de: "Komparativ und Superlativ vor dem Nomen (der bessere Job, der beste Preis)"
+    en: "Comparative and superlative in attributive position"
+    focus: [komparativ-attributiv]
+    note: "A2 teaches comparison predicatively (komparativ-als, superlativ-am). Putting a compared adjective in front of the noun also requires the declension endings, which is why the standard places it later."
+
+  - id: partizip-adjektiv
+    standard_level: B1
+    de: "Partizip I und II als Attribut (das gekochte Ei, die lachenden Kinder)"
+    en: "Participles as attributive adjectives"
+    focus: [partizip-adjektiv]
+
+  - id: relativsatz-dativ
+    standard_level: B1
+    de: "Relativsätze im Dativ und nach Präpositionen (dem, mit dem, für den)"
+    en: "Relative clauses in the dative and after prepositions"
+    focus: [relativpronomen-dativ, relativ-praeposition]
+    note: "A2 ships the nominative and accusative relative pronoun (relativsatz). This is the added depth the blueprint names, not a re-teach."
+
+  - id: relativ-was-wo
+    standard_level: B1
+    de: "Relativpronomen was und wo (alles, was …; die Stadt, wo …)"
+    en: "Relative was and wo"
+    focus: [relativ-was-wo]
+
+  - id: indefinitpronomen-erweitert
+    standard_level: B1
+    de: "Erweiterte Indefinitpronomen (irgendein, jeder, alle, beide, manche, einige)"
+    en: "Extended indefinite pronouns and quantifiers"
+    focus: [indefinitpronomen-erweitert]
+    note: "A2 covers man, jemand, niemand, etwas and nichts (indefinitpronomen). The quantifier set that takes article endings is B1."
+
+  - id: temporalsatz
+    standard_level: B1
+    de: "Temporale Nebensätze: bevor, nachdem, während, seit(dem), sobald, bis"
+    en: "Temporal subordinate clauses"
+    focus: [temporal-nebensatz]
+
+  - id: konzessivsatz-obwohl
+    standard_level: B1
+    de: "obwohl als Konjunktion neben trotzdem als Adverb"
+    en: "obwohl as a conjunction beside the adverb trotzdem"
+    focus: [obwohl-trotzdem]
+    note: "A2 teaches trotzdem as a position-1 adverb (konjunktionaladverb). The confusion this point names is that its near-synonym sends the verb to the end instead — which only exists once obwohl is taught."
+
+  - id: finalsatz-damit
+    standard_level: B1
+    de: "damit gegenüber um … zu (verschiedene Subjekte)"
+    en: "damit vs um … zu — when the subjects differ"
+    focus: [damit-um-zu]
+    note: "A2 teaches um … zu (um-zu). The B1 addition is the constraint that it requires one shared subject, and damit is what the learner needs when there are two."
+
+  - id: konsekutivsatz-sodass
+    standard_level: B1
+    de: "Konsekutivsätze: so … dass, sodass"
+    en: "Consecutive clauses: so … that"
+    focus: [sodass-folge]
+
+  - id: kausalsatz-da
+    standard_level: B1
+    de: "da als kausale Konjunktion neben weil"
+    en: "da as a causal conjunction beside weil"
+    focus: [da-weil]
+
+  - id: konditionalsatz-falls
+    standard_level: B1
+    de: "Konditionalsätze mit falls und wenn"
+    en: "Conditional clauses with falls and wenn"
+    focus: [falls-wenn]
+
+  - id: zweiteilige-konnektoren
+    standard_level: B1
+    de: "Zweiteilige Konnektoren (entweder … oder, nicht nur … sondern auch, zwar … aber, je … desto)"
+    en: "Two-part connectors"
+    focus: [zweiteilige-konnektoren]
+
+  - id: infinitivsatz-ohne-statt
+    standard_level: B1
+    de: "Infinitivsätze mit ohne … zu und (an)statt … zu"
+    en: "Infinitive clauses with ohne … zu and statt … zu"
+    focus: [ohne-statt-zu]
+
+  - id: indirekte-rede
+    standard_level: B1
+    de: "Indirekte Rede — rezeptiv (Er sagte, er komme später.)"
+    en: "Reported speech — recognition"
+    focus: [indirekte-rede]
+    note: "Recognition only at B1; Konjunktiv I production belongs to B2. A receptive point still needs a drilled tag, on the same logic as the A2 passive."
+
+  - id: wortstellung-angaben
+    standard_level: B1
+    de: "Stellung der Angaben (temporal – kausal – modal – lokal) und Pronomen vor Nomen"
+    en: "Order of adverbials, and pronoun objects before noun objects"
+    focus: [angaben-reihenfolge, pronomen-stellung]
+    note: "A1 and A2 secure the bracket — what goes in position 2 and what goes at the end. This point is about the order of everything in between, which only becomes decidable once sentences carry several adverbials at once."
+
+  - id: nomen-verb-verbindungen
+    standard_level: B1
+    de: "Nomen-Verb-Verbindungen (eine Entscheidung treffen, in Kontakt bleiben)"
+    en: "Noun–verb collocations"
+    focus: [nomen-verb-verbindung]
+    note: "Lexical rather than structural, and listed because the exam treats it as a structure: the learner has to know which verb a given noun takes, and no rule supplies it."

@@ -1,0 +1,83 @@
+topic: stadt-wege
+role: probe
+title:
+  en: "Probe — filling in the dative after zu, mit, nach, von"
+  ru: "Проверка — датив после zu, mit, nach, von"
+  uk: "Перевірка — давальний після zu, mit, nach, von"
+
+# The second family on this topic, probing the SAME competence as probe-stadt-wege
+# (aus/bei/mit/nach/seit/von/zu always govern the dative, including the contractions
+# zum/zur/beim/vom) through a different response format.
+#
+# Why a twin rather than a new competence: one family serves one variant per interval, so a
+# competence carried by a single family caps at three attempts, ever. Two make it six, and
+# the figure becomes readable a schedule sooner. The two formats also fail differently — a
+# typed sentence can lose the dative *and* three other things at once, while a gap can only
+# lose the dative — so agreement between them is worth more than either alone.
+#
+# New destinations (Post, Markt, Schule, Kino) and new means of transport: nothing here is
+# answerable from memory of the lesson's items or of the translate family's.
+#
+# `preview: true` on every item, exactly as on the translate family and on the topic's own
+# practice set: the tag dativ-praepositionen is introduced later in the spine, by the A2
+# topic dativ. At A1 this topic teaches zum/zur as a fixed chunk, and the tag is still the
+# honest name for what these gaps grade. The flag is curriculum bookkeeping and does not
+# weaken the measurement — a probe never counts toward coverage in the first place.
+
+items:
+  - id: variant-a
+    outcomes: [stadt-weg-erfragen]
+    type: cloze
+    focus: dativ-praepositionen
+    preview: true
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Wie komme ich {{zur}} Post? Fahren Sie mit {{der}} Straßenbahn."
+    translation:
+      en: "How do I get to the post office? Take the tram."
+      ru: "Как мне добраться до почты? Поезжайте на трамвае."
+      uk: "Як мені дістатися до пошти? Їдьте трамваєм."
+    explain:
+      en: "Both nouns are feminine and both prepositions take the dative, so both become der — but one of them is written as a contraction: zu + der is always zur. mit der Straßenbahn keeps the two words apart, because mit has no contracted form."
+      ru: "Оба существительных женского рода, и оба предлога требуют датива, поэтому в обоих случаях получается der — но один из них пишется слитно: zu + der всегда даёт zur. В mit der Straßenbahn слова остаются раздельными, потому что у mit слитной формы нет."
+      uk: "Обидва іменники жіночого роду, і обидва прийменники вимагають давального, тому в обох випадках виходить der — але один з них пишеться разом: zu + der завжди дає zur. У mit der Straßenbahn слова залишаються окремими, бо в mit злитої форми немає."
+
+  - id: variant-b
+    outcomes: [stadt-weg-erfragen]
+    type: cloze
+    focus: dativ-praepositionen
+    preview: true
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Nach {{dem}} Kurs gehe ich {{zum}} Markt. Dort kaufe ich Obst."
+    translation:
+      en: "After the course I go to the market. I buy fruit there."
+      ru: "После курса я иду на рынок. Там я покупаю фрукты."
+      uk: "Після курсу я йду на ринок. Там я купую фрукти."
+    explain:
+      en: "Both nouns are masculine, so both articles become dem — and again one contracts and one does not: zu + dem is zum, while nach has no contraction and keeps dem separate. Note also that nach here means after in time, not to a place; it takes the dative either way."
+      ru: "Оба существительных мужского рода, поэтому оба артикля превращаются в dem — и снова один сливается, а другой нет: zu + dem даёт zum, а у nach слитной формы нет, и dem остаётся отдельно. Обратите также внимание, что nach здесь означает «после» во времени, а не направление; датив требуется в обоих значениях."
+      uk: "Обидва іменники чоловічого роду, тому обидва артиклі перетворюються на dem — і знову один зливається, а інший ні: zu + dem дає zum, а в nach злитої форми немає, і dem залишається окремо. Зверніть також увагу, що nach тут означає «після» в часі, а не напрямок; давальний потрібен в обох значеннях."
+
+  - id: variant-c
+    outcomes: [stadt-weg-erfragen]
+    type: cloze
+    focus: dativ-praepositionen
+    preview: true
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Meine Wohnung ist nicht weit von {{der}} Schule. Ich gehe zu Fuß {{zum}} Kino."
+    translation:
+      en: "My flat is not far from the school. I walk to the cinema."
+      ru: "Моя квартира недалеко от школы. До кинотеатра я хожу пешком."
+      uk: "Моя квартира недалеко від школи. До кінотеатру я ходжу пішки."
+    explain:
+      en: "von takes the dative like every preposition in this group, so die Schule becomes von der Schule. das Kino is neuter, and its dative dem contracts with zu in the usual way: zum Kino. The fixed phrase zu Fuß is worth noting separately — it has no article at all."
+      ru: "von требует датива, как и все предлоги этой группы, поэтому die Schule превращается в von der Schule. das Kino среднего рода, и его форма датива dem сливается с zu обычным образом: zum Kino. Устойчивое выражение zu Fuß стоит запомнить отдельно — в нём вообще нет артикля."
+      uk: "von вимагає давального, як і всі прийменники цієї групи, тому die Schule перетворюється на von der Schule. das Kino середнього роду, і його форма давального dem зливається з zu звичайним чином: zum Kino. Сталий вислів zu Fuß варто запам'ятати окремо — у ньому взагалі немає артикля."

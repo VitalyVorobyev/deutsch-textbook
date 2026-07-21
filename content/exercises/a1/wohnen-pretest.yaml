@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-es-gibt-balkon
     outcomes: [wohnen-beschreiben]
-    type: mc
+    type: cloze
     focus: akkusativ-artikel
-    prompt: "In der Wohnung gibt es ___ Balkon."
-    options: ["ein", "einen", "eine"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "In der Wohnung gibt es {{einen}} Balkon."
     translation: { en: "There is a balcony in the apartment.", ru: "В квартире есть балкон.", uk: "У квартирі є балкон." }
     explain: { en: "es gibt always takes the Akkusativ; Balkon is masculine, so ein → einen.", ru: "После es gibt всегда стоит Akkusativ; Balkon мужского рода, поэтому ein → einen.", uk: "Після es gibt завжди стоїть Akkusativ; Balkon чоловічого роду, тому ein → einen." }
   - id: pre-genus-kueche

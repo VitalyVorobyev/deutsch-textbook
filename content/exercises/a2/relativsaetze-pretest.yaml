@@ -7,15 +7,18 @@ title:
 items:
   - id: pretest-nominativ
     outcomes: [relativ-kasus-waehlen]
-    type: mc
+    type: cloze
     focus: relativpronomen-kasus
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Der Mann, der hier wohnt, ist mein Nachbar."
-      - "Der Mann, den hier wohnt, ist mein Nachbar."
-      - "Der Mann, das hier wohnt, ist mein Nachbar."
-      - "Der Mann, die hier wohnt, ist mein Nachbar."
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Der Mann, {{der}} hier wohnt, ist mein Nachbar."
+    translation:
+      en: "The man who lives here is my neighbour."
+      ru: "Мужчина, который здесь живёт, — мой сосед."
+      uk: "Чоловік, який тут живе, — мій сусід."
     explain:
       en: "Masculine from the noun outside, nominative from the job inside — the man does the living, so he is the subject of his clause: der."
       ru: "Мужской род — от существительного снаружи, именительный падеж — от роли внутри: живёт он сам, значит он подлежащее своего придаточного: der."

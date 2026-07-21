@@ -174,9 +174,30 @@ export interface TranslationSpec {
    * forgiven as a typo (`geflügen` for `geflogen` is a participle the learner built
    * wrong, not a slip). Everything else is scaffolding and gets typo tolerance.
    *
-   * Word order needs no declaration: tokens are compared by position, so a reordered
-   * sentence can never look like a one-token slip. An item that grades only placement
-   * (`modal-satzklammer`, `verbzweit`) therefore needs no `keyTokens` at all.
+   * Word order is declared here too, and an item that grades only placement
+   * (`modal-satzklammer`, `verbzweit`) must still pin **both ends of the bracket**. It is
+   * tempting to reason that it needs no `keyTokens` at all — a reordered sentence changes
+   * at least two positions, so rule 1 can never mistake it for a one-token slip. That
+   * premise is true and the conclusion drawn from it was wrong: with nothing pinned,
+   * `graded.size === 0` below blanket-attributes *every* real error to the tag. Reviewed
+   * one by one against this repo's attempt log, 54 attributions change if the pins go —
+   * and 52 of the 54 are errors belonging to a *different* tag than the item's, so
+   * dropping the pins buys 52 false entries. The pins' own cost is 5. Ten times better,
+   * and that is why they stay.
+   *
+   * Those 5 are the known residual (P12-4) and are of three kinds:
+   *
+   *  - A typo inside a pinned *open-class* word is scored wrong and blamed on the tag —
+   *    `schimmen` for `schwimmen` logged against `modal-satzklammer`. There the token is
+   *    pinned for its *position*, not its form.
+   *  - A token pinned for mere *presence* carries a divergence belonging to another tag —
+   *    `geflügen` for `geflogen` logged against `haben-sein`, when building the Partizip II
+   *    is `partizip2-form`.
+   *  - And the blind spot: `misplacedGraded` requires equal token counts, so an
+   *    **insertion or deletion** can never be attributed even when it is exactly the
+   *    confusion the tag grades. `Sie sollten … zu nehmen` (a modal takes a bare
+   *    infinitive) and `Passt es zu dir …` for `Passt dir …` are both the item's signature
+   *    error, and both come back unattributed.
    *
    * Closed-class words are protected automatically — see CLOSED_CLASS.
    */

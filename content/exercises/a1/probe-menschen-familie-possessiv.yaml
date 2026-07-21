@@ -1,0 +1,73 @@
+topic: menschen-familie
+role: probe
+title:
+  en: "Probe — filling in mein, dein, sein, ihr"
+  ru: "Проверка — подстановка mein, dein, sein, ihr"
+  uk: "Перевірка — підстановка mein, dein, sein, ihr"
+
+# The second family on this topic, probing the SAME competence as probe-menschen-familie
+# (choosing the possessive and matching its ending to the gender of the noun that follows)
+# through a different response format.
+#
+# Two things a possessive gets wrong independently, and both are graded here: *whose* it is
+# (mein vs dein vs sein vs ihr — chosen by the owner) and *what ending* it takes (chosen by
+# the noun that follows, never by the owner). ihr Sohn / ihre Tochter is the pair that makes
+# the second half visible.
+#
+# New relatives (Onkel, Tante, Nachbarin, Enkel) and new situations: none of these can be
+# answered from memory of the topic's practice items or of the translate family's.
+
+items:
+  - id: variant-a
+    outcomes: [familie-vorstellen]
+    type: cloze
+    focus: possessivartikel
+    instruction:
+      en: Fill in the correct possessive.
+      ru: Вставьте правильное притяжательное местоимение.
+      uk: Вставте правильний присвійний займенник.
+    text: "Das ist {{mein}} Onkel. {{Seine}} Frau kommt aus Polen."
+    translation:
+      en: "This is my uncle. His wife is from Poland."
+      ru: "Это мой дядя. Его жена из Польши."
+      uk: "Це мій дядько. Його дружина з Польщі."
+    explain:
+      en: "Two decisions, one after the other. Whose? — the uncle's, so sein-. Then which ending? — Frau is feminine, so seine. The owner is a man, but that has no effect on the ending at all: the noun that follows decides it."
+      ru: "Два решения, одно за другим. Чьё? — дяди, значит sein-. Затем какое окончание? — Frau женского рода, значит seine. Владелец — мужчина, но на окончание это никак не влияет: его определяет следующее существительное."
+      uk: "Два рішення, одне за одним. Чиє? — дядькове, отже sein-. Потім яке закінчення? — Frau жіночого роду, отже seine. Власник — чоловік, але на закінчення це ніяк не впливає: його визначає наступний іменник."
+
+  - id: variant-b
+    outcomes: [familie-vorstellen]
+    type: cloze
+    focus: possessivartikel
+    instruction:
+      en: Fill in the correct possessive.
+      ru: Вставьте правильное притяжательное местоимение.
+      uk: Вставте правильний присвійний займенник.
+    text: "— Ist das {{deine}} Tante? — Nein, das ist {{meine}} Nachbarin."
+    translation:
+      en: "— Is that your aunt? — No, that is my neighbour."
+      ru: "— Это твоя тётя? — Нет, это моя соседка."
+      uk: "— Це твоя тітка? — Ні, це моя сусідка."
+    explain:
+      en: "Both nouns are feminine, so both possessives end in -e: deine Tante, meine Nachbarin. The ending is the same even though the owner changes from one line to the next — a useful reminder that the two halves of the word are decided by two different things."
+      ru: "Оба существительных женского рода, поэтому оба местоимения заканчиваются на -e: deine Tante, meine Nachbarin. Окончание одинаковое, хотя владелец от реплики к реплике меняется, — полезное напоминание, что две части слова определяются разными вещами."
+      uk: "Обидва іменники жіночого роду, тому обидва займенники закінчуються на -e: deine Tante, meine Nachbarin. Закінчення однакове, хоча власник від репліки до репліки змінюється, — корисне нагадування, що дві частини слова визначаються різними речами."
+
+  - id: variant-c
+    outcomes: [familie-vorstellen]
+    type: cloze
+    focus: possessivartikel
+    instruction:
+      en: Fill in the correct possessive.
+      ru: Вставьте правильное притяжательное местоимение.
+      uk: Вставте правильний присвійний займенник.
+    text: "Meine Schwester hat zwei Kinder. {{Ihre}} Tochter ist fünf und {{ihr}} Sohn ist acht."
+    translation:
+      en: "My sister has two children. Her daughter is five and her son is eight."
+      ru: "У моей сестры двое детей. Её дочери пять, а сыну восемь."
+      uk: "У моєї сестри двоє дітей. Її доньці п'ять, а синові вісім."
+    explain:
+      en: "The owner does not change across the sentence — both children are the sister's — yet the word does: ihre Tochter but ihr Sohn. English her stays one word here, which is exactly why the German ending is easy to forget. Tochter is feminine and takes -e; Sohn is masculine and takes nothing."
+      ru: "Владелец в предложении не меняется — оба ребёнка сестрины, — а слово меняется: ihre Tochter, но ihr Sohn. Русское «её» здесь остаётся неизменным, и именно поэтому немецкое окончание так легко забыть. Tochter женского рода и требует -e, Sohn мужского — и не требует ничего."
+      uk: "Власник у реченні не змінюється — обидві дитини сестрині, — а слово змінюється: ihre Tochter, але ihr Sohn. Українське «її» тут залишається незмінним, і саме тому німецьке закінчення так легко забути. Tochter жіночого роду й вимагає -e, Sohn чоловічого — і не вимагає нічого."

@@ -7,22 +7,18 @@ title:
 items:
   - id: pretest-indirekte-w-frage
     outcomes: [nachfragen-klaeren]
-    type: mc
+    type: cloze
     focus: indirekte-frage
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Können Sie mir sagen, ___"
-    options:
-      - "wo der Kurs ist?"
-      - "wo ist der Kurs?"
-      - "wo der Kurs?"
-    correct: 0
+    text: "Können Sie mir sagen, wo der Kurs {{ist}}? (sein)"
     translation:
       en: "Can you tell me where the course is?"
-      ru: "Вы не подскажете, где проходит курс?"
-      uk: "Чи не підкажете, де відбувається курс?"
+      ru: "Вы можете сказать мне, где проходит курс?"
+      uk: "Чи можете ви сказати мені, де відбувається курс?"
     explain:
       en: "Können Sie mir sagen is already a main clause with its verb in position 2. Everything after the comma is therefore a Nebensatz, and a Nebensatz ends with its conjugated verb: wo der Kurs ist. Option 2 is the bare question Wo ist der Kurs? left standing inside the wrapper — right on its own, wrong here. Option 3 drops the verb altogether, and German never does that: the clause needs ist, and it needs it at the end."
       ru: "Können Sie mir sagen — это уже главное предложение, и глагол в нём стоит на втором месте. Значит, всё после запятой — придаточное, а придаточное заканчивается спрягаемым глаголом: wo der Kurs ist. Во втором варианте внутри рамки остался самостоятельный вопрос Wo ist der Kurs? — сам по себе он правильный, а здесь нет. В третьем глагол выброшен вовсе: по-русски «где курс?» звучит нормально, но немецкий без глагола-связки не обходится — ist обязательно, и стоять оно должно в конце."

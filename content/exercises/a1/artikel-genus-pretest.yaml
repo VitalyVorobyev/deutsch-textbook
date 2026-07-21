@@ -3,15 +3,18 @@ role: pretest
 items:
   - id: pre-genus-buch
     outcomes: [artikel-richtig-verwenden]
-    type: mc
+    type: cloze
     focus: genus
-    prompt: "Was ist richtig?"
-    options: ["der Buch", "die Buch", "das Buch"]
-    correct: 2
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "{{Das}} Buch ist sehr interessant."
     translation:
-      en: the book
-      ru: книга
-      uk: книжка
+      en: "The book is very interesting."
+      ru: "Книга очень интересная."
+      uk: "Книжка дуже цікава."
     explain:
       en: "Gender belongs to the German word, not to the thing it names — a noun's translation in another language can never tell you its German gender. Buch happens to be neuter: das Buch. That is why you always learn a noun together with its article."
       ru: "Род — свойство немецкого слова, а не предмета, и из русского он не переносится: «книга» — женского рода, а Buch — среднего, поэтому das Buch. Вот почему существительное всегда учат вместе с артиклем."

@@ -156,7 +156,12 @@ items:
     prompt_ru: "Новый коллега очень приветливый."
     prompt_uk: "Новий колега дуже привітний."
     answer: "Der neue Kollege ist sehr freundlich."
+    # nett is a plain synonym of freundlich here and changes nothing the item grades: the
+    # adjective it measures is neue, and the predicative adjective stays bare either way.
+    accept:
+      - "Der neue Kollege ist sehr nett."
     key_tokens: ["neue"]
+    revision: 2
     explain:
       en: "der has already said masculine nominative, so the adjective needs nothing more than the light -e. And freundlich, sitting after ist, stays bare. Note that Kollege ends in -n in every case except this one (den Kollegen, dem Kollegen) — it is an n-Nomen, which is worth recognising but is not what this item grades."
       ru: "der уже сказал: мужской род, именительный падеж — поэтому прилагательному хватает лёгкого -e. А freundlich стоит после ist и остаётся голым. Заметьте: Kollege во всех падежах, кроме этого, оканчивается на -n (den Kollegen, dem Kollegen) — это n-Nomen; знать это полезно, но данное задание проверяет не его."

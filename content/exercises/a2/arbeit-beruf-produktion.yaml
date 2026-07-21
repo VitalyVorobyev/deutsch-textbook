@@ -88,6 +88,11 @@ items:
     key_tokens: ["darfst", "musst"]
     accept:
       - "Hier darfst du nicht rauchen. Aber du musst heute nicht länger arbeiten."
+      # Subject-first is as good V2 as the fronted Hier, and the modal — the only thing this
+      # item grades — sits in position 2 in both.
+      - "Du darfst hier nicht rauchen. Aber du musst heute nicht länger arbeiten."
+      - "Du darfst hier nicht rauchen. Aber heute musst du nicht länger arbeiten."
+    revision: 2
     explain:
       en: "The two halves of this sentence are the whole lesson in miniature, and only the modal tells them apart. The first half is a ban, and a ban is dürfen + nicht: darfst du nicht rauchen. The second half bans nothing — it lifts an obligation, and that is müssen + nicht: musst du nicht länger arbeiten. Swap the two verbs and you have told your new colleague that smoking is optional and that overtime is prohibited. Note the bracket in both halves: the modal is second (after Hier, after Aber heute), and the infinitive closes the clause."
       ru: "Две половины этого предложения — весь урок в миниатюре, и различает их только модальный глагол. Первая половина — запрет, а запрет выражается через dürfen + nicht: darfst du nicht rauchen. Вторая половина ничего не запрещает — она снимает обязанность, а это müssen + nicht: musst du nicht länger arbeiten. Поменяйте глаголы местами — и вы сообщите новому коллеге, что курить необязательно, а сверхурочные запрещены. Обратите внимание на рамку в обеих половинах: модальный глагол стоит вторым (после Hier, после Aber heute), а инфинитив закрывает предложение."

@@ -179,7 +179,7 @@ function itemGerman(item: Record<string, unknown>): string[] {
  *     precisely how A1 claimed `euer`, and it is the whole difference between an
  *     honest rule and a generous one.
  *  2. reading paragraphs, each `[[de::en::ru]]` gloss reduced to its German half.
- *     CLAUDE.md sends receptive-only language *to readings*, so excluding them
+ *     docs/coverage-instruments.md counts a reading as taught surface, so excluding them
  *     would put this check at odds with the authoring contract.
  *  3. exercise items of `role: practice` and `role: drill` only — mirroring the
  *     existing "outcome measured by nothing" rule in scripts/validate.ts. A pretest

@@ -7,15 +7,18 @@ title:
 items:
   - id: pretest-zu-nach-vorhaben
     outcomes: [zu-oder-ohne-zu]
-    type: mc
+    type: cloze
     focus: zu-infinitiv
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Ich habe vor, im Sommer nach Wien zu fahren."
-      - "Ich habe vor, im Sommer nach Wien fahren."
-      - "Ich habe vor, im Sommer zu nach Wien fahren."
-      - "Ich habe vor zu, im Sommer nach Wien fahren."
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich habe vor, im Sommer nach Wien {{zu}} fahren."
+    translation:
+      en: "I am planning to travel to Vienna in the summer."
+      ru: "Я собираюсь летом поехать в Вену."
+      uk: "Я збираюся влітку поїхати до Відня."
     explain:
       en: "vorhaben is an ordinary verb, not a modal, so its infinitive needs zu — and zu belongs immediately in front of the infinitive at the end of the clause, not anywhere earlier."
       ru: "vorhaben — обычный глагол, а не модальный, поэтому его инфинитиву нужен zu, и стоит zu вплотную перед инфинитивом в конце оборота, а не где-то раньше."

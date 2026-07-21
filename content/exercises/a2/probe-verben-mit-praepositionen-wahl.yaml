@@ -1,0 +1,78 @@
+topic: verben-mit-praepositionen
+role: probe
+title:
+  en: "Probe — choosing the preposition the verb governs"
+  ru: "Проверка — выбор предлога, которого требует глагол"
+  uk: "Перевірка — вибір прийменника, якого вимагає дієслово"
+
+# The second family on this topic. probe-verben-mit-praepositionen probes da-wo-woerter
+# (wo(r)- questions, da(r)- references, the linking r, thing against person). This one probes
+# verb-praeposition itself: which preposition each verb takes.
+#
+# The order matters pedagogically — you cannot build worauf without knowing that warten takes
+# auf — so the topic's own foundation currently has no delayed evidence while the structure
+# built on top of it does. This family closes that.
+#
+# cloze rather than translate: the preposition is a lexical FORM, fixed per verb and not
+# derivable from meaning in either English or Russian, so a gap grades exactly the thing that
+# has to be memorised. It is also the case where a translate probe is least informative: a
+# learner who writes the wrong preposition usually gets the whole rest of the sentence right,
+# and the miss then lands in the "target retained, sentence missed elsewhere" bucket.
+#
+# The pairs are chosen so that the English and Russian equivalents point elsewhere — wait FOR
+# but auf, think OF but an, dream OF but von — because that mismatch is the actual confusion.
+
+items:
+  - id: variant-a
+    outcomes: [verb-praeposition-waehlen]
+    type: cloze
+    focus: verb-praeposition
+    instruction:
+      en: Fill in the correct preposition.
+      ru: Вставьте правильный предлог.
+      uk: Вставте правильний прийменник.
+    text: "Ich warte {{auf}} den Bus. Meine Schwester interessiert sich {{für}} Musik."
+    translation:
+      en: "I'm waiting for the bus. My sister is interested in music."
+      ru: "Я жду автобус. Моя сестра интересуется музыкой."
+      uk: "Я чекаю на автобус. Моя сестра цікавиться музикою."
+    explain:
+      en: "warten auf takes the accusative and is not derivable from the English for or from a Russian construction with no preposition at all — the German verb simply owns auf. sich interessieren für likewise fixes für plus the accusative; the preposition belongs to the verb, not to the meaning."
+      ru: "warten auf требует винительного падежа, и вывести его нельзя ни из английского for, ни из русской конструкции, где предлога вообще нет: немецкий глагол просто владеет своим auf. sich interessieren für точно так же закрепляет за собой für с винительным падежом; предлог принадлежит глаголу, а не смыслу."
+      uk: "warten auf вимагає знахідного відмінка, і вивести його не можна ні з англійського for, ні з російської конструкції, де прийменника взагалі немає: німецьке дієслово просто володіє своїм auf. sich interessieren für так само закріплює за собою für зі знахідним відмінком; прийменник належить дієслову, а не змісту."
+
+  - id: variant-b
+    outcomes: [verb-praeposition-waehlen]
+    type: cloze
+    focus: verb-praeposition
+    instruction:
+      en: Fill in the correct preposition.
+      ru: Вставьте правильный предлог.
+      uk: Вставте правильний прийменник.
+    text: "Wir freuen uns {{auf}} das Wochenende. Ich denke oft {{an}} meine Familie."
+    translation:
+      en: "We're looking forward to the weekend. I often think of my family."
+      ru: "Мы ждём выходных с нетерпением. Я часто думаю о своей семье."
+      uk: "Ми з нетерпінням чекаємо на вихідні. Я часто думаю про свою родину."
+    explain:
+      en: "sich freuen has two prepositions with different meanings, and the tense of the thing decides: auf for something still ahead, über for something that has already happened. The weekend is ahead, so auf. denken an is fixed and takes the accusative — English think of would suggest von, so this one has to be learned as a unit rather than translated."
+      ru: "У sich freuen два предлога с разными значениями, и выбор определяется временем события: auf для того, что ещё впереди, über для того, что уже произошло. Выходные впереди, значит auf. denken an закреплено и требует винительного падежа: английское of и русское «о» указывают куда угодно, только не на an, — поэтому это сочетание нужно запоминать целиком."
+      uk: "У sich freuen два прийменники з різними значеннями, і вибір визначається часом події: auf для того, що ще попереду, über для того, що вже сталося. Вихідні попереду, отже auf. denken an закріплене й вимагає знахідного відмінка: англійське of і російське «о» вказують куди завгодно, тільки не на an, — тому це сполучення треба запам'ятовувати цілком."
+
+  - id: variant-c
+    outcomes: [verb-praeposition-waehlen]
+    type: cloze
+    focus: verb-praeposition
+    instruction:
+      en: Fill in the correct preposition.
+      ru: Вставьте правильный предлог.
+      uk: Вставте правильний прийменник.
+    text: "Er träumt {{von}} einer langen Reise. Sie spricht gern {{über}} ihre Arbeit."
+    translation:
+      en: "He dreams of a long journey. She likes talking about her work."
+      ru: "Он мечтает о долгом путешествии. Она охотно рассказывает о своей работе."
+      uk: "Він мріє про довгу подорож. Вона охоче розповідає про свою роботу."
+    explain:
+      en: "träumen von takes the dative — einer langen Reise — while sprechen über takes the accusative. English would use about for both, and German still splits them into two prepositions with two different cases. The case is part of what has to be memorised, not something to derive afterwards."
+      ru: "träumen von требует дательного падежа — einer langen Reise, — а sprechen über требует винительного. По-английски оба были бы about, по-русски оба «о», и всё же немецкий использует два разных предлога с двумя разными падежами. Падеж входит в то, что нужно запомнить, а не выводится потом."
+      uk: "träumen von вимагає давального відмінка — einer langen Reise, — а sprechen über вимагає знахідного. Англійською обидва були б about, російською обидва «о», і все ж німецька використовує два різні прийменники з двома різними відмінками. Відмінок входить у те, що треба запам'ятати, а не виводиться потім."

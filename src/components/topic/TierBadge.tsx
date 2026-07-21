@@ -56,3 +56,24 @@ export function SelfAssessedMark({ className = '' }: { className?: string }) {
     </span>
   );
 }
+
+/**
+ * Placement marker: the learner passed this topic on the level entry test.
+ *
+ * **Outlined, never the filled `tier.mastered` pill** — and that is the whole point of it
+ * being a separate component. Placement is real evidence and it is green, but it is not
+ * the ten spaced correct answers across two days that `Gemeistert` means. Rendering it as
+ * the mastered badge would let a twenty-item test mint mastery the course never measured.
+ */
+export function PlacedMark({ className = '' }: { className?: string }) {
+  const uiLang = useUiLang();
+  return (
+    <span
+      lang={uiLang}
+      title={t('placement.badgeTitle', uiLang)}
+      className={`inline-flex items-center gap-1 rounded-full border border-emerald-300 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:border-emerald-700 dark:text-emerald-300 ${className}`}
+    >
+      ✓ {t('placement.badge', uiLang)}
+    </span>
+  );
+}

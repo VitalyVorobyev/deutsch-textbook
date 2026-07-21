@@ -7,22 +7,18 @@ title:
 items:
   - id: pre-zwei-objekte-artikel
     outcomes: [absprachen-aushandeln]
-    type: mc
+    type: cloze
     focus: wechsel-akk-dat
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess now is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Tom schenkt seine Freundin ein Buch."
-      - "Tom schenkt seiner Freundin ein Buch."
-      - "Tom schenkt seiner Freundin einem Buch."
-    correct: 1
+    text: "Tom hat eine Freundin. Er schenkt {{seiner}} Freundin ein Buch."
     translation:
-      en: "Tom is giving his girlfriend a book."
-      ru: "Том дарит своей девушке книгу."
-      uk: "Том дарує своїй дівчині книгу."
+      en: "Tom has a girlfriend. He is giving his girlfriend a book."
+      ru: "У Тома есть подруга. Он дарит своей подруге книгу."
+      uk: "У Тома є подруга. Він дарує своїй подрузі книжку."
     explain:
       en: "schenken has a stable frame: the recipient is dative (seiner Freundin) and the thing transferred is accusative (ein Buch). The first option fails to mark the recipient; the third assigns the book the wrong case for this verb. This is a fact about schenken's valency, not a general rule that a German sentence can never contain two phrases in the same case."
       ru: "У schenken устойчивая модель: получатель стоит в Dativ (seiner Freundin), а передаваемая вещь — в Akkusativ (ein Buch). Первый вариант не отмечает получателя, третий даёт книге неверный для этого глагола падеж. Это управление schenken, а не общий запрет немецкому предложению содержать две группы в одном падеже."

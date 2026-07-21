@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-sein-gefahren
     outcomes: [perfekt-vergangenheit-erzaehlen]
-    type: mc
+    type: cloze
     focus: haben-sein
-    prompt: "Wir ___ am Samstag nach Berlin gefahren."
-    options: ["haben", "sind", "ist"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Wir {{sind}} am Samstag nach Berlin gefahren."
     translation:
       en: We went to Berlin on Saturday.
       ru: В субботу мы поехали в Берлин.

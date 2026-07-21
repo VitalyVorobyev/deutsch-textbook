@@ -1,0 +1,75 @@
+topic: nebensaetze-plaene
+role: probe
+title:
+  en: "Probe — weil or denn"
+  ru: "Проверка — weil или denn"
+  uk: "Перевірка — weil чи denn"
+
+# The second family on this topic. probe-nebensaetze-plaene probes nebensatz-verbende (the
+# conjugated verb goes last in a weil-, dass- or wenn-clause). This one probes weil-denn:
+# the two words mean the same thing and do opposite things to the word order.
+#
+# The competences are related but not the same, and only one of them is gradeable by a gap.
+# nebensatz-verbende is a POSITION rule, which no cloze can test — the slot is given, so the
+# learner cannot put the verb anywhere else. weil-denn is a lexical choice, and here the
+# word order is already on the page: only one conjunction fits each clause, so the gap grades
+# the decision rather than the arrangement. That is what makes this the right second family
+# for this topic and not simply a cloze twin of the first.
+#
+# Every variant puts both conjunctions in one situation, so answering both gaps the same way
+# cannot score, and neither can reading only the meaning — the meaning is identical.
+
+items:
+  - id: variant-a
+    outcomes: [weil-grund]
+    type: cloze
+    focus: weil-denn
+    instruction:
+      en: Fill in the correct conjunction.
+      ru: Вставьте правильный союз.
+      uk: Вставте правильний сполучник.
+    text: "Ich bleibe heute zu Hause, {{weil}} ich krank bin. Morgen komme ich wieder, {{denn}} es geht mir dann besser."
+    translation:
+      en: "I'm staying at home today because I'm ill. I'll be back tomorrow, because I'll be better then."
+      ru: "Сегодня я остаюсь дома, потому что болею. Завтра я вернусь, ведь мне тогда станет лучше."
+      uk: "Сьогодні я залишаюся вдома, бо хворію. Завтра я повернуся, адже мені тоді стане краще."
+    explain:
+      en: "Both clauses give a reason and both would translate the same way, so the meaning cannot decide this — the word order does. In the first clause bin sits at the very end, which only weil produces. In the second, geht is in second position with the subject after it, which is ordinary main-clause order and therefore denn."
+      ru: "Оба придаточных называют причину и переводились бы одинаково, поэтому смысл здесь ничего не решает — решает порядок слов. В первом предложении bin стоит в самом конце, а такое даёт только weil. Во втором geht стоит на втором месте, а подлежащее после него — это обычный порядок главного предложения, значит denn."
+      uk: "Обидві частини називають причину й перекладалися б однаково, тому зміст тут нічого не вирішує — вирішує порядок слів. У першому реченні bin стоїть у самому кінці, а таке дає лише weil. У другому geht стоїть на другому місці, а підмет після нього — це звичайний порядок головного речення, отже denn."
+
+  - id: variant-b
+    outcomes: [weil-grund]
+    type: cloze
+    focus: weil-denn
+    instruction:
+      en: Fill in the correct conjunction.
+      ru: Вставьте правильный союз.
+      uk: Вставте правильний сполучник.
+    text: "Wir nehmen den Zug, {{denn}} das Auto ist kaputt. Ich freue mich, {{weil}} die Fahrt nur zwei Stunden dauert."
+    translation:
+      en: "We're taking the train, because the car is broken. I'm glad, because the journey only takes two hours."
+      ru: "Мы поедем на поезде, ведь машина сломана. Я рад, потому что дорога занимает всего два часа."
+      uk: "Ми поїдемо потягом, адже машина зламана. Я радий, бо дорога триває лише дві години."
+    explain:
+      en: "ist stands second in das Auto ist kaputt, so that clause is a main clause and takes denn. dauert stands last in die Fahrt nur zwei Stunden dauert, so that one is a subordinate clause and takes weil. A useful habit: find the conjugated verb first, then let its position choose the conjunction."
+      ru: "В das Auto ist kaputt глагол ist стоит на втором месте, значит это главное предложение и нужен denn. В die Fahrt nur zwei Stunden dauert глагол dauert стоит в конце, значит это придаточное и нужен weil. Полезная привычка: сначала найти спрягаемый глагол, а потом по его месту выбрать союз."
+      uk: "У das Auto ist kaputt дієслово ist стоїть на другому місці, отже це головне речення і потрібен denn. У die Fahrt nur zwei Stunden dauert дієслово dauert стоїть у кінці, отже це підрядне і потрібен weil. Корисна звичка: спершу знайти відмінюване дієслово, а потім за його місцем обрати сполучник."
+
+  - id: variant-c
+    outcomes: [weil-grund]
+    type: cloze
+    focus: weil-denn
+    instruction:
+      en: Fill in the correct conjunction.
+      ru: Вставьте правильный союз.
+      uk: Вставте правильний сполучник.
+    text: "Sie lernt jeden Abend Deutsch, {{weil}} sie im Sommer eine Prüfung hat. Sie hat wenig Zeit, {{denn}} sie arbeitet den ganzen Tag."
+    translation:
+      en: "She studies German every evening because she has an exam in the summer. She has little time, because she works all day."
+      ru: "Она учит немецкий каждый вечер, потому что летом у неё экзамен. Времени у неё мало, ведь она работает целый день."
+      uk: "Вона вчить німецьку щовечора, бо влітку в неї іспит. Часу в неї мало, адже вона працює цілий день."
+    explain:
+      en: "The same verb haben appears on both sides in different roles, which makes the position the only reliable signal: hat is final in sie im Sommer eine Prüfung hat, so weil; arbeitet is second in sie arbeitet den ganzen Tag, so denn. Note that denn never counts as a position-one element — the subject follows it directly, unlike after deshalb."
+      ru: "Один и тот же глагол haben встречается по обе стороны в разных ролях, поэтому единственный надёжный признак — место: в sie im Sommer eine Prüfung hat форма hat стоит в конце, значит weil; в sie arbeitet den ganzen Tag форма arbeitet стоит на втором месте, значит denn. Обратите внимание: denn никогда не занимает первое место в предложении — подлежащее идёт сразу за ним, в отличие от deshalb."
+      uk: "Те саме дієслово haben трапляється з обох боків у різних ролях, тому єдина надійна ознака — місце: у sie im Sommer eine Prüfung hat форма hat стоїть у кінці, отже weil; у sie arbeitet den ganzen Tag форма arbeitet стоїть на другому місці, отже denn. Зверніть увагу: denn ніколи не займає першого місця в реченні — підмет іде одразу за ним, на відміну від deshalb."

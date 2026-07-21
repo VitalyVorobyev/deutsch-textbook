@@ -53,6 +53,18 @@ export function mergeSessions(a: SessionLogEntry[], b: SessionLogEntry[]): Sessi
   return out.sort((x, y) => x.ts - y.ts);
 }
 
+/**
+ * Merge two topic states field by field.
+ *
+ * NOTE: this rebuilds its output from the fields it knows, so **a field added to
+ * `TopicProgress` and not added here is silently dropped on every import** — no error, no
+ * warning, just a learner who reconnects a device and finds progress missing. Extend this
+ * in the same change as the type.
+ *
+ * `placement` merges higher-score-wins, matching `setTopicPlacement`: a merge must never
+ * be able to produce a state the writer itself could not, or a round-trip through export
+ * and import could un-place a topic the writer had refused to un-place.
+ */
 export function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
   const out: TopicsState = { ...a };
   for (const [id, topic] of Object.entries(b)) {
@@ -65,9 +77,16 @@ export function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
     const newerManual = (topic.manualAt ?? 0) > (previous.manualAt ?? 0);
     const manual = newerManual ? topic.manual : previous.manual;
     const manualAt = newerManual ? topic.manualAt : previous.manualAt;
+    const placement =
+      previous.placement && topic.placement
+        ? topic.placement.score > previous.placement.score
+          ? topic.placement
+          : previous.placement
+        : previous.placement ?? topic.placement;
     out[id] = {
       ...(readAt ? { readAt } : {}),
       ...(manual ? { manual, manualAt } : {}),
+      ...(placement ? { placement } : {}),
     };
   }
   return out;

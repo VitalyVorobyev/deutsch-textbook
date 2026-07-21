@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import YAML from 'yaml';
 import { getCurriculum } from '../src/lib/curriculum';
 import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
@@ -9,12 +9,23 @@ import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/stor
 import { parseProgressSnapshot } from '../src/lib/snapshot-schema';
 import { buildDeck } from '../src/lib/srs';
 
-/** The real content files under content/<dir>, parsed — the same source the validator reads. */
-function contentFiles<T>(dir: string): T[] {
+/**
+ * The real content files under content/<dir>, parsed — the same source the validator reads.
+ *
+ * `setId` is attached because (topic, role) is NOT a unique key: a topic may own several
+ * probe families, and `.find()` on the pair silently returns whichever file sorts first.
+ * When termine-vereinbaren gained a second family, these regression checks quietly began
+ * grading a cloze set that has no `answer` at all — the assertion failed loudly, but a
+ * subtler collision would not have. Select a set by its id.
+ */
+function contentFiles<T>(dir: string): (T & { setId: string })[] {
   const root = join(process.cwd(), 'content', dir);
   return readdirSync(root, { recursive: true, encoding: 'utf8' })
     .filter((f) => f.endsWith('.yaml'))
-    .map((f) => YAML.parse(readFileSync(join(root, f), 'utf8')) as T);
+    .map((f) => ({
+      ...(YAML.parse(readFileSync(join(root, f), 'utf8')) as T),
+      setId: f.split(sep).join('/').replace(/\.yaml$/, ''),
+    }));
 }
 
 describe('scoring and curriculum contracts', () => {
@@ -93,6 +104,99 @@ describe('scoring and curriculum contracts', () => {
     expect(orphans).toEqual([]);
   });
 
+  test('every pretest owns at least one non-mc item (diagnostic generation, not recognition)', () => {
+    // A pretest is answered before the lesson and is meant to surface what the learner can
+    // *produce*. All 96 items were once `mc`, the format the pilot scores ~93% on, so 22 of 26
+    // attempted pretests came back a perfect 3/3 and the diagnostic told the lesson nothing.
+    // `bun run validate` enforces this too; the test pins it so a future edit that reverts a
+    // pretest to all-mc fails here and not only in the validator.
+    const allMc = contentFiles<{ role?: string; items?: { type?: string }[] }>('exercises')
+      .filter((set) => set.role === 'pretest')
+      .filter((set) => (set.items ?? []).length > 0 && (set.items ?? []).every((i) => (i.type ?? 'mc') === 'mc'))
+      .map((set) => set.setId);
+    expect(allMc).toEqual([]);
+  });
+
+  // Both checks below guard one property with two faces: an item must never grade which
+  // word the author had in mind. `docs/item-authoring.md` had stated it for cloze gaps
+  // only; these are the two places it reached `translate` and `table` instead.
+  test('no translate item pins one interchangeable connector without saying so', () => {
+    // «потому что» renders as denn (V2) or weil (verb-final) with equal fidelity, so an
+    // item accepting one and rejecting the other grades a coin flip. It hides behind
+    // curriculum order — a2/arbeit-beruf teaches denn and says weil "comes later", which
+    // is true on its own page and false in mixed training, where the item is served
+    // without that context after weil has been taught.
+    // Mirrors INTERCHANGEABLE_CONNECTORS. `darum` is absent on purpose — it is also the
+    // pronominal adverb (Darum geht es), where deshalb/deswegen do not preserve the meaning.
+    const GROUPS = [
+      ['denn', 'weil'],
+      ['deshalb', 'deswegen'],
+    ];
+    // The frozen probe: constraining it needs a revision bump, which drops its attempt out
+    // of the re-graded retention reading before the 2026-08-02 cohort read. The validator
+    // warns rather than fails for the same reason; remove both together, not separately.
+    const DEFERRED = ['a2/probe-nebensaetze-plaene:variant-a'];
+    const introduces = (text: string, word: string) =>
+      new RegExp(`(^|[,;.!?]\\s*)${word}\\b`, 'iu').test(text);
+
+    type Item = {
+      id: string;
+      type?: string;
+      answer?: string;
+      accept?: string[];
+      instruction?: Record<string, string>;
+    };
+    const offenders: string[] = [];
+    for (const set of contentFiles<{ items?: Item[] }>('exercises')) {
+      for (const item of set.items ?? []) {
+        if (item.type !== 'translate' || !item.answer) continue;
+        const ref = `${set.setId}:${item.id}`;
+        if (DEFERRED.includes(ref)) continue;
+        const renderings = [item.answer, ...(item.accept ?? [])];
+        const instruction = Object.values(item.instruction ?? {}).join(' ').toLowerCase();
+        for (const group of GROUPS) {
+          const pinned = group.filter((c) => renderings.every((r) => introduces(r, c)));
+          if (pinned.length !== 1) continue;
+          if (group.some((c) => c !== pinned[0] && renderings.some((r) => introduces(r, c)))) continue;
+          // whole word: `dennoch` contains `denn`
+          if (new RegExp(`\\b${pinned[0]}\\b`, 'iu').test(instruction)) continue;
+          offenders.push(`${ref} pins "${pinned[0]}"`);
+          break;
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  test('a table stub ending in an ellipsis is never repeated by the cell it sets up', () => {
+    // `Ich komme nicht, weil …` followed by a graded `weil ich heute arbeite` reads back as
+    // "…, weil weil ich heute arbeite". The learner who continues the sentence — the natural
+    // reading, and the one the instruction asks for — was marked wrong on all three rows
+    // while every word order the item drills was correct. The ellipsis is what separates
+    // this from a paradigm table, where Nominativ `die` and Akkusativ `die` are both right.
+    type Cell = { answer: string; given?: boolean };
+    type Item = { id: string; type?: string; rows?: { label: string; cells: Cell[] }[] };
+    const bare = (s: string) => s.replace(/[^\p{L}]/gu, '').toLowerCase();
+    const offenders: string[] = [];
+    for (const set of contentFiles<{ items?: Item[] }>('exercises')) {
+      for (const item of set.items ?? []) {
+        if (item.type !== 'table') continue;
+        for (const row of item.rows ?? []) {
+          for (let i = 0; i < row.cells.length - 1; i++) {
+            const stub = row.cells[i]!;
+            const next = row.cells[i + 1]!;
+            if (!stub.given || next.given || !/[…]\s*$/u.test(stub.answer)) continue;
+            const last = bare(stub.answer.replace(/[…\s]+$/u, '').split(/\s+/).pop() ?? '');
+            const first = bare(next.answer.trim().split(/\s+/)[0] ?? '');
+            if (last && last === first)
+              offenders.push(`${set.setId}:${item.id} row "${row.label}" repeats "${last}"`);
+          }
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
   test('every authored translation rendering is accepted, including the appointment regression', () => {
     type Translate = {
       id: string;
@@ -119,38 +223,36 @@ describe('scoring and curriculum contracts', () => {
         expect(verdictIsCorrect(gradeTranslation(rendering, spec))).toBe(true);
     }
 
+    // Keyed by setId rather than (topic, role): variant-a/b/c ids repeat across probe
+    // families by design, so a topic with two families matches twice and .find() returns
+    // whichever readdir happens to yield first.
     const alternativeTokenRegressions = [
       {
-        topic: 'freizeit-koennen',
-        role: 'probe',
+        setId: 'a1/probe-freizeit-koennen',
         id: 'variant-a',
         given: 'Morgen kann meine Schwester im Park Fotos mache.',
         focus: 'modal-satzklammer',
       },
       {
-        topic: 'freizeit-koennen',
-        role: 'drill',
+        setId: 'a1/drill-modal-satzklammer',
         id: 'uebersetzen-film',
         given: 'Wir können heute Abend einen Film schaue.',
         focus: 'modal-satzklammer',
       },
       {
-        topic: 'modalverben',
-        role: 'practice',
+        setId: 'a2/modalverben',
         id: 'uebersetzen-darf-nicht',
         given: 'Du darfs hier nicht rauchen.',
         focus: 'duerfen-muessen',
       },
       {
-        topic: 'gesundheit-arzttermin',
-        role: 'practice',
+        setId: 'a2/gesundheit-arzttermin-produktion',
         id: 'uebersetzen-ratschlag-du',
         given: 'Gehee zum Arzt und nimm die Tabletten!',
         focus: 'imperativ-form',
       },
       {
-        topic: 'perfekt-haben-sein',
-        role: 'probe',
+        setId: 'a2/probe-perfekt-haben-sein',
         id: 'variant-a',
         given: 'Die Kinder sind zur Schule gerant.',
         focus: 'haben-sein',
@@ -158,10 +260,9 @@ describe('scoring and curriculum contracts', () => {
     ] as const;
 
     for (const regression of alternativeTokenRegressions) {
-      const item = sets
-        .filter((set) => set.topic === regression.topic && set.role === regression.role)
-        .flatMap((set) => set.items ?? [])
-        .find((candidate) => candidate.id === regression.id);
+      const owner = sets.find((set) => set.setId === regression.setId);
+      expect(owner).toBeDefined();
+      const item = (owner!.items ?? []).find((candidate) => candidate.id === regression.id);
       expect(item).toBeDefined();
       expect(
         gradeTranslation(regression.given, {
@@ -173,9 +274,7 @@ describe('scoring and curriculum contracts', () => {
       ).toEqual({ kind: 'wrong', focus: regression.focus });
     }
 
-    const appointmentProbe = sets.find(
-      (set) => set.topic === 'termine-vereinbaren' && set.role === 'probe',
-    );
+    const appointmentProbe = sets.find((set) => set.setId === 'a2/probe-termine-vereinbaren');
     const variant = appointmentProbe?.items?.find((item) => item.id === 'variant-a');
     expect(variant).toBeDefined();
     expect(
@@ -189,9 +288,7 @@ describe('scoring and curriculum contracts', () => {
       ),
     ).toBe(true);
 
-    const everydayProbe = sets.find(
-      (set) => set.topic === 'alltag-tagesablauf' && set.role === 'probe',
-    );
+    const everydayProbe = sets.find((set) => set.setId === 'a2/probe-alltag-tagesablauf');
     const everydayVariant = everydayProbe?.items?.find((item) => item.id === 'variant-a');
     const everydaySpec = {
       answer: everydayVariant!.answer,
@@ -210,7 +307,7 @@ describe('scoring and curriculum contracts', () => {
       ),
     ).toBe(false);
 
-    const dativeProbe = sets.find((set) => set.topic === 'dativ' && set.role === 'probe');
+    const dativeProbe = sets.find((set) => set.setId === 'a2/probe-dativ');
     const dativeVariant = dativeProbe?.items?.find((item) => item.id === 'variant-a');
     expect(
       verdictIsCorrect(

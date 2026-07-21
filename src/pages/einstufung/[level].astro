@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
+import PlacementResults from '../../components/placement/PlacementResults';
+import { getPlacements, getTopicNodes } from '../../lib/content';
+import { getCurriculum } from '../../lib/curriculum';
+import { withBase } from '../../lib/url';
+
+// One page per `role: placement` set, at /einstufung/<level> (the set's own directory,
+// lowercased). Discovery is the same "data, not wiring" pattern as the checkpoints, so a
+// B1 entry test is one new YAML file and no code here.
+export async function getStaticPaths() {
+  const placements = await getPlacements();
+  return placements.map((placement, i) => ({
+    params: { level: placement.slug },
+    props: { placement, next: placements[i + 1] },
+  }));
+}
+
+const { placement, next } = Astro.props;
+const { level, setId, title, set, items } = placement;
+
+const nodes = await getTopicNodes();
+const curriculum = getCurriculum();
+const outcomeTopics = Object.fromEntries(
+  curriculum.nodes.flatMap((node) => node.outcomes.map((outcome) => [outcome.id, node.id])),
+);
+const levelNodes = nodes.filter((node) => node.level === level);
+const topicTitles = Object.fromEntries(levelNodes.map((node) => [node.id, node.title_de]));
+---
+
+<Base title={title}>
+  <nav class="mb-4 text-sm text-stone-400">
+    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
+    <span> / {level}</span>
+  </nav>
+
+  <header class="mb-8">
+    <div class="flex flex-wrap items-center gap-2 text-xs">
+      <span class="rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+        {level}
+      </span>
+      <span class="rounded-full bg-stone-200 px-2.5 py-0.5 font-medium text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+        Einstufungstest
+      </span>
+    </div>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight">{title}</h1>
+    <p class="mt-2 text-stone-500 dark:text-stone-400">
+      <span class="lang-en">
+        Already know some German? Answer these tasks and every {level} topic you pass leaves your
+        recommended path, so the course starts where you actually are. Each topic is asked about
+        twice, and both answers have to be right — this decides what you are never taught again.
+      </span>
+      <span class="lang-ru">
+        Уже немного знаете немецкий? Ответьте на эти задания, и каждая тема уровня {level}, которую
+        вы сдадите, уйдёт с вашего рекомендованного пути — курс начнётся там, где вы действительно
+        находитесь. По каждой теме два задания, и оба должны быть верными: от этого зависит, чему
+        вас больше не будут учить.
+      </span>
+    </p>
+  </header>
+
+  <aside class="mb-8 rounded-xl border border-stone-200 bg-stone-50 p-4 text-sm text-stone-600 dark:border-stone-700 dark:bg-stone-900/40 dark:text-stone-400">
+    <span class="lang-en">
+      Nothing is written until you press <strong>Ergebnis übernehmen</strong> at the bottom, and
+      nothing is locked either way: a topic you place out of can still be opened, practiced and put
+      back on your path whenever you want. Answer without notes — guessing here costs you teaching,
+      not points.
+      <br /><br />
+      This test checks reading, writing and listening. It cannot check speaking, because nothing here
+      scores free speech — so if a topic is about speaking and you pass it on writing, take that
+      result for what it is and open the lesson anyway if you are unsure.
+    </span>
+    <span class="lang-ru">
+      Ничего не сохраняется, пока вы не нажмёте <strong>Ergebnis übernehmen</strong> внизу, и ничего
+      не блокируется: сданную тему всё равно можно открыть, порешать и вернуть на свой путь в любой
+      момент. Отвечайте без подсказок — угаданный ответ здесь стоит вам объяснений, а не баллов.
+      <br /><br />
+      Тест проверяет чтение, письмо и аудирование. Устную речь он проверить не может: свободное
+      говорение здесь ничем не оценивается. Поэтому если тема посвящена говорению, а вы сдали её
+      письменно, отнеситесь к результату соответственно и при сомнениях всё же откройте урок.
+    </span>
+  </aside>
+
+  <ExerciseSetIsland client:only="react" setId={setId} set={set} />
+
+  <PlacementResults
+    client:only="react"
+    setId={setId}
+    level={level}
+    items={items}
+    outcomeTopics={outcomeTopics}
+    topicTitles={topicTitles}
+    nodes={levelNodes}
+    nextPath={withBase('/topics')}
+    nextLevel={next ? { level: next.level, path: next.path } : undefined}
+  />
+</Base>

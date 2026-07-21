@@ -1,0 +1,77 @@
+topic: dativ
+role: probe
+title:
+  en: "Probe — the dative after mit, nach, seit, bei, zu"
+  ru: "Проверка — датив после mit, nach, seit, bei, zu"
+  uk: "Перевірка — давальний після mit, nach, seit, bei, zu"
+
+# The second family on this topic. probe-dativ probes dativ-artikel (producing dem, der,
+# den …-n as such). This one probes dativ-praepositionen — the group aus/bei/mit/nach/seit/
+# von/zu, which always governs the dative whatever the sentence means.
+#
+# The two are genuinely different competences and the split is the point: a learner can
+# know that the dative of der Bus is dem Bus and still not know that mit forces it. The
+# preposition group is also the single most-drilled tag on this topic (19 practice items)
+# with no delayed evidence at all.
+#
+# cloze rather than translate: the case form is a FORM, and a gap can only lose the dative,
+# so every miss is attributable. A translate probe on the same rule can lose the dative
+# together with three other things and say nothing about either.
+#
+# Each variant carries a plural dative (den …-n / meinen Eltern) beside a singular one,
+# because the plural -n is the half that decays first.
+
+items:
+  - id: variant-a
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Ich fahre mit {{dem}} Bus zur Arbeit. Nach {{der}} Arbeit gehe ich zum Sport."
+    translation:
+      en: "I take the bus to work. After work I go to sport."
+      ru: "На работу я езжу на автобусе. После работы я иду на спорт."
+      uk: "На роботу я їжджу автобусом. Після роботи я йду на спорт."
+    explain:
+      en: "mit and nach are both in the always-dative group, so neither ever governs anything else. der Bus is masculine and its dative is dem; die Arbeit is feminine and its dative is der — which happens to look exactly like the nominative masculine, and that coincidence is worth noticing rather than trusting."
+      ru: "mit и nach входят в группу «всегда датив», поэтому другого падежа у них не бывает. der Bus мужского рода, его датив — dem; die Arbeit женского рода, её датив — der, который случайно совпадает по виду с именительным мужского рода. Это совпадение стоит замечать, а не полагаться на него."
+      uk: "mit і nach належать до групи «завжди давальний», тому іншого відмінка в них не буває. der Bus чоловічого роду, його давальний — dem; die Arbeit жіночого роду, її давальний — der, який випадково збігається на вигляд із називним чоловічого роду. Цей збіг варто помічати, а не покладатися на нього."
+
+  - id: variant-b
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Wir wohnen seit {{einem}} Jahr bei {{meinen}} Eltern."
+    translation:
+      en: "We have been living with my parents for a year."
+      ru: "Мы уже год живём у моих родителей."
+      uk: "Ми вже рік живемо у моїх батьків."
+    explain:
+      en: "seit takes the dative, so das Jahr becomes einem Jahr — and German keeps the present tense here, because the living is still going on. bei also takes the dative, and Eltern is plural: the dative plural ending is -en on the possessive, meinen Eltern. The noun itself already ends in -n, so nothing more is added."
+      ru: "seit требует датива, поэтому das Jahr превращается в einem Jahr — и немецкий сохраняет здесь настоящее время, ведь проживание продолжается. bei тоже требует датива, а Eltern стоит во множественном числе: в дативе множественного числа притяжательное получает -en, meinen Eltern. Само существительное уже оканчивается на -n, поэтому больше ничего не добавляется."
+      uk: "seit вимагає давального, тому das Jahr перетворюється на einem Jahr — і німецька зберігає тут теперішній час, адже проживання триває. bei теж вимагає давального, а Eltern стоїть у множині: у давальному множини присвійний займенник отримує -en, meinen Eltern. Сам іменник уже закінчується на -n, тому більше нічого не додається."
+
+  - id: variant-c
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Nach {{dem}} Essen gehen wir zu {{den}} Nachbarn. Sie wohnen direkt neben uns."
+    translation:
+      en: "After the meal we are going over to the neighbours. They live right next to us."
+      ru: "После еды мы пойдём к соседям. Они живут прямо рядом с нами."
+      uk: "Після їжі ми підемо до сусідів. Вони живуть просто поруч із нами."
+    explain:
+      en: "das Essen is neuter, so nach dem Essen. die Nachbarn is plural, and the dative plural article is den — the same word as the masculine accusative, which is why the number has to be read off the noun rather than the article. Note that zu does not contract here: zu + den stays two words."
+      ru: "das Essen среднего рода, отсюда nach dem Essen. die Nachbarn — множественное число, а артикль датива множественного числа — den, то есть то же слово, что и винительный мужского рода; поэтому число приходится определять по существительному, а не по артиклю. Обратите внимание: zu здесь не сливается, zu + den остаётся двумя словами."
+      uk: "das Essen середнього роду, звідси nach dem Essen. die Nachbarn — множина, а артикль давального множини — den, тобто те саме слово, що й знахідний чоловічого роду; тому число доводиться визначати за іменником, а не за артиклем. Зверніть увагу: zu тут не зливається, zu + den залишається двома словами."

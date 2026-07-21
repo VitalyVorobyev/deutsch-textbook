@@ -73,6 +73,25 @@ describe('grammar coverage', () => {
     expect(coverage.late).toBe(0);
   });
 
+  // The B1 counterpart of the A2 ratchet, pointing the other way. A2's number was lowered
+  // ten times, once per unit; B1's `covered` gets *raised* the same way. What is pinned here
+  // is that the instrument exists and is honest about being empty — the failure this whole
+  // file guards against is a level calling itself complete with nothing measuring it, and a
+  // level with no manifest cannot even notice the question. When the first B1 unit ships,
+  // the tags it registers close their points and this assertion comes up with them.
+  test('B1 has a real manifest, and it reports the level as unwritten', () => {
+    const coverage = grammarCoverage('B1');
+    expect(coverage.total).toBeGreaterThanOrEqual(30);
+    expect(coverage.covered).toBe(0);
+    expect(coverage.late).toBe(0);
+    expect(coverage.percent).toBe(0);
+    // Every B1 point must name at least one tag no other level already teaches, or an A2
+    // tag could silently close a B1 gap — the exact mistake that hid six A2 structures
+    // inside planned B1 units. Checked by construction: nothing is covered, so no B1 point
+    // is being satisfied by tags A1/A2 content already carries.
+    expect(coverage.points.every((p) => p.status === 'missing')).toBe(true);
+  });
+
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {
     const coverage = grammarCoverage('A2');
     const adjective = coverage.points.find((p) => p.point.id === 'adjektiv-unbestimmt')!;

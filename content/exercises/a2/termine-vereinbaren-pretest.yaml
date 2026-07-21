@@ -3,15 +3,18 @@ role: pretest
 items:
   - id: pre-passt-ihnen
     outcomes: [termine-organisieren]
-    type: mc
+    type: cloze
     focus: passen-dativ
-    prompt: "Passt es ___ am Montag um 10 Uhr?"
-    options: ["Sie", "Ihnen", "Ihr"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Guten Tag, Frau Berg. Passt es {{Ihnen}} am Montag um zehn Uhr?"
     translation:
-      en: Does Monday at 10 o'clock suit you? (formal)
-      ru: Вам удобно в понедельник в 10 часов? (вежливая форма)
-      uk: Вам зручно в понеділок о 10 годині? (ввічлива форма)
+      en: "Hello, Ms Berg. Does Monday at ten work for you?"
+      ru: "Здравствуйте, госпожа Берг. Вам удобно в понедельник в десять?"
+      uk: "Добрий день, пані Берг. Вам зручно в понеділок о десятій?"
     explain:
       en: '"passen" takes the dative (der Dativ), so the polite pronoun is "Ihnen", never "Sie". Think "does it work FOR you?" — the person is the wem?-answer, and in formal address that is always Ihnen.'
       ru: '"passen" требует дательного падежа (der Dativ), поэтому вежливое местоимение — "Ihnen", а не "Sie". Русский подсказывает то же самое: «подходит вам» — тоже дательный.'

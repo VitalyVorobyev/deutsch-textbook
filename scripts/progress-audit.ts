@@ -21,6 +21,7 @@ import {
   type TranslationSpec,
 } from '../src/lib/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
+import { isPretestAttempt } from '../src/lib/weakness';
 import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
 import type { GradingDecision } from '../src/lib/schemas';
 import {
@@ -182,6 +183,12 @@ export interface ProgressAudit {
       currentCorrect: number;
       focusRetained: number;
       focusFailed: number;
+      /**
+       * The same three verdicts split by the competence each probe was aimed at, which is the
+       * grouping the P3-6 bar is stated in. The pooled counters above cannot answer it: they mix
+       * both levels, and P3-6 is an A1 gate.
+       */
+      byCompetence: CompetenceRetention[];
       dueNow: number;
       overdue: number;
       maxOverdueDays: number;
@@ -525,6 +532,11 @@ function focusSignals(
   const groups = new Map<string, AuditAttempt[]>();
   for (const attempt of attempts) {
     if (!isVerifiedEvidence(attempt)) continue;
+    // Same rule as `focusStats`, imported rather than restated: this table is the decision
+    // surface for drill authoring and `weakFocuses` is what training acts on, so the two must
+    // agree about what counts. A pretest is answered before the lesson and all 96 pretest
+    // items are `mc` — easy recognition padding a production signal.
+    if (isPretestAttempt(attempt)) continue;
     const key = attemptKey(attempt);
     if (excluded.has(key)) continue;
     // A confirm-ruled attempt carries the attribution today's grader gives it, never
@@ -596,6 +608,74 @@ function cardSummary(cards: Record<string, AuditCard>) {
   };
 }
 
+/**
+ * What a single probe attempt says about the competence it was aimed at.
+ *
+ * `correct` is whole-sentence flawlessness, and that is *not* the retention question. A probe of
+ * `akkusativ-artikel` whose article is right and whose noun is misspelled is evidence that the
+ * accusative survived the interval — the sentence failed, the competence did not. So the three
+ * outcomes are kept apart at the source and both the pooled counters and the per-competence table
+ * read them from here, so the two can never drift into disagreeing about the same attempt.
+ *
+ * `retained` therefore means "the target survived", not "nearly right": it is exactly the case
+ * where `gradeTranslation` refused to attribute the miss to the item's own focus tag.
+ */
+type ProbeVerdict = 'correct' | 'retained' | 'failed';
+
+function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): ProbeVerdict {
+  if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
+    const verdict = gradeTranslation(attempt.given, currentSpec(item));
+    if (verdict.kind !== 'wrong') return 'correct';
+    return verdict.focus ? 'failed' : 'retained';
+  }
+  if (attempt.correct) return 'correct';
+  return attempt.focus ? 'failed' : 'retained';
+}
+
+/**
+ * How many probe attempts a competence needs before its retention percentage is worth reading.
+ *
+ * A family serves **one variant per interval**, so a competence carried by a single family can
+ * never exceed one attempt per scheduled interval. Anything above that floor would make the gate
+ * permanently unreadable rather than merely unmet: at the A1 cohort's current depth a floor of 4
+ * leaves exactly one of eight competences readable, and the seven excluded ones are not weak
+ * evidence — they are the instrument working as designed, mid-schedule.
+ *
+ * Below the floor a competence is reported as pending and left out of the percentage. It is never
+ * counted as a pass: 2/2 is not 100% retention, it is two data points.
+ */
+const PROBE_READABLE_MIN = PROBE_INTERVALS_DAYS.length;
+
+/** The P3-6 exit bar, in percent. Stated here so the report and the roadmap cite one number. */
+const RETENTION_BAR = 80;
+
+export interface CompetenceRetention {
+  level: string;
+  focus: string | undefined;
+  families: number;
+  attempts: number;
+  correct: number;
+  retained: number;
+  failed: number;
+  /** (correct + retained) / attempts — the share where the target survived the interval */
+  retentionPct: number;
+  /** the longest interval this competence has actually been probed at, in days */
+  maxElapsedDays: number;
+  readable: boolean;
+  /**
+   * Survival split by item type, so a format effect cannot hide inside the pooled figure.
+   *
+   * A competence probed by two families of different type is measured through two response
+   * demands, and they are not equally hard: a `translate` probe asks the learner to build the
+   * whole sentence, while a `cloze` probe hands over the frame and asks only for the graded
+   * token. Pooling them is the right headline — it is the more robust estimate — but pooling
+   * them *silently* would let the number rise when a second, easier format is added and read
+   * as improved retention. Reporting the split means a jump in the percentage can always be
+   * checked against the mix that produced it.
+   */
+  formats: Record<string, { attempts: number; survived: number }>;
+}
+
 function delayedSummary(
   attempts: AuditAttempt[],
   catalog: Map<string, CatalogItem>,
@@ -612,22 +692,6 @@ function delayedSummary(
     attempt.ts - (firstByItem.get(itemRef(attempt.setId, attempt.itemId)) ?? attempt.ts) >= 2 * DAY);
   const probes = attempts.filter((attempt) =>
     /(^|\/)probe-/.test(attempt.setId) && isVerifiedEvidence(attempt));
-  let currentCorrect = 0;
-  let focusRetained = 0;
-  let focusFailed = 0;
-  for (const attempt of probes) {
-    const item = catalog.get(itemRef(attempt.setId, attempt.itemId));
-    if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
-      const verdict = gradeTranslation(attempt.given, currentSpec(item));
-      if (verdict.kind !== 'wrong') currentCorrect += 1;
-      else if (verdict.focus) focusFailed += 1;
-      else focusRetained += 1;
-      continue;
-    }
-    if (attempt.correct) currentCorrect += 1;
-    else if (attempt.focus) focusFailed += 1;
-    else focusRetained += 1;
-  }
   const sets = new Map<string, {
     setId: string;
     topicId: string;
@@ -648,6 +712,68 @@ function delayedSummary(
     responseMode: attempt.responseMode as Attempt['responseMode'],
     practice: undefined,
   }));
+  // Arming timestamps, computed once: the pooled classification, the per-competence depth and the
+  // actual-interval distribution all need them, and `armedAt` walks the whole attempt log.
+  const armedByFamily = new Map<string, number | undefined>();
+  for (const family of families) {
+    armedByFamily.set(family.setId, armedAt(family, schedulableAttempts));
+  }
+  const familiesPerCompetence = new Map<string, Set<string>>();
+
+  let currentCorrect = 0;
+  let focusRetained = 0;
+  let focusFailed = 0;
+  const competences = new Map<string, CompetenceRetention>();
+  for (const attempt of probes) {
+    const item = catalog.get(itemRef(attempt.setId, attempt.itemId));
+    const verdict = classifyProbe(attempt, item);
+    if (verdict === 'correct') currentCorrect += 1;
+    else if (verdict === 'failed') focusFailed += 1;
+    else focusRetained += 1;
+
+    // Level comes off the set-id directory, the same convention `getCheckpoints()` uses. P3-6 is
+    // an A1 gate, and a figure pooled across both levels cannot answer it.
+    const level = attempt.setId.split('/')[0]!.toUpperCase();
+    // The instrument's own declaration, not the stored attempt tag: a historical tag may come from
+    // an older scorer, and grouping by it would sort the same item into two competences.
+    const focus = item?.focus ?? attempt.focus;
+    const key = `${level}\u0000${focus ?? ''}`;
+    const row = competences.get(key) ?? {
+      level, focus, families: 0, attempts: 0, correct: 0, retained: 0, failed: 0,
+      retentionPct: 0, maxElapsedDays: 0, readable: false,
+      formats: {} as Record<string, { attempts: number; survived: number }>,
+    };
+    row.attempts += 1;
+    row[verdict] += 1;
+    // Same rule as `focus` above: the instrument's own declaration, not the stored attempt.
+    const type = item?.type ?? attempt.itemType;
+    const fmt = (row.formats[type] ??= { attempts: 0, survived: 0 });
+    fmt.attempts += 1;
+    if (verdict !== 'failed') fmt.survived += 1;
+    const armed = armedByFamily.get(attempt.setId);
+    if (armed !== undefined) {
+      row.maxElapsedDays = Math.max(row.maxElapsedDays, Math.round((attempt.ts - armed) / DAY));
+    }
+    competences.set(key, row);
+    const seen = familiesPerCompetence.get(key) ?? new Set<string>();
+    seen.add(attempt.setId);
+    familiesPerCompetence.set(key, seen);
+  }
+  const byCompetence = [...competences.entries()]
+    .map(([key, row]) => ({
+      ...row,
+      families: familiesPerCompetence.get(key)?.size ?? 0,
+      retentionPct: row.attempts
+        ? Math.round((100 * (row.correct + row.retained)) / row.attempts)
+        : 0,
+      // An untagged family cannot fail its target by construction — `classifyProbe` has no tag to
+      // attribute a miss to, so every miss lands in `retained` and the row reads 100%. That is an
+      // instrument gap, not retention, so it is never readable however many attempts it holds.
+      readable: row.focus !== undefined && row.attempts >= PROBE_READABLE_MIN,
+    }))
+    .sort((a, b) =>
+      a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
+
   const owed = dueProbes(families, schedulableAttempts, at);
   const takenPerDay = new Map<string, number>();
   for (const attempt of probes) {
@@ -658,7 +784,7 @@ function delayedSummary(
   // arming timestamp → probe attempt, per family, from the attempt log alone.
   const intervalCounts = new Map<number, number>();
   for (const family of families) {
-    const armed = armedAt(family, schedulableAttempts);
+    const armed = armedByFamily.get(family.setId);
     if (armed === undefined) continue;
     for (const taken of probeAttempts(family, schedulableAttempts)) {
       const days = Math.round((taken.ts - armed) / DAY);
@@ -677,6 +803,7 @@ function delayedSummary(
       currentCorrect,
       focusRetained,
       focusFailed,
+      byCompetence,
       dueNow: owed.length,
       overdue: owed.filter((probe) => probe.overdueDays > 0).length,
       maxOverdueDays: Math.max(0, ...owed.map((probe) => probe.overdueDays)),
@@ -792,6 +919,71 @@ function performanceTable(rows: PerformanceRow[]): string[] {
   ];
 }
 
+/**
+ * The P3-6 gate, rendered so it can be read rather than inferred.
+ *
+ * Deliberately reports two different things and keeps them apart: the retention percentage over
+ * competences with enough evidence to have one, and a named list of the competences that do not
+ * yet. Folding the second group into the first — in either direction — is how a mid-schedule
+ * instrument comes to look like a verdict.
+ */
+/** `translate 3/6 · cloze 2/2` — survived/attempts per response format, hardest format first. */
+function formatSplit(row: CompetenceRetention): string {
+  return Object.entries(row.formats)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([type, { attempts, survived }]) => `${type} ${survived}/${attempts}`)
+    .join(' · ');
+}
+
+function retentionSection(rows: CompetenceRetention[]): string[] {
+  if (!rows.length) return [];
+  const out = [
+    '## Retention by competence',
+    '',
+    'A probe is *retained* when the graded target survived the interval, whether or not the rest ' +
+      'of the sentence did. Readable = at least ' + PROBE_READABLE_MIN + ' attempts (one per ' +
+      'scheduled interval); below that the row is pending and is excluded from the verdict ' +
+      'rather than counted as a pass.',
+    '',
+    '| Level | Competence | Families | n | Correct | Retained | Failed | Retention | Max delay | By format | Readable |',
+    '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |',
+    ...rows.map((row) =>
+      `| ${md(row.level)} | ${md(row.focus ?? '(untagged)')} | ${row.families} | ${row.attempts} ` +
+      `| ${row.correct} | ${row.retained} | ${row.failed} | ${row.retentionPct}% ` +
+      `| ${row.maxElapsedDays}d | ${md(formatSplit(row))} | ${row.readable ? 'yes' : 'pending'} |`),
+    '',
+  ];
+  if (rows.some((row) => Object.keys(row.formats).length > 1)) {
+    out.push(
+      '*Mixed-format rows above:* a `cloze` probe hands the learner the sentence frame and asks ' +
+        'only for the graded token, while a `translate` probe asks them to build the whole ' +
+        'sentence. The pooled percentage is the more robust estimate and stays the headline, but ' +
+        'read a rise against the split before reading it as improved retention.',
+      '',
+    );
+  }
+  for (const level of [...new Set(rows.map((row) => row.level))].sort()) {
+    const own = rows.filter((row) => row.level === level);
+    const readable = own.filter((row) => row.readable);
+    const passing = readable.filter((row) => row.retentionPct >= RETENTION_BAR);
+    const untagged = own.filter((row) => row.focus === undefined);
+    out.push(
+      readable.length
+        ? `**${level}: ${passing.length}/${readable.length} readable competences at ` +
+          `≥${RETENTION_BAR}% retention** ` +
+          `(${own.length - readable.length} pending` +
+          (untagged.length ? `, of which ${untagged.length} untagged — an instrument gap` : '') +
+          ').'
+        : `**${level}: no competence is readable yet** — all ${own.length} row(s) are below ` +
+          `${PROBE_READABLE_MIN} attempts` +
+          (untagged.length ? ` or carry no focus tag (${untagged.length})` : '') +
+          '. The gate cannot be read at this depth.',
+    );
+  }
+  out.push('');
+  return out;
+}
+
 export function renderMarkdown(audit: ProgressAudit): string {
   const out: string[] = [
     '# Progress audit',
@@ -866,6 +1058,7 @@ export function renderMarkdown(audit: ProgressAudit): string {
     '| --- | ---: | ---: |',
     ...audit.cards.byDeck.map((row) => `| ${md(row.deck)} | ${row.cards} | ${row.lapses} |`),
     '',
+    ...retentionSection(audit.delayed.probes.byCompetence),
     '## Grading-review queue — needs linguistic review',
     '',
   ];

@@ -257,17 +257,18 @@ items:
 
   - id: order-aufstehen-frage
     outcomes: [trennbar-satz]
-    type: order
+    type: translate
+    revision: 2
     focus: trennbar-wortstellung
     instruction:
-      en: Arrange the words into a correct question.
-      ru: Составьте правильный вопрос.
-      uk: Складіть правильне питання.
-    words: ["Wann", "stehst", "du", "am", "Sonntag", "auf?"]
-    translation:
-      en: When do you get up on Sunday?
-      ru: Когда ты встаёшь в воскресенье?
-      uk: Коли ти встаєш у неділю?
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: When do you get up on Sunday?
+    prompt_ru: Когда ты встаёшь в воскресенье?
+    prompt_uk: Коли ти встаєш у неділю?
+    answer: "Wann stehst du am Sonntag auf?"
+    key_tokens: ["stehst", "auf"]
     explain:
       en: "W-word first, conjugated part second, prefix last: Wann stehst du … auf?"
       ru: "Вопросительное слово — первым, спрягаемая часть — на втором месте, приставка — в конце: Wann stehst du … auf?"

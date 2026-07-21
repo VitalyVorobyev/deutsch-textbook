@@ -3,10 +3,13 @@ role: pretest
 items:
   - id: pre-zum-bahnhof
     outcomes: [stadt-weg-erfragen]
-    type: mc
-    prompt: "Entschuldigung, wie komme ich ___ Bahnhof?"
-    options: ["zum", "zur", "nach"]
-    correct: 0
+    type: cloze
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Entschuldigung, wie komme ich {{zum}} Bahnhof?"
     translation: { en: "Excuse me, how do I get to the station?", ru: "Извините, как мне пройти к вокзалу?", uk: "Вибачте, як мені пройти до вокзалу?" }
     explain: { en: "der Bahnhof is a der-word, so the question formula is zum: Wie komme ich zum Bahnhof? zur belongs to die-words (zur Post), and nach goes with city names: nach Berlin.", ru: "der Bahnhof — слово с der, поэтому формула вопроса — zum: Wie komme ich zum Bahnhof? zur — для слов с die (zur Post), а nach — для названий городов: nach Berlin.", uk: "der Bahnhof — слово з der, тому формула питання — zum: Wie komme ich zum Bahnhof? zur — для слів із die (zur Post), а nach — для назв міст: nach Berlin." }
   - id: pre-geradeaus

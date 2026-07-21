@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-komparativ-als
     outcomes: [produkte-vergleichen]
-    type: mc
+    type: cloze
     focus: komparativ-als
-    prompt: "Die Jacke hier kostet 95 Euro, die Jacke dort kostet 60 Euro. Die Jacke hier ist ___ als die Jacke dort."
-    options: ["teuer", "teurer", "am teuersten"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Die Jacke hier kostet 95 Euro, die Jacke dort kostet 60 Euro. Die Jacke hier ist {{teurer}} als die Jacke dort. (teuer)"
     translation:
       en: The jacket here costs 95 euros, the jacket over there costs 60 euros. The jacket here is more expensive than the jacket over there.
       ru: Эта куртка стоит 95 евро, та — 60 евро. Эта куртка дороже, чем та.

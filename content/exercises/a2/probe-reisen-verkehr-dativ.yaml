@@ -1,0 +1,76 @@
+topic: reisen-verkehr
+role: probe
+title:
+  en: "Probe — the dative in travel phrases"
+  ru: "Проверка — датив в дорожных выражениях"
+  uk: "Перевірка — давальний у дорожніх висловах"
+
+# The second family on this topic. probe-reisen-verkehr probes haben-sein (the Perfekt
+# auxiliary in a travel report). This one probes dativ-praepositionen, which the topic drills
+# but nothing checks after a delay here.
+#
+# Travel is where this group is unavoidable — mit dem Zug, von der Haltestelle, nach dem
+# Umsteigen — so the competence is worth delayed evidence on this topic specifically and not
+# only on the dativ topic that introduces it.
+#
+# cloze rather than translate: the case form is a FORM, and a gap can only lose the dative.
+#
+# The variants deliberately avoid reusing the article/noun pairs of probe-dativ-praepositionen
+# (mit dem Bus, nach der Arbeit, zu den Nachbarn): the two families probe one competence
+# across two topics, so a learner meeting the second must not be able to answer it from
+# memory of the first.
+
+items:
+  - id: variant-a
+    outcomes: [verbindung-waehlen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Ich komme mit {{dem}} Fahrrad zum Bahnhof. Von {{der}} Haltestelle sind es fünf Minuten."
+    translation:
+      en: "I'm coming to the station by bike. It's five minutes from the stop."
+      ru: "Я приеду на вокзал на велосипеде. От остановки идти пять минут."
+      uk: "Я приїду на вокзал велосипедом. Від зупинки йти п'ять хвилин."
+    explain:
+      en: "German says how you travel with mit plus the dative: das Fahrrad becomes mit dem Fahrrad. von also takes the dative, and die Haltestelle is feminine, so von der Haltestelle. Note that zum in zum Bahnhof is the same rule already contracted — zu + dem."
+      ru: "Способ передвижения немецкий выражает через mit с дативом: das Fahrrad превращается в mit dem Fahrrad. von тоже требует датива, а die Haltestelle женского рода, отсюда von der Haltestelle. Обратите внимание, что zum в zum Bahnhof — то же самое правило в слитой форме: zu + dem."
+      uk: "Спосіб пересування німецька виражає через mit з давальним: das Fahrrad перетворюється на mit dem Fahrrad. von теж вимагає давального, а die Haltestelle жіночого роду, звідси von der Haltestelle. Зверніть увагу, що zum у zum Bahnhof — те саме правило у злитій формі: zu + dem."
+
+  - id: variant-b
+    outcomes: [verbindung-waehlen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Seit {{dem}} Umbau fährt die Linie 5 nicht mehr. Wir fahren jetzt mit {{den}} Bussen."
+    translation:
+      en: "Since the building work, line 5 no longer runs. We now travel by bus."
+      ru: "После ремонта пятая линия больше не ходит. Теперь мы ездим на автобусах."
+      uk: "Після ремонту п'ята лінія більше не ходить. Тепер ми їздимо автобусами."
+    explain:
+      en: "der Umbau is masculine, so seit dem Umbau. The second gap is the one that decays: die Busse is plural, the dative plural article is den, and the noun itself takes an extra -n — Bussen, not Bussé. Any plural noun that does not already end in -n or -s adds one in the dative."
+      ru: "der Umbau мужского рода, отсюда seit dem Umbau. Второй пропуск как раз и есть тот, что забывается: die Busse — множественное число, артикль датива множественного числа den, и само существительное получает добавочное -n: Bussen. Любое существительное во множественном числе, которое ещё не оканчивается на -n или -s, в дативе его прибавляет."
+      uk: "der Umbau чоловічого роду, звідси seit dem Umbau. Другий пропуск якраз і є той, що забувається: die Busse — множина, артикль давального множини den, і сам іменник отримує додаткове -n: Bussen. Будь-який іменник у множині, який ще не закінчується на -n або -s, у давальному його додає."
+
+  - id: variant-c
+    outcomes: [verbindung-waehlen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Nach {{dem}} Umsteigen in Hannover fahren Sie weiter bis Bremen. Die Auskunft bekommen Sie bei {{der}} Information."
+    translation:
+      en: "After changing trains in Hanover you continue to Bremen. You can get the information at the information desk."
+      ru: "После пересадки в Ганновере вы едете дальше до Бремена. Справку вы получите в справочном бюро."
+      uk: "Після пересадки в Ганновері ви їдете далі до Бремена. Довідку ви отримаєте в довідковому бюро."
+    explain:
+      en: "das Umsteigen is a verb used as a noun, which makes it neuter and capitalised — and it behaves like any other neuter noun after nach: nach dem Umsteigen. bei takes the dative too, and die Information is feminine: bei der Information. Neither preposition ever governs the accusative, whatever the sentence is about."
+      ru: "das Umsteigen — это глагол в роли существительного, поэтому он среднего рода и пишется с прописной буквы, а после nach ведёт себя как любое другое существительное среднего рода: nach dem Umsteigen. bei тоже требует датива, а die Information женского рода: bei der Information. Ни тот, ни другой предлог никогда не управляет винительным падежом, о чём бы ни шла речь."
+      uk: "das Umsteigen — це дієслово в ролі іменника, тому воно середнього роду й пишеться з великої літери, а після nach поводиться як будь-який інший іменник середнього роду: nach dem Umsteigen. bei теж вимагає давального, а die Information жіночого роду: bei der Information. Жоден із цих прийменників ніколи не керує знахідним відмінком, про що б не йшлося."

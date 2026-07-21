@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-endung
     outcomes: [praesens-verbzweit]
-    type: mc
+    type: cloze
     focus: verb-endungen
-    prompt: "Er ___ in München."
-    options: ["wohne", "wohnst", "wohnt"]
-    correct: 2
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Er {{wohnt}} in München. (wohnen)"
     translation:
       en: He lives in Munich.
       ru: Он живёт в Мюнхене.

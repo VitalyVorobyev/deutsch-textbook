@@ -101,10 +101,11 @@ items:
     outcomes: [anliegen-nennen]
     type: translate
     focus: nebensatz-verbende
+    revision: 2
     instruction:
-      en: "Say why you have come. Translate into German."
-      ru: "Скажите, зачем вы пришли. Переведите на немецкий."
-      uk: "Скажіть, навіщо ви прийшли. Перекладіть німецькою."
+      en: "Say why you have come, with weil. Translate into German."
+      ru: "Скажите, зачем вы пришли, с помощью weil. Переведите на немецкий."
+      uk: "Скажіть, навіщо ви прийшли, за допомогою weil. Перекладіть німецькою."
     prompt_en: "I am here because I would like to register."
     prompt_ru: "Я здесь, потому что хочу зарегистрироваться."
     prompt_uk: "Я тут, бо хочу зареєструватися."
@@ -147,6 +148,7 @@ items:
     outcomes: [anliegen-nennen]
     type: translate
     focus: hoeflich-konjunktiv
+    revision: 2
     instruction:
       en: "You are not at the citizens' office this time — you are at the counter of the post office. Say it politely."
       ru: "На этот раз вы не в бюргерамте, а у окошка на почте. Скажите это вежливо."
@@ -155,8 +157,13 @@ items:
     prompt_ru: "Я хотел(а) бы отправить письмо в Польшу, потому что там живёт мой отец."
     prompt_uk: "Я хотів(ла) би відправити лист до Польщі, бо там живе мій батько."
     answer: "Ich würde gern einen Brief nach Polen schicken, weil mein Vater dort wohnt."
+    # The graded chunk is würde gern; the reason clause is carrier material, so denn is
+    # accepted beside weil rather than constrained away. Both are correct German here and
+    # neither is what hoeflich-konjunktiv measures.
     accept:
       - "Ich würde gerne einen Brief nach Polen schicken, weil mein Vater dort wohnt."
+      - "Ich würde gern einen Brief nach Polen schicken, denn mein Vater wohnt dort."
+      - "Ich würde gerne einen Brief nach Polen schicken, denn mein Vater wohnt dort."
     key_tokens: ["würde"]
     explain:
       en: "A different counter, the same chunk. You want to do something, so it is würde gern — and the infinitive schicken drops to the end of the main clause, in front of the comma. Then weil opens the reason and the conjugated verb wohnt lands at the very end of its own clause. Ich will einen Brief schicken says the same thing to a post-office clerk and says it bluntly; Ich hätte gern einen Brief would mean you want to be handed a letter, which is not what you came for."

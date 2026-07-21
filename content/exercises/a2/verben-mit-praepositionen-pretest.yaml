@@ -3,12 +3,15 @@ role: pretest
 title: { en: "Pretest — what belongs together?", ru: "Предтест — что с чем сочетается?", uk: "Передтест — що з чим поєднується?" }
 items:
   - id: pretest-warten
-    type: mc
     outcomes: [verb-praeposition-waehlen]
+    type: cloze
     focus: verb-praeposition
-    prompt: "Wir warten ___ Mias Antwort."
-    options: ["auf", "über", "von"]
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Wir warten {{auf}} Mias Antwort."
     explain: { en: "Learn warten auf as one unit: auf + accusative.", ru: "Учите warten auf как единое целое: auf + Akkusativ.", uk: "Учіть warten auf як єдине ціле: auf + Akkusativ." }
   - id: pretest-worueber
     type: mc

@@ -7,15 +7,14 @@ title:
 items:
   - id: pretest-war
     outcomes: [praeteritum-war-hatte]
-    type: mc
+    type: cloze
     focus: praeteritum-sein-haben
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Vor zwei Jahren ___ ich zwei Wochen in Polen."
-    options: ["war", "bin", "habe"]
-    correct: 0
+    text: "Vor zwei Jahren {{war}} ich zwei Wochen in Polen. (sein)"
     translation:
       en: "Two years ago I was in Poland for two weeks."
       ru: "Два года назад я две недели был в Польше."

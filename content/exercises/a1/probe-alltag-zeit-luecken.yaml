@@ -1,0 +1,75 @@
+topic: alltag-zeit
+role: probe
+title:
+  en: "Probe — filling in um, am and im"
+  ru: "Проверка — подстановка um, am и im"
+  uk: "Перевірка — підстановка um, am та im"
+
+# The second family on this topic, probing the SAME competence as probe-alltag-zeit
+# (um + clock time, am + day or part of day, im + month or season, in der Nacht) through a
+# different response format.
+#
+# Why a twin rather than a new competence: a family serves one variant per interval, so a
+# competence carried by a single family caps at three attempts, ever. Two families make it
+# six, and the retention figure becomes readable a schedule sooner. And because the gap is
+# the graded token, a cloze miss cannot be the "retained the target but missed elsewhere"
+# outcome that the translate family produces — the two channels fail in different ways, so
+# a competence that holds up in both is genuinely retained rather than format-lucky.
+#
+# New months, days, parts of day and clock times throughout: nothing here is answerable
+# from memory of the lesson's own items or of the translate family's.
+
+items:
+  - id: variant-a
+    outcomes: [zeit-praepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "Fill in um, am or im."
+      ru: "Вставьте um, am или im."
+      uk: "Вставте um, am або im."
+    text: "Der Bus fährt {{um}} elf Uhr. {{Am}} Montag fahre ich nach Bremen."
+    translation:
+      en: "The bus leaves at eleven o'clock. On Monday I am travelling to Bremen."
+      ru: "Автобус отходит в одиннадцать часов. В понедельник я еду в Бремен."
+      uk: "Автобус вирушає об одинадцятій годині. У понеділок я їду до Бремена."
+    explain:
+      en: "The kind of time decides the preposition, not the sentence: a time on the clock takes um (um elf Uhr), a weekday takes am (am Montag). English uses at for one and on for the other, so the pair has to be learned as two separate rules."
+      ru: "Предлог выбирается по типу времени, а не по смыслу предложения: время на часах требует um (um elf Uhr), день недели — am (am Montag). По-русски в обоих случаях «в», поэтому русский предлог здесь не подсказка."
+      uk: "Прийменник обирається за типом часу, а не за змістом речення: час на годиннику вимагає um (um elf Uhr), день тижня — am (am Montag). Українською в першому випадку «об», у другому «у», але покладатися на це не варто — вирішує тип часу."
+
+  - id: variant-b
+    outcomes: [zeit-praepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "Fill in um, am or im."
+      ru: "Вставьте um, am или im."
+      uk: "Вставте um, am або im."
+    text: "{{Im}} Oktober beginnt mein Kurs. {{Am}} Nachmittag habe ich immer Zeit."
+    translation:
+      en: "My course starts in October. In the afternoon I always have time."
+      ru: "Мой курс начинается в октябре. Во второй половине дня у меня всегда есть время."
+      uk: "Мій курс починається у жовтні. По обіді я завжди маю час."
+    explain:
+      en: "A month takes im (im Oktober), and so does a season. A part of the day takes am (am Nachmittag, am Morgen, am Abend) — with one exception to keep in mind: the night is in der Nacht."
+      ru: "С месяцем употребляется im (im Oktober), с временем года — тоже im. С частью суток идёт am (am Nachmittag, am Morgen, am Abend), и есть одно исключение, которое стоит помнить: ночь — in der Nacht."
+      uk: "З місяцем вживається im (im Oktober), з порою року — теж im. З частиною доби йде am (am Nachmittag, am Morgen, am Abend), і є один виняток, який варто пам'ятати: ніч — in der Nacht."
+
+  - id: variant-c
+    outcomes: [zeit-praepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "Fill in the missing time expressions."
+      ru: "Вставьте пропущенные предлоги времени."
+      uk: "Вставте пропущені прийменники часу."
+    text: "{{Im}} Frühling ist das Wetter schön, aber {{in der}} Nacht ist es kalt. {{Um}} halb zehn gehe ich ins Bett."
+    translation:
+      en: "In spring the weather is lovely, but at night it is cold. At half past nine I go to bed."
+      ru: "Весной погода прекрасная, но ночью холодно. В половине десятого я ложусь спать."
+      uk: "Навесні погода чудова, але вночі холодно. О пів на десяту я лягаю спати."
+    explain:
+      en: "All three rules in one text, including the exception. A season takes im (im Frühling), but the night is the one part of the day that does not take am: in der Nacht. And halb zehn is a time on the clock like any other, so it takes um — note that halb zehn means half an hour before ten, not after."
+      ru: "Все три правила в одном тексте, включая исключение. С временем года — im (im Frühling), но ночь — единственная часть суток, которая идёт не с am: in der Nacht. А halb zehn — такое же время по часам, как и любое другое, поэтому um. Обратите внимание: halb zehn — это полчаса до десяти, а не после."
+      uk: "Усі три правила в одному тексті, разом із винятком. З порою року — im (im Frühling), але ніч — єдина частина доби, яка йде не з am: in der Nacht. А halb zehn — такий самий час за годинником, як і будь-який інший, тому um. Зверніть увагу: halb zehn — це пів години до десятої, а не після."

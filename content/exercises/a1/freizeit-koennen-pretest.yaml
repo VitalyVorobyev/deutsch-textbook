@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-kann-form
     outcomes: [freizeit-koennen-satz]
-    type: mc
+    type: cloze
     focus: modal-konjugation
-    prompt: "Er ___ gut schwimmen."
-    options: ["kann", "kannt", "könnt"]
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Er {{kann}} gut schwimmen. (können)"
     translation: { en: "He can swim well.", ru: "Он умеет хорошо плавать.", uk: "Він уміє добре плавати." }
     explain: { en: "Modal verbs take no ending in the 3rd person singular: er kann, exactly like ich kann. kannt does not exist, and könnt is the ihr-form: ihr könnt.", ru: "У модальных глаголов в 3-м лице единственного числа нет окончания: er kann — так же, как ich kann. Формы kannt не существует, а könnt — это форма ihr: ihr könnt.", uk: "У модальних дієслів у 3-й особі однини немає закінчення: er kann — так само, як ich kann. Форми kannt не існує, а könnt — це форма ihr: ihr könnt." }
   - id: pre-infinitiv-ende

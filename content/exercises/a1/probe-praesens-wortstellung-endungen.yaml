@@ -1,0 +1,74 @@
+topic: praesens-wortstellung
+role: probe
+title:
+  en: "Probe — present-tense endings"
+  ru: "Проверка — окончания настоящего времени"
+  uk: "Перевірка — закінчення теперішнього часу"
+
+# Three parallel variants of ONE competence: producing the right present-tense form for
+# the person, including the singular stem change (du nimmst, sie fährt, sie schläft) and
+# the extra -e- after a stem in -t (arbeitet). The topic's other probe family measures
+# verbzweit — where the verb goes — and this one measures what it looks like when it gets
+# there; the two are different failures and neither substitutes for the other.
+#
+# Deliberately `cloze`, not `translate`: the gap *is* the graded token, so a miss can only
+# be a miss of this competence. The translate family cannot say that — a whole typed
+# sentence has some eight independent ways to go wrong, of which the ending is one.
+#
+# New people, new verbs (nehmen, fahren, schlafen, arbeiten), new situations: none of the
+# topic's practice items can be recalled to answer these.
+
+items:
+  - id: variant-a
+    outcomes: [praesens-konjugation]
+    type: cloze
+    focus: verb-endungen
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "— Was {{nimmst}} (nehmen) du zum Frühstück? — Ich {{nehme}} (nehmen) nur einen Tee."
+    translation:
+      en: "— What do you have for breakfast? — I just have a tea."
+      ru: "— Что ты берёшь на завтрак? — Я беру только чай."
+      uk: "— Що ти береш на сніданок? — Я беру тільки чай."
+    explain:
+      en: "nehmen changes its stem in the du and er/sie forms: du nimmst, er nimmt — but ich nehme keeps the plain stem. So the two gaps in one exchange look quite different, and only the du form carries the change."
+      ru: "У глагола nehmen корень меняется в формах du и er/sie: du nimmst, er nimmt, — но ich nehme сохраняет обычный корень. Поэтому два пропуска в одном диалоге выглядят по-разному: изменение есть только в форме du."
+      uk: "У дієслова nehmen корінь змінюється у формах du та er/sie: du nimmst, er nimmt, — але ich nehme зберігає звичайний корінь. Тому два пропуски в одному діалозі виглядають по-різному: зміна є лише у формі du."
+
+  - id: variant-b
+    outcomes: [praesens-konjugation]
+    type: cloze
+    focus: verb-endungen
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "Mein Vater {{fährt}} (fahren) jeden Tag nach Bonn. Wir {{fahren}} (fahren) nur am Wochenende."
+    translation:
+      en: "My father drives to Bonn every day. We only drive there at the weekend."
+      ru: "Мой отец каждый день ездит в Бонн. Мы ездим только по выходным."
+      uk: "Мій батько щодня їздить до Бонна. Ми їздимо лише у вихідні."
+    explain:
+      en: "The vowel change happens in the singular only: er fährt with the umlaut, but wir fahren without it. The plural forms are the same as the infinitive, so nothing is added there."
+      ru: "Изменение гласной происходит только в единственном числе: er fährt с умлаутом, но wir fahren — без него. Формы множественного числа совпадают с инфинитивом, так что там ничего не меняется."
+      uk: "Зміна голосної відбувається лише в однині: er fährt з умлаутом, але wir fahren — без нього. Форми множини збігаються з інфінітивом, тож там нічого не змінюється."
+
+  - id: variant-c
+    outcomes: [praesens-konjugation]
+    type: cloze
+    focus: verb-endungen
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "Meine Tochter {{schläft}} (schlafen) noch. Ihr Mann {{arbeitet}} (arbeiten) schon."
+    translation:
+      en: "My daughter is still asleep. Her husband is already working."
+      ru: "Моя дочь ещё спит. Её муж уже работает."
+      uk: "Моя донька ще спить. Її чоловік уже працює."
+    explain:
+      en: "Two different things happen in the same person. schlafen takes the umlaut in the singular (sie schläft), while arbeiten changes no vowel but needs an extra -e- before the ending, because a stem ending in -t cannot carry -t directly: arbeit + e + t."
+      ru: "В одной и той же форме происходят две разные вещи. У schlafen в единственном числе появляется умлаут (sie schläft), а у arbeiten гласная не меняется, зато перед окончанием нужна дополнительная -e-: основа на -t не может присоединить -t напрямую, поэтому arbeit + e + t."
+      uk: "В одній і тій самій формі відбуваються дві різні речі. У schlafen в однині з'являється умлаут (sie schläft), а в arbeiten голосна не змінюється, зате перед закінченням потрібна додаткова -e-: основа на -t не може приєднати -t напряму, тому arbeit + e + t."

@@ -1,0 +1,77 @@
+topic: aemter-dienstleistungen
+role: probe
+title:
+  en: "Probe — the dative after zu, von, bei, nach, seit"
+  ru: "Проверка — датив после zu, von, bei, nach, seit"
+  uk: "Перевірка — давальний після zu, von, bei, nach, seit"
+
+# The second family on this topic. probe-aemter-dienstleistungen probes hoeflich-konjunktiv
+# (könnte / würde gern as polite chunks). This one probes dativ-praepositionen, which the
+# topic drills but nothing checks after a delay — and which is the machinery every office
+# errand actually runs on: vom Amt, zur Bank, beim Termin.
+#
+# cloze rather than translate: the case form is a FORM, so a gap grades it cleanly and the
+# miss can only be the dative. A translate probe on the same rule can lose the dative and
+# four other things at once, and the attempt then lands in the "target retained, sentence
+# missed elsewhere" bucket instead of saying something.
+#
+# Each variant mixes a contracted preposition (vom, zur, beim) with an uncontracted one
+# (nach dem, seit einem, bei der), because collapsing the two is the actual confusion —
+# a learner who has memorised zum/zur as chunks can still write "nach dem" as "nachdem".
+#
+# New errands throughout — Bürgeramt, Versicherung, Bank — none of them the lesson's.
+
+items:
+  - id: variant-a
+    outcomes: [anliegen-nennen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Ich komme gerade {{vom}} Bürgeramt und gehe jetzt {{zur}} Bank."
+    translation:
+      en: "I have just come from the citizens' office and am going to the bank now."
+      ru: "Я только что из городского бюро и сейчас иду в банк."
+      uk: "Я щойно з міського бюро і зараз іду до банку."
+    explain:
+      en: "Both prepositions take the dative, and both contract here. das Bürgeramt is neuter, so its dative is dem, and von + dem is always vom. die Bank is feminine, so its dative is der, and zu + der is always zur. The contraction is not optional in speech — nobody says von dem Bürgeramt."
+      ru: "Оба предлога требуют датива, и оба здесь сливаются с артиклем. das Bürgeramt среднего рода, его датив — dem, а von + dem всегда даёт vom. die Bank женского рода, её датив — der, а zu + der всегда даёт zur. В речи слияние обязательно: von dem Bürgeramt никто не говорит."
+      uk: "Обидва прийменники вимагають давального, і обидва тут зливаються з артиклем. das Bürgeramt середнього роду, його давальний — dem, а von + dem завжди дає vom. die Bank жіночого роду, її давальний — der, а zu + der завжди дає zur. У мовленні злиття обов'язкове: von dem Bürgeramt ніхто не каже."
+
+  - id: variant-b
+    outcomes: [anliegen-nennen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "{{Beim}} Amt brauchen Sie einen Termin. Nach {{dem}} Termin bekommen Sie die Bestätigung."
+    translation:
+      en: "At the office you need an appointment. After the appointment you get the confirmation."
+      ru: "В ведомстве нужна запись. После приёма вы получите подтверждение."
+      uk: "У відомстві потрібен запис. Після прийому ви отримаєте підтвердження."
+    explain:
+      en: "bei + dem contracts to beim, exactly like zu + dem to zum. nach also takes the dative but has no contracted form, so der Termin becomes nach dem Termin and the two words stay apart. Note that nach here is temporal — after — and the case is the dative either way."
+      ru: "bei + dem сливается в beim, точно так же как zu + dem в zum. nach тоже требует датива, но слитной формы у него нет, поэтому der Termin превращается в nach dem Termin, и слова остаются раздельными. Обратите внимание: nach здесь временное — «после», — но падеж в любом значении датив."
+      uk: "bei + dem зливається в beim, так само як zu + dem у zum. nach теж вимагає давального, але злитої форми не має, тому der Termin перетворюється на nach dem Termin, і слова залишаються окремими. Зверніть увагу: nach тут часове — «після», — але відмінок у будь-якому значенні давальний."
+
+  - id: variant-c
+    outcomes: [anliegen-nennen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: Fill in the correct form.
+      ru: Вставьте правильную форму.
+      uk: Вставте правильну форму.
+    text: "Seit {{einem}} Monat warte ich auf die Antwort. Ich habe schon dreimal {{bei}} der Versicherung angerufen."
+    translation:
+      en: "I have been waiting for the answer for a month. I have already called the insurance company three times."
+      ru: "Я жду ответа уже месяц. Я уже трижды звонил в страховую."
+      uk: "Я чекаю на відповідь уже місяць. Я вже тричі телефонував до страхової."
+    explain:
+      en: "seit takes the dative, so ein Monat becomes seit einem Monat — and note that German uses the present tense here, because the waiting is still going on. The second gap asks which preposition anrufen pairs with for a place: bei der Versicherung. die Versicherung is feminine, so its dative article is der."
+      ru: "seit требует датива, поэтому ein Monat превращается в seit einem Monat — и обратите внимание, что немецкий ставит здесь настоящее время, ведь ожидание ещё продолжается. Во втором пропуске нужен предлог, с которым anrufen сочетается при указании места: bei der Versicherung. die Versicherung женского рода, значит артикль датива — der."
+      uk: "seit вимагає давального, тому ein Monat перетворюється на seit einem Monat — і зверніть увагу, що німецька ставить тут теперішній час, адже очікування ще триває. У другому пропуску потрібен прийменник, з яким anrufen сполучається при вказівці місця: bei der Versicherung. die Versicherung жіночого роду, отже артикль давального — der."

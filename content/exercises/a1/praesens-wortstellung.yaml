@@ -222,18 +222,22 @@ items:
 
   - id: order-zuhause
     outcomes: [praesens-verbzweit]
-    type: order
+    type: translate
     focus: verbzweit
     instruction:
-      en: Arrange the words into a correct sentence.
-      ru: Составьте правильное предложение.
-      uk: Складіть правильне речення.
-    words: ["Ich", "bin", "heute", "zu", "Hause."]
-    translation:
-      en: I am at home today.
-      ru: Я сегодня дома.
-      uk: Я сьогодні вдома.
+      en: Translate into German. Begin with the time phrase.
+      ru: Переведите на немецкий. Начните с обстоятельства времени.
+      uk: Перекладіть німецькою. Почніть з обставини часу.
+    prompt_en: Today I am at home.
+    prompt_ru: Сегодня я дома.
+    prompt_uk: Сьогодні я вдома.
+    revision: 3
+    answer: "Heute bin ich zu Hause."
+    key_tokens: ["bin", "ich"]
+    # No subject-first accept entry: the instruction asks for the fronted time phrase, and
+    # `Ich bin heute zu Hause` never puts anything in front of the verb, so it cannot show
+    # the inversion this item's `verbzweit` tag grades.
     explain:
-      en: "Subject first, verb second. Remember: German never drops 'sein' — 'Ich heute zu Hause' is impossible."
-      ru: "Подлежащее — первое, глагол — второй. Помните: в немецком 'sein' не опускается — сказать 'Ich heute zu Hause' нельзя."
-      uk: "Підмет — перший, дієслово — друге. Пам'ятайте: у німецькій 'sein' не опускається — сказати 'Ich heute zu Hause' не можна."
+      en: "Heute takes position 1, so the subject has to move behind the verb: Heute bin ich zu Hause. Position 2 belongs to the conjugated verb and nothing displaces it — the only open question is what stands in front of it. And German never drops sein: 'Heute ich zu Hause' is impossible."
+      ru: "Heute занимает первое место, поэтому подлежащее уходит за глагол: Heute bin ich zu Hause. Второе место принадлежит спрягаемому глаголу, и ничто его оттуда не сдвигает — открыт лишь вопрос, что стоит перед ним. И в немецком sein не опускается: сказать «Heute ich zu Hause» нельзя."
+      uk: "Heute займає перше місце, тому підмет іде за дієслово: Heute bin ich zu Hause. Друге місце належить відмінюваному дієслову, і ніщо його звідти не зсуває — відкрите лише питання, що стоїть перед ним. І в німецькій sein не опускається: сказати «Heute ich zu Hause» не можна."

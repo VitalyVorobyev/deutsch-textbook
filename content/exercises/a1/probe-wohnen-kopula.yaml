@@ -1,0 +1,74 @@
+topic: wohnen
+role: probe
+title:
+  en: "Probe — sein cannot be left out"
+  ru: "Проверка — глагол sein нельзя опустить"
+  uk: "Перевірка — дієслово sein не можна пропустити"
+
+# Three parallel variants of ONE competence: German never drops the copula. «Комната
+# маленькая» and «Кімната маленька» are complete sentences with no verb in them, and the
+# German equivalent is not — Das Zimmer ist klein needs its ist, and the learner must also
+# get the form right (ist vs sind) once the subject turns plural.
+#
+# The topic's other probe family measures akkusativ-artikel, which is a case failure. This
+# is an omission failure, and it is the one a Russian- or Ukrainian-speaking learner is most
+# likely to make under time pressure — which is exactly what a delayed probe is for.
+#
+# `cloze` is the natural instrument here: the gap sits precisely where the missing verb
+# would be, so nothing else can be graded by accident. New rooms and new descriptions
+# throughout.
+
+items:
+  - id: variant-a
+    outcomes: [wohnen-beschreiben]
+    type: cloze
+    focus: kopula-sein
+    instruction:
+      en: "Fill in the correct form of sein."
+      ru: "Вставьте правильную форму глагола sein."
+      uk: "Вставте правильну форму дієслова sein."
+    text: "Die Küche {{ist}} neu. Die Fenster {{sind}} groß."
+    translation:
+      en: "The kitchen is new. The windows are big."
+      ru: "Кухня новая. Окна большие."
+      uk: "Кухня нова. Вікна великі."
+    explain:
+      en: "Neither sentence can do without its verb, and the two are not the same verb form: one subject is singular (die Küche → ist), the other plural (die Fenster → sind). Note that die appears in both, so the article is no help in telling them apart — only the noun is."
+      ru: "Ни одно из предложений не может обойтись без глагола, и формы здесь разные: одно подлежащее в единственном числе (die Küche → ist), другое во множественном (die Fenster → sind). Обратите внимание: артикль die стоит в обоих случаях, поэтому по нему число не определить — только по существительному."
+      uk: "Жодне з речень не може обійтися без дієслова, і форми тут різні: один підмет в однині (die Küche → ist), інший у множині (die Fenster → sind). Зверніть увагу: артикль die стоїть в обох випадках, тому за ним число не визначити — лише за іменником."
+
+  - id: variant-b
+    outcomes: [wohnen-beschreiben]
+    type: cloze
+    focus: kopula-sein
+    instruction:
+      en: "Fill in the correct form of sein."
+      ru: "Вставьте правильную форму глагола sein."
+      uk: "Вставте правильну форму дієслова sein."
+    text: "Mein Zimmer {{ist}} klein, aber es {{ist}} sehr hell."
+    translation:
+      en: "My room is small, but it is very bright."
+      ru: "Моя комната маленькая, но очень светлая."
+      uk: "Моя кімната маленька, але дуже світла."
+    explain:
+      en: "The second half needs its own ist even though the subject has only become a pronoun — German repeats the verb in each clause rather than carrying it over. The adjectives themselves take no ending here: after sein they stay in their basic form, klein and hell."
+      ru: "Во второй части нужен свой ist, хотя подлежащее превратилось всего лишь в местоимение: немецкий повторяет глагол в каждой части, а не «переносит» его. Сами прилагательные здесь не получают окончаний: после sein они остаются в исходной форме — klein и hell."
+      uk: "У другій частині потрібен свій ist, хоча підмет перетворився лише на займенник: німецька повторює дієслово в кожній частині, а не «переносить» його. Самі прикметники тут не отримують закінчень: після sein вони залишаються у вихідній формі — klein і hell."
+
+  - id: variant-c
+    outcomes: [wohnen-beschreiben]
+    type: cloze
+    focus: kopula-sein
+    instruction:
+      en: "Fill in the correct form of sein."
+      ru: "Вставьте правильную форму глагола sein."
+      uk: "Вставте правильну форму дієслова sein."
+    text: "— {{Ist}} die Miete hoch? — Nein, sie {{ist}} nicht teuer. Die Nachbarn {{sind}} auch nett."
+    translation:
+      en: "— Is the rent high? — No, it is not expensive. The neighbours are nice too."
+      ru: "— Аренда дорогая? — Нет, недорогая. Соседи тоже приятные."
+      uk: "— Оренда дорога? — Ні, недорога. Сусіди теж приємні."
+    explain:
+      en: "A yes-no question puts the same verb first instead of second, so the sentence still cannot lose it — Ist die Miete hoch? The answer needs its own ist, and the last sentence switches to sind because die Nachbarn is plural. Note that nicht negates the adjective and goes in front of it."
+      ru: "В вопросе без вопросительного слова тот же глагол стоит не на втором месте, а на первом, так что и здесь предложение не может без него обойтись: Ist die Miete hoch? В ответе нужен свой ist, а в последнем предложении — sind, потому что die Nachbarn во множественном числе. Обратите внимание: nicht отрицает прилагательное и стоит перед ним."
+      uk: "У питанні без питального слова те саме дієслово стоїть не на другому місці, а на першому, тож і тут речення не може без нього обійтися: Ist die Miete hoch? У відповіді потрібен свій ist, а в останньому реченні — sind, бо die Nachbarn у множині. Зверніть увагу: nicht заперечує прикметник і стоїть перед ним."

@@ -5,7 +5,7 @@ import { pick, type ExplainLang } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 import { EvidenceChipRow } from '../topic/EvidenceChips';
-import { TierBadge } from '../topic/TierBadge';
+import { PlacedMark, TierBadge } from '../topic/TierBadge';
 import { Filter, TopicDetail } from './TopicDetail';
 import { foldableMasteredRun, overviewChips, type ActiveGoal, type CourseTopic, type CourseUnit, type LevelFilter, type StatusFilter } from './course';
 
@@ -35,7 +35,7 @@ interface Props {
 }
 
 const NO_EVIDENCE: TopicEvidence = {
-  read: false, practiced: false, spaced: false, hasVocab: false, vocab: false,
+  read: false, practiced: false, spaced: false, hasVocab: false, vocab: false, placed: false,
 };
 
 const STATUSES: Array<readonly [StatusFilter, StringKey]> = [
@@ -99,6 +99,10 @@ export default function OverviewTable({
 
   const shown = topics.filter(matches);
   const mastered = topics.filter((t) => completions.get(t.id)?.tier === 'mastered').length;
+  // Counted and shown *separately*, never folded into `mastered`: a placed topic was never
+  // measured, and a mastery counter that silently includes placements would report a
+  // number the course cannot back with evidence.
+  const placedCount = topics.filter((t) => completions.get(t.id)?.placement).length;
   const levels = [...new Set(topics.map((t) => t.level))];
   // A search or a non-default filter means the learner asked for specific rows —
   // folding away part of the answer would make the result look incomplete.
@@ -130,6 +134,7 @@ export default function OverviewTable({
           ? t('topics.countAll', uiLang).replace('{n}', String(topics.length))
           : t('topics.countFiltered', uiLang).replace('{shown}', String(shown.length)).replace('{total}', String(topics.length))}
         {' · '}<strong className="font-semibold text-emerald-700 dark:text-emerald-400">{t('topics.masteredCount', uiLang).replace('{n}', String(mastered))}</strong>
+        {placedCount > 0 && <>{' · '}<span className="text-emerald-700 dark:text-emerald-400">{placedCount} {t('placement.counter', uiLang)}</span></>}
       </p>
     </div>
 
@@ -257,6 +262,7 @@ function Row({ topic, index, topics, groups, completion, evidence, current, isGo
       </button>
       {/* No level column: the rows already sit under their level's heading. */}
       <TierBadge tier={tier} manual={completion?.manual === 'reopened'} />
+      {completion?.placement && <PlacedMark className="hidden sm:inline-flex" />}
       {/* Below md the chips would force the row to wrap awkwardly; the expanded
           panel repeats them, so nothing is lost — only relocated. */}
       <EvidenceChipRow chips={chips} className="hidden md:flex" />

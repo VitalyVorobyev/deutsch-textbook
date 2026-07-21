@@ -7,18 +7,14 @@ title:
 items:
   - id: pretest-weil-modal
     outcomes: [weil-grund]
-    type: mc
+    type: cloze
     focus: nebensatz-verbende
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Ich komme nicht mit, weil ich am Sonntag ___."
-    options:
-      - "arbeiten muss"
-      - "muss arbeiten"
-      - "muss arbeite"
-    correct: 0
+    text: "Ich komme nicht mit, weil ich am Sonntag {{arbeiten muss}}. (arbeiten, müssen)"
     translation:
       en: "I am not coming along, because I have to work on Sunday."
       ru: "Я не поеду с вами, потому что в воскресенье мне нужно работать."

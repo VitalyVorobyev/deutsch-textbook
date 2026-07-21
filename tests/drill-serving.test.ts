@@ -155,3 +155,42 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     expect(weakFocuses(passed)).toEqual([]);
   });
 });
+
+/**
+ * A pretest is answered *before* the lesson, so its result says nothing about a persistent
+ * confusion — which is why it is already excluded from mastery, `Geübt`, mixed training,
+ * outcome measurement and both coverage figures. It was still reaching the weakness signal,
+ * and that was not harmless: every pretest item in this repo is `mc`, the format the pilot
+ * learner scores ~93% on, so those attempts diluted the denominators of a signal that exists
+ * to find production confusion.
+ */
+describe('pretest attempts are not weakness evidence', () => {
+  const attempt = (setId: string, id: string, correct: boolean, ts: number): Attempt => ({
+    setId, itemId: id, itemType: 'mc', correct, given: 'x', ts, focus: 'dativ-artikel',
+  });
+
+  test('easy pretest passes cannot dilute a weak tag below the threshold', () => {
+    // Four real errors out of four graded attempts: unambiguously weak.
+    const real = [0, 1, 2, 3].map((n) => attempt('a2/dativ', `i${n}`, false, NOW + n));
+    expect(weakFocuses(real).map((w) => w.focus)).toEqual(['dativ-artikel']);
+
+    // Twelve correct pretest answers alongside would drop the rate to 4/16 = 25%, under the
+    // 35% bar, and the tag would silently stop being weak while nothing about the learner
+    // changed. They are excluded, so it stays weak.
+    const padded = [
+      ...real,
+      ...Array.from({ length: 12 }, (_, n) => attempt('a2/dativ-pretest', `p${n}`, true, NOW + 10 + n)),
+    ];
+    expect(weakFocuses(padded).map((w) => w.focus)).toEqual(['dativ-artikel']);
+  });
+
+  test('and pretest errors cannot make a tag weak on their own', () => {
+    const preOnly = [0, 1, 2, 3].map((n) => attempt('a2/dativ-pretest', `p${n}`, false, NOW + n));
+    expect(weakFocuses(preOnly)).toEqual([]);
+  });
+
+  test('the suffix is the whole test — an ordinary set is unaffected', () => {
+    const ordinary = [0, 1, 2, 3].map((n) => attempt('a2/dativ-pretests', `i${n}`, false, NOW + n));
+    expect(weakFocuses(ordinary).map((w) => w.focus)).toEqual(['dativ-artikel']);
+  });
+});

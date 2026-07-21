@@ -81,6 +81,30 @@ export function blockedByEarlier<T extends CheckpointRef>(
     );
 }
 
+/**
+ * The latest **verified** attempt on each item of one set, keyed by item id.
+ *
+ * "A retake replaces the old result, it never averages" is the rule both whole-level
+ * assessments are scored by, and it has to mean the same thing on the checkpoint screen
+ * and the placement screen — a learner who answered an item twice must not see one
+ * number here and another there. Shared rather than reimplemented for that reason.
+ *
+ * Practice evidence (`write`, `speak`) is dropped: it is unverified by construction and
+ * scoring it would let an unscorable answer count toward a verdict.
+ */
+export function latestVerifiedByItem(
+  attempts: readonly Attempt[],
+  setId: string,
+): Map<string, Attempt> {
+  const latest = new Map<string, Attempt>();
+  for (const attempt of attempts) {
+    if (attempt.setId !== setId || !isVerifiedEvidence(attempt)) continue;
+    const previous = latest.get(attempt.itemId);
+    if (!previous || attempt.ts >= previous.ts) latest.set(attempt.itemId, attempt);
+  }
+  return latest;
+}
+
 export interface CheckpointOutcomeResult {
   outcome: string;
   /** parts-weighted score summed over this outcome's answered items */
@@ -125,12 +149,7 @@ export function checkpointOutcomeResults(
   const own = attempts.filter((a) => a.setId === setId);
   if (own.length === 0) return null;
 
-  const latest = new Map<string, Attempt>();
-  for (const a of own) {
-    if (!isVerifiedEvidence(a)) continue;
-    const prev = latest.get(a.itemId);
-    if (!prev || a.ts >= prev.ts) latest.set(a.itemId, a);
-  }
+  const latest = latestVerifiedByItem(attempts, setId);
 
   const scorable = items.filter((item) => item.type !== 'write');
   const perOutcome = new Map<string, CheckpointOutcomeResult>();

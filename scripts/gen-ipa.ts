@@ -1,6 +1,6 @@
 /**
  * One-off generator: fills `ipa` (Lautschrift) on vocab entries using espeak-ng,
- * normalized to the house style documented in CLAUDE.md.
+ * normalized to the house style documented in docs/lautschrift.md.
  *
  *   bun run gen:ipa                    fill entries that have no ipa yet
  *   bun run gen:ipa -- --calibrate     print raw vs normalized vs target, no writes

@@ -20,11 +20,11 @@ const legacy = (version: number) => ({
   cards: {},
 });
 
-describe('snapshot v5', () => {
-  test('migrates every supported version through an explicit v5 boundary', () => {
-    for (const version of [1, 2, 3, 4, 5]) {
+describe('snapshot v6', () => {
+  test('migrates every supported version through an explicit v6 boundary', () => {
+    for (const version of [1, 2, 3, 4, 5, 6]) {
       const migrated = parseProgressSnapshot(legacy(version));
-      expect(migrated.version).toBe(5);
+      expect(migrated.version).toBe(6);
       expect(migrated.attempts).toHaveLength(1);
       expect(migrated.sessions).toEqual([]);
       expect(migrated.topics).toEqual({});
@@ -33,9 +33,26 @@ describe('snapshot v5', () => {
   });
 
   test('rejects malformed nested progress instead of shallowly accepting it', () => {
-    expect(() => parseProgressSnapshot({ ...legacy(5), attempts: [{ correct: true }] })).toThrow();
-    expect(() => parseProgressSnapshot({ ...legacy(5), cards: { x: { reps: 1 } } })).toThrow();
-    expect(() => parseProgressSnapshot(legacy(6))).toThrow();
+    expect(() => parseProgressSnapshot({ ...legacy(6), attempts: [{ correct: true }] })).toThrow();
+    expect(() => parseProgressSnapshot({ ...legacy(6), cards: { x: { reps: 1 } } })).toThrow();
+    expect(() => parseProgressSnapshot(legacy(7))).toThrow();
+  });
+
+  test('carries placement across the v5 boundary in both directions', () => {
+    // A v5 file predates placement entirely: it must import clean, not be rejected for
+    // lacking a field that did not exist when it was written.
+    const fromV5 = parseProgressSnapshot({
+      ...legacy(5),
+      topics: { dativ: { readAt: 7, manual: 'learned', manualAt: 8 } },
+    });
+    expect(fromV5.topics.dativ).toEqual({ readAt: 7, manual: 'learned', manualAt: 8 });
+
+    const placed = parseProgressSnapshot({
+      ...legacy(6),
+      topics: { dativ: { placement: { setId: 'a1/placement-a1', at: 9, score: 1 } } },
+    });
+    expect(placed.topics.dativ?.placement?.setId).toBe('a1/placement-a1');
+    expect(parseProgressSnapshot(JSON.parse(JSON.stringify(placed)))).toEqual(placed);
   });
 
   test('round-trips structured practice and feedback', () => {
@@ -79,6 +96,27 @@ describe('pure snapshot merge policy', () => {
       { x: { artifactId: 'x', difficulty: 'too-hard', useful: false, wantsMore: false, ts: 1 } },
       { x: { artifactId: 'x', difficulty: 'comfortable', useful: true, wantsMore: true, ts: 2 } },
     ).x?.difficulty).toBe('comfortable');
+  });
+
+  // mergeTopics rebuilds its output field by field, so a new TopicProgress field it does
+  // not name is dropped on every import — silently, which is the whole hazard.
+  test('preserves placement, higher score winning, exactly as the writer does', () => {
+    const weak = { setId: 'a1/placement-a1', at: 5, score: 0.8 };
+    const strong = { setId: 'a1/placement-a1', at: 9, score: 1 };
+
+    expect(mergeTopics({ x: { placement: weak } }, {}).x?.placement).toEqual(weak);
+    expect(mergeTopics({}, { x: { placement: weak } }).x?.placement).toEqual(weak);
+    expect(mergeTopics({ x: { placement: weak } }, { x: { placement: strong } }).x?.placement)
+      .toEqual(strong);
+    // A worse retake must not un-place a topic on import either — a round-trip through
+    // export and import cannot be allowed to undo what setTopicPlacement refused to undo.
+    expect(mergeTopics({ x: { placement: strong } }, { x: { placement: weak } }).x?.placement)
+      .toEqual(strong);
+    // and it survives beside the fields that were already merged
+    expect(mergeTopics(
+      { x: { readAt: 2, placement: weak } },
+      { x: { manual: 'learned', manualAt: 3 } },
+    ).x).toEqual({ readAt: 2, manual: 'learned', manualAt: 3, placement: weak });
   });
 });
 
