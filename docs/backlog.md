@@ -248,6 +248,63 @@ referencing a `spoken-interaction` outcome would satisfy such a rule while measu
 which buys the appearance of coverage and none of it. A real fix needs scorable speech, which the app
 does not have and which the open-production contract says it must not pretend to have.
 
+### P12-6 · Items that grade which word the author had in mind — **done 2026-07-21**, one deferred
+
+Found by the learner in a single session, twice, both times by writing correct German and being
+told it was wrong. Two different item types, one defect: the item had exactly one right answer
+where the language has two, and never said which it wanted.
+
+**`translate` — the connector coin flip.** «потому что» is exactly as ambiguous as *because*:
+*denn* (V2) and *weil* (verb-final) both render it. Six items accepted one and rejected the other
+with nothing in the prompt or instruction to choose by. **The class hides behind curriculum
+order** — `a2/arbeit-beruf` teaches *denn* and its article says *weil* "comes later", so on the
+topic's own page the task genuinely is determinate. Mixed training then serves the item stripped
+of that context, months after *weil* was taught. So the rule is now stated as: **an item is
+determinate only if it is determinate when served alone.**
+
+Resolved per item by asking whether the connector carries the tag, which split them 4–1:
+
+| Item | focus | ruling |
+| --- | --- | --- |
+| `a2/arbeit-beruf:uebersetzen-denn-termin` | `verbzweit` | constrain — the tag *is* "verb stays in position 2 after denn" |
+| `a2/checkpoint-a2:uebersetzen-weil-arbeiten` | `nebensatz-verbende` | constrain — the tag is defined as verb-final *in a weil-clause* |
+| `a2/freunde-feste:uebersetzen-absage-weil` | `nebensatz-verbende` | constrain |
+| `a2/aemter-dienstleistungen-produktion:uebersetzen-weil-anliegen` | `nebensatz-verbende` | constrain |
+| `a2/aemter-dienstleistungen-produktion:uebersetzen-transfer-post` | `hoeflich-konjunktiv` | **accept** — the tag grades *würde gern* and does not care what follows |
+
+The last row is the one that matters for the rule: constraining an item that did not need it is the
+same defect pointed the other way, narrowing real production for nothing. A first pass constrained
+all five and was corrected.
+
+**`table` — the stub repeated.** `a2/verbindungen-folgen:table-drei-wortarten` shows
+`Ich komme nicht, weil …` in a `given` cell and graded the next cell as `weil ich heute arbeite` —
+so the sentence reads back as *weil weil ich heute arbeite*, while the instruction says "write the
+second half only". All three rows. The learner's answers (`ich heute arbeite` / `ich arbeite heute` /
+`komme ich nicht`) had **every word order the item drills correct** — verb-final after *weil*, V2
+after *denn*, inversion after *deshalb* — and were logged `wrong` and attributed to
+`konjunktionaladverb-inversion`, a tag P12-3 had just finished cleaning contamination off.
+
+**Both are validator-enforced now**, and both rules were watched failing before being trusted.
+The translate rule is keyed on a curated group list (`INTERCHANGEABLE_CONNECTORS`); `da` and the
+concessive pair are deliberately excluded because the prompt distinguishes them. The table rule is
+keyed on the **ellipsis**, which is what separates a continuation prompt from a paradigm table where
+`die`/`die` is genuinely right — checked, it leaves all four paradigm tables alone. `contracts.test.ts`
+pins both properties independently of the validator.
+
+This closes a gap the validator's own comment names: *"whether an `instruction` really pins the
+target … is a judgement about meaning — on the author."* True in general, but **whether the
+instruction names the pinned connector is mechanical**, and that is the half now checked.
+
+- Deferred: `a2/probe-nebensaetze-plaene:variant-a` has the same defect and is frozen — constraining
+  it needs a `revision` bump, which drops its attempt out of the re-graded retention reading before
+  2026-08-02. Safe to wait: its one logged attempt used *weil* unprompted, so the ambiguity has not
+  yet cost a data point. The validator **warns** rather than passing silently, so the exemption
+  cannot be forgotten; remove it and the `DEFERRED` entry in `contracts.test.ts` together.
+- Not repaired: the one logged `konjunktionaladverb-inversion` failure is preserved as a known
+  revision mismatch and still reads as a real error in the weak-focus table. `data/grading-decisions.yaml`
+  rules `translate` renderings only, so there is no mechanism to retract a `table` attempt. Weight that
+  tag accordingly until it has post-fix evidence.
+
 ### P13-2 · The A2 entry test has no inbound link — `todo` (S)
 
 `/einstufung/a2` is built and passes validation, and nothing in the app ever links to it. The

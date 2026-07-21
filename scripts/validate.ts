@@ -72,6 +72,49 @@ const MAX_PLACEMENT_SELECTION_PERCENT = 40;
 const MAX_ORDER_PER_SET = 2;
 
 /**
+ * Connectors that render the same prompt equally well, so pinning one is a coin flip.
+ *
+ * «потому что» is exactly as ambiguous as "because": *denn* and *weil* both translate it,
+ * and they differ only in the word order they demand. An item accepting one and rejecting
+ * the other therefore grades which word the author had in mind — the same failure the cloze
+ * determinacy rule already names, arriving through `translate` instead.
+ *
+ * The class hides behind curriculum order: `a2/arbeit-beruf` teaches *denn* and its article
+ * says *weil* "comes later", so on its own page the task really is determinate. Mixed
+ * training then serves the item stripped of that context, after *weil* has been taught, and
+ * a learner who picks the harder construction and builds it correctly is marked wrong.
+ *
+ * Each group is a set of interchangeable members, never a list of near-synonyms: *da* is
+ * left out because clause-initial *Da* is far more often "then/there", and the concessive
+ * pair *obwohl* / *trotzdem* is left out because the prompt itself distinguishes them
+ * («хотя» vs «несмотря на это»). Widen it only on evidence of a real rejection.
+ */
+const INTERCHANGEABLE_CONNECTORS: readonly (readonly string[])[] = [
+  ['denn', 'weil'],
+  ['deshalb', 'deswegen', 'darum'],
+];
+
+/**
+ * Items held below the rule until the A1 probe cohort is read on 2026-08-02.
+ *
+ * Constraining an item changes the task, which needs a `revision` bump, and a bumped
+ * revision stops `revisionKnownMismatch` re-grading its attempts — so the data point
+ * leaves the retention reading. `data/grading-decisions.yaml` already holds every probe
+ * ruling for that reason; this is the same freeze reaching the same conclusion.
+ *
+ * Deliberately a **warning, not a silent pass**: an exemption nobody sees is an exemption
+ * nobody removes. The one entry below is safe to defer because its single logged attempt
+ * used `weil` of its own accord, so the ambiguity has not yet cost a data point.
+ */
+const CONNECTOR_DETERMINACY_DEFERRED: ReadonlyMap<string, string> = new Map([
+  ['a2/probe-nebensaetze-plaene:variant-a', 'probe frozen until the 2026-08-02 cohort read'],
+]);
+
+/** Clause-introducing position only: `um sechs Uhr` and `besser als` must not count. */
+const introducesClause = (text: string, word: string) =>
+  new RegExp(`(^|[,;.!?]\\s*)${word}\\b`, 'iu').test(text);
+
+/**
  * Roles that own their own page and are deliberately in no topic's `exercises` list.
  *
  * Kept in one place because three separate checks have to agree about it — the
@@ -668,6 +711,35 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (seen.has(n)) fail(where, `duplicate accept entry "${a}"`);
           seen.add(n);
         }
+        // Determinacy: if every accepted rendering pins one member of an interchangeable
+        // group, the learner must be told which — or the sibling must be accepted too.
+        // Which of the two is right depends on the tag, and the author decides: where the
+        // connector carries the focus (verbzweit is *about* the verb staying in position 2
+        // after denn) it is constrained; where it is carrier material the accept list grows.
+        {
+          const renderings = [item.answer, ...item.accept];
+          const instruction = Object.values(item.instruction ?? {})
+            .join(' ')
+            .toLowerCase();
+          for (const group of INTERCHANGEABLE_CONNECTORS) {
+            const pinned = group.filter((c) => renderings.every((r) => introducesClause(r, c)));
+            if (pinned.length !== 1) continue;
+            const sibling = group.filter((c) => c !== pinned[0]);
+            if (sibling.some((c) => renderings.some((r) => introducesClause(r, c)))) continue;
+            if (instruction.includes(pinned[0])) continue;
+            const deferred = CONNECTOR_DETERMINACY_DEFERRED.get(`${setId}:${item.id}`);
+            const message =
+              `every accepted rendering uses "${pinned[0]}" and none uses ${sibling
+                .map((c) => `"${c}"`)
+                .join(' or ')}, but nothing tells the learner which to pick — ` +
+              `${sibling.join('/')} renders the same prompt just as well. Either name ` +
+              `"${pinned[0]}" in the instruction (when the focus is about it) or add the ` +
+              `sibling rendering to accept (when it is not)`;
+            if (deferred) warn(where, `${message} [deferred: ${deferred}]`);
+            else fail(where, message);
+            break;
+          }
+        }
         // key_tokens names the tokens of `answer` OR an authored accept rendering that
         // the focus tag grades. Synonymous accepted forms must be pinned too; otherwise
         // a malformed form can be forgiven as a spelling slip. A stale token still has
@@ -722,6 +794,40 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (row.cells.length !== item.columns.length)
             fail(where, `row "${row.label}" has ${row.cells.length} cells, expected ${item.columns.length}`);
           asked += row.cells.filter((c) => !c.given).length;
+
+          // A `given` cell ending in an ellipsis is a *continuation prompt*: the learner
+          // reads the row as one sentence and carries it on. Repeating the word the stub
+          // just handed over is then the unnatural reading, and grading it as the only
+          // right one fails a learner whose word order — the thing the row exists to
+          // drill — was perfect. `Ich komme nicht, weil …` + `weil ich heute arbeite`
+          // reads back as "…, weil weil ich heute arbeite".
+          //
+          // The ellipsis is what distinguishes this from a paradigm table, where two
+          // cells legitimately hold the same form (Nominativ `die`, Akkusativ `die`).
+          for (let i = 0; i < row.cells.length - 1; i++) {
+            const stub = row.cells[i];
+            const next = row.cells[i + 1];
+            if (!stub.given || next.given || !/[…]\s*$/u.test(stub.answer)) continue;
+            const lastGiven = stub.answer
+              .replace(/[…\s]+$/u, '')
+              .split(/\s+/)
+              .pop()
+              ?.replace(/[^\p{L}]/gu, '')
+              .toLowerCase();
+            const firstAsked = next.answer
+              .trim()
+              .split(/\s+/)[0]
+              ?.replace(/[^\p{L}]/gu, '')
+              .toLowerCase();
+            if (lastGiven && lastGiven === firstAsked)
+              fail(
+                where,
+                `row "${row.label}": the given cell ends "… ${lastGiven} …" and the graded ` +
+                  `cell repeats "${firstAsked}". The stub's ellipsis asks the learner to ` +
+                  `continue the sentence, so the answer must not restate the word it was ` +
+                  `just handed — drop it from the answer, or drop the ellipsis from the stub`,
+              );
+          }
         }
         if (asked === 0) fail(where, 'table has no cells to fill in');
         break;
