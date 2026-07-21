@@ -125,6 +125,15 @@ it; everything else lives in the archive.
     rather than plain correct. It touches `foldUmlauts`, which is flashcard-only and therefore does not
     move the retention figure — but it does change grading for every card, so it is not a change to
     make in the same breath as a bug fix.
+- **P15 · Pre-B1 comprehensive review** — `done` 2026-07-21 (PR #94). The audit accepts v6
+  snapshots with its version list bound to the schema's; the grading queue was drained (10 rulings:
+  7 confirm, 3 accept); four cloze items stopped grading which word the author had in mind
+  (*haben* for *schreiben* was rejected live); three converted pretest explains stopped citing
+  mc options a cloze does not have; the learning-science skill stopped contradicting the
+  minimal-ceremony contract; and `nebensatz-verbende` — the one persistent weak focus without an
+  owned drill — got `a2/drill-nebensatz-verbende` (11 items). Style drift in `lernen-verstehen`
+  was checked against the corpus and not confirmed: 661 lines / 6 H3s sits inside the A2 range,
+  and the classroom scenario is the recorded one-scenario-per-unit convention.
 - **P14-3 · Ask whether the retention gate can be read, not only what it says** — `done` 2026-07-21.
   `bun run progress:audit --project YYYY-MM-DD` projects readability forward from arming dates and the
   interval schedule instead of from attempts already taken: **A1 1 readable now, 8 still reachable by

@@ -1,0 +1,225 @@
+# Drill from progress (2026-07-21 audit): nebensatz-verbende is persistent — 8 attributed
+# errors across 7 distinct items, recent, no recovery since the last error — and it was the
+# one persistent weak focus without an owned drill in rotation. Every item drills the same
+# single confusion: the conjugated verb has not reached the end of the subordinate clause.
+# Contexts are fresh (bus, weather, flat, cinema), never re-skins of the topic's own items.
+topic: nebensaetze-plaene
+role: drill
+title:
+  en: "Drill — the verb goes to the wall"
+  ru: "Тренажёр — глагол уходит в конец"
+  uk: "Тренажер — дієслово йде в кінець"
+items:
+  - id: mc-weil-muede
+    outcomes: [weil-grund]
+    type: mc
+    focus: nebensatz-verbende
+    prompt: "Ich bleibe heute zu Hause, ___"
+    options:
+      - "weil ich müde bin."
+      - "weil ich bin müde."
+    correct: 0
+    translation:
+      en: "I am staying at home today because I am tired."
+      ru: "Я сегодня остаюсь дома, потому что устал."
+      uk: "Я сьогодні залишаюся вдома, бо втомився."
+    explain:
+      en: "weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb: weil ich müde bin. The second option keeps main-clause order behind weil — that is the exact error this drill exists to unlearn."
+      ru: "weil открывает придаточное, а придаточное заканчивается спрягаемым глаголом: weil ich müde bin. Во втором варианте после weil сохранился порядок главного предложения — ровно та ошибка, ради которой существует этот тренажёр."
+      uk: "weil відкриває підрядне, а підрядне закінчується відмінюваним дієсловом: weil ich müde bin. У другому варіанті після weil зберігся порядок головного речення — саме та помилка, заради якої існує цей тренажер."
+
+  - id: mc-dass-koennen
+    outcomes: [dass-satz]
+    type: mc
+    focus: nebensatz-verbende
+    prompt: "Ich hoffe, ___"
+    options:
+      - "dass wir am Sonntag wandern können."
+      - "dass wir am Sonntag können wandern."
+    correct: 0
+    translation:
+      en: "I hope that we can go hiking on Sunday."
+      ru: "Надеюсь, что в воскресенье мы сможем пойти в поход."
+      uk: "Сподіваюся, що в неділю ми зможемо піти в похід."
+    explain:
+      en: "Two verbs, one wall. Only the conjugated one goes last, so the infinitive queues up in front of it: wandern können — never können wandern. The bracket you know from main clauses collapses onto the end of the Nebensatz."
+      ru: "Два глагола, одна стена. Последним идёт только спрягаемый, а инфинитив выстраивается перед ним: wandern können — и никогда können wandern. Рамка, знакомая по главному предложению, складывается в конец придаточного."
+      uk: "Два дієслова, одна стіна. Останнім іде лише відмінюване, а інфінітив вишиковується перед ним: wandern können — і ніколи können wandern. Рамка, знайома з головного речення, складається в кінець підрядного."
+
+  - id: mc-dass-keine-zeit
+    outcomes: [dass-satz]
+    type: mc
+    focus: nebensatz-verbende
+    prompt: "Anna sagt, ___"
+    options:
+      - "dass sie heute keine Zeit hat."
+      - "dass sie hat heute keine Zeit."
+    correct: 0
+    translation:
+      en: "Anna says that she has no time today."
+      ru: "Анна говорит, что у неё сегодня нет времени."
+      uk: "Анна каже, що в неї сьогодні немає часу."
+    explain:
+      en: "As a main clause it would be sie hat heute keine Zeit, verb second. dass turns it into a Nebensatz, and hat walks past everything to the end: dass sie heute keine Zeit hat. If what follows dass still reads like a complete sentence on its own, the verb has not moved."
+      ru: "Главным предложением это было бы sie hat heute keine Zeit — глагол на втором месте. dass превращает его в придаточное, и hat уходит мимо всего в конец: dass sie heute keine Zeit hat. Если после dass по-прежнему читается самостоятельное предложение, глагол не сдвинулся."
+      uk: "Головним реченням це було б sie hat heute keine Zeit — дієслово на другому місці. dass перетворює його на підрядне, і hat іде повз усе в кінець: dass sie heute keine Zeit hat. Якщо після dass досі читається самостійне речення, дієслово не зрушило."
+
+  - id: mc-wenn-zeit
+    outcomes: [wenn-bedingung]
+    type: mc
+    focus: nebensatz-verbende
+    prompt: "___, rufe ich dich an."
+    options:
+      - "Wenn ich Zeit habe"
+      - "Wenn ich habe Zeit"
+    correct: 0
+    translation:
+      en: "If I have time, I will call you."
+      ru: "Если у меня будет время, я тебе позвоню."
+      uk: "Якщо в мене буде час, я тобі подзвоню."
+    explain:
+      en: "wenn is a subordinator like weil and dass, so its clause ends with the conjugated verb: Wenn ich Zeit habe. The comma is the wall — habe must reach it before the main clause takes over."
+      ru: "wenn — такой же подчинительный союз, как weil и dass, поэтому его придаточное заканчивается спрягаемым глаголом: Wenn ich Zeit habe. Запятая — это стена, и habe обязан дойти до неё, прежде чем начнётся главное предложение."
+      uk: "wenn — такий самий підрядний сполучник, як weil і dass, тому його підрядне закінчується відмінюваним дієсловом: Wenn ich Zeit habe. Кома — це стіна, і habe зобов'язане дійти до неї, перш ніж почнеться головне речення."
+
+  - id: cloze-weil-rauchen
+    outcomes: [weil-grund]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Two verbs belong at the end of the weil-clause. Type them in the right order."
+      ru: "Два глагола должны стоять в конце придаточного с weil. Впишите их в правильном порядке."
+      uk: "Два дієслова мають стояти в кінці підрядного з weil. Впишіть їх у правильному порядку."
+    # darf is the standard rendering of the prohibition, but «нельзя» reads as kann for a
+    # RU learner just as naturally — the tag grades the order at the wall, not the modal.
+    text: "Wir gehen nach draußen, weil man hier nicht {{rauchen}} {{darf|kann}}."
+    translation:
+      en: "We are going outside because you are not allowed to smoke here."
+      ru: "Мы выходим на улицу, потому что здесь нельзя курить."
+      uk: "Ми виходимо на вулицю, бо тут не можна курити."
+    explain:
+      en: "The conjugated modal takes the wall, and the infinitive stands in front of it: rauchen darf. As a main clause the same words would read man darf hier nicht rauchen — weil turns that bracket inside out."
+      ru: "Стену занимает спрягаемый модальный, а инфинитив встаёт перед ним: rauchen darf. Главным предложением те же слова звучали бы man darf hier nicht rauchen — weil выворачивает эту рамку наизнанку."
+      uk: "Стіну займає відмінюване модальне, а інфінітив стає перед ним: rauchen darf. Головним реченням ті самі слова звучали б man darf hier nicht rauchen — weil вивертає цю рамку навиворіт."
+
+  - id: cloze-dass-abfaehrt
+    outcomes: [dass-satz]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "One verb, one gap — at the very end of the dass-clause."
+      ru: "Один глагол, один пропуск — в самом конце придаточного с dass."
+      uk: "Одне дієслово, один пропуск — у самому кінці підрядного з dass."
+    text: "Ich glaube, dass der Zug um acht {{abfährt|losfährt}}."
+    translation:
+      en: "I think that the train leaves at eight."
+      ru: "Я думаю, что поезд отправляется в восемь."
+      uk: "Я думаю, що потяг відправляється о восьмій."
+    explain:
+      en: "In a main clause the prefix would split off: Der Zug fährt um acht ab. A Nebensatz has no position 2 for the verb to occupy, so there is nothing for the prefix to be left behind in — it rejoins the verb at the wall: abfährt, one word."
+      ru: "В главном предложении приставка отделилась бы: Der Zug fährt um acht ab. В придаточном у глагола нет второго места, а значит, приставке не от чего отделяться — она воссоединяется с глаголом у стены: abfährt, одним словом."
+      uk: "У головному реченні префікс відокремився б: Der Zug fährt um acht ab. У підрядному в дієслова немає другого місця, а отже, префіксу немає від чого відокремлюватися — він возз'єднується з дієсловом біля стіни: abfährt, одним словом."
+
+  - id: cloze-wenn-wetter
+    outcomes: [wenn-bedingung]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Close the wenn-clause with its verb."
+      ru: "Закройте придаточное с wenn глаголом."
+      uk: "Закрийте підрядне з wenn дієсловом."
+    text: "Wenn das Wetter am Samstag gut {{ist}}, fahren wir an den See."
+    translation:
+      en: "If the weather is good on Saturday, we will drive to the lake."
+      ru: "Если в субботу будет хорошая погода, мы поедем на озеро."
+      uk: "Якщо в суботу буде гарна погода, ми поїдемо на озеро."
+    explain:
+      en: "ist closes the wenn-clause; only then does the main clause begin — and because the whole Nebensatz fills position 1, the main verb fahren comes immediately after the comma. Two walls in one sentence, and the conjugated verbs stand on both sides of the comma: … gut ist, fahren wir …"
+      ru: "ist закрывает придаточное с wenn, и только потом начинается главное предложение — а поскольку всё придаточное занимает первое место, главный глагол fahren идёт сразу после запятой. Две стены в одном предложении, и спрягаемые глаголы стоят по обе стороны запятой: … gut ist, fahren wir …"
+      uk: "ist закриває підрядне з wenn, і лише потім починається головне речення — а оскільки все підрядне займає перше місце, головне дієслово fahren іде одразу після коми. Дві стіни в одному реченні, і відмінювані дієслова стоять по обидва боки коми: … gut ist, fahren wir …"
+
+  - id: cloze-wenn-gehen-willst
+    outcomes: [wenn-bedingung]
+    type: cloze
+    focus: nebensatz-verbende
+    instruction:
+      en: "Two verbs at the end of the wenn-clause. Type them in the right order."
+      ru: "Два глагола в конце придаточного с wenn. Впишите их в правильном порядке."
+      uk: "Два дієслова в кінці підрядного з wenn. Впишіть їх у правильному порядку."
+    text: "Wenn du nach Hause {{gehen}} {{willst|möchtest}}, sag es einfach."
+    translation:
+      en: "If you want to go home, just say so."
+      ru: "Если хочешь пойти домой, просто скажи."
+      uk: "Якщо хочеш піти додому, просто скажи."
+    explain:
+      en: "Same wall, two verbs: the infinitive gehen first, the conjugated willst last — gehen willst, never willst gehen. Whether you say willst or möchtest is register, not the rule; where they stand is the rule."
+      ru: "Та же стена, два глагола: сначала инфинитив gehen, последним спрягаемый willst — gehen willst, но никогда willst gehen. Скажете вы willst или möchtest — вопрос оттенка, а не правила; правило — в том, где они стоят."
+      uk: "Та сама стіна, два дієслова: спочатку інфінітив gehen, останнім відмінюване willst — gehen willst, але ніколи willst gehen. Скажете ви willst чи möchtest — питання відтінку, а не правила; правило — у тому, де вони стоять."
+
+  - id: uebersetzen-weil-arbeiten-muss
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Give the reason with weil."
+      ru: "Переведите на немецкий. Назовите причину с помощью weil."
+      uk: "Перекладіть німецькою. Назвіть причину за допомогою weil."
+    prompt_en: "I am staying at home because I have to work tomorrow."
+    prompt_ru: "Я остаюсь дома, потому что мне завтра нужно работать."
+    prompt_uk: "Я залишаюся вдома, бо мені завтра потрібно працювати."
+    answer: "Ich bleibe zu Hause, weil ich morgen arbeiten muss."
+    accept:
+      # «нужно» underdetermines the modal, and fronting the weil-clause is correct German
+      # that keeps the same wall — neither choice is what the tag grades.
+      - "Ich bleibe zu Hause, weil ich morgen arbeiten soll."
+      - "Weil ich morgen arbeiten muss, bleibe ich zu Hause."
+      - "Weil ich morgen arbeiten soll, bleibe ich zu Hause."
+    key_tokens: ["muss"]
+    explain:
+      en: "weil sends the conjugated verb to the wall, and with two verbs the wall takes only the conjugated one: arbeiten muss, infinitive first. weil ich muss morgen arbeiten is the bracket left standing in main-clause order — the one error this whole drill is about. Only muss is graded: where the conjugated verb lands is the rule."
+      ru: "weil отправляет спрягаемый глагол к стене, а из двух глаголов стена берёт только спрягаемый: arbeiten muss, инфинитив первым. weil ich muss morgen arbeiten — это рамка, оставшаяся в порядке главного предложения, та самая ошибка, о которой весь тренажёр. Оценивается только muss: правило — в том, куда приземляется спрягаемый глагол."
+      uk: "weil відправляє відмінюване дієслово до стіни, а з двох дієслів стіна бере лише відмінюване: arbeiten muss, інфінітив першим. weil ich muss morgen arbeiten — це рамка, що залишилася в порядку головного речення, та сама помилка, про яку весь тренажер. Оцінюється лише muss: правило — у тому, куди приземляється відмінюване дієслово."
+
+  - id: uebersetzen-dass-film-beginnt
+    outcomes: [dass-satz]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Report your opinion with dass."
+      ru: "Переведите на немецкий. Передайте своё мнение с помощью dass."
+      uk: "Перекладіть німецькою. Передайте свою думку за допомогою dass."
+    prompt_en: "I think that the film starts at eight."
+    prompt_ru: "Я думаю, что фильм начинается в восемь."
+    prompt_uk: "Я думаю, що фільм починається о восьмій."
+    answer: "Ich denke, dass der Film um acht beginnt."
+    accept:
+      # denken/glauben and beginnen/anfangen are free lexical pairs here; the tag grades
+      # only that the conjugated verb closes the dass-clause.
+      - "Ich glaube, dass der Film um acht beginnt."
+      - "Ich denke, dass der Film um acht anfängt."
+      - "Ich glaube, dass der Film um acht anfängt."
+    key_tokens: ["beginnt"]
+    explain:
+      en: "dass wraps the statement, and beginnt walks to the end of it: dass der Film um acht beginnt. If you reached for anfangen instead, notice what the wall does to it — the prefix comes home and it arrives as one word, anfängt. Only the final verb is graded; beginnt or anfängt is your choice."
+      ru: "dass оборачивает утверждение, и beginnt уходит в его конец: dass der Film um acht beginnt. Если вам ближе anfangen, посмотрите, что делает с ним стена: приставка возвращается на место, и глагол приходит одним словом — anfängt. Оценивается только глагол у стены; beginnt или anfängt — ваш выбор."
+      uk: "dass обгортає твердження, і beginnt іде в його кінець: dass der Film um acht beginnt. Якщо вам ближче anfangen, подивіться, що робить із ним стіна: префікс повертається на місце, і дієслово приходить одним словом — anfängt. Оцінюється лише дієслово біля стіни; beginnt чи anfängt — ваш вибір."
+
+  - id: uebersetzen-weil-studieren-moechte
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate into German. Give the reason with weil."
+      ru: "Переведите на немецкий. Назовите причину с помощью weil."
+      uk: "Перекладіть німецькою. Назвіть причину за допомогою weil."
+    prompt_en: "She is learning German because she wants to study in Berlin."
+    prompt_ru: "Она учит немецкий, потому что хочет учиться в Берлине."
+    prompt_uk: "Вона вчить німецьку, бо хоче навчатися в Берліні."
+    answer: "Sie lernt Deutsch, weil sie in Berlin studieren möchte."
+    accept:
+      - "Sie lernt Deutsch, weil sie in Berlin studieren will."
+    key_tokens: ["möchte"]
+    explain:
+      en: "The trap sits at the end: studieren möchte, infinitive first, conjugated modal last. weil sie möchte in Berlin studieren keeps the main-clause bracket inside the Nebensatz, and that is the error. möchte or will is a shade of tone; only the verb at the wall is graded."
+      ru: "Ловушка ждёт в конце: studieren möchte — сначала инфинитив, спрягаемый модальный последним. weil sie möchte in Berlin studieren сохраняет рамку главного предложения внутри придаточного, и это и есть ошибка. möchte или will — оттенок тона; оценивается только глагол у стены."
+      uk: "Пастка чекає в кінці: studieren möchte — спочатку інфінітив, відмінюване модальне останнім. weil sie möchte in Berlin studieren зберігає рамку головного речення всередині підрядного, і це і є помилка. möchte чи will — відтінок тону; оцінюється лише дієслово біля стіни."
