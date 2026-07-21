@@ -116,6 +116,7 @@ items:
       uk: "У трьох перших половинах із чотирьох стоїть заперечення, але виправляє його друга половина лише у двох випадках. Анна відкидає свою квартиру і називає іншу: bei Yusuf займає місце bei mir — значить, sondern. Юсуф відкидає напої і називає замість них торт — той самий хід, те саме слово. Том — пастка: keine Zeit він справді каже, але дзвінок не замінює той час, якого в нього немає. Прийти він усе одно не зможе, а дзвінок просто додається зверху. Дві речі стоять поряд, і обидві правдиві: aber. А в репліці Ніни заперечення немає зовсім, тож питання й не виникає. Правило звучить не як «є заперечення — став sondern», а так: чи стає друга половина на те місце, яке звільнила перша?"
 
   - id: uebersetzen-aber-sondern-chat
+    revision: 2
     outcomes: [absprachen-aushandeln]
     type: translate
     focus: aber-sondern
@@ -128,8 +129,13 @@ items:
     prompt_uk: "Зустрічаємося не о восьмій, а о дев'ятій. Напої я принесу, але торт — ні."
     answer: "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber keinen Kuchen."
     key_tokens: ["sondern", "aber"]
+    # aber den Kuchen nicht is the literal shape of the RU prompt («но торт — нет») and
+    # correct German ellipsis; kein vs nicht is not what this tag grades. Its uncontracted
+    # expansion is equally valid and paired here (Codex, #94).
     accept:
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe keinen Kuchen mit."
+      - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber den Kuchen nicht."
+      - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe den Kuchen nicht mit."
     explain:
       en: "One sentence of each kind, and the second one is where the rule is really tested. In the first, nicht um acht is denied and um neun steps straight into its place — a replacement, so sondern. In the second there is a negation too — keinen Kuchen — but look at where it sits: it comes after the connector, not before it. Nothing in the first half was denied for the cake to replace; the drinks and the missing cake simply stand side by side, and both are true. That is aber. The word to check is never the negation itself but what it is doing: sondern needs a negation in front of it that the following words correct."
       ru: "По одному предложению каждого типа — и по-настоящему правило проверяется во втором. В первом отрицается nicht um acht, а um neun сразу встаёт на освободившееся место: это замена, значит sondern. Во втором отрицание тоже есть — keinen Kuchen, — но посмотрите, где оно стоит: после союза, а не перед ним. В первой половине ничего не отвергнуто, и торту нечего замещать; напитки и отсутствующий торт просто стоят рядом, и то и другое верно. Это aber. Смотреть надо не на само отрицание, а на то, что оно делает: для sondern нужно отрицание перед союзом, которое последующие слова исправляют."

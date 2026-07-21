@@ -221,11 +221,11 @@ abundant" as the operational rule and skip the theoretical baggage.
 the repo, and a reading declares which one it is (`kind: intensive | extensive`).
 Most of Deutsch-Atlas is **intensive graded input** (~90–130 words, 6–10
 glosses, comprehension questions), and good at it. Extensive reading now exists
-as a small connected strand: five *Lena in Bremen* episodes across A1–A2. The validator
+as a small connected strand: seven *Lena in Bremen* episodes across A1–A2. The validator
 holds the format to what makes it extensive — 250–400 words, at most two gist
 questions, roughly one gloss per 40 words. The honest statement of the gap is
-therefore no longer "no extensive reading" but **"one small strand, not a library"**;
-further expansion is backlog P5-2. Never describe an intensive reading as
+therefore no longer "no extensive reading" but **"one small strand, not a library"**.
+Never describe an intensive reading as
 extensive: the difference is what the text is *for*, not how long it is.
 **Anti-pattern:** Above-level unglossed text (input stops being input); grammar
 taught only as paradigm tables with no contextualized examples; a "long reader"
@@ -272,9 +272,12 @@ prompts no real situation would ever produce.
 grade — approximate it as closely as gradeability allows, and label
 self-assessed production as practice evidence, never verified accuracy.
 
-**Operational extensions for Deutsch-Atlas:** open production includes a
-feedback-and-revision loop, not only a model reveal. Spoken practice pairs a
-model with record/replay, self-check and an improved attempt; pronunciation
+**Operational extensions for Deutsch-Atlas:** open production is
+minimal-ceremony by contract — attempt → model answer → done, with
+`requirements`/`checklist` rendered as guidance, never as gated steps — so the
+feedback lives in a model worth comparing against and guidance that names what
+to check. Spoken practice pairs a model with record/replay where the device
+allows it; pronunciation
 includes stress, rhythm and comprehensibility. High-frequency formulaic chunks
 deserve retrieval as whole usable units. An artifact's target outcome and its
 actual response mode are separate: written work may teach interaction but
@@ -308,8 +311,8 @@ and which modes are being silently skipped.
 phrased as actions ("Ich kann einen Termin absagen"), not knowledge claims;
 coverage across modes is a design target within the app's means — reading and
 listening (readings, dictation, `audio-comprehension`), written production
-(typed input, `translate`, revision-based `write`), spoken production (`speak`,
-with local record/replay and a second attempt), interaction approximated by
+(typed input, `translate`, open `write`), spoken production (`speak`,
+with local record/replay), interaction approximated by
 dialogue-shaped tasks; and **audits measure the actual mode distribution from
 snapshots** rather than assuming the content mix reaches the learner.
 **Anti-pattern:** A grammar-table course with can-do labels stuck on; outcomes
@@ -317,7 +320,7 @@ phrased as "knows the dative table"; a mode (listening, writing) present in
 content but absent from every logged attempt, unnoticed because nobody counted.
 **Trade-off:** A single-learner text-first app cannot *grade* speech — be
 explicit about which modes are covered, approximated, or out of scope. Speaking
-is practised (`speak`: model, record/replay, self-check, second attempt) but
+is practised (`speak`: model, attempt aloud, record/replay where available) but
 never automatically scored, so it produces unverified practice evidence and
 never mastery; mediation is out of scope. Say which of the three each mode is,
 rather than pretending.

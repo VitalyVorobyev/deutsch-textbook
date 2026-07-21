@@ -38,6 +38,7 @@ items:
       uk: "Одне правило, чотири форми. У рамки Können Sie mir sagen дієслово вже стоїть на другому місці, тому все після коми — підрядне, а підрядне закінчується відмінюваним дієсловом. У теперішньому часі це саме дієслово (beginnt). У відокремлюваного дієслова більше немає другого місця, яке покидав би префікс, — він повертається на місце: anfängt, stattfindet. З модальним рамка складається в кінець: спочатку інфінітив, відмінюваний модальний останнім — kaufen kann. А в останньому рядку свого питального слова немає зовсім: у питання «так/ні» його й не буває, тому підрядне відкриває ob."
 
   - id: cloze-w-frage-verb-ans-ende
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: cloze
     focus: indirekte-frage
@@ -45,7 +46,10 @@ items:
       en: "Both questions are already wrapped. Put the verb where the wrapped clause needs it."
       ru: "Оба вопроса уже в рамке. Поставьте глагол туда, где его требует придаточное."
       uk: "Обидва питання вже в рамці. Поставте дієслово туди, де його вимагає підрядне."
-    text: "Weißt du, wann der Unterricht {{beginnt}}? Ich weiß nicht, was dieses Wort {{bedeutet}}."
+    # The tag grades the wall, not the lexeme: anfängt renders "starts" and heißt renders
+    # "means" exactly as well, and the translations do not choose. Rejecting either would
+    # write a false indirekte-frage error for a word choice (the P12-6 determinacy rule).
+    text: "Weißt du, wann der Unterricht {{beginnt|anfängt}}? Ich weiß nicht, was dieses Wort {{bedeutet|heißt}}."
     translation:
       en: "Do you know when the lesson starts? I do not know what this word means."
       ru: "Ты не знаешь, когда начинается занятие? Я не знаю, что означает это слово."
@@ -56,6 +60,7 @@ items:
       uk: "Обидва пропуски стоять біля самої стіни, у кінці підрядного, і це не випадковість. Окремими питаннями вони звучали б так: Wann beginnt der Unterricht? і Was bedeutet dieses Wort? — дієслово на другому місці, одразу за питальним словом. Зсунула його рамка: після Weißt du, / Ich weiß nicht, питальне слово бере на себе роль weil і dass, і відмінюване дієслово йде останнім. Зверніть увагу: друге речення закінчується крапкою — рамка в ньому стверджувальна, тому й усе речення стверджувальне, хоча всередині й сидить непряме питання."
 
   - id: cloze-ob-ja-nein-frage
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: cloze
     focus: indirekte-frage
@@ -63,15 +68,20 @@ items:
       en: "Two yes/no questions, wrapped. Fill in the word that opens the clause — and the verb that closes it."
       ru: "Два вопроса «да/нет» в рамке. Вставьте слово, которое открывает придаточное, и глагол, который его закрывает."
       uk: "Два питання «так/ні» в рамці. Вставте слово, яке відкриває підрядне, і дієслово, яке його закриває."
-    text: "Wissen Sie, {{ob}} der Kurs heute stattfindet? Ich möchte wissen, {{ob}} wir am Freitag eine Prüfung {{schreiben}}."
+    # haben was rejected live (2026-07-21) and it is correct German the RU translation
+    # actively suggests: «будет ли у нас экзамен» is eine Prüfung haben as directly as
+    # "writing an exam" is eine Prüfung schreiben. The tag grades ob and the wall, not
+    # which of the two the learner reached for. The logged rejection stays as recorded —
+    # there is no retraction mechanism for cloze attempts, the P12-6/P14-1 gap.
+    text: "Wissen Sie, {{ob}} der Kurs heute stattfindet? Ich möchte wissen, {{ob}} wir am Freitag eine Prüfung {{schreiben|haben}}."
     translation:
       en: "Do you know whether the course is taking place today? I would like to know whether we are writing an exam on Friday."
       ru: "Вы не знаете, идёт ли сегодня курс? Я хотел бы узнать, будет ли у нас в пятницу экзамен."
       uk: "Ви не знаєте, чи сьогодні йде курс? Я хотів би дізнатися, чи буде в нас у п'ятницю іспит."
     explain:
-      en: "A W-question brings its own opening word. A yes/no question brings none — Findet der Kurs heute statt? begins with the verb, and a Nebensatz may never begin with the verb. So German supplies ob, whose only job is to open the clause. It is not optional and there is nothing to put in its place. Careful with wenn: that word names a condition (Wenn der Kurs stattfindet, komme ich), and it cannot wrap a question. The third gap is the same wall as always: schreiben closes the clause."
-      ru: "У W-вопроса есть своё вводное слово. У вопроса «да/нет» его нет: Findet der Kurs heute statt? начинается с глагола, а придаточное с глагола начинаться не может. Поэтому немецкий даёт слово ob, вся работа которого — открыть придаточное. Оно обязательно, и заменить его нечем. По-русски эту роль играет частица «ли»: «Вы не знаете, идёт ли сегодня курс?» И не подставляйте сюда wenn: это «если», оно вводит условие (Wenn der Kurs stattfindet, komme ich), а вопрос обернуть не может. Третий пропуск — та же стена: schreiben закрывает придаточное."
-      uk: "У W-питання є своє вступне слово. У питання «так/ні» його немає: Findet der Kurs heute statt? починається з дієслова, а підрядне з дієслова починатися не може. Тому німецька дає слово ob, уся робота якого — відкрити підрядне. Воно обов'язкове, і замінити його нічим. Українською цю роль грає частка «чи»: «Ви не знаєте, чи сьогодні йде курс?» І не підставляйте сюди wenn: це «якщо», воно вводить умову (Wenn der Kurs stattfindet, komme ich), а питання обгорнути не може. Третій пропуск — та сама стіна: schreiben закриває підрядне."
+      en: "A W-question brings its own opening word. A yes/no question brings none — Findet der Kurs heute statt? begins with the verb, and a Nebensatz may never begin with the verb. So German supplies ob, whose only job is to open the clause. It is not optional and there is nothing to put in its place. Careful with wenn: that word names a condition (Wenn der Kurs stattfindet, komme ich), and it cannot wrap a question. The third gap is the same wall as always: schreiben — or haben, both say it — closes the clause."
+      ru: "У W-вопроса есть своё вводное слово. У вопроса «да/нет» его нет: Findet der Kurs heute statt? начинается с глагола, а придаточное с глагола начинаться не может. Поэтому немецкий даёт слово ob, вся работа которого — открыть придаточное. Оно обязательно, и заменить его нечем. По-русски эту роль играет частица «ли»: «Вы не знаете, идёт ли сегодня курс?» И не подставляйте сюда wenn: это «если», оно вводит условие (Wenn der Kurs stattfindet, komme ich), а вопрос обернуть не может. Третий пропуск — та же стена: schreiben (или haben — «будет ли у нас экзамен» можно сказать обоими способами) закрывает придаточное."
+      uk: "У W-питання є своє вступне слово. У питання «так/ні» його немає: Findet der Kurs heute statt? починається з дієслова, а підрядне з дієслова починатися не може. Тому німецька дає слово ob, уся робота якого — відкрити підрядне. Воно обов'язкове, і замінити його нічим. Українською цю роль грає частка «чи»: «Ви не знаєте, чи сьогодні йде курс?» І не підставляйте сюди wenn: це «якщо», воно вводить умову (Wenn der Kurs stattfindet, komme ich), а питання обгорнути не може. Третій пропуск — та сама стіна: schreiben (або haben — «чи буде в нас іспит» можна сказати обома способами) закриває підрядне."
 
   - id: mc-indirekte-frage-wrapper
     outcomes: [nachfragen-klaeren]
@@ -154,6 +164,7 @@ items:
   # as different problems. This is also the tag that keeps the `deepens: [nebensaetze-plaene]`
   # edge alive.
   - id: cloze-warum-ich-lerne
+    revision: 2
     outcomes: [lernstrategien-sagen]
     type: cloze
     focus: nebensatz-verbende
@@ -161,7 +172,9 @@ items:
       en: "Say why you ask and why you learn. Put the verb at the end of the weil-clause."
       ru: "Скажите, почему вы спрашиваете и почему учитесь. Поставьте глагол в конец придаточного с weil."
       uk: "Скажіть, чому ви запитуєте і чому вчитеся. Поставте дієслово в кінець підрядного з weil."
-    text: "Ich frage oft, weil ich nicht alles {{verstehe}}. Ich lerne Deutsch, weil ich hier {{arbeiten}} {{möchte}}."
+    # will renders "want to" as faithfully as möchte — this topic's own translate item
+    # (uebersetzen-warum-ich-ueber) already accepts it, and the tag grades the wall.
+    text: "Ich frage oft, weil ich nicht alles {{verstehe}}. Ich lerne Deutsch, weil ich hier {{arbeiten}} {{möchte|will}}."
     translation:
       en: "I ask often because I do not understand everything. I am learning German because I want to work here."
       ru: "Я часто переспрашиваю, потому что понимаю не всё. Я учу немецкий, потому что хочу здесь работать."
@@ -212,6 +225,7 @@ items:
       uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється тут лише dauert: правило говорить про те, куди приземляється «обгорнуте» дієслово."
 
   - id: uebersetzen-ob-der-test-schwer-ist
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: translate
     focus: indirekte-frage
@@ -223,8 +237,12 @@ items:
     prompt_ru: "Не знаешь, трудный ли тест?"
     prompt_uk: "Не знаєш, чи важкий тест?"
     answer: "Weißt du, ob der Test schwer ist?"
+    # die Prüfung for der Test is lexis, not the rule: in this unit's world the Saturday
+    # Prüfung is exactly what the learner would ask about, and the tag grades ob + the wall.
     accept:
       - "Weißt du, ob der Test schwierig ist?"
+      - "Weißt du, ob die Prüfung schwer ist?"
+      - "Weißt du, ob die Prüfung schwierig ist?"
     key_tokens: ["ob", "ist"]
     explain:
       en: "Two decisions, and the item grades both. First the opening word: this is a yes/no question, so there is no question word to open the clause and ob has to do it. Leaving it out is not possible, and wenn cannot take its place — wenn names a condition, not a question. Second the wall: ist closes the clause. Weißt du, ob der Test ist schwer would be the bare question smuggled in behind ob. Note the wrapper is the du-form, because you are asking a classmate; to the teacher it would be Wissen Sie, ob …"

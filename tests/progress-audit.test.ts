@@ -2,6 +2,7 @@ import { afterEach, describe, expect, test } from 'bun:test';
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   buildAudit,
   readSnapshot,
@@ -61,9 +62,13 @@ describe('progress audit', () => {
       .toBe(join(dir, '2026-07-10.json'));
   });
 
-  test('reads v1-v5 and supplies fields missing from legacy snapshots', () => {
+  // Iterates the schema's own version list: when a v7 is added there, this test starts
+  // exercising it through `readSnapshot` automatically — the audit rejected live v6
+  // snapshots for a day because its accepted-version list was a hand-written copy.
+  test('reads every supported snapshot version and supplies fields missing from legacy ones', () => {
     const root = tempRoot();
-    for (const version of [1, 2, 3, 4, 5]) {
+    expect(SUPPORTED_SNAPSHOT_VERSIONS).toContain(6);
+    for (const version of SUPPORTED_SNAPSHOT_VERSIONS) {
       const path = join(root, `${version}.json`);
       writeFileSync(path, JSON.stringify({
         version,

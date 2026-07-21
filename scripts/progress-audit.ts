@@ -25,6 +25,7 @@ import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { isPretestAttempt } from '../src/lib/weakness';
 import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
 import type { GradingDecision } from '../src/lib/schemas';
+import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   armedAt,
   dueProbes,
@@ -279,12 +280,14 @@ export function resolveSnapshotPath(root: string, profile?: string, explicit?: s
 export function readSnapshot(path: string): AuditSnapshot {
   const parsed = JSON.parse(readFileSync(path, 'utf8')) as Partial<AuditSnapshot>;
   if (
-    ![1, 2, 3, 4, 5].includes(parsed.version ?? 0) ||
+    !SUPPORTED_SNAPSHOT_VERSIONS.includes(parsed.version ?? 0) ||
     !Array.isArray(parsed.attempts) ||
     !parsed.cards ||
     typeof parsed.cards !== 'object'
   ) {
-    throw new Error(`Not a valid Deutsch-Atlas v1-v5 progress snapshot: ${path}`);
+    const min = SUPPORTED_SNAPSHOT_VERSIONS[0];
+    const max = SUPPORTED_SNAPSHOT_VERSIONS.at(-1);
+    throw new Error(`Not a valid Deutsch-Atlas v${min}-v${max} progress snapshot: ${path}`);
   }
   return {
     version: parsed.version!,

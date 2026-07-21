@@ -11,13 +11,16 @@ items:
   # can be recovered from the reading measures memory of the reading, not listening — so the
   # remembered answer is the trap, and only the ear can get past it. The third option (the
   # dictionary) is in the recording too, as the thing that is postponed to homework.
+  # The instruction is deliberately self-contained: this item is served in mixed training,
+  # where "the Lesetext" is a dangling reference — a learner who never read it just listens,
+  # and the warning still lands for the one who did.
   - id: hoeren-kursanweisung
     outcomes: [kursanweisungen-verstehen]
     type: audio-comprehension
     instruction:
-      en: "The teacher gives the class its task. Today's task is not the one you read in the Lesetext — listen, do not remember."
-      ru: "Преподаватель объясняет задание. Сегодняшнее задание — не то, о котором вы читали в тексте: слушайте, а не вспоминайте."
-      uk: "Викладач пояснює завдання. Сьогоднішнє завдання — не те, про яке ви читали в тексті: слухайте, а не згадуйте."
+      en: "The teacher gives the class its task. Answer from what you hear: if an option feels familiar from elsewhere in this unit, that is exactly the trap."
+      ru: "Преподаватель объясняет задание. Отвечайте по записи: если вариант кажется знакомым по этому уроку — это и есть ловушка."
+      uk: "Викладач пояснює завдання. Відповідайте за записом: якщо варіант здається знайомим із цього уроку — це і є пастка."
     source:
       kind: tts
       rate: 0.9
@@ -70,6 +73,7 @@ items:
       uk: "Спитайте себе, що робить підрядне. Воно передає питання — те, на яке відповідають ja або nein, — а питання без власного питального слова відкривається сполучником ob (українською це частка «чи»). wenn назвав би умову (Wenn der Kurs am Montag stattfindet, komme ich — «якщо курс у понеділок іде, я прийду»): речення правильне, але каже воно не те. dass передав би твердження, у якому ви впевнені, а Ich weiß nicht, dass … означає прямо протилежне тому, що ви хочете сказати. Дієслово в кінець відправляють усі три слова; зміст правильний лише в одного."
 
   - id: cloze-indirekte-frage-mit-modalverb
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: cloze
     focus: indirekte-frage
@@ -77,7 +81,10 @@ items:
       en: "Two verbs inside the wrapped clause. Put them in the right order at the end."
       ru: "Внутри придаточного два глагола. Поставьте их в конце в правильном порядке."
       uk: "Усередині підрядного два дієслова. Поставте їх у кінці в правильному порядку."
-    text: "Ich möchte wissen, ob ich die Aufgabe zu Hause {{machen}} {{kann}}. Können Sie mir sagen, wo ich die Hausaufgabe {{abgeben}} {{muss}}?"
+    # The RU/UK translations say «нужно»/«потрібно», which soll renders as directly as
+    # muss — only the EN half pins "have to". The item grades the order at the wall, not
+    # which modal the learner heard in the prompt.
+    text: "Ich möchte wissen, ob ich die Aufgabe zu Hause {{machen}} {{kann}}. Können Sie mir sagen, wo ich die Hausaufgabe {{abgeben}} {{muss|soll}}?"
     translation:
       en: "I would like to know whether I can do the task at home. Can you tell me where I have to hand the homework in?"
       ru: "Я хотел бы узнать, могу ли я сделать задание дома. Вы не подскажете, куда нужно сдать домашнее задание?"
@@ -170,9 +177,9 @@ items:
     outcomes: [kursanfrage-schreiben, nachfragen-klaeren]
     type: write
     instruction:
-      en: "Draft it, check it against the list, then write it again."
-      ru: "Напишите черновик, проверьте его по списку и перепишите."
-      uk: "Напишіть чернетку, перевірте її за списком і перепишіть."
+      en: "Write it yourself — the list shows what to check."
+      ru: "Напишите сами — список подскажет, что проверить."
+      uk: "Напишіть самі — список підкаже, що перевірити."
     prompt:
       en: "You have seen an advert: the Sprachschule Mitte is offering an A2 course. Write a short e-mail to the school. You do not know the person you are writing to."
       ru: "Вы увидели объявление: языковая школа Sprachschule Mitte набирает на курс A2. Напишите школе короткое письмо. Человека, которому вы пишете, вы не знаете."
@@ -217,9 +224,9 @@ items:
     type: speak
     mode: spoken-interaction
     instruction:
-      en: "Say it aloud, listen to yourself, then say it a second time."
-      ru: "Скажите вслух, послушайте себя и произнесите ещё раз."
-      uk: "Скажіть уголос, послухайте себе і промовте ще раз."
+      en: "Say it aloud — and if you can, listen to yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
     prompt:
       en: "You are in your German course. The teacher has just explained a task, but three things went past you: she spoke too fast, the word „Bedeutung“ is new to you, and you did not catch when the homework has to be handed in. Repair all three, aloud, one after the other."
       ru: "Вы на курсе немецкого. Преподавательница только что объяснила задание, но три вещи прошли мимо вас: она говорила слишком быстро, слово «Bedeutung» вам незнакомо, и вы не расслышали, когда нужно сдать домашнее задание. Устраните все три непонимания вслух, одно за другим."
