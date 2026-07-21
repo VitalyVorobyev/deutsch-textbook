@@ -179,6 +179,7 @@ items:
       uk: "Жодна з цих фраз не збирається з граматики — це блоки, і німець дістає блок цілком. У двох формул є спільна структура, на яку варто звернути увагу: Herzlichen Glückwunsch zum Geburtstag і Alles Gute zur Hochzeit побудовані на zu + Dativ, а змінюється лише артикль. der Geburtstag дає zu dem → zum; die Hochzeit дає zu der → zur. Це єдина рухома частина в усьому списку, і її варто запам'ятати: варіант für den Geburtstag, який напрошується сам собою, німецькою просто не кажуть."
 
   - id: uebersetzen-kuchen-mitbringen
+    revision: 2
     outcomes: [absprachen-aushandeln]
     type: translate
     focus: wechsel-akk-dat
@@ -195,12 +196,19 @@ items:
     # Pinning `einen` would score it wrong and log a wechsel-akk-dat error the learner did
     # not make. The dative marking of the person is the decision this tag is about.
     key_tokens: ["dir"]
+    # die Torte is the direct rendering of the RU/UK prompts' «торт», and bringen without
+    # mit- is ordinary German for delivering something to someone — neither is the dative
+    # decision this tag grades.
     accept:
       - "Am Samstag bringe ich dir einen Kuchen mit."
       - "Ich bringe dir einen Kuchen am Samstag mit."
       - "Ich bringe dir am Samstag den Kuchen mit."
       - "Am Samstag bringe ich dir den Kuchen mit."
       - "Ich bringe dir den Kuchen am Samstag mit."
+      - "Am Samstag bringe ich dir die Torte."
+      - "Am Samstag bringe ich dir die Torte mit."
+      - "Ich bringe dir am Samstag die Torte."
+      - "Ich bringe dir am Samstag die Torte mit."
     explain:
       en: "The verb frame assigns two roles: the recipient dir is dative, and the thing einen Kuchen is accusative. The neutral productive order puts the unstressed pronoun before the noun object. You may open with Ich or Am Samstag, and bringe remains in position 2; in this compact clause separable mit closes the bracket. Marked contexts can reorder constituents, but they are not the target of this translation."
       ru: "Модель глагола задаёт две роли: получатель dir стоит в Dativ, а вещь einen Kuchen — в Akkusativ. В нейтральном продуктивном порядке безударное местоимение идёт перед дополнением-существительным. Начать можно с Ich или Am Samstag, а bringe остаётся на позиции 2; в этом компактном предложении отделяемое mit замыкает рамку. Контрастный контекст допускает иной порядок, но здесь он не проверяется."

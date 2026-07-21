@@ -212,6 +212,7 @@ items:
       uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється тут лише dauert: правило говорить про те, куди приземляється «обгорнуте» дієслово."
 
   - id: uebersetzen-ob-der-test-schwer-ist
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: translate
     focus: indirekte-frage
@@ -223,8 +224,12 @@ items:
     prompt_ru: "Не знаешь, трудный ли тест?"
     prompt_uk: "Не знаєш, чи важкий тест?"
     answer: "Weißt du, ob der Test schwer ist?"
+    # die Prüfung for der Test is lexis, not the rule: in this unit's world the Saturday
+    # Prüfung is exactly what the learner would ask about, and the tag grades ob + the wall.
     accept:
       - "Weißt du, ob der Test schwierig ist?"
+      - "Weißt du, ob die Prüfung schwer ist?"
+      - "Weißt du, ob die Prüfung schwierig ist?"
     key_tokens: ["ob", "ist"]
     explain:
       en: "Two decisions, and the item grades both. First the opening word: this is a yes/no question, so there is no question word to open the clause and ob has to do it. Leaving it out is not possible, and wenn cannot take its place — wenn names a condition, not a question. Second the wall: ist closes the clause. Weißt du, ob der Test ist schwer would be the bare question smuggled in behind ob. Note the wrapper is the du-form, because you are asking a classmate; to the teacher it would be Wissen Sie, ob …"
