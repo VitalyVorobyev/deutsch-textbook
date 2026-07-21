@@ -769,6 +769,21 @@ export const discoverySchema = z
     title_ru: z.string().min(1),
     title_uk: z.string().min(1).optional(),
     summary: bilingualSchema,
+    /**
+     * Topics this piece sits beside, so it can be reached from the lesson instead of only
+     * from /entdecken. Optional and non-blocking in both directions: a piece needs no
+     * topic, a topic needs no piece, and the link is one-way navigation.
+     *
+     * The structural gap was bigger than the content gap. Five pieces shipped with no way
+     * to reach any of them except by going looking, which is a likelier reading of the one
+     * "useful: no" datum than the writing was — and that datum is itself untrustworthy
+     * (recorded 4h38m before #85 fixed the toggles it was entered through).
+     *
+     * This changes NOTHING about the evidence model: opening a piece still writes no
+     * attempt, no card, no `readAt` and no mastery, and the topic page renders the link as
+     * an aside rather than as a step. Discoverability is not obligation.
+     */
+    topics: z.array(slug).default([]),
     images: z.array(discoveryImageSchema).default([]),
     links: z.array(discoveryLinkSchema).default([]),
     status: z.enum(['draft', 'reviewed']).default('draft'),
@@ -881,11 +896,61 @@ export const sentenceConnectorsReferenceSchema = z.object({
 });
 export type SentenceConnectorsReference = z.infer<typeof sentenceConnectorsReferenceSchema>;
 
+/**
+ * Letter, e-mail and message conventions (content/reference-data/briefe.yaml).
+ *
+ * Building blocks alone do not teach a message — layout and register are the whole
+ * difficulty — so the file carries both: `sections` in the order the parts appear, and
+ * `templates` that walk those same sections end to end at three registers, so the contrast
+ * is readable down a column.
+ *
+ * `level` follows the house convention stated at the top of the file: the first Atlas stage
+ * at which the form is expected *productively*. Most of the page is A2, because A2 already
+ * writes to an office and to friends; the Betreff line, `Hochachtungsvoll` and `LG` are
+ * marked B1 because the course never asks for them, and a reference page may show later
+ * language early without making it a current-level target.
+ */
+export const briefeReferenceSchema = z.object({
+  id: z.literal('briefe'),
+  sections: z.array(z.object({
+    id: slug,
+    title: bilingualSchema.extend({ de: z.string().min(1) }),
+    description: bilingualSchema,
+    entries: z.array(z.object({
+      /** the German, verbatim and with its own punctuation — including the comma that
+          forces a lowercase start on the next line, which is the page's main point */
+      form: z.string().min(1),
+      register: z.enum(['formal', 'neutral', 'vertraut']),
+      channel: z.array(z.enum(['brief', 'email', 'nachricht'])).min(1),
+      level: levelSchema,
+      use: bilingualSchema,
+      note: bilingualSchema.optional(),
+    })).min(1),
+  })).min(1),
+  templates: z.array(z.object({
+    id: slug,
+    title: bilingualSchema.extend({ de: z.string().min(1) }),
+    situation: bilingualSchema,
+    register: z.enum(['formal', 'neutral', 'vertraut']),
+    channel: z.enum(['brief', 'email', 'nachricht']),
+    lines: z.array(z.object({
+      /** id of the section this line instantiates — validated against `sections` */
+      section: slug,
+      de: z.string().min(1),
+      en: z.string().min(1),
+      ru: z.string().min(1),
+      uk: z.string().min(1).optional(),
+    })).min(1),
+  })).min(1),
+});
+export type BriefeReference = z.infer<typeof briefeReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
   zahlenDatumZeitReferenceSchema,
   sentenceConnectorsReferenceSchema,
+  briefeReferenceSchema,
 ]);
 export type ReferenceData = z.infer<typeof referenceDataSchema>;
 

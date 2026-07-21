@@ -29,6 +29,12 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const data = entry.data;
 const wordFields = (await getCollection('wortfelder')).filter((field) => field.data.topic === data.id);
+// Optional editorial pieces that name this topic. Reviewed only, so a draft is neither
+// listed nor built — and the link is one-way: the topic never declares its pieces, so
+// adding one changes nothing about the lesson. Reading it writes no attempt, card, readAt
+// or mastery; it is an aside, not a step.
+const discoveryPieces = (await getCollection('discovery', ({ data: d }) => d.status === 'reviewed'))
+  .filter((piece) => piece.data.topics.includes(data.id));
 const lexicalContexts = wordFieldContexts(wordFields.map((field) => field.data));
 
 const allTopics = await getCollection('topics');
@@ -193,6 +199,36 @@ const KIND_KEY: Record<string, StringKey> = {
             <VocabTable entries={v.entries} />
           </div>
         ))}
+      </section>
+    )
+  }
+
+  {
+    discoveryPieces.length > 0 && (
+      <section class="mt-12">
+        <h2 class="mb-1 text-2xl font-bold"><Chrome k="nav.entdecken" /></h2>
+        <p class="mb-4 text-sm text-stone-500">
+          <span class="lang-en">Optional reading around this topic. Nothing here is graded or due.</span>
+          <span class="lang-ru">Необязательное чтение вокруг темы. Ничего из этого не оценивается и не попадает в повторения.</span>
+          <span class="lang-uk">Необов'язкове читання навколо теми. Ніщо з цього не оцінюється й не потрапляє в повторення.</span>
+        </p>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {discoveryPieces.map((piece) => (
+            <a
+              href={withBase(`/entdecken/${piece.id}`)}
+              class="rounded-xl border border-stone-200 p-4 hover:border-amber-500 dark:border-stone-700"
+            >
+              <span class="text-xs font-bold text-amber-700">{piece.data.level}</span>
+              <h3 lang="de" class="mt-1 font-semibold">{piece.data.title_de}</h3>
+              <p class="mt-1 text-sm text-stone-500">
+                <span class="lang-en">{piece.data.summary.en}</span>
+                <span class="lang-ru">{piece.data.summary.ru}</span>
+                {piece.data.summary.uk && <span class="lang-uk">{piece.data.summary.uk}</span>}
+                {piece.data.summary.de && <span class="lang-de">{piece.data.summary.de}</span>}
+              </p>
+            </a>
+          ))}
+        </div>
       </section>
     )
   }
