@@ -1336,16 +1336,35 @@ function cliArgs(argv: string[]): CliArgs {
   };
 }
 
+/**
+ * `--project` date → end-of-day epoch ms, rejecting a date that does not exist.
+ *
+ * `Date.parse` alone is not enough, and the failure is silent rather than loud:
+ * `2026-02-30T23:59:59Z` does not throw, it **rolls over** to 2026-03-02, and
+ * `2026-02-29` in a non-leap year rolls to 2026-03-01 (measured, not assumed — the ISO
+ * branch of the spec should return NaN, but V8's fallback parser normalizes instead). The
+ * whole section is a projection *to a named date*, so a typo would publish reachability
+ * figures for a horizon nobody asked about. Codex review, PR #91.
+ *
+ * The round-trip is the check: reformat what was parsed and require it to equal the input.
+ */
+function parseProjectDate(value: string): number {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) throw new Error(`Invalid --project "${value}"; expected YYYY-MM-DD`);
+  const ts = Date.parse(`${value}T23:59:59Z`);
+  if (!Number.isFinite(ts)) throw new Error(`Invalid --project "${value}"; expected YYYY-MM-DD`);
+  if (iso(ts).slice(0, 10) !== value)
+    throw new Error(
+      `Invalid --project "${value}": no such date (it would roll over to ${iso(ts).slice(0, 10)})`,
+    );
+  return ts;
+}
+
 export function run(argv = process.argv.slice(2), root = process.cwd()): string {
   const args = cliArgs(argv);
   const snapshotPath = resolveSnapshotPath(root, args.profile, args.snapshot);
   const snapshot = readSnapshot(snapshotPath);
-  let projectTo: number | undefined;
-  if (args.project) {
-    projectTo = Date.parse(`${args.project}T23:59:59Z`);
-    if (!Number.isFinite(projectTo))
-      throw new Error(`Invalid --project "${args.project}"; expected YYYY-MM-DD`);
-  }
+  const projectTo = args.project === undefined ? undefined : parseProjectDate(args.project);
   const audit = buildAudit(snapshot, {
     snapshotPath: relative(root, snapshotPath) || snapshotPath,
     catalog: loadExerciseCatalog(root),

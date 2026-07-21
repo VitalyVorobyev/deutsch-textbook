@@ -7,6 +7,7 @@ import {
   readSnapshot,
   renderMarkdown,
   resolveSnapshotPath,
+  run,
   type AuditAttempt,
   type AuditSnapshot,
   type CatalogItem,
@@ -647,5 +648,45 @@ describe('the readability projection', () => {
     const row = audit.delayed.probes.byReadability.find((r) => r.focus === undefined);
     expect(row?.ceilingByTarget).toBe(3);
     expect(row?.reachableByTarget).toBe(false);
+  });
+});
+
+// Codex review, PR #91. `Date.parse` does not reject a date that does not exist — it rolls
+// over, silently: 2026-02-30 becomes 2026-03-02 and 2026-02-29 becomes 2026-03-01. The
+// readability section is a projection *to a named date*, so a typo would publish figures
+// for a horizon nobody asked about.
+describe('--project rejects a date that does not exist', () => {
+  function auditRoot() {
+    const root = tempRoot();
+    mkdirSync(join(root, 'progress', 'p'), { recursive: true });
+    // The positive control runs the whole pipeline, which loads the exercise catalog —
+    // an empty directory is enough, and it is what makes "accepts a real date" a real
+    // assertion rather than one that passes because parsing threw first.
+    for (const dir of ['exercises', 'reading']) {
+      mkdirSync(join(root, 'content', dir), { recursive: true });
+    }
+    writeFileSync(
+      join(root, 'progress', 'p', '2026-07-13.json'),
+      JSON.stringify(snapshot({ attempts: [] })),
+    );
+    return root;
+  }
+
+  test.each([
+    ['2026-02-30', 'no such date'],
+    ['2026-02-29', 'no such date'],
+    ['2026-13-01', 'expected YYYY-MM-DD'],
+    ['2026-8-2', 'expected YYYY-MM-DD'],
+    ['not-a-date', 'expected YYYY-MM-DD'],
+  ])('rejects %s', (value, message) => {
+    expect(() => run(['--profile', 'p', '--project', value], auditRoot())).toThrow(message);
+  });
+
+  // The positive control asserts only that a real date is ACCEPTED. This root has an empty
+  // catalog, so there are no probe families and the readability section is correctly
+  // omitted — asserting the date appears here would be asserting the wrong thing. That the
+  // horizon reaches the report is covered by the buildAudit tests above, which have families.
+  test('accepts a real date', () => {
+    expect(() => run(['--profile', 'p', '--project', '2026-08-02'], auditRoot())).not.toThrow();
   });
 });
