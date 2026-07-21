@@ -44,9 +44,11 @@ Language learning is not one activity. Every artifact serves (mostly) one of:
   meaning (dialogue-shaped tasks, appointment calls). A single-learner app can
   only approximate this; approximate it rather than dropping the mode.
 - **Production** — constructing German the learner was not just shown:
-  `translate`, dictated-from-meaning sentences, free writing (`write`, which
-  requires draft → checklist → revision) and speaking (`speak`, with local
-  record/replay and a second attempt).
+  `translate`, dictated-from-meaning sentences, free writing (`write`) and
+  speaking (`speak`). Both open modes are **minimal-ceremony by contract**:
+  one attempt, then the model answer — `requirements`/`checklist` render as
+  guidance, never as gated steps, because the app cannot verify free
+  production and must not charge ceremony for feedback it cannot give.
 
 A healthy **unit** feeds all four in a deliberate progression (below). A healthy
 **review session** is retrieval-centered. The old house rule "every touch must
@@ -184,9 +186,9 @@ sufficient.
   meaning — the validator enforces those bounds, because a long text that is
   quizzed line by line is a long intensive text and never delivers the volume
   input it exists for. Never describe an intensive reading as extensive.
-- **The volume gap is narrowed, not closed:** five connected *Lena in Bremen*
-  episodes now ship across A1–A2. That is a small strand, not a complete extensive-reading
-  library; expansion remains backlog P5-2. Say so honestly.
+- **The volume gap is narrowed, not closed:** seven connected *Lena in Bremen*
+  episodes now ship across A1–A2. That is a small strand, not a complete
+  extensive-reading library. Say so honestly.
 - **Glossing (§11/§8):** enough glosses that comprehension never breaks — 6–10
   in an intensive text, sparse in an extensive one; an unglossed above-level
   phrase is the main failure mode either way.
@@ -200,10 +202,14 @@ the *redundancy effect* — channel competition, not reinforcement. Ask of every
 audio use: what does the ear learn here that the eye doesn't already have?
 
 ### Open writing and speaking
-- **Revision (§6/§12):** require draft → task-specific checklist/model
-  comparison → revised attempt. Revealing a model alone is not feedback use.
-- **Speaking:** use model → first attempt → record/replay or explicit say-aloud
-  fallback → self-check → improved attempt. Stress, rhythm and
+- **Minimal ceremony is the contract (§6/§12):** attempt → model answer → done.
+  The app cannot verify free production, so it never gates on a checklist, a
+  second draft or a self-rating — `requirements` and `checklist` render as
+  guidance beside the task. The teaching therefore lives in the *model and the
+  guidance*: write both so that comparing against the model teaches — name the
+  clause shapes and endings to check, never a generic "review your work".
+- **Speaking:** a model, the attempt aloud (record/replay where the device
+  allows it), the model to compare against. Stress, rhythm and
   comprehensibility are targets; IPA and TTS alone are not a pronunciation
   curriculum.
 - **Formulaic language:** retrieve high-frequency communicative chunks as
@@ -227,9 +233,11 @@ RU halves; an EN reader who knows no Russian).
 
 1. **Scope & read.** Identify what you're reviewing and read it fully. For a
    feature, read the components/lib that implement it.
-2. **Snapshot audit — mandatory for course/feature audits.** Read the newest
-   `progress/<profile>/*.json`, report its export date, and warn explicitly when
-   it is stale. Then report, as numbers:
+2. **Snapshot audit — mandatory for course/feature audits.** Run
+   `bun run progress:audit --profile <slug>` — never Read a raw
+   `progress/<profile>/*.json`; snapshots run 300 KB+ and the audit already
+   aggregates everything. Report the snapshot date the audit names, and warn
+   explicitly when it is stale. Then report, as numbers:
    - **attempts per mode/itemType** (`mc`/`cloze`/`match`/`order`/`table`/
      `translate`/`listen`/`audio-comprehension`/`write`/`speak`, reading
      attempts under `reading:*`, probe attempts under `<level>/probe-*`) — the mode
@@ -267,8 +275,10 @@ RU halves; an EN reader who knows no Russian).
      still score a 6-cell table like one MC?
    - **Mode validity:** what did the learner actually do? Do not credit written
      selection as speech merely because the outcome targets interaction.
-   - **Open-production loop:** does writing/speaking require self-check and a
-     revised attempt, or stop after revealing a polished model?
+   - **Open-production loop:** does the write/speak task give a model worth
+     comparing against, and guidance that names what to check — without gating
+     on ceremony the app cannot verify? (Minimal ceremony is the contract;
+     a mandatory checklist or second draft is the defect here, not the fix.)
 5. **Diagnose by principle, not symptom.** "No measured production: zero
    `translate` attempts despite available items (§12/§13/§15)" beats "add more
    exercises".

@@ -97,6 +97,10 @@ it; everything else lives in the archive.
     revision mismatch and still reads as a real error in the weak-focus table. `data/grading-decisions.yaml`
     rules `translate` renderings only, so there is no mechanism to retract a `table` attempt. Weight that
     tag accordingly until it has post-fix evidence.
+- **P5-6 · Recognition-only vocabulary cards** — `done` 2026-07-21 (PR #92). `cards: recognition`
+  makes one card instead of two for understand-only language; defaulted `both` and never
+  retrofitted, because the direction lives in the card id. Contract in CLAUDE.md; built for B1's
+  Wortliste tail.
 - **P13 · Level placement tests** — `done` 2026-07-20. `role: placement`, one set per level, discovered like checkpoints; per-topic verdicts that take a topic off the path without ever raising its measured tier. 70 items shipped (A1 24, A2 46). Contract in CLAUDE.md; two open limitations below (P13-1 spoken modes, P13-2 offering the next level's test).
 - **P13-2 (first half) · An interrupted placement test could not be resumed** — `done` 2026-07-21,
   found by Codex on PR #89. `FirstSteps` gated on `attempts.length === 0` and `logAttempt` fires per
@@ -121,6 +125,15 @@ it; everything else lives in the archive.
     rather than plain correct. It touches `foldUmlauts`, which is flashcard-only and therefore does not
     move the retention figure — but it does change grading for every card, so it is not a change to
     make in the same breath as a bug fix.
+- **P15 · Pre-B1 comprehensive review** — `done` 2026-07-21 (PR #94). The audit accepts v6
+  snapshots with its version list bound to the schema's; the grading queue was drained (10 rulings:
+  7 confirm, 3 accept); four cloze items stopped grading which word the author had in mind
+  (*haben* for *schreiben* was rejected live); three converted pretest explains stopped citing
+  mc options a cloze does not have; the learning-science skill stopped contradicting the
+  minimal-ceremony contract; and `nebensatz-verbende` — the one persistent weak focus without an
+  owned drill — got `a2/drill-nebensatz-verbende` (11 items). Style drift in `lernen-verstehen`
+  was checked against the corpus and not confirmed: 661 lines / 6 H3s sits inside the A2 range,
+  and the classroom scenario is the recorded one-scenario-per-unit convention.
 - **P14-3 · Ask whether the retention gate can be read, not only what it says** — `done` 2026-07-21.
   `bun run progress:audit --project YYYY-MM-DD` projects readability forward from arming dates and the
   interval schedule instead of from attempts already taken: **A1 1 readable now, 8 still reachable by
@@ -392,13 +405,3 @@ insufficient.
 Only after a linear mission pilot shows that branching would improve rather than distract from the
 learning workflow.
 
-### P5-6 · Recognition-only vocabulary cards — `deferred` (S)
-
-`buildDeck()` turns every vocab entry into two cards, so there is no way to teach a word for
-recognition alone. Language the learner must understand but will never produce — station
-announcements, listing abbreviations, form headings — therefore lives in readings and article tables
-and never in a deck. If A2 usage shows the review load is genuinely inflated by words that only need
-recognition, a `cards: recognition | both` field on a vocab entry is the fix.
-
-- Accept, when taken up: a recognition-only entry produces one card rather than two; existing card
-  ids are unchanged; the Wortschatz table says which words are recognition-only.

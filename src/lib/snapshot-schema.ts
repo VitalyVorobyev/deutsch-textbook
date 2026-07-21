@@ -109,6 +109,15 @@ const snapshotSchemas = {
   6: snapshotBody.extend({ version: z.literal(6) }),
 } as const;
 
+/**
+ * Every version `parseProgressSnapshot` accepts, ascending. Consumers that pre-screen a
+ * snapshot's `version` (the progress audit) must read this list rather than copy it: the
+ * audit carried a hand-written `[1..5]` and rejected live v6 exports the day v6 shipped.
+ */
+export const SUPPORTED_SNAPSHOT_VERSIONS = Object.keys(snapshotSchemas)
+  .map(Number)
+  .sort((a, b) => a - b);
+
 type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshotSchemas]>;
 
 function asV6(snapshot: NormalizedSnapshot): ProgressSnapshot {

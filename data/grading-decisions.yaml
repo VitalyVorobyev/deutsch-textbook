@@ -488,3 +488,68 @@
   decision: constrain
   note: "Correct German and a faithful rendering of «потому что» — but the item's focus is verbzweit, and a weil-clause sends the conjugated verb to the end, which is the opposite of what the tag measures. Accepting it would leave the item tagged verbzweit while grading nothing about position 2. The item looked determinate to its author because arbeit-beruf precedes nebensaetze-plaene in the spine and its article says weil 'comes later'; mixed training serves the item without that context, months after weil was taught. Instruction now names denn (revision 3). drill note: denn vs weil as a free choice — the learner picked the harder construction and built it correctly."
   decidedAt: 2026-07-21
+
+# --- 2026-07-21: pre-B1 review triage ------------------------------------------------------
+# Ten renderings, drained before the pre-B1 audit reread. Three accepts are RU-prompt-faithful
+# lexis the accept lists now carry (each with a revision bump); the confirms are misspellings
+# or real grammar errors outside the graded target.
+
+- item: a1/freizeit-koennen:translate-kann-schwimmen
+  given: "Ich kann gut schimmen."
+  decision: confirm
+  note: "schimmen is not a German word — a slip for schwimmen, which the item pins. The modal bracket the tag grades is correct, so this is spelling, not modal-satzklammer. Known cost, accepted deliberately (Codex, #94): confirm lifts the exclusion and today's grader attributes the miss to modal-satzklammer, so two typo attempts on this one item sit in the focus signal until P12-4's position pins forgive them — the vocabulary has no confirm-but-exclude, one item alone cannot make a signal persistent (that bar needs ≥2 distinct items), and the tag already owns drill-modal-satzklammer. Re-check this rendering when P12-4 lands."
+  decidedAt: 2026-07-21
+
+- item: a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule
+  given: "Können Sie mir sagen, wie viel den Kurs kostet? Ich möchte auch wissen, ob ich die Test schreiben muss."
+  decision: confirm
+  note: "Two real errors, both outside the indirekte-frage target (which is intact): the embedded subject is nominative — wie viel der Kurs kostet, not den Kurs — and Test is masculine: einen Test. schreiben for machen is fine lexis. drill note: nominative subject inside an embedded question rendered as accusative; genus slip on der Test."
+  decidedAt: 2026-07-21
+
+- item: a2/lernen-verstehen-produktion:uebersetzen-warum-ich-ueber
+  given: "Ich übe jeden Tag, weil ich die Nachrichnet verstehen möchte."
+  decision: confirm
+  note: "Nachrichnet is a transposition slip for Nachrichten. The weil-clause the tag grades is perfect — verstehen möchte at the wall — so this is spelling, not nebensatz-verbende."
+  decidedAt: 2026-07-21
+
+- item: a2/lernen-verstehen:uebersetzen-ob-der-test-schwer-ist
+  given: "Weißt du, ob die Prüfung schwierig ist?"
+  decision: accept
+  note: "Correct, target-preserving German: ob opens the clause and ist closes it, which is all the tag grades. die Prüfung for der Test is lexis — in this unit's world the Saturday Prüfung is the natural referent. Accept list gains the Prüfung renderings (revision 2)."
+  decidedAt: 2026-07-21
+
+- item: a2/freunde-feste-produktion:uebersetzen-aber-sondern-chat
+  given: "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber den Kuchen nicht."
+  decision: accept
+  note: "aber den Kuchen nicht is correct German ellipsis and the literal shape of the RU prompt («но торт — нет»). Both connectors — the only thing the tag grades — are right: sondern after the corrected negation, aber for the plain contrast. kein vs nicht is not this item's rule. Accept list gains it (revision 2)."
+  decidedAt: 2026-07-21
+
+- item: a2/freunde-feste-produktion:uebersetzen-absprache-chat
+  given: "Kannst du mir den Stalat mitbringen? Und ich bringe dir die Getränke."
+  decision: confirm
+  note: "Stalat is not a German word — a slip for Salat. Everything the tag grades is right (mir and dir both dative), and bringen without mit- in the second sentence is fine German; the misspelling alone makes the rendering wrong."
+  decidedAt: 2026-07-21
+
+- item: a2/freunde-feste:uebersetzen-kuchen-mitbringen
+  given: "Am Samstag bringe ich dir die Torte."
+  decision: accept
+  note: "Correct, target-preserving German: dir — the dative decision the tag grades — is right. die Torte is the direct rendering of the RU/UK «торт», and bringen without mit- is ordinary German for delivering something. Accept list gains the Torte renderings (revision 2)."
+  decidedAt: 2026-07-21
+
+- item: a2/einkaufen-reklamation:uebersetzen-passt-gefaellt
+  given: "Die Jacke passt mir, aber sie gefällt meinen Mann nicht."
+  decision: confirm
+  note: "gefallen governs the dative: sie gefällt meinem Mann nicht. The passen half the item pins is correct (passt mir), so the miss belongs to the unpinned second verb — the same dative-verb confusion the tag family drills. drill note: gefallen + Dativ rendered accusative (meinen Mann) — verben-mit-dativ evidence."
+  decidedAt: 2026-07-21
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss anmelden"
+  decision: confirm
+  note: "anmelden for registering oneself is reflexive — Man muss sich anmelden — and vorher (beforehand) is dropped, so the rendering loses both the reflexive and the prompt's time adverb. The man + modal frame the tag grades is correct. drill note: reflexive sich dropped under a modal — sich-verb evidence for the reflexive entries."
+  decidedAt: 2026-07-21
+
+- item: a1/probe-erste-schritte:variant-b
+  given: "Guten Tag! Main Name ist Marta. Ich komme aus Spanien und wohne in Hamburg."
+  decision: confirm
+  note: "Main is not German mein (the same slip ruled on a2/probe-modalverben:variant-b). Everything else is fine: Guten Tag! for Hello! and the shared-subject und wohne are both natural. The family carries no focus, so nothing re-enters focus signals either way — the untagged-family instrument gap is already on record."
+  decidedAt: 2026-07-21
