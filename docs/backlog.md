@@ -111,6 +111,40 @@ variant”, and the grader was rejecting it.
   `data/grading-decisions.yaml` rules `translate` renderings only — the same gap the P12-6 `table`
   note names.
 
+### P14-2 · Answers the learner had no way to type — **done 2026-07-21**
+
+Reported by the learner in the same session: *“I don't have proper e for the Café card.”* The insert
+bar under the answer field offered `ä ö ü ß` and nothing else, so on a non-German layout the `é` was
+unreachable and the card graded **keyboard access rather than German**. Nothing noticed, because the
+entry is well-formed and correctly spelled and passes every other check.
+
+Fixed as data plus instrument. `é` joins the bar — measured first: `Café` is the only accented
+headword in the A1, A2 *and* B1 Wortlisten, and **no graded answer anywhere in the exercise corpus
+contains an accent**, so one key covers the course through B1. `accept: ["das Cafe"]` takes the
+accent-less spelling, because the é is a French diacritic on a loanword rather than German
+orthography like ä/ö/ü/ß; the article stays required in both spellings, and the back still shows
+`das Café` after every answer.
+
+**The rule written to prevent the next `Café` found eleven live ones the moment it ran**, and that
+half is more serious than the report. `checkAnswerIsTypeable` (`scripts/validate.ts`) asserts every
+character of the *normalized* typed answer is reachable from the bar — normalized, so the two
+`arbeit-beruf` phrase headwords ending in `…` are not falsely demanded. It failed immediately on
+**Ä/Ö/Ü**, which the bar never carried: German capitalizes its nouns, the grader is case-sensitive,
+and `die Ärztin`, `Österreich`, `die Übung`, `die Öffnungszeiten` and seven more were therefore a
+**permanent soft miss** for any learner without a German keyboard — `foldUmlauts` turns `Aerztin`
+into an `umlaut` verdict, which suggests *Again*. Nobody reported it because a card that is merely
+hard to *type* looks exactly like a card you keep getting wrong.
+
+The three separate copies of `['ä','ö','ü','ß']` in `FlashcardSession`, `Translate` and `Listen` are
+now one exported `GERMAN_INPUT_KEYS` (`src/lib/typing.ts`), so the bar cannot drift per surface.
+
+- Verified: all 3238 card ids unchanged; `bun run validate` clean; the exercise corpus needs no
+  character the bar lacks (checked, not assumed).
+- Worth weighing after 2026-08-02, not now: whether `Cafe` should be a *soft* miss like `ae/oe/ue`
+  rather than plain correct. It touches `foldUmlauts`, which is flashcard-only and therefore does not
+  move the retention figure — but it does change grading for every card, so it is not a change to
+  make in the same breath as a bug fix.
+
 ## Open — found in the 2026-07-20 instrument review
 
 ### P12-1 · The probe channel is a `translate` monoculture — **A1 + 16 A2 topics done 2026-07-20**, 4 topics blocked

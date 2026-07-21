@@ -15,6 +15,7 @@ import {
   articledForm,
   checkTypedAnswer,
   diffExpected,
+  GERMAN_INPUT_KEYS,
   normalizeTyped,
   type AnswerVerdict,
 } from '../../lib/typing';
@@ -57,8 +58,6 @@ const GRADE_BUTTONS: Array<{ grade: Grade; label: StringKey; cls: string }> = [
   { grade: Rating.Again, label: 'grade.again', cls: 'bg-red-600 hover:bg-red-700' },
   { grade: Rating.Good, label: 'grade.good', cls: 'bg-green-600 hover:bg-green-700' },
 ];
-
-const UMLAUT_KEYS = ['ä', 'ö', 'ü', 'ß'];
 
 function verdictHint(v: AnswerVerdict, canonical: string, given: string): string | null {
   if (v.kind === 'article') {
@@ -449,7 +448,7 @@ export default function FlashcardSession({
                 </button>
               </div>
               <div className="mt-2 flex justify-center gap-2">
-                {UMLAUT_KEYS.map((ch) => (
+                {GERMAN_INPUT_KEYS.map((ch) => (
                   <button
                     key={ch}
                     type="button"

@@ -51,6 +51,7 @@ import {
   loadGradingDecisions,
 } from '../src/lib/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
+import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 
 const ROOT = join(import.meta.dirname, '..');
@@ -304,6 +305,36 @@ function checkGlossDoesNotLeakAnswer(where: string, e: VocabEntry): void {
   }
 }
 
+/**
+ * Every character the learner must TYPE has to be reachable from their keyboard.
+ *
+ * The learner reported that the `Café` card could not be answered at all: the
+ * insert bar under the answer field offered ä/ö/ü/ß and nothing else, so there
+ * was no way to produce the é on a non-German layout. The card was grading
+ * keyboard access rather than German, and nothing noticed — the entry is
+ * perfectly well-formed, correctly spelled, and passes every other check.
+ *
+ * The test runs on the NORMALIZED answer, which is what grading compares, so
+ * characters that dissolve before comparison are not falsely demanded: the two
+ * `arbeit-beruf` phrase headwords ending in `…` are fine, because
+ * `stripTokenPunctuation` removes a token that is nothing but punctuation.
+ */
+const TYPEABLE = new RegExp(`^[A-Za-z0-9 '\\-/.,!?:;()${GERMAN_INPUT_KEYS.join('')}]*$`);
+function checkAnswerIsTypeable(where: string, e: VocabEntry): void {
+  const forms = [articledForm(e.de, e.pos === 'noun' ? e.gender : undefined), ...(e.accept ?? [])];
+  for (const form of forms) {
+    const normalized = normalizeTyped(form);
+    if (TYPEABLE.test(normalized)) continue;
+    const missing = [...new Set([...normalized].filter((ch) => !TYPEABLE.test(ch)))];
+    fail(
+      `${where} → "${e.de}"`,
+      `the typed answer "${form}" needs ${missing.map((c) => `"${c}"`).join(', ')}, which is ` +
+        'not on a standard keyboard and not on the insert bar (GERMAN_INPUT_KEYS in ' +
+        'src/lib/typing.ts) — add the character there, or accept a typeable spelling',
+    );
+  }
+}
+
 const vocabFiles = new Map<string, { file: string; data: VocabFile }>();
 for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
   let raw: unknown;
@@ -327,6 +358,7 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
     checkIpa(rel(file), e);
     checkReflexiveForms(rel(file), e);
     checkGlossDoesNotLeakAnswer(rel(file), e);
+    checkAnswerIsTypeable(rel(file), e);
   }
 }
 

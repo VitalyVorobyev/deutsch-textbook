@@ -10,15 +10,13 @@ import {
   type TranslationVerdict,
 } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';
+import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
-
-/** Characters that are awkward to type on a non-German keyboard. */
-const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß'] as const;
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
 const UI = {
