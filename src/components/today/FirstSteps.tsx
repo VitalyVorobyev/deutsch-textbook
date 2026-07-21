@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import { hasStartedLearning } from '../../lib/placement';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -7,8 +8,14 @@ import { useExplainLang, useUiLang } from '../hooks';
 interface Props {
   /** the first topic of the curriculum spine — where a new learner starts */
   first?: { path: string; title_de: string };
-  /** the lowest level's entry test, for a learner who does not start from zero */
-  placement?: { path: string };
+  /**
+   * The lowest level's entry test, for a learner who does not start from zero.
+   *
+   * `setIds` covers every level's placement set, not just the linked one: it is what
+   * separates "answered a placement item" from "started learning" in the freshness check
+   * below, and that distinction has to hold for any level's test.
+   */
+  placement?: { path: string; setIds: string[] };
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
@@ -21,6 +28,10 @@ const UI = {
   placementHint: {
     en: 'Not starting from zero? Take the placement test and the topics you already know leave your path.',
     ru: 'Начинаете не с нуля? Пройдите тест на уровень — и темы, которые вы уже знаете, уйдут с вашего пути.',
+  },
+  placementResumeHint: {
+    en: 'Your placement test is unfinished — your answers are still there.',
+    ru: 'Тест на уровень не завершён — ваши ответы сохранены.',
   },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
@@ -58,18 +69,21 @@ export default function FirstSteps({ first, placement }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const [fresh, setFresh] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
       ([attempts, cards, topics]) => {
-        setFresh(
-          attempts.length === 0 &&
-            Object.keys(cards).length === 0 &&
-            Object.values(topics).every((t) => !t.readAt),
-        );
+        // The rule itself lives in `hasStartedLearning` (src/lib/placement.ts), pure and
+        // tested: a placement attempt is not evidence of having started learning, and
+        // counting one here hid this card — and with it the only link back into a
+        // half-finished test — the moment the learner answered a single question.
+        const setIds = placement?.setIds ?? [];
+        setStarted(attempts.some((a) => setIds.includes(a.setId)));
+        setFresh(!hasStartedLearning(attempts, Object.keys(cards), topics, setIds));
       },
     );
-  }, []);
+  }, [placement?.setIds]);
 
   if (!fresh) return null;
 
@@ -113,13 +127,13 @@ export default function FirstSteps({ first, placement }: Props) {
           which is the right lifetime for an entry test. */}
       {placement && (
         <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">
-          {pick(lang, UI.placementHint)}{' '}
+          {pick(lang, started ? UI.placementResumeHint : UI.placementHint)}{' '}
           <a
             href={placement.path}
             lang={uiLang}
             className="font-medium text-amber-700 hover:underline dark:text-amber-400"
           >
-            {t('placement.entry', uiLang)} →
+            {t(started ? 'placement.resume' : 'placement.entry', uiLang)} →
           </a>
         </p>
       )}

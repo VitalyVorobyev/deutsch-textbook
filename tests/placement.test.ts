@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { placementResults, PLACEMENT_PASS_RATIO } from '../src/lib/placement';
+import { hasStartedLearning, placementResults, PLACEMENT_PASS_RATIO } from '../src/lib/placement';
 import type { CheckpointItemRef } from '../src/lib/checkpoint';
 import {
   MASTERY_ACCURACY,
@@ -221,5 +221,41 @@ describe('fresh cards for a learner who placed out', () => {
     expect(
       eligibleFreshCards([unowned], [], [node], { wortliste: 'A1' }, byPlacement),
     ).toHaveLength(1);
+  });
+});
+
+describe('hasStartedLearning — what keeps the entry test reachable', () => {
+  // Codex found this on PR #89: `FirstSteps` gated on `attempts.length === 0`, and
+  // `logAttempt` fires per item, so answering one placement question hid the card that
+  // holds the only link to the test. The answers were never lost — `ExerciseSet` saves
+  // them through `resume.ts` — so a half-finished test sat there with no route back.
+  const at = (setId: string) => ({ setId });
+  const PLACEMENTS = ['a1/placement-a1', 'a2/placement-a2'];
+
+  test('answering placement items is not starting to learn', () => {
+    expect(hasStartedLearning([], [], {}, PLACEMENTS)).toBe(false);
+    // the exact case that stranded the test: one item, then the learner leaves
+    expect(hasStartedLearning([at('a1/placement-a1')], [], {}, PLACEMENTS)).toBe(false);
+    // …and it holds for a level whose test is not the one linked
+    expect(hasStartedLearning([at('a2/placement-a2')], [], {}, PLACEMENTS)).toBe(false);
+  });
+
+  test('any other evidence does end it', () => {
+    expect(hasStartedLearning([at('a1/erste-schritte')], [], {}, PLACEMENTS)).toBe(true);
+    expect(hasStartedLearning([], ['deck::Tag::de-x'], {}, PLACEMENTS)).toBe(true);
+    expect(hasStartedLearning([], [], { basis: { readAt: 1 } }, PLACEMENTS)).toBe(true);
+  });
+
+  test('an applied placement spends the offer, though it writes no attempt or card', () => {
+    // setTopicPlacement writes only topics[id].placement, so without this clause the card
+    // would keep offering a test the learner has already taken and applied.
+    const placed = { setId: 'a1/placement-a1', at: 5, score: 1 };
+    expect(hasStartedLearning([], [], { basis: { placement: placed } }, PLACEMENTS)).toBe(true);
+  });
+
+  test('with no placement sets known, every attempt counts — the old behaviour', () => {
+    // Guards the wiring: if index.astro ever stops passing setIds, the predicate must fail
+    // closed (hide the card) rather than show it to a learner who is well underway.
+    expect(hasStartedLearning([at('a1/placement-a1')], [], {}, [])).toBe(true);
   });
 });

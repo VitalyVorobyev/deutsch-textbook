@@ -490,6 +490,15 @@ export const STRINGS = {
     ru: 'Я уже немного знаю немецкий',
     uk: 'Я вже трохи знаю німецьку',
   },
+  // Shown instead of `placement.entry` once the test has been started but not applied. The
+  // answers survive (ExerciseSet saves them through `resume.ts`), so the learner is picking
+  // up where they left off — saying "take the test" there would read as starting over.
+  'placement.resume': {
+    de: 'Einstufungstest fortsetzen',
+    en: 'Continue the placement test',
+    ru: 'Продолжить тест на уровень',
+    uk: 'Продовжити тест на рівень',
+  },
   'placement.counter': { de: 'eingestuft', en: 'placed', ru: 'зачтено', uk: 'зараховано' },
   'evidence.read': { de: 'Gelesen', en: 'Read', ru: 'Прочитано', uk: 'Прочитано' },
   'evidence.practiced': { de: 'Geübt', en: 'Practiced', ru: 'Отработано', uk: 'Відпрацьовано' },

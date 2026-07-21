@@ -21,7 +21,7 @@ lives in [roadmap.md](roadmap.md).
 
 - **Phase 10 · close the A2 grammar standard** — `done` 2026-07-18. Structural coverage moved from 20/30 to 30/30; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 - **P11 · A2 linguistic corpus pass** — `done` 2026-07-18. All 30 manifest points are signed off with zero open high/medium findings; see [the QA ledger](a2-linguistic-qa.md).
-- **P13 · Level placement tests** — `done` 2026-07-20. `role: placement`, one set per level, discovered like checkpoints; per-topic verdicts that take a topic off the path without ever raising its measured tier. 70 items shipped (A1 24, A2 46). Contract in CLAUDE.md; two open limitations below (P13-1 spoken modes, P13-2 the A2 entry link).
+- **P13 · Level placement tests** — `done` 2026-07-20. `role: placement`, one set per level, discovered like checkpoints; per-topic verdicts that take a topic off the path without ever raising its measured tier. 70 items shipped (A1 24, A2 46). Contract in CLAUDE.md; two open limitations below (P13-1 spoken modes, P13-2 offering the next level's test).
 
 ## The open gate
 
@@ -305,24 +305,36 @@ instruction names the pinned connector is mechanical**, and that is the half now
   rules `translate` renderings only, so there is no mechanism to retract a `table` attempt. Weight that
   tag accordingly until it has post-fix evidence.
 
-### P13-2 · The A2 entry test has no inbound link — `todo` (S)
+### P13-2 · The entry test went unreachable the moment it was started — **half done 2026-07-21**
 
-`/einstufung/a2` is built and passes validation, and nothing in the app ever links to it. The
-entry point is `src/pages/index.astro`, which offers `getPlacements()[0]` — the **lowest** level
-only, deliberately, so a learner cannot skip to A2 while A1 is untouched (the rule `dueCheckpoint`
-already encodes). But that link lives on the `FirstSteps` card, which renders only while
-`attempts.length === 0`, and **every placement item logs an attempt**. So answering the first
-question of the A1 test hides the card for good, and the A2 test becomes unreachable — including
-for the learner it was written for, who places out of A1 and is then taught A2 from zero.
+Two defects were filed here as one, and the split matters because only one of them was a design
+question. **Codex found the other on PR #89**, and the review was right that it is the more serious:
+the first filing framed it as "the *A2* test has no link" and deferred the whole thing.
 
-The rule that closes it is the `dueCheckpoint` analogue: **offer level N+1's test once level N is
-placed or passed**, surfaced from `PlacementResults` after *Ergebnis übernehmen* rather than from a
-card that has already disappeared by then. Not fixed with the rest of P13 because it is a new entry
-surface with its own eligibility question, not a missing `<a>`: it has to decide what "level N is
-done" means for a learner who placed out of half of it, and it must not become a second path the
-learner feels obliged to walk. Note also that a retake of a level's *own* test is unreachable by the
-same mechanism — `setTopicPlacement` (`src/lib/store.ts`) is written to be idempotent and monotone
-in score precisely so a retake is safe, and today nothing can reach one.
+**Done — an interrupted test could not be resumed.** `FirstSteps` gated on
+`attempts.length === 0`, and `logAttempt` fires **per item**, so answering a single placement
+question hid the card that holds the only link to the test. Nothing was lost — `ExerciseSet`
+saves answers through `resume.ts` and restores them on mount — so what was stranded was a
+*route back to real state*, which is the worst shape this kind of bug takes: the learner sees
+their work vanish and has no reason to believe it survived. The rule now lives in
+`hasStartedLearning` (`src/lib/placement.ts`), pure and tested rather than inline in an effect,
+which is how it stayed silent: **a placement attempt is not evidence of having started learning**,
+and an *applied* placement ends the offer even though applying writes no attempt, card or `readAt`.
+The card says *fortsetzen* rather than *starten* once answers exist. The regression test fails
+against the pre-fix predicate.
+
+**Still open — the next level's test is not offered.** `src/pages/index.astro` links
+`getPlacements()[0]` only, deliberately, so a learner cannot skip to A2 while A1 is untouched (the
+rule `dueCheckpoint` already encodes). Closing it is the `dueCheckpoint` analogue — **offer level
+N+1's test once level N is placed or passed**, surfaced from `PlacementResults` after *Ergebnis
+übernehmen*. This half really is a new entry surface with its own eligibility question: it has to
+decide what "level N is done" means for a learner who placed out of half of it, and it must not
+become a second path the learner feels obliged to walk.
+
+- Lesson worth keeping: the deferral was written from the *symptom* that was noticed (A2 unreachable)
+  rather than from the mechanism, and the mechanism covered a second, cheaper, more urgent case. A
+  deferral is a claim; this one bundled a bug into a design question and inherited the design
+  question's timeline.
 
 ### P12-4 · `key_tokens` conflates three different reasons to pin a token — `todo` (M)
 

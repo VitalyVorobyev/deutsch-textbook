@@ -10,7 +10,7 @@
  * not an oversight — a twenty-item test is not the ten spaced correct answers across two
  * days that `Gemeistert` means.
  */
-import type { Attempt } from './store';
+import type { Attempt, TopicsState } from './store';
 import { attemptScore } from './scoring';
 import { latestVerifiedByItem, type CheckpointItemRef } from './checkpoint';
 import { GOOD_RATIO } from './bars';
@@ -49,6 +49,32 @@ export interface PlacementSummary {
   total: number;
   /** timestamp of the most recent attempt on the set */
   lastTs: number;
+}
+
+/**
+ * Has the learner started *learning*, as opposed to answering an entry test?
+ *
+ * The distinction exists because `logAttempt` fires per item, so a learner who answers one
+ * placement question and closes the tab has a non-empty attempt log while having learned
+ * nothing. `FirstSteps` — the only surface that links to the entry test — used a bare
+ * `attempts.length === 0`, so that single answer hid the card and with it the only route
+ * back into the test. The answers themselves were never lost (`ExerciseSet` saves them
+ * through `resume.ts`); what was stranded was the way back to them.
+ *
+ * A placement that has been *applied* does end it: the learner has placed, so the offer is
+ * spent — and applying writes no attempt, no card and no `readAt`, so nothing else here
+ * would notice.
+ */
+export function hasStartedLearning(
+  attempts: readonly { setId: string }[],
+  cardIds: readonly string[],
+  topics: TopicsState,
+  placementSetIds: readonly string[],
+): boolean {
+  const placementSets = new Set(placementSetIds);
+  if (attempts.some((a) => !placementSets.has(a.setId))) return true;
+  if (cardIds.length > 0) return true;
+  return Object.values(topics).some((t) => t.readAt || t.placement);
 }
 
 /**

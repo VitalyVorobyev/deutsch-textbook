@@ -49,8 +49,16 @@ const first = firstNode && { path: firstNode.path, title_de: firstNode.title_de 
 // …and the alternative for someone who does not start from zero. The lowest level's test:
 // the entry point must not let a learner skip straight to A2 while A1 is untouched, which
 // is the same rule dueCheckpoint encodes.
-const firstPlacement = (await getPlacements())[0];
-const placement = firstPlacement && { path: firstPlacement.path };
+//
+// Every level's setId goes with it, because FirstSteps has to tell a placement attempt
+// apart from having started learning — counting one hid this card, and the only link back
+// into a half-finished test with it.
+const placements = await getPlacements();
+const firstPlacement = placements[0];
+const placement = firstPlacement && {
+  path: firstPlacement.path,
+  setIds: placements.map((p) => p.setId),
+};
 ---
 
 <Base title="Heute">
