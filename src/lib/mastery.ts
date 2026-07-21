@@ -1,5 +1,5 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
-import type { Attempt, CardStates, TopicsState, TopicManual } from './store';
+import type { Attempt, CardStates, TopicsState, TopicManual, TopicPlacement } from './store';
 import type { CurriculumStrand } from './schemas';
 import { localDateString } from './store';
 import { scoreTotal, verifiedOnly } from './scoring';
@@ -40,7 +40,8 @@ const TIER_ORDER: Record<Tier, number> = { untouched: 0, read: 1, practiced: 2, 
 
 const MASTERY_WINDOW = 10;
 const MASTERY_MIN_ATTEMPTS = 5;
-const MASTERY_ACCURACY = 0.8;
+/** Exported so a test can pin it equal to GOOD_RATIO — see src/lib/bars.ts. */
+export const MASTERY_ACCURACY = 0.8;
 // Mastery must show retention across sessions, not one massed day — same-day
 // accuracy is fluent-but-fragile, so the badge would inflate without this.
 const MASTERY_MIN_DAYS = 2;
@@ -137,6 +138,15 @@ export interface TopicEvidence {
   hasVocab: boolean;
   /** ≥1 card of that deck has been reviewed */
   vocab: boolean;
+  /**
+   * The learner passed this topic on a level entry test.
+   *
+   * Reported so a surface can explain why a topic it never taught is off the path — it is
+   * deliberately **not** rendered as a fifth evidence chip. The four chips *are* the four
+   * mastery requirements, so a fifth green one beside them reads as a fifth requirement
+   * met, which is exactly backwards: placement means the requirements were never measured.
+   */
+  placed: boolean;
 }
 
 /**
@@ -156,6 +166,7 @@ export function topicEvidence(node: TopicRollup, ctx: TopicContext): TopicEviden
     spaced: masteryGaps(node, ctx).find((g) => g.req === 'days')?.met ?? false,
     hasVocab: node.vocabIds.length > 0,
     vocab: reviewed.length > 0,
+    placed: !!ctx.topics[node.id]?.placement,
   };
 }
 
@@ -164,6 +175,11 @@ export function topicEvidence(node: TopicRollup, ctx: TopicContext): TopicEviden
  *  read      — article opened;
  *  practiced — ≥1 non-pretest exercise/reading attempt;
  *  mastered  — every requirement in masteryGaps() met.
+ *
+ * Blind to placement, and structurally so: a `role: placement` set is in no topic's
+ * `exercises`, so `topicPracticeSetIds` cannot see its attempts and a placed topic stays
+ * `untouched` here. That is the design — do not add a placement branch. The badge reports
+ * what the course measured; placement reports what it decided to stop teaching.
  */
 export function topicTier(node: TopicRollup, ctx: TopicContext): Tier {
   const setIds = new Set(topicPracticeSetIds(node));
@@ -189,12 +205,26 @@ export interface Completion {
   auto: Tier;
   tier: Tier;
   manual?: TopicManual;
+  /**
+   * A passed entry test, carried here so a badge can render both markers from one read.
+   *
+   * `tier` is `effectiveTier(auto, manual)` and nothing else. Placement is **not** a tier
+   * modifier: a twenty-item test is not the five spaced correct answers across two days
+   * that `Gemeistert` measures, and folding it in would make the badge claim evidence the
+   * course never collected. It is rendered as its own outlined marker instead.
+   */
+  placement?: TopicPlacement;
 }
 
 export function topicCompletion(node: TopicRollup, ctx: TopicContext): Completion {
   const auto = topicTier(node, ctx);
-  const manual = ctx.topics[node.id]?.manual;
-  return { auto, tier: effectiveTier(auto, manual), manual };
+  const state = ctx.topics[node.id];
+  return {
+    auto,
+    tier: effectiveTier(auto, state?.manual),
+    manual: state?.manual,
+    placement: state?.placement,
+  };
 }
 
 /**
@@ -240,6 +270,10 @@ export function lessonCompleted(node: TopicNode, ctx: TopicContext, since = 0): 
 export function pathDone(node: TopicNode, ctx: TopicContext): boolean {
   const state = ctx.topics[node.id];
   if (state?.manual === 'learned') return true;
+  // A passed entry test takes the topic off the path — unless the learner has explicitly
+  // reopened it since, which is them asking for it back. `reopened` outranks placement for
+  // the same reason it caps the measured tier: capping down is always the honest direction.
+  if (state?.placement && state.manual !== 'reopened') return true;
   // topicCompletion, not topicTier: `reopened` caps the tier at practiced, so
   // this branch correctly does not fire for a topic the learner just reopened.
   if (topicCompletion(node, ctx).tier === 'mastered') return true;

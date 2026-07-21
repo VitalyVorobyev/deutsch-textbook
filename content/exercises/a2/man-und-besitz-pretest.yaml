@@ -7,19 +7,22 @@ title:
 items:
   - id: pretest-man-verbform
     outcomes: [regeln-mit-man]
-    type: mc
+    type: cloze
     focus: indefinitpronomen
-    prompt: "Welcher Satz ist richtig?"
-    options:
-      - "Hier darf man nicht parken."
-      - "Hier man darf nicht parken."
-      - "Hier darf man nicht parkst."
-      - "Hier darf nicht parken."
-    correct: 0
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "In der Bibliothek {{muss}} man leise sein. (müssen)"
+    translation:
+      en: "In the library you have to be quiet."
+      ru: "В библиотеке нужно вести себя тихо."
+      uk: "У бібліотеці потрібно поводитися тихо."
     explain:
-      en: "man is an ordinary subject, so after the fronted Hier it goes behind the verb, and it takes the er-form. The last option leaves the subject out altogether, which German never does."
-      ru: "man — обычное подлежащее, поэтому после вынесенного вперёд Hier оно идёт за глаголом, а форма глагола при нём как при er. В последнем варианте подлежащего нет вовсе, а немецкий так не строит предложений."
-      uk: "man — звичайний підмет, тому після винесеного вперед Hier воно йде за дієсловом, а форма дієслова при ньому як при er. В останньому варіанті підмета немає зовсім, а німецька так речень не будує."
+      en: "man is a third-person-singular subject, so it always takes the er-form: man muss, never man müssen or man musst. And unlike Russian or English, German cannot drop it — every sentence needs an explicit subject, so man is what fills the slot when no particular person is meant."
+      ru: "man — подлежащее третьего лица единственного числа, поэтому всегда стоит в форме er: man muss, а не man müssen или man musst. И в отличие от русского, немецкий не может его опустить: подлежащее нужно в каждом предложении, и man как раз заполняет это место, когда конкретное лицо не важно."
+      uk: "man — підмет третьої особи однини, тому завжди стоїть у формі er: man muss, а не man müssen чи man musst. І на відміну від української, німецька не може його опустити: підмет потрібен у кожному реченні, і man саме заповнює це місце, коли конкретна особа не важлива."
 
   - id: pretest-apostroph
     outcomes: [besitz-ausdruecken]

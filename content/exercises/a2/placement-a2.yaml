@@ -1,0 +1,566 @@
+topic: aemter-dienstleistungen
+role: placement
+title: { en: "Placement test A2 — what you already know", ru: "Тест на уровень A2 — что вы уже знаете", uk: "Тест на рівень A2 — що ви вже знаєте" }
+
+# The A2 entry test: 46 tasks over 22 topics, two or three each. Same contract as the A1
+# test — a topic is placed only when every one of its tasks is answered and the parts-
+# weighted ratio reaches 0.8, and every item's outcomes belong to exactly one topic.
+#
+# Anchored to `aemter-dienstleistungen`, the last A2 topic in the spine, so every focus tag
+# used anywhere in A2 passes the curriculum-order check.
+#
+# Mix: 24 translate, 11 cloze, 6 audio-comprehension, 5 mc. 76% of the test is produced
+# rather than picked, against caps of 25% mc and 40% selection. A2 is where the course
+# stops being about recognising German and starts being about building it, and a test that
+# decides which of those lessons the learner never sees has to ask them to build it.
+
+items:
+  # --- dativ ---
+  - id: dativ-artikel-luecke
+    outcomes: [dativ-artikel]
+    type: cloze
+    focus: dativ-artikel
+    instruction: { en: "Fill in the article in the correct dative form.", ru: "Вставьте артикль в правильной форме датива.", uk: "Вставте артикль у правильній формі давального." }
+    text: "Ich fahre mit {{dem}} Bus zur Arbeit. Nach {{der}} Arbeit gehe ich zu {{den}} Nachbarn."
+    translation: { en: "I take the bus to work. After work I go to the neighbours'.", ru: "На работу я езжу на автобусе. После работы я захожу к соседям.", uk: "На роботу я їжджу автобусом. Після роботи я заходжу до сусідів." }
+    explain: { en: "der Bus becomes dem, die Arbeit becomes der, and the dative plural is den with an -n on the noun itself: den Nachbarn. That extra -n on the noun is the part most often forgotten.", ru: "der Bus превращается в dem, die Arbeit — в der, а датив множественного числа — den, причём -n добавляется и к самому существительному: den Nachbarn. Именно это -n у существительного чаще всего забывают.", uk: "der Bus перетворюється на dem, die Arbeit — на der, а давальний множини — den, причому -n додається й до самого іменника: den Nachbarn. Саме це -n в іменника найчастіше забувають." }
+
+  - id: dativ-pronomen-buch
+    outcomes: [dativ-pronomen]
+    type: translate
+    focus: dativ-pronomen
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "Can you give me the book?"
+    prompt_ru: "Ты можешь дать мне книгу?"
+    prompt_uk: "Ти можеш дати мені книжку?"
+    answer: "Kannst du mir das Buch geben?"
+    key_tokens: ["mir"]
+    explain: { en: "The person who receives something stands in the dative: ich becomes mir. The thing given stays in the accusative — das Buch. Both objects together are the classic give-somebody-something pattern.", ru: "Тот, кто получает, стоит в дативе: ich превращается в mir. Сам предмет остаётся в аккузативе — das Buch. Два дополнения вместе и образуют классическую схему «дать кому-то что-то».", uk: "Той, хто отримує, стоїть у давальному: ich перетворюється на mir. Сам предмет залишається в акузативі — das Buch. Два додатки разом і утворюють класичну схему «дати комусь щось»." }
+
+  - id: dativ-verben-gefallen
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction: { en: "Translate into German. Use gefallen.", ru: "Переведите на немецкий. Используйте gefallen.", uk: "Перекладіть німецькою. Вживайте gefallen." }
+    prompt_en: "I like the flat very much."
+    prompt_ru: "Квартира мне очень нравится."
+    prompt_uk: "Квартира мені дуже подобається."
+    answer: "Die Wohnung gefällt mir sehr gut."
+    key_tokens: ["gefällt", "mir"]
+    accept: ["Mir gefällt die Wohnung sehr gut."]
+    explain: { en: "gefallen turns the sentence around: the thing that pleases is the subject and the person is in the dative. So it is die Wohnung gefällt mir, not ich gefalle die Wohnung — the English subject becomes the German dative object.", ru: "gefallen переворачивает предложение: подлежащее — то, что нравится, а человек стоит в дативе. Поэтому die Wohnung gefällt mir, а не ich gefalle die Wohnung. Русское «мне нравится» устроено так же, и это редкий случай, когда русский помогает.", uk: "gefallen перевертає речення: підмет — те, що подобається, а людина стоїть у давальному. Тому die Wohnung gefällt mir, а не ich gefalle die Wohnung. Українське «мені подобається» влаштоване так само, і це рідкісний випадок, коли українська допомагає." }
+
+  # --- trennbare-verben ---
+  - id: trennbar-aufstehen
+    outcomes: [trennbar-satz]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I get up at six o'clock every day."
+    prompt_ru: "Я встаю каждый день в шесть часов."
+    prompt_uk: "Я встаю щодня о шостій годині."
+    answer: "Ich stehe jeden Tag um sechs Uhr auf."
+    key_tokens: ["stehe", "auf"]
+    accept: ["Jeden Tag stehe ich um sechs Uhr auf."]
+    explain: { en: "aufstehen splits in a main clause: the conjugated part stays in position 2 and the prefix goes to the very end, however much stands in between. The two halves are one verb, so neither may be dropped.", ru: "aufstehen в главном предложении разделяется: спрягаемая часть остаётся на втором месте, а приставка уходит в самый конец, сколько бы слов между ними ни стояло. Обе половины — один глагол, и опустить нельзя ни одну.", uk: "aufstehen у головному реченні розділяється: відмінювана частина залишається на другому місці, а префікс іде в самий кінець, скільки б слів між ними не стояло. Обидві половини — одне дієслово, і опустити не можна жодну." }
+
+  - id: trennbar-untrennbar-mc
+    outcomes: [trennbar-erkennen]
+    type: mc
+    focus: trennbar-untrennbar
+    prompt: "Welcher Satz ist richtig?"
+    options: ["Ich verstehe die Frage nicht, aber ich rufe dich später an.", "Ich stehe die Frage nicht ver, aber ich rufe dich später an.", "Ich verstehe die Frage nicht, aber ich anrufe dich später."]
+    correct: 0
+    translation: { en: "Which sentence is correct?", ru: "Какое предложение верное?", uk: "Яке речення правильне?" }
+    explain: { en: "Both verbs are in the same sentence on purpose. ver- is inseparable and never moves, so verstehe stays whole; an- is separable, so anrufen splits and the an goes to the end. The prefix itself tells you which: be-, ver-, er-, ent- and ge- never split.", ru: "Оба глагола стоят в одном предложении намеренно. ver- — неотделяемая приставка и никогда не двигается, поэтому verstehe остаётся целым; an- отделяемая, поэтому anrufen распадается и an уходит в конец. Ответ подсказывает сама приставка: be-, ver-, er-, ent- и ge- не отделяются никогда.", uk: "Обидва дієслова стоять в одному реченні навмисно. ver- — невідокремлюваний префікс і ніколи не рухається, тому verstehe залишається цілим; an- відокремлюваний, тому anrufen розпадається і an іде в кінець. Відповідь підказує сам префікс: be-, ver-, er-, ent- і ge- не відокремлюються ніколи." }
+
+  # --- modalverben ---
+  - id: modal-satzklammer-arbeiten
+    outcomes: [modal-satzklammer]
+    type: translate
+    focus: modal-satzklammer
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "Tomorrow I have to work longer."
+    prompt_ru: "Завтра мне придётся работать дольше."
+    prompt_uk: "Завтра мені доведеться працювати довше."
+    answer: "Morgen muss ich länger arbeiten."
+    key_tokens: ["muss", "arbeiten"]
+    accept: ["Ich muss morgen länger arbeiten."]
+    explain: { en: "The modal bracket holds the sentence together: muss in position 2, the bare infinitive arbeiten at the very end. The infinitive never takes zu after a modal, and it never moves forward next to the modal.", ru: "Модальная рамка держит предложение: muss на втором месте, чистый инфинитив arbeiten — в самом конце. После модального глагола инфинитив не получает zu и не переезжает вперёд, к модальному глаголу.", uk: "Модальна рамка тримає речення: muss на другому місці, чистий інфінітив arbeiten — у самому кінці. Після модального дієслова інфінітив не отримує zu й не переїжджає вперед, до модального дієслова." }
+
+  - id: modal-duerfen-muessen-mc
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    type: mc
+    focus: duerfen-muessen
+    prompt: "Auf dem Schild steht: „Hier darf man nicht parken.“ Was bedeutet das?"
+    options: ["Parken ist hier verboten.", "Man kann hier parken, muss aber nicht.", "Man muss hier einen Parkschein kaufen."]
+    correct: 0
+    translation: { en: "A sign says: Hier darf man nicht parken. What does it mean?", ru: "На табличке написано: Hier darf man nicht parken. Что это значит?", uk: "На табличці написано: Hier darf man nicht parken. Що це означає?" }
+    explain: { en: "darf nicht is a prohibition — it is not allowed. muss nicht is the opposite kind of statement: it says there is no need. The two are easy to swap because a single English or Russian negation covers both.", ru: "darf nicht — это запрет: нельзя. muss nicht говорит совсем другое: не обязательно. Их легко перепутать, потому что русское «не» покрывает оба случая: «нельзя парковаться» и «не нужно парковаться».", uk: "darf nicht — це заборона: не можна. muss nicht каже зовсім інше: не обов'язково. Їх легко переплутати, бо українське «не» покриває обидва випадки: «не можна паркуватися» і «не потрібно паркуватися»." }
+
+  # --- perfekt-haben-sein ---
+  - id: perfekt-hilfsverb-luecke
+    outcomes: [perfekt-hilfsverb]
+    type: cloze
+    focus: haben-sein
+    instruction: { en: "Fill in haben or sein in the correct form.", ru: "Вставьте haben или sein в правильной форме.", uk: "Вставте haben або sein у правильній формі." }
+    text: "Gestern {{bin}} ich nach Hamburg gefahren. Dort {{habe}} ich Freunde getroffen, und am Abend {{sind}} wir ins Theater gegangen."
+    translation: { en: "Yesterday I travelled to Hamburg. There I met friends, and in the evening we went to the theatre.", ru: "Вчера я поехал в Гамбург. Там я встретил друзей, а вечером мы пошли в театр.", uk: "Учора я поїхав до Гамбурга. Там я зустрів друзів, а ввечері ми пішли в театр." }
+    explain: { en: "fahren and gehen move the subject from one place to another, so they take sein. treffen does not — it takes haben. The auxiliary follows the verb's meaning, not the sentence's, and it agrees with the subject: ich bin, wir sind.", ru: "fahren и gehen перемещают подлежащее из одной точки в другую, поэтому берут sein. У treffen такого перемещения нет — оно берёт haben. Выбор вспомогательного глагола зависит от значения самого глагола, а не от предложения, и он согласуется с подлежащим: ich bin, wir sind.", uk: "fahren і gehen переміщують підмет з однієї точки в іншу, тому беруть sein. У treffen такого переміщення немає — воно бере haben. Вибір допоміжного дієслова залежить від значення самого дієслова, а не від речення, і він узгоджується з підметом: ich bin, wir sind." }
+
+  - id: perfekt-partizip-luecke
+    outcomes: [perfekt-partizip]
+    type: cloze
+    focus: partizip2-form
+    instruction: { en: "Fill in the Partizip II of the verb in brackets.", ru: "Вставьте Partizip II глагола, указанного в скобках.", uk: "Вставте Partizip II дієслова, вказаного в дужках." }
+    text: "Wir haben zwei Stunden {{telefoniert}} (telefonieren). Danach hat Ana das Fenster {{aufgemacht}} (aufmachen) und ich habe die Tür {{zugemacht}} (zumachen)."
+    translation: { en: "We were on the phone for two hours. After that Ana opened the window and I closed the door.", ru: "Мы проговорили по телефону два часа. Потом Ана открыла окно, а я закрыл дверь.", uk: "Ми проговорили телефоном дві години. Потім Ана відчинила вікно, а я зачинив двері." }
+    explain: { en: "Verbs in -ieren build the participle without ge-: telefoniert. In a separable verb the ge- does not disappear — it moves inside, between the prefix and the stem: auf-ge-macht, zu-ge-macht.", ru: "Глаголы на -ieren образуют причастие без ge-: telefoniert. У отделяемых глаголов ge- не исчезает, а перемещается внутрь, между приставкой и корнем: auf-ge-macht, zu-ge-macht.", uk: "Дієслова на -ieren утворюють дієприкметник без ge-: telefoniert. У відокремлюваних дієслів ge- не зникає, а переміщується всередину, між префіксом і коренем: auf-ge-macht, zu-ge-macht." }
+
+  - id: perfekt-satzklammer-tisch
+    outcomes: [perfekt-satzklammer]
+    type: translate
+    focus: perfekt-satzklammer
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "Yesterday we bought a new table."
+    prompt_ru: "Вчера мы купили новый стол."
+    prompt_uk: "Учора ми купили новий стіл."
+    answer: "Gestern haben wir einen neuen Tisch gekauft."
+    key_tokens: ["haben", "gekauft"]
+    accept: ["Wir haben gestern einen neuen Tisch gekauft."]
+    explain: { en: "The Perfekt is a bracket like the modal one: haben in position 2, the participle at the very end. Everything the sentence says goes between them, so the participle is the last word however long the sentence grows.", ru: "Перфект образует такую же рамку, как и модальная: haben на втором месте, причастие — в самом конце. Всё содержание предложения помещается между ними, поэтому причастие остаётся последним словом, как бы длинным предложение ни было.", uk: "Перфект утворює таку саму рамку, як і модальна: haben на другому місці, дієприкметник — у самому кінці. Увесь зміст речення розміщується між ними, тому дієприкметник залишається останнім словом, хоч би яким довгим було речення." }
+
+  # --- alltag-tagesablauf ---
+  - id: alltag-zeitpraeposition-luecke
+    outcomes: [alltag-zeitpraepositionen]
+    type: cloze
+    focus: um-am-zeit
+    instruction: { en: "um, am or im?", ru: "um, am или im?", uk: "um, am чи im?" }
+    text: "Ich stehe {{am}} Montag {{um}} halb sieben auf, aber {{im}} Sommer schlafe ich länger."
+    translation: { en: "On Monday I get up at half past six, but in summer I sleep longer.", ru: "В понедельник я встаю в половине седьмого, а летом сплю дольше.", uk: "У понеділок я встаю о пів на сьому, а влітку сплю довше." }
+    explain: { en: "am for days, um for clock times, im for months and seasons. Watch halb sieben as well: German counts towards the coming hour, so it means 6:30, not 7:30.", ru: "am — для дней, um — для времени по часам, im — для месяцев и времён года. Обратите внимание и на halb sieben: немецкий отсчитывает к наступающему часу, поэтому это 6:30, а не 7:30.", uk: "am — для днів, um — для часу за годинником, im — для місяців і пір року. Зверніть увагу й на halb sieben: німецька відлічує до години, що настає, тому це 6:30, а не 7:30." }
+
+  - id: alltag-einkaufen-nach-arbeit
+    outcomes: [alltag-beschreiben]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction: { en: "Translate into German. Use einkaufen.", ru: "Переведите на немецкий. Используйте einkaufen.", uk: "Перекладіть німецькою. Вживайте einkaufen." }
+    prompt_en: "After work I go shopping every day."
+    prompt_ru: "После работы я каждый день хожу за покупками."
+    prompt_uk: "Після роботи я щодня ходжу за покупками."
+    answer: "Nach der Arbeit kaufe ich jeden Tag ein."
+    key_tokens: ["kaufe", "ein"]
+    accept: ["Ich kaufe nach der Arbeit jeden Tag ein."]
+    explain: { en: "Two things at once: nach takes the dative (nach der Arbeit), and einkaufen splits, so the ein lands after the time phrase at the end of the clause. The prefix is not optional — kaufen on its own means to buy something specific.", ru: "Здесь сразу два момента: nach требует датива (nach der Arbeit), а einkaufen разделяется, поэтому ein оказывается после обстоятельства времени, в конце предложения. Приставка не факультативна: kaufen без неё значит «покупать что-то конкретное».", uk: "Тут одразу два моменти: nach вимагає давального (nach der Arbeit), а einkaufen розділяється, тому ein опиняється після обставини часу, у кінці речення. Префікс не факультативний: kaufen без нього означає «купувати щось конкретне»." }
+
+  # --- termine-vereinbaren ---
+  - id: termine-zeit-hoeren
+    outcomes: [termine-zeit-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Praxis", text: "Praxis Dr. Weber, guten Tag." }
+        - { speaker: "Herr Roth", text: "Guten Tag, ich hätte gern einen Termin. Geht es am Dienstag?" }
+        - { speaker: "Praxis", text: "Am Dienstag ist leider alles voll. Am Mittwoch um Viertel nach zehn wäre noch etwas frei." }
+        - { speaker: "Herr Roth", text: "Mittwoch passt mir gut. Vielen Dank!" }
+    question: "Wann hat Herr Roth den Termin?"
+    options: ["Am Mittwoch um 10:15 Uhr.", "Am Dienstag um 10:15 Uhr.", "Am Mittwoch um 10:45 Uhr."]
+    correct: 0
+    translation: { en: "When is Herr Roth's appointment?", ru: "На какое время назначен приём у господина Рота?", uk: "На який час призначено прийом у пана Рота?" }
+    explain: { en: "Tuesday is refused — am Dienstag ist leider alles voll — and Wednesday is offered instead. Viertel nach zehn is a quarter past ten, that is 10:15; a quarter to would be Viertel vor.", ru: "Вторник отклоняют — am Dienstag ist leider alles voll — и предлагают среду. Viertel nach zehn — это четверть одиннадцатого, то есть 10:15; «без четверти» было бы Viertel vor.", uk: "Вівторок відхиляють — am Dienstag ist leider alles voll — і пропонують середу. Viertel nach zehn — це чверть на одинадцяту, тобто 10:15; «за чверть» було б Viertel vor." }
+
+  - id: termine-hoeflich-bitten
+    outcomes: [termine-hoeflich-telefonieren]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction: { en: "Translate into German. Use the polite Sie form.", ru: "Переведите на немецкий. Используйте вежливую форму Sie.", uk: "Перекладіть німецькою. Вживайте ввічливу форму Sie." }
+    prompt_en: "Could you give me an appointment on Thursday?"
+    prompt_ru: "Не могли бы вы записать меня на четверг?"
+    prompt_uk: "Чи не могли б ви записати мене на четвер?"
+    answer: "Könnten Sie mir am Donnerstag einen Termin geben?"
+    key_tokens: ["Könnten"]
+    explain: { en: "könnten is the polite request form and is learned as a chunk — no paradigm to work out. Note that it is not the same as können: Können Sie …? asks whether you are able to, könnten Sie …? asks a favour.", ru: "könnten — вежливая форма просьбы, которая заучивается целиком, без разбора парадигмы. Обратите внимание, что это не то же самое, что können: Können Sie …? спрашивает о возможности, а Könnten Sie …? — это просьба.", uk: "könnten — ввічлива форма прохання, яка заучується цілком, без розбору парадигми. Зверніть увагу, що це не те саме, що können: Können Sie …? питає про можливість, а Könnten Sie …? — це прохання." }
+
+  # --- wohnen-umzug ---
+  - id: wohnen-wo-wohin-luecke
+    outcomes: [wo-wohin-position]
+    type: cloze
+    focus: wo-wohin
+    instruction: { en: "Fill in the article in the correct case.", ru: "Вставьте артикль в правильном падеже.", uk: "Вставте артикль у правильному відмінку." }
+    text: "Der Schlüssel liegt auf {{dem}} Tisch. Leg ihn bitte in {{die}} Schublade."
+    translation: { en: "The key is lying on the table. Please put it in the drawer.", ru: "Ключ лежит на столе. Положи его, пожалуйста, в ящик.", uk: "Ключ лежить на столі. Поклади його, будь ласка, у шухляду." }
+    explain: { en: "The same prepositions take two cases. Ask Wo? and the answer is a position, so dative: auf dem Tisch. Ask Wohin? and the answer is a direction, so accusative: in die Schublade. The verb gives it away — liegen is a position, legen is a movement.", ru: "Одни и те же предлоги управляют двумя падежами. Вопрос Wo? — это положение, значит датив: auf dem Tisch. Вопрос Wohin? — это направление, значит аккузатив: in die Schublade. Подсказывает сам глагол: liegen — положение, legen — перемещение.", uk: "Ті самі прийменники керують двома відмінками. Питання Wo? — це положення, отже давальний: auf dem Tisch. Питання Wohin? — це напрямок, отже акузатив: in die Schublade. Підказує саме дієслово: liegen — положення, legen — переміщення." }
+
+  - id: wohnen-anzeige-mc
+    outcomes: [wohnungsanzeige-lesen]
+    type: mc
+    prompt: "Sie lesen eine Anzeige: „Helle 3-Zimmer-Wohnung, 78 m², Erdgeschoss, mit Balkon. Kaltmiete 640 Euro plus 150 Euro Nebenkosten. Keine Haustiere. Frei ab 1. September.“ Was ist richtig?"
+    options: ["Die Wohnung kostet insgesamt 790 Euro im Monat.", "Die Wohnung kostet insgesamt 640 Euro im Monat.", "Man darf in der Wohnung eine Katze halten."]
+    correct: 0
+    translation: { en: "You read a flat advertisement. What is correct?", ru: "Вы читаете объявление о квартире. Что верно?", uk: "Ви читаєте оголошення про квартиру. Що правильно?" }
+    explain: { en: "Kaltmiete is the rent without heating and utilities, so the real monthly cost is Kaltmiete plus Nebenkosten: 640 + 150 = 790. This is the single most useful thing to know when reading German flat ads. Keine Haustiere rules the cat out.", ru: "Kaltmiete — это плата без отопления и коммунальных услуг, поэтому реальная сумма в месяц складывается из Kaltmiete и Nebenkosten: 640 + 150 = 790. Это самое полезное, что нужно знать при чтении немецких объявлений о квартирах. Keine Haustiere исключает кошку.", uk: "Kaltmiete — це плата без опалення та комунальних послуг, тому реальна сума на місяць складається з Kaltmiete та Nebenkosten: 640 + 150 = 790. Це найкорисніше, що треба знати, читаючи німецькі оголошення про квартири. Keine Haustiere виключає кішку." }
+
+  # --- reisen-verkehr ---
+  - id: reisen-durchsage-hoeren
+    outcomes: [durchsage-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Durchsage", text: "Achtung auf Gleis vier. Der Regionalzug nach Nürnberg, Abfahrt zwölf Uhr zwanzig, fährt heute von Gleis sieben ab. Wir bitten um Entschuldigung." }
+    question: "Was müssen die Reisenden nach Nürnberg tun?"
+    options: ["Zu Gleis sieben gehen.", "Auf Gleis vier warten.", "Einen späteren Zug nehmen."]
+    correct: 0
+    translation: { en: "What do the passengers to Nuremberg have to do?", ru: "Что нужно сделать пассажирам, едущим в Нюрнберг?", uk: "Що потрібно зробити пасажирам, які їдуть до Нюрнберга?" }
+    explain: { en: "The announcement opens on platform four but the point comes at the end: fährt heute von Gleis sieben ab. Station announcements often name the old platform first, so the number that matters is the one after von.", ru: "Объявление начинается с четвёртого пути, но суть — в конце: fährt heute von Gleis sieben ab. На вокзалах часто сначала называют прежний путь, поэтому важен номер после von.", uk: "Оголошення починається з четвертої колії, але суть — у кінці: fährt heute von Gleis sieben ab. На вокзалах часто спочатку називають попередню колію, тому важливий номер після von." }
+
+  - id: reisen-verbindung-mc
+    outcomes: [verbindung-waehlen]
+    type: mc
+    prompt: "Sie lesen den Fahrplan: „Köln ab 8:12 → Frankfurt an 9:20. Köln ab 8:44 → Frankfurt an 10:55, einmal umsteigen in Bonn. Köln ab 9:12 → Frankfurt an 10:20.“ Sie müssen um zehn Uhr in Frankfurt sein. Welche Verbindung passt?"
+    options: ["Köln ab 8:12.", "Köln ab 8:44.", "Köln ab 9:12."]
+    correct: 0
+    translation: { en: "You read a timetable. You have to be in Frankfurt at ten o'clock. Which connection works?", ru: "Вы читаете расписание. Вам нужно быть во Франкфурте в десять часов. Какое соединение подходит?", uk: "Ви читаєте розклад. Вам потрібно бути у Франкфурті о десятій годині. Яке сполучення підходить?" }
+    explain: { en: "ab is the departure and an the arrival — the two words a timetable turns on. Only the 8:12 arrives before ten (9:20). The 8:44 leaves earlier than the 9:12 but arrives later, because it involves a change: einmal umsteigen.", ru: "ab — отправление, an — прибытие; на этих двух словах держится всё расписание. До десяти прибывает только поезд в 8:12 (9:20). Поезд в 8:44 отправляется раньше, чем в 9:12, но приходит позже, потому что с пересадкой: einmal umsteigen.", uk: "ab — відправлення, an — прибуття; на цих двох словах тримається весь розклад. До десятої прибуває лише потяг о 8:12 (9:20). Потяг о 8:44 відправляється раніше, ніж о 9:12, але приходить пізніше, бо з пересадкою: einmal umsteigen." }
+
+  # --- einkaufen-reklamation ---
+  - id: einkaufen-vergleich-jacke
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "This jacket is cheaper than the coat."
+    prompt_ru: "Эта куртка дешевле, чем пальто."
+    prompt_uk: "Ця куртка дешевша, ніж пальто."
+    answer: "Diese Jacke ist billiger als der Mantel."
+    key_tokens: ["billiger", "als"]
+    explain: { en: "The comparative is the plain -er ending, and the comparison itself is made with als — never with wie, which compares things that are equal (so groß wie). The second item stays in the nominative here: der Mantel.", ru: "Сравнительная степень — это окончание -er, а само сравнение вводится через als, а не через wie: wie сравнивает равные величины (so groß wie). Второй член сравнения остаётся здесь в номинативе: der Mantel.", uk: "Вищий ступінь — це закінчення -er, а саме порівняння вводиться через als, а не через wie: wie порівнює рівні величини (so groß wie). Другий член порівняння залишається тут у номінативі: der Mantel." }
+
+  - id: einkaufen-passen-groesse
+    outcomes: [gefallen-passen-sagen]
+    type: translate
+    focus: passen-dativ
+    instruction: { en: "Translate into German. Use passen.", ru: "Переведите на немецкий. Используйте passen.", uk: "Перекладіть німецькою. Вживайте passen." }
+    prompt_en: "The jacket doesn't fit me."
+    prompt_ru: "Куртка мне не подходит по размеру."
+    prompt_uk: "Куртка мені не підходить за розміром."
+    answer: "Die Jacke passt mir nicht."
+    key_tokens: ["passt", "mir"]
+    explain: { en: "passen works like gefallen: the garment is the subject and the person is in the dative, so it is passt mir and never passt mich. The same pattern returns for appointments — Passt es Ihnen am Montag?", ru: "passen устроен как gefallen: подлежащее — сама вещь, а человек стоит в дативе, поэтому passt mir, а не passt mich. Та же схема возвращается при договорённостях о времени: Passt es Ihnen am Montag?", uk: "passen влаштований як gefallen: підмет — сама річ, а людина стоїть у давальному, тому passt mir, а не passt mich. Та сама схема повертається при домовленостях про час: Passt es Ihnen am Montag?" }
+
+  # --- adjektive-deklination ---
+  - id: adjektiv-unbestimmt-luecke
+    outcomes: [adjektiv-beschreiben]
+    type: cloze
+    focus: adjektiv-unbestimmt
+    instruction: { en: "Fill in neu, groß or klein in the correct form.", ru: "Вставьте neu, groß или klein в правильной форме.", uk: "Вставте neu, groß або klein у правильній формі." }
+    text: "Wir haben eine {{neue}} Küche, einen {{großen}} Balkon und ein {{kleines}} Bad."
+    translation: { en: "We have a new kitchen, a big balcony and a small bathroom.", ru: "У нас новая кухня, большой балкон и маленькая ванная.", uk: "У нас нова кухня, великий балкон і маленька ванна кімната." }
+    explain: { en: "After ein- the adjective has to supply the information the article hides. ein alone shows nothing, so the neuter adjective takes the -es that das would have carried: ein kleines Bad. Feminine and masculine accusative keep their own marks: eine neue, einen großen.", ru: "После ein- прилагательное обязано взять на себя ту информацию, которую артикль не показывает. Само по себе ein не выражает ничего, поэтому в среднем роде прилагательное получает -es, которое несло бы das: ein kleines Bad. Женский род и мужской аккузатив сохраняют свои показатели: eine neue, einen großen.", uk: "Після ein- прикметник зобов'язаний взяти на себе ту інформацію, якої артикль не показує. Саме по собі ein не виражає нічого, тому в середньому роді прикметник отримує -es, яке несло б das: ein kleines Bad. Жіночий рід і чоловічий акузатив зберігають свої показники: eine neue, einen großen." }
+
+  - id: adjektiv-bestimmt-wohnung
+    outcomes: [adjektiv-wunsch-sagen]
+    type: translate
+    focus: adjektiv-bestimmt
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I'm looking for the small flat with the new kitchen."
+    prompt_ru: "Я ищу ту маленькую квартиру с новой кухней."
+    prompt_uk: "Я шукаю ту маленьку квартиру з новою кухнею."
+    answer: "Ich suche die kleine Wohnung mit der neuen Küche."
+    key_tokens: ["kleine", "neuen"]
+    explain: { en: "After der/die/das the adjective only ever ends in -e or -en, because the article has already done the work. -e appears in the five boxes at the top of the table, including feminine accusative (die kleine Wohnung); everywhere else, dative included, it is -en: mit der neuen Küche.", ru: "После der/die/das у прилагательного бывает только -e или -en, потому что артикль уже всё показал. -e стоит в пяти клетках в верхней части таблицы, включая женский аккузатив (die kleine Wohnung); во всех остальных, в том числе в дативе, — -en: mit der neuen Küche.", uk: "Після der/die/das у прикметника буває лише -e або -en, бо артикль уже все показав. -e стоїть у п'яти клітинках у верхній частині таблиці, включно з жіночим акузативом (die kleine Wohnung); в усіх інших, зокрема в давальному, — -en: mit der neuen Küche." }
+
+  # --- gesundheit-arzttermin ---
+  - id: gesundheit-seit-tagen
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: seit-vor-zeit
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I've had a headache for three days."
+    prompt_ru: "У меня уже три дня болит голова."
+    prompt_uk: "У мене вже три дні болить голова."
+    answer: "Ich habe seit drei Tagen Kopfschmerzen."
+    key_tokens: ["seit", "Tagen"]
+    explain: { en: "seit covers a stretch that started in the past and is still going, and it governs the dative, so drei Tage becomes seit drei Tagen. German keeps this in the present tense — the pain is still there. vor drei Tagen would mean three days ago, finished.", ru: "seit описывает промежуток, который начался в прошлом и продолжается, и требует датива, поэтому drei Tage превращается в seit drei Tagen. Немецкий ставит здесь настоящее время: боль ещё есть. vor drei Tagen значило бы «три дня назад», то есть уже закончилось.", uk: "seit описує проміжок, який почався в минулому й триває, і вимагає давального, тому drei Tage перетворюється на seit drei Tagen. Німецька ставить тут теперішній час: біль ще є. vor drei Tagen означало б «три дні тому», тобто вже закінчилося." }
+
+  - id: gesundheit-anweisung-hoeren
+    outcomes: [praxis-anweisungen-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Apothekerin", text: "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt." }
+    question: "Wie soll der Patient die Tabletten nehmen?"
+    options: ["Dreimal am Tag nach dem Essen.", "Dreimal am Tag vor dem Essen.", "Einmal am Tag mit viel Wasser."]
+    correct: 0
+    translation: { en: "How should the patient take the tablets?", ru: "Как пациенту принимать таблетки?", uk: "Як пацієнтові приймати таблетки?" }
+    explain: { en: "Two details decide it: dreimal am Tag and nach dem Essen. nach and vor are one syllable apart and change the instruction completely, which is why pharmacy instructions repeat them slowly.", ru: "Решают две детали: dreimal am Tag и nach dem Essen. nach и vor различаются одним слогом и полностью меняют указание — поэтому в аптеке их проговаривают медленно.", uk: "Вирішують дві деталі: dreimal am Tag і nach dem Essen. nach і vor різняться одним складом і повністю змінюють вказівку — тому в аптеці їх промовляють повільно." }
+
+  # --- verben-mit-praepositionen ---
+  - id: verb-praeposition-luecke
+    outcomes: [verb-praeposition-waehlen]
+    type: cloze
+    focus: verb-praeposition
+    instruction: { en: "Fill in the preposition.", ru: "Вставьте предлог.", uk: "Вставте прийменник." }
+    text: "Ich warte {{auf}} den Bus. Meine Tochter träumt {{von}} einem Hund, und wir sprechen oft {{über}} die Zukunft."
+    translation: { en: "I am waiting for the bus. My daughter dreams of a dog, and we often talk about the future.", ru: "Я жду автобус. Моя дочь мечтает о собаке, и мы часто говорим о будущем.", uk: "Я чекаю на автобус. Моя донька мріє про собаку, і ми часто говоримо про майбутнє." }
+    explain: { en: "The preposition belongs to the verb and has to be learned with it — there is no rule to derive it from, and it rarely matches the one another language would use. Learn the case with it too: warten auf + accusative, träumen von + dative, sprechen über + accusative.", ru: "Предлог принадлежит глаголу и заучивается вместе с ним — вывести его неоткуда, и он редко совпадает с русским: «ждать автобус» без предлога, но warten auf. Падеж запоминается вместе с предлогом: warten auf + Akkusativ, träumen von + Dativ, sprechen über + Akkusativ.", uk: "Прийменник належить дієслову й заучується разом з ним — вивести його немає звідки, і він рідко збігається з українським. Відмінок запам'ятовується разом із прийменником: warten auf + Akkusativ, träumen von + Dativ, sprechen über + Akkusativ." }
+
+  - id: da-wort-freuen
+    outcomes: [da-wort-sache]
+    type: translate
+    focus: da-wo-woerter
+    instruction: { en: "Translate into German. Refer back to something already mentioned.", ru: "Переведите на немецкий. Сошлитесь на уже упомянутое.", uk: "Перекладіть німецькою. Пошліться на вже згадане." }
+    prompt_en: "I'm looking forward to it."
+    prompt_ru: "Я этому очень рад."
+    prompt_uk: "Я цьому дуже радий."
+    answer: "Ich freue mich darauf."
+    key_tokens: ["darauf"]
+    explain: { en: "When a prepositional object is a thing rather than a person, German does not use a pronoun after the preposition — it fuses da- with the preposition instead: auf → darauf. The r appears only because auf begins with a vowel; with von it is davon, no r.", ru: "Когда предложное дополнение — вещь, а не человек, немецкий не ставит местоимение после предлога, а сливает da- с предлогом: auf → darauf. Буква r появляется только потому, что auf начинается с гласной; с von получается davon, без r.", uk: "Коли прийменниковий додаток — річ, а не людина, німецька не ставить займенник після прийменника, а зливає da- з прийменником: auf → darauf. Літера r з'являється лише тому, що auf починається з голосної; з von виходить davon, без r." }
+
+  # --- arbeit-beruf ---
+  - id: arbeit-aufgaben-buero
+    outcomes: [aufgaben-beschreiben]
+    type: translate
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "I work in an office and often answer emails."
+    prompt_ru: "Я работаю в офисе и часто отвечаю на электронные письма."
+    prompt_uk: "Я працюю в офісі й часто відповідаю на електронні листи."
+    answer: "Ich arbeite in einem Büro und beantworte oft E-Mails."
+    accept: ["Ich arbeite in einem Büro und antworte oft auf E-Mails."]
+    explain: { en: "in + dative for a place you are at: in einem Büro. beantworten takes a direct accusative object — the thing answered — while antworten needs auf: beantworte E-Mails but antworte auf E-Mails. Both renderings are accepted here.", ru: "in + датив для места, где вы находитесь: in einem Büro. beantworten требует прямого дополнения в аккузативе — того, на что отвечают, — а antworten требует auf: beantworte E-Mails, но antworte auf E-Mails. Оба варианта здесь принимаются.", uk: "in + давальний для місця, де ви перебуваєте: in einem Büro. beantworten вимагає прямого додатка в акузативі — того, на що відповідають, — а antworten вимагає auf: beantworte E-Mails, але antworte auf E-Mails. Обидва варіанти тут приймаються." }
+
+  - id: arbeit-anweisung-hoeren
+    outcomes: [arbeitsanweisung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Chefin", text: "Guten Morgen! Die Besprechung beginnt heute erst um elf, nicht um neun. Bitte schicken Sie mir vorher noch die Zahlen vom letzten Monat." }
+    question: "Was soll der Mitarbeiter vor elf Uhr machen?"
+    options: ["Die Zahlen vom letzten Monat schicken.", "Die Besprechung um neun Uhr vorbereiten.", "Die Zahlen vom nächsten Monat schicken."]
+    correct: 0
+    translation: { en: "What should the employee do before eleven o'clock?", ru: "Что сотрудник должен сделать до одиннадцати часов?", uk: "Що співробітник має зробити до одинадцятої години?" }
+    explain: { en: "vorher points back to the new time: the figures are due before eleven. Also catch vom letzten Monat — last month, not next; letzt- and nächst- are the pair that decides which set of numbers is meant.", ru: "vorher отсылает к новому времени: цифры нужны до одиннадцати. Важно расслышать и vom letzten Monat — за прошлый месяц, а не за следующий; пара letzt- и nächst- как раз и решает, о каких цифрах речь.", uk: "vorher відсилає до нового часу: цифри потрібні до одинадцятої. Важливо розчути й vom letzten Monat — за минулий місяць, а не за наступний; пара letzt- і nächst- саме й вирішує, про які цифри йдеться." }
+
+  # --- nebensaetze-plaene ---
+  - id: nebensatz-weil-arbeiten
+    outcomes: [weil-grund]
+    type: translate
+    focus: nebensatz-verbende
+    instruction: { en: "Translate into German. Use weil.", ru: "Переведите на немецкий. Используйте weil.", uk: "Перекладіть німецькою. Вживайте weil." }
+    prompt_en: "I can't come because I'm working today."
+    prompt_ru: "Я не могу прийти, потому что сегодня работаю."
+    prompt_uk: "Я не можу прийти, бо сьогодні працюю."
+    answer: "Ich kann nicht kommen, weil ich heute arbeite."
+    key_tokens: ["weil", "arbeite"]
+    explain: { en: "weil sends its own verb to the very end of its clause: weil ich heute arbeite, not weil ich arbeite heute. The main clause in front is unaffected and keeps its ordinary order.", ru: "weil отправляет свой глагол в самый конец придаточного: weil ich heute arbeite, а не weil ich arbeite heute. На главное предложение впереди это не влияет — там порядок обычный.", uk: "weil відправляє своє дієслово в самий кінець підрядного: weil ich heute arbeite, а не weil ich arbeite heute. На головне речення попереду це не впливає — там порядок звичайний." }
+
+  - id: nebensatz-vorfeld-wenn
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: translate
+    focus: nebensatz-vorfeld
+    instruction: { en: "Translate into German. Begin with the wenn-clause.", ru: "Переведите на немецкий. Начните с придаточного с wenn.", uk: "Перекладіть німецькою. Почніть з підрядного з wenn." }
+    prompt_en: "When I have time, I read a lot."
+    prompt_ru: "Когда у меня есть время, я много читаю."
+    prompt_uk: "Коли в мене є час, я багато читаю."
+    answer: "Wenn ich Zeit habe, lese ich viel."
+    key_tokens: ["habe", "lese"]
+    explain: { en: "A fronted subordinate clause is one single element, so it fills position 1 on its own and the main verb comes immediately after the comma: …, lese ich viel. Writing …, ich lese viel is the standard mistake — the subject cannot come first as well.", ru: "Вынесенное вперёд придаточное — это один член предложения, поэтому оно целиком занимает первое место, и главный глагол идёт сразу после запятой: …, lese ich viel. Вариант …, ich lese viel — типичная ошибка: подлежащее не может стоять ещё и перед глаголом.", uk: "Винесене вперед підрядне — це один член речення, тому воно цілком займає перше місце, і головне дієслово йде одразу після коми: …, lese ich viel. Варіант …, ich lese viel — типова помилка: підмет не може стояти ще й перед дієсловом." }
+
+  # --- infinitiv-mit-zu ---
+  - id: infinitiv-zu-vorhaben
+    outcomes: [plan-zu-infinitiv]
+    type: translate
+    focus: zu-infinitiv
+    instruction: { en: "Translate into German. Use vorhaben.", ru: "Переведите на немецкий. Используйте vorhaben.", uk: "Перекладіть німецькою. Вживайте vorhaben." }
+    prompt_en: "I'm planning to call my sister tomorrow."
+    prompt_ru: "Завтра я собираюсь позвонить сестре."
+    prompt_uk: "Завтра я збираюся зателефонувати сестрі."
+    answer: "Ich habe vor, morgen meine Schwester anzurufen."
+    key_tokens: ["vor", "anzurufen"]
+    explain: { en: "Two separable verbs at once. vorhaben splits, so vor goes to the end of the main clause and the comma follows. anrufen keeps its zu inside the word — an-zu-rufen — because a separable verb wraps around it rather than putting it in front.", ru: "Здесь сразу два отделяемых глагола. vorhaben разделяется, поэтому vor уходит в конец главного предложения, а за ним идёт запятая. У anrufen zu стоит внутри слова — an-zu-rufen: отделяемый глагол обхватывает zu, а не пропускает его вперёд.", uk: "Тут одразу два відокремлювані дієслова. vorhaben розділяється, тому vor іде в кінець головного речення, а за ним кома. У anrufen zu стоїть усередині слова — an-zu-rufen: відокремлюване дієслово обхоплює zu, а не пропускає його вперед." }
+
+  - id: um-zu-oesterreich
+    outcomes: [zweck-um-zu]
+    type: translate
+    focus: um-zu-zweck
+    instruction: { en: "Translate into German. Use um … zu.", ru: "Переведите на немецкий. Используйте um … zu.", uk: "Перекладіть німецькою. Вживайте um … zu." }
+    prompt_en: "I'm learning German in order to work in Austria."
+    prompt_ru: "Я учу немецкий, чтобы работать в Австрии."
+    prompt_uk: "Я вчу німецьку, щоб працювати в Австрії."
+    answer: "Ich lerne Deutsch, um in Österreich zu arbeiten."
+    key_tokens: ["um", "zu", "arbeiten"]
+    explain: { en: "Purpose is a two-ended frame: um opens the clause and zu stands directly in front of the infinitive at the end. Both ends are required — um alone is not enough, and für plus an infinitive is not German at all.", ru: "Цель выражается двусторонней рамкой: um открывает придаточное, а zu стоит прямо перед инфинитивом в конце. Нужны оба конца: одного um мало, а конструкции für с инфинитивом в немецком просто нет.", uk: "Мета виражається двобічною рамкою: um відкриває підрядне, а zu стоїть прямо перед інфінітивом у кінці. Потрібні обидва кінці: самого um замало, а конструкції für з інфінітивом у німецькій просто немає." }
+
+  # --- relativsaetze ---
+  - id: relativ-kasus-luecke
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction: { en: "Fill in the relative pronoun.", ru: "Вставьте относительное местоимение.", uk: "Вставте відносний займенник." }
+    text: "Das ist der Mann, {{der}} nebenan wohnt. Und das ist der Kollege, {{den}} ich gestern getroffen habe."
+    translation: { en: "That is the man who lives next door. And that is the colleague whom I met yesterday.", ru: "Это тот мужчина, который живёт по соседству. А это коллега, которого я вчера встретил.", uk: "Це той чоловік, який живе по сусідству. А це колега, якого я вчора зустрів." }
+    explain: { en: "Both nouns outside are masculine singular, so the form is decided entirely by the job the pronoun does inside its own clause. In the first it is the subject of wohnt, so der; in the second it is the object of getroffen habe, so den.", ru: "Оба существительных снаружи — мужского рода единственного числа, поэтому форму определяет исключительно роль местоимения внутри его собственного придаточного. В первом оно подлежащее при wohnt — значит der; во втором дополнение при getroffen habe — значит den.", uk: "Обидва іменники ззовні — чоловічого роду однини, тому форму визначає виключно роль займенника всередині його власного підрядного. У першому воно підмет при wohnt — отже der; у другому додаток при getroffen habe — отже den." }
+
+  - id: relativ-kollege-uebersetzen
+    outcomes: [person-beschreiben-relativ]
+    type: translate
+    focus: relativpronomen-kasus
+    instruction: { en: "Translate into German. Use a relative clause.", ru: "Переведите на немецкий. Используйте придаточное определительное.", uk: "Перекладіть німецькою. Використайте підрядне означальне." }
+    prompt_en: "My colleague who works here is very nice."
+    prompt_ru: "Мой коллега, который здесь работает, очень приятный."
+    prompt_uk: "Мій колега, який тут працює, дуже приємний."
+    answer: "Mein Kollege, der hier arbeitet, ist sehr nett."
+    key_tokens: ["der", "arbeitet"]
+    explain: { en: "The relative clause is fenced off by commas on both sides, and its verb goes to the end: der hier arbeitet. The main clause simply continues afterwards — ist sehr nett — as if the clause in the middle were not there.", ru: "Придаточное определительное с обеих сторон отделяется запятыми, а его глагол уходит в конец: der hier arbeitet. Главное предложение затем просто продолжается — ist sehr nett, — как если бы вставки посередине не было.", uk: "Підрядне означальне з обох боків відокремлюється комами, а його дієслово йде в кінець: der hier arbeitet. Головне речення потім просто продовжується — ist sehr nett, — ніби вставки посередині не було." }
+
+  # --- biografie-erfahrungen ---
+  - id: biografie-praeteritum-luecke
+    outcomes: [praeteritum-war-hatte]
+    type: cloze
+    focus: praeteritum-sein-haben
+    instruction: { en: "Fill in war, hatte or konnte in the correct form.", ru: "Вставьте war, hatte или konnte в правильной форме.", uk: "Вставте war, hatte або konnte у правильній формі." }
+    text: "Als Kind {{war}} ich oft krank. Ich {{hatte}} keine Geschwister und {{konnte}} noch nicht schwimmen."
+    translation: { en: "As a child I was often ill. I had no brothers or sisters and could not swim yet.", ru: "В детстве я часто болел. У меня не было братьев и сестёр, и плавать я ещё не умел.", uk: "У дитинстві я часто хворів. У мене не було братів і сестер, і плавати я ще не вмів." }
+    explain: { en: "sein, haben and the modals are the verbs German really does put in the Präteritum in speech — war, hatte, konnte — where every other verb would use the Perfekt. Nobody says ich bin krank gewesen when they can say ich war krank.", ru: "sein, haben и модальные глаголы — это те глаголы, которые немецкий действительно ставит в Präteritum в устной речи: war, hatte, konnte, — тогда как все остальные употребляются в Perfekt. Никто не скажет ich bin krank gewesen, если можно сказать ich war krank.", uk: "sein, haben і модальні дієслова — це ті дієслова, які німецька справді ставить у Präteritum в усному мовленні: war, hatte, konnte, — тоді як усі інші вживаються в Perfekt. Ніхто не скаже ich bin krank gewesen, якщо можна сказати ich war krank." }
+
+  - id: biografie-stationen-uebersetzen
+    outcomes: [lebensstationen-ordnen]
+    type: translate
+    focus: partizip2-form
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "After school he studied in Munich and then worked in Berlin."
+    prompt_ru: "После школы он учился в Мюнхене, а потом работал в Берлине."
+    prompt_uk: "Після школи він навчався в Мюнхені, а потім працював у Берліні."
+    answer: "Nach der Schule hat er in München studiert und dann in Berlin gearbeitet."
+    key_tokens: ["studiert", "gearbeitet"]
+    explain: { en: "Two participles, two different patterns. studieren ends in -ieren, so it takes no ge-: studiert. arbeiten is a regular verb whose stem ends in -t, so it takes both the ge- and an -et: gearbeitet. One auxiliary at the front serves both.", ru: "Два причастия — две разные модели. studieren оканчивается на -ieren, поэтому ge- не получает: studiert. arbeiten — правильный глагол с основой на -t, поэтому получает и ge-, и -et: gearbeitet. Один вспомогательный глагол в начале обслуживает оба.", uk: "Два дієприкметники — дві різні моделі. studieren закінчується на -ieren, тому ge- не отримує: studiert. arbeiten — правильне дієслово з основою на -t, тому отримує і ge-, і -et: gearbeitet. Одне допоміжне дієслово на початку обслуговує обидва." }
+
+  # --- verbindungen-folgen ---
+  - id: verbindungen-deshalb-uebersetzen
+    outcomes: [folge-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction: { en: "Translate into German. Use deshalb.", ru: "Переведите на немецкий. Используйте deshalb.", uk: "Перекладіть німецькою. Вживайте deshalb." }
+    prompt_en: "It was raining, so we stayed at home."
+    prompt_ru: "Шёл дождь, поэтому мы остались дома."
+    prompt_uk: "Ішов дощ, тому ми залишилися вдома."
+    answer: "Es hat geregnet, deshalb sind wir zu Hause geblieben."
+    key_tokens: ["deshalb", "sind"]
+    explain: { en: "deshalb is an adverb, not a conjunction: it takes position 1 in its own clause, so the verb has to come second and the subject moves behind it — deshalb sind wir. Writing deshalb wir sind treats it like weil, which it is not.", ru: "deshalb — наречие, а не союз: оно занимает первое место в своём предложении, поэтому глагол обязан стоять вторым, а подлежащее уходит за него — deshalb sind wir. Вариант deshalb wir sind обращается с ним как с weil, чем оно не является.", uk: "deshalb — прислівник, а не сполучник: воно займає перше місце у своєму реченні, тому дієслово мусить стояти другим, а підмет іде за нього — deshalb sind wir. Варіант deshalb wir sind поводиться з ним як із weil, чим воно не є." }
+
+  - id: verbindungen-als-wenn-luecke
+    outcomes: [vergangenheit-erzaehlen]
+    type: cloze
+    focus: als-wenn-vergangenheit
+    instruction: { en: "als or wenn?", ru: "als или wenn?", uk: "als чи wenn?" }
+    text: "Ich bin nach Berlin gezogen, {{als}} ich zwölf war. Früher habe ich immer gelacht, {{wenn}} mein Opa Geschichten erzählt hat."
+    translation: { en: "I moved to Berlin when I was twelve. I always used to laugh when my grandpa told stories.", ru: "Я переехал в Берлин, когда мне было двенадцать. Раньше я всегда смеялся, когда дедушка рассказывал истории.", uk: "Я переїхав до Берліна, коли мені було дванадцять. Раніше я завжди сміявся, коли дідусь розповідав історії." }
+    explain: { en: "In the past, als marks a single occasion that happened once, and wenn a situation that repeated. The signal words give it away: zwölf war happened once, while immer says the laughing happened again and again. Neither English nor Russian marks this difference at all.", ru: "В прошедшем времени als указывает на единичный случай, а wenn — на повторявшуюся ситуацию. Подсказывают слова-сигналы: zwölf war было один раз, а immer говорит, что смех повторялся. Ни английский, ни русский этого различия не выражают — «когда» покрывает оба случая.", uk: "У минулому часі als вказує на одиничний випадок, а wenn — на ситуацію, що повторювалася. Підказують слова-сигнали: zwölf war було один раз, а immer каже, що сміх повторювався. Ні англійська, ні українська цієї різниці не виражають — «коли» покриває обидва випадки." }
+
+  # --- man-und-besitz ---
+  - id: man-indefinit-luecke
+    outcomes: [regeln-mit-man]
+    type: cloze
+    focus: indefinitpronomen
+    instruction: { en: "Fill in man, niemand or nichts.", ru: "Вставьте man, niemand или nichts.", uk: "Вставте man, niemand або nichts." }
+    text: "In der Bibliothek darf {{man}} nicht essen. Gestern war {{niemand}} da, und ich habe {{nichts}} gefunden."
+    translation: { en: "You are not allowed to eat in the library. Yesterday nobody was there, and I found nothing.", ru: "В библиотеке нельзя есть. Вчера там никого не было, и я ничего не нашёл.", uk: "У бібліотеці не можна їсти. Учора там нікого не було, і я нічого не знайшов." }
+    explain: { en: "man is a subject German cannot leave out, and it takes the er-form of the verb. niemand and nichts already carry the negation themselves, so no second negative word joins them — ich habe nichts gefunden, never ich habe nicht nichts gefunden.", ru: "man — подлежащее, которое немецкий опустить не может, и глагол при нём стоит в форме er. niemand и nichts уже содержат отрицание сами по себе, поэтому второе отрицание к ним не добавляется: ich habe nichts gefunden, а не «я ничего не нашёл» с двумя отрицаниями, как по-русски.", uk: "man — підмет, який німецька опустити не може, і дієслово при ньому стоїть у формі er. niemand і nichts уже містять заперечення самі по собі, тому друге заперечення до них не додається: ich habe nichts gefunden, а не «я нічого не знайшов» із двома запереченнями, як українською." }
+
+  - id: besitz-annas-auto
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "That is Anna's car."
+    prompt_ru: "Это машина Анны."
+    prompt_uk: "Це машина Анни."
+    answer: "Das ist Annas Auto."
+    key_tokens: ["Annas"]
+    accept: ["Das ist das Auto von Anna."]
+    explain: { en: "A name takes a plain -s and no apostrophe: Annas Auto, not Anna's Auto. The possessor comes first, exactly as in English. The spoken alternative von + dative is equally correct and is accepted here.", ru: "К имени добавляется просто -s, без апострофа: Annas Auto, а не Anna's Auto. Владелец стоит впереди. Разговорный вариант von + датив столь же правилен и здесь тоже принимается.", uk: "До імені додається просто -s, без апострофа: Annas Auto, а не Anna's Auto. Власник стоїть попереду. Розмовний варіант von + давальний так само правильний і тут теж приймається." }
+
+  # --- freunde-feste ---
+  - id: freunde-einladen-uebersetzen
+    outcomes: [einladen-zusagen-absagen]
+    type: translate
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "Would you like to come to my party on Saturday?"
+    prompt_ru: "Не хочешь прийти в субботу ко мне на вечеринку?"
+    prompt_uk: "Не хочеш прийти в суботу до мене на вечірку?"
+    answer: "Möchtest du am Samstag zu meiner Party kommen?"
+    accept: ["Hast du am Samstag Lust, zu meiner Party zu kommen?"]
+    explain: { en: "Möchtest du …? is the standard, friendly invitation. zu + dative for going to somebody's event: zu meiner Party. The Lust-haben version is a common alternative and is accepted here.", ru: "Möchtest du …? — стандартное дружеское приглашение. zu + датив, когда идут на чьё-то мероприятие: zu meiner Party. Вариант с Lust haben распространён не меньше и здесь тоже принимается.", uk: "Möchtest du …? — стандартне дружнє запрошення. zu + давальний, коли йдуть на чийсь захід: zu meiner Party. Варіант із Lust haben поширений не менше й тут теж приймається." }
+
+  - id: freunde-absprachen-hoeren
+    outcomes: [absprachen-aushandeln]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Mia", text: "Also, ich bringe den Salat mit. Was macht ihr?" }
+        - { speaker: "Ben", text: "Ich kann einen Kuchen backen." }
+        - { speaker: "Mia", text: "Super. Und Jonas?" }
+        - { speaker: "Ben", text: "Jonas hat gesagt, er kauft die Getränke. Dann fehlt nur noch das Brot." }
+    question: "Was bringt Ben mit?"
+    options: ["Einen Kuchen.", "Den Salat.", "Die Getränke."]
+    correct: 0
+    translation: { en: "What is Ben bringing?", ru: "Что принесёт Бен?", uk: "Що принесе Бен?" }
+    explain: { en: "Ben says of himself: Ich kann einen Kuchen backen. The salad is Mia's and the drinks are Jonas's — the trap is that Ben is the one who mentions the drinks, but he is reporting what Jonas said.", ru: "О себе Бен говорит: Ich kann einen Kuchen backen. Салат — на Мие, напитки — на Йонасе; ловушка в том, что о напитках говорит именно Бен, но он лишь передаёт слова Йонаса.", uk: "Про себе Бен каже: Ich kann einen Kuchen backen. Салат — на Мії, напої — на Йонасі; пастка в тому, що про напої говорить саме Бен, але він лише передає слова Йонаса." }
+
+  # --- lernen-verstehen ---
+  - id: lernen-kursanweisung-hoeren
+    outcomes: [kursanweisungen-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Lehrerin", text: "So, arbeiten Sie bitte zu zweit. Lesen Sie den Text auf Seite dreiundvierzig und schreiben Sie fünf Fragen dazu. Die Hausaufgabe machen wir erst nächste Woche." }
+    question: "Was sollen die Teilnehmer jetzt machen?"
+    options: ["Zu zweit einen Text lesen und fünf Fragen schreiben.", "Allein die Hausaufgabe machen.", "Fünf Fragen aus der Hausaufgabe beantworten."]
+    correct: 0
+    translation: { en: "What should the participants do now?", ru: "Что участникам нужно сделать сейчас?", uk: "Що учасникам потрібно зробити зараз?" }
+    explain: { en: "zu zweit means in pairs, not alone. The two tasks are lesen and schreiben; the homework is explicitly pushed to next week — erst nächste Woche — so it is not part of what to do now.", ru: "zu zweit значит «в парах», а не в одиночку. Задания два: lesen и schreiben; домашнее задание прямо перенесено на следующую неделю — erst nächste Woche — и в текущую работу не входит.", uk: "zu zweit означає «в парах», а не наодинці. Завдань два: lesen і schreiben; домашнє завдання прямо перенесено на наступний тиждень — erst nächste Woche — і в поточну роботу не входить." }
+
+  - id: lernen-nachfragen-uebersetzen
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction: { en: "Translate into German. Use the polite Sie form.", ru: "Переведите на немецкий. Используйте вежливую форму Sie.", uk: "Перекладіть німецькою. Вживайте ввічливу форму Sie." }
+    prompt_en: "Could you tell me what this word means?"
+    prompt_ru: "Не могли бы вы сказать мне, что означает это слово?"
+    prompt_uk: "Чи не могли б ви сказати мені, що означає це слово?"
+    answer: "Können Sie mir sagen, was dieses Wort bedeutet?"
+    key_tokens: ["was", "bedeutet"]
+    explain: { en: "Built into a longer sentence, a question stops being a question in its word order: the verb leaves position 2 and goes to the end. Was bedeutet dieses Wort? on its own becomes …, was dieses Wort bedeutet.", ru: "Встроенный в более длинное предложение вопрос перестаёт быть вопросом по порядку слов: глагол уходит со второго места в конец. Отдельный вопрос Was bedeutet dieses Wort? превращается в …, was dieses Wort bedeutet.", uk: "Вбудоване в довше речення питання перестає бути питанням за порядком слів: дієслово йде з другого місця в кінець. Окреме питання Was bedeutet dieses Wort? перетворюється на …, was dieses Wort bedeutet." }
+
+  # --- aemter-dienstleistungen ---
+  - id: aemter-formular-mc
+    outcomes: [formular-verstehen]
+    type: mc
+    prompt: "Auf einem Formular steht: „Familienname: ______   Vorname: ______   Geburtsdatum: ______   Staatsangehörigkeit: ______“. Sie heißen Maria Kowalska und kommen aus Polen. Was gehört in das Feld „Familienname“?"
+    options: ["Kowalska", "Maria", "Polen"]
+    correct: 0
+    translation: { en: "A form has these fields. Your name is Maria Kowalska and you are from Poland. What goes in the Familienname field?", ru: "В формуляре есть такие поля. Вас зовут Мария Ковальская, вы из Польши. Что вписать в поле Familienname?", uk: "У формулярі є такі поля. Вас звати Марія Ковальська, ви з Польщі. Що вписати в поле Familienname?" }
+    explain: { en: "Familienname is the surname and Vorname the first name — the pair worth memorising, since German forms put the surname first and the words look nothing like each other. Polen would belong under Staatsangehörigkeit.", ru: "Familienname — фамилия, Vorname — имя; эту пару стоит запомнить, потому что в немецких формулярах фамилия идёт первой, а сами слова ничем не похожи. Polen относилось бы к полю Staatsangehörigkeit.", uk: "Familienname — прізвище, Vorname — ім'я; цю пару варто запам'ятати, бо в німецьких формулярах прізвище йде першим, а самі слова нічим не схожі. Polen стосувалося б поля Staatsangehörigkeit." }
+
+  - id: aemter-anliegen-uebersetzen
+    outcomes: [anliegen-nennen]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction: { en: "Translate into German. Use the polite Sie form.", ru: "Переведите на немецкий. Используйте вежливую форму Sie.", uk: "Перекладіть німецькою. Вживайте ввічливу форму Sie." }
+    prompt_en: "Could you help me, please? I would like to register."
+    prompt_ru: "Не могли бы вы мне помочь? Я хотел бы зарегистрироваться."
+    prompt_uk: "Чи не могли б ви мені допомогти? Я хотів би зареєструватися."
+    answer: "Könnten Sie mir bitte helfen? Ich möchte mich anmelden."
+    key_tokens: ["Könnten", "möchte"]
+    explain: { en: "Two polite chunks side by side: könnten Sie for the request and ich möchte for what you want. helfen takes the dative — mir, not mich — while sich anmelden is reflexive, so the mich in the second sentence belongs to the verb and is not the object of möchte.", ru: "Две вежливые формулы рядом: könnten Sie для просьбы и ich möchte для желания. helfen требует датива — mir, а не mich, — тогда как sich anmelden возвратный, поэтому mich во втором предложении принадлежит глаголу, а не является дополнением при möchte.", uk: "Дві ввічливі формули поруч: könnten Sie для прохання та ich möchte для бажання. helfen вимагає давального — mir, а не mich, — тоді як sich anmelden зворотний, тому mich у другому реченні належить дієслову, а не є додатком при möchte." }

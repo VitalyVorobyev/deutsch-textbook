@@ -1,0 +1,77 @@
+topic: gesundheit-arzttermin
+role: probe
+title:
+  en: "Probe — the imperative for du, ihr and Sie"
+  ru: "Проверка — повелительное наклонение для du, ihr и Sie"
+  uk: "Перевірка — наказовий спосіб для du, ihr і Sie"
+
+# The second family on this topic. probe-gesundheit-arzttermin probes seit-vor-zeit (seit for
+# something still true against vor for something finished). This one probes imperativ-form,
+# which the topic drills across four practice items and which nothing checks after a delay.
+#
+# It also gives delayed evidence to a different outcome — ratschlag-geben rather than
+# beschwerden-beschreiben — so the two families arm on different practice and their clocks do
+# not simply run together.
+#
+# cloze rather than translate: the imperative is a FORM (Nimm / Nehmt / Nehmen Sie), and the
+# gap grades it directly. Note that the *position* of the imperative is not what is being
+# tested and could not be — a gap fixes the slot — but position is not where this rule fails:
+# learners put the verb first quite readily and then build the wrong form of it.
+#
+# Each variant fixes one addressee and asks for two verbs, one regular and one with a stem
+# change or an irregular ending, because the regulars survive and the stem-changers do not.
+
+items:
+  - id: variant-a
+    outcomes: [ratschlag-geben]
+    type: cloze
+    focus: imperativ-form
+    instruction:
+      en: Fill in the imperative.
+      ru: Вставьте форму повелительного наклонения.
+      uk: Вставте форму наказового способу.
+    text: "{{Nimm}} die Tabletten dreimal am Tag, Paul. Und {{trink|trinke}} viel Wasser! (nehmen, trinken)"
+    translation:
+      en: "Take the tablets three times a day, Paul. And drink plenty of water!"
+      ru: "Принимай таблетки три раза в день, Пауль. И пей много воды!"
+      uk: "Приймай таблетки тричі на день, Пауле. І пий багато води!"
+    explain:
+      en: "The du imperative drops both the pronoun and the -st ending. For a verb with an e→i stem change the changed stem is what stays: nehmen, du nimmst, Nimm — never Nehm. trinken has no stem change, so it is just the plain stem trink, with an optional -e that sounds slightly more formal."
+      ru: "Повелительная форма для du отбрасывает и местоимение, и окончание -st. У глагола с чередованием e→i остаётся именно изменённая основа: nehmen, du nimmst, Nimm — но не Nehm. У trinken чередования нет, поэтому остаётся чистая основа trink, с необязательным -e, которое звучит чуть более официально."
+      uk: "Наказова форма для du відкидає і займенник, і закінчення -st. У дієслова з чергуванням e→i залишається саме змінена основа: nehmen, du nimmst, Nimm — але не Nehm. У trinken чергування немає, тому залишається чиста основа trink, з необов'язковим -e, яке звучить трохи офіційніше."
+
+  - id: variant-b
+    outcomes: [ratschlag-geben]
+    type: cloze
+    focus: imperativ-form
+    instruction:
+      en: Fill in the imperative.
+      ru: Вставьте форму повелительного наклонения.
+      uk: Вставте форму наказового способу.
+    text: "Frau Berger, {{nehmen}} Sie bitte im Wartezimmer Platz. {{Gehen}} Sie danach zu Zimmer drei. (nehmen, gehen)"
+    translation:
+      en: "Ms Berger, please take a seat in the waiting room. After that go to room three."
+      ru: "Госпожа Бергер, присядьте, пожалуйста, в приёмной. Потом пройдите в третий кабинет."
+      uk: "Пані Бергер, присядьте, будь ласка, у приймальні. Потім пройдіть до третього кабінету."
+    explain:
+      en: "The Sie imperative is the easiest of the three because nothing changes: it is the infinitive followed by Sie, and the pronoun is not optional. Note that nehmen shows no stem change here — the e→i shift only ever happens in the singular du and er forms, never with Sie."
+      ru: "Повелительная форма для Sie — самая простая из трёх, потому что ничего не меняется: это инфинитив плюс Sie, причём местоимение обязательно. Обратите внимание, что у nehmen здесь нет чередования: переход e→i бывает только в формах единственного числа du и er, но никогда с Sie."
+      uk: "Наказова форма для Sie — найпростіша з трьох, бо нічого не змінюється: це інфінітив плюс Sie, причому займенник обов'язковий. Зверніть увагу, що в nehmen тут немає чергування: перехід e→i буває лише у формах однини du та er, але ніколи з Sie."
+
+  - id: variant-c
+    outcomes: [ratschlag-geben]
+    type: cloze
+    focus: imperativ-form
+    instruction:
+      en: Fill in the imperative.
+      ru: Вставьте форму повелительного наклонения.
+      uk: Вставте форму наказового способу.
+    text: "Kinder, {{bleibt}} heute im Bett und {{esst}} nur leichte Suppe. (bleiben, essen)"
+    translation:
+      en: "Children, stay in bed today and eat only light soup."
+      ru: "Дети, оставайтесь сегодня в постели и ешьте только лёгкий суп."
+      uk: "Діти, залишайтеся сьогодні в ліжку і їжте тільки легкий суп."
+    explain:
+      en: "The ihr imperative is simply the ordinary ihr form with the pronoun dropped: ihr bleibt becomes bleibt. essen looks as if it should change its stem, but the e→i shift belongs to the singular only — ihr esst keeps its e, and so does the imperative esst."
+      ru: "Повелительная форма для ihr — это обычная форма ihr без местоимения: ihr bleibt превращается в bleibt. У essen кажется, что основа должна измениться, но переход e→i свойствен только единственному числу: ihr esst сохраняет e, и повелительное esst тоже."
+      uk: "Наказова форма для ihr — це звичайна форма ihr без займенника: ihr bleibt перетворюється на bleibt. У essen здається, що основа має змінитися, але перехід e→i властивий лише однині: ihr esst зберігає e, і наказове esst теж."

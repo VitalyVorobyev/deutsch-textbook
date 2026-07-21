@@ -7,19 +7,18 @@ title:
 items:
   - id: pretest-mir-tut-weh
     outcomes: [beschwerden-beschreiben]
-    type: mc
+    type: cloze
     focus: dativ-pronomen
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "___ tut der Kopf weh."
-    options: ["Ich", "Mir", "Mich"]
-    correct: 1
+    text: "Ich fühle mich nicht gut. {{Mir}} tut der Kopf weh."
     translation:
-      en: "My head hurts."
-      ru: "У меня болит голова."
-      uk: "У мене болить голова."
+      en: "I don't feel well. My head hurts."
+      ru: "Мне нехорошо. У меня болит голова."
+      uk: "Мені недобре. У мене болить голова."
     explain:
       en: "In this sentence the head is the subject — der Kopf — and the verb tut agrees with it. The person the pain happens to is in the dative: mir. Ich would need a second subject, and mich is the accusative, which this construction never takes."
       ru: "Подлежащее в этом предложении — голова, der Kopf, и глагол tut согласуется именно с ней. Человек, у которого болит, стоит в Dativ: mir. Форма Ich потребовала бы второго подлежащего, а mich — это Akkusativ, который в такой конструкции невозможен."

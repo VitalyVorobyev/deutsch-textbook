@@ -7,22 +7,18 @@ title:
 items:
   - id: pretest-du-sie
     outcomes: [anliegen-nennen]
-    type: mc
+    type: cloze
     focus: du-sie
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Sie sind im Amt. Der Sachbearbeiter ist ein fremder Mann. Sie sagen: „…“"
-    options:
-      - "Könnten Sie mir bitte helfen?"
-      - "Kannst du mir bitte helfen?"
-      - "Hilf mir bitte!"
-    correct: 0
+    text: "Könnten {{Sie}} mir bitte helfen?"
     translation:
-      en: "You are at the public office. The clerk is a man you have never met. You say: 'Could you help me, please?'"
-      ru: "Вы в учреждении. За окошком — незнакомый мужчина. Вы говорите: «Не могли бы вы мне помочь?»"
-      uk: "Ви в установі. За віконцем — незнайомий чоловік. Ви кажете: «Чи не могли б ви мені допомогти?»"
+      en: "Could you please help me?"
+      ru: "Не могли бы вы мне помочь?"
+      uk: "Чи не могли б ви мені допомогти?"
     explain:
       en: "For first contact with an unknown clerk, Sie is the safe neutral default. Könnten Sie …? is a conventional polite request. Kannst du …? fits only after an informal relationship or local du culture is established, while Hilf mir! is a bare command; neither matches this prompt."
       ru: "При первом контакте с незнакомым сотрудником безопасный нейтральный выбор — Sie. Könnten Sie …? — обычная вежливая просьба. Kannst du …? подходит, только если уже установлены неформальные отношения или местная культура du, а Hilf mir! — голый приказ; ни один вариант не подходит к этой ситуации."

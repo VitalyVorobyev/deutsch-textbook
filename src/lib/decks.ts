@@ -8,12 +8,19 @@ import type { LearningGoal } from './store';
 /**
  * Due cards are always reviewed, whatever their deck — this gates only fresh
  * (never-graded) cards. A deck's fresh cards are eligible when:
- *  - any owning topic (frontmatter `vocab`) is opened (readAt);
+ *  - any owning topic (frontmatter `vocab`) is **opened**;
  *  - no topic owns the deck (kernwortschatz): ≥1 topic at the deck's level
  *    has been opened;
  *  - the learner already has ≥1 graded card in the deck — a deck in active
  *    use must not freeze because readAt tracking is newer than the profile.
  * The per-deck page stays ungated: studying a deck directly is an opt-in.
+ *
+ * "Opened" means read **or placed**. A learner who passes the A1 entry test has `readAt`
+ * on nothing, so under a readAt-only gate `openedLevels` came out empty and they were
+ * dealt no fresh cards at any level — a placed-out learner would have had an empty review
+ * queue forever. Widened identically on both branches, so no deck changes owner: this is
+ * not the trap CLAUDE.md warns about, which is about listing an unowned Wortliste deck in
+ * a topic's `vocab:` and thereby flipping *that deck's* gate.
  */
 export function eligibleFreshCards(
   fresh: CardDef[],
@@ -32,16 +39,16 @@ export function eligibleFreshCards(
     if (s.reps > 0) graded.add(id.slice(0, id.indexOf('::')));
   }
   void spine;
-  const openedLevels = new Set(
-    nodes.filter((n) => ctx.topics[n.id]?.readAt).map((n) => n.level),
-  );
+  const opened = (n: TopicNode) => {
+    const state = ctx.topics[n.id];
+    return !!state?.readAt || !!state?.placement;
+  };
+  const openedLevels = new Set(nodes.filter(opened).map((n) => n.level));
 
   const eligible = new Set<string>();
   for (const deckId of new Set(fresh.map((c) => c.deckId))) {
     const own = owners.get(deckId);
-    const ok = own
-      ? own.some((n) => ctx.topics[n.id]?.readAt)
-      : openedLevels.has(deckLevels[deckId] ?? '');
+    const ok = own ? own.some(opened) : openedLevels.has(deckLevels[deckId] ?? '');
     if (ok || graded.has(deckId)) eligible.add(deckId);
   }
   return fresh.filter((c) => eligible.has(c.deckId));
@@ -65,7 +72,17 @@ export function prioritizeFreshCards(
     ? recommendedForGoal(goal.topicId, spine, nodes, ctx) ?? recommendedNext(spine, nodes, ctx)
     : recommendedNext(spine, nodes, ctx);
   const nextDecks = new Set(next?.vocabIds ?? []);
-  const currentLevel = next?.level;
+  // A learner who placed out of every topic has no next lesson, so `next.level` is
+  // undefined and bands 2/3 below can never match — every deck would fall to band 4 and
+  // the level structure would dissolve into one shuffle. Fall back to the highest level
+  // they have actually reached, which is where their vocabulary work belongs.
+  const currentLevel =
+    next?.level ??
+    nodes
+      .filter((n) => ctx.topics[n.id]?.placement || ctx.topics[n.id]?.readAt)
+      .map((n) => n.level)
+      .sort()
+      .pop();
   // A deck no topic lists in `vocab:` is a Wortliste completion deck. It teaches
   // the level's lexis, not any lesson's, so it belongs behind the decks that do.
   const owned = new Set(nodes.flatMap((n) => n.vocabIds));

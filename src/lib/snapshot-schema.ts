@@ -66,10 +66,17 @@ const sessionSchema = z.object({
   ts: z.number(),
 });
 
+const placementSchema = z.object({
+  setId: z.string().min(1),
+  at: z.number(),
+  score: z.number(),
+});
+
 const topicSchema = z.object({
   readAt: z.number().optional(),
   manual: z.enum(['learned', 'reopened']).optional(),
   manualAt: z.number().optional(),
+  placement: placementSchema.optional(),
 });
 
 const goalSchema = z.object({ topicId: z.string().optional(), setAt: z.number() });
@@ -99,20 +106,22 @@ const snapshotSchemas = {
   3: snapshotBody.extend({ version: z.literal(3) }),
   4: snapshotBody.extend({ version: z.literal(4) }),
   5: snapshotBody.extend({ version: z.literal(5) }),
+  6: snapshotBody.extend({ version: z.literal(6) }),
 } as const;
 
 type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshotSchemas]>;
 
-function asV5(snapshot: NormalizedSnapshot): ProgressSnapshot {
-  return { ...snapshot, version: 5 } as ProgressSnapshot;
+function asV6(snapshot: NormalizedSnapshot): ProgressSnapshot {
+  return { ...snapshot, version: 6 } as ProgressSnapshot;
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */
-export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV5(snapshot);
-export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV5(snapshot);
-export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV5(snapshot);
-export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV5(snapshot);
-export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV5(snapshot);
+export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV6(snapshot);
+export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV6(snapshot);
+export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV6(snapshot);
+export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV6(snapshot);
+export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV6(snapshot);
+export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV6(snapshot);
 
 /** Parse and normalize every supported snapshot version at the import boundary. */
 export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
@@ -125,6 +134,7 @@ export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
     case 3: return migrateSnapshotV3(snapshotSchemas[3].parse(input));
     case 4: return migrateSnapshotV4(snapshotSchemas[4].parse(input));
     case 5: return migrateSnapshotV5(snapshotSchemas[5].parse(input));
+    case 6: return migrateSnapshotV6(snapshotSchemas[6].parse(input));
     default:
       throw new Error(
         `Unsupported progress snapshot version: ${String((input as { version?: unknown }).version)}`,

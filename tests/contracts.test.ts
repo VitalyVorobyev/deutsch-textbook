@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import YAML from 'yaml';
 import { getCurriculum } from '../src/lib/curriculum';
 import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
@@ -9,12 +9,23 @@ import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/stor
 import { parseProgressSnapshot } from '../src/lib/snapshot-schema';
 import { buildDeck } from '../src/lib/srs';
 
-/** The real content files under content/<dir>, parsed — the same source the validator reads. */
-function contentFiles<T>(dir: string): T[] {
+/**
+ * The real content files under content/<dir>, parsed — the same source the validator reads.
+ *
+ * `setId` is attached because (topic, role) is NOT a unique key: a topic may own several
+ * probe families, and `.find()` on the pair silently returns whichever file sorts first.
+ * When termine-vereinbaren gained a second family, these regression checks quietly began
+ * grading a cloze set that has no `answer` at all — the assertion failed loudly, but a
+ * subtler collision would not have. Select a set by its id.
+ */
+function contentFiles<T>(dir: string): (T & { setId: string })[] {
   const root = join(process.cwd(), 'content', dir);
   return readdirSync(root, { recursive: true, encoding: 'utf8' })
     .filter((f) => f.endsWith('.yaml'))
-    .map((f) => YAML.parse(readFileSync(join(root, f), 'utf8')) as T);
+    .map((f) => ({
+      ...(YAML.parse(readFileSync(join(root, f), 'utf8')) as T),
+      setId: f.split(sep).join('/').replace(/\.yaml$/, ''),
+    }));
 }
 
 describe('scoring and curriculum contracts', () => {
@@ -93,6 +104,19 @@ describe('scoring and curriculum contracts', () => {
     expect(orphans).toEqual([]);
   });
 
+  test('every pretest owns at least one non-mc item (diagnostic generation, not recognition)', () => {
+    // A pretest is answered before the lesson and is meant to surface what the learner can
+    // *produce*. All 96 items were once `mc`, the format the pilot scores ~93% on, so 22 of 26
+    // attempted pretests came back a perfect 3/3 and the diagnostic told the lesson nothing.
+    // `bun run validate` enforces this too; the test pins it so a future edit that reverts a
+    // pretest to all-mc fails here and not only in the validator.
+    const allMc = contentFiles<{ role?: string; items?: { type?: string }[] }>('exercises')
+      .filter((set) => set.role === 'pretest')
+      .filter((set) => (set.items ?? []).length > 0 && (set.items ?? []).every((i) => (i.type ?? 'mc') === 'mc'))
+      .map((set) => set.setId);
+    expect(allMc).toEqual([]);
+  });
+
   test('every authored translation rendering is accepted, including the appointment regression', () => {
     type Translate = {
       id: string;
@@ -119,38 +143,36 @@ describe('scoring and curriculum contracts', () => {
         expect(verdictIsCorrect(gradeTranslation(rendering, spec))).toBe(true);
     }
 
+    // Keyed by setId rather than (topic, role): variant-a/b/c ids repeat across probe
+    // families by design, so a topic with two families matches twice and .find() returns
+    // whichever readdir happens to yield first.
     const alternativeTokenRegressions = [
       {
-        topic: 'freizeit-koennen',
-        role: 'probe',
+        setId: 'a1/probe-freizeit-koennen',
         id: 'variant-a',
         given: 'Morgen kann meine Schwester im Park Fotos mache.',
         focus: 'modal-satzklammer',
       },
       {
-        topic: 'freizeit-koennen',
-        role: 'drill',
+        setId: 'a1/drill-modal-satzklammer',
         id: 'uebersetzen-film',
         given: 'Wir können heute Abend einen Film schaue.',
         focus: 'modal-satzklammer',
       },
       {
-        topic: 'modalverben',
-        role: 'practice',
+        setId: 'a2/modalverben',
         id: 'uebersetzen-darf-nicht',
         given: 'Du darfs hier nicht rauchen.',
         focus: 'duerfen-muessen',
       },
       {
-        topic: 'gesundheit-arzttermin',
-        role: 'practice',
+        setId: 'a2/gesundheit-arzttermin-produktion',
         id: 'uebersetzen-ratschlag-du',
         given: 'Gehee zum Arzt und nimm die Tabletten!',
         focus: 'imperativ-form',
       },
       {
-        topic: 'perfekt-haben-sein',
-        role: 'probe',
+        setId: 'a2/probe-perfekt-haben-sein',
         id: 'variant-a',
         given: 'Die Kinder sind zur Schule gerant.',
         focus: 'haben-sein',
@@ -158,10 +180,9 @@ describe('scoring and curriculum contracts', () => {
     ] as const;
 
     for (const regression of alternativeTokenRegressions) {
-      const item = sets
-        .filter((set) => set.topic === regression.topic && set.role === regression.role)
-        .flatMap((set) => set.items ?? [])
-        .find((candidate) => candidate.id === regression.id);
+      const owner = sets.find((set) => set.setId === regression.setId);
+      expect(owner).toBeDefined();
+      const item = (owner!.items ?? []).find((candidate) => candidate.id === regression.id);
       expect(item).toBeDefined();
       expect(
         gradeTranslation(regression.given, {
@@ -173,9 +194,7 @@ describe('scoring and curriculum contracts', () => {
       ).toEqual({ kind: 'wrong', focus: regression.focus });
     }
 
-    const appointmentProbe = sets.find(
-      (set) => set.topic === 'termine-vereinbaren' && set.role === 'probe',
-    );
+    const appointmentProbe = sets.find((set) => set.setId === 'a2/probe-termine-vereinbaren');
     const variant = appointmentProbe?.items?.find((item) => item.id === 'variant-a');
     expect(variant).toBeDefined();
     expect(
@@ -189,9 +208,7 @@ describe('scoring and curriculum contracts', () => {
       ),
     ).toBe(true);
 
-    const everydayProbe = sets.find(
-      (set) => set.topic === 'alltag-tagesablauf' && set.role === 'probe',
-    );
+    const everydayProbe = sets.find((set) => set.setId === 'a2/probe-alltag-tagesablauf');
     const everydayVariant = everydayProbe?.items?.find((item) => item.id === 'variant-a');
     const everydaySpec = {
       answer: everydayVariant!.answer,
@@ -210,7 +227,7 @@ describe('scoring and curriculum contracts', () => {
       ),
     ).toBe(false);
 
-    const dativeProbe = sets.find((set) => set.topic === 'dativ' && set.role === 'probe');
+    const dativeProbe = sets.find((set) => set.setId === 'a2/probe-dativ');
     const dativeVariant = dativeProbe?.items?.find((item) => item.id === 'variant-a');
     expect(
       verdictIsCorrect(

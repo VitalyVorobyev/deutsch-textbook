@@ -471,6 +471,26 @@ export const STRINGS = {
     ru: 'Самооценка — не меняет измеренный статус',
     uk: 'Самооцінка — не змінює виміряний стан',
   },
+  // Placement (Einstufungstest) — a passed topic is green but is NOT a tier, so these
+  // labels must never read like `tier.mastered`. "eingestuft"/"placed" says what happened:
+  // the course stopped teaching it, not that the learner was measured as having mastered it.
+  'placement.title': { de: 'Einstufungstest', en: 'Placement test', ru: 'Тест на уровень', uk: 'Тест на рівень' },
+  'placement.badge': { de: 'eingestuft', en: 'placed', ru: 'зачтено', uk: 'зараховано' },
+  'placement.badgeTitle': {
+    de: 'Im Einstufungstest bestanden – ändert den gemessenen Stand nicht',
+    en: 'Passed in the placement test — does not change the measured state',
+    ru: 'Зачтено по тесту на уровень — не меняет измеренный статус',
+    uk: 'Зараховано за тестом на рівень — не змінює виміряний стан',
+  },
+  'placement.apply': { de: 'Ergebnis übernehmen', en: 'Apply result', ru: 'Применить результат', uk: 'Застосувати результат' },
+  'placement.applied': { de: 'Ergebnis übernommen', en: 'Result applied', ru: 'Результат применён', uk: 'Результат застосовано' },
+  'placement.entry': {
+    de: 'Ich kann schon etwas Deutsch',
+    en: 'I already know some German',
+    ru: 'Я уже немного знаю немецкий',
+    uk: 'Я вже трохи знаю німецьку',
+  },
+  'placement.counter': { de: 'eingestuft', en: 'placed', ru: 'зачтено', uk: 'зараховано' },
   'evidence.read': { de: 'Gelesen', en: 'Read', ru: 'Прочитано', uk: 'Прочитано' },
   'evidence.practiced': { de: 'Geübt', en: 'Practiced', ru: 'Отработано', uk: 'Відпрацьовано' },
   'evidence.spaced': { de: '2 Tage', en: '2 days', ru: '2 дня', uk: '2 дні' },

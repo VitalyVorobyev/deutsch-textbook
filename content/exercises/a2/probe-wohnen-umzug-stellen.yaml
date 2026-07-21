@@ -1,0 +1,77 @@
+topic: wohnen-umzug
+role: probe
+title:
+  en: "Probe — stellen/stehen, legen/liegen, hängen"
+  ru: "Проверка — stellen/stehen, legen/liegen, hängen"
+  uk: "Перевірка — stellen/stehen, legen/liegen, hängen"
+
+# The second family on this topic. probe-wohnen-umzug probes wo-wohin (two-way prepositions:
+# Wo? with the dative for position, Wohin? with the accusative for direction). This one probes
+# stellen-stehen — the verb pairs that force that choice in the first place.
+#
+# The two are a chain and they fail separately: a learner can know that in + accusative means
+# direction and still reach for steht when the sentence is about putting something somewhere.
+# The verb is chosen before the case, so it is worth its own delayed evidence.
+#
+# cloze rather than translate: the verb is a FORM and the gap grades it directly. Note that
+# the case that follows is NOT what is being graded here — that is the other family's job —
+# and the sentences keep those articles printed so a miss can only be the verb.
+#
+# Every variant pairs the transitive, weak member (stellen, legen, hängen — someone does
+# something) with the intransitive, strong one (stehen, liegen — something simply is), across
+# three different pairs, so no single guess covers the family.
+
+items:
+  - id: variant-a
+    outcomes: [wohnung-beschreiben]
+    type: cloze
+    focus: stellen-stehen
+    instruction:
+      en: Fill in the correct verb.
+      ru: Вставьте правильный глагол.
+      uk: Вставте правильне дієслово.
+    text: "Ich {{stelle}} die Lampe in die Ecke. Jetzt {{steht}} sie neben dem Sofa. (stellen, stehen)"
+    translation:
+      en: "I'm putting the lamp in the corner. Now it's standing next to the sofa."
+      ru: "Я ставлю лампу в угол. Теперь она стоит рядом с диваном."
+      uk: "Я ставлю лампу в куток. Тепер вона стоїть поруч із диваном."
+    explain:
+      en: "stellen is what a person does to an object, so it needs both a subject doing it and an object being moved: ich stelle die Lampe. stehen is what the object then does by itself — no object of its own, and the lamp becomes the subject. The printed cases confirm the reading: in die Ecke is accusative because something moved there, neben dem Sofa is dative because nothing is moving."
+      ru: "stellen — это то, что человек делает с предметом, поэтому нужны и подлежащее-деятель, и перемещаемое дополнение: ich stelle die Lampe. stehen — то, что предмет затем делает сам: собственного дополнения нет, и лампа становится подлежащим. Падежи в предложении подтверждают прочтение: in die Ecke — винительный, потому что было перемещение, neben dem Sofa — дательный, потому что ничто не движется."
+      uk: "stellen — це те, що людина робить із предметом, тому потрібні і підмет-діяч, і переміщуваний додаток: ich stelle die Lampe. stehen — те, що предмет потім робить сам: власного додатка немає, і лампа стає підметом. Відмінки в реченні підтверджують прочитання: in die Ecke — знахідний, бо було переміщення, neben dem Sofa — давальний, бо ніщо не рухається."
+
+  - id: variant-b
+    outcomes: [wohnung-beschreiben]
+    type: cloze
+    focus: stellen-stehen
+    instruction:
+      en: Fill in the correct verb.
+      ru: Вставьте правильный глагол.
+      uk: Вставте правильне дієслово.
+    text: "Ich {{lege}} die Bücher auf den Tisch. Dort {{liegen}} sie sicher. (legen, liegen)"
+    translation:
+      en: "I'm putting the books on the table. They're safe lying there."
+      ru: "Я кладу книги на стол. Там они лежат в безопасности."
+      uk: "Я кладу книжки на стіл. Там вони лежать у безпеці."
+    explain:
+      en: "The legen/liegen pair works exactly like stellen/stehen, and the split is the same one: legen has an object to move, liegen does not. Note the plural in the second sentence — sie liegen, not sie liegt — because the books are now the subject rather than the thing being handled."
+      ru: "Пара legen/liegen устроена точно так же, как stellen/stehen, и различие то же: у legen есть перемещаемое дополнение, у liegen его нет. Обратите внимание на множественное число во втором предложении — sie liegen, а не sie liegt, — потому что теперь книги стали подлежащим, а не предметом действия."
+      uk: "Пара legen/liegen влаштована так само, як stellen/stehen, і відмінність та сама: у legen є переміщуваний додаток, у liegen його немає. Зверніть увагу на множину в другому реченні — sie liegen, а не sie liegt, — бо тепер книжки стали підметом, а не предметом дії."
+
+  - id: variant-c
+    outcomes: [wohnung-beschreiben]
+    type: cloze
+    focus: stellen-stehen
+    instruction:
+      en: Fill in the correct verb.
+      ru: Вставьте правильный глагол.
+      uk: Вставте правильне дієслово.
+    text: "Ich {{hänge}} die Jacke in den Schrank. Meine Tasche {{liegt}} noch im Flur. (hängen, liegen)"
+    translation:
+      en: "I'm hanging the jacket in the wardrobe. My bag is still lying in the hall."
+      ru: "Я вешаю куртку в шкаф. Моя сумка всё ещё лежит в коридоре."
+      uk: "Я вішаю куртку в шафу. Моя сумка все ще лежить у коридорі."
+    explain:
+      en: "hängen is the odd one out: it is the same word in both roles, and only the sentence tells you which is meant — here it has an object, die Jacke, so it is the transitive one. Which verb of rest a thing takes is decided by its shape rather than by grammar: a bag lies, a lamp stands, a jacket hangs."
+      ru: "hängen стоит особняком: это одно и то же слово в обеих ролях, и различает их только предложение — здесь есть дополнение, die Jacke, значит перед нами переходный вариант. А то, каким глаголом покоя описывается предмет, определяется его формой, а не грамматикой: сумка лежит, лампа стоит, куртка висит."
+      uk: "hängen стоїть окремо: це одне й те саме слово в обох ролях, і розрізняє їх лише речення — тут є додаток, die Jacke, отже перед нами перехідний варіант. А те, яким дієсловом спокою описується предмет, визначається його формою, а не граматикою: сумка лежить, лампа стоїть, куртка висить."

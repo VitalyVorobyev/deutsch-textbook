@@ -7,15 +7,14 @@ title:
 items:
   - id: pre-duerfen-muessen
     outcomes: [aufgaben-beschreiben]
-    type: mc
+    type: cloze
     focus: duerfen-muessen
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "An der Tür hängt ein Schild: „Rauchen verboten“. Im Büro ___ man nicht rauchen."
-    options: ["muss", "darf", "soll"]
-    correct: 1
+    text: "An der Tür hängt ein Schild: „Rauchen verboten“. Im Büro {{darf}} man nicht rauchen."
     translation:
       en: 'There is a sign on the door: "No smoking". You are not allowed to smoke in the office.'
       ru: "На двери висит табличка «Курить запрещено». В офисе курить нельзя."

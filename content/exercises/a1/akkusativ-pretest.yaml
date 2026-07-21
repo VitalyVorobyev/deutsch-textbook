@@ -3,11 +3,14 @@ role: pretest
 items:
   - id: pre-den-tisch
     outcomes: [akkusativ-objekte]
-    type: mc
+    type: cloze
     focus: akkusativ-artikel
-    prompt: "Ich kaufe ___ Tisch."
-    options: ["der", "den", "das"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich kaufe {{den}} Tisch."
     translation:
       en: I am buying the table.
       ru: Я покупаю стол.

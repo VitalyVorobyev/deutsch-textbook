@@ -1,0 +1,80 @@
+topic: relativsaetze
+role: probe
+title:
+  en: "Probe — filling in the relative pronoun"
+  ru: "Проверка — вставить относительное местоимение"
+  uk: "Перевірка — вставити відносний займенник"
+
+# The second family on this topic, probing the SAME competence as probe-relativsaetze
+# (relativpronomen-kasus: the pronoun takes gender and number from the noun outside, but its
+# case from its role inside its own clause) through a different response format.
+#
+# Why a twin rather than a new competence: this topic drills exactly one other tag,
+# nebensatz-verbende, and that is a POSITION rule — no cloze can grade it, because the gap
+# fixes the slot. So a second competence is not available here, while a second format is, and
+# the twin is worth having: one family serves one variant per interval and therefore caps at
+# three attempts ever, below the readability floor the retention gate applies. Two families
+# make it six.
+#
+# The formats also fail differently. A typed sentence can lose the pronoun *and* the clause
+# order *and* a noun at once; a gap can only lose the pronoun. Agreement between the two is
+# worth more than either alone, and the audit reports the split so a format effect cannot
+# hide inside the pooled figure.
+#
+# CEFR note: every gap here is nominative or accusative. The dative relative pronoun is a B1
+# point in data/grammar-inventory.yaml and does not belong in an A2 probe.
+
+items:
+  - id: variant-a
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: Fill in the relative pronoun.
+      ru: Вставьте относительное местоимение.
+      uk: Вставте відносний займенник.
+    text: "Das ist der Kollege, {{den}} ich gestern getroffen habe. Und das ist die Frau, {{die}} neben ihm arbeitet."
+    translation:
+      en: "That is the colleague I met yesterday. And that is the woman who works next to him."
+      ru: "Это тот коллега, которого я вчера встретил. А это женщина, которая работает рядом с ним."
+      uk: "Це той колега, якого я вчора зустрів. А це жінка, яка працює поруч із ним."
+    explain:
+      en: "der Kollege is masculine, and inside its own clause it is the object of treffen — so the case is accusative and the pronoun is den, even though the noun outside stands in the nominative. die Frau is feminine and is the subject of arbeitet inside her clause, so die. The gender comes from outside, the case from inside, every time."
+      ru: "der Kollege мужского рода, а внутри своего придаточного он дополнение при treffen — значит падеж винительный и местоимение den, хотя снаружи существительное стоит в именительном. die Frau женского рода и внутри своего придаточного является подлежащим при arbeitet, отсюда die. Род всегда берётся снаружи, падеж — изнутри."
+      uk: "der Kollege чоловічого роду, а всередині свого підрядного він додаток при treffen — отже відмінок знахідний і займенник den, хоча зовні іменник стоїть у називному. die Frau жіночого роду і всередині свого підрядного є підметом при arbeitet, звідси die. Рід завжди береться ззовні, відмінок — зсередини."
+
+  - id: variant-b
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: Fill in the relative pronoun.
+      ru: Вставьте относительное местоимение.
+      uk: Вставте відносний займенник.
+    text: "Der Zug, {{der}} um acht abfährt, ist immer voll. Das Buch, {{das}} du mir geliehen hast, war sehr gut."
+    translation:
+      en: "The train that leaves at eight is always full. The book you lent me was very good."
+      ru: "Поезд, который отправляется в восемь, всегда полный. Книга, которую ты мне дал, была очень хорошая."
+      uk: "Потяг, який відходить о восьмій, завжди повний. Книжка, яку ти мені позичив, була дуже добра."
+    explain:
+      en: "In the first clause the train is what leaves, so it is the subject: masculine nominative der. In the second the book is what was lent, so it is the object: neuter accusative das. Neuter is the case where the trap is invisible, because das is the same word in both — which is why the role still has to be worked out rather than guessed from the form."
+      ru: "В первом придаточном поезд — тот, кто отправляется, то есть подлежащее: мужской род, именительный падеж, der. Во втором книга — то, что дали, то есть дополнение: средний род, винительный падеж, das. У среднего рода ловушка не видна, потому что das одинаково в обоих падежах, — и именно поэтому роль всё равно нужно определять, а не угадывать по форме."
+      uk: "У першому підрядному потяг — той, хто відходить, тобто підмет: чоловічий рід, називний відмінок, der. У другому книжка — те, що позичили, тобто додаток: середній рід, знахідний відмінок, das. У середнього роду пастка не видно, бо das однакове в обох відмінках, — і саме тому роль усе одно треба визначати, а не вгадувати за формою."
+
+  - id: variant-c
+    outcomes: [relativ-kasus-waehlen]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: Fill in the relative pronoun.
+      ru: Вставьте относительное местоимение.
+      uk: Вставте відносний займенник.
+    text: "Wir haben eine Wohnung gefunden, {{die}} wir sofort nehmen wollten. Der Vermieter, {{der}} uns alles gezeigt hat, war sehr freundlich."
+    translation:
+      en: "We found a flat that we wanted to take straight away. The landlord, who showed us everything, was very friendly."
+      ru: "Мы нашли квартиру, которую сразу захотели снять. Хозяин, который всё нам показал, был очень приветлив."
+      uk: "Ми знайшли квартиру, яку одразу захотіли винайняти. Господар, який усе нам показав, був дуже привітний."
+    explain:
+      en: "die Wohnung is feminine and is the object of nehmen inside its clause — accusative — but feminine looks identical in the nominative and the accusative, so the answer is die either way. That is worth noticing rather than relying on: the same reasoning applied to a masculine noun gives den, not der. der Vermieter is the subject of gezeigt hat, so nominative der."
+      ru: "die Wohnung женского рода и внутри своего придаточного является дополнением при nehmen — винительный падеж, — но у женского рода именительный и винительный совпадают, поэтому ответ die в любом случае. Это стоит замечать, а не полагаться на это: то же рассуждение для существительного мужского рода даёт den, а не der. der Vermieter — подлежащее при gezeigt hat, поэтому именительный der."
+      uk: "die Wohnung жіночого роду і всередині свого підрядного є додатком при nehmen — знахідний відмінок, — але в жіночого роду називний і знахідний збігаються, тому відповідь die в будь-якому разі. Це варто помічати, а не покладатися на це: те саме міркування для іменника чоловічого роду дає den, а не der. der Vermieter — підмет при gezeigt hat, тому називний der."

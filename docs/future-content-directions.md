@@ -494,3 +494,16 @@ The quality bar should stay. The progress model should stay honest. The curricul
 coherent. Around that core, however, the course needs documents, voices, stories, places, humour,
 history and surprise. Those are not distractions from language learning. Properly selected, they
 are the reason the language is worth learning.
+
+---
+
+## Authoring contract — Entdecken pieces and Dokumente
+
+Lifted out of CLAUDE.md: it is needed only when authoring optional editorial material, and the
+editorial test those pieces must pass is stated above in this same file.
+
+Entdecken pieces (`content/discovery/<level>/<id>.mdx`) are optional editorial material outside the spine: no mastery, no review debt, no completion bar, and opening one obligates the learner to nothing. Only `status: reviewed` ships — a draft piece is neither listed nor built (`getStaticPaths` filters it, so it is not merely unlisted). Every piece must pass [the editorial test](#editorial-test-for-future-ideas) above: a language reason to exist, full CEFR discipline at its level, and no obligation created by opening it.
+
+- **`images[]`** — every image declares `sourceClass: real|adapted|simulated`. Real and adapted assets are someone else's work: they require `attribution` and `license` (validator-enforced, the same contract as `content/documents/`), and the attribution renders visibly under the image. `src` is a committed local path under `public/` — never a hotlink — and every image carries an `alt`. The schema is strict, so the retired bare `image` field fails loudly instead of silently dropping a piece's picture.
+- **`links[]`** — curated external material, `https` only. Links render in a visibly online-only section and are never load-bearing: a dead link may disappoint, but nothing in the course may depend on one.
+- **Dokumente** (`content/documents/`) carry the same provenance rules with one addition: the `transcript` is the equivalent non-visual route and must stand in fully for the asset, and viewing a document is never learning evidence.

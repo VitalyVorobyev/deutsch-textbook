@@ -7,6 +7,8 @@ import { useExplainLang, useUiLang } from '../hooks';
 interface Props {
   /** the first topic of the curriculum spine — where a new learner starts */
   first?: { path: string; title_de: string };
+  /** the lowest level's entry test, for a learner who does not start from zero */
+  placement?: { path: string };
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
@@ -16,6 +18,10 @@ const UI = {
     ru: 'Три шага по кругу. Всё, что вы делаете, остаётся на этом устройстве.',
   },
   startWith: { en: 'Start with', ru: 'Начните с' },
+  placementHint: {
+    en: 'Not starting from zero? Take the placement test and the topics you already know leave your path.',
+    ru: 'Начинаете не с нуля? Пройдите тест на уровень — и темы, которые вы уже знаете, уйдут с вашего пути.',
+  },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 /** Step names are chrome (German today); their explanations follow the explanation language. */
@@ -48,7 +54,7 @@ const STEPS: Array<{ label: StringKey; text: { en: string; ru: string } }> = [
  * every tile on it is empty or zero, which reads as broken rather than as new.
  * Disappears for good the moment any evidence exists.
  */
-export default function FirstSteps({ first }: Props) {
+export default function FirstSteps({ first, placement }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const [fresh, setFresh] = useState(false);
@@ -99,6 +105,23 @@ export default function FirstSteps({ first }: Props) {
         >
           {pick(lang, UI.startWith)} <span lang="de" className="ml-1">{first.title_de}</span> →
         </a>
+      )}
+      {/* Deliberately here and not in FirstRunGate: that gate is a blocking identity dialog
+          that reloads on submit, and bolting a second unrelated decision onto it would make
+          naming yourself feel like committing to a test. This card already renders exactly
+          for the zero-evidence learner and disappears on its own once evidence exists —
+          which is the right lifetime for an entry test. */}
+      {placement && (
+        <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">
+          {pick(lang, UI.placementHint)}{' '}
+          <a
+            href={placement.path}
+            lang={uiLang}
+            className="font-medium text-amber-700 hover:underline dark:text-amber-400"
+          >
+            {t('placement.entry', uiLang)} →
+          </a>
+        </p>
       )}
     </section>
   );

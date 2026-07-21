@@ -18,7 +18,7 @@ import {
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
-import { SelfAssessedMark, TierBadge } from './TierBadge';
+import { PlacedMark, SelfAssessedMark, TierBadge } from './TierBadge';
 
 interface Props {
   topicId: string;
@@ -132,6 +132,7 @@ export default function TopicProgress(props: Props) {
       <div className="flex flex-wrap items-center gap-2">
         <TierBadge tier={done.tier} manual={done.manual === 'reopened'} />
         {selfLearned && <SelfAssessedMark />}
+        {done.placement && <PlacedMark />}
         {isMastered ? (
           <button
             type="button"

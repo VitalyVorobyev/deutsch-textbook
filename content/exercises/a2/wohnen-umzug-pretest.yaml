@@ -7,15 +7,14 @@ title:
 items:
   - id: pretest-wohin-tisch
     outcomes: [wo-wohin-position]
-    type: mc
+    type: cloze
     focus: wo-wohin
+    revision: 2
     instruction:
       en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
       ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
       uk: "Вгадуйте. Ви цього ще не проходили: неправильний здогад зараз корисніший за правильну відповідь потім."
-    prompt: "Nina stellt die Lampe ___ Tisch."
-    options: ["auf dem", "auf den", "auf der"]
-    correct: 1
+    text: "Nina stellt die Lampe {{auf den}} Tisch."
     translation:
       en: "Nina puts the lamp on the table."
       ru: "Нина ставит лампу на стол."

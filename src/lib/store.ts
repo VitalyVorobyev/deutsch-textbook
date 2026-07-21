@@ -58,7 +58,7 @@ export interface Attempt {
   totalParts?: number;
   /** what the learner entered/chose, for the personalization loop */
   given: string;
-  /** the item's confusion tag (see focus-tag table in CLAUDE.md), when tagged */
+  /** the item's confusion tag (see focus-tag table in docs/focus-tags.md), when tagged */
   focus?: string;
   /** omitted in historical snapshots; absence means verified */
   evidence?: 'verified' | 'practice';
@@ -93,8 +93,20 @@ export type PracticePayload =
 /** Write boundary: historical attempts may omit a revision; newly logged ones may not. */
 export type NewAttempt = Omit<Attempt, 'itemRevision'> & { itemRevision: number };
 
+/**
+ * Notifies other islands on the page that the attempt log changed.
+ *
+ * Islands are independent React roots and cannot share state, so a panel rendered beside
+ * an exercise set has no way to learn that the learner just answered something. The
+ * placement results panel needs exactly that — it sits under the test on the same page and
+ * must appear as the last item is answered. Fire-and-forget, same shape as `da:langchange`.
+ */
+export const ATTEMPT_EVENT = 'da:attempt';
+
 export async function logAttempt(attempt: NewAttempt): Promise<void> {
   await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], await getStore());
+  if (typeof window !== 'undefined')
+    window.dispatchEvent(new CustomEvent(ATTEMPT_EVENT, { detail: attempt.setId }));
   scheduleAutoSync();
 }
 
@@ -197,6 +209,23 @@ export async function sessionDoneToday(): Promise<boolean> {
 
 export type TopicManual = 'learned' | 'reopened';
 
+/**
+ * A passed level entry test, recorded per topic.
+ *
+ * Deliberately **beside** `manual` rather than a third value of it: that union's whole
+ * contract is "self-rating, not evidence", and `pathDone` already special-cases
+ * `'learned'` on exactly that basis. A placement result *is* evidence — it just is not
+ * evidence of mastery — so it needs its own field and its own marker.
+ */
+export interface TopicPlacement {
+  /** the `role: placement` set that produced this result, e.g. `a1/placement-a1` */
+  setId: string;
+  /** epoch ms the learner applied the result */
+  at: number;
+  /** the topic's parts-weighted ratio in [0,1] — kept so a retake can be compared */
+  score: number;
+}
+
 export interface TopicProgress {
   /** epoch ms the article was first opened */
   readAt?: number;
@@ -204,6 +233,8 @@ export interface TopicProgress {
   manual?: TopicManual;
   /** epoch ms the manual override was last changed (for merge last-write-wins) */
   manualAt?: number;
+  /** passed entry test — green, but never a tier (see src/lib/placement.ts) */
+  placement?: TopicPlacement;
 }
 
 export type TopicsState = Record<string, TopicProgress>;
@@ -252,6 +283,32 @@ export async function setTopicManual(
   scheduleAutoSync();
 }
 
+/**
+ * Record a passed placement result for a topic. **Idempotent, and monotone in score.**
+ *
+ * A retake that goes worse must not un-place a topic: the learner has already stopped
+ * being taught it, and taking the test again out of curiosity is not a reason to put the
+ * lesson back. So the higher score wins, and an equal score keeps the earlier `at` — the
+ * placement's own timestamp then always names the moment the topic actually left the path.
+ */
+export async function setTopicPlacement(
+  topicId: string,
+  result: Omit<TopicPlacement, 'at'>,
+  ts = Date.now(),
+): Promise<void> {
+  await update<TopicsState>(
+    'topics',
+    (m) => {
+      const cur = m ?? {};
+      const prev = cur[topicId]?.placement;
+      if (prev && prev.score >= result.score) return cur;
+      return { ...cur, [topicId]: { ...cur[topicId], placement: { ...result, at: ts } } };
+    },
+    await getStore(),
+  );
+  scheduleAutoSync();
+}
+
 // ---------------------------------------------------------------------------
 // Optional-artifact feedback (engagement/editorial signal, never mastery)
 // ---------------------------------------------------------------------------
@@ -288,8 +345,8 @@ export async function setArtifactFeedback(
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 5; import accepts v1-v5 through explicit migration. */
-  version: 5;
+  /** written as 6; import accepts v1-v6 through explicit migration. */
+  version: 6;
   exportedAt: string;
   /** profile label, informational only */
   profile?: string;
@@ -303,7 +360,7 @@ export interface ProgressSnapshot {
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 5,
+    version: 6,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),

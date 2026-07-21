@@ -3,11 +3,17 @@ role: pretest
 items:
   - id: pre-meine-schwester
     outcomes: [familie-vorstellen]
-    type: mc
-    prompt: "Das ist ___ Schwester."
-    options: ["mein", "meine", "meinen"]
-    correct: 1
-    translation: { en: "This is my sister.", ru: "Это моя сестра.", uk: "Це моя сестра." }
+    type: cloze
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Ich habe eine Schwester. Das ist {{meine}} Schwester."
+    translation:
+      en: "I have a sister. This is my sister."
+      ru: "У меня есть сестра. Это моя сестра."
+      uk: "У мене є сестра. Це моя сестра."
     explain: { en: "Schwester is feminine, so mein takes -e: meine Schwester.", ru: "Schwester женского рода, поэтому mein получает -e: meine Schwester.", uk: "Schwester жіночого роду, тому mein отримує -e: meine Schwester." }
   - id: pre-ihr-vater
     outcomes: [familie-vorstellen]

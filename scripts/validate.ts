@@ -51,6 +51,7 @@ import {
   loadGradingDecisions,
 } from '../src/lib/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
+import { responseModeForItem } from '../src/lib/evidence';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -60,6 +61,35 @@ const warnings: string[] = [];
 
 /** Share of a topic's practice items that may be mc/match/order (see the item-mix check). */
 const MAX_SELECTION_PERCENT = 45;
+
+// Both bars are tighter than the practice equivalents (⅓ and 45%) on purpose: a practice
+// item the learner guesses costs one wrong answer, while a placement item they guess can
+// retire a whole lesson.
+const MAX_PLACEMENT_MC_PERCENT = 25;
+const MAX_PLACEMENT_SELECTION_PERCENT = 40;
+
+/** `order` items allowed in one set — it is scaffolding, and it saturates fast. */
+const MAX_ORDER_PER_SET = 2;
+
+/**
+ * Roles that own their own page and are deliberately in no topic's `exercises` list.
+ *
+ * Kept in one place because three separate checks have to agree about it — the
+ * topic-backref check, the orphan-set warning and the cross-topic outcome rule. When
+ * `placement` was added, missing any one of them was a hard failure on content that is
+ * correct by design ("topic does not list this set", or an error on every item of a set
+ * that spans twenty-two topics).
+ */
+const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'placement']);
+
+/**
+ * Roles that assess a whole level and so may reference any topic's outcomes.
+ *
+ * Ordinary sets stay locked to their own topic's outcomes; these three are exactly the
+ * ones whose job is to span the level.
+ */
+const CROSS_TOPIC_ROLES = STANDALONE_ROLES;
+
 const fail = (file: string, msg: string) => errors.push(`${file}: ${msg}`);
 const warn = (file: string, msg: string) => warnings.push(`${file}: ${msg}`);
 
@@ -427,6 +457,29 @@ for (const [id, { file, data }] of topics) {
           'the learner picks from what is already on screen and never has to produce it',
       );
   }
+
+  // `order` specifically, capped per SET rather than per topic.
+  //
+  // It hands the learner every token and asks only for the sequence, which makes it
+  // scaffolding for a first encounter with a word-order rule rather than a test of one —
+  // CLAUDE.md says exactly that, and the pilot learner's 99% over 78 attempts says it has
+  // stopped carrying information. The topic-level caps above cannot see a single set that
+  // is mostly `order`, because a sibling set's translate items dilute the ratio; this is
+  // per set for that reason. Two is the "a couple per set" the authoring rule already asks
+  // for, written down where it can be enforced.
+  for (const setId of data.exercises) {
+    const set = exerciseSets.get(setId);
+    if (!set) continue;
+    const orders = set.data.items.filter((i) => i.type === 'order');
+    if (orders.length > MAX_ORDER_PER_SET)
+      fail(
+        set.file,
+        `${orders.length} order items (${orders.map((i) => i.id).join(', ')}), cap ${MAX_ORDER_PER_SET} per set — ` +
+          'order gives the learner every token and only asks for the sequence, so it is ' +
+          'first-encounter scaffolding, not a test of the rule; replace the extras with a ' +
+          'translate or cloze of the same word order',
+      );
+  }
   for (const r of data.reading) {
     if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }
@@ -462,32 +515,39 @@ for (const { file, data } of wortnetze.values()) {
   }
 }
 
-// Checkpoints are data, not wiring: `getCheckpoints()` (src/lib/content.ts) finds
-// every `role: checkpoint` set, reads its level off its directory and gives it the
-// page /checkpoint/<dir>. So the directory must name the level the checkpoint
-// covers, and a level can own only one — a second would fight for the same route.
+// Checkpoints and placements are data, not wiring: `getCheckpoints()` / `getPlacements()`
+// (src/lib/content.ts) find every set of the role, read its level off its directory and
+// give it the page /checkpoint/<dir> or /einstufung/<dir>. So the directory must name the
+// level the set covers, and a level can own only one of each — a second would fight for
+// the same route.
 {
-  const byLevel = new Map<string, string>();
-  for (const [setId, { file, data }] of exerciseSets) {
-    if (data.role !== 'checkpoint') continue;
-    const dir = setId.split('/')[0]!;
-    const level = topics.get(data.topic)?.data.level;
-    if (level && dir.toUpperCase() !== level)
-      fail(file, `checkpoint directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /checkpoint/<level> route reads the level off the directory`);
-    const other = byLevel.get(dir);
-    if (other) fail(file, `a second ${dir.toUpperCase()} checkpoint ("${other}" already exists) — both would claim /checkpoint/${dir}`);
-    byLevel.set(dir, setId);
+  const routed = [
+    { role: 'checkpoint', route: 'checkpoint' },
+    { role: 'placement', route: 'einstufung' },
+  ] as const;
+  for (const { role, route } of routed) {
+    const byLevel = new Map<string, string>();
+    for (const [setId, { file, data }] of exerciseSets) {
+      if (data.role !== role) continue;
+      const dir = setId.split('/')[0]!;
+      const level = topics.get(data.topic)?.data.level;
+      if (level && dir.toUpperCase() !== level)
+        fail(file, `${role} directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /${route}/<level> route reads the level off the directory`);
+      const other = byLevel.get(dir);
+      if (other) fail(file, `a second ${dir.toUpperCase()} ${role} ("${other}" already exists) — both would claim /${route}/${dir}`);
+      byLevel.set(dir, setId);
+    }
   }
 }
 
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
-  const standalone = data.role === 'checkpoint' || data.role === 'probe';
+  const standalone = STANDALONE_ROLES.has(data.role);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
   } else if (standalone) {
-    // Checkpoints/probes anchor to a topic for spine position only — they get
-    // their own pages and must never be embedded in ordinary lesson flow.
+    // Checkpoints/probes/placements anchor to a topic for spine position only — they
+    // get their own pages and must never be embedded in ordinary lesson flow.
     if (owner.data.exercises.includes(setId) || owner.data.pretest === setId)
       fail(file, `a role: ${data.role} set must not be listed in any topic's exercises or pretest`);
   } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
@@ -495,6 +555,21 @@ for (const [setId, { file, data }] of exerciseSets) {
   }
   if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
+
+  // The `-pretest` suffix is load-bearing, not decorative: `isPretestAttempt`
+  // (src/lib/weakness.ts) reads it off the attempt's setId to keep pretests out of every
+  // weakness signal, and an attempt carries no role. Checked in both directions so the
+  // runtime predicate can never quietly disagree with the declared role.
+  if (data.role === 'pretest' && !setId.endsWith('-pretest'))
+    fail(file, `a role: pretest set must be named "<topic-id>-pretest" — the weakness signal identifies pretests by that suffix, since an attempt records no role`);
+  if (data.role !== 'pretest' && setId.endsWith('-pretest'))
+    fail(file, `set is named "-pretest" but declares role: ${data.role} — the weakness signal would silently drop its attempts`);
+  // A pretest is diagnostic *generation*: at least one item must ask the learner to produce,
+  // not recognise. All 96 pretest items were once `mc` — the format the pilot scores ~93% on —
+  // so the diagnostic returned "you already know this" for 85% of pretests and told the lesson
+  // nothing. At least one non-`mc` item keeps that from silently returning.
+  if (data.role === 'pretest' && data.items.length > 0 && data.items.every((i) => i.type === 'mc'))
+    fail(file, `pretest "${setId}" is all mc — a pretest is diagnostic generation, so at least one item must be non-mc (cloze/translate); the learner scores ~93% on mc and it discriminates nothing`);
   if (data.stimulus) {
     const document = documents.get(data.stimulus);
     if (!document) fail(file, `stimulus "${data.stimulus}" does not resolve to content/documents`);
@@ -805,7 +880,7 @@ for (const [readingId, { file, data }] of readings) {
 
 // Orphan exercise sets (not referenced by any topic)
 for (const [setId, { file, data }] of exerciseSets) {
-  if (data.role === 'checkpoint' || data.role === 'probe') continue; // standalone by design
+  if (STANDALONE_ROLES.has(data.role)) continue; // standalone by design
   const referenced = [...topics.values()].some(
     (t) => t.data.exercises.includes(setId) || t.data.pretest === setId,
   );
@@ -966,9 +1041,9 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
 
       for (const { file, data } of exerciseSets.values()) {
-        // Checkpoints/probes span the whole level, so they may reference any
-        // known outcome; ordinary sets stay locked to their own topic's.
-        const crossTopic = data.role === 'checkpoint' || data.role === 'probe';
+        // Checkpoints/probes/placements span the whole level, so they may reference
+        // any known outcome; ordinary sets stay locked to their own topic's.
+        const crossTopic = CROSS_TOPIC_ROLES.has(data.role);
         for (const item of data.items) {
           for (const outcome of item.outcomes) {
             const owns = outcomeOwner.get(outcome);
@@ -1020,6 +1095,119 @@ for (const [setId, { file, data }] of exerciseSets) {
             );
           }
         }
+      }
+
+      // Placement sets — the entry test that lets a learner skip what they already know.
+      //
+      // The verdict is per TOPIC and it is one-way: a placed topic leaves the recommended
+      // path and is never offered as a lesson again. The costs are asymmetric — a false
+      // positive silently removes teaching the learner never sees, while a false negative
+      // costs a re-read they can skip anyway — so every rule below is that asymmetry made
+      // mechanical, and each is deliberately stricter than the practice equivalent.
+      for (const [setId, { file, data }] of exerciseSets) {
+        if (data.role !== 'placement') continue;
+        const level = setId.split('/')[0]!.toUpperCase();
+        const items = data.items;
+        const at = (id: string) => `${file} → item "${id}"`;
+
+        // One item, one topic. The item's score is what decides that topic's verdict, so an
+        // item spanning two would count once toward each and blur both — and eleven items
+        // could then "cover" twenty-two topics, hollowing out the ≥2 rule below.
+        const topicOf = new Map<string, string>();
+        for (const item of items) {
+          const owners = [
+            ...new Set(
+              item.outcomes.map((o) => outcomeOwner.get(o)).filter((t): t is string => !!t),
+            ),
+          ];
+          if (owners.length > 1) {
+            fail(
+              at(item.id),
+              `outcomes span ${owners.length} topics (${owners.join(', ')}) — a placement item ` +
+                'decides one topic\'s verdict, so it must reference outcomes of exactly one',
+            );
+            continue;
+          }
+          const owner = owners[0];
+          if (!owner) continue; // unknown outcome — already reported by the cross-topic check
+          const ownLevel = topics.get(owner)?.data.level;
+          if (ownLevel && ownLevel !== level) {
+            fail(
+              at(item.id),
+              `outcome belongs to "${owner}" (${ownLevel}), but this is the ${level} placement test`,
+            );
+            continue;
+          }
+          topicOf.set(item.id, owner);
+        }
+
+        // Every topic of the level, at least twice. One item is a coin flip, and the whole
+        // per-topic design rests on this — the verdict removes a lesson permanently.
+        const perTopic = new Map<string, number>();
+        for (const topicId of topicOf.values())
+          perTopic.set(topicId, (perTopic.get(topicId) ?? 0) + 1);
+        const thin = [...topics.values()]
+          .filter((t) => t.data.level === level)
+          .map((t) => t.data.id)
+          .sort()
+          .filter((id) => (perTopic.get(id) ?? 0) < 2);
+        if (thin.length)
+          fail(
+            file,
+            `${thin.length} ${level} topic(s) carry fewer than 2 placement items ` +
+              `(${thin.map((id) => `${id}: ${perTopic.get(id) ?? 0}`).join(', ')}) — one item is a ` +
+              'coin flip, and a topic this test passes is never taught again',
+          );
+
+        const count = (t: string) => items.filter((i) => i.type === t).length;
+        const selection = count('mc') + count('match') + count('order');
+        if (count('mc') * 100 > items.length * MAX_PLACEMENT_MC_PERCENT)
+          fail(
+            file,
+            `${count('mc')} of ${items.length} placement items are mc ` +
+              `(${Math.round((100 * count('mc')) / items.length)}%, cap ${MAX_PLACEMENT_MC_PERCENT}%) — ` +
+              "stricter than practice's third on purpose: this decides what the learner never sees again",
+          );
+        if (selection * 100 > items.length * MAX_PLACEMENT_SELECTION_PERCENT)
+          fail(
+            file,
+            `${selection} of ${items.length} placement items are mc/match/order ` +
+              `(${Math.round((100 * selection) / items.length)}%, cap ${MAX_PLACEMENT_SELECTION_PERCENT}%) — ` +
+              'the learner picks from what is on screen, and recognition is exactly what a ' +
+              'placement test must not mistake for knowledge',
+          );
+
+        // Open production is never verified, so it can never score. An unscorable item in a
+        // topic's set would sit permanently unanswered, and "every item answered" is half of
+        // the pass condition — so a single `write` would make that topic unplaceable.
+        const unscorable = items.filter((i) => i.type === 'write' || i.type === 'speak');
+        if (unscorable.length)
+          fail(
+            file,
+            `${unscorable.length} write/speak item(s) (${unscorable.map((i) => i.id).join(', ')}) — ` +
+              'open production is never scored, so it cannot decide a placement verdict',
+          );
+
+        // At least one item the learner has to *hear*. Rules above already force most of the
+        // set to be produced rather than picked, but nothing there stops a placement test
+        // from being read end to end — and placing a learner out of the listening topics on
+        // written evidence alone is exactly the false positive this design fears most.
+        // Prefer `audio-comprehension`: it visibly becomes reading where audio is
+        // unavailable, whereas `listen` needs a German voice to be answerable at all.
+        if (!items.some((i) => responseModeForItem(i) === 'listening'))
+          fail(
+            file,
+            'no listening item — a placement test read end to end certifies reading only, ' +
+              'and would place the learner out of the listening topics on written evidence',
+          );
+
+        const unexplained = items.filter((i) => !i.explain);
+        if (unexplained.length)
+          fail(
+            file,
+            `${unexplained.length} item(s) without explain (${unexplained.map((i) => i.id).join(', ')}) — ` +
+              'the results screen is the one place a learner who places out ever meets this material',
+          );
       }
 
       // A focus tag cannot silently teach a structure whose owning topic is
@@ -1097,13 +1285,13 @@ for (const [setId, { file, data }] of exerciseSets) {
           // exempt from the spine check — which is exactly backwards, since a tag nobody
           // registered is the one most likely to be a typo or an undeclared new confusion.
           // (`haben-wendungen` had been escaping this way.) The table is also the canonical
-          // focus-tag list in CLAUDE.md, so the two cannot drift apart unnoticed.
+          // focus-tag list in docs/focus-tags.md, so the two cannot drift apart unnoticed.
           const intro = focusIntroducedBy[item.focus];
           if (!intro) {
             fail(
               `${file} → item "${item.id}"`,
-              `focus "${item.focus}" is not in the focus-tag table — add it to CLAUDE.md and to ` +
-                'focusIntroducedBy in scripts/validate.ts, naming the topic that introduces it',
+              `focus "${item.focus}" is not in the focus-tag table — add it to docs/focus-tags.md ` +
+                'and to focusIntroducedBy in scripts/validate.ts, naming the topic that introduces it',
             );
             continue;
           }

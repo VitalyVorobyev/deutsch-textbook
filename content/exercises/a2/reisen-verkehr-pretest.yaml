@@ -7,11 +7,14 @@ title:
 items:
   - id: pre-sein-gefahren
     outcomes: [reise-berichten]
-    type: mc
+    type: cloze
     focus: haben-sein
-    prompt: "Timo ___ am Montag mit dem Zug nach Hamburg gefahren."
-    options: ["hat", "ist", "war"]
-    correct: 1
+    revision: 2
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: хибний здогад зараз корисніший за правильну відповідь потім."
+    text: "Timo {{ist}} am Montag mit dem Zug nach Hamburg gefahren."
     translation:
       en: On Monday Timo travelled to Hamburg by train.
       ru: В понедельник Тимо поехал в Гамбург на поезде.

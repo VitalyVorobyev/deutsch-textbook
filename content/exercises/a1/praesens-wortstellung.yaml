@@ -222,17 +222,19 @@ items:
 
   - id: order-zuhause
     outcomes: [praesens-verbzweit]
-    type: order
+    type: translate
+    revision: 2
     focus: verbzweit
     instruction:
-      en: Arrange the words into a correct sentence.
-      ru: Составьте правильное предложение.
-      uk: Складіть правильне речення.
-    words: ["Ich", "bin", "heute", "zu", "Hause."]
-    translation:
-      en: I am at home today.
-      ru: Я сегодня дома.
-      uk: Я сьогодні вдома.
+      en: Translate into German. Begin with the time phrase.
+      ru: Переведите на немецкий. Начните с обстоятельства времени.
+      uk: Перекладіть німецькою. Почніть з обставини часу.
+    prompt_en: Today I am at home.
+    prompt_ru: Сегодня я дома.
+    prompt_uk: Сьогодні я вдома.
+    answer: "Heute bin ich zu Hause."
+    key_tokens: ["bin", "ich"]
+    accept: ["Ich bin heute zu Hause."]
     explain:
       en: "Subject first, verb second. Remember: German never drops 'sein' — 'Ich heute zu Hause' is impossible."
       ru: "Подлежащее — первое, глагол — второй. Помните: в немецком 'sein' не опускается — сказать 'Ich heute zu Hause' нельзя."

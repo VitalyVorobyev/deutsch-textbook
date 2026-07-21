@@ -17,6 +17,10 @@ describe('automatic content eligibility', () => {
       { setId: 'a1/basis', topicId: 'basis', role: 'practice' },
       { setId: 'a1/basis-pretest', topicId: 'basis', role: 'pretest' },
       { setId: 'a1/basis-check', topicId: 'basis', role: 'checkpoint' },
+      // `trainableRoles` is an allowlist, so a placement set can never leak into mixed
+      // training — pinned here because that guarantee is what let Phase 2 add a whole new
+      // role without touching training at all.
+      { setId: 'a1/placement-a1', topicId: 'basis', role: 'placement' },
     ];
     expect(eligibleTrainingSets(sets, ['basis'], [topic], empty)).toEqual([]);
     expect(eligibleTrainingSets(sets, ['basis'], [topic], { ...empty, topics: { basis: { readAt: 1 } } }))

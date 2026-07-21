@@ -1,0 +1,74 @@
+topic: artikel-genus
+role: probe
+title:
+  en: "Probe — kein or nicht"
+  ru: "Проверка — kein или nicht"
+  uk: "Перевірка — kein чи nicht"
+
+# Three parallel variants of ONE competence: German negates a noun with kein- and everything
+# else with nicht. That is a choice English and Russian never have to make — "I have no time"
+# and "I don't go" both use one negator each — so the learner must decide, every time, what
+# is actually being negated.
+#
+# Every variant therefore puts the two side by side in one text. A family that only ever
+# gapped kein- would measure the ending, not the choice, and the choice is the competence:
+# a learner who writes "Ich habe nicht Zeit" has the ending question right and the rule
+# wrong.
+#
+# The topic's other probe family measures genus — which article a noun takes. This one
+# measures negation, and the two fail independently. New nouns and new situations throughout.
+
+items:
+  - id: variant-a
+    outcomes: [artikel-kein-verwenden]
+    type: cloze
+    focus: kein-nicht
+    instruction:
+      en: "Fill in kein (in the right form) or nicht."
+      ru: "Вставьте kein в нужной форме или nicht."
+      uk: "Вставте kein у потрібній формі або nicht."
+    text: "Ich trinke {{keinen}} Kaffee. Ich mag Kaffee {{nicht}}."
+    translation:
+      en: "I don't drink coffee. I don't like coffee."
+      ru: "Я не пью кофе. Я не люблю кофе."
+      uk: "Я не п'ю кави. Я не люблю кави."
+    explain:
+      en: "The same word is negated twice, in two different ways, and the difference is what is being denied. In the first sentence it is the noun — no coffee at all — so kein-, agreeing with der Kaffee as an object: keinen. In the second the noun stays and the liking is denied, so nicht, which goes after the object."
+      ru: "Одно и то же слово отрицается дважды и по-разному, и разница в том, что именно отрицается. В первом предложении отрицается существительное — никакого кофе, — поэтому kein-, согласованное с der Kaffee в роли дополнения: keinen. Во втором существительное остаётся, а отрицается сама симпатия, поэтому nicht, который ставится после дополнения."
+      uk: "Те саме слово заперечується двічі й по-різному, і різниця в тому, що саме заперечується. У першому реченні заперечується іменник — жодної кави, — тому kein-, узгоджене з der Kaffee в ролі додатка: keinen. У другому іменник залишається, а заперечується сама симпатія, тому nicht, який ставиться після додатка."
+
+  - id: variant-b
+    outcomes: [artikel-kein-verwenden]
+    type: cloze
+    focus: kein-nicht
+    instruction:
+      en: "Fill in kein (in the right form) or nicht."
+      ru: "Вставьте kein в нужной форме или nicht."
+      uk: "Вставте kein у потрібній формі або nicht."
+    text: "Wir haben {{kein}} Auto. Ich fahre {{nicht}} gern Auto."
+    translation:
+      en: "We don't have a car. I don't like driving."
+      ru: "У нас нет машины. Я не люблю водить машину."
+      uk: "У нас немає машини. Я не люблю водити машину."
+    explain:
+      en: "das Auto is neuter, so the negated noun takes kein with no ending. The second sentence negates gern — how the driving is done, not whether there is a car — and an adverb is always negated with nicht, placed directly in front of it."
+      ru: "das Auto среднего рода, поэтому отрицаемое существительное получает kein без окончания. Во втором предложении отрицается gern — не наличие машины, а отношение к вождению, — а наречие всегда отрицается через nicht, который ставится прямо перед ним."
+      uk: "das Auto середнього роду, тому заперечуваний іменник отримує kein без закінчення. У другому реченні заперечується gern — не наявність машини, а ставлення до водіння, — а прислівник завжди заперечується через nicht, який ставиться прямо перед ним."
+
+  - id: variant-c
+    outcomes: [artikel-kein-verwenden]
+    type: cloze
+    focus: kein-nicht
+    instruction:
+      en: "Fill in kein (in the right form) or nicht."
+      ru: "Вставьте kein в нужной форме или nicht."
+      uk: "Вставте kein у потрібній формі або nicht."
+    text: "Meine Wohnung hat {{keine}} Küche. Das finde ich {{nicht}} gut."
+    translation:
+      en: "My flat has no kitchen. I don't think that is good."
+      ru: "В моей квартире нет кухни. По-моему, это нехорошо."
+      uk: "У моїй квартирі немає кухні. Як на мене, це недобре."
+    explain:
+      en: "die Küche is feminine, so the noun is negated with keine. The second sentence negates an adjective — gut — and adjectives, like adverbs, take nicht in front of them. A quick test: if you can put a, an or the in front of the negated word, it is a noun and needs kein-."
+      ru: "die Küche женского рода, поэтому существительное отрицается формой keine. Во втором предложении отрицается прилагательное gut, а прилагательные, как и наречия, требуют nicht перед собой. Быстрая проверка: если перед отрицаемым словом можно поставить артикль, это существительное — и нужно kein-."
+      uk: "die Küche жіночого роду, тому іменник заперечується формою keine. У другому реченні заперечується прикметник gut, а прикметники, як і прислівники, вимагають nicht перед собою. Швидка перевірка: якщо перед заперечуваним словом можна поставити артикль, це іменник — і потрібно kein-."

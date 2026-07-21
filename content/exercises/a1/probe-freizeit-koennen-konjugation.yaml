@@ -1,0 +1,73 @@
+topic: freizeit-koennen
+role: probe
+title:
+  en: "Probe — modal verb forms"
+  ru: "Проверка — формы модальных глаголов"
+  uk: "Перевірка — форми модальних дієслів"
+
+# Three parallel variants of ONE competence: the modal's own form. Two things make it
+# irregular and both are graded here — the vowel changes in the singular only (ich muss,
+# wir müssen), and the er/sie form takes NO -t (er darf, never *er darft), which is the
+# opposite of every regular verb the learner has met.
+#
+# The topic's other probe family measures modal-satzklammer — where the infinitive goes.
+# That is a placement failure; this is a form failure, and a learner can have either without
+# the other. Splitting them is also why this family is `cloze`: the gap is the modal itself,
+# so a miss is unambiguously a miss of the form.
+#
+# New people, new activities and the two modals the translate family does not use.
+
+items:
+  - id: variant-a
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "Ich {{muss}} (müssen) am Montag arbeiten. Wir {{müssen}} (müssen) auch am Dienstag arbeiten."
+    translation:
+      en: "I have to work on Monday. We have to work on Tuesday as well."
+      ru: "В понедельник мне нужно работать. Во вторник нам тоже нужно работать."
+      uk: "У понеділок мені треба працювати. У вівторок нам теж треба працювати."
+    explain:
+      en: "The vowel change belongs to the singular alone: ich muss loses the umlaut, wir müssen keeps it, and the plural form is simply the infinitive again. So the singular is the form worth checking — the plural never surprises."
+      ru: "Изменение гласной относится только к единственному числу: в ich muss умлаут исчезает, в wir müssen сохраняется, а форма множественного числа просто совпадает с инфинитивом. Поэтому проверять стоит именно единственное число — множественное никогда не преподносит сюрпризов."
+      uk: "Зміна голосної стосується лише однини: в ich muss умлаут зникає, у wir müssen зберігається, а форма множини просто збігається з інфінітивом. Тому перевіряти варто саме однину — множина ніколи не дивує."
+
+  - id: variant-b
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "{{Darfst}} (dürfen) du heute lange bleiben? — Nein, ich {{darf}} (dürfen) nicht."
+    translation:
+      en: "Are you allowed to stay late today? — No, I am not."
+      ru: "Тебе можно сегодня остаться допоздна? — Нет, нельзя."
+      uk: "Тобі можна сьогодні залишитися допізна? — Ні, не можна."
+    explain:
+      en: "du keeps its -st (du darfst), but ich takes no ending at all: ich darf. That bare form is the one to watch — every regular verb has ich …-e, and the modal simply does not."
+      ru: "Форма du сохраняет -st (du darfst), а ich не получает окончания вообще: ich darf. Именно эта «голая» форма и требует внимания: у всех правильных глаголов есть ich …-e, а у модального его просто нет."
+      uk: "Форма du зберігає -st (du darfst), а ich не отримує закінчення взагалі: ich darf. Саме ця «гола» форма й потребує уваги: в усіх правильних дієслів є ich …-e, а в модального його просто немає."
+
+  - id: variant-c
+    outcomes: [freizeit-koennen-satz]
+    type: cloze
+    focus: modal-konjugation
+    instruction:
+      en: Fill each gap with the correct form of the verb in brackets.
+      ru: Вставьте в каждый пропуск правильную форму глагола из скобок.
+      uk: Вставте в кожен пропуск правильну форму дієслова з дужок.
+    text: "Meine Freundin {{will}} (wollen) Gitarre spielen. Ihre Brüder {{wollen}} (wollen) Fußball spielen."
+    translation:
+      en: "My friend wants to play the guitar. Her brothers want to play football."
+      ru: "Моя подруга хочет играть на гитаре. Её братья хотят играть в футбол."
+      uk: "Моя подруга хоче грати на гітарі. Її брати хочуть грати у футбол."
+    explain:
+      en: "sie will, not *sie willt: the er/sie form of a modal ends in nothing, exactly like the ich form, and the two are always identical. In the plural the verb returns to the infinitive: sie wollen."
+      ru: "sie will, а не *sie willt: форма er/sie у модального глагола не имеет окончания, точно так же как форма ich, и эти две формы всегда совпадают. Во множественном числе глагол возвращается к инфинитиву: sie wollen."
+      uk: "sie will, а не *sie willt: форма er/sie у модального дієслова не має закінчення, так само як форма ich, і ці дві форми завжди збігаються. У множині дієслово повертається до інфінітива: sie wollen."

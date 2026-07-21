@@ -101,17 +101,18 @@ items:
 
   - id: order-seid-ihr
     outcomes: [praesens-fragen]
-    type: order
+    type: translate
+    revision: 2
     focus: verbzweit
     instruction:
-      en: Build a yes/no question.
-      ru: Составьте общий вопрос (да/нет).
-      uk: Складіть загальне питання (так/ні).
-    words: ["Seid", "ihr", "heute", "zu", "Hause", "?"]
-    translation:
-      en: Are you (plural) at home today?
-      ru: Вы (мн. ч.) сегодня дома?
-      uk: Ви (мн.) сьогодні вдома?
+      en: Translate into German. Write a yes/no question, addressing several people you know well.
+      ru: Переведите на немецкий. Составьте общий вопрос (да/нет), обращаясь к нескольким близким людям.
+      uk: Перекладіть німецькою. Складіть загальне питання (так/ні), звертаючись до кількох близьких людей.
+    prompt_en: Are you all at home today?
+    prompt_ru: Вы сегодня дома?
+    prompt_uk: Ви сьогодні вдома?
+    answer: "Seid ihr heute zu Hause?"
+    key_tokens: ["Seid", "ihr"]
     explain:
       en: "Verb first in a yes/no question — and sein is never dropped: Seid ihr heute zu Hause?"
       ru: "В общем вопросе глагол стоит первым, и sein не опускается: Seid ihr heute zu Hause? По-русски можно спросить «Вы сегодня дома?» без глагола — по-немецки нельзя."

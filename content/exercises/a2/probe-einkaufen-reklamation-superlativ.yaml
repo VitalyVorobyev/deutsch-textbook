@@ -1,0 +1,77 @@
+topic: einkaufen-reklamation
+role: probe
+title:
+  en: "Probe — the superlative am …-sten"
+  ru: "Проверка — превосходная степень am …-sten"
+  uk: "Перевірка — найвищий ступінь am …-sten"
+
+# The second family on this topic. probe-einkaufen-reklamation probes komparativ-als
+# (comparison with als, including the irregulars). This one probes superlativ-am, which the
+# topic drills but nothing checks after a delay.
+#
+# Keeping the two apart matters more than it looks: the comparative and the superlative are
+# taught together and decay separately, because the superlative carries two extra things to
+# forget — the fixed am frame and the -sten ending with its umlaut and its -esten variant.
+#
+# Both gaps in every variant are superlatives. That is deliberate: a cloze gap IS the graded
+# token, so a comparative gap in a superlativ-am item would log a comparative slip under the
+# superlative tag — the same false-attribution problem key_tokens exists to prevent, in the
+# one item type where it is trivially avoidable.
+#
+# Each variant pairs a regular form with an irregular or umlauting one (besten, liebsten,
+# längsten), because the regulars are what survive and the irregulars are what go first.
+
+items:
+  - id: variant-a
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: superlativ-am
+    instruction:
+      en: Put the adjective in the superlative.
+      ru: Поставьте прилагательное в превосходную степень.
+      uk: Поставте прикметник у найвищий ступінь.
+    text: "Diese Jacke ist billig, aber die graue ist am {{billigsten}}. Sie gefällt mir auch am {{besten}}. (billig, gut)"
+    translation:
+      en: "This jacket is cheap, but the grey one is the cheapest. I like it best too."
+      ru: "Эта куртка дешёвая, но серая — самая дешёвая. И нравится мне она больше всего."
+      uk: "Ця куртка дешева, але сіра — найдешевша. І подобається мені вона найбільше."
+    explain:
+      en: "The predicative superlative is always the two-part frame am …-sten, never just the bare adjective: am billigsten. gut is irregular and does not build on its own stem — gut, besser, am besten — so there is nothing to derive and the form has to be known."
+      ru: "Превосходная степень в предикативной позиции — это всегда двухчастная конструкция am …-sten, а не голое прилагательное: am billigsten. gut неправильное и не образуется от собственной основы — gut, besser, am besten, — поэтому вывести форму нельзя, её нужно знать."
+      uk: "Найвищий ступінь у предикативній позиції — це завжди двочастинна конструкція am …-sten, а не голий прикметник: am billigsten. gut неправильне й не утворюється від власної основи — gut, besser, am besten, — тому вивести форму не можна, її треба знати."
+
+  - id: variant-b
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: superlativ-am
+    instruction:
+      en: Put the adjective in the superlative.
+      ru: Поставьте прилагательное в превосходную степень.
+      uk: Поставте прикметник у найвищий ступінь.
+    text: "Von allen Mänteln ist der schwarze am {{teuersten}}. Im Winter trage ich ihn am {{liebsten}}. (teuer, gern)"
+    translation:
+      en: "Of all the coats the black one is the most expensive. In winter I like wearing it most."
+      ru: "Из всех пальто чёрное самое дорогое. Зимой я ношу его охотнее всего."
+      uk: "З усіх пальт чорне найдорожче. Взимку я ношу його найохочіше."
+    explain:
+      en: "teuer keeps its stem and simply adds -sten: am teuersten. gern is the irregular that catches people out, because it is an adverb rather than an adjective and its chain is gern, lieber, am liebsten — no form of gern survives in it at all."
+      ru: "teuer сохраняет основу и просто добавляет -sten: am teuersten. gern — то самое неправильное слово, на котором спотыкаются, потому что это наречие, а не прилагательное, и его ряд выглядит так: gern, lieber, am liebsten — ни одной формы самого gern в нём не остаётся."
+      uk: "teuer зберігає основу й просто додає -sten: am teuersten. gern — те саме неправильне слово, на якому спотикаються, бо це прислівник, а не прикметник, і його ряд виглядає так: gern, lieber, am liebsten — жодної форми самого gern у ньому не лишається."
+
+  - id: variant-c
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: superlativ-am
+    instruction:
+      en: Put the adjective in the superlative.
+      ru: Поставьте прилагательное в превосходную степень.
+      uk: Поставте прикметник у найвищий ступінь.
+    text: "Das kleine Handy ist am {{günstigsten}}. Sein Akku hält auch am {{längsten}}. (günstig, lang)"
+    translation:
+      en: "The small phone is the best value. Its battery also lasts the longest."
+      ru: "Маленький телефон самый выгодный по цене. И аккумулятор у него держит дольше всего."
+      uk: "Маленький телефон найвигідніший за ціною. І акумулятор у нього тримає найдовше."
+    explain:
+      en: "günstig ends in -g, so the ending is the plain -sten: am günstigsten. lang is one of the short adjectives that take an umlaut in the comparative and superlative — lang, länger, am längsten — so the vowel changes as well as the ending. Missing the umlaut is the usual slip here, not the ending."
+      ru: "günstig оканчивается на -g, поэтому окончание обычное -sten: am günstigsten. lang относится к коротким прилагательным, которые в сравнительной и превосходной степени получают умлаут — lang, länger, am längsten, — так что меняется не только окончание, но и гласный. Обычная ошибка здесь именно в пропущенном умлауте, а не в окончании."
+      uk: "günstig закінчується на -g, тому закінчення звичайне -sten: am günstigsten. lang належить до коротких прикметників, які у вищому й найвищому ступені отримують умлаут — lang, länger, am längsten, — тож змінюється не лише закінчення, а й голосний. Звична помилка тут саме в пропущеному умлауті, а не в закінченні."
