@@ -1,0 +1,8 @@
+/* Compiled stylesheet for the Claude Design bundle.
+ * Wraps the app's own global.css so the utilities the synced components
+ * use are generated, plus the previews directory. Regenerate with:
+ *   .ds-sync/node_modules/.bin/tailwindcss -i .design-sync/tailwind-entry.css -o .design-sync/.cache/compiled.css
+ */
+@import "../src/styles/global.css";
+@source "../src/components";
+@source "./previews";
