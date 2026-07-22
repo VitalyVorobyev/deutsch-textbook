@@ -1,5 +1,14 @@
 interface Props {
-  /** series in [0,1]; null renders a gap. Higher value sits higher (near the top). */
+  /**
+   * Series in [0,1]; higher value sits higher (near the top).
+   *
+   * `null` is "not measured in this bucket" and **breaks the line** — the stroke
+   * restarts after the gap rather than running through it. That is the whole
+   * point: WeaknessTrends draws these under "a falling line means it is
+   * improving", so a segment spanning weeks with no attempts would invite the
+   * learner to read a trend out of two measurements and nothing in between.
+   * The dots still mark every bucket that has data.
+   */
   values: (number | null)[];
   width?: number;
   height?: number;
@@ -17,8 +26,14 @@ export function Sparkline({ values, width = 88, height = 24, className = '' }: P
   values.forEach((v, i) => {
     if (v !== null) pts.push({ i, v });
   });
+  // A point starts a new subpath when the bucket before it had no data, so the
+  // stroke never spans a gap. Runs of one point draw no line at all — correct:
+  // a lone measurement is a dot, not a trend.
   const path = pts
-    .map((p, k) => `${k === 0 ? 'M' : 'L'} ${x(p.i).toFixed(1)} ${y(p.v).toFixed(1)}`)
+    .map((p, k) => {
+      const continues = k > 0 && pts[k - 1]!.i === p.i - 1;
+      return `${continues ? 'L' : 'M'} ${x(p.i).toFixed(1)} ${y(p.v).toFixed(1)}`;
+    })
     .join(' ');
 
   return (
