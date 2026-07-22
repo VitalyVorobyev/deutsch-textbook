@@ -68,42 +68,86 @@ const ctx = {
   },
 };
 
+/**
+ * This component takes no `lang` prop — it reads `<html data-explain-lang>`
+ * through `useExplainLang()`. Setting the attribute during render works because
+ * the hook reads it in its `getSnapshot`, which runs while this subtree renders.
+ * In an app, set it on the root before mounting and dispatch `da:langchange`
+ * to change it afterwards.
+ */
+function WithExplainLang({ lang, children }: { lang: string; children: React.ReactNode }) {
+  // Deliberate, and it has to happen during render: `useExplainLang` reads this
+  // attribute in its useSyncExternalStore getSnapshot, which runs while this
+  // subtree renders, so setting it here is what lets each cell render in its own
+  // language. An effect would run only after every cell on the card had mounted
+  // and would then notify all of them, so whichever cell came last would decide
+  // the language for all four. Preview-harness code; it never ships to the app,
+  // where you set the attribute before mount and dispatch `da:langchange` to
+  // change it afterwards (see conventions.md).
+  if (typeof document !== 'undefined') {
+    // eslint-disable-next-line react-hooks/immutability
+    document.documentElement.dataset.explainLang = lang;
+  }
+  return <>{children}</>;
+}
+
 /** The Fortschritt panel's list, showing all four tiers at once. */
 export function AllFourTiers() {
   return (
-    <div className="w-full max-w-2xl">
-      <TopicProgressList nodes={nodes} ctx={ctx} />
-    </div>
+    <WithExplainLang lang="en">
+      <div className="w-full max-w-2xl">
+        <TopicProgressList nodes={nodes} ctx={ctx} />
+      </div>
+    </WithExplainLang>
+  );
+}
+
+/**
+ * The same list under the Russian explanation language, set via the root
+ * attribute rather than a prop. Only the panel heading switches — every topic
+ * title stays German, and so does the chrome.
+ */
+export function RussianViaRootAttribute() {
+  return (
+    <WithExplainLang lang="ru">
+      <div className="w-full max-w-2xl">
+        <TopicProgressList nodes={nodes} ctx={ctx} />
+      </div>
+    </WithExplainLang>
   );
 }
 
 /** A learner who has just started: one article read, nothing practised. */
 export function EarlyLearner() {
   return (
-    <div className="w-full max-w-2xl">
-      <TopicProgressList
-        nodes={nodes}
-        ctx={{ attempts: [], cards: {}, topics: { 'perfekt-haben-sein': { readAt: D1 } } }}
-      />
-    </div>
+    <WithExplainLang lang="en">
+      <div className="w-full max-w-2xl">
+        <TopicProgressList
+          nodes={nodes}
+          ctx={{ attempts: [], cards: {}, topics: { 'perfekt-haben-sein': { readAt: D1 } } }}
+        />
+      </div>
+    </WithExplainLang>
   );
 }
 
 /** A self-rated topic and a placed topic, beside their measured tiers. */
 export function WithSelfRatingAndPlacement() {
   return (
-    <div className="w-full max-w-2xl">
-      <TopicProgressList
-        nodes={nodes}
-        ctx={{
-          ...ctx,
-          topics: {
-            ...ctx.topics,
-            wechselpraepositionen: { readAt: D2, manual: 'learned' as const, manualAt: D2 },
-            modalverben: { placement: { setId: 'a2/placement-a2', at: D1, score: 0.85 } },
-          },
-        }}
-      />
-    </div>
+    <WithExplainLang lang="en">
+      <div className="w-full max-w-2xl">
+        <TopicProgressList
+          nodes={nodes}
+          ctx={{
+            ...ctx,
+            topics: {
+              ...ctx.topics,
+              wechselpraepositionen: { readAt: D2, manual: 'learned' as const, manualAt: D2 },
+              modalverben: { placement: { setId: 'a2/placement-a2', at: D1, score: 0.85 } },
+            },
+          }}
+        />
+      </div>
+    </WithExplainLang>
   );
 }

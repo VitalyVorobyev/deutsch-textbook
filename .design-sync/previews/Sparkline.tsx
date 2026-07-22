@@ -14,14 +14,9 @@ export function Rising() {
 }
 
 /**
- * Days with no attempts, passed as null.
- *
- * Note what this actually draws: the stroke is a single continuous path, so a
- * null does NOT break the line — the point is skipped and the line runs
- * straight to the next one. What a null costs is horizontal room, because the
- * x position still comes from the original index. So a stretch of missing days
- * reads as a long segment with no dot on it, not as a gap in the stroke.
- * (The component's own JSDoc says "null renders a gap", which overstates it.)
+ * Days with no attempts, passed as null: the stroke breaks and restarts rather
+ * than running through the gap, so the chart never draws a trend across a
+ * period nothing was measured in.
  */
 export function MissingDays() {
   return (
@@ -41,8 +36,8 @@ export function MissingDays() {
         />
       </span>
       <p className="max-w-sm text-xs text-stone-500 dark:text-stone-400">
-        Same ten days: above with three missing, below complete. The dots mark the
-        days that have data.
+        Same ten days: above with three missing, below complete. The line stops at
+        every gap; the dots mark the days that have data.
       </p>
     </div>
   );

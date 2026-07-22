@@ -15,12 +15,33 @@ import { TierBadge } from 'deutsch-atlas';
 <TierBadge tier="mastered" />
 ```
 
-Two globals affect appearance, both set on the root element, neither required:
+Two attributes on the root element change what renders. Neither is required,
+but the second one is the only language control two of these components have:
 
 - **Dark mode is `data-theme="dark"`** on `<html>` — *not* a `dark` class.
   `<html data-theme="dark">` switches every `dark:` utility below.
-- `data-explain-lang` / `data-ui-lang` exist in the stylesheet but drive Astro
-  markup only. **No React component here reads them.** Ignore them.
+- **`data-explain-lang="en" | "ru" | "uk" | "de"`** on `<html>` is the explanation
+  language for the components that take no `lang` prop — today
+  **`TopicProgressList` and `DocumentStimulus`**. They read it through
+  `useExplainLang()` and fall back to `'en'` when it is absent or unrecognised,
+  so leaving it off does not break them, it pins them to English. Set it on the
+  root before mounting:
+
+  ```jsx
+  document.documentElement.dataset.explainLang = 'ru';
+  ```
+
+  To change it after mount, dispatch `da:langchange` on `window` — the hook is a
+  `useSyncExternalStore` subscribed to that event, so re-assigning the attribute
+  alone will not re-render:
+
+  ```jsx
+  document.documentElement.dataset.explainLang = 'ru';
+  window.dispatchEvent(new CustomEvent('da:langchange', { detail: 'ru' }));
+  ```
+
+- `data-ui-lang` also exists in the stylesheet, but it drives Astro markup only
+  and no React component here reads it. Ignore it.
 
 ## The two languages, and which one is a prop
 
@@ -29,7 +50,11 @@ differently, and conflating them is the most likely mistake:
 
 - **Explanation text is the `lang` prop**: `'en' | 'ru' | 'uk' | 'de'`. It picks
   which half of every bilingual field (`instruction`, `explain`, `translation`)
-  renders. Pass it explicitly — there is no context fallback.
+  renders. Pass it explicitly — there is no context fallback, and most of these
+  components require it. **The exceptions are `TopicProgressList` and
+  `DocumentStimulus`**, which take no `lang` prop and read the root
+  `data-explain-lang` attribute instead (see above). Check the `.d.ts` before
+  assuming a component accepts `lang`.
 - **German content never switches.** Prompts, options, table cells and answers
   stay German under every `lang`.
 - **Chrome is pinned German and is not configurable.** Buttons render *Prüfen*,
@@ -75,9 +100,15 @@ sharp edges the types now spell out but that are easy to trip over:
 
 ## An idiomatic composition
 
-All eight item renderers (`Cloze`, `MultipleChoice`, `Match`, `Order`,
-`TableFill`, `Translate`, `Listen`, plus `DocumentStimulus`) share one contract,
-so a runner swaps them freely:
+The **seven item renderers** — `Cloze`, `MultipleChoice`, `Match`, `Order`,
+`TableFill`, `Translate`, `Listen` — share one contract (`item`, `lang`,
+`onResult`, `locked`, `onNext`, `nextLabel`), so a runner swaps them freely on
+`item.type`.
+
+**`DocumentStimulus` is not one of them.** It is a stimulus, not a task: it takes
+a single required `document` prop, no `item` and no `lang`, and produces no
+result. Compose it *above* an item that asks about it — a runner that treats it
+as the eighth renderer will omit `document` and crash on `document.description`.
 
 ```jsx
 import { MultipleChoice } from 'deutsch-atlas';

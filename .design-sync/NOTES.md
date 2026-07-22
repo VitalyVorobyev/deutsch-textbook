@@ -75,18 +75,43 @@ worth browsing. When adding a preview, take the item from a real YAML set.
   pixels are not worth a cell: `locked` on the item renderers, and a second
   same-language `Listen` item (its German text is hidden until submission).
 
-## Findings in the app itself (not fixed here — reported only)
+## Findings in the app itself
 
-- **`Sparkline`'s JSDoc is wrong.** `src/components/progress/Sparkline.tsx:2`
-  says "null renders a gap", but the implementation builds a single continuous
-  path (`M` only at k===0, `L` thereafter), so a null is skipped and the line is
-  drawn straight across it. What a null actually costs is its horizontal slot and
-  its dot. The synced `.d.ts` documents the real behaviour.
-- **`accept` is required at render on `Order`, `Listen` and `Translate`** (and
-  `key_tokens` on `Translate`), even though the Zod schema marks them
-  `.default([])`. The components dereference them during render, so an item
-  object built by hand without them throws. This cost two `[RENDER]` failures
-  before it was found.
+- **`Sparkline` drew a line across buckets with no data — fixed in #96.**
+  `getFocusTrends` emits `errorRate: null` for a week with no attempts and
+  `WeaknessTrends` passed that straight through, so the chart interpolated a
+  trend across weeks nothing was measured in, under a caption telling the learner
+  a falling line means improvement. A point now starts a new subpath unless the
+  bucket before it had data. `tests/sparkline.test.tsx` pins it. **If that
+  behaviour is ever changed back, the synced `.d.ts` for `Sparkline` and
+  `previews/Sparkline.tsx` both describe the current behaviour and must move
+  with it.**
+- **`accept` is dereferenced during render by `Order`, `Listen` and `Translate`**
+  (and `key_tokens` by `Translate`), even though the Zod schema marks them
+  `.default([])`. **This is not an app bug** — exercise sets are parsed through
+  `exerciseSetSchema` at load (`src/content.config.ts`), so the default always
+  applies, and `z.infer` gives the output type, which is already required. It
+  only matters when an item object is built by hand, as previews do; that cost
+  two `[RENDER]` failures here. The synced contracts mark those fields required
+  for exactly that reason.
+
+## Two claims in `conventions.md` that were wrong the first time
+
+Both were caught by Codex review on the PR, not by any gate — the conventions
+file is prose, and nothing checks prose against behaviour. Re-derive these on any
+re-sync that changes the component set:
+
+- **Not every component takes `lang`.** `TopicProgressList` and
+  `DocumentStimulus` take no `lang` prop; they call `useExplainLang()`, which
+  reads `<html data-explain-lang>` and falls back to `'en'`. The first draft told
+  the design agent that no React component reads that attribute, which would have
+  left those two silently pinned to English with no way to change them. Check the
+  prop list, not the general rule.
+- **`DocumentStimulus` is not an item renderer.** It takes `document` and nothing
+  else — no `item`, no `lang`, no `onResult`. The first draft listed it as the
+  eighth member of the uniform runner contract, which would have made a
+  type-driven runner omit `document` and crash. Seven renderers share the
+  contract; the stimulus is composed above them.
 
 ## Known render warns
 

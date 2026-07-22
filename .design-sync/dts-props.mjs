@@ -375,10 +375,10 @@ const props = {
 
   Sparkline: `
   /** Series in [0,1]; higher values sit nearer the top.
-      A null is a day with no data. It does NOT break the stroke — the point is
-      skipped and the line runs straight to the next one — but it still consumes
-      its horizontal slot, so missing days read as a long segment carrying no
-      dot. (The component's own JSDoc calls this "a gap", which overstates it.) */
+      A null is a bucket with no data and it BREAKS the line — the stroke stops
+      and restarts after the gap, rather than running through it, so the chart
+      never draws a trend across a period nothing was measured in. A run of a
+      single point therefore draws no line at all; its dot still marks it. */
   values: Array<number | null>;
   width?: number;
   height?: number;
