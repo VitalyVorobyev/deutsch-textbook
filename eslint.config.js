@@ -17,6 +17,8 @@ export default tseslint.config(
       'docs/',
       '.claude/', // local settings + agent worktrees (each carries a full repo copy)
       '.agents/',
+      'ds-bundle/', // generated claude.ai/design bundle (compiled React + previews)
+      '.ds-sync/', // staged design-sync converter scripts + their node_modules
     ],
   },
 
@@ -46,7 +48,7 @@ export default tseslint.config(
   },
   // Node/Bun context: dev scripts, the Astro dev-middleware integration, config files.
   {
-    files: ['scripts/**', 'src/integrations/**', '*.{js,mjs,ts}'],
+    files: ['scripts/**', 'src/integrations/**', '*.{js,mjs,ts}', '.design-sync/*.mjs'],
     languageOptions: { globals: globals.node },
   },
 
