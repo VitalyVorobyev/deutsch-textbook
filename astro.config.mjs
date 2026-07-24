@@ -24,6 +24,12 @@ export default defineConfig({
     '/training': withBase('/ueben/training'),
     '/vocab': withBase('/ueben/wortschatz'),
   },
+  // Astro 7 changed the default to 'jsx', which strips the indentation after a
+  // line-ending expression instead of collapsing it to a space — that silently
+  // welded "{grammarA1.late}\n из них" into "5из них" on /about. Prose is the
+  // product here, so keep the HTML-aware compression the articles were written
+  // against rather than chasing every wrap point with {' '}.
+  compressHTML: true,
   integrations: [mdx(), react(), progressWriter()],
   vite: {
     plugins: [tailwindcss()],
