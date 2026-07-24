@@ -13,7 +13,7 @@ import {
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import type { TopicNode } from '../../lib/mastery';
-import { dueProbes, probeFamilies, type DueProbe } from '../../lib/probes';
+import { dueProbes, probeFamilies, sessionProbeCap, type DueProbe } from '../../lib/probes';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -99,6 +99,8 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   const [step, setStep] = useState<Step>(initial?.step ?? 1);
   // null = still deciding whether any probe is due; [] = none, so step 0 does not exist today
   const [due, setDue] = useState<DueProbe[] | null>(null);
+  // what step 0 may serve: the session cap minus what today's budget already spent
+  const [probeCap, setProbeCap] = useState(0);
   const [probedCount, setProbedCount] = useState<number | null>(null);
   const [probesDone, setProbesDone] = useState(initial?.probesDone ?? false);
   const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
@@ -131,11 +133,21 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     void getAttempts().then((attempts) => {
       if (cancelled) return;
       const owed = dueProbes(families, attempts);
+      // The daily ceiling holds across surfaces: a catch-up run earlier today shrinks
+      // what this session's step 0 may serve, possibly to zero (sessionProbeCap).
+      const cap = sessionProbeCap(families, attempts);
       setDue(owed);
+      setProbeCap(cap);
       // A due probe opens the session, unless the learner already dealt with it today.
       // `owed` is itself the record of that: answering a probe logs an attempt, which
       // advances its stage, so it stops being due. The flag only covers a deliberate skip.
-      if (owed.length > 0 && !probesDone) setStep(0);
+      if (owed.length > 0 && cap > 0) {
+        if (!probesDone) setStep(0);
+      } else {
+        // a resume saved at step 0 earlier today may point at a step that no longer
+        // exists (probes all taken, or the budget spent by a catch-up run in between)
+        setStep((s) => (s === 0 ? 1 : s));
+      }
     });
     return () => {
       cancelled = true;
@@ -242,8 +254,8 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     step === 0 ? 1 : step === 1 && !reviewDone ? 2 : step === 2 ? 3 : null;
   const skippedLabel = pick(lang, UI.skipped);
 
-  // Step 0 exists only on days a probe is actually due.
-  const steps: Step[] = due !== null && due.length > 0 ? [0, 1, 2, 3] : [1, 2, 3];
+  // Step 0 exists only on days a probe is actually due — and today's budget allows one.
+  const steps: Step[] = due !== null && due.length > 0 && probeCap > 0 ? [0, 1, 2, 3] : [1, 2, 3];
 
   if (doneToday === null || due === null) {
     return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;
@@ -322,7 +334,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
       </div>
 
       <div className="mt-6">
-        {step === 0 && <ProbeStep due={due} sets={sets} onFinished={finishProbes} />}
+        {step === 0 && <ProbeStep due={due} sets={sets} cap={probeCap} onFinished={finishProbes} />}
 
         {step === 1 &&
           (plan === null ? (

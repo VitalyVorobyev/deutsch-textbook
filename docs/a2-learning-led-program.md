@@ -40,8 +40,13 @@ revision-matched attempt supplies evidence.
 ## Calendar and B1 gates
 
 On or after 2026-08-02, review the A1 21-day cohort. If ordinary probe load still fits the
-three-per-session cap, pilot listening probe families only for `termine-vereinbaren` and
+five-per-session cap, pilot listening probe families only for `termine-vereinbaren` and
 `reisen-verkehr`, observe a complete 2/7/21-day cycle, and only then consider expansion.
+
+Probe caps were raised from 3 per session / 5 per day to 5 / 12 on 2026-07-24: at the A2 study
+finish, `bun run progress:audit --profile vitaly` showed 33 probes due (30 overdue) and actual
+intervals at 8–9 days against the nominal 2/7/21 — the caps, not the learner, had become the
+pacing bottleneck, distorting the intervals they exist to protect.
 
 A2 closes only after the checkpoint and its 2/7/21-day evidence are reviewed. Freeze B1 identities
 after that review, not before. Browser TTS remains the fallback unless evidence isolates audio

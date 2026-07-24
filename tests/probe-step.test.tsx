@@ -114,18 +114,18 @@ describe('ProbeStep', () => {
   });
 
   test('serves at most the visit cap — the session default, or the catch-up cap when passed', () => {
-    // four due probes from four families; the ordinary session must still open with 3
-    const names = ['one', 'two', 'three', 'four'];
+    // seven due probes from seven families; the ordinary session must still open with 5
+    const names = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];
     const manyDue = names.map((n) => dueFor(`a1/probe-${n}`, ITEM_A));
     const manySets = names.map((n) => setFor(`a1/probe-${n}`, ITEM_A));
 
     render(<ProbeStep due={manyDue} sets={manySets} onFinished={() => {}} />);
-    expect(screen.getByText(/1 \/ 3/)).toBeTruthy();
+    expect(screen.getByText(/1 \/ 5/)).toBeTruthy();
     cleanup();
 
     // the probes-only catch-up run passes a higher cap and gets the rest of the queue
-    render(<ProbeStep due={manyDue} sets={manySets} cap={5} onFinished={() => {}} />);
-    expect(screen.getByText(/1 \/ 4/)).toBeTruthy();
+    render(<ProbeStep due={manyDue} sets={manySets} cap={12} onFinished={() => {}} />);
+    expect(screen.getByText(/1 \/ 7/)).toBeTruthy();
   });
 
   test('the summary counts every answer, and finishes', async () => {

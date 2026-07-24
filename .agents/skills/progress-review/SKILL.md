@@ -71,8 +71,8 @@ CLAUDE.md's "Drills from progress" for the how, and the operating program's bar 
   errors — that is what drives training priority, and a drill exists to be served by it.
 - **Recovery column:** whether the learner has answered that focus correctly since its last error.
   "yes" over old wrongness argues against a drill; "no" with recent errors argues for inspection.
-- **Probe workload** is reported per **day**; `MAX_PROBES_PER_SESSION` caps a *session* — "4 due"
-  against a cap of 3 is not a violation. Overdue probes remain valid data: the report gives the
+- **Probe workload** is reported per **day**; `MAX_PROBES_PER_SESSION` caps a *session* — "6 due"
+  against a cap of 5 is not a violation. Overdue probes remain valid data: the report gives the
   interval that actually elapsed, not the scheduled one. What debt implies is a pacing question,
   not a validity one.
 - **Lapse tables:** skew toward `x-de` (production) is the expected asymmetry — monitor, don't

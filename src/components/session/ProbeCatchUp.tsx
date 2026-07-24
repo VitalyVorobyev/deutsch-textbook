@@ -25,7 +25,7 @@ import ProbeStep from './ProbeStep';
  * (remainingProbeBudget in src/lib/probes.ts): MAX_PROBES_PER_CATCHUP is a daily
  * ceiling, and probes the ordinary session already served count against it. The Heute
  * card applies the same gate, but this route is reachable without the card, so it
- * defends itself — a spent budget gets a friendly stop instead of five more probes.
+ * defends itself — a spent budget gets a friendly stop instead of more probes.
  *
  * On finish it returns to Heute; remaining debt stays due and drains tomorrow.
  */
