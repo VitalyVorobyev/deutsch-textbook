@@ -80,14 +80,15 @@ useful card). Before authoring, list the forbidden headwords for the field — e
 `content/vocab/*.yaml` — and check against it. Expect **12–24 new entries per unit**, lower for a
 grammar-heavy unit, and treat the number as a load guardrail rather than a target.
 
-**Receptive-only language never enters a deck.** `buildDeck()` turns every vocab entry into two
-cards, a recognition card and a production card; there is no recognition-only representation. So a
+**Receptive-only language never enters an A2 deck.** At A2, `buildDeck()` turns every vocab entry
+into two cards, and that stays true: A2 decks predate `cards: recognition` and are never
+retrofitted (flipping a shipped entry deletes its production card's SRS history). So at A2 a
 station announcement, a listing abbreviation or a form heading — language the learner must
 understand but will never produce — belongs in a reading, a gloss or an article table, and nowhere
-near `content/vocab/`. (The draft of this blueprint asked authors to budget "new receptive"
-vocabulary; that category is deleted. If A2 usage shows the SRS load is genuinely inflated by words
-that only need recognition, a `cards: recognition | both` field is the fix, and it is a backlog
-item, not an authoring workaround.)
+near `content/vocab/`. **From B1 on the rule changes shape**: the `cards: recognition | both`
+field shipped 2026-07-23 (P5-6, exactly for B1's Wortliste tail), so understand-only language may
+enter a *new* deck as a single recognition card — the two-card default remains for anything the
+learner should produce.
 
 **Coverage is measured, not asserted.** A2 is checked against the Goethe-Zertifikat A2 Wortliste in
 `data/goethe-a2-wortliste.txt` exactly as A1 is: units drive authoring, a completion pass at the end
@@ -587,8 +588,9 @@ superlatives beyond fixed phrases.
 `konjunktiv2-ratschlag`; `lassen` → `lassen-verwendung`; `adjektiv-nullartikel` →
 `adjektiv-nullartikel` (frisches Obst, warmes Wasser — the strong declension earns its keep here).
 **Outcomes:** `beschwerden-schildern` (spoken-interaction — "Ich kann Beschwerden schildern und
-Rückfragen beantworten."), `ratschlag-geben` (spoken-interaction — "Ich kann mit Konjunktiv II
-Ratschläge geben und abschwächen."), `empfehlungen-verstehen` (reading — "Ich kann Empfehlungen
+Rückfragen beantworten."), `ratschlaege-formulieren` (spoken-interaction — "Ich kann mit
+Konjunktiv II Ratschläge geben und abschwächen." — *not* `ratschlag-geben`, which
+`gesundheit-arzttermin` already owns: outcome ids are global), `empfehlungen-verstehen` (reading — "Ich kann Empfehlungen
 und Packungsangaben verstehen."), `gewohnheiten-beschreiben` (spoken-production — "Ich kann über
 Gewohnheiten und Wohlbefinden sprechen.").
 **Deepens:** `gesundheit-arzttermin` (its `reflexiv-akkusativ`/`reflexiv-dativ` base grows the
@@ -727,7 +729,8 @@ unit may assume that a structure met once at A2 was retained.
 3. Review each unit against the twelve-point A2 unit quality gate in the audit and the
    `learning-science` skill before it lands.
 4. Run the full gate: `bun run validate && bun test && bun run check && bun run lint && bun run build`.
-5. After every two or three units, read the newest snapshot in `progress/<profile>/`: mode
+5. After every two units (the frozen B1 cadence — same interval as the level-wide policy above),
+   read the newest snapshot in `progress/<profile>/`: mode
    distribution, focus errors, card lapses, delayed-probe retention and novel transfer. Adjust the
    units that follow; add to the units that shipped without renaming anything.
 6. Close the level with the checkpoint, the Wortliste completion pass, and an honest Über page.
@@ -737,7 +740,8 @@ unit may assume that a structure met once at A2 was retained.
 - Every A2 unit clears the twelve-point A2 unit quality gate in [the audit](a1-learning-audit.md).
 - Every declared outcome is measured by at least one non-pretest item or reading question.
 - No A2 deck re-teaches a headword another deck owns, and no A2 topic adopts an A1 deck.
-- Receptive-only language appears in readings and articles, never in a deck.
+- Receptive-only language appears in readings and articles — never in an A2 deck, and in a B1
+  deck only as `cards: recognition` (the A2 two-card decks are never retrofitted).
 - The six shipped A2 topics are strengthened in place, never duplicated under a thematic name.
 - The B1 contract is frozen (2026-07-24) but creates no learner-visible completeness claim ahead
   of shipped content — the Über B1 card and the README scope line flip only when the first B1
