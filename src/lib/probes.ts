@@ -31,15 +31,23 @@ import { isVerifiedEvidence } from './scoring';
 export const PROBE_INTERVALS_DAYS = [2, 7, 21] as const;
 
 /** Bounded share of an ordinary session — a probe backlog must never crowd out the lesson. */
-export const MAX_PROBES_PER_SESSION = 3;
+export const MAX_PROBES_PER_SESSION = 5;
 
 /**
- * Bounded size of a probes-only catch-up visit (the "Probe-Rückstand" run). Larger than
- * the session cap because the visit contains nothing else, but still bounded: nine probes
- * in a row is an exam, and fatigue confounds the very measurement a probe exists to make.
- * The session cap itself is deliberately never raised — this run is how debt drains.
+ * Bounded size of a probes-only catch-up visit (the "Probe-Rückstand" run) and the ceiling
+ * per *day* (remainingProbeBudget below). Larger than the session cap because the visit
+ * contains nothing else, but still bounded: a long unbroken probe run is an exam, and
+ * fatigue confounds the very measurement a probe exists to make.
+ *
+ * Both caps were raised 3/5 → 5/12 on 2026-07-24. The old sizes were set for a learner
+ * pacing one unit at a time — and the comment here used to say the session cap is
+ * deliberately never raised. At the A2 study finish that sizing became the bottleneck:
+ * `bun run progress:audit --profile vitaly` showed 33 probes due (30 overdue) and actual
+ * intervals stretched to 8–9 days against the nominal 2/7/21, so the caps were distorting
+ * the very intervals they exist to protect. Twelve a day clears such a backlog in days
+ * while one sitting stays well short of exam length.
  */
-export const MAX_PROBES_PER_CATCHUP = 5;
+export const MAX_PROBES_PER_CATCHUP = 12;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -310,11 +318,12 @@ export function probesTakenToday(
 /**
  * How many probes today may still serve. MAX_PROBES_PER_CATCHUP is a ceiling per *day*,
  * not per visit: without it, finishing a catch-up run landed back on Heute, where a
- * still-over-cap backlog re-showed the card — and a nine-probe debt could be chained
+ * still-over-cap backlog re-showed the card — and a long debt could be chained
  * back-to-back in one sitting, which is exactly the exam-with-fatigue the caps exist to
- * prevent. An ordinary session serves at most MAX_PROBES_PER_SESSION (< the ceiling), so
- * an exhausted budget means a catch-up already ran today; the rest of the debt stays due
- * (`dueProbe` counts probes taken, not offered) and drains tomorrow.
+ * prevent. Both probe surfaces spend from this one budget: the catch-up run serves at
+ * most the remainder, and an ordinary session's step 0 is clamped by sessionProbeCap
+ * below — so the ceiling holds across any order of visits in a day. Unserved debt stays
+ * due (`dueProbe` counts probes taken, not offered) and drains tomorrow.
  */
 export function remainingProbeBudget(
   families: readonly ProbeFamily[],
@@ -322,6 +331,21 @@ export function remainingProbeBudget(
   now: number = Date.now(),
 ): number {
   return Math.max(0, MAX_PROBES_PER_CATCHUP - probesTakenToday(families, attempts, now));
+}
+
+/**
+ * What an ordinary session's step 0 may serve: the session cap, shrunk by what today's
+ * budget has already spent (a catch-up run before the session, or an earlier session).
+ * Without this clamp a twelve-probe catch-up followed by the daily session served
+ * seventeen probes in one day — over the ceiling, and with the overdue backlog it could
+ * even re-probe a later stage of a family measured cold an hour earlier.
+ */
+export function sessionProbeCap(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+  now: number = Date.now(),
+): number {
+  return Math.min(MAX_PROBES_PER_SESSION, remainingProbeBudget(families, attempts, now));
 }
 
 export interface ProbeResult {

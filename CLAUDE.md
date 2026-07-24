@@ -71,7 +71,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 
 - **`planReview()` (`src/lib/decks.ts`) is the ONE rule for what a review queue contains.** New cards are rationed **per day, not per queue** (`DAILY_NEW_CARDS = 15`) — `planReview` re-runs on every mount, so a per-queue cap alone dealt a reloading learner 75 new cards and months of review debt. Fresh-card ties break at random, never by card id.
 - **Never mount a React island per table row.** In `.astro` templates use `src/components/SpeakButton.astro` — one hoisted, delegated listener for the whole page.
-- **Probe state is derived from the attempt log, never stored.** A due probe opens the session as step 0, *before* review and training. `MAX_PROBES_PER_SESSION = 3`.
+- **Probe state is derived from the attempt log, never stored.** A due probe opens the session as step 0, *before* review and training. `MAX_PROBES_PER_SESSION = 5`.
 - **Checkpoints and placements are data, not wiring** — discovered by role, level read off the directory. Shipping the next level's is one new YAML file and no code. One of each per level.
 - **A passed placement is a third evidence class**: green, real, and it **never raises the measured tier**. Do not add a placement branch to `topicTier`/`effectiveTier`; never fold placed topics into a mastery counter; add no fifth chip to `EvidenceChips`. Nothing is written until the learner presses *Ergebnis übernehmen*.
 - **Navigation asks a different question than the badge.** `pathDone` is mastered *or* primary practice completed *or* self-rated `learned`. **Never derive a badge from `pathDone`** — a self-rating is not evidence. And never gate the path on item-level completion alone.
