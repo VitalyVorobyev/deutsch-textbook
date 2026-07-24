@@ -1,0 +1,220 @@
+# Drill from progress (2026-07-24 audit, post-triage): da-wo-woerter is persistent — 10
+# attributed errors across 5 distinct items plus a failed probe, and no recovery since the
+# last error. Every item drills one of the tag's three faces: wo(r)- asks, da(r)- refers,
+# and a person takes preposition + pronoun instead of either. Contexts are fresh (bus,
+# photo, bicycle, party, neighbour), never re-skins of the topic's own items.
+topic: verben-mit-praepositionen
+role: drill
+title:
+  en: "Drill — da-words, wo-words, and people"
+  ru: "Тренажёр — da-слова, wo-слова и люди"
+  uk: "Тренажер — da-слова, wo-слова і люди"
+items:
+  - id: mc-worauf-bus
+    outcomes: [wo-wort-fragen]
+    type: mc
+    focus: da-wo-woerter
+    prompt: "___ wartest du? — Auf den Bus."
+    options:
+      - "Worauf"
+      - "Darauf"
+    correct: 0
+    translation:
+      en: "What are you waiting for? — For the bus."
+      ru: "Чего ты ждёшь? — Автобуса."
+      uk: "Чого ти чекаєш? — Автобуса."
+    explain:
+      en: "A question about a thing is built with wo(r)-: worauf. darauf points back at something already named — it cannot open a question. The pair is one letter apart, and that letter decides whether you are asking or referring."
+      ru: "Вопрос о предмете строится с wo(r)-: worauf. darauf отсылает к уже названному — вопрос с него начать нельзя. Пара отличается одной буквой, и именно она решает: вы спрашиваете или ссылаетесь."
+      uk: "Питання про предмет будується з wo(r)-: worauf. darauf відсилає до вже названого — питання з нього почати не можна. Пара відрізняється однією літерою, і саме вона вирішує: ви запитуєте чи посилаєтеся."
+
+  - id: mc-darueber-problem
+    outcomes: [da-wort-sache]
+    type: mc
+    focus: da-wo-woerter
+    prompt: "Das Problem kennen wir schon. Ich möchte nicht mehr ___ sprechen."
+    options:
+      - "darüber"
+      - "worüber"
+    correct: 0
+    translation:
+      en: "We already know the problem. I don't want to talk about it any more."
+      ru: "Эту проблему мы уже знаем. Я больше не хочу о ней говорить."
+      uk: "Цю проблему ми вже знаємо. Я більше не хочу про неї говорити."
+    explain:
+      en: "The problem is already on the table, so the sentence refers back: da(r) + über = darüber. worüber would turn the statement into a question nobody is asking here."
+      ru: "Проблема уже названа, поэтому предложение отсылает к ней: da(r) + über = darüber. worüber превратило бы утверждение в вопрос, которого здесь никто не задаёт."
+      uk: "Проблему вже названо, тому речення відсилає до неї: da(r) + über = darüber. worüber перетворило б твердження на питання, якого тут ніхто не ставить."
+
+  - id: mc-person-warten
+    outcomes: [person-sache-unterscheiden]
+    type: mc
+    focus: da-wo-woerter
+    prompt: "Das ist mein Bruder. Ich warte ___."
+    options:
+      - "auf ihn"
+      - "darauf"
+    correct: 0
+    translation:
+      en: "That is my brother. I am waiting for him."
+      ru: "Это мой брат. Я жду его."
+      uk: "Це мій брат. Я чекаю на нього."
+    explain:
+      en: "da-words stand in for things and plans, never for people. A person keeps the preposition and a pronoun: auf ihn. darauf would turn your brother into an object."
+      ru: "da-слова заменяют предметы и планы, но не людей. Человек сохраняет предлог и местоимение: auf ihn. darauf превратило бы брата в предмет."
+      uk: "da-слова заміняють предмети і плани, але не людей. Людина зберігає прийменник і займенник: auf ihn. darauf перетворило б брата на предмет."
+
+  - id: mc-damit-fahrrad
+    outcomes: [da-wort-sache]
+    type: mc
+    focus: da-wo-woerter
+    prompt: "Hier ist mein neues Fahrrad. ___ fahre ich jetzt zur Arbeit."
+    options:
+      - "Damit"
+      - "Darmit"
+    correct: 0
+    translation:
+      en: "Here is my new bicycle. I ride it to work now."
+      ru: "Вот мой новый велосипед. Теперь я езжу на нём на работу."
+      uk: "Ось мій новий велосипед. Тепер я їжджу ним на роботу."
+    explain:
+      en: "The linking r appears only when the preposition starts with a vowel: darauf, daran, darüber. mit starts with a consonant, so nothing needs linking: damit. Darmit carries the r to a place it never goes."
+      ru: "Соединительное r появляется, только когда предлог начинается с гласного: darauf, daran, darüber. mit начинается с согласного, поэтому соединять нечего: damit. Darmit переносит r туда, где его не бывает."
+      uk: "Сполучне r з'являється лише тоді, коли прийменник починається з голосного: darauf, daran, darüber. mit починається з приголосного, тому з'єднувати нічого: damit. Darmit переносить r туди, де його не буває."
+
+  - id: cloze-worueber-foto
+    outcomes: [wo-wort-fragen]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "Open the question with the right wo-word."
+      ru: "Начните вопрос с правильного wo-слова."
+      uk: "Почніть питання з правильного wo-слова."
+    text: "{{Worüber}} lacht ihr? — Über das Foto."
+    translation:
+      en: "What are you laughing about? — About the photo."
+      ru: "Над чем вы смеётесь? — Над фотографией."
+      uk: "З чого ви смієтеся? — З фотографії."
+    explain:
+      en: "lachen selects über, and a question about a thing fuses wo + über with the linking r: worüber. The answer keeps the plain preposition: über das Foto."
+      ru: "lachen требует über, а вопрос о предмете сплавляет wo + über через соединительное r: worüber. В ответе остаётся обычный предлог: über das Foto."
+      uk: "lachen вимагає über, а питання про предмет сплавляє wo + über через сполучне r: worüber. У відповіді залишається звичайний прийменник: über das Foto."
+
+  - id: cloze-womit-schreiben
+    outcomes: [wo-wort-fragen]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "Ask about the tool — one wo-word."
+      ru: "Спросите об инструменте — одним wo-словом."
+      uk: "Запитайте про інструмент — одним wo-словом."
+    text: "{{Womit}} schreibst du — mit dem Kuli oder mit dem Bleistift?"
+    translation:
+      en: "What are you writing with — with the pen or with the pencil?"
+      ru: "Чем ты пишешь — ручкой или карандашом?"
+      uk: "Чим ти пишеш — ручкою чи олівцем?"
+    explain:
+      en: "mit begins with a consonant, so wo joins it directly: womit, no linking r. Compare worüber, where the vowel of über demands one."
+      ru: "mit начинается с согласного, поэтому wo присоединяется напрямую: womit, без соединительного r. Сравните с worüber, где гласный в über его требует."
+      uk: "mit починається з приголосного, тому wo приєднується напряму: womit, без сполучного r. Порівняйте з worüber, де голосний в über його вимагає."
+
+  - id: cloze-daran-termin
+    outcomes: [da-wort-sache]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "Refer back to the appointment with one da-word."
+      ru: "Сошлитесь на встречу одним da-словом."
+      uk: "Пошліться на зустріч одним da-словом."
+    text: "Vergiss den Termin nicht! — Keine Sorge, ich denke {{daran}}."
+    translation:
+      en: "Don't forget the appointment! — Don't worry, I'm keeping it in mind."
+      ru: "Не забудь о встрече! — Не волнуйся, я помню о ней."
+      uk: "Не забудь про зустріч! — Не хвилюйся, я пам'ятаю про неї."
+    explain:
+      en: "denken selects an, the appointment is a thing already named, and an starts with a vowel — three facts, one word: da + r + an = daran."
+      ru: "denken требует an, встреча — уже названный предмет, а an начинается с гласного. Три факта — одно слово: da + r + an = daran."
+      uk: "denken вимагає an, зустріч — уже названий предмет, а an починається з голосного. Три факти — одне слово: da + r + an = daran."
+
+  - id: cloze-dafuer-kochen
+    outcomes: [da-wort-sache]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "Refer back with one da-word."
+      ru: "Сошлитесь одним da-словом."
+      uk: "Пошліться одним da-словом."
+    text: "Kochst du gern? — Ja, ich interessiere mich sehr {{dafür}}."
+    translation:
+      en: "Do you like cooking? — Yes, I'm very interested in it."
+      ru: "Ты любишь готовить? — Да, я очень этим интересуюсь."
+      uk: "Ти любиш готувати? — Так, я дуже цим цікавлюся."
+    explain:
+      en: "sich interessieren selects für; cooking is an activity, not a person, so the reference is a da-word — and für starts with a consonant: dafür, no linking r."
+      ru: "sich interessieren требует für; готовка — занятие, а не человек, поэтому отсылка — da-слово. für начинается с согласного: dafür, без r."
+      uk: "sich interessieren вимагає für; готування — заняття, а не людина, тому відсилання — da-слово. für починається з приголосного: dafür, без r."
+
+  - id: uebersetzen-woran-familie
+    outcomes: [wo-wort-fragen]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate. Ask with a wo-word."
+      ru: "Переведите. Задайте вопрос с wo-словом."
+      uk: "Перекладіть. Поставте питання з wo-словом."
+    prompt_en: "What are you thinking about? — About my family."
+    prompt_ru: "О чём ты думаешь? — О моей семье."
+    prompt_uk: "Про що ти думаєш? — Про мою сім'ю."
+    answer: "Woran denkst du? — An meine Familie."
+    # English "you" fixes no person — the same reasoning as translate-worauf.
+    accept:
+      - "Woran denken Sie? — An meine Familie."
+      - "Woran denkt ihr? — An meine Familie."
+    key_tokens: ["Woran"]
+    explain:
+      en: "denken selects an; a question about a thing fuses wo + r + an = woran. The reply keeps the preposition itself: an meine Familie."
+      ru: "denken требует an; вопрос о предмете сплавляется в wo + r + an = woran. В ответе предлог остаётся сам по себе: an meine Familie."
+      uk: "denken вимагає an; питання про предмет сплавляється в wo + r + an = woran. У відповіді прийменник залишається сам по собі: an meine Familie."
+
+  - id: uebersetzen-darauf-party
+    outcomes: [da-wort-sache]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate. Refer back with a da-word."
+      ru: "Переведите. Сошлитесь с помощью da-слова."
+      uk: "Перекладіть. Пошліться за допомогою da-слова."
+    prompt_en: "Are you coming to the party? — Yes, I am looking forward to it."
+    prompt_ru: "Ты придёшь на вечеринку? — Да, я очень жду её."
+    prompt_uk: "Ти прийдеш на вечірку? — Так, я дуже на неї чекаю."
+    answer: "Kommst du zur Party? — Ja, ich freue mich darauf."
+    accept:
+      - "Kommen Sie zur Party? — Ja, ich freue mich darauf."
+      - "Kommt ihr zur Party? — Ja, ich freue mich darauf."
+      - "Kommst du zur Party? — Ja, ich freue mich sehr darauf."
+      - "Kommst du zur Party? — Ja, ich freue mich schon darauf."
+    key_tokens: ["darauf"]
+    explain:
+      en: "The party is a thing, so German refers back with a da-word: sich freuen auf → darauf, with the linking r before the vowel of auf. auf sie would treat the party as a person — English it hides this choice, German forces it."
+      ru: "По-русски вечеринка остаётся личным местоимением — «я жду её», — но немецкий ссылается на предметы da-словом: sich freuen auf → darauf, с соединительным r перед гласным auf. auf sie сделало бы вечеринку человеком."
+      uk: "Українською вечірка — особовий займенник («чекаю на неї»), але німецька посилається на предмети da-словом: sich freuen auf → darauf, зі сполучним r перед голосним auf. auf sie зробило б вечірку людиною."
+
+  - id: uebersetzen-mit-ihm-nachbar
+    outcomes: [person-sache-unterscheiden]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "That is my neighbour. I often talk to him."
+    prompt_ru: "Это мой сосед. Я часто с ним разговариваю."
+    prompt_uk: "Це мій сусід. Я часто з ним розмовляю."
+    answer: "Das ist mein Nachbar. Ich spreche oft mit ihm."
+    accept:
+      - "Das ist mein Nachbar. Ich rede oft mit ihm."
+    key_tokens: ["mit", "ihm"]
+    explain:
+      en: "A neighbour is a person, so no da-word: the preposition stays and takes a pronoun — mit ihm. damit would turn him into a tool. sprechen mit governs the dative, hence ihm."
+      ru: "Сосед — человек, поэтому никакого da-слова: предлог остаётся и берёт местоимение — mit ihm. damit превратило бы его в инструмент. sprechen mit управляет дательным, отсюда ihm."
+      uk: "Сусід — людина, тому жодного da-слова: прийменник залишається і бере займенник — mit ihm. damit перетворило б його на інструмент. sprechen mit керує давальним, звідси ihm."

@@ -1,6 +1,9 @@
 # A2–B1 curriculum blueprint
 
-Status: **The A2 authoring contract is complete; B1 remains a provisional north star** (2026-07-13).
+Status: **A2 is authored and studied through its checkpoint; B1 authoring begins under the
+2026-07-24 owner decision** — the provisional architecture below is next to be frozen, and the
+2026-08-02 / ~2026-08-14 evidence reads are revision triggers, not sequencing gates
+([decision record](a2-learning-led-program.md#calendar-and-b1-gates)) (2026-07-24).
 
 The required A1/A2 spine is now fully authored. Until representative A2 use, the A2 checkpoint and
 delayed evidence are reviewed, new work stays inside the existing levels: optional connected
