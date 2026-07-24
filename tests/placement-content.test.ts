@@ -181,7 +181,7 @@ describe('the shipped A2 placement test, end to end', () => {
     for (const [topicId, count] of perTopic) expect([topicId, count >= 2]).toEqual([topicId, true]);
   });
 
-  test('passing both levels leaves no lesson on the path at all', () => {
+  test('passing both levels lands on the first B1 lesson', () => {
     const a1 = loadPlacement('a1');
     const attempts = [...take(a1), ...take(p)];
     const topics: TopicsState = {
@@ -191,6 +191,8 @@ describe('the shipped A2 placement test, end to end', () => {
     const ctx: TopicContext = { attempts, cards: {}, topics };
     expect(levelPathDone('A1', nodes, ctx)).toBe(true);
     expect(levelPathDone('A2', nodes, ctx)).toBe(true);
-    expect(recommendedNext(spine, nodes, ctx)).toBeUndefined();
+    // Until B1.1 shipped (2026-07-24) this was undefined — a placed-out learner had no
+    // next lesson. Now the path continues where the placements end.
+    expect(recommendedNext(spine, nodes, ctx)?.id).toBe('erfahrungen-erzaehlen');
   });
 });

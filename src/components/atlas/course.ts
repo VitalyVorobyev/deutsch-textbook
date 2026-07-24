@@ -32,7 +32,7 @@ export interface PathCheckpoint {
 
 export type ActiveGoal = LearningGoal & { topicId: string };
 export type View = 'path' | 'atlas' | 'overview';
-export type LevelFilter = 'all' | 'A1' | 'A2';
+export type LevelFilter = 'all' | 'A1' | 'A2' | 'B1';
 /** `open` is every tier below mastered — "what's still left for me". */
 export type StatusFilter = 'all' | 'open' | Tier;
 

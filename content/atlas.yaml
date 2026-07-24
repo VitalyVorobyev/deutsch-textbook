@@ -61,6 +61,13 @@ groups:
     title_en: People & everyday life
     title_ru: Люди и повседневная жизнь
     title_uk: Люди та повсякденне життя
+  - id: erzaehlen-berichten
+    strand: communication
+    parent: kommunikation
+    title_de: Erzählen & Berichten
+    title_en: Narrating & reporting
+    title_ru: Повествование и отчёт
+    title_uk: Оповідь і звіт
   - id: transaktionen-termine
     strand: communication
     parent: kommunikation
@@ -1299,6 +1306,48 @@ nodes:
         ru: "Я умею написать короткое официальное сообщение в учреждение."
         uk: "Я вмію написати коротке офіційне повідомлення до установи."
 
+  # --- B1 (contract: docs/curriculum-a2-b1.md, frozen 2026-07-24) ---
+  - id: erfahrungen-erzaehlen
+    level: B1
+    kind: communication
+    strand: communication
+    group: erzaehlen-berichten
+    prerequisites: [biografie-erfahrungen, nebensaetze-plaene]
+    # The register split (spoken Perfekt vs written Präteritum) deepens the biografie
+    # default via `praeteritum-sein-haben` (cloze-als-kind-hatte), and the auxiliary rule
+    # rides along via `haben-sein` (cloze-aufgewacht-verpasst) — both tags the base
+    # topics drill, so the edges carry a live runtime channel.
+    deepens: [biografie-erfahrungen, perfekt-haben-sein]
+    outcomes:
+      - id: praeteritum-erzaehlen
+        mode: writing
+        domain: personal
+        de: "Ich kann ein Erlebnis schriftlich im Präteritum erzählen."
+        en: "I can narrate an experience in writing, in the Präteritum."
+        ru: "Я умею письменно рассказать о пережитом в Präteritum."
+        uk: "Я вмію письмово розповісти про пережите в Präteritum."
+      - id: vorzeitigkeit-ausdruecken
+        mode: writing
+        domain: personal
+        de: "Ich kann mit nachdem und Plusquamperfekt sagen, was zuerst geschah."
+        en: "I can say what happened first, with nachdem and the Plusquamperfekt."
+        ru: "Я умею сказать, что произошло раньше, через nachdem и Plusquamperfekt."
+        uk: "Я вмію сказати, що сталося раніше, через nachdem і Plusquamperfekt."
+      - id: interview-verstehen
+        mode: listening
+        domain: personal
+        de: "Ich kann einem Interview über Erfahrungen die Hauptpunkte entnehmen."
+        en: "I can pick out the main points of an interview about experiences."
+        ru: "Я умею выделить главное в интервью о пережитом."
+        uk: "Я вмію виділити головне в інтерв'ю про пережите."
+      - id: muendlich-nacherzaehlen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann eine Geschichte mündlich zusammenhängend nacherzählen."
+        en: "I can retell a story aloud in a connected way."
+        ru: "Я умею связно пересказать историю вслух."
+        uk: "Я вмію зв'язно переказати історію вголос."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1541,3 +1590,10 @@ units:
     title_ru: "Учреждения и услуги"
     title_uk: "Установи та послуги"
     topics: [aemter-dienstleistungen]
+  - id: erfahrungen-erzaehlen
+    level: B1
+    title_de: "Erfahrungen erzählen"
+    title_en: "Telling about experiences"
+    title_ru: "Рассказ о пережитом"
+    title_uk: "Розповідь про пережите"
+    topics: [erfahrungen-erzaehlen]

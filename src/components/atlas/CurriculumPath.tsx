@@ -327,7 +327,7 @@ function AtlasView({ topics, groups, currentId, selected, goal, routeIds, comple
   }
   return <div className="mt-6">
     <div className="flex flex-wrap gap-4">
-      <Filter label={t('filter.level', uiLang)} value={level} onChange={onLevel} options={[['all', t('filter.all', uiLang)],['A1','A1'],['A2','A2']]} />
+      <Filter label={t('filter.level', uiLang)} value={level} onChange={onLevel} options={[['all', t('filter.all', uiLang)],['A1','A1'],['A2','A2'],['B1','B1']]} />
       <Filter label={t('filter.strand', uiLang)} value={strand} onChange={onStrand} options={[['all', t('filter.all', uiLang)], ...STRANDS.map((id) => [id, t(STRAND_KEYS[id], uiLang)] as const)]} />
     </div>
     <div className="mt-5 overflow-hidden rounded-xl border border-stone-200 bg-stone-50 dark:border-stone-700 dark:bg-stone-900/40">

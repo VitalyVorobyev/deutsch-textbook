@@ -118,7 +118,8 @@ drill decisions.
 ## Multilingual rendering
 
 English and Russian are the core explanation halves; Ukrainian is required wherever a translated
-scope has entered the Ukrainian wave. German-medium explanation halves begin with B1 content.
+scope has entered the Ukrainian wave. German-medium explanation halves ship with B1 content —
+live since the first B1 unit (2026-07-24), never backfilled to A1/A2.
 `src/lib/prefs.ts` selects the requested half and defines fallback behavior; `src/lib/langcheck.ts`
 and the validator enforce parity and alphabet discipline.
 

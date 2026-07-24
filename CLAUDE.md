@@ -1,9 +1,10 @@
 # Deutsch-Atlas
 
 An agent-authored German learning system: wiki-like textbook + interactive exercises +
-FSRS flashcards. The course currently targets A1–A2; the learner (Vitaly) has B2 as a
-longer-term goal. Explanations are bilingual **EN + RU**, with optional **UK** arriving in
-translation waves and, from B1 onward, an optional German-medium explanation half. The repo is
+FSRS flashcards. A1 and A2 are complete and B1 is being authored under its frozen contract
+(`docs/curriculum-a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
+are bilingual **EN + RU**, with optional **UK** arriving in translation waves and, from B1
+onward, an optional German-medium explanation half. The repo is
 both the knowledge base (`content/`) and the Astro site that renders it.
 
 **This file is the index and the rule digest.** Every rule the project enforces has its imperative

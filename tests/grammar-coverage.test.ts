@@ -79,17 +79,20 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 has a real manifest, and it reports the level as unwritten', () => {
+  test('B1 reports exactly what has shipped — unit 1 covers its three points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
-    expect(coverage.covered).toBe(0);
+    // The ratchet: raised in the same commit that ships a unit, never ahead of content.
+    // Unit B1.1 (erfahrungen-erzaehlen, 2026-07-24) closed its three contract points.
+    expect(coverage.covered).toBe(3);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(0);
-    // Every B1 point must name at least one tag no other level already teaches, or an A2
-    // tag could silently close a B1 gap — the exact mistake that hid six A2 structures
-    // inside planned B1 units. Checked by construction: nothing is covered, so no B1 point
-    // is being satisfied by tags A1/A2 content already carries.
-    expect(coverage.points.every((p) => p.status === 'missing')).toBe(true);
+    expect(coverage.percent).toBe(10);
+    const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
+    expect(covered).toEqual(['plusquamperfekt', 'praeteritum-vollverben', 'temporalsatz']);
+    // Every other B1 point still names only tags no shipped content carries — an A2
+    // tag must never silently close a B1 gap (the mistake that hid six A2 structures
+    // inside planned B1 units).
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 3);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {
