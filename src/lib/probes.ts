@@ -318,11 +318,12 @@ export function probesTakenToday(
 /**
  * How many probes today may still serve. MAX_PROBES_PER_CATCHUP is a ceiling per *day*,
  * not per visit: without it, finishing a catch-up run landed back on Heute, where a
- * still-over-cap backlog re-showed the card — and a nine-probe debt could be chained
+ * still-over-cap backlog re-showed the card — and a long debt could be chained
  * back-to-back in one sitting, which is exactly the exam-with-fatigue the caps exist to
- * prevent. An ordinary session serves at most MAX_PROBES_PER_SESSION (< the ceiling), so
- * an exhausted budget means a catch-up already ran today; the rest of the debt stays due
- * (`dueProbe` counts probes taken, not offered) and drains tomorrow.
+ * prevent. Both probe surfaces spend from this one budget: the catch-up run serves at
+ * most the remainder, and an ordinary session's step 0 is clamped by sessionProbeCap
+ * below — so the ceiling holds across any order of visits in a day. Unserved debt stays
+ * due (`dueProbe` counts probes taken, not offered) and drains tomorrow.
  */
 export function remainingProbeBudget(
   families: readonly ProbeFamily[],
@@ -330,6 +331,21 @@ export function remainingProbeBudget(
   now: number = Date.now(),
 ): number {
   return Math.max(0, MAX_PROBES_PER_CATCHUP - probesTakenToday(families, attempts, now));
+}
+
+/**
+ * What an ordinary session's step 0 may serve: the session cap, shrunk by what today's
+ * budget has already spent (a catch-up run before the session, or an earlier session).
+ * Without this clamp a twelve-probe catch-up followed by the daily session served
+ * seventeen probes in one day — over the ceiling, and with the overdue backlog it could
+ * even re-probe a later stage of a family measured cold an hour earlier.
+ */
+export function sessionProbeCap(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+  now: number = Date.now(),
+): number {
+  return Math.min(MAX_PROBES_PER_SESSION, remainingProbeBudget(families, attempts, now));
 }
 
 export interface ProbeResult {

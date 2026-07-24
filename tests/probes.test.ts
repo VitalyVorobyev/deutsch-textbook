@@ -12,6 +12,7 @@ import {
   PROBE_INTERVALS_DAYS,
   remainingProbeBudget,
   servedProbes,
+  sessionProbeCap,
   type ProbeFamily,
 } from '../src/lib/probes';
 import type { Attempt } from '../src/lib/store';
@@ -370,6 +371,15 @@ describe('daily probe budget — derived from the attempt log, never stored', ()
     ];
     expect(probesTakenToday(budgetFamilies, practiceDay, at(15, 21))).toBe(0);
     expect(remainingProbeBudget(budgetFamilies, practiceDay, at(15, 21))).toBe(12);
+  });
+
+  test('the ordinary session is clamped by the ceiling too — never five more on top of it', () => {
+    // untouched day: the full session cap
+    expect(sessionProbeCap(budgetFamilies, [], at(15, 8))).toBe(5);
+    // a full catch-up first → the session that follows serves nothing
+    expect(sessionProbeCap(budgetFamilies, fullDay(15, 9), at(15, 21))).toBe(0);
+    // eight taken → the session serves the remaining four, not five
+    expect(sessionProbeCap(budgetFamilies, fullDay(15, 9).slice(0, 8), at(15, 21))).toBe(4);
   });
 });
 
