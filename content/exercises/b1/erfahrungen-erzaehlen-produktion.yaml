@@ -72,9 +72,11 @@ items:
     prompt_ru: "Мы оставались в кафе, пока дождь не закончился."
     prompt_uk: "Ми залишалися в кафе, поки дощ не скінчився."
     answer: "Wir blieben im Café, bis der Regen aufhörte."
+    # Every accepted rendering keeps the graded aufhörte at the wall — a variant with a
+    # different predicate (bis der Regen vorbei war) would leave the verb-final error
+    # unattributable, because the pinned token would not occur in the closest rendering.
     accept:
       - "Wir blieben so lange im Café, bis der Regen aufhörte."
-      - "Wir blieben im Café, bis der Regen vorbei war."
     key_tokens: ["bis", "aufhörte"]
     explain:
       en: "bis closes the interval: the staying lasts exactly until the rain's end. Russian needs a negation in this clause; German does not — bis der Regen aufhörte has no nicht in it. The verb stands at the end, like after every temporal conjunction."
