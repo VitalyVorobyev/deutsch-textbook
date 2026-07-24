@@ -553,3 +553,147 @@
   decision: confirm
   note: "Main is not German mein (the same slip ruled on a2/probe-modalverben:variant-b). Everything else is fine: Guten Tag! for Hello! and the shared-subject und wohne are both natural. The family carries no focus, so nothing re-enters focus signals either way — the untagged-family instrument gap is already on record."
   decidedAt: 2026-07-21
+
+- item: a2/verben-mit-praepositionen:translate-worauf
+  given: "Worauf wartet ihr? — Wir warten auf die Antwort."
+  decision: accept
+  note: "A full-sentence reply instead of the elliptical Auf die Antwort is correct, natural German and preserves the graded Worauf. Added as an accepted rendering; revision bumped."
+  decidedAt: 2026-07-24
+
+- item: a2/verben-mit-praepositionen:translate-worauf
+  given: "Worauf wartet ihr?"
+  decision: confirm
+  note: "Only the question half is translated; the prompt's answer (— For the answer.) is dropped entirely. Incomplete, so the rejection was right — no grammar error to attribute."
+  decidedAt: 2026-07-24
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Mein Zug fällt aus."
+  decision: accept
+  note: "Mein Zug fällt aus is exactly what boards and natives say about a cancelled train today — the German present covers the current fact the English Perfekt reports. Grammatical, complete, and the graded Sie is intact. Added as an accepted rendering; revision bumped."
+  decidedAt: 2026-07-24
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Mein Zug ist ausfällt."
+  decision: confirm
+  note: "ist ausfällt mixes the sein auxiliary with the conjugated present instead of the participle: ist ausgefallen. drill note: Perfekt formation of a separable verb — the participle, not the finite form, follows the auxiliary."
+  decidedAt: 2026-07-24
+
+- item: a2/checkpoint-a2:uebersetzen-amt-anmelden
+  given: "Ich würde gern meiner neuen Adresse anmelden."
+  decision: confirm
+  note: "anmelden takes an accusative object: meine neue Adresse anmelden. The dative meiner neuen Adresse is a real case error outside the graded hoeflich-konjunktiv, which is correct here."
+  decidedAt: 2026-07-24
+
+- item: a2/aemter-dienstleistungen:uebersetzen-haette-gern
+  given: "Ich hätte gern eine Bescheinigung für meinem Chef."
+  decision: confirm
+  note: "für always governs the accusative: für meinen Chef. drill note: für + Dativ slip — akkusativ-praepositionen evidence."
+  decidedAt: 2026-07-24
+
+- item: a2/freunde-feste:uebersetzen-kuchen-mitbringen
+  given: "Ich bringe dir eine Torte mit"
+  decision: confirm
+  note: "The rendering drops am Samstag — the prompt's on Saturday is not translated. The German that is there is fine (Torte and the bare mitbringen are both in the accept list with the time phrase), but the sentence is incomplete."
+  decidedAt: 2026-07-24
+
+- item: a2/verbindungen-folgen:uebersetzen-als-kindheit
+  given: "Als ich klein war, bin ich oft zu Oma gefahren"
+  decision: accept
+  note: "zu Oma without the possessive is natural German — family words work as names (zu Oma, bei Mama). The graded Als and the whole clause structure are correct. Added as an accepted rendering; revision bumped."
+  decidedAt: 2026-07-24
+
+- item: a2/verbindungen-folgen:uebersetzen-deshalb-inversion
+  given: "Ich habe kein Zeit. Deshalb komme ich nicht am Samstag"
+  decision: confirm
+  note: "die Zeit needs keine: Ich habe keine Zeit. The graded Deshalb komme ich inversion is correct; the gender agreement on kein is the real error. drill note: kein/keine agreement with feminine nouns — genus evidence."
+  decidedAt: 2026-07-24
+
+- item: a2/infinitiv-mit-zu:uebersetzen-vorhaben-wien
+  given: "Im Sommer habe ich vor, nach View zu fahren"
+  decision: confirm
+  note: "View is not the city Wien — an English intrusion on the place name, not a near-miss spelling. The zu-infinitive bracket the tag grades is correct; the rejection stands on the vocabulary."
+  decidedAt: 2026-07-24
+
+- item: a2/nebensaetze-plaene:uebersetzen-dass-wetter
+  given: "Ich hoffe, dass am Sonntag gute Wetter ist"
+  decision: confirm
+  note: "The impersonal frame dass am Sonntag gutes Wetter ist would be fine, but Wetter is neuter and the article-less adjective must carry the strong ending: gutes Wetter, never gute Wetter. Same clause as the earlier gutte Wetter ruling, one error fewer."
+  decidedAt: 2026-07-24
+
+- item: a2/reisen-verkehr-produktion:uebersetzen-ausgefallen-verpasst
+  given: "Mein Zug ist ausgefallen, und ich habe die Umsteig verpasst"
+  decision: confirm
+  note: "die Umsteig is not a German word — the connection is der Anschluss (or der Umstieg). All four graded haben-sein tokens are correct; the rejection stands on the noun."
+  decidedAt: 2026-07-24
+
+- item: a2/lernen-verstehen:uebersetzen-ob-der-test-schwer-ist
+  given: "Weisst du, ob der Test schwierig ist?"
+  decision: confirm
+  note: "weißt needs ß — ss after a long vowel is not a permitted spelling in this course's orthography. Everything else, including the graded ob clause, is correct; a spelling miss, not a grammar error."
+  decidedAt: 2026-07-24
+
+- item: a2/arbeit-beruf:uebersetzen-schicht-uebernehmen
+  given: "Frau Kaufman, könnten Sie meinen Schicht am Samstag übernehmen?"
+  decision: confirm
+  note: "die Schicht is feminine: meine Schicht. Kaufman also drops an n of the prompt's Kaufmann. The graded könnten Sie register is correct. drill note: genus of die Schicht — feminine -icht nouns."
+  decidedAt: 2026-07-24
+
+- item: a2/arbeit-beruf:uebersetzen-zustaendig-satzklammer
+  given: "Ich arbeite an der Kasse. Heute muss ich länge arbeiten."
+  decision: confirm
+  note: "Ich arbeite an der Kasse paraphrases away zuständig für — the responsibility phrase the prompt asks for — and länge is not the comparative länger. The graded muss … arbeiten bracket is correct."
+  decidedAt: 2026-07-24
+
+- item: a2/einkaufen-reklamation:uebersetzen-superlativ-gefallen
+  given: "Welche Schuche gefalen Ihnen am besten?"
+  decision: confirm
+  note: "Schuche and gefalen are two spelling failures in one clause, so the rejection stands. Ihnen itself is a faithful register for the English you (the shelf context fixes no person), so the correctly spelled Ihnen variant joins the accept list in this change; revision bumped."
+  decidedAt: 2026-07-24
+
+- item: a2/einkaufen-reklamation:uebersetzen-komparativ-jacke
+  given: "Der Jacke ist wärmer als die Pullover, aber er ist auch teurer."
+  decision: confirm
+  note: "die Jacke and der Pullover both wear the wrong article, and er then agrees with the wrong one of them. The graded comparative chain wärmer als … teurer is correct. drill note: genus of Jacke/Pullover — clothing genus evidence."
+  decidedAt: 2026-07-24
+
+- item: a2/wohnen-umzug:uebersetzen-kiste-keller
+  given: "Tobias stellt die Kiste ins Keller"
+  decision: confirm
+  note: "der Keller is masculine, so the directional phrase is in den Keller — ins contracts in + das and only fits neuter nouns. The graded stellt is correct. drill note: contracted ins misapplied to a masculine noun — wechsel-praeposition + genus evidence."
+  decidedAt: 2026-07-24
+
+- item: a2/nebensaetze-plaene-produktion:uebersetzen-weil-arbeiten-muss
+  given: "Ich fahre nicht mit, weil ich am Samstag arbeiten muss."
+  decision: accept
+  note: "mitfahren is the most literal rendering of the Russian prompt's не поеду с вами and idiomatic for a group trip; the graded weil … muss clause is perfect. Added as an accepted rendering; revision bumped."
+  decidedAt: 2026-07-24
+
+- item: a2/nebensaetze-plaene-produktion:uebersetzen-denn-muede
+  given: "Tobias bleibt zu Hause, denn er müde ist."
+  decision: confirm
+  note: "denn is a coordinator and keeps verb-second: denn er ist müde. Verb-final after denn is precisely the weil-denn confusion this item drills — an on-focus error, correctly attributed."
+  decidedAt: 2026-07-24
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-formelle-bitte-mail
+  given: "Könnten Sie mir das Formular schicken? Ich würde gern am Mondag kommen."
+  decision: confirm
+  note: "Mondag is not Montag, bitte is dropped from a request that says please, and kommen loses vorbeikommen's come-by meaning. The graded Könnten/würde pair is correct."
+  decidedAt: 2026-07-24
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-transfer-post
+  given: "Ich würde gern einen Brief nach Polen schicken, while meinen Vater dort leben."
+  decision: confirm
+  note: "while is English, meinen Vater is a case error on the subject, and leben does not agree with it. The subordinate clause collapses under production load; the graded würde is correct. drill note: weil-clause production under load — subject case + agreement."
+  decidedAt: 2026-07-24
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-wuerde-gern-transfer
+  given: "Ich würde gern das Formular ausfühlen."
+  decision: confirm
+  note: "ausfühlen is not ausfüllen — the umlauted üh changes the verb — and hier is dropped. The graded würde is correct."
+  decidedAt: 2026-07-24
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-weil-anliegen
+  given: "Ich komme, weil ich anmelden möchte."
+  decision: confirm
+  note: "sich anmelden needs its reflexive: weil ich mich anmelden möchte. The same dropped-sich already ruled on the man-muss rendering — recurring. drill note: reflexive sich dropped in anmelden — second occurrence, sich-verb drill candidate."
+  decidedAt: 2026-07-24

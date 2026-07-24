@@ -1,0 +1,226 @@
+# Drill from progress (2026-07-24 audit, post-triage): indirekte-frage is persistent — 7
+# attributed errors across 6 distinct items, all recent. Two confusions share the tag and
+# both are drilled here: the embedded question keeps direct-question verb-second order
+# instead of sending the verb to the end, and wenn takes ob's place in embedded yes/no
+# questions (the Russian «ли»/«если» trap). Contexts are fresh (bus stop, cinema, museum,
+# library, ticket), never re-skins of the topic's own items.
+topic: lernen-verstehen
+role: drill
+title:
+  en: "Drill — the indirect question"
+  ru: "Тренажёр — косвенный вопрос"
+  uk: "Тренажер — непряме питання"
+items:
+  - id: mc-wo-haelt
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    focus: indirekte-frage
+    prompt: "Entschuldigung, wissen Sie, ___"
+    options:
+      - "wo der Bus hält?"
+      - "wo hält der Bus?"
+    correct: 0
+    translation:
+      en: "Excuse me, do you know where the bus stops?"
+      ru: "Извините, вы не знаете, где останавливается автобус?"
+      uk: "Вибачте, ви не знаєте, де зупиняється автобус?"
+    explain:
+      en: "wissen Sie turns the question into a Nebensatz, and a Nebensatz ends with its conjugated verb: wo der Bus hält. The direct order wo hält der Bus survives only as a stand-alone question."
+      ru: "wissen Sie превращает вопрос в придаточное, а придаточное заканчивается спрягаемым глаголом: wo der Bus hält. Прямой порядок wo hält der Bus живёт только в самостоятельном вопросе."
+      uk: "wissen Sie перетворює питання на підрядне, а підрядне закінчується відмінюваним дієсловом: wo der Bus hält. Прямий порядок wo hält der Bus живе лише в самостійному питанні."
+
+  - id: mc-ob-wenn
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    focus: indirekte-frage
+    prompt: "Ich weiß noch nicht, ___ der Kurs heute stattfindet."
+    options:
+      - "ob"
+      - "wenn"
+    correct: 0
+    translation:
+      en: "I don't know yet whether the course takes place today."
+      ru: "Я ещё не знаю, состоится ли сегодня курс."
+      uk: "Я ще не знаю, чи відбудеться сьогодні курс."
+    explain:
+      en: "A yes/no question folded into a statement needs ob (whether). wenn states a condition — if in the if-then sense — and never asks anything. English if covers both jobs, which is exactly why they get confused; German splits them."
+      ru: "Вопрос «да или нет», вложенный в предложение, требует ob — по-русски это «ли»: состоится ли курс. wenn — это «если»: оно ставит условие и никогда не спрашивает. Перепутать их — значит превратить вопрос в условие."
+      uk: "Питання «так чи ні», вкладене в речення, вимагає ob — українською це «чи»: чи відбудеться курс. wenn — це «якщо»: воно ставить умову і ніколи не запитує. Переплутати їх — значить перетворити питання на умову."
+
+  - id: mc-wann-film
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    focus: indirekte-frage
+    prompt: "Können Sie mir sagen, ___"
+    options:
+      - "wann der Film beginnt?"
+      - "wann beginnt der Film?"
+    correct: 0
+    translation:
+      en: "Can you tell me when the film starts?"
+      ru: "Вы можете мне сказать, когда начинается фильм?"
+      uk: "Ви можете мені сказати, коли починається фільм?"
+    explain:
+      en: "Können Sie mir sagen opens a polite indirect question — a Nebensatz — so beginnt walks to the end: wann der Film beginnt. Verb-second after wann is the direct question's order in the wrong house."
+      ru: "Können Sie mir sagen открывает вежливый косвенный вопрос — придаточное, — поэтому beginnt уходит в конец: wann der Film beginnt. «Глагол вторым» после wann — порядок прямого вопроса не в своём доме."
+      uk: "Können Sie mir sagen відкриває ввічливе непряме питання — підрядне, — тому beginnt іде в кінець: wann der Film beginnt. «Дієслово другим» після wann — порядок прямого питання не у своєму домі."
+
+  - id: mc-was-bedeutet
+    outcomes: [nachfragen-klaeren]
+    type: mc
+    focus: indirekte-frage
+    prompt: "Ich möchte wissen, ___"
+    options:
+      - "was dieses Wort bedeutet."
+      - "was bedeutet dieses Wort."
+    correct: 0
+    translation:
+      en: "I would like to know what this word means."
+      ru: "Я хочу знать, что означает это слово."
+      uk: "Я хочу знати, що означає це слово."
+    explain:
+      en: "As a direct question it is Was bedeutet dieses Wort? — verb second. Behind ich möchte wissen it becomes a Nebensatz and bedeutet goes last. If the part after the comma still sounds like a complete question, the verb has not moved."
+      ru: "Прямой вопрос звучит Was bedeutet dieses Wort? — глагол вторым. После ich möchte wissen он становится придаточным, и bedeutet уходит в конец. Если часть после запятой всё ещё звучит как самостоятельный вопрос, глагол не сдвинулся."
+      uk: "Пряме питання звучить Was bedeutet dieses Wort? — дієслово другим. Після ich möchte wissen воно стає підрядним, і bedeutet іде в кінець. Якщо частина після коми досі звучить як самостійне питання, дієслово не зрушило."
+
+  - id: cloze-ob-bibliothek
+    outcomes: [nachfragen-klaeren]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "A yes/no question inside a sentence: introduce it with the asking word, and close it with the verb."
+      ru: "Вопрос «да или нет» внутри предложения: введите его немецким «ли» и закройте глаголом."
+      uk: "Питання «так чи ні» всередині речення: введіть його німецьким «чи» і закрийте дієсловом."
+    text: "Weißt du, {{ob}} die Bibliothek heute geöffnet {{ist}}?"
+    translation:
+      en: "Do you know whether the library is open today?"
+      ru: "Ты не знаешь, открыта ли сегодня библиотека?"
+      uk: "Ти не знаєш, чи відкрита сьогодні бібліотека?"
+    explain:
+      en: "Two moves, one clause: ob opens the embedded yes/no question, and ist closes it. Nothing else may take the verb's end position."
+      ru: "Два хода в одном придаточном: ob открывает вложенный вопрос «да или нет», ist закрывает его. Конечная позиция глагола не достаётся никому другому."
+      uk: "Два ходи в одному підрядному: ob відкриває вкладене питання «так чи ні», ist закриває його. Кінцева позиція дієслова не дістається нікому іншому."
+
+  - id: cloze-wie-heisst
+    outcomes: [nachfragen-klaeren]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Close the indirect question with the correct form of heißen."
+      ru: "Закройте косвенный вопрос правильной формой heißen."
+      uk: "Закрийте непряме питання правильною формою heißen."
+    text: "Können Sie mir sagen, wie das auf Deutsch {{heißt}}?"
+    translation:
+      en: "Can you tell me what this is called in German?"
+      ru: "Вы можете мне сказать, как это называется по-немецки?"
+      uk: "Ви можете мені сказати, як це називається німецькою?"
+    explain:
+      en: "The classroom's most useful sentence. wie opens the indirect question and heißt stands at the end — Wie heißt das?, folded politely into another sentence."
+      ru: "Самое полезное предложение в классе. wie открывает косвенный вопрос, heißt встаёт в конец — Wie heißt das?, вежливо вложенное в другое предложение."
+      uk: "Найкорисніше речення в класі. wie відкриває непряме питання, heißt стає в кінець — Wie heißt das?, ввічливо вкладене в інше речення."
+
+  - id: cloze-wann-anfaengt
+    outcomes: [nachfragen-klaeren]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Close the clause with the correct form of anfangen — one word."
+      ru: "Закройте придаточное правильной формой anfangen — одним словом."
+      uk: "Закрийте підрядне правильною формою anfangen — одним словом."
+    text: "Ich frage die Lehrerin, wann der Test {{anfängt}}."
+    translation:
+      en: "I ask the teacher when the test starts."
+      ru: "Я спрашиваю учительницу, когда начинается тест."
+      uk: "Я запитую вчительку, коли починається тест."
+    explain:
+      en: "In a main clause the prefix splits off: Der Test fängt an. An indirect question is a Nebensatz — there is no position 2, so nothing splits: the verb arrives whole at the end, anfängt."
+      ru: "В главном предложении приставка отделяется: Der Test fängt an. Косвенный вопрос — придаточное: второго места нет, отделяться нечему, глагол приходит в конец целиком — anfängt."
+      uk: "У головному реченні префікс відокремлюється: Der Test fängt an. Непряме питання — підрядне: другого місця немає, відокремлюватися нічому, дієслово приходить у кінець цілим — anfängt."
+
+  - id: cloze-ob-mitkommt
+    outcomes: [nachfragen-klaeren]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Introduce the embedded yes/no question — the asking word, not the condition word."
+      ru: "Введите вложенный вопрос «да или нет» — словом «ли», а не «если»."
+      uk: "Введіть вкладене питання «так чи ні» — словом «чи», а не «якщо»."
+    text: "Frag ihn bitte, {{ob}} er morgen mitkommt."
+    translation:
+      en: "Please ask him whether he is coming along tomorrow."
+      ru: "Спроси его, пожалуйста, придёт ли он завтра с нами."
+      uk: "Запитай його, будь ласка, чи піде він завтра з нами."
+    explain:
+      en: "After fragen the embedded yes/no question must start with ob. wenn er morgen mitkommt would state a condition (if he comes along) instead of asking the question."
+      ru: "После fragen вложенный вопрос «да или нет» начинается с ob: придёт ли. wenn er morgen mitkommt назвало бы условие («если придёт») вместо самого вопроса — классическая ловушка «ли/если»."
+      uk: "Після fragen вкладене питання «так чи ні» починається з ob: чи піде. wenn er morgen mitkommt назвало б умову («якщо піде») замість самого питання — класична пастка «чи/якщо»."
+
+  - id: uebersetzen-wo-haltestelle
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Translate into German. Ask indirectly."
+      ru: "Переведите на немецкий. Задайте вопрос косвенно."
+      uk: "Перекладіть німецькою. Поставте питання непрямо."
+    prompt_en: "Do you know where the bus stop is?"
+    prompt_ru: "Ты не знаешь, где остановка?"
+    prompt_uk: "Ти не знаєш, де зупинка?"
+    answer: "Weißt du, wo die Haltestelle ist?"
+    accept:
+      - "Weißt du, wo die Bushaltestelle ist?"
+      - "Wissen Sie, wo die Haltestelle ist?"
+      - "Wissen Sie, wo die Bushaltestelle ist?"
+      - "Wisst ihr, wo die Haltestelle ist?"
+      - "Wisst ihr, wo die Bushaltestelle ist?"
+    key_tokens: ["wo", "ist"]
+    explain:
+      en: "The direct question Wo ist die Haltestelle? hands its verb to the end when it moves in behind weißt du: wo die Haltestelle ist. Both wo and the final ist are graded — the doorway and the wall."
+      ru: "Прямой вопрос Wo ist die Haltestelle? отдаёт глагол в конец, когда встаёт за weißt du: wo die Haltestelle ist. Оцениваются и wo, и конечное ist — вход и стена."
+      uk: "Пряме питання Wo ist die Haltestelle? віддає дієслово в кінець, коли стає за weißt du: wo die Haltestelle ist. Оцінюються і wo, і кінцеве ist — вхід і стіна."
+
+  - id: uebersetzen-ob-museum
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "I don't know whether the museum is open today."
+    prompt_ru: "Я не знаю, открыт ли сегодня музей."
+    prompt_uk: "Я не знаю, чи відкритий сьогодні музей."
+    answer: "Ich weiß nicht, ob das Museum heute geöffnet ist."
+    accept:
+      - "Ich weiß nicht, ob das Museum heute offen ist."
+      - "Ich weiß nicht, ob heute das Museum geöffnet ist."
+      - "Ich weiß nicht, ob heute das Museum offen ist."
+    key_tokens: ["ob", "ist"]
+    explain:
+      en: "whether marks an embedded yes/no question: ob. The clause then ends on its conjugated verb: geöffnet ist. wenn would turn not-knowing into a condition."
+      ru: "«Ли» — признак вложенного вопроса «да или нет»: ob. Придаточное заканчивается спрягаемым глаголом: geöffnet ist. wenn превратило бы незнание в условие «если музей открыт»."
+      uk: "«Чи» — ознака вкладеного питання «так чи ні»: ob. Підрядне закінчується відмінюваним дієсловом: geöffnet ist. wenn перетворило б незнання на умову «якщо музей відкритий»."
+
+  - id: uebersetzen-wieviel-kostet
+    outcomes: [nachfragen-klaeren]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Translate into German. Ask politely and indirectly."
+      ru: "Переведите на немецкий. Спросите вежливо и косвенно."
+      uk: "Перекладіть німецькою. Запитайте ввічливо і непрямо."
+    prompt_en: "Can you tell me how much the ticket costs?"
+    prompt_ru: "Вы можете мне сказать, сколько стоит билет?"
+    prompt_uk: "Ви можете мені сказати, скільки коштує квиток?"
+    answer: "Können Sie mir sagen, wie viel die Fahrkarte kostet?"
+    accept:
+      - "Können Sie mir sagen, wie viel das Ticket kostet?"
+      - "Können Sie mir sagen, wie viel die Karte kostet?"
+      - "Könnten Sie mir sagen, wie viel die Fahrkarte kostet?"
+      - "Könnten Sie mir sagen, wie viel das Ticket kostet?"
+      - "Könnten Sie mir sagen, wie viel die Karte kostet?"
+    key_tokens: ["kostet"]
+    explain:
+      en: "In the direct question the verb stands second: Wie viel kostet die Fahrkarte? Embedded after Können Sie mir sagen, it walks to the end: wie viel die Fahrkarte kostet. Only kostet is graded — which word you choose for the ticket is not the rule."
+      ru: "В прямом вопросе глагол стоит вторым: Wie viel kostet die Fahrkarte? Вложенный после Können Sie mir sagen, он уходит в конец: wie viel die Fahrkarte kostet. Оценивается только kostet — какое слово для билета вы выберете, правило не решает."
+      uk: "У прямому питанні дієслово стоїть другим: Wie viel kostet die Fahrkarte? Вкладене після Können Sie mir sagen, воно йде в кінець: wie viel die Fahrkarte kostet. Оцінюється лише kostet — яке слово для квитка ви оберете, правило не вирішує."

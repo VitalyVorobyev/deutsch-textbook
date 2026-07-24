@@ -151,17 +151,25 @@ snapshot-driven weakness drills keep working throughout.
 
 ## The B1 gate
 
-B1 authoring begins when all eight hold, and not before:
+**Overridden 2026-07-24 by owner decision** — B1 authoring begins now; items 1–3 convert to dated
+**revision triggers** rather than preconditions (the same recorded shape as "A2 authoring proceeded
+before the read on purpose"). Each may stop B1 authoring and send shipped B1 units back for
+revision. Decision record and accepted risk:
+[the A2 close review](archive/2026-07-a2-close-review.md). The original list, with statuses:
 
 1. **The A1 retention cohort has been read** (P3-6, on or after 2026-08-02) — and, if the
-   ≥80%/≥70% bar was missed, the revision it triggers has shipped. — *pending (calendar).*
+   ≥80%/≥70% bar was missed, the revision it triggers has shipped. — *revision trigger
+   (calendar, 2026-08-02).*
 2. **The A2 checkpoint is completed** and window 6 of
    [the operating program](a2-learning-led-program.md) — checkpoint + delayed-evidence review — is
-   done. — *pending (learner evidence).*
-3. **The A2 probe evidence has been reviewed** under the operating program's rules. — *pending.*
+   done. — *checkpoint taken 2026-07-24 (18/21 verified); the delayed-evidence review is a
+   revision trigger (~2026-08-14).*
+3. **The A2 probe evidence has been reviewed** under the operating program's rules. — *revision
+   trigger (recurring with the audits).*
 4. **The grading queue holds no undecided rendering**, and the post-triage audit has been re-read. —
-   *recurring (P5-11).*
-5. **No persistent weak focus is without an owned drill in rotation.** — *recurring (P5-11).*
+   **met 2026-07-24** (111 rulings, 0 awaiting) — *and recurring (P5-11).*
+5. **No persistent weak focus is without an owned drill in rotation.** — **met 2026-07-24**
+   (`drill-da-wo-woerter`, `drill-indirekte-frage`) — *and recurring (P5-11).*
 6. **`data/goethe-b1-wortliste.txt` is acquired and `bun scripts/coverage.ts B1` reports against
    it.** — **met 2026-07-15:** 3,416 headwords transcribed; the Über page states the honest head
    start (~41% already covered by A1/A2 material).
@@ -169,8 +177,8 @@ B1 authoring begins when all eight hold, and not before:
    structural coverage language remains explicitly separate from mastery.** — **met
    2026-07-18:** [the 30-point ledger](a2-linguistic-qa.md) records the completed corpus pass.
 8. **The first B1 PR freezes the B1 identities in [the blueprint](curriculum-a2-b1.md)** — ids
-   become persisted learner-progress keys the moment a unit ships. — *authoring work, gated on
-   1–7.*
+   become persisted learner-progress keys the moment a unit ships. — *proceeds now, under the
+   2026-07-24 decision.*
 
 Two things are explicitly **not** gates: the Ukrainian translation waves and the Schreib-Assistent.
 Wortnetze are also explicitly a parallel track, not a gate. One soft preference is **met** — the

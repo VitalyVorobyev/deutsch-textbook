@@ -15,9 +15,10 @@ before authoring anything.
 Phases 0–8 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines (including
 the Ukrainian explanation half), the hardened learning loop, the pre-1.0 evidence foundation, the
 honest-signal instrument pass, the Schreib-Assistent, and the learner-language machinery. Only
-Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. B1 remains provisional
-until representative A2 use, its checkpoint and delayed evidence have been reviewed — the B1 gate
-lives in [roadmap.md](roadmap.md).
+Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. **B1 authoring begins
+under the 2026-07-24 owner decision** — the former B1 gate's evidence reads (2026-08-02 A1 cohort,
+~2026-08-14 checkpoint delayed evidence) are revision triggers now, recorded in
+[roadmap.md](roadmap.md) and [the A2 close review](archive/2026-07-a2-close-review.md).
 
 ## Completed work — one line here, detail in the archive
 
@@ -33,6 +34,10 @@ it; everything else lives in the archive.
 - **Phase 5 · pre-1.0 foundation** — `done` except the entries kept below. P5-2 extensive readers
   (Lena 5–7); P5-8 snapshot v5 + revision-safe evidence; P5-9 A2 context pilots; P5-10 canonical
   case reference.
+- **P16 · A2 study-close review and the B1 start decision** — `done` 2026-07-24. Snapshot
+  committed; 22 renderings ruled (queue drained to 0); two drills shipped (`drill-da-wo-woerter`,
+  `drill-indirekte-frage`); checkpoint read 18/21 verified; B1-gate override recorded. Detail:
+  [archive/2026-07-a2-close-review.md](archive/2026-07-a2-close-review.md).
 - **Phase 6 · learning quality** — `done` 2026-07-14/15. P6-1 grading-decisions instrument;
   P6-2 triaged all 32 queued renderings; P6-3 probe catch-up pacing (Probe-Rückstand card);
   P6-4 dative-cluster drill; P6-5 verb-forms drill (split by tag ownership); P6-6 desktop mic
@@ -187,6 +192,10 @@ before another unit is written.
 ## Open — the 2026-07-20 instrument review and the 2026-07-21 pre-B1 review
 
 ### P12-4 · `key_tokens` conflates three different reasons to pin a token — `todo` (M)
+
+The 2026-07-24 B1-start decision does **not** unlock this item: the sequencing hazard below is
+about the 2026-08-02 cohort read's instrument stability, which is calendar-bound, not gated on
+B1 authoring.
 
 A token is pinned for one of three reasons, and the scorer cannot tell them apart:
 
@@ -358,9 +367,10 @@ production changes, session workload, pair windows and pilot feedback.
 
 The windows now include the learner-led `verben-mit-praepositionen` module after
 `gesundheit-arzttermin`; the operating program is authoritative. Keep the cycle-one snapshot review
-open until `einkaufen-reklamation` is completed. A2 closure remains open until the expanded
-checkpoint and this module's 2/7/21-day evidence have been reviewed. Continues as recurring
-practice; the Phase 6 instruments (the triage flow, the probe-debt row) feed it.
+open until `einkaufen-reklamation` is completed. The expanded checkpoint was taken 2026-07-24
+(18/21 verified); A2 closure remains open until its 2/7/21-day evidence has been reviewed
+(~2026-08-14). Continues as recurring practice; the Phase 6 instruments (the triage flow, the
+probe-debt row) feed it.
 
 ### P5-7 · Delayed evidence for listening — `todo` (M)
 
