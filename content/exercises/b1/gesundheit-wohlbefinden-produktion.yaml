@@ -2,8 +2,9 @@
 # (Beschwerden schildern with a Rückfrage to answer, advice frames to a friend), a
 # spoken-production habits monologue, one KII transfer translate, and a dictation
 # carrying an audible frame-case decision (sound→spelling, not a listening claim:
-# this unit has no listening outcome). empfehlungen-verstehen is measured by the
-# reading's questions, deliberately not duplicated here.
+# this unit has no listening outcome). empfehlungen-verstehen is measured on both
+# halves of its can-do: the reading's questions cover the recommendations half, and
+# lesen-packungsangabe below covers the Packungsangaben half.
 topic: gesundheit-wohlbefinden
 role: practice
 title:
@@ -27,6 +28,8 @@ items:
       - "Du solltest für ein paar Wochen auf Zucker verzichten."
       - "Du solltest ein paar Wochen lang auf Zucker verzichten."
       - "Du solltest einige Wochen auf Zucker verzichten."
+      - "Du solltest für einige Wochen auf Zucker verzichten."
+      - "Du solltest einige Wochen lang auf Zucker verzichten."
     key_tokens: ["solltest"]
     explain:
       en: "Graded is only the advice form: solltest, the Konjunktiv II of sollen — the softened du solltest behind the A2 doctor's Sie sollten. Indicative sollst would turn the advice into an order from above. The frame auf + Akkusativ belongs to verzichten, and the time span works bare (ein paar Wochen), with für or with lang — all three are idiomatic."
@@ -50,6 +53,24 @@ items:
       en: "The frame has its own sound: sich kümmern um demands the accusative, so the ear must catch ihren, not ihrem — one nasal consonant separates the frame's case from the wrong one. Hearing the -n of the accusative inside connected speech is exactly what this dictation trains."
       ru: "У рамки своё звучание: sich kümmern um требует аккузатива, поэтому ухо должно поймать ihren, а не ihrem — падеж рамки от неверного отделяет один носовой согласный. Услышать аккузативное -n внутри связной речи — ровно то, что тренирует этот диктант."
       uk: "У рамки своє звучання: sich kümmern um вимагає знахідного, тому вухо має впіймати ihren, а не ihrem — відмінок рамки від хибного відділяє один носовий приголосний. Почути знахідне -n усередині зв'язного мовлення — рівно те, що тренує цей диктант."
+
+  - id: lesen-packungsangabe
+    outcomes: [empfehlungen-verstehen]
+    type: mc
+    prompt: "Auf der Packung steht: „Zweimal täglich fünf Tropfen vor dem Essen einnehmen. Nicht länger als eine Woche anwenden.“ — Wie nehmen Sie die Tropfen?"
+    options:
+      - "Fünf Tropfen am Morgen und am Abend, vor dem Essen — höchstens eine Woche."
+      - "Zehn Tropfen einmal am Tag, nach dem Essen — mindestens eine Woche."
+      - "Fünf Tropfen einmal pro Woche, vor dem Essen."
+    correct: 0
+    translation:
+      en: "The package says: \"Take five drops twice a day before meals. Do not use for longer than one week.\" — How do you take the drops?"
+      ru: "На упаковке написано: «Принимать по пять капель два раза в день перед едой. Не применять дольше одной недели». — Как принимать капли?"
+      uk: "На упаковці написано: «Приймати по п'ять крапель двічі на день перед їдою. Не застосовувати довше одного тижня». — Як приймати краплі?"
+    explain:
+      en: "Package directions speak in bare infinitives — einnehmen, anwenden — that read as instructions. Decode slot by slot: zweimal täglich (how often), fünf Tropfen (how much), vor dem Essen (when), nicht länger als eine Woche (how long, so höchstens — at most). The wrong options swap exactly what a hurried reader swaps: dose with frequency, vor with nach, höchstens with mindestens."
+      ru: "Указания на упаковке говорят голыми инфинитивами — einnehmen, anwenden — и читаются как инструкции. Разбирайте по слотам: zweimal täglich (как часто), fünf Tropfen (сколько), vor dem Essen (когда), nicht länger als eine Woche (как долго, то есть höchstens — не более). Неверные варианты меняют местами ровно то, что путает торопливый читатель: дозу с частотой, vor с nach, höchstens с mindestens."
+      uk: "Вказівки на упаковці говорять голими інфінітивами — einnehmen, anwenden — і читаються як інструкції. Розбирайте по слотах: zweimal täglich (як часто), fünf Tropfen (скільки), vor dem Essen (коли), nicht länger als eine Woche (як довго, тобто höchstens — не більше). Хибні варіанти міняють місцями рівно те, що плутає квапливий читач: дозу з частотою, vor із nach, höchstens із mindestens."
 
   - id: sprechen-beschwerden-apotheke
     outcomes: [beschwerden-schildern]
