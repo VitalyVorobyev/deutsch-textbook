@@ -1348,6 +1348,42 @@ nodes:
         ru: "Я умею связно пересказать историю вслух."
         uk: "Я вмію зв'язно переказати історію вголос."
 
+  # Lives in `erzaehlen-berichten` rather than a new group: two of its three outcomes are
+  # written reporting, and the unit's genitive is explicitly the report register B1 opened with.
+  - id: leben-veraendern
+    level: B1
+    kind: communication
+    strand: communication
+    group: erzaehlen-berichten
+    prerequisites: [wohnen-umzug, relativsaetze]
+    # The dative/preposition relative clause deepens the A2 case rule via
+    # `relativpronomen-kasus` (cloze-relativ-akk), and the housing spatial grammar rides
+    # along via `wo-wohin` (cloze-wo-wohin) — both tags the base topics drill, so the
+    # edges carry a live runtime channel.
+    deepens: [wohnen-umzug, relativsaetze]
+    outcomes:
+      - id: wohnsituation-vergleichen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann Wohnsituationen vergleichen und eine Wahl begründen."
+        en: "I can compare housing situations and justify a choice."
+        ru: "Я умею сравнивать варианты жилья и обосновать выбор."
+        uk: "Я вмію порівнювати варіанти житла й обґрунтувати вибір."
+      - id: relativsatz-praezisieren
+        mode: writing
+        domain: personal
+        de: "Ich kann mit Relativsätzen im Dativ und nach Präpositionen genauer beschreiben, was ich meine."
+        en: "I can use relative clauses in the dative and after prepositions to say more precisely what I mean."
+        ru: "Я умею с помощью относительных придаточных в дативе и после предлогов точнее описать, что я имею в виду."
+        uk: "Я вмію за допомогою відносних підрядних у дативі та після прийменників точніше описати, що я маю на увазі."
+      - id: veraenderung-berichten
+        mode: writing
+        domain: personal
+        de: "Ich kann über eine Lebensveränderung berichten und Vor- und Nachteile nennen."
+        en: "I can report on a life change and name its advantages and disadvantages."
+        ru: "Я умею рассказать об изменении в жизни и назвать его плюсы и минусы."
+        uk: "Я вмію розповісти про зміну в житті й назвати її плюси та мінуси."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1597,3 +1633,10 @@ units:
     title_ru: "Рассказ о пережитом"
     title_uk: "Розповідь про пережите"
     topics: [erfahrungen-erzaehlen]
+  - id: leben-veraendern
+    level: B1
+    title_de: "Leben verändern"
+    title_en: "Changing your life"
+    title_ru: "Изменить жизнь"
+    title_uk: "Змінити життя"
+    topics: [leben-veraendern]
