@@ -1,0 +1,63 @@
+# Diagnostic generation, not practice: three guesses before the article, one per heavy
+# grammar point (reflexiv-praeposition, konjunktiv2-ratschlag, adjektiv-nullartikel);
+# lassen is left to the article — three items is the pretest contract, four points is
+# the unit.
+topic: gesundheit-wohlbefinden
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+items:
+  - id: pre-cloze-auf-den
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    instruction:
+      en: "Guess the article."
+      ru: "Угадайте артикль."
+      uk: "Вгадайте артикль."
+    text: "Wir freuen uns schon auf {{den}} Urlaub."
+    translation:
+      en: "We are already looking forward to the holiday."
+      ru: "Мы уже ждём отпуска."
+      uk: "Ми вже чекаємо на відпустку."
+    explain:
+      en: "sich freuen auf takes the accusative: auf den Urlaub. The case comes from the verb's frame, not from the wo/wohin question — the article builds the whole frame table."
+      ru: "sich freuen auf требует аккузатива: auf den Urlaub. Падеж приходит из рамки глагола, а не из вопроса wo/wohin — статья строит всю таблицу рамок."
+      uk: "sich freuen auf вимагає знахідного: auf den Urlaub. Відмінок приходить із рамки дієслова, а не з питання wo/wohin — стаття будує всю таблицю рамок."
+
+  - id: pre-mc-wuerde
+    outcomes: [ratschlaege-formulieren]
+    type: mc
+    prompt: "Ein Freund schläft schlecht. Was sagst du?"
+    options:
+      - "An deiner Stelle würde ich abends keinen Kaffee trinken."
+      - "An deiner Stelle wurde ich abends keinen Kaffee trinken."
+      - "An deiner Stelle will ich abends keinen Kaffee trinken."
+    correct: 0
+    translation:
+      en: "A friend sleeps badly. What do you say?"
+      ru: "Друг плохо спит. Что вы скажете?"
+      uk: "Друг погано спить. Що ви скажете?"
+    explain:
+      en: "Advice lives in the Konjunktiv II: würde with the umlaut. wurde is the Präteritum of werden — a past event, not a recommendation — and will states your own plan, which the an-deiner-Stelle frame cannot mean. The article turns the A2 politeness chunks into this system."
+      ru: "Совет живёт в Konjunktiv II: würde с умлаутом. wurde — Präteritum глагола werden: прошлое событие, а не рекомендация. А will заявляет ваш собственный план, чего рамка an deiner Stelle значить не может. Статья превращает формулы вежливости с A2 в эту систему."
+      uk: "Порада живе в Konjunktiv II: würde з умлаутом. wurde — Präteritum дієслова werden: минула подія, а не рекомендація. А will заявляє ваш власний план, чого рамка an deiner Stelle означати не може. Стаття перетворює формули ввічливості з A2 на цю систему."
+
+  - id: pre-mc-starken
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    prompt: "Er trinkt morgens nur ___ Kaffee."
+    options:
+      - "starken"
+      - "starke"
+      - "starkes"
+    correct: 0
+    translation:
+      en: "In the morning he only drinks strong coffee."
+      ru: "По утрам он пьёт только крепкий кофе."
+      uk: "Вранці він п'є лише міцну каву."
+    explain:
+      en: "With no article the adjective takes the article's ending: der Kaffee is masculine and the object of trinken, so the den-signal lands on the adjective — starken. The article gives the full pattern."
+      ru: "Без артикля прилагательное берёт окончание артикля: der Kaffee — мужской род и дополнение trinken, поэтому сигнал den достаётся прилагательному — starken. Статья даёт полную схему."
+      uk: "Без артикля прикметник бере закінчення артикля: der Kaffee — чоловічий рід і додаток trinken, тому сигнал den дістається прикметнику — starken. Стаття дає повну схему."

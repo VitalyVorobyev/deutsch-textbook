@@ -89,4 +89,8 @@ export const focusIntroducedBy: Record<string, string> = {
   'relativ-praeposition': 'leben-veraendern',
   'komparativ-attributiv': 'leben-veraendern',
   'genitiv-form': 'leben-veraendern',
+  'reflexiv-praeposition': 'gesundheit-wohlbefinden',
+  'konjunktiv2-ratschlag': 'gesundheit-wohlbefinden',
+  'lassen-verwendung': 'gesundheit-wohlbefinden',
+  'adjektiv-nullartikel': 'gesundheit-wohlbefinden',
 };

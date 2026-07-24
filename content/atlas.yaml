@@ -1384,6 +1384,50 @@ nodes:
         ru: "Я умею рассказать об изменении в жизни и назвать его плюсы и минусы."
         uk: "Я вмію розповісти про зміну в житті й назвати її плюси та мінуси."
 
+  # Sits with its base topic in `transaktionen-termine`: the counter conversations —
+  # Beschwerden schildern, Empfehlungen und Packungsangaben verstehen — continue the same
+  # service encounters that strand collects past the A2 doctor's visit. The habits half
+  # leans personal, but splitting a deepening pair across groups would cost more than it buys.
+  - id: gesundheit-wohlbefinden
+    level: B1
+    kind: communication
+    strand: communication
+    group: transaktionen-termine
+    prerequisites: [gesundheit-arzttermin, aemter-dienstleistungen]
+    # The preposition frames grow from the A2 bare reflexives via `reflexiv-akkusativ`
+    # (cloze-erkaeltet-fuehle) and `reflexiv-dativ` (cloze-haare-waschen) — both tags the
+    # base topic drills in its own practice sets, so the edge carries a live runtime channel.
+    deepens: [gesundheit-arzttermin]
+    outcomes:
+      - id: beschwerden-schildern
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann Beschwerden schildern und Rückfragen beantworten."
+        en: "I can describe complaints and answer follow-up questions."
+        ru: "Я умею описать жалобы и ответить на уточняющие вопросы."
+        uk: "Я вмію описати скарги й відповісти на уточнювальні запитання."
+      - id: ratschlaege-formulieren
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann mit Konjunktiv II Ratschläge geben und abschwächen."
+        en: "I can give and soften advice with the Konjunktiv II."
+        ru: "Я умею давать и смягчать советы с помощью Konjunktiv II."
+        uk: "Я вмію давати й пом'якшувати поради за допомогою Konjunktiv II."
+      - id: empfehlungen-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann Empfehlungen und Packungsangaben verstehen."
+        en: "I can understand recommendations and package directions."
+        ru: "Я понимаю рекомендации и указания на упаковке."
+        uk: "Я розумію рекомендації та вказівки на упаковці."
+      - id: gewohnheiten-beschreiben
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann über Gewohnheiten und Wohlbefinden sprechen."
+        en: "I can talk about habits and wellbeing."
+        ru: "Я умею говорить о привычках и самочувствии."
+        uk: "Я вмію говорити про звички та самопочуття."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1640,3 +1684,10 @@ units:
     title_ru: "Изменить жизнь"
     title_uk: "Змінити життя"
     topics: [leben-veraendern]
+  - id: gesundheit-wohlbefinden
+    level: B1
+    title_de: "Gesundheit & Wohlbefinden"
+    title_en: "Health & wellbeing"
+    title_ru: "Здоровье и самочувствие"
+    title_uk: "Здоров'я та самопочуття"
+    topics: [gesundheit-wohlbefinden]

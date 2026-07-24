@@ -506,7 +506,9 @@ describe('cards: recognition | both', () => {
     // entries — geschehen and erschrecken — so two production cards fewer, by design.
     // B1.2 (leben-veraendern, 2026-07-24) adds three more — Wohngemeinschaft,
     // Grundstück and Wohnort: read in ads and on forms, not produced at B1.
-    expect(cards).toBe(entries * 2 - 5);
+    // B1.3 (gesundheit-wohlbefinden, 2026-07-24) adds three more — Schmerzmittel,
+    // Tropfen and Wirkung: package-insert language, read on the box, not produced at B1.
+    expect(cards).toBe(entries * 2 - 8);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

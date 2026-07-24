@@ -1,0 +1,82 @@
+topic: gesundheit-wohlbefinden
+kind: intensive
+title_de: "Müde vor dem Bildschirm"
+text:
+  - >-
+    Seit Wochen fühlt sich Jonas [[ständig::constantly::постоянно::постійно]]
+    müde. Er arbeitet den ganzen Tag am
+    [[Bildschirm::screen::экран::екран]], trinkt dabei viel starken Kaffee
+    und geht selten vor Mitternacht ins Bett. Abends hat er oft
+    Kopfschmerzen.
+  - >-
+    In der Apotheke fragt er nach einem
+    [[Schmerzmittel::painkiller::обезболивающее::знеболювальне]]. Die
+    Apothekerin gibt ihm zuerst einen Rat: „An Ihrer Stelle würde ich
+    weniger Kaffee trinken und jede Stunde eine kurze Pause machen. Sie
+    sollten auch Ihre Augen kontrollieren lassen — bei so viel
+    [[Bildschirmarbeit::screen work::работа за экраном::робота за екраном]]
+    ist das wichtig."
+  - >-
+    Jonas probiert es aus. Er lässt zuerst seine Augen kontrollieren — die
+    neue Brille hilft sofort. Seitdem
+    [[kümmert::takes care (of)::заботится (о)::дбає (про)]] er sich mehr um
+    seine Gesundheit: Er isst mehr frisches Obst, macht mittags einen
+    Spaziergang und [[erholt::recovers, rests::восстанавливается::відновлюється]]
+    sich am Wochenende richtig von der Arbeit. Die Kopfschmerzen sind fast
+    [[verschwunden::gone, disappeared::исчезли::зникли]], und auf den
+    dritten Kaffee [[verzichtet::does without::отказывается (от)::відмовляється (від)]]
+    er jetzt gern.
+questions:
+  - id: frage-empfehlung
+    outcomes: [empfehlungen-verstehen]
+    type: mc
+    prompt: "Was empfiehlt die Apothekerin?"
+    options:
+      - "Weniger Kaffee trinken, regelmäßig Pausen machen und die Augen kontrollieren lassen."
+      - "Ein starkes Schmerzmittel nehmen und weiterarbeiten wie bisher."
+      - "Die Arbeit wechseln und gar nicht mehr am Bildschirm sitzen."
+    correct: 0
+    translation:
+      en: "What does the pharmacist recommend?"
+      ru: "Что рекомендует аптекарь?"
+      uk: "Що рекомендує аптекарка?"
+    explain:
+      en: "Her advice comes in three parts: An Ihrer Stelle würde ich weniger Kaffee trinken, jede Stunde eine kurze Pause machen, and Sie sollten Ihre Augen kontrollieren lassen. A painkiller is exactly what she does not reach for — Jonas asks for one and gets advice instead — and changing jobs is never mentioned."
+      ru: "Её совет состоит из трёх частей: An Ihrer Stelle würde ich weniger Kaffee trinken, jede Stunde eine kurze Pause machen и Sie sollten Ihre Augen kontrollieren lassen. Обезболивающее — как раз то, чего она не предлагает: Йонас просит его, а получает совет. О смене работы речи нет вообще."
+      uk: "Її порада складається з трьох частин: An Ihrer Stelle würde ich weniger Kaffee trinken, jede Stunde eine kurze Pause machen і Sie sollten Ihre Augen kontrollieren lassen. Знеболювальне — якраз те, чого вона не пропонує: Йонас просить його, а отримує пораду. Про зміну роботи не йдеться взагалі."
+
+  - id: frage-ratschlag-form
+    outcomes: [empfehlungen-verstehen]
+    type: mc
+    prompt: "„An Ihrer Stelle würde ich weniger Kaffee trinken.“ — Was bedeutet dieser Satz?"
+    options:
+      - "Die Apothekerin gibt Jonas einen Ratschlag: Er soll weniger Kaffee trinken."
+      - "Die Apothekerin erzählt, dass sie früher weniger Kaffee getrunken hat."
+      - "Die Apothekerin will selbst ab morgen weniger Kaffee trinken."
+    correct: 0
+    translation:
+      en: "\"An Ihrer Stelle würde ich weniger Kaffee trinken.\" — What does this sentence mean?"
+      ru: "„An Ihrer Stelle würde ich weniger Kaffee trinken.“ — Что означает это предложение?"
+      uk: "„An Ihrer Stelle würde ich weniger Kaffee trinken.“ — Що означає це речення?"
+    explain:
+      en: "An Ihrer Stelle würde ich … is the Konjunktiv II advice frame — literally \"in your place I would …\", so the ich is only borrowed: the advice is aimed at Jonas. It is not the past tense — that trap is the lookalike wurde (Präteritum of werden) without umlaut — and it says nothing about the pharmacist's own plans."
+      ru: "An Ihrer Stelle würde ich … — рамка совета в Konjunktiv II, буквально «на вашем месте я бы…», так что ich здесь одолжено: совет адресован Йонасу. Это не прошедшее время — ловушка в двойнике wurde (Präteritum от werden) без умлаута — и о собственных планах аптекаря фраза не говорит ничего."
+      uk: "An Ihrer Stelle würde ich … — рамка поради в Konjunktiv II, буквально «на вашому місці я б…», тож ich тут позичене: порада адресована Йонасу. Це не минулий час — пастка у двійнику wurde (Präteritum від werden) без умлаута — і про власні плани аптекарки фраза не каже нічого."
+
+  - id: frage-gewohnheiten
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    prompt: "Was macht Jonas heute anders als früher?"
+    options:
+      - "Er isst mehr frisches Obst, bewegt sich mittags und trinkt weniger Kaffee."
+      - "Er hat die Stelle gewechselt und arbeitet nicht mehr am Bildschirm."
+      - "Er geht jetzt jeden Abend erst nach Mitternacht ins Bett."
+    correct: 0
+    translation:
+      en: "What does Jonas do differently today compared with before?"
+      ru: "Что Йонас теперь делает иначе, чем раньше?"
+      uk: "Що Йонас тепер робить інакше, ніж раніше?"
+    explain:
+      en: "The last paragraph lists the new habits: mehr frisches Obst, mittags einen Spaziergang, and auf den dritten Kaffee verzichtet er jetzt gern. He still works at a screen — only the glasses and the breaks are new — and going to bed after midnight was the old habit that caused the problem, not the new one."
+      ru: "Последний абзац перечисляет новые привычки: mehr frisches Obst, mittags einen Spaziergang и auf den dritten Kaffee verzichtet er jetzt gern. За экраном он работает по-прежнему — новыми стали только очки и паузы, — а ложиться после полуночи было как раз старой привычкой, из-за которой всё началось."
+      uk: "Останній абзац перелічує нові звички: mehr frisches Obst, mittags einen Spaziergang і auf den dritten Kaffee verzichtet er jetzt gern. За екраном він працює, як і раніше — новими стали лише окуляри й паузи, — а лягати після півночі було якраз старою звичкою, через яку все почалося."
