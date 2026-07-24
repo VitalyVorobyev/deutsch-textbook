@@ -237,6 +237,11 @@ items:
     prompt_ru: "Какие ботинки нравятся тебе больше всего?"
     prompt_uk: "Які черевики подобаються тобі найбільше?"
     answer: "Welche Schuhe gefallen dir am besten?"
+    # English "you" fixes no person and the shelf context fixes no register, so the polite
+    # form is just as faithful — the same reasoning as translate-worauf (ruling 2026-07-24).
+    accept:
+      - "Welche Schuhe gefallen Ihnen am besten?"
+    revision: 2
     key_tokens: ["am", "besten"]
     explain:
       en: "Best is the superlative of gut and comes out as the fixed pair am besten — two words, and neither of them works alone. The rest of the sentence is the gefallen pattern: the shoes are the subject, so the verb is plural (gefallen, not gefällt), and the person stands in the dative (dir)."

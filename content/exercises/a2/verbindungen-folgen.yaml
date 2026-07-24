@@ -176,7 +176,12 @@ items:
     prompt_ru: "Когда я был маленьким, я часто ездил к бабушке."
     prompt_uk: "Коли я був малим, я часто їздив до бабусі."
     answer: "Als ich klein war, bin ich oft zu meiner Oma gefahren."
-    accept: ["Ich bin oft zu meiner Oma gefahren, als ich klein war."]
+    # zu Oma without the possessive is natural — family words work as names (ruling 2026-07-24)
+    accept:
+      - "Ich bin oft zu meiner Oma gefahren, als ich klein war."
+      - "Als ich klein war, bin ich oft zu Oma gefahren."
+      - "Ich bin oft zu Oma gefahren, als ich klein war."
+    revision: 2
     key_tokens: ["Als"]
     explain:
       en: "The trap is oft. Going to your grandmother's happened many times — but als does not describe the visits, it describes being little, and you were little exactly once. The rule looks at the als-clause itself, not at what the main clause says about frequency. Both orders are good German; the accepted variant simply puts the main clause first."

@@ -48,6 +48,17 @@ finish, `bun run progress:audit --profile vitaly` showed 33 probes due (30 overd
 intervals at 8–9 days against the nominal 2/7/21 — the caps, not the learner, had become the
 pacing bottleneck, distorting the intervals they exist to protect.
 
-A2 closes only after the checkpoint and its 2/7/21-day evidence are reviewed. Freeze B1 identities
-after that review, not before. Browser TTS remains the fallback unless evidence isolates audio
-quality—not language difficulty—as the comprehension limit.
+A2 closes only after the checkpoint and its 2/7/21-day evidence are reviewed. Browser TTS remains
+the fallback unless evidence isolates audio quality—not language difficulty—as the comprehension
+limit.
+
+**Owner decision 2026-07-24 — B1 authoring begins before those reviews.** This paragraph used to
+say *freeze B1 identities after that review, not before*; with all A2 study finished and the
+checkpoint taken (18/21 verified correct on the day it was read), waiting ~3 weeks for the delayed
+evidence would idle authoring on a rule whose remaining value is revision, not sequencing. The
+former gates become dated **revision triggers**: the 2026-08-02 A1 cohort read and the ~2026-08-14
+checkpoint delayed-evidence review each may stop B1 authoring and send shipped B1 units back for
+revision. The accepted risk is explicit: identities frozen and units written before those reads may
+need rework. The revision-bump lock on pre-08-02 cohort items and the P12-4 scorer fix stay
+calendar-bound — they protect the instrument, not the schedule. Full reasoning:
+[the A2 close review](archive/2026-07-a2-close-review.md).

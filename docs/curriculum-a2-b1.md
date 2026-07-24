@@ -1,10 +1,15 @@
 # A2–B1 curriculum blueprint
 
-Status: **The A2 authoring contract is complete; B1 remains a provisional north star** (2026-07-13).
+Status: **A2 is authored and studied through its checkpoint; B1 authoring begins under the
+2026-07-24 owner decision** — the provisional architecture below is next to be frozen, and the
+2026-08-02 / ~2026-08-14 evidence reads are revision triggers, not sequencing gates
+([decision record](a2-learning-led-program.md#calendar-and-b1-gates)) (2026-07-24).
 
-The required A1/A2 spine is now fully authored. Until representative A2 use, the A2 checkpoint and
-delayed evidence are reviewed, new work stays inside the existing levels: optional connected
-readings, cultural context, real-world documents and deliberately selected formulaic chunks.
+The required A1/A2 spine is now fully authored. This paragraph used to keep new work inside the
+existing levels until the delayed-evidence reviews; the 2026-07-24 decision retires that
+restriction — B1 authoring proceeds now, and the two evidence reads act as revision triggers on
+whatever has shipped. Optional connected readings, cultural context, real-world documents and
+formulaic chunks remain a parallel track at every level.
 
 This is the source of truth for what A2 teaches, in what order, with which identities. It exists
 because the ten remaining A2 units share prerequisites, vocabulary and confusions, and deciding
@@ -509,9 +514,11 @@ badge to read *mastered*.
 
 ## Provisional B1 architecture
 
-**Do not add any of this to `content/atlas.yaml`.** Boundaries, budgets and ids stay provisional
-until representative A2 usage and the A2 checkpoint have been reviewed. B1 grows discourse length,
-independence and genre range; it is not simply more grammar.
+**Do not add any of this to `content/atlas.yaml` yet** — atlas nodes and unit slots land only in
+each unit's shipping PR, after the freeze PR has turned this table into the B1 contract. Under the
+2026-07-24 decision the freeze proceeds now rather than after the delayed-evidence reviews; those
+reads are revision triggers on the frozen contract. B1 grows discourse length, independence and
+genre range; it is not simply more grammar.
 
 **Six structures left this table in Phase 10 and are now taught at A2**, where the standard puts
 them: relative clauses (Nom/Akk), the *zu*-infinitive and *um … zu*, *als* vs *wenn*, Futur I, the

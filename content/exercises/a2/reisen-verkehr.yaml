@@ -201,6 +201,11 @@ items:
     prompt_ru: "Извините, вы можете мне помочь? Мой поезд отменили."
     prompt_uk: "Вибачте, чи можете ви мені допомогти? Мій потяг скасували."
     answer: "Entschuldigung, können Sie mir helfen? Mein Zug ist ausgefallen."
+    # The present fällt aus is what boards and natives say about a train cancelled today —
+    # the German present covers the current fact the English Perfekt reports (ruling 2026-07-24).
+    accept:
+      - "Entschuldigung, können Sie mir helfen? Mein Zug fällt aus."
+    revision: 2
     # du-sie grades the register, and the register lives in the pronoun: kannst du → können Sie.
     # `mir` is NOT declared here on purpose — mir/mich is dativ-pronomen, not register, and a
     # learner who writes `mich` must not be logged as confusing du with Sie. It is closed-class,
