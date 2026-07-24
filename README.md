@@ -24,9 +24,10 @@ mastered, and the next topic to learn.*
 
 ## What's inside
 
-- **A complete A1 and A2 course** — ten A1 and seventeen A2 units, each with a
-  diagnostic pretest, a full article, a graded reading, exercises, and its own
-  vocabulary. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
+- **A complete A1 and A2 course, and B1 in progress** — ten A1 and seventeen A2
+  units, each with a diagnostic pretest, a full article, a graded reading,
+  exercises, and its own vocabulary; the first of ten contracted B1 units is
+  live. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
   covered, and the Über page reports how far each level goes with figures
   measured from the content itself, not hand-written.
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,

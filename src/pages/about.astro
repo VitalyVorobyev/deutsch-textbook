@@ -241,26 +241,27 @@ const principles = [
 
       <article class="rounded-lg border-l-4 border-stone-300 p-5 dark:border-stone-600">
         <h3 class="font-bold">
-          B1 <span class="lang-en">and beyond — not started</span
-          ><span class="lang-ru">и выше — не начато</span>
+          B1 <span class="lang-en">— in progress</span
+          ><span class="lang-ru">— в работе</span>
         </h3>
         <p class="mt-2 max-w-prose text-sm text-stone-600 dark:text-stone-400">
           <span class="lang-en">
-            Nothing above A2 exists yet. The long-term aim is B2, and the course is built so that
-            levels can be added without disturbing what you have already learned.
+            B1 authoring has begun: the curriculum is contracted at ten units, and the first is
+            live. The long-term aim is B2, and the course is built so that levels can be added
+            without disturbing what you have already learned.
             {coverageB1 &&
               ` ${coverageB1.cards + coverageB1.grammar} of the ${coverageB1.total} headwords on the
-              official Goethe-Institut B1 Wortliste are already covered by A1/A2 material
-              (${coverageB1.percent}%) — a head start on the level's vocabulary, not progress on the
-              level itself.`}
+              official Goethe-Institut B1 Wortliste are covered so far (${coverageB1.percent}%) —
+              most of it inherited from A1/A2 material, not progress on the level itself.`}
           </span>
           <span class="lang-ru">
-            Выше A2 пока ничего нет. Долгосрочная цель — B2, и курс построен так, чтобы новые уровни
-            добавлялись, не затрагивая уже пройденное.
+            Работа над B1 началась: учебный план зафиксирован на десяти юнитах, первый уже доступен.
+            Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись, не
+            затрагивая уже пройденное.
             {coverageB1 &&
-              ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste
-              ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) уже охвачены
-              материалами A1–A2 — это задел по лексике уровня, а не прогресс по самому уровню.`}
+              ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste пока
+              охвачено ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) — в
+              основном унаследовано от материалов A1–A2, а не прогресс по самому уровню.`}
           </span>
         </p>
       </article>

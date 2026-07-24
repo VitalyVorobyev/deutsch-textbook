@@ -81,4 +81,8 @@ export const focusIntroducedBy: Record<string, string> = {
   'hoeflich-konjunktiv': 'aemter-dienstleistungen',
   // was escaping the spine check entirely while the table was a lookup, not an allowlist
   'haben-wendungen': 'essen-trinken',
+  // --- B1 (contract: docs/curriculum-a2-b1.md) ---
+  'praeteritum-vollverben': 'erfahrungen-erzaehlen',
+  'plusquamperfekt-nachdem': 'erfahrungen-erzaehlen',
+  'temporal-nebensatz': 'erfahrungen-erzaehlen',
 };

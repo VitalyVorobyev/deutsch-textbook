@@ -502,7 +502,9 @@ describe('cards: recognition | both', () => {
     // If this ever fails, an existing entry was switched to recognition-only and a learner
     // lost the FSRS history of its x-de card. New B1 decks may of course lower the ratio —
     // update the assertion in the same change that ships them, deliberately.
-    expect(cards).toBe(entries * 2);
+    // B1.1 (erfahrungen-erzaehlen, 2026-07-24) ships the first two recognition-only
+    // entries — geschehen and erschrecken — so two production cards fewer, by design.
+    expect(cards).toBe(entries * 2 - 2);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

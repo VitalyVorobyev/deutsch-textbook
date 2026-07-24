@@ -122,7 +122,7 @@ export default function OverviewTable({
   return <div className="mt-6">
     <div className="flex flex-wrap items-end justify-between gap-4">
       <div className="flex flex-wrap items-center gap-4">
-        <Filter label={t('filter.level', uiLang)} value={level} onChange={onLevel} options={[['all', t('filter.all', uiLang)], ['A1', 'A1'], ['A2', 'A2']]} />
+        <Filter label={t('filter.level', uiLang)} value={level} onChange={onLevel} options={[['all', t('filter.all', uiLang)], ['A1', 'A1'], ['A2', 'A2'], ['B1', 'B1']]} />
         <Filter label={t('filter.status', uiLang)} value={status} onChange={onStatus} options={STATUSES.map(([id, key]) => [id, t(key, uiLang)] as const)} />
         <label className="text-sm font-medium text-stone-500">
           <span className="sr-only">{t('topics.search', uiLang)}</span>

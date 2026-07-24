@@ -20,7 +20,9 @@ for (const card of cards) cardsByDeck.set(card.deckId, [...(cardsByDeck.get(card
 const vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }> = [
   {
     title: 'filter.level',
-    items: ['A1', 'A2'].map((level) => ({
+    // Derived from the authored decks, so a new level appears here the day its
+    // first deck ships — CEFR level names sort correctly as plain strings.
+    items: [...new Set(vocab.map((deck) => deck.data.level))].sort().map((level) => ({
       id: level, label: level,
       cardIds: vocab.filter((deck) => deck.data.level === level).flatMap((deck) => cardsByDeck.get(deck.data.id) ?? []),
     })),
