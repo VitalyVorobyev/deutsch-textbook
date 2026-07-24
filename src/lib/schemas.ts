@@ -209,7 +209,7 @@ export const vocabEntrySchema = z
     // ignoring the alternatives is the failure mode `accept` was added to prevent.
     if (entry.cards === 'recognition' && entry.accept.length > 0) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message:
           `"${entry.de}" is cards: recognition but declares accept — accept only ever feeds ` +
           'the typed production card, which a recognition-only entry does not have',
@@ -217,13 +217,13 @@ export const vocabEntrySchema = z
     }
     if (entry.pos === 'noun' && !entry.gender) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: `noun "${entry.de}" must declare gender (m/f/n)`,
       });
     }
     if (entry.pos !== 'noun' && (entry.gender || entry.plural)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: `"${entry.de}" is not a noun but has gender/plural`,
       });
     }
@@ -231,12 +231,12 @@ export const vocabEntrySchema = z
     // useless in the table and hostile to author.
     if (entry.pos !== 'phrase' && !entry.ipa) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: `"${entry.de}" is missing ipa (Lautschrift) — run \`bun run gen:ipa\``,
       });
     }
     for (const message of ipaProblems(entry.de, entry.ipa)) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+      ctx.addIssue({ code: 'custom', message });
     }
   });
 export type VocabEntry = z.infer<typeof vocabEntrySchema>;
@@ -331,7 +331,7 @@ export const matchItemSchema = z.object({
       const lefts = new Set<string>();
       for (const p of pairs) {
         if (lefts.has(p.left))
-          ctx.addIssue({ code: z.ZodIssueCode.custom, message: `duplicate left "${p.left}" — pair identity must be unique` });
+          ctx.addIssue({ code: 'custom', message: `duplicate left "${p.left}" — pair identity must be unique` });
         lefts.add(p.left);
       }
       for (const mode of ['en', 'ru', 'uk'] as const) {
@@ -347,7 +347,7 @@ export const matchItemSchema = z.object({
                   : p.right.en;
           if (seen.has(label))
             ctx.addIssue({
-              code: z.ZodIssueCode.custom,
+              code: 'custom',
               message: `duplicate right label "${label}" under ${mode} mode — rights must render distinct in every language`,
             });
           seen.add(label);
@@ -579,7 +579,7 @@ export const visualDocumentSchema = z
   .superRefine((document, ctx) => {
     if (document.sourceClass !== 'simulated' && (!document.attribution || !document.license)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: 'real/adapted documents require attribution and license',
       });
     }
@@ -667,7 +667,7 @@ const wortnetzRelationSchema = z
   .superRefine((relation, ctx) => {
     if (relation.basis === 'historical' && !relation.source_note) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         path: ['source_note'],
         message: 'historical relations require an authoring source note',
       });
@@ -690,7 +690,7 @@ export const wortnetzSchema = z
     for (const [index, member] of network.members.entries()) {
       if (ids.has(member.id)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           path: ['members', index, 'id'],
           message: `duplicate member id "${member.id}"`,
         });
@@ -701,14 +701,14 @@ export const wortnetzSchema = z
     for (const [index, relation] of network.relations.entries()) {
       if (!ids.has(relation.from)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           path: ['relations', index, 'from'],
           message: `unknown member "${relation.from}"`,
         });
       }
       if (!ids.has(relation.to)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           path: ['relations', index, 'to'],
           message: `unknown member "${relation.to}"`,
         });
@@ -716,7 +716,7 @@ export const wortnetzSchema = z
       const key = `${relation.from}::${relation.to}::${relation.type}`;
       if (relations.has(key)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           path: ['relations', index],
           message: `duplicate canonical relation "${key}"`,
         });
@@ -744,7 +744,7 @@ const discoveryImageSchema = z
   .superRefine((image, ctx) => {
     if (image.sourceClass !== 'simulated' && (!image.attribution || !image.license)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: 'real/adapted images require attribution and license',
       });
     }
@@ -753,7 +753,7 @@ const discoveryImageSchema = z
 /** Curated external material. Links are rendered visibly online-only and are
     never load-bearing: a dead link may disappoint, but nothing breaks. */
 const discoveryLinkSchema = z.object({
-  url: z.string().url().startsWith('https://'),
+  url: z.url().startsWith('https://'),
   label: z.string().min(1),
   note: bilingualSchema.optional(),
 });
