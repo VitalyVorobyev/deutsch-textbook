@@ -504,7 +504,9 @@ describe('cards: recognition | both', () => {
     // update the assertion in the same change that ships them, deliberately.
     // B1.1 (erfahrungen-erzaehlen, 2026-07-24) ships the first two recognition-only
     // entries — geschehen and erschrecken — so two production cards fewer, by design.
-    expect(cards).toBe(entries * 2 - 2);
+    // B1.2 (leben-veraendern, 2026-07-24) adds three more — Wohngemeinschaft,
+    // Grundstück and Wohnort: read in ads and on forms, not produced at B1.
+    expect(cards).toBe(entries * 2 - 5);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

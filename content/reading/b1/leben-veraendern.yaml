@@ -1,0 +1,79 @@
+topic: leben-veraendern
+kind: intensive
+title_de: "Raus aus dem Zentrum"
+text:
+  - >-
+    Sechs Jahre lang wohnte Sofia im Zentrum. Die Lage war praktisch,
+    aber der Lärm des Verkehrs [[störte::bothered, disturbed::мешал::заважав]]
+    sie jeden Abend, und die Miete [[stieg::rose, went up::росла::зростала]]
+    jedes Jahr. Lange suchte sie eine größere Wohnung, die sie bezahlen
+    konnte.
+  - >-
+    Im März fand sie etwas: drei helle Zimmer in einem ruhigeren
+    [[Viertel::city district::районе города::районі міста]], mit einem Balkon,
+    von dem man einen Park sieht. Die Nachbarin, der Sofia am ersten
+    Tag mit den Kisten [[half::helped::помогла::допомогла]], brachte am Abend
+    einen Kuchen vorbei.
+  - >-
+    Heute ist der Weg zur Arbeit länger — das ist der einzige Nachteil. Aber
+    Sofia schläft wieder gut, und am Ende des Monats bleibt mehr Geld
+    [[übrig::left over::в остатке::у залишку]]. Den Bus, mit dem sie morgens
+    fährt, mag sie sogar: Sie liest
+    [[unterwegs::on the way::в дороге::дорогою]] weiter. An die neue
+    [[Gegend::area, neighbourhood::местность, район::місцевість, район]] hat
+    sie sich [[gewöhnt::got used (to)::привыкла::звикла]] — nur ihr
+    altes Café [[vermisst::misses::скучает по::сумує за]] sie manchmal.
+questions:
+  - id: frage-gruende
+    outcomes: [veraenderung-berichten]
+    type: mc
+    prompt: "Warum suchte Sofia eine neue Wohnung?"
+    options:
+      - "Der Lärm störte sie, und die Miete stieg jedes Jahr."
+      - "Die alte Wohnung war ihr zu groß geworden."
+      - "Sie wollte näher an der Arbeit wohnen."
+    correct: 0
+    translation:
+      en: "Why was Sofia looking for a new flat?"
+      ru: "Почему София искала новую квартиру?"
+      uk: "Чому Софія шукала нову квартиру?"
+    explain:
+      en: "The first paragraph names both reasons side by side: der Lärm des Verkehrs störte sie, and die Miete stieg jedes Jahr. She was after a bigger flat, not a smaller one — and the way to work actually got longer after the move, so moving closer to work cannot have been the goal."
+      ru: "Первый абзац называет обе причины рядом: der Lärm des Verkehrs störte sie и die Miete stieg jedes Jahr. Она искала квартиру побольше, а не поменьше, — а дорога на работу после переезда стала длиннее, так что переехать поближе к работе целью быть не могло."
+      uk: "Перший абзац називає обидві причини поряд: der Lärm des Verkehrs störte sie і die Miete stieg jedes Jahr. Вона шукала більшу квартиру, а не меншу, — а дорога на роботу після переїзду стала довшою, тож переїхати ближче до роботи метою бути не могло."
+
+  - id: frage-nachbarin
+    outcomes: [relativsatz-praezisieren]
+    type: mc
+    prompt: "Wer half wem am ersten Tag?"
+    options:
+      - "Sofia half der Nachbarin mit den Kisten."
+      - "Die Nachbarin half Sofia mit den Kisten."
+      - "Der Vermieter half Sofia mit den Kisten."
+    correct: 0
+    translation:
+      en: "Who helped whom on the first day?"
+      ru: "Кто кому помог в первый день?"
+      uk: "Хто кому допоміг першого дня?"
+    explain:
+      en: "The relative clause decides it: Die Nachbarin, der Sofia half — der is a dative pronoun (helfen + Dativ) pointing back at the neighbour, and Sofia is the subject inside the clause. So Sofia did the helping, and the cake in the evening was the neighbour's thank-you. No Vermieter appears in the story."
+      ru: "Решает относительное придаточное: Die Nachbarin, der Sofia half — der здесь дательный падеж (helfen + Dativ) и указывает на соседку, а подлежащее внутри придаточного — Sofia. Значит, помогала София, а вечерний пирог был благодарностью соседки. Никакой Vermieter в тексте не появляется."
+      uk: "Вирішує відносне підрядне: Die Nachbarin, der Sofia half — der тут давальний відмінок (helfen + Dativ) і вказує на сусідку, а підмет усередині підрядного — Sofia. Отже, допомагала Софія, а вечірній пиріг був подякою сусідки. Жодний Vermieter у тексті не з'являється."
+
+  - id: frage-nachteil
+    outcomes: [veraenderung-berichten]
+    type: mc
+    prompt: "Was ist der einzige Nachteil der neuen Wohnung?"
+    options:
+      - "Der Weg zur Arbeit ist jetzt länger."
+      - "Die Miete ist jetzt höher."
+      - "Das neue Viertel ist zu laut."
+    correct: 0
+    translation:
+      en: "What is the only disadvantage of the new flat?"
+      ru: "Какой единственный недостаток у новой квартиры?"
+      uk: "Який єдиний недолік у новій квартирі?"
+    explain:
+      en: "The text says it directly: Heute ist der Weg zur Arbeit länger — das ist der einzige Nachteil. The money option contradicts am Ende des Monats bleibt mehr Geld übrig, and the noise option contradicts the whole move — the new district is the quieter one, and Sofia sleeps well again."
+      ru: "Текст говорит это прямо: Heute ist der Weg zur Arbeit länger — das ist der einzige Nachteil. Вариант про деньги противоречит фразе am Ende des Monats bleibt mehr Geld übrig, а вариант про шум — всему переезду: новый район как раз тише, и София снова хорошо спит."
+      uk: "Текст каже це прямо: Heute ist der Weg zur Arbeit länger — das ist der einzige Nachteil. Варіант про гроші суперечить фразі am Ende des Monats bleibt mehr Geld übrig, а варіант про шум — усьому переїзду: новий район якраз тихіший, і Софія знову добре спить."
