@@ -79,29 +79,35 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 reports exactly what has shipped — units 1–2 cover their six points', () => {
+  test('B1 reports exactly what has shipped — units 1–3 cover their ten points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
     // The ratchet: raised in the same commit that ships a unit, never ahead of content.
     // Unit B1.1 (erfahrungen-erzaehlen, 2026-07-24) closed its three contract points;
     // unit B1.2 (leben-veraendern, 2026-07-24) closed genitiv-vollstaendig,
-    // komparativ-attributiv and relativsatz-dativ.
-    expect(coverage.covered).toBe(6);
+    // komparativ-attributiv and relativsatz-dativ; unit B1.3 (gesundheit-wohlbefinden,
+    // 2026-07-24) closed adjektiv-nullartikel, konjunktiv2-ratschlag, lassen and
+    // reflexiv-praeposition.
+    expect(coverage.covered).toBe(10);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(19);
+    expect(coverage.percent).toBe(32);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
+      'adjektiv-nullartikel',
       'genitiv-vollstaendig',
       'komparativ-attributiv',
+      'konjunktiv2-ratschlag',
+      'lassen',
       'plusquamperfekt',
       'praeteritum-vollverben',
+      'reflexiv-praeposition',
       'relativsatz-dativ',
       'temporalsatz',
     ]);
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 6);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 10);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

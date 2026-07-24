@@ -1,0 +1,292 @@
+# B1.3 primary practice. New tags close the unit's four grammar points
+# (reflexiv-praeposition, konjunktiv2-ratschlag, lassen via lassen-verwendung,
+# adjektiv-nullartikel); the two recycling items carry the deepens edge
+# (reflexiv-akkusativ, reflexiv-dativ → gesundheit-arzttermin) and never count
+# toward B1 coverage. On the frame items the graded thing is the CASE after the
+# preposition — the case decision, not the vocabulary around it — because
+# dativ-praepositionen is persistent-weak in the learner's log.
+topic: gesundheit-wohlbefinden
+role: practice
+title:
+  en: "Practice — the frame fixes the case, würde gives the advice"
+  ru: "Практика — рамка фиксирует падеж, würde даёт совет"
+  uk: "Практика — рамка фіксує відмінок, würde дає пораду"
+items:
+  - id: cloze-freuen-kuemmern
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Fill in the articles — the verb's frame decides the case."
+      ru: "Впишите артикли — падеж диктует рамка глагола."
+      uk: "Впишіть артиклі — відмінок диктує рамка дієслова."
+    text: "Ich freue mich schon auf {{den}} Sommer, denn dann kümmere ich mich wieder mehr um {{den}} Garten."
+    translation:
+      en: "I am already looking forward to the summer, because then I will look after the garden more again."
+      ru: "Я уже жду лета, потому что тогда я снова буду больше заниматься садом."
+      uk: "Я вже чекаю на літо, бо тоді я знову більше дбатиму про сад."
+    explain:
+      en: "Two frames, two routes to den. auf is a two-way preposition, but inside sich freuen auf nothing moves and nobody asks wohin — the frame itself takes the accusative. um inside sich kümmern um belongs to the always-accusative prepositions you know from A1. Verb, sich, preposition and case are one vocabulary item."
+      ru: "Две рамки, два пути к den. auf — двусторонний предлог, но внутри sich freuen auf ничто не движется и вопрос wohin не задают: рамка сама берёт аккузатив. Русское «радоваться лету» с дативом здесь не советчик. А um внутри sich kümmern um — из всегда-аккузативных предлогов, знакомых с A1. Глагол, sich, предлог и падеж — одно слово."
+      uk: "Дві рамки, два шляхи до den. auf — двосторонній прийменник, але всередині sich freuen auf ніщо не рухається і питання wohin не ставлять: рамка сама бере знахідний. Українське «радіти літу» з давальним тут не порадник. А um усередині sich kümmern um — із завжди-знахідних прийменників, знайомих з A1. Дієслово, sich, прийменник і відмінок — одне слово."
+
+  - id: cloze-erholen-gewoehnen
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Fill in the articles — one frame is always dative, one is two-way."
+      ru: "Впишите артикли — одна рамка всегда дативная, другая двусторонняя."
+      uk: "Впишіть артиклі — одна рамка завжди давальна, інша двостороння."
+    text: "Nach einer anstrengenden Woche erhole ich mich am besten von {{der}} Arbeit, aber an {{das}} frühe Aufstehen gewöhne ich mich nie."
+    translation:
+      en: "After an exhausting week I recover best from work, but I will never get used to getting up early."
+      ru: "После напряжённой недели я лучше всего восстанавливаюсь после работы, но к раннему подъёму я не привыкну никогда."
+      uk: "Після напруженого тижня я найкраще відновлююся після роботи, але до раннього підйому я не звикну ніколи."
+    explain:
+      en: "von is dative always — in the frame exactly as everywhere else: von der Arbeit. an is two-way, but the frame dictates: sich gewöhnen an + Akkusativ, so an das frühe Aufstehen. The wo/wohin question has no vote inside a verb frame — a two-way preposition there almost always takes the accusative."
+      ru: "von дативный всегда — в рамке ровно так же, как и везде: von der Arbeit. an — двусторонний, но рамка диктует: sich gewöhnen an + Akkusativ, поэтому an das frühe Aufstehen. Русское «привыкать к чему» с дативом подсказывает ложно: внутри глагольной рамки вопрос wo/wohin права голоса не имеет — двусторонний предлог там почти всегда берёт аккузатив."
+      uk: "von давальний завжди — у рамці рівно так само, як і всюди: von der Arbeit. an — двосторонній, але рамка диктує: sich gewöhnen an + Akkusativ, тому an das frühe Aufstehen. Українське «звикати до чого» підказує хибно: всередині дієслівної рамки питання wo/wohin права голосу не має — двосторонній прийменник там майже завжди бере знахідний."
+
+  - id: mc-gewoehnen-an-das
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    focus: reflexiv-praeposition
+    prompt: "Mein Bruder gewöhnt sich langsam ___ Leben in der Stadt."
+    options:
+      - "an das"
+      - "an dem"
+      - "auf das"
+    correct: 0
+    translation:
+      en: "My brother is slowly getting used to life in the city."
+      ru: "Мой брат постепенно привыкает к жизни в городе."
+      uk: "Мій брат поступово звикає до життя в місті."
+    explain:
+      en: "The frame is sich gewöhnen an + Akkusativ: an das. an dem answers the wo-question as if something were located somewhere — but inside a verb frame nothing is located anywhere, the frame dictates the accusative. auf das borrows the preposition from the sibling frame sich freuen auf: a frame's preposition cannot be guessed from meaning, it is part of the verb."
+      ru: "Рамка — sich gewöhnen an + Akkusativ: an das. an dem отвечает на вопрос wo, как будто что-то где-то находится, — но внутри глагольной рамки ничто нигде не находится, рамка диктует аккузатив. auf das одалживает предлог у соседней рамки sich freuen auf: предлог рамки не выводится из смысла, он часть глагола."
+      uk: "Рамка — sich gewöhnen an + Akkusativ: an das. an dem відповідає на питання wo, ніби щось десь розташоване, — але всередині дієслівної рамки ніщо ніде не розташоване, рамка диктує знахідний. auf das позичає прийменник у сусідньої рамки sich freuen auf: прийменник рамки не виводиться зі змісту, він частина дієслова."
+
+  - id: uebersetzen-freuen-wochenende
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Translate. Use sich freuen auf."
+      ru: "Переведите. Используйте sich freuen auf."
+      uk: "Перекладіть. Використайте sich freuen auf."
+    prompt_en: "I am already looking forward to the weekend."
+    prompt_ru: "Я уже жду выходных."
+    prompt_uk: "Я вже чекаю на вихідні."
+    answer: "Ich freue mich schon auf das Wochenende."
+    accept:
+      - "Ich freue mich schon aufs Wochenende."
+      - "Ich freue mich schon sehr auf das Wochenende."
+    key_tokens: ["auf", "das", "aufs"]
+    explain:
+      en: "Graded is the frame's case: auf inside sich freuen auf takes the accusative — auf das (or contracted aufs) Wochenende. auf dem would be the wo-trap: there is no movement in looking forward to something, but frames never ask wo/wohin — the case is part of the verb."
+      ru: "Оценивается падеж рамки: auf внутри sich freuen auf требует аккузатива — auf das (или стянуто aufs) Wochenende. auf dem — ловушка вопроса wo: в предвкушении ведь нет движения, но рамка вопрос wo/wohin не задаёт никогда — падеж входит в состав глагола."
+      uk: "Оцінюється відмінок рамки: auf усередині sich freuen auf вимагає знахідного — auf das (або стягнено aufs) Wochenende. auf dem — пастка питання wo: у передчутті ж немає руху, але рамка питання wo/wohin не ставить ніколи — відмінок входить до складу дієслова."
+
+  - id: cloze-wuerde-sollten
+    outcomes: [ratschlaege-formulieren]
+    type: cloze
+    focus: konjunktiv2-ratschlag
+    instruction:
+      en: "Advice to a colleague: the An-Ihrer-Stelle frame takes würde; the second gap is sollen in the Konjunktiv II."
+      ru: "Совет коллеге: рамка An Ihrer Stelle берёт würde; во втором пропуске — sollen в Konjunktiv II."
+      uk: "Порада колезі: рамка An Ihrer Stelle бере würde; у другому пропуску — sollen у Konjunktiv II."
+    text: "An Ihrer Stelle {{würde}} ich mehr Wasser trinken, und Sie {{sollten}} öfter eine kurze Pause machen."
+    translation:
+      en: "In your place I would drink more water, and you should take a short break more often."
+      ru: "На вашем месте я пил бы больше воды, и вам стоило бы чаще делать короткую паузу."
+      uk: "На вашому місці я пив би більше води, і вам варто було б частіше робити коротку паузу."
+    explain:
+      en: "würde with the umlaut is the advice machine — the look-alike wurde without it is the Präteritum of werden and would report a past change instead of recommending one. sollten is the Konjunktiv II of sollen: the same letters as its Präteritum, but after Sie it reads as softened advice — the doctor's Sie sollten from A2, now produced by you."
+      ru: "würde с умлаутом — машина совета; двойник wurde без умлаута — Präteritum глагола werden, он сообщал бы о прошлой перемене, а не рекомендовал её. sollten — Konjunktiv II глагола sollen: буквы те же, что у Präteritum, но после Sie это читается как смягчённый совет — врачебное Sie sollten с A2, теперь произнесённое вами. Русское «бы» здесь становится вспомогательным глаголом würde."
+      uk: "würde з умлаутом — машина поради; двійник wurde без умлаута — Präteritum дієслова werden, він повідомляв би про минулу зміну, а не рекомендував її. sollten — Konjunktiv II дієслова sollen: літери ті самі, що в Präteritum, але після Sie це читається як пом'якшена порада — лікарське Sie sollten з A2, тепер вимовлене вами. Українська частка «б/би» тут стає допоміжним дієсловом würde."
+
+  - id: mc-wuerde-wurde
+    outcomes: [ratschlaege-formulieren]
+    type: mc
+    focus: konjunktiv2-ratschlag
+    prompt: "Ich ___ an deiner Stelle abends keinen Kaffee mehr trinken."
+    options:
+      - "würde"
+      - "wurde"
+      - "will"
+    correct: 0
+    translation:
+      en: "If I were you, I would not drink coffee in the evening any more."
+      ru: "Я бы на твоём месте больше не пил кофе по вечерам."
+      uk: "Я б на твоєму місці більше не пив кави вечорами."
+    explain:
+      en: "an deiner Stelle announces a borrowed, unreal ich — and the unreal demands the Konjunktiv II: würde. wurde without the umlaut is the Präteritum of werden: it would report a past event, and two dots are the entire difference between advice and history. will is indicative and blunt — it states your own plan, which the an-deiner-Stelle frame cannot introduce."
+      ru: "an deiner Stelle объявляет одолженное, нереальное ich — а нереальное требует Konjunktiv II: würde. wurde без умлаута — Präteritum глагола werden: он сообщал бы о прошлом событии, и две точки — вся разница между советом и историей. will — индикатив и звучит прямолинейно: он заявляет ваш собственный план, который рамка an deiner Stelle ввести не может."
+      uk: "an deiner Stelle оголошує позичене, нереальне ich — а нереальне вимагає Konjunktiv II: würde. wurde без умлаута — Präteritum дієслова werden: він повідомляв би про минулу подію, і дві крапки — уся різниця між порадою та історією. will — індикатив і звучить прямолінійно: він заявляє ваш власний план, який рамка an deiner Stelle ввести не може."
+
+  - id: uebersetzen-an-deiner-stelle
+    outcomes: [ratschlaege-formulieren]
+    type: translate
+    focus: konjunktiv2-ratschlag
+    instruction:
+      en: "Translate — advice to a friend (du). Use the An deiner Stelle frame with würde."
+      ru: "Переведите — совет другу (du). Используйте рамку An deiner Stelle с würde."
+      uk: "Перекладіть — порада другові (du). Використайте рамку An deiner Stelle з würde."
+    prompt_en: "If I were you, I would eat more fruit."
+    prompt_ru: "Я бы на твоём месте ел больше фруктов."
+    prompt_uk: "Я б на твоєму місці їв більше фруктів."
+    answer: "An deiner Stelle würde ich mehr Obst essen."
+    accept:
+      - "Ich würde an deiner Stelle mehr Obst essen."
+    key_tokens: ["würde", "essen"]
+    explain:
+      en: "Graded are both ends of the advice frame: würde in second position and the infinitive essen at the very end. English keeps would and eat side by side (I would eat more fruit) — German opens the bracket with würde and closes it with the infinitive, with everything else in between."
+      ru: "Оцениваются оба конца рамки совета: würde на втором месте и инфинитив essen в самом конце. Русское «я бы ел» держит «бы» и глагол рядом — немецкий раскрывает скобку: würde открывает, инфинитив закрывает, а всё остальное стоит между ними."
+      uk: "Оцінюються обидва кінці рамки поради: würde на другому місці та інфінітив essen у самому кінці. Українське «я б їв» тримає «б» і дієслово поруч — німецька розкриває дужку: würde відкриває, інфінітив закриває, а все інше стоїть між ними."
+
+  - id: cloze-laesst-schneiden
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: lassen-verwendung
+    instruction:
+      en: "Fill in the right form of lassen."
+      ru: "Впишите нужную форму lassen."
+      uk: "Впишіть потрібну форму lassen."
+    text: "Mein Vater {{lässt}} sich die Haare nur alle drei Monate schneiden."
+    translation:
+      en: "My father only has his hair cut every three months."
+      ru: "Мой отец стрижётся только раз в три месяца."
+      uk: "Мій батько стрижеться лише раз на три місяці."
+    explain:
+      en: "lassen conjugates with an umlaut like schlafen → schläft: er lässt. This is lassen's first job — my father arranges it, the hairdresser cuts — and schneiden stands at the end as a bare infinitive, no zu, exactly as after a modal verb."
+      ru: "lassen спрягается с умлаутом, как schlafen → schläft: er lässt. Это первая работа lassen — отец организует, стрижёт парикмахер. Русское «стрижётся» прячет исполнителя в возвратный глагол, немецкий называет его честно: lässt … schneiden, голый инфинитив в конце, без zu — ровно как после модального глагола."
+      uk: "lassen відмінюється з умлаутом, як schlafen → schläft: er lässt. Це перша робота lassen — батько організовує, стриже перукар. Українське «стрижеться» ховає виконавця у зворотне дієслово, німецька називає його чесно: lässt … schneiden, голий інфінітив у кінці, без zu — рівно як після модального дієслова."
+
+  - id: mc-zaehne-kontrollieren
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    focus: lassen-verwendung
+    prompt: "Ich lasse meine Zähne zweimal im Jahr ___."
+    options:
+      - "kontrollieren"
+      - "zu kontrollieren"
+      - "kontrolliert"
+    correct: 0
+    translation:
+      en: "I have my teeth checked twice a year."
+      ru: "Я проверяю зубы дважды в год."
+      uk: "Я перевіряю зуби двічі на рік."
+    explain:
+      en: "After lassen the second verb is a bare infinitive at the end — lassen behaves like a modal. zu kontrollieren applies the A2 zu-infinitive rule to a verb that never takes it, and kontrolliert copies the English participle (I have them checked) — German keeps the plain infinitive: kontrollieren."
+      ru: "После lassen второй глагол — голый инфинитив в конце: lassen ведёт себя как модальный. zu kontrollieren переносит правило zu-инфинитива с A2 на глагол, который его не берёт никогда, а kontrolliert копирует английское причастие (I have them checked) — немецкий сохраняет чистый инфинитив: kontrollieren."
+      uk: "Після lassen друге дієслово — голий інфінітив у кінці: lassen поводиться як модальне. zu kontrollieren переносить правило zu-інфінітива з A2 на дієслово, яке його не бере ніколи, а kontrolliert копіює англійський дієприкметник (I have them checked) — німецька зберігає чистий інфінітив: kontrollieren."
+
+  - id: uebersetzen-lass-uns
+    outcomes: [ratschlaege-formulieren]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate — a suggestion to one friend (du), with lassen."
+      ru: "Переведите — предложение одному другу (du), через lassen."
+      uk: "Перекладіть — пропозиція одному другові (du), через lassen."
+    prompt_en: "Let's take a short break!"
+    prompt_ru: "Давай сделаем короткую паузу!"
+    prompt_uk: "Давай зробимо коротку паузу!"
+    answer: "Lass uns eine kurze Pause machen!"
+    key_tokens: ["Lass", "machen"]
+    explain:
+      en: "Lass uns + infinitive at the end is lassen's third job — the suggestion, English let's. Graded are both ends of the frame: Lass opens it (du-imperative, bare stem), machen closes it as a bare infinitive. Everything else lines up in between, as in every German verb bracket."
+      ru: "Lass uns + инфинитив в конце — третья работа lassen: предложение, ровно русское «давай…». Оцениваются оба конца рамки: Lass открывает её (императив на du, голая основа), machen закрывает голым инфинитивом. Всё остальное выстраивается между ними, как в любой немецкой глагольной скобке."
+      uk: "Lass uns + інфінітив у кінці — третя робота lassen: пропозиція, рівно українське «давай…». Оцінюються обидва кінці рамки: Lass відкриває її (імператив на du, гола основа), machen закриває голим інфінітивом. Усе інше шикується між ними, як у будь-якій німецькій дієслівній дужці."
+
+  - id: cloze-frisches-starken
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction:
+      en: "Fill in frisch and stark with their endings — no article stands in front."
+      ru: "Впишите frisch и stark с окончаниями — артикля впереди нет."
+      uk: "Впишіть frisch і stark із закінченнями — артикля попереду немає."
+    text: "Zum Frühstück esse ich {{frisches}} Obst, und danach trinke ich {{starken}} Kaffee."
+    translation:
+      en: "For breakfast I eat fresh fruit, and afterwards I drink strong coffee."
+      ru: "На завтрак я ем свежие фрукты, а потом пью крепкий кофе."
+      uk: "На сніданок я їм свіжі фрукти, а потім п'ю міцну каву."
+    explain:
+      en: "No article, so the adjective wears the article's signal. das Obst → frisches — hear the s of das inside the ending. der Kaffee is masculine and the object of trinken, so the den-signal lands on the adjective: starken. The weak -e endings of A2 belong after an article — here there is none."
+      ru: "Артикля нет — значит, его сигнал надевает прилагательное. das Obst → frisches: услышьте s от das внутри окончания. der Kaffee — мужской род и дополнение trinken, поэтому сигнал den достаётся прилагательному: starken. Слабые окончания -e с A2 живут после артикля — а здесь его нет. Русский тут союзник: «крепкий кофе, крепкого кофе» — прилагательное само несёт падеж."
+      uk: "Артикля немає — отже, його сигнал надягає прикметник. das Obst → frisches: почуйте s від das усередині закінчення. der Kaffee — чоловічий рід і додаток trinken, тому сигнал den дістається прикметнику: starken. Слабкі закінчення -e з A2 живуть після артикля — а тут його немає. Українська тут союзник: «міцна кава, міцної кави» — прикметник сам несе відмінок."
+
+  - id: cloze-starken-frischer
+    outcomes: [beschwerden-schildern]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction:
+      en: "Fill in stark and frisch — the dative, with no article."
+      ru: "Впишите stark и frisch — датив без артикля."
+      uk: "Впишіть stark і frisch — давальний без артикля."
+    text: "Bei {{starken}} Kopfschmerzen hilft mir oft ein kurzer Spaziergang an {{frischer}} Luft."
+    translation:
+      en: "When I have a bad headache, a short walk in the fresh air often helps me."
+      ru: "При сильной головной боли мне часто помогает короткая прогулка на свежем воздухе."
+      uk: "Коли сильно болить голова, мені часто допомагає коротка прогулянка на свіжому повітрі."
+    explain:
+      en: "Both cells are pure dative signals. bei starken Kopfschmerzen — the -en is the den of the dative plural, worn by the adjective. an frischer Luft — die Luft is feminine, and its dative article der resurfaces as the -er on frischer. Without an article the adjective is the only place the case can show."
+      ru: "Обе клетки — чистые сигналы датива. bei starken Kopfschmerzen: это -en и есть den датива множественного числа, надетое на прилагательное. an frischer Luft: die Luft — женский род, и её дативный артикль der всплывает как -er у frischer. Без артикля прилагательное — единственное место, где падеж может показаться."
+      uk: "Обидві клітинки — чисті сигнали давального. bei starken Kopfschmerzen: це -en і є den давального множини, надягнуте на прикметник. an frischer Luft: die Luft — жіночий рід, і її давальний артикль der спливає як -er у frischer. Без артикля прикметник — єдине місце, де відмінок може показатися."
+
+  - id: mc-frisches-gemuese
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    focus: adjektiv-nullartikel
+    prompt: "Zum Abendessen gibt es heute ___ Gemüse mit Reis."
+    options:
+      - "frisches"
+      - "frische"
+      - "frischen"
+    correct: 0
+    translation:
+      en: "Tonight there are fresh vegetables with rice for dinner."
+      ru: "Сегодня на ужин свежие овощи с рисом."
+      uk: "Сьогодні на вечерю свіжі овочі з рисом."
+    explain:
+      en: "das Gemüse stands without an article, so the adjective carries the das-signal: frisches. frische is the year-long after-article habit (die frische Luft) — but with no article the weak ending would leave the case unmarked. frischen would be the den/dem signal, and neither fits a neuter noun after es gibt, which takes the accusative."
+      ru: "das Gemüse стоит без артикля, поэтому сигнал das несёт прилагательное: frisches. frische — многолетняя привычка после артикля (die frische Luft), но без артикля слабое окончание оставило бы падеж без пометки. frischen было бы сигналом den/dem — а ни тот, ни другой не подходит существительному среднего рода после es gibt, которое требует аккузатива."
+      uk: "das Gemüse стоїть без артикля, тому сигнал das несе прикметник: frisches. frische — багаторічна звичка після артикля (die frische Luft), але без артикля слабке закінчення залишило б відмінок без позначки. frischen було б сигналом den/dem — а жоден із них не пасує іменнику середнього роду після es gibt, яке вимагає знахідного."
+
+  - id: cloze-erkaeltet-fuehle
+    outcomes: [beschwerden-schildern]
+    type: cloze
+    focus: reflexiv-akkusativ
+    instruction:
+      en: "The A2 rule still decides: fill in the reflexive pronoun."
+      ru: "Правило A2 по-прежнему решает: впишите возвратное местоимение."
+      uk: "Правило A2 так само вирішує: впишіть зворотний займенник."
+    text: "Mein Kollege hat {{sich}} letzte Woche erkältet, und jetzt fühle ich {{mich}} auch nicht gut."
+    translation:
+      en: "My colleague caught a cold last week, and now I do not feel well either."
+      ru: "Мой коллега простудился на прошлой неделе, и теперь я тоже чувствую себя нехорошо."
+      uk: "Мій колега застудився минулого тижня, і тепер я теж почуваюся недобре."
+    explain:
+      en: "Nothing new — the bare A2 reflexives carry on underneath the new B1 frames. sich erkälten and sich fühlen keep their accusative pronoun, and it changes with the person: er → sich, ich → mich. The pronoun is part of the verb — without mich, fühlen stops meaning how you feel."
+      ru: "Ничего нового — «голые» возвратные глаголы с A2 продолжают работать под новыми рамками B1. sich erkälten и sich fühlen сохраняют возвратное местоимение в аккузативе, и оно меняется по лицам: er → sich, ich → mich. Местоимение — часть глагола: без mich глагол fühlen перестаёт значить «чувствовать себя»."
+      uk: "Нічого нового — «голі» зворотні дієслова з A2 працюють далі під новими рамками B1. sich erkälten і sich fühlen зберігають зворотний займенник у знахідному, і він змінюється за особами: er → sich, ich → mich. Займенник — частина дієслова: без mich дієслово fühlen перестає означати «почуватися»."
+
+  - id: cloze-haare-waschen
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-dativ
+    instruction:
+      en: "The A2 rule still decides: the affected person is dative — fill in the pronoun."
+      ru: "Правило A2 по-прежнему решает: тот, кого это касается, — в дативе. Впишите местоимение."
+      uk: "Правило A2 так само вирішує: той, кого це стосується, — у давальному. Впишіть займенник."
+    text: "Nach dem Schwimmen wasche ich {{mir}} immer sofort die Haare."
+    translation:
+      en: "After swimming I always wash my hair straight away."
+      ru: "После плавания я всегда сразу мою голову."
+      uk: "Після плавання я завжди одразу мию голову."
+    explain:
+      en: "The A2 body-part rule is unchanged at B1: the body part (die Haare) is the accusative object, so the affected person moves to the dative — mir, not mich. And German uses the plain article die Haare where English reaches for a possessive (my hair)."
+      ru: "Правило A2 о частях тела на B1 не изменилось: часть тела (die Haare) — аккузативное дополнение, поэтому тот, кого это касается, уходит в датив — mir, а не mich. И немецкий ставит простой артикль die Haare там, где русский обходится вовсе без местоимения («мою голову»)."
+      uk: "Правило A2 про частини тіла на B1 не змінилося: частина тіла (die Haare) — знахідний додаток, тому той, кого це стосується, іде в давальний — mir, а не mich. І німецька ставить простий артикль die Haare там, де українська обходиться зовсім без займенника («мию голову»)."
