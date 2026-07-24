@@ -8,7 +8,7 @@
  * which are *claimed* as grammar but addressed nowhere (`!` — validate fails on those).
  *
  * Usage:
- *   bun scripts/coverage.ts [A1|A2] [--missing-only]
+ *   bun scripts/coverage.ts [A1|A2|B1] [--missing-only]
  *   bun scripts/coverage.ts A2 --check-deck content/vocab/berufe-a2.yaml [...]
  *
  * `--check-deck` is the authoring guard for the Wortliste completion pass. The

@@ -1,8 +1,8 @@
 # A2–B1 curriculum blueprint
 
-Status: **A2 is authored and studied through its checkpoint; B1 authoring begins under the
-2026-07-24 owner decision** — the provisional architecture below is next to be frozen, and the
-2026-08-02 / ~2026-08-14 evidence reads are revision triggers, not sequencing gates
+Status: **A2 is authored and studied through its checkpoint; the B1 curriculum contract below is
+frozen and authoring proceeds under the 2026-07-24 owner decision** — the 2026-08-02 / ~2026-08-14
+evidence reads are revision triggers, not sequencing gates
 ([decision record](a2-learning-led-program.md#calendar-and-b1-gates)) (2026-07-24).
 
 The required A1/A2 spine is now fully authored. This paragraph used to keep new work inside the
@@ -80,14 +80,15 @@ useful card). Before authoring, list the forbidden headwords for the field — e
 `content/vocab/*.yaml` — and check against it. Expect **12–24 new entries per unit**, lower for a
 grammar-heavy unit, and treat the number as a load guardrail rather than a target.
 
-**Receptive-only language never enters a deck.** `buildDeck()` turns every vocab entry into two
-cards, a recognition card and a production card; there is no recognition-only representation. So a
+**Receptive-only language never enters an A2 deck.** At A2, `buildDeck()` turns every vocab entry
+into two cards, and that stays true: A2 decks predate `cards: recognition` and are never
+retrofitted (flipping a shipped entry deletes its production card's SRS history). So at A2 a
 station announcement, a listing abbreviation or a form heading — language the learner must
 understand but will never produce — belongs in a reading, a gloss or an article table, and nowhere
-near `content/vocab/`. (The draft of this blueprint asked authors to budget "new receptive"
-vocabulary; that category is deleted. If A2 usage shows the SRS load is genuinely inflated by words
-that only need recognition, a `cards: recognition | both` field is the fix, and it is a backlog
-item, not an authoring workaround.)
+near `content/vocab/`. **From B1 on the rule changes shape**: the `cards: recognition | both`
+field shipped 2026-07-23 (P5-6, exactly for B1's Wortliste tail), so understand-only language may
+enter a *new* deck as a single recognition card — the two-card default remains for anything the
+learner should produce.
 
 **Coverage is measured, not asserted.** A2 is checked against the Goethe-Zertifikat A2 Wortliste in
 `data/goethe-a2-wortliste.txt` exactly as A1 is: units drive authoring, a completion pass at the end
@@ -512,34 +513,208 @@ B1 readiness means the learner connects several sentences, recovers from a predi
 misunderstanding, and still has the high-value A2 language weeks later. It does not require every A2
 badge to read *mastered*.
 
-## Provisional B1 architecture
+## The B1 curriculum contract (frozen 2026-07-24)
 
-**Do not add any of this to `content/atlas.yaml` yet** — atlas nodes and unit slots land only in
-each unit's shipping PR, after the freeze PR has turned this table into the B1 contract. Under the
-2026-07-24 decision the freeze proceeds now rather than after the delayed-evidence reviews; those
-reads are revision triggers on the frozen contract. B1 grows discourse length, independence and
-genre range; it is not simply more grammar.
+**Frozen means what it meant at A2:** every identity named below — a unit id, topic id, outcome
+id, focus tag, deck id, set path-id or reading id — becomes a persisted key in the learner's
+progress the moment its unit ships, and renaming it destroys their history. Insert, never
+renumber. **Atlas nodes and unit slots still land only in each unit's shipping PR** — nothing here
+enters `content/atlas.yaml` ahead of its content. The 2026-08-02 and ~2026-08-14 evidence reads
+are revision triggers on this contract ([decision record](a2-learning-led-program.md#calendar-and-b1-gates)).
+B1 grows discourse length, independence and genre range; it is not simply more grammar.
+
+**Identity scheme, one rule for all ten units** (`<id>` is the topic id, one topic per unit):
+article `content/topics/b1/<id>.mdx`; sets `b1/<id>` (primaryPractice — its item list never grows
+after shipping), `b1/<id>-produktion`, `b1/<id>-pretest`, `b1/probe-<id>` (3 parallel variants,
+one competence); reading `b1/<id>` (`kind: intensive`); deck `content/vocab/<id>.yaml`. Every B1
+topic carries `<En>`, `<Ru>`, `<Uk>` **and `<De>`** halves from authoring (the machinery landed
+before unit 1 — roadmap soft preference, met; cost on record: 1.98x localized,
+`bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`).
+
+**Grammar ownership is exhaustive:** the 31 manifest points of `data/grammar-inventory.yaml`'s B1
+section (including `adjektiv-nullartikel`, filed with the A2 adjective block) are each owned by
+exactly one unit below — 3+3+4+3+3+4+2+3+3+3 = 31, carried by 34 proposed focus tags. A tag
+becomes real in the commit that ships its unit (registered in `focusIntroducedBy` **and**
+`docs/focus-tags.md`, ratchet in `tests/grammar-coverage.test.ts` raised in the same commit).
+**Only a new B1 tag closes a B1 point** — recycled A2 tags carry the `deepens` edges and never
+count. Command behind the figure: `bun scripts/grammar-coverage.ts B1`.
 
 **Six structures left this table in Phase 10 and are now taught at A2**, where the standard puts
 them: relative clauses (Nom/Akk), the *zu*-infinitive and *um … zu*, *als* vs *wenn*, Futur I, the
 adverb *trotzdem*, and passive recognition. They were listed here because A2 was believed complete
 on the strength of its Wortliste figure, and nothing measured structure until the grammar manifest
-was written. The rows below are corrected: B1 may **revisit** any of them at greater depth — the
+was written. The units below are corrected: B1 may **revisit** any of them at greater depth — the
 dative relative pronoun, the produced passive, *obwohl* as a conjunction — but must not re-teach
-them from scratch, and the language column now says which half is which.
+them from scratch, and each unit's grammar list names only the added depth.
 
-| Proposed id | Mission | Language and discourse | Depends on / uncertainty |
-| --- | --- | --- | --- |
-| `erfahrungen-erzaehlen` | Tell a connected story, understand an interview, write a narrative message | the Perfekt–Präteritum distribution, reference across sentences (als/wenn moved to A2 — revisit, do not re-teach) | A2 biography; confirm narrative control is retained |
-| `leben-veraendern` | Discuss housing and relocation, compare options, justify a choice | relative clauses in the **Dativ** and after prepositions, comparison (Nom/Akk relatives and the *zu*-infinitive moved to A2) | A2 housing and reasons; keep the boundary practical |
-| `arbeit-bewerbung` | Read a vacancy, present experience, write an application, handle interview turns | formal register, broader subordinate clauses, polite Konjunktiv II | A2 work and public services; depth depends on the learner's goals |
-| `gesundheit-wohlbefinden` | Explain a history, understand recommendations, discuss habits | reflexive and prepositional verbs, advice, cause and effect | A2 health; stays non-diagnostic |
-| `meinung-medien` | Understand a report, summarize its point, support an opinion | opinion frames, connectors, indirect questions, reported information | A2 reasons and plans; test the mediation load |
-| `konsum-umwelt` | Compare choices, understand notices, negotiate a practical solution | **producing** the passive and its past, consequences (passive *recognition* moved to A2) | A2 shopping and housing; avoid abstract policy |
-| `reisen-probleme` | Manage less predictable disruption and make a complaint | narrative plus formal request, prepositional verbs, hypotheticals | A2 travel and complaints; exclude legal detail |
-| `lernen-zukunft` | Discuss learning and career goals, summarize, plan next steps | conditions, justification (infinitive clauses and Futur I moved to A2) | confirm whether work and education need separate variants |
-| `gesellschaft-zusammenleben` | Join a familiar community discussion and resolve a disagreement | **obwohl** as a conjunction, modal nuance (the adverb *trotzdem* moved to A2) | cultural content must stay action-oriented |
-| `informationen-vermitteln` | Relay the main points of a notice, message or conversation | paraphrase, reported information, reference control, summary | cumulative; needs a workable task and rubric model |
+**Unit order rationale, recorded:** narrative first (B1.1 deepens the biografie material the
+learner just finished); the Konjunktiv II chunks-before-paradigm split puts advice (B1.3,
+`konjunktiv2-ratschlag`) before the unreal paradigm (B1.7, `konjunktiv2-irreal`); the passive
+block coheres in one unit (B1.6); the cumulative mediation unit closes the level (B1.10).
+
+### B1.1 · `erfahrungen-erzaehlen` — Erfahrungen erzählen
+
+**Mission:** tell a connected story, understand an interview, write a narrative message.
+**Grammar (3):** `praeteritum-vollverben` → tag `praeteritum-vollverben`; `plusquamperfekt` →
+`plusquamperfekt-nachdem`; `temporalsatz` → `temporal-nebensatz`.
+**Outcomes (frozen ids):** `praeteritum-erzaehlen` (writing — "Ich kann ein Erlebnis schriftlich
+im Präteritum erzählen."), `vorzeitigkeit-ausdruecken` (writing — "Ich kann mit nachdem und
+Plusquamperfekt sagen, was zuerst geschah."), `interview-verstehen` (listening — "Ich kann einem
+Interview über Erfahrungen die Hauptpunkte entnehmen."), `muendlich-nacherzaehlen`
+(spoken-production — "Ich kann eine Geschichte mündlich zusammenhängend nacherzählen.").
+**Deepens (A2, never re-taught):** `biografie-erfahrungen` (als/wenn, praeteritum-sein-haben),
+`perfekt-haben-sein` — the Perfekt–Präteritum register split is the teaching point.
+**Exclude:** Plusquamperfekt outside nachdem-frames, literary narration, indirect speech (B1.10).
+
+### B1.2 · `leben-veraendern` — Leben verändern
+
+**Mission:** discuss housing and relocation, compare options, justify a choice.
+**Grammar (3):** `relativsatz-dativ` → tags `relativpronomen-dativ`, `relativ-praeposition`;
+`komparativ-attributiv` → `komparativ-attributiv`; `genitiv-vollstaendig` → `genitiv-form`.
+**Outcomes:** `wohnsituation-vergleichen` (spoken-production — "Ich kann Wohnsituationen
+vergleichen und eine Wahl begründen."), `relativsatz-praezisieren` (writing — "Ich kann mit
+Relativsätzen im Dativ und nach Präpositionen genauer beschreiben, was ich meine."),
+`veraenderung-berichten` (writing — "Ich kann über eine Lebensveränderung berichten und Vor- und
+Nachteile nennen.").
+**Deepens:** `wohnen-umzug`, `relativsaetze` (Nom/Akk taught at A2 — the Dativ and preposition
+cases are the added depth).
+**Exclude:** tenancy law, genitive relative pronouns (dessen/deren as production), attributive
+superlatives beyond fixed phrases.
+
+### B1.3 · `gesundheit-wohlbefinden` — Gesundheit & Wohlbefinden
+
+**Mission:** explain a history, understand recommendations, discuss habits; stays non-diagnostic.
+**Grammar (4):** `reflexiv-praeposition` → tag `reflexiv-praeposition`; `konjunktiv2-ratschlag` →
+`konjunktiv2-ratschlag`; `lassen` → `lassen-verwendung`; `adjektiv-nullartikel` →
+`adjektiv-nullartikel` (frisches Obst, warmes Wasser — the strong declension earns its keep here).
+**Outcomes:** `beschwerden-schildern` (spoken-interaction — "Ich kann Beschwerden schildern und
+Rückfragen beantworten."), `ratschlaege-formulieren` (spoken-interaction — "Ich kann mit
+Konjunktiv II Ratschläge geben und abschwächen." — *not* `ratschlag-geben`, which
+`gesundheit-arzttermin` already owns: outcome ids are global), `empfehlungen-verstehen` (reading — "Ich kann Empfehlungen
+und Packungsangaben verstehen."), `gewohnheiten-beschreiben` (spoken-production — "Ich kann über
+Gewohnheiten und Wohlbefinden sprechen.").
+**Deepens:** `gesundheit-arzttermin` (its `reflexiv-akkusativ`/`reflexiv-dativ` base grows the
+preposition frames). The A2 chunk tag `hoeflich-konjunktiv` never closes `konjunktiv2-ratschlag`
+— the point is the productive paradigm behind the chunks.
+**Exclude:** diagnoses, medical terminology beyond everyday complaints, the unreal Konjunktiv II
+paradigm (B1.7).
+
+### B1.4 · `arbeit-bewerbung` — Arbeit & Bewerbung
+
+**Mission:** read a vacancy, present experience, write an application, handle interview turns.
+**Grammar (3):** `n-deklination` → tag `n-deklination` (der Kollege/den Kollegen);
+`adjektiv-nomen` → `adjektiv-nomen` (der Angestellte, die Bekannte); `nomen-verb-verbindungen` →
+`nomen-verb-verbindung` (eine Frage stellen, zur Verfügung stehen).
+**Outcomes:** `stellenanzeige-verstehen` (reading — "Ich kann eine Stellenanzeige verstehen und
+die Anforderungen herauslesen."), `bewerbung-schreiben` (writing — "Ich kann ein kurzes
+Bewerbungsschreiben verfassen."), `erfahrung-praesentieren` (spoken-production — "Ich kann meine
+Erfahrung und Stärken im Gespräch darstellen.").
+**Deepens:** `arbeit-beruf`, `aemter-dienstleistungen` (the formal register grows from their
+hoeflich-konjunktiv base).
+**Exclude:** contract/labour-law language, CV-format conventions as content, salary negotiation.
+
+### B1.5 · `meinung-medien` — Meinung & Medien
+
+**Mission:** understand a report, summarize its point, support an opinion.
+**Grammar (3):** `verb-praeposition-erweitert` → tag `verb-praeposition-b1` (sich äußern zu,
+abhängen von); `kausalsatz-da` → `da-weil`; `zweiteilige-konnektoren` →
+`zweiteilige-konnektoren` (nicht nur … sondern auch, entweder … oder, zwar … aber).
+**Outcomes:** `bericht-verstehen` (reading — "Ich kann einen kurzen Bericht verstehen und seine
+Kernaussage wiedergeben."), `meinung-begruenden` (spoken-production — "Ich kann meine Meinung
+äußern und mit Argumenten stützen."), `argumente-verbinden` (writing — "Ich kann Aussagen mit
+zweiteiligen Konnektoren verknüpfen und abwägen.").
+**Deepens:** `verben-mit-praepositionen`, `verbindungen-folgen`, `lernen-verstehen` (indirect
+questions recycle — the mediation load is the new part).
+**Exclude:** politics and news beyond everyday media use, opinion essays (that is B2 genre range).
+
+### B1.6 · `konsum-umwelt` — Konsum & Umwelt
+
+**Mission:** compare choices, understand notices, negotiate a practical solution; avoid abstract
+policy.
+**Grammar (4):** `passiv-produktion` → tag `passiv-bildung`; `passiv-vergangenheit` →
+`passiv-vergangenheit`; `passiv-modal` → `passiv-modal`; `konsekutivsatz-sodass` → `sodass-folge`.
+**Outcomes:** `passiv-beschreiben` (writing — "Ich kann mit dem Passiv beschreiben, wie etwas
+hergestellt oder geregelt wird."), `hinweise-verstehen` (reading — "Ich kann öffentliche Hinweise
+und Regelungen verstehen."), `loesung-aushandeln` (spoken-interaction — "Ich kann bei einem
+Problem eine praktische Lösung aushandeln.").
+**Deepens:** `einkaufen-reklamation`, `man-und-besitz` (its `passiv-rezeptiv` recognition was A2;
+production is this unit's whole point — the A2 tag never closes these gaps).
+**Exclude:** Vorgangs- vs Zustandspassiv terminology, environmental policy debate, statistics.
+
+### B1.7 · `reisen-probleme` — Reisen & Probleme
+
+**Mission:** manage less predictable disruption and make a complaint; exclude legal detail.
+**Grammar (2):** `konjunktiv2-irreal` → tags `konjunktiv2-form`, `irreale-bedingung`;
+`praeposition-genitiv` → `praeposition-genitiv` (wegen, trotz, während).
+**Outcomes:** `beschwerde-schreiben` (writing — "Ich kann eine formelle Beschwerde mit Begründung
+schreiben."), `irreale-bedingung-nutzen` (spoken-production — "Ich kann sagen, was ich tun würde,
+wenn etwas anders wäre."), `panne-berichten` (spoken-production — "Ich kann eine Reisepanne
+zusammenhängend berichten.").
+**Deepens:** `reisen-verkehr`, `gesundheit-wohlbefinden` (the Konjunktiv II advice forms feed the
+full paradigm here).
+**Exclude:** Konjunktiv II of full verbs beyond hätte/wäre/würde + core modals, compensation law.
+
+### B1.8 · `lernen-zukunft` — Lernen & Zukunft
+
+**Mission:** discuss learning and career goals, summarize, plan next steps.
+**Grammar (3):** `finalsatz-damit` → tag `damit-um-zu` (the subject test decides between them);
+`konditionalsatz-falls` → `falls-wenn`; `infinitivsatz-ohne-statt` → `ohne-statt-zu`.
+**Outcomes:** `ziele-begruenden` (spoken-production — "Ich kann Lernziele nennen und begründen,
+wozu ich etwas lerne."), `plan-formulieren` (writing — "Ich kann einen Plan mit Bedingungen
+formulieren."), `beratung-verstehen` (listening — "Ich kann einer Beratung die wichtigsten Punkte
+entnehmen.").
+**Deepens:** `lernen-verstehen`, `infinitiv-mit-zu`, `nebensaetze-plaene` (um … zu and zu-infinitive
+are A2 — damit/ohne … zu/statt … zu are the added depth).
+**Exclude:** formal study-counselling vocabulary, Futur II, career-planning jargon.
+
+### B1.9 · `gesellschaft-zusammenleben` — Gesellschaft & Zusammenleben
+
+**Mission:** join a familiar community discussion and resolve a disagreement; action-oriented,
+never civics-lecture.
+**Grammar (3):** `konzessivsatz-obwohl` → tag `obwohl-trotzdem` (the conjunction vs the A2
+adverb); `indefinitpronomen-erweitert` → `indefinitpronomen-erweitert` (irgendjemand, niemand,
+alle/einige/manche); `relativ-was-wo` → `relativ-was-wo` (alles, was …; die Stadt, wo …).
+**Outcomes:** `einwand-ausdruecken` (spoken-interaction — "Ich kann Einwände ausdrücken und auf
+Gegenmeinungen reagieren."), `diskussion-folgen` (listening — "Ich kann einer Diskussion zu einem
+vertrauten Thema folgen."), `kompromiss-vorschlagen` (spoken-interaction — "Ich kann bei einer
+Meinungsverschiedenheit einen Kompromiss vorschlagen.").
+**Deepens:** `verbindungen-folgen` (trotzdem the adverb is A2 — obwohl the conjunction is the
+depth), `freunde-feste`.
+**Exclude:** political institutions, migration-policy content, formal debate structure.
+
+### B1.10 · `informationen-vermitteln` — Informationen vermitteln
+
+**Mission:** relay the main points of a notice, message or conversation — the cumulative
+mediation unit that closes the level.
+**Grammar (3):** `indirekte-rede` → tag `indirekte-rede` (er sagt, dass … / sie fragt, ob … —
+Konjunktiv I receptive only); `wortstellung-angaben` → tags `angaben-reihenfolge`,
+`pronomen-stellung`; `partizip-adjektiv` → `partizip-adjektiv` (das geplante Treffen — the
+compression notices are made of).
+**Outcomes:** `mitteilung-weitergeben` (spoken-production — "Ich kann den Inhalt einer Mitteilung
+mit eigenen Worten weitergeben."), `indirekt-berichten` (writing — "Ich kann berichten, was
+jemand gesagt oder gefragt hat."), `text-zusammenfassen` (writing — "Ich kann einen Text kurz
+zusammenfassen.").
+**Deepens:** `lernen-verstehen` (indirect questions), `nebensaetze-plaene` (dass-clauses),
+`erfahrungen-erzaehlen` (narrative order under the Angaben rule).
+**Exclude:** Konjunktiv I production, journalistic register, minutes/protocol formats.
+
+### Vocabulary, probes, checkpoint — the level-wide policies
+
+- **Vocabulary:** each unit ships a thin deck of 12–24 entries no deck owns, recycling A1/A2
+  lexis aggressively; `cards: recognition` is used from day one for understand-only entries. The
+  ~1,996-headword Wortliste tail closes in an end-of-level completion pass of **unowned** decks,
+  recognition-heavy — never listed in any topic's `vocab:`. Coverage command:
+  `bun scripts/coverage.ts B1` (with `--check-deck` per deck before validate).
+- **Probes:** one 3-variant, single-competence family per unit from day one, cloze-preferred for
+  attribution. A second family only for a measured reason, with `armedAt` checked before and
+  after (a >~1-day shift re-labels probes already taken).
+- **Operating cadence** (extends P5-11 to B1): after every two shipped units — triage the grading
+  queue to zero, rerun `bun run progress:audit`, re-read the weak-focus table, and only then
+  author the next pair; the grammar ratchet and the tag registry move in every unit's own commit.
+- **Checkpoint and placement:** `checkpoint-b1.yaml` and `placement-b1.yaml` at level close —
+  data, not wiring; one of each per level.
+- **Ukrainian:** `<Uk>` halves ship with each topic (per-file all-or-none); the Über page's
+  computed coverage figure is the tracker.
 
 Pronunciation shifts toward clause grouping, sentence accent, reductions and connected speech. No B1
 unit may assume that a structure met once at A2 was retained.
@@ -550,11 +725,12 @@ unit may assume that a structure met once at A2 was retained.
 2. Author one complete unit per bundle: atlas node and unit slot, article, three-item pretest,
    practice sets clearing the item-mix bar, a probe family, an intensive reading, the thin vocab
    deck, and the focus tags registered in both [`focus-tags.md`](focus-tags.md) and
-   `scripts/validate.ts`.
+   `focusIntroducedBy` (`src/lib/focus-tags.ts`).
 3. Review each unit against the twelve-point A2 unit quality gate in the audit and the
    `learning-science` skill before it lands.
 4. Run the full gate: `bun run validate && bun test && bun run check && bun run lint && bun run build`.
-5. After every two or three units, read the newest snapshot in `progress/<profile>/`: mode
+5. After every two units (the frozen B1 cadence — same interval as the level-wide policy above),
+   read the newest snapshot in `progress/<profile>/`: mode
    distribution, focus errors, card lapses, delayed-probe retention and novel transfer. Adjust the
    units that follow; add to the units that shipped without renaming anything.
 6. Close the level with the checkpoint, the Wortliste completion pass, and an honest Über page.
@@ -564,7 +740,10 @@ unit may assume that a structure met once at A2 was retained.
 - Every A2 unit clears the twelve-point A2 unit quality gate in [the audit](a1-learning-audit.md).
 - Every declared outcome is measured by at least one non-pretest item or reading question.
 - No A2 deck re-teaches a headword another deck owns, and no A2 topic adopts an A1 deck.
-- Receptive-only language appears in readings and articles, never in a deck.
+- Receptive-only language appears in readings and articles — never in an A2 deck, and in a B1
+  deck only as `cards: recognition` (the A2 two-card decks are never retrofitted).
 - The six shipped A2 topics are strengthened in place, never duplicated under a thematic name.
-- B1 remains provisional and creates no learner-visible completeness claim.
+- The B1 contract is frozen (2026-07-24) but creates no learner-visible completeness claim ahead
+  of shipped content — the Über B1 card and the README scope line flip only when the first B1
+  unit actually ships, and then only to "in progress".
 - This document, [roadmap.md](roadmap.md), [backlog.md](backlog.md) and `CLAUDE.md` agree.
