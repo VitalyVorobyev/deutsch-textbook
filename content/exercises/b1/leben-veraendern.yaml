@@ -1,0 +1,274 @@
+# B1.2 primary practice. New tags close the unit's three grammar points
+# (relativsatz-dativ via relativpronomen-dativ + relativ-praeposition,
+# komparativ-attributiv, genitiv-vollstaendig via genitiv-form); the two
+# recycling items carry the deepens edges (relativpronomen-kasus → relativsaetze,
+# wo-wohin → wohnen-umzug) and never count toward B1 coverage.
+topic: leben-veraendern
+role: practice
+title:
+  en: "Practice — precise clauses, sharper comparisons, the written whose"
+  ru: "Практика — точные придаточные, сравнение перед существительным и письменное «чей»"
+  uk: "Практика — точні підрядні, порівняння перед іменником і письмове «чий»"
+items:
+  - id: cloze-denen
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativpronomen-dativ
+    instruction:
+      en: "Fill in the relative pronoun."
+      ru: "Впишите относительное местоимение."
+      uk: "Впишіть відносний займенник."
+    text: "Die Nachbarn, {{denen}} wir beim Umzug geholfen haben, kommen morgen zum Kaffee."
+    translation:
+      en: "The neighbours we helped with the move are coming over for coffee tomorrow."
+      ru: "Соседи, которым мы помогли с переездом, придут завтра на кофе."
+      uk: "Сусіди, яким ми допомогли з переїздом, прийдуть завтра на каву."
+    explain:
+      en: "helfen inside the clause demands the dative, and the noun outside (die Nachbarn) sets the number: dative plural. That is the one cell where pronoun and article part ways — the article says den (mit den Nachbarn), the relative pronoun says denen."
+      ru: "helfen внутри придаточного требует датива, а существительное снаружи (die Nachbarn) задаёт число: датив множественного. Это единственная клетка, где местоимение расходится с артиклем: артикль говорит den (mit den Nachbarn), относительное местоимение — denen."
+      uk: "helfen усередині підрядного вимагає датива, а іменник зовні (die Nachbarn) задає число: датив множини. Це єдина клітинка, де займенник розходиться з артиклем: артикль каже den (mit den Nachbarn), відносний займенник — denen."
+
+  - id: mc-gehoert-dem
+    outcomes: [relativsatz-praezisieren]
+    type: mc
+    focus: relativpronomen-dativ
+    prompt: "Das ist der Nachbar, ___ der laute Hund gehört."
+    options:
+      - "dem"
+      - "den"
+      - "der"
+    correct: 0
+    translation:
+      en: "That is the neighbour who owns the loud dog."
+      ru: "Это сосед, которому принадлежит шумный пёс."
+      uk: "Це сусід, якому належить гучний пес."
+    explain:
+      en: "gehören takes the dative, so masculine der becomes dem — the case comes from the verb inside the clause. den would make the neighbour an accusative object, which gehören never takes, and der copies the main clause's nominative: the main clause has no vote."
+      ru: "gehören требует датива, поэтому мужское der становится dem — падеж приходит от глагола внутри придаточного. den сделал бы соседа аккузативным дополнением, которого у gehören не бывает, а der копирует номинатив главного предложения — но главное предложение права голоса не имеет."
+      uk: "gehören вимагає датива, тому чоловіче der стає dem — відмінок приходить від дієслова всередині підрядного. den зробив би сусіда акузативним додатком, якого в gehören не буває, а der копіює номінатив головного речення — але головне речення права голосу не має."
+
+  - id: uebersetzen-denen
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativpronomen-dativ
+    instruction:
+      en: "Translate. Use a relative clause."
+      ru: "Переведите. Используйте относительное придаточное."
+      uk: "Перекладіть. Використайте відносне підрядне."
+    prompt_en: "The friends we often help live just around the corner."
+    prompt_ru: "Друзья, которым мы часто помогаем, живут прямо за углом."
+    prompt_uk: "Друзі, яким ми часто допомагаємо, живуть просто за рогом."
+    answer: "Die Freunde, denen wir oft helfen, wohnen gleich um die Ecke."
+    accept:
+      - "Die Freunde, denen wir oft helfen, wohnen direkt um die Ecke."
+      - "Die Freunde, denen wir oft helfen, wohnen um die Ecke."
+    key_tokens: ["denen"]
+    explain:
+      en: "Only the pronoun is graded: helfen demands the dative, and in the plural that is denen — the article form den is not enough. Whether the corner is gleich or direkt um die Ecke is vocabulary, not the rule."
+      ru: "Оценивается только местоимение: helfen требует датива, а во множественном числе это denen — артикльной формы den недостаточно. Будет ли угол gleich или direkt um die Ecke — вопрос лексики, а не правила."
+      uk: "Оцінюється лише займенник: helfen вимагає датива, а в множині це denen — артикльної форми den недостатньо. Чи буде ріг gleich, чи direkt um die Ecke — питання лексики, а не правила."
+
+  - id: cloze-in-dem
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Fill in the preposition and the relative pronoun."
+      ru: "Впишите предлог и относительное местоимение."
+      uk: "Впишіть прийменник і відносний займенник."
+    text: "Das Viertel, {{in}} {{dem}} wir jetzt wohnen, ist viel ruhiger als das Zentrum."
+    translation:
+      en: "The district we live in now is much quieter than the centre."
+      ru: "Квартал, в котором мы теперь живём, гораздо тише центра."
+      uk: "Квартал, у якому ми тепер живемо, набагато тихіший за центр."
+    explain:
+      en: "wohnen works with in, and the pair moves to the front of the clause as one glued unit: in dem. Location in takes the dative, and das Viertel is neuter — dem. English strands the preposition at the end (the district we live in); German never does."
+      ru: "wohnen работает с in, и пара переходит в начало придаточного одним склеенным блоком: in dem. in при местоположении требует датива, а das Viertel — средний род: dem. Английский оставляет предлог в конце (the district we live in) — немецкий так не делает никогда."
+      uk: "wohnen працює з in, і пара переходить на початок підрядного одним склеєним блоком: in dem. in при місцезнаходженні вимагає датива, а das Viertel — середній рід: dem. Англійська залишає прийменник у кінці (the district we live in) — німецька так не робить ніколи."
+
+  - id: mc-auf-die
+    outcomes: [relativsatz-praezisieren]
+    type: mc
+    focus: relativ-praeposition
+    prompt: "Die Antwort, ___ ich seit zwei Wochen warte, ist heute endlich gekommen."
+    options:
+      - "auf die"
+      - "auf der"
+      - "die"
+    correct: 0
+    translation:
+      en: "The answer I have been waiting for for two weeks finally came today."
+      ru: "Ответ, которого я жду уже две недели, сегодня наконец пришёл."
+      uk: "Відповідь, на яку я чекаю вже два тижні, сьогодні нарешті прийшла."
+    explain:
+      en: "warten auf is a fixed pair, and auf here always takes the accusative: auf die. auf der reaches for the dative as if this were a location, and the bare die drops the preposition the way English does (the answer I am waiting for) — German keeps the pair glued at the front of the clause."
+      ru: "warten auf — устойчивая пара, и auf здесь всегда требует аккузатива: auf die. auf der тянется к дативу, как будто это место, а голое die теряет предлог на английский манер (the answer I am waiting for) — немецкий держит пару склеенной в начале придаточного."
+      uk: "warten auf — стала пара, і auf тут завжди вимагає акузатива: auf die. auf der тягнеться до датива, ніби це місце, а голе die губить прийменник на англійський манір (the answer I am waiting for) — німецька тримає пару склеєною на початку підрядного."
+
+  - id: order-von-der
+    outcomes: [relativsatz-praezisieren]
+    type: order
+    focus: relativ-praeposition
+    instruction:
+      en: "Arrange the words — the preposition opens the relative clause."
+      ru: "Составьте предложение — предлог открывает придаточное."
+      uk: "Складіть речення — прийменник відкриває підрядне."
+    words: ["Die", "Kollegin,", "von", "der", "ich", "den", "Schrank", "bekommen", "habe,", "zieht", "bald", "um."]
+    translation:
+      en: "The colleague I got the wardrobe from is moving soon."
+      ru: "Коллега, от которой я получил шкаф, скоро переезжает."
+      uk: "Колега, від якої я отримав шафу, скоро переїжджає."
+    explain:
+      en: "von der opens the relative clause as a glued pair — never von at the end. The clause then runs to its wall (bekommen habe), and only after the second comma does the main clause continue with zieht … um, the separable bracket from A2."
+      ru: "von der открывает придаточное склеенной парой — никогда von в конце. Придаточное идёт до своей стены (bekommen habe), и только после второй запятой главное предложение продолжается: zieht … um, знакомая с A2 рамка отделяемого глагола."
+      uk: "von der відкриває підрядне склеєною парою — ніколи von у кінці. Підрядне йде до своєї стіни (bekommen habe), і лише після другої коми головне речення продовжується: zieht … um, знайома з A2 рамка відокремлюваного дієслова."
+
+  - id: cloze-helleres
+    outcomes: [wohnsituation-vergleichen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "hell in the comparative, with its adjective ending."
+      ru: "hell в сравнительной степени, с окончанием прилагательного."
+      uk: "hell у вищому ступені, із закінченням прикметника."
+    text: "Wir suchen ein {{helleres}} Zimmer für unser Kind."
+    translation:
+      en: "We are looking for a brighter room for our child."
+      ru: "Мы ищем более светлую комнату для нашего ребёнка."
+      uk: "Ми шукаємо світлішу кімнату для нашої дитини."
+    explain:
+      en: "Build the comparative first (heller-), then treat it as an ordinary adjective stem: after ein before a neuter noun the ending is -es — exactly what kleines would take. The comparative is never a frozen form in front of a noun."
+      ru: "Сначала постройте сравнительную степень (heller-), затем считайте её обычной основой прилагательного: после ein перед существительным среднего рода окончание -es — ровно то, что взяло бы kleines. Перед существительным компаратив никогда не бывает застывшей формой."
+      uk: "Спочатку побудуйте вищий ступінь (heller-), потім вважайте його звичайною основою прикметника: після ein перед іменником середнього роду закінчення -es — рівно те, що взяло б kleines. Перед іменником компаратив ніколи не буває застиглою формою."
+
+  - id: mc-ruhigeren
+    outcomes: [wohnsituation-vergleichen]
+    type: mc
+    focus: komparativ-attributiv
+    prompt: "Wir wohnen jetzt in einem ___ Viertel und schlafen viel besser."
+    options:
+      - "ruhigeren"
+      - "ruhigeres"
+      - "ruhiger"
+    correct: 0
+    translation:
+      en: "We now live in a quieter district and sleep much better."
+      ru: "Теперь мы живём в более спокойном квартале и спим гораздо лучше."
+      uk: "Тепер ми живемо в спокійнішому кварталі й спимо набагато краще."
+    explain:
+      en: "in + location takes the dative, and the dative demands -en on the adjective: in einem ruhigeren Viertel. ruhigeres would be the nominative/accusative neuter ending in the wrong case, and bare ruhiger treats the comparative as a frozen form — after its -er the normal declension endings still follow."
+      ru: "in при местоположении требует датива, а датив требует -en у прилагательного: in einem ruhigeren Viertel. ruhigeres — окончание номинатива/аккузатива среднего рода не в том падеже, а голое ruhiger превращает компаратив в застывшую форму — после его -er всё равно идут обычные окончания склонения."
+      uk: "in при місцезнаходженні вимагає датива, а датив вимагає -en у прикметника: in einem ruhigeren Viertel. ruhigeres — закінчення номінатива/акузатива середнього роду не в тому відмінку, а голе ruhiger перетворює компаратив на застиглу форму — після його -er однаково йдуть звичайні закінчення відмінювання."
+
+  - id: uebersetzen-billigere
+    outcomes: [wohnsituation-vergleichen]
+    type: translate
+    focus: komparativ-attributiv
+    instruction:
+      en: "Translate — put both comparatives in front of their nouns."
+      ru: "Переведите — оба компаратива поставьте перед существительными."
+      uk: "Перекладіть — обидва компаративи поставте перед іменниками."
+    prompt_en: "We found a cheaper flat in a quieter street."
+    prompt_ru: "Мы нашли квартиру подешевле на более тихой улице."
+    prompt_uk: "Ми знайшли дешевшу квартиру на тихішій вулиці."
+    answer: "Wir haben eine billigere Wohnung in einer ruhigeren Straße gefunden."
+    accept:
+      - "Wir haben eine günstigere Wohnung in einer ruhigeren Straße gefunden."
+      - "Wir haben in einer ruhigeren Straße eine billigere Wohnung gefunden."
+      - "Wir fanden eine billigere Wohnung in einer ruhigeren Straße."
+      - "Wir fanden eine günstigere Wohnung in einer ruhigeren Straße."
+    key_tokens: ["billigere", "ruhigeren", "günstigere"]
+    explain:
+      en: "Two comparatives, two ordinary adjective slots: -e after eine in the accusative (eine billigere Wohnung), -en after einer in the dative (in einer ruhigeren Straße). Graded are exactly those declined forms — billiger or ruhiger without the ending is the frozen-form error, and mehr + adjective does not exist in German."
+      ru: "Два компаратива, две обычные позиции прилагательного: -e после eine в аккузативе (eine billigere Wohnung), -en после einer в дативе (in einer ruhigeren Straße). Оцениваются именно эти склоняемые формы — billiger или ruhiger без окончания было бы ошибкой застывшей формы, а модели mehr + прилагательное в немецком нет вовсе."
+      uk: "Два компаративи, дві звичайні позиції прикметника: -e після eine в акузативі (eine billigere Wohnung), -en після einer у дативі (in einer ruhigeren Straße). Оцінюються саме ці відмінювані форми — billiger чи ruhiger без закінчення було б помилкою застиглої форми, а моделі mehr + прикметник у німецькій немає зовсім."
+
+  - id: cloze-genitiv-lage
+    outcomes: [veraenderung-berichten]
+    type: cloze
+    focus: genitiv-form
+    instruction:
+      en: "die neue Wohnung in the genitive — article and adjective."
+      ru: "die neue Wohnung в генитиве — артикль и прилагательное."
+      uk: "die neue Wohnung у генитиві — артикль і прикметник."
+    text: "Die Lage {{der}} {{neuen}} Wohnung ist ein großer Vorteil."
+    translation:
+      en: "The location of the new flat is a big advantage."
+      ru: "Расположение новой квартиры — большое преимущество."
+      uk: "Розташування нової квартири — велика перевага."
+    explain:
+      en: "Feminine genitive: the article is der, the adjective between article and noun takes the weak -en you know from every article, and the feminine noun itself stays unchanged. The whole genitive phrase follows its noun — die Lage der neuen Wohnung."
+      ru: "Генитив женского рода: артикль — der, прилагательное между артиклем и существительным берёт знакомое слабое -en, а само существительное женского рода не меняется. Вся генитивная группа стоит после своего существительного: die Lage der neuen Wohnung — ровно как «расположение новой квартиры»."
+      uk: "Генитив жіночого роду: артикль — der, прикметник між артиклем та іменником бере знайоме слабке -en, а сам іменник жіночого роду не змінюється. Уся генитивна група стоїть після свого іменника: die Lage der neuen Wohnung — рівно як «розташування нової квартири»."
+
+  - id: cloze-genitiv-kindes
+    outcomes: [veraenderung-berichten]
+    type: cloze
+    focus: genitiv-form
+    instruction:
+      en: "unser Kind in the genitive — mind the noun's own ending."
+      ru: "unser Kind в генитиве — не забудьте окончание существительного."
+      uk: "unser Kind у генитиві — не забудьте закінчення іменника."
+    text: "Das Zimmer {{unseres}} {{Kindes}} liegt neben der Küche."
+    translation:
+      en: "Our child's room is next to the kitchen."
+      ru: "Комната нашего ребёнка находится рядом с кухней."
+      uk: "Кімната нашої дитини розташована поруч із кухнею."
+    explain:
+      en: "A possessive declines like the article: unseres for a neuter noun. And in the genitive the article alone is not enough — a neuter noun carries the case itself: one-syllable Kind takes -es, so Kindes. Feminine nouns would stay unchanged; masculine and neuter never do."
+      ru: "Притяжательное склоняется как артикль: unseres при среднем роде. И в генитиве одного артикля мало — существительное среднего рода несёт падеж само: односложное Kind берёт -es, поэтому Kindes. Женский род остался бы без изменений; мужской и средний — никогда."
+      uk: "Присвійне відмінюється як артикль: unseres при середньому роді. І в генитиві самого артикля мало — іменник середнього роду несе відмінок сам: односкладове Kind бере -es, тому Kindes. Жіночий рід залишився б без змін; чоловічий і середній — ніколи."
+
+  - id: uebersetzen-genitiv
+    outcomes: [veraenderung-berichten]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Translate for a written report — use the genitive."
+      ru: "Переведите для письменного отчёта — используйте генитив."
+      uk: "Перекладіть для письмового звіту — використайте генитив."
+    prompt_en: "The windows of our old flat were small and dark."
+    prompt_ru: "Окна нашей старой квартиры были маленькими и тёмными."
+    prompt_uk: "Вікна нашої старої квартири були маленькими й темними."
+    answer: "Die Fenster unserer alten Wohnung waren klein und dunkel."
+    key_tokens: ["unserer"]
+    explain:
+      en: "In writing the genitive replaces the spoken von-route: unserer alten Wohnung, with the possessive in the feminine genitive and the weak -en on the adjective. Graded is unserer — von unserer alten Wohnung would be perfectly good speech, but the report register asks for the genitive."
+      ru: "На письме генитив заменяет разговорный путь через von: unserer alten Wohnung — притяжательное в генитиве женского рода и слабое -en у прилагательного. Оценивается unserer: von unserer alten Wohnung — совершенно нормальная речь, но регистр отчёта требует генитива."
+      uk: "На письмі генитив заміняє розмовний шлях через von: unserer alten Wohnung — присвійне в генитиві жіночого роду і слабке -en у прикметника. Оцінюється unserer: von unserer alten Wohnung — цілком нормальне мовлення, але регістр звіту вимагає генитива."
+
+  - id: cloze-relativ-akk
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativpronomen-kasus
+    instruction:
+      en: "The A2 rule still decides: fill in the relative pronoun."
+      ru: "Правило A2 по-прежнему решает: впишите относительное местоимение."
+      uk: "Правило A2 так само вирішує: впишіть відносний займенник."
+    text: "Der Tisch, {{den}} wir letzte Woche gekauft haben, passt nicht in die neue Küche."
+    translation:
+      en: "The table we bought last week does not fit into the new kitchen."
+      ru: "Стол, который мы купили на прошлой неделе, не помещается в новую кухню."
+      uk: "Стіл, який ми купили минулого тижня, не вміщається в нову кухню."
+    explain:
+      en: "Nothing new here — the A2 rule carries on: gender from the noun outside (der Tisch, masculine), case from the role inside, and as the object of kaufen that is the accusative: den. The dative forms of this unit join this rule; they do not replace it."
+      ru: "Здесь ничего нового — правило A2 продолжает работать: род от существительного снаружи (der Tisch, мужской), падеж от роли внутри, а как дополнение kaufen это аккузатив: den. Дативные формы этого урока присоединяются к этому правилу, а не заменяют его."
+      uk: "Тут нічого нового — правило A2 працює далі: рід від іменника зовні (der Tisch, чоловічий), відмінок від ролі всередині, а як додаток kaufen це акузатив: den. Дативні форми цього уроку приєднуються до цього правила, а не заміняють його."
+
+  - id: cloze-wo-wohin
+    outcomes: [veraenderung-berichten]
+    type: cloze
+    focus: wo-wohin
+    instruction:
+      en: "Moving day: in + article — direction or position?"
+      ru: "День переезда: in + артикль — направление или местоположение?"
+      uk: "День переїзду: in + артикль — напрямок чи місцезнаходження?"
+    text: "Wir stellen den Schrank {{ins|in das}} Schlafzimmer, und die Kisten stehen noch {{im|in dem}} Flur."
+    translation:
+      en: "We are putting the wardrobe into the bedroom, and the boxes are still standing in the hallway."
+      ru: "Шкаф мы ставим в спальню, а коробки ещё стоят в прихожей."
+      uk: "Шафу ми ставимо в спальню, а коробки ще стоять у передпокої."
+    explain:
+      en: "The A2 pair of questions still runs the sentence: stellen is movement — Wohin? — so in + accusative (ins), while stehen is position — Wo? — so in + dative (im). A move is where this choice happens ten times a day."
+      ru: "Пара вопросов из A2 по-прежнему управляет предложением: stellen — движение, Wohin? — значит in + аккузатив (ins); stehen — положение, Wo? — значит in + датив (im). Переезд — это место, где такой выбор делают десять раз на дню."
+      uk: "Пара питань з A2 так само керує реченням: stellen — рух, Wohin? — отже in + акузатив (ins); stehen — положення, Wo? — отже in + датив (im). Переїзд — це місце, де такий вибір роблять десять разів на день."

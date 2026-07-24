@@ -85,4 +85,8 @@ export const focusIntroducedBy: Record<string, string> = {
   'praeteritum-vollverben': 'erfahrungen-erzaehlen',
   'plusquamperfekt-nachdem': 'erfahrungen-erzaehlen',
   'temporal-nebensatz': 'erfahrungen-erzaehlen',
+  'relativpronomen-dativ': 'leben-veraendern',
+  'relativ-praeposition': 'leben-veraendern',
+  'komparativ-attributiv': 'leben-veraendern',
+  'genitiv-form': 'leben-veraendern',
 };
