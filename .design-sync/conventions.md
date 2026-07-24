@@ -22,9 +22,10 @@ but the second one is the only language control two of these components have:
   `<html data-theme="dark">` switches every `dark:` utility below.
 - **`data-explain-lang="en" | "ru" | "uk" | "de"`** on `<html>` is the explanation
   language for the components that take no `lang` prop — today
-  **`TopicProgressList` and `DocumentStimulus`**. They read it through
-  `useExplainLang()` and fall back to `'en'` when it is absent or unrecognised,
-  so leaving it off does not break them, it pins them to English. Set it on the
+  **`DocumentStimulus`** (`TopicProgressList` was removed with its component,
+  2026-07-24). It reads it through
+  `useExplainLang()` and falls back to `'en'` when it is absent or unrecognised,
+  so leaving it off does not break it, it pins it to English. Set it on the
   root before mounting:
 
   ```jsx
@@ -51,10 +52,9 @@ differently, and conflating them is the most likely mistake:
 - **Explanation text is the `lang` prop**: `'en' | 'ru' | 'uk' | 'de'`. It picks
   which half of every bilingual field (`instruction`, `explain`, `translation`)
   renders. Pass it explicitly — there is no context fallback, and most of these
-  components require it. **The exceptions are `TopicProgressList` and
-  `DocumentStimulus`**, which take no `lang` prop and read the root
-  `data-explain-lang` attribute instead (see above). Check the `.d.ts` before
-  assuming a component accepts `lang`.
+  components require it. **The exception is `DocumentStimulus`**, which takes
+  no `lang` prop and reads the root `data-explain-lang` attribute instead (see
+  above). Check the `.d.ts` before assuming a component accepts `lang`.
 - **German content never switches.** Prompts, options, table cells and answers
   stay German under every `lang`.
 - **Chrome is pinned German and is not configurable.** Buttons render *Prüfen*,
