@@ -18,7 +18,7 @@ const UI = {
     en: '{n} delayed checks are waiting — more than one ordinary session serves.',
     ru: 'Отложенных проверок в очереди: {n} — больше, чем помещается в обычную сессию.',
   },
-  clear: { en: 'Clear up to five in one visit', ru: 'Разобрать до пяти за один визит' },
+  clear: { en: 'Clear up to twelve in one visit', ru: 'Разобрать до двенадцати за один визит' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Props {
@@ -32,10 +32,11 @@ interface Props {
  * drains the debt by itself and the card would just be noise — **and** while today's
  * derived probe budget is not spent (remainingProbeBudget in src/lib/probes.ts).
  * Without the budget gate, finishing a catch-up run landed right back on Heute with a
- * still-over-cap backlog re-showing the card, and a nine-probe debt could be chained
- * back-to-back in one sitting — exactly the exam the caps exist to prevent. Links to
- * the probes-only catch-up run at /ueben/proben. The session cap itself is deliberately
- * never raised. Like all probe state, everything here is derived from the attempt log.
+ * still-over-cap backlog re-showing the card, and the whole debt could be chained
+ * back-to-back in one sitting — exactly the exam the daily ceiling exists to prevent.
+ * Both caps and their 2026-07-24 sizing rationale live in src/lib/probes.ts. Links to
+ * the probes-only catch-up run at /ueben/proben. Like all probe state, everything here
+ * is derived from the attempt log.
  */
 export default function ProbeBacklog({ families }: Props) {
   const lang = useExplainLang();

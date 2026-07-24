@@ -261,9 +261,10 @@ describe('queueing', () => {
 
 describe('visit caps — the serving is bounded, the debt is not', () => {
   const HOUR = 60 * 60 * 1000;
-  // Seven families armed an hour apart → seven due probes with strictly increasing dueAt,
-  // so "most overdue first" has one right answer.
-  const topics = ['t1', 't2', 't3', 't4', 't5', 't6', 't7'];
+  // Fourteen families armed an hour apart → fourteen due probes with strictly increasing
+  // dueAt, so "most overdue first" has one right answer — and enough debt that even the
+  // twelve-probe catch-up cap still truncates.
+  const topics = ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12', 't13', 't14'];
   const families: ProbeFamily[] = topics.map((topic) => ({
     setId: `a1/probe-${topic}`,
     topicId: topic,
@@ -273,22 +274,23 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
   }));
   const log = topics.map((topic, i) =>
     attempt({ setId: `a1/${topic}`, ts: T0 + i * HOUR, outcomes: [`${topic}-o1`] }));
-  // all seven 2-day probes are due; none of the 7-day ones is anywhere near
-  const now = T0 + 2 * DAY + 8 * HOUR;
+  // all fourteen 2-day probes are due; none of the 7-day ones is anywhere near
+  const now = T0 + 2 * DAY + 14 * HOUR;
 
-  test('an ordinary session serves at most 3, a catch-up visit at most 5', () => {
-    expect(MAX_PROBES_PER_SESSION).toBe(3);
-    expect(MAX_PROBES_PER_CATCHUP).toBe(5);
+  test('an ordinary session serves at most 5, a catch-up visit at most 12', () => {
+    expect(MAX_PROBES_PER_SESSION).toBe(5);
+    expect(MAX_PROBES_PER_CATCHUP).toBe(12);
     const due = dueProbes(families, log, now);
-    expect(due).toHaveLength(7);
-    expect(servedProbes(due, MAX_PROBES_PER_SESSION)).toHaveLength(3);
-    expect(servedProbes(due, MAX_PROBES_PER_CATCHUP)).toHaveLength(5);
-    expect(servedProbes(due, 99)).toHaveLength(7); // the cap never invents probes
+    expect(due).toHaveLength(14);
+    expect(servedProbes(due, MAX_PROBES_PER_SESSION)).toHaveLength(5);
+    expect(servedProbes(due, MAX_PROBES_PER_CATCHUP)).toHaveLength(12);
+    expect(servedProbes(due, 99)).toHaveLength(14); // the cap never invents probes
   });
 
   test('a catch-up visit drains the most overdue probes first', () => {
     const served = servedProbes(dueProbes(families, log, now), MAX_PROBES_PER_CATCHUP);
-    expect(served.map((d) => d.family.topicId)).toEqual(['t1', 't2', 't3', 't4', 't5']);
+    expect(served.map((d) => d.family.topicId))
+      .toEqual(['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12']);
     const dueAts = served.map((d) => d.dueAt);
     expect([...dueAts].sort((a, b) => a - b)).toEqual(dueAts);
   });
@@ -297,14 +299,14 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
     const due = dueProbes(families, log, now);
     const served = servedProbes(due, MAX_PROBES_PER_CATCHUP);
     // derivation is pure: serving consumed nothing
-    expect(dueProbes(families, log, now)).toHaveLength(7);
-    // answering the served five leaves exactly the two unserved probes due
+    expect(dueProbes(families, log, now)).toHaveLength(14);
+    // answering the served twelve leaves exactly the two unserved probes due
     const answered = [
       ...log,
       ...served.map((d) => attempt({ setId: d.family.setId, itemId: d.itemId, ts: now })),
     ];
     expect(dueProbes(families, answered, now).map((d) => d.family.topicId))
-      .toEqual(['t6', 't7']);
+      .toEqual(['t13', 't14']);
   });
 });
 
@@ -325,40 +327,40 @@ describe('daily probe budget — derived from the attempt log, never stored', ()
   const at = (day: number, hour: number, minute = 0) =>
     new Date(2026, 5, day, hour, minute).getTime();
 
+  // Twelve probe answers across the two families in one sitting — the daily ceiling.
+  // probesTakenToday counts attempts on probe set ids, whichever variants they hit.
+  const fullDay = (day: number, hour: number) =>
+    Array.from({ length: 12 }, (_, i) =>
+      attempt({
+        setId: i % 2 === 0 ? family.setId : wohnen.setId,
+        itemId: `p${i}`,
+        ts: at(day, hour, i * 4),
+      }));
+
   test('a full catch-up spends the budget — the card gate closes, the route serves nothing', () => {
-    const catchUp = [
-      attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 9) }),
-      attempt({ setId: family.setId, itemId: 'variant-b', ts: at(15, 9, 5) }),
-      attempt({ setId: family.setId, itemId: 'variant-c', ts: at(15, 9, 10) }),
-      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 9, 15) }),
-      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 9, 20) }),
-    ];
-    expect(probesTakenToday(budgetFamilies, catchUp, at(15, 21))).toBe(5);
+    const catchUp = fullDay(15, 9);
+    expect(probesTakenToday(budgetFamilies, catchUp, at(15, 21))).toBe(12);
     expect(remainingProbeBudget(budgetFamilies, catchUp, at(15, 21))).toBe(0);
   });
 
-  test('an ordinary session’s three probes leave a two-probe catch-up, never five more', () => {
+  test('an ordinary session’s five probes leave a seven-probe catch-up, never twelve more', () => {
     const session = [
       attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 8) }),
-      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 8, 5) }),
-      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 8, 10) }),
+      attempt({ setId: family.setId, itemId: 'variant-b', ts: at(15, 8, 2) }),
+      attempt({ setId: family.setId, itemId: 'variant-c', ts: at(15, 8, 4) }),
+      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 8, 6) }),
+      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 8, 8) }),
     ];
-    expect(remainingProbeBudget(budgetFamilies, session, at(15, 21))).toBe(2);
+    expect(remainingProbeBudget(budgetFamilies, session, at(15, 21))).toBe(7);
   });
 
   test('the budget reopens past local midnight — remaining debt drains tomorrow', () => {
-    const lateNight = [
-      attempt({ setId: family.setId, itemId: 'variant-a', ts: at(15, 22) }),
-      attempt({ setId: family.setId, itemId: 'variant-b', ts: at(15, 22, 30) }),
-      attempt({ setId: family.setId, itemId: 'variant-c', ts: at(15, 23) }),
-      attempt({ setId: wohnen.setId, itemId: 'v1', ts: at(15, 23, 15) }),
-      attempt({ setId: wohnen.setId, itemId: 'v2', ts: at(15, 23, 30) }),
-    ];
-    // 23:45 the same day: spent
-    expect(remainingProbeBudget(budgetFamilies, lateNight, at(15, 23, 45))).toBe(0);
+    const lateNight = fullDay(15, 23);
+    // 23:59 the same day: spent
+    expect(remainingProbeBudget(budgetFamilies, lateNight, at(15, 23, 59))).toBe(0);
     // 00:30 the next day: a fresh budget, one hour later
     expect(probesTakenToday(budgetFamilies, lateNight, at(16, 0, 30))).toBe(0);
-    expect(remainingProbeBudget(budgetFamilies, lateNight, at(16, 0, 30))).toBe(5);
+    expect(remainingProbeBudget(budgetFamilies, lateNight, at(16, 0, 30))).toBe(12);
   });
 
   test('only probe attempts spend the budget — practice and review never do', () => {
@@ -367,7 +369,7 @@ describe('daily probe budget — derived from the attempt log, never stored', ()
       attempt({ setId: 'a1/wohnen', ts: at(15, 10), outcomes: ['wohnen-beschreiben'] }),
     ];
     expect(probesTakenToday(budgetFamilies, practiceDay, at(15, 21))).toBe(0);
-    expect(remainingProbeBudget(budgetFamilies, practiceDay, at(15, 21))).toBe(5);
+    expect(remainingProbeBudget(budgetFamilies, practiceDay, at(15, 21))).toBe(12);
   });
 });
 

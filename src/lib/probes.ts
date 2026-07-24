@@ -31,15 +31,23 @@ import { isVerifiedEvidence } from './scoring';
 export const PROBE_INTERVALS_DAYS = [2, 7, 21] as const;
 
 /** Bounded share of an ordinary session — a probe backlog must never crowd out the lesson. */
-export const MAX_PROBES_PER_SESSION = 3;
+export const MAX_PROBES_PER_SESSION = 5;
 
 /**
- * Bounded size of a probes-only catch-up visit (the "Probe-Rückstand" run). Larger than
- * the session cap because the visit contains nothing else, but still bounded: nine probes
- * in a row is an exam, and fatigue confounds the very measurement a probe exists to make.
- * The session cap itself is deliberately never raised — this run is how debt drains.
+ * Bounded size of a probes-only catch-up visit (the "Probe-Rückstand" run) and the ceiling
+ * per *day* (remainingProbeBudget below). Larger than the session cap because the visit
+ * contains nothing else, but still bounded: a long unbroken probe run is an exam, and
+ * fatigue confounds the very measurement a probe exists to make.
+ *
+ * Both caps were raised 3/5 → 5/12 on 2026-07-24. The old sizes were set for a learner
+ * pacing one unit at a time — and the comment here used to say the session cap is
+ * deliberately never raised. At the A2 study finish that sizing became the bottleneck:
+ * `bun run progress:audit --profile vitaly` showed 33 probes due (30 overdue) and actual
+ * intervals stretched to 8–9 days against the nominal 2/7/21, so the caps were distorting
+ * the very intervals they exist to protect. Twelve a day clears such a backlog in days
+ * while one sitting stays well short of exam length.
  */
-export const MAX_PROBES_PER_CATCHUP = 5;
+export const MAX_PROBES_PER_CATCHUP = 12;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
