@@ -30,7 +30,6 @@ export { EvidenceChips, EvidenceChipRow } from '../src/components/topic/Evidence
 
 // ── Progress ───────────────────────────────────────────────────────────────
 export { Sparkline } from '../src/components/progress/Sparkline';
-export { TopicProgressList } from '../src/components/progress/TopicProgressList';
 
 // ── Atlas ──────────────────────────────────────────────────────────────────
 export { TopicDetail } from '../src/components/atlas/TopicDetail';

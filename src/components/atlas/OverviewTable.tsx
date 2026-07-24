@@ -28,8 +28,15 @@ interface Props {
   goal?: ActiveGoal;
   routeIds: Set<string>;
   query: string;
+  /** filters and the expanded row live in CurriculumPath — one resume entry */
+  level: LevelFilter;
+  status: StatusFilter;
+  expandedId?: string;
   lang: ExplainLang;
   onQuery: (value: string) => void;
+  onLevel: (value: LevelFilter) => void;
+  onStatus: (value: StatusFilter) => void;
+  onExpanded: (id?: string) => void;
   onSelect: (id: string) => void;
   onGoal: (id?: string) => Promise<void>;
 }
@@ -57,12 +64,10 @@ const FOLD_KEY = 'da:topics-fold-mastered';
  * When a unit grows past a single topic, group `rows` by `unit` instead.
  */
 export default function OverviewTable({
-  units, groups, ctx, completions, nextId, goal, routeIds, query, lang, onQuery, onSelect, onGoal,
+  units, groups, ctx, completions, nextId, goal, routeIds, query, level, status, expandedId,
+  lang, onQuery, onLevel, onStatus, onExpanded, onSelect, onGoal,
 }: Props) {
   const uiLang = useUiLang();
-  const [level, setLevel] = useState<LevelFilter>('all');
-  const [status, setStatus] = useState<StatusFilter>('all');
-  const [expandedId, setExpandedId] = useState<string>();
   const [folded, setFolded] = useState(true);
 
   // localStorage is client-only; the island may render on the server first.
@@ -110,15 +115,15 @@ export default function OverviewTable({
 
   function toggle(topic: CourseTopic) {
     const open = expandedId === topic.id;
-    setExpandedId(open ? undefined : topic.id);
+    onExpanded(open ? undefined : topic.id);
     if (!open) onSelect(topic.id);
   }
 
   return <div className="mt-6">
     <div className="flex flex-wrap items-end justify-between gap-4">
       <div className="flex flex-wrap items-center gap-4">
-        <Filter label={t('filter.level', uiLang)} value={level} onChange={setLevel} options={[['all', t('filter.all', uiLang)], ['A1', 'A1'], ['A2', 'A2']]} />
-        <Filter label={t('filter.status', uiLang)} value={status} onChange={setStatus} options={STATUSES.map(([id, key]) => [id, t(key, uiLang)] as const)} />
+        <Filter label={t('filter.level', uiLang)} value={level} onChange={onLevel} options={[['all', t('filter.all', uiLang)], ['A1', 'A1'], ['A2', 'A2']]} />
+        <Filter label={t('filter.status', uiLang)} value={status} onChange={onStatus} options={STATUSES.map(([id, key]) => [id, t(key, uiLang)] as const)} />
         <label className="text-sm font-medium text-stone-500">
           <span className="sr-only">{t('topics.search', uiLang)}</span>
           <input

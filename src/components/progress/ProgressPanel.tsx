@@ -6,24 +6,20 @@ import {
   getAttempts,
   getCardStates,
   getSessionLog,
-  getTopicsState,
   type Attempt,
   type CardStates,
   type SessionLogEntry,
-  type TopicsState,
 } from '../../lib/store';
 import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
 import { pick, type ExplainText } from '../../lib/prefs';
-import type { StringKey } from '../../lib/strings';
-import type { TopicNode } from '../../lib/mastery';
-import { useExplainLang } from '../hooks';
+import { t, type StringKey } from '../../lib/strings';
+import { useExplainLang, useUiLang } from '../hooks';
 import { Heatmap } from './Heatmap';
 import { WeaknessTrends } from './WeaknessTrends';
 import { SessionLog } from './SessionLog';
-import { TopicProgressList } from './TopicProgressList';
 import type { CardDef } from '../../lib/srs';
 import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
 import { CheckpointResults, type CheckpointInfo } from './CheckpointResults';
@@ -34,7 +30,28 @@ interface Data {
   attempts: Attempt[];
   cards: CardStates;
   sessions: SessionLogEntry[];
-  topics: TopicsState;
+}
+
+/**
+ * The page's three sub-tabs. Übersicht is the at-a-glance state, Nachweise
+ * holds every measurement surface, Daten the export/import/sync controls.
+ * "Progress by topic" is gone on purpose: it duplicated the Themen page's
+ * "Alle Themen" table (same tier + evidence per topic), minus its filters,
+ * search and next-action column — two renderings of one answer.
+ */
+type ProgressView = 'uebersicht' | 'nachweise' | 'daten';
+
+const PROGRESS_VIEWS = [
+  ['uebersicht', 'progress.tabUebersicht'],
+  ['nachweise', 'progress.tabNachweise'],
+  ['daten', 'progress.tabDaten'],
+] as const;
+
+const VIEW_KEY = 'da:progress-view';
+
+/** Same shape as the Themen tab's savedView: never trust a stored value. */
+function savedProgressView(value: string | null): ProgressView | undefined {
+  return value === 'uebersicht' || value === 'nachweise' || value === 'daten' ? value : undefined;
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
@@ -115,7 +132,6 @@ function importErrorReason(error: unknown): { en: string; ru: string } {
 }
 
 interface Props {
-  nodes: TopicNode[];
   outcomeModes: Record<string, string>;
   cards: CardDef[];
   /** group titles are chrome-string keys, rendered by VocabularyProgress */
@@ -131,7 +147,6 @@ interface Props {
 }
 
 export default function ProgressPanel({
-  nodes,
   outcomeModes,
   cards,
   vocabularyGroups,
@@ -142,20 +157,21 @@ export default function ProgressPanel({
   probeTopicPaths,
 }: Props) {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [data, setData] = useState<Data | null>(null);
+  const [view, setView] = useState<ProgressView>('uebersicht');
   const [message, setMessage] = useState<string | null>(null);
   const [syncDir, setSyncDir] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const importMode = useRef<'merge' | 'replace'>('merge');
 
   async function loadData(): Promise<Data> {
-    const [attempts, cards, sessions, topics] = await Promise.all([
+    const [attempts, cards, sessions] = await Promise.all([
       getAttempts(),
       getCardStates(),
       getSessionLog(),
-      getTopicsState(),
     ]);
-    return { attempts, cards, sessions, topics };
+    return { attempts, cards, sessions };
   }
 
   async function refresh() {
@@ -163,9 +179,20 @@ export default function ProgressPanel({
   }
 
   useEffect(() => {
+    // localStorage is client-only; queueMicrotask defers the restore out of the
+    // effect body — the same idiom the Themen tab uses for its saved view.
+    const saved = savedProgressView(localStorage.getItem(VIEW_KEY));
+    queueMicrotask(() => {
+      if (saved) setView(saved);
+    });
     void loadData().then(setData);
     if (isTauri()) void getSyncDir().then(setSyncDir);
   }, []);
+
+  function changeView(value: ProgressView) {
+    setView(value);
+    localStorage.setItem(VIEW_KEY, value);
+  }
 
   async function changeSyncDir() {
     const dir = await pickSyncDir();
@@ -280,7 +307,25 @@ export default function ProgressPanel({
         </section>
       )}
 
-      {data && (
+      <div
+        className="inline-flex rounded-md border border-stone-300 p-0.5 text-sm dark:border-stone-600"
+        role="tablist"
+        aria-label={t('progress.viewsAria', uiLang)}
+      >
+        {PROGRESS_VIEWS.map(([id, key]) => (
+          <button
+            key={id}
+            role="tab"
+            aria-selected={view === id}
+            onClick={() => changeView(id)}
+            className={`rounded px-3 py-1.5 font-medium focus-visible:outline-2 focus-visible:outline-amber-500 ${view === id ? 'bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900' : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'}`}
+          >
+            {t(key, uiLang)}
+          </button>
+        ))}
+      </div>
+
+      {view === 'uebersicht' && data && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
             <div>
@@ -301,9 +346,19 @@ export default function ProgressPanel({
         </section>
       )}
 
-      {data && <VocabularyProgress cards={cards} groups={vocabularyGroups} states={data.cards} />}
+      {view === 'uebersicht' && data && (
+        <VocabularyProgress cards={cards} groups={vocabularyGroups} states={data.cards} />
+      )}
 
-      {data && modeEvidence.size > 0 && (
+      {view === 'uebersicht' && data && (
+        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+          <Heatmap attempts={data.attempts} sessions={data.sessions} cards={data.cards} />
+        </section>
+      )}
+
+      {view === 'uebersicht' && data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
+
+      {view === 'nachweise' && data && modeEvidence.size > 0 && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{pick(lang, UI.evidenceTitle)}</h2>
           <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
@@ -322,22 +377,8 @@ export default function ProgressPanel({
         </section>
       )}
 
-      {data && (
-        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <Heatmap attempts={data.attempts} sessions={data.sessions} cards={data.cards} />
-        </section>
-      )}
-
-      {data && (
-        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <TopicProgressList
-            nodes={nodes}
-            ctx={{ attempts: data.attempts, cards: data.cards, topics: data.topics }}
-          />
-        </section>
-      )}
-
-      {data &&
+      {view === 'nachweise' &&
+        data &&
         checkpoints.map((checkpoint) => (
           <CheckpointResults
             key={checkpoint.setId}
@@ -348,7 +389,7 @@ export default function ProgressPanel({
           />
         ))}
 
-      {data && (
+      {view === 'nachweise' && data && (
         <ProbeResults
           families={probeFamilies}
           labels={probeLabels}
@@ -358,10 +399,10 @@ export default function ProgressPanel({
         />
       )}
 
-      {/* Both own their card and render nothing when they have nothing to say. */}
-      {data && <WeaknessTrends attempts={data.attempts} />}
-      {data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
+      {/* Owns its card and renders nothing when it has nothing to say. */}
+      {view === 'nachweise' && data && <WeaknessTrends attempts={data.attempts} />}
 
+      {view === 'daten' && (
       <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
         <div className="flex flex-wrap items-center justify-center gap-3">
           <button
@@ -427,6 +468,7 @@ export default function ProgressPanel({
           <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
         )}
       </section>
+      )}
     </div>
   );
 }

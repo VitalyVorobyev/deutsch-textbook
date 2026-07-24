@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { AtlasGroup, CurriculumStrand } from '../../lib/schemas';
+import { loadResume, saveResume } from '../../lib/resume';
+import { sanitizeThemenResume, type DrawerState, type ThemenResume } from './themen-resume';
 import {
   getAttempts, getCardStates, getLearningGoal, getTopicsState, setLearningGoal,
   type LearningGoal,
@@ -20,7 +22,7 @@ import { Filter, STRAND_KEYS, TopicDetail } from './TopicDetail';
 import OverviewTable, { TIER_ACTION_KEYS } from './OverviewTable';
 import {
   STRANDS, type ActiveGoal, type CourseTopic, type CourseUnit, type LevelFilter,
-  type PathCheckpoint, type View,
+  type PathCheckpoint, type StatusFilter, type View,
 } from './course';
 
 export type { CourseTopic, CourseUnit, PathCheckpoint } from './course';
@@ -74,11 +76,55 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   const [strand, setStrand] = useState<CurriculumStrand | 'all'>('all');
   const [selectedId, setSelectedId] = useState(spine[0] ?? '');
   const [query, setQuery] = useState('');
+  // Lifted from AtlasView / OverviewTable so the whole "where was I" state
+  // lives in one place and one resume entry (themen-resume.ts).
+  const [atlasExpandedGroup, setAtlasExpandedGroup] = useState<string>();
+  const [atlasDrawer, setAtlasDrawer] = useState<DrawerState>('closed');
+  const [ovLevel, setOvLevel] = useState<LevelFilter>('all');
+  const [ovStatus, setOvStatus] = useState<StatusFilter>('all');
+  const [ovExpandedId, setOvExpandedId] = useState<string>();
+  // Guards the persist effect against overwriting the saved entry with the
+  // first render's defaults before the restore microtask has applied it.
+  const restored = useRef(false);
+  const pendingScrollY = useRef(0);
+  // Snapshot of the current UI state for the scroll listener — refreshed after
+  // every render (dep-less effect), so persist() never reads stale values.
+  const stateRef = useRef<Omit<ThemenResume, 'scrollY'>>({
+    query: '',
+    atlas: { level: 'all', strand: 'all', drawer: 'closed' },
+    overview: { level: 'all', status: 'all' },
+  });
+  useEffect(() => {
+    stateRef.current = {
+      query,
+      atlas: { level, strand, selectedId, expandedGroup: atlasExpandedGroup, drawer: atlasDrawer },
+      overview: { level: ovLevel, status: ovStatus, expandedId: ovExpandedId },
+    };
+  });
 
   useEffect(() => {
     const saved = savedView(localStorage.getItem('da:topics-view'));
+    const savedResume = loadResume<unknown>('themen');
     queueMicrotask(() => {
       if (saved) setView(saved);
+      if (savedResume) {
+        const s = sanitizeThemenResume(savedResume, {
+          levels: new Set(topics.map((topic) => topic.level)),
+          topicIds: new Set(topics.map((topic) => topic.id)),
+          groupIds: new Set(groups.map((group) => group.id)),
+        });
+        setQuery(s.query);
+        setLevel(s.atlas.level);
+        setStrand(s.atlas.strand);
+        if (s.atlas.selectedId) setSelectedId(s.atlas.selectedId);
+        setAtlasExpandedGroup(s.atlas.expandedGroup);
+        setAtlasDrawer(s.atlas.drawer);
+        setOvLevel(s.overview.level);
+        setOvStatus(s.overview.status);
+        setOvExpandedId(s.overview.expandedId);
+        pendingScrollY.current = s.scrollY;
+      }
+      restored.current = true;
     });
     void Promise.all([getAttempts(), getCardStates(), getTopicsState(), getLearningGoal()]).then(
       ([attempts, cards, topicState, activeGoal]) => {
@@ -86,7 +132,48 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
         if (activeGoal?.topicId && byId.has(activeGoal.topicId)) setGoal(activeGoal as ActiveGoal);
       },
     );
-  }, [byId]);
+  }, [byId, topics, groups]);
+
+  const persist = useCallback(() => {
+    if (!restored.current) return;
+    saveResume<ThemenResume>('themen', { ...stateRef.current, scrollY: window.scrollY });
+  }, []);
+
+  // UI-state changes persist immediately; scroll persists debounced, plus a
+  // last write on pagehide so an abrupt tab kill still keeps the position.
+  useEffect(() => {
+    persist();
+  }, [query, level, strand, selectedId, atlasExpandedGroup, atlasDrawer, ovLevel, ovStatus, ovExpandedId, persist]);
+  useEffect(() => {
+    let timer: number | undefined;
+    const onScroll = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(persist, 250);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('pagehide', persist);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('pagehide', persist);
+    };
+  }, [persist]);
+
+  // Restore the scroll offset once, after the saved UI state has been applied
+  // and the first data-bearing render has laid the page out. Skip if the
+  // learner has already scrolled — their hand beats our memory. Clamp: the
+  // restored filters may render a shorter page than the one that was left.
+  useEffect(() => {
+    if (!ctx) return;
+    const y = pendingScrollY.current;
+    if (y <= 0) return;
+    pendingScrollY.current = 0;
+    requestAnimationFrame(() => {
+      if (window.scrollY > 0) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo(0, Math.min(y, Math.max(0, max)));
+    });
+  }, [ctx]);
 
   const completions = useMemo(() => new Map<string, Completion>(
     ctx ? topics.map((topic) => [topic.id, topicCompletion(topic, ctx)]) : [],
@@ -133,8 +220,8 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
     </div>
 
     {view === 'path' && <PathView next={next} goal={goal} route={route} completions={completions} lang={lang} checkpointCards={checkpointCards} />}
-    {view === 'atlas' && <AtlasView topics={topics} groups={groups} currentId={next?.id} selected={selected} goal={goal} routeIds={routeIds} completions={completions} level={level} strand={strand} lang={lang} onLevel={setLevel} onStrand={setStrand} onSelect={setSelectedId} onGoal={chooseGoal} />}
-    {view === 'overview' && <OverviewTable units={units} groups={groups} ctx={ctx} completions={completions} nextId={next?.id} goal={goal} routeIds={routeIds} query={query} lang={lang} onQuery={setQuery} onSelect={setSelectedId} onGoal={chooseGoal} />}
+    {view === 'atlas' && <AtlasView topics={topics} groups={groups} currentId={next?.id} selected={selected} goal={goal} routeIds={routeIds} completions={completions} level={level} strand={strand} expandedGroup={atlasExpandedGroup} drawer={atlasDrawer} lang={lang} onLevel={setLevel} onStrand={setStrand} onExpandGroup={setAtlasExpandedGroup} onDrawer={setAtlasDrawer} onSelect={setSelectedId} onGoal={chooseGoal} />}
+    {view === 'overview' && <OverviewTable units={units} groups={groups} ctx={ctx} completions={completions} nextId={next?.id} goal={goal} routeIds={routeIds} query={query} level={ovLevel} status={ovStatus} expandedId={ovExpandedId} lang={lang} onQuery={setQuery} onLevel={setOvLevel} onStatus={setOvStatus} onExpanded={setOvExpandedId} onSelect={setSelectedId} onGoal={chooseGoal} />}
   </div>;
 }
 
@@ -220,15 +307,14 @@ function CheckpointCard({ checkpoint, state, lang }: { checkpoint: PathCheckpoin
 
 interface AtlasViewProps {
   topics: CourseTopic[]; groups: AtlasGroup[]; currentId?: string; selected: CourseTopic; goal?: ActiveGoal; routeIds: Set<string>;
-  completions: Map<string, Completion>; level: LevelFilter; strand: CurriculumStrand | 'all'; lang: ExplainLang;
+  completions: Map<string, Completion>; level: LevelFilter; strand: CurriculumStrand | 'all';
+  expandedGroup?: string; drawer: DrawerState; lang: ExplainLang;
   onLevel: (value: LevelFilter) => void; onStrand: (value: CurriculumStrand | 'all') => void;
+  onExpandGroup: (id?: string) => void; onDrawer: (state: DrawerState) => void;
   onSelect: (id: string) => void; onGoal: (id?: string) => Promise<void>;
 }
-type DrawerState = 'closed' | 'collapsed' | 'open';
-function AtlasView({ topics, groups, currentId, selected, goal, routeIds, completions, level, strand, lang, onLevel, onStrand, onSelect, onGoal }: AtlasViewProps) {
+function AtlasView({ topics, groups, currentId, selected, goal, routeIds, completions, level, strand, expandedGroup, drawer, lang, onLevel, onStrand, onExpandGroup, onDrawer, onSelect, onGoal }: AtlasViewProps) {
   const uiLang = useUiLang();
-  const [expandedGroup, setExpandedGroup] = useState<string>();
-  const [drawer, setDrawer] = useState<DrawerState>('closed');
   const leaves = leafGroups(groups);
   const groupById = new Map(groups.map((group) => [group.id, group]));
   const visibleTopic = (topic: CourseTopic) =>
@@ -236,8 +322,8 @@ function AtlasView({ topics, groups, currentId, selected, goal, routeIds, comple
     routeIds.has(topic.id) || topic.id === currentId;
   function selectTopic(topic: CourseTopic) {
     onSelect(topic.id);
-    setExpandedGroup(topic.group);
-    setDrawer('open');
+    onExpandGroup(topic.group);
+    onDrawer('open');
   }
   return <div className="mt-6">
     <div className="flex flex-wrap gap-4">
@@ -263,13 +349,13 @@ function AtlasView({ topics, groups, currentId, selected, goal, routeIds, comple
                 const current = own.some((topic) => topic.id === currentId);
                 const mastered = own.filter((topic) => completions.get(topic.id)?.tier === 'mastered').length;
                 return <article key={group.id} className={`${expanded ? 'md:col-span-2 xl:col-span-3' : ''} rounded-lg border ${expanded ? 'border-amber-400 bg-white dark:border-amber-700 dark:bg-stone-800' : route || current ? 'border-amber-300 bg-white dark:border-amber-800 dark:bg-stone-800' : 'border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800'}`}>
-                  <button type="button" aria-expanded={expanded} onClick={() => setExpandedGroup(expanded ? undefined : group.id)} className="flex w-full items-start justify-between gap-3 p-4 text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-amber-500">
+                  <button type="button" aria-expanded={expanded} onClick={() => onExpandGroup(expanded ? undefined : group.id)} className="flex w-full items-start justify-between gap-3 p-4 text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-amber-500">
                     <span><span className="block text-xs text-stone-400">{groupBreadcrumb(group.id, groups).map((part) => pick(lang, { en: part.title_en, ru: part.title_ru, uk: part.title_uk })).join(' › ')}</span><strong className="mt-1 block text-base">{group.title_de}</strong><span className="mt-2 block text-xs text-stone-500">{t('topics.masteredOf', uiLang).replace('{done}', String(mastered)).replace('{total}', String(own.length))}{deps.incoming.length ? ` · ${t(deps.incoming.length > 1 ? 'topics.prereqCountMany' : 'topics.prereqCountOne', uiLang).replace('{n}', String(deps.incoming.length))}` : ''}{deps.outgoing.length ? ` · ${t('topics.unlocksCount', uiLang).replace('{n}', String(deps.outgoing.length))}` : ''}</span></span>
                     <span className="flex items-center gap-2">{current && <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">{t('topics.current', uiLang)}</span>}{route && <span className="text-amber-600">◆</span>}<span aria-hidden="true" className="text-stone-400">{expanded ? '−' : '+'}</span></span>
                   </button>
                   {expanded && <div className="border-t border-stone-200 p-4 dark:border-stone-700">
                     <div className="flex flex-wrap gap-3">{own.map((topic) => <MapNode key={topic.id} topic={topic} selected={drawer !== 'closed' && topic.id === selected.id} goal={topic.id === goal?.topicId} route={routeIds.has(topic.id)} completion={completions.get(topic.id)} onSelect={() => selectTopic(topic)} />)}</div>
-                    {(deps.incoming.length > 0 || deps.outgoing.length > 0) && <div className="mt-4 flex flex-wrap gap-2 text-xs text-stone-500">{deps.incoming.map((id) => <button key={`in-${id}`} onClick={() => setExpandedGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">← {groupById.get(id)?.title_de}</button>)}{deps.outgoing.map((id) => <button key={`out-${id}`} onClick={() => setExpandedGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">{groupById.get(id)?.title_de} →</button>)}</div>}
+                    {(deps.incoming.length > 0 || deps.outgoing.length > 0) && <div className="mt-4 flex flex-wrap gap-2 text-xs text-stone-500">{deps.incoming.map((id) => <button key={`in-${id}`} onClick={() => onExpandGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">← {groupById.get(id)?.title_de}</button>)}{deps.outgoing.map((id) => <button key={`out-${id}`} onClick={() => onExpandGroup(id)} className="rounded border border-stone-200 px-2 py-1 hover:border-amber-400 dark:border-stone-600">{groupById.get(id)?.title_de} →</button>)}</div>}
                   </div>}
                 </article>;
               })}
@@ -278,7 +364,7 @@ function AtlasView({ topics, groups, currentId, selected, goal, routeIds, comple
         })}
       </div>
       {drawer !== 'closed' && <div className="border-t border-stone-300 bg-white dark:border-stone-600 dark:bg-stone-800">
-        {drawer === 'collapsed' ? <button type="button" onClick={() => setDrawer('open')} className="flex w-full items-center justify-between gap-3 px-5 py-3 text-left"><span><strong>{selected.title_de}</strong><span className="ml-2 text-sm text-stone-400">{selected.level}</span></span><span className="text-sm text-stone-500">{t('topics.openDetails', uiLang)}</span></button> : <div className="relative pb-5 pt-12"><div className="absolute right-4 top-3 flex gap-2"><button onClick={() => setDrawer('collapsed')} className="rounded px-2 py-1 text-sm text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">{t('topics.collapse', uiLang)}</button><button onClick={() => setDrawer('closed')} aria-label={t('topics.closeDetailsAria', uiLang)} className="rounded px-2 py-1 text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">×</button></div><TopicDetail topic={selected} topics={topics} groups={groups} completion={completions.get(selected.id)} lang={lang} isGoal={goal?.topicId === selected.id} onGoal={onGoal} embedded /></div>}
+        {drawer === 'collapsed' ? <button type="button" onClick={() => onDrawer('open')} className="flex w-full items-center justify-between gap-3 px-5 py-3 text-left"><span><strong>{selected.title_de}</strong><span className="ml-2 text-sm text-stone-400">{selected.level}</span></span><span className="text-sm text-stone-500">{t('topics.openDetails', uiLang)}</span></button> : <div className="relative pb-5 pt-12"><div className="absolute right-4 top-3 flex gap-2"><button onClick={() => onDrawer('collapsed')} className="rounded px-2 py-1 text-sm text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">{t('topics.collapse', uiLang)}</button><button onClick={() => onDrawer('closed')} aria-label={t('topics.closeDetailsAria', uiLang)} className="rounded px-2 py-1 text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700">×</button></div><TopicDetail topic={selected} topics={topics} groups={groups} completion={completions.get(selected.id)} lang={lang} isGoal={goal?.topicId === selected.id} onGoal={onGoal} embedded /></div>}
       </div>}
     </div>
   </div>;

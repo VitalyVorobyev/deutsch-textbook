@@ -66,10 +66,8 @@ worth browsing. When adding a preview, take the item from a real YAML set.
 - `DocumentStimulus` inlines `public/documents/a2/reisen-zugausfall.svg` as a
   base64 data URI, because `withBase()` resolves the asset against a site that
   does not exist inside a preview card.
-- `TopicProgressList` derives all four tiers from a **constructed attempt log**
-  (fixed timestamps, never `Date.now()`, so renders stay deterministic). It is
-  given no tiers — changing the mastery thresholds in `src/lib/mastery.ts` will
-  change what that card shows.
+- `TopicProgressList` was removed 2026-07-24 (its section duplicated the Themen
+  "Alle Themen" table); its preview and bundle entries went with it.
 - The one variant axis worth sweeping on almost every component is the
   **explanation language** (`lang="en"` vs `lang="ru"`). Props that change no
   pixels are not worth a cell: `locked` on the item renderers, and a second
@@ -101,8 +99,8 @@ Both were caught by Codex review on the PR, not by any gate — the conventions
 file is prose, and nothing checks prose against behaviour. Re-derive these on any
 re-sync that changes the component set:
 
-- **Not every component takes `lang`.** `TopicProgressList` and
-  `DocumentStimulus` take no `lang` prop; they call `useExplainLang()`, which
+- **Not every component takes `lang`.** `DocumentStimulus` takes no `lang`
+  prop; it calls `useExplainLang()`, which
   reads `<html data-explain-lang>` and falls back to `'en'`. The first draft told
   the design agent that no React component reads that attribute, which would have
   left those two silently pinned to English with no way to change them. Check the

@@ -243,6 +243,17 @@ export const STRINGS = {
   },
   'strand.vocabulary': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
 
+  // Fortschritt island (ProgressPanel sub-tabs).
+  'progress.tabUebersicht': { de: 'Übersicht', en: 'Overview', ru: 'Обзор', uk: 'Огляд' },
+  'progress.tabNachweise': { de: 'Nachweise', en: 'Evidence', ru: 'Показатели', uk: 'Показники' },
+  'progress.tabDaten': { de: 'Daten', en: 'Data', ru: 'Данные', uk: 'Дані' },
+  'progress.viewsAria': {
+    de: 'Fortschrittsansicht',
+    en: 'Progress view',
+    ru: 'Вид страницы прогресса',
+    uk: 'Вигляд сторінки прогресу',
+  },
+
   // Themen island (CurriculumPath / TopicDetail / OverviewTable).
   'topics.tabPath': { de: 'Lernpfad', en: 'Learning path', ru: 'Учебный путь', uk: 'Навчальний шлях' },
   'topics.tabAtlas': { de: 'Atlas', en: 'Atlas', ru: 'Атлас', uk: 'Атлас' },

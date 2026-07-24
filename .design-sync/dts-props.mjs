@@ -23,32 +23,6 @@ const LANG = `'en' | 'ru' | 'uk' | 'de'`;
 const TIER = `'untouched' | 'read' | 'practiced' | 'mastered'`;
 const STRAND = `'foundations' | 'grammar' | 'communication' | 'vocabulary'`;
 
-/** TopicNode in src/lib/mastery.ts — an atlas node plus its rolled-up content ids. */
-const TOPIC_NODE = `{
-    id: string;
-    /** Route path, e.g. "/topics/a2/perfekt-haben-sein". */
-    path: string;
-    level: string;
-    kind: string;
-    title_de: string;
-    title_en: string;
-    title_ru: string;
-    /** Optional Ukrainian title; render sites fall back to en. */
-    title_uk?: string;
-    prerequisites: string[];
-    strand?: ${STRAND};
-    group?: string;
-    /** Exercise set ids belonging to this topic. */
-    exerciseSets: string[];
-    /** Vocab file ids whose decks belong to this topic. */
-    vocabIds: string[];
-    /** Reading ids belonging to this topic. */
-    readingIds: string[];
-    pretestId?: string;
-    /** First authored practice-role set; completing every item advances the lesson. */
-    primaryPractice?: { setId: string; itemIds: string[] };
-  }`;
-
 /** CourseTopic in src/components/atlas/course.ts — TopicNode plus curriculum edges. */
 const COURSE_TOPIC = `{
     id: string;
@@ -80,40 +54,6 @@ const COURSE_TOPIC = `{
     /** Topic ids this one deepens — the edge must share a drilled focus tag. */
     deepens: string[];
     related: string[];
-  }`;
-
-/** TopicContext in src/lib/mastery.ts — the learner state a tier is derived from. */
-const TOPIC_CONTEXT = `{
-    /** The attempt log; every answered item across every set. */
-    attempts: Array<{
-      /** Exercise set id, e.g. "a2/perfekt-haben-sein". */
-      setId: string;
-      itemId: string;
-      itemType: string;
-      correct: boolean;
-      /** What the learner entered or chose. */
-      given: string;
-      /** Partial credit for multi-part items. */
-      correctParts?: number;
-      totalParts?: number;
-      focus?: string;
-      evidence?: 'verified' | 'practice';
-      outcomes?: string[];
-      /** Epoch ms. */
-      ts: number;
-    }>;
-    /** SRS card states, keyed by "<vocab-file-id>::<de>::<direction>". */
-    cards: Record<string, unknown>;
-    /** Per-topic progress, keyed by topic id. */
-    topics: Record<string, {
-      /** Epoch ms the article was first opened. */
-      readAt?: number;
-      /** Learner's own override. A self-rating is never evidence. */
-      manual?: 'learned' | 'reopened';
-      manualAt?: number;
-      /** A passed level entry test — green and real, but never a tier. */
-      placement?: { setId: string; at: number; score: number };
-    }>;
   }`;
 
 /** Completion in src/lib/mastery.ts. */
@@ -384,13 +324,6 @@ const props = {
   height?: number;
   /** Inherits its color from the parent via currentColor. */
   className?: string;`,
-
-  TopicProgressList: `
-  /** One row per topic, sorted by level then German title. Each row renders the
-      topic's evidence chips, its tier badge, and the self-rated / placed markers. */
-  nodes: Array<${TOPIC_NODE}>;
-  /** Learner state the tier and chips are computed from. */
-  ctx: ${TOPIC_CONTEXT};`,
 
   TopicDetail: `
   /** The topic being shown: its outcomes and its place in the atlas. */
