@@ -42,7 +42,8 @@ const attemptSchema = z.object({
     .optional(),
   outcomes: z.array(z.string()).optional(),
   practice: practiceSchema.optional(),
-  ts: z.number().finite(),
+  // No .finite(): zod 4's z.number() already rejects NaN and ±Infinity.
+  ts: z.number(),
 });
 
 const cardSchema = z.object({
