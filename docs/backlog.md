@@ -68,6 +68,18 @@ it; everything else lives in the archive.
   file. `tests/i18n-content.test.ts` now carries a **corpus ratchet** asserting `translated === total`,
   verified by watching it fail on a planted ru-bearing file. A falling `/about` figure is the right
   behaviour mid-wave and the wrong behaviour once the waves are closed; the ratchet marks that change.
+  **Review found 4 Russian-interference defects in the 241 new fields** (1.7%), all from authoring the
+  `uk` half beside the `ru` one instead of from the German and English: two lexical — «жалоба» for
+  *complaint* (it is *mourning* in Ukrainian; the other 20 occurrences in the repo correctly say
+  «скарга») and «мати місце» for *belongs in* (it means *occurs*) — and two agreement errors that
+  exist only because Russian and Ukrainian differ grammatically: «її» for masculine «підпис» (Russian
+  «подпись» is feminine) and invariant «тепліше/холодніше» where Ukrainian comparatives decline
+  («теплішу/холоднішу»). `RU_ONLY` (`src/lib/langcheck.ts:21`) reported nothing and was right to —
+  the leak is semantic, not orthographic. **No gate is proposed**, and the reason is worth writing
+  down: a calque denylist would have caught the two lexical slips and neither agreement error, so it
+  would buy half the class while reading like it covers all of it. The reviewable instrument here is
+  the authoring order — translate from `de` + `en`, never from `ru` — which is already what the wave
+  procedure says and is what was not done.
 - **P9-1 · Discovery schema evolution** — `done` 2026-07-15. Provenance-checked `images[]`, online-only
   `links[]`, strict schema, local committed `src` only; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 - **P9-4 · Multilingual Wortnetze** — `done` 2026-07-18. Canonical schema, four pilot networks,
