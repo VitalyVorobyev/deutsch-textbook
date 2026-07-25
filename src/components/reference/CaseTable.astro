@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import { caseReferenceSchema } from '../../lib/schemas';
-type View = 'articles-akk' | 'articles-dat' | 'pronouns-akk' | 'pronouns-dat' | 'prepositions' | 'prepositions-dat';
+type View = 'articles-akk' | 'articles-dat' | 'pronouns-akk' | 'pronouns-dat' | 'prepositions' | 'prepositions-dat' | 'prepositions-wechsel';
 interface Props { view: View }
 const { view } = Astro.props;
 const entry = await getEntry('referenceData', 'cases');
@@ -15,3 +15,13 @@ const pronounCase = view === 'pronouns-akk' ? 'accusative' : 'dative';
 {view.startsWith('pronouns') && <div class="overflow-x-auto"><table class="w-full max-w-md text-sm"><thead><tr><th>Nominativ</th><th>{view === 'pronouns-akk' ? 'Akkusativ' : 'Dativ'}</th></tr></thead><tbody>{data.pronouns.map((row) => <tr><td>{row.nominative}</td><td class="font-semibold text-amber-800 dark:text-amber-300">{row[pronounCase]}</td></tr>)}</tbody></table></div>}
 {view === 'prepositions' && <div class="grid gap-4 sm:grid-cols-3"><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Immer Akkusativ</h3><p lang="de" class="mt-2">{data.prepositions.accusative.map((entry) => entry.form).join(' · ')}</p></section><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Immer Dativ</h3><p lang="de" class="mt-2">{data.prepositions.dative.map((entry) => entry.form).join(' · ')}</p></section><section class="rounded-lg border border-stone-200 p-4 dark:border-stone-700"><h3 class="font-semibold">Wechselpräpositionen</h3><p lang="de" class="mt-2">{data.prepositions.two_way.map((entry) => entry.form).join(' · ')}</p><p class="mt-2 text-xs text-stone-500">Wo? → Dativ · Wohin? → Akkusativ</p></section></div>}
 {view === 'prepositions-dat' && <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr><th>Präposition</th><th>Beispiel</th></tr></thead><tbody>{data.prepositions.dative.map((entry) => <tr><th>{entry.form}</th><td lang="de">{entry.example}</td></tr>)}</tbody></table></div>}
+{/* The one view where both columns carry the contrast, so neither is the accented
+    one — the amber sits on the question headings, which are what the learner is
+    meant to ask. Entries without a pair are skipped rather than rendered blank.
+
+    The sibling lists print a bare German `example`; these carry a gloss because
+    the contrast rides on the verb (legen/liegen, stellen/stehen, setzen/sitzen)
+    and the row is unreadable without it. `lang-uk` is a direct sibling of
+    `lang-ru` — the `:has()` rules in global.css and the ratchet in
+    tests/i18n-content.test.ts both require it. */}
+{view === 'prepositions-wechsel' && <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr><th>Präposition</th><th class="text-amber-800 dark:text-amber-300">Wohin? → Akkusativ</th><th class="text-amber-800 dark:text-amber-300">Wo? → Dativ</th></tr></thead><tbody>{data.prepositions.two_way.filter((entry) => entry.wohin && entry.wo).map((entry) => <tr><th lang="de">{entry.form}</th>{([entry.wohin!, entry.wo!]).map((cell) => <td><span lang="de" class="block">{cell.de}</span><span class="block text-xs text-stone-500 lang-en">{cell.en}</span><span class="block text-xs text-stone-500 lang-ru">{cell.ru}</span>{cell.uk && <span class="block text-xs text-stone-500 lang-uk">{cell.uk}</span>}</td>)}</tr>)}</tbody></table></div>}
