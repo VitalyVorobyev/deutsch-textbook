@@ -289,6 +289,46 @@ describe('deParityProblems', () => {
     };
     expect(deParityProblems(node)).toEqual([]);
   });
+
+  // `translation` and `model_translation` are shape-identical to an explanation record
+  // and are not one: they render the item's own German into the explanation languages.
+  // Without the path exemption a de-carrying B1 set is unsatisfiable — every item would
+  // demand a `de` translation of German, which is the source text repeated.
+  test('a rendering path never demands a de half, so a de set with translations is satisfiable', () => {
+    const item = {
+      items: [
+        {
+          translation: { en: 'I went.', ru: 'Я пошёл.', uk: 'Я пішов.' },
+          explain: { en: 'e', ru: 'r', de: 'd' },
+        },
+        {
+          model_translation: { en: 'Yesterday …', ru: 'Вчера …', uk: 'Учора …' },
+          explain: { en: 'e', ru: 'r', de: 'd' },
+        },
+      ],
+    };
+    expect(deParityProblems(item)).toEqual([]);
+    // …and it is not merely tolerated: a rendering cannot arm the parity scope either,
+    // or a `de` typo'd onto a translation would demand `de` across the whole file.
+    expect(hasDeExplanation({ items: [{ translation: { en: 'e', ru: 'r', de: 'd' } }] })).toBe(
+      false,
+    );
+    expect(hasDeExplanation(item)).toBe(true);
+  });
+
+  // The exemption is de-only. A uk rendering of a German sentence is exactly what a
+  // Ukrainian reader needs, so uk parity must still see these paths.
+  test('uk parity still reaches translations — the exemption is de-only', () => {
+    const node = {
+      items: [
+        { translation: { en: 'I went.', ru: 'Я пошёл.', uk: 'Я пішов.' } },
+        { translation: { en: 'I stayed.', ru: 'Я остался.' } },
+      ],
+    };
+    const problems = ukParityProblems(node);
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain('items[1].translation');
+  });
 });
 
 describe('mdxLangProblems', () => {
