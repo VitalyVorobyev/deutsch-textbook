@@ -63,9 +63,15 @@ it; everything else lives in the archive.
   three units**, and the gate could not tell: `de` parity only fires once a file already carries
   one `de`, which is precisely what an un-backfilled file does not.
   Closed by authoring **197** halves across the 15 files, verified per file with
-  `deParityProblems(…, {forceDe: true})` (0 remaining) and diffed to prove **197 insertions, 0
-  deletions** — no `en`/`ru`/`uk` byte moved and no `revision` was bumped, because an added
+  `deParityProblems(…, {forceDe: true})` (0 remaining). No `revision` was bumped, because an added
   explanation half is explanation-only polish and a bump would void the learner's logged attempts.
+  The pass was purely additive except for **one record**, and that exception is the useful part:
+  review flagged the B1.1 pretest's *"the Präteritum of every verb"*, which the same unit
+  contradicts three items later with `nachdem` + Plusquamperfekt and `seitdem` + Präsens. The `de`
+  half had faithfully rendered a claim that was already too broad in `en`, `ru` and `uk`, so all
+  four now say the Präteritum carries the **main narrative line**. **Writing a fourth half is an
+  audit of the other three** — a claim you have to restate from scratch in a fourth language is a
+  claim you have to actually believe.
   Cost of the fourth half, measured rather than assumed: **1.90x** over two halves
   (`bun scripts/lang-cost.ts content/exercises/b1/*.yaml content/reading/b1/*.yaml`), against the
   article pilot's 1.98x.
