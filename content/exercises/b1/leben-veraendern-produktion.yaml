@@ -7,6 +7,7 @@ title:
   en: "Production — compare your flats, report the change"
   ru: "Продукция — сравнить квартиры, рассказать о переменах"
   uk: "Продукція — порівняти квартири, розповісти про зміни"
+  de: "Produktion — Wohnungen vergleichen, die Veränderung berichten"
 items:
   - id: uebersetzen-transfer-kollegen
     outcomes: [relativsatz-praezisieren]
@@ -16,6 +17,7 @@ items:
       en: "Translate. Use a relative clause."
       ru: "Переведите. Используйте относительное придаточное."
       uk: "Перекладіть. Використайте відносне підрядне."
+      de: "Übersetze. Verwende einen Relativsatz."
     prompt_en: "The colleagues I explained the problem to are helping me now."
     prompt_ru: "Коллеги, которым я объяснил проблему, теперь мне помогают."
     prompt_uk: "Колеги, яким я пояснив проблему, тепер мені допомагають."
@@ -27,6 +29,7 @@ items:
       en: "A fresh context, the same rule: erklären gives the person in the dative, and the plural relative pronoun is denen — never the article's den. English drops the pronoun entirely (the colleagues I explained the problem to); German shows the whole grammar in it."
       ru: "Новый контекст, то же правило: erklären ставит адресата в датив, а относительное местоимение множественного числа — denen, никогда не артикльное den. Английский вообще опускает местоимение (the colleagues I explained the problem to) — немецкий показывает в нём всю грамматику."
       uk: "Новий контекст, те саме правило: erklären ставить адресата в датив, а відносний займенник множини — denen, ніколи не артикльне den. Англійська взагалі опускає займенник (the colleagues I explained the problem to) — німецька показує в ньому всю граматику."
+      de: "Neuer Kontext, dieselbe Regel: erklären stellt die Person in den Dativ, und im Plural heißt das Relativpronomen denen — nie die Artikelform den. Das eine kleine Wort trägt die ganze Grammatik des Nebensatzes: den Numerus vom Nomen davor, den Kasus vom Verb dahinter."
 
   - id: uebersetzen-transfer-park
     outcomes: [relativsatz-praezisieren]
@@ -36,6 +39,7 @@ items:
       en: "Translate. Use a relative clause with durch."
       ru: "Переведите. Используйте относительное придаточное с durch."
       uk: "Перекладіть. Використайте відносне підрядне з durch."
+      de: "Übersetze. Verwende einen Relativsatz mit durch."
     prompt_en: "The park we walk through every morning is very old."
     prompt_ru: "Парк, через который мы проходим каждое утро, очень старый."
     prompt_uk: "Парк, через який ми проходимо щоранку, дуже старий."
@@ -48,6 +52,7 @@ items:
       en: "durch always takes the accusative, and the pair opens the clause together: durch den. Graded are both halves of the pair — English would strand the preposition (the park we walk through), and that stranding is exactly the error the pinned durch catches. gehen or laufen is vocabulary, not the rule."
       ru: "durch всегда требует аккузатива, и пара открывает придаточное вместе: durch den. Оцениваются обе половины пары — английский оставил бы предлог в конце (the park we walk through), и именно эту ошибку ловит закреплённое durch. gehen или laufen — вопрос лексики, а не правила."
       uk: "durch завжди вимагає акузатива, і пара відкриває підрядне разом: durch den. Оцінюються обидві половини пари — англійська залишила б прийменник у кінці (the park we walk through), і саме цю помилку ловить закріплене durch. gehen чи laufen — питання лексики, а не правила."
+      de: "durch verlangt immer den Akkusativ — es gehört zu den festen Akkusativpräpositionen wie für, ohne und um, da gibt es keine Wahl zwischen Wo und Wohin. Das Paar eröffnet den Nebensatz gemeinsam: durch den. Es zählen beide Hälften des Paares; ein Nebensatz ohne die Präposition am Anfang ist genau der Fehler, den das festgelegte durch abfängt. Ob man geht oder läuft, ist Wortschatz, nicht Regel."
 
   - id: hoeren-diktat-haus
     outcomes: [relativsatz-praezisieren]
@@ -57,6 +62,7 @@ items:
       en: "Listen and type what you hear."
       ru: "Прослушайте и напишите, что вы слышите."
       uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
     text: "Das Haus, in dem wir wohnen, hat keinen Aufzug."
     translation:
       en: "The house we live in has no lift."
@@ -66,6 +72,7 @@ items:
       en: "The glued pair has its own sound: in dem opens the clause right after the comma, and wohnen closes it. Hearing dem rather than den is the whole point — the dative is what wohnen in demands, and the ear has to catch one letter."
       ru: "У склеенной пары своё звучание: in dem открывает придаточное сразу после запятой, а wohnen его закрывает. Услышать dem, а не den — в этом и суть: wohnen in требует датива, и ухо должно поймать одну букву."
       uk: "У склеєної пари своє звучання: in dem відкриває підрядне одразу після коми, а wohnen його закриває. Почути dem, а не den — у цьому й суть: wohnen in вимагає датива, і вухо має впіймати одну літеру."
+      de: "Das verklebte Paar hat seinen eigenen Klang: in dem eröffnet den Nebensatz direkt nach dem Komma, wohnen schließt ihn. Auf das eine m kommt es an — wohnen in verlangt den Dativ, also dem und nicht den. Beim Diktat entscheidet ein einziger Laut über den Kasus."
 
   - id: schreiben-bericht
     outcomes: [veraenderung-berichten]
@@ -74,27 +81,34 @@ items:
       en: "Write the report yourself — the list shows what to check it against."
       ru: "Напишите отчёт сами — список подскажет, что в нём проверить."
       uk: "Напишіть звіт самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Bericht selbst — die Liste zeigt, woran du ihn prüfen kannst."
     prompt:
       en: "Your life changed in the last few years — a move, a new job, a new city, a new daily rhythm. Write a short report about the change: what was before, what is now, and the advantages and disadvantages."
       ru: "За последние годы ваша жизнь изменилась — переезд, новая работа, новый город, новый ритм дня. Напишите короткий отчёт об этой перемене: что было раньше, что теперь, и какие у неё плюсы и минусы."
       uk: "За останні роки ваше життя змінилося — переїзд, нова робота, нове місто, новий ритм дня. Напишіть короткий звіт про цю зміну: що було раніше, що тепер, і які в неї плюси та мінуси."
+      de: "In den letzten Jahren hat sich dein Leben verändert — ein Umzug, eine neue Arbeit, eine neue Stadt, ein neuer Tagesrhythmus. Schreib einen kurzen Bericht über diese Veränderung: was früher war, was heute ist, und welche Vorteile und Nachteile sie hat."
     goal:
       en: "A short written report with a before/after comparison, at least one precise relative clause, and the genitive doing the written register's work."
       ru: "Короткий письменный отчёт со сравнением «до/после», хотя бы одним точным относительным придаточным и генитивом в роли письменного регистра."
       uk: "Короткий письмовий звіт із порівнянням «до/після», принаймні одним точним відносним підрядним і генитивом у ролі письмового регістру."
+      de: "Ein kurzer schriftlicher Bericht mit einem Vergleich von früher und heute, mindestens einem genauen Relativsatz und dem Genitiv als Zeichen des Schreibregisters."
     requirements:
       - en: "Written register: say whose/of what with the genitive, not von (die Miete der neuen Wohnung, das Zimmer meines Bruders)."
         ru: "Письменный регистр: «чей/чего» выражайте генитивом, а не von (die Miete der neuen Wohnung, das Zimmer meines Bruders)."
         uk: "Письмовий регістр: «чий/чого» виражайте генитивом, а не von (die Miete der neuen Wohnung, das Zimmer meines Bruders)."
+        de: "Schreibregister: Sag wessen? mit dem Genitiv, nicht mit von (die Miete der neuen Wohnung, das Zimmer meines Bruders)."
       - en: "Pin down at least one thing with a relative clause in the dative or after a preposition (die Stadt, in der …; die Kollegen, denen …)."
         ru: "Хотя бы одну вещь уточните относительным придаточным в дативе или после предлога (die Stadt, in der …; die Kollegen, denen …)."
         uk: "Принаймні одну річ уточніть відносним підрядним у дативі або після прийменника (die Stadt, in der …; die Kollegen, denen …)."
+        de: "Grenze mindestens eine Sache mit einem Relativsatz im Dativ oder nach einer Präposition ein (die Stadt, in der …; die Kollegen, denen …)."
       - en: "Compare with at least two comparatives in front of nouns, endings included (eine größere Küche, in einem ruhigeren Viertel)."
         ru: "Сравните хотя бы двумя компаративами перед существительными, с окончаниями (eine größere Küche, in einem ruhigeren Viertel)."
         uk: "Порівняйте принаймні двома компаративами перед іменниками, із закінченнями (eine größere Küche, in einem ruhigeren Viertel)."
+        de: "Vergleiche mit mindestens zwei Komparativen vor dem Nomen, samt Endung (eine größere Küche, in einem ruhigeren Viertel)."
       - en: "Name one Vorteil and one Nachteil explicitly — a report weighs, it does not only tell."
         ru: "Явно назовите один Vorteil и один Nachteil — отчёт взвешивает, а не только рассказывает."
         uk: "Явно назвіть один Vorteil і один Nachteil — звіт зважує, а не лише розповідає."
+        de: "Nenne ausdrücklich einen Vorteil und einen Nachteil — ein Bericht wägt ab, er erzählt nicht nur."
     min_words: 60
     model_answer: "Vor zwei Jahren gab ich meine Wohnung im Zentrum auf und zog in einen kleinen Vorort. Die Wohnung, für die ich mich entschieden habe, hat eine größere Küche und ein helleres Wohnzimmer. Auch die Gegend ist besser: Die Straßen des Viertels sind ruhig, und die Miete der neuen Wohnung ist niedriger. Ein Nachteil ist der längere Weg ins Büro — der Zug, mit dem ich morgens fahre, ist oft voll. Trotzdem bin ich zufrieden, denn an das neue Leben habe ich mich schnell gewöhnt. Nur meine alten Nachbarn, denen ich oft geholfen habe, vermisse ich manchmal."
     model_translation:
@@ -105,6 +119,7 @@ items:
       en: "Check the draft against the model's skeleton, not its words. The written register opens in the Präteritum (gab auf, zog — B1.1's narrative past) and says whose with the genitive: des Viertels, der neuen Wohnung. The precise clauses are für die ich mich entschieden habe, mit dem ich fahre, denen ich geholfen habe — the pair or the dative pronoun up front, the verb at the wall. The comparatives keep their endings in front of the nouns: eine größere Küche, ein helleres Wohnzimmer, der längere Weg. And the report weighs: ein Nachteil against the advantages, with trotzdem turning the verdict."
       ru: "Сверяйте черновик со скелетом образца, а не с его словами. Письменный регистр открывается в Präteritum (gab auf, zog — повествовательное прошедшее из B1.1) и говорит «чей» генитивом: des Viertels, der neuen Wohnung. Точные придаточные — für die ich mich entschieden habe, mit dem ich fahre, denen ich geholfen habe: пара или дативное местоимение в начале, глагол у стены. Компаративы держат окончания перед существительными: eine größere Küche, ein helleres Wohnzimmer, der längere Weg. И отчёт взвешивает: ein Nachteil против плюсов, а trotzdem выносит вердикт."
       uk: "Звіряйте чернетку зі скелетом зразка, а не з його словами. Письмовий регістр відкривається в Präteritum (gab auf, zog — оповідне минуле з B1.1) і каже «чий» генитивом: des Viertels, der neuen Wohnung. Точні підрядні — für die ich mich entschieden habe, mit dem ich fahre, denen ich geholfen habe: пара або дативний займенник на початку, дієслово біля стіни. Компаративи тримають закінчення перед іменниками: eine größere Küche, ein helleres Wohnzimmer, der längere Weg. І звіт зважує: ein Nachteil проти плюсів, а trotzdem виносить вердикт."
+      de: "Vergleiche deinen Entwurf mit dem Gerüst des Musters, nicht mit seinen Wörtern. Das Schreibregister beginnt im Präteritum (gab auf, zog — das Erzählpräteritum aus B1.1) und beantwortet die Frage wessen? mit dem Genitiv: des Viertels, der neuen Wohnung. Die genauen Nebensätze heißen für die ich mich entschieden habe, mit dem ich fahre, denen ich geholfen habe — das Paar oder das Dativpronomen vorn, das Verb an der Wand. Die Komparative behalten ihre Endungen vor dem Nomen: eine größere Küche, ein helleres Wohnzimmer, der längere Weg. Und der Bericht wägt ab: ein Nachteil gegen die Vorteile, und das Wort trotzdem gibt am Ende den Ausschlag."
 
   - id: sprechen-wohnungsvergleich
     outcomes: [wohnsituation-vergleichen]
@@ -114,27 +129,34 @@ items:
       en: "Compare aloud — and if you can, listen to yourself: the checklist names what to listen for."
       ru: "Сравните вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
       uk: "Порівняйте вголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
+      de: "Vergleiche laut — und hör dir dabei selbst zu, wenn du kannst: Die Checkliste sagt, worauf es ankommt."
     prompt:
       en: "Compare where you live now with where you lived before (or with a flat you almost chose). Which suits you better, and why? Tell it aloud in six or more sentences, as if a friend had asked."
       ru: "Сравните, где вы живёте сейчас, с тем, где жили раньше (или с квартирой, которую чуть не выбрали). Что вам подходит больше и почему? Расскажите вслух, шесть и более предложений, как будто спросил друг."
       uk: "Порівняйте, де ви живете зараз, із тим, де жили раніше (або з квартирою, яку майже обрали). Що вам підходить більше й чому? Розкажіть уголос, шість і більше речень, ніби спитав друг."
+      de: "Vergleiche, wo du jetzt wohnst, mit dem Ort, an dem du früher gewohnt hast (oder mit einer Wohnung, die du beinahe genommen hast). Was passt besser zu dir, und warum? Erzähl es laut, in sechs oder mehr Sätzen, so wie einem Freund, der dich danach fragt."
     goal:
       en: "A connected spoken comparison that ends in a justified choice."
       ru: "Связное устное сравнение, которое заканчивается обоснованным выбором."
       uk: "Зв'язне усне порівняння, яке закінчується обґрунтованим вибором."
+      de: "Ein zusammenhängender mündlicher Vergleich, der mit einer begründeten Wahl endet."
     checklist:
       - en: "I compared with comparatives in front of nouns, endings included: eine größere Wohnung, in einer ruhigeren Gegend."
         ru: "Я сравнивал(а) компаративами перед существительными, с окончаниями: eine größere Wohnung, in einer ruhigeren Gegend."
         uk: "Я порівнював(ла) компаративами перед іменниками, із закінченнями: eine größere Wohnung, in einer ruhigeren Gegend."
+        de: "Ich habe mit Komparativen vor dem Nomen verglichen, samt Endung: eine größere Wohnung, in einer ruhigeren Gegend."
       - en: "At least one relative clause pinned down what I meant — die Wohnung, in der …; die Nachbarn, denen …"
         ru: "Хотя бы одно относительное придаточное уточнило, что я имею в виду: die Wohnung, in der …; die Nachbarn, denen …"
         uk: "Принаймні одне відносне підрядне уточнило, що я маю на увазі: die Wohnung, in der …; die Nachbarn, denen …"
+        de: "Mindestens ein Relativsatz hat genau gesagt, was ich meine — die Wohnung, in der …; die Nachbarn, denen …"
       - en: "I named one Vorteil and one Nachteil of the current place."
         ru: "Я назвал(а) один Vorteil и один Nachteil нынешнего жилья."
         uk: "Я назвав(ла) один Vorteil і один Nachteil теперішнього житла."
+        de: "Ich habe einen Vorteil und einen Nachteil der jetzigen Wohnung genannt."
       - en: "The ending justifies the choice: denn or deshalb carries the reason."
         ru: "Финал обосновывает выбор: причину несёт denn или deshalb."
         uk: "Фінал обґрунтовує вибір: причину несе denn або deshalb."
+        de: "Am Schluss habe ich die Wahl begründet: denn oder deshalb trägt den Grund."
     model_answer: "Früher habe ich mitten im Zentrum gewohnt. Die Wohnung, in der ich damals gewohnt habe, war zentral, aber laut und teuer. Jetzt habe ich eine größere Wohnung in einem ruhigeren Viertel, mit einem Balkon, von dem man einen kleinen Park sieht. Ein Nachteil ist der längere Weg zur Arbeit: Der Bus, mit dem ich morgens fahre, ist oft voll. Trotzdem war der Umzug richtig, denn die Miete der neuen Wohnung ist niedriger, und ich schlafe endlich wieder gut."
     model_translation:
       en: "I used to live right in the centre. The flat I lived in back then was central, but loud and expensive. Now I have a bigger flat in a quieter district, with a balcony from which you can see a small park. One disadvantage is the longer way to work: the bus I take in the morning is often full. Still, the move was right, because the rent of the new flat is lower, and I finally sleep well again."
@@ -144,3 +166,4 @@ items:
       en: "The comparison lives in three tools working together. The comparatives stand in front of their nouns with endings on top of -er: eine größere Wohnung, in einem ruhigeren Viertel, der längere Weg. The relative clauses pin down which flat and which bus: in der ich gewohnt habe, von dem man einen Park sieht, mit dem ich fahre — pair up front, verb at the wall. And the justification closes it: denn keeps its A2 word order while the genitive (die Miete der neuen Wohnung) quietly does the written register's work even in careful speech."
       ru: "Сравнение живёт на трёх инструментах сразу. Компаративы стоят перед существительными с окончаниями поверх -er: eine größere Wohnung, in einem ruhigeren Viertel, der längere Weg. Относительные придаточные уточняют, какая квартира и какой автобус: in der ich gewohnt habe, von dem man einen Park sieht, mit dem ich fahre — пара в начале, глагол у стены. И обоснование завершает: denn сохраняет порядок слов из A2, а генитив (die Miete der neuen Wohnung) тихо делает работу письменного регистра даже в аккуратной речи."
       uk: "Порівняння живе на трьох інструментах одразу. Компаративи стоять перед іменниками із закінченнями поверх -er: eine größere Wohnung, in einem ruhigeren Viertel, der längere Weg. Відносні підрядні уточнюють, яка квартира і який автобус: in der ich gewohnt habe, von dem man einen Park sieht, mit dem ich fahre — пара на початку, дієслово біля стіни. І обґрунтування завершує: denn зберігає порядок слів з A2, а генитив (die Miete der neuen Wohnung) тихо робить роботу письмового регістру навіть в акуратному мовленні."
+      de: "Der Vergleich lebt von drei Werkzeugen, die zusammenarbeiten. Die Komparative stehen vor ihrem Nomen, mit der Endung über dem -er: eine größere Wohnung, in einem ruhigeren Viertel, der längere Weg. Die Relativsätze grenzen ein, um welche Wohnung und um welchen Bus es geht: in der ich gewohnt habe, von dem man einen Park sieht, mit dem ich fahre — das Paar vorn, das Verb an der Wand. Und die Begründung schließt ab: denn behält seine Wortstellung aus A2, während der Genitiv (die Miete der neuen Wohnung) auch in sorgfältiger Rede leise die Arbeit des Schreibregisters übernimmt."

@@ -6,6 +6,7 @@ title:
   en: "Production — hear a story, write one, tell one"
   ru: "Продукция — услышать историю, написать свою, рассказать вслух"
   uk: "Продукція — почути історію, написати свою, розповісти вголос"
+  de: "Produktion — eine Geschichte hören, eine schreiben, eine erzählen"
 items:
   # Nothing in the article or reading mentions Frau Berg, so the interview cannot be
   # answered from memory of another artifact; the graded fact hangs on hearing the
@@ -17,6 +18,7 @@ items:
       en: "A podcast host asks Ms Berg about her most memorable experience. Listen for the order of events."
       ru: "Ведущий подкаста расспрашивает госпожу Берг о самом ярком событии. Слушайте порядок событий."
       uk: "Ведучий подкасту розпитує пані Берг про найяскравішу подію. Слухайте порядок подій."
+      de: "Ein Moderator fragt Frau Berg nach ihrem aufregendsten Erlebnis. Achte auf die Reihenfolge der Ereignisse."
     source:
       kind: tts
       rate: 0.9
@@ -41,6 +43,7 @@ items:
       en: "The order lives in the tenses: Nachdem ich überall gesucht hatte, ging ich zur Polizei — the searching (Plusquamperfekt) comes before the going (Präteritum). The second option reverses the story, and the third hangs the visit after the trip, which she never says."
       ru: "Порядок зашит во временах: Nachdem ich überall gesucht hatte, ging ich zur Polizei — поиски (Plusquamperfekt) предшествуют походу (Präteritum). Второй вариант переворачивает историю, а третий относит визит после поездки, чего она не говорила."
       uk: "Порядок зашитий у часах: Nachdem ich überall gesucht hatte, ging ich zur Polizei — пошуки (Plusquamperfekt) передують походу (Präteritum). Другий варіант перевертає історію, а третій відносить візит після поїздки, чого вона не казала."
+      de: "Die Reihenfolge steckt in den Tempora: Nachdem ich überall gesucht hatte, ging ich zur Polizei — das Suchen (Plusquamperfekt) liegt vor dem Gehen (Präteritum). Die zweite Variante dreht die Geschichte um, die dritte hängt den Besuch hinter die Reise, und das sagt Frau Berg nirgends."
 
   - id: hoeren-diktat-zug
     outcomes: [interview-verstehen]
@@ -50,6 +53,7 @@ items:
       en: "Listen and type what you hear."
       ru: "Прослушайте и напишите, что вы слышите."
       uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
     text: "Plötzlich blieb der Zug mitten im Tunnel stehen."
     translation:
       en: "Suddenly the train stopped in the middle of the tunnel."
@@ -59,6 +63,7 @@ items:
       en: "blieb … stehen: the strong Präteritum of bleiben carries the sentence, and stehen bleiben works like a separable pair — the narrative past has its own sound, worth catching by ear."
       ru: "blieb … stehen: сильный Präteritum от bleiben несёт предложение, а stehen bleiben работает как отделяемая пара — у повествовательного прошедшего своё звучание, и его стоит ловить на слух."
       uk: "blieb … stehen: сильний Präteritum від bleiben несе речення, а stehen bleiben працює як відокремлювана пара — у оповідного минулого своє звучання, і його варто ловити на слух."
+      de: "blieb … stehen: Das starke Präteritum von bleiben trägt den Satz, und stehen bleiben verhält sich wie ein trennbares Paar. Das Erzählpräteritum hat seinen eigenen Klang — hier das lange ie in blieb, das den Satz sofort vom Präsens bleibt unterscheidet."
 
   - id: uebersetzen-bis-transfer
     outcomes: [praeteritum-erzaehlen]
@@ -68,6 +73,7 @@ items:
       en: "Translate. Close the interval with bis."
       ru: "Переведите. Закройте интервал через bis."
       uk: "Перекладіть. Закрийте інтервал через bis."
+      de: "Übersetze. Schließe den Zeitraum mit bis ab."
     prompt_en: "We stayed in the café until the rain stopped."
     prompt_ru: "Мы оставались в кафе, пока дождь не закончился."
     prompt_uk: "Ми залишалися в кафе, поки дощ не скінчився."
@@ -82,6 +88,7 @@ items:
       en: "bis closes the interval: the staying lasts exactly until the rain's end. Russian needs a negation in this clause; German does not — bis der Regen aufhörte has no nicht in it. The verb stands at the end, like after every temporal conjunction."
       ru: "bis закрывает интервал: сидение в кафе длится ровно до конца дождя. Русскому в этом придаточном нужна частица «не» — немецкому нет: в bis der Regen aufhörte нет никакого nicht. Глагол стоит в конце, как после любого временного союза."
       uk: "bis закриває інтервал: сидіння в кафе триває рівно до кінця дощу. Українській у цьому підрядному потрібна частка «не» — німецькій ні: у bis der Regen aufhörte немає жодного nicht. Дієслово стоїть у кінці, як після будь-якого часового сполучника."
+      de: "bis schließt den Zeitraum ab: Das Bleiben dauert genau bis zum Ende des Regens. Die Konjunktion nennt diesen Endpunkt schon selbst, deshalb steht im Nebensatz kein zusätzliches nicht. Vergleiche: Wir blieben im Café, während es regnete — dieselbe Zeitspanne, aber ohne den Endpunkt. Das Verb steht am Ende, wie nach jeder temporalen Konjunktion."
 
   - id: schreiben-tagebuch
     outcomes: [praeteritum-erzaehlen, vorzeitigkeit-ausdruecken]
@@ -90,27 +97,34 @@ items:
       en: "Write the entry yourself — the list shows what to check it against."
       ru: "Напишите запись сами — список подскажет, что в ней проверить."
       uk: "Напишіть запис самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Eintrag selbst — die Liste zeigt, woran du ihn prüfen kannst."
     prompt:
       en: "Something went wrong on an ordinary day — a lost key, a missed train, a strange phone call — and in the end it turned out fine. Write the story as a diary entry, as if for yourself."
       ru: "В обычный день что-то пошло не так — потерянный ключ, упущенный поезд, странный звонок, — а в конце всё обошлось. Напишите эту историю как запись в дневнике, для себя."
       uk: "У звичайний день щось пішло не так — загублений ключ, пропущений потяг, дивний дзвінок, — а наприкінці все обійшлося. Напишіть цю історію як запис у щоденнику, для себе."
+      de: "An einem ganz gewöhnlichen Tag lief etwas schief — ein verlorener Schlüssel, ein verpasster Zug, ein seltsamer Anruf —, und am Ende ging alles gut aus. Schreib diese Geschichte als Tagebucheintrag, so wie für dich selbst."
     goal:
       en: "A connected written narrative in the Präteritum, with one step back in time and one temporal link."
       ru: "Связный письменный рассказ в Präteritum, с одним шагом назад во времени и одной временной связкой."
       uk: "Зв'язна письмова розповідь у Präteritum, з одним кроком назад у часі та однією часовою зв'язкою."
+      de: "Eine zusammenhängende geschriebene Erzählung im Präteritum, mit einem Schritt zurück in der Zeit und einer temporalen Verbindung."
     requirements:
       - en: "Keep the narration in the Präteritum — at least four full verbs (ging, kam, sah, fand, wusste …), not only war and hatte."
         ru: "Держите повествование в Präteritum — не меньше четырёх полнозначных глаголов (ging, kam, sah, fand, wusste …), а не только war и hatte."
         uk: "Тримайте оповідь у Präteritum — щонайменше чотири повнозначні дієслова (ging, kam, sah, fand, wusste …), а не лише war і hatte."
+        de: "Halte die Erzählung im Präteritum — mindestens vier Vollverben (ging, kam, sah, fand, wusste …), nicht nur war und hatte."
       - en: "Reach one step further back once, with nachdem + Plusquamperfekt (Nachdem ich … hatte/war, …)."
         ru: "Один раз шагните дальше в прошлое: nachdem + Plusquamperfekt (Nachdem ich … hatte/war, …)."
         uk: "Один раз зробіть крок далі в минуле: nachdem + Plusquamperfekt (Nachdem ich … hatte/war, …)."
+        de: "Geh einmal eine Stufe weiter zurück, mit nachdem + Plusquamperfekt (Nachdem ich … hatte/war, …)."
       - en: "Use one more temporal conjunction — während, sobald, bevor or bis — with the verb at the end of its clause."
         ru: "Используйте ещё один временной союз — während, sobald, bevor или bis — с глаголом в конце придаточного."
         uk: "Використайте ще один часовий сполучник — während, sobald, bevor або bis — з дієсловом у кінці підрядного."
+        de: "Nimm noch eine temporale Konjunktion dazu — während, sobald, bevor oder bis — mit dem Verb am Ende ihres Nebensatzes."
       - en: "End with one sentence about now — what stayed with you (Seitdem …)."
         ru: "Закончите одним предложением о настоящем — что осталось с вами (Seitdem …)."
         uk: "Закінчіть одним реченням про теперішнє — що залишилося з вами (Seitdem …)."
+        de: "Schließe mit einem Satz über heute — was dir geblieben ist (Seitdem …)."
     min_words: 60
     model_answer: "Gestern Morgen verlor ich meinen Schlüssel. Ich suchte in allen Taschen, aber ich fand nichts. Nachdem ich die ganze Wohnung durchsucht hatte, rief ich meine Nachbarin an, denn sie hat einen zweiten Schlüssel. Während ich auf sie wartete, trank ich einen Kaffee im Café an der Ecke. Sobald sie kam, öffneten wir die Tür — und der Schlüssel lag auf dem Küchentisch. Ich musste lachen. Seitdem lege ich ihn immer an denselben Platz."
     model_translation:
@@ -121,6 +135,7 @@ items:
       en: "Check the draft against the model's skeleton, not its words. The narration is Präteritum full verbs — verlor, suchte, fand, rief an, trank, öffneten, lag. The one step back is nachdem + Plusquamperfekt (durchsucht hatte), and every temporal clause parks its verb at the end (auf sie wartete, sie kam). The last sentence switches to the present with Seitdem, because that habit still holds — the same seit-logic you know from A2."
       ru: "Сверяйте черновик со скелетом образца, а не с его словами. Повествование — полнозначные глаголы в Präteritum: verlor, suchte, fand, rief an, trank, öffneten, lag. Шаг назад — nachdem + Plusquamperfekt (durchsucht hatte), и каждое временное придаточное ставит глагол в конец (auf sie wartete, sie kam). Последнее предложение переходит в настоящее с Seitdem, потому что привычка держится до сих пор — та же логика seit, что и на A2."
       uk: "Звіряйте чернетку зі скелетом зразка, а не з його словами. Оповідь — повнозначні дієслова в Präteritum: verlor, suchte, fand, rief an, trank, öffneten, lag. Крок назад — nachdem + Plusquamperfekt (durchsucht hatte), і кожне часове підрядне ставить дієслово в кінець (auf sie wartete, sie kam). Останнє речення переходить у теперішнє з Seitdem, бо звичка тримається досі — та сама логіка seit, що й на A2."
+      de: "Vergleiche deinen Entwurf mit dem Gerüst des Musters, nicht mit seinen Wörtern. Die Erzählung läuft auf Vollverben im Präteritum — verlor, suchte, fand, rief an, trank, öffneten, lag. Der Schritt zurück ist nachdem + Plusquamperfekt (durchsucht hatte), und jeder temporale Nebensatz parkt sein Verb am Ende (auf sie wartete, sie kam). Der letzte Satz wechselt mit Seitdem ins Präsens, weil die Gewohnheit bis heute gilt — dieselbe seit-Logik wie auf A2."
 
   - id: sprechen-nacherzaehlen
     outcomes: [muendlich-nacherzaehlen]
@@ -130,27 +145,34 @@ items:
       en: "Tell it aloud — and if you can, listen to yourself: the checklist names what to listen for."
       ru: "Расскажите вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
       uk: "Розкажіть уголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
+      de: "Erzähl sie laut — und hör dir dabei selbst zu, wenn du kannst: Die Checkliste sagt, worauf es ankommt."
     prompt:
       en: "A friend asks about the diary story you just wrote (or any real mishap you remember). Tell it aloud, start to finish — spoken, not read."
       ru: "Друг спрашивает о происшествии из вашей дневниковой записи (или о любом реальном случае, который вы помните). Расскажите его вслух, от начала до конца — рассказывая, а не читая."
       uk: "Друг питає про пригоду з вашого щоденникового запису (або про будь-який справжній випадок, який ви пам'ятаєте). Розкажіть його вголос, від початку до кінця — розповідаючи, а не читаючи."
+      de: "Ein Freund fragt nach der Geschichte aus deinem Tagebucheintrag (oder nach irgendeinem echten Missgeschick, an das du dich erinnerst). Erzähl sie laut, von Anfang bis Ende — frei gesprochen, nicht abgelesen."
     goal:
       en: "A connected spoken retelling of five or more sentences, with the events in order."
       ru: "Связный устный пересказ из пяти и более предложений, события по порядку."
       uk: "Зв'язний усний переказ із п'яти і більше речень, події по порядку."
+      de: "Eine zusammenhängende mündliche Nacherzählung aus fünf oder mehr Sätzen, mit den Ereignissen in ihrer Reihenfolge."
     checklist:
       - en: "I told the events in order, and the listener could follow who did what."
         ru: "Я рассказал(а) события по порядку, и слушателю было понятно, кто что сделал."
         uk: "Я розповів(ла) події по порядку, і слухачеві було зрозуміло, хто що зробив."
+        de: "Ich habe die Ereignisse der Reihe nach erzählt, und wer zuhört, konnte mitverfolgen, wer was gemacht hat."
       - en: "Spoken register: events in the Perfekt (ich habe … verloren, ich bin … gegangen), states with war and hatte."
         ru: "Устный регистр: события в Perfekt (ich habe … verloren, ich bin … gegangen), состояния — war и hatte."
         uk: "Усний регістр: події в Perfekt (ich habe … verloren, ich bin … gegangen), стани — war і hatte."
+        de: "Gesprochenes Register: Ereignisse im Perfekt (ich habe … verloren, ich bin … gegangen), Zustände mit war und hatte."
       - en: "One step back in time made clear — with nachdem, vorher or davor."
         ru: "Один шаг назад во времени прозвучал явно — через nachdem, vorher или davor."
         uk: "Один крок назад у часі прозвучав явно — через nachdem, vorher або davor."
+        de: "Einen Schritt zurück in der Zeit habe ich deutlich gemacht — mit nachdem, vorher oder davor."
       - en: "The ending says what changed: Seitdem … with the present tense."
         ru: "Финал говорит, что изменилось: Seitdem … с настоящим временем."
         uk: "Фінал каже, що змінилося: Seitdem … з теперішнім часом."
+        de: "Am Schluss habe ich gesagt, was sich geändert hat: Seitdem … mit Präsens."
     model_answer: "Stell dir vor, gestern habe ich meinen Schlüssel verloren! Ich habe überall gesucht — nichts. Nachdem ich die ganze Wohnung durchsucht hatte, habe ich meine Nachbarin angerufen. Während ich gewartet habe, habe ich im Café einen Kaffee getrunken. Und dann haben wir die Tür geöffnet — der Schlüssel lag auf dem Küchentisch! Ich war so erleichtert. Seitdem lege ich ihn immer an denselben Platz."
     model_translation:
       en: "Imagine — yesterday I lost my key! I looked everywhere — nothing. After I had searched the whole flat, I called my neighbour. While I was waiting, I drank a coffee in the café. And then we opened the door — the key was lying on the kitchen table! I was so relieved. Since then I always put it in the same place."
@@ -160,3 +182,4 @@ items:
       en: "The same story changes clothes when it is spoken: the events move into the Perfekt (habe verloren, habe gesucht, haben geöffnet), while war, hatte and lag stay Präteritum — and the nachdem-staircase survives the register switch untouched (durchsucht hatte). That is the whole register lesson in one retelling: what changes is the event tense, never the structure."
       ru: "Та же история переодевается, когда её рассказывают вслух: события переходят в Perfekt (habe verloren, habe gesucht, haben geöffnet), а war, hatte и lag остаются в Präteritum — и лестница с nachdem переживает смену регистра нетронутой (durchsucht hatte). В этом и весь урок о регистрах в одном пересказе: меняется время событий, но никогда — структура."
       uk: "Та сама історія перевдягається, коли її розповідають уголос: події переходять у Perfekt (habe verloren, habe gesucht, haben geöffnet), а war, hatte і lag залишаються в Präteritum — і сходи з nachdem переживають зміну регістру недоторканими (durchsucht hatte). У цьому й весь урок про регістри в одному переказі: змінюється час подій, але ніколи — структура."
+      de: "Dieselbe Geschichte zieht sich um, sobald man sie erzählt: Die Ereignisse gehen ins Perfekt (habe verloren, habe gesucht, haben geöffnet), während war, hatte und lag im Präteritum bleiben — und die nachdem-Treppe übersteht den Registerwechsel unverändert (durchsucht hatte). Das ist die ganze Registerlektion in einer Nacherzählung: Das Tempus der Ereignisse wechselt, die Struktur nie."

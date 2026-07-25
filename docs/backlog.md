@@ -54,6 +54,38 @@ it; everything else lives in the archive.
   2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
   [i18n-design.md](i18n-design.md).
+- **C4 · German-medium `de` half on B1 exercises and readings** — `done` 2026-07-25.
+  [i18n-design.md](i18n-design.md) has said since P8-4 that "B1 articles **and exercises** are
+  authored with `<De>` halves from day one". The articles were; the exercises never were. B1.1–B1.3
+  shipped 12 exercise sets and 3 readings carrying **zero** `de`, so a learner on
+  `explainLang: 'de'` read a German article and then met English feedback at the item — the place
+  CLAUDE.md calls "where the teaching happens". **The doc was right and the content was wrong for
+  three units**, and the gate could not tell: `de` parity only fires once a file already carries
+  one `de`, which is precisely what an un-backfilled file does not.
+  Closed by authoring **197** halves across the 15 files, verified per file with
+  `deParityProblems(…, {forceDe: true})` (0 remaining). No `revision` was bumped, because an added
+  explanation half is explanation-only polish and a bump would void the learner's logged attempts.
+  The pass was purely additive except for **one record**, and that exception is the useful part:
+  review flagged the B1.1 pretest's *"the Präteritum of every verb"*, which the same unit
+  contradicts three items later with `nachdem` + Plusquamperfekt and `seitdem` + Präsens. The `de`
+  half had faithfully rendered a claim that was already too broad in `en`, `ru` and `uk`, so all
+  four now say the Präteritum carries the **main narrative line**. **Writing a fourth half is an
+  audit of the other three** — a claim you have to restate from scratch in a fourth language is a
+  claim you have to actually believe.
+  Cost of the fourth half, measured rather than assumed: **1.90x** over two halves
+  (`bun scripts/lang-cost.ts content/exercises/b1/*.yaml content/reading/b1/*.yaml`), against the
+  article pilot's 1.98x.
+  One validator change was needed first and is the durable part: `translation` and
+  `model_translation` are now exempt from `de` parity (`RENDERING_PATH`, `src/lib/langcheck.ts`) —
+  without it a `de`-carrying set is **unsatisfiable**, since a German "translation" of German is
+  the source text repeated. Watched failing before it was trusted. `uk` parity still reaches those
+  paths on purpose; the asymmetry is that `de` is the only explanation language that can collide
+  with the content.
+  Two register questions the authoring forced, both settled from evidence rather than taste:
+  the learner is addressed as **`du`** (the German chrome already does — "Was weißt du schon?" —
+  and two stray `Sie` in the B1.1/B1.2 articles were brought into line), and a lesson page is
+  **`das Kapitel`**, which is what the shipped articles already call it and which avoids colliding
+  with `der Artikel` the part of speech.
 - **C3 · Ukrainian A1+A2 explanation half** — `done` 2026-07-18. Authored across every ru-bearing
   A1/A2 file (Über **266/266**), idiomatic and per-file-parity, `en`/`ru` prose byte-identical
   (waves 1–7, PRs #60/#61/#66/#67/#68/#69). B1 `uk` waves follow B1 content.

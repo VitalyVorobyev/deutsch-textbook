@@ -160,6 +160,18 @@ function isExplainRecord(obj: object): boolean {
     a record right (the P8-4 satisfiability trap). */
 const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
 
+/** A `translation` / `model_translation` is the item's own German rendered into the
+    explanation languages, not an explanation half. Under `de` the German is already
+    on screen — as the prompt, the answer, or the reading text — so a `de` translation
+    would be the source text printed twice, and the learner would read the same
+    sentence back as if it were help. Same reason there is no `prompt_de` and no `de`
+    field on a gloss (docs/i18n-design.md).
+
+    `uk` parity is deliberately NOT exempted here: a Ukrainian rendering of a German
+    sentence is exactly what a Ukrainian reader needs. The asymmetry is the point —
+    `de` is the only explanation language that can collide with the content. */
+const RENDERING_PATH = /\.(translation|model_translation)$/;
+
 /**
  * Whether any bilingual EXPLANATION record in the tree carries a German half — the
  * frontmatter side of the de parity bridge (`forceDe` in mdxLangProblems).
@@ -177,7 +189,8 @@ const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
 export function hasDeExplanation(node: unknown): boolean {
   let found = false;
   walkObjects(node, '', (obj, path) => {
-    if (found || MATCH_RIGHT_PATH.test(path) || !isExplainRecord(obj)) return;
+    if (found || MATCH_RIGHT_PATH.test(path) || RENDERING_PATH.test(path)) return;
+    if (!isExplainRecord(obj)) return;
     const de = (obj as Record<string, unknown>).de;
     if (typeof de === 'string' && de.length > 0) found = true;
   });
@@ -188,7 +201,7 @@ export function deParityProblems(node: unknown, opts: { forceDe?: boolean } = {}
   const withDe: string[] = [];
   const withoutDe: string[] = [];
   walkObjects(node, '', (obj, path) => {
-    if (MATCH_RIGHT_PATH.test(path)) return;
+    if (MATCH_RIGHT_PATH.test(path) || RENDERING_PATH.test(path)) return;
     if (!isExplainRecord(obj)) return;
     const de = (obj as Record<string, unknown>).de;
     if (typeof de === 'string' && de.length > 0) withDe.push(path || '(root)');
