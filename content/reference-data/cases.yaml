@@ -33,33 +33,107 @@ prepositions:
   # Minimal pairs: the noun stays, the article moves. The verb has to change with
   # it — that is the point, not an inconsistency. A goal-directed verb (stellen,
   # legen, setzen, hängen, gehen) takes the accusative; its positional twin
-  # (stehen, liegen, sitzen, hängen, wohnen) takes the dative.
+  # (stehen, liegen, sitzen, hängen, wohnen) takes the dative. The translations
+  # exist because that verb pair is the hard part: read only the German and the
+  # contrast is invisible to anyone who cannot yet tell legen from liegen.
   two_way:
     - form: an
-      wohin: "Ich hänge das Bild an die Wand."
-      wo: "Das Bild hängt an der Wand."
+      wohin:
+        de: "Ich hänge das Bild an die Wand."
+        en: "I hang the picture on the wall."
+        ru: "Я вешаю картину на стену."
+        uk: "Я вішаю картину на стіну."
+      wo:
+        de: "Das Bild hängt an der Wand."
+        en: "The picture is hanging on the wall."
+        ru: "Картина висит на стене."
+        uk: "Картина висить на стіні."
     - form: auf
-      wohin: "Ich lege das Buch auf den Tisch."
-      wo: "Das Buch liegt auf dem Tisch."
+      wohin:
+        de: "Ich lege das Buch auf den Tisch."
+        en: "I put the book on the table."
+        ru: "Я кладу книгу на стол."
+        uk: "Я кладу книжку на стіл."
+      wo:
+        de: "Das Buch liegt auf dem Tisch."
+        en: "The book is lying on the table."
+        ru: "Книга лежит на столе."
+        uk: "Книжка лежить на столі."
     - form: hinter
-      wohin: "Er stellt das Fahrrad hinter das Haus."
-      wo: "Das Fahrrad steht hinter dem Haus."
+      wohin:
+        de: "Er stellt das Fahrrad hinter das Haus."
+        en: "He puts the bicycle behind the house."
+        ru: "Он ставит велосипед за дом."
+        uk: "Він ставить велосипед за будинок."
+      wo:
+        de: "Das Fahrrad steht hinter dem Haus."
+        en: "The bicycle is standing behind the house."
+        ru: "Велосипед стоит за домом."
+        uk: "Велосипед стоїть за будинком."
     - form: in
-      wohin: "Ich gehe in die Stadt."
-      wo: "Ich wohne in der Stadt."
+      wohin:
+        de: "Ich gehe in die Stadt."
+        en: "I am going into town."
+        ru: "Я иду в город."
+        uk: "Я йду в місто."
+      wo:
+        de: "Ich wohne in der Stadt."
+        en: "I live in the town."
+        ru: "Я живу в городе."
+        uk: "Я живу в місті."
     - form: neben
-      wohin: "Sie setzt sich neben ihren Bruder."
-      wo: "Sie sitzt neben ihrem Bruder."
+      wohin:
+        de: "Sie setzt sich neben ihren Bruder."
+        en: "She sits down next to her brother."
+        ru: "Она садится рядом с братом."
+        uk: "Вона сідає поруч із братом."
+      wo:
+        de: "Sie sitzt neben ihrem Bruder."
+        en: "She is sitting next to her brother."
+        ru: "Она сидит рядом с братом."
+        uk: "Вона сидить поруч із братом."
     - form: über
-      wohin: "Er hängt die Lampe über den Tisch."
-      wo: "Die Lampe hängt über dem Tisch."
+      wohin:
+        de: "Er hängt die Lampe über den Tisch."
+        en: "He hangs the lamp above the table."
+        ru: "Он вешает лампу над столом."
+        uk: "Він вішає лампу над столом."
+      wo:
+        de: "Die Lampe hängt über dem Tisch."
+        en: "The lamp is hanging above the table."
+        ru: "Лампа висит над столом."
+        uk: "Лампа висить над столом."
     - form: unter
-      wohin: "Die Katze läuft unter das Bett."
-      wo: "Die Katze schläft unter dem Bett."
+      wohin:
+        de: "Die Katze läuft unter das Bett."
+        en: "The cat runs under the bed."
+        ru: "Кошка бежит под кровать."
+        uk: "Кішка біжить під ліжко."
+      wo:
+        de: "Die Katze schläft unter dem Bett."
+        en: "The cat is sleeping under the bed."
+        ru: "Кошка спит под кроватью."
+        uk: "Кішка спить під ліжком."
     - form: vor
-      wohin: "Ich stelle das Auto vor die Tür."
-      wo: "Das Auto steht vor der Tür."
+      wohin:
+        de: "Ich stelle das Auto vor die Tür."
+        en: "I park the car in front of the door."
+        ru: "Я ставлю машину перед дверью."
+        uk: "Я ставлю машину перед дверима."
+      wo:
+        de: "Das Auto steht vor der Tür."
+        en: "The car is standing in front of the door."
+        ru: "Машина стоит перед дверью."
+        uk: "Машина стоїть перед дверима."
     # Plural, so the dative shows its -n as well as the article.
     - form: zwischen
-      wohin: "Er setzt sich zwischen die Kinder."
-      wo: "Er sitzt zwischen den Kindern."
+      wohin:
+        de: "Er setzt sich zwischen die Kinder."
+        en: "He sits down between the children."
+        ru: "Он садится между детьми."
+        uk: "Він сідає між дітьми."
+      wo:
+        de: "Er sitzt zwischen den Kindern."
+        en: "He is sitting between the children."
+        ru: "Он сидит между детьми."
+        uk: "Він сидить між дітьми."

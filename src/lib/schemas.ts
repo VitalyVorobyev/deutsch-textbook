@@ -791,6 +791,19 @@ export const discoverySchema = z
   .strict();
 export type Discovery = z.infer<typeof discoverySchema>;
 
+/** A German example sentence with its translations. `de` is content (the
+    sentence itself), never a German explanation half — which is why
+    content/reference-data is exempt from deParityProblems. `uk` exists for
+    parity satisfiability: zod strips unknown keys, so without this slot a
+    reference file gaining `meaning.uk` could never satisfy the validator's
+    uk-parity rule (its examples' uk would be stripped before the check). */
+const referenceExampleSchema = z.object({
+  de: z.string().min(1),
+  en: z.string().min(1),
+  ru: z.string().min(1),
+  uk: z.string().min(1).optional(),
+});
+
 export const caseReferenceSchema = z.object({
   id: z.literal('cases'),
   articles: z.array(z.object({
@@ -805,29 +818,20 @@ export const caseReferenceSchema = z.object({
         what distinguishes them. `wohin` is the accusative (movement toward a
         goal) and `wo` the dative (location), authored as a minimal pair so the
         article is the only thing that moves. Both optional: the entry stays
-        valid as a bare form, which is how the nine shipped before the pairs. */
+        valid as a bare form, which is how the nine shipped before the pairs.
+        They are translated where the sibling lists' bare `example` is not,
+        because here the contrast rides on the verb — legen/liegen,
+        stellen/stehen, setzen/sitzen — and a learner who cannot read the verb
+        cannot see the distinction the row exists to draw. */
     two_way: z.array(z.object({
       form: z.string(),
       example: z.string().optional(),
-      wohin: z.string().optional(),
-      wo: z.string().optional(),
+      wohin: referenceExampleSchema.optional(),
+      wo: referenceExampleSchema.optional(),
     })),
   }),
 });
 export type CaseReference = z.infer<typeof caseReferenceSchema>;
-
-/** A German example sentence with its translations. `de` is content (the
-    sentence itself), never a German explanation half — which is why
-    content/reference-data is exempt from deParityProblems. `uk` exists for
-    parity satisfiability: zod strips unknown keys, so without this slot a
-    reference file gaining `meaning.uk` could never satisfy the validator's
-    uk-parity rule (its examples' uk would be stripped before the check). */
-const referenceExampleSchema = z.object({
-  de: z.string().min(1),
-  en: z.string().min(1),
-  ru: z.string().min(1),
-  uk: z.string().min(1).optional(),
-});
 
 export const pronominalAdverbReferenceSchema = z.object({
   id: z.literal('pronominal-adverbs'),
