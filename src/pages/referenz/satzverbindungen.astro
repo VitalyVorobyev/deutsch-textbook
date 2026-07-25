@@ -9,17 +9,17 @@ if (!entry) throw new Error('Missing canonical sentence-connectors reference dat
 const data = sentenceConnectorsReferenceSchema.parse(entry.data);
 
 const syntaxLabels = {
-  coordinating: { de: 'Hauptsatz + Hauptsatz', en: 'coordinating', ru: 'сочинительная связь' },
-  subordinating: { de: 'Nebensatz · Verb am Ende', en: 'subordinating · verb last', ru: 'придаточное · глагол в конце' },
-  adverbial: { de: 'Adverb · Verb auf Position 2', en: 'adverb · verb second', ru: 'наречие · глагол на втором месте' },
-  prepositional: { de: 'Präposition', en: 'preposition', ru: 'предлог' },
-  paired: { de: 'zweiteilige Verbindung', en: 'paired connector', ru: 'парная связка' },
+  coordinating: { de: 'Hauptsatz + Hauptsatz', en: 'coordinating', ru: 'сочинительная связь', uk: 'сурядний зв’язок' },
+  subordinating: { de: 'Nebensatz · Verb am Ende', en: 'subordinating · verb last', ru: 'придаточное · глагол в конце', uk: 'підрядне · дієслово в кінці' },
+  adverbial: { de: 'Adverb · Verb auf Position 2', en: 'adverb · verb second', ru: 'наречие · глагол на втором месте', uk: 'прислівник · дієслово на другому місці' },
+  prepositional: { de: 'Präposition', en: 'preposition', ru: 'предлог', uk: 'прийменник' },
+  paired: { de: 'zweiteilige Verbindung', en: 'paired connector', ru: 'парная связка', uk: 'парний сполучник' },
 } as const;
 
 const registerLabels = {
-  spoken: { en: 'spoken', ru: 'разговорное', de: 'gesprochen' },
-  written: { en: 'more written', ru: 'чаще письменно', de: 'eher schriftlich' },
-  formal: { en: 'formal', ru: 'формальное', de: 'formell' },
+  spoken: { en: 'spoken', ru: 'разговорное', uk: 'розмовне', de: 'gesprochen' },
+  written: { en: 'more written', ru: 'чаще письменно', uk: 'частіше на письмі', de: 'eher schriftlich' },
+  formal: { en: 'formal', ru: 'формальное', uk: 'формальне', de: 'formell' },
 } as const;
 
 const levelClasses: Record<string, string> = {
@@ -42,6 +42,7 @@ const levelClasses: Record<string, string> = {
     <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
       <span class="lang-en">A map of the logical relations between statements—and the word order each German connector requires. The level badge shows the first Atlas stage at which productive use is expected; later forms are here for recognition and comparison.</span>
       <span class="lang-ru">Карта логических связей между высказываниями и порядка слов, которого требует каждая немецкая связка. Значок уровня показывает первую ступень Atlas, где ожидается активное употребление; более поздние формы уже показаны для узнавания и сравнения.</span>
+      <span class="lang-uk">Карта логічних зв'язків між висловлюваннями — і порядку слів, якого вимагає кожен німецький сполучник. Позначка рівня показує перший щабель Atlas, на якому очікується активне вживання; пізніші форми подано тут для розпізнавання та порівняння.</span>
     </p>
   </header>
 
@@ -50,19 +51,19 @@ const levelClasses: Record<string, string> = {
     <div class="mt-4 grid gap-3 sm:grid-cols-2">
       <div class="flex gap-3">
         <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.A1]}>A1</span>
-        <p class="text-sm"><span class="lang-en">basic joining words for everyday sentences</span><span class="lang-ru">базовые связки для повседневных предложений</span></p>
+        <p class="text-sm"><span class="lang-en">basic joining words for everyday sentences</span><span class="lang-ru">базовые связки для повседневных предложений</span><span class="lang-uk">базові сполучники для щоденних речень</span></p>
       </div>
       <div class="flex gap-3">
         <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.A2]}>A2</span>
-        <p class="text-sm"><span class="lang-en">the current productive core: reasons, results, conditions and concession</span><span class="lang-ru">нынешнее активное ядро: причины, следствия, условия и уступка</span></p>
+        <p class="text-sm"><span class="lang-en">the current productive core: reasons, results, conditions and concession</span><span class="lang-ru">нынешнее активное ядро: причины, следствия, условия и уступка</span><span class="lang-uk">нинішнє активне ядро: причини, наслідки, умови та допуст</span></p>
       </div>
       <div class="flex gap-3">
         <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.B1]}>B1</span>
-        <p class="text-sm"><span class="lang-en">broader argument and more precise written connections</span><span class="lang-ru">более широкая аргументация и точные письменные связи</span></p>
+        <p class="text-sm"><span class="lang-en">broader argument and more precise written connections</span><span class="lang-ru">более широкая аргументация и точные письменные связи</span><span class="lang-uk">ширша аргументація і точніші письмові зв'язки</span></p>
       </div>
       <div class="flex gap-3">
         <span class:list={['h-fit rounded px-2 py-1 text-xs font-bold', levelClasses.B2]}>B2</span>
-        <p class="text-sm"><span class="lang-en">formal precision; mainly useful receptively before that stage</span><span class="lang-ru">формальная точность; до этого уровня прежде всего для узнавания</span></p>
+        <p class="text-sm"><span class="lang-en">formal precision; mainly useful receptively before that stage</span><span class="lang-ru">формальная точность; до этого уровня прежде всего для узнавания</span><span class="lang-uk">формальна точність; до цього щабля корисна передусім для розпізнавання</span></p>
       </div>
     </div>
   </section>
@@ -72,6 +73,7 @@ const levelClasses: Record<string, string> = {
     <p class="mt-2 text-sm text-stone-500">
       <span class="lang-en">Start with the relation you mean, then check the sentence pattern.</span>
       <span class="lang-ru">Сначала определите нужную связь, затем проверьте структуру предложения.</span>
+      <span class="lang-uk">Спершу визначте потрібний зв'язок, потім перевірте структуру речення.</span>
     </p>
     <div class="mt-5 grid gap-3 sm:grid-cols-2">
       {data.relations.map((relation) => (
@@ -102,17 +104,17 @@ const levelClasses: Record<string, string> = {
       <div>
         <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Konjunktion</p>
         <p lang="de" class="mt-1 font-medium">aber ich <strong>komme</strong></p>
-        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">Main-clause order stays intact.</span><span class="lang-ru">Порядок главного предложения сохраняется.</span></p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">Main-clause order stays intact.</span><span class="lang-ru">Порядок главного предложения сохраняется.</span><span class="lang-uk">Порядок слів головного речення залишається без змін.</span></p>
       </div>
       <div>
         <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Nebensatz</p>
         <p lang="de" class="mt-1 font-medium">weil ich <strong>komme</strong></p>
-        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The conjugated verb closes the clause.</span><span class="lang-ru">Спрягаемый глагол замыкает придаточное.</span></p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The conjugated verb closes the clause.</span><span class="lang-ru">Спрягаемый глагол замыкает придаточное.</span><span class="lang-uk">Дієвідмінюване дієслово замикає підрядне речення.</span></p>
       </div>
       <div>
         <p class="text-xs font-bold uppercase tracking-wide text-stone-500">Adverb auf Position 1</p>
         <p lang="de" class="mt-1 font-medium">Deshalb <strong>komme</strong> ich</p>
-        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The connector fills position 1; the verb remains second.</span><span class="lang-ru">Связка занимает первое место; глагол остаётся вторым.</span></p>
+        <p class="mt-1 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">The connector fills position 1; the verb remains second.</span><span class="lang-ru">Связка занимает первое место; глагол остаётся вторым.</span><span class="lang-uk">Сполучник займає перше місце; дієслово залишається другим.</span></p>
       </div>
     </div>
   </section>
@@ -153,7 +155,7 @@ const levelClasses: Record<string, string> = {
                       <strong lang="de" class="text-base">{connector.form}</strong>
                       <span class:list={['rounded px-2 py-0.5 text-[10px] font-bold', levelClasses[connector.level]]}>{connector.level}</span>
                     </div>
-                    {register && <span class="mt-2 inline-block rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300"><span class="lang-en">{register.en}</span><span class="lang-ru">{register.ru}</span></span>}
+                    {register && <span class="mt-2 inline-block rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300"><span class="lang-en">{register.en}</span><span class="lang-ru">{register.ru}</span><span class="lang-uk">{register.uk}</span></span>}
                   </td>
                   <td class="px-4 py-4">
                     <p>
@@ -173,7 +175,7 @@ const levelClasses: Record<string, string> = {
                   </td>
                   <td class="px-4 py-4">
                     <span class="font-medium">{syntax.de}</span>
-                    <span class="mt-1 block text-xs text-stone-500"><span class="lang-en">{syntax.en}</span><span class="lang-ru">{syntax.ru}</span></span>
+                    <span class="mt-1 block text-xs text-stone-500"><span class="lang-en">{syntax.en}</span><span class="lang-ru">{syntax.ru}</span><span class="lang-uk">{syntax.uk}</span></span>
                   </td>
                   <td class="px-4 py-4">
                     <p lang="de" class="font-medium">{connector.example.de}</p>
@@ -197,6 +199,7 @@ const levelClasses: Record<string, string> = {
     <p class="mt-2 text-stone-500">
       <span class="lang-en">These are the choices where translation alone is least reliable.</span>
       <span class="lang-ru">Здесь перевод особенно плохо помогает выбрать правильную связку.</span>
+      <span class="lang-uk">Саме тут переклад найменше допомагає обрати правильний сполучник.</span>
     </p>
     <div class="mt-6 grid gap-5">
       {data.comparisons.map((comparison) => (
@@ -234,6 +237,7 @@ const levelClasses: Record<string, string> = {
     <p>
       <span class="lang-en">This page is a map, not a learning claim. The A2 lesson <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/topics/verbindungen-folgen')}>Verbindungen &amp; Folgen</a> practises the productive core; B1 and B2 forms remain lookup support until their own lessons arrive.</span>
       <span class="lang-ru">Эта страница — карта, а не заявление об освоении. Тема A2 <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/topics/verbindungen-folgen')}>Verbindungen &amp; Folgen</a> тренирует активное ядро; формы B1 и B2 остаются справочным материалом, пока не появятся их собственные темы.</span>
+      <span class="lang-uk">Ця сторінка — карта, а не твердження про опанування. Тема A2 <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/topics/verbindungen-folgen')}>Verbindungen &amp; Folgen</a> тренує активне ядро; форми B1 і B2 залишаються довідковою підтримкою, доки не з'являться власні уроки для них.</span>
     </p>
   </section>
 </Base>

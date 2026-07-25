@@ -323,48 +323,51 @@ export function hasManifest(level: Level, root = process.cwd()): boolean {
 }
 
 // ---------------------------------------------------------------------------
-// Ukrainian translation coverage — how far the C3 waves have progressed
+// Ukrainian half coverage — which files carry the uk half, i.e. how far the
+// C3 waves have progressed. The half is authored, not translated: a wave is a
+// scope of files, and each half is written from the German, never from a
+// sibling half.
 // ---------------------------------------------------------------------------
 
 export interface UkCoverage {
   /** ru-bearing content files that carry the uk half */
-  translated: number;
+  authored: number;
   /** all ru-bearing content files */
   total: number;
 }
 
 /**
- * The Über page's UK-translation figure, computed from content per the
- * earned-claims rule — the page never hand-writes it. The unit is the file:
- * per-file parity is validator-enforced (src/lib/langcheck.ts), so any `uk`
- * in a file means the file is fully translated — a wave's file is translated
- * or not started, never half. Two refinements keep the count honest:
+ * The Über page's UK-half figure, computed from content per the earned-claims
+ * rule — the page never hand-writes it. The unit is the file: per-file parity
+ * is validator-enforced (src/lib/langcheck.ts), so any `uk` in a file means
+ * the file carries the half throughout — a wave's file is fully authored or
+ * not started, never half. Two refinements keep the count honest:
  *
  * - `content/atlas.yaml` has per-NODE parity by design (one file holds every
- *   topic), so a single translated node must not count the whole atlas: it
- *   counts as translated only when every ru field in it has its uk sibling
+ *   topic), so a single uk-carrying node must not count the whole atlas: it
+ *   counts only when every ru field in it has its uk sibling
  *   (`ukParityProblems` under `forceUk`).
  * - An `.mdx` file has two ru-bearing sides — frontmatter fields and body
- *   `<Ru>` blocks — and counts as translated only when EVERY ru-bearing side
- *   it has is translated. The validator bridges the two sides into one parity
- *   scope, so a half-done file cannot ship; this rule keeps the figure robust
- *   on its own, per the earned-claims rule, rather than trusting the bridge.
+ *   `<Ru>` blocks — and counts only when EVERY ru-bearing side it has carries
+ *   the uk half. The validator bridges the two sides into one parity scope, so
+ *   a half-done file cannot ship; this rule keeps the figure robust on its own,
+ *   per the earned-claims rule, rather than trusting the bridge.
  */
-export function ukTranslationCoverage(root = process.cwd()): UkCoverage {
-  let translated = 0;
+export function ukHalfCoverage(root = process.cwd()): UkCoverage {
+  let authored = 0;
   let total = 0;
   const count = (ruBearing: boolean, uk: boolean): void => {
     if (!ruBearing) return;
     total += 1;
-    if (uk) translated += 1;
+    if (uk) authored += 1;
   };
 
   for (const file of walk(join(root, 'content'), '.yaml')) {
     const data = YAML.parse(readFileSync(file, 'utf8')) as unknown;
-    const fullyTranslated = file.endsWith(join('content', 'atlas.yaml'))
+    const fullyAuthored = file.endsWith(join('content', 'atlas.yaml'))
       ? hasUkField(data) && ukParityProblems(data, { forceUk: true }).length === 0
       : hasUkField(data);
-    count(hasRuField(data), fullyTranslated);
+    count(hasRuField(data), fullyAuthored);
   }
   for (const file of walk(join(root, 'content'), '.mdx')) {
     const source = readFileSync(file, 'utf8');
@@ -377,7 +380,7 @@ export function ukTranslationCoverage(root = process.cwd()): UkCoverage {
     const bodyDone = !bodyRu || body.includes('<Uk>');
     count(fmRu || bodyRu, fmDone && bodyDone);
   }
-  return { translated, total };
+  return { authored, total };
 }
 
 export function goetheCoverage(level: Level, root = process.cwd()): Coverage {

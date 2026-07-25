@@ -54,6 +54,43 @@ it; everything else lives in the archive.
   2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
   [i18n-design.md](i18n-design.md).
+- **C6 · Ukrainian is an authored half, not a translation** — owner ruling, `done` 2026-07-25. The
+  substantive contract already said so ([i18n-design.md](i18n-design.md) C3: a wave *authors* the
+  `uk` half and it may diverge where that helps its reader). The scheduling word "translation wave"
+  had leaked into the instrument, the Über page and the docs, where it reads as a claim about how
+  the prose is produced. Renamed to match: the coverage instrument is `ukHalfCoverage()` and its
+  field is `authored`; the Über paragraph, also stale at *"arriving in waves … so far"*,
+  now names the four halves, the computed **373 of 373**
+  (`bun -e 'const {ukHalfCoverage}=await import("./src/lib/coverage.ts"); console.log(ukHalfCoverage())'`)
+  and the EN fallback. The rule the rename protects is stated in C3: **each half is written from the
+  German, not from a sibling half** — a half exists to contrast German with *that* language, and
+  Ukrainian's interference profile is not Russian's.
+  - Open: **C6-1** below — the halves authored before the ruling have not been audited for this class.
+- **C5 · Ukrainian in the rendering code** — `done` 2026-07-25. C3 closed Ukrainian across every
+  authored file and the Über figure agreed, because that figure counts **content files only**. It
+  never saw `src/`, where page prose is hardcoded as sibling spans — **62 `.lang-ru` spans across
+  19 files had no `.lang-uk`**, `/about` worst at 19 and 0. Not a bug: with no `.lang-uk` sibling
+  the `:has()` rule in `global.css` leaves EN visible, so a Ukrainian learner saw honest English.
+  That is exactly why it survived — nothing was broken, so nothing complained. But it made "the
+  Ukrainian half is complete" true only of `content/`, and CLAUDE.md binds the language surface to
+  **rendering code**, not just authored fields.
+  The instrument was the defect again, so `tests/i18n-content.test.ts` now carries a **per-file
+  ratchet**: `lang-uk` count ≥ `lang-ru` count for every file under `src/`, excluding
+  `Ru.astro`/`Uk.astro` and `global.css`, which define the mechanism rather than use it. It counts
+  spans and cannot tell Ukrainian from Russian pasted into a `uk` span — the comment says so —
+  but a missing half can no longer be added silently. Verified by planting an unpaired `lang-ru`
+  and watching it fail.
+  **Writing the Ukrainian audited the Russian, the same way the `de` half audited the English.**
+  `/about` rendered *"Все 22 юнитов"* and *"Все 22 грамматических пунктов"* — wrong Russian, because
+  a count ending in 2–4 does not take the genitive plural, and both counts are computed. Rewritten
+  so the number never governs the noun (*"Написаны все юниты уровня …, всего 22"*), which is robust
+  to the count changing rather than correct-for-now. Two claims on the same page were also stale:
+  the intro said every explanation is "written twice — in English and in Russian" (there are four
+  halves), and the feedback principle promised the rule "in English or in Russian" **inside the EN
+  span**, which is the surface CLAUDE.md says must never assume RU or UK. Both now say *in your
+  explanation language*, which is true under all four settings.
+  `de` in chrome stays deliberately out of scope: page prose is not level-bound content, `de` is a
+  B1-onward *content* half, and the EN fallback there is the designed behaviour.
 - **C4 · German-medium `de` half on B1 exercises and readings** — `done` 2026-07-25.
   [i18n-design.md](i18n-design.md) has said since P8-4 that "B1 articles **and exercises** are
   authored with `<De>` halves from day one". The articles were; the exercises never were. B1.1–B1.3
@@ -93,11 +130,11 @@ it; everything else lives in the archive.
   (2026-07-19) and `briefe.yaml` (2026-07-21) both landed *after* C3 closed, so they carried 241 `ru`
   fields with no `uk` sibling and still validated — per-file parity only fires once a file has any
   `uk` at all, which is exactly what a file with none does not. Closed by authoring both halves;
-  `ukTranslationCoverage()` now reports **373 of 373**
-  (`bun -e 'const {ukTranslationCoverage}=await import("./src/lib/coverage.ts"); console.log(ukTranslationCoverage())'`).
+  `ukHalfCoverage()` now reports **373 of 373**
+  (`bun -e 'const {ukHalfCoverage}=await import("./src/lib/coverage.ts"); console.log(ukHalfCoverage())'`).
   The instrument was the real defect, so it was fixed too: the only test over this figure built a
   synthetic seven-file fixture, which proves the counting and is precisely what cannot notice a real
-  file. `tests/i18n-content.test.ts` now carries a **corpus ratchet** asserting `translated === total`,
+  file. `tests/i18n-content.test.ts` now carries a **corpus ratchet** asserting `authored === total`,
   verified by watching it fail on a planted ru-bearing file. A falling `/about` figure is the right
   behaviour mid-wave and the wrong behaviour once the waves are closed; the ratchet marks that change.
   **Review found 4 Russian-interference defects in the 241 new fields** (1.7%), all from authoring the
@@ -344,6 +381,24 @@ because minimal ceremony is the contract) is in
   **2026-07-19T09:22Z — 4h38m before #85** fixed the invisible Entdecken toggles, and "off" is exactly
   what a double-press on an unresponsive toggle produces. Treat Entdecken feedback as starting from
   #85; do not plan authoring volume against it.
+
+## Open — the 2026-07-25 Ukrainian ruling
+
+### C6-1 · Calque audit of the `uk` halves authored before the ruling — `todo` (M)
+
+Every `uk` half in the repo was authored before *written from the German, never from a sibling half*
+was written down as the operative rule. PR #106 is the one place the class was actually looked for
+and found: **4 Russian-shaped renderings in 241 new fields (1.7%)**, all in
+`content/reference-data/briefe.yaml` — two lexical, and two agreement errors that exist only because
+the grammars differ. The remaining uk-carrying files (373 in all, `ukHalfCoverage()`) have **not**
+been audited for it, and nothing here should be read as saying they have — the rate above is one
+file pair, not a corpus estimate.
+
+No gate is proposed, for the reason recorded under C3 in [i18n-design.md](i18n-design.md): the leak
+is semantic, so `RU_ONLY` cannot see it, and a calque denylist would catch the lexical half and
+neither agreement error while reading like it covers all of it. The audit is human review — read the
+`uk` half against the German and English with the `ru` half closed. Sample first and record the rate
+before deciding whether a full pass is worth it.
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
