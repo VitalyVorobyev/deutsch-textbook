@@ -57,6 +57,29 @@ it; everything else lives in the archive.
 - **C3 · Ukrainian A1+A2 explanation half** — `done` 2026-07-18. Authored across every ru-bearing
   A1/A2 file (Über **266/266**), idiomatic and per-file-parity, `en`/`ru` prose byte-identical
   (waves 1–7, PRs #60/#61/#66/#67/#68/#69). B1 `uk` waves follow B1 content.
+  **Two files escaped the waves and no item named them until 2026-07-25**: `sentence-connectors.yaml`
+  (2026-07-19) and `briefe.yaml` (2026-07-21) both landed *after* C3 closed, so they carried 241 `ru`
+  fields with no `uk` sibling and still validated — per-file parity only fires once a file has any
+  `uk` at all, which is exactly what a file with none does not. Closed by authoring both halves;
+  `ukTranslationCoverage()` now reports **373 of 373**
+  (`bun -e 'const {ukTranslationCoverage}=await import("./src/lib/coverage.ts"); console.log(ukTranslationCoverage())'`).
+  The instrument was the real defect, so it was fixed too: the only test over this figure built a
+  synthetic seven-file fixture, which proves the counting and is precisely what cannot notice a real
+  file. `tests/i18n-content.test.ts` now carries a **corpus ratchet** asserting `translated === total`,
+  verified by watching it fail on a planted ru-bearing file. A falling `/about` figure is the right
+  behaviour mid-wave and the wrong behaviour once the waves are closed; the ratchet marks that change.
+  **Review found 4 Russian-interference defects in the 241 new fields** (1.7%), all from authoring the
+  `uk` half beside the `ru` one instead of from the German and English: two lexical — «жалоба» for
+  *complaint* (it is *mourning* in Ukrainian; the other 20 occurrences in the repo correctly say
+  «скарга») and «мати місце» for *belongs in* (it means *occurs*) — and two agreement errors that
+  exist only because Russian and Ukrainian differ grammatically: «її» for masculine «підпис» (Russian
+  «подпись» is feminine) and invariant «тепліше/холодніше» where Ukrainian comparatives decline
+  («теплішу/холоднішу»). `RU_ONLY` (`src/lib/langcheck.ts:21`) reported nothing and was right to —
+  the leak is semantic, not orthographic. **No gate is proposed**, and the reason is worth writing
+  down: a calque denylist would have caught the two lexical slips and neither agreement error, so it
+  would buy half the class while reading like it covers all of it. The reviewable instrument here is
+  the authoring order — translate from `de` + `en`, never from `ru` — which is already what the wave
+  procedure says and is what was not done.
 - **P9-1 · Discovery schema evolution** — `done` 2026-07-15. Provenance-checked `images[]`, online-only
   `links[]`, strict schema, local committed `src` only; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 - **P9-4 · Multilingual Wortnetze** — `done` 2026-07-18. Canonical schema, four pilot networks,
