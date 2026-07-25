@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
 import { getCheckpoints } from '../lib/content';
 import { getCurriculum } from '../lib/curriculum';
-import { goetheCoverage, hasManifest, ukTranslationCoverage } from '../lib/coverage';
+import { goetheCoverage, hasManifest, ukHalfCoverage } from '../lib/coverage';
 import { grammarCoverage } from '../lib/grammar-coverage';
 import { withBase } from '../lib/url';
 
@@ -33,9 +33,13 @@ const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
 // from the content at build time, like every other number on this page.
 const grammarA1 = grammarCoverage('A1');
 const grammarA2 = grammarCoverage('A2');
-// The Ukrainian-translation figure, same earned-claims rule: measured from the
-// content files at build time, never hand-written — and 0 is stated as 0.
-const ukCoverage = ukTranslationCoverage();
+// The Ukrainian-half figure, same earned-claims rule: measured from the content
+// files at build time, never hand-written — and a shortfall would be stated as one.
+// The paragraph below also says the half covers every file, which is a claim rather
+// than a count: `tests/i18n-content.test.ts` holds it true with a corpus ratchet, so
+// a new ru-bearing file without its uk half fails the gate instead of quietly making
+// this page's prose wrong.
+const ukCoverage = ukHalfCoverage();
 
 const levels = ['A1', 'A2'] as const;
 const stats = levels.map((level) => {
@@ -339,22 +343,25 @@ const principles = [
 
     <p class="mt-4 max-w-prose text-sm text-stone-500 dark:text-stone-400">
       <span class="lang-en">
-        Explanations are written in English and Russian throughout; a Ukrainian translation is
-        arriving in waves and is measured like everything on this page — {ukCoverage.translated} of
-        {' '}{ukCoverage.total} content files carry the Ukrainian half so far, and where it is
-        missing the app shows English.
+        Every explanation carries an English and a Russian half. The Ukrainian half is authored in
+        Ukrainian — written from the German rather than translated out of another half — and it now
+        covers all {ukCoverage.authored} of {ukCoverage.total} content files, counted from those
+        files each time this page is built. A German-medium half is authored from B1 onward.
+        Wherever a half does not exist, the app shows the English one.
       </span>
       <span class="lang-ru">
-        Пояснения написаны на английском и русском по всему курсу; украинский перевод выходит
-        волнами и измеряется так же, как всё на этой странице, — украинская половина пока есть в
-        {' '}{ukCoverage.translated} из {ukCoverage.total} файлов контента, а там, где её нет,
-        показывается английский.
+        У каждого объяснения есть английская и русская половины. Украинскую пишут по-украински,
+        отталкиваясь от немецкого текста, а не переводя её с соседней половины; сейчас она есть во
+        всех файлах курса — {ukCoverage.authored} из {ukCoverage.total}, и это число считается по
+        самим файлам при каждой сборке страницы. Немецкоязычная половина пишется начиная с уровня
+        B1. Там, где половины нет, приложение показывает английскую.
       </span>
       <span class="lang-uk">
-        Пояснення в усьому курсі написані англійською та російською; український переклад виходить
-        хвилями і вимірюється так само, як усе на цій сторінці, — українську половину поки що мають
-        {' '}{ukCoverage.translated} із {ukCoverage.total} файлів контенту, а там, де її немає,
-        показується англійська.
+        Кожне пояснення має англійську та російську половини. Українську пишуть українською,
+        відштовхуючись від німецького тексту, а не перекладаючи її із сусідньої половини; зараз
+        вона є в усіх файлах курсу — {ukCoverage.authored} із {ukCoverage.total}, і це число щоразу
+        рахується за самими файлами під час збирання сторінки. Німецькомовна половина з’являється
+        з рівня B1. Там, де половини немає, застосунок показує англійську.
       </span>
     </p>
 

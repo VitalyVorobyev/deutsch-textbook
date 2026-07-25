@@ -7,14 +7,14 @@ and P8-4 (the content-language machinery, extended with the German explanation h
 shipped 2026-07-15; P8-5 (the card meaning side via `pickSecond`, the Über page's computed
 UK-coverage figure, and the chrome residue in never-ternary components and static `.astro`
 pages) shipped 2026-07-16. The machinery is complete: the only remaining implementation is the
-C3 translation waves in [backlog.md](backlog.md); this document is the contract they implement.
+C3 authoring waves in [backlog.md](backlog.md); this document is the contract they implement.
 
 **The objective, restated after a course correction (2026-07-15):** the point of this phase is
 the *learner's* language — Ukrainian + English explanations for a Ukrainian reader the way
 today's reader gets Russian + English, and German-medium explanations for advanced learners —
 not the chrome. The UI-language work shipped first because it is the foundation the sweep needed,
-but a Ukrainian menu over Russian unit material is not the deliverable; the translation waves
-and the `de` half are.
+but a Ukrainian menu over Russian unit material is not the deliverable; the Ukrainian authoring
+waves and the `de` half are.
 
 ## The two axes, and why they never merge
 
@@ -24,7 +24,7 @@ The system has two language questions that look like one:
   Today it is hardcoded German. It becomes `de | en | ru | uk`, chosen per profile.
 - **`ExplainLang`** — the content's explanation language: which half of a `Bilingual` block is
   shown, which gloss column, which `prompt_*` field. `en | ru | uk | de` (`src/lib/prefs.ts`):
-  `en`/`ru` fully authored, `uk` arriving in translation waves, `de` the German-medium half
+  `en`/`ru` fully authored, `uk` arriving in authoring waves, `de` the German-medium half
   authored from B1 onward — the optional halves fall back to `en`.
 
 They are independent and must never be conflated. A learner may want German chrome (immersion) with
@@ -105,10 +105,10 @@ so they move into the strings table rather than gaining `uk` fields.
   Ukrainian, so the validator checks letter sets instead — і/ї/є/ґ in an `ru` field fails,
   ы/э/ъ/ё in a `uk` field fails. This is **not watertight** (a short phrase can avoid all eight
   letters); its job is to catch cross-pasting, which is the realistic failure mode of a
-  twenty-wave translation program.
+  twenty-wave authoring program.
 - **Parity is per-file:** any `uk` in a file means every ru-bearing field in that file carries
-  `uk`. Per-file rather than per-repo because translation lands in waves — a half-translated repo
-  is the plan, but a half-translated file is a defect. `content/atlas.yaml` is one file holding
+  `uk`. Per-file rather than per-repo because the half lands in waves — a half-covered repo
+  is the plan, but a half-covered file is a defect. `content/atlas.yaml` is one file holding
   every node, so parity there is **per node**: one topic's outcomes translate together, and the
   file as a whole may be mixed.
 - **Glosses** grow to `[[de::en::ru::uk]]`: three or four `::`-separated fields, **all-or-none per
@@ -120,7 +120,7 @@ so they move into the strings table rather than gaining `uk` fields.
   artifact must carry EN, so the fallback always exists — and falling back to Russian would
   silently hand a Ukrainian reader Russian, a substitution the course does not intend to make.
   Honest state over silent substitution: seeing English where Ukrainian does not exist yet is also
-  an accurate live indicator of how far the translation waves have progressed.
+  an accurate live indicator of how far the authoring waves have progressed.
 
 ## The German explanation half (`de`)
 
@@ -181,22 +181,38 @@ its explanation prose is not immersion, it is a table collection.
   gloss language, so no SRS history resets — asserted in a test, not assumed.
 - ~~The header language toggle gains UK~~ — shipped with P8-4 (the toggle is EN/RU/UK/DE).
 - The Über page gains a **build-time UK-coverage figure**, computed from content per the
-  earned-claims rule — the page never hand-writes a count, and it never claims the translation is
-  further along than the files show.
+  earned-claims rule — the page never hand-writes a count, and it never claims the Ukrainian half
+  is further along than the files show.
 
-## C3 — the translation waves
+## C3 — the Ukrainian authoring waves
 
-A1 first in **~3 large waves**, then A2 in **~4–5** (owner decision 2026-07-15: fewer, larger
-chunks — the UK version is wanted for real Ukrainian readers, not as parked machinery, and the
-waves start now). Each wave carries two jobs in one review pass:
+**A wave is a scope of files, not a mode of writing** — a scheduling unit, nothing more. A1 first
+in **~3 large waves**, then A2 in **~4–5** (owner decision 2026-07-15: fewer, larger chunks — the
+UK version is wanted for real Ukrainian readers, not as parked machinery, and the waves start now).
+
+**The operative rule: each half is written from the German, not from a sibling half.** It follows
+from what a half is for — a language half exists to contrast German with *that* language, and
+Ukrainian's interference profile is not Russian's. A `uk` half derived from the `ru` half contrasts
+German with Russian in Ukrainian words, which helps nobody. The evidence is PR #106 (2026-07-25),
+which authored the last two reference files' `uk` halves and shipped **4 Russian-shaped renderings
+in the 241 new fields** (1.7%), all four in `content/reference-data/briefe.yaml` and all four
+caught in review — authored fresh, but with the `ru` text on screen:
+«сприймає її як знак жалоби», where Ukrainian needs «його» (the antecedent «підпис» is masculine,
+unlike Russian «подпись») and «скарги» («жалоба» is *mourning* in Ukrainian); and an invariant
+«формулу тепліше або холодніше», where the Ukrainian comparative declines («теплішу або
+холоднішу»). Having the sibling half in view is enough to produce the defect. The fix is the
+authoring order, not a denylist: a calque list catches the lexical pair and neither agreement
+error, so it would buy half the class while reading like it covers all of it.
+
+Each wave carries two jobs in one review pass:
 
 - It **authors** the `uk` half idiomatically, never machine-translationese. The `uk` half may
   diverge where it helps its reader — contrasting German with Ukrainian (відмінки,
   «бути»-dropping) exactly as the RU half contrasts with Russian.
 - It **reviews and improves the existing `ru` (and `en`) prose** of the same files while they are
-  open — a translation wave is also an editorial pass over what is already there.
+  open — an authoring wave is also an editorial pass over what is already there.
 - Every wave passes the validator letter and parity checks and a review before merge; per-file
-  parity means each of a wave's files is fully translated or not started, never half.
+  parity means each of a wave's files carries the half throughout or not at all, never half.
 
 ## Honest volume
 
