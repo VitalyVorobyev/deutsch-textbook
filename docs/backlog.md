@@ -54,6 +54,31 @@ it; everything else lives in the archive.
   2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
   [i18n-design.md](i18n-design.md).
+- **C5 · Ukrainian in the rendering code** — `done` 2026-07-25. C3 closed Ukrainian across every
+  authored file and the Über figure agreed, because that figure counts **content files only**. It
+  never saw `src/`, where page prose is hardcoded as sibling spans — **62 `.lang-ru` spans across
+  19 files had no `.lang-uk`**, `/about` worst at 19 and 0. Not a bug: with no `.lang-uk` sibling
+  the `:has()` rule in `global.css` leaves EN visible, so a Ukrainian learner saw honest English.
+  That is exactly why it survived — nothing was broken, so nothing complained. But it made "the
+  Ukrainian half is complete" true only of `content/`, and CLAUDE.md binds the language surface to
+  **rendering code**, not just authored fields.
+  The instrument was the defect again, so `tests/i18n-content.test.ts` now carries a **per-file
+  ratchet**: `lang-uk` count ≥ `lang-ru` count for every file under `src/`, excluding
+  `Ru.astro`/`Uk.astro` and `global.css`, which define the mechanism rather than use it. It counts
+  spans and cannot tell Ukrainian from Russian pasted into a `uk` span — the comment says so —
+  but a missing half can no longer be added silently. Verified by planting an unpaired `lang-ru`
+  and watching it fail.
+  **Writing the Ukrainian audited the Russian, the same way the `de` half audited the English.**
+  `/about` rendered *"Все 22 юнитов"* and *"Все 22 грамматических пунктов"* — wrong Russian, because
+  a count ending in 2–4 does not take the genitive plural, and both counts are computed. Rewritten
+  so the number never governs the noun (*"Написаны все юниты уровня …, всего 22"*), which is robust
+  to the count changing rather than correct-for-now. Two claims on the same page were also stale:
+  the intro said every explanation is "written twice — in English and in Russian" (there are four
+  halves), and the feedback principle promised the rule "in English or in Russian" **inside the EN
+  span**, which is the surface CLAUDE.md says must never assume RU or UK. Both now say *in your
+  explanation language*, which is true under all four settings.
+  `de` in chrome stays deliberately out of scope: page prose is not level-bound content, `de` is a
+  B1-onward *content* half, and the EN fallback there is the designed behaviour.
 - **C4 · German-medium `de` half on B1 exercises and readings** — `done` 2026-07-25.
   [i18n-design.md](i18n-design.md) has said since P8-4 that "B1 articles **and exercises** are
   authored with `<De>` halves from day one". The articles were; the exercises never were. B1.1–B1.3

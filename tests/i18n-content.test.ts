@@ -36,7 +36,7 @@ import {
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
 import { ukTranslationCoverage } from '../src/lib/coverage';
 import type { TopicNode } from '../src/lib/mastery';
-import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -791,6 +791,42 @@ describe('uk reaches the runtime surfaces', () => {
     const { translated, total } = ukTranslationCoverage();
     expect(total).toBeGreaterThan(300); // guard against a walker that silently found nothing
     expect(translated).toBe(total);
+  });
+
+  /**
+   * The same ratchet one layer out, over `src/` instead of `content/`.
+   *
+   * The content ratchet above says nothing about rendering code, and the Über figure it
+   * feeds counts content files only — so "the Ukrainian half is complete" was true of
+   * everything authored and false of every page that hardcodes its own prose. `/about`
+   * carried 19 `.lang-ru` spans and zero `.lang-uk`, which is the page that *states* the
+   * course's completeness. The EN fallback made it honest rather than broken (no
+   * `.lang-uk` sibling → the `:has()` rule in global.css leaves EN visible), which is
+   * exactly why nothing ever surfaced it.
+   *
+   * Counting spans, not translating them: this cannot tell Ukrainian from Russian pasted
+   * into a uk span — `langFieldProblems` does that job for authored fields, and nothing
+   * does it here. What it can do is make a missing half impossible to add silently.
+   *
+   * Excluded, because they define the mechanism rather than use it: `Ru.astro`/`Uk.astro`
+   * (the paired component definitions, one class each) and `global.css` (the selectors).
+   */
+  test('every lang-ru span in src/ has a lang-uk sibling', async () => {
+    const { Glob } = await import('bun');
+    const EXCLUDED = ['src/components/Ru.astro', 'src/components/Uk.astro'];
+    const gaps: string[] = [];
+    let seen = 0;
+    for await (const rel of new Glob('src/**/*.{astro,tsx}').scan('.')) {
+      const path = rel.replaceAll('\\', '/');
+      if (EXCLUDED.includes(path)) continue;
+      const src = readFileSync(path, 'utf8');
+      const ru = (src.match(/lang-ru/g) ?? []).length;
+      const uk = (src.match(/lang-uk/g) ?? []).length;
+      seen += ru;
+      if (ru > uk) gaps.push(`${path}: ${ru} lang-ru, ${uk} lang-uk`);
+    }
+    expect(seen).toBeGreaterThan(50); // guard against a glob that silently matched nothing
+    expect(gaps).toEqual([]);
   });
 
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {
