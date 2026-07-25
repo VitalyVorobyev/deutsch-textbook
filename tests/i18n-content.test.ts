@@ -34,9 +34,9 @@ import {
   type WordField,
 } from '../src/lib/schemas';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
-import { ukTranslationCoverage } from '../src/lib/coverage';
+import { ukHalfCoverage } from '../src/lib/coverage';
 import type { TopicNode } from '../src/lib/mastery';
-import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -359,7 +359,7 @@ describe('mdxLangProblems', () => {
     const forced = mdxLangProblems(ukLessBody, { forceUk: true });
     expect(forced.parity).toHaveLength(1);
     expect(forced.parity[0]).toContain('uk in its frontmatter');
-    // … and is satisfied only by a translated body
+    // … and is satisfied only by a body that carries the uk half
     expect(
       mdxLangProblems('<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>', { forceUk: true })
         .parity,
@@ -471,7 +471,7 @@ describe('schema widening', () => {
   });
 
   test('a record match right is visible to the parity walker', () => {
-    // The point of the record shape: a translated file whose match right lacks uk fails
+    // The point of the record shape: a uk-carrying file whose match right lacks uk fails
     // parity — the slash-hack string ("ability / умение") was invisible to this check.
     const file = {
       title: { en: 'T', ru: 'Т', uk: 'Т' },
@@ -658,7 +658,7 @@ describe('uk reaches the runtime surfaces', () => {
     expect(parsed.entries[0]!.example.uk).toBe('Я чекаю на це.');
     expect(ukParityProblems(parsed)).toEqual([]);
 
-    // half-translated: meaning has uk, an example does not — parity must fail
+    // half-authored: meaning has uk, an example does not — parity must fail
     const half = pronominalAdverbReferenceSchema.parse({
       ...reference,
       entries: [
@@ -722,18 +722,18 @@ describe('uk reaches the runtime surfaces', () => {
     expect(parsed.relations[0]!.entries[0]!.meaning.de).toBe('Folge');
   });
 
-  test('ukTranslationCoverage counts ru-bearing files, uk-carrying files, per-node atlas honestly', () => {
+  test('ukHalfCoverage counts ru-bearing files, uk-carrying files, per-node atlas honestly', () => {
     const root = mkdtempSync(join(tmpdir(), 'uk-coverage-'));
     const content = join(root, 'content');
     mkdirSync(join(content, 'vocab'), { recursive: true });
     mkdirSync(join(content, 'topics', 'a1'), { recursive: true });
-    // ru-bearing, untranslated
+    // ru-bearing, no uk half
     writeFileSync(join(content, 'vocab', 'a.yaml'), 'title_ru: Тема\nentries:\n  - ru: да\n');
-    // ru-bearing, translated (per-file parity is validator-enforced, so any uk counts)
+    // ru-bearing, carries the uk half (per-file parity is validator-enforced, so any uk counts)
     writeFileSync(join(content, 'vocab', 'b.yaml'), 'title_ru: Тема\ntitle_uk: Тема\n');
     // not ru-bearing — not in the denominator
     writeFileSync(join(content, 'vocab', 'c.yaml'), 'id: nothing-ru\n');
-    // atlas has per-NODE parity: one translated node must not count the file
+    // atlas has per-NODE parity: one uk-carrying node must not count the file
     writeFileSync(
       join(content, 'atlas.yaml'),
       'nodes:\n  - outcomes:\n      - ru: могу\n        uk: можу\n  - outcomes:\n      - ru: могу\n',
@@ -743,32 +743,32 @@ describe('uk reaches the runtime surfaces', () => {
       join(content, 'topics', 'a1', 'x.mdx'),
       '---\ntitle_ru: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru></Bilingual>\n',
     );
-    // an mdx file counts only when EVERY ru-bearing side is translated:
+    // an mdx file counts only when EVERY ru-bearing side carries the uk half:
     // title_uk with a uk-less body must not count (the frontmatter/body hole)
     writeFileSync(
       join(content, 'topics', 'a1', 'y.mdx'),
       '---\ntitle_ru: Тема\ntitle_uk: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru></Bilingual>\n',
     );
-    // …and the reverse: a translated body with an untranslated frontmatter
+    // …and the reverse: a uk-carrying body under a uk-less frontmatter
     writeFileSync(
       join(content, 'topics', 'a1', 'w.mdx'),
       '---\ntitle_ru: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>\n',
     );
-    // fully translated on both sides
+    // the uk half on both sides
     writeFileSync(
       join(content, 'topics', 'a1', 'z.mdx'),
       '---\ntitle_ru: Тема\ntitle_uk: Тема\n---\n<Bilingual><En>a</En><Ru>б</Ru><Uk>в</Uk></Bilingual>\n',
     );
-    const { translated, total } = ukTranslationCoverage(root);
+    const { authored, total } = ukHalfCoverage(root);
     expect(total).toBe(7); // a.yaml, b.yaml, atlas.yaml, x/y/w/z.mdx — not c.yaml
-    expect(translated).toBe(2); // b.yaml and z.mdx only
+    expect(authored).toBe(2); // b.yaml and z.mdx only
 
-    // the fully translated atlas counts
+    // the fully uk-carrying atlas counts
     writeFileSync(
       join(content, 'atlas.yaml'),
       'nodes:\n  - outcomes:\n      - ru: могу\n        uk: можу\n',
     );
-    expect(ukTranslationCoverage(root).translated).toBe(3);
+    expect(ukHalfCoverage(root).authored).toBe(3);
   });
 
   /**
@@ -788,9 +788,83 @@ describe('uk reaches the runtime surfaces', () => {
    * this fails, the fix is the uk half, not a lower expectation.
    */
   test('every ru-bearing content file in the repo carries its uk half', () => {
-    const { translated, total } = ukTranslationCoverage();
+    const { authored, total } = ukHalfCoverage();
     expect(total).toBeGreaterThan(300); // guard against a walker that silently found nothing
-    expect(translated).toBe(total);
+    expect(authored).toBe(total);
+  });
+
+  /**
+   * The same ratchet one layer out, over `src/` instead of `content/`.
+   *
+   * The content ratchet above says nothing about rendering code, and the Über figure it
+   * feeds counts content files only — so "the Ukrainian half is complete" was true of
+   * everything authored and false of every page that hardcodes its own prose. `/about`
+   * carried 19 `.lang-ru` spans and zero `.lang-uk`, which is the page that *states* the
+   * course's completeness. The EN fallback made it honest rather than broken (no
+   * `.lang-uk` sibling → the `:has()` rule in global.css leaves EN visible), which is
+   * exactly why nothing ever surfaced it.
+   *
+   * Counting spans, not translating them: this cannot tell Ukrainian from Russian pasted
+   * into a uk span — `langFieldProblems` does that job for authored fields, and nothing
+   * does it here. What it can do is make a missing half impossible to add silently.
+   *
+   * It matches `class` attributes and checks ORDER, not per-file totals. The first cut of
+   * this test compared raw `lang-ru`/`lang-uk` substring counts per file, and shipped two
+   * defects of its own: prose mentioning `.lang-uk` in a code comment (`VocabTable.astro`,
+   * `WordField.astro`) bought a file slack against its own gaps, and a file could satisfy
+   * equal totals while pairing the spans with the wrong neighbours. It passed
+   * `WordField.astro`, which was genuinely missing the uk half of its footnote — the exact
+   * gap this exists to catch. Adjacency in source order is a proxy for the direct-sibling
+   * relationship `global.css` requires (`parent:has(> .lang-uk) > .lang-en`); it is not a
+   * DOM proof, and a determined author could still split a pair across two parents.
+   *
+   * A trailing `lang-de` after the `uk` is fine — chrome `de` is deliberately out of scope
+   * (see the PR 3 note in the roadmap), so only the ru→uk edge is enforced.
+   *
+   * Excluded, because they define the mechanism rather than use it: `Ru.astro`/`Uk.astro`
+   * (the paired component definitions, one class each) and `global.css` (the selectors).
+   */
+  const LANG_CLASS = /class(?::list)?=\s*(?:"[^"]*"|'[^']*'|\{[^}]*\})/g;
+
+  /** The language classes one file applies, in source order. */
+  function langSequence(src: string): string[] {
+    const seq: string[] = [];
+    for (const [attr] of src.matchAll(LANG_CLASS)) {
+      for (const lang of ['en', 'ru', 'uk', 'de']) {
+        if (new RegExp(`\\blang-${lang}\\b`).test(attr)) seq.push(lang);
+      }
+    }
+    return seq;
+  }
+
+  test('langSequence reads class attributes, not prose that mentions one', () => {
+    // the shape that defeated the substring version: a comment naming the class it omits
+    const commented = `{/* .lang-uk spans are conditional */}
+      <span class="lang-en">a</span><span class="lang-ru">б</span>`;
+    expect(langSequence(commented)).toEqual(['en', 'ru']);
+    // multi-class and conditional spans still count — both are authored markup
+    const real = `<span class="block text-xs lang-en">a</span><span class="lang-ru">б</span>
+      {x.uk && <span class="lang-uk">в</span>}`;
+    expect(langSequence(real)).toEqual(['en', 'ru', 'uk']);
+  });
+
+  test('every lang-ru span in src/ is immediately followed by a lang-uk span', async () => {
+    const { Glob } = await import('bun');
+    const EXCLUDED = ['src/components/Ru.astro', 'src/components/Uk.astro'];
+    const gaps: string[] = [];
+    let seen = 0;
+    for await (const rel of new Glob('src/**/*.{astro,tsx}').scan('.')) {
+      const path = rel.replaceAll('\\', '/');
+      if (EXCLUDED.includes(path)) continue;
+      const seq = langSequence(readFileSync(path, 'utf8'));
+      seq.forEach((lang, i) => {
+        if (lang !== 'ru') return;
+        seen += 1;
+        if (seq[i + 1] !== 'uk') gaps.push(`${path}: lang-ru #${i} followed by ${seq[i + 1] ?? 'nothing'}`);
+      });
+    }
+    expect(seen).toBeGreaterThan(50); // guard against a glob that silently matched nothing
+    expect(gaps).toEqual([]);
   });
 
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {

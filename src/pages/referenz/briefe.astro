@@ -11,9 +11,9 @@ const data = briefeReferenceSchema.parse(entry.data);
 // Register is the axis the whole page turns on, so it is a label, not a colour alone: a
 // learner who picks the wrong one has written a different message, not a worse one.
 const registerLabels = {
-  formal: { de: 'Sie · formell', en: 'formal (Sie)', ru: 'формальное (Sie)' },
-  neutral: { de: 'Sie · neutral', en: 'neutral (Sie)', ru: 'нейтральное (Sie)' },
-  vertraut: { de: 'du · vertraut', en: 'familiar (du)', ru: 'близкое (du)' },
+  formal: { de: 'Sie · formell', en: 'formal (Sie)', ru: 'формальное (Sie)', uk: 'формальне (Sie)' },
+  neutral: { de: 'Sie · neutral', en: 'neutral (Sie)', ru: 'нейтральное (Sie)', uk: 'нейтральне (Sie)' },
+  vertraut: { de: 'du · vertraut', en: 'familiar (du)', ru: 'близкое (du)', uk: 'близьке (du)' },
 } as const;
 
 const registerClasses = {
@@ -50,6 +50,7 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
     <p class="mt-2 max-w-2xl text-stone-500">
       <span class="lang-en">The parts a German message is built from, in the order they appear — and three complete models at three registers. Choose <b>du</b> or <b>Sie</b> once and hold it to the last line.</span>
       <span class="lang-ru">Части, из которых строится немецкое сообщение, в порядке их следования — и три полных образца в трёх регистрах. Выберите <b>du</b> или <b>Sie</b> один раз и держитесь этого до последней строки.</span>
+      <span class="lang-uk">Частини, з яких будується німецьке повідомлення, у порядку їхньої появи — і три повні зразки в трьох регістрах. Оберіть <b>du</b> або <b>Sie</b> один раз і тримайтеся цього до останнього рядка.</span>
     </p>
   </header>
 
@@ -77,6 +78,7 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
                 <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${registerClasses[item.register]}`}>
                   <span class="lang-en">{registerLabels[item.register].en}</span>
                   <span class="lang-ru">{registerLabels[item.register].ru}</span>
+                  <span class="lang-uk">{registerLabels[item.register].uk}</span>
                 </span>
                 <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${levelClasses[item.level]}`}>{item.level}</span>
                 <span class="text-xs text-stone-400">
@@ -109,6 +111,7 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
     <p class="mt-2 max-w-3xl text-sm text-stone-500">
       <span class="lang-en">The same six parts, walked end to end at three registers. Read them down the column: the message does not get shorter as it gets less formal, it gets different.</span>
       <span class="lang-ru">Те же шесть частей, пройденные целиком в трёх регистрах. Читайте по столбцу: чем менее формально сообщение, тем оно не короче, а другое.</span>
+      <span class="lang-uk">Ті самі шість частин, пройдені від початку до кінця в трьох регістрах. Читайте згори вниз по стовпчику: менш формальне повідомлення не стає коротшим — воно стає іншим.</span>
     </p>
     <div class="mt-5 grid gap-5 lg:grid-cols-3">
       {data.templates.map((template) => (
@@ -118,6 +121,7 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
             <span class={`rounded px-1.5 py-0.5 text-[11px] font-semibold ${registerClasses[template.register]}`}>
               <span class="lang-en">{registerLabels[template.register].en}</span>
               <span class="lang-ru">{registerLabels[template.register].ru}</span>
+              <span class="lang-uk">{registerLabels[template.register].uk}</span>
             </span>
             <span class="text-xs text-stone-400">{channelLabels[template.channel].de}</span>
           </div>
