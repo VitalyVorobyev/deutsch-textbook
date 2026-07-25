@@ -402,6 +402,57 @@ before deciding whether a full pass is worth it.
 
 ## Parallel — Phase 9: Entdecken & Referenz
 
+### P9-4 · Entdecken review pass — **done 2026-07-25**
+
+The first editorial review of the seven shipped pieces against the 14-question test. Clean on the
+things that were expected to be the risk: **no-obligation intact in all seven**, every checkable
+fact true (Deutschlandticket 63 €/month since 2026-01-01, Pfand 25/8/15 ct, GG Art. 140 via WRV
+1919, § 22 Abs. 1a BImSchG), all 10 `links[]` returning 200, `<De>` correctly on the B1 piece only.
+
+**What it found instead was level control, in four of the five A2 pieces.** They narrated in
+full-verb Präteritum, which `data/grammar-inventory.yaml` levels at B1 with the explicit note that
+it is "a genuinely new competence and not a completion of the A2 one" — plus untaught B1 past and
+modal passive, attributive Partizip I, `adjektiv-nomen`, full genitive, and one B2
+`sein + zu + Infinitiv`. 31 offending Präteritum tokens in all; measured, not estimated.
+
+The calibration that made it obvious, and the reason this is a defect rather than a style
+preference: across the A2 *reading* corpus the narrative uses **53 A2-allowed Präteritum tokens
+(sein/haben/modals) against 2 full-verb** — `ging` in `verbindungen-folgen.yaml` and `saß` in
+`lena-7-ein-brief-fuer-den-hof.yaml`. The line is held everywhere except in the Entdecken pieces,
+which had 31.
+
+Scope matters and is part of the figure: it counts the `text:` paragraphs only, with the
+`::en::ru::uk` tail of every `[[gloss]]` stripped first. A naive grep over the raw YAML counts the
+English and Russian columns too — that is how the first version of this entry published "exactly
+one", matching on `half` in *"half past eight"* and on `verstanden`/`verloren` that are Partizip II
+in a Perfekt, not Präteritum:
+
+```
+bun -e 'const{Glob}=await import("bun"),{readFileSync}=await import("node:fs"),Y=await import("yaml");
+const A=/\b(war|waren|hatte|hatten|wollte|wollten|musste|mussten|konnte|konnten|sollte|sollten|durfte|durften|mochte)\b/g;
+const F=/\b(ging|kam|gab|sah|stand|lag|fuhr|hielt|nahm|fand|blieb|rief|schrieb|sprach|trug|traf|sa(ß|ss)|trank|half|zog|lief|las|begann|bekam|brachte|dachte|kannte|wusste|nannte|verlor|trat|tat|fiel)\b/g;
+let a=0,f=[];for await(const p of new Glob("content/reading/a2/*.yaml").scan(".")){
+const t=(Y.parse(readFileSync(p,"utf8")).text??[]).join(" ").replace(/\[\[([^\]:]*)(::[^\]]*)?\]\]/g,"$1");
+a+=[...t.matchAll(A)].length; f.push(...[...t.matchAll(F)].map(m=>m[0]+" — "+p.split("/").pop()));}
+console.log(a,"allowed vs",f.length,"full-verb:",f)'
+```
+
+It is a **screen, not a proof**: the full-verb list is the strong Präteritum forms reachable with
+A1–A2 vocabulary, so a strong verb outside it would pass. Weak `-te` Präteritum is not machine-
+separable from nouns (`Monaten`), adjectives (`nächsten`), infinitives (`arbeiten`) and Konjunktiv
+(`möchte`) — that pass was run and read by hand, and found none.
+
+Repaired to 0 by rewriting the narratives in the historical present — the technique
+`content/discovery/a1/ampelmaennchen.mdx` already used, which is why it was the one piece that
+never had the problem. Verify with the tripwires in the PR body; `wurde`/`wurden` now occur zero
+times in `content/discovery/a2/`.
+
+**No gate covers this.** `bun run validate` and the build passed throughout, before and after —
+CEFR discipline in prose is not machine-checkable the way parity and the Wortliste are, so it took
+a reading pass to see. Worth knowing before the next piece ships: the editorial test's question 4
+("Is the German comprehensible at the declared level?") is the one that needs a human, and the
+grammar inventory is the instrument to answer it with.
+
 ### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
 
 Optional editorial pieces from the fifteen-theme backlog, each passing the editorial test in
