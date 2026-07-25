@@ -801,7 +801,17 @@ export const caseReferenceSchema = z.object({
   prepositions: z.object({
     accusative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
     dative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
-    two_way: z.array(z.object({ form: z.string(), example: z.string().optional() })),
+    /** A two-way preposition takes both cases, so a single `example` cannot show
+        what distinguishes them. `wohin` is the accusative (movement toward a
+        goal) and `wo` the dative (location), authored as a minimal pair so the
+        article is the only thing that moves. Both optional: the entry stays
+        valid as a bare form, which is how the nine shipped before the pairs. */
+    two_way: z.array(z.object({
+      form: z.string(),
+      example: z.string().optional(),
+      wohin: z.string().optional(),
+      wo: z.string().optional(),
+    })),
   }),
 });
 export type CaseReference = z.infer<typeof caseReferenceSchema>;

@@ -30,13 +30,36 @@ prepositions:
     - { form: seit, example: "Ich lerne seit einem Jahr Deutsch." }
     - { form: von, example: "Das Geschenk ist von meiner Oma." }
     - { form: zu, example: "Ich gehe zum Arzt." }
+  # Minimal pairs: the noun stays, the article moves. The verb has to change with
+  # it — that is the point, not an inconsistency. A goal-directed verb (stellen,
+  # legen, setzen, hängen, gehen) takes the accusative; its positional twin
+  # (stehen, liegen, sitzen, hängen, wohnen) takes the dative.
   two_way:
-    - { form: an }
-    - { form: auf }
-    - { form: hinter }
-    - { form: in }
-    - { form: neben }
-    - { form: über }
-    - { form: unter }
-    - { form: vor }
-    - { form: zwischen }
+    - form: an
+      wohin: "Ich hänge das Bild an die Wand."
+      wo: "Das Bild hängt an der Wand."
+    - form: auf
+      wohin: "Ich lege das Buch auf den Tisch."
+      wo: "Das Buch liegt auf dem Tisch."
+    - form: hinter
+      wohin: "Er stellt das Fahrrad hinter das Haus."
+      wo: "Das Fahrrad steht hinter dem Haus."
+    - form: in
+      wohin: "Ich gehe in die Stadt."
+      wo: "Ich wohne in der Stadt."
+    - form: neben
+      wohin: "Sie setzt sich neben ihren Bruder."
+      wo: "Sie sitzt neben ihrem Bruder."
+    - form: über
+      wohin: "Er hängt die Lampe über den Tisch."
+      wo: "Die Lampe hängt über dem Tisch."
+    - form: unter
+      wohin: "Die Katze läuft unter das Bett."
+      wo: "Die Katze schläft unter dem Bett."
+    - form: vor
+      wohin: "Ich stelle das Auto vor die Tür."
+      wo: "Das Auto steht vor der Tür."
+    # Plural, so the dative shows its -n as well as the article.
+    - form: zwischen
+      wohin: "Er setzt sich zwischen die Kinder."
+      wo: "Er sitzt zwischen den Kindern."
