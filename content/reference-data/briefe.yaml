@@ -9,7 +9,7 @@ id: briefe
 # language into a current-level learning target.
 sections:
   - id: anrede
-    title: { de: "Betreff & Anrede", en: "Subject line and greeting", ru: "Тема письма и обращение" }
+    title: { de: "Betreff & Anrede", en: "Subject line and greeting", ru: "Тема письма и обращение", uk: "Тема листа і звертання" }
     description:
       en: >-
         The lines that open a message. Two decisions are made here and both bind everything
@@ -25,6 +25,13 @@ sections:
         следующее предложение начинается со строчной буквы. По-русски привычно «Уважаемая Анна
         Петровна!» — восклицательный знак и дальше прописная; по-немецки оба этих шага делаются
         иначе.
+      uk: >-
+        Рядки, якими відкривається повідомлення. Тут ухвалюють два рішення, і обидва діють до
+        кінця тексту. Перше — du чи Sie: як обрано у звертанні, так мають іти й усі подальші
+        займенники; перехід посеред листа німецький читач помічає найпершим. Друге — після
+        звертання ставиться кома, а не знак оклику, і наступне речення починається з малої
+        літери. Українською звично «Шановна пані Ганно!» — знак оклику, а далі велика літера;
+        німецькою обидва ці кроки роблять інакше.
     entries:
       - form: "Termin am 14. Mai"
         register: neutral
@@ -33,6 +40,7 @@ sections:
         use:
           en: "Every e-mail to an office or a company. A message that arrives without a subject line usually waits longer for an answer."
           ru: "Любое письмо в учреждение или фирму. Сообщение без темы обычно дольше ждёт ответа."
+          uk: "Будь-який лист до установи чи фірми. Повідомлення без теми зазвичай довше чекає на відповідь."
         note:
           en: >-
             Write the subject alone: your mail program already labels the field Betreff, so typing
@@ -47,6 +55,12 @@ sections:
             приветствия, потому что Hallo и Sehr geehrte Damen und Herren — место в тексте
             письма, а не в теме. Назовите дело и дату, и через неделю адресат снова найдёт ваше
             письмо.
+          uk: >-
+            Пишіть лише саму тему: поштова програма вже підписує це поле словом Betreff, і якщо
+            вписати його ще раз, вийде Betreff: Betreff: … Тема листа — це ярлик, а не речення:
+            коротка іменникова група, без дієслова, без крапки і, головне, без привітання, бо
+            Hallo і Sehr geehrte Damen und Herren мають місце в тексті листа, а не в темі.
+            Назвіть справу і дату, і за тиждень адресат знову знайде вашого листа.
       - form: "Sehr geehrte Damen und Herren,"
         register: formal
         channel: [brief, email]
@@ -54,6 +68,7 @@ sections:
         use:
           en: "The default when you have no name: an office, a company, an inbox nobody signs."
           ru: "Вариант по умолчанию, когда имени нет: учреждение, фирма, безымянный почтовый ящик."
+          uk: "Варіант за замовчуванням, коли імені немає: установа, фірма, безіменна поштова скринька."
         note:
           en: >-
             This is the single most useful line on the page. geehrte is the plural form here, so
@@ -65,6 +80,11 @@ sections:
             поэтому сочетание Damen und Herren не меняется. А заканчивается строка запятой,
             значит следующая начинается со строчной буквы — в отличие от русского «Уважаемые дамы
             и господа!», где стоит восклицательный знак и дальше идёт прописная.
+          uk: >-
+            Найкорисніший рядок на цій сторінці. geehrte стоїть тут у множині, тому сполучення
+            Damen und Herren не змінюється. А закінчується рядок комою, отже наступний
+            починається з малої літери — на відміну від українського «Шановні пані та панове!»,
+            де стоїть знак оклику, а далі велика.
       - form: "Sehr geehrte Frau Berg,"
         register: formal
         channel: [brief, email]
@@ -72,6 +92,7 @@ sections:
         use:
           en: "The moment you have a name. It is warmer and more precise than Damen und Herren, so use it whenever the name is known."
           ru: "Как только известна фамилия. Это теплее и точнее, чем Damen und Herren, поэтому используйте всегда, когда фамилия известна."
+          uk: "Щойно відоме прізвище. Це тепліше і точніше, ніж Damen und Herren, тому вживайте завжди, коли прізвище відоме."
         note:
           en: >-
             Surname only — Sehr geehrte Frau Anna is wrong. Frau is used for every adult woman,
@@ -81,6 +102,10 @@ sections:
             Только фамилия — Sehr geehrte Frau Anna неверно. Frau говорят любой взрослой женщине,
             замужней или нет; Fräulein вышло из употребления десятки лет назад и сегодня звучит
             грубо. Запятая и строчная буква в следующей строке работают точно так же, как выше.
+          uk: >-
+            Лише прізвище — Sehr geehrte Frau Anna неправильно. Frau кажуть будь-якій дорослій
+            жінці, заміжній чи ні; Fräulein вийшло з ужитку десятки років тому і сьогодні звучить
+            грубо. Кома і мала літера в наступному рядку працюють точно так само, як вище.
       - form: "Sehr geehrter Herr Berg,"
         register: formal
         channel: [brief, email]
@@ -88,6 +113,7 @@ sections:
         use:
           en: "The same formal greeting addressed to a man."
           ru: "То же официальное обращение, адресованное мужчине."
+          uk: "Те саме офіційне звертання, адресоване чоловікові."
         note:
           en: >-
             geehrt- is an adjective and takes an ending: geehrter before Herr, geehrte before Frau
@@ -97,6 +123,10 @@ sections:
             geehrt- — прилагательное, и оно получает окончание: geehrter перед Herr, geehrte перед
             Frau и перед множественным Damen und Herren. Это самое первое слово, которое видит
             адресат, поэтому ошибка в окончании обходится дорого.
+          uk: >-
+            geehrt- — прикметник, і він отримує закінчення: geehrter перед Herr, geehrte перед
+            Frau і перед множинним Damen und Herren. Це найперше слово, яке бачить адресат, тому
+            помилка в закінченні коштує дорого.
       - form: "Guten Tag, Frau Berg,"
         register: neutral
         channel: [email, nachricht]
@@ -104,6 +134,7 @@ sections:
         use:
           en: "A step down from Sehr geehrte without dropping Sie: a landlord, a course office, a colleague in another department."
           ru: "Ступень ниже, чем Sehr geehrte, но всё ещё на Sie: арендодатель, администрация курсов, коллега из другого отдела."
+          uk: "Щабель нижче, ніж Sehr geehrte, але все ще на Sie: орендодавець, адміністрація курсів, колега з іншого відділу."
         note:
           en: >-
             Two commas, one after Guten Tag and one after the name. It is friendlier than Sehr
@@ -113,6 +144,10 @@ sections:
             Две запятые: после Guten Tag и после фамилии. Обращение дружелюбнее, чем Sehr geehrte,
             и при этом безусловно на Sie, поэтому это самое безопасное начало письма человеку, с
             которым вы уже однажды говорили.
+          uk: >-
+            Дві коми: після Guten Tag і після прізвища. Звертання дружніше, ніж Sehr geehrte, і
+            водночас безумовно на Sie, тому це найбезпечніший початок листа до людини, з якою ви
+            вже одного разу говорили.
       - form: "Hallo Anna,"
         register: neutral
         channel: [email, nachricht]
@@ -120,6 +155,7 @@ sections:
         use:
           en: "The everyday opening of German e-mail: colleagues, fellow learners, anyone you are on first-name terms with."
           ru: "Самое обычное начало немецкого электронного письма: коллеги, однокурсники, любой, с кем вы на «ты»."
+          uk: "Найзвичайніший початок німецького електронного листа: колеги, однокурсники, будь-хто, з ким ви на «ти»."
         note:
           en: >-
             What decides du or Sie is not Hallo but what follows it. Hallo Anna is a first name and
@@ -129,6 +165,10 @@ sections:
             Выбор между du и Sie определяет не Hallo, а то, что стоит за ним. Hallo Anna — это имя,
             а значит du; Hallo Frau Berg сохраняет Sie и совершенно уместно на работе. Что выбрали,
             того и держитесь до последней строки письма.
+          uk: >-
+            Вибір між du і Sie визначає не Hallo, а те, що стоїть за ним. Hallo Anna — це ім'я, а
+            отже du; Hallo Frau Berg зберігає Sie і цілком доречне на роботі. Що обрали, того й
+            тримайтеся до останнього рядка листа.
       - form: "Liebe Anna,"
         register: vertraut
         channel: [brief, email, nachricht]
@@ -136,6 +176,7 @@ sections:
         use:
           en: "Friends and family, and any invitation. Lieber Tom to a man, Liebe Freunde to a group."
           ru: "Друзьям и родным, а также в любом приглашении. Lieber Tom — мужчине, Liebe Freunde — группе."
+          uk: "Друзям і рідним, а також у будь-якому запрошенні. Lieber Tom — чоловікові, Liebe Freunde — групі."
         note:
           en: >-
             lieb- is an adjective too, so the ending follows the person: Liebe Anna, Lieber Tom,
@@ -145,9 +186,13 @@ sections:
             lieb- — тоже прилагательное, поэтому окончание зависит от адресата: Liebe Anna, Lieber
             Tom, Liebe Freunde. Обращение тёплое и годится только для знакомых людей: учреждение,
             получившее Liebe Damen und Herren, воспримет это как ошибку.
+          uk: >-
+            lieb- — теж прикметник, тому закінчення залежить від адресата: Liebe Anna, Lieber Tom,
+            Liebe Freunde. Звертання тепле і годиться лише для знайомих людей: установа, що
+            отримала Liebe Damen und Herren, сприйме це як помилку.
 
   - id: einstieg
-    title: { de: "Einstieg", en: "The opening line", ru: "Первая строка" }
+    title: { de: "Einstieg", en: "The opening line", ru: "Первая строка", uk: "Перший рядок" }
     description:
       en: >-
         The first sentence after the greeting: who is writing, and why. It continues the line
@@ -157,6 +202,10 @@ sections:
         Первое предложение после обращения: кто пишет и зачем. Оно продолжает строку выше, а не
         начинает новую, поэтому пишется со строчной буквы — формы ниже записаны ровно так, как
         они выглядят в настоящем письме.
+      uk: >-
+        Перше речення після звертання: хто пише і навіщо. Воно продовжує рядок вище, а не
+        починає новий, тому пишеться з малої літери — форми нижче записано рівно так, як вони
+        виглядають у справжньому листі.
     entries:
       - form: "ich schreibe Ihnen, weil ich meinen Termin absagen muss."
         register: formal
@@ -165,6 +214,7 @@ sections:
         use:
           en: "Getting straight to the point: the reader knows within one line what the message is about."
           ru: "Сразу к делу: адресат за одну строку понимает, о чём письмо."
+          uk: "Одразу до справи: адресат за один рядок розуміє, про що лист."
         note:
           en: >-
             Two rules at once. The small i, because the comma after the greeting has not closed the
@@ -174,6 +224,9 @@ sections:
             Сразу два правила. Строчная i — потому что запятая после обращения не закрыла
             предложение. И спрягаемый глагол в самом конце придаточного с weil — muss, после
             инфинитива absagen.
+          uk: >-
+            Одразу два правила. Мала i — бо кома після звертання не закрила речення. І відмінюване
+            дієслово в самому кінці підрядного з weil — muss, після інфінітива absagen.
       - form: "mein Name ist Anna Nowak."
         register: neutral
         channel: [brief, email]
@@ -181,6 +234,7 @@ sections:
         use:
           en: "When the reader has no way of knowing who you are. Put it before the request, not after it."
           ru: "Когда адресат не может знать, кто вы. Ставьте это перед просьбой, а не после неё."
+          uk: "Коли адресат не може знати, хто ви. Ставте це перед проханням, а не після нього."
         note:
           en: >-
             Ich heiße … is the spoken version; a written enquiry uses mein Name ist … Both are
@@ -189,6 +243,9 @@ sections:
           ru: >-
             Ich heiße … — устный вариант; в письменном запросе пишут mein Name ist … Оба выражения
             верны, но второе звучит как письмо, а первое — как разговор.
+          uk: >-
+            Ich heiße … — усний варіант; у писемному запиті пишуть mein Name ist … Обидва вирази
+            правильні, але другий звучить як лист, а перший — як розмова.
       - form: "ich hätte eine Frage zu meinem Termin."
         register: formal
         channel: [brief, email, nachricht]
@@ -196,6 +253,7 @@ sections:
         use:
           en: "Announcing a question politely before you ask it."
           ru: "Вежливо объявить о вопросе, прежде чем его задать."
+          uk: "Ввічливо оголосити про запитання, перш ніж його поставити."
         note:
           en: >-
             hätte is the polite twin of habe, learned as a fixed chunk rather than as a paradigm.
@@ -203,6 +261,9 @@ sections:
           ru: >-
             hätte — вежливый двойник habe, который заучивают как готовый оборот, а не как парадигму.
             Ich habe eine Frage не ошибка, просто суше: вся разница в двух буквах.
+          uk: >-
+            hätte — ввічливий двійник habe, який заучують як готовий зворот, а не як парадигму.
+            Ich habe eine Frage не помилка, просто сухіше: уся різниця у двох літерах.
       - form: "vielen Dank für Ihre E-Mail."
         register: neutral
         channel: [email]
@@ -210,6 +271,7 @@ sections:
         use:
           en: "Replying to a message you have received."
           ru: "Ответ на полученное сообщение."
+          uk: "Відповідь на отриманий лист."
         note:
           en: >-
             für takes the accusative, and Ihre is written with a capital I because it belongs to
@@ -219,6 +281,10 @@ sections:
             für требует Akkusativ, а Ihre пишется с прописной буквы, потому что относится к Sie. Со
             строчной ihre получилось бы «её» или «их», и адресату пришлось бы перечитывать строку,
             чтобы понять, о ком речь.
+          uk: >-
+            für вимагає Akkusativ, а Ihre пишеться з великої літери, бо стосується Sie. З малої
+            ihre вийшло б «її» або «їхній», і адресатові довелося б перечитувати рядок, щоб
+            зрозуміти, про кого йдеться.
       - form: "wie geht es dir?"
         register: vertraut
         channel: [email, nachricht]
@@ -226,6 +292,7 @@ sections:
         use:
           en: "Opening a message to someone you are on du terms with."
           ru: "Начало сообщения человеку, с которым вы на «ты»."
+          uk: "Початок повідомлення людині, з якою ви на «ти»."
         note:
           en: >-
             The Sie version is Wie geht es Ihnen? Whatever the greeting chose, this line has to
@@ -234,9 +301,12 @@ sections:
           ru: >-
             Вариант на Sie — Wie geht es Ihnen? То, что выбрано в обращении, должно повториться и
             здесь: смешать две формы в первых же двух строках — самая заметная ошибка регистра.
+          uk: >-
+            Варіант на Sie — Wie geht es Ihnen? Те, що обрано у звертанні, має повторитися і тут:
+            змішати дві форми в перших же двох рядках — найпомітніша помилка регістру.
 
   - id: anliegen
-    title: { de: "Anliegen", en: "What it is about", ru: "Суть дела" }
+    title: { de: "Anliegen", en: "What it is about", ru: "Суть дела", uk: "Суть справи" }
     description:
       en: >-
         The middle of the message: the facts the reader needs — your appointment, your flat, your
@@ -246,6 +316,10 @@ sections:
         Середина сообщения: факты, которые нужны адресату, — ваша запись, ваша квартира, ваш
         заказ — и то, что вы хотели бы изменить. Начиная отсюда каждое предложение снова пишется
         с прописной буквы.
+      uk: >-
+        Середина повідомлення: факти, потрібні адресатові, — ваш запис, ваша квартира, ваше
+        замовлення — і те, що ви хотіли б змінити. Починаючи звідси, кожне речення знову
+        пишеться з великої літери.
     entries:
       - form: "Ich habe am 14. Mai um neun Uhr einen Termin im Bürgeramt."
         register: neutral
@@ -254,6 +328,7 @@ sections:
         use:
           en: "Naming the appointment, order or contract the message is about, so the reader can find it."
           ru: "Назвать запись, заказ или договор, о которых идёт речь, чтобы адресат смог их найти."
+          uk: "Назвати запис, замовлення чи договір, про які йдеться, щоб адресат зміг їх знайти."
         note:
           en: >-
             Give the fact before the problem — a clerk with two hundred appointments needs the
@@ -263,6 +338,10 @@ sections:
             Сначала факт, потом проблема: сотруднику с двумя сотнями записей нужен прежде всего
             ориентир. Дата читается am vierzehnten Mai; именно точка после 14 превращает число в
             порядковое.
+          uk: >-
+            Спершу факт, потім проблема: працівникові з двома сотнями записів потрібен насамперед
+            орієнтир. Дата читається am vierzehnten Mai; саме крапка після 14 перетворює число на
+            порядкове.
       - form: "Leider kann ich nicht kommen, weil ich an diesem Vormittag arbeiten muss."
         register: neutral
         channel: [brief, email, nachricht]
@@ -270,6 +349,7 @@ sections:
         use:
           en: "Saying that something will not work, with the reason attached."
           ru: "Сообщить, что не получится, и сразу назвать причину."
+          uk: "Повідомити, що не вийде, і одразу назвати причину."
         note:
           en: >-
             Leider carries the apology on its own; a longer one is not expected in German and can
@@ -279,6 +359,10 @@ sections:
             Leider само по себе несёт извинение; более длинного в немецком письме не ждут, и оно
             может показаться неискренним. Если вынести это слово вперёд, глагол всё равно остаётся
             на втором месте: Leider kann ich …
+          uk: >-
+            Leider саме по собі несе вибачення; довшого в німецькому листі не чекають, і воно може
+            здатися нещирим. Якщо винести це слово вперед, дієслово все одно лишається на другому
+            місці: Leider kann ich …
       - form: "Ich würde gern einen neuen Termin vereinbaren."
         register: formal
         channel: [brief, email]
@@ -286,6 +370,7 @@ sections:
         use:
           en: "The standard polite way to say what you want arranged."
           ru: "Стандартный вежливый способ сказать, о чём вы хотите договориться."
+          uk: "Стандартний ввічливий спосіб сказати, про що ви хочете домовитися."
         note:
           en: >-
             würde gern plus an infinitive at the very end, exactly as after a modal verb. Ich will
@@ -295,6 +380,10 @@ sections:
             würde gern плюс инфинитив в самом конце — точно как после модального глагола.
             Ich will einen Termin грамматически верно, но на письме звучит требовательно, а würde
             gern — нет.
+          uk: >-
+            würde gern плюс інфінітив у самому кінці — точно як після модального дієслова.
+            Ich will einen Termin граматично правильно, але на письмі звучить вимогливо, а würde
+            gern — ні.
       - form: "Ich möchte meine neue Adresse anmelden."
         register: neutral
         channel: [brief, email]
@@ -302,6 +391,7 @@ sections:
         use:
           en: "Stating your errand at an office in one sentence."
           ru: "Одним предложением назвать своё дело в учреждении."
+          uk: "Одним реченням назвати свою справу в установі."
         note:
           en: >-
             möchte is a shade more direct than würde gern and completely acceptable. The separable
@@ -309,6 +399,9 @@ sections:
           ru: >-
             möchte чуть прямее, чем würde gern, и совершенно приемлемо. Отделяемый глагол здесь не
             распадается, потому что инфинитив и так стоит в конце: anmelden.
+          uk: >-
+            möchte трохи прямолінійніше, ніж würde gern, і цілком прийнятне. Відокремлюване
+            дієслово тут не розпадається, бо інфінітив і так стоїть у кінці: anmelden.
       - form: "Ich habe eine Frage zu den Nebenkosten."
         register: neutral
         channel: [brief, email]
@@ -316,6 +409,7 @@ sections:
         use:
           en: "The plain, neutral way to raise a question in the body of a message."
           ru: "Простой нейтральный способ поднять вопрос в основной части письма."
+          uk: "Простий нейтральний спосіб порушити питання в основній частині листа."
         note:
           en: >-
             Compare it with ich hätte eine Frage above: same words, one polite step apart. Use habe
@@ -324,9 +418,13 @@ sections:
             Сравните с ich hätte eine Frage выше: те же слова на одну ступень вежливости ниже.
             habe уместно с арендодателем или коллегой, hätte — когда вы просите об одолжении
             незнакомого человека.
+          uk: >-
+            Порівняйте з ich hätte eine Frage вище: ті самі слова на щабель нижче за ввічливістю.
+            habe доречне з орендодавцем або колегою, hätte — коли ви просите про послугу незнайому
+            людину.
 
   - id: bitte
-    title: { de: "Bitte & Frage", en: "The request", ru: "Просьба и вопрос" }
+    title: { de: "Bitte & Frage", en: "The request", ru: "Просьба и вопрос", uk: "Прохання і запитання" }
     description:
       en: >-
         The one thing you actually want the reader to do. German softens a request with a
@@ -336,6 +434,10 @@ sections:
         То единственное, чего вы на самом деле хотите от адресата. Немецкий смягчает просьбу не
         лишними словами, а формой Konjunktiv II — könnten, hätte, würde, — а bitte внутри
         повелительного наклонения звучит вежливо, а не резко.
+      uk: >-
+        Те єдине, чого ви насправді хочете від адресата. Німецька пом'якшує прохання не зайвими
+        словами, а формою Konjunktiv II — könnten, hätte, würde, — а bitte всередині наказового
+        способу звучить ввічливо, а не різко.
     entries:
       - form: "Könnten Sie mir bitte sagen, welche Unterlagen ich mitbringen muss?"
         register: formal
@@ -344,6 +446,7 @@ sections:
         use:
           en: "The workhorse question of any errand at a German office."
           ru: "Главный рабочий вопрос при любом деле в немецком учреждении."
+          uk: "Головне робоче запитання за будь-якої справи в німецькій установі."
         note:
           en: >-
             Three things at once: könnten as the polite form of können, mir in the dative for the
@@ -353,6 +456,10 @@ sections:
             Сразу три вещи: könnten как вежливая форма können, mir в Dativ для того, к кому вы
             обращаетесь, и косвенный вопрос со спрягаемым глаголом в конце — welche Unterlagen ich
             mitbringen muss, а не welche Unterlagen muss ich mitbringen.
+          uk: >-
+            Одразу три речі: könnten як ввічлива форма können, mir у Dativ для того, до кого ви
+            звертаєтеся, і непряме запитання з відмінюваним дієсловом у кінці — welche Unterlagen
+            ich mitbringen muss, а не welche Unterlagen muss ich mitbringen.
       - form: "Können Sie mir bitte helfen?"
         register: neutral
         channel: [brief, email, nachricht]
@@ -360,6 +467,7 @@ sections:
         use:
           en: "A general request for help, at a counter or in writing."
           ru: "Общая просьба о помощи — у окошка или на письме."
+          uk: "Загальне прохання про допомогу — біля віконця або на письмі."
         note:
           en: >-
             Perfectly polite as it stands; könnten is one step softer and costs two letters. bitte
@@ -367,6 +475,9 @@ sections:
           ru: >-
             Само по себе совершенно вежливо; könnten мягче на одну ступень и стоит двух букв.
             bitte стоит в середине предложения, после местоимения, а не приклеивается в конце.
+          uk: >-
+            Саме по собі цілком ввічливо; könnten м'якше на один щабель і коштує двох літер.
+            bitte стоїть посередині речення, після займенника, а не приклеюється в кінці.
       - form: "Bitte schicken Sie mir das Formular per E-Mail."
         register: neutral
         channel: [brief, email]
@@ -374,6 +485,7 @@ sections:
         use:
           en: "Asking for something concrete to be sent, when there is nothing to negotiate."
           ru: "Попросить прислать что-то конкретное, когда обсуждать нечего."
+          uk: "Попросити надіслати щось конкретне, коли обговорювати нема чого."
         note:
           en: >-
             An imperative with bitte is normal and polite in German business writing — it is not
@@ -383,6 +495,10 @@ sections:
             Повелительное наклонение с bitte — обычная и вежливая форма в немецкой деловой
             переписке, а не резкий приказ. Уберите bitte, и та же фраза превратится в
             распоряжение.
+          uk: >-
+            Наказовий спосіб із bitte — звичайна і ввічлива форма в німецькому діловому
+            листуванні, а не різкий наказ. Заберіть bitte, і та сама фраза перетвориться на
+            розпорядження.
       - form: "Kannst du mir bitte kurz Bescheid sagen?"
         register: vertraut
         channel: [email, nachricht]
@@ -390,6 +506,7 @@ sections:
         use:
           en: "Asking a friend or a close colleague to get back to you."
           ru: "Попросить друга или близкого коллегу дать ответ."
+          uk: "Попросити друга або близького колегу дати відповідь."
         note:
           en: >-
             Bescheid sagen — to let someone know — is a fixed pair, and Bescheid keeps its capital
@@ -398,6 +515,9 @@ sections:
           ru: >-
             Bescheid sagen — «дать знать» — устойчивая пара, и Bescheid сохраняет прописную букву
             прямо перед глаголом в конце. Неформальной строку делает форма du, а не сами слова.
+          uk: >-
+            Bescheid sagen — «дати знати» — стала пара, і Bescheid зберігає велику літеру просто
+            перед дієсловом у кінці. Неформальним рядок робить форма du, а не самі слова.
       - form: "Wäre ein Termin am Nachmittag möglich?"
         register: formal
         channel: [brief, email]
@@ -405,6 +525,7 @@ sections:
         use:
           en: "Proposing an alternative without insisting on it."
           ru: "Предложить другой вариант, не настаивая на нём."
+          uk: "Запропонувати інший варіант, не наполягаючи на ньому."
         note:
           en: >-
             The same polite chunk family as könnten and hätte, one step more formal. Worth
@@ -414,6 +535,10 @@ sections:
             Тот же набор вежливых оборотов, что и könnten с hätte, но ступенью официальнее. Сейчас
             достаточно узнавать: активным материалом это станет позже, вместе с остальным
             Konjunktiv II.
+          uk: >-
+            Той самий набір ввічливих зворотів, що й könnten з hätte, але щаблем офіційніше. Зараз
+            досить упізнавати: активним матеріалом це стане пізніше, разом з рештою
+            Konjunktiv II.
       - form: "Ich bitte Sie um eine kurze Rückmeldung."
         register: formal
         channel: [brief, email]
@@ -421,6 +546,7 @@ sections:
         use:
           en: "Recognise it in letters from authorities. You rarely need to write it yourself."
           ru: "Узнавать в письмах от учреждений. Самому писать так приходится редко."
+          uk: "Упізнавати в листах від установ. Самому писати так доводиться рідко."
         note:
           en: >-
             Distinctly official, and it belongs in letters from authorities more than in letters to
@@ -430,9 +556,13 @@ sections:
             Подчёркнуто официально: такая формула чаще встречается в письмах от учреждений, чем в
             письмах к ним. Könnten Sie mir bitte kurz antworten? решает ту же задачу средствами
             уровня A2 и звучит менее сухо.
+          uk: >-
+            Підкреслено офіційно: така формула частіше трапляється в листах від установ, ніж у
+            листах до них. Könnten Sie mir bitte kurz antworten? розв'язує те саме завдання
+            засобами рівня A2 і звучить менш сухо.
 
   - id: schluss
-    title: { de: "Schluss", en: "Closing lines", ru: "Завершающие строки" }
+    title: { de: "Schluss", en: "Closing lines", ru: "Завершающие строки", uk: "Завершальні рядки" }
     description:
       en: >-
         The last lines before the sign-off: thanks, an attachment, and what you expect to happen
@@ -440,6 +570,9 @@ sections:
       ru: >-
         Последние строки перед подписью: благодарность, вложение и то, чего вы ждёте дальше.
         Каждая из них — отдельное короткое предложение на отдельной строке.
+      uk: >-
+        Останні рядки перед підписом: подяка, вкладення і те, чого ви чекаєте далі. Кожен із них
+        — окреме коротке речення в окремому рядку.
     entries:
       - form: "Vielen Dank für Ihre Hilfe!"
         register: formal
@@ -448,6 +581,7 @@ sections:
         use:
           en: "Closing any request to an office or a company."
           ru: "Завершение любой просьбы к учреждению или фирме."
+          uk: "Завершення будь-якого прохання до установи чи фірми."
         note:
           en: >-
             Thanks go on their own line immediately before the sign-off, never after it — nothing
@@ -455,6 +589,9 @@ sections:
           ru: >-
             Благодарность ставится отдельной строкой прямо перед подписью и никогда после неё:
             после формулы прощания не идёт ничего, кроме имени.
+          uk: >-
+            Подяка ставиться окремим рядком просто перед підписом і ніколи після нього: після
+            формули прощання не йде нічого, крім імені.
       - form: "Im Anhang finden Sie das Formular."
         register: formal
         channel: [email]
@@ -462,6 +599,7 @@ sections:
         use:
           en: "Announcing an attachment, so that the reader knows to look for it."
           ru: "Объявить о вложении, чтобы адресат знал, что его нужно искать."
+          uk: "Оголосити про вкладення, щоб адресат знав, що його треба шукати."
         note:
           en: >-
             Im Anhang occupies position 1, so the verb finden stays second and Sie follows it —
@@ -470,6 +608,10 @@ sections:
             Im Anhang занимает первое место, поэтому глагол finden остаётся на втором, а Sie идёт
             за ним — никогда Im Anhang Sie finden. По той же схеме строится Im Anhang schicke ich
             Ihnen …
+          uk: >-
+            Im Anhang займає перше місце, тому дієслово finden лишається на другому, а Sie йде за
+            ним — ніколи Im Anhang Sie finden. За тією самою схемою будується Im Anhang schicke
+            ich Ihnen …
       - form: "Ich freue mich auf Ihre Antwort."
         register: neutral
         channel: [brief, email]
@@ -477,6 +619,7 @@ sections:
         use:
           en: "Saying, without pressing, that you are waiting for a reply."
           ru: "Сказать без нажима, что вы ждёте ответа."
+          uk: "Сказати без тиску, що ви чекаєте на відповідь."
         note:
           en: >-
             sich freuen auf takes the accusative and points forward, to something still to come.
@@ -485,6 +628,9 @@ sections:
           ru: >-
             sich freuen auf требует Akkusativ и направлено вперёд, к тому, что ещё будет.
             sich freuen über указывало бы назад, на уже случившееся, а здесь имеется в виду не это.
+          uk: >-
+            sich freuen auf вимагає Akkusativ і спрямоване вперед, до того, що ще буде.
+            sich freuen über вказувало б назад, на те, що вже сталося, а тут мається на увазі не це.
       - form: "Danke dir!"
         register: vertraut
         channel: [email, nachricht]
@@ -492,6 +638,7 @@ sections:
         use:
           en: "The short thank-you in a message to a friend."
           ru: "Короткое спасибо в сообщении другу."
+          uk: "Коротке спасибі в повідомленні другові."
         note:
           en: >-
             danken takes the dative, so the person is dir or Ihnen and never dich. The Sie version
@@ -499,6 +646,9 @@ sections:
           ru: >-
             danken управляет Dativ, поэтому человек стоит в форме dir или Ihnen, но никогда dich.
             Вариант на Sie — Danke Ihnen!, а простое Danke! подходит любому регистру.
+          uk: >-
+            danken керує Dativ, тому людина стоїть у формі dir або Ihnen, але ніколи dich.
+            Варіант на Sie — Danke Ihnen!, а просте Danke! пасує будь-якому регістру.
       - form: "Vielen Dank im Voraus."
         register: formal
         channel: [brief, email]
@@ -506,6 +656,7 @@ sections:
         use:
           en: "Common in business mail; think twice before using it yourself."
           ru: "Часто встречается в деловой переписке; прежде чем писать так самому, подумайте."
+          uk: "Часто трапляється в діловому листуванні; перш ніж писати так самому, подумайте."
         note:
           en: >-
             Mildly two-edged: it thanks the reader for a favour they have not yet agreed to, and
@@ -515,9 +666,13 @@ sections:
             Формула слегка двусмысленная: она благодарит за услугу, на которую адресат ещё не
             соглашался, и некоторые слышат в ней давление. Vielen Dank für Ihre Hilfe! безопаснее
             и доступно уже на уровне A2.
+          uk: >-
+            Формула трохи двозначна: вона дякує за послугу, на яку адресат ще не погоджувався, і
+            дехто чує в ній тиск. Vielen Dank für Ihre Hilfe! безпечніше і доступне вже на рівні
+            A2.
 
   - id: gruss
-    title: { de: "Grußformel", en: "Sign-off", ru: "Подпись" }
+    title: { de: "Grußformel", en: "Sign-off", ru: "Подпись", uk: "Підпис" }
     description:
       en: >-
         The closing phrase. It is a phrase and not a sentence, so it takes no comma and no full
@@ -528,6 +683,11 @@ sections:
         ставится ни запятая, ни точка, а имя пишется отдельной следующей строкой. По-русски
         принято «С уважением,» — с запятой; в немецком письме её нет. Выбрать формулу теплее или
         холоднее, чем обращение, — вторая по частоте ошибка регистра после смешения du и Sie.
+      uk: >-
+        Заключна формула. Це словосполучення, а не речення, тому після нього не ставиться ні
+        кома, ні крапка, а ім'я пишеться окремим наступним рядком. Українською заведено
+        «З повагою,» — з комою; у німецькому листі її немає. Обрати формулу тепліше або
+        холодніше, ніж звертання, — друга за частотою помилка регістру після змішування du і Sie.
     entries:
       - form: "Mit freundlichen Grüßen"
         register: formal
@@ -536,6 +696,7 @@ sections:
         use:
           en: "Every formal letter and e-mail. If you learn one sign-off, learn this one."
           ru: "Любое официальное письмо, бумажное или электронное. Если запоминать одну формулу, то эту."
+          uk: "Будь-який офіційний лист, паперовий чи електронний. Якщо запам'ятовувати одну формулу, то цю."
         note:
           en: >-
             No comma after it and no full stop: the name simply stands on the next line. English
@@ -545,6 +706,10 @@ sections:
             После него не ставится ни запятая, ни точка: имя просто стоит на следующей строке.
             Русское «С уважением,» пишется с запятой, и перенесённая привычка — та самая деталь,
             по которой немецкое письмо сразу выдаёт иностранца.
+          uk: >-
+            Після нього не ставиться ні кома, ні крапка: ім'я просто стоїть у наступному рядку.
+            Українське «З повагою,» пишеться з комою, і перенесена звичка — та сама деталь, за
+            якою німецький лист одразу видає іноземця.
       - form: "Viele Grüße"
         register: neutral
         channel: [brief, email, nachricht]
@@ -552,6 +717,7 @@ sections:
         use:
           en: "The everyday middle ground — colleagues, a landlord, a course office you already know."
           ru: "Повседневная середина — коллеги, арендодатель, знакомая администрация курсов."
+          uk: "Повсякденна середина — колеги, орендодавець, знайома адміністрація курсів."
         note:
           en: >-
             Warmer than Mit freundlichen Grüßen and less close than Liebe Grüße, which makes it the
@@ -559,6 +725,9 @@ sections:
           ru: >-
             Теплее, чем Mit freundlichen Grüßen, и не так близко, как Liebe Grüße, поэтому это
             самый безопасный выбор при сомнениях. Запятая после него тоже не ставится.
+          uk: >-
+            Тепліше, ніж Mit freundlichen Grüßen, і не так близько, як Liebe Grüße, тому це
+            найбезпечніший вибір за сумнівів. Кома після нього теж не ставиться.
       - form: "Liebe Grüße"
         register: vertraut
         channel: [brief, email, nachricht]
@@ -566,6 +735,7 @@ sections:
         use:
           en: "Friends and family."
           ru: "Друзьям и родным."
+          uk: "Друзям і рідним."
         note:
           en: >-
             Sending it to an authority is the mirror image of signing a note to a friend Mit
@@ -574,6 +744,10 @@ sections:
             Отправить такую подпись в учреждение — зеркальная ошибка к тому, чтобы подписать
             записку другу словами Mit freundlichen Grüßen: и то и другое неверно оценивает
             дистанцию, и оба варианта заметны.
+          uk: >-
+            Надіслати такий підпис в установу — дзеркальна помилка до того, щоб підписати записку
+            другові словами Mit freundlichen Grüßen: і те, і те неправильно оцінює дистанцію, і
+            обидва варіанти помітні.
       - form: "Herzliche Grüße"
         register: neutral
         channel: [brief, email]
@@ -581,6 +755,7 @@ sections:
         use:
           en: "Warm but still usable with Sie: a teacher, a doctor's practice you go to often, a group of people you know."
           ru: "Тепло, но всё ещё уместно на Sie: преподаватель, врачебная практика, куда вы часто ходите, знакомая группа людей."
+          uk: "Тепло, але все ще доречно на Sie: викладач, лікарська практика, куди ви часто ходите, знайома група людей."
         note:
           en: >-
             herzlich- is an adjective in the plural here, so the form does not change with the
@@ -589,6 +764,9 @@ sections:
             herzlich- стоит здесь во множественном числе как прилагательное, поэтому форма не
             меняется в зависимости от адресата. По шкале теплоты формула находится между Viele
             Grüße и Liebe Grüße.
+          uk: >-
+            herzlich- стоїть тут у множині як прикметник, тому форма не змінюється залежно від
+            адресата. За шкалою теплоти формула перебуває між Viele Grüße і Liebe Grüße.
       - form: "Bis bald!"
         register: vertraut
         channel: [email, nachricht]
@@ -596,6 +774,7 @@ sections:
         use:
           en: "Closing a message to a friend when you really will see them soon."
           ru: "Завершение сообщения другу, когда вы действительно скоро увидитесь."
+          uk: "Завершення повідомлення другові, коли ви справді скоро побачитеся."
         note:
           en: >-
             Strictly speaking a promise rather than a sign-off, so use it only when it is true.
@@ -603,6 +782,9 @@ sections:
           ru: >-
             Строго говоря, это обещание, а не подпись, поэтому уместно, только если это правда.
             Bis Samstag и Bis Montag — та же модель с конкретной датой.
+          uk: >-
+            Строго кажучи, це обіцянка, а не підпис, тому доречне, лише якщо це правда.
+            Bis Samstag і Bis Montag — та сама модель з конкретною датою.
       - form: "LG"
         register: vertraut
         channel: [nachricht]
@@ -610,6 +792,7 @@ sections:
         use:
           en: "Chats and text messages between friends, and nowhere else."
           ru: "Чаты и сообщения между друзьями — и больше нигде."
+          uk: "Чати і повідомлення між друзями — і більше ніде."
         note:
           en: >-
             Short for Liebe Grüße. In an e-mail to an office it looks careless, and abbreviating a
@@ -617,6 +800,9 @@ sections:
           ru: >-
             Сокращение от Liebe Grüße. В письме в учреждение выглядит небрежно, и сокращение
             официальной формулы до MfG производит на многих читателей такое же впечатление.
+          uk: >-
+            Скорочення від Liebe Grüße. У листі до установи виглядає недбало, і скорочення
+            офіційної формули до MfG справляє на багатьох читачів таке саме враження.
       - form: "Hochachtungsvoll"
         register: formal
         channel: [brief]
@@ -624,6 +810,7 @@ sections:
         use:
           en: "Almost never. Learn to recognise it in old letters and official templates."
           ru: "Практически никогда. Достаточно узнавать её в старых письмах и официальных шаблонах."
+          uk: "Практично ніколи. Досить упізнавати її в старих листах і офіційних шаблонах."
         note:
           en: >-
             Once the standard formal closing, now archaic. In a modern message it reads as distant
@@ -633,6 +820,10 @@ sections:
             Когда-то стандартная официальная подпись, сегодня архаизм. В современном письме звучит
             холодно или раздражённо, и некоторые воспринимают её как знак назревающей жалобы.
             Mit freundlichen Grüßen покрывает все официальные случаи.
+          uk: >-
+            Колись стандартний офіційний підпис, сьогодні архаїзм. У сучасному листі звучить
+            холодно або роздратовано, і дехто сприймає її як знак жалоби, що назріває.
+            Mit freundlichen Grüßen покриває всі офіційні випадки.
 
 templates:
   - id: buergeramt-termin
@@ -640,6 +831,7 @@ templates:
       de: "E-Mail an das Bürgeramt"
       en: "E-mail to the citizens' office"
       ru: "Письмо в бюро регистрации граждан (Bürgeramt)"
+      uk: "Лист до бюро реєстрації громадян (Bürgeramt)"
     situation:
       en: >-
         Anna Nowak has an appointment at the Bürgeramt on 14 May at nine in the morning, and she
@@ -649,6 +841,10 @@ templates:
         У Анны Новак назначен приём в Bürgeramt на 14 мая, на девять утра, а в это утро ей нужно
         работать. Она пишет в учреждение, где не знает никого по имени, поэтому всё письмо
         выдержано в официальном тоне.
+      uk: >-
+        У Анни Новак призначено прийом у Bürgeramt на 14 травня, на дев'яту ранку, а цього ранку
+        їй треба працювати. Вона пише до установи, де не знає нікого на ім'я, тому весь лист
+        витримано в офіційному тоні.
     register: formal
     channel: email
     lines:
@@ -656,40 +852,49 @@ templates:
         de: "Termin am 14. Mai"
         en: "Subject: Appointment on 14 May"
         ru: "Тема: приём 14 мая"
+        uk: "Тема: прийом 14 травня"
       - section: anrede
         de: "Sehr geehrte Damen und Herren,"
         en: "Dear Sir or Madam,"
         ru: "Уважаемые дамы и господа,"
+        uk: "Шановні пані та панове,"
       - section: einstieg
         de: "mein Name ist Anna Nowak. Ich habe am 14. Mai um neun Uhr einen Termin im Bürgeramt."
         en: "My name is Anna Nowak. I have an appointment at the Bürgeramt on 14 May at nine o'clock."
         ru: "Меня зовут Анна Новак. У меня назначен приём в Bürgeramt 14 мая в девять часов."
+        uk: "Мене звати Анна Новак. У мене призначено прийом у Bürgeramt 14 травня о дев'ятій годині."
       - section: anliegen
         de: "Leider kann ich nicht kommen, weil ich an diesem Vormittag arbeiten muss. Ich würde gern einen neuen Termin am Nachmittag vereinbaren."
         en: "Unfortunately I cannot come, because I have to work that morning. I would like to arrange a new appointment for the afternoon."
         ru: "К сожалению, я не смогу прийти, потому что в это утро мне нужно работать. Я хотела бы договориться о новом приёме во второй половине дня."
+        uk: "На жаль, я не зможу прийти, бо цього ранку мені треба працювати. Я хотіла б домовитися про новий прийом у другій половині дня."
       - section: bitte
         de: "Könnten Sie mir bitte auch sagen, welche Unterlagen ich mitbringen muss?"
         en: "Could you also tell me, please, which documents I have to bring?"
         ru: "Не могли бы вы также сказать, какие документы мне нужно принести?"
+        uk: "Чи не могли б ви також сказати, які документи мені треба принести?"
       - section: schluss
         de: "Vielen Dank für Ihre Hilfe!"
         en: "Thank you very much for your help!"
         ru: "Большое спасибо за вашу помощь!"
+        uk: "Щиро дякую за вашу допомогу!"
       - section: gruss
         de: "Mit freundlichen Grüßen"
         en: "Kind regards"
         ru: "С уважением"
+        uk: "З повагою"
       - section: gruss
         de: "Anna Nowak"
         en: "Anna Nowak"
         ru: "Анна Новак"
+        uk: "Анна Новак"
 
   - id: vermieterin-nebenkosten
     title:
       de: "E-Mail an die Vermieterin"
       en: "E-mail to the landlady"
       ru: "Письмо арендодательнице"
+      uk: "Лист до орендодавиці"
     situation:
       en: >-
         Marek has been renting a flat since April and wants to know how high the monthly service
@@ -700,6 +905,11 @@ templates:
         коммунальные платежи. С арендодательницей он виделся один раз, поэтому тон дружелюбный, —
         но обращается он к ней всё равно на Sie, и каркас письма остаётся тем же, что и в
         официальном варианте.
+      uk: >-
+        Марек винаймає квартиру з квітня і хоче дізнатися, скільки становлять щомісячні
+        комунальні платежі. З орендодавицею він бачився один раз, тому тон дружній, — але
+        звертається він до неї все одно на Sie, і каркас листа лишається тим самим, що й в
+        офіційному варіанті.
     register: neutral
     channel: email
     lines:
@@ -707,40 +917,49 @@ templates:
         de: "Frage zu den Nebenkosten"
         en: "Subject: Question about the service charges"
         ru: "Тема: вопрос о коммунальных платежах"
+        uk: "Тема: питання про комунальні платежі"
       - section: anrede
         de: "Guten Tag, Frau Hoffmann,"
         en: "Good afternoon, Mrs Hoffmann,"
         ru: "Добрый день, госпожа Хоффманн,"
+        uk: "Доброго дня, пані Гоффманн,"
       - section: einstieg
         de: "ich wohne seit April in der Gartenstraße 12."
         en: "I have been living at Gartenstraße 12 since April."
         ru: "Я живу на Гартенштрассе, 12, с апреля."
+        uk: "Я живу на Гартенштрассе, 12, з квітня."
       - section: anliegen
         de: "Ich habe eine Frage zu den Nebenkosten."
         en: "I have a question about the service charges."
         ru: "У меня вопрос о коммунальных платежах."
+        uk: "У мене питання про комунальні платежі."
       - section: bitte
         de: "Könnten Sie mir bitte sagen, wie hoch die Nebenkosten pro Monat sind?"
         en: "Could you tell me, please, how high the service charges are per month?"
         ru: "Не могли бы вы сказать, сколько составляют коммунальные платежи в месяц?"
+        uk: "Чи не могли б ви сказати, скільки становлять комунальні платежі на місяць?"
       - section: schluss
         de: "Ich freue mich auf Ihre Antwort."
         en: "I look forward to your reply."
         ru: "Буду ждать вашего ответа."
+        uk: "Чекатиму на вашу відповідь."
       - section: gruss
         de: "Viele Grüße"
         en: "Best regards"
         ru: "С наилучшими пожеланиями"
+        uk: "З найкращими побажаннями"
       - section: gruss
         de: "Marek Nowak"
         en: "Marek Nowak"
         ru: "Марек Новак"
+        uk: "Марек Новак"
 
   - id: nachricht-an-freundin
     title:
       de: "Kurze Nachricht an eine Freundin"
       en: "A short message to a friend"
       ru: "Короткое сообщение подруге"
+      uk: "Коротке повідомлення подрузі"
     situation:
       en: >-
         Marek cannot come to Anna's party and sends her a short message from his phone. They are
@@ -750,6 +969,10 @@ templates:
         Марек не может прийти на вечеринку к Анне и отправляет ей короткое сообщение с телефона.
         Они друзья, поэтому весь каркас сжимается: ни темы, ни официального обращения, ни
         благодарности за помощь, — а подпись состоит из одной тёплой фразы.
+      uk: >-
+        Марек не може прийти на вечірку до Анни і надсилає їй коротке повідомлення з телефона.
+        Вони друзі, тому весь каркас стискається: ні теми, ні офіційного звертання, ні подяки за
+        допомогу, — а підпис складається з однієї теплої фрази.
     register: vertraut
     channel: nachricht
     lines:
@@ -757,27 +980,34 @@ templates:
         de: "Hallo Anna,"
         en: "Hello Anna,"
         ru: "Привет, Анна,"
+        uk: "Привіт, Анно,"
       - section: einstieg
         de: "wie geht es dir?"
         en: "How are you?"
         ru: "Как у тебя дела?"
+        uk: "Як у тебе справи?"
       - section: anliegen
         de: "Ich kann am Samstag leider nicht zu deiner Party kommen, weil meine Schwester zu Besuch ist."
         en: "Unfortunately I can't come to your party on Saturday, because my sister is staying with me."
         ru: "К сожалению, в субботу я не смогу прийти на твою вечеринку, потому что у меня гостит сестра."
+        uk: "На жаль, у суботу я не зможу прийти на твою вечірку, бо в мене гостює сестра."
       - section: bitte
         de: "Kannst du mir bitte kurz Bescheid sagen, wann ihr euch nächste Woche trefft?"
         en: "Could you just let me know when you are meeting next week?"
         ru: "Можешь коротко сообщить мне, когда вы встречаетесь на следующей неделе?"
+        uk: "Можеш коротко повідомити мені, коли ви зустрічаєтеся наступного тижня?"
       - section: schluss
         de: "Danke dir!"
         en: "Thanks!"
         ru: "Спасибо тебе!"
+        uk: "Дякую тобі!"
       - section: gruss
         de: "Liebe Grüße"
         en: "Warm wishes"
         ru: "Тёплый привет"
+        uk: "Теплі вітання"
       - section: gruss
         de: "Marek"
         en: "Marek"
         ru: "Марек"
+        uk: "Марек"

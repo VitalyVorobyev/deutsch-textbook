@@ -731,6 +731,28 @@ describe('uk reaches the runtime surfaces', () => {
     expect(ukTranslationCoverage(root).translated).toBe(3);
   });
 
+  /**
+   * The corpus tripwire, not a second mechanism test — the fixture above proves the
+   * counting, and it is exactly what a fixture cannot tell you: whether any real file
+   * is missing its half.
+   *
+   * It exists because two files got through. `sentence-connectors.yaml` (2026-07-19) and
+   * `briefe.yaml` (2026-07-21) both landed after the C3 waves closed, carried 241 `ru`
+   * fields with no `uk` sibling, and validated cleanly for two months — per-file uk parity
+   * only fires once a file carries *some* uk, so a file with none is silently conformant
+   * and `/about` just quietly reported 371/373. That is the right behaviour mid-wave and
+   * the wrong behaviour now that every level in the repo is at parity.
+   *
+   * So this is a ratchet in the house sense (see tests/grammar-coverage.test.ts): closing a
+   * gap means the number moves in the same commit. If you are adding a ru-bearing file and
+   * this fails, the fix is the uk half, not a lower expectation.
+   */
+  test('every ru-bearing content file in the repo carries its uk half', () => {
+    const { translated, total } = ukTranslationCoverage();
+    expect(total).toBeGreaterThan(300); // guard against a walker that silently found nothing
+    expect(translated).toBe(total);
+  });
+
   test('TopicNode carries title_uk and title picks fall back to en without it', () => {
     const node: TopicNode = {
       id: 'akkusativ',
