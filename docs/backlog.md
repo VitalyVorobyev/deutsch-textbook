@@ -465,8 +465,12 @@ Recorded because it is easy to undo by accident: the opening lines are authored 
 page's main teaching point. The renderer prints `form` verbatim and says so; sentence-casing it
 would silently delete the lesson.
 
-Lower priority, still not a page: a two-way-preposition visual belongs inside the existing kasus
-reference.
+The two-way-preposition visual landed inside that kasus page rather than as a page of its own
+(2026-07-25): `two_way` gained optional `wohin`/`wo` fields, nine minimal pairs in which only the
+article moves, rendered by a `prepositions-wechsel` view. `src/lib/coverage.ts` reads
+`prepositions.dative` and never `two_way`, so the new examples cannot earn Wortliste coverage —
+`bun scripts/coverage.ts A1` and `A2` hold at 673/673 and 1449/1449 with the card/grammar split
+unchanged (620+53, 1362+87).
 
 ### P5-11 · Two-unit A2 evidence cycles — `doing` (recurring)
 
