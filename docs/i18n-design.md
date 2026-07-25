@@ -133,6 +133,16 @@ its explanation prose is not immersion, it is a table collection.
 - **B1 onward only.** B1 articles and exercises are authored with `<De>` halves from day one;
   A1/A2 are never backfilled. Under `explainLang: 'de'`, A1/A2 content falls back to EN — the same
   honest-state principle as `uk → en`.
+  **In practice, "and exercises" was true of the doc and not of the content until 2026-07-25.**
+  B1.1–B1.3 shipped their articles at full four-half parity and their twelve exercise sets and
+  three readings with **zero** `de`, so a `de` learner read a German article and then hit English
+  feedback at the item — which is where the teaching happens. No gate saw it, because `de` parity
+  only fires once a file already carries one `de`; a file with none is silently conformant, and
+  that is exactly what an un-backfilled file is. Closed by authoring all **197** halves
+  (`bun -e '…deParityProblems(parse(readFileSync(f)), {forceDe: true})…'` per file, now 0 for all
+  15). Measured cost of the fourth half over those files: **1.90x** against two halves
+  (`bun scripts/lang-cost.ts content/exercises/b1/*.yaml content/reading/b1/*.yaml`) — near the
+  1.98x the article pilot recorded, so the fourth half prices the same in items as in prose.
 - `pick()` falls back **`de → en`**, mirroring `uk → en`.
 - **No `prompt_de`** — a translate prompt exists to be translated *into* German, so `de` mode
   serves the EN prompt. **No vocab `de` gloss** — a card's meaning side is never German by
@@ -145,6 +155,14 @@ its explanation prose is not immersion, it is a table collection.
   explanation-shaped records (an object whose keys are ⊇ `{en, ru}` and ⊆ `{en, ru, uk, de}`),
   with `content/reference-data` exempt — its `{de, en, ru}` records are German example sentences,
   not explanation records.
+- **`translation` and `model_translation` are exempt from `de` parity** (`RENDERING_PATH`,
+  `src/lib/langcheck.ts`), for the same reason there is no `prompt_de`: they render the item's own
+  German into the explanation languages, and under `de` that German is already on screen as the
+  prompt, the answer or the reading text — a `de` there is the source text printed twice, handed
+  back to the learner as if it were help. Without the exemption a `de`-carrying B1 set is not
+  merely noisy but **unsatisfiable**, the same trap `MATCH_RIGHT_PATH` was added for. The exemption
+  is `de`-only and deliberately so: a *Ukrainian* rendering of a German sentence is exactly what a
+  Ukrainian reader needs, so `uk` parity still reaches these paths.
 - The pure-CSS fallback: `[data-explain-lang="de"]` hides `.lang-ru`/`.lang-uk` everywhere and
   hides `.lang-en` only where a direct-sibling `.lang-de` exists (`:has()`), so every CSS-only
   surface (VocabTable, WordField, static pages) falls back to EN with zero component changes. The
