@@ -1,0 +1,197 @@
+# B1.4 production half: the transfer set. Fresh contexts, none of them a rehearsal of a
+# primary-practice sentence — a job ad read cold, two written transfer sentences, a
+# dictation that turns the etwas-Neues recognition item into a spelling decision, and the
+# two open tasks the outcomes claim (a Bewerbungsschreiben, an interview self-presentation).
+# Both open tasks are minimal ceremony: attempt → model → done. The `requirements` and the
+# `checklist` are guidance for comparing your own text against the model — the app cannot
+# verify free production, so it charges no steps for feedback it cannot give.
+# Two notes on the tags. The dictation's outcome is erfahrung-praesentieren although
+# dictation is sound→spelling and not a listening claim: this unit owns no listening
+# outcome, and the sentence is one a candidate says about themselves. And
+# uebersetzen-einladung carries `hoeflich-konjunktiv` — an A2 tag that closes no B1 point;
+# it is the live runtime channel of the `deepens` edge to aemter-dienstleistungen, whose
+# polite register this unit's letter is built on.
+topic: arbeit-bewerbung
+role: practice
+title:
+  en: "Production — read the ad, write the letter, present yourself"
+  ru: "Продукция — прочитать объявление, написать письмо, представить себя"
+  uk: "Продукція — прочитати оголошення, написати лист, представити себе"
+  de: "Produktion — die Anzeige lesen, das Schreiben verfassen, sich vorstellen"
+items:
+  - id: lesen-stellenanzeige
+    outcomes: [stellenanzeige-verstehen]
+    type: mc
+    prompt: "In der Anzeige steht: „Wir suchen ab September einen zuverlässigen Kollegen für unser Team im Verkauf. Voraussetzungen: Erfahrung im Verkauf und gute Deutschkenntnisse. Wir bieten eine Stelle in Teilzeit und jedes Jahr eine Weiterbildung.“ — Was verlangt die Firma, und was bietet sie?"
+    options:
+      - "Verlangt: Erfahrung im Verkauf und gute Deutschkenntnisse. Geboten: eine Stelle in Teilzeit."
+      - "Verlangt: eine Ausbildung im Verkauf und zwei Fremdsprachen. Geboten: eine Stelle in Vollzeit."
+      - "Verlangt: nur gute Deutschkenntnisse. Geboten: eine Weiterbildung statt einer Stelle."
+    correct: 0
+    translation:
+      en: "The ad says: \"From September we are looking for a reliable colleague for our sales team. Requirements: experience in sales and good German. We offer a part-time position and further training every year.\" — What does the company require, and what does it offer?"
+      ru: "В объявлении сказано: «С сентября мы ищем надёжного коллегу в наш отдел продаж. Требования: опыт в продажах и хорошее знание немецкого. Предлагаем должность на неполный день и ежегодное повышение квалификации». — Что фирма требует и что предлагает?"
+      uk: "В оголошенні сказано: «Із вересня ми шукаємо надійного колегу у наш відділ продажу. Вимоги: досвід у продажу та добре знання німецької. Пропонуємо посаду на неповний день і щорічне підвищення кваліфікації». — Що фірма вимагає і що пропонує?"
+    explain:
+      en: "A job ad has two halves and they must not be mixed up. Voraussetzungen is what you have to bring — here exactly two things, Erfahrung im Verkauf and gute Deutschkenntnisse. Wir bieten is what the company gives: eine Stelle in Teilzeit, plus a Weiterbildung on top of it, not instead of it. The wrong answers do what a hurried reader does: they promote a word that never appeared (Ausbildung, Fremdsprachen), swap Teilzeit for Vollzeit, or read the extra as the offer itself."
+      ru: "У объявления две половины, и путать их нельзя. Voraussetzungen — то, что вы должны принести с собой; здесь ровно два пункта: Erfahrung im Verkauf и gute Deutschkenntnisse. Wir bieten — то, что даёт фирма: eine Stelle in Teilzeit, а Weiterbildung идёт вдобавок к должности, а не вместо неё. Неверные варианты делают то же, что торопливый читатель: подставляют слово, которого в тексте не было (Ausbildung, Fremdsprachen), меняют Teilzeit на Vollzeit или принимают приложение за само предложение."
+      uk: "В оголошення дві половини, і плутати їх не можна. Voraussetzungen — те, що ви маєте принести із собою; тут рівно два пункти: Erfahrung im Verkauf і gute Deutschkenntnisse. Wir bieten — те, що дає фірма: eine Stelle in Teilzeit, а Weiterbildung іде на додачу до посади, а не замість неї. Хибні варіанти роблять те саме, що квапливий читач: підставляють слово, якого в тексті не було (Ausbildung, Fremdsprachen), міняють Teilzeit на Vollzeit або беруть додаток за саму пропозицію."
+      de: "Eine Stellenanzeige hat zwei Hälften, und man darf sie nicht vertauschen. Voraussetzungen ist das, was du mitbringen musst — hier genau zwei Punkte: Erfahrung im Verkauf und gute Deutschkenntnisse. Wir bieten ist das, was die Firma gibt: eine Stelle in Teilzeit, und die Weiterbildung kommt dazu, nicht an ihre Stelle. Die falschen Antworten machen, was ein eiliger Leser macht: Sie holen ein Wort herein, das nirgends steht (Ausbildung, Fremdsprachen), tauschen Teilzeit gegen Vollzeit oder halten die Zugabe für das Angebot selbst."
+
+  - id: uebersetzen-transfer-kollegen
+    outcomes: [bewerbung-schreiben]
+    type: translate
+    focus: n-deklination
+    instruction:
+      en: "Translate — put the time phrase first, and use Kollege (a male colleague)."
+      ru: "Переведите — вынесите обстоятельство времени вперёд и используйте Kollege (коллега-мужчина)."
+      uk: "Перекладіть — винесіть обставину часу вперед і використайте Kollege (колега-чоловік)."
+      de: "Übersetze — stell die Zeitangabe nach vorn und verwende Kollege (ein männlicher Kollege)."
+    prompt_en: "Yesterday I spoke with a colleague about the new position."
+    prompt_ru: "Вчера я говорил с коллегой о новой должности."
+    prompt_uk: "Учора я говорив із колегою про нову посаду."
+    answer: "Gestern habe ich mit einem Kollegen über die neue Stelle gesprochen."
+    accept:
+      - "Gestern habe ich mit einem Kollegen über die neue Arbeitsstelle gesprochen."
+      - "Gestern sprach ich mit einem Kollegen über die neue Stelle."
+      - "Gestern sprach ich mit einem Kollegen über die neue Arbeitsstelle."
+    key_tokens: ["Kollegen"]
+    explain:
+      en: "Graded is the noun's own ending. mit takes the dative, and Kollege belongs to the n-declension, so outside the nominative singular it wears its -n: mit einem Kollegen. The article einem has already marked the case — the noun marks it a second time anyway, and that doubling is the whole rule. The feminine escapes it: mit einer Kollegin keeps its form, because feminine nouns never join the family."
+      ru: "Оценивается собственное окончание существительного. mit требует датива, а Kollege принадлежит к n-склонению, поэтому вне номинатива единственного числа оно носит своё -n: mit einem Kollegen. Артикль einem уже обозначил падеж — существительное обозначает его во второй раз, и в этом удвоении всё правило. Женская форма от него свободна: mit einer Kollegin не меняется, потому что женские слова в семью не входят."
+      uk: "Оцінюється власне закінчення іменника. mit вимагає давального, а Kollege належить до n-відміни, тому поза називним однини воно носить своє -n: mit einem Kollegen. Артикль einem уже позначив відмінок — іменник позначає його вдруге, і в цьому подвоєнні все правило. Жіноча форма від нього вільна: mit einer Kollegin не змінюється, бо жіночі слова в родину не входять."
+      de: "Bewertet wird die eigene Endung des Nomens. mit verlangt den Dativ, und Kollege gehört zur n-Deklination, also trägt es außerhalb des Nominativ Singular sein -n: mit einem Kollegen. Der Artikel einem hat den Kasus schon markiert — das Nomen markiert ihn ein zweites Mal, und genau diese Verdoppelung ist die Regel. Das Femininum bleibt frei: mit einer Kollegin ändert sich nicht, denn feminine Nomen gehören nie dazu."
+
+  - id: uebersetzen-einladung
+    outcomes: [bewerbung-schreiben]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "Translate the closing line of an application letter. Use sich freuen über."
+      ru: "Переведите заключительную строку письма-заявления. Используйте sich freuen über."
+      uk: "Перекладіть заключний рядок листа-заяви. Використайте sich freuen über."
+      de: "Übersetze den Schlusssatz eines Bewerbungsschreibens. Verwende sich freuen über."
+    prompt_en: "I would be glad to receive an invitation to an interview."
+    prompt_ru: "Я был бы рад приглашению на собеседование."
+    prompt_uk: "Я був би радий запрошенню на співбесіду."
+    answer: "Ich würde mich über eine Einladung zu einem Gespräch freuen."
+    accept:
+      - "Ich würde mich über eine Einladung zu einem Vorstellungsgespräch freuen."
+      - "Über eine Einladung zu einem Gespräch würde ich mich freuen."
+      - "Über eine Einladung zu einem Vorstellungsgespräch würde ich mich freuen."
+    key_tokens: ["würde", "freuen"]
+    explain:
+      en: "Graded are the two ends of the polite frame: würde in position two and the infinitive freuen at the very wall of the sentence — everything else sits between them. The chunk you met at the Ämter counter (Ich würde gern …) is the same machine, and here it does the most formal job German writing has. The plain indicative Ich freue mich über eine Einladung is not wrong German, but it announces the invitation as settled; the Konjunktiv II asks for it. Gespräch and Vorstellungsgespräch are both usual, fronted or not."
+      ru: "Оцениваются оба конца вежливой рамки: würde на втором месте и инфинитив freuen у самой стены предложения — всё остальное стоит между ними. Оборот, знакомый по главе об учреждениях (Ich würde gern …), — та же машина, и здесь она выполняет самую официальную работу немецкого письма. Простой индикатив Ich freue mich über eine Einladung — не ошибка, но он объявляет приглашение решённым делом; Konjunktiv II о нём просит. Gespräch и Vorstellungsgespräch одинаково употребительны, с выносом вперёд или без."
+      uk: "Оцінюються обидва кінці ввічливої рамки: würde на другому місці та інфінітив freuen біля самої стіни речення — усе інше стоїть між ними. Зворот, знайомий із розділу про установи (Ich würde gern …), — та сама машина, і тут вона виконує найофіційнішу роботу німецького письма. Простий індикатив Ich freue mich über eine Einladung — не помилка, але він оголошує запрошення вирішеною справою; Konjunktiv II про нього просить. Gespräch і Vorstellungsgespräch однаково вживані, з винесенням уперед чи без."
+      de: "Bewertet werden beide Enden des höflichen Rahmens: würde auf Position zwei und der Infinitiv freuen ganz an der Satzwand — alles andere steht dazwischen. Die Wendung vom Amt (Ich würde gern …) ist dieselbe Maschine, und hier erledigt sie die formellste Aufgabe des deutschen Schreibens. Der schlichte Indikativ Ich freue mich über eine Einladung ist kein falsches Deutsch, aber er erklärt die Einladung für beschlossen; der Konjunktiv II bittet darum. Gespräch und Vorstellungsgespräch sind beide üblich, vorangestellt oder nicht."
+
+  - id: hoeren-diktat-neues
+    outcomes: [erfahrung-praesentieren]
+    type: listen
+    focus: adjektiv-nomen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Als Verkäufer habe ich immer etwas Neues gelernt."
+    translation:
+      en: "As a salesperson I always learned something new."
+      ru: "Работая продавцом, я всегда узнавал что-то новое."
+      uk: "Працюючи продавцем, я завжди дізнавався щось нове."
+    explain:
+      en: "Two decisions the ear cannot make for you. The -es of Neues is audible — it is the strong ending the missing das would have carried — but the capital N is not: after etwas, nichts and viel the adjective has become a noun, and German writes nouns large. Recognizing etwas Neues in a list of options is one thing; producing both the letter and the ending under dictation is the real skill."
+      ru: "Два решения, которые ухо за вас не примет. Окончание -es в Neues слышно — это сильное окончание, которое нёс бы пропавший артикль das, — а большая буква N не слышна: после etwas, nichts и viel прилагательное стало существительным, а существительные немецкий пишет с большой. Узнать etwas Neues среди готовых вариантов — одно; написать под диктовку и букву, и окончание — настоящее умение."
+      uk: "Два рішення, які вухо за вас не ухвалить. Закінчення -es у Neues чути — це сильне закінчення, яке ніс би зниклий артикль das, — а велика літера N не чутна: після etwas, nichts і viel прикметник став іменником, а іменники німецька пише з великої. Упізнати etwas Neues серед готових варіантів — одне; написати під диктовку і літеру, і закінчення — справжнє вміння."
+      de: "Zwei Entscheidungen, die das Ohr nicht für dich trifft. Das -es von Neues hört man — es ist die starke Endung, die der fehlende Artikel das getragen hätte —, den großen Buchstaben hört man nicht: Nach etwas, nichts und viel ist das Adjektiv ein Nomen geworden, und Nomen schreibt das Deutsche groß. etwas Neues unter Antwortmöglichkeiten wiederzuerkennen ist das eine; im Diktat Buchstabe und Endung selbst zu schreiben, ist das Können."
+
+  - id: schreiben-bewerbung
+    outcomes: [bewerbung-schreiben]
+    type: write
+    instruction:
+      en: "Write the letter yourself — the list shows what to check it against."
+      ru: "Напишите письмо сами — список подскажет, что в нём проверить."
+      uk: "Напишіть лист самі — список підкаже, що в ньому перевірити."
+      de: "Schreib das Schreiben selbst — die Liste zeigt, woran du es prüfen kannst."
+    prompt:
+      en: "A shop is advertising: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ The contact person is Herr Weber. Write a short application letter."
+      ru: "Магазин даёт объявление: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактное лицо — Herr Weber. Напишите короткое письмо-заявление."
+      uk: "Магазин дає оголошення: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактна особа — Herr Weber. Напишіть короткий лист-заяву."
+      de: "Ein Geschäft sucht Personal: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ Ansprechpartner ist Herr Weber. Schreib ein kurzes Bewerbungsschreiben."
+    goal:
+      en: "A short, complete application letter: salutation, which position and where you read about it, your experience, your strengths, and the closing formula."
+      ru: "Короткое, но полное письмо-заявление: обращение, на какую должность и откуда вы о ней узнали, ваш опыт, ваши сильные стороны и финальная формула."
+      uk: "Короткий, але повний лист-заява: звертання, на яку посаду і звідки ви про неї дізналися, ваш досвід, ваші сильні сторони і фінальна формула."
+      de: "Ein kurzes, vollständiges Bewerbungsschreiben: Anrede, welche Stelle und woher du von ihr weißt, deine Erfahrung, deine Stärken und der Schlusssatz."
+    requirements:
+      - en: "The salutation keeps Herr in the nominative — Sehr geehrter Herr Weber, — and the next word starts small. Everywhere else in the letter the name declines: an Herrn Weber, bei Herrn Weber."
+        ru: "В обращении Herr остаётся в номинативе — Sehr geehrter Herr Weber, — а следующее слово начинается со строчной буквы. Во всех остальных местах письма фамилию сопровождает склонённое Herrn: an Herrn Weber, bei Herrn Weber."
+        uk: "У звертанні Herr лишається в називному — Sehr geehrter Herr Weber, — а наступне слово починається з малої літери. В усіх інших місцях листа прізвище супроводжує відмінене Herrn: an Herrn Weber, bei Herrn Weber."
+        de: "Die Anrede lässt Herr im Nominativ — Sehr geehrter Herr Weber, — und das nächste Wort beginnt klein. Überall sonst im Brief dekliniert der Name mit: an Herrn Weber, bei Herrn Weber."
+      - en: "At least two objects come from the n-declension and carry their -(e)n: als Kollegen, mit Kunden, dem Praktikanten. The article (einen, dem, des) is the warning that the noun needs its ending too."
+        ru: "Не меньше двух дополнений возьмите из n-склонения и дайте им их -(e)n: als Kollegen, mit Kunden, dem Praktikanten. Артикль (einen, dem, des) — сигнал, что окончание нужно и самому существительному."
+        uk: "Щонайменше два додатки візьміть із n-відміни й дайте їм їхнє -(e)n: als Kollegen, mit Kunden, dem Praktikanten. Артикль (einen, dem, des) — сигнал, що закінчення потрібне й самому іменнику."
+        de: "Mindestens zwei Objekte kommen aus der n-Deklination und tragen ihr -(e)n: als Kollegen, mit Kunden, dem Praktikanten. Der Artikel (einen, dem, des) ist die Warnung, dass auch das Nomen seine Endung braucht."
+      - en: "Say at least once what you are with an adjective used as a noun, ending included: als Angestellter (masculine, no article), als Angestellte (feminine), or say what you are looking for — etwas Neues."
+        ru: "Хотя бы раз назовите себя прилагательным-существительным, с окончанием: als Angestellter (мужской род, без артикля), als Angestellte (женский) — или скажите, чего вы ищете: etwas Neues."
+        uk: "Принаймні раз назвіть себе прикметником-іменником, із закінченням: als Angestellter (чоловічий рід, без артикля), als Angestellte (жіночий) — або скажіть, чого ви шукаєте: etwas Neues."
+        de: "Nenne dich mindestens einmal mit einem Adjektiv-Nomen, samt Endung: als Angestellter (maskulin, ohne Artikel), als Angestellte (feminin) — oder sag, was du suchst: etwas Neues."
+      - en: "Two or more fixed noun–verb pairs do the register's work: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — and the letter closes with Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie and Ihr stay capitalized throughout."
+        ru: "Два и более устойчивых оборота «существительное + глагол» несут регистр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закрывает письмо строка Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie и Ihr всюду с большой буквы."
+        uk: "Два й більше стійких звороти «іменник + дієслово» несуть регістр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закриває лист рядок Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie та Ihr усюди з великої літери."
+        de: "Zwei oder mehr feste Nomen-Verb-Verbindungen tragen das Register: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — und am Ende steht Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie und Ihr bleiben durchgehend groß."
+    min_words: 60
+    model_answer: "Sehr geehrter Herr Weber, ich habe Ihre Anzeige gelesen und bewerbe mich um die Stelle als Verkäufer. Zurzeit arbeite ich als Angestellter in einem Supermarkt und berate dort jeden Tag Kunden. In meiner letzten Stelle habe ich einem Praktikanten alles gezeigt und viel Verantwortung übernommen. Ich arbeite selbstständig und zuverlässig, und die Zusammenarbeit mit den Kollegen spielt für mich eine große Rolle. Nach fünf Jahren im selben Betrieb möchte ich gern etwas Neues lernen. Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Über eine Einladung zu einem Gespräch würde ich mich sehr freuen. Mit freundlichen Grüßen Jan Nowak"
+    model_translation:
+      en: "Dear Mr Weber, I have read your advertisement and am applying for the position as a salesperson. At the moment I work as an employee in a supermarket and advise customers there every day. In my last position I showed an intern everything and took on a lot of responsibility. I work independently and reliably, and working together with colleagues matters a great deal to me. After five years in the same business I would like to learn something new. I will gladly answer any further questions. I would be very glad to receive an invitation to an interview. Yours sincerely, Jan Nowak"
+      ru: "Уважаемый господин Вебер! Я прочитал ваше объявление и подаю заявление на должность продавца. Сейчас я работаю служащим в супермаркете и каждый день консультирую там клиентов. На прошлом месте работы я всё показал практиканту и брал на себя много ответственности. Я работаю самостоятельно и надёжно, а совместная работа с коллегами имеет для меня большое значение. После пяти лет на одном предприятии мне хотелось бы научиться чему-то новому. По всем дальнейшим вопросам я охотно в вашем распоряжении. Приглашению на собеседование я был бы очень рад. С уважением, Ян Новак"
+      uk: "Шановний пане Вебер! Я прочитав ваше оголошення і подаю заяву на посаду продавця. Зараз я працюю службовцем у супермаркеті й щодня консультую там клієнтів. На попередньому місці роботи я все показав практикантові і брав на себе багато відповідальності. Я працюю самостійно й надійно, а спільна робота з колегами має для мене велике значення. Після п'яти років на одному підприємстві мені хотілося б навчитися чогось нового. Щодо всіх подальших питань я охоче у вашому розпорядженні. Запрошенню на співбесіду я був би дуже радий. З повагою, Ян Новак"
+    explain:
+      en: "Compare your draft against the model's skeleton, not its words. Herr behaves in two ways in the same letter: nominative in the salutation (Sehr geehrter Herr Weber), declined everywhere else. The n-declension objects wear their endings — einem Praktikanten, den Kollegen, Kunden — and the article in front of each was the warning. The adjective-noun names the writer with the ending the missing article would have carried: als Angestellter, and etwas Neues after etwas. Then the fixed pairs carry the register: Verantwortung übernommen, eine große Rolle spielt, zur Verfügung stehe. Bewerben is reflexive and takes um + Akkusativ: ich bewerbe mich um die Stelle. A woman writing this letter changes exactly one word — als Angestellte; the salutation Sehr geehrter agrees with the person reading the letter, not the person writing it."
+      ru: "Сверяйте черновик со скелетом образца, а не с его словами. Herr в одном письме ведёт себя двояко: номинатив в обращении (Sehr geehrter Herr Weber) и склонённая форма всюду дальше. Дополнения из n-склонения носят свои окончания — einem Praktikanten, den Kollegen, Kunden, — и артикль перед каждым был сигналом. Прилагательное-существительное называет пишущего с тем окончанием, которое нёс бы пропавший артикль: als Angestellter, а после etwas — etwas Neues. Дальше регистр несут устойчивые пары: Verantwortung übernommen, eine große Rolle spielt, zur Verfügung stehe. Bewerben возвратный и требует um + Akkusativ: ich bewerbe mich um die Stelle. Женщина в этом письме меняет ровно одно слово — als Angestellte; обращение Sehr geehrter согласуется с адресатом, а не с автором."
+      uk: "Звіряйте чернетку зі скелетом зразка, а не з його словами. Herr в одному листі поводиться двояко: називний у звертанні (Sehr geehrter Herr Weber) і відмінена форма всюди далі. Додатки з n-відміни носять свої закінчення — einem Praktikanten, den Kollegen, Kunden, — і артикль перед кожним був сигналом. Прикметник-іменник називає того, хто пише, із тим закінченням, яке ніс би зниклий артикль: als Angestellter, а після etwas — etwas Neues. Далі регістр несуть стійкі пари: Verantwortung übernommen, eine große Rolle spielt, zur Verfügung stehe. Bewerben зворотне і вимагає um + Akkusativ: ich bewerbe mich um die Stelle. Жінка в цьому листі змінює рівно одне слово — als Angestellte; звертання Sehr geehrter узгоджується з адресатом, а не з автором."
+      de: "Vergleiche deinen Entwurf mit dem Gerüst des Musters, nicht mit seinen Wörtern. Herr verhält sich in einem einzigen Brief zweifach: Nominativ in der Anrede (Sehr geehrter Herr Weber), dekliniert überall sonst. Die Objekte der n-Deklination tragen ihre Endungen — einem Praktikanten, den Kollegen, Kunden —, und der Artikel davor war jedes Mal die Warnung. Das Adjektiv-Nomen nennt die schreibende Person mit der Endung, die der fehlende Artikel getragen hätte: als Angestellter, und nach etwas steht etwas Neues. Das Register tragen dann die festen Paare: Verantwortung übernommen, eine große Rolle spielt, zur Verfügung stehe. bewerben ist reflexiv und verlangt um + Akkusativ: ich bewerbe mich um die Stelle. Eine Frau ändert in diesem Brief genau ein Wort — als Angestellte; die Anrede Sehr geehrter richtet sich nach der Person, die liest, nicht nach der, die schreibt."
+
+  - id: sprechen-erfahrung
+    outcomes: [erfahrung-praesentieren]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say it aloud — and if you can, listen to yourself: the checklist names what to listen for."
+      ru: "Произнесите вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Вимовте вголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
+      de: "Sprich laut — und hör dir dabei selbst zu, wenn du kannst: Die Checkliste sagt, worauf es ankommt."
+    prompt:
+      en: "You are sitting in the job interview. Herr Weber says: „Erzählen Sie uns bitte etwas über sich — und was sind Ihre Stärken?“ Answer aloud in six or more sentences: what you do now, what experience you bring, what you are good at, and why you want to change."
+      ru: "Вы сидите на собеседовании. Господин Вебер говорит: «Erzählen Sie uns bitte etwas über sich — und was sind Ihre Stärken?» Ответьте вслух, шесть и более предложений: чем вы занимаетесь сейчас, какой у вас опыт, что вам хорошо удаётся и почему вы хотите сменить работу."
+      uk: "Ви сидите на співбесіді. Пан Вебер каже: «Erzählen Sie uns bitte etwas über sich — und was sind Ihre Stärken?» Дайте відповідь уголос, шість і більше речень: чим ви займаєтеся зараз, який у вас досвід, що вам добре вдається і чому ви хочете змінити роботу."
+      de: "Du sitzt im Vorstellungsgespräch. Herr Weber sagt: „Erzählen Sie uns bitte etwas über sich — und was sind Ihre Stärken?“ Antworte laut, in sechs oder mehr Sätzen: was du zurzeit machst, welche Erfahrung du mitbringst, was du gut kannst und warum du wechseln möchtest."
+    goal:
+      en: "A connected self-presentation that shows experience and strengths — not a list of documents, and not one sentence per question."
+      ru: "Связный рассказ о себе, показывающий опыт и сильные стороны, — не перечень документов и не по одному предложению на вопрос."
+      uk: "Зв'язна розповідь про себе, що показує досвід і сильні сторони, — не перелік документів і не по одному реченню на питання."
+      de: "Eine zusammenhängende Selbstvorstellung, die Erfahrung und Stärken zeigt — keine Liste von Dokumenten und nicht ein Satz pro Frage."
+    checklist:
+      - en: "I said what I am with an adjective-noun and its ending: Ich arbeite als Angestellter / als Angestellte — after the article-free als the word shows the gender itself."
+        ru: "Я назвал(а) себя прилагательным-существительным с окончанием: Ich arbeite als Angestellter / als Angestellte — после безартиклевого als слово само показывает род."
+        uk: "Я назвав(ла) себе прикметником-іменником із закінченням: Ich arbeite als Angestellter / als Angestellte — після безартиклевого als слово саме показує рід."
+        de: "Ich habe mich mit einem Adjektiv-Nomen samt Endung genannt: Ich arbeite als Angestellter / als Angestellte — nach dem artikellosen als zeigt das Wort das Genus selbst."
+      - en: "At least one n-declension person appeared as an object with its -(e)n: mit Kunden, einem Praktikanten, meinen Kollegen."
+        ru: "В речи появилось хотя бы одно лицо из n-склонения в роли дополнения, с его -(e)n: mit Kunden, einem Praktikanten, meinen Kollegen."
+        uk: "У мовленні з'явилася щонайменше одна особа з n-відміни в ролі додатка, з її -(e)n: mit Kunden, einem Praktikanten, meinen Kollegen."
+        de: "Mindestens eine Person aus der n-Deklination stand als Objekt da, mit ihrem -(e)n: mit Kunden, einem Praktikanten, meinen Kollegen."
+      - en: "Two fixed pairs did the work instead of a general verb: Verantwortung übernehmen, eine Rolle spielen, Erfolg haben, sich Mühe geben — and I said why I want to change with etwas Neues."
+        ru: "Два устойчивых оборота сделали работу вместо общего глагола: Verantwortung übernehmen, eine Rolle spielen, Erfolg haben, sich Mühe geben — а причину смены я назвал(а) через etwas Neues."
+        uk: "Два стійких звороти зробили роботу замість загального дієслова: Verantwortung übernehmen, eine Rolle spielen, Erfolg haben, sich Mühe geben — а причину зміни я назвав(ла) через etwas Neues."
+        de: "Zwei feste Verbindungen haben die Arbeit statt eines Allzweckverbs gemacht: Verantwortung übernehmen, eine Rolle spielen, Erfolg haben, sich Mühe geben — und den Grund für den Wechsel habe ich mit etwas Neues genannt."
+    model_answer: "Gern. Ich heiße Anna Nowak und arbeite seit vier Jahren als Angestellte in einem Supermarkt. Dort berate ich jeden Tag Kunden und arbeite eng mit meinen Kollegen zusammen. Im letzten Jahr habe ich einem neuen Praktikanten alles gezeigt und dabei viel Verantwortung übernommen. Ich arbeite selbstständig und sehr genau, und bei jeder Aufgabe gebe ich mir Mühe — gute Zusammenarbeit spielt für mich eine große Rolle. Nach vier Jahren im selben Betrieb möchte ich jetzt gern etwas Neues lernen, und Ihre Anzeige passt genau dazu."
+    model_translation:
+      en: "Gladly. My name is Anna Nowak and I have been working as an employee in a supermarket for four years. There I advise customers every day and work closely together with my colleagues. Last year I showed a new intern everything and took on a lot of responsibility in doing so. I work independently and very precisely, and I make an effort with every task — good teamwork matters a great deal to me. After four years in the same business I would now like to learn something new, and your advertisement fits that exactly."
+      ru: "Охотно. Меня зовут Анна Новак, и вот уже четыре года я работаю служащей в супермаркете. Там я каждый день консультирую клиентов и тесно работаю вместе с коллегами. В прошлом году я всё показала новому практиканту и взяла на себя при этом много ответственности. Я работаю самостоятельно и очень аккуратно, и в каждом задании я стараюсь — хорошая совместная работа имеет для меня большое значение. После четырёх лет на одном предприятии мне хотелось бы теперь научиться чему-то новому, и ваше объявление подходит для этого как нельзя лучше."
+      uk: "Охоче. Мене звати Анна Новак, і вже чотири роки я працюю службовицею в супермаркеті. Там я щодня консультую клієнтів і тісно працюю разом із колегами. Торік я все показала новому практикантові і взяла на себе при цьому багато відповідальності. Я працюю самостійно й дуже акуратно, і в кожному завданні я стараюся — гарна спільна робота має для мене велике значення. Після чотирьох років на одному підприємстві мені хотілося б тепер навчитися чогось нового, і ваше оголошення пасує для цього якнайкраще."
+    explain:
+      en: "The answer has four moves, and all three of this unit's machines carry them. Who you are: als Angestellte — after the article-free als the adjective-noun shows the gender itself (a man says als Angestellter). What you did: the n-declension people appear as objects and wear their endings — Kunden, meinen Kollegen, einem neuen Praktikanten. What you are good at: the fixed pairs replace a vague ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. And why you want to change: etwas Neues, capital and strong -es, the standard answer to the why-us question. Say it a second time and listen for the endings on als Angestellte and einem neuen Praktikanten — they are what separates a B1 self-presentation from an A2 one."
+      ru: "В ответе четыре хода, и все три машины урока их несут. Кто вы: als Angestellte — после безартиклевого als прилагательное-существительное само показывает род (мужчина скажет als Angestellter). Что вы делали: лица из n-склонения появляются как дополнения и носят свои окончания — Kunden, meinen Kollegen, einem neuen Praktikanten. Что вам удаётся: устойчивые пары заменяют расплывчатое ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. И почему вы хотите сменить работу: etwas Neues, с большой буквы и сильным -es, стандартный ответ на вопрос «почему к нам?». Произнесите всё второй раз и вслушайтесь в окончания als Angestellte и einem neuen Praktikanten — именно они отличают рассказ о себе на B1 от рассказа на A2."
+      uk: "У відповіді чотири ходи, і всі три машини уроку їх несуть. Хто ви: als Angestellte — після безартиклевого als прикметник-іменник сам показує рід (чоловік скаже als Angestellter). Що ви робили: особи з n-відміни з'являються як додатки й носять свої закінчення — Kunden, meinen Kollegen, einem neuen Praktikanten. Що вам вдається: стійкі пари заміняють розпливчасте ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. І чому ви хочете змінити роботу: etwas Neues, з великої літери й сильним -es, стандартна відповідь на питання «чому до нас?». Вимовте все вдруге і вслухайтеся в закінчення als Angestellte та einem neuen Praktikanten — саме вони відрізняють розповідь про себе на B1 від розповіді на A2."
+      de: "Die Antwort hat vier Züge, und alle drei Maschinen der Einheit tragen sie. Wer du bist: als Angestellte — nach dem artikellosen als zeigt das Adjektiv-Nomen das Genus selbst (ein Mann sagt als Angestellter). Was du getan hast: Die Personen der n-Deklination stehen als Objekte da und tragen ihre Endungen — Kunden, meinen Kollegen, einem neuen Praktikanten. Was du kannst: Die festen Verbindungen ersetzen ein vages ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. Und warum du wechseln willst: etwas Neues, groß und mit starkem -es, die klassische Antwort auf die Warum-wir-Frage. Sag alles ein zweites Mal und hör dabei auf die Endungen in als Angestellte und einem neuen Praktikanten — sie unterscheiden eine B1-Selbstvorstellung von einer auf A2."

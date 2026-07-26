@@ -1,0 +1,75 @@
+# Delayed probe family 3 of 3 — ONE competence: recalling the verb a fixed noun–verb pair
+# demands, rather than composing the phrase from parts. Three parallel cloze variants over
+# three pairs no practice item uses (ein Gespräch führen, Verantwortung übernehmen, sich
+# Mühe geben — practice drills Frage stellen, Antwort geben, Eindruck machen, Rolle
+# spielen), all four of them in the chapter's table. Each instruction names the noun and
+# withholds the verb, because the verb is the competence; variant-b accepts trägt beside
+# übernimmt, since both are real pairs of Verantwortung and either one demonstrates the
+# skill.
+topic: arbeit-bewerbung
+role: probe
+title:
+  en: "Delayed check — the verb the noun demands"
+  ru: "Отложенная проверка — глагол, которого требует существительное"
+  uk: "Відкладена перевірка — дієслово, якого вимагає іменник"
+  de: "Kontrolle mit Abstand — das Verb, das das Nomen verlangt"
+items:
+  - id: variant-a
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "Fill in the fixed verb that belongs to Gespräch — present tense."
+      ru: "Впишите устойчивый глагол, принадлежащий существительному Gespräch, — в презенсе."
+      uk: "Впишіть стійке дієслово, що належить іменнику Gespräch, — у презенсі."
+      de: "Ergänze das feste Verb, das zu Gespräch gehört — im Präsens."
+    text: "Der Chef {{führt}} am Nachmittag ein langes Gespräch mit ihr."
+    translation:
+      en: "In the afternoon the boss has a long conversation with her."
+      ru: "Во второй половине дня начальник ведёт с ней долгий разговор."
+      uk: "У другій половині дня начальник веде з нею довгу розмову."
+    explain:
+      en: "A formal conversation is conducted in German, not had: ein Gespräch führen. The verb is a fact about the noun and is learned with it, the way a gender is — no rule generates it, and no other language hands it over. The same führen runs a company: eine Firma führen."
+      ru: "Официальный разговор по-немецки «ведут», а не «имеют»: ein Gespräch führen. Глагол — факт о существительном и учится вместе с ним, как род: никакое правило его не порождает, и ни один другой язык его не подсказывает. То же führen руководит фирмой: eine Firma führen."
+      uk: "Офіційну розмову німецькою «ведуть», а не «мають»: ein Gespräch führen. Дієслово — факт про іменник і вчиться разом із ним, як рід: жодне правило його не породжує, і жодна інша мова його не підказує. Те саме führen керує фірмою: eine Firma führen."
+      de: "Ein förmliches Gespräch wird im Deutschen geführt, nicht gehabt: ein Gespräch führen. Das Verb ist eine Eigenschaft des Nomens und wird mit ihm gelernt, wie das Genus — keine Regel erzeugt es, keine andere Sprache liefert es. Dasselbe führen leitet auch eine Firma: eine Firma führen."
+
+  - id: variant-b
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "Fill in the fixed verb that belongs to Verantwortung — present tense, er-form."
+      ru: "Впишите устойчивый глагол, принадлежащий существительному Verantwortung, — в презенсе, форма для er."
+      uk: "Впишіть стійке дієслово, що належить іменнику Verantwortung, — у презенсі, форма для er."
+      de: "Ergänze das feste Verb, das zu Verantwortung gehört — im Präsens, er-Form."
+    text: "Nach der Ausbildung {{übernimmt|trägt}} er im Betrieb mehr Verantwortung."
+    translation:
+      en: "After his training he takes on more responsibility in the business."
+      ru: "После обучения он берёт на себя на предприятии больше ответственности."
+      uk: "Після навчання він бере на себе на підприємстві більше відповідальності."
+    explain:
+      en: "Verantwortung keeps two verbs and both are right here: übernehmen for taking it on, tragen for carrying it. What it never takes is the all-purpose machen or the borrowed geben. Note the vowel change in the er-form — übernimmt, trägt — which is the ordinary strong-verb present, not part of the pair."
+      ru: "У Verantwortung два своих глагола, и здесь верны оба: übernehmen — «взять на себя», tragen — «нести». Чего оно не берёт никогда — универсального machen и заимствованного geben. Обратите внимание на смену гласной в форме для er — übernimmt, trägt: это обычный презенс сильного глагола, а не часть пары."
+      uk: "У Verantwortung два своїх дієслова, і тут правильні обидва: übernehmen — «взяти на себе», tragen — «нести». Чого воно не бере ніколи — універсального machen і запозиченого geben. Зверніть увагу на зміну голосної у формі для er — übernimmt, trägt: це звичайний презенс сильного дієслова, а не частина пари."
+      de: "Verantwortung hat zwei eigene Verben, und beide stimmen hier: übernehmen fürs Auf-sich-Nehmen, tragen fürs Tragen. Was nie passt, ist das Allzweckverb machen oder ein geliehenes geben. Und der Vokalwechsel in der er-Form — übernimmt, trägt — ist das normale Präsens starker Verben, nicht Teil der Verbindung."
+
+  - id: variant-c
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "Fill in the fixed verb that belongs to Mühe — present tense."
+      ru: "Впишите устойчивый глагол, принадлежащий существительному Mühe, — в презенсе."
+      uk: "Впишіть стійке дієслово, що належить іменнику Mühe, — у презенсі."
+      de: "Ergänze das feste Verb, das zu Mühe gehört — im Präsens."
+    text: "Bei jeder neuen Aufgabe {{gibt}} er sich große Mühe."
+    translation:
+      en: "He makes a real effort with every new task."
+      ru: "В каждом новом задании он очень старается."
+      uk: "У кожному новому завданні він дуже старається."
+    explain:
+      en: "sich Mühe geben — and the sich in it is dative: ich gebe mir Mühe, du gibst dir Mühe. The effort is given, never made, although machen is exactly what the neighbouring pair einen Eindruck machen takes. That is the whole point of the family: a pair never lends its verb to the noun next door. One family, one competence: the verb the noun demands, produced cold."
+      ru: "sich Mühe geben — и sich здесь стоит в дативе: ich gebe mir Mühe, du gibst dir Mühe. Старание «дают», а не «делают», хотя именно machen берёт соседняя пара einen Eindruck machen. В этом вся суть семьи: пара никогда не одалживает свой глагол соседнему существительному. Одна семья, одна компетенция: глагол, которого требует существительное, воспроизведённый без подготовки."
+      uk: "sich Mühe geben — і sich тут стоїть у давальному: ich gebe mir Mühe, du gibst dir Mühe. Старання «дають», а не «роблять», хоча саме machen бере сусідня пара einen Eindruck machen. У цьому вся суть родини: пара ніколи не позичає своє дієслово сусідньому іменнику. Одна родина, одна компетенція: дієслово, якого вимагає іменник, відтворене без підготовки."
+      de: "sich Mühe geben — und das sich darin steht im Dativ: ich gebe mir Mühe, du gibst dir Mühe. Mühe wird gegeben, nie gemacht, obwohl machen genau das Verb der Nachbarverbindung einen Eindruck machen ist. Das ist der Kern der Familie: Ein Paar verleiht sein Verb nie an das Nomen nebenan. Eine Familie, eine Fähigkeit: das Verb, das das Nomen verlangt, aus dem Stand gebildet."
