@@ -1,0 +1,68 @@
+# Diagnostic generation, not practice: three guesses before the article, one per grammar
+# point of the unit (n-Deklination, Adjektiv als Nomen, Nomen-Verb-Verbindung). No focus
+# tags — a pretest is never weakness evidence — and the first item is a cloze, because a
+# pretest made only of mc discriminates nothing.
+topic: arbeit-bewerbung
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-kollegen
+    outcomes: [bewerbung-schreiben]
+    type: cloze
+    instruction:
+      en: "Guess the form of Kollege."
+      ru: "Угадайте форму слова Kollege."
+      uk: "Вгадайте форму слова Kollege."
+      de: "Rate die Form von Kollege."
+    text: "Ich habe gestern mit dem neuen {{Kollegen}} gesprochen."
+    translation:
+      en: "Yesterday I spoke with the new colleague."
+      ru: "Вчера я говорил с новым коллегой."
+      uk: "Учора я говорив із новим колегою."
+    explain:
+      en: "A small family of masculine person nouns declines along with its article: outside the nominative singular, Kollege wears an -n. The article dem already said dative — and the noun says it a second time. The chapter names the whole family and the two boundaries that keep it small."
+      ru: "Небольшая семья существительных мужского рода склоняется вместе со своим артиклем: вне номинатива единственного числа Kollege носит -n. Артикль dem уже сказал «датив» — и существительное говорит это во второй раз. Статья называет всю семью и две границы, которые держат её маленькой."
+      uk: "Невелика родина іменників чоловічого роду відмінюється разом зі своїм артиклем: поза називним однини Kollege носить -n. Артикль dem уже сказав «давальний» — і іменник каже це вдруге. Стаття називає всю родину і дві межі, які тримають її малою."
+      de: "Eine kleine Familie maskuliner Personen-Nomen dekliniert mit ihrem Artikel mit: Außerhalb des Nominativ Singular trägt Kollege ein -n. Der Artikel dem hat den Dativ schon genannt — das Nomen nennt ihn ein zweites Mal. Das Kapitel zeigt die ganze Familie und die zwei Grenzen, die sie klein halten."
+
+  - id: pre-mc-angestellter
+    outcomes: [erfahrung-praesentieren]
+    type: mc
+    prompt: "Mein Mann ist ___ bei der Post."
+    options:
+      - "ein Angestellter"
+      - "ein Angestellte"
+      - "ein Angestellten"
+    correct: 0
+    translation:
+      en: "My husband is an employee at the post office."
+      ru: "Мой муж — служащий на почте."
+      uk: "Мій чоловік — службовець на пошті."
+    explain:
+      en: "Angestellte is an adjective standing where a noun stands, and it never stopped declining like one: after ein, which hides the masculine, the word has to show it — ein Angestellter, exactly like ein netter Mann. After der it would be der Angestellte. The chapter builds the whole table."
+      ru: "Angestellte — прилагательное на месте существительного, и склоняться как прилагательное оно не перестало: после ein, которое прячет мужской род, слово обязано его показать — ein Angestellter, ровно как ein netter Mann. После der было бы der Angestellte. Статья строит всю таблицу."
+      uk: "Angestellte — прикметник на місці іменника, і відмінюватися як прикметник він не перестав: після ein, яке ховає чоловічий рід, слово мусить його показати — ein Angestellter, рівно як ein netter Mann. Після der було б der Angestellte. Стаття будує всю таблицю."
+      de: "Angestellte ist ein Adjektiv an der Stelle eines Nomens, und es dekliniert weiter wie eins: Nach ein, das das Maskulinum versteckt, muss das Wort es selbst zeigen — ein Angestellter, genau wie ein netter Mann. Nach der hieße es der Angestellte. Das Kapitel baut die ganze Tabelle auf."
+
+  - id: pre-mc-frage-stellen
+    outcomes: [interview-fragen-beantworten]
+    type: mc
+    prompt: "Darf ich Ihnen am Ende des Gesprächs noch eine Frage ___?"
+    options:
+      - "stellen"
+      - "machen"
+      - "geben"
+    correct: 0
+    translation:
+      en: "May I ask you one more question at the end of the interview?"
+      ru: "Можно мне в конце разговора задать вам ещё один вопрос?"
+      uk: "Чи можна мені наприкінці розмови поставити вам ще одне запитання?"
+    explain:
+      en: "In a fixed noun–verb pair the noun carries the meaning and picks its own verb, and Frage picked stellen. The verb cannot be worked out and cannot be carried over from another language: machen and geben belong to other nouns here — einen Eindruck machen, eine Antwort geben. The chapter collects the pairs a job application and an interview run on."
+      ru: "В устойчивой паре «существительное + глагол» смысл несёт существительное, и оно же выбирает себе глагол; Frage выбрало stellen. Глагол нельзя вывести и нельзя перенести из другого языка: machen и geben принадлежат здесь другим существительным — einen Eindruck machen, eine Antwort geben. Статья собирает пары, на которых держатся заявление и собеседование."
+      uk: "У стійкій парі «іменник + дієслово» зміст несе іменник, і він же обирає собі дієслово; Frage обрало stellen. Дієслово не можна вивести й не можна перенести з іншої мови: machen і geben належать тут іншим іменникам — einen Eindruck machen, eine Antwort geben. Стаття збирає пари, на яких тримаються заява і співбесіда."
+      de: "In einer festen Nomen-Verb-Verbindung trägt das Nomen die Bedeutung und wählt sein Verb — Frage hat stellen gewählt. Das Verb lässt sich nicht erschließen und nicht aus einer anderen Sprache übertragen: machen und geben gehören hier anderen Nomen — einen Eindruck machen, eine Antwort geben. Das Kapitel sammelt die Verbindungen, von denen Bewerbung und Vorstellungsgespräch leben."

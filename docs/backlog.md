@@ -27,6 +27,14 @@ Body/participant roles and task-bound apartment, form and receipt additions ship
 After every two B1 units: drain the grading queue, rerun `bun run progress:audit --profile vitaly`,
 then decide whether content or drills need revision. Never author from a pre-triage focus table.
 
+**Read of 2026-07-26** (snapshot same day, queue clean at 125 ruled / 0 awaiting): production
+assembly is the bottleneck — `translate` 43% vs `cloze` 85%, and translate-format probes carry
+nearly all retention failures; `order` is saturated at 98%, so no new order items. Every
+persistent weak focus already has a drill except `zu-infinitiv` (8/23 wrong across 6 items, one
+probe error, no recovery) — one drill owed from this read (queued below as A2 maintenance). Lapse concentration flagged for
+entry review: `einkaufen-geschaefte` (6 lapses / 2 cards), `schule-arbeit` (9/8),
+`wohnen-umzug` (10/14). B1.4+B1.5 authoring proceeds per contract.
+
 ### P9-2 · Entdecken pieces
 
 Recurring, at most one or two reviewed pieces per PR. Each must pass the editorial and provenance
@@ -41,12 +49,33 @@ only competences with at least three attempts. Pass bar: at least 80% of readabl
 retain their target, with free-production retention at least 70%. A miss stops B1 authoring and
 opens revision work; it does not retroactively alter logged evidence.
 
+**Trajectory warning (2026-07-26 projection):** 4 A1 competences readable now, none at ≥80%
+retention (33/50/75/75%); 5 more become readable only if ~5 due probe attempts are actually
+taken before the date (12 probes due, session cap 5); 4 are unreachable by the date. On current
+numbers the gate misses — plan for the revision program to open on 2026-08-02.
+
 ### A2 checkpoint review — approximately 2026-08-14
 
 Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger.
 
 ## Open
 
+- **P5-11a · A2 maintenance from the 2026-07-26 read** — author `a2/drill-zu-infinitiv`
+  (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
+  high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the
+  program's lapse decision rules (forms/contrast/note — never card identity).
+- **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
+  (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript
+  `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
+  review round missing two of the four, and nothing failed: `bun run validate` enforces the item-mix
+  bar but never asks whether an outcome has a task in the mode it names. Checking B1 turned up the
+  same gap upstream — of the four B1 units, only `erfahrungen-erzaehlen` owns an
+  `audio-comprehension` item, and it is the only one with a `listening` outcome, so the doc sentence
+  is ambiguous about whether the artifact is unconditional or claimed-mode-driven. Decide which the
+  rule is, write it down, and either backfill B1.2/B1.3 or state why a unit with no listening
+  outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
+  one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
+  the earned-not-asserted bar this belongs under.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect

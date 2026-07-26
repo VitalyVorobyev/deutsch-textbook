@@ -1,0 +1,247 @@
+# B1.4 primary practice. The three new tags close the unit's contract points
+# (n-deklination, adjektiv-nomen, nomen-verb-verbindung); the one recycling item
+# (cloze-sie-staerken, du-sie) carries the deepens edge to arbeit-beruf and never
+# counts toward B1 coverage; the second edge, to aemter-dienstleistungen, is carried by
+# uebersetzen-einladung (hoeflich-konjunktiv) in the produktion set. Learner signal
+# respected: translate accuracy is 43%,
+# so every grammar point scaffolds with case-graded cloze frames and an mc before
+# its free translate; order accuracy is saturated (98%), so the practice union
+# ships zero order items. This set is the primaryPractice — its item list never
+# grows after shipping.
+topic: arbeit-bewerbung
+role: practice
+title:
+  en: "Practice — the noun bends, the ending moves, the pair stays whole"
+  ru: "Практика — существительное склоняется, окончание ходит, пара неразъёмна"
+  uk: "Практика — іменник відмінюється, закінчення ходить, пара нерозривна"
+  de: "Übung — das Nomen dekliniert mit, die Endung wandert, das Paar bleibt ganz"
+items:
+  - id: cloze-kollegen-praktikanten
+    outcomes: [bewerbung-schreiben]
+    type: cloze
+    focus: n-deklination
+    instruction:
+      en: "Fill in Kollege and Praktikant with their endings — the article names the case."
+      ru: "Впишите Kollege и Praktikant с окончаниями — падеж называет артикль."
+      uk: "Впишіть Kollege і Praktikant із закінченнями — відмінок називає артикль."
+      de: "Ergänze Kollege und Praktikant mit ihren Endungen — den Kasus nennt der Artikel."
+    text: "Die Bäckerei sucht ab August einen freundlichen {{Kollegen}}, und die Chefin zeigt dem neuen {{Praktikanten}} heute den ganzen Betrieb."
+    translation:
+      en: "The bakery is looking for a friendly colleague starting in August, and today the boss is showing the new intern around the whole business."
+      ru: "Пекарня с августа ищет приветливого коллегу, и начальница сегодня показывает новому практиканту всё предприятие."
+      uk: "Пекарня із серпня шукає привітного колегу, і начальниця сьогодні показує новому практикантові все підприємство."
+    explain:
+      en: "Both nouns are family. einen says accusative, dem says dative — and outside the nominative singular an n-declension noun wears its -(e)n: den Kollegen, dem Praktikanten. Kollege joins through its final -e, Praktikant through the person suffix -ant. English nouns never do this, so let the article be the warning: einen, dem or des before one of these people means the noun itself needs its ending."
+      ru: "Оба существительных — из семьи n-склонения. einen говорит «аккузатив», dem говорит «датив», а вне номинатива единственного числа такое слово носит своё -(e)n: den Kollegen, dem Praktikanten. Kollege входит в семью через конечное -e, Praktikant — через суффикс лица -ant. Русский склоняет эти слова точно так же — «коллегу», «практиканту», — сама идея привычна, только окончания надо взять немецкие, а сигналом служит артикль."
+      uk: "Обидва іменники — з родини n-відміни. einen каже «знахідний», dem каже «давальний», а поза називним однини таке слово носить своє -(e)n: den Kollegen, dem Praktikanten. Kollege входить у родину через кінцеве -e, Praktikant — через суфікс особи -ant. Українська відмінює ці слова так само — «колегу», «практикантові», — сама ідея звична, лише закінчення треба взяти німецькі, а сигналом служить артикль."
+      de: "Beide Nomen gehören zur Familie. einen sagt Akkusativ, dem sagt Dativ — und außerhalb des Nominativ Singular trägt ein Nomen der n-Deklination sein -(e)n: den Kollegen, dem Praktikanten. Kollege gehört durch sein -e dazu, Praktikant durch das Personensuffix -ant. Der Artikel ist die beste Erinnerung: Steht einen, dem oder des vor einer dieser Personen, braucht das Nomen selbst seine Endung."
+
+  - id: mc-herrn-weber
+    outcomes: [bewerbung-schreiben]
+    type: mc
+    focus: n-deklination
+    prompt: "Ich habe Ihre Anzeige gelesen und schreibe heute an ___ Weber."
+    options:
+      - "Herrn"
+      - "Herr"
+      - "Herren"
+    correct: 0
+    translation:
+      en: "I have read your ad and am writing to Mr Weber today."
+      ru: "Я прочитал ваше объявление и сегодня пишу господину Веберу."
+      uk: "Я прочитав ваше оголошення і сьогодні пишу панові Веберу."
+    explain:
+      en: "schreiben an takes the accusative, and Herr declines even directly before a name: an Herrn Weber. Bare Herr is the English habit — Mr never changes, so nothing in English warns you. Herren is the plural (meine Damen und Herren) and cannot follow an with one man's name. What keeps Herr bare is the nominative, not a place in the letter: the salutation Sehr geehrter Herr Weber, and equally Herr Weber antwortet morgen, where he is the subject."
+      ru: "schreiben an требует аккузатива, а Herr склоняется даже прямо перед фамилией: an Herrn Weber. Голое Herr — привычка застывших форм; русское «пишу господину Веберу» подсказывает верно: слово меняется. Herren — множественное число (meine Damen und Herren), с фамилией одного человека оно не сочетается. Без окончания Herr остаётся в номинативе — а не в каком-то месте письма: и обращение Sehr geehrter Herr Weber, и Herr Weber antwortet morgen, где он подлежащее."
+      uk: "schreiben an вимагає знахідного, а Herr відмінюється навіть прямо перед прізвищем: an Herrn Weber. Голе Herr — звичка застиглих форм; українське «пишу панові Веберу» підказує правильно: слово змінюється. Herren — множина (meine Damen und Herren), із прізвищем однієї людини воно не поєднується. Без закінчення Herr лишається в називному — а не в якомусь місці листа: і звертання Sehr geehrter Herr Weber, і Herr Weber antwortet morgen, де він підмет."
+      de: "schreiben an verlangt den Akkusativ, und Herr dekliniert auch direkt vor dem Namen: an Herrn Weber. Das bloße Herr wäre die eingefrorene Form — die gibt es im Deutschen hier nicht. Herren ist der Plural (meine Damen und Herren) und passt nicht zu einem einzelnen Namen. Endungslos bleibt Herr im Nominativ, nicht an einer bestimmten Stelle im Brief: die Anrede Sehr geehrter Herr Weber, und ebenso Herr Weber antwortet morgen, wo er Subjekt ist."
+
+  - id: uebersetzen-brief-herrn
+    outcomes: [bewerbung-schreiben]
+    type: translate
+    focus: n-deklination
+    instruction:
+      en: "Translate. Use von."
+      ru: "Переведите. Используйте von."
+      uk: "Перекладіть. Використайте von."
+      de: "Übersetze. Verwende von."
+    prompt_en: "That is a letter from Mr Weber."
+    prompt_ru: "Это письмо от господина Вебера."
+    prompt_uk: "Це лист від пана Вебера."
+    answer: "Das ist ein Brief von Herrn Weber."
+    accept:
+      - "Es ist ein Brief von Herrn Weber."
+    key_tokens: ["Herrn"]
+    explain:
+      en: "Graded is one letter: von takes the dative, and Herr belongs to the n-declension, so before the name it becomes Herrn — von Herrn Weber. English Mr is frozen and will not warn you; let the preposition do it. Herr keeps its bare form only in the nominative — as the subject (Herr Weber ruft an) and in the salutation (Sehr geehrter Herr Weber)."
+      ru: "Оценивается одна буква: von требует датива, а Herr — слово n-склонения, поэтому перед фамилией оно становится Herrn: von Herrn Weber. Русское «от господина Вебера» склоняется — родной язык здесь союзник. Без окончания Herr остаётся только в номинативе — как подлежащее (Herr Weber ruft an) и в обращении (Sehr geehrter Herr Weber)."
+      uk: "Оцінюється одна літера: von вимагає давального, а Herr — слово n-відміни, тому перед прізвищем воно стає Herrn: von Herrn Weber. Українське «від пана Вебера» відмінюється — рідна мова тут союзниця. Без закінчення Herr лишається тільки в називному — як підмет (Herr Weber ruft an) і у звертанні (Sehr geehrter Herr Weber)."
+      de: "Bewertet wird ein einziger Buchstabe: von verlangt den Dativ, und Herr gehört zur n-Deklination, also heißt es vor dem Namen Herrn — von Herrn Weber. Endungslos steht Herr nur im Nominativ: als Subjekt (Herr Weber ruft an) und in der Anrede (Sehr geehrter Herr Weber)."
+
+  - id: cloze-angestellter-angestellte
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Fill in angestellt- as a noun — with no article, the word shows the gender itself."
+      ru: "Впишите angestellt- в роли существительного — без артикля слово само показывает род."
+      uk: "Впишіть angestellt- у ролі іменника — без артикля слово саме показує рід."
+      de: "Ergänze angestellt- als Nomen — ohne Artikel zeigt das Wort das Genus selbst."
+    text: "Mein Onkel ist {{Angestellter}} bei einer großen Firma, und seine Frau arbeitet als {{Angestellte}} in einer Bank."
+    translation:
+      en: "My uncle is an employee at a big company, and his wife works as an employee at a bank."
+      ru: "Мой дядя — служащий в большой фирме, а его жена работает служащей в банке."
+      uk: "Мій дядько — службовець у великій фірмі, а його дружина працює службовицею в банку."
+    explain:
+      en: "No article stands before either gap, so the adjective-noun wears the strong ending and shows the gender itself: masculine Angestellter (like netter Mann), feminine Angestellte (like nette Frau). Think the invisible Mann or Frau behind it — the word never stopped being an adjective, and with der in front it would flip: der Angestellte."
+      ru: "Перед обоими пропусками нет артикля, поэтому прилагательное-существительное носит сильное окончание и само показывает род: мужское Angestellter (как netter Mann), женское Angestellte (как nette Frau). Представьте невидимое Mann или Frau позади — слово не перестало быть прилагательным, ровно как русские «служащий» и «служащая». С der впереди окончание перевернётся: der Angestellte."
+      uk: "Перед обома пропусками немає артикля, тому прикметник-іменник носить сильне закінчення і сам показує рід: чоловіче Angestellter (як netter Mann), жіноче Angestellte (як nette Frau). Уявіть невидиме Mann чи Frau позаду — слово не перестало бути прикметником, рівно як українські «черговий» і «чергова». З der попереду закінчення перевернеться: der Angestellte."
+      de: "Vor beiden Lücken steht kein Artikel, also trägt das Adjektiv-Nomen die starke Endung und zeigt das Genus selbst: maskulin Angestellter (wie netter Mann), feminin Angestellte (wie nette Frau). Man denke sich das unsichtbare Mann oder Frau dahinter — das Wort ist ein Adjektiv geblieben. Mit der davor dreht sich die Endung: der Angestellte."
+
+  - id: cloze-bekannter-angestellten
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Fill in bekannt and angestellt as nouns — after ein and einem."
+      ru: "Впишите bekannt и angestellt в роли существительных — после ein и einem."
+      uk: "Впишіть bekannt і angestellt у ролі іменників — після ein і einem."
+      de: "Ergänze bekannt und angestellt als Nomen — nach ein und einem."
+    text: "Ein {{Bekannter}} von mir hat mir die Stelle empfohlen, und gestern habe ich schon mit einem {{Angestellten}} der Firma telefoniert."
+    translation:
+      en: "An acquaintance of mine recommended the position to me, and yesterday I already spoke on the phone with an employee of the company."
+      ru: "Один мой знакомый порекомендовал мне эту должность, и вчера я уже поговорил по телефону со служащим фирмы."
+      uk: "Один мій знайомий порекомендував мені цю посаду, і вчора я вже поговорив телефоном зі службовцем фірми."
+    explain:
+      en: "ein hides the masculine, so the adjective-noun supplies it: ein Bekannter — exactly like ein netter Mann. After einem the dative is already marked, so the ending falls back to weak -en: mit einem Angestellten. The ending moves with the article word — the proof these are adjectives in a noun's coat. Keep the two machines of this unit apart: Kollege takes a fixed noun -n, Bekannter changes with every article."
+      ru: "ein прячет мужской род, поэтому его показывает прилагательное-существительное: ein Bekannter — ровно как ein netter Mann. После einem датив уже обозначен, и окончание отступает к слабому -en: mit einem Angestellten. Окончание ходит вместе с артиклем — доказательство, что перед вами прилагательное в одежде существительного. Не путайте две машины урока: у Kollege носовое -n закреплено за словом, у Bekannter окончание меняется с каждым артиклем."
+      uk: "ein ховає чоловічий рід, тому його показує прикметник-іменник: ein Bekannter — рівно як ein netter Mann. Після einem давальний уже позначено, і закінчення відступає до слабкого -en: mit einem Angestellten. Закінчення ходить разом з артиклем — доказ, що перед вами прикметник в одязі іменника. Не плутайте дві машини уроку: у Kollege носове -n закріплене за словом, у Bekannter закінчення змінюється з кожним артиклем."
+      de: "ein versteckt das Maskulinum, also zeigt es das Adjektiv-Nomen: ein Bekannter — genau wie ein netter Mann. Nach einem ist der Dativ schon markiert, und die Endung wird schwach: mit einem Angestellten. Die Endung wandert mit dem Artikelwort — der Beweis, dass hier Adjektive im Mantel eines Nomens stehen. Die zwei Maschinen der Einheit auseinanderhalten: Kollege trägt ein festes Nomen-n, Bekannter wechselt die Endung mit jedem Artikel."
+
+  - id: mc-etwas-neues
+    outcomes: [erfahrung-praesentieren]
+    type: mc
+    focus: adjektiv-nomen
+    prompt: "Warum bewerben Sie sich bei uns? — Nach acht Jahren im selben Betrieb möchte ich endlich ___ lernen."
+    options:
+      - "etwas Neues"
+      - "etwas neues"
+      - "etwas Neue"
+    correct: 0
+    translation:
+      en: "Why are you applying to us? — After eight years in the same business I finally want to learn something new."
+      ru: "Почему вы подаёте заявление к нам? — После восьми лет на одном предприятии я хочу наконец научиться чему-то новому."
+      uk: "Чому ви подаєте заяву до нас? — Після восьми років на одному підприємстві я хочу нарешті навчитися чогось нового."
+    explain:
+      en: "After etwas the adjective becomes a noun: capital letter, and the strong -es that the missing das would have carried — etwas Neues. Lowercase neues is an adjective with nothing to lean on; etwas Neue has the capital but drops the case signal. The same pattern builds nichts Besonderes and viel Interessantes — and this sentence is the standard interview answer to the why-us question."
+      ru: "После etwas прилагательное становится существительным: большая буква и сильное -es, которое нёс бы пропавший артикль das — etwas Neues. Строчное neues — прилагательное, которому не на что опереться; etwas Neue сохраняет большую букву, но теряет падежный сигнал. По той же схеме собраны nichts Besonderes и viel Interessantes — а сама фраза — стандартный ответ на собеседовании на вопрос «почему к нам?». Русское «что-то новое» пишется с маленькой — подсказки не будет."
+      uk: "Після etwas прикметник стає іменником: велика літера і сильне -es, яке ніс би зниклий артикль das — etwas Neues. Мале neues — прикметник, якому нема на що спертися; etwas Neue зберігає велику літеру, але губить відмінковий сигнал. За тією ж схемою збудовані nichts Besonderes і viel Interessantes — а сама фраза — стандартна відповідь на співбесіді на питання «чому до нас?». Українське «щось нове» пишеться з малої — підказки не буде."
+      de: "Nach etwas wird das Adjektiv zum Nomen: großer Buchstabe und das starke -es, das der fehlende Artikel das getragen hätte — etwas Neues. Das kleine neues wäre ein Adjektiv ohne Halt; etwas Neue behält den großen Buchstaben, verliert aber das Kasussignal. Nach demselben Muster entstehen nichts Besonderes und viel Interessantes — und der Satz selbst ist die klassische Antwort auf die Warum-wir-Frage im Vorstellungsgespräch."
+
+  - id: uebersetzen-als-angestellter
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate — the job after als, with no article."
+      ru: "Переведите — профессия после als, без артикля."
+      uk: "Перекладіть — професія після als, без артикля."
+      de: "Übersetze — der Beruf nach als, ohne Artikel."
+    prompt_en: "My brother works as an employee at a bank."
+    prompt_ru: "Мой брат работает служащим в банке."
+    prompt_uk: "Мій брат працює службовцем у банку."
+    answer: "Mein Bruder arbeitet als Angestellter bei einer Bank."
+    accept:
+      - "Mein Bruder arbeitet bei einer Bank als Angestellter."
+      - "Mein Bruder arbeitet als Angestellter in einer Bank."
+      - "Mein Bruder arbeitet in einer Bank als Angestellter."
+    key_tokens: ["Angestellter"]
+    explain:
+      en: "Graded is the strong -er: after article-free als the adjective-noun shows the masculine itself — als Angestellter, exactly like als netter Mann. als Angestellte would name a woman, als Angestellten would need a den or dem nothing here supplies. bei einer Bank and in einer Bank are both idiomatic, and the phrase order is free — the ending is not."
+      ru: "Оценивается сильное -er: после безартиклевого als прилагательное-существительное само показывает мужской род — als Angestellter, ровно как als netter Mann. als Angestellte назвало бы женщину, als Angestellten требовало бы den или dem, которых здесь нет. Русское «служащим» одинаково после любого слова, поэтому единственная опора — немецкое правило. bei einer Bank и in einer Bank равно идиоматичны, и порядок групп свободен — окончание нет."
+      uk: "Оцінюється сильне -er: після безартиклевого als прикметник-іменник сам показує чоловічий рід — als Angestellter, рівно як als netter Mann. als Angestellte назвало б жінку, als Angestellten вимагало б den або dem, яких тут немає. Українське «службовцем» однакове після будь-якого слова, тому єдина опора — німецьке правило. bei einer Bank і in einer Bank однаково ідіоматичні, і порядок груп вільний — закінчення ні."
+      de: "Bewertet wird das starke -er: Nach dem artikellosen als zeigt das Adjektiv-Nomen das Maskulinum selbst — als Angestellter, genau wie als netter Mann. als Angestellte würde eine Frau nennen, als Angestellten bräuchte ein den oder dem, das hier nirgends steht. bei einer Bank und in einer Bank sind beide idiomatisch, und die Reihenfolge der Gruppen ist frei — die Endung nicht."
+
+  - id: cloze-frage-antwort
+    outcomes: [interview-fragen-beantworten]
+    type: cloze
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "Fill in the fixed verb that belongs to each noun — present tense, and not the all-purpose haben."
+      ru: "Впишите устойчивый глагол, закреплённый за каждым существительным, — в презенсе и не универсальное haben."
+      uk: "Впишіть стійке дієслово, закріплене за кожним іменником, — у презенсі й не універсальне haben."
+      de: "Ergänze das feste Verb, das zu jedem Nomen gehört — im Präsens und nicht das Allzweckverb haben."
+    text: "Am Ende des Vorstellungsgesprächs {{stellt}} Lena selbst eine Frage, und Herr Weber {{gibt}} ihr eine ehrliche Antwort."
+    translation:
+      en: "At the end of the job interview Lena asks a question herself, and Mr Weber gives her an honest answer."
+      ru: "В конце собеседования Лена сама задаёт вопрос, и господин Вебер даёт ей честный ответ."
+      uk: "Наприкінці співбесіди Лена сама ставить запитання, і пан Вебер дає їй чесну відповідь."
+    explain:
+      en: "The noun carries the meaning and chooses its verb: Fragen werden gestellt, Antworten werden gegeben. English asks a question, so nothing in English hands you stellen — the pair is a fact about the noun, learned with it like its gender. And asking your own question at the end is expected in a German interview."
+      ru: "Смысл несёт существительное, и оно же выбирает себе глагол: Fragen werden gestellt, Antworten werden gegeben. Вопрос по-русски тоже можно «поставить» — редкое дословное совпадение со stellen, — и ответ по-русски «дают», как geben. Но полагаться на совпадения нельзя: глагол пары — факт о существительном и учится вместе с ним, как род. А собственный вопрос в конце немецкого собеседования — ожидаемая часть разговора."
+      uk: "Зміст несе іменник, і він же обирає собі дієслово: Fragen werden gestellt, Antworten werden gegeben. Питання українською теж «ставлять» — рідкісний дослівний збіг зі stellen, — і відповідь українською «дають», як geben. Але покладатися на збіги не можна: дієслово пари — факт про іменник і вчиться разом із ним, як рід. А власне запитання наприкінці німецької співбесіди — очікувана частина розмови."
+      de: "Das Nomen trägt die Bedeutung und wählt sein Verb: Fragen werden gestellt, Antworten werden gegeben. Kein Verb lässt sich erraten und keins aus einer anderen Sprache übertragen — das Paar ist eine Eigenschaft des Nomens und wird mit ihm gelernt, wie das Genus. Und eine eigene Frage am Ende gehört im deutschen Vorstellungsgespräch dazu."
+
+  - id: mc-eindruck-machen
+    outcomes: [interview-fragen-beantworten]
+    type: mc
+    focus: nomen-verb-verbindung
+    prompt: "Die neue Kollegin hat am ersten Tag einen sehr guten Eindruck ___."
+    options:
+      - "gemacht"
+      - "gegeben"
+      - "gestellt"
+    correct: 0
+    translation:
+      en: "The new colleague made a very good impression on her first day."
+      ru: "Новая коллега в первый день произвела очень хорошее впечатление."
+      uk: "Нова колега першого дня справила дуже гарне враження."
+    explain:
+      en: "German makes an impression: einen Eindruck machen — one of the rare pairs English hands you for free. The two wrong verbs are borrowed from this unit's other pairs: geben belongs to Bescheid and eine Antwort, stellen belongs to eine Frage. That is the trap worth naming, because it is the one you will actually fall into once you know several pairs — a pair never lends its verb to the noun next door."
+      ru: "Немецкий впечатление «делает»: einen Eindruck machen. Оба неверных глагола одолжены у других пар этого же урока: geben принадлежит Bescheid и eine Antwort, stellen — обороту eine Frage stellen. Именно в этом настоящая ловушка: она срабатывает, когда пар выучено уже несколько, — пара никогда не одалживает свой глагол соседнему существительному. Русское «произвести впечатление» дословно тоже не переводится: глагол пары надо помнить."
+      uk: "Німецька враження «робить»: einen Eindruck machen. Обидва хибні дієслова позичені в інших пар цього ж уроку: geben належить Bescheid і eine Antwort, stellen — звороту eine Frage stellen. Саме в цьому справжня пастка: вона спрацьовує, коли пар вивчено вже кілька, — пара ніколи не позичає свого дієслова сусідньому іменнику. Українське «справити враження» дослівно теж не перекладається: дієслово пари треба пам'ятати."
+      de: "Im Deutschen macht man einen Eindruck: einen Eindruck machen. Beide falschen Verben sind bei den anderen Verbindungen dieser Einheit geborgt: geben gehört zu Bescheid und eine Antwort, stellen zu eine Frage. Das ist die eigentliche Falle — sie schnappt zu, sobald man mehrere Paare kennt: Ein Paar verleiht sein Verb nie an das Nomen des Nachbarn."
+
+  - id: uebersetzen-rolle
+    outcomes: [interview-fragen-beantworten]
+    type: translate
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "Translate — build the sentence around the noun Rolle and its fixed verb, and use Erfahrung without an article."
+      ru: "Переведите — постройте предложение вокруг существительного Rolle и его устойчивого глагола; Erfahrung — без артикля."
+      uk: "Перекладіть — побудуйте речення навколо іменника Rolle та його стійкого дієслова; Erfahrung — без артикля."
+      de: "Übersetze — bau den Satz um das Nomen Rolle und sein festes Verb, und verwende Erfahrung ohne Artikel."
+    prompt_en: "Experience plays a big role for this position."
+    prompt_ru: "Опыт играет большую роль для этой должности."
+    prompt_uk: "Досвід відіграє велику роль для цієї посади."
+    answer: "Erfahrung spielt bei dieser Stelle eine große Rolle."
+    accept:
+      - "Bei dieser Stelle spielt Erfahrung eine große Rolle."
+      - "Erfahrung spielt für diese Stelle eine große Rolle."
+      - "Für diese Stelle spielt Erfahrung eine große Rolle."
+    key_tokens: ["spielt"]
+    explain:
+      en: "Graded is the pair's verb: eine Rolle spielen, a rare case where English (play a role) matches German word for word. Enjoy the coincidence, but do not generalize it — the next noun picks its own verb, and machen here (the all-purpose German verb) would break the pair. bei dieser Stelle and für diese Stelle are both idiomatic, fronted or not — the verb choice is what the item measures."
+      ru: "Оценивается глагол пары: eine Rolle spielen — редкий случай, когда русское «играть роль» совпадает с немецким дословно. Радуйтесь совпадению, но не обобщайте его: следующее существительное выберет себе другой глагол, а универсальное machen здесь разрушило бы пару. bei dieser Stelle и für diese Stelle равно идиоматичны, с выносом вперёд или без — предмет проверки только выбор глагола."
+      uk: "Оцінюється дієслово пари: eine Rolle spielen — рідкісний випадок, коли українське «відігравати роль» збігається з німецьким майже дослівно. Радійте збігу, але не узагальнюйте його: наступний іменник вибере собі інше дієслово, а універсальне machen тут зруйнувало б пару. bei dieser Stelle і für diese Stelle однаково ідіоматичні, з винесенням уперед чи без — предмет перевірки лише вибір дієслова."
+      de: "Bewertet wird das Verb des Paares: eine Rolle spielen — einer der seltenen Fälle, in denen mehrere Sprachen dasselbe Verb gewählt haben. Das Muster darf man trotzdem nicht verallgemeinern: Das nächste Nomen wählt sein eigenes Verb, und das Allzweckverb machen würde das Paar hier zerstören. bei dieser Stelle und für diese Stelle sind beide idiomatisch, vorangestellt oder nicht — gemessen wird nur die Verbwahl."
+
+  - id: cloze-sie-staerken
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: du-sie
+    instruction:
+      en: "Interview register — fill in the polite possessive."
+      ru: "Регистр собеседования — впишите вежливое притяжательное местоимение."
+      uk: "Регістр співбесіди — впишіть увічливий присвійний займенник."
+      de: "Register im Vorstellungsgespräch — ergänze das höfliche Possessiv."
+    text: "Die Chefin fragt im Vorstellungsgespräch: „Erzählen Sie uns bitte etwas über {{Ihre}} Stärken.“"
+    translation:
+      en: "In the job interview the boss asks: \"Please tell us something about your strengths.\""
+      ru: "На собеседовании начальница спрашивает: «Расскажите нам, пожалуйста, немного о ваших сильных сторонах»."
+      uk: "На співбесіді начальниця питає: «Розкажіть нам, будь ласка, трохи про ваші сильні сторони»."
+    explain:
+      en: "The interview lives in the Sie register until the team itself offers du — and Sie's possessive is Ihre, capitalized in writing. deine would drop the register in the most formal conversation German working life has; lowercase ihre would say her or their strengths instead of yours. The A2 rule, now earning money."
+      ru: "Собеседование живёт в регистре Sie, пока команда сама не предложит du, — а притяжательное к Sie — это Ihre, на письме с большой буквы. deine уронило бы регистр в самом официальном разговоре немецкой рабочей жизни; строчное ihre означало бы «её» или «их» сильные стороны, а не ваши. Правило с A2 — теперь оно зарабатывает деньги."
+      uk: "Співбесіда живе в регістрі Sie, доки команда сама не запропонує du, — а присвійний до Sie — це Ihre, на письмі з великої літери. deine впустило б регістр у найофіційнішій розмові німецького робочого життя; мале ihre означало б «її» або «їхні» сильні сторони, а не ваші. Правило з A2 — тепер воно заробляє гроші."
+      de: "Das Vorstellungsgespräch lebt im Sie-Register, bis das Team selbst das du anbietet — und das Possessiv zu Sie heißt Ihre, geschrieben mit großem Buchstaben. deine würde das Register im formellsten Gespräch des deutschen Berufslebens fallen lassen; das kleine ihre spräche von ihren Stärken, nicht von deinen. Die A2-Regel — jetzt verdient sie Geld."
