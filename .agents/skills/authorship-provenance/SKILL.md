@@ -16,7 +16,11 @@ Treat provenance as evidence of process, never as a promise of copyrightability.
 2. Use AI output as a draft. Preserve the provider/tool name and describe its role accurately.
 3. Offer alternatives when a meaningful expressive decision is still open; do not silently make
    every creative choice on the human editor's behalf.
-4. Preserve sources and tool provenance while working.
+4. Preserve sources and tool provenance while working. **Fill `aiAssistance.tools` in the commit
+   that ships the draft, not at review time** — the schema only forces it once `humanReview` is
+   `complete`, so a known drafting history left as `tools: []` reads as a legacy record whose
+   history is gone, and the evidence is lost the moment the session ends. `tools: []` is honest
+   only before anything is drafted, or on a `legacy` record carrying `toolHistoryUnavailable`.
 5. Leave `humanReview.status: pending` until Vitaly explicitly reviews the result. An agent may
    record proposed contributions but must not invent selections, rewrites, arrangements, dates or
    sign-off.
