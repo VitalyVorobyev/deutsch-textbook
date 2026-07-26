@@ -47,8 +47,8 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
   }
 
   const codexReviewedHead = input.reviews.some((review) => {
-    if (!review.author?.login?.includes('codex')) return false;
-    const reviewedCommit = review.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]+)`/i)?.[1];
+    if (review.author?.login !== 'chatgpt-codex-connector') return false;
+    const reviewedCommit = review.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]{10,40})`/i)?.[1];
     return !!reviewedCommit && input.headRefOid.startsWith(reviewedCommit);
   });
   if (!codexReviewedHead) problems.push(`Codex review has not completed against HEAD ${input.headRefOid.slice(0, 12)}`);

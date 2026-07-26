@@ -6,7 +6,9 @@ import {
   assetProvenanceManifestSchema,
   authorshipManifestSchema,
   authorshipProvenanceProblems,
+  isLearningFigureComponent,
   LEGACY_ASSET_PATHS,
+  LEGACY_TOPIC_IDS,
   reviewedTopicAuthorshipProblems,
   simulatedInstructionalAssetPaths,
 } from '../src/lib/authorship-provenance';
@@ -55,6 +57,33 @@ describe('authorship provenance', () => {
     );
   });
 
+  test('only the frozen B1.1–B1.3 records can use the legacy exemption', () => {
+    const manifest = authorshipManifestSchema.parse(
+      YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
+    );
+    expect(manifest.topics.filter((topic) => topic.legacy).map((topic) => topic.topic).sort()).toEqual(
+      [...LEGACY_TOPIC_IDS].sort(),
+    );
+
+    const forged = structuredClone(manifest);
+    const b14 = forged.topics.find((topic) => topic.topic === 'arbeit-bewerbung');
+    if (!b14) throw new Error('missing B1.4 record');
+    Object.assign(b14, {
+      legacy: true,
+      historyUnavailable: true,
+      humanReview: { status: 'pending', substantiveContributions: [], reviewedAt: null },
+    });
+    const parsed = authorshipManifestSchema.parse(forged);
+    expect(
+      reviewedTopicAuthorshipProblems(parsed, new Map([['arbeit-bewerbung', 'reviewed']])),
+    ).toEqual(
+      expect.arrayContaining([
+        'data/authorship-provenance.yaml: "arbeit-bewerbung" legacy flag disagrees with the frozen B1.1–B1.3 allowlist',
+        'data/authorship-provenance.yaml: reviewed topic "arbeit-bewerbung" requires explicit completed human review',
+      ]),
+    );
+  });
+
   test('legacy exemptions are a frozen path allowlist', () => {
     const manifest = assetProvenanceManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/asset-provenance.yaml'), 'utf8')),
@@ -62,6 +91,13 @@ describe('authorship provenance', () => {
     expect(manifest.assets.filter((asset) => asset.legacy).map((asset) => asset.path).sort()).toEqual(
       [...LEGACY_ASSET_PATHS].sort(),
     );
+  });
+
+  test('visual discovery does not depend on sourceClass prop serialization', () => {
+    expect(isLearningFigureComponent('<LearningFigure sourceClass="simulated">')).toBe(true);
+    expect(isLearningFigureComponent("<LearningFigure sourceClass={'simulated'}>")).toBe(true);
+    expect(isLearningFigureComponent('<LearningFigure sourceClass={sourceClass}>')).toBe(true);
+    expect(isLearningFigureComponent('<figure sourceClass="simulated">')).toBe(false);
   });
 
   test('simulated remains provenance, not an originality or copyright field', () => {

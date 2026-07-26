@@ -55,6 +55,14 @@ export const authorshipManifestSchema = z.object({
 });
 export type AuthorshipManifest = z.infer<typeof authorshipManifestSchema>;
 
+// Frozen on 2026-07-26. These topics predate the provenance workflow; no later topic may
+// inherit their exemption by changing a mutable manifest flag.
+export const LEGACY_TOPIC_IDS = new Set([
+  'erfahrungen-erzaehlen',
+  'leben-veraendern',
+  'gesundheit-wohlbefinden',
+]);
+
 export function reviewedTopicAuthorshipProblems(
   manifest: AuthorshipManifest,
   topicStatuses: ReadonlyMap<string, string>,
@@ -65,8 +73,13 @@ export function reviewedTopicAuthorshipProblems(
   for (const record of manifest.topics) {
     if (seen.has(record.topic)) problems.push(`data/authorship-provenance.yaml: duplicate topic "${record.topic}"`);
     seen.add(record.topic);
+    if (record.legacy !== LEGACY_TOPIC_IDS.has(record.topic)) {
+      problems.push(
+        `data/authorship-provenance.yaml: "${record.topic}" legacy flag disagrees with the frozen B1.1–B1.3 allowlist`,
+      );
+    }
     if (
-      !record.legacy &&
+      !LEGACY_TOPIC_IDS.has(record.topic) &&
       topicStatuses.get(record.topic) === 'reviewed' &&
       record.humanReview.status !== 'complete'
     ) {
@@ -157,6 +170,8 @@ function parseFrontmatter(file: string): Record<string, unknown> | undefined {
   return match ? (YAML.parse(match[1]!) as Record<string, unknown>) : undefined;
 }
 
+export const isLearningFigureComponent = (source: string): boolean => /<LearningFigure\b/.test(source);
+
 export function simulatedInstructionalAssetPaths(root: string): string[] {
   const paths = new Set<string>();
   const addPublic = (asset: string) => paths.add(`public/${asset.replace(/^\/+/, '')}`);
@@ -186,7 +201,11 @@ export function simulatedInstructionalAssetPaths(root: string): string[] {
   }
 
   for (const file of filesRecursively(join(root, 'src/components/visuals')).filter((f) => f.endsWith('.astro'))) {
-    if (readFileSync(file, 'utf8').includes('sourceClass="simulated"'))
+    // A visual may spell the prop as a quoted attribute, an Astro expression, or a
+    // forwarded variable. The wrapper call itself is the durable boundary: every
+    // instructional visual component using LearningFigure owes a provenance record,
+    // regardless of sourceClass serialization.
+    if (isLearningFigureComponent(readFileSync(file, 'utf8')))
       paths.add(relative(root, file).split(sep).join('/'));
   }
 

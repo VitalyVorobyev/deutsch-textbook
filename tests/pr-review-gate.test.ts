@@ -41,4 +41,30 @@ describe('pull-request review gate', () => {
       }),
     ).toEqual([]);
   });
+
+  test('rejects lookalike reviewers and abbreviated hashes below the review contract', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [
+          {
+            author: { login: 'friendly-codex-reviewer' },
+            body: '**Reviewed commit:** `abcdef123456`',
+          },
+        ],
+      }),
+    ).toContain('Codex review has not completed against HEAD abcdef123456');
+
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [
+          {
+            author: { login: 'chatgpt-codex-connector' },
+            body: '**Reviewed commit:** `a`',
+          },
+        ],
+      }),
+    ).toContain('Codex review has not completed against HEAD abcdef123456');
+  });
 });
