@@ -9,6 +9,11 @@ hazards that are invisible until they fire, and the full drills-from-progress pr
 ## Checklists
 
 New topic — a topic is not done until every line here is:
+0. For B1.4 and later, read the
+   [`authorship-provenance` skill](../.agents/skills/authorship-provenance/SKILL.md) and maintain
+   the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
+   is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
+   `status: reviewed`.
 1. `content/topics/<level>/<id>.mdx` with full frontmatter + article following the skeleton.
 2. Exercise set(s) in `content/exercises/<level>/<id>.yaml` — 8–15 items, ≥3 different types, each with `explain`, each clearing the item-mix bar above. Every `translate` declares `key_tokens`. Include the modes the topic's outcomes claim: a hidden-transcript `audio-comprehension`, a `write` (draft → model comparison, revision optional), a `speak` (record/replay), and a faded discrimination set against the material this topic is confusable with. The **first** `role: practice` set in `exercises:` is the topic's `primaryPractice` — its completion advances the Lernpfad, so its item list must not grow later.
 3. Pretest in `content/exercises/<level>/<id>-pretest.yaml` — 3 `mc` items probing the topic's core rules, referenced via `pretest`.

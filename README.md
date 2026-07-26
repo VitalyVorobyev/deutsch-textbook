@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml/badge.svg)](https://github.com/VitalyVorobyev/deutsch-textbook/actions/workflows/ci.yml)
 
-A free, local-first app for learning German — a structured textbook, interactive
+A free, local-first app by **Vitaly Vorobyev** for learning German — a structured textbook, interactive
 exercises, and spaced-repetition flashcards in one place. It runs in your browser
 or as a desktop app and keeps everything on your device. Explanations are
 bilingual: every topic is written twice, in English and in Russian (Ukrainian
@@ -26,8 +26,9 @@ mastered, and the next topic to learn.*
 
 - **A complete A1 and A2 course, and B1 in progress** — ten A1 and seventeen A2
   units, each with a diagnostic pretest, a full article, a graded reading,
-  exercises, and its own vocabulary; the first of ten contracted B1 units is
-  live. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
+  exercises, and its own vocabulary; the first three contracted B1 units are
+  live (`rg -l '^status: reviewed$' content/topics/b1/*.mdx | wc -l | tr -d ' '`).
+  Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
   covered, and the Über page reports how far each level goes with figures
   measured from the content itself, not hand-written.
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,
@@ -110,6 +111,7 @@ schemas. Bun is the package manager and task runner.
 | `bun run check` | type-check (`astro check`) |
 | `bun run lint` | ESLint over `src/` and `scripts/` |
 | `bun run build` | static production build |
+| `bun run review:gate` | require green CI, resolved review threads and a current-HEAD Codex review |
 | `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
 | `bun scripts/coverage.ts A1` | Goethe Wortliste coverage report (`A1`, `A2` or `B1`) |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
@@ -127,10 +129,16 @@ bun run build
 Content authoring rules — bilingual voice, CEFR discipline, exercise and IPA
 conventions — are in [CLAUDE.md](CLAUDE.md).
 
+Deutsch-Atlas is AI-assisted, human-directed and edited. AI systems support drafting and asset
+generation; they are not credited as authors. The project’s ownership, licence boundaries and
+authorship-provenance process are summarized in [NOTICE.md](NOTICE.md) and
+[docs/product-protection.md](docs/product-protection.md).
+
 ## Licence
 
-The application (`src/`, `scripts/`, `src-tauri/`) is MIT — see
-[LICENSE](LICENSE). The course material in `content/` — articles, exercises,
-readings and vocabulary — is Creative Commons **BY-SA 4.0**, see
-[content/LICENSE](content/LICENSE): use and adapt it freely, with credit, under
-the same licence.
+The application code is MIT — see [LICENSE](LICENSE). The course-specific
+`src/assets/illustrations/` and `src/components/visuals/` directories are explicitly excluded
+from that grant; they are not dual-licensed. The course material in `content/` — articles,
+exercises, readings and vocabulary — together with those illustrations and the instructional
+documents listed in [content/LICENSE](content/LICENSE), is Creative Commons **BY-SA 4.0**:
+use and adapt it freely, with credit, under the same licence.
