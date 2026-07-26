@@ -5,6 +5,7 @@ const passing: PullRequestGateInput = {
   isDraft: false,
   headRefOid: 'abcdef1234567890',
   statusCheckRollup: [{ name: 'CI', status: 'COMPLETED', conclusion: 'SUCCESS' }],
+  reviewDecision: null,
   reviews: [
     {
       author: { login: 'chatgpt-codex-connector' },
@@ -12,6 +13,7 @@ const passing: PullRequestGateInput = {
       state: 'COMMENTED',
     },
   ],
+  opinionatedReviews: [],
   threads: [{ isResolved: true, isOutdated: false, path: 'file.ts', line: 1 }],
 };
 
@@ -51,12 +53,27 @@ describe('pull-request review gate', () => {
           ...passing.reviews,
           {
             author: { login: 'reviewer' },
-            body: 'Please revise the licence boundary.',
+            body: 'A later non-opinionated note.',
+            state: 'COMMENTED',
+          },
+        ],
+        opinionatedReviews: [
+          {
+            author: { login: 'reviewer' },
             state: 'CHANGES_REQUESTED',
           },
         ],
       }),
     ).toContain('changes requested by reviewer');
+  });
+
+  test('rejects the aggregate change decision when reviewer details are unavailable', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviewDecision: 'CHANGES_REQUESTED',
+      }),
+    ).toContain('pull request has outstanding requested changes');
   });
 
   test('rejects lookalike reviewers and abbreviated hashes below the review contract', () => {

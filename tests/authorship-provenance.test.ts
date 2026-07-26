@@ -1,9 +1,10 @@
 import { describe, expect, test } from 'bun:test';
-import { mkdirSync, readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, symlinkSync } from 'node:fs';
 import { resolve } from 'node:path';
 import YAML from 'yaml';
 import {
   assetSha256,
+  archivedPromptPathProblem,
   assetProvenanceManifestSchema,
   authorshipManifestSchema,
   authorshipProvenanceProblems,
@@ -47,6 +48,26 @@ describe('authorship provenance', () => {
         'src/assets/illustrations/a2/diagram.svg',
         'src/assets/illustrations/a2/scene.avif',
       ]);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  test('asset prompts and briefs must be real files inside the prompt archive', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'atlas-prompts-'));
+    try {
+      const archive = join(dir, 'data/prompts');
+      mkdirSync(archive, { recursive: true });
+      writeFileSync(join(archive, 'brief.md'), '# Brief\n');
+      writeFileSync(join(dir, 'README.md'), '# Not a prompt\n');
+      symlinkSync(join(dir, 'README.md'), join(archive, 'escaped.md'));
+      expect(archivedPromptPathProblem(dir, 'data/prompts/brief.md')).toBeUndefined();
+      expect(archivedPromptPathProblem(dir, 'README.md')).toContain(
+        'must stay under data/prompts/',
+      );
+      expect(archivedPromptPathProblem(dir, 'data/prompts/escaped.md')).toContain(
+        'resolves outside data/prompts/',
+      );
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

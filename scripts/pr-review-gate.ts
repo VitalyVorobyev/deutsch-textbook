@@ -16,12 +16,14 @@ export interface PullRequestGateInput {
     conclusion?: string;
     state?: string;
   }>;
+  reviewDecision?: string | null;
   reviews: Array<{
     author?: { login?: string };
     body?: string;
     state?: string;
     submittedAt?: string;
   }>;
+  opinionatedReviews: Array<{ author?: { login?: string }; state?: string }>;
   threads: Array<{ isResolved: boolean; isOutdated: boolean; path: string; line?: number | null }>;
 }
 
@@ -47,10 +49,16 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
   for (const thread of unresolved)
     problems.push(`unresolved review thread at ${thread.path}:${thread.line ?? '?'}`);
 
-  for (const review of input.reviews) {
-    if (review.state === 'CHANGES_REQUESTED') {
-      problems.push(`changes requested by ${review.author?.login ?? 'unknown reviewer'}`);
-    }
+  const requestedChanges = input.opinionatedReviews.filter(
+    (review) => review.state === 'CHANGES_REQUESTED',
+  );
+  for (const review of requestedChanges) {
+    problems.push(`changes requested by ${review.author?.login ?? 'unknown reviewer'}`);
+  }
+  if (input.reviewDecision === 'CHANGES_REQUESTED' && requestedChanges.length === 0) {
+    // Keep the aggregate decision as a fallback if GitHub cannot expose the
+    // reviewer (for example because permissions or pagination change).
+    problems.push('pull request has outstanding requested changes');
   }
 
   if (input.statusCheckRollup.length === 0) {
@@ -123,6 +131,50 @@ function fetchThreads(owner: string, repo: string, number: number): PullRequestG
   return threads;
 }
 
+function fetchReviewStatus(
+  owner: string,
+  repo: string,
+  number: number,
+): Pick<PullRequestGateInput, 'reviewDecision' | 'opinionatedReviews'> {
+  const query = `
+    query($owner: String!, $repo: String!, $number: Int!) {
+      repository(owner: $owner, name: $repo) {
+        pullRequest(number: $number) {
+          reviewDecision
+          latestOpinionatedReviews(first: 100) {
+            nodes { state author { login } }
+          }
+        }
+      }
+    }`;
+  const response = ghJson<{
+    data: {
+      repository: {
+        pullRequest: {
+          reviewDecision: string | null;
+          latestOpinionatedReviews: { nodes: PullRequestGateInput['opinionatedReviews'] };
+        };
+      };
+    };
+  }>([
+    'api',
+    'graphql',
+    '-f',
+    `query=${query}`,
+    '-f',
+    `owner=${owner}`,
+    '-f',
+    `repo=${repo}`,
+    '-F',
+    `number=${number}`,
+  ]);
+  const review = response.data.repository.pullRequest;
+  return {
+    reviewDecision: review.reviewDecision,
+    opinionatedReviews: review.latestOpinionatedReviews.nodes,
+  };
+}
+
 export function runPullRequestGate(): void {
   const repository = ghJson<{ nameWithOwner: string }>([
     'repo',
@@ -151,6 +203,7 @@ export function runPullRequestGate(): void {
     headRefOid: pr.headRefOid,
     statusCheckRollup: pr.statusCheckRollup,
     reviews: pr.latestReviews,
+    ...fetchReviewStatus(owner, repo, pr.number),
     threads: fetchThreads(owner, repo, pr.number),
   };
   const problems = pullRequestGateProblems(input);

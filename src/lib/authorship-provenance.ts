@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
-import { extname, join, relative, sep } from 'node:path';
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
+import { extname, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
 
@@ -203,6 +203,22 @@ export function assetSha256(path: string): string {
   return createHash('sha256').update(canonical).digest('hex');
 }
 
+export function archivedPromptPathProblem(root: string, prompt: string): string | undefined {
+  const archive = resolve(root, 'data/prompts');
+  const candidate = resolve(root, prompt);
+  const lexicalRelative = relative(archive, candidate);
+  if (lexicalRelative.startsWith(`..${sep}`) || lexicalRelative === '..') {
+    return `"${prompt}" must stay under data/prompts/`;
+  }
+  if (!existsSync(candidate)) return `"${prompt}" does not resolve`;
+  const realRelative = relative(realpathSync(archive), realpathSync(candidate));
+  if (realRelative.startsWith(`..${sep}`) || realRelative === '..') {
+    return `"${prompt}" resolves outside data/prompts/`;
+  }
+  if (!statSync(candidate).isFile()) return `"${prompt}" must resolve to a file`;
+  return undefined;
+}
+
 export function legacyAssetChangeProblems(asset: AssetRecord): string[] {
   const baseline = LEGACY_ASSET_BASELINE_SHA256[asset.path];
   if (!baseline || asset.sha256 === baseline) return [];
@@ -312,11 +328,19 @@ export function authorshipProvenanceProblems(
       const actual = assetSha256(absolute);
       if (actual !== asset.sha256)
         problems.push(`data/asset-provenance.yaml: "${asset.path}" SHA-256 is stale`);
-      if (asset.prompt && !existsSync(join(root, asset.prompt)))
-        problems.push(`data/asset-provenance.yaml: prompt "${asset.prompt}" for "${asset.path}" does not resolve`);
+      if (asset.prompt) {
+        const promptProblem = archivedPromptPathProblem(root, asset.prompt);
+        if (promptProblem)
+          problems.push(
+            `data/asset-provenance.yaml: prompt for "${asset.path}" ${promptProblem}`,
+          );
+      }
       for (const change of asset.changes) {
-        if (!existsSync(join(root, change.brief)))
-          problems.push(`data/asset-provenance.yaml: change brief "${change.brief}" for "${asset.path}" does not resolve`);
+        const briefProblem = archivedPromptPathProblem(root, change.brief);
+        if (briefProblem)
+          problems.push(
+            `data/asset-provenance.yaml: change brief for "${asset.path}" ${briefProblem}`,
+          );
       }
     }
 
