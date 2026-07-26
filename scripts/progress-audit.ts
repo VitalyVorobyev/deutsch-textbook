@@ -11,6 +11,7 @@
  *   bun run progress:audit --snapshot progress/vitaly/2026-07-13.json
  *   bun run progress:audit --profile vitaly --item a2/perfekt-haben-sein:uebersetzen-pizza
  *   bun run progress:audit --profile vitaly --project 2026-08-02
+ *   bun run progress:audit --profile vitaly --lapses
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -66,8 +67,24 @@ export interface AuditAttempt {
 interface AuditCard {
   reps?: number;
   lapses?: number;
+  stability?: number;
   last_review?: string;
 }
+
+/**
+ * A lexeme with this many lapses in one direction is what the operating program calls a
+ * review trigger for that *entry* — its forms, its contrast and its context — not a signal
+ * about the learner (docs/a2-learning-led-program.md).
+ *
+ * The `--lapses` view exists because the deck table cannot answer the question that rule
+ * asks. `wohnen-umzug | 14 cards | 10 lapses` is unreadable: it is either ten mildly
+ * awkward cards or one broken one. The 2026-07-26 pass found the latter — 22 cards over
+ * the threshold, 21 of them the production direction, and the worst sitting at 0.0–0.4
+ * days of stability after 14–25 repetitions. A card that will not stabilize across twenty
+ * repetitions is a defective entry rather than a hard word, and `stability` is the column
+ * that says so, which is why it is reported beside the lapse count and not instead of it.
+ */
+const LAPSE_REVIEW_THRESHOLD = 2;
 
 export interface AuditSnapshot {
   version: number;
@@ -175,6 +192,14 @@ export interface ProgressAudit {
     withLapses: number;
     byDirection: Array<{ direction: string; cards: number; lapses: number }>;
     byDeck: Array<{ deck: string; cards: number; lapses: number }>;
+    needingReview: Array<{
+      deck: string;
+      headword: string;
+      direction: string;
+      lapses: number;
+      reps: number;
+      stability?: number;
+    }>;
   };
   delayed: {
     attempts: number;
@@ -598,6 +623,7 @@ function focusSignals(
 function cardSummary(cards: Record<string, AuditCard>) {
   const directions = new Map<string, { direction: string; cards: number; lapses: number }>();
   const decks = new Map<string, { deck: string; cards: number; lapses: number }>();
+  const needingReview: ProgressAudit['cards']['needingReview'] = [];
   let lapses = 0;
   let withLapses = 0;
   for (const [id, card] of Object.entries(cards)) {
@@ -607,6 +633,17 @@ function cardSummary(cards: Record<string, AuditCard>) {
     const cardLapses = card.lapses ?? 0;
     lapses += cardLapses;
     if (cardLapses > 0) withLapses += 1;
+    if (cardLapses >= LAPSE_REVIEW_THRESHOLD)
+      needingReview.push({
+        deck,
+        // Card identity is `<deck>::<de>::<direction>`, and a headword may itself contain
+        // no `::`, so everything between the first and last segment is the headword.
+        headword: parts.slice(1, -1).join('::') || '(unknown)',
+        direction,
+        lapses: cardLapses,
+        reps: card.reps ?? 0,
+        stability: card.stability,
+      });
     const dir = directions.get(direction) ?? { direction, cards: 0, lapses: 0 };
     dir.cards += 1;
     dir.lapses += cardLapses;
@@ -624,6 +661,16 @@ function cardSummary(cards: Record<string, AuditCard>) {
     byDeck: [...decks.values()]
       .sort((a, b) => b.lapses - a.lapses || b.cards - a.cards || a.deck.localeCompare(b.deck))
       .slice(0, DEFAULT_LIMIT),
+    // Not truncated: the whole point is that the tail is the work-list. Sorted by lapses,
+    // then by ascending stability — the two cards at the same lapse count are not equally
+    // urgent, and the one that has not stabilized is the one to open first.
+    needingReview: needingReview.sort(
+      (a, b) =>
+        b.lapses - a.lapses ||
+        (a.stability ?? Infinity) - (b.stability ?? Infinity) ||
+        a.deck.localeCompare(b.deck) ||
+        a.headword.localeCompare(b.headword),
+    ),
   };
 }
 
@@ -1168,7 +1215,38 @@ function readabilitySection(
   return out;
 }
 
-export function renderMarkdown(audit: ProgressAudit): string {
+/**
+ * The per-entry lapse work-list, printed only behind `--lapses`. It is off by default
+ * because this report is meant to stay compact, and on the day you need it you need every
+ * row: it is a work-list, not a top-10.
+ */
+function lapseReviewSection(
+  rows: ProgressAudit['cards']['needingReview'],
+  show: boolean,
+): string[] {
+  if (!show)
+    return rows.length
+      ? [`${rows.length} card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — \`--lapses\` lists them.`, '']
+      : [];
+  if (!rows.length) return [`No card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
+  const productive = rows.filter((row) => row.direction === 'x-de').length;
+  return [
+    `${rows.length} card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses, ${productive} of them in the ` +
+      'production direction. Low stability against high reps means the entry is the problem, ' +
+      'not the lexeme: check the gloss for a rival German word before changing anything else.',
+    '',
+    '| Deck | Headword | Dir | Lapses | Reps | Stability (d) |',
+    '| --- | --- | --- | ---: | ---: | ---: |',
+    ...rows.map(
+      (row) =>
+        `| ${md(row.deck)} | ${md(row.headword)} | ${md(row.direction)} | ${row.lapses} | ` +
+        `${row.reps} | ${row.stability === undefined ? '—' : row.stability.toFixed(1)} |`,
+    ),
+    '',
+  ];
+}
+
+export function renderMarkdown(audit: ProgressAudit, showLapses = false): string {
   const out: string[] = [
     '# Progress audit',
     '',
@@ -1242,6 +1320,7 @@ export function renderMarkdown(audit: ProgressAudit): string {
     '| --- | ---: | ---: |',
     ...audit.cards.byDeck.map((row) => `| ${md(row.deck)} | ${row.cards} | ${row.lapses} |`),
     '',
+    ...lapseReviewSection(audit.cards.needingReview, showLapses),
     ...retentionSection(audit.delayed.probes.byCompetence),
     ...readabilitySection(
       audit.delayed.probes.byReadability,
@@ -1320,6 +1399,7 @@ interface CliArgs {
   item?: string;
   project?: string;
   json: boolean;
+  lapses: boolean;
 }
 
 function cliArgs(argv: string[]): CliArgs {
@@ -1336,6 +1416,7 @@ function cliArgs(argv: string[]): CliArgs {
     item: value('--item'),
     project: value('--project'),
     json: argv.includes('--json'),
+    lapses: argv.includes('--lapses'),
   };
 }
 
@@ -1375,7 +1456,7 @@ export function run(argv = process.argv.slice(2), root = process.cwd()): string 
     itemRef: args.item,
     projectTo,
   });
-  return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit);
+  return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit, args.lapses);
 }
 
 if (import.meta.main) {
