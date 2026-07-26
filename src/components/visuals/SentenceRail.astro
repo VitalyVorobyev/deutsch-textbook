@@ -1,0 +1,193 @@
+---
+import LearningFigure from './LearningFigure.astro';
+
+type View = 'v2' | 'separable' | 'modal' | 'perfekt' | 'subordinate' | 'indirect' | 'zu';
+
+interface Props {
+  view: View;
+}
+
+const { view } = Astro.props;
+
+const figures = {
+  v2: {
+    title: 'Das Verb bleibt auf Position 2',
+    label: 'Hauptsatz',
+    tokens: [['Heute', 'start'], ['arbeitet', 'finite'], ['Nina', 'middle'], ['im Büro.', 'middle']],
+    caption: 'Ein Satzteil kann nach vorn wandern; das konjugierte Verb bleibt an zweiter Stelle.',
+    en: 'Heute fills the first position. The conjugated verb arbeitet remains in position two; the subject Nina follows it.',
+    ru: 'Heute занимает первую позицию. Спрягаемый глагол arbeitet остаётся на второй, а подлежащее Nina идёт после него.',
+    uk: 'Heute займає першу позицію. Відмінюване дієслово arbeitet залишається на другій, а підмет Nina стоїть після нього.',
+  },
+  separable: {
+    title: 'Die Vorsilbe schließt den Satz',
+    label: 'Trennbares Verb',
+    tokens: [['Nina', 'start'], ['ruft', 'finite'], ['ihre Mutter', 'middle'], ['an.', 'end']],
+    caption: 'Der konjugierte Stamm steht auf Position 2; die trennbare Vorsilbe steht am Ende.',
+    en: 'The separable verb anrufen opens into two parts: finite ruft in position two and prefix an at the end.',
+    ru: 'Отделяемый глагол anrufen раскрывается в рамку: форма ruft стоит на второй позиции, приставка an — в конце.',
+    uk: 'Відокремлюване дієслово anrufen утворює рамку: форма ruft стоїть на другій позиції, префікс an — у кінці.',
+  },
+  modal: {
+    title: 'Modalverb und Infinitiv bilden eine Klammer',
+    label: 'Modalverb',
+    tokens: [['Nina', 'start'], ['muss', 'finite'], ['am Samstag', 'middle'], ['arbeiten.', 'end']],
+    caption: 'Das Modalverb ist konjugiert; der zweite Verbinfinitiv schließt den Satz.',
+    en: 'The conjugated modal muss occupies position two. The action verb arbeiten stays as an infinitive at the end.',
+    ru: 'Спрягаемый модальный глагол muss занимает вторую позицию. Смысловой глагол arbeiten остаётся инфинитивом в конце.',
+    uk: 'Відмінюване модальне дієслово muss займає другу позицію. Смислове arbeiten лишається інфінітивом у кінці.',
+  },
+  perfekt: {
+    title: 'Hilfsverb und Partizip bilden eine Klammer',
+    label: 'Perfekt',
+    tokens: [['Nina', 'start'], ['hat', 'finite'], ['den Schrank', 'middle'], ['aufgebaut.', 'end']],
+    caption: 'Das Hilfsverb steht auf Position 2; das Partizip II schließt den Satz.',
+    en: 'The auxiliary hat is conjugated in position two. The participle aufgebaut closes the clause.',
+    ru: 'Вспомогательный глагол hat стоит на второй позиции. Причастие aufgebaut закрывает предложение.',
+    uk: 'Допоміжне дієслово hat стоїть на другій позиції. Дієприкметник aufgebaut закриває речення.',
+  },
+  subordinate: {
+    title: 'Im Nebensatz geht das Verb ans Ende',
+    label: 'weil-Nebensatz',
+    tokens: [['weil', 'connector'], ['Nina', 'start'], ['am Samstag', 'middle'], ['arbeiten muss.', 'end']],
+    caption: 'Die Konjunktion öffnet den Nebensatz; der ganze Verbblock steht am Ende.',
+    en: 'weil opens a subordinate clause. Nina and the time phrase come first; the verb block arbeiten muss closes it.',
+    ru: 'weil открывает придаточное. После него идут Nina и обстоятельство времени, а блок arbeiten muss закрывает придаточное.',
+    uk: 'weil відкриває підрядне речення. Після нього стоять Nina й обставина часу, а блок arbeiten muss закриває підрядне.',
+  },
+  indirect: {
+    title: 'Die Frage wird zum Nebensatz',
+    label: 'Indirekte Frage',
+    tokens: [['Weißt du,', 'start'], ['wann', 'connector'], ['der Kurs', 'middle'], ['beginnt?', 'end']],
+    caption: 'Das Fragewort bleibt; das konjugierte Verb wandert ans Ende der indirekten Frage.',
+    en: 'The wrapper Weißt du turns the question into a subordinate clause. wann stays at its start and beginnt moves to the end.',
+    ru: 'Рамка Weißt du превращает вопрос в придаточное. wann остаётся в начале, а beginnt переходит в конец.',
+    uk: 'Рамка Weißt du перетворює питання на підрядне. wann лишається на початку, а beginnt переходить у кінець.',
+  },
+  zu: {
+    title: 'Der zu-Infinitiv schließt seinen Satz',
+    label: 'Infinitiv mit zu',
+    tokens: [['Nina', 'start'], ['versucht,', 'finite'], ['früher', 'middle'], ['aufzustehen.', 'end']],
+    caption: 'Bei trennbaren Verben steht zu zwischen Vorsilbe und Stamm: auf + zu + stehen.',
+    en: 'The governing verb versucht is conjugated. The zu-infinitive closes the clause; in aufzustehen, zu sits between prefix auf and stem stehen.',
+    ru: 'Управляющий глагол versucht спрягается. Инфинитив с zu стоит в конце; в aufzustehen частица zu вставлена между auf и stehen.',
+    uk: 'Керівне дієслово versucht відмінюється. Інфінітив із zu стоїть у кінці; в aufzustehen частка zu міститься між auf і stehen.',
+  },
+} satisfies Record<View, {
+  title: string;
+  label: string;
+  tokens: [string, 'start' | 'finite' | 'middle' | 'end' | 'connector'][];
+  caption: string;
+  en: string;
+  ru: string;
+  uk: string;
+}>;
+
+const figure = figures[view];
+---
+
+<LearningFigure id={`sentence-rail-${view}`} title={figure.title} sourceClass="simulated">
+  <div slot="visual" class="sentence-rail px-3 py-5 sm:px-5" aria-hidden="true">
+    <div class="mb-3 text-center text-xs font-bold uppercase tracking-[0.12em] text-stone-500 dark:text-stone-400">
+      {figure.label}
+    </div>
+    <div class="grid min-w-0 grid-cols-2 gap-2 sm:flex sm:items-stretch sm:justify-center">
+      {figure.tokens.map(([text, role], index) => (
+        <div class:list={['rail-token', `rail-token--${role}`]}>
+          <small>{role === 'finite' ? 'Position 2' : role === 'end' ? 'Ende' : role === 'connector' ? 'Signal' : index + 1}</small>
+          <strong>{text}</strong>
+        </div>
+      ))}
+    </div>
+    <div class="mt-3 flex items-center justify-center gap-2 text-xs font-semibold text-stone-500 dark:text-stone-400">
+      <span class="h-px w-8 bg-amber-500" />
+      Satzanfang → Satzende
+      <span class="h-px w-8 bg-sky-500" />
+    </div>
+  </div>
+
+  <p slot="caption" lang="de">{figure.caption}</p>
+
+  <div slot="description">
+    <p class="lang-en">{figure.en}</p>
+    <p class="lang-ru">{figure.ru}</p>
+    <p class="lang-uk">{figure.uk}</p>
+  </div>
+</LearningFigure>
+
+<style>
+  .sentence-rail {
+    background:
+      linear-gradient(90deg, rgb(245 158 11 / 8%), transparent 30%, transparent 70%, rgb(14 165 233 / 8%)),
+      repeating-linear-gradient(0deg, transparent, transparent 2.75rem, rgb(120 113 108 / 10%) 2.75rem, rgb(120 113 108 / 10%) 2.8rem);
+  }
+
+  .rail-token {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #d6d3d1;
+    border-radius: 0.7rem;
+    background: rgb(255 255 255 / 92%);
+    padding: 0.55rem 0.4rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+  }
+
+  .rail-token small {
+    color: #78716c;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .rail-token strong {
+    overflow-wrap: anywhere;
+    color: #292524;
+    font-size: clamp(0.78rem, 2.5vw, 1rem);
+    line-height: 1.2;
+  }
+
+  .rail-token--finite,
+  .rail-token--connector {
+    border-color: #d97706;
+    background: #fff7ed;
+  }
+
+  .rail-token--finite strong,
+  .rail-token--connector strong {
+    color: #9a3412;
+  }
+
+  .rail-token--end {
+    border-color: #0284c7;
+    background: #f0f9ff;
+  }
+
+  .rail-token--end strong {
+    color: #075985;
+  }
+
+  :global(.dark) .rail-token {
+    border-color: #57534e;
+    background: rgb(41 37 36 / 94%);
+  }
+
+  :global(.dark) .rail-token strong {
+    color: #f5f5f4;
+  }
+
+  :global(.dark) .rail-token--finite,
+  :global(.dark) .rail-token--connector {
+    border-color: #f59e0b;
+    background: rgb(120 53 15 / 35%);
+  }
+
+  :global(.dark) .rail-token--end {
+    border-color: #38bdf8;
+    background: rgb(12 74 110 / 35%);
+  }
+</style>

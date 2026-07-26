@@ -1,0 +1,86 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  id: string;
+  title: string;
+  sourceClass: 'real' | 'adapted' | 'simulated';
+  fullSizeAsset?: ImageMetadata;
+  attribution?: string;
+  license?: string;
+}
+
+const {
+  id,
+  title,
+  sourceClass,
+  fullSizeAsset,
+  attribution,
+  license,
+} = Astro.props;
+
+if (sourceClass !== 'simulated' && (!attribution || !license)) {
+  throw new Error(`LearningFigure "${id}": real/adapted artwork requires attribution and license`);
+}
+
+const titleId = `${id}-title`;
+const descriptionId = `${id}-description`;
+---
+
+<figure
+  class="learning-figure not-prose my-8 overflow-hidden rounded-xl border border-stone-300 bg-stone-100 shadow-sm dark:border-stone-700 dark:bg-stone-950"
+  aria-labelledby={titleId}
+  aria-describedby={descriptionId}
+>
+  <figcaption class="flex flex-wrap items-start justify-between gap-3 border-b border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-900">
+    <div>
+      <span class="block text-[0.68rem] font-bold uppercase tracking-[0.14em] text-stone-400">
+        Lernillustration
+      </span>
+      <strong id={titleId} lang="de" class="mt-0.5 block text-base text-stone-900 dark:text-stone-100">
+        {title}
+      </strong>
+    </div>
+    <span class="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+      {sourceClass === 'simulated' ? 'für den Kurs erstellt' : sourceClass}
+    </span>
+  </figcaption>
+
+  <div class="min-w-0 overflow-hidden bg-stone-100 dark:bg-stone-950">
+    <slot name="visual" />
+  </div>
+
+  <div class="border-t border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-900">
+    <div class="text-sm text-stone-700 dark:text-stone-300">
+      <slot name="caption" />
+    </div>
+    <details id={descriptionId} class="mt-2 text-sm text-stone-600 dark:text-stone-400">
+      <summary class="cursor-pointer font-medium text-amber-700 marker:text-stone-400 dark:text-amber-300">
+        Textbeschreibung
+      </summary>
+      <div class="mt-2 border-l-2 border-stone-200 pl-3 dark:border-stone-700">
+        <slot name="description" />
+      </div>
+    </details>
+    {
+      fullSizeAsset && (
+        <a
+          href={fullSizeAsset.src}
+          target="_blank"
+          rel="noreferrer"
+          class="mt-2 inline-flex rounded-sm text-xs font-medium text-stone-500 underline decoration-stone-300 underline-offset-2 hover:text-amber-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 dark:text-stone-400 dark:hover:text-amber-300"
+          aria-label={`${title}: Grundillustration in voller Größe öffnen`}
+        >
+          Grundillustration in voller Größe
+        </a>
+      )
+    }
+    {
+      sourceClass !== 'simulated' && (
+        <p class="mt-2 text-xs text-stone-500">
+          {attribution} · {license}
+        </p>
+      )
+    }
+  </div>
+</figure>

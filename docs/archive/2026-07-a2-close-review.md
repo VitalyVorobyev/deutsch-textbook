@@ -90,3 +90,18 @@ recorded A2 precedent ("A2 authoring proceeded before the read on purpose"):
 
 Follow-up dates: checkpoint delayed evidence at 2026-07-26 / 2026-07-31 / ~2026-08-14; A1
 cohort read on or after 2026-08-02.
+
+## 2026-07-26 follow-up: visual priorities after queue triage
+
+Command: `bun run progress:audit --profile vitaly` against
+`progress/vitaly/2026-07-26.json`. The snapshot has 1,940 attempts across 17 sessions. All 14
+awaiting renderings were reviewed before the focus table was read: 13 were confirmed errors and
+one natural *mitnehmen* rendering was accepted, leaving the queue at zero.
+
+The clean report supports explanatory input in three places without treating a page view as
+evidence: `wo-wohin` retained 0/2 probe targets; `trennbar-wortstellung`,
+`nebensatz-verbende` and `zu-infinitiv` remain persistent sentence-architecture signals; and
+`seit-vor-zeit` plus `um-am-zeit` remain time-relation candidates. Productive vocabulary remains
+the harder direction (102 of 107 card lapses are `x-de`). These figures prioritize model-stage
+visuals; they do not by themselves authorize a drill or prove that an illustration caused later
+retention.

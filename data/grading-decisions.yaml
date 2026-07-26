@@ -697,3 +697,87 @@
   decision: confirm
   note: "sich anmelden needs its reflexive: weil ich mich anmelden möchte. The same dropped-sich already ruled on the man-muss rendering — recurring. drill note: reflexive sich dropped in anmelden — second occurrence, sich-verb drill candidate."
   decidedAt: 2026-07-24
+
+- item: a2/reisen-verkehr-produktion:uebersetzen-ausgefallen-verpasst
+  given: "Main Zug ist ausgefallen, und ich habe den Anschlus verpasst."
+  decision: confirm
+  note: "Mein and Anschluss are both misspelled. The four graded haben-sein tokens are intact, but the rendering is not correct German."
+  decidedAt: 2026-07-26
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-formelle-bitte-mail
+  given: "Könnten Sie mir bitte einen Blank senden? Ich würde gern am Montag vorbeizukommen."
+  decision: confirm
+  note: "Blank is not the requested Formular, and würde gern takes vorbeikommen rather than vorbeizukommen. The polite graded forms survive, but the sentence does not."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-freunde-feste:variant-a
+  given: "Herr Vogel ziegt dem Schuller einen Film."
+  decision: confirm
+  note: "zeigt and Schüler are both misspelled. The graded dative dem is intact; the rejection stands outside that target."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-man-und-besitz-genitiv:probe-genitiv-name
+  given: "Das ist die Mareks Wohnung."
+  decision: confirm
+  note: "A possessive proper-name genitive directly modifies Wohnung: Mareks Wohnung, without die. The extra article makes the noun phrase ungrammatical."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-verbindungen-folgen-zeit:probe-als-hochzeit
+  given: "Als meine Schwester hereiraten habe, ist die ganze Familia gekommen."
+  decision: confirm
+  note: "The marriage clause needs geheiratet hat; hereiraten habe is not a German Perfekt form, and Familie is misspelled. Als itself is correct."
+  decidedAt: 2026-07-26
+
+- item: b1/leben-veraendern:uebersetzen-denen
+  given: "Die Freude, denen wir oft helfen, wohnen direkt um der Ecke"
+  decision: confirm
+  note: "Freunde loses n and um die Ecke takes accusative, not um der Ecke. The graded relative pronoun denen is correct, but the full rendering is not."
+  decidedAt: 2026-07-26
+
+- item: a2/wohnen-umzug-produktion:uebersetzen-bitte-an-den-nachbarn
+  given: "Können Sie die Kisten auf den Balkon stellen? Der Schrank kann in der Alum bleiben."
+  decision: confirm
+  note: "The prompt asks for a polite request (Könnten Sie), and Alum is not the hallway Flur. The direction auf den Balkon is correct, but the location clause is not."
+  decidedAt: 2026-07-26
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen
+  given: "Während wir warteten, fäng es zu regnen"
+  decision: confirm
+  note: "The past narration needs begann es zu regnen or fing es an zu regnen. fäng is neither the required past form nor a complete anfangen bracket."
+  decidedAt: 2026-07-26
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-praeteritum-bahnhof
+  given: "Gestern ging ich zum Bahnhof und wartete auf meinem Freund"
+  decision: confirm
+  note: "warten auf governs the accusative: auf meinen Freund, not auf meinem Freund. The graded Präteritum forms ging and wartete are intact."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-gesundheit-arzttermin:variant-b
+  given: "Jonas hat seit Mondat Husten. Vor drei Tagen hat er einen Arztuntersuch"
+  decision: confirm
+  note: "Montag is misspelled, and einen Arztuntersuch is neither a noun phrase nor the requested examined-him clause. seit and vor drei Tagen remain correct."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-relativsaetze:probe-nachbar-nominativ
+  given: "Ich habe einen Nachbarn, der spielt jeden Abend Guitar."
+  decision: confirm
+  note: "A relative clause is verb-final: der jeden Abend Gitarre spielt. der spielt uses main-clause order, and Gitarre is misspelled."
+  decidedAt: 2026-07-26
+
+- item: a2/probe-einkaufen-reklamation:variant-b
+  given: "Dieser Tisch ist größer als dort. Ich brauche mehr Platz."
+  decision: confirm
+  note: "als needs a comparable noun phrase here: als der Tisch dort or als der dort. The adverb dort alone cannot be the comparison target."
+  decidedAt: 2026-07-26
+
+- item: a2/freunde-feste-produktion:uebersetzen-aber-sondern-chat
+  given: "Wir treffen uns nicht um acht, sondern um neun. Ich nehme die Getränke mit, aber die Torte nicht"
+  decision: accept
+  note: "mitnehmen is natural for taking the drinks along to the event, and die Torte nicht is the same correct ellipsis already accepted with den Kuchen nicht. Both graded connectors are exact; added to accept and revision bumped."
+  decidedAt: 2026-07-26
+
+- item: a2/aemter-dienstleistungen:uebersetzen-haette-gern
+  given: "Ich hätte gern einem Bescheinigung für meinem Chef."
+  decision: confirm
+  note: "Bescheinigung is feminine accusative (eine), and für governs accusative (meinen Chef). The graded hätte is intact, but both noun phrases have case errors."
+  decidedAt: 2026-07-26

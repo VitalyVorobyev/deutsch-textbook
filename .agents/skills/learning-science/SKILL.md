@@ -134,6 +134,36 @@ sufficient.
   statements — action-oriented ("Ich kann einen Termin absagen"), not
   knowledge-oriented ("I know the dative table"). Content should teach to them.
 
+### Semantic visuals and documents
+
+A visual is model-stage **input**, not decoration and not evidence. Admit one only after this
+checklist passes:
+
+1. **Name the confusion and semantic job.** Spatial relation, transformation, sentence topology,
+   temporal sequence, participant roles or authentic-document extraction are valid jobs. “Make the
+   page engaging” is not.
+2. **Choose the least powerful fitting form.** Keep paradigms and exact matrices as tables; use
+   HTML/SVG for exact grammar and movement; use a generated scene only when physical context or
+   orientation matters; use a sourced document for document literacy.
+3. **Carry one primary relationship.** The visual complements the prose instead of repeating it.
+   Split competing jobs into separate figures to protect working memory (§8/§10).
+4. **Keep semantics controllable.** Generated pixels contain no load-bearing words, arrows, case
+   forms or answer cues. Exact German belongs to deterministic HTML/SVG and is checked against the
+   canonical reference.
+5. **Make the relationship perceivable without colour.** Pair colour with labels, arrow/pin shapes,
+   token positions, headings or line styles. Provide a complete EN/RU/UK text equivalent and hide
+   redundant decorative layers from assistive technology.
+6. **Design narrow-first.** No page or figure overflow from 320 px upward; instructional labels
+   remain readable without zooming. Prefer stacking semantic units to shrinking a desktop canvas.
+7. **Keep provenance explicit.** Real/adapted sources carry attribution and licence. Generated
+   originals are `simulated`; authentic documents stay visible while their task is answered.
+8. **Keep evidence honest.** Viewing, expanding or opening a figure creates no mastery, completion
+   or telemetry. Use later fresh-context production and delayed probes to judge transfer; a
+   usefulness rating is qualitative evidence, not a causal experiment.
+
+Never invoke “visual learners” or other learning-styles claims. Multimedia is conditional (§10):
+the second channel earns its place only when it carries a relationship the first channel does not.
+
 ### Exercise set
 - **Contracts:** every set has an explicit `role`; every item references stable
   curriculum outcome IDs. `pretest`, `checkpoint`, and `probe` roles never enter

@@ -221,13 +221,13 @@ export default function ExerciseSet({ setId, set, document }: Props) {
 
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex min-w-0 items-start justify-between gap-3">
         {set.title && (
-          <p className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+          <p className="min-w-0 text-sm font-semibold text-stone-600 dark:text-stone-300">
             {pick(lang, set.title)}
           </p>
         )}
-        <div className="ml-auto flex items-center gap-1" aria-label="progress">
+        <div className="ml-auto flex max-w-[45%] flex-wrap items-center justify-end gap-1" aria-label="progress">
           {items.map((it, i) => {
             const a = answered[i];
             return (

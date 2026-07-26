@@ -1,0 +1,262 @@
+---
+import { Image } from 'astro:assets';
+import LearningFigure from './LearningFigure.astro';
+import caseScene from '../../assets/illustrations/a2/wohnen-wo-wohin.webp';
+import caseAction from '../../assets/illustrations/a2/wohnen-wo-wohin-action.webp';
+import caseState from '../../assets/illustrations/a2/wohnen-wo-wohin-state.webp';
+import verbScene from '../../assets/illustrations/a2/wohnen-position-verbs.webp';
+import lampScene from '../../assets/illustrations/a2/wohnen-position-lamp.webp';
+import carpetScene from '../../assets/illustrations/a2/wohnen-position-carpet.webp';
+import pictureScene from '../../assets/illustrations/a2/wohnen-position-picture.webp';
+
+interface Props {
+  view: 'case' | 'verbs';
+}
+
+const { view } = Astro.props;
+
+const verbPairs = [
+  {
+    action: 'stellen',
+    state: 'stehen',
+    asset: lampScene,
+    actionSentence: 'Nina stellt die Lampe auf den Tisch.',
+    stateSentence: 'Die Lampe steht auf dem Tisch.',
+  },
+  {
+    action: 'legen',
+    state: 'liegen',
+    asset: carpetScene,
+    actionSentence: 'Nina legt den Teppich auf den Boden.',
+    stateSentence: 'Der Teppich liegt auf dem Boden.',
+  },
+  {
+    action: 'hängen',
+    state: 'hängen',
+    asset: pictureScene,
+    actionSentence: 'Nina hängt das Bild an die Wand.',
+    stateSentence: 'Das Bild hängt an der Wand.',
+  },
+];
+---
+
+{
+  view === 'case' ? (
+    <LearningFigure
+      id="wohnen-wo-wohin"
+      title="Wo oder wohin?"
+      sourceClass="simulated"
+      fullSizeAsset={caseScene}
+    >
+      <div slot="visual" class="grid min-w-0 md:grid-cols-2" aria-hidden="true">
+        <section class="min-w-0 border-b-4 border-amber-600 md:border-r-2 md:border-b-0">
+          <div class="bg-amber-50 px-3 py-3 text-center dark:bg-amber-950/40">
+            <strong class="block text-sm font-black uppercase tracking-wide text-amber-900 dark:text-amber-200">
+              Wohin? → Akkusativ
+            </strong>
+            <span class="text-xs font-semibold text-amber-800 dark:text-amber-300">Ziel · neue Position</span>
+          </div>
+          <div class="relative">
+            <Image
+              src={caseAction}
+              alt=""
+              widths={[400, 640, 800]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              loading="lazy"
+              class="block h-auto w-full select-none"
+            />
+            <svg viewBox="0 0 800 901" class="pointer-events-none absolute inset-0 h-full w-full">
+              <defs>
+                <marker id="case-arrow-responsive" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706" />
+                </marker>
+              </defs>
+              <g fill="none" stroke="#d97706" stroke-width="10" stroke-linecap="round" marker-end="url(#case-arrow-responsive)">
+                <path d="M 390 390 C 470 405, 525 450, 570 510" />
+                <path d="M 245 505 C 340 460, 410 390, 475 305" />
+                <path d="M 170 730 C 280 715, 350 695, 435 665" />
+              </g>
+            </svg>
+            <span class="case-label left-[54%] top-[44%]">auf den Tisch</span>
+            <span class="case-label left-[34%] top-[33%]">an die Wand</span>
+            <span class="case-label left-[34%] top-[74%]">ins Zimmer</span>
+          </div>
+        </section>
+
+        <section class="min-w-0 border-t-4 border-sky-600 md:border-t-0 md:border-l-2">
+          <div class="bg-sky-50 px-3 py-3 text-center dark:bg-sky-950/40">
+            <strong class="block text-sm font-black uppercase tracking-wide text-sky-900 dark:text-sky-200">
+              Wo? → Dativ
+            </strong>
+            <span class="text-xs font-semibold text-sky-800 dark:text-sky-300">Ort · fertiger Zustand</span>
+          </div>
+          <div class="relative">
+            <Image
+              src={caseState}
+              alt=""
+              widths={[400, 640, 800]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              loading="lazy"
+              class="block h-auto w-full select-none"
+            />
+            <span class="position-pin left-[30%] top-[54%]"><i />auf dem Tisch</span>
+            <span class="position-pin left-[45%] top-[28%]"><i />an der Wand</span>
+            <span class="position-pin left-[67%] top-[72%]"><i />im Zimmer</span>
+          </div>
+        </section>
+      </div>
+
+      <p slot="caption" lang="de">
+        <strong class="text-amber-700 dark:text-amber-300">Pfeil = Wohin?</strong>
+        <span aria-hidden="true"> · </span>
+        <strong class="text-sky-700 dark:text-sky-300">Punkt = Wo?</strong>
+        <span> Erst kommt das Ziel im Akkusativ, danach steht der fertige Ort im Dativ.</span>
+      </p>
+
+      <div slot="description">
+        <p class="lang-en">
+          Two views show the same room. On the left, Nina carries a lamp, picture and rug toward
+          their new destinations. Amber arrows label the goals: <i>auf den Tisch</i>,
+          <i>an die Wand</i> and <i>ins Zimmer</i>, so the phrases answer <i>Wohin?</i> and use
+          the accusative. On the right the objects have arrived. Blue position pins label
+          <i>auf dem Tisch</i>, <i>an der Wand</i> and <i>im Zimmer</i>, so the phrases answer
+          <i>Wo?</i> and use the dative.
+        </p>
+        <p class="lang-ru">
+          Показана одна и та же комната во время переезда и после него. Слева Нина несёт лампу,
+          картину и ковёр к новому месту. Янтарные стрелки называют цель: <i>auf den Tisch</i>,
+          <i>an die Wand</i>, <i>ins Zimmer</i>. Эти группы отвечают на <i>Wohin?</i> и стоят
+          в Akkusativ. Справа предметы уже на месте. Синие метки показывают положение:
+          <i>auf dem Tisch</i>, <i>an der Wand</i>, <i>im Zimmer</i>. Эти группы отвечают
+          на <i>Wo?</i> и стоят в Dativ.
+        </p>
+        <p class="lang-uk">
+          Показано ту саму кімнату під час переїзду й після нього. Ліворуч Ніна несе лампу,
+          картину та килим до нового місця. Бурштинові стрілки називають ціль:
+          <i>auf den Tisch</i>, <i>an die Wand</i>, <i>ins Zimmer</i>. Ці групи відповідають
+          на <i>Wohin?</i> і стоять в Akkusativ. Праворуч предмети вже на місці. Сині позначки
+          показують положення: <i>auf dem Tisch</i>, <i>an der Wand</i>, <i>im Zimmer</i>.
+          Ці групи відповідають на <i>Wo?</i> і стоять у Dativ.
+        </p>
+      </div>
+    </LearningFigure>
+  ) : (
+    <LearningFigure
+      id="wohnen-position-verbs"
+      title="Position oder Platzierung?"
+      sourceClass="simulated"
+      fullSizeAsset={verbScene}
+    >
+      <div slot="visual" class="grid min-w-0 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3 dark:bg-stone-700" aria-hidden="true">
+        {verbPairs.map(({ action, state, asset, actionSentence, stateSentence }) => (
+          <section class="min-w-0 bg-stone-50 dark:bg-stone-900">
+            <div class="flex min-h-16 items-center justify-center gap-2 bg-white px-2 py-2 text-center dark:bg-stone-900">
+              <span>
+                <small class="block text-[0.61rem] font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300">Aktion</small>
+                <strong class="text-base text-amber-800 dark:text-amber-200">{action}</strong>
+              </span>
+              <span class="text-xl font-black text-amber-600">→</span>
+              <span>
+                <small class="block text-[0.61rem] font-bold uppercase tracking-wide text-sky-800 dark:text-sky-300">Ergebnis</small>
+                <strong class="text-base text-sky-800 dark:text-sky-200">{state}</strong>
+              </span>
+            </div>
+            <Image
+              src={asset}
+              alt=""
+              widths={[320, 480, 640]}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              loading="lazy"
+              class="block h-auto w-full select-none"
+            />
+            <div class="grid grid-cols-2 gap-px bg-stone-200 text-center text-[0.72rem] font-semibold leading-snug dark:bg-stone-700">
+              <p class="m-0 bg-amber-50 px-2 py-3 text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">{actionSentence}</p>
+              <p class="m-0 bg-sky-50 px-2 py-3 text-sky-900 dark:bg-sky-950/40 dark:text-sky-200">{stateSentence}</p>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <p slot="caption" lang="de">
+        Links verändert Nina den Ort eines Gegenstands; rechts ist der Gegenstand schon dort.
+        Bei <i>hängen</i> bleibt die Form gleich — das Objekt zeigt, ob jemand handelt.
+      </p>
+
+      <div slot="description">
+        <p class="lang-en">
+          Three action-and-result pairs show the verb contrast. Nina places a lamp upright on a
+          table; afterwards the lamp stands there: <i>stellen → stehen</i>. She lays a rug flat
+          on the floor; afterwards it lies there: <i>legen → liegen</i>. She hangs a picture on
+          the wall; afterwards it is hanging there: <i>hängen → hängen</i>. The action scenes
+          contain an actor and an object; the result scenes contain only the object in its position.
+        </p>
+        <p class="lang-ru">
+          Три пары показывают действие и его результат. Нина ставит лампу на стол, после чего
+          лампа там стоит: <i>stellen → stehen</i>. Она кладёт ковёр на пол, после чего ковёр
+          там лежит: <i>legen → liegen</i>. Она вешает картину на стену, после чего картина там
+          висит: <i>hängen → hängen</i>. В сцене действия есть действующее лицо и объект; в сцене
+          результата остаётся только предмет в своём положении.
+        </p>
+        <p class="lang-uk">
+          Три пари показують дію та її результат. Ніна ставить лампу на стіл, після чого лампа
+          там стоїть: <i>stellen → stehen</i>. Вона кладе килим на підлогу, після чого килим там
+          лежить: <i>legen → liegen</i>. Вона вішає картину на стіну, після чого картина там
+          висить: <i>hängen → hängen</i>. У сцені дії є виконавець і предмет; у сцені результату
+          залишається лише предмет у своєму положенні.
+        </p>
+      </div>
+    </LearningFigure>
+  )
+}
+
+<style>
+  .case-label {
+    position: absolute;
+    transform: translate(-10%, -50%);
+    border: 2px solid #d97706;
+    border-radius: 0.65rem;
+    background: rgb(255 247 237 / 94%);
+    padding: 0.24rem 0.42rem;
+    color: #92400e;
+    font-size: clamp(0.68rem, 2.5vw, 0.86rem);
+    font-weight: 800;
+    line-height: 1.1;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  }
+
+  .position-pin {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transform: translate(-10%, -50%);
+    border: 2px solid #2563eb;
+    border-radius: 0.65rem;
+    background: rgb(239 246 255 / 94%);
+    padding: 0.24rem 0.42rem;
+    color: #1e3a8a;
+    font-size: clamp(0.68rem, 2.5vw, 0.86rem);
+    font-weight: 800;
+    line-height: 1.1;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+  }
+
+  .position-pin i {
+    display: block;
+    width: 0.62rem;
+    height: 0.62rem;
+    flex: none;
+    border: 0.18rem solid #2563eb;
+    border-radius: 9999px;
+    background: white;
+  }
+
+  @media (min-width: 768px) {
+    .case-label,
+    .position-pin {
+      font-size: clamp(0.62rem, 1.2vw, 0.78rem);
+    }
+  }
+</style>

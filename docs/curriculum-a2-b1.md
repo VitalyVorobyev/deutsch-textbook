@@ -523,17 +523,23 @@ enters `content/atlas.yaml` ahead of its content. The 2026-08-02 and ~2026-08-14
 are revision triggers on this contract ([decision record](a2-learning-led-program.md#calendar-and-b1-gates)).
 B1 grows discourse length, independence and genre range; it is not simply more grammar.
 
-**Identity scheme, one rule for all ten units** (`<id>` is the topic id, one topic per unit):
+**Identity scheme, one rule for all fourteen units** (`<id>` is the topic id, one topic per unit):
 article `content/topics/b1/<id>.mdx`; sets `b1/<id>` (primaryPractice — its item list never grows
-after shipping), `b1/<id>-produktion`, `b1/<id>-pretest`, `b1/probe-<id>` (3 parallel variants,
-one competence); reading `b1/<id>` (`kind: intensive`); deck `content/vocab/<id>.yaml`. Every B1
+after shipping), `b1/<id>-produktion`, `b1/<id>-pretest`; **one probe family per competence**,
+`b1/probe-<id>` for the unit's first and `b1/probe-<id>-<competence>` for each further one (3
+parallel variants each, one competence each — [amended 2026-07-24](#amendment-2026-07-24-probe-families-unit-count-and-deck-size));
+reading `b1/<id>` (`kind: intensive`); deck `content/vocab/<id>.yaml`. Every B1
 topic carries `<En>`, `<Ru>`, `<Uk>` **and `<De>`** halves from authoring (the machinery landed
 before unit 1 — roadmap soft preference, met; cost on record: 1.98x localized,
 `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`).
 
 **Grammar ownership is exhaustive:** the 31 manifest points of `data/grammar-inventory.yaml`'s B1
 section (including `adjektiv-nullartikel`, filed with the A2 adjective block) are each owned by
-exactly one unit below — 3+3+4+3+3+4+2+3+3+3 = 31, carried by 34 proposed focus tags. A tag
+exactly one unit below — 3+3+4+3+3+2+2+2+3+3+0+0+0+3 = 31, carried by 34 proposed focus tags. The
+three zero addends are the genre units B1.11–B1.13, which own no manifest point by design: they
+carry lexis and discourse range, recycle existing tags, and **must ship with the
+`tests/grammar-coverage.test.ts` ratchet unchanged** — a genre unit that moves the grammar number
+has silently adopted a point some other unit owns. A tag
 becomes real in the commit that ships its unit (registered in `focusIntroducedBy` **and**
 `docs/focus-tags.md`, ratchet in `tests/grammar-coverage.test.ts` raised in the same commit).
 **Only a new B1 tag closes a B1 point** — recycled A2 tags carry the `deepens` edges and never
@@ -549,8 +555,12 @@ them from scratch, and each unit's grammar list names only the added depth.
 
 **Unit order rationale, recorded:** narrative first (B1.1 deepens the biografie material the
 learner just finished); the Konjunktiv II chunks-before-paradigm split puts advice (B1.3,
-`konjunktiv2-ratschlag`) before the unreal paradigm (B1.7, `konjunktiv2-irreal`); the passive
-block coheres in one unit (B1.6); the cumulative mediation unit closes the level (B1.10).
+`konjunktiv2-ratschlag`) before the unreal paradigm (B1.8, `konjunktiv2-irreal`); the passive
+spans two adjacent units (B1.6 forms and past, B1.7 the modal passive under rules and
+consequences) — **this reverses the original "the passive block coheres in one unit" rationale**,
+which put three passive forms plus `konsekutivsatz-sodass` behind a single article, practice set
+and probe; the genre units B1.11–B1.13 carry lexis and discourse range without new grammar; the
+cumulative mediation unit still closes the level (B1.14).
 
 ### B1.1 · `erfahrungen-erzaehlen` — Erfahrungen erzählen
 
@@ -564,7 +574,7 @@ Interview über Erfahrungen die Hauptpunkte entnehmen."), `muendlich-nacherzaehl
 (spoken-production — "Ich kann eine Geschichte mündlich zusammenhängend nacherzählen.").
 **Deepens (A2, never re-taught):** `biografie-erfahrungen` (als/wenn, praeteritum-sein-haben),
 `perfekt-haben-sein` — the Perfekt–Präteritum register split is the teaching point.
-**Exclude:** Plusquamperfekt outside nachdem-frames, literary narration, indirect speech (B1.10).
+**Exclude:** Plusquamperfekt outside nachdem-frames, literary narration, indirect speech (B1.14).
 
 ### B1.2 · `leben-veraendern` — Leben verändern
 
@@ -597,7 +607,7 @@ Gewohnheiten und Wohlbefinden sprechen.").
 preposition frames). The A2 chunk tag `hoeflich-konjunktiv` never closes `konjunktiv2-ratschlag`
 — the point is the productive paradigm behind the chunks.
 **Exclude:** diagnoses, medical terminology beyond everyday complaints, the unreal Konjunktiv II
-paradigm (B1.7).
+paradigm (B1.8).
 
 ### B1.4 · `arbeit-bewerbung` — Arbeit & Bewerbung
 
@@ -629,19 +639,36 @@ questions recycle — the mediation load is the new part).
 
 ### B1.6 · `konsum-umwelt` — Konsum & Umwelt
 
-**Mission:** compare choices, understand notices, negotiate a practical solution; avoid abstract
+**Mission:** compare choices and understand how things are made, sold and regulated; avoid abstract
 policy.
-**Grammar (4):** `passiv-produktion` → tag `passiv-bildung`; `passiv-vergangenheit` →
-`passiv-vergangenheit`; `passiv-modal` → `passiv-modal`; `konsekutivsatz-sodass` → `sodass-folge`.
+**Grammar (2):** `passiv-produktion` → tag `passiv-bildung`; `passiv-vergangenheit` →
+`passiv-vergangenheit`.
 **Outcomes:** `passiv-beschreiben` (writing — "Ich kann mit dem Passiv beschreiben, wie etwas
 hergestellt oder geregelt wird."), `hinweise-verstehen` (reading — "Ich kann öffentliche Hinweise
-und Regelungen verstehen."), `loesung-aushandeln` (spoken-interaction — "Ich kann bei einem
-Problem eine praktische Lösung aushandeln.").
+und Regelungen verstehen."), `konsum-vergleichen` (spoken-production — "Ich kann
+Konsumentscheidungen vergleichen und meine Wahl begründen.").
 **Deepens:** `einkaufen-reklamation`, `man-und-besitz` (its `passiv-rezeptiv` recognition was A2;
 production is this unit's whole point — the A2 tag never closes these gaps).
-**Exclude:** Vorgangs- vs Zustandspassiv terminology, environmental policy debate, statistics.
+**Exclude:** Vorgangs- vs Zustandspassiv terminology, environmental policy debate, statistics, the
+modal passive (B1.7).
 
-### B1.7 · `reisen-probleme` — Reisen & Probleme
+### B1.7 · `regeln-verantwortung` — Regeln & Verantwortung
+
+**Mission:** understand what must, may and cannot be done in everyday regulated situations, state
+what follows from it, and negotiate a practical solution.
+**Grammar (2):** `passiv-modal` → tag `passiv-modal` (das muss bis Freitag erledigt werden);
+`konsekutivsatz-sodass` → `sodass-folge`.
+**Outcomes:** `pflichten-verstehen` (reading — "Ich kann einer Regelung entnehmen, was getan werden
+muss und was erlaubt ist."), `folgen-benennen` (writing — "Ich kann mit sodass benennen, welche
+Folge etwas hat."), `loesung-aushandeln` (spoken-interaction — "Ich kann bei einem Problem eine
+praktische Lösung aushandeln.").
+**Deepens:** `modalverben` (the A2 active modal is the base — the modal passive is the depth),
+`verbindungen-folgen` (deshalb/trotzdem are A2 adverbs; sodass the conjunction is the depth),
+`aemter-dienstleistungen`.
+**Exclude:** legal obligation language, the `so … dass` split-position stylistic variant,
+Zustandspassiv.
+
+### B1.8 · `reisen-probleme` — Reisen & Probleme
 
 **Mission:** manage less predictable disruption and make a complaint; exclude legal detail.
 **Grammar (2):** `konjunktiv2-irreal` → tags `konjunktiv2-form`, `irreale-bedingung`;
@@ -654,7 +681,7 @@ zusammenhängend berichten.").
 full paradigm here).
 **Exclude:** Konjunktiv II of full verbs beyond hätte/wäre/würde + core modals, compensation law.
 
-### B1.8 · `lernen-zukunft` — Lernen & Zukunft
+### B1.9 · `lernen-zukunft` — Lernen & Zukunft
 
 **Mission:** discuss learning and career goals, summarize, plan next steps.
 **Grammar (3):** `finalsatz-damit` → tag `damit-um-zu` (the subject test decides between them);
@@ -667,7 +694,7 @@ entnehmen.").
 are A2 — damit/ohne … zu/statt … zu are the added depth).
 **Exclude:** formal study-counselling vocabulary, Futur II, career-planning jargon.
 
-### B1.9 · `gesellschaft-zusammenleben` — Gesellschaft & Zusammenleben
+### B1.10 · `gesellschaft-zusammenleben` — Gesellschaft & Zusammenleben
 
 **Mission:** join a familiar community discussion and resolve a disagreement; action-oriented,
 never civics-lecture.
@@ -682,7 +709,51 @@ Meinungsverschiedenheit einen Kompromiss vorschlagen.").
 depth), `freunde-feste`.
 **Exclude:** political institutions, migration-policy content, formal debate structure.
 
-### B1.10 · `informationen-vermitteln` — Informationen vermitteln
+### B1.11 · `digitales-leben` — Digitales Leben
+
+**Genre unit — owns no manifest grammar point.** Its practice recycles tags already registered by
+earlier units; it closes none, and the grammar ratchet does not move in its commit.
+**Mission:** follow written instructions, get help with something that went wrong, and talk about
+media habits. Genre range: Anleitung, Hilfetext, Online-Formular.
+**Grammar (0):** none new. Recycles `passiv-bildung` (B1.6) in instructions and `sodass-folge`
+(B1.7) in problem reports — recycled tags never close a point.
+**Outcomes:** `anleitung-verstehen` (reading — "Ich kann einer schriftlichen Anleitung Schritt für
+Schritt folgen."), `technikproblem-schildern` (writing — "Ich kann ein technisches Problem
+schildern und gezielt um Hilfe bitten."), `mediennutzung-berichten` (spoken-production — "Ich kann
+über meine Mediennutzung berichten und sie einordnen.").
+**Deepens:** `lernen-verstehen`, `aemter-dienstleistungen` (online forms grow the counter-desk
+register).
+**Exclude:** IT-specialist vocabulary, data-protection law, device-specific brand language.
+
+### B1.12 · `kultur-freizeit` — Kultur & Freizeit
+
+**Genre unit — owns no manifest grammar point** (same rule as B1.11).
+**Mission:** read what is on, agree with someone on a plan, and say what an event was like. Genre
+range: Programm, Rezension, Einladung.
+**Grammar (0):** none new. Recycles `komparativ-attributiv` (B1.2) in recommendations and
+`praeteritum-vollverben` (B1.1) in written reports.
+**Outcomes:** `programm-verstehen` (reading — "Ich kann einem Veranstaltungsprogramm die für mich
+wichtigen Informationen entnehmen."), `veranstaltung-empfehlen` (spoken-interaction — "Ich kann
+eine Veranstaltung empfehlen und mich mit anderen auf einen Plan einigen."), `erlebnis-bewerten`
+(writing — "Ich kann einen kurzen Erfahrungsbericht schreiben und begründet bewerten.").
+**Deepens:** `freunde-feste`, `freizeit-koennen`.
+**Exclude:** art criticism register, sports-reporting jargon, cultural-history content.
+
+### B1.13 · `geld-vertraege` — Geld & Verträge
+
+**Genre unit — owns no manifest grammar point** (same rule as B1.11).
+**Mission:** check what you have been charged, ask the questions that clarify a contract, and
+compare what things cost. Genre range: Rechnung, Vertrag, Kostenvoranschlag.
+**Grammar (0):** none new. Recycles `genitiv-form` (B1.2), `passiv-modal` (B1.7) in terms and
+conditions, and `n-deklination` (B1.4).
+**Outcomes:** `rechnung-pruefen` (reading — "Ich kann eine Rechnung prüfen und Unstimmigkeiten
+benennen."), `vertrag-nachfragen` (spoken-interaction — "Ich kann zu einem Vertrag gezielt
+nachfragen und Bedingungen klären."), `kosten-vergleichen` (spoken-production — "Ich kann Kosten
+und Tarife vergleichen und meine Wahl begründen.").
+**Deepens:** `einkaufen-reklamation`, `aemter-dienstleistungen`.
+**Exclude:** banking and insurance law, investment vocabulary, tax content.
+
+### B1.14 · `informationen-vermitteln` — Informationen vermitteln
 
 **Mission:** relay the main points of a notice, message or conversation — the cumulative
 mediation unit that closes the level.
@@ -700,14 +771,36 @@ zusammenfassen.").
 
 ### Vocabulary, probes, checkpoint — the level-wide policies
 
-- **Vocabulary:** each unit ships a thin deck of 12–24 entries no deck owns, recycling A1/A2
-  lexis aggressively; `cards: recognition` is used from day one for understand-only entries. The
-  ~1,996-headword Wortliste tail closes in an end-of-level completion pass of **unowned** decks,
+- **Vocabulary:** each unit ships a deck of **30–40 entries** no deck owns, recycling A1/A2 lexis
+  aggressively. **The deck has two tiers and the split is decided at authoring time, once:** the
+  core 12–24 entries the unit actively teaches ship `cards: both`; every entry added beyond that
+  core is receptive tail and ships **`cards: recognition` from the start**. This is not a
+  preference — an entry defaults to `both` and **is never retrofitted**, because the direction is
+  baked into the card id and flipping a shipped entry deletes its production-card SRS history. At
+  two cards per `both` entry, a 35-entry all-`both` deck is 70 cards, and fourteen of them is ~980
+  cards against `DAILY_NEW_CARDS = 15` — roughly double B1's affordable review load. The tiering is
+  what makes the larger deck payable.
+  The remaining Wortliste tail still closes in an end-of-level completion pass of **unowned** decks,
   recognition-heavy — never listed in any topic's `vocab:`. Coverage command:
   `bun scripts/coverage.ts B1` (with `--check-deck` per deck before validate).
-- **Probes:** one 3-variant, single-competence family per unit from day one, cloze-preferred for
-  attribution. A second family only for a measured reason, with `armedAt` checked before and
-  after (a >~1-day shift re-labels probes already taken).
+- **Probes: one 3-variant, single-competence family per competence the unit owns**, from day one,
+  cloze-preferred for attribution. A unit with three grammar points declares three families
+  (`b1/probe-<id>` plus `b1/probe-<id>-<competence>`); a genre unit declares one per outcome
+  cluster worth delayed evidence. The `topic:` back-reference — not the filename — binds a family
+  to its unit, so the suffix is free-form; `probeFamilies` (`src/lib/probes.ts`) already arms each
+  family independently. **One family per unit was the original contract and it was a regression:**
+  A1 and A2 both ship 1.80 families per topic (18 of 22 A2 topics carry more than one), while the
+  ten-unit B1 contract would have measured 10 of 31 grammar points.
+  **Why this must be decided before a unit ships, and not after:** a topic's *first* family arms
+  from whole practice sets (`armingSetIds`); the moment a second family exists, `probeFamilies`
+  flips **both** to item-level arming (`armingItemKeys`, `shared === true`). The existing family's
+  arming basis therefore changes underneath it, and its `armedAt` moves if the learner's earliest
+  attempt on that topic was on an item that does not carry its outcomes. P12-2 (2026-07-20) fixed
+  the catastrophic form of this — arming used to degrade to nothing and discard the cohort — but it
+  did not make adding a family free. So a second family on a shipped unit stays what it already
+  was: allowed **only for a measured reason, with `armedAt` checked before and after** (a >~1-day
+  shift re-labels probes already taken). B1.1–B1.3 keep the single family they shipped with unless
+  that measurement says otherwise; the 24/31 figure above assumes they do.
 - **Operating cadence** (extends P5-11 to B1): after every two shipped units — triage the grading
   queue to zero, rerun `bun run progress:audit`, re-read the weak-focus table, and only then
   author the next pair; the grammar ratchet and the tag registry move in every unit's own commit.
@@ -723,9 +816,10 @@ unit may assume that a structure met once at A2 was retained.
 
 1. Freeze the identities above before authoring. Never rename a persisted id for tidiness.
 2. Author one complete unit per bundle: atlas node and unit slot, article, three-item pretest,
-   practice sets clearing the item-mix bar, a probe family, an intensive reading, the thin vocab
-   deck, and the focus tags registered in both [`focus-tags.md`](focus-tags.md) and
-   `focusIntroducedBy` (`src/lib/focus-tags.ts`).
+   practice sets clearing the item-mix bar, **one probe family per competence the unit owns**, an
+   intensive reading, the two-tier vocab deck, and the focus tags registered in both
+   [`focus-tags.md`](focus-tags.md) and `focusIntroducedBy` (`src/lib/focus-tags.ts`). A genre unit
+   (B1.11–B1.13) registers no new tag and leaves the grammar ratchet untouched.
 3. Review each unit against the twelve-point A2 unit quality gate in the audit and the
    `learning-science` skill before it lands.
 4. Run the full gate: `bun run validate && bun test && bun run check && bun run lint && bun run build`.
@@ -747,3 +841,53 @@ unit may assume that a structure met once at A2 was retained.
   of shipped content — the Über B1 card and the README scope line flip only when the first B1
   unit actually ships, and then only to "in progress".
 - This document, [roadmap.md](roadmap.md), [backlog.md](backlog.md) and `CLAUDE.md` agree.
+
+## Amendment 2026-07-24: probe families, unit count and deck size
+
+The contract above was frozen and then amended the same day, before B1.4 was authored. The trigger
+was a scope question — *is 10 B1 units right against A2's 22?* — and the answer that came back from
+measurement was **10 is too few, but 22 is the wrong target**. A2 reached 22 partly by accident: 17
+planned units plus 5 remedial ones added in Phase 10 when the grammar manifest revealed A2 sitting
+at 20/30 ([backlog](backlog.md)). The exhaustive-ownership clause exists to prevent that drift and
+it worked; the defects were narrower than unit count.
+
+**What was measured, and with what.** Every figure below is reproducible.
+
+| Figure | Command |
+| --- | --- |
+| A1 22, A2 30, B1 31 grammar points | `data/grammar-inventory.yaml`, `standard_level` |
+| B1 grammar coverage 10/31 (32%) | `bun scripts/grammar-coverage.ts B1` |
+| Wortliste: A2 1449/1449 (100%), B1 1480/3416 (43%), 1936 missing | `bun scripts/coverage.ts A2` · `bun scripts/coverage.ts B1` |
+| Outcomes A1 37 / A2 83 / B1 32; ~3.7 per unit at every level | count `outcomes` per node in `content/atlas.yaml` |
+| Grammar points per unit: A2 1.36, B1-as-frozen 3.10 | the two rows above |
+| Probe families per topic: A1 1.80, A2 1.82, B1 1.00 | group `content/exercises/<lvl>/probe-*.yaml` by their `topic:` field |
+| Vocab entries in topic-owned decks: A1 232, A2 339, B1 60 | decks named in a topic's `vocab:` frontmatter, summed |
+| Repo-wide 631 entries owned / 1048 unowned across 40 decks | as above, complement |
+
+**Three findings drove the change.**
+
+1. **B1 packed 2.3× A2's grammar per unit**, and `konsum-umwelt` stacked three passive forms plus
+   `konsekutivsatz-sodass` behind one article, one practice set and one probe. Split into B1.6 and
+   B1.7; the "the passive block coheres in one unit" rationale is reversed above.
+2. **One probe family per unit was a regression, not a simplification.** A1 and A2 both ship 1.80
+   families per topic; the frozen B1 contract would have placed 10 of 31 grammar points under
+   delayed retention measurement. Per-competence families take that to 24/31 — B1.1–B1.3 are
+   locked at the single family they shipped with, since adding one re-arms a shipped topic.
+3. **Vocabulary was the weakest of the three arguments, and is recorded as such.** ~1,750 of the
+   1,936 missing words looked set to fall to unowned completion decks (~90%) — until the A2
+   comparison showed A2 already ran ~77% of its list that way and still reached 100%. B1 differs in
+   degree, not kind. Deck size rose 12–24 → 30–40 anyway, on the owner's decision; **what it buys
+   is ~14% of the gap** (11 unauthored units × 30–40 ≈ 330–440 entries, tail ~1,750 → ~1,500). It
+   does not remove the end-of-level completion pass, and it is affordable only because of the
+   two-tier `cards: recognition` rule stated in the vocabulary policy.
+
+**What changed:** ten units → fourteen (B1.6 split; genre units B1.11–B1.13 added; the mediation
+unit still closes the level, now as B1.14); one probe family per unit → one per competence; deck
+size 12–24 → 30–40 with a mandatory two-tier card-direction split.
+
+**What did not change, and must not:** the 31 manifest points and their one-owner-each rule (the
+sum is restated as `3+3+4+3+3+2+2+2+3+3+0+0+0+3 = 31`); the 34 focus tags; the shipped identities
+of B1.1–B1.3; the two-unit evidence cadence; the rule that atlas nodes land only in a unit's own
+shipping PR. Section numbers B1.4–B1.14 are **document labels, not persisted identities** — no
+unshipped unit has an entry in `content/atlas.yaml`, so reflowing them renames nothing. Topic ids
+are the identities, and every one of them is unchanged.
