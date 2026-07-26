@@ -1,0 +1,112 @@
+topic: aemter-dienstleistungen
+role: practice
+stimulus: a2/aemter-anmeldung-formular
+title:
+  en: "Mission — complete the registration"
+  ru: "Задача — завершить регистрацию"
+  uk: "Завдання — завершити реєстрацію"
+items:
+  - id: dokument-formular-luecken
+    outcomes: [formular-verstehen]
+    type: mc
+    instruction:
+      en: "Keep the form open. Which two fields still need information?"
+      ru: "Не закрывайте бланк. Какие два поля ещё нужно заполнить?"
+      uk: "Не закривайте бланк. Які два поля ще треба заповнити?"
+    prompt: "Welche Angaben fehlen?"
+    options:
+      - "Staatsangehörigkeit und bisherige Anschrift."
+      - "Familienname und Einzugsdatum."
+      - "Vorname und neue Anschrift."
+    correct: 0
+    translation:
+      en: "Which details are missing?"
+      ru: "Каких данных не хватает?"
+      uk: "Яких даних бракує?"
+    explain:
+      en: "The nationality and previous-address lines are blank. Name, first name, birth date, new address and move-in date are already entered."
+      ru: "Поля гражданства и прежнего адреса пусты. Фамилия, имя, дата рождения, новый адрес и дата въезда уже внесены."
+      uk: "Поля громадянства й попередньої адреси порожні. Прізвище, ім’я, дата народження, нова адреса й дата в’їзду вже внесені."
+
+  - id: dokument-formular-unterlagen
+    outcomes: [unterlagen-erfragen]
+    type: translate
+    instruction:
+      en: "You have a passport but no landlord confirmation. Translate your question into German."
+      ru: "У вас есть паспорт, но нет подтверждения от арендодателя. Переведите вопрос на немецкий."
+      uk: "У вас є паспорт, але немає підтвердження від орендодавця. Перекладіть запитання німецькою."
+    prompt_en: "Could you please tell me whether I can submit the landlord confirmation later?"
+    prompt_ru: "Не могли бы вы сказать, могу ли я донести подтверждение от арендодателя позже?"
+    prompt_uk: "Чи не могли б ви сказати, чи можу я донести підтвердження від орендодавця пізніше?"
+    answer: "Könnten Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später nachreichen kann?"
+    accept:
+      - "Könnten Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später einreichen kann?"
+      - "Können Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später nachreichen kann?"
+    explain:
+      en: "The checklist identifies the missing document. The indirect yes/no question begins with ob, and its conjugated verb kann goes to the end."
+      ru: "Список указывает недостающий документ. Косвенный общий вопрос вводится ob, а спрягаемый глагол kann уходит в конец."
+      uk: "Список указує на відсутній документ. Непряме загальне запитання вводиться ob, а відмінюване дієслово kann переходить у кінець."
+
+  - id: dokument-formular-nachricht
+    outcomes: [formular-verstehen, formelle-nachricht-schreiben]
+    type: write
+    prompt:
+      en: "Write a short formal message to the Bürgeramt before the appointment."
+      ru: "Напишите короткое официальное сообщение в бюргерамт до приёма."
+      uk: "Напишіть коротке офіційне повідомлення до бюргерамту перед прийомом."
+    goal:
+      en: "Identify the appointment, explain what is missing and ask what you should do."
+      ru: "Назовите время приёма, объясните, чего не хватает, и спросите, что делать."
+      uk: "Назвіть час прийому, поясніть, чого бракує, і запитайте, що робити."
+    requirements:
+      - en: "Use a formal greeting and closing."
+        ru: "Используйте официальное обращение и завершение."
+        uk: "Використайте офіційне звертання й завершення."
+      - en: "Name the appointment date and time."
+        ru: "Укажите дату и время приёма."
+        uk: "Укажіть дату й час прийому."
+      - en: "Ask whether the missing confirmation can be submitted later."
+        ru: "Спросите, можно ли донести недостающее подтверждение позже."
+        uk: "Запитайте, чи можна донести відсутнє підтвердження пізніше."
+    min_words: 35
+    model_answer: "Sehr geehrte Damen und Herren, ich habe am 12. August um 9:40 Uhr einen Termin zur Anmeldung. Meine Wohnungsgeberbestätigung fehlt noch. Könnten Sie mir bitte sagen, ob ich sie später nachreichen kann? Mit freundlichen Grüßen, Olena Kowalenko"
+    model_translation:
+      en: "Dear Sir or Madam, I have an appointment for registration on 12 August at 9:40. I do not yet have my landlord confirmation. Could you please tell me whether I can submit it later? Kind regards, Olena Kowalenko"
+      ru: "Уважаемые дамы и господа, у меня 12 августа в 9:40 приём для регистрации. Подтверждения от арендодателя у меня пока нет. Не могли бы вы сказать, могу ли я донести его позже? С уважением, Олена Коваленко"
+      uk: "Шановні пані та панове, 12 серпня о 9:40 у мене прийом для реєстрації. Підтвердження від орендодавця в мене ще немає. Чи не могли б ви сказати, чи можу я донести його пізніше? З повагою, Олена Коваленко"
+    explain:
+      en: "The message anchors the request to the visible appointment and names the exact missing document. That gives the office enough context to answer."
+      ru: "Сообщение привязывает просьбу к указанному приёму и точно называет недостающий документ. Этого контекста достаточно для ответа учреждения."
+      uk: "Повідомлення прив’язує прохання до вказаного прийому й точно називає відсутній документ. Цього контексту досить для відповіді установи."
+
+  - id: dokument-formular-schalter
+    outcomes: [anliegen-nennen, unterlagen-erfragen]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "At the counter, state your purpose and ask which blank field you must complete first."
+      ru: "У окошка назовите цель визита и спросите, какое пустое поле нужно заполнить первым."
+      uk: "Біля віконця назвіть мету візиту й запитайте, яке порожнє поле треба заповнити першим."
+    goal:
+      en: "Open the exchange politely and use the form to ask a precise question."
+      ru: "Вежливо начните разговор и задайте точный вопрос по бланку."
+      uk: "Ввічливо почніть розмову й поставте точне запитання за бланком."
+    checklist:
+      - en: "I said that I want to register my new address."
+        ru: "Я сказал(а), что хочу зарегистрировать новый адрес."
+        uk: "Я сказав (сказала), що хочу зареєструвати нову адресу."
+      - en: "I referred to the incomplete form."
+        ru: "Я сослался (сослалась) на незаполненный бланк."
+        uk: "Я послався (послалася) на незаповнений бланк."
+      - en: "I asked about the nationality or previous-address field."
+        ru: "Я спросил(а) о поле гражданства или прежнего адреса."
+        uk: "Я запитав (запитала) про поле громадянства або попередньої адреси."
+    model_answer: "Guten Tag, ich möchte meine neue Adresse anmelden. Das Formular ist noch nicht vollständig. Muss ich zuerst meine Staatsangehörigkeit oder meine bisherige Anschrift eintragen?"
+    model_translation:
+      en: "Hello, I would like to register my new address. The form is not yet complete. Do I have to enter my nationality or my previous address first?"
+      ru: "Здравствуйте, я хотел(а) бы зарегистрировать новый адрес. Бланк ещё заполнен не полностью. Сначала нужно указать гражданство или прежний адрес?"
+      uk: "Добрий день, я хотів (хотіла) би зареєструвати нову адресу. Бланк ще заповнено не повністю. Спочатку треба вказати громадянство чи попередню адресу?"
+    explain:
+      en: "A counter request works best when it gives the purpose first and then points to a concrete uncertainty on the form."
+      ru: "Реплика у окошка понятнее, если сначала назвать цель, а затем указать конкретную неясность в бланке."
+      uk: "Репліка біля віконця зрозуміліша, якщо спочатку назвати мету, а потім указати конкретну неясність у бланку."

@@ -18,7 +18,7 @@ The accepted, responsive Wohnen pilot now has three deterministic successor fami
 
 Generated pixels carry no load-bearing language. Exact labels belong to HTML/SVG; viewing creates
 no evidence. All families passed semantic, accessibility and 320–1100 px overflow review.
-Body/participant roles and task-bound authentic-document additions remain next in rank.
+Body/participant roles and task-bound apartment, form and receipt additions shipped in P17-4.
 
 ## Doing
 
@@ -72,6 +72,8 @@ These require a measured learning or usability need. They do not block the curri
 - **P9-2 (2026-07-26):** two reviewed Entdecken pieces—reading a simulated Behördenbrief and
   understanding the shared-space structure of Schrebergärten.
 - **P17-3 (2026-07-26):** responsive route and train-movement semantic figures.
+- **P17-4 (2026-07-26):** body pain, body-care and giver–recipient role figures; task-bound
+  apartment listing, registration form and receipt/product-comparison practice.
 - **P17-1 (2026-07-26):** responsive Wohnen semantic figures, multilingual text equivalents and
   provenance guard.
 - **B1.1–B1.3 (2026-07-24/25):** first three units under the frozen B1 contract.
