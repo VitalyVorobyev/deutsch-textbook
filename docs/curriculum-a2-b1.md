@@ -618,7 +618,9 @@ paradigm (B1.8).
 **Outcomes:** `stellenanzeige-verstehen` (reading — "Ich kann eine Stellenanzeige verstehen und
 die Anforderungen herauslesen."), `bewerbung-schreiben` (writing — "Ich kann ein kurzes
 Bewerbungsschreiben verfassen."), `erfahrung-praesentieren` (spoken-production — "Ich kann meine
-Erfahrung und Stärken im Gespräch darstellen.").
+Erfahrung und Stärken im Gespräch darstellen."), `interview-fragen-beantworten`
+(spoken-interaction — "Ich kann im Vorstellungsgespräch auf Fragen antworten und selbst eine
+Frage stellen.") — **added 2026-07-26, before the unit shipped** ([why](#amendment-2026-07-26-a-fourth-b14-outcome-because-probe-families-arm-by-outcome)).
 **Deepens:** `arbeit-beruf`, `aemter-dienstleistungen` (the formal register grows from their
 hoeflich-konjunktiv base).
 **Exclude:** contract/labour-law language, CV-format conventions as content, salary negotiation.
@@ -891,3 +893,35 @@ of B1.1–B1.3; the two-unit evidence cadence; the rule that atlas nodes land on
 shipping PR. Section numbers B1.4–B1.14 are **document labels, not persisted identities** — no
 unshipped unit has an entry in `content/atlas.yaml`, so reflowing them renames nothing. Topic ids
 are the identities, and every one of them is unchanged.
+
+## Amendment 2026-07-26: a fourth B1.4 outcome, because probe families arm by outcome
+
+B1.4 was authored with the three outcomes the contract froze, and the review of its shipping PR
+found that the three probe families it owes could not be measured independently. The mechanism is
+in `probeFamilies`/`armedAt` (`src/lib/probes.ts`): a family arms from the practice items that
+declare **its outcomes**, and an attempt also arms it directly when the attempt names one of them.
+Two families declaring the same outcome therefore arm **identically**. B1.4's adjectival-noun and
+noun–verb families both sat on `erfahrung-praesentieren`, so a verified adjectival-noun item would
+have started the noun–verb retention clock, and that probe would have fired at 2/7/21 days against
+a competence the learner had never practised — logging a retention failure that measures nothing.
+
+This is new at B1.4 because **B1.1–B1.3 each ship exactly one family**; the 2026-07-24 amendment
+that asked for one family per competence created the collision, and nothing measured it until a
+unit actually owed three.
+
+Two fixes were available and only one was safe before the 2026-08-02 cohort read. Making arming
+focus-aware is the deeper fix, but it changes `armedAt` semantics for every family A1 and A2
+already shipped — 18 of 22 A2 topics carry more than one — and a shifted `armedAt` re-labels
+probes already taken. **Distinct outcomes** was therefore the fix taken, and it repaired a real
+gap rather than papering over one: B1.4's mission has four moves and the contract named three
+outcomes, leaving *handle interview turns* unowned. `interview-fragen-beantworten`
+(spoken-interaction) now owns it and carries the noun–verb family, whose chunks — *eine Frage
+stellen, eine Antwort geben, einen Eindruck machen* — are exactly what an interview turn is made
+of. The written practice items that measure it record selected-response evidence, never spoken
+evidence, on the same footing as B1.3's two spoken-interaction outcomes.
+
+**The standing rule this leaves:** a unit owing N probe families needs N distinct outcomes among
+them, and outcome count is capped at four per node. A unit owning more than four competences
+cannot give each one an independently-armed family until arming is focus-aware — check this when
+planning a unit's outcomes, not after its probes are written. B1.5–B1.14 each own at most three
+grammar points, so the constraint binds nowhere else in the current contract.

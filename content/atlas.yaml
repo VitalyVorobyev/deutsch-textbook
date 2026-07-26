@@ -1467,6 +1467,20 @@ nodes:
         en: "I can present my experience and strengths in a conversation."
         ru: "Я умею рассказать о своём опыте и сильных сторонах в разговоре."
         uk: "Я вмію розповісти про свій досвід і сильні сторони в розмові."
+      # Added 2026-07-26 (amendment recorded in docs/curriculum-a2-b1.md). Two reasons, and
+      # both are load-bearing. The mission has four moves and the contract named three
+      # outcomes — "handle interview turns" had none. And a probe family arms from the items
+      # that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so two families
+      # sharing one outcome arm identically: an adjective-noun item would have started the
+      # noun–verb retention clock, and that probe would then measure a competence the learner
+      # never practised. Three families now carry three distinct outcomes.
+      - id: interview-fragen-beantworten
+        mode: spoken-interaction
+        domain: professional
+        de: "Ich kann im Vorstellungsgespräch auf Fragen antworten und selbst eine Frage stellen."
+        en: "I can answer questions in a job interview and ask one of my own."
+        ru: "Я умею отвечать на вопросы на собеседовании и сам задать вопрос."
+        uk: "Я вмію відповідати на питання на співбесіді й сам поставити запитання."
 
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
