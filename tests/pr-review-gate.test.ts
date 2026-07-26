@@ -9,6 +9,7 @@ const passing: PullRequestGateInput = {
     {
       author: { login: 'chatgpt-codex-connector' },
       body: '### Codex Review\n\n**Reviewed commit:** `abcdef123456`',
+      state: 'COMMENTED',
     },
   ],
   threads: [{ isResolved: true, isOutdated: false, path: 'file.ts', line: 1 }],
@@ -40,6 +41,22 @@ describe('pull-request review gate', () => {
         threads: [{ isResolved: false, isOutdated: true, path: 'old.ts', line: 3 }],
       }),
     ).toEqual([]);
+  });
+
+  test('rejects an outstanding summary-only change request', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [
+          ...passing.reviews,
+          {
+            author: { login: 'reviewer' },
+            body: 'Please revise the licence boundary.',
+            state: 'CHANGES_REQUESTED',
+          },
+        ],
+      }),
+    ).toContain('changes requested by reviewer');
   });
 
   test('rejects lookalike reviewers and abbreviated hashes below the review contract', () => {

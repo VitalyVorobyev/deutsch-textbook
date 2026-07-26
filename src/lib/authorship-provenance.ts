@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join, relative, sep } from 'node:path';
+import { extname, join, relative, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
 
@@ -192,6 +192,17 @@ export const LEGACY_ASSET_PATHS = new Set(Object.keys(LEGACY_ASSET_BASELINE_SHA2
 
 type AssetRecord = AssetProvenanceManifest['assets'][number];
 
+const CANONICAL_TEXT_ASSET_EXTENSIONS = new Set(['.astro', '.svg']);
+
+export function assetSha256(path: string): string {
+  const bytes = readFileSync(path);
+  const canonical =
+    CANONICAL_TEXT_ASSET_EXTENSIONS.has(extname(path).toLowerCase())
+      ? Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n'))
+      : bytes;
+  return createHash('sha256').update(canonical).digest('hex');
+}
+
 export function legacyAssetChangeProblems(asset: AssetRecord): string[] {
   const baseline = LEGACY_ASSET_BASELINE_SHA256[asset.path];
   if (!baseline || asset.sha256 === baseline) return [];
@@ -295,7 +306,7 @@ export function authorshipProvenanceProblems(
         problems.push(`data/asset-provenance.yaml: "${asset.path}" does not resolve`);
         continue;
       }
-      const actual = createHash('sha256').update(readFileSync(absolute)).digest('hex');
+      const actual = assetSha256(absolute);
       if (actual !== asset.sha256)
         problems.push(`data/asset-provenance.yaml: "${asset.path}" SHA-256 is stale`);
       if (asset.prompt && !existsSync(join(root, asset.prompt)))

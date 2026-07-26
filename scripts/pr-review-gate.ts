@@ -16,7 +16,12 @@ export interface PullRequestGateInput {
     conclusion?: string;
     state?: string;
   }>;
-  reviews: Array<{ author?: { login?: string }; body?: string }>;
+  reviews: Array<{
+    author?: { login?: string };
+    body?: string;
+    state?: string;
+    submittedAt?: string;
+  }>;
   threads: Array<{ isResolved: boolean; isOutdated: boolean; path: string; line?: number | null }>;
 }
 
@@ -41,6 +46,12 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
   const unresolved = input.threads.filter((thread) => !thread.isResolved && !thread.isOutdated);
   for (const thread of unresolved)
     problems.push(`unresolved review thread at ${thread.path}:${thread.line ?? '?'}`);
+
+  for (const review of input.reviews) {
+    if (review.state === 'CHANGES_REQUESTED') {
+      problems.push(`changes requested by ${review.author?.login ?? 'unknown reviewer'}`);
+    }
+  }
 
   if (input.statusCheckRollup.length === 0) {
     problems.push('no CI checks are reported');
@@ -128,18 +139,18 @@ export function runPullRequestGate(): void {
     isDraft: boolean;
     headRefOid: string;
     statusCheckRollup: PullRequestGateInput['statusCheckRollup'];
-    reviews: PullRequestGateInput['reviews'];
+    latestReviews: PullRequestGateInput['reviews'];
   }>([
     'pr',
     'view',
     '--json',
-    'number,url,isDraft,headRefOid,statusCheckRollup,reviews',
+    'number,url,isDraft,headRefOid,statusCheckRollup,latestReviews',
   ]);
   const input: PullRequestGateInput = {
     isDraft: pr.isDraft,
     headRefOid: pr.headRefOid,
     statusCheckRollup: pr.statusCheckRollup,
-    reviews: pr.reviews,
+    reviews: pr.latestReviews,
     threads: fetchThreads(owner, repo, pr.number),
   };
   const problems = pullRequestGateProblems(input);

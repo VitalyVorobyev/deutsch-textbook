@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import YAML from 'yaml';
 import {
+  assetSha256,
   assetProvenanceManifestSchema,
   authorshipManifestSchema,
   authorshipProvenanceProblems,
@@ -14,11 +15,27 @@ import {
   reviewedTopicAuthorshipProblems,
   simulatedInstructionalAssetPaths,
 } from '../src/lib/authorship-provenance';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { discoverySchema, visualDocumentSchema } from '../src/lib/schemas';
 
 const root = resolve(import.meta.dir, '..');
 
 describe('authorship provenance', () => {
+  test('text asset hashes are stable across LF and CRLF checkouts', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'atlas-provenance-'));
+    const lf = join(dir, 'figure-lf.svg');
+    const crlf = join(dir, 'figure-crlf.svg');
+    try {
+      writeFileSync(lf, '<svg>\n  <text>Deutsch</text>\n</svg>\n');
+      writeFileSync(crlf, '<svg>\r\n  <text>Deutsch</text>\r\n</svg>\r\n');
+      expect(assetSha256(lf)).toBe(assetSha256(crlf));
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   test('the current manifests cover every asset and have fresh hashes', () => {
     const statuses = new Map([
       ['erfahrungen-erzaehlen', 'reviewed'],
