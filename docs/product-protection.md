@@ -21,8 +21,8 @@ The current open model remains unchanged:
 
 | Material | Licence | Boundary |
 | --- | --- | --- |
-| Application code in `src/`, `scripts/` and `src-tauri/` | MIT | See [`../LICENSE`](../LICENSE) |
-| Course content and course-specific instructional assets named in `content/LICENSE` | CC BY-SA 4.0 | Attribution and share-alike apply, including to commercial reuse |
+| Application code in `src/`, `scripts/` and `src-tauri/` | MIT | Excludes the two course-visual directories below; see [`../LICENSE`](../LICENSE) |
+| Course content and course-specific instructional assets named in `content/LICENSE`, including `src/assets/illustrations/` and `src/components/visuals/` | CC BY-SA 4.0 only | Not dual-licensed under MIT; attribution and share-alike apply, including to commercial reuse |
 | Real or adapted third-party sources | Their recorded licence | Attribution and licence metadata are mandatory |
 | Vitaly Vorobyev's name, likeness and endorsement | Not granted by either project licence | Credit does not imply endorsement |
 

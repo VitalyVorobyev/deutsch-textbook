@@ -136,9 +136,9 @@ authorship-provenance process are summarized in [NOTICE.md](NOTICE.md) and
 
 ## Licence
 
-The application (`src/`, `scripts/`, `src-tauri/`) is MIT — see
-[LICENSE](LICENSE). The course material in `content/` — articles, exercises,
-readings and vocabulary — together with the course illustrations and instructional documents
-listed in [content/LICENSE](content/LICENSE), is Creative Commons **BY-SA 4.0**, see
-[content/LICENSE](content/LICENSE): use and adapt it freely, with credit, under
-the same licence.
+The application code is MIT — see [LICENSE](LICENSE). The course-specific
+`src/assets/illustrations/` and `src/components/visuals/` directories are explicitly excluded
+from that grant; they are not dual-licensed. The course material in `content/` — articles,
+exercises, readings and vocabulary — together with those illustrations and the instructional
+documents listed in [content/LICENSE](content/LICENSE), is Creative Commons **BY-SA 4.0**:
+use and adapt it freely, with credit, under the same licence.

@@ -73,6 +73,16 @@ describe('authorship provenance', () => {
     }
   });
 
+  test('course visual directories are unambiguously excluded from the MIT grant', () => {
+    const softwareLicense = readFileSync(resolve(root, 'LICENSE'), 'utf8');
+    const contentLicense = readFileSync(resolve(root, 'content/LICENSE'), 'utf8');
+    for (const path of ['src/assets/illustrations/', 'src/components/visuals/']) {
+      expect(softwareLicense).toContain(path);
+      expect(contentLicense).toContain(`../${path}`);
+    }
+    expect(softwareLicense).toContain('They are not dual-licensed under MIT.');
+  });
+
   test('the current manifests cover every asset and have fresh hashes', () => {
     const statuses = new Map([
       ['erfahrungen-erzaehlen', 'reviewed'],
