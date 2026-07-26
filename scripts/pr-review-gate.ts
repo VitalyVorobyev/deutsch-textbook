@@ -20,6 +20,11 @@ export interface PullRequestGateInput {
   threads: Array<{ isResolved: boolean; isOutdated: boolean; path: string; line?: number | null }>;
 }
 
+const CODEX_REVIEW_LOGINS = new Set([
+  'chatgpt-codex-connector',
+  'chatgpt-codex-connector[bot]',
+]);
+
 const successfulCheck = (check: PullRequestGateInput['statusCheckRollup'][number]): boolean => {
   if (check.state) return ['SUCCESS', 'NEUTRAL', 'SKIPPED'].includes(check.state);
   return (
@@ -47,7 +52,7 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
   }
 
   const codexReviewedHead = input.reviews.some((review) => {
-    if (review.author?.login !== 'chatgpt-codex-connector') return false;
+    if (!review.author?.login || !CODEX_REVIEW_LOGINS.has(review.author.login)) return false;
     const reviewedCommit = review.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]{10,40})`/i)?.[1];
     return !!reviewedCommit && input.headRefOid.startsWith(reviewedCommit);
   });

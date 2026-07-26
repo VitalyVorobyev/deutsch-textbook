@@ -35,19 +35,29 @@ const legacyTopicRecordSchema = z.object({
   humanReview: reviewSchema,
 });
 
-const currentTopicRecordSchema = z.object({
-  topic: nonEmpty,
-  humanEditor: z.literal('Vitaly Vorobyev'),
-  legacy: z.literal(false),
-  approvedBrief: z.object({
-    curriculumSection: nonEmpty,
-    approvedBy: z.literal('Vitaly Vorobyev'),
-    approvedAt: z.iso.date(),
-    creativeChoices: z.array(nonEmpty).min(3),
-  }),
-  aiAssistance: aiAssistanceSchema,
-  humanReview: reviewSchema,
-});
+const currentTopicRecordSchema = z
+  .object({
+    topic: nonEmpty,
+    humanEditor: z.literal('Vitaly Vorobyev'),
+    legacy: z.literal(false),
+    approvedBrief: z.object({
+      curriculumSection: nonEmpty,
+      approvedBy: z.literal('Vitaly Vorobyev'),
+      approvedAt: z.iso.date(),
+      creativeChoices: z.array(nonEmpty).min(3),
+    }),
+    aiAssistance: aiAssistanceSchema,
+    humanReview: reviewSchema,
+  })
+  .superRefine((record, ctx) => {
+    if (record.humanReview.status === 'complete' && record.aiAssistance.tools.length === 0) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['aiAssistance', 'tools'],
+        message: 'must name at least one drafting tool before human review is complete',
+      });
+    }
+  });
 
 export const authorshipManifestSchema = z.object({
   version: z.literal(1),
@@ -116,17 +126,26 @@ const assetRecordSchema = z
     if (!asset.legacy && asset.promptUnavailable) {
       ctx.addIssue({ code: 'custom', message: 'new assets cannot use promptUnavailable' });
     }
-    if (!asset.legacy && asset.creationMode === 'ai-generated-base') {
+    if (!asset.legacy && asset.creationMode !== 'human-authored') {
       if (!asset.generationTool)
-        ctx.addIssue({ code: 'custom', path: ['generationTool'], message: 'is required for a new generated base' });
+        ctx.addIssue({ code: 'custom', path: ['generationTool'], message: 'is required for a new AI-assisted asset' });
       if (!asset.prompt)
-        ctx.addIssue({ code: 'custom', path: ['prompt'], message: 'is required for a new generated base' });
+        ctx.addIssue({ code: 'custom', path: ['prompt'], message: 'or an approved brief is required for a new AI-assisted asset' });
+      if (asset.humanEdits.length === 0)
+        ctx.addIssue({ code: 'custom', path: ['humanEdits'], message: 'must record subsequent composition or editing for a new AI-assisted asset' });
+    }
+    if (!asset.legacy && asset.creationMode === 'ai-generated-base') {
       if (!asset.candidateCount)
         ctx.addIssue({ code: 'custom', path: ['candidateCount'], message: 'is required for a new generated base' });
       if (!asset.humanSelectionReason)
         ctx.addIssue({ code: 'custom', path: ['humanSelectionReason'], message: 'is required for a new generated base' });
-      if (asset.humanEdits.length === 0)
-        ctx.addIssue({ code: 'custom', path: ['humanEdits'], message: 'must record subsequent composition or editing for a new generated base' });
+    }
+    if (!asset.legacy && asset.candidateCount && !asset.humanSelectionReason) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['humanSelectionReason'],
+        message: 'is required whenever candidates were selected',
+      });
     }
   });
 

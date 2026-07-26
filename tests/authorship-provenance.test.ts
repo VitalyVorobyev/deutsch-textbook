@@ -42,6 +42,24 @@ describe('authorship provenance', () => {
     );
   });
 
+  test('completed non-legacy review requires the actual drafting tool', () => {
+    const raw = YAML.parse(
+      readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8'),
+    ) as { topics: Array<Record<string, unknown>> };
+    const b14 = raw.topics.find((topic) => topic.topic === 'arbeit-bewerbung');
+    if (!b14) throw new Error('missing B1.4 record');
+    b14.humanReview = {
+      status: 'complete',
+      substantiveContributions: ['Vitaly selected and rewrote the final scenario sequence.'],
+      reviewedAt: '2026-07-26',
+    };
+
+    const result = authorshipManifestSchema.safeParse(raw);
+    expect(result.success).toBe(false);
+    if (!result.success)
+      expect(result.error.issues.some((issue) => issue.path.includes('tools'))).toBe(true);
+  });
+
   test('every future B1 topic needs a record even while it is a draft', () => {
     const manifest = authorshipManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
@@ -91,6 +109,41 @@ describe('authorship provenance', () => {
     expect(manifest.assets.filter((asset) => asset.legacy).map((asset) => asset.path).sort()).toEqual(
       [...LEGACY_ASSET_PATHS].sort(),
     );
+  });
+
+  test('new AI-assisted assets retain their tool, brief and human edits', () => {
+    const incomplete = {
+      version: 1,
+      assets: [
+        {
+          path: 'src/components/visuals/FutureFigure.astro',
+          sha256: 'a'.repeat(64),
+          creationMode: 'ai-assisted',
+          generationTool: null,
+          prompt: null,
+          candidateCount: null,
+          humanSelectionReason: null,
+          humanEdits: [],
+          licenseReview: 'Reviewed for CC BY-SA course distribution.',
+          legacy: false,
+          promptUnavailable: false,
+        },
+      ],
+    };
+    expect(assetProvenanceManifestSchema.safeParse(incomplete).success).toBe(false);
+    expect(
+      assetProvenanceManifestSchema.safeParse({
+        ...incomplete,
+        assets: [
+          {
+            ...incomplete.assets[0],
+            generationTool: 'Anthropic Claude',
+            prompt: 'data/prompts/2026-07-26-future-figure.md',
+            humanEdits: ['Vitaly chose the final relation and rewrote every instructional label.'],
+          },
+        ],
+      }).success,
+    ).toBe(true);
   });
 
   test('visual discovery does not depend on sourceClass prop serialization', () => {

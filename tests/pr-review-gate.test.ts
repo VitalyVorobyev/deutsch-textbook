@@ -67,4 +67,18 @@ describe('pull-request review gate', () => {
       }),
     ).toContain('Codex review has not completed against HEAD abcdef123456');
   });
+
+  test('accepts the exact GitHub App bot-login form', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [
+          {
+            author: { login: 'chatgpt-codex-connector[bot]' },
+            body: '**Reviewed commit:** `abcdef123456`',
+          },
+        ],
+      }),
+    ).toEqual([]);
+  });
 });
