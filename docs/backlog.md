@@ -6,17 +6,19 @@ calendar-blocked work. Completed detail through 2026-07-26 is
 
 ## Visual work completed in this PR
 
-### P17-2 · Sentence and time families — done 2026-07-26
+### P17-2–3 · Sentence, time and route families — done 2026-07-26
 
-The accepted, responsive Wohnen pilot now has two deterministic successor families:
+The accepted, responsive Wohnen pilot now has three deterministic successor families:
 
 1. a sentence rail for V2, separable verbs, modal/Perfekt brackets, verb-final
    clauses, indirect questions and `zu`-infinitives;
-2. a clock/preposition visual and a `seit`/`vor` timeline.
+2. a clock/preposition visual and a `seit`/`vor` timeline;
+3. a city-route map for `geradeaus` and the second street, plus a travel contrast for
+   `mit dem Zug`, `in den Zug` and `im Zug`.
 
 Generated pixels carry no load-bearing language. Exact labels belong to HTML/SVG; viewing creates
-no evidence. Both families passed semantic, accessibility and 320–1100 px overflow review. Routes,
-body/participant roles and authentic-document additions remain next in rank.
+no evidence. All families passed semantic, accessibility and 320–1100 px overflow review.
+Body/participant roles and task-bound apartment, form and receipt additions shipped in P17-4.
 
 ## Doing
 
@@ -67,6 +69,11 @@ These require a measured learning or usability need. They do not block the curri
 
 ## Recently completed
 
+- **P9-2 (2026-07-26):** two reviewed Entdecken pieces—reading a simulated Behördenbrief and
+  understanding the shared-space structure of Schrebergärten.
+- **P17-3 (2026-07-26):** responsive route and train-movement semantic figures.
+- **P17-4 (2026-07-26):** body pain, body-care and giver–recipient role figures; task-bound
+  apartment listing, registration form and receipt/product-comparison practice.
 - **P17-1 (2026-07-26):** responsive Wohnen semantic figures, multilingual text equivalents and
   provenance guard.
 - **B1.1–B1.3 (2026-07-24/25):** first three units under the frozen B1 contract.
