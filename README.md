@@ -27,7 +27,8 @@ mastered, and the next topic to learn.*
 - **A complete A1 and A2 course, and B1 in progress** — ten A1 and seventeen A2
   units, each with a diagnostic pretest, a full article, a graded reading,
   exercises, and its own vocabulary; the first three contracted B1 units are
-  live. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
+  live (`rg -l '^status: reviewed$' content/topics/b1/*.mdx | wc -l | tr -d ' '`).
+  Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
   covered, and the Über page reports how far each level goes with figures
   measured from the content itself, not hand-written.
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,
