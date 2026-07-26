@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import YAML from 'yaml';
 import {
@@ -31,6 +31,22 @@ describe('authorship provenance', () => {
       writeFileSync(lf, '<svg>\n  <text>Deutsch</text>\n</svg>\n');
       writeFileSync(crlf, '<svg>\r\n  <text>Deutsch</text>\r\n</svg>\r\n');
       expect(assetSha256(lf)).toBe(assetSha256(crlf));
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  test('every file format in the illustrations directory enters the provenance boundary', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'atlas-illustrations-'));
+    try {
+      const illustrations = join(dir, 'src/assets/illustrations/a2');
+      mkdirSync(illustrations, { recursive: true });
+      writeFileSync(join(illustrations, 'diagram.svg'), '<svg />');
+      writeFileSync(join(illustrations, 'scene.avif'), 'fixture');
+      expect(simulatedInstructionalAssetPaths(dir)).toEqual([
+        'src/assets/illustrations/a2/diagram.svg',
+        'src/assets/illustrations/a2/scene.avif',
+      ]);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

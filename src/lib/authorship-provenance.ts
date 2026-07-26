@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join, relative, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
@@ -232,7 +232,10 @@ export function simulatedInstructionalAssetPaths(root: string): string[] {
   const addPublic = (asset: string) => paths.add(`public/${asset.replace(/^\/+/, '')}`);
 
   for (const file of filesRecursively(join(root, 'src/assets/illustrations'))) {
-    if (/\.(?:webp|png|jpe?g)$/i.test(file)) paths.add(relative(root, file).split(sep).join('/'));
+    // This directory is reserved for course-created illustration assets. Treat
+    // the directory, not a format allowlist, as the provenance boundary so a
+    // future SVG, AVIF, or other supported format cannot bypass the manifest.
+    if (statSync(file).isFile()) paths.add(relative(root, file).split(sep).join('/'));
   }
 
   for (const file of filesRecursively(join(root, 'content/documents')).filter((f) => f.endsWith('.yaml'))) {
