@@ -93,4 +93,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'konjunktiv2-ratschlag': 'gesundheit-wohlbefinden',
   'lassen-verwendung': 'gesundheit-wohlbefinden',
   'adjektiv-nullartikel': 'gesundheit-wohlbefinden',
+  'n-deklination': 'arbeit-bewerbung',
+  'adjektiv-nomen': 'arbeit-bewerbung',
+  'nomen-verb-verbindung': 'arbeit-bewerbung',
 };

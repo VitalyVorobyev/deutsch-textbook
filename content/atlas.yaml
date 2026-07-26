@@ -1428,6 +1428,60 @@ nodes:
         ru: "Я умею говорить о привычках и самочувствии."
         uk: "Я вмію говорити про звички та самопочуття."
 
+  # Joins `behoerden-services` rather than the vocabulary leaf `arbeit-bildung` that holds
+  # its A2 base: a node's strand must equal its group's, and this is a communication node —
+  # it teaches the formal written and spoken register of applying for work, not a word
+  # field. `behoerden-services` is where that register already lives, with the second base
+  # of the pair, `aemter-dienstleistungen`.
+  - id: arbeit-bewerbung
+    level: B1
+    kind: communication
+    strand: communication
+    group: behoerden-services
+    prerequisites: [arbeit-beruf, aemter-dienstleistungen]
+    # Both edges carry a live runtime channel. `du-sie` (cloze-sie-staerken) is drilled by a
+    # practice set of arbeit-beruf AND of aemter-dienstleistungen; `hoeflich-konjunktiv`
+    # (uebersetzen-einladung, in the produktion set) is drilled throughout
+    # aemter-dienstleistungen's practice, and it is the polite machinery this unit's
+    # application letter is built on. Neither is a B1 tag, so neither closes a B1 point.
+    deepens: [arbeit-beruf, aemter-dienstleistungen]
+    outcomes:
+      - id: stellenanzeige-verstehen
+        mode: reading
+        domain: professional
+        de: "Ich kann eine Stellenanzeige verstehen und die Anforderungen herauslesen."
+        en: "I can understand a job advertisement and pick out its requirements."
+        ru: "Я понимаю объявление о вакансии и вычитываю из него требования."
+        uk: "Я розумію оголошення про вакансію і вичитую з нього вимоги."
+      - id: bewerbung-schreiben
+        mode: writing
+        domain: professional
+        de: "Ich kann ein kurzes Bewerbungsschreiben verfassen."
+        en: "I can write a short application letter."
+        ru: "Я умею написать короткое письмо-заявление о приёме на работу."
+        uk: "Я вмію написати короткий лист-заяву про прийом на роботу."
+      - id: erfahrung-praesentieren
+        mode: spoken-production
+        domain: professional
+        de: "Ich kann meine Erfahrung und Stärken im Gespräch darstellen."
+        en: "I can present my experience and strengths in a conversation."
+        ru: "Я умею рассказать о своём опыте и сильных сторонах в разговоре."
+        uk: "Я вмію розповісти про свій досвід і сильні сторони в розмові."
+      # Added 2026-07-26 (amendment recorded in docs/curriculum-a2-b1.md). Two reasons, and
+      # both are load-bearing. The mission has four moves and the contract named three
+      # outcomes — "handle interview turns" had none. And a probe family arms from the items
+      # that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so two families
+      # sharing one outcome arm identically: an adjective-noun item would have started the
+      # noun–verb retention clock, and that probe would then measure a competence the learner
+      # never practised. Three families now carry three distinct outcomes.
+      - id: interview-fragen-beantworten
+        mode: spoken-interaction
+        domain: professional
+        de: "Ich kann im Vorstellungsgespräch auf Fragen antworten und selbst eine Frage stellen."
+        en: "I can answer questions in a job interview and ask one of my own."
+        ru: "Я умею отвечать на вопросы на собеседовании и сам задать вопрос."
+        uk: "Я вмію відповідати на питання на співбесіді й сам поставити запитання."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1691,3 +1745,10 @@ units:
     title_ru: "Здоровье и самочувствие"
     title_uk: "Здоров'я та самопочуття"
     topics: [gesundheit-wohlbefinden]
+  - id: arbeit-bewerbung
+    level: B1
+    title_de: "Arbeit & Bewerbung"
+    title_en: "Work & job applications"
+    title_ru: "Работа и трудоустройство"
+    title_uk: "Робота та працевлаштування"
+    topics: [arbeit-bewerbung]

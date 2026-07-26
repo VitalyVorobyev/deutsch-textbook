@@ -1,0 +1,73 @@
+# Delayed probe family 2 of 3 — ONE competence: giving an adjective or participle used as
+# a noun the ending its article word leaves over. Three parallel cloze variants across
+# three cells of the same paradigm (viel + neuter strong -es, ein + masculine strong -er,
+# die + feminine weak -e), in three words no practice item produces — interessant,
+# Verwandter, Auszubildende, all named in the chapter. Each instruction names the base
+# adjective, so the target form is determinate served alone; the ending is never given.
+topic: arbeit-bewerbung
+role: probe
+title:
+  en: "Delayed check — the adjective wearing a noun's coat"
+  ru: "Отложенная проверка — прилагательное в одежде существительного"
+  uk: "Відкладена перевірка — прикметник в одязі іменника"
+  de: "Kontrolle mit Abstand — das Adjektiv im Mantel eines Nomens"
+items:
+  - id: variant-a
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Fill in interessant as a noun, after viel."
+      ru: "Впишите interessant в роли существительного, после viel."
+      uk: "Впишіть interessant у ролі іменника, після viel."
+      de: "Ergänze interessant als Nomen, nach viel."
+    text: "Auf der Konferenz habe ich viel {{Interessantes}} gehört."
+    translation:
+      en: "At the conference I heard a lot of interesting things."
+      ru: "На конференции я услышал много интересного."
+      uk: "На конференції я почув багато цікавого."
+    explain:
+      en: "After viel — as after etwas and nichts — the adjective becomes a noun: capital letter, and the strong -es that the missing das would have carried. viel Interessantes. Both halves are graded, because both are decisions: the ending you can hear, the capital you cannot."
+      ru: "После viel — как после etwas и nichts — прилагательное становится существительным: большая буква и сильное -es, которое нёс бы пропавший артикль das. viel Interessantes. Оценивается и то и другое, потому что и то и другое — решение: окончание слышно, большая буква — нет."
+      uk: "Після viel — як після etwas і nichts — прикметник стає іменником: велика літера й сильне -es, яке ніс би зниклий артикль das. viel Interessantes. Оцінюється і те, й інше, бо і те, й інше — рішення: закінчення чути, велику літеру — ні."
+      de: "Nach viel — wie nach etwas und nichts — wird das Adjektiv zum Nomen: großer Buchstabe und das starke -es, das der fehlende Artikel das getragen hätte. viel Interessantes. Beides zählt, denn beides ist eine Entscheidung: Die Endung hört man, den großen Buchstaben nicht."
+
+  - id: variant-b
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Fill in verwandt as a noun, after ein."
+      ru: "Впишите verwandt в роли существительного, после ein."
+      uk: "Впишіть verwandt у ролі іменника, після ein."
+      de: "Ergänze verwandt als Nomen, nach ein."
+    text: "In unserem Betrieb arbeitet auch ein {{Verwandter}} von mir."
+    translation:
+      en: "A relative of mine works in our business too."
+      ru: "На нашем предприятии работает и один мой родственник."
+      uk: "На нашому підприємстві працює й один мій родич."
+    explain:
+      en: "ein hides the masculine, so the adjective-noun has to show it: ein Verwandter, exactly like ein netter Mann. Say der instead and the ending flips to weak — der Verwandte. That flip is the proof this is still an adjective, and it is what makes the family different from Kollege, whose -n never moves."
+      ru: "ein прячет мужской род, поэтому его обязано показать прилагательное-существительное: ein Verwandter, ровно как ein netter Mann. Поставьте der — и окончание перевернётся в слабое: der Verwandte. Этот переворот и доказывает, что перед вами по-прежнему прилагательное, и именно он отличает эту семью от Kollege, у которого -n не сдвигается никогда."
+      uk: "ein ховає чоловічий рід, тому його мусить показати прикметник-іменник: ein Verwandter, рівно як ein netter Mann. Поставте der — і закінчення перевернеться на слабке: der Verwandte. Цей переворот і доводить, що перед вами й далі прикметник, і саме він відрізняє цю родину від Kollege, у якого -n не зсувається ніколи."
+      de: "ein versteckt das Maskulinum, also muss das Adjektiv-Nomen es zeigen: ein Verwandter, genau wie ein netter Mann. Setz der davor, und die Endung kippt ins Schwache: der Verwandte. Dieses Kippen beweist, dass hier weiterhin ein Adjektiv steht — und es unterscheidet die Familie von Kollege, dessen -n sich nie bewegt."
+
+  - id: variant-c
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Fill in the participle auszubildend as a noun — feminine, after die neue."
+      ru: "Впишите причастие auszubildend в роли существительного — женский род, после die neue."
+      uk: "Впишіть дієприкметник auszubildend у ролі іменника — жіночий рід, після die neue."
+      de: "Ergänze das Partizip auszubildend als Nomen — feminin, nach die neue."
+    text: "Am Montag beginnt die neue {{Auszubildende}} in unserem Betrieb."
+    translation:
+      en: "On Monday the new trainee starts in our business."
+      ru: "В понедельник на нашем предприятии начинает работать новая ученица."
+      uk: "У понеділок на нашому підприємстві починає працювати нова учениця."
+    explain:
+      en: "die has already said feminine nominative, so the adjective-noun falls back to the weak -e: die neue Auszubildende. Note that the ordinary adjective neue in front carries exactly the same ending — they are the same machine, and the second one only looks like a noun. In every German workplace this word is shortened to die Azubi. One family, one competence: the ending the article word leaves over, produced cold."
+      ru: "die уже сказало «женский род, номинатив», поэтому прилагательное-существительное отступает к слабому -e: die neue Auszubildende. Обратите внимание: обычное прилагательное neue впереди носит ровно такое же окончание — это одна и та же машина, и второе слово лишь выглядит существительным. На любой немецкой работе это слово сокращают до die Azubi. Одна семья, одна компетенция: окончание, которое оставляет артикль, воспроизведённое без подготовки."
+      uk: "die вже сказало «жіночий рід, називний», тому прикметник-іменник відступає до слабкого -e: die neue Auszubildende. Зверніть увагу: звичайний прикметник neue попереду носить точнісінько таке саме закінчення — це та сама машина, і друге слово лише виглядає іменником. На будь-якій німецькій роботі це слово скорочують до die Azubi. Одна родина, одна компетенція: закінчення, яке лишає артикль, відтворене без підготовки."
+      de: "die hat den Nominativ Femininum schon genannt, also fällt das Adjektiv-Nomen auf das schwache -e zurück: die neue Auszubildende. Und das gewöhnliche Adjektiv neue davor trägt genau dieselbe Endung — es ist dieselbe Maschine, das zweite Wort sieht nur wie ein Nomen aus. An jedem deutschen Arbeitsplatz heißt es kurz die Azubi. Eine Familie, eine Fähigkeit: die Endung, die das Artikelwort übrig lässt, aus dem Stand gebildet."

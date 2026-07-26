@@ -508,7 +508,11 @@ describe('cards: recognition | both', () => {
     // Grundstück and Wohnort: read in ads and on forms, not produced at B1.
     // B1.3 (gesundheit-wohlbefinden, 2026-07-24) adds three more — Schmerzmittel,
     // Tropfen and Wirkung: package-insert language, read on the box, not produced at B1.
-    expect(cards).toBe(entries * 2 - 8);
+    // B1.4 (arbeit-bewerbung, 2026-07-26) adds nineteen — the deck's whole receptive tail
+    // (Betrieb … berufstätig): job-ad and workplace vocabulary a B1 learner must read off
+    // an advertisement but is never asked to produce. This is the first deck built to the
+    // level-wide two-tier policy, so the ratio drops sharply here by design.
+    expect(cards).toBe(entries * 2 - 27);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

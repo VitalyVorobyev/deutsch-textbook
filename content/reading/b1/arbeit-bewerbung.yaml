@@ -1,0 +1,84 @@
+topic: arbeit-bewerbung
+kind: intensive
+title_de: "Eine Stelle für Lena"
+text:
+  - >-
+    Lena arbeitet als [[Aushilfe::temporary worker::временный работник::тимчасовий працівник]]
+    in einem Supermarkt, aber sie möchte etwas Neues. Dann liest sie diese
+    [[Anzeige::ad::объявление::оголошення]]: „Wir suchen einen freundlichen
+    Kollegen. Ihre Aufgaben: Verkauf und Arbeit mit Kunden.
+    [[Voraussetzungen::requirements::требования::вимоги]]: Erfahrung, gute
+    Deutschkenntnisse. Wir bieten eine Stelle in Vollzeit.“
+  - >-
+    Noch am Abend schreibt Lena eine Bewerbung und gibt sich viel
+    [[Mühe::effort::старание::старання]]. Am Ende steht: „Für weitere Fragen
+    stehe ich Ihnen gern [[zur Verfügung::at your disposal::в вашем распоряжении::у вашому розпорядженні]].“
+    Nach einer Woche kommt die Antwort: Herr Weber, der Chef, lädt sie ein.
+  - >-
+    Im [[Vorstellungsgespräch::job interview::собеседование::співбесіда]] will
+    Lena einen guten [[Eindruck::impression::впечатление::враження]] machen:
+    Sie erzählt von ihrer Erfahrung mit Kunden und stellt selbst eine Frage:
+    „Wie wichtig ist die
+    [[Zusammenarbeit::cooperation::сотрудничество::співпраця]] im Team?“ —
+    „Sehr wichtig“, sagt Herr Weber, „alle Angestellten
+    [[übernehmen::take on::берут на себя::беруть на себе]] bei uns
+    Verantwortung. Wir geben Ihnen bis Freitag
+    [[Bescheid::word, notice::ответ, известие::відповідь, звістка]].“ Schon am
+    Donnerstag klingelt Lenas Telefon: Sie hat die Stelle!
+questions:
+  - id: frage-voraussetzungen
+    outcomes: [stellenanzeige-verstehen]
+    type: mc
+    prompt: "Was verlangt die Firma in der Anzeige?"
+    options:
+      - "Erfahrung und gute Deutschkenntnisse."
+      - "Ein Studium und einen Führerschein."
+      - "Zwei Fremdsprachen und Computerkenntnisse."
+    correct: 0
+    translation:
+      en: "What does the company require in the ad?"
+      ru: "Что фирма требует в объявлении?"
+      uk: "Що фірма вимагає в оголошенні?"
+    explain:
+      en: "The line headed Voraussetzungen names exactly two things: Erfahrung and gute Deutschkenntnisse. A degree, a driving licence, foreign languages and computer skills are standard job-ad language — but none of them appears in this ad."
+      ru: "Строка с заголовком Voraussetzungen называет ровно два пункта: Erfahrung и gute Deutschkenntnisse. Диплом, права, иностранные языки и компьютерные навыки — типичный язык объявлений, но в этом объявлении их нет."
+      uk: "Рядок із заголовком Voraussetzungen називає рівно два пункти: Erfahrung і gute Deutschkenntnisse. Диплом, права, іноземні мови й комп'ютерні навички — типова мова оголошень, але в цьому оголошенні їх немає."
+      de: "Die Zeile mit der Überschrift Voraussetzungen nennt genau zwei Punkte: Erfahrung und gute Deutschkenntnisse. Studium, Führerschein, Fremdsprachen und Computerkenntnisse sind typische Anzeigen-Sprache — aber in dieser Anzeige stehen sie nicht."
+
+  - id: frage-angebot
+    outcomes: [stellenanzeige-verstehen]
+    type: mc
+    prompt: "Welche Stelle bietet die Firma an?"
+    options:
+      - "Eine Vollzeitstelle im Verkauf."
+      - "Ein Praktikum für Studenten."
+      - "Eine Stelle als Aushilfe am Wochenende."
+    correct: 0
+    translation:
+      en: "What position is the company offering?"
+      ru: "Какую должность предлагает фирма?"
+      uk: "Яку посаду пропонує фірма?"
+    explain:
+      en: "The ad says Wir bieten eine Stelle in Vollzeit, and the duties are Verkauf und Arbeit mit Kunden. The Aushilfe option recycles a word from the text — but that is Lena's old job, not the offer. A Praktikum is never mentioned."
+      ru: "В объявлении сказано Wir bieten eine Stelle in Vollzeit, а обязанности — Verkauf und Arbeit mit Kunden. Вариант с Aushilfe повторяет слово из текста — но это старая работа Лены, а не предложение фирмы. Praktikum не упоминается вовсе."
+      uk: "В оголошенні сказано Wir bieten eine Stelle in Vollzeit, а обов'язки — Verkauf und Arbeit mit Kunden. Варіант з Aushilfe повторює слово з тексту — але це стара робота Лени, а не пропозиція фірми. Praktikum не згадується взагалі."
+      de: "Die Anzeige sagt Wir bieten eine Stelle in Vollzeit, und die Aufgaben sind Verkauf und Arbeit mit Kunden. Die Aushilfe-Option wiederholt zwar ein Wort aus dem Text — aber das ist Lenas alte Arbeit, nicht das Angebot. Ein Praktikum kommt gar nicht vor."
+
+  - id: frage-eindruck
+    outcomes: [erfahrung-praesentieren]
+    type: mc
+    prompt: "Wie macht Lena im Vorstellungsgespräch einen guten Eindruck?"
+    options:
+      - "Sie erzählt von ihrer Erfahrung und stellt selbst eine Frage."
+      - "Sie spricht vor allem über Geld und Urlaub."
+      - "Sie antwortet nur kurz und stellt keine Fragen."
+    correct: 0
+    translation:
+      en: "How does Lena make a good impression at the job interview?"
+      ru: "Как Лена производит хорошее впечатление на собеседовании?"
+      uk: "Як Лена справляє гарне враження на співбесіді?"
+    explain:
+      en: "The text names both halves: sie erzählt von ihrer Erfahrung mit Kunden and stellt selbst eine Frage — asking about the Zusammenarbeit shows real interest. Money and holidays never come up, and short answers without questions would be the opposite of what she does."
+      ru: "Текст называет обе половины: sie erzählt von ihrer Erfahrung mit Kunden и stellt selbst eine Frage — вопрос о Zusammenarbeit показывает настоящий интерес. О деньгах и отпуске речи нет, а короткие ответы без вопросов — противоположность тому, что она делает."
+      uk: "Текст називає обидві половини: sie erzählt von ihrer Erfahrung mit Kunden і stellt selbst eine Frage — питання про Zusammenarbeit показує справжній інтерес. Про гроші й відпустку не йдеться, а короткі відповіді без питань — протилежність тому, що вона робить."
+      de: "Der Text nennt beide Hälften: Sie erzählt von ihrer Erfahrung mit Kunden und stellt selbst eine Frage — die Frage nach der Zusammenarbeit zeigt echtes Interesse. Über Geld und Urlaub spricht niemand, und kurze Antworten ohne eigene Fragen wären das Gegenteil von dem, was Lena macht."

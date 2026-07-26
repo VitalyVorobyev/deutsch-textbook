@@ -114,6 +114,10 @@ describe('authorship provenance', () => {
     ) as { topics: Array<Record<string, unknown>> };
     const b14 = raw.topics.find((topic) => topic.topic === 'arbeit-bewerbung');
     if (!b14) throw new Error('missing B1.4 record');
+    // The fixture states both halves of the rule rather than borrowing the live record's
+    // tool list: a real record fills `tools` as soon as the drafting history is known, so a
+    // test that relied on it still being empty would go green for the wrong reason.
+    b14.aiAssistance = { tools: [], role: 'drafting' };
     b14.humanReview = {
       status: 'complete',
       substantiveContributions: ['Vitaly selected and rewrote the final scenario sequence.'],
