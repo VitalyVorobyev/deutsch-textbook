@@ -111,16 +111,16 @@ const { view } = Astro.props;
     font-size: 0.85rem;
   }
 
-  :global(.dark) .time-card {
+  :global([data-theme='dark']) .time-card {
     border-color: #57534e;
     background: rgb(41 37 36 / 94%);
   }
 
-  :global(.dark) .time-card strong {
+  :global([data-theme='dark']) .time-card strong {
     color: #fcd34d;
   }
 
-  :global(.dark) .time-card b {
+  :global([data-theme='dark']) .time-card b {
     color: #bae6fd;
   }
 

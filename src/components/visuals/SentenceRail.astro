@@ -171,22 +171,22 @@ const figure = figures[view];
     color: #075985;
   }
 
-  :global(.dark) .rail-token {
+  :global([data-theme='dark']) .rail-token {
     border-color: #57534e;
     background: rgb(41 37 36 / 94%);
   }
 
-  :global(.dark) .rail-token strong {
+  :global([data-theme='dark']) .rail-token strong {
     color: #f5f5f4;
   }
 
-  :global(.dark) .rail-token--finite,
-  :global(.dark) .rail-token--connector {
+  :global([data-theme='dark']) .rail-token--finite,
+  :global([data-theme='dark']) .rail-token--connector {
     border-color: #f59e0b;
     background: rgb(120 53 15 / 35%);
   }
 
-  :global(.dark) .rail-token--end {
+  :global([data-theme='dark']) .rail-token--end {
     border-color: #38bdf8;
     background: rgb(12 74 110 / 35%);
   }
