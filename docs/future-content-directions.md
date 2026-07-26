@@ -48,7 +48,9 @@ delayed transfer; a positive page rating is not causal evidence of learning.
 
 ## Active portfolio
 
-- authentic apartment listing plus floor plan;
+- additional task-bound documents only when a topic has a named extraction or action gap; the
+  apartment listing and floor plan, registration form, receipt/product comparison and train
+  disruption notice are shipped reference implementations;
 - form or appointment letter for Ämter;
 - receipt and product comparison for Einkaufen;
 - additional connected extensive reading;

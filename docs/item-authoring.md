@@ -9,8 +9,8 @@ it is a question about meaning — the text says so, and it is then on the autho
 
 ## Contents
 
-- [Identity and revision](#identity-and-revision)
-- [Item types and their contracts](#identity-and-revision)
+- [Identity and revision](#identity-revision-and-item-types)
+- [Item types and their contracts](#identity-revision-and-item-types)
 - [`key_tokens` — the tokens the focus tag grades](#item-mix-validator-enforced-per-topic)
 - [Item mix](#item-mix-validator-enforced-per-topic)
 - [Placement sets](#placement-sets-the-entry-test)

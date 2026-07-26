@@ -29,10 +29,14 @@ describe('documentation links', () => {
 
       for (const match of links) {
         const raw = match[1];
-        if (/^(?:https?:|mailto:)/.test(raw) || raw.startsWith('#')) continue;
+        if (/^(?:https?:|mailto:)/.test(raw)) continue;
 
-        const [targetPart, fragment] = raw.split('#', 2);
-        const target = resolve(dirname(file), decodeURIComponent(targetPart));
+        const [targetPart, fragment] = raw.startsWith('#')
+          ? ['', raw.slice(1)]
+          : raw.split('#', 2);
+        const target = targetPart
+          ? resolve(dirname(file), decodeURIComponent(targetPart))
+          : file;
         if (!existsSync(target)) {
           failures.push(`${relative(root, file)} → missing ${raw}`);
           continue;

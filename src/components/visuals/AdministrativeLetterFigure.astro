@@ -1,0 +1,229 @@
+---
+import LearningFigure from './LearningFigure.astro';
+---
+
+<LearningFigure id="document-amt-termin" title="Einen Behördenbrief lesen" sourceClass="simulated">
+  <div slot="visual" class="letter-stage px-3 py-5 sm:px-7">
+    <article class="official-letter" lang="de" aria-labelledby="letter-subject">
+      <header>
+        <div>
+          <strong>Bürgeramt Nord</strong>
+          <span>Musterstraße 18 · 10115 Berlin</span>
+        </div>
+        <dl>
+          <div><dt>Aktenzeichen</dt><dd>WA-2026-1847</dd></div>
+          <div><dt>Datum</dt><dd>28.07.2026</dd></div>
+        </dl>
+      </header>
+
+      <p id="letter-subject" class="subject"><span>Betreff</span> Ihr Termin zur Wohnungsanmeldung</p>
+      <p>Sehr geehrte Frau Petrenko,</p>
+      <p>wir bestätigen Ihren Termin zur Wohnungsanmeldung.</p>
+
+      <section class="appointment" aria-label="Termindaten">
+        <div><small>Wann?</small><strong>Dienstag, 4. August 2026 · 09:20 Uhr</strong></div>
+        <div><small>Wo?</small><strong>Bürgeramt Nord · Zimmer 214</strong></div>
+      </section>
+
+      <p class="bring"><strong>Bitte bringen Sie mit:</strong></p>
+      <ul>
+        <li>Reisepass oder Personalausweis</li>
+        <li>ausgefülltes Anmeldeformular</li>
+        <li>Wohnungsgeberbestätigung</li>
+      </ul>
+
+      <p>Wenn Sie den Termin nicht wahrnehmen können, sagen Sie ihn bitte online ab.</p>
+      <p>Mit freundlichen Grüßen<br />Ihr Bürgeramt</p>
+    </article>
+
+    <aside class="reading-key" aria-label="Leseschlüssel">
+      <strong>Leseschlüssel</strong>
+      <ol>
+        <li><span>1</span><div><b>Betreff</b> — Worum geht es?</div></li>
+        <li><span>2</span><div><b>Wann und wo?</b> — Termin und Zimmer</div></li>
+        <li><span>3</span><div><b>mitbringen</b> — Was brauche ich?</div></li>
+        <li><span>4</span><div><b>Wenn …</b> — Was tun bei einem Problem?</div></li>
+        <li><span>5</span><div><b>Aktenzeichen</b> — Nummer für eine Antwort</div></li>
+      </ol>
+    </aside>
+  </div>
+
+  <p slot="caption" lang="de">
+    Erst den <strong>Betreff</strong>, dann Termin, Ort und die Verben
+    <strong>mitbringen</strong>, <strong>ausfüllen</strong> oder <strong>absagen</strong> suchen.
+    Der Brief ist eine realistische Kurssimulation, kein echter Bescheid.
+  </p>
+
+  <div slot="description">
+    <p class="lang-en">A simulated Bürgeramt letter confirms a housing-registration appointment for Ms Petrenko on Tuesday, 4 August 2026 at 9:20, in room 214. She must bring an identity document, a completed registration form and the landlord’s confirmation. If she cannot attend, she should cancel online. The reading key points to the subject, time and place, required documents, problem instruction and case reference.</p>
+    <p class="lang-ru">Смоделированное письмо Bürgeramt подтверждает запись госпожи Петренко на регистрацию жилья: вторник, 4 августа 2026 года, 9:20, кабинет 214. Нужно принести удостоверение личности, заполненную форму регистрации и подтверждение от арендодателя. Если прийти невозможно, запись следует отменить онлайн. Ключ для чтения выделяет тему, время и место, необходимые документы, действие при проблеме и номер дела.</p>
+    <p class="lang-uk">Змодельований лист Bürgeramt підтверджує запис пані Петренко на реєстрацію житла: вівторок, 4 серпня 2026 року, 9:20, кабінет 214. Треба принести документ, що посвідчує особу, заповнену форму реєстрації та підтвердження від орендодавця. Якщо прийти неможливо, запис слід скасувати онлайн. Ключ для читання виділяє тему, час і місце, потрібні документи, дію в разі проблеми та номер справи.</p>
+  </div>
+</LearningFigure>
+
+<style>
+  .letter-stage {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+    background: #e7e5e4;
+  }
+
+  .official-letter {
+    min-width: 0;
+    border: 1px solid #a8a29e;
+    background: #fff;
+    padding: clamp(1rem, 4vw, 2rem);
+    color: #292524;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 12%);
+  }
+
+  .official-letter header {
+    display: grid;
+    gap: 0.8rem;
+    border-bottom: 2px solid #292524;
+    padding-bottom: 0.8rem;
+  }
+
+  .official-letter header > div {
+    display: grid;
+  }
+
+  .official-letter header span,
+  .official-letter dt,
+  .official-letter small {
+    color: #78716c;
+    font-size: 0.67rem;
+  }
+
+  .official-letter dl,
+  .official-letter dd {
+    margin: 0;
+  }
+
+  .official-letter dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .official-letter dl div {
+    min-width: 0;
+  }
+
+  .official-letter dt {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .official-letter dd {
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .official-letter p,
+  .official-letter li {
+    font-size: clamp(0.78rem, 2.6vw, 0.92rem);
+    line-height: 1.45;
+  }
+
+  .official-letter .subject {
+    margin-top: 1.2rem;
+    font-weight: 850;
+  }
+
+  .subject span {
+    display: block;
+    color: #9a3412;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .appointment {
+    display: grid;
+    gap: 0.5rem;
+    border-left: 5px solid #0369a1;
+    background: #f0f9ff;
+    padding: 0.75rem;
+  }
+
+  .appointment div {
+    display: grid;
+  }
+
+  .bring {
+    margin-bottom: 0.2rem;
+  }
+
+  .official-letter ul {
+    margin-top: 0;
+    padding-left: 1.2rem;
+  }
+
+  .reading-key {
+    border: 1px solid #d6d3d1;
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 92%);
+    padding: 1rem;
+    color: #292524;
+  }
+
+  .reading-key > strong {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: #9a3412;
+  }
+
+  .reading-key ol {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .reading-key li {
+    display: grid;
+    grid-template-columns: 1.7rem 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.78rem;
+  }
+
+  .reading-key li span {
+    display: grid;
+    width: 1.7rem;
+    height: 1.7rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #075985;
+    color: white;
+    font-weight: 900;
+  }
+
+  .reading-key li b {
+    display: inline;
+  }
+
+  :global([data-theme='dark']) .letter-stage {
+    background: #0c0a09;
+  }
+
+  :global([data-theme='dark']) .reading-key {
+    border-color: #57534e;
+    background: rgb(41 37 36 / 94%);
+    color: #f5f5f4;
+  }
+
+  @media (min-width: 720px) {
+    .letter-stage {
+      grid-template-columns: minmax(0, 1.55fr) minmax(13rem, 0.75fr);
+    }
+
+    .official-letter header {
+      grid-template-columns: 1fr minmax(11rem, 0.75fr);
+    }
+  }
+</style>

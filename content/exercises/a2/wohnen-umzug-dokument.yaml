@@ -1,0 +1,112 @@
+topic: wohnen-umzug
+role: practice
+stimulus: a2/wohnen-wohnungsanzeige
+title:
+  en: "Mission — decide whether the flat fits"
+  ru: "Задача — решить, подходит ли квартира"
+  uk: "Завдання — вирішити, чи підходить квартира"
+items:
+  - id: dokument-wohnung-fakten
+    outcomes: [wohnungsanzeige-lesen]
+    type: mc
+    instruction:
+      en: "Keep the listing open. Which statement is correct?"
+      ru: "Не закрывайте объявление. Какое утверждение верно?"
+      uk: "Не закривайте оголошення. Яке твердження правильне?"
+    prompt: "Was stimmt über die Wohnung?"
+    options:
+      - "Die Warmmiete beträgt 880 Euro, und die Wohnung hat einen Balkon."
+      - "Die Wohnung kostet warm 720 Euro und liegt im Erdgeschoss."
+      - "Haustiere sind ohne Absprache erlaubt."
+    correct: 0
+    translation:
+      en: "What is true about the flat?"
+      ru: "Что верно о квартире?"
+      uk: "Що правильно про квартиру?"
+    explain:
+      en: "The listing gives a warm rent of 880 euros and shows a balcony. The flat is on the third floor, and pets require prior agreement."
+      ru: "В объявлении указана тёплая аренда 880 евро и балкон. Квартира находится на третьем этаже, а животных нужно согласовать."
+      uk: "В оголошенні вказано теплу орендну плату 880 євро й балкон. Квартира на третьому поверсі, а тварин треба погодити."
+
+  - id: dokument-wohnung-grundriss
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    instruction:
+      en: "Use the floor plan. Translate into German."
+      ru: "Используйте план. Переведите на немецкий."
+      uk: "Використайте план. Перекладіть німецькою."
+    prompt_en: "The balcony is next to the living room, and the kitchen is between the bathroom and the hall."
+    prompt_ru: "Балкон рядом с гостиной, а кухня находится между ванной и прихожей."
+    prompt_uk: "Балкон поруч із вітальнею, а кухня розташована між ванною та передпокоєм."
+    answer: "Der Balkon ist neben dem Wohnzimmer, und die Küche ist zwischen dem Bad und dem Flur."
+    accept:
+      - "Der Balkon liegt neben dem Wohnzimmer, und die Küche liegt zwischen dem Bad und dem Flur."
+      - "Neben dem Wohnzimmer ist der Balkon, und zwischen dem Bad und dem Flur ist die Küche."
+    explain:
+      en: "The plan supplies the spatial relationship. Both phrases answer Wo?, so neben and zwischen take the dative: dem Wohnzimmer, dem Bad, dem Flur."
+      ru: "План задаёт пространственное отношение. Обе группы отвечают на Wo?, поэтому neben и zwischen требуют Dativ: dem Wohnzimmer, dem Bad, dem Flur."
+      uk: "План задає просторове відношення. Обидві групи відповідають на Wo?, тому neben і zwischen вимагають Dativ: dem Wohnzimmer, dem Bad, dem Flur."
+
+  - id: dokument-wohnung-anfrage
+    outcomes: [wohnungsanzeige-lesen, nachbarn-bitte]
+    type: write
+    prompt:
+      en: "Write a short enquiry to the contact in the listing."
+      ru: "Напишите короткий запрос контактному лицу из объявления."
+      uk: "Напишіть короткий запит контактній особі з оголошення."
+    goal:
+      en: "Introduce yourself, refer to the flat and ask two questions not answered by the listing."
+      ru: "Представьтесь, сошлитесь на квартиру и задайте два вопроса, на которые в объявлении нет ответа."
+      uk: "Представтеся, згадайте квартиру й поставте два запитання, на які в оголошенні немає відповіді."
+    requirements:
+      - en: "Use a greeting and a polite closing."
+        ru: "Используйте приветствие и вежливое завершение."
+        uk: "Використайте привітання й ввічливе завершення."
+      - en: "Say why the flat interests you."
+        ru: "Скажите, почему квартира вас интересует."
+        uk: "Скажіть, чому квартира вас цікавить."
+      - en: "Ask two useful questions, for example about the deposit and the fitted kitchen."
+        ru: "Задайте два полезных вопроса, например о залоге и встроенной кухне."
+        uk: "Поставте два корисні запитання, наприклад про заставу та вбудовану кухню."
+    min_words: 35
+    model_answer: "Guten Tag, ich interessiere mich für die Zweizimmerwohnung in Plagwitz, weil die Lage und der Balkon gut zu mir passen. Wie hoch ist die Kaution? Bleibt die Einbauküche in der Wohnung? Vielen Dank für Ihre Antwort. Mit freundlichen Grüßen, Alex Weber"
+    model_translation:
+      en: "Hello, I am interested in the two-room flat in Plagwitz because the location and balcony suit me well. How much is the deposit? Does the fitted kitchen remain in the flat? Thank you for your reply. Kind regards, Alex Weber"
+      ru: "Здравствуйте, меня интересует двухкомнатная квартира в Плагвице, потому что район и балкон мне подходят. Каков размер залога? Встроенная кухня остаётся в квартире? Спасибо за ответ. С уважением, Алекс Вебер"
+      uk: "Добрий день, мене цікавить двокімнатна квартира у Плагвіці, тому що район і балкон мені підходять. Який розмір застави? Вбудована кухня залишається у квартирі? Дякую за відповідь. З повагою, Алекс Вебер"
+    explain:
+      en: "A useful enquiry reuses only the relevant facts, then fills information gaps. Questions already answered by the listing do not move the decision forward."
+      ru: "Полезный запрос использует только нужные факты, а затем восполняет пробелы. Вопросы, ответы на которые уже есть в объявлении, не помогают принять решение."
+      uk: "Корисний запит використовує лише потрібні факти, а потім заповнює прогалини. Запитання, відповіді на які вже є в оголошенні, не допомагають ухвалити рішення."
+
+  - id: dokument-wohnung-besichtigung
+    outcomes: [wohnungsanzeige-lesen, wohnung-beschreiben]
+    type: speak
+    mode: spoken-interaction
+    prompt:
+      en: "Call the contact. Say which flat you mean, confirm the viewing and ask whether you may bring a cat."
+      ru: "Позвоните контактному лицу. Уточните, о какой квартире речь, подтвердите просмотр и спросите, можно ли с кошкой."
+      uk: "Зателефонуйте контактній особі. Уточніть, про яку квартиру йдеться, підтвердьте перегляд і запитайте, чи можна з котом."
+    goal:
+      en: "Use the listing to arrange one concrete next step."
+      ru: "Используйте объявление, чтобы договориться о конкретном следующем шаге."
+      uk: "Використайте оголошення, щоб домовитися про конкретний наступний крок."
+    checklist:
+      - en: "I identified the two-room flat in Plagwitz."
+        ru: "Я назвал(а) двухкомнатную квартиру в Плагвице."
+        uk: "Я назвав (назвала) двокімнатну квартиру у Плагвіці."
+      - en: "I confirmed Thursday at 18:00."
+        ru: "Я подтвердил(а) четверг, 18:00."
+        uk: "Я підтвердив (підтвердила) четвер, 18:00."
+      - en: "I politely asked about the cat."
+        ru: "Я вежливо спросил(а) о кошке."
+        uk: "Я ввічливо запитав (запитала) про кота."
+    model_answer: "Guten Tag, ich rufe wegen der Zweizimmerwohnung in Plagwitz an. Ich möchte gern am Donnerstag um achtzehn Uhr zur Besichtigung kommen. Wäre eine Katze in der Wohnung erlaubt?"
+    model_translation:
+      en: "Hello, I am calling about the two-room flat in Plagwitz. I would like to come to the viewing on Thursday at 18:00. Would a cat be allowed in the flat?"
+      ru: "Здравствуйте, я звоню по поводу двухкомнатной квартиры в Плагвице. Я хотел(а) бы прийти на просмотр в четверг в 18:00. Можно ли держать в квартире кошку?"
+      uk: "Добрий день, я телефоную щодо двокімнатної квартири у Плагвіці. Я хотів (хотіла) би прийти на перегляд у четвер о 18:00. Чи можна тримати у квартирі кота?"
+    explain:
+      en: "The call converts document information into an appointment and asks about the one conditional point: pets are possible only after agreement."
+      ru: "Звонок превращает информацию из документа в договорённость и уточняет условный пункт: животные возможны только после согласования."
+      uk: "Дзвінок перетворює інформацію з документа на домовленість і уточнює умовний пункт: тварини можливі лише після погодження."
