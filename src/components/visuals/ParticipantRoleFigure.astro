@@ -1,0 +1,175 @@
+---
+import LearningFigure from './LearningFigure.astro';
+
+interface Props {
+  view: 'pain' | 'body-care' | 'giving';
+}
+
+const { view } = Astro.props;
+---
+
+{
+  view === 'pain' ? (
+    <LearningFigure id="participant-pain" title="Wer hat Schmerzen – was tut weh?" sourceClass="simulated">
+      <div slot="visual" class="role-grid" aria-hidden="true">
+        <section class="role-card">
+          <span class="role-question">Wem?</span>
+          <div class="person-icon">●</div>
+          <strong class="role-dative">mir</strong>
+          <small>Person · Dativ</small>
+        </section>
+        <div class="role-arrow"><span>→</span><b>tut</b><small>Singular</small></div>
+        <section class="role-card">
+          <span class="role-question">Was?</span>
+          <div class="body-icon">◉</div>
+          <strong>der Kopf</strong>
+          <small>Subjekt · Singular</small>
+        </section>
+        <div class="role-sentence"><b>Mir</b> <strong>tut</strong> der Kopf weh.</div>
+
+        <section class="role-card">
+          <span class="role-question">Wem?</span>
+          <div class="person-icon">●</div>
+          <strong class="role-dative">mir</strong>
+          <small>Person · Dativ</small>
+        </section>
+        <div class="role-arrow"><span>→</span><b>tun</b><small>Plural</small></div>
+        <section class="role-card">
+          <span class="role-question">Was?</span>
+          <div class="body-icon">◉ ◉</div>
+          <strong>die Augen</strong>
+          <small>Subjekt · Plural</small>
+        </section>
+        <div class="role-sentence"><b>Mir</b> <strong>tun</strong> die Augen weh.</div>
+      </div>
+      <p slot="caption" lang="de">
+        Die Person steht im <strong>Dativ</strong>. Die Körperteile sind das Subjekt:
+        ein Teil bestimmt <strong>tut</strong>, mehrere bestimmen <strong>tun</strong>.
+      </p>
+      <div slot="description">
+        <p class="lang-en">Two rows separate the person in pain from the body part. In both rows the person is mir, marked as dative. In the first row der Kopf is a singular subject and therefore selects tut. In the second, die Augen is a plural subject and selects tun.</p>
+        <p class="lang-ru">Две строки отделяют человека от части тела. В обеих строках человек выражен формой mir в Dativ. В первой строке der Kopf — подлежащее в единственном числе, поэтому глагол имеет форму tut. Во второй die Augen — подлежащее во множественном числе, поэтому форма глагола — tun.</p>
+        <p class="lang-uk">Два рядки відокремлюють людину від частини тіла. В обох рядках людина виражена формою mir у Dativ. У першому рядку der Kopf — підмет в однині, тому дієслово має форму tut. У другому die Augen — підмет у множині, тому форма дієслова — tun.</p>
+      </div>
+    </LearningFigure>
+  ) : view === 'body-care' ? (
+    <LearningFigure id="participant-body-care" title="mich oder mir?" sourceClass="simulated">
+      <div slot="visual" class="care-grid" aria-hidden="true">
+        <section class="care-card">
+          <span class="role-question">ohne Objekt</span>
+          <div class="care-scene"><span>Person</span><b>↺</b></div>
+          <p>Ich wasche <strong class="role-accusative">mich</strong>.</p>
+          <small><b>mich</b> · Akkusativobjekt</small>
+        </section>
+        <section class="care-card">
+          <span class="role-question">mit Körperteil</span>
+          <div class="care-scene"><span>Person</span><b>→</b><span>Hände</span></div>
+          <p>Ich wasche <strong class="role-dative">mir</strong> <strong class="role-accusative">die Hände</strong>.</p>
+          <small><b>mir</b> · betroffene Person · Dativ</small>
+          <small><b>die Hände</b> · Objekt · Akkusativ</small>
+        </section>
+      </div>
+      <p slot="caption" lang="de">
+        Ohne eigenes Objekt ist <strong>mich</strong> das Objekt. Mit einem Körperteil
+        bezeichnet <strong>mir</strong> die betroffene Person; <strong>die Hände</strong>
+        sind das Akkusativobjekt.
+      </p>
+      <div slot="description">
+        <p class="lang-en">The left card has only one participant after the verb: mich is the accusative object in Ich wasche mich. The right card adds the body part as a separate object. Mir marks the affected owner in the dative, while die Hände is the accusative object. The ordinary German sentence uses the article die, not a possessive.</p>
+        <p class="lang-ru">В левой карточке после глагола только один участник: mich — дополнение в Akkusativ в Ich wasche mich. В правой карточке часть тела становится отдельным дополнением. Mir обозначает затронутого владельца в Dativ, а die Hände — дополнение в Akkusativ. В обычной немецкой фразе используется артикль die, а не притяжательное местоимение.</p>
+        <p class="lang-uk">У лівій картці після дієслова лише один учасник: mich — додаток в Akkusativ у Ich wasche mich. У правій картці частина тіла стає окремим додатком. Mir позначає людину-власника у Dativ, а die Hände — додаток в Akkusativ. У звичайній німецькій фразі вживається артикль die, а не присвійний займенник.</p>
+      </div>
+    </LearningFigure>
+  ) : (
+    <LearningFigure id="participant-giving" title="Wer gibt wem was?" sourceClass="simulated">
+      <div slot="visual" class="giving-grid" aria-hidden="true">
+        <section class="role-card">
+          <span class="role-question">Wer?</span>
+          <div class="person-icon">●</div>
+          <strong>Nina</strong>
+          <small>Geberin · Nominativ</small>
+        </section>
+        <div class="transfer"><span class="transfer-line">→</span><b>gibt</b><span class="key">▰</span></div>
+        <section class="role-card">
+          <span class="role-question">Wem?</span>
+          <div class="person-icon outlined">○</div>
+          <strong class="role-dative">dem Nachbarn</strong>
+          <small>Empfänger · Dativ</small>
+        </section>
+        <section class="thing-card">
+          <span class="role-question">Was?</span>
+          <span class="key">▰</span>
+          <strong class="role-accusative">den Schlüssel</strong>
+          <small>Sache · Akkusativ</small>
+        </section>
+      </div>
+      <p slot="caption" lang="de">
+        <strong>Nina</strong> handelt, <strong>dem Nachbarn</strong> erreicht die Sache,
+        und <strong>den Schlüssel</strong> gibt sie weiter.
+      </p>
+      <div slot="description">
+        <p class="lang-en">Nina is the giver and nominative subject. An arrow carries a key from Nina to dem Nachbarn, the recipient in the dative. A separate card identifies den Schlüssel as the thing transferred and the accusative object. The sentence is Nina gibt dem Nachbarn den Schlüssel.</p>
+        <p class="lang-ru">Nina — тот, кто даёт, и подлежащее в Nominativ. Стрелка переносит ключ от Нины к dem Nachbarn — получателю в Dativ. Отдельная карточка обозначает den Schlüssel как передаваемую вещь и дополнение в Akkusativ. Полное предложение: Nina gibt dem Nachbarn den Schlüssel.</p>
+        <p class="lang-uk">Nina — та, хто дає, і підмет у Nominativ. Стрілка переносить ключ від Ніни до dem Nachbarn — одержувача у Dativ. Окрема картка позначає den Schlüssel як передану річ і додаток в Akkusativ. Повне речення: Nina gibt dem Nachbarn den Schlüssel.</p>
+      </div>
+    </LearningFigure>
+  )
+}
+
+<style>
+  .role-grid {
+    display: grid;
+    grid-template-columns: minmax(7rem, 1fr) 5rem minmax(9rem, 1.2fr) minmax(13rem, 1.5fr);
+    align-items: center;
+    gap: .75rem;
+    padding: 1.25rem;
+  }
+  .role-card, .care-card, .thing-card {
+    min-width: 0;
+    border: 1px solid #d6d3d1;
+    border-radius: .8rem;
+    background: rgb(255 255 255 / .94);
+    padding: .9rem;
+    text-align: center;
+  }
+  .role-card strong, .thing-card strong { display: block; overflow-wrap: anywhere; }
+  .role-card small, .thing-card small, .care-card small { display: block; margin-top: .25rem; color: #57534e; }
+  .role-question { display: block; margin-bottom: .45rem; color: #57534e; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .person-icon, .body-icon { margin: .15rem auto .4rem; color: #44403c; font-size: 2rem; line-height: 1; }
+  .outlined { font-size: 2.3rem; }
+  .role-dative { color: #075985; }
+  .role-accusative { color: #9a3412; }
+  .role-arrow { text-align: center; }
+  .role-arrow span { display: block; color: #78716c; font-size: 2rem; }
+  .role-arrow b, .role-arrow small { display: block; }
+  .role-sentence { border-left: 4px solid #78716c; padding: .7rem .8rem; background: rgb(255 255 255 / .72); }
+  .role-sentence b { color: #075985; }
+  .role-sentence strong { color: #9a3412; }
+  .care-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 1.25rem; }
+  .care-card p { margin: .8rem 0 .35rem; font-size: 1.05rem; }
+  .care-scene { display: flex; align-items: center; justify-content: center; gap: .65rem; min-height: 4rem; }
+  .care-scene span { border: 2px solid #78716c; border-radius: 999px; padding: .45rem .7rem; font-weight: 700; }
+  .care-scene b { font-size: 1.6rem; }
+  .giving-grid { display: grid; grid-template-columns: minmax(7rem, 1fr) 7rem minmax(9rem, 1.2fr) minmax(10rem, 1.1fr); align-items: center; gap: .8rem; padding: 1.25rem; }
+  .transfer { text-align: center; }
+  .transfer > * { display: block; margin: .15rem auto; }
+  .transfer-line { font-size: 2.4rem; }
+  .key { color: #a16207; font-size: 1.8rem; }
+  :global([data-theme='dark']) .role-card,
+  :global([data-theme='dark']) .care-card,
+  :global([data-theme='dark']) .thing-card { border-color: #57534e; background: rgb(41 37 36 / .94); }
+  :global([data-theme='dark']) .role-card small,
+  :global([data-theme='dark']) .thing-card small,
+  :global([data-theme='dark']) .care-card small,
+  :global([data-theme='dark']) .role-question { color: #d6d3d1; }
+  :global([data-theme='dark']) .role-dative { color: #7dd3fc; }
+  :global([data-theme='dark']) .role-accusative { color: #fdba74; }
+  :global([data-theme='dark']) .role-sentence { background: rgb(41 37 36 / .75); }
+  @media (max-width: 640px) {
+    .role-grid { grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr); padding: .8rem; gap: .45rem; }
+    .role-sentence { grid-column: 1 / -1; }
+    .care-grid { grid-template-columns: 1fr; padding: .8rem; }
+    .giving-grid { grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr); padding: .8rem; gap: .45rem; }
+    .giving-grid .thing-card { grid-column: 1 / -1; }
+  }
+</style>
