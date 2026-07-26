@@ -1,0 +1,603 @@
+# Archived backlog through 2026-07-26
+
+Companion to [roadmap.md](roadmap.md). Statuses are `todo` → `doing` → `done`. **A finished item
+moves to an archive, keeping at most one line here** — done entries never accumulate detail in this
+file. Completed P0–P3 items: [the learning-foundations archive](archive/2026-07-learning-foundations.md);
+completed Phase 4–10 items: [the phases 4–10 archive](archive/2026-07-phases-4-9.md); the P12–P14
+items closed by the 2026-07-20 instrument review and the 2026-07-21 pre-B1 review:
+[the instrument-review archive](archive/2026-07-instrument-reviews.md).
+
+Every content item must pass the learning-science review and `bun run validate`. Code changes must
+preserve v1–v6 snapshot import and pass the full repository gate. What A2 teaches, in what order,
+with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
+before authoring anything.
+
+Phases 0–8 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines (including
+the Ukrainian explanation half), the hardened learning loop, the pre-1.0 evidence foundation, the
+honest-signal instrument pass, the Schreib-Assistent, and the learner-language machinery. Only
+Phase 9 (Entdecken & Referenz) runs in parallel now, and it never gates B1. **B1 authoring begins
+under the 2026-07-24 owner decision** — the former B1 gate's evidence reads (2026-08-02 A1 cohort,
+~2026-08-14 checkpoint delayed evidence) are revision triggers now, recorded in
+[roadmap.md](roadmap.md) and [the A2 close review](archive/2026-07-a2-close-review.md).
+
+## Completed work — one line here, detail in the archive
+
+Where a finished item left a live commitment behind, that commitment is the indented bullet under
+it; everything else lives in the archive.
+
+- **Phase 4 · complete A2** — `done`. P4-1 froze the A2 curriculum contract; P4-2 built the A2
+  instrument (outcome-measurement rule, probe families, A2 Wortliste manifest, checkpoint
+  discovery); P4-3 brought the six pre-loop A2 topics up to contract; P4-4 authored the ten A2
+  units and fixed the transposition-blind scorer (34 items); P4-6 gave the writing outcomes
+  verified evidence (all 61 A2 outcomes measured); P4-5 closed A2 (checkpoint, 100% Wortliste,
+  computed Über claims, 0.3.0).
+- **Phase 5 · pre-1.0 foundation** — `done` except the entries kept below. P5-2 extensive readers
+  (Lena 5–7); P5-8 snapshot v5 + revision-safe evidence; P5-9 A2 context pilots; P5-10 canonical
+  case reference.
+- **P16 · A2 study-close review and the B1 start decision** — `done` 2026-07-24. Snapshot
+  committed; 22 renderings ruled (queue drained to 0); two drills shipped (`drill-da-wo-woerter`,
+  `drill-indirekte-frage`); checkpoint read 18/21 verified; B1-gate override recorded. Detail:
+  [archive/2026-07-a2-close-review.md](archive/2026-07-a2-close-review.md).
+- **Phase 6 · learning quality** — `done` 2026-07-14/15. P6-1 grading-decisions instrument;
+  P6-2 triaged all 32 queued renderings; P6-3 probe catch-up pacing (Probe-Rückstand card);
+  P6-4 dative-cluster drill; P6-5 verb-forms drill (split by tag ownership); P6-6 desktop mic
+  permission; P6-7 minimal-ceremony open production; P6-8 Goethe-B1 Wortliste manifest
+  (3,416 headwords, inherited-only `~`).
+- **Phase 7 · Schreib-Assistent** — `done` 2026-07-15, per [assist-design.md](assist-design.md);
+  advisory only, never evidence. P7-1 assist library; P7-2 Write.tsx advisory panel; P7-3 Tauri
+  transport.
+- **Phase 8 · Sprachen, machinery** — `done` 2026-07-15/16, per [i18n-design.md](i18n-design.md);
+  the objective is the learner's language, not the chrome. P8-1 strings module + per-profile
+  language preferences; P8-2/P8-3 the ternary sweep (~136 ternaries → hoisted `pick()` records);
+  P8-4 content-language machinery for `uk` **and** the B1-onward German-medium `de` half;
+  P8-5 card meaning side + computed Über UK-coverage figure + chrome residue. **Post-scriptum
+  2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
+  (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
+  [i18n-design.md](i18n-design.md).
+- **C6 · Ukrainian is an authored half, not a translation** — owner ruling, `done` 2026-07-25. The
+  substantive contract already said so ([i18n-design.md](i18n-design.md) C3: a wave *authors* the
+  `uk` half and it may diverge where that helps its reader). The scheduling word "translation wave"
+  had leaked into the instrument, the Über page and the docs, where it reads as a claim about how
+  the prose is produced. Renamed to match: the coverage instrument is `ukHalfCoverage()` and its
+  field is `authored`; the Über paragraph, also stale at *"arriving in waves … so far"*,
+  now names the four halves, the computed **373 of 373**
+  (`bun -e 'const {ukHalfCoverage}=await import("./src/lib/coverage.ts"); console.log(ukHalfCoverage())'`)
+  and the EN fallback. The rule the rename protects is stated in C3: **each half is written from the
+  German, not from a sibling half** — a half exists to contrast German with *that* language, and
+  Ukrainian's interference profile is not Russian's.
+  - Open: **C6-1** below — the halves authored before the ruling have not been audited for this class.
+- **C5 · Ukrainian in the rendering code** — `done` 2026-07-25. C3 closed Ukrainian across every
+  authored file and the Über figure agreed, because that figure counts **content files only**. It
+  never saw `src/`, where page prose is hardcoded as sibling spans — **62 `.lang-ru` spans across
+  19 files had no `.lang-uk`**, `/about` worst at 19 and 0. Not a bug: with no `.lang-uk` sibling
+  the `:has()` rule in `global.css` leaves EN visible, so a Ukrainian learner saw honest English.
+  That is exactly why it survived — nothing was broken, so nothing complained. But it made "the
+  Ukrainian half is complete" true only of `content/`, and CLAUDE.md binds the language surface to
+  **rendering code**, not just authored fields.
+  The instrument was the defect again, so `tests/i18n-content.test.ts` now carries a **per-file
+  ratchet**: `lang-uk` count ≥ `lang-ru` count for every file under `src/`, excluding
+  `Ru.astro`/`Uk.astro` and `global.css`, which define the mechanism rather than use it. It counts
+  spans and cannot tell Ukrainian from Russian pasted into a `uk` span — the comment says so —
+  but a missing half can no longer be added silently. Verified by planting an unpaired `lang-ru`
+  and watching it fail.
+  **Writing the Ukrainian audited the Russian, the same way the `de` half audited the English.**
+  `/about` rendered *"Все 22 юнитов"* and *"Все 22 грамматических пунктов"* — wrong Russian, because
+  a count ending in 2–4 does not take the genitive plural, and both counts are computed. Rewritten
+  so the number never governs the noun (*"Написаны все юниты уровня …, всего 22"*), which is robust
+  to the count changing rather than correct-for-now. Two claims on the same page were also stale:
+  the intro said every explanation is "written twice — in English and in Russian" (there are four
+  halves), and the feedback principle promised the rule "in English or in Russian" **inside the EN
+  span**, which is the surface CLAUDE.md says must never assume RU or UK. Both now say *in your
+  explanation language*, which is true under all four settings.
+  `de` in chrome stays deliberately out of scope: page prose is not level-bound content, `de` is a
+  B1-onward *content* half, and the EN fallback there is the designed behaviour.
+- **C4 · German-medium `de` half on B1 exercises and readings** — `done` 2026-07-25.
+  [i18n-design.md](i18n-design.md) has said since P8-4 that "B1 articles **and exercises** are
+  authored with `<De>` halves from day one". The articles were; the exercises never were. B1.1–B1.3
+  shipped 12 exercise sets and 3 readings carrying **zero** `de`, so a learner on
+  `explainLang: 'de'` read a German article and then met English feedback at the item — the place
+  CLAUDE.md calls "where the teaching happens". **The doc was right and the content was wrong for
+  three units**, and the gate could not tell: `de` parity only fires once a file already carries
+  one `de`, which is precisely what an un-backfilled file does not.
+  Closed by authoring **197** halves across the 15 files, verified per file with
+  `deParityProblems(…, {forceDe: true})` (0 remaining). No `revision` was bumped, because an added
+  explanation half is explanation-only polish and a bump would void the learner's logged attempts.
+  The pass was purely additive except for **one record**, and that exception is the useful part:
+  review flagged the B1.1 pretest's *"the Präteritum of every verb"*, which the same unit
+  contradicts three items later with `nachdem` + Plusquamperfekt and `seitdem` + Präsens. The `de`
+  half had faithfully rendered a claim that was already too broad in `en`, `ru` and `uk`, so all
+  four now say the Präteritum carries the **main narrative line**. **Writing a fourth half is an
+  audit of the other three** — a claim you have to restate from scratch in a fourth language is a
+  claim you have to actually believe.
+  Cost of the fourth half, measured rather than assumed: **1.90x** over two halves
+  (`bun scripts/lang-cost.ts content/exercises/b1/*.yaml content/reading/b1/*.yaml`), against the
+  article pilot's 1.98x.
+  One validator change was needed first and is the durable part: `translation` and
+  `model_translation` are now exempt from `de` parity (`RENDERING_PATH`, `src/lib/langcheck.ts`) —
+  without it a `de`-carrying set is **unsatisfiable**, since a German "translation" of German is
+  the source text repeated. Watched failing before it was trusted. `uk` parity still reaches those
+  paths on purpose; the asymmetry is that `de` is the only explanation language that can collide
+  with the content.
+  Two register questions the authoring forced, both settled from evidence rather than taste:
+  the learner is addressed as **`du`** (the German chrome already does — "Was weißt du schon?" —
+  and two stray `Sie` in the B1.1/B1.2 articles were brought into line), and a lesson page is
+  **`das Kapitel`**, which is what the shipped articles already call it and which avoids colliding
+  with `der Artikel` the part of speech.
+- **C3 · Ukrainian A1+A2 explanation half** — `done` 2026-07-18. Authored across every ru-bearing
+  A1/A2 file (Über **266/266**), idiomatic and per-file-parity, `en`/`ru` prose byte-identical
+  (waves 1–7, PRs #60/#61/#66/#67/#68/#69). B1 `uk` waves follow B1 content.
+  **Two files escaped the waves and no item named them until 2026-07-25**: `sentence-connectors.yaml`
+  (2026-07-19) and `briefe.yaml` (2026-07-21) both landed *after* C3 closed, so they carried 241 `ru`
+  fields with no `uk` sibling and still validated — per-file parity only fires once a file has any
+  `uk` at all, which is exactly what a file with none does not. Closed by authoring both halves;
+  `ukHalfCoverage()` now reports **373 of 373**
+  (`bun -e 'const {ukHalfCoverage}=await import("./src/lib/coverage.ts"); console.log(ukHalfCoverage())'`).
+  The instrument was the real defect, so it was fixed too: the only test over this figure built a
+  synthetic seven-file fixture, which proves the counting and is precisely what cannot notice a real
+  file. `tests/i18n-content.test.ts` now carries a **corpus ratchet** asserting `authored === total`,
+  verified by watching it fail on a planted ru-bearing file. A falling `/about` figure is the right
+  behaviour mid-wave and the wrong behaviour once the waves are closed; the ratchet marks that change.
+  **Review found 4 Russian-interference defects in the 241 new fields** (1.7%), all from authoring the
+  `uk` half beside the `ru` one instead of from the German and English: two lexical — «жалоба» for
+  *complaint* (it is *mourning* in Ukrainian; the other 20 occurrences in the repo correctly say
+  «скарга») and «мати місце» for *belongs in* (it means *occurs*) — and two agreement errors that
+  exist only because Russian and Ukrainian differ grammatically: «її» for masculine «підпис» (Russian
+  «подпись» is feminine) and invariant «тепліше/холодніше» where Ukrainian comparatives decline
+  («теплішу/холоднішу»). `RU_ONLY` (`src/lib/langcheck.ts:21`) reported nothing and was right to —
+  the leak is semantic, not orthographic. **No gate is proposed**, and the reason is worth writing
+  down: a calque denylist would have caught the two lexical slips and neither agreement error, so it
+  would buy half the class while reading like it covers all of it. The reviewable instrument here is
+  the authoring order — translate from `de` + `en`, never from `ru` — which is already what the wave
+  procedure says and is what was not done.
+- **P9-1 · Discovery schema evolution** — `done` 2026-07-15. Provenance-checked `images[]`, online-only
+  `links[]`, strict schema, local committed `src` only; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
+- **P9-4 · Multilingual Wortnetze** — `done` 2026-07-18. Canonical schema, four pilot networks,
+  `/referenz/wortnetze` and compact card-back context off the same data; a parallel reference track
+  that does not gate B1; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
+- **Phase 10 · close the A2 grammar standard** — `done` 2026-07-18. Structural coverage moved from 20/30 to 30/30; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
+- **P11 · A2 linguistic corpus pass** — `done` 2026-07-18. All 30 manifest points are signed off with zero open high/medium findings; see [the QA ledger](a2-linguistic-qa.md).
+- **P12-1 · The probe channel was a `translate` monoculture** — `done` 2026-07-20 for A1 and 16 of the
+  17 safe A2 topics: 8 A1 `cloze` families (24 items) and 48 A2 cloze items, so a delayed result is
+  attributed to the graded token instead of being lost among an eight-decision sentence. Verified by
+  rebuilding the families with and without the new files: **zero** taken probes changed their day
+  label. See [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+  - Open: three A2 topics (`probe-perfekt-haben-sein`, `probe-alltag-tagesablauf`, `probe-modalverben`)
+    plus `essen-trinken` after the cohort read; and the outcome under-tagging that leaves two of those
+    families arming off a *sibling* outcome — both measured, both blocked on the same `revision`-bump
+    hazard, both recorded in the archive.
+- **P12-2 · Multi-family arming discarded the older family's cohort** — `done` 2026-07-20. Item-level
+  `armingItemKeys` replaced outcome-only arming, which silently re-dated the *existing* family
+  (a real 4-day retention result would have been filed as a 1-day one) because 552 of 1221 logged
+  attempts carry no `outcomes`. All 34 families' `armedAt` verified unchanged; see [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+- **P12-3 · Four smaller instrument findings** — `done` 2026-07-20. B1 grammar inventory authored to
+  31 points (honest 0/31, ratcheted); pretest attempts excluded from weakness evidence (**27 tags
+  changed error rate**, and the weak set swapped a member); `order` capped at 2 per set; every
+  pretest's first item converted `mc` → `cloze` (94% of 100 pretest attempts were correct). See
+  [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+  - **Not a defect, recorded so it is not mistaken for one:** flashcard direction asymmetry is x-de
+    53 lapses / 156 cards vs de-x 5 / 173. Production recall is ~10× harder; FSRS handles it per card.
+- **P12-5 · Two source files were invisible to grep** — `done` 2026-07-20. A literal NUL byte in
+  `scripts/progress-audit.ts` and `src/lib/grading-decisions.ts` made grep, ripgrep and editor search
+  skip both files *silently* while every gate passed; replaced with the escape and pinned by
+  `tests/source-hygiene.test.ts`. See [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+- **P12-6 · Items that graded which word the author had in mind** — `done` 2026-07-21. Six ambiguous
+  *denn*/*weil* `translate` items ruled 4 constrain / 1 accept by asking whether the connector carries
+  the tag, and one `table` stub that graded back as *weil weil …*; both rules are validator-enforced
+  and were watched failing first. The rule it produced: **an item is determinate only if it is
+  determinate when served alone.** See [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+  - Deferred: `a2/probe-nebensaetze-plaene:variant-a` has the same defect and is frozen — constraining
+    it needs a `revision` bump, which drops its attempt out of the re-graded retention reading before
+    2026-08-02. Safe to wait: its one logged attempt used *weil* unprompted, so the ambiguity has not
+    yet cost a data point. The validator **warns** rather than passing silently, so the exemption
+    cannot be forgotten; remove it and the `DEFERRED` entry in `contracts.test.ts` together.
+  - Not repaired: the one logged `konjunktionaladverb-inversion` failure is preserved as a known
+    revision mismatch and still reads as a real error in the weak-focus table. `data/grading-decisions.yaml`
+    rules `translate` renderings only, so there is no mechanism to retract a `table` attempt. Weight that
+    tag accordingly until it has post-fix evidence.
+- **P5-6 · Recognition-only vocabulary cards** — `done` 2026-07-21 (PR #92). `cards: recognition`
+  makes one card instead of two for understand-only language; defaulted `both` and never
+  retrofitted, because the direction lives in the card id. Contract in CLAUDE.md; built for B1's
+  Wortliste tail.
+- **P13 · Level placement tests** — `done` 2026-07-20. `role: placement`, one set per level, discovered like checkpoints; per-topic verdicts that take a topic off the path without ever raising its measured tier. 70 items shipped (A1 24, A2 46). Contract in CLAUDE.md; two open limitations below (P13-1 spoken modes, P13-2 offering the next level's test).
+- **P13-2 (first half) · An interrupted placement test could not be resumed** — `done` 2026-07-21,
+  found by Codex on PR #89. `FirstSteps` gated on `attempts.length === 0` and `logAttempt` fires per
+  item, so one answered question hid the only link to the test; the rule is now
+  `hasStartedLearning` (`src/lib/placement.ts`), pure and regression-tested. See
+  [the instrument-review archive](archive/2026-07-instrument-reviews.md). The second half is open below.
+- **P14-1 · Vocabulary cards that printed their own answer** — `done` 2026-07-21. `CardDef.note` now
+  reaches the card back, so a construction hint no longer has to hide in the gloss — which is the
+  *question* side of a production card. **22 gloss fields flagged before the fix, 0 after**, with no
+  cognate caught in either direction (~104 glosses legitimately contain their headword); 4 entries
+  gained `accept`; all **3238** card ids unchanged. See [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+  - Not repaired, and recorded so the number is not misread: at least one of the 53 x-de lapses is
+    instrument rather than learner. There is no retraction mechanism for card attempts —
+    `data/grading-decisions.yaml` rules `translate` renderings only — the same gap the P12-6 `table`
+    note names.
+- **P14-2 · Answers the learner had no way to type** — `done` 2026-07-21. `é` joined the input bar,
+  and the rule written to prevent the next one — `checkAnswerIsTypeable` — immediately found **Ä/Ö/Ü**
+  missing from it: eleven live cards were a permanent soft miss for anyone without a German keyboard.
+  The three copies of the key list are now one `GERMAN_INPUT_KEYS` (`src/lib/typing.ts`). See
+  [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+  - Worth weighing after 2026-08-02, not now: whether `Cafe` should be a *soft* miss like `ae/oe/ue`
+    rather than plain correct. It touches `foldUmlauts`, which is flashcard-only and therefore does not
+    move the retention figure — but it does change grading for every card, so it is not a change to
+    make in the same breath as a bug fix.
+- **P15 · Pre-B1 comprehensive review** — `done` 2026-07-21 (PR #94). The audit accepts v6
+  snapshots with its version list bound to the schema's; the grading queue was drained (10 rulings:
+  7 confirm, 3 accept); four cloze items stopped grading which word the author had in mind
+  (*haben* for *schreiben* was rejected live); three converted pretest explains stopped citing
+  mc options a cloze does not have; the learning-science skill stopped contradicting the
+  minimal-ceremony contract; and `nebensatz-verbende` — the one persistent weak focus without an
+  owned drill — got `a2/drill-nebensatz-verbende` (11 items). Style drift in `lernen-verstehen`
+  was checked against the corpus and not confirmed: 661 lines / 6 H3s sits inside the A2 range,
+  and the classroom scenario is the recorded one-scenario-per-unit convention.
+- **P14-3 · Ask whether the retention gate can be read, not only what it says** — `done` 2026-07-21.
+  `bun run progress:audit --project YYYY-MM-DD` projects readability forward from arming dates and the
+  interval schedule instead of from attempts already taken: **A1 1 readable now, 8 still reachable by
+  2026-08-02, 4 not — needing 12 more probe attempts actually taken** (A2: 1 / 8 / 25). See
+  [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+- **P17-1 · Semantic-illustration pilot** — `done` 2026-07-26. `wohnen-umzug` now carries two
+  generated-scene/deterministic-overlay figures for `Wo?/Wohin?` and
+  `stellen/stehen · legen/liegen · hängen/hängen`; their multilingual text equivalents, provenance
+  guard and responsive, no-page-overflow layouts create no progress or evidence state.
+
+## The open gate
+
+### P3-6 · Read the A1 retention cohort — `blocked on 2026-08-02` (a calendar gate, not a task)
+
+The engineering half shipped with P3-1: the probe report on Fortschritt, reporting delayed results
+apart from practice accuracy and at the interval that *actually* elapsed rather than the scheduled
+one. The other half runs on wall-clock. Probes armed on 2026-07-12; the 21-day cohort completes
+**2026-08-02**.
+
+**The exit bar, stated so that it can fail:**
+
+> **The A1 delayed probes retain their target competence in ≥ 80% of readable competences, with the
+> free-production channel at ≥ 70%.**
+>
+> **Retained** = the item's graded target survived: correct under today's contract, or wrong with
+> the divergence outside the tokens the item's `focus` grades. **Failed** = the target itself
+> diverged. Competences group by focus tag, pooled across families, read per level. A competence is
+> **readable** only at ≥ 3 attempts (one per scheduled interval); below that it is pending, excluded
+> from the percentage, never counted as a pass. An untagged family cannot fail its target by
+> construction and is excluded as an instrument gap.
+
+`bun run progress:audit` prints this as *Retention by competence*. The bar's numerator used to be
+`correct` — whole-sentence flawlessness — which measures sentence-building rather than retention of
+the competence the interval tests. That reading puts the cohort at **18%**; target retention puts it
+at **59%**. Neither clears 80%: the restatement makes the gate *readable*, not passed. See
+[the roadmap](roadmap.md#the-retention-gate) for why it must not be tuned until it passes.
+
+The bar used to say *per A1 outcome*, and it could not have been met as written. A probe family's
+three variants were testing three **different** competences, and `dueProbe` serves one variant per
+interval — so each competence was measured exactly once, at exactly one delay, and no retention
+curve could exist. The number would have looked like retention without being it. Caught before the
+cohort produced a single answer (zero probe attempts were logged), and fixed: a family's variants are
+now parallel checks of **one** competence, and `bun run validate` refuses any other kind. One
+competence per topic is probed — a topic's remaining outcomes get their evidence from practice, which
+is where outcome mastery comes from anyway.
+
+This used to gate the *start* of A2 authoring. It is now a **revision trigger** instead — the
+roadmap explains why, and names the risk that change accepts. If A1 misses the bar, A2 authoring
+stops, the units written by then are revised against the finding, and the lesson pattern is fixed
+before another unit is written.
+
+- Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
+  update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
+
+## Open — semantic illustrations
+
+### P17-2 · Expand only after the Wohnen pilot is useful — `doing`
+
+The priority order is fixed: (1) one reusable sentence rail for V2, verb brackets and verb-final
+clauses; (2) clocks and timelines; (3) routes and physical movement; (4) body maps and
+giver–receiver–object roles; (5) apartment, office and shopping documents through the existing
+document-stimulus contract. Article paradigms, adjective matrices and politeness scripts stay
+text/table-led unless a diagram resolves a named confusion.
+
+The learner accepted the pilot on 2026-07-26; its narrow-screen redesign passed the remaining
+usefulness gate. Each visual must carry one semantic job, keep generated pixels free of
+load-bearing language, add
+exact German through SVG/HTML, provide EN/RU/UK text equivalence, work without colour, and create no
+learning evidence merely by being viewed. The sentence-architecture and time-relation families are
+the active expansion. Later transfer and delayed probes are supporting signals, not a one-learner
+causal experiment.
+
+## Open — the 2026-07-20 instrument review and the 2026-07-21 pre-B1 review
+
+### P12-4 · `key_tokens` conflates three different reasons to pin a token — `todo` (M)
+
+The 2026-07-24 B1-start decision does **not** unlock this item: the sequencing hazard below is
+about the 2026-08-02 cohort read's instrument stability, which is calendar-bound, not gated on
+B1 authoring.
+
+A token is pinned for one of three reasons, and the scorer cannot tell them apart:
+
+| Pinned for | Example | Wanted behaviour |
+| --- | --- | --- |
+| **form** — the tag grades which word this is | `dem` in a `dativ-artikel` item | never forgiven, attributes to `focus` |
+| **position** — the tag grades where it sits | `schwimmen` in a `modal-satzklammer` item | forgive a typo; attribute only a *displacement* |
+| **presence** — it must be right, but its error belongs to another tag | `geflogen` in a `haben-sein` item | never forgiven, attributes to **nothing** |
+
+All three get form treatment today. There is also a fourth, separate blind spot in the same
+function: **`misplacedGraded` requires equal token counts** (`production.ts`), so an *insertion or
+deletion* can never be attributed even when it is precisely the confusion the tag grades.
+
+The five wrong attributions live in the log, all four kinds represented:
+
+| Item's tag | Learner wrote | Should be | Today |
+| --- | --- | --- | --- |
+| `modal-satzklammer` ×2 | `schimmen` for `schwimmen` | forgiven (typo, position pin) | wrong + tagged |
+| `haben-sein` | `geflügen` for `geflogen` | `partizip2-form` (presence pin) | wrong + tagged |
+| `modal-satzklammer` | `Sie sollten … **zu** nehmen` | tagged — a modal takes a bare infinitive | wrong, **untagged** |
+| `passen-dativ` | `Passt **es zu** dir …` for `Passt dir …` | tagged — this *is* the confusion | wrong, **untagged** |
+
+The last two are the length guard, and they are the more serious kind: the scorer is blind to the
+drill's own signature error.
+
+**Do not "fix" this by dropping the pins.** All 54 attributions that change if `key_tokens` goes
+empty were reviewed one at a time: **52 of the 54 belong to a different tag than the item's** — a
+fumbled article inside a perfect `trennbar-modal` bracket, a nominative-for-accusative pronoun
+inside a perfect `konjunktionaladverb-inversion`. So the pins cost 5 and buy back 52. The cheap
+workaround is ~10× worse than the defect.
+
+Shape: `key_tokens` stays the form list; add optional sibling lists (working names
+`position_tokens`, `present_tokens`) rather than a per-token object, so every existing item keeps
+parsing unchanged and no revision bump is needed to adopt it. `gradeTranslation` gets three sets
+instead of one — rule 1 forgives a one-edit miss on a position token, `misplacedGraded` reads the
+position set, and a divergence on a presence token returns `{ kind: 'wrong' }` with no `focus`.
+The length guard needs its own answer: align the diff and ask whether a graded token moved
+*relative to its neighbours*, rather than requiring the sentences to be the same length.
+
+**Sequencing hazard — both halves must wait for 2026-08-02.** Retrofitting live items bumps
+`revision`, which makes `revisionKnownMismatch` stop re-grading those attempts and deletes data
+points from the retention reading. **The scorer change is not safe to land early either** — the
+retention figure is computed by re-grading, so changing the grader moves the number the gate
+reads. Measured: **7 of the 16 probe attempts currently counted as retained are length-mismatched**
+(`probe-perfekt-haben-sein`, `probe-alltag-zeit`, `probe-reisen-verkehr`,
+`probe-einkaufen-reklamation`, `probe-termine-vereinbaren`, `probe-arbeit-beruf`,
+`probe-erste-schritte`) and could flip to failed under the length-guard fix alone. Land the whole
+of P12-4 after the cohort is read, and re-read the gate under both graders so the movement is
+attributable.
+
+### P13-1 · Placement cannot evidence the spoken modes — `todo` (S), and it is a limitation, not a bug
+
+The placement test scores three response channels — selection, writing and listening — because those
+are the three that can be scored at all. `write` and `speak` are validator-rejected in a placement
+set: open production is never verified, and since "every item answered" is half the pass condition,
+one unscorable item would make its topic permanently *unplaceable*.
+
+The consequence is stated plainly rather than papered over: **32 of A2's 83 outcomes and 13 of A1's
+37 are spoken-production or spoken-interaction, and a topic carrying them is placed on written
+evidence.** No A1 or A2 topic is spoken-*only* (checked, not assumed), so every topic does get
+evidence in a mode it can be graded in — but a learner who writes German far better than they speak
+it will place out of topics whose can-do statements are about speaking.
+
+Deliberately not fixed by a mode-coverage rule over the *outcome's* CEFR mode: an ordinary typed item
+referencing a `spoken-interaction` outcome would satisfy such a rule while measuring nothing spoken,
+which buys the appearance of coverage and none of it. A real fix needs scorable speech, which the app
+does not have and which the open-production contract says it must not pretend to have.
+
+### P13-2 (second half) · Offer the next level's placement test — `todo`
+
+`src/pages/index.astro` links `getPlacements()[0]` only, deliberately, so a learner cannot skip to A2
+while A1 is untouched (the rule `dueCheckpoint` already encodes). Closing it is the `dueCheckpoint`
+analogue — **offer level N+1's test once level N is placed or passed**, surfaced from
+`PlacementResults` after *Ergebnis übernehmen*. This half really is a new entry surface with its own
+eligibility question: it has to decide what "level N is done" means for a learner who placed out of
+half of it, and it must not become a second path the learner feels obliged to walk.
+
+### P14-4 · Two learning-science findings, recorded rather than acted on — measured 2026-07-20
+
+The closed half (open production's revision loop — investigated, **no defect found**, and left alone
+because minimal ceremony is the contract) is in
+[the instrument-review archive](archive/2026-07-instrument-reviews.md). Two live records remain:
+
+- **Deferred: two more formats have stopped discriminating.** `audio-comprehension` is
+  **25/25 = 100%** and `match` **97%** over 55 attempts — the saturation signature that got `order`
+  capped at 2 per set in P12-3. Not acted on in this window: converting items is a `revision` bump,
+  which drops their attempts out of the re-graded retention reading before 2026-08-02. Revisit with
+  P12-4.
+- **Not evidence, and not to be planned against.** The audit's *Optional-content feedback* row for
+  `discovery:a2/berlin-ubahn-karte` (*useful: no / wants more: no*) is timestamped
+  **2026-07-19T09:22Z — 4h38m before #85** fixed the invisible Entdecken toggles, and "off" is exactly
+  what a double-press on an unresponsive toggle produces. Treat Entdecken feedback as starting from
+  #85; do not plan authoring volume against it.
+
+## Open — the 2026-07-25 Ukrainian ruling
+
+### C6-1 · Calque audit of the `uk` halves authored before the ruling — `todo` (M)
+
+Every `uk` half in the repo was authored before *written from the German, never from a sibling half*
+was written down as the operative rule. PR #106 is the one place the class was actually looked for
+and found: **4 Russian-shaped renderings in 241 new fields (1.7%)**, all in
+`content/reference-data/briefe.yaml` — two lexical, and two agreement errors that exist only because
+the grammars differ. The remaining uk-carrying files (373 in all, `ukHalfCoverage()`) have **not**
+been audited for it, and nothing here should be read as saying they have — the rate above is one
+file pair, not a corpus estimate.
+
+No gate is proposed, for the reason recorded under C3 in [i18n-design.md](i18n-design.md): the leak
+is semantic, so `RU_ONLY` cannot see it, and a calque denylist would catch the lexical half and
+neither agreement error while reading like it covers all of it. The audit is human review — read the
+`uk` half against the German and English with the `ru` half closed. Sample first and record the rate
+before deciding whether a full pass is worth it.
+
+## Parallel — Phase 9: Entdecken & Referenz
+
+### P9-4 · Entdecken review pass — **done 2026-07-25**
+
+The first editorial review of the seven shipped pieces against the 14-question test. Clean on the
+things that were expected to be the risk: **no-obligation intact in all seven**, every checkable
+fact true (Deutschlandticket 63 €/month since 2026-01-01, Pfand 25/8/15 ct, GG Art. 140 via WRV
+1919, § 22 Abs. 1a BImSchG), all 10 `links[]` returning 200, `<De>` correctly on the B1 piece only.
+
+**What it found instead was level control, in four of the five A2 pieces.** They narrated in
+full-verb Präteritum, which `data/grammar-inventory.yaml` levels at B1 with the explicit note that
+it is "a genuinely new competence and not a completion of the A2 one" — plus untaught B1 past and
+modal passive, attributive Partizip I, `adjektiv-nomen`, full genitive, and one B2
+`sein + zu + Infinitiv`. 31 offending Präteritum tokens in all; measured, not estimated.
+
+The calibration that made it obvious, and the reason this is a defect rather than a style
+preference: across the A2 *reading* corpus the narrative uses **53 A2-allowed Präteritum tokens
+(sein/haben/modals) against 2 full-verb** — `ging` in `verbindungen-folgen.yaml` and `saß` in
+`lena-7-ein-brief-fuer-den-hof.yaml`. The line is held everywhere except in the Entdecken pieces,
+which had 31.
+
+Scope matters and is part of the figure: it counts the `text:` paragraphs only, with the
+`::en::ru::uk` tail of every `[[gloss]]` stripped first. A naive grep over the raw YAML counts the
+English and Russian columns too — that is how the first version of this entry published "exactly
+one", matching on `half` in *"half past eight"* and on `verstanden`/`verloren` that are Partizip II
+in a Perfekt, not Präteritum:
+
+```
+bun -e 'const{Glob}=await import("bun"),{readFileSync}=await import("node:fs"),Y=await import("yaml");
+const A=/\b(war|waren|hatte|hatten|wollte|wollten|musste|mussten|konnte|konnten|sollte|sollten|durfte|durften|mochte)\b/g;
+const F=/\b(ging|kam|gab|sah|stand|lag|fuhr|hielt|nahm|fand|blieb|rief|schrieb|sprach|trug|traf|sa(ß|ss)|trank|half|zog|lief|las|begann|bekam|brachte|dachte|kannte|wusste|nannte|verlor|trat|tat|fiel)\b/g;
+let a=0,f=[];for await(const p of new Glob("content/reading/a2/*.yaml").scan(".")){
+const t=(Y.parse(readFileSync(p,"utf8")).text??[]).join(" ").replace(/\[\[([^\]:]*)(::[^\]]*)?\]\]/g,"$1");
+a+=[...t.matchAll(A)].length; f.push(...[...t.matchAll(F)].map(m=>m[0]+" — "+p.split("/").pop()));}
+console.log(a,"allowed vs",f.length,"full-verb:",f)'
+```
+
+It is a **screen, not a proof**: the full-verb list is the strong Präteritum forms reachable with
+A1–A2 vocabulary, so a strong verb outside it would pass. Weak `-te` Präteritum is not machine-
+separable from nouns (`Monaten`), adjectives (`nächsten`), infinitives (`arbeiten`) and Konjunktiv
+(`möchte`) — that pass was run and read by hand, and found none.
+
+Repaired to 0 by rewriting the narratives in the historical present — the technique
+`content/discovery/a1/ampelmaennchen.mdx` already used, which is why it was the one piece that
+never had the problem. Verify with the tripwires in the PR body; `wurde`/`wurden` now occur zero
+times in `content/discovery/a2/`.
+
+**No gate covers this.** `bun run validate` and the build passed throughout, before and after —
+CEFR discipline in prose is not machine-checkable the way parity and the Wortliste are, so it took
+a reading pass to see. Worth knowing before the next piece ships: the editorial test's question 4
+("Is the German comprehensible at the declared level?") is the one that needs a human, and the
+grammar inventory is the instrument to answer it with.
+
+### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
+
+Optional editorial pieces from the fifteen-theme backlog, each passing the editorial test in
+[future-content-directions.md](future-content-directions.md) — a language reason to exist, level
+control, and no review obligation from opening it:
+
+1. die Berliner Mauer im Stadtbild
+2. das Ampelmännchen — shipped (A1)
+3. Pfand und Mülltrennung — shipped
+4. die Sonntagsruhe — shipped (B1, the `<De>` pilot)
+5. Schrebergärten
+6. Deutsch in Österreich und der Schweiz
+7. der Verein
+8. Brot als UNESCO-Kulturerbe
+9. das Deutschlandticket — shipped
+10. das Amt als Genre
+11. Bauhaus im Alltag — the movement through an everyday object
+12. der Döner — migration through a familiar food — shipped
+13. die Loreley — the Rhine through a place and a legend
+14. Moin, Servus, Grüß Gott — regional German through an encounter — shipped
+15. Tatort am Sonntag — a television ritual
+
+Two standing decisions are recorded here rather than as items. **Committed audio stays deferred**
+(P5-1 untouched): when the audio schema's `kind: asset` path needs exercising, the cheap path is
+one CC-licensed audio asset inside one Entdecken piece, not a TTS replacement program. **Audit
+extensions are added only with named consumers** — the grading-decisions integration names P6-1's
+queue; the probe-debt row names the P5-11 audits and the P5-7 decision.
+
+- Depends on: P9-1.
+- Accept per piece: the editorial test; the validator; no mastery or review-debt semantics.
+
+**Discoverability shipped 2026-07-21, and it was the bigger half.** `discoverySchema` gained an
+optional `topics: []`; topic pages render an Entdecken aside listing the reviewed pieces that name
+them, and `/entdecken` groups by level. Five pieces had shipped with no route to any of them
+except deliberately opening the index — a likelier reading of the strand's one *useful: no* datum
+than the writing was. The edge is one-way and optional on both sides, and `.strict()` plus a test
+keep a `required`/`completed`/`readAt` field from ever being added: discoverability is not
+obligation.
+
+**The `<De>` cost, reproducibly.** `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`
+→ **1.98x** localised, **1.55x** overall. The same measure over the six three-half pieces gives
+**1.47x** localised, so `uk` costs about +47% and `de` costs roughly that again on top. The script
+exists because the first version of these figures reached the roadmap with no command behind
+them — which is the rule CLAUDE.md states and this repo keeps breaking.
+
+**Do not plan volume against the existing feedback.** The single datum
+(`discovery:a2/berlin-ubahn-karte`, *comfortable / useful: no / wants more: no*) was recorded
+2026-07-19T09:22Z — 4h38m before #85 fixed the invisible toggles it was entered through, and
+"off" is what a double-press on an unresponsive toggle produces. Entdecken feedback starts at #85.
+
+### P9-3 · Referenz lookup pages — **done 2026-07-21**
+
+All three shipped. `/referenz/verbformen` and `/referenz/zahlen-datum-zeit` in PR #70;
+`/referenz/briefe` closes it — six sections in message order (35 entries) plus three complete
+templates walking those sections at three registers, from `content/reference-data/briefe.yaml`.
+Each page is derived or canonical, never a second hand-maintained textbook, and none carries
+completion state or evidence semantics.
+
+Recorded because it is easy to undo by accident: the opening lines are authored **lowercase**
+(`ich schreibe Ihnen, weil …`), since that is how they appear after the greeting comma — the
+page's main teaching point. The renderer prints `form` verbatim and says so; sentence-casing it
+would silently delete the lesson.
+
+The two-way-preposition visual landed inside that kasus page rather than as a page of its own
+(2026-07-25): `two_way` gained optional `wohin`/`wo` fields, nine minimal pairs in which only the
+article moves, rendered by a `prepositions-wechsel` view. `src/lib/coverage.ts` reads
+`prepositions.dative` and never `two_way`, so the new examples cannot earn Wortliste coverage —
+`bun scripts/coverage.ts A1` and `A2` hold at 673/673 and 1449/1449 with the card/grammar split
+unchanged (620+53, 1362+87).
+
+### P5-11 · Two-unit A2 evidence cycles — `doing` (recurring)
+
+Run the just-in-time audit and post-pair snapshot review in
+[a2-learning-led-program.md](a2-learning-led-program.md). The audit reports revision coverage,
+response modes, overdue probes, productive-card lapses, persistent focus errors, structured
+production changes, session workload, pair windows and pilot feedback.
+
+The windows now include the learner-led `verben-mit-praepositionen` module after
+`gesundheit-arzttermin`; the operating program is authoritative. Keep the cycle-one snapshot review
+open until `einkaufen-reklamation` is completed. The expanded checkpoint was taken 2026-07-24
+(18/21 verified); A2 closure remains open until its 2/7/21-day evidence has been reviewed
+(~2026-08-14). Continues as recurring practice; the Phase 6 instruments (the triage flow, the
+probe-debt row) feed it.
+
+### P5-7 · Delayed evidence for listening — `todo` (M)
+
+One competence is probed per topic, and in every one of the original sixteen topics the competence that
+answers "did this lesson stick" turned out to be a production one. So **no listening outcome has a
+retention curve** — listening is practised (`listen` dictation, `audio-comprehension`) but never
+re-checked after an interval. That is a real hole, and it is stated here rather than papered over.
+
+The fix is a second probe family per topic where a listening outcome deserves it (`probe-<topic>-hoeren`,
+three parallel `listen` or `audio-comprehension` variants). It is not free: a due probe opens the
+session and the cap is three, and seventeen families can now arm. Do it after the first cohort
+reports (P3-6, 2026-08-02), when the real probe load is known rather than guessed. Precondition to
+verify first: `probeFamilies()` supports two families per topic — a small code change if it turns
+out to be keyed per topic.
+
+- Accept: a listening outcome shows a 2/7/21-day curve; the probe load per session stays bounded.
+
+### P5-1 · Expand committed neural-TTS audio — `deferred` (L)
+
+Prefer generated assets with speech synthesis as a permanent fallback. Reconsider after usage shows
+that audio quality, rather than content coverage, is the limiting factor. It does not: `listen` sits
+at 76% and `audio-comprehension` at 8/8 on browser TTS.
+
+### P5-3 · Evaluate pronunciation assistance — `deferred` (L)
+
+Constrained local or optional AI pronunciation assistance. All resulting evidence stays unverified
+unless a trustworthy assessment method exists.
+
+### P5-4 · Add lightweight mission grouping — `deferred` (M)
+
+A presentation and resume layer over stable content IDs — not a branching game engine.
+
+**Deferred out of Phase 3 on 2026-07-12**, and it stays deferred: by its own description it adds no
+new retrieval opportunity, and its premise is engagement, which is not the problem the data shows.
+The audit's requirement that an A2 unit provide "a coherent real-world mission" is met as an
+**authoring convention** instead — a unit's artifacts share one scenario and end in a fresh-context
+production task. That costs no code. Reconsider the feature only if the convention proves
+insufficient.
+
+### P5-5 · Evaluate branching missions — `deferred` (M)
+
+Only after a linear mission pilot shows that branching would improve rather than distract from the
+learning workflow.
