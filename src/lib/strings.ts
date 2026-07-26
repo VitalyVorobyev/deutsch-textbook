@@ -552,10 +552,10 @@ export const STRINGS = {
   'kind.phonetics': { de: 'Aussprache', en: 'Pronunciation', ru: 'Произношение', uk: 'Вимова' },
   'discovery.links': { de: 'Links', en: 'Links', ru: 'Ссылки', uk: 'Посилання' },
   'footer.tagline': {
-    de: 'Deutsch-Atlas · ein agentengeschriebenes Lehrbuch · A1 → B2',
-    en: 'Deutsch-Atlas · an agent-written textbook · A1 → B2',
-    ru: 'Deutsch-Atlas · учебник, написанный агентами · A1 → B2',
-    uk: 'Deutsch-Atlas · підручник, написаний агентами · A1 → B2',
+    de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',
+    en: 'Deutsch-Atlas by Vitaly Vorobyev · AI-assisted, human-directed and edited',
+    ru: 'Deutsch-Atlas Виталия Воробьёва · создано и отредактировано человеком при поддержке ИИ',
+    uk: 'Deutsch-Atlas Віталія Воробйова · створено й відредаговано людиною за підтримки ШІ',
   },
 } as const satisfies Record<string, ChromeString>;
 

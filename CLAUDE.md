@@ -1,6 +1,7 @@
 # Deutsch-Atlas
 
-An agent-authored German learning system: wiki-like textbook + interactive exercises +
+An AI-assisted, human-directed and edited German learning system by Vitaly Vorobyev:
+wiki-like textbook + interactive exercises +
 FSRS flashcards. A1 and A2 are complete and B1 is being authored under its frozen contract
 (`docs/curriculum-a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
 are bilingual **EN + RU**, with optional **UK** arriving in translation waves and, from B1
@@ -21,6 +22,7 @@ read**, not a rule to guess at.
 | choosing or adding a **`focus` tag** | [`docs/focus-tags.md`](docs/focus-tags.md) |
 | changing anything in **`src/lib/`** | [`docs/runtime-contracts.md`](docs/runtime-contracts.md) |
 | shipping a **new topic**, or writing a **drill from learner progress** | [`docs/authoring-checklists.md`](docs/authoring-checklists.md) |
+| drafting or reviewing **B1.4+**, or adding a generated/simulated asset | [`.agents/skills/authorship-provenance/SKILL.md`](.agents/skills/authorship-provenance/SKILL.md) · [`docs/product-protection.md`](docs/product-protection.md) |
 | touching a **coverage figure** (Wortliste `~`, grammar inventory, `/about`) | [`docs/coverage-instruments.md`](docs/coverage-instruments.md) |
 | hand-editing a vocab **`ipa`** | [`docs/lautschrift.md`](docs/lautschrift.md) |
 | authoring **Entdecken** material or adding a **document** | [`docs/future-content-directions.md`](docs/future-content-directions.md) |
@@ -38,6 +40,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun run check` — Astro/TypeScript diagnostics
 - `bun run lint` — ESLint
 - `bun run build` — production build (also type-checks content against schemas)
+- `bun run review:gate` — read-only merge gate: non-draft PR, green CI, no unresolved actionable threads and a Codex review of current HEAD
 - `bun run progress:audit --profile <slug>` — aggregate the newest learner snapshot. **Never Read a raw snapshot**: they run 300 KB+ and the audit already aggregates everything. `--item <set-id>:<item-id>` for focused evidence on one item. `--project <YYYY-MM-DD>` answers a different question from the retention table — not *what is the percentage* but *can there be one*: how many competences can reach the readability floor by that date, given arming dates and the interval schedule alone. Ask it **before** a gate date, not on it.
 - `bun run gen:ipa` — fill missing `ipa` on vocab entries via espeak-ng (`brew install espeak-ng`; one-off dev tool, nothing about espeak ships). **Always review the output** — it is a good phoneme skeleton but gets compound/separable-verb stress, loanwords and unstressed vowel quality wrong. `--calibrate` diffs against a known-answer table; `--check` is a dry run; `--force` regenerates, discarding manual fixes.
 - `bun scripts/coverage.ts <A1|A2>` — Goethe Wortliste coverage. **A1 and A2 are both at 100% — keep them there.** A new word belongs to exactly one deck; the manifest gains a line in the same change. A leading `~` (taught as grammar, no flashcard) **must be earned** — the validator hard-fails unless the word occurs in the taught surface. Run `--check-deck <file.yaml>` per deck before `bun run validate` on any completion pass. → [`docs/coverage-instruments.md`](docs/coverage-instruments.md)
