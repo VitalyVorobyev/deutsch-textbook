@@ -177,6 +177,26 @@ A topic is not done until all nine are:
 8. New `focus` tags registered in [`docs/focus-tags.md`](docs/focus-tags.md) **and** in `focusIntroducedBy`.
 9. `bun run validate` passes.
 
+### Review rounds end when a round finds nothing material
+
+Three rounds on one PR (#115) is what the alternative looks like: every fix was correct, and every
+fix was new reviewable surface for the next round.
+
+- **Material means it changes what the learner sees, does, or is measured on** — a false fact
+  taught, an item that rejects correct German, an outcome with no task in the mode it names, a
+  mechanism that mis-measures. Everything else is a backlog line, not an edit.
+- **Fix the finding, not the neighbourhood.** Grepping a false *claim* to its other instances is the
+  same defect and is in scope. Adding the item you wish existed, tightening adjacent prose, or
+  closing a gap the finding merely reminded you of is not — that is next round's findings, authored
+  by you.
+- **Precedent settles marginal calls.** When shipped units at the same level do not do the thing,
+  it is a backlog item and the PR merges: B1.4 gained an `audio-comprehension` item that three of
+  four B1 units ship without, in the same round that filed the backlog entry saying so.
+- **Push back when a finding is wrong.** A reviewer's confidence is not evidence — check the claim
+  against the corpus, and say no with the reason when it does not hold. Conceding every finding is
+  its own way of never converging.
+- **A reply is a verdict, a fix and its scope.** Not an essay.
+
 ### Lesson cycle (required)
 
 Each topic implements **pretest → model → explanation → scaffold → fade → transfer → delayed check**: the pretest is diagnostic generation, not practice; the article and readings give a comprehensible model with maximal support; topic-owned practice begins blocked and explanatory; mixed training removes hints and interleaves only after the article was opened; at least one fresh-context production task checks transfer; checkpoints and probes use separate roles and never leak into ordinary training.
