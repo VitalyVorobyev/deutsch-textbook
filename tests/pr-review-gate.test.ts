@@ -13,6 +13,7 @@ const passing: PullRequestGateInput = {
       state: 'COMMENTED',
     },
   ],
+  comments: [],
   opinionatedReviews: [],
   threads: [{ isResolved: true, isOutdated: false, path: 'file.ts', line: 1 }],
 };
@@ -114,5 +115,35 @@ describe('pull-request review gate', () => {
         ],
       }),
     ).toEqual([]);
+  });
+
+  test('accepts an authenticated clean-review comment against current HEAD', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [],
+        comments: [
+          {
+            author: { login: 'chatgpt-codex-connector[bot]' },
+            body: "Codex Review: Didn't find any major issues.\n\n**Reviewed commit:** `abcdef123456`",
+          },
+        ],
+      }),
+    ).toEqual([]);
+  });
+
+  test('rejects a clean-review comment from a lookalike account', () => {
+    expect(
+      pullRequestGateProblems({
+        ...passing,
+        reviews: [],
+        comments: [
+          {
+            author: { login: 'chatgpt-codex-connector-helper' },
+            body: "Codex Review: Didn't find any major issues.\n\n**Reviewed commit:** `abcdef123456`",
+          },
+        ],
+      }),
+    ).toContain('Codex review has not completed against HEAD abcdef123456');
   });
 });

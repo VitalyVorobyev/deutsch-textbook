@@ -23,6 +23,7 @@ export interface PullRequestGateInput {
     state?: string;
     submittedAt?: string;
   }>;
+  comments: Array<{ author?: { login?: string }; body?: string }>;
   opinionatedReviews: Array<{ author?: { login?: string }; state?: string }>;
   threads: Array<{ isResolved: boolean; isOutdated: boolean; path: string; line?: number | null }>;
 }
@@ -70,9 +71,12 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
     }
   }
 
-  const codexReviewedHead = input.reviews.some((review) => {
-    if (!review.author?.login || !CODEX_REVIEW_LOGINS.has(review.author.login)) return false;
-    const reviewedCommit = review.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]{10,40})`/i)?.[1];
+  // Codex submits a GitHub review when it has inline findings, but records a
+  // clean result as an issue comment. Both are trusted only by exact bot login
+  // and an explicit sufficiently long current-HEAD hash.
+  const codexReviewedHead = [...input.reviews, ...input.comments].some((report) => {
+    if (!report.author?.login || !CODEX_REVIEW_LOGINS.has(report.author.login)) return false;
+    const reviewedCommit = report.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]{10,40})`/i)?.[1];
     return !!reviewedCommit && input.headRefOid.startsWith(reviewedCommit);
   });
   if (!codexReviewedHead) problems.push(`Codex review has not completed against HEAD ${input.headRefOid.slice(0, 12)}`);
@@ -192,17 +196,19 @@ export function runPullRequestGate(): void {
     headRefOid: string;
     statusCheckRollup: PullRequestGateInput['statusCheckRollup'];
     latestReviews: PullRequestGateInput['reviews'];
+    comments: PullRequestGateInput['comments'];
   }>([
     'pr',
     'view',
     '--json',
-    'number,url,isDraft,headRefOid,statusCheckRollup,latestReviews',
+    'number,url,isDraft,headRefOid,statusCheckRollup,latestReviews,comments',
   ]);
   const input: PullRequestGateInput = {
     isDraft: pr.isDraft,
     headRefOid: pr.headRefOid,
     statusCheckRollup: pr.statusCheckRollup,
     reviews: pr.latestReviews,
+    comments: pr.comments,
     ...fetchReviewStatus(owner, repo, pr.number),
     threads: fetchThreads(owner, repo, pr.number),
   };
