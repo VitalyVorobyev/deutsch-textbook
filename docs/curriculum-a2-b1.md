@@ -932,6 +932,17 @@ this leaves: an outcome added to separate probe arming is still an outcome, and 
 mode it names** — the arming fix is not a licence to skip the checklist line at
 `docs/authoring-checklists.md:18`.
 
+**What distinct outcomes do not fix, stated precisely.** They separate families *from each other*.
+They do not separate unrelated items *within* one outcome: `armedAt` arms from any verified attempt
+carrying the family's outcome, so an item that declares `bewerbung-schreiben` while drilling
+`hoeflich-konjunktiv` still starts the n-declension clock. The B1.4 review reported the three arming
+sets as "each containing only items that teach its own competence" — that was over-read from the
+instrument's output, which lists keys and not their focus tags; `uebersetzen-einladung` is the
+counterexample. The residual is bounded (the clock can start early, never on a topic the learner
+never opened) and it is **the systemic behaviour, not a B1.4 defect**: `probeFamilies` over shipped
+A1/A2 content yields **227 such links across 26 multi-family topics**. Closing it means focus-aware
+arming — the deferred fix above, whose cost is unchanged. Do not special-case B1.4 for it.
+
 **The standing rule this leaves:** a unit owing N probe families needs N distinct outcomes among
 them, and outcome count is capped at four per node. A unit owning more than four competences
 cannot give each one an independently-armed family until arming is focus-aware — check this when
