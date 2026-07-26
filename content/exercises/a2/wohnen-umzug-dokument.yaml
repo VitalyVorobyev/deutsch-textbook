@@ -29,23 +29,25 @@ items:
       uk: "В оголошенні вказано теплу орендну плату 880 євро й балкон. Квартира на третьому поверсі, а тварин треба погодити."
 
   - id: dokument-wohnung-grundriss
+    revision: 2
     outcomes: [wohnung-beschreiben]
     type: translate
     instruction:
       en: "Use the floor plan. Translate into German."
       ru: "Используйте план. Переведите на немецкий."
       uk: "Використайте план. Перекладіть німецькою."
-    prompt_en: "The balcony is next to the living room, and the kitchen is between the bathroom and the hall."
-    prompt_ru: "Балкон рядом с гостиной, а кухня находится между ванной и прихожей."
-    prompt_uk: "Балкон поруч із вітальнею, а кухня розташована між ванною та передпокоєм."
-    answer: "Der Balkon ist neben dem Wohnzimmer, und die Küche ist zwischen dem Bad und dem Flur."
+    prompt_en: "The living room is next to the bedroom. The kitchen is between the bathroom and the hall."
+    prompt_ru: "Гостиная находится рядом со спальней. Кухня находится между ванной и прихожей."
+    prompt_uk: "Вітальня розташована поруч зі спальнею. Кухня розташована між ванною та передпокоєм."
+    answer: "Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur."
     accept:
-      - "Der Balkon liegt neben dem Wohnzimmer, und die Küche liegt zwischen dem Bad und dem Flur."
-      - "Neben dem Wohnzimmer ist der Balkon, und zwischen dem Bad und dem Flur ist die Küche."
+      - "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur."
+      - "Neben dem Schlafzimmer ist das Wohnzimmer. Zwischen dem Bad und dem Flur ist die Küche."
+      - "Das Wohnzimmer ist neben dem Schlafzimmer, und die Küche ist zwischen dem Bad und dem Flur."
     explain:
-      en: "The plan supplies the spatial relationship. Both phrases answer Wo?, so neben and zwischen take the dative: dem Wohnzimmer, dem Bad, dem Flur."
-      ru: "План задаёт пространственное отношение. Обе группы отвечают на Wo?, поэтому neben и zwischen требуют Dativ: dem Wohnzimmer, dem Bad, dem Flur."
-      uk: "План задає просторове відношення. Обидві групи відповідають на Wo?, тому neben і zwischen вимагають Dativ: dem Wohnzimmer, dem Bad, dem Flur."
+      en: "The plan shows the living room beside the bedroom and the kitchen between the bathroom and the hall. Both phrases answer Wo?, so neben and zwischen take the dative: dem Schlafzimmer, dem Bad, dem Flur."
+      ru: "На плане гостиная находится рядом со спальней, а кухня — между ванной и прихожей. Обе группы отвечают на Wo?, поэтому neben и zwischen требуют Dativ: dem Schlafzimmer, dem Bad, dem Flur."
+      uk: "На плані вітальня розташована поруч зі спальнею, а кухня — між ванною та передпокоєм. Обидві групи відповідають на Wo?, тому neben і zwischen вимагають Dativ: dem Schlafzimmer, dem Bad, dem Flur."
 
   - id: dokument-wohnung-anfrage
     outcomes: [wohnungsanzeige-lesen, nachbarn-bitte]

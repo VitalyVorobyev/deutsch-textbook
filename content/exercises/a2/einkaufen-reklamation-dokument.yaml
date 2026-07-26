@@ -29,6 +29,7 @@ items:
       uk: "На полиці SoundGo коштує 39,90 євро, а в чеку — 49,90 євро: різниця рівно десять євро."
 
   - id: dokument-produkte-vergleichen
+    revision: 2
     outcomes: [produkte-vergleichen]
     type: translate
     instruction:
@@ -42,6 +43,7 @@ items:
     accept:
       - "SoundPro ist schwerer und kostet mehr als SoundGo, aber der Akku hält zehn Stunden länger."
       - "SoundPro ist schwerer und teurer als SoundGo, aber sein Akku hält zehn Stunden länger."
+      - "SoundPro ist schwerer und kostet mehr als SoundGo, aber sein Akku hält zehn Stunden länger."
     explain:
       en: "The cards provide all three comparisons: 260 versus 220 grams, 59.90 versus 39.90 euros, and 30 versus 20 hours. German uses the comparative plus als."
       ru: "Карточки дают все три сравнения: 260 и 220 граммов, 59,90 и 39,90 евро, 30 и 20 часов. В немецком используется сравнительная степень с als."
