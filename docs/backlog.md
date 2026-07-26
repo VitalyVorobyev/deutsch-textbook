@@ -236,6 +236,10 @@ it; everything else lives in the archive.
   interval schedule instead of from attempts already taken: **A1 1 readable now, 8 still reachable by
   2026-08-02, 4 not — needing 12 more probe attempts actually taken** (A2: 1 / 8 / 25). See
   [the instrument-review archive](archive/2026-07-instrument-reviews.md).
+- **P17-1 · Semantic-illustration pilot** — `done` 2026-07-26. `wohnen-umzug` now carries two
+  generated-scene/deterministic-overlay figures for `Wo?/Wohin?` and
+  `stellen/stehen · legen/liegen · hängen/hängen`; their multilingual text equivalents, provenance
+  guard and responsive, no-page-overflow layouts create no progress or evidence state.
 
 ## The open gate
 
@@ -280,6 +284,24 @@ before another unit is written.
 
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
   update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
+
+## Open — semantic illustrations
+
+### P17-2 · Expand only after the Wohnen pilot is useful — `doing`
+
+The priority order is fixed: (1) one reusable sentence rail for V2, verb brackets and verb-final
+clauses; (2) clocks and timelines; (3) routes and physical movement; (4) body maps and
+giver–receiver–object roles; (5) apartment, office and shopping documents through the existing
+document-stimulus contract. Article paradigms, adjective matrices and politeness scripts stay
+text/table-led unless a diagram resolves a named confusion.
+
+The learner accepted the pilot on 2026-07-26; its narrow-screen redesign passed the remaining
+usefulness gate. Each visual must carry one semantic job, keep generated pixels free of
+load-bearing language, add
+exact German through SVG/HTML, provide EN/RU/UK text equivalence, work without colour, and create no
+learning evidence merely by being viewed. The sentence-architecture and time-relation families are
+the active expansion. Later transfer and delayed probes are supporting signals, not a one-learner
+causal experiment.
 
 ## Open — the 2026-07-20 instrument review and the 2026-07-21 pre-B1 review
 
@@ -579,4 +601,3 @@ insufficient.
 
 Only after a linear mission pilot shows that branching would improve rather than distract from the
 learning workflow.
-
