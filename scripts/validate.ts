@@ -55,6 +55,7 @@ import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
 import { focusIntroducedBy } from '../src/lib/focus-tags';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
+import { authorshipProvenanceProblems } from '../src/lib/authorship-provenance';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -206,6 +207,14 @@ for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
     fail(rel(file), `level directory "${levelDir}" ≠ frontmatter level "${data.level}"`);
   if (topics.has(data.id)) fail(rel(file), `duplicate topic id "${data.id}"`);
   topics.set(data.id, { file: rel(file), data, body });
+}
+
+for (const problem of authorshipProvenanceProblems(
+  ROOT,
+  new Map([...topics].map(([id, topic]) => [id, topic.data.status])),
+  [...topics].filter(([, topic]) => topic.data.level === 'B1').map(([id]) => id),
+)) {
+  errors.push(problem);
 }
 
 /**

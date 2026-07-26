@@ -156,13 +156,18 @@ checklist passes:
 6. **Design narrow-first.** No page or figure overflow from 320 px upward; instructional labels
    remain readable without zooming. Prefer stacking semantic units to shrinking a desktop canvas.
 7. **Keep provenance explicit.** Real/adapted sources carry attribution and licence. Generated
-   originals are `simulated`; authentic documents stay visible while their task is answered.
+   course-created sources are `simulated`; this says nothing about authorship or copyrightability.
+   For any generated or simulated asset, apply the repository's `authorship-provenance` skill:
+   save future prompts/briefs, keep generated pixels separate from human-authored overlays, record
+   candidates and actual human selection/edit decisions, and never fabricate missing history.
 8. **Keep evidence honest.** Viewing, expanding or opening a figure creates no mastery, completion
    or telemetry. Use later fresh-context production and delayed probes to judge transfer; a
    usefulness rating is qualitative evidence, not a causal experiment.
 
 Never invoke “visual learners” or other learning-styles claims. Multimedia is conditional (§10):
 the second channel earns its place only when it carries a relationship the first channel does not.
+Never request imitation of a named artist, studio, franchise, character or brand, and never copy
+an existing document or artwork exactly.
 
 ### Exercise set
 - **Contracts:** every set has an explicit `role`; every item references stable

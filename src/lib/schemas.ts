@@ -732,7 +732,8 @@ export type Wortnetz = z.infer<typeof wortnetzSchema>;
 
 /** Same provenance contract as visualDocumentSchema: a real or adapted asset
     is someone else's work, so shipping it without attribution and license is
-    not an option the schema offers. Simulated assets are the course's own. */
+    not an option the schema offers. `simulated` only identifies a course-created
+    source; it does not assert human authorship, originality or copyrightability. */
 const discoveryImageSchema = z
   .object({
     src: z.string().min(1),

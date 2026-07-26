@@ -19,12 +19,14 @@ authoring rules; code, schemas and tests remain authoritative for runtime behavi
 | [`curriculum-a2-b1.md`](curriculum-a2-b1.md) | Frozen A2/B1 identities, ownership and unit contracts | authoritative | an owner-approved curriculum amendment is recorded |
 | [`a2-learning-led-program.md`](a2-learning-led-program.md) | Evidence cadence and drill decision rules | active procedure | the operating cadence or gate dates change |
 | [`future-content-directions.md`](future-content-directions.md) | Admission contract for Entdecken, documents and editorial media | active | a new optional artifact class is admitted |
+| [`product-protection.md`](product-protection.md) | Ownership, licensing and authorship-provenance contract | authoritative | ownership, licence scope or the provenance gate changes |
 
 ## Authoring
 
 | Document | Purpose | Status | Update when |
 | --- | --- | --- | --- |
 | [`authoring-checklists.md`](authoring-checklists.md) | Topic, drill and release checklists | active | the lesson/review workflow changes |
+| [`b1-authoring-handoff.md`](b1-authoring-handoff.md) | Claude handoff contract for B1.4/B1.5 | active prompt | the frozen B1 contract or authorship gate changes |
 | [`item-authoring.md`](item-authoring.md) | Exercise and vocabulary contracts | authoritative companion | an item schema or grading rule changes |
 | [`focus-tags.md`](focus-tags.md) | Registered confusion taxonomy | generated parity contract | a focus tag is added or removed |
 | [`coverage-instruments.md`](coverage-instruments.md) | How lexical and grammar coverage are earned | active | an instrument or published figure changes |

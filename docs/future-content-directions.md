@@ -28,8 +28,9 @@ maintenance cost exceeds its learning job.
 
 ## Documents and images
 
-- Real and adapted material requires `attribution` and `license`; simulated originals declare
-  `sourceClass: simulated`.
+- Real and adapted material requires `attribution` and `license`; course-created simulations
+  declare `sourceClass: simulated`. This is a provenance label, not a claim of human authorship,
+  originality or copyrightability.
 - Generated raster artwork contains no load-bearing words, arrows, article forms or case labels.
   Exact instructional information belongs to HTML/SVG.
 - A document remains visible while its questions are answered. Viewing it is input, never evidence.
