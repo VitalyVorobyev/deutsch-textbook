@@ -1,0 +1,80 @@
+# Delayed probe family 2 of 3 — ONE competence: choosing between da and weil by what the
+# reason is doing, not by how formal the sentence sounds. Three parallel cloze variants in
+# three everyday settings no practice item, article example or reading sentence uses.
+# `outcomes: [meinung-begruenden]` is what arms this family, and it is the honest match:
+# "mit Argumenten stützen" is the causal clause. The other two families declare different
+# outcomes on purpose — two families on one outcome arm identically, so one competence's
+# practice would start the other's retention clock.
+# The asymmetry is stated rather than smoothed over. Only weil is ever *forced*: it alone
+# can stand as a whole answer to a bare warum?. Nothing forces da — weil is grammatical
+# wherever da is — so each da-variant's instruction states the discourse situation the
+# chapter defines da by (a reason both sides already have), which is what makes the target
+# determinate served alone. Never grade a learner's correct German as wrong; grade whether
+# they can produce the connector the situation calls for.
+topic: meinung-medien
+role: probe
+title:
+  en: "Delayed check — which conjunction the reason calls for"
+  ru: "Отложенная проверка — какого союза требует причина"
+  uk: "Відкладена перевірка — якого сполучника вимагає причина"
+  de: "Kontrolle mit Abstand — welche Konjunktion der Grund verlangt"
+items:
+  - id: variant-a
+    outcomes: [meinung-begruenden]
+    type: cloze
+    focus: da-weil
+    instruction:
+      en: "Fill in the causal conjunction. This is a whole answer standing on its own after a bare warum? — only one of the two can do that."
+      ru: "Впишите причинный союз. Это целый ответ, стоящий сам по себе после голого warum?, — справиться с этим может только один из двух."
+      uk: "Впишіть причиновий сполучник. Це ціла відповідь, що стоїть сама по собі після голого warum?, — впоратися з цим може лише один із двох."
+      de: "Ergänze die kausale Konjunktion. Das ist eine ganze Antwort, die nach einem bloßen warum? allein steht — das kann nur eine der beiden."
+    text: "— Warum hörst du morgens Radio und liest keine Zeitung? — {{Weil}} ich beim Frühstück nicht gleichzeitig lesen kann."
+    translation:
+      en: "— Why do you listen to the radio in the morning instead of reading a paper? — Because I can't read at the same time over breakfast."
+      ru: "— Почему по утрам ты слушаешь радио, а не читаешь газету? — Потому что за завтраком я не могу читать одновременно."
+      uk: "— Чому вранці ти слухаєш радіо, а не читаєш газету? — Бо за сніданком я не можу читати одночасно."
+    explain:
+      en: "Only a weil-clause can be a complete answer on its own. A da-clause needs a main clause to belong to and breaks off unfinished without one, which is why ❌ Da ich nicht gleichzeitig lesen kann. is not an answer. And the content agrees with the form: a reason someone has just asked for is new information by definition, and that is what weil marks. The verb still goes to the very end — the modal kann after the infinitive lesen — exactly as in a da-clause."
+      ru: "Целым ответом может быть только придаточное с weil. Придаточному с da нужна главная часть, и без неё оно обрывается, поэтому ❌ Da ich nicht gleichzeitig lesen kann. — не ответ. Содержание здесь совпадает с формой: причина, о которой только что спросили, по определению новая информация, а её и маркирует weil. Глагол при этом всё равно уходит в самый конец — модальный kann после инфинитива lesen, — ровно как в придаточном с da."
+      uk: "Цілою відповіддю може бути лише підрядне з weil. Підрядному з da потрібна головна частина, і без неї воно обривається, тому ❌ Da ich nicht gleichzeitig lesen kann. — не відповідь. Зміст тут збігається з формою: причина, про яку щойно спитали, за визначенням нова інформація, а її і маркує weil. Дієслово при цьому все одно йде в самий кінець — модальне kann після інфінітива lesen, — рівно як у підрядному з da."
+      de: "Eine ganze Antwort kann nur ein weil-Satz sein. Ein da-Satz braucht einen Hauptsatz, zu dem er gehört, und bricht ohne ihn ab — deshalb ist ❌ Da ich nicht gleichzeitig lesen kann. keine Antwort. Inhalt und Form stimmen überein: Ein eben erfragter Grund ist per Definition neue Information, und genau die markiert weil. Das Verb steht trotzdem ganz am Ende — das Modalverb kann hinter dem Infinitiv lesen —, genau wie im da-Satz."
+
+  - id: variant-b
+    outcomes: [meinung-begruenden]
+    type: cloze
+    focus: da-weil
+    instruction:
+      en: "Fill in the causal conjunction. The reason is already on the table — both speakers can see it — and its clause stands in front. Write the conjunction that marks a reason as already shared — not the neutral one, which introduces a reason without saying anything about who already knows it."
+      ru: "Впишите причинный союз. Причина уже лежит на столе — её видят оба собеседника, — и её придаточное стоит впереди. Напишите союз, который маркирует причину как уже общую, — не нейтральный, который вводит причину, ничего не говоря о том, кому она уже известна."
+      uk: "Впишіть причиновий сполучник. Причина вже лежить на столі — її бачать обидва співрозмовники, — і її підрядне стоїть попереду. Напишіть сполучник, який маркує причину як уже спільну, — не нейтральний, що вводить причину, нічого не кажучи про те, кому вона вже відома."
+      de: "Ergänze die kausale Konjunktion. Der Grund liegt schon auf dem Tisch — beide sehen ihn —, und sein Satz steht vorn. Schreib die Konjunktion, die einen Grund als bereits gemeinsam markiert — nicht die neutrale, die einen Grund einführt, ohne etwas darüber zu sagen, wer ihn schon kennt."
+    text: "{{Da}} es draußen seit Stunden regnet, fällt das Fest in unserer Straße heute aus."
+    translation:
+      en: "Since it has been raining outside for hours, today's street festival is cancelled."
+      ru: "Так как на улице уже несколько часов идёт дождь, сегодняшний праздник на нашей улице отменяется."
+      uk: "Оскільки надворі вже кілька годин іде дощ, сьогоднішнє свято на нашій вулиці скасовується."
+    explain:
+      en: "Rain everyone can see is not news, so the reason is treated as shared and the clause goes in front — that is where da is at home. Two consequences to notice: the clause's own finite verb still goes to the end (regnet), and because the clause fills position 1 of the whole sentence, the main clause opens with its finite verb and the subject follows: fällt das Fest, never ❌ das Fest fällt. Weil is grammatical here too; it would simply present the rain as the new thing you are telling, which it is not."
+      ru: "Дождь, который виден обоим, — не новость, поэтому причина подаётся как общая и придаточное идёт вперёд: начало предложения — родной дом da. Обратите внимание на два следствия: спрягаемый глагол самого придаточного всё равно уходит в конец (regnet), а поскольку придаточное занимает первое место всего предложения, главное открывается спрягаемым глаголом, а подлежащее идёт за ним: fällt das Fest, а не ❌ das Fest fällt. Weil здесь тоже грамматичен — он просто подал бы дождь как новость, которой тот не является."
+      uk: "Дощ, який бачать обидва, — не новина, тому причина подається як спільна і підрядне йде вперед: початок речення — рідна домівка da. Зверніть увагу на два наслідки: відмінюване дієслово самого підрядного все одно йде в кінець (regnet), а оскільки підрядне займає перше місце всього речення, головне відкривається відмінюваним дієсловом, а підмет іде за ним: fällt das Fest, а не ❌ das Fest fällt. Weil тут теж граматичний — він просто подав би дощ як новину, якою той не є."
+      de: "Regen, den beide sehen, ist keine Neuigkeit, also gilt der Grund als gemeinsam und sein Satz steht vorn — dort ist da zu Hause. Zwei Folgen sind zu beachten: Das finite Verb des Nebensatzes steht trotzdem am Ende (regnet), und weil der Nebensatz Position 1 des ganzen Satzes füllt, beginnt der Hauptsatz mit seinem finiten Verb und das Subjekt folgt: fällt das Fest, nie ❌ das Fest fällt. Weil wäre hier ebenfalls grammatisch; es würde den Regen nur als das Neue ausgeben, was er nicht ist."
+
+  - id: variant-c
+    outcomes: [meinung-begruenden]
+    type: cloze
+    focus: da-weil
+    instruction:
+      en: "Fill in the causal conjunction. The other speaker has just named the reason themselves, so it belongs to both of you, and its clause stands in front. Write the conjunction that marks a reason as already shared — not the neutral one, which introduces a reason without saying anything about who already knows it."
+      ru: "Впишите причинный союз. Собеседник только что сам назвал причину, значит, она принадлежит обоим, и её придаточное стоит впереди. Напишите союз, который маркирует причину как уже общую, — не нейтральный, который вводит причину, ничего не говоря о том, кому она уже известна."
+      uk: "Впишіть причиновий сполучник. Співрозмовник щойно сам назвав причину, отже, вона належить обом, і її підрядне стоїть попереду. Напишіть сполучник, який маркує причину як уже спільну, — не нейтральний, що вводить причину, нічого не кажучи про те, кому вона вже відома."
+      de: "Ergänze die kausale Konjunktion. Das Gegenüber hat den Grund gerade selbst genannt, er gehört also beiden, und sein Satz steht vorn. Schreib die Konjunktion, die einen Grund als bereits gemeinsam markiert — nicht die neutrale, die einen Grund einführt, ohne etwas darüber zu sagen, wer ihn schon kennt."
+    text: "— Ich verstehe die Werbung im Radio wirklich nicht mehr. — {{Da}} du dich sowieso jeden Abend darüber ärgerst, schalte ich jetzt einen anderen Sender ein."
+    translation:
+      en: "— I really don't understand the advertising on the radio any more. — Since you get annoyed about it every evening anyway, I'll put on another station now."
+      ru: "— Я и правда больше не понимаю рекламу по радио. — Так как ты всё равно каждый вечер из-за неё злишься, я сейчас включу другую станцию."
+      uk: "— Я справді більше не розумію рекламу по радіо. — Оскільки ти все одно щовечора через неї злишся, я зараз увімкну іншу станцію."
+    explain:
+      en: "The reason arrived in the previous turn, in the other speaker's own words, so it is the most shared a reason can be — and da is the conjunction that says so. Its clause takes the front, the main clause then opens with its finite verb (schalte ich), and the separable ein waits at the very end. Weil is not wrong German here; it would just make the annoyance sound like something new, when it was said a second ago. Note darüber as well: sich ärgern über is another fixed frame, and the da-word points back at the advertising."
+      ru: "Причина прозвучала в предыдущей реплике, из уст самого собеседника, — общее уже некуда, — и da как раз это и сообщает. Его придаточное занимает начало, главное предложение открывается спрягаемым глаголом (schalte ich), а отделяемое ein ждёт в самом конце. Weil здесь не ошибка; он просто выдал бы раздражение за новость, хотя оно названо секунду назад. Обратите внимание и на darüber: sich ärgern über — ещё одна закреплённая рамка, и da-слово указывает назад на рекламу."
+      uk: "Причина прозвучала в попередній репліці, з уст самого співрозмовника, — спільніше вже нікуди, — і da якраз це й повідомляє. Його підрядне займає початок, головне речення відкривається відмінюваним дієсловом (schalte ich), а відокремлюване ein чекає в самому кінці. Weil тут не помилка; він просто видав би роздратування за новину, хоча воно назване секунду тому. Зверніть увагу й на darüber: sich ärgern über — ще одна закріплена рамка, і da-слово вказує назад на рекламу."
+      de: "Der Grund kam im vorigen Zug, aus dem Mund des Gegenübers — gemeinsamer geht es nicht —, und genau das sagt da. Sein Satz nimmt das Vorfeld, der Hauptsatz beginnt mit seinem finiten Verb (schalte ich), und das trennbare ein wartet ganz am Ende. Weil wäre hier kein falsches Deutsch; es würde den Ärger nur als etwas Neues ausgeben, obwohl er gerade eben genannt wurde. Beachte auch das darüber: sich ärgern über ist eine weitere feste Verbindung, und das da-Wort zeigt auf die Werbung zurück."

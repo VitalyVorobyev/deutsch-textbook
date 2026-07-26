@@ -76,6 +76,15 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
   one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
   the earned-not-asserted bar this belongs under.
+- **P5-11c · The connector-determinacy check does not reach cloze gaps** — the rule in
+  `scripts/validate.ts` reads `item.answer` and `item.accept`, which is the `translate` shape, so a
+  **cloze** gap that accepts one interchangeable connector and rejects its sibling is unguarded.
+  B1.5's three `da-weil` probe variants are cloze, and their ambiguity had to be found and fixed by
+  hand. Read the comment above `INTERCHANGEABLE_CONNECTORS` before acting: `da` is **deliberately
+  absent**, because clause-initial *Da* is more often "then/there" than causal and the naive rule
+  would misfire on the adverb. Adding the pair was tried during the B1.5 pass and reverted for that
+  reason — it produced zero new warnings, which measures today's corpus and not the rule. A cloze
+  equivalent therefore needs sense disambiguation, not merely a longer list.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
 - **P12-5 · `key_tokens` cannot attribute an *inserted* token** — attribution fires when a graded

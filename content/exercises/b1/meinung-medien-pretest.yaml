@@ -1,0 +1,68 @@
+# Diagnostic generation, not practice: three guesses before the article, one per grammar
+# point of the unit (Verben mit fester Präposition, da neben weil, zweiteilige Konnektoren).
+# No focus tags — a pretest is never weakness evidence — and the first item is a cloze,
+# because a pretest made only of mc discriminates nothing.
+topic: meinung-medien
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-abhaengen
+    outcomes: [bericht-verstehen]
+    type: cloze
+    instruction:
+      en: "Guess the preposition abhängen brings with it — in the form the sentence needs."
+      ru: "Угадайте предлог, который приносит с собой abhängen, — в той форме, которой требует предложение."
+      uk: "Вгадайте прийменник, який приносить із собою abhängen, — у тій формі, якої вимагає речення."
+      de: "Rate die Präposition, die abhängen mitbringt — in der Form, die der Satz verlangt."
+    text: "Ob wir am Samstag draußen feiern, hängt {{vom}} Wetter ab."
+    translation:
+      en: "Whether we celebrate outdoors on Saturday depends on the weather."
+      ru: "Будем ли мы праздновать в субботу на улице, зависит от погоды."
+      uk: "Чи святкуватимемо ми в суботу надворі, залежить від погоди."
+    explain:
+      en: "A verb keeps its preposition the way a noun keeps its gender: abhängen brings von, and von governs the Dativ everywhere in German, so von dem contracts to vom. Nothing in the meaning decides that — the chapter collects the four frames a report is built on and shows why the case never has to be weighed up."
+      ru: "Глагол хранит свой предлог так же, как существительное хранит род: abhängen приносит von, а von во всём немецком требует Dativ, поэтому von dem стягивается в vom. Из смысла это не выводится — глава собирает четыре рамки, на которых держится сообщение, и показывает, почему падеж взвешивать не приходится."
+      uk: "Дієслово зберігає свій прийменник так само, як іменник зберігає рід: abhängen приносить von, а von в усій німецькій вимагає Dativ, тому von dem стягується у vom. Зі змісту це не виводиться — розділ збирає чотири рамки, на яких тримається повідомлення, і показує, чому відмінок зважувати не доводиться."
+      de: "Ein Verb behält seine Präposition, wie ein Nomen sein Genus behält: abhängen bringt von mit, und von regiert im ganzen Deutschen den Dativ, also zieht sich von dem zu vom zusammen. Aus der Bedeutung folgt das nicht — das Kapitel sammelt die vier Verbindungen, von denen ein Bericht lebt, und zeigt, warum der Kasus nie abgewogen werden muss."
+
+  - id: pre-mc-warum
+    outcomes: [meinung-begruenden]
+    type: mc
+    prompt: "— Warum liest du keine Zeitung? — ___ ich keine Zeit habe."
+    options:
+      - "Weil"
+      - "Da"
+      - "Denn"
+    correct: 0
+    translation:
+      en: "— Why don't you read a newspaper? — Because I have no time."
+      ru: "— Почему ты не читаешь газету? — Потому что у меня нет времени."
+      uk: "— Чому ти не читаєш газету? — Бо в мене немає часу."
+    explain:
+      en: "German has two subordinating conjunctions for a reason, and they are not the formal one and the everyday one. Only weil can stand alone as the answer to a bare warum?; da needs a main clause to belong to, and denn joins two main clauses and would leave the verb in second position. The chapter says what actually separates them — whether the reason is new information or something both of you already have."
+      ru: "У немецкого два подчинительных союза для причины, и различаются они не как «официальный» и «бытовой». Самостоятельным ответом на голое warum? может быть только weil; da нужна главная часть, а denn соединяет два главных предложения и оставил бы глагол на втором месте. Глава объясняет, что различает их на самом деле: новая ли это информация или причина, которая уже есть у обоих."
+      uk: "У німецької два підрядні сполучники для причини, і різняться вони не як «офіційний» і «побутовий». Самостійною відповіддю на голе warum? може бути лише weil; da потрібна головна частина, а denn з'єднує два головні речення і лишив би дієслово на другому місці. Розділ пояснює, що розрізняє їх насправді: чи це нова інформація, чи причина, яка вже є в обох."
+      de: "Das Deutsche hat zwei unterordnende Konjunktionen für einen Grund, und sie unterscheiden sich nicht als die förmliche und die alltägliche. Allein als Antwort auf ein bloßes warum? kann nur weil stehen; da braucht einen Hauptsatz, und denn verbindet zwei Hauptsätze und ließe das Verb auf Position 2. Das Kapitel zeigt, was sie wirklich trennt — ob der Grund neu ist oder beiden schon gehört."
+
+  - id: pre-mc-zwar-partner
+    outcomes: [argumente-verbinden]
+    type: mc
+    prompt: "Der Beitrag ist zwar kurz, ___ er nennt beide Seiten."
+    options:
+      - "aber"
+      - "sondern"
+      - "oder"
+    correct: 0
+    translation:
+      en: "The piece is short, admittedly, but it names both sides."
+      ru: "Материал, правда, короткий, но он называет обе стороны."
+      uk: "Матеріал, щоправда, короткий, але він називає обидві сторони."
+    explain:
+      en: "A two-part connector is a frame: the first half announces what is coming and only one word can deliver it. Zwar concedes something, so its partner is aber. Sondern is only ever allowed after a negation — and zwar is not one — while oder would offer a choice nobody is making. The chapter builds all three frames and shows which first half takes which partner."
+      ru: "Двойной союз — это рамка: первая половина объявляет, что будет дальше, и выдать это может только одно слово. Zwar что-то уступает, значит, его пара — aber. Sondern допустим только после отрицания, а zwar отрицанием не является; oder же предложил бы выбор, которого никто не делает. Глава строит все три рамки и показывает, какая первая половина какую пару берёт."
+      uk: "Подвійний сполучник — це рамка: перша половина оголошує, що буде далі, і видати це може лише одне слово. Zwar щось поступається, отже, його пара — aber. Sondern припустимий тільки після заперечення, а zwar запереченням не є; oder же запропонував би вибір, якого ніхто не робить. Розділ будує всі три рамки і показує, яка перша половина яку пару бере."
+      de: "Ein zweiteiliger Konnektor ist ein Rahmen: Die erste Hälfte kündigt an, und nur ein Wort löst das ein. Zwar räumt etwas ein, also heißt sein Partner aber. Sondern steht nur nach einer Verneinung — und zwar ist keine —, und oder böte eine Wahl an, die niemand trifft. Das Kapitel baut alle drei Rahmen und zeigt, welche erste Hälfte welchen Partner nimmt."

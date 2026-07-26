@@ -88,15 +88,18 @@ describe('grammar coverage', () => {
     // komparativ-attributiv and relativsatz-dativ; unit B1.3 (gesundheit-wohlbefinden,
     // 2026-07-24) closed adjektiv-nullartikel, konjunktiv2-ratschlag, lassen and
     // reflexiv-praeposition; unit B1.4 (arbeit-bewerbung, 2026-07-26) closed
-    // n-deklination, adjektiv-nomen and nomen-verb-verbindungen.
-    expect(coverage.covered).toBe(13);
+    // n-deklination, adjektiv-nomen and nomen-verb-verbindungen; unit B1.5 (meinung-medien,
+    // 2026-07-26) closed verb-praeposition-erweitert, kausalsatz-da and
+    // zweiteilige-konnektoren.
+    expect(coverage.covered).toBe(16);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(42);
+    expect(coverage.percent).toBe(52);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
       'adjektiv-nullartikel',
       'genitiv-vollstaendig',
+      'kausalsatz-da',
       'komparativ-attributiv',
       'konjunktiv2-ratschlag',
       'lassen',
@@ -107,11 +110,13 @@ describe('grammar coverage', () => {
       'reflexiv-praeposition',
       'relativsatz-dativ',
       'temporalsatz',
+      'verb-praeposition-erweitert',
+      'zweiteilige-konnektoren',
     ]);
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 13);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 16);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

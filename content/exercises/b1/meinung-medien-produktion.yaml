@@ -1,0 +1,256 @@
+# B1.5 production half: the transfer set. Fresh contexts, none of them a rehearsal of a
+# primary-practice sentence — a local notice read cold, a written transfer sentence, a radio
+# exchange heard once, a dictation that turns the fronted da-clause into a word-order
+# decision, a discrimination mc, and the two open tasks the outcomes claim (a written
+# Stellungnahme and a spoken opinion). All open tasks are minimal ceremony: attempt → model
+# → done. The `requirements` and the `checklist` are guidance for comparing your own text
+# against the model — the app cannot verify free production, so it charges no steps for
+# feedback it cannot give.
+# Four notes on the tags. lesen-lokalbericht carries verb-praeposition-b1 rather than
+# staying untagged, because its distractor is the *other* frame in the same notice: the
+# question asks what the abhängen von frame points at and the trap answers with what the
+# sich äußern zu frame points at, so a miss really is a frame confusion. hoeren-radio-umfrage
+# records *listening* evidence for a reading outcome, deliberately — a report is as often
+# heard as read, and its comprehension question turns on abhängen von, which is what keeps
+# it honest as an arming item for that family. hoeren-diktat-da carries nebensatz-vorfeld
+# rather than da-weil: dictation cannot grade a choice the learner never makes, but it does
+# grade whether the main clause opens with its finite verb after the comma, which is the
+# error a fronted da-clause actually produces. And mc-konnektor-oder-einfach is the faded
+# discrimination check for the connector half: every other scored connector slot in this
+# unit hands the learner a first half and asks for its partner, so reaching for the pair
+# blindly would score full marks — this one describes a situation where the two-part
+# connector is simply wrong, because the readers do not do both things.
+topic: meinung-medien
+role: practice
+title:
+  en: "Production — read the notice, hear the report, say what you think"
+  ru: "Продукция — прочитать объявление, услышать сообщение, сказать, что вы думаете"
+  uk: "Продукція — прочитати оголошення, почути повідомлення, сказати, що ви думаєте"
+  de: "Produktion — den Aushang lesen, den Bericht hören, die eigene Meinung sagen"
+items:
+  - id: lesen-lokalbericht
+    outcomes: [bericht-verstehen]
+    type: mc
+    focus: verb-praeposition-b1
+    prompt: "In der Stadtzeitung steht: „Am Samstag feiert unsere Straße zum ersten Mal ein Fest. Ob wir draußen feiern können, hängt aber vom Wetter ab. Zu den Kosten möchte sich die Stadt noch nicht äußern.“ — Wovon hängt es ab, ob das Fest draußen stattfindet?"
+    options:
+      - "Vom Wetter am Samstag."
+      - "Von den Kosten, zu denen sich die Stadt nicht äußert."
+      - "Von der Zahl der Gäste."
+    correct: 0
+    translation:
+      en: "The town paper says: \"On Saturday our street is holding a festival for the first time. Whether we can celebrate outdoors depends on the weather, though. The town does not want to comment on the costs so far.\" — What does it depend on whether the festival takes place outdoors?"
+      ru: "В городской газете написано: «В субботу наша улица впервые проводит праздник. Но сможем ли мы праздновать на улице, зависит от погоды. По поводу расходов город пока высказываться не хочет». — От чего зависит, состоится ли праздник под открытым небом?"
+      uk: "У міській газеті написано: «У суботу наша вулиця вперше проводить свято. Але чи зможемо ми святкувати надворі, залежить від погоди. Щодо витрат місто поки що висловлюватися не хоче». — Від чого залежить, чи відбудеться свято просто неба?"
+    explain:
+      en: "Two frames stand in three lines of a notice, and each one points at something different. Abhängen von + Dativ points at the weather: hängt … vom Wetter ab. Sich äußern zu + Dativ points at the costs — and that is what the second option offers, correctly quoted and answering a question nobody asked. The third option names something the notice never mentions. Reading a short report is largely this: following which complement belongs to which frame, especially when a separable ab has been waiting at the end of the sentence for six words."
+      ru: "В трёх строчках объявления стоят две рамки, и каждая указывает на своё. Abhängen von + Dativ указывает на погоду: hängt … vom Wetter ab. Sich äußern zu + Dativ указывает на расходы — и именно это предлагает второй вариант, процитированный верно и отвечающий на вопрос, которого никто не задавал. Третий вариант называет то, чего в объявлении нет вовсе. Чтение короткого сообщения во многом и состоит в этом: проследить, какое дополнение принадлежит какой рамке, особенно когда отделяемое ab ждало в конце предложения шесть слов."
+      uk: "У трьох рядках оголошення стоять дві рамки, і кожна вказує на своє. Abhängen von + Dativ вказує на погоду: hängt … vom Wetter ab. Sich äußern zu + Dativ вказує на витрати — і саме це пропонує другий варіант, процитований правильно і відповідальний на питання, якого ніхто не ставив. Третій варіант називає те, чого в оголошенні немає взагалі. Читання короткого повідомлення значною мірою в цьому й полягає: простежити, який додаток належить якій рамці, надто коли відокремлюване ab чекало в кінці речення шість слів."
+      de: "In drei Zeilen eines Aushangs stehen zwei Verbindungen, und jede zeigt auf etwas anderes. Abhängen von + Dativ zeigt auf das Wetter: hängt … vom Wetter ab. Sich äußern zu + Dativ zeigt auf die Kosten — und genau das bietet die zweite Option an, richtig zitiert und als Antwort auf eine Frage, die niemand gestellt hat. Die dritte Option nennt etwas, das im Text gar nicht vorkommt. Einen kurzen Bericht zu lesen heißt großenteils genau das: verfolgen, welche Ergänzung zu welcher Verbindung gehört — erst recht, wenn ein trennbares ab sechs Wörter lang am Satzende gewartet hat."
+
+  - id: uebersetzen-es-geht-um
+    outcomes: [bericht-verstehen]
+    type: translate
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Translate — name the text with in + Dativ and leave the subject slot where it belongs."
+      ru: "Переведите — назовите текст через in + Dativ, а место подлежащего не трогайте."
+      uk: "Перекладіть — назвіть текст через in + Dativ, а місце підмета не чіпайте."
+      de: "Übersetze — nenne den Text mit in + Dativ und lass die Subjektstelle, wo sie hingehört."
+    prompt_en: "The report is about a survey among readers."
+    prompt_ru: "В сообщении речь идёт об опросе среди читателей."
+    prompt_uk: "У повідомленні йдеться про опитування серед читачів."
+    answer: "In dem Bericht geht es um eine Umfrage unter den Lesern."
+    accept:
+      - "Im Bericht geht es um eine Umfrage unter den Lesern."
+      - "In dem Beitrag geht es um eine Umfrage unter den Lesern."
+    key_tokens: ["es", "um"]
+    explain:
+      en: "Graded are the two pieces of the frame that cannot be worked out from the meaning: the es that holds the subject slot, and the preposition um. The text is named with in + Dativ — in dem Bericht, contracted to im — and it never becomes the subject, which is why ❌ Der Bericht geht um eine Umfrage is not German. Want the text as subject? Then the verb changes: Der Bericht handelt von einer Umfrage. Bericht and Beitrag are both usual here."
+      ru: "Оцениваются два куска рамки, которые из смысла не выводятся: es, занимающее место подлежащего, и предлог um. Текст называют через in + Dativ — in dem Bericht, в стяжении im — и подлежащим он не становится, поэтому ❌ Der Bericht geht um eine Umfrage не по-немецки. Хотите текст подлежащим — меняйте глагол: Der Bericht handelt von einer Umfrage. Bericht и Beitrag здесь одинаково употребительны."
+      uk: "Оцінюються два шматки рамки, які зі змісту не виводяться: es, що займає місце підмета, і прийменник um. Текст називають через in + Dativ — in dem Bericht, у стягненні im — і підметом він не стає, тому ❌ Der Bericht geht um eine Umfrage не є німецькою. Хочете текст підметом — міняйте дієслово: Der Bericht handelt von einer Umfrage. Bericht і Beitrag тут однаково вживані."
+      de: "Bewertet werden die beiden Teile der Verbindung, die sich nicht aus der Bedeutung ergeben: das es, das die Subjektstelle hält, und die Präposition um. Den Text nennt man mit in + Dativ — in dem Bericht, zusammengezogen im — und zum Subjekt wird er nie, weshalb ❌ Der Bericht geht um eine Umfrage kein Deutsch ist. Soll der Text Subjekt sein, wechselt das Verb: Der Bericht handelt von einer Umfrage. Bericht und Beitrag sind hier beide üblich."
+
+  - id: hoeren-radio-umfrage
+    outcomes: [bericht-verstehen]
+    type: audio-comprehension
+    focus: verb-praeposition-b1
+    instruction:
+      en: "A radio exchange, heard once and not written down. Listen for what the answer depends on."
+      ru: "Разговор по радио, который вы слышите, но не видите записанным. Слушайте, от чего зависит ответ."
+      uk: "Розмова по радіо, яку ви чуєте, але не бачите записаною. Слухайте, від чого залежить відповідь."
+      de: "Ein Radiogespräch, gehört und nicht mitgelesen. Achte darauf, wovon die Antwort abhängt."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Moderator", text: "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau?" }
+        - { speaker: "Frau Berg", text: "Wir haben zweihundert Menschen gefragt, woher sie ihre Nachrichten bekommen." }
+        - { speaker: "Moderator", text: "Und wovon hängt es ab, ob jemand noch eine Zeitung kauft?" }
+        - { speaker: "Frau Berg", text: "Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy." }
+        - { speaker: "Moderator", text: "Zu den genauen Zahlen möchte sich die Redaktion morgen äußern." }
+    question: "Wovon hängt es ab, ob jemand noch eine Zeitung kauft?"
+    options:
+      - "Vom Alter."
+      - "Von den genauen Zahlen der Redaktion."
+      - "Vom Handy der jungen Leser."
+    correct: 0
+    translation:
+      en: "What does it depend on whether someone still buys a newspaper?"
+      ru: "От чего зависит, покупает ли человек ещё газету?"
+      uk: "Від чого залежить, чи купує людина ще газету?"
+    explain:
+      en: "Every option is a real phrase from the exchange, so the ear has to catch which frame each one belongs to, not which words occurred. Frau Berg answers the wovon question directly: vor allem vom Alter. Die genauen Zahlen belong to the last turn, where the Redaktion will comment on them — a different frame and a different speaker. Das Handy is where young readers read, not what the buying depends on. Note how the question itself was built: wovon is the wo-word of von, exactly the A2 machine, and the answer comes back as vom Alter."
+      ru: "Каждый вариант — реальный оборот из разговора, поэтому ухо должно поймать, какой рамке принадлежит каждый, а не какие слова прозвучали. Госпожа Берг отвечает на вопрос wovon прямо: vor allem vom Alter. Die genauen Zahlen относятся к последней реплике, где о них собирается высказаться редакция, — другая рамка и другой говорящий. Das Handy — это где читают молодые читатели, а не то, от чего зависит покупка. Обратите внимание, как построен сам вопрос: wovon — это wo-слово от von, ровно машина с A2, и ответ возвращается как vom Alter."
+      uk: "Кожен варіант — реальний зворот із розмови, тож вухо має вловити, якій рамці належить кожен, а не які слова пролунали. Пані Берг відповідає на питання wovon прямо: vor allem vom Alter. Die genauen Zahlen стосуються останньої репліки, де про них збирається висловитися редакція, — інша рамка й інший мовець. Das Handy — це де читають молоді читачі, а не те, від чого залежить купівля. Зверніть увагу, як побудоване саме питання: wovon — це wo-слово від von, рівно машина з A2, і відповідь повертається як vom Alter."
+      de: "Jede Option ist eine echte Wendung aus dem Gespräch — das Ohr muss also hören, zu welcher Verbindung sie gehört, nicht welche Wörter vorkamen. Frau Berg antwortet direkt auf die wovon-Frage: vor allem vom Alter. Die genauen Zahlen gehören zum letzten Zug, in dem sich die Redaktion dazu äußern will — andere Verbindung, anderer Sprecher. Das Handy ist der Ort, an dem junge Leser lesen, nicht das, wovon der Kauf abhängt. Und die Frage selbst zeigt die A2-Maschine: wovon ist das wo-Wort zu von, und die Antwort kommt als vom Alter zurück."
+
+  - id: hoeren-diktat-da
+    outcomes: [meinung-begruenden]
+    type: listen
+    focus: nebensatz-vorfeld
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Da ich wenig Zeit habe, lese ich nur die Schlagzeilen."
+    translation:
+      en: "Since I have little time, I only read the headlines."
+      ru: "Так как у меня мало времени, я читаю только заголовки."
+      uk: "Оскільки в мене мало часу, я читаю лише заголовки."
+    explain:
+      en: "One sentence, two word-order decisions, and the ear supplies both if you are listening for them. The da-clause sends its own finite verb to the end: habe after Zeit. And the whole clause then fills position 1 of the sentence, so the main clause opens with its finite verb and the subject follows: lese ich, never ❌ ich lese. That second half is the A2 rule for a fronted weil-clause, and da needs it far more often, because the front is where da lives. Writing it down is where you find out whether you really heard the order or only the words."
+      ru: "Одно предложение, два решения о порядке слов, и ухо подсказывает оба, если слушать именно их. Придаточное с da отправляет свой спрягаемый глагол в конец: habe после Zeit. А затем всё придаточное занимает первое место в предложении, поэтому главное начинается со спрягаемого глагола, а подлежащее идёт за ним: lese ich, а не ❌ ich lese. Вторая половина — это правило с A2 для вынесенного вперёд weil-придаточного, и с da оно нужно гораздо чаще, потому что начало предложения — родной дом da. По-русски порядок после придаточного не меняется, и рука тянет повторить это по-немецки. Записать под диктовку — это и есть проверка, услышали ли вы порядок, а не только слова."
+      uk: "Одне речення, два рішення про порядок слів, і вухо підказує обидва, якщо слухати саме їх. Підрядне з da відправляє своє відмінюване дієслово в кінець: habe після Zeit. А потім усе підрядне займає перше місце в реченні, тому головне починається з відмінюваного дієслова, а підмет іде за ним: lese ich, а не ❌ ich lese. Друга половина — це правило з A2 для винесеного вперед weil-підрядного, і з da воно потрібне значно частіше, бо початок речення — рідна домівка da. Українською порядок після підрядного не змінюється, і рука тягне повторити це німецькою."
+      de: "Ein Satz, zwei Entscheidungen zur Wortstellung, und das Ohr liefert beide, wenn man darauf hört. Der da-Satz schickt sein eigenes finites Verb ans Ende: habe nach Zeit. Und der ganze Satz füllt dann Position 1, also beginnt der Hauptsatz mit seinem finiten Verb und das Subjekt folgt: lese ich, nie ❌ ich lese. Die zweite Hälfte ist die A2-Regel vom vorangestellten weil-Satz; bei da braucht man sie viel öfter, weil das Vorfeld seine Heimat ist. Beim Aufschreiben zeigt sich, ob man die Stellung gehört hat oder nur die Wörter."
+
+  - id: cloze-da-weil-transfer
+    outcomes: [meinung-begruenden]
+    type: cloze
+    focus: da-weil
+    instruction:
+      en: "Fill in the causal conjunction. At the first gap both are grammatical — write the one that marks a reason the other person has just supplied. The second gap is a stand-alone answer to a bare warum?, and only one of the two can do that."
+      ru: "Впишите причинный союз. В первом пропуске грамматически возможны оба — напишите тот, который маркирует причину, только что названную собеседником. Второй пропуск — самостоятельный ответ на голое warum?, и справиться с этим может только один из двух."
+      uk: "Впишіть причиновий сполучник. У першому пропуску граматично можливі обидва — напишіть той, який маркує причину, щойно названу співрозмовником. Другий пропуск — самостійна відповідь на голе warum?, і впоратися з цим може лише один із двох."
+      de: "Ergänze die kausale Konjunktion. An der ersten Lücke sind beide grammatisch möglich — schreib die, die einen Grund markiert, den das Gegenüber gerade selbst genannt hat. Die zweite Lücke ist eine selbstständige Antwort auf ein bloßes warum?, und das kann nur eine der beiden."
+    text: "— Die Werbung im Radio ärgert mich wirklich. — {{Da|Weil}} du das jeden Tag sagst, habe ich dir einen anderen Sender gesucht. — Und warum hörst du selbst kein Radio mehr? — {{Weil}} mir die Musik dort nicht gefällt."
+    translation:
+      en: "— The advertising on the radio really annoys me. — Since you say that every day, I have looked for another station for you. — And why don't you listen to the radio yourself any more? — Because I don't like the music there."
+      ru: "— Реклама по радио меня и правда бесит. — Так как ты говоришь это каждый день, я подыскал тебе другую станцию. — А почему ты сам больше не слушаешь радио? — Потому что мне не нравится тамошняя музыка."
+      uk: "— Реклама по радіо мене справді дратує. — Оскільки ти кажеш це щодня, я підшукав тобі іншу станцію. — А чому ти сам більше не слухаєш радіо? — Бо мені не подобається тамтешня музика."
+    explain:
+      en: "The same rule, away from the newspaper. At the first gap the reason was literally just handed over by the other speaker, so it is shared, and da is the idiomatic choice with its clause in front — which is also why the main clause opens with habe ich and not ich habe. Weil is accepted there, because it is genuinely grammatical; the difference is what the reason is doing, not how formal you are being. The second gap is the forced one: only a weil-clause can stand alone as an answer, and a reason someone has just asked for is new by definition. And keep the two das apart from the two da: the da you learned at A1 means there and moves nothing (Da ist der Sender), while this one opens a clause and pushes its verb to the end."
+      ru: "То же правило, только вне газеты. В первом пропуске причину буквально только что подал собеседник, значит, она общая, и идиоматичен здесь da с придаточным впереди, — потому же главное предложение и открывается формой habe ich, а не ich habe. Weil там принимается, потому что он и правда грамматичен: разница в том, какую работу выполняет причина, а не в степени официальности. Второй пропуск жёстко задан: самостоятельным ответом может быть только придаточное с weil, а причина, о которой только что спросили, по определению новая. И не путайте два da: то, что вы знаете с A1, значит «вот, там» и ничего не двигает (Da ist der Sender), а причинное открывает придаточное и отправляет глагол в конец."
+      uk: "Те саме правило, тільки поза газетою. У першому пропуску причину буквально щойно подав співрозмовник, отже, вона спільна, і ідіоматичним тут є da з підрядним попереду, — тому ж головне речення й відкривається формою habe ich, а не ich habe. Weil там приймається, бо він справді граматичний: різниця в тому, яку роботу виконує причина, а не в мірі офіційності. Другий пропуск жорстко заданий: самостійною відповіддю може бути лише підрядне з weil, а причина, про яку щойно спитали, за визначенням нова. І не плутайте два da: те, що ви знаєте з A1, означає «ось, там» і нічого не рухає (Da ist der Sender), а причинове відкриває підрядне і відправляє дієслово в кінець."
+      de: "Dieselbe Regel, weg von der Zeitung. An der ersten Lücke hat das Gegenüber den Grund gerade selbst geliefert, er ist also gemeinsam, und idiomatisch steht dort da mit seinem Satz im Vorfeld — deshalb beginnt der Hauptsatz auch mit habe ich und nicht ich habe. Weil wird dort akzeptiert, denn es ist wirklich grammatisch; der Unterschied liegt in der Arbeit, die der Grund leistet, nicht im Grad der Förmlichkeit. Die zweite Lücke ist die erzwungene: Allein stehen kann nur ein weil-Satz, und ein eben erfragter Grund ist per Definition neu. Und die zwei da auseinanderhalten: Das da aus A1 bedeutet dort und verschiebt nichts (Da ist der Sender), das kausale eröffnet einen Nebensatz und schickt sein Verb ans Ende."
+
+  - id: sprechen-meinung
+    outcomes: [meinung-begruenden]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say it aloud — and if you can, listen to yourself: the checklist names what to listen for."
+      ru: "Произнесите вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Вимовте вголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
+      de: "Sprich laut — und hör dir dabei selbst zu, wenn du kannst: Die Checkliste sagt, worauf es ankommt."
+    prompt:
+      en: "A friend says: „Kurze Meldungen auf dem Handy reichen völlig. Wer liest heute noch lange Beiträge?“ Answer aloud in five or more sentences: say what you think, give at least two reasons, and name one point on the other side as well."
+      ru: "Знакомый говорит: «Kurze Meldungen auf dem Handy reichen völlig. Wer liest heute noch lange Beiträge?» Ответьте вслух, пять и более предложений: скажите, что вы думаете, приведите не меньше двух доводов и назовите один довод противоположной стороны."
+      uk: "Знайомий каже: «Kurze Meldungen auf dem Handy reichen völlig. Wer liest heute noch lange Beiträge?» Дайте відповідь уголос, п'ять і більше речень: скажіть, що ви думаєте, наведіть щонайменше два докази і назвіть один доказ протилежної сторони."
+      de: "Ein Bekannter sagt: „Kurze Meldungen auf dem Handy reichen völlig. Wer liest heute noch lange Beiträge?“ Antworte laut, in fünf oder mehr Sätzen: Sag, was du denkst, nenne mindestens zwei Gründe und dazu einen Punkt der Gegenseite."
+    goal:
+      en: "A position that is actually held up: an opinion, reasons attached to it, and one concession — not a list of things you do with your phone."
+      ru: "Позиция, которая действительно подкреплена: мнение, привязанные к нему доводы и одна уступка, — а не перечень того, что вы делаете с телефоном."
+      uk: "Позиція, яка справді підкріплена: думка, прив'язані до неї докази і одна поступка, — а не перелік того, що ви робите з телефоном."
+      de: "Eine Position, die wirklich gestützt wird: eine Meinung, Gründe dazu und ein Zugeständnis — keine Liste dessen, was du mit dem Handy machst."
+    checklist:
+      - en: "I said my opinion in one sentence before the reasons — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dir nicht zu (and zustimmen takes the person in the Dativ, without a preposition)."
+        ru: "Мнение я назвал(а) одним предложением до доводов — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dir nicht zu (и zustimmen ставит человека в Dativ, без предлога)."
+        uk: "Думку я назвав(ла) одним реченням до доказів — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dir nicht zu (і zustimmen ставить людину в Dativ, без прийменника)."
+        de: "Meine Meinung stand in einem Satz vor den Gründen — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dir nicht zu (und zustimmen stellt die Person in den Dativ, ohne Präposition)."
+      - en: "At least one reason came with weil and its verb at the very end, and at least one with a fronted da-clause — and after that comma the main clause opened with its finite verb: Da viele Leute wenig Zeit haben, lesen sie …"
+        ru: "Хотя бы один довод пришёл с weil и глаголом в самом конце, и хотя бы один — с вынесенным вперёд придаточным на da, причём после запятой главное предложение открылось спрягаемым глаголом: Da viele Leute wenig Zeit haben, lesen sie …"
+        uk: "Щонайменше один доказ прийшов із weil і дієсловом у самому кінці, і щонайменше один — із винесеним уперед підрядним на da, причому після коми головне речення відкрилося відмінюваним дієсловом: Da viele Leute wenig Zeit haben, lesen sie …"
+        de: "Mindestens ein Grund kam mit weil und dem Verb ganz am Ende, mindestens einer mit einem vorangestellten da-Satz — und nach dem Komma begann der Hauptsatz mit seinem finiten Verb: Da viele Leute wenig Zeit haben, lesen sie …"
+      - en: "The concession used a two-part connector rather than a bare aber: Kurze Meldungen sind zwar praktisch, aber sie erklären wenig — or nicht nur … sondern auch, whose partner is never aber."
+        ru: "Уступка прозвучала через двойной союз, а не через голое aber: Kurze Meldungen sind zwar praktisch, aber sie erklären wenig — или nicht nur … sondern auch, парой к которому никогда не бывает aber."
+        uk: "Поступка прозвучала через подвійний сполучник, а не через голе aber: Kurze Meldungen sind zwar praktisch, aber sie erklären wenig — або nicht nur … sondern auch, парою до якого ніколи не буває aber."
+        de: "Das Zugeständnis kam mit einem zweiteiligen Konnektor statt mit einem bloßen aber: Kurze Meldungen sind zwar praktisch, aber sie erklären wenig — oder nicht nur … sondern auch, dessen Partner nie aber heißt."
+    model_answer: "Ich stimme dir nur halb zu. Kurze Meldungen sind zwar praktisch, aber sie erklären fast nichts. Ich lese sie morgens auch, weil ich vor der Arbeit nur zehn Minuten habe. Am Wochenende nehme ich mir aber Zeit für einen längeren Beitrag, denn erst dort steht, woher die Zahlen kommen. Da viele Meldungen ohne Quelle kommen, glaube ich nicht alles sofort. Ich informiere mich deshalb nicht nur auf dem Handy, sondern auch im Radio. Und ob eine Meldung stimmt, hängt für mich vor allem von der Quelle ab."
+    model_translation:
+      en: "I only half agree with you there. Short news items are handy, admittedly, but they explain almost nothing. I read them in the morning too, because I only have ten minutes before work. At the weekend, though, I take time for a longer piece, because only there does it say where the figures come from. Since many items come without a source, I don't believe everything straight away. So I get my information not only on my phone but on the radio as well. And whether an item is right depends for me above all on the source."
+      ru: "Тут я согласен с тобой лишь наполовину. Короткие сообщения, правда, удобны, но объясняют они почти ничего. Я тоже читаю их по утрам, потому что до работы у меня всего десять минут. Зато на выходных я нахожу время для более длинного материала, ведь только там сказано, откуда взяты цифры. Так как многие сообщения приходят без источника, я не верю всему сразу. Поэтому я узнаю новости не только с телефона, но и по радио. А верно ли сообщение, зависит для меня прежде всего от источника."
+      uk: "Тут я згоден з тобою лише наполовину. Короткі повідомлення, щоправда, зручні, але пояснюють вони майже нічого. Я теж читаю їх уранці, бо до роботи в мене лише десять хвилин. Зате на вихідних я знаходжу час для довшого матеріалу, адже тільки там сказано, звідки взяті цифри. Оскільки багато повідомлень приходять без джерела, я не вірю всьому одразу. Тому я дізнаюся новини не лише з телефона, а й по радіо. А чи правильне повідомлення, залежить для мене насамперед від джерела."
+    explain:
+      en: "The model does the four moves this outcome names, and all three of the unit's machines carry them. The position comes first and it is partial: Ich stimme dir nur halb zu — zustimmen takes the person in the Dativ, with no preposition. The reasons then arrive in both shapes: weil ich vor der Arbeit nur zehn Minuten habe, where the reason is new and the verb sits at the end, and Da viele Meldungen ohne Quelle kommen, …, where it is common knowledge, stands in front, and makes the main clause open with glaube ich. The weighing is done by the two-part connectors — zwar praktisch, aber … and nicht nur auf dem Handy, sondern auch im Radio — and the closing sentence hands the whole thing back to the frame the chapter opened with: hängt … von der Quelle ab. Say it a second time and listen for the two verb positions: habe at the end of the weil-clause, and glaube straight after the comma."
+      ru: "Образец делает четыре хода, названные в самой компетенции, и все три машины урока их несут. Позиция идёт первой и она частичная: Ich stimme dir nur halb zu — zustimmen ставит человека в Dativ, без предлога. Дальше приходят обе формы довода: weil ich vor der Arbeit nur zehn Minuten habe, где причина новая и глагол стоит в конце, и Da viele Meldungen ohne Quelle kommen, …, где она общеизвестна, стоит впереди и заставляет главное предложение открыться формой glaube ich. Взвешивание делают двойные союзы — zwar praktisch, aber … и nicht nur auf dem Handy, sondern auch im Radio, — а последняя фраза возвращает всё к рамке, с которой глава началась: hängt … von der Quelle ab. Произнесите текст второй раз и вслушайтесь в две позиции глагола: habe в конце придаточного с weil и glaube сразу после запятой."
+      uk: "Зразок робить чотири ходи, названі в самій компетенції, і всі три машини уроку їх несуть. Позиція йде першою і вона часткова: Ich stimme dir nur halb zu — zustimmen ставить людину в Dativ, без прийменника. Далі приходять обидві форми доказу: weil ich vor der Arbeit nur zehn Minuten habe, де причина нова і дієслово стоїть у кінці, і Da viele Meldungen ohne Quelle kommen, …, де вона загальновідома, стоїть попереду і змушує головне речення відкритися формою glaube ich. Зважування роблять подвійні сполучники — zwar praktisch, aber … і nicht nur auf dem Handy, sondern auch im Radio, — а остання фраза повертає все до рамки, з якої розділ почався: hängt … von der Quelle ab. Вимовте текст удруге і вслухайтеся у дві позиції дієслова: habe в кінці підрядного з weil і glaube одразу після коми."
+      de: "Das Muster macht die vier Züge, die diese Fähigkeit nennt, und alle drei Maschinen der Einheit tragen sie. Die Position steht vorn und ist geteilt: Ich stimme dir nur halb zu — zustimmen stellt die Person in den Dativ, ohne Präposition. Dann kommen beide Formen des Grundes: weil ich vor der Arbeit nur zehn Minuten habe, wo der Grund neu ist und das Verb am Ende steht, und Da viele Meldungen ohne Quelle kommen, …, wo er allgemein bekannt ist, vorn steht und den Hauptsatz mit glaube ich beginnen lässt. Das Abwägen erledigen die zweiteiligen Konnektoren — zwar praktisch, aber … und nicht nur auf dem Handy, sondern auch im Radio —, und der Schlusssatz gibt alles an die Verbindung zurück, mit der das Kapitel anfing: hängt … von der Quelle ab."
+
+  - id: mc-konnektor-oder-einfach
+    outcomes: [argumente-verbinden]
+    type: mc
+    focus: zweiteilige-konnektoren
+    prompt: "Die Umfrage sagt: Junge Leser kaufen keine Tageszeitung. Sie lesen kurze Beiträge auf dem Handy. — Welcher Satz gibt das richtig wieder?"
+    options:
+      - "Junge Leser kaufen nicht die Tageszeitung, sondern lesen kurze Beiträge auf dem Handy."
+      - "Junge Leser kaufen nicht nur die Tageszeitung, sondern auch kurze Beiträge auf dem Handy."
+      - "Junge Leser kaufen zwar die Tageszeitung, aber sie lesen auch kurze Beiträge auf dem Handy."
+    correct: 0
+    translation:
+      en: "The survey says: young readers do not buy a daily paper. They read short pieces on their phones. — Which sentence gives that back correctly?"
+      ru: "Опрос говорит: молодые читатели не покупают ежедневную газету. Они читают короткие материалы с телефона. — Какое предложение передаёт это верно?"
+      uk: "Опитування каже: молоді читачі не купують щоденної газети. Вони читають короткі матеріали з телефона. — Яке речення передає це правильно?"
+    explain:
+      en: "All three sentences are grammatical German; only one says what the survey says. The situation is a replacement — not this, but that — and the plain A2 pair nicht … sondern is exactly the tool for it. Nicht nur … sondern auch means both are true, so the second option has young readers buying the daily paper after all; zwar … aber concedes the first half rather than denying it, so the third does the same thing more politely. That is the trap worth naming: once you own the two-part connectors, the hand reaches for them even where the meaning calls for the simple pair. Reach for the frame only when both halves really hold."
+      ru: "Все три предложения — правильный немецкий; только одно говорит то, что говорит опрос. Ситуация — замена: не это, а то, — и простая пара с A2 nicht … sondern как раз для этого и создана. Nicht nur … sondern auch значит, что верны обе части, поэтому во втором варианте молодые читатели газету всё-таки покупают; zwar … aber уступает первую половину, а не отрицает её, так что третий делает то же самое вежливее. Именно в этом ловушка: как только двойные союзы освоены, рука тянется к ним и там, где смысл требует простой пары. Берите рамку только тогда, когда верны обе её половины."
+      uk: "Усі три речення — правильна німецька; тільки одне каже те, що каже опитування. Ситуація — заміна: не це, а те, — і проста пара з A2 nicht … sondern якраз для цього й створена. Nicht nur … sondern auch означає, що правдиві обидві частини, тому в другому варіанті молоді читачі газету все-таки купують; zwar … aber поступається першою половиною, а не заперечує її, тож третій робить те саме ввічливіше. Саме в цьому пастка: щойно подвійні сполучники засвоєні, рука тягнеться до них і там, де зміст вимагає простої пари. Беріть рамку тільки тоді, коли правдиві обидві її половини."
+      de: "Alle drei Sätze sind grammatisch richtiges Deutsch; nur einer sagt, was die Umfrage sagt. Die Lage ist ein Ersatz — nicht dies, sondern das —, und dafür ist das schlichte A2-Paar nicht … sondern gemacht. Nicht nur … sondern auch heißt, dass beides gilt, also kaufen die jungen Leser in der zweiten Option die Zeitung doch; zwar … aber räumt die erste Hälfte ein, statt sie zu verneinen, und die dritte tut damit dasselbe höflicher. Genau das ist die Falle: Wer die zweiteiligen Konnektoren besitzt, greift auch dort danach, wo die Bedeutung das einfache Paar verlangt."
+
+  - id: schreiben-stellungnahme
+    outcomes: [argumente-verbinden]
+    type: write
+    instruction:
+      en: "Write the piece yourself — the list shows what to check it against."
+      ru: "Напишите текст сами — список подскажет, что в нём проверить."
+      uk: "Напишіть текст самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Text selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "The town paper writes: „In unserer Umfrage sagen achtzig Prozent der jungen Leser: Eine Tageszeitung brauchen wir nicht mehr.“ The paper is asking for letters from readers. Write a short piece of your own: say what the report is about, give your opinion, support it, and weigh one point on the other side."
+      ru: "Городская газета пишет: «In unserer Umfrage sagen achtzig Prozent der jungen Leser: Eine Tageszeitung brauchen wir nicht mehr.» Газета просит писем от читателей. Напишите короткий текст: скажите, о чём материал, выскажите мнение, подкрепите его и взвесьте один довод противоположной стороны."
+      uk: "Міська газета пише: «In unserer Umfrage sagen achtzig Prozent der jungen Leser: Eine Tageszeitung brauchen wir nicht mehr.» Газета просить листів від читачів. Напишіть короткий текст: скажіть, про що матеріал, висловте думку, підкріпіть її та зважте один доказ протилежної сторони."
+      de: "Die Stadtzeitung schreibt: „In unserer Umfrage sagen achtzig Prozent der jungen Leser: Eine Tageszeitung brauchen wir nicht mehr.“ Die Zeitung bittet um Leserbriefe. Schreib einen kurzen eigenen Text: Sag, worum es in dem Beitrag geht, nenne deine Meinung, stütze sie und wäge einen Punkt der Gegenseite ab."
+    goal:
+      en: "A short, complete piece: what the report is about, your position, at least two reasons, one concession, and a closing sentence."
+      ru: "Короткий, но полный текст: о чём материал, ваша позиция, не меньше двух доводов, одна уступка и заключительная фраза."
+      uk: "Короткий, але повний текст: про що матеріал, ваша позиція, щонайменше два докази, одна поступка і заключна фраза."
+      de: "Ein kurzer, vollständiger Text: worum es in dem Beitrag geht, deine Position, mindestens zwei Gründe, ein Zugeständnis und ein Schlusssatz."
+    requirements:
+      - en: "Open by naming the subject with the frame, not with the text as subject: In dem Beitrag geht es um … — the es holds the subject slot and um takes the Akkusativ. ❌ Der Beitrag geht um … is not German; if you want the text as subject, the verb changes to Der Beitrag handelt von …"
+        ru: "Начните с названия темы через рамку, а не с текста в роли подлежащего: In dem Beitrag geht es um … — es держит место подлежащего, а um требует Akkusativ. ❌ Der Beitrag geht um … не по-немецки; если подлежащим должен стать текст, глагол меняется: Der Beitrag handelt von …"
+        uk: "Почніть із назви теми через рамку, а не з тексту в ролі підмета: In dem Beitrag geht es um … — es тримає місце підмета, а um вимагає Akkusativ. ❌ Der Beitrag geht um … не є німецькою; якщо підметом має стати текст, дієслово змінюється: Der Beitrag handelt von …"
+        de: "Beginne damit, das Thema mit der Verbindung zu nennen, nicht mit dem Text als Subjekt: In dem Beitrag geht es um … — das es hält die Subjektstelle, und um verlangt den Akkusativ. ❌ Der Beitrag geht um … ist kein Deutsch; soll der Text Subjekt sein, wechselt das Verb zu Der Beitrag handelt von …"
+      - en: "At least two reasons, and not both with the same conjunction. Use weil where the reason is the new information — its verb goes to the very end — and a fronted da-clause where the reason is something every reader already has; after that comma the main clause opens with its finite verb: Da immer weniger Menschen Zeit haben, lesen viele nur …"
+        ru: "Не меньше двух доводов, и не оба с одним союзом. Weil — там, где причина и есть новая информация (глагол уходит в самый конец), и вынесенное вперёд придаточное с da — там, где причина уже есть у любого читателя; после запятой главное предложение открывается спрягаемым глаголом: Da immer weniger Menschen Zeit haben, lesen viele nur …"
+        uk: "Щонайменше два докази, і не обидва з одним сполучником. Weil — там, де причина і є новою інформацією (дієслово йде в самий кінець), і винесене вперед підрядне з da — там, де причина вже є в будь-якого читача; після коми головне речення відкривається відмінюваним дієсловом: Da immer weniger Menschen Zeit haben, lesen viele nur …"
+        de: "Mindestens zwei Gründe, und nicht beide mit derselben Konjunktion. Nimm weil, wo der Grund die neue Information ist — sein Verb steht ganz am Ende —, und einen vorangestellten da-Satz, wo jeder Leser den Grund schon hat; nach dem Komma beginnt der Hauptsatz mit seinem finiten Verb: Da immer weniger Menschen Zeit haben, lesen viele nur …"
+      - en: "Weigh with a two-part connector, and let the first half choose its partner: zwar … aber for a concession, nicht nur … sondern auch when both halves hold, entweder … oder for a real choice between two. Never zwar … sondern — sondern needs a negation, and zwar is not one. Both halves of a pair should have the same shape: a prepositional phrase against a prepositional phrase, a clause against a clause."
+        ru: "Взвешивайте двойным союзом, и пусть первая половина выберет себе пару: zwar … aber для уступки, nicht nur … sondern auch, когда верны обе части, entweder … oder для настоящего выбора из двух. Никогда zwar … sondern: sondern требует отрицания, а zwar им не является. У обеих половин пары должна быть одинаковая форма — предложная группа против предложной группы, придаточное против придаточного."
+        uk: "Зважуйте подвійним сполучником, і хай перша половина обере собі пару: zwar … aber для поступки, nicht nur … sondern auch, коли правдиві обидві частини, entweder … oder для справжнього вибору з двох. Ніколи zwar … sondern: sondern вимагає заперечення, а zwar ним не є. В обох половин пари має бути однакова форма — прийменникова група проти прийменникової групи, підрядне проти підрядного."
+        de: "Wäge mit einem zweiteiligen Konnektor ab, und lass die erste Hälfte ihren Partner wählen: zwar … aber für ein Zugeständnis, nicht nur … sondern auch, wenn beides gilt, entweder … oder für eine echte Wahl zwischen zweien. Nie zwar … sondern — sondern braucht eine Verneinung, und zwar ist keine. Beide Hälften sollen gleich gebaut sein: Präpositionalgruppe gegen Präpositionalgruppe, Satz gegen Satz."
+      - en: "Say what you think in your own voice at least once — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — and remember that zustimmen and widersprechen both take the person or thing in the Dativ, with no preposition: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."
+        ru: "Хотя бы раз скажите своим голосом, что вы думаете, — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — и помните, что zustimmen и widersprechen ставят человека или предмет в Dativ, без предлога: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."
+        uk: "Принаймні раз скажіть своїм голосом, що ви думаєте, — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — і пам'ятайте, що zustimmen і widersprechen ставлять людину або предмет у Dativ, без прийменника: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."
+        de: "Sag mindestens einmal mit eigener Stimme, was du denkst — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — und denk daran, dass zustimmen und widersprechen die Person oder Sache in den Dativ stellen, ohne Präposition: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."
+    min_words: 60
+    model_answer: "In dem Beitrag vom Montag geht es um eine Umfrage unter jungen Lesern. Achtzig Prozent sagen darin, dass sie keine Tageszeitung mehr brauchen. Meiner Meinung nach ist das kein gutes Zeichen, und ich muss dieser Aussage sogar widersprechen. Da fast alle Menschen heute wenig Zeit haben, lesen sie nur noch die Schlagzeilen. Kurze Meldungen sind zwar praktisch, aber sie nennen fast nie eine Quelle. Ob eine Meldung stimmt, hängt aber genau davon ab. Ich informiere mich deshalb nicht nur auf dem Handy, sondern auch in der Zeitung. Junge Leser sollten entweder eine gute Zeitung lesen oder wenigstens die Quelle prüfen, weil sonst niemand die Nachrichten kontrolliert."
+    model_translation:
+      en: "Monday's piece is about a survey among young readers. Eighty per cent of them say they no longer need a daily paper. In my opinion that is not a good sign, and I even have to disagree with that statement. Since almost everyone today is short of time, people read only the headlines. Short news items are handy, admittedly, but they hardly ever name a source. And whether an item is right depends on exactly that. So I get my information not only on my phone but in the paper as well. Young readers should either read a good paper or at least check the source, because otherwise nobody is checking the news."
+      ru: "В материале от понедельника речь идёт об опросе среди молодых читателей. Восемьдесят процентов говорят там, что ежедневная газета им больше не нужна. По моему мнению, это не лучший знак, и с этим утверждением я даже вынужден не согласиться. Так как почти у всех сегодня мало времени, люди читают только заголовки. Короткие сообщения, правда, удобны, но источник они называют почти никогда. А верно ли сообщение, зависит именно от этого. Поэтому я узнаю новости не только с телефона, но и из газеты. Молодым читателям стоило бы либо читать хорошую газету, либо хотя бы проверять источник, потому что иначе новости никто не контролирует."
+      uk: "У матеріалі від понеділка йдеться про опитування серед молодих читачів. Вісімдесят відсотків кажуть там, що щоденна газета їм більше не потрібна. На мою думку, це не найкращий знак, і з цим твердженням я навіть змушений не погодитися. Оскільки майже в усіх сьогодні мало часу, люди читають лише заголовки. Короткі повідомлення, щоправда, зручні, але джерело вони називають майже ніколи. А чи правильне повідомлення, залежить саме від цього. Тому я дізнаюся новини не лише з телефона, а й із газети. Молодим читачам варто було б або читати добру газету, або принаймні перевіряти джерело, бо інакше новини ніхто не контролює."
+    explain:
+      en: "Compare your draft against the model's skeleton, not its words. It opens with the frame, not with the text as subject: In dem Beitrag … geht es um. The two reasons arrive in their two shapes — the fronted Da fast alle Menschen heute wenig Zeit haben, …, which is common knowledge and therefore makes the main clause open with lesen sie, and the closing weil sonst niemand die Nachrichten kontrolliert, which is the new point and keeps its verb at the end. The weighing is done three times and never with a bare aber: zwar praktisch, aber …, nicht nur auf dem Handy, sondern auch …, entweder … oder. Widersprechen takes the Dativ without a preposition (dieser Aussage), and davon in Ob eine Meldung stimmt, hängt aber genau davon ab is the da-word pointing back at the source — the A2 machine doing this chapter's work."
+      ru: "Сверяйте черновик со скелетом образца, а не с его словами. Он открывается рамкой, а не текстом в роли подлежащего: In dem Beitrag … geht es um. Два довода приходят в двух своих формах: вынесенное вперёд Da fast alle Menschen heute wenig Zeit haben, … — это общее знание, и потому главное предложение открывается формой lesen sie, — и финальное weil sonst niemand die Nachrichten kontrolliert, где мысль новая и глагол остаётся в конце. Взвешивание сделано трижды и ни разу голым aber: zwar praktisch, aber …, nicht nur auf dem Handy, sondern auch …, entweder … oder. Widersprechen требует Dativ без предлога (dieser Aussage), а davon в Ob eine Meldung stimmt, hängt aber genau davon ab — это da-слово, указывающее назад на источник: машина с A2 выполняет работу этой главы."
+      uk: "Звіряйте чернетку зі скелетом зразка, а не з його словами. Він відкривається рамкою, а не текстом у ролі підмета: In dem Beitrag … geht es um. Два докази приходять у двох своїх формах: винесене вперед Da fast alle Menschen heute wenig Zeit haben, … — це спільне знання, і тому головне речення відкривається формою lesen sie, — і фінальне weil sonst niemand die Nachrichten kontrolliert, де думка нова і дієслово лишається в кінці. Зважування зроблено тричі і жодного разу голим aber: zwar praktisch, aber …, nicht nur auf dem Handy, sondern auch …, entweder … oder. Widersprechen вимагає Dativ без прийменника (dieser Aussage), а davon в Ob eine Meldung stimmt, hängt aber genau davon ab — це da-слово, що вказує назад на джерело: машина з A2 виконує роботу цього розділу."
+      de: "Vergleiche deinen Entwurf mit dem Gerüst des Musters, nicht mit seinen Wörtern. Es beginnt mit der Verbindung, nicht mit dem Text als Subjekt: In dem Beitrag … geht es um. Die beiden Gründe kommen in ihren zwei Formen — das vorangestellte Da fast alle Menschen heute wenig Zeit haben, …, allgemein bekannt und deshalb mit lesen sie im Hauptsatz, und das abschließende weil sonst niemand die Nachrichten kontrolliert, der neue Punkt, mit dem Verb am Ende. Abgewogen wird dreimal und nie mit einem bloßen aber: zwar praktisch, aber …, nicht nur auf dem Handy, sondern auch …, entweder … oder. Widersprechen verlangt den Dativ ohne Präposition (dieser Aussage), und das davon in Ob eine Meldung stimmt, hängt aber genau davon ab ist das da-Wort, das auf die Quelle zurückzeigt."

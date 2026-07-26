@@ -1,0 +1,79 @@
+# Delayed probe family 3 of 3 — ONE competence: supplying the announcing half of a
+# two-part connector when only its second half is on the page. Three parallel cloze
+# variants, one per frame (entweder … oder, zwar … aber, nicht nur … sondern auch), in
+# three settings no practice item, article example or reading sentence uses.
+# `outcomes: [argumente-verbinden]` is what arms this family, and the can-do text names
+# these connectors outright. The other two families declare different outcomes on purpose:
+# two families on one outcome arm identically, so one competence's practice would start
+# the other's retention clock and fire a probe at material never practised.
+# The first half is gapped rather than the second because that is the harder direction and
+# the one production actually needs — the second half is what you hear coming. Each
+# instruction says that a two-part connector is wanted, which is what makes the gap
+# determinate served alone; without it, a plain adverb would fit several of these slots.
+topic: meinung-medien
+role: probe
+title:
+  en: "Delayed check — the half that announces what is coming"
+  ru: "Отложенная проверка — половина, которая объявляет, что будет дальше"
+  uk: "Відкладена перевірка — половина, яка оголошує, що буде далі"
+  de: "Kontrolle mit Abstand — die Hälfte, die ankündigt"
+items:
+  - id: variant-a
+    outcomes: [argumente-verbinden]
+    type: cloze
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "A two-part connector is at work here and its second half is already on the page — fill in the first half."
+      ru: "Здесь работает двойной союз, и его вторая половина уже стоит на месте — впишите первую."
+      uk: "Тут працює подвійний сполучник, і його друга половина вже стоїть на місці — впишіть першу."
+      de: "Hier arbeitet ein zweiteiliger Konnektor, und seine zweite Hälfte steht schon da — ergänze die erste."
+    text: "Am Wochenende gehe ich {{entweder}} auf den Markt oder ins Kino."
+    translation:
+      en: "At the weekend I either go to the market or to the cinema."
+      ru: "На выходных я иду либо на рынок, либо в кино."
+      uk: "На вихідних я йду або на ринок, або в кіно."
+    explain:
+      en: "Oder as the second half of a frame announces that entweder opened it: one of the two, not both. Here entweder sits inside the sentence after the finite verb, and the two halves have the same shape — a prepositional phrase against a prepositional phrase. Entweder gehe ich auf den Markt, oder ich gehe ins Kino is equally correct German, with entweder in first position and the finite verb straight after it. Neither order is the rule."
+      ru: "Oder во второй половине рамки объявляет, что открыл её entweder: одно из двух, а не оба. Здесь entweder стоит внутри предложения, после спрягаемого глагола, и обе половины одинаковой формы — предложная группа против предложной группы. Вариант Entweder gehe ich auf den Markt, oder ich gehe ins Kino столь же верен: entweder на первом месте, а сразу за ним спрягаемый глагол. Ни один из порядков не является правилом."
+      uk: "Oder у другій половині рамки оголошує, що відкрив її entweder: одне з двох, а не обидва. Тут entweder стоїть усередині речення, після відмінюваного дієслова, і обидві половини однакової форми — прийменникова група проти прийменникової групи. Варіант Entweder gehe ich auf den Markt, oder ich gehe ins Kino так само правильний: entweder на першому місці, а одразу за ним відмінюване дієслово. Жоден із порядків не є правилом."
+      de: "Ein oder als zweite Hälfte kündigt an, dass entweder den Rahmen eröffnet hat: eins von beiden, nicht beides. Hier steht entweder im Satzinneren nach dem finiten Verb, und beide Hälften sind gleich gebaut — Präpositionalgruppe gegen Präpositionalgruppe. Entweder gehe ich auf den Markt, oder ich gehe ins Kino ist genauso richtig, mit entweder auf Position 1 und dem finiten Verb direkt danach. Keine der beiden Stellungen ist die Regel."
+
+  - id: variant-b
+    outcomes: [argumente-verbinden]
+    type: cloze
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "A two-part connector is at work here and its second half is already on the page — fill in the first half."
+      ru: "Здесь работает двойной союз, и его вторая половина уже стоит на месте — впишите первую."
+      uk: "Тут працює подвійний сполучник, і його друга половина вже стоїть на місці — впишіть першу."
+      de: "Hier arbeitet ein zweiteiliger Konnektor, und seine zweite Hälfte steht schon da — ergänze die erste."
+    text: "Der Kurs ist {{zwar}} teuer, aber die Lehrerin erklärt alles sehr genau."
+    translation:
+      en: "The course is expensive, admittedly, but the teacher explains everything very precisely."
+      ru: "Курс, правда, дорогой, но преподавательница всё объясняет очень точно."
+      uk: "Курс, щоправда, дорогий, але викладачка все пояснює дуже точно."
+    explain:
+      en: "Aber after a comma can stand alone, but a first half that grants the point before objecting is zwar. It concedes, it does not deny — which is exactly why its partner can never be sondern, since sondern is only allowed after a negation. Aber is coordinating, so the second clause is an ordinary main clause with the verb in second position: erklärt die Lehrerin — here erklärt sits second because die Lehrerin fills position 1. Zwar can also open the sentence: Zwar ist der Kurs teuer, aber …"
+      ru: "Aber после запятой может стоять и само по себе, но первая половина, которая сначала уступает, а потом возражает, — это zwar. Он уступает, а не отрицает, — потому его парой никогда не бывает sondern, ведь sondern допустим только после отрицания. Aber сочинительный, поэтому второе предложение — обычное главное со спрягаемым глаголом на втором месте: здесь erklärt стоит вторым, потому что первое место занимает die Lehrerin. Zwar может и открывать предложение: Zwar ist der Kurs teuer, aber …"
+      uk: "Aber після коми може стояти й саме по собі, але перша половина, яка спершу поступається, а потім заперечує, — це zwar. Він поступається, а не заперечує, — тому його парою ніколи не буває sondern, адже sondern припустимий тільки після заперечення. Aber сурядний, тому друге речення — звичайне головне з відмінюваним дієсловом на другому місці: тут erklärt стоїть другим, бо перше місце займає die Lehrerin. Zwar може й відкривати речення: Zwar ist der Kurs teuer, aber …"
+      de: "Ein aber nach dem Komma kann auch allein stehen, aber die erste Hälfte, die erst einräumt und dann widerspricht, heißt zwar. Sie räumt ein und verneint nicht — genau deshalb heißt ihr Partner nie sondern, das nur nach einer Verneinung erlaubt ist. Aber ist nebenordnend, der zweite Satz ist also ein gewöhnlicher Hauptsatz mit dem Verb auf Position 2: erklärt steht hier an zweiter Stelle, weil die Lehrerin Position 1 füllt. Zwar kann den Satz auch eröffnen: Zwar ist der Kurs teuer, aber …"
+
+  - id: variant-c
+    outcomes: [argumente-verbinden]
+    type: cloze
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "A two-part connector is at work here and its second half is already on the page — fill in the two words of the first half."
+      ru: "Здесь работает двойной союз, и его вторая половина уже стоит на месте — впишите два слова первой."
+      uk: "Тут працює подвійний сполучник, і його друга половина вже стоїть на місці — впишіть два слова першої."
+      de: "Hier arbeitet ein zweiteiliger Konnektor, und seine zweite Hälfte steht schon da — ergänze die beiden Wörter der ersten."
+    text: "Mein Bruder kocht {{nicht nur}} sehr gut, sondern auch sehr schnell."
+    translation:
+      en: "My brother cooks not only very well but also very fast."
+      ru: "Мой брат готовит не только очень хорошо, но и очень быстро."
+      uk: "Мій брат готує не лише дуже добре, а й дуже швидко."
+    explain:
+      en: "Sondern is the giveaway: it is only ever allowed after a negation, and the frame that supplies one is nicht nur. Both halves are true here — that is what this connector means, as against entweder … oder, which picks one — and they have the same shape, an adverb against an adverb. A comma always stands before sondern, and both words are coordinating, so nothing goes to the clause end. One family, one competence: the announcing half, produced cold."
+      ru: "Выдаёт всё sondern: он допустим только после отрицания, а поставляет отрицание рамка nicht nur. Здесь верны обе части — именно это и значит данный союз, в отличие от entweder … oder, который выбирает одно, — и обе половины одинаковой формы: наречие против наречия. Перед sondern всегда стоит запятая, а оба слова сочинительные, поэтому ничто не уходит в конец. Одна семья, одна компетенция: объявляющая половина, воспроизведённая без подготовки."
+      uk: "Видає все sondern: він припустимий тільки після заперечення, а постачає заперечення рамка nicht nur. Тут правдиві обидві частини — саме це й означає цей сполучник, на відміну від entweder … oder, який обирає одне, — і обидві половини однакової форми: прислівник проти прислівника. Перед sondern завжди стоїть кома, а обидва слова сурядні, тому ніщо не йде в кінець. Одна родина, одна компетенція: оголошувальна половина, відтворена без підготовки."
+      de: "Das sondern verrät alles: Es steht nur nach einer Verneinung, und der Rahmen, der eine liefert, heißt nicht nur. Hier gilt beides — genau das bedeutet dieser Konnektor, anders als entweder … oder, das eins auswählt —, und beide Hälften sind gleich gebaut, Adverb gegen Adverb. Vor sondern steht immer ein Komma, und beide Wörter sind nebenordnend, also wandert nichts ans Ende. Eine Familie, eine Fähigkeit: die ankündigende Hälfte, aus dem Stand gebildet."
