@@ -1,0 +1,136 @@
+---
+import LearningFigure from './LearningFigure.astro';
+
+interface Props {
+  view: 'clock' | 'since-before';
+}
+
+const { view } = Astro.props;
+---
+
+{
+  view === 'clock' ? (
+    <LearningFigure id="time-half-nine" title="halb neun = 8:30" sourceClass="simulated">
+      <div slot="visual" class="grid min-w-0 items-center gap-5 px-4 py-5 sm:grid-cols-[15rem_1fr] sm:px-6" aria-hidden="true">
+        <div class="mx-auto w-full max-w-60">
+          <svg viewBox="0 0 240 240" class="h-auto w-full">
+            <circle cx="120" cy="120" r="105" fill="#fafaf9" stroke="#78716c" stroke-width="5" />
+            {[...Array(12)].map((_, index) => {
+              const angle = (index * 30 - 90) * Math.PI / 180;
+              const x = 120 + Math.cos(angle) * 86;
+              const y = 120 + Math.sin(angle) * 86;
+              return <circle cx={x} cy={y} r="3.5" fill="#78716c" />;
+            })}
+            <line x1="120" y1="120" x2="120" y2="202" stroke="#0284c7" stroke-width="7" stroke-linecap="round" />
+            <line x1="120" y1="120" x2="70" y2="133" stroke="#d97706" stroke-width="9" stroke-linecap="round" />
+            <circle cx="120" cy="120" r="8" fill="#292524" />
+            <text x="120" y="174" text-anchor="middle" font-size="26" font-weight="850" fill="#292524">8:30</text>
+            <text x="120" y="201" text-anchor="middle" font-size="18" font-weight="750" fill="#9a3412">halb neun</text>
+          </svg>
+        </div>
+        <div class="grid gap-2">
+          <div class="time-card"><strong>um</strong><span>Uhrzeit</span><b>um halb neun</b></div>
+          <div class="time-card"><strong>am</strong><span>Tag</span><b>am Montag</b></div>
+          <div class="time-card"><strong>im</strong><span>Monat / Jahreszeit</span><b>im Juli · im Sommer</b></div>
+        </div>
+      </div>
+
+      <p slot="caption" lang="de">
+        Die halbe Stunde zeigt auf die <strong>nächste</strong> Stunde: halb neun ist eine halbe
+        Stunde vor neun, also 8:30.
+      </p>
+      <div slot="description">
+        <p class="lang-en">A clock shows 8:30: the minute hand points to six and the hour hand sits halfway between eight and nine. German names the coming hour, so halb neun means half an hour before nine. The scale pairs um with a clock time, am with a day and im with a month or season.</p>
+        <p class="lang-ru">Часы показывают 8:30: минутная стрелка на шести, часовая между восьмью и девятью. Немецкое выражение называет следующий час, поэтому halb neun — половина пути к девяти. Шкала связывает um со временем на часах, am с днём, im с месяцем или временем года.</p>
+        <p class="lang-uk">Годинник показує 8:30: хвилинна стрілка на шести, годинна між восьмою та дев’ятою. Німецький вислів називає наступну годину, тому halb neun — половина шляху до дев’ятої. Шкала поєднує um із часом, am із днем, im із місяцем або порою року.</p>
+      </div>
+    </LearningFigure>
+  ) : (
+    <LearningFigure id="time-seit-vor" title="seit oder vor?" sourceClass="simulated">
+      <div slot="visual" class="px-4 py-6 sm:px-7" aria-hidden="true">
+        <div class="relative mx-auto max-w-3xl pt-10">
+          <div class="absolute top-[4.2rem] right-0 left-0 h-1 rounded-full bg-stone-300 dark:bg-stone-600" />
+          <div class="absolute top-[3.45rem] left-[22%] h-7 w-1 bg-stone-500" />
+          <div class="absolute top-[3.15rem] right-0 h-9 w-1.5 bg-sky-600" />
+          <span class="absolute top-0 left-[22%] -translate-x-1/2 text-xs font-bold text-stone-600 dark:text-stone-300">Montag</span>
+          <span class="absolute top-0 right-0 text-xs font-black uppercase tracking-wide text-sky-700 dark:text-sky-300">jetzt</span>
+          <div class="grid grid-cols-1 gap-4 pt-16 sm:grid-cols-2">
+            <section class="rounded-xl border-2 border-amber-600 bg-amber-50 p-4 dark:bg-amber-950/35">
+              <strong class="block text-lg text-amber-900 dark:text-amber-200">vor drei Tagen</strong>
+              <p class="m-0 mt-1 text-sm text-amber-950 dark:text-amber-100">ein Ereignis dort · abgeschlossen</p>
+              <div class="mt-3 text-2xl">● <span class="text-sm font-bold">Arzttermin</span></div>
+            </section>
+            <section class="rounded-xl border-2 border-sky-600 bg-sky-50 p-4 dark:bg-sky-950/35">
+              <strong class="block text-lg text-sky-900 dark:text-sky-200">seit Montag</strong>
+              <p class="m-0 mt-1 text-sm text-sky-950 dark:text-sky-100">Beginn dort · dauert bis jetzt</p>
+              <div class="mt-3 flex items-center gap-2 text-sm font-bold"><span>Montag</span><span class="h-1 flex-1 bg-sky-600" /><span>jetzt</span></div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <p slot="caption" lang="de">
+        <strong>vor</strong> blickt auf ein abgeschlossenes Ereignis zurück;
+        <strong>seit</strong> verbindet den Beginn mit jetzt. Beide stehen mit Dativ.
+      </p>
+      <div slot="description">
+        <p class="lang-en">The timeline marks Monday in the past and now at the right edge. vor drei Tagen points to one completed doctor’s appointment in the past. seit Montag draws a continuous line from Monday to now: the cough began then and is still present. Both prepositions take the dative.</p>
+        <p class="lang-ru">На шкале отмечены понедельник в прошлом и сейчас справа. vor drei Tagen указывает на один завершённый приём у врача. seit Montag тянет непрерывную линию от понедельника до настоящего момента: кашель начался тогда и продолжается. Оба предлога требуют Dativ.</p>
+        <p class="lang-uk">На шкалі позначено понеділок у минулому й теперішній момент праворуч. vor drei Tagen указує на завершений прийом у лікаря. seit Montag проводить безперервну лінію від понеділка дотепер: кашель почався тоді й триває. Обидва прийменники вимагають Dativ.</p>
+      </div>
+    </LearningFigure>
+  )
+}
+
+<style>
+  .time-card {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(5rem, 1fr) minmax(7rem, 1.4fr);
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #d6d3d1;
+    border-radius: 0.7rem;
+    background: rgb(255 255 255 / 92%);
+    padding: 0.65rem 0.75rem;
+  }
+
+  .time-card strong {
+    color: #9a3412;
+    font-size: 1.2rem;
+  }
+
+  .time-card span {
+    color: #78716c;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .time-card b {
+    color: #075985;
+    font-size: 0.85rem;
+  }
+
+  :global(.dark) .time-card {
+    border-color: #57534e;
+    background: rgb(41 37 36 / 94%);
+  }
+
+  :global(.dark) .time-card strong {
+    color: #fcd34d;
+  }
+
+  :global(.dark) .time-card b {
+    color: #bae6fd;
+  }
+
+  @media (max-width: 420px) {
+    .time-card {
+      grid-template-columns: 2.6rem 1fr;
+    }
+
+    .time-card b {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
