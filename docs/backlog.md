@@ -4,19 +4,21 @@ Status: active. The [roadmap](roadmap.md) owns direction; this file contains onl
 calendar-blocked work. Completed detail through 2026-07-26 is
 [archived](archive/2026-07-backlog-full.md).
 
-## Doing
+## Visual work completed in this PR
 
-### P17-2 · Semantic learning visuals
+### P17-2 · Sentence and time families — done 2026-07-26
 
-The Wohnen pilot is accepted and responsive. Ship:
+The accepted, responsive Wohnen pilot now has two deterministic successor families:
 
-1. a deterministic sentence rail for V2, separable verbs, modal/Perfekt brackets, verb-final
+1. a sentence rail for V2, separable verbs, modal/Perfekt brackets, verb-final
    clauses, indirect questions and `zu`-infinitives;
-2. a deterministic clock/preposition visual and a `seit`/`vor` timeline;
-3. semantic, accessibility, mobile and learner-usefulness review before the next family.
+2. a clock/preposition visual and a `seit`/`vor` timeline.
 
 Generated pixels carry no load-bearing language. Exact labels belong to HTML/SVG; viewing creates
-no evidence. Routes, body/participant roles and authentic-document additions remain next in rank.
+no evidence. Both families passed semantic, accessibility and 320–1100 px overflow review. Routes,
+body/participant roles and authentic-document additions remain next in rank.
+
+## Doing
 
 ### P5-11 · Evidence-led operating cadence
 
