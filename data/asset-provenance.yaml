@@ -165,6 +165,13 @@ assets:
     licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
     legacy: true
     promptUnavailable: true
+    changes:
+      - sha256: 5e4e450bb4a6b2140d365e75c2af2a8ec5ddfcce77ff0132063371ce35355861
+        changedAt: "2026-07-26"
+        tool: OpenAI Codex
+        brief: data/prompts/2026-07-26-participant-caption-correction.md
+        humanEdits:
+          - "Vitaly approved the exact grammatical replacement sentence and required the Dativ recipient relationship to remain explicit."
   - path: src/components/visuals/RouteMovementFigure.astro
     sha256: e175b17aa93aa43ef2698fc169632866d6fbe0c8362fb506d96578b4795f3d8d
     creationMode: ai-assisted

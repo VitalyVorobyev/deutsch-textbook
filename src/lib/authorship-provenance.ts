@@ -108,6 +108,14 @@ export function reviewedTopicAuthorshipProblems(
   return problems;
 }
 
+const assetChangeSchema = z.object({
+  sha256,
+  changedAt: z.iso.date(),
+  tool: nonEmpty,
+  brief: nonEmpty,
+  humanEdits: z.array(nonEmpty).min(1),
+});
+
 const assetRecordSchema = z
   .object({
     path: nonEmpty,
@@ -121,6 +129,7 @@ const assetRecordSchema = z
     licenseReview: nonEmpty,
     legacy: z.boolean(),
     promptUnavailable: z.boolean(),
+    changes: z.array(assetChangeSchema).default([]),
   })
   .superRefine((asset, ctx) => {
     if (!asset.legacy && asset.promptUnavailable) {
@@ -155,28 +164,44 @@ export const assetProvenanceManifestSchema = z.object({
 });
 export type AssetProvenanceManifest = z.infer<typeof assetProvenanceManifestSchema>;
 
-// Frozen on 2026-07-26. A new path must preserve its prompt/brief and may not be added here.
-export const LEGACY_ASSET_PATHS = new Set([
-  'public/discovery/berlin-ubahn-karte.svg',
-  'public/discovery/schrebergaerten.webp',
-  'public/documents/a2/aemter-anmeldung-formular.svg',
-  'public/documents/a2/einkaufen-kassenbon-vergleich.svg',
-  'public/documents/a2/reisen-zugausfall.svg',
-  'public/documents/a2/wohnen-wohnungsanzeige.svg',
-  'src/assets/illustrations/a2/wohnen-position-carpet.webp',
-  'src/assets/illustrations/a2/wohnen-position-lamp.webp',
-  'src/assets/illustrations/a2/wohnen-position-picture.webp',
-  'src/assets/illustrations/a2/wohnen-position-verbs.webp',
-  'src/assets/illustrations/a2/wohnen-wo-wohin-action.webp',
-  'src/assets/illustrations/a2/wohnen-wo-wohin-state.webp',
-  'src/assets/illustrations/a2/wohnen-wo-wohin.webp',
-  'src/components/visuals/AdministrativeLetterFigure.astro',
-  'src/components/visuals/ParticipantRoleFigure.astro',
-  'src/components/visuals/RouteMovementFigure.astro',
-  'src/components/visuals/SentenceRail.astro',
-  'src/components/visuals/TimeRelationFigure.astro',
-  'src/components/visuals/WohnenWoWohin.astro',
-]);
+// Frozen on 2026-07-26. These are the pre-workflow bytes, not merely a path
+// allowlist. A legacy path whose current hash diverges owes a matching change
+// record, so unavailable creation history never exempts later edits.
+export const LEGACY_ASSET_BASELINE_SHA256: Readonly<Record<string, string>> = {
+  'public/discovery/berlin-ubahn-karte.svg': '2b5d58ab0b2d4c34ed98f9ce1341b153d41010f70490e10cdc515782951af391',
+  'public/discovery/schrebergaerten.webp': '04a53cf7fa2c4c1d3d636d85c31c53bb87f546c7136ff6afd54b56067818075e',
+  'public/documents/a2/aemter-anmeldung-formular.svg': '247c25e7e8723bb624dcfb8038266ebbed7979aa2114840699079dbae638b7b8',
+  'public/documents/a2/einkaufen-kassenbon-vergleich.svg': '994d899c03321fb89f970494ec3e49726b3f360a2f9818320d6acf995e85e6f6',
+  'public/documents/a2/reisen-zugausfall.svg': 'f5d26465ef19ebb23c70228618601b86dd4ab6fc04d311d9c7b317332cbe26e0',
+  'public/documents/a2/wohnen-wohnungsanzeige.svg': '1c27215b33de6bfb0a6d22921b71935d95e979d00382c02bf2cef7bc373706be',
+  'src/assets/illustrations/a2/wohnen-position-carpet.webp': 'd3608f4f66d93c004bcb673966c7f187188dec9ccf26a73774560520954411cd',
+  'src/assets/illustrations/a2/wohnen-position-lamp.webp': '6ab98b5887bc47330a74f625445b3da69b6ce69e6a9adf28ab0fa1a281f70fac',
+  'src/assets/illustrations/a2/wohnen-position-picture.webp': '37d54ff828b4a78cb38a6628ba8f6caaee1091a618e7d0488fdbed8b8093f9ee',
+  'src/assets/illustrations/a2/wohnen-position-verbs.webp': '2e4636bfb4c38bede12582b5ad74625b19109024a8a1b2e59250594f6a697407',
+  'src/assets/illustrations/a2/wohnen-wo-wohin-action.webp': '06df2bd37387f17c5d6856b21d4c5b5ea0de65ae9dc30b5ac0ad152898e65c15',
+  'src/assets/illustrations/a2/wohnen-wo-wohin-state.webp': 'e95d2855fdb038132db1d970d47f651e56089776d85b36ca78ced3d7619906ed',
+  'src/assets/illustrations/a2/wohnen-wo-wohin.webp': '2f1b8e427dd8fb16c4247d3cabd60bdcb20ffcdef3384593f2f275c901a744fa',
+  'src/components/visuals/AdministrativeLetterFigure.astro': '1b9364af26feaab77088e311622c0119d8147b3c3e208adde3c47ac4dc0d0486',
+  'src/components/visuals/ParticipantRoleFigure.astro': '886a28e666646324df8783f4a12ce5d2f102901b712f216ea307b9b299d1edef',
+  'src/components/visuals/RouteMovementFigure.astro': 'e175b17aa93aa43ef2698fc169632866d6fbe0c8362fb506d96578b4795f3d8d',
+  'src/components/visuals/SentenceRail.astro': '5f17aaac6d1b78de170ac73f2ac90bf128eedef42168bed7a785be54ed051d80',
+  'src/components/visuals/TimeRelationFigure.astro': '1e60feaa0590fd3b2b49040648cabef7637f0ffbf6103504bf210b65d8957915',
+  'src/components/visuals/WohnenWoWohin.astro': 'd1f8c1d999dd8d179ecb7e08150a3e503a056b997bdb63fda52a5d0af97898da',
+};
+export const LEGACY_ASSET_PATHS = new Set(Object.keys(LEGACY_ASSET_BASELINE_SHA256));
+
+type AssetRecord = AssetProvenanceManifest['assets'][number];
+
+export function legacyAssetChangeProblems(asset: AssetRecord): string[] {
+  const baseline = LEGACY_ASSET_BASELINE_SHA256[asset.path];
+  if (!baseline || asset.sha256 === baseline) return [];
+  const matchingChange = asset.changes.find((change) => change.sha256 === asset.sha256);
+  return matchingChange
+    ? []
+    : [
+        `data/asset-provenance.yaml: changed legacy asset "${asset.path}" needs a change record for SHA-256 ${asset.sha256}`,
+      ];
+}
 
 function filesRecursively(dir: string): string[] {
   if (!existsSync(dir)) return [];
@@ -264,6 +289,7 @@ export function authorshipProvenanceProblems(
           `data/asset-provenance.yaml: "${asset.path}" legacy flag disagrees with the frozen 2026-07-26 allowlist`,
         );
       }
+      problems.push(...legacyAssetChangeProblems(asset));
       const absolute = join(root, asset.path);
       if (!existsSync(absolute)) {
         problems.push(`data/asset-provenance.yaml: "${asset.path}" does not resolve`);
@@ -274,6 +300,10 @@ export function authorshipProvenanceProblems(
         problems.push(`data/asset-provenance.yaml: "${asset.path}" SHA-256 is stale`);
       if (asset.prompt && !existsSync(join(root, asset.prompt)))
         problems.push(`data/asset-provenance.yaml: prompt "${asset.prompt}" for "${asset.path}" does not resolve`);
+      for (const change of asset.changes) {
+        if (!existsSync(join(root, change.brief)))
+          problems.push(`data/asset-provenance.yaml: change brief "${change.brief}" for "${asset.path}" does not resolve`);
+      }
     }
 
     const expected = simulatedInstructionalAssetPaths(root);

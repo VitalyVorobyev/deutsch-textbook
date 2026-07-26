@@ -53,8 +53,9 @@ rewriting or arrangement decisions and a review date.
 Generated and simulated assets use the parallel asset manifest. Exact prompts that were not saved
 for legacy assets are marked unavailable rather than reconstructed. New generated assets must
 retain their brief or prompt, candidate count, selection reason and subsequent composition/edit
-decisions. `sourceClass` and the manifest together describe process; neither predicts a court's
-copyright assessment.
+decisions. Legacy assets keep frozen baseline hashes; any later edit requires its own current-hash
+change record with the real tool, saved brief and human direction. `sourceClass` and the manifest
+together describe process; neither predicts a court's copyright assessment.
 
 The repository skill [`.agents/skills/authorship-provenance/SKILL.md`](../.agents/skills/authorship-provenance/SKILL.md)
 is the operational handoff for authors and visual generators.

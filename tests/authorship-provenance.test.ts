@@ -8,7 +8,9 @@ import {
   authorshipProvenanceProblems,
   isLearningFigureComponent,
   LEGACY_ASSET_PATHS,
+  LEGACY_ASSET_BASELINE_SHA256,
   LEGACY_TOPIC_IDS,
+  legacyAssetChangeProblems,
   reviewedTopicAuthorshipProblems,
   simulatedInstructionalAssetPaths,
 } from '../src/lib/authorship-provenance';
@@ -108,6 +110,26 @@ describe('authorship provenance', () => {
     );
     expect(manifest.assets.filter((asset) => asset.legacy).map((asset) => asset.path).sort()).toEqual(
       [...LEGACY_ASSET_PATHS].sort(),
+    );
+  });
+
+  test('a changed legacy asset needs provenance for its current hash', () => {
+    const manifest = assetProvenanceManifestSchema.parse(
+      YAML.parse(readFileSync(resolve(root, 'data/asset-provenance.yaml'), 'utf8')),
+    );
+    const participant = manifest.assets.find(
+      (asset) => asset.path === 'src/components/visuals/ParticipantRoleFigure.astro',
+    );
+    if (!participant) throw new Error('missing participant-role provenance');
+    expect(participant.sha256).not.toBe(LEGACY_ASSET_BASELINE_SHA256[participant.path]);
+    expect(legacyAssetChangeProblems(participant)).toEqual([]);
+    expect(
+      legacyAssetChangeProblems({
+        ...participant,
+        sha256: 'b'.repeat(64),
+      }),
+    ).toContain(
+      `data/asset-provenance.yaml: changed legacy asset "${participant.path}" needs a change record for SHA-256 ${'b'.repeat(64)}`,
     );
   });
 

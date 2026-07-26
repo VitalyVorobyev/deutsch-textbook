@@ -44,5 +44,8 @@ review decisions after the fact.
    `sourceClass: simulated` only means course-created.
 7. Never give a new asset the legacy exemption. `legacy: true` and `promptUnavailable: true` are
    reserved for the frozen pre-2026-07-26 allowlist.
+8. When changing an allowlisted legacy asset, preserve its frozen baseline and add a `changes`
+   entry for the new SHA-256 with the real tool, saved brief and human edit/direction. The legacy
+   exemption covers missing creation history only.
 
 Run `bun run validate` and `bun test` after changing either manifest.
