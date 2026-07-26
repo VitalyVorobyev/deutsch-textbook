@@ -4,7 +4,8 @@ An AI-assisted, human-directed and edited German learning system by Vitaly Vorob
 wiki-like textbook + interactive exercises +
 FSRS flashcards. A1 and A2 are complete and B1 is being authored under its frozen contract
 (`docs/curriculum-a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
-are bilingual **EN + RU**, with optional **UK** arriving in translation waves and, from B1
+are bilingual **EN + RU**, with an optional **UK** half — independently authored from the
+German, shipping in file-scoped waves — and, from B1
 onward, an optional German-medium explanation half. The repo is
 both the knowledge base (`content/`) and the Astro site that renders it.
 
@@ -94,7 +95,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 - Every German example sentence gets EN and RU translations.
 
 ### Bilingual voice
-- Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX). Two optional halves may join them: `<Uk>` (Ukrainian, arriving in translation waves — per-file all-or-none, validator-enforced) and `<De>` (the German-medium explanation for advanced learners — authored from B1 onward, never backfilled to A1/A2). A missing half falls back to EN at render time.
+- Explanations are wrapped in `<Bilingual><En>…</En><Ru>…</Ru></Bilingual>` (components are injected; no imports needed in MDX). Two optional halves may join them: `<Uk>` (Ukrainian — an independently authored half written from the German, never translated from a sibling half; ships in file-scoped waves, per-file all-or-none, validator-enforced) and `<De>` (the German-medium explanation for advanced learners — authored from B1 onward, never backfilled to A1/A2). A missing half falls back to EN at render time.
 - EN and RU halves are each a complete, self-sufficient explanation of the same point — write both from scratch. They **may diverge** where it helps their reader: the RU half may contrast German with Russian («быть», падежи); the EN half may contrast with English ("must not" ≠ *muss nicht*) or use German-internal hooks (the wem?-question test). Never assume an EN reader knows Russian or vice versa.
 - **No Cyrillic and no references to Russian inside `<En>…</En>` or any `en`/`*_en` YAML field.** Likewise no Cyrillic in `de`/`*_de` fields, no Ukrainian-only letters (і/ї/є/ґ) in `ru` fields, no Russian-only letters (ы/э/ъ/ё) in `uk` fields. Enforced by `bun run validate`.
 - **The EN surface never assumes RU or UK** — this binds *rendering code*, not just authored fields: under explanation language `en`, a learner sees English (and German) only. Never hardcode a combined `en · ru` string; a card's meaning-side second half goes through `pickSecond` (`src/lib/prefs.ts`), which returns the gloss of the *chosen* language and `undefined` under `en`/`de`. RU and UK modes stay dual with EN (`en · ru`, `en · uk`). The one language selector is **Lernsprache** in the ProfileSwitcher dropdown (per-profile `ExplainLang`); the chrome is pinned German — deliberate immersion, one-line reversible (`resolveUiLang`).
