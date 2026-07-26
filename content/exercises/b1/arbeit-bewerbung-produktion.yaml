@@ -1,16 +1,25 @@
 # B1.4 production half: the transfer set. Fresh contexts, none of them a rehearsal of a
 # primary-practice sentence — a job ad read cold, two written transfer sentences, a
-# dictation that turns the etwas-Neues recognition item into a spelling decision, and the
-# two open tasks the outcomes claim (a Bewerbungsschreiben, an interview self-presentation).
-# Both open tasks are minimal ceremony: attempt → model → done. The `requirements` and the
+# dictation that turns the etwas-Neues recognition item into a spelling decision, an
+# interview heard once, a discrimination cloze, and the three open tasks the outcomes claim
+# (a Bewerbungsschreiben, an interview self-presentation, a two-turn exchange).
+# All open tasks are minimal ceremony: attempt → model → done. The `requirements` and the
 # `checklist` are guidance for comparing your own text against the model — the app cannot
 # verify free production, so it charges no steps for feedback it cannot give.
-# Two notes on the tags. The dictation's outcome is erfahrung-praesentieren although
+# Four notes on the tags. The dictation's outcome is erfahrung-praesentieren although
 # dictation is sound→spelling and not a listening claim: this unit owns no listening
-# outcome, and the sentence is one a candidate says about themselves. And
-# uebersetzen-einladung carries `hoeflich-konjunktiv` — an A2 tag that closes no B1 point;
-# it is the live runtime channel of the `deepens` edge to aemter-dienstleistungen, whose
-# polite register this unit's letter is built on.
+# outcome, and the sentence is one a candidate says about themselves. hoeren-interview-
+# verstehen is the same situation from the other side — it records *listening* evidence for
+# a spoken-interaction outcome, deliberately, because understanding the interviewer's turn
+# is the half of an interaction the speak task cannot train; its comprehension question
+# turns on a Nomen-Verb-Verbindung, which is what keeps it honest as an arming item for
+# that family. cloze-n-deklination-grenze is the faded discrimination check: every other
+# scored n-declension slot in this unit hands the learner a noun that is in the family, so
+# appending -(e)n blindly would score full marks — this one mixes Praktikant with a
+# feminine and with a regular masculine thing in -e. And uebersetzen-einladung carries
+# `hoeflich-konjunktiv` — an A2 tag that closes no B1 point; it is the live runtime channel
+# of the `deepens` edge to aemter-dienstleistungen, whose polite register this unit's
+# letter is built on.
 topic: arbeit-bewerbung
 role: practice
 title:
@@ -195,3 +204,100 @@ items:
       ru: "В ответе четыре хода, и все три машины урока их несут. Кто вы: als Angestellte — после безартиклевого als прилагательное-существительное само показывает род (мужчина скажет als Angestellter). Что вы делали: лица из n-склонения появляются как дополнения и носят свои окончания — Kunden, meinen Kollegen, einem neuen Praktikanten. Что вам удаётся: устойчивые пары заменяют расплывчатое ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. И почему вы хотите сменить работу: etwas Neues, с большой буквы и сильным -es, стандартный ответ на вопрос «почему к нам?». Произнесите всё второй раз и вслушайтесь в окончания als Angestellte и einem neuen Praktikanten — именно они отличают рассказ о себе на B1 от рассказа на A2."
       uk: "У відповіді чотири ходи, і всі три машини уроку їх несуть. Хто ви: als Angestellte — після безартиклевого als прикметник-іменник сам показує рід (чоловік скаже als Angestellter). Що ви робили: особи з n-відміни з'являються як додатки й носять свої закінчення — Kunden, meinen Kollegen, einem neuen Praktikanten. Що вам вдається: стійкі пари заміняють розпливчасте ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. І чому ви хочете змінити роботу: etwas Neues, з великої літери й сильним -es, стандартна відповідь на питання «чому до нас?». Вимовте все вдруге і вслухайтеся в закінчення als Angestellte та einem neuen Praktikanten — саме вони відрізняють розповідь про себе на B1 від розповіді на A2."
       de: "Die Antwort hat vier Züge, und alle drei Maschinen der Einheit tragen sie. Wer du bist: als Angestellte — nach dem artikellosen als zeigt das Adjektiv-Nomen das Genus selbst (ein Mann sagt als Angestellter). Was du getan hast: Die Personen der n-Deklination stehen als Objekte da und tragen ihre Endungen — Kunden, meinen Kollegen, einem neuen Praktikanten. Was du kannst: Die festen Verbindungen ersetzen ein vages ich mache — Verantwortung übernommen, gebe ich mir Mühe, spielt eine große Rolle. Und warum du wechseln willst: etwas Neues, groß und mit starkem -es, die klassische Antwort auf die Warum-wir-Frage. Sag alles ein zweites Mal und hör dabei auf die Endungen in als Angestellte und einem neuen Praktikanten — sie unterscheiden eine B1-Selbstvorstellung von einer auf A2."
+
+  - id: hoeren-interview-verstehen
+    outcomes: [interview-fragen-beantworten]
+    type: audio-comprehension
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "An interview, heard once and not written down. Listen for what the candidate wants from the new job — and who promises what at the end."
+      ru: "Собеседование, которое вы слышите, но не видите записанным. Слушайте, чего кандидатка хочет от новой работы — и кто что обещает в конце."
+      uk: "Співбесіда, яку ви чуєте, але не бачите записаною. Слухайте, чого кандидатка хоче від нової роботи — і хто що обіцяє наприкінці."
+      de: "Ein Vorstellungsgespräch, gehört und nicht mitgelesen. Achte darauf, was die Bewerberin von der neuen Stelle will — und wer am Ende was verspricht."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Herr Weber", text: "Frau Nowak, Sie arbeiten seit vier Jahren im Supermarkt. Warum möchten Sie wechseln?" }
+        - { speaker: "Frau Nowak", text: "Die Arbeit mache ich gern. Aber ich möchte mehr Verantwortung übernehmen, und bei Ihnen könnte ich ein kleines Team führen." }
+        - { speaker: "Herr Weber", text: "Haben Sie selbst noch eine Frage an uns?" }
+        - { speaker: "Frau Nowak", text: "Ja, gern. Wie viele Kollegen arbeiten in der Abteilung?" }
+        - { speaker: "Herr Weber", text: "Zurzeit sind es acht. Wir geben Ihnen bis Freitag Bescheid." }
+    question: "Was möchte Frau Nowak bei der neuen Stelle?"
+    options:
+      - "Mehr Verantwortung übernehmen."
+      - "Bis Freitag Bescheid geben."
+      - "Ein Praktikum im Supermarkt machen."
+    correct: 0
+    translation:
+      en: "What does Ms Nowak want in the new position?"
+      ru: "Чего госпожа Новак хочет на новой должности?"
+      uk: "Чого пані Новак хоче на новій посаді?"
+    explain:
+      en: "Every option is a real chunk from this unit, so the ear has to catch who does what, not which words occurred. She says ich möchte mehr Verantwortung übernehmen — the pair Verantwortung übernehmen, in her own mouth. Bescheid geben is said by Herr Weber about the firm, not by her about herself, and it is the answer you fall into if you only heard the last sentence. The third option never happens at all: the supermarket is where she works now, not where she is applying. This is also the half of an interview the speaking task does not train — understanding the question is what you have to do before you can answer it."
+      ru: "Каждый вариант — реальный оборот из этого урока, поэтому ухо должно поймать, кто что делает, а не какие слова прозвучали. Она говорит ich möchte mehr Verantwortung übernehmen — пара Verantwortung übernehmen, из её собственных уст. Bescheid geben произносит господин Вебер о фирме, а не она о себе, и в этот вариант попадаешь, если расслышал только последнюю фразу. Третьего не происходит вовсе: супермаркет — это где она работает сейчас, а не куда устраивается. И это та половина собеседования, которой не учит задание на говорение: понять вопрос нужно раньше, чем на него ответить."
+      uk: "Кожен варіант — реальний зворот із цього уроку, тож вухо має вловити, хто що робить, а не які слова пролунали. Вона каже ich möchte mehr Verantwortung übernehmen — пара Verantwortung übernehmen, з її власних уст. Bescheid geben вимовляє пан Вебер про фірму, а не вона про себе, і в цей варіант потрапляєш, якщо розчув лише останню фразу. Третього не стається взагалі: супермаркет — це де вона працює зараз, а не куди влаштовується. І це та половина співбесіди, якої не навчає завдання на говоріння: зрозуміти питання треба раніше, ніж на нього відповісти."
+      de: "Jede Option ist eine echte Verbindung aus dieser Einheit — das Ohr muss also hören, wer was tut, nicht welche Wörter vorkamen. Sie sagt ich möchte mehr Verantwortung übernehmen, das Paar Verantwortung übernehmen aus ihrem eigenen Mund. Bescheid geben sagt Herr Weber über die Firma, nicht sie über sich, und darauf fällt herein, wer nur den letzten Satz gehört hat. Das Dritte passiert überhaupt nicht: Der Supermarkt ist ihr jetziger Arbeitsplatz, nicht der, um den sie sich bewirbt. Und das ist die Hälfte des Gesprächs, die die Sprechaufgabe nicht übt — die Frage verstehen muss man, bevor man sie beantworten kann."
+
+  - id: cloze-n-deklination-grenze
+    outcomes: [bewerbung-schreiben]
+    type: cloze
+    focus: n-deklination
+    instruction:
+      en: "Put Praktikant, Kollegin and Käse into the form each slot needs. Some of these nouns take an ending here and some do not — deciding which is the whole task."
+      ru: "Поставьте Praktikant, Kollegin и Käse в нужную форму. Одни из этих слов здесь получают окончание, другие нет, — решить, какие именно, и есть задание."
+      uk: "Поставте Praktikant, Kollegin і Käse в потрібну форму. Одні з цих слів тут отримують закінчення, інші ні, — вирішити, які саме, і є завданням."
+      de: "Setze Praktikant, Kollegin und Käse in die Form, die der Satz verlangt. Manche dieser Nomen bekommen hier eine Endung und manche nicht — genau das zu entscheiden ist die Aufgabe."
+    text: "Sag bitte dem {{Praktikanten}} und der {{Kollegin}} Bescheid: Die Feier beginnt um vier. Ich bringe den {{Käse}} mit, Herr Weber bringt den Salat."
+    translation:
+      en: "Please let the intern and the colleague know: the party starts at four. I'll bring the cheese, Mr Weber is bringing the salad."
+      ru: "Сообщи, пожалуйста, практиканту и коллеге: праздник начинается в четыре. Я принесу сыр, господин Вебер принесёт салат."
+      uk: "Повідом, будь ласка, практиканта і колегу: свято починається о четвертій. Я принесу сир, пан Вебер принесе салат."
+    explain:
+      en: "Three nouns after a case-marked article, and only one of them moves. Praktikant is n-declension — masculine person in -ant — so the dative gives it its -en. Kollegin is feminine, and no feminine ever joins the family, however much its masculine partner declines: der Kollege → dem Kollegen, but die Kollegin → der Kollegin, ending untouched. And Käse is the case the rule is most often overapplied to: a masculine thing in -e, regular, den Käse with no n anywhere. If you appended -(e)n three times you were following the article rather than the noun — the article tells you the case, the noun's class tells you whether the case shows on it. (The abstracts der Name, der Buchstabe, der Gedanke are the exception inside the exception: they do take -(e)n, plus -s in the genitive.)"
+      ru: "Три существительных после артикля с падежом — и двигается только одно. Praktikant из n-склонения: лицо мужского рода на -ant, поэтому датив даёт ему -en. Kollegin — женского рода, а женский род в эту семью не входит никогда, как бы ни склонялся его мужской напарник: der Kollege → dem Kollegen, но die Kollegin → der Kollegin, окончание нетронуто. А Käse — тот случай, на который правило переносят чаще всего: предмет мужского рода на -e, обычный, den Käse, никакого n. Если вы приписали -(e)n трижды, вы шли за артиклем, а не за существительным: артикль сообщает падеж, а класс существительного — покажет ли этот падеж себя на нём. (Абстрактные der Name, der Buchstabe, der Gedanke — исключение внутри исключения: они -(e)n берут, а в генитиве добавляют ещё -s.)"
+      uk: "Три іменники після артикля з відмінком — і рухається лише один. Praktikant із n-відміни: особа чоловічого роду на -ant, тому давальний дає йому -en. Kollegin — жіночого роду, а жіночий рід до цієї родини не входить ніколи, хоч би як відмінювався його чоловічий напарник: der Kollege → dem Kollegen, але die Kollegin → der Kollegin, закінчення недоторкане. А Käse — той випадок, на який правило переносять найчастіше: предмет чоловічого роду на -e, звичайний, den Käse, жодного n. Якщо ви дописали -(e)n тричі, ви йшли за артиклем, а не за іменником: артикль повідомляє відмінок, а клас іменника — чи покаже цей відмінок себе на ньому. (Абстрактні der Name, der Buchstabe, der Gedanke — виняток усередині винятку: вони -(e)n беруть, а в родовому додають ще -s.)"
+      de: "Drei Nomen nach einem Artikel mit Kasus — und nur eines bewegt sich. Praktikant gehört zur n-Deklination, männliche Person auf -ant, also gibt der Dativ ihm sein -en. Kollegin ist feminin, und kein Femininum gehört je zur Familie, so sehr sein maskuliner Partner auch dekliniert: der Kollege → dem Kollegen, aber die Kollegin → der Kollegin, Endung unberührt. Und Käse ist der Fall, auf den die Regel am häufigsten übertragen wird: eine maskuline Sache auf -e, regelmäßig, den Käse, nirgends ein n. Wer dreimal -(e)n angehängt hat, ist dem Artikel gefolgt statt dem Nomen — der Artikel nennt den Kasus, die Klasse des Nomens entscheidet, ob man ihn ihm ansieht. (Die Abstrakta der Name, der Buchstabe, der Gedanke sind die Ausnahme in der Ausnahme: Sie nehmen das -(e)n, im Genitiv zusätzlich ein -s.)"
+
+  - id: sprechen-interview-turns
+    outcomes: [interview-fragen-beantworten]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Two turns, out loud. Answer the question you are asked, then ask one of your own — an interview is an exchange, not a monologue."
+      ru: "Два хода, вслух. Ответьте на заданный вопрос, а затем задайте свой — собеседование это обмен репликами, а не монолог."
+      uk: "Два ходи, уголос. Дайте відповідь на поставлене питання, а потім поставте своє — співбесіда це обмін репліками, а не монолог."
+      de: "Zwei Züge, laut gesprochen. Beantworte die Frage, die man dir stellt, und stelle dann selbst eine — ein Vorstellungsgespräch ist ein Wechsel, kein Monolog."
+    prompt:
+      en: "Herr Weber asks: „Sie haben viel mit Kunden gearbeitet. Wie gehen Sie mit einem schwierigen Kunden um?“ Answer aloud in three or four sentences. Then he asks: „Haben Sie selbst noch eine Frage an uns?“ — ask two real questions about the job."
+      ru: "Господин Вебер спрашивает: «Sie haben viel mit Kunden gearbeitet. Wie gehen Sie mit einem schwierigen Kunden um?» Ответьте вслух, три-четыре предложения. Затем он спрашивает: «Haben Sie selbst noch eine Frage an uns?» — задайте два настоящих вопроса о работе."
+      uk: "Пан Вебер запитує: «Sie haben viel mit Kunden gearbeitet. Wie gehen Sie mit einem schwierigen Kunden um?» Дайте відповідь уголос, три-чотири речення. Потім він запитує: «Haben Sie selbst noch eine Frage an uns?» — поставте два справжні питання про роботу."
+      de: "Herr Weber fragt: „Sie haben viel mit Kunden gearbeitet. Wie gehen Sie mit einem schwierigen Kunden um?“ Antworte laut, in drei oder vier Sätzen. Dann fragt er: „Haben Sie selbst noch eine Frage an uns?“ — stelle zwei echte Fragen zur Stelle."
+    goal:
+      en: "Both turns actually happen: an answer that stays on the question, and two questions of your own that a real candidate would want answered."
+      ru: "Оба хода действительно состоялись: ответ, не уходящий от вопроса, и два собственных вопроса, ответ на которые нужен настоящему кандидату."
+      uk: "Обидва ходи справді відбулися: відповідь, що не відходить від питання, і два власні питання, відповідь на які потрібна справжньому кандидатові."
+      de: "Beide Züge finden wirklich statt: eine Antwort, die bei der Frage bleibt, und zwei eigene Fragen, deren Antwort eine echte Bewerberin wissen will."
+    checklist:
+      - en: "My answer used the n-declension people as objects, with their endings: mit einem Kunden, dem Kollegen, einem Praktikanten."
+        ru: "В ответе лица из n-склонения стояли дополнениями, с окончаниями: mit einem Kunden, dem Kollegen, einem Praktikanten."
+        uk: "У відповіді особи з n-відміни стояли додатками, із закінченнями: mit einem Kunden, dem Kollegen, einem Praktikanten."
+        de: "In meiner Antwort standen die Personen der n-Deklination als Objekte, mit ihren Endungen: mit einem Kunden, dem Kollegen, einem Praktikanten."
+      - en: "I built my own questions with the fixed pair, not with machen: eine Frage stellen, Bescheid geben, Verantwortung übernehmen."
+        ru: "Свои вопросы я построил(а) на устойчивой паре, а не на machen: eine Frage stellen, Bescheid geben, Verantwortung übernehmen."
+        uk: "Свої питання я побудував(ла) на стійкій парі, а не на machen: eine Frage stellen, Bescheid geben, Verantwortung übernehmen."
+        de: "Meine eigenen Fragen habe ich mit der festen Verbindung gebaut, nicht mit machen: eine Frage stellen, Bescheid geben, Verantwortung übernehmen."
+      - en: "The questions were really questions — verb first for a yes/no question, question word first otherwise — and I stayed with Sie throughout."
+        ru: "Вопросы были настоящими вопросами — глагол на первом месте в общем вопросе, вопросительное слово в специальном, — и я всюду держался(лась) формы Sie."
+        uk: "Питання були справжніми питаннями — дієслово на першому місці в загальному, питальне слово в спеціальному, — і я всюди тримався(лася) форми Sie."
+        de: "Die Fragen waren wirklich Fragen — Verb zuerst bei der Ja/Nein-Frage, Fragewort zuerst sonst — und ich bin durchgehend beim Sie geblieben."
+    model_answer: "Mit einem schwierigen Kunden bleibe ich zuerst ruhig und höre zu. Meistens will er einfach, dass ihm jemand zuhört. Dann stelle ich eine Frage, um das Problem genau zu verstehen, und sage ihm ehrlich, was ich tun kann. Wenn ich nicht weiterhelfen kann, gebe ich meinem Kollegen Bescheid und bleibe dabei. — Ja, ich hätte zwei Fragen. Wie viele Kolleginnen und Kollegen arbeiten in der Abteilung? Und wann bekomme ich Bescheid?"
+    model_translation:
+      en: "With a difficult customer I first stay calm and listen. Usually he just wants someone to listen to him. Then I ask a question in order to understand the problem exactly, and tell him honestly what I can do. If I cannot help further, I let my colleague know and stay with it. — Yes, I would have two questions. How many colleagues work in the department? And when will I hear back?"
+      ru: "С трудным клиентом я сначала сохраняю спокойствие и слушаю. Обычно он просто хочет, чтобы его кто-то выслушал. Потом я задаю вопрос, чтобы точно понять проблему, и честно говорю, что могу сделать. Если помочь дальше не могу, сообщаю коллеге и остаюсь рядом. — Да, у меня было бы два вопроса. Сколько коллег работает в отделе? И когда я получу ответ?"
+      uk: "З важким клієнтом я спершу зберігаю спокій і слухаю. Зазвичай він просто хоче, щоб його хтось вислухав. Потім я ставлю питання, щоб точно зрозуміти проблему, і чесно кажу, що можу зробити. Якщо допомогти далі не можу, повідомляю колегу і лишаюся поряд. — Так, у мене було б два питання. Скільки колег працює у відділі? І коли я отримаю відповідь?"
+    explain: 
+      en: "The outcome this task measures has two halves and most learners only rehearse one. Answering: the n-declension people arrive as objects and wear their endings — mit einem Kunden, meinem Kollegen — and the article in front of each was the warning that the case had moved. Asking: your own questions are where eine Frage stellen and Bescheid geben stop being vocabulary and become the thing you actually do, and where the interviewer finds out whether you understood the job. Both German question shapes appear in the model: Wie viele Kolleginnen und Kollegen arbeiten …? with the question word first, and the yes/no shape if you ask Bekomme ich bis Freitag Bescheid? Say the pair of turns twice — the second time you will hear which of your own questions was actually a statement."
+      ru: "У компетенции, которую проверяет это задание, две половины, и большинство отрабатывает только одну. Отвечать: лица из n-склонения приходят дополнениями и носят свои окончания — mit einem Kunden, meinem Kollegen, — а артикль перед каждым был предупреждением, что падеж сменился. Спрашивать: именно в своих вопросах eine Frage stellen и Bescheid geben перестают быть словарём и становятся тем, что вы делаете, — и именно там собеседник понимает, разобрались ли вы в работе. В образце есть обе немецкие формы вопроса: Wie viele Kolleginnen und Kollegen arbeiten …? с вопросительным словом впереди и общая форма, если вы спросите Bekomme ich bis Freitag Bescheid? Произнесите оба хода дважды — со второго раза слышно, какой из ваших вопросов на самом деле был утверждением."
+      uk: "У компетенції, яку перевіряє це завдання, дві половини, і більшість відпрацьовує лише одну. Відповідати: особи з n-відміни приходять додатками й носять свої закінчення — mit einem Kunden, meinem Kollegen, — а артикль перед кожним був попередженням, що відмінок змінився. Питати: саме у своїх питаннях eine Frage stellen і Bescheid geben перестають бути словником і стають тим, що ви робите, — і саме там співрозмовник розуміє, чи розібралися ви в роботі. У зразку є обидві німецькі форми питання: Wie viele Kolleginnen und Kollegen arbeiten …? з питальним словом попереду і загальна форма, якщо ви спитаєте Bekomme ich bis Freitag Bescheid? Вимовте обидва ходи двічі — з другого разу чути, яке з ваших питань насправді було твердженням."
+      de: "Die Fähigkeit, die diese Aufgabe misst, hat zwei Hälften, und die meisten üben nur eine. Antworten: Die Personen der n-Deklination kommen als Objekte und tragen ihre Endungen — mit einem Kunden, meinem Kollegen —, und der Artikel davor war die Warnung, dass der Kasus gewechselt hat. Fragen: In den eigenen Fragen hören eine Frage stellen und Bescheid geben auf, Vokabeln zu sein, und werden zu dem, was man tut — und dort merkt das Gegenüber, ob man die Stelle verstanden hat. Im Muster stehen beide deutschen Fragetypen: Wie viele Kolleginnen und Kollegen arbeiten …? mit dem Fragewort vorn und die Ja/Nein-Form, wenn du Bekomme ich bis Freitag Bescheid? fragst. Sprich beide Züge zweimal — beim zweiten Mal hörst du, welche deiner eigenen Fragen in Wahrheit eine Aussage war."

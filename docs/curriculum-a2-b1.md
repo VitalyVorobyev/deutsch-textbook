@@ -917,8 +917,20 @@ gap rather than papering over one: B1.4's mission has four moves and the contrac
 outcomes, leaving *handle interview turns* unowned. `interview-fragen-beantworten`
 (spoken-interaction) now owns it and carries the noun–verb family, whose chunks — *eine Frage
 stellen, eine Antwort geben, einen Eindruck machen* — are exactly what an interview turn is made
-of. The written practice items that measure it record selected-response evidence, never spoken
-evidence, on the same footing as B1.3's two spoken-interaction outcomes.
+of.
+
+**Correction, same day.** The paragraph above first closed by saying the outcome's written items
+"record selected-response evidence, never spoken evidence, on the same footing as B1.3's two
+spoken-interaction outcomes". That precedent is the opposite of what the repo contains, and the
+review of the same PR caught it: B1.3's `beschwerden-schildern` and `ratschlaege-formulieren` each
+own a `speak` task (`sprechen-beschwerden-apotheke`, `sprechen-ratschlag-freundin`). A new outcome
+introduced to fix an arming collision had been given no task in its own mode, and the sentence
+justifying that cited the units which do the opposite. B1.4 now ships `sprechen-interview-turns`
+(`mode: spoken-interaction`, answer a question then ask one) plus `hoeren-interview-verstehen`, an
+`audio-comprehension` item for the half of an interaction a speaking task cannot train. **The rule
+this leaves: an outcome added to separate probe arming is still an outcome, and owes a task in the
+mode it names** — the arming fix is not a licence to skip the checklist line at
+`docs/authoring-checklists.md:18`.
 
 **The standing rule this leaves:** a unit owing N probe families needs N distinct outcomes among
 them, and outcome count is capped at four per node. A unit owning more than four competences

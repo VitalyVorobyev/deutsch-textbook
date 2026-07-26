@@ -64,6 +64,18 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
   high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the
   program's lapse decision rules (forms/contrast/note — never card identity).
+- **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
+  (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript
+  `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
+  review round missing two of the four, and nothing failed: `bun run validate` enforces the item-mix
+  bar but never asks whether an outcome has a task in the mode it names. Checking B1 turned up the
+  same gap upstream — of the four B1 units, only `erfahrungen-erzaehlen` owns an
+  `audio-comprehension` item, and it is the only one with a `listening` outcome, so the doc sentence
+  is ambiguous about whether the artifact is unconditional or claimed-mode-driven. Decide which the
+  rule is, write it down, and either backfill B1.2/B1.3 or state why a unit with no listening
+  outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
+  one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
+  the earned-not-asserted bar this belongs under.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
