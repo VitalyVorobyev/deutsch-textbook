@@ -29,7 +29,7 @@ items:
       uk: "В оголошенні вказано теплу орендну плату 880 євро й балкон. Квартира на третьому поверсі, а тварин треба погодити."
 
   - id: dokument-wohnung-grundriss
-    revision: 2
+    revision: 3
     outcomes: [wohnung-beschreiben]
     type: translate
     instruction:
@@ -42,6 +42,8 @@ items:
     answer: "Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur."
     accept:
       - "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur."
+      - "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur."
+      - "Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur."
       - "Neben dem Schlafzimmer ist das Wohnzimmer. Zwischen dem Bad und dem Flur ist die Küche."
       - "Das Wohnzimmer ist neben dem Schlafzimmer, und die Küche ist zwischen dem Bad und dem Flur."
     explain:

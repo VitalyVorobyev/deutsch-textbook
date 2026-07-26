@@ -17,12 +17,28 @@ describe('late PR #113 regressions', () => {
     const item = set.items.find((candidate) => candidate.id === 'dokument-wohnung-grundriss');
     if (!item || item.type !== 'translate') throw new Error('missing floor-plan translation item');
 
-    expect(item.revision).toBe(2);
+    expect(item.revision).toBe(3);
     expect(item.prompt_en).toBe(
       'The living room is next to the bedroom. The kitchen is between the bathroom and the hall.',
     );
     expect(item.answer).toContain('Das Wohnzimmer ist neben dem Schlafzimmer.');
     expect([item.answer, ...item.accept].join(' ')).not.toContain('Balkon');
+    for (const mixed of [
+      'Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur.',
+      'Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur.',
+    ]) {
+      expect(item.accept).toContain(mixed);
+      expect(
+        verdictIsCorrect(
+          gradeTranslation(mixed, {
+            answer: item.answer,
+            accept: item.accept,
+            focus: item.focus,
+            keyTokens: item.key_tokens,
+          }),
+        ),
+      ).toBe(true);
+    }
   });
 
   test('the participant caption preserves a grammatical dative recipient', () => {
