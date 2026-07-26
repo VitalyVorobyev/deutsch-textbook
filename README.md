@@ -94,6 +94,9 @@ Import merges by default, so nothing is overwritten without asking.
 
 ## Development
 
+Project documentation is indexed in [`docs/README.md`](docs/README.md); authoring agents start with
+[`CLAUDE.md`](CLAUDE.md).
+
 Deutsch-Atlas is a static [Astro](https://astro.build) site with React islands,
 Tailwind CSS, and a thin [Tauri v2](https://tauri.app) shell for the desktop
 build; all content lives in the repo as MDX and YAML, validated against Zod
