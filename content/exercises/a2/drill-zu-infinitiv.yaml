@@ -126,6 +126,8 @@ items:
     prompt_ru: "Я звоню маме, чтобы всё ей объяснить."
     prompt_uk: "Я телефоную мамі, щоб усе їй пояснити."
     answer: "Ich rufe meine Mutter an, um ihr alles zu erklären."
+    accept:
+      - "Um ihr alles zu erklären, rufe ich meine Mutter an."
     key_tokens: ["zu", "erklären"]
     explain:
       en: "One sentence, both halves of the lesson. anrufen is the conjugated verb of the main clause, so it splits: rufe … an. erklären sits inside the purpose frame, so zu stands immediately in front of it and the infinitive is the last word, with nothing after it: um ihr alles zu erklären. The comma before um is obligatory. What is graded here is the zu-infinitive itself; the um is what turns the sentence from what into what for."
@@ -137,9 +139,9 @@ items:
     type: translate
     focus: zu-infinitiv
     instruction:
-      en: "Ask with Zeit haben plus a zu-infinitive."
-      ru: "Спросите через Zeit haben и инфинитив с zu."
-      uk: "Спитайте через Zeit haben та інфінітив із zu."
+      en: "Ask with Zeit haben plus a zu-infinitive, and use abholen."
+      ru: "Спросите через Zeit haben и инфинитив с zu, использовав abholen."
+      uk: "Спитайте через Zeit haben та інфінітив із zu, використавши abholen."
     prompt_en: "Do you have time to pick me up at eight?"
     prompt_ru: "У тебя есть время заехать за мной в восемь?"
     prompt_uk: "Ти маєш час заїхати за мною о восьмій?"
