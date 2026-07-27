@@ -89,7 +89,15 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   pins — `zu` cannot be pinned because it does not occur in the answer — and not fixable by dropping
   them, which the corpus already priced at 52 false attributions to buy 5 true ones. It needs an
   attribution rule that reads the *edit* rather than the surviving tokens, so treat it as
-  P12-4's sibling. Coverage today is by mode, not by mechanism: the same drill's cloze gaps
+  P12-4's sibling. **The same list has a second blind spot, the mirror of the first:** a pin
+  names a token but cannot say *which property of it* the tag grades. `uebersetzen-modal-ohne-zu`
+  pins `mitkommen` to catch `mitzukommen` — a modal taking a bare infinitive is the lesson — and
+  the pin therefore also fires on `kommen`, a lexical substitution that gets the grammar right.
+  Both verified against the shipped spec: each returns `wrong` with `zu-infinitiv`. Unpinning
+  trades the false attribution for a certain one, since `mitzukommen` is the error the drill
+  exists to catch and would go unattributed; the instruction names the verb, which lowers the
+  frequency but not the conflation. A rule that graded *the form of a named token* rather than
+  *the presence of a token* would close both faces at once. Coverage today is by mode, not by mechanism: the same drill's cloze gaps
   (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
   identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
   `src/lib/evidence.ts:17`).

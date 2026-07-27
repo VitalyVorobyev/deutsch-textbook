@@ -638,6 +638,20 @@ function cardSummary(cards: Record<string, AuditCard>) {
   const directions = new Map<string, { direction: string; cards: number; lapses: number }>();
   const decks = new Map<string, { deck: string; cards: number; lapses: number }>();
   const needingReview: ProgressAudit['cards']['needingReview'] = [];
+  /**
+   * The rule counts lapses per *lexeme*, and a handful of legacy headwords own two
+   * production cards because they appear in two decks (`scripts/validate.ts` allows five:
+   * wohnen, kommen, sprechen, Arzt, Ärztin). Testing the threshold card by card drops a
+   * lexeme whose two histories carry one lapse each, which is not a hypothetical — in
+   * progress/vitaly/2026-07-26.json `kommen` sits at exactly that: two production cards,
+   * one lapse apiece, invisible to a per-card test and due for review under the program's.
+   * So production cards are pooled by headword first. For the 99% singleton case the pooled
+   * row is identical to the card's own; only a duplicated headword merges, and its row then
+   * names both decks, because reviewing that lexeme means reviewing both entries.
+   */
+  const production = new Map<string, {
+    decks: Set<string>; lapses: number; reps: number; stability?: number;
+  }>();
   let lapses = 0;
   let withLapses = 0;
   for (const [id, card] of Object.entries(cards)) {
@@ -647,17 +661,21 @@ function cardSummary(cards: Record<string, AuditCard>) {
     const cardLapses = card.lapses ?? 0;
     lapses += cardLapses;
     if (cardLapses > 0) withLapses += 1;
-    if (cardLapses >= LAPSE_REVIEW_THRESHOLD && direction === PRODUCTION_DIRECTION)
-      needingReview.push({
-        deck,
-        // Card identity is `<deck>::<de>::<direction>`, and a headword may itself contain
-        // no `::`, so everything between the first and last segment is the headword.
-        headword: parts.slice(1, -1).join('::') || '(unknown)',
-        direction,
-        lapses: cardLapses,
-        reps: card.reps ?? 0,
-        stability: card.stability,
-      });
+    if (direction === PRODUCTION_DIRECTION) {
+      // Card identity is `<deck>::<de>::<direction>`, and a headword may itself contain
+      // no `::`, so everything between the first and last segment is the headword.
+      const headword = parts.slice(1, -1).join('::') || '(unknown)';
+      const row = production.get(headword) ?? { decks: new Set<string>(), lapses: 0, reps: 0 };
+      row.decks.add(deck);
+      row.lapses += cardLapses;
+      row.reps += card.reps ?? 0;
+      // The least consolidated of the two is the one worth reporting.
+      if (card.stability !== undefined)
+        row.stability = row.stability === undefined
+          ? card.stability
+          : Math.min(row.stability, card.stability);
+      production.set(headword, row);
+    }
     const dir = directions.get(direction) ?? { direction, cards: 0, lapses: 0 };
     dir.cards += 1;
     dir.lapses += cardLapses;
@@ -666,6 +684,17 @@ function cardSummary(cards: Record<string, AuditCard>) {
     deckRow.cards += 1;
     deckRow.lapses += cardLapses;
     decks.set(deck, deckRow);
+  }
+  for (const [headword, row] of production) {
+    if (row.lapses < LAPSE_REVIEW_THRESHOLD) continue;
+    needingReview.push({
+      deck: [...row.decks].sort().join(' + '),
+      headword,
+      direction: PRODUCTION_DIRECTION,
+      lapses: row.lapses,
+      reps: row.reps,
+      stability: row.stability,
+    });
   }
   return {
     graded: Object.keys(cards).length,
