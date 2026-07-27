@@ -88,9 +88,12 @@ interface AuditCard {
  * asks. `wohnen-umzug | 14 cards | 10 lapses` is unreadable: it is either ten mildly
  * awkward cards or one broken one. The 2026-07-26 pass found the latter — 22 cards over
  * the threshold, 21 of them the production direction, and the worst sitting at 0.0–0.4
- * days of stability after 14–25 repetitions. A card that will not stabilize across twenty
- * repetitions is a defective entry rather than a hard word, and `stability` is the column
- * that says so, which is why it is reported beside the lapse count and not instead of it.
+ * days of stability after 14–25 repetitions. `stability` is reported beside the lapse count
+ * rather than instead of it because the pair narrows the question — a card that will not
+ * consolidate across twenty repetitions is worth opening — but it does not answer it. That
+ * same pass confirmed a gloss collision for five of the nine worst cards and *disconfirmed*
+ * it for four, which had no rival entry anywhere in the corpus and were left untouched. The
+ * columns are a trigger to inspect, never a diagnosis.
  */
 const LAPSE_REVIEW_THRESHOLD = 2;
 
@@ -1248,8 +1251,11 @@ function lapseReviewSection(
     return [`No production card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
   return [
     `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — the entry-review ` +
-      'trigger. Low stability against high reps means the entry is the problem, not the ' +
-      'lexeme: check the gloss for a rival German word before changing anything else. ' +
+      'trigger. Low stability against high reps says the card is not consolidating; it does ' +
+      'not say why. Read it as the cue to inspect the entry — its gloss against every rival ' +
+      'German word in the corpus, then its forms and its context — and expect some cards to ' +
+      'come back clean: the 2026-07-26 pass confirmed a gloss collision for five of nine and ' +
+      'disconfirmed it for four, which were simply hard to produce and were left alone. ' +
       'Recognition lapses are a different question and stay in the direction table above.',
     '',
     '| Deck | Headword | Lapses | Reps | Stability (d) |',

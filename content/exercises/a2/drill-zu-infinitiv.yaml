@@ -68,16 +68,15 @@ items:
       - "Ich habe vergessen, mein Zimmer aufzuräumen."
       - "Ich habe vergessen, mein Zimmer zu aufräumen."
       - "Ich habe vergessen, mein Zimmer aufräumen."
-      - "Ich habe vergessen, um mein Zimmer aufzuräumen."
     correct: 0
     translation:
       en: "I forgot to tidy up my room."
       ru: "Я забыл убрать свою комнату."
       uk: "Я забув прибрати свою кімнату."
     explain:
-      en: "vergessen opens a zu-infinitive, and aufräumen is separable, so the one correct form is a single written word with the zu in the middle: aufzuräumen. The three wrong options are the three standard ways of missing it — zu in front of the whole verb, no zu at all, and an um that does not belong. um … zu answers Wozu?, and forgetting something is not a purpose."
-      ru: "vergessen открывает инфинитив с zu, а aufräumen отделяемый, поэтому единственная верная форма — одно слово с zu в середине: aufzuräumen. Три неверных варианта — это три обычных способа промахнуться: zu перед всем глаголом, zu вообще нет и um, которому здесь не место. um … zu отвечает на вопрос Wozu?, а забывчивость — не цель."
-      uk: "vergessen відкриває інфінітив із zu, а aufräumen відокремлюваний, тому єдина правильна форма — одне слово із zu посередині: aufzuräumen. Три невірні варіанти — це три звичні способи схибити: zu перед усім дієсловом, zu немає взагалі та um, якому тут не місце. um … zu відповідає на питання Wozu?, а забудькуватість — не мета."
+      en: "vergessen opens a zu-infinitive, and aufräumen is separable, so the one correct form is a single written word with the zu in the middle: aufzuräumen. Both wrong options miss it in a standard way — zu in front of the whole verb, and no zu at all. Only the seam is at issue here: the verb governing the infinitive is settled, and where its zu goes is the whole question."
+      ru: "vergessen открывает инфинитив с zu, а aufräumen отделяемый, поэтому единственная верная форма — одно слово с zu в середине: aufzuräumen. Оба неверных варианта промахиваются обычным образом: zu перед всем глаголом и zu вообще нет. Спрашивается здесь только про шов: какой глагол управляет инфинитивом, уже ясно, а весь вопрос в том, куда уходит его zu."
+      uk: "vergessen відкриває інфінітив із zu, а aufräumen відокремлюваний, тому єдина правильна форма — одне слово із zu посередині: aufzuräumen. Обидва невірні варіанти хиблять звичним чином: zu перед усім дієсловом і zu немає взагалі. Питається тут лише про шов: яке дієслово керує інфінітивом, уже зрозуміло, а все питання в тому, куди йде його zu."
 
   - id: mc-komma-und-zu-vor-mitnehmen
     outcomes: [zweck-um-zu]
@@ -143,11 +142,13 @@ items:
     answer: "Hast du Zeit, mich um acht abzuholen?"
     accept:
       - "Hast du Zeit, mich um acht Uhr abzuholen?"
+      - "Hast du um acht Zeit, mich abzuholen?"
+      - "Hast du um acht Uhr Zeit, mich abzuholen?"
     key_tokens: ["abzuholen"]
     explain:
-      en: "There is an um in this sentence and it is not the um of purpose: um acht is the preposition for a clock time. The infinitive group hangs on the noun Zeit, so it takes a plain zu — and abholen is separable, so that zu goes inside the word: abzuholen. An infinitive group depending on a noun like Zeit, Lust or die Möglichkeit is set off with a comma."
-      ru: "В этом предложении есть um, и это не um цели: um acht — предлог для указания часа. Инфинитивный оборот здесь держится на существительном Zeit, поэтому ему нужен обычный zu, а abholen отделяемый, поэтому этот zu уходит внутрь слова: abzuholen. Инфинитивный оборот, который зависит от существительного вроде Zeit, Lust или die Möglichkeit, отделяется запятой."
-      uk: "У цьому реченні є um, і це не um мети: um acht — прийменник для позначення години. Інфінітивний зворот тут тримається на іменнику Zeit, тому йому потрібне звичайне zu, а abholen відокремлюваний, тому це zu йде всередину слова: abzuholen. Інфінітивний зворот, який залежить від іменника на кшталт Zeit, Lust або die Möglichkeit, відокремлюється комою."
+      en: "There is an um in this sentence and it is not the um of purpose: um acht is the preposition for a clock time. The infinitive group hangs on the noun Zeit, so it takes a plain zu — and abholen is separable, so that zu goes inside the word: abzuholen. An infinitive group depending on a noun like Zeit, Lust or die Möglichkeit is set off with a comma. The time phrase may also sit in the main clause — Hast du um acht Zeit, mich abzuholen? — and that is accepted too; with or without Uhr, either way."
+      ru: "В этом предложении есть um, и это не um цели: um acht — предлог для указания часа. Инфинитивный оборот здесь держится на существительном Zeit, поэтому ему нужен обычный zu, а abholen отделяемый, поэтому этот zu уходит внутрь слова: abzuholen. Инфинитивный оборот, который зависит от существительного вроде Zeit, Lust или die Möglichkeit, отделяется запятой. Указание времени может стоять и в главном предложении — Hast du um acht Zeit, mich abzuholen? — такой вариант тоже принимается, с Uhr и без."
+      uk: "У цьому реченні є um, і це не um мети: um acht — прийменник для позначення години. Інфінітивний зворот тут тримається на іменнику Zeit, тому йому потрібне звичайне zu, а abholen відокремлюваний, тому це zu йде всередину слова: abzuholen. Інфінітивний зворот, який залежить від іменника на кшталт Zeit, Lust або die Möglichkeit, відокремлюється комою. Позначення часу може стояти й у головному реченні — Hast du um acht Zeit, mich abzuholen? — такий варіант теж приймається, з Uhr і без."
 
   - id: uebersetzen-modal-ohne-zu
     outcomes: [zu-oder-ohne-zu]
