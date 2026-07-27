@@ -11,6 +11,7 @@
  *   bun run progress:audit --snapshot progress/vitaly/2026-07-13.json
  *   bun run progress:audit --profile vitaly --item a2/perfekt-haben-sein:uebersetzen-pizza
  *   bun run progress:audit --profile vitaly --project 2026-08-02
+ *   bun run progress:audit --profile vitaly --lapses
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -66,8 +67,38 @@ export interface AuditAttempt {
 interface AuditCard {
   reps?: number;
   lapses?: number;
+  stability?: number;
   last_review?: string;
 }
+
+/**
+ * A lexeme with this many lapses **in the production direction** is what the operating
+ * program calls a review trigger for that *entry* — its forms, its contrast and its
+ * context — not a signal about the learner: "Two productive-direction lapses on one lexeme
+ * trigger review of its forms, contrast and context" (docs/a2-learning-led-program.md).
+ *
+ * The direction is part of the rule, not a detail of it, so `needingReview` filters to
+ * `x-de` — a recognition card that lapses is telling you the learner cannot read the word
+ * yet, which is a different problem from a gloss that cannot be answered, and putting it in
+ * the same work-list sends an author to rewrite a sound entry. The aggregate `byDirection`
+ * table keeps both directions, because *how far apart* they run is the monitoring signal
+ * that found this in the first place.
+ *
+ * The `--lapses` view exists because the deck table cannot answer the question the rule
+ * asks. `wohnen-umzug | 14 cards | 10 lapses` is unreadable: it is either ten mildly
+ * awkward cards or one broken one. The 2026-07-26 pass found the latter — 22 cards over
+ * the threshold, 21 of them the production direction, and the worst sitting at 0.0–0.4
+ * days of stability after 14–25 repetitions. `stability` is reported beside the lapse count
+ * rather than instead of it because the pair narrows the question — a card that will not
+ * consolidate across twenty repetitions is worth opening — but it does not answer it. That
+ * same pass confirmed a gloss collision for five of the nine worst cards and *disconfirmed*
+ * it for four, which had no rival entry anywhere in the corpus and were left untouched. The
+ * columns are a trigger to inspect, never a diagnosis.
+ */
+const LAPSE_REVIEW_THRESHOLD = 2;
+
+/** The direction the lapse-review rule is about: the learner produces German. */
+const PRODUCTION_DIRECTION = 'x-de';
 
 export interface AuditSnapshot {
   version: number;
@@ -175,6 +206,14 @@ export interface ProgressAudit {
     withLapses: number;
     byDirection: Array<{ direction: string; cards: number; lapses: number }>;
     byDeck: Array<{ deck: string; cards: number; lapses: number }>;
+    needingReview: Array<{
+      deck: string;
+      headword: string;
+      direction: string;
+      lapses: number;
+      reps: number;
+      stability?: number;
+    }>;
   };
   delayed: {
     attempts: number;
@@ -598,6 +637,21 @@ function focusSignals(
 function cardSummary(cards: Record<string, AuditCard>) {
   const directions = new Map<string, { direction: string; cards: number; lapses: number }>();
   const decks = new Map<string, { deck: string; cards: number; lapses: number }>();
+  const needingReview: ProgressAudit['cards']['needingReview'] = [];
+  /**
+   * The rule counts lapses per *lexeme*, and a handful of legacy headwords own two
+   * production cards because they appear in two decks (`scripts/validate.ts` allows five:
+   * wohnen, kommen, sprechen, Arzt, Ärztin). Testing the threshold card by card drops a
+   * lexeme whose two histories carry one lapse each, which is not a hypothetical — in
+   * progress/vitaly/2026-07-26.json `kommen` sits at exactly that: two production cards,
+   * one lapse apiece, invisible to a per-card test and due for review under the program's.
+   * So production cards are pooled by headword first. For the 99% singleton case the pooled
+   * row is identical to the card's own; only a duplicated headword merges, and its row then
+   * names both decks, because reviewing that lexeme means reviewing both entries.
+   */
+  const production = new Map<string, {
+    decks: Set<string>; lapses: number; reps: number; stability?: number;
+  }>();
   let lapses = 0;
   let withLapses = 0;
   for (const [id, card] of Object.entries(cards)) {
@@ -607,6 +661,21 @@ function cardSummary(cards: Record<string, AuditCard>) {
     const cardLapses = card.lapses ?? 0;
     lapses += cardLapses;
     if (cardLapses > 0) withLapses += 1;
+    if (direction === PRODUCTION_DIRECTION) {
+      // Card identity is `<deck>::<de>::<direction>`, and a headword may itself contain
+      // no `::`, so everything between the first and last segment is the headword.
+      const headword = parts.slice(1, -1).join('::') || '(unknown)';
+      const row = production.get(headword) ?? { decks: new Set<string>(), lapses: 0, reps: 0 };
+      row.decks.add(deck);
+      row.lapses += cardLapses;
+      row.reps += card.reps ?? 0;
+      // The least consolidated of the two is the one worth reporting.
+      if (card.stability !== undefined)
+        row.stability = row.stability === undefined
+          ? card.stability
+          : Math.min(row.stability, card.stability);
+      production.set(headword, row);
+    }
     const dir = directions.get(direction) ?? { direction, cards: 0, lapses: 0 };
     dir.cards += 1;
     dir.lapses += cardLapses;
@@ -616,6 +685,17 @@ function cardSummary(cards: Record<string, AuditCard>) {
     deckRow.lapses += cardLapses;
     decks.set(deck, deckRow);
   }
+  for (const [headword, row] of production) {
+    if (row.lapses < LAPSE_REVIEW_THRESHOLD) continue;
+    needingReview.push({
+      deck: [...row.decks].sort().join(' + '),
+      headword,
+      direction: PRODUCTION_DIRECTION,
+      lapses: row.lapses,
+      reps: row.reps,
+      stability: row.stability,
+    });
+  }
   return {
     graded: Object.keys(cards).length,
     lapses,
@@ -624,6 +704,16 @@ function cardSummary(cards: Record<string, AuditCard>) {
     byDeck: [...decks.values()]
       .sort((a, b) => b.lapses - a.lapses || b.cards - a.cards || a.deck.localeCompare(b.deck))
       .slice(0, DEFAULT_LIMIT),
+    // Not truncated: the whole point is that the tail is the work-list. Sorted by lapses,
+    // then by ascending stability — the two cards at the same lapse count are not equally
+    // urgent, and the one that has not stabilized is the one to open first.
+    needingReview: needingReview.sort(
+      (a, b) =>
+        b.lapses - a.lapses ||
+        (a.stability ?? Infinity) - (b.stability ?? Infinity) ||
+        a.deck.localeCompare(b.deck) ||
+        a.headword.localeCompare(b.headword),
+    ),
   };
 }
 
@@ -1168,7 +1258,47 @@ function readabilitySection(
   return out;
 }
 
-export function renderMarkdown(audit: ProgressAudit): string {
+/**
+ * The per-entry lapse work-list, printed only behind `--lapses`. It is off by default
+ * because this report is meant to stay compact, and on the day you need it you need every
+ * row: it is a work-list, not a top-10. Every row is a production card by construction —
+ * that is the rule's own scope — so the direction is stated once rather than columned.
+ */
+function lapseReviewSection(
+  rows: ProgressAudit['cards']['needingReview'],
+  show: boolean,
+): string[] {
+  if (!show)
+    return rows.length
+      ? [
+          `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — ` +
+            '`--lapses` lists them.',
+          '',
+        ]
+      : [];
+  if (!rows.length)
+    return [`No production card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
+  return [
+    `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — the entry-review ` +
+      'trigger. Low stability against high reps says the card is not consolidating; it does ' +
+      'not say why. Read it as the cue to inspect the entry — its gloss against every rival ' +
+      'German word in the corpus, then its forms and its context — and expect some cards to ' +
+      'come back clean: the 2026-07-26 pass confirmed a gloss collision for five of nine and ' +
+      'disconfirmed it for four, which were simply hard to produce and were left alone. ' +
+      'Recognition lapses are a different question and stay in the direction table above.',
+    '',
+    '| Deck | Headword | Lapses | Reps | Stability (d) |',
+    '| --- | --- | ---: | ---: | ---: |',
+    ...rows.map(
+      (row) =>
+        `| ${md(row.deck)} | ${md(row.headword)} | ${row.lapses} | ` +
+        `${row.reps} | ${row.stability === undefined ? '—' : row.stability.toFixed(1)} |`,
+    ),
+    '',
+  ];
+}
+
+export function renderMarkdown(audit: ProgressAudit, showLapses = false): string {
   const out: string[] = [
     '# Progress audit',
     '',
@@ -1242,6 +1372,7 @@ export function renderMarkdown(audit: ProgressAudit): string {
     '| --- | ---: | ---: |',
     ...audit.cards.byDeck.map((row) => `| ${md(row.deck)} | ${row.cards} | ${row.lapses} |`),
     '',
+    ...lapseReviewSection(audit.cards.needingReview, showLapses),
     ...retentionSection(audit.delayed.probes.byCompetence),
     ...readabilitySection(
       audit.delayed.probes.byReadability,
@@ -1320,6 +1451,7 @@ interface CliArgs {
   item?: string;
   project?: string;
   json: boolean;
+  lapses: boolean;
 }
 
 function cliArgs(argv: string[]): CliArgs {
@@ -1336,6 +1468,7 @@ function cliArgs(argv: string[]): CliArgs {
     item: value('--item'),
     project: value('--project'),
     json: argv.includes('--json'),
+    lapses: argv.includes('--lapses'),
   };
 }
 
@@ -1375,7 +1508,7 @@ export function run(argv = process.argv.slice(2), root = process.cwd()): string 
     itemRef: args.item,
     projectTo,
   });
-  return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit);
+  return args.json ? `${JSON.stringify(audit, null, 2)}\n` : renderMarkdown(audit, args.lapses);
 }
 
 if (import.meta.main) {
