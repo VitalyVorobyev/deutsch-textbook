@@ -78,6 +78,29 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   the earned-not-asserted bar this belongs under.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
+- **P12-5 · `key_tokens` cannot attribute an *inserted* token** — attribution fires when a graded
+  token **diverges**, so it catches substitutions (`abholen` for `abzuholen`) and reorderings, and
+  is blind to a word the learner adds that should not be there. Measured on
+  `uebersetzen-modal-ohne-zu`: `Willst du zu mitkommen, oder musst du zu arbeiten?` — the exact
+  error a modal item exists to catch — returns `{kind: 'wrong'}` with **no focus**, while
+  `mitzukommen` in the same slot returns `wrong` **with** `zu-infinitiv`, because that one changes a
+  pinned token instead of adding a neighbour. This is general: any item whose target error is an
+  insertion (a spurious `zu`, `um`, article or reflexive) under-reports. Not fixable by widening the
+  pins — `zu` cannot be pinned because it does not occur in the answer — and not fixable by dropping
+  them, which the corpus already priced at 52 false attributions to buy 5 true ones. It needs an
+  attribution rule that reads the *edit* rather than the surviving tokens, so treat it as
+  P12-4's sibling. **The same list has a second blind spot, the mirror of the first:** a pin
+  names a token but cannot say *which property of it* the tag grades. `uebersetzen-modal-ohne-zu`
+  pins `mitkommen` to catch `mitzukommen` — a modal taking a bare infinitive is the lesson — and
+  the pin therefore also fires on `kommen`, a lexical substitution that gets the grammar right.
+  Both verified against the shipped spec: each returns `wrong` with `zu-infinitiv`. Unpinning
+  trades the false attribution for a certain one, since `mitzukommen` is the error the drill
+  exists to catch and would go unattributed; the instruction names the verb, which lowers the
+  frequency but not the conflation. A rule that graded *the form of a named token* rather than
+  *the presence of a token* would close both faces at once. Coverage today is by mode, not by mechanism: the same drill's cloze gaps
+  (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
+  identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
+  `src/lib/evidence.ts:17`).
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking
