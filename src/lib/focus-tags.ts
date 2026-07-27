@@ -96,4 +96,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'n-deklination': 'arbeit-bewerbung',
   'adjektiv-nomen': 'arbeit-bewerbung',
   'nomen-verb-verbindung': 'arbeit-bewerbung',
+  'verb-praeposition-b1': 'meinung-medien',
+  'da-weil': 'meinung-medien',
+  'zweiteilige-konnektoren': 'meinung-medien',
 };

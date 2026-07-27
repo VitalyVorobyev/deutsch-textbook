@@ -76,6 +76,26 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
   one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
   the earned-not-asserted bar this belongs under.
+- **P5-11c · The connector-determinacy check does not reach cloze gaps** — the rule in
+  `scripts/validate.ts` reads `item.answer` and `item.accept`, which is the `translate` shape, so a
+  **cloze** gap that accepts one interchangeable connector and rejects its sibling is unguarded.
+  B1.5's three `da-weil` probe variants are cloze, and their ambiguity had to be found and fixed by
+  hand. Read the comment above `INTERCHANGEABLE_CONNECTORS` before acting: `da` is **deliberately
+  absent**, because clause-initial *Da* is more often "then/there" than causal and the naive rule
+  would misfire on the adverb. Adding the pair was tried during the B1.5 pass and reverted for that
+  reason — it produced zero new warnings, which measures today's corpus and not the rule. A cloze
+  equivalent therefore needs sense disambiguation, not merely a longer list.
+- **P5-11d · A reading question arms a production probe** — `ReadingText.tsx` logs
+  `outcomes: question.outcomes`, and `armedAt` matches families by outcome, so answering a
+  *comprehension* question can start the retention clock of a *production* probe that shares the
+  outcome. Measured across the corpus rather than assumed: **73 such links — A1 20, A2 46, B1 7**
+  (`content/reading/**` questions against every `role: probe` family's outcomes), so 66 of them
+  predate B1 and this is a level-wide property of the arming rule, not a unit defect. Neither
+  obvious local fix is right: stripping the outcome from the reading breaks the rule that every
+  outcome be measured by a practice item **or a reading question**, and the alternative — arming on
+  a competence signal narrower than the outcome — is a change to `src/lib/probes.ts` that moves
+  every level's probe schedule at once. Whoever takes it should measure the schedule shift before
+  and after, the way `essen-trinken` was measured before freezing.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
 - **P12-5 · `key_tokens` cannot attribute an *inserted* token** — attribution fires when a graded
@@ -101,6 +121,40 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
   identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
   `src/lib/evidence.ts:17`).
+- **P12-6 · A dictation blames its grammar tag for a mishearing** — `Listen.tsx` logs the item's
+  `focus` on any wrong answer except the narrow `dictationSlip` exception (one token off, one edit,
+  not a closed-class swap). So on `hoeren-diktat-da` — *Da ich wenig Zeit habe, lese ich nur die
+  Schlagzeilen.* — typing `keine` for `wenig` is recorded against `nebensatz-vorfeld`, a word-order
+  tag, though the two verb positions were reproduced perfectly; verified, `dictationSlip` returns
+  false there because the two words are more than one edit apart. Level-wide, not a unit defect:
+  **53 of the corpus's 62 `listen` items carry a grammar focus**, so this is how dictation
+  attribution works everywhere, and `dictationSlip` is the existing mitigation rather than a
+  missing one. Do not untag single items — that trades a false attribution for a silent one and
+  makes the corpus inconsistent. The fix is an attribution rule that names the tokens the tag
+  grades, i.e. what `key_tokens` does for `translate` and `listen` has no equivalent of; sibling
+  of P12-4.
+- **P12-7 · An accept list cannot be completed by enumeration** — `gradeTranslation` compares
+  against a finite authored list, so every correct paraphrase absent from it is a false negative.
+  The #116/#117 review ran **ten and nine rounds** largely on this one class: `bald` placement,
+  fronted clock time, `telefonieren` for `anrufen`, `die Moderatorin`, a shared subject across
+  coordinated predicates — each valid, each revealing the next. **The class does not terminate**,
+  because German has more correct renderings than any list holds. Standing policy, so nobody
+  re-runs that loop: close an item's *declared* product in one pass — the dimensions its own
+  `answer`/`accept`/`explain` present as equivalent — and verify every cell through
+  `gradeTranslation`; then stop. Renderings outside that product are the business of
+  `data/grading-decisions.yaml`, which rules on what a learner actually typed with the attempt
+  in front of you, and of the `keyTokensIntact` reason that routes them there
+  (`scripts/progress-audit.ts`). Two mitigations already exist and should be preferred to a longer
+  list: **name the token in the `instruction`** when the pin carries the focus (`mitkommen`,
+  `abholen`), and **accept the sibling** when it does not (`telefonieren`).
+- **C6-2 · Verify the citation stress of `tatsächlich`** — `content/vocab/meinung-medien.yaml`
+  transcribes `ˈtaːtzɛçlɪç` (initial). Three independent supports: the derivation from *Tatsache*,
+  the parallel `hauptsächlich` ← *Hauptsache*, and `docs/lautschrift.md:14` ("primary on the
+  prefix/first stem"); espeak-ng agrees (`tˈatzɛçlˌɪç`), though CLAUDE.md warns it gets compound
+  stress wrong. A 2026-07-27 review argued for `taːtˈzɛçlɪç`, which is the ordinary **emphatic**
+  realisation. Settle it against Duden's primary entry rather than by argument; it is a
+  one-character edit either way, and the same question applies to any other `-lich` adjective
+  built on a compound.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking

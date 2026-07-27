@@ -512,7 +512,16 @@ describe('cards: recognition | both', () => {
     // (Betrieb … berufstätig): job-ad and workplace vocabulary a B1 learner must read off
     // an advertisement but is never asked to produce. This is the first deck built to the
     // level-wide two-tier policy, so the ratio drops sharply here by design.
-    expect(cards).toBe(entries * 2 - 27);
+    // B1.5 (meinung-medien, 2026-07-26) adds seventeen more — the deck's receptive tail
+    // (Standpunkt … tatsächlich): media-institution and evaluation vocabulary a B1 learner
+    // meets on a page or a screen and has to understand, but is not asked to produce.
+    // Moderator and Kritik were drafted into that tail and taken back out in review: the
+    // unit's own primaryPractice has the learner *type* both in a scored translate item,
+    // and a word an exercise asks for is by definition one the deck has to train. The scan
+    // that caught it — every translate answer, listen text and cloze gap under
+    // content/exercises against every recognition-only headword in the corpus — now
+    // returns zero.
+    expect(cards).toBe(entries * 2 - 44);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
