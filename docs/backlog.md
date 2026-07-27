@@ -121,6 +121,18 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
   identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
   `src/lib/evidence.ts:17`).
+- **P12-6 · A dictation blames its grammar tag for a mishearing** — `Listen.tsx` logs the item's
+  `focus` on any wrong answer except the narrow `dictationSlip` exception (one token off, one edit,
+  not a closed-class swap). So on `hoeren-diktat-da` — *Da ich wenig Zeit habe, lese ich nur die
+  Schlagzeilen.* — typing `keine` for `wenig` is recorded against `nebensatz-vorfeld`, a word-order
+  tag, though the two verb positions were reproduced perfectly; verified, `dictationSlip` returns
+  false there because the two words are more than one edit apart. Level-wide, not a unit defect:
+  **53 of the corpus's 62 `listen` items carry a grammar focus**, so this is how dictation
+  attribution works everywhere, and `dictationSlip` is the existing mitigation rather than a
+  missing one. Do not untag single items — that trades a false attribution for a silent one and
+  makes the corpus inconsistent. The fix is an attribution rule that names the tokens the tag
+  grades, i.e. what `key_tokens` does for `translate` and `listen` has no equivalent of; sibling
+  of P12-4.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking
