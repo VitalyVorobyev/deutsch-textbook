@@ -90,10 +90,14 @@ describe('grammar coverage', () => {
     // reflexiv-praeposition; unit B1.4 (arbeit-bewerbung, 2026-07-26) closed
     // n-deklination, adjektiv-nomen and nomen-verb-verbindungen; unit B1.5 (meinung-medien,
     // 2026-07-26) closed verb-praeposition-erweitert, kausalsatz-da and
-    // zweiteilige-konnektoren.
+    // zweiteilige-konnektoren. That last point also *gained* a sibling in the same
+    // commit: je … desto was split out as proportionalsatz-je-desto, because the tag
+    // B1.5 drills covers the three coordinating pairs only, and a covered point would
+    // have hidden the fourth frame from --missing-only for good. So 16 of 32, not 31 —
+    // the denominator moves when the manifest is wrong, and it moved the honest way.
     expect(coverage.covered).toBe(16);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(52);
+    expect(coverage.percent).toBe(50);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
