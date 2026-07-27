@@ -155,6 +155,17 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   realisation. Settle it against Duden's primary entry rather than by argument; it is a
   one-character edit either way, and the same question applies to any other `-lich` adjective
   built on a compound.
+- **P12-8 · The two answer highlights come from two LCS runs** — `Translate` marks the corrected
+  sentence and the learner's own by calling `diffExpectedWords` twice with the arguments swapped.
+  Each traversal picks its own alignment and its tie-break is direction-dependent, so a
+  **transposition** can mark different words on the two sides: expected *weil ich heute arbeite*
+  against given *weil ich arbeite heute* marks `heute` in the correction and `arbeite` in the
+  echo, leaving the other swapped word unmarked on each. Both cues still land in the right
+  region, and nothing about scoring or focus attribution is touched — this is a display
+  refinement, not a measurement defect, which is why it was filed rather than fixed alongside the
+  clipping bug. The fix is to return both flag arrays from **one** traversal in
+  `src/lib/worddiff.ts`; `Listen` shares that helper, so it belongs there and not in the
+  component.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking

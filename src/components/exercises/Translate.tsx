@@ -57,12 +57,29 @@ export function Translate({
   useEffect(() => {
     const el = inputRef.current;
     if (!el) return;
-    el.style.height = 'auto';
-    // `scrollHeight` is the content box; the field is `border-box` with a 2px border on
-    // each side, so assigning it directly leaves the last line 4px short and clipped —
-    // which a browser check caught after the naive version looked right in the diff.
-    // `offsetHeight - clientHeight` is exactly that border, measured rather than assumed.
-    el.style.height = `${el.scrollHeight + (el.offsetHeight - el.clientHeight)}px`;
+    const fit = () => {
+      el.style.height = 'auto';
+      // `scrollHeight` is the content box; the field is `border-box` with a 2px border on
+      // each side, so assigning it directly leaves the last line 4px short and clipped —
+      // which a browser check caught after the naive version looked right in the diff.
+      // `offsetHeight - clientHeight` is exactly that border, measured rather than assumed.
+      el.style.height = `${el.scrollHeight + (el.offsetHeight - el.clientHeight)}px`;
+    };
+    fit();
+
+    // Typing is not the only thing that changes the line count. Narrowing the desktop
+    // window, or rotating a phone, rewraps the same text onto more lines without touching
+    // `value` — and with a pinned pixel height plus `overflow-hidden`, those new lines are
+    // clipped, which is the very defect this field exists to fix. Width is the trigger:
+    // our own height writes also fire the observer, and re-fitting on those would loop.
+    let lastWidth = el.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (el.clientWidth === lastWidth) return;
+      lastWidth = el.clientWidth;
+      fit();
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [value]);
 
   const verdict: TranslationVerdict = gradeTranslation(value, {
