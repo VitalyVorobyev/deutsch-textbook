@@ -99,6 +99,7 @@ items:
       - "Der Moderator will sich zu dieser Kritik nicht äußern."
       - "Der Moderator möchte sich nicht zu dieser Kritik äußern."
       - "Der Moderator will sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik will sich der Moderator nicht äußern."
     key_tokens: ["zu", "dieser"]
     explain:
       en: "Graded are the preposition and the case it brings: zu belongs to the verb, zu governs the Dativ, and die Kritik in the Dativ is dieser Kritik. Both are facts about the pair, not about the meaning — the instruction names zu because sich äußern über + Akkusativ is real German too, and an item that silently rejected it would be marking correct German wrong. The reflexive sich is part of the verb and moves with the word order: Der Moderator möchte sich …, but Zu dieser Kritik möchte sich der Moderator …"
@@ -202,7 +203,11 @@ items:
     accept:
       - "Ich schaue die Nachrichten nur abends, weil ich morgens keine Zeit habe."
       - "Nur am Abend schaue ich die Nachrichten, weil ich morgens keine Zeit habe."
+      - "Nur abends schaue ich die Nachrichten, weil ich morgens keine Zeit habe."
       - "Ich sehe die Nachrichten nur am Abend, weil ich morgens keine Zeit habe."
+      - "Ich sehe die Nachrichten nur abends, weil ich morgens keine Zeit habe."
+      - "Nur am Abend sehe ich die Nachrichten, weil ich morgens keine Zeit habe."
+      - "Nur abends sehe ich die Nachrichten, weil ich morgens keine Zeit habe."
     key_tokens: ["weil", "habe"]
     explain:
       en: "Graded are the two ends of the subordinate clause: the conjunction weil and the finite verb habe at the very wall of the sentence, with everything else between them. This is the A2 rule doing B1 work — a reason is the commonest thing a subordinate clause carries, and da uses the identical word order. The instruction names weil because denn renders the same English just as well (…, denn ich habe morgens keine Zeit), and denn keeps the verb in second position, so the two cannot both be graded by one item. Nur am Abend and nur abends are equally idiomatic, fronted or not — only the clause-final verb is the point. The weil-clause could equally stand first (Weil ich morgens keine Zeit habe, schaue ich …), which is why the instruction asks for the main clause first: that fronted shape is the one this unit teaches with da, and keeping the two apart is what lets each be graded."

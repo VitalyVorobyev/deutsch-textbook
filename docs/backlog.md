@@ -85,6 +85,17 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   would misfire on the adverb. Adding the pair was tried during the B1.5 pass and reverted for that
   reason — it produced zero new warnings, which measures today's corpus and not the rule. A cloze
   equivalent therefore needs sense disambiguation, not merely a longer list.
+- **P5-11d · A reading question arms a production probe** — `ReadingText.tsx` logs
+  `outcomes: question.outcomes`, and `armedAt` matches families by outcome, so answering a
+  *comprehension* question can start the retention clock of a *production* probe that shares the
+  outcome. Measured across the corpus rather than assumed: **73 such links — A1 20, A2 46, B1 7**
+  (`content/reading/**` questions against every `role: probe` family's outcomes), so 66 of them
+  predate B1 and this is a level-wide property of the arming rule, not a unit defect. Neither
+  obvious local fix is right: stripping the outcome from the reading breaks the rule that every
+  outcome be measured by a practice item **or a reading question**, and the alternative — arming on
+  a competence signal narrower than the outcome — is a change to `src/lib/probes.ts` that moves
+  every level's probe schedule at once. Whoever takes it should measure the schedule shift before
+  and after, the way `essen-trinken` was measured before freezing.
 - **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
   scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
 - **P12-5 · `key_tokens` cannot attribute an *inserted* token** — attribution fires when a graded
