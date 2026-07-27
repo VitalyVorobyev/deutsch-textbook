@@ -1482,6 +1482,48 @@ nodes:
         ru: "Я умею отвечать на вопросы на собеседовании и сам задать вопрос."
         uk: "Я вмію відповідати на питання на співбесіді й сам поставити запитання."
 
+  # Joins `erzaehlen-berichten`, where the other two B1 communication nodes that work on
+  # texts already sit: understanding a report and giving its point back is the same job as
+  # narrating one, and the node's strand must equal its group's.
+  # All three `deepens` edges carry a live runtime channel, and none of the three tags is a
+  # B1 tag, so none of them closes a B1 point: `verb-praeposition` (cloze-warten-sprechen)
+  # is drilled by verben-mit-praepositionen's own practice; `nebensatz-verbende`
+  # (uebersetzen-weil-grund) by verbindungen-folgen's; `indirekte-frage`
+  # (cloze-ob-kernaussage) by lernen-verstehen's. The tag is the edge's only runtime
+  # channel — without one the spiral revisit it claims to build would not exist.
+  # Three outcomes, three probe families, one outcome each: a family arms from the practice
+  # items that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so two families
+  # sharing an outcome would arm identically and fire a probe at material never practised.
+  - id: meinung-medien
+    level: B1
+    kind: communication
+    strand: communication
+    group: erzaehlen-berichten
+    prerequisites: [verben-mit-praepositionen, verbindungen-folgen, lernen-verstehen]
+    deepens: [verben-mit-praepositionen, verbindungen-folgen, lernen-verstehen]
+    outcomes:
+      - id: bericht-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann einen kurzen Bericht verstehen und seine Kernaussage wiedergeben."
+        en: "I can understand a short report and give its central point back in my own words."
+        ru: "Я понимаю короткое сообщение и умею передать его главную мысль."
+        uk: "Я розумію коротке повідомлення і вмію передати його головну думку."
+      - id: meinung-begruenden
+        mode: spoken-production
+        domain: public
+        de: "Ich kann meine Meinung äußern und mit Argumenten stützen."
+        en: "I can express my opinion and support it with reasons."
+        ru: "Я умею высказать своё мнение и подкрепить его доводами."
+        uk: "Я вмію висловити свою думку і підкріпити її доказами."
+      - id: argumente-verbinden
+        mode: writing
+        domain: public
+        de: "Ich kann Aussagen mit zweiteiligen Konnektoren verknüpfen und abwägen."
+        en: "I can link statements with two-part connectors and weigh them against each other."
+        ru: "Я умею связывать высказывания двойными союзами и взвешивать их."
+        uk: "Я вмію пов'язувати висловлювання подвійними сполучниками і зважувати їх."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1752,3 +1794,10 @@ units:
     title_ru: "Работа и трудоустройство"
     title_uk: "Робота та працевлаштування"
     topics: [arbeit-bewerbung]
+  - id: meinung-medien
+    level: B1
+    title_de: "Meinung & Medien"
+    title_en: "Opinion & media"
+    title_ru: "Мнение и медиа"
+    title_uk: "Думка та медіа"
+    topics: [meinung-medien]

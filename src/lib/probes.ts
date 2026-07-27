@@ -26,6 +26,7 @@
  */
 import type { Attempt } from './store';
 import { isVerifiedEvidence } from './scoring';
+import { isPretestAttempt } from './weakness';
 
 /** Days after the outcome was first practiced at which each probe falls due. */
 export const PROBE_INTERVALS_DAYS = [2, 7, 21] as const;
@@ -182,6 +183,17 @@ export interface DueProbe {
  * competence (`armingItemKeys`). The latter two exist because most historical attempts
  * carry no outcomes, and dropping them would leave long-practised topics permanently
  * unarmed.
+ *
+ * **A pretest never arms.** It is diagnostic generation *before* the teaching, so its
+ * outcomes describe what the learner is about to study, not what they have studied — and
+ * the project's standing rule is that a pretest is never weakness evidence, never training
+ * and never `Geübt`. `weakness.ts` already excluded it; this path did not, so a learner who
+ * took the pretest and stopped was scheduled a 2-day production probe on material they had
+ * never practised. Measured before changing it, against
+ * `progress/vitaly/2026-07-26.json`: of 61 armed families, 41 move, **none becomes
+ * unarmed**, and the largest shift is 0.4 days (median 0.0) — the pretest is normally taken
+ * in the same session as the practice that follows it, so the clock barely moves for a
+ * learner who did study. It moves a great deal for one who did not, which is the point.
  */
 export function armedAt(family: ProbeFamily, attempts: readonly Attempt[]): number | undefined {
   const outcomes = new Set(family.outcomes);
@@ -191,6 +203,7 @@ export function armedAt(family: ProbeFamily, attempts: readonly Attempt[]): numb
   for (const a of attempts) {
     if (a.setId === family.setId) continue; // a probe cannot arm itself
     if (!isVerifiedEvidence(a)) continue; // unverified production is not evidence
+    if (isPretestAttempt(a)) continue; // diagnostic generation before the teaching, not evidence
     const relevant =
       arming.has(a.setId) ||
       armingItems.has(attemptKey(a.setId, a.itemId)) ||

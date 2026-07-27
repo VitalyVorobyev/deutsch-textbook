@@ -1,0 +1,80 @@
+topic: meinung-medien
+kind: intensive
+title_de: "Woher kommen die Nachrichten?"
+text:
+  - >-
+    Die Stadtzeitung hat ihre [[Leser::readers::читателей::читачів]] gefragt:
+    Woher bekommen Sie Ihre Nachrichten? In dem kurzen
+    [[Beitrag::piece, article::материал, заметка::матеріал, замітка]] von
+    Montag geht es um die Antworten von zweihundert Menschen.
+  - >-
+    Das [[Ergebnis::result::результат::результат]] ist klar: Die meisten
+    informieren sich nicht nur in der Zeitung, sondern auch im Internet. Junge
+    Leser benutzen fast nie eine
+    [[Tageszeitung::daily newspaper::ежедневная газета::щоденна газета]]. Sie
+    lesen entweder kurze Beiträge auf dem Handy oder hören morgens Radio. Da
+    viele Menschen wenig Zeit haben, lesen sie oft nur die
+    [[Schlagzeile::headline::заголовок::заголовок]].
+  - >-
+    Eine Leserin sagt: „Ich lese zwar jeden Tag Nachrichten, aber ich glaube
+    nicht alles. Ob eine [[Meldung::news item::сообщение, новость::повідомлення, новина]]
+    richtig ist, hängt oft von der [[Quelle::source::источник::джерело]] ab.“
+    Die [[Redaktion::editorial team::редакция::редакція]] findet das Thema
+    wichtig und will sich bald wieder dazu äußern.
+questions:
+  - id: frage-worum
+    outcomes: [bericht-verstehen]
+    type: mc
+    prompt: "Worum geht es in dem Beitrag?"
+    options:
+      - "Um eine Umfrage unter den Lesern der Zeitung."
+      - "Um ein neues Programm im Radio."
+      - "Um die Arbeit in der Redaktion."
+    correct: 0
+    translation:
+      en: "What is the piece about?"
+      ru: "О чём этот материал?"
+      uk: "Про що цей матеріал?"
+    explain:
+      en: "The first paragraph says it: the paper asked its readers a question, and the piece reports the answers of two hundred people. The radio appears only as one of the answers, and the Redaktion appears only in the last sentence, as the people who plan to come back to the subject."
+      ru: "Об этом говорит первый абзац: газета задала вопрос своим читателям, и материал излагает ответы двухсот человек. Радио появляется лишь как один из ответов, а Redaktion — только в последнем предложении, как те, кто собирается вернуться к теме."
+      uk: "Про це каже перший абзац: газета поставила питання своїм читачам, і матеріал викладає відповіді двохсот людей. Радіо з'являється лише як одна з відповідей, а Redaktion — тільки в останньому реченні, як ті, хто збирається повернутися до теми."
+      de: "Das sagt der erste Absatz: Die Zeitung hat ihren Lesern eine Frage gestellt, und der Beitrag gibt die Antworten von zweihundert Menschen wieder. Das Radio kommt nur als eine der Antworten vor, und die Redaktion erst im letzten Satz, als die Leute, die sich bald wieder äußern wollen."
+
+  - id: frage-junge-leser
+    outcomes: [bericht-verstehen]
+    type: mc
+    prompt: "Was sagt der Beitrag über junge Leser?"
+    options:
+      - "Sie lesen fast nie eine Tageszeitung."
+      - "Sie lesen jeden Morgen eine Tageszeitung."
+      - "Sie hören nie Radio."
+    correct: 0
+    translation:
+      en: "What does the piece say about young readers?"
+      ru: "Что материал говорит о молодых читателях?"
+      uk: "Що матеріал каже про молодих читачів?"
+    explain:
+      en: "The text says junge Leser benutzen fast nie eine Tageszeitung. The radio option overstates it in the other direction: the very next sentence offers the radio as one of the two things young readers do choose."
+      ru: "В тексте сказано: junge Leser benutzen fast nie eine Tageszeitung. Вариант про радио перегибает в другую сторону: следующее же предложение называет радио одним из двух вариантов, которые молодые читатели как раз выбирают."
+      uk: "У тексті сказано: junge Leser benutzen fast nie eine Tageszeitung. Варіант про радіо перегинає в інший бік: наступне ж речення називає радіо одним із двох варіантів, які молоді читачі якраз обирають."
+      de: "Im Text steht: Junge Leser benutzen fast nie eine Tageszeitung. Die Radio-Option übertreibt in die andere Richtung — der nächste Satz nennt das Radio ja als eine der beiden Möglichkeiten, die junge Leser wählen."
+
+  - id: frage-kernaussage
+    outcomes: [bericht-verstehen]
+    type: mc
+    prompt: "Welcher Satz gibt die Kernaussage des Beitrags am besten wieder?"
+    options:
+      - "Die Leute benutzen verschiedene Medien und lesen oft nur kurz."
+      - "Die Stadtzeitung bekommt immer mehr junge Leser."
+      - "Das Radio ist heute wichtiger als das Internet."
+    correct: 0
+    translation:
+      en: "Which sentence gives the central point of the piece best?"
+      ru: "Какое предложение лучше всего передаёт главную мысль материала?"
+      uk: "Яке речення найкраще передає головну думку матеріалу?"
+    explain:
+      en: "A central point has to cover the whole text, not one line of it. Both halves of the text are in the first option: several sources at once (nicht nur … sondern auch, Internet, Radio, Handy) and little time (Da viele Menschen wenig Zeit haben, lesen sie oft nur die Schlagzeile). Note what it leaves out: the doubt in the last paragraph belongs to one quoted reader — ich glaube nicht alles — and a summary may not promote a single voice to viele. That is the same move the other two options make with a single word."
+      ru: "Главная мысль должна покрывать весь текст, а не одну строку. Обе половины текста есть в первом варианте: сразу несколько источников (nicht nur … sondern auch, Internet, Radio, Handy) и мало времени (Da viele Menschen wenig Zeit haben, lesen sie oft nur die Schlagzeile). Обратите внимание, чего в нём нет: недоверие из последнего абзаца принадлежит одной читательнице — ich glaube nicht alles, — и пересказ не вправе превращать один голос в viele. Ровно это, только с одним словом, делают два других варианта."
+      uk: "Головна думка має покривати весь текст, а не один рядок. Обидві половини тексту є в першому варіанті: одразу кілька джерел (nicht nur … sondern auch, Internet, Radio, Handy) і мало часу (Da viele Menschen wenig Zeit haben, lesen sie oft nur die Schlagzeile). Зверніть увагу, чого в ньому немає: недовіра з останнього абзацу належить одній читачці — ich glaube nicht alles, — і переказ не має права перетворювати один голос на viele. Саме це, тільки з одним словом, роблять два інші варіанти."
+      de: "Eine Kernaussage muss den ganzen Text abdecken, nicht eine einzelne Zeile. Beide Hälften des Textes stehen in der ersten Option: mehrere Quellen gleichzeitig (nicht nur … sondern auch, Internet, Radio, Handy) und wenig Zeit (Da viele Menschen wenig Zeit haben, lesen sie oft nur die Schlagzeile). Beachte, was sie weglässt: Der Zweifel im letzten Absatz gehört einer zitierten Leserin — ich glaube nicht alles —, und eine Zusammenfassung darf aus einer einzelnen Stimme kein viele machen. Genau das tun die anderen beiden Optionen mit je einem Wort."

@@ -541,9 +541,16 @@ points:
 
   - id: zweiteilige-konnektoren
     standard_level: B1
-    de: "Zweiteilige Konnektoren (entweder … oder, nicht nur … sondern auch, zwar … aber, je … desto)"
+    de: "Zweiteilige Konnektoren (entweder … oder, nicht nur … sondern auch, zwar … aber)"
     en: "Two-part connectors"
     focus: [zweiteilige-konnektoren]
+
+  - id: proportionalsatz-je-desto
+    standard_level: B1
+    de: "je … desto/umso mit Komparativ (Je länger der Beitrag ist, desto mehr erklärt er.)"
+    en: "Proportional clauses with je … desto/umso"
+    focus: [je-desto]
+    note: "Split out of zweiteilige-konnektoren when B1.5 shipped: that point's tag was carried by three coordinating pairs, and counting it as covered hid the fourth frame from --missing-only forever. This one is a subordinate clause with its own word order (je + Komparativ + Verb am Ende, then desto + Komparativ + finites Verb), needs the comparative, and names a different confusion — so it is its own point, and its tag stays unregistered until a unit teaches it."
 
   - id: infinitivsatz-ohne-statt
     standard_level: B1

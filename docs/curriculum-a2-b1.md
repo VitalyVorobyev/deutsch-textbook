@@ -533,9 +533,11 @@ topic carries `<En>`, `<Ru>`, `<Uk>` **and `<De>`** halves from authoring (the m
 before unit 1 — roadmap soft preference, met; cost on record: 1.98x localized,
 `bun scripts/lang-cost.ts content/discovery/b1/sonntagsruhe.mdx`).
 
-**Grammar ownership is exhaustive:** the 31 manifest points of `data/grammar-inventory.yaml`'s B1
+**Grammar ownership is exhaustive:** the 32 manifest points of `data/grammar-inventory.yaml`'s B1
 section (including `adjektiv-nullartikel`, filed with the A2 adjective block) are each owned by
-exactly one unit below — 3+3+4+3+3+2+2+2+3+3+0+0+0+3 = 31, carried by 34 proposed focus tags. The
+exactly one unit below — 3+3+4+3+3+3+2+2+3+3+0+0+0+3 = 32, carried by 35 proposed focus tags.
+(31/34 until the amendment of 2026-07-27 below, which split `je … desto` out of
+`zweiteilige-konnektoren` and gave it to B1.6.) The
 three zero addends are the genre units B1.11–B1.13, which own no manifest point by design: they
 carry lexis and discourse range, recycle existing tags, and **must ship with the
 `tests/grammar-coverage.test.ts` ratchet unchanged** — a genre unit that moves the grammar number
@@ -643,8 +645,9 @@ questions recycle — the mediation load is the new part).
 
 **Mission:** compare choices and understand how things are made, sold and regulated; avoid abstract
 policy.
-**Grammar (2):** `passiv-produktion` → tag `passiv-bildung`; `passiv-vergangenheit` →
-`passiv-vergangenheit`.
+**Grammar (3):** `passiv-produktion` → tag `passiv-bildung`; `passiv-vergangenheit` →
+`passiv-vergangenheit`; `proportionalsatz-je-desto` → tag `je-desto` (je mehr wir wegwerfen, desto
+teurer wird die Entsorgung — the comparative pair this unit's own comparisons already reach for).
 **Outcomes:** `passiv-beschreiben` (writing — "Ich kann mit dem Passiv beschreiben, wie etwas
 hergestellt oder geregelt wird."), `hinweise-verstehen` (reading — "Ich kann öffentliche Hinweise
 und Regelungen verstehen."), `konsum-vergleichen` (spoken-production — "Ich kann
@@ -887,8 +890,9 @@ it worked; the defects were narrower than unit count.
 unit still closes the level, now as B1.14); one probe family per unit → one per competence; deck
 size 12–24 → 30–40 with a mandatory two-tier card-direction split.
 
-**What did not change, and must not:** the 31 manifest points and their one-owner-each rule (the
-sum is restated as `3+3+4+3+3+2+2+2+3+3+0+0+0+3 = 31`); the 34 focus tags; the shipped identities
+**What did not change, and must not:** the manifest points and their one-owner-each rule (the sum
+is restated as `3+3+4+3+3+3+2+2+3+3+0+0+0+3 = 32`, 31 before the 2026-07-27 amendment); the focus
+tags, 35 after it; the shipped identities
 of B1.1–B1.3; the two-unit evidence cadence; the rule that atlas nodes land only in a unit's own
 shipping PR. Section numbers B1.4–B1.14 are **document labels, not persisted identities** — no
 unshipped unit has an entry in `content/atlas.yaml`, so reflowing them renames nothing. Topic ids
@@ -948,3 +952,35 @@ them, and outcome count is capped at four per node. A unit owning more than four
 cannot give each one an independently-armed family until arming is focus-aware — check this when
 planning a unit's outcomes, not after its probes are written. B1.5–B1.14 each own at most three
 grammar points, so the constraint binds nowhere else in the current contract.
+
+
+## Amendment 2026-07-27: `je … desto` is its own point, owned by B1.6
+
+**What changed:** the manifest goes 31 points → **32** and 34 tags → **35**. `je … desto` was one
+of four frames named inside `zweiteilige-konnektoren`; it is now the separate point
+`proportionalsatz-je-desto`, carried by the proposed tag `je-desto`, and **B1.6 `konsum-umwelt`
+owns it** (2 grammar points → 3). The ownership sum is restated above.
+
+**Why the split.** B1.5 teaches the point's other three frames — *entweder … oder*,
+*nicht nur … sondern auch*, *zwar … aber* — which is exactly what this contract assigned it
+(§B1.5 names those three and not the fourth). But coverage counts a point as taught when any
+`practice`/`drill` item carries its tag, so shipping B1.5 would have closed the whole point with
+the fourth frame untaught, and `--missing-only` would never have shown it again. The B1.5 review
+caught it before merge.
+
+**Why a separate point rather than a fourth B1.5 frame.** *je … desto* is not a coordinating
+two-part connector: it is a subordinate clause with its own word order (*je* + Komparativ +
+verb-final, then *desto* + Komparativ + finite verb), it presupposes the comparative, and it names
+a different confusion. One tag cannot grade both, which is why one tag should never have carried
+both.
+
+**Why B1.6.** It had the smallest non-zero allocation (2), its mission is comparing choices, and
+proportional statements are native to that content — *je mehr wir wegwerfen, desto teurer wird die
+Entsorgung*. The genre units B1.11–B1.13 were not eligible: they own no manifest point **by
+design** and must ship with the ratchet unchanged.
+
+**Consequence for the figures:** B1 grammar coverage reads **16/32 (50%)**, not 16/31 (52%) —
+denominator up, percentage down. `CLAUDE.md`, `docs/coverage-instruments.md` and the ratchet in
+`tests/grammar-coverage.test.ts` were updated in the same commit. The debt is now visible *and*
+owned; before the amendment it was invisible, and between the split and this amendment it was
+visible but orphaned, which is what the B1.5 review flagged next.

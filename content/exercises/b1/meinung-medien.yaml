@@ -1,0 +1,290 @@
+# B1.5 primary practice. The three new tags close the unit's contract points
+# (verb-praeposition-b1, da-weil, zweiteilige-konnektoren). Three items recycle A2 tags and
+# close nothing: cloze-warten-sprechen (verb-praeposition) is the live runtime channel of
+# the `deepens` edge to verben-mit-praepositionen, uebersetzen-weil-grund
+# (nebensatz-verbende) of the edge to verbindungen-folgen, and cloze-ob-kernaussage
+# (indirekte-frage) of the edge to lernen-verstehen — an edge is inert unless this topic
+# carries a tag the base topic's own practice drills, and those three are it.
+# Outcome discipline, because probe families arm by outcome (src/lib/probes.ts): every item
+# on `bericht-verstehen` involves a verb+preposition frame, every item on
+# `meinung-begruenden` is a causal clause, every item on `argumente-verbinden` is a
+# two-part connector. Nothing arms a family whose competence it does not touch.
+# Learner signal respected: translate accuracy is 43% and cloze 85%, so each point is
+# scaffolded by case-graded cloze frames before its free translate; order is saturated at
+# 98%, so the practice union ships zero order items. This set is the primaryPractice — its
+# item list never grows after shipping.
+topic: meinung-medien
+role: practice
+title:
+  en: "Practice — the preposition brings the case, the reason picks its conjunction"
+  ru: "Практика — предлог приносит падеж, причина выбирает себе союз"
+  uk: "Практика — прийменник приносить відмінок, причина обирає собі сполучник"
+  de: "Übung — die Präposition bringt den Kasus mit, der Grund wählt seine Konjunktion"
+items:
+  - id: cloze-es-geht-um
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Fill in the two words the frame needs — the subject that never leaves, and the preposition that belongs to it."
+      ru: "Впишите два слова, которых требует оборот, — подлежащее, которое никогда не уходит, и закреплённый за ним предлог."
+      uk: "Впишіть два слова, яких вимагає зворот, — підмет, який ніколи не зникає, і закріплений за ним прийменник."
+      de: "Ergänze die beiden Wörter, die die Verbindung braucht — das Subjekt, das nie verschwindet, und die Präposition, die dazugehört."
+    text: "In dem kurzen Beitrag von Montag geht {{es}} {{um}} den Einfluss der Werbung."
+    translation:
+      en: "The short piece from Monday is about the influence of advertising."
+      ru: "В коротком материале от понедельника речь идёт о влиянии рекламы."
+      uk: "У короткому матеріалі від понеділка йдеться про вплив реклами."
+    explain:
+      en: "Two facts, and neither is deducible from the meaning. The es is the grammatical subject of the frame and stays in place whatever comes first — the text itself is named with in + Dativ, never promoted to subject (❌ Der Beitrag geht um …). And the preposition is um, which governs the Akkusativ everywhere in German, so the object reads den Einfluss. English says the piece is about, with the text as subject and no fixed preposition to carry over — so let the German pair carry both decisions."
+      ru: "Два факта, и ни один не выводится из смысла. Es — грамматическое подлежащее оборота, оно остаётся на месте, что бы ни стояло впереди; сам текст называют через in + Dativ и в подлежащие не пускают (❌ Der Beitrag geht um …). А предлог — um, который во всём немецком требует Akkusativ, поэтому дополнение звучит den Einfluss. Русское «речь идёт о» устроено похоже — своё подлежащее плюс предлог, — но предлог там другой, и переносить его нельзя: «о» тянет к über, а рамка требует um."
+      uk: "Два факти, і жоден не виводиться зі змісту. Es — граматичний підмет звороту, він лишається на місці, хоч би що стояло попереду; сам текст називають через in + Dativ і в підмети не пускають (❌ Der Beitrag geht um …). А прийменник — um, який в усій німецькій вимагає Akkusativ, тому додаток звучить den Einfluss. Українське «ідеться про» влаштоване схоже — свій підмет плюс прийменник, — але прийменник там інший, і переносити його не можна."
+      de: "Zwei Fakten, und keiner lässt sich aus der Bedeutung erschließen. Das es ist das grammatische Subjekt der Verbindung und bleibt stehen, was auch immer vorn steht — den Text selbst nennt man mit in + Dativ und macht ihn nie zum Subjekt (❌ Der Beitrag geht um …). Und die Präposition heißt um; sie regiert im ganzen Deutschen den Akkusativ, also steht dort den Einfluss. Wer den Text zum Subjekt machen will, wechselt das Verb: Der Beitrag handelt von der Werbung."
+
+  - id: cloze-aeussern-abhaengen
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Fill in the preposition each verb brings with it. The case is already printed — let it tell you which preposition fits."
+      ru: "Впишите предлог, который приносит с собой каждый глагол. Падеж уже проставлен — пусть он и подскажет, какой предлог подходит."
+      uk: "Впишіть прийменник, який приносить із собою кожне дієслово. Відмінок уже проставлено — хай він і підкаже, який прийменник пасує."
+      de: "Ergänze die Präposition, die jedes Verb mitbringt. Der Kasus steht schon da — lass ihn dir sagen, welche Präposition passt."
+    text: "Die Redaktion äußert sich {{zu}} diesem Punkt nicht. Der Erfolg der Sendung hängt {{von}} den jungen Zuschauern ab."
+    translation:
+      en: "The editorial team is not commenting on this point. The programme's success depends on its young viewers."
+      ru: "По этому пункту редакция не высказывается. Успех передачи зависит от молодых зрителей."
+      uk: "Щодо цього пункту редакція не висловлюється. Успіх передачі залежить від молодих глядачів."
+    explain:
+      en: "Both frames are dative, and both prepositions are dative everywhere in German — that is why the printed diesem and den already give the answer away: sich äußern zu + Dativ, abhängen von + Dativ. The reflexive pronoun sich is part of the first verb and never drops (❌ Zu diesem Punkt äußert die Redaktion nicht), and abhängen is separable, so its ab waits at the very end. English uses on for both comment on and depend on; German uses two different prepositions, so learn each pair whole."
+      ru: "Обе рамки дативные, и оба предлога во всём немецком требуют Dativ — поэтому напечатанные diesem и den уже выдают ответ: sich äußern zu + Dativ, abhängen von + Dativ. Возвратное sich — часть первого глагола и не опускается (❌ Zu diesem Punkt äußert die Redaktion nicht), а abhängen отделяемый, поэтому ab ждёт в самом конце. Русские предлоги подсказывают неверно: «высказаться по» и «зависеть от» стоят с разными падежами и ни один из них не датив — решает немецкий предлог, а не смысл."
+      uk: "Обидві рамки давальні, і обидва прийменники в усій німецькій вимагають Dativ — тому надруковані diesem і den уже видають відповідь: sich äußern zu + Dativ, abhängen von + Dativ. Зворотне sich — частина першого дієслова і не випускається (❌ Zu diesem Punkt äußert die Redaktion nicht), а abhängen відокремлюваний, тому ab чекає в самому кінці. Українські прийменники підказують хибно: «висловитися щодо» і «залежати від» стоять із різними відмінками і жоден з них не давальний — вирішує німецький прийменник, а не зміст."
+      de: "Beide Verbindungen sind dativisch, und beide Präpositionen regieren im ganzen Deutschen den Dativ — deshalb verraten die gedruckten Formen diesem und den die Antwort schon: sich äußern zu + Dativ, abhängen von + Dativ. Das Reflexivpronomen sich gehört zum ersten Verb und fällt nie weg (❌ Zu diesem Punkt äußert die Redaktion nicht), und abhängen ist trennbar, also wartet das ab ganz am Ende."
+
+  - id: mc-berichten-kasus
+    outcomes: [bericht-verstehen]
+    type: mc
+    focus: verb-praeposition-b1
+    prompt: "Die Zeitung hat gestern lange ___ berichtet."
+    options:
+      - "über den Unfall am Bahnhof"
+      - "über dem Unfall am Bahnhof"
+      - "über der Unfall am Bahnhof"
+    correct: 0
+    translation:
+      en: "The paper reported at length on the accident at the station yesterday."
+      ru: "Газета вчера долго сообщала об аварии на вокзале."
+      uk: "Газета вчора довго повідомляла про аварію на вокзалі."
+    explain:
+      en: "Über is the one preposition of this chapter worth a second look, because as a preposition of place it takes either case: Das Bild hängt über dem Sofa (Dativ, position) beside Ich hänge das Bild über das Sofa (Akkusativ, direction). Inside a fixed verb frame that choice disappears — berichten über is always Akkusativ, exactly like sprechen über den Plan and diskutieren über die Preise. So über dem is the two-way rule applied where it does not belong, and über der is the nominative form standing where the frame demands the Akkusativ — a case the preposition never governs."
+      ru: "Über — единственный предлог этой главы, требующий второго взгляда: как предлог места он берёт оба падежа — Das Bild hängt über dem Sofa (Dativ, положение) и Ich hänge das Bild über das Sofa (Akkusativ, направление). Внутри закреплённой глагольной рамки выбор исчезает: berichten über всегда с Akkusativ, ровно как sprechen über den Plan и diskutieren über die Preise. Значит, über dem — это правило Wechselpräposition, применённое там, где ему не место, а über der — это форма номинатива на месте, которого рамка требует в аккузативе; номинатива этот предлог не берёт никогда."
+      uk: "Über — єдиний прийменник цього розділу, вартий другого погляду: як прийменник місця він бере обидва відмінки — Das Bild hängt über dem Sofa (Dativ, положення) і Ich hänge das Bild über das Sofa (Akkusativ, напрямок). Усередині закріпленої дієслівної рамки вибір зникає: berichten über завжди зі знахідним, рівно як sprechen über den Plan і diskutieren über die Preise. Отже, über dem — це правило Wechselpräposition, застосоване там, де йому не місце, а über der — це форма називного на місці, якого рамка вимагає в знахідному; називного цей прийменник не бере ніколи."
+      de: "Über ist die eine Präposition dieses Kapitels, die einen zweiten Blick verdient: Als Ortspräposition nimmt sie beide Kasus — Das Bild hängt über dem Sofa (Dativ, Lage) neben Ich hänge das Bild über das Sofa (Akkusativ, Richtung). In einer festen Verbverbindung fällt die Wahl weg: berichten über steht immer mit Akkusativ, genau wie sprechen über den Plan und diskutieren über die Preise. über dem ist also die Wechselpräpositionsregel an der falschen Stelle, und über der ist die Nominativform an einer Stelle, an der die Verbindung den Akkusativ verlangt — den Nominativ regiert diese Präposition nie."
+
+  - id: uebersetzen-aeussern-kritik
+    outcomes: [bericht-verstehen]
+    type: translate
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Translate — use sich äußern zu."
+      ru: "Переведите — используйте sich äußern zu."
+      uk: "Перекладіть — використайте sich äußern zu."
+      de: "Übersetze — verwende sich äußern zu."
+    prompt_en: "The presenter does not want to comment on this criticism."
+    prompt_ru: "Ведущий не хочет высказываться по поводу этой критики."
+    prompt_uk: "Ведучий не хоче висловлюватися з приводу цієї критики."
+    answer: "Der Moderator möchte sich zu dieser Kritik nicht äußern."
+    accept:
+      - "Der Moderator möchte sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik möchte sich der Moderator nicht äußern."
+      - "Der Moderator will sich zu dieser Kritik nicht äußern."
+      - "Der Moderator will sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik will sich der Moderator nicht äußern."
+      - "Die Moderatorin möchte sich zu dieser Kritik nicht äußern."
+      - "Die Moderatorin möchte sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik möchte sich die Moderatorin nicht äußern."
+      - "Die Moderatorin will sich zu dieser Kritik nicht äußern."
+      - "Die Moderatorin will sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik will sich die Moderatorin nicht äußern."
+    key_tokens: ["zu", "dieser"]
+    explain:
+      en: "Graded are the preposition and the case it brings: zu belongs to the verb, zu governs the Dativ, and die Kritik in the Dativ is dieser Kritik. Both are facts about the pair, not about the meaning — the instruction names zu because sich äußern über + Akkusativ is real German too, and an item that silently rejected it would be marking correct German wrong. The reflexive sich is part of the verb and moves with the word order: Der Moderator möchte sich …, but Zu dieser Kritik möchte sich der Moderator … The English prompt does not fix the presenter's gender, so die Moderatorin is accepted everywhere der Moderator is."
+      ru: "Оцениваются предлог и падеж, который он приносит: zu закреплён за глаголом, zu требует Dativ, а die Kritik в дативе — это dieser Kritik. И то и другое — факты о паре, а не о смысле. Предлог назван в задании, потому что sich äußern über + Akkusativ — тоже настоящий немецкий, и задание, которое молча его отвергало бы, объявляло бы верный немецкий ошибкой. Возвратное sich — часть глагола и ходит вместе с порядком слов: Der Moderator möchte sich …, но Zu dieser Kritik möchte sich der Moderator …"
+      uk: "Оцінюються прийменник і відмінок, який він приносить: zu закріплений за дієсловом, zu вимагає Dativ, а die Kritik у давальному — це dieser Kritik. І те, й інше — факти про пару, а не про зміст. Прийменник названо в завданні, бо sich äußern über + Akkusativ — теж справжня німецька, і завдання, яке мовчки його відкидало б, оголошувало б правильну німецьку помилкою. Зворотне sich — частина дієслова і ходить разом із порядком слів: Der Moderator möchte sich …, але Zu dieser Kritik möchte sich der Moderator …"
+      de: "Bewertet werden die Präposition und der Kasus, den sie mitbringt: zu gehört zum Verb, zu regiert den Dativ, und die Kritik im Dativ heißt dieser Kritik. Beides sind Eigenschaften des Paares, nicht der Bedeutung. Die Aufgabe nennt zu ausdrücklich, weil sich äußern über + Akkusativ ebenfalls richtiges Deutsch ist — eine Aufgabe, die das stillschweigend ablehnt, erklärt korrektes Deutsch für falsch. Das sich gehört zum Verb und wandert mit der Wortstellung: Der Moderator möchte sich …, aber Zu dieser Kritik möchte sich der Moderator …"
+
+  - id: cloze-warten-sprechen
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition
+    instruction:
+      en: "Two frames you already own from A2 — fill in the preposition each verb brings with it."
+      ru: "Две рамки, знакомые вам с A2, — впишите предлог, который приносит с собой каждый глагол."
+      uk: "Дві рамки, знайомі вам з A2, — впишіть прийменник, який приносить із собою кожне дієслово."
+      de: "Zwei Verbindungen, die du seit A2 kennst — ergänze die Präposition, die jedes Verb mitbringt."
+    text: "Viele Leser warten schon {{auf}} den nächsten Beitrag und sprechen im Kurs oft {{über}} das Thema."
+    translation:
+      en: "Many readers are already waiting for the next piece and often talk about the subject in class."
+      ru: "Многие читатели уже ждут следующего материала и часто говорят на курсе об этой теме."
+      uk: "Багато читачів уже чекають на наступний матеріал і часто говорять на курсі про цю тему."
+    explain:
+      en: "Nothing new here, and that is the point: warten auf and sprechen über are the A2 frames, working unchanged on a media text. The whole chapter is one principle widened — the preposition is a fact about the verb, and the case comes with the preposition, both accusative here. Note the printed das Thema: sprechen von + Dativ exists as well, so the case decides which preposition can stand. Every new verb you meet brings its own preposition, and it is learned with the verb, like a noun's gender."
+      ru: "Ничего нового — и в этом суть: warten auf и sprechen über — рамки с A2, работающие без изменений на медиатексте. Вся глава — это один принцип, расширенный на новый список: предлог есть факт о глаголе, а падеж приходит вместе с предлогом, здесь оба аккузативные. Обратите внимание на напечатанное das Thema: sprechen von + Dativ тоже существует, поэтому падеж и решает, какой предлог может стоять. Каждый новый глагол приносит свой предлог, и учится он вместе с глаголом, как род существительного."
+      uk: "Нічого нового — і в цьому суть: warten auf і sprechen über — рамки з A2, що працюють без змін на медіатексті. Весь розділ — це один принцип, розширений на новий список: прийменник є фактом про дієслово, а відмінок приходить разом із прийменником, тут обидва знахідні. Зверніть увагу на надруковане das Thema: sprechen von + Dativ теж існує, тому відмінок і вирішує, який прийменник може стояти. Кожне нове дієслово приносить свій прийменник, і вчиться він разом із дієсловом, як рід іменника."
+      de: "Hier ist nichts neu, und genau das ist der Punkt: warten auf und sprechen über sind die A2-Verbindungen, unverändert an einem Medientext. Das ganze Kapitel ist ein einziges Prinzip, auf eine größere Liste angewendet — die Präposition ist eine Eigenschaft des Verbs, und der Kasus kommt mit der Präposition, hier beide Male der Akkusativ. Beachte das gedruckte das Thema: sprechen von + Dativ gibt es auch, also entscheidet der Kasus, welche Präposition stehen kann."
+
+  - id: cloze-ob-kernaussage
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: indirekte-frage
+    instruction:
+      en: "Complete the indirect question with sein — and remember where an indirect question puts its verb."
+      ru: "Завершите косвенный вопрос глаголом sein — и вспомните, куда косвенный вопрос ставит глагол."
+      uk: "Завершіть непряме питання дієсловом sein — і згадайте, куди непряме питання ставить дієслово."
+      de: "Vervollständige die indirekte Frage mit sein — und denk daran, wohin eine indirekte Frage ihr Verb stellt."
+    text: "In dem Beitrag geht es darum, ob eine kurze Meldung für die meisten Leser genug {{ist}}."
+    translation:
+      en: "The piece is about whether a short news item is enough for most readers."
+      ru: "В материале речь идёт о том, достаточно ли короткого сообщения для большинства читателей."
+      uk: "У матеріалі йдеться про те, чи достатньо короткого повідомлення для більшості читачів."
+    explain:
+      en: "Two A2 machines meeting on a B1 job. Ob opens an indirect yes/no question, so its conjugated verb goes to the very end — ist after genug, not before it. And the darum is this chapter's da-word: es geht um needs an accusative object, and when the object is a whole clause, um and the clause are joined by darum, … Saying what a report is about, and then what question it asks, is the first half of giving its central point back."
+      ru: "Две машины с A2 встречаются на задаче уровня B1. Ob открывает косвенный вопрос без вопросительного слова, поэтому спрягаемый глагол уходит в самый конец — ist после genug, а не перед ним. А darum — это da-слово из нашей главы: обороту es geht um нужно дополнение в аккузативе, и когда дополнением становится целое придаточное, um и придаточное связывает darum, … Сказать, о чём текст, а затем какой вопрос он ставит, — это первая половина пересказа его главной мысли."
+      uk: "Дві машини з A2 зустрічаються на завданні рівня B1. Ob відкриває непряме питання без питального слова, тому відмінюване дієслово йде в самий кінець — ist після genug, а не перед ним. А darum — це da-слово з нашого розділу: зворотові es geht um потрібен додаток у знахідному, і коли додатком стає ціле підрядне, um і підрядне зв'язує darum, … Сказати, про що текст, а потім яке питання він ставить, — це перша половина переказу його головної думки."
+      de: "Zwei Maschinen aus A2 treffen sich an einer B1-Aufgabe. Ob eröffnet eine indirekte Ja/Nein-Frage, also steht ihr finites Verb ganz am Ende — ist nach genug, nicht davor. Und das darum ist das da-Wort dieses Kapitels: es geht um verlangt ein Akkusativobjekt, und wenn das Objekt ein ganzer Satz ist, verbindet darum, … die beiden. Sagen, worum es in einem Text geht, und dann, welche Frage er stellt — das ist die erste Hälfte einer Wiedergabe."
+
+  - id: mc-warum-antwort
+    outcomes: [meinung-begruenden]
+    type: mc
+    focus: da-weil
+    prompt: "— Warum kaufst du keine Zeitung mehr? — ___ sie mir zu teuer ist."
+    options:
+      - "Weil"
+      - "Da"
+      - "Denn"
+    correct: 0
+    translation:
+      en: "— Why don't you buy a paper any more? — Because it is too expensive for me."
+      ru: "— Почему ты больше не покупаешь газету? — Потому что она для меня слишком дорогая."
+      uk: "— Чому ти більше не купуєш газету? — Бо вона для мене надто дорога."
+    explain:
+      en: "This is the one place where the choice is forced, and it is forced the way the popular summary gets backwards. A weil-clause can stand entirely on its own as the answer to a bare warum?; a da-clause cannot — it needs a main clause to belong to and breaks off unfinished without one. And a reason you are asked for is by definition new information, which is exactly what weil marks. Denn fails twice over: it joins two main clauses, so it can never begin a stand-alone answer, and it would leave the verb in second position — ist sie, not sie ist."
+      ru: "Это единственное место, где выбор жёстко задан, — и задан ровно наоборот тому, как звучит популярная формулировка. Придаточное с weil может стоять совершенно самостоятельно как ответ на голое warum?; придаточное с da — нет: ему нужна главная часть, и без неё оно обрывается. К тому же причина, о которой вас спросили, по определению новая, а именно это и маркирует weil. Русский тут союзник: «Почему? — Потому что дорого» звучит нормально, а «Так как дорого» отдельной репликой — нет. Denn не годится дважды: он соединяет два главных предложения, поэтому не может открывать самостоятельный ответ, и он оставил бы глагол на втором месте — ist sie, а не sie ist."
+      uk: "Це єдине місце, де вибір жорстко заданий, — і заданий рівно навпаки тому, як звучить популярне формулювання. Підрядне з weil може стояти цілком самостійно як відповідь на голе warum?; підрядне з da — ні: йому потрібна головна частина, і без неї воно обривається. До того ж причина, про яку вас спитали, за визначенням нова, а саме це й маркує weil. Українська тут союзниця: «Чому? — Тому що дорого» звучить нормально, а «Оскільки дорого» окремою реплікою — ні. Denn не годиться двічі: він з'єднує два головні речення, тому не може відкривати самостійну відповідь, і він лишив би дієслово на другому місці — ist sie, а не sie ist."
+      de: "Hier ist die Wahl erzwungen — und zwar genau andersherum, als die verbreitete Faustregel behauptet. Ein weil-Satz kann ganz allein als Antwort auf ein bloßes warum? stehen; ein da-Satz kann das nicht, er braucht einen Hauptsatz und bricht ohne ihn ab. Außerdem ist ein erfragter Grund per Definition neue Information, und genau die markiert weil. Denn scheitert doppelt: Es verbindet zwei Hauptsätze, kann also keine selbstständige Antwort eröffnen, und es ließe das Verb auf Position 2 — ist sie, nicht sie ist."
+
+  - id: cloze-da-weil-bekannt-neu
+    outcomes: [meinung-begruenden]
+    type: cloze
+    focus: da-weil
+    instruction:
+      en: "Fill in the causal conjunction. The first gap is a stand-alone answer to a bare warum? — only one of the two can do that. At the second gap both are grammatical: write the one that marks a reason both speakers already have."
+      ru: "Впишите причинный союз. Первый пропуск — самостоятельный ответ на голое warum?, и справиться с этим может только один из двух. Во втором пропуске грамматически возможны оба: напишите тот, который маркирует причину, уже известную обоим собеседникам."
+      uk: "Впишіть причиновий сполучник. Перший пропуск — самостійна відповідь на голе warum?, і впоратися з цим може лише один із двох. У другому пропуску граматично можливі обидва: напишіть той, який маркує причину, уже відому обом співрозмовникам."
+      de: "Ergänze die kausale Konjunktion. Die erste Lücke ist eine selbstständige Antwort auf ein bloßes warum? — das kann nur eine der beiden. An der zweiten Lücke sind beide grammatisch möglich: Schreib die, die einen beiden schon bekannten Grund markiert."
+    text: "— Warum liest du morgens nur die Schlagzeilen? — {{Weil}} ich nur zehn Minuten Zeit habe. — Das kenne ich gut. {{Da|Weil}} fast alle Leser wenig Zeit haben, sind kurze Beiträge heute so beliebt."
+    translation:
+      en: "— Why do you only read the headlines in the morning? — Because I only have ten minutes. — I know that feeling. Since almost all readers are short of time, short pieces are so popular today."
+      ru: "— Почему ты по утрам читаешь только заголовки? — Потому что у меня всего десять минут. — Знакомо. Так как почти у всех читателей мало времени, короткие материалы сегодня так популярны."
+      uk: "— Чому ти вранці читаєш лише заголовки? — Бо в мене лише десять хвилин. — Знайомо. Оскільки майже в усіх читачів мало часу, короткі матеріали сьогодні такі популярні."
+    explain:
+      en: "The two gaps are deliberately not the same task, because the rule is not symmetrical. The first one is forced: only weil can stand alone as an answer, and the reason asked for is the new information. The second one is a preference, not a law — Weil fast alle Leser wenig Zeit haben, … is perfectly good German, and it is accepted here. Da is what a careful speaker reaches for once the reason has just been agreed (Das kenne ich gut), and its clause then goes in front, which is why the main clause opens with its finite verb: sind kurze Beiträge, not kurze Beiträge sind. Register is a tendency here, never the rule: da is commoner in writing and in planned speech, and the summary the formal weil is exactly what sends you to da where the reason is new."
+      ru: "Два пропуска намеренно ставят разные задачи, потому что правило несимметрично. Первый жёстко задан: самостоятельным ответом может быть только weil, а спрошенная причина и есть новая информация. Второй — предпочтение, а не закон: Weil fast alle Leser wenig Zeit haben, … — совершенно нормальный немецкий, и здесь он принимается. Da — то, к чему тянется внимательный говорящий, когда причина только что признана обоими (Das kenne ich gut); его придаточное тогда идёт вперёд, и потому главное предложение открывается спрягаемым глаголом: sind kurze Beiträge, а не kurze Beiträge sind. Стиль здесь тенденция, а не правило: da чаще в письменной и в обдуманной устной речи, а формулировка «официальный weil» отправляет вас к da как раз туда, где причина новая."
+      uk: "Два пропуски навмисно ставлять різні задачі, бо правило несиметричне. Перший жорстко заданий: самостійною відповіддю може бути лише weil, а спитана причина і є новою інформацією. Другий — уподобання, а не закон: Weil fast alle Leser wenig Zeit haben, … — цілком нормальна німецька, і тут вона приймається. Da — те, до чого тягнеться уважний мовець, коли причину щойно визнали обидва (Das kenne ich gut); його підрядне тоді йде вперед, і тому головне речення відкривається відмінюваним дієсловом: sind kurze Beiträge, а не kurze Beiträge sind. Стиль тут тенденція, а не правило: da частіше в писемному й обдуманому усному мовленні, а формулювання «офіційний weil» відправляє вас до da якраз туди, де причина нова."
+      de: "Die beiden Lücken stellen absichtlich verschiedene Aufgaben, denn die Regel ist nicht symmetrisch. Die erste ist erzwungen: Allein stehen kann nur weil, und ein erfragter Grund ist die neue Information. Die zweite ist eine Präferenz, kein Gesetz — Weil fast alle Leser wenig Zeit haben, … ist einwandfreies Deutsch und wird hier akzeptiert. Zu da greift man, wenn der Grund eben erst gemeinsam festgestellt wurde (Das kenne ich gut); sein Satz steht dann vorn, und deshalb beginnt der Hauptsatz mit seinem finiten Verb: sind kurze Beiträge, nicht kurze Beiträge sind. Das Register ist eine Tendenz, nie die Regel."
+
+  - id: uebersetzen-weil-grund
+    outcomes: [meinung-begruenden]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Translate with weil, main clause first — and watch where the conjugated verb of the weil-clause lands."
+      ru: "Переведите, используя weil и начав с главного предложения, — и следите, куда встанет спрягаемый глагол придаточного."
+      uk: "Перекладіть, використавши weil і почавши з головного речення, — і стежте, куди стане відмінюване дієслово підрядного."
+      de: "Übersetze mit weil, Hauptsatz zuerst — und achte darauf, wo das finite Verb des weil-Satzes landet."
+    prompt_en: "I only watch the news in the evening, because I have no time in the morning."
+    prompt_ru: "Я смотрю новости только вечером, потому что утром у меня нет времени."
+    prompt_uk: "Я дивлюся новини тільки ввечері, бо вранці в мене немає часу."
+    answer: "Ich schaue die Nachrichten nur am Abend, weil ich morgens keine Zeit habe."
+    accept:
+      - "Ich schaue die Nachrichten nur abends, weil ich morgens keine Zeit habe."
+      - "Nur am Abend schaue ich die Nachrichten, weil ich morgens keine Zeit habe."
+      - "Nur abends schaue ich die Nachrichten, weil ich morgens keine Zeit habe."
+      - "Ich sehe die Nachrichten nur am Abend, weil ich morgens keine Zeit habe."
+      - "Ich sehe die Nachrichten nur abends, weil ich morgens keine Zeit habe."
+      - "Nur am Abend sehe ich die Nachrichten, weil ich morgens keine Zeit habe."
+      - "Nur abends sehe ich die Nachrichten, weil ich morgens keine Zeit habe."
+    key_tokens: ["weil", "habe"]
+    explain:
+      en: "Graded are the two ends of the subordinate clause: the conjunction weil and the finite verb habe at the very wall of the sentence, with everything else between them. This is the A2 rule doing B1 work — a reason is the commonest thing a subordinate clause carries, and da uses the identical word order. The instruction names weil because denn renders the same English just as well (…, denn ich habe morgens keine Zeit), and denn keeps the verb in second position, so the two cannot both be graded by one item. Nur am Abend and nur abends are equally idiomatic, fronted or not — only the clause-final verb is the point. The weil-clause could equally stand first (Weil ich morgens keine Zeit habe, schaue ich …), which is why the instruction asks for the main clause first: that fronted shape is the one this unit teaches with da, and keeping the two apart is what lets each be graded."
+      ru: "Оцениваются оба конца придаточного: союз weil и спрягаемый глагол habe у самой стены предложения, а всё остальное — между ними. Это правило с A2, выполняющее работу уровня B1: причина — самое частое содержимое придаточного, и da использует ровно тот же порядок слов. Союз назван в задании, потому что denn переводит ту же русскую фразу не хуже (…, denn ich habe morgens keine Zeit), а denn оставляет глагол на втором месте, — оба варианта одно задание оценивать не может. Nur am Abend и nur abends равно идиоматичны, с выносом вперёд или без; предмет проверки — только конечная позиция глагола. Придаточное с weil могло бы стоять и впереди (Weil ich morgens keine Zeit habe, schaue ich …) — поэтому в задании и сказано начать с главного: вынесенная вперёд форма — это то, чему глава учит на da, и разводить их нужно, чтобы каждую можно было оценить."
+      uk: "Оцінюються обидва кінці підрядного: сполучник weil і відмінюване дієслово habe біля самої стіни речення, а все інше — між ними. Це правило з A2, що виконує роботу рівня B1: причина — найчастіший вміст підрядного, і da використовує рівно той самий порядок слів. Сполучник названо в завданні, бо denn перекладає ту саму фразу не гірше (…, denn ich habe morgens keine Zeit), а denn лишає дієслово на другому місці, — обидва варіанти одне завдання оцінювати не може. Nur am Abend і nur abends однаково ідіоматичні, з винесенням уперед чи без; предмет перевірки — лише кінцева позиція дієслова. Підрядне з weil могло б стояти й попереду (Weil ich morgens keine Zeit habe, schaue ich …) — тому в завданні й сказано почати з головного: винесена вперед форма — це те, чого розділ навчає на da, і розводити їх треба, щоб кожну можна було оцінити."
+      de: "Bewertet werden die beiden Enden des Nebensatzes: die Konjunktion weil und das finite Verb habe ganz an der Satzwand, alles andere dazwischen. Das ist die A2-Regel bei B1-Arbeit — ein Grund ist der häufigste Inhalt eines Nebensatzes, und da verwendet dieselbe Wortstellung. Die Aufgabe nennt weil, weil denn denselben Satz genauso gut wiedergibt (…, denn ich habe morgens keine Zeit) und dabei das Verb auf Position 2 lässt; beides kann eine einzige Aufgabe nicht bewerten. Nur am Abend und nur abends sind gleich idiomatisch, vorangestellt oder nicht. Der weil-Satz könnte ebenso vorn stehen (Weil ich morgens keine Zeit habe, schaue ich …); deshalb verlangt die Aufgabe den Hauptsatz zuerst — die vorangestellte Form ist die, die dieses Kapitel am da übt, und getrennt bleiben beide bewertbar."
+
+  - id: cloze-zweiteilig-erste-haelfte
+    outcomes: [argumente-verbinden]
+    type: cloze
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "Each sentence uses a two-part connector, and its second half is already there — fill in the first half."
+      ru: "В каждом предложении работает двойной союз, вторая половина уже стоит — впишите первую."
+      uk: "У кожному реченні працює подвійний сполучник, друга половина вже стоїть — впишіть першу."
+      de: "In jedem Satz arbeitet ein zweiteiliger Konnektor, die zweite Hälfte steht schon da — ergänze die erste."
+    text: "Ich höre die Nachrichten {{entweder}} morgens im Radio oder abends im Internet. Der Sender bringt {{zwar}} viel Musik, aber auch gute Nachrichten."
+    translation:
+      en: "I listen to the news either in the morning on the radio or in the evening on the internet. The station plays a lot of music, admittedly, but good news too."
+      ru: "Я слушаю новости либо утром по радио, либо вечером в интернете. Станция, правда, передаёт много музыки, но и хорошие новости тоже."
+      uk: "Я слухаю новини або вранці по радіо, або ввечері в інтернеті. Станція, щоправда, передає багато музики, але й хороші новини теж."
+    explain:
+      en: "The first half is the harder half to produce, because the second one is what you hear coming. Entweder announces a choice between two and its partner is always oder; here it sits inside the sentence, after the finite verb — and Entweder höre ich die Nachrichten morgens im Radio, oder ich lese sie abends is equally correct German, with the verb following entweder in first position. Zwar announces a concession and its partner is always aber. Both connectors are coordinating, so nothing goes to the clause end: höre stays in position 2, bringt stays in position 2."
+      ru: "Первую половину произвести труднее, потому что вторая — та, что и так слышна впереди. Entweder объявляет выбор из двух, и его пара — всегда oder; здесь он стоит внутри предложения, после спрягаемого глагола, а вариант Entweder höre ich die Nachrichten morgens im Radio, oder ich lese sie abends столь же верен: entweder занимает первое место, и за ним идёт глагол. Zwar объявляет уступку, и его пара — всегда aber. Оба союза сочинительные, поэтому ничто не уходит в конец: höre остаётся на втором месте, bringt тоже."
+      uk: "Першу половину виробити важче, бо друга — та, що й так чутна попереду. Entweder оголошує вибір із двох, і його пара — завжди oder; тут він стоїть усередині речення, після відмінюваного дієслова, а варіант Entweder höre ich die Nachrichten morgens im Radio, oder ich lese sie abends так само правильний: entweder займає перше місце, і за ним іде дієслово. Zwar оголошує поступку, і його пара — завжди aber. Обидва сполучники сурядні, тому ніщо не йде в кінець: höre лишається на другому місці, bringt теж."
+      de: "Die erste Hälfte ist die schwierigere, denn die zweite hört man ohnehin kommen. Entweder kündigt eine Wahl zwischen zweien an, und sein Partner heißt immer oder; hier steht es im Satzinneren nach dem finiten Verb — Entweder höre ich die Nachrichten morgens im Radio, oder ich lese sie abends ist genauso richtig, dort steht entweder auf Position 1 und das Verb folgt. Zwar kündigt ein Zugeständnis an, und sein Partner heißt immer aber. Beide Konnektoren sind nebenordnend, also wandert nichts ans Ende: höre bleibt auf Position 2, bringt ebenso."
+
+  - id: cloze-zweiteilig-partner
+    outcomes: [argumente-verbinden]
+    type: cloze
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "Fill in the second half of each two-part connector — the two first halves do not take the same partner."
+      ru: "Впишите вторую половину каждого двойного союза — у двух первых половин пары разные."
+      uk: "Впишіть другу половину кожного подвійного сполучника — у двох перших половин пари різні."
+      de: "Ergänze die zweite Hälfte jedes zweiteiligen Konnektors — die beiden ersten Hälften haben nicht denselben Partner."
+    text: "Meine Nachbarin liest nicht nur die Tageszeitung, {{sondern}} auch Beiträge im Internet. Der Wetterbericht war zwar sehr kurz, {{aber}} er hat gestimmt."
+    translation:
+      en: "My neighbour reads not only the daily paper but also pieces on the internet. The weather forecast was very short, admittedly, but it was right."
+      ru: "Моя соседка читает не только ежедневную газету, но и материалы в интернете. Прогноз погоды был, правда, очень коротким, но он оказался верным."
+      uk: "Моя сусідка читає не лише щоденну газету, а й матеріали в інтернеті. Прогноз погоди був, щоправда, дуже коротким, але він виявився правильним."
+    explain:
+      en: "The partner is decided by the first half, and the deciding fact is the A2 rule about sondern: it is only ever allowed after a negation, and it replaces what was denied. Nicht nur supplies exactly that negation, so its partner is sondern auch, with a comma always in front of it. Zwar concedes something — it does not deny it — so there is no negation for sondern to correct, and its partner is aber. That is why ❌ Der Wetterbericht war zwar kurz, sondern er hat gestimmt is wrong, and it is the error this pair produces most often. Both partners are coordinating: er hat gestimmt keeps the verb in second position."
+      ru: "Пару выбирает первая половина, и решает при этом правило с A2 про sondern: он допустим только после отрицания и заменяет то, что было отвергнуто. Nicht nur как раз и поставляет отрицание, поэтому его пара — sondern auch, и перед ней всегда стоит запятая. Zwar что-то уступает, а не отрицает, значит, отрицания, которое sondern мог бы исправлять, здесь нет, и пара к нему — aber. Поэтому ❌ Der Wetterbericht war zwar kurz, sondern er hat gestimmt неверно — и это самая частая ошибка на этой паре. Обе пары сочинительные: er hat gestimmt держит глагол на втором месте."
+      uk: "Пару обирає перша половина, і вирішує при цьому правило з A2 про sondern: він припустимий лише після заперечення і заміняє те, що було відкинуте. Nicht nur якраз і постачає заперечення, тому його пара — sondern auch, і перед нею завжди стоїть кома. Zwar щось поступається, а не заперечує, отже, заперечення, яке sondern міг би виправляти, тут немає, і пара до нього — aber. Тому ❌ Der Wetterbericht war zwar kurz, sondern er hat gestimmt хибне — і це найчастіша помилка на цій парі. Обидві пари сурядні: er hat gestimmt тримає дієслово на другому місці."
+      de: "Über den Partner entscheidet die erste Hälfte, und entscheidend ist die A2-Regel zu sondern: Es steht nur nach einer Verneinung und ersetzt das, was verneint wurde. Nicht nur liefert genau diese Verneinung, also heißt sein Partner sondern auch, und davor steht immer ein Komma. Zwar räumt etwas ein und verneint es nicht, es fehlt also die Verneinung, die sondern korrigieren könnte — sein Partner heißt aber. Deshalb ist ❌ Der Wetterbericht war zwar kurz, sondern er hat gestimmt falsch, und das ist der häufigste Fehler an diesem Paar."
+
+  - id: uebersetzen-zwar-aber
+    outcomes: [argumente-verbinden]
+    type: translate
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "Translate with zwar … aber — and remember that aber is coordinating, so its clause keeps the finite verb in second position."
+      ru: "Переведите через zwar … aber — и помните, что aber сочинительный, поэтому в его предложении спрягаемый глагол остаётся на втором месте."
+      uk: "Перекладіть через zwar … aber — і пам'ятайте, що aber сурядний, тому в його реченні відмінюване дієслово лишається на другому місці."
+      de: "Übersetze mit zwar … aber — und denk daran, dass aber nebenordnend ist, das finite Verb also auf Position 2 bleibt."
+    prompt_en: "The programme is short, admittedly, but it explains everything well."
+    prompt_ru: "Передача, правда, короткая, но она всё хорошо объясняет."
+    prompt_uk: "Передача, щоправда, коротка, але вона все добре пояснює."
+    answer: "Die Sendung ist zwar kurz, aber sie erklärt alles gut."
+    accept:
+      - "Die Sendung ist zwar kurz, sie erklärt aber alles gut."
+      - "Die Sendung ist zwar kurz, aber erklärt alles gut."
+      - "Die Sendung ist zwar kurz, erklärt aber alles gut."
+      - "Zwar ist die Sendung kurz, aber sie erklärt alles gut."
+      - "Zwar ist die Sendung kurz, sie erklärt aber alles gut."
+      - "Zwar ist die Sendung kurz, aber erklärt alles gut."
+      - "Zwar ist die Sendung kurz, erklärt aber alles gut."
+    key_tokens: ["zwar", "aber", "erklärt"]
+    explain:
+      en: "Graded are the two halves of the frame and the verb whose position they decide. Zwar grants the point, aber brings the objection, and because aber is coordinating, the second clause is an ordinary main clause: sie erklärt, verb in position 2 — not the clause-final erklärt a subordinating conjunction would force. Zwar can also open the sentence, and then the finite verb follows it: Zwar ist die Sendung kurz, aber … And aber itself need not stand at the front of its clause: sie erklärt aber alles gut says the same thing with aber inside the Mittelfeld. The subject may also simply be shared across the two predicates — …, erklärt aber alles gut — since both halves are main clauses with the same subject. All of these are accepted. What is never accepted is sondern: zwar concedes rather than denies, so there is no negation for sondern to replace."
+      ru: "Оцениваются обе половины рамки и глагол, позицию которого они определяют. Zwar делает уступку, aber приносит возражение, и, поскольку aber сочинительный, второе предложение — обычное главное: sie erklärt, глагол на втором месте, а не в конце, куда его отправил бы подчинительный союз. Zwar может и открывать предложение, тогда за ним идёт спрягаемый глагол: Zwar ist die Sendung kurz, aber … И само aber не обязано стоять в начале своего предложения: sie erklärt aber alles gut говорит то же самое, поставив aber внутрь. Подлежащее можно и просто не повторять — …, erklärt aber alles gut, — раз обе половины главные и подлежащее у них одно. Все эти варианты принимаются. Чего не принимает никогда — это sondern: zwar уступает, а не отрицает, и заменять sondern здесь нечего."
+      uk: "Оцінюються обидві половини рамки і дієслово, позицію якого вони визначають. Zwar робить поступку, aber приносить заперечення, і, оскільки aber сурядний, друге речення — звичайне головне: sie erklärt, дієслово на другому місці, а не в кінці, куди його відправив би підрядний сполучник. Zwar може й відкривати речення, тоді за ним іде відмінюване дієслово: Zwar ist die Sendung kurz, aber … І саме aber не мусить стояти на початку свого речення: sie erklärt aber alles gut каже те саме, поставивши aber всередину. Підмет можна й просто не повторювати — …, erklärt aber alles gut, — адже обидві половини головні й підмет у них один. Усі ці варіанти приймаються. Чого не приймає ніколи — це sondern: zwar поступається, а не заперечує, і заміняти sondern тут нема чого."
+      de: "Bewertet werden beide Hälften des Rahmens und das Verb, dessen Stellung sie entscheiden. Zwar räumt ein, aber bringt den Einwand, und weil aber nebenordnend ist, ist der zweite Satz ein gewöhnlicher Hauptsatz: sie erklärt, Verb auf Position 2 — nicht am Ende, wohin eine unterordnende Konjunktion es schicken würde. Zwar kann den Satz auch eröffnen, dann folgt ihm das finite Verb: Zwar ist die Sendung kurz, aber … Und das aber muss nicht vorn in seinem Satz stehen: sie erklärt aber alles gut sagt dasselbe mit aber im Mittelfeld. Das Subjekt kann auch einfach geteilt werden — …, erklärt aber alles gut —, da beide Hälften Hauptsätze mit demselben Subjekt sind. All das wird akzeptiert. Nie akzeptiert wird sondern: zwar räumt ein und verneint nicht, es gibt also nichts zu ersetzen."

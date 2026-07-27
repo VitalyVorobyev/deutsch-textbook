@@ -1,0 +1,85 @@
+# Delayed probe family 1 of 3 — ONE competence: producing the case that a fixed
+# verb-preposition frame brings with it, cold. Three parallel cloze variants, one per cell
+# (Akkusativ maskulin, Dativ maskulin, Dativ feminin), in three frames-plus-nouns that no
+# practice item, article example or reading sentence pairs — berichten über + Film,
+# abhängen von + Wetterbericht, sich äußern zu + Meldung. The last one was sich äußern zu
+# + Kritik until review: the practice item uebersetzen-aeussern-kritik pins exactly that
+# pairing AND grades the same dieser, so the third delayed check was measuring recall of a
+# practised phrase instead of cold transfer. Checked by grepping every äußer- occurrence in
+# content/, not by re-reading this list.
+# `outcomes: [bericht-verstehen]` is deliberate and it is what arms this family: the
+# outcome's second half is "seine Kernaussage wiedergeben", and es geht um, berichten über,
+# sich äußern zu and abhängen von are the frames a report's claim is reproduced with. Each
+# of the two other families declares a different outcome, because two families sharing one
+# would arm identically and fire a probe at material the learner never practised.
+# The preposition is printed rather than gapped, on purpose: berichten von and sich äußern
+# über are real German too, so a gap there would reject correct answers. Only the case is
+# graded, and each instruction names the determiner, so the target is determinate served
+# alone.
+topic: meinung-medien
+role: probe
+title:
+  en: "Delayed check — the case the preposition brings"
+  ru: "Отложенная проверка — падеж, который приносит предлог"
+  uk: "Відкладена перевірка — відмінок, який приносить прийменник"
+  de: "Kontrolle mit Abstand — der Kasus, den die Präposition mitbringt"
+items:
+  - id: variant-a
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Fill in dieser in the form the frame needs."
+      ru: "Впишите dieser в форме, которой требует рамка."
+      uk: "Впишіть dieser у формі, якої вимагає рамка."
+      de: "Ergänze dieser in der Form, die die Verbindung verlangt."
+    text: "Die Zeitung hat gestern lange über {{diesen}} Film berichtet."
+    translation:
+      en: "The paper reported at length on this film yesterday."
+      ru: "Газета вчера долго писала об этом фильме."
+      uk: "Газета вчора довго писала про цей фільм."
+    explain:
+      en: "Berichten über is one of the fixed frames, and inside a fixed frame über is always accusative — over diesen Film. That is the one preposition of the chapter that could go either way elsewhere: as a preposition of place it takes the dative for position (über dem Sofa) and the accusative for direction. The verb frame settles it, so nothing has to be weighed up."
+      ru: "Berichten über — одна из закреплённых рамок, а внутри такой рамки über всегда аккузативный: über diesen Film. Это единственный предлог главы, который в другом окружении мог бы пойти в обе стороны: как предлог места он берёт датив для положения (über dem Sofa) и аккузатив для направления. Глагольная рамка решает вопрос за вас — взвешивать нечего."
+      uk: "Berichten über — одна із закріплених рамок, а всередині такої рамки über завжди знахідний: über diesen Film. Це єдиний прийменник розділу, який в іншому оточенні міг би піти в обидва боки: як прийменник місця він бере давальний для положення (über dem Sofa) і знахідний для напрямку. Дієслівна рамка вирішує питання за вас — зважувати нема чого."
+      de: "Berichten über ist eine der festen Verbindungen, und in einer festen Verbindung steht über immer mit Akkusativ — über diesen Film. Es ist die eine Präposition des Kapitels, die anderswo beides könnte: als Ortspräposition nimmt sie den Dativ für die Lage (über dem Sofa) und den Akkusativ für die Richtung. Die Verbverbindung entscheidet, also gibt es nichts abzuwägen."
+
+  - id: variant-b
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Fill in dieser in the form the frame needs."
+      ru: "Впишите dieser в форме, которой требует рамка."
+      uk: "Впишіть dieser у формі, якої вимагає рамка."
+      de: "Ergänze dieser in der Form, die die Verbindung verlangt."
+    text: "Ob wir am Samstag draußen feiern, hängt von {{diesem}} Wetterbericht ab."
+    translation:
+      en: "Whether we celebrate outdoors on Saturday depends on this forecast."
+      ru: "Будем ли мы праздновать в субботу на улице, зависит от этого прогноза."
+      uk: "Чи святкуватимемо ми в суботу надворі, залежить від цього прогнозу."
+    explain:
+      en: "Von governs the dative everywhere in German, and abhängen brings von with it, so the object is diesem Wetterbericht. Two more things this sentence keeps in view: the verb is separable, so the ab waits at the very end however long the sentence grows, and the ob-clause in front is an indirect question doing the work of the subject."
+      ru: "Von во всём немецком требует датива, а abhängen приносит von с собой, поэтому дополнение — diesem Wetterbericht. Ещё две вещи держит в поле зрения это предложение: глагол отделяемый, поэтому ab ждёт в самом конце, как бы предложение ни выросло, а придаточное с ob впереди — косвенный вопрос в роли подлежащего."
+      uk: "Von в усій німецькій вимагає давального, а abhängen приносить von із собою, тому додаток — diesem Wetterbericht. Ще дві речі тримає в полі зору це речення: дієслово відокремлюване, тому ab чекає в самому кінці, хоч би як речення виросло, а підрядне з ob попереду — непряме питання в ролі підмета."
+      de: "Von regiert im ganzen Deutschen den Dativ, und abhängen bringt sein von mit, also heißt das Objekt diesem Wetterbericht. Zwei Dinge hält dieser Satz nebenbei fest: Das Verb ist trennbar, das ab wartet also ganz am Ende, so lang der Satz auch wird — und der ob-Satz davor ist eine indirekte Frage in der Rolle des Subjekts."
+
+  - id: variant-c
+    outcomes: [bericht-verstehen]
+    type: cloze
+    focus: verb-praeposition-b1
+    instruction:
+      en: "Fill in dieser in the form the frame needs."
+      ru: "Впишите dieser в форме, которой требует рамка."
+      uk: "Впишіть dieser у формі, якої вимагає рамка."
+      de: "Ergänze dieser in der Form, die die Verbindung verlangt."
+    text: "Der Sender hat sich zu {{dieser}} Meldung bis heute nicht geäußert."
+    translation:
+      en: "To this day the station has not commented on this news item."
+      ru: "По поводу этого сообщения телеканал до сих пор не высказался."
+      uk: "З приводу цього повідомлення телеканал досі не висловився."
+    explain:
+      en: "Zu governs the dative everywhere, and die Meldung in the dative is dieser Meldung — the same feminine dative form as in mit dieser Zeitung. The reflexive sich belongs to the verb and is never dropped, and the participle geäußert waits at the end of the Perfekt bracket. One family, one competence: the case a fixed frame demands, produced cold."
+      ru: "Zu всюду требует датива, а die Meldung в дативе — это dieser Meldung, та же женская дативная форма, что и в mit dieser Zeitung. Возвратное sich принадлежит глаголу и никогда не опускается, а причастие geäußert ждёт в конце перфектной рамки. Одна семья, одна компетенция: падеж, которого требует закреплённая рамка, воспроизведённый без подготовки."
+      uk: "Zu всюди вимагає давального, а die Meldung у давальному — це dieser Meldung, та сама жіноча давальна форма, що й у mit dieser Zeitung. Зворотне sich належить дієслову і ніколи не випускається, а дієприкметник geäußert чекає в кінці перфектної рамки. Одна родина, одна компетенція: відмінок, якого вимагає закріплена рамка, відтворений без підготовки."
+      de: "Zu regiert überall den Dativ, und die Meldung im Dativ heißt dieser Meldung — dieselbe feminine Dativform wie in mit dieser Zeitung. Das sich gehört zum Verb und fällt nie weg, und das Partizip geäußert wartet am Ende der Perfektklammer. Eine Familie, eine Fähigkeit: der Kasus, den eine feste Verbindung verlangt, aus dem Stand gebildet."
