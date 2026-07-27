@@ -72,11 +72,19 @@ interface AuditCard {
 }
 
 /**
- * A lexeme with this many lapses in one direction is what the operating program calls a
- * review trigger for that *entry* — its forms, its contrast and its context — not a signal
- * about the learner (docs/a2-learning-led-program.md).
+ * A lexeme with this many lapses **in the production direction** is what the operating
+ * program calls a review trigger for that *entry* — its forms, its contrast and its
+ * context — not a signal about the learner: "Two productive-direction lapses on one lexeme
+ * trigger review of its forms, contrast and context" (docs/a2-learning-led-program.md).
  *
- * The `--lapses` view exists because the deck table cannot answer the question that rule
+ * The direction is part of the rule, not a detail of it, so `needingReview` filters to
+ * `x-de` — a recognition card that lapses is telling you the learner cannot read the word
+ * yet, which is a different problem from a gloss that cannot be answered, and putting it in
+ * the same work-list sends an author to rewrite a sound entry. The aggregate `byDirection`
+ * table keeps both directions, because *how far apart* they run is the monitoring signal
+ * that found this in the first place.
+ *
+ * The `--lapses` view exists because the deck table cannot answer the question the rule
  * asks. `wohnen-umzug | 14 cards | 10 lapses` is unreadable: it is either ten mildly
  * awkward cards or one broken one. The 2026-07-26 pass found the latter — 22 cards over
  * the threshold, 21 of them the production direction, and the worst sitting at 0.0–0.4
@@ -85,6 +93,9 @@ interface AuditCard {
  * that says so, which is why it is reported beside the lapse count and not instead of it.
  */
 const LAPSE_REVIEW_THRESHOLD = 2;
+
+/** The direction the lapse-review rule is about: the learner produces German. */
+const PRODUCTION_DIRECTION = 'x-de';
 
 export interface AuditSnapshot {
   version: number;
@@ -633,7 +644,7 @@ function cardSummary(cards: Record<string, AuditCard>) {
     const cardLapses = card.lapses ?? 0;
     lapses += cardLapses;
     if (cardLapses > 0) withLapses += 1;
-    if (cardLapses >= LAPSE_REVIEW_THRESHOLD)
+    if (cardLapses >= LAPSE_REVIEW_THRESHOLD && direction === PRODUCTION_DIRECTION)
       needingReview.push({
         deck,
         // Card identity is `<deck>::<de>::<direction>`, and a headword may itself contain
@@ -1218,7 +1229,8 @@ function readabilitySection(
 /**
  * The per-entry lapse work-list, printed only behind `--lapses`. It is off by default
  * because this report is meant to stay compact, and on the day you need it you need every
- * row: it is a work-list, not a top-10.
+ * row: it is a work-list, not a top-10. Every row is a production card by construction —
+ * that is the rule's own scope — so the direction is stated once rather than columned.
  */
 function lapseReviewSection(
   rows: ProgressAudit['cards']['needingReview'],
@@ -1226,20 +1238,25 @@ function lapseReviewSection(
 ): string[] {
   if (!show)
     return rows.length
-      ? [`${rows.length} card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — \`--lapses\` lists them.`, '']
+      ? [
+          `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — ` +
+            '`--lapses` lists them.',
+          '',
+        ]
       : [];
-  if (!rows.length) return [`No card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
-  const productive = rows.filter((row) => row.direction === 'x-de').length;
+  if (!rows.length)
+    return [`No production card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
   return [
-    `${rows.length} card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses, ${productive} of them in the ` +
-      'production direction. Low stability against high reps means the entry is the problem, ' +
-      'not the lexeme: check the gloss for a rival German word before changing anything else.',
+    `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — the entry-review ` +
+      'trigger. Low stability against high reps means the entry is the problem, not the ' +
+      'lexeme: check the gloss for a rival German word before changing anything else. ' +
+      'Recognition lapses are a different question and stay in the direction table above.',
     '',
-    '| Deck | Headword | Dir | Lapses | Reps | Stability (d) |',
-    '| --- | --- | --- | ---: | ---: | ---: |',
+    '| Deck | Headword | Lapses | Reps | Stability (d) |',
+    '| --- | --- | ---: | ---: | ---: |',
     ...rows.map(
       (row) =>
-        `| ${md(row.deck)} | ${md(row.headword)} | ${md(row.direction)} | ${row.lapses} | ` +
+        `| ${md(row.deck)} | ${md(row.headword)} | ${row.lapses} | ` +
         `${row.reps} | ${row.stability === undefined ? '—' : row.stability.toFixed(1)} |`,
     ),
     '',
