@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { translateItemSchema } from '../../lib/schemas';
 import { normalizeAnswer, normalizeTranslation } from '../../lib/cloze';
@@ -23,6 +23,7 @@ const UI = {
   placeholder: { en: 'Type the German sentence…', ru: 'Введите немецкое предложение…' },
   correctionLabel: { en: 'Correction: ', ru: 'Исправленный вариант: ' },
   spellingNote: { en: 'Watch the spelling: ', ru: 'Обратите внимание на написание: ' },
+  yourAnswer: { en: 'You wrote: ', ru: 'Вы написали: ' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 export function Translate({
@@ -36,7 +37,33 @@ export function Translate({
   const uiLang = useUiLang();
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  /**
+   * Grow the field to its content.
+   *
+   * A `translate` answer is a whole sentence, and a probe prompt can be three of them —
+   * on a single-line input the tail scrolls out of sight, and once the field is disabled
+   * after checking the learner cannot scroll it back to see what they wrote. The
+   * correction below was therefore unreadable exactly where it mattered most.
+   *
+   * Measured against `content/`: of 859 authored renderings **226 run past 60 characters**
+   * and the longest is **136** (`probe-biografie-erfahrungen::variant-a`, a three-sentence
+   * narration) — so this is a few lines at a normal width, not a scroll region, and the
+   * worst case is a delayed probe, where the learner has least context to reconstruct what
+   * they typed. `field-sizing: content` would do this in CSS, but the desktop shell is
+   * WebKit, which does not support it yet.
+   */
+  useEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    // `scrollHeight` is the content box; the field is `border-box` with a 2px border on
+    // each side, so assigning it directly leaves the last line 4px short and clipped —
+    // which a browser check caught after the naive version looked right in the diff.
+    // `offsetHeight - clientHeight` is exactly that border, measured rather than assumed.
+    el.style.height = `${el.scrollHeight + (el.offsetHeight - el.clientHeight)}px`;
+  }, [value]);
 
   const verdict: TranslationVerdict = gradeTranslation(value, {
     answer: item.answer,
@@ -81,10 +108,18 @@ export function Translate({
   const alternatives = translationCandidates({ answer: item.answer, accept: item.accept }).filter(
     (candidate) => normalizeTranslation(candidate) !== normalizeTranslation(feedbackTarget),
   );
-  const differs =
-    checked && !isCorrect
-      ? diffExpectedWords(answerWords, normalizeAnswer(value).split(/\s+/))
-      : null;
+  const givenWords = normalizeAnswer(value).split(/\s+/);
+  const differs = checked && !isCorrect ? diffExpectedWords(answerWords, givenWords) : null;
+  /**
+   * The same LCS the other way round, so the marks land on the learner's own words.
+   *
+   * Showing only the corrected sentence asks the learner to hold their answer in their
+   * head and spot the difference — which is the one thing they cannot do, because the
+   * field above has just been disabled. `diffExpectedWords` is symmetric in shape, so
+   * swapping the arguments needs no new code.
+   */
+  const givenDiffers =
+    checked && !isCorrect ? diffExpectedWords(givenWords, answerWords) : null;
 
   return (
     <div>
@@ -92,16 +127,25 @@ export function Translate({
       {/* No prompt_de exists by design (German→German is nonsense): 'de' mode
           falls back to the EN prompt inside pick(). */}
       <p className="mb-4 text-lg font-medium">{pick(lang, { en: item.prompt_en, ru: item.prompt_ru, uk: item.prompt_uk })}</p>
-      <input
+      <textarea
         ref={inputRef}
-        type="text"
+        rows={1}
         lang="de"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && check()}
+        // Enter still submits, because that is what every other typed item does. Shift+Enter
+        // is left as a newline rather than swallowed: a learner who wants to lay a long
+        // sentence out while drafting should be able to, and the grader splits on any
+        // whitespace, so it changes nothing about the verdict.
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            check();
+          }
+        }}
         disabled={checked}
         placeholder={pick(lang, UI.placeholder)}
-        className={`w-full rounded-md border-2 bg-transparent px-3 py-2 text-lg outline-none ${
+        className={`w-full resize-none overflow-hidden rounded-md border-2 bg-transparent px-3 py-2 text-lg outline-none ${
           checked
             ? isCorrect
               ? 'border-green-500 text-green-700 dark:text-green-400'
@@ -157,16 +201,37 @@ export function Translate({
             ))
           }
           note={
-            verdict.kind === 'spelling' && (
-              <p>
-                {pick(lang, UI.spellingNote)}
-                <span lang="de">
-                  <s className="opacity-70">{verdict.correction.given}</s>
-                  {' → '}
-                  <strong>{verdict.correction.expected}</strong>
-                </span>
-              </p>
-            )
+            <>
+              {givenDiffers && (
+                <p>
+                  {pick(lang, UI.yourAnswer)}
+                  <span lang="de" className="opacity-90">
+                    {givenWords.map((w, i) => (
+                      <span key={i}>
+                        {i > 0 && ' '}
+                        {givenDiffers[i] ? (
+                          <mark className="rounded bg-amber-200 px-0.5 text-amber-900 dark:bg-amber-800 dark:text-amber-100">
+                            {w}
+                          </mark>
+                        ) : (
+                          w
+                        )}
+                      </span>
+                    ))}
+                  </span>
+                </p>
+              )}
+              {verdict.kind === 'spelling' && (
+                <p className={givenDiffers ? 'mt-2' : undefined}>
+                  {pick(lang, UI.spellingNote)}
+                  <span lang="de">
+                    <s className="opacity-70">{verdict.correction.given}</s>
+                    {' → '}
+                    <strong>{verdict.correction.expected}</strong>
+                  </span>
+                </p>
+              )}
+            </>
           }
           explain={item.explain}
           lang={lang}
