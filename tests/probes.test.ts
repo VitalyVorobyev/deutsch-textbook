@@ -83,6 +83,23 @@ describe('a topic with two probe families arms them separately', () => {
   });
 
   /**
+   * A pretest is diagnostic generation *before* the teaching, so its outcomes name what the
+   * learner is about to study. Arming on one scheduled a 2-day production probe at material
+   * never practised — for a learner who took the pretest and stopped, the probe measured
+   * guessing, which is the one thing probes exist not to do. `weakness.ts` already excluded
+   * pretests; this path did not. Measured against progress/vitaly/2026-07-26.json before the
+   * change: of 61 armed families 41 move, none becomes unarmed, largest shift 0.4 days.
+   */
+  test('a pretest attempt never arms a family, and practice after it still does', () => {
+    const [one] = probeFamilies(sets);
+    const pretest = attempt({ setId: 'a2/t-pretest', ts: T0, outcomes: ['one'] });
+    expect(armedAt(one!, [pretest])).toBeUndefined();
+
+    const practice = attempt({ setId: 'a2/t', ts: T0 + 3600_000, outcomes: ['one'] });
+    expect(armedAt(one!, [pretest, practice])).toBe(T0 + 3600_000);
+  });
+
+  /**
    * The landmine this fix defused, and the one case the outcome path cannot cover.
    *
    * `armingSetIds: []` was justified by "a multi-family topic is new by construction, so

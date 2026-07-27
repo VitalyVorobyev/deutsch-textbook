@@ -95,14 +95,20 @@ items:
     prompt_uk: "Ведучий не хоче висловлюватися з приводу цієї критики."
     answer: "Der Moderator möchte sich zu dieser Kritik nicht äußern."
     accept:
+      - "Der Moderator möchte sich nicht zu dieser Kritik äußern."
       - "Zu dieser Kritik möchte sich der Moderator nicht äußern."
       - "Der Moderator will sich zu dieser Kritik nicht äußern."
-      - "Der Moderator möchte sich nicht zu dieser Kritik äußern."
       - "Der Moderator will sich nicht zu dieser Kritik äußern."
       - "Zu dieser Kritik will sich der Moderator nicht äußern."
+      - "Die Moderatorin möchte sich zu dieser Kritik nicht äußern."
+      - "Die Moderatorin möchte sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik möchte sich die Moderatorin nicht äußern."
+      - "Die Moderatorin will sich zu dieser Kritik nicht äußern."
+      - "Die Moderatorin will sich nicht zu dieser Kritik äußern."
+      - "Zu dieser Kritik will sich die Moderatorin nicht äußern."
     key_tokens: ["zu", "dieser"]
     explain:
-      en: "Graded are the preposition and the case it brings: zu belongs to the verb, zu governs the Dativ, and die Kritik in the Dativ is dieser Kritik. Both are facts about the pair, not about the meaning — the instruction names zu because sich äußern über + Akkusativ is real German too, and an item that silently rejected it would be marking correct German wrong. The reflexive sich is part of the verb and moves with the word order: Der Moderator möchte sich …, but Zu dieser Kritik möchte sich der Moderator …"
+      en: "Graded are the preposition and the case it brings: zu belongs to the verb, zu governs the Dativ, and die Kritik in the Dativ is dieser Kritik. Both are facts about the pair, not about the meaning — the instruction names zu because sich äußern über + Akkusativ is real German too, and an item that silently rejected it would be marking correct German wrong. The reflexive sich is part of the verb and moves with the word order: Der Moderator möchte sich …, but Zu dieser Kritik möchte sich der Moderator … The English prompt does not fix the presenter's gender, so die Moderatorin is accepted everywhere der Moderator is."
       ru: "Оцениваются предлог и падеж, который он приносит: zu закреплён за глаголом, zu требует Dativ, а die Kritik в дативе — это dieser Kritik. И то и другое — факты о паре, а не о смысле. Предлог назван в задании, потому что sich äußern über + Akkusativ — тоже настоящий немецкий, и задание, которое молча его отвергало бы, объявляло бы верный немецкий ошибкой. Возвратное sich — часть глагола и ходит вместе с порядком слов: Der Moderator möchte sich …, но Zu dieser Kritik möchte sich der Moderator …"
       uk: "Оцінюються прийменник і відмінок, який він приносить: zu закріплений за дієсловом, zu вимагає Dativ, а die Kritik у давальному — це dieser Kritik. І те, й інше — факти про пару, а не про зміст. Прийменник названо в завданні, бо sich äußern über + Akkusativ — теж справжня німецька, і завдання, яке мовчки його відкидало б, оголошувало б правильну німецьку помилкою. Зворотне sich — частина дієслова і ходить разом із порядком слів: Der Moderator möchte sich …, але Zu dieser Kritik möchte sich der Moderator …"
       de: "Bewertet werden die Präposition und der Kasus, den sie mitbringt: zu gehört zum Verb, zu regiert den Dativ, und die Kritik im Dativ heißt dieser Kritik. Beides sind Eigenschaften des Paares, nicht der Bedeutung. Die Aufgabe nennt zu ausdrücklich, weil sich äußern über + Akkusativ ebenfalls richtiges Deutsch ist — eine Aufgabe, die das stillschweigend ablehnt, erklärt korrektes Deutsch für falsch. Das sich gehört zum Verb und wandert mit der Wortstellung: Der Moderator möchte sich …, aber Zu dieser Kritik möchte sich der Moderator …"
