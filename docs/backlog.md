@@ -133,6 +133,28 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   makes the corpus inconsistent. The fix is an attribution rule that names the tokens the tag
   grades, i.e. what `key_tokens` does for `translate` and `listen` has no equivalent of; sibling
   of P12-4.
+- **P12-7 · An accept list cannot be completed by enumeration** — `gradeTranslation` compares
+  against a finite authored list, so every correct paraphrase absent from it is a false negative.
+  The #116/#117 review ran **ten and nine rounds** largely on this one class: `bald` placement,
+  fronted clock time, `telefonieren` for `anrufen`, `die Moderatorin`, a shared subject across
+  coordinated predicates — each valid, each revealing the next. **The class does not terminate**,
+  because German has more correct renderings than any list holds. Standing policy, so nobody
+  re-runs that loop: close an item's *declared* product in one pass — the dimensions its own
+  `answer`/`accept`/`explain` present as equivalent — and verify every cell through
+  `gradeTranslation`; then stop. Renderings outside that product are the business of
+  `data/grading-decisions.yaml`, which rules on what a learner actually typed with the attempt
+  in front of you, and of the `keyTokensIntact` reason that routes them there
+  (`scripts/progress-audit.ts`). Two mitigations already exist and should be preferred to a longer
+  list: **name the token in the `instruction`** when the pin carries the focus (`mitkommen`,
+  `abholen`), and **accept the sibling** when it does not (`telefonieren`).
+- **C6-2 · Verify the citation stress of `tatsächlich`** — `content/vocab/meinung-medien.yaml`
+  transcribes `ˈtaːtzɛçlɪç` (initial). Three independent supports: the derivation from *Tatsache*,
+  the parallel `hauptsächlich` ← *Hauptsache*, and `docs/lautschrift.md:14` ("primary on the
+  prefix/first stem"); espeak-ng agrees (`tˈatzɛçlˌɪç`), though CLAUDE.md warns it gets compound
+  stress wrong. A 2026-07-27 review argued for `taːtˈzɛçlɪç`, which is the ordinary **emphatic**
+  realisation. Settle it against Duden's primary entry rather than by argument; it is a
+  one-character edit either way, and the same question applies to any other `-lich` adjective
+  built on a compound.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking
