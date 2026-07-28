@@ -38,8 +38,11 @@ entry review: `einkaufen-geschaefte` (6 lapses / 2 cards), `schule-arbeit` (9/8)
 **Read of 2026-07-28** (snapshot same day; queue drained at 144 ruled / 0 awaiting — 19 rulings
 this read, 3 accept, 16 confirm): the post-triage focus table is unchanged at the top, because
 the confirms re-entered with their graded targets retained and charge no focus. The 2026-07-26
-decisions stand — the `zu-infinitiv` drill is still owed (8/22 wrong, no recovery) and no other
-undrilled focus crosses the bar. New from the rulings: `akkusativ-pronomen` (er/ihn) recurred in
+decisions stand, with one correction: the `zu-infinitiv` drill is NOT owed — `a2/drill-zu-infinitiv`
+shipped in #116 the same day the 2026-07-26 read queued it, and the stale "owed" line survived
+into this read's first draft. The row (8/22 wrong, no recovery) reads "drill not yet served":
+the set has zero attempts in the log, so the owed action is the learner taking it, not authoring.
+No other undrilled focus crosses the bar. New from the rulings: `akkusativ-pronomen` (er/ihn) recurred in
 free production, matching its persistent row — the existing drill keeps serving it; two
 Mittelfeld Angaben-order errors surfaced in B1 items, expected-not-yet-taught (B1.14
 `wortstellung-angaben` territory, no action now); genus slips on feminine nouns (`Bescheinigung`,
@@ -102,10 +105,12 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   3 of them probed. This is the real cost of B1's larger units, and the fix is six new families.
   **A second family re-arms the topic**: measure `armedAt` before and after, or probes already
   taken are silently relabelled.
-- **P5-11a · A2 maintenance from the 2026-07-26 read** — author `a2/drill-zu-infinitiv`
-  (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
-  high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the
-  program's lapse decision rules (forms/contrast/note — never card identity).
+- **P5-11a · A2 maintenance from the 2026-07-26 read** — review the high-lapse entries in
+  `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the program's lapse decision
+  rules (forms/contrast/note — never card identity). The entry's other half — author
+  `a2/drill-zu-infinitiv` — was already shipped by #116 the same day the read queued it; this
+  line just never got updated. Verified 2026-07-28 against the corpus and the attempt log: the
+  set exists with 10 items and has zero attempts.
 - **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
   (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript
   `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
