@@ -1,0 +1,203 @@
+---
+import LearningFigure from './LearningFigure.astro';
+---
+
+<LearningFigure id="narrative-nachdem" title="Was geschah zuerst?" sourceClass="simulated">
+  <div slot="visual" class="timeline-stage" aria-hidden="true">
+    <section class="event-card earlier">
+      <header><span>1</span><div><small>zuerst · früher</small><strong>nachdem-Satz</strong></div></header>
+      <p>Nachdem ich die Prüfung <b>bestanden hatte</b>,</p>
+      <footer><strong>Plusquamperfekt</strong><span>hatte / war + Partizip II</span></footer>
+    </section>
+
+    <div class="time-arrow">
+      <span>Zeit</span>
+      <svg viewBox="0 0 120 44" role="presentation">
+        <path d="M4 22h108"></path>
+        <path d="m98 8 14 14-14 14"></path>
+      </svg>
+    </div>
+
+    <section class="event-card later">
+      <header><span>2</span><div><small>danach · später</small><strong>Hauptsatz</strong></div></header>
+      <p><b>feierten</b> wir die ganze Nacht.</p>
+      <footer><strong>Präteritum</strong><span>gesprochen auch Perfekt</span></footer>
+    </section>
+  </div>
+
+  <p slot="caption" lang="de">
+    Der <strong>nachdem-Satz</strong> nennt das frühere Ereignis und steht im
+    <strong>Plusquamperfekt</strong>. Das spätere Ereignis folgt im
+    <strong>Präteritum</strong> — in gesprochener Sprache auch im Perfekt.
+  </p>
+
+  <div slot="description">
+    <p class="lang-en">A left-to-right timeline shows two numbered events. Event one happened first: Nachdem ich die Prüfung bestanden hatte. It is a nachdem subordinate clause in the pluperfect, built with hatte or war plus a past participle. Event two happened later: feierten wir die ganze Nacht. It is the main clause in the simple past; in speech, the perfect is also possible. On a narrow screen the same arrow points downward from event one to event two.</p>
+    <p class="lang-ru">Временная шкала слева направо показывает два пронумерованных события. Сначала произошло событие 1: Nachdem ich die Prüfung bestanden hatte. Это придаточное с nachdem в Plusquamperfekt, построенном из hatte или war и Partizip II. Позже произошло событие 2: feierten wir die ganze Nacht. Это главное предложение в Präteritum; в устной речи возможен и Perfekt. На узком экране та же стрелка направлена вниз от первого события ко второму.</p>
+    <p class="lang-uk">Часова шкала зліва направо показує дві пронумеровані події. Спочатку сталася подія 1: Nachdem ich die Prüfung bestanden hatte. Це підрядне з nachdem у Plusquamperfekt, утвореному з hatte або war та Partizip II. Пізніше сталася подія 2: feierten wir die ganze Nacht. Це головне речення у Präteritum; в усному мовленні можливий і Perfekt. На вузькому екрані та сама стрілка спрямована вниз від першої події до другої.</p>
+  </div>
+</LearningFigure>
+
+<style>
+  .timeline-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(5rem, 0.36fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .event-card {
+    min-width: 0;
+    border: 1px solid #a8a29e;
+    border-top: 5px solid #57534e;
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 0.94);
+    padding: 0.9rem;
+    color: #292524;
+  }
+
+  .earlier {
+    border-top-color: #0369a1;
+  }
+
+  .later {
+    border-top-color: #b45309;
+  }
+
+  .event-card header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .event-card header > span {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    font-weight: 900;
+  }
+
+  .event-card header div {
+    display: grid;
+  }
+
+  .event-card header small {
+    color: #78716c;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .event-card p {
+    min-height: 3.2rem;
+    margin: 0.85rem 0;
+    font-size: clamp(0.82rem, 2vw, 1rem);
+    line-height: 1.5;
+  }
+
+  .earlier p b {
+    color: #075985;
+    text-decoration: underline 2px currentColor;
+    text-underline-offset: 0.18rem;
+  }
+
+  .later p b {
+    color: #9a3412;
+    text-decoration: underline 2px currentColor;
+    text-underline-offset: 0.18rem;
+  }
+
+  .event-card footer {
+    display: grid;
+    border-top: 1px solid #d6d3d1;
+    padding-top: 0.65rem;
+  }
+
+  .event-card footer span {
+    color: #57534e;
+    font-size: 0.72rem;
+  }
+
+  .time-arrow {
+    display: grid;
+    place-items: center;
+    color: #57534e;
+  }
+
+  .time-arrow span {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .time-arrow svg {
+    width: 100%;
+    min-width: 4.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+  }
+
+  :global([data-theme='dark']) .event-card {
+    border-color: #78716c;
+    background: rgb(41 37 36 / 0.94);
+    color: #f5f5f4;
+  }
+
+  :global([data-theme='dark']) .earlier {
+    border-top-color: #38bdf8;
+  }
+
+  :global([data-theme='dark']) .later {
+    border-top-color: #fbbf24;
+  }
+
+  :global([data-theme='dark']) .event-card header small,
+  :global([data-theme='dark']) .event-card footer span {
+    color: #d6d3d1;
+  }
+
+  :global([data-theme='dark']) .event-card footer {
+    border-top-color: #57534e;
+  }
+
+  :global([data-theme='dark']) .earlier p b {
+    color: #7dd3fc;
+  }
+
+  :global([data-theme='dark']) .later p b {
+    color: #fcd34d;
+  }
+
+  :global([data-theme='dark']) .time-arrow {
+    color: #d6d3d1;
+  }
+
+  @media (max-width: 620px) {
+    .timeline-stage {
+      grid-template-columns: 1fr;
+    }
+
+    .event-card p {
+      min-height: 0;
+    }
+
+    .time-arrow svg {
+      width: 5rem;
+      transform: rotate(90deg);
+    }
+
+    .time-arrow {
+      min-height: 4.8rem;
+    }
+  }
+</style>
