@@ -60,6 +60,19 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
+- **P17-6 · The document stimulus is set-scoped, so it stays pinned to tasks it does not describe** —
+  `stimulus` sits on the exercise set, so the panel renders beside every item — and it follows the
+  items out of the topic page too: `src/pages/ueben/training.astro:33` hands the set's document to
+  mixed training, and `session.astro` and `proben.astro` do the same.
+  In `b1/arbeit-bewerbung-produktion` that means the Nordlicht-Markt ad (contact: Frau Berger)
+  stays on screen while `schreiben-bewerbung` asks for a letter to Herr Weber at a different shop,
+  and the interview items use Herr Weber too. The tasks are self-contained — each quotes the
+  vacancy it means — so nothing is mis-graded, but the panel supplies contradictory context.
+  Three ways out, and the choice is a design decision, not an edit: give the extraction item its
+  own document-scoped set, make `stimulus` item-scoped (schema + `ExerciseSet.tsx`), or align every
+  task in the set to one vacancy. Raised by Codex on #119; deferred there because all three are
+  larger than the finding.
+
 - **P5-11a · A2 maintenance from the 2026-07-26 read** — author `a2/drill-zu-infinitiv`
   (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
   high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the

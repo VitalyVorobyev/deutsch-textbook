@@ -5,7 +5,8 @@ topics:
     legacy: true
     historyUnavailable: true
     aiAssistance:
-      tools: []
+      tools:
+        - "OpenAI Codex — added the deterministic nachdem timeline selected by Vitaly on 2026-07-28"
       role: drafting
       toolHistoryUnavailable: true
     humanReview:
@@ -54,6 +55,7 @@ topics:
       tools:
         - "Claude Code (Claude Fable 5) — drafted the topic article, the intensive reading and the vocabulary deck"
         - "Claude Code (Claude Opus 5) — drafted the exercise sets, the three probe families and the atlas node; ran the editorial review pass"
+        - "OpenAI Codex — created the simulated job-ad document and connected it to the existing extraction task selected by Vitaly on 2026-07-28"
       role: drafting
     humanReview:
       status: pending

@@ -22,6 +22,7 @@
 # letter is built on.
 topic: arbeit-bewerbung
 role: practice
+stimulus: b1/arbeit-bewerbung-stellenanzeige
 title:
   en: "Production — read the ad, write the letter, present yourself"
   ru: "Продукция — прочитать объявление, написать письмо, представить себя"
@@ -29,18 +30,25 @@ title:
   de: "Produktion — die Anzeige lesen, das Schreiben verfassen, sich vorstellen"
 items:
   - id: lesen-stellenanzeige
+    revision: 2
     outcomes: [stellenanzeige-verstehen]
     type: mc
-    prompt: "In der Anzeige steht: „Wir suchen ab September einen zuverlässigen Kollegen für unser Team im Verkauf. Voraussetzungen: Erfahrung im Verkauf und gute Deutschkenntnisse. Wir bieten eine Stelle in Teilzeit und jedes Jahr eine Weiterbildung.“ — Was verlangt die Firma, und was bietet sie?"
+    instruction:
+      en: "Keep the job advertisement open. Separate what the applicant must bring from what the company offers."
+      ru: "Не закрывайте объявление. Отделите требования к кандидату от предложения работодателя."
+      uk: "Не закривайте оголошення. Відокремте вимоги до кандидата від пропозиції роботодавця."
+      de: "Lass die Stellenanzeige geöffnet. Trenne die Voraussetzungen vom Angebot der Firma."
+    prompt: "Was verlangt die Firma, und was bietet sie?"
     options:
       - "Verlangt: Erfahrung im Verkauf und gute Deutschkenntnisse. Geboten: eine Stelle in Teilzeit."
       - "Verlangt: eine Ausbildung im Verkauf und zwei Fremdsprachen. Geboten: eine Stelle in Vollzeit."
       - "Verlangt: nur gute Deutschkenntnisse. Geboten: eine Weiterbildung statt einer Stelle."
     correct: 0
     translation:
-      en: "The ad says: \"From September we are looking for a reliable colleague for our sales team. Requirements: experience in sales and good German. We offer a part-time position and further training every year.\" — What does the company require, and what does it offer?"
-      ru: "В объявлении сказано: «С сентября мы ищем надёжного коллегу в наш отдел продаж. Требования: опыт в продажах и хорошее знание немецкого. Предлагаем должность на неполный день и ежегодное повышение квалификации». — Что фирма требует и что предлагает?"
-      uk: "В оголошенні сказано: «Із вересня ми шукаємо надійного колегу у наш відділ продажу. Вимоги: досвід у продажу та добре знання німецької. Пропонуємо посаду на неповний день і щорічне підвищення кваліфікації». — Що фірма вимагає і що пропонує?"
+      en: "What does the company require, and what does it offer?"
+      ru: "Что фирма требует и что предлагает?"
+      uk: "Що фірма вимагає і що пропонує?"
+      de: "Was verlangt die Firma, und was bietet sie?"
     explain:
       en: "A job ad has two halves and they must not be mixed up. Voraussetzungen is what you have to bring — here exactly two things, Erfahrung im Verkauf and gute Deutschkenntnisse. Wir bieten is what the company gives: eine Stelle in Teilzeit, plus a Weiterbildung on top of it, not instead of it. The wrong answers do what a hurried reader does: they promote a word that never appeared (Ausbildung, Fremdsprachen), swap Teilzeit for Vollzeit, or read the extra as the offer itself."
       ru: "У объявления две половины, и путать их нельзя. Voraussetzungen — то, что вы должны принести с собой; здесь ровно два пункта: Erfahrung im Verkauf и gute Deutschkenntnisse. Wir bieten — то, что даёт фирма: eine Stelle in Teilzeit, а Weiterbildung идёт вдобавок к должности, а не вместо неё. Неверные варианты делают то же, что торопливый читатель: подставляют слово, которого в тексте не было (Ausbildung, Fremdsprachen), меняют Teilzeit на Vollzeit или принимают приложение за само предложение."

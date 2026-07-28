@@ -83,24 +83,41 @@ const { view } = Astro.props;
   ) : (
     <LearningFigure id="participant-giving" title="Wer gibt wem was?" sourceClass="simulated">
       <div slot="visual" class="giving-grid" aria-hidden="true">
-        <section class="role-card">
+        <section class="role-card giving-person">
           <span class="role-question">Wer?</span>
-          <div class="person-icon">●</div>
+          <svg class="avatar-icon" viewBox="0 0 48 48" role="presentation">
+            <circle cx="24" cy="16" r="8"></circle>
+            <path d="M9 41c1.4-9 6.4-13.5 15-13.5S37.6 32 39 41"></path>
+          </svg>
           <strong>Nina</strong>
           <small>Geberin · Nominativ</small>
         </section>
-        <div class="transfer"><span class="transfer-line">→</span><b>gibt</b><span class="key">▰</span></div>
-        <section class="role-card">
+        <div class="transfer">
+          <b class="transfer-verb">gibt</b>
+          <div class="transfer-path">
+            <svg class="flow-arrow" viewBox="0 0 240 48" role="presentation">
+              <path d="M4 24h226"></path>
+              <path d="m215 9 15 15-15 15"></path>
+            </svg>
+            <div class="object-token">
+              <span class="role-question">Was?</span>
+              <svg class="key-icon" viewBox="0 0 64 32" role="presentation">
+                <circle cx="14" cy="16" r="9"></circle>
+                <path d="M23 16h32M44 16v8M52 16v5"></path>
+              </svg>
+              <strong class="role-accusative">den Schlüssel</strong>
+              <small>Sache · Akkusativ</small>
+            </div>
+          </div>
+        </div>
+        <section class="role-card giving-person">
           <span class="role-question">Wem?</span>
-          <div class="person-icon outlined">○</div>
+          <svg class="avatar-icon" viewBox="0 0 48 48" role="presentation">
+            <circle cx="24" cy="16" r="8"></circle>
+            <path d="M9 41c1.4-9 6.4-13.5 15-13.5S37.6 32 39 41"></path>
+          </svg>
           <strong class="role-dative">dem Nachbarn</strong>
           <small>Empfänger · Dativ</small>
-        </section>
-        <section class="thing-card">
-          <span class="role-question">Was?</span>
-          <span class="key">▰</span>
-          <strong class="role-accusative">den Schlüssel</strong>
-          <small>Sache · Akkusativ</small>
         </section>
       </div>
       <p slot="caption" lang="de">
@@ -108,9 +125,9 @@ const { view } = Astro.props;
         wechselt den Besitzer.
       </p>
       <div slot="description">
-        <p class="lang-en">Nina is the giver and nominative subject. An arrow carries a key from Nina to dem Nachbarn, the recipient in the dative. A separate card identifies den Schlüssel as the thing transferred and the accusative object. The sentence is Nina gibt dem Nachbarn den Schlüssel.</p>
-        <p class="lang-ru">Nina — тот, кто даёт, и подлежащее в Nominativ. Стрелка переносит ключ от Нины к dem Nachbarn — получателю в Dativ. Отдельная карточка обозначает den Schlüssel как передаваемую вещь и дополнение в Akkusativ. Полное предложение: Nina gibt dem Nachbarn den Schlüssel.</p>
-        <p class="lang-uk">Nina — та, хто дає, і підмет у Nominativ. Стрілка переносить ключ від Ніни до dem Nachbarn — одержувача у Dativ. Окрема картка позначає den Schlüssel як передану річ і додаток в Akkusativ. Повне речення: Nina gibt dem Nachbarn den Schlüssel.</p>
+        <p class="lang-en">A continuous arrow runs from Nina, the giver and nominative subject, to dem Nachbarn, the recipient in the dative. One key is attached to the transfer path and labelled den Schlüssel, the thing transferred and accusative object. The sentence is Nina gibt dem Nachbarn den Schlüssel.</p>
+        <p class="lang-ru">Непрерывная стрелка ведёт от Нины — того, кто даёт, и подлежащего в Nominativ — к dem Nachbarn, получателю в Dativ. На линии передачи показан один ключ с подписью den Schlüssel: это передаваемая вещь и дополнение в Akkusativ. Полное предложение: Nina gibt dem Nachbarn den Schlüssel.</p>
+        <p class="lang-uk">Безперервна стрілка веде від Ніни — тієї, хто дає, і підмета в Nominativ — до dem Nachbarn, одержувача в Dativ. На лінії передачі показано один ключ із підписом den Schlüssel: це передана річ і додаток в Akkusativ. Повне речення: Nina gibt dem Nachbarn den Schlüssel.</p>
       </div>
     </LearningFigure>
   )
@@ -124,7 +141,7 @@ const { view } = Astro.props;
     gap: .75rem;
     padding: 1.25rem;
   }
-  .role-card, .care-card, .thing-card {
+  .role-card, .care-card {
     min-width: 0;
     border: 1px solid #d6d3d1;
     border-radius: .8rem;
@@ -132,8 +149,8 @@ const { view } = Astro.props;
     padding: .9rem;
     text-align: center;
   }
-  .role-card strong, .thing-card strong { display: block; overflow-wrap: anywhere; }
-  .role-card small, .thing-card small, .care-card small { display: block; margin-top: .25rem; color: #57534e; }
+  .role-card strong { display: block; overflow-wrap: anywhere; }
+  .role-card small, .care-card small { display: block; margin-top: .25rem; color: #57534e; }
   .role-question { display: block; margin-bottom: .45rem; color: #57534e; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
   .person-icon, .body-icon { margin: .15rem auto .4rem; color: #44403c; font-size: 2rem; line-height: 1; }
   .outlined { font-size: 2.3rem; }
@@ -150,26 +167,118 @@ const { view } = Astro.props;
   .care-scene { display: flex; align-items: center; justify-content: center; gap: .65rem; min-height: 4rem; }
   .care-scene span { border: 2px solid #78716c; border-radius: 999px; padding: .45rem .7rem; font-weight: 700; }
   .care-scene b { font-size: 1.6rem; }
-  .giving-grid { display: grid; grid-template-columns: minmax(7rem, 1fr) 7rem minmax(9rem, 1.2fr) minmax(10rem, 1.1fr); align-items: center; gap: .8rem; padding: 1.25rem; }
-  .transfer { text-align: center; }
-  .transfer > * { display: block; margin: .15rem auto; }
-  .transfer-line { font-size: 2.4rem; }
-  .key { color: #a16207; font-size: 1.8rem; }
+  .giving-grid {
+    display: grid;
+    grid-template-columns: minmax(9rem, 1fr) minmax(15rem, 1.45fr) minmax(11rem, 1.1fr);
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  .giving-person { position: relative; z-index: 1; }
+  .avatar-icon {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    margin: .1rem auto .4rem;
+    color: #44403c;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.5;
+  }
+  .transfer { min-width: 0; text-align: center; }
+  .transfer-verb {
+    display: inline-block;
+    margin-bottom: .35rem;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    background: #e7e5e4;
+    color: #292524;
+    font-size: .85rem;
+  }
+  .transfer-path {
+    position: relative;
+    display: grid;
+    min-height: 8.5rem;
+    place-items: center;
+  }
+  .flow-arrow {
+    position: absolute;
+    inset: 50% 0 auto;
+    width: 100%;
+    height: auto;
+    color: #78716c;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transform: translateY(-50%);
+  }
+  .object-token {
+    position: relative;
+    z-index: 1;
+    min-width: 10rem;
+    border: 1px solid #fdba74;
+    border-radius: .75rem;
+    background: #fff7ed;
+    padding: .55rem .8rem .65rem;
+    box-shadow: 0 1px 2px rgb(41 37 36 / .08);
+  }
+  .object-token .role-question { margin-bottom: .2rem; color: #9a3412; }
+  .object-token strong, .object-token small { display: block; }
+  .object-token small { margin-top: .2rem; color: #57534e; }
+  .key-icon {
+    display: block;
+    width: 3.25rem;
+    height: auto;
+    margin: 0 auto .2rem;
+    color: #b45309;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+  }
   :global([data-theme='dark']) .role-card,
-  :global([data-theme='dark']) .care-card,
-  :global([data-theme='dark']) .thing-card { border-color: #57534e; background: rgb(41 37 36 / .94); }
+  :global([data-theme='dark']) .care-card { border-color: #57534e; background: rgb(41 37 36 / .94); }
   :global([data-theme='dark']) .role-card small,
-  :global([data-theme='dark']) .thing-card small,
   :global([data-theme='dark']) .care-card small,
   :global([data-theme='dark']) .role-question { color: #d6d3d1; }
   :global([data-theme='dark']) .role-dative { color: #7dd3fc; }
   :global([data-theme='dark']) .role-accusative { color: #fdba74; }
   :global([data-theme='dark']) .role-sentence { background: rgb(41 37 36 / .75); }
+  :global([data-theme='dark']) .avatar-icon { color: #d6d3d1; }
+  :global([data-theme='dark']) .transfer-verb { background: #292524; color: #e7e5e4; }
+  :global([data-theme='dark']) .object-token {
+    border-color: #9a3412;
+    background: #29201b;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .25);
+  }
+  :global([data-theme='dark']) .object-token .role-question { color: #fdba74; }
+  :global([data-theme='dark']) .object-token small { color: #d6d3d1; }
+  :global([data-theme='dark']) .key-icon { color: #fb923c; }
   @media (max-width: 640px) {
     .role-grid { grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr); padding: .8rem; gap: .45rem; }
     .role-sentence { grid-column: 1 / -1; }
     .care-grid { grid-template-columns: 1fr; padding: .8rem; }
-    .giving-grid { grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr); padding: .8rem; gap: .45rem; }
-    .giving-grid .thing-card { grid-column: 1 / -1; }
+  }
+  /* The giving grid stacks earlier than the other two, because its three
+     minimum tracks (9 + 15 + 11rem) plus gaps and padding need 632px of
+     content — more than the article has until the viewport reaches 664px.
+     Stacking only at 640px left 641–663px clipping the recipient column
+     against LearningFigure's hidden overflow, which is the one relation the
+     figure exists to show. 767px keeps headroom without moving the other
+     figures' breakpoint. */
+  @media (max-width: 767px) {
+    .giving-grid { grid-template-columns: minmax(0, 1fr); padding: .8rem; gap: .4rem; }
+    .transfer-path { min-height: 10rem; }
+    .flow-arrow {
+      inset: 50% auto auto 50%;
+      width: 10rem;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .object-token { min-width: min(12rem, calc(100% - 2.5rem)); }
   }
 </style>
