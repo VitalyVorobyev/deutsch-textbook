@@ -19,6 +19,7 @@ read**, not a rule to guess at.
 
 | If you are… | Read first |
 | --- | --- |
+| writing or revising a **topic article** (`## Erklärung` structure, paragraph size, `Kurz gesagt`) | [`docs/article-prose.md`](docs/article-prose.md) |
 | authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/item-authoring.md`](docs/item-authoring.md) |
 | choosing or adding a **`focus` tag** | [`docs/focus-tags.md`](docs/focus-tags.md) |
 | changing anything in **`src/lib/`** | [`docs/runtime-contracts.md`](docs/runtime-contracts.md) |
@@ -102,13 +103,17 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 - German content (examples, tables, headings like "Beispiele") stays outside Bilingual blocks — it is always visible.
 - Grammar terminology: use German terms with a per-language gloss on first use — in En blocks "der Kasus (case)", in Ru blocks "der Kasus (падеж)".
 
-### Topic article skeleton
+### Topic article skeleton → [`docs/article-prose.md`](docs/article-prose.md)
 Section order (H2 headings, in German):
-1. `## Kurz gesagt` — the rule in 2–3 sentences (bilingual).
+1. `## Kurz gesagt` — an advance organizer: the schema the article will fill in, ≤ ~100 words and ≤ 5 sentences per half, not a summary of its details (bilingual).
 2. `## Erklärung` — the full explanation with tables (bilingual prose, German tables).
 3. `## Beispiele` — 5–10 German sentences as blockquotes, each with EN/RU translation in a Bilingual block right after.
 4. `## Häufige Fehler` — typical mistakes (❌/✅ pairs). The Ru half highlights Russian-interference errors; the En half gets its own framing — English false friends where they exist ("must not"), otherwise neutral rule statements. Never Russian-framed English.
 - Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from frontmatter (`exercises`, `vocab`).
+- **`## Erklärung` splits into `### German subsections`, one per named confusion** — at least one per grammar point the unit owns, plus the integrating section. The heading is German and sits **outside** `<Bilingual>`, so it stays visible under `en`, `ru`, `uk` and `de`. A bolded lead sentence is not a heading: it cannot be navigated to and cannot carry a table with it.
+- **Each subsection keeps its table beside its prose.** A paradigm the reader must hold in memory across another subsection has been separated from what explains it.
+- **No paragraph over 120 words in any explanation half** (validator-enforced, `src/lib/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
+- **A fact stated in `## Erklärung` is drilled by an item or serves an outcome**; otherwise it goes in a compact `### Feinheiten` table. A list over three members is a table or a bullet list, never a semicolon chain — and prose never restates what the table beside it already enumerates.
 
 ### Exercise items → [`docs/item-authoring.md`](docs/item-authoring.md)
 

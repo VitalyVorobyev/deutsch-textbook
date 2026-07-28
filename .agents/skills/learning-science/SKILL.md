@@ -86,6 +86,7 @@ standard for organizing goals, not an experimental finding.
 | 14 | **Frequency / contrastive** | strong / partial | High-frequency first; named RU→DE confusions (focus tags) | Rare vocab early; assuming every error is interference |
 | 15 | **CEFR action orientation** | framework | Can-do outcomes; all four skills/modes get their share | Grammar-only course silently dropping listening/writing |
 | 16 | **Self-determination** | moderate | Honest competence signals; soft recommended path | Points/badges/coins; guilt-streaks; hard locks |
+| 17 | **Text design** (segment, signal, cohere) | moderate | `### subsections`, one claim per paragraph, table beside its prose | A wall: many idea units in one block, its table 130 lines away |
 
 The **load-bearing levers** — the ones with evidence strong enough to organize
 the product around — are **retrieval, spacing, and explanatory feedback**, plus
@@ -133,6 +134,15 @@ sufficient.
 - **Outcomes (§15):** the topic's `outcomes` in `content/atlas.yaml` are can-do
   statements — action-oriented ("Ich kann einen Termin absagen"), not
   knowledge-oriented ("I know the dative table"). Content should teach to them.
+- **Prose shape (§17):** `## Erklärung` splits into `### German subsections`,
+  one per named confusion, each keeping its table beside its prose; one claim
+  per paragraph, hard-capped at 120 words per half (`bun run validate`,
+  target ≤ 90); a fact that no item drills and no outcome needs goes to a
+  `### Feinheiten` table. `## Kurz gesagt` is an advance organizer, not a
+  summary. Measure with `bun scripts/prose-shape.ts <file|dir> [--worst]`;
+  rules and history in `docs/article-prose.md`. **The cap is a tripwire, not a
+  target** — prose shortened by deleting the reasons and the L1 contrast is a
+  worse defect than the wall it replaced.
 
 ### Semantic visuals and documents
 
@@ -310,6 +320,12 @@ RU halves; an EN reader who knows no Russian).
      still score a 6-cell table like one MC?
    - **Mode validity:** what did the learner actually do? Do not credit written
      selection as speech merely because the outcome targets interaction.
+   - **Prose shape (§17):** run `bun scripts/prose-shape.ts` on the article
+     before reading it — a paragraph over the cap, or an `## Erklärung` with no
+     `### subsections`, is a finding on its own. Then read for what the numbers
+     cannot see: does each heading name the confusion it teaches, does each
+     table sit beside its prose, and is every fact in the prose actually drilled
+     by an item or needed by an outcome?
    - **Open-production loop:** does the write/speak task give a model worth
      comparing against, and guidance that names what to check — without gating
      on ceremony the app cannot verify? (Minimal ceremony is the contract;
@@ -350,6 +366,9 @@ listening purpose, makes it worse.
 - **Calibrated claims.** Say "strong evidence" only where the label says strong.
   i+1, pretesting, interleaving and dual coding are useful bets, not settled
   law — present them as such, in findings and in docs.
+- **A word count is a tripwire, never a target (§17).** Readability formulas are
+  correlational indices; writing to one strips the cohesion a low-knowledge
+  reader needs. Segment and signal first; cut only what is never drilled.
 - **Balance, don't maximize.** Every principle has a trade-off line in the
   reference; difficulty, feedback and channels all have overdose effects
   (undesirable difficulty, dependence, redundancy, expertise reversal).

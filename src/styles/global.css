@@ -83,6 +83,19 @@ body {
   overflow-x: auto;
 }
 
+/* A reading measure for running prose only. `max-w-none` above exists so the
+   grammar tables can use the full 4xl shell; applied to paragraphs it also gave
+   them ~100–110 characters per line, well outside the conventional 55–75. The
+   constraint is scoped to the elements a learner actually reads line by line,
+   so tables, blockquoted German examples and figures keep the full width.
+   Evidence here is modest (line length affects reading rate more than
+   comprehension) — it earns its place because it compounds with paragraph size.
+   See docs/article-prose.md. */
+.article-prose p,
+.article-prose li {
+  max-width: 68ch;
+}
+
 /* German example sentences inside articles */
 .article-prose blockquote {
   @apply border-l-4 border-amber-400 bg-amber-50 px-4 py-1 not-italic

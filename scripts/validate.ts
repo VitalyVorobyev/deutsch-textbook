@@ -45,6 +45,7 @@ import {
   mdxLangProblems,
   ukParityProblems,
 } from '../src/lib/langcheck';
+import { proseShapeProblems } from '../src/lib/prose-shape';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
 import {
   checkGradingDecisions,
@@ -1621,6 +1622,10 @@ function checkMdxLangDiscipline(
   for (const p of report.balance) balance(file, p);
   for (const p of report.letters) fail(file, p);
   for (const p of report.parity) fail(file, p);
+  // Prose shape is not a language question, but it rides the same body scan.
+  // Unlike `<En>` balance it has no topics-warn/discovery-fail split: a
+  // paragraph too big to read is the same defect wherever it is authored.
+  for (const p of proseShapeProblems(body)) fail(file, p);
 }
 
 for (const { file, data, body } of topics.values()) checkMdxLangDiscipline(file, data, body, warn);

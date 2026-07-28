@@ -16,6 +16,7 @@ authoring rules. Historical failures and extended rationale are
 | Profiles and learner storage | `src/lib/profile.ts`, `src/lib/store.ts` | snapshot/store tests |
 | Snapshot compatibility | `src/lib/snapshot-schema.ts`, `src/lib/snapshot-merge.ts` | all-version migration tests |
 | Language selection | `src/lib/prefs.ts`, `src/lib/langcheck.ts` | i18n tests and validator |
+| Explanation prose shape | `src/lib/prose-shape.ts` (authoring-time only; never imported by runtime) | prose-shape tests, validator, `bun scripts/prose-shape.ts` |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard |
 

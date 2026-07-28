@@ -39,6 +39,8 @@ are good bets that must be presented as bets.
   15. CEFR action orientation & four-skill/mode balance — framework
 - Part C — Motivation & the anti-gamification stance
   16. Self-determination; the overjustification trap — moderate
+- Part D — The written explanation
+  17. Text design: segmenting, signaling, coherence & cohesion — moderate
 
 ---
 
@@ -350,6 +352,44 @@ number go up".
 **Trade-off:** Some structure and visible progress *is* competence support —
 the test is whether the signal reflects real learning (keep) or manufactures
 reward (cut).
+
+---
+
+## Part D — The written explanation
+
+### 17. Text design: segmenting, signaling, coherence & cohesion
+**Finding:** How an explanation is *packaged* changes what a reader takes from
+it, independently of what it says. Four effects carry most of it: **segmenting**
+(learner-sized units beat one continuous mass), **signaling** (headings and
+structural cues improve organized recall and let a rule be found again),
+**coherence** (interesting-but-tangential material depresses learning and
+transfer), and **cohesion** — explicit connectives, one referent per pronoun,
+repeated key terms — which helps low-knowledge readers and can *hurt*
+high-knowledge ones, who learn more from filling the gaps themselves.
+**Evidence: moderate.** Segmenting and signaling are best attested in
+multimedia and expository-text studies (Mayer & Chandler 2001; Mayer 2005;
+Lorch & Lorch 1996; Meyer's structure strategy). Coherence/seductive details is
+the strongest of the four (Harp & Mayer 1998; Rey 2012 meta-analysis,
+g ≈ −0.3). The cohesion × prior-knowledge interaction is well replicated but is
+an *interaction*, not a blanket "more cohesion is better" (McNamara, Kintsch,
+Songer & Kintsch 1996; McNamara 2001). Readability formulas are **not** in this
+list as a design target: they are validated as correlational indices, and
+writing to them strips cohesion (Davison & Kantor 1982).
+**Honored:** `## Erklärung` split into `### German subsections`, one per named
+confusion, each keeping its table beside its prose; one claim per paragraph
+under a hard 120-word ceiling; facts that are never drilled moved to a
+`### Feinheiten` reference table; `## Kurz gesagt` written as an advance
+organizer rather than a summary. Rules, measurement and the instrument:
+`docs/article-prose.md`, `bun scripts/prose-shape.ts`.
+**Anti-pattern:** A wall — one block carrying many idea units under a single
+signal, with its table 130 lines away (B1.4 shipped at 397 words in one
+paragraph against an A2 corpus maximum of 107). A bolded lead sentence standing
+in for a heading. Prose restating the list in the table beside it. Elegant
+variation where a low-knowledge reader needed the same term twice.
+**Trade-off:** The cap cuts *both* ways and the second way is the dangerous
+one. Shortening prose by deleting the reasons, the L1 contrast and the worked
+hooks produces the §5 anti-pattern — bare rule statements — and costs more than
+the wall did. Segment and signal first; cut only what is never drilled.
 
 ---
 

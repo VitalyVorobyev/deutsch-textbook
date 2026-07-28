@@ -27,6 +27,7 @@ authoring rules; code, schemas and tests remain authoritative for runtime behavi
 | --- | --- | --- | --- |
 | [`authoring-checklists.md`](authoring-checklists.md) | Topic, drill and release checklists | active | the lesson/review workflow changes |
 | [`b1-authoring-handoff.md`](b1-authoring-handoff.md) | Claude handoff contract for B1.4/B1.5 | active prompt | the frozen B1 contract or authorship gate changes |
+| [`article-prose.md`](article-prose.md) | How an explanation article is shaped, and the paragraph ceiling | authoritative companion | the prose-shape rules or the cap change |
 | [`item-authoring.md`](item-authoring.md) | Exercise and vocabulary contracts | authoritative companion | an item schema or grading rule changes |
 | [`focus-tags.md`](focus-tags.md) | Registered confusion taxonomy | generated parity contract | a focus tag is added or removed |
 | [`coverage-instruments.md`](coverage-instruments.md) | How lexical and grammar coverage are earned | active | an instrument or published figure changes |
