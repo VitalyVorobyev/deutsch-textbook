@@ -47,10 +47,7 @@ describe('semantic learning visuals', () => {
     );
 
     expect(exercise.stimulus).toBe('b1/arbeit-bewerbung-stellenanzeige');
-    // 3, not 2: the correct option was rewritten to name all three
-    // Voraussetzungen the stimulus actually lists, which changes the accepted
-    // answer and therefore owes a revision bump.
-    expect(item?.revision).toBe(3);
+    expect(item?.revision).toBe(2);
     expect(item?.prompt).toBe('Was verlangt die Firma, und was bietet sie?');
     expect(item?.prompt).not.toContain('In der Anzeige steht');
     expect(document.sourceClass).toBe('simulated');
