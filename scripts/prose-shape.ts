@@ -4,7 +4,7 @@
  * Written for the same reason as scripts/lang-cost.ts: every figure about prose
  * in docs/article-prose.md and CLAUDE.md has to be reproducible by one paste,
  * and writing the command forces the author to have run it. The measurement
- * that produced the rule — A1/A2 max 110 words per paragraph, B1.4 at 412 —
+ * that produced the rule — A1/A2 max 107 words per paragraph, B1.4 at 397 —
  * came from this script.
  *
  * Usage:

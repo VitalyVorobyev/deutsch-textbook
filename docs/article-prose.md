@@ -16,7 +16,7 @@ Command behind every figure below: `bun scripts/prose-shape.ts content/topics/<l
 | Level | En words per paragraph (mean of file means) | Longest paragraph, worst file | Sentences over 30 words |
 | --- | ---: | ---: | ---: |
 | A1 | 21.8 | 107 | 4% |
-| A2 | 36.3 | 107 | 6% |
+| A2 | 36.4 | 107 | 6% |
 | B1, as authored (2026-07-27) | 66.7 | **397** | 19% |
 | B1, after this pass (2026-07-28) | 51.7 | 120 | 19% |
 

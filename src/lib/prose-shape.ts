@@ -8,8 +8,8 @@
  * Why a word cap at all. The explanation article is the **model stage** of the
  * lesson cycle, and a paragraph is its unit of segmentation: one claim, its
  * evidence, and a visual boundary the reader can rest at. The two newest B1
- * articles arrived with single blocks of 412 and 271 words carrying ~9 idea
- * units each, against a corpus where no A1 or A2 file exceeds 110 — the
+ * articles arrived with single blocks of 397 and 260 words carrying ~9 idea
+ * units each, against a corpus where no A1 or A2 file exceeds 107 — the
  * signaling and segmenting the A2 articles get from `### subsections` was
  * simply missing. Reasoning, measurement and the four levers:
  * `docs/article-prose.md`.
@@ -28,11 +28,11 @@ export type ProseLang = (typeof PROSE_LANGS)[number];
  * Hard ceiling for one paragraph inside one explanation half.
  *
  * Corpus-derived, not chosen: at the time it was introduced the longest
- * paragraph in any A1, A2 or discovery file was 110 words, and exactly four B1
- * files exceeded it (133 / 209 / 271 / 412). 120 therefore refuses the wall
- * without touching a single shipped A1/A2 paragraph. The authoring target is
- * ≤ 90 — the ceiling exists for the case where the target was missed, not as
- * the thing to aim at.
+ * paragraph in any A1 or A2 file was 107 words and in any discovery piece 113,
+ * and exactly four B1 files exceeded that (129 / 199 / 260 / 397), so 120
+ * refuses the wall without touching a single shipped paragraph. The authoring
+ * target is ≤ 90 — the ceiling exists for the case where the target was
+ * missed, not as the thing to aim at.
  *
  * Command behind those figures: `bun scripts/prose-shape.ts content/topics`.
  */
@@ -113,9 +113,25 @@ export function proseParagraphs(body: string): ProseParagraph[] {
     blocksOf(body, lang).forEach((block, blockIndex) => {
       let index = 0;
       for (const chunk of block.split(BLOCK_SPLIT)) {
+        // A structural marker opens a block, not just a line. A wrapped list
+        // item continues on indented lines that carry no marker of their own,
+        // and filtering line-by-line reported those continuations as a
+        // paragraph — `content/topics/a1/stadt-wege.mdx:62-63` did exactly
+        // that. So an indented line inherits the structure it hangs off, while
+        // an unindented line starts prose again.
+        let structural = false;
         const prose = chunk
           .split('\n')
-          .filter((line) => !isStructuralLine(line))
+          .filter((line) => {
+            if (line.trim() === '') return false;
+            if (isStructuralLine(line)) {
+              structural = true;
+              return false;
+            }
+            if (structural && /^\s/.test(line)) return false;
+            structural = false;
+            return true;
+          })
           .join(' ');
         const text = stripMarkup(prose).replace(/\s+/g, ' ').trim();
         const words = countWords(text);
