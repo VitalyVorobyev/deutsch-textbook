@@ -30,7 +30,7 @@ title:
   de: "Produktion — die Anzeige lesen, das Schreiben verfassen, sich vorstellen"
 items:
   - id: lesen-stellenanzeige
-    revision: 2
+    revision: 3
     outcomes: [stellenanzeige-verstehen]
     type: mc
     instruction:
@@ -40,7 +40,7 @@ items:
       de: "Lass die Stellenanzeige geöffnet. Trenne die Voraussetzungen vom Angebot der Firma."
     prompt: "Was verlangt die Firma, und was bietet sie?"
     options:
-      - "Verlangt: Erfahrung im Verkauf und gute Deutschkenntnisse. Geboten: eine Stelle in Teilzeit."
+      - "Verlangt: Erfahrung im Verkauf, gute Deutschkenntnisse und eine zuverlässige, selbstständige Arbeitsweise. Geboten: eine Stelle in Teilzeit."
       - "Verlangt: eine Ausbildung im Verkauf und zwei Fremdsprachen. Geboten: eine Stelle in Vollzeit."
       - "Verlangt: nur gute Deutschkenntnisse. Geboten: eine Weiterbildung statt einer Stelle."
     correct: 0
@@ -50,10 +50,10 @@ items:
       uk: "Що фірма вимагає і що пропонує?"
       de: "Was verlangt die Firma, und was bietet sie?"
     explain:
-      en: "A job ad has two halves and they must not be mixed up. Voraussetzungen is what you have to bring — here exactly two things, Erfahrung im Verkauf and gute Deutschkenntnisse. Wir bieten is what the company gives: eine Stelle in Teilzeit, plus a Weiterbildung on top of it, not instead of it. The wrong answers do what a hurried reader does: they promote a word that never appeared (Ausbildung, Fremdsprachen), swap Teilzeit for Vollzeit, or read the extra as the offer itself."
-      ru: "У объявления две половины, и путать их нельзя. Voraussetzungen — то, что вы должны принести с собой; здесь ровно два пункта: Erfahrung im Verkauf и gute Deutschkenntnisse. Wir bieten — то, что даёт фирма: eine Stelle in Teilzeit, а Weiterbildung идёт вдобавок к должности, а не вместо неё. Неверные варианты делают то же, что торопливый читатель: подставляют слово, которого в тексте не было (Ausbildung, Fremdsprachen), меняют Teilzeit на Vollzeit или принимают приложение за само предложение."
-      uk: "В оголошення дві половини, і плутати їх не можна. Voraussetzungen — те, що ви маєте принести із собою; тут рівно два пункти: Erfahrung im Verkauf і gute Deutschkenntnisse. Wir bieten — те, що дає фірма: eine Stelle in Teilzeit, а Weiterbildung іде на додачу до посади, а не замість неї. Хибні варіанти роблять те саме, що квапливий читач: підставляють слово, якого в тексті не було (Ausbildung, Fremdsprachen), міняють Teilzeit на Vollzeit або беруть додаток за саму пропозицію."
-      de: "Eine Stellenanzeige hat zwei Hälften, und man darf sie nicht vertauschen. Voraussetzungen ist das, was du mitbringen musst — hier genau zwei Punkte: Erfahrung im Verkauf und gute Deutschkenntnisse. Wir bieten ist das, was die Firma gibt: eine Stelle in Teilzeit, und die Weiterbildung kommt dazu, nicht an ihre Stelle. Die falschen Antworten machen, was ein eiliger Leser macht: Sie holen ein Wort herein, das nirgends steht (Ausbildung, Fremdsprachen), tauschen Teilzeit gegen Vollzeit oder halten die Zugabe für das Angebot selbst."
+      en: "A job ad has two halves and they must not be mixed up. Voraussetzungen is what you have to bring — here three things, Erfahrung im Verkauf, gute Deutschkenntnisse and a zuverlässige und selbstständige Arbeitsweise. Wir bieten is what the company gives: eine Stelle in Teilzeit, plus a Weiterbildung on top of it, not instead of it. The wrong answers do what a hurried reader does: they promote a word that never appeared (Ausbildung, Fremdsprachen), swap Teilzeit for Vollzeit, or read the extra as the offer itself."
+      ru: "У объявления две половины, и путать их нельзя. Voraussetzungen — то, что вы должны принести с собой; здесь три пункта: Erfahrung im Verkauf, gute Deutschkenntnisse и zuverlässige und selbstständige Arbeitsweise. Wir bieten — то, что даёт фирма: eine Stelle in Teilzeit, а Weiterbildung идёт вдобавок к должности, а не вместо неё. Неверные варианты делают то же, что торопливый читатель: подставляют слово, которого в тексте не было (Ausbildung, Fremdsprachen), меняют Teilzeit на Vollzeit или принимают приложение за само предложение."
+      uk: "В оголошення дві половини, і плутати їх не можна. Voraussetzungen — те, що ви маєте принести із собою; тут три пункти: Erfahrung im Verkauf, gute Deutschkenntnisse і zuverlässige und selbstständige Arbeitsweise. Wir bieten — те, що дає фірма: eine Stelle in Teilzeit, а Weiterbildung іде на додачу до посади, а не замість неї. Хибні варіанти роблять те саме, що квапливий читач: підставляють слово, якого в тексті не було (Ausbildung, Fremdsprachen), міняють Teilzeit на Vollzeit або беруть додаток за саму пропозицію."
+      de: "Eine Stellenanzeige hat zwei Hälften, und man darf sie nicht vertauschen. Voraussetzungen ist das, was du mitbringen musst — hier drei Punkte: Erfahrung im Verkauf, gute Deutschkenntnisse und eine zuverlässige und selbstständige Arbeitsweise. Wir bieten ist das, was die Firma gibt: eine Stelle in Teilzeit, und die Weiterbildung kommt dazu, nicht an ihre Stelle. Die falschen Antworten machen, was ein eiliger Leser macht: Sie holen ein Wort herein, das nirgends steht (Ausbildung, Fremdsprachen), tauschen Teilzeit gegen Vollzeit oder halten die Zugabe für das Angebot selbst."
 
   - id: uebersetzen-transfer-kollegen
     outcomes: [bewerbung-schreiben]
