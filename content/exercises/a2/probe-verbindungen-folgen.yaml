@@ -33,6 +33,7 @@ items:
     outcomes: [folge-ausdruecken]
     type: translate
     focus: konjunktionaladverb-inversion
+    revision: 2
     instruction:
       en: "Use trotzdem for the second sentence."
       ru: "Для второго предложения используйте trotzdem."
@@ -41,6 +42,8 @@ items:
     prompt_ru: "Куртка была дорогой. Я всё равно её купил."
     prompt_uk: "Куртка була дорога. Я все одно її купив."
     answer: "Die Jacke war teuer. Trotzdem habe ich sie gekauft."
+    accept:
+      - "Die Jacke war teuer. Trotzdem habe ich die gekauft."
     key_tokens: ["Trotzdem", "habe", "ich"]
     explain:
       en: "trotzdem takes the same shape as deshalb — adverb, verb, subject. In the Perfekt the auxiliary habe is the word that must stand second."

@@ -33,7 +33,21 @@ nearly all retention failures; `order` is saturated at 98%, so no new order item
 persistent weak focus already has a drill except `zu-infinitiv` (8/23 wrong across 6 items, one
 probe error, no recovery) — one drill owed from this read (queued below as A2 maintenance). Lapse concentration flagged for
 entry review: `einkaufen-geschaefte` (6 lapses / 2 cards), `schule-arbeit` (9/8),
-`wohnen-umzug` (10/14). B1.4+B1.5 authoring proceeds per contract.
+`wohnen-umzug` (10/14).
+
+**Read of 2026-07-28** (snapshot same day; queue drained at 144 ruled / 0 awaiting — 19 rulings
+this read, 3 accept, 16 confirm): the post-triage focus table is unchanged at the top, because
+the confirms re-entered with their graded targets retained and charge no focus. The 2026-07-26
+decisions stand, with one correction: the `zu-infinitiv` drill is NOT owed — `a2/drill-zu-infinitiv`
+shipped in #116 the same day the 2026-07-26 read queued it, and the stale "owed" line survived
+into this read's first draft. The row (8/22 wrong, no recovery) reads "drill not yet served":
+the set has zero attempts in the log, so the owed action is the learner taking it, not authoring.
+No other undrilled focus crosses the bar. New from the rulings: `akkusativ-pronomen` (er/ihn) recurred in
+free production, matching its persistent row — the existing drill keeps serving it; two
+Mittelfeld Angaben-order errors surfaced in B1 items, expected-not-yet-taught (B1.14
+`wortstellung-angaben` territory, no action now); genus slips on feminine nouns (`Bescheinigung`,
+`Stelle`, `Sendung`) recorded as drill notes in the rulings. The P5-11a lapse-entry review
+closed clean the same day (see Recently completed). B1.6+B1.7 authoring proceeds per contract.
 
 ### P9-2 · Entdecken pieces
 
@@ -91,10 +105,6 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   3 of them probed. This is the real cost of B1's larger units, and the fix is six new families.
   **A second family re-arms the topic**: measure `armedAt` before and after, or probes already
   taken are silently relabelled.
-- **P5-11a · A2 maintenance from the 2026-07-26 read** — author `a2/drill-zu-infinitiv`
-  (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
-  high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the
-  program's lapse decision rules (forms/contrast/note — never card identity).
 - **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
   (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript
   `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
@@ -217,6 +227,11 @@ These require a measured learning or usability need. They do not block the curri
 
 ## Recently completed
 
+- **P5-11a (2026-07-28):** both halves resolved by inspection — the zu-infinitiv drill had
+  already shipped in #116 (stale "owed" line corrected), and all four 2+-lapse cards in the
+  named decks check out: Angebot and Aufgabe fixed by #116's collision pass, Kaution and
+  Erdgeschoss collision-free with disambiguated glosses (Erdgeschoss already carries the
+  off-by-one Stock note) — simply hard, left alone per the program rule.
 - **P9-2 (2026-07-26):** two reviewed Entdecken pieces—reading a simulated Behördenbrief and
   understanding the shared-space structure of Schrebergärten.
 - **P17-3 (2026-07-26):** responsive route and train-movement semantic figures.
