@@ -61,7 +61,9 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 ## Open
 
 - **P17-6 · The document stimulus is set-scoped, so it stays pinned to tasks it does not describe** —
-  `stimulus` sits on the exercise set, and `ExerciseSet.tsx` renders the panel beside every item.
+  `stimulus` sits on the exercise set, so the panel renders beside every item — and it follows the
+  items out of the topic page too: `src/pages/ueben/training.astro:33` hands the set's document to
+  mixed training, and `session.astro` and `proben.astro` do the same.
   In `b1/arbeit-bewerbung-produktion` that means the Nordlicht-Markt ad (contact: Frau Berger)
   stays on screen while `schreiben-bewerbung` asks for a letter to Herr Weber at a different shop,
   and the interview items use Herr Weber too. The tasks are self-contained — each quotes the
