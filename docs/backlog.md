@@ -73,6 +73,24 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   task in the set to one vacancy. Raised by Codex on #119; deferred there because all three are
   larger than the finding.
 
+- **P18-1 · `explain` prose drifted the same way the articles did** — mean EN `explain`
+  runs A1 28 w → A2 53 w → **~110 w in B1.4/B1.5** (max 167), against an A2 practice-set norm of
+  ~50. Explanatory feedback is read *after* an error, where attention is scarcest, so the same
+  segment-and-signal argument applies (`docs/article-prose.md` §17). Measured but deliberately not
+  fixed in the prose-shape pass, which was scoped to articles. Decide a target, put it in
+  `docs/item-authoring.md`, and revise the two B1 units' non-produktion sets — `-produktion` model
+  answers are legitimately longer and need their own line.
+- **P18-2 · `Kurz gesagt` exceeds its own target in two A2 files** — `a2/freunde-feste` (143 w)
+  and `a2/arbeit-beruf` (144 w) against the ~100-word advance-organizer target now stated in
+  `CLAUDE.md`. Median across 37 topics is 91, so these two are outliers, not the norm. Not a gate
+  (the 120-word paragraph cap is), so this is editing work, not a build failure.
+- **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
+  (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
+  competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);
+  B1.1, B1.2 and B1.3 own 3 + 3 + 4 grammar points and ship **one family each** — 10 competences,
+  3 of them probed. This is the real cost of B1's larger units, and the fix is six new families.
+  **A second family re-arms the topic**: measure `armedAt` before and after, or probes already
+  taken are silently relabelled.
 - **P5-11a · A2 maintenance from the 2026-07-26 read** — author `a2/drill-zu-infinitiv`
   (~10 production-leaning items, non-primary set on `infinitiv-mit-zu`) and review the
   high-lapse entries in `einkaufen-geschaefte`, `schule-arbeit` and `wohnen-umzug` per the
