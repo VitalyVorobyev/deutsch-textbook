@@ -66,6 +66,18 @@ assets:
     licenseReview: "Course-created simulated document covered by content/LICENSE."
     legacy: true
     promptUnavailable: true
+  - path: public/documents/b1/arbeit-bewerbung-stellenanzeige.svg
+    sha256: 2b3d8bf7b4b13af306bd40b4c2b3b95a1413492ce07811d29f5e7a6ecb296109
+    creationMode: ai-assisted
+    generationTool: OpenAI Codex
+    prompt: data/prompts/2026-07-28-b1-job-ad-document.md
+    candidateCount: null
+    humanSelectionReason: "Vitaly selected the job-ad document finding so the existing task would train extraction from a realistic communicative layout."
+    humanEdits:
+      - "Vitaly required the selected document to ship with the other two findings in the existing PR; the implementation preserves the task's scored facts while separating Aufgaben, Voraussetzungen, Wir bieten and contact details."
+    licenseReview: "Course-created simulated document covered by content/LICENSE; no external source or brand is embedded."
+    legacy: false
+    promptUnavailable: false
   - path: src/assets/illustrations/a2/wohnen-position-carpet.webp
     sha256: d3608f4f66d93c004bcb673966c7f187188dec9ccf26a73774560520954411cd
     creationMode: ai-generated-base
@@ -155,7 +167,7 @@ assets:
     legacy: true
     promptUnavailable: true
   - path: src/components/visuals/ParticipantRoleFigure.astro
-    sha256: 5e4e450bb4a6b2140d365e75c2af2a8ec5ddfcce77ff0132063371ce35355861
+    sha256: e57c144cfb28db140373ed9c853e3b10fd8f87ea8536e7266fc613391e997df1
     creationMode: ai-assisted
     generationTool: null
     prompt: null
@@ -172,6 +184,36 @@ assets:
         brief: data/prompts/2026-07-26-participant-caption-correction.md
         humanEdits:
           - "Vitaly approved the exact grammatical replacement sentence and required the Dativ recipient relationship to remain explicit."
+      - sha256: e57c144cfb28db140373ed9c853e3b10fd8f87ea8536e7266fc613391e997df1
+        changedAt: "2026-07-28"
+        tool: OpenAI Codex
+        brief: data/prompts/2026-07-28-participant-giving-semantic-flow.md
+        humanEdits:
+          - "Vitaly selected the semantic-flow direction and required matching person tokens, one recognizable key attached to the transfer path, explicit case labels and responsive light/dark rendering."
+  - path: src/components/visuals/PronominalAdverbFlow.astro
+    sha256: f61a52cba844772283f3b8391e2add70c4d32b6ca7dece6927319518673ebb0c
+    creationMode: ai-assisted
+    generationTool: OpenAI Codex
+    prompt: data/prompts/2026-07-28-pronominal-adverb-semantic-flow.md
+    candidateCount: null
+    humanSelectionReason: "Vitaly selected the governed-preposition branching flow as the highest-priority visual finding."
+    humanEdits:
+      - "Vitaly's selection fixed the two semantic branches, the deterministic HTML/SVG form and the requirement to implement it in the already-open PR."
+    licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
+    legacy: false
+    promptUnavailable: false
+  - path: src/components/visuals/NarrativeTimelineFigure.astro
+    sha256: 1bfd0162d6621d8ef80e6273cf9a60747a9fd9a85437705a3b00d4e2680b4364
+    creationMode: ai-assisted
+    generationTool: OpenAI Codex
+    prompt: data/prompts/2026-07-28-nachdem-temporal-sequence.md
+    candidateCount: null
+    humanSelectionReason: "Vitaly selected the temporal-sequence finding to make the earlier and later events immediately distinguishable."
+    humanEdits:
+      - "Vitaly's selection fixed a single earlier-to-later relationship, deterministic HTML/SVG rendering and inclusion in the existing PR."
+    licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
+    legacy: false
+    promptUnavailable: false
   - path: src/components/visuals/RouteMovementFigure.astro
     sha256: e175b17aa93aa43ef2698fc169632866d6fbe0c8362fb506d96578b4795f3d8d
     creationMode: ai-assisted

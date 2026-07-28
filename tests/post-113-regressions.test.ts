@@ -46,10 +46,16 @@ describe('late PR #113 regressions', () => {
       join(root, 'src/components/visuals/ParticipantRoleFigure.astro'),
       'utf8',
     );
+    const givingView = source.slice(source.indexOf('id="participant-giving"'));
     expect(source).toContain(
       'Nina gibt dem Nachbarn den Schlüssel: Sie handelt, er empfängt, und der Schlüssel',
     );
     expect(source).not.toContain('dem Nachbarn</strong> erreicht');
+    expect(givingView).toContain('class="avatar-icon"');
+    expect(givingView).toContain('class="key-icon"');
+    expect(givingView).not.toContain('●');
+    expect(givingView).not.toContain('○');
+    expect(givingView).not.toContain('▰');
   });
 
   test('independently accepted comparison choices compose', () => {

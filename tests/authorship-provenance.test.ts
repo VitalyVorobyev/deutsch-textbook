@@ -96,7 +96,12 @@ describe('authorship provenance', () => {
         'gesundheit-wohlbefinden',
       ]),
     ).toEqual([]);
-    expect(simulatedInstructionalAssetPaths(root)).toEqual([...LEGACY_ASSET_PATHS].sort());
+    const assetManifest = assetProvenanceManifestSchema.parse(
+      YAML.parse(readFileSync(resolve(root, 'data/asset-provenance.yaml'), 'utf8')),
+    );
+    expect(simulatedInstructionalAssetPaths(root)).toEqual(
+      assetManifest.assets.map((asset) => asset.path).sort(),
+    );
   });
 
   test('B1.4+ cannot become reviewed while human review is pending', () => {

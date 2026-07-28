@@ -1,0 +1,330 @@
+---
+import LearningFigure from './LearningFigure.astro';
+---
+
+<LearningFigure id="pronominal-adverb-flow" title="Sache oder Person?" sourceClass="simulated">
+  <div slot="visual" class="flow-stage" aria-hidden="true">
+    <div class="governed-pair">
+      <span>feste Verbindung</span>
+      <strong>warten <b>auf</b></strong>
+      <small>Der Präpositionsteil bleibt gleich.</small>
+    </div>
+
+    <div class="branch-stem">
+      <span></span>
+      <svg viewBox="0 0 64 44" role="presentation">
+        <path d="M32 2v16M32 18H8v22M32 18h24v22"></path>
+      </svg>
+    </div>
+
+    <div class="branch-grid">
+      <section class="branch-card thing-card">
+        <header>
+          <span class="kind-icon">◇</span>
+          <div><small>Was?</small><strong>Sache</strong></div>
+        </header>
+        <div class="formula">
+          <span>wo</span><i>+</i><em>r</em><i>+</i><b>auf</b><i>→</i><strong>worauf?</strong>
+        </div>
+        <div class="formula">
+          <span>da</span><i>+</i><em>r</em><i>+</i><b>auf</b><i>→</i><strong>darauf</strong>
+        </div>
+        <p><b>Worauf</b> wartest du? — Ich warte <b>darauf</b>.</p>
+      </section>
+
+      <section class="branch-card person-card">
+        <header>
+          <svg viewBox="0 0 40 40" role="presentation">
+            <circle cx="20" cy="12" r="6"></circle>
+            <path d="M8 35c1-8 5-12 12-12s11 4 12 12"></path>
+          </svg>
+          <div><small>Wen?</small><strong>Person</strong></div>
+        </header>
+        <div class="formula person-formula">
+          <b>auf</b><i>+</i><span>wen</span><i>→</i><strong>auf wen?</strong>
+        </div>
+        <div class="formula person-formula">
+          <b>auf</b><i>+</i><span>sie</span><i>→</i><strong>auf sie</strong>
+        </div>
+        <p><b>Auf wen</b> wartest du? — Ich warte <b>auf sie</b>.</p>
+      </section>
+    </div>
+
+    <div class="r-note"><strong>r</strong><span>nur vor einem Vokal: an · auf · über</span></div>
+  </div>
+
+  <p slot="caption" lang="de">
+    Die feste Präposition <strong>auf</strong> bleibt erhalten. Bei einer
+    <strong>Sache</strong> verschmilzt sie mit <strong>wo(r)-</strong> oder
+    <strong>da(r)-</strong>; bei einer <strong>Person</strong> steht sie vor
+    <strong>wen</strong> oder einem Personalpronomen.
+  </p>
+
+  <div slot="description">
+    <p class="lang-en">The diagram starts with the fixed pair warten auf and branches by referent. For a thing, wo plus linking r plus auf forms worauf for the question, and da plus r plus auf forms darauf for the reference. For a person, auf remains separate before wen in the question and before sie in the answer. The linking r appears only before a preposition that begins with a vowel, such as an, auf or über.</p>
+    <p class="lang-ru">Схема начинается с устойчивого сочетания warten auf и разветвляется по типу референта. Для предмета wo плюс соединительное r плюс auf образуют вопрос worauf, а da плюс r плюс auf — отсылку darauf. Для человека auf остаётся отдельным перед wen в вопросе и перед sie в ответе. Соединительное r появляется только перед предлогом, начинающимся с гласной, например an, auf или über.</p>
+    <p class="lang-uk">Схема починається зі сталого сполучення warten auf і розгалужується за типом референта. Для предмета wo плюс сполучне r плюс auf утворюють питання worauf, а da плюс r плюс auf — відсилання darauf. Для людини auf лишається окремим перед wen у питанні та перед sie у відповіді. Сполучне r з’являється лише перед прийменником, що починається з голосної, наприклад an, auf або über.</p>
+  </div>
+</LearningFigure>
+
+<style>
+  .flow-stage {
+    padding: 1.25rem;
+    color: #292524;
+  }
+
+  .governed-pair {
+    display: grid;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 2px solid #57534e;
+    border-radius: 0.8rem;
+    background: #fff;
+    padding: 0.7rem 1rem;
+    text-align: center;
+  }
+
+  .governed-pair span,
+  .branch-card header small {
+    color: #78716c;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .governed-pair strong {
+    font-size: 1.1rem;
+  }
+
+  .governed-pair strong b {
+    text-decoration: underline 3px #b45309;
+    text-underline-offset: 0.2rem;
+  }
+
+  .governed-pair small {
+    margin-top: 0.2rem;
+    color: #57534e;
+  }
+
+  .branch-stem {
+    display: grid;
+    height: 3.1rem;
+    place-items: center;
+  }
+
+  .branch-stem svg {
+    width: 4rem;
+    height: 2.75rem;
+    fill: none;
+    stroke: #78716c;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.5;
+  }
+
+  .branch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .branch-card {
+    min-width: 0;
+    border: 1px solid #a8a29e;
+    border-top-width: 4px;
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 0.94);
+    padding: 0.9rem;
+  }
+
+  .thing-card {
+    border-top-color: #0369a1;
+  }
+
+  .person-card {
+    border-top-color: #57534e;
+  }
+
+  .branch-card header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .branch-card header div {
+    display: grid;
+  }
+
+  .branch-card header strong {
+    font-size: 1rem;
+  }
+
+  .kind-icon,
+  .branch-card header svg {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    flex: 0 0 auto;
+    place-items: center;
+    color: #075985;
+  }
+
+  .kind-icon {
+    border: 2px solid currentColor;
+    border-radius: 0.45rem;
+    font-size: 1.25rem;
+    font-style: normal;
+  }
+
+  .branch-card header svg {
+    fill: none;
+    stroke: #57534e;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .formula {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.22rem, 1.4vw, 0.5rem);
+    margin-top: 0.45rem;
+    border-radius: 0.55rem;
+    background: #f5f5f4;
+    padding: 0.55rem 0.4rem;
+    font-size: clamp(0.75rem, 2.4vw, 0.98rem);
+    white-space: nowrap;
+  }
+
+  .formula i {
+    color: #78716c;
+    font-style: normal;
+  }
+
+  .formula em {
+    display: grid;
+    width: 1.45rem;
+    height: 1.45rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #075985;
+    color: #fff;
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  .formula > strong {
+    color: #075985;
+  }
+
+  .person-formula > strong {
+    color: #292524;
+    text-decoration: underline 2px #57534e;
+    text-underline-offset: 0.15rem;
+  }
+
+  .branch-card p {
+    margin: 0.75rem 0 0;
+    color: #44403c;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .thing-card p b {
+    color: #075985;
+  }
+
+  .r-note {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1rem auto 0;
+    color: #57534e;
+    font-size: 0.76rem;
+  }
+
+  .r-note strong {
+    display: grid;
+    width: 1.6rem;
+    height: 1.6rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 50%;
+    background: #075985;
+    color: #fff;
+  }
+
+  :global([data-theme='dark']) .flow-stage {
+    color: #f5f5f4;
+  }
+
+  :global([data-theme='dark']) .governed-pair,
+  :global([data-theme='dark']) .branch-card {
+    border-color: #78716c;
+    background: rgb(41 37 36 / 0.94);
+  }
+
+  :global([data-theme='dark']) .thing-card {
+    border-top-color: #38bdf8;
+  }
+
+  :global([data-theme='dark']) .person-card {
+    border-top-color: #d6d3d1;
+  }
+
+  :global([data-theme='dark']) .governed-pair span,
+  :global([data-theme='dark']) .governed-pair small,
+  :global([data-theme='dark']) .branch-card header small,
+  :global([data-theme='dark']) .branch-card p,
+  :global([data-theme='dark']) .r-note {
+    color: #d6d3d1;
+  }
+
+  :global([data-theme='dark']) .formula {
+    background: #1c1917;
+  }
+
+  :global([data-theme='dark']) .formula > strong,
+  :global([data-theme='dark']) .thing-card p b,
+  :global([data-theme='dark']) .kind-icon {
+    color: #7dd3fc;
+  }
+
+  :global([data-theme='dark']) .person-formula > strong {
+    color: #f5f5f4;
+    text-decoration-color: #d6d3d1;
+  }
+
+  @media (max-width: 560px) {
+    .branch-stem {
+      height: 3rem;
+    }
+
+    .branch-stem svg {
+      display: none;
+    }
+
+    .branch-stem::after {
+      color: #78716c;
+      content: '↓';
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .branch-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .branch-card {
+      padding: 0.8rem;
+    }
+  }
+</style>
