@@ -29,10 +29,13 @@ items:
     outcomes: [relativ-kasus-waehlen]
     type: translate
     focus: relativpronomen-kasus
+    revision: 2
     prompt_en: "The suitcase I bought last year is already broken."
     prompt_ru: "Чемодан, который я купил в прошлом году, уже сломан."
     prompt_uk: "Валіза, яку я купив торік, уже зламана."
     answer: "Der Koffer, den ich letztes Jahr gekauft habe, ist schon kaputt."
+    accept:
+      - "Der Koffer, den ich letztes Jahr gekauft habe, ist schon kaputtgegangen."
     key_tokens: ["den"]
     explain:
       en: "ich is the subject inside the clause, so the suitcase is what was bought — masculine accusative, den. Both this and the neighbour sentence open with a masculine noun, and they take opposite pronouns."

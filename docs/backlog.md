@@ -33,7 +33,18 @@ nearly all retention failures; `order` is saturated at 98%, so no new order item
 persistent weak focus already has a drill except `zu-infinitiv` (8/23 wrong across 6 items, one
 probe error, no recovery) — one drill owed from this read (queued below as A2 maintenance). Lapse concentration flagged for
 entry review: `einkaufen-geschaefte` (6 lapses / 2 cards), `schule-arbeit` (9/8),
-`wohnen-umzug` (10/14). B1.4+B1.5 authoring proceeds per contract.
+`wohnen-umzug` (10/14).
+
+**Read of 2026-07-28** (snapshot same day; queue drained at 144 ruled / 0 awaiting — 19 rulings
+this read, 3 accept, 16 confirm): the post-triage focus table is unchanged at the top, because
+the confirms re-entered with their graded targets retained and charge no focus. The 2026-07-26
+decisions stand — the `zu-infinitiv` drill is still owed (8/22 wrong, no recovery) and no other
+undrilled focus crosses the bar. New from the rulings: `akkusativ-pronomen` (er/ihn) recurred in
+free production, matching its persistent row — the existing drill keeps serving it; two
+Mittelfeld Angaben-order errors surfaced in B1 items, expected-not-yet-taught (B1.14
+`wortstellung-angaben` territory, no action now); genus slips on feminine nouns (`Bescheinigung`,
+`Stelle`, `Sendung`) recorded as drill notes for the P5-11a entry reviews. B1.6+B1.7 authoring
+proceeds per contract.
 
 ### P9-2 · Entdecken pieces
 
