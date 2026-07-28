@@ -9,7 +9,7 @@ items:
     outcomes: [folge-ausdruecken]
     type: table
     focus: konjunktionaladverb-inversion
-    revision: 2
+    revision: 3
     title: "Dieselbe Aussage, drei Verbindungen"
     instruction:
       en: "Say the same thing three ways. Write the second half of each sentence only."
@@ -17,9 +17,16 @@ items:
       uk: "Скажіть те саме трьома способами. Пишіть лише другу половину кожного речення."
     columns: ["Verbindung", "Ich arbeite heute. / Ich komme nicht."]
     rows:
-      # The stub ends in an ellipsis, so it is a continuation prompt and the graded cell
-      # continues it — repeating the connector would read as "…, weil weil ich heute
-      # arbeite". Every word-order decision the row exists to drill is still graded:
+      # The stub ends in an ellipsis, so it is a continuation prompt and the answer key
+      # continues it — restating the connector would read back as "…, weil weil ich heute
+      # arbeite", and the key is what the learner is shown after a miss.
+      #
+      # The learner is not held to that choice: the stub sits in its own cell, so whether
+      # the connector belongs in the input is invisible, and `acceptedCellAnswers` grades
+      # "weil ich heute arbeite" and "ich heute arbeite" alike. Revisions 1 and 2 each
+      # picked a side and each returned a false 0/3 for correct German.
+      #
+      # Either way the word order the row exists to drill is what decides the answer:
       # verb-final after weil, V2 after denn, inversion after deshalb.
       - label: "weil (Nebensatz)"
         cells:

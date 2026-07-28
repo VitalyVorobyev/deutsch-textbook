@@ -36,6 +36,7 @@ import {
 } from '../src/lib/schemas';
 import type { GrammarPoint } from '../src/lib/grammar-coverage';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
+import { continuationWord } from '../src/lib/table';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
   deParityProblems,
@@ -938,24 +939,22 @@ for (const [setId, { file, data }] of exerciseSets) {
           // them, and an author could otherwise use `…` as a morphological placeholder
           // (`Superlativ: am …` beside `am besten`) and trip this rule.
           //
-          // Stated as a contract because the alternative reading is bad for the learner
-          // either way: shown `Ich komme nicht, weil …` next to an input, they cannot tell
-          // whether to type the connector again, and the item grades the guess. An author
-          // who wants a pattern rather than a continuation writes it without the ellipsis —
-          // which the failure message says, so the escape is one edit and never silent.
+          // What this rule does *not* do is decide the learner's reading. Shown
+          // `Ich komme nicht, weil …` next to an input they cannot tell whether to restate
+          // the connector, so `TableFill` grades both renderings via `acceptedCellAnswers` —
+          // imported here rather than restated, so the two cannot drift about what the stub
+          // handed over. Choosing a side is what failed: this item graded the connector *in*
+          // at revision 1 and *out* at revision 2 and returned a false 0/3 both times.
           //
-          // The real cost of getting it wrong: `weil ich heute arbeite` after that stub
-          // reads back as "…, weil weil ich heute arbeite", and the learner who continued
-          // the sentence correctly was marked wrong on all three rows while every word
-          // order the item drills was right.
+          // The rule that remains is about the **answer key**, which stays canonical: an
+          // answer restating the word reads back as "…, weil weil ich heute arbeite", and it
+          // is that string the learner is shown as the model answer after a miss. An author
+          // who wants a pattern rather than a continuation drops the ellipsis — which the
+          // failure message says, so the escape is one edit and never silent.
           for (let i = 0; i < row.cells.length - 1; i++) {
-            const stub = row.cells[i];
             const next = row.cells[i + 1];
-            if (!stub.given || next.given || !/[…]\s*$/u.test(stub.answer)) continue;
-            const lastGiven = stub.answer
-              .replace(/[…\s]+$/u, '')
-              .split(/\s+/)
-              .pop()
+            if (next.given) continue;
+            const lastGiven = continuationWord(row.cells, i + 1)
               ?.replace(/[^\p{L}]/gu, '')
               .toLowerCase();
             const firstAsked = next.answer

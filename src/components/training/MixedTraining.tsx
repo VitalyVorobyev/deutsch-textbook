@@ -7,6 +7,7 @@ import { recommendedNext, type TopicNode } from '../../lib/mastery';
 import {
   buildSession,
   eligibleTrainingSets,
+  revisionLookup,
   resumedQueueIsEligible,
   type SessionItem,
   type TrainingSet,
@@ -153,7 +154,9 @@ export default function MixedTraining({
           }
           if (surface) clearResume(surface);
         }
-        const s = buildSession(eligible, count, attempts);
+        // The lookup is built from all shipped sets, not the eligible subset — an item outside
+        // this session's pool still carries attempts against a focus tag.
+        const s = buildSession(eligible, count, attempts, revisionLookup(sets));
         setSession(s);
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         if (surface && s.length > 0)
