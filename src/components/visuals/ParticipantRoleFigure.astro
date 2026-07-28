@@ -263,6 +263,15 @@ const { view } = Astro.props;
     .role-grid { grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr); padding: .8rem; gap: .45rem; }
     .role-sentence { grid-column: 1 / -1; }
     .care-grid { grid-template-columns: 1fr; padding: .8rem; }
+  }
+  /* The giving grid stacks earlier than the other two, because its three
+     minimum tracks (9 + 15 + 11rem) plus gaps and padding need 632px of
+     content — more than the article has until the viewport reaches 664px.
+     Stacking only at 640px left 641–663px clipping the recipient column
+     against LearningFigure's hidden overflow, which is the one relation the
+     figure exists to show. 767px keeps headroom without moving the other
+     figures' breakpoint. */
+  @media (max-width: 767px) {
     .giving-grid { grid-template-columns: minmax(0, 1fr); padding: .8rem; gap: .4rem; }
     .transfer-path { min-height: 10rem; }
     .flow-arrow {
