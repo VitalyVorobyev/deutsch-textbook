@@ -23,7 +23,7 @@ import {
   type TranslationSpec,
 } from '../src/lib/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
-import { isPretestAttempt } from '../src/lib/weakness';
+import { isPretestAttempt, isRetiredRevision, type RevisionLookup } from '../src/lib/weakness';
 import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
 import type { GradingDecision } from '../src/lib/schemas';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
@@ -345,12 +345,17 @@ export function readSnapshot(path: string): AuditSnapshot {
  * i.e. the task contract demonstrably changed under the learner, so today's answer key would
  * grade an answer to a question they were never asked.
  *
- * An **absent** revision is not a mismatch. No attempt logged before the v5 contract carries
- * one (0 of 817 in the current snapshot), so treating "unknown" as "changed" would retire the
- * whole history from this audit: the grading-review queue would be permanently empty and, worse,
- * its `excluded` set would be too — re-admitting rejections that today's grader accepts back
- * into the focus signal, which is exactly the false attribution the review exists to prevent.
+ * An **absent** revision is not a mismatch. No attempt logged before the v5 contract carries one,
+ * which is still 853 of the 2215 attempts in the current snapshot — 1362 carry one, of which 68
+ * mismatch (`counts.revisionKnown` / `counts.revisionMismatch`, `bun run
+ * progress:audit --profile vitaly`). Treating "unknown" as "changed" would retire the rest from
+ * this audit: the grading-review queue would be permanently empty and, worse, its `excluded` set
+ * would be too — re-admitting rejections that today's grader accepts back into the focus signal,
+ * which is exactly the false attribution the review exists to prevent.
  * Replaying here is read-only analysis; it never rewrites a learner's logged result.
+ *
+ * `isRetiredRevision` (`src/lib/weakness.ts`) is the same rule applied to the weakness signal,
+ * where the consequence is not "do not regrade" but "this is not evidence about the tag".
  */
 function revisionKnownMismatch(attempt: AuditAttempt, item: CatalogItem): boolean {
   return attempt.itemRevision !== undefined && attempt.itemRevision !== (item.revision ?? 1);
@@ -586,6 +591,7 @@ function focusSignals(
   limit: number,
   excluded: Set<string>,
   refocused: Map<string, string | undefined>,
+  current: RevisionLookup,
 ): FocusSignal[] {
   const groups = new Map<string, AuditAttempt[]>();
   for (const attempt of attempts) {
@@ -595,6 +601,9 @@ function focusSignals(
     // agree about what counts. A pretest is answered before the lesson and all 96 pretest
     // items are `mc` — easy recognition padding a production signal.
     if (isPretestAttempt(attempt)) continue;
+    // Likewise imported: an attempt against a revision that no longer exists answered a
+    // question today's item does not ask, so its result is not evidence about the tag.
+    if (isRetiredRevision(attempt, current)) continue;
     const key = attemptKey(attempt);
     if (excluded.has(key)) continue;
     // A confirm-ruled attempt carries the attribution today's grader gives it, never
@@ -1115,7 +1124,13 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       undecided: review.undecided,
       orphaned: review.orphaned,
     },
-    focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded, review.refocused),
+    // An item missing from the catalog resolves to `undefined`, not 1 — unknown is never a
+    // mismatch, and `?? 1` here would retire every pre-`revision` attempt on a deleted item.
+    focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded, review.refocused,
+      (setId, itemId) => {
+        const item = options.catalog.get(itemRef(setId, itemId));
+        return item ? item.revision ?? 1 : undefined;
+      }),
     feedback: snapshot.feedback ?? {},
     ...(detail ? { detail } : {}),
   };

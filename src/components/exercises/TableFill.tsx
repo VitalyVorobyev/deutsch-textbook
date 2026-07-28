@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { z } from 'zod';
 import type { tableItemSchema } from '../../lib/schemas';
 import { answerMatches } from '../../lib/cloze';
+import { acceptedCellAnswers } from '../../lib/table';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TableItem = z.infer<typeof tableItemSchema>;
@@ -25,10 +26,13 @@ export function TableFill({
     }),
   );
 
-  const cellOk = (r: number, c: number, answer: string) =>
-    answerMatches(values[cellKey(r, c)] ?? '', [answer]);
+  // A continuation stub (`Ich komme nicht, weil …`) sits in its own `<td>`, so the learner cannot
+  // see whether the connector belongs in what they type. Both readings are graded — see
+  // `acceptedCellAnswers`, which is also what keeps the answer key canonical in `validate.ts`.
+  const cellOk = (r: number, c: number) =>
+    answerMatches(values[cellKey(r, c)] ?? '', acceptedCellAnswers(item.rows[r].cells, c));
 
-  const allCorrect = askedCells.every(({ r, c, answer }) => cellOk(r, c, answer));
+  const allCorrect = askedCells.every(({ r, c }) => cellOk(r, c));
   const allFilled = askedCells.every(({ r, c }) => (values[cellKey(r, c)] ?? '').trim() !== '');
 
   function check() {
@@ -40,7 +44,7 @@ export function TableFill({
       // guard: a table with only given cells would make totalParts 0
       ...(askedCells.length >= 1
         ? {
-            correctParts: askedCells.filter(({ r, c, answer }) => cellOk(r, c, answer)).length,
+            correctParts: askedCells.filter(({ r, c }) => cellOk(r, c)).length,
             totalParts: askedCells.length,
           }
         : {}),
@@ -87,7 +91,7 @@ export function TableFill({
                         disabled={checked}
                         className={`w-full min-w-16 rounded border-b-2 bg-transparent px-1 py-1.5 text-base outline-none sm:min-w-20 sm:py-0.5 sm:text-sm ${
                           checked
-                            ? cellOk(r, c, cell.answer)
+                            ? cellOk(r, c)
                               ? 'border-green-500 text-green-700 dark:text-green-400'
                               : 'border-red-500 text-red-700 dark:text-red-400'
                             : 'border-stone-300 focus:border-amber-500 dark:border-stone-600'
@@ -119,7 +123,7 @@ export function TableFill({
             allCorrect
               ? undefined
               : askedCells
-                  .filter(({ r, c, answer }) => !cellOk(r, c, answer))
+                  .filter(({ r, c }) => !cellOk(r, c))
                   .map(({ answer }) => answer)
                   .join(', ')
           }
