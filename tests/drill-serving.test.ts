@@ -194,3 +194,60 @@ describe('pretest attempts are not weakness evidence', () => {
     expect(weakFocuses(ordinary).map((w) => w.focus)).toEqual(['dativ-artikel']);
   });
 });
+
+/**
+ * The same instrument check one level up: a wrong answer to a question the item no longer asks.
+ *
+ * `a2/verbindungen-folgen:table-drei-wortarten` graded the connector *in* at revision 1 and *out*
+ * at revision 2, and rejected correct German both times — three wrong attempts charging
+ * `konjunktionaladverb-inversion` for a learner who produced every word order right. A revision
+ * bump is the declaration that the contract changed; the weakness signal has to honour it, or the
+ * false attribution outlives the item that caused it.
+ */
+describe('attempts against a retired revision are not weakness evidence', () => {
+  const attempt = (revision: number | undefined, correct: boolean, ts: number): Attempt => ({
+    setId: 'a2/verbindungen-folgen', itemId: `i${ts}`, itemType: 'table',
+    correct, given: 'weil ich heute arbeite', ts, focus: 'konjunktionaladverb-inversion',
+    ...(revision === undefined ? {} : { itemRevision: revision }),
+  });
+  const current = () => 3;
+
+  test('four errors under a retired revision no longer make the tag weak', () => {
+    const old = [0, 1, 2, 3].map((n) => attempt(2, false, NOW + n));
+    expect(weakFocuses(old).map((w) => w.focus)).toEqual(['konjunktionaladverb-inversion']);
+    expect(weakFocuses(old, { current })).toEqual([]);
+  });
+
+  test('errors under the current revision still count', () => {
+    const now = [0, 1, 2, 3].map((n) => attempt(3, false, NOW + n));
+    expect(weakFocuses(now, { current }).map((w) => w.focus)).toEqual([
+      'konjunktionaladverb-inversion',
+    ]);
+  });
+
+  test('an attempt with no revision is unknown, never retired', () => {
+    // Most of the log predates the v5 contract. Treating unknown as changed would retire it.
+    const legacy = [0, 1, 2, 3].map((n) => attempt(undefined, false, NOW + n));
+    expect(weakFocuses(legacy, { current }).map((w) => w.focus)).toEqual([
+      'konjunktionaladverb-inversion',
+    ]);
+  });
+
+  test('an item missing from content is unknown too', () => {
+    const gone = [0, 1, 2, 3].map((n) => attempt(2, false, NOW + n));
+    expect(weakFocuses(gone, { current: () => undefined }).map((w) => w.focus)).toEqual([
+      'konjunktionaladverb-inversion',
+    ]);
+  });
+
+  test('correct attempts are retired too, not just the wrong ones', () => {
+    // Keeping the passes while dropping the failures would leave the tag looking healthier
+    // than any evidence supports. Four current errors are weak; twelve retired passes
+    // alongside must not dilute them below the 35% bar.
+    const real = [0, 1, 2, 3].map((n) => attempt(3, false, NOW + n));
+    const padded = [...real, ...Array.from({ length: 12 }, (_, n) => attempt(2, true, NOW + 10 + n))];
+    expect(weakFocuses(padded, { current }).map((w) => w.focus)).toEqual([
+      'konjunktionaladverb-inversion',
+    ]);
+  });
+});

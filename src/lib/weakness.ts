@@ -30,6 +30,41 @@ import { isVerifiedEvidence } from './scoring';
 export const isPretestAttempt = (attempt: Pick<Attempt, 'setId'>): boolean =>
   attempt.setId.endsWith('-pretest');
 
+/** Current `revision` of an item, by set and item id. `undefined` for anything not in content. */
+export type RevisionLookup = (setId: string, itemId: string) => number | undefined;
+
+/**
+ * An attempt answered against a task contract that no longer exists — excluded from every
+ * weakness signal.
+ *
+ * A `revision` bump declares that prompts, accepted answers, scoring, outcomes or focus semantics
+ * changed, i.e. today's key would grade an answer to a question the learner was never asked. That
+ * is already why `progress-audit.ts` refuses to replay such an attempt through the grader; the
+ * same reasoning says its result is not evidence about the tag. `a2/verbindungen-folgen:table-
+ * drei-wortarten` is the case that forced it: three wrong attempts charging
+ * `konjunktionaladverb-inversion` from a learner who produced every word order correctly and was
+ * rejected by revision 1 for omitting the connector and by revision 2 for restating it.
+ *
+ * Two boundaries, both load-bearing:
+ *
+ * - **Unknown is never a mismatch.** Only 1362 of 2215 attempts carry an `itemRevision` at all,
+ *   and an item absent from content resolves to `undefined` — treating either as "changed" would
+ *   retire the other 853 from a signal that needs them. (`counts.revisionKnown`,
+ *   `bun run progress:audit --profile vitaly`; 68 of those 1362 mismatch.)
+ * - **Correct attempts drop too.** Dropping only the wrong ones would leave the passes behind and
+ *   make the tag look healthier than any current evidence supports — the same shape as the
+ *   pretest dilution above, pointed the other way. A retired contract is retired in both
+ *   directions.
+ */
+export const isRetiredRevision = (
+  attempt: Pick<Attempt, 'setId' | 'itemId' | 'itemRevision'>,
+  current?: RevisionLookup,
+): boolean => {
+  if (attempt.itemRevision === undefined || !current) return false;
+  const now = current(attempt.setId, attempt.itemId);
+  return now !== undefined && now !== attempt.itemRevision;
+};
+
 export interface FocusStat {
   focus: string;
   /** attempts counted (at most `window` most recent per focus) */
@@ -49,15 +84,27 @@ export interface WeakFocusOptions {
   minErrorRate?: number;
   /** per-focus recency window, in attempts (default 30) */
   window?: number;
+  /** current item revisions; attempts against a retired one stop counting (default: off) */
+  current?: RevisionLookup;
 }
 
 const DEFAULT_WINDOW = 30;
 
-/** Per-focus stats over each focus's most recent `window` attempts. */
-export function focusStats(attempts: Attempt[], window = DEFAULT_WINDOW): FocusStat[] {
+/**
+ * Per-focus stats over each focus's most recent `window` attempts.
+ *
+ * `current` is optional and defaults to off: a caller without the content catalog to hand keeps
+ * today's behaviour rather than silently treating every revision as unknown.
+ */
+export function focusStats(
+  attempts: Attempt[],
+  window = DEFAULT_WINDOW,
+  current?: RevisionLookup,
+): FocusStat[] {
   const byFocus = new Map<string, Attempt[]>();
   for (const a of attempts) {
     if (!a.focus || !isVerifiedEvidence(a) || isPretestAttempt(a)) continue;
+    if (isRetiredRevision(a, current)) continue;
     const arr = byFocus.get(a.focus);
     if (arr) arr.push(a);
     else byFocus.set(a.focus, [a]);
@@ -84,9 +131,9 @@ export function focusStats(attempts: Attempt[], window = DEFAULT_WINDOW): FocusS
  */
 export function weakFocuses(
   attempts: Attempt[],
-  { minAttempts = 4, minErrorRate = 0.35, window = DEFAULT_WINDOW }: WeakFocusOptions = {},
+  { minAttempts = 4, minErrorRate = 0.35, window = DEFAULT_WINDOW, current }: WeakFocusOptions = {},
 ): FocusStat[] {
-  return focusStats(attempts, window)
+  return focusStats(attempts, window, current)
     .filter((s) => s.attempts >= minAttempts && s.errorRate >= minErrorRate)
     .sort((a, b) => b.errorRate - a.errorRate || b.attempts - a.attempts || b.lastTs - a.lastTs);
 }

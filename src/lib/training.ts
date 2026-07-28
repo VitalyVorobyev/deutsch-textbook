@@ -2,7 +2,7 @@
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
 import type { ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
 import type { Attempt } from './store';
-import { weakFocuses } from './weakness';
+import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
 
 /** One exercise set flattened for training, with its owning topic's metadata. */
@@ -42,6 +42,21 @@ export interface SessionItem {
  * session.
  */
 export const BROAD_RETRIEVAL_SHARE = 0.25;
+
+/**
+ * A `RevisionLookup` over shipped content, for `buildSession`'s weakness signal.
+ *
+ * Build it from **all** sets, not the eligible ones: an item outside the session's pool still
+ * contributes attempts to a focus tag, and resolving it to `undefined` would keep counting an
+ * answer to a question it no longer asks. `scripts/progress-audit.ts` reads the whole exercise
+ * catalog for the same reason, and the two are meant to agree about what counts.
+ */
+export function revisionLookup(sets: readonly TrainingSet[]): RevisionLookup {
+  const revisions = new Map<string, number>();
+  for (const s of sets)
+    for (const item of s.items) revisions.set(`${s.setId}::${item.id}`, item.revision ?? 1);
+  return (setId, itemId) => revisions.get(`${setId}::${itemId}`);
+}
 
 /**
  * Pretests never enter the pool — they are guesses by design, meant to be
@@ -97,6 +112,7 @@ export function buildSession(
   sets: readonly TrainingSet[],
   count: number,
   attempts: readonly Attempt[],
+  current?: RevisionLookup,
 ): SessionItem[] {
   // most recent attempt per item
   const lastAttempt = new Map<string, { correct: boolean; ts: number }>();
@@ -106,7 +122,7 @@ export function buildSession(
     if (!prev || a.ts >= prev.ts) lastAttempt.set(key, { correct: a.correct, ts: a.ts });
   }
 
-  const weak = new Set(weakFocuses([...attempts]).map((w) => w.focus));
+  const weak = new Set(weakFocuses([...attempts], { current }).map((w) => w.focus));
 
   const pool: SessionItem[] = sets.flatMap((s) =>
     s.items.map((item) => ({
