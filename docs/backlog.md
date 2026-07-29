@@ -103,8 +103,12 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);
   B1.1, B1.2 and B1.3 own 3 + 3 + 4 grammar points and ship **one family each** — 10 competences,
   3 of them probed. This is the real cost of B1's larger units, and the fix is six new families.
-  **A second family re-arms the topic**: measure `armedAt` before and after, or probes already
-  taken are silently relabelled.
+  A seventh joined in #123: `probe-konsum-umwelt-passiv-vergangenheit` was narrowed to the
+  written wurde/wurden register so its three stages measure one form, which leaves the spoken
+  *ist … worden* with practice coverage but no delayed check — a later B1 topic owes it a
+  family, the way `probe-biografie-erfahrungen-hilfsverb` carries A2's second past on a second
+  topic. **A second family re-arms the topic**: measure `armedAt` before and after, or probes
+  already taken are silently relabelled.
 - **P18-4 · The RU/UK produktion-set titles name goods, not speech** — all six B1
   `*-produktion` sets title themselves «Продукция»/«Продукція», which reads as manufactured
   output, not language production (the intended sense). Counted by the title grep over
