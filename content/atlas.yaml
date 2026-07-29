@@ -1567,6 +1567,53 @@ nodes:
         ru: "Я умею сравнивать потребительские решения и обосновывать свой выбор."
         uk: "Я вмію порівнювати споживчі рішення та обґрунтовувати свій вибір."
 
+  # Joins `behoerden-services`, where the register it trains already lives
+  # (aemter-dienstleistungen at A2, arbeit-bewerbung at B1): a Hausordnung, a letter from
+  # the Amt and a doorstep negotiation with the Hausmeister are institution-facing
+  # ground, not narration and not a purchase — and the node's strand must equal its
+  # group's.
+  # All three `deepens` edges carry a live runtime channel, and none of the three tags is
+  # a B1 tag, so none closes a B1 point (the unit's two contract points are closed by its
+  # own `passiv-modal` and `sodass-folge` items): `duerfen-muessen` (mc-strom-abmelden,
+  # uebersetzen-miete, uebersetzen-rauchen) is drilled by modalverben's own practice;
+  # `konjunktionaladverb-inversion` (uebersetzen-deshalb-treppe) by verbindungen-folgen's;
+  # `hoeflich-konjunktiv` (uebersetzen-koennten in the produktion set) by
+  # aemter-dienstleistungen's. The tag is the edge's only runtime channel — without one
+  # the spiral revisit it claims to build would not exist.
+  # Three outcomes, three probe families, one outcome each: a family arms from the
+  # practice items that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so two
+  # families sharing an outcome would arm identically and fire a probe at material never
+  # practised.
+  - id: regeln-verantwortung
+    level: B1
+    kind: communication
+    strand: communication
+    group: behoerden-services
+    prerequisites: [modalverben, verbindungen-folgen, aemter-dienstleistungen]
+    deepens: [modalverben, verbindungen-folgen, aemter-dienstleistungen]
+    outcomes:
+      - id: pflichten-verstehen
+        mode: reading
+        domain: public
+        de: "Ich kann einer Regelung entnehmen, was getan werden muss und was erlaubt ist."
+        en: "I can work out from a regulation what has to be done and what is allowed."
+        ru: "Я умею извлекать из правил, что нужно сделать и что разрешено."
+        uk: "Я вмію вичитувати з правил, що потрібно зробити і що дозволено."
+      - id: folgen-benennen
+        mode: writing
+        domain: public
+        de: "Ich kann mit sodass benennen, welche Folge etwas hat."
+        en: "I can use sodass to name the consequence something has."
+        ru: "Я умею называть с помощью sodass, какое следствие что-то имеет."
+        uk: "Я вмію називати за допомогою sodass, який наслідок щось має."
+      - id: loesung-aushandeln
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann bei einem Problem eine praktische Lösung aushandeln."
+        en: "I can negotiate a practical solution to a problem."
+        ru: "Я умею договариваться о практическом решении проблемы."
+        uk: "Я вмію домовлятися про практичне розв'язання проблеми."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1851,3 +1898,10 @@ units:
     title_ru: "Потребление и окружающая среда"
     title_uk: "Споживання та довкілля"
     topics: [konsum-umwelt]
+  - id: regeln-verantwortung
+    level: B1
+    title_de: "Regeln & Verantwortung"
+    title_en: "Rules & responsibility"
+    title_ru: "Правила и ответственность"
+    title_uk: "Правила та відповідальність"
+    topics: [regeln-verantwortung]
