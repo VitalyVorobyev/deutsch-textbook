@@ -79,7 +79,7 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 reports exactly what has shipped — units 1–6 cover their nineteen points', () => {
+  test('B1 reports exactly what has shipped — units 1–7 cover their twenty-one points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
     // The ratchet: raised in the same commit that ships a unit, never ahead of content.
@@ -97,10 +97,11 @@ describe('grammar coverage', () => {
     // the denominator moves when the manifest is wrong, and it moved the honest way.
     // Unit B1.6 (konsum-umwelt, 2026-07-29) closed passiv-produktion (passiv-bildung),
     // passiv-vergangenheit and proportionalsatz-je-desto (je-desto) — the split point's
-    // debt paid by the unit the amendment assigned it to.
-    expect(coverage.covered).toBe(19);
+    // debt paid by the unit the amendment assigned it to. Unit B1.7 (regeln-verantwortung,
+    // 2026-07-29) closed passiv-modal and konsekutivsatz-sodass (sodass-folge).
+    expect(coverage.covered).toBe(21);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(59);
+    expect(coverage.percent).toBe(66);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
@@ -109,9 +110,11 @@ describe('grammar coverage', () => {
       'kausalsatz-da',
       'komparativ-attributiv',
       'konjunktiv2-ratschlag',
+      'konsekutivsatz-sodass',
       'lassen',
       'n-deklination',
       'nomen-verb-verbindungen',
+      'passiv-modal',
       'passiv-produktion',
       'passiv-vergangenheit',
       'plusquamperfekt',
@@ -126,7 +129,7 @@ describe('grammar coverage', () => {
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 19);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 21);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

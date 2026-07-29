@@ -1,0 +1,92 @@
+# Delayed probe family 1 of 3 — ONE competence: producing the passive infinitive after a
+# modal cold — Partizip II + werden, with werden staying an infinitive and the modal the
+# only conjugated verb. Three parallel cloze variants, one per cell (singular, plural,
+# man-sentence transformed), all in the notice register and the present tense — variants
+# are served in authoring order across the 2/7/21 delays, so the family's stages stay one
+# retention curve over one form. Cloze is legitimate here because the gaps grade forms,
+# not a position: the wird-for-werden error and the reversed werden-before-participle
+# stack both surface *inside* the adjacent gaps, unlike a placement tag, whose slot a
+# cloze would give away (that is why the sodass family is translate).
+# Three verb-plus-noun pairings that no practice item, article example or reading
+# sentence pairs — Heizung kontrolliert, Fenster geputzt, Waschmaschine ausgeschaltet.
+# Checked by grepping every occurrence of kontrolliert, geputzt and ausgeschaltet in
+# content/ (kontrollieren pairs Qualität and Augen elsewhere, geputzt pairs Wohnung, Bad
+# and Zähne, ausgeschaltet occurs nowhere), not by re-reading this list.
+# `outcomes: [pflichten-verstehen]` is deliberate and it is what arms this family: the
+# can-do is "einer Regelung entnehmen, was getan werden muss und was erlaubt ist", and
+# the article's reading rule says the rule lives between the modal and the participle —
+# the frame these variants produce. The practice items that produce that frame
+# (cloze-garage, cloze-man-keller, mc-gemeldet, uebersetzen-fahrraeder) declare this
+# outcome too, so the 2/7/21 clock arms from producing the probed forms — the B1.5/B1.6
+# pattern — and never from comprehension attempts alone. Each of the two other families
+# declares a different outcome, because two families sharing one would arm identically
+# and fire a probe at material the learner never practised.
+# The lexical verb is named in every variant (in the instruction or by the man-sentence),
+# so the target is determinate served alone.
+topic: regeln-verantwortung
+role: probe
+title:
+  en: "Delayed check — the infinitive the modal demands"
+  ru: "Отложенная проверка — инфинитив, которого требует модальный глагол"
+  uk: "Відкладена перевірка — інфінітив, якого вимагає модальне дієслово"
+  de: "Kontrolle mit Abstand — der Infinitiv, den das Modalverb verlangt"
+items:
+  - id: variant-a
+    outcomes: [pflichten-verstehen]
+    type: cloze
+    focus: passiv-modal
+    instruction:
+      en: "Fill in the Partizip II of kontrollieren and the verb that follows it."
+      ru: "Впишите Partizip II глагола kontrollieren и глагол после него."
+      uk: "Впишіть Partizip II дієслова kontrollieren і дієслово після нього."
+      de: "Ergänze das Partizip II von kontrollieren und das Verb danach."
+    text: "Die Heizung muss jedes Jahr im Herbst {{kontrolliert}} {{werden}}."
+    translation:
+      en: "The heating has to be checked every year in autumn."
+      ru: "Отопление нужно проверять каждый год осенью."
+      uk: "Опалення потрібно перевіряти щороку восени."
+    explain:
+      en: "Two graded forms: the -ieren participle without ge- (kontrolliert), and werden in its dictionary form — after a modal every verb is an infinitive, so wird in the last gap is the one error this cell exists to catch. The order is fixed too: participle first, werden at the very end of the clause."
+      ru: "Две оцениваемые формы: причастие глагола на -ieren без ge- (kontrolliert) и werden в словарной форме — после модального глагола любой глагол в инфинитиве, так что wird в последнем пропуске — ровно та ошибка, ради которой существует эта ячейка. Порядок тоже закреплён: сначала причастие, werden в самом конце предложения."
+      uk: "Дві оцінювані форми: дієприкметник дієслова на -ieren без ge- (kontrolliert) і werden у словниковій формі — після модального дієслова будь-яке дієслово в інфінітиві, тож wird в останньому пропуску — рівно та помилка, заради якої існує ця клітинка. Порядок теж закріплений: спочатку дієприкметник, werden у самому кінці речення."
+      de: "Zwei bewertete Formen: das -ieren-Partizip ohne ge- (kontrolliert) und werden in der Grundform — nach einem Modalverb steht jedes Verb im Infinitiv, also ist wird in der letzten Lücke genau der Fehler, für den diese Zelle da ist. Auch die Reihenfolge steht fest: zuerst das Partizip, werden ganz am Ende des Satzes."
+
+  - id: variant-b
+    outcomes: [pflichten-verstehen]
+    type: cloze
+    focus: passiv-modal
+    instruction:
+      en: "Fill in the Partizip II of putzen and the verb that follows it."
+      ru: "Впишите Partizip II глагола putzen и глагол после него."
+      uk: "Впишіть Partizip II дієслова putzen і дієслово після нього."
+      de: "Ergänze das Partizip II von putzen und das Verb danach."
+    text: "Die Fenster im Treppenhaus müssen zweimal im Jahr {{geputzt}} {{werden}}."
+    translation:
+      en: "The windows in the stairwell have to be cleaned twice a year."
+      ru: "Окна на лестничной клетке нужно мыть два раза в год."
+      uk: "Вікна на сходовій клітці потрібно мити двічі на рік."
+    explain:
+      en: "The printed müssen already agrees with the plural Fenster — the modal is the only conjugated verb the clause gets. What the gaps ask for is the passive infinitive: the ge-…-t participle geputzt, then werden unchanged. A werden bent into wird would give the sentence a second conjugated verb it has no seat for."
+      ru: "Напечатанное müssen уже согласовано с множественным Fenster — модальный глагол остаётся единственным спрягаемым. Пропуски просят пассивный инфинитив: причастие ge-…-t geputzt, затем werden без изменений. Согнутое в wird werden дало бы предложению второй спрягаемый глагол, для которого в нём нет места."
+      uk: "Надруковане müssen уже узгоджене з множинним Fenster — модальне дієслово лишається єдиним відмінюваним. Пропуски просять пасивний інфінітив: дієприкметник ge-…-t geputzt, потім werden без змін. Зігнуте у wird werden дало б реченню друге відмінюване дієслово, для якого в ньому немає місця."
+      de: "Das gedruckte müssen ist schon an den Plural Fenster angepasst — das Modalverb bleibt das einzige konjugierte Verb des Satzes. Die Lücken verlangen den Passiv-Infinitiv: das ge-…-t-Partizip geputzt, dann werden unverändert. Ein zu wird gebogenes werden gäbe dem Satz ein zweites konjugiertes Verb, für das kein Platz ist."
+
+  - id: variant-c
+    outcomes: [pflichten-verstehen]
+    type: cloze
+    focus: passiv-modal
+    instruction:
+      en: "Rewrite the man-sentence as a passive with the modal — fill in all three parts."
+      ru: "Перепишите предложение с man в пассиве с модальным глаголом — впишите все три части."
+      uk: "Перепишіть речення з man у пасиві з модальним дієсловом — впишіть усі три частини."
+      de: "Schreib den man-Satz als Passiv mit Modalverb — ergänze alle drei Teile."
+    text: "Man muss die Waschmaschine abends ausschalten. → Die Waschmaschine {{muss}} abends {{ausgeschaltet}} {{werden}}."
+    translation:
+      en: "The washing machine has to be switched off in the evening."
+      ru: "Стиральную машину вечером нужно выключать."
+      uk: "Пральну машину ввечері потрібно вимикати."
+    explain:
+      en: "The transformation is the recipe: die Waschmaschine takes the subject seat, man vanishes, the modal muss stays conjugated in position 2 — and the active infinitive ausschalten becomes the passive infinitive: the separable participle ausgeschaltet, with -ge- inside, then werden. Feminine die stays die in both seats, so the frame itself is what you must supply."
+      ru: "Преобразование и есть рецепт: die Waschmaschine занимает место подлежащего, man исчезает, модальный muss остаётся спрягаемым на втором месте — а активный инфинитив ausschalten становится пассивным: причастие отделяемого глагола ausgeschaltet с -ge- внутри, затем werden. Женское die остаётся die в обеих ролях, так что воспроизвести нужно саму рамку."
+      uk: "Перетворення і є рецепт: die Waschmaschine займає місце підмета, man зникає, модальне muss лишається відмінюваним на другому місці — а активний інфінітив ausschalten стає пасивним: дієприкметник відокремлюваного дієслова ausgeschaltet з -ge- всередині, потім werden. Жіноче die лишається die в обох ролях, тож відтворити треба саму рамку."
+      de: "Die Umformung ist das Rezept: die Waschmaschine übernimmt den Subjektplatz, man verschwindet, das Modalverb muss bleibt konjugiert auf Position 2 — und der aktive Infinitiv ausschalten wird zum Passiv-Infinitiv: das trennbare Partizip ausgeschaltet mit -ge- innen, dann werden. Das feminine die bleibt in beiden Rollen die, liefern muss man also die Klammer selbst."

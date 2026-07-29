@@ -1,0 +1,68 @@
+# Diagnostic generation, not practice: three guesses before the article, one per taught
+# confusion of the unit (the passive infinitive after a modal, muss nicht against
+# darf nicht, sodass word order). No focus tags — a pretest is never weakness evidence —
+# and the first item is a cloze, because a pretest made only of mc discriminates nothing.
+topic: regeln-verantwortung
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-werden
+    outcomes: [pflichten-verstehen]
+    type: cloze
+    instruction:
+      en: "Guess the missing verb form — the sentence already has its conjugated verb."
+      ru: "Угадайте недостающую форму глагола — спрягаемый глагол в предложении уже есть."
+      uk: "Вгадайте відсутню форму дієслова — відмінюване дієслово в реченні вже є."
+      de: "Rate die fehlende Verbform — das konjugierte Verb hat der Satz schon."
+    text: "Am Aufzug hängt ein Zettel: Der Aufzug muss noch heute repariert {{werden}}."
+    translation:
+      en: "There is a note on the lift: the lift has to be repaired today."
+      ru: "На лифте висит записка: лифт должны починить ещё сегодня."
+      uk: "На ліфті висить записка: ліфт мають полагодити ще сьогодні."
+    explain:
+      en: "After a modal every verb is an infinitive — muss carries the conjugation, so the passive closes with repariert werden, never repariert wird. Nothing here is truly new: B1.6 built wird repariert, A2 built ich muss gehen, and this chapter only welds the two — modal in position 2, Partizip II + werden at the end."
+      ru: "После модального глагола любой глагол стоит в инфинитиве: спряжение несёт muss, поэтому пассив закрывается формой repariert werden, а не repariert wird. По-настоящему нового здесь нет: B1.6 строил wird repariert, A2 — ich muss gehen, а эта глава лишь сваривает их: модальный на втором месте, Partizip II + werden в конце."
+      uk: "Після модального дієслова будь-яке дієслово стоїть в інфінітиві: відмінювання несе muss, тому пасив закривається формою repariert werden, а не repariert wird. Справді нового тут немає: B1.6 будував wird repariert, A2 — ich muss gehen, а цей розділ лише зварює їх: модальне на другому місці, Partizip II + werden у кінці."
+      de: "Nach einem Modalverb steht jedes Verb im Infinitiv — die Konjugation trägt muss, also schließt das Passiv mit repariert werden, nie mit repariert wird. Wirklich neu ist hier nichts: B1.6 baute wird repariert, A2 baute ich muss gehen, und dieses Kapitel schweißt nur beides zusammen — Modalverb auf Position 2, Partizip II + werden am Ende."
+
+  - id: pre-mc-muss-nicht
+    outcomes: [loesung-aushandeln]
+    type: mc
+    prompt: "In der Hausordnung steht: „Die Küche muss nach dem Kochen nicht sofort geputzt werden.“ Was heißt das?"
+    options:
+      - "Man kann sofort putzen, aber es ist keine Pflicht."
+      - "Es ist verboten, sofort zu putzen."
+      - "Man muss sofort putzen."
+    correct: 0
+    translation:
+      en: "The house rules say: \"The kitchen does not have to be cleaned immediately after cooking.\" What does that mean?"
+      ru: "В правилах дома написано: «Кухню не обязательно убирать сразу после готовки». Что это значит?"
+      uk: "У правилах будинку написано: «Кухню не обов'язково прибирати одразу після готування». Що це означає?"
+    explain:
+      en: "muss nicht only lifts a duty: nobody requires immediate cleaning, and cleaning at once stays allowed. English is the trap here — \"must not\" forbids, German muss nicht does not. The ban is a different modal, darf nicht, and telling the two apart is half of reading any German notice. The chapter puts the pair side by side."
+      ru: "muss nicht лишь снимает обязанность: убирать сразу никто не требует, но и не запрещает. Ловушка — дословное «не должен»: оно звучит почти как запрет, а запрет по-немецки — другой модальный глагол, darf nicht. Различать эту пару — половина чтения любого немецкого объявления; глава ставит её рядом и разбирает."
+      uk: "muss nicht лише знімає обов'язок: прибирати одразу ніхто не вимагає, але й не забороняє. Пастка — дослівне «не повинен»: воно звучить майже як заборона, а заборона німецькою — інше модальне дієслово, darf nicht. Розрізняти цю пару — половина читання будь-якого німецького оголошення; розділ ставить її поруч і розбирає."
+      de: "muss nicht hebt nur eine Pflicht auf: Niemand verlangt das sofortige Putzen, und erlaubt bleibt es trotzdem. Das Verbot ist ein anderes Modalverb — darf nicht —, und die beiden zu unterscheiden ist die halbe Kunst beim Lesen eines deutschen Aushangs. Das Kapitel stellt das Paar nebeneinander und nimmt es auseinander."
+
+  - id: pre-mc-sodass
+    outcomes: [folgen-benennen]
+    type: mc
+    prompt: "Der Weg im Hof wird neu gemacht, ___"
+    options:
+      - "sodass man ihn zwei Wochen nicht benutzen kann."
+      - "sodass kann man ihn zwei Wochen nicht benutzen."
+      - "sodass man kann ihn zwei Wochen nicht benutzen."
+    correct: 0
+    translation:
+      en: "The path in the courtyard is being redone, so it cannot be used for two weeks."
+      ru: "Дорожку во дворе делают заново, так что ею нельзя пользоваться две недели."
+      uk: "Доріжку у дворі роблять заново, так що нею не можна користуватися два тижні."
+    explain:
+      en: "sodass is a conjunction like weil: it opens a Nebensatz, so the subject comes first and the finite verb goes to the very end — … nicht benutzen kann. The second option gives sodass the word order of deshalb, which is an adverb; the third leaves the verb where a main clause would put it. The word order is the entire difference, and it is what this chapter drills."
+      ru: "sodass — союз, как weil: он открывает придаточное, поэтому сначала подлежащее, а спрягаемый глагол уходит в самый конец — … nicht benutzen kann. Второй вариант даёт sodass порядок слов наречия deshalb; третий оставляет глагол там, где его держит русское «так что». Вся разница — в порядке слов, и именно её отрабатывает глава."
+      uk: "sodass — сполучник, як weil: воно відкриває підрядне, тому спочатку підмет, а відмінюване дієслово йде в самий кінець — … nicht benutzen kann. Другий варіант дає sodass порядок слів прислівника deshalb; третій лишає дієслово там, де його тримає українське «так що». Уся різниця — в порядку слів, і саме її відпрацьовує розділ."
+      de: "sodass ist eine Konjunktion wie weil: Es eröffnet einen Nebensatz, also kommt zuerst das Subjekt, und das finite Verb geht ganz ans Ende — … nicht benutzen kann. Die zweite Option gibt sodass die Wortstellung von deshalb, das ein Adverb ist; die dritte lässt das Verb dort, wo ein Hauptsatz es hätte. Die Wortstellung ist der ganze Unterschied — und genau sie übt dieses Kapitel."

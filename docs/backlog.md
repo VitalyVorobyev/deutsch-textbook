@@ -116,6 +116,24 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   retitled («Речевая практика» / «Мовна практика», or the mission line the EN titles already
   carry), do all six in one pass so the convention stays uniform — B1.6 shipped with the
   precedent spelling for exactly that reason.
+- **P18-5 · A write-task guidance line claims the main-clause passive frame for every clause** —
+  `schreiben-produktgeschichte` (`konsum-umwelt-produktion.yaml`) requires: "Every passive
+  sentence keeps the frame: werden in position 2, the Partizip II at the very end" — false in
+  a Nebensatz, where the finite werden follows the participle (*…, weil es wieder benutzt
+  wird*), an order the learner owns from A2's `nebensatz-verbende`. The line is ungated
+  guidance on an unverified write task, so nothing mis-grades, but it is teaching text:
+  qualify all four halves with "in a main clause" and point the Nebensatz case at the A2
+  rule. Flagged by Codex in #123 round 5; filed at wrap-up instead of edited.
+- **P18-6 · `passiv-bildung`'s position half has no delayed evidence** — `probe-konsum-umwelt`
+  is cloze ×3, and a cloze grades a form, never a position (`docs/authoring-checklists.md`
+  states exactly this). The family's declared competence is the form cells (wird/werden +
+  Partizip II against ist/hat), which cloze grades with clean attribution — but the frame's
+  position-2/clause-final half is graded only in practice (`uebersetzen-gemuese` pins both
+  walls) and never after a delay, so a learner who reproduces the wrong bracket can pass all
+  three stages. The checklist's remedy is a second response format — a translate family — and
+  its hazard applies: **adding a family re-arms the topic**, so measure `armedAt` before and
+  after (see [[P18-3]] for the family queue). Flagged by Codex in #123 round 5; filed at
+  wrap-up instead of edited.
 
 - **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
   (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript

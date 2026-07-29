@@ -1,0 +1,84 @@
+topic: regeln-verantwortung
+kind: intensive
+title_de: "Mitteilung der Hausverwaltung"
+text:
+  - >-
+    Liebe Mieterinnen und Mieter! Ab Montag wird das
+    [[Treppenhaus::stairwell::лестничная клетка::сходова клітка]] renoviert.
+    Die Wände werden neu [[gestrichen::painted::покрашены::пофарбовані]]. Der
+    Eingang muss in dieser Zeit frei bleiben: Fahrräder und
+    [[Kinderwagen::prams::детские коляски::дитячі візочки]] dürfen nicht im
+    Flur [[abgestellt::left, parked::оставлены::залишені]] werden. Bitte
+    stellen Sie sie für zwei Wochen in den Hof.
+  - >-
+    Die Handwerker arbeiten werktags von acht bis siebzehn Uhr. Der Aufzug
+    wird auch gestrichen, sodass er am Dienstag und Mittwoch nicht benutzt
+    werden kann. Die [[Ruhezeiten::quiet hours::часы тишины::години тиші]]
+    gelten weiter: Nach 22 Uhr darf im Haus nicht
+    [[gebohrt::drilled::сверлить (о шумных работах)::свердлити (про гучні роботи)]]
+    werden — das gilt auch für die Handwerker.
+  - >-
+    Ihre Wohnungstüren müssen nicht neu gestrichen werden. Wer das trotzdem
+    möchte, meldet sich bitte bis Freitag beim
+    [[Hausmeister::caretaker::комендант дома::комендант будинку]]. Er
+    beantwortet auch alle Fragen zu den Arbeiten. Wir bitten alle Mieter um
+    [[Rücksicht::consideration::внимание к соседям::уважність до сусідів]]
+    und danken für Ihr
+    [[Verständnis::understanding::понимание::розуміння]]!
+questions:
+  - id: frage-fahrraeder
+    outcomes: [pflichten-verstehen]
+    type: mc
+    prompt: "Was dürfen die Mieter während der Renovierung nicht machen?"
+    options:
+      - "Fahrräder und Kinderwagen im Flur abstellen."
+      - "Fahrräder in den Hof stellen."
+      - "Den Eingang benutzen."
+    correct: 0
+    translation:
+      en: "What are the tenants not allowed to do during the renovation?"
+      ru: "Что жильцам нельзя делать во время ремонта?"
+      uk: "Що мешканцям не можна робити під час ремонту?"
+    explain:
+      en: "The prohibition sits in the modal passive of the first paragraph: Fahrräder und Kinderwagen dürfen nicht im Flur abgestellt werden — darf nicht is the ban. The courtyard is the opposite of forbidden: the notice asks for exactly that (bitte stellen Sie sie in den Hof), and the entrance must stay free for walking, not stay unused."
+      ru: "Запрет сидит в модальном пассиве первого абзаца: Fahrräder und Kinderwagen dürfen nicht im Flur abgestellt werden — darf nicht и есть «нельзя». Двор — противоположность запрета: объявление как раз просит ставить туда (bitte stellen Sie sie in den Hof), а вход должен оставаться свободным для прохода, а не неиспользуемым."
+      uk: "Заборона сидить у модальному пасиві першого абзацу: Fahrräder und Kinderwagen dürfen nicht im Flur abgestellt werden — darf nicht і є «не можна». Двір — протилежність заборони: оголошення якраз просить ставити туди (bitte stellen Sie sie in den Hof), а вхід має лишатися вільним для проходу, а не невикористаним."
+      de: "Das Verbot steht im Modalpassiv des ersten Absatzes: Fahrräder und Kinderwagen dürfen nicht im Flur abgestellt werden — darf nicht ist das Verbot. Der Hof ist das Gegenteil von verboten: Genau darum bittet der Aushang (bitte stellen Sie sie in den Hof), und der Eingang soll frei bleiben, nicht unbenutzt."
+
+  - id: frage-aufzug
+    outcomes: [pflichten-verstehen]
+    type: mc
+    prompt: "Warum kann der Aufzug zwei Tage nicht benutzt werden?"
+    options:
+      - "Weil er auch gestrichen wird."
+      - "Weil er kaputt ist und repariert werden muss."
+      - "Weil die Handwerker ihn für ihr Material brauchen."
+    correct: 0
+    translation:
+      en: "Why can the lift not be used for two days?"
+      ru: "Почему лифтом нельзя пользоваться два дня?"
+      uk: "Чому ліфтом не можна користуватися два дні?"
+    explain:
+      en: "The cause and the consequence share one sentence: Der Aufzug wird auch gestrichen, sodass er am Dienstag und Mittwoch nicht benutzt werden kann. What stands before sodass is the reason — painting, not a breakdown and not the builders' material. The sodass-clause then names the result, with its verb chain kann at the very end."
+      ru: "Причина и следствие делят одно предложение: Der Aufzug wird auch gestrichen, sodass er am Dienstag und Mittwoch nicht benutzt werden kann. То, что стоит до sodass, — причина: покраска, а не поломка и не материалы рабочих. Придаточное с sodass называет следствие, и его глагольная цепочка с kann стоит в самом конце."
+      uk: "Причина і наслідок ділять одне речення: Der Aufzug wird auch gestrichen, sodass er am Dienstag und Mittwoch nicht benutzt werden kann. Те, що стоїть до sodass, — причина: фарбування, а не поломка і не матеріали робітників. Підрядне з sodass називає наслідок, і його дієслівний ланцюжок із kann стоїть у самому кінці."
+      de: "Ursache und Folge teilen sich einen Satz: Der Aufzug wird auch gestrichen, sodass er am Dienstag und Mittwoch nicht benutzt werden kann. Vor sodass steht der Grund — das Streichen, kein Defekt und kein Material. Der sodass-Satz nennt dann die Folge, mit der Verbkette und kann ganz am Ende."
+
+  - id: frage-wohnungstueren
+    outcomes: [pflichten-verstehen]
+    type: mc
+    prompt: "Was müssen die Mieter mit ihren Wohnungstüren machen?"
+    options:
+      - "Nichts — die Türen müssen nicht gestrichen werden."
+      - "Sie müssen sie bis Freitag neu streichen."
+      - "Sie müssen sie beim Hausmeister abgeben."
+    correct: 0
+    translation:
+      en: "What do the tenants have to do with their apartment doors?"
+      ru: "Что жильцы должны сделать со своими квартирными дверями?"
+      uk: "Що мешканці мають зробити зі своїми квартирними дверима?"
+    explain:
+      en: "The key is muss nicht: Ihre Wohnungstüren müssen nicht neu gestrichen werden lifts the duty — nobody has to do anything. It is not a ban either: whoever wants their door painted may have it done and contacts the Hausmeister by Friday. Reading muss nicht as a ban, or as an order with a deadline, is exactly the trap this notice sets."
+      ru: "Ключ — muss nicht: Ihre Wohnungstüren müssen nicht neu gestrichen werden снимает обязанность — никто ничего не должен. Но это и не запрет: кто хочет покрасить дверь, может это сделать и обращается к Hausmeister до пятницы. Прочитать muss nicht как запрет или как приказ со сроком — ровно та ловушка, которую ставит это объявление."
+      uk: "Ключ — muss nicht: Ihre Wohnungstüren müssen nicht neu gestrichen werden знімає обов'язок — ніхто нічого не мусить. Але це й не заборона: хто хоче пофарбувати двері, може це зробити і звертається до Hausmeister до п'ятниці. Прочитати muss nicht як заборону або як наказ зі строком — рівно та пастка, яку ставить це оголошення."
+      de: "Der Schlüssel ist muss nicht: Ihre Wohnungstüren müssen nicht neu gestrichen werden hebt die Pflicht auf — niemand muss etwas tun. Ein Verbot ist es auch nicht: Wer seine Tür gestrichen haben möchte, darf das und meldet sich bis Freitag beim Hausmeister. muss nicht als Verbot oder als Auftrag mit Frist zu lesen ist genau die Falle dieses Aushangs."

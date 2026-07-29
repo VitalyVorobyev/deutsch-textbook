@@ -524,7 +524,10 @@ describe('cards: recognition | both', () => {
     // B1.6 (konsum-umwelt, 2026-07-28) adds seventeen more — the deck's receptive tail
     // (Konsum … ökologisch): label, notice and report vocabulary a B1 learner reads on
     // packaging and on a bin but is not asked to produce.
-    expect(cards).toBe(entries * 2 - 61);
+    // B1.7 (regeln-verantwortung, 2026-07-29) adds seventeen more — the deck's receptive
+    // tail (Vorschrift … Konflikt): notice, sign and safety-leaflet vocabulary a B1
+    // learner reads on an Aushang or an Amt letter but is not asked to produce.
+    expect(cards).toBe(entries * 2 - 78);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

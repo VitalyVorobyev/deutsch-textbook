@@ -102,4 +102,6 @@ export const focusIntroducedBy: Record<string, string> = {
   'passiv-bildung': 'konsum-umwelt',
   'passiv-vergangenheit': 'konsum-umwelt',
   'je-desto': 'konsum-umwelt',
+  'passiv-modal': 'regeln-verantwortung',
+  'sodass-folge': 'regeln-verantwortung',
 };

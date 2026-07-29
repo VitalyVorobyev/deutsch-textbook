@@ -1,0 +1,209 @@
+# B1.7 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a laundry-room notice read cold, a polite negotiation
+# opener, a doorstep negotiation heard once, a dictation that turns the Nebensatz verb
+# chain into a typed decision, and the two open tasks the outcomes claim (a written
+# message to the Hausverwaltung and a spoken two-turn negotiation). Open tasks are
+# minimal ceremony: attempt → model → done; `requirements` and `checklist` are guidance
+# for comparing your own production against the model — the app cannot verify free
+# production, so it charges no steps for feedback it cannot give.
+# Tag notes. lesen-aushang carries duerfen-muessen: its question turns on telling the
+# darf-nicht ban from the kann option and the muss-nicht release, which is exactly that
+# confusion on the reading side. uebersetzen-koennten carries hoeflich-konjunktiv and is
+# the live runtime channel of the `deepens` edge to aemter-dienstleistungen, whose own
+# practice drills the polite-chunk register this negotiation reuses. hoeren-diktat
+# carries passiv-modal: dictation cannot grade a choice the learner never makes, but it
+# does grade whether the typed Nebensatz chain stacks gesperrt werden muss — participle,
+# werden, conjugated modal last. hoeren-gespraech stays untagged (following a negotiation
+# is genuinely mixed comprehension), and the write and speak tasks stay untagged —
+# unverified production must not feed the weakness signal.
+topic: regeln-verantwortung
+role: practice
+title:
+  en: "Production — read the notice, hear the caretaker, negotiate the solution"
+  ru: "Продукция — прочитать объявление, услышать коменданта, договориться о решении"
+  uk: "Продукція — прочитати оголошення, почути коменданта, домовитися про рішення"
+  de: "Produktion — den Aushang lesen, den Hausmeister hören, die Lösung aushandeln"
+items:
+  - id: lesen-aushang
+    outcomes: [pflichten-verstehen]
+    type: mc
+    focus: duerfen-muessen
+    prompt: "Am Schwarzen Brett hängt ein Aushang: „Ab Montag wird der Trockenraum umgebaut. Die Wäsche darf in dieser Zeit nicht im Treppenhaus aufgehängt werden. Der kleine Raum im Erdgeschoss kann kostenlos benutzt werden. Die alten Schlüssel müssen nicht zurückgegeben werden — sie passen auch für den neuen Raum.“ — Was ist während des Umbaus verboten?"
+    options:
+      - "Wäsche im Treppenhaus aufhängen."
+      - "Den Raum im Erdgeschoss benutzen."
+      - "Die alten Schlüssel behalten."
+    correct: 0
+    translation:
+      en: "A notice on the board says: \"From Monday the drying room will be converted. During this time washing may not be hung up in the stairwell. The small room on the ground floor can be used free of charge. The old keys do not have to be returned — they also fit the new room.\" — What is forbidden during the conversion?"
+      ru: "На доске объявлений висит листок: «С понедельника сушильную комнату перестраивают. В это время бельё нельзя развешивать на лестничной клетке. Маленькой комнатой на первом этаже можно пользоваться бесплатно. Старые ключи не обязательно возвращать — они подходят и к новой комнате». — Что запрещено во время перестройки?"
+      uk: "На дошці оголошень висить листок: «Від понеділка сушильну кімнату перебудовують. У цей час білизну не можна розвішувати на сходовій клітці. Маленькою кімнатою на першому поверсі можна користуватися безплатно. Старі ключі не обов'язково повертати — вони підходять і до нової кімнати». — Що заборонено під час перебудови?"
+    explain:
+      en: "The three signals of the article's table, read off one notice. The ban is the darf nicht sentence — Wäsche darf nicht aufgehängt werden. The ground-floor room sits under kann: an open option, the opposite of forbidden. And the keys sit under muss nicht: keeping them is not a violation, because nobody requires their return."
+      ru: "Три сигнала из таблицы статьи, считанные с одного объявления. Запрет — предложение с darf nicht: Wäsche darf nicht aufgehängt werden. Комната на первом этаже стоит под kann: открытая возможность, противоположность запрету. А ключи — под muss nicht: оставить их — не нарушение, потому что возврата никто не требует."
+      uk: "Три сигнали з таблиці статті, зчитані з одного оголошення. Заборона — речення з darf nicht: Wäsche darf nicht aufgehängt werden. Кімната на першому поверсі стоїть під kann: відкрита можливість, протилежність забороні. А ключі — під muss nicht: залишити їх — не порушення, бо повернення ніхто не вимагає."
+      de: "Die drei Signale aus der Tabelle des Artikels, an einem einzigen Aushang abgelesen. Das Verbot ist der darf-nicht-Satz — Wäsche darf nicht aufgehängt werden. Der Raum im Erdgeschoss steht unter kann: eine offene Möglichkeit, das Gegenteil von verboten. Und die Schlüssel stehen unter muss nicht: Sie zu behalten verletzt nichts, denn ihre Rückgabe verlangt niemand."
+
+  - id: uebersetzen-koennten
+    outcomes: [loesung-aushandeln]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "Translate the polite question — begin with Könnten wir."
+      ru: "Переведите вежливый вопрос — начните с Könnten wir."
+      uk: "Перекладіть ввічливе питання — почніть із Könnten wir."
+      de: "Übersetze die höfliche Frage — beginn mit Könnten wir."
+    prompt_en: "Could we find a solution together?"
+    prompt_ru: "Мы могли бы вместе найти решение?"
+    prompt_uk: "Ми могли б разом знайти рішення?"
+    answer: "Könnten wir zusammen eine Lösung finden?"
+    accept:
+      - "Könnten wir gemeinsam eine Lösung finden?"
+    key_tokens: ["Könnten"]
+    explain:
+      en: "The A2 politeness chunk doing negotiation work: Könnten softens Können from a question about ability into a proposal the other side can decline without a fight — which is what keeps a negotiation open. Graded is the Konjunktiv form alone; zusammen and gemeinsam are equally right. This is the register the Amt unit taught, reused at the caretaker's door."
+      ru: "Вежливая формула с A2 на переговорной работе: Könnten смягчает Können — из вопроса о возможности получается предложение, от которого собеседник может отказаться без конфликта, а именно это держит переговоры открытыми. Оценивается только форма конъюнктива; zusammen и gemeinsam одинаково верны. Это регистр главы про ведомства, повторно использованный у двери коменданта."
+      uk: "Ввічлива формула з A2 на перемовній роботі: Könnten пом'якшує Können — з питання про можливість виходить пропозиція, від якої співрозмовник може відмовитися без конфлікту, а саме це тримає перемовини відкритими. Оцінюється лише форма кон'юнктива; zusammen і gemeinsam однаково правильні. Це регістр розділу про відомства, повторно використаний біля дверей коменданта."
+      de: "Der Höflichkeits-Chunk aus A2 bei der Verhandlungsarbeit: Könnten macht aus der Fähigkeitsfrage Können einen Vorschlag, den die andere Seite ohne Streit ablehnen kann — genau das hält ein Gespräch offen. Bewertet wird allein die Konjunktivform; zusammen und gemeinsam sind gleich richtig. Es ist das Register der Amts-Einheit, wiederverwendet an der Tür des Hausmeisters."
+
+  - id: hoeren-gespraech
+    outcomes: [loesung-aushandeln]
+    type: audio-comprehension
+    instruction:
+      en: "A conversation at the front door, heard once — listen for what the two agree on in the end."
+      ru: "Разговор у подъезда, услышанный один раз, — слушайте, о чём двое договариваются в итоге."
+      uk: "Розмова біля під'їзду, почута один раз, — слухайте, про що двоє домовляються врешті."
+      de: "Ein Gespräch an der Haustür, einmal gehört — achte darauf, worauf sich die beiden am Ende einigen."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Hausmeister", text: "Guten Tag! Ihr Kinderwagen steht im Flur. Der Flur muss frei bleiben — im Notfall ist er der Weg nach draußen." }
+        - { speaker: "Mieterin", text: "Das verstehe ich. Aber der Aufzug ist so klein, und wir wohnen im vierten Stock." }
+        - { speaker: "Hausmeister", text: "Unter der Treppe ist Platz. Dort dürfen Kinderwagen stehen, wenn der Weg zur Tür frei bleibt." }
+        - { speaker: "Mieterin", text: "Gut, dann stelle ich ihn ab heute unter die Treppe. Danke!" }
+    question: "Worauf einigen sich die beiden?"
+    options:
+      - "Der Kinderwagen darf unter der Treppe stehen, wenn der Weg zur Tür frei bleibt."
+      - "Der Kinderwagen muss in die Wohnung gebracht werden."
+      - "Der Kinderwagen darf im Flur stehen bleiben."
+    correct: 0
+    translation:
+      en: "What do the two agree on?"
+      ru: "О чём договариваются эти двое?"
+      uk: "Про що домовляються ці двоє?"
+    explain:
+      en: "The agreement lives in the last two turns: the caretaker names a place and a condition — unter der Treppe, wenn der Weg zur Tür frei bleibt — and the tenant accepts it. Carrying the pram upstairs is never proposed by anyone, and the hallway is exactly what the first turn rules out. Following who concedes what is the listening half of negotiating."
+      ru: "Договорённость живёт в двух последних репликах: комендант называет место и условие — unter der Treppe, wenn der Weg zur Tür frei bleibt, — и жилица его принимает. Носить коляску в квартиру никто не предлагал, а коридор — ровно то, что исключает первая реплика. Следить, кто в чём уступает, — слушательная половина переговоров."
+      uk: "Домовленість живе у двох останніх репліках: комендант називає місце й умову — unter der Treppe, wenn der Weg zur Tür frei bleibt, — і мешканка її приймає. Носити візочок у квартиру ніхто не пропонував, а коридор — рівно те, що виключає перша репліка. Стежити, хто в чому поступається, — слухацька половина перемовин."
+      de: "Die Einigung steckt in den letzten zwei Repliken: Der Hausmeister nennt einen Ort und eine Bedingung — unter der Treppe, wenn der Weg zur Tür frei bleibt —, und die Mieterin nimmt an. Den Wagen in die Wohnung zu tragen schlägt niemand vor, und der Flur ist genau das, was die erste Replik ausschließt. Zu hören, wer worin nachgibt, ist die Hörhälfte des Verhandelns."
+
+  - id: hoeren-diktat
+    outcomes: [pflichten-verstehen]
+    type: listen
+    focus: passiv-modal
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Es wird gebaut, sodass der Weg gesperrt werden muss."
+    translation:
+      en: "Building work is going on, so the path has to be closed."
+      ru: "Идёт стройка, так что дорожку приходится перекрывать."
+      uk: "Триває будівництво, так що доріжку доводиться перекривати."
+    explain:
+      en: "Nine words, and the last three are the whole lesson: inside a Nebensatz the chain stacks gesperrt werden muss — participle, then the infinitive werden, then the conjugated modal at the very end, exactly the Feinheiten row of the article. Fingers that type gesperrt muss werden heard the words and restored the main-clause order."
+      ru: "Девять слов, и последние три — весь урок: внутри придаточного цепочка складывается как gesperrt werden muss — причастие, затем инфинитив werden, затем спрягаемый модальный в самом конце, ровно строка из Feinheiten статьи. Пальцы, напечатавшие gesperrt muss werden, услышали слова, но вернули порядок главного предложения."
+      uk: "Дев'ять слів, і останні три — весь урок: усередині підрядного ланцюжок складається як gesperrt werden muss — дієприкметник, потім інфінітив werden, потім відмінюване модальне в самому кінці, рівно рядок із Feinheiten статті. Пальці, що надрукували gesperrt muss werden, почули слова, але повернули порядок головного речення."
+      de: "Neun Wörter, und die letzten drei sind die ganze Lektion: Im Nebensatz stapelt sich die Kette gesperrt werden muss — Partizip, dann der Infinitiv werden, dann das konjugierte Modalverb ganz am Ende, genau die Feinheiten-Zeile des Artikels. Wer gesperrt muss werden tippt, hat die Wörter gehört und die Hauptsatz-Ordnung wiederhergestellt."
+
+  - id: schreiben-nachricht
+    outcomes: [folgen-benennen]
+    type: write
+    instruction:
+      en: "Write the message yourself — the list shows what to check it against."
+      ru: "Напишите сообщение сами — список подскажет, что в нём проверить."
+      uk: "Напишіть повідомлення самі — список підкаже, що в ньому перевірити."
+      de: "Schreib die Nachricht selbst — die Liste zeigt, woran du sie prüfen kannst."
+    prompt:
+      en: "A notice says the bicycle cellar will be converted for four weeks and may not be used during that time. Write a short message to the building management: restate the rule, name what follows from it for you (with sodass), and propose a practical solution."
+      ru: "В объявлении сказано: велосипедный подвал четыре недели будут перестраивать, и пользоваться им в это время нельзя. Напишите короткое сообщение в управляющую компанию: перескажите правило, назовите, что из него следует для вас (через sodass), и предложите практичное решение."
+      uk: "В оголошенні сказано: велосипедний підвал чотири тижні перебудовуватимуть, і користуватися ним у цей час не можна. Напишіть коротке повідомлення в керуючу компанію: перекажіть правило, назвіть, що з нього випливає для вас (через sodass), і запропонуйте практичне рішення."
+      de: "Ein Aushang sagt: Der Fahrradkeller wird vier Wochen umgebaut und darf in dieser Zeit nicht benutzt werden. Schreib eine kurze Nachricht an die Hausverwaltung: Gib die Regel wieder, nenn, was daraus für dich folgt (mit sodass), und schlag eine praktische Lösung vor."
+    goal:
+      en: "A message that moves from rule to consequence to proposal — the written half of a negotiation."
+      ru: "Сообщение, которое идёт от правила к следствию и к предложению, — письменная половина переговоров."
+      uk: "Повідомлення, яке йде від правила до наслідку й до пропозиції, — письмова половина перемовин."
+      de: "Eine Nachricht, die von der Regel über die Folge zum Vorschlag geht — die schriftliche Hälfte einer Verhandlung."
+    requirements:
+      - en: "Restate the rule in the modal passive: Der Keller darf vier Wochen nicht benutzt werden. The modal is conjugated in position 2; the clause ends with Partizip II + werden, in that order."
+        ru: "Перескажите правило модальным пассивом: Der Keller darf vier Wochen nicht benutzt werden. Модальный глагол спрягается на втором месте; предложение заканчивается на Partizip II + werden, именно в этом порядке."
+        uk: "Перекажіть правило модальним пасивом: Der Keller darf vier Wochen nicht benutzt werden. Модальне дієслово відмінюється на другому місці; речення закінчується на Partizip II + werden, саме в цьому порядку."
+        de: "Gib die Regel im Modalpassiv wieder: Der Keller darf vier Wochen nicht benutzt werden. Das Modalverb ist konjugiert auf Position 2; der Satz endet mit Partizip II + werden, in dieser Reihenfolge."
+      - en: "At least two sodass sentences naming consequences — and in a sodass clause the finite verb goes to the end: …, sodass ich mein Fahrrad nirgends abstellen kann."
+        ru: "Не меньше двух предложений с sodass, называющих следствия, — и в придаточном с sodass спрягаемый глагол уходит в конец: …, sodass ich mein Fahrrad nirgends abstellen kann."
+        uk: "Щонайменше два речення з sodass, що називають наслідки, — і в підрядному з sodass відмінюване дієслово йде в кінець: …, sodass ich mein Fahrrad nirgends abstellen kann."
+        de: "Mindestens zwei sodass-Sätze, die Folgen benennen — und im sodass-Satz geht das finite Verb ans Ende: …, sodass ich mein Fahrrad nirgends abstellen kann."
+      - en: "Check every modal against its meaning: darf nicht for what the notice forbids, muss nicht for what it merely does not require — the pair the reader on the other side will take literally."
+        ru: "Сверьте каждый модальный глагол со смыслом: darf nicht — для того, что объявление запрещает, muss nicht — для того, чего оно просто не требует; читатель на той стороне поймёт эту пару буквально."
+        uk: "Звірте кожне модальне дієслово зі змістом: darf nicht — для того, що оголошення забороняє, muss nicht — для того, чого воно просто не вимагає; читач на тому боці зрозуміє цю пару буквально."
+        de: "Prüfe jedes Modalverb gegen seine Bedeutung: darf nicht für das, was der Aushang verbietet, muss nicht für das, was er nur nicht verlangt — der Leser auf der anderen Seite nimmt dieses Paar wörtlich."
+      - en: "End with a proposal the management can answer with yes or no: Könnten Sie …? or Kann eine Ausnahme gemacht werden? — a polite question, not a demand."
+        ru: "Закончите предложением, на которое компания может ответить «да» или «нет»: Könnten Sie …? или Kann eine Ausnahme gemacht werden? — вежливый вопрос, а не требование."
+        uk: "Закінчіть пропозицією, на яку компанія може відповісти «так» або «ні»: Könnten Sie …? або Kann eine Ausnahme gemacht werden? — ввічливе питання, а не вимога."
+        de: "Schließe mit einem Vorschlag, auf den die Verwaltung mit Ja oder Nein antworten kann: Könnten Sie …? oder Kann eine Ausnahme gemacht werden? — eine höfliche Frage, keine Forderung."
+    min_words: 60
+    model_answer: "Sehr geehrte Hausverwaltung, ich habe den Aushang zum Fahrradkeller gelesen. Der Keller darf vier Wochen nicht benutzt werden, sodass ich mein Fahrrad nirgends abstellen kann. Ich fahre jeden Tag mit dem Rad zur Arbeit, sodass ich dringend einen Platz brauche. Im Hof neben den Tonnen ist etwas Platz. Könnten dort für die Zeit des Umbaus Fahrräder abgestellt werden? Die Räder müssen ja nicht im Keller stehen — sie brauchen nur einen trockenen Platz. Können wir uns auf diese Lösung einigen? Mit freundlichen Grüßen, L. Hermann"
+    model_translation:
+      en: "Dear building management, I have read the notice about the bicycle cellar. The cellar may not be used for four weeks, so I have nowhere to put my bicycle. I cycle to work every day, so I urgently need a spot. There is some space in the courtyard next to the bins. Could bicycles be parked there for the duration of the conversion? The bikes do not have to stand in the cellar — they only need a dry spot. Can we agree on this solution? Kind regards, L. Hermann"
+      ru: "Уважаемая управляющая компания! Я прочитал объявление о велосипедном подвале. Подвалом нельзя пользоваться четыре недели, так что мне негде оставить велосипед. Я каждый день езжу на работу на велосипеде, так что место мне нужно срочно. Во дворе рядом с баками есть немного места. Нельзя ли на время перестройки ставить велосипеды там? Велосипедам ведь не обязательно стоять в подвале — им нужно лишь сухое место. Можем ли мы договориться о таком решении? С уважением, Л. Херманн"
+      uk: "Шановна керуюча компаніє! Я прочитав оголошення про велосипедний підвал. Підвалом не можна користуватися чотири тижні, так що мені ніде залишити велосипед. Я щодня їжджу на роботу велосипедом, так що місце мені потрібне терміново. У дворі біля баків є трохи місця. Чи не можна на час перебудови ставити велосипеди там? Велосипедам же не обов'язково стояти в підвалі — їм потрібне лише сухе місце. Чи можемо ми домовитися про таке рішення? З повагою, Л. Херманн"
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The rule returns in the modal passive (darf nicht benutzt werden), two consequences hang on sodass with their verbs at the wall (abstellen kann, brauche), one muss nicht releases rather than forbids, and the proposal is a question the reader can grant — kann … abgestellt werden names no doer, so nobody is being ordered around."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Правило возвращается модальным пассивом (darf nicht benutzt werden), два следствия подвешены на sodass с глаголами у стены (abstellen kann, brauche), одно muss nicht освобождает, а не запрещает, и предложение — вопрос, на который читатель может согласиться: kann … abgestellt werden не называет исполнителя, так что никто не получает приказов."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Правило повертається модальним пасивом (darf nicht benutzt werden), два наслідки підвішені на sodass з дієсловами біля стіни (abstellen kann, brauche), одне muss nicht звільняє, а не забороняє, і пропозиція — питання, на яке читач може погодитися: kann … abgestellt werden не називає виконавця, тож ніхто не отримує наказів."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Die Regel kehrt im Modalpassiv zurück (darf nicht benutzt werden), zwei Folgen hängen an sodass mit den Verben an der Wand (abstellen kann, brauche), ein muss nicht befreit statt zu verbieten, und der Vorschlag ist eine Frage, die der Leser bewilligen kann — kann … abgestellt werden nennt keinen Täter, also wird niemand herumkommandiert."
+
+  - id: sprechen-aushandeln
+    outcomes: [loesung-aushandeln]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Speak your part aloud, twice: answer the first turn, then react to the reply."
+      ru: "Произнесите свою часть вслух, дважды: ответьте на первую реплику, затем отреагируйте на ответ."
+      uk: "Промовте свою частину вголос, двічі: дайте відповідь на першу репліку, потім відреагуйте на відповідь."
+      de: "Sprich deinen Part laut, zweimal: Antworte auf die erste Replik, dann reagiere auf die Antwort."
+    prompt:
+      en: "The caretaker stops you in the hallway: „Mehrere Nachbarn haben sich beschwert: Nach 22 Uhr darf nicht gebohrt werden — auch nicht am Wochenende.“ Answer him: apologize briefly, give your reason (you have just moved in), and propose a solution. — Then the caretaker replies: „Na gut. Aber am Sonntag muss es im Haus ganz ruhig bleiben. Einverstanden?“ React to this reply too and close the agreement."
+      ru: "Комендант останавливает вас в коридоре: „Mehrere Nachbarn haben sich beschwert: Nach 22 Uhr darf nicht gebohrt werden — auch nicht am Wochenende.“ Ответьте ему: коротко извинитесь, назовите причину (вы только что переехали) и предложите решение. — Затем комендант отвечает: „Na gut. Aber am Sonntag muss es im Haus ganz ruhig bleiben. Einverstanden?“ Отреагируйте и на этот ответ и закрепите договорённость."
+      uk: "Комендант зупиняє вас у коридорі: „Mehrere Nachbarn haben sich beschwert: Nach 22 Uhr darf nicht gebohrt werden — auch nicht am Wochenende.“ Дайте йому відповідь: коротко перепросіть, назвіть причину (ви щойно переїхали) і запропонуйте рішення. — Потім комендант відповідає: „Na gut. Aber am Sonntag muss es im Haus ganz ruhig bleiben. Einverstanden?“ Відреагуйте й на цю відповідь і закріпіть домовленість."
+      de: "Der Hausmeister spricht dich im Flur an: „Mehrere Nachbarn haben sich beschwert: Nach 22 Uhr darf nicht gebohrt werden — auch nicht am Wochenende.“ Antworte ihm: Entschuldige dich kurz, nenn deinen Grund (du bist gerade umgezogen) und schlag eine Lösung vor. — Danach antwortet der Hausmeister: „Na gut. Aber am Sonntag muss es im Haus ganz ruhig bleiben. Einverstanden?“ Reagiere auch auf diese Antwort und mach die Einigung fest."
+    goal:
+      en: "A two-turn negotiation: accept the rule, give your reason, propose something concrete — then close the deal on the caretaker's condition."
+      ru: "Переговоры в две реплики: принять правило, назвать причину, предложить конкретное решение — а затем закрепить договорённость на условии коменданта."
+      uk: "Перемовини у дві репліки: прийняти правило, назвати причину, запропонувати конкретне рішення — а потім закріпити домовленість на умові коменданта."
+      de: "Eine Verhandlung über zwei Repliken: die Regel annehmen, den Grund nennen, etwas Konkretes vorschlagen — und dann die Einigung zur Bedingung des Hausmeisters festmachen."
+    checklist:
+      - en: "You restated the rule instead of fighting it — Ich weiß, nach 22 Uhr darf nicht gebohrt werden — and your reason hung on sodass or weil with the verb at the clause end: Wir sind gerade umgezogen, sodass noch viele Möbel aufgebaut werden müssen."
+        ru: "Вы пересказали правило, а не спорили с ним — Ich weiß, nach 22 Uhr darf nicht gebohrt werden, — а причина подвешена на sodass или weil с глаголом в конце придаточного: Wir sind gerade umgezogen, sodass noch viele Möbel aufgebaut werden müssen."
+        uk: "Ви переказали правило, а не сперечалися з ним — Ich weiß, nach 22 Uhr darf nicht gebohrt werden, — а причина підвішена на sodass або weil з дієсловом у кінці підрядного: Wir sind gerade umgezogen, sodass noch viele Möbel aufgebaut werden müssen."
+        de: "Du hast die Regel wiedergegeben statt gegen sie zu reden — Ich weiß, nach 22 Uhr darf nicht gebohrt werden — und dein Grund hing an sodass oder weil mit dem Verb am Satzende: Wir sind gerade umgezogen, sodass noch viele Möbel aufgebaut werden müssen."
+      - en: "The proposal left the doer open with the modal passive or a Könnten-question: Vielleicht kann das Bohren am Samstagvormittag erledigt werden? / Könnten wir …?"
+        ru: "Предложение не называло исполнителя — модальный пассив или вопрос с Könnten: Vielleicht kann das Bohren am Samstagvormittag erledigt werden? / Könnten wir …?"
+        uk: "Пропозиція не називала виконавця — модальний пасив або питання з Könnten: Vielleicht kann das Bohren am Samstagvormittag erledigt werden? / Könnten wir …?"
+        de: "Der Vorschlag ließ den Täter offen — Modalpassiv oder Könnten-Frage: Vielleicht kann das Bohren am Samstagvormittag erledigt werden? / Könnten wir …?"
+      - en: "Your second turn answered the condition, not just the mood: Einverstanden — am Sonntag machen wir gar nichts, or Können wir uns darauf einigen? A negotiation ends when the condition is repeated and accepted."
+        ru: "Вторая реплика ответила на условие, а не только на настроение: Einverstanden — am Sonntag machen wir gar nichts или Können wir uns darauf einigen? Переговоры заканчиваются, когда условие повторено и принято."
+        uk: "Друга репліка відповіла на умову, а не лише на настрій: Einverstanden — am Sonntag machen wir gar nichts або Können wir uns darauf einigen? Перемовини закінчуються, коли умову повторено і прийнято."
+        de: "Deine zweite Replik hat auf die Bedingung geantwortet, nicht nur auf die Stimmung: Einverstanden — am Sonntag machen wir gar nichts, oder Können wir uns darauf einigen? Eine Verhandlung endet, wenn die Bedingung wiederholt und angenommen ist."
+    model_answer: "Entschuldigen Sie bitte — das war ich, und es tut mir leid. Wir sind letzte Woche umgezogen, sodass noch viele Möbel aufgebaut werden müssen. Ich habe nicht auf die Uhr geschaut. Vielleicht kann das Bohren am Samstagvormittag erledigt werden? Dann bleibt es abends und nachts ruhig. — Ja, einverstanden, das ist fair. Am Sonntag machen wir gar nichts, versprochen. Und sagen Sie den Nachbarn bitte, dass es mir leidtut. Danke für Ihr Verständnis!"
+    model_translation:
+      en: "I am sorry — that was me, and I apologize. We moved in last week, so a lot of furniture still has to be assembled. I did not watch the clock. Perhaps the drilling can be done on Saturday morning? Then the evenings and nights stay quiet. — Yes, agreed, that is fair. On Sunday we will do nothing at all, promise. And please tell the neighbours I am sorry. Thank you for your understanding!"
+      ru: "Извините, пожалуйста, — это был я, и мне жаль. Мы переехали на прошлой неделе, так что ещё нужно собрать много мебели. Я не следил за временем. Может быть, сверлить можно будет в субботу до обеда? Тогда вечером и ночью будет тихо. — Да, согласен, это честно. В воскресенье мы не будем делать вообще ничего, обещаю. И передайте, пожалуйста, соседям, что мне жаль. Спасибо за понимание!"
+      uk: "Вибачте, будь ласка, — це був я, і мені прикро. Ми переїхали минулого тижня, так що ще треба зібрати багато меблів. Я не стежив за часом. Можливо, свердлити можна буде в суботу до обіду? Тоді ввечері й уночі буде тихо. — Так, згоден, це чесно. У неділю ми не робитимемо взагалі нічого, обіцяю. І перекажіть, будь ласка, сусідам, що мені прикро. Дякую за розуміння!"
+    explain:
+      en: "The model makes the moves the checklist names, in order: apology, the reason hung on sodass with the chain aufgebaut werden müssen at its wall, a proposal that names no doer (kann … erledigt werden), and a close that repeats the caretaker's condition in its own words before accepting it. Say it a second time and listen for those three verb endings."
+      ru: "Образец делает ходы из чек-листа по порядку: извинение, причина на sodass с цепочкой aufgebaut werden müssen у стены, предложение без исполнителя (kann … erledigt werden) и финал, который повторяет условие коменданта своими словами и лишь потом принимает его. Произнесите текст второй раз и вслушайтесь в эти три глагольных конца."
+      uk: "Зразок робить ходи з чек-листа по порядку: вибачення, причина на sodass з ланцюжком aufgebaut werden müssen біля стіни, пропозиція без виконавця (kann … erledigt werden) і фінал, що повторює умову коменданта своїми словами і лише потім приймає її. Промовте текст удруге і вслухайтеся в ці три дієслівні кінці."
+      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Entschuldigung, der Grund an sodass mit der Kette aufgebaut werden müssen an der Wand, ein Vorschlag ohne Täter (kann … erledigt werden) und ein Schluss, der die Bedingung des Hausmeisters mit eigenen Worten wiederholt, bevor er sie annimmt. Sprich den Text ein zweites Mal und hör auf diese drei Verb-Enden."
