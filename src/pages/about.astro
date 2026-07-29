@@ -23,9 +23,10 @@ const coverage = goetheCoverage('A1');
 // A level with no committed Wortliste manifest has no coverage figure, and must not
 // invent one. A2 gets its sentence only once data/goethe-a2-wortliste.txt exists.
 const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
-// B1 has a manifest but no units: the figure below measures how much of the B1
-// Wortliste the A1/A2 decks already teach — a claim about the learner's lexis,
-// never about B1 completeness.
+// B1 is part-authored, so its Wortliste figure is mostly inherited: it measures how
+// much of the B1 list the A1/A2 decks already teach, which is a claim about the
+// learner's lexis and never about B1 completeness. How far the *level* has come is
+// the grammar figure below plus the unit count, both computed like everything else.
 const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
 // The structural counterpart to the Wortliste figure, and it exists because the lexical
 // one was carrying the whole claim: A2 was called content-complete for months on the
@@ -33,6 +34,10 @@ const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
 // from the content at build time, like every other number on this page.
 const grammarA1 = grammarCoverage('A1');
 const grammarA2 = grammarCoverage('A2');
+// The same instrument answers "how far is B1", which is the question the card below used
+// to answer with a hand-written sentence — it claimed a ten-unit contract and one live
+// unit long after the contract was amended and six more units had shipped.
+const grammarB1 = grammarCoverage('B1');
 // The Ukrainian-half figure, same earned-claims rule: measured from the content
 // files at build time, never hand-written — and a shortfall would be stated as one.
 // The paragraph below also says the half covers every file, which is a claim rather
@@ -41,20 +46,18 @@ const grammarA2 = grammarCoverage('A2');
 // this page's prose wrong.
 const ukCoverage = ukHalfCoverage();
 
-const levels = ['A1', 'A2'] as const;
-const stats = levels.map((level) => {
-  const words = new Set(
-    vocab.filter((deck) => deck.data.level === level).flatMap((deck) => deck.data.entries.map((e) => e.de)),
-  );
-  return {
-    level,
-    topics: topics.filter((t) => t.data.level === level).length,
-    units: units.filter((u) => u.level === level).length,
-    words: words.size,
-  };
-});
+const levels = ['A1', 'A2', 'B1'] as const;
+const stats = levels.map((level) => ({
+  level,
+  units: units.filter((u) => u.level === level).length,
+}));
 const a1 = stats.find((s) => s.level === 'A1')!;
 const a2 = stats.find((s) => s.level === 'A2')!;
+const b1 = stats.find((s) => s.level === 'B1')!;
+// The Wörter tile counts every level, like its three siblings. It was A1+A2 only, which
+// silently dropped the B1 decks the moment they existed — a tile row where one number
+// answers a different question from the other three is worse than no tile.
+const totalWords = new Set(vocab.flatMap((deck) => deck.data.entries.map((e) => e.de))).size;
 // Checkpoints are content, so the claims below are too: whether a level has one
 // at all, and how big it is, are both read off the checkpoint sets.
 const checkpoints = await getCheckpoints();
@@ -316,27 +319,42 @@ const principles = [
         </h3>
         <p class="mt-2 max-w-prose text-sm text-stone-600 dark:text-stone-400">
           <span class="lang-en">
-            B1 authoring has begun: the curriculum is contracted at ten units, and the first is
-            live. The long-term aim is B2, and the course is built so that levels can be added
-            without disturbing what you have already learned.
+            {b1.units} B1 units are live so far, each built like an A2 one — pretest, article,
+            graded reading, exercises, delayed probe and its own vocabulary — and each also
+            explained in German for learners who no longer need the detour through another
+            language. {grammarB1.covered} of the {grammarB1.total} grammar points the B1 standard
+            expects are taught ({grammarB1.percent}%), measured the same way as at A1 and A2: a
+            point counts only where a practice or drill item names the confusion it drills. The
+            long-term aim is B2, and the course is built so that levels can be added without
+            disturbing what you have already learned.
             {coverageB1 &&
               ` ${coverageB1.cards + coverageB1.grammar} of the ${coverageB1.total} headwords on the
               official Goethe-Institut B1 Wortliste are covered so far (${coverageB1.percent}%) —
               most of it inherited from A1/A2 material, not progress on the level itself.`}
           </span>
           <span class="lang-ru">
-            Работа над B1 началась: учебный план зафиксирован на десяти юнитах, первый уже доступен.
-            Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись, не
-            затрагивая уже пройденное.
+            Пока доступно {b1.units} юнитов уровня B1. Каждый устроен так же, как юнит A2 —
+            претест, статья, текст для чтения, упражнения, отложенная проверка и собственный
+            словарь, — и вдобавок объясняется по-немецки: для тех, кому уже не нужен обходной путь
+            через другой язык. Из {grammarB1.total} грамматических пунктов, которых ожидает
+            стандарт B1, изложено {grammarB1.covered} ({grammarB1.percent}%); мерка та же, что на
+            A1 и A2: пункт засчитывается, только если упражнение прямо называет соответствующую
+            трудность. Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись,
+            не затрагивая уже пройденное.
             {coverageB1 &&
               ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste пока
               охвачено ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) — в
               основном унаследовано от материалов A1–A2, а не прогресс по самому уровню.`}
           </span>
           <span class="lang-uk">
-            Робота над B1 почалася: навчальний план зафіксовано на десяти юнітах, і перший уже
-            доступний. Довгострокова мета — B2, і курс побудовано так, щоб нові рівні додавалися,
-            не зачіпаючи того, що ви вже вивчили.
+            Наразі доступно {b1.units} юнітів рівня B1. Кожен побудовано так само, як юніт A2 —
+            претест, стаття, адаптований текст для читання, вправи, відкладена перевірка і власний
+            словник, — а ще кожен пояснено німецькою: для тих, кому вже не потрібен обхідний шлях
+            через іншу мову. Із {grammarB1.total} граматичних пунктів, яких очікує стандарт B1,
+            викладено {grammarB1.covered} ({grammarB1.percent}%); мірка та сама, що на A1 і A2:
+            пункт зараховується лише тоді, коли вправа прямо називає відповідну трудність.
+            Довгострокова мета — B2, і курс побудовано так, щоб нові рівні додавалися, не зачіпаючи
+            того, що ви вже вивчили.
             {coverageB1 &&
               ` Із ${coverageB1.total} слів офіційного списку Goethe-Institut B1 Wortliste поки що
               охоплено ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) — здебільшого
@@ -375,7 +393,7 @@ const principles = [
         ['Themen', String(topics.length)],
         ['Übungssätze', String(exercises.length)],
         ['Lesetexte', String(readings.length)],
-        ['Wörter', `${a1.words + a2.words}`],
+        ['Wörter', String(totalWords)],
       ].map(([label, value]) => (
         <div class="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800">
           <dt lang="de" class="text-xs uppercase tracking-wide text-stone-400">{label}</dt>
