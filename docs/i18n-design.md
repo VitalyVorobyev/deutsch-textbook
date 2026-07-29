@@ -139,8 +139,9 @@ its explanation prose is not immersion, it is a table collection.
   feedback at the item — which is where the teaching happens. No gate saw it, because `de` parity
   only fires once a file already carries one `de`; a file with none is silently conformant, and
   that is exactly what an un-backfilled file is. Closed by authoring all **197** halves
-  (`bun -e '…deParityProblems(parse(readFileSync(f)), {forceDe: true})…'` per file, now 0 for all
-  15). Measured cost of the fourth half over those files: **1.90x** against two halves
+  (`bun -e '…deParityProblems(parse(readFileSync(f)), {forceDe: true})…'` per file, 0 for all 15
+  B1 files as they stood on 2026-07-25; every B1 unit shipped since is authored with `de` from the
+  start). Measured cost of the fourth half over those files: **1.90x** against two halves
   (`bun scripts/lang-cost.ts content/exercises/b1/*.yaml content/reading/b1/*.yaml`) — near the
   1.98x the article pilot recorded, so the fourth half prices the same in items as in prose.
 - `pick()` falls back **`de → en`**, mirroring `uk → en`.

@@ -29,7 +29,8 @@ did not do: it re-packaged the prose without rewriting its sentences. Sentence-l
 happened only where a sentence duplicated the table beside it.
 
 **The structural cause was one missing convention.** Nine A2 topics split `## Erklärung` into
-`### German subsections`; all five B1 topics used none. `a2/nebensaetze-plaene` renders as
+`### German subsections`; all five B1 topics that existed at the time used none. (Every B1 article
+carries them now — the five this pass segmented, and B1.6/B1.7 authored with the convention.) `a2/nebensaetze-plaene` renders as
 *heading → table → ~50-word block → heading → table → ~60-word block*. `b1/arbeit-bewerbung`
 rendered as *one 397-word block, then its two tables 130 lines later*. The bolded lead sentence was
 doing a heading's job without being one — so it could not be navigated to, could not stay visible

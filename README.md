@@ -6,8 +6,8 @@ A free, local-first app by **Vitaly Vorobyev** for learning German — a structu
 exercises, and spaced-repetition flashcards in one place. It runs in your browser
 or as a desktop app and keeps everything on your device. Explanations are
 bilingual: every topic is written twice, in English and in Russian (Ukrainian
-too), and you switch between them at any time. The German itself — examples,
-tables, readings — is always visible.
+too, and German itself from B1 on), and you switch between them at any time.
+The German examples, tables and readings are always visible.
 
 ![Deutsch-Atlas — the daily “Heute” session screen](docs/ui.png)
 
@@ -24,13 +24,20 @@ mastered, and the next topic to learn.*
 
 ## What's inside
 
-- **A complete A1 and A2 course, and B1 in progress** — ten A1 and seventeen A2
+- **A complete A1 and A2 course, and B1 in progress** — ten A1 and twenty-two A2
   units, each with a diagnostic pretest, a full article, a graded reading,
-  exercises, and its own vocabulary; the first three contracted B1 units are
-  live (`rg -l '^status: reviewed$' content/topics/b1/*.mdx | wc -l | tr -d ' '`).
-  Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
+  exercises, and its own vocabulary; seven of the fourteen contracted B1 units
+  are live. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
   covered, and the Über page reports how far each level goes with figures
   measured from the content itself, not hand-written.
+
+<!-- The figures above are re-derived, never remembered. `bun test` fails if this
+     bullet and the content disagree (tests/published-claims.test.ts).
+       units per level:   bun -e 'const {getCurriculum}=await import("./src/lib/curriculum.ts");
+                            const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1;
+                            console.log(c)'
+       B1 contract total: docs/curriculum-a2-b1.md — frozen 2026-07-24 at fourteen units -->
+
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,
   matching, word order, tables, translation, open writing, speaking, and
   listening or reading comprehension. Get one wrong and a short explanation of
@@ -114,6 +121,7 @@ schemas. Bun is the package manager and task runner.
 | `bun run review:gate` | require green CI, resolved review threads and a current-HEAD Codex review |
 | `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
 | `bun scripts/coverage.ts A1` | Goethe Wortliste coverage report (`A1`, `A2` or `B1`) |
+| `bun scripts/grammar-coverage.ts A1` | structural coverage against the grammar inventory (`A1`, `A2` or `B1`) |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
 
 Before opening a pull request, run the complete gate — the same one CI runs:

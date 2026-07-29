@@ -47,7 +47,7 @@ free production, matching its persistent row — the existing drill keeps servin
 Mittelfeld Angaben-order errors surfaced in B1 items, expected-not-yet-taught (B1.14
 `wortstellung-angaben` territory, no action now); genus slips on feminine nouns (`Bescheinigung`,
 `Stelle`, `Sendung`) recorded as drill notes in the rulings. The P5-11a lapse-entry review
-closed clean the same day (see Recently completed). B1.6+B1.7 authoring proceeds per contract.
+closed clean the same day (see Recently completed). B1.8+B1.9 authoring proceeds per contract.
 
 ### P9-2 · Entdecken pieces
 
@@ -109,13 +109,14 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   family, the way `probe-biografie-erfahrungen-hilfsverb` carries A2's second past on a second
   topic. **A second family re-arms the topic**: measure `armedAt` before and after, or probes
   already taken are silently relabelled.
-- **P18-4 · The RU/UK produktion-set titles name goods, not speech** — all six B1
+- **P18-4 · The RU/UK produktion-set titles name goods, not speech** — all seven B1
   `*-produktion` sets title themselves «Продукция»/«Продукція», which reads as manufactured
   output, not language production (the intended sense). Counted by the title grep over
-  `content/exercises/b1/*-produktion.yaml`: six files, title fields only, no ids touched. If
+  `content/exercises/b1/*-produktion.yaml`: seven files, title fields only, no ids touched. If
   retitled («Речевая практика» / «Мовна практика», or the mission line the EN titles already
-  carry), do all six in one pass so the convention stays uniform — B1.6 shipped with the
-  precedent spelling for exactly that reason.
+  carry), do all seven in one pass so the convention stays uniform — B1.6 and B1.7 shipped with
+  the precedent spelling for exactly that reason, and every later unit will too until this is
+  ruled on.
 - **P18-5 · A write-task guidance line claims the main-clause passive frame for every clause** —
   `schreiben-produktgeschichte` (`konsum-umwelt-produktion.yaml`) requires: "Every passive
   sentence keeps the frame: werden in position 2, the Partizip II at the very end" — false in
@@ -124,6 +125,25 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   guidance on an unverified write task, so nothing mis-grades, but it is teaching text:
   qualify all four halves with "in a main clause" and point the Nebensatz case at the A2
   rule. Flagged by Codex in #123 round 5; filed at wrap-up instead of edited.
+- **P18-8 · `review:gate` cannot see a review whose body omits the Reviewed-commit line** —
+  `scripts/pr-review-gate.ts` proves review-of-HEAD only by parsing "Reviewed commit: `sha`"
+  out of review/comment bodies; #124's wrap-up review (2026-07-29 11:41Z) omitted that line
+  while its API `commit_id` field carried the exact HEAD sha, so the gate reported "not
+  completed against HEAD" for a review that demonstrably ran against it. Fix: also read the
+  review's `commit_id` from the GraphQL/REST payload; the body regex stays as the fallback
+  for summary comments. Until then, on this failure verify `commit_id == HEAD` by hand before
+  overriding — command: `gh api "repos/{owner}/{repo}/pulls/<n>/reviews" --jq '[.[] |
+  select(.user.login == "chatgpt-codex-connector[bot]")] | last | .commit_id'`.
+- **P18-7 · Two B1.7 probe renderings still graded wrong** — filed at #124's wrap-up round
+  (2026-07-29), same open-space class the round-1 fixes patched: (1) `probe-regeln-verantwortung-sodass-folge`
+  variant-c rejects *Die Straßenbahn fällt heute aus, …* although `ausfallen` is taught for
+  exactly a cancelled service — the cause-clause verb space (fährt nicht / verkehrt nicht /
+  fällt aus / kommt nicht) is open, so the closing fix is naming the verb in the instruction,
+  not another accept; (2) `probe-regeln-verantwortung-duerfen-muessen` variant-b rejects
+  *Während der Prüfung dürfen keine Handys benutzt werden* — the nicht/keine negation axis is
+  genuinely closed (two members × two orders), so there the fix is the four accepts. Both are
+  probe false negatives on three-lifetime-stage artifacts; apply with the next content PR,
+  with a `revision` bump if the unit has shipped by then.
 - **P18-6 · `passiv-bildung`'s position half has no delayed evidence** — `probe-konsum-umwelt`
   is cloze ×3, and a cloze grades a form, never a position (`docs/authoring-checklists.md`
   states exactly this). The family's declared competence is the form cells (wird/werden +
@@ -140,11 +160,13 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
   review round missing two of the four, and nothing failed: `bun run validate` enforces the item-mix
   bar but never asks whether an outcome has a task in the mode it names. Checking B1 turned up the
-  same gap upstream — of the four B1 units, only `erfahrungen-erzaehlen` owns an
-  `audio-comprehension` item, and it is the only one with a `listening` outcome, so the doc sentence
-  is ambiguous about whether the artifact is unconditional or claimed-mode-driven. Decide which the
-  rule is, write it down, and either backfill B1.2/B1.3 or state why a unit with no listening
-  outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
+  same gap upstream, and the practice since has answered the question the wrong way round: **five of
+  the seven B1 units now own an `audio-comprehension` item** (all but `leben-veraendern` and
+  `gesundheit-wohlbefinden`, whose set documents its reason), while `erfahrungen-erzaehlen` is still
+  the only one declaring an explicitly listening outcome. So the artifact is being shipped
+  unconditionally in practice and skipped by two units, which is the one combination no reading of
+  the doc sentence supports. Decide which the rule is, write it down, and either backfill B1.2/B1.3
+  or state why a unit with no listening outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
   one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
   the earned-not-asserted bar this belongs under.
 - **P5-11c · The connector-determinacy check does not reach cloze gaps** — the rule in
