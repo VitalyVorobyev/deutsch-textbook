@@ -21,7 +21,7 @@ const MARK: Record<string, string> = { covered: '✓', late: '~', missing: '✗'
 let anyMissing = false;
 for (const level of levels) {
   const coverage = grammarCoverage(level);
-  console.log(`\n## ${level} grammar — ${coverage.covered + coverage.late}/${coverage.total} (${coverage.percent}%)`);
+  console.log(`\n## ${level} grammar — ${coverage.taught}/${coverage.total} (${coverage.percent}%)`);
   console.log(
     `   ${coverage.covered} covered · ${coverage.late} taught late · ${coverage.missing} missing\n`,
   );

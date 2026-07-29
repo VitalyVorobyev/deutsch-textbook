@@ -1,10 +1,12 @@
-# B1.4/B1.5 authoring handoff
+# B1 unit authoring handoff
 
-Status: active handoff prompt. Use only after the pre-B1 authorship-hardening change is merged.
+Status: active handoff prompt for the current two-unit window. B1.1–B1.7 have shipped; the window
+below names the next two. **Rename the two units in the prompt when a window closes** — the rest of
+this file is unit-agnostic and does not change.
 
 ## Prompt for Claude
 
-Author B1.4 `arbeit-bewerbung` and B1.5 `meinung-medien` from their frozen contracts in
+Author B1.8 `reisen-probleme` and B1.9 `lernen-zukunft` from their frozen contracts in
 `docs/curriculum-a2-b1.md`. Read `CLAUDE.md`, `docs/design.md`,
 `docs/authoring-checklists.md`, `.agents/skills/learning-science/SKILL.md` and
 `.agents/skills/authorship-provenance/SKILL.md` before editing.

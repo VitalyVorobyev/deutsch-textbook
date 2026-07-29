@@ -49,7 +49,16 @@ export interface GrammarCoverage {
   late: number;
   missing: number;
   total: number;
-  /** covered + late — a late point is taught, just not where the standard puts it */
+  /**
+   * The published numerator — `covered + late`, because a late point is taught, just not where
+   * the standard puts it. It is a field rather than an expression at each call site because it
+   * had become one: the script's `## A1 grammar — 22/22` headline, `/about` and the claims test
+   * each recomputed it, and `/about` recomputed it *wrong*, printing `covered` (17 at A1) beside
+   * a percent derived from `covered + late`. A published pair that disagrees with itself is the
+   * one thing that page exists to prevent.
+   */
+  taught: number;
+  /** taught / total, rounded */
   percent: number;
 }
 
@@ -169,6 +178,7 @@ export function grammarCoverage(level: Level, root = process.cwd()): GrammarCove
     late,
     missing,
     total: points.length,
+    taught: covered + late,
     percent: points.length ? Math.round(((covered + late) / points.length) * 100) : 0,
   };
 }
