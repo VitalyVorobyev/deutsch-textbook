@@ -1,0 +1,82 @@
+# Delayed probe family 2 of 3 — ONE competence: supplying the past passive form the
+# register of a notice calls for. Three parallel cloze variants, one per cell (wurde
+# singular, wurden plural, ist … worden), in three verb-plus-noun pairings that no
+# practice item, article example or reading sentence pairs — Spielplatz gebaut,
+# Öffnungszeiten geändert, Hof aufgeräumt. Checked by grepping the participles in
+# content/, not by re-reading this list.
+# `outcomes: [hinweise-verstehen]` is deliberate and it is what arms this family: the
+# can-do is "öffentliche Hinweise und Regelungen verstehen", and the article's reading
+# rule says what understanding one is — finding wird/werden/wurde and its participle,
+# because the frame carries the rule. What a notice's past frame says (already done,
+# against a wird that is still scheduled) is exactly the form these variants ask for.
+# Each of the two other families declares a different outcome, because two families
+# sharing one would arm identically and fire a probe at material never practised.
+# Each instruction names werden, the register and the tense, so the target is determinate
+# served alone — the competence is producing the form, never guessing the verb.
+topic: konsum-umwelt
+role: probe
+title:
+  en: "Delayed check — the past the notice is written in"
+  ru: "Отложенная проверка — прошедшее, которым написано объявление"
+  uk: "Відкладена перевірка — минуле, яким написане оголошення"
+  de: "Kontrolle mit Abstand — die Vergangenheit, in der der Aushang steht"
+items:
+  - id: variant-a
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written notice about the past — fill in werden in the Präteritum."
+      ru: "Письменное объявление о прошлом — впишите werden в Präteritum."
+      uk: "Писемне оголошення про минуле — впишіть werden у Präteritum."
+      de: "Ein geschriebener Aushang über die Vergangenheit — ergänze werden im Präteritum."
+    text: "Der Spielplatz in unserem Hof {{wurde}} im Mai neu gebaut."
+    translation:
+      en: "The playground in our courtyard was rebuilt in May."
+      ru: "Детскую площадку в нашем дворе в мае построили заново."
+      uk: "Дитячий майданчик у нашому дворі в травні збудували заново."
+    explain:
+      en: "Written notices and reports take the Präteritum of werden: wurde + Partizip II, singular subject, so wurde. The frame does not move — the participle gebaut keeps the final slot. War gebaut would state a standing result rather than report the event, and the event is what a notice about May reports."
+      ru: "Письменные объявления и отчёты берут Präteritum глагола werden: wurde + Partizip II; подлежащее в единственном числе — значит wurde. Рамка не сдвигается: причастие gebaut держит последнее место. War gebaut констатировало бы состояние-итог, а не сообщало бы о событии, — объявление же про май сообщает именно событие."
+      uk: "Писемні оголошення і звіти беруть Präteritum дієслова werden: wurde + Partizip II; підмет в однині — отже wurde. Рамка не зсувається: дієприкметник gebaut тримає останнє місце. War gebaut констатувало б стан-підсумок, а не повідомляло б про подію, — оголошення ж про травень повідомляє саме подію."
+      de: "Geschriebene Aushänge und Berichte nehmen das Präteritum von werden: wurde + Partizip II — Subjekt im Singular, also wurde. Die Klammer verrutscht nicht: Das Partizip gebaut behält den letzten Platz. War gebaut würde ein stehendes Ergebnis feststellen statt das Ereignis zu berichten — und ein Aushang über den Mai berichtet das Ereignis."
+
+  - id: variant-b
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written notice about the past — fill in werden in the Präteritum."
+      ru: "Письменное объявление о прошлом — впишите werden в Präteritum."
+      uk: "Писемне оголошення про минуле — впишіть werden у Präteritum."
+      de: "Ein geschriebener Aushang über die Vergangenheit — ergänze werden im Präteritum."
+    text: "Die Öffnungszeiten der Post {{wurden}} vor einer Woche geändert."
+    translation:
+      en: "The post office's opening hours were changed a week ago."
+      ru: "Часы работы почты неделю назад изменили."
+      uk: "Години роботи пошти тиждень тому змінили."
+    explain:
+      en: "Plural subject, so wurden — die Öffnungszeiten are what the sentence is about, and the auxiliary agrees with them, not with whoever changed them. Everything else is the same machine: geändert waits at the end, and the notice names no doer because the rule holds whoever made it. Wurde with a plural subject is the one agreement error this cell exists to catch."
+      ru: "Подлежащее во множественном числе — значит wurden: предложение о die Öffnungszeiten, и вспомогательный глагол согласуется с ними, а не с тем, кто их менял. Остальное — та же машина: geändert ждёт в конце, а деятель в объявлении не назван, потому что правило действует независимо от того, кто его ввёл. Wurde при множественном подлежащем — ровно та ошибка согласования, ради которой существует эта ячейка."
+      uk: "Підмет у множині — отже wurden: речення про die Öffnungszeiten, і допоміжне дієслово узгоджується з ними, а не з тим, хто їх змінював. Решта — та сама машина: geändert чекає в кінці, а виконавець в оголошенні не названий, бо правило діє незалежно від того, хто його запровадив. Wurde при множинному підметі — рівно та помилка узгодження, заради якої існує ця клітинка."
+      de: "Subjekt im Plural, also wurden — der Satz handelt von den Öffnungszeiten, und das Hilfsverb richtet sich nach ihnen, nicht nach dem, der sie geändert hat. Alles andere ist dieselbe Maschine: geändert wartet am Ende, und der Aushang nennt keinen Täter, denn die Regel gilt, wer auch immer sie gemacht hat. Wurde beim Pluralsubjekt ist genau der Kongruenzfehler, für den diese Zelle da ist."
+
+  - id: variant-c
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "The same kind of news told in conversation — fill in the two parts of the spoken past passive."
+      ru: "Та же новость, но в разговоре — впишите обе части устного пассива прошедшего времени."
+      uk: "Та сама новина, але в розмові — впишіть обидві частини усного пасиву минулого часу."
+      de: "Dieselbe Art Neuigkeit im Gespräch — ergänze die beiden Teile des gesprochenen Vergangenheits-Passivs."
+    text: "Unser Hof {{ist}} am Samstag endlich aufgeräumt {{worden}}."
+    translation:
+      en: "Our courtyard finally got tidied up on Saturday."
+      ru: "Наш двор в субботу наконец привели в порядок."
+      uk: "Наше подвір'я в суботу нарешті прибрали."
+    explain:
+      en: "Spoken German tells the same news in the Perfekt, and the passive Perfekt fixes both gaps: the auxiliary is sein — never haben, however loudly hat aufgeräumt protests from the active — and the participle of werden is worden, without ge-. Ist … aufgeräumt worden: reading or hearing that frame tells you the tidying already happened, against a wird that would still be scheduling it."
+      ru: "Устная речь сообщает ту же новость в Perfekt, и пассивный Perfekt задаёт оба пропуска: вспомогательный глагол — sein, никогда haben, как бы ни настаивало активное hat aufgeräumt, а причастие от werden — worden, без ge-. Ist … aufgeräumt worden: увидев или услышав эту рамку, вы знаете, что уборка уже состоялась, — тогда как wird лишь ставило бы её в план."
+      uk: "Усне мовлення повідомляє ту саму новину в Perfekt, і пасивний Perfekt задає обидва пропуски: допоміжне дієслово — sein, ніколи haben, хоч би як наполягало активне hat aufgeräumt, а дієприкметник від werden — worden, без ge-. Ist … aufgeräumt worden: побачивши або почувши цю рамку, ви знаєте, що прибирання вже відбулося, — тоді як wird лише ставило б його в план."
+      de: "Gesprochene Sprache erzählt dieselbe Neuigkeit im Perfekt, und das Passiv-Perfekt legt beide Lücken fest: Das Hilfsverb ist sein — nie haben, so laut das aktive hat aufgeräumt auch protestiert —, und das Partizip von werden heißt worden, ohne ge-. Ist … aufgeräumt worden: Wer diese Klammer liest oder hört, weiß, dass das Aufräumen schon geschehen ist — während ein wird es erst planen würde."

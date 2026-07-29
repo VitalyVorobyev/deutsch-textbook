@@ -1,0 +1,103 @@
+# Delayed probe family 3 of 3 — ONE competence: welding two comparatives into the
+# je … desto frame with both word orders, cold. Three parallel translate variants —
+# translate rather than cloze, because the confusion this tag names is word order, and a
+# cloze fixes the order by where its gaps sit (A2 precedent: probe-einkaufen-reklamation
+# is a translate family for the same reason). Each variant pins both ends of both halves:
+# the fronted comparative and the clause-final verb of the je-half, the desto-comparative
+# and the finite verb whose position it forces. Three comparative pairings that no
+# practice item, article example or reading sentence pairs — näher/seltener,
+# größer/weniger-kostet, früher/frischer. Checked by grepping je- and desto-sentences in
+# content/, not by re-reading this list.
+# `outcomes: [konsum-vergleichen]` is deliberate and it is what arms this family: the
+# can-do is "Konsumentscheidungen vergleichen und meine Wahl begründen", and the
+# proportional pair is that comparison's own grammar. The other two families declare
+# different outcomes on purpose — two families on one outcome arm identically, so one
+# competence's practice would start the other's retention clock.
+# The instruction names je … desto because «чем … тем»/"the … the" already give the
+# pairing away and the frame is not what is probed; the word order is, so it is not
+# hinted. umso is equal German and every variant accepts it.
+topic: konsum-umwelt
+role: probe
+title:
+  en: "Delayed check — two comparatives, two word orders"
+  ru: "Отложенная проверка — два сравнения, два порядка слов"
+  uk: "Відкладена перевірка — два порівняння, два порядки слів"
+  de: "Kontrolle mit Abstand — zwei Komparative, zwei Wortstellungen"
+items:
+  - id: variant-a
+    outcomes: [konsum-vergleichen]
+    type: translate
+    focus: je-desto
+    instruction:
+      en: "Translate with je … desto."
+      ru: "Переведите через je … desto."
+      uk: "Перекладіть через je … desto."
+      de: "Übersetze mit je … desto."
+    prompt_en: "The closer the shop is, the more rarely I take the car."
+    prompt_ru: "Чем ближе магазин, тем реже я беру машину."
+    prompt_uk: "Що ближча крамниця, то рідше я беру машину."
+    answer: "Je näher der Laden ist, desto seltener nehme ich das Auto."
+    accept:
+      - "Je näher der Laden ist, umso seltener nehme ich das Auto."
+      - "Je näher das Geschäft ist, desto seltener nehme ich das Auto."
+      - "Je näher das Geschäft ist, umso seltener nehme ich das Auto."
+    key_tokens: ["näher", "ist", "seltener", "nehme"]
+    explain:
+      en: "Graded are both ends of both halves. Je drags näher to the front and sends ist to the wall of its clause — German keeps the finite verb English drops in 'the closer the shop'. Then desto seltener itself fills position 1 of the main clause, so nehme comes immediately and ich after it. Umso does desto's job with the same order and is accepted, as is Geschäft for Laden."
+      ru: "Оцениваются оба конца обеих половин. Je утаскивает näher вперёд и отправляет ist к стене своего придаточного — русское «чем ближе магазин» обходится без связки, а немецкое придаточное без своего ist не обходится. Затем desto seltener само занимает первую позицию главного предложения, поэтому nehme идёт сразу, а ich — за ним. Umso делает работу desto с тем же порядком и принимается, как и Geschäft вместо Laden."
+      uk: "Оцінюються обидва кінці обох половин. Je витягає näher уперед і відправляє ist до стіни свого підрядного — українське «що ближча крамниця» обходиться без зв'язки, а німецьке підрядне без свого ist не обходиться. Потім desto seltener саме займає першу позицію головного речення, тому nehme йде одразу, а ich — за ним. Umso робить роботу desto з тим самим порядком і приймається, як і Geschäft замість Laden."
+      de: "Bewertet werden beide Enden beider Hälften. Je zieht näher nach vorn und schickt ist an die Wand seines Nebensatzes — das Deutsche behält das finite Verb, das andere Sprachen hier weglassen. Dann besetzt desto seltener selbst Position 1 des Hauptsatzes, also kommt nehme sofort und ich danach. Umso macht die Arbeit von desto mit derselben Stellung und wird akzeptiert, ebenso Geschäft für Laden."
+
+  - id: variant-b
+    outcomes: [konsum-vergleichen]
+    type: translate
+    focus: je-desto
+    instruction:
+      en: "Translate with je … desto."
+      ru: "Переведите через je … desto."
+      uk: "Перекладіть через je … desto."
+      de: "Übersetze mit je … desto."
+    prompt_en: "The bigger the bottle is, the less a litre costs."
+    prompt_ru: "Чем больше бутылка, тем меньше стоит литр."
+    prompt_uk: "Що більша пляшка, то менше коштує літр."
+    answer: "Je größer die Flasche ist, desto weniger kostet ein Liter."
+    accept:
+      - "Je größer die Flasche ist, umso weniger kostet ein Liter."
+      - "Je größer die Flasche ist, desto weniger kostet der Liter."
+      - "Je größer die Flasche ist, umso weniger kostet der Liter."
+      # The RU/UK prompts carry no article, so the generic eine Flasche is equally
+      # faithful — the article is not what this family grades.
+      - "Je größer eine Flasche ist, desto weniger kostet ein Liter."
+      - "Je größer eine Flasche ist, umso weniger kostet ein Liter."
+      - "Je größer eine Flasche ist, desto weniger kostet der Liter."
+      - "Je größer eine Flasche ist, umso weniger kostet der Liter."
+    key_tokens: ["größer", "ist", "weniger", "kostet"]
+    explain:
+      en: "The same two orders on a shopping shelf. Größer belongs to je and opens the clause with it; ist waits at the clause's end. Weniger belongs to desto, and because the pair fills position 1, kostet follows it directly — desto ein Liter kostet weniger would be the subject-first transfer this frame forbids. Umso for desto and der for ein are both accepted."
+      ru: "Те же два порядка — на магазинной полке. Größer принадлежит je и открывает придаточное вместе с ним; ist ждёт в конце придаточного. Weniger принадлежит desto, и, поскольку пара занимает первую позицию, kostet идёт сразу за ней — desto ein Liter kostet weniger было бы переносом порядка «тем литр стоит меньше», который эта рамка запрещает. Umso вместо desto и der вместо ein принимаются."
+      uk: "Ті самі два порядки — на магазинній полиці. Größer належить je і відкриває підрядне разом із ним; ist чекає в кінці підрядного. Weniger належить desto, і, оскільки пара займає першу позицію, kostet іде одразу за нею — desto ein Liter kostet weniger було б переносом порядку «то літр коштує менше», який ця рамка забороняє. Umso замість desto і der замість ein приймаються."
+      de: "Dieselben zwei Stellungen im Ladenregal. Größer gehört zu je und eröffnet den Nebensatz mit ihm; ist wartet am Satzende. Weniger gehört zu desto, und weil das Paar Position 1 füllt, folgt kostet direkt — desto ein Liter kostet weniger wäre die Subjekt-zuerst-Übertragung, die dieser Rahmen verbietet. Umso für desto und der für ein werden akzeptiert."
+
+  - id: variant-c
+    outcomes: [konsum-vergleichen]
+    type: translate
+    focus: je-desto
+    instruction:
+      en: "Translate with je … desto."
+      ru: "Переведите через je … desto."
+      uk: "Перекладіть через je … desto."
+      de: "Übersetze mit je … desto."
+    prompt_en: "The earlier we get to the market, the fresher the fruit is."
+    prompt_ru: "Чем раньше мы приходим на рынок, тем свежее фрукты."
+    prompt_uk: "Що раніше ми приходимо на ринок, то свіжіші фрукти."
+    answer: "Je früher wir zum Markt kommen, desto frischer ist das Obst."
+    accept:
+      - "Je früher wir zum Markt kommen, umso frischer ist das Obst."
+      - "Je früher wir auf den Markt kommen, desto frischer ist das Obst."
+      - "Je früher wir auf den Markt kommen, umso frischer ist das Obst."
+    key_tokens: ["früher", "kommen", "frischer", "ist"]
+    explain:
+      en: "This variant puts the verbs the other way around, and the orders still hold: in the je-half the finite kommen goes to the end, after zum Markt; in the desto-half the finite ist follows frischer immediately and das Obst comes after the verb — English drops the verb entirely in 'the fresher the fruit', and German will not. Zum Markt and auf den Markt are both idiomatic, and umso is accepted for desto."
+      ru: "В этом варианте глаголы меняются ролями, а порядки те же: в половине с je спрягаемый kommen уходит в конец, после zum Markt; в половине с desto спрягаемый ist идёт сразу за frischer, а das Obst — после глагола. По-русски «тем свежее фрукты» обходится вовсе без связки — по-немецки нет. Zum Markt и auf den Markt одинаково идиоматичны, а umso вместо desto принимается."
+      uk: "У цьому варіанті дієслова міняються ролями, а порядки ті самі: у половині з je відмінюваний kommen іде в кінець, після zum Markt; у половині з desto відмінюваний ist іде одразу за frischer, а das Obst — після дієслова. Українською «то свіжіші фрукти» обходиться зовсім без зв'язки — німецькою ні. Zum Markt і auf den Markt однаково ідіоматичні, а umso замість desto приймається."
+      de: "Diese Variante vertauscht die Verben, und die Stellungen gelten trotzdem: In der je-Hälfte geht das finite kommen ans Ende, nach zum Markt; in der desto-Hälfte folgt das finite ist sofort auf frischer, und das Obst kommt nach dem Verb — manche Sprachen kommen hier ganz ohne Verb aus, das Deutsche nicht. Zum Markt und auf den Markt sind beide idiomatisch, und umso wird für desto akzeptiert."

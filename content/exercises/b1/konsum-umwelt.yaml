@@ -1,0 +1,276 @@
+# B1.6 primary practice. The three new tags close the unit's contract points
+# (passiv-bildung, passiv-vergangenheit, je-desto). One item recycles an A2 tag and closes
+# nothing: cloze-komparativ-formen (komparativ-als) is the live runtime channel of the
+# `deepens` edge to einkaufen-reklamation — an edge is inert unless this topic carries a
+# tag the base topic's own practice drills, and this is it (the man-und-besitz edge is
+# carried by lesen-aushang in the produktion set, tag passiv-rezeptiv). It doubles as the
+# scaffold je … desto stands on: the pair presupposes the comparative.
+# Outcome discipline, because probe families arm by outcome (src/lib/probes.ts): every
+# item on `passiv-beschreiben` produces or chooses a passive form, every item on
+# `konsum-vergleichen` builds a comparison. Nothing arms a family whose competence it
+# does not touch; `hinweise-verstehen` is armed by the produktion set's comprehension
+# items and measured by the reading's questions.
+# Learner signal respected: translate accuracy is 43% and cloze 85%, so each point runs
+# cloze → mc → translate; order is saturated at 98%, so the practice union ships zero
+# order items. This set is the primaryPractice — its item list never grows after shipping.
+topic: konsum-umwelt
+role: practice
+title:
+  en: "Practice — werden carries the sentence, the participle closes it"
+  ru: "Практика — werden несёт предложение, причастие его закрывает"
+  uk: "Практика — werden несе речення, дієприкметник його закриває"
+  de: "Übung — werden trägt den Satz, das Partizip schließt ihn"
+items:
+  - id: cloze-tonnen-plan
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Fill in werden in the form each subject needs."
+      ru: "Впишите werden в той форме, которой требует каждое подлежащее."
+      uk: "Впишіть werden у тій формі, якої вимагає кожен підмет."
+      de: "Ergänze werden in der Form, die jedes Subjekt verlangt."
+    text: "Die braune Tonne {{wird}} jede Woche geleert. Die gelben Säcke {{werden}} nur einmal im Monat abgeholt."
+    translation:
+      en: "The brown bin is emptied every week. The yellow sacks are collected only once a month."
+      ru: "Коричневый бак опорожняют каждую неделю. Жёлтые мешки забирают только раз в месяц."
+      uk: "Коричневий бак спорожняють щотижня. Жовті мішки забирають лише раз на місяць."
+    explain:
+      en: "The participle waits at the end; what the gap asks for is the conjugated werden that carries the sentence — wird for the singular Tonne, werden for the plural Säcke. Without it there is no finite verb at all, which is exactly what the English 'is emptied' hides: its is looks like sein, but the German event form is werden."
+      ru: "Причастие ждёт в конце; пропуск же просит спрягаемый werden, который несёт предложение: wird при единственном Tonne, werden при множественном Säcke. Русские «опорожняют» и «забирают» обходятся без вспомогательного глагола — поэтому рука его и не пишет, но без wird в немецком предложении вообще не остаётся спрягаемого глагола."
+      uk: "Дієприкметник чекає в кінці; пропуск же просить відмінюваний werden, який несе речення: wird при однині Tonne, werden при множині Säcke. Українські «спорожняють» і «забирають» обходяться без допоміжного дієслова — тому рука його й не пише, але без wird у німецькому реченні взагалі не лишається відмінюваного дієслова."
+      de: "Das Partizip wartet am Ende; die Lücke verlangt das konjugierte werden, das den Satz trägt — wird beim Singular Tonne, werden beim Plural Säcke. Ohne es hat der Satz gar kein finites Verb: Genau das ist die Falle, denn viele Sprachen kommen hier ohne Hilfsverb aus."
+
+  - id: cloze-man-bruecke
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Rewrite the man-sentence as a passive — fill in both parts of the frame."
+      ru: "Перепишите предложение с man в пассиве — впишите обе части рамки."
+      uk: "Перепишіть речення з man у пасиві — впишіть обидві частини рамки."
+      de: "Schreib den man-Satz als Passiv — ergänze beide Teile der Klammer."
+    text: "Man trennt in unserem Haus den Müll sehr genau. → Der Müll {{wird}} in unserem Haus sehr genau {{getrennt}}."
+    translation:
+      en: "In our building people sort the rubbish very carefully. → In our building the rubbish is sorted very carefully."
+      ru: "В нашем доме мусор сортируют очень тщательно. → Мусор в нашем доме сортируется очень тщательно."
+      uk: "У нашому будинку сміття сортують дуже ретельно. → Сміття в нашому будинку сортується дуже ретельно."
+    explain:
+      en: "Both sentences describe one scene; only the seats change. The accusative object becomes the nominative subject — watch the article flip, den Müll → der Müll — the man simply vanishes, and the verb splits into the frame: wird in position 2, getrennt at the very end. This transformation is the whole recipe; every passive sentence of the unit is built with it."
+      ru: "Оба предложения описывают одну сцену; меняются только роли. Дополнение в Akkusativ становится подлежащим в Nominativ — следите за артиклем: den Müll → der Müll, — man просто исчезает, а глагол расходится в рамку: wird на втором месте, getrennt в самом конце. Это преобразование и есть весь рецепт: каждый пассив главы строится им."
+      uk: "Обидва речення описують ту саму сцену; змінюються лише ролі. Додаток в Akkusativ стає підметом у Nominativ — стежте за артиклем: den Müll → der Müll, — man просто зникає, а дієслово розходиться в рамку: wird на другому місці, getrennt у самому кінці. Це перетворення і є весь рецепт: кожен пасив розділу будується ним."
+      de: "Beide Sätze beschreiben dieselbe Szene; nur die Rollen wechseln. Das Akkusativobjekt wird zum Subjekt im Nominativ — der Artikel kippt: den Müll → der Müll —, das man verschwindet einfach, und das Verb geht in die Klammer auseinander: wird auf Position 2, getrennt ganz am Ende. Diese Umformung ist das ganze Rezept."
+
+  - id: mc-wird-ist
+    outcomes: [passiv-beschreiben]
+    type: mc
+    focus: passiv-bildung
+    prompt: "Die blaue Tonne ___ jeden Donnerstag geleert."
+    options:
+      - "wird"
+      - "ist"
+      - "hat"
+    correct: 0
+    translation:
+      en: "The blue bin is emptied every Thursday."
+      ru: "Синий бак опорожняют каждый четверг."
+      uk: "Синій бак спорожняють щочетверга."
+    explain:
+      en: "A weekly schedule is a repeating event, and the event passive is built on werden: wird geleert says the emptying happens. Ist geleert would state a result — the bin is already empty — and English is no help, because 'is emptied' and 'is empty' share their is. Hat never builds a passive at all; it belongs to the active Perfekt (hat geleert = somebody emptied it)."
+      ru: "Еженедельный график — повторяющееся событие, а пассив события строится на werden: wird geleert значит «бак опорожняют». Ist geleert назвало бы итог — бак уже пуст; русское краткое причастие «опорожнён» звучит как ist + Partizip и тянет руку не туда. Проверка: если по-русски можно сказать «опорожняют» — это wird. Hat пассива не строит вовсе: это активный Perfekt."
+      uk: "Щотижневий графік — повторювана подія, а пасив події будується на werden: wird geleert означає «бак спорожняють». Ist geleert назвало б підсумок — бак уже порожній; український дієприкметник «спорожнений» звучить як ist + Partizip і тягне руку не туди. Перевірка: якщо українською можна сказати «спорожняють» — це wird. Hat пасиву не будує зовсім: це активний Perfekt."
+      de: "Ein wöchentlicher Termin ist ein wiederkehrendes Ereignis, und das Ereignis-Passiv baut auf werden: wird geleert sagt, dass das Leeren passiert. Ist geleert würde das Ergebnis feststellen — die Tonne ist schon leer. Hat baut überhaupt kein Passiv; es gehört zum aktiven Perfekt (hat geleert = jemand hat sie geleert)."
+
+  - id: uebersetzen-gemuese
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate — use the passive (werden)."
+      ru: "Переведите — используйте пассив (werden)."
+      uk: "Перекладіть — використайте пасив (werden)."
+      de: "Übersetze — benutze das Passiv (werden)."
+    prompt_en: "The vegetables are sold here without plastic."
+    prompt_ru: "Овощи здесь продают без пластика."
+    prompt_uk: "Овочі тут продають без пластику."
+    answer: "Das Gemüse wird hier ohne Plastik verkauft."
+    accept:
+      - "Hier wird das Gemüse ohne Plastik verkauft."
+      # The RU/UK prompts carry no article, so the bare generic Gemüse is an equally
+      # faithful rendering — rejecting it would mark correct German wrong.
+      - "Gemüse wird hier ohne Plastik verkauft."
+      - "Hier wird Gemüse ohne Plastik verkauft."
+    key_tokens: ["wird", "verkauft"]
+    explain:
+      en: "Graded are the two walls of the frame: wird in position 2 and verkauft at the very end, with everything else between them. The instruction names the passive because man verkauft das Gemüse hier ohne Plastik is correct German for the same prompt — an item that silently rejected it would mark good German wrong, and the point of this one is the werden-frame. Fronting hier is equally correct and accepted."
+      ru: "Оцениваются две стены рамки: wird на втором месте и verkauft в самом конце, а всё остальное — между ними. Пассив назван в задании, потому что man verkauft das Gemüse hier ohne Plastik — правильный немецкий для той же фразы: задание, которое молча его отвергало бы, объявило бы верный немецкий ошибкой, а предмет проверки здесь — рамка с werden. Вынести hier вперёд можно — этот вариант принимается."
+      uk: "Оцінюються дві стіни рамки: wird на другому місці і verkauft у самому кінці, а все інше — між ними. Пасив названо в завданні, бо man verkauft das Gemüse hier ohne Plastik — правильна німецька для тієї самої фрази: завдання, яке мовчки його відкидало б, оголосило б правильну німецьку помилкою, а предмет перевірки тут — рамка з werden. Винести hier уперед можна — цей варіант приймається."
+      de: "Bewertet werden die beiden Wände der Klammer: wird auf Position 2 und verkauft ganz am Ende, alles andere dazwischen. Die Aufgabe nennt das Passiv, weil man verkauft das Gemüse hier ohne Plastik denselben Satz richtig wiedergibt — eine Aufgabe, die das stillschweigend ablehnt, erklärt korrektes Deutsch für falsch. Hier vorn ist genauso richtig und wird akzeptiert."
+
+  - id: cloze-frueher-wurde
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written report about the past — fill in werden in the Präteritum, matching each subject."
+      ru: "Письменный рассказ о прошлом — впишите werden в Präteritum, согласовав с каждым подлежащим."
+      uk: "Писемна розповідь про минуле — впишіть werden у Präteritum, узгодивши з кожним підметом."
+      de: "Ein geschriebener Bericht über früher — ergänze werden im Präteritum, passend zum Subjekt."
+    text: "Früher {{wurde}} das Brot in unserem Dorf noch selbst gebacken. Die Waren {{wurden}} damals mit dem Zug geliefert."
+    translation:
+      en: "In the past the bread in our village was still baked locally. Goods were delivered by train in those days."
+      ru: "Раньше хлеб в нашей деревне ещё пекли сами. Товары тогда доставляли поездом."
+      uk: "Раніше хліб у нашому селі ще пекли самі. Товари тоді доставляли потягом."
+    explain:
+      en: "Written German — a product story, a label, a report — takes the Präteritum of werden: wurde + Partizip II, wurden with a plural subject. Nothing else changes: the participle keeps the final slot. This is the register of the sentence you read on a jar: Früher wurde hier alles mit der Hand gemacht."
+      ru: "Письменный немецкий — история продукта, этикетка, отчёт — берёт Präteritum глагола werden: wurde + Partizip II, wurden при подлежащем во множественном числе. Больше ничего не меняется: причастие держит последнее место. Это регистр надписи на банке: Früher wurde hier alles mit der Hand gemacht."
+      uk: "Писемна німецька — історія продукту, етикетка, звіт — бере Präteritum дієслова werden: wurde + Partizip II, wurden при підметі у множині. Більше нічого не змінюється: дієприкметник тримає останнє місце. Це регістр напису на банці: Früher wurde hier alles mit der Hand gemacht."
+      de: "Geschriebenes Deutsch — eine Produktgeschichte, ein Etikett, ein Bericht — nimmt das Präteritum von werden: wurde + Partizip II, wurden beim Subjekt im Plural. Sonst ändert sich nichts: Das Partizip behält den letzten Platz. Es ist das Register des Satzes auf dem Glas: Früher wurde hier alles mit der Hand gemacht."
+
+  - id: cloze-ist-worden
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "The same kind of news told in conversation — fill in the two parts of the spoken past passive."
+      ru: "Та же новость, но в разговоре — впишите обе части устного пассива прошедшего времени."
+      uk: "Та сама новина, але в розмові — впишіть обидві частини усного пасиву минулого часу."
+      de: "Dieselbe Art Neuigkeit im Gespräch — ergänze die beiden Teile des gesprochenen Vergangenheits-Passivs."
+    text: "Der Aufzug in unserem Haus {{ist}} letzte Woche endlich repariert {{worden}}."
+    translation:
+      en: "The lift in our building was finally repaired last week."
+      ru: "Лифт в нашем доме на прошлой неделе наконец починили."
+      uk: "Ліфт у нашому будинку минулого тижня нарешті полагодили."
+    explain:
+      en: "Spoken German prefers the Perfekt, and the passive Perfekt fixes two things: the auxiliary is always sein — never haben, however loudly the active hat repariert habit protests — and the participle of werden slims down to worden, without ge-. Ist … repariert worden: one frame, three pieces, and only the middle one is the lexical verb."
+      ru: "Устная речь предпочитает Perfekt, и в пассивном Perfekt закреплены две вещи: вспомогательный глагол — всегда sein, никогда haben, как бы ни настаивала привычка активного hat repariert, а причастие от werden сокращается до worden, без ge-. Ist … repariert worden: одна рамка, три детали, и лишь средняя — смысловой глагол."
+      uk: "Усне мовлення надає перевагу Perfekt, і в пасивному Perfekt закріплені дві речі: допоміжне дієслово — завжди sein, ніколи haben, хоч би як наполягала звичка активного hat repariert, а дієприкметник від werden скорочується до worden, без ge-. Ist … repariert worden: одна рамка, три деталі, і лише середня — смислове дієслово."
+      de: "Gesprochene Sprache bevorzugt das Perfekt, und das Passiv-Perfekt legt zwei Dinge fest: Das Hilfsverb ist immer sein — nie haben, so laut die Gewohnheit aus dem aktiven hat repariert auch protestiert —, und das Partizip von werden schrumpft zu worden, ohne ge-. Ist … repariert worden: eine Klammer, drei Teile, und nur der mittlere ist das Vollverb."
+
+  - id: mc-worden-geworden
+    outcomes: [passiv-beschreiben]
+    type: mc
+    focus: passiv-vergangenheit
+    prompt: "Der kleine Laden an der Ecke ist im Frühjahr verkauft ___."
+    options:
+      - "worden"
+      - "geworden"
+      - "wurden"
+    correct: 0
+    translation:
+      en: "The little shop on the corner was sold in the spring."
+      ru: "Маленький магазин на углу весной продали."
+      uk: "Маленьку крамницю на розі навесні продали."
+    explain:
+      en: "Worden only ever closes a passive: ist verkauft worden — the shop was sold. Geworden is the Perfekt of werden as a full verb, becoming something: Er ist Verkäufer geworden — and Der Laden ist verkauft geworden mixes the two frames. Wurden fails twice: it is plural against the singular Laden, and the Präteritum passive stands alone (wurde verkauft), never after ist."
+      ru: "Worden закрывает только пассив: ist verkauft worden — магазин продали. Geworden — это Perfekt глагола werden в полном значении «становиться»: Er ist Verkäufer geworden, а Der Laden ist verkauft geworden смешивает две рамки. Wurden не подходит дважды: множественное число при единственном Laden, и пассив в Präteritum стоит сам по себе (wurde verkauft), а не после ist."
+      uk: "Worden закриває тільки пасив: ist verkauft worden — крамницю продали. Geworden — це Perfekt дієслова werden у повному значенні «ставати»: Er ist Verkäufer geworden, а Der Laden ist verkauft geworden змішує дві рамки. Wurden не пасує двічі: множина при однині Laden, і пасив у Präteritum стоїть сам по собі (wurde verkauft), а не після ist."
+      de: "Worden schließt immer ein Passiv: ist verkauft worden — der Laden wurde verkauft. Geworden ist das Perfekt von werden als Vollverb — etwas werden: Er ist Verkäufer geworden; Der Laden ist verkauft geworden vermischt die beiden Klammern. Wurden scheitert doppelt: Plural neben dem Singular Laden, und das Präteritum-Passiv steht allein (wurde verkauft), nie hinter ist."
+
+  - id: uebersetzen-sofa
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-vergangenheit
+    instruction:
+      en: "Translate — use the passive of entsorgen. Both past forms are right here: written wurde … or spoken ist … worden."
+      ru: "Переведите — используйте пассив глагола entsorgen. Здесь верны обе формы прошедшего: письменная wurde … или устная ist … worden."
+      uk: "Перекладіть — використайте пасив дієслова entsorgen. Тут правильні обидві форми минулого: писемна wurde … або усна ist … worden."
+      de: "Übersetze — benutze das Passiv von entsorgen. Beide Vergangenheitsformen sind hier richtig: geschriebenes wurde … oder gesprochenes ist … worden."
+    prompt_en: "The old sofa was disposed of last week."
+    prompt_ru: "Старый диван на прошлой неделе утилизировали."
+    prompt_uk: "Старий диван минулого тижня утилізували."
+    answer: "Das alte Sofa ist letzte Woche entsorgt worden."
+    accept:
+      - "Das alte Sofa wurde letzte Woche entsorgt."
+      - "Letzte Woche ist das alte Sofa entsorgt worden."
+      - "Letzte Woche wurde das alte Sofa entsorgt."
+    key_tokens: ["ist", "worden", "wurde", "entsorgt"]
+    explain:
+      en: "Graded is the past passive itself, in whichever register you chose: wurde entsorgt or ist entsorgt worden — the item accepts both, because nothing in the prompt pins the register. What it never accepts: hat instead of ist (the passive Perfekt runs on sein), and geworden instead of worden (that would mean the sofa became something). The participle entsorgt is graded too — it is half of the tense."
+      ru: "Оценивается сам пассив прошедшего времени — в любом выбранном регистре: wurde entsorgt или ist entsorgt worden, задание принимает оба, потому что регистр в исходной фразе ничем не задан. Чего оно не примет никогда: hat вместо ist (пассивный Perfekt ходит с sein) и geworden вместо worden (это значило бы, что диван кем-то стал). Причастие entsorgt тоже оценивается — оно половина времени."
+      uk: "Оцінюється сам пасив минулого часу — у будь-якому обраному регістрі: wurde entsorgt або ist entsorgt worden, завдання приймає обидва, бо регістр у вихідній фразі нічим не заданий. Чого воно не прийме ніколи: hat замість ist (пасивний Perfekt ходить із sein) і geworden замість worden (це означало б, що диван кимось став). Дієприкметник entsorgt теж оцінюється — він половина часу."
+      de: "Bewertet wird das Vergangenheits-Passiv selbst, in dem Register, das du wählst: wurde entsorgt oder ist entsorgt worden — die Aufgabe akzeptiert beide, denn nichts im Satz legt das Register fest. Was sie nie akzeptiert: hat statt ist (das Passiv-Perfekt läuft auf sein) und geworden statt worden (dann wäre das Sofa etwas geworden). Auch das Partizip entsorgt wird bewertet — es ist die halbe Zeitform."
+
+  - id: cloze-komparativ-formen
+    outcomes: [konsum-vergleichen]
+    type: cloze
+    focus: komparativ-als
+    instruction:
+      en: "Fill in the comparative of the adjective in brackets — all three forms are irregular."
+      ru: "Впишите сравнительную степень слова в скобках — все три формы неправильные."
+      uk: "Впишіть вищий ступінь слова в дужках — усі три форми неправильні."
+      de: "Ergänze den Komparativ des Wortes in Klammern — alle drei Formen sind unregelmäßig."
+    text: "Auf dem Markt ist das Obst oft {{besser}} als im Supermarkt (gut), und es kostet auch nicht {{mehr}} als dort (viel). Trotzdem kaufen viele Leute {{lieber}} im Supermarkt ein (gern)."
+    translation:
+      en: "At the market the fruit is often better than in the supermarket, and it does not cost more than there either. Still, many people prefer to shop in the supermarket."
+      ru: "На рынке фрукты часто лучше, чем в супермаркете, и стоят они не больше, чем там. И всё же многие охотнее делают покупки в супермаркете."
+      uk: "На ринку фрукти часто кращі, ніж у супермаркеті, і коштують вони не більше, ніж там. І все ж багато людей охочіше роблять покупки в супермаркеті."
+    explain:
+      en: "The A2 comparatives back on duty, because this unit compares all day: gut → besser, viel → mehr, gern → lieber, each with als for the thing compared. They are also the parts je … desto is built from in the next items — a pair of comparatives is exactly what that frame welds together. If a form here costs you thought, drill it before the frame does."
+      ru: "Сравнительные степени с A2 снова в строю, потому что эта глава сравнивает без остановки: gut → besser, viel → mehr, gern → lieber, каждая с als перед тем, с чем сравнивают. Из этих же деталей в следующих заданиях собирается je … desto — эта рамка сваривает как раз пару сравнительных степеней. Если какая-то форма здесь требует раздумий, отработайте её до рамки."
+      uk: "Вищі ступені з A2 знову в строю, бо цей розділ порівнює без упину: gut → besser, viel → mehr, gern → lieber, кожен з als перед тим, з чим порівнюють. З цих самих деталей у наступних завданнях збирається je … desto — ця рамка зварює якраз пару вищих ступенів. Якщо якась форма тут вимагає роздумів, відпрацюйте її до рамки."
+      de: "Die A2-Komparative wieder im Dienst, denn diese Einheit vergleicht ohne Pause: gut → besser, viel → mehr, gern → lieber, jeweils mit als vor dem Verglichenen. Aus genau diesen Teilen baut sich in den nächsten Aufgaben je … desto zusammen — dieser Rahmen schweißt ein Paar Komparative aneinander. Wer hier noch nachdenken muss, übt die Form besser vor dem Rahmen."
+
+  - id: cloze-je-desto-haelften
+    outcomes: [konsum-vergleichen]
+    type: cloze
+    focus: je-desto
+    instruction:
+      en: "Fill in the two halves of the pair that welds the two comparisons into one sentence."
+      ru: "Впишите обе половины пары, которая сваривает два сравнения в одно предложение."
+      uk: "Впишіть обидві половини пари, яка зварює два порівняння в одне речення."
+      de: "Ergänze die beiden Hälften des Paars, das die zwei Vergleiche zu einem Satz zusammenschweißt."
+    text: "{{Je}} weniger Plastik wir kaufen, {{desto|umso}} besser ist das für die Umwelt."
+    translation:
+      en: "The less plastic we buy, the better it is for the environment."
+      ru: "Чем меньше пластика мы покупаем, тем лучше для окружающей среды."
+      uk: "Що менше пластику ми купуємо, то краще для довкілля."
+    explain:
+      en: "Je + comparative opens a subordinate clause — its verb kaufen stands at the end, exactly as after weil. Desto + comparative answers with a main clause, but the pair itself fills position 1, so ist follows it directly. Umso does the same job with the same word order and is accepted. Each half owns its own order; mixing them is the error the next items hunt."
+      ru: "Je + сравнительная степень открывает придаточное — его глагол kaufen стоит в конце, ровно как после weil. Desto + сравнительная степень отвечает главным предложением, но пара сама занимает первую позицию, поэтому ist идёт сразу за ней. Umso делает ту же работу с тем же порядком слов и принимается. У каждой половины свой порядок; их смешение — ошибка, за которой охотятся следующие задания."
+      uk: "Je + вищий ступінь відкриває підрядне — його дієслово kaufen стоїть у кінці, рівно як після weil. Desto + вищий ступінь відповідає головним реченням, але пара сама займає першу позицію, тому ist іде одразу за нею. Umso робить ту саму роботу з тим самим порядком слів і приймається. У кожної половини свій порядок; їх змішання — помилка, за якою полюють наступні завдання."
+      de: "Je + Komparativ eröffnet einen Nebensatz — sein Verb kaufen steht am Ende, genau wie nach weil. Desto + Komparativ antwortet mit einem Hauptsatz, aber das Paar besetzt selbst Position 1, also folgt ist direkt. Umso macht dieselbe Arbeit mit derselben Wortstellung und wird akzeptiert. Jede Hälfte hat ihre eigene Ordnung; sie zu vertauschen ist der Fehler, den die nächsten Aufgaben jagen."
+
+  - id: mc-desto-wortstellung
+    outcomes: [konsum-vergleichen]
+    type: mc
+    focus: je-desto
+    prompt: "Je öfter wir Glas zum Container bringen, ___"
+    options:
+      - "desto weniger Müll kommt in die graue Tonne."
+      - "desto die graue Tonne wird leerer."
+      - "desto weniger Müll in die graue Tonne kommt."
+    correct: 0
+    translation:
+      en: "The more often we take glass to the container, the less rubbish goes into the grey bin."
+      ru: "Чем чаще мы относим стекло в контейнер, тем меньше мусора попадает в серый бак."
+      uk: "Що частіше ми відносимо скло в контейнер, то менше сміття потрапляє в сірий бак."
+    explain:
+      en: "Desto weniger Müll is one unit and fills position 1, so the finite verb kommt must come immediately after it. Desto die graue Tonne … puts the subject first — the straight transfer from English 'the less rubbish goes' word order, applied where German inverts. The third option sends kommt to the end, treating the desto-half as a subordinate clause; only the je-half is one."
+      ru: "Desto weniger Müll — одно целое и занимает первую позицию, поэтому спрягаемый kommt обязан идти сразу за ним. Desto die graue Tonne … ставит подлежащее вперёд — прямой перенос русского «тем мусора меньше попадает», применённый там, где немецкий делает инверсию. Третий вариант отправляет kommt в конец, превращая desto-половину в придаточное; придаточное же здесь только половина с je."
+      uk: "Desto weniger Müll — одне ціле і займає першу позицію, тому відмінюваний kommt мусить іти одразу за ним. Desto die graue Tonne … ставить підмет уперед — прямий перенос українського «то сміття менше потрапляє», застосований там, де німецька робить інверсію. Третій варіант відправляє kommt у кінець, перетворюючи desto-половину на підрядне; підрядним же тут є лише половина з je."
+      de: "Desto weniger Müll ist eine Einheit und füllt Position 1, also muss das finite Verb kommt sofort folgen. Desto die graue Tonne … stellt das Subjekt nach vorn — die wörtliche Übertragung aus Sprachen, die hier nicht invertieren. Die dritte Option schickt kommt ans Ende und behandelt die desto-Hälfte als Nebensatz; ein Nebensatz ist aber nur die je-Hälfte."
+
+  - id: uebersetzen-je-desto
+    outcomes: [konsum-vergleichen]
+    type: translate
+    focus: je-desto
+    instruction:
+      en: "Translate with je … desto — and give each half its own word order."
+      ru: "Переведите через je … desto — и дайте каждой половине её собственный порядок слов."
+      uk: "Перекладіть через je … desto — і дайте кожній половині її власний порядок слів."
+      de: "Übersetze mit je … desto — und gib jeder Hälfte ihre eigene Wortstellung."
+    prompt_en: "The cheaper a product is, the faster it breaks."
+    prompt_ru: "Чем дешевле продукт, тем быстрее он ломается."
+    prompt_uk: "Що дешевший продукт, то швидше він ламається."
+    answer: "Je billiger ein Produkt ist, desto schneller geht es kaputt."
+    accept:
+      - "Je billiger ein Produkt ist, umso schneller geht es kaputt."
+      - "Je billiger das Produkt ist, desto schneller geht es kaputt."
+      - "Je billiger das Produkt ist, umso schneller geht es kaputt."
+    key_tokens: ["billiger", "ist", "schneller", "geht"]
+    explain:
+      en: "Graded are both ends of both halves: billiger fronted with je and ist at the wall of its clause; then schneller glued to desto and geht immediately after the pair. Note that German keeps the finite ist in the je-clause where English drops it ('the cheaper a product is'), and that breaking is geht kaputt — the process, not ist kaputt, the state. Umso for desto is equally correct and accepted."
+      ru: "Оцениваются оба конца обеих половин: billiger, утащенный вперёд вместе с je, и ist у стены своего придаточного; затем schneller, приклеенный к desto, и geht сразу за парой. Русское «чем дешевле продукт» обходится без связки — а немецкое придаточное без своего ist не обходится. «Ломается» — это процесс geht kaputt, а не состояние ist kaputt. Umso вместо desto столь же верно и принимается."
+      uk: "Оцінюються обидва кінці обох половин: billiger, витягнутий уперед разом із je, і ist біля стіни свого підрядного; потім schneller, приклеєний до desto, і geht одразу за парою. Українське «що дешевший продукт» обходиться без зв'язки — а німецьке підрядне без свого ist не обходиться. «Ламається» — це процес geht kaputt, а не стан ist kaputt. Umso замість desto так само правильно і приймається."
+      de: "Bewertet werden beide Enden beider Hälften: billiger, von je nach vorn gezogen, und ist an der Wand seines Nebensatzes; dann schneller, an desto geklebt, und geht direkt nach dem Paar. Der je-Satz behält sein finites ist, auch wenn andere Sprachen es weglassen — und kaputtgehen ist der Vorgang, ist kaputt der Zustand. Umso statt desto ist genauso richtig und wird akzeptiert."

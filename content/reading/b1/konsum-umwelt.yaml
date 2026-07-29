@@ -1,0 +1,82 @@
+topic: konsum-umwelt
+kind: intensive
+title_de: "Neue Tonnen im Hof"
+text:
+  - >-
+    Liebe Nachbarinnen und Nachbarn! Ab Montag werden die
+    [[Mülltonnen::rubbish bins::мусорные баки::смітники]] im Hof neu geordnet.
+    Die blaue Tonne ist nur für Papier, die gelbe Tonne für
+    [[Verpackungen::packaging::упаковки::упаковки]] aus Plastik und Metall.
+    Glas wird wie bisher zum Container an der Ecke gebracht.
+  - >-
+    Bitte trennen Sie [[sorgfältig::carefully::тщательно::ретельно]]! Je besser
+    der Müll getrennt wird, desto weniger zahlen wir alle für die
+    [[Abholung::collection::вывоз::вивезення]]. Im März wurde die blaue Tonne
+    zweimal nicht [[geleert::emptied::опорожнена, вывезена::спорожнена, вивезена]],
+    weil Plastik darin lag. Solche Fehler kosten Geld. Alte
+    [[Batterien::batteries::батарейки::батарейки]] gehören nicht in die Tonne:
+    Sie werden im Supermarkt gesammelt.
+  - >-
+    Der [[Sperrmüll::bulky waste::крупногабаритный мусор::великогабаритне сміття]]
+    ist am letzten Freitag abgeholt worden. Der nächste Termin wird im Herbst
+    bekannt gegeben. Wer vorher etwas Großes
+    [[loswerden::to get rid of::избавиться от::позбутися]] will, meldet sich
+    bitte bei der [[Hausverwaltung::building management::управляющая компания::керуюча компанія]].
+    Vielen Dank!
+questions:
+  - id: frage-gelbe-tonne
+    outcomes: [hinweise-verstehen]
+    type: mc
+    prompt: "Was gehört in die gelbe Tonne?"
+    options:
+      - "Verpackungen aus Plastik und Metall."
+      - "Papier und alte Zeitungen."
+      - "Glasflaschen und Gläser."
+    correct: 0
+    translation:
+      en: "What goes in the yellow bin?"
+      ru: "Что кладут в жёлтый бак?"
+      uk: "Що кладуть у жовтий бак?"
+    explain:
+      en: "The first paragraph assigns each container its material: the blue bin is only for paper, the yellow bin takes Verpackungen aus Plastik und Metall, and glass goes to the container on the corner — wird zum Container gebracht. The three options are exactly these three destinations, so the question is whether you matched each one to its bin."
+      ru: "Первый абзац закрепляет за каждым баком свой материал: синий — только для бумаги, жёлтый принимает Verpackungen aus Plastik und Metall, а стекло относят в контейнер на углу — wird zum Container gebracht. Три варианта — это ровно три адреса, так что вопрос в том, правильно ли вы соотнесли каждый с его баком."
+      uk: "Перший абзац закріплює за кожним баком свій матеріал: синій — лише для паперу, жовтий приймає Verpackungen aus Plastik und Metall, а скло відносять у контейнер на розі — wird zum Container gebracht. Три варіанти — це рівно три адреси, тож питання в тому, чи правильно ви співвіднесли кожен із його баком."
+      de: "Der erste Absatz weist jedem Behälter sein Material zu: die blaue Tonne nur für Papier, die gelbe für Verpackungen aus Plastik und Metall, und Glas wird zum Container an der Ecke gebracht. Die drei Optionen sind genau diese drei Ziele — die Frage ist, ob man jedes seiner Tonne zugeordnet hat."
+
+  - id: frage-warum-trennen
+    outcomes: [hinweise-verstehen]
+    type: mc
+    prompt: "Warum sollen die Nachbarn den Müll gut trennen?"
+    options:
+      - "Weil dann alle weniger für die Abholung zahlen."
+      - "Weil die Stadt sonst die Tonnen wegnimmt."
+      - "Weil der Hof sonst zu voll wird."
+    correct: 0
+    translation:
+      en: "Why should the neighbours sort the rubbish well?"
+      ru: "Почему соседи должны хорошо сортировать мусор?"
+      uk: "Чому сусіди мають добре сортувати сміття?"
+    explain:
+      en: "The reason sits in the je-desto sentence: Je besser der Müll getrennt wird, desto weniger zahlen wir alle für die Abholung — the better the sorting, the less everyone pays. The March story backs it up from the other side: twice the blue bin was not emptied because plastic lay in it, and solche Fehler kosten Geld. Nothing in the text threatens removed bins or a full yard."
+      ru: "Причина сидит в предложении с je-desto: Je besser der Müll getrennt wird, desto weniger zahlen wir alle für die Abholung — чем лучше сортировка, тем меньше платят все. История про март подтверждает это с другой стороны: синий бак дважды не вывезли, потому что в нём лежал пластик, и solche Fehler kosten Geld. Про то, что баки заберут или двор переполнится, в тексте ничего нет."
+      uk: "Причина сидить у реченні з je-desto: Je besser der Müll getrennt wird, desto weniger zahlen wir alle für die Abholung — що краще сортування, то менше платять усі. Історія про березень підтверджує це з іншого боку: синій бак двічі не вивезли, бо в ньому лежав пластик, і solche Fehler kosten Geld. Про те, що баки заберуть або двір переповниться, у тексті нічого немає."
+      de: "Der Grund steht im je-desto-Satz: Je besser der Müll getrennt wird, desto weniger zahlen wir alle für die Abholung. Die März-Geschichte stützt ihn von der anderen Seite: Zweimal wurde die blaue Tonne nicht geleert, weil Plastik darin lag — solche Fehler kosten Geld. Von weggenommenen Tonnen oder einem vollen Hof steht nichts im Text."
+
+  - id: frage-batterien
+    outcomes: [hinweise-verstehen]
+    type: mc
+    prompt: "Was soll man mit alten Batterien machen?"
+    options:
+      - "Sie zum Supermarkt bringen."
+      - "Sie in die gelbe Tonne werfen."
+      - "Sie bei der Hausverwaltung abgeben."
+    correct: 0
+    translation:
+      en: "What should you do with old batteries?"
+      ru: "Что нужно делать со старыми батарейками?"
+      uk: "Що потрібно робити зі старими батарейками?"
+    explain:
+      en: "The notice says it in two halves: alte Batterien gehören nicht in die Tonne — none of them — and then names the right place with a passive: Sie werden im Supermarkt gesammelt. The Hausverwaltung is the contact for something else entirely: bulky items you want to get rid of before autumn."
+      ru: "Объявление говорит это в две половины: alte Batterien gehören nicht in die Tonne — ни в какой бак, — а затем называет правильное место пассивом: Sie werden im Supermarkt gesammelt. Hausverwaltung — контакт совсем для другого: для крупных вещей, от которых хотят избавиться до осени."
+      uk: "Оголошення каже це у дві половини: alte Batterien gehören nicht in die Tonne — у жоден бак, — а тоді називає правильне місце пасивом: Sie werden im Supermarkt gesammelt. Hausverwaltung — контакт зовсім для іншого: для великих речей, яких хочуть позбутися до осені."
+      de: "Der Aushang sagt es in zwei Hälften: Alte Batterien gehören nicht in die Tonne — in keine —, und dann nennt er im Passiv den richtigen Ort: Sie werden im Supermarkt gesammelt. Die Hausverwaltung ist der Kontakt für etwas ganz anderes: für Sperrmüll, den man vor dem Herbst loswerden will."

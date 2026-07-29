@@ -1,0 +1,210 @@
+# B1.6 production half: the transfer set. Fresh contexts, none of them a rehearsal of a
+# primary-practice sentence — a courtyard notice read cold, a notice-register translate,
+# a stairwell announcement heard once, a dictation that turns the desto word order into a
+# typed decision, and the two open tasks the outcomes claim (a written product story and
+# a spoken comparison). Open tasks are minimal ceremony: attempt → model → done; the
+# `requirements` and the `checklist` are guidance for comparing your own text against the
+# model — the app cannot verify free production, so it charges no steps for feedback it
+# cannot give.
+# Three notes on the tags. lesen-aushang carries the A2 tag passiv-rezeptiv — telling
+# werden + Partizip II from werden + Infinitiv is exactly that recognition confusion, and
+# the item is the live runtime channel of the `deepens` edge to man-und-besitz, whose
+# passive-recognition practice set drills the same tag. hoeren-durchsage carries
+# passiv-vergangenheit because its comprehension turns on ist … worden (already done)
+# against werden/wird (still scheduled) — hearing the tense of the frame is the miss the
+# item can actually produce. hoeren-diktat-je carries je-desto: dictation cannot grade a
+# choice the learner never makes, but it does grade whether desto + Komparativ is followed
+# directly by the finite verb in what they type. The write and speak tasks stay untagged —
+# unverified production must not feed the weakness signal.
+topic: konsum-umwelt
+role: practice
+title:
+  en: "Production — read the notice, hear the announcement, tell the product's story"
+  ru: "Продукция — прочитать объявление, услышать сообщение, рассказать историю продукта"
+  uk: "Продукція — прочитати оголошення, почути повідомлення, розповісти історію продукту"
+  de: "Produktion — den Aushang lesen, die Durchsage hören, die Geschichte des Produkts erzählen"
+items:
+  - id: lesen-aushang
+    outcomes: [hinweise-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "Am Aushang im Hof steht: „Ab Montag werden die Wege im Hof neu gemacht. Die Fahrräder werden bitte bis Sonntag in den Keller gestellt. Die Arbeiten werden ungefähr zwei Wochen dauern.“ — In welchem Satz ist werden kein Passiv, sondern nur Zukunft?"
+    options:
+      - "Die Arbeiten werden ungefähr zwei Wochen dauern."
+      - "Die Wege im Hof werden neu gemacht."
+      - "Die Fahrräder werden in den Keller gestellt."
+    correct: 0
+    translation:
+      en: "The notice in the courtyard says: \"From Monday the paths in the courtyard will be redone. Please put bicycles in the cellar by Sunday. The work will take about two weeks.\" — In which sentence is werden not a passive but only future?"
+      ru: "На объявлении во дворе написано: «С понедельника дорожки во дворе будут делать заново. Велосипеды, пожалуйста, поставьте до воскресенья в подвал. Работы продлятся около двух недель». — В каком предложении werden — не пассив, а только будущее?"
+      uk: "На оголошенні у дворі написано: «Від понеділка доріжки у дворі робитимуть заново. Велосипеди, будь ласка, поставте до неділі в підвал. Роботи триватимуть близько двох тижнів». — У якому реченні werden — не пасив, а лише майбутнє?"
+    explain:
+      en: "The A2 recognition rule doing B1 work: look at what stands at the end of the frame. Werden … dauern closes with an infinitive — that is Futur I, nobody does anything to the Arbeiten. Werden … gemacht and werden … gestellt close with a Partizip II — passives, something is done to the paths and the bicycles. Reading a notice is largely finding the frame and its last word."
+      ru: "Правило узнавания с A2 на работе уровня B1: смотрите, что стоит в конце рамки. Werden … dauern закрывается инфинитивом — это Futur I, с Arbeiten никто ничего не делает. Werden … gemacht и werden … gestellt закрываются причастием — это пассив: с дорожками и велосипедами что-то делают. Читать объявление — во многом значит найти рамку и её последнее слово."
+      uk: "Правило впізнавання з A2 на роботі рівня B1: дивіться, що стоїть у кінці рамки. Werden … dauern закривається інфінітивом — це Futur I, з Arbeiten ніхто нічого не робить. Werden … gemacht і werden … gestellt закриваються дієприкметником — це пасив: з доріжками і велосипедами щось роблять. Читати оголошення — значною мірою означає знайти рамку та її останнє слово."
+      de: "Die A2-Erkennungsregel bei B1-Arbeit: Schau, was am Ende der Klammer steht. Werden … dauern schließt mit einem Infinitiv — Futur I, niemand tut etwas mit den Arbeiten. Werden … gemacht und werden … gestellt schließen mit einem Partizip II — Passiv, mit den Wegen und den Fahrrädern geschieht etwas. Einen Aushang zu lesen heißt großenteils, die Klammer und ihr letztes Wort zu finden."
+
+  - id: uebersetzen-tonne-august
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate — use the passive of leeren."
+      ru: "Переведите — используйте пассив глагола leeren."
+      uk: "Перекладіть — використайте пасив дієслова leeren."
+      de: "Übersetze — benutze das Passiv von leeren."
+    prompt_en: "The green bin is not emptied in August."
+    prompt_ru: "Зелёный бак в августе не опорожняют."
+    prompt_uk: "Зелений бак у серпні не спорожняють."
+    answer: "Die grüne Tonne wird im August nicht geleert."
+    accept:
+      - "Im August wird die grüne Tonne nicht geleert."
+    key_tokens: ["wird", "geleert"]
+    explain:
+      en: "Notice register, so the passive — and the instruction names leeren so that a synonym cannot cost you the point. Graded are the frame's two walls: wird in position 2, geleert at the very end. The negation slides in before the participle: wird im August nicht geleert. Fronting im August is equally correct and accepted — the fronted phrase pushes the subject behind wird."
+      ru: "Регистр объявления — значит пассив, а leeren назван в задании, чтобы синоним не стоил вам балла. Оцениваются две стены рамки: wird на втором месте, geleert в самом конце. Отрицание встаёт перед причастием: wird im August nicht geleert. Вынести im August вперёд можно — вариант принимается, и тогда вынесенная группа сдвигает подлежащее за wird."
+      uk: "Регістр оголошення — отже пасив, а leeren названо в завданні, щоб синонім не коштував вам бала. Оцінюються дві стіни рамки: wird на другому місці, geleert у самому кінці. Заперечення стає перед дієприкметником: wird im August nicht geleert. Винести im August уперед можна — варіант приймається, і тоді винесена група зсуває підмет за wird."
+      de: "Aushang-Register, also Passiv — und die Aufgabe nennt leeren, damit kein Synonym den Punkt kostet. Bewertet werden die beiden Wände der Klammer: wird auf Position 2, geleert ganz am Ende. Die Verneinung schiebt sich vor das Partizip: wird im August nicht geleert. Im August vorn ist genauso richtig und wird akzeptiert — die vorangestellte Angabe schiebt das Subjekt hinter wird."
+
+  - id: hoeren-durchsage
+    outcomes: [hinweise-verstehen]
+    type: audio-comprehension
+    focus: passiv-vergangenheit
+    instruction:
+      en: "An announcement heard in the stairwell, not read. Listen for what has already been done — and what is only going to happen."
+      ru: "Объявление, которое вы слышите на лестнице, а не читаете. Слушайте, что уже сделано — а что только произойдёт."
+      uk: "Оголошення, яке ви чуєте на сходах, а не читаєте. Слухайте, що вже зроблено — а що лише станеться."
+      de: "Eine Durchsage im Treppenhaus, gehört und nicht gelesen. Achte darauf, was schon gemacht worden ist — und was erst passieren wird."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Hausverwaltung", text: "Liebe Nachbarinnen und Nachbarn, eine kurze Information der Hausverwaltung." }
+        - { speaker: "Hausverwaltung", text: "Die alten Fahrräder im Hof sind am Montag weggebracht worden." }
+        - { speaker: "Hausverwaltung", text: "Die neuen Tonnen werden erst am Freitag in den Hof gestellt." }
+        - { speaker: "Hausverwaltung", text: "Bis dahin wird der alte Container weiter benutzt." }
+    question: "Was ist schon gemacht worden?"
+    options:
+      - "Die alten Fahrräder sind weggebracht worden."
+      - "Die neuen Tonnen sind in den Hof gestellt worden."
+      - "Der alte Container ist geleert worden."
+    correct: 0
+    translation:
+      en: "What has already been done?"
+      ru: "Что уже сделано?"
+      uk: "Що вже зроблено?"
+    explain:
+      en: "Every option quotes the announcement's words, so the ear has to catch the tense of each frame, not the vocabulary. Sind … weggebracht worden is the spoken past passive — done. Werden … gestellt is present with a future date (erst am Freitag) — still coming, so option two turns a plan into a fact. And the container is weiter benutzt, not geleert — nothing in the announcement empties it."
+      ru: "Каждый вариант цитирует слова объявления, поэтому ухо должно поймать время каждой рамки, а не лексику. Sind … weggebracht worden — устный пассив прошедшего: сделано. Werden … gestellt — настоящее с будущей датой (erst am Freitag): ещё впереди, так что второй вариант выдаёт план за факт. А контейнер weiter benutzt, не geleert — его в объявлении никто не опорожняет."
+      uk: "Кожен варіант цитує слова оголошення, тому вухо має вловити час кожної рамки, а не лексику. Sind … weggebracht worden — усний пасив минулого: зроблено. Werden … gestellt — теперішнє з майбутньою датою (erst am Freitag): ще попереду, тож другий варіант видає план за факт. А контейнер weiter benutzt, не geleert — його в оголошенні ніхто не спорожняє."
+      de: "Jede Option zitiert die Wörter der Durchsage — das Ohr muss also die Zeitform jeder Klammer hören, nicht den Wortschatz. Sind … weggebracht worden ist das gesprochene Vergangenheits-Passiv: erledigt. Werden … gestellt ist Präsens mit Zukunftsdatum (erst am Freitag): steht noch aus, die zweite Option macht aus einem Plan eine Tatsache. Und der Container wird weiter benutzt, nicht geleert — geleert wird er in der Durchsage nie."
+
+  - id: hoeren-diktat-je
+    outcomes: [konsum-vergleichen]
+    type: listen
+    focus: je-desto
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Je mehr wir kaufen, desto mehr werfen wir weg."
+    translation:
+      en: "The more we buy, the more we throw away."
+      ru: "Чем больше мы покупаем, тем больше мы выбрасываем."
+      uk: "Що більше ми купуємо, то більше ми викидаємо."
+    explain:
+      en: "Nine words, two word orders, and typing them is where you find out whether you heard the orders or only the words. In the je-half the verb kaufen stands at the end, like any subordinate clause. After desto mehr the finite verb werfen comes immediately, wir follows it, and the separable weg waits at the very end. If your fingers wrote desto wir werfen, the ear heard the meaning and the hand restored the old order."
+      ru: "Девять слов, два порядка слов — и именно при записи выясняется, услышали вы порядок или только слова. В половине с je глагол kaufen стоит в конце, как в любом придаточном. После desto mehr сразу идёт спрягаемый werfen, за ним wir, а отделяемое weg ждёт в самом конце. Если пальцы написали desto wir werfen — ухо услышало смысл, а рука вернула привычный порядок."
+      uk: "Дев'ять слів, два порядки слів — і саме під час запису з'ясовується, чи почули ви порядок, чи лише слова. У половині з je дієслово kaufen стоїть у кінці, як у будь-якому підрядному. Після desto mehr одразу йде відмінюваний werfen, за ним wir, а відокремлюваний weg чекає в самому кінці. Якщо пальці написали desto wir werfen — вухо почуло зміст, а рука повернула звичний порядок."
+      de: "Neun Wörter, zwei Wortstellungen — und beim Tippen zeigt sich, ob man die Stellungen gehört hat oder nur die Wörter. In der je-Hälfte steht das Verb kaufen am Ende, wie in jedem Nebensatz. Nach desto mehr kommt sofort das finite werfen, dann wir, und das trennbare weg wartet ganz am Ende. Wer desto wir werfen tippt, hat den Sinn gehört und die alte Ordnung wiederhergestellt."
+
+  - id: schreiben-produktgeschichte
+    outcomes: [passiv-beschreiben]
+    type: write
+    instruction:
+      en: "Write the text yourself — the list shows what to check it against."
+      ru: "Напишите текст сами — список подскажет, что в нём проверить."
+      uk: "Напишіть текст самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Text selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "For the neighbourhood newsletter: present a product you like buying. Say briefly where it is made, how it is packaged and sold, and what happens to the packaging afterwards — plus one sentence about the past: how was this done in earlier days?"
+      ru: "Для районной газеты: представьте продукт, который вы любите покупать. Коротко скажите, где его производят, как упаковывают и продают и что потом происходит с упаковкой, — плюс одно предложение о прошлом: как это делали раньше?"
+      uk: "Для районної газети: представте продукт, який ви любите купувати. Коротко скажіть, де його виробляють, як пакують і продають і що потім відбувається з упаковкою, — плюс одне речення про минуле: як це робили раніше?"
+      de: "Für die Nachbarschaftszeitung: Stell ein Produkt vor, das du gern kaufst. Sag kurz, wo es hergestellt wird, wie es verpackt und verkauft wird und was später mit der Verpackung geschieht — dazu ein Satz über früher: Wie wurde das früher gemacht?"
+    goal:
+      en: "A short product story told in the passive: origin, packaging, sale, disposal — and one sentence about how it used to be done."
+      ru: "Короткая история продукта, рассказанная в пассиве: происхождение, упаковка, продажа, утилизация — и одно предложение о том, как это делали раньше."
+      uk: "Коротка історія продукту, розказана в пасиві: походження, упаковка, продаж, утилізація — і одне речення про те, як це робили раніше."
+      de: "Eine kurze Produktgeschichte im Passiv: Herkunft, Verpackung, Verkauf, Entsorgung — und ein Satz darüber, wie es früher gemacht wurde."
+    requirements:
+      - en: "Every passive sentence keeps the frame: werden conjugated in position 2, the Partizip II at the very end — Der Käse wird in unserer Region hergestellt. Singular wird, plural werden."
+        ru: "Каждое пассивное предложение держит рамку: werden спрягается на втором месте, Partizip II — в самом конце: Der Käse wird in unserer Region hergestellt. Единственное число — wird, множественное — werden."
+        uk: "Кожне пасивне речення тримає рамку: werden відмінюється на другому місці, Partizip II — у самому кінці: Der Käse wird in unserer Region hergestellt. Однина — wird, множина — werden."
+        de: "Jeder Passivsatz hält die Klammer: werden konjugiert auf Position 2, das Partizip II ganz am Ende — Der Käse wird in unserer Region hergestellt. Singular wird, Plural werden."
+      - en: "At least one sentence about the past. Written register takes wurde … (Früher wurde alles in Papier verpackt), spoken register ist … worden — and inside a passive it is always worden, never geworden."
+        ru: "Хотя бы одно предложение о прошлом. Письменный регистр берёт wurde … (Früher wurde alles in Papier verpackt), устный — ist … worden, и в пассиве всегда worden, никогда geworden."
+        uk: "Щонайменше одне речення про минуле. Писемний регістр бере wurde … (Früher wurde alles in Papier verpackt), усний — ist … worden, і в пасиві завжди worden, ніколи geworden."
+        de: "Mindestens ein Satz über früher. Geschriebenes Register nimmt wurde … (Früher wurde alles in Papier verpackt), gesprochenes ist … worden — und im Passiv heißt es immer worden, nie geworden."
+      - en: "Name the doer only where it matters, with von + Dativ right before the participle: Die Säcke werden von der Stadt abgeholt. Most sentences should do without — leaving the doer out is what the passive is for."
+        ru: "Называйте деятеля только там, где он важен, через von + Dativ прямо перед причастием: Die Säcke werden von der Stadt abgeholt. Большинству предложений деятель не нужен — пассив и существует, чтобы его опускать."
+        uk: "Називайте виконавця лише там, де він важливий, через von + Dativ прямо перед дієприкметником: Die Säcke werden von der Stadt abgeholt. Більшості речень виконавець не потрібен — пасив і існує, щоб його опускати."
+        de: "Nenn den Täter nur, wo er wichtig ist, mit von + Dativ direkt vor dem Partizip: Die Säcke werden von der Stadt abgeholt. Die meisten Sätze kommen ohne aus — genau dafür ist das Passiv da."
+      - en: "Where the reader becomes the doer, man is the bridge back to conversation: Man trennt den Müll says what Der Müll wird getrennt says — the accusative object turns into the subject."
+        ru: "Там, где деятелем становится читатель, man — мост обратно к разговору: Man trennt den Müll говорит то же, что Der Müll wird getrennt, — дополнение в Akkusativ превращается в подлежащее."
+        uk: "Там, де виконавцем стає читач, man — міст назад до розмови: Man trennt den Müll каже те саме, що Der Müll wird getrennt, — додаток в Akkusativ перетворюється на підмет."
+        de: "Wo der Leser selbst der Täter ist, ist man die Brücke zurück ins Gespräch: Man trennt den Müll sagt, was Der Müll wird getrennt sagt — das Akkusativobjekt wird zum Subjekt."
+    min_words: 60
+    model_answer: "Mein Lieblingsprodukt ist der Apfelsaft von unserem Wochenmarkt. Die Äpfel werden in der Region gesammelt, und der Saft wird nur wenige Kilometer von hier gemacht. Er wird in Glasflaschen ohne Plastik verkauft. Die leeren Flaschen werden am Stand zurückgenommen und wieder benutzt. Früher wurde der Saft nur im Herbst verkauft, heute bekommt man ihn das ganze Jahr. Letztes Jahr ist der kleine Stand sogar vergrößert worden, weil so viele Leute regional kaufen. Je mehr Flaschen zurückkommen, desto weniger Müll entsteht."
+    model_translation:
+      en: "My favourite product is the apple juice from our weekly market. The apples are gathered in the region, and the juice is made only a few kilometres from here. It is sold in glass bottles without plastic. The empty bottles are taken back at the stand and used again. In the past the juice was sold only in autumn; today you can get it all year round. Last year the little stand was even enlarged, because so many people buy regionally. The more bottles come back, the less waste there is."
+      ru: "Мой любимый продукт — яблочный сок с нашего еженедельного рынка. Яблоки собирают в нашем регионе, а сок делают всего в нескольких километрах отсюда. Продают его в стеклянных бутылках без пластика. Пустые бутылки принимают обратно у прилавка и используют снова. Раньше сок продавали только осенью, сегодня его можно купить круглый год. В прошлом году маленький прилавок даже расширили, потому что так много людей покупает местное. Чем больше бутылок возвращается, тем меньше возникает мусора."
+      uk: "Мій улюблений продукт — яблучний сік з нашого щотижневого ринку. Яблука збирають у нашому регіоні, а сік роблять лише за кілька кілометрів звідси. Продають його в скляних пляшках без пластику. Порожні пляшки приймають назад біля прилавка і використовують знову. Раніше сік продавали лише восени, сьогодні його можна купити цілий рік. Торік маленький прилавок навіть розширили, бо так багато людей купує місцеве. Що більше пляшок повертається, то менше виникає сміття."
+    explain:
+      en: "Compare your draft against the model's skeleton, not its words. The standing facts run in the present passive — werden gesammelt, wird gemacht, wird verkauft, werden zurückgenommen. The past appears in both registers side by side: the written wurde verkauft for the old routine, the spoken ist vergrößert worden for last year's news. No doer is named anywhere, because none matters; man appears exactly once, where the reader is the doer (bekommt man ihn). Check your own text for the two frame walls: werden in position 2, participle last."
+      ru: "Сверяйте черновик со скелетом образца, а не с его словами. Постоянные факты идут в пассиве настоящего: werden gesammelt, wird gemacht, wird verkauft, werden zurückgenommen. Прошлое стоит в обоих регистрах рядом: письменное wurde verkauft — про старый порядок, устное ist vergrößert worden — про новость прошлого года. Деятель нигде не назван, потому что нигде не важен; man появляется ровно один раз — там, где деятель сам читатель (bekommt man ihn). Проверьте свой текст на две стены рамки: werden на втором месте, причастие в конце."
+      uk: "Звіряйте чернетку зі скелетом зразка, а не з його словами. Постійні факти йдуть у пасиві теперішнього: werden gesammelt, wird gemacht, wird verkauft, werden zurückgenommen. Минуле стоїть в обох регістрах поруч: писемне wurde verkauft — про старий порядок, усне ist vergrößert worden — про новину минулого року. Виконавець ніде не названий, бо ніде не важливий; man з'являється рівно один раз — там, де виконавець сам читач (bekommt man ihn). Перевірте свій текст на дві стіни рамки: werden на другому місці, дієприкметник у кінці."
+      de: "Vergleiche deinen Entwurf mit dem Gerüst des Musters, nicht mit seinen Wörtern. Die stehenden Tatsachen laufen im Präsens-Passiv — werden gesammelt, wird gemacht, wird verkauft, werden zurückgenommen. Die Vergangenheit steht in beiden Registern nebeneinander: das geschriebene wurde verkauft für die alte Routine, das gesprochene ist vergrößert worden für die Neuigkeit vom letzten Jahr. Ein Täter wird nirgends genannt, weil keiner wichtig ist; man kommt genau einmal vor, wo der Leser selbst handelt (bekommt man ihn). Prüf deinen Text auf die zwei Klammerwände: werden auf Position 2, Partizip zuletzt."
+
+  - id: sprechen-vergleich
+    outcomes: [konsum-vergleichen]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say it aloud — and if you can, listen to yourself: the checklist names what to listen for."
+      ru: "Произнесите вслух — и, если можете, послушайте себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Вимовте вголос — і, якщо можете, послухайте себе: чек-лист підказує, на що звертати увагу."
+      de: "Sprich laut — und hör dir dabei selbst zu, wenn du kannst: Die Checkliste sagt, worauf es ankommt."
+    prompt:
+      en: "In the supermarket the jam costs two euros; at the weekly market almost the same jar costs four. A friend asks: „Warum zahlst du das Doppelte?“ Answer aloud in five or more sentences: compare the two jars and justify your choice — or defend the cheap one."
+      ru: "В супермаркете варенье стоит два евро; на еженедельном рынке почти такая же банка стоит четыре. Знакомый спрашивает: «Warum zahlst du das Doppelte?» Ответьте вслух, пять и более предложений: сравните обе банки и обоснуйте свой выбор — или защитите дешёвую."
+      uk: "У супермаркеті варення коштує два євро; на щотижневому ринку майже така сама банка коштує чотири. Знайомий питає: «Warum zahlst du das Doppelte?» Дайте відповідь уголос, п'ять і більше речень: порівняйте обидві банки й обґрунтуйте свій вибір — або захистіть дешеву."
+      de: "Im Supermarkt kostet die Marmelade zwei Euro; auf dem Wochenmarkt kostet fast dasselbe Glas vier. Ein Freund fragt: „Warum zahlst du das Doppelte?“ Antworte laut, in fünf oder mehr Sätzen: Vergleiche die beiden Gläser und begründe deine Wahl — oder verteidige das billige Glas."
+    goal:
+      en: "A comparison that ends in a decision: both options named, at least two differences, and your choice with a reason — not a shopping list."
+      ru: "Сравнение, которое заканчивается решением: обе банки названы, не меньше двух различий, и ваш выбор с обоснованием — а не список покупок."
+      uk: "Порівняння, яке закінчується рішенням: обидві банки названі, щонайменше дві відмінності, і ваш вибір з обґрунтуванням — а не список покупок."
+      de: "Ein Vergleich, der in einer Entscheidung endet: beide Gläser genannt, mindestens zwei Unterschiede, und deine Wahl mit Begründung — keine Einkaufsliste."
+    checklist:
+      - en: "At least one comparison used a comparative with als: Die Marmelade vom Markt ist teurer als die aus dem Supermarkt — and the irregulars kept their forms (gut → besser, gern → lieber, viel → mehr)."
+        ru: "Хотя бы одно сравнение прозвучало через сравнительную степень с als: Die Marmelade vom Markt ist teurer als die aus dem Supermarkt — и неправильные формы остались собой (gut → besser, gern → lieber, viel → mehr)."
+        uk: "Щонайменше одне порівняння пролунало через вищий ступінь з als: Die Marmelade vom Markt ist teurer als die aus dem Supermarkt — і неправильні форми лишилися собою (gut → besser, gern → lieber, viel → mehr)."
+        de: "Mindestens ein Vergleich kam mit Komparativ und als: Die Marmelade vom Markt ist teurer als die aus dem Supermarkt — und die unregelmäßigen Formen blieben sie selbst (gut → besser, gern → lieber, viel → mehr)."
+      - en: "At least one je … desto sentence — and each half kept its word order: the verb at the end of the je-half (Je weniger Zucker die Marmelade hat, …), the finite verb directly after desto + comparative (…, desto besser schmeckt sie mir)."
+        ru: "Хотя бы одно предложение с je … desto — и каждая половина сохранила свой порядок слов: глагол в конце je-половины (Je weniger Zucker die Marmelade hat, …), спрягаемый глагол сразу после desto + сравнительной степени (…, desto besser schmeckt sie mir)."
+        uk: "Щонайменше одне речення з je … desto — і кожна половина зберегла свій порядок слів: дієслово в кінці je-половини (Je weniger Zucker die Marmelade hat, …), відмінюване дієслово одразу після desto + вищого ступеня (…, desto besser schmeckt sie mir)."
+        de: "Mindestens ein Satz mit je … desto — und jede Hälfte behielt ihre Wortstellung: das Verb am Ende der je-Hälfte (Je weniger Zucker die Marmelade hat, …), das finite Verb direkt nach desto + Komparativ (…, desto besser schmeckt sie mir)."
+      - en: "The choice got a reason with weil or denn — and where you talked about origin, the passive fitted naturally: Die Marmelade vom Markt wird in der Region gemacht."
+        ru: "Выбор получил обоснование через weil или denn — а там, где речь шла о происхождении, естественно лёг пассив: Die Marmelade vom Markt wird in der Region gemacht."
+        uk: "Вибір отримав обґрунтування через weil або denn — а там, де йшлося про походження, природно ліг пасив: Die Marmelade vom Markt wird in der Region gemacht."
+        de: "Die Wahl bekam einen Grund mit weil oder denn — und wo es um die Herkunft ging, passte das Passiv wie von selbst: Die Marmelade vom Markt wird in der Region gemacht."
+    model_answer: "Ich zahle das Doppelte, weil ich weiß, woher die Marmelade kommt. Sie wird auf dem Wochenmarkt in der Region gemacht, und das Obst wird nicht weit transportiert. Die Marmelade aus dem Supermarkt ist zwar billiger als die vom Markt, aber sie schmeckt mir zu süß. Je weniger Zucker die Marmelade hat, desto besser schmeckt sie mir. Und je mehr Leute auf dem Markt kaufen, desto länger bleibt uns der kleine Stand. Am Ende ist das teure Glas für mich das bessere Angebot."
+    model_translation:
+      en: "I pay double because I know where the jam comes from. It is made at the weekly market in the region, and the fruit is not transported far. The supermarket jam is cheaper than the market one, admittedly, but it tastes too sweet to me. The less sugar the jam has, the better it tastes to me. And the more people buy at the market, the longer the little stand stays with us. In the end the expensive jar is the better deal for me."
+      ru: "Я плачу вдвое больше, потому что знаю, откуда это варенье. Его делают на еженедельном рынке в нашем регионе, и фрукты не везут издалека. Варенье из супермаркета, правда, дешевле рыночного, но оно для меня слишком сладкое. Чем меньше сахара в варенье, тем оно мне вкуснее. А чем больше людей покупает на рынке, тем дольше у нас останется этот маленький прилавок. В итоге дорогая банка для меня — лучшее предложение."
+      uk: "Я плачу вдвічі більше, бо знаю, звідки це варення. Його роблять на щотижневому ринку в нашому регіоні, і фрукти не везуть здалеку. Варення із супермаркету, щоправда, дешевше за ринкове, але воно для мене засолодке. Що менше цукру у варенні, то смачніше воно мені. А що більше людей купує на ринку, то довше в нас лишиться цей маленький прилавок. У підсумку дорога банка для мене — краща пропозиція."
+    explain:
+      en: "The model makes the moves the checklist names, and nothing else. The reason comes first, with weil and its verb at the end (weil ich weiß, …). Origin runs in the passive: wird … gemacht, wird … transportiert. The concession is a comparative with als inside zwar … aber — billiger als die vom Markt, aber … And the two je … desto sentences carry the two word orders to listen for: hat at the end of its je-half, then schmeckt and bleibt straight after desto besser and desto länger. Say it a second time and listen for exactly those four verbs."
+      ru: "Образец делает ровно те ходы, что названы в чек-листе. Сначала обоснование — weil с глаголом в конце (weil ich weiß, …). Происхождение идёт в пассиве: wird … gemacht, wird … transportiert. Уступка — сравнительная степень с als внутри zwar … aber: billiger als die vom Markt, aber … А два предложения с je … desto несут те самые два порядка слов: hat в конце своей je-половины, затем schmeckt и bleibt сразу после desto besser и desto länger. Произнесите текст второй раз и вслушайтесь именно в эти четыре глагола."
+      uk: "Зразок робить рівно ті ходи, що названі в чек-листі. Спершу обґрунтування — weil з дієсловом у кінці (weil ich weiß, …). Походження йде в пасиві: wird … gemacht, wird … transportiert. Поступка — вищий ступінь з als усередині zwar … aber: billiger als die vom Markt, aber … А два речення з je … desto несуть ті самі два порядки слів: hat у кінці своєї je-половини, потім schmeckt і bleibt одразу після desto besser і desto länger. Вимовте текст удруге і вслухайтеся саме в ці чотири дієслова."
+      de: "Das Muster macht genau die Züge, die die Checkliste nennt. Zuerst der Grund, mit weil und dem Verb am Ende (weil ich weiß, …). Die Herkunft läuft im Passiv: wird … gemacht, wird … transportiert. Das Zugeständnis ist ein Komparativ mit als innerhalb von zwar … aber — billiger als die vom Markt, aber … Und die zwei je-desto-Sätze tragen die zwei Wortstellungen, auf die zu hören ist: hat am Ende seiner je-Hälfte, dann schmeckt und bleibt direkt nach desto besser und desto länger. Sprich den Text ein zweites Mal und hör auf genau diese vier Verben."
