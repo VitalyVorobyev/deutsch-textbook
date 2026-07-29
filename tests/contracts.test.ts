@@ -521,7 +521,10 @@ describe('cards: recognition | both', () => {
     // that caught it — every translate answer, listen text and cloze gap under
     // content/exercises against every recognition-only headword in the corpus — now
     // returns zero.
-    expect(cards).toBe(entries * 2 - 44);
+    // B1.6 (konsum-umwelt, 2026-07-28) adds seventeen more — the deck's receptive tail
+    // (Konsum … ökologisch): label, notice and report vocabulary a B1 learner reads on
+    // packaging and on a bin but is not asked to produce.
+    expect(cards).toBe(entries * 2 - 61);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

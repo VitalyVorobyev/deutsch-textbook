@@ -99,4 +99,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'verb-praeposition-b1': 'meinung-medien',
   'da-weil': 'meinung-medien',
   'zweiteilige-konnektoren': 'meinung-medien',
+  'passiv-bildung': 'konsum-umwelt',
+  'passiv-vergangenheit': 'konsum-umwelt',
+  'je-desto': 'konsum-umwelt',
 };

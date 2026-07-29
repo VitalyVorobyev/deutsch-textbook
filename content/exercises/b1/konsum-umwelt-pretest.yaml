@@ -1,0 +1,68 @@
+# Diagnostic generation, not practice: three guesses before the article, one per grammar
+# point of the unit (produced present passive, past passive, je … desto). No focus tags —
+# a pretest is never weakness evidence — and the first item is a cloze, because a pretest
+# made only of mc discriminates nothing.
+topic: konsum-umwelt
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-wird
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    instruction:
+      en: "Guess the little verb the sign needs — without it the sentence has no conjugated verb at all."
+      ru: "Угадайте короткий глагол, которого требует табличка, — без него в предложении вообще не останется спрягаемого глагола."
+      uk: "Вгадайте коротке дієслово, якого вимагає табличка, — без нього в реченні взагалі не лишиться відмінюваного дієслова."
+      de: "Rate das kleine Verb, das das Schild braucht — ohne es hat der Satz gar kein konjugiertes Verb."
+    text: "Auf dem Schild am Eingang steht: Hier {{wird}} nur mit Karte bezahlt."
+    translation:
+      en: "The sign at the entrance says: payment here is by card only."
+      ru: "На табличке у входа написано: здесь платят только картой."
+      uk: "На табличці біля входу написано: тут платять лише карткою."
+    explain:
+      en: "A sign names no doer, and German has a form built for that: das Passiv — werden conjugated in position 2, the Partizip II at the end. Bezahlt alone is only a participle; wird is what makes it a sentence. Your A2 bridge still works: hier bezahlt man nur mit Karte says the same. The chapter turns that bridge into a machine."
+      ru: "Табличка не называет деятеля, и у немецкого есть форма ровно для этого: das Passiv — werden спрягается на втором месте, Partizip II стоит в конце. Bezahlt само по себе лишь причастие; предложением его делает wird. Мостик с A2 работает: hier bezahlt man nur mit Karte говорит то же самое. Глава превращает этот мостик в машину."
+      uk: "Табличка не називає виконавця, і німецька має форму рівно для цього: das Passiv — werden відмінюється на другому місці, Partizip II стоїть у кінці. Bezahlt саме по собі лише дієприкметник; реченням його робить wird. Місток з A2 працює: hier bezahlt man nur mit Karte каже те саме. Розділ перетворює цей місток на машину."
+      de: "Ein Schild nennt keinen Täter, und dafür hat das Deutsche eine Form: das Passiv — werden konjugiert auf Position 2, das Partizip II am Ende. Bezahlt allein ist nur ein Partizip; erst wird macht daraus einen Satz. Die A2-Brücke trägt noch: hier bezahlt man nur mit Karte sagt dasselbe. Das Kapitel macht aus der Brücke eine Maschine."
+
+  - id: pre-mc-worden
+    outcomes: [hinweise-verstehen]
+    type: mc
+    prompt: "Unsere Schule ist im Sommer renoviert ___."
+    options:
+      - "worden"
+      - "geworden"
+      - "wurde"
+    correct: 0
+    translation:
+      en: "Our school was renovated over the summer."
+      ru: "Нашу школу летом отремонтировали."
+      uk: "Нашу школу влітку відремонтували."
+    explain:
+      en: "Inside a passive the participle of werden slims down to worden — no ge-. Geworden exists, but it belongs to werden as a full verb — someone or something became something: Er ist Lehrer geworden. And wurde cannot follow ist — it is the other past passive, the written one: Die Schule wurde renoviert. The chapter puts the two past forms side by side and says which register owns which."
+      ru: "В пассиве причастие от werden сокращается до worden — без ge-. Geworden существует, но это полный глагол werden — кто-то или что-то стало кем-то или каким-то: Er ist Lehrer geworden. А wurde после ist стоять не может — это вторая, письменная форма прошедшего пассива: Die Schule wurde renoviert. Глава ставит обе формы рядом и говорит, какому регистру какая принадлежит."
+      uk: "У пасиві дієприкметник від werden скорочується до worden — без ge-. Geworden існує, але це повне дієслово werden — хтось або щось стало кимось або якимось: Er ist Lehrer geworden. А wurde після ist стояти не може — це друга, писемна форма минулого пасиву: Die Schule wurde renoviert. Розділ ставить обидві форми поруч і каже, якому регістру яка належить."
+      de: "Im Passiv schrumpft das Partizip von werden zu worden — ohne ge-. Geworden gibt es, aber es gehört zum Vollverb werden: Jemand oder etwas ist etwas geworden (Er ist Lehrer geworden). Und wurde kann nicht auf ist folgen — es ist die andere, geschriebene Vergangenheitsform des Passivs: Die Schule wurde renoviert. Das Kapitel stellt beide Formen nebeneinander und sagt, welchem Register welche gehört."
+
+  - id: pre-mc-desto
+    outcomes: [konsum-vergleichen]
+    type: mc
+    prompt: "Je billiger das Produkt ist, ___"
+    options:
+      - "desto schlechter ist oft die Qualität."
+      - "desto die Qualität ist oft schlechter."
+      - "desto schlechter die Qualität oft ist."
+    correct: 0
+    translation:
+      en: "The cheaper the product, the worse the quality often is."
+      ru: "Чем дешевле продукт, тем хуже часто качество."
+      uk: "Що дешевший продукт, то гірша часто якість."
+    explain:
+      en: "Desto and its comparative are one unit, and that unit itself fills position 1 of the main clause — so the finite verb comes immediately after it and the subject after the verb: desto schlechter ist die Qualität. Subject-first is the straight transfer from English word order; verb-final treats the desto-half as a subordinate clause, which only the je-half is."
+      ru: "Desto и его сравнительная степень — одно целое, и это целое само занимает первую позицию главного предложения, поэтому сразу за ним идёт спрягаемый глагол, а подлежащее — за глаголом: desto schlechter ist die Qualität. Порядок «тем качество хуже» — прямой перенос из русского; глагол в конце превращает desto-половину в придаточное, а придаточное здесь только половина с je."
+      uk: "Desto і його вищий ступінь — одне ціле, і це ціле саме займає першу позицію головного речення, тому одразу за ним іде відмінюване дієслово, а підмет — за дієсловом: desto schlechter ist die Qualität. Порядок «то якість гірша» — прямий перенос з української; дієслово в кінці перетворює desto-половину на підрядне, а підрядним тут є лише половина з je."
+      de: "Desto und sein Komparativ sind eine Einheit, und diese Einheit besetzt selbst Position 1 des Hauptsatzes — also folgt sofort das finite Verb und danach das Subjekt: desto schlechter ist die Qualität. Subjekt zuerst ist die wörtliche Übertragung aus anderen Sprachen; Verb am Ende macht aus der desto-Hälfte einen Nebensatz, und ein Nebensatz ist hier nur die je-Hälfte."

@@ -1,0 +1,91 @@
+# Delayed probe family 2 of 3 — ONE competence: supplying the Präteritum passive a
+# written notice calls for. All three variants stay in the notice register and tense —
+# wurde singular, wurden plural, wurde singular again — because variants are served in
+# authoring order across the three delays, so the family's stages are one retention
+# curve: a variant that switched to ist … worden would compare Präteritum at two delays
+# with Perfekt at the third instead of re-measuring one form. The spoken ist … worden
+# keeps its practice and drill coverage and is not probed by this family. Three
+# verb-plus-noun pairings that no practice item, article example or reading sentence
+# pairs — Spielplatz gebaut, Öffnungszeiten geändert, Hof aufgeräumt. Checked by
+# grepping the participles in content/, not by re-reading this list.
+# `outcomes: [hinweise-verstehen]` is deliberate and it is what arms this family: the
+# can-do is "öffentliche Hinweise und Regelungen verstehen", and the article's reading
+# rule says what understanding one is — finding wird/werden/wurde and its participle,
+# because the frame carries the rule. What a notice's past frame says (already done,
+# against a wird that is still scheduled) is exactly the form these variants ask for.
+# The past-passive practice items (cloze-frueher-wurde, cloze-ist-worden,
+# mc-worden-geworden, uebersetzen-sofa) declare this outcome too, so what arms the
+# 2/7/21 clock is producing the probed forms in practice — the B1.5 pattern, where
+# the verb-praeposition items share bericht-verstehen with the family that probes them —
+# and never comprehension attempts alone.
+# Each of the two other families declares a different outcome, because two families
+# sharing one would arm identically and fire a probe at material never practised.
+# Each instruction names werden, the register and the tense, so the target is determinate
+# served alone — the competence is producing the form, never guessing the verb.
+topic: konsum-umwelt
+role: probe
+title:
+  en: "Delayed check — the past the notice is written in"
+  ru: "Отложенная проверка — прошедшее, которым написано объявление"
+  uk: "Відкладена перевірка — минуле, яким написане оголошення"
+  de: "Kontrolle mit Abstand — die Vergangenheit, in der der Aushang steht"
+items:
+  - id: variant-a
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written notice about the past — fill in werden in the Präteritum."
+      ru: "Письменное объявление о прошлом — впишите werden в Präteritum."
+      uk: "Писемне оголошення про минуле — впишіть werden у Präteritum."
+      de: "Ein geschriebener Aushang über die Vergangenheit — ergänze werden im Präteritum."
+    text: "Der Spielplatz in unserem Hof {{wurde}} im Mai neu gebaut."
+    translation:
+      en: "The playground in our courtyard was rebuilt in May."
+      ru: "Детскую площадку в нашем дворе в мае построили заново."
+      uk: "Дитячий майданчик у нашому дворі в травні збудували заново."
+    explain:
+      en: "Written notices and reports take the Präteritum of werden: wurde + Partizip II, singular subject, so wurde. The frame does not move — the participle gebaut keeps the final slot. War gebaut would state a standing result rather than report the event, and the event is what a notice about May reports."
+      ru: "Письменные объявления и отчёты берут Präteritum глагола werden: wurde + Partizip II; подлежащее в единственном числе — значит wurde. Рамка не сдвигается: причастие gebaut держит последнее место. War gebaut констатировало бы состояние-итог, а не сообщало бы о событии, — объявление же про май сообщает именно событие."
+      uk: "Писемні оголошення і звіти беруть Präteritum дієслова werden: wurde + Partizip II; підмет в однині — отже wurde. Рамка не зсувається: дієприкметник gebaut тримає останнє місце. War gebaut констатувало б стан-підсумок, а не повідомляло б про подію, — оголошення ж про травень повідомляє саме подію."
+      de: "Geschriebene Aushänge und Berichte nehmen das Präteritum von werden: wurde + Partizip II — Subjekt im Singular, also wurde. Die Klammer verrutscht nicht: Das Partizip gebaut behält den letzten Platz. War gebaut würde ein stehendes Ergebnis feststellen statt das Ereignis zu berichten — und ein Aushang über den Mai berichtet das Ereignis."
+
+  - id: variant-b
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written notice about the past — fill in werden in the Präteritum."
+      ru: "Письменное объявление о прошлом — впишите werden в Präteritum."
+      uk: "Писемне оголошення про минуле — впишіть werden у Präteritum."
+      de: "Ein geschriebener Aushang über die Vergangenheit — ergänze werden im Präteritum."
+    text: "Die Öffnungszeiten der Post {{wurden}} vor einer Woche geändert."
+    translation:
+      en: "The post office's opening hours were changed a week ago."
+      ru: "Часы работы почты неделю назад изменили."
+      uk: "Години роботи пошти тиждень тому змінили."
+    explain:
+      en: "Plural subject, so wurden — die Öffnungszeiten are what the sentence is about, and the auxiliary agrees with them, not with whoever changed them. Everything else is the same machine: geändert waits at the end, and the notice names no doer because the rule holds whoever made it. Wurde with a plural subject is the one agreement error this cell exists to catch."
+      ru: "Подлежащее во множественном числе — значит wurden: предложение о die Öffnungszeiten, и вспомогательный глагол согласуется с ними, а не с тем, кто их менял. Остальное — та же машина: geändert ждёт в конце, а деятель в объявлении не назван, потому что правило действует независимо от того, кто его ввёл. Wurde при множественном подлежащем — ровно та ошибка согласования, ради которой существует эта ячейка."
+      uk: "Підмет у множині — отже wurden: речення про die Öffnungszeiten, і допоміжне дієслово узгоджується з ними, а не з тим, хто їх змінював. Решта — та сама машина: geändert чекає в кінці, а виконавець в оголошенні не названий, бо правило діє незалежно від того, хто його запровадив. Wurde при множинному підметі — рівно та помилка узгодження, заради якої існує ця клітинка."
+      de: "Subjekt im Plural, also wurden — der Satz handelt von den Öffnungszeiten, und das Hilfsverb richtet sich nach ihnen, nicht nach dem, der sie geändert hat. Alles andere ist dieselbe Maschine: geändert wartet am Ende, und der Aushang nennt keinen Täter, denn die Regel gilt, wer auch immer sie gemacht hat. Wurde beim Pluralsubjekt ist genau der Kongruenzfehler, für den diese Zelle da ist."
+
+  - id: variant-c
+    outcomes: [hinweise-verstehen]
+    type: cloze
+    focus: passiv-vergangenheit
+    instruction:
+      en: "A written notice about the past — fill in werden in the Präteritum."
+      ru: "Письменное объявление о прошлом — впишите werden в Präteritum."
+      uk: "Писемне оголошення про минуле — впишіть werden у Präteritum."
+      de: "Ein geschriebener Aushang über die Vergangenheit — ergänze werden im Präteritum."
+    text: "Der Hof hinter dem Haus {{wurde}} am Samstag gründlich aufgeräumt."
+    translation:
+      en: "The courtyard behind the building was tidied up thoroughly on Saturday."
+      ru: "Двор за домом в субботу основательно привели в порядок."
+      uk: "Подвір'я за будинком у суботу ґрунтовно прибрали."
+    explain:
+      en: "The notice register again: the Präteritum of werden, and the singular Hof asks for wurde, with aufgeräumt holding the final slot. In conversation the same news would run ist aufgeräumt worden — the spoken Perfekt — but a written notice reports the event in wurde, and producing that form cold, weeks after practice, is what this check measures."
+      ru: "Снова регистр объявления: Präteritum глагола werden, и подлежащее Hof в единственном числе требует wurde, а aufgeräumt держит последнее место. В разговоре та же новость звучала бы как ist aufgeräumt worden — устный Perfekt, — но письменное объявление сообщает о событии через wurde, и выдать эту форму без подготовки, спустя недели после практики, — то, что измеряет эта проверка."
+      uk: "Знову регістр оголошення: Präteritum дієслова werden, і підмет Hof в однині вимагає wurde, а aufgeräumt тримає останнє місце. У розмові та сама новина звучала б як ist aufgeräumt worden — усний Perfekt, — але писемне оголошення повідомляє про подію через wurde, і видати цю форму без підготовки, через тижні після практики, — те, що вимірює ця перевірка."
+      de: "Wieder das Aushang-Register: das Präteritum von werden, und das Subjekt Hof im Singular verlangt wurde, während aufgeräumt den letzten Platz behält. Im Gespräch liefe dieselbe Neuigkeit als ist aufgeräumt worden — gesprochenes Perfekt —, aber ein geschriebener Aushang berichtet das Ereignis mit wurde, und genau diese Form kalt abzurufen, Wochen nach der Übung, misst diese Kontrolle."
