@@ -60,22 +60,22 @@ function numeral(word: string): number {
 }
 
 /**
- * The published numerator, matching the `## A1 grammar — 22/22` headline the script prints: a
- * point taught above its standard level is *taught*, and the report shows the split on the line
- * below rather than in the fraction. A1 is 17 covered + 5 late; comparing prose against `covered`
- * alone would demand the digest read 17/22 and contradict every other surface.
- */
-const taught = (level: 'A1' | 'A2' | 'B1') => {
-  const coverage = grammarCoverage(level);
-  return { ...coverage, taught: coverage.covered + coverage.late };
-};
-
-/**
  * The B1 unit contract is a *plan*, not content: units B1.8–B1.14 have no files, so nothing on
- * disk can measure it. It is stated once here, against its source, and the README denominator is
- * held to it — the same reason `/about` prints no contract total at all.
+ * disk can measure it — which is why `/about` prints no contract total at all and the README does.
+ *
+ * Its denominator is still not a constant to be copied here. A hard-coded 14 in this file would be
+ * a second copy of exactly the claim that went stale, free to rot in step with the README while
+ * the tripwire stayed green — the contract has already been amended once, from ten. So the total
+ * is counted off the unit sections of the frozen contract itself, and the sequence is checked for
+ * gaps and duplicates so a malformed heading cannot quietly lower it.
  */
-const B1_CONTRACTED_UNITS = 14; // docs/curriculum-a2-b1.md, frozen 2026-07-24
+function contractedB1Units(): number {
+  const headings = [...read('docs/curriculum-a2-b1.md').matchAll(/^### B1\.(\d+) · /gm)].map((m) =>
+    Number(m[1]),
+  );
+  expect(headings).toEqual(headings.map((_, i) => i + 1));
+  return headings.length;
+}
 
 describe('published progress claims match the content', () => {
   test('README unit counts match the curriculum spine', () => {
@@ -92,7 +92,7 @@ describe('published progress claims match the content', () => {
     const b1 = /(\S+) of the (\S+) contracted B1 units\s+are live/.exec(readme);
     expect(b1).not.toBeNull();
     expect(numeral(b1![1])).toBe(count('B1'));
-    expect(numeral(b1![2])).toBe(B1_CONTRACTED_UNITS);
+    expect(numeral(b1![2])).toBe(contractedB1Units());
   });
 
   test('the CLAUDE.md grammar digest matches the grammar-coverage instrument', () => {
@@ -105,14 +105,14 @@ describe('published progress claims match the content', () => {
       ['A2', a2c, a2t],
       ['B1', b1c, b1t],
     ] as const) {
-      const coverage = taught(level);
+      const coverage = grammarCoverage(level);
       expect([level, stated, total]).toEqual([level, coverage.taught, coverage.total]);
     }
   });
 
   test('the coverage-instruments B1 paragraph matches the instrument and the allowlist', () => {
     const doc = read('docs/coverage-instruments.md');
-    const coverage = taught('B1');
+    const coverage = grammarCoverage('B1');
 
     // "B1 has a real 32-point manifest, at 21/32 (66%) …"
     const figure = /B1 has a real (\d+)-point manifest, at (\d+)\/(\d+) \((\d+)%\)/.exec(doc);
