@@ -15,7 +15,10 @@
 # competence's practice would start the other's retention clock.
 # The instruction names je … desto because «чем … тем»/"the … the" already give the
 # pairing away and the frame is not what is probed; the word order is, so it is not
-# hinted. umso is equal German and every variant accepts it.
+# hinted. umso is equal German and every variant accepts it. For the same reason the
+# instruction also names the lexical verbs where their space is open (a: take the car;
+# c: get to the market) — lexis carries no part of the tag, and an unlisted correct
+# verb would log a false je-desto failure on a probe with three lifetime stages.
 topic: konsum-umwelt
 role: probe
 title:
@@ -29,17 +32,17 @@ items:
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto."
-      ru: "Переведите через je … desto."
-      uk: "Перекладіть через je … desto."
-      de: "Übersetze mit je … desto."
+      en: "Translate with je … desto. For the second half use das Auto nehmen or mit dem Auto fahren."
+      ru: "Переведите через je … desto. Во второй половине возьмите das Auto nehmen или mit dem Auto fahren."
+      uk: "Перекладіть через je … desto. У другій половині візьміть das Auto nehmen або mit dem Auto fahren."
+      de: "Übersetze mit je … desto. Für die zweite Hälfte: das Auto nehmen oder mit dem Auto fahren."
     prompt_en: "The closer the shop is, the more rarely I take the car."
     prompt_ru: "Чем ближе магазин, тем реже я беру машину."
     prompt_uk: "Що ближча крамниця, то рідше я беру машину."
     answer: "Je näher der Laden ist, desto seltener nehme ich das Auto."
-    # The prompt constrains only the je … desto frame, so the natural lexical
-    # renderings of both halves are accepted — liegt for ist, fahre ich mit dem
-    # Auto for nehme ich das Auto — and every rendering's frame verbs are pinned,
+    # "Take the car" has an open lexical space (nehmen, fahren, benutzen, nutzen …),
+    # so the instruction names nehmen/fahren. Both named renderings and the je-half's
+    # natural ist/liegt are accepted, and every rendering's frame verbs are pinned,
     # so the word order stays graded whichever rendering the learner aimed at.
     accept:
       - "Je näher der Laden ist, umso seltener nehme ich das Auto."
@@ -99,16 +102,17 @@ items:
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto."
-      ru: "Переведите через je … desto."
-      uk: "Перекладіть через je … desto."
-      de: "Übersetze mit je … desto."
+      en: "Translate with je … desto. For the first half use kommen or gehen."
+      ru: "Переведите через je … desto. В первой половине возьмите kommen или gehen."
+      uk: "Перекладіть через je … desto. У першій половині візьміть kommen або gehen."
+      de: "Übersetze mit je … desto. Für die erste Hälfte: kommen oder gehen."
     prompt_en: "The earlier we get to the market, the fresher the fruit is."
     prompt_ru: "Чем раньше мы приходим на рынок, тем свежее фрукты."
     prompt_uk: "Що раніше ми приходимо на ринок, то свіжіші фрукти."
     answer: "Je früher wir zum Markt kommen, desto frischer ist das Obst."
-    # gehen renders the prompt as faithfully as kommen — only the frame is
-    # constrained, so both verbs are accepted and pinned.
+    # "Get to the market" is open too (kommen, gehen, am Markt sein …), so the
+    # instruction names kommen/gehen; both are accepted with either Markt phrase
+    # and both are pinned.
     accept:
       - "Je früher wir zum Markt kommen, umso frischer ist das Obst."
       - "Je früher wir auf den Markt kommen, desto frischer ist das Obst."

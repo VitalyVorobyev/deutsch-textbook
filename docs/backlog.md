@@ -105,6 +105,14 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   3 of them probed. This is the real cost of B1's larger units, and the fix is six new families.
   **A second family re-arms the topic**: measure `armedAt` before and after, or probes already
   taken are silently relabelled.
+- **P18-4 · The RU/UK produktion-set titles name goods, not speech** — all six B1
+  `*-produktion` sets title themselves «Продукция»/«Продукція», which reads as manufactured
+  output, not language production (the intended sense). Counted by the title grep over
+  `content/exercises/b1/*-produktion.yaml`: six files, title fields only, no ids touched. If
+  retitled («Речевая практика» / «Мовна практика», or the mission line the EN titles already
+  carry), do all six in one pass so the convention stays uniform — B1.6 shipped with the
+  precedent spelling for exactly that reason.
+
 - **P5-11b · Mode coverage is unchecked, and B1.2/B1.3 show it** — the checklist
   (`docs/authoring-checklists.md:18`) asks every topic for a hidden-transcript
   `audio-comprehension`, a `write`, a `speak` and a faded discrimination set. B1.4 shipped its
@@ -161,7 +169,16 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   *the presence of a token* would close both faces at once. Coverage today is by mode, not by mechanism: the same drill's cloze gaps
   (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
   identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
-  `src/lib/evidence.ts:17`).
+  `src/lib/evidence.ts:17`). B1.6 priced the accept-side mitigation and abandoned it where
+  the lexical space is open: the `je-desto` probe pins every accepted rendering's frame
+  verbs (ist/liegt, nehme/fahre, kommen/gehen), which keeps the word order graded
+  whichever rendering the learner aimed at — but the accept list can never enumerate an
+  open space (Codex found *benutzen* one round after *fahren* was added), so B1.6's
+  translates now name the lexical verb in the `instruction` wherever the space is open
+  (`uebersetzen-je-desto`: kaputtgehen; probe variants a and c: nehmen/fahren,
+  kommen/gehen), the pattern `uebersetzen-tonne-august` established. The mechanism gap
+  stands: grading *the form and position of a named token*, not its presence, would make
+  the naming unnecessary.
 - **P12-6 · A dictation blames its grammar tag for a mishearing** — `Listen.tsx` logs the item's
   `focus` on any wrong answer except the narrow `dictationSlip` exception (one token off, one edit,
   not a closed-class swap). So on `hoeren-diktat-da` — *Da ich wenig Zeit habe, lese ich nur die
