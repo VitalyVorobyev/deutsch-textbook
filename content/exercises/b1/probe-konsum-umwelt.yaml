@@ -1,0 +1,81 @@
+# Delayed probe family 1 of 3 — ONE competence: producing the werden + Partizip II frame
+# cold. Three parallel cloze variants, one per cell (singular, plural, man-sentence
+# transformed), in three verb-plus-noun pairings that no practice item, article example
+# or reading sentence pairs — Milch geliefert, Handys repariert, Qualität kontrolliert.
+# Checked by grepping every occurrence of the three participles in content/, not by
+# re-reading this list.
+# `outcomes: [passiv-beschreiben]` is deliberate and it is what arms this family: the
+# can-do text is "mit dem Passiv beschreiben, wie etwas hergestellt oder geregelt wird",
+# and the present werden-frame is that description's one machine. Each of the two other
+# families declares a different outcome, because two families sharing one would arm
+# identically and fire a probe at material the learner never practised.
+# The lexical verb is named in every variant (in the instruction or by the man-sentence),
+# so the target is determinate served alone — the competence is the frame, never guessing
+# which verb the author had in mind.
+topic: konsum-umwelt
+role: probe
+title:
+  en: "Delayed check — the frame that carries the sentence"
+  ru: "Отложенная проверка — рамка, которая несёт предложение"
+  uk: "Відкладена перевірка — рамка, яка несе речення"
+  de: "Kontrolle mit Abstand — die Klammer, die den Satz trägt"
+items:
+  - id: variant-a
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Fill in werden in the right form and the Partizip II of liefern."
+      ru: "Впишите werden в нужной форме и Partizip II глагола liefern."
+      uk: "Впишіть werden у потрібній формі та Partizip II дієслова liefern."
+      de: "Ergänze werden in der richtigen Form und das Partizip II von liefern."
+    text: "Die Milch {{wird}} jeden Morgen frisch in den Laden {{geliefert}}."
+    translation:
+      en: "The milk is delivered to the shop fresh every morning."
+      ru: "Молоко каждое утро свежим доставляют в магазин."
+      uk: "Молоко щоранку свіжим доставляють у крамницю."
+    explain:
+      en: "The frame has two walls and both are graded: wird conjugated in position 2 — singular subject, so wird — and the Partizip II geliefert at the very end, with everything else between them. Nobody asks who delivers; leaving the doer out is what the form is for. One family, one competence: the werden-frame, produced cold."
+      ru: "У рамки две стены, и оцениваются обе: wird спрягается на втором месте — подлежащее в единственном числе, значит wird, — а Partizip II geliefert стоит в самом конце, и всё остальное между ними. Кто доставляет, никто не спрашивает: опускать деятеля — то, ради чего форма существует. Одна семья, одна компетенция: рамка с werden, воспроизведённая без подготовки."
+      uk: "У рамки дві стіни, і оцінюються обидві: wird відмінюється на другому місці — підмет в однині, отже wird, — а Partizip II geliefert стоїть у самому кінці, і все інше між ними. Хто доставляє, ніхто не питає: опускати виконавця — те, заради чого форма існує. Одна родина, одна компетенція: рамка з werden, відтворена без підготовки."
+      de: "Die Klammer hat zwei Wände, und beide werden bewertet: wird konjugiert auf Position 2 — Subjekt im Singular, also wird — und das Partizip II geliefert ganz am Ende, alles andere dazwischen. Wer liefert, fragt niemand; den Täter wegzulassen ist genau der Zweck der Form. Eine Familie, eine Fähigkeit: die werden-Klammer, aus dem Stand gebildet."
+
+  - id: variant-b
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Fill in werden in the right form and the Partizip II of reparieren."
+      ru: "Впишите werden в нужной форме и Partizip II глагола reparieren."
+      uk: "Впишіть werden у потрібній формі та Partizip II дієслова reparieren."
+      de: "Ergänze werden in der richtigen Form und das Partizip II von reparieren."
+    text: "Alte Handys {{werden}} in dem kleinen Laden kostenlos {{repariert}}."
+    translation:
+      en: "Old mobile phones are repaired free of charge in the little shop."
+      ru: "Старые телефоны в маленьком магазине чинят бесплатно."
+      uk: "Старі телефони в маленькій крамниці лагодять безоплатно."
+    explain:
+      en: "Plural subject, so werden — the auxiliary agrees with what the sentence is about, not with any unnamed doer. The participle of an -ieren verb takes no ge-: repariert, and it keeps the final slot however much stands in the middle. If your hand wrote wird, it matched the auxiliary to the shop rather than to the Handys — the subject decides."
+      ru: "Подлежащее во множественном числе, значит werden — вспомогательный глагол согласуется с тем, о чём предложение, а не с неназванным деятелем. Причастие глагола на -ieren обходится без ge-: repariert, и оно держит последнее место, сколько бы ни стояло в середине. Если рука написала wird, она согласовала глагол с магазином, а не с Handys — решает подлежащее."
+      uk: "Підмет у множині, отже werden — допоміжне дієслово узгоджується з тим, про що речення, а не з неназваним виконавцем. Дієприкметник дієслова на -ieren обходиться без ge-: repariert, і він тримає останнє місце, хоч би скільки стояло в середині. Якщо рука написала wird, вона узгодила дієслово з крамницею, а не з Handys — вирішує підмет."
+      de: "Subjekt im Plural, also werden — das Hilfsverb richtet sich nach dem, worum es im Satz geht, nicht nach einem ungenannten Täter. Das Partizip eines -ieren-Verbs kommt ohne ge- aus: repariert, und es behält den letzten Platz, egal wie viel in der Mitte steht. Wer wird schreibt, hat das Hilfsverb an den Laden statt an die Handys angepasst — das Subjekt entscheidet."
+
+  - id: variant-c
+    outcomes: [passiv-beschreiben]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Rewrite the man-sentence as a passive — fill in both parts of the frame."
+      ru: "Перепишите предложение с man в пассиве — впишите обе части рамки."
+      uk: "Перепишіть речення з man у пасиві — впишіть обидві частини рамки."
+      de: "Schreib den man-Satz als Passiv — ergänze beide Teile der Klammer."
+    text: "Man kontrolliert die Qualität jeden Tag. → Die Qualität {{wird}} jeden Tag {{kontrolliert}}."
+    translation:
+      en: "The quality is checked every day."
+      ru: "Качество проверяют каждый день."
+      uk: "Якість перевіряють щодня."
+    explain:
+      en: "The transformation is the whole recipe: the accusative object die Qualität becomes the nominative subject, man vanishes without a trace, and the verb splits into the frame — wird in position 2, kontrolliert at the end. Feminine die stays die in both seats, so nothing here flags the case change; the frame itself is what you must supply."
+      ru: "Преобразование и есть весь рецепт: дополнение в Akkusativ die Qualität становится подлежащим в Nominativ, man исчезает без следа, а глагол расходится в рамку — wird на втором месте, kontrolliert в конце. Женское die остаётся die в обеих ролях, так что смену падежа здесь ничто не выдаёт; воспроизвести нужно саму рамку."
+      uk: "Перетворення і є весь рецепт: додаток в Akkusativ die Qualität стає підметом у Nominativ, man зникає без сліду, а дієслово розходиться в рамку — wird на другому місці, kontrolliert у кінці. Жіноче die лишається die в обох ролях, тож зміну відмінка тут ніщо не видає; відтворити треба саму рамку."
+      de: "Die Umformung ist das ganze Rezept: Das Akkusativobjekt die Qualität wird zum Subjekt im Nominativ, das man verschwindet spurlos, und das Verb geht in die Klammer auseinander — wird auf Position 2, kontrolliert am Ende. Das feminine die bleibt in beiden Rollen die, nichts zeigt hier also den Kasuswechsel an; liefern muss man die Klammer selbst."
