@@ -1,0 +1,100 @@
+# Delayed probe family 3 of 3 — ONE competence: choosing the modal a rule's meaning
+# forces — darf nicht for a ban, muss nicht for a released duty — produced inside the
+# unit's modal passive, cold. Three parallel translate variants. Translate rather than
+# cloze or mc: a gap like "Die Tür ___ nicht abgeschlossen werden" takes both modals
+# grammatically and is indeterminate served alone, and mc would hand back the
+# recognition format; the EN/RU/UK prompts pin the meaning ("may not"/«нельзя» against
+# "does not have to"/«не обязательно»), so the choice must come from the learner. Two of
+# the three cells sit on the released-duty side, because that is the trap side in both L1
+# framings (EN "must not" forbids; the literal RU/UK «не должен» sounds like a ban).
+# Only the modal is pinned: the tag grades the choice, and a fumbled participle or frame
+# error elsewhere stays unattributed — the frame has its own family
+# (probe-regeln-verantwortung.yaml), and this one must not double-charge it.
+# Verb-plus-noun pairings fresh: Bescheinigung ausgedruckt, Handys benutzt, Auto geparkt
+# appear in no content sentence — checked by grepping ausgedruckt (nowhere in content/),
+# benutzt (pairs Waschmaschine, Hof, Aufzug, Container, Computer — never Handys) and
+# geparkt/parken (no noun object anywhere), not by re-reading this list.
+# `outcomes: [loesung-aushandeln]` is deliberate and it is what arms this family: the
+# can-do is "bei einem Problem eine praktische Lösung aushandeln", and telling what a
+# rule forbids from what it merely does not require is the ground a negotiation stands
+# on — the article's negotiation table opens with exactly these moves (Regel wiedergeben,
+# Pflicht nennen). The practice items that produce this choice (mc-strom-abmelden,
+# uebersetzen-miete, uebersetzen-rauchen) declare this outcome too, so the 2/7/21 clock
+# arms from producing the probed choice, never from comprehension alone. Each of the two
+# other families declares a different outcome, because two families sharing one would
+# arm identically and fire a probe at material never practised.
+topic: regeln-verantwortung
+role: probe
+title:
+  en: "Delayed check — what the rule forbids and what it merely spares you"
+  ru: "Отложенная проверка — что правило запрещает, а от чего лишь освобождает"
+  uk: "Відкладена перевірка — що правило забороняє, а від чого лише звільняє"
+  de: "Kontrolle mit Abstand — was die Regel verbietet und was sie dir nur erspart"
+items:
+  - id: variant-a
+    outcomes: [loesung-aushandeln]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: "Translate — use the passive of ausdrucken; for 'certificate' take die Bescheinigung."
+      ru: "Переведите — используйте пассив глагола ausdrucken; для «справки» возьмите die Bescheinigung."
+      uk: "Перекладіть — використайте пасив дієслова ausdrucken; для «довідки» візьміть die Bescheinigung."
+      de: "Übersetze — benutze das Passiv von ausdrucken; für das Nomen nimm die Bescheinigung."
+    prompt_en: "The certificate does not have to be printed out."
+    prompt_ru: "Справку не обязательно распечатывать."
+    prompt_uk: "Довідку не обов'язково роздруковувати."
+    answer: "Die Bescheinigung muss nicht ausgedruckt werden."
+    # The RU/UK prompts carry no article and read naturally as generic office
+    # guidance, so the generic eine is an equally faithful rendering.
+    accept:
+      - "Eine Bescheinigung muss nicht ausgedruckt werden."
+    key_tokens: ["muss"]
+    explain:
+      en: "\"Does not have to\" names a released duty, and the release is muss nicht — printing stays allowed, just unrequired. darf nicht would forbid it, which no office said. English \"must not\" is the falsest friend of this unit: it forbids, German muss nicht does not. Only the modal is graded; the frame belongs to its own delayed check."
+      ru: "«Не обязательно» — снятая обязанность, и снимает её muss nicht: распечатать по-прежнему можно, просто не требуется. darf nicht запретил бы это, чего ведомство не говорило. Дословное «не должен» — самый ложный друг этой главы: звучит как запрет, а запретом не является. Оценивается только модальный глагол; рамка проверяется своей отдельной отложенной проверкой."
+      uk: "«Не обов'язково» — знятий обов'язок, і знімає його muss nicht: роздрукувати, як і раніше, можна, просто не вимагається. darf nicht заборонило б це, чого відомство не казало. Дослівне «не повинен» — найлживіший друг цього розділу: звучить як заборона, а забороною не є. Оцінюється лише модальне дієслово; рамка перевіряється своєю окремою відкладеною перевіркою."
+      de: "Gemeint ist eine aufgehobene Pflicht, und die hebt muss nicht auf: Ausdrucken bleibt erlaubt, nur verlangt es niemand. darf nicht würde es verbieten, was kein Amt gesagt hat. Bewertet wird nur das Modalverb; die Klammer hat ihre eigene Kontrolle mit Abstand."
+
+  - id: variant-b
+    outcomes: [loesung-aushandeln]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: "Translate — use the passive of benutzen."
+      ru: "Переведите — используйте пассив глагола benutzen."
+      uk: "Перекладіть — використайте пасив дієслова benutzen."
+      de: "Übersetze — benutze das Passiv von benutzen."
+    prompt_en: "Mobile phones may not be used during the exam."
+    prompt_ru: "Телефонами во время экзамена пользоваться нельзя."
+    prompt_uk: "Телефонами під час іспиту користуватися не можна."
+    answer: "Handys dürfen während der Prüfung nicht benutzt werden."
+    accept:
+      - "Während der Prüfung dürfen Handys nicht benutzt werden."
+    key_tokens: ["dürfen"]
+    explain:
+      en: "\"May not\" marks the ban, and the ban is darf nicht — here plural dürfen, agreeing with Handys. müssen nicht would only announce that nobody requires phone use, a strange exam rule. English \"must not\" says exactly this ban, which is why the hand reaches for müssen — the wrong modal. Agreement and frame stay unpinned on purpose: this family grades the choice alone. Fronting während der Prüfung is equally correct and accepted."
+      ru: "«Нельзя» — это запрет, а запрет — darf nicht: здесь во множественном числе dürfen, согласованно с Handys. müssen nicht лишь объявило бы, что пользоваться телефоном не обязательно, — странное правило экзамена. Согласование и рамка намеренно не закреплены: эта семья оценивает только выбор. Вынести während der Prüfung вперёд можно — вариант принимается."
+      uk: "«Не можна» — це заборона, а заборона — darf nicht: тут у множині dürfen, узгоджено з Handys. müssen nicht лише оголосило б, що користуватися телефоном не обов'язково, — дивне правило іспиту. Узгодження і рамка навмисно не закріплені: ця родина оцінює лише вибір. Винести während der Prüfung уперед можна — варіант приймається."
+      de: "Gemeint ist das Verbot, und das Verbot ist darf nicht — hier im Plural dürfen, passend zu Handys. müssen nicht würde nur verkünden, dass niemand die Handynutzung verlangt: eine seltsame Prüfungsregel. Kongruenz und Klammer bleiben absichtlich ungepinnt: Diese Familie bewertet allein die Wahl. Während der Prüfung vorn ist genauso richtig und wird akzeptiert."
+
+  - id: variant-c
+    outcomes: [loesung-aushandeln]
+    type: translate
+    focus: duerfen-muessen
+    instruction:
+      en: "Translate — use the passive of parken."
+      ru: "Переведите — используйте пассив глагола parken."
+      uk: "Перекладіть — використайте пасив дієслова parken."
+      de: "Übersetze — benutze das Passiv von parken."
+    prompt_en: "The car does not have to be parked in the garage."
+    prompt_ru: "Машину не обязательно парковать в гараже."
+    prompt_uk: "Машину не обов'язково паркувати в гаражі."
+    answer: "Das Auto muss nicht in der Garage geparkt werden."
+    accept:
+      - "In der Garage muss das Auto nicht geparkt werden."
+    key_tokens: ["muss"]
+    explain:
+      en: "Again the released duty: the garage is allowed, not required, so muss nicht. darf nicht would ban the garage outright and turn a free choice into a prohibition — exactly the reversal a negotiation cannot afford when you restate a rule to the other side. In der Garage is position (wo?), hence dative, and the fronted variant is accepted."
+      ru: "Снова снятая обязанность: гараж разрешён, но не требуется — значит muss nicht. darf nicht запретил бы гараж вовсе и превратил бы свободный выбор в запрет — ровно тот переворот, которого нельзя допустить, пересказывая правило другой стороне на переговорах. In der Garage — местоположение (wo?), поэтому Dativ; вариант с вынесенной группой принимается."
+      uk: "Знову знятий обов'язок: гараж дозволений, але не вимагається — отже muss nicht. darf nicht заборонило б гараж зовсім і перетворило б вільний вибір на заборону — рівно той переворот, якого не можна допустити, переказуючи правило другій стороні на перемовинах. In der Garage — місце (wo?), тому Dativ; варіант із винесеною групою приймається."
+      de: "Wieder die aufgehobene Pflicht: Die Garage ist erlaubt, nicht verlangt — also muss nicht. darf nicht würde die Garage rundweg verbieten und aus einer freien Wahl ein Verbot machen — genau die Umkehrung, die sich eine Verhandlung nicht leisten kann, wenn man der anderen Seite eine Regel wiedergibt. In der Garage ist Ort (wo?), daher Dativ; die vorangestellte Variante wird akzeptiert."

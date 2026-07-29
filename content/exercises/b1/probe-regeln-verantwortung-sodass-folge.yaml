@@ -1,0 +1,117 @@
+# Delayed probe family 2 of 3 — ONE competence: hanging a consequence on sodass with the
+# finite verb at the clause end, cold. Three parallel translate variants — translate
+# rather than cloze, because the confusion this tag names is verb *position*, and a cloze
+# fixes the position by where its gap sits (A2 precedent: probe-nebensaetze-plaene; B1.6
+# precedent: probe-konsum-umwelt-je-desto). All three variants stay one retention curve:
+# everyday register, present tense, main-clause cause + sodass-clause with a single
+# finite verb closing it. Each variant pins both ends of the rule — sodass and the
+# clause-final verb — in every accepted rendering.
+# The instruction names sodass because EN "so" / RU «так что» / UK «так що» would render
+# equally well with deshalb: the connector's position rule is what is probed, never its
+# choice. The older spelling so dass is the same conjunction and every variant accepts
+# it, so course orthography cannot cost a probe with three lifetime stages.
+# Cause-to-consequence pairings fresh: Nachbarin-im-Urlaub → Blumen gießen, Schneefall →
+# Schule bleibt geschlossen, Straßenbahn-Ausfall → zu Fuß gehen appear in no content
+# sentence — checked by grepping sodass across content/ (it occurs nowhere outside this
+# unit) and the result verbs gieße (pairs only Pflanzen, in a vocab note), geschlossen
+# (pairs Praxis, Tierheim, Büro, Post) and "zu Fuß" (never as a Straßenbahn consequence),
+# not by re-reading this list.
+# `outcomes: [folgen-benennen]` is deliberate and it is what arms this family: the can-do
+# is "mit sodass benennen, welche Folge etwas hat" — this competence verbatim. The
+# practice items that produce it (mc-gebohrt-sodass, uebersetzen-hof-sodass,
+# uebersetzen-deshalb-treppe) declare this outcome too, so the 2/7/21 clock arms from
+# producing consequence clauses, never from comprehension alone. Each of the two other
+# families declares a different outcome, because two families sharing one would arm
+# identically and fire a probe at material never practised.
+topic: regeln-verantwortung
+role: probe
+title:
+  en: "Delayed check — the consequence and its verb-final clause"
+  ru: "Отложенная проверка — следствие и его придаточное с глаголом в конце"
+  uk: "Відкладена перевірка — наслідок і його підрядне з дієсловом у кінці"
+  de: "Kontrolle mit Abstand — die Folge und ihr verbletzter Nebensatz"
+items:
+  - id: variant-a
+    outcomes: [folgen-benennen]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass."
+      ru: "Переведите — присоедините следствие союзом sodass."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass."
+      de: "Übersetze — häng die Folge mit sodass an."
+    prompt_en: "Our neighbour is on holiday, so I am watering her flowers."
+    prompt_ru: "Наша соседка в отпуске, так что я поливаю её цветы."
+    prompt_uk: "Наша сусідка у відпустці, так що я поливаю її квіти."
+    answer: "Unsere Nachbarin ist im Urlaub, sodass ich ihre Blumen gieße."
+    accept:
+      - "Unsere Nachbarin ist im Urlaub, so dass ich ihre Blumen gieße."
+      - "Unsere Nachbarin macht Urlaub, sodass ich ihre Blumen gieße."
+      - "Unsere Nachbarin macht Urlaub, so dass ich ihre Blumen gieße."
+      # hat Urlaub is the third idiomatic rendering of the same cause.
+      - "Unsere Nachbarin hat Urlaub, sodass ich ihre Blumen gieße."
+      - "Unsere Nachbarin hat Urlaub, so dass ich ihre Blumen gieße."
+    key_tokens: ["sodass", "gieße"]
+    explain:
+      en: "Graded are the two ends of the consequence clause: sodass opening it and gieße closing it. sodass ich gieße ihre Blumen would be deshalb's grammar — English \"so I am watering\" keeps its verb right after the subject, which is exactly the order the hand wants to restore. ist im Urlaub and macht Urlaub are both idiomatic, and so dass is the same conjunction."
+      ru: "Оцениваются два конца придаточного следствия: sodass, который его открывает, и gieße, который его закрывает. sodass ich gieße ihre Blumen было бы грамматикой deshalb — русское «так что» ничего не меняет в своём предложении, поэтому рука и возвращает привычный порядок. ist im Urlaub и macht Urlaub одинаково идиоматичны, а so dass — тот же союз."
+      uk: "Оцінюються два кінці підрядного наслідку: sodass, що його відкриває, і gieße, що його закриває. sodass ich gieße ihre Blumen було б граматикою deshalb — українське «так що» нічого не змінює у своєму реченні, тому рука й повертає звичний порядок. ist im Urlaub і macht Urlaub однаково ідіоматичні, а so dass — той самий сполучник."
+      de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und gieße, das ihn schließt. sodass ich gieße ihre Blumen wäre die Grammatik von deshalb — in vielen Sprachen ändert der Folge-Anschluss nichts an der Wortstellung, und genau deshalb stellt die Hand die alte Ordnung wieder her. ist im Urlaub und macht Urlaub sind beide idiomatisch, und so dass ist dieselbe Konjunktion."
+
+  - id: variant-b
+    outcomes: [folgen-benennen]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass."
+      ru: "Переведите — присоедините следствие союзом sodass."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass."
+      de: "Übersetze — häng die Folge mit sodass an."
+    prompt_en: "It has been snowing hard since this morning, so the school stays closed today."
+    prompt_ru: "С самого утра идёт сильный снег, так что школа сегодня остаётся закрытой."
+    prompt_uk: "Із самого ранку йде сильний сніг, так що школа сьогодні лишається зачиненою."
+    answer: "Es schneit seit heute Morgen stark, sodass die Schule heute geschlossen bleibt."
+    accept:
+      - "Es schneit seit heute Morgen stark, so dass die Schule heute geschlossen bleibt."
+      - "Seit heute Morgen schneit es stark, sodass die Schule heute geschlossen bleibt."
+      - "Seit heute Morgen schneit es stark, so dass die Schule heute geschlossen bleibt."
+      # seit heute früh says "since this morning" as correctly as seit heute Morgen.
+      - "Es schneit seit heute früh stark, sodass die Schule heute geschlossen bleibt."
+      - "Es schneit seit heute früh stark, so dass die Schule heute geschlossen bleibt."
+      - "Seit heute früh schneit es stark, sodass die Schule heute geschlossen bleibt."
+      - "Seit heute früh schneit es stark, so dass die Schule heute geschlossen bleibt."
+    key_tokens: ["sodass", "bleibt"]
+    explain:
+      en: "The finite bleibt closes its clause — sodass die Schule bleibt heute geschlossen is the transfer error, main-clause order frozen after a conjunction. Note the stack at the wall: geschlossen bleibt, participle before the finite verb, the small version of every German clause end. Fronting seit heute Morgen in the main clause is equally correct and accepted."
+      ru: "Спрягаемый bleibt закрывает своё придаточное — sodass die Schule bleibt heute geschlossen была бы ошибкой переноса: порядок главного предложения, замороженный после союза. Обратите внимание на стопку у стены: geschlossen bleibt, причастие перед спрягаемым глаголом — маленькая версия любого немецкого конца предложения. Вынести seit heute Morgen вперёд в главном предложении можно — вариант принимается."
+      uk: "Відмінюване bleibt закриває своє підрядне — sodass die Schule bleibt heute geschlossen була б помилкою переносу: порядок головного речення, заморожений після сполучника. Зверніть увагу на стосик біля стіни: geschlossen bleibt, дієприкметник перед відмінюваним дієсловом — маленька версія будь-якого німецького кінця речення. Винести seit heute Morgen уперед у головному реченні можна — варіант приймається."
+      de: "Das finite bleibt schließt seinen Satz — sodass die Schule bleibt heute geschlossen wäre der Übertragungsfehler: Hauptsatz-Ordnung, nach einer Konjunktion eingefroren. Beachte den Stapel an der Wand: geschlossen bleibt, das Partizip vor dem finiten Verb — die kleine Version jedes deutschen Satzendes. Seit heute Morgen vorn im Hauptsatz ist genauso richtig und wird akzeptiert."
+
+  - id: variant-c
+    outcomes: [folgen-benennen]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass; for 'walk' use zu Fuß gehen."
+      ru: "Переведите — присоедините следствие союзом sodass; для «идти пешком» возьмите zu Fuß gehen."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass; для «іти пішки» візьміть zu Fuß gehen."
+      de: "Übersetze — häng die Folge mit sodass an; für das Verb nimm zu Fuß gehen."
+    prompt_en: "The tram is not running today, so I am walking to work."
+    prompt_ru: "Трамвай сегодня не ходит, так что я иду на работу пешком."
+    prompt_uk: "Трамвай сьогодні не ходить, так що я йду на роботу пішки."
+    answer: "Die Straßenbahn fährt heute nicht, sodass ich zu Fuß zur Arbeit gehe."
+    accept:
+      - "Die Straßenbahn fährt heute nicht, so dass ich zu Fuß zur Arbeit gehe."
+      - "Die Straßenbahn fährt heute nicht, sodass ich zur Arbeit zu Fuß gehe."
+      - "Die Straßenbahn fährt heute nicht, so dass ich zur Arbeit zu Fuß gehe."
+      # verkehrt is the timetable word for "is not running" and equally idiomatic.
+      - "Die Straßenbahn verkehrt heute nicht, sodass ich zu Fuß zur Arbeit gehe."
+      - "Die Straßenbahn verkehrt heute nicht, so dass ich zu Fuß zur Arbeit gehe."
+      - "Die Straßenbahn verkehrt heute nicht, sodass ich zur Arbeit zu Fuß gehe."
+      - "Die Straßenbahn verkehrt heute nicht, so dass ich zur Arbeit zu Fuß gehe."
+    key_tokens: ["sodass", "gehe"]
+    explain:
+      en: "Same two ends: sodass opens the clause, gehe closes it. zu Fuß may stand before or after zur Arbeit — both orders are accepted, because the middle of the clause is free. What may not move is the finite verb: sodass ich gehe zu Fuß … is the RU/UK order surviving the border. For a tram, fährt nicht is the idiomatic 'is not running'."
+      ru: "Те же два конца: sodass открывает придаточное, gehe его закрывает. zu Fuß может стоять до или после zur Arbeit — оба порядка принимаются, потому что середина придаточного свободна. Двигаться не может только спрягаемый глагол: sodass ich gehe zu Fuß … — это русский порядок, переживший границу. О трамвае идиоматично fährt nicht — «не ходит»."
+      uk: "Ті самі два кінці: sodass відкриває підрядне, gehe його закриває. zu Fuß може стояти до або після zur Arbeit — обидва порядки приймаються, бо середина підрядного вільна. Рухатися не може лише відмінюване дієслово: sodass ich gehe zu Fuß … — це український порядок, що пережив кордон. Про трамвай ідіоматично fährt nicht — «не ходить»."
+      de: "Dieselben zwei Enden: sodass eröffnet den Satz, gehe schließt ihn. zu Fuß darf vor oder nach zur Arbeit stehen — beide Ordnungen werden akzeptiert, denn die Satzmitte ist frei. Nicht bewegen darf sich nur das finite Verb: sodass ich gehe zu Fuß … ist die Ausgangssprache, die die Grenze überlebt hat. Bei einer Straßenbahn ist fährt nicht das idiomatische 'verkehrt nicht'."
