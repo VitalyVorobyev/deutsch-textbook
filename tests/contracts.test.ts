@@ -563,7 +563,10 @@ describe('cards: recognition | both', () => {
     // B1.7 (regeln-verantwortung, 2026-07-29) adds seventeen more — the deck's receptive
     // tail (Vorschrift … Konflikt): notice, sign and safety-leaflet vocabulary a B1
     // learner reads on an Aushang or an Amt letter but is not asked to produce.
-    expect(cards).toBe(entries * 2 - 78);
+    // B1.8 (reisen-probleme, 2026-07-30) adds thirteen more — the deck's receptive tail
+    // (klagen … Kontrolle): ticket, timetable and hotel-desk vocabulary a B1 learner
+    // reads in the small print or hears in a Durchsage but is not asked to produce.
+    expect(cards).toBe(entries * 2 - 91);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

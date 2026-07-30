@@ -1,0 +1,224 @@
+# B1.8 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a station notice read cold, an announcement heard once,
+# a dictation that turns the Konjunktiv umlaut into a typed decision, and the open
+# tasks the outcomes claim (the complaint letter, the connected Panne story, the
+# what-if soliloquy on the platform). Open tasks are minimal ceremony: attempt →
+# model → done; `requirements` and `checklist` are guidance for comparing your own
+# production against the model — the app cannot verify free production, so it charges
+# no steps for feedback it cannot give.
+# Tag notes. lesen-aushang carries praeposition-genitiv: its question turns on
+# attaching each wegen/trotz/während phrase to the fact it modifies, which is that
+# confusion on the reading side. hoeren-diktat carries konjunktiv2-form: a dictation
+# grades only what typing can show, and here that is exactly the umlaut that
+# separates wäre/könnten from war/konnten. hoeren-durchsage stays untagged (following
+# an announcement is genuinely mixed comprehension), and the write and speak tasks
+# stay untagged — unverified production must not feed the weakness signal.
+topic: reisen-probleme
+role: practice
+title:
+  en: "Production — hear the announcement, tell the mishap, write the complaint"
+  ru: "Продукция — услышать объявление, рассказать о неудаче, написать жалобу"
+  uk: "Продукція — почути оголошення, розповісти про негаразд, написати скаргу"
+  de: "Produktion — die Durchsage hören, die Panne erzählen, die Beschwerde schreiben"
+items:
+  - id: lesen-aushang
+    outcomes: [panne-berichten]
+    type: mc
+    focus: praeposition-genitiv
+    prompt: "Am Bahnhof hängt ein Aushang: „Wegen eines Sturms fallen heute mehrere Züge in Richtung Norden aus. Während der Bauarbeiten hält die S-Bahn nicht am Hauptbahnhof, sondern am Südbahnhof. Trotz des Streiks der Busfahrer fahren die Busse zum Flughafen wie geplant.“ — Warum fallen heute mehrere Züge aus?"
+    options:
+      - "Wegen eines Sturms."
+      - "Wegen der Bauarbeiten."
+      - "Wegen des Streiks."
+    correct: 0
+    translation:
+      en: "A notice at the station reads: \"Because of a storm several trains heading north are cancelled today. During the construction work the S-Bahn does not stop at the main station but at the south station. Despite the bus drivers' strike the buses to the airport run as planned.\" — Why are several trains cancelled today?"
+      ru: "На вокзале висит объявление: «Из-за шторма сегодня отменены несколько поездов в северном направлении. Во время строительных работ городская электричка останавливается не на главном вокзале, а на южном. Несмотря на забастовку водителей, автобусы в аэропорт ходят по плану». — Почему сегодня отменены несколько поездов?"
+      uk: "На вокзалі висить оголошення: «Через шторм сьогодні скасовано кілька поїздів у північному напрямку. Під час будівельних робіт міська електричка зупиняється не на головному вокзалі, а на південному. Попри страйк водіїв автобуси до аеропорту ходять за планом». — Чому сьогодні скасовано кілька поїздів?"
+    explain:
+      en: "Three genitive phrases, and each hangs on its own fact — that is how a notice is read. The cancellations take their cause from the first sentence: wegen eines Sturms. The Bauarbeiten explain only the changed stop, and the strike is introduced by trotz: the buses run despite it, so it caused nothing here at all."
+      ru: "Три группы в родительном, и каждая подвешена к своему факту — так читается объявление. Причина отмен берётся из первого предложения: wegen eines Sturms. Bauarbeiten объясняют лишь перенос остановки, а забастовку вводит trotz: автобусы ходят вопреки ей, так что здесь она вообще ничего не вызвала."
+      uk: "Три групи в родовому, і кожна підвішена до свого факту — так читається оголошення. Причина скасувань береться з першого речення: wegen eines Sturms. Bauarbeiten пояснюють лише перенесення зупинки, а страйк вводить trotz: автобуси ходять усупереч йому, тож тут він узагалі нічого не спричинив."
+      de: "Drei Genitivgruppen, und jede hängt an ihrem eigenen Faktum — so liest man einen Aushang. Die Ausfälle nehmen ihren Grund aus dem ersten Satz: wegen eines Sturms. Die Bauarbeiten erklären nur den verlegten Halt, und den Streik führt trotz ein: Die Busse fahren ihm zum Trotz — verursacht hat er hier also gar nichts."
+
+  - id: hoeren-durchsage
+    outcomes: [panne-berichten]
+    type: audio-comprehension
+    instruction:
+      en: "A station announcement, heard once — listen for what passengers with a connection in Hannover are asked to do."
+      ru: "Вокзальное объявление, услышанное один раз, — слушайте, что просят сделать пассажиров с пересадкой в Ганновере."
+      uk: "Вокзальне оголошення, почуте один раз, — слухайте, що просять зробити пасажирів із пересадкою в Ганновері."
+      de: "Eine Bahnhofsdurchsage, einmal gehört — achte darauf, worum Reisende mit Anschluss in Hannover gebeten werden."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Durchsage", text: "Sehr geehrte Fahrgäste, wegen eines Streiks fällt der ICE nach Hamburg heute aus. Als Ersatz fahren Busse vom Busbahnhof. Reisende mit einem Anschluss in Hannover wenden sich bitte an das Personal am Gleis neun." }
+    question: "Was sollen Reisende mit einem Anschluss in Hannover tun?"
+    options:
+      - "Sich an das Personal am Gleis neun wenden."
+      - "Mit dem Bus vom Busbahnhof fahren."
+      - "Auf den nächsten ICE warten."
+    correct: 0
+    translation:
+      en: "What should passengers with a connection in Hannover do?"
+      ru: "Что должны сделать пассажиры с пересадкой в Ганновере?"
+      uk: "Що мають зробити пасажири з пересадкою в Ганновері?"
+    explain:
+      en: "The announcement sorts its listeners: the replacement buses are for everyone, but the last sentence singles out one group — Reisende mit einem Anschluss in Hannover — and gives them their own instruction: wenden sich bitte an das Personal. That is the vocabulary word sich wenden an + Akkusativ doing announcement work. Waiting for the next ICE is proposed to nobody."
+      ru: "Объявление сортирует слушателей: автобусы-замена — для всех, но последнее предложение выделяет одну группу — Reisende mit einem Anschluss in Hannover — и даёт ей отдельную инструкцию: wenden sich bitte an das Personal. Это словарное sich wenden an + Akkusativ на вокзальной работе. Ждать следующий ICE не предлагается никому."
+      uk: "Оголошення сортує слухачів: автобуси-заміна — для всіх, але останнє речення виділяє одну групу — Reisende mit einem Anschluss in Hannover — і дає їй окрему інструкцію: wenden sich bitte an das Personal. Це словникове sich wenden an + Akkusativ на вокзальній роботі. Чекати наступний ICE не пропонується нікому."
+      de: "Die Durchsage sortiert ihre Hörer: Die Ersatzbusse sind für alle, aber der letzte Satz greift eine Gruppe heraus — Reisende mit einem Anschluss in Hannover — und gibt ihr eine eigene Anweisung: wenden sich bitte an das Personal. Das ist das Vokabelwort sich wenden an + Akkusativ bei der Bahnhofsarbeit. Auf den nächsten ICE zu warten schlägt niemand vor."
+
+  - id: hoeren-diktat
+    outcomes: [beschwerde-schreiben]
+    type: listen
+    focus: konjunktiv2-form
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Es wäre gut, wenn Sie schnell antworten könnten."
+    translation:
+      en: "It would be good if you could answer quickly."
+      ru: "Было бы хорошо, если бы вы быстро ответили."
+      uk: "Було б добре, якби ви швидко відповіли."
+    explain:
+      en: "Eight words, and the two umlauts are the whole lesson: wäre and könnten are Konjunktiv II only because of the two dots — typed as ware and konnten they fall back into plain past forms, and the polite request becomes a broken report. The ending -en on könnten closes the wenn-clause, finite verb last, exactly where the letter formula puts it."
+      ru: "Восемь слов, и два умлаута — весь урок: wäre и könnten остаются Konjunktiv II только благодаря двум точкам — набранные как ware и konnten, они падают обратно в простое прошедшее, и вежливая просьба превращается в сломанный отчёт. Окончание -en у könnten закрывает придаточное с wenn — спрягаемый глагол последним, ровно там, куда его ставит формула письма."
+      uk: "Вісім слів, і два умлаути — весь урок: wäre і könnten лишаються Konjunktiv II лише завдяки двом крапкам — набрані як ware і konnten, вони падають назад у простий минулий, і ввічливе прохання перетворюється на зламаний звіт. Закінчення -en у könnten закриває підрядне з wenn — відмінюване дієслово останнім, рівно там, куди його ставить формула листа."
+      de: "Acht Wörter, und die zwei Umlaute sind die ganze Lektion: wäre und könnten sind nur wegen der zwei Punkte Konjunktiv II — als ware und konnten getippt, fallen sie ins einfache Präteritum zurück, und aus der höflichen Bitte wird ein kaputter Bericht. Das -en von könnten schließt den wenn-Satz, finites Verb zuletzt, genau wo die Briefformel es hinstellt."
+
+  - id: schreiben-beschwerde
+    outcomes: [beschwerde-schreiben]
+    type: write
+    instruction:
+      en: "Write the letter yourself — the list shows what to check it against."
+      ru: "Напишите письмо сами — список подскажет, что в нём проверить."
+      uk: "Напишіть листа самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Brief selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "On the return journey from Hamburg your train was cancelled because of a strike. The replacement bus was overcrowded, your seat reservation was useless, and you arrived in München four hours late. Write a short complaint to the railway: name why you are writing, report what happened, and ask politely for part of the ticket price back."
+      ru: "На обратном пути из Гамбурга ваш поезд отменили из-за забастовки. Автобус-замена был переполнен, ваша резервация места оказалась бесполезной, и вы приехали в Мюнхен с опозданием на четыре часа. Напишите короткую жалобу в железнодорожную компанию: назовите, почему вы пишете, изложите, что произошло, и вежливо попросите вернуть часть стоимости билета."
+      uk: "На зворотному шляху з Гамбурга ваш поїзд скасували через страйк. Автобус-заміна був переповнений, ваша резервація місця виявилася марною, і ви приїхали до Мюнхена із запізненням на чотири години. Напишіть коротку скаргу в залізничну компанію: назвіть, чому ви пишете, викладіть, що сталося, і ввічливо попросіть повернути частину вартості квитка."
+      de: "Auf der Rückfahrt aus Hamburg ist dein Zug wegen eines Streiks ausgefallen. Der Ersatzbus war überfüllt, deine Reservierung war nutzlos, und du bist vier Stunden zu spät in München angekommen. Schreib eine kurze Beschwerde an die Bahn: Nenn den Anlass, berichte, was passiert ist, und bitte höflich um einen Teil des Fahrpreises zurück."
+    goal:
+      en: "A letter that reports, compares booked with delivered, and then asks — the three moves of the article's Beschwerde skeleton."
+      ru: "Письмо, которое сообщает, сравнивает забронированное с полученным и затем просит — три хода скелета жалобы из статьи."
+      uk: "Лист, який повідомляє, порівнює заброньоване з отриманим і потім просить — три ходи скелета скарги зі статті."
+      de: "Ein Brief, der berichtet, Gebuchtes mit Geliefertem vergleicht und dann bittet — die drei Züge des Beschwerde-Gerüsts aus dem Artikel."
+    requirements:
+      - en: "Open with the trigger compressed into a wegen-phrase: Ich schreibe Ihnen wegen meiner Rückfahrt vom … — one noun phrase in the genitive, not a whole weil-clause."
+        ru: "Начните с повода, сжатого в группу с wegen: Ich schreibe Ihnen wegen meiner Rückfahrt vom … — одна именная группа в родительном, а не целое придаточное с weil."
+        uk: "Почніть із приводу, стисненого в групу з wegen: Ich schreibe Ihnen wegen meiner Rückfahrt vom … — одна іменна група в родовому, а не ціле підрядне з weil."
+        de: "Beginn mit dem Anlass in einer wegen-Gruppe: Ich schreibe Ihnen wegen meiner Rückfahrt vom … — eine Nominalgruppe im Genitiv, kein ganzer weil-Satz."
+      - en: "Report the events in the Perfekt and structure them with wegen, trotz and während + Genitiv: Wegen des Streiks …, trotz der Reservierung …, während der Fahrt … — the written genitive is what makes the letter sound serious."
+        ru: "Изложите события в Perfekt и выстройте их предлогами wegen, trotz и während + Genitiv: Wegen des Streiks …, trotz der Reservierung …, während der Fahrt … — письменный родительный и делает письмо серьёзным."
+        uk: "Викладіть події в Perfekt і вибудуйте їх прийменниками wegen, trotz і während + Genitiv: Wegen des Streiks …, trotz der Reservierung …, während der Fahrt … — письмовий родовий і робить лист серйозним."
+        de: "Berichte die Ereignisse im Perfekt und ordne sie mit wegen, trotz und während + Genitiv: Wegen des Streiks …, trotz der Reservierung …, während der Fahrt … — der schriftliche Genitiv macht den Brief ernst."
+      - en: "Soften the request with Konjunktiv II — Könnten Sie mir …? or Ich würde mich freuen, wenn Sie … könnten — and remember both halves of a wenn-sentence carry it."
+        ru: "Смягчите просьбу с помощью Konjunktiv II — Könnten Sie mir …? или Ich würde mich freuen, wenn Sie … könnten — и помните: в предложении с wenn его несут обе половины."
+        uk: "Пом'якшіть прохання за допомогою Konjunktiv II — Könnten Sie mir …? або Ich würde mich freuen, wenn Sie … könnten — і пам'ятайте: у реченні з wenn його несуть обидві половини."
+        de: "Mach die Bitte mit Konjunktiv II weich — Könnten Sie mir …? oder Ich würde mich freuen, wenn Sie … könnten — und denk daran: Beide Hälften eines wenn-Satzes tragen ihn."
+      - en: "Close with one plain Indikativ sentence that sets a deadline: Ich erwarte Ihre Antwort bis … — the wish is soft, the deadline is not."
+        ru: "Закончите одним простым предложением в Indikativ, задающим срок: Ich erwarte Ihre Antwort bis … — пожелание мягкое, срок — нет."
+        uk: "Закінчіть одним простим реченням в Indikativ, що задає термін: Ich erwarte Ihre Antwort bis … — побажання м'яке, термін — ні."
+        de: "Schließe mit einem einzigen Indikativ-Satz, der eine Frist setzt: Ich erwarte Ihre Antwort bis … — der Wunsch ist weich, die Frist ist es nicht."
+    min_words: 60
+    model_answer: "Sehr geehrte Damen und Herren, ich schreibe Ihnen wegen meiner Rückfahrt von Hamburg nach München am 15. Juli. Wegen eines Streiks ist mein Zug ausgefallen. Als Ersatz gab es nur einen überfüllten Bus, und trotz meiner Reservierung hatte ich keinen Sitzplatz. Während der Fahrt gab es keine Informationen, und ich bin erst vier Stunden später in München angekommen. Ich bitte Sie, mir einen Teil des Fahrpreises zu ersetzen. Ich würde mich freuen, wenn Sie schnell antworten könnten. Ich erwarte Ihre Antwort bis Ende des Monats. Mit freundlichen Grüßen, M. Weber"
+    model_translation:
+      en: "Dear Sir or Madam, I am writing to you about my return journey from Hamburg to München on 15 July. Because of a strike my train was cancelled. As a replacement there was only an overcrowded bus, and despite my reservation I had no seat. During the journey there was no information, and I arrived in München four hours late. I ask you to reimburse me part of the ticket price. I would be glad if you could answer quickly. I expect your reply by the end of the month. Kind regards, M. Weber"
+      ru: "Уважаемые дамы и господа! Я пишу вам по поводу моей обратной поездки из Гамбурга в Мюнхен 15 июля. Из-за забастовки мой поезд отменили. В качестве замены был только переполненный автобус, и, несмотря на резервацию, у меня не было сидячего места. Во время поездки не было никакой информации, и я приехала в Мюнхен лишь с опозданием на четыре часа. Прошу вас возместить мне часть стоимости билета. Я была бы рада, если бы вы быстро ответили. Я ожидаю вашего ответа до конца месяца. С уважением, М. Вебер"
+      uk: "Шановні пані та панове! Я пишу вам щодо моєї зворотної поїздки з Гамбурга до Мюнхена 15 липня. Через страйк мій поїзд скасували. Як заміна був лише переповнений автобус, і, попри резервацію, я не мала сидячого місця. Під час поїздки не було жодної інформації, і я приїхала до Мюнхена аж на чотири години пізніше. Прошу вас відшкодувати мені частину вартості квитка. Я була б рада, якби ви швидко відповіли. Я очікую вашої відповіді до кінця місяця. З повагою, М. Вебер"
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The trigger sits in a wegen-phrase in line one, three genitive prepositions structure the report (wegen des Streiks, trotz meiner Reservierung, während der Fahrt), the events run in the Perfekt, the request wears Konjunktiv II on both halves (würde … freuen, antworten könnten) — and the last sentence drops back into the Indikativ, because the deadline is not a wish."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Повод сидит в группе с wegen в первой строке, три предлога с родительным выстраивают отчёт (wegen des Streiks, trotz meiner Reservierung, während der Fahrt), события идут в Perfekt, просьба носит Konjunktiv II в обеих половинах (würde … freuen, antworten könnten) — а последнее предложение возвращается в Indikativ, потому что срок — не пожелание."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Привід сидить у групі з wegen у першому рядку, три прийменники з родовим вибудовують звіт (wegen des Streiks, trotz meiner Reservierung, während der Fahrt), події йдуть у Perfekt, прохання носить Konjunktiv II в обох половинах (würde … freuen, antworten könnten) — а останнє речення повертається в Indikativ, бо термін — не побажання."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Der Anlass steckt in einer wegen-Gruppe in Zeile eins, drei Genitiv-Präpositionen ordnen den Bericht (wegen des Streiks, trotz meiner Reservierung, während der Fahrt), die Ereignisse laufen im Perfekt, die Bitte trägt Konjunktiv II in beiden Hälften (würde … freuen, antworten könnten) — und der letzte Satz kehrt in den Indikativ zurück, denn die Frist ist kein Wunsch."
+
+  - id: sprechen-panne
+    outcomes: [panne-berichten]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Tell the story aloud, in one connected go — then compare with the model and say it again."
+      ru: "Расскажите историю вслух, одним связным заходом, — затем сравните с образцом и произнесите ещё раз."
+      uk: "Розкажіть історію вголос, одним зв'язним заходом, — потім порівняйте зі зразком і промовте ще раз."
+      de: "Erzähl die Geschichte laut, in einem zusammenhängenden Zug — vergleich dann mit dem Muster und sprich sie noch einmal."
+    prompt:
+      en: "A friend asks: „Wie war deine Fahrt nach Hamburg?“ Tell the whole mishap connectedly: the strike in München, the delay, the missed connection in Hannover, the hotel that gave your room away — and how it ended."
+      ru: "Друг спрашивает: „Wie war deine Fahrt nach Hamburg?“ Расскажите всю историю связно: забастовка в Мюнхене, опоздание, пропущенная пересадка в Ганновере, отель, отдавший ваш номер, — и чем всё закончилось."
+      uk: "Друг питає: „Wie war deine Fahrt nach Hamburg?“ Розкажіть усю історію зв'язно: страйк у Мюнхені, запізнення, пропущена пересадка в Ганновері, готель, що віддав ваш номер, — і чим усе скінчилося."
+      de: "Ein Freund fragt: „Wie war deine Fahrt nach Hamburg?“ Erzähl die ganze Panne zusammenhängend: der Streik in München, die Verspätung, der verpasste Anschluss in Hannover, das Hotel, das dein Zimmer weggegeben hat — und wie es ausging."
+    goal:
+      en: "A connected report: events in order, each cause and obstacle named inside the sentence, and an ending."
+      ru: "Связный рассказ: события по порядку, каждая причина и препятствие названы внутри предложения, и финал."
+      uk: "Зв'язна розповідь: події по порядку, кожна причина й перешкода названі всередині речення, і фінал."
+      de: "Ein zusammenhängender Bericht: Ereignisse der Reihe nach, Grund und Hindernis im Satz benannt, und ein Schluss."
+    checklist:
+      - en: "The events came in order and in the Perfekt — ist abgefahren, haben verpasst, sind angekommen — with zuerst/dann/danach carrying the thread."
+        ru: "События шли по порядку и в Perfekt — ist abgefahren, haben verpasst, sind angekommen — а нить держали zuerst/dann/danach."
+        uk: "Події йшли по порядку і в Perfekt — ist abgefahren, haben verpasst, sind angekommen — а нитку тримали zuerst/dann/danach."
+        de: "Die Ereignisse kamen der Reihe nach und im Perfekt — ist abgefahren, haben verpasst, sind angekommen — mit zuerst/dann/danach als Faden."
+      - en: "Causes, obstacles and timespans sat inside the sentences as genitive phrases: wegen des Streiks, trotz der Verspätung, während der Fahrt — not as a chain of und dann."
+        ru: "Причины, препятствия и отрезки времени сидели внутри предложений группами в родительном: wegen des Streiks, trotz der Verspätung, während der Fahrt — а не цепочкой und dann."
+        uk: "Причини, перешкоди й відрізки часу сиділи всередині речень групами в родовому: wegen des Streiks, trotz der Verspätung, während der Fahrt — а не ланцюжком und dann."
+        de: "Gründe, Hindernisse und Zeiträume saßen als Genitivgruppen im Satz: wegen des Streiks, trotz der Verspätung, während der Fahrt — nicht als und-dann-Kette."
+      - en: "The story closed with a result — how late you were, what the hotel finally did — so the listener knows it is over."
+        ru: "Рассказ закрылся результатом — насколько вы опоздали, что в итоге сделал отель, — чтобы слушатель понял, что история кончилась."
+        uk: "Розповідь закрилася результатом — наскільки ви запізнилися, що врешті зробив готель, — щоб слухач зрозумів, що історія скінчилася."
+        de: "Die Geschichte schloss mit einem Ergebnis — wie spät du warst, was das Hotel am Ende tat —, damit der Zuhörer weiß, dass sie vorbei ist."
+    model_answer: "Ach, das war ein Abenteuer! Wegen eines Streiks ist unser Zug in München erst mit fünfzig Minuten Verspätung abgefahren. Während der Fahrt gab es keine einzige Durchsage, und in Hannover haben wir dann den Anschluss verpasst. Wir mussten fast zwei Stunden warten. Trotz der Verspätung sind wir am Abend noch in Hamburg angekommen — aber das Hotel hatte unser Zimmer schon weggegeben! Wir haben ein kleines Zimmer zur Straße bekommen, und die Klimaanlage war kaputt. Am Ende habe ich mich beschwert, und das Hotel hat uns einen Teil des Geldes ersetzt."
+    model_translation:
+      en: "Oh, that was an adventure! Because of a strike our train left München fifty minutes late. During the journey there was not a single announcement, and in Hannover we then missed our connection. We had to wait almost two hours. Despite the delay we still arrived in Hamburg in the evening — but the hotel had already given our room away! We got a small room facing the street, and the air conditioning was broken. In the end I complained, and the hotel reimbursed us part of the money."
+      ru: "Ох, это было приключение! Из-за забастовки наш поезд выехал из Мюнхена с опозданием на пятьдесят минут. Во время поездки не было ни одного объявления, и в Ганновере мы пропустили пересадку. Нам пришлось ждать почти два часа. Несмотря на опоздание, вечером мы всё же добрались до Гамбурга — но отель уже отдал наш номер! Нам достался маленький номер на улицу, и кондиционер был сломан. В конце концов я пожаловалась, и отель возместил нам часть денег."
+      uk: "Ох, це була пригода! Через страйк наш поїзд виїхав із Мюнхена із запізненням на п'ятдесят хвилин. Під час поїздки не було жодного оголошення, і в Ганновері ми пропустили пересадку. Нам довелося чекати майже дві години. Попри запізнення ввечері ми все ж дісталися Гамбурга — але готель уже віддав наш номер! Нам дісталася маленька кімната на вулицю, і кондиціонер був зламаний. Врешті-решт я поскаржилася, і готель відшкодував нам частину грошей."
+    explain:
+      en: "The model makes the checklist's moves in order: Perfekt events on a zuerst-dann thread, the causes packed into genitive phrases instead of loose und-dann links, and a closing result. Say it a second time and listen for the three phrase heads — wegen, während, trotz — each pulling its noun into the genitive."
+      ru: "Образец делает ходы чек-листа по порядку: события в Perfekt на нити zuerst-dann, причины упакованы в группы с родительным вместо рыхлых связок und dann, и финальный результат. Произнесите текст второй раз и вслушайтесь в три вершины групп — wegen, während, trotz: каждая утягивает своё существительное в родительный."
+      uk: "Зразок робить ходи чек-листа по порядку: події в Perfekt на нитці zuerst-dann, причини запаковані в групи з родовим замість пухких зв'язок und dann, і фінальний результат. Промовте текст удруге і вслухайтеся в три вершини груп — wegen, während, trotz: кожна затягує свій іменник у родовий."
+      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Perfekt-Ereignisse am zuerst-dann-Faden, die Gründe in Genitivgruppen gepackt statt in lose und-dann-Glieder, und ein Ergebnis am Schluss. Sprich den Text ein zweites Mal und hör auf die drei Gruppenköpfe — wegen, während, trotz —, wie jeder sein Nomen in den Genitiv zieht."
+
+  - id: sprechen-was-waere-wenn
+    outcomes: [irreale-bedingung-nutzen]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Speak three or four wenn-sentences aloud — then compare with the model and say them again."
+      ru: "Произнесите вслух три-четыре предложения с wenn — затем сравните с образцом и повторите."
+      uk: "Промовте вголос три-чотири речення з wenn — потім порівняйте зі зразком і повторіть."
+      de: "Sprich drei oder vier wenn-Sätze laut — vergleich dann mit dem Muster und sprich sie noch einmal."
+    prompt:
+      en: "You are stuck in Hannover: the connection is gone, the next train leaves in an hour. Say three or four sentences about what you would do if things were different — Wenn ich …, würde/könnte/wäre/hätte ich …"
+      ru: "Вы застряли в Ганновере: пересадка ушла, следующий поезд через час. Скажите три-четыре предложения о том, что вы сделали бы, если бы всё было иначе, — Wenn ich …, würde/könnte/wäre/hätte ich …"
+      uk: "Ви застрягли в Ганновері: пересадка пішла, наступний поїзд за годину. Скажіть три-чотири речення про те, що ви зробили б, якби все було інакше, — Wenn ich …, würde/könnte/wäre/hätte ich …"
+      de: "Du sitzt in Hannover fest: Der Anschluss ist weg, der nächste Zug fährt in einer Stunde. Sag drei oder vier Sätze darüber, was du tun würdest, wenn etwas anders wäre — Wenn ich …, würde/könnte/wäre/hätte ich …"
+    goal:
+      en: "Unreal conditions produced freely — each with Konjunktiv II in both halves."
+      ru: "Свободно построенные нереальные условия — каждое с Konjunktiv II в обеих половинах."
+      uk: "Вільно побудовані нереальні умови — кожна з Konjunktiv II в обох половинах."
+      de: "Frei produzierte irreale Bedingungen — jede mit Konjunktiv II in beiden Hälften."
+    checklist:
+      - en: "Every sentence carried Konjunktiv II in both halves — a wäre or hätte in the wenn-clause never excused an indicative in the main clause."
+        ru: "Каждое предложение несло Konjunktiv II в обеих половинах — wäre или hätte в придаточном не оправдывали индикатив в главном."
+        uk: "Кожне речення несло Konjunktiv II в обох половинах — wäre або hätte в підрядному не виправдовували індикатив у головному."
+        de: "Jeder Satz trug Konjunktiv II in beiden Hälften — ein wäre oder hätte im wenn-Satz entschuldigte keinen Indikativ im Hauptsatz."
+      - en: "haben, sein and the modals kept their one-word forms — hätte, wäre, könnte, müsste — while every full verb built würde + infinitive, even inside the wenn-clause: wenn das WLAN funktionieren würde."
+        ru: "haben, sein и модальные сохраняли однословные формы — hätte, wäre, könnte, müsste, — а каждый полнозначный глагол строил würde + инфинитив, в том числе внутри придаточного: wenn das WLAN funktionieren würde."
+        uk: "haben, sein і модальні зберігали однослівні форми — hätte, wäre, könnte, müsste, — а кожне повнозначне дієслово будувало würde + інфінітив, зокрема всередині підрядного: wenn das WLAN funktionieren würde."
+        de: "haben, sein und die Modalverben behielten ihre Einwortformen — hätte, wäre, könnte, müsste —, während jedes Vollverb würde + Infinitiv baute, auch im wenn-Satz: wenn das WLAN funktionieren würde."
+      - en: "The wenn-clause stayed verb-final, and where the main clause came second, its finite verb came straight after the comma: …, würde ich …"
+        ru: "Придаточное с wenn оставалось с глаголом в конце, а там, где главное шло вторым, его спрягаемый глагол стоял сразу после запятой: …, würde ich …"
+        uk: "Підрядне з wenn лишалося з дієсловом у кінці, а там, де головне йшло другим, його відмінюване дієслово стояло одразу після коми: …, würde ich …"
+        de: "Der wenn-Satz blieb verbletzt, und wo der Hauptsatz als zweiter kam, stand sein finites Verb direkt nach dem Komma: …, würde ich …"
+    model_answer: "Wenn der Anschluss nicht weg wäre, wäre ich jetzt schon fast in Hamburg. Wenn ich ein Auto hätte, würde ich einfach weiterfahren. Wenn das WLAN hier funktionieren würde, könnte ich wenigstens ein bisschen arbeiten. Und wenn die Wartezeit noch länger wäre, würde ich mir in der Stadt ein Café suchen."
+    model_translation:
+      en: "If the connection were not gone, I would already be almost in Hamburg by now. If I had a car, I would simply drive on. If the wifi here worked, I could at least work a little. And if the wait were even longer, I would go find myself a café in town."
+      ru: "Если бы пересадка не ушла, я была бы сейчас уже почти в Гамбурге. Если бы у меня была машина, я бы просто поехала дальше. Если бы здесь работал вайфай, я могла бы хотя бы немного поработать. А если бы ожидание было ещё дольше, я нашла бы себе кафе в городе."
+      uk: "Якби пересадка не пішла, я була б зараз уже майже в Гамбурзі. Якби я мала авто, я просто поїхала б далі. Якби тут працював вайфай, я могла б хоча б трохи попрацювати. А якби очікування було ще довшим, я знайшла б собі кафе в місті."
+    explain:
+      en: "Four sentences, four cells of the paradigm: wäre twice (one-word sein), hätte with a full-verb würde partner, funktionieren würde inside the wenn-clause with könnte answering it, and a plain würde + suchen. Each half marked, no indicative anywhere — say them again and listen for the umlauts doing that work."
+      ru: "Четыре предложения — четыре ячейки парадигмы: дважды wäre (однословный sein), hätte в паре с würde полнозначного глагола, funktionieren würde внутри придаточного и отвечающий ему könnte, и простое würde + suchen. Каждая половина помечена, индикатива нет нигде — произнесите их ещё раз и вслушайтесь, как эту работу делают умлауты."
+      uk: "Чотири речення — чотири клітинки парадигми: двічі wäre (однослівний sein), hätte в парі з würde повнозначного дієслова, funktionieren würde всередині підрядного і könnte у відповідь, і просте würde + suchen. Кожна половина позначена, індикатива немає ніде — промовте їх ще раз і вслухайтеся, як цю роботу роблять умлаути."
+      de: "Vier Sätze, vier Zellen des Paradigmas: zweimal wäre (Einwortform von sein), hätte mit einem Vollverb-würde als Partner, funktionieren würde im wenn-Satz mit könnte als Antwort, und ein schlichtes würde + suchen. Jede Hälfte markiert, nirgends ein Indikativ — sprich sie noch einmal und hör, wie die Umlaute diese Arbeit tun."

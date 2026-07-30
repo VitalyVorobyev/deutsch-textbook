@@ -104,4 +104,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'je-desto': 'konsum-umwelt',
   'passiv-modal': 'regeln-verantwortung',
   'sodass-folge': 'regeln-verantwortung',
+  'konjunktiv2-form': 'reisen-probleme',
+  'irreale-bedingung': 'reisen-probleme',
+  'praeposition-genitiv': 'reisen-probleme',
 };

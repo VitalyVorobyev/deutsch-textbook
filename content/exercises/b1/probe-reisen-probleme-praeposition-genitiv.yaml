@@ -1,0 +1,115 @@
+# Delayed probe family 3 of 3 — ONE competence: putting a report's cause, obstacle
+# and timespan into the genitive after wegen, trotz and während, cold. Three parallel
+# translate variants — translate rather than cloze or mc, because a cloze that gaps
+# the article prints the preposition and the noun with its visible -s, giving the
+# case away, and mc would hand back recognition. The instruction names the
+# preposition: EN "because of"/"despite"/"during" would render equally well with a
+# weil-clause, obwohl or a bare time adverbial, and the case the preposition governs
+# is what is probed, never the preposition's choice (the B1.7 sodass precedent —
+# name the connector, grade its rule).
+# Pinned are the preposition and the case-marked material: the article, plus the
+# masculine noun's own -s (Unfalls, Fluges/Flugs) — the written genitive is the
+# competence, so a spoken-Dativ einem or a bare Unfall is exactly what must be
+# attributed. The carrier verb stays unpinned and named in the instruction where the
+# space is open. Both genitive spellings des Fluges / des Flugs are the same form and
+# both accepted, so course orthography cannot cost a probe with three lifetime
+# stages. One retention curve: a traveller's past-tense report, the genitive phrase
+# fronted in the teaching model, mid-sentence renderings accepted. Cells: wegen +
+# eines (m, indefinite), trotz + der (f), während + des (m) — two of three sit on the
+# masculine, because that is where the spoken wegen dem habit and the missing noun -s
+# both bite.
+# Content pairings fresh: Unfall + angekommen (Unfall pairs verletzt, Meldung,
+# berichten and passiert elsewhere), Reservierung + stehen (Reservierung occurs
+# otherwise only in this unit's produktion letter, where it pairs with Sitzplatz;
+# the taught headword is the verb reservieren), Flug + geschlafen (Fluges/Flugs
+# occur nowhere) — checked by grepping each noun and verb across content/, not by
+# re-reading this list.
+# `outcomes: [panne-berichten]` is deliberate and it is what arms this family: the
+# can-do is "eine Reisepanne zusammenhängend berichten", and these three phrases are
+# the frame a connected report hangs its causes on. The practice items that produce
+# them (cloze-wegen-streik, mc-trotz-trotzdem, uebersetzen-waehrend-nacht,
+# uebersetzen-wegen-verspaetung) declare this outcome too, so the 2/7/21 clock arms
+# from producing the probed frame, never from comprehension alone. Each of the two
+# other families declares a different outcome, because two families sharing one
+# would arm identically and fire a probe at material never practised.
+topic: reisen-probleme
+role: probe
+title:
+  en: "Delayed check — the travel report's genitive"
+  ru: "Отложенная проверка — родительный падеж дорожного отчёта"
+  uk: "Відкладена перевірка — родовий відмінок дорожнього звіту"
+  de: "Kontrolle mit Abstand — der Genitiv des Reiseberichts"
+items:
+  - id: variant-a
+    outcomes: [panne-berichten]
+    type: translate
+    focus: praeposition-genitiv
+    instruction:
+      en: "Translate — attach the cause with wegen; for 'accident' take der Unfall."
+      ru: "Переведите — присоедините причину предлогом wegen; для «аварии» возьмите der Unfall."
+      uk: "Перекладіть — приєднайте причину прийменником wegen; для «аварії» візьміть der Unfall."
+      de: "Übersetze — häng den Grund mit wegen an; für das Nomen nimm der Unfall."
+    prompt_en: "Because of an accident we did not arrive until midnight."
+    prompt_ru: "Из-за аварии мы приехали только в полночь."
+    prompt_uk: "Через аварію ми приїхали лише опівночі."
+    answer: "Wegen eines Unfalls sind wir erst um Mitternacht angekommen."
+    accept:
+      - "Wir sind wegen eines Unfalls erst um Mitternacht angekommen."
+    key_tokens: ["Wegen", "wegen", "eines", "Unfalls"]
+    explain:
+      en: "Graded is the whole genitive phrase: wegen, the masculine indefinite eines, and the -s the noun itself carries — Unfalls. Spoken German says wegen einem Unfall, and the dative einem is exactly the swap this check exists to see; the bare Unfall without -s is its quieter twin. erst um Mitternacht renders 'not until midnight', and the fronted phrase puts sind straight after it."
+      ru: "Оценивается вся группа в родительном: wegen, мужское неопределённое eines и -s, которое несёт само существительное, — Unfalls. В разговорной речи говорят wegen einem Unfall, и дательное einem — ровно та замена, ради которой существует эта проверка; голое Unfall без -s — её тихий близнец. erst um Mitternacht передаёт «только в полночь», а вынесенная группа ставит sind сразу за собой."
+      uk: "Оцінюється вся група в родовому: wegen, чоловіче неозначене eines і -s, яке несе сам іменник, — Unfalls. У розмовному мовленні кажуть wegen einem Unfall, і давальне einem — рівно та заміна, заради якої існує ця перевірка; голе Unfall без -s — її тихий близнюк. erst um Mitternacht передає «лише опівночі», а винесена група ставить sind одразу за собою."
+      de: "Bewertet wird die ganze Genitivgruppe: wegen, das maskuline unbestimmte eines und das -s, das das Nomen selbst trägt — Unfalls. Gesprochen sagt man wegen einem Unfall, und das dativische einem ist genau der Tausch, für den diese Kontrolle da ist; das nackte Unfall ohne -s ist sein leiser Zwilling. erst um Mitternacht gibt die späte Ankunft wieder, und die vorangestellte Gruppe zieht sind direkt hinter sich."
+
+  - id: variant-b
+    outcomes: [panne-berichten]
+    type: translate
+    focus: praeposition-genitiv
+    instruction:
+      en: "Translate — attach the obstacle with trotz; for 'seat reservation' take die Reservierung."
+      ru: "Переведите — присоедините препятствие предлогом trotz; для «резервации места» возьмите die Reservierung."
+      uk: "Перекладіть — приєднайте перешкоду прийменником trotz; для «резервації місця» візьміть die Reservierung."
+      de: "Übersetze — häng das Hindernis mit trotz an; für das Nomen nimm die Reservierung."
+    prompt_en: "Despite the seat reservation we had to stand until Hannover."
+    prompt_ru: "Несмотря на резервацию места, нам пришлось стоять до Ганновера."
+    prompt_uk: "Попри резервацію місця, нам довелося стояти до Ганновера."
+    answer: "Trotz der Reservierung mussten wir bis Hannover stehen."
+    accept:
+      - "Wir mussten trotz der Reservierung bis Hannover stehen."
+    key_tokens: ["Trotz", "trotz", "der"]
+    explain:
+      en: "Graded are trotz and the genitive it governs: feminine die Reservierung takes der. English 'despite' brings no case along, so the genitive must be supplied rather than transferred — and trotz must stay a preposition here, never swelling into trotzdem, which is 'nevertheless' and cannot stand before a noun. The modal Präteritum mussten … stehen is carrier."
+      ru: "Оцениваются trotz и родительный, которым он управляет: женское die Reservierung берёт der. Родной язык тянет в другую сторону — «несмотря на» требует винительного, и рука пишет trotz die; и trotz обязан остаться предлогом, не разрастаясь в trotzdem, которое перед существительным стоять не может. Модальный претерит mussten … stehen — носитель."
+      uk: "Оцінюються trotz і родовий, яким воно керує: жіноче die Reservierung бере der. Рідна мова тягне в інший бік — «попри» вимагає знахідного, і рука пише trotz die; і trotz мусить лишитися прийменником, не розростаючись у trotzdem, яке перед іменником стояти не може. Модальний претерит mussten … stehen — носій."
+      de: "Bewertet werden trotz und der Genitiv, den es regiert: Das feminine die Reservierung nimmt der. Andere Sprachen ziehen in die andere Richtung — ihr «trotz» regiert den Akkusativ, und die Hand schreibt trotz die; und trotz muss hier Präposition bleiben und darf nicht zu trotzdem anschwellen, das vor keinem Nomen stehen kann. Das modale Präteritum mussten … stehen ist Träger."
+
+  - id: variant-c
+    outcomes: [panne-berichten]
+    type: translate
+    focus: praeposition-genitiv
+    instruction:
+      en: "Translate — attach the timespan with während; for 'flight' take der Flug."
+      ru: "Переведите — присоедините отрезок времени предлогом während; для «полёта» возьмите der Flug."
+      uk: "Перекладіть — приєднайте відрізок часу прийменником während; для «польоту» візьміть der Flug."
+      de: "Übersetze — häng den Zeitraum mit während an; für das Nomen nimm der Flug."
+    prompt_en: "During the flight I slept a little."
+    prompt_ru: "Во время полёта я немного поспал."
+    prompt_uk: "Під час польоту я трохи поспав."
+    answer: "Während des Fluges habe ich ein bisschen geschlafen."
+    accept:
+      - "Ich habe während des Fluges ein bisschen geschlafen."
+      # des Flugs is the same genitive in its short spelling.
+      - "Während des Flugs habe ich ein bisschen geschlafen."
+      - "Ich habe während des Flugs ein bisschen geschlafen."
+      # etwas renders «немного» as idiomatically as ein bisschen.
+      - "Während des Fluges habe ich etwas geschlafen."
+      - "Ich habe während des Fluges etwas geschlafen."
+      - "Während des Flugs habe ich etwas geschlafen."
+      - "Ich habe während des Flugs etwas geschlafen."
+    key_tokens: ["Während", "während", "des", "Fluges", "Flugs"]
+    explain:
+      en: "Graded is während with its masculine genitive: des, and the noun's own ending — Fluges or Flugs, both correct spellings of the same form. The one habit to resist is spoken German's own während dem: in writing the timespan takes the genitive, article and noun ending together. The Perfekt around it is carrier, and both word orders are accepted."
+      ru: "Оценивается während со своим мужским родительным: des и собственное окончание существительного — Fluges или Flugs, оба написания одной формы верны. Здесь родной язык — союзник: «во время» тоже требует родительного, сопротивляться нужно лишь немецкой разговорной привычке während dem. Perfekt вокруг — носитель, оба порядка слов принимаются."
+      uk: "Оцінюється während зі своїм чоловічим родовим: des і власне закінчення іменника — Fluges або Flugs, обидва написання однієї форми правильні. Тут рідна мова — союзник: «під час» теж вимагає родового, опиратися треба лише німецькій розмовній звичці während dem. Perfekt довкола — носій, обидва порядки слів приймаються."
+      de: "Bewertet wird während mit seinem maskulinen Genitiv: des und die eigene Endung des Nomens — Fluges oder Flugs, beide Schreibungen derselben Form sind richtig. Hier sind die Ausgangssprachen Verbündete: Ihr Äquivalent nimmt ebenfalls den Genitiv, zu widerstehen ist nur der gesprochenen Gewohnheit während dem. Das Perfekt darum herum ist Träger, beide Wortstellungen werden akzeptiert."
