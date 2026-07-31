@@ -64,7 +64,7 @@ items:
       de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: Das pluralische wären schließt den wenn-Satz, würden eröffnet den Hauptsatz. Die Ausgangssprachen verteilen ihre Markierung ungleich auf die Hälften, also muss mindestens eine deutsche Form gebaut und nicht kopiert werden. Beide Satzfolgen werden akzeptiert; der eine falsche Zug ist der Indikativ in einer der Hälften."
 
   - id: variant-b
-    revision: 2
+    revision: 3
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -80,13 +80,16 @@ items:
     accept:
       - "Wenn die Übernachtung billiger wäre, dann würden wir drei Nächte bleiben."
       - "Wir würden drei Nächte bleiben, wenn die Übernachtung billiger wäre."
-      # für drei Nächte is the booking-language rendering of the same duration.
+      # für drei Nächte is the booking-language rendering of the same duration; the
+      # accept list is the full product clause-order × dann × für, eight cells.
       - "Wenn die Übernachtung billiger wäre, würden wir für drei Nächte bleiben."
+      - "Wenn die Übernachtung billiger wäre, dann würden wir für drei Nächte bleiben."
       - "Wir würden für drei Nächte bleiben, wenn die Übernachtung billiger wäre."
       # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
       - "Wäre die Übernachtung billiger, würden wir drei Nächte bleiben."
       - "Wäre die Übernachtung billiger, dann würden wir drei Nächte bleiben."
       - "Wäre die Übernachtung billiger, würden wir für drei Nächte bleiben."
+      - "Wäre die Übernachtung billiger, dann würden wir für drei Nächte bleiben."
     key_tokens: ["wäre", "Wäre", "würden"]
     explain:
       en: "Again one marker per half: singular wäre, agreeing with die Übernachtung, at the wenn-clause wall, and würden carrying bleiben in the main clause. wäre in the first half never excuses a bleiben wir in the second — once the unreal world is open, both halves live in it. The duration stands as a plain accusative, drei Nächte, and the für-variant is accepted."

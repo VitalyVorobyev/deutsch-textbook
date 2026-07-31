@@ -142,6 +142,14 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   finer than outcomes (an item-level arming flag, or focus-based arming keys) — a `src/lib` +
   schema change; measure `armedAt` before and after per the re-arming rule, since narrowing the
   pool re-times every shipped family's clock.
+- **P19-5 · Future-cast prompt halves accept only present renderings** — #127's review caught
+  `probe-lernen-zukunft` variant-a rejecting *wird … schicken* although its RU/UK halves say
+  «пришлёт»/«надішле»; fixed there, but the class is corpus-wide (`a2/drill-mir-mich` "I will
+  call you tomorrow" → present-only accepts is the shipped precedent, and B1.9's
+  `uebersetzen-falls-antwort`/`uebersetzen-vorfeld-falls` share the shape). Decide once at the
+  instrument level: an item-authoring rule — align the tense across prompt halves, or accept the
+  werden main clause wherever a half invites it — plus one sweep, instead of per-rendering
+  grading-queue rulings.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);

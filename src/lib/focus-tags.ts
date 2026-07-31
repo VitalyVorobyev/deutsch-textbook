@@ -107,4 +107,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'konjunktiv2-form': 'reisen-probleme',
   'irreale-bedingung': 'reisen-probleme',
   'praeposition-genitiv': 'reisen-probleme',
+  'damit-um-zu': 'lernen-zukunft',
+  'falls-wenn': 'lernen-zukunft',
+  'ohne-statt-zu': 'lernen-zukunft',
 };

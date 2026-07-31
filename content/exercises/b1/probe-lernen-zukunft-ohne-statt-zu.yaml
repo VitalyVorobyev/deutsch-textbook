@@ -1,0 +1,114 @@
+# Delayed probe family 3 of 3 — ONE competence: building the zu-family's clause cold —
+# ohne … zu / statt … zu with the obligatory zu and the infinitive at the clause end,
+# under the shared-subject condition. Three parallel translate variants, served in
+# authoring order across the 2/7/21 delays — one retention curve over one clause
+# shape. Translate rather than cloze or mc, because the probed errors are precisely
+# what a source gerund provokes and a printed clause gives away: the dropped zu
+# ('without saying' carries no particle) and the verb pulled forward ('instead of
+# searching the internet' puts the verb first). The instruction names the
+# construction (the B1.8 family-3 precedent: EN 'without/instead of' would render
+# equally well as a full clause, and the clause's *build* is what is probed, never
+# the connector's choice); anstatt … zu is the same construction in its fuller form,
+# so the statt variant accepts it. Pinned are the opener and the clause-final
+# infinitive plus the zu where it is a free word; in the separable-verb variant the
+# zu fuses into the pinned infinitive itself (nichts extra to pin — the fused form is
+# the graded fact).
+# Content pairings fresh: Kurs + verlassen and etwas + sagen inside an ohne-clause
+# (neither occurs), Lehrerin + fragen and Internet + suchen (the practice set's
+# statt-verbs are schauen and warten — suchen closes no statt clause anywhere),
+# Kurs + wählen and Preis + kennen (Kurs pairs buchen in an A2 probe; the wählen and
+# kennen pairings occur nowhere) — checked by grepping each noun and verb across
+# content/, not by re-reading this list. None of the practice set's ohne/statt verbs
+# (benutzen, überprüfen, schauen, warten, nachdenken) recurs here.
+# `outcomes: [beratung-verstehen]` is deliberate and it is what arms this family —
+# the outcome is the arming channel, not the probe's mode (the B1.8 family-1
+# precedent: cloze probes under the writing outcome, because the competence is what
+# the can-do stands on). The primary set routes its ohne/statt items through this
+# outcome — the what-instead and what-without structures are how an adviser's key
+# points travel — and with three outcomes and three families, any other choice would
+# make two families share an outcome, arm identically, and fire a probe at material
+# never practised. So cloze-ohne-zu, mc-statt-wortstellung, uebersetzen-statt-videos,
+# uebersetzen-ohne-nachdenken and uebersetzen-wissen-ob declare it — and so do the
+# comprehension items (frage-empfehlung, hoeren-beratung, hoeren-diktat,
+# lesen-aushang is on plan-formulieren), because outcome-keyed arming cannot look
+# inside an item: the clock may start from a listening attempt before any zu-clause
+# was produced (P19-4).
+topic: lernen-zukunft
+role: probe
+title:
+  en: "Delayed check — the zu-family's clause"
+  ru: "Отложенная проверка — обороты семьи с zu"
+  uk: "Відкладена перевірка — звороти родини з zu"
+  de: "Kontrolle mit Abstand — die Sätze der zu-Familie"
+items:
+  - id: variant-a
+    outcomes: [beratung-verstehen]
+    type: translate
+    focus: ohne-statt-zu
+    instruction:
+      en: "Translate — fold the 'without …' part into an ohne … zu clause. For 'leave' take verlassen, for 'say' sagen."
+      ru: "Переведите — сверните часть «не …» в оборот с ohne … zu. Для «покинуть» возьмите verlassen, для «сказать» — sagen."
+      uk: "Перекладіть — згорніть частину «не …» у зворот з ohne … zu. Для «залишити» візьміть verlassen, для «сказати» — sagen."
+      de: "Übersetze — falte den Teil mit „ohne“ in einen ohne … zu-Satz. Für das Verlassen nimm verlassen, für das Sagen sagen."
+    prompt_en: "He leaves the course without saying anything."
+    prompt_ru: "Он покидает курс, ничего не сказав."
+    prompt_uk: "Він залишає курс, нічого не сказавши."
+    answer: "Er verlässt den Kurs, ohne etwas zu sagen."
+    accept:
+      # The fronted ohne-clause fills position 1, main clause verb-first.
+      - "Ohne etwas zu sagen, verlässt er den Kurs."
+    key_tokens: ["ohne", "Ohne", "zu", "sagen"]
+    explain:
+      en: "Graded is the clause's skeleton: ohne opens it, zu sagen closes it. 'Without saying anything' is a gerund and carries no particle, so the hand drops the zu — but the German clause is built on it, and the infinitive stands at the very end. Inside an ohne-clause the negation is already spent: etwas, not nichts, because ohne … nichts would cancel itself. The subjects match — he leaves and he stays silent."
+      ru: "Оценивается скелет оборота: ohne его открывает, zu sagen закрывает. «Ничего не сказав» — деепричастие без частиц, поэтому рука теряет zu, — но немецкий оборот на нём построен, и инфинитив стоит в самом конце. Внутри оборота с ohne отрицание уже израсходовано: etwas, а не nichts, потому что ohne … nichts отменило бы само себя. Подлежащие совпадают: уходит и молчит один человек."
+      uk: "Оцінюється скелет звороту: ohne його відкриває, zu sagen закриває. «Нічого не сказавши» — дієприслівник без часток, тому рука губить zu, — але німецький зворот на ньому побудований, і інфінітив стоїть у самому кінці. Усередині звороту з ohne заперечення вже витрачено: etwas, а не nichts, бо ohne … nichts скасувало б само себе. Підмети збігаються: іде і мовчить одна людина."
+      de: "Bewertet wird das Gerüst des Satzes: ohne öffnet ihn, zu sagen schließt ihn. Andere Sprachen kommen an dieser Stelle ohne Partikel aus, also lässt die Hand das zu fallen — aber der deutsche Satz ist darauf gebaut, und der Infinitiv steht ganz am Ende. Im ohne-Satz ist die Verneinung schon verbraucht: etwas, nicht nichts, denn ohne … nichts höbe sich selbst auf. Die Subjekte stimmen überein — er geht und er schweigt."
+
+  - id: variant-b
+    outcomes: [beratung-verstehen]
+    type: translate
+    focus: ohne-statt-zu
+    instruction:
+      en: "Translate — put the alternative into a statt … zu clause. For 'her teacher' take ihre Lehrerin, for 'ask' fragen, for 'search' suchen with im Internet."
+      ru: "Переведите — оформите альтернативу оборотом statt … zu. Для «своей учительницы» возьмите ihre Lehrerin, для «спрашивать» — fragen, для «искать» — suchen с im Internet."
+      uk: "Перекладіть — оформіть альтернативу зворотом statt … zu. Для «своєї вчительки» візьміть ihre Lehrerin, для «питати» — fragen, для «шукати» — suchen з im Internet."
+      de: "Übersetze — pack die Alternative in einen statt … zu-Satz. Für die Person nimm ihre Lehrerin, für das Fragen fragen, für das Suchen suchen mit im Internet."
+    prompt_en: "She asks her teacher instead of searching the internet for a long time."
+    prompt_ru: "Она спрашивает свою учительницу, вместо того чтобы долго искать в интернете."
+    prompt_uk: "Вона питає свою вчительку, замість того щоб довго шукати в інтернеті."
+    answer: "Sie fragt ihre Lehrerin, statt lange im Internet zu suchen."
+    accept:
+      # The fronted statt-clause fills position 1, main clause verb-first.
+      - "Statt lange im Internet zu suchen, fragt sie ihre Lehrerin."
+      # anstatt … zu is the same construction in its fuller form.
+      - "Sie fragt ihre Lehrerin, anstatt lange im Internet zu suchen."
+      - "Anstatt lange im Internet zu suchen, fragt sie ihre Lehrerin."
+    key_tokens: ["statt", "Statt", "anstatt", "Anstatt", "zu", "suchen"]
+    explain:
+      en: "Graded is the clause's skeleton: statt opens it, zu suchen closes it — and the searching is thereby named as the alternative that does not happen. 'Instead of searching' puts the verb right after the connector; German parks zu + infinitive at the wall, with lange im Internet in front of it. anstatt is the same word in its fuller form, and both orders of the two clauses are accepted."
+      ru: "Оценивается скелет оборота: statt его открывает, zu suchen закрывает — и поиск тем самым назван альтернативой, которая не происходит. «Вместо того чтобы искать» ставит глагол сразу после союза; немецкий паркует zu + инфинитив у стены, а lange im Internet — перед ними. anstatt — то же слово в более полной форме, и оба порядка частей принимаются."
+      uk: "Оцінюється скелет звороту: statt його відкриває, zu suchen закриває — і пошук тим самим названо альтернативою, що не відбувається. «Замість того щоб шукати» ставить дієслово одразу після сполучника; німецька паркує zu + інфінітив біля стіни, а lange im Internet — перед ними. anstatt — те саме слово в повнішій формі, і обидва порядки частин приймаються."
+      de: "Bewertet wird das Gerüst des Satzes: statt öffnet ihn, zu suchen schließt ihn — und das Suchen ist damit als die Alternative benannt, die ausbleibt. Die fremde Ordnung stellt das Verb gleich hinter den Konnektor; das Deutsche parkt zu + Infinitiv an der Wand, mit lange im Internet davor. anstatt ist dasselbe Wort in der volleren Form, und beide Satzfolgen werden akzeptiert."
+
+  - id: variant-c
+    outcomes: [beratung-verstehen]
+    type: translate
+    focus: ohne-statt-zu
+    instruction:
+      en: "Translate — fold the 'without …' part into an ohne … zu clause, and render 'you should' with man sollte. For 'choose' take wählen, for 'know' kennen."
+      ru: "Переведите — сверните часть «не …» в оборот с ohne … zu; «не следует» передайте через man sollte. Для «выбирать» возьмите wählen, для «знать» — kennen."
+      uk: "Перекладіть — згорніть частину «не …» у зворот з ohne … zu; «не слід» передайте через man sollte. Для «вибирати» візьміть wählen, для «знати» — kennen."
+      de: "Übersetze — falte den Teil mit „ohne“ in einen ohne … zu-Satz und nimm für den Ratschlag man sollte. Für das Wählen nimm wählen, für das Kennen kennen."
+    prompt_en: "You should not choose a course without knowing the price."
+    prompt_ru: "Не следует выбирать курс, не зная цены."
+    prompt_uk: "Не слід вибирати курс, не знаючи ціни."
+    answer: "Man sollte keinen Kurs wählen, ohne den Preis zu kennen."
+    accept:
+      # The fronted ohne-clause fills position 1, main clause verb-first.
+      - "Ohne den Preis zu kennen, sollte man keinen Kurs wählen."
+    key_tokens: ["ohne", "Ohne", "zu", "kennen"]
+    explain:
+      en: "Graded is the clause's skeleton: ohne opens it, zu kennen closes it. 'Without knowing' is the gerund again — no particle — so the dropped zu is the error this check exists for; the infinitive at the wall is its quieter twin. The main clause carries the negation as keinen Kurs (kein- before a noun), and man sollte is A2's advice machine: the ohne-clause borrows exactly that man as its subject."
+      ru: "Оценивается скелет оборота: ohne его открывает, zu kennen закрывает. «Не зная» — снова деепричастие без частиц, поэтому потерянное zu — ошибка, ради которой существует эта проверка; инфинитив не у стены — её тихий близнец. Главное предложение несёт отрицание как keinen Kurs (kein- перед существительным), а man sollte — машина советов из A2: оборот с ohne одалживает именно это man как своё подлежащее."
+      uk: "Оцінюється скелет звороту: ohne його відкриває, zu kennen закриває. «Не знаючи» — знову дієприслівник без часток, тому загублене zu — помилка, заради якої існує ця перевірка; інфінітив не біля стіни — її тихий близнюк. Головне речення несе заперечення як keinen Kurs (kein- перед іменником), а man sollte — машина порад з A2: зворот з ohne позичає саме це man як свій підмет."
+      de: "Bewertet wird das Gerüst des Satzes: ohne öffnet ihn, zu kennen schließt ihn. Das Gerundium der Ausgangssprachen trägt keine Partikel — also ist das verlorene zu genau der Fehler, für den diese Kontrolle da ist; der Infinitiv fern der Wand ist sein leiser Zwilling. Der Hauptsatz trägt die Verneinung als keinen Kurs (kein- vor dem Nomen), und man sollte ist die Ratschlag-Maschine aus A2: Der ohne-Satz leiht sich genau dieses man als Subjekt."
