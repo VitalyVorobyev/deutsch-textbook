@@ -125,6 +125,10 @@ backfilled to A1/A2.
 `src/lib/prefs.ts` selects the requested half and defines fallback behavior; `src/lib/langcheck.ts`
 and the validator enforce parity and alphabet discipline.
 
+Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for the dual-language
+card surface. The compact form is used only when `pickSecond` resolves an actual RU/UK half;
+EN/DE modes and a missing-UK fallback continue to show full English.
+
 German examples are source language, not proof that a record has a German-medium explanation.
 This distinction matters in reference data and Wortnetze.
 

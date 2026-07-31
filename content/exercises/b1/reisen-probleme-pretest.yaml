@@ -1,0 +1,69 @@
+# Diagnostic generation, not practice: three guesses before the article, one per taught
+# confusion of the unit (the unreal condition marking both halves, the polite Konjunktiv
+# form against its bare Präteritum, wegen as a preposition before a noun phrase). No
+# focus tags — a pretest is never weakness evidence — and the first item is a cloze,
+# because a pretest made only of mc discriminates nothing.
+topic: reisen-probleme
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-wenn
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    instruction:
+      en: "Guess the two verb forms — haben in the Konjunktiv II, then the helper that unreality gives the verb fahren."
+      ru: "Угадайте две формы глагола — haben в Konjunktiv II, затем вспомогательный глагол, который нереальность даёт глаголу fahren."
+      uk: "Вгадайте дві форми дієслова — haben у Konjunktiv II, потім допоміжне дієслово, яке нереальність дає дієслову fahren."
+      de: "Rate die zwei Verbformen — haben im Konjunktiv II, dann das Hilfsverb, das die Irrealität dem Verb fahren gibt."
+    text: "Lena denkt auf dem Bahnsteig: Wenn ich ein Auto {{hätte}}, {{würde}} ich einfach selbst fahren."
+    translation:
+      en: "Lena thinks on the platform: if I had a car, I would simply drive myself."
+      ru: "Лена думает на перроне: если бы у меня была машина, я бы просто поехала сама."
+      uk: "Лена думає на пероні: якби я мала авто, я б просто поїхала сама."
+    explain:
+      en: "The unreal condition marks both halves with Konjunktiv II. haben has its own one-word form — hätte, the Präteritum hatte with an umlaut — while fahren borrows würde and waits at the clause end: its one-word führe exists, but it is formal-written and this course does not produce it. One indicative in either half would make the sentence a plan; Lena has no car, so neither half may have one. The chapter builds this small system."
+      ru: "Нереальное условие помечает Konjunktiv II обе половины. У haben есть собственная однословная форма — hätte, Präteritum hatte с умлаутом, — а fahren одалживает würde и ждёт в конце предложения: его однословная форма führe существует, но она книжно-письменная, и этот курс её не производит. Один индикатив в любой половине превратил бы фразу в план; машины у Лены нет, так что его не может быть нигде. Глава строит эту небольшую систему."
+      uk: "Нереальна умова позначає Konjunktiv II обидві половини. У haben є власна однослівна форма — hätte, Präteritum hatte з умлаутом, — а fahren позичає würde і чекає в кінці речення: його однослівна форма führe існує, але вона книжно-письмова, і цей курс її не продукує. Один індикатив у будь-якій половині перетворив би фразу на план; авто в Лени немає, тож його не може бути ніде. Розділ будує цю невелику систему."
+      de: "Die irreale Bedingung markiert beide Hälften mit Konjunktiv II. haben hat eine eigene Einwortform — hätte, das Präteritum hatte mit Umlaut —, während fahren sich würde leiht und am Satzende wartet: Seine Einwortform führe existiert, ist aber formell-schriftlich, und dieser Kurs produziert sie nicht. Ein Indikativ in einer der Hälften machte den Satz zum Plan; Lena hat kein Auto, also darf keiner hinein. Das Kapitel baut dieses kleine System auf."
+
+  - id: pre-mc-waere
+    outcomes: [beschwerde-schreiben]
+    type: mc
+    prompt: "Im Brief an das Hotel steht: „Es ___ gut, wenn Sie mir ein ruhigeres Zimmer geben könnten.“ Welche Form passt?"
+    options:
+      - "wäre"
+      - "war"
+      - "ist"
+    correct: 0
+    translation:
+      en: "The letter to the hotel says: \"It ___ be good if you could give me a quieter room.\" Which form fits?"
+      ru: "В письме в отель написано: «___ хорошо, если бы вы дали мне более тихий номер». Какая форма подходит?"
+      uk: "У листі до готелю написано: «___ добре, якби ви дали мені тихішу кімнату». Яка форма підходить?"
+    explain:
+      en: "The wenn-half already carries könnten — Konjunktiv II — so the main half must stay in the same unreal, polite world: wäre. war would report how something once was, and ist states a fact while the sentence is asking a favour. The umlaut and the -e turn war into wäre — the whole distance between a report and a request; the chapter takes this pair apart."
+      ru: "Половина с wenn уже несёт könnten — Konjunktiv II, — поэтому главная половина обязана остаться в том же нереальном, вежливом мире: wäre. war сообщал бы, как было раньше, а ist утверждает факт — тогда как предложение просит об услуге. Умлаут и окончание -e превращают war в wäre — вся дистанция между отчётом и просьбой; глава разбирает эту пару."
+      uk: "Половина з wenn уже несе könnten — Konjunktiv II, — тому головна половина мусить лишитися в тому самому нереальному, ввічливому світі: wäre. war повідомляло б, як було раніше, а ist стверджує факт — тоді як речення просить про послугу. Умлаут і закінчення -e перетворюють war на wäre — вся дистанція між звітом і проханням; розділ розбирає цю пару."
+      de: "Die wenn-Hälfte trägt schon könnten — Konjunktiv II —, also muss die Haupthälfte in derselben irrealen, höflichen Welt bleiben: wäre. war würde melden, wie etwas einmal war, und ist behauptet eine Tatsache, während der Satz um einen Gefallen bittet. Umlaut und Konjunktiv-e machen aus war wäre — der ganze Abstand zwischen Bericht und Bitte; das Kapitel nimmt dieses Paar auseinander."
+
+  - id: pre-mc-wegen
+    outcomes: [panne-berichten]
+    type: mc
+    prompt: "Auf der Anzeigetafel steht: „___ eines Streiks fällt der Zug nach Hamburg heute aus.“ Was steht in der Lücke?"
+    options:
+      - "Wegen"
+      - "Weil"
+      - "Deshalb"
+    correct: 0
+    translation:
+      en: "The departure board says: \"___ a strike the train to Hamburg is cancelled today.\" What goes in the gap?"
+      ru: "На табло написано: «___ забастовки поезд в Гамбург сегодня отменяется». Что стоит в пропуске?"
+      uk: "На табло написано: «___ страйку поїзд до Гамбурга сьогодні скасовано». Що стоїть у пропуску?"
+    explain:
+      en: "What follows is a noun phrase — eines Streiks, no verb of its own — and only a preposition can govern one: wegen, and in writing it takes the genitive. weil is a conjunction and needs a whole clause with a verb at its end; deshalb is an adverb that points back at a sentence already said. The announcement register runs on wegen + Genitiv, and the chapter shows why."
+      ru: "Дальше стоит именная группа — eines Streiks, без собственного глагола, — а управлять ею может только предлог: wegen, на письме с родительным. weil — союз, ему нужно целое придаточное с глаголом в конце; deshalb — наречие, оно отсылает к уже сказанному предложению. Регистр объявлений держится на wegen + Genitiv, и глава показывает почему."
+      uk: "Далі стоїть іменна група — eines Streiks, без власного дієслова, — а керувати нею може лише прийменник: wegen, на письмі з родовим. weil — сполучник, йому потрібне ціле підрядне з дієсловом у кінці; deshalb — прислівник, воно відсилає до вже сказаного речення. Регістр оголошень тримається на wegen + Genitiv, і розділ показує чому."
+      de: "Danach steht eine Nominalgruppe — eines Streiks, ohne eigenes Verb —, und regieren kann sie nur eine Präposition: wegen, schriftlich mit Genitiv. weil ist eine Konjunktion und braucht einen ganzen Nebensatz mit dem Verb am Ende; deshalb ist ein Adverb und zeigt auf einen schon gesagten Satz zurück. Das Durchsage-Register läuft auf wegen + Genitiv, und das Kapitel zeigt, warum."

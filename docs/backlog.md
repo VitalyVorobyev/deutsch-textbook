@@ -49,6 +49,19 @@ Mittelfeld Angaben-order errors surfaced in B1 items, expected-not-yet-taught (B
 `Stelle`, `Sendung`) recorded as drill notes in the rulings. The P5-11a lapse-entry review
 closed clean the same day (see Recently completed). B1.8+B1.9 authoring proceeds per contract.
 
+**Read of 2026-07-30** (snapshot same day; queue drained at 152 ruled / 0 awaiting — 8 rulings
+this read, 3 accept, 5 confirm): all three accepts were paid — `weil-grund` gains the
+article-less *Nachrichten sehen/schauen* renderings, `koennten` the postposed
+*zusammen/gemeinsam*, `aber-sondern-chat` the *um acht Uhr* shape whose `nich` slip today's
+grader forgives. The post-triage table moves only where the accepts left it:
+`nebensatz-verbende` drops to 16/48 and flips to recovered. Every persistent no-recovery focus
+(`akkusativ-artikel`, `dativ-praepositionen`, `trennbar-wortstellung`, `da-wo-woerter`,
+`wo-wohin`) already has a serving drill — no drill owed from this read; the owed action remains
+the learner taking training, where the weakness bar prioritises them. Two real confusions
+recorded as drill notes in the rulings: *bleiben* takes *sein* (matches the persistent
+`haben-sein` row) and the doubled modality *darf nicht erlaubt werden* (modal-passive territory
+B1.7 already drills).
+
 ### P9-2 · Entdecken pieces
 
 Recurring, at most one or two reviewed pieces per PR. Each must pass the editorial and provenance
@@ -98,6 +111,37 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   and `a2/arbeit-beruf` (144 w) against the ~100-word advance-organizer target now stated in
   `CLAUDE.md`. Median across 37 topics is 91, so these two are outliers, not the norm. Not a gate
   (the 120-word paragraph cap is), so this is editing work, not a build failure.
+- **P19-1 · A1 backfill of the five late grammar points** — Perfekt, Imperativ, trennbare
+  Verben, *darf/muss nicht* and *du/Sie* carry `standard_level: A1` but are taught at A2
+  (`bun scripts/grammar-coverage.ts A1` reports them `late`; /about discloses the sequencing).
+  Decision of 2026-07-30: keep the sequencing, keep the debt visible here. A backfill means
+  A1-level treatment plus `practice` items carrying the five tags inside A1 topics — and the
+  hazards are real: each tag is registered to its introducing A2 topic (`focusIntroducedBy`), so
+  moving an introduction re-wires `deepens` edges, and a new probe family on a shipped topic
+  re-arms it. Worth doing only if the course ever serves a stop-at-A1 learner (Goethe A1 exam
+  prep); for the current learner every point is taught before B1.
+- **P19-2 · `a1/probe-erste-schritte` is untagged, so its competence is never readable** — the
+  retention table carries one A1 "(untagged)" family whose rows the verdict must exclude; the
+  audit names it an instrument gap. The items may be genuinely mixed (a false tag is worse than
+  none), but if one nameable confusion fits, tagging is a probe-semantics change: `revision`
+  bump, and `armedAt` measured before and after per the re-arming rule.
+- **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item** — the inventory point
+  `konjunktiv2-irreal` is named "Bedingungen und Wünsche", but B1.8 drills only the two-clause
+  condition; the wish form sat taught in `## Erklärung` with no item and was demoted to
+  `### Feinheiten` in the #126 review round (Codex finding). A later KII-touching unit or drill
+  should own one production item for it (a `translate` pinning the one-word form beside
+  *doch*/*nur*) so the point's second half is practised, not just named.
+- **P19-4 · Outcome-keyed probe arming cannot tell carrier and comprehension items from the
+  probed competence** — `probeFamilies()` (`src/lib/probes.ts`) arms a multi-family topic per
+  item via declared outcomes, so any practice item sharing the family's outcome starts its
+  2/7/21 clock: in B1.8 `uebersetzen-anschluss-perfekt` (Perfekt) and the comprehension items
+  `lesen-aushang`/`hoeren-durchsage` arm the `praeposition-genitiv` family; in B1.7
+  `lesen-aushang` arms the passiv-modal family and `uebersetzen-koennten` the duerfen-muessen
+  one; in B1.6 `lesen-aushang`/`hoeren-durchsage` arm passiv-vergangenheit. Codex P1 on #126;
+  precedented since B1.6, so filed rather than redesigned mid-PR. A fix needs an arming channel
+  finer than outcomes (an item-level arming flag, or focus-based arming keys) — a `src/lib` +
+  schema change; measure `armedAt` before and after per the re-arming rule, since narrowing the
+  pool re-times every shipped family's clock.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);

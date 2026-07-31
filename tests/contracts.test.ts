@@ -132,10 +132,6 @@ describe('scoring and curriculum contracts', () => {
       ['denn', 'weil'],
       ['deshalb', 'deswegen'],
     ];
-    // The frozen probe: constraining it needs a revision bump, which drops its attempt out
-    // of the re-graded retention reading before the 2026-08-02 cohort read. The validator
-    // warns rather than fails for the same reason; remove both together, not separately.
-    const DEFERRED = ['a2/probe-nebensaetze-plaene:variant-a'];
     const introduces = (text: string, word: string) =>
       new RegExp(`(^|[,;.!?]\\s*)${word}\\b`, 'iu').test(text);
 
@@ -151,7 +147,6 @@ describe('scoring and curriculum contracts', () => {
       for (const item of set.items ?? []) {
         if (item.type !== 'translate' || !item.answer) continue;
         const ref = `${set.setId}:${item.id}`;
-        if (DEFERRED.includes(ref)) continue;
         const renderings = [item.answer, ...(item.accept ?? [])];
         const instruction = Object.values(item.instruction ?? {}).join(' ').toLowerCase();
         for (const group of GROUPS) {
@@ -381,12 +376,19 @@ describe('scoring and curriculum contracts', () => {
   // guards was found by the learner, not by a gate — an x-de card whose meaning
   // side read "gladly; (verb + gern) to like doing something" and graded `gern`.
   test('no vocabulary gloss names its own headword in a metalinguistic aside', () => {
-    type Entry = { de: string; en: string; ru: string; uk?: string; note?: unknown };
+    type Entry = {
+      de: string;
+      en: string;
+      en_compact?: string;
+      ru: string;
+      uk?: string;
+      note?: unknown;
+    };
     const offenders: string[] = [];
     for (const deck of contentFiles<{ id: string; entries: Entry[] }>('vocab')) {
       for (const entry of deck.entries) {
         const headwords = entry.de.split(/[^A-Za-zÄÖÜäöüß]+/).filter((w) => w.length > 2);
-        for (const lang of ['en', 'ru', 'uk'] as const) {
+        for (const lang of ['en', 'en_compact', 'ru', 'uk'] as const) {
           const gloss = entry[lang];
           if (!gloss) continue;
           // An aside is a parenthetical or an em-dash restatement. The running
@@ -409,6 +411,40 @@ describe('scoring and curriculum contracts', () => {
       }
     }
     expect(offenders).toEqual([]);
+  });
+
+  test('dual-language vocabulary commentary has a shorter English display half', () => {
+    type Entry = { de: string; en: string; en_compact?: string; ru: string; uk?: string };
+    const extended = (text: string | undefined) =>
+      !!text && (/\([^)]{8,}\)/.test(text) || /\s[—–]\s/.test(text));
+    const offenders: string[] = [];
+    for (const deck of contentFiles<{ id: string; entries: Entry[] }>('vocab')) {
+      for (const entry of deck.entries) {
+        if (!extended(entry.en) || ![entry.ru, entry.uk].some(extended)) continue;
+        if (!entry.en_compact || entry.en_compact.length >= entry.en.length)
+          offenders.push(`${deck.id}::${entry.de}`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  test('the reported open/close family uses compact dual prompts and additive notes', () => {
+    type Entry = {
+      de: string;
+      en: string;
+      en_compact?: string;
+      ru: string;
+      note?: { en: string; ru: string };
+    };
+    const decks = contentFiles<{ id: string; entries: Entry[] }>('vocab');
+    const separable = decks.find((deck) => deck.id === 'trennbare-verben')!;
+    const zumachen = separable.entries.find((entry) => entry.de === 'zumachen')!;
+    expect(zumachen.en_compact).toBe('to close, to shut');
+    expect(`${zumachen.en_compact} · ${zumachen.ru}`).toBe(
+      'to close, to shut · закрывать (окно, дверь, магазин — разговорный отделяемый глагол, не schließen)',
+    );
+    expect(zumachen.note?.ru).toStartWith('schließen — нейтральный');
+    expect(zumachen.note?.ru).not.toContain('zumachen — разговорный');
   });
 
   // The usage note is the reason a gloss ever carried a construction hint: it
@@ -527,7 +563,10 @@ describe('cards: recognition | both', () => {
     // B1.7 (regeln-verantwortung, 2026-07-29) adds seventeen more — the deck's receptive
     // tail (Vorschrift … Konflikt): notice, sign and safety-leaflet vocabulary a B1
     // learner reads on an Aushang or an Amt letter but is not asked to produce.
-    expect(cards).toBe(entries * 2 - 78);
+    // B1.8 (reisen-probleme, 2026-07-30) adds thirteen more — the deck's receptive tail
+    // (klagen … Kontrolle): ticket, timetable and hotel-desk vocabulary a B1 learner
+    // reads in the small print or hears in a Durchsage but is not asked to produce.
+    expect(cards).toBe(entries * 2 - 91);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

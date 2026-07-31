@@ -1,0 +1,122 @@
+# Delayed probe family 2 of 3 — ONE competence: marking BOTH halves of an unreal
+# condition with Konjunktiv II, cold. Three parallel translate variants — translate
+# rather than cloze, because a cloze prints one half already marked and thereby
+# answers the probed question: the confusion is *which halves* carry the marking, so
+# both must come from the learner (contrast family 1, where the confusion is the form
+# itself and cloze is right). The EN prompts split their marking (plain past in the
+# if-half, "would" in the main half) and the RU/UK prompts carry one unchanging
+# particle («бы»/«б») over plain past forms, so no source hands over both conjugated
+# German markings ready to copy.
+# One retention curve: everyday spoken register, present unreal, wenn-half first in
+# the teaching model with the reversed, dann- and wenn-less verb-first orders
+# accepted (Wären die Fahrkarten … — standard German, both halves marked, so a probe
+# with three lifetime stages must not fail it). Only the two markers
+# are pinned, one per half; the carrier verbs are named in the instruction (the B1.6
+# ruling — an accept list cannot enumerate an open lexical space) and stay unpinned,
+# so a fumbled infinitive or noun is never charged to this tag.
+# Content pairings fresh: Fahrkarten + teuer (Fahrkarte pairs kaufen, kosten,
+# entwerten and gültig; teuer pairs Ticket in the A2 deck), Übernachtung + billiger
+# (Übernachtung pairs Frühstück and kostet), Handy + hätte and Hotel + anrufen
+# (neither occurs anywhere) — checked by grepping each noun and verb across content/,
+# not by re-reading this list.
+# `outcomes: [irreale-bedingung-nutzen]` is deliberate and it is what arms this
+# family: the can-do is "sagen, was ich tun würde, wenn etwas anders wäre" — this
+# competence verbatim. The practice items that produce it (cloze-wenn-puenktlich,
+# mc-beide-haelften, uebersetzen-wenn-zimmer, uebersetzen-an-deiner-stelle,
+# sprechen-was-waere-wenn) declare this outcome too, so the 2/7/21 clock arms from
+# work on unreal conditions — though outcome-keyed arming cannot check the item's
+# mode (P19-4). Each of the two other families declares a different
+# outcome, because two families sharing one would arm identically and fire a probe at
+# material never practised.
+topic: reisen-probleme
+role: probe
+title:
+  en: "Delayed check — both halves of the unreal condition"
+  ru: "Отложенная проверка — обе половины нереального условия"
+  uk: "Відкладена перевірка — обидві половини нереальної умови"
+  de: "Kontrolle mit Abstand — beide Hälften der irrealen Bedingung"
+items:
+  - id: variant-a
+    revision: 2
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — for 'tickets' take die Fahrkarten, for 'go by train' mit dem Zug fahren with würde + infinitive, for 'more often' öfter."
+      ru: "Переведите — для «билетов» возьмите die Fahrkarten, для «ездить на поезде» — mit dem Zug fahren с würde + инфинитив, для «чаще» — öfter."
+      uk: "Перекладіть — для «квитків» візьміть die Fahrkarten, для «їздити поїздом» — mit dem Zug fahren із würde + інфінітив, для «частіше» — öfter."
+      de: "Übersetze — für die Nomen nimm die Fahrkarten, für das Verkehrsmittel mit dem Zug fahren mit würde + Infinitiv, für die Häufigkeit öfter."
+    prompt_en: "If the tickets were not so expensive, we would go by train more often."
+    prompt_ru: "Если бы билеты не были такими дорогими, мы бы чаще ездили на поезде."
+    prompt_uk: "Якби квитки не були такими дорогими, ми б частіше їздили поїздом."
+    answer: "Wenn die Fahrkarten nicht so teuer wären, würden wir öfter mit dem Zug fahren."
+    accept:
+      - "Wenn die Fahrkarten nicht so teuer wären, dann würden wir öfter mit dem Zug fahren."
+      - "Wir würden öfter mit dem Zug fahren, wenn die Fahrkarten nicht so teuer wären."
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Wären die Fahrkarten nicht so teuer, würden wir öfter mit dem Zug fahren."
+      - "Wären die Fahrkarten nicht so teuer, dann würden wir öfter mit dem Zug fahren."
+    key_tokens: ["wären", "Wären", "würden"]
+    explain:
+      en: "Graded are the two markers, one per half: plural wären closing the wenn-clause and würden opening the main one. English splits its marking — a plain past in the if-half, would only in the main half — so the wenn-clause's wären must be built, not copied. Every clause order is accepted, including the wenn-less verb-first Wären …; the indicative in either half is the one wrong move."
+      ru: "Оцениваются два маркера, по одному на половину: множественное wären закрывает придаточное с wenn, würden открывает главное. Исходные языки помечают лишь одну сторону — «бы» не меняется и не спрягается, — поэтому вторую немецкую форму нужно построить, а не скопировать. Оба порядка частей принимаются; единственный неверный ход — индикатив в любой половине."
+      uk: "Оцінюються два маркери, по одному на половину: множинне wären закриває підрядне з wenn, würden відкриває головне. Вихідні мови позначають лише один бік — «б/би» не змінюється і не відмінюється, — тому другу німецьку форму треба побудувати, а не скопіювати. Обидва порядки частин приймаються; єдиний неправильний хід — індикатив у будь-якій половині."
+      de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: Das pluralische wären schließt den wenn-Satz, würden eröffnet den Hauptsatz. Die Ausgangssprachen verteilen ihre Markierung ungleich auf die Hälften, also muss mindestens eine deutsche Form gebaut und nicht kopiert werden. Beide Satzfolgen werden akzeptiert; der eine falsche Zug ist der Indikativ in einer der Hälften."
+
+  - id: variant-b
+    revision: 2
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — for 'a night at the hotel' take die Übernachtung, for 'cheaper' billiger, for 'stay' bleiben with würde + infinitive."
+      ru: "Переведите — для «ночёвки» возьмите die Übernachtung, для «дешевле» — billiger, для «остаться» — bleiben с würde + инфинитив."
+      uk: "Перекладіть — для «ночівлі» візьміть die Übernachtung, для «дешевше» — billiger, для «лишитися» — bleiben із würde + інфінітив."
+      de: "Übersetze — für das Nomen nimm die Übernachtung, für den Vergleich billiger, für das Verb bleiben mit würde + Infinitiv."
+    prompt_en: "If a night at the hotel were cheaper, we would stay three nights."
+    prompt_ru: "Если бы ночёвка была дешевле, мы бы остались на три ночи."
+    prompt_uk: "Якби ночівля була дешевшою, ми б лишилися на три ночі."
+    answer: "Wenn die Übernachtung billiger wäre, würden wir drei Nächte bleiben."
+    accept:
+      - "Wenn die Übernachtung billiger wäre, dann würden wir drei Nächte bleiben."
+      - "Wir würden drei Nächte bleiben, wenn die Übernachtung billiger wäre."
+      # für drei Nächte is the booking-language rendering of the same duration.
+      - "Wenn die Übernachtung billiger wäre, würden wir für drei Nächte bleiben."
+      - "Wir würden für drei Nächte bleiben, wenn die Übernachtung billiger wäre."
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Wäre die Übernachtung billiger, würden wir drei Nächte bleiben."
+      - "Wäre die Übernachtung billiger, dann würden wir drei Nächte bleiben."
+      - "Wäre die Übernachtung billiger, würden wir für drei Nächte bleiben."
+    key_tokens: ["wäre", "Wäre", "würden"]
+    explain:
+      en: "Again one marker per half: singular wäre, agreeing with die Übernachtung, at the wenn-clause wall, and würden carrying bleiben in the main clause. wäre in the first half never excuses a bleiben wir in the second — once the unreal world is open, both halves live in it. The duration stands as a plain accusative, drei Nächte, and the für-variant is accepted."
+      ru: "Снова по маркеру на половину: единственное wäre, согласованное с die Übernachtung, у стены придаточного и würden, несущее bleiben, в главном. wäre в первой половине не оправдывает bleiben wir во второй — раз нереальный мир открыт, обе половины живут в нём. Длительность стоит простым аккузативом, drei Nächte; вариант с für принимается."
+      uk: "Знову по маркеру на половину: однина wäre, узгоджена з die Übernachtung, біля стіни підрядного і würden, що несе bleiben, у головному. wäre в першій половині не виправдовує bleiben wir у другій — раз нереальний світ відкрито, обидві половини живуть у ньому. Тривалість стоїть простим акузативом, drei Nächte; варіант із für приймається."
+      de: "Wieder eine Markierung pro Hälfte: das singularische wäre, passend zu die Übernachtung, an der Wand des wenn-Satzes, und würden mit bleiben im Hauptsatz. Das wäre in der ersten Hälfte entschuldigt kein bleiben wir in der zweiten — ist die irreale Welt offen, leben beide Hälften darin. Die Dauer steht im bloßen Akkusativ, drei Nächte, und die für-Variante wird akzeptiert."
+
+  - id: variant-c
+    revision: 2
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — for 'my phone' take mein Handy, for 'call' anrufen; the ability goes into a one-word Konjunktiv modal."
+      ru: "Переведите — для «моего телефона» возьмите mein Handy, для «позвонить» — anrufen; возможность выразите однословным модальным в конъюнктиве."
+      uk: "Перекладіть — для «мого телефона» візьміть mein Handy, для «зателефонувати» — anrufen; можливість виразіть однослівним модальним у кон'юнктиві."
+      de: "Übersetze — für das Nomen nimm mein Handy, für das Verb anrufen; die Möglichkeit steckt in einem einwortigen Konjunktiv-Modalverb."
+    prompt_en: "If I had my phone, I could call the hotel."
+    prompt_ru: "Если бы у меня был мой телефон, я мог бы позвонить в отель."
+    prompt_uk: "Якби я мав свій телефон, я міг би зателефонувати до готелю."
+    answer: "Wenn ich mein Handy hätte, könnte ich das Hotel anrufen."
+    accept:
+      - "Wenn ich mein Handy hätte, dann könnte ich das Hotel anrufen."
+      - "Ich könnte das Hotel anrufen, wenn ich mein Handy hätte."
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Hätte ich mein Handy, könnte ich das Hotel anrufen."
+      - "Hätte ich mein Handy, dann könnte ich das Hotel anrufen."
+    key_tokens: ["hätte", "Hätte", "könnte"]
+    explain:
+      en: "The cell with no würde at all: haben and können both own one-word forms, so hätte marks the wenn-half and könnte the main half. hatte and konnte — the same letters without dots — would report a past that really happened, the exact opposite of this stranded moment. anrufen takes a plain accusative: das Hotel, no preposition."
+      ru: "Ячейка вовсе без würde: у haben и können есть однословные формы, поэтому wenn-половину помечает hätte, а главную — könnte. hatte и konnte — те же буквы без точек — сообщали бы о реально случившемся прошлом, полная противоположность этому моменту на перроне. anrufen берёт простой аккузатив: das Hotel, без предлога."
+      uk: "Клітинка зовсім без würde: у haben і können є однослівні форми, тому wenn-половину позначає hätte, а головну — könnte. hatte і konnte — ті самі літери без крапок — повідомляли б про минуле, що справді сталося, повна протилежність цьому моменту на пероні. anrufen бере простий акузатив: das Hotel, без прийменника."
+      de: "Die Zelle ganz ohne würde: haben und können besitzen Einwortformen, also markiert hätte die wenn-Hälfte und könnte die Haupthälfte. hatte und konnte — dieselben Buchstaben ohne Punkte — meldeten eine wirklich geschehene Vergangenheit, das genaue Gegenteil dieses gestrandeten Moments. anrufen nimmt den bloßen Akkusativ: das Hotel, ohne Präposition."

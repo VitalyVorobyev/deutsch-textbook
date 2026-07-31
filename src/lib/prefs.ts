@@ -177,6 +177,19 @@ export function pickSecond(
 }
 
 /**
+ * Compose a flashcard meaning side without repeating the same clarification in
+ * both visible languages. Full English remains the standalone/fallback prompt;
+ * compact English is used only when a selected RU/UK half is actually present.
+ */
+export function cardMeaning(
+  lang: ExplainLang,
+  text: { en: string; enCompact?: string; ru: string; uk?: string },
+): string {
+  const second = pickSecond(lang, { ru: text.ru, uk: text.uk });
+  return second ? `${text.enCompact ?? text.en} · ${second}` : text.en;
+}
+
+/**
  * The language pick() actually resolves to for this record — for the `lang`
  * attribute of an element showing picked text. Under 'uk'/'de' the text may be
  * the EN fallback, and stamping the raw ExplainLang there would have a screen

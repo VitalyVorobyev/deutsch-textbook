@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CYRILLIC } from './langcheck';
 
 /** CEFR levels covered by the atlas. */
 export const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -147,6 +148,11 @@ export const vocabEntrySchema = z
     /** nouns: plural form with article, e.g. "die Äpfel"; "—" if unused */
     plural: z.string().optional(),
     en: z.string().min(1),
+    /**
+     * Short English translation used only when a RU/UK gloss is shown beside it.
+     * `en` remains the complete standalone English prompt.
+     */
+    en_compact: z.string().min(1).optional(),
     ru: z.string().min(1),
     /** optional Ukrainian gloss (translation waves); no `de` gloss exists —
         a German gloss of a German headword is nonsense */
@@ -203,6 +209,37 @@ export const vocabEntrySchema = z
     cards: z.enum(['recognition', 'both']).default('both'),
   })
   .superRefine((entry, ctx) => {
+    const extendedGloss = (text: string | undefined): boolean =>
+      !!text && (/\([^)]{8,}\)/.test(text) || /\s[—–]\s/.test(text));
+    if (
+      extendedGloss(entry.en) &&
+      [entry.ru, entry.uk].some(extendedGloss) &&
+      !entry.en_compact
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['en_compact'],
+        message:
+          `"${entry.de}" repeats extended commentary in both halves — add en_compact ` +
+          'for the dual-language card surface',
+      });
+    }
+    if (entry.en_compact) {
+      if (entry.en_compact.length >= entry.en.length) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['en_compact'],
+          message: `"${entry.de}" en_compact must be shorter than en`,
+        });
+      }
+      if (CYRILLIC.test(entry.en_compact)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['en_compact'],
+          message: `"${entry.de}" en_compact must not contain Cyrillic`,
+        });
+      }
+    }
     // `accept` feeds exactly one consumer: the typed production card's grader
     // (`checkTypedAnswer`). On a recognition-only entry that card does not exist, so the
     // pair is a contradiction — an author who wrote both meant one of them, and silently
