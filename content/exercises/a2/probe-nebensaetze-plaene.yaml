@@ -40,6 +40,28 @@ title:
 # failure of nebensatz-verbende. `accept` is deliberately generous, because a probe that
 # marks correct German wrong corrupts the retention curve.
 
+arming:
+  - a2/nebensaetze-plaene::table-hauptsatz-zu-nebensatz
+  - a2/nebensaetze-plaene::cloze-weil-verb-ans-ende
+  - a2/nebensaetze-plaene::cloze-weil-modal-am-ende
+  - a2/nebensaetze-plaene::mc-dass-verb-ans-ende
+  - a2/nebensaetze-plaene::cloze-dass-meinung-hoffnung
+  - a2/nebensaetze-plaene::cloze-wenn-bedingung
+  - a2/nebensaetze-plaene::uebersetzen-weil-krank
+  - a2/nebensaetze-plaene::uebersetzen-dass-wetter
+  - a2/nebensaetze-plaene::hoeren-weil-arbeiten-muss
+  - a2/nebensaetze-plaene-produktion::uebersetzen-weil-arbeiten-muss
+  - a2/drill-nebensatz-verbende::mc-weil-muede
+  - a2/drill-nebensatz-verbende::mc-dass-koennen
+  - a2/drill-nebensatz-verbende::mc-dass-keine-zeit
+  - a2/drill-nebensatz-verbende::mc-wenn-zeit
+  - a2/drill-nebensatz-verbende::cloze-weil-rauchen
+  - a2/drill-nebensatz-verbende::cloze-dass-abfaehrt
+  - a2/drill-nebensatz-verbende::cloze-wenn-wetter
+  - a2/drill-nebensatz-verbende::cloze-wenn-gehen-willst
+  - a2/drill-nebensatz-verbende::uebersetzen-weil-arbeiten-muss
+  - a2/drill-nebensatz-verbende::uebersetzen-dass-film-beginnt
+  - a2/drill-nebensatz-verbende::uebersetzen-weil-studieren-moechte
 items:
   - id: variant-a
     revision: 2

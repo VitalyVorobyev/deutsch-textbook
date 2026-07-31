@@ -1,0 +1,56 @@
+topic: freizeit-koennen
+role: exam-practice
+title: { en: "Goethe-style practice — Speaking", ru: "Практика в формате Goethe — говорение", uk: "Практика у форматі Goethe — говоріння" }
+items:
+  - id: sprechen-vorstellen
+    type: speak
+    target_mode: spoken-production
+    outcomes: [erste-sich-vorstellen]
+    mode: spoken-production
+    prompt: { en: "Introduce yourself: name, age, country, city, languages and work or studies.", ru: "Представьтесь: имя, возраст, страна, город, языки и работа или учёба.", uk: "Представтеся: ім'я, вік, країна, місто, мови та робота або навчання." }
+    goal: { en: "Speak in several short, clear sentences.", ru: "Говорите несколькими короткими и ясными предложениями.", uk: "Говоріть кількома короткими й зрозумілими реченнями." }
+    checklist:
+      - { en: "I covered all six details.", ru: "Я назвал(а) все шесть пунктов.", uk: "Я назвав(-ла) всі шість пунктів." }
+      - { en: "I used complete sentences.", ru: "Я использовал(а) полные предложения.", uk: "Я використав(-ла) повні речення." }
+    model_answer: "Ich heiße Elena. Ich bin 31 Jahre alt und komme aus Spanien. Jetzt wohne ich in Bremen. Ich spreche Spanisch, Englisch und ein bisschen Deutsch. Ich arbeite als Designerin."
+    explain: { en: "Short independent sentences are safer and clearer than one long memorized chain.", ru: "Короткие самостоятельные предложения надёжнее и понятнее одной длинной заученной цепочки.", uk: "Короткі самостійні речення надійніші й зрозуміліші за один довгий завчений ланцюжок." }
+  - id: sprechen-frage-wochenende
+    type: speak
+    target_mode: spoken-interaction
+    outcomes: [freizeit-verabredung]
+    mode: spoken-interaction
+    prompt: { en: "Keyword card: Wochenende. Ask your partner one question.", ru: "Карточка: Wochenende. Задайте партнёру один вопрос.", uk: "Картка: Wochenende. Поставте партнерові одне запитання." }
+    goal: { en: "Form a complete relevant question.", ru: "Сформулируйте полный вопрос по теме.", uk: "Сформулюйте повне запитання за темою." }
+    checklist: [{ en: "My verb was in the correct question position.", ru: "Глагол стоял на правильном месте в вопросе.", uk: "Дієслово стояло на правильному місці в запитанні." }]
+    model_answer: "Was machst du am Wochenende?"
+    explain: { en: "A keyword is a topic, not a word to repeat mechanically; build a useful W-question around it.", ru: "Ключевое слово задаёт тему, а не готовую реплику; постройте вокруг него полезный W-вопрос.", uk: "Ключове слово задає тему, а не готову репліку; побудуйте навколо нього корисне W-запитання." }
+  - id: sprechen-antwort-wohnen
+    type: speak
+    target_mode: spoken-interaction
+    outcomes: [wohnen-beschreiben]
+    mode: spoken-interaction
+    prompt: { en: "Your partner asks: Wo wohnst du? Answer and add one detail.", ru: "Партнёр спрашивает: Wo wohnst du? Ответьте и добавьте одну подробность.", uk: "Партнер запитує: Wo wohnst du? Дайте відповідь і додайте одну подробицю." }
+    goal: { en: "Give a direct answer plus one useful fact.", ru: "Дайте прямой ответ и один дополнительный факт.", uk: "Дайте пряму відповідь і один додатковий факт." }
+    checklist: [{ en: "I named a place and added a detail.", ru: "Я назвал(а) место и добавил(а) подробность.", uk: "Я назвав(-ла) місце й додав(-ла) подробицю." }]
+    model_answer: "Ich wohne in Leipzig. Meine Wohnung ist klein, aber sehr hell."
+    explain: { en: "The added detail turns a minimal answer into a conversational turn.", ru: "Дополнительная подробность превращает минимальный ответ в полноценную реплику.", uk: "Додаткова подробиця перетворює мінімальну відповідь на повноцінну репліку." }
+  - id: sprechen-bitte-fenster
+    type: speak
+    target_mode: spoken-interaction
+    outcomes: [stadt-wegbeschreibung-geben]
+    mode: spoken-interaction
+    prompt: { en: "Picture card: an open window and cold air. Make a polite request.", ru: "Карточка: открытое окно и холодный воздух. Сформулируйте вежливую просьбу.", uk: "Картка: відкрите вікно й холодне повітря. Сформулюйте ввічливе прохання." }
+    goal: { en: "Ask someone to close the window and react to the answer.", ru: "Попросите закрыть окно и отреагируйте на ответ.", uk: "Попросіть зачинити вікно й відреагуйте на відповідь." }
+    checklist: [{ en: "I used bitte and a complete request.", ru: "Я использовал(а) bitte и полную просьбу.", uk: "Я використав(-ла) bitte й повне прохання." }]
+    model_answer: "Können Sie bitte das Fenster zumachen? — Ja, natürlich. — Vielen Dank."
+    explain: { en: "A request-and-reaction task needs both the request and a short social response.", ru: "В задании на просьбу и реакцию нужны сама просьба и короткий социальный ответ.", uk: "У завданні на прохання й реакцію потрібні саме прохання та коротка соціальна відповідь." }
+  - id: sprechen-bitte-wasser
+    type: speak
+    target_mode: spoken-interaction
+    outcomes: [essen-bestellen]
+    mode: spoken-interaction
+    prompt: { en: "Picture card: a bottle of water. Ask for it politely.", ru: "Карточка: бутылка воды. Вежливо попросите её.", uk: "Картка: пляшка води. Ввічливо попросіть її." }
+    goal: { en: "Use a polite ordering chunk.", ru: "Используйте вежливую формулу заказа.", uk: "Використайте ввічливу формулу замовлення." }
+    checklist: [{ en: "I named the item and used bitte.", ru: "Я назвал(а) предмет и использовал(а) bitte.", uk: "Я назвав(-ла) предмет і використав(-ла) bitte." }]
+    model_answer: "Ich möchte bitte eine Flasche Wasser."
+    explain: { en: "möchte + accusative is the standard polite ordering frame.", ru: "möchte + Akkusativ — стандартная вежливая рамка заказа.", uk: "möchte + Akkusativ — стандартна ввічлива рамка замовлення." }

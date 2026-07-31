@@ -202,6 +202,7 @@ export default function MixedTraining({
         : {}),
       given: result.given,
       focus: focusForAttempt(entry.item, result),
+      focusEvidence: result.focusEvidence,
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(entry.item),
       outcomes: entry.item.outcomes,

@@ -36,8 +36,8 @@ The principal sources are:
 
 - `content/topics/`: curriculum articles and their owned artifact references;
 - `content/vocab/`: canonical flashcard entries;
-- `content/exercises/`: pretests, practice, drills, checkpoints, delayed probes and level
-  placement tests;
+- `content/exercises/`: pretests, practice, drills, checkpoints, delayed probes, level
+  placement tests and non-trainable exam-practice sets;
 - `content/reading/` and `content/documents/`: comprehensible input and reusable stimuli;
 - `content/atlas.yaml`: graph relationships, outcomes and ordered curriculum spine;
 - `content/wortfelder/`: topical lexical overlays;
@@ -83,7 +83,12 @@ level's entry test is content rather than code.
 
 `src/lib/training.ts` builds interleaved sessions. `src/lib/decks.ts` owns the SRS queue rule and
 daily new-card budget. `src/lib/probes.ts` derives delayed-probe state from attempts; probe state is
-not stored separately.
+not stored separately. Every probe family authors exact `setId::itemId` arming keys; outcome,
+topic, reading and pretest activity cannot arm it implicitly.
+
+`/pruefung/a1` is a separate exam-practice surface. Its attempts are retained, but the role is
+excluded from mixed training and does not grant mastery. Item-scoped `stimulus` references override
+set-scoped documents, and the `form` item keeps stable field ids plus per-field scoring.
 
 ## Evidence model
 
@@ -91,6 +96,17 @@ Exercise roles and response modes prevent presentation from masquerading as evid
 Automatically scored retrieval and comprehension can contribute verified evidence. Open writing
 and speaking are logged as visible, unverified practice and never raise accuracy or mastery.
 Self-assessed speech is therefore useful activity, not a correctness measurement.
+
+`target_mode` records the CEFR skill an item practises independently of the actual response widget.
+Focused free-typed tasks may carry `focus_evidence` response predicates. Where an item declares
+them, the attempt carries an explicit `retained`, `failed` or `unknown` verdict and that verdict
+decides attribution — an unmatched whole-sentence error is not guessed into the weakness signal.
+Where an item declares none, the attempt carries no verdict and attribution stays as it was
+(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are additive on purpose:
+silencing every unmatched miss corpus-wide was measured against the learner's log and inverts the
+signal rather than gapping it — 145 of 291 wrong free-typed attempts lose their tag and
+`weakFocuses` falls 7 → 1, with error rates driven to zero at an unchanged denominator.
+Checkpoint scores exclude both open writing and speech while their attempts still count as coverage.
 
 `src/lib/mastery.ts` derives topic evidence and mastery. `src/lib/weakness.ts` aggregates
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;
@@ -107,8 +123,10 @@ Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery 
 
 `src/lib/profile.ts` resolves local profiles. Each profile owns an IndexedDB database managed by
 `src/lib/store.ts`; same-day UI resume state lives separately in localStorage. Snapshot validation
-and explicit v1–v6 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
-semantics in `src/lib/snapshot-merge.ts`.
+and explicit v1–v7 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
+semantics in `src/lib/snapshot-merge.ts`. Snapshot v7 relocates the A1 Wortliste card identities
+through the committed old-id → new-id inventory; collision merging preserves the most advanced
+FSRS record and never duplicates a direction.
 
 The web app exports snapshots. Development middleware and the Tauri filesystem path can
 automatically write them to `progress/<profile>/`. `bun run progress:audit` reads the latest

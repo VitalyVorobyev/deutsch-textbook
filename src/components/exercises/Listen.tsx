@@ -9,6 +9,7 @@ import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
+import { evaluateFocusEvidence } from '../../lib/evidence';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ListenItem = z.infer<typeof listenItemSchema>;
@@ -52,10 +53,22 @@ export function Listen({
     // would be a false entry in the one signal that steers training and drill authoring.
     const slipped =
       !isCorrect && [item.text, ...item.accept].some((target) => dictationSlip(value, target));
+    // Only where the item declares predicates — see the note in Translate.tsx.
+    const focusEvidence = item.focus && item.focus_evidence
+      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+      : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
-      ...(slipped ? { focus: null } : {}),
+      // Where the item authors predicates, they decide: anything they do not call a failure
+      // is unknown. Where it does not, `dictationSlip` stays the only disclaimer — silencing
+      // every unmatched miss corpus-wide inverts the weakness signal rather than honesty-gapping
+      // it (see the measurement in Translate.tsx). A1 dictations all carry predicates; the
+      // validator enforces it, which is P12-6's A1 half.
+      ...(!isCorrect && (slipped || (item.focus_evidence && focusEvidence !== 'failed'))
+        ? { focus: null }
+        : {}),
+      focusEvidence,
     });
   }
 

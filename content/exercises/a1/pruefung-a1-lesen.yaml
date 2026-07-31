@@ -1,0 +1,128 @@
+topic: freizeit-koennen
+role: exam-practice
+title: { en: "Goethe-style practice — Reading", ru: "Практика в формате Goethe — чтение", uk: "Практика у форматі Goethe — читання" }
+items:
+  - id: lesen-nachricht-zug
+    type: mc
+    target_mode: reading
+    outcomes: [zeit-wochenplan-lesen]
+    prompt: "Mara schreibt: „Mein Zug kommt nicht um 18:10, sondern um 18:40. Warte bitte vor dem Bahnhof.“ Mara kommt um zehn nach sechs."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "The first time is corrected: nicht um 18:10, sondern um 18:40.", ru: "Первое время исправлено конструкцией nicht … sondern: поезд прибудет в 18:40.", uk: "Перший час виправлено конструкцією nicht … sondern: потяг прибуде о 18:40." }
+  - id: lesen-nachricht-schluessel
+    type: mc
+    target_mode: reading
+    outcomes: [wohnen-beschreiben]
+    prompt: "„Hallo Ben, ich bin schon bei der Arbeit. Dein Schlüssel liegt in der Küche auf dem Tisch. Bis heute Abend! Lea“ Der Schlüssel ist im Wohnzimmer."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "Lea names the kitchen table, not the living room.", ru: "Леа пишет, что ключ лежит на столе в кухне, а не в гостиной.", uk: "Леа пише, що ключ лежить на столі в кухні, а не у вітальні." }
+  - id: lesen-nachricht-kurs
+    type: mc
+    target_mode: reading
+    outcomes: [zeit-wochenplan-lesen]
+    # Both times have to be on the page. `ausnahmsweise` says the time is an exception, not
+    # which direction it moved, so without the usual eight o'clock `Falsch` is as defensible
+    # as `Richtig` — and an exam-practice item may not grade an inference its text withholds.
+    prompt: "„Der Deutschkurs beginnt immer um acht Uhr. Morgen beginnt er ausnahmsweise um neun Uhr. Bitte bringen Sie das Kursbuch mit.“ Der Kurs beginnt morgen später als sonst."
+    options: ["Richtig", "Falsch"]
+    correct: 0
+    explain: { en: "Both times are in the message: immer um acht is the rule, morgen … um neun the exception — and nine o'clock is later than eight. ausnahmsweise only tells you the time changed; the comparison needs the usual time too.", ru: "В сообщении есть оба времени: immer um acht — обычно, morgen … um neun — исключение, а девять позже восьми. Само по себе ausnahmsweise говорит лишь о том, что время изменилось; чтобы сравнить, нужно и обычное время.", uk: "У повідомленні є обидва часи: immer um acht — зазвичай, morgen … um neun — виняток, а дев'ята пізніше за восьму. Саме по собі ausnahmsweise каже лише про те, що час змінився; щоб порівняти, потрібен і звичайний час." }
+  - id: lesen-nachricht-einkauf
+    type: mc
+    target_mode: reading
+    outcomes: [essen-grundwortschatz]
+    prompt: "„Kannst du bitte Milch und Brot kaufen? Käse haben wir noch. Ich komme um sieben.“ Man soll auch Käse kaufen."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "Käse haben wir noch means there is already cheese at home.", ru: "Käse haben wir noch означает, что сыр ещё есть и покупать его не нужно.", uk: "Käse haben wir noch означає, що сир іще є й купувати його не треба." }
+  - id: lesen-nachricht-treffen
+    type: mc
+    target_mode: reading
+    outcomes: [freizeit-verabredung]
+    prompt: "„Das Café ist heute geschlossen. Treffen wir uns um halb acht vor dem Kino?“ Das Treffen ist im Café."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "The café is closed, so the proposed meeting place is outside the cinema.", ru: "Кафе закрыто, поэтому встретиться предлагают перед кинотеатром.", uk: "Кафе зачинене, тому зустрітися пропонують перед кінотеатром." }
+  - id: lesen-web-arzt
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-schilder-verstehen]
+    prompt: "Sie suchen am Samstag einen Arzt. Welche Information hilft?"
+    options: ["Ärztlicher Bereitschaftsdienst — Wochenende 8–20 Uhr", "Praxis Dr. Kern — Montag bis Freitag", "Apotheke — Medikamente online bestellen"]
+    correct: 0
+    explain: { en: "Only the emergency medical service explicitly operates at the weekend.", ru: "Только дежурная медицинская служба прямо указывает работу по выходным.", uk: "Лише чергова медична служба прямо вказує роботу на вихідних." }
+  - id: lesen-web-zimmer
+    type: mc
+    target_mode: reading
+    outcomes: [wohnen-anzeige-verstehen]
+    prompt: "Sie brauchen für zwei Nächte ein günstiges Zimmer in Köln. Wo suchen Sie?"
+    options: ["Jugendherberge Köln — Zimmer ab 32 Euro", "Wohnungen langfristig mieten", "Möbelhaus Köln — Betten und Tische"]
+    correct: 0
+    explain: { en: "A Jugendherberge offers short stays; the other pages concern long-term housing or furniture.", ru: "Jugendherberge предлагает краткое проживание; другие страницы посвящены аренде жилья и мебели.", uk: "Jugendherberge пропонує коротке проживання; інші сторінки стосуються оренди житла та меблів." }
+  - id: lesen-web-fahrplan
+    type: mc
+    target_mode: reading
+    outcomes: [zeit-wochenplan-lesen]
+    prompt: "Sie möchten wissen, wann der nächste Bus fährt. Welche Seite öffnen Sie?"
+    options: ["Fahrplanauskunft", "Fundbüro", "Stadtbibliothek"]
+    correct: 0
+    explain: { en: "Fahrplanauskunft is timetable information.", ru: "Fahrplanauskunft — это информация о расписании транспорта.", uk: "Fahrplanauskunft — це інформація про розклад транспорту." }
+  - id: lesen-web-kurs
+    type: mc
+    target_mode: reading
+    outcomes: [zeit-wochenplan-lesen]
+    prompt: "Sie arbeiten bis 17 Uhr und suchen einen Deutschkurs. Welches Angebot passt?"
+    options: ["Deutsch A1 — Dienstag und Donnerstag 18:30", "Deutsch A1 — Montag 10:00", "Deutsch A1 — Samstag 8:00–16:00, ausgebucht"]
+    correct: 0
+    explain: { en: "The evening course starts after work and is not marked as fully booked.", ru: "Вечерний курс начинается после работы и не отмечен как заполненный.", uk: "Вечірній курс починається після роботи й не позначений як заповнений." }
+  - id: lesen-web-fahrrad
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-verkehrsmittel-nennen]
+    prompt: "Ihr Fahrrad ist kaputt. Wo finden Sie Hilfe?"
+    options: ["RadFix — Reparaturen ohne Termin", "Fahrradwege in Berlin", "Sportverein — gemeinsam Rad fahren"]
+    correct: 0
+    explain: { en: "Reparaturen ohne Termin directly offers the needed repair.", ru: "Reparaturen ohne Termin прямо обещает ремонт велосипеда без записи.", uk: "Reparaturen ohne Termin прямо пропонує ремонт велосипеда без запису." }
+  - id: lesen-schild-eingang
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-schilder-verstehen]
+    prompt: "„Wegen Bauarbeiten: Eingang nur über den Hof.“ Man kann die normale Eingangstür benutzen."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "nur über den Hof means the courtyard is the only entrance route.", ru: "nur über den Hof означает, что войти можно только через двор.", uk: "nur über den Hof означає, що увійти можна лише через двір." }
+  - id: lesen-schild-handy
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-schilder-verstehen]
+    prompt: "„Bitte Handys ausschalten.“ Hier darf man telefonieren."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "Switching phones off excludes making a call.", ru: "Требование выключить телефоны означает, что звонить здесь нельзя.", uk: "Вимога вимкнути телефони означає, що телефонувати тут не можна." }
+  - id: lesen-schild-kasse
+    type: mc
+    target_mode: reading
+    outcomes: [essen-bestellen]
+    prompt: "„Heute nur Kartenzahlung.“ Sie können bar bezahlen."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "nur Kartenzahlung means card payment only, not cash.", ru: "nur Kartenzahlung означает оплату только картой, без наличных.", uk: "nur Kartenzahlung означає оплату лише карткою, без готівки." }
+  - id: lesen-schild-aufzug
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-schilder-verstehen]
+    prompt: "„Aufzug außer Betrieb. Bitte benutzen Sie die Treppe.“ Der Aufzug funktioniert nicht."
+    options: ["Richtig", "Falsch"]
+    correct: 0
+    explain: { en: "außer Betrieb means out of service; the stairs are the alternative.", ru: "außer Betrieb значит «не работает»; предлагается воспользоваться лестницей.", uk: "außer Betrieb означає «не працює»; пропонують скористатися сходами." }
+  - id: lesen-schild-parken
+    type: mc
+    target_mode: reading
+    outcomes: [stadt-schilder-verstehen]
+    focus: duerfen-muessen
+    prompt: "„Parken nur für Kunden, maximal 60 Minuten.“ Kunden dürfen hier zwei Stunden parken."
+    options: ["Richtig", "Falsch"]
+    correct: 1
+    explain: { en: "maximal 60 Minuten permits only one hour.", ru: "maximal 60 Minuten разрешает парковку только на один час.", uk: "maximal 60 Minuten дозволяє паркування лише на одну годину." }

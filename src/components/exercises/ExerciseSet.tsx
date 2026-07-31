@@ -12,6 +12,7 @@ import { Match } from './Match';
 import { MultipleChoice } from './MultipleChoice';
 import { Order } from './Order';
 import { TableFill } from './TableFill';
+import { FormFill } from './FormFill';
 import { Translate } from './Translate';
 import { Write } from './Write';
 import { Speak } from './Speak';
@@ -24,6 +25,7 @@ interface Props {
   setId: string;
   set: ExerciseSetData;
   document?: VisualDocument;
+  documents?: Record<string, VisualDocument>;
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
@@ -111,6 +113,8 @@ function ItemBody({
       return <Order item={item} {...props} />;
     case 'table':
       return <TableFill item={item} {...props} />;
+    case 'form':
+      return <FormFill item={item} {...props} />;
     case 'translate':
       return <Translate item={item} {...props} />;
     case 'listen':
@@ -124,7 +128,7 @@ function ItemBody({
   }
 }
 
-export default function ExerciseSet({ setId, set, document }: Props) {
+export default function ExerciseSet({ setId, set, document, documents = {} }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const items = set.items;
@@ -145,6 +149,8 @@ export default function ExerciseSet({ setId, set, document }: Props) {
 
   const finished = index >= items.length;
   const item = items[index];
+  const itemDocument = item?.stimulus ? documents[item.stimulus] : undefined;
+  const activeDocument = itemDocument ?? document;
 
   function handleResult(result: ItemResult) {
     if (!item) return;
@@ -171,6 +177,7 @@ export default function ExerciseSet({ setId, set, document }: Props) {
         : {}),
       given: result.given,
       focus: focusForAttempt(item, result),
+      focusEvidence: result.focusEvidence,
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(item),
       outcomes: item.outcomes,
@@ -242,8 +249,8 @@ export default function ExerciseSet({ setId, set, document }: Props) {
         </div>
       </div>
 
-      {item && <div className={document ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
-        {document && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={document} /></div>}
+      {item && <div className={activeDocument ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
+        {activeDocument && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={activeDocument} /></div>}
         <ItemView
           instanceKey={`${round}-${item.id}`}
           item={item}

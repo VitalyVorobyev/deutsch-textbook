@@ -50,7 +50,13 @@ const exerciseSets = await Promise.all(
     const document = set.data.stimulus ? await getEntry('documents', set.data.stimulus) : undefined;
     if (set.data.stimulus && !document)
       throw new Error(`Topic ${data.id}: document "${set.data.stimulus}" not found`);
-    return { id, data: set.data, document: document?.data };
+    const itemDocumentIds = [...new Set(set.data.items.flatMap((item) => item.stimulus ? [item.stimulus] : []))];
+    const itemDocuments = await Promise.all(itemDocumentIds.map(async (documentId) => {
+      const itemDocument = await getEntry('documents', documentId);
+      if (!itemDocument) throw new Error(`Topic ${data.id}: document "${documentId}" not found`);
+      return [documentId, itemDocument.data] as const;
+    }));
+    return { id, data: set.data, document: document?.data, documents: Object.fromEntries(itemDocuments) };
   }),
 );
 
@@ -243,7 +249,7 @@ const KIND_KEY: Record<string, StringKey> = {
         <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
         <div class="flex flex-col gap-6">
           {exerciseSets.map((s) => (
-            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} />
+            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
           ))}
         </div>
       </section>

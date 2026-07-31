@@ -1,0 +1,91 @@
+topic: stadt-wege
+role: practice
+title: { en: "Give directions and understand rules", ru: "Объясняем дорогу и понимаем правила", uk: "Пояснюємо дорогу й розуміємо правила" }
+items:
+  - id: du-sie-strasse
+    type: cloze
+    outcomes: [stadt-weg-erfragen]
+    target_mode: spoken-interaction
+    focus: du-sie
+    instruction: { en: "Choose the suitable form of address.", ru: "Выберите подходящую форму обращения.", uk: "Оберіть відповідну форму звертання." }
+    text: "Zu einer Freundin: Kannst {{du}} mir helfen? Zu einem fremden Mann: Können {{Sie}} mir helfen?"
+    explain: { en: "Use du with friends and Sie with an unfamiliar adult. The verb agrees with the form: kannst du, but können Sie.", ru: "С друзьями употребляют du, с незнакомым взрослым — Sie. Меняется и форма глагола: kannst du, но können Sie.", uk: "З друзями вживають du, з незнайомим дорослим — Sie. Змінюється й форма дієслова: kannst du, але können Sie." }
+  - id: imperativ-sie-gehen
+    type: translate
+    outcomes: [stadt-wegbeschreibung-geben]
+    target_mode: spoken-interaction
+    focus: imperativ-form
+    focus_evidence:
+      retained: ["^Gehen Sie\\b"]
+      failed: ["^(Geht|Geh) Sie\\b", "^Sie gehen\\b"]
+    instruction: { en: "Give a stranger a polite direction.", ru: "Вежливо объясните дорогу незнакомому человеку.", uk: "Ввічливо поясніть дорогу незнайомій людині." }
+    prompt_en: "Go straight ahead and then turn left."
+    prompt_ru: "Идите прямо, а потом поверните налево."
+    prompt_uk: "Ідіть прямо, а потім поверніть ліворуч."
+    answer: "Gehen Sie geradeaus und dann links."
+    key_tokens: ["Gehen", "Sie"]
+    explain: { en: "The polite imperative keeps the infinitive-looking verb and places Sie directly after it: Gehen Sie …", ru: "Вежливый Imperativ сохраняет форму, похожую на инфинитив, а Sie ставится сразу после глагола: Gehen Sie …", uk: "Ввічливий Imperativ зберігає форму, схожу на інфінітив, а Sie стоїть одразу після дієслова: Gehen Sie …" }
+  - id: imperativ-drei-formen
+    type: table
+    outcomes: [stadt-wegbeschreibung-geben]
+    target_mode: writing
+    focus: imperativ-form
+    title: "Imperativ: gehen"
+    columns: ["Form"]
+    rows:
+      - label: "du"
+        cells: [{ answer: "Geh!" }]
+      - label: "ihr"
+        cells: [{ answer: "Geht!" }]
+      - label: "Sie"
+        cells: [{ answer: "Gehen Sie!" }]
+    explain: { en: "For du, remove -st and the pronoun; ihr uses the ordinary ihr-form without the pronoun; the polite form is infinitive + Sie.", ru: "Для du уберите -st и само местоимение; ihr совпадает с обычной формой без местоимения; вежливая форма — инфинитив + Sie.", uk: "Для du приберіть -st і сам займенник; ihr збігається зі звичайною формою без займенника; ввічлива форма — інфінітив + Sie." }
+  - id: regel-darf-nicht
+    type: translate
+    outcomes: [stadt-schilder-verstehen]
+    target_mode: reading
+    focus: duerfen-muessen
+    focus_evidence:
+      retained: ["\\bdürfen Sie nicht parken$"]
+      failed: ["\\bmüssen Sie nicht parken$"]
+    instruction: { en: "Translate the prohibition using dürfen.", ru: "Переведите запрет с dürfen.", uk: "Перекладіть заборону з dürfen." }
+    prompt_en: "You may not park here."
+    prompt_ru: "Здесь нельзя парковаться."
+    prompt_uk: "Тут не можна паркуватися."
+    answer: "Hier dürfen Sie nicht parken."
+    key_tokens: ["dürfen", "nicht", "parken"]
+    explain: { en: "darf/dürfen nicht expresses prohibition: the action is not allowed. The infinitive stays at the end.", ru: "darf/dürfen nicht выражает запрет: действие не разрешено. Инфинитив остаётся в конце.", uk: "darf/dürfen nicht виражає заборону: дію не дозволено. Інфінітив залишається в кінці." }
+  - id: regel-muss-nicht
+    type: cloze
+    outcomes: [stadt-schilder-verstehen]
+    target_mode: reading
+    focus: duerfen-muessen
+    instruction: { en: "Complete the sentence: no necessity, not a prohibition.", ru: "Дополните: отсутствие необходимости, а не запрет.", uk: "Доповніть: немає необхідності, а не заборона." }
+    text: "Am Sonntag ist das Parken kostenlos. Sie {{müssen}} nicht bezahlen."
+    explain: { en: "müssen nicht means that something is unnecessary. It does not forbid it. darf nicht, by contrast, means that it is prohibited.", ru: "müssen nicht означает, что действие необязательно. Это не запрет. darf nicht, наоборот, означает «нельзя».", uk: "müssen nicht означає, що дія необов'язкова. Це не заборона. darf nicht, навпаки, означає «не можна»." }
+  - id: weg-zur-post-sprechen
+    type: speak
+    outcomes: [stadt-wegbeschreibung-geben]
+    target_mode: spoken-interaction
+    mode: spoken-interaction
+    prompt: { en: "A stranger asks where the post office is. Give two simple directions aloud.", ru: "Незнакомый человек спрашивает, где почта. Дайте вслух две простые инструкции.", uk: "Незнайома людина питає, де пошта. Дайте вголос дві прості вказівки." }
+    goal: { en: "Use two polite Sie-imperatives.", ru: "Используйте две вежливые формы Imperativ с Sie.", uk: "Використайте дві ввічливі форми Imperativ із Sie." }
+    checklist:
+      - { en: "I used verb + Sie.", ru: "Я использовал(а) глагол + Sie.", uk: "Я використав(-ла) дієслово + Sie." }
+      - { en: "I included a direction word such as geradeaus, links or rechts.", ru: "Я добавил(а) geradeaus, links или rechts.", uk: "Я додав(-ла) geradeaus, links або rechts." }
+    model_answer: "Gehen Sie geradeaus. Nehmen Sie dann die erste Straße rechts."
+    model_translation: { en: "Go straight ahead. Then take the first street on the right.", ru: "Идите прямо. Затем поверните на первую улицу направо.", uk: "Ідіть прямо. Потім поверніть на першу вулицю праворуч." }
+    explain: { en: "A clear direction uses one action per sentence: Gehen Sie …, then Nehmen Sie …", ru: "Понятное объяснение дороги даёт одно действие в каждом предложении: Gehen Sie …, затем Nehmen Sie …", uk: "Зрозуміле пояснення дороги дає одну дію в кожному реченні: Gehen Sie …, потім Nehmen Sie …" }
+  - id: verkehrsmittel-sprechen
+    type: speak
+    outcomes: [stadt-verkehrsmittel-nennen]
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Say how you get to work or class and name one alternative.", ru: "Расскажите, как вы добираетесь на работу или учёбу, и назовите ещё один вариант.", uk: "Розкажіть, як ви дістаєтеся на роботу чи навчання, і назвіть ще один варіант." }
+    goal: { en: "Use two transport chunks with mit or zu Fuß.", ru: "Используйте два выражения транспорта с mit или zu Fuß.", uk: "Використайте два транспортні вирази з mit або zu Fuß." }
+    checklist:
+      - { en: "I used mit dem/der for public transport.", ru: "Для транспорта я использовал(а) mit dem/der.", uk: "Для транспорту я використав(-ла) mit dem/der." }
+      - { en: "I used a complete sentence with fahren, kommen or gehen.", ru: "Я построил(а) полное предложение с fahren, kommen или gehen.", uk: "Я побудував(-ла) повне речення з fahren, kommen або gehen." }
+    model_answer: "Ich fahre mit dem Bus zur Arbeit. Manchmal gehe ich zu Fuß."
+    model_translation: { en: "I take the bus to work. Sometimes I walk.", ru: "Я езжу на работу автобусом. Иногда я хожу пешком.", uk: "Я їжджу на роботу автобусом. Іноді я ходжу пішки." }
+    explain: { en: "Transport is normally mit + dative; zu Fuß is a fixed exception worth learning as one chunk.", ru: "Транспорт обычно выражается mit + Dativ; zu Fuß — устойчивое исключение, которое лучше запомнить целиком.", uk: "Транспорт зазвичай виражається mit + Dativ; zu Fuß — сталий виняток, який краще запам'ятати цілком." }

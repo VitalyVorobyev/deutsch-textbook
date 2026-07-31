@@ -67,6 +67,7 @@ export default function ReadingText({ readingId, reading }: Props) {
       correct: result.correct,
       given: result.given,
       focus: focusForAttempt(question, result),
+      focusEvidence: result.focusEvidence,
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(question),
       outcomes: question.outcomes,

@@ -23,6 +23,20 @@ items:
       ru: "Общий вопрос начинается со спрягаемого глагола: Kommst du aus Russland? Подлежащее идёт сразу после глагола."
       uk: "Загальне питання починається з відмінюваного дієслова: Kommst du aus Russland? Підмет іде одразу після дієслова — питальної частки «чи» на початку німецька не потребує."
 
+  - id: fragen-partner-sprechen
+    outcomes: [praesens-fragen]
+    type: speak
+    target_mode: spoken-interaction
+    mode: spoken-interaction
+    prompt: { en: "Ask a new course partner three questions aloud: name, home town and languages.", ru: "Задайте вслух новому участнику курса три вопроса: имя, город и языки.", uk: "Поставте вголос новому учасникові курсу три запитання: ім'я, місто та мови." }
+    goal: { en: "Use one W-question and two yes/no or W-questions with the verb in the right place.", ru: "Используйте один W-вопрос и ещё два вопроса с правильной позицией глагола.", uk: "Використайте одне W-запитання та ще два запитання з правильною позицією дієслова." }
+    checklist:
+      - { en: "My W-question had the verb directly after the question word.", ru: "В W-вопросе глагол стоял сразу после вопросительного слова.", uk: "У W-запитанні дієслово стояло одразу після питального слова." }
+      - { en: "My yes/no question started with the verb.", ru: "Общий вопрос начинался с глагола.", uk: "Загальне запитання починалося з дієслова." }
+    model_answer: "Wie heißen Sie? Wo wohnen Sie? Sprechen Sie Englisch?"
+    model_translation: { en: "What is your name? Where do you live? Do you speak English?", ru: "Как вас зовут? Где вы живёте? Вы говорите по-английски?", uk: "Як вас звати? Де ви живете? Ви розмовляєте англійською?" }
+    explain: { en: "In a W-question the finite verb follows the question word; in a yes/no question it comes first.", ru: "В W-вопросе спрягаемый глагол следует за вопросительным словом; в общем вопросе он стоит первым.", uk: "У W-запитанні відмінюване дієслово стоїть після питального слова; у загальному запитанні — першим." }
+
   - id: order-wann-lernst
     outcomes: [praesens-fragen, praesens-verbzweit]
     type: order

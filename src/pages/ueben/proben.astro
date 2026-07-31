@@ -28,6 +28,7 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
       title_de: topic.title_de,
       level: topic.level,
       role: e.data.role,
+      arming: e.data.arming,
       items: e.data.items,
       document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
     },

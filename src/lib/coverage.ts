@@ -72,6 +72,18 @@ export interface Coverage {
   unearned: string[];
   /** (cards + grammar) / total, rounded to a percent */
   percent: number;
+  /** card-bearing headwords whose first owning deck sits above the measured level */
+  late: string[];
+  onTimeCards: number;
+}
+
+function deckLevels(root: string): Map<string, Level> {
+  const levels = new Map<string, Level>();
+  for (const file of readdirSync(join(root, VOCAB_DIR)).filter((f) => f.endsWith('.yaml'))) {
+    const data = YAML.parse(readFileSync(join(root, VOCAB_DIR, file), 'utf8')) as { id: string; level: Level };
+    levels.set(data.id, data.level);
+  }
+  return levels;
 }
 
 /** Every headword any deck teaches → the deck ids that teach it. */
@@ -147,6 +159,15 @@ function itemGerman(item: Record<string, unknown>): string[] {
       for (const r of (item.rows ?? []) as Array<Record<string, unknown>>) {
         push(r.label);
         for (const c of (r.cells ?? []) as Array<Record<string, unknown>>) push(c.answer);
+      }
+      break;
+    case 'form':
+      push(item.title);
+      push(item.source);
+      for (const field of (item.fields ?? []) as Array<Record<string, unknown>>) {
+        push(field.label);
+        push(field.answer);
+        push(field.accept);
       }
       break;
     case 'translate':
@@ -385,6 +406,7 @@ export function ukHalfCoverage(root = process.cwd()): UkCoverage {
 
 export function goetheCoverage(level: Level, root = process.cwd()): Coverage {
   const ownedBy = deckHeadwords(root);
+  const levels = deckLevels(root);
   const surface = taughtSurface(root);
 
   const sections: CoverageSection[] = [];
@@ -416,6 +438,10 @@ export function goetheCoverage(level: Level, root = process.cwd()): Coverage {
   const unearned = sections.flatMap((s) => s.unearned);
   const missing = sections.reduce((n, s) => n + s.missing.length, 0) + unearned.length;
   const total = cards + grammar + missing;
+  const order: Record<Level, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
+  const late = sections
+    .flatMap((section) => section.covered)
+    .filter((word) => (ownedBy.get(word) ?? []).every((deck) => order[levels.get(deck) ?? 'B2'] > order[level]));
   return {
     level,
     sections,
@@ -426,5 +452,7 @@ export function goetheCoverage(level: Level, root = process.cwd()): Coverage {
     missing,
     unearned,
     percent: total === 0 ? 0 : Math.round(((cards + grammar) / total) * 100),
+    late,
+    onTimeCards: cards - late.length,
   };
 }

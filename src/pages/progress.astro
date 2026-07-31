@@ -46,6 +46,7 @@ const families = probeFamilies(
     setId: e.id,
     topicId: e.data.topic,
     role: e.data.role,
+    arming: e.data.arming,
     items: e.data.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
   })),
 );

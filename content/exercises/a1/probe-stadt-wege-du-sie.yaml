@@ -1,0 +1,7 @@
+topic: stadt-wege
+role: probe
+arming: [a1/stadt-wege-a1-grammatik::du-sie-strasse]
+items:
+  - { id: variant-a, type: cloze, outcomes: [stadt-weg-erfragen], focus: du-sie, text: "Frau Berger, können {{Sie}} mir helfen?", explain: { en: "An unfamiliar adult takes polite Sie.", ru: "С незнакомым взрослым употребляется вежливое Sie.", uk: "З незнайомим дорослим уживається ввічливе Sie." } }
+  - { id: variant-b, type: cloze, outcomes: [stadt-weg-erfragen], focus: du-sie, text: "Tom, kannst {{du}} mir den Weg zeigen?", explain: { en: "A friend takes du and kannst.", ru: "С другом употребляются du и kannst.", uk: "З другом уживаються du та kannst." } }
+  - { id: variant-c, type: cloze, outcomes: [stadt-weg-erfragen], focus: du-sie, text: "Entschuldigung, wissen {{Sie}}, wo die Post ist?", explain: { en: "A stranger in public takes polite Sie.", ru: "К незнакомому человеку обращаются на Sie.", uk: "До незнайомої людини звертаються на Sie." } }

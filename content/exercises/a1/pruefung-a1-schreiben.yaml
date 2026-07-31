@@ -1,0 +1,84 @@
+topic: freizeit-koennen
+role: exam-practice
+title: { en: "Goethe-style practice — Writing", ru: "Практика в формате Goethe — письмо", uk: "Практика у форматі Goethe — письмо" }
+items:
+  - id: form-sprachkurs
+    type: form
+    target_mode: writing
+    outcomes: [erste-sich-vorstellen]
+    instruction: { en: "Transfer the information into the course form.", ru: "Перенесите информацию в анкету курса.", uk: "Перенесіть інформацію в анкету курсу." }
+    title: "Anmeldung zum Deutschkurs"
+    source: ["Ana Costa kommt aus Portugal.", "Sie wohnt in der Gartenstraße 8 in Bonn.", "Geboren: 14.05.1995 · Telefon: 0176 482913"]
+    fields:
+      - { id: familienname, label: "Familienname", answer: "Costa" }
+      - { id: vorname, label: "Vorname", answer: "Ana" }
+      - { id: geburtsdatum, label: "Geburtsdatum", answer: "14.05.1995", accept: ["14. Mai 1995"] }
+      - { id: adresse, label: "Adresse", answer: "Gartenstraße 8, Bonn", accept: ["Gartenstraße 8 in Bonn"] }
+      - { id: telefon, label: "Telefon", answer: "0176 482913", accept: ["0176482913"] }
+    explain: { en: "Copy facts exactly and match them to the labels; do not add information the source does not give.", ru: "Переносите данные точно и соотносите их с названиями полей; не добавляйте сведения, которых нет в источнике.", uk: "Переносьте дані точно й співвідносьте їх із назвами полів; не додавайте відомостей, яких немає в джерелі." }
+  - id: form-fahrradverleih
+    type: form
+    target_mode: writing
+    outcomes: [stadt-verkehrsmittel-nennen]
+    instruction: { en: "Complete the rental form from the booking note.", ru: "Заполните бланк проката по записи о бронировании.", uk: "Заповніть бланк прокату за записом про бронювання." }
+    title: "Fahrradverleih"
+    source: ["Buchung für Pavel Ivanov", "Samstag, 9. August · 10:00 bis 18:00", "Ein Cityrad · Abholung: Bahnhof"]
+    fields:
+      - { id: name, label: "Name", answer: "Pavel Ivanov" }
+      - { id: datum, label: "Datum", answer: "09.08.", accept: ["9. August", "09.08.2026"] }
+      - { id: von, label: "Von", answer: "10:00", accept: ["10 Uhr"] }
+      - { id: bis, label: "Bis", answer: "18:00", accept: ["18 Uhr"] }
+      - { id: abholung, label: "Abholung", answer: "Bahnhof", accept: ["am Bahnhof"] }
+    explain: { en: "The task tests extraction: date, times and pickup place each belong in their own field.", ru: "Задание проверяет извлечение данных: дата, время и место получения записываются в отдельные поля.", uk: "Завдання перевіряє вилучення даних: дата, час і місце отримання записуються в окремі поля." }
+  - id: form-arztpraxis
+    type: form
+    target_mode: writing
+    outcomes: [zeit-wochenplan-lesen]
+    instruction: { en: "Complete the patient form from the message.", ru: "Заполните анкету пациента по сообщению.", uk: "Заповніть анкету пацієнта за повідомленням." }
+    title: "Neue Patientin"
+    source: ["Mina Haddad, geboren am 22. November 1988", "Termin: Montag, 17. August, 9:30 Uhr", "Grund: Husten seit drei Tagen"]
+    fields:
+      - { id: familienname, label: "Familienname", answer: "Haddad" }
+      - { id: vorname, label: "Vorname", answer: "Mina" }
+      - { id: geburtsdatum, label: "Geburtsdatum", answer: "22.11.1988", accept: ["22. November 1988"] }
+      - { id: termin, label: "Termin", answer: "17.08., 9:30 Uhr", accept: ["Montag, 17. August, 9:30 Uhr"] }
+      - { id: grund, label: "Grund", answer: "Husten", accept: ["Husten seit drei Tagen"] }
+    explain: { en: "Use the field labels to decide how much of each source line belongs in the answer.", ru: "Название поля показывает, какую часть исходной строки нужно перенести.", uk: "Назва поля показує, яку частину вихідного рядка треба перенести." }
+  - id: schreiben-einladung
+    type: write
+    target_mode: writing
+    outcomes: [freizeit-verabredung]
+    prompt: { en: "Write to a friend: invite them to your birthday, say when and where, and ask them to bring a drink.", ru: "Напишите другу: пригласите на день рождения, укажите время и место и попросите принести напиток.", uk: "Напишіть другові: запросіть на день народження, укажіть час і місце та попросіть принести напій." }
+    goal: { en: "Write about 30 words and cover all three points.", ru: "Напишите около 30 слов и раскройте все три пункта.", uk: "Напишіть приблизно 30 слів і розкрийте всі три пункти." }
+    requirements:
+      - { en: "Include a greeting and sign-off.", ru: "Добавьте приветствие и прощание.", uk: "Додайте привітання й прощання." }
+      - { en: "State time and place.", ru: "Укажите время и место.", uk: "Укажіть час і місце." }
+      - { en: "Make the request clearly.", ru: "Сформулируйте просьбу ясно.", uk: "Сформулюйте прохання чітко." }
+    min_words: 24
+    model_answer: "Hallo Mia, am Samstag feiere ich meinen Geburtstag bei mir zu Hause. Die Party beginnt um 18 Uhr. Kannst du bitte Saft mitbringen? Ich freue mich auf dich! Liebe Grüße, Nina"
+    explain: { en: "A complete message addresses every bullet and uses an opening and closing; the model is one possible solution, not an answer key.", ru: "Полное сообщение отвечает на каждый пункт и содержит начало и завершение; образец — один из вариантов, а не единственный правильный ответ.", uk: "Повне повідомлення відповідає на кожен пункт і містить початок та завершення; зразок — один із варіантів, а не єдина правильна відповідь." }
+  - id: schreiben-absage
+    type: write
+    target_mode: writing
+    outcomes: [freizeit-verabredung]
+    prompt: { en: "Your friend invited you to the cinema. Apologize, say why you cannot come, and suggest Sunday afternoon.", ru: "Друг пригласил вас в кино. Извинитесь, объясните отказ и предложите воскресенье днём.", uk: "Друг запросив вас у кіно. Вибачтеся, поясніть відмову й запропонуйте неділю вдень." }
+    goal: { en: "Write about 30 words and cover all three points.", ru: "Напишите около 30 слов и раскройте все три пункта.", uk: "Напишіть приблизно 30 слів і розкрийте всі три пункти." }
+    requirements:
+      - { en: "Apologize politely.", ru: "Вежливо извинитесь.", uk: "Ввічливо вибачтеся." }
+      - { en: "Give one reason.", ru: "Назовите одну причину.", uk: "Назвіть одну причину." }
+      - { en: "Suggest a concrete alternative.", ru: "Предложите конкретный другой вариант.", uk: "Запропонуйте конкретний інший варіант." }
+    min_words: 22
+    model_answer: "Hallo Tom, es tut mir leid, aber am Samstag kann ich nicht ins Kino kommen. Ich muss arbeiten. Hast du am Sonntagnachmittag Zeit? Dann können wir zusammen gehen. Viele Grüße, Alex"
+    explain: { en: "A useful refusal reacts, gives a reason and keeps the conversation moving with a concrete alternative.", ru: "Полезный отказ содержит реакцию, причину и конкретную альтернативу, чтобы разговор продолжился.", uk: "Корисна відмова містить реакцію, причину й конкретну альтернативу, щоб розмова продовжилася." }
+  - id: schreiben-information
+    type: write
+    target_mode: writing
+    outcomes: [stadt-weg-erfragen]
+    prompt: { en: "Write to a language school: ask when the A1 course starts, what it costs, and how to get there from the station.", ru: "Напишите в языковую школу: спросите, когда начинается курс A1, сколько он стоит и как добраться от вокзала.", uk: "Напишіть до мовної школи: запитайте, коли починається курс A1, скільки він коштує і як дістатися від вокзалу." }
+    goal: { en: "Write about 30 words with a polite greeting and three questions.", ru: "Напишите около 30 слов с вежливым обращением и тремя вопросами.", uk: "Напишіть приблизно 30 слів із ввічливим звертанням і трьома запитаннями." }
+    requirements:
+      - { en: "Use Sie-register.", ru: "Используйте обращение на Sie.", uk: "Використайте звертання на Sie." }
+      - { en: "Ask all three questions.", ru: "Задайте все три вопроса.", uk: "Поставте всі три запитання." }
+    min_words: 24
+    model_answer: "Guten Tag, ich interessiere mich für Ihren A1-Kurs. Wann beginnt der Kurs und wie viel kostet er? Wie komme ich vom Bahnhof zu Ihrer Schule? Vielen Dank und freundliche Grüße, Maria Costa"
+    explain: { en: "In a formal message, use Guten Tag and Sie/Ihr forms, then make each requested information point visible as a question.", ru: "В официальном сообщении используйте Guten Tag и формы Sie/Ihr, а каждый требуемый пункт оформите отдельным вопросом.", uk: "В офіційному повідомленні використайте Guten Tag і форми Sie/Ihr, а кожен потрібний пункт оформіть окремим запитанням." }

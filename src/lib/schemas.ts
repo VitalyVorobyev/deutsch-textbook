@@ -298,6 +298,15 @@ const focusTag = z
   .string()
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'must be a kebab-case ASCII focus tag');
 
+export const focusEvidenceSchema = z.object({
+  /** All retained predicates must match the normalized response. */
+  retained: z.array(z.string().min(1)).default([]),
+  /** Any failed predicate matching the normalized response is explicit focus failure. */
+  failed: z.array(z.string().min(1)).default([]),
+}).refine((value) => value.retained.length + value.failed.length > 0, {
+  message: 'focus_evidence needs at least one retained or failed predicate',
+});
+
 const itemBase = {
   id: slug,
   /** Task contract version persisted with attempts. */
@@ -316,6 +325,16 @@ const itemBase = {
    * training prioritization aggregate error rates per tag.
    */
   focus: focusTag.optional(),
+  /** Explicit response predicates for focused free-typed items. Regexes run against the
+      normalized German response; unmatched wrong responses remain unknown. */
+  focus_evidence: focusEvidenceSchema.optional(),
+  /** CEFR skill this task is intended to practise; distinct from the learner's
+      actual response mode persisted with the attempt. */
+  target_mode: z
+    .enum(['reading', 'writing', 'listening', 'spoken-production', 'spoken-interaction'])
+    .optional(),
+  /** Optional document shown for this item. It overrides the set-level stimulus. */
+  stimulus: z.string().min(1).optional(),
 };
 
 export const mcItemSchema = z.object({
@@ -427,6 +446,26 @@ export const tableItemSchema = z.object({
     .min(1),
 });
 
+/** Verified form completion: each missing field is an independently scored part. */
+export const formItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('form'),
+  title: z.string().min(1).optional(),
+  /** German source information from which the missing fields must be extracted. */
+  source: z.array(z.string().min(1)).min(1),
+  fields: z
+    .array(
+      z.object({
+        id: slug,
+        label: z.string().min(1),
+        answer: z.string().min(1),
+        accept: z.array(z.string().min(1)).default([]),
+        given: z.boolean().default(false),
+      }),
+    )
+    .min(2),
+});
+
 export const translateItemSchema = z.object({
   ...itemBase,
   type: z.literal('translate'),
@@ -533,6 +572,7 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   matchItemSchema,
   orderItemSchema,
   tableItemSchema,
+  formItemSchema,
   translateItemSchema,
   listenItemSchema,
   writeItemSchema,
@@ -548,6 +588,7 @@ export const EXERCISE_ROLES = [
   'checkpoint',
   'probe',
   'placement',
+  'exam-practice',
 ] as const;
 export const exerciseRoleSchema = z.enum(EXERCISE_ROLES);
 export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
@@ -560,6 +601,8 @@ export const exerciseSetSchema = z.object({
   title: bilingualSchema.optional(),
   /** Reusable document kept visible while every item in this set is answered. */
   stimulus: z.string().optional(),
+  /** Exact `setId::itemId` sources that arm a delayed probe family. Probe sets require it. */
+  arming: z.array(z.string().min(1)).default([]),
   items: z.array(exerciseItemSchema).min(1),
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
@@ -1050,8 +1093,8 @@ export const atlasNodeSchema = z.object({
   deepens: z.array(slug).default([]),
   /** Useful comparison/association; symmetric, non-blocking, and unordered. */
   related: z.array(slug).default([]),
-  /** 2–4 can-do statements the topic teaches, at the topic's CEFR level */
-  outcomes: z.array(outcomeSchema).min(2).max(4),
+  /** 2–5 can-do statements the topic teaches, at the topic's CEFR level */
+  outcomes: z.array(outcomeSchema).min(2).max(5),
 });
 export type AtlasNode = z.infer<typeof atlasNodeSchema>;
 

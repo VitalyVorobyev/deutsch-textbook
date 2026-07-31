@@ -33,6 +33,8 @@ export interface ItemResult {
    * `focusForAttempt` in src/lib/evidence.ts.
    */
   focus?: string | null;
+  /** Explicit focus verdict for free-typed tasks; unknown is preferable to guessed attribution. */
+  focusEvidence?: 'retained' | 'failed' | 'unknown';
 }
 
 export interface ItemProps<T> {

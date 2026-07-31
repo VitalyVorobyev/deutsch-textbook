@@ -17,6 +17,7 @@ const items: CheckpointItemRef[] = [
   { id: 'lesen-1', type: 'mc', outcomes: ['wohnen-anzeige-verstehen', 'stadt-schilder-verstehen'] },
   { id: 'cloze-1', type: 'cloze', outcomes: ['akkusativ-artikel'] },
   { id: 'schreiben-1', type: 'write', outcomes: ['wohnen-beschreiben'] },
+  { id: 'sprechen-1', type: 'speak', outcomes: ['wohnen-beschreiben'] },
 ];
 
 const modes = {
@@ -53,16 +54,19 @@ describe('checkpointOutcomeResults', () => {
     expect(regressed.lastTs).toBe(2);
   });
 
-  test('write items count as activity but never as score or total', () => {
+  test('open write and speak items count as activity but never as score or total', () => {
     const summary = checkpointOutcomeResults(
       items,
-      [attempt('schreiben-1', 5, { itemType: 'write', evidence: 'practice' })],
+      [
+        attempt('schreiben-1', 5, { itemType: 'write', evidence: 'practice' }),
+        attempt('sprechen-1', 6, { itemType: 'speak', evidence: 'practice' }),
+      ],
       SET,
     )!;
     expect(summary.total).toBe(3);
     expect(summary.answered).toBe(0);
     expect(summary.score).toBe(0);
-    expect(summary.lastTs).toBe(5);
+    expect(summary.lastTs).toBe(6);
   });
 
   test('outcomes roll up per mode; a two-outcome item feeds both outcomes', () => {

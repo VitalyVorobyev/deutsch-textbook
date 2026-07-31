@@ -180,3 +180,33 @@ items:
     model_answer: "Um sieben Uhr trinke ich Kaffee und esse ein Brötchen. Am Vormittag arbeite ich zu Hause. Um ein Uhr koche ich Suppe, denn ich esse gern Suppe. Am Abend lese ich oder höre Musik."
     model_translation: { en: "At seven o'clock I drink coffee and eat a roll. In the morning I work at home. At one o'clock I cook soup, because I like eating soup. In the evening I read or listen to music.", ru: "В семь часов я пью кофе и ем булочку. До обеда я работаю дома. В час я готовлю суп — я люблю суп. Вечером я читаю или слушаю музыку.", uk: "О сьомій годині я п'ю каву та їм булочку. До обіду я працюю вдома. О першій я варю суп — я люблю суп. Увечері я читаю або слухаю музику." }
     explain: { en: "Pattern: a time phrase first, the verb right after it in position 2 — Um sieben Uhr trinke ich Kaffee. Liking food or drink is essen/trinken + gern.", ru: "Схема: сначала указание времени, сразу за ним глагол на втором месте — Um sieben Uhr trinke ich Kaffee. Любимая еда и напитки — это essen/trinken + gern.", uk: "Схема: спочатку позначення часу, одразу за ним дієслово на другому місці — Um sieben Uhr trinke ich Kaffee. Улюблена їжа та напої — це essen/trinken + gern." }
+  # --- A1 boundary additions (new ids deliberately reopen this checkpoint) ---
+  - { id: a1-du-sie-neu, type: cloze, outcomes: [stadt-weg-erfragen], focus: du-sie, text: "Entschuldigung, können {{Sie}} mir helfen?", explain: { en: "A stranger takes polite Sie.", ru: "К незнакомому человеку обращаются на Sie.", uk: "До незнайомої людини звертаються на Sie." } }
+  - { id: a1-imperativ-neu, type: cloze, outcomes: [stadt-wegbeschreibung-geben], focus: imperativ-form, text: "{{Nehmen}} Sie die zweite Straße rechts!", explain: { en: "The polite imperative is verb + Sie.", ru: "Вежливый Imperativ строится как глагол + Sie.", uk: "Ввічливий Imperativ будується як дієслово + Sie." } }
+  - { id: a1-regel-neu, type: cloze, outcomes: [stadt-schilder-verstehen], focus: duerfen-muessen, text: "Der Eintritt ist frei: Sie {{müssen}} nicht bezahlen.", explain: { en: "müssen nicht removes necessity; it is not a prohibition.", ru: "müssen nicht снимает необходимость, а не запрещает.", uk: "müssen nicht знімає необхідність, а не забороняє." } }
+  - { id: a1-trennbar-neu, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-wortstellung, text: "Nach dem Kurs {{räume}} ich die Küche {{auf}}.", explain: { en: "The prefix closes the main clause.", ru: "Приставка закрывает главное предложение.", uk: "Префікс закриває головне речення." } }
+  - { id: a1-trennbar-modal-neu, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-modal, text: "Morgen muss ich um sechs Uhr {{aufstehen}}.", explain: { en: "After muss, the infinitive stays whole at the end.", ru: "После muss инфинитив остаётся целым в конце.", uk: "Після muss інфінітив залишається цілим у кінці." } }
+  - { id: a1-perfekt-aux-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: haben-sein, text: "Am Sonntag {{sind}} wir nach Hause gegangen.", explain: { en: "Movement to another place uses sein.", ru: "Перемещение в другое место образует Perfekt с sein.", uk: "Переміщення в інше місце утворює Perfekt із sein." } }
+  - { id: a1-perfekt-partizip-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: partizip2-a1, text: "Ich habe am Abend Pizza {{gekocht}}.", explain: { en: "kochen forms the regular participle gekocht.", ru: "kochen образует правильное Partizip II gekocht.", uk: "kochen утворює правильний Partizip II gekocht." } }
+  - { id: a1-perfekt-klammer-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: perfekt-satzklammer, text: "Wir {{haben}} am Samstag Fußball {{gespielt}}.", explain: { en: "The auxiliary stands second and the participle last.", ru: "Вспомогательный глагол стоит вторым, Partizip II — последним.", uk: "Допоміжне дієслово стоїть другим, Partizip II — останнім." } }
+  - id: a1-form-neu
+    type: form
+    target_mode: writing
+    outcomes: [erste-sich-vorstellen]
+    source: ["Nora Klein · geboren am 03.02.1991 · Telefon 0157 804216"]
+    fields:
+      - { id: familienname, label: "Familienname", answer: "Klein" }
+      - { id: vorname, label: "Vorname", answer: "Nora" }
+      - { id: geburtsdatum, label: "Geburtsdatum", answer: "03.02.1991" }
+      - { id: telefon, label: "Telefon", answer: "0157 804216", accept: ["0157804216"] }
+    explain: { en: "Match each fact to the correct field label.", ru: "Соотнесите каждый факт с правильным названием поля.", uk: "Співвіднесіть кожен факт із правильною назвою поля." }
+  - id: a1-sprechen-weg-neu
+    type: speak
+    target_mode: spoken-interaction
+    outcomes: [stadt-wegbeschreibung-geben]
+    mode: spoken-interaction
+    prompt: { en: "Give a stranger two simple directions aloud.", ru: "Дайте незнакомому человеку две простые инструкции вслух.", uk: "Дайте незнайомій людині дві прості вказівки вголос." }
+    goal: { en: "Use two polite imperatives.", ru: "Используйте две вежливые формы Imperativ.", uk: "Використайте дві ввічливі форми Imperativ." }
+    checklist: [{ en: "I used verb + Sie.", ru: "Я использовал(а) глагол + Sie.", uk: "Я використав(-ла) дієслово + Sie." }]
+    model_answer: "Gehen Sie geradeaus. Nehmen Sie dann die erste Straße links."
+    explain: { en: "Speaking practice is unverified; compare the verb + Sie pattern with the model.", ru: "Говорение не оценивается автоматически; сравните модель глагол + Sie с образцом.", uk: "Говоріння не оцінюється автоматично; порівняйте модель дієслово + Sie зі зразком." }

@@ -1,0 +1,7 @@
+topic: alltag-zeit
+role: probe
+arming: [a1/alltag-zeit-trennbar::aufstehen-klammer, a1/alltag-zeit-trennbar::einkaufen-klammer]
+items:
+  - { id: variant-a, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-wortstellung, text: "Um sechs Uhr {{stehe}} ich {{auf}}.", explain: { en: "The finite stem and prefix form the main-clause frame.", ru: "Основа и приставка образуют рамку главного предложения.", uk: "Основа та префікс утворюють рамку головного речення." } }
+  - { id: variant-b, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-wortstellung, text: "Nach der Arbeit {{kaufe}} ich {{ein}}.", explain: { en: "einkaufen separates in a main clause.", ru: "einkaufen отделяется в главном предложении.", uk: "einkaufen відокремлюється в головному реченні." } }
+  - { id: variant-c, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-wortstellung, text: "Am Abend {{räume}} ich mein Zimmer {{auf}}.", explain: { en: "The prefix auf closes the clause.", ru: "Приставка auf закрывает предложение.", uk: "Префікс auf закриває речення." } }

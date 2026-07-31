@@ -83,6 +83,9 @@ items:
     outcomes: [praesens-konjugation]
     type: listen
     focus: verb-endungen
+    focus_evidence:
+      retained: ["\\bSchwester spricht\\b"]
+      failed: ["\\bSchwester (spreche|sprechen|sprecht)\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.

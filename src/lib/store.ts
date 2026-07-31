@@ -3,6 +3,7 @@ import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval'
 import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord } from './profile';
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
+import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
 import {
   mergeAttempts,
   mergeCards,
@@ -35,8 +36,39 @@ async function getStore(): Promise<UseStore> {
   if (!s) {
     s = createStore(dbNameFor(id), 'progress');
     stores.set(id, s);
+    const handle = s;
+    await migrateStoredCardIds(
+      () => get<CardStates>('cards', handle),
+      (cards) => set('cards', cards, handle),
+    );
   }
   return s;
+}
+
+/**
+ * Rename the cards the A1 lexical relocation moved, in the LIVE database.
+ *
+ * Snapshot import is not enough on its own: `getCardStates` reads the raw `cards` blob, so a
+ * learner who never exports and re-imports would have `planReview` miss 174 renamed ids and
+ * deal them as fresh — roughly twelve days of the new-card budget spent on words they already
+ * know, while their FSRS history sat stranded under the old keys.
+ *
+ * Runs once per profile per session, on store open, and only writes when a renamed id is
+ * actually present, so after the first upgrade it costs one read and nothing else. Takes its
+ * read/write as parameters because the test environment has no IndexedDB — the alternative
+ * was leaving the one path that matters covered only by the import path's tests, which is
+ * how the gap arose in the first place.
+ *
+ * Returns whether it wrote.
+ */
+export async function migrateStoredCardIds(
+  read: () => Promise<CardStates | undefined>,
+  write: (cards: CardStates) => Promise<void>,
+): Promise<boolean> {
+  const cards = await read();
+  if (!cards || !needsCardIdMigration(cards)) return false;
+  await write(migrateCardIds(cards, mergeCards));
+  return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -60,6 +92,8 @@ export interface Attempt {
   given: string;
   /** the item's confusion tag (see focus-tag table in docs/focus-tags.md), when tagged */
   focus?: string;
+  /** Explicit verdict for the item's targeted focus; absent on historical attempts. */
+  focusEvidence?: 'retained' | 'failed' | 'unknown';
   /** omitted in historical snapshots; absence means verified */
   evidence?: 'verified' | 'practice';
   /** actual response channel; absent in historical snapshots */
@@ -345,8 +379,8 @@ export async function setArtifactFeedback(
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 6; import accepts v1-v6 through explicit migration. */
-  version: 6;
+  /** written as 7; import accepts v1-v7 through explicit migration. */
+  version: 7;
   exportedAt: string;
   /** profile label, informational only */
   profile?: string;
@@ -360,7 +394,7 @@ export interface ProgressSnapshot {
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 6,
+    version: 7,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),

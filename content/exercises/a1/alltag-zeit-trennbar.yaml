@@ -1,0 +1,72 @@
+topic: alltag-zeit
+role: practice
+title: { en: "Daily routine with separable verbs", ru: "Распорядок дня с отделяемыми глаголами", uk: "Розпорядок дня з відокремлюваними дієсловами" }
+items:
+  - id: aufstehen-klammer
+    type: translate
+    outcomes: [zeit-tagesablauf-beschreiben]
+    target_mode: writing
+    focus: trennbar-wortstellung
+    focus_evidence:
+      retained: ["^Ich stehe\\b.*\\bauf$"]
+      failed: ["^Ich aufstehe\\b", "\\bstehe auf\\b.*\\bUhr$"]
+    instruction: { en: "Translate using aufstehen.", ru: "Переведите с aufstehen.", uk: "Перекладіть з aufstehen." }
+    prompt_en: "I get up at seven o'clock."
+    prompt_ru: "Я встаю в семь часов."
+    prompt_uk: "Я встаю о сьомій годині."
+    answer: "Ich stehe um sieben Uhr auf."
+    key_tokens: ["stehe", "auf"]
+    accept: ["Um sieben Uhr stehe ich auf."]
+    explain: { en: "In a main clause, the conjugated stem stands in position 2 and the prefix goes to the end: stehe … auf.", ru: "В главном предложении спрягаемая основа стоит на втором месте, а приставка уходит в конец: stehe … auf.", uk: "У головному реченні відмінювана основа стоїть на другому місці, а префікс іде в кінець: stehe … auf." }
+  - id: einkaufen-klammer
+    type: translate
+    outcomes: [zeit-tagesablauf-beschreiben]
+    target_mode: writing
+    focus: trennbar-wortstellung
+    focus_evidence:
+      retained: ["\\bkaufen wir\\b.*\\bein$"]
+      failed: ["\\beinkaufen wir\\b", "\\bwir einkaufen\\b"]
+    instruction: { en: "Translate using einkaufen.", ru: "Переведите с einkaufen.", uk: "Перекладіть з einkaufen." }
+    prompt_en: "On Saturday we shop at the supermarket."
+    prompt_ru: "В субботу мы делаем покупки в супермаркете."
+    prompt_uk: "У суботу ми робимо покупки в супермаркеті."
+    answer: "Am Samstag kaufen wir im Supermarkt ein."
+    key_tokens: ["kaufen", "ein"]
+    accept: ["Wir kaufen am Samstag im Supermarkt ein."]
+    explain: { en: "The time phrase may come first, but kaufen stays in position 2 and ein closes the sentence.", ru: "Время может стоять в начале, но kaufen остаётся на втором месте, а ein закрывает предложение.", uk: "Час може стояти на початку, але kaufen залишається на другому місці, а ein закриває речення." }
+  - id: modal-aufstehen
+    type: translate
+    outcomes: [zeit-tagesablauf-beschreiben]
+    target_mode: writing
+    focus: trennbar-modal
+    focus_evidence:
+      retained: ["\\bmuss ich\\b.*\\baufstehen$"]
+      failed: ["\\bmuss ich\\b.*\\bstehe.* auf$", "\\baufzustehen$"]
+    instruction: { en: "Translate using müssen and aufstehen.", ru: "Переведите с müssen и aufstehen.", uk: "Перекладіть з müssen та aufstehen." }
+    prompt_en: "Tomorrow I have to get up early."
+    prompt_ru: "Завтра мне нужно рано встать."
+    prompt_uk: "Завтра мені треба рано встати."
+    answer: "Morgen muss ich früh aufstehen."
+    key_tokens: ["muss", "aufstehen"]
+    explain: { en: "After a modal verb, the separable verb stays whole as an infinitive at the end: muss … aufstehen, never muss … stehen … auf.", ru: "После модального глагола отделяемый глагол остаётся целым инфинитивом в конце: muss … aufstehen, не muss … stehen … auf.", uk: "Після модального дієслова відокремлюване дієслово залишається цілим інфінітивом у кінці: muss … aufstehen, не muss … stehen … auf." }
+  - id: trennbar-kontrast
+    type: cloze
+    outcomes: [zeit-tagesablauf-beschreiben]
+    target_mode: writing
+    focus: trennbar-modal
+    instruction: { en: "Complete both versions of the same routine.", ru: "Дополните два варианта одного действия.", uk: "Доповніть два варіанти тієї самої дії." }
+    text: "Heute {{räume}} ich die Küche {{auf}}. Morgen muss ich das Bad {{aufräumen}}."
+    explain: { en: "Without a modal, the prefix separates: räume … auf. With muss, the infinitive remains whole: muss … aufräumen.", ru: "Без модального глагола приставка отделяется: räume … auf. С muss инфинитив остаётся целым: muss … aufräumen.", uk: "Без модального дієслова префікс відокремлюється: räume … auf. З muss інфінітив залишається цілим: muss … aufräumen." }
+  - id: tagesablauf-trennbar-sprechen
+    type: speak
+    outcomes: [zeit-tagesablauf-beschreiben]
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Describe your morning aloud with two separable verbs.", ru: "Опишите своё утро вслух с двумя отделяемыми глаголами.", uk: "Опишіть свій ранок уголос із двома відокремлюваними дієсловами." }
+    goal: { en: "Say when you get up and what you do next.", ru: "Скажите, когда вы встаёте и что делаете потом.", uk: "Скажіть, коли ви встаєте і що робите потім." }
+    checklist:
+      - { en: "I put each prefix at the end.", ru: "Я поставил(а) каждую приставку в конец.", uk: "Я поставив(-ла) кожен префікс у кінець." }
+      - { en: "I used a time phrase.", ru: "Я использовал(а) указание времени.", uk: "Я використав(-ла) указівку часу." }
+    model_answer: "Um sieben Uhr stehe ich auf. Danach mache ich das Fenster auf und frühstücke."
+    model_translation: { en: "I get up at seven. After that I open the window and have breakfast.", ru: "Я встаю в семь. Потом я открываю окно и завтракаю.", uk: "Я встаю о сьомій. Потім відчиняю вікно і снідаю." }
+    explain: { en: "In each independent sentence, the finite stem comes early and the prefix closes its clause.", ru: "В каждом самостоятельном предложении спрягаемая основа стоит в начале, а приставка закрывает свою часть.", uk: "У кожному самостійному реченні відмінювана основа стоїть на початку, а префікс закриває свою частину." }

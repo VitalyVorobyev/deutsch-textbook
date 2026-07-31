@@ -1,0 +1,17 @@
+topic: erste-schritte
+role: practice
+title: { en: "Speaking — spell personal details", ru: "Устная практика — продиктуйте личные данные", uk: "Усна практика — продиктуйте особисті дані" }
+items:
+  - id: name-buchstabieren-sprechen
+    type: speak
+    outcomes: [erste-buchstabieren]
+    target_mode: spoken-interaction
+    mode: spoken-interaction
+    prompt: { en: "The receptionist asks: Wie ist Ihr Name? Wie schreibt man das? Answer and spell your surname aloud.", ru: "Администратор спрашивает: Wie ist Ihr Name? Wie schreibt man das? Ответьте и произнесите фамилию по буквам.", uk: "Адміністратор питає: Wie ist Ihr Name? Wie schreibt man das? Дайте відповідь і продиктуйте прізвище по літерах." }
+    goal: { en: "Say your name, then spell it slowly enough to write down.", ru: "Назовите фамилию, затем продиктуйте её достаточно медленно для записи.", uk: "Назвіть прізвище, потім продиктуйте його досить повільно для запису." }
+    checklist:
+      - { en: "I used Mein Name ist … or Ich heiße …", ru: "Я использовал(а) Mein Name ist … или Ich heiße …", uk: "Я використав(-ла) Mein Name ist … або Ich heiße …" }
+      - { en: "I separated the letter names clearly.", ru: "Я чётко разделил(а) названия букв.", uk: "Я чітко розділив(-ла) назви літер." }
+    model_answer: "Ich heiße Becker. B – E – C – K – E – R."
+    model_translation: { en: "My name is Becker. B-E-C-K-E-R.", ru: "Меня зовут Беккер. B-E-C-K-E-R.", uk: "Мене звати Беккер. B-E-C-K-E-R." }
+    explain: { en: "Give the whole name first; spelling is the clarification, not a replacement for the answer.", ru: "Сначала назовите фамилию целиком; произнесение по буквам уточняет ответ, а не заменяет его.", uk: "Спочатку назвіть прізвище повністю; диктування по літерах уточнює відповідь, а не замінює її." }

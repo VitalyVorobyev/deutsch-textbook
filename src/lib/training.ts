@@ -14,6 +14,7 @@ export interface TrainingSet {
   title_de: string;
   level: Level;
   role: ExerciseRole;
+  arming?: string[];
   items: ExerciseItem[];
   document?: VisualDocument;
 }

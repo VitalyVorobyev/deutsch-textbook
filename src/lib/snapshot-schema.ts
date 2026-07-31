@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import type { ProgressSnapshot } from './store';
+import { migrateCardIds } from './a1-card-id-migration';
+import { mergeCards } from './snapshot-merge';
 
 const criterionSchema = z.enum(['met', 'needs-work']);
 
@@ -36,6 +38,7 @@ const attemptSchema = z.object({
   totalParts: z.number().optional(),
   given: z.string(),
   focus: z.string().optional(),
+  focusEvidence: z.enum(['retained', 'failed', 'unknown']).optional(),
   evidence: z.enum(['verified', 'practice']).optional(),
   responseMode: z
     .enum(['selection', 'writing', 'listening', 'spoken-production', 'spoken-interaction'])
@@ -108,6 +111,7 @@ const snapshotSchemas = {
   4: snapshotBody.extend({ version: z.literal(4) }),
   5: snapshotBody.extend({ version: z.literal(5) }),
   6: snapshotBody.extend({ version: z.literal(6) }),
+  7: snapshotBody.extend({ version: z.literal(7) }),
 } as const;
 
 /**
@@ -121,17 +125,20 @@ export const SUPPORTED_SNAPSHOT_VERSIONS = Object.keys(snapshotSchemas)
 
 type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshotSchemas]>;
 
-function asV6(snapshot: NormalizedSnapshot): ProgressSnapshot {
-  return { ...snapshot, version: 6 } as ProgressSnapshot;
+function asV7(snapshot: NormalizedSnapshot): ProgressSnapshot {
+  // The same map the live store applies on open — one implementation, two entry points.
+  const cards = migrateCardIds(snapshot.cards, mergeCards);
+  return { ...snapshot, cards, version: 7 } as ProgressSnapshot;
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */
-export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV6(snapshot);
-export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV6(snapshot);
-export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV6(snapshot);
-export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV6(snapshot);
-export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV6(snapshot);
-export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV6(snapshot);
+export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV7(snapshot);
+export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV7(snapshot);
+export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV7(snapshot);
+export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV7(snapshot);
+export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV7(snapshot);
+export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV7(snapshot);
+export const migrateSnapshotV7 = (snapshot: z.infer<typeof snapshotSchemas[7]>) => asV7(snapshot);
 
 /** Parse and normalize every supported snapshot version at the import boundary. */
 export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
@@ -145,6 +152,7 @@ export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
     case 4: return migrateSnapshotV4(snapshotSchemas[4].parse(input));
     case 5: return migrateSnapshotV5(snapshotSchemas[5].parse(input));
     case 6: return migrateSnapshotV6(snapshotSchemas[6].parse(input));
+    case 7: return migrateSnapshotV7(snapshotSchemas[7].parse(input));
     default:
       throw new Error(
         `Unsupported progress snapshot version: ${String((input as { version?: unknown }).version)}`,

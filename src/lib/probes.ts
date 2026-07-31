@@ -61,39 +61,12 @@ export interface ProbeFamily {
   /** the outcomes these variants probe */
   outcomes: string[];
   /**
-   * The sets whose practice arms this family. Arming cannot rely on the attempt's
-   * `outcomes` alone: that field is recent, and in a real snapshot most attempts predate
-   * it (551 of 671 in the learner's log carry no outcomes at all). A family whose topic
-   * was practised for weeks would sit unarmed forever and never probe anything. So the
-   * topic's own practice sets arm it too — an attempt on `a1/akkusativ` is evidence the
-   * akkusativ outcomes were practised, whether or not the row says so.
-   *
-   * Pretests are excluded on purpose: a pretest is a guess taken *before* the lesson, so
-   * arming a retention clock from one would start counting before there was anything to
-   * retain.
-   *
-   * Empty for a topic owning more than one family — see `armingItemKeys`.
+   * Exact verified practice sources, as `setId::itemId`. This is intentionally authored,
+   * not inferred from a broad outcome or topic: an old attempt still resolves by stable item
+   * identity, while a reading question, pretest or neighbouring competence cannot start the
+   * retention clock by accident.
    */
-  armingSetIds: string[];
-  /**
-   * The finer-grained fallback, used where set-level arming cannot tell two families of
-   * the same topic apart. Entries are `setId::itemId`.
-   *
-   * A topic with two probe families needs to know *which* competence an attempt practised,
-   * and naming whole sets cannot answer that — measured against this repo's content, every
-   * practice set of both multi-family topics contains items for **both** families'
-   * outcomes (`man-und-besitz` mixes 3 Genitiv and 6 *man* items in one set). That is good
-   * pedagogy and bad arming data: set-level arming would fire both clocks off either
-   * competence, and two days later a probe would come due for material the learner never
-   * studied — measuring guessing and calling it retention.
-   *
-   * The attempt log carries `itemId`, so the question *is* answerable without the
-   * `outcomes` field that most historical attempts lack: an item's own declared outcomes
-   * say which family it arms. Single-family topics deliberately keep the coarser
-   * set-level list — they have no ambiguity to resolve, and whole-set arming is the more
-   * inclusive fallback for a legacy attempt whose item has since been renamed away.
-   */
-  armingItemKeys?: string[];
+  armingItemKeys: string[];
   /** the parallel variants, in authoring order */
   items: { id: string; outcomes: string[] }[];
 }
@@ -103,11 +76,9 @@ interface SetLike {
   setId: string;
   topicId: string;
   role?: string;
+  arming?: readonly string[];
   items: readonly { id: string; outcomes: string[] }[];
 }
-
-/** Roles whose attempts count as having practised the topic. */
-const ARMING_ROLES = new Set(['practice', 'drill']);
 
 /** Attempt identity for item-level arming — the same `::` shape card ids already use. */
 const attemptKey = (setId: string, itemId: string) => `${setId}::${itemId}`;
@@ -119,41 +90,14 @@ const attemptKey = (setId: string, itemId: string) => `${setId}::${itemId}`;
  */
 export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
   const probes = sets.filter((s) => s.role === 'probe');
-  const familiesPerTopic = new Map<string, number>();
-  for (const p of probes) familiesPerTopic.set(p.topicId, (familiesPerTopic.get(p.topicId) ?? 0) + 1);
 
   return probes.map((s) => {
     const outcomes = [...new Set(s.items.flatMap((i) => i.outcomes))];
-    const armingSets = sets.filter(
-      (o) => o.topicId === s.topicId && ARMING_ROLES.has(o.role ?? 'practice'),
-    );
-
-    /**
-     * The set-level fallback names the whole *topic*, so it cannot tell two families of
-     * the same topic apart. This used to degrade to `[]` — arming by outcome only —
-     * justified by "a multi-family topic is new by construction, so every attempt on it
-     * names the outcomes". That reasoning does not survive contact with a real snapshot:
-     * 552 of 1221 attempts in the learner's log carry no `outcomes` at all, so adding a
-     * second family to any *older* topic would have silently disarmed the first, reset
-     * its 2/7/21 clock and discarded its cohort, with nothing reporting an error.
-     *
-     * So a multi-family topic arms per item instead of not at all — see `armingItemKeys`.
-     */
-    const shared = (familiesPerTopic.get(s.topicId) ?? 1) > 1;
-    const probed = new Set(outcomes);
-
     return {
       setId: s.setId,
       topicId: s.topicId,
       outcomes,
-      armingSetIds: shared ? [] : armingSets.map((o) => o.setId),
-      armingItemKeys: shared
-        ? armingSets.flatMap((o) =>
-            o.items
-              .filter((i) => i.outcomes.some((oc) => probed.has(oc)))
-              .map((i) => attemptKey(o.setId, i.id)),
-          )
-        : [],
+      armingItemKeys: [...(s.arming ?? [])],
       items: s.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
     };
   });
@@ -177,12 +121,9 @@ export interface DueProbe {
  * outcome never studied has nothing to retain, and a probe fired at it would measure
  * guessing rather than memory.
  *
- * An attempt counts because it names one of the family's outcomes, or because it came from
- * one of the topic's practice sets (`armingSetIds`), or — where the topic owns more than
- * one family — because it came from a practice *item* that teaches this family's
- * competence (`armingItemKeys`). The latter two exist because most historical attempts
- * carry no outcomes, and dropping them would leave long-practised topics permanently
- * unarmed.
+ * An attempt counts only when its stable `setId::itemId` is one of the family's authored
+ * arming keys. This keeps legacy rows usable without reinterpreting their often-missing
+ * outcome metadata.
  *
  * **A pretest never arms.** It is diagnostic generation *before* the teaching, so its
  * outcomes describe what the learner is about to study, not what they have studied — and
@@ -196,18 +137,13 @@ export interface DueProbe {
  * learner who did study. It moves a great deal for one who did not, which is the point.
  */
 export function armedAt(family: ProbeFamily, attempts: readonly Attempt[]): number | undefined {
-  const outcomes = new Set(family.outcomes);
-  const arming = new Set(family.armingSetIds);
-  const armingItems = new Set(family.armingItemKeys ?? []);
+  const armingItems = new Set(family.armingItemKeys);
   let earliest: number | undefined;
   for (const a of attempts) {
     if (a.setId === family.setId) continue; // a probe cannot arm itself
     if (!isVerifiedEvidence(a)) continue; // unverified production is not evidence
     if (isPretestAttempt(a)) continue; // diagnostic generation before the teaching, not evidence
-    const relevant =
-      arming.has(a.setId) ||
-      armingItems.has(attemptKey(a.setId, a.itemId)) ||
-      (a.outcomes?.some((o) => outcomes.has(o)) ?? false);
+    const relevant = armingItems.has(attemptKey(a.setId, a.itemId));
     if (!relevant) continue;
     if (earliest === undefined || a.ts < earliest) earliest = a.ts;
   }
