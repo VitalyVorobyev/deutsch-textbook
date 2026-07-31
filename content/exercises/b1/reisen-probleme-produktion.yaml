@@ -146,10 +146,10 @@ items:
     type: speak
     mode: spoken-production
     instruction:
-      en: "Tell the story aloud, in one connected go — then compare with the model and say it again."
-      ru: "Расскажите историю вслух, одним связным заходом, — затем сравните с образцом и произнесите ещё раз."
-      uk: "Розкажіть історію вголос, одним зв'язним заходом, — потім порівняйте зі зразком і промовте ще раз."
-      de: "Erzähl die Geschichte laut, in einem zusammenhängenden Zug — vergleich dann mit dem Muster und sprich sie noch einmal."
+      en: "Tell the story aloud, in one connected go — then compare with the model."
+      ru: "Расскажите историю вслух, одним связным заходом, — затем сравните с образцом."
+      uk: "Розкажіть історію вголос, одним зв'язним заходом, — потім порівняйте зі зразком."
+      de: "Erzähl die Geschichte laut, in einem zusammenhängenden Zug — vergleich dann mit dem Muster."
     prompt:
       en: "A friend asks: „Wie war deine Fahrt nach Hamburg?“ Tell the whole mishap connectedly: the strike in München, the delay, the missed connection in Hannover, the hotel that gave your room away — and how it ended."
       ru: "Друг спрашивает: „Wie war deine Fahrt nach Hamburg?“ Расскажите всю историю связно: забастовка в Мюнхене, опоздание, пропущенная пересадка в Ганновере, отель, отдавший ваш номер, — и чем всё закончилось."
@@ -179,20 +179,20 @@ items:
       ru: "Ох, это было приключение! Из-за забастовки наш поезд выехал из Мюнхена с опозданием на пятьдесят минут. Во время поездки не было ни одного объявления, и в Ганновере мы пропустили пересадку. Нам пришлось ждать почти два часа. Несмотря на опоздание, вечером мы всё же добрались до Гамбурга — но отель уже отдал наш номер! Нам достался маленький номер на улицу, и кондиционер был сломан. В конце концов я пожаловалась, и отель возместил нам часть денег."
       uk: "Ох, це була пригода! Через страйк наш поїзд виїхав із Мюнхена із запізненням на п'ятдесят хвилин. Під час поїздки не було жодного оголошення, і в Ганновері ми пропустили пересадку. Нам довелося чекати майже дві години. Попри запізнення ввечері ми все ж дісталися Гамбурга — але готель уже віддав наш номер! Нам дісталася маленька кімната на вулицю, і кондиціонер був зламаний. Врешті-решт я поскаржилася, і готель відшкодував нам частину грошей."
     explain:
-      en: "The model makes the checklist's moves in order: Perfekt events on a zuerst-dann thread, the causes packed into genitive phrases instead of loose und-dann links, and a closing result. Say it a second time and listen for the three phrase heads — wegen, während, trotz — each pulling its noun into the genitive."
-      ru: "Образец делает ходы чек-листа по порядку: события в Perfekt на нити zuerst-dann, причины упакованы в группы с родительным вместо рыхлых связок und dann, и финальный результат. Произнесите текст второй раз и вслушайтесь в три вершины групп — wegen, während, trotz: каждая утягивает своё существительное в родительный."
-      uk: "Зразок робить ходи чек-листа по порядку: події в Perfekt на нитці zuerst-dann, причини запаковані в групи з родовим замість пухких зв'язок und dann, і фінальний результат. Промовте текст удруге і вслухайтеся в три вершини груп — wegen, während, trotz: кожна затягує свій іменник у родовий."
-      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Perfekt-Ereignisse am zuerst-dann-Faden, die Gründe in Genitivgruppen gepackt statt in lose und-dann-Glieder, und ein Ergebnis am Schluss. Sprich den Text ein zweites Mal und hör auf die drei Gruppenköpfe — wegen, während, trotz —, wie jeder sein Nomen in den Genitiv zieht."
+      en: "The model makes the checklist's moves in order: Perfekt events on a zuerst-dann thread, the causes packed into genitive phrases instead of loose und-dann links, and a closing result. If you feel like a second pass, listen for the three phrase heads — wegen, während, trotz — each pulling its noun into the genitive."
+      ru: "Образец делает ходы чек-листа по порядку: события в Perfekt на нити zuerst-dann, причины упакованы в группы с родительным вместо рыхлых связок und dann, и финальный результат. Если захотите произнести текст ещё раз, вслушайтесь в три вершины групп — wegen, während, trotz: каждая утягивает своё существительное в родительный."
+      uk: "Зразок робить ходи чек-листа по порядку: події в Perfekt на нитці zuerst-dann, причини запаковані в групи з родовим замість пухких зв'язок und dann, і фінальний результат. Якщо захочете промовити текст іще раз, вслухайтеся в три вершини груп — wegen, während, trotz: кожна затягує свій іменник у родовий."
+      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Perfekt-Ereignisse am zuerst-dann-Faden, die Gründe in Genitivgruppen gepackt statt in lose und-dann-Glieder, und ein Ergebnis am Schluss. Magst du einen zweiten Durchgang, hör auf die drei Gruppenköpfe — wegen, während, trotz —, wie jeder sein Nomen in den Genitiv zieht."
 
   - id: sprechen-was-waere-wenn
     outcomes: [irreale-bedingung-nutzen]
     type: speak
     mode: spoken-production
     instruction:
-      en: "Speak three or four wenn-sentences aloud — then compare with the model and say them again."
-      ru: "Произнесите вслух три-четыре предложения с wenn — затем сравните с образцом и повторите."
-      uk: "Промовте вголос три-чотири речення з wenn — потім порівняйте зі зразком і повторіть."
-      de: "Sprich drei oder vier wenn-Sätze laut — vergleich dann mit dem Muster und sprich sie noch einmal."
+      en: "Speak three or four wenn-sentences aloud — then compare with the model."
+      ru: "Произнесите вслух три-четыре предложения с wenn — затем сравните с образцом."
+      uk: "Промовте вголос три-чотири речення з wenn — потім порівняйте зі зразком."
+      de: "Sprich drei oder vier wenn-Sätze laut — vergleich dann mit dem Muster."
     prompt:
       en: "You are stuck in Hannover: the connection is gone, the next train leaves in an hour. Say three or four sentences about what you would do if things were different — Wenn ich …, würde/könnte/wäre/hätte ich …"
       ru: "Вы застряли в Ганновере: пересадка ушла, следующий поезд через час. Скажите три-четыре предложения о том, что вы сделали бы, если бы всё было иначе, — Wenn ich …, würde/könnte/wäre/hätte ich …"
@@ -222,7 +222,7 @@ items:
       ru: "Если бы пересадка не ушла, я была бы сейчас уже почти в Гамбурге. Если бы у меня была машина, я бы просто поехала дальше. Если бы здесь работал вайфай, я могла бы хотя бы немного поработать. А если бы ожидание было ещё дольше, я нашла бы себе кафе в городе."
       uk: "Якби пересадка не пішла, я була б зараз уже майже в Гамбурзі. Якби я мала авто, я просто поїхала б далі. Якби тут працював вайфай, я могла б хоча б трохи попрацювати. А якби очікування було ще довшим, я знайшла б собі кафе в місті."
     explain:
-      en: "Four sentences, four cells of the paradigm: wäre twice (one-word sein), hätte with a full-verb würde partner, funktionieren würde inside the wenn-clause with könnte answering it, and a plain würde + suchen. Each half marked, no indicative anywhere — say them again and listen for the umlauts doing that work."
-      ru: "Четыре предложения — четыре ячейки парадигмы: дважды wäre (однословный sein), hätte в паре с würde полнозначного глагола, funktionieren würde внутри придаточного и отвечающий ему könnte, и простое würde + suchen. Каждая половина помечена, индикатива нет нигде — произнесите их ещё раз и вслушайтесь, как эту работу делают умлауты."
-      uk: "Чотири речення — чотири клітинки парадигми: двічі wäre (однослівний sein), hätte в парі з würde повнозначного дієслова, funktionieren würde всередині підрядного і könnte у відповідь, і просте würde + suchen. Кожна половина позначена, індикатива немає ніде — промовте їх ще раз і вслухайтеся, як цю роботу роблять умлаути."
-      de: "Vier Sätze, vier Zellen des Paradigmas: zweimal wäre (Einwortform von sein), hätte mit einem Vollverb-würde als Partner, funktionieren würde im wenn-Satz mit könnte als Antwort, und ein schlichtes würde + suchen. Jede Hälfte markiert, nirgends ein Indikativ — sprich sie noch einmal und hör, wie die Umlaute diese Arbeit tun."
+      en: "Four sentences, four cells of the paradigm: wäre twice (one-word sein), hätte with a full-verb würde partner, funktionieren würde inside the wenn-clause with könnte answering it, and a plain würde + suchen. Each half marked, no indicative anywhere — and if you feel like saying them once more, listen for the umlauts doing that work."
+      ru: "Четыре предложения — четыре ячейки парадигмы: дважды wäre (однословный sein), hätte в паре с würde полнозначного глагола, funktionieren würde внутри придаточного и отвечающий ему könnte, и простое würde + suchen. Каждая половина помечена, индикатива нет нигде — а если захотите произнести их ещё раз, вслушайтесь, как эту работу делают умлауты."
+      uk: "Чотири речення — чотири клітинки парадигми: двічі wäre (однослівний sein), hätte в парі з würde повнозначного дієслова, funktionieren würde всередині підрядного і könnte у відповідь, і просте würde + suchen. Кожна половина позначена, індикатива немає ніде — а якщо захочете промовити їх іще раз, вслухайтеся, як цю роботу роблять умлаути."
+      de: "Vier Sätze, vier Zellen des Paradigmas: zweimal wäre (Einwortform von sein), hätte mit einem Vollverb-würde als Partner, funktionieren würde im wenn-Satz mit könnte als Antwort, und ein schlichtes würde + suchen. Jede Hälfte markiert, nirgends ein Indikativ — und magst du sie noch einmal sprechen, hör, wie die Umlaute diese Arbeit tun."

@@ -134,6 +134,7 @@ items:
       de: "Die wenn-Hälfte hat mit funktionieren würde schon eine irreale Welt eröffnet, also muss die Haupthälfte darin bleiben: könnte. kann ist Indikativ — es behauptet, das Schließen sei wirklich möglich, was die kaputte Klimaanlage gerade verneint. konnte ist das Präteritum und meldet, wie es einmal war. Nur die Umlautform hält beide Hälften irreal."
 
   - id: uebersetzen-wenn-zimmer
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -149,7 +150,10 @@ items:
     accept:
       - "Wenn das Zimmer ruhiger wäre, dann würde ich besser schlafen."
       - "Ich würde besser schlafen, wenn das Zimmer ruhiger wäre."
-    key_tokens: ["wäre", "würde"]
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Wäre das Zimmer ruhiger, würde ich besser schlafen."
+      - "Wäre das Zimmer ruhiger, dann würde ich besser schlafen."
+    key_tokens: ["wäre", "Wäre", "würde"]
     explain:
       en: "Graded are the two markers, one per half: wäre in the wenn-clause and würde in the main clause. English splits its marking — a plain past in the if-half, 'would' only in the main half; German symmetry demands a Konjunktiv II verb on both sides. The clause order is free — main clause first is accepted — but neither half may fall back into the indicative."
       ru: "Оцениваются два маркера, по одному на половину: wäre в придаточном с wenn и würde в главном. Русское «бы» — одна неизменная частица на всё предложение, а немецкая симметрия требует помеченного глагола с обеих сторон. Порядок частей свободен — главное предложение первым принимается, — но ни одна половина не может вернуться в индикатив."
