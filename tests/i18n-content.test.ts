@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, test } from 'bun:test';
 
 import {
   LANG_KEY,
+  cardMeaning,
   langKeyFor,
   getExplainLang,
   isExplainLang,
@@ -30,6 +31,7 @@ import {
   sentenceConnectorsReferenceSchema,
   topicSchema,
   translateItemSchema,
+  vocabEntrySchema,
   type VocabEntry,
   type WordField,
 } from '../src/lib/schemas';
@@ -93,19 +95,42 @@ describe('pick over the four explanation languages', () => {
   });
 
   test('the meaning-side composition: `en · second`, or EN alone with no separator', () => {
-    // exactly the expression FlashcardSession builds
-    const meaning = (lang: Parameters<typeof pickSecond>[0], card: { en: string; ru: string; uk?: string }) => {
-      const second = pickSecond(lang, { ru: card.ru, uk: card.uk });
-      return second ? `${card.en} · ${second}` : card.en;
+    const card = {
+      en: 'train station (a railway station, not a bus stop)',
+      enCompact: 'train station',
+      ru: 'вокзал (железнодорожный, не автобусная остановка)',
     };
-    const card = { en: 'train station', ru: 'вокзал' };
     // ru keeps its dual view; en is EN alone — never assumed to read Russian
-    expect(meaning('ru', card)).toBe('train station · вокзал');
-    expect(meaning('en', card)).toBe('train station');
-    expect(meaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe('train station · вокзал (uk)');
+    expect(cardMeaning('ru', card)).toBe(
+      'train station · вокзал (железнодорожный, не автобусная остановка)',
+    );
+    expect(cardMeaning('en', card)).toBe('train station (a railway station, not a bus stop)');
+    expect(cardMeaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe(
+      'train station · вокзал (uk)',
+    );
     // no uk gloss → EN alone, never `en · en` and never RU
-    expect(meaning('uk', card)).toBe('train station');
-    expect(meaning('de', { ...card, uk: 'вокзал (uk)' })).toBe('train station');
+    expect(cardMeaning('uk', card)).toBe('train station (a railway station, not a bus stop)');
+    expect(cardMeaning('de', { ...card, uk: 'вокзал (uk)' })).toBe(
+      'train station (a railway station, not a bus stop)',
+    );
+  });
+
+  test('vocabulary compact gloss contract rejects missing, long, and Cyrillic forms', () => {
+    const base = {
+      de: 'Bahnhof',
+      pos: 'phrase' as const,
+      en: 'train station (a railway station, not a bus stop)',
+      ru: 'вокзал (железнодорожный, не автобусная остановка)',
+      example_de: 'Der Bahnhof ist neu.',
+      example_en: 'The station is new.',
+      example_ru: 'Вокзал новый.',
+    };
+    expect(vocabEntrySchema.parse({ ...base, en_compact: 'train station' }).en_compact).toBe(
+      'train station',
+    );
+    expect(vocabEntrySchema.safeParse(base).success).toBe(false);
+    expect(vocabEntrySchema.safeParse({ ...base, en_compact: base.en }).success).toBe(false);
+    expect(vocabEntrySchema.safeParse({ ...base, en_compact: 'вокзал' }).success).toBe(false);
   });
 
   test('pickLang names the language pick actually resolved to (for lang attributes)', () => {
@@ -545,7 +570,8 @@ describe('uk reaches the runtime surfaces', () => {
     pos: 'noun',
     gender: 'm',
     plural: 'die Bahnhöfe',
-    en: 'train station',
+    en: 'train station (a railway station, not a bus stop)',
+    en_compact: 'train station',
     ru: 'вокзал',
     uk: 'вокзал',
     example_de: 'Der Bahnhof ist neu.',
@@ -560,11 +586,12 @@ describe('uk reaches the runtime surfaces', () => {
     expect(cards).toHaveLength(2);
     for (const card of cards) {
       expect(card.uk).toBe('вокзал');
+      expect(card.enCompact).toBe('train station');
       expect(card.exampleUk).toBe('Вокзал новий.');
     }
   });
 
-  test('uk never enters card identity: ids are the same with and without it', () => {
+  test('display-only language fields never enter card identity', () => {
     // The P8-5 meaning side (`${en} · ${pickSecond(...)}`) is display-only:
     // identity stays <deck>::<de>::<direction>, no gloss language, so no SRS
     // history resets when a wave adds uk or a learner switches ExplainLang.
@@ -572,8 +599,12 @@ describe('uk reaches the runtime surfaces', () => {
     const withoutUk = buildDeck('reisen', [{ ...entry, uk: undefined, example_uk: undefined }]).map(
       (c) => c.id,
     );
+    const withoutCompact = buildDeck('reisen', [{ ...entry, en_compact: undefined }]).map(
+      (c) => c.id,
+    );
     expect(withUk).toEqual(['reisen::Bahnhof::de-x', 'reisen::Bahnhof::x-de']);
     expect(withoutUk).toEqual(withUk);
+    expect(withoutCompact).toEqual(withUk);
   });
 
   test('wordFieldContexts carries the relation explanation/example uk halves', () => {

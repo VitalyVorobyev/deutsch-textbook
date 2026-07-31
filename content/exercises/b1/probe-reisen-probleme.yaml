@@ -1,0 +1,96 @@
+# Delayed probe family 1 of 3 — ONE competence: producing the polite Konjunktiv II
+# forms of the written complaint cold — the one-word Präteritum-plus-umlaut forms
+# (wäre, hätte, würde) with könnte beside them, where the bare Präteritum (war, hatte,
+# wurde, konnte) is the error every cell exists to catch. Three parallel cloze
+# variants, all complaint-letter lines in the present, served in authoring order
+# across the 2/7/21 delays — one retention curve over one form system. Cloze is
+# legitimate here because the gaps grade forms, not a position (B1.7 precedent:
+# probe-regeln-verantwortung.yaml): the missing umlaut surfaces *inside* the gap.
+# Distinct from A2's hoeflich-konjunktiv family (probe-aemter-dienstleistungen),
+# which grades Könnten Sie / würde gern as fixed chunks — these variants demand the
+# paradigm behind them, wäre and hätte included.
+# Verb-plus-noun pairings fresh: Rechnung + schicken (Rechnung pairs bezahlen and
+# prüfen elsewhere; schicken pairs Unterlagen in the A2 probe), Zuschlag +
+# zurückzahlen (zurückzahlen pairs Kredit and zehn Euro; Zuschlag occurs only in this
+# unit's deck), Koffer + zurückbekommen (zurückbekommen occurs nowhere else in
+# content/) — checked by grepping each verb and noun across content/, not by
+# re-reading this list.
+# `outcomes: [beschwerde-schreiben]` is deliberate and it is what arms this family:
+# the can-do is "eine formelle Beschwerde mit Begründung schreiben", and the polite
+# Konjunktiv is the register move the whole letter stands on. The practice items that
+# produce these forms (cloze-anderes-zimmer, mc-wuerde-bitten, uebersetzen-freuen)
+# declare this outcome — and so do hoeren-diktat and schreiben-beschwerde, because
+# outcome-keyed arming cannot look inside an item: the 2/7/21 clock may start from
+# the dictation or the letter rather than a graded production (P19-4).
+# Each of the two other families declares a different
+# outcome, because two families sharing one would arm identically and fire a probe at
+# material never practised.
+# The verbs whose Konjunktiv the gaps ask for are named in every instruction, so the
+# target is determinate served alone (a wenn-clause would otherwise also take würden).
+topic: reisen-probleme
+role: probe
+title:
+  en: "Delayed check — the complaint letter's polite forms"
+  ru: "Отложенная проверка — вежливые формы письма-жалобы"
+  uk: "Відкладена перевірка — ввічливі форми листа-скарги"
+  de: "Kontrolle mit Abstand — die höflichen Formen des Beschwerdebriefs"
+items:
+  - id: variant-a
+    outcomes: [beschwerde-schreiben]
+    type: cloze
+    focus: konjunktiv2-form
+    instruction:
+      en: "A line from a complaint letter — fill in the Konjunktiv II of sein and of können."
+      ru: "Строка из письма-жалобы — впишите Konjunktiv II глаголов sein и können."
+      uk: "Рядок із листа-скарги — впишіть Konjunktiv II дієслів sein і können."
+      de: "Eine Zeile aus einem Beschwerdebrief — ergänze den Konjunktiv II von sein und von können."
+    text: "Ich {{wäre}} Ihnen dankbar, wenn Sie mir die Rechnung noch einmal schicken {{könnten}}."
+    translation:
+      en: "I would be grateful to you if you could send me the invoice again."
+      ru: "Я была бы вам благодарна, если бы вы прислали мне счёт ещё раз."
+      uk: "Я була б вам вдячна, якби ви надіслали мені рахунок ще раз."
+    explain:
+      en: "Two forms from one recipe — the Präteritum with an umlaut and the Konjunktiv -e: konnten becomes könnten by the dots alone, war gains both and becomes wäre. With the bare Präteritum the sentence reports the past instead of asking a favour — that is the whole error this check exists for. And each half carries its own form: the wäre before the comma never excuses a plain konnten-less indicative after it."
+      ru: "Две формы по одному рецепту — Präteritum с умлаутом и конъюнктивным -e: konnten становится könnten одними точками, war получает и то и другое — wäre. С голым Präteritum предложение сообщает о прошлом, а не просит об услуге — ровно та ошибка, ради которой существует эта проверка. И каждая половина несёт свою форму: wäre перед запятой не оправдывает индикатив после неё."
+      uk: "Дві форми за одним рецептом — Präteritum з умлаутом і кон'юнктивним -e: konnten стає könnten самими крапками, war отримує і те й інше — wäre. З голим Präteritum речення повідомляє про минуле, а не просить про послугу — рівно та помилка, заради якої існує ця перевірка. І кожна половина несе свою форму: wäre перед комою не виправдовує індикатив після неї."
+      de: "Zwei Formen nach einem Rezept — Präteritum mit Umlaut und Konjunktiv-e: Aus konnten wird könnten allein durch die Punkte, war bekommt beides und wird wäre. Mit dem bloßen Präteritum meldet der Satz Vergangenheit, statt um einen Gefallen zu bitten — genau der Fehler, für den diese Kontrolle da ist. Und jede Hälfte trägt ihre eigene Form: Das wäre vor dem Komma entschuldigt keinen Indikativ danach."
+
+  - id: variant-b
+    outcomes: [beschwerde-schreiben]
+    type: cloze
+    focus: konjunktiv2-form
+    instruction:
+      en: "A line from a complaint letter — fill in the Konjunktiv II of haben and of können."
+      ru: "Строка из письма-жалобы — впишите Konjunktiv II глаголов haben и können."
+      uk: "Рядок із листа-скарги — впишіть Konjunktiv II дієслів haben і können."
+      de: "Eine Zeile aus einem Beschwerdebrief — ergänze den Konjunktiv II von haben und von können."
+    text: "Ich {{hätte}} noch eine Bitte: {{Könnten}} Sie mir den Zuschlag für die erste Klasse zurückzahlen?"
+    translation:
+      en: "I have one more request: could you refund me the surcharge for first class?"
+      ru: "У меня ещё одна просьба: не могли бы вы вернуть мне доплату за первый класс?"
+      uk: "У мене ще одне прохання: чи не могли б ви повернути мені доплату за перший клас?"
+    explain:
+      en: "hätte softens Ich habe eine Bitte from an announcement into an approach, and Könnten opens the request itself — capitalized, because it opens the sentence. Both are the Präteritum with two dots: hatte and konnten would state past facts, and a letter that states facts where it means to ask reads as a demand."
+      ru: "hätte смягчает Ich habe eine Bitte из заявления в подход, а Könnten открывает саму просьбу — с заглавной, потому что открывает предложение. Обе формы — Präteritum с двумя точками: hatte и konnten констатировали бы прошлые факты, а письмо, которое констатирует там, где хочет просить, читается как требование."
+      uk: "hätte пом'якшує Ich habe eine Bitte із заяви в підхід, а Könnten відкриває саме прохання — з великої літери, бо відкриває речення. Обидві форми — Präteritum із двома крапками: hatte і konnten констатували б минулі факти, а лист, який констатує там, де хоче просити, читається як вимога."
+      de: "hätte macht aus der Ansage Ich habe eine Bitte eine Annäherung, und Könnten eröffnet die Bitte selbst — großgeschrieben, weil es den Satz eröffnet. Beide sind das Präteritum mit zwei Punkten: hatte und konnten würden vergangene Tatsachen feststellen, und ein Brief, der feststellt, wo er bitten will, liest sich als Forderung."
+
+  - id: variant-c
+    outcomes: [beschwerde-schreiben]
+    type: cloze
+    focus: konjunktiv2-form
+    instruction:
+      en: "A line from a complaint letter — fill in the Konjunktiv II of werden and of können."
+      ru: "Строка из письма-жалобы — впишите Konjunktiv II глаголов werden и können."
+      uk: "Рядок із листа-скарги — впишіть Konjunktiv II дієслів werden і können."
+      de: "Eine Zeile aus einem Beschwerdebrief — ergänze den Konjunktiv II von werden und von können."
+    text: "Ich {{würde}} mich freuen, wenn ich meinen Koffer noch diese Woche zurückbekommen {{könnte}}."
+    translation:
+      en: "I would be glad if I could get my suitcase back this week."
+      ru: "Я была бы рада, если бы смогла получить свой чемодан обратно ещё на этой неделе."
+      uk: "Я була б рада, якби змогла отримати свою валізу назад ще цього тижня."
+    explain:
+      en: "würde is wurde with an umlaut — two dots between a polite wish and a past event — and it lends its Konjunktiv to the full verb freuen, which has no one-word form this course produces. In the wenn-clause the singular könnte closes the chain after zurückbekommen: finite verb last, the old subordinate-clause wall."
+      ru: "würde — это wurde с умлаутом: две точки между вежливым пожеланием и прошлым событием — и он одалживает свой конъюнктив полнозначному freuen, у которого нет однословной формы в этом курсе. В придаточном с wenn единственное число könnte закрывает цепочку после zurückbekommen: спрягаемый глагол последним, у старой стены придаточного."
+      uk: "würde — це wurde з умлаутом: дві крапки між ввічливим побажанням і минулою подією — і воно позичає свій кон'юнктив повнозначному freuen, у якого немає однослівної форми в цьому курсі. У підрядному з wenn однина könnte закриває ланцюжок після zurückbekommen: відмінюване дієслово останнім, біля старої стіни підрядного."
+      de: "würde ist wurde mit Umlaut — zwei Punkte zwischen höflichem Wunsch und vergangenem Ereignis — und es leiht seinen Konjunktiv dem Vollverb freuen, das in diesem Kurs keine Einwortform bekommt. Im wenn-Satz schließt das singularische könnte die Kette nach zurückbekommen: finites Verb zuletzt, an der alten Nebensatz-Wand."

@@ -1,0 +1,84 @@
+topic: reisen-probleme
+kind: intensive
+title_de: "Beschwerde an das Hotel"
+text:
+  - >-
+    Sehr geehrte Damen und Herren, ich schreibe Ihnen wegen meiner
+    [[Übernachtung::overnight stay::ночёвка::ночівля]] vom 12. Juli. Ich habe
+    ein ruhiges Doppelzimmer zum Hof gebucht — mit
+    [[Bestätigung::confirmation::подтверждение::підтвердження]] per E-Mail.
+    Wegen eines [[Streiks::strike::забастовки (Gen)::страйку (Gen)]] hatte
+    mein Zug zwei Stunden Verspätung; ich habe den Anschluss in Hannover verpasst.
+  - >-
+    An der Rezeption sagte man mir: Ihr Zimmer ist leider weg. Ich bekam ein
+    kleines Zimmer zur Straße. Während der Nacht war es laut, und die
+    [[Klimaanlage::air conditioning::кондиционер::кондиціонер]] funktionierte
+    nicht. Ich habe mich an das
+    [[Personal::staff::персонал::персонал]]
+    [[gewandt::turned (to)::обратилась (к)::звернулася (до)]], aber niemand
+    hat [[reagiert::reacted::отреагировал::відреагував]].
+  - >-
+    Das ist [[ärgerlich::annoying::досадно::прикро]], denn so ein Zimmer
+    war kein [[Ersatz::replacement::замена::заміна]] für meine Buchung. Wenn
+    die Klimaanlage funktionieren würde, könnte man wenigstens das Fenster
+    schließen. Ich bitte Sie, mir einen Teil des
+    [[Betrags::amount, sum (Gen)::суммы (Gen)::суми (Gen)]] zu ersetzen. Ich
+    würde mich freuen, wenn Sie bis Ende der Woche antworten könnten. Mit
+    freundlichen Grüßen, Lena Berger
+questions:
+  - id: frage-ankunft
+    outcomes: [panne-berichten]
+    type: mc
+    prompt: "Warum ist Lena erst spät im Hotel angekommen?"
+    options:
+      - "Wegen eines Streiks hatte ihr Zug Verspätung, und sie hat den Anschluss verpasst."
+      - "Sie hat den falschen Zug nach Hannover gebucht."
+      - "Das Hotel hat ihr eine falsche Adresse geschickt."
+    correct: 0
+    translation:
+      en: "Why did Lena arrive at the hotel so late?"
+      ru: "Почему Лена приехала в отель так поздно?"
+      uk: "Чому Лена приїхала до готелю так пізно?"
+    explain:
+      en: "The report names its cause in one wegen-phrase: Wegen eines Streiks hatte mein Zug zwei Stunden Verspätung — and the missed Anschluss follows from it. Nothing in the letter blames a booking mistake or a wrong address; the booking was correct and confirmed per E-Mail."
+      ru: "Отчёт называет причину одной фразой с wegen: Wegen eines Streiks hatte mein Zug zwei Stunden Verspätung — а из этого следует пропущенная пересадка. Ничто в письме не говорит об ошибке в бронировании или неверном адресе; бронь была правильной и подтверждённой per E-Mail."
+      uk: "Звіт називає причину однією фразою з wegen: Wegen eines Streiks hatte mein Zug zwei Stunden Verspätung — а з цього випливає пропущена пересадка. Ніщо в листі не каже про помилку в бронюванні чи неправильну адресу; бронь була правильною і підтвердженою per E-Mail."
+      de: "Der Bericht nennt seinen Grund in einer wegen-Phrase: Wegen eines Streiks hatte mein Zug zwei Stunden Verspätung — und der verpasste Anschluss folgt daraus. Nichts im Brief spricht von einem Buchungsfehler oder einer falschen Adresse; die Buchung war korrekt und per E-Mail bestätigt."
+
+  - id: frage-forderung
+    outcomes: [beschwerde-schreiben]
+    type: mc
+    prompt: "Was fordert Lena konkret von dem Hotel?"
+    options:
+      - "Es soll ihr einen Teil des Betrags ersetzen."
+      - "Es soll ihr eine kostenlose Übernachtung im nächsten Sommer schenken."
+      - "Es soll die Klimaanlage in allen Zimmern erneuern."
+    correct: 0
+    translation:
+      en: "What does Lena concretely demand from the hotel?"
+      ru: "Чего Лена конкретно требует от отеля?"
+      uk: "Чого Лена конкретно вимагає від готелю?"
+    explain:
+      en: "The concrete request sits in the plain bitte-sentence: Ich bitte Sie, mir einen Teil des Betrags zu ersetzen. The Konjunktiv II around it (würde mich freuen, antworten könnten) only softens the tone. A free future stay is never mentioned, and the broken Klimaanlage is her evidence, not her demand."
+      ru: "Конкретная просьба сидит в простой фразе с bitte: Ich bitte Sie, mir einen Teil des Betrags zu ersetzen. Konjunktiv II вокруг неё (würde mich freuen, antworten könnten) лишь смягчает тон. Бесплатная ночёвка в будущем нигде не упоминается, а сломанный кондиционер — её довод, а не её требование."
+      uk: "Конкретне прохання сидить у простій фразі з bitte: Ich bitte Sie, mir einen Teil des Betrags zu ersetzen. Konjunktiv II довкола неї (würde mich freuen, antworten könnten) лише пом'якшує тон. Безплатна ночівля в майбутньому ніде не згадана, а зламаний кондиціонер — її доказ, а не її вимога."
+      de: "Die konkrete Bitte steht im schlichten bitte-Satz: Ich bitte Sie, mir einen Teil des Betrags zu ersetzen. Der Konjunktiv II darum herum (würde mich freuen, antworten könnten) macht nur den Ton weich. Eine kostenlose Übernachtung wird nie erwähnt, und die kaputte Klimaanlage ist ihr Beleg, nicht ihre Forderung."
+
+  - id: frage-fenster
+    outcomes: [irreale-bedingung-nutzen]
+    type: mc
+    prompt: "Was sagt der Satz: Wenn die Klimaanlage funktionieren würde, könnte man wenigstens das Fenster schließen?"
+    options:
+      - "Die Klimaanlage funktioniert nicht, deshalb bleibt das Fenster offen."
+      - "Die Klimaanlage funktioniert, aber das Fenster ist kaputt."
+      - "Man konnte das Fenster schließen, weil die Klimaanlage lief."
+    correct: 0
+    translation:
+      en: "What does this sentence say: If the air conditioning worked, one could at least close the window?"
+      ru: "Что говорит фраза: если бы кондиционер работал, можно было бы хотя бы закрыть окно?"
+      uk: "Що каже фраза: якби кондиціонер працював, можна було б хоча б зачинити вікно?"
+    explain:
+      en: "Both halves carry Konjunktiv II — funktionieren würde in the wenn-clause, könnte in the main clause — so the sentence is an unreal condition: it paints the opposite of reality. In reality the Klimaanlage does not work, so the window has to stay open and the street noise comes in. Reading the forms as real events reverses the letter's whole point."
+      ru: "Обе половины несут Konjunktiv II — funktionieren würde в придаточном с wenn, könnte в главном, — значит, это нереальное условие: оно рисует противоположность реальности. В реальности кондиционер не работает, поэтому окно приходится держать открытым, и шум улицы попадает внутрь. Прочитать эти формы как реальные события — перевернуть весь смысл письма."
+      uk: "Обидві половини несуть Konjunktiv II — funktionieren würde в підрядному з wenn, könnte в головному, — отже, це нереальна умова: вона малює протилежність реальності. Насправді кондиціонер не працює, тому вікно доводиться тримати відчиненим, і шум вулиці потрапляє всередину. Прочитати ці форми як реальні події — перевернути весь зміст листа."
+      de: "Beide Hälften tragen Konjunktiv II — funktionieren würde im wenn-Satz, könnte im Hauptsatz —, also ist der Satz eine irreale Bedingung: Er malt das Gegenteil der Wirklichkeit. In Wirklichkeit funktioniert die Klimaanlage nicht, das Fenster muss offen bleiben, und der Lärm der Straße kommt herein. Wer die Formen als reale Ereignisse liest, dreht die Aussage des Briefes um."

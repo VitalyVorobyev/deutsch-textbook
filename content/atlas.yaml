@@ -1614,6 +1614,53 @@ nodes:
         ru: "Я умею договариваться о практическом решении проблемы."
         uk: "Я вмію домовлятися про практичне розв'язання проблеми."
 
+  # Joins `unterwegs`, where the travel ground already lives (stadt-wege at A1,
+  # reisen-verkehr at A2): a strike on the platform, a missed Anschluss and a hotel
+  # that gave the room away are journey territory, not a transaction and not
+  # narration — and the node's strand must equal its group's.
+  # Both `deepens` edges carry a live runtime channel, and neither tag is a B1 tag,
+  # so neither closes a B1 point (the unit's two contract points are closed by its
+  # own konjunktiv2-form/irreale-bedingung and praeposition-genitiv items):
+  # `perfekt-satzklammer` (uebersetzen-anschluss-perfekt) is drilled by
+  # reisen-verkehr's own practice; `konjunktiv2-ratschlag`
+  # (uebersetzen-an-deiner-stelle) by gesundheit-wohlbefinden's — the B1.3 advice
+  # machine is the shrunken wenn-half this unit's article unmasks. The tag is the
+  # edge's only runtime channel — without one the spiral revisit it claims to build
+  # would not exist.
+  # Three outcomes, three probe families, one outcome each: a family arms from the
+  # practice items that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so
+  # two families sharing an outcome would arm identically and fire a probe at
+  # material never practised.
+  - id: reisen-probleme
+    level: B1
+    kind: communication
+    strand: communication
+    group: unterwegs
+    prerequisites: [reisen-verkehr, gesundheit-wohlbefinden]
+    deepens: [reisen-verkehr, gesundheit-wohlbefinden]
+    outcomes:
+      - id: beschwerde-schreiben
+        mode: writing
+        domain: public
+        de: "Ich kann eine formelle Beschwerde mit Begründung schreiben."
+        en: "I can write a formal complaint and give my reasons."
+        ru: "Я умею писать официальную жалобу с обоснованием."
+        uk: "Я вмію писати офіційну скаргу з обґрунтуванням."
+      - id: irreale-bedingung-nutzen
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann sagen, was ich tun würde, wenn etwas anders wäre."
+        en: "I can say what I would do if things were different."
+        ru: "Я умею говорить, что я сделал бы, если бы всё было иначе."
+        uk: "Я вмію казати, що я зробив би, якби все було інакше."
+      - id: panne-berichten
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann eine Reisepanne zusammenhängend berichten."
+        en: "I can give a connected account of a travel mishap."
+        ru: "Я умею связно рассказать о неудаче в поездке."
+        uk: "Я вмію зв'язно розповісти про негаразд у подорожі."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1905,3 +1952,10 @@ units:
     title_ru: "Правила и ответственность"
     title_uk: "Правила та відповідальність"
     topics: [regeln-verantwortung]
+  - id: reisen-probleme
+    level: B1
+    title_de: "Reisen & Probleme"
+    title_en: "Travel & problems"
+    title_ru: "Путешествия и проблемы"
+    title_uk: "Подорожі та проблеми"
+    topics: [reisen-probleme]

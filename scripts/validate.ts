@@ -107,22 +107,6 @@ const INTERCHANGEABLE_CONNECTORS: readonly (readonly string[])[] = [
   ['deshalb', 'deswegen'],
 ];
 
-/**
- * Items held below the rule until the A1 probe cohort is read on 2026-08-02.
- *
- * Constraining an item changes the task, which needs a `revision` bump, and a bumped
- * revision stops `revisionKnownMismatch` re-grading its attempts — so the data point
- * leaves the retention reading. `data/grading-decisions.yaml` already holds every probe
- * ruling for that reason; this is the same freeze reaching the same conclusion.
- *
- * Deliberately a **warning, not a silent pass**: an exemption nobody sees is an exemption
- * nobody removes. The one entry below is safe to defer because its single logged attempt
- * used `weil` of its own accord, so the ambiguity has not yet cost a data point.
- */
-const CONNECTOR_DETERMINACY_DEFERRED: ReadonlyMap<string, string> = new Map([
-  ['a2/probe-nebensaetze-plaene:variant-a', 'probe frozen until the 2026-08-02 cohort read'],
-]);
-
 /** Clause-introducing position only: `um sechs Uhr` and `besser als` must not count. */
 const introducesClause = (text: string, word: string) =>
   new RegExp(`(^|[,;.!?]\\s*)${word}\\b`, 'iu').test(text);
@@ -294,7 +278,7 @@ function checkReflexiveForms(where: string, e: VocabEntry): void {
 function checkGlossDoesNotLeakAnswer(where: string, e: VocabEntry): void {
   const headwords = e.de.split(/[^A-Za-zÄÖÜäöüß]+/).filter((w) => w.length > 2);
   if (!headwords.length) return;
-  for (const lang of ['en', 'ru', 'uk'] as const) {
+  for (const lang of ['en', 'en_compact', 'ru', 'uk'] as const) {
     const gloss = e[lang];
     if (!gloss) continue;
     const asides = [...gloss.matchAll(/\(([^)]*)\)/g)].map((m) => m[1]);
@@ -865,7 +849,6 @@ for (const [setId, { file, data }] of exerciseSets) {
             // instruction that happens to contain the letters would silently exempt an
             // item that still rejects the other connector.
             if (new RegExp(`\\b${pinned[0]}\\b`, 'iu').test(instruction)) continue;
-            const deferred = CONNECTOR_DETERMINACY_DEFERRED.get(`${setId}:${item.id}`);
             const message =
               `every accepted rendering uses "${pinned[0]}" and none uses ${sibling
                 .map((c) => `"${c}"`)
@@ -873,8 +856,7 @@ for (const [setId, { file, data }] of exerciseSets) {
               `${sibling.join('/')} renders the same prompt just as well. Either name ` +
               `"${pinned[0]}" in the instruction (when the focus is about it) or add the ` +
               `sibling rendering to accept (when it is not)`;
-            if (deferred) warn(where, `${message} [deferred: ${deferred}]`);
-            else fail(where, message);
+            fail(where, message);
             break;
           }
         }

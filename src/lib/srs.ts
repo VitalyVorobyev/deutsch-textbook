@@ -28,6 +28,8 @@ export interface CardDef {
   dir: Direction;
   de: string;
   en: string;
+  /** Compact EN half for a dual-language meaning side; full `en` remains standalone. */
+  enCompact?: string;
   ru: string;
   /** Optional Ukrainian gloss (translation waves) — display-only, like en/ru.
       Never part of card identity: cardId() keys on deckId + de + dir alone,
@@ -169,6 +171,7 @@ export function buildDeck(
       deckId,
       de: e.de,
       en: e.en,
+      enCompact: e.en_compact,
       ru: e.ru,
       uk: e.uk,
       ipa: e.ipa,

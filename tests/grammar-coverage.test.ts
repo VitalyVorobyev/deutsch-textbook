@@ -79,7 +79,7 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 reports exactly what has shipped — units 1–7 cover their twenty-one points', () => {
+  test('B1 reports exactly what has shipped — units 1–8 cover their twenty-three points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
     // The ratchet: raised in the same commit that ships a unit, never ahead of content.
@@ -98,10 +98,13 @@ describe('grammar coverage', () => {
     // Unit B1.6 (konsum-umwelt, 2026-07-29) closed passiv-produktion (passiv-bildung),
     // passiv-vergangenheit and proportionalsatz-je-desto (je-desto) — the split point's
     // debt paid by the unit the amendment assigned it to. Unit B1.7 (regeln-verantwortung,
-    // 2026-07-29) closed passiv-modal and konsekutivsatz-sodass (sodass-folge).
-    expect(coverage.covered).toBe(21);
+    // 2026-07-29) closed passiv-modal and konsekutivsatz-sodass (sodass-folge). Unit B1.8
+    // (reisen-probleme, 2026-07-30) closed konjunktiv2-irreal (konjunktiv2-form,
+    // irreale-bedingung — the paradigm B1.3's chunks were waiting for) and
+    // praeposition-genitiv.
+    expect(coverage.covered).toBe(23);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(66);
+    expect(coverage.percent).toBe(72);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
@@ -109,6 +112,7 @@ describe('grammar coverage', () => {
       'genitiv-vollstaendig',
       'kausalsatz-da',
       'komparativ-attributiv',
+      'konjunktiv2-irreal',
       'konjunktiv2-ratschlag',
       'konsekutivsatz-sodass',
       'lassen',
@@ -118,6 +122,7 @@ describe('grammar coverage', () => {
       'passiv-produktion',
       'passiv-vergangenheit',
       'plusquamperfekt',
+      'praeposition-genitiv',
       'praeteritum-vollverben',
       'proportionalsatz-je-desto',
       'reflexiv-praeposition',
@@ -129,7 +134,7 @@ describe('grammar coverage', () => {
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 21);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 23);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {
