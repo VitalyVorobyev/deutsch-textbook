@@ -1,0 +1,98 @@
+# Delayed probe family 2 of 3 — ONE competence: sorting a plan's conditions by
+# expectancy cold — wenn for the certain or scheduled case (its temporal reading
+# included), falls only for the bare eventuality. Three parallel cloze variants, each
+# a two-line plan with two gaps, served in authoring order across the 2/7/21 delays —
+# one retention curve over one asymmetry. Cloze is legitimate here because the choice
+# surfaces *inside* the gap (the B1.7/B1.8 family-1 precedent: the confusion is which
+# word, not a position), and the instruction names both candidates, so the falls-trap
+# on the certain-case gap is live — a translate could not keep it live, because the
+# probed error direction (falls on a scheduled event) is one no source prompt
+# provokes. The asymmetry decides the grading, exactly as the primary cloze teaches:
+# only the temporal/certain gap is forced ({{Wenn}}), because falls has no temporal
+# reading; the eventuality gap accepts both ({{Falls|Wenn}}), since wenn can always
+# stand in for falls and a probe with three lifetime stages must not fail correct
+# German.
+# Content pairings fresh: Test + vorbei and Ergebnis + schlecht (Ergebnis pairs
+# kommen in this unit's deck; Test pairs abgeben in the pretest — different frame),
+# Hausaufgaben + fertig and Lehrerin + schicken (Hausaufgaben pairs machen elsewhere;
+# the schicken pairing occurs nowhere), Computer + funktionieren, Sommer + kommen,
+# Park + lernen (none occurs) — checked by grepping each noun and verb across
+# content/, not by re-reading this list. No surface reuses the practice set's
+# Unterricht + enden, Schule + zumachen or Abendkurs + voll frames.
+# `outcomes: [plan-formulieren]` is deliberate and it is what arms this family: the
+# can-do is "einen Plan mit Bedingungen formulieren", and the expectancy choice is
+# what a plan's conditions run on. The practice items that build those conditions
+# (cloze-wenn-oder-falls, mc-falls-erwartung, uebersetzen-falls-antwort,
+# uebersetzen-vorfeld-falls) declare this outcome — and so do lesen-aushang and
+# schreiben-plan, because outcome-keyed arming cannot look inside an item: the
+# 2/7/21 clock may start from a comprehension attempt or the open writing task
+# (P19-4). Each of the two other families declares a different outcome, because two
+# families sharing one would arm identically and fire a probe at material never
+# practised.
+topic: lernen-zukunft
+role: probe
+title:
+  en: "Delayed check — wenn or falls in the plan"
+  ru: "Отложенная проверка — wenn или falls в плане"
+  uk: "Відкладена перевірка — wenn чи falls у плані"
+  de: "Kontrolle mit Abstand — wenn oder falls im Plan"
+items:
+  - id: variant-a
+    outcomes: [plan-formulieren]
+    type: cloze
+    focus: falls-wenn
+    instruction:
+      en: "wenn or falls? The first event is certain — the test is on the calendar; the second is a mere possibility. One of the two gaps allows both words."
+      ru: "wenn или falls? Первое событие наверняка случится — тест стоит в календаре; второе лишь возможно. Одна из двух лакун допускает оба слова."
+      uk: "wenn чи falls? Перша подія напевно станеться — тест стоїть у календарі; друга лише можлива. Одна з двох лакун допускає обидва слова."
+      de: "wenn oder falls? Das erste Ereignis ist sicher — der Test steht im Kalender; das zweite ist bloß möglich. Eine der zwei Lücken erlaubt beide Wörter."
+    text: "{{Wenn}} der Test am Freitag vorbei ist, mache ich am Wochenende gar nichts. {{Falls|Wenn}} das Ergebnis schlecht ist, übe ich die Grammatik noch einmal."
+    translation:
+      en: "When the test is over on Friday, I will do nothing at all at the weekend. In case the result is bad, I will practise the grammar once more."
+      ru: "Когда тест в пятницу закончится, в выходные я не буду делать вообще ничего. Если результат вдруг окажется плохим, я ещё раз отработаю грамматику."
+      uk: "Коли тест у п'ятницю закінчиться, на вихідних я не робитиму взагалі нічого. Якщо результат раптом виявиться поганим, я ще раз відпрацюю граматику."
+    explain:
+      en: "The asymmetry is what this check watches. The test will certainly be over on Friday — a scheduled event, and falls has no temporal reading at all, so only wenn fits. The bad result is a case the plan merely covers: falls is the precise signal, but wenn stays grammatical there, because wenn can always stand in for falls — never the other way round."
+      ru: "Эта проверка следит за асимметрией. Тест в пятницу закончится наверняка — событие по расписанию, а у falls временно́го прочтения нет вовсе, поэтому подходит только wenn. Плохой результат — случай, который план лишь страхует: falls — точный сигнал, но wenn там остаётся грамматичным, потому что wenn всегда может заменить falls — и никогда наоборот."
+      uk: "Ця перевірка стежить за асиметрією. Тест у п'ятницю закінчиться напевно — подія за розкладом, а в falls часового прочитання немає взагалі, тому пасує лише wenn. Поганий результат — випадок, який план лише страхує: falls — точний сигнал, але wenn там лишається граматичним, бо wenn завжди може замінити falls — і ніколи навпаки."
+      de: "Diese Kontrolle beobachtet die Asymmetrie. Der Test ist am Freitag sicher vorbei — ein Ereignis nach Plan, und falls hat gar keine zeitliche Lesart, also passt nur wenn. Das schlechte Ergebnis ist ein Fall, den der Plan bloß absichert: falls ist das präzise Signal, aber wenn bleibt dort grammatisch, denn wenn kann falls immer ersetzen — nie umgekehrt."
+
+  - id: variant-b
+    outcomes: [plan-formulieren]
+    type: cloze
+    focus: falls-wenn
+    instruction:
+      en: "wenn or falls? The first event is certain — the homework will get done; the second is a mere possibility. One of the two gaps allows both words."
+      ru: "wenn или falls? Первое событие наверняка случится — домашняя работа будет сделана; второе лишь возможно. Одна из двух лакун допускает оба слова."
+      uk: "wenn чи falls? Перша подія напевно станеться — домашню роботу буде зроблено; друга лише можлива. Одна з двох лакун допускає обидва слова."
+      de: "wenn oder falls? Das erste Ereignis ist sicher — die Hausaufgaben werden fertig; das zweite ist bloß möglich. Eine der zwei Lücken erlaubt beide Wörter."
+    text: "{{Wenn}} ich mit den Hausaufgaben fertig bin, schicke ich sie der Lehrerin. {{Falls|Wenn}} mein Computer nicht funktioniert, bringe ich sie am Montag mit."
+    translation:
+      en: "When I am done with the homework, I will send it to the teacher. In case my computer does not work, I will bring it along on Monday."
+      ru: "Когда я закончу домашнюю работу, я отправлю её учительнице. Если мой компьютер вдруг не заработает, я принесу её с собой в понедельник."
+      uk: "Коли я закінчу домашню роботу, я надішлю її вчительці. Якщо мій комп'ютер раптом не запрацює, я принесу її з собою в понеділок."
+    explain:
+      en: "Finishing the homework is the expected course of events — wenn's home ground, with its temporal 'when' intact; falls there would claim the finishing itself is in doubt. The broken computer is a genuine eventuality: falls flags it precisely, and wenn is also accepted, because wenn covers falls's territory — the substitution only ever works in that one direction."
+      ru: "Доделанная домашняя работа — ожидаемый ход событий, родная территория wenn с его временны́м «когда»; falls там объявило бы сомнительным само завершение. Сломанный компьютер — подлинная эвентуальность: falls помечает её точно, и wenn тоже принимается, потому что wenn покрывает территорию falls — замена работает только в эту сторону."
+      uk: "Дороблена домашня робота — очікуваний хід подій, рідна територія wenn з його часовим «коли»; falls там оголосило б сумнівним саме завершення. Зламаний комп'ютер — справжня можливість: falls позначає її точно, і wenn теж приймається, бо wenn покриває територію falls — заміна працює лише в цей бік."
+      de: "Die fertigen Hausaufgaben sind der erwartete Lauf der Dinge — wenns Heimatboden, samt der zeitlichen Lesart; ein falls dort würde das Fertigwerden selbst anzweifeln. Der kaputte Computer ist eine echte Eventualität: falls markiert sie präzise, und wenn wird ebenfalls akzeptiert, denn wenn deckt falls' Gebiet ab — der Tausch funktioniert nur in diese eine Richtung."
+
+  - id: variant-c
+    outcomes: [plan-formulieren]
+    type: cloze
+    focus: falls-wenn
+    instruction:
+      en: "wenn or falls? The first event is certain — the season will come; the second is a mere possibility. One of the two gaps allows both words."
+      ru: "wenn или falls? Первое событие наверняка случится — время года наступит; второе лишь возможно. Одна из двух лакун допускает оба слова."
+      uk: "wenn чи falls? Перша подія напевно станеться — пора року настане; друга лише можлива. Одна з двох лакун допускає обидва слова."
+      de: "wenn oder falls? Das erste Ereignis ist sicher — die Jahreszeit kommt bestimmt; das zweite ist bloß möglich. Eine der zwei Lücken erlaubt beide Wörter."
+    text: "{{Wenn}} der Sommer kommt, lerne ich draußen im Park. {{Falls|Wenn}} es dort zu laut ist, gehe ich früh am Morgen."
+    translation:
+      en: "When the summer comes, I will study outside in the park. In case it is too loud there, I will go early in the morning."
+      ru: "Когда придёт лето, я буду заниматься на улице в парке. Если там вдруг окажется слишком шумно, я буду ходить рано утром."
+      uk: "Коли прийде літо, я вчитимуся надворі в парку. Якщо там раптом буде занадто гучно, я ходитиму рано-вранці."
+    explain:
+      en: "The summer comes every year — the calendar's own certainty, so the first gap belongs to wenn and its temporal reading; falls cannot say 'when'. The noisy park is the case the plan merely survives: falls names that bare possibility, while wenn remains correct there too — the one-way substitution is the whole lesson this probe re-asks."
+      ru: "Лето приходит каждый год — собственная уверенность календаря, поэтому первая лакуна принадлежит wenn с его временны́м прочтением; falls не умеет значить «когда». Шумный парк — случай, который план просто переживает: falls называет эту голую возможность, а wenn там тоже верно — односторонняя замена и есть урок, который проверка задаёт заново."
+      uk: "Літо приходить щороку — власна впевненість календаря, тому перша лакуна належить wenn з його часовим прочитанням; falls не вміє значити «коли». Гучний парк — випадок, який план просто переживає: falls називає цю голу можливість, а wenn там теж правильне — одностороння заміна і є урок, який перевірка ставить заново."
+      de: "Der Sommer kommt jedes Jahr — die Gewissheit des Kalenders selbst, also gehört die erste Lücke wenn und seiner zeitlichen Lesart; falls kann nicht „wann“ bedeuten. Der laute Park ist der Fall, den der Plan bloß übersteht: falls benennt diese bloße Möglichkeit, und wenn bleibt dort ebenfalls richtig — der Einweg-Tausch ist die ganze Lektion, die diese Kontrolle neu stellt."

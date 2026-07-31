@@ -1,0 +1,282 @@
+# B1.9 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a school notice read cold, the adviser's recommendation
+# heard once, a dictation of the recommendation's falls-line, and the open tasks the
+# outcomes claim (the written plan with conditions, the three goals said aloud, the
+# course choice defended). Open tasks are minimal ceremony: attempt → model → done;
+# `requirements` and `checklist` are guidance for comparing your own production against
+# the model — the app cannot verify free production, so it charges no steps for
+# feedback it cannot give.
+# Tag notes. lesen-aushang stays untagged: all three options are well-formed, so a
+# wrong pick is a comprehension error about what the notice says, never a falls/wenn
+# error — a false tag would send expectancy training after a confusion the learner does
+# not have. hoeren-beratung stays untagged (following an adviser's recommendation is
+# genuinely mixed comprehension). hoeren-diktat stays untagged too, deviating from
+# B1.8's tagged dictation deliberately: there the typed umlaut WAS the tag's
+# substance, while here no typed decision separates falls from wenn — the learner
+# hears Falls and merely transcribes it, so a typo must not be logged as an
+# expectancy error. The write and speak tasks stay untagged — unverified production
+# must not feed the weakness signal. The two translate items are tagged: each grades
+# one nameable confusion in a fresh frame (the second-subject damit, the ohne-clause
+# with zu inside a separable verb).
+# Outcome discipline continues the primary set's arming channels (probe families arm
+# by outcome, src/lib/probes.ts): purpose-clause work on ziele-begruenden, the
+# falls-condition work on plan-formulieren, the zu-family and the counselling
+# comprehension on beratung-verstehen. As in B1.6–B1.8, outcome-keyed arming cannot
+# look inside an item, so the 2/7/21 clock may start from a comprehension attempt or
+# an open task rather than a graded production (P19-4).
+topic: lernen-zukunft
+role: practice
+title:
+  en: "Production — hear the recommendation, justify the goals, write the plan"
+  ru: "Продукция — услышать рекомендацию, обосновать цели, написать план"
+  uk: "Продукція — почути рекомендацію, обґрунтувати цілі, написати план"
+  de: "Produktion — die Empfehlung hören, die Ziele begründen, den Plan schreiben"
+items:
+  - id: lesen-aushang
+    outcomes: [plan-formulieren]
+    type: mc
+    prompt: "An der Tür der Sprachschule hängt ein Zettel: „Der neue Abendkurs beginnt am ersten September. Die Anmeldung ist bis Ende August im Büro möglich. Falls der Abendkurs schon voll ist, hat der Kurs am Samstag noch freie Plätze. Ohne Unterschrift ist eine Anmeldung nicht gültig.“ — Was können Sie tun, falls der Abendkurs schon voll ist?"
+    options:
+      - "Den Kurs am Samstag nehmen."
+      - "Bis zum nächsten September warten."
+      - "Sich per E-Mail anmelden."
+    correct: 0
+    translation:
+      en: "A note hangs on the language school's door: \"The new evening course starts on the first of September. Registration is possible at the office until the end of August. In case the evening course is already full, the Saturday course still has free places. Without a signature a registration is not valid.\" — What can you do in case the evening course is already full?"
+      ru: "На двери языковой школы висит записка: «Новый вечерний курс начинается первого сентября. Запись возможна в офисе до конца августа. Если вечерний курс уже заполнен, в субботнем курсе ещё есть свободные места. Без подписи запись недействительна». — Что вы можете сделать, если вечерний курс уже заполнен?"
+      uk: "На дверях мовної школи висить записка: «Новий вечірній курс починається першого вересня. Запис можливий в офісі до кінця серпня. Якщо вечірній курс уже заповнений, у суботньому курсі ще є вільні місця. Без підпису запис недійсний». — Що ви можете зробити, якщо вечірній курс уже заповнений?"
+    explain:
+      en: "The falls-sentence is the notice's own plan B, and reading it means attaching the consequence to its condition: full evening course → free places on Saturday. Waiting a whole year is proposed nowhere, and the last sentence rules the third option out from the other side — registration happens at the office with a signature, so e-mail cannot replace it. A plan's conditions are read exactly the way they are written: one case, one move."
+      ru: "Фраза с falls — собственный план Б этой записки, и прочитать её значит привязать следствие к условию: вечерний курс полон → в субботнем есть места. Ждать целый год не предлагается нигде, а последнее предложение закрывает третий вариант с другой стороны: запись происходит в офисе с подписью, и почта её не заменит. Условия плана читаются ровно так, как написаны: один случай — один ход."
+      uk: "Фраза з falls — власний план Б цієї записки, і прочитати її означає прив'язати наслідок до умови: вечірній курс повний → у суботньому є місця. Чекати цілий рік не пропонується ніде, а останнє речення закриває третій варіант з іншого боку: запис відбувається в офісі з підписом, і пошта його не замінить. Умови плану читаються рівно так, як написані: один випадок — один хід."
+      de: "Der falls-Satz ist der Plan B des Zettels selbst, und ihn zu lesen heißt, die Folge an ihre Bedingung zu hängen: Abendkurs voll → freie Plätze am Samstag. Ein ganzes Jahr zu warten schlägt niemand vor, und der letzte Satz schließt die dritte Option von der anderen Seite aus: Angemeldet wird im Büro mit Unterschrift, die E-Mail ersetzt das nicht. Die Bedingungen eines Plans liest man genau so, wie sie dastehen: ein Fall, ein Zug."
+
+  - id: hoeren-beratung
+    outcomes: [beratung-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "The adviser's recommendation, heard once — listen for what Marta should do in case the evening course is already full."
+      ru: "Рекомендация консультантки, услышанная один раз, — слушайте, что Марта должна сделать, если вечерний курс уже заполнен."
+      uk: "Рекомендація консультантки, почута один раз, — слухайте, що Марта має зробити, якщо вечірній курс уже заповнений."
+      de: "Die Empfehlung der Beraterin, einmal gehört — achte darauf, was Marta tun soll, falls der Abendkurs schon voll ist."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Beraterin", text: "Also, mein Vorschlag: Nehmen Sie den Abendkurs ab September, damit Sie neben der Arbeit weiterlernen können. Falls der Kurs schon voll ist, melden Sie sich bitte bis Freitag bei mir im Büro — wir finden dann zusammen einen anderen Termin." }
+    question: "Was soll Marta tun, falls der Abendkurs schon voll ist?"
+    options:
+      - "Sich bis Freitag im Büro melden."
+      - "Sofort den Kurs am Samstag nehmen."
+      - "Bis zum nächsten September warten."
+    correct: 0
+    translation:
+      en: "What should Marta do in case the evening course is already full?"
+      ru: "Что Марта должна сделать, если вечерний курс уже заполнен?"
+      uk: "Що Марта має зробити, якщо вечірній курс уже заповнений?"
+    explain:
+      en: "The recommendation comes as the article promised: a main point plus the case it covers. The main point is the evening course with its purpose (damit Sie … weiterlernen können); the falls-sentence then names the fallback — melden Sie sich bis Freitag bei mir im Büro. The Saturday course is Marta's own plan from her notes, not what the adviser says here — which is exactly why listening beats remembering. Waiting a year is proposed by nobody."
+      ru: "Рекомендация приходит так, как обещала статья: главный пункт плюс случай, который он покрывает. Главный пункт — вечерний курс с его целью (damit Sie … weiterlernen können); фраза с falls затем называет запасной ход — melden Sie sich bis Freitag bei mir im Büro. Субботний курс — собственный план Марты из её записей, а не то, что консультантка говорит здесь, — именно поэтому слушать надёжнее, чем вспоминать. Ждать год не предлагает никто."
+      uk: "Рекомендація приходить так, як обіцяла стаття: головний пункт плюс випадок, який він покриває. Головний пункт — вечірній курс із його метою (damit Sie … weiterlernen können); фраза з falls потім називає запасний хід — melden Sie sich bis Freitag bei mir im Büro. Суботній курс — власний план Марти з її нотаток, а не те, що консультантка каже тут, — саме тому слухати надійніше, ніж згадувати. Чекати рік не пропонує ніхто."
+      de: "Die Empfehlung kommt, wie der Artikel es versprochen hat: ein Hauptpunkt plus der Fall, den er abdeckt. Der Hauptpunkt ist der Abendkurs mit seinem Zweck (damit Sie … weiterlernen können); der falls-Satz nennt dann den Ausweg — melden Sie sich bis Freitag bei mir im Büro. Der Samstagskurs ist Martas eigener Plan aus ihren Notizen, nicht das, was die Beraterin hier sagt — genau darum schlägt Zuhören das Erinnern. Ein Jahr zu warten schlägt niemand vor."
+
+  - id: hoeren-diktat
+    outcomes: [beratung-verstehen]
+    type: listen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Falls der Abendkurs voll ist, nehmen Sie den Samstagskurs."
+    translation:
+      en: "In case the evening course is full, take the Saturday course."
+      ru: "Если вечерний курс окажется заполнен, берите субботний курс."
+      uk: "Якщо вечірній курс виявиться заповненим, беріть суботній курс."
+    explain:
+      en: "Nine words carry the whole recommendation pattern. Falls opens the eventuality and sends ist to the end of its clause; the fronted condition then fills position 1, so the main clause starts verb-first — nehmen Sie, never Sie nehmen. Two capitals do quiet work: Falls opens the sentence, and der Samstagskurs is a noun, one compound word with the day inside it."
+      ru: "Девять слов несут весь образец рекомендации. Falls открывает эвентуальность и отправляет ist в конец своего придаточного; вынесенное вперёд условие занимает первую позицию, поэтому главное предложение начинается с глагола — nehmen Sie, и никогда Sie nehmen. Две заглавные буквы делают тихую работу: Falls открывает предложение, а der Samstagskurs — существительное, одно сложное слово с днём недели внутри."
+      uk: "Дев'ять слів несуть увесь зразок рекомендації. Falls відкриває можливість і відправляє ist у кінець свого підрядного; винесена наперед умова займає першу позицію, тому головне речення починається з дієслова — nehmen Sie, і ніколи Sie nehmen. Дві великі літери роблять тиху роботу: Falls відкриває речення, а der Samstagskurs — іменник, одне складне слово з днем тижня всередині."
+      de: "Neun Wörter tragen das ganze Empfehlungsmuster. Falls eröffnet die Eventualität und schickt ist ans Ende seines Nebensatzes; die vorangestellte Bedingung besetzt Position 1, also beginnt der Hauptsatz mit dem Verb — nehmen Sie, niemals Sie nehmen. Zwei Großbuchstaben arbeiten leise mit: Falls eröffnet den Satz, und der Samstagskurs ist ein Nomen, ein Kompositum mit dem Wochentag darin."
+
+  - id: uebersetzen-damit-wand
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — the clause answers wozu?: count the subjects before you choose its form. For 'hang' take hängen, for 'see' sehen."
+      ru: "Переведите — придаточное отвечает на wozu?: сосчитайте подлежащие, прежде чем выбрать его форму. Для «повесить» возьмите hängen, для «видеть» — sehen."
+      uk: "Перекладіть — підрядне відповідає на wozu?: порахуйте підмети, перш ніж вибрати його форму. Для «повісити» візьміть hängen, для «бачити» — sehen."
+      de: "Übersetze — der Nebensatz antwortet auf wozu?: Zähl die Subjekte, bevor du seine Form wählst. Für das Aufhängen nimm hängen, für das Sehen sehen."
+    prompt_en: "I am hanging the plan on the wall so that the whole family sees it."
+    prompt_ru: "Я вешаю план на стену, чтобы вся семья его видела."
+    prompt_uk: "Я вішаю план на стіну, щоб уся сім'я його бачила."
+    answer: "Ich hänge den Plan an die Wand, damit die ganze Familie ihn sieht."
+    accept:
+      # Pronoun before or after the subject in the Mittelfeld — both neutral German.
+      - "Ich hänge den Plan an die Wand, damit ihn die ganze Familie sieht."
+    key_tokens: ["damit", "sieht"]
+    explain:
+      en: "Graded are the two ends of the forced form: damit and the clause-final sieht. I hang, the family sees — two subjects, so the subjectless um … zu has no room here (um die Familie ihn zu sehen is exactly the impossible sentence). Inside the damit-clause the pronoun ihn may stand on either side of the subject. The direction an die Wand is carrier: hängen aims at a target, so the two-way preposition takes the accusative."
+      ru: "Оцениваются два конца обязательной формы: damit и sieht в самом конце. Вешаю я, видит семья — два подлежащих, поэтому бессубъектному um … zu здесь нет места (um die Familie ihn zu sehen — ровно то невозможное предложение). Внутри придаточного местоимение ihn может стоять по обе стороны от подлежащего. Направление an die Wand — носитель: hängen целится в точку, поэтому предлог двойного управления берёт аккузатив."
+      uk: "Оцінюються два кінці обов'язкової форми: damit і sieht у самому кінці. Вішаю я, бачить сім'я — два підмети, тому безпідметовому um … zu тут немає місця (um die Familie ihn zu sehen — рівно те неможливе речення). Усередині підрядного займенник ihn може стояти по обидва боки від підмета. Напрямок an die Wand — носій: hängen цілиться в точку, тому прийменник подвійного керування бере акузатив."
+      de: "Bewertet werden die zwei Enden der erzwungenen Form: damit und das satzfinale sieht. Ich hänge, die Familie sieht — zwei Subjekte, also hat das subjektlose um … zu hier keinen Raum (um die Familie ihn zu sehen ist genau der unmögliche Satz). Im damit-Satz darf das Pronomen ihn auf beiden Seiten des Subjekts stehen. Die Richtung an die Wand ist Träger: hängen zielt auf einen Punkt, also nimmt die Wechselpräposition den Akkusativ."
+
+  - id: uebersetzen-ohne-nachdenken
+    outcomes: [beratung-verstehen]
+    type: translate
+    focus: ohne-statt-zu
+    instruction:
+      en: "Translate — fold the 'without …' part into an ohne … zu clause. For 'think (something over)' take nachdenken."
+      ru: "Переведите — сверните часть «не …» в оборот с ohne … zu. Для «раздумывать» возьмите nachdenken."
+      uk: "Перекладіть — згорніть частину «не …» у зворот з ohne … zu. Для «роздумувати» візьміть nachdenken."
+      de: "Übersetze — falte den Teil mit „ohne“ in einen ohne … zu-Satz. Für das Nachdenken nimm nachdenken."
+    prompt_en: "Marta answers the questions without thinking for long."
+    prompt_ru: "Марта отвечает на вопросы, долго не раздумывая."
+    prompt_uk: "Марта відповідає на запитання, довго не роздумуючи."
+    answer: "Marta beantwortet die Fragen, ohne lange nachzudenken."
+    accept:
+      # The fronted ohne-clause fills position 1, main clause verb-first.
+      - "Ohne lange nachzudenken, beantwortet Marta die Fragen."
+      # antworten auf renders the same move with the A2 frame.
+      - "Marta antwortet auf die Fragen, ohne lange nachzudenken."
+      - "Ohne lange nachzudenken, antwortet Marta auf die Fragen."
+    key_tokens: ["ohne", "Ohne", "nachzudenken"]
+    explain:
+      en: "Graded are ohne and the shape of nachzudenken. The English gerund 'without thinking' carries no particle, so the hand drops the zu — but the German clause is built on it, and in a separable verb the zu moves inside: nach + zu + denken, one word, at the very end of its clause. The subjects match, which is the family's entry condition: the one who answers is the one who skips the deliberating."
+      ru: "Оцениваются ohne и форма nachzudenken. Деепричастие «не раздумывая» обходится без частиц — поэтому рука теряет zu. Но немецкий оборот на нём построен, и у отделяемого глагола zu встаёт внутрь: nach + zu + denken, одно слово, в самом конце оборота. Подлежащие совпадают — это входное условие всей семьи: кто отвечает, тот и не раздумывает."
+      uk: "Оцінюються ohne і форма nachzudenken. Дієприслівник «не роздумуючи» обходиться без часток — тому рука губить zu. Але німецький зворот на ньому побудований, і у відокремлюваного дієслова zu стає всередину: nach + zu + denken, одне слово, у самому кінці звороту. Підмети збігаються — це вхідна умова всієї родини: хто відповідає, той і не роздумує."
+      de: "Bewertet werden ohne und die Gestalt von nachzudenken. Andere Sprachen kommen an dieser Stelle ohne Partikel aus, also lässt die Hand das zu fallen — aber der deutsche Satz ist darauf gebaut, und beim trennbaren Verb wandert das zu nach innen: nach + zu + denken, ein Wort, ganz am Ende seines Satzes. Die Subjekte stimmen überein — die Eintrittsbedingung der Familie: Wer antwortet, ist dieselbe Person, die nicht lange überlegt."
+
+  - id: schreiben-plan
+    outcomes: [plan-formulieren]
+    type: write
+    instruction:
+      en: "Write the plan yourself — the list shows what to check it against."
+      ru: "Напишите план сами — список подскажет, что в нём проверить."
+      uk: "Напишіть план самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Plan selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "The counselling session is over: the adviser has recommended the evening course from September. Write your learning plan for the autumn: name your goal and what you are learning for, say what you will do every week, and plan for at least one case that may go differently — a full course, a cancelled lesson."
+      ru: "Консультация позади: консультантка порекомендовала вечерний курс с сентября. Напишите свой учебный план на осень: назовите цель и то, ради чего вы учитесь, скажите, что вы будете делать каждую неделю, и заложите в план хотя бы один случай, который может пойти иначе, — заполненный курс, отменённое занятие."
+      uk: "Консультація позаду: консультантка порекомендувала вечірній курс із вересня. Напишіть свій навчальний план на осінь: назвіть мету і те, заради чого ви вчитеся, скажіть, що ви робитимете щотижня, і закладіть у план хоча б один випадок, який може піти інакше, — заповнений курс, скасоване заняття."
+      de: "Die Beratung ist vorbei: Die Beraterin hat den Abendkurs ab September empfohlen. Schreib deinen Lernplan für den Herbst: Nenn dein Ziel und wozu du lernst, sag, was du jede Woche tun wirst, und plane mindestens einen Fall ein, der anders kommen kann — einen vollen Kurs, eine ausgefallene Stunde."
+    goal:
+      en: "A plan that justifies its goal, commits to concrete steps, and survives its eventualities — the writing this unit asks of you."
+      ru: "План, который обосновывает цель, обещает конкретные шаги и переживает свои эвентуальности, — то самое письмо, которого ждёт эта глава."
+      uk: "План, який обґрунтовує мету, обіцяє конкретні кроки і переживає свої можливості, — те саме письмо, якого чекає цей розділ."
+      de: "Ein Plan, der sein Ziel begründet, konkrete Schritte zusagt und seine Eventualitäten übersteht — das Schreiben dieser Einheit."
+    requirements:
+      - en: "Justify the goal with a purpose clause and run the subject test: um … zu where you do both things yourself (um im Beruf sicherer zu sprechen), damit the moment a second subject appears (damit die Empfehlung zu meinem Alltag passt)."
+        ru: "Обоснуйте цель придаточным цели и прогоните тест подлежащих: um … zu там, где вы делаете и то и другое сами (um im Beruf sicherer zu sprechen), damit — как только появляется второе подлежащее (damit die Empfehlung zu meinem Alltag passt)."
+        uk: "Обґрунтуйте мету підрядним мети і проженіть тест підметів: um … zu там, де ви робите і те й інше самі (um im Beruf sicherer zu sprechen), damit — щойно з'являється другий підмет (damit die Empfehlung zu meinem Alltag passt)."
+        de: "Begründe das Ziel mit einem Finalsatz und mach den Subjekttest: um … zu, wo du beides selbst tust (um im Beruf sicherer zu sprechen), damit, sobald ein zweites Subjekt auftaucht (damit die Empfehlung zu meinem Alltag passt)."
+      - en: "Keep the commitments in the plain present or in A2's werden + infinitive: Ab Montag werde ich … wiederholen — a plan needs no new tense."
+        ru: "Держите обещания в простом презенсе или в werden + инфинитив из A2: Ab Montag werde ich … wiederholen — новому времени в плане делать нечего."
+        uk: "Тримайте обіцянки в простому презенсі або в werden + інфінітив з A2: Ab Montag werde ich … wiederholen — новому часові в плані нема чого робити."
+        de: "Lass die Zusagen im Präsens oder im werden + Infinitiv aus A2: Ab Montag werde ich … wiederholen — ein Plan braucht keine neue Zeitform."
+      - en: "Sort the conditions by expectancy: wenn for what the calendar already holds (Wenn der Kurs beginnt, …), falls for the mere eventuality the plan must survive (Falls der Kurs voll ist, …) — and after a fronted condition the main clause starts with its verb."
+        ru: "Рассортируйте условия по ожиданию: wenn — для того, что уже стоит в календаре (Wenn der Kurs beginnt, …), falls — для голой эвентуальности, которую план должен пережить (Falls der Kurs voll ist, …), — и после вынесенного вперёд условия главное предложение начинается с глагола."
+        uk: "Розсортуйте умови за очікуванням: wenn — для того, що вже стоїть у календарі (Wenn der Kurs beginnt, …), falls — для голої можливості, яку план мусить пережити (Falls der Kurs voll ist, …), — і після винесеної наперед умови головне речення починається з дієслова."
+        de: "Sortiere die Bedingungen nach der Erwartung: wenn für das, was schon im Kalender steht (Wenn der Kurs beginnt, …), falls für die bloße Eventualität, die der Plan überstehen muss (Falls der Kurs voll ist, …) — und nach einer vorangestellten Bedingung beginnt der Hauptsatz mit dem Verb."
+      - en: "Name at least one discipline move with the zu-family: statt … zu for the alternative you skip, ohne … zu for what you refuse to do blindly — zu + infinitive at the clause end, same subject on both sides."
+        ru: "Назовите хотя бы один дисциплинирующий ход оборотом семьи с zu: statt … zu — для альтернативы, которую вы пропускаете, ohne … zu — для того, чего вы не делаете вслепую; zu + инфинитив в конце оборота, подлежащее общее."
+        uk: "Назвіть хоча б один дисциплінарний хід зворотом родини з zu: statt … zu — для альтернативи, яку ви пропускаєте, ohne … zu — для того, чого ви не робите наосліп; zu + інфінітив у кінці звороту, підмет спільний."
+        de: "Nenn mindestens einen Disziplin-Zug mit der zu-Familie: statt … zu für die Alternative, die ausbleibt, ohne … zu für das, was du nicht blind tust — zu + Infinitiv am Satzende, dasselbe Subjekt auf beiden Seiten."
+    min_words: 60
+    model_answer: "Mein Plan für den Herbst: Ich mache ab September den Abendkurs, um im Beruf sicherer zu sprechen. In der ersten Stunde erzähle ich der Kursleiterin von meiner Arbeit, damit der Unterricht zu meinem Alltag passt. Ab Montag werde ich jeden Abend zwanzig Minuten Grammatik wiederholen, statt nur Videos zu schauen. Wenn der Kurs im September beginnt, habe ich noch sechs Wochen für die Vorbereitung. Falls im Abendkurs kein Platz mehr frei ist, nehme ich den Kurs am Samstag. Und ich melde mich nicht an, ohne vorher die Termine zu überprüfen."
+    model_translation:
+      en: "My plan for the autumn: from September I am doing the evening course in order to speak more confidently at work. In the first lesson I will tell the instructor about my job, so that the classes fit my everyday life. From Monday on I will revise grammar for twenty minutes every evening instead of just watching videos. When the course starts in September, I still have six weeks for preparation. In case there is no place left in the evening course, I will take the Saturday course. And I will not register without checking the dates first."
+      ru: "Мой план на осень: с сентября я иду на вечерний курс, чтобы увереннее говорить на работе. На первом занятии я расскажу руководительнице курса о своей работе, чтобы занятия подходили к моим будням. С понедельника я буду каждый вечер по двадцать минут повторять грамматику, вместо того чтобы просто смотреть видео. Когда курс в сентябре начнётся, у меня ещё шесть недель на подготовку. Если в вечернем курсе вдруг не окажется мест, возьму субботний курс. И я не запишусь, не проверив сначала даты."
+      uk: "Мій план на осінь: із вересня я йду на вечірній курс, щоб упевненіше говорити на роботі. На першому занятті я розповім керівниці курсу про свою роботу, щоб заняття пасували до моїх буднів. З понеділка я щовечора по двадцять хвилин повторюватиму граматику, замість того щоб просто дивитися відео. Коли курс у вересні почнеться, я маю ще шість тижнів на підготовку. Якщо у вечірньому курсі раптом не буде місць, візьму суботній курс. І я не запишуся, не перевіривши спочатку дати."
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The goal wears um … zu because one person learns and speaks; the second sentence switches to damit the moment der Unterricht becomes the subject. The commitments run on the present and one werden. Then the two conditions sit on opposite ends of the expectancy dial — wenn for the calendar, falls for the full course — and the discipline lines close with the zu-family, statt … zu and ohne … zu, each with its infinitive at the wall."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Цель носит um … zu, потому что учится и говорит один человек; второе предложение переключается на damit, как только подлежащим становится der Unterricht. Обещания идут в презенсе и одном werden. Дальше два условия сидят на противоположных концах шкалы ожидания — wenn для календаря, falls для полного курса, — а строки дисциплины закрывает семья с zu: statt … zu и ohne … zu, каждый со своим инфинитивом у стены."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Мета носить um … zu, бо вчиться і говорить одна людина; друге речення перемикається на damit, щойно підметом стає der Unterricht. Обіцянки йдуть у презенсі та одному werden. Далі дві умови сидять на протилежних кінцях шкали очікування — wenn для календаря, falls для повного курсу, — а рядки дисципліни закриває родина з zu: statt … zu і ohne … zu, кожен зі своїм інфінітивом біля стіни."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Das Ziel trägt um … zu, weil eine Person lernt und spricht; der zweite Satz wechselt zu damit, sobald der Unterricht zum Subjekt wird. Die Zusagen laufen im Präsens und mit einem werden. Dann sitzen die zwei Bedingungen an den Enden der Erwartungsskala — wenn für den Kalender, falls für den vollen Kurs —, und die Disziplin-Zeilen schließt die zu-Familie: statt … zu und ohne … zu, jeder Infinitiv an der Wand."
+
+  - id: sprechen-ziele
+    outcomes: [ziele-begruenden]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say your three goals aloud, each with its reason — then compare with the model."
+      ru: "Произнесите вслух три цели, каждую с обоснованием, — затем сравните с образцом."
+      uk: "Промовте вголос три цілі, кожну з обґрунтуванням, — потім порівняйте зі зразком."
+      de: "Sag deine drei Ziele laut, jedes mit Begründung — vergleich dann mit dem Muster."
+    prompt:
+      en: "A colleague asks: „Wozu lernst du eigentlich Deutsch?“ Name three learning goals and justify each one — use um … zu where you do both things yourself, damit where a second person or thing enters, and give at least one goal a condition."
+      ru: "Коллега спрашивает: „Wozu lernst du eigentlich Deutsch?“ Назовите три учебные цели и обоснуйте каждую: um … zu — там, где вы делаете и то и другое сами, damit — где появляется второе лицо или предмет, и хотя бы одной цели дайте условие."
+      uk: "Колега питає: „Wozu lernst du eigentlich Deutsch?“ Назвіть три навчальні цілі й обґрунтуйте кожну: um … zu — там, де ви робите і те й інше самі, damit — де з'являється друга особа чи предмет, і хоча б одній цілі дайте умову."
+      de: "Ein Kollege fragt: „Wozu lernst du eigentlich Deutsch?“ Nenn drei Lernziele und begründe jedes — um … zu, wo du beides selbst tust, damit, wo eine zweite Person oder Sache ins Spiel kommt, und gib mindestens einem Ziel eine Bedingung."
+    goal:
+      en: "Three goals, each justified with a purpose clause that passes the subject test — the spoken answer to wozu?."
+      ru: "Три цели, каждая обоснована придаточным цели, которое проходит тест подлежащих, — устный ответ на wozu?."
+      uk: "Три цілі, кожна обґрунтована підрядним мети, яке проходить тест підметів, — усна відповідь на wozu?."
+      de: "Drei Ziele, jedes mit einem Finalsatz begründet, der den Subjekttest besteht — die gesprochene Antwort auf wozu?."
+    checklist:
+      - en: "Every goal carried a purpose clause: um … zu with no subject of its own where you do both things, damit with its own subject and the verb at the end where someone else enters."
+        ru: "Каждая цель несла придаточное цели: um … zu без собственного подлежащего там, где вы делаете всё сами, damit со своим подлежащим и глаголом в конце — где вступает кто-то другой."
+        uk: "Кожна ціль несла підрядне мети: um … zu без власного підмета там, де ви робите все самі, damit зі своїм підметом і дієсловом у кінці — де вступає хтось інший."
+        de: "Jedes Ziel trug einen Finalsatz: um … zu ohne eigenes Subjekt, wo du beides selbst tust, damit mit eigenem Subjekt und dem Verb am Ende, wo jemand anders ins Spiel kommt."
+      - en: "The zu-infinitive closed its clause — um im Beruf sicherer zu sprechen, never um zu sprechen sicherer — and a separable verb wrapped the zu inside: weiterzulernen."
+        ru: "Инфинитив с zu закрывал свой оборот — um im Beruf sicherer zu sprechen, и никогда um zu sprechen sicherer, — а у отделяемого глагола zu вставало внутрь: weiterzulernen."
+        uk: "Інфінітив із zu закривав свій зворот — um im Beruf sicherer zu sprechen, і ніколи um zu sprechen sicherer, — а у відокремлюваного дієслова zu ставало всередину: weiterzulernen."
+        de: "Der zu-Infinitiv schloss seinen Satz — um im Beruf sicherer zu sprechen, nie um zu sprechen sicherer —, und beim trennbaren Verb saß das zu innen: weiterzulernen."
+      - en: "At least one goal had a condition, sorted by expectancy — wenn for the case on the calendar, falls for the one you merely cover."
+        ru: "Хотя бы у одной цели было условие, рассортированное по ожиданию: wenn — для случая из календаря, falls — для того, который вы лишь страхуете."
+        uk: "Хоча б одна ціль мала умову, розсортовану за очікуванням: wenn — для випадку з календаря, falls — для того, який ви лише страхуєте."
+        de: "Mindestens ein Ziel hatte eine Bedingung, nach Erwartung sortiert — wenn für den Fall im Kalender, falls für den bloß abgesicherten."
+    model_answer: "Gute Frage! Erstens lerne ich Deutsch, um im Beruf sicherer zu telefonieren — viele Kunden sprechen nur Deutsch. Zweitens möchte ich weiterlernen, damit mir die Firma nächstes Jahr mehr Verantwortung gibt. Und drittens lerne ich für die Familie: Wenn wir im Winter meine Schwiegereltern besuchen, möchte ich alles verstehen. Falls der Abendkurs zu schwer wird, nehme ich mir einfach mehr Zeit — aber aufhören will ich nicht."
+    model_translation:
+      en: "Good question! Firstly I am learning German in order to make phone calls more confidently at work — many customers speak only German. Secondly I want to keep learning so that the company gives me more responsibility next year. And thirdly I am learning for the family: when we visit my parents-in-law in the winter, I want to understand everything. In case the evening course gets too hard, I will simply give myself more time — but I do not want to stop."
+      ru: "Хороший вопрос! Во-первых, я учу немецкий, чтобы увереннее говорить по телефону на работе: многие клиенты говорят только по-немецки. Во-вторых, я хочу учиться дальше, чтобы фирма в следующем году дала мне больше ответственности. И в-третьих, я учусь ради семьи: когда мы зимой поедем к моим свёкрам, я хочу всё понимать. Если курс вдруг окажется слишком трудным, я просто дам себе больше времени — но бросать не собираюсь."
+      uk: "Гарне запитання! По-перше, я вчу німецьку, щоб упевненіше розмовляти телефоном на роботі: багато клієнтів говорять лише німецькою. По-друге, я хочу вчитися далі, щоб фірма наступного року дала мені більше відповідальності. І по-третє, я вчуся заради сім'ї: коли ми взимку поїдемо до моїх свекрів, я хочу все розуміти. Якщо курс раптом виявиться занадто важким, я просто дам собі більше часу — але кидати не збираюся."
+    explain:
+      en: "The model makes the checklist's moves in order: an um … zu goal (one person phones and learns), a damit goal the moment die Firma becomes the giver, and a family goal with its wenn-condition — the winter visit is planned, so it is wenn. The falls-line at the end covers the one case nobody expects. If you feel like a second take, listen for the subject test deciding each clause before you say it."
+      ru: "Образец делает ходы чек-листа по порядку: цель с um … zu (звонит и учится один человек), цель с damit — как только дающей стороной становится die Firma, и семейная цель с условием на wenn: зимняя поездка запланирована, поэтому wenn. Строка с falls в конце страхует случай, которого никто не ждёт. Если захотите второй заход, прогоняйте тест подлежащих перед каждой фразой."
+      uk: "Зразок робить ходи чек-листа по порядку: ціль з um … zu (телефонує і вчиться одна людина), ціль з damit — щойно стороною, що дає, стає die Firma, і сімейна ціль з умовою на wenn: зимова поїздка запланована, тому wenn. Рядок із falls наприкінці страхує випадок, якого ніхто не чекає. Якщо захочете другий захід, проганяйте тест підметів перед кожною фразою."
+      de: "Das Muster macht die Züge der Checkliste der Reihe nach: ein um … zu-Ziel (eine Person telefoniert und lernt), ein damit-Ziel, sobald die Firma zur Gebenden wird, und ein Familienziel mit wenn-Bedingung — der Winterbesuch ist geplant, also wenn. Die falls-Zeile am Ende sichert den Fall ab, den niemand erwartet. Magst du einen zweiten Durchgang, lass den Subjekttest jeden Satz entscheiden, bevor du ihn sprichst."
+
+  - id: sprechen-abendkurs
+    outcomes: [ziele-begruenden]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Defend your course choice aloud, in one connected go — then compare with the model."
+      ru: "Защитите свой выбор курса вслух, одним связным заходом, — затем сравните с образцом."
+      uk: "Захистіть свій вибір курсу вголос, одним зв'язним заходом, — потім порівняйте зі зразком."
+      de: "Verteidige deine Kurswahl laut, in einem zusammenhängenden Zug — vergleich dann mit dem Muster."
+    prompt:
+      en: "A friend is surprised: „Warum der Abendkurs? Ein Intensivkurs ist doch viel schneller!“ Justify your choice connectedly: what you chose the evening course for, what you do instead of the faster option, and what you did not decide without."
+      ru: "Друг удивляется: „Warum der Abendkurs? Ein Intensivkurs ist doch viel schneller!“ Обоснуйте свой выбор связно: ради чего вы выбрали вечерний курс, что вы делаете вместо более быстрого варианта и без чего вы не принимали решение."
+      uk: "Друг дивується: „Warum der Abendkurs? Ein Intensivkurs ist doch viel schneller!“ Обґрунтуйте свій вибір зв'язно: заради чого ви обрали вечірній курс, що ви робите замість швидшого варіанта і без чого ви не ухвалювали рішення."
+      de: "Ein Freund wundert sich: „Warum der Abendkurs? Ein Intensivkurs ist doch viel schneller!“ Begründe deine Wahl zusammenhängend: wozu du den Abendkurs gewählt hast, was du statt der schnelleren Variante tust und ohne was du nicht entschieden hast."
+    goal:
+      en: "A connected justification that runs on the unit's three moves — a purpose clause, a statt … zu alternative, an ohne … zu safeguard."
+      ru: "Связное обоснование на трёх ходах главы: придаточное цели, альтернатива со statt … zu, страховка с ohne … zu."
+      uk: "Зв'язне обґрунтування на трьох ходах розділу: підрядне мети, альтернатива зі statt … zu, страховка з ohne … zu."
+      de: "Eine zusammenhängende Begründung auf den drei Zügen der Einheit — Finalsatz, statt … zu-Alternative, ohne … zu-Absicherung."
+    checklist:
+      - en: "The choice was justified with a purpose clause that passes the subject test — um neben der Arbeit weiterzulernen, or damit when another person carries the second half."
+        ru: "Выбор обоснован придаточным цели, которое проходит тест подлежащих: um neben der Arbeit weiterzulernen — или damit, если вторую половину несёт другой человек."
+        uk: "Вибір обґрунтовано підрядним мети, яке проходить тест підметів: um neben der Arbeit weiterzulernen — або damit, якщо другу половину несе інша людина."
+        de: "Die Wahl war mit einem Finalsatz begründet, der den Subjekttest besteht — um neben der Arbeit weiterzulernen, oder damit, wenn eine andere Person die zweite Hälfte trägt."
+      - en: "The rejected alternative stood in a statt … zu clause with its infinitive at the end — statt jeden Vormittag im Kurs zu sitzen — never a bare statt without zu."
+        ru: "Отвергнутая альтернатива стояла в обороте statt … zu с инфинитивом в конце — statt jeden Vormittag im Kurs zu sitzen, — и никогда голое statt без zu."
+        uk: "Відкинута альтернатива стояла у звороті statt … zu з інфінітивом у кінці — statt jeden Vormittag im Kurs zu sitzen, — і ніколи голе statt без zu."
+        de: "Die verworfene Alternative stand in einem statt … zu-Satz mit dem Infinitiv am Ende — statt jeden Vormittag im Kurs zu sitzen —, nie ein nacktes statt ohne zu."
+      - en: "One ohne … zu line showed the decision was not blind — ohne vorher zu fragen / ohne die Termine zu überprüfen — same subject on both sides."
+        ru: "Одна строка с ohne … zu показывала, что решение не было слепым, — ohne vorher zu fragen / ohne die Termine zu überprüfen — с общим подлежащим по обе стороны."
+        uk: "Один рядок з ohne … zu показував, що рішення не було сліпим, — ohne vorher zu fragen / ohne die Termine zu überprüfen — зі спільним підметом по обидва боки."
+        de: "Eine ohne … zu-Zeile zeigte, dass die Entscheidung nicht blind war — ohne vorher zu fragen / ohne die Termine zu überprüfen — mit demselben Subjekt auf beiden Seiten."
+    model_answer: "Ja, ein Intensivkurs ist schneller — aber ich arbeite den ganzen Tag. Ich habe den Abendkurs gewählt, um neben der Arbeit weiterzulernen. Statt jeden Vormittag im Kurs zu sitzen, lerne ich lieber zweimal pro Woche am Abend und wiederhole am Wochenende in Ruhe. Und ich habe mich nicht entschieden, ohne vorher in der Beratung zu fragen: Die Kursleiterin sagt, für mein Ziel reicht der Abendkurs völlig."
+    model_translation:
+      en: "Yes, an intensive course is faster — but I work all day. I chose the evening course in order to keep learning alongside my job. Instead of sitting in class every morning, I prefer to study twice a week in the evening and revise in peace at the weekend. And I did not decide without asking at the counselling session first: the instructor says the evening course is completely enough for my goal."
+      ru: "Да, интенсив быстрее — но я работаю весь день. Я выбрала вечерний курс, чтобы продолжать учиться параллельно с работой. Вместо того чтобы сидеть на занятиях каждое утро, я лучше буду заниматься два раза в неделю вечером и спокойно повторять в выходные. И я не принимала решение, не спросив сначала на консультации: руководительница курса говорит, что для моей цели вечернего курса совершенно достаточно."
+      uk: "Так, інтенсив швидший — але я працюю цілий день. Я обрала вечірній курс, щоб продовжувати вчитися поряд із роботою. Замість того щоб сидіти на заняттях щоранку, я краще займатимуся двічі на тиждень увечері та спокійно повторюватиму на вихідних. І я не ухвалювала рішення, не спитавши спершу на консультації: керівниця курсу каже, що для моєї мети вечірнього курсу цілком досить."
+    explain:
+      en: "The model's three moves are the checklist in order: the purpose clause with the separable weiterzulernen (one subject, so um … zu), the rejected mornings folded into statt … zu with sitzen at the wall, and the safeguard ohne vorher zu fragen. Notice how the argument never needs a new tense — present forms carry the whole plan. A second take is a chance to hear each zu land at the end of its clause."
+      ru: "Три хода образца — это чек-лист по порядку: придаточное цели с отделяемым weiterzulernen (подлежащее одно, поэтому um … zu), отвергнутые утренние занятия, свёрнутые в statt … zu с sitzen у стены, и страховка ohne vorher zu fragen. Заметьте: аргументу не нужно новое время — весь план несут формы презенса. Второй заход — случай услышать, как каждое zu приземляется в конце своего оборота."
+      uk: "Три ходи зразка — це чек-лист по порядку: підрядне мети з відокремлюваним weiterzulernen (підмет один, тому um … zu), відкинуті ранкові заняття, згорнуті в statt … zu із sitzen біля стіни, і страховка ohne vorher zu fragen. Зауважте: аргументу не потрібен новий час — увесь план несуть форми презенса. Другий захід — нагода почути, як кожне zu приземляється в кінці свого звороту."
+      de: "Die drei Züge des Musters sind die Checkliste der Reihe nach: der Finalsatz mit dem trennbaren weiterzulernen (ein Subjekt, also um … zu), die verworfenen Vormittage in statt … zu gefaltet, mit sitzen an der Wand, und die Absicherung ohne vorher zu fragen. Beachte: Das Argument braucht keine neue Zeitform — Präsensformen tragen den ganzen Plan. Ein zweiter Durchgang ist die Gelegenheit, jedes zu am Ende seines Satzes landen zu hören."
