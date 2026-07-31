@@ -87,6 +87,30 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
+- **P20-1 · The A1 exam-practice surface has one entry point and one owner topic** — `/pruefung/a1`
+  is linked only from `/about`: no nav entry, no link from the A1 topic pages, nothing on the
+  progress page. A learner who never opens Über will not find it. Separately, all three sets
+  declare `topic: freizeit-koennen` while their items name outcomes from six topics — accurate for
+  `role: exam-practice` (it is in `CROSS_TOPIC_ROLES`, so any outcome resolves) but the `topic:`
+  field is then a formality that says something untrue. Both are shape questions for the surface
+  rather than defects in it, so they were filed rather than fixed in #128: deciding where exam
+  practice belongs in navigation is a product call, and giving the role a level instead of a topic
+  is a schema change.
+- **P20-2 · Four of the five backfilled A1 grammar points rest on one or two items** —
+  `bun scripts/grammar-coverage.ts A1` reports 22/22, 0 late, and the bar it applies is
+  *at least one* non-preview `practice`/`drill` item per tag. Counted against A1 sets, `du-sie` and
+  `perfekt-satzklammer` have exactly one each; `imperativ-form`, `trennbar-wortstellung`,
+  `trennbar-modal`, `duerfen-muessen`, `haben-sein` and `partizip2-a1` have two. That clears the
+  instrument honestly and is thin against the A2 norm for a *taught* point. Not a gate failure and
+  not something to fix by padding — the next A1 pass should thicken the ones a stop-at-A1 learner
+  would lean on hardest, which is the `du/Sie` and Perfekt-bracket pair.
+- **P20-3 · The live card-id migration's call site has no automated coverage** — the test
+  environment has no IndexedDB (`bunfig.toml` preloads happy-dom, which does not provide it), so
+  `tests/card-id-migration.test.ts` exercises `migrateStoredCardIds` with in-memory read/write and
+  cannot execute `getStore`'s call into it. That seam is exactly where the #128 P1 lived — the map
+  existed, was correct, and was wired to only one of its two entry points. Adding `fake-indexeddb`
+  as a dev dependency would let the store's open path be tested directly, and is worth it the next
+  time anything touches profile-scoped storage.
 - **P17-6 · Item-scoped document stimuli — resolved 2026-07-31** — an item's optional
   `stimulus` now overrides the set stimulus, with reference validation and rendering tests. Existing
   set-scoped documents retain their old behavior; authors can isolate a simulated form, notice or ad
