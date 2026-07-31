@@ -1,0 +1,108 @@
+# Delayed probe family 1 of 3 — ONE competence: running the subject test on a purpose
+# clause cold — spotting the second subject and building damit's Nebensatz (own
+# subject, finite verb at the end) where A2's subjectless um … zu cannot reach. Three
+# parallel translate variants, all two-subject frames, served in authoring order
+# across the 2/7/21 delays — one retention curve over one decision. Translate rather
+# than cloze or mc, because a cloze prints the clause's visible second subject next
+# to a conjugated verb and thereby answers the probed question, and mc hands back
+# recognition. Only the forced direction is probed: with one shared subject damit
+# stays grammatical (the article's Feinheiten row), so a shared-subject variant would
+# either fail correct German or hand the answer to the instruction — the same reason
+# the primary set grades that direction under A2's um-zu-zweck instead.
+# The instruction frames the clause as the answer to wozu? (so the consequence
+# rendering with sodass is excluded — the B1.7 precedent: name the job, grade its
+# rule) but never names the connector, because the damit/um-zu choice is exactly what
+# is probed. Pinned are the two ends of the forced form: damit and the clause-final
+# finite verb; the carrier nouns and verbs are named in the instruction and stay
+# unpinned, so a fumbled article is never charged to this tag.
+# Content pairings fresh: Notizen + schicken (Notizen pairs machen in the A2 deck),
+# Anmeldung + erklären (Anmeldung pairs abschicken in this unit's reading; the pair
+# occurs nowhere), Kinder + Sprache and Sprache + hören (neither pairing occurs) —
+# checked by grepping each noun and verb across content/, not by re-reading this
+# list. None of the damit-clause verbs (lesen können, verstehen, hören) closes a
+# damit clause anywhere in this unit's practice, pretest or article examples.
+# `outcomes: [ziele-begruenden]` is deliberate and it is what arms this family: the
+# can-do is "Lernziele nennen und begründen, wozu ich etwas lerne", and the purpose
+# clause under the subject test is the grammar that justifying a goal stands on. The
+# practice items that build purpose clauses (cloze-damit-passt, mc-um-zu-abendkurs,
+# uebersetzen-damit-beratung, uebersetzen-um-zu-ziel, uebersetzen-damit-wand) declare
+# this outcome — and so do sprechen-ziele and sprechen-abendkurs, because
+# outcome-keyed arming cannot look inside an item: the 2/7/21 clock may start from an
+# open speaking task rather than a graded production (P19-4). Each of the two other
+# families declares a different outcome, because two families sharing one would arm
+# identically and fire a probe at material never practised.
+topic: lernen-zukunft
+role: probe
+title:
+  en: "Delayed check — the purpose clause's subject test"
+  ru: "Отложенная проверка — тест подлежащих в придаточном цели"
+  uk: "Відкладена перевірка — тест підметів у підрядному мети"
+  de: "Kontrolle mit Abstand — der Subjekttest des Finalsatzes"
+items:
+  - id: variant-a
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — the clause answers wozu?: count the subjects, then choose its form. For 'notes' take die Notizen, for 'read' lesen."
+      ru: "Переведите — придаточное отвечает на wozu?: сосчитайте подлежащие, затем выберите его форму. Для «записей» возьмите die Notizen, для «прочитать» — lesen."
+      uk: "Перекладіть — підрядне відповідає на wozu?: порахуйте підмети, потім виберіть його форму. Для «нотаток» візьміть die Notizen, для «прочитати» — lesen."
+      de: "Übersetze — der Nebensatz antwortet auf wozu?: Zähl die Subjekte, dann wähl seine Form. Für die Nomen nimm die Notizen, für das Lesen lesen."
+    prompt_en: "Marta is sending me her notes so that I can read them."
+    prompt_ru: "Марта пришлёт мне свои записи, чтобы я мог их прочитать."
+    prompt_uk: "Марта надішле мені свої нотатки, щоб я міг їх прочитати."
+    answer: "Marta schickt mir ihre Notizen, damit ich sie lesen kann."
+    accept:
+      # The RU/UK prompt halves cast the sending as future («пришлёт»/«надішле»),
+      # so A2's werden + Infinitiv is an equally faithful main clause — and the
+      # probed damit-clause is identical in both renderings.
+      - "Marta wird mir ihre Notizen schicken, damit ich sie lesen kann."
+    key_tokens: ["damit", "kann"]
+    explain:
+      en: "Graded are the two ends of the forced form: damit and the clause-final kann. Marta sends, I read — two subjects, so the subjectless um … zu has no room (um ich sie zu lesen is exactly the impossible sentence; um sie zu lesen would silently make Marta the reader). damit opens a Nebensatz like weil's: its own subject ich, and the conjugated kann at the wall, after the infinitive lesen."
+      ru: "Оцениваются два конца обязательной формы: damit и kann в самом конце. Посылает Марта, читаю я — два подлежащих, поэтому бессубъектному um … zu здесь нет места (um ich sie zu lesen — ровно то невозможное предложение, а um sie zu lesen молча сделало бы читательницей Марту). damit открывает Nebensatz, как weil: своё подлежащее ich и спрягаемое kann у стены, после инфинитива lesen."
+      uk: "Оцінюються два кінці обов'язкової форми: damit і kann у самому кінці. Надсилає Марта, читаю я — два підмети, тому безпідметовому um … zu тут немає місця (um ich sie zu lesen — рівно те неможливе речення, а um sie zu lesen мовчки зробило б читачкою Марту). damit відкриває Nebensatz, як weil: свій підмет ich і відмінюване kann біля стіни, після інфінітива lesen."
+      de: "Bewertet werden die zwei Enden der erzwungenen Form: damit und das satzfinale kann. Marta schickt, ich lese — zwei Subjekte, also hat das subjektlose um … zu keinen Raum (um ich sie zu lesen ist genau der unmögliche Satz, und um sie zu lesen machte stillschweigend Marta zur Leserin). damit eröffnet einen Nebensatz wie weil: eigenes Subjekt ich, das konjugierte kann an der Wand, nach dem Infinitiv lesen."
+
+  - id: variant-b
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — the clause answers wozu?: count the subjects, then choose its form. For 'the course instructor' take die Kursleiterin, for 'explain' erklären, for 'understand' verstehen, for 'everyone' alle."
+      ru: "Переведите — придаточное отвечает на wozu?: сосчитайте подлежащие, затем выберите его форму. Для «руководительницы курса» возьмите die Kursleiterin, для «объяснять» — erklären, для «понимать» — verstehen, для «все» — alle."
+      uk: "Перекладіть — підрядне відповідає на wozu?: порахуйте підмети, потім виберіть його форму. Для «керівниці курсу» візьміть die Kursleiterin, для «пояснювати» — erklären, для «розуміти» — verstehen, для «усі» — alle."
+      de: "Übersetze — der Nebensatz antwortet auf wozu?: Zähl die Subjekte, dann wähl seine Form. Für die Person nimm die Kursleiterin, für das Erklären erklären, für das Verstehen verstehen, für die Gruppe alle."
+    prompt_en: "The course instructor explains the registration twice so that everyone understands it."
+    prompt_ru: "Руководительница курса дважды объясняет запись, чтобы все её поняли."
+    prompt_uk: "Керівниця курсу двічі пояснює запис, щоб усі його зрозуміли."
+    answer: "Die Kursleiterin erklärt die Anmeldung zweimal, damit alle sie verstehen."
+    key_tokens: ["damit", "verstehen"]
+    explain:
+      en: "Graded are damit and the clause-final verstehen. The instructor explains, everyone understands — two subjects, and the um … zu clause has no slot for alle: um sie zu verstehen would claim the instructor explains in order to understand her own registration. damit takes the second subject and sends the plural verstehen to the very end, exactly as after weil and wenn."
+      ru: "Оцениваются damit и verstehen в самом конце. Объясняет руководительница, понимают все — два подлежащих, а в обороте с um … zu для alle нет места: um sie zu verstehen утверждало бы, что она объясняет, чтобы самой понять собственную запись. damit вмещает второе подлежащее и отправляет множественное verstehen в самый конец — ровно как после weil и wenn."
+      uk: "Оцінюються damit і verstehen у самому кінці. Пояснює керівниця, розуміють усі — два підмети, а у звороті з um … zu для alle немає місця: um sie zu verstehen стверджувало б, що вона пояснює, щоб самій зрозуміти власний запис. damit вміщає другий підмет і відправляє множинне verstehen у самий кінець — рівно як після weil і wenn."
+      de: "Bewertet werden damit und das satzfinale verstehen. Die Kursleiterin erklärt, alle verstehen — zwei Subjekte, und der um … zu-Satz hat keinen Platz für alle: um sie zu verstehen würde behaupten, sie erkläre, um die eigene Anmeldung zu verstehen. damit nimmt das zweite Subjekt auf und schickt das pluralische verstehen ganz ans Ende, genau wie nach weil und wenn."
+
+  - id: variant-c
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — the clause answers wozu?: count the subjects, then choose its form. For 'language' take die Sprache, for 'hear' hören."
+      ru: "Переведите — придаточное отвечает на wozu?: сосчитайте подлежащие, затем выберите его форму. Для «языка» возьмите die Sprache, для «слышать» — hören."
+      uk: "Перекладіть — підрядне відповідає на wozu?: порахуйте підмети, потім виберіть його форму. Для «мови» візьміть die Sprache, для «чути» — hören."
+      de: "Übersetze — der Nebensatz antwortet auf wozu?: Zähl die Subjekte, dann wähl seine Form. Für das Nomen nimm die Sprache, für das Hören hören."
+    prompt_en: "Marta speaks German at home so that her children hear the language."
+    prompt_ru: "Марта говорит дома по-немецки, чтобы её дети слышали язык."
+    prompt_uk: "Марта говорить удома німецькою, щоб її діти чули мову."
+    answer: "Marta spricht zu Hause Deutsch, damit ihre Kinder die Sprache hören."
+    accept:
+      # The fronted place phrase takes position 1 and pulls spricht to second position.
+      - "Zu Hause spricht Marta Deutsch, damit ihre Kinder die Sprache hören."
+    key_tokens: ["damit", "hören"]
+    explain:
+      en: "Graded are damit and the clause-final hören. Marta speaks, the children hear — two subjects, so the compact um … zu is out: um die Sprache zu hören would make Marta the listener of her own German. damit holds ihre Kinder as its own subject and parks hören at the wall. In the main clause the fronted Zu Hause is free — it just pulls spricht to second position."
+      ru: "Оцениваются damit и hören в самом конце. Говорит Марта, слышат дети — два подлежащих, поэтому компактное um … zu отпадает: um die Sprache zu hören сделало бы Марту слушательницей собственного немецкого. damit держит ihre Kinder как своё подлежащее и паркует hören у стены. В главном предложении вынесенное Zu Hause свободно — оно лишь притягивает spricht на второе место."
+      uk: "Оцінюються damit і hören у самому кінці. Говорить Марта, чують діти — два підмети, тому компактне um … zu відпадає: um die Sprache zu hören зробило б Марту слухачкою власної німецької. damit тримає ihre Kinder як свій підмет і паркує hören біля стіни. У головному реченні винесене Zu Hause вільне — воно лише притягує spricht на друге місце."
+      de: "Bewertet werden damit und das satzfinale hören. Marta spricht, die Kinder hören — zwei Subjekte, also fällt das kompakte um … zu aus: um die Sprache zu hören machte Marta zur Hörerin ihres eigenen Deutschs. damit hält ihre Kinder als eigenes Subjekt und parkt hören an der Wand. Im Hauptsatz ist das vorangestellte Zu Hause frei — es zieht nur spricht auf Position 2."

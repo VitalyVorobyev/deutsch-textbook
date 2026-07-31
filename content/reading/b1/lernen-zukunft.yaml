@@ -1,0 +1,83 @@
+topic: lernen-zukunft
+kind: intensive
+title_de: "Martas Notizen nach der Beratung"
+text:
+  - >-
+    Donnerstagabend. Heute hatte ich meine
+    [[Beratung::counselling session::консультация::консультація]] in der
+    Sprachschule. Frau Weber hat mir den Abendkurs ab September
+    [[empfohlen::recommended::порекомендовала::порекомендувала]], damit ich
+    neben der Arbeit weiterlernen kann. Die Gruppe ist klein, und der Kurs ist
+    eine gute [[Gelegenheit::opportunity::возможность::нагода]], endlich
+    regelmäßig zu üben.
+  - >-
+    Mein Ziel ist klar: Ich lerne weiter, um im Beruf sicherer zu sprechen. Ab
+    Montag [[wiederhole::revise, go over::повторяю::повторюю]] ich abends eine
+    Viertelstunde Grammatik, statt nur Serien zu schauen.
+    [[Zusätzlich::in addition::дополнительно::додатково]] schreibe ich jede
+    Woche einen kurzen Text und lese ihn am nächsten Tag noch einmal, ohne das
+    Wörterbuch zu benutzen.
+  - >-
+    Falls im Abendkurs kein Platz mehr frei ist, gehe ich samstags zum Kurs.
+    Die [[Anmeldung::registration::запись, регистрация::запис, реєстрація]]
+    schicke ich aber erst ab, wenn ich die Termine
+    [[überprüft::checked::проверила::перевірила]] habe. So mache ich ohne
+    Stress [[Fortschritte::progress::успехи::успіхи]] — und im Dezember sehe
+    ich, was der nächste Schritt ist.
+questions:
+  - id: frage-empfehlung
+    outcomes: [beratung-verstehen]
+    type: mc
+    prompt: "Was hat Frau Weber in der Beratung empfohlen?"
+    options:
+      - "Den Abendkurs ab September, damit Marta neben der Arbeit weiterlernen kann."
+      - "Einen Intensivkurs am Vormittag, weil das viel schneller geht."
+      - "Eine Pause bis zum Winter, weil Marta schon genug gelernt hat."
+    correct: 0
+    translation:
+      en: "What did Frau Weber recommend in the counselling session?"
+      ru: "Что порекомендовала фрау Вебер на консультации?"
+      uk: "Що порекомендувала пані Вебер на консультації?"
+    explain:
+      en: "The recommendation and its purpose sit in one damit-sentence: Frau Weber hat mir den Abendkurs ab September empfohlen, damit ich neben der Arbeit weiterlernen kann — two subjects, so damit. Nothing in the notes mentions a morning Intensivkurs or a break; the evening course exists precisely so that learning fits beside the job."
+      ru: "Рекомендация и её цель сидят в одной фразе с damit: Frau Weber hat mir den Abendkurs ab September empfohlen, damit ich neben der Arbeit weiterlernen kann — два подлежащих, поэтому damit. Об утреннем интенсиве или паузе в записях ни слова; вечерний курс и выбран затем, чтобы учёба помещалась рядом с работой."
+      uk: "Рекомендація та її мета сидять в одній фразі з damit: Frau Weber hat mir den Abendkurs ab September empfohlen, damit ich neben der Arbeit weiterlernen kann — два підмети, тому damit. Про ранковий інтенсив чи паузу в нотатках ні слова; вечірній курс і обрано для того, щоб навчання вміщалося поряд із роботою."
+      de: "Die Empfehlung und ihr Zweck stehen in einem damit-Satz: Frau Weber hat mir den Abendkurs ab September empfohlen, damit ich neben der Arbeit weiterlernen kann — zwei Subjekte, also damit. Von einem Intensivkurs am Vormittag oder einer Pause steht nichts in den Notizen; der Abendkurs ist genau dafür da, dass das Lernen neben die Arbeit passt."
+
+  - id: frage-ziel
+    outcomes: [ziele-begruenden]
+    type: mc
+    prompt: "Wozu lernt Marta weiter?"
+    options:
+      - "Um im Beruf sicherer zu sprechen."
+      - "Um im Winter eine lange Reise zu machen."
+      - "Damit Frau Weber mit ihr zufrieden ist."
+    correct: 0
+    translation:
+      en: "What is Marta continuing to study for?"
+      ru: "Для чего Марта продолжает учиться?"
+      uk: "Для чого Марта продовжує вчитися?"
+    explain:
+      en: "The wozu?-answer stands in the um … zu clause: Ich lerne weiter, um im Beruf sicherer zu sprechen — one shared subject, so the compact infinitive clause does it. A trip is never mentioned, and pleasing Frau Weber is not the purpose the notes name: she gave the recommendation, not the goal."
+      ru: "Ответ на wozu? стоит в обороте с um … zu: Ich lerne weiter, um im Beruf sicherer zu sprechen — общее подлежащее, поэтому хватает компактного инфинитивного оборота. Поездка нигде не упоминается, а радовать фрау Вебер — не та цель, которую называют записи: от неё пришла рекомендация, а не цель."
+      uk: "Відповідь на wozu? стоїть у звороті з um … zu: Ich lerne weiter, um im Beruf sicherer zu sprechen — спільний підмет, тому вистачає компактного інфінітивного звороту. Подорож ніде не згадана, а тішити пані Вебер — не та мета, яку називають нотатки: від неї прийшла рекомендація, а не мета."
+      de: "Die Antwort auf wozu? steht im um … zu-Satz: Ich lerne weiter, um im Beruf sicherer zu sprechen — ein gemeinsames Subjekt, also reicht der kompakte Infinitivsatz. Eine Reise kommt nicht vor, und Frau Weber zufriedenzustellen ist nicht der Zweck, den die Notizen nennen: Von ihr kam die Empfehlung, nicht das Ziel."
+
+  - id: frage-falls
+    outcomes: [plan-formulieren]
+    type: mc
+    prompt: "Was macht Marta, falls im Abendkurs kein Platz mehr frei ist?"
+    options:
+      - "Sie geht samstags zum Kurs."
+      - "Sie wartet bis Dezember und plant dann neu."
+      - "Sie schickt die Anmeldung trotzdem für den Abendkurs ab."
+    correct: 0
+    translation:
+      en: "What will Marta do in case there is no place left in the evening course?"
+      ru: "Что сделает Марта, если в вечернем курсе вдруг не будет мест?"
+      uk: "Що зробить Марта, якщо у вечірньому курсі раптом не буде місць?"
+    explain:
+      en: "The plan covers this eventuality with a falls-sentence: Falls im Abendkurs kein Platz mehr frei ist, gehe ich samstags zum Kurs. December is when she reviews the next step, not a waiting room for a full course — and the registration is sent only after checking the dates, not regardless."
+      ru: "План страхует эту эвентуальность фразой с falls: Falls im Abendkurs kein Platz mehr frei ist, gehe ich samstags zum Kurs. Декабрь — момент, когда она смотрит на следующий шаг, а не зал ожидания на случай полного курса; и запись она отправляет только после проверки дат, а не в любом случае."
+      uk: "План страхує цю можливість фразою з falls: Falls im Abendkurs kein Platz mehr frei ist, gehe ich samstags zum Kurs. Грудень — момент, коли вона дивиться на наступний крок, а не зала очікування на випадок повного курсу; і запис вона надсилає лише після перевірки дат, а не в будь-якому разі."
+      de: "Der Plan sichert diese Eventualität mit einem falls-Satz ab: Falls im Abendkurs kein Platz mehr frei ist, gehe ich samstags zum Kurs. Der Dezember ist der Moment für den nächsten Schritt, kein Wartesaal für einen vollen Kurs — und die Anmeldung geht erst nach dem Überprüfen der Termine ab, nicht in jedem Fall."

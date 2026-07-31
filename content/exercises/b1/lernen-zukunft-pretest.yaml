@@ -1,0 +1,70 @@
+# Diagnostic generation, not practice: three guesses before the article, one per taught
+# confusion of the unit (damit where a second subject appears, wenn against falls on a
+# scheduled event, ohne … zu with its obligatory particle and clause-final infinitive).
+# No focus tags — a pretest is never weakness evidence — and the first item is a cloze,
+# because a pretest made only of mc discriminates nothing. None of these surfaces
+# returns in a probe family.
+topic: lernen-zukunft
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-damit
+    outcomes: [ziele-begruenden]
+    type: cloze
+    instruction:
+      en: "Guess the connector — the purpose clause has its own, second subject — and put the verb finden in the form the clause needs."
+      ru: "Угадайте союз — у придаточного цели есть своё, второе подлежащее — и поставьте глагол finden в нужную форму."
+      uk: "Вгадайте сполучник — у підрядного мети є свій, другий підмет — і поставте дієслово finden у потрібну форму."
+      de: "Rate die Konjunktion — der Finalsatz hat ein eigenes, zweites Subjekt — und setz das Verb finden in die passende Form."
+    text: "Marta erzählt von ihrer Arbeit, {{damit}} die Beraterin den richtigen Kurs {{findet}}."
+    translation:
+      en: "Marta talks about her job so that the adviser finds the right course."
+      ru: "Марта рассказывает о своей работе, чтобы консультантка нашла правильный курс."
+      uk: "Марта розповідає про свою роботу, щоб консультантка знайшла правильний курс."
+    explain:
+      en: "Two different doers — Marta talks, the adviser finds — and that is the whole decision. A2's compact um … zu has no subject slot at all, so the second doer fits only into damit, a Nebensatz like weil's: its own subject, and findet at the very end. With one shared subject the compact form would return. The chapter builds this one test into a system."
+      ru: "Два разных деятеля — рассказывает Марта, находит консультантка — и в этом всё решение. У компактного um … zu из A2 вовсе нет места для подлежащего, поэтому второй деятель помещается только в damit — Nebensatz, как после weil: своё подлежащее и findet в самом конце. При общем подлежащем вернулась бы компактная форма. Глава выстраивает из этого одного теста систему."
+      uk: "Два різні діячі — розповідає Марта, знаходить консультантка — і в цьому все рішення. У компактного um … zu з A2 зовсім немає місця для підмета, тому другий діяч вміщається лише в damit — Nebensatz, як після weil: свій підмет і findet у самому кінці. За спільного підмета повернулася б компактна форма. Розділ вибудовує з цього одного тесту систему."
+      de: "Zwei verschiedene Handelnde — Marta erzählt, die Beraterin findet — und das ist die ganze Entscheidung. Das kompakte um … zu aus A2 hat gar keinen Platz für ein Subjekt, also passt die zweite Person nur in damit — einen Nebensatz wie nach weil: eigenes Subjekt, findet ganz am Ende. Bei einem gemeinsamen Subjekt käme die kompakte Form zurück. Das Kapitel baut aus diesem einen Test ein System."
+
+  - id: pre-mc-wenn
+    outcomes: [plan-formulieren]
+    type: mc
+    prompt: "Im Notizbuch steht: „Der Kurs endet jeden Abend um acht. ___ der Unterricht endet, fahre ich mit dem Bus nach Hause.“ Welches Wort passt?"
+    options:
+      - "Wenn"
+      - "Falls"
+      - "Ob"
+    correct: 0
+    translation:
+      en: "The notebook says: \"The course ends every evening at eight. ___ the lessons end, I take the bus home.\" Which word fits?"
+      ru: "В записной книжке написано: «Курс заканчивается каждый вечер в восемь. ___ занятия заканчиваются, я еду домой на автобусе». Какое слово подходит?"
+      uk: "У записнику написано: «Курс закінчується щовечора о восьмій. ___ заняття закінчуються, я їду додому автобусом». Яке слово підходить?"
+    explain:
+      en: "The course ends every evening — a scheduled, certain event, and that is wenn's home ground: the expected case, including its plain temporal 'when'. falls has no temporal reading at all; it flags a mere eventuality nobody counts on, and putting it here would claim the timetable itself is in doubt. ob is 'whether' and only ever follows a verb like wissen. The chapter sorts wenn and falls by exactly this signal."
+      ru: "Курс заканчивается каждый вечер — событие по расписанию, наверняка, а это родная территория wenn: ожидаемый случай, включая простое временно́е «когда». У falls временно́го прочтения нет вовсе — оно помечает голую эвентуальность, на которую никто не рассчитывает, и здесь оно объявило бы сомнительным само расписание. ob — это «ли», и оно стоит только после глагола вроде wissen. Глава сортирует wenn и falls ровно по этому сигналу."
+      uk: "Курс закінчується щовечора — подія за розкладом, напевно, а це рідна територія wenn: очікуваний випадок, включно з простим часовим «коли». У falls часового прочитання немає взагалі — воно позначає голу можливість, на яку ніхто не розраховує, і тут воно оголосило б сумнівним сам розклад. ob — це «чи», і воно стоїть лише після дієслова на кшталт wissen. Розділ сортує wenn і falls рівно за цим сигналом."
+      de: "Der Kurs endet jeden Abend — ein sicheres Ereignis nach Plan, und das ist wenns Heimatboden: der erwartete Fall, samt der schlichten zeitlichen Lesart. falls hat gar keine zeitliche Lesart; es markiert eine bloße Eventualität, mit der niemand rechnet, und hier würde es den Stundenplan selbst anzweifeln. ob heißt „ob etwas so ist“ und steht nur nach einem Verb wie wissen. Das Kapitel sortiert wenn und falls genau nach diesem Signal."
+
+  - id: pre-mc-ohne
+    outcomes: [beratung-verstehen]
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Er gibt den Test ab, ohne ihn noch einmal zu lesen."
+      - "Er gibt den Test ab, ohne ihn noch einmal lesen."
+      - "Er gibt den Test ab, ohne zu lesen ihn noch einmal."
+    correct: 0
+    translation:
+      en: "He hands in the test without reading it one more time."
+      ru: "Он сдаёт тест, не перечитав его ещё раз."
+      uk: "Він здає тест, не перечитавши його ще раз."
+    explain:
+      en: "The ohne-clause is built on zu + infinitive at the very end: ohne ihn noch einmal zu lesen. The second option drops the zu — 'without reading' needs no particle in English, but the German clause never appears without it. The third puts the verb right after ohne, the English order; German parks zu lesen at the wall and everything else stands before it. The chapter grows um … zu into this whole family."
+      ru: "Оборот с ohne построен на zu + инфинитив в самом конце: ohne ihn noch einmal zu lesen. Второй вариант теряет zu — деепричастию частица не нужна, но немецкий оборот без неё не существует. Третий ставит глагол сразу после ohne, чужой порядок; немецкий паркует zu lesen у стены, а всё остальное стоит перед ним. Глава выращивает из um … zu целую семью таких оборотов."
+      uk: "Зворот з ohne побудований на zu + інфінітив у самому кінці: ohne ihn noch einmal zu lesen. Другий варіант губить zu — дієприслівнику частка не потрібна, але німецький зворот без неї не існує. Третій ставить дієслово одразу після ohne, чужий порядок; німецька паркує zu lesen біля стіни, а все інше стоїть перед ним. Розділ вирощує з um … zu цілу родину таких зворотів."
+      de: "Der ohne-Satz ist auf zu + Infinitiv ganz am Ende gebaut: ohne ihn noch einmal zu lesen. Die zweite Option lässt das zu fallen — andere Sprachen kommen hier ohne Partikel aus, der deutsche Satz nie. Die dritte stellt das Verb direkt hinter ohne, die fremde Ordnung; das Deutsche parkt zu lesen an der Wand, und alles andere steht davor. Das Kapitel macht aus um … zu eine ganze Familie solcher Sätze."

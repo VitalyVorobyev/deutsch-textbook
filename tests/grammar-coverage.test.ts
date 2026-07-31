@@ -79,7 +79,7 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 reports exactly what has shipped — units 1–8 cover their twenty-three points', () => {
+  test('B1 reports exactly what has shipped — units 1–9 cover their twenty-six points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
     // The ratchet: raised in the same commit that ships a unit, never ahead of content.
@@ -101,17 +101,23 @@ describe('grammar coverage', () => {
     // 2026-07-29) closed passiv-modal and konsekutivsatz-sodass (sodass-folge). Unit B1.8
     // (reisen-probleme, 2026-07-30) closed konjunktiv2-irreal (konjunktiv2-form,
     // irreale-bedingung — the paradigm B1.3's chunks were waiting for) and
-    // praeposition-genitiv.
-    expect(coverage.covered).toBe(23);
+    // praeposition-genitiv. Unit B1.9 (lernen-zukunft, 2026-07-31) closed
+    // finalsatz-damit (damit-um-zu), konditionalsatz-falls (falls-wenn) and
+    // infinitivsatz-ohne-statt (ohne-statt-zu) — the purpose clause under the subject
+    // test, expectancy against A2's wenn, and um … zu's two siblings.
+    expect(coverage.covered).toBe(26);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(72);
+    expect(coverage.percent).toBe(81);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
       'adjektiv-nullartikel',
+      'finalsatz-damit',
       'genitiv-vollstaendig',
+      'infinitivsatz-ohne-statt',
       'kausalsatz-da',
       'komparativ-attributiv',
+      'konditionalsatz-falls',
       'konjunktiv2-irreal',
       'konjunktiv2-ratschlag',
       'konsekutivsatz-sodass',
@@ -134,7 +140,7 @@ describe('grammar coverage', () => {
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 23);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 26);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

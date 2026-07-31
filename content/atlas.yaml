@@ -1661,6 +1661,54 @@ nodes:
         ru: "Я умею связно рассказать о неудаче в поездке."
         uk: "Я вмію зв'язно розповісти про негаразд у подорожі."
 
+  # Joins `lernen-kurs`, where lernen-verstehen already lives: a course-counselling
+  # appointment about the next German course — preparing its questions, following its
+  # recommendations, writing the plan — is learning-and-classroom territory, and the
+  # node's strand must equal its group's.
+  # All three `deepens` edges carry a live runtime channel through the primary
+  # practice set, and none of the shared tags is a B1 tag, so none closes a B1 point
+  # (the unit's three contract points are closed by its own damit-um-zu, falls-wenn
+  # and ohne-statt-zu items): `indirekte-frage` (uebersetzen-wissen-ob) is drilled by
+  # lernen-verstehen's own practice — Marta prepares her Beratung questions with the
+  # A2 machine; `um-zu-zweck` (uebersetzen-um-zu-ziel) by infinitiv-mit-zu's — the
+  # shared-subject um … zu is the form the new subject test prefers; and
+  # `nebensatz-vorfeld` (uebersetzen-vorfeld-falls) by nebensaetze-plaene's — the
+  # fronted falls-clause fills position 1. The tag is the edge's only runtime channel
+  # — without one the spiral revisit it claims to build would not exist.
+  # Three outcomes, three probe families, one outcome each: a family arms from the
+  # practice items that declare its outcomes (`probeFamilies`, src/lib/probes.ts), so
+  # two families sharing an outcome would arm identically and fire a probe at
+  # material never practised.
+  - id: lernen-zukunft
+    level: B1
+    kind: communication
+    strand: communication
+    group: lernen-kurs
+    prerequisites: [lernen-verstehen, infinitiv-mit-zu, nebensaetze-plaene]
+    deepens: [lernen-verstehen, infinitiv-mit-zu, nebensaetze-plaene]
+    outcomes:
+      - id: ziele-begruenden
+        mode: spoken-production
+        domain: educational
+        de: "Ich kann Lernziele nennen und begründen, wozu ich etwas lerne."
+        en: "I can name learning goals and justify what I am learning something for."
+        ru: "Я умею называть учебные цели и обосновывать, для чего я что-то учу."
+        uk: "Я вмію називати навчальні цілі й обґрунтовувати, для чого я щось вивчаю."
+      - id: plan-formulieren
+        mode: writing
+        domain: educational
+        de: "Ich kann einen Plan mit Bedingungen formulieren."
+        en: "I can formulate a plan with conditions."
+        ru: "Я умею формулировать план с условиями."
+        uk: "Я вмію формулювати план з умовами."
+      - id: beratung-verstehen
+        mode: listening
+        domain: educational
+        de: "Ich kann einer Beratung die wichtigsten Punkte entnehmen."
+        en: "I can take away the main points of a counselling session."
+        ru: "Я умею извлекать из консультации самые важные пункты."
+        uk: "Я вмію вичленовувати з консультації найважливіші пункти."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -1959,3 +2007,10 @@ units:
     title_ru: "Путешествия и проблемы"
     title_uk: "Подорожі та проблеми"
     topics: [reisen-probleme]
+  - id: lernen-zukunft
+    level: B1
+    title_de: "Lernen & Zukunft"
+    title_en: "Learning & the future"
+    title_ru: "Учёба и будущее"
+    title_uk: "Навчання та майбутнє"
+    topics: [lernen-zukunft]

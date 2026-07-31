@@ -566,7 +566,11 @@ describe('cards: recognition | both', () => {
     // B1.8 (reisen-probleme, 2026-07-30) adds thirteen more — the deck's receptive tail
     // (klagen … Kontrolle): ticket, timetable and hotel-desk vocabulary a B1 learner
     // reads in the small print or hears in a Durchsage but is not asked to produce.
-    expect(cards).toBe(entries * 2 - 91);
+    // B1.9 (lernen-zukunft, 2026-07-31) adds nine more — the deck's receptive tail
+    // (Zertifikat … Studie): course-catalogue and classroom-role vocabulary a B1
+    // learner reads on a school's notice board or in its programme but is not asked
+    // to produce.
+    expect(cards).toBe(entries * 2 - 100);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
