@@ -22,9 +22,13 @@ title:
   de: "Produktion — die Durchsage hören, die Panne erzählen, die Beschwerde schreiben"
 items:
   - id: lesen-aushang
+    # Untagged deliberately: all three options are well-formed genitive phrases, so a
+    # wrong pick is a comprehension error (trotz introduces what did NOT cause the
+    # cancellations), never a case error — a false tag would send genitive training
+    # after a confusion the learner does not have.
+    revision: 2
     outcomes: [panne-berichten]
     type: mc
-    focus: praeposition-genitiv
     prompt: "Am Bahnhof hängt ein Aushang: „Wegen eines Sturms fallen heute mehrere Züge in Richtung Norden aus. Während der Bauarbeiten hält die S-Bahn nicht am Hauptbahnhof, sondern am Südbahnhof. Trotz des Streiks der Busfahrer fahren die Busse zum Flughafen wie geplant.“ — Warum fallen heute mehrere Züge aus?"
     options:
       - "Wegen eines Sturms."
