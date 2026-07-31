@@ -9,6 +9,9 @@ import {
 } from '../src/lib/snapshot-merge';
 import type { StoredCard } from '../src/lib/store';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
+import { A1_CARD_ID_MIGRATION } from '../src/lib/a1-card-id-migration';
+import { readFileSync } from 'node:fs';
+import YAML from 'yaml';
 
 const legacy = (version: number) => ({
   version,
@@ -20,11 +23,11 @@ const legacy = (version: number) => ({
   cards: {},
 });
 
-describe('snapshot v6', () => {
-  test('migrates every supported version through an explicit v6 boundary', () => {
-    for (const version of [1, 2, 3, 4, 5, 6]) {
+describe('snapshot v7', () => {
+  test('migrates every supported version through an explicit v7 boundary', () => {
+    for (const version of [1, 2, 3, 4, 5, 6, 7]) {
       const migrated = parseProgressSnapshot(legacy(version));
-      expect(migrated.version).toBe(6);
+      expect(migrated.version).toBe(7);
       expect(migrated.attempts).toHaveLength(1);
       expect(migrated.sessions).toEqual([]);
       expect(migrated.topics).toEqual({});
@@ -35,7 +38,7 @@ describe('snapshot v6', () => {
   test('rejects malformed nested progress instead of shallowly accepting it', () => {
     expect(() => parseProgressSnapshot({ ...legacy(6), attempts: [{ correct: true }] })).toThrow();
     expect(() => parseProgressSnapshot({ ...legacy(6), cards: { x: { reps: 1 } } })).toThrow();
-    expect(() => parseProgressSnapshot(legacy(7))).toThrow();
+    expect(() => parseProgressSnapshot(legacy(8))).toThrow();
   });
 
   test('carries placement across the v5 boundary in both directions', () => {
@@ -48,7 +51,7 @@ describe('snapshot v6', () => {
     expect(fromV5.topics.dativ).toEqual({ readAt: 7, manual: 'learned', manualAt: 8 });
 
     const placed = parseProgressSnapshot({
-      ...legacy(6),
+      ...legacy(7),
       topics: { dativ: { placement: { setId: 'a1/placement-a1', at: 9, score: 1 } } },
     });
     expect(placed.topics.dativ?.placement?.setId).toBe('a1/placement-a1');
@@ -70,6 +73,53 @@ describe('snapshot v6', () => {
       },
     });
     expect(parseProgressSnapshot(JSON.parse(JSON.stringify(parsed)))).toEqual(parsed);
+  });
+
+  test('relocates both card directions without losing any FSRS field or creating duplicates', () => {
+    const pairs = Object.entries(A1_CARD_ID_MIGRATION);
+    const [oldRecognition, newRecognition] = pairs.find(([id]) => id.endsWith('::de-x'))!;
+    const [oldProduction, newProduction] = pairs.find(([id]) =>
+      id.endsWith('::x-de') && id.slice(0, -6) === oldRecognition.slice(0, -6))!;
+    const recognition = {
+      due: '2026-08-04T00:00:00.000Z', stability: 4.5, difficulty: 3.2,
+      elapsed_days: 6, scheduled_days: 9, learning_steps: 1, reps: 8,
+      lapses: 2, state: 2, last_review: '2026-07-26T00:00:00.000Z',
+      introducedAt: '2026-05-01T00:00:00.000Z',
+    };
+    const production = { ...recognition, stability: 2.25, reps: 11, lapses: 4 };
+    const migrated = parseProgressSnapshot({
+      ...legacy(6),
+      cards: { [oldRecognition]: recognition, [oldProduction]: production },
+    });
+
+    expect(migrated.cards[newRecognition]).toEqual(recognition);
+    expect(migrated.cards[newProduction]).toEqual(production);
+    expect(migrated.cards[oldRecognition]).toBeUndefined();
+    expect(migrated.cards[oldProduction]).toBeUndefined();
+    expect(Object.keys(migrated.cards)).toHaveLength(2);
+  });
+
+  test('the committed inventory accounts for all 94 relocated A1 headwords', () => {
+    const inventory = YAML.parse(readFileSync(
+      new URL('../data/a1-card-id-migration.yaml', import.meta.url),
+      'utf8',
+    )) as {
+      unchangedDecks: string[];
+      moved: Array<{ de: string; cards: Array<{ from: string; to: string }> }>;
+    };
+    const modal = YAML.parse(readFileSync(
+      new URL('../content/vocab/modalverben.yaml', import.meta.url),
+      'utf8',
+    )) as { entries: unknown[] };
+
+    expect(inventory.moved).toHaveLength(87);
+    expect(inventory.unchangedDecks).toEqual(['modalverben']);
+    expect(inventory.moved.length + modal.entries.length).toBe(94);
+    for (const entry of inventory.moved) {
+      expect(entry.cards).toHaveLength(2);
+      for (const card of entry.cards) expect(A1_CARD_ID_MIGRATION[card.from]).toBe(card.to);
+    }
+    expect(Object.keys(A1_CARD_ID_MIGRATION)).toHaveLength(174);
   });
 });
 

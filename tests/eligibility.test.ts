@@ -21,6 +21,7 @@ describe('automatic content eligibility', () => {
       // training — pinned here because that guarantee is what let Phase 2 add a whole new
       // role without touching training at all.
       { setId: 'a1/placement-a1', topicId: 'basis', role: 'placement' },
+      { setId: 'a1/pruefung-a1', topicId: 'basis', role: 'exam-practice' },
     ];
     expect(eligibleTrainingSets(sets, ['basis'], [topic], empty)).toEqual([]);
     expect(eligibleTrainingSets(sets, ['basis'], [topic], { ...empty, topics: { basis: { readAt: 1 } } }))

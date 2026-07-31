@@ -1,7 +1,24 @@
 import type { ExerciseItem } from './schemas';
 import type { Attempt } from './store';
+import { normalizeTranslation } from './cloze';
 
 export type ResponseMode = NonNullable<Attempt['responseMode']>;
+export type FocusEvidence = NonNullable<Attempt['focusEvidence']>;
+
+/** Evaluate authored regex predicates without guessing from a whole-sentence miss. */
+export function evaluateFocusEvidence(
+  given: string,
+  correct: boolean,
+  predicates?: { retained: string[]; failed: string[] },
+): FocusEvidence {
+  if (correct) return 'retained';
+  if (!predicates) return 'unknown';
+  const normalized = normalizeTranslation(given);
+  const matches = (pattern: string) => new RegExp(pattern, 'iu').test(normalized);
+  if (predicates.failed.some(matches)) return 'failed';
+  if (predicates.retained.length > 0 && predicates.retained.every(matches)) return 'retained';
+  return 'unknown';
+}
 
 /**
  * The focus tag to log for an attempt.
@@ -36,6 +53,7 @@ export function responseModeForItem(item: ExerciseItem): ResponseMode {
     case 'cloze':
     case 'order':
     case 'table':
+    case 'form':
     case 'translate':
     case 'write':
       return 'writing';

@@ -41,7 +41,7 @@ if (!(MEASURED_LEVELS as readonly string[]).includes(level) || !hasManifest(leve
   process.exit(1);
 }
 
-const { sections, ownedBy, total, cards, grammar, missing, unearned, percent } =
+const { sections, ownedBy, total, cards, grammar, missing, unearned, percent, late, onTimeCards } =
   goetheCoverage(level);
 
 // ---------------------------------------------------------------------------
@@ -114,6 +114,8 @@ console.log(
   `\n=== Goethe-${level} coverage: ${cards + grammar}/${total} (${percent}%) — ` +
     `${cards} as cards, ${grammar} as grammar, ${missing} missing ===`,
 );
+console.log(`    Level boundary: ${onTimeCards}/${cards} card headwords on time · ${late.length} late.`);
+for (const word of late) console.log(`  ↗ ${word}  (first taught above ${level})`);
 
 if (unearned.length) {
   console.error(

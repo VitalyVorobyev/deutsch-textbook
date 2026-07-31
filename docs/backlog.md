@@ -87,18 +87,34 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
-- **P17-6 · The document stimulus is set-scoped, so it stays pinned to tasks it does not describe** —
-  `stimulus` sits on the exercise set, so the panel renders beside every item — and it follows the
-  items out of the topic page too: `src/pages/ueben/training.astro:33` hands the set's document to
-  mixed training, and `session.astro` and `proben.astro` do the same.
-  In `b1/arbeit-bewerbung-produktion` that means the Nordlicht-Markt ad (contact: Frau Berger)
-  stays on screen while `schreiben-bewerbung` asks for a letter to Herr Weber at a different shop,
-  and the interview items use Herr Weber too. The tasks are self-contained — each quotes the
-  vacancy it means — so nothing is mis-graded, but the panel supplies contradictory context.
-  Three ways out, and the choice is a design decision, not an edit: give the extraction item its
-  own document-scoped set, make `stimulus` item-scoped (schema + `ExerciseSet.tsx`), or align every
-  task in the set to one vacancy. Raised by Codex on #119; deferred there because all three are
-  larger than the finding.
+- **P20-1 · The A1 exam-practice surface has one entry point and one owner topic** — `/pruefung/a1`
+  is linked only from `/about`: no nav entry, no link from the A1 topic pages, nothing on the
+  progress page. A learner who never opens Über will not find it. Separately, all three sets
+  declare `topic: freizeit-koennen` while their items name outcomes from six topics — accurate for
+  `role: exam-practice` (it is in `CROSS_TOPIC_ROLES`, so any outcome resolves) but the `topic:`
+  field is then a formality that says something untrue. Both are shape questions for the surface
+  rather than defects in it, so they were filed rather than fixed in #128: deciding where exam
+  practice belongs in navigation is a product call, and giving the role a level instead of a topic
+  is a schema change.
+- **P20-2 · Four of the five backfilled A1 grammar points rest on one or two items** —
+  `bun scripts/grammar-coverage.ts A1` reports 22/22, 0 late, and the bar it applies is
+  *at least one* non-preview `practice`/`drill` item per tag. Counted against A1 sets, `du-sie` and
+  `perfekt-satzklammer` have exactly one each; `imperativ-form`, `trennbar-wortstellung`,
+  `trennbar-modal`, `duerfen-muessen`, `haben-sein` and `partizip2-a1` have two. That clears the
+  instrument honestly and is thin against the A2 norm for a *taught* point. Not a gate failure and
+  not something to fix by padding — the next A1 pass should thicken the ones a stop-at-A1 learner
+  would lean on hardest, which is the `du/Sie` and Perfekt-bracket pair.
+- **P20-3 · The live card-id migration's call site has no automated coverage** — the test
+  environment has no IndexedDB (`bunfig.toml` preloads happy-dom, which does not provide it), so
+  `tests/card-id-migration.test.ts` exercises `migrateStoredCardIds` with in-memory read/write and
+  cannot execute `getStore`'s call into it. That seam is exactly where the #128 P1 lived — the map
+  existed, was correct, and was wired to only one of its two entry points. Adding `fake-indexeddb`
+  as a dev dependency would let the store's open path be tested directly, and is worth it the next
+  time anything touches profile-scoped storage.
+- **P17-6 · Item-scoped document stimuli — resolved 2026-07-31** — an item's optional
+  `stimulus` now overrides the set stimulus, with reference validation and rendering tests. Existing
+  set-scoped documents retain their old behavior; authors can isolate a simulated form, notice or ad
+  without pinning it beside unrelated tasks.
 
 - **P18-1 · `explain` prose drifted the same way the articles did** — mean EN `explain`
   runs A1 28 w → A2 53 w → **~110 w in B1.4/B1.5** (max 167), against an A2 practice-set norm of
@@ -111,37 +127,23 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   and `a2/arbeit-beruf` (144 w) against the ~100-word advance-organizer target now stated in
   `CLAUDE.md`. Median across 37 topics is 91, so these two are outliers, not the norm. Not a gate
   (the 120-word paragraph cap is), so this is editing work, not a build failure.
-- **P19-1 · A1 backfill of the five late grammar points** — Perfekt, Imperativ, trennbare
-  Verben, *darf/muss nicht* and *du/Sie* carry `standard_level: A1` but are taught at A2
-  (`bun scripts/grammar-coverage.ts A1` reports them `late`; /about discloses the sequencing).
-  Decision of 2026-07-30: keep the sequencing, keep the debt visible here. A backfill means
-  A1-level treatment plus `practice` items carrying the five tags inside A1 topics — and the
-  hazards are real: each tag is registered to its introducing A2 topic (`focusIntroducedBy`), so
-  moving an introduction re-wires `deepens` edges, and a new probe family on a shipped topic
-  re-arms it. Worth doing only if the course ever serves a stop-at-A1 learner (Goethe A1 exam
-  prep); for the current learner every point is taught before B1.
-- **P19-2 · `a1/probe-erste-schritte` is untagged, so its competence is never readable** — the
-  retention table carries one A1 "(untagged)" family whose rows the verdict must exclude; the
-  audit names it an instrument gap. The items may be genuinely mixed (a false tag is worse than
-  none), but if one nameable confusion fits, tagging is a probe-semantics change: `revision`
-  bump, and `armedAt` measured before and after per the re-arming rule.
+- **P19-1 · A1 backfill of the five late grammar points — resolved 2026-07-31** — Perfekt,
+  Imperativ, trennbare Verben, *darf/muss nicht* and *du/Sie* now have A1 explanations,
+  scaffolded retrieval, open production and delayed transfer. The boundary report is
+  `22 covered · 0 late · 0 missing`; the broader participle system remains at A2.
+- **P19-2 · `a1/probe-erste-schritte` audit label — resolved 2026-07-31** — the
+  family remains honestly untagged for scoring, while the audit displays its outcome identity
+  instead of the unreadable `(untagged)` label. It remains excluded from a focus-retention verdict.
 - **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item** — the inventory point
   `konjunktiv2-irreal` is named "Bedingungen und Wünsche", but B1.8 drills only the two-clause
   condition; the wish form sat taught in `## Erklärung` with no item and was demoted to
   `### Feinheiten` in the #126 review round (Codex finding). A later KII-touching unit or drill
   should own one production item for it (a `translate` pinning the one-word form beside
   *doch*/*nur*) so the point's second half is practised, not just named.
-- **P19-4 · Outcome-keyed probe arming cannot tell carrier and comprehension items from the
-  probed competence** — `probeFamilies()` (`src/lib/probes.ts`) arms a multi-family topic per
-  item via declared outcomes, so any practice item sharing the family's outcome starts its
-  2/7/21 clock: in B1.8 `uebersetzen-anschluss-perfekt` (Perfekt) and the comprehension items
-  `lesen-aushang`/`hoeren-durchsage` arm the `praeposition-genitiv` family; in B1.7
-  `lesen-aushang` arms the passiv-modal family and `uebersetzen-koennten` the duerfen-muessen
-  one; in B1.6 `lesen-aushang`/`hoeren-durchsage` arm passiv-vergangenheit. Codex P1 on #126;
-  precedented since B1.6, so filed rather than redesigned mid-PR. A fix needs an arming channel
-  finer than outcomes (an item-level arming flag, or focus-based arming keys) — a `src/lib` +
-  schema change; measure `armedAt` before and after per the re-arming rule, since narrowing the
-  pool re-times every shipped family's clock.
+- **P19-4 · Outcome-keyed probe arming cannot tell carrier and comprehension items — resolved 2026-07-31** —
+  every family now commits exact
+  `setId::itemId` arming sources; validation rejects unresolved, non-practice and unverified
+  sources, and runtime arming no longer falls back to broad outcomes.
 - **P19-5 · Future-cast prompt halves accept only present renderings** — #127's review caught
   `probe-lernen-zukunft` variant-a rejecting *wird … schicken* although its RU/UK halves say
   «пришлёт»/«надішле»; fixed there, but the class is corpus-wide (`a2/drill-mir-mich` "I will
@@ -150,6 +152,14 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   instrument level: an item-authoring rule — align the tense across prompt halves, or accept the
   werden main clause wherever a half invites it — plus one sweep, instead of per-rendering
   grading-queue rulings.
+- **P19-6 · Reviewed A1 listening pack and delayed listening probes** — author 15 original
+  Goethe-style listening tasks in the official 6/4/5 structure plus two three-variant delayed
+  families (telephone/number information and public directions/announcements). Commit final audio,
+  exact transcripts, accessibility text, provenance and editorial review. Production may use a
+  human recording, a suitably licensed service, or paid OpenAI API speech only after explicit
+  budget approval. Every take needs human review for A1 intelligibility and natural pacing, plus
+  mobile/desktop playback verification. Until this ships, public copy must describe exam practice
+  as reading/writing/speaking only and must not imply complete Hören preparation.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);
@@ -220,7 +230,10 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   the doc sentence supports. Decide which the rule is, write it down, and either backfill B1.2/B1.3
   or state why a unit with no listening outcome may skip it. A validator check ("every outcome's declared mode is exercised by at least
   one item of a matching type") is the mechanical half — see [`docs/coverage-instruments.md`] for
-  the earned-not-asserted bar this belongs under.
+  the earned-not-asserted bar this belongs under. **A1 portion resolved 2026-07-31:** items now
+  declare `target_mode` independently of response mode, validation requires every A1 outcome's
+  claimed mode to be genuinely practised, and missing spoken modes received record-and-replay
+  tasks. The broader B1 policy question remains open here.
 - **P5-11c · The connector-determinacy check does not reach cloze gaps** — the rule in
   `scripts/validate.ts` reads `item.answer` and `item.accept`, which is the `translate` shape, so a
   **cloze** gap that accepts one interchangeable connector and rejects its sibling is unguarded.
@@ -230,63 +243,29 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   would misfire on the adverb. Adding the pair was tried during the B1.5 pass and reverted for that
   reason — it produced zero new warnings, which measures today's corpus and not the rule. A cloze
   equivalent therefore needs sense disambiguation, not merely a longer list.
-- **P5-11d · A reading question arms a production probe** — `ReadingText.tsx` logs
-  `outcomes: question.outcomes`, and `armedAt` matches families by outcome, so answering a
-  *comprehension* question can start the retention clock of a *production* probe that shares the
-  outcome. Measured across the corpus rather than assumed: **73 such links — A1 20, A2 46, B1 7**
-  (`content/reading/**` questions against every `role: probe` family's outcomes), so 66 of them
-  predate B1 and this is a level-wide property of the arming rule, not a unit defect. Neither
-  obvious local fix is right: stripping the outcome from the reading breaks the rule that every
-  outcome be measured by a practice item **or a reading question**, and the alternative — arming on
-  a competence signal narrower than the outcome — is a change to `src/lib/probes.ts` that moves
-  every level's probe schedule at once. Whoever takes it should measure the schedule shift before
-  and after, the way `essen-trinken` was measured before freezing.
-- **P12-4 · Separate `key_tokens` purposes** — distinguish focus attribution, target-retention
-  scoring and answer constraints without changing the pre-2026-08-02 cohort underneath it.
-- **P12-5 · `key_tokens` cannot attribute an *inserted* token** — attribution fires when a graded
-  token **diverges**, so it catches substitutions (`abholen` for `abzuholen`) and reorderings, and
-  is blind to a word the learner adds that should not be there. Measured on
-  `uebersetzen-modal-ohne-zu`: `Willst du zu mitkommen, oder musst du zu arbeiten?` — the exact
-  error a modal item exists to catch — returns `{kind: 'wrong'}` with **no focus**, while
-  `mitzukommen` in the same slot returns `wrong` **with** `zu-infinitiv`, because that one changes a
-  pinned token instead of adding a neighbour. This is general: any item whose target error is an
-  insertion (a spurious `zu`, `um`, article or reflexive) under-reports. Not fixable by widening the
-  pins — `zu` cannot be pinned because it does not occur in the answer — and not fixable by dropping
-  them, which the corpus already priced at 52 false attributions to buy 5 true ones. It needs an
-  attribution rule that reads the *edit* rather than the surviving tokens, so treat it as
-  P12-4's sibling. **The same list has a second blind spot, the mirror of the first:** a pin
-  names a token but cannot say *which property of it* the tag grades. `uebersetzen-modal-ohne-zu`
-  pins `mitkommen` to catch `mitzukommen` — a modal taking a bare infinitive is the lesson — and
-  the pin therefore also fires on `kommen`, a lexical substitution that gets the grammar right.
-  Both verified against the shipped spec: each returns `wrong` with `zu-infinitiv`. Unpinning
-  trades the false attribution for a certain one, since `mitzukommen` is the error the drill
-  exists to catch and would go unattributed; the instruction names the verb, which lowers the
-  frequency but not the conflation. A rule that graded *the form of a named token* rather than
-  *the presence of a token* would close both faces at once. Coverage today is by mode, not by mechanism: the same drill's cloze gaps
-  (`muss ich {{einkaufen}}`, `Bleib … {{sitzen}}`, `Lass mich … {{kommen}}`) do attribute the
-  identical confusion, because a cloze logs `item.focus` whole (`focusForAttempt`,
-  `src/lib/evidence.ts:17`). B1.6 priced the accept-side mitigation and abandoned it where
-  the lexical space is open: the `je-desto` probe pins every accepted rendering's frame
-  verbs (ist/liegt, nehme/fahre, kommen/gehen), which keeps the word order graded
-  whichever rendering the learner aimed at — but the accept list can never enumerate an
-  open space (Codex found *benutzen* one round after *fahren* was added), so B1.6's
-  translates now name the lexical verb in the `instruction` wherever the space is open
-  (`uebersetzen-je-desto`: kaputtgehen; probe variants a and c: nehmen/fahren,
-  kommen/gehen), the pattern `uebersetzen-tonne-august` established. The mechanism gap
-  stands: grading *the form and position of a named token*, not its presence, would make
-  the naming unnecessary.
-- **P12-6 · A dictation blames its grammar tag for a mishearing** — `Listen.tsx` logs the item's
-  `focus` on any wrong answer except the narrow `dictationSlip` exception (one token off, one edit,
-  not a closed-class swap). So on `hoeren-diktat-da` — *Da ich wenig Zeit habe, lese ich nur die
-  Schlagzeilen.* — typing `keine` for `wenig` is recorded against `nebensatz-vorfeld`, a word-order
-  tag, though the two verb positions were reproduced perfectly; verified, `dictationSlip` returns
-  false there because the two words are more than one edit apart. Level-wide, not a unit defect:
-  **53 of the corpus's 62 `listen` items carry a grammar focus**, so this is how dictation
-  attribution works everywhere, and `dictationSlip` is the existing mitigation rather than a
-  missing one. Do not untag single items — that trades a false attribution for a silent one and
-  makes the corpus inconsistent. The fix is an attribution rule that names the tokens the tag
-  grades, i.e. what `key_tokens` does for `translate` and `listen` has no equivalent of; sibling
-  of P12-4.
+- **P5-11d · A reading question arms a production probe — resolved 2026-07-31** — probe families
+  now commit exact verified `setId::itemId` arming keys. Runtime no longer consults broad outcomes,
+  so reading and pretest attempts cannot start a production-retention clock.
+- **P12-4 · Separate focus evidence from answer constraints — resolved 2026-07-31** —
+  `focus_evidence` predicates now produce explicit `retained`, `failed` or `unknown` attempt data;
+  `key_tokens` continues to constrain answer grading, and still attributes on items that declare
+  no predicates. An attempt carries a verdict only where the item declares a contract, so
+  historical attempts remain unchanged and the audit falls back to their earlier contract
+  wherever the explicit verdict is absent.
+- **P12-5 · Inserted-token attribution — resolved 2026-07-31** — failed predicates can name an
+  inserted form directly. `uebersetzen-modal-ohne-zu` now distinguishes spurious *zu* or
+  *mitzukommen* (failed) from a lexical substitution such as *kommen* (unknown), instead of
+  charging both to `zu-infinitiv`.
+- **P12-6 · Dictation focus attribution — resolved for A1 2026-07-31** — focused A1 dictations
+  carry explicit predicates and validation requires them, so on those items a wrong answer the
+  predicates do not name is `unknown`, never guessed as failure of its grammar tag.
+  **A2/B1 dictations are not covered and keep `dictationSlip`**: extending the silence to items
+  with no predicates was tried and measured against the learner's log, where it dropped 145 of
+  291 free-typed tags and took `weakFocuses` from 7 to 1 — an inverted signal, not an honest gap
+  (`um-am-zeit` read 1% error at n = 30 against a real 21%). The remaining work is authoring
+  predicates for the ~50 focused A2/B1 `listen` items, after which they get the A1 treatment
+  item by item. Reproduce with a `weakFocuses` replay over the newest `progress/vitaly` snapshot;
+  the rule itself is pinned by `tests/focus-attribution.test.tsx`.
 - **P12-7 · An accept list cannot be completed by enumeration** — `gradeTranslation` compares
   against a finite authored list, so every correct paraphrase absent from it is a false negative.
   The #116/#117 review ran **ten and nine rounds** largely on this one class: `bald` placement,

@@ -96,6 +96,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
         : {}),
       given: result.given,
       focus: focusForAttempt(current.item, result),
+      focusEvidence: result.focusEvidence,
       evidence: result.evidence,
       responseMode: result.responseMode ?? responseModeForItem(current.item),
       outcomes: current.item.outcomes,

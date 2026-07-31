@@ -258,10 +258,10 @@ describe('progress audit', () => {
         focusRetained: 0,
         focusFailed: 0,
         byCompetence: [{
-          level: 'A1', focus: undefined, families: 1, attempts: 1,
+          level: 'A1', focus: undefined, label: '(unattributed outcome)', families: 1, attempts: 1,
           correct: 1, retained: 0, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1 } },
+          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } },
         }],
         byReadability: [],
         projectTo: '2026-08-03',
@@ -393,18 +393,18 @@ describe('progress audit', () => {
       // The same three verdicts, split by the competence each was aimed at — one row per focus,
       // and each row is one attempt deep, so none of them is readable.
       byCompetence: [
-        { level: 'A2', focus: 'dativ-artikel', families: 1, attempts: 1,
+        { level: 'A2', focus: 'dativ-artikel', label: 'dativ-artikel', families: 1, attempts: 1,
           correct: 0, retained: 0, failed: 1,
           retentionPct: 0, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 0 } } },
-        { level: 'A2', focus: 'trennbar-wortstellung', families: 1, attempts: 1,
+          formats: { translate: { attempts: 1, survived: 0, unknown: 0 } } },
+        { level: 'A2', focus: 'trennbar-wortstellung', label: 'trennbar-wortstellung', families: 1, attempts: 1,
           correct: 0, retained: 1, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1 } } },
-        { level: 'A2', focus: 'um-am-zeit', families: 1, attempts: 1,
+          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } } },
+        { level: 'A2', focus: 'um-am-zeit', label: 'um-am-zeit', families: 1, attempts: 1,
           correct: 1, retained: 0, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1 } } },
+          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } } },
       ],
       byReadability: [],
       projectTo: '2026-08-03',
@@ -453,12 +453,39 @@ describe('progress audit', () => {
     expect(row.attempts).toBe(3);
     expect(row.retentionPct).toBe(67);
     expect(row.formats).toEqual({
-      translate: { attempts: 1, survived: 0 },
-      cloze: { attempts: 2, survived: 2 },
+      translate: { attempts: 1, survived: 0, unknown: 0 },
+      cloze: { attempts: 2, survived: 2, unknown: 0 },
     });
     const md = renderMarkdown(audit);
     expect(md).toContain('cloze 2/2 · translate 0/1');
     expect(md).toContain('read a rise against the split');
+  });
+
+  /**
+   * An `unknown` verdict is a measurement the instrument declined to make. The pooled
+   * retention percentage already excludes it; the format split has to as well, or a single
+   * unmeasured response renders as `translate 0/1` — the weakest-looking row in the table,
+   * pointing drill authoring at a response mode that was never shown to be weak.
+   */
+  test('an unknown verdict stays out of the format denominator', () => {
+    const items: CatalogItem[] = [
+      { setId: 'a1/probe-zeit', id: 'variant-a', type: 'translate', topic: 'alltag-zeit',
+        role: 'probe', focus: 'um-am-zeit', answer: 'Der Bus fährt um elf Uhr.',
+        key_tokens: ['um'] },
+    ];
+    const attempts: AuditAttempt[] = [
+      { setId: 'a1/probe-zeit', itemId: 'variant-a', itemType: 'translate', correct: false,
+        given: 'Der Bus fährt um zehn Uhr.', focusEvidence: 'unknown', ts: ts(4) },
+    ];
+    const audit = buildAudit(snapshot({ attempts }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(10),
+    });
+
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'um-am-zeit')!;
+    expect(row.unknown).toBe(1);
+    expect(row.formats).toEqual({ translate: { attempts: 0, survived: 0, unknown: 1 } });
+    // Not `translate 0/1`: nothing about this response was measured.
+    expect(renderMarkdown(audit)).toContain('translate 0/0 (+1 unknown)');
   });
 
   test('reports probe debt and the actually-elapsed interval distribution', () => {
@@ -466,12 +493,12 @@ describe('progress audit', () => {
     // everything below is computed from the attempt log, exactly like the scheduler does.
     const items: CatalogItem[] = [
       { setId: 'a1/akkusativ', id: 'p1', type: 'cloze', topic: 'akkusativ', role: 'practice' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe' },
+      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
+      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
+      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
       { setId: 'a1/wohnen', id: 'p1', type: 'cloze', topic: 'wohnen', role: 'practice' },
-      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe' },
-      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe' },
+      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
+      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
     ];
     const attempts: AuditAttempt[] = [
       // both topics practised on day 1 → both families armed at ts(1)

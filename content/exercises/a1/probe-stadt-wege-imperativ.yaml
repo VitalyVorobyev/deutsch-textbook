@@ -1,0 +1,7 @@
+topic: stadt-wege
+role: probe
+arming: [a1/stadt-wege-a1-grammatik::imperativ-sie-gehen, a1/stadt-wege-a1-grammatik::imperativ-drei-formen]
+items:
+  - { id: variant-a, type: cloze, outcomes: [stadt-wegbeschreibung-geben], focus: imperativ-form, text: "{{Gehen}} Sie bis zur Ampel!", explain: { en: "The polite imperative is verb + Sie.", ru: "Вежливый Imperativ: глагол + Sie.", uk: "Ввічливий Imperativ: дієслово + Sie." } }
+  - { id: variant-b, type: cloze, outcomes: [stadt-wegbeschreibung-geben], focus: imperativ-form, text: "Anna, {{nimm}} die erste Straße links!", explain: { en: "The du-imperative of nehmen is nimm.", ru: "Форма Imperativ для du от nehmen — nimm.", uk: "Форма Imperativ для du від nehmen — nimm." } }
+  - { id: variant-c, type: cloze, outcomes: [stadt-wegbeschreibung-geben], focus: imperativ-form, text: "Kinder, {{geht}} hier rechts!", explain: { en: "The ihr-imperative uses the ordinary ihr-form without ihr.", ru: "Imperativ для ihr совпадает с формой глагола без местоимения.", uk: "Imperativ для ihr збігається з формою дієслова без займенника." } }

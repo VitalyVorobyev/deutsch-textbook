@@ -1,0 +1,7 @@
+topic: stadt-wege
+role: probe
+arming: [a1/stadt-wege-a1-grammatik::regel-darf-nicht, a1/stadt-wege-a1-grammatik::regel-muss-nicht]
+items:
+  - { id: variant-a, type: cloze, outcomes: [stadt-schilder-verstehen], focus: duerfen-muessen, text: "Kein Eingang: Hier {{dürfen}} Sie nicht hineingehen.", explain: { en: "dürfen nicht expresses prohibition.", ru: "dürfen nicht выражает запрет.", uk: "dürfen nicht виражає заборону." } }
+  - { id: variant-b, type: cloze, outcomes: [stadt-schilder-verstehen], focus: duerfen-muessen, text: "Der Eintritt ist frei. Sie {{müssen}} nicht bezahlen.", explain: { en: "müssen nicht means there is no necessity.", ru: "müssen nicht означает отсутствие необходимости.", uk: "müssen nicht означає відсутність необхідності." } }
+  - { id: variant-c, type: cloze, outcomes: [stadt-schilder-verstehen], focus: duerfen-muessen, text: "Im Museum {{darf}} man nicht fotografieren.", explain: { en: "darf nicht marks something that is not allowed.", ru: "darf nicht обозначает запрещённое действие.", uk: "darf nicht позначає заборонену дію." } }

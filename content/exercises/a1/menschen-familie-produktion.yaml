@@ -9,6 +9,20 @@ title:
 # first practice set a topic lists, and the Lernpfad advances on its completion.
 
 items:
+  - id: familie-kurz-vorstellen-sprechen
+    outcomes: [familie-vorstellen]
+    type: speak
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Introduce two people from your family aloud.", ru: "Представьте вслух двух членов своей семьи.", uk: "Представте вголос двох членів своєї родини." }
+    goal: { en: "Give a relationship, a name and one fact about each person.", ru: "Для каждого человека назовите родство, имя и один факт.", uk: "Для кожної людини назвіть спорідненість, ім'я та один факт." }
+    checklist:
+      - { en: "I used mein/meine with the right noun.", ru: "Я правильно использовал(а) mein/meine.", uk: "Я правильно використав(-ла) mein/meine." }
+      - { en: "I spoke in complete short sentences.", ru: "Я говорил(а) короткими полными предложениями.", uk: "Я говорив(-ла) короткими повними реченнями." }
+    model_answer: "Das ist meine Schwester Lea. Sie ist Ärztin. Mein Bruder heißt Tom. Er wohnt in Köln."
+    model_translation: { en: "This is my sister Lea. She is a doctor. My brother is called Tom. He lives in Cologne.", ru: "Это моя сестра Леа. Она врач. Моего брата зовут Том. Он живёт в Кёльне.", uk: "Це моя сестра Леа. Вона лікарка. Мого брата звати Том. Він живе в Кельні." }
+    explain: { en: "One person per two short sentences keeps the introduction clear and controllable at A1.", ru: "Два коротких предложения на человека делают представление ясным и посильным на A1.", uk: "Два короткі речення на людину роблять представлення зрозумілим і посильним на A1." }
+
   - id: uebersetzen-schwester-beruf
     outcomes: [menschen-beschreiben]
     type: translate

@@ -120,7 +120,7 @@ const introducesClause = (text: string, word: string) =>
  * correct by design ("topic does not list this set", or an error on every item of a set
  * that spans twenty-two topics).
  */
-const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'placement']);
+const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'placement', 'exam-practice']);
 
 /**
  * Roles that assess a whole level and so may reference any topic's outcomes.
@@ -718,6 +718,30 @@ for (const [setId, { file, data }] of exerciseSets) {
   if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
+  if (data.role === 'probe') {
+    if (data.arming.length === 0) fail(file, 'a probe family requires at least one explicit arming item key');
+    const probeFocus = data.items[0]?.focus;
+    for (const key of data.arming) {
+      const split = key.lastIndexOf('::');
+      const sourceSetId = split < 0 ? '' : key.slice(0, split);
+      const sourceItemId = split < 0 ? '' : key.slice(split + 2);
+      const sourceSet = exerciseSets.get(sourceSetId)?.data;
+      const sourceItem = sourceSet?.items.find((item) => item.id === sourceItemId);
+      if (!sourceSet || !sourceItem) {
+        fail(file, `arming key "${key}" does not resolve to an exercise item`);
+        continue;
+      }
+      if (sourceSet.role !== 'practice' && sourceSet.role !== 'drill')
+        fail(file, `arming key "${key}" points to role: ${sourceSet.role}, not practice/drill`);
+      if (sourceItem.type === 'write' || sourceItem.type === 'speak')
+        fail(file, `arming key "${key}" points to unverified open production`);
+      if (probeFocus && sourceItem.focus !== probeFocus)
+        fail(file, `arming key "${key}" carries focus "${sourceItem.focus ?? '-'}", expected "${probeFocus}"`);
+    }
+  } else if (data.arming.length > 0) {
+    fail(file, `role: ${data.role} must not declare probe arming keys`);
+  }
+
   // The `-pretest` suffix is load-bearing, not decorative: `isPretestAttempt`
   // (src/lib/weakness.ts) reads it off the attempt's setId to keep pretests out of every
   // weakness signal, and an attempt carries no role. Checked in both directions so the
@@ -737,6 +761,13 @@ for (const [setId, { file, data }] of exerciseSets) {
     if (!document) fail(file, `stimulus "${data.stimulus}" does not resolve to content/documents`);
     else if (document.data.topic !== data.topic)
       fail(file, `stimulus topic "${document.data.topic}" ≠ exercise topic "${data.topic}"`);
+  }
+  for (const item of data.items) {
+    if (!item.stimulus) continue;
+    const document = documents.get(item.stimulus);
+    if (!document) fail(`${file} → item "${item.id}"`, `stimulus "${item.stimulus}" does not resolve to content/documents`);
+    else if (data.role !== 'exam-practice' && document.data.topic !== data.topic)
+      fail(`${file} → item "${item.id}"`, `stimulus topic "${document.data.topic}" ≠ exercise topic "${data.topic}"`);
   }
 
   // A probe family's items are PARALLEL VARIANTS: different tasks, one competence.
@@ -793,6 +824,23 @@ for (const [setId, { file, data }] of exerciseSets) {
     const where = `${file} → item "${item.id}"`;
     if (itemIds.has(item.id)) fail(where, 'duplicate item id within set');
     itemIds.add(item.id);
+    if (item.focus_evidence && !item.focus)
+      fail(where, 'focus_evidence requires a focus tag');
+    for (const pattern of [
+      ...(item.focus_evidence?.retained ?? []),
+      ...(item.focus_evidence?.failed ?? []),
+    ]) {
+      try {
+        new RegExp(pattern, 'iu');
+      } catch (error) {
+        fail(where, `invalid focus_evidence regex "${pattern}": ${error instanceof Error ? error.message : error}`);
+      }
+    }
+    if (setId.startsWith('a1/') && item.type === 'listen' && item.focus && !item.focus_evidence)
+      fail(
+        where,
+        'focused A1 dictation needs explicit focus_evidence; a whole-sentence miss must not be guessed as failure of its grammar tag',
+      );
 
     switch (item.type) {
       case 'mc': {
@@ -1276,6 +1324,11 @@ for (const [setId, { file, data }] of exerciseSets) {
         // any known outcome; ordinary sets stay locked to their own topic's.
         const crossTopic = CROSS_TOPIC_ROLES.has(data.role);
         for (const item of data.items) {
+          if (data.role === 'exam-practice' && !item.target_mode)
+            fail(
+              `${file} → item "${item.id}"`,
+              'exam-practice items must declare target_mode so the skill being rehearsed is not inferred from the response widget',
+            );
           for (const outcome of item.outcomes) {
             const owns = outcomeOwner.get(outcome);
             if (!owns) fail(`${file} → item "${item.id}"`, `unknown outcome "${outcome}"`);
@@ -1305,25 +1358,50 @@ for (const [setId, { file, data }] of exerciseSets) {
       // practised. (A2 shipped four of these; A1 had none.)
       {
         const measured = new Set<string>();
+        const measuredModes = new Map<string, Set<string>>();
+        const rememberMode = (outcome: string, mode: string) => {
+          const modes = measuredModes.get(outcome) ?? new Set<string>();
+          modes.add(mode);
+          measuredModes.set(outcome, modes);
+        };
         for (const { data } of exerciseSets.values()) {
           if (data.role !== 'practice' && data.role !== 'drill') continue;
-          for (const item of data.items) for (const outcome of item.outcomes) measured.add(outcome);
+          for (const item of data.items) for (const outcome of item.outcomes) {
+            measured.add(outcome);
+            rememberMode(outcome, item.target_mode ?? responseModeForItem(item));
+          }
         }
         for (const { data } of readings.values()) {
           for (const question of data.questions)
-            for (const outcome of question.outcomes) measured.add(outcome);
+            for (const outcome of question.outcomes) {
+              measured.add(outcome);
+              rememberMode(outcome, 'reading');
+            }
         }
         for (const node of atlas.nodes) {
           for (const outcome of node.outcomes) {
-            if (measured.has(outcome.id)) continue;
-            fail(
-              AT,
-              `outcome "${outcome.id}" of topic "${node.id}" is measured by nothing — ` +
-                'reference it from an item in a role: practice or role: drill set, or from a ' +
-                'reading question. Pretests, checkpoints and probes do not count: an outcome ' +
-                'that is only ever tested was never practised, so it can never light up on the ' +
-                'progress page and its delayed probe can never arm.',
-            );
+            if (!measured.has(outcome.id)) {
+              fail(
+                AT,
+                `outcome "${outcome.id}" of topic "${node.id}" is measured by nothing — ` +
+                  'reference it from an item in a role: practice or role: drill set, or from a ' +
+                  'reading question. Pretests, checkpoints and probes do not count: an outcome ' +
+                  'that is only ever tested was never practised, so it can never light up on the ' +
+                  'progress page and its delayed probe can never arm.',
+              );
+              continue;
+            }
+            if (
+              topics.get(node.id)?.data.level === 'A1' &&
+              !measuredModes.get(outcome.id)?.has(outcome.mode)
+            )
+              fail(
+                AT,
+                `A1 outcome "${outcome.id}" claims mode "${outcome.mode}", but its real ` +
+                  `practice targets only ${[...(measuredModes.get(outcome.id) ?? [])].join(', ') || 'no mode'} — ` +
+                  'add a practice/drill/reading task for the claimed mode. target_mode may describe ' +
+                  'the communicative target independently of the response widget.',
+              );
           }
         }
       }
@@ -1684,6 +1762,13 @@ for (const level of MEASURED_LEVELS) {
         `Teach it, or drop the "~" and give it a flashcard.`,
     );
   }
+}
+const a1Boundary = goetheCoverage('A1', ROOT);
+for (const word of a1Boundary.late) {
+  fail(
+    'data/goethe-a1-wortliste.txt',
+    `"${word}" is covered only by a deck above A1 — A1 completion is a level-boundary claim`,
+  );
 }
 
 // ---------------------------------------------------------------------------

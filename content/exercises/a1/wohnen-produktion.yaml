@@ -6,6 +6,20 @@ title:
   uk: "Продукування — опишіть житло самі"
 
 items:
+  - id: wohnung-lage-sprechen
+    outcomes: [wohnen-lage-sagen]
+    type: speak
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Describe where your home is and where two things are inside it.", ru: "Расскажите, где находится ваш дом и где в нём стоят две вещи.", uk: "Розкажіть, де розташоване ваше житло і де в ньому стоять дві речі." }
+    goal: { en: "Use three simple location chunks.", ru: "Используйте три простых выражения места.", uk: "Використайте три прості вирази місця." }
+    checklist:
+      - { en: "I used in, im or am in each location.", ru: "В каждом указании места я использовал(а) in, im или am.", uk: "У кожній вказівці місця я використав(-ла) in, im або am." }
+      - { en: "I included a finite verb in every sentence.", ru: "В каждом предложении был спрягаемый глагол.", uk: "У кожному реченні було відмінюване дієслово." }
+    model_answer: "Meine Wohnung ist in Bonn. Der Tisch steht im Wohnzimmer. Die Lampe steht am Fenster."
+    model_translation: { en: "My apartment is in Bonn. The table is in the living room. The lamp is by the window.", ru: "Моя квартира в Бонне. Стол стоит в гостиной. Лампа стоит у окна.", uk: "Моя квартира в Бонні. Стіл стоїть у вітальні. Лампа стоїть біля вікна." }
+    explain: { en: "At A1, stable chunks such as im Wohnzimmer and am Fenster are more useful than deriving every case ending from scratch.", ru: "На A1 готовые сочетания im Wohnzimmer и am Fenster полезнее, чем каждый раз выводить падежные окончания заново.", uk: "На A1 готові сполуки im Wohnzimmer і am Fenster корисніші, ніж щоразу виводити відмінкові закінчення заново." }
+
   - id: uebersetzen-wohnung-gross
     outcomes: [wohnen-beschreiben]
     type: translate

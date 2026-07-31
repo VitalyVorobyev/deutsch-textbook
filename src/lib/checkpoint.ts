@@ -136,7 +136,7 @@ const MODE_ORDER = ['listening', 'reading', 'writing', 'spoken-production', 'spo
 
 /**
  * Roll up checkpoint attempts: the latest verified attempt per item wins (a
- * retake replaces the old result, it never averages), `write` items count as
+ * retake replaces the old result, it never averages), open `write`/`speak` items count as
  * taken but never as score, and outcomes group by CEFR mode for the results
  * panel. Returns null while the checkpoint has never been attempted at all.
  */
@@ -151,7 +151,7 @@ export function checkpointOutcomeResults(
 
   const latest = latestVerifiedByItem(attempts, setId);
 
-  const scorable = items.filter((item) => item.type !== 'write');
+  const scorable = items.filter((item) => item.type !== 'write' && item.type !== 'speak');
   const perOutcome = new Map<string, CheckpointOutcomeResult>();
   let answered = 0;
   let score = 0;

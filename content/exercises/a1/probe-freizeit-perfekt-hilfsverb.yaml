@@ -1,0 +1,7 @@
+topic: freizeit-koennen
+role: probe
+arming: [a1/freizeit-perfekt-a1::perfekt-sein, a1/freizeit-perfekt-a1::perfekt-haben-sein]
+items:
+  - { id: variant-a, type: cloze, outcomes: [freizeit-vergangenheit], focus: haben-sein, text: "Wir {{sind}} nach Berlin gefahren.", explain: { en: "Movement to another place uses sein.", ru: "Перемещение в другое место требует sein.", uk: "Переміщення в інше місце вимагає sein." } }
+  - { id: variant-b, type: cloze, outcomes: [freizeit-vergangenheit], focus: haben-sein, text: "Ich {{habe}} lange telefoniert.", explain: { en: "An activity without a change of place uses haben.", ru: "Действие без перемещения образует Perfekt с haben.", uk: "Дія без переміщення утворює Perfekt із haben." } }
+  - { id: variant-c, type: cloze, outcomes: [freizeit-vergangenheit], focus: haben-sein, text: "Mara {{ist}} zu Hause geblieben.", explain: { en: "bleiben is one of the frequent verbs that uses sein.", ru: "bleiben — один из частых глаголов с sein.", uk: "bleiben — одне з частих дієслів із sein." } }

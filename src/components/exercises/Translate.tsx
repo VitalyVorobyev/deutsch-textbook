@@ -14,6 +14,7 @@ import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
+import { evaluateFocusEvidence } from '../../lib/evidence';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
@@ -93,6 +94,14 @@ export function Translate({
   function check() {
     if (checked || locked || value.trim() === '') return;
     setChecked(true);
+    // An explicit verdict only where there is an explicit contract. Logging `unknown` on an
+    // item with no predicates would make `classifyProbe` read the attempt as unmeasured
+    // while `key_tokens` had in fact attributed it — two instruments disagreeing about the
+    // same row. Absent means "no ruling", which is what every historical attempt carries and
+    // what the audit already knows how to fall back from.
+    const focusEvidence = item.focus && item.focus_evidence
+      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+      : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
@@ -100,7 +109,24 @@ export function Translate({
       // producing the structure correctly is exactly the positive evidence that tag is
       // for. Only a failure gives it up, and only when the tokens that diverged are not
       // the ones the tag grades (`undefined` means "use the item's own tag").
-      focus: verdict.kind === 'wrong' ? (verdict.focus ?? null) : undefined,
+      //
+      // `focus_evidence` OVERRIDES that judgement where an author has written one, and is
+      // silent where none exists. Making it *replace* key_tokens attribution everywhere was
+      // measured against the learner's log and is not a smaller signal but an inverted one:
+      // 291 wrong free-typed attempts, 0 matched by a predicate, 145 tags dropped, and
+      // `weakFocuses` fell 7 → 1 with error rates driven to zero at an unchanged denominator
+      // (`um-am-zeit` 21% → 1%, n = 30 both ways). A tag reading 0% on a confusion the
+      // learner fails 41% of the time is a false entry, not an honest gap — the very thing
+      // dropping the attribution was meant to prevent.
+      focus:
+        verdict.kind !== 'wrong'
+          ? undefined
+          : focusEvidence === 'failed'
+            ? undefined
+            : item.focus_evidence
+              ? null
+              : (verdict.focus ?? null),
+      focusEvidence,
     });
   }
 
