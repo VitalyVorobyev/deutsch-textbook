@@ -224,16 +224,24 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   so reading and pretest attempts cannot start a production-retention clock.
 - **P12-4 · Separate focus evidence from answer constraints — resolved 2026-07-31** —
   `focus_evidence` predicates now produce explicit `retained`, `failed` or `unknown` attempt data;
-  `key_tokens` continues to constrain answer grading. Historical attempts remain unchanged, and
-  the audit falls back to their earlier contract only when the explicit verdict is absent.
+  `key_tokens` continues to constrain answer grading, and still attributes on items that declare
+  no predicates. An attempt carries a verdict only where the item declares a contract, so
+  historical attempts remain unchanged and the audit falls back to their earlier contract
+  wherever the explicit verdict is absent.
 - **P12-5 · Inserted-token attribution — resolved 2026-07-31** — failed predicates can name an
   inserted form directly. `uebersetzen-modal-ohne-zu` now distinguishes spurious *zu* or
   *mitzukommen* (failed) from a lexical substitution such as *kommen* (unknown), instead of
   charging both to `zu-infinitiv`.
-- **P12-6 · Dictation focus attribution — resolved 2026-07-31** — focused A1 dictations carry
-  explicit predicates and validation requires them. A wrong free-typed answer without matching
-  predicates is `unknown`, never guessed as failure of its grammar tag; this rule also protects
-  focused A2/B1 dictations until their predicates are authored.
+- **P12-6 · Dictation focus attribution — resolved for A1 2026-07-31** — focused A1 dictations
+  carry explicit predicates and validation requires them, so on those items a wrong answer the
+  predicates do not name is `unknown`, never guessed as failure of its grammar tag.
+  **A2/B1 dictations are not covered and keep `dictationSlip`**: extending the silence to items
+  with no predicates was tried and measured against the learner's log, where it dropped 145 of
+  291 free-typed tags and took `weakFocuses` from 7 to 1 — an inverted signal, not an honest gap
+  (`um-am-zeit` read 1% error at n = 30 against a real 21%). The remaining work is authoring
+  predicates for the ~50 focused A2/B1 `listen` items, after which they get the A1 treatment
+  item by item. Reproduce with a `weakFocuses` replay over the newest `progress/vitaly` snapshot;
+  the rule itself is pinned by `tests/focus-attribution.test.tsx`.
 - **P12-7 · An accept list cannot be completed by enumeration** — `gradeTranslation` compares
   against a finite authored list, so every correct paraphrase absent from it is a false negative.
   The #116/#117 review ran **ten and nine rounds** largely on this one class: `bald` placement,

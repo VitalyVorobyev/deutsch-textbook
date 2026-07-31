@@ -98,10 +98,15 @@ and speaking are logged as visible, unverified practice and never raise accuracy
 Self-assessed speech is therefore useful activity, not a correctness measurement.
 
 `target_mode` records the CEFR skill an item practises independently of the actual response widget.
-Focused free-typed tasks may carry `focus_evidence` response predicates. New attempts retain an
-explicit `retained`, `failed` or `unknown` focus verdict; an unmatched whole-sentence error is not
-guessed into the weakness signal. Checkpoint scores exclude both open writing and speech while
-their attempts still count as coverage.
+Focused free-typed tasks may carry `focus_evidence` response predicates. Where an item declares
+them, the attempt carries an explicit `retained`, `failed` or `unknown` verdict and that verdict
+decides attribution — an unmatched whole-sentence error is not guessed into the weakness signal.
+Where an item declares none, the attempt carries no verdict and attribution stays as it was
+(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are additive on purpose:
+silencing every unmatched miss corpus-wide was measured against the learner's log and inverts the
+signal rather than gapping it — 145 of 291 wrong free-typed attempts lose their tag and
+`weakFocuses` falls 7 → 1, with error rates driven to zero at an unchanged denominator.
+Checkpoint scores exclude both open writing and speech while their attempts still count as coverage.
 
 `src/lib/mastery.ts` derives topic evidence and mastery. `src/lib/weakness.ts` aggregates
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;

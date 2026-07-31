@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { ProgressSnapshot } from './store';
-import { A1_CARD_ID_MIGRATION } from './a1-card-id-migration';
+import { migrateCardIds } from './a1-card-id-migration';
 import { mergeCards } from './snapshot-merge';
 
 const criterionSchema = z.enum(['met', 'needs-work']);
@@ -125,17 +125,10 @@ export const SUPPORTED_SNAPSHOT_VERSIONS = Object.keys(snapshotSchemas)
 
 type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshotSchemas]>;
 
-function migrateCardIds(cards: z.infer<typeof snapshotBody>['cards']) {
-  let migrated = {} as typeof cards;
-  for (const [id, card] of Object.entries(cards)) {
-    const nextId = A1_CARD_ID_MIGRATION[id] ?? id;
-    migrated = mergeCards(migrated, { [nextId]: card });
-  }
-  return migrated;
-}
-
 function asV7(snapshot: NormalizedSnapshot): ProgressSnapshot {
-  return { ...snapshot, cards: migrateCardIds(snapshot.cards), version: 7 } as ProgressSnapshot;
+  // The same map the live store applies on open — one implementation, two entry points.
+  const cards = migrateCardIds(snapshot.cards, mergeCards);
+  return { ...snapshot, cards, version: 7 } as ProgressSnapshot;
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */

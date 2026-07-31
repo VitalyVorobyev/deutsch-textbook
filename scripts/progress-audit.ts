@@ -798,7 +798,7 @@ export interface CompetenceRetention {
    * as improved retention. Reporting the split means a jump in the percentage can always be
    * checked against the mix that produced it.
    */
-  formats: Record<string, { attempts: number; survived: number }>;
+  formats: Record<string, { attempts: number; survived: number; unknown: number }>;
 }
 
 /**
@@ -919,16 +919,25 @@ function delayedSummary(
     const row = competences.get(key) ?? {
       level, focus, label, families: 0, attempts: 0, correct: 0, retained: 0, failed: 0,
       retentionPct: 0, maxElapsedDays: 0, readable: false,
-      formats: {} as Record<string, { attempts: number; survived: number }>,
+      formats: {} as Record<string, { attempts: number; survived: number; unknown: number }>,
     };
     row.attempts += 1;
     if (verdict === 'unknown') row.unknown = (row.unknown ?? 0) + 1;
     else row[verdict] += 1;
     // Same rule as `focus` above: the instrument's own declaration, not the stored attempt.
+    //
+    // An `unknown` verdict is outside this split entirely, on the same logic as the pooled
+    // retention percentage above: it is a measurement the instrument declined to make, not a
+    // failure. Counting it in the denominator alone rendered one unmeasured response as
+    // `translate 0/1` — which reads as the weakest format in the table and would send drill
+    // authoring after the wrong response mode.
     const type = item?.type ?? attempt.itemType;
-    const fmt = (row.formats[type] ??= { attempts: 0, survived: 0 });
-    fmt.attempts += 1;
-    if (verdict === 'correct' || verdict === 'retained') fmt.survived += 1;
+    const fmt = (row.formats[type] ??= { attempts: 0, survived: 0, unknown: 0 });
+    if (verdict === 'unknown') fmt.unknown += 1;
+    else {
+      fmt.attempts += 1;
+      if (verdict === 'correct' || verdict === 'retained') fmt.survived += 1;
+    }
     const armed = armedByFamily.get(attempt.setId);
     if (armed !== undefined) {
       row.maxElapsedDays = Math.max(row.maxElapsedDays, Math.round((attempt.ts - armed) / DAY));
@@ -1175,7 +1184,8 @@ function performanceTable(rows: PerformanceRow[]): string[] {
 function formatSplit(row: CompetenceRetention): string {
   return Object.entries(row.formats)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([type, { attempts, survived }]) => `${type} ${survived}/${attempts}`)
+    .map(([type, { attempts, survived, unknown }]) =>
+      `${type} ${survived}/${attempts}${unknown ? ` (+${unknown} unknown)` : ''}`)
     .join(' · ');
 }
 

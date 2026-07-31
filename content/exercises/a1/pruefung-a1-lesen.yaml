@@ -22,10 +22,13 @@ items:
     type: mc
     target_mode: reading
     outcomes: [zeit-wochenplan-lesen]
-    prompt: "„Der Deutschkurs beginnt morgen ausnahmsweise um neun Uhr. Bitte bringen Sie das Kursbuch mit.“ Der Kurs beginnt morgen später als sonst."
+    # Both times have to be on the page. `ausnahmsweise` says the time is an exception, not
+    # which direction it moved, so without the usual eight o'clock `Falsch` is as defensible
+    # as `Richtig` — and an exam-practice item may not grade an inference its text withholds.
+    prompt: "„Der Deutschkurs beginnt immer um acht Uhr. Morgen beginnt er ausnahmsweise um neun Uhr. Bitte bringen Sie das Kursbuch mit.“ Der Kurs beginnt morgen später als sonst."
     options: ["Richtig", "Falsch"]
     correct: 0
-    explain: { en: "ausnahmsweise signals a changed time; the message says tomorrow at nine.", ru: "ausnahmsweise указывает на исключение: завтра курс начинается в девять.", uk: "ausnahmsweise вказує на виняток: завтра курс починається о дев'ятій." }
+    explain: { en: "Both times are in the message: immer um acht is the rule, morgen … um neun the exception — and nine o'clock is later than eight. ausnahmsweise only tells you the time changed; the comparison needs the usual time too.", ru: "В сообщении есть оба времени: immer um acht — обычно, morgen … um neun — исключение, а девять позже восьми. Само по себе ausnahmsweise говорит лишь о том, что время изменилось; чтобы сравнить, нужно и обычное время.", uk: "У повідомленні є обидва часи: immer um acht — зазвичай, morgen … um neun — виняток, а дев'ята пізніше за восьму. Саме по собі ausnahmsweise каже лише про те, що час змінився; щоб порівняти, потрібен і звичайний час." }
   - id: lesen-nachricht-einkauf
     type: mc
     target_mode: reading

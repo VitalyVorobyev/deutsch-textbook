@@ -102,9 +102,12 @@ items:
     outcomes: [plan-zu-infinitiv]
     type: translate
     focus: zu-infinitiv
+    # The signature errors are the three places the zu can go wrong on a separable
+    # verb: in front of the whole word, split out of it, or dropped. `auszufüllen`
+    # is not a substring of any of them, so none of these can fire on a right answer.
     focus_evidence:
-      retained: ["\\b(willst|möchtest) du mitkommen\\b", "\\bmusst du arbeiten$"]
-      failed: ["\\bzu mitkommen\\b", "\\bmitzukommen\\b", "\\bzu arbeiten$"]
+      retained: ["\\bauszufüllen$"]
+      failed: ["\\bzu ausfüllen\\b", "\\baus zu füllen\\b", "\\bausfüllen$"]
     prompt_en: "Yesterday I forgot to fill in the form."
     prompt_ru: "Вчера я забыл заполнить формуляр."
     prompt_uk: "Учора я забув заповнити формуляр."
@@ -165,6 +168,13 @@ items:
     outcomes: [zu-oder-ohne-zu]
     type: translate
     focus: zu-infinitiv
+    # P12-5's worked example: a spurious `zu` (inserted, so `key_tokens` is blind to it)
+    # and `mitzukommen` are the tag failing; `kommen` for `mitkommen` is a lexical
+    # substitution that gets the grammar right, and must stay unknown rather than be
+    # charged to zu-infinitiv.
+    focus_evidence:
+      retained: ["\\b(willst|möchtest) du mitkommen\\b", "\\bmusst du arbeiten$"]
+      failed: ["\\bzu mitkommen\\b", "\\bmitzukommen\\b", "\\bzu arbeiten$"]
     instruction:
       en: "Use mitkommen and arbeiten — and decide for each one whether it needs zu."
       ru: "Используйте mitkommen и arbeiten — и решите для каждого, нужен ли ему zu."

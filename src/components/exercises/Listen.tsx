@@ -53,13 +53,21 @@ export function Listen({
     // would be a false entry in the one signal that steers training and drill authoring.
     const slipped =
       !isCorrect && [item.text, ...item.accept].some((target) => dictationSlip(value, target));
-    const focusEvidence = item.focus
+    // Only where the item declares predicates — see the note in Translate.tsx.
+    const focusEvidence = item.focus && item.focus_evidence
       ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
       : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
-      ...(!isCorrect && (slipped || focusEvidence !== 'failed') ? { focus: null } : {}),
+      // Where the item authors predicates, they decide: anything they do not call a failure
+      // is unknown. Where it does not, `dictationSlip` stays the only disclaimer — silencing
+      // every unmatched miss corpus-wide inverts the weakness signal rather than honesty-gapping
+      // it (see the measurement in Translate.tsx). A1 dictations all carry predicates; the
+      // validator enforces it, which is P12-6's A1 half.
+      ...(!isCorrect && (slipped || (item.focus_evidence && focusEvidence !== 'failed'))
+        ? { focus: null }
+        : {}),
       focusEvidence,
     });
   }
