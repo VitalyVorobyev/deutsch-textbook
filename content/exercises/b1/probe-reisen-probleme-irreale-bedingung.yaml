@@ -8,7 +8,9 @@
 # particle («бы»/«б») over plain past forms, so no source hands over both conjugated
 # German markings ready to copy.
 # One retention curve: everyday spoken register, present unreal, wenn-half first in
-# the teaching model with the reversed and dann-orders accepted. Only the two markers
+# the teaching model with the reversed, dann- and wenn-less verb-first orders
+# accepted (Wären die Fahrkarten … — standard German, both halves marked, so a probe
+# with three lifetime stages must not fail it). Only the two markers
 # are pinned, one per half; the carrier verbs are named in the instruction (the B1.6
 # ruling — an accept list cannot enumerate an open lexical space) and stay unpinned,
 # so a fumbled infinitive or noun is never charged to this tag.
@@ -35,6 +37,7 @@ title:
   de: "Kontrolle mit Abstand — beide Hälften der irrealen Bedingung"
 items:
   - id: variant-a
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -50,14 +53,18 @@ items:
     accept:
       - "Wenn die Fahrkarten nicht so teuer wären, dann würden wir öfter mit dem Zug fahren."
       - "Wir würden öfter mit dem Zug fahren, wenn die Fahrkarten nicht so teuer wären."
-    key_tokens: ["wären", "würden"]
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Wären die Fahrkarten nicht so teuer, würden wir öfter mit dem Zug fahren."
+      - "Wären die Fahrkarten nicht so teuer, dann würden wir öfter mit dem Zug fahren."
+    key_tokens: ["wären", "Wären", "würden"]
     explain:
-      en: "Graded are the two markers, one per half: plural wären closing the wenn-clause and würden opening the main one. English splits its marking — a plain past in the if-half, would only in the main half — so the wenn-clause's wären must be built, not copied. Both clause orders are accepted; the indicative in either half is the one wrong move."
+      en: "Graded are the two markers, one per half: plural wären closing the wenn-clause and würden opening the main one. English splits its marking — a plain past in the if-half, would only in the main half — so the wenn-clause's wären must be built, not copied. Every clause order is accepted, including the wenn-less verb-first Wären …; the indicative in either half is the one wrong move."
       ru: "Оцениваются два маркера, по одному на половину: множественное wären закрывает придаточное с wenn, würden открывает главное. Исходные языки помечают лишь одну сторону — «бы» не меняется и не спрягается, — поэтому вторую немецкую форму нужно построить, а не скопировать. Оба порядка частей принимаются; единственный неверный ход — индикатив в любой половине."
       uk: "Оцінюються два маркери, по одному на половину: множинне wären закриває підрядне з wenn, würden відкриває головне. Вихідні мови позначають лише один бік — «б/би» не змінюється і не відмінюється, — тому другу німецьку форму треба побудувати, а не скопіювати. Обидва порядки частин приймаються; єдиний неправильний хід — індикатив у будь-якій половині."
       de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: Das pluralische wären schließt den wenn-Satz, würden eröffnet den Hauptsatz. Die Ausgangssprachen verteilen ihre Markierung ungleich auf die Hälften, also muss mindestens eine deutsche Form gebaut und nicht kopiert werden. Beide Satzfolgen werden akzeptiert; der eine falsche Zug ist der Indikativ in einer der Hälften."
 
   - id: variant-b
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -76,7 +83,11 @@ items:
       # für drei Nächte is the booking-language rendering of the same duration.
       - "Wenn die Übernachtung billiger wäre, würden wir für drei Nächte bleiben."
       - "Wir würden für drei Nächte bleiben, wenn die Übernachtung billiger wäre."
-    key_tokens: ["wäre", "würden"]
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Wäre die Übernachtung billiger, würden wir drei Nächte bleiben."
+      - "Wäre die Übernachtung billiger, dann würden wir drei Nächte bleiben."
+      - "Wäre die Übernachtung billiger, würden wir für drei Nächte bleiben."
+    key_tokens: ["wäre", "Wäre", "würden"]
     explain:
       en: "Again one marker per half: singular wäre, agreeing with die Übernachtung, at the wenn-clause wall, and würden carrying bleiben in the main clause. wäre in the first half never excuses a bleiben wir in the second — once the unreal world is open, both halves live in it. The duration stands as a plain accusative, drei Nächte, and the für-variant is accepted."
       ru: "Снова по маркеру на половину: единственное wäre, согласованное с die Übernachtung, у стены придаточного и würden, несущее bleiben, в главном. wäre в первой половине не оправдывает bleiben wir во второй — раз нереальный мир открыт, обе половины живут в нём. Длительность стоит простым аккузативом, drei Nächte; вариант с für принимается."
@@ -84,6 +95,7 @@ items:
       de: "Wieder eine Markierung pro Hälfte: das singularische wäre, passend zu die Übernachtung, an der Wand des wenn-Satzes, und würden mit bleiben im Hauptsatz. Das wäre in der ersten Hälfte entschuldigt kein bleiben wir in der zweiten — ist die irreale Welt offen, leben beide Hälften darin. Die Dauer steht im bloßen Akkusativ, drei Nächte, und die für-Variante wird akzeptiert."
 
   - id: variant-c
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -99,7 +111,10 @@ items:
     accept:
       - "Wenn ich mein Handy hätte, dann könnte ich das Hotel anrufen."
       - "Ich könnte das Hotel anrufen, wenn ich mein Handy hätte."
-    key_tokens: ["hätte", "könnte"]
+      # The wenn-less verb-first protasis is the same unreal condition, both halves marked.
+      - "Hätte ich mein Handy, könnte ich das Hotel anrufen."
+      - "Hätte ich mein Handy, dann könnte ich das Hotel anrufen."
+    key_tokens: ["hätte", "Hätte", "könnte"]
     explain:
       en: "The cell with no würde at all: haben and können both own one-word forms, so hätte marks the wenn-half and könnte the main half. hatte and konnte — the same letters without dots — would report a past that really happened, the exact opposite of this stranded moment. anrufen takes a plain accusative: das Hotel, no preposition."
       ru: "Ячейка вовсе без würde: у haben и können есть однословные формы, поэтому wenn-половину помечает hätte, а главную — könnte. hatte и konnte — те же буквы без точек — сообщали бы о реально случившемся прошлом, полная противоположность этому моменту на перроне. anrufen берёт простой аккузатив: das Hotel, без предлога."
