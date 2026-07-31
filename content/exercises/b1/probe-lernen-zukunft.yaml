@@ -52,6 +52,11 @@ items:
     prompt_ru: "Марта пришлёт мне свои записи, чтобы я мог их прочитать."
     prompt_uk: "Марта надішле мені свої нотатки, щоб я міг їх прочитати."
     answer: "Marta schickt mir ihre Notizen, damit ich sie lesen kann."
+    accept:
+      # The RU/UK prompt halves cast the sending as future («пришлёт»/«надішле»),
+      # so A2's werden + Infinitiv is an equally faithful main clause — and the
+      # probed damit-clause is identical in both renderings.
+      - "Marta wird mir ihre Notizen schicken, damit ich sie lesen kann."
     key_tokens: ["damit", "kann"]
     explain:
       en: "Graded are the two ends of the forced form: damit and the clause-final kann. Marta sends, I read — two subjects, so the subjectless um … zu has no room (um ich sie zu lesen is exactly the impossible sentence; um sie zu lesen would silently make Marta the reader). damit opens a Nebensatz like weil's: its own subject ich, and the conjugated kann at the wall, after the infinitive lesen."
