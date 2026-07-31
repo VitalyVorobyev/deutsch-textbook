@@ -125,6 +125,12 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   audit names it an instrument gap. The items may be genuinely mixed (a false tag is worse than
   none), but if one nameable confusion fits, tagging is a probe-semantics change: `revision`
   bump, and `armedAt` measured before and after per the re-arming rule.
+- **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item** — the inventory point
+  `konjunktiv2-irreal` is named "Bedingungen und Wünsche", but B1.8 drills only the two-clause
+  condition; the wish form sat taught in `## Erklärung` with no item and was demoted to
+  `### Feinheiten` in the #126 review round (Codex finding). A later KII-touching unit or drill
+  should own one production item for it (a `translate` pinning the one-word form beside
+  *doch*/*nur*) so the point's second half is practised, not just named.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);

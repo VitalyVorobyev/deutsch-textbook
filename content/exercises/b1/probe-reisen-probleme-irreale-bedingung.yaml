@@ -3,9 +3,10 @@
 # rather than cloze, because a cloze prints one half already marked and thereby
 # answers the probed question: the confusion is *which halves* carry the marking, so
 # both must come from the learner (contrast family 1, where the confusion is the form
-# itself and cloze is right). The EN prompts mark only the if-half ("were … would")
-# and the RU/UK prompts carry one unchanging particle («бы»/«б») over plain past
-# forms, so the second German marking can never be copied from the source.
+# itself and cloze is right). The EN prompts split their marking (plain past in the
+# if-half, "would" in the main half) and the RU/UK prompts carry one unchanging
+# particle («бы»/«б») over plain past forms, so no source hands over both conjugated
+# German markings ready to copy.
 # One retention curve: everyday spoken register, present unreal, wenn-half first in
 # the teaching model with the reversed and dann-orders accepted. Only the two markers
 # are pinned, one per half; the carrier verbs are named in the instruction (the B1.6
@@ -50,10 +51,10 @@ items:
       - "Wir würden öfter mit dem Zug fahren, wenn die Fahrkarten nicht so teuer wären."
     key_tokens: ["wären", "würden"]
     explain:
-      en: "Graded are the two markers, one per half: plural wären closing the wenn-clause and würden opening the main one. English marks only one side — the if-half takes a plain past and would is banned from it — so the second German form must be built, not copied. Both clause orders are accepted; the indicative in either half is the one wrong move."
+      en: "Graded are the two markers, one per half: plural wären closing the wenn-clause and würden opening the main one. English splits its marking — a plain past in the if-half, would only in the main half — so the wenn-clause's wären must be built, not copied. Both clause orders are accepted; the indicative in either half is the one wrong move."
       ru: "Оцениваются два маркера, по одному на половину: множественное wären закрывает придаточное с wenn, würden открывает главное. Исходные языки помечают лишь одну сторону — «бы» не меняется и не спрягается, — поэтому вторую немецкую форму нужно построить, а не скопировать. Оба порядка частей принимаются; единственный неверный ход — индикатив в любой половине."
       uk: "Оцінюються два маркери, по одному на половину: множинне wären закриває підрядне з wenn, würden відкриває головне. Вихідні мови позначають лише один бік — «б/би» не змінюється і не відмінюється, — тому другу німецьку форму треба побудувати, а не скопіювати. Обидва порядки частин приймаються; єдиний неправильний хід — індикатив у будь-якій половині."
-      de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: Das pluralische wären schließt den wenn-Satz, würden eröffnet den Hauptsatz. Viele Ausgangssprachen markieren nur eine Seite, also muss die zweite deutsche Form gebaut und nicht kopiert werden. Beide Satzfolgen werden akzeptiert; der eine falsche Zug ist der Indikativ in einer der Hälften."
+      de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: Das pluralische wären schließt den wenn-Satz, würden eröffnet den Hauptsatz. Die Ausgangssprachen verteilen ihre Markierung ungleich auf die Hälften, also muss mindestens eine deutsche Form gebaut und nicht kopiert werden. Beide Satzfolgen werden akzeptiert; der eine falsche Zug ist der Indikativ in einer der Hälften."
 
   - id: variant-b
     outcomes: [irreale-bedingung-nutzen]
