@@ -215,10 +215,12 @@ const principles = [
             has a diagnostic pretest, a full article, a graded reading, exercises across several task
             types, and its own vocabulary. {coverage.cards + coverage.grammar} of the
             {' '}{coverage.total} headwords on the official Goethe-Institut A1 Wortliste are covered
-            ({coverage.percent}%) — {coverage.cards} as flashcards and {coverage.grammar} taught as
-            grammar rather than as vocabulary. All {grammarA1.total} grammar points the A1 standard
-            expects are taught, {grammarA1.late} of them at A2 — a sequencing choice this course
-            makes deliberately and does not hide. A cumulative
+            ({coverage.percent}%) — {coverage.onTimeCards} card headwords are available by the A1
+            boundary and {coverage.grammar} are taught as grammar rather than vocabulary. All
+            {' '}{grammarA1.total} grammar points expected at A1 are introduced and practised inside
+            A1 ({grammarA1.late} late). Original Goethe-style
+            <a href={withBase('/pruefung/a1')} class="ml-1 text-sky-700 hover:underline dark:text-sky-400">reading, writing and speaking practice</a>
+            is included; listening exam practice remains explicitly deferred. A cumulative
             {checkpointA1 && ` ${checkpointA1.items.length}-item`} A1 checkpoint measures the
             level end to end.
           </span>
@@ -228,10 +230,11 @@ const principles = [
             есть диагностический претест, полная статья, текст для чтения, упражнения нескольких
             типов и собственный словарь. Из {coverage.total} слов официального списка Goethe-Institut
             A1 Wortliste охвачено {coverage.cards + coverage.grammar} ({coverage.percent}%):
-            {' '}{coverage.cards} — карточками, ещё {coverage.grammar} даются как грамматика, а не как
-            лексика. Охвачены все грамматические пункты стандарта A1 — всего {grammarA1.total};
-            {' '}{grammarA1.late}
-            из них даются на A2 — это осознанный выбор последовательности, и он не скрывается.
+            {' '}{coverage.onTimeCards} слов с карточками доступны уже к границе A1, ещё
+            {' '}{coverage.grammar} даются как грамматика. Все {grammarA1.total} грамматических
+            пунктов A1 вводятся и отрабатываются внутри A1 ({grammarA1.late} с опозданием).
+            Добавлена оригинальная практика чтения, письма и говорения в формате Goethe;
+            экзаменационное аудирование явно отложено.
             Итоговая контрольная точка A1
             {checkpointA1 && ` из ${checkpointA1.items.length} заданий`} проверяет уровень
             целиком.
@@ -241,10 +244,11 @@ const principles = [
             {' '}{a1.units}. У кожному є діагностичний претест, повна стаття, адаптований текст для
             читання, вправи кількох типів і власний словник. Із {coverage.total} слів офіційного
             списку Goethe-Institut A1 Wortliste охоплено {coverage.cards + coverage.grammar}
-            ({coverage.percent}%): {coverage.cards} — картками, ще {coverage.grammar} подано як
-            граматику, а не як лексику. Викладено всі граматичні пункти, яких очікує стандарт A1, —
-            усього {grammarA1.total}; {grammarA1.late} з них подано на рівні A2: це свідомий вибір
-            послідовності, і курс його не приховує.
+            ({coverage.percent}%): {coverage.onTimeCards} слів із картками доступні вже до межі A1,
+            ще {coverage.grammar} подано як граматику. Усі {grammarA1.total} граматичних пунктів A1
+            вводяться й відпрацьовуються всередині A1 ({grammarA1.late} із запізненням). Додано
+            оригінальну практику читання, письма й говоріння у форматі Goethe; екзаменаційне
+            аудіювання явно відкладено.
             Підсумкова контрольна точка A1
             {checkpointA1 && ` з ${checkpointA1.items.length} завдань`} перевіряє рівень
             повністю.

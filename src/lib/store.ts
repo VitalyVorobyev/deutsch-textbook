@@ -60,6 +60,8 @@ export interface Attempt {
   given: string;
   /** the item's confusion tag (see focus-tag table in docs/focus-tags.md), when tagged */
   focus?: string;
+  /** Explicit verdict for the item's targeted focus; absent on historical attempts. */
+  focusEvidence?: 'retained' | 'failed' | 'unknown';
   /** omitted in historical snapshots; absence means verified */
   evidence?: 'verified' | 'practice';
   /** actual response channel; absent in historical snapshots */
@@ -345,8 +347,8 @@ export async function setArtifactFeedback(
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 6; import accepts v1-v6 through explicit migration. */
-  version: 6;
+  /** written as 7; import accepts v1-v7 through explicit migration. */
+  version: 7;
   exportedAt: string;
   /** profile label, informational only */
   profile?: string;
@@ -360,7 +362,7 @@ export interface ProgressSnapshot {
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 6,
+    version: 7,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),

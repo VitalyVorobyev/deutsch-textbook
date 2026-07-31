@@ -69,7 +69,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 `units:` file order **is** the recommended path (insert, never renumber); every topic lives in
 exactly one unit of its own level, never before a prerequisite; and a `deepens:` edge **must share
 a focus tag the base topic drills**, because the tag is the edge's only runtime channel — an edge
-without one is inert. Each node declares 2–4 learner-facing `outcomes`. All of it is validated.
+without one is inert. Each node declares 2–5 learner-facing `outcomes`. All of it is validated.
 
 ## Runtime invariants
 
@@ -84,7 +84,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 - **Unverified practice never raises measured mastery.** `write` and `speak` are minimal-ceremony: attempt → model answer → done. Their `requirements`/`checklist` render as guidance, **never as gated forms** — the app cannot verify free production, so it must not charge steps for feedback it cannot give.
 - **There is no default profile and no name is ever assumed.** Nothing may create a database before discovery has run. The last remaining profile cannot be deleted.
 - **Every figure on `/about` is computed from content at build time.** Never hand-write a count there, and never claim a level is more finished than it is.
-- Legacy or mismatched-revision attempts keep their logged result and are **never replayed** against a current key. Snapshot migrations v1–v6 are explicit (`src/lib/snapshot-schema.ts`).
+- Legacy or mismatched-revision attempts keep their logged result and are **never replayed** against a current key. Snapshot migrations v1–v7 are explicit (`src/lib/snapshot-schema.ts`).
 - `localStorage` keys with persisted user choices (e.g. `da:topics-view`) — **migrate old values** rather than stranding a learner on a state that no longer exists.
 
 ## Authoring rules (content quality is the product)
@@ -179,7 +179,7 @@ A topic is not done until all nine are:
 4. Probe family — `probe-<id>.yaml`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. **A second family re-arms the topic** — measure `armedAt` before and after, or you silently re-label probes already taken.
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.
 6. Vocab file if the topic introduces a word field; fill `ipa` with `bun run gen:ipa`, then review it.
-7. Atlas node + unit slot, with 2–4 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
+7. Atlas node + unit slot, with 2–5 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
 8. New `focus` tags registered in [`docs/focus-tags.md`](docs/focus-tags.md) **and** in `focusIntroducedBy`.
 9. `bun run validate` passes.
 

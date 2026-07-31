@@ -5,6 +5,48 @@ title:
   ru: Практика — количество, заказ и оплата
   uk: Практика — кількість, замовлення та оплата
 items:
+  - id: vorlieben-sprechen
+    outcomes: [essen-vorlieben]
+    type: speak
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Say what you like to eat and drink, and what you do not like.", ru: "Расскажите, что вы любите есть и пить, а что не любите.", uk: "Розкажіть, що ви любите їсти й пити, а що не любите." }
+    goal: { en: "Produce three short preference sentences.", ru: "Скажите три коротких предложения о предпочтениях.", uk: "Скажіть три короткі речення про вподобання." }
+    checklist:
+      - { en: "I used gern with an activity and mag with a thing.", ru: "Я использовал(а) gern с действием и mag с предметом.", uk: "Я використав(-ла) gern із дією та mag із предметом." }
+      - { en: "I included one negative preference.", ru: "Я назвал(а) одно отрицательное предпочтение.", uk: "Я назвав(-ла) одне негативне вподобання." }
+    model_answer: "Ich esse gern Gemüse. Ich trinke gern Tee. Kaffee mag ich nicht."
+    model_translation: { en: "I like eating vegetables. I like drinking tea. I do not like coffee.", ru: "Я люблю есть овощи. Я люблю пить чай. Кофе я не люблю.", uk: "Я люблю їсти овочі. Я люблю пити чай. Каву я не люблю." }
+    explain: { en: "Use verb + gern for an activity and mögen + noun for a thing.", ru: "Для действия используйте глагол + gern, для предмета — mögen + существительное.", uk: "Для дії використовуйте дієслово + gern, для предмета — mögen + іменник." }
+
+  - id: im-cafe-bestellen-sprechen
+    outcomes: [essen-bestellen]
+    type: speak
+    target_mode: spoken-interaction
+    mode: spoken-interaction
+    prompt: { en: "A server asks: Was möchten Sie? Order a drink and a snack, then say thank you.", ru: "Официант спрашивает: Was möchten Sie? Закажите напиток и закуску, затем поблагодарите.", uk: "Офіціант питає: Was möchten Sie? Замовте напій і перекус, потім подякуйте." }
+    goal: { en: "Make one polite order with two items.", ru: "Сделайте один вежливый заказ из двух позиций.", uk: "Зробіть одне ввічливе замовлення з двох позицій." }
+    checklist:
+      - { en: "I used ich möchte or ich nehme.", ru: "Я использовал(а) ich möchte или ich nehme.", uk: "Я використав(-ла) ich möchte або ich nehme." }
+      - { en: "I finished with bitte or danke.", ru: "Я закончил(а) словом bitte или danke.", uk: "Я завершив(-ла) словом bitte або danke." }
+    model_answer: "Ich möchte einen Kaffee und ein Stück Kuchen, bitte. Danke."
+    model_translation: { en: "I would like a coffee and a piece of cake, please. Thank you.", ru: "Я хотел(а) бы кофе и кусок пирога, пожалуйста. Спасибо.", uk: "Я хотів(-ла) би каву та шматок пирога, будь ласка. Дякую." }
+    explain: { en: "Ich möchte …, bitte is a complete polite A1 ordering frame.", ru: "Ich möchte …, bitte — готовая вежливая модель заказа на A1.", uk: "Ich möchte …, bitte — готова ввічлива модель замовлення на A1." }
+
+  - id: bezahlen-sprechen
+    outcomes: [essen-service-bezahlen]
+    type: speak
+    target_mode: spoken-interaction
+    mode: spoken-interaction
+    prompt: { en: "You have finished eating. Ask for the bill and say whether you pay by card or cash.", ru: "Вы закончили есть. Попросите счёт и скажите, платите картой или наличными.", uk: "Ви закінчили їсти. Попросіть рахунок і скажіть, платите карткою чи готівкою." }
+    goal: { en: "Use two service phrases in one short turn.", ru: "Используйте две сервисные фразы в одной короткой реплике.", uk: "Використайте дві сервісні фрази в одній короткій репліці." }
+    checklist:
+      - { en: "I asked for the bill politely.", ru: "Я вежливо попросил(а) счёт.", uk: "Я ввічливо попросив(-ла) рахунок." }
+      - { en: "I named the payment method.", ru: "Я назвал(а) способ оплаты.", uk: "Я назвав(-ла) спосіб оплати." }
+    model_answer: "Die Rechnung, bitte. Ich zahle mit Karte."
+    model_translation: { en: "The bill, please. I am paying by card.", ru: "Счёт, пожалуйста. Я плачу картой.", uk: "Рахунок, будь ласка. Я плачу карткою." }
+    explain: { en: "Die Rechnung, bitte is the compact request; mit Karte and bar name the two usual payment options.", ru: "Die Rechnung, bitte — краткая просьба; mit Karte и bar называют два обычных способа оплаты.", uk: "Die Rechnung, bitte — коротке прохання; mit Karte та bar називають два звичні способи оплати." }
+
   - id: match-mengen
     outcomes: [essen-service-bezahlen]
     type: match

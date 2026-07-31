@@ -258,7 +258,7 @@ describe('progress audit', () => {
         focusRetained: 0,
         focusFailed: 0,
         byCompetence: [{
-          level: 'A1', focus: undefined, families: 1, attempts: 1,
+          level: 'A1', focus: undefined, label: '(unattributed outcome)', families: 1, attempts: 1,
           correct: 1, retained: 0, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 1 } },
@@ -393,15 +393,15 @@ describe('progress audit', () => {
       // The same three verdicts, split by the competence each was aimed at — one row per focus,
       // and each row is one attempt deep, so none of them is readable.
       byCompetence: [
-        { level: 'A2', focus: 'dativ-artikel', families: 1, attempts: 1,
+        { level: 'A2', focus: 'dativ-artikel', label: 'dativ-artikel', families: 1, attempts: 1,
           correct: 0, retained: 0, failed: 1,
           retentionPct: 0, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 0 } } },
-        { level: 'A2', focus: 'trennbar-wortstellung', families: 1, attempts: 1,
+        { level: 'A2', focus: 'trennbar-wortstellung', label: 'trennbar-wortstellung', families: 1, attempts: 1,
           correct: 0, retained: 1, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 1 } } },
-        { level: 'A2', focus: 'um-am-zeit', families: 1, attempts: 1,
+        { level: 'A2', focus: 'um-am-zeit', label: 'um-am-zeit', families: 1, attempts: 1,
           correct: 1, retained: 0, failed: 0,
           retentionPct: 100, maxElapsedDays: 0, readable: false,
           formats: { translate: { attempts: 1, survived: 1 } } },
@@ -466,12 +466,12 @@ describe('progress audit', () => {
     // everything below is computed from the attempt log, exactly like the scheduler does.
     const items: CatalogItem[] = [
       { setId: 'a1/akkusativ', id: 'p1', type: 'cloze', topic: 'akkusativ', role: 'practice' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe' },
+      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
+      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
+      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
       { setId: 'a1/wohnen', id: 'p1', type: 'cloze', topic: 'wohnen', role: 'practice' },
-      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe' },
-      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe' },
+      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
+      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
     ];
     const attempts: AuditAttempt[] = [
       // both topics practised on day 1 → both families armed at ts(1)

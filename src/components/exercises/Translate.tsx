@@ -14,6 +14,7 @@ import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
+import { evaluateFocusEvidence } from '../../lib/evidence';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type TranslateItem = z.infer<typeof translateItemSchema>;
@@ -93,6 +94,9 @@ export function Translate({
   function check() {
     if (checked || locked || value.trim() === '') return;
     setChecked(true);
+    const focusEvidence = item.focus
+      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+      : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
@@ -100,7 +104,10 @@ export function Translate({
       // producing the structure correctly is exactly the positive evidence that tag is
       // for. Only a failure gives it up, and only when the tokens that diverged are not
       // the ones the tag grades (`undefined` means "use the item's own tag").
-      focus: verdict.kind === 'wrong' ? (verdict.focus ?? null) : undefined,
+      // Free-typed whole sentences are attributed only by the explicit predicate contract.
+      // key_tokens still grades the answer, but no longer guesses the cause of a miss.
+      focus: verdict.kind === 'wrong' ? (focusEvidence === 'failed' ? undefined : null) : undefined,
+      focusEvidence,
     });
   }
 

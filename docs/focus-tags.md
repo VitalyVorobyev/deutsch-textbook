@@ -42,6 +42,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `gern-moegen` | expressing liking: verb + gern (Ich spiele gern Fußball), not a «люблю + инфинитив» calque; mögen only with nouns at A1 |
 | `haben-sein` | Perfekt auxiliary choice: sein for A→B movement + bleiben/sein/passieren, else haben |
 | `partizip2-form` | building the Partizip II: ge-…-t/-en, -ieren without ge-, separable -ge- inside, inseparable without ge- |
+| `partizip2-a1` | A1 Partizip II: regular ge-…-t forms and selected high-frequency lexical forms |
 | `perfekt-satzklammer` | Perfekt bracket: haben/sein in position 2, participle at the very end |
 | `haben-wendungen` | states expressed with haben + noun: Hunger/Durst/Feierabend haben (❌ Ich bin Hunger) |
 | `um-am-zeit` | time prepositions: um + clock time, am + day/part of day, im + month/season, in der Nacht |

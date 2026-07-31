@@ -51,10 +51,10 @@ describe('grammar coverage', () => {
   test('A1 has no missing structures', () => {
     const coverage = grammarCoverage('A1');
     expect(coverage.missing).toBe(0);
-    // Four Goethe-A1 points are taught at A2 here (Perfekt, Imperativ, trennbare
-    // Verben, darf/muss nicht). That is a sequencing choice and the report says
-    // so — but it must stay visible rather than quietly counting as on-time.
-    expect(coverage.late).toBeGreaterThan(0);
+    // The A1 boundary is self-contained: Perfekt, Imperativ, separable verbs and
+    // darf/muss nicht all have real A1 instruction and practice.
+    expect(coverage.covered).toBe(coverage.total);
+    expect(coverage.late).toBe(0);
   });
 
   // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a
@@ -153,15 +153,21 @@ describe('grammar coverage', () => {
       if (result.status !== 'missing') expect(result.taughtAt).toBeDefined();
   });
 
-  // `preview: true` marks an item that intentionally uses a focus introduced
-  // later in the spine — an exposure, not a lesson. Counting one as evidence
-  // let a single A1 preview item report `anrede-du-sie` as covered-on-time
-  // while every real drill of `du-sie` sits at A2, hiding the sequencing fact
-  // that `late` exists to surface.
+  // `preview: true` remains exposure rather than teaching evidence even though
+  // du/Sie now also has genuine A1 practice elsewhere in the real curriculum.
   test('a preview item is exposure, not teaching evidence', () => {
-    const duSie = grammarCoverage('A1').points.find((p) => p.point.id === 'anrede-du-sie')!;
-    expect(duSie.status).toBe('late');
-    expect(duSie.taughtAt).toBe('A2');
+    const root = fixture([{
+      id: 'preview-only', standard_level: 'A1', de: 'x', en: 'x', focus: ['preview-focus'],
+    }]);
+    mkdirSync(join(root, 'content', 'exercises', 'a1'), { recursive: true });
+    writeFileSync(join(root, 'content', 'exercises', 'a1', 'preview.yaml'), JSON.stringify({
+      role: 'practice', items: [{ id: 'p', focus: 'preview-focus', preview: true }],
+    }));
+    try {
+      expect(grammarCoverage('A1', root).points[0]?.status).toBe('missing');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   describe('reference_only points are paid for', () => {

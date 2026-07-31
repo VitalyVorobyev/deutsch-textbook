@@ -50,6 +50,7 @@ export interface AuditAttempt {
   totalParts?: number;
   given: string;
   focus?: string;
+  focusEvidence?: 'retained' | 'failed' | 'unknown';
   evidence?: 'verified' | 'practice';
   responseMode?: string;
   outcomes?: string[];
@@ -129,6 +130,7 @@ export interface CatalogItem extends ExerciseItem {
   setId: string;
   topic?: string;
   role?: string;
+  arming?: string[];
 }
 
 export interface PerformanceRow {
@@ -224,6 +226,7 @@ export interface ProgressAudit {
       currentCorrect: number;
       focusRetained: number;
       focusFailed: number;
+      focusUnknown?: number;
       /**
        * The same three verdicts split by the competence each probe was aimed at, which is the
        * grouping the P3-6 bar is stated in. The pooled counters above cannot answer it: they mix
@@ -373,10 +376,11 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
     const data = YAML.parse(readFileSync(join(exerciseRoot, file), 'utf8')) as {
       topic?: string;
       role?: string;
+      arming?: string[];
       items?: ExerciseItem[];
     };
     for (const item of data.items ?? [])
-      catalog.set(itemRef(setId, item.id), { ...item, setId, topic: data.topic, role: data.role });
+      catalog.set(itemRef(setId, item.id), { ...item, setId, topic: data.topic, role: data.role, arming: data.arming });
   }
 
   const readingRoot = join(root, 'content', 'reading');
@@ -738,9 +742,10 @@ function cardSummary(cards: Record<string, AuditCard>) {
  * `retained` therefore means "the target survived", not "nearly right": it is exactly the case
  * where `gradeTranslation` refused to attribute the miss to the item's own focus tag.
  */
-type ProbeVerdict = 'correct' | 'retained' | 'failed';
+type ProbeVerdict = 'correct' | 'retained' | 'failed' | 'unknown';
 
 function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): ProbeVerdict {
+  if (!attempt.correct && attempt.focusEvidence) return attempt.focusEvidence;
   if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
     const verdict = gradeTranslation(attempt.given, currentSpec(item));
     if (verdict.kind !== 'wrong') return 'correct';
@@ -770,11 +775,13 @@ const RETENTION_BAR = 80;
 export interface CompetenceRetention {
   level: string;
   focus: string | undefined;
+  label: string;
   families: number;
   attempts: number;
   correct: number;
   retained: number;
   failed: number;
+  unknown?: number;
   /** (correct + retained) / attempts — the share where the target survived the interval */
   retentionPct: number;
   /** the longest interval this competence has actually been probed at, in days */
@@ -821,6 +828,7 @@ export interface CompetenceRetention {
 export interface CompetenceReadability {
   level: string;
   focus: string | undefined;
+  label: string;
   families: number;
   /** probe attempts logged so far */
   attempts: number;
@@ -862,12 +870,13 @@ function delayedSummary(
     setId: string;
     topicId: string;
     role?: string;
+    arming?: string[];
     items: Array<{ id: string; outcomes: string[] }>;
   }>();
   for (const item of catalog.values()) {
     if (!item.topic || !item.role) continue;
     const set = sets.get(item.setId) ?? {
-      setId: item.setId, topicId: item.topic, role: item.role, items: [],
+      setId: item.setId, topicId: item.topic, role: item.role, arming: item.arming, items: [],
     };
     set.items.push({ id: item.id, outcomes: item.outcomes ?? [] });
     sets.set(item.setId, set);
@@ -889,13 +898,15 @@ function delayedSummary(
   let currentCorrect = 0;
   let focusRetained = 0;
   let focusFailed = 0;
+  let focusUnknown = 0;
   const competences = new Map<string, CompetenceRetention>();
   for (const attempt of probes) {
     const item = catalog.get(itemRef(attempt.setId, attempt.itemId));
     const verdict = classifyProbe(attempt, item);
     if (verdict === 'correct') currentCorrect += 1;
     else if (verdict === 'failed') focusFailed += 1;
-    else focusRetained += 1;
+    else if (verdict === 'retained') focusRetained += 1;
+    else focusUnknown += 1;
 
     // Level comes off the set-id directory, the same convention `getCheckpoints()` uses. P3-6 is
     // an A1 gate, and a figure pooled across both levels cannot answer it.
@@ -903,19 +914,21 @@ function delayedSummary(
     // The instrument's own declaration, not the stored attempt tag: a historical tag may come from
     // an older scorer, and grouping by it would sort the same item into two competences.
     const focus = item?.focus ?? attempt.focus;
-    const key = `${level}\u0000${focus ?? ''}`;
+    const label = focus ?? item?.outcomes?.[0] ?? '(unattributed outcome)';
+    const key = `${level}\u0000${label}`;
     const row = competences.get(key) ?? {
-      level, focus, families: 0, attempts: 0, correct: 0, retained: 0, failed: 0,
+      level, focus, label, families: 0, attempts: 0, correct: 0, retained: 0, failed: 0,
       retentionPct: 0, maxElapsedDays: 0, readable: false,
       formats: {} as Record<string, { attempts: number; survived: number }>,
     };
     row.attempts += 1;
-    row[verdict] += 1;
+    if (verdict === 'unknown') row.unknown = (row.unknown ?? 0) + 1;
+    else row[verdict] += 1;
     // Same rule as `focus` above: the instrument's own declaration, not the stored attempt.
     const type = item?.type ?? attempt.itemType;
     const fmt = (row.formats[type] ??= { attempts: 0, survived: 0 });
     fmt.attempts += 1;
-    if (verdict !== 'failed') fmt.survived += 1;
+    if (verdict === 'correct' || verdict === 'retained') fmt.survived += 1;
     const armed = armedByFamily.get(attempt.setId);
     if (armed !== undefined) {
       row.maxElapsedDays = Math.max(row.maxElapsedDays, Math.round((attempt.ts - armed) / DAY));
@@ -929,13 +942,13 @@ function delayedSummary(
     .map(([key, row]) => ({
       ...row,
       families: familiesPerCompetence.get(key)?.size ?? 0,
-      retentionPct: row.attempts
-        ? Math.round((100 * (row.correct + row.retained)) / row.attempts)
+      retentionPct: row.attempts - (row.unknown ?? 0)
+        ? Math.round((100 * (row.correct + row.retained)) / (row.attempts - (row.unknown ?? 0)))
         : 0,
       // An untagged family cannot fail its target by construction — `classifyProbe` has no tag to
       // attribute a miss to, so every miss lands in `retained` and the row reads 100%. That is an
       // instrument gap, not retention, so it is never readable however many attempts it holds.
-      readable: row.focus !== undefined && row.attempts >= PROBE_READABLE_MIN,
+      readable: row.focus !== undefined && row.attempts - (row.unknown ?? 0) >= PROBE_READABLE_MIN,
     }))
     .sort((a, b) =>
       a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
@@ -974,10 +987,11 @@ function delayedSummary(
     const focus = family.items
       .map((item) => catalog.get(itemRef(family.setId, item.id))?.focus)
       .find((tag) => tag !== undefined);
+    const label = focus ?? family.outcomes[0] ?? '(unattributed outcome)';
     const level = family.setId.split('/')[0]!.toUpperCase();
-    const key = `${level}\u0000${focus ?? ''}`;
+    const key = `${level}\u0000${label}`;
     const row = readability.get(key) ?? {
-      level, focus, families: 0, attempts: 0, ceilingEver: 0, ceilingByTarget: 0,
+      level, focus, label, families: 0, attempts: 0, ceilingEver: 0, ceilingByTarget: 0,
       dueNow: 0, unarmedFamilies: 0, readableToday: false, reachableByTarget: false,
     };
     row.families += 1;
@@ -1019,6 +1033,7 @@ function delayedSummary(
       currentCorrect,
       focusRetained,
       focusFailed,
+      ...(focusUnknown > 0 ? { focusUnknown } : {}),
       byCompetence,
       byReadability,
       projectTo: iso(projectTo).slice(0, 10),
@@ -1174,11 +1189,11 @@ function retentionSection(rows: CompetenceRetention[]): string[] {
       'scheduled interval); below that the row is pending and is excluded from the verdict ' +
       'rather than counted as a pass.',
     '',
-    '| Level | Competence | Families | n | Correct | Retained | Failed | Retention | Max delay | By format | Readable |',
-    '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |',
+    '| Level | Competence | Families | n | Correct | Retained | Failed | Unknown | Retention | Max delay | By format | Readable |',
+    '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |',
     ...rows.map((row) =>
-      `| ${md(row.level)} | ${md(row.focus ?? '(untagged)')} | ${row.families} | ${row.attempts} ` +
-      `| ${row.correct} | ${row.retained} | ${row.failed} | ${row.retentionPct}% ` +
+      `| ${md(row.level)} | ${md(row.label)} | ${row.families} | ${row.attempts} ` +
+      `| ${row.correct} | ${row.retained} | ${row.failed} | ${row.unknown ?? 0} | ${row.retentionPct}% ` +
       `| ${row.maxElapsedDays}d | ${md(formatSplit(row))} | ${row.readable ? 'yes' : 'pending'} |`),
     '',
   ];
@@ -1240,7 +1255,7 @@ function readabilitySection(
           : row.reachableByTarget
             ? `needs ${PROBE_READABLE_MIN - row.attempts} more${unarmed}`
             : `**unreachable by date**${unarmed}`;
-      return `| ${md(row.level)} | ${md(row.focus ?? '(untagged)')} | ${row.families} ` +
+      return `| ${md(row.level)} | ${md(row.label)} | ${row.families} ` +
         `| ${row.attempts} | ${row.ceilingByTarget} | ${row.ceilingEver} | ${row.dueNow} ` +
         `| ${verdict} |`;
     }),
@@ -1358,7 +1373,8 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     `Novel probes: ${audit.delayed.probes.loggedCorrect}/${audit.delayed.probes.attempts} ` +
       `historically logged correct; ${audit.delayed.probes.currentCorrect} correct under the current ` +
       `contract; ${audit.delayed.probes.focusRetained} retained the target but missed elsewhere; ` +
-      `${audit.delayed.probes.focusFailed} failed the target.`,
+      `${audit.delayed.probes.focusFailed} failed the target` +
+      `${audit.delayed.probes.focusUnknown ? `; ${audit.delayed.probes.focusUnknown} remained unknown` : ''}.`,
     // Reported bare, not against MAX_PROBES_PER_SESSION: that cap is per *session* and this
     // count is per *day*, and a day may hold several sessions. Printing "4/3" made a normal
     // day look like a violated invariant.

@@ -117,6 +117,9 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: listen
     focus: modal-satzklammer
+    focus_evidence:
+      retained: ["^Wir können\\b.*\\bspielen$"]
+      failed: ["^Wir .*\\bspielen können$"]
     text: "Wir können am Samstag Fußball spielen."
     explain:
       en: "können in position 2, the bare infinitive spielen at the end — the bracket you hear is the bracket you write."

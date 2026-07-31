@@ -60,6 +60,9 @@ items:
     outcomes: [essen-vorlieben]
     type: listen
     focus: akkusativ-artikel
+    focus_evidence:
+      retained: ["\\beinen Apfel\\b", "\\bein Brot\\b"]
+      failed: ["\\b(ein|einem) Apfel\\b", "\\b(einen|einem) Brot\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.
@@ -78,6 +81,9 @@ items:
     outcomes: [essen-vorlieben]
     type: listen
     focus: kopula-sein
+    focus_evidence:
+      retained: ["\\bBrot ist frisch\\b"]
+      failed: ["\\bBrot (bin|bist|sind|seid) frisch\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.
@@ -96,6 +102,9 @@ items:
     outcomes: [essen-vorlieben]
     type: listen
     focus: verb-endungen
+    focus_evidence:
+      retained: ["^Er isst\\b"]
+      failed: ["^Er (esse|essen|esst)\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.
@@ -114,6 +123,9 @@ items:
     outcomes: [essen-vorlieben]
     type: listen
     focus: akkusativ-artikel
+    focus_evidence:
+      retained: ["\\beinen Tee\\b"]
+      failed: ["\\b(ein|einem) Tee\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.
@@ -132,6 +144,9 @@ items:
     outcomes: [essen-vorlieben]
     type: listen
     focus: verb-endungen
+    focus_evidence:
+      retained: ["^Trinkst du\\b"]
+      failed: ["^(Trinken|Trinkt|Trinke) du\\b"]
     instruction:
       en: Listen and type what you hear.
       ru: Прослушайте и напишите, что вы слышите.

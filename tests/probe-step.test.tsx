@@ -43,7 +43,7 @@ function setFor(setId: string, item: ReturnType<typeof probeItem>): TrainingSet 
 
 function dueFor(setId: string, item: ReturnType<typeof probeItem>): DueProbe {
   return {
-    family: { setId, topicId: setId, outcomes: item.outcomes, armingSetIds: [], items: [item] },
+    family: { setId, topicId: setId, outcomes: item.outcomes, armingItemKeys: [], items: [item] },
     stage: 0,
     itemId: item.id,
     dueAt: 0,

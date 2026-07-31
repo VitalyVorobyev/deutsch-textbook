@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
+import { withBase } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const sets = await getCollection('exercises', ({ data }) => data.role === 'exam-practice');
+  const levels = [...new Set(sets.map((set) => set.id.split('/')[0]!))];
+  return levels.map((level) => ({ params: { level }, props: { level } }));
+}
+
+const { level } = Astro.props as { level: string };
+const allSets = await getCollection('exercises', ({ data }) => data.role === 'exam-practice');
+const sets = allSets.filter((set) => set.id.startsWith(`${level}/`));
+const allDocuments = await getCollection('documents');
+const documentsById = new Map(allDocuments.map((document) => [document.id, document.data]));
+const title = `Prüfungspraxis ${level.toUpperCase()}`;
+---
+
+<Base title={title}>
+  <nav class="mb-4 text-sm text-stone-400">
+    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
+    <span> / Prüfungspraxis</span>
+  </nav>
+  <header class="mb-8">
+    <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">{level.toUpperCase()}</span>
+    <h1 lang="de" class="mt-3 text-3xl font-bold">{title}</h1>
+    <p class="mt-2 text-stone-500">
+      <span class="lang-en">Original reading, writing and speaking practice modelled on common Goethe A1 task families. This is practice, not a readiness score. Listening is not included yet.</span>
+      <span class="lang-ru">Оригинальные задания на чтение, письмо и говорение по типам заданий Goethe A1. Это практика, а не оценка готовности. Аудирование пока не включено.</span>
+      <span class="lang-uk">Оригінальні завдання на читання, письмо й говоріння за типами завдань Goethe A1. Це практика, а не оцінка готовності. Аудіювання поки не включено.</span>
+    </p>
+  </header>
+  <aside class="mb-8 rounded-lg border border-sky-200 bg-sky-50 p-4 text-sm dark:border-sky-800 dark:bg-sky-950/30">
+    <span class="lang-en">Open writing and speaking are saved as unverified practice. Compare your response with the model; they do not raise measured mastery.</span>
+    <span class="lang-ru">Свободное письмо и говорение сохраняются как непроверенная практика. Сравнивайте ответ с образцом; эти задания не повышают измеренное освоение.</span>
+    <span class="lang-uk">Вільне письмо й говоріння зберігаються як неперевірена практика. Порівнюйте відповідь зі зразком; ці завдання не підвищують виміряне опанування.</span>
+  </aside>
+  <div class="space-y-8">
+    {sets.map((entry) => {
+      const ids = [...new Set(entry.data.items.flatMap((item) => item.stimulus ? [item.stimulus] : []))];
+      const documents = Object.fromEntries(ids.flatMap((id) => {
+        const document = documentsById.get(id);
+        return document ? [[id, document]] : [];
+      }));
+      return <ExerciseSetIsland client:only="react" setId={entry.id} set={entry.data} documents={documents} />;
+    })}
+  </div>
+</Base>

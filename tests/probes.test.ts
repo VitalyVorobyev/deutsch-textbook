@@ -24,7 +24,7 @@ const family: ProbeFamily = {
   setId: 'a1/probe-akkusativ',
   topicId: 'akkusativ',
   outcomes: ['akk-objekt-bilden'],
-  armingSetIds: ['a1/akkusativ'],
+  armingItemKeys: ['a1/akkusativ::x'],
   items: [
     { id: 'variant-a', outcomes: ['akk-objekt-bilden'] },
     { id: 'variant-b', outcomes: ['akk-objekt-bilden'] },
@@ -61,12 +61,12 @@ describe('a topic with two probe families arms them separately', () => {
       { id: 'i2', outcomes: ['two'] },
       { id: 'i3', outcomes: ['three'] },
     ] },
-    { setId: 'a2/probe-t-one', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['one'] }] },
-    { setId: 'a2/probe-t-two', topicId: 't', role: 'probe', items: [{ id: 'v', outcomes: ['two'] }] },
+    { setId: 'a2/probe-t-one', topicId: 't', role: 'probe', arming: ['a2/t::i1'], items: [{ id: 'v', outcomes: ['one'] }] },
+    { setId: 'a2/probe-t-two', topicId: 't', role: 'probe', arming: ['a2/t::i2'], items: [{ id: 'v', outcomes: ['two'] }] },
   ];
 
   test('neither family falls back to the whole topic', () => {
-    for (const f of probeFamilies(sets)) expect(f.armingSetIds).toEqual([]);
+    for (const f of probeFamilies(sets)) expect(f.armingItemKeys).toHaveLength(1);
   });
 
   test('each family arms from the items that teach its own competence', () => {
@@ -77,7 +77,7 @@ describe('a topic with two probe families arms them separately', () => {
 
   test('practising one structure arms only its own family', () => {
     const [one, two] = probeFamilies(sets);
-    const didOne = attempt({ setId: 'a2/t', ts: T0, outcomes: ['one'] });
+    const didOne = attempt({ setId: 'a2/t', itemId: 'i1', ts: T0, outcomes: ['one'] });
     expect(armedAt(one, [didOne])).toBe(T0);
     expect(armedAt(two, [didOne])).toBeUndefined();
   });
@@ -95,14 +95,14 @@ describe('a topic with two probe families arms them separately', () => {
     const pretest = attempt({ setId: 'a2/t-pretest', ts: T0, outcomes: ['one'] });
     expect(armedAt(one!, [pretest])).toBeUndefined();
 
-    const practice = attempt({ setId: 'a2/t', ts: T0 + 3600_000, outcomes: ['one'] });
+    const practice = attempt({ setId: 'a2/t', itemId: 'i1', ts: T0 + 3600_000, outcomes: ['one'] });
     expect(armedAt(one!, [pretest, practice])).toBe(T0 + 3600_000);
   });
 
   /**
    * The landmine this fix defused, and the one case the outcome path cannot cover.
    *
-   * `armingSetIds: []` was justified by "a multi-family topic is new by construction, so
+   * Inferred arming was once justified by "a multi-family topic is new by construction, so
    * every attempt on it names its outcomes". 552 of 1221 attempts in the real snapshot
    * carry none — so adding a second family to an *older* topic would have left both
    * families unarmable from history, silently resetting the first family's 2/7/21 clock
@@ -123,10 +123,10 @@ describe('a topic with two probe families arms them separately', () => {
     expect(armedAt(two!, [unrelated])).toBeUndefined();
   });
 
-  test('a single-family topic keeps the set-level fallback for outcome-less attempts', () => {
+  test('a single-family topic still requires its explicit item key', () => {
     const solo = probeFamilies(sets.slice(0, 2))[0]; // only probe sets become families
-    expect(solo.armingSetIds).toEqual(['a2/t']);
-    const legacy = attempt({ setId: 'a2/t', ts: T0, outcomes: undefined });
+    expect(solo.armingItemKeys).toEqual(['a2/t::i1']);
+    const legacy = attempt({ setId: 'a2/t', itemId: 'i1', ts: T0, outcomes: undefined });
     expect(armedAt(solo, [legacy])).toBe(T0);
   });
 });
@@ -137,7 +137,7 @@ describe('arming — practice starts the retention clock', () => {
     expect(dueProbe(family, [], T0 + 999 * DAY)).toBeUndefined();
   });
 
-  test('arms on the first verified attempt carrying one of its outcomes', () => {
+  test('arms on the first verified attempt for a declared source item', () => {
     const later = attempt({ setId: 'a1/akkusativ', ts: T0 + 3 * DAY });
     expect(armedAt(family, [later, practised])).toBe(T0);
   });
@@ -157,7 +157,7 @@ describe('arming — practice starts the retention clock', () => {
     expect(armedAt(family, [other])).toBeUndefined();
   });
 
-  test('a historical attempt with no outcomes still arms via its practice set', () => {
+  test('a historical attempt with no outcomes still arms via its explicit item key', () => {
     // 551 of the 671 attempts in the real snapshot predate the `outcomes` field. If only
     // outcomes could arm a family, a topic practised for weeks would never be probed.
     const historical = { ...attempt({ setId: 'a1/akkusativ', ts: T0 }), outcomes: undefined };
@@ -173,19 +173,23 @@ describe('arming — practice starts the retention clock', () => {
 describe('deriving families from the set list', () => {
   test('arms from the topic’s practice and drill sets, never its pretest or itself', () => {
     const [derived] = probeFamilies([
-      { setId: 'a1/akkusativ', topicId: 'akkusativ', role: 'practice', items: [] },
+      { setId: 'a1/akkusativ', topicId: 'akkusativ', role: 'practice', items: [{ id: 'i1', outcomes: ['akk-objekt-bilden'] }] },
       { setId: 'a1/akkusativ-pretest', topicId: 'akkusativ', role: 'pretest', items: [] },
-      { setId: 'a2/drill-der-dem-den', topicId: 'akkusativ', role: 'drill', items: [] },
+      { setId: 'a2/drill-der-dem-den', topicId: 'akkusativ', role: 'drill', items: [{ id: 'd1', outcomes: ['akk-objekt-bilden'] }] },
       { setId: 'a1/checkpoint-a1', topicId: 'akkusativ', role: 'checkpoint', items: [] },
       { setId: 'a1/wohnen', topicId: 'wohnen', role: 'practice', items: [] },
       {
         setId: 'a1/probe-akkusativ',
         topicId: 'akkusativ',
         role: 'probe',
+        arming: ['a1/akkusativ::i1', 'a2/drill-der-dem-den::d1'],
         items: [{ id: 'variant-a', outcomes: ['akk-objekt-bilden'] }],
       },
     ]);
-    expect(derived!.armingSetIds).toEqual(['a1/akkusativ', 'a2/drill-der-dem-den']);
+    expect(derived!.armingItemKeys).toEqual([
+      'a1/akkusativ::i1',
+      'a2/drill-der-dem-den::d1',
+    ]);
     expect(derived!.outcomes).toEqual(['akk-objekt-bilden']);
   });
 });
@@ -265,7 +269,7 @@ describe('queueing', () => {
       setId: 'a1/probe-wohnen',
       topicId: 'wohnen',
       outcomes: ['wohnen-beschreiben'],
-      armingSetIds: ['a1/wohnen'],
+      armingItemKeys: ['a1/wohnen::x'],
       items: [{ id: 'v1', outcomes: ['wohnen-beschreiben'] }],
     };
     const log = [
@@ -287,7 +291,7 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
     setId: `a1/probe-${topic}`,
     topicId: topic,
     outcomes: [`${topic}-o1`],
-    armingSetIds: [`a1/${topic}`],
+    armingItemKeys: [`a1/${topic}::x`],
     items: [{ id: 'v1', outcomes: [`${topic}-o1`] }],
   }));
   const log = topics.map((topic, i) =>
@@ -333,7 +337,7 @@ describe('daily probe budget — derived from the attempt log, never stored', ()
     setId: 'a1/probe-wohnen',
     topicId: 'wohnen',
     outcomes: ['wohnen-beschreiben'],
-    armingSetIds: ['a1/wohnen'],
+    armingItemKeys: ['a1/wohnen::x'],
     items: [
       { id: 'v1', outcomes: ['wohnen-beschreiben'] },
       { id: 'v2', outcomes: ['wohnen-beschreiben'] },

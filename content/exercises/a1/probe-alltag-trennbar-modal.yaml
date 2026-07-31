@@ -1,0 +1,7 @@
+topic: alltag-zeit
+role: probe
+arming: [a1/alltag-zeit-trennbar::modal-aufstehen, a1/alltag-zeit-trennbar::trennbar-kontrast]
+items:
+  - { id: variant-a, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-modal, text: "Morgen muss ich früh {{aufstehen}}.", explain: { en: "After a modal, the separable infinitive stays whole.", ru: "После модального глагола отделяемый инфинитив остаётся целым.", uk: "Після модального дієслова відокремлюваний інфінітив залишається цілим." } }
+  - { id: variant-b, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-modal, text: "Wir möchten am Samstag {{einkaufen}}.", explain: { en: "The infinitive einkaufen stays whole at the end.", ru: "Инфинитив einkaufen остаётся целым в конце.", uk: "Інфінітив einkaufen залишається цілим у кінці." } }
+  - { id: variant-c, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-modal, text: "Du kannst später dein Zimmer {{aufräumen}}.", explain: { en: "kannst sends the whole infinitive to the end.", ru: "kannst отправляет целый инфинитив в конец.", uk: "kannst відправляє цілий інфінітив у кінець." } }

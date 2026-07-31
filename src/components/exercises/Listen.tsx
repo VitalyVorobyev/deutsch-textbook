@@ -9,6 +9,7 @@ import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
+import { evaluateFocusEvidence } from '../../lib/evidence';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ListenItem = z.infer<typeof listenItemSchema>;
@@ -52,10 +53,14 @@ export function Listen({
     // would be a false entry in the one signal that steers training and drill authoring.
     const slipped =
       !isCorrect && [item.text, ...item.accept].some((target) => dictationSlip(value, target));
+    const focusEvidence = item.focus
+      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+      : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
-      ...(slipped ? { focus: null } : {}),
+      ...(!isCorrect && (slipped || focusEvidence !== 'failed') ? { focus: null } : {}),
+      focusEvidence,
     });
   }
 

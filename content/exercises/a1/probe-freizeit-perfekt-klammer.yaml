@@ -1,0 +1,7 @@
+topic: freizeit-koennen
+role: probe
+arming: [a1/freizeit-perfekt-a1::perfekt-klammer]
+items:
+  - { id: variant-a, type: cloze, outcomes: [freizeit-vergangenheit], focus: perfekt-satzklammer, text: "Ich {{habe}} am Samstag lange {{gearbeitet}}.", explain: { en: "The auxiliary opens and the participle closes the bracket.", ru: "Вспомогательный глагол открывает, а Partizip II закрывает рамку.", uk: "Допоміжне дієслово відкриває, а Partizip II закриває рамку." } }
+  - { id: variant-b, type: cloze, outcomes: [freizeit-vergangenheit], focus: perfekt-satzklammer, text: "Am Abend {{haben}} wir einen Film {{gesehen}}.", explain: { en: "The fronted time phrase does not change the bracket.", ru: "Время в начале не меняет рамку Perfekt.", uk: "Час на початку не змінює рамку Perfekt." } }
+  - { id: variant-c, type: cloze, outcomes: [freizeit-vergangenheit], focus: perfekt-satzklammer, text: "Danach {{bin}} ich nach Hause {{gegangen}}.", explain: { en: "The finite auxiliary stays second and the participle stays last.", ru: "Вспомогательный глагол остаётся вторым, Partizip II — последним.", uk: "Допоміжне дієслово залишається другим, Partizip II — останнім." } }

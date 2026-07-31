@@ -102,6 +102,9 @@ items:
     outcomes: [plan-zu-infinitiv]
     type: translate
     focus: zu-infinitiv
+    focus_evidence:
+      retained: ["\\b(willst|möchtest) du mitkommen\\b", "\\bmusst du arbeiten$"]
+      failed: ["\\bzu mitkommen\\b", "\\bmitzukommen\\b", "\\bzu arbeiten$"]
     prompt_en: "Yesterday I forgot to fill in the form."
     prompt_ru: "Вчера я забыл заполнить формуляр."
     prompt_uk: "Учора я забув заповнити формуляр."

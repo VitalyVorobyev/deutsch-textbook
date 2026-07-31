@@ -1,0 +1,85 @@
+topic: freizeit-koennen
+role: practice
+title: { en: "Talk about last weekend", ru: "Рассказываем о прошлых выходных", uk: "Розповідаємо про минулі вихідні" }
+items:
+  - id: perfekt-gemacht
+    type: translate
+    outcomes: [freizeit-vergangenheit]
+    target_mode: writing
+    focus: partizip2-a1
+    focus_evidence:
+      retained: ["\\bFußball gespielt$"]
+      failed: ["\\bFußball (gespielen|spielt)$"]
+    instruction: { en: "Translate in the perfect tense.", ru: "Переведите в Perfekt.", uk: "Перекладіть у Perfekt." }
+    prompt_en: "On Saturday I played football."
+    prompt_ru: "В субботу я играл(а) в футбол."
+    prompt_uk: "У суботу я грав(-ла) у футбол."
+    answer: "Am Samstag habe ich Fußball gespielt."
+    key_tokens: ["habe", "gespielt"]
+    accept: ["Ich habe am Samstag Fußball gespielt."]
+    explain: { en: "A regular participle uses ge- + stem + -t: spielen → gespielt. habe is in position 2 and gespielt closes the sentence.", ru: "Правильное Partizip II строится как ge- + основа + -t: spielen → gespielt. habe стоит на втором месте, gespielt — в конце.", uk: "Правильний Partizip II будується як ge- + основа + -t: spielen → gespielt. habe стоїть на другому місці, gespielt — у кінці." }
+  - id: perfekt-sein
+    type: translate
+    outcomes: [freizeit-vergangenheit]
+    target_mode: writing
+    focus: haben-sein
+    focus_evidence:
+      retained: ["^Wir sind\\b.*\\bgegangen$"]
+      failed: ["^Wir haben\\b.*\\bgegangen$"]
+    instruction: { en: "Translate in the perfect tense.", ru: "Переведите в Perfekt.", uk: "Перекладіть у Perfekt." }
+    prompt_en: "We went to the cinema."
+    prompt_ru: "Мы ходили в кино."
+    prompt_uk: "Ми ходили в кіно."
+    answer: "Wir sind ins Kino gegangen."
+    key_tokens: ["sind", "gegangen"]
+    explain: { en: "A change of place uses sein in the perfect: wir sind … gegangen. Learn gegangen as a high-frequency lexical form.", ru: "Перемещение из одного места в другое образует Perfekt с sein: wir sind … gegangen. gegangen запоминайте как частую готовую форму.", uk: "Переміщення з одного місця в інше утворює Perfekt із sein: wir sind … gegangen. gegangen запам'ятайте як часту готову форму." }
+  - id: perfekt-haben-sein
+    type: cloze
+    outcomes: [freizeit-vergangenheit]
+    target_mode: writing
+    focus: haben-sein
+    instruction: { en: "Choose haben or sein.", ru: "Выберите haben или sein.", uk: "Оберіть haben або sein." }
+    text: "Ich {{habe}} Musik gehört. Danach {{bin}} ich nach Hause gegangen."
+    explain: { en: "Most activities use haben. Movement to another place uses sein: habe gehört, but bin gegangen.", ru: "Большинство действий образуют Perfekt с haben. Перемещение в другое место — с sein: habe gehört, но bin gegangen.", uk: "Більшість дій утворюють Perfekt із haben. Переміщення в інше місце — із sein: habe gehört, але bin gegangen." }
+  - id: perfekt-klammer
+    type: order
+    outcomes: [freizeit-vergangenheit]
+    target_mode: writing
+    focus: perfekt-satzklammer
+    instruction: { en: "Build the perfect-tense sentence.", ru: "Составьте предложение в Perfekt.", uk: "Складіть речення в Perfekt." }
+    words: ["Ich", "habe", "am", "Sonntag", "lange", "gekocht."]
+    explain: { en: "The auxiliary is the finite verb in position 2; the participle closes the bracket at the end.", ru: "Вспомогательный глагол стоит на втором месте, а Partizip II закрывает рамку в конце.", uk: "Допоміжне дієслово стоїть на другому місці, а Partizip II закриває рамку в кінці." }
+  - id: perfekt-regelmaessig
+    type: cloze
+    outcomes: [freizeit-vergangenheit]
+    target_mode: writing
+    focus: partizip2-a1
+    instruction: { en: "Form the regular participles.", ru: "Образуйте правильные Partizip II.", uk: "Утворіть правильні Partizip II." }
+    text: "machen → {{gemacht}}, lernen → {{gelernt}}, kochen → {{gekocht}}"
+    explain: { en: "The A1 pattern is ge- + verb stem + -t. A2 will add the larger system and its exceptions.", ru: "Модель A1: ge- + основа глагола + -t. На A2 появится полная система и её исключения.", uk: "Модель A1: ge- + основа дієслова + -t. На A2 з'явиться повна система та її винятки." }
+  - id: wochenende-sprechen
+    type: speak
+    outcomes: [freizeit-vergangenheit]
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Say three sentences aloud about last weekend.", ru: "Расскажите вслух тремя предложениями о прошлых выходных.", uk: "Розкажіть уголос трьома реченнями про минулі вихідні." }
+    goal: { en: "Use two perfect-tense sentences and one time phrase.", ru: "Используйте два предложения в Perfekt и одно указание времени.", uk: "Використайте два речення в Perfekt і одну вказівку часу." }
+    checklist:
+      - { en: "My auxiliary was in position 2.", ru: "Вспомогательный глагол стоял на втором месте.", uk: "Допоміжне дієслово стояло на другому місці." }
+      - { en: "My participle was at the end.", ru: "Partizip II стояло в конце.", uk: "Partizip II стояв у кінці." }
+    model_answer: "Am Samstag habe ich Fußball gespielt. Danach habe ich Pizza gekocht. Am Sonntag bin ich ins Kino gegangen."
+    model_translation: { en: "On Saturday I played football. Afterwards I cooked pizza. On Sunday I went to the cinema.", ru: "В субботу я играл(а) в футбол. Потом я готовил(а) пиццу. В воскресенье я ходил(а) в кино.", uk: "У суботу я грав(-ла) у футбол. Потім готував(-ла) піцу. У неділю я ходив(-ла) в кіно." }
+    explain: { en: "Use the same frame each time: time phrase + auxiliary + subject/middle + participle.", ru: "Каждый раз используйте одну рамку: время + вспомогательный глагол + подлежащее/середина + Partizip II.", uk: "Щоразу використовуйте одну рамку: час + допоміжне дієслово + підмет/середина + Partizip II." }
+  - id: hobbies-sprechen
+    type: speak
+    outcomes: [freizeit-hobbys]
+    target_mode: spoken-production
+    mode: spoken-production
+    prompt: { en: "Talk for about twenty seconds about your free time: two things you like and one thing you do not like.", ru: "Рассказывайте около двадцати секунд о свободном времени: два любимых занятия и одно нелюбимое.", uk: "Розповідайте близько двадцяти секунд про вільний час: два улюблені заняття й одне неулюблене." }
+    goal: { en: "Use verb + gern in three complete sentences.", ru: "Используйте глагол + gern в трёх полных предложениях.", uk: "Використайте дієслово + gern у трьох повних реченнях." }
+    checklist:
+      - { en: "I placed gern after the conjugated verb or object naturally.", ru: "Я поставил(а) gern в естественной позиции после глагола или дополнения.", uk: "Я поставив(-ла) gern у природній позиції після дієслова або додатка." }
+      - { en: "I used nicht gern for the negative preference.", ru: "Для отрицательного предпочтения я использовал(а) nicht gern.", uk: "Для негативного вподобання я використав(-ла) nicht gern." }
+    model_answer: "Ich spiele gern Fußball und ich höre gern Musik. Ich koche nicht gern."
+    model_translation: { en: "I like playing football and listening to music. I do not like cooking.", ru: "Я люблю играть в футбол и слушать музыку. Я не люблю готовить.", uk: "Я люблю грати у футбол і слухати музику. Я не люблю готувати." }
+    explain: { en: "For activities, German normally uses the ordinary verb plus gern rather than mögen plus infinitive.", ru: "Для занятий немецкий обычно использует обычный глагол + gern, а не mögen + инфинитив.", uk: "Для занять німецька зазвичай використовує звичайне дієслово + gern, а не mögen + інфінітив." }
