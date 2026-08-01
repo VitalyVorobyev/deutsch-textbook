@@ -17,6 +17,7 @@ import { Translate } from './Translate';
 import { Write } from './Write';
 import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
+import { Listening } from './Listening';
 import type { ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import DocumentStimulus from './DocumentStimulus';
@@ -125,6 +126,8 @@ function ItemBody({
       return <Speak item={item} {...props} />;
     case 'audio-comprehension':
       return <AudioComprehension item={item} {...props} />;
+    case 'listening':
+      return <Listening item={item} {...props} />;
   }
 }
 

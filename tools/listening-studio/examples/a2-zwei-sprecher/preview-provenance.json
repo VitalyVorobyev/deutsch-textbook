@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "status": "automatically_checked",
+  "approval": {"status": "not_approved", "editor": null, "reviewed_at": null},
+  "audio_sha256": "e5056d4b47ae84ff04728f8a8a139f26e6e3d4b4b5fc9b6e04e41023159f9f7f",
+  "project_sha256": "fcb1cda4e3eb2a5e76141a12147fef2372dd31a08c55db0fd3516c64bfd5b09d",
+  "qa_sha256": "49bbb1b10b76833bf5e2498548dfc9c0190cc367f4c3d19c88856fbb77a26464",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "parler_runtime_lock_sha256": "df65858b6f4dff31964bb17b50461c33c469d188d2d2bc747d816ac1d4175e20",
+  "parler_constraint_sha256": "3c8b0981f7288133af9121f8f6534bf962a9c343f89742caa2499b021d3b5f50",
+  "parler_installer_sha256": "1fac22a1d4ace2778b4e98ccda32acc3151e331fc452adf6c0805ef9ea533b0c",
+  "tts": {
+    "model": "parler-tts/parler-tts-mini-multilingual-v1.1",
+    "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+    "license": "Apache-2.0",
+    "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+    "training_data_provenance": "published dataset lineage; not independently verified",
+    "voices": ["Nicole", "Christopher", "Megan", "Michelle"]
+  },
+  "tts_auxiliary": {
+    "model": "google/flan-t5-large",
+    "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+    "license": "Apache-2.0",
+    "purpose": "text tokenizer only"
+  },
+  "asr": {
+    "model": "mlx-community/whisper-large-v3-turbo",
+    "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+    "original_model": "openai/whisper-large-v3-turbo@41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+    "license": "MIT"
+  },
+  "line_cache_keys": {
+    "l1": "781a2a6cbf768e8bbff29e5207246ffbe08b32d38821f6cdb100ba593855935d",
+    "l2": "b7ca0dfc5a8821b28eff2563b8bef420e8c175578257fd1676524e8ea5df372c",
+    "l3": "d3471e699ff73d3f525631a09bfca807db84e9d2870c5a4e148ac63b96f3e3c9",
+    "l4": "3192051d89849e25cb6d09ff1ea91969918eefc1cdd8569b7c45262a9a5ef262"
+  },
+  "assembly": {"format": "WAV PCM s16le", "duration_seconds": 21.443991, "silence": "FFmpeg anullsrc 16000 Hz mono"},
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "voice_cloning_used": false,
+    "reference_audio_used": false,
+    "music_or_effects_used": false,
+    "speaker_consent_independently_verified": false
+  }
+}

@@ -39,6 +39,7 @@ The principal sources are:
 - `content/exercises/`: pretests, practice, drills, checkpoints, delayed probes, level
   placement tests and non-trainable exam-practice sets;
 - `content/reading/` and `content/documents/`: comprehensible input and reusable stimuli;
+- `content/listening/`: reviewed committed audio stimuli with exact transcripts and provenance;
 - `content/atlas.yaml`: graph relationships, outcomes and ordered curriculum spine;
 - `content/wortfelder/`: topical lexical overlays;
 - `content/wortnetze/`: cross-topic word families and meaning contrasts;
@@ -118,6 +119,16 @@ placement set belongs to no topic, so topic tier derivation cannot observe it at
 and the badge deliberately answer different questions.
 
 Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery nor review debt.
+Opening or replaying a listening artifact likewise creates no evidence; only its independently
+identified exercise question can write a verified attempt.
+
+## Listening authoring boundary
+
+`tools/listening-studio/` is a local Python editorial service, not a learner service. SQLite keeps
+immutable drafts outside the repository. A committed listening artifact has a WAV, canonical
+`content/listening/` record, exercise question and `data/audio-provenance/` manifest. Publishing
+refuses unapproved revisions and existing targets. Model licences and training-data provenance
+remain separate claims; automatic transcription is not proof of natural pronunciation.
 
 ## Progress and storage
 

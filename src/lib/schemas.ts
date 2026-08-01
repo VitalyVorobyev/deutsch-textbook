@@ -566,6 +566,38 @@ export const audioComprehensionItemSchema = z.object({
   max_replays: z.number().int().min(1).max(10).default(3),
 });
 
+const listeningResponseSchema = z.discriminatedUnion('kind', [
+  z.object({
+    kind: z.literal('single-choice'),
+    prompt: z.string().min(1),
+    options: z.array(z.string().min(1)).min(2),
+    correct: z.number().int().min(0),
+  }),
+  z.object({
+    kind: z.literal('multi-select'),
+    prompt: z.string().min(1),
+    options: z.array(z.string().min(1)).min(2),
+    correct: z.array(z.number().int().min(0)).min(1),
+  }),
+  z.object({ kind: z.literal('true-false'), statement: z.string().min(1), correct: z.boolean() }),
+  z.object({ kind: z.literal('ordering'), prompt: z.string().min(1), units: z.array(z.string().min(1)).min(2) }),
+  z.object({ kind: z.literal('short-answer'), prompt: z.string().min(1), answers: z.array(z.string().min(1)).min(1) }),
+  z.object({ kind: z.literal('dictation'), line_id: slug, accept: z.array(z.string().min(1)).default([]) }),
+]);
+
+/** A committed, reviewed listening stimulus with one independently persisted question. */
+export const listeningItemSchema = z.object({
+  ...itemBase,
+  type: z.literal('listening'),
+  listening: z.string().min(1),
+  /** Export-time snapshot of the canonical artifact; validation keeps it equal. */
+  audio: z.string().min(1),
+  transcript: z.array(audioTurnSchema.extend({ id: slug.optional() })).min(1),
+  response: listeningResponseSchema,
+  translation: bilingualSchema.optional(),
+  max_replays: z.number().int().min(1).max(10).default(3),
+});
+
 export const exerciseItemSchema = z.discriminatedUnion('type', [
   mcItemSchema,
   clozeItemSchema,
@@ -578,6 +610,7 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   writeItemSchema,
   speakItemSchema,
   audioComprehensionItemSchema,
+  listeningItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
 
@@ -606,6 +639,66 @@ export const exerciseSetSchema = z.object({
   items: z.array(exerciseItemSchema).min(1),
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
+
+// ---------------------------------------------------------------------------
+// Reviewed listening artifacts (content/listening/<level>/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+export const listeningArtifactSchema = z.object({
+  id: slug,
+  level: levelSchema,
+  title: bilingualSchema,
+  scenario: z.string().min(1),
+  duration_seconds: z.number().int().positive(),
+  audio: z.string().min(1),
+  speakers: z.array(z.string().min(1)).min(1).max(4),
+  transcript: z.array(audioTurnSchema).min(1),
+  provenance: z.string().min(1),
+});
+export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
+
+// ---------------------------------------------------------------------------
+// Editorial listening plan (data/listening-plan.yaml)
+// ---------------------------------------------------------------------------
+
+export const listeningPlanArtifactSchema = z.object({
+  id: slug,
+  wave: z.union([z.literal(1), z.literal(2)]),
+  purpose: z.enum(['listening-outcome', 'model-input']),
+  scenario: z.string().min(1),
+  outcomes: z.array(slug).min(1),
+  required_vocabulary: z.array(z.string().min(1)).default([]),
+  grammar_target: z.string().default(''),
+  duration_seconds: z.object({ min: z.number().int().positive(), max: z.number().int().positive() }),
+  speakers: z.object({ min: z.number().int().min(1).max(4), max: z.number().int().min(1).max(4) }),
+  register: z.string().min(1),
+  question_kinds: z.array(z.enum([
+    'single-choice',
+    'multi-select',
+    'true-false',
+    'ordering',
+    'short-answer',
+    'dictation',
+  ])).length(3),
+  context_sound: z.string().min(1).nullable(),
+}).superRefine((artifact, ctx) => {
+  if (artifact.duration_seconds.min > artifact.duration_seconds.max)
+    ctx.addIssue({ code: 'custom', path: ['duration_seconds'], message: 'min must not exceed max' });
+  if (artifact.speakers.min > artifact.speakers.max)
+    ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
+  if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
+    ctx.addIssue({ code: 'custom', message: 'Wave 1 requires vocabulary and a grammar/focus target' });
+});
+
+export const listeningPlanSchema = z.object({
+  version: z.literal(1),
+  units: z.array(z.object({
+    unit: slug,
+    level: levelSchema,
+    artifacts: z.array(listeningPlanArtifactSchema).min(1),
+  })).min(1),
+});
+export type ListeningPlan = z.infer<typeof listeningPlanSchema>;
 
 // ---------------------------------------------------------------------------
 // Reading texts (content/reading/<level>/<id>.yaml)

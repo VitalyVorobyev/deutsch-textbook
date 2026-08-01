@@ -87,6 +87,14 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
+- **P21-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
+  for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
+  the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving
+  failed QA and requiring Vitaly's approval of every exact WAV. Context sounds are optional,
+  speech-independent and restricted to manually reviewed CC0/CC BY Freesound originals. Wave 2 is
+  model/input coverage and does not silently create new listening outcomes. The separate P19-6
+  Goethe pack remains open until its own 6/4/5 task structure and delayed probes ship.
+
 - **P20-1 · The A1 exam-practice surface has one entry point and one owner topic** — `/pruefung/a1`
   is linked only from `/about`: no nav entry, no link from the A1 topic pages, nothing on the
   progress page. A learner who never opens Über will not find it. Separately, all three sets
@@ -160,6 +168,9 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   budget approval. Every take needs human review for A1 intelligibility and natural pacing, plus
   mobile/desktop playback verification. Until this ships, public copy must describe exam practice
   as reading/writing/speaking only and must not imply complete Hören preparation.
+  The repository-local Listening Studio now supplies the reviewed authoring, QA and provenance
+  pipeline, but this content task remains open until the real A1 recordings and Vitaly's review
+  are committed.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);

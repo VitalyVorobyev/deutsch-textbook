@@ -8,6 +8,7 @@
  * src/lib/langcheck.ts).
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join, relative, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
@@ -22,6 +23,8 @@ import {
   wortnetzSchema,
   discoverySchema,
   referenceDataSchema,
+  listeningArtifactSchema,
+  listeningPlanSchema,
   type ReferenceData,
   type Discovery,
   type ExerciseSet,
@@ -32,6 +35,8 @@ import {
   type VisualDocument,
   type WordField,
   type Wortnetz,
+  type ListeningArtifact,
+  type ListeningPlan,
   LEVELS,
 } from '../src/lib/schemas';
 import type { GrammarPoint } from '../src/lib/grammar-coverage';
@@ -441,6 +446,102 @@ for (const file of listFiles(join(CONTENT, 'exercises'), '.yaml')) {
   if (!data) continue;
   const id = relative(join(CONTENT, 'exercises'), file).split(sep).join('/').replace(/\.yaml$/, '');
   exerciseSets.set(id, { file: rel(file), data });
+}
+
+const LISTENING_PLAN_FILE = 'data/listening-plan.yaml';
+let listeningPlan: ListeningPlan | undefined;
+try {
+  const raw = YAML.parse(readFileSync(join(ROOT, LISTENING_PLAN_FILE), 'utf8')) as unknown;
+  listeningPlan = validateWith(listeningPlanSchema, raw, LISTENING_PLAN_FILE);
+} catch (e) {
+  fail(LISTENING_PLAN_FILE, `unreadable: ${e instanceof Error ? e.message : e}`);
+}
+const plannedListening = new Map(
+  (listeningPlan?.units ?? []).flatMap((unit) =>
+    unit.artifacts.map((artifact) => [artifact.id, { unit, artifact }] as const),
+  ),
+);
+
+const listeningArtifacts = new Map<string, { file: string; data: ListeningArtifact }>();
+const fileSha256 = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
+for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
+  const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
+  const data = validateWith(listeningArtifactSchema, raw, rel(file));
+  if (!data) continue;
+  const id = relative(join(CONTENT, 'listening'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const basename = id.split('/').at(-1)!;
+  const levelDir = id.split('/')[0]!;
+  if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
+  if (data.level.toLowerCase() !== levelDir) fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
+  const planned = plannedListening.get(data.id);
+  if (!planned) fail(rel(file), `artifact "${data.id}" is absent from ${LISTENING_PLAN_FILE}`);
+  else if (planned.unit.level !== data.level) fail(rel(file), 'artifact level differs from the listening plan');
+  const audioFile = join(ROOT, 'public', data.audio.replace(/^\//, ''));
+  if (!existsSync(audioFile))
+    fail(rel(file), `audio "${data.audio}" does not exist under public/`);
+  const provenance = join(ROOT, data.provenance);
+  if (!existsSync(provenance)) fail(rel(file), `provenance "${data.provenance}" does not resolve`);
+  else {
+    const manifest = JSON.parse(readFileSync(provenance, 'utf8')) as {
+      id?: string;
+      audio_sha256?: string;
+      dry_audio_sha256?: string;
+      dependency_lock_sha256?: string;
+      model_lock_sha256?: string;
+      approval?: { status?: string; editor?: string; checklist?: string[] };
+      generation_brief?: { path?: string; sha256?: string };
+      claims?: {
+        model_license_is_training_data_provenance?: boolean;
+        voice_cloning_used?: boolean;
+        reference_audio_used?: boolean;
+      };
+      models?: Record<string, { license?: string; revision?: string; training_data_provenance?: string }>;
+      contextual_sources?: Array<{
+        sound_id?: number;
+        license?: string;
+        original_sha256?: string;
+      }>;
+    };
+    if (manifest.id !== data.id) fail(rel(file), 'provenance id does not match the listening artifact');
+    if (manifest.approval?.status !== 'complete') fail(rel(file), 'committed listening audio requires completed human approval');
+    if (!manifest.approval?.editor || (manifest.approval.checklist?.length ?? 0) < 6)
+      fail(rel(file), 'human approval identity and full listening checklist are required');
+    if (existsSync(audioFile) && manifest.audio_sha256 !== fileSha256(audioFile))
+      fail(rel(file), 'audio hash does not match provenance');
+    if (!manifest.dry_audio_sha256) fail(rel(file), 'dry speech hash is required');
+    if (!manifest.dependency_lock_sha256 || !manifest.model_lock_sha256)
+      fail(rel(file), 'dependency and model lock hashes are required');
+    if (
+      manifest.claims?.model_license_is_training_data_provenance !== false ||
+      manifest.claims.voice_cloning_used !== false ||
+      manifest.claims.reference_audio_used !== false
+    )
+      fail(rel(file), 'provenance must separate licence evidence and forbid cloning/reference audio');
+    if (
+      !manifest.models ||
+      Object.values(manifest.models).some(
+        (model) => !model.license || !model.revision || !model.training_data_provenance,
+      )
+    )
+      fail(rel(file), 'every model requires an immutable revision, licence, and training-data note');
+    for (const source of manifest.contextual_sources ?? []) {
+      if (!source.sound_id || !source.original_sha256 || !['CC0-1.0', 'CC-BY-4.0'].includes(source.license ?? '')) {
+        fail(rel(file), 'contextual source requires a Freesound id, allowed licence, and original hash');
+        continue;
+      }
+      const sourceDir = join(ROOT, 'data', 'audio-sources', 'freesound', String(source.sound_id));
+      const originals = existsSync(sourceDir)
+        ? readdirSync(sourceDir).filter((name) => name.startsWith('original.'))
+        : [];
+      if (originals.length !== 1 || fileSha256(join(sourceDir, originals[0]!)) !== source.original_sha256)
+        fail(rel(file), `contextual source ${source.sound_id} is missing or changed`);
+    }
+    const brief = manifest.generation_brief?.path ? join(ROOT, manifest.generation_brief.path) : '';
+    if (!brief || !existsSync(brief)) fail(rel(file), 'saved generation brief does not resolve');
+    else if (manifest.generation_brief?.sha256 !== fileSha256(brief))
+      fail(rel(file), 'saved generation brief hash does not match provenance');
+  }
+  listeningArtifacts.set(id, { file: rel(file), data });
 }
 
 const readings = new Map<string, { file: string; data: Reading }>();
@@ -1037,6 +1138,28 @@ for (const [setId, { file, data }] of exerciseSets) {
         if (new Set(item.options).size !== item.options.length) fail(where, 'duplicate options');
         break;
       }
+      case 'listening': {
+        const artifact = listeningArtifacts.get(item.listening);
+        if (!artifact) fail(where, `listening ref "${item.listening}" does not resolve`);
+        else {
+          if (artifact.data.audio !== item.audio) fail(where, 'audio snapshot differs from the canonical listening artifact');
+          const canonical = JSON.stringify(artifact.data.transcript);
+          const snapshot = JSON.stringify(item.transcript.map(({ speaker, text }) => ({ speaker, text })));
+          if (canonical !== snapshot) fail(where, 'transcript snapshot differs from the canonical listening artifact');
+        }
+        const response = item.response;
+        if ('options' in response && new Set(response.options).size !== response.options.length)
+          fail(where, 'duplicate response options');
+        if (response.kind === 'single-choice' && response.correct >= response.options.length)
+          fail(where, 'correct option is out of range');
+        if (response.kind === 'multi-select') {
+          if (new Set(response.correct).size !== response.correct.length) fail(where, 'duplicate correct indices');
+          if (response.correct.some((index) => index >= response.options.length)) fail(where, 'correct option is out of range');
+        }
+        if (response.kind === 'dictation' && !item.transcript.some((turn) => turn.id === response.line_id))
+          fail(where, `dictation line_id "${response.line_id}" does not resolve in the transcript`);
+        break;
+      }
     }
     if (!item.explain) warn(where, 'no explain text (feedback on wrong answers will be thin)');
   }
@@ -1249,11 +1372,13 @@ for (const [setId, { file, data }] of exerciseSets) {
       // and appear strictly earlier.
       const nodeById = new Map(atlas.nodes.map((n) => [n.id, n]));
       const outcomeOwner = new Map<string, string>();
+      const outcomeById = new Map<string, (typeof atlas.nodes)[number]['outcomes'][number]>();
       for (const node of atlas.nodes) {
         for (const outcome of node.outcomes) {
           const previous = outcomeOwner.get(outcome.id);
           if (previous) fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
           else outcomeOwner.set(outcome.id, node.id);
+          outcomeById.set(outcome.id, outcome);
         }
         if (
           node.kind === 'communication' &&
@@ -1290,6 +1415,42 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
       for (const node of atlas.nodes) {
         if (!unitOf.has(node.id)) fail(AT, `topic "${node.id}" is not in any unit`);
+      }
+
+      if (listeningPlan) {
+        const planUnits = new Map<string, ListeningPlan['units'][number]>();
+        const artifactIds = new Set<string>();
+        for (const plannedUnit of listeningPlan.units) {
+          if (planUnits.has(plannedUnit.unit))
+            fail(LISTENING_PLAN_FILE, `duplicate unit "${plannedUnit.unit}"`);
+          planUnits.set(plannedUnit.unit, plannedUnit);
+          const atlasUnit = atlas.units.find((unit) => unit.id === plannedUnit.unit);
+          if (!atlasUnit) {
+            fail(LISTENING_PLAN_FILE, `unit "${plannedUnit.unit}" is not live in the Atlas`);
+            continue;
+          }
+          if (atlasUnit.level !== plannedUnit.level)
+            fail(LISTENING_PLAN_FILE, `unit "${plannedUnit.unit}" has the wrong level`);
+          const allowedTopics = new Set(atlasUnit.topics);
+          for (const artifact of plannedUnit.artifacts) {
+            if (artifactIds.has(artifact.id))
+              fail(LISTENING_PLAN_FILE, `duplicate artifact id "${artifact.id}"`);
+            artifactIds.add(artifact.id);
+            if (artifact.id !== `ls-${plannedUnit.unit}-01`)
+              fail(LISTENING_PLAN_FILE, `first artifact for "${plannedUnit.unit}" must be ls-${plannedUnit.unit}-01`);
+            for (const outcome of artifact.outcomes) {
+              const owner = outcomeOwner.get(outcome);
+              if (!owner) fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" names unknown outcome "${outcome}"`);
+              else if (!allowedTopics.has(owner))
+                fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" outcome "${outcome}" belongs outside its unit`);
+              if (artifact.purpose === 'listening-outcome' && outcomeById.get(outcome)?.mode !== 'listening')
+                fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" claims listening evidence for non-listening outcome "${outcome}"`);
+            }
+          }
+        }
+        for (const unit of atlas.units) {
+          if (!planUnits.has(unit.id)) fail(LISTENING_PLAN_FILE, `live Atlas unit "${unit.id}" has no listening plan`);
+        }
       }
 
       const LEVEL_ORDER: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };

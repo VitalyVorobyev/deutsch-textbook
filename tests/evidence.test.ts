@@ -42,6 +42,23 @@ describe('actual response mode', () => {
     expect(responseModeForItem(write)).toBe('writing');
     expect(responseModeForItem(speak)).toBe('spoken-interaction');
   });
+
+  test('records a canonical listening response as listening evidence', () => {
+    const item = {
+      ...base,
+      type: 'listening',
+      listening: 'a2/am-bahnhof',
+      audio: '/audio/a2/am-bahnhof.wav',
+      transcript: [{ id: 'line-1', speaker: 'Lea', text: 'Der Zug fährt um neun.' }],
+      response: {
+        kind: 'single-choice',
+        prompt: 'Wann fährt der Zug?',
+        options: ['Um neun.', 'Um zehn.'],
+        correct: 0,
+      },
+    } satisfies ExerciseItem;
+    expect(responseModeForItem(item)).toBe('listening');
+  });
 });
 
 describe('explicit focus evidence', () => {
