@@ -194,7 +194,24 @@ def draft_wave(
         store.revise(project_id, draft)
         typer.echo(f"Drafted project {project_id}: {draft.brief.scenario}")
 
-    generate_drafts([payload for _, _, payload in selected], on_draft=save_draft)
+    failures: list[int] = []
+
+    def record_failure(index: int, error: Exception) -> None:
+        project_id = selected[index][0]
+        failures.append(project_id)
+        typer.echo(f"Project {project_id} remains draft: {error}", err=True)
+
+    generate_drafts(
+        [payload for _, _, payload in selected],
+        on_draft=save_draft,
+        on_error=record_failure,
+    )
+    if failures:
+        typer.echo(
+            "Generation completed with rejected structured output for projects: "
+            + ", ".join(str(project_id) for project_id in failures),
+            err=True,
+        )
 
 
 @app.command()

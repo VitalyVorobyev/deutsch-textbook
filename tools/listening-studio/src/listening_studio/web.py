@@ -35,7 +35,7 @@ from .qa import check_transcripts
 from .storage import Store
 
 
-CSS = """body{font:16px system-ui;max-width:1100px;margin:auto;padding:2rem;background:#f7f5f2;color:#292524}header{display:flex;justify-content:space-between}a{color:#9a3412}textarea,input,select{box-sizing:border-box;width:100%;padding:.65rem;border:1px solid #d6d3d1;border-radius:6px;background:white}textarea{min-height:26rem;font:13px ui-monospace}button{padding:.7rem 1rem;border:0;border-radius:6px;background:#44403c;color:white;cursor:pointer}.card{background:white;border:1px solid #e7e5e4;border-radius:10px;padding:1.2rem;margin:1rem 0}.stage{font-weight:700;color:#9a3412}.actions{display:flex;gap:.5rem;flex-wrap:wrap}.muted{color:#78716c;font-size:.9rem}"""
+CSS = """body{font:16px system-ui;max-width:1100px;margin:auto;padding:2rem;background:#f7f5f2;color:#292524}header{display:flex;justify-content:space-between}a{color:#9a3412}textarea,input,select{box-sizing:border-box;width:100%;padding:.65rem;border:1px solid #d6d3d1;border-radius:6px;background:white}textarea{min-height:26rem;font:13px ui-monospace}button{padding:.7rem 1rem;border:0;border-radius:6px;background:#44403c;color:white;cursor:pointer}.card{background:white;border:1px solid #e7e5e4;border-radius:10px;padding:1.2rem;margin:1rem 0}.stage{font-weight:700;color:#9a3412}.actions{display:flex;gap:.5rem;flex-wrap:wrap}.muted{color:#78716c;font-size:.9rem}.pass{color:#166534}.fail{color:#b91c1c}audio{width:100%}summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap}"""
 
 
 def app(
@@ -65,7 +65,7 @@ def app(
 
     def page(body: str) -> HTMLResponse:
         return HTMLResponse(
-            f"<!doctype html><html><meta charset=utf-8><title>Listening Studio</title><style>{CSS}</style><body><header><h1>Listening Studio</h1><a href='/'>Projects</a></header>{body}</body></html>"
+            f"<!doctype html><html><meta charset=utf-8><title>Listening Studio</title><style>{CSS}</style><body><header><h1>Listening Studio</h1><nav><a href='/corpus/wave-1'>Wave 1 review</a> · <a href='/'>Projects</a></nav></header>{body}</body></html>"
         )
 
     @api.get("/health")
@@ -79,7 +79,54 @@ def app(
             for p in store.projects()
         )
         return page(
-            "<p><a href='/new'>New listening project</a></p>" + (rows or "<p>No projects yet.</p>")
+            "<p><a href='/corpus/wave-1'>Review the 12 Wave-1 recordings</a> · <a href='/new'>New listening project</a></p>"
+            + (rows or "<p>No projects yet.</p>")
+        )
+
+    @api.get("/corpus/wave-1", response_class=HTMLResponse)
+    def wave_one_review() -> HTMLResponse:
+        cards: list[str] = []
+        for project_row in sorted(store.projects(), key=lambda item: item.id):
+            if not 2 <= project_row.id <= 13:
+                continue
+            _, revision, payload = store.get(project_row.id)
+            wav = store.root / "projects" / str(project_row.id) / "final.wav"
+            qa = json.loads(revision.qa_json or "{}")
+            if qa.get("passed") is True:
+                verdict = "<strong class=pass>Automatic QA passed</strong>"
+            elif revision.qa_json:
+                verdict = "<strong class=fail>Automatic QA failed — review differences</strong>"
+            else:
+                verdict = "<strong>QA pending</strong>"
+            transcript = "\n".join(
+                f"{line.speaker}: {line.display_text}" for line in payload.lines
+            )
+            player = (
+                f"<audio controls preload=metadata src='/projects/{project_row.id}/audio'></audio>"
+                if wav.exists()
+                else "<p class=fail>Audio missing</p>"
+            )
+            failures = qa.get("final", {}).get("failures", [])
+            failure_html = (
+                "<details><summary>QA differences</summary><pre>"
+                + escape("\n".join(failures) or "No recorded failures")
+                + "</pre></details>"
+                if revision.qa_json
+                else ""
+            )
+            cards.append(
+                f"<section class=card><h2>{escape(project_row.slug)}</h2>"
+                f"<p>{escape(payload.brief.level)} · {escape(payload.brief.scenario)} · {verdict}</p>"
+                + player
+                + "<details><summary>Transcript</summary><pre>"
+                + escape(transcript)
+                + "</pre></details>"
+                + failure_html
+                + f"<p><a href='/projects/{project_row.id}'>Open full project</a></p></section>"
+            )
+        return page(
+            "<p>Assessment copies: clean speech only. Automatic checks detect transcript mismatches; human review must judge accent, naturalness, pace, speaker consistency and answerability.</p>"
+            + "".join(cards)
         )
 
     @api.get("/new", response_class=HTMLResponse)

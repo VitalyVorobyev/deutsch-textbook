@@ -42,3 +42,19 @@ def test_qwen_failure_creates_reviewable_parler_draft(tmp_path: Path, monkeypatc
     assert revised.tts_adapter == "parler_tts"
     assert {line.voice for line in revised.lines} <= {"Nicole", "Christopher", "Megan", "Michelle"}
     assert list((tmp_path / "projects" / str(project.id)).glob("qwen-failure-*.json"))
+
+
+def test_wave_one_review_collects_audio_and_qa(tmp_path: Path) -> None:
+    store = Store(tmp_path / "db.sqlite3")
+    store.create("not-in-wave", payload())
+    project = store.create("ls-review-01", payload().model_copy(update={"tts_adapter": "fake"}))
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    for action in ["validate", "generate", "qa"]:
+        response = client.post(f"/projects/{project.id}/{action}?token=test")
+        assert response.status_code == 200
+
+    response = client.get("/corpus/wave-1?token=test")
+    assert response.status_code == 200
+    assert "ls-review-01" in response.text
+    assert "Automatic QA passed" in response.text
+    assert "Transcript" in response.text

@@ -89,7 +89,7 @@ class ParlerTTS:
             self._model = ParlerTTSForConditionalGeneration.from_pretrained(model_path).to(
                 self._device
             )
-            self._tokenizer = AutoTokenizer.from_pretrained(model_path)  # type: ignore[no-untyped-call]
+            self._tokenizer = AutoTokenizer.from_pretrained(model_path)
             tokenizer_path = locked_snapshot(
                 "google/flan-t5-large",
                 "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
@@ -100,9 +100,7 @@ class ParlerTTS:
                     "special_tokens_map.json",
                 ],
             )
-            self._description_tokenizer = AutoTokenizer.from_pretrained(  # type: ignore[no-untyped-call]
-                tokenizer_path
-            )
+            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
         description = (
             f"{line.voice}'s German voice is clear, close, natural, and has no background noise."
         )
@@ -198,6 +196,7 @@ def generate_draft(payload: RevisionPayload) -> RevisionPayload:
 def generate_drafts(
     payloads: list[RevisionPayload],
     on_draft: Callable[[int, RevisionPayload], None] | None = None,
+    on_error: Callable[[int, Exception], None] | None = None,
 ) -> list[RevisionPayload]:
     """Generate several editorial drafts while loading the MLX model only once."""
 
@@ -212,29 +211,36 @@ def generate_drafts(
     loaded: Any = load(model_path)
     model, tokenizer = loaded[0], loaded[1]
     drafts: list[RevisionPayload] = []
-    for payload in payloads:
-        response = generate(model, tokenizer, prompt=draft_prompt(payload), max_tokens=8192)
-        start = response.find("{")
-        if start < 0:
-            raise RuntimeError("generator did not return a JSON object")
+    for index, payload in enumerate(payloads):
         try:
-            decoded, _ = json.JSONDecoder().raw_decode(response[start:])
-        except json.JSONDecodeError as exc:
-            raise RuntimeError("generator did not return one complete JSON object") from exc
-        generated = RevisionPayload.model_validate(decoded)
-        final = generated.model_dump(mode="json")
-        final.update(
-            {
-                "brief": payload.brief.model_dump(mode="json"),
-                "tts_adapter": "parler_tts",
-                "context_sounds": [sound.model_dump(mode="json") for sound in payload.context_sounds],
-                "max_replays": payload.max_replays,
-            }
-        )
-        draft = RevisionPayload.model_validate(final)
-        drafts.append(draft)
-        if on_draft is not None:
-            on_draft(len(drafts) - 1, draft)
+            response = generate(model, tokenizer, prompt=draft_prompt(payload), max_tokens=8192)
+            start = response.find("{")
+            if start < 0:
+                raise RuntimeError("generator did not return a JSON object")
+            try:
+                decoded, _ = json.JSONDecoder().raw_decode(response[start:])
+            except json.JSONDecodeError as exc:
+                raise RuntimeError("generator did not return one complete JSON object") from exc
+            generated = RevisionPayload.model_validate(decoded)
+            final = generated.model_dump(mode="json")
+            final.update(
+                {
+                    "brief": payload.brief.model_dump(mode="json"),
+                    "tts_adapter": "parler_tts",
+                    "context_sounds": [
+                        sound.model_dump(mode="json") for sound in payload.context_sounds
+                    ],
+                    "max_replays": payload.max_replays,
+                }
+            )
+            draft = RevisionPayload.model_validate(final)
+            drafts.append(draft)
+            if on_draft is not None:
+                on_draft(index, draft)
+        except Exception as exc:
+            if on_error is None:
+                raise
+            on_error(index, exc)
     return drafts
 
 
