@@ -101,6 +101,11 @@ WAVE2: dict[str, dict] = {
     "ls-akkusativ-01": {
         "speakers": ["Kellner", "Gast"],
         "pace": 0.90,
+        # The waiter's read-back came out with the accusative endings reduced away — "Ein Kaffee
+        # … ein Salat" where the script says "Einen … einen" — in the one recording whose whole
+        # job is the accusative article. Accepting that would have taught the opposite of the
+        # lesson, so the line is re-synthesised rather than the comparison loosened.
+        "seeds": {7: 733},
         "title": ("Ordering in a café", "Заказ в кафе"),
         "lines": [
             ("Kellner", "Ryan", SHOP, "Guten Tag. Was möchten Sie trinken?"),
@@ -1041,7 +1046,13 @@ def main() -> None:
     for slug, spec in WAVE2.items():
         project = by_slug[slug]
         _, _, payload = store.get(project.id)
-        store.revise(project.id, build(spec, payload))
+        updated = build(spec, payload)
+        # Only write when something actually changed. `Store.revise` returns a project to draft,
+        # so an unconditional pass over all 29 to fix one line threw away the QA of the other 28
+        # — twenty-eight Whisper runs, for nothing.
+        if updated.canonical_json() == payload.canonical_json():
+            continue
+        store.revise(project.id, updated)
         words = sum(len(text.split()) for *_, text in spec["lines"])
         estimate = words * (0.53 if spec["pace"] <= 0.91 else 0.50 if spec["pace"] <= 0.96 else 0.46)
         print(f"{slug:34s} {len(spec['lines']):2d} lines {words:4d} words  ~{estimate:5.1f}s")

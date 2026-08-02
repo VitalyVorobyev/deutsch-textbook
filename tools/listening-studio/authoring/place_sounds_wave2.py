@@ -84,6 +84,10 @@ def main() -> None:
         updated = RevisionPayload.model_validate(
             payload.model_dump() | {"context_sounds": contexts}
         )
+        # Idempotent for the same reason wave2.py is: revising returns a project to draft, and
+        # re-running this over all eighteen to change one placement costs eighteen QA runs.
+        if updated.canonical_json() == payload.canonical_json():
+            continue
         store.revise(project.id, updated)
         names = ", ".join(str(p[0]) for p in placements)
         print(f"  {slug:34s} <- {names}")
