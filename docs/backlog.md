@@ -120,11 +120,16 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   change. Note the measurement trap while here: words per second of wall clock ranks "Und heute?"
   as the corpus's slowest line because short utterances are dominated by fixed pause overhead.
   Words per second of *voiced* audio (median 2.96) is the metric that finds real defects.
-- **P22-10 · Nothing compares a recording's length to the length the plan asked for** —
-  `duration_seconds` is authored per artifact in `data/listening-plan.yaml` and read by nothing. Ten
-  of the twelve Wave-1 takes fell outside their window against zero of Wave 2's twenty-nine; the
-  studio's approval page states the comparison, but neither `bun run validate` nor
-  `bun run listening:inventory` can see it.
+- **P22-10 · Nothing in the repo compares a recording's length to the length the plan asked for** —
+  `duration_seconds` is authored per artifact in `data/listening-plan.yaml`; the studio's approval
+  page states the comparison and `tools/listening-studio/authoring/audio_report.py` measures it, but
+  neither `bun run validate` nor `bun run listening:inventory` can see it. Current read
+  (`uv run python authoring/audio_report.py`): **twelve of forty-one outside their window** — ten of
+  Wave 1's twelve, unchanged, plus `ls-trennbare-verben-01` (33.4 s against 35–45) and
+  `ls-man-und-besitz-01` (46.9 s against 35–45), which the voice-drift re-seeding pushed out of a
+  window they used to sit inside. Steadier delivery is faster; the windows were written before the
+  corpus existed. **Do not amend a window to match what shipped** — decide per artifact whether the
+  script is short, and fix the script.
 - **P22-11 · Nothing detects two vocab entries that answer the same production prompt** — two
   entries whose glosses reduce to the same content words are two correct answers to one question.
   `Angebot`/`Sonderangebot` was found by the learner, not by a gate. A throwaway scan flags 129

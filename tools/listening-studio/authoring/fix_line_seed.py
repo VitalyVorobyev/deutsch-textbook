@@ -26,6 +26,25 @@ split into lead / internal / trail, is what shows it.
 
 Both keep their authored style. Hesitancy suits a man asking for help; the model simply took
 it to an extreme, and a different seed is the remedy the corpus already uses.
+
+Three later entries are QA failures rather than tempo ones — Whisper read a word the script did
+not contain, and `Store.transition` advances to AUTOMATICALLY_CHECKED either way while approval
+refuses the failed report, so they sat visibly red instead of silently wrong. Each was isolated
+with ffmpeg before it was touched, because a short clip is where Whisper hallucinates and the
+report alone cannot tell a bad take from a bad transcript:
+
+- `ls-dativ-01` line-3, "Können Sie mir eine Waage leihen?" -> "eine Waagelein". The word
+  boundary survives in the full-dialogue transcript and not in the isolated line, so the take is
+  borderline rather than broken — but an A2 listener segments connected speech with less context
+  than Whisper has, not more.
+- `ls-nebensaetze-plaene-01` line-8, "ich sage im Café Bescheid" -> "ich sage ihm Kaffee
+  Bescheid", in the full audio as well as the line. `im`/`ihm` and `Café`/`Kaffee` differ by vowel
+  length and stress placement; the take put the stress on the first syllable of Café.
+- `ls-verbindungen-folgen-01` line-5, "Ist etwas kaputtgegangen?" -> "Er ist etwas kaputt
+  gegangen." The compound split is already forgiven by `word_error_rate`; the inserted subject is
+  not. Cutting the take at 0.62 s gives "etwas kaputt gegangen", and the opening burst alone gives
+  "Es" — one token, weakly enough articulated that the decoder rebuilt it as a declarative. A
+  verb-first yes/no question that reads as a statement has lost the cue the item is asking about.
 """
 
 from __future__ import annotations
@@ -39,6 +58,10 @@ SEEDS: dict[str, dict[str, int]] = {
     # Same signature as line-9 above, found by audio_report.py after the re-seed rather than
     # by ear: 1.27 words per second of voiced audio with three internal gaps of 0.28 s or more.
     "ls-praesens-wortstellung-01": {"line-2": 902},
+    # QA failures, diagnosed in the docstring above.
+    "ls-dativ-01": {"line-3": 903},
+    "ls-nebensaetze-plaene-01": {"line-8": 904},
+    "ls-verbindungen-folgen-01": {"line-5": 905},
 }
 
 

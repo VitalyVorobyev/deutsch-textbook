@@ -2,7 +2,12 @@
 
 Four things have gone wrong in this corpus and each was found by a different measurement, so
 each has a check here. Whisper QA proves the words are the right words; none of this is about
-words.
+words — but the stored QA verdict is reprinted anyway, because nothing else does.
+`Store.transition` advances a project to AUTOMATICALLY_CHECKED whether the report passed or
+failed (approval is what refuses a failed one), `bun run listening:inventory` derives its status
+from `content/listening/` and so calls every unpublished artifact `planned`, and the reviewer's
+own eye is the thing this file exists to spare. Three artifacts sat red for a day because the
+only surface that named them was a run log nobody re-read.
 
 1. **Voice drift** — median F0 per line for one speaker spanning more than ~60 Hz inside one
    dialogue. Below that it reads as intonation; above it, the character changes age and energy
@@ -20,6 +25,7 @@ Usage: `uv run python authoring/audio_report.py [slug ...]` (default: every arti
 
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 import sys
@@ -114,6 +120,25 @@ def internal_gaps(path: Path, floor: float = 0.28) -> int:
     return sum(1 for a, b in zip(starts, durs) if a > 0.05 and a + b < total - 0.05)
 
 
+def qa_notes(qa_json: str | None) -> list[str]:
+    """What the stored Whisper report says, in the same voice as the acoustic findings.
+
+    A missing report is its own finding: `Store.revise` clears `qa_json` and drops the project
+    back to DRAFT, so a revision made after a passing run leaves an artifact that looks finished
+    in every listing and cannot be approved.
+    """
+
+    if not qa_json:
+        return ["no QA report on this revision — it cannot be approved"]
+    qa = json.loads(qa_json)
+    if qa.get("passed") is True:
+        return []
+    failures = set(qa.get("dry", {}).get("failures", [])) | set(
+        qa.get("final", {}).get("failures", [])
+    )
+    return [f"QA failed — {failure}" for failure in sorted(failures)] or ["QA failed"]
+
+
 def plan_windows() -> dict[str, tuple[float, float]]:
     plan = yaml.safe_load((REPO / "data" / "listening-plan.yaml").read_text())
     out: dict[str, tuple[float, float]] = {}
@@ -134,7 +159,7 @@ def main() -> None:
     for project in sorted(store.projects(), key=lambda p: p.id):
         if project.id == 1 or (wanted and project.slug not in wanted):
             continue
-        _, _, payload = store.get(project.id)
+        _, stored, payload = store.get(project.id)
         revision = QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
         cache = store.root / "projects" / str(project.id) / "cache"
         notes: list[str] = []
@@ -163,6 +188,8 @@ def main() -> None:
                     f"{speaker}: pitch spans {max(values) - min(values):.1f} Hz "
                     f"({min(values):.0f}-{max(values):.0f}) over {len(values)} lines"
                 )
+
+        notes.extend(qa_notes(stored.qa_json))
 
         final = store.root / "projects" / str(project.id) / "final.wav"
         length = wav_duration(final) or 0.0
