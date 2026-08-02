@@ -738,9 +738,19 @@ for (const [id, { file, data }] of topics) {
   // anything, while the one that discriminates was 13% of the catalog. These bounds keep a
   // topic's practice honest, and they are checked per topic rather than per set so that a
   // set may still specialize (a Hören set is all `listen`, and should be).
+  //
+  // `audio-comprehension` is excluded from **both** sides of these ratios, not just the
+  // numerator. The bar governs written item formats: its rationale is that the learner "picks
+  // from what is already on screen and never has to produce it", and production is exactly what
+  // a listening comprehension task cannot ask for without conflating two skills. Counting it in
+  // the denominator alone made every recorded item buy a topic more room for written
+  // recognition — publishing the 41-recording corpus (82 items) would have loosened the
+  // selection cap on 38 of 41 topics and the mc cap on 27, silently, with `a1/artikel-genus`
+  // going from exactly at its cap to one item under it.
   const practiceItems = data.exercises
     .filter((ex) => exerciseSets.get(ex)?.data.role === 'practice')
-    .flatMap((ex) => exerciseSets.get(ex)!.data.items);
+    .flatMap((ex) => exerciseSets.get(ex)!.data.items)
+    .filter((i) => i.type !== 'audio-comprehension');
   if (practiceItems.length > 0) {
     const count = (t: string) => practiceItems.filter((i) => i.type === t).length;
     const selection = count('mc') + count('match') + count('order');
@@ -1673,20 +1683,24 @@ for (const [setId, { file, data }] of exerciseSets) {
               'coin flip, and a topic this test passes is never taught again',
           );
 
-        const count = (t: string) => items.filter((i) => i.type === t).length;
+        // Same denominator rule as the practice item mix above, and for the same reason: these
+        // ratios are about written formats, so a listening item belongs on neither side. Only
+        // the two ratios use it — every other check here counts all placement items.
+        const written = items.filter((i) => i.type !== 'audio-comprehension');
+        const count = (t: string) => written.filter((i) => i.type === t).length;
         const selection = count('mc') + count('match') + count('order');
-        if (count('mc') * 100 > items.length * MAX_PLACEMENT_MC_PERCENT)
+        if (count('mc') * 100 > written.length * MAX_PLACEMENT_MC_PERCENT)
           fail(
             file,
-            `${count('mc')} of ${items.length} placement items are mc ` +
-              `(${Math.round((100 * count('mc')) / items.length)}%, cap ${MAX_PLACEMENT_MC_PERCENT}%) — ` +
+            `${count('mc')} of ${written.length} written placement items are mc ` +
+              `(${Math.round((100 * count('mc')) / written.length)}%, cap ${MAX_PLACEMENT_MC_PERCENT}%) — ` +
               "stricter than practice's third on purpose: this decides what the learner never sees again",
           );
-        if (selection * 100 > items.length * MAX_PLACEMENT_SELECTION_PERCENT)
+        if (selection * 100 > written.length * MAX_PLACEMENT_SELECTION_PERCENT)
           fail(
             file,
-            `${selection} of ${items.length} placement items are mc/match/order ` +
-              `(${Math.round((100 * selection) / items.length)}%, cap ${MAX_PLACEMENT_SELECTION_PERCENT}%) — ` +
+            `${selection} of ${written.length} written placement items are mc/match/order ` +
+              `(${Math.round((100 * selection) / written.length)}%, cap ${MAX_PLACEMENT_SELECTION_PERCENT}%) — ` +
               'the learner picks from what is on screen, and recognition is exactly what a ' +
               'placement test must not mistake for knowledge',
           );
