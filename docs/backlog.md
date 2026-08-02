@@ -84,10 +84,12 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 - **P5-11b · Mode coverage is unchecked** — `bun run validate` enforces the item-mix bar but never
   asks whether an outcome has a task in the mode it names. **A1 resolved 2026-07-31** (items declare
   `target_mode`; validation requires every A1 outcome's claimed mode to be practised). The B1 policy
-  question is open: five of seven B1 units own an `audio-comprehension` item while only
-  `erfahrungen-erzaehlen` declares a listening outcome, so the artifact is shipped unconditionally in
-  practice and skipped by two units — the one combination no reading of the rule supports. Decide the
-  rule, write it down, then extend the A1 validator check to B1.
+  question is open, and publishing the corpus changed its shape rather than closing it: **every topic
+  at every level now owns an `audio-comprehension` item** (A1 10/10, A2 22/22, B1 9/9), so the old
+  asymmetry — five of seven B1 units carrying one — is gone. What remains is the rule itself: only
+  `erfahrungen-erzaehlen` declares a listening outcome, so listening is now practised everywhere and
+  claimed almost nowhere. Decide whether an outcome must name the mode it is measured in, write it
+  down, then extend the A1 validator check to B1.
 - **P12-6 · Dictation focus attribution** — **A1 resolved 2026-07-31**. A2/B1 dictations keep
   `dictationSlip`: extending the A1 silence to items without predicates dropped 145 of 291 free-typed
   tags and took `weakFocuses` from 7 to 1 — an inverted signal, not an honest gap (`um-am-zeit` read
@@ -108,7 +110,10 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   component runs a markdown pass. A blanket rule is wrong: `*` is also the ungrammaticality marker,
   used correctly in 64 places. The distinguishing test is that emphasis *closes* — a `*` preceded by
   a non-space and followed by space, punctuation or end-of-string — while the linguistic marker never
-  does. Verify a candidate rule against both sets before landing it.
+  does. Verify a candidate rule against both sets before landing it. Cost of not having it, 2026-08-02:
+  a rewrite pass over the published `-hoeren` sets emphasised German with `*…*` before anyone checked
+  whether `explain` renders markdown. It does not — `shared.tsx` puts it in a plain `<p>`. Caught by
+  reading the component, not by a gate.
 - **P22-14 · Per-line silence compounds with the inter-line pause, and nothing measures it** —
   each synthesised line carries its own leading and trailing silence (corpus medians 0.43 s and
   0.46 s), and `assemble` then adds `pause_after_ms` (450 ms) between lines. So a normal turn
@@ -140,6 +145,23 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   editorial ruling, not a mechanical fix. Build the detector to respect parentheticals and require
   mutual overlap, then triage against the lapse table (`aufmachen`, `Aufgabe`, `Anweisung`,
   `Empfehlung` sit high on both).
+- **P22-15 · The Studio cannot author a `uk` half, so the repo's copy is the only one** —
+  `RevisionPayload` carries `Bilingual.uk` and it is `None` on all 41 artifacts, because no editor
+  surface writes it. Publishing therefore emitted 82 files with `en`/`ru` only, and
+  `tests/i18n-content.test.ts` — the ratchet that holds every ru-bearing content file at parity —
+  failed. The 246 uk fields were authored by hand **into the published YAML**, which means the
+  Studio and the repo now disagree about those artifacts. Nothing silently loses them (`publish`
+  refuses to overwrite), but the next wave repeats the whole exercise. Fix by giving the Studio the
+  field: the third column in the question editor, and `uk` in `draft_prompt`'s shape. Until then,
+  any new listening artifact needs the same manual pass — budget it into the wave, not after it.
+- **P22-16 · Delivery settings do not vary by level** — `pace` and `pause_after_ms` are flat across
+  A1, A2 and B1 (450 ms between every line in all 41 artifacts), and nothing in
+  `scripts/validate.ts` or `data/listening-plan.yaml` checks them against the artifact's level. An
+  A1 listener needs more room between turns than a B1 listener and the corpus gives them the same.
+  The fix is a per-level delivery profile in `data/listening-plan.yaml` with validator enforcement —
+  but changing either field changes `line_cache_key`, so it re-synthesises every artifact at that
+  level and **invalidates its approval**. Between-waves work, same class as P22-14, and worth doing
+  in the same pass as that one so the approval cost is paid once.
 - **P22-12 · The positional-option rule cannot see a bare ordinal** — `src/lib/option-references.ts`
   anchors on an option noun, because scanning every ordinal in the shuffled-option corpus returns 203
   occurrences of which most are correct grammar prose. A field whose *only* positional reference is a
@@ -210,11 +232,12 @@ These require a measured learning or usability need. They do not block the curri
 
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md).
 
-- **P22-1 (2026-08-02):** the reviewed unit listening corpus — 41 artifacts across all live units,
-  authored, mixed and QA-passed on both the dry and the final take. Publication into
-  `content/listening/` follows each artifact's human approval and is not complete until every one
-  is approved; the build path that ships them is in place and set in both targets. The A1 Goethe
-  pack (P19-6) remains open as its own task.
+- **P22-1 (2026-08-02):** the reviewed unit listening corpus, **published**. 41 artifacts across all
+  live units, every one human-approved and hash-bound to the bytes that shipped: 14.2 MB of MP3 and
+  41 `-hoeren` practice sets in `content/`, 13.7 MB of Freesound provenance in `data/`, carried by
+  both shipping builds. 17 superseded TTS items retired against a per-item ledger
+  ([audio-retirement-ledger.md](audio-retirement-ledger.md)). The A1 Goethe pack (P19-6) remains
+  open as its own task.
 - **P22-2 · P22-3 · P22-4 (2026-08-02):** master/derivative split decided before the first commit;
   adapter switch can no longer save an unloadable payload; `bun tauri dev` serves recordings.
 - **P3-6 (2026-08-02):** A1 retention cohort read on its gate date — missed both bars, rule amended

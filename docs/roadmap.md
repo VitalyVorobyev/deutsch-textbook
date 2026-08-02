@@ -80,12 +80,16 @@ the due probes, which is not authoring work.
   links the graph both ways: topic → Referenz, Referenz → topic, topic → topic. Derive the edges
   from data the curriculum already owns, the way `/referenz/zeitformen` derives its lesson links
   from the focus-tag map, so they cannot drift. Backlog P21-1 · P21-2 · P21-3.
-- **Audio:** the reviewed corpus planned in `data/listening-plan.yaml` is authored — 41 artifacts,
-  one per live unit, ~30 minutes of speech, every one passing QA on both the dry take and the final
-  mix. Each is published only after named human approval of the exact bytes, and both shipping
-  builds carry the resulting MP3s. Neural audio remains publishable on those terms alone; volume is
-  not a substitute for intelligibility, and automatic transcription is a defect detector, never
-  proof of natural pronunciation. What remains is the A1 exam-style pack (P19-6).
+- **Audio: shipped.** The corpus planned in `data/listening-plan.yaml` is published — 41 artifacts,
+  one per live unit, 29.5 minutes of speech, every one passing QA on both the dry take and the final
+  mix and every one carrying named human approval of the exact bytes. 14.2 MB of MP3 in
+  `content/listening/`, 13.7 MB of Freesound provenance, and both shipping builds carry them (the
+  desktop app and GitHub Pages); an unflagged build reports `bundled: false` and falls back to
+  browser TTS. Seventeen legacy TTS items were retired against a per-item ledger
+  ([docs/audio-retirement-ledger.md](audio-retirement-ledger.md)) and twenty-four kept with reasons.
+  Neural audio remains publishable on those terms alone; volume is not a substitute for
+  intelligibility, and automatic transcription is a defect detector, never proof of natural
+  pronunciation. What remains is the A1 exam-style pack (P19-6).
 
 ## Definition of the next milestone
 
