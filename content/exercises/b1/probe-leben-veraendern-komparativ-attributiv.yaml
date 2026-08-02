@@ -1,0 +1,100 @@
+# Delayed probe family 2 of 3 — ONE competence: putting a compared adjective in front
+# of a noun, which means building the comparative and then declining it like any other
+# adjective. Three parallel cloze variants, served in authoring order across the 2/7/21
+# delays — one retention curve over one form.
+# Cloze rather than translate, because this competence is a FORM and nothing else: the
+# adjective's slot between article and noun is fixed, so no position is at stake, and
+# a cloze is always attributed — the gap IS the graded token, so a miss can never land
+# in the "target retained, sentence missed elsewhere" bucket a translate probe
+# produces (docs/authoring-checklists.md). The determining article stands in the frame,
+# which is the point: it is the case and gender signal the ending has to answer.
+# Each instruction names the adjective in its base form, so the target is determinate
+# served alone in mixed training, and the graded fact is the ending on top of -er.
+# The three errors this check exists to see: the frozen comparative (in einem moderner
+# Büro), the ending copied from the wrong case (ein bequemeres Bett is right, in einem
+# moderneres Büro is not), and the analytic form that German does not have at all
+# (eine mehr freundliche Chefin).
+# Cells: feminine accusative after eine (-e), neuter accusative after ein (-es),
+# dative after einem (-en) — three different endings on one rule, and the dative cell
+# is where the A2 habit of an -e everywhere bites hardest.
+# Adjectives fresh: freundlich, bequem and modern occur nowhere as comparatives in
+# this unit — the article's are gemütlicher and interessanter, the practice set's hell,
+# ruhig, billig and günstig, the reading's groß and ruhig — checked by grepping each
+# adjective across content/, not by re-reading this list. All three take a plain -er
+# with no umlaut and no dropped -e, so the graded token is the ending alone.
+# `outcomes: [wohnsituation-vergleichen]` is the outcome every arming item declares,
+# and the can-do is what this competence serves: comparing housing situations and
+# justifying a choice. Arming is by explicit item key (`armingItemKeys`,
+# src/lib/probes.ts), so this family and the topic's relative-pronoun family arm from
+# disjoint item sets and neither can move the other's armedAt.
+topic: leben-veraendern
+role: probe
+title:
+  en: "Delayed check — the comparative in front of the noun"
+  ru: "Отложенная проверка — компаратив перед существительным"
+  uk: "Відкладена перевірка — компаратив перед іменником"
+  de: "Kontrolle mit Abstand — der Komparativ vor dem Nomen"
+arming:
+  - b1/leben-veraendern::cloze-helleres
+  - b1/leben-veraendern::mc-ruhigeren
+  - b1/leben-veraendern::uebersetzen-billigere
+items:
+  - id: variant-a
+    outcomes: [wohnsituation-vergleichen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "freundlich in the comparative, with its adjective ending."
+      ru: "freundlich в сравнительной степени, с окончанием прилагательного."
+      uk: "freundlich у вищому ступені, із закінченням прикметника."
+      de: "freundlich im Komparativ, mit seiner Adjektivendung."
+    text: "Seit Januar hat mein Mann eine {{freundlichere}} Chefin."
+    translation:
+      en: "Since January my husband has had a friendlier boss."
+      ru: "С января у моего мужа более приветливая начальница."
+      uk: "Від січня в мого чоловіка привітніша начальниця."
+    explain:
+      en: "Two steps, in this order. First build the comparative: freundlich + -er = freundlicher, and long adjectives take that -er too — German has no mehr + adjective at all. Then treat freundlicher as an ordinary adjective stem: eine puts a feminine noun in the accusative, and that cell's ending is -e, exactly what nette would take. So freundlichere: the -er of the comparative and the -e of the case, stacked in that order. A hand that shortens it to freundliche has dropped the comparative and kept only the declension."
+      ru: "Два шага, именно в таком порядке. Сначала стройте компаратив: freundlich + -er = freundlicher, и длинные прилагательные тоже берут это -er — модели mehr + прилагательное в немецком нет вовсе. Затем считайте freundlicher обычной основой прилагательного: eine ставит существительное женского рода в аккузатив, а окончание этой клетки — -e, ровно то, что взяло бы nette. Получается freundlichere: -er компаратива и -e падежа, именно в таком порядке. Рука, сокращающая это до freundliche, выбросила компаратив и оставила одно склонение."
+      uk: "Два кроки, саме в такому порядку. Спочатку будуйте компаратив: freundlich + -er = freundlicher, і довгі прикметники теж беруть це -er — моделі mehr + прикметник у німецькій немає зовсім. Потім вважайте freundlicher звичайною основою прикметника: eine ставить іменник жіночого роду в акузатив, а закінчення цієї клітинки — -e, рівно те, що взяло б nette. Виходить freundlichere: -er компаратива і -e відмінка, саме в такому порядку. Рука, що скорочує це до freundliche, викинула компаратив і залишила саме відмінювання."
+      de: "Zwei Schritte, genau in dieser Reihenfolge. Zuerst der Komparativ: freundlich + -er = freundlicher, und auch lange Adjektive nehmen dieses -er — ein mehr + Adjektiv gibt es im Deutschen gar nicht. Dann behandle freundlicher als ganz normalen Adjektivstamm: eine stellt ein feminines Nomen in den Akkusativ, und die Endung dieser Zelle heißt -e, genau die, die auch nette nähme. Also freundlichere: das -er des Komparativs und das -e des Kasus, genau in dieser Reihenfolge. Wer daraus freundliche macht, hat den Komparativ weggelassen und nur die Deklination behalten."
+
+  - id: variant-b
+    outcomes: [wohnsituation-vergleichen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "bequem in the comparative, with its adjective ending."
+      ru: "bequem в сравнительной степени, с окончанием прилагательного."
+      uk: "bequem у вищому ступені, із закінченням прикметника."
+      de: "bequem im Komparativ, mit seiner Adjektivendung."
+    text: "Nach dem Umzug haben wir ein {{bequemeres}} Bett gekauft."
+    translation:
+      en: "After the move we bought a more comfortable bed."
+      ru: "После переезда мы купили более удобную кровать."
+      uk: "Після переїзду ми купили зручніше ліжко."
+    explain:
+      en: "bequem + -er = bequemer, then the ordinary declension on top. das Bett is neuter and the object of kaufen, so the accusative applies, and after ein the adjective has to carry the das-signal itself: -es. The test sentence is ein neues Bett — same slot, same ending. A frozen bequemer would leave the noun's gender unmarked, which is precisely the work this ending does when the article cannot do it."
+      ru: "bequem + -er = bequemer, а сверху обычное склонение. das Bett — средний род и дополнение kaufen, значит аккузатив, и после ein прилагательное обязано нести сигнал das само: -es. Проба — ein neues Bett: та же позиция, то же окончание. Застывшее bequemer оставило бы род существительного непомеченным, а именно эту работу окончание и делает там, где артикль её сделать не может."
+      uk: "bequem + -er = bequemer, а зверху звичайне відмінювання. das Bett — середній рід і додаток kaufen, отже акузатив, і після ein прикметник мусить нести сигнал das сам: -es. Проба — ein neues Bett: та сама позиція, те саме закінчення. Застигле bequemer залишило б рід іменника непозначеним, а саме цю роботу закінчення й робить там, де артикль її зробити не може."
+      de: "bequem + -er = bequemer, und darüber die normale Deklination. das Bett ist neutral und Objekt von kaufen, also gilt der Akkusativ, und nach ein muss das Adjektiv das das-Signal selbst tragen: -es. Die Probe heißt ein neues Bett — gleicher Platz, gleiche Endung. Ein festes bequemer ließe das Genus des Nomens unmarkiert, und genau diese Arbeit übernimmt die Endung dort, wo der Artikel sie nicht leisten kann."
+
+  - id: variant-c
+    outcomes: [wohnsituation-vergleichen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "modern in the comparative, with its adjective ending."
+      ru: "modern в сравнительной степени, с окончанием прилагательного."
+      uk: "modern у вищому ступені, із закінченням прикметника."
+      de: "modern im Komparativ, mit seiner Adjektivendung."
+    text: "Mein Kollege arbeitet jetzt in einem {{moderneren}} Büro."
+    translation:
+      en: "My colleague now works in a more modern office."
+      ru: "Мой коллега теперь работает в более современном офисе."
+      uk: "Мій колега тепер працює в сучаснішому офісі."
+    explain:
+      en: "One family, one competence: build, then decline, a third time. modern + -er = moderner; in with a location takes the dative, einem announces it, and the dative demands -en on the adjective — moderneren, with the -er of the comparative and the -en of the case stacked in that order. This is the cell the year of A2 works against: after an article the habit says -e, and only the dative reveals whether the comparative was really treated as an ordinary adjective."
+      ru: "Одна семья, одна компетенция: построить, затем просклонять — в третий раз. modern + -er = moderner; in при местоположении требует датива, einem его объявляет, а датив требует -en у прилагательного — moderneren, где -er компаратива и -en падежа стоят именно в таком порядке. Это та клетка, против которой работает целый год A2: после артикля привычка подсказывает -e, и только датив показывает, действительно ли компаратив сочли обычным прилагательным."
+      uk: "Одна сім'я, одна компетенція: побудувати, потім відмінити — утретє. modern + -er = moderner; in при місцезнаходженні вимагає датива, einem його оголошує, а датив вимагає -en у прикметника — moderneren, де -er компаратива і -en відмінка стоять саме в такому порядку. Це та клітинка, проти якої працює цілий рік A2: після артикля звичка підказує -e, і лише датив показує, чи справді компаратив визнали звичайним прикметником."
+      de: "Eine Familie, eine Fähigkeit: bilden, dann deklinieren — zum dritten Mal. modern + -er = moderner; in mit Ortsangabe verlangt den Dativ, einem kündigt ihn an, und der Dativ verlangt -en am Adjektiv — moderneren, mit dem -er des Komparativs und dem -en des Kasus in genau dieser Reihenfolge. Das ist die Zelle, gegen die ein ganzes A2-Jahr arbeitet: Nach einem Artikel sagt die Gewohnheit -e, und erst der Dativ zeigt, ob der Komparativ wirklich wie ein gewöhnliches Adjektiv behandelt wurde."

@@ -1,0 +1,105 @@
+# Delayed probe family 2 of 3 — ONE competence: giving a reflexive verb's preposition
+# frame the case the frame demands, not the case the preposition or the meaning
+# suggests. Three parallel cloze variants, served in authoring order across the 2/7/21
+# delays — one retention curve over one decision.
+# Cloze rather than translate, because this competence is a single FORM in a fixed
+# slot: the article sits between preposition and noun, nothing can move, and the gap IS
+# the graded token, so a miss is always attributed and can never land in the "target
+# retained, sentence missed elsewhere" bucket a translate probe produces
+# (docs/authoring-checklists.md). Translate would also let the learner sidestep the
+# frame entirely by reaching for a different verb.
+# One gap per variant, and no adjective in front of the noun — deliberately. An
+# adjective would print its own ending beside the gap (an das neue vs an dem neuen) and
+# hand the case over before the learner decides anything. The bare article is the whole
+# question.
+# Cells: um + Akkusativ (an always-accusative preposition, so the frame and the
+# preposition agree), an + Akkusativ (a two-way preposition where the frame overrules
+# the wo/wohin question that would otherwise decide), von + Dativ (an always-dative
+# preposition the accusative habit of the other two frames pulls at). Two frames the
+# unit drills and one, sich erholen von, whose case the article's table states — all
+# three in sentences none of them uses.
+# Content pairings fresh: Bruder + Haushalt, Körper + Schmerzmittel, Kollegin +
+# Krankheit — checked by grepping each noun across content/, not by re-reading this
+# list. None of the practice set's objects (den Sommer, den Garten, der Arbeit, das
+# frühe Aufstehen, das Leben in der Stadt, das Wochenende, ihren Garten), the reading's
+# (seine Gesundheit, von der Arbeit, den dritten Kaffee), the pretest's (den Urlaub) or
+# the article's (die Familie, den Urlaub, ihre Gesundheit, gesunde Ernährung, vom
+# Stress der Woche, dem Thema Schlaf, das frühe Aufstehen) recurs here.
+# `outcomes: [gewohnheiten-beschreiben]` is the outcome every arming item declares, and
+# the can-do is what these frames are for: talking about habits and wellbeing. The
+# topic's lassen family declares the same outcome, and that is harmless — arming is by
+# explicit item key (`armingItemKeys`, src/lib/probes.ts), never by outcome, so the two
+# families arm from disjoint item sets and neither can move the other's armedAt.
+topic: gesundheit-wohlbefinden
+role: probe
+title:
+  en: "Delayed check — the case the frame demands"
+  ru: "Отложенная проверка — падеж, которого требует рамка"
+  uk: "Відкладена перевірка — відмінок, якого вимагає рамка"
+  de: "Kontrolle mit Abstand — der Kasus, den der Rahmen verlangt"
+arming:
+  - b1/gesundheit-wohlbefinden::cloze-freuen-kuemmern
+  - b1/gesundheit-wohlbefinden::cloze-erholen-gewoehnen
+  - b1/gesundheit-wohlbefinden::mc-gewoehnen-an-das
+  - b1/gesundheit-wohlbefinden::uebersetzen-freuen-wochenende
+  - b1/gesundheit-wohlbefinden-produktion::hoeren-diktat-garten
+items:
+  - id: variant-a
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Fill in the article — the verb's frame decides the case."
+      ru: "Впишите артикль — падеж диктует рамка глагола."
+      uk: "Впишіть артикль — відмінок диктує рамка дієслова."
+      de: "Ergänze den Artikel — den Kasus entscheidet der Rahmen des Verbs."
+    text: "Im Moment kümmert sich mein Bruder um {{den}} Haushalt."
+    translation:
+      en: "At the moment my brother is looking after the household."
+      ru: "Сейчас домашним хозяйством занимается мой брат."
+      uk: "Зараз домашнім господарством опікується мій брат."
+    explain:
+      en: "The frame is sich kümmern um + Akkusativ, and der Haushalt in the accusative is den Haushalt. Here the preposition and the frame agree: um is one of the always-accusative prepositions from A1, so there is no second route to check. What the gap measures is whether the frame is still stored as one unit — verb, sich, preposition and case together — rather than as a verb plus a preposition you reason about afterwards. dem would be the sign it fell apart."
+      ru: "Рамка — sich kümmern um + Akkusativ, и der Haushalt в аккузативе даёт den Haushalt. Здесь предлог и рамка согласны: um входит в число всегда-аккузативных предлогов из A1, второго маршрута проверять не нужно. Пропуск измеряет другое: хранится ли рамка по-прежнему целиком — глагол, sich, предлог и падеж вместе, — а не как глагол плюс предлог, о котором рассуждают потом. Русское «заботиться о ком» с предложным падежом здесь не советчик, а dem было бы признаком, что рамка распалась."
+      uk: "Рамка — sich kümmern um + Akkusativ, і der Haushalt у знахідному дає den Haushalt. Тут прийменник і рамка згодні: um належить до завжди-знахідних прийменників з A1, другого маршруту перевіряти не треба. Пропуск вимірює інше: чи зберігається рамка й досі цілком — дієслово, sich, прийменник і відмінок разом, — а не як дієслово плюс прийменник, про який міркують потім. Українське «дбати про кого» тут випадково збігається, а dem було б ознакою, що рамка розпалася."
+      de: "Der Rahmen heißt sich kümmern um + Akkusativ, und der Haushalt im Akkusativ ist den Haushalt. Hier sind Präposition und Rahmen einig: um gehört zu den Immer-Akkusativ-Präpositionen aus A1, ein zweiter Weg ist gar nicht zu prüfen. Die Lücke misst etwas anderes — ob der Rahmen noch als eine Einheit gespeichert ist: Verb, sich, Präposition und Kasus zusammen, und nicht als Verb plus Präposition, über deren Kasus man hinterher nachdenkt. Ein dem wäre das Zeichen, dass er auseinandergefallen ist."
+
+  - id: variant-b
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Fill in the article — the verb's frame decides the case."
+      ru: "Впишите артикль — падеж диктует рамка глагола."
+      uk: "Впишіть артикль — відмінок диктує рамка дієслова."
+      de: "Ergänze den Artikel — den Kasus entscheidet der Rahmen des Verbs."
+    text: "Mein Körper gewöhnt sich nur langsam an {{das}} Schmerzmittel."
+    translation:
+      en: "My body is only slowly getting used to the painkiller."
+      ru: "Мой организм лишь медленно привыкает к обезболивающему."
+      uk: "Мій організм лише повільно звикає до знеболювального."
+    explain:
+      en: "an is a two-way preposition, so on its own it would ask wo or wohin — and nothing here is located or moving anywhere, which is exactly why that question must not be asked. The frame answers instead: sich gewöhnen an + Akkusativ, so das Schmerzmittel, not dem. This is the sharpest cell of the three, because an dem is a perfectly good German phrase in any other sentence; only the frame rules it out here."
+      ru: "an — двусторонний предлог, сам по себе он спрашивал бы wo или wohin, — а здесь ничто нигде не находится и никуда не движется, и именно поэтому такой вопрос задавать нельзя. Отвечает рамка: sich gewöhnen an + Akkusativ, значит das Schmerzmittel, а не dem. Это самая острая клетка из трёх: an dem — совершенно нормальное немецкое сочетание в любом другом предложении, и только рамка исключает его здесь. Русское «привыкать к чему» с дативом подсказывает мимо."
+      uk: "an — двосторонній прийменник, сам по собі він питав би wo або wohin, — а тут ніщо ніде не розташоване й нікуди не рухається, і саме тому таке питання ставити не можна. Відповідає рамка: sich gewöhnen an + Akkusativ, отже das Schmerzmittel, а не dem. Це найгостріша клітинка з трьох: an dem — цілком нормальне німецьке сполучення в будь-якому іншому реченні, і лише рамка виключає його тут. Українське «звикати до чого» підказує повз."
+      de: "an ist eine Wechselpräposition, für sich genommen fragt sie also wo oder wohin — und hier liegt nichts irgendwo und bewegt sich nichts irgendwohin, weshalb genau diese Frage nicht gestellt werden darf. Der Rahmen antwortet stattdessen: sich gewöhnen an + Akkusativ, also das Schmerzmittel, nicht dem. Das ist die schärfste der drei Zellen, denn an dem ist in jedem anderen Satz völlig gutes Deutsch; nur der Rahmen schließt es hier aus."
+
+  - id: variant-c
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Fill in the article — the verb's frame decides the case."
+      ru: "Впишите артикль — падеж диктует рамка глагола."
+      uk: "Впишіть артикль — відмінок диктує рамка дієслова."
+      de: "Ergänze den Artikel — den Kasus entscheidet der Rahmen des Verbs."
+    text: "Meine Kollegin erholt sich immer noch von {{der}} Krankheit."
+    translation:
+      en: "My colleague is still recovering from the illness."
+      ru: "Моя коллега всё ещё восстанавливается после болезни."
+      uk: "Моя колега все ще відновлюється після хвороби."
+    explain:
+      en: "One family, one competence, and the other direction: sich erholen von + Dativ. von is always dative — inside a frame exactly as everywhere else — so die Krankheit becomes von der Krankheit. The pull to resist comes from the frames beside it: two accusative frames in a row make the hand write von die, and a frame's case is not a habit you can carry from the neighbouring verb. It is learned with the verb, one frame at a time."
+      ru: "Одна семья, одна компетенция — и другое направление: sich erholen von + Dativ. von всегда дативный — внутри рамки ровно так же, как и везде, — поэтому die Krankheit превращается в von der Krankheit. Сопротивляться нужно соседям: две аккузативные рамки подряд, и рука пишет von die. Падеж рамки — не привычка, которую можно перенести с соседнего глагола: он учится вместе с глаголом, по одной рамке за раз."
+      uk: "Одна сім'я, одна компетенція — і інший напрямок: sich erholen von + Dativ. von завжди давальний — усередині рамки рівно так само, як і всюди, — тому die Krankheit перетворюється на von der Krankheit. Опиратися треба сусідам: дві знахідні рамки поспіль, і рука пише von die. Відмінок рамки — не звичка, яку можна перенести із сусіднього дієслова: він вчиться разом із дієсловом, по одній рамці за раз."
+      de: "Eine Familie, eine Fähigkeit — und die andere Richtung: sich erholen von + Dativ. von ist immer dativisch, im Rahmen genauso wie überall sonst, also wird aus die Krankheit ein von der Krankheit. Der Sog kommt von den Nachbarn: zwei Akkusativrahmen hintereinander, und die Hand schreibt von die. Der Kasus eines Rahmens ist keine Gewohnheit, die man vom Nachbarverb mitnehmen kann — er wird mit dem Verb gelernt, Rahmen für Rahmen."

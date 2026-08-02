@@ -176,7 +176,7 @@ A topic is not done until all nine are:
 1. `content/topics/<level>/<id>.mdx` — full frontmatter + article following the skeleton.
 2. Exercise set(s) — 8–15 items, ≥3 types, each with `explain`, clearing the item-mix bar; every `translate` declares `key_tokens`; include the modes the outcomes claim.
 3. Pretest — 3 items at `<id>-pretest.yaml`, referenced via `pretest`.
-4. Probe family — `probe-<id>.yaml`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. **A second family re-arms the topic** — measure `armedAt` before and after, or you silently re-label probes already taken.
+4. Probe family — `probe-<id>.yaml`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.
 6. Vocab file if the topic introduces a word field; fill `ipa` with `bun run gen:ipa`, then review it.
 7. Atlas node + unit slot, with 2–5 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
