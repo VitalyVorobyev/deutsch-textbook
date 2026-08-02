@@ -87,18 +87,40 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
-- **P22-2 · Decide the published audio format before the first recording is committed** — the
-  editorial master is WAV and should stay WAV (Whisper QA and the line cache run on it). What is
-  *published* into `content/listening/` need not be: 41 artifacts at ~2 MB each is ~80 MB of git
-  history and of desktop installer, where mono MP3 at 96–128 kbps is roughly a tenth of that and
-  is transparent for A1–B1 speech. MP3 rather than Opus only because Safari's Opus support has
-  been the weak link and the desktop shell is a WebView. The cost is not the encode step, it is
-  the provenance chain: `audio_sha256` currently hashes the file that is both reviewed and
-  published, and splitting those means the manifest must carry **both** — master hash and
-  published hash — with the human approval bound to the master and the validator checking the
-  published derivative. **Decide this before committing the first artifact**: changing format
-  afterwards is a re-publish of every recording and a rewrite of every manifest, while deciding
-  it now costs one schema field. Nothing is committed yet, so the window is open.
+- **P22-3 · An adapter switch can save a payload the store will then refuse to load** — the
+  Studio's script form applies `model_copy()`, which bypasses `RevisionPayload.consistent()`.
+  Switching `tts_adapter` while the lines still carry the previous adapter's preset voices
+  therefore writes a revision that every subsequent `Store.get()` rejects, and the project
+  becomes unreachable through the interface — the same failure mode as the legacy-question
+  regression, arrived at from the other direction. The form must build and validate a complete
+  `RevisionPayload` and require the voices to be re-picked when the adapter changes. **This is
+  the first thing anyone switching Parler → Qwen will hit**, so it is the first entry to clear.
+- **P22-4 · `bun tauri dev` serves no reviewed recording** — `src/integrations/audio-bundle.ts`
+  copies audio on `astro:build:done`, which the dev server never reaches, while `dev:desktop`
+  still sets the bundle flag. So `AudioComprehension` requests `/audio/<id>.mp3`, gets a 404, and
+  — because the component treats a configured URL as available — does not fall back to TTS. Two
+  candidate fixes, and they are not alternatives: an `astro:server:setup` middleware serving from
+  `content/listening/` makes dev match the build, and an `<audio>` error handler falling back to
+  TTS covers a missing or corrupt file in a shipped build too. Costs nothing today (no recording
+  is committed) and costs the whole playback check the day one is.
+- **P22-5 · A rebuilt export keeps the previous revision's files** — `write_bundle` reuses the
+  export directory, so a contextual source dropped or replaced by a new revision survives under
+  `sources/`, enters `exported_files` and the ZIP, and is published even though the manifest's
+  `contextual_sources` no longer describes it. A published file no manifest accounts for is
+  precisely what the provenance chain exists to make impossible. Build into a clean directory.
+- **P22-6 · Freesound source URLs are matched by prefix** — `sources.py` accepts
+  `https://freesound.org/s/1234` for `sound_id: 123`, so a metadata typo can credit and link a
+  different upload while every validation step passes. Attribution is someone else's name on
+  someone else's work; parse the URL and require the sound-id segment to equal `sound_id`.
+- **P22-7 · Passive: only the accusative object is promoted** — `content/reference-data/zeitformen.yaml`
+  says the active clause's object becomes the passive subject, unqualified. A dative object does
+  not: *Man hilft dem Mann* → *Dem Mann wird geholfen*, not *\*Der Mann wird geholfen*. The owning
+  B1 material limits the transformation correctly, so the reference page is the looser statement
+  of the two — the state a reference page must never be in.
+- **P22-8 · Konjunktiv II Vergangenheit is not always `hätte/wäre + Partizip II`** — with a
+  governing modal it takes the Ersatzinfinitiv: *Das hättest du sagen sollen*, which the page
+  itself prints two lines below the formula that excludes it. Either qualify the formula as
+  holding without a dependent infinitive, or give the double-infinitive pattern its own row.
 - **P22-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
   for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
   the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving
@@ -342,6 +364,11 @@ These require a measured learning or usability need. They do not block the curri
 
 ## Recently completed
 
+- **P22-2 (2026-08-02):** decided and implemented before the first recording was committed, as the
+  entry required. The WAV master stays in the studio; a 64 kbps mono MP3 is published into
+  `content/listening/`. The manifest carries both `master_audio_sha256` (what the editor approved
+  and what QA ran on) and `published_audio_sha256` (what a learner downloads), and the validator
+  checks the published derivative.
 - **P5-11a (2026-07-28):** both halves resolved by inspection — the zu-infinitiv drill had
   already shipped in #116 (stale "owed" line corrected), and all four 2+-lapse cards in the
   named decks check out: Angebot and Aufgabe fixed by #116's collision pass, Kaution and
