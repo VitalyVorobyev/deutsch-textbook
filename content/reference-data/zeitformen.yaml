@@ -23,9 +23,9 @@ axes:
     title: { de: "Modus", en: "Mood", ru: "Наклонение", uk: "Спосіб" }
     values: [Indikativ, "Konjunktiv II", "Konjunktiv I", Imperativ]
     description:
-      en: "Whether the speaker presents the event as real, as unreal or wished-for, or as an instruction. The mood is chosen independently of the time frame."
-      ru: "Как говорящий подаёт событие: как реальное, как нереальное или желаемое, как побуждение. Наклонение выбирается независимо от времени."
-      uk: "Як мовець подає подію: як реальну, як нереальну чи бажану, як спонукання. Спосіб обирається незалежно від часу."
+      en: "Whether the speaker presents the event as real, as unreal or wished-for, or as an instruction. The mood is a separate choice from the time frame — though not every mood offers every one: the Imperativ has no tenses at all, and the Konjunktiv II has two, a present and a past."
+      ru: "Как говорящий подаёт событие: как реальное, как нереальное или желаемое, как побуждение. Наклонение выбирается отдельно от времени — но не в каждом наклонении доступны все времена: у императива их нет вовсе, а у Konjunktiv II их два, настоящее и прошедшее."
+      uk: "Як мовець подає подію: як реальну, як нереальну чи бажану, як спонукання. Спосіб обирають окремо від часу — але не в кожному способі доступні всі часи: у наказового способу їх немає взагалі, а в Konjunktiv II їх два, теперішній і минулий."
   - id: genus
     title: { de: "Genus verbi", en: "Voice", ru: "Залог", uk: "Стан" }
     values: [Aktiv, Passiv]
@@ -287,7 +287,11 @@ paradigms:
         cells: ["werde machen", "werde fahren", "werde sein", "werde haben", "werde können"]
       - form: futur-2
         person: ich
-        cells: ["werde gemacht haben", "werde gefahren sein", "werde gewesen sein", "werde gehabt haben", "—"]
+        # können as a full verb, the way the Perfekt row above takes "habe gekonnt". With a
+        # dependent infinitive the Ersatzinfinitiv would give "wird … haben … können" — a
+        # construction nobody needs at B1, and not a reason to print a dash: the legend says a
+        # dash means the form does not exist, and this one does.
+        cells: ["werde gemacht haben", "werde gefahren sein", "werde gewesen sein", "werde gehabt haben", "werde gekonnt haben"]
       - form: konjunktiv2-gegenwart
         person: ich
         # The two cells that carry the whole point: for a weak verb the one-word Konjunktiv II
@@ -381,7 +385,7 @@ comparisons:
     explanation:
       en: "There is no unreal Perfekt and no unreal Plusquamperfekt to learn separately. Everything unreal in the past is hätte or wäre plus the Partizip II — and the choice between the two auxiliaries is the one you already make for the Perfekt. Whether the real event would have been a Perfekt, a Präteritum or a Plusquamperfekt makes no difference at all to its unreal version."
       ru: "Нет ни нереального Perfekt, ни нереального Plusquamperfekt, которые надо было бы учить отдельно. Всё нереальное в прошлом — это hätte или wäre плюс Partizip II, причём выбор между двумя вспомогательными глаголами тот же самый, что уже делается для Perfekt. Каким было бы реальное событие — Perfekt, Präteritum или Plusquamperfekt — для нереального варианта совершенно неважно."
-      uk: "Немає ні нереального Perfekt, ні нереального Plusquamperfekt, які треба було б учити окремо. Усе нереальне в минулому — це hätte або wäre плюс Partizip II, причому вибір між двома допоміжними дієсловами той самий, що вже робиться для Perfekt. Яким було б реальне подія — Perfekt, Präteritum чи Plusquamperfekt — для нереального варіанта зовсім неважливо."
+      uk: "Немає ні нереального Perfekt, ні нереального Plusquamperfekt, які треба було б учити окремо. Усе нереальне в минулому — це hätte або wäre плюс Partizip II, причому вибір між двома допоміжними дієсловами той самий, що вже робиться для Perfekt. Якою була б реальна подія — Perfekt, Präteritum чи Plusquamperfekt — для нереального варіанта зовсім неважливо."
     examples:
       - de: "Wenn ich Zeit gehabt hätte, wäre ich gekommen."
         en: "If I had had time, I would have come."
