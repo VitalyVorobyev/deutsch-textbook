@@ -146,3 +146,25 @@ def test_approval_records_the_hashes_of_the_audio_reviewed(tmp_path: Path) -> No
     final = tmp_path / "projects" / str(project.id) / "final.wav"
     assert approval["audio_sha256"] == hashlib.sha256(final.read_bytes()).hexdigest()
     assert approval["dry_audio_sha256"]
+
+
+def test_an_unavailable_step_answers_409_with_the_next_one_named(tmp_path: Path) -> None:
+    """Every button that is not the legal next step used to answer a 500 traceback.
+
+    A project sits at `automatically_checked` for the whole of its review — which is most of
+    its life — and Validate, Generate and QA all raise there. `Store.transition` raises a bare
+    ValueError and nothing caught it, so the editor saw a stack trace instead of being told
+    where the project was and what came next.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    project = store.create("stuck", payload().model_copy(update={"tts_adapter": "fake"}))
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
+
+    repeated = client.post(f"/projects/{project.id}/validate?token=test")
+    assert repeated.status_code == 409
+    assert "automatically_checked" in repeated.text
+    assert "human_approved" in repeated.text
+    assert "Traceback" not in repeated.text

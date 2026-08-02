@@ -87,6 +87,18 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
+- **P22-2 · Decide the published audio format before the first recording is committed** — the
+  editorial master is WAV and should stay WAV (Whisper QA and the line cache run on it). What is
+  *published* into `content/listening/` need not be: 41 artifacts at ~2 MB each is ~80 MB of git
+  history and of desktop installer, where mono MP3 at 96–128 kbps is roughly a tenth of that and
+  is transparent for A1–B1 speech. MP3 rather than Opus only because Safari's Opus support has
+  been the weak link and the desktop shell is a WebView. The cost is not the encode step, it is
+  the provenance chain: `audio_sha256` currently hashes the file that is both reviewed and
+  published, and splitting those means the manifest must carry **both** — master hash and
+  published hash — with the human approval bound to the master and the validator checking the
+  published derivative. **Decide this before committing the first artifact**: changing format
+  afterwards is a re-publish of every recording and a rewrite of every manifest, while deciding
+  it now costs one schema field. Nothing is committed yet, so the window is open.
 - **P22-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
   for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
   the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving

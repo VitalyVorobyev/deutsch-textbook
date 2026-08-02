@@ -80,6 +80,28 @@ def app(
             f"<!doctype html><html><meta charset=utf-8><title>Listening Studio</title><style>{CSS}</style><body><header><h1>Listening Studio</h1><nav><a href='/corpus/wave-1'>Wave 1 review</a> · <a href='/'>Projects</a></nav></header>{body}</body></html>"
         )
 
+    @api.exception_handler(ValueError)
+    def workflow_error(request: Request, exc: ValueError) -> HTMLResponse:
+        """A refused workflow step is the editor's answer, not a server fault.
+
+        `Store.transition` raises ValueError for any step that is not the legal next one, and
+        nothing caught it — so a project already at `automatically_checked` answered a bare
+        500 traceback to Validate, Generate and QA alike. That is most of the buttons on the
+        page for most of a project's life, and the browser showed a stack trace rather than
+        the one sentence the editor needed: where the project is and what comes next.
+        """
+
+        back = request.headers.get("referer")
+        body = (
+            "<div class=card><h2>That step is not available</h2>"
+            f"<p class=fail>{escape(str(exc))}</p>"
+            + (f"<p><a href='{escape(back, quote=True)}'>Back</a></p>" if back else "")
+            + "</div>"
+        )
+        response = page(body)
+        response.status_code = 409
+        return response
+
     @api.get("/health")
     def health() -> dict[str, str]:
         return {"status": "ok"}

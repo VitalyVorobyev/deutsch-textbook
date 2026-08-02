@@ -128,12 +128,23 @@ class Store:
             Stage.AUTOMATICALLY_CHECKED: Stage.HUMAN_APPROVED,
             Stage.HUMAN_APPROVED: Stage.EXPORTED,
         }
+        # Say what the stage actually is and what may follow it. The old message named only
+        # the rejected pair, which in the UI meant a bare 500 on every button that was not the
+        # one legal next step — and the legal step is exactly what the editor needed told.
         if allowed.get(expected) != target:
-            raise ValueError(f"invalid workflow transition {expected} -> {target}")
+            following = allowed.get(expected)
+            raise ValueError(
+                f"this project is at {expected}; "
+                + (f"the next step is {following}, not {target}" if following else f"{expected} is the final stage")
+            )
         with Session(self.engine) as session:
             project = session.get(Project, project_id)
-            if not project or Stage(project.stage) != expected:
-                raise ValueError(f"expected {expected}")
+            if not project:
+                raise ValueError(f"project {project_id} does not exist")
+            if Stage(project.stage) != expected:
+                raise ValueError(
+                    f"this project moved to {Stage(project.stage)} while the page was open; reload it"
+                )
             revision = session.get(Revision, project.current_revision_id)
             assert revision
             if qa is not None:
