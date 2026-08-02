@@ -63,8 +63,10 @@ def write_plan(repo: Path, wave_one: list[str]) -> None:
             {
                 "unit": "erste-schritte",
                 "level": "A1",
-                "artifacts": [{"id": slug, "wave": 1} for slug in wave_one]
-                + [{"id": "ls-not-planned-01", "wave": 2}],
+                "artifacts": [
+                    {"id": slug, "wave": 1, "scenario": f"Szenario {slug}"} for slug in wave_one
+                ]
+                + [{"id": "ls-not-planned-01", "wave": 2, "scenario": "Szenario zwei"}],
             }
         ],
     }
@@ -72,7 +74,7 @@ def write_plan(repo: Path, wave_one: list[str]) -> None:
     (repo / "data" / "listening-plan.yaml").write_text(yaml.safe_dump(plan))
 
 
-def test_wave_one_review_selects_by_plan_slug_not_database_id(tmp_path: Path) -> None:
+def test_the_index_lists_every_planned_recording_by_slug(tmp_path: Path) -> None:
     store = Store(tmp_path / "db.sqlite3")
     # Created FIRST, so it takes the low id the old window would have included.
     store.create("not-in-wave", payload())
@@ -82,22 +84,23 @@ def test_wave_one_review_selects_by_plan_slug_not_database_id(tmp_path: Path) ->
     for action in ["validate", "generate", "qa"]:
         assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
 
-    response = client.get("/corpus/wave-1?token=test")
+    response = client.get("/?token=test")
     assert response.status_code == 200
+    # Every planned recording appears — wave 1 and wave 2 alike — because the index is the
+    # whole corpus, and selection is by plan slug rather than by database id.
     assert "ls-review-01" in response.text
+    assert "ls-not-planned-01" in response.text
+    # A project that is not in the plan is not production work and is not listed.
     assert "not-in-wave" not in response.text
-    assert "ls-not-planned-01" not in response.text
-    assert "Automatic QA passed" in response.text
-    assert "Transcript" in response.text
 
 
-def test_wave_one_review_names_a_planned_recording_with_no_project(tmp_path: Path) -> None:
+def test_the_index_names_a_planned_recording_with_no_project(tmp_path: Path) -> None:
     store = Store(tmp_path / "db.sqlite3")
     write_plan(tmp_path, ["ls-never-seeded-01"])
     client = TestClient(app(store, tmp_path, token="test"))
-    response = client.get("/corpus/wave-1?token=test")
+    response = client.get("/?token=test")
     assert "ls-never-seeded-01" in response.text
-    assert "seed-wave" in response.text
+    assert "geplant" in response.text
 
 
 def test_health_does_not_hand_out_a_session_cookie(tmp_path: Path) -> None:

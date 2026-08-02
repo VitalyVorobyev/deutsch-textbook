@@ -25,7 +25,7 @@ import {
   referenceDataSchema,
   listeningArtifactSchema,
   listeningPlanSchema,
-  listeningWavPath,
+  listeningAudioPath,
   type ReferenceData,
   type Discovery,
   type ExerciseSet,
@@ -482,15 +482,16 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   const planned = plannedListening.get(data.id);
   if (!planned) fail(rel(file), `artifact "${data.id}" is absent from ${LISTENING_PLAN_FILE}`);
   else if (planned.unit.level !== data.level) fail(rel(file), 'artifact level differs from the listening plan');
-  const audioFile = join(ROOT, listeningWavPath(data.level, data.id));
+  const audioFile = join(ROOT, listeningAudioPath(data.level, data.id));
   if (!existsSync(audioFile))
-    fail(rel(file), `reviewed audio ${listeningWavPath(data.level, data.id)} is missing — a committed artifact record means its approved WAV is committed too`);
+    fail(rel(file), `published audio ${listeningAudioPath(data.level, data.id)} is missing — a committed artifact record means its approved recording is committed too`);
   const provenance = join(ROOT, data.provenance);
   if (!existsSync(provenance)) fail(rel(file), `provenance "${data.provenance}" does not resolve`);
   else {
     const manifest = JSON.parse(readFileSync(provenance, 'utf8')) as {
       id?: string;
-      audio_sha256?: string;
+      master_audio_sha256?: string;
+      published_audio_sha256?: string;
       dry_audio_sha256?: string;
       dependency_lock_sha256?: string;
       model_lock_sha256?: string;
@@ -512,8 +513,13 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
     if (manifest.approval?.status !== 'complete') fail(rel(file), 'committed listening audio requires completed human approval');
     if (!manifest.approval?.editor || (manifest.approval.checklist?.length ?? 0) < 6)
       fail(rel(file), 'human approval identity and full listening checklist are required');
-    if (existsSync(audioFile) && manifest.audio_sha256 !== fileSha256(audioFile))
-      fail(rel(file), 'audio hash does not match provenance');
+    // Two hashes, two jobs: `master_audio_sha256` is the WAV the editor approved and QA ran
+    // on, which stays in the studio and is a provenance record only; `published_audio_sha256`
+    // is the MP3 in this repo, which is the one that can be checked against a file here.
+    // Pinning only one would leave the other free to drift.
+    if (existsSync(audioFile) && manifest.published_audio_sha256 !== fileSha256(audioFile))
+      fail(rel(file), 'published audio hash does not match provenance');
+    if (!manifest.master_audio_sha256) fail(rel(file), 'approved master hash is required');
     if (!manifest.dry_audio_sha256) fail(rel(file), 'dry speech hash is required');
     if (!manifest.dependency_lock_sha256 || !manifest.model_lock_sha256)
       fail(rel(file), 'dependency and model lock hashes are required');

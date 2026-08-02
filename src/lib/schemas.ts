@@ -652,9 +652,17 @@ export const listeningArtifactSchema = z.object({
   provenance: z.string().min(1),
 });
 
-/** Where a reviewed recording's WAV sits on disk. The URL it is served at is in lib/audio.ts. */
-export const listeningWavPath = (level: string, id: string) =>
-  `content/listening/${level.toLowerCase()}/${id}.wav`;
+/**
+ * Where a reviewed recording sits on disk. The URL it is served at is in lib/audio.ts.
+ *
+ * MP3, not WAV: the WAV master is what the editor approves and what Whisper QA runs on, and it
+ * stays in the studio. Committing it would put ~29 MB in git history and in every desktop
+ * installer for bytes no learner downloads — 64 kbps mono is about a fifth of that and the
+ * assembled master is 16 kHz mono anyway. The provenance manifest pins both: the master hash
+ * the approval is bound to, and the published hash of this file.
+ */
+export const listeningAudioPath = (level: string, id: string) =>
+  `content/listening/${level.toLowerCase()}/${id}.mp3`;
 export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
 
 // ---------------------------------------------------------------------------

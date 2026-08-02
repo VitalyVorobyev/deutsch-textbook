@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
 import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
@@ -21,6 +22,36 @@ from .sources import load_source
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+
+# 64 kbps mono is a long-standing speech setting and the assembled master is 16 kHz mono
+# anyway, so the encoder is not throwing away bandwidth anyone can hear. It is roughly a
+# fifth of the WAV: 41 artifacts at ~700 KB become ~7 MB rather than ~29 MB, in git history
+# and in every desktop installer.
+MP3_BITRATE = "64k"
+
+
+def encode_mp3(source: Path, target: Path) -> Path:
+    """Encode the approved master as the file that actually ships.
+
+    The WAV stays the editorial master — Whisper QA, the line cache and the human approval all
+    run against it — and is never committed. What lands in `content/listening/` is this
+    derivative, so the manifest has to carry both hashes: the master the editor approved, and
+    the published file a learner downloads. Checking only one of them would leave the other
+    unpinned.
+    """
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            "ffmpeg", "-v", "error", "-i", str(source),
+            "-codec:a", "libmp3lame", "-b:a", MP3_BITRATE, "-ac", "1",
+            "-y", str(target),
+        ],
+        check=True,
+    )
+    return target
 
 
 def listening_yaml(
@@ -141,7 +172,9 @@ def manifest(
         "script_sha256": hashlib.sha256(
             "\n".join(line.display_text for line in payload.lines).encode()
         ).hexdigest(),
-        "audio_sha256": sha256(wav),
+        # The master the editor approved (WAV, never committed) and the file that ships
+        # (MP3, committed). Both are pinned; see encode_mp3.
+        "master_audio_sha256": sha256(wav),
         "dry_audio_sha256": sha256(dry_wav or wav),
         "models": model_entries,
         "settings": {
@@ -202,6 +235,7 @@ def write_bundle(
     (out / "generation-brief.md").write_text(brief)
     shutil.copy2(wav, out / f"{slug}.wav")
     shutil.copy2(dry_wav or wav, out / f"{slug}-dry.wav")
+    published = encode_mp3(wav, out / f"{slug}.mp3")
     for context in payload.context_sounds:
         if source_root is None:
             raise ValueError("source_root is required for contextual audio")
@@ -267,6 +301,8 @@ def write_bundle(
         dry_wav=dry_wav,
         source_root=source_root,
     )
+    manifest_data["published_audio_sha256"] = sha256(published)
+    manifest_data["published_audio_bitrate"] = MP3_BITRATE
     manifest_data["generation_brief"] = {
         "path": f"data/prompts/{brief_name}",
         "sha256": sha256(out / "generation-brief.md"),
@@ -296,9 +332,12 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     provenance_data = json.loads((bundle / "provenance.json").read_text())
     brief_path = repo / provenance_data["generation_brief"]["path"]
     targets = {
-        # Beside the artifact record, NOT under public/ — the Pages build must not ship
-        # 40+ MB of WAV. src/integrations/audio-bundle.ts copies these into the desktop build.
-        bundle / f"{slug}.wav": repo / "content" / "listening" / level / f"{slug}.wav",
+        # The MP3 derivative is what enters the repo — beside the artifact record, NOT under
+        # public/, because the Pages build must ship no audio at all. The WAV master stays in
+        # the studio: it is what the editor approved and what QA ran on, and committing it
+        # would put ~29 MB in git history for bytes no learner ever downloads.
+        # src/integrations/audio-bundle.ts copies these into the desktop build.
+        bundle / f"{slug}.mp3": repo / "content" / "listening" / level / f"{slug}.mp3",
         bundle / "listening.yaml": repo / "content" / "listening" / level / f"{slug}.yaml",
         bundle / "exercise.yaml": repo / "content" / "exercises" / level / f"{slug}-hoeren.yaml",
         bundle / "provenance.json": repo / "data" / "audio-provenance" / level / f"{slug}.json",

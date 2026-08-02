@@ -41,7 +41,11 @@ def test_bundle_is_deterministic_and_records_provenance(tmp_path: Path) -> None:
     )
     assert hashlib.sha256(second.read_bytes()).hexdigest() == first_hash
     provenance = json.loads((tmp_path / "bundle" / "provenance.json").read_text())
-    assert provenance["audio_sha256"] == hashlib.sha256(wav.read_bytes()).hexdigest()
+    # Two hashes, two jobs: the master is what the editor approved and what QA ran on and
+    # never leaves the studio; the published MP3 is what lands in the repo.
+    assert provenance["master_audio_sha256"] == hashlib.sha256(wav.read_bytes()).hexdigest()
+    assert provenance["published_audio_sha256"]
+    assert provenance["published_audio_bitrate"] == "64k"
     assert provenance["claims"]["voice_cloning_used"] is False
     assert all(line["cache_key"] for line in provenance["line_artifacts"])
 

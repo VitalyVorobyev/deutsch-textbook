@@ -5,8 +5,8 @@
  * one flag and one URL shape, and the component cannot import the integration (it reaches
  * for `node:fs`). Both import this instead.
  *
- * The served path is flat — `/audio/<id>.wav` — while the source tree keeps the level
- * directory (`content/listening/<level>/<id>.wav`) like every other content collection.
+ * The served path is flat — `/audio/<id>.mp3` — while the source tree keeps the level
+ * directory (`content/listening/<level>/<id>.mp3`) like every other content collection.
  * Artifact ids are globally unique by validated construction: `data/listening-plan.yaml`
  * rejects a duplicate id, every committed artifact must be planned, and the validator rejects
  * a duplicate on load. So the level buys nothing at runtime and would have to be threaded
@@ -27,4 +27,4 @@ export const AUDIO_BUNDLE_ENV = 'PUBLIC_ATLAS_AUDIO_BUNDLE';
 export const bundlesAudio = (value: string | undefined): boolean => value === '1' || value === 'true';
 
 /** The URL a built site serves a reviewed recording at, before `withBase`. */
-export const listeningAudioUrl = (id: string): string => `/audio/${id}.wav`;
+export const listeningAudioUrl = (id: string): string => `/audio/${id}.mp3`;

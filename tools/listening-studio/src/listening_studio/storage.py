@@ -112,6 +112,30 @@ class Store:
             session.expunge(revision)
             return revision
 
+    def reset_to(self, project_id: int, target: Stage) -> None:
+        """Move a project *back* to an earlier stage so a take can be produced again.
+
+        `transition` only ever steps forward, which left a generated take with nothing to do:
+        approval refuses a failed QA, and every earlier step is an illegal transition, so the
+        only escape was editing the script — which is not what a bad *voice* needs. The
+        revision is untouched, so the line cache still covers everything unchanged, and any QA
+        or approval attached to the old take is cleared because it described other audio.
+        """
+
+        order = list(Stage)
+        with Session(self.engine) as session:
+            project = session.get(Project, project_id)
+            if not project:
+                raise ValueError(f"project {project_id} does not exist")
+            if order.index(target) >= order.index(Stage(project.stage)):
+                raise ValueError(f"{target} is not earlier than {project.stage}")
+            revision = session.get(Revision, project.current_revision_id)
+            assert revision
+            revision.qa_json = None
+            revision.approval_json = None
+            project.stage = target
+            session.commit()
+
     def transition(
         self,
         project_id: int,

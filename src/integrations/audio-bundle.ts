@@ -2,7 +2,7 @@
  * Which build ships the reviewed listening WAVs.
  *
  * The same content tree serves two very different targets. The GitHub Pages demo is a public
- * static site where 40+ MB of WAV would be most of the download, and the desktop app is a
+ * static site where the recordings would be most of the download, and the desktop app is a
  * local bundle where the audio is the point — so the recordings ship there and nowhere else.
  * An `audio-comprehension` item carries its script either way (`source.turns`), and the
  * validator holds that script equal to the recording's transcript, so the two builds ask the
@@ -24,7 +24,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFi
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
-import { listeningArtifactSchema, listeningWavPath } from '../lib/schemas';
+import { listeningArtifactSchema, listeningAudioPath } from '../lib/schemas';
 import { AUDIO_BUNDLE_ENV, bundlesAudio } from '../lib/audio';
 
 interface Shipped {
@@ -51,7 +51,7 @@ export function reviewedRecordings(root: string): Shipped[] {
       // here would hide it, and failing the build would report it in the wrong voice.
       if (!parsed.success) continue;
       const { id, level } = parsed.data;
-      const source = listeningWavPath(level, id);
+      const source = listeningAudioPath(level, id);
       const wav = join(root, source);
       if (!existsSync(wav)) continue;
       out.push({ id, level, source, bytes: readFileSync(wav).byteLength });
@@ -75,7 +75,7 @@ export function audioBundle(): AstroIntegration {
         const shipped = bundle ? available : [];
         // Flat target: ids are globally unique, and the component has no level to build a
         // path from. See lib/audio.ts.
-        for (const rec of shipped) copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.wav`));
+        for (const rec of shipped) copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.mp3`));
         writeFileSync(
           join(audioDir, 'manifest.json'),
           `${JSON.stringify({ bundled: bundle, recordings: shipped }, null, 2)}\n`,
