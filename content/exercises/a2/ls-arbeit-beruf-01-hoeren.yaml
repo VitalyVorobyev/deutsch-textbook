@@ -1,0 +1,82 @@
+topic: arbeit-beruf
+role: practice
+title:
+  en: A short task at work
+  ru: Короткое задание на работе
+  uk: 'Коротке завдання на роботі'
+items:
+- id: q1
+  outcomes:
+  - arbeitsanweisung-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Behrens
+      text: Mira, bitte prüfe heute zuerst die neue Lieferung.
+    - speaker: Mira
+      text: Soll ich nur die Kartons zählen?
+    - speaker: Frau Behrens
+      text: Zähle die Kartons und vergleiche die Nummern mit der Liste. Beschädigte
+        Pakete stellst du neben die Tür.
+    - speaker: Mira
+      text: Wann muss alles fertig sein?
+    - speaker: Frau Behrens
+      text: Bis zwölf Uhr. Danach schickst du mir ein Foto von der ausgefüllten Liste.
+  recording: ls-arbeit-beruf-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was soll Mira mit beschädigten Paketen machen?
+  options:
+  - Sie neben die Tür stellen.
+  - Sie zurückschicken.
+  - Sie auf die Liste schreiben.
+  correct: 0
+  explain:
+    en: The damaged parcels get their own instruction, tucked in after two others
+      in the same turn. The list is mentioned — but for comparing numbers, not for
+      recording damage.
+    ru: Для повреждённых посылок есть отдельное указание, спрятанное после двух других
+      в той же реплике. Список упомянут, но для сверки номеров, а не для записи повреждений.
+    uk: 'Для пошкоджених посилок є окрема вказівка, схована після двох інших у тій самій репліці. Список згадано — але для звіряння номерів, а не для запису пошкоджень.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - arbeitsanweisung-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Behrens
+      text: Mira, bitte prüfe heute zuerst die neue Lieferung.
+    - speaker: Mira
+      text: Soll ich nur die Kartons zählen?
+    - speaker: Frau Behrens
+      text: Zähle die Kartons und vergleiche die Nummern mit der Liste. Beschädigte
+        Pakete stellst du neben die Tür.
+    - speaker: Mira
+      text: Wann muss alles fertig sein?
+    - speaker: Frau Behrens
+      text: Bis zwölf Uhr. Danach schickst du mir ein Foto von der ausgefüllten Liste.
+  recording: ls-arbeit-beruf-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was macht Mira nach zwölf Uhr?
+  options:
+  - Sie schickt ein Foto von der Liste.
+  - Sie zählt die Kartons noch einmal.
+  - Sie ruft Frau Behrens an.
+  correct: 0
+  explain:
+    en: Bis zwölf Uhr is the deadline and danach is what follows it — two pieces of
+      time information in one short turn. Sending a photo is not the same as calling,
+      though both would report back.
+    ru: 'Bis zwölf Uhr — это срок, а danach — то, что после него: две временны́е детали
+      в одной короткой реплике. Отправить фото — не то же самое, что позвонить, хотя
+      оба варианта означали бы отчёт.'
+    uk: 'Bis zwölf Uhr — це строк, а danach — те, що після нього: дві часові деталі в одній короткій репліці. Надіслати фото — не те саме, що зателефонувати, хоча обидва означали б звіт.'
+  max_replays: 3

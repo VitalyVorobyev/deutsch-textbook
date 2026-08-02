@@ -1,0 +1,81 @@
+topic: erste-schritte
+role: practice
+title:
+  en: 'Bürgerbüro: the telephone number'
+  ru: 'Бюро: номер телефона'
+  uk: 'Bürgerbüro: номер телефону'
+items:
+- id: q1
+  outcomes:
+  - erste-zahlen-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Mitarbeiterin
+      text: Guten Tag. Hier ist das Bürgerbüro. Wie kann ich Ihnen helfen?
+    - speaker: Herr Osei
+      text: Guten Tag. Ich brauche einen Termin. Unter welcher Nummer kann ich Sie
+        morgen anrufen?
+    - speaker: Mitarbeiterin
+      text: Unsere Telefonnummer ist null drei null, acht vier zwei, sechs eins neun.
+    - speaker: Herr Osei
+      text: 'Also: null drei null, acht vier zwei, sechs eins neun?'
+    - speaker: Mitarbeiterin
+      text: Ja, genau. Wir sind ab neun Uhr erreichbar.
+  recording: ls-erste-schritte-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie ist die Telefonnummer vom Bürgerbüro?
+  options:
+  - 030 842 619
+  - 030 824 619
+  - 030 842 691
+  correct: 0
+  explain:
+    en: The number is said twice — once by the office, once repeated back to confirm
+      it. The two wrong options swap a neighbouring pair of digits, which is exactly
+      what goes wrong when you write a number down while listening.
+    ru: 'Номер звучит дважды: сотрудница называет его, а посетитель повторяет для
+      подтверждения. В неверных вариантах переставлены соседние цифры — именно так
+      ошибаются, записывая номер на слух.'
+    uk: 'Номер звучить двічі: працівниця його називає, а відвідувач повторює для підтвердження. У хибних варіантах переставлено сусідні цифри — саме так помиляються, записуючи номер на слух.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - erste-zahlen-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Mitarbeiterin
+      text: Guten Tag. Hier ist das Bürgerbüro. Wie kann ich Ihnen helfen?
+    - speaker: Herr Osei
+      text: Guten Tag. Ich brauche einen Termin. Unter welcher Nummer kann ich Sie
+        morgen anrufen?
+    - speaker: Mitarbeiterin
+      text: Unsere Telefonnummer ist null drei null, acht vier zwei, sechs eins neun.
+    - speaker: Herr Osei
+      text: 'Also: null drei null, acht vier zwei, sechs eins neun?'
+    - speaker: Mitarbeiterin
+      text: Ja, genau. Wir sind ab neun Uhr erreichbar.
+  recording: ls-erste-schritte-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Ab wann ist das Bürgerbüro erreichbar?
+  options:
+  - Ab neun Uhr.
+  - Ab acht Uhr.
+  - Ab zehn Uhr.
+  correct: 0
+  explain:
+    en: The opening time comes last, after the number is confirmed — the point where
+      attention usually drops. ab means 'from … onwards'.
+    ru: Время работы названо в самом конце, уже после подтверждения номера, — там,
+      где внимание обычно ослабевает. ab значит «начиная с».
+    uk: 'Години роботи названо в самому кінці, вже після підтвердження номера, — там, де увага зазвичай слабшає. ab означає «починаючи з».'
+  max_replays: 3

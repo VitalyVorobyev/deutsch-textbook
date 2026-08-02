@@ -69,38 +69,6 @@ items:
       uk: "Ввічлива формула з A2 на перемовній роботі: Könnten пом'якшує Können — з питання про можливість виходить пропозиція, від якої співрозмовник може відмовитися без конфлікту, а саме це тримає перемовини відкритими. Оцінюється лише форма кон'юнктива; zusammen і gemeinsam однаково правильні. Це регістр розділу про відомства, повторно використаний біля дверей коменданта."
       de: "Der Höflichkeits-Chunk aus A2 bei der Verhandlungsarbeit: Könnten macht aus der Fähigkeitsfrage Können einen Vorschlag, den die andere Seite ohne Streit ablehnen kann — genau das hält ein Gespräch offen. Bewertet wird allein die Konjunktivform; zusammen und gemeinsam sind gleich richtig. Es ist das Register der Amts-Einheit, wiederverwendet an der Tür des Hausmeisters."
 
-  - id: hoeren-gespraech
-    outcomes: [loesung-aushandeln]
-    type: audio-comprehension
-    instruction:
-      en: "A conversation at the front door, heard once — listen for what the two agree on in the end."
-      ru: "Разговор у подъезда, услышанный один раз, — слушайте, о чём двое договариваются в итоге."
-      uk: "Розмова біля під'їзду, почута один раз, — слухайте, про що двоє домовляються врешті."
-      de: "Ein Gespräch an der Haustür, einmal gehört — achte darauf, worauf sich die beiden am Ende einigen."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Hausmeister", text: "Guten Tag! Ihr Kinderwagen steht im Flur. Der Flur muss frei bleiben — im Notfall ist er der Weg nach draußen." }
-        - { speaker: "Mieterin", text: "Das verstehe ich. Aber der Aufzug ist so klein, und wir wohnen im vierten Stock." }
-        - { speaker: "Hausmeister", text: "Unter der Treppe ist Platz. Dort dürfen Kinderwagen stehen, wenn der Weg zur Tür frei bleibt." }
-        - { speaker: "Mieterin", text: "Gut, dann stelle ich ihn ab heute unter die Treppe. Danke!" }
-    question: "Worauf einigen sich die beiden?"
-    options:
-      - "Der Kinderwagen darf unter der Treppe stehen, wenn der Weg zur Tür frei bleibt."
-      - "Der Kinderwagen muss in die Wohnung gebracht werden."
-      - "Der Kinderwagen darf im Flur stehen bleiben."
-    correct: 0
-    translation:
-      en: "What do the two agree on?"
-      ru: "О чём договариваются эти двое?"
-      uk: "Про що домовляються ці двоє?"
-    explain:
-      en: "The agreement lives in the last two turns: the caretaker names a place and a condition — unter der Treppe, wenn der Weg zur Tür frei bleibt — and the tenant accepts it. Carrying the pram upstairs is never proposed by anyone, and the hallway is exactly what the first turn rules out. Following who concedes what is the listening half of negotiating."
-      ru: "Договорённость живёт в двух последних репликах: комендант называет место и условие — unter der Treppe, wenn der Weg zur Tür frei bleibt, — и жилица его принимает. Носить коляску в квартиру никто не предлагал, а коридор — ровно то, что исключает первая реплика. Следить, кто в чём уступает, — слушательная половина переговоров."
-      uk: "Домовленість живе у двох останніх репліках: комендант називає місце й умову — unter der Treppe, wenn der Weg zur Tür frei bleibt, — і мешканка її приймає. Носити візочок у квартиру ніхто не пропонував, а коридор — рівно те, що виключає перша репліка. Стежити, хто в чому поступається, — слухацька половина перемовин."
-      de: "Die Einigung steckt in den letzten zwei Repliken: Der Hausmeister nennt einen Ort und eine Bedingung — unter der Treppe, wenn der Weg zur Tür frei bleibt —, und die Mieterin nimmt an. Den Wagen in die Wohnung zu tragen schlägt niemand vor, und der Flur ist genau das, was die erste Replik ausschließt. Zu hören, wer worin nachgibt, ist die Hörhälfte des Verhandelns."
-
   - id: hoeren-diktat
     outcomes: [pflichten-verstehen]
     type: listen

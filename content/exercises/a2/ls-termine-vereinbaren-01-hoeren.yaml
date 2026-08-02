@@ -1,0 +1,83 @@
+topic: termine-vereinbaren
+role: practice
+title:
+  en: Arranging an appointment by phone
+  ru: Записываемся на приём по телефону
+  uk: 'Записуємося на прийом телефоном'
+items:
+- id: q1
+  outcomes:
+  - termine-zeit-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Praxis
+      text: Praxis Doktor Klein, guten Tag.
+    - speaker: Frau Kaya
+      text: Guten Tag. Ich möchte einen Termin vereinbaren.
+    - speaker: Praxis
+      text: Am Dienstag um zehn Uhr wäre etwas frei.
+    - speaker: Frau Kaya
+      text: Da muss ich arbeiten. Geht es am Mittwoch am Nachmittag?
+    - speaker: Praxis
+      text: Ja, um vierzehn Uhr dreißig.
+    - speaker: Frau Kaya
+      text: Das passt. Dann komme ich am Mittwoch um halb drei. Vielen Dank.
+  recording: ls-termine-vereinbaren-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wann kommt Frau Kaya in die Praxis?
+  options:
+  - Am Mittwoch um halb drei.
+  - Am Dienstag um zehn Uhr.
+  - Am Mittwoch um zehn Uhr.
+  correct: 0
+  explain:
+    en: The agreed time is said twice in two different formats — vierzehn Uhr dreißig
+      by the practice, halb drei by the caller. Both are the same time, and hearing
+      them as one appointment rather than two is the point.
+    ru: 'Согласованное время звучит дважды в двух форматах: vierzehn Uhr dreißig от
+      регистратуры и halb drei от пациентки. Это одно и то же время — услышать их
+      как одну запись, а не как две, и есть задача.'
+    uk: 'Погоджений час звучить двічі у двох форматах: vierzehn Uhr dreißig від реєстратури і halb drei від пацієнтки. Це той самий час — почути їх як один запис, а не як два, і є завданням.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - termine-zeit-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Praxis
+      text: Praxis Doktor Klein, guten Tag.
+    - speaker: Frau Kaya
+      text: Guten Tag. Ich möchte einen Termin vereinbaren.
+    - speaker: Praxis
+      text: Am Dienstag um zehn Uhr wäre etwas frei.
+    - speaker: Frau Kaya
+      text: Da muss ich arbeiten. Geht es am Mittwoch am Nachmittag?
+    - speaker: Praxis
+      text: Ja, um vierzehn Uhr dreißig.
+    - speaker: Frau Kaya
+      text: Das passt. Dann komme ich am Mittwoch um halb drei. Vielen Dank.
+  recording: ls-termine-vereinbaren-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Warum passt der erste Termin nicht?
+  options:
+  - Frau Kaya muss am Dienstag arbeiten.
+  - Die Praxis ist am Dienstag geschlossen.
+  - Frau Kaya ist am Dienstag krank.
+  correct: 0
+  explain:
+    en: Da muss ich arbeiten is the refusal, and da points back to Tuesday ten o'clock.
+      The other two are reasons that would fit the situation but are never given.
+    ru: Da muss ich arbeiten — это отказ, и da отсылает ко вторнику, десяти часам.
+      Две другие причины подходят к ситуации, но в записи не названы.
+    uk: 'Da muss ich arbeiten — це відмова, і da відсилає до вівторка, десятої години. Дві інші причини пасували б до ситуації, але в записі їх не названо.'
+  max_replays: 3

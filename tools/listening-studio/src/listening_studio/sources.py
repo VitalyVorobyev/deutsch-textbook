@@ -23,6 +23,12 @@ class FreesoundSource(BaseModel):
     license_url: str
     description: str = Field(min_length=1)
     rights_risk_note: str = Field(min_length=1)
+    #: Which file from the sound page was imported. Downloading the uploader's own master needs a
+    #: Freesound account, so a course-produced import is normally the site's public preview
+    #: transcode. That is a different file from the one the uploader published, and the manifest
+    #: has to say so: `original_sha256` pins what this repository committed — its integrity — and
+    #: this field says what that file actually is. Defaulted for records written before it existed.
+    source_file: Literal["original", "preview-hq", "preview-lq"] = "original"
     original_filename: str = Field(min_length=1)
     original_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     original_bytes: int = Field(gt=0, le=MAX_SOURCE_BYTES)

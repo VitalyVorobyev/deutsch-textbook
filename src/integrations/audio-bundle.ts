@@ -1,18 +1,21 @@
 /**
- * Which build ships the reviewed listening WAVs.
+ * Which build ships the reviewed listening recordings.
  *
- * The same content tree serves two very different targets. The GitHub Pages demo is a public
- * static site where the recordings would be most of the download, and the desktop app is a
- * local bundle where the audio is the point — so the recordings ship there and nowhere else.
+ * Both shipping targets do. This started as a desktop/web split — the recordings would have been
+ * most of a public static site's download — but the measured corpus is 14.2 MB of 64 kbps mono
+ * MP3 against a 69 MB site and a 1 GB Pages limit, fetched per item only when a learner opens
+ * one. So the demo ships them too, and what the flag actually distinguishes is a shipping build
+ * from a lean one that carries no binaries.
+ *
  * An `audio-comprehension` item carries its script either way (`source.turns`), and the
- * validator holds that script equal to the recording's transcript, so the two builds ask the
- * learner exactly the same question. Only the voice differs: a reviewed take, or browser TTS.
+ * validator holds that script equal to the recording's transcript, so a build without audio asks
+ * the learner exactly the same question. Only the voice differs: a reviewed take, or browser TTS.
  *
  * `PUBLIC_ATLAS_AUDIO_BUNDLE=1` turns it on. The name is deliberately `PUBLIC_` — Vite exposes
  * only that prefix to client code, and `AudioComprehension.tsx` has to read the same flag that
  * decided whether the files were copied. One boolean rather than a per-id manifest, because
  * the copy is all-or-nothing and the validator already guarantees every committed artifact has
- * its WAV: an item whose recording resolves in the content tree cannot be missing from a
+ * its MP3: an item whose recording resolves in the content tree cannot be missing from a
  * bundled build.
  *
  * `dist/audio/manifest.json` is written either way. It is not read at runtime — it exists so
@@ -64,6 +67,27 @@ export function audioBundle(): AstroIntegration {
   return {
     name: 'audio-bundle',
     hooks: {
+      /**
+       * The dev server never reaches `astro:build:done`, so without this `bun tauri dev` sets
+       * the bundle flag, the component asks for `/audio/<id>.mp3`, and every reviewed recording
+       * 404s — the one command anyone would use to check that a freshly published take plays.
+       * Serving from the content tree rather than a copy also means an edited recording is
+       * audible on reload, which is what a dev server is for.
+       */
+      'astro:server:setup': ({ server, logger }) => {
+        if (!bundlesAudio(process.env[AUDIO_BUNDLE_ENV])) return;
+        const root = process.cwd();
+        server.middlewares.use((req, res, next) => {
+          const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec((req.url ?? '').split('?')[0] ?? '');
+          if (!match) return next();
+          // Re-read per request: a recording republished while the server runs is served fresh.
+          const rec = reviewedRecordings(root).find((r) => r.id === match[1]);
+          if (!rec) return next();
+          res.setHeader('Content-Type', 'audio/mpeg');
+          res.end(readFileSync(join(root, rec.source)));
+        });
+        logger.info(`serving ${reviewedRecordings(root).length} reviewed recording(s) from content/listening`);
+      },
       'astro:build:done': ({ dir, logger }) => {
         const root = process.cwd();
         const outDir = fileURLToPath(dir);

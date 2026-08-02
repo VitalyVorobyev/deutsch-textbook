@@ -14,41 +14,6 @@ items:
   # The instruction is deliberately self-contained: this item is served in mixed training,
   # where "the Lesetext" is a dangling reference — a learner who never read it just listens,
   # and the warning still lands for the one who did.
-  - id: hoeren-kursanweisung
-    outcomes: [kursanweisungen-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "The teacher gives the class its task. Answer from what you hear: if an option feels familiar from elsewhere in this unit, that is exactly the trap."
-      ru: "Преподаватель объясняет задание. Отвечайте по записи: если вариант кажется знакомым по этому уроку — это и есть ловушка."
-      uk: "Викладач пояснює завдання. Відповідайте за записом: якщо варіант здається знайомим із цього уроку — це і є пастка."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Kursleiter", text: "Guten Abend! Machen Sie bitte die Bücher zu. Heute arbeiten wir nicht zu zweit." }
-        - { speaker: "Kursleiter", text: "Sie hören einen kurzen Dialog und schreiben die Antworten in Ihr Heft." }
-        - { speaker: "Yusuf", text: "Entschuldigung, können Sie mir sagen, wie oft wir den Dialog hören?" }
-        - { speaker: "Kursleiter", text: "Zweimal. Und die neuen Wörter suchen Sie bitte erst zu Hause im Wörterbuch." }
-        - { speaker: "Elif", text: "Wie bitte? Können Sie das bitte wiederholen?" }
-        - { speaker: "Kursleiter", text: "Natürlich. Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft." }
-    question: "Was sollen die Teilnehmer jetzt machen?"
-    options:
-      - "Einen Dialog hören und die Antworten ins Heft schreiben."
-      - "Zu zweit fünf Sätze schreiben."
-      - "Die neuen Wörter im Wörterbuch suchen."
-    correct: 0
-    # No `max_replays`: the schema default (3) is what every other A2 audio item gets, and there
-    # is nothing about this recording that should make it easier or harder to hear than theirs.
-    # Listening difficulty must not differ between units by accident.
-    translation:
-      en: "What are the participants supposed to do now?"
-      ru: "Что участники должны сделать сейчас?"
-      uk: "Що учасники мають зробити зараз?"
-    explain:
-      en: "The teacher says it twice, and the second time is the repetition Elif asked for: Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft. Both wrong options are in the recording as well, and that is the point of them. Working in pairs is ruled out in the very first line — Heute arbeiten wir nicht zu zweit — so if you chose it, you answered from the Lesetext instead of from the audio. The dictionary is mentioned too, but for later: die neuen Wörter suchen Sie bitte erst zu Hause. Listen once more to what Yusuf does when he needs a detail: Können Sie mir sagen, wie oft wir den Dialog hören? — the wrapped verb hören at the very end."
-      ru: "Преподаватель говорит это дважды, и второй раз — как раз то повторение, о котором попросила Элиф: Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft. Оба неверных варианта в записи тоже звучат, и в этом весь смысл. Работа в парах отвергнута в самой первой реплике — Heute arbeiten wir nicht zu zweit, — так что, выбрав её, вы ответили по тексту для чтения, а не по записи. Словарь тоже упомянут, но на потом: die neuen Wörter suchen Sie bitte erst zu Hause. Послушайте ещё раз, как Юсуф уточняет деталь: Können Sie mir sagen, wie oft wir den Dialog hören? — «обёрнутый» глагол hören стоит в самом конце."
-      uk: "Викладач каже це двічі, і другий раз — якраз те повторення, про яке попросила Еліф: Sie hören den Dialog zweimal und schreiben die Antworten in Ihr Heft. Обидва неправильні варіанти в записі теж звучать, і в цьому весь сенс. Робота в парах відкинута в найпершій репліці — Heute arbeiten wir nicht zu zweit, — тож, вибравши її, ви відповіли за текстом для читання, а не за записом. Словник теж згаданий, але на потім: die neuen Wörter suchen Sie bitte erst zu Hause. Послухайте ще раз, як Юсуф уточнює деталь: Können Sie mir sagen, wie oft wir den Dialog hören? — «обгорнуте» дієслово hören стоїть у самому кінці."
-
   - id: mc-ob-oder-wenn
     outcomes: [nachfragen-klaeren]
     type: mc

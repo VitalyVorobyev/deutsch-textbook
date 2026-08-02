@@ -1,0 +1,340 @@
+{
+  "approval": {
+    "audio_sha256": "d1195d8e57f74a246ef3a4f9b510da9a3a6d06ae760e97e17a6f2c94d1609427",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "11fe2ecacc661d2484e32d0dcb8f2dca5deacb4212fc87a05156a58cd7b1bdda",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T15:56:32.182551+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Unterrichtsraum unter einer Kursanweisung.",
+      "duration_seconds": 101.65675,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2199264,
+      "original_filename": "146435.mp3",
+      "original_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+      "page_url": "https://freesound.org/s/146435/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 95000,
+        "gain_db": -25.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 5000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 146435,
+      "source_file": "preview-hq",
+      "title": "room tone_M24",
+      "uploader": "pushkin"
+    }
+  ],
+  "created_at": "2026-08-02T15:56:32.182551+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "11fe2ecacc661d2484e32d0dcb8f2dca5deacb4212fc87a05156a58cd7b1bdda",
+  "exported_files": {
+    "exercise.yaml": "24e75db3e5bcbae7ae8cefac7f1423c90b6840498ad33116929b1f806bedfbd4",
+    "generation-brief.md": "cb541be795cc754c2aafc7a89c281a00f3549cf84438e3c770a044bffb59f812",
+    "listening.yaml": "a31896305980edfd39e6f44701a88b0ee138628515f79a7fafb1303055c7e566",
+    "ls-lernen-verstehen-01-dry.wav": "11fe2ecacc661d2484e32d0dcb8f2dca5deacb4212fc87a05156a58cd7b1bdda",
+    "ls-lernen-verstehen-01.mp3": "22a4424f12939daed476f7578253e6649f0eaf49f9af9a0575057c9419e9e14a",
+    "ls-lernen-verstehen-01.wav": "d1195d8e57f74a246ef3a4f9b510da9a3a6d06ae760e97e17a6f2c94d1609427",
+    "project.json": "9118660aae0a6d61480a2162cbdd8bbb98bdb72253d0de0c5b4010ec055c9b8b",
+    "sources/freesound-146435/ATTRIBUTION.md": "12fb4c037196fc02762faad7b47766c7f8d95b9f99d3306c014267c0e3761133",
+    "sources/freesound-146435/original.mp3": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+    "sources/freesound-146435/source.json": "638a3bfb4c3e49e22a29cd895fc65983be75488cc9db9fc6ffc9efce7b02058f",
+    "student.html": "2a35fbf826c8866e6f0e2553e5ea9e487da8b8867884d1edbf59dd472087400c",
+    "student.pdf": "62f75966bdca86109f7a9dee8f1bccffa369aca08e13b496c12be2e40d898f18",
+    "teacher.html": "fbfc74fff9ecfd579f60c68f086148407985813c1fe55bb838b1e1c87c2e0b49",
+    "teacher.pdf": "242ca64dfa79f1a35e2b0b617b98913595c83b8de1090b6d6a0b8a9e8de7c433",
+    "transcript.txt": "e4aed5db43bd88dcd48bbc210430c9477ccea0a99b892655fca5c19b3fc185af"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-lernen-verstehen-01-listening.md",
+    "sha256": "cb541be795cc754c2aafc7a89c281a00f3549cf84438e3c770a044bffb59f812"
+  },
+  "id": "ls-lernen-verstehen-01",
+  "line_artifacts": [
+    {
+      "cache_key": "561b5441b945432837bec146fcf310ea32fd77e79cc24396dcbc4c77260fd788",
+      "display_text_sha256": "f93df18b444b2a41cdec79d39b2a2bc0db14128eb26a3ac67f091365d8bcb858",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "f93df18b444b2a41cdec79d39b2a2bc0db14128eb26a3ac67f091365d8bcb858",
+      "wav_sha256": "a1fe610ec487c5f63de37a2a91fdf7cbde541f293803e062a8ac66491b13287f"
+    },
+    {
+      "cache_key": "7ed5a811ca79d4818f955e3ddef923bcaab26141f949ad458054441c4315acbe",
+      "display_text_sha256": "8a33ea8271295386bf3611f31e5ebb1c5df9e963ce426d1645afb0b1b1c88787",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "8a33ea8271295386bf3611f31e5ebb1c5df9e963ce426d1645afb0b1b1c88787",
+      "wav_sha256": "84d5d9ad9b17904573fd8c151e8ea03fbba8e5b2b55889110ffe30575e516dcb"
+    },
+    {
+      "cache_key": "71eb00e8269785cf13480a7136dd0f3e0b27e5a59ac9e6451c45a82739122882",
+      "display_text_sha256": "b6aaaf004c451fe5450c7d13703ee1828c7ac02eba559ec13aa585cd84fe6e05",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "b6aaaf004c451fe5450c7d13703ee1828c7ac02eba559ec13aa585cd84fe6e05",
+      "wav_sha256": "fed5ca50de737cd6b1c07729912b6212e5263521517775d71fa9a62d5607f772"
+    },
+    {
+      "cache_key": "7a065f0ee11a0fb4b1f2117c8e1ef7332bdff5df083d4cde7e56017ed91e7783",
+      "display_text_sha256": "42988432a9e6c1d5870d7c114aa47a4e6af1806d443bca87f7af05b5e6daddd5",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "42988432a9e6c1d5870d7c114aa47a4e6af1806d443bca87f7af05b5e6daddd5",
+      "wav_sha256": "54a0e5929f5b1daf60f324e812bc6c887e2b1eec0e20e2d1410dc630d25629bc"
+    }
+  ],
+  "master_audio_sha256": "d1195d8e57f74a246ef3a4f9b510da9a3a6d06ae760e97e17a6f2c94d1609427",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "22a4424f12939daed476f7578253e6649f0eaf49f9af9a0575057c9419e9e14a",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T13:22:07.415085+00:00",
+      "failures": [],
+      "full_transcript": "Öffnen Sie bitte das Kursbuch auf Seite 34. Lesen Sie zuerst die Aufgabe 2. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze. Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären? Natürlich. Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung. Danke, jetzt verstehe ich die Aufgabe. Danke.",
+      "full_wer": 0.015625,
+      "lines": [
+        {
+          "expected": "Öffnen Sie bitte das Kursbuch auf Seite vierunddreißig. Lesen Sie zuerst die Aufgabe zwei. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Öffnen Sie bitte das Kursbuch auf Seite 34. Lesen Sie zuerst die Aufgabe 2. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Natürlich. Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Natürlich! Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke, jetzt verstehe ich die Aufgabe.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke, jetzt verstehe ich die Aufgabe.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T13:22:07.416429+00:00",
+      "failures": [],
+      "full_transcript": "Öffnen Sie bitte das Kursbuch auf Seite 34. Lesen Sie zuerst die Aufgabe 2. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze. Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären? Natürlich. Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung. Danke. Jetzt verstehe ich die Aufgabe.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Öffnen Sie bitte das Kursbuch auf Seite vierunddreißig. Lesen Sie zuerst die Aufgabe zwei. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Öffnen Sie bitte das Kursbuch auf Seite 34. Lesen Sie zuerst die Aufgabe 2. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Natürlich. Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Natürlich! Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke, jetzt verstehe ich die Aufgabe.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke, jetzt verstehe ich die Aufgabe.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "989eae870a0656f8a05c1214c8e3dc60effbf75949aee1f2a629347a0e37f519",
+  "script_sha256": "4de8b53946a73a4f38952d15f3a8a6964b22c5f319b21d1562efbe0ee7fe0f5c",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 95000,
+        "gain_db": -25.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 5000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Öffnen Sie bitte das Kursbuch auf Seite vierunddreißig. Lesen Sie zuerst die Aufgabe zwei. Danach hören Sie den Dialog zweimal und markieren die richtigen Sätze.",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kursleiterin",
+        "style": "Sprich klar und geduldig, wie eine Lehrerin, die eine Aufgabe erklärt.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Entschuldigung, ich habe den letzten Schritt nicht verstanden. Können Sie das bitte noch einmal erklären?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Teilnehmer",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Natürlich. Nach dem Hören vergleichen Sie Ihre Antworten mit Ihrer Partnerin. Erst danach öffnen Sie die Lösung.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Kursleiterin",
+        "style": "Sprich klar und geduldig, wie eine Lehrerin, die eine Aufgabe erklärt.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Danke, jetzt verstehe ich die Aufgabe.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 777,
+        "speaker": "Teilnehmer",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      }
+    ]
+  },
+  "version": 1
+}

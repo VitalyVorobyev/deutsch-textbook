@@ -52,6 +52,8 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;color:#78716c}
 .chip.work{background:#fef3c7;color:#92400e}
 .chip.ready{background:#dcfce7;color:#166534}
 .chip.blocked{background:#fee2e2;color:#991b1b}
+.certify{margin:.4rem 0 1.1rem;padding-left:1.2rem}
+.certify li{margin:.45rem 0;font-size:.95rem}
 nav a{margin-left:1rem}
 @media(prefers-color-scheme:dark){
  body{background:#1c1917;color:#e7e5e4}
@@ -163,6 +165,9 @@ def script_form(project_id: int, payload: RevisionPayload, voices: list[str], ad
             f"<label>Seed<input name='line.{index}.seed' type=number min=0 value='{line.seed}'></label>"
             "</div>"
             f"<label>Text<textarea name='line.{index}.text' required>{escape(line.display_text)}</textarea></label>"
+            f"<label class=muted>Sprechweise (optional, steuert Ton und Register)"
+            f"<input name='line.{index}.style' value='{escape(line.style or '')}' "
+            f"placeholder='z. B. Sprich sachlich und deutlich wie eine Bahnhofsdurchsage.'></label>"
             f"<label class=muted>Aussprache-Text (optional, nur für die Synthese)"
             f"<input name='line.{index}.synthesis' value='{escape(line.synthesis_text or '')}' placeholder='leer = wie oben'></label>"
             "</div>"
@@ -175,7 +180,9 @@ def script_form(project_id: int, payload: RevisionPayload, voices: list[str], ad
         f"<label>Max. Wiederholungen<input name=max_replays type=number min=1 max=10 value='{payload.max_replays}'></label>"
         "</div>"
         "<p class=muted>Speichern legt eine neue Revision an und setzt das Projekt zurück auf <em>draft</em>. "
-        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Stimme, Seed und Tempo gleich bleiben.</p>"
+        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Stimme, Seed und Tempo gleich bleiben. "
+        "Beim Wechsel des Synthese-Modells bekommt jede Sprecherin und jeder Sprecher automatisch eine Stimme des "
+        "neuen Modells — danach hier anpassen: die Zuordnung ist beliebig, sie hält nur die Sprecher auseinander.</p>"
         "<button>Skript speichern</button></form></div>"
     )
 
@@ -266,6 +273,147 @@ def approval_card(approval: dict[str, object]) -> str:
         f"<p><strong>{escape(str(approval.get('editor','')))}</strong> · {escape(str(approval.get('reviewed_at','')))}</p>"
         f"<ul class=muted>{items}</ul>"
         f"<p class=muted>Gebunden an genau diese Audiodatei: <code>{escape(str(approval.get('audio_sha256',''))[:16])}…</code></p></div>"
+    )
+
+
+#: What the editor certifies, key → the sentence they are certifying.
+#:
+#: The keys are written into the published provenance manifest (`approval.checklist`), so they
+#: are fixed and must never be renamed; only the wording beside them moves. Until 2026-08-02 the
+#: form showed the bare keys — six English words, no audio, no questions, no QA — and asked a
+#: named human to vouch for all of them. A checklist that shows nothing it asks about is a
+#: rubber stamp, and `docs/product-protection.md` exists to make this signature mean something.
+APPROVAL_CHECKS: dict[str, str] = {
+    "accent": (
+        "Die Aussprache ist verständliches Standarddeutsch. Kein Wort ist so verfärbt, "
+        "dass ein Lernender es falsch abspeichern würde."
+    ),
+    "naturalness": "Es klingt nach einer sprechenden Person, nicht nach einer vorlesenden Maschine.",
+    "intelligibility": (
+        "Auf {level} ist jedes Wort heraushörbar — beim Hören, ohne Mitlesen im Skript."
+    ),
+    "speakers": "Die Sprecher sind durchgehend als verschiedene Personen unterscheidbar.",
+    "pace": "Das Tempo passt zu {level}: nicht gehetzt, aber auch nicht künstlich gedehnt.",
+    "questions": (
+        "Jede Frage ist allein aus dem Gehörten beantwortbar, und die markierte Antwort "
+        "ist die einzige richtige."
+    ),
+    "context": "Die Hintergrundgeräusche sind hörbar, überdecken aber keine Silbe.",
+}
+
+
+def transcript_card(payload: RevisionPayload) -> str:
+    """The script, collapsed.
+
+    Deliberately not open: reading along makes a listener hear words that were never said, which
+    is precisely what the `intelligibility` check is supposed to catch. Listen first.
+    """
+
+    rows = "".join(
+        f"<tr><td>{escape(line.speaker)}</td><td class=muted>{escape(line.voice or '—')}</td>"
+        f"<td class=muted>{escape(line.style or '—')}</td>"
+        f"<td>{escape(line.display_text)}</td></tr>"
+        for line in payload.lines
+    )
+    return (
+        "<div class=card><details><summary>Skript einblenden</summary>"
+        "<p class=muted>Erst hören, dann aufklappen — beim Mitlesen hört man Wörter, "
+        "die nicht gesprochen wurden.</p>"
+        "<table><thead><tr><th>Sprecher</th><th>Stimme</th><th>Sprechweise</th><th>Text</th></tr>"
+        f"</thead><tbody>{rows}</tbody></table></details></div>"
+    )
+
+
+def question_review_card(payload: RevisionPayload) -> str:
+    """The questions as the learner meets them, with the key marked.
+
+    The `questions` check asks whether each one is answerable from the audio alone and whether
+    the marked answer is right. Both of those are unanswerable without seeing the options — and
+    every one of Wave 1's drafted questions was template residue that no gate could see.
+    """
+
+    blocks = []
+    for question in payload.questions:
+        response = question.response
+        if not isinstance(response, SingleChoice):
+            blocks.append(
+                f"<div class=line><p class=fail>«{escape(response.kind)}» — alte Frageform, "
+                "kein Aufgabentyp kann sie darstellen.</p></div>"
+            )
+            continue
+        options = "".join(
+            f"<li{' class=pass' if index == response.correct else ''}>{escape(option)}"
+            + (" ✓" if index == response.correct else "")
+            + "</li>"
+            for index, option in enumerate(response.options)
+        )
+        blocks.append(
+            f"<div class=line><p><strong>{escape(response.prompt)}</strong></p>"
+            f"<ol>{options}</ol>"
+            f"<p class=muted>{escape(question.explain.en)}<br>{escape(question.explain.ru)}</p></div>"
+        )
+    return "<div class=card><h3>Fragen</h3>" + "".join(blocks) + "</div>"
+
+
+def approval_page(
+    *,
+    project_id: int,
+    slug: str,
+    payload: RevisionPayload,
+    qa: dict[str, object],
+    has_dry: bool,
+    duration: float | None,
+    target: tuple[float, float] | None,
+    editor: str | None,
+) -> str:
+    """Everything the six checks are about, on one screen, above the signature."""
+
+    level = escape(payload.brief.level)
+    keys = [key for key in APPROVAL_CHECKS if key != "context"]
+    if payload.context_sounds:
+        keys.append("context")
+    # Stated, not ticked. Six checkboxes look like six independent judgements and are not: nobody
+    # decides six times, they click six times. One button over six visible sentences is the same
+    # single act of assent, minus the ceremony that teaches a reviewer to click without reading.
+    checks = "".join(
+        f"<li>{APPROVAL_CHECKS[key].format(level=level)}</li>" for key in keys
+    )
+    signature = (
+        f"<input type=hidden name=editor value='{escape(editor, quote=True)}'>"
+        f"<button>Gehört und freigegeben — {escape(editor)}</button>"
+        "<p class=muted>Ein anderer Name? <a href='?forget=1'>Zurücksetzen</a></p>"
+        if editor
+        else "<label>Name der freigebenden Person<input name=editor required autofocus></label>"
+        "<button>Gehört und freigegeben</button>"
+        "<p class=muted>Der Name wird lokal gemerkt und danach nicht mehr abgefragt.</p>"
+    )
+
+    length = "<span class=muted>Dauer unbekannt</span>"
+    if duration is not None:
+        within = target is None or target[0] <= duration <= target[1]
+        window = f" · Plan {target[0]:g}–{target[1]:g} s" if target else ""
+        length = (
+            f"<span class={'pass' if within else 'fail'}>Dauer {duration:.1f} s</span>{window}"
+        )
+
+    return page(
+        f"<div class=card><h2>Freigabe · {escape(slug)}</h2>"
+        f"<p class=muted>{level} · {escape(payload.brief.scenario)} · {length}</p>"
+        f"<p><a href='/projects/{project_id}'>Zurück zum Projekt</a></p></div>"
+        + player_card(project_id, True, has_dry)
+        + question_review_card(payload)
+        + transcript_card(payload)
+        + qa_card(qa)
+        + "<div class=card><h3>Mit der Freigabe bestätigen Sie</h3>"
+        f"<ul class=certify>{checks}</ul>"
+        f"<form method=post action='/projects/{project_id}/approve/confirm'>{signature}</form>"
+        "<p class=muted>Die Freigabe wird an den Hash genau dieser Audiodatei gebunden. Wird "
+        "danach neu erzeugt, verfällt sie.</p></div>"
+        "<div class='card actions'>"
+        f"<form method=post action='/projects/{project_id}/regenerate'>"
+        "<button class=ghost>Stimmt etwas nicht — neu erzeugen</button></form>"
+        "<span class=muted>Nicht freigeben ist ein Schritt, kein Schließen des Tabs.</span></div>",
+        f"Freigabe · {slug}",
     )
 
 
@@ -382,6 +530,7 @@ def parse_lines(form: dict[str, str], payload: RevisionPayload) -> list[dict[str
                 "voice": form.get(f"line.{index}.voice", line.voice),
                 "display_text": form.get(f"line.{index}.text", line.display_text).strip(),
                 "synthesis_text": synthesis or None,
+                "style": form.get(f"line.{index}.style", "").strip() or None,
                 "pace": float(form.get(f"line.{index}.pace", line.pace)),
                 "pause_after_ms": int(form.get(f"line.{index}.pause", line.pause_after_ms)),
                 "seed": int(form.get(f"line.{index}.seed", line.seed)),

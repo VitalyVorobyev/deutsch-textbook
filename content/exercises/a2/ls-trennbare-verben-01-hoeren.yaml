@@ -1,0 +1,89 @@
+topic: trennbare-verben
+role: practice
+title:
+  en: A voice message about tomorrow
+  ru: Голосовое сообщение о завтрашнем дне
+  uk: 'Голосове повідомлення про завтрашній день'
+items:
+- id: q1
+  outcomes:
+  - trennbar-tagesablauf
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Jonas
+      text: Hallo Papa, hier ist Jonas. Ich rufe kurz an, weil sich mein Tag geändert
+        hat.
+    - speaker: Jonas
+      text: Ich stehe morgen schon um sechs Uhr auf und fahre um sieben zur Arbeit
+        ab.
+    - speaker: Jonas
+      text: Mittags kaufe ich für Oma ein und bringe ihr die Sachen vorbei.
+    - speaker: Jonas
+      text: Um vier Uhr hole ich Mia vom Kindergarten ab.
+    - speaker: Jonas
+      text: Danach räume ich die Küche auf und rufe dich noch einmal an.
+    - speaker: Jonas
+      text: Bitte mach das Fenster im Wohnzimmer zu, es soll regnen. Bis morgen!
+  recording: ls-trennbare-verben-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wann fährt Jonas zur Arbeit ab?
+  options:
+  - Um sieben Uhr.
+  - Um sechs Uhr.
+  - Um vier Uhr.
+  correct: 0
+  explain:
+    en: 'Three times, three different separable verbs: six is getting up, seven is
+      leaving, four is the nursery pickup. Six and seven sit in the same sentence,
+      which is why they are the easy pair to swap.'
+    ru: 'Три времени и три разных отделяемых глагола: шесть — подъём, семь — отъезд,
+      четыре — детский сад. Шесть и семь стоят в одном предложении — потому их и путают
+      чаще всего.'
+    uk: 'Три години і три різні відокремлювані дієслова: шоста — підйом, сьома — від''їзд, четверта — дитячий садок. Шоста і сьома стоять в одному реченні — тому їх і плутають найчастіше.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - trennbar-tagesablauf
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Jonas
+      text: Hallo Papa, hier ist Jonas. Ich rufe kurz an, weil sich mein Tag geändert
+        hat.
+    - speaker: Jonas
+      text: Ich stehe morgen schon um sechs Uhr auf und fahre um sieben zur Arbeit
+        ab.
+    - speaker: Jonas
+      text: Mittags kaufe ich für Oma ein und bringe ihr die Sachen vorbei.
+    - speaker: Jonas
+      text: Um vier Uhr hole ich Mia vom Kindergarten ab.
+    - speaker: Jonas
+      text: Danach räume ich die Küche auf und rufe dich noch einmal an.
+    - speaker: Jonas
+      text: Bitte mach das Fenster im Wohnzimmer zu, es soll regnen. Bis morgen!
+  recording: ls-trennbare-verben-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was soll der Vater machen?
+  options:
+  - Das Fenster im Wohnzimmer zumachen.
+  - Mia vom Kindergarten abholen.
+  - Die Küche aufräumen.
+  correct: 0
+  explain:
+    en: Everything in the message is what Jonas himself is doing, until the last line
+      changes to an imperative. That switch from ich to bitte mach is the only signal
+      that a task is being handed over.
+    ru: Всё сообщение — о том, что делает сам Йонас, пока последняя реплика не переходит
+      в повелительное наклонение. Переход от ich к bitte mach — единственный сигнал,
+      что задачу передают другому.
+    uk: 'Усе повідомлення — про те, що робить сам Йонас, аж доки остання репліка не переходить у наказовий спосіб. Перехід від ich до bitte mach — єдиний сигнал, що доручення передають іншому.'
+  max_replays: 3

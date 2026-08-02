@@ -1,0 +1,94 @@
+topic: dativ
+role: practice
+title:
+  en: Neighbours lending things
+  ru: Соседи одалживают вещи
+  uk: 'Сусіди позичають речі'
+items:
+- id: q1
+  outcomes:
+  - dativ-verben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Adam
+      text: Hallo Frau Kern, können Sie mir kurz helfen?
+    - speaker: Frau Kern
+      text: Klar. Was brauchen Sie denn?
+    - speaker: Herr Adam
+      text: Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?
+    - speaker: Frau Kern
+      text: Die Waage habe ich meiner Tochter gegeben. Aber ich gebe Ihnen einen Messbecher.
+    - speaker: Herr Adam
+      text: Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?
+    - speaker: Frau Kern
+      text: Ja, ich bringe Ihnen gleich eine Packung.
+    - speaker: Herr Adam
+      text: Danke! Wann brauchen Sie den Messbecher zurück?
+    - speaker: Frau Kern
+      text: Kein Problem. Den Messbecher brauche ich erst am Wochenende.
+    - speaker: Herr Adam
+      text: Dann bringe ich ihn Ihnen am Freitag.
+  recording: ls-dativ-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was leiht Frau Kern ihrem Nachbarn?
+  options:
+  - Einen Messbecher.
+  - Eine Waage.
+  - Einen Kuchen.
+  correct: 0
+  explain:
+    en: The scales are exactly what she cannot lend — she has given them to her daughter,
+      and the replacement is offered in the same breath. The cake is what he is baking,
+      not what he borrows.
+    ru: 'Весы — как раз то, что она одолжить не может: она отдала их дочери, и замена
+      предлагается в той же реплике. Пирог — то, что он печёт, а не то, что берёт.'
+    uk: 'Терези — саме те, чого вона позичити не може: вона віддала їх доньці, і заміну пропонує в тій самій репліці. Пиріг — те, що він пече, а не те, що бере.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - dativ-verben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Adam
+      text: Hallo Frau Kern, können Sie mir kurz helfen?
+    - speaker: Frau Kern
+      text: Klar. Was brauchen Sie denn?
+    - speaker: Herr Adam
+      text: Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?
+    - speaker: Frau Kern
+      text: Die Waage habe ich meiner Tochter gegeben. Aber ich gebe Ihnen einen Messbecher.
+    - speaker: Herr Adam
+      text: Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?
+    - speaker: Frau Kern
+      text: Ja, ich bringe Ihnen gleich eine Packung.
+    - speaker: Herr Adam
+      text: Danke! Wann brauchen Sie den Messbecher zurück?
+    - speaker: Frau Kern
+      text: Kein Problem. Den Messbecher brauche ich erst am Wochenende.
+    - speaker: Herr Adam
+      text: Dann bringe ich ihn Ihnen am Freitag.
+  recording: ls-dativ-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wann bringt Herr Adam den Messbecher zurück?
+  options:
+  - Am Freitag.
+  - Am Wochenende.
+  - Am Montag.
+  correct: 0
+  explain:
+    en: The weekend is when she needs it back by, so Friday is his answer to that.
+      Hearing only one of the two days gets it wrong.
+    ru: Выходные — это срок, к которому мерный стакан нужен ей; пятница — его ответ
+      на это. Кто расслышал только один из двух дней, ошибётся.
+    uk: 'Вихідні — це строк, до якого мірний стакан потрібен їй; п''ятниця — його відповідь на це. Хто розчув лише один із двох днів, помилиться.'
+  max_replays: 3

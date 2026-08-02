@@ -24,32 +24,3 @@ items:
     text: "Am Sonntag schlafe ich lange."
     translation: { en: "On Sunday I sleep in.", ru: "В воскресенье я долго сплю.", uk: "У неділю я довго сплю." }
     explain: { en: "Days take am, never in. Sonntag is a noun — capitalized; lange stays lowercase.", ru: "С днями недели — am, а не in, хотя по-русски «в воскресенье». Sonntag — существительное, с большой буквы; lange — со строчной.", uk: "З днями тижня — am, а не in, хоча українською «у неділю». Sonntag — іменник, з великої літери; lange — з малої." }
-  - id: hoeren-ansage
-    outcomes: [zeit-uhrzeit-verstehen]
-    type: audio-comprehension
-    source:
-      kind: tts
-      rate: 0.85
-      turns:
-        - { speaker: "Ansage", text: "Guten Morgen! Der Deutschkurs beginnt heute um halb zehn. Am Freitag beginnt der Kurs um acht Uhr." }
-    question: "Wann beginnt der Kurs heute?"
-    options: ["um neun Uhr dreißig (9:30)", "um zehn Uhr dreißig (10:30)", "um acht Uhr (8:00)"]
-    correct: 0
-    translation: { en: "When does the course begin today?", ru: "Когда сегодня начинается курс?", uk: "Коли сьогодні починається курс?" }
-    explain: { en: "The announcement says: heute um halb zehn — and halb zehn is 9:30, not 10:30. Eight o'clock is the Friday time.", ru: "В объявлении сказано: heute um halb zehn, а halb zehn — это 9:30, «половина десятого». В восемь часов курс начинается в пятницу.", uk: "В оголошенні сказано: heute um halb zehn, а halb zehn — це 9:30, «пів на десяту». О восьмій годині курс починається в п'ятницю." }
-  - id: hoeren-wochenplan
-    outcomes: [zeit-uhrzeit-verstehen]
-    type: audio-comprehension
-    source:
-      kind: tts
-      rate: 0.85
-      turns:
-        - { speaker: "Anna", text: "Was machst du am Samstag?" }
-        - { speaker: "Ben", text: "Am Vormittag lerne ich Deutsch, und am Abend koche ich für Freunde." }
-        - { speaker: "Anna", text: "Und was machst du am Sonntag?" }
-        - { speaker: "Ben", text: "Am Sonntag arbeite ich nie. Ich schlafe lange." }
-    question: "Was macht Ben am Sonntag?"
-    options: ["Er schläft lange.", "Er kocht für Freunde.", "Er lernt Deutsch."]
-    correct: 0
-    translation: { en: "What does Ben do on Sunday?", ru: "Что Бен делает в воскресенье?", uk: "Що Бен робить у неділю?" }
-    explain: { en: "Ben says: Am Sonntag arbeite ich nie. Ich schlafe lange. Cooking for friends and studying German are his Saturday plans.", ru: "Бен говорит: Am Sonntag arbeite ich nie. Ich schlafe lange. Готовить для друзей и учить немецкий он собирается в субботу.", uk: "Бен каже: Am Sonntag arbeite ich nie. Ich schlafe lange. Готувати для друзів і вчити німецьку він збирається в суботу." }

@@ -1,0 +1,14 @@
+# What Qwen3-TTS actually loads on the generation path, pinned to the versions the corpus is
+# being produced with. Derived by inspecting `sys.modules` after a real
+# `generate_custom_voice()` call rather than by reading the package's dependency list: of the
+# candidates that appear in `qwen_tts` source imports, only gradio never loads — and gradio is
+# the one that would drag fastapi and starlette past the Studio's own pins.
+transformers==4.57.3
+accelerate==1.14.0
+onnxruntime==1.28.0
+torch==2.13.0
+torchaudio==2.11.0
+soundfile==0.14.0
+librosa==0.11.0
+einops==0.8.2
+sox==1.5.0

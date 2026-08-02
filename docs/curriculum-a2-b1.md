@@ -796,16 +796,28 @@ zusammenfassen.").
   family independently. **One family per unit was the original contract and it was a regression:**
   A1 and A2 both ship 1.80 families per topic (18 of 22 A2 topics carry more than one), while the
   ten-unit B1 contract would have measured 10 of 31 grammar points.
-  **Why this must be decided before a unit ships, and not after:** a topic's *first* family arms
-  from whole practice sets (`armingSetIds`); the moment a second family exists, `probeFamilies`
-  flips **both** to item-level arming (`armingItemKeys`, `shared === true`). The existing family's
-  arming basis therefore changes underneath it, and its `armedAt` moves if the learner's earliest
-  attempt on that topic was on an item that does not carry its outcomes. P12-2 (2026-07-20) fixed
-  the catastrophic form of this — arming used to degrade to nothing and discard the cohort — but it
-  did not make adding a family free. So a second family on a shipped unit stays what it already
-  was: allowed **only for a measured reason, with `armedAt` checked before and after** (a >~1-day
-  shift re-labels probes already taken). B1.1–B1.3 keep the single family they shipped with unless
-  that measurement says otherwise; the 24/31 figure above assumes they do.
+  **Why this had to be decided before a unit shipped — and why it no longer does (amended
+  2026-08-02).** The rule was written when a topic's *first* family armed from whole practice sets
+  (`armingSetIds`) and the arrival of a second flipped **both** to item-level arming
+  (`armingItemKeys`, `shared === true`), moving the existing family's `armedAt` underneath it.
+  P12-2 (2026-07-20) fixed the catastrophic form of that — arming used to degrade to nothing and
+  discard the cohort — but did not make adding a family free.
+
+  **P19-4 (2026-07-31) removed the coupling entirely.** Every family now commits its own explicit
+  `arming:` list, and `probeFamilies` reads nothing else: `armingItemKeys: [...(s.arming ?? [])]`
+  (`src/lib/probes.ts`). There is no `armingSetIds`, no `shared` flag and no set-membership
+  fallback left in the file. A new family therefore **cannot** change an existing family's arming
+  basis, because that basis is a literal list in the existing family's own YAML.
+
+  So the bar drops from "only for a measured reason" to ordinary authoring care, and the
+  requirement that survives is the cheap one: **capture `armedAt` before and after anyway** — the
+  mechanism is proven from source, and a source reading is not a measurement. Baseline for
+  B1.1–B1.3 against `progress/vitaly/2026-08-02.json`: `probe-erfahrungen-erzaehlen`
+  2026-07-24T20:01:55.992Z, `probe-leben-veraendern` 2026-07-25T12:18:51.710Z,
+  `probe-gesundheit-wohlbefinden` 2026-07-25T20:40:16.691Z.
+
+  B1.1–B1.3 may therefore gain the families their competences need (P18-3), and the manifest
+  figure above rises accordingly.
 - **Operating cadence** (extends P5-11 to B1): after every two shipped units — triage the grading
   queue to zero, rerun `bun run progress:audit`, re-read the weak-focus table, and only then
   author the next pair; the grammar ratchet and the tag registry move in every unit's own commit.

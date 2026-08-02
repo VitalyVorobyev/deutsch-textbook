@@ -1,0 +1,131 @@
+# Delayed probe family 3 of 3 — ONE competence: building lassen's bracket cold, with
+# the conjugated lassen in second position and a BARE infinitive at the very end. Three
+# parallel translate variants, served in authoring order across the 2/7/21 delays — one
+# retention curve over one bracket. (The unit's fourth grammar point,
+# adjektiv-nullartikel, is deliberately left for a later pass.)
+# Translate rather than cloze or mc, because half of this competence is a POSITION and
+# a cloze cannot grade one: the gap is printed where the infinitive belongs, so the
+# learner cannot leave the second verb next to lassen (docs/authoring-checklists.md — a
+# cloze gap grades a form, never a position). The three errors this check exists to see
+# are all invisible in a printed frame: the smuggled zu (ich lasse … zu putzen, the A2
+# zu-infinitive rule applied to a verb that never takes it), the participle borrowed
+# from a foreign "have it done" (lasse … geputzt), and the second verb pulled forward
+# out of the bracket.
+# The instruction names lassen and the lexical verb. Without lassen the prompts render
+# perfectly well as an ordinary active sentence with a different subject (eine Firma
+# putzt meine Wohnung), and the bracket's build is what is probed, never the choice of
+# construction — the same rule the reisen-probleme genitive family states: name the
+# connector, grade its rule.
+# Pinned are exactly both ends of the bracket: the conjugated lassen and the
+# clause-final infinitive. The object between them is carrier and stays unpinned. Each
+# pinned token occurs once in every accepted rendering, and each accepted rendering
+# keeps the infinitive at the wall, so a bracket error is always attributable.
+# Cells: lasse (1sg), lassen (1pl), lässt (3sg with the umlaut, like schlafen →
+# schläft) — one paradigm, three persons, and the umlaut cell is the one a learner
+# regularizes. All three stay in lassen's veranlassen sense, the one the grammar
+# inventory's B1 point names (data/grammar-inventory.yaml, id: lassen); Lass uns … is a
+# different job of the same verb and would make the variants non-parallel.
+# Content pairings fresh: Wohnung + putzen, Schrank + abholen, Auto + waschen —
+# checked by grepping each noun and verb across content/, not by re-reading this list.
+# None of the article's lassen examples (ihr Fahrrad reparieren, meine Augen
+# kontrollieren, mich lange schlafen, eine Pause machen), the reading's (seine Augen
+# kontrollieren) or the practice set's (die Haare schneiden, meine Zähne kontrollieren,
+# eine kurze Pause machen, meine Augen kontrollieren) recurs here.
+# Arming takes all three of the topic's lassen-verwendung practice items, including
+# uebersetzen-lass-uns: producing any lassen bracket is what starts this clock, and the
+# validator holds every arming key to the family's own focus tag.
+# `outcomes: [gewohnheiten-beschreiben]` is the outcome the two veranlassen arming
+# items declare (uebersetzen-lass-uns is the suggestion job and declares
+# ratschlaege-formulieren), and having something done on a regular schedule is a habit
+# statement.
+# The topic's reflexive-frame family declares the same outcome, and that is harmless —
+# arming is by explicit item key (`armingItemKeys`, src/lib/probes.ts), never by
+# outcome, so the two families arm from disjoint item sets and neither can move the
+# other's armedAt.
+topic: gesundheit-wohlbefinden
+role: probe
+title:
+  en: "Delayed check — having it done with lassen"
+  ru: "Отложенная проверка — поручить дело через lassen"
+  uk: "Відкладена перевірка — доручити справу через lassen"
+  de: "Kontrolle mit Abstand — etwas machen lassen"
+arming:
+  - b1/gesundheit-wohlbefinden::cloze-laesst-schneiden
+  - b1/gesundheit-wohlbefinden::mc-zaehne-kontrollieren
+  - b1/gesundheit-wohlbefinden::uebersetzen-lass-uns
+items:
+  - id: variant-a
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate — say who arranges it, with lassen. For 'clean' take putzen."
+      ru: "Переведите — назовите того, кто это организует, через lassen. Для «убирать» возьмите putzen."
+      uk: "Перекладіть — назвіть того, хто це організовує, через lassen. Для «прибирати» візьміть putzen."
+      de: "Übersetze — sag mit lassen, wer es veranlasst. Für das Saubermachen nimm putzen."
+    prompt_en: "I have my flat cleaned every month."
+    prompt_ru: "Каждый месяц мне убирают квартиру."
+    prompt_uk: "Щомісяця мені прибирають квартиру."
+    answer: "Ich lasse meine Wohnung jeden Monat putzen."
+    accept:
+      # Position 1 taken by the time phrase or the object; the bracket is unchanged.
+      - "Jeden Monat lasse ich meine Wohnung putzen."
+      - "Meine Wohnung lasse ich jeden Monat putzen."
+      # Time adverbial before the object — the same bracket, the other Mittelfeld order.
+      - "Ich lasse jeden Monat meine Wohnung putzen."
+    key_tokens: ["lasse", "putzen"]
+    explain:
+      en: "Graded are both ends of the bracket: lasse in second position, putzen as a bare infinitive at the very end. lassen behaves exactly like a modal verb here — and after a modal nobody writes zu, so ich lasse meine Wohnung zu putzen carries the A2 zu-infinitive rule to a verb that never takes it. The other tempting form is the participle (lasse … geputzt), borrowed from languages that build this meaning with a past participle; German does not. The sentence names no cleaner, and it does not have to: lassen says the work is arranged, not done by the subject."
+      ru: "Оцениваются оба конца рамки: lasse на втором месте и putzen голым инфинитивом в самом конце. lassen ведёт себя здесь ровно как модальный глагол — а после модального никто не пишет zu, поэтому ich lasse meine Wohnung zu putzen переносит правило zu-инфинитива с A2 на глагол, который его не берёт никогда. Вторая соблазнительная форма — причастие (lasse … geputzt), заимствованное из языков, которые строят это значение через причастие; немецкий так не делает. Уборщик в предложении не назван, и называть его не нужно: lassen говорит, что работа организована, а не выполнена подлежащим."
+      uk: "Оцінюються обидва кінці рамки: lasse на другому місці та putzen голим інфінітивом у самому кінці. lassen поводиться тут рівно як модальне дієслово — а після модального ніхто не пише zu, тому ich lasse meine Wohnung zu putzen переносить правило zu-інфінітива з A2 на дієслово, яке його не бере ніколи. Друга спокуслива форма — дієприкметник (lasse … geputzt), запозичений з мов, що будують це значення через дієприкметник; німецька так не робить. Прибиральника в реченні не названо, і називати його не треба: lassen каже, що роботу організовано, а не виконано підметом."
+      de: "Bewertet werden beide Enden des Rahmens: lasse auf Position zwei, putzen als bloßer Infinitiv ganz am Ende. lassen verhält sich hier genau wie ein Modalverb — und nach einem Modalverb schreibt niemand zu. Ein ich lasse meine Wohnung zu putzen trägt also die A2-Regel vom zu-Infinitiv auf ein Verb, das nie eines nimmt. Die zweite verlockende Form ist das Partizip (lasse … geputzt), aus Sprachen entlehnt, die diese Bedeutung mit einem Partizip bauen; das Deutsche tut das nicht. Wer putzt, steht nicht im Satz und muss es auch nicht: lassen sagt, dass die Arbeit veranlasst ist, nicht dass das Subjekt sie selbst tut."
+
+  - id: variant-b
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate — say who arranges it, with lassen. For 'pick up' take abholen, for 'wardrobe' der Schrank."
+      ru: "Переведите — назовите того, кто это организует, через lassen. Для «забрать» возьмите abholen, для «шкаф» — der Schrank."
+      uk: "Перекладіть — назвіть того, хто це організовує, через lassen. Для «забрати» візьміть abholen, для «шафа» — der Schrank."
+      de: "Übersetze — sag mit lassen, wer es veranlasst. Für das Abtransportieren nimm abholen, für das Möbelstück der Schrank."
+    prompt_en: "On Saturday we are having the old wardrobe picked up."
+    prompt_ru: "В субботу у нас забирают старый шкаф."
+    prompt_uk: "У суботу в нас забирають стару шафу."
+    answer: "Wir lassen den alten Schrank am Samstag abholen."
+    accept:
+      # Position 1 taken by the time phrase; the bracket is unchanged.
+      - "Am Samstag lassen wir den alten Schrank abholen."
+      # Time adverbial before the object — the same bracket, the other Mittelfeld order.
+      - "Wir lassen am Samstag den alten Schrank abholen."
+    key_tokens: ["lassen", "abholen"]
+    explain:
+      en: "The same two ends, with a separable verb at the wall: lassen opens the bracket, abholen closes it — and it closes it whole. A separable verb splits only when it is the conjugated one; as the second verb after lassen it stays in one piece, so ab-holen never becomes lassen … den Schrank ab. Note also that lassen alone conjugates: wir lassen, and the infinitive after it never changes for person or number."
+      ru: "Те же два конца, но у стены стоит отделяемый глагол: lassen открывает рамку, abholen её закрывает — и закрывает целиком. Отделяемый глагол распадается только тогда, когда спрягается сам; вторым глаголом после lassen он остаётся единым, поэтому ab-holen никогда не превращается в lassen … den Schrank ab. И спрягается здесь только lassen: wir lassen, а инфинитив после него не меняется ни по лицу, ни по числу."
+      uk: "Ті самі два кінці, але біля стіни стоїть відокремлюване дієслово: lassen відкриває рамку, abholen її закриває — і закриває цілком. Відокремлюване дієслово розпадається лише тоді, коли відмінюється саме; другим дієсловом після lassen воно залишається єдиним, тому ab-holen ніколи не перетворюється на lassen … den Schrank ab. І відмінюється тут лише lassen: wir lassen, а інфінітив після нього не змінюється ні за особою, ні за числом."
+      de: "Dieselben beiden Enden, an der Wand nun ein trennbares Verb: lassen öffnet den Rahmen, abholen schließt ihn — und zwar als Ganzes. Ein trennbares Verb trennt sich nur, wenn es selbst das konjugierte ist; als zweites Verb nach lassen bleibt es zusammen, aus ab-holen wird also nie lassen … den Schrank ab. Und konjugiert wird hier allein lassen: wir lassen, während der Infinitiv dahinter sich weder nach Person noch nach Numerus richtet."
+
+  - id: variant-c
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate — say who arranges it, with lassen. For 'wash' take waschen."
+      ru: "Переведите — назовите того, кто это организует, через lassen. Для «мыть» возьмите waschen."
+      uk: "Перекладіть — назвіть того, хто це організовує, через lassen. Для «мити» візьміть waschen."
+      de: "Übersetze — sag mit lassen, wer es veranlasst. Für das Waschen nimm waschen."
+    prompt_en: "My neighbour has her car washed every week."
+    prompt_ru: "Соседка каждую неделю отдаёт машину на мойку."
+    prompt_uk: "Сусідка щотижня віддає машину на мийку."
+    answer: "Meine Nachbarin lässt ihr Auto jede Woche waschen."
+    accept:
+      # Position 1 taken by the time phrase; the bracket is unchanged.
+      - "Jede Woche lässt meine Nachbarin ihr Auto waschen."
+      # Time adverbial before the object — the same bracket, the other Mittelfeld order.
+      - "Meine Nachbarin lässt jede Woche ihr Auto waschen."
+    key_tokens: ["lässt", "waschen"]
+    explain:
+      en: "One family, one competence, and the last cell of the paradigm: the third person. lassen takes an umlaut like schlafen → schläft, so it is sie lässt, never sie lasst — the regularized form is the error this variant exists for, and it costs the sentence its whole verb. The bracket is unchanged around it: lässt second, the bare infinitive waschen at the wall, everything else between them."
+      ru: "Одна семья, одна компетенция — и последняя клетка парадигмы: третье лицо. lassen берёт умлаут, как schlafen → schläft, поэтому sie lässt, а никогда не sie lasst; выровненная форма — ошибка, ради которой существует этот вариант, и она стоит предложению всего глагола. Рамка вокруг не меняется: lässt на втором месте, голый инфинитив waschen у стены, всё остальное между ними."
+      uk: "Одна сім'я, одна компетенція — і остання клітинка парадигми: третя особа. lassen бере умлаут, як schlafen → schläft, тому sie lässt, а ніколи не sie lasst; вирівняна форма — помилка, заради якої існує цей варіант, і вона коштує реченню всього дієслова. Рамка навколо не змінюється: lässt на другому місці, голий інфінітив waschen біля стіни, усе інше між ними."
+      de: "Eine Familie, eine Fähigkeit — und die letzte Zelle des Paradigmas: die dritte Person. lassen nimmt einen Umlaut wie schlafen → schläft, also heißt es sie lässt und nie sie lasst; die regularisierte Form ist der Fehler, für den diese Variante da ist, und sie kostet den Satz sein ganzes Verb. Der Rahmen ringsum bleibt gleich: lässt auf Position zwei, der bloße Infinitiv waschen an der Wand, alles andere dazwischen."

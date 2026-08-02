@@ -36,6 +36,12 @@ jobs:
         env:
           SITE_URL: https://vitalyvorobyev.github.io
           BASE_PATH: /deutsch-textbook
+          # The reviewed recordings ship here too. 41 MP3s at 64 kbps mono is 14.2 MB against a
+          # 69 MB site and a 1 GB Pages limit, and a learner fetches one only when they open the
+          # item. Withholding them would have left the public demo speaking browser TTS over
+          # scripts that were recorded, reviewed and approved — a worse demo for no saving worth
+          # having. `src/lib/audio.ts` explains what the flag now means.
+          PUBLIC_ATLAS_AUDIO_BUNDLE: '1'
 
       - uses: actions/upload-pages-artifact@v5
         with:

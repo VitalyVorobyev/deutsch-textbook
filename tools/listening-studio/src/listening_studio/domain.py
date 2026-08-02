@@ -25,6 +25,26 @@ class Bilingual(BaseModel):
     uk: str | None = None
 
 
+# The preset voices each adapter documents, in the publisher's own order. Ordered because a
+# model switch reassigns voices by position, and a set would make that reassignment depend on
+# hash order — the same project would come back with different speakers on different runs.
+# `tests/test_domain.py` holds these equal to `models.lock.json`, which is the provenance record.
+VOICE_SETS: dict[str, tuple[str, ...]] = {
+    "qwen_tts": (
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee",
+    ),
+    "parler_tts": ("Nicole", "Christopher", "Megan", "Michelle"),
+}
+
+
 class Brief(BaseModel):
     source_text: str = ""
     level: Literal["A1", "A2", "B1", "B2"] = "A2"
@@ -60,6 +80,11 @@ class Line(BaseModel):
     display_text: str
     synthesis_text: str | None = None
     voice: str = "Ryan"
+    # Natural-language delivery control, passed to Qwen3-TTS as `instruct`. The nine preset
+    # timbres are fixed, so this is the only lever that separates a station announcement from
+    # two friends making plans — and register is most of what makes listening material sound
+    # real. Written in German: the model takes the instruction in the language it speaks.
+    style: str | None = None
     pace: float = Field(default=1.0, ge=0.7, le=1.15)
     pause_after_ms: int = Field(default=350, ge=0, le=5000)
     seed: int = 0
@@ -70,6 +95,32 @@ class Line(BaseModel):
         for override in self.pronunciation_overrides:
             text = text.replace(override.display, override.synthesis)
         return text
+
+
+def reassign_voices(lines: list[Line], adapter: str) -> list[Line]:
+    """Give every speaker a voice the named adapter actually offers.
+
+    Switching the synthesis model leaves each line carrying the previous model's preset voice,
+    and the Studio's script form submits those old voices in the same request as the new adapter —
+    so the editor has no way to fix it by hand before the payload is validated. Reassigning per
+    **speaker** rather than per line preserves the one property that matters editorially: two
+    speakers still sound like two people. Which voice each speaker lands on is arbitrary and
+    meant to be adjusted afterwards. A voice the new adapter already offers is left alone.
+    """
+
+    voices = VOICE_SETS.get(adapter)
+    if not voices:
+        return lines
+    assigned: dict[str, str] = {}
+    for line in lines:
+        if line.voice in voices:
+            assigned.setdefault(line.speaker, line.voice)
+    for line in lines:
+        if line.speaker in assigned:
+            continue
+        taken = set(assigned.values())
+        assigned[line.speaker] = next((v for v in voices if v not in taken), voices[0])
+    return [line.model_copy(update={"voice": assigned[line.speaker]}) for line in lines]
 
 
 class SingleChoice(BaseModel):
@@ -155,6 +206,17 @@ class RevisionPayload(BaseModel):
     questions: list[Question] = Field(min_length=1)
     tts_adapter: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
     context_sounds: list[ContextSound] = Field(default_factory=list, max_length=4)
+    # Silence prepended to the speech so a scene-opening sound can be heard before anyone
+    # talks. Without it the mixer can only ever place a sound *over* the dialogue: `adelay`
+    # pushes a context sound later, never earlier, and `amix duration=first` truncates the
+    # result to the speech. Five artifacts shipped that way and every one was wrong in the
+    # same manner — a ring-back tone under "Praxis Doktor Klein, guten Tag" (the call has
+    # obviously been answered), a Freizeichen over the Bürgerbüro already speaking, an
+    # answering-machine beep across "Hallo Tom, hier ist Sara". The scenes were right; the
+    # mixer had no way to express them.
+    #
+    # Capped at 5 s: this buys a ring or a beep, not a musical introduction.
+    lead_in_ms: int = Field(default=0, ge=0, le=5000)
     max_replays: int = Field(default=3, ge=1, le=10)
     # How this script came to exist, and — when a model drafted it — the exact prompt that
     # was submitted, captured at generation time and carried through every later revision.
@@ -178,21 +240,7 @@ class RevisionPayload(BaseModel):
         line_ids = {line.id for line in self.lines}
         if len(line_ids) != len(self.lines):
             raise ValueError("line ids must be unique")
-        voice_sets = {
-            "qwen_tts": {
-                "Vivian",
-                "Serena",
-                "Uncle_Fu",
-                "Dylan",
-                "Eric",
-                "Ryan",
-                "Aiden",
-                "Ono_Anna",
-                "Sohee",
-            },
-            "parler_tts": {"Nicole", "Christopher", "Megan", "Michelle"},
-        }
-        allowed_voices = voice_sets.get(self.tts_adapter)
+        allowed_voices = VOICE_SETS.get(self.tts_adapter)
         if allowed_voices and any(line.voice not in allowed_voices for line in self.lines):
             raise ValueError(f"{self.tts_adapter} permits only publisher-documented preset voices")
         return self
@@ -226,32 +274,208 @@ class QAReport(BaseModel):
 
 
 WORD = re.compile(r"[\wäöüßÄÖÜ]+", re.UNICODE)
+# Keys are casefolded on construction: `"dreißig".casefold()` is `"dreissig"`, so a literal
+# "dreißig" key would never be hit by a lookup on casefolded input — silently, and only for the
+# entries containing ß.
 GERMAN_NUMBER_WORDS = {
-    "zwei": "2",
-    "drei": "3",
-    "vier": "4",
-    "fünf": "5",
-    "sechs": "6",
-    "sieben": "7",
-    "acht": "8",
-    "neun": "9",
-    "zehn": "10",
-    "elf": "11",
-    "zwölf": "12",
-    "dreizehn": "13",
-    "vierzehn": "14",
-    "fünfzehn": "15",
-    "sechzehn": "16",
-    "siebzehn": "17",
-    "achtzehn": "18",
-    "neunzehn": "19",
-    "zwanzig": "20",
+    word.casefold(): digits
+    for word, digits in {
+        "null": "0",
+        "eins": "1",
+        "zwei": "2",
+        "drei": "3",
+        "vier": "4",
+        "fünf": "5",
+        "sechs": "6",
+        "sieben": "7",
+        "acht": "8",
+        "neun": "9",
+        "zehn": "10",
+        "elf": "11",
+        "zwölf": "12",
+        "dreizehn": "13",
+        "vierzehn": "14",
+        "fünfzehn": "15",
+        "sechzehn": "16",
+        "siebzehn": "17",
+        "achtzehn": "18",
+        "neunzehn": "19",
+        "zwanzig": "20",
+        "dreißig": "30",
+        "vierzig": "40",
+        "fünfzig": "50",
+        "sechzig": "60",
+        "siebzig": "70",
+        "achtzig": "80",
+        "neunzig": "90",
+        "hundert": "100",
+    }.items()
 }
 
 
+#: Spellings Whisper prefers for things German says as words. Grown from observed ASR output,
+#: never from guesswork: "Frau Doktor Weber" came back as "Frau Dr. Weber" and cost a clean take
+#: one substitution in the full-audio comparison.
+ASR_SPELLINGS = {"dr": "doktor"}
+
+#: `sechzehn Uhr zehn` is transcribed `16.10 Uhr` — same time, but the unit word moves, which
+#: reads as two edits and failed two otherwise flawless takes. Rewriting the ASR form back into
+#: German word order compares the two spellings as the same sequence, and still requires the
+#: recording to contain "Uhr" at all.
+CLOCK = re.compile(r"\b(\d{1,2})[.:](\d{2})\s*Uhr\b", re.IGNORECASE)
+
+#: The same reordering, for money. German says `zwei Euro fünfzig` and Whisper writes `2,50 Euro`,
+#: which moves the unit word exactly as the clock case does — and it failed a flawless take of a
+#: market-stall dialogue on two of its seven lines, the two carrying the prices the item asks
+#: about. Rewriting the numeral form back into spoken order compares them as one sequence, and
+#: still requires the recording to contain both halves of the amount.
+PRICE = re.compile(r"\b(\d{1,3})[,.](\d{2})\s*Euro\b", re.IGNORECASE)
+
+
+#: German says the units before the tens — `fünfundzwanzig` is "five-and-twenty" — and no map of
+#: single words can hold 21-99. Whisper writes them as numerals, so a page number or a departure
+#: minute came back as two edits on an otherwise exact line.
+_UNITS = {
+    "ein": 1,
+    "eins": 1,
+    "zwei": 2,
+    "drei": 3,
+    "vier": 4,
+    "fünf": 5,
+    "sechs": 6,
+    "sieben": 7,
+    "acht": 8,
+    "neun": 9,
+}
+_TENS = {
+    w.casefold(): n
+    for w, n in {
+        "zwanzig": 20,
+        "dreißig": 30,
+        "vierzig": 40,
+        "fünfzig": 50,
+        "sechzig": 60,
+        "siebzig": 70,
+        "achtzig": 80,
+        "neunzig": 90,
+    }.items()
+}
+_TEENS = {
+    w.casefold(): n
+    for w, n in {
+        "zehn": 10,
+        "elf": 11,
+        "zwölf": 12,
+        "dreizehn": 13,
+        "vierzehn": 14,
+        "fünfzehn": 15,
+        "sechzehn": 16,
+        "siebzehn": 17,
+        "achtzehn": 18,
+        "neunzehn": 19,
+    }.items()
+}
+COMPOUND_NUMBER = re.compile(f"^({'|'.join(_UNITS)})und({'|'.join(_TENS)})$")
+
+
+def _below_hundred(word: str) -> int | None:
+    compound = COMPOUND_NUMBER.match(word)
+    if compound:
+        return _UNITS[compound[1]] + _TENS[compound[2]]
+    for table in (_TEENS, _TENS, _UNITS):
+        if word in table:
+            return table[word]
+    return None
+
+
+def german_number(word: str) -> str | None:
+    """A written-out German numeral 0-999 as digits, or None if the word is not one.
+
+    Written German closes numerals up into a single word, so `sechshundertzwölf` is one token
+    where Whisper writes `612`. A lookup table cannot hold that: it would need every value in the
+    range. This parses the three pieces the language actually composes — hundreds, the
+    units-before-tens compound, and the teens — which is what makes ICE 612, a 600-euro rent and
+    a 300-kilometre delivery all comparable with the numerals the ASR returns.
+
+    Bare `ein` is deliberately refused. It is the indefinite article far more often than it is
+    the number, and `ein Kilo Äpfel` must not turn into `1 Kilo Äpfel` when Whisper heard the
+    article and wrote the article. Inside a compound — `einundzwanzig`, `einhundert` — it counts.
+    """
+
+    # Casefolded here, not left to the caller: `dreißig`.casefold() is `dreissig`, so the tables
+    # are keyed on the folded spelling and an unfolded `siebenunddreißig` would silently miss.
+    word = word.casefold()
+    if word == "ein":
+        return None
+    if word == "null":
+        return "0"
+    head, hundred, tail = word.partition("hundert")
+    if hundred:
+        hundreds = 1 if head == "" else _UNITS.get(head)
+        if hundreds is None:
+            return None
+        if not tail:
+            return str(hundreds * 100)
+        rest = _below_hundred(tail)
+        return None if rest is None else str(hundreds * 100 + rest)
+    value = _below_hundred(word)
+    return None if value is None else str(value)
+
+
+#: Ordinals whose stem is not the cardinal: erst-, dritt-, siebt-, and acht- (which swallows the
+#: -t). Everything else is regular — cardinal + -te below 20, cardinal + -ste from 20 up.
+ORDINAL_IRREGULAR = {
+    f"{stem}{ending}": value
+    for stem, value in {"erst": "1", "dritt": "3", "siebt": "7", "acht": "8"}.items()
+    for ending in ("e", "en", "er", "es", "em")
+}
+_ORDINAL_ENDINGS = ("sten", "ster", "stes", "stem", "ste", "ten", "ter", "tes", "tem", "te")
+
+
+def ordinal_number(word: str) -> str | None:
+    """A written-out German ordinal as its digits, or None.
+
+    Dates are said as ordinals and written as numerals: `am zwanzigsten November` comes back from
+    Whisper as `am 20. November`, and `den ersten August` as `den 1. August`. Both failed clean
+    takes — a city-council date and a booked train — on notation rather than on speech.
+    """
+
+    word = word.casefold()
+    if word in ORDINAL_IRREGULAR:
+        return ORDINAL_IRREGULAR[word]
+    for ending in _ORDINAL_ENDINGS:
+        if not word.endswith(ending):
+            continue
+        stem = word[: -len(ending)]
+        # The stem of a regular ordinal is the cardinal itself: zwanzig+sten, viert -> vier+ten.
+        value = german_number(stem) if stem else None
+        if value:
+            return value
+    return None
+
+
 def normalized_words(text: str) -> list[str]:
-    words = [word.casefold() for word in WORD.findall(text)]
-    return [GERMAN_NUMBER_WORDS.get(word, word) for word in words]
+    """Script words and ASR output reduced to one comparable sequence.
+
+    The digit split is the load-bearing part. `listen` and `audio-comprehension` scripts must
+    spell numbers out ("null eins fünf sieben"), while Whisper writes the same speech as one
+    numeral ("0157") — so a flawless A1 telephone-number take scored WER 0.70 and every numeric
+    scenario in `data/listening-plan.yaml` would have failed QA on spelling rather than on
+    speech. Splitting a multi-digit token into single digits makes both spellings the same
+    sequence. It costs a little precision (spoken "zwei null" no longer differs from "zwanzig"),
+    which is the right trade for a screen whose job is to catch defects before a human listens.
+    """
+
+    spoken = PRICE.sub(r"\1 Euro \2", CLOCK.sub(r"\1 Uhr \2", text))
+    words = [word.casefold() for word in WORD.findall(spoken)]
+    out: list[str] = []
+    for word in words:
+        word = ASR_SPELLINGS.get(word, word)
+        mapped = (
+            german_number(word) or ordinal_number(word) or GERMAN_NUMBER_WORDS.get(word, word)
+        )
+        out.extend(mapped if mapped.isdigit() and len(mapped) > 1 else [mapped])
+    return out
 
 
 def edit_distance(a: list[str], b: list[str]) -> int:
@@ -266,13 +490,21 @@ def edit_distance(a: list[str], b: list[str]) -> int:
 
 def word_error_rate(expected: str, actual: str) -> float:
     words = normalized_words(expected)
-    return edit_distance(words, normalized_words(actual)) / max(1, len(words))
+    heard = normalized_words(actual)
+    # A word boundary is the ASR's guess, not evidence about the speech. German writes compounds
+    # closed up and Whisper does not always agree — `kaputtgegangen` came back as `kaputt
+    # gegangen`, which is the same three syllables and scored 0.67 on a three-word line. If the
+    # two sequences are identical once the spaces are gone, nothing was misheard.
+    if words and "".join(words) == "".join(heard):
+        return 0.0
+    return edit_distance(words, heard) / max(1, len(words))
 
 
 def line_cache_key(line: Line, adapter_revision: str, processor_version: str = "2") -> str:
     value = {
         "text": line.spoken_text(),
         "voice": line.voice,
+        "style": line.style,
         "pace": line.pace,
         "pause": line.pause_after_ms,
         "seed": line.seed,

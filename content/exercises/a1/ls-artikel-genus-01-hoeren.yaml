@@ -1,0 +1,77 @@
+topic: artikel-genus
+role: practice
+title:
+  en: In the furniture shop
+  ru: В мебельном магазине
+  uk: 'У меблевому магазині'
+items:
+- id: q1
+  outcomes:
+  - artikel-genus-erkennen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kundin
+      text: Entschuldigung, ich suche eine Lampe.
+    - speaker: Verkäufer
+      text: Die Lampen sind dort links. Brauchen Sie auch einen Tisch?
+    - speaker: Kundin
+      text: Nein, danke. Aber ich brauche noch ein Regal.
+    - speaker: Verkäufer
+      text: Das Regal dort ist neu. Der Stuhl daneben kostet zwanzig Euro.
+    - speaker: Kundin
+      text: Gut, ich nehme das Regal.
+  recording: ls-artikel-genus-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was sucht die Kundin am Anfang?
+  options:
+  - Eine Lampe.
+  - Einen Tisch.
+  - Einen Stuhl.
+  correct: 0
+  explain:
+    en: Four pieces of furniture are named in five short lines. The table is offered
+      and refused, the chair only gets a price, and the lamp is what she came in for.
+    ru: В пяти коротких репликах названы четыре предмета мебели. Стол предлагают и
+      от него отказываются, у стула лишь называют цену, а лампа — то, за чем она пришла.
+    uk: 'У п''яти коротких репліках названо чотири предмети меблів. Стіл пропонують — і від нього відмовляються, у стільця лише називають ціну, а лампа — те, по що вона прийшла.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - artikel-genus-erkennen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kundin
+      text: Entschuldigung, ich suche eine Lampe.
+    - speaker: Verkäufer
+      text: Die Lampen sind dort links. Brauchen Sie auch einen Tisch?
+    - speaker: Kundin
+      text: Nein, danke. Aber ich brauche noch ein Regal.
+    - speaker: Verkäufer
+      text: Das Regal dort ist neu. Der Stuhl daneben kostet zwanzig Euro.
+    - speaker: Kundin
+      text: Gut, ich nehme das Regal.
+  recording: ls-artikel-genus-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was kauft die Kundin?
+  options:
+  - Das Regal.
+  - Die Lampe.
+  - Den Stuhl.
+  correct: 0
+  explain:
+    en: What she is looking for and what she buys are different things, and both are
+      said. The last line is the one that decides it.
+    ru: То, что она ищет, и то, что покупает, — разные вещи, и названы обе. Решает
+      последняя реплика.
+    uk: 'Те, що вона шукає, і те, що купує, — різні речі, і названо обидві. Вирішує остання репліка.'
+  max_replays: 3

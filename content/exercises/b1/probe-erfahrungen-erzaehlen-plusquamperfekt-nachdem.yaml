@@ -1,0 +1,115 @@
+# Delayed probe family 2 of 3 — ONE competence: building the nachdem-staircase cold,
+# with the Plusquamperfekt in the subordinate clause and its conjugated auxiliary at
+# the very end. Three parallel translate variants, served in authoring order across the
+# 2/7/21 delays — one retention curve over one clause shape.
+# Translate rather than cloze, because half of this competence is a POSITION, and a
+# cloze cannot grade one: the gap is printed where the word belongs, so the learner
+# cannot put hatte/waren anywhere else (docs/authoring-checklists.md — a cloze gap
+# grades a form, never a position). The two errors this check exists to see are exactly
+# the two the article names under Häufige Fehler: the flattened staircase (Nachdem ich
+# die Prüfung bestand) and the fronted auxiliary (Nachdem ich hatte gegessen). Only a
+# free sentence can produce either.
+# The instruction names nachdem, because EN "after …" renders just as well with danach
+# or a bare Perfekt, and the clause's build is what is probed, never the connector's
+# choice — the same rule the reisen-probleme genitive family states: name the
+# connector, grade its rule.
+# Pinned are the opener and both words of the Plusquamperfekt — nachdem, the participle
+# and the clause-final auxiliary. All three are what plusquamperfekt-nachdem grades: a
+# Präteritum in the nachdem-clause loses the participle, a fronted auxiliary moves
+# hatte/waren, and both land on the tag. Each pinned token occurs once in every
+# accepted rendering.
+# Cells: haben-auxiliary twice (unterschrieben hatte, beantwortet hatte) and
+# sein-auxiliary once (gegangen waren) — the auxiliary rule rides inside the tense, so
+# a family without a sein cell would leave half the paradigm unprobed.
+# Content pairings fresh: Gäste + gehen with Küche + aufräumen, Vertrag +
+# unterschreiben, Fragen + beantworten with Raum + verlassen — checked by grepping each
+# noun and verb across content/, not by re-reading this list. None of the article's
+# nachdem examples (Prüfung bestanden, Zug abgefahren, umgezogen, gegessen, eine Stunde
+# gewartet), the reading's (Zettel gefunden) or the practice set's (E-Mail gelesen,
+# gegessen, Bus abgefahren, Bericht geschrieben) recurs here.
+# `outcomes: [vorzeitigkeit-ausdruecken]` is the outcome every arming item declares,
+# and the can-do is this competence and nothing else: "mit nachdem und Plusquamperfekt
+# sagen, was zuerst geschah". Arming is by explicit item key (`armingItemKeys`,
+# src/lib/probes.ts), never by outcome, so this family and the topic's Präteritum
+# family arm from disjoint item sets and neither can move the other's armedAt.
+topic: erfahrungen-erzaehlen
+role: probe
+title:
+  en: "Delayed check — the nachdem staircase"
+  ru: "Отложенная проверка — лестница времён после nachdem"
+  uk: "Відкладена перевірка — сходи часів після nachdem"
+  de: "Kontrolle mit Abstand — die Zeitentreppe nach nachdem"
+arming:
+  - b1/erfahrungen-erzaehlen::mc-nachdem-tense
+  - b1/erfahrungen-erzaehlen::cloze-gegessen-hatten
+  - b1/erfahrungen-erzaehlen::cloze-war-abgefahren
+  - b1/erfahrungen-erzaehlen::uebersetzen-nachdem-bericht
+items:
+  - id: variant-a
+    outcomes: [vorzeitigkeit-ausdruecken]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Translate as written narrative — put the earlier event into a nachdem-clause. For 'leave' take gehen, for 'tidy up' aufräumen."
+      ru: "Переведите как письменный рассказ — более раннее событие оформите придаточным с nachdem. Для «уйти» возьмите gehen, для «убрать» — aufräumen."
+      uk: "Перекладіть як письмову розповідь — ранішу подію оформіть підрядним з nachdem. Для «піти» візьміть gehen, для «прибрати» — aufräumen."
+      de: "Übersetze als geschriebene Erzählung — pack das frühere Ereignis in einen nachdem-Satz. Für das Weggehen nimm gehen, für das Saubermachen aufräumen."
+    prompt_en: "After the guests had left, we tidied up the kitchen."
+    prompt_ru: "После того как гости ушли, мы убрали кухню."
+    prompt_uk: "Після того як гості пішли, ми прибрали кухню."
+    answer: "Nachdem die Gäste gegangen waren, räumten wir die Küche auf."
+    accept:
+      # The main clause first; the nachdem-clause keeps its shape either way.
+      - "Wir räumten die Küche auf, nachdem die Gäste gegangen waren."
+    key_tokens: ["Nachdem", "nachdem", "gegangen", "waren"]
+    explain:
+      en: "Graded is the staircase's upper step: nachdem opens the clause, the participle gegangen stands next to last, and waren — the conjugated verb — closes it. gehen is a change of place, so the Plusquamperfekt takes sein, and the Präteritum of sein is waren. Two traps sit here. Putting the clause in the Präteritum (Nachdem die Gäste gingen) flattens the staircase and throws away the before/after that nachdem promises. And pulling the auxiliary forward (Nachdem die Gäste waren gegangen) keeps the tense but breaks the Nebensatz: the conjugated verb goes to the very end, behind the participle. The main clause then stands one step lower, in the Präteritum: räumten … auf."
+      ru: "Оценивается верхняя ступень лестницы: nachdem открывает придаточное, причастие gegangen стоит предпоследним, а waren — спрягаемый глагол — его закрывает. gehen означает смену места, поэтому Plusquamperfekt берёт sein, а Präteritum от sein — waren. Здесь две ловушки. Präteritum в придаточном (Nachdem die Gäste gingen) сплющивает лестницу и выбрасывает то «до/после», которое обещает nachdem. А вынесенное вперёд вспомогательное (Nachdem die Gäste waren gegangen) сохраняет время, но ломает придаточное: спрягаемый глагол уходит в самый конец, за причастие. Главное предложение стоит ступенькой ниже, в Präteritum: räumten … auf."
+      uk: "Оцінюється верхня сходинка: nachdem відкриває підрядне, дієприкметник gegangen стоїть передостаннім, а waren — відмінюване дієслово — його закриває. gehen означає зміну місця, тому Plusquamperfekt бере sein, а Präteritum від sein — waren. Тут дві пастки. Präteritum у підрядному (Nachdem die Gäste gingen) сплющує сходи й викидає те «до/після», яке обіцяє nachdem. А винесене вперед допоміжне (Nachdem die Gäste waren gegangen) зберігає час, але ламає підрядне: відмінюване дієслово йде в самий кінець, за дієприкметник. Головне речення стоїть сходинкою нижче, у Präteritum: räumten … auf."
+      de: "Bewertet wird die obere Stufe der Treppe: nachdem eröffnet den Nebensatz, das Partizip gegangen steht vorletzt, und waren — das konjugierte Verb — schließt ihn. gehen ist ein Ortswechsel, also nimmt das Plusquamperfekt sein, und das Präteritum von sein heißt waren. Zwei Fallen liegen hier. Ein Präteritum im Nebensatz (Nachdem die Gäste gingen) macht die Treppe flach und wirft den zeitlichen Abstand weg, den nachdem verspricht. Und ein vorgezogenes Hilfsverb (Nachdem die Gäste waren gegangen) behält das Tempus, bricht aber den Nebensatz: Das konjugierte Verb geht ganz ans Ende, hinter das Partizip. Der Hauptsatz steht dann eine Stufe tiefer, im Präteritum: räumten … auf."
+
+  - id: variant-b
+    outcomes: [vorzeitigkeit-ausdruecken]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Translate as written narrative — put the earlier event into a nachdem-clause. For 'sign' take unterschreiben, for 'contract' der Vertrag."
+      ru: "Переведите как письменный рассказ — более раннее событие оформите придаточным с nachdem. Для «подписать» возьмите unterschreiben, для «договор» — der Vertrag."
+      uk: "Перекладіть як письмову розповідь — ранішу подію оформіть підрядним з nachdem. Для «підписати» візьміть unterschreiben, для «договір» — der Vertrag."
+      de: "Übersetze als geschriebene Erzählung — pack das frühere Ereignis in einen nachdem-Satz. Für das Unterzeichnen nimm unterschreiben, für das Papier der Vertrag."
+    prompt_en: "After I had signed the contract, everything went very fast."
+    prompt_ru: "После того как я подписал договор, всё пошло очень быстро."
+    prompt_uk: "Після того як я підписав договір, усе пішло дуже швидко."
+    answer: "Nachdem ich den Vertrag unterschrieben hatte, ging alles sehr schnell."
+    accept:
+      # The main clause first; the nachdem-clause keeps its shape either way.
+      - "Alles ging sehr schnell, nachdem ich den Vertrag unterschrieben hatte."
+    key_tokens: ["Nachdem", "nachdem", "unterschrieben", "hatte"]
+    explain:
+      en: "The same three graded words in a new scene: nachdem, the participle unterschrieben, and hatte at the wall. unterschreiben is not a separable verb, so its participle carries no ge- — unterschrieben, not untergeschrieben — and the auxiliary is haben, because nothing moves anywhere. The signing happened first, so it takes the upper step; ging, one step lower, is the ordinary narrative Präteritum. Writing Nachdem ich den Vertrag unterschrieb would put both events on the same step, and the sentence would stop saying which came first."
+      ru: "Те же три оцениваемых слова в новой сцене: nachdem, причастие unterschrieben и hatte у стены. unterschreiben — глагол неотделяемый, поэтому его причастие обходится без ge-: unterschrieben, а не untergeschrieben; вспомогательный — haben, ведь никто никуда не перемещается. Подписание произошло раньше, значит, ему верхняя ступень; ging ступенькой ниже — обычный повествовательный Präteritum. Написать Nachdem ich den Vertrag unterschrieb значит поставить оба события на одну ступень, и предложение перестанет говорить, что было раньше."
+      uk: "Ті самі три оцінювані слова в новій сцені: nachdem, дієприкметник unterschrieben і hatte біля стіни. unterschreiben — дієслово невідокремлюване, тому його дієприкметник обходиться без ge-: unterschrieben, а не untergeschrieben; допоміжне — haben, адже ніхто нікуди не переміщується. Підписання сталося раніше, отже, йому верхня сходинка; ging сходинкою нижче — звичайний оповідний Präteritum. Написати Nachdem ich den Vertrag unterschrieb означає поставити обидві події на одну сходинку, і речення перестане казати, що було раніше."
+      de: "Dieselben drei bewerteten Wörter in einer neuen Szene: nachdem, das Partizip unterschrieben und hatte an der Wand. unterschreiben ist untrennbar, sein Partizip kommt also ohne ge- aus — unterschrieben, nicht untergeschrieben —, und das Hilfsverb ist haben, denn hier bewegt sich niemand. Das Unterschreiben liegt vorn, also bekommt es die obere Stufe; ging steht eine Stufe tiefer, im gewöhnlichen Erzählpräteritum. Nachdem ich den Vertrag unterschrieb stellt beide Ereignisse auf dieselbe Stufe, und der Satz sagt nicht mehr, was zuerst kam."
+
+  - id: variant-c
+    outcomes: [vorzeitigkeit-ausdruecken]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Translate as written narrative — put the earlier event into a nachdem-clause. For 'answer' take beantworten, for 'leave' verlassen."
+      ru: "Переведите как письменный рассказ — более раннее событие оформите придаточным с nachdem. Для «ответить» возьмите beantworten, для «покинуть» — verlassen."
+      uk: "Перекладіть як письмову розповідь — ранішу подію оформіть підрядним з nachdem. Для «відповісти» візьміть beantworten, для «покинути» — verlassen."
+      de: "Übersetze als geschriebene Erzählung — pack das frühere Ereignis in einen nachdem-Satz. Für das Antworten nimm beantworten, für das Hinausgehen verlassen."
+    prompt_en: "After she had answered all the questions, she left the room."
+    prompt_ru: "После того как она ответила на все вопросы, она покинула комнату."
+    prompt_uk: "Після того як вона відповіла на всі запитання, вона покинула кімнату."
+    answer: "Nachdem sie alle Fragen beantwortet hatte, verließ sie den Raum."
+    accept:
+      # The main clause first; the nachdem-clause keeps its shape either way.
+      - "Sie verließ den Raum, nachdem sie alle Fragen beantwortet hatte."
+    key_tokens: ["Nachdem", "nachdem", "beantwortet", "hatte"]
+    explain:
+      en: "One family, one competence: the nachdem-clause built cold, a third time. beantworten is untrennbar too, so beantwortet has no ge-, and haben carries it. What the pin measures is the whole upper step — the conjunction that demands it, the participle that names the earlier event, and the auxiliary standing at the very end of its clause. Then verließ drops back to the Präteritum, and the two steps together say what an English 'after' says with word order alone."
+      ru: "Одна семья, одна компетенция: придаточное с nachdem, построенное без подготовки, в третий раз. beantworten тоже неотделяемый, поэтому beantwortet без ge-, а несёт его haben. Закреплённые токены измеряют всю верхнюю ступень: союз, который её требует, причастие, называющее более раннее событие, и вспомогательный глагол в самом конце придаточного. Затем verließ опускается в Präteritum, и обе ступени вместе говорят то, что в русском передаёт одно «после того как»."
+      uk: "Одна сім'я, одна компетенція: підрядне з nachdem, побудоване без підготовки, утретє. beantworten теж невідокремлюваний, тому beantwortet без ge-, а несе його haben. Закріплені токени вимірюють усю верхню сходинку: сполучник, який її вимагає, дієприкметник, що називає ранішу подію, і допоміжне дієслово в самому кінці підрядного. Потім verließ опускається в Präteritum, і обидві сходинки разом кажуть те, що передає одне «після того як»."
+      de: "Eine Familie, eine Fähigkeit: der nachdem-Satz zum dritten Mal aus dem Stand gebaut. Auch beantworten ist untrennbar, also steht beantwortet ohne ge-, und haben trägt es. Bewertet wird die ganze obere Stufe — die Konjunktion, die sie verlangt, das Partizip, das das frühere Ereignis benennt, und das Hilfsverb ganz am Ende seines Nebensatzes. Danach fällt verließ ins Präteritum zurück, und beide Stufen zusammen sagen die Reihenfolge, die andere Sprachen oft allein der Wortstellung überlassen."

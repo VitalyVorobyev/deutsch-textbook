@@ -122,10 +122,15 @@ Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery 
 Opening or replaying a listening artifact likewise creates no evidence; only its independently
 identified exercise question can write a verified attempt. The published MP3 lives beside its record
 in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
-what QA ran on and what the editor approved, not what a learner downloads. `bun run build:desktop`
-sets `PUBLIC_ATLAS_AUDIO_BUNDLE=1` and copies the MP3s into the desktop build; the public demo
-speaks the same scripts through browser TTS (`src/integrations/audio-bundle.ts`). The flag is set
-in-process rather than as a shell prefix so the Windows release build can run the same command.
+what QA ran on and what the editor approved, not what a learner downloads.
+`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it**:
+`bun run build:desktop` for the desktop app (in-process rather than as a shell prefix, so the
+Windows release build can run the same command) and `.github/workflows/pages.yml` for the public
+demo. The corpus is 14.2 MB against a 69 MB site, so the split the flag originally encoded —
+recordings on the desktop, browser TTS on the web — bought nothing worth the worse demo. What it
+distinguishes now is a shipping build from a lean one with no binaries; TTS remains the live
+fallback for a recording that is absent or fails to load (`src/integrations/audio-bundle.ts`,
+`src/lib/audio.ts`).
 
 ## Listening authoring boundary
 

@@ -16,10 +16,15 @@ dependencies = [
   "typer==0.17.4",
   "uvicorn==0.35.0",
   "pyyaml==6.0.2",
+  # Base, not `mlx`. `wav_duration` swallows an ImportError and returns None, and the publisher
+  # then falls back to the brief's *requested* length — silently writing the number that the
+  # measured duration exists to replace. Reading a WAV header is not an ML concern; it is what
+  # the approval page states against the plan and what `listening.yaml` publishes.
+  "soundfile==0.13.1",
 ]
 
 [project.optional-dependencies]
-mlx = ["mlx-lm==0.28.3", "mlx-whisper==0.4.3", "soundfile==0.13.1"]
+mlx = ["mlx-lm==0.28.3", "mlx-whisper==0.4.3"]
 test = ["httpx==0.28.1", "mypy==1.18.2", "pytest==8.4.2", "ruff==0.13.1"]
 
 [project.scripts]

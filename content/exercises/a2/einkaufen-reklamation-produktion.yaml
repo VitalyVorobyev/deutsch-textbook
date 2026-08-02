@@ -5,39 +5,6 @@ title:
   ru: "Практика — возврат товара: аудирование, письмо, речь"
   uk: "Практика — повернення товару: аудіювання, письмо, мовлення"
 items:
-  - id: hoeren-service-schalter
-    outcomes: [umtausch-begruenden]
-    type: audio-comprehension
-    instruction:
-      en: "The zip of Sara's jacket has broken and she is back at the service counter of the Kaufhaus Nordstern. You already know what she wants — listen for why she wants it."
-      ru: "У куртки Сары сломалась молния, и она снова стоит у стойки обслуживания универмага «Нордштерн». Чего она хочет, вы уже знаете, — слушайте, почему."
-      uk: "У куртки Сари зламалася блискавка, і вона знову стоїть біля стійки обслуговування універмагу «Нордштерн». Чого вона хоче, ви вже знаєте, — слухайте, чому."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Verkäufer", text: "Guten Tag! Was kann ich für Sie tun?" }
-        - { speaker: "Sara", text: "Guten Tag. Ich habe diese Jacke hier gekauft. Der Reißverschluss ist kaputt gegangen." }
-        - { speaker: "Verkäufer", text: "Das tut mir leid. Haben Sie den Bon?" }
-        - { speaker: "Sara", text: "Ja, hier ist die Quittung." }
-        - { speaker: "Verkäufer", text: "Danke. Möchten Sie das Geld zurück? Oder soll die Jacke in die Reparatur gehen?" }
-        - { speaker: "Sara", text: "Nein, ich möchte die Jacke umtauschen. Sie passt mir sehr gut, und die Qualität ist besser als im Internet." }
-        - { speaker: "Verkäufer", text: "Kein Problem. Ich hole Ihnen eine Jacke in Größe 40." }
-    question: "Warum möchte Sara kein Geld zurück?"
-    options:
-      - "Die Jacke passt ihr gut, und die Qualität ist besser als im Internet."
-      - "Der Verkäufer gibt kein Geld zurück."
-      - "Sie hat den Bon nicht mehr."
-    correct: 0
-    translation:
-      en: "Why doesn't Sara want her money back?"
-      ru: "Почему Сара не хочет вернуть деньги?"
-      uk: "Чому Сара не хоче повернути гроші?"
-    explain:
-      en: "Every option is built out of words you can hear in the dialogue, so catching a single one of them decides nothing — you have to follow who says what. The assistant does offer the money („Möchten Sie das Geld zurück?“), so he is not refusing it. Sara does hand over her receipt („Ja, hier ist die Quittung“), so she has not lost it. She turns the money down for a reason she says herself: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ The jacket is right — only this one is broken, so she wants the same jacket again."
-      ru: "Каждый вариант собран из слов, которые в диалоге звучат, поэтому поймать одно знакомое слово недостаточно — нужно проследить, кто что говорит. Деньги продавец как раз предлагает („Möchten Sie das Geld zurück?“), значит, он не отказывает. Чек Сара как раз подаёт („Ja, hier ist die Quittung“), значит, он у неё есть. От денег она отказывается по причине, которую называет сама: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ Куртка ей подходит — сломан только этот экземпляр, поэтому ей нужна такая же."
-      uk: "Кожен варіант зібраний зі слів, які в діалозі звучать, тому впіймати одне знайоме слово недостатньо — треба простежити, хто що каже. Гроші продавець якраз пропонує („Möchten Sie das Geld zurück?“), отже, він не відмовляє. Чек Сара якраз подає („Ja, hier ist die Quittung“), отже, він у неї є. Від грошей вона відмовляється з причини, яку називає сама: „Sie passt mir sehr gut, und die Qualität ist besser als im Internet.“ Куртка їй підходить — зламаний лише цей примірник, тому їй потрібна така сама."
-
   - id: cloze-timo-schuhe
     outcomes: [gefallen-passen-sagen]
     type: cloze

@@ -1,0 +1,111 @@
+topic: leben-veraendern
+role: practice
+title:
+  en: Should she move out of the city?
+  ru: Стоит ли ей уезжать из города?
+  uk: 'Чи варто їй виїжджати з міста?'
+items:
+- id: q1
+  outcomes:
+  - wohnsituation-vergleichen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Nora
+      text: Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach
+        nicht mehr zu bezahlen.
+    - speaker: Kai
+      text: Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort
+        ein Auto.
+    - speaker: Nora
+      text: Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz.
+    - speaker: Kai
+      text: Und wie lange wärst du dann jeden Tag unterwegs?
+    - speaker: Nora
+      text: Mit dem Zug ungefähr fünfzig Minuten. Im Moment brauche ich zwanzig.
+    - speaker: Kai
+      text: Also eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind das
+        Wochen.
+    - speaker: Nora
+      text: Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.
+    - speaker: Kai
+      text: Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn
+        schon gefragt?
+    - speaker: Nora
+      text: Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.
+    - speaker: Kai
+      text: Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht
+        umsonst.
+    - speaker: Nora
+      text: Da hast du recht. Ich rede am Montag mit ihm.
+  recording: ls-leben-veraendern-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie lange braucht Nora heute zur Arbeit?
+  options:
+  - Zwanzig Minuten.
+  - Fünfzig Minuten.
+  - Eine Stunde.
+  correct: 0
+  explain:
+    en: Both numbers are in one line and only the second is the present. An hour is
+      neither of them — it is the difference Kai works out in the next turn.
+    ru: 'Оба числа стоят в одной реплике, и настоящее время — только второе. Час —
+      это ни то ни другое: это разница, которую Кай выводит в следующей реплике.'
+    uk: 'Обидва числа стоять в одній репліці, і теперішній час — лише друге з них. Година — це ні те ні те: це різниця, яку Кай виводить наступною реплікою.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - wohnsituation-vergleichen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Nora
+      text: Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach
+        nicht mehr zu bezahlen.
+    - speaker: Kai
+      text: Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort
+        ein Auto.
+    - speaker: Nora
+      text: Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz.
+    - speaker: Kai
+      text: Und wie lange wärst du dann jeden Tag unterwegs?
+    - speaker: Nora
+      text: Mit dem Zug ungefähr fünfzig Minuten. Im Moment brauche ich zwanzig.
+    - speaker: Kai
+      text: Also eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind das
+        Wochen.
+    - speaker: Nora
+      text: Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.
+    - speaker: Kai
+      text: Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn
+        schon gefragt?
+    - speaker: Nora
+      text: Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.
+    - speaker: Kai
+      text: Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht
+        umsonst.
+    - speaker: Nora
+      text: Da hast du recht. Ich rede am Montag mit ihm.
+  recording: ls-leben-veraendern-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was rät Kai ihr zuerst zu tun?
+  options:
+  - Mit dem Chef über Homeoffice sprechen.
+  - Eine Wohnung auf dem Land suchen.
+  - Ein Auto kaufen.
+  correct: 0
+  explain:
+    en: The advice is a reversal of her own order — andersherum, frag zuerst — so
+      the wrong option is precisely what she was going to do first.
+    ru: Совет переворачивает её собственный порядок действий — andersherum, frag zuerst,
+      — поэтому неверный вариант и есть то, с чего она собиралась начать.
+    uk: 'Порада перевертає її власний порядок дій — andersherum, frag zuerst, — тому хибний варіант і є те, з чого вона збиралася почати.'
+  max_replays: 3

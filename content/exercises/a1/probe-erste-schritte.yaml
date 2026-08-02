@@ -65,6 +65,7 @@ items:
   - id: variant-c
     outcomes: [erste-sich-vorstellen]
     type: translate
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -75,6 +76,8 @@ items:
     answer: "Guten Morgen! Ich heiße Viktor. Ich wohne in Wien und ich lerne Deutsch."
     accept:
       - "Guten Morgen! Mein Name ist Viktor. Ich wohne in Wien und ich lerne Deutsch."
+      - "Guten Morgen! Ich heiße Viktor. Ich wohne in Wien und lerne Deutsch."
+      - "Guten Morgen! Mein Name ist Viktor. Ich wohne in Wien und lerne Deutsch."
     explain:
       en: "Two different chunks of the same introduction: wohnen takes in + the city you live in (ich wohne in Wien), and lernen names what you are studying (ich lerne Deutsch). Present tense covers both — German has no separate continuous form."
       ru: "Две другие формулы того же представления: wohnen требует in + город (ich wohne in Wien), а lernen называет то, что вы изучаете (ich lerne Deutsch). Обе — в настоящем времени: отдельной формы «продолженного» времени в немецком нет."

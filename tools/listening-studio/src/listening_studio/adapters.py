@@ -57,8 +57,9 @@ class QwenTTS:
         import torch
 
         torch.manual_seed(line.seed)
+        style = {"instruct": line.style} if line.style else {}
         wavs, rate = self._model.generate_custom_voice(
-            text=line.spoken_text(), language="German", speaker=line.voice
+            text=line.spoken_text(), language="German", speaker=line.voice, **style
         )
         write_with_pace(target, wavs[0], rate, line.pace, sf)
 
@@ -89,7 +90,8 @@ class ParlerTTS:
             self._model = ParlerTTSForConditionalGeneration.from_pretrained(model_path).to(
                 self._device
             )
-            self._tokenizer = AutoTokenizer.from_pretrained(model_path)
+            # transformers ships py.typed from 4.48 on, and `from_pretrained` is untyped in it.
+            self._tokenizer = AutoTokenizer.from_pretrained(model_path)  # type: ignore[no-untyped-call]
             tokenizer_path = locked_snapshot(
                 "google/flan-t5-large",
                 "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
@@ -100,7 +102,7 @@ class ParlerTTS:
                     "special_tokens_map.json",
                 ],
             )
-            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
+            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)  # type: ignore[no-untyped-call]
         description = (
             f"{line.voice}'s German voice is clear, close, natural, and has no background noise."
         )
@@ -121,7 +123,34 @@ class ParlerTTS:
         )
 
 
+REPO_ROOT = Path(__file__).resolve().parents[4]
+
+
+def local_checkout(model_id: str, revision: str) -> Path | None:
+    """A `.models/<repo-name>/` download of exactly `revision`, or None.
+
+    `scripts/download-qwen3-tts.py` fetches with `local_dir=`, which puts the weights in the
+    repository and leaves the Hub cache holding little more than a ref pointer — so a
+    `snapshot_download(local_files_only=True)` by repo id does not find a 1.8 GB checkpoint
+    sitting on disk. The directory is still self-describing: `huggingface_hub` writes the source
+    commit as the first line of each `.cache/huggingface/download/<file>.metadata`, and that is
+    what is checked here. **Never accept the directory on its name alone** — the manifest
+    publishes the pinned revision, and a directory that merely looks right would turn that
+    published claim into an assumption.
+    """
+
+    directory = REPO_ROOT / ".models" / model_id.rsplit("/", 1)[-1]
+    metadata = sorted((directory / ".cache" / "huggingface" / "download").glob("*.metadata"))
+    if not metadata:
+        return None
+    commits = {path.read_text().splitlines()[0].strip() for path in metadata if path.read_text()}
+    return directory if commits == {revision} else None
+
+
 def locked_snapshot(model_id: str, revision: str, allow_patterns: list[str] | None = None) -> str:
+    local = local_checkout(model_id, revision)
+    if local is not None:
+        return str(local)
     try:
         return snapshot_download(
             repo_id=model_id,
@@ -133,6 +162,24 @@ def locked_snapshot(model_id: str, revision: str, allow_patterns: list[str] | No
         raise RuntimeError(
             f"{model_id}@{revision} is not installed; run atlas-listening models fetch first"
         ) from exc
+
+
+def wav_duration(path: Path) -> float | None:
+    """Seconds of audio, or None when the file is missing or unreadable.
+
+    The approval page states this against the plan's `duration_seconds` window, because
+    "is the pace right for this level" is not answerable from the recording alone — a take can
+    sound perfectly paced and still be half the length the curriculum asked for.
+    """
+
+    if not path.exists():
+        return None
+    try:
+        import soundfile as sf
+
+        return float(sf.info(str(path)).duration)
+    except Exception:
+        return None
 
 
 def write_with_pace(
@@ -170,7 +217,19 @@ def transcribe(path: Path) -> str:
         "mlx-community/whisper-large-v3-turbo",
         "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
     )
-    result = mlx_whisper.transcribe(str(path), path_or_hf_repo=model_path, language="de")
+    # `condition_on_previous_text=False` is the guard against Whisper's long-form repetition
+    # loop. Three Wave-2 takes transcribed their whole script correctly and then degenerated —
+    # "ist mir klar, ist mir klar, ist mir klar…" for hundreds of characters — which scored full
+    # WER 1.6 to 1.9 while every individual line passed at 0.00. That signature is unmistakable:
+    # the speech is fine and the decoder is feeding its own output back to itself. Conditioning
+    # on previous text buys fluency across segment boundaries, which is worth nothing here — the
+    # comparison is against a script we already have, word by word.
+    result = mlx_whisper.transcribe(
+        str(path),
+        path_or_hf_repo=model_path,
+        language="de",
+        condition_on_previous_text=False,
+    )
     return str(result["text"]).strip()
 
 
@@ -183,6 +242,13 @@ def draft_prompt(payload: RevisionPayload) -> str:
         "eight short dialogue turns for two or more speakers, or three to five short paragraphs for "
         "one speaker. Keep the total spoken length close to the requested duration. Preserve the "
         "requested three response kinds and all stable ids. "
+        # The site shuffles an item's options on every render, so "the second option" names
+        # nothing. Fourteen of the first forty-one published sets said it anyway, in both
+        # halves, and `scripts/validate.ts` now rejects the shape — but a validator that fires
+        # after synthesis and approval costs a rewrite pass, and this line costs nothing.
+        "In feedback, identify a choice by quoting what it says, never by its position: the "
+        "options are shuffled before the learner sees them, so 'the second option' is wrong for "
+        "most readers. "
         "Never add voice cloning, music, effects, or reference audio. Context sounds are selected "
         "separately by a human and must not be invented by the text model.\nDRAFT SHAPE:\n"
         + payload.model_dump_json(indent=2)
@@ -265,9 +331,13 @@ def assemble(payload: RevisionPayload, lines: dict[str, Path], target: Path) -> 
     concat = target.with_suffix(".concat.txt")
     raw = target.with_suffix(".unnormalized.wav")
     parts: list[str] = []
-    for line in payload.lines:
+    for index, line in enumerate(payload.lines):
         parts.append(f"file '{lines[line.id].as_posix()}'")
-        if line.pause_after_ms:
+        # No silence after the final line. A pause between turns is what a listener catches up
+        # in; a pause at the end is trailing silence, and Whisper answers trailing silence by
+        # repeating the last sentence it heard — which showed up as a duplicated closing line in
+        # the full-audio QA transcript and pushed a clean take over the 8% threshold.
+        if line.pause_after_ms and index < len(payload.lines) - 1:
             silence = target.parent / f"silence-{line.pause_after_ms}.wav"
             if not silence.exists():
                 subprocess.run(
@@ -319,12 +389,20 @@ def assemble(payload: RevisionPayload, lines: dict[str, Path], target: Path) -> 
 def mix_context(payload: RevisionPayload, source_root: Path, dry: Path, target: Path) -> None:
     """Create a deterministic final mix; contextual audio is never louder than -12 dB."""
 
-    if not payload.context_sounds:
+    if not payload.context_sounds and not payload.lead_in_ms:
         shutil.copy2(dry, target)
         return
     command = ["ffmpeg", "-v", "error", "-i", str(dry)]
     filters: list[str] = []
-    mix_inputs = ["[0:a]"]
+    # The speech is the first mix input, and `duration=first` measures the mix against it —
+    # so delaying the speech is what makes room for a sound *before* anyone talks, and the
+    # mix simply grows by the same amount. Delaying the context sound instead can only ever
+    # push it further into the dialogue.
+    speech = "[0:a]"
+    if payload.lead_in_ms:
+        filters.append(f"[0:a]adelay={payload.lead_in_ms}|{payload.lead_in_ms}[speech]")
+        speech = "[speech]"
+    mix_inputs = [speech]
     for index, context in enumerate(payload.context_sounds, 1):
         source, source_path = load_source(source_root, context.source_sha256)
         if source.sound_id != context.sound_id:

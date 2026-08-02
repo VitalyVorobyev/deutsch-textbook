@@ -26,6 +26,7 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
   const [chosen, setChosen] = useState<number | null>(null);
   const [plays, setPlays] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [recordingFailed, setRecordingFailed] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const cancelRef = useRef<() => void>(() => {});
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
@@ -37,9 +38,13 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
    * validator holds `source.turns` equal to the recording's transcript — so this changes the
    * voice, never the question or the score.
    */
-  const recordingUrl = item.recording && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE)
+  const configuredUrl = item.recording && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE)
     ? withBase(listeningAudioUrl(item.recording))
     : undefined;
+  // A configured URL is a promise, not a guarantee: a file missing or corrupt in a shipped
+  // build would otherwise leave the learner with a Play button that does nothing at all.
+  // Failing over to TTS keeps the task answerable, and the fallback below stays the last resort.
+  const recordingUrl = recordingFailed ? undefined : configuredUrl;
   const audioAvailable = recordingUrl !== undefined || ttsAvailable();
   const checked = chosen !== null;
   const correct = chosen === item.correct;
@@ -74,7 +79,17 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
     <div>
       <Instruction text={item.instruction} lang={lang} />
       {recordingUrl && (
-        <audio ref={audioRef} src={recordingUrl} onEnded={() => setPlaying(false)} onError={() => setPlaying(false)} />
+        <audio
+          ref={audioRef}
+          src={recordingUrl}
+          onEnded={() => setPlaying(false)}
+          onError={() => {
+            // Give this replay back: the learner heard nothing, so it did not cost one.
+            setPlaying(false);
+            setPlays((n) => Math.max(0, n - 1));
+            setRecordingFailed(true);
+          }}
+        />
       )}
       {audioAvailable ? (
         <div className="mb-4 flex items-center gap-3">

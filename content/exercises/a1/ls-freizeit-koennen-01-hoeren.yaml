@@ -1,0 +1,75 @@
+topic: freizeit-koennen
+role: practice
+title:
+  en: Making plans for the afternoon
+  ru: Договариваемся о встрече днём
+  uk: 'Домовляються про пообідню зустріч'
+items:
+- id: q1
+  outcomes:
+  - freizeit-gespraech-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Ben
+      text: Hast du heute Zeit? Wir können schwimmen gehen.
+    - speaker: Nina
+      text: Heute kann ich nicht schwimmen. Mein Arm tut weh. Aber wir können uns
+        im Park treffen.
+    - speaker: Ben
+      text: Gute Idee. Kannst du um fünf Uhr kommen?
+    - speaker: Nina
+      text: Ja. Wir treffen uns um fünf Uhr am Eingang.
+  recording: ls-freizeit-koennen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Warum kann Nina heute nicht schwimmen?
+  options:
+  - Ihr Arm tut weh.
+  - Sie hat keine Zeit.
+  - Das Schwimmbad ist zu.
+  correct: 0
+  explain:
+    en: The reason follows immediately after Ich kann nicht. "Sie hat keine Zeit" is the excuse a learner expects to hear — and Nina says the opposite, since she
+      does have time for the park.
+    ru: 'Причина названа сразу после Ich kann nicht. «Sie hat keine Zeit» — та отговорка,
+      которую ожидаешь услышать, но Нина говорит обратное: на парк время у неё есть.'
+    uk: 'Причину названо одразу після Ich kann nicht. «Sie hat keine Zeit» — та відмовка, на яку чекаєш, але Ніна каже протилежне: на парк час у неї є.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - freizeit-gespraech-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Ben
+      text: Hast du heute Zeit? Wir können schwimmen gehen.
+    - speaker: Nina
+      text: Heute kann ich nicht schwimmen. Mein Arm tut weh. Aber wir können uns
+        im Park treffen.
+    - speaker: Ben
+      text: Gute Idee. Kannst du um fünf Uhr kommen?
+    - speaker: Nina
+      text: Ja. Wir treffen uns um fünf Uhr am Eingang.
+  recording: ls-freizeit-koennen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wo treffen sich Ben und Nina?
+  options:
+  - Am Eingang vom Park.
+  - Im Schwimmbad.
+  - Zu Hause.
+  correct: 0
+  explain:
+    en: The swimming pool is the plan that was rejected. The place is only settled
+      in the last line, after the time.
+    ru: Бассейн — это отвергнутый план. Место окончательно названо только в последней
+      реплике, уже после времени.
+    uk: 'Басейн — це відхилений задум. Місце остаточно названо аж в останній репліці, вже після часу.'
+  max_replays: 3

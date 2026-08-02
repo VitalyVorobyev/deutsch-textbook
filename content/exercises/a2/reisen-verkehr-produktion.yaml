@@ -5,37 +5,6 @@ title:
   ru: "Практика — поезд отменён: аудирование, письмо, речь"
   uk: "Практика — потяг скасовано: аудіювання, письмо, мовлення"
 items:
-  - id: hoeren-durchsage-schalter
-    outcomes: [durchsage-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "The story goes on where the Lesetext stopped: Timo has reached Bremen and is waiting for the connection to Hamburg. Listen to the announcement and to the conductor."
-      ru: "История продолжается там, где закончился Lesetext: Тимо доехал до Бремена и ждёт пересадку на Гамбург. Послушайте объявление и проводника."
-      uk: "Історія продовжується там, де закінчився Lesetext: Тімо доїхав до Бремена й чекає на пересадку на Гамбург. Послухайте оголошення та провідника."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Durchsage", text: "Achtung, bitte. Der Zug nach Hamburg fährt heute nicht von Gleis drei." }
-        - { speaker: "Timo", text: "Entschuldigung, ich habe die Durchsage nicht verstanden. Fährt mein Zug nach Hamburg nicht von Gleis drei?" }
-        - { speaker: "Schaffner", text: "Nein, heute nicht. Er fährt um zwölf Uhr fünf von Gleis neun ab." }
-        - { speaker: "Timo", text: "Und wann bin ich in Hamburg?" }
-        - { speaker: "Schaffner", text: "Um vierzehn Uhr zwanzig. Sie kommen mit einer Stunde Verspätung an." }
-    question: "Von welchem Gleis fährt der Zug nach Hamburg ab?"
-    options:
-      - "Von Gleis drei."
-      - "Von Gleis neun."
-      - "Von Gleis zwölf."
-    correct: 1
-    translation:
-      en: "Which platform does the train to Hamburg leave from?"
-      ru: "С какого пути отправляется поезд на Гамбург?"
-      uk: "З якої колії відправляється потяг на Гамбург?"
-    explain:
-      en: "Three numbers are spoken and only one of them is a platform. Gleis drei is the one you hear first, and you hear it twice — and it is precisely the platform the train does not leave from today: „…fährt heute nicht von Gleis drei.“ zwölf belongs to the clock, not to the track: „um zwölf Uhr fünf“. The platform is the last number in the sentence: „Er fährt um zwölf Uhr fünf von Gleis neun ab.“ In a station the loudest, most repeated number is often the wrong one — the sentence has to be followed to its end, and there is no second look."
-      ru: "В записи звучат три числа, и только одно из них — номер пути. Gleis drei слышно первым и слышно дважды — и именно с этого пути поезд сегодня не идёт: „…fährt heute nicht von Gleis drei.“ zwölf относится к часам, а не к пути: „um zwölf Uhr fünf“. Номер пути — последнее число в предложении: „Er fährt um zwölf Uhr fünf von Gleis neun ab.“ На вокзале самое громкое и чаще всего повторённое число обычно оказывается не тем: предложение надо дослушать до конца, а перечитать его нельзя."
-      uk: "У записі звучать три числа, і лише одне з них — номер колії. Gleis drei чути першим і чути двічі — і саме з цієї колії потяг сьогодні не йде: „…fährt heute nicht von Gleis drei.“ zwölf стосується годинника, а не колії: „um zwölf Uhr fünf“. Номер колії — останнє число в реченні: „Er fährt um zwölf Uhr fünf von Gleis neun ab.“ На вокзалі найгучніше й найчастіше повторене число зазвичай виявляється не тим: речення треба дослухати до кінця, а перечитати його не можна."
-
   - id: cloze-hilfsverb-gemischt
     outcomes: [reise-berichten]
     type: cloze
