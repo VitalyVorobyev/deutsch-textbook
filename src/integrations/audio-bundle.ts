@@ -64,6 +64,27 @@ export function audioBundle(): AstroIntegration {
   return {
     name: 'audio-bundle',
     hooks: {
+      /**
+       * The dev server never reaches `astro:build:done`, so without this `bun tauri dev` sets
+       * the bundle flag, the component asks for `/audio/<id>.mp3`, and every reviewed recording
+       * 404s — the one command anyone would use to check that a freshly published take plays.
+       * Serving from the content tree rather than a copy also means an edited recording is
+       * audible on reload, which is what a dev server is for.
+       */
+      'astro:server:setup': ({ server, logger }) => {
+        if (!bundlesAudio(process.env[AUDIO_BUNDLE_ENV])) return;
+        const root = process.cwd();
+        server.middlewares.use((req, res, next) => {
+          const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec((req.url ?? '').split('?')[0] ?? '');
+          if (!match) return next();
+          // Re-read per request: a recording republished while the server runs is served fresh.
+          const rec = reviewedRecordings(root).find((r) => r.id === match[1]);
+          if (!rec) return next();
+          res.setHeader('Content-Type', 'audio/mpeg');
+          res.end(readFileSync(join(root, rec.source)));
+        });
+        logger.info(`serving ${reviewedRecordings(root).length} reviewed recording(s) from content/listening`);
+      },
       'astro:build:done': ({ dir, logger }) => {
         const root = process.cwd();
         const outDir = fileURLToPath(dir);

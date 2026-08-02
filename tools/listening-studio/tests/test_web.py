@@ -171,3 +171,46 @@ def test_an_unavailable_step_answers_409_with_the_next_one_named(tmp_path: Path)
     assert "automatically_checked" in repeated.text
     assert "human_approved" in repeated.text
     assert "Traceback" not in repeated.text
+
+
+def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadable(
+    tmp_path: Path,
+) -> None:
+    """P22-3, end to end: the form used to store a payload `Store.get()` then refused, which put
+    the project permanently out of reach — and switching Parler → Qwen is move one of any
+    voice-quality pass."""
+
+    store = Store(tmp_path / "db.sqlite3")
+    base = payload()
+    draft = base.model_copy(
+        update={
+            "tts_adapter": "parler_tts",
+            "lines": [
+                base.lines[0].model_copy(update={"voice": "Nicole"}),
+                base.lines[1].model_copy(update={"voice": "Christopher"}),
+            ],
+        }
+    )
+    project = store.create("switch", draft)
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    headers = {"origin": "http://127.0.0.1:8765"}
+
+    form = {"adapter": "qwen_tts", "max_replays": "2"}
+    for index, line in enumerate(draft.lines):
+        form |= {
+            f"line.{index}.speaker": line.speaker,
+            f"line.{index}.text": line.display_text,
+            f"line.{index}.voice": line.voice,  # still the Parler voices — the form has no others
+            f"line.{index}.pace": str(line.pace),
+            f"line.{index}.pause": str(line.pause_after_ms),
+            f"line.{index}.seed": str(line.seed),
+        }
+    saved = client.post(
+        f"/projects/{project.id}/script?token=test", data=form, headers=headers, follow_redirects=False
+    )
+    assert saved.status_code == 303
+
+    _, _, stored = store.get(project.id)  # the assertion: this used to raise
+    assert stored.tts_adapter == "qwen_tts"
+    assert len({line.voice for line in stored.lines}) == 2
+    assert client.get(f"/projects/{project.id}?token=test", headers=headers).status_code == 200

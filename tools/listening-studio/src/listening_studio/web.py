@@ -27,6 +27,7 @@ from .domain import (
     RevisionPayload,
     Stage,
     line_cache_key,
+    reassign_voices,
 )
 from .adapters import model_lock
 from .export import sha256
@@ -178,10 +179,19 @@ def app(
     async def save_script(project_id: int, request: Request) -> RedirectResponse:
         _, _, payload = store.get(project_id)
         form = {k: str(v) for k, v in (await request.form()).items()}
-        updated = payload.model_copy(
-            update={
-                "lines": [Line.model_validate(line) for line in ui.parse_lines(form, payload)],
-                "tts_adapter": form.get("adapter", payload.tts_adapter),
+        adapter = form.get("adapter", payload.tts_adapter)
+        lines = [Line.model_validate(line) for line in ui.parse_lines(form, payload)]
+        if adapter != payload.tts_adapter:
+            lines = reassign_voices(lines, adapter)
+        # Validate rather than `model_copy(update=...)`, which skips `consistent()` and would let
+        # an inconsistent revision be stored — after which every `Store.get()` rejects it and the
+        # project is unreachable through the Studio. A ValidationError is a ValueError, so the
+        # handler below answers it as a readable 409 instead of a traceback.
+        updated = RevisionPayload.model_validate(
+            payload.model_dump()
+            | {
+                "lines": [line.model_dump() for line in lines],
+                "tts_adapter": adapter,
                 "max_replays": int(form.get("max_replays", payload.max_replays)),
             }
         )

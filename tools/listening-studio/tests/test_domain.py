@@ -1,4 +1,7 @@
 
+import pytest
+from pydantic import ValidationError
+
 from listening_studio.domain import (
     Brief,
     Bilingual,
@@ -79,3 +82,53 @@ def test_a_legacy_question_still_loads() -> None:
     ]:
         candidate = {**base, "questions": [{**base["questions"][0], "response": legacy}]}
         assert RevisionPayload.model_validate(candidate).questions[0].response.kind == legacy["kind"]
+
+
+def test_switching_the_model_leaves_a_payload_the_store_can_still_load() -> None:
+    """P22-3: `model_copy(update=...)` skipped `consistent()`, so a Parler voice could be saved
+    under `qwen_tts` — and every later `Store.get()` then refused the project."""
+
+    from listening_studio.domain import VOICE_SETS, reassign_voices
+
+    base = payload()
+    parler = base.model_copy(
+        update={
+            "tts_adapter": "parler_tts",
+            "lines": [
+                base.lines[0].model_copy(update={"voice": "Nicole"}),
+                base.lines[1].model_copy(update={"voice": "Christopher"}),
+            ],
+        }
+    )
+
+    # Watching it fail: the unvalidated copy the form used to build is not loadable.
+    broken = parler.model_copy(update={"tts_adapter": "qwen_tts"})
+    with pytest.raises(ValidationError):
+        RevisionPayload.model_validate_json(broken.canonical_json())
+
+    lines = reassign_voices(list(parler.lines), "qwen_tts")
+    fixed = RevisionPayload.model_validate(
+        parler.model_dump() | {"tts_adapter": "qwen_tts", "lines": [line.model_dump() for line in lines]}
+    )
+    assert RevisionPayload.model_validate_json(fixed.canonical_json()) == fixed
+    # Two speakers still sound like two people — that is the property the reassignment keeps.
+    assert len({line.voice for line in fixed.lines}) == 2
+    assert all(line.voice in VOICE_SETS["qwen_tts"] for line in fixed.lines)
+
+    # A voice the new adapter already offers is left where it is.
+    kept = reassign_voices(list(fixed.lines), "qwen_tts")
+    assert [line.voice for line in kept] == [line.voice for line in fixed.lines]
+
+
+def test_the_voice_lists_match_the_provenance_record() -> None:
+    """Two sources of truth for the same fact: `VOICE_SETS` gates validation, models.lock.json
+    is what the manifest publishes. They have to agree or a legal voice becomes unsavable."""
+
+    import json
+    from pathlib import Path
+
+    from listening_studio.domain import VOICE_SETS
+
+    lock = json.loads((Path(__file__).resolve().parents[1] / "models.lock.json").read_text())
+    for adapter, voices in VOICE_SETS.items():
+        assert tuple(lock["models"][adapter]["voices"]) == voices, adapter

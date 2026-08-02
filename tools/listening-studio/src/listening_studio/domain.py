@@ -25,6 +25,26 @@ class Bilingual(BaseModel):
     uk: str | None = None
 
 
+# The preset voices each adapter documents, in the publisher's own order. Ordered because a
+# model switch reassigns voices by position, and a set would make that reassignment depend on
+# hash order — the same project would come back with different speakers on different runs.
+# `tests/test_domain.py` holds these equal to `models.lock.json`, which is the provenance record.
+VOICE_SETS: dict[str, tuple[str, ...]] = {
+    "qwen_tts": (
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee",
+    ),
+    "parler_tts": ("Nicole", "Christopher", "Megan", "Michelle"),
+}
+
+
 class Brief(BaseModel):
     source_text: str = ""
     level: Literal["A1", "A2", "B1", "B2"] = "A2"
@@ -70,6 +90,32 @@ class Line(BaseModel):
         for override in self.pronunciation_overrides:
             text = text.replace(override.display, override.synthesis)
         return text
+
+
+def reassign_voices(lines: list[Line], adapter: str) -> list[Line]:
+    """Give every speaker a voice the named adapter actually offers.
+
+    Switching the synthesis model leaves each line carrying the previous model's preset voice,
+    and the Studio's script form submits those old voices in the same request as the new adapter —
+    so the editor has no way to fix it by hand before the payload is validated. Reassigning per
+    **speaker** rather than per line preserves the one property that matters editorially: two
+    speakers still sound like two people. Which voice each speaker lands on is arbitrary and
+    meant to be adjusted afterwards. A voice the new adapter already offers is left alone.
+    """
+
+    voices = VOICE_SETS.get(adapter)
+    if not voices:
+        return lines
+    assigned: dict[str, str] = {}
+    for line in lines:
+        if line.voice in voices:
+            assigned.setdefault(line.speaker, line.voice)
+    for line in lines:
+        if line.speaker in assigned:
+            continue
+        taken = set(assigned.values())
+        assigned[line.speaker] = next((v for v in voices if v not in taken), voices[0])
+    return [line.model_copy(update={"voice": assigned[line.speaker]}) for line in lines]
 
 
 class SingleChoice(BaseModel):
@@ -178,21 +224,7 @@ class RevisionPayload(BaseModel):
         line_ids = {line.id for line in self.lines}
         if len(line_ids) != len(self.lines):
             raise ValueError("line ids must be unique")
-        voice_sets = {
-            "qwen_tts": {
-                "Vivian",
-                "Serena",
-                "Uncle_Fu",
-                "Dylan",
-                "Eric",
-                "Ryan",
-                "Aiden",
-                "Ono_Anna",
-                "Sohee",
-            },
-            "parler_tts": {"Nicole", "Christopher", "Megan", "Michelle"},
-        }
-        allowed_voices = voice_sets.get(self.tts_adapter)
+        allowed_voices = VOICE_SETS.get(self.tts_adapter)
         if allowed_voices and any(line.voice not in allowed_voices for line in self.lines):
             raise ValueError(f"{self.tts_adapter} permits only publisher-documented preset voices")
         return self

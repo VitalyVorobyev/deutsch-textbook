@@ -175,7 +175,9 @@ def script_form(project_id: int, payload: RevisionPayload, voices: list[str], ad
         f"<label>Max. Wiederholungen<input name=max_replays type=number min=1 max=10 value='{payload.max_replays}'></label>"
         "</div>"
         "<p class=muted>Speichern legt eine neue Revision an und setzt das Projekt zurück auf <em>draft</em>. "
-        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Stimme, Seed und Tempo gleich bleiben.</p>"
+        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Stimme, Seed und Tempo gleich bleiben. "
+        "Beim Wechsel des Synthese-Modells bekommt jede Sprecherin und jeder Sprecher automatisch eine Stimme des "
+        "neuen Modells — danach hier anpassen: die Zuordnung ist beliebig, sie hält nur die Sprecher auseinander.</p>"
         "<button>Skript speichern</button></form></div>"
     )
 
