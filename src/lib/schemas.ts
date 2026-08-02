@@ -1146,12 +1146,132 @@ export const briefeReferenceSchema = z.object({
 });
 export type BriefeReference = z.infer<typeof briefeReferenceSchema>;
 
+/**
+ * The verb system on one page (content/reference-data/zeitformen.yaml).
+ *
+ * The course teaches every form — Präsens at A1 through Konjunktiv II at B1 — but each in
+ * its own lesson, and `/referenz/verbformen` is a *lexical* table (one row per verb). What
+ * no page showed is the system: that German marks Tempus, Modus and Genus verbi on three
+ * independent axes, that it has two pasts differing by medium rather than by aspect, and
+ * that Konjunktiv II resembles the Präteritum because for weak verbs it *is* the same form.
+ *
+ * Three claims here are machine-checked rather than asserted, because a reference page is
+ * exactly where an unearned level claim survives longest:
+ *
+ *  - every tag in `focus` is a real focus tag (`focusIntroducedBy`), and the page renders
+ *    the teaching topic from that map — no topic name is ever written into the YAML;
+ *  - a form's `level` may not be earlier than the first level that teaches any part of it;
+ *  - a `status: productive` form must appear in a paradigm and must name at least one tag,
+ *    while a `status: later` form must name none. A form the course does not teach may be
+ *    shown — the house convention from `sentence-connectors.yaml` — but it may not claim to
+ *    be taught.
+ */
+const tenseAxisSchema = z.enum(['tempus', 'modus', 'genus']);
+
+/** productive = the course drills it · receptive = recognition only · later = shown, never claimed */
+const tenseStatusSchema = z.enum(['productive', 'receptive', 'later']);
+
+const tenseFormSchema = z.object({
+  id: slug,
+  /** the German name, which is what every other page and every lesson calls it */
+  name_de: z.string().min(1),
+  axis: tenseAxisSchema,
+  /** the German formation formula, e.g. "haben/sein + Partizip II" */
+  formula: z.string().min(1),
+  level: levelSchema,
+  status: tenseStatusSchema,
+  /** what the form is *for* — never a restatement of `formula` */
+  use: bilingualSchema,
+  example: referenceExampleSchema,
+  /** focus tags whose drills teach this form; empty only for `status: later` */
+  focus: z.array(slug).default([]),
+});
+
+/**
+ * One conjugation table. The columns are verbs and the rows are forms, so the *same* verbs
+ * run down every row — five unrelated tables is what the learner already had.
+ *
+ * A cell may be `—` where the form genuinely does not exist (no ordinary imperative of
+ * `können`, no Futur II of a modal), which is a fact about German rather than a gap.
+ */
+const tenseParadigmSchema = z.object({
+  id: slug,
+  caption: bilingualSchema.extend({ de: z.string().min(1) }),
+  verbs: z.array(z.object({
+    infinitive: z.string().min(1),
+    kind: z.enum(['schwach', 'stark', 'hilfsverb', 'modalverb']),
+    /** the subject the column's cells are written for, when it is not a bare pronoun */
+    subject: z.string().min(1).optional(),
+  })).min(1),
+  rows: z.array(z.object({
+    /** id of the `forms[]` entry this row conjugates */
+    form: slug,
+    /** the German person the cells are written in ("ich", "du", "es") */
+    person: z.string().min(1),
+    /** one cell per entry of `verbs`, in the same order */
+    cells: z.array(z.string().min(1)).min(1),
+  })).min(1),
+});
+
+export const zeitformenReferenceSchema = z.object({
+  id: z.literal('zeitformen'),
+  /** Tempus, Modus, Genus verbi — the frame the rest of the page fills in. */
+  axes: z.array(z.object({
+    id: tenseAxisSchema,
+    title: bilingualSchema.extend({ de: z.string().min(1) }),
+    description: bilingualSchema,
+    /** the German names of the cells on this axis */
+    values: z.array(z.string().min(1)).min(2),
+  })).length(3),
+  forms: z.array(tenseFormSchema).min(1),
+  paradigms: z.array(tenseParadigmSchema).min(1),
+  /** the named confusions, each with an explanation and its minimal pairs */
+  comparisons: z.array(z.object({
+    id: slug,
+    title: bilingualSchema.extend({ de: z.string().min(1) }),
+    explanation: bilingualSchema,
+    examples: z.array(referenceExampleSchema).min(2),
+  })).min(1),
+}).superRefine((data, ctx) => {
+  const formIds = new Set(data.forms.map((form) => form.id));
+  const conjugated = new Set<string>();
+  for (const [p, paradigm] of data.paradigms.entries()) {
+    for (const [r, row] of paradigm.rows.entries()) {
+      const at = ['paradigms', p, 'rows', r] as const;
+      if (!formIds.has(row.form))
+        ctx.addIssue({ code: 'custom', path: [...at, 'form'], message: `unknown form "${row.form}"` });
+      else conjugated.add(row.form);
+      if (row.cells.length !== paradigm.verbs.length)
+        ctx.addIssue({
+          code: 'custom',
+          path: [...at, 'cells'],
+          message: `${row.cells.length} cell(s) for ${paradigm.verbs.length} verb column(s)`,
+        });
+    }
+  }
+  for (const [f, form] of data.forms.entries()) {
+    const at = ['forms', f] as const;
+    if (form.status === 'productive' && !conjugated.has(form.id))
+      ctx.addIssue({
+        code: 'custom',
+        path: [...at],
+        message: `"${form.id}" is productive but no paradigm conjugates it — the page promises a complete picture`,
+      });
+    if (form.status === 'productive' && form.focus.length === 0)
+      ctx.addIssue({ code: 'custom', path: [...at, 'focus'], message: 'a productive form must name the tags that drill it' });
+    if (form.status === 'later' && form.focus.length > 0)
+      ctx.addIssue({ code: 'custom', path: [...at, 'focus'], message: 'a form marked "later" may not claim drilled tags' });
+  }
+});
+export type ZeitformenReference = z.infer<typeof zeitformenReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
   zahlenDatumZeitReferenceSchema,
   sentenceConnectorsReferenceSchema,
   briefeReferenceSchema,
+  zeitformenReferenceSchema,
 ]);
 export type ReferenceData = z.infer<typeof referenceDataSchema>;
 

@@ -1,0 +1,243 @@
+---
+/**
+ * The Zeitformen reference, in four independently embeddable blocks.
+ *
+ * The `taught-in` chips under each form are derived here from `focusIntroducedBy` and the
+ * topics collection — the YAML names focus tags only, never a topic and never a lesson
+ * number, so the link and the level badge beside it cannot drift from the curriculum the
+ * way a hand-written "taught in B1.5" would. `verbformen.astro` derives its table from the
+ * decks for the same reason.
+ */
+import { getCollection, getEntry } from 'astro:content';
+import { zeitformenReferenceSchema } from '../../lib/schemas';
+import { focusIntroducedBy } from '../../lib/focus-tags';
+import { withBase } from '../../lib/url';
+
+type View = 'axes' | 'forms' | 'paradigms' | 'comparisons';
+interface Props { view: View }
+const { view } = Astro.props;
+
+const entry = await getEntry('referenceData', 'zeitformen');
+if (!entry) throw new Error('Missing canonical zeitformen reference data');
+const data = zeitformenReferenceSchema.parse(entry.data);
+
+const topics = new Map((await getCollection('topics')).map((t) => [t.data.id, t.data]));
+
+/** The topics that introduce a form's focus tags, deduplicated, in curriculum-level order. */
+const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'];
+function taughtIn(focus: string[]) {
+  const ids = [...new Set(focus.map((tag) => focusIntroducedBy[tag]).filter(Boolean))];
+  return ids
+    .map((id) => topics.get(id!))
+    .filter((topic) => topic !== undefined)
+    .sort((a, b) => LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level));
+}
+
+const levelClasses: Record<string, string> = {
+  A1: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300',
+  A2: 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300',
+  B1: 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300',
+  B2: 'bg-violet-100 text-violet-800 dark:bg-violet-950 dark:text-violet-300',
+};
+
+const statusLabels = {
+  productive: { en: 'you produce this', ru: 'нужно уметь строить', uk: 'потрібно вміти будувати', de: 'aktiv' },
+  receptive: { en: 'recognise it', ru: 'достаточно узнавать', uk: 'досить упізнавати', de: 'rezeptiv' },
+  later: { en: 'later — shown for the picture', ru: 'позже — показано для полноты', uk: 'пізніше — показано для повноти', de: 'später' },
+} as const;
+
+const axisLabels = {
+  tempus: 'Tempus',
+  modus: 'Modus',
+  genus: 'Genus verbi',
+} as const;
+
+const kindLabels = {
+  schwach: { en: 'weak', ru: 'слабый', uk: 'слабке', de: 'schwach' },
+  stark: { en: 'strong', ru: 'сильный', uk: 'сильне', de: 'stark' },
+  hilfsverb: { en: 'auxiliary', ru: 'вспомогательный', uk: 'допоміжне', de: 'Hilfsverb' },
+  modalverb: { en: 'modal', ru: 'модальный', uk: 'модальне', de: 'Modalverb' },
+} as const;
+
+const byAxis = (['tempus', 'modus', 'genus'] as const).map((axis) => ({
+  axis,
+  forms: data.forms.filter((form) => form.axis === axis),
+}));
+
+const formName = new Map(data.forms.map((form) => [form.id, form.name_de]));
+---
+
+{view === 'axes' && (
+  <div class="grid gap-4 md:grid-cols-3">
+    {data.axes.map((axis) => (
+      <section class="rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+        <h3 lang="de" class="text-lg font-bold">{axis.title.de}</h3>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+          <span class="lang-en">{axis.title.en}</span>
+          <span class="lang-ru">{axis.title.ru}</span>
+          {axis.title.uk && <span class="lang-uk">{axis.title.uk}</span>}
+        </p>
+        <p lang="de" class="mt-3 font-medium">{axis.values.join(' · ')}</p>
+        <p class="mt-3 text-sm leading-relaxed text-stone-600 dark:text-stone-300">
+          <span class="lang-en">{axis.description.en}</span>
+          <span class="lang-ru">{axis.description.ru}</span>
+          {axis.description.uk && <span class="lang-uk">{axis.description.uk}</span>}
+          {axis.description.de && <span class="lang-de">{axis.description.de}</span>}
+        </p>
+      </section>
+    ))}
+  </div>
+)}
+
+{view === 'forms' && (
+  <div class="space-y-10">
+    {byAxis.map((group) => (
+      <section>
+        <h3 lang="de" class="mb-4 text-xl font-bold">{axisLabels[group.axis]}</h3>
+        <div class="overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+          <table class="w-full min-w-[52rem] border-collapse text-sm">
+            <thead class="bg-stone-50 text-left dark:bg-stone-800">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Form</th>
+                <th class="px-4 py-3 font-semibold">Bildung</th>
+                <th class="px-4 py-3 font-semibold">Wozu?</th>
+                <th class="px-4 py-3 font-semibold">Beispiel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {group.forms.map((form) => {
+                const status = statusLabels[form.status];
+                return (
+                  <tr class="border-t border-stone-200 align-top dark:border-stone-700">
+                    <td class="px-4 py-4">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <strong lang="de" class="text-base">{form.name_de}</strong>
+                        <span class:list={['rounded px-2 py-0.5 text-[10px] font-bold', levelClasses[form.level]]}>{form.level}</span>
+                      </div>
+                      <span class="mt-2 inline-block rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300">
+                        <span class="lang-en">{status.en}</span>
+                        <span class="lang-ru">{status.ru}</span>
+                        <span class="lang-uk">{status.uk}</span>
+                        <span class="lang-de">{status.de}</span>
+                      </span>
+                      {taughtIn(form.focus).length > 0 && (
+                        <p class="mt-2 flex flex-wrap gap-1">
+                          {taughtIn(form.focus).map((topic) => (
+                            <a
+                              href={withBase(`/topics/${topic.id}`)}
+                              class="rounded border border-stone-200 px-1.5 py-0.5 text-[11px] text-stone-500 hover:border-amber-500 hover:text-amber-700 dark:border-stone-600 dark:text-stone-400"
+                            >
+                              <span lang="de">{topic.title_de}</span>
+                              <span class="ml-1 opacity-60">{topic.level}</span>
+                            </a>
+                          ))}
+                        </p>
+                      )}
+                    </td>
+                    <td class="px-4 py-4"><code lang="de" class="text-xs leading-relaxed">{form.formula}</code></td>
+                    <td class="px-4 py-4">
+                      <span class="lang-en">{form.use.en}</span>
+                      <span class="lang-ru">{form.use.ru}</span>
+                      {form.use.uk && <span class="lang-uk">{form.use.uk}</span>}
+                      {form.use.de && <span class="lang-de">{form.use.de}</span>}
+                    </td>
+                    <td class="px-4 py-4">
+                      <p lang="de" class="font-medium">{form.example.de}</p>
+                      <p class="mt-1 text-xs text-stone-500">
+                        <span class="lang-en">{form.example.en}</span>
+                        <span class="lang-ru">{form.example.ru}</span>
+                        {form.example.uk && <span class="lang-uk">{form.example.uk}</span>}
+                      </p>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+  </div>
+)}
+
+{view === 'paradigms' && (
+  <div class="space-y-10">
+    {data.paradigms.map((paradigm) => (
+      <section>
+        <h3 lang="de" class="text-xl font-bold">{paradigm.caption.de}</h3>
+        <p class="mb-4 mt-1 text-sm text-stone-500">
+          <span class="lang-en">{paradigm.caption.en}</span>
+          <span class="lang-ru">{paradigm.caption.ru}</span>
+          {paradigm.caption.uk && <span class="lang-uk">{paradigm.caption.uk}</span>}
+        </p>
+        <div class="overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+          <table class="w-full min-w-[48rem] border-collapse text-sm">
+            <thead class="bg-stone-50 text-left dark:bg-stone-800">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Form</th>
+                {paradigm.verbs.map((verb) => (
+                  <th class="px-4 py-3 font-semibold">
+                    <span lang="de">{verb.infinitive}</span>
+                    {verb.subject && <span lang="de" class="block text-[11px] font-normal text-stone-400">{verb.subject}</span>}
+                    <span class="block text-[10px] font-normal uppercase tracking-wide text-stone-400">
+                      <span class="lang-en">{kindLabels[verb.kind].en}</span>
+                      <span class="lang-ru">{kindLabels[verb.kind].ru}</span>
+                      <span class="lang-uk">{kindLabels[verb.kind].uk}</span>
+                      <span class="lang-de">{kindLabels[verb.kind].de}</span>
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {paradigm.rows.map((row) => (
+                <tr class="border-t border-stone-200 align-top dark:border-stone-700">
+                  <th class="px-4 py-3 text-left font-semibold">
+                    <span lang="de">{formName.get(row.form)}</span>
+                    <span lang="de" class="block text-[11px] font-normal text-stone-400">{row.person}</span>
+                  </th>
+                  {row.cells.map((cell) => (
+                    <td lang="de" class="px-4 py-3 whitespace-nowrap">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+  </div>
+)}
+
+{view === 'comparisons' && (
+  <div class="grid gap-5">
+    {data.comparisons.map((comparison) => (
+      <article id={comparison.id} class="scroll-mt-6 rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+        <h3 lang="de" class="text-lg font-bold">{comparison.title.de}</h3>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+          <span class="lang-en">{comparison.title.en}</span>
+          <span class="lang-ru">{comparison.title.ru}</span>
+          {comparison.title.uk && <span class="lang-uk">{comparison.title.uk}</span>}
+        </p>
+        <p class="mt-3 text-sm leading-relaxed">
+          <span class="lang-en">{comparison.explanation.en}</span>
+          <span class="lang-ru">{comparison.explanation.ru}</span>
+          {comparison.explanation.uk && <span class="lang-uk">{comparison.explanation.uk}</span>}
+          {comparison.explanation.de && <span class="lang-de">{comparison.explanation.de}</span>}
+        </p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          {comparison.examples.map((example) => (
+            <div class="rounded-lg bg-stone-50 p-4 dark:bg-stone-900/60">
+              <p lang="de" class="font-medium">{example.de}</p>
+              <p class="mt-2 text-xs text-stone-500">
+                <span class="lang-en">{example.en}</span>
+                <span class="lang-ru">{example.ru}</span>
+                {example.uk && <span class="lang-uk">{example.uk}</span>}
+              </p>
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+)}
