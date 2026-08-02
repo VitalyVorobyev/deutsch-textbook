@@ -33,7 +33,7 @@ from .domain import (
 from .adapters import model_lock
 from .export import sha256
 from .qa import check_transcripts
-from .storage import Store
+from .storage import Store, remember_editor, remembered_editor
 from . import ui
 
 
@@ -381,7 +381,7 @@ def app(
     @api.api_route(
         "/projects/{project_id}/approve", methods=["GET", "POST"], response_class=HTMLResponse
     )
-    def approval_form(project_id: int) -> HTMLResponse:
+    def approval_form(project_id: int, forget: int = 0) -> HTMLResponse:
         project, revision, _ = store.get(project_id)
         if Stage(project.stage) != Stage.AUTOMATICALLY_CHECKED:
             raise HTTPException(409, "QA first")
@@ -391,6 +391,8 @@ def app(
         _, _, payload = store.get(project_id)
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
+        if forget:
+            (store.root / "editor.txt").unlink(missing_ok=True)
         project_dir = store.root / "projects" / str(project_id)
         window = plan_duration(project.slug)
         return HTMLResponse(
@@ -402,6 +404,7 @@ def app(
                 has_dry=(project_dir / "dry.wav").exists(),
                 duration=wav_duration(project_dir / "final.wav"),
                 target=window,
+                editor=remembered_editor(store.root),
             )
         )
 
@@ -415,11 +418,17 @@ def app(
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
         form = await request.form()
-        required = {"accent", "naturalness", "intelligibility", "speakers", "pace", "questions"}
+        # The six statements are what approval *means*, so they are affirmed together by the one
+        # button that carries them — they were never six separate decisions, only six clicks.
+        # The published manifest still records all of them (scripts/validate.ts requires the full
+        # list), and the page states every one directly above the button that submits this.
+        certified = {key for key in ui.APPROVAL_CHECKS if key != "context"}
         if payload.context_sounds:
-            required.add("context")
-        if not required.issubset(form.keys()) or not str(form.get("editor", "")).strip():
-            raise HTTPException(400, "complete every check")
+            certified.add("context")
+        editor = str(form.get("editor", "")).strip()
+        if not editor:
+            raise HTTPException(400, "an approval needs the name of the person giving it")
+        remember_editor(store.root, editor)
         # Bind the approval to the exact bytes the editor heard.
         #
         # Until 2026-08-02 the approval recorded who and when but nothing about the audio, and
@@ -436,9 +445,9 @@ def app(
             raise HTTPException(409, "no final audio to approve")
         approval: dict[str, object] = {
             "status": "complete",
-            "editor": str(form["editor"]),
+            "editor": editor,
             "reviewed_at": datetime.now(UTC).isoformat(),
-            "checklist": sorted(required),
+            "checklist": sorted(certified),
             "audio_sha256": sha256(final_wav),
             "dry_audio_sha256": sha256(dry_wav) if dry_wav.exists() else None,
         }

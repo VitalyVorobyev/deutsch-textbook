@@ -276,10 +276,11 @@ def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Pa
     # Full sentences, not bare keys — and the level is named in the two checks that depend on it.
     assert "Es klingt nach einer sprechenden Person" in body
     assert "Auf A2 ist jedes Wort heraushörbar" in body
-    for key in ["accent", "naturalness", "intelligibility", "speakers", "pace", "questions"]:
-        assert f"name={key} " in body, key
+    # Stated above one button, not six checkboxes: six ticks were never six decisions.
+    assert body.count("<li>Die Aussprache ist verständliches Standarddeutsch") == 1
+    assert "type=checkbox" not in body
     # No context sound in this payload, so nothing is certified about one.
-    assert "name=context " not in body
+    assert "überdecken aber keine Silbe" not in body
 
     # The measured length against the window the curriculum asked for. The fake adapter's take is
     # nowhere near 40-50 s, so this is the failing branch — which is the one that has to be legible.
@@ -288,3 +289,72 @@ def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Pa
 
     # Declining is a step, not closing the tab.
     assert f"/projects/{project.id}/regenerate" in body
+
+
+def test_the_name_is_asked_once_and_the_record_still_carries_all_six(tmp_path: Path) -> None:
+    """One button, not six checkboxes and a name field retyped every time.
+
+    The published manifest is unchanged — `scripts/validate.ts` requires the full six-item
+    checklist and gets it, because the six statements are printed directly above the button that
+    submits them. What is gone is the ceremony: a form whose boxes must all be ticked teaches a
+    reviewer to tick without listening, which is the failure the review exists to prevent.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+
+    first = store.create("ls-one", payload().model_copy(update={"tts_adapter": "fake"}))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{first.id}/{action}?token=test").status_code == 200
+
+    # Nobody is known yet, so the first approval asks — and only the name.
+    assert "Name der freigebenden Person" in client.get(f"/projects/{first.id}/approve?token=test").text
+    assert client.post(
+        f"/projects/{first.id}/approve/confirm?token=test",
+        data={"editor": "Vitaly Vorobyev"},
+        follow_redirects=False,
+    ).status_code == 303
+
+    _, revision, _ = store.get(first.id)
+    approval = json.loads(revision.approval_json or "{}")
+    assert approval["editor"] == "Vitaly Vorobyev"
+    assert approval["checklist"] == [
+        "accent",
+        "intelligibility",
+        "naturalness",
+        "pace",
+        "questions",
+        "speakers",
+    ]
+    assert approval["audio_sha256"]
+
+    # The second recording knows who is reviewing: one button, nothing to type.
+    second = store.create("ls-two", payload().model_copy(update={"tts_adapter": "fake"}))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{second.id}/{action}?token=test").status_code == 200
+    page = client.get(f"/projects/{second.id}/approve?token=test").text
+    assert "Gehört und freigegeben — Vitaly Vorobyev" in page
+    assert "Name der freigebenden Person" not in page
+
+    # And it can be handed back: forgetting asks again rather than approving as the wrong person.
+    assert "Name der freigebenden Person" in client.get(
+        f"/projects/{second.id}/approve?token=test&forget=1"
+    ).text
+
+
+def test_an_approval_without_a_name_is_refused(tmp_path: Path) -> None:
+    """The name is the provenance record. One button may remove the typing, never the identity."""
+
+    store = Store(tmp_path / "db.sqlite3")
+    project = store.create("ls-anon", payload().model_copy(update={"tts_adapter": "fake"}))
+    client = TestClient(
+        app(store, tmp_path, token="test", allow_test_adapters=True), raise_server_exceptions=False
+    )
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
+    refused = client.post(
+        f"/projects/{project.id}/approve/confirm?token=test", data={"editor": "   "}
+    )
+    assert refused.status_code == 400
+    _, revision, _ = store.get(project.id)
+    assert revision.approval_json is None

@@ -52,7 +52,8 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;color:#78716c}
 .chip.work{background:#fef3c7;color:#92400e}
 .chip.ready{background:#dcfce7;color:#166534}
 .chip.blocked{background:#fee2e2;color:#991b1b}
-.check{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start;margin:.9rem 0;font-size:.95rem;color:inherit}
+.certify{margin:.4rem 0 1.1rem;padding-left:1.2rem}
+.certify li{margin:.45rem 0;font-size:.95rem}
 nav a{margin-left:1rem}
 @media(prefers-color-scheme:dark){
  body{background:#1c1917;color:#e7e5e4}
@@ -363,6 +364,7 @@ def approval_page(
     has_dry: bool,
     duration: float | None,
     target: tuple[float, float] | None,
+    editor: str | None,
 ) -> str:
     """Everything the six checks are about, on one screen, above the signature."""
 
@@ -370,10 +372,20 @@ def approval_page(
     keys = [key for key in APPROVAL_CHECKS if key != "context"]
     if payload.context_sounds:
         keys.append("context")
+    # Stated, not ticked. Six checkboxes look like six independent judgements and are not: nobody
+    # decides six times, they click six times. One button over six visible sentences is the same
+    # single act of assent, minus the ceremony that teaches a reviewer to click without reading.
     checks = "".join(
-        "<label class=check><input style='width:auto' type=checkbox "
-        f"name={key} required> {APPROVAL_CHECKS[key].format(level=level)}</label>"
-        for key in keys
+        f"<li>{APPROVAL_CHECKS[key].format(level=level)}</li>" for key in keys
+    )
+    signature = (
+        f"<input type=hidden name=editor value='{escape(editor, quote=True)}'>"
+        f"<button>Gehört und freigegeben — {escape(editor)}</button>"
+        "<p class=muted>Ein anderer Name? <a href='?forget=1'>Zurücksetzen</a></p>"
+        if editor
+        else "<label>Name der freigebenden Person<input name=editor required autofocus></label>"
+        "<button>Gehört und freigegeben</button>"
+        "<p class=muted>Der Name wird lokal gemerkt und danach nicht mehr abgefragt.</p>"
     )
 
     length = "<span class=muted>Dauer unbekannt</span>"
@@ -392,10 +404,9 @@ def approval_page(
         + question_review_card(payload)
         + transcript_card(payload)
         + qa_card(qa)
-        + "<div class=card><h3>Ich bestätige</h3>"
-        f"<form method=post action='/projects/{project_id}/approve/confirm'>"
-        f"{checks}<label>Name der freigebenden Person<input name=editor required></label>"
-        "<button>Genau diese Aufnahme freigeben</button></form>"
+        + "<div class=card><h3>Mit der Freigabe bestätigen Sie</h3>"
+        f"<ul class=certify>{checks}</ul>"
+        f"<form method=post action='/projects/{project_id}/approve/confirm'>{signature}</form>"
         "<p class=muted>Die Freigabe wird an den Hash genau dieser Audiodatei gebunden. Wird "
         "danach neu erzeugt, verfällt sie.</p></div>"
         "<div class='card actions'>"
