@@ -221,7 +221,15 @@ def manifest(
         "settings": {
             "adapter": payload.tts_adapter,
             "lines": [line.model_dump(mode="json") for line in payload.lines],
-            "assembly": {"format": "wav-pcm-s16le", "silence": "ffmpeg-anullsrc-16000-mono"},
+            # `lead_in_ms` belongs here and not with the context sounds: it delays *speech*, so
+            # a manifest that records a sound's trim and gain but not the silence pushed in front
+            # of the dialogue describes a mix that cannot be rebuilt. Four artifacts use it
+            # (1.7-2.2 s) so a scene can open on its own sound before anyone speaks.
+            "assembly": {
+                "format": "wav-pcm-s16le",
+                "silence": "ffmpeg-anullsrc-16000-mono",
+                "lead_in_ms": payload.lead_in_ms,
+            },
             "context_sounds": [sound.model_dump(mode="json") for sound in payload.context_sounds],
         },
         "contextual_sources": contextual_sources,

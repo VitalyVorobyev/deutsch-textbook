@@ -145,6 +145,15 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   editorial ruling, not a mechanical fix. Build the detector to respect parentheticals and require
   mutual overlap, then triage against the lapse table (`aufmachen`, `Aufgabe`, `Anweisung`,
   `Empfehlung` sit high on both).
+- **P22-17 · `draft-wave` cannot draft a Qwen-seeded project** — `cli.py`'s `ENGINE` is now
+  `qwen_tts`, so `seed-wave` writes payloads whose lines carry Qwen voices (`Vivian`, `Serena`, …),
+  but `generate_drafts` still forces `"tts_adapter": "parler_tts"` into the final payload
+  (`adapters.py:298`) without reassigning them. Parler validates only its own voice set, so the
+  final `RevisionPayload.model_validate` rejects every draft and the wave stays undrafted. The
+  hardcoded adapter is simply stale — the seeded payload's adapter is the authoritative one, and
+  the line should read `payload.tts_adapter`. **Not fixed here** because verifying it end to end
+  needs the MLX generation stack and nothing in this PR exercises that path; it blocks the next
+  wave's first command, so do it before seeding Wave 3. Found by Codex on #131.
 - **P22-15 · The Studio cannot author a `uk` half, so the repo's copy is the only one** —
   `RevisionPayload` carries `Bilingual.uk` and it is `None` on all 41 artifacts, because no editor
   surface writes it. Publishing therefore emitted 82 files with `en`/`ru` only, and

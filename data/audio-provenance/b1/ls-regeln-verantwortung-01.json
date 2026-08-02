@@ -433,6 +433,7 @@
     "adapter": "qwen_tts",
     "assembly": {
       "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
       "silence": "ffmpeg-anullsrc-16000-mono"
     },
     "context_sounds": [
