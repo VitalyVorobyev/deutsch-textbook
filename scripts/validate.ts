@@ -41,6 +41,7 @@ import {
   LEVELS,
 } from '../src/lib/schemas';
 import type { GrammarPoint } from '../src/lib/grammar-coverage';
+import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { continuationWord } from '../src/lib/table';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
@@ -1216,6 +1217,34 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
     }
     if (!item.explain) warn(where, 'no explain text (feedback on wrong answers will be thin)');
+
+    // An option named by position, in a list the renderer shuffles. See src/lib/option-references.ts
+    // for why the rule anchors on the noun and cannot see a bare ordinal — and note the fix is to
+    // rewrite the whole field, because a flagged half usually carries an unflagged bare ordinal
+    // beside it ("The first option puts …; the third leaves …").
+    if (SHUFFLED_OPTION_TYPES.has(item.type)) {
+      const texts: [string, string][] = [];
+      for (const field of ['explain', 'instruction'] as const) {
+        const block = (item as Record<string, unknown>)[field];
+        if (block && typeof block === 'object')
+          for (const [lang, text] of Object.entries(block as Record<string, unknown>))
+            if (typeof text === 'string') texts.push([`${field}.${lang}`, text]);
+      }
+      for (const field of ['prompt', 'question'] as const) {
+        const text = (item as Record<string, unknown>)[field];
+        if (typeof text === 'string') texts.push([field, text]);
+      }
+      for (const [field, text] of texts) {
+        const phrase = positionalReference(text);
+        if (phrase)
+          fail(
+            where,
+            `${field} says "${phrase}" — options are shuffled on every render (shuffle() in ` +
+              `MultipleChoice/AudioComprehension/Match), so there is no first or second option. ` +
+              'Name the choice by what it contains, not by where it sits.',
+          );
+      }
+    }
   }
 }
 
