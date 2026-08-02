@@ -16,21 +16,6 @@ items:
     text: "Was machst du gern in der Freizeit?"
     translation: { en: "What do you like doing in your free time?", ru: "Что ты любишь делать в свободное время?", uk: "Що ти любиш робити у вільний час?" }
     explain: { en: "In the W-question the verb follows the question word (Was machst du …), and gern comes right after the verb and its subject. Freizeit is a noun — capitalized.", ru: "В W-вопросе глагол стоит сразу после вопросительного слова (Was machst du …), а gern идёт после глагола и подлежащего. Freizeit — существительное, с большой буквы.", uk: "У W-питанні дієслово стоїть одразу після питального слова (Was machst du …), а gern іде після дієслова і підмета. Freizeit — іменник, з великої літери." }
-  - id: hoeren-kino-einladung
-    outcomes: [freizeit-gespraech-verstehen]
-    type: audio-comprehension
-    source:
-      kind: tts
-      rate: 0.85
-      turns:
-        - { speaker: "Lena", text: "Hallo Tom! Gehen wir heute Abend ins Kino? Der Film ist super." }
-        - { speaker: "Tom", text: "Ja, gern! Ich mag Filme. Um wie viel Uhr?" }
-        - { speaker: "Lena", text: "Um acht Uhr. Bis dann!" }
-    question: "Was machen Lena und Tom heute Abend?"
-    options: ["Sie gehen ins Kino.", "Sie gehen in den Park.", "Sie hören Musik."]
-    correct: 0
-    translation: { en: "What are Lena and Tom doing this evening?", ru: "Что Лена и Том делают сегодня вечером?", uk: "Що Лена і Том роблять сьогодні ввечері?" }
-    explain: { en: "Lena asks: Gehen wir heute Abend ins Kino? — and Tom accepts: Ja, gern! Ich mag Filme. So they are going to the cinema, at eight.", ru: "Лена спрашивает: Gehen wir heute Abend ins Kino? — и Том соглашается: Ja, gern! Ich mag Filme. Значит, они идут в кино, в восемь часов.", uk: "Лена питає: Gehen wir heute Abend ins Kino? — і Том погоджується: Ja, gern! Ich mag Filme. Отже, вони йдуть у кіно, о восьмій годині." }
   - id: hoeren-park-absage
     outcomes: [freizeit-gespraech-verstehen, freizeit-verabredung]
     type: audio-comprehension

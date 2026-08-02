@@ -5,38 +5,6 @@ title:
   ru: "Практика — указания, сообщение, обмен сменами"
   uk: "Практика — вказівки, повідомлення, обмін змінами"
 items:
-  - id: hoeren-anweisung-chefin
-    outcomes: [arbeitsanweisung-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "Nina's manager stops her at the door of the office on Friday morning. Listen once. You are not being asked what Nina must do — you are being asked what she is free not to do."
-      ru: "В пятницу утром начальница останавливает Нину у двери офиса. Прослушайте один раз. Вопрос не о том, что Нина обязана сделать, а о том, чего она может не делать."
-      uk: "У п'ятницю вранці начальниця зупиняє Ніну біля дверей офісу. Прослухайте один раз. Питання не про те, що Ніна зобов'язана зробити, а про те, чого вона може не робити."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Frau Kaufmann", text: "Guten Morgen, Nina. Kurz zum Freitag: Sie sollen heute die Kasse aufmachen." }
-        - { speaker: "Nina", text: "Gern. Um sechs Uhr?" }
-        - { speaker: "Frau Kaufmann", text: "Ja, um sechs. Und im Büro darf niemand rauchen — das ist neu, bitte sagen Sie das im Team weiter." }
-        - { speaker: "Nina", text: "Alles klar. Und die Überstunden am Abend?" }
-        - { speaker: "Frau Kaufmann", text: "Heute ist wenig Arbeit. Sie müssen nicht länger bleiben. Um vierzehn Uhr ist für Sie Feierabend." }
-        - { speaker: "Nina", text: "Sehr gut. Dann sage ich Jonas Bescheid, denn er hat am Nachmittag Spätschicht." }
-    question: "Was muss Nina heute NICHT machen?"
-    options:
-      - "Sie muss keine Überstunden machen."
-      - "Sie muss die Kasse nicht aufmachen."
-      - "Sie muss Jonas nichts sagen."
-    correct: 0
-    translation:
-      en: "What does Nina NOT have to do today?"
-      ru: "Чего Нина сегодня делать НЕ обязана?"
-      uk: "Чого Ніна сьогодні робити НЕ зобов'язана?"
-    explain:
-      en: "Every option repeats something that is actually said, so a single familiar word decides nothing — you have to hear which sentence carries the negation. The till is an instruction: „Sie sollen heute die Kasse aufmachen“ — she does have to open it. Telling Jonas is Nina's own idea, and she announces it herself at the end. The one thing lifted from her is the overtime: „Sie müssen nicht länger bleiben.“ Note what the manager does not say — she does not forbid Nina to stay. muss nicht removes an obligation; only darf nicht would have banned it, and that verb is used in this dialogue for something else entirely: „im Büro darf niemand rauchen.“"
-      ru: "Каждый вариант повторяет то, что в диалоге действительно звучит, поэтому одного знакомого слова мало — нужно услышать, в каком предложении стоит отрицание. Касса — это указание: „Sie sollen heute die Kasse aufmachen“, открыть её она обязана. Сказать Йонасу — идея самой Нины, она объявляет об этом в конце. Снята с неё только одна вещь — сверхурочные: „Sie müssen nicht länger bleiben.“ Обратите внимание, чего начальница не говорит: она не запрещает Нине оставаться. muss nicht снимает обязанность; запретить могло бы только darf nicht — а этот глагол звучит в диалоге совсем по другому поводу: „im Büro darf niemand rauchen.“"
-      uk: "Кожен варіант повторює те, що в діалозі справді звучить, тому одного знайомого слова замало — треба почути, в якому реченні стоїть заперечення. Каса — це вказівка: „Sie sollen heute die Kasse aufmachen“, відкрити її вона зобов'язана. Сказати Йонасові — ідея самої Ніни, вона оголошує про це в кінці. Знято з неї лише одну річ — понаднормові: „Sie müssen nicht länger bleiben.“ Зверніть увагу, чого начальниця не каже: вона не забороняє Ніні залишатися. muss nicht знімає обов'язок; заборонити могло б лише darf nicht — а це дієслово звучить у діалозі зовсім з іншого приводу: „im Büro darf niemand rauchen.“"
-
   - id: hoeren-diktat-anfangen
     outcomes: [arbeitsanweisung-verstehen]
     type: listen

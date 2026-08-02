@@ -5,32 +5,6 @@ title:
   ru: "Продукция и аудирование — правила фитнес-клуба"
   uk: "Продукування та аудіювання — правила фітнес-клубу"
 items:
-  - id: hoeren-studio-regeln
-    outcomes: [modal-erlaubnis-notwendigkeit]
-    type: audio-comprehension
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Frau Berger", text: "Willkommen im Fitnessstudio, Herr Klein. Sie müssen immer Sportschuhe tragen." }
-        - { speaker: "Tom", text: "Alles klar. Und muss ich ein Handtuch kaufen?" }
-        - { speaker: "Frau Berger", text: "Nein, Sie müssen kein Handtuch kaufen. Wir haben genug Handtücher. Aber ohne Handtuch dürfen Sie nicht trainieren." }
-        - { speaker: "Tom", text: "Gut. Dann nehme ich immer ein Handtuch von Ihnen." }
-    question: "Was sagt Frau Berger über das Handtuch?"
-    options:
-      - "Tom muss kein Handtuch kaufen, aber ohne Handtuch darf er nicht trainieren."
-      - "Tom muss ein Handtuch kaufen. Das Studio hat keine Handtücher."
-      - "Tom darf ohne Handtuch trainieren. Das ist kein Problem."
-    correct: 0
-    translation:
-      en: "What does Frau Berger say about the towel?"
-      ru: "Что госпожа Бергер говорит о полотенце?"
-      uk: "Що пані Берґер каже про рушник?"
-    explain:
-      en: "Two rules pass by in one breath, and they pull in opposite directions. „Sie müssen kein Handtuch kaufen“ removes an obligation — buying one is simply unnecessary, the studio lends them out. „Ohne Handtuch dürfen Sie nicht trainieren“ is a prohibition — a towel is compulsory on the equipment. So Tom needs a towel every time, but he never has to pay for one. All three options are perfectly good German; only the audio tells you which is true."
-      ru: "Два правила проговариваются подряд и тянут в разные стороны. «Sie müssen kein Handtuch kaufen» снимает обязанность: покупать полотенце не нужно, клуб выдаёт свои. «Ohne Handtuch dürfen Sie nicht trainieren» — это запрет: без полотенца на тренажёрах нельзя. Значит, полотенце Тому нужно всегда, но покупать его не надо. Все три варианта — правильный немецкий; какой из них верен, известно только из аудио."
-      uk: "Два правила звучать одне за одним і тягнуть у протилежні боки. «Sie müssen kein Handtuch kaufen» знімає обов'язок: купувати рушник не потрібно, клуб видає свої. «Ohne Handtuch dürfen Sie nicht trainieren» — це заборона: без рушника тренуватися не можна. Отже, рушник Томові потрібен щоразу, але платити за нього не доведеться. Усі три варіанти — бездоганна німецька; який із них правдивий, відомо лише з аудіо."
-
   - id: cloze-regeln-darf-muss
     outcomes: [modal-erlaubnis-notwendigkeit]
     type: cloze

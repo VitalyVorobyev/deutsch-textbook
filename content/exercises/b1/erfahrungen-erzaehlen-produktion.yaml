@@ -11,40 +11,6 @@ items:
   # Nothing in the article or reading mentions Frau Berg, so the interview cannot be
   # answered from memory of another artifact; the graded fact hangs on hearing the
   # nachdem-clause and the order of events it encodes.
-  - id: hoeren-interview-berg
-    outcomes: [interview-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "A podcast host asks Ms Berg about her most memorable experience. Listen for the order of events."
-      ru: "Ведущий подкаста расспрашивает госпожу Берг о самом ярком событии. Слушайте порядок событий."
-      uk: "Ведучий подкасту розпитує пані Берг про найяскравішу подію. Слухайте порядок подій."
-      de: "Ein Moderator fragt Frau Berg nach ihrem aufregendsten Erlebnis. Achte auf die Reihenfolge der Ereignisse."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Moderator", text: "Frau Berg, was war Ihr aufregendstes Erlebnis?" }
-        - { speaker: "Frau Berg", text: "Meine erste Reise nach Italien. Ich hatte monatelang gespart, und dann verlor ich am Bahnhof meine Tasche." }
-        - { speaker: "Moderator", text: "Oh nein! Und was haben Sie gemacht?" }
-        - { speaker: "Frau Berg", text: "Nachdem ich überall gesucht hatte, ging ich zur Polizei. Ein junger Mann hatte die Tasche schon dort abgegeben. Ich war so erleichtert!" }
-        - { speaker: "Moderator", text: "Und die Reise?" }
-        - { speaker: "Frau Berg", text: "Die Reise war wunderbar. Aber seitdem passe ich auf meine Tasche besser auf." }
-    question: "Wann ging Frau Berg zur Polizei?"
-    options:
-      - "Nachdem sie überall gesucht hatte."
-      - "Bevor sie ihre Tasche verlor."
-      - "Nachdem die Reise zu Ende war."
-    correct: 0
-    translation:
-      en: "When did Ms Berg go to the police?"
-      ru: "Когда госпожа Берг пошла в полицию?"
-      uk: "Коли пані Берг пішла в поліцію?"
-    explain:
-      en: "The order lives in the tenses: Nachdem ich überall gesucht hatte, ging ich zur Polizei — the searching (Plusquamperfekt) comes before the going (Präteritum). The bevor-answer reverses the story, and the answer Nachdem die Reise zu Ende war hangs the visit after the trip, which she never says."
-      ru: "Порядок зашит во временах: Nachdem ich überall gesucht hatte, ging ich zur Polizei — поиски (Plusquamperfekt) предшествуют походу (Präteritum). Вариант с bevor переворачивает историю, а вариант Nachdem die Reise zu Ende war относит визит после поездки, чего она не говорила."
-      uk: "Порядок зашитий у часах: Nachdem ich überall gesucht hatte, ging ich zur Polizei — пошуки (Plusquamperfekt) передують походу (Präteritum). Варіант з bevor перевертає історію, а варіант Nachdem die Reise zu Ende war відносить візит після поїздки, чого вона не казала."
-      de: "Die Reihenfolge steckt in den Tempora: Nachdem ich überall gesucht hatte, ging ich zur Polizei — das Suchen (Plusquamperfekt) liegt vor dem Gehen (Präteritum). Die bevor-Variante dreht die Geschichte um, und die Variante Nachdem die Reise zu Ende war hängt den Besuch hinter die Reise, was Frau Berg nirgends sagt."
-
   - id: hoeren-diktat-zug
     outcomes: [interview-verstehen]
     type: listen

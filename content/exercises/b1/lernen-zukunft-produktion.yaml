@@ -51,35 +51,6 @@ items:
       uk: "Фраза з falls — власний план Б цієї записки, і прочитати її означає прив'язати наслідок до умови: вечірній курс повний → у суботньому є місця. Чекати цілий рік не пропонується ніде, а останнє речення закриває варіант з E-Mail з іншого боку: запис відбувається в офісі з підписом, і пошта його не замінить. Умови плану читаються рівно так, як написані: один випадок — один хід."
       de: "Der falls-Satz ist der Plan B des Zettels selbst, und ihn zu lesen heißt, die Folge an ihre Bedingung zu hängen: Abendkurs voll → freie Plätze am Samstag. Ein ganzes Jahr zu warten schlägt niemand vor, und der letzte Satz schließt die Anmeldung per E-Mail von der anderen Seite aus: Angemeldet wird im Büro mit Unterschrift, die E-Mail ersetzt das nicht. Die Bedingungen eines Plans liest man genau so, wie sie dastehen: ein Fall, ein Zug."
 
-  - id: hoeren-beratung
-    outcomes: [beratung-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "The adviser's recommendation, heard once — listen for what Marta should do in case the evening course is already full."
-      ru: "Рекомендация консультантки, услышанная один раз, — слушайте, что Марта должна сделать, если вечерний курс уже заполнен."
-      uk: "Рекомендація консультантки, почута один раз, — слухайте, що Марта має зробити, якщо вечірній курс уже заповнений."
-      de: "Die Empfehlung der Beraterin, einmal gehört — achte darauf, was Marta tun soll, falls der Abendkurs schon voll ist."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Beraterin", text: "Also, mein Vorschlag: Nehmen Sie den Abendkurs ab September, damit Sie neben der Arbeit weiterlernen können. Falls der Kurs schon voll ist, melden Sie sich bitte bis Freitag bei mir im Büro — wir finden dann zusammen einen anderen Termin." }
-    question: "Was soll Marta tun, falls der Abendkurs schon voll ist?"
-    options:
-      - "Sich bis Freitag im Büro melden."
-      - "Sofort den Kurs am Samstag nehmen."
-      - "Bis zum nächsten September warten."
-    correct: 0
-    translation:
-      en: "What should Marta do in case the evening course is already full?"
-      ru: "Что Марта должна сделать, если вечерний курс уже заполнен?"
-      uk: "Що Марта має зробити, якщо вечірній курс уже заповнений?"
-    explain:
-      en: "The recommendation comes as the article promised: a main point plus the case it covers. The main point is the evening course with its purpose (damit Sie … weiterlernen können); the falls-sentence then names the fallback — melden Sie sich bis Freitag bei mir im Büro. The Saturday course is Marta's own plan from her notes, not what the adviser says here — which is exactly why listening beats remembering. Waiting a year is proposed by nobody."
-      ru: "Рекомендация приходит так, как обещала статья: главный пункт плюс случай, который он покрывает. Главный пункт — вечерний курс с его целью (damit Sie … weiterlernen können); фраза с falls затем называет запасной ход — melden Sie sich bis Freitag bei mir im Büro. Субботний курс — собственный план Марты из её записей, а не то, что консультантка говорит здесь, — именно поэтому слушать надёжнее, чем вспоминать. Ждать год не предлагает никто."
-      uk: "Рекомендація приходить так, як обіцяла стаття: головний пункт плюс випадок, який він покриває. Головний пункт — вечірній курс із його метою (damit Sie … weiterlernen können); фраза з falls потім називає запасний хід — melden Sie sich bis Freitag bei mir im Büro. Суботній курс — власний план Марти з її нотаток, а не те, що консультантка каже тут, — саме тому слухати надійніше, ніж згадувати. Чекати рік не пропонує ніхто."
-      de: "Die Empfehlung kommt, wie der Artikel es versprochen hat: ein Hauptpunkt plus der Fall, den er abdeckt. Der Hauptpunkt ist der Abendkurs mit seinem Zweck (damit Sie … weiterlernen können); der falls-Satz nennt dann den Ausweg — melden Sie sich bis Freitag bei mir im Büro. Der Samstagskurs ist Martas eigener Plan aus ihren Notizen, nicht das, was die Beraterin hier sagt — genau darum schlägt Zuhören das Erinnern. Ein Jahr zu warten schlägt niemand vor."
-
   - id: hoeren-diktat
     outcomes: [beratung-verstehen]
     type: listen
