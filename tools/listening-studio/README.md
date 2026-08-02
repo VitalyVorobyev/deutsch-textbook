@@ -19,6 +19,11 @@ WAV audio, checks it with Whisper, and requires a real six-point human review be
 `publish` succeeds. Saving an edit creates a new revision and returns the project to `draft`.
 `publish` refuses every existing target and requires `--yes` after reviewing the bundle.
 
+The approval page shows everything those six checks are about, above the signature: both takes,
+the questions as the learner meets them with the key marked, the QA table, the measured length
+against the plan's `duration_seconds` window, and the script — collapsed, because reading along
+makes a reviewer hear words that were never spoken. Declining is a button, not closing the tab.
+
 Model weights are never downloaded implicitly by the editor. Use `models list` and
 `models fetch <generator|qwen_tts|parler_tts|parler_text_tokenizer|asr>`. Voice cloning,
 reference audio, VoiceDesign and music have no API or UI surface.

@@ -164,6 +164,24 @@ def locked_snapshot(model_id: str, revision: str, allow_patterns: list[str] | No
         ) from exc
 
 
+def wav_duration(path: Path) -> float | None:
+    """Seconds of audio, or None when the file is missing or unreadable.
+
+    The approval page states this against the plan's `duration_seconds` window, because
+    "is the pace right for this level" is not answerable from the recording alone — a take can
+    sound perfectly paced and still be half the length the curriculum asked for.
+    """
+
+    if not path.exists():
+        return None
+    try:
+        import soundfile as sf
+
+        return float(sf.info(str(path)).duration)
+    except Exception:
+        return None
+
+
 def write_with_pace(
     target: Path, samples: object, rate: int, pace: float, soundfile_module: Any
 ) -> None:

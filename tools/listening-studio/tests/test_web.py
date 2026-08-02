@@ -214,3 +214,77 @@ def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadab
     assert stored.tts_adapter == "qwen_tts"
     assert len({line.voice for line in stored.lines}) == 2
     assert client.get(f"/projects/{project.id}?token=test", headers=headers).status_code == 200
+
+
+def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Path) -> None:
+    """The form used to be six English words and a name box — no audio, no questions, no QA.
+
+    It also rendered unstyled, because `web.py` carried a local `page()` that returned the body
+    verbatim and shadowed `ui.page`; the approval route was its only caller, so the one page
+    nobody had built was also the one page with no stylesheet. Both are the same defect: a
+    checklist that shows nothing it asks about is a rubber stamp, and the published manifest
+    states that a named human vouched for exactly these six things.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    project = store.create("ls-review-01", payload().model_copy(update={"tts_adapter": "fake"}))
+    plan = {
+        "version": 1,
+        "units": [
+            {
+                "unit": "termine-vereinbaren",
+                "level": "A2",
+                "artifacts": [
+                    {
+                        "id": "ls-review-01",
+                        "wave": 1,
+                        "scenario": "Termin",
+                        "duration_seconds": {"min": 40, "max": 50},
+                    }
+                ],
+            }
+        ],
+    }
+    (tmp_path / "data").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "data" / "listening-plan.yaml").write_text(yaml.safe_dump(plan))
+
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
+
+    page = client.get(f"/projects/{project.id}/approve?token=test")
+    assert page.status_code == 200
+    body = page.text
+
+    # A whole document, not a fragment: this is what the shadowed `page()` was swallowing.
+    assert body.startswith("<!doctype html>")
+    assert "<style>" in body and "Listening Studio</h1>" in body
+
+    # The audio itself, and the speech-only take beside it.
+    assert f"/projects/{project.id}/audio" in body
+
+    # The questions as the learner meets them, with the key marked — `questions` is uncheckable
+    # without them, and every drafted Wave-1 question turned out to be about another script.
+    assert "Wann?" in body and "Freitag" in body and "✓" in body
+
+    # The script, present but collapsed: reading along is how you hear words nobody said.
+    assert "<details>" in body and "Der Termin ist am Freitag." in body
+
+    # What the machine already checked, so the human is not asked to redo it.
+    assert "Automatische Prüfung" in body
+
+    # Full sentences, not bare keys — and the level is named in the two checks that depend on it.
+    assert "Es klingt nach einer sprechenden Person" in body
+    assert "Auf A2 ist jedes Wort heraushörbar" in body
+    for key in ["accent", "naturalness", "intelligibility", "speakers", "pace", "questions"]:
+        assert f"name={key} " in body, key
+    # No context sound in this payload, so nothing is certified about one.
+    assert "name=context " not in body
+
+    # The measured length against the window the curriculum asked for. The fake adapter's take is
+    # nowhere near 40-50 s, so this is the failing branch — which is the one that has to be legible.
+    assert "Plan 40–50 s" in body
+    assert "class=fail>Dauer" in body
+
+    # Declining is a step, not closing the tab.
+    assert f"/projects/{project.id}/regenerate" in body

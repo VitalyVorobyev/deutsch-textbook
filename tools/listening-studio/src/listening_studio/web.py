@@ -21,6 +21,7 @@ from .adapters import (
     generate_lines,
     mix_context,
     transcribe,
+    wav_duration,
 )
 from .domain import (
     Line,
@@ -72,9 +73,6 @@ def app(
         if authenticated:
             response.set_cookie("atlas_studio", secret, httponly=True, samesite="strict")
         return response
-
-    def page(body: str) -> HTMLResponse:
-        return HTMLResponse(body)
 
     @api.exception_handler(ValueError)
     def workflow_error(request: Request, exc: ValueError) -> HTMLResponse:
@@ -138,6 +136,28 @@ def app(
                     }
                 )
         return rows
+
+    def plan_duration(slug: str) -> tuple[float, float] | None:
+        """The `duration_seconds` window the curriculum asked this recording for, if any.
+
+        Stated on the approval page beside the measured length: nine of the twelve Wave-1 takes
+        came out shorter than planned, and nothing in the studio or the repository validator
+        compares the two — a take is never wrong-length, it is only ever wrong-worded.
+        """
+
+        source = repo / "data" / "listening-plan.yaml"
+        if not source.exists():
+            return None
+        plan = yaml.safe_load(source.read_text())
+        for unit in plan["units"]:
+            for artifact in unit["artifacts"]:
+                if artifact["id"] != slug:
+                    continue
+                window = artifact.get("duration_seconds") or {}
+                if "min" in window and "max" in window:
+                    return float(window["min"]), float(window["max"])
+                return None
+        return None
 
     @api.get("/health")
     def health() -> dict[str, str]:
@@ -356,7 +376,11 @@ def app(
         )
         return RedirectResponse(f"/projects/{project_id}", 303)
 
-    @api.post("/projects/{project_id}/approve", response_class=HTMLResponse)
+    # GET as well as POST: the page is now long enough to scroll, and a reload that re-submits a
+    # form is a bad way to get back to the top of a review you are in the middle of.
+    @api.api_route(
+        "/projects/{project_id}/approve", methods=["GET", "POST"], response_class=HTMLResponse
+    )
     def approval_form(project_id: int) -> HTMLResponse:
         project, revision, _ = store.get(project_id)
         if Stage(project.stage) != Stage.AUTOMATICALLY_CHECKED:
@@ -367,15 +391,18 @@ def app(
         _, _, payload = store.get(project_id)
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
-        checks = ["accent", "naturalness", "intelligibility", "speakers", "pace", "questions"]
-        if payload.context_sounds:
-            checks.append("context")
-        fields = "".join(
-            f"<label><input style='width:auto' type=checkbox name={c} required> {c}</label><br>"
-            for c in checks
-        )
-        return page(
-            f"<div class=card><h2>Human approval</h2><form method=post action='/projects/{project_id}/approve/confirm'><label>Editor<input name=editor required></label>{fields}<button>Approve this exact revision</button></form></div>"
+        project_dir = store.root / "projects" / str(project_id)
+        window = plan_duration(project.slug)
+        return HTMLResponse(
+            ui.approval_page(
+                project_id=project_id,
+                slug=project.slug,
+                payload=payload,
+                qa=qa_data,
+                has_dry=(project_dir / "dry.wav").exists(),
+                duration=wav_duration(project_dir / "final.wav"),
+                target=window,
+            )
         )
 
     @api.post("/projects/{project_id}/approve/confirm")

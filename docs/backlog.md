@@ -147,6 +147,20 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   governing modal it takes the Ersatzinfinitiv: *Das hättest du sagen sollen*, which the page
   itself prints two lines below the formula that excludes it. Either qualify the formula as
   holding without a dependent infinitive, or give the double-infinitive pattern its own row.
+- **P22-9 · Markdown emphasis in a YAML text field reaches the learner as asterisks** — no
+  exercise component runs a markdown pass, so `*zuerst*` in an `explain` renders with its
+  asterisks. Thirty-nine Wave-1 fields were authored that way and caught by eye, not by a gate.
+  A blanket rule is wrong: `*` is also the ungrammaticality marker, used correctly in 64 places
+  (`not *geschreibt`). The distinguishing test is that emphasis *closes* — a `*` preceded by a
+  non-space and followed by space, punctuation or end-of-string — while the linguistic marker
+  never does, even when two occur in one sentence (`never *muss … steigt um and never *muss …`).
+  Verify a candidate rule against both sets before landing it; a false positive here rejects
+  correct linguistic notation.
+- **P22-10 · Nothing compares a recording's length to the length the plan asked for** —
+  `duration_seconds` is authored per artifact in `data/listening-plan.yaml` and read by nothing.
+  Nine of the twelve Wave-1 takes came out short of their window and one long; the studio's
+  approval page now states the comparison, but neither `bun run validate` nor
+  `bun run listening:inventory` can see it, so a published recording is never wrong-length.
 - **P22-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
   for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
   the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving

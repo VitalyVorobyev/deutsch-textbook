@@ -52,6 +52,7 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;color:#78716c}
 .chip.work{background:#fef3c7;color:#92400e}
 .chip.ready{background:#dcfce7;color:#166534}
 .chip.blocked{background:#fee2e2;color:#991b1b}
+.check{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start;margin:.9rem 0;font-size:.95rem;color:inherit}
 nav a{margin-left:1rem}
 @media(prefers-color-scheme:dark){
  body{background:#1c1917;color:#e7e5e4}
@@ -271,6 +272,137 @@ def approval_card(approval: dict[str, object]) -> str:
         f"<p><strong>{escape(str(approval.get('editor','')))}</strong> · {escape(str(approval.get('reviewed_at','')))}</p>"
         f"<ul class=muted>{items}</ul>"
         f"<p class=muted>Gebunden an genau diese Audiodatei: <code>{escape(str(approval.get('audio_sha256',''))[:16])}…</code></p></div>"
+    )
+
+
+#: What the editor certifies, key → the sentence they are certifying.
+#:
+#: The keys are written into the published provenance manifest (`approval.checklist`), so they
+#: are fixed and must never be renamed; only the wording beside them moves. Until 2026-08-02 the
+#: form showed the bare keys — six English words, no audio, no questions, no QA — and asked a
+#: named human to vouch for all of them. A checklist that shows nothing it asks about is a
+#: rubber stamp, and `docs/product-protection.md` exists to make this signature mean something.
+APPROVAL_CHECKS: dict[str, str] = {
+    "accent": (
+        "Die Aussprache ist verständliches Standarddeutsch. Kein Wort ist so verfärbt, "
+        "dass ein Lernender es falsch abspeichern würde."
+    ),
+    "naturalness": "Es klingt nach einer sprechenden Person, nicht nach einer vorlesenden Maschine.",
+    "intelligibility": (
+        "Auf {level} ist jedes Wort heraushörbar — beim Hören, ohne Mitlesen im Skript."
+    ),
+    "speakers": "Die Sprecher sind durchgehend als verschiedene Personen unterscheidbar.",
+    "pace": "Das Tempo passt zu {level}: nicht gehetzt, aber auch nicht künstlich gedehnt.",
+    "questions": (
+        "Jede Frage ist allein aus dem Gehörten beantwortbar, und die markierte Antwort "
+        "ist die einzige richtige."
+    ),
+    "context": "Die Hintergrundgeräusche sind hörbar, überdecken aber keine Silbe.",
+}
+
+
+def transcript_card(payload: RevisionPayload) -> str:
+    """The script, collapsed.
+
+    Deliberately not open: reading along makes a listener hear words that were never said, which
+    is precisely what the `intelligibility` check is supposed to catch. Listen first.
+    """
+
+    rows = "".join(
+        f"<tr><td>{escape(line.speaker)}</td><td class=muted>{escape(line.voice or '—')}</td>"
+        f"<td class=muted>{escape(line.style or '—')}</td>"
+        f"<td>{escape(line.display_text)}</td></tr>"
+        for line in payload.lines
+    )
+    return (
+        "<div class=card><details><summary>Skript einblenden</summary>"
+        "<p class=muted>Erst hören, dann aufklappen — beim Mitlesen hört man Wörter, "
+        "die nicht gesprochen wurden.</p>"
+        "<table><thead><tr><th>Sprecher</th><th>Stimme</th><th>Sprechweise</th><th>Text</th></tr>"
+        f"</thead><tbody>{rows}</tbody></table></details></div>"
+    )
+
+
+def question_review_card(payload: RevisionPayload) -> str:
+    """The questions as the learner meets them, with the key marked.
+
+    The `questions` check asks whether each one is answerable from the audio alone and whether
+    the marked answer is right. Both of those are unanswerable without seeing the options — and
+    every one of Wave 1's drafted questions was template residue that no gate could see.
+    """
+
+    blocks = []
+    for question in payload.questions:
+        response = question.response
+        if not isinstance(response, SingleChoice):
+            blocks.append(
+                f"<div class=line><p class=fail>«{escape(response.kind)}» — alte Frageform, "
+                "kein Aufgabentyp kann sie darstellen.</p></div>"
+            )
+            continue
+        options = "".join(
+            f"<li{' class=pass' if index == response.correct else ''}>{escape(option)}"
+            + (" ✓" if index == response.correct else "")
+            + "</li>"
+            for index, option in enumerate(response.options)
+        )
+        blocks.append(
+            f"<div class=line><p><strong>{escape(response.prompt)}</strong></p>"
+            f"<ol>{options}</ol>"
+            f"<p class=muted>{escape(question.explain.en)}<br>{escape(question.explain.ru)}</p></div>"
+        )
+    return "<div class=card><h3>Fragen</h3>" + "".join(blocks) + "</div>"
+
+
+def approval_page(
+    *,
+    project_id: int,
+    slug: str,
+    payload: RevisionPayload,
+    qa: dict[str, object],
+    has_dry: bool,
+    duration: float | None,
+    target: tuple[float, float] | None,
+) -> str:
+    """Everything the six checks are about, on one screen, above the signature."""
+
+    level = escape(payload.brief.level)
+    keys = [key for key in APPROVAL_CHECKS if key != "context"]
+    if payload.context_sounds:
+        keys.append("context")
+    checks = "".join(
+        "<label class=check><input style='width:auto' type=checkbox "
+        f"name={key} required> {APPROVAL_CHECKS[key].format(level=level)}</label>"
+        for key in keys
+    )
+
+    length = "<span class=muted>Dauer unbekannt</span>"
+    if duration is not None:
+        within = target is None or target[0] <= duration <= target[1]
+        window = f" · Plan {target[0]:g}–{target[1]:g} s" if target else ""
+        length = (
+            f"<span class={'pass' if within else 'fail'}>Dauer {duration:.1f} s</span>{window}"
+        )
+
+    return page(
+        f"<div class=card><h2>Freigabe · {escape(slug)}</h2>"
+        f"<p class=muted>{level} · {escape(payload.brief.scenario)} · {length}</p>"
+        f"<p><a href='/projects/{project_id}'>Zurück zum Projekt</a></p></div>"
+        + player_card(project_id, True, has_dry)
+        + question_review_card(payload)
+        + transcript_card(payload)
+        + qa_card(qa)
+        + "<div class=card><h3>Ich bestätige</h3>"
+        f"<form method=post action='/projects/{project_id}/approve/confirm'>"
+        f"{checks}<label>Name der freigebenden Person<input name=editor required></label>"
+        "<button>Genau diese Aufnahme freigeben</button></form>"
+        "<p class=muted>Die Freigabe wird an den Hash genau dieser Audiodatei gebunden. Wird "
+        "danach neu erzeugt, verfällt sie.</p></div>"
+        "<div class='card actions'>"
+        f"<form method=post action='/projects/{project_id}/regenerate'>"
+        "<button class=ghost>Stimmt etwas nicht — neu erzeugen</button></form>"
+        "<span class=muted>Nicht freigeben ist ein Schritt, kein Schließen des Tabs.</span></div>",
+        f"Freigabe · {slug}",
     )
 
 
