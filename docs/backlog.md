@@ -147,6 +147,21 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   governing modal it takes the Ersatzinfinitiv: *Das hättest du sagen sollen*, which the page
   itself prints two lines below the formula that excludes it. Either qualify the formula as
   holding without a dependent infinitive, or give the double-infinitive pattern its own row.
+- **P22-11 · Nothing detects two vocab entries that answer the same production prompt** — the
+  production card shows the gloss and expects one German word, so two entries whose glosses
+  reduce to the same content words are two correct answers to one question, and the learner is
+  wrong half the time whichever they type. `Angebot`/`Sonderangebot` was found by the learner,
+  not by a gate; the 2026-07-26 card audit found five more by hand. A throwaway scan over the 82
+  decks flags 129 candidate pairs, but that number is **not** a defect count — it over-fires
+  two ways, both fixable: it strips parentheticals, which is exactly where the corpus already
+  puts its disambiguators (`öffnen` and `aufmachen` each name the other and are correctly
+  separated), and it scores a subset as a full collision (`drei` vs `dreimal`). Verified genuine
+  from the sample: `Stock`/`Stockwerk`/`Etage` are all "floor, storey · этаж". That one needs an
+  editorial ruling rather than a mechanical fix — they are true synonyms, and inventing a
+  register distinction to separate them would teach a false fact to remove a card collision.
+  Build the detector to respect parentheticals and require mutual overlap, then triage its output
+  against the lapse table: `aufmachen`, `Aufgabe`, `Anweisung` and `Empfehlung` all sit high on
+  both lists.
 - **P22-9 · Markdown emphasis in a YAML text field reaches the learner as asterisks** — no
   exercise component runs a markdown pass, so `*zuerst*` in an `explain` renders with its
   asterisks. Thirty-nine Wave-1 fields were authored that way and caught by eye, not by a gate.
