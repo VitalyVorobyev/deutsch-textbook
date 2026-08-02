@@ -265,6 +265,32 @@ def show_sources() -> None:
     )
 
 
+def verify_approval(approval: dict[str, object], wav: Path, dry_wav: Path) -> None:
+    """Refuse to bundle audio the recorded approval does not describe.
+
+    A missing digest is not a pass. Approvals recorded before the studio stored hashes carry
+    neither, so a truthiness guard would skip both comparisons and export whatever bytes are on
+    disk under an approval that never covered them — and `scripts/validate.ts` cannot catch it,
+    because it compares the manifest to the file and never the approval to the manifest.
+    """
+
+    approved_final = approval.get("audio_sha256")
+    approved_dry = approval.get("dry_audio_sha256")
+    if not approved_final:
+        raise typer.BadParameter(
+            "this approval predates audio hashing and vouches for no bytes — "
+            "re-approve the project before exporting"
+        )
+    if sha256(wav) != approved_final:
+        raise typer.BadParameter(
+            "final.wav has changed since approval — re-approve this exact audio before exporting"
+        )
+    if dry_wav.exists() and (not approved_dry or sha256(dry_wav) != approved_dry):
+        raise typer.BadParameter(
+            "dry.wav has changed since approval — re-approve this exact audio before exporting"
+        )
+
+
 def bundle_project(project_id: int) -> tuple[Path, RevisionPayload]:
     store = Store()
     project, revision, payload = store.get(project_id)
@@ -278,17 +304,7 @@ def bundle_project(project_id: int) -> tuple[Path, RevisionPayload]:
     # replaced or truncated between approval and export is published carrying an approval
     # nobody gave it — and the downstream gate cannot see it, because scripts/validate.ts
     # compares the manifest to the file, never the approval to the manifest.
-    approval = json.loads(revision.approval_json)
-    approved_final = approval.get("audio_sha256")
-    approved_dry = approval.get("dry_audio_sha256")
-    if approved_final and sha256(wav) != approved_final:
-        raise typer.BadParameter(
-            "final.wav has changed since approval — re-approve this exact audio before exporting"
-        )
-    if approved_dry and dry_wav.exists() and sha256(dry_wav) != approved_dry:
-        raise typer.BadParameter(
-            "dry.wav has changed since approval — re-approve this exact audio before exporting"
-        )
+    verify_approval(json.loads(revision.approval_json), wav, dry_wav)
 
     out = store.root / "exports" / project.slug
     lock_path = PACKAGE_ROOT / "models.lock.json"

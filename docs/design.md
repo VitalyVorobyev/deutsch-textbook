@@ -120,17 +120,21 @@ and the badge deliberately answer different questions.
 
 Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery nor review debt.
 Opening or replaying a listening artifact likewise creates no evidence; only its independently
-identified exercise question can write a verified attempt. Reviewed WAVs live beside their records
-in `content/listening/`, never under `public/`: `PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies them into the
-desktop build, and the public demo speaks the same scripts through browser TTS
-(`src/integrations/audio-bundle.ts`).
+identified exercise question can write a verified attempt. The published MP3 lives beside its record
+in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
+what QA ran on and what the editor approved, not what a learner downloads. `bun run build:desktop`
+sets `PUBLIC_ATLAS_AUDIO_BUNDLE=1` and copies the MP3s into the desktop build; the public demo
+speaks the same scripts through browser TTS (`src/integrations/audio-bundle.ts`). The flag is set
+in-process rather than as a shell prefix so the Windows release build can run the same command.
 
 ## Listening authoring boundary
 
 `tools/listening-studio/` is a local Python editorial service, not a learner service. SQLite keeps
-immutable drafts outside the repository. A committed listening artifact has a WAV, canonical
-`content/listening/` record, exercise question and `data/audio-provenance/` manifest. Publishing
-refuses unapproved revisions and existing targets. Model licences and training-data provenance
+immutable drafts outside the repository. A committed listening artifact has a published MP3,
+canonical `content/listening/` record, exercise set referenced by its topic, and
+`data/audio-provenance/` manifest pinning both the approved master and the published derivative.
+Publishing refuses unapproved revisions, approvals that vouch for no bytes, existing targets, and
+topics with nowhere to reference the set from. Model licences and training-data provenance
 remain separate claims; automatic transcription is not proof of natural pronunciation.
 
 ## Progress and storage

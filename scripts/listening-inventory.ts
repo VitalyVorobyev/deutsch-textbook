@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { listeningPlanSchema } from '../src/lib/schemas';
+import { listeningAudioPath, listeningPlanSchema } from '../src/lib/schemas';
 
 export type ListeningInventoryStatus =
   | 'planned'
@@ -45,7 +45,9 @@ export function inventory(root: string) {
       brief: prompts.some((name) => name.endsWith(`-${artifact.id}-listening.md`)),
       manifest,
       artifact: existsSync(join(root, 'content/listening', level, `${artifact.id}.yaml`)),
-      audio: existsSync(join(root, 'public/audio', level, `${artifact.id}.wav`)),
+      // The published derivative, not the studio's WAV master — `listeningAudioPath` is the
+      // one place that spells the layout, so this cannot drift from what publish writes again.
+      audio: existsSync(join(root, listeningAudioPath(unit.level, artifact.id))),
     });
     return { level: unit.level, unit: unit.unit, artifact: artifact.id, wave: artifact.wave, status };
   }));

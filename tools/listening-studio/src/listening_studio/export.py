@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
+import re
 import shutil
 import subprocess
 import zipfile
@@ -266,18 +268,25 @@ def write_bundle(
     )
     transcript = "\n".join(f"{line.speaker}: {line.display_text}" for line in payload.lines)
     (out / "transcript.txt").write_text(transcript + "\n")
+    # Every authored or model-produced string is escaped. These files are opened in a browser by
+    # the editor, so an unescaped `<` is at best a title that renders wrong and at worst a
+    # `<script>` a language model wrote executing on the reviewer's machine.
     student = (
         "<h1>"
-        + payload.title.en
+        + html.escape(payload.title.en)
         + "</h1><audio controls src='"
-        + slug
+        + html.escape(slug, quote=True)
         + ".wav'></audio>"
         + "".join(
-            f"<p>{i + 1}. {getattr(q.response, 'prompt', getattr(q.response, 'statement', 'Diktat'))}</p>"
+            f"<p>{i + 1}. "
+            + html.escape(
+                getattr(q.response, "prompt", getattr(q.response, "statement", "Diktat"))
+            )
+            + "</p>"
             for i, q in enumerate(payload.questions)
         )
     )
-    teacher = student + "<h2>Transcript</h2><pre>" + transcript + "</pre>"
+    teacher = student + "<h2>Transcript</h2><pre>" + html.escape(transcript) + "</pre>"
     (out / "student.html").write_text("<!doctype html><meta charset=utf-8>" + student)
     (out / "teacher.html").write_text("<!doctype html><meta charset=utf-8>" + teacher)
     for name, body in [("student", student), ("teacher", teacher)]:
@@ -327,6 +336,33 @@ def write_bundle(
     return archive
 
 
+def register_exercise(repo: Path, level: str, topic: str, set_id: str) -> Path:
+    """Append the published set to its topic's `exercises:` frontmatter.
+
+    A set no topic lists is a set no learner reaches: the topic page renders `data.exercises`
+    and nothing else, and `scripts/validate.ts` reports the file as an orphan. Publishing a
+    recording that never appears on its unit's page is a successful publish of nothing.
+
+    It goes at the **end** of the list. The first `role: practice` set is the topic's
+    primaryPractice and advances the Lernpfad, so its item list must not grow later — see
+    CLAUDE.md, "Every topic owns at least one `role: practice` set".
+    """
+
+    path = repo / "content" / "topics" / level / f"{topic}.mdx"
+    if not path.exists():
+        raise FileNotFoundError(f"no topic article at {path} to attach {set_id} to")
+    text = path.read_text()
+    match = re.search(r"^exercises: \[(.*)\]$", text, flags=re.MULTILINE)
+    if not match:
+        raise ValueError(f"{path} has no inline `exercises: [...]` list to append {set_id} to")
+    refs = [ref.strip() for ref in match.group(1).split(",") if ref.strip()]
+    if set_id not in refs:
+        refs.append(set_id)
+        joined = ", ".join(refs)
+        path.write_text(f"{text[: match.start()]}exercises: [{joined}]{text[match.end() :]}")
+    return path
+
+
 def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> list[Path]:
     level = payload.brief.level.lower()
     provenance_data = json.loads((bundle / "provenance.json").read_text())
@@ -349,7 +385,14 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     collisions = [str(target) for target in targets.values() if target.exists()]
     if collisions:
         raise FileExistsError("publish would overwrite: " + ", ".join(collisions))
+    # Fail before writing anything if the set has nowhere to be referenced from — a half-published
+    # recording is easier to finish by hand than an orphan nobody notices.
+    topic_path = repo / "content" / "topics" / level / f"{payload.brief.topic}.mdx"
+    if not topic_path.exists():
+        raise FileNotFoundError(f"no topic article at {topic_path} to attach {slug}-hoeren to")
     for source, target in targets.items():
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
-    return list(targets.values())
+    written = list(targets.values())
+    written.append(register_exercise(repo, level, payload.brief.topic, f"{level}/{slug}-hoeren"))
+    return written

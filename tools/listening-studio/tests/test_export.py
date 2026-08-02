@@ -5,7 +5,7 @@ from pathlib import Path
 
 from listening_studio.adapters import FakeTTS, assemble, generate_lines
 from listening_studio.domain import ShortAnswer, TrueFalse
-from listening_studio.export import write_bundle
+from listening_studio.export import register_exercise, write_bundle
 from test_domain import payload
 
 
@@ -48,6 +48,69 @@ def test_bundle_is_deterministic_and_records_provenance(tmp_path: Path) -> None:
     assert provenance["published_audio_bitrate"] == "64k"
     assert provenance["claims"]["voice_cloning_used"] is False
     assert all(line["cache_key"] for line in provenance["line_artifacts"])
+
+
+def topic_article(root: Path, level: str, topic: str, refs: str) -> Path:
+    path = root / "content" / "topics" / level / f"{topic}.mdx"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        f"---\nid: {topic}\nlevel: {level.upper()}\nexercises: [{refs}]\nvocab: []\n---\n\n"
+        "## Kurz gesagt\n"
+    )
+    return path
+
+
+def test_a_published_set_is_referenced_by_its_topic(tmp_path: Path) -> None:
+    """The set lands at the end of the list, never in front of the primaryPractice."""
+
+    path = topic_article(tmp_path, "a1", "erste-schritte", "a1/erste-schritte")
+    register_exercise(tmp_path, "a1", "erste-schritte", "a1/ls-erste-schritte-01-hoeren")
+    assert "exercises: [a1/erste-schritte, a1/ls-erste-schritte-01-hoeren]" in path.read_text()
+
+    # Publishing the same recording twice must not list it twice.
+    register_exercise(tmp_path, "a1", "erste-schritte", "a1/ls-erste-schritte-01-hoeren")
+    assert path.read_text().count("ls-erste-schritte-01-hoeren") == 1
+
+
+def test_a_set_with_nowhere_to_be_referenced_from_is_refused(tmp_path: Path) -> None:
+    """Watching the rule fail: without the article, publish must not write an orphan."""
+
+    with pytest.raises(FileNotFoundError, match="no topic article"):
+        register_exercise(tmp_path, "a1", "kein-thema", "a1/ls-kein-thema-01-hoeren")
+
+    (tmp_path / "content" / "topics" / "a1").mkdir(parents=True)
+    (tmp_path / "content" / "topics" / "a1" / "ohne-liste.mdx").write_text("---\nid: x\n---\n")
+    with pytest.raises(ValueError, match="no inline `exercises:"):
+        register_exercise(tmp_path, "a1", "ohne-liste", "a1/ls-ohne-liste-01-hoeren")
+
+
+def test_an_approval_without_hashes_cannot_vouch_for_audio(tmp_path: Path) -> None:
+    """Watching the rule fail: a pre-hash approval must force re-approval, not skip the check."""
+
+    import typer
+
+    from listening_studio.cli import verify_approval
+
+    wav = tmp_path / "final.wav"
+    wav.write_bytes(b"RIFF-not-really-audio")
+    dry = tmp_path / "dry.wav"
+    digest = hashlib.sha256(wav.read_bytes()).hexdigest()
+
+    with pytest.raises(typer.BadParameter, match="predates audio hashing"):
+        verify_approval({"status": "complete"}, wav, dry)
+    with pytest.raises(typer.BadParameter, match="final.wav has changed"):
+        verify_approval({"audio_sha256": "0" * 64}, wav, dry)
+
+    verify_approval({"audio_sha256": digest}, wav, dry)  # no dry take recorded, nothing to check
+
+    dry.write_bytes(b"RIFF-dry")
+    with pytest.raises(typer.BadParameter, match="dry.wav has changed"):
+        verify_approval({"audio_sha256": digest}, wav, dry)
+    verify_approval(
+        {"audio_sha256": digest, "dry_audio_sha256": hashlib.sha256(dry.read_bytes()).hexdigest()},
+        wav,
+        dry,
+    )
 
 
 def test_a_legacy_question_cannot_be_exported() -> None:
