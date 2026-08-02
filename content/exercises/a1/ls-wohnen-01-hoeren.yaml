@@ -1,0 +1,90 @@
+topic: wohnen
+role: practice
+title:
+  en: A short flat viewing
+  ru: Короткий осмотр квартиры
+  uk: 'Короткий огляд квартири'
+items:
+- id: q1
+  outcomes:
+  - wohnen-beschreiben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Maklerin
+      text: Hier ist die Wohnung. Sie hat drei Zimmer.
+    - speaker: Interessent
+      text: Wie groß ist die Küche?
+    - speaker: Maklerin
+      text: Die Küche ist klein, aber das Wohnzimmer ist sehr groß.
+    - speaker: Interessent
+      text: Gibt es einen Balkon?
+    - speaker: Maklerin
+      text: Ja, der Balkon ist hinten. Das Bad hat ein Fenster.
+    - speaker: Interessent
+      text: Und was kostet die Wohnung?
+    - speaker: Maklerin
+      text: Sechshundert Euro im Monat, ohne Heizung.
+    - speaker: Interessent
+      text: Das ist nicht teuer. Ich nehme sie.
+  recording: ls-wohnen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Welcher Raum ist sehr groß?
+  options:
+  - Das Wohnzimmer.
+  - Die Küche.
+  - Das Bad.
+  correct: 0
+  explain:
+    en: Small and very large stand in the same sentence, joined by aber. Whoever hears
+      only the first half takes the kitchen.
+    ru: «Маленькая» и «очень большая» стоят в одном предложении, соединённые aber.
+      Кто расслышал только первую половину, выберет кухню.
+    uk: '«Маленька» і «дуже велика» стоять в одному реченні, з''єднані aber. Хто розчув лише першу половину, обере кухню.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - wohnen-beschreiben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Maklerin
+      text: Hier ist die Wohnung. Sie hat drei Zimmer.
+    - speaker: Interessent
+      text: Wie groß ist die Küche?
+    - speaker: Maklerin
+      text: Die Küche ist klein, aber das Wohnzimmer ist sehr groß.
+    - speaker: Interessent
+      text: Gibt es einen Balkon?
+    - speaker: Maklerin
+      text: Ja, der Balkon ist hinten. Das Bad hat ein Fenster.
+    - speaker: Interessent
+      text: Und was kostet die Wohnung?
+    - speaker: Maklerin
+      text: Sechshundert Euro im Monat, ohne Heizung.
+    - speaker: Interessent
+      text: Das ist nicht teuer. Ich nehme sie.
+  recording: ls-wohnen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was kostet die Wohnung im Monat?
+  options:
+  - Sechshundert Euro ohne Heizung.
+  - Sechshundert Euro mit Heizung.
+  - Sechzehnhundert Euro.
+  correct: 0
+  explain:
+    en: 'Two things have to survive one short line: the number, and the ohne that
+      qualifies it. Sechshundert and sechzehnhundert differ by one syllable in the
+      middle of the word.'
+    ru: 'В одной короткой реплике нужно удержать две вещи: число и уточняющее ohne.
+      Sechshundert и sechzehnhundert различаются одним слогом в середине слова.'
+    uk: 'В одній короткій репліці треба втримати дві речі: число і уточнювальне ohne. Sechshundert і sechzehnhundert різняться одним складом усередині слова.'
+  max_replays: 3

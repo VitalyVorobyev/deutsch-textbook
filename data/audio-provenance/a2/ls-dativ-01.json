@@ -1,0 +1,554 @@
+{
+  "approval": {
+    "audio_sha256": "cc3bd740ce899b67db67bb9bb3eb49856f5e8abafd2bda88f844d1580d42c125",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "8ad4fdef0bddd0719424b79bf89607588ed239980cbb1df0477044151f3790c3",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:13:22.445834+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Hausflur unter Nachbarschaftsgesprächen im Treppenhaus.",
+      "duration_seconds": 13.29254,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 302536,
+      "original_filename": "801116.mp3",
+      "original_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+      "page_url": "https://freesound.org/s/801116/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -24.0,
+        "sound_id": 801116,
+        "source_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+        "start_ms": 0
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 801116,
+      "source_file": "preview-hq",
+      "title": "Cold Hallway Ambience",
+      "uploader": "9voltplasma"
+    },
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Unterrichtsraum unter einer Kursanweisung.",
+      "duration_seconds": 101.65675,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2199264,
+      "original_filename": "146435.mp3",
+      "original_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+      "page_url": "https://freesound.org/s/146435/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 55000,
+        "gain_db": -27.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 20000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 146435,
+      "source_file": "preview-hq",
+      "title": "room tone_M24",
+      "uploader": "pushkin"
+    }
+  ],
+  "created_at": "2026-08-02T17:13:22.445834+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "8ad4fdef0bddd0719424b79bf89607588ed239980cbb1df0477044151f3790c3",
+  "exported_files": {
+    "exercise.yaml": "0e9ee1751a6a074a58909c91eb8fd7894f4823038466604dffed790f2d49ed28",
+    "generation-brief.md": "00be7929003cf3ee110c43cec17f38f7d8513efecdf2b6a6130b42f4b8fe2502",
+    "listening.yaml": "43d87c126ba7ba5baaa64f9d46f87ae1cb450d39de56dad1f9aa641d0b0bc43e",
+    "ls-dativ-01-dry.wav": "8ad4fdef0bddd0719424b79bf89607588ed239980cbb1df0477044151f3790c3",
+    "ls-dativ-01.mp3": "d1fea9dd45c4ca5401adb157123e5c2411f6ad6622e3837c1bb54e48d41f68a6",
+    "ls-dativ-01.wav": "cc3bd740ce899b67db67bb9bb3eb49856f5e8abafd2bda88f844d1580d42c125",
+    "project.json": "beeb18fe417b233559a4a8d15184e2648ddd0cd3d7fee4c7464e4e44f17b77e3",
+    "sources/freesound-146435/ATTRIBUTION.md": "12fb4c037196fc02762faad7b47766c7f8d95b9f99d3306c014267c0e3761133",
+    "sources/freesound-146435/original.mp3": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+    "sources/freesound-146435/source.json": "638a3bfb4c3e49e22a29cd895fc65983be75488cc9db9fc6ffc9efce7b02058f",
+    "sources/freesound-801116/ATTRIBUTION.md": "e7091994b7f2b87aa69d6550c01851721197003411c7d85caf1d51f3a0501072",
+    "sources/freesound-801116/original.mp3": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+    "sources/freesound-801116/source.json": "7a932004bd2cf4e5df60ac6251a035022f3d8f9c6b2a238ae16acfaffc031b88",
+    "student.html": "464fde43f99d3312ba43cf11465124e8c377638c1a88eef44b79be82424a417b",
+    "student.pdf": "0df8b2854c286a8256502b2bcb9ab55a684a8405ce4d6877a7de420dcb7f6f6d",
+    "teacher.html": "404e08fa59f885f672e2ec5af01b7dc5df81affe2bb2afd0e1491a98dc9beca4",
+    "teacher.pdf": "1e8bf452b97c1258f0f8740c752b89d086244642b08f9160d145416c80a5059b",
+    "transcript.txt": "ee936c67c673d933c6a3aef797e8212c308dc62c66acf0d7b175d3681b3390e5"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-dativ-01-listening.md",
+    "sha256": "00be7929003cf3ee110c43cec17f38f7d8513efecdf2b6a6130b42f4b8fe2502"
+  },
+  "id": "ls-dativ-01",
+  "line_artifacts": [
+    {
+      "cache_key": "2e9e40f35821502e1bd7c455f4e7fa3d6e7d0dac376a0a435fa6b48ad163525e",
+      "display_text_sha256": "6ec770428dc8643a00a18142ddbc261f781be46e7fd2ca280a75f17f9244aeb7",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "6ec770428dc8643a00a18142ddbc261f781be46e7fd2ca280a75f17f9244aeb7",
+      "wav_sha256": "2f18cd197991e0773ed42f1b13f190758799b353214a6467bf1038fd7252adc1"
+    },
+    {
+      "cache_key": "f051a9b773e1f7f3ca04c76112ecc76a9c2b2dc792c3ad51db86ea529b30c873",
+      "display_text_sha256": "3c32fc8f6844814d132a0e89a149fc60f5a48f851ac8c1a52b41f46ec126196f",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "3c32fc8f6844814d132a0e89a149fc60f5a48f851ac8c1a52b41f46ec126196f",
+      "wav_sha256": "2349b11317db5524be1c20579995f82aef6f4f52cdd84c358c377443aa349fda"
+    },
+    {
+      "cache_key": "a5e5ab573cc970956c8a406e7158dda21b469cb2b63fca8c5a2367ca06648668",
+      "display_text_sha256": "3e44b9dd13cc7062ea585d211952a3239cbf38a642814b3fdea6a60dc44dabe5",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "3e44b9dd13cc7062ea585d211952a3239cbf38a642814b3fdea6a60dc44dabe5",
+      "wav_sha256": "d5022c48cf497164f087fef5c4c51a577dd80fc1ae4cbb7b3ea63709a72b27c8"
+    },
+    {
+      "cache_key": "7f18de0f72d23212721e0d955fbf17eb8b365286fc7deecfacfc3f8cf2718c4a",
+      "display_text_sha256": "f33bc9da08b4af8799b032757ae7161a516d4b6724e973b47fb95f0103afc9d5",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "f33bc9da08b4af8799b032757ae7161a516d4b6724e973b47fb95f0103afc9d5",
+      "wav_sha256": "976aa150e0305424cc8bf9dc02348c4b19b6daae44a3aaf7cc233b9ccd61c343"
+    },
+    {
+      "cache_key": "d7b84862c5f64bcef18259867eee926f8edc07970ad7776128c1391df9da2d9b",
+      "display_text_sha256": "7098a3b3864db462cf16d26ec9b8a5b12b22be458c7946b718dffa3fc103767a",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "7098a3b3864db462cf16d26ec9b8a5b12b22be458c7946b718dffa3fc103767a",
+      "wav_sha256": "ea9a95f77a5fc10bb9de63213b8a508e71c9106e661606359aecc579804bf25e"
+    },
+    {
+      "cache_key": "c109aa334bb1c6aa167c81367835a5993f843403b20e32962d31500a5a4a9c14",
+      "display_text_sha256": "57c3b103eb31b04848a63cc48760ff12ca937938107ec5bb6ac40ee7a8d12deb",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "57c3b103eb31b04848a63cc48760ff12ca937938107ec5bb6ac40ee7a8d12deb",
+      "wav_sha256": "bf3d06dc8cfccddedf480b29742979854cfd78f5d8fa51e7b73beeeccb2101c3"
+    },
+    {
+      "cache_key": "1157f197d833080548872bba7f913172ef12f7304791767c165f389011b38ac0",
+      "display_text_sha256": "82f9705921bead69bf32aee6cc9654ac74adc94407ba0c9f77155b7f5e55eadc",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "82f9705921bead69bf32aee6cc9654ac74adc94407ba0c9f77155b7f5e55eadc",
+      "wav_sha256": "cedbd88f48e759d555a5c9742d8bb0483d197df3841c85e378b0ff2bd918b17e"
+    },
+    {
+      "cache_key": "8db412123e970e5f8f02c1a7a4296a5a25147a3429a3a1bf91daaec3a0682fae",
+      "display_text_sha256": "07573f9a537bfd83ad8f57c9d382546463bd1dfdb0feab70dc358adb4a96913c",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "07573f9a537bfd83ad8f57c9d382546463bd1dfdb0feab70dc358adb4a96913c",
+      "wav_sha256": "e336ce5c4cefe002bd80d67c15203b815feefab41ca410757d17800e8ef95f96"
+    },
+    {
+      "cache_key": "7d8c788488f4f8d7ae50d80146d97046114d687d6538dfbc46da97c73bc85750",
+      "display_text_sha256": "aa1c2b09941b50e51aef65a15e36b9d899147b02876a4c726d1dbdef22d48541",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "aa1c2b09941b50e51aef65a15e36b9d899147b02876a4c726d1dbdef22d48541",
+      "wav_sha256": "e68d0f73b36f3169ab61b7d1d78d4808ee1d8466dd8939673e5ea5f6ec09cade"
+    }
+  ],
+  "master_audio_sha256": "cc3bd740ce899b67db67bb9bb3eb49856f5e8abafd2bda88f844d1580d42c125",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "d1fea9dd45c4ca5401adb157123e5c2411f6ad6622e3837c1bb54e48d41f68a6",
+  "qa": {
+    "context_sound_count": 2,
+    "dry": {
+      "created_at": "2026-08-02T17:10:45.295500+00:00",
+      "failures": [],
+      "full_transcript": "Hallo Frau Kern, können Sie mir kurz helfen? Klar, was brauchen Sie denn? Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen? Die Waage habe ich meiner Tochter gegeben, aber ich gebe Ihnen einen Messbecher. Das hilft mir sehr. Und haben Sie vielleicht auch Zucker? Ja, ich bringe Ihnen gleich eine Packung. Danke. Wann brauchen Sie den Messbecher zurück? Kein Problem. Den Messbecher brauche ich erst am Wochenende. Dann bringe ich ihn Ihnen am Freitag.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Hallo Frau Kern, können Sie mir kurz helfen?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Hallo Frau, Can. Können Sie mir kurz helfen?",
+          "wer": 0.125
+        },
+        {
+          "expected": "Klar. Was brauchen Sie denn?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Klar, was brauchen Sie denn?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Waage habe ich meiner Tochter gegeben. Aber ich gebe Ihnen einen Messbecher.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Waage habe ich meiner Tochter gegeben, aber ich gebe ihnen einen Messbecher.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich bringe Ihnen gleich eine Packung.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich bringe Ihnen gleich eine Packung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke! Wann brauchen Sie den Messbecher zurück?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke. Wann brauchen Sie den Messbecher zurück?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Kein Problem. Den Messbecher brauche ich erst am Wochenende.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Kein Problem. Den Messbecher brauche ich erst am Wochenende.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann bringe ich ihn Ihnen am Freitag.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann bringe ich ihn Ihnen am Freitag.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T17:10:45.297068+00:00",
+      "failures": [],
+      "full_transcript": "Hallo Frau Kern, können Sie mir kurz helfen? Klar, was brauchen Sie denn? Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen? Die Waage habe ich meiner Tochter gegeben, aber ich gebe Ihnen einen Messbecher. Das hilft mir sehr. Und haben Sie vielleicht auch Zucker? Ja, ich bringe Ihnen gleich eine Packung. Danke. Wann brauchen Sie den Messbecher zurück? Kein Problem. Den Messbecher brauche ich erst am Wochenende. Dann bringe ich ihn Ihnen am Freitag.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Hallo Frau Kern, können Sie mir kurz helfen?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Hallo Frau, Can. Können Sie mir kurz helfen?",
+          "wer": 0.125
+        },
+        {
+          "expected": "Klar. Was brauchen Sie denn?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Klar, was brauchen Sie denn?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Waage habe ich meiner Tochter gegeben. Aber ich gebe Ihnen einen Messbecher.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Waage habe ich meiner Tochter gegeben, aber ich gebe ihnen einen Messbecher.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich bringe Ihnen gleich eine Packung.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich bringe Ihnen gleich eine Packung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke! Wann brauchen Sie den Messbecher zurück?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke. Wann brauchen Sie den Messbecher zurück?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Kein Problem. Den Messbecher brauche ich erst am Wochenende.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Kein Problem. Den Messbecher brauche ich erst am Wochenende.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann bringe ich ihn Ihnen am Freitag.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann bringe ich ihn Ihnen am Freitag.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "12e69498e3fe6be3ed8d641fa5b1569bfb9cd73c3662bdb890464bdacf5fd9a6",
+  "script_sha256": "365221595b8882a1cc586648fb8dbf2f9886e59ccf9aac01dfbb1877d133170a",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -24.0,
+        "sound_id": 801116,
+        "source_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+        "start_ms": 0
+      },
+      {
+        "delay_ms": 0,
+        "duration_ms": 55000,
+        "gain_db": -27.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 20000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Hallo Frau Kern, können Sie mir kurz helfen?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Adam",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Klar. Was brauchen Sie denn?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Kern",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Ich backe heute einen Kuchen. Können Sie mir eine Waage leihen?",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 903,
+        "speaker": "Herr Adam",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Die Waage habe ich meiner Tochter gegeben. Aber ich gebe Ihnen einen Messbecher.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Kern",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Das hilft mir sehr. Und haben Sie vielleicht auch Zucker?",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Adam",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Ja, ich bringe Ihnen gleich eine Packung.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Kern",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Danke! Wann brauchen Sie den Messbecher zurück?",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Adam",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Kein Problem. Den Messbecher brauche ich erst am Wochenende.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Kern",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Dann bringe ich ihn Ihnen am Freitag.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Adam",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      }
+    ]
+  },
+  "version": 1
+}

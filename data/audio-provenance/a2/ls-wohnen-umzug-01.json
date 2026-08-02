@@ -1,0 +1,550 @@
+{
+  "approval": {
+    "audio_sha256": "63a17dcd485a974f526192f365fa9e54a91a5e07c96614b107b68d6b54a90acb",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "ea72898e22dff76adc1a0f94e42f70ed10eba9673e8afe9c147ec13591706790",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:10:40.477530+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Europäischer Rufton (Freizeichen) vor dem Abheben; gemessene Kadenz 2 s an / 2 s aus.",
+      "duration_seconds": 11.999796,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 167734,
+      "original_filename": "765127.mp3",
+      "original_sha256": "13ba1dabee2cb3c3638810028836b34ca8d2f18aa4ab6a84913ede5d18ec049e",
+      "page_url": "https://freesound.org/s/765127/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 2200,
+        "gain_db": -17.0,
+        "sound_id": 765127,
+        "source_sha256": "13ba1dabee2cb3c3638810028836b34ca8d2f18aa4ab6a84913ede5d18ec049e",
+        "start_ms": 0
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Elektronischer Ton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 765127,
+      "source_file": "preview-hq",
+      "title": "landline phone tone (loop)",
+      "uploader": "Anonio82"
+    }
+  ],
+  "created_at": "2026-08-02T17:10:40.477530+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "ea72898e22dff76adc1a0f94e42f70ed10eba9673e8afe9c147ec13591706790",
+  "exported_files": {
+    "exercise.yaml": "ab911dd42c85263538d7624b202c64da757310b59d6a2f537b0e417e7d4c64bb",
+    "generation-brief.md": "1bb6db4c1046abb71a5b3a774a956667b72ee068b38b88f8544467cbfb685d5b",
+    "listening.yaml": "d101cf455c83a47c6c16593febabf8ac8d1d72a24d61c989ac2799591dbe0d25",
+    "ls-wohnen-umzug-01-dry.wav": "ea72898e22dff76adc1a0f94e42f70ed10eba9673e8afe9c147ec13591706790",
+    "ls-wohnen-umzug-01.mp3": "e139193113a320d6d8853f6f6d73bcca7ef8ef633bcb5da647f251be4dd6737f",
+    "ls-wohnen-umzug-01.wav": "63a17dcd485a974f526192f365fa9e54a91a5e07c96614b107b68d6b54a90acb",
+    "project.json": "31dbbf4bde7d407f2eef65bb2bda7242aa71023417f5805b3239aec94d4d23a3",
+    "sources/freesound-765127/ATTRIBUTION.md": "142368c69115cec703f7082091db9673db724c1756374a91698d90299af656bd",
+    "sources/freesound-765127/original.mp3": "13ba1dabee2cb3c3638810028836b34ca8d2f18aa4ab6a84913ede5d18ec049e",
+    "sources/freesound-765127/source.json": "fa9453250c3b8f38a0aaceeacecd93e39a09ed32dba6f064ee8301bd784231c4",
+    "student.html": "923e5a2fe4c5f789a40177c4632e4b437758c158bb8f0d38ea24e1364fa17652",
+    "student.pdf": "2bdd25fc301e07886610d4ee3c561d309572a6ae5b8d79a11ea0d89c96b06f2a",
+    "teacher.html": "6e688d727a7026134f483aa620277e25f59dea350167a8e1f799ae752df27ccd",
+    "teacher.pdf": "0f97079d05c1407d68e9c354a1317df093ac57ac08644112ff617c82b2480d4e",
+    "transcript.txt": "2f7c4bb76c7026bab72558c76a009e577e59b81c5bd5dda747ada2f9b8457b4a"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-wohnen-umzug-01-listening.md",
+    "sha256": "1bb6db4c1046abb71a5b3a774a956667b72ee068b38b88f8544467cbfb685d5b"
+  },
+  "id": "ls-wohnen-umzug-01",
+  "line_artifacts": [
+    {
+      "cache_key": "3b4345d0f5834fe3c7bd63695f2ccb2366e03b39b3b70a9fcb0e65c6c52b5314",
+      "display_text_sha256": "1fe55ff30de248aaaba290046899aa99c3275787b881002cd8128a8a6ee44689",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "1fe55ff30de248aaaba290046899aa99c3275787b881002cd8128a8a6ee44689",
+      "wav_sha256": "747aac8184351922230d27e3513baec70cb8ef3c948cf50c1ec015ceb456e65b"
+    },
+    {
+      "cache_key": "f17af272453187d85f5d714be351e8ab3231bf22ab1fdcea8cf1851a75fafc4d",
+      "display_text_sha256": "4f2b312b8e1e822060c534e5c3aaebe6e68b29371fb9e061655e9f18f755297e",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "4f2b312b8e1e822060c534e5c3aaebe6e68b29371fb9e061655e9f18f755297e",
+      "wav_sha256": "e1267e96d9c8a685a6590086268606de728e35c5292ce6c4a0615bf7cd94b3e3"
+    },
+    {
+      "cache_key": "c99281df5b89ca2ddf5b6977b8e06c007b9b2de1ec0e99203a5ce2c384b3c0b2",
+      "display_text_sha256": "b77ae6fcb89656fdb3ef442c4c1c92281fc43aa45ea055233c2d1322bef61a70",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "b77ae6fcb89656fdb3ef442c4c1c92281fc43aa45ea055233c2d1322bef61a70",
+      "wav_sha256": "219e3ef94b72fbbfd4aff1c1133f0951dc7dd8e33896f08000e656862a5a5a62"
+    },
+    {
+      "cache_key": "193547c030276e3d8bcd22fd6c375d8eb9063c50361e9ce89d6d9d0c66353c73",
+      "display_text_sha256": "94786b6ab1955c6a2fa81da6dbcd4af36739893542bc83103583831f0c356b5c",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "94786b6ab1955c6a2fa81da6dbcd4af36739893542bc83103583831f0c356b5c",
+      "wav_sha256": "f0735b6384358130383d0df6112943c08c437c596371362238007dfccc22f23f"
+    },
+    {
+      "cache_key": "5ade3afef00af5de25e32ca36373fe314ced4780eb5746801251a1e09f228e17",
+      "display_text_sha256": "dd0d48b5314f72e3b3f8f8bb10d19770e1594a40e50edcd8ec3f79c9ea5f1ca3",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "dd0d48b5314f72e3b3f8f8bb10d19770e1594a40e50edcd8ec3f79c9ea5f1ca3",
+      "wav_sha256": "0ca2a055b6af7e6b28b3fb103eed4618ceee8ff4702ade6901658b9a54464adc"
+    },
+    {
+      "cache_key": "d7ebee520501f68436b21f429a1b3ca2adc5a3820f207e296d2e4b4f6801384a",
+      "display_text_sha256": "87d296853109449da99569fbcaa7c92736c10bd4c2afde2a6851bfa34d9978c2",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "87d296853109449da99569fbcaa7c92736c10bd4c2afde2a6851bfa34d9978c2",
+      "wav_sha256": "bcf19acd1d05e60eaf34cd52292d7988c30cc8ba8e877e3f31cdc13d4e8d8f3e"
+    },
+    {
+      "cache_key": "396a97232d8647506148f9deca1562a45dcacd8983e10b76a03d4cd29ddbf628",
+      "display_text_sha256": "3d00d4b3140d4022a2f97ba702d1368a4daee1f0c309d42799d836403858d24b",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "3d00d4b3140d4022a2f97ba702d1368a4daee1f0c309d42799d836403858d24b",
+      "wav_sha256": "752ad2a0651e98ad96f7265ef7c7393c422717c4f8c28c7cca462db636fa7df2"
+    },
+    {
+      "cache_key": "d6fe6b9ae49c505b46ef1a849548d58cc7ac609e1c94e79c1a3159fff0acb883",
+      "display_text_sha256": "d6c720742e06183426c6bb6cca6c00835ddf37290c381ee5b4c7fa98851496b1",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "d6c720742e06183426c6bb6cca6c00835ddf37290c381ee5b4c7fa98851496b1",
+      "wav_sha256": "a00df856023bcf6ce7e1f1b071fdf5cec09c916a665e86c02357f0168c29dfb7"
+    },
+    {
+      "cache_key": "c3bf32536c3d8241fd0197f0fb86a48ec8c5810da7ee110d6db308f1ee90652b",
+      "display_text_sha256": "4414ea50c5749672ff4f016ee28f4efee2ec2bde959cebc4c0f139819e6ff387",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "4414ea50c5749672ff4f016ee28f4efee2ec2bde959cebc4c0f139819e6ff387",
+      "wav_sha256": "08dfbf662eae08ca94b824153d9ba672791a0c8a9c8b79a302e9db136cb83c19"
+    },
+    {
+      "cache_key": "ad3e7fccfdd06ed6ca16fed6fa4698363039f6b8b4223db34b2ad8ba75c2d1be",
+      "display_text_sha256": "b0f118f20a9ecfecda22679847be3f81521958bc37bfeb90cc5e87099d352a00",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "b0f118f20a9ecfecda22679847be3f81521958bc37bfeb90cc5e87099d352a00",
+      "wav_sha256": "0d43ab5ec85127ca454b2f00d5d15f2867053d1649edefce4dc887c35a2891cf"
+    }
+  ],
+  "master_audio_sha256": "63a17dcd485a974f526192f365fa9e54a91a5e07c96614b107b68d6b54a90acb",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "e139193113a320d6d8853f6f6d73bcca7ef8ef633bcb5da647f251be4dd6737f",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T16:55:12.275235+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, Frau Dorn. Ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen. Danke, das ist nett. Wann kommt der Wagen? Gegen 8 Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren? Natürlich. Ich stelle es am Freitagabend in die Seitenstraße. Vielen Dank. Wir brauchen den Platz nur bis Mittag. Und der Aufzug? Der ist oft besetzt. Den habe ich für Samstag reserviert, von 8 bis 12. Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen. Das ist lieb. Am Nachmittag wird es sicher ruhiger. Ich bin ab 10 zu Hause und kann Ihnen Kaffee kochen.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag Frau Dorn, ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag Frau Dorn. Ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke, das ist nett. Wann kommt der Wagen?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke, das ist nett. Wann kommt der Wagen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gegen acht Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gegen 8 Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Natürlich. Ich stelle es am Freitagabend in die Seitenstraße.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Natürlich. Ich stelle es am Freitagabend in die Seitenstraße.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Vielen Dank. Wir brauchen den Platz nur bis Mittag.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Vielen Dank. Wir brauchen den Platz nur bis Mittag.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und der Aufzug? Der ist oft besetzt.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und der Aufzug, der ist oft besetzt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Den habe ich für Samstag reserviert, von acht bis zwölf.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Den habe ich für Samstag reserviert. Von 8 bis 12.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist lieb. Am Nachmittag wird es sicher ruhiger.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist lieb. Am Nachmittag wird es sicher ruhiger.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich bin ab zehn zu Hause und kann Ihnen Kaffee kochen.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich bin ab 10 zu Hause und kann Ihnen Kaffee kochen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:55:12.276008+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, Frau Dorn. Ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen. Danke, das ist nett. Wann kommt der Wagen? Gegen 8 Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren? Natürlich. Ich stelle es am Freitagabend in die Seitenstraße. Vielen Dank. Wir brauchen den Platz nur bis Mittag. Und der Aufzug? Der ist oft besetzt. Den habe ich für Samstag reserviert, von 8 bis 12. Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen. Das ist lieb. Am Nachmittag wird es sicher ruhiger. Ich bin ab 10 zu Hause und kann Ihnen Kaffee kochen.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag Frau Dorn, ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag Frau Dorn. Ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Danke, das ist nett. Wann kommt der Wagen?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Danke, das ist nett. Wann kommt der Wagen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gegen acht Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gegen 8 Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Natürlich. Ich stelle es am Freitagabend in die Seitenstraße.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Natürlich. Ich stelle es am Freitagabend in die Seitenstraße.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Vielen Dank. Wir brauchen den Platz nur bis Mittag.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Vielen Dank. Wir brauchen den Platz nur bis Mittag.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und der Aufzug? Der ist oft besetzt.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und der Aufzug, der ist oft besetzt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Den habe ich für Samstag reserviert, von acht bis zwölf.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Den habe ich für Samstag reserviert. Von 8 bis 12.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist lieb. Am Nachmittag wird es sicher ruhiger.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist lieb. Am Nachmittag wird es sicher ruhiger.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich bin ab zehn zu Hause und kann Ihnen Kaffee kochen.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich bin ab 10 zu Hause und kann Ihnen Kaffee kochen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "727e6b2b85a90e884904d6d606a68a53b14d1da83084f47a19a00bda652b2e32",
+  "script_sha256": "3a16d8c335cb3801abc95ba7cf155e2317b83e26196e155d3a751dbc8b67bfea",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 2200,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 2200,
+        "gain_db": -17.0,
+        "sound_id": 765127,
+        "source_sha256": "13ba1dabee2cb3c3638810028836b34ca8d2f18aa4ab6a84913ede5d18ec049e",
+        "start_ms": 0
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Guten Tag Frau Dorn, ich ziehe am Samstag um. Ich wollte kurz Bescheid sagen.",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Yilmaz",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Danke, das ist nett. Wann kommt der Wagen?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Dorn",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Gegen acht Uhr morgens. Könnten Sie Ihr Auto vor dem Haus wegfahren?",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Yilmaz",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Natürlich. Ich stelle es am Freitagabend in die Seitenstraße.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Dorn",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Vielen Dank. Wir brauchen den Platz nur bis Mittag.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Yilmaz",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Und der Aufzug? Der ist oft besetzt.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Dorn",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Den habe ich für Samstag reserviert, von acht bis zwölf.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Yilmaz",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Sehr gut. Sagen Sie Bescheid, wenn Sie noch Hilfe brauchen.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Dorn",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Das ist lieb. Am Nachmittag wird es sicher ruhiger.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Yilmaz",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Ich bin ab zehn zu Hause und kann Ihnen Kaffee kochen.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Dorn",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,375 @@
+{
+  "approval": {
+    "audio_sha256": "46ee5d31258864cde3b0056f4a688883733317d014456b78a6899327294b563d",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "57aeb69823780a68e797a2e4b2fa7839d0aa1dda210e4a62639a4c31c13cc979",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:04:13.680807+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser, entfernter Straßenraum unter einer Wegauskunft im Freien.",
+      "duration_seconds": 26.558667,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 595728,
+      "original_filename": "457556.mp3",
+      "original_sha256": "cfba00ca896d9fbb70114f84133cae4b691e98dd23fefb0702118caa59d761f4",
+      "page_url": "https://freesound.org/s/457556/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 24000,
+        "gain_db": -20.0,
+        "sound_id": 457556,
+        "source_sha256": "cfba00ca896d9fbb70114f84133cae4b691e98dd23fefb0702118caa59d761f4",
+        "start_ms": 2000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Entfernter Stadtraum ohne verständliche Sprache, Musik oder Marken; CC0 freigegeben.",
+      "sound_id": 457556,
+      "source_file": "preview-hq",
+      "title": "City far away",
+      "uploader": "florianreichelt"
+    }
+  ],
+  "created_at": "2026-08-02T17:04:13.680807+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "57aeb69823780a68e797a2e4b2fa7839d0aa1dda210e4a62639a4c31c13cc979",
+  "exported_files": {
+    "exercise.yaml": "fd42f0c80054792f1b809207c540534c4f9e5fcfb1359f88fd043dc176193843",
+    "generation-brief.md": "ff94f802e606fc0b302867ffed9836181a6dcbec9d6fc1d82458c3364b3d64ae",
+    "listening.yaml": "82b731eb7e80ac2909cf284bfdefb69828189c44ce72347a0e7d20bd0c194858",
+    "ls-stadt-wege-01-dry.wav": "57aeb69823780a68e797a2e4b2fa7839d0aa1dda210e4a62639a4c31c13cc979",
+    "ls-stadt-wege-01.mp3": "bf427dff5b3ce7677d1e36979e97ac53ae49ec09710a8d7969255e34b0e9073f",
+    "ls-stadt-wege-01.wav": "46ee5d31258864cde3b0056f4a688883733317d014456b78a6899327294b563d",
+    "project.json": "05e31885fad2138b316af7957ad00c1c14a44350499b11b8fc8c3a61686ea957",
+    "sources/freesound-457556/ATTRIBUTION.md": "e24a24428f668911d5c9fc9999d0d834f68da5ee83c82b7d6e3015ad61bf6675",
+    "sources/freesound-457556/original.mp3": "cfba00ca896d9fbb70114f84133cae4b691e98dd23fefb0702118caa59d761f4",
+    "sources/freesound-457556/source.json": "f049a10a399b6cc6736c0ba2ddc2b4215d8c6ccc1af1324932c5b2fcfc6cf9a3",
+    "student.html": "26c44336a69d9f41a16db61ca8d08f1579adfceea43e7648e354ce83baa11886",
+    "student.pdf": "c9783cadeee9ba4a8dcfa35a5adcb0846cb00b5ab8ee2791fd44defb3979fd34",
+    "teacher.html": "1d216eef2777de57dac0bd507880ef67a57e7be65937df32eb03fbe273ee8de6",
+    "teacher.pdf": "e30aff9d8a7fb10ce0335072ce9fee772d0ae32b18ece2e9fc1cff141e5d924c",
+    "transcript.txt": "54fbe292d37c399103575e713cb5c856d8b8a8b1ed3d611c4588c839f1201f35"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-stadt-wege-01-listening.md",
+    "sha256": "ff94f802e606fc0b302867ffed9836181a6dcbec9d6fc1d82458c3364b3d64ae"
+  },
+  "id": "ls-stadt-wege-01",
+  "line_artifacts": [
+    {
+      "cache_key": "76fe02da63265e1161d88666e99bc187ffee1db16b60bd72b136ec374fabec53",
+      "display_text_sha256": "727f1b8664025de7ffec61985d5a21dd1b00da6cac9703f3fee9cea890a3ffec",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "727f1b8664025de7ffec61985d5a21dd1b00da6cac9703f3fee9cea890a3ffec",
+      "wav_sha256": "ea722944c5d684ffc2c04f502499755381b97ea83dff5afbfef7f8c9230e3822"
+    },
+    {
+      "cache_key": "038a0deca001dac08b2425a7be86d70e8e858f5ba3f900ab0e7ec69babc3857a",
+      "display_text_sha256": "1b57f9d7b002260912bc2481d93617ed5405af707cb8a87ba7a37d2fa0513dfc",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "1b57f9d7b002260912bc2481d93617ed5405af707cb8a87ba7a37d2fa0513dfc",
+      "wav_sha256": "1fc0eb77d0ee480fc0a68df76e4b8959b6e977edcbfe6e1409f1e7f9440e611f"
+    },
+    {
+      "cache_key": "6059fc9cfa5decc547a4bd628e523e1cf7d89970865f89335618fd958b369b2b",
+      "display_text_sha256": "01734b0a45ab4e1d4bfa42a1c6823a6c3115c4c44586e1650f06c6256e6eedd1",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "01734b0a45ab4e1d4bfa42a1c6823a6c3115c4c44586e1650f06c6256e6eedd1",
+      "wav_sha256": "dcbc792a1a92d5c8437d344d0dd2c1c6c78dd57479676426be91d5360c2ec411"
+    },
+    {
+      "cache_key": "3981916dbb1561198644c06592b3ec9c63788e3ae29f4c4ce10e6021b27919a9",
+      "display_text_sha256": "ee5f8dd52e01d5f9a816ae2e3ee9737627d3af99278e2ea5aa779e490bdd41f8",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "ee5f8dd52e01d5f9a816ae2e3ee9737627d3af99278e2ea5aa779e490bdd41f8",
+      "wav_sha256": "531b87fcc99a543e052d625dd0fd01f8631a97074a9caa3e509fd7e538fdd3ad"
+    },
+    {
+      "cache_key": "e4d0cd8f5b2d700afb0aad17ee0dba7a868236ad51a43287d7da5b6568a2043d",
+      "display_text_sha256": "6e079501d7d8fc6ea8f31958b84424887017c8b4d6165a9250e982d1ce893889",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "6e079501d7d8fc6ea8f31958b84424887017c8b4d6165a9250e982d1ce893889",
+      "wav_sha256": "0c3366cffd739ea792cc7ad68b51ddf9ef3111772caebd9fa2d794aa489955a6"
+    }
+  ],
+  "master_audio_sha256": "46ee5d31258864cde3b0056f4a688883733317d014456b78a6899327294b563d",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "bf427dff5b3ce7677d1e36979e97ac53ae49ec09710a8d7969255e34b0e9073f",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T16:47:24.969311+00:00",
+      "failures": [],
+      "full_transcript": "Entschuldigung, wie komme ich zum Bahnhof? Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links. Und dann? Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel. Vielen Dank!",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Entschuldigung, wie komme ich zum Bahnhof?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Entschuldigung, wie komme ich zum Bahnhof?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und dann?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und dann...",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Vielen Dank!",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Vielen Dank!",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:47:24.970062+00:00",
+      "failures": [],
+      "full_transcript": "Entschuldigung, wie komme ich zum Bahnhof? Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links. Und dann? Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel. Vielen Dank!",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Entschuldigung, wie komme ich zum Bahnhof?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Entschuldigung, wie komme ich zum Bahnhof?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und dann?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und dann...",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Vielen Dank!",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Vielen Dank!",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "b15fc68364a482bf511239993cec3bb6416c13923323f2de479b22843b1d0f19",
+  "script_sha256": "4ec5b3a51c3bbc44e0e272bce7da6daabffe84aecbbd327d77f9f993446e0b21",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 24000,
+        "gain_db": -20.0,
+        "sound_id": 457556,
+        "source_sha256": "cfba00ca896d9fbb70114f84133cae4b691e98dd23fefb0702118caa59d761f4",
+        "start_ms": 2000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Entschuldigung, wie komme ich zum Bahnhof?",
+        "id": "line-1",
+        "pace": 0.92,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Tourist",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.",
+        "id": "line-2",
+        "pace": 0.92,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Passantin",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Und dann?",
+        "id": "line-3",
+        "pace": 0.92,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Tourist",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen Hotel.",
+        "id": "line-4",
+        "pace": 0.92,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Passantin",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Vielen Dank!",
+        "id": "line-5",
+        "pace": 0.92,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Tourist",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      }
+    ]
+  },
+  "version": 1
+}

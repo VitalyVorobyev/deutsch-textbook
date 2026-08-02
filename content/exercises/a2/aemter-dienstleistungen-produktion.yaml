@@ -8,39 +8,6 @@ items:
   # Both wrong options are things the clerk explicitly says are NOT needed — a Kopie and a
   # Termin are both spoken aloud, so a learner who fishes for keywords lands on one of them.
   # Only the one thing that is actually still missing (the signature) answers the question.
-  - id: hoeren-am-schalter
-    outcomes: [unterlagen-erfragen]
-    type: audio-comprehension
-    instruction:
-      en: "Frau Kowalski is registering her new address at the citizens' office. Listen for what she still has to do."
-      ru: "Госпожа Ковальская регистрирует новый адрес в бюргерамте. Слушайте, что ей ещё нужно сделать."
-      uk: "Пані Ковальська реєструє нову адресу в бюргерамті. Слухайте, що їй ще потрібно зробити."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Sachbearbeiter", text: "Guten Tag! Bitte nehmen Sie Platz. Was kann ich für Sie tun?" }
-        - { speaker: "Frau Kowalski", text: "Guten Tag! Ich würde gern meine neue Adresse anmelden. Hier ist das Formular." }
-        - { speaker: "Sachbearbeiter", text: "Danke. Ihren Ausweis brauche ich auch, bitte. — Gut, eine Kopie mache ich selbst, die müssen Sie nicht mitbringen." }
-        - { speaker: "Frau Kowalski", text: "Ist das Formular so richtig?" }
-        - { speaker: "Sachbearbeiter", text: "Fast. Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier." }
-        - { speaker: "Frau Kowalski", text: "Und brauche ich noch einen Termin?" }
-        - { speaker: "Sachbearbeiter", text: "Nein, heute ist alles fertig. Die Bescheinigung bekommen Sie in zehn Minuten." }
-    question: "Was muss Frau Kowalski jetzt noch machen?"
-    options:
-      - "Sie muss das Formular unterschreiben."
-      - "Sie muss eine Kopie vom Ausweis machen."
-      - "Sie muss einen Termin vereinbaren."
-    correct: 0
-    translation:
-      en: "What does Frau Kowalski still have to do?"
-      ru: "Что госпоже Ковальской нужно сделать ещё?"
-      uk: "Що пані Ковальській потрібно зробити ще?"
-    explain:
-      en: "One thing is missing and the clerk names it: Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier. The other two options are in the conversation as well — that is what makes them tempting — but both are explicitly ruled out: the copy the clerk makes himself (die müssen Sie nicht mitbringen), and an appointment is not needed at all (Nein, heute ist alles fertig). Catching the word Kopie or Termin is not the same as catching what was said about it, and this is exactly where listening for keywords goes wrong."
-      ru: "Не хватает одного, и сотрудник это называет: Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier. Два других варианта в диалоге тоже звучат — потому и соблазнительны, — но оба прямо отменены: копию сотрудник делает сам (die müssen Sie nicht mitbringen), а талон и вовсе не нужен (Nein, heute ist alles fertig). Расслышать слово Kopie или Termin — не то же самое, что расслышать, что именно про него сказали, и именно здесь ловля ключевых слов подводит."
-      uk: "Бракує одного, і працівник це називає: Unten fehlt noch Ihre Unterschrift. Bitte unterschreiben Sie hier. Два інші варіанти в діалозі теж звучать — тому й спокусливі, — але обидва прямо скасовані: копію працівник робить сам (die müssen Sie nicht mitbringen), а талон і зовсім не потрібен (Nein, heute ist alles fertig). Розчути слово Kopie чи Termin — не те саме, що розчути, що саме про нього сказали, і саме тут ловля ключових слів підводить."
-
   - id: hoeren-diktat-unterlagen
     outcomes: [unterlagen-erfragen]
     type: listen

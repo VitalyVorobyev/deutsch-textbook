@@ -45,35 +45,6 @@ items:
       uk: "Три групи в родовому, і кожна підвішена до свого факту — так читається оголошення. Причина скасувань береться з першого речення: wegen eines Sturms. Bauarbeiten пояснюють лише перенесення зупинки, а страйк вводить trotz: автобуси ходять усупереч йому, тож тут він узагалі нічого не спричинив."
       de: "Drei Genitivgruppen, und jede hängt an ihrem eigenen Faktum — so liest man einen Aushang. Die Ausfälle nehmen ihren Grund aus dem ersten Satz: wegen eines Sturms. Die Bauarbeiten erklären nur den verlegten Halt, und den Streik führt trotz ein: Die Busse fahren ihm zum Trotz — verursacht hat er hier also gar nichts."
 
-  - id: hoeren-durchsage
-    outcomes: [panne-berichten]
-    type: audio-comprehension
-    instruction:
-      en: "A station announcement, heard once — listen for what passengers with a connection in Hannover are asked to do."
-      ru: "Вокзальное объявление, услышанное один раз, — слушайте, что просят сделать пассажиров с пересадкой в Ганновере."
-      uk: "Вокзальне оголошення, почуте один раз, — слухайте, що просять зробити пасажирів із пересадкою в Ганновері."
-      de: "Eine Bahnhofsdurchsage, einmal gehört — achte darauf, worum Reisende mit Anschluss in Hannover gebeten werden."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Durchsage", text: "Sehr geehrte Fahrgäste, wegen eines Streiks fällt der ICE nach Hamburg heute aus. Als Ersatz fahren Busse vom Busbahnhof. Reisende mit einem Anschluss in Hannover wenden sich bitte an das Personal am Gleis neun." }
-    question: "Was sollen Reisende mit einem Anschluss in Hannover tun?"
-    options:
-      - "Sich an das Personal am Gleis neun wenden."
-      - "Mit dem Bus vom Busbahnhof fahren."
-      - "Auf den nächsten ICE warten."
-    correct: 0
-    translation:
-      en: "What should passengers with a connection in Hannover do?"
-      ru: "Что должны сделать пассажиры с пересадкой в Ганновере?"
-      uk: "Що мають зробити пасажири з пересадкою в Ганновері?"
-    explain:
-      en: "The announcement sorts its listeners: the replacement buses are for everyone, but the last sentence singles out one group — Reisende mit einem Anschluss in Hannover — and gives them their own instruction: wenden sich bitte an das Personal. That is the vocabulary word sich wenden an + Akkusativ doing announcement work. Waiting for the next ICE is proposed to nobody."
-      ru: "Объявление сортирует слушателей: автобусы-замена — для всех, но последнее предложение выделяет одну группу — Reisende mit einem Anschluss in Hannover — и даёт ей отдельную инструкцию: wenden sich bitte an das Personal. Это словарное sich wenden an + Akkusativ на вокзальной работе. Ждать следующий ICE не предлагается никому."
-      uk: "Оголошення сортує слухачів: автобуси-заміна — для всіх, але останнє речення виділяє одну групу — Reisende mit einem Anschluss in Hannover — і дає їй окрему інструкцію: wenden sich bitte an das Personal. Це словникове sich wenden an + Akkusativ на вокзальній роботі. Чекати наступний ICE не пропонується нікому."
-      de: "Die Durchsage sortiert ihre Hörer: Die Ersatzbusse sind für alle, aber der letzte Satz greift eine Gruppe heraus — Reisende mit einem Anschluss in Hannover — und gibt ihr eine eigene Anweisung: wenden sich bitte an das Personal. Das ist das Vokabelwort sich wenden an + Akkusativ bei der Bahnhofsarbeit. Auf den nächsten ICE zu warten schlägt niemand vor."
-
   - id: hoeren-diktat
     outcomes: [beschwerde-schreiben]
     type: listen

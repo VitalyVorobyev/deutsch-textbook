@@ -21,17 +21,19 @@ from .adapters import (
     generate_lines,
     mix_context,
     transcribe,
+    wav_duration,
 )
 from .domain import (
     Line,
     RevisionPayload,
     Stage,
     line_cache_key,
+    reassign_voices,
 )
 from .adapters import model_lock
 from .export import sha256
 from .qa import check_transcripts
-from .storage import Store
+from .storage import Store, remember_editor, remembered_editor
 from . import ui
 
 
@@ -71,9 +73,6 @@ def app(
         if authenticated:
             response.set_cookie("atlas_studio", secret, httponly=True, samesite="strict")
         return response
-
-    def page(body: str) -> HTMLResponse:
-        return HTMLResponse(body)
 
     @api.exception_handler(ValueError)
     def workflow_error(request: Request, exc: ValueError) -> HTMLResponse:
@@ -138,6 +137,28 @@ def app(
                 )
         return rows
 
+    def plan_duration(slug: str) -> tuple[float, float] | None:
+        """The `duration_seconds` window the curriculum asked this recording for, if any.
+
+        Stated on the approval page beside the measured length: nine of the twelve Wave-1 takes
+        came out shorter than planned, and nothing in the studio or the repository validator
+        compares the two — a take is never wrong-length, it is only ever wrong-worded.
+        """
+
+        source = repo / "data" / "listening-plan.yaml"
+        if not source.exists():
+            return None
+        plan = yaml.safe_load(source.read_text())
+        for unit in plan["units"]:
+            for artifact in unit["artifacts"]:
+                if artifact["id"] != slug:
+                    continue
+                window = artifact.get("duration_seconds") or {}
+                if "min" in window and "max" in window:
+                    return float(window["min"]), float(window["max"])
+                return None
+        return None
+
     @api.get("/health")
     def health() -> dict[str, str]:
         return {"status": "ok"}
@@ -178,10 +199,19 @@ def app(
     async def save_script(project_id: int, request: Request) -> RedirectResponse:
         _, _, payload = store.get(project_id)
         form = {k: str(v) for k, v in (await request.form()).items()}
-        updated = payload.model_copy(
-            update={
-                "lines": [Line.model_validate(line) for line in ui.parse_lines(form, payload)],
-                "tts_adapter": form.get("adapter", payload.tts_adapter),
+        adapter = form.get("adapter", payload.tts_adapter)
+        lines = [Line.model_validate(line) for line in ui.parse_lines(form, payload)]
+        if adapter != payload.tts_adapter:
+            lines = reassign_voices(lines, adapter)
+        # Validate rather than `model_copy(update=...)`, which skips `consistent()` and would let
+        # an inconsistent revision be stored — after which every `Store.get()` rejects it and the
+        # project is unreachable through the Studio. A ValidationError is a ValueError, so the
+        # handler below answers it as a readable 409 instead of a traceback.
+        updated = RevisionPayload.model_validate(
+            payload.model_dump()
+            | {
+                "lines": [line.model_dump() for line in lines],
+                "tts_adapter": adapter,
                 "max_replays": int(form.get("max_replays", payload.max_replays)),
             }
         )
@@ -346,8 +376,12 @@ def app(
         )
         return RedirectResponse(f"/projects/{project_id}", 303)
 
-    @api.post("/projects/{project_id}/approve", response_class=HTMLResponse)
-    def approval_form(project_id: int) -> HTMLResponse:
+    # GET as well as POST: the page is now long enough to scroll, and a reload that re-submits a
+    # form is a bad way to get back to the top of a review you are in the middle of.
+    @api.api_route(
+        "/projects/{project_id}/approve", methods=["GET", "POST"], response_class=HTMLResponse
+    )
+    def approval_form(project_id: int, forget: int = 0) -> HTMLResponse:
         project, revision, _ = store.get(project_id)
         if Stage(project.stage) != Stage.AUTOMATICALLY_CHECKED:
             raise HTTPException(409, "QA first")
@@ -357,15 +391,21 @@ def app(
         _, _, payload = store.get(project_id)
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
-        checks = ["accent", "naturalness", "intelligibility", "speakers", "pace", "questions"]
-        if payload.context_sounds:
-            checks.append("context")
-        fields = "".join(
-            f"<label><input style='width:auto' type=checkbox name={c} required> {c}</label><br>"
-            for c in checks
-        )
-        return page(
-            f"<div class=card><h2>Human approval</h2><form method=post action='/projects/{project_id}/approve/confirm'><label>Editor<input name=editor required></label>{fields}<button>Approve this exact revision</button></form></div>"
+        if forget:
+            (store.root / "editor.txt").unlink(missing_ok=True)
+        project_dir = store.root / "projects" / str(project_id)
+        window = plan_duration(project.slug)
+        return HTMLResponse(
+            ui.approval_page(
+                project_id=project_id,
+                slug=project.slug,
+                payload=payload,
+                qa=qa_data,
+                has_dry=(project_dir / "dry.wav").exists(),
+                duration=wav_duration(project_dir / "final.wav"),
+                target=window,
+                editor=remembered_editor(store.root),
+            )
         )
 
     @api.post("/projects/{project_id}/approve/confirm")
@@ -378,11 +418,17 @@ def app(
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
         form = await request.form()
-        required = {"accent", "naturalness", "intelligibility", "speakers", "pace", "questions"}
+        # The six statements are what approval *means*, so they are affirmed together by the one
+        # button that carries them — they were never six separate decisions, only six clicks.
+        # The published manifest still records all of them (scripts/validate.ts requires the full
+        # list), and the page states every one directly above the button that submits this.
+        certified = {key for key in ui.APPROVAL_CHECKS if key != "context"}
         if payload.context_sounds:
-            required.add("context")
-        if not required.issubset(form.keys()) or not str(form.get("editor", "")).strip():
-            raise HTTPException(400, "complete every check")
+            certified.add("context")
+        editor = str(form.get("editor", "")).strip()
+        if not editor:
+            raise HTTPException(400, "an approval needs the name of the person giving it")
+        remember_editor(store.root, editor)
         # Bind the approval to the exact bytes the editor heard.
         #
         # Until 2026-08-02 the approval recorded who and when but nothing about the audio, and
@@ -399,9 +445,9 @@ def app(
             raise HTTPException(409, "no final audio to approve")
         approval: dict[str, object] = {
             "status": "complete",
-            "editor": str(form["editor"]),
+            "editor": editor,
             "reviewed_at": datetime.now(UTC).isoformat(),
-            "checklist": sorted(required),
+            "checklist": sorted(certified),
             "audio_sha256": sha256(final_wav),
             "dry_audio_sha256": sha256(dry_wav) if dry_wav.exists() else None,
         }

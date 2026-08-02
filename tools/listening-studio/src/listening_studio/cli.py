@@ -6,7 +6,7 @@ import shutil
 import subprocess
 import webbrowser
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import typer
 import uvicorn
@@ -15,6 +15,7 @@ from huggingface_hub import snapshot_download
 
 from .adapters import draft_prompt, generate_drafts, model_lock
 from .domain import (
+    VOICE_SETS,
     Bilingual,
     Brief,
     Dictation,
@@ -27,6 +28,7 @@ from .domain import (
     SingleChoice,
     Stage,
     TrueFalse,
+    reassign_voices,
 )
 from .export import publish as publish_files, sha256, write_bundle
 from .storage import Store
@@ -39,6 +41,11 @@ sources = typer.Typer()
 app.add_typer(models, name="models")
 app.add_typer(sources, name="sources")
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
+
+# The synthesis model a newly seeded project starts on. Parler produced Wave 1 and stays
+# readable and re-runnable, but it is no longer what new work is generated with — see
+# ./install-qwen.sh for why the two cannot be installed at once.
+ENGINE: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
 
 
 @app.command()
@@ -64,7 +71,7 @@ def payload_from_plan(
 ) -> RevisionPayload:
     speaker_count = int(artifact["speakers"]["min"])
     speakers = [f"Sprecher {index + 1}" for index in range(speaker_count)]
-    voices = ["Nicole", "Christopher", "Megan", "Michelle"]
+    voices = VOICE_SETS[ENGINE]
     line = Line(
         id="line-1",
         speaker=speakers[0],
@@ -108,7 +115,7 @@ def payload_from_plan(
         speakers=speakers,
         lines=[line],
         questions=questions,
-        tts_adapter="parler_tts",
+        tts_adapter=ENGINE,
     )
 
 
@@ -407,6 +414,40 @@ def as_single_choice(question: Question) -> Question | None:
     else:  # pragma: no cover - the union is closed
         raise TypeError(response)
     return question.model_copy(update={"response": converted})
+
+
+@app.command("switch-adapter")
+def switch_adapter(adapter: str, dry_run: bool = False) -> None:
+    """Move every project to one synthesis model, reassigning voices per speaker.
+
+    A voice-quality pass starts by switching engines, and doing it twelve times through the form
+    is twelve chances to leave one behind. Each project is revalidated before it is stored, so a
+    payload the store would later refuse to load cannot be written here either.
+    """
+
+    if adapter not in VOICE_SETS and adapter != "fake":
+        raise typer.BadParameter(f"unknown adapter {adapter}; try {', '.join(VOICE_SETS)}")
+    store = Store()
+    touched = 0
+    for project in store.projects():
+        _, _, payload = store.get(project.id)
+        if payload.tts_adapter == adapter:
+            continue
+        lines = reassign_voices(list(payload.lines), adapter)
+        updated = RevisionPayload.model_validate(
+            payload.model_dump()
+            | {"tts_adapter": adapter, "lines": [line.model_dump() for line in lines]}
+        )
+        voices = ", ".join(sorted({line.voice for line in updated.lines}))
+        typer.echo(f"{project.slug}: {payload.tts_adapter} -> {adapter} ({voices})")
+        touched += 1
+        if not dry_run:
+            store.revise(project.id, updated)
+    verb = "would move" if dry_run else "moved"
+    typer.echo(
+        f"{verb} {touched} project(s) to {adapter}. The voice assignment only keeps speakers "
+        "apart — adjust it per line in the editor, then regenerate."
+    )
 
 
 @app.command("normalize-questions")

@@ -1,0 +1,624 @@
+{
+  "approval": {
+    "audio_sha256": "10c93ac65037c7e3498cf6d526b0cd99bfa5dacdb2d92abd88b94704fd729aae",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "34c094111228cf83c270662375f78bf416c1a607afc66c8f7bc4532a79afdf57",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:14:47.795493+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leises Tropfen im nassen Keller nach einem Rohrbruch.",
+      "duration_seconds": 13.469396,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 283200,
+      "original_filename": "547253.mp3",
+      "original_sha256": "e404739af2b3e781240db9db5f66c64751d30aa69c9418f4a3989085d880c4a6",
+      "page_url": "https://freesound.org/s/547253/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -22.0,
+        "sound_id": 547253,
+        "source_sha256": "e404739af2b3e781240db9db5f66c64751d30aa69c9418f4a3989085d880c4a6",
+        "start_ms": 1000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Wassertropfen ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 547253,
+      "source_file": "preview-hq",
+      "title": "Drip drops leaky basement",
+      "uploader": "antwerpsounddesign"
+    },
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Büroraum unter einer Arbeitsanweisung.",
+      "duration_seconds": 66.327063,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 1507872,
+      "original_filename": "135097.mp3",
+      "original_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+      "page_url": "https://freesound.org/s/135097/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 45000,
+        "gain_db": -27.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 15000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Raumton mit entferntem Verkehr, ohne Sprache, Musik oder Marken; CC0 freigegeben.",
+      "sound_id": 135097,
+      "source_file": "preview-hq",
+      "title": "Room Tone Office Quiet Distant Traffic.wav",
+      "uploader": "mzui"
+    }
+  ],
+  "created_at": "2026-08-02T17:14:47.795493+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "34c094111228cf83c270662375f78bf416c1a607afc66c8f7bc4532a79afdf57",
+  "exported_files": {
+    "exercise.yaml": "0ea2db1d7acc2875bcb709ff2ed42e97d4ef16b8b7fc2f4b10012831257f8ba2",
+    "generation-brief.md": "fe79c9ddb64b3aaf7e6f1e7bad5fa36c57a2849b54de7c7db56f3bfdd6f84a27",
+    "listening.yaml": "173942c40fb1ae5e661824ccd96fccda7f7214e6f6e43494f8a68c31da722e76",
+    "ls-verbindungen-folgen-01-dry.wav": "34c094111228cf83c270662375f78bf416c1a607afc66c8f7bc4532a79afdf57",
+    "ls-verbindungen-folgen-01.mp3": "262bdf5eac0d02db9018163320050601f27708504624d1cea298428ea84eb895",
+    "ls-verbindungen-folgen-01.wav": "10c93ac65037c7e3498cf6d526b0cd99bfa5dacdb2d92abd88b94704fd729aae",
+    "project.json": "7b8099b57ce544f3568dd3d9f812f130882575a0914f90e46fff92a59bb28c74",
+    "sources/freesound-135097/ATTRIBUTION.md": "eb97d005c789dddc4cc7e86df97f8a7414046183a196deaa7cf65e6175905d18",
+    "sources/freesound-135097/original.mp3": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+    "sources/freesound-135097/source.json": "7e5873feb83656067734a6c0eb124fdcc4aef1402a61c186c934e56ec3ee4512",
+    "sources/freesound-547253/ATTRIBUTION.md": "064290470b3de61aad120018985cec3415541e68b9971580594209bfa1dfaea1",
+    "sources/freesound-547253/original.mp3": "e404739af2b3e781240db9db5f66c64751d30aa69c9418f4a3989085d880c4a6",
+    "sources/freesound-547253/source.json": "18403db056e21237c33b1cba87ff97867acc76576babeb10b6e0e0239d5d52a6",
+    "student.html": "f3a06b14bb9483074649d1c173bad16a2f8f11525d3e2d7f01e69c96d295e7ec",
+    "student.pdf": "e6af7e54194025f7eae427df182429d6c48c8fa384aa565b3a8faa12b28cf68d",
+    "teacher.html": "496d7d7e9a0fff2b098afded33ffc5fd9ebe1deae804ba40eb71adb167153a22",
+    "teacher.pdf": "85a9387ddf0fe30266297e1f963444ad0a07927bbd9131daedd90bc29700411c",
+    "transcript.txt": "a2f696a2b9f1b6141cdc39f1b6e4f0ce0c2cccdaa32a35402863dc39d729b19b"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-verbindungen-folgen-01-listening.md",
+    "sha256": "fe79c9ddb64b3aaf7e6f1e7bad5fa36c57a2849b54de7c7db56f3bfdd6f84a27"
+  },
+  "id": "ls-verbindungen-folgen-01",
+  "line_artifacts": [
+    {
+      "cache_key": "88630a4f1d3dee2bc42d67998ca7063016c2060405a035eba16cd016bdca6647",
+      "display_text_sha256": "840109b95ffb4d2f91be6018dcc89d9e5292a804d2ff79636e2cc4efd8484264",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "840109b95ffb4d2f91be6018dcc89d9e5292a804d2ff79636e2cc4efd8484264",
+      "wav_sha256": "2a92badfe4ef7ce90732be98ff592040f4b3894cf511b73d570e04fb264a10f4"
+    },
+    {
+      "cache_key": "0b153e8c64d641d5d954d32a332be3287dd704031ec760ed5e665591b67d3378",
+      "display_text_sha256": "5f3724474e80965e9b350d9f3a4722ba7efa1e2a2b8d69e58966906b35e71010",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "5f3724474e80965e9b350d9f3a4722ba7efa1e2a2b8d69e58966906b35e71010",
+      "wav_sha256": "40520e9c50c5fdcc83789ca6bf8b40c1c3ac7926acd1f4034eed7fef2474e2a2"
+    },
+    {
+      "cache_key": "4c975c257a6ed8f87d8cceedf869d9fea454ec86e103341b659989d4b1055839",
+      "display_text_sha256": "0da5255ef51474da1d79914caa8559c2c304fcf9b8653ce46a8f771813cee781",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "0da5255ef51474da1d79914caa8559c2c304fcf9b8653ce46a8f771813cee781",
+      "wav_sha256": "1a14771bdbf9f78b541c6611ab1185e28043fd444a09204624cd4e0fdb9b7317"
+    },
+    {
+      "cache_key": "f07b0b0d30dc71f4652754915a1e0ae6747aec320464e330b802eda0daf7ec7b",
+      "display_text_sha256": "63a8861360b116cf0010baf61efcc14b8e717bf385998b468b253e17dcf977de",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "63a8861360b116cf0010baf61efcc14b8e717bf385998b468b253e17dcf977de",
+      "wav_sha256": "33ea494428a255000a502c2dd525b9041fb92170ca5b231753dc3a1814ec1d6f"
+    },
+    {
+      "cache_key": "fb1c751d6b13b7055e847ca01372c3e7cda9897300fa31c25cbb457022dbdd38",
+      "display_text_sha256": "542d1f142cf4c6fb7ca9eb8392f2076dc13de51feec2bf4ca56e70ab577f6444",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "542d1f142cf4c6fb7ca9eb8392f2076dc13de51feec2bf4ca56e70ab577f6444",
+      "wav_sha256": "27c85966fabeaf41f4af56680ac839036ef49b1bf5232993d39fa48ee1be21de"
+    },
+    {
+      "cache_key": "3d1a68260e0f69e0f4f017040f9e01bc73c4199979477b6d7115e5d8113790ef",
+      "display_text_sha256": "426b79e81524be829c38a6aaf51ddf7fbf8416d8f1386d68dfc038332e350ace",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "426b79e81524be829c38a6aaf51ddf7fbf8416d8f1386d68dfc038332e350ace",
+      "wav_sha256": "21b887cc9c383dbb9e54a531790e83defd312e85b3831344546428d1e65fb40b"
+    },
+    {
+      "cache_key": "466c3d5751d2e2886be8baf275cd97087620868c04ae52ff10e9238e0a2df206",
+      "display_text_sha256": "6694582de4a95e6ff8aad6130214f22de6b9888c1f2b8d1f0469256db753db7a",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "6694582de4a95e6ff8aad6130214f22de6b9888c1f2b8d1f0469256db753db7a",
+      "wav_sha256": "c20797141d54cc8f333b665e47382fe612b1cfb1c6fcf76b030272b5fdfd0ebe"
+    },
+    {
+      "cache_key": "e76408193f63e5349397fbc899d30bef8d33555c0f20b6b228872b8850b83067",
+      "display_text_sha256": "0c55435ed85d257a73cc5e23aff9ded3208d52bfec35ea63f8c2cb0566ac21fb",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "0c55435ed85d257a73cc5e23aff9ded3208d52bfec35ea63f8c2cb0566ac21fb",
+      "wav_sha256": "7cadab733afa659bf5505382d1dfd2326d6de8df89d27dbe8183b11a529029c1"
+    },
+    {
+      "cache_key": "7719f97ce37299f2b3c88a55e379597d4f7e35df95e40740f394324aaa0db31f",
+      "display_text_sha256": "eb508fafb6b0c91354e8f55f2939f33d4728e3bcd7655b38f3e029960aea780b",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "eb508fafb6b0c91354e8f55f2939f33d4728e3bcd7655b38f3e029960aea780b",
+      "wav_sha256": "38159fd3322f0f14bee86ccf4b1a11a1dc72206189e86a877ff7628c1a34b2ff"
+    },
+    {
+      "cache_key": "2f8fb8d740c34f7a3d170a88cc366bea6180ce898e9d3e0a23253237c5de28ba",
+      "display_text_sha256": "25158b5e4a1752b4f873fd95e9d12d84af7f23cd90d5e8896364f49661762e13",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "25158b5e4a1752b4f873fd95e9d12d84af7f23cd90d5e8896364f49661762e13",
+      "wav_sha256": "049f03ec235296c65e748841181f5d095e9c47afae3977091b237bd1f75ebacb"
+    },
+    {
+      "cache_key": "b559eb6293acc395331fc56af3e8cc0abab1b7e8efd06d017c9f65040ca1ff47",
+      "display_text_sha256": "33fa75390a409f6f1934e324331b3763dcbb8b7c1c8cbd67fa0a07acec08ac34",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "33fa75390a409f6f1934e324331b3763dcbb8b7c1c8cbd67fa0a07acec08ac34",
+      "wav_sha256": "6df682e4a80bb6325f5b27235ec88e8daf8d1cff93735e6975d96f369e1b4cc4"
+    }
+  ],
+  "master_audio_sha256": "10c93ac65037c7e3498cf6d526b0cd99bfa5dacdb2d92abd88b94704fd729aae",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "262bdf5eac0d02db9018163320050601f27708504624d1cea298428ea84eb895",
+  "qa": {
+    "context_sound_count": 2,
+    "dry": {
+      "created_at": "2026-08-02T17:11:20.558135+00:00",
+      "failures": [],
+      "full_transcript": "Warum ist das Wasser im Keller abgestellt? Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen. Und wie lange dauert das? Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser. Ist etwas kaputt gegangen? Der Boden im Keller ist nass, darum können sie ihre Kisten dort nicht abstellen. Haha, meine Kisten stehen aber schon unten. Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich. Gut, ich mache das gleich. Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird. Mach ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+      "full_wer": 0.04081632653061224,
+      "lines": [
+        {
+          "expected": "Warum ist das Wasser im Keller abgestellt?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Warum ist das Wasser im Keller abgestellt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange dauert das?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange dauert das?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ist etwas kaputtgegangen?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ist etwas kaputt gegangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht abstellen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht abstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Meine Kisten stehen aber schon unten.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Haha, meine Kisten stehen aber schon unten.",
+          "wer": 0.16666666666666666
+        },
+        {
+          "expected": "Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, ich mache das gleich.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, ich mache das gleich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mache ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mach ich, sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+          "wer": 0.08333333333333333
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T17:11:20.559729+00:00",
+      "failures": [],
+      "full_transcript": "Warum ist das Wasser im Keller abgestellt? Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen. Und wie lange dauert das? Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser. Ist etwas kaputt gegangen? Der Boden im Keller ist nass, darum können sie ihre Kisten dort nicht abstellen. Haha, meine Kisten stehen aber schon unten. Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich. Gut, ich mache das gleich. Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird. Mach ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+      "full_wer": 0.04081632653061224,
+      "lines": [
+        {
+          "expected": "Warum ist das Wasser im Keller abgestellt?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Warum ist das Wasser im Keller abgestellt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange dauert das?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange dauert das?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ist etwas kaputtgegangen?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ist etwas kaputt gegangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht abstellen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht abstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Meine Kisten stehen aber schon unten.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Haha, meine Kisten stehen aber schon unten.",
+          "wer": 0.16666666666666666
+        },
+        {
+          "expected": "Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, ich mache das gleich.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, ich mache das gleich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mache ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mach ich, sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+          "wer": 0.08333333333333333
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "c596b59f72c157016d5cebb96e26d241d024f978edba09292842e6516fdfb9e9",
+  "script_sha256": "9640d72c217d95e3a2c34aa1c933ea38755381776847023582247dedad521544",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -22.0,
+        "sound_id": 547253,
+        "source_sha256": "e404739af2b3e781240db9db5f66c64751d30aa69c9418f4a3989085d880c4a6",
+        "start_ms": 1000
+      },
+      {
+        "delay_ms": 0,
+        "duration_ms": 45000,
+        "gain_db": -27.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 15000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Warum ist das Wasser im Keller abgestellt?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Hausmeister",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Und wie lange dauert das?",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Hausmeister",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Ist etwas kaputtgegangen?",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 905,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht abstellen.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Hausmeister",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Meine Kisten stehen aber schon unten.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Hausmeister",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Gut, ich mache das gleich.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Hausmeister",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Mache ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.",
+        "id": "line-11",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Sanz",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      }
+    ]
+  },
+  "version": 1
+}

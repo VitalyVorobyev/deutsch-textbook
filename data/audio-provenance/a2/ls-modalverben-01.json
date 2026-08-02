@@ -1,0 +1,508 @@
+{
+  "approval": {
+    "audio_sha256": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:07:31.859813+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T17:07:31.859813+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+  "exported_files": {
+    "exercise.yaml": "95a230610a5cae943bb70a3571941bc09e9292b02b3fdc8eeb22bca79a34c3f8",
+    "generation-brief.md": "e8047883714f31a79af9e09ca168dc086060164c07423ac09c989ea8fd2a81c0",
+    "listening.yaml": "492197622a0186e23eac06feb6611c0e88e36ce2eb861942f6171e86d9d47818",
+    "ls-modalverben-01-dry.wav": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+    "ls-modalverben-01.mp3": "b8fecedb1a9b99d61b96246f19a6cd10806ba6e38a6773846048b57515873ad1",
+    "ls-modalverben-01.wav": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+    "project.json": "86c1efad573699ced34edfbd31dffe6fb91482fc04c6a12c68812cfaa942f990",
+    "student.html": "97a7b7f3a800d3d6e268b9981127e7ce5e3786934282b588fafa9ff285711dd6",
+    "student.pdf": "a50ea45da0feba888940eb1c2e8648569ec13fd72316e8fd73053be10c7f6852",
+    "teacher.html": "d8afaa7613671b414d4942461b42ae6a3399380f3d811da218a74ba4ec3904c0",
+    "teacher.pdf": "428b83a7b85aee68e169bfab9eedfbe67fb88a78c3d90e10ce32f9cf8511b894",
+    "transcript.txt": "8ee563d719b0148ac5b4b9f2f7da5b79c3a7162dd3abff991c07f9d47083b8a2"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-modalverben-01-listening.md",
+    "sha256": "e8047883714f31a79af9e09ca168dc086060164c07423ac09c989ea8fd2a81c0"
+  },
+  "id": "ls-modalverben-01",
+  "line_artifacts": [
+    {
+      "cache_key": "21d1590a969596af4eee9dd038da7ac8eb501bba75812ba080bda4c7dabf8694",
+      "display_text_sha256": "22b9e2fd86a1be4b43895065cee2bdabe5822285f32290dda7897b0d8b1ef9df",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "22b9e2fd86a1be4b43895065cee2bdabe5822285f32290dda7897b0d8b1ef9df",
+      "wav_sha256": "481a4e79c2ce740de75140d0126fb3d4bd3653a20bab3ef1a2b46b2171e7e465"
+    },
+    {
+      "cache_key": "0b3c3c7efcabfdb4183db74d3b8706dfe720349cff08d6700985fe9e6b318645",
+      "display_text_sha256": "fe56220021fcc053be47f71b2ce2be761cae8aae0af6351922f383b21cddf781",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "fe56220021fcc053be47f71b2ce2be761cae8aae0af6351922f383b21cddf781",
+      "wav_sha256": "8ed13352232d84e246095055e8fe5e1150361b0d64e2c3fa97c7337530d166d1"
+    },
+    {
+      "cache_key": "d84956cf2452db820f82d569d22c4d9e39898f117cf8ca45651410039467a28f",
+      "display_text_sha256": "f1947952d38b01d928ef9085f20ec40807c463c8c89f787c35f00832dd616748",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "f1947952d38b01d928ef9085f20ec40807c463c8c89f787c35f00832dd616748",
+      "wav_sha256": "093cf8569eeb05e04acaf823f79d656b070fa3128ad922359be20de107297a99"
+    },
+    {
+      "cache_key": "5cb48498e91144ed2ba286645e12be1791e98ec344c288cd3bcbeca67adb9755",
+      "display_text_sha256": "04f58c43164003a4a06a3df527094c4d874815c17e53abd5924b31325f4149bc",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "04f58c43164003a4a06a3df527094c4d874815c17e53abd5924b31325f4149bc",
+      "wav_sha256": "14186e30c3301e5f57c774b25f6ded2ac78cc4fdc8fa9b7bb5f3da8b754c41cc"
+    },
+    {
+      "cache_key": "23955d3616f262fa8ed98b0a43992fb48e4e9826f1f077a3073000e7d8cc61f3",
+      "display_text_sha256": "192385577b70bb1f6db6019a331dd9c73181586e8c321921c57694e2e9a428c9",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "192385577b70bb1f6db6019a331dd9c73181586e8c321921c57694e2e9a428c9",
+      "wav_sha256": "38736da541ae6093e9dd08005fef8c8d016033bed746f7987cc2abe3eedc38c2"
+    },
+    {
+      "cache_key": "da03e53ed8c88ef60a9ba92bec6a1b0a0b6c0fafe32ce6c9e035145ed4e4387f",
+      "display_text_sha256": "b9a920f509164dc1c350a1302c2660d567441cc0755331d8946aa641621126db",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "b9a920f509164dc1c350a1302c2660d567441cc0755331d8946aa641621126db",
+      "wav_sha256": "7c6362c51cec653d5370cdda66b5c031da26dd5fbc8741f80e8580a2fa8e119e"
+    },
+    {
+      "cache_key": "886dcac189ff927d6d1d1915678e89bff56c78e973cd974ead2db00f25f8dc31",
+      "display_text_sha256": "94fd97cd7868bd71e07a5eec2f104300e517b9f9acc1f5bb795aa3f3ed235083",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "94fd97cd7868bd71e07a5eec2f104300e517b9f9acc1f5bb795aa3f3ed235083",
+      "wav_sha256": "87fed74a2aa54411152f4157e222444bcf29915763b55cb22e88e81d24a87dfd"
+    },
+    {
+      "cache_key": "5150238566cad10b4fb5965dfa21101b8b70d41dce7e7e4fa65db46139efb187",
+      "display_text_sha256": "4994a3f9f1b17d9dc365f64e2a497f46b40638883380c0fff51481185fc69cf0",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "4994a3f9f1b17d9dc365f64e2a497f46b40638883380c0fff51481185fc69cf0",
+      "wav_sha256": "8a10c2a0ac3896451f7ef71d6185d19049605cfb41a3d3d4792578fe97f3bf08"
+    },
+    {
+      "cache_key": "32e298c07b66962666d47c4e1bee8a02fb622e97fca0d69d191b970ffb49d9cf",
+      "display_text_sha256": "b111c36646973b7df2f23bda83348d8eb40efdf414c3b6b557ba62c9e7dfc7af",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "b111c36646973b7df2f23bda83348d8eb40efdf414c3b6b557ba62c9e7dfc7af",
+      "wav_sha256": "b3149441aebf9584389b22a12367fcd1310308d72c27e859727e75da5f730022"
+    },
+    {
+      "cache_key": "1030ec5d84eb1d9b95589450771f68f2a6a47088ca210836b783a97785b59a0f",
+      "display_text_sha256": "0d524748675d94b8c004ffac11f6c5b277873fd82bbb7a2f33020ec35c924d1b",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "0d524748675d94b8c004ffac11f6c5b277873fd82bbb7a2f33020ec35c924d1b",
+      "wav_sha256": "40779998dbb137b0496e021b4115486d57d611d178de32364e452287ab72fcc2"
+    }
+  ],
+  "master_audio_sha256": "9837ed0558a9ad9043015dfbac67a9502603bacd3490bbbf98034b4da3599467",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "b8fecedb1a9b99d61b96246f19a6cd10806ba6e38a6773846048b57515873ad1",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T16:46:51.713207+00:00",
+      "failures": [],
+      "full_transcript": "Timo, wir müssen die Hausordnung noch einmal durchgehen. Okay, was darf ich denn nicht? Im Treppenhaus darfst du nicht rauchen. Das ist verboten. Verstanden? Und die Waschküche? Da kannst du jeden Tag waschen, aber nach 22 Uhr darfst du die Maschine nicht mehr anstellen. Muss ich den Müll auch runterbringen? Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen. Und wenn ich Besuch habe? Das kannst du machen. Du musst nur nach 10 Uhr leise sein. Gut, das kann ich mir merken.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Timo, wir müssen die Hausordnung noch einmal durchgehen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Timo, wir müssen die Hausordnung noch einmal durchgehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Okay. Was darf ich denn nicht?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Okay, was darf ich denn nicht?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Im Treppenhaus darfst du nicht rauchen. Das ist verboten.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Im Treppenhaus darfst du nicht rauchen. Das ist verboten.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Verstanden. Und die Waschküche?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Verstanden? Und die Waschküche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Da kannst du jeden Tag waschen, aber nach zweiundzwanzig Uhr darfst du die Maschine nicht mehr anstellen.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Da kannst du jeden Tag waschen, aber nach 22 Uhr darfst du die Maschine nicht mehr anstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Muss ich den Müll auch runterbringen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Muss ich den Müll auch runterbringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn ich Besuch habe?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn ich Besuch habe?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das kannst du machen. Du musst nur nach zehn Uhr leise sein.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das kannst du machen. Du musst nur nach 10 Uhr leise sein.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, das kann ich mir merken.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, das kann ich mir merken.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:46:51.715786+00:00",
+      "failures": [],
+      "full_transcript": "Timo, wir müssen die Hausordnung noch einmal durchgehen. Okay, was darf ich denn nicht? Im Treppenhaus darfst du nicht rauchen. Das ist verboten. Verstanden? Und die Waschküche? Da kannst du jeden Tag waschen, aber nach 22 Uhr darfst du die Maschine nicht mehr anstellen. Muss ich den Müll auch runterbringen? Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen. Und wenn ich Besuch habe? Das kannst du machen. Du musst nur nach 10 Uhr leise sein. Gut, das kann ich mir merken.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Timo, wir müssen die Hausordnung noch einmal durchgehen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Timo, wir müssen die Hausordnung noch einmal durchgehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Okay. Was darf ich denn nicht?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Okay, was darf ich denn nicht?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Im Treppenhaus darfst du nicht rauchen. Das ist verboten.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Im Treppenhaus darfst du nicht rauchen. Das ist verboten.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Verstanden. Und die Waschküche?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Verstanden? Und die Waschküche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Da kannst du jeden Tag waschen, aber nach zweiundzwanzig Uhr darfst du die Maschine nicht mehr anstellen.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Da kannst du jeden Tag waschen, aber nach 22 Uhr darfst du die Maschine nicht mehr anstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Muss ich den Müll auch runterbringen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Muss ich den Müll auch runterbringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn ich Besuch habe?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn ich Besuch habe?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das kannst du machen. Du musst nur nach zehn Uhr leise sein.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das kannst du machen. Du musst nur nach 10 Uhr leise sein.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, das kann ich mir merken.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, das kann ich mir merken.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "838cdf5189376d8387f2dfdbcf805f735d4b1577166b1dae86d8cd79c67c7599",
+  "script_sha256": "0860670a904b520f6b2e35f2926c1699b0c58e62082894b921711d91d122c52c",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "Timo, wir müssen die Hausordnung noch einmal durchgehen.",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nele",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Okay. Was darf ich denn nicht?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Timo",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Im Treppenhaus darfst du nicht rauchen. Das ist verboten.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nele",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Verstanden. Und die Waschküche?",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Timo",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Da kannst du jeden Tag waschen, aber nach zweiundzwanzig Uhr darfst du die Maschine nicht mehr anstellen.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nele",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Muss ich den Müll auch runterbringen?",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Timo",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Nicht jeden Tag. Am Dienstag musst du die gelbe Tonne rausstellen.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nele",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Und wenn ich Besuch habe?",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Timo",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Das kannst du machen. Du musst nur nach zehn Uhr leise sein.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nele",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Gut, das kann ich mir merken.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Timo",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      }
+    ]
+  },
+  "version": 1
+}

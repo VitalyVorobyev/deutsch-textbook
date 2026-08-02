@@ -12,36 +12,6 @@ items:
   # Untagged on purpose: this is comprehension, not one confusion. Nothing about
   # um/am is being chosen here — the learner has to hold three spoken times in the
   # air and work out which one was actually accepted.
-  - id: hoeren-termin-verschieben
-    outcomes: [termine-zeit-verstehen]
-    type: audio-comprehension
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - speaker: "Praxis"
-          text: "Praxis Dr. Weber, guten Tag. Was kann ich für Sie tun?"
-        - speaker: "Herr Orlow"
-          text: "Guten Tag, hier ist Orlow. Ich habe morgen um Viertel vor elf einen Termin. Um elf habe ich aber eine Besprechung im Büro. Können wir den Termin verschieben?"
-        - speaker: "Praxis"
-          text: "Kein Problem. Am Donnerstag ist um halb neun etwas frei, und am Freitag um vier Uhr."
-        - speaker: "Herr Orlow"
-          text: "Am Donnerstag um halb neun bin ich leider noch im Zug. Der Freitag passt mir gut."
-    question: "Wann kommt Herr Orlow in die Praxis?"
-    options:
-      - "Am Donnerstag um halb neun (8:30)."
-      - "Am Freitag um vier Uhr (16:00)."
-      - "Morgen um Viertel vor elf (10:45)."
-    correct: 1
-    translation:
-      en: When does Mr Orlov come to the practice?
-      ru: Когда господин Орлов придёт в приёмную?
-      uk: Коли пан Орлов прийде до приймальні?
-    explain:
-      en: "All three times are said aloud, so only the ear decides. Tomorrow at Viertel vor elf (10:45) is the old appointment — the one he is moving. Thursday at halb neun (8:30, not 9:30!) is offered and turned down: „Am Donnerstag um halb neun bin ich leider noch im Zug.“ He accepts with „Der Freitag passt mir gut“ — and the Friday slot was named one turn earlier: um vier Uhr."
-      ru: "Все три времени звучат вслух, поэтому решает только слух. Завтра в Viertel vor elf (10:45) — это старый приём, который он и переносит. Четверг в halb neun (8:30, а не 9:30!) ему предлагают, но он отказывается: „Am Donnerstag um halb neun bin ich leider noch im Zug.“ Соглашается он словами „Der Freitag passt mir gut“, а время пятницы названо репликой раньше — um vier Uhr."
-      uk: "Усі три часи звучать уголос, тому вирішує лише слух. Завтра о Viertel vor elf (10:45) — це старий прийом, який він і переносить. Четвер о halb neun (8:30, а не 9:30!) йому пропонують, але він відмовляється: „Am Donnerstag um halb neun bin ich leider noch im Zug.“ Погоджується він словами „Der Freitag passt mir gut“, а час п'ятниці названо реплікою раніше — um vier Uhr."
-
   - id: cloze-sie-ihnen
     outcomes: [termine-hoeflich-telefonieren]
     type: cloze

@@ -11,37 +11,6 @@ items:
   # at all — it measures memory of the reading. Here that remembered answer is option 2,
   # and the tablets are still spoken, so all three doses compete in the ear and only the
   # one attached to die Salbe is right.
-  - id: hoeren-in-der-apotheke
-    outcomes: [praxis-anweisungen-verstehen]
-    type: audio-comprehension
-    instruction:
-      en: "Herr Vogel is at the pharmacy with a prescription — tablets and an ointment. Listen for what he is told about the ointment."
-      ru: "Господин Фогель пришёл в аптеку с рецептом: таблетки и мазь. Слушайте, что ему говорят именно про мазь."
-      uk: "Пан Фоґель прийшов до аптеки з рецептом: таблетки й мазь. Слухайте, що йому кажуть саме про мазь."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Apothekerin", text: "Guten Tag, Herr Vogel! Hier sind Ihre Tabletten. Nehmen Sie sie dreimal täglich, immer nach dem Essen." }
-        - { speaker: "Herr Vogel", text: "Vielen Dank. Und die Salbe für den Rücken?" }
-        - { speaker: "Apothekerin", text: "Die Salbe benutzen Sie nur am Abend, also einmal täglich." }
-        - { speaker: "Herr Vogel", text: "Alles klar. Und wie lange soll ich zu Hause bleiben?" }
-        - { speaker: "Apothekerin", text: "Bleiben Sie zwei Tage zu Hause. Dann geht es Ihnen bestimmt besser." }
-    question: "Wie oft benutzt Herr Vogel die Salbe?"
-    options:
-      - "Einmal täglich, am Abend."
-      - "Dreimal täglich, nach dem Essen."
-      - "Zweimal täglich, morgens und abends."
-    correct: 0
-    translation:
-      en: "How often does Mr Vogel use the ointment?"
-      ru: "Как часто господин Фогель пользуется мазью?"
-      uk: "Як часто пан Фоґель користується маззю?"
-    explain:
-      en: "Two medicines, two different instructions, and the ear has to keep them apart. The ointment: Die Salbe benutzen Sie nur am Abend, also einmal täglich. Three times a day after meals is the tablets — a real instruction in this conversation, just not the one you were asked about, and the commonest way to get this item wrong is to answer with the dose you remember rather than the one you heard. The two days are how long he stays at home, not a dose at all. Note the verb the pharmacist uses for an ointment: you benutzen it — nehmen is for something you swallow."
-      ru: "Два лекарства, два разных указания — и слух должен их развести. Про мазь сказано: Die Salbe benutzen Sie nur am Abend, also einmal täglich. «Три раза в день после еды» — это про таблетки: указание в диалоге настоящее, просто спрашивают не о нём, и самый частый способ ошибиться здесь — ответить той дозой, которая запомнилась, а не той, которая прозвучала. А два дня — это срок, на который нужно остаться дома, и вовсе не доза. Обратите внимание на глагол, которым аптекарша говорит о мази: ею пользуются — benutzen; nehmen говорят о том, что глотают."
-      uk: "Двоє ліків, дві різні вказівки — і слух мусить їх розвести. Про мазь сказано: Die Salbe benutzen Sie nur am Abend, also einmal täglich. «Тричі на день після їжі» — це про таблетки: вказівка в діалозі справжня, просто питають не про неї, і найчастіший спосіб помилитися тут — відповісти тією дозою, яка запам'яталася, а не тією, що прозвучала. А два дні — це строк, на який треба лишитися вдома, і зовсім не доза. Зверніть увагу на дієслово, яким аптекарка говорить про мазь: нею користуються — benutzen; nehmen кажуть про те, що ковтають."
-
   - id: cloze-seit-vor-diskriminierung
     outcomes: [beschwerden-beschreiben]
     type: cloze

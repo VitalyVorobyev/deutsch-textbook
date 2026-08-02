@@ -19,6 +19,7 @@ from .domain import (
     SingleChoice,
     line_cache_key,
 )
+from .adapters import wav_duration
 from .sources import load_source
 
 
@@ -29,8 +30,18 @@ def sha256(path: Path) -> str:
 
 # 64 kbps mono is a long-standing speech setting and the assembled master is 16 kHz mono
 # anyway, so the encoder is not throwing away bandwidth anyone can hear. It is roughly a
-# fifth of the WAV: 41 artifacts at ~700 KB become ~7 MB rather than ~29 MB, in git history
-# and in every desktop installer.
+# quarter of the WAV: the finished 41-artifact corpus is 29.5 minutes of speech, 57.9 MB of
+# master and 14.2 MB published, in git history and in every shipping build.
+#
+# Those are measured, and they replace an estimate written here before the corpus existed
+# ("41 artifacts at ~700 KB become ~7 MB rather than ~29 MB") which was wrong by 2x in both
+# terms — the takes turned out to average 43 seconds, not 22. Reproduce with:
+#   uv run python -c "from listening_studio.storage import Store, app_dir; \
+#     from listening_studio.adapters import wav_duration; \
+#     from pathlib import Path; r = app_dir(); \
+#     f = [r/'projects'/str(p.id)/'final.wav' for p in Store().projects()]; \
+#     print(sum(x.stat().st_size for x in f if x.exists()), \
+#           sum(wav_duration(x) or 0 for x in f if x.exists()))"
 MP3_BITRATE = "64k"
 
 
@@ -56,15 +67,43 @@ def encode_mp3(source: Path, target: Path) -> Path:
     return target
 
 
+class _NoAliases(yaml.SafeDumper):  # type: ignore[misc]
+    """Dump repeated objects in full instead of as YAML anchors and aliases.
+
+    `exercise_yaml` builds `turns` and `outcomes` once and hands the same list to every item, so
+    `yaml.safe_dump` writes the first occurrence as `&id001` and the rest as `*id001`. That is
+    valid YAML and round-trips perfectly — and it is the wrong shape for a file a human edits.
+    A reviewer opening the set reads `outcomes: *id001` and learns nothing, and an editor who
+    changes one item's outcomes changes every item's without being told. These are content files
+    first and export artifacts second.
+    """
+
+    def ignore_aliases(self, data: object) -> bool:
+        return True
+
+
+def dump_yaml(data: object) -> str:
+    return str(yaml.dump(data, Dumper=_NoAliases, allow_unicode=True, sort_keys=False))
+
+
 def listening_yaml(
-    slug: str, payload: RevisionPayload, provenance: str
+    slug: str, payload: RevisionPayload, provenance: str, duration_seconds: int
 ) -> dict[str, object]:
+    """The record that ships beside the MP3.
+
+    `duration_seconds` is measured off the approved master, not copied from `brief`. The brief
+    states the length the plan *asked* for, and twelve of the forty-one takes do not land inside
+    their window — `ls-erste-schritte-01` runs 34 s against a brief of 20. Nothing renders this
+    field today, which is exactly why it would have gone on being wrong: a reviewer opening the
+    YAML beside the MP3 reads it as the length of that MP3.
+    """
+
     return {
         "id": slug,
         "level": payload.brief.level,
         "title": payload.title.model_dump(exclude_none=True),
         "scenario": payload.brief.scenario,
-        "duration_seconds": payload.brief.duration_seconds,
+        "duration_seconds": duration_seconds,
         "speakers": payload.speakers,
         "transcript": [
             {"speaker": line.speaker, "text": line.display_text} for line in payload.lines
@@ -182,7 +221,15 @@ def manifest(
         "settings": {
             "adapter": payload.tts_adapter,
             "lines": [line.model_dump(mode="json") for line in payload.lines],
-            "assembly": {"format": "wav-pcm-s16le", "silence": "ffmpeg-anullsrc-16000-mono"},
+            # `lead_in_ms` belongs here and not with the context sounds: it delays *speech*, so
+            # a manifest that records a sound's trim and gain but not the silence pushed in front
+            # of the dialogue describes a mix that cannot be rebuilt. Four artifacts use it
+            # (1.7-2.2 s) so a scene can open on its own sound before anyone speaks.
+            "assembly": {
+                "format": "wav-pcm-s16le",
+                "silence": "ffmpeg-anullsrc-16000-mono",
+                "lead_in_ms": payload.lead_in_ms,
+            },
             "context_sounds": [sound.model_dump(mode="json") for sound in payload.context_sounds],
         },
         "contextual_sources": contextual_sources,
@@ -227,6 +274,17 @@ def write_bundle(
             "The script below was revised editorially after generation; this prompt is the "
             "input that produced the draft, not a description of the final text.\n"
         )
+    elif payload.authoring == "generated":
+        # Model-drafted, brief lost. Saying "manually authored" here would be the same
+        # fabrication as printing a reconstructed prompt, just in the other direction — and the
+        # reconstruction is exactly what must not happen, so the gap is stated instead.
+        brief = (
+            f"# Listening generation brief — {slug}\n\n"
+            "## Model-drafted; the submitted brief was not retained\n\n"
+            "This script was drafted by a language model, but the prompt that produced it was "
+            "not saved and cannot be recovered. It is deliberately not reconstructed from the "
+            "final payload: that string would describe the edited text, not the model's input.\n"
+        )
     else:
         brief = (
             f"# Listening generation brief — {slug}\n\n"
@@ -246,23 +304,30 @@ def write_bundle(
         source_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(original, source_dir / original.name)
         shutil.copy2(source_root / "sources" / source.original_sha256 / "source.json", source_dir / "source.json")
+        # The credit describes the *sound*, not this artifact's use of it — nine Freesound
+        # sources back the forty-one recordings, so most of these directories are shared. Naming
+        # one artifact's start/duration/gain here made the file artifact-specific, which meant
+        # the second publisher of a shared sound either collided with the first or silently
+        # overwrote its processing note. Those numbers are already recorded per artifact under
+        # `contextual_sources[].processing` in `data/audio-provenance/`, which is where a
+        # per-artifact fact belongs.
         credit = (
             f'# Freesound {source.sound_id}\n\n'
             f'"{source.title}" by {source.uploader} — {source.page_url} — '
             f'{source.license} ({source.license_url}).\n\n'
-            f'Used as low-level contextual audio. Processing: start {context.start_ms} ms, '
-            f'duration {context.duration_ms} ms, delay {context.delay_ms} ms, gain {context.gain_db} dB.\n'
+            'Used as low-level contextual audio. How each recording trims, delays and attenuates '
+            'it is recorded in that recording\'s provenance file under '
+            '`data/audio-provenance/<level>/<id>.json`.\n'
         )
         (source_dir / "ATTRIBUTION.md").write_text(credit)
     data = listening_yaml(
         slug,
         payload,
         f"data/audio-provenance/{payload.brief.level.lower()}/{slug}.json",
+        max(1, round(wav_duration(wav) or payload.brief.duration_seconds)),
     )
-    (out / "listening.yaml").write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False))
-    (out / "exercise.yaml").write_text(
-        yaml.safe_dump(exercise_yaml(slug, payload), allow_unicode=True, sort_keys=False)
-    )
+    (out / "listening.yaml").write_text(dump_yaml(data))
+    (out / "exercise.yaml").write_text(dump_yaml(exercise_yaml(slug, payload)))
     (out / "project.json").write_text(
         json.dumps(payload.model_dump(mode="json"), ensure_ascii=False, indent=2)
     )
@@ -369,10 +434,11 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     brief_path = repo / provenance_data["generation_brief"]["path"]
     targets = {
         # The MP3 derivative is what enters the repo — beside the artifact record, NOT under
-        # public/, because the Pages build must ship no audio at all. The WAV master stays in
-        # the studio: it is what the editor approved and what QA ran on, and committing it
-        # would put ~29 MB in git history for bytes no learner ever downloads.
-        # src/integrations/audio-bundle.ts copies these into the desktop build.
+        # public/, because whether a build ships audio is a build decision, not a fact about
+        # where a file sits. src/integrations/audio-bundle.ts copies these into any build that
+        # sets PUBLIC_ATLAS_AUDIO_BUNDLE, which both shipping targets now do. The WAV master
+        # stays in the studio: it is what the editor approved and what QA ran on, and committing
+        # it would put 57.9 MB in git history for bytes no learner ever downloads.
         bundle / f"{slug}.mp3": repo / "content" / "listening" / level / f"{slug}.mp3",
         bundle / "listening.yaml": repo / "content" / "listening" / level / f"{slug}.yaml",
         bundle / "exercise.yaml": repo / "content" / "exercises" / level / f"{slug}-hoeren.yaml",
@@ -382,7 +448,16 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     for source in sorted((bundle / "sources").glob("freesound-*/*")):
         sound_id = source.parent.name.removeprefix("freesound-")
         targets[source] = repo / "data" / "audio-sources" / "freesound" / sound_id / source.name
-    collisions = [str(target) for target in targets.values() if target.exists()]
+    # A target that already holds exactly these bytes is not a collision. Shared Freesound
+    # sources are written by every artifact that uses them and are identical by construction —
+    # keyed by sound id, copied from one `original_sha256`. Comparing bytes rather than
+    # existence keeps the guard pointed at what it is for: a *different* file being clobbered,
+    # which is the case for every artifact-specific target in this map.
+    collisions = [
+        str(target)
+        for source, target in targets.items()
+        if target.exists() and target.read_bytes() != source.read_bytes()
+    ]
     if collisions:
         raise FileExistsError("publish would overwrite: " + ", ".join(collisions))
     # Fail before writing anything if the set has nowhere to be referenced from — a half-published

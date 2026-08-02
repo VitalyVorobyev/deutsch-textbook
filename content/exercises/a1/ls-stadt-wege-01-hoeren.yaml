@@ -1,0 +1,80 @@
+topic: stadt-wege
+role: practice
+title:
+  en: Asking the way to the station
+  ru: Спрашиваем дорогу к вокзалу
+  uk: 'Питаємо дорогу до вокзалу'
+items:
+- id: q1
+  outcomes:
+  - stadt-wegbeschreibung-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Tourist
+      text: Entschuldigung, wie komme ich zum Bahnhof?
+    - speaker: Passantin
+      text: Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.
+    - speaker: Tourist
+      text: Und dann?
+    - speaker: Passantin
+      text: Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen
+        Hotel.
+    - speaker: Tourist
+      text: Vielen Dank!
+  recording: ls-stadt-wege-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was macht man an der Ampel?
+  options:
+  - Links gehen.
+  - Rechts gehen.
+  - Geradeaus gehen.
+  correct: 0
+  explain:
+    en: 'Three directions are given in sequence and each belongs to a different landmark:
+      straight on to the lights, left at them, right after the pharmacy. Wrong answers
+      here are almost always the right direction attached to the wrong landmark.'
+    ru: 'Три направления идут подряд, и каждое привязано к своему ориентиру: прямо
+      — до светофора, налево — у него, направо — после аптеки. Ошибка здесь почти
+      всегда в том, что верное направление привязывают не к тому ориентиру.'
+    uk: 'Три напрямки йдуть поспіль, і кожен прив''язаний до свого орієнтира: прямо — до світлофора, ліворуч — біля нього, праворуч — після аптеки. Помилка тут майже завжди в тому, що правильний напрямок прив''язують не до того орієнтира.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - stadt-wegbeschreibung-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Tourist
+      text: Entschuldigung, wie komme ich zum Bahnhof?
+    - speaker: Passantin
+      text: Gehen Sie diese Straße geradeaus bis zur Ampel. Dort gehen Sie links.
+    - speaker: Tourist
+      text: Und dann?
+    - speaker: Passantin
+      text: Nach der Apotheke gehen Sie rechts. Der Bahnhof ist gegenüber dem großen
+        Hotel.
+    - speaker: Tourist
+      text: Vielen Dank!
+  recording: ls-stadt-wege-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wo ist der Bahnhof?
+  options:
+  - Gegenüber dem großen Hotel.
+  - Neben der Apotheke.
+  - An der Ampel.
+  correct: 0
+  explain:
+    en: The pharmacy and the lights are turning points on the way, not the destination.
+      gegenüber means 'opposite'.
+    ru: Аптека и светофор — это повороты по дороге, а не цель. gegenüber значит «напротив».
+    uk: 'Аптека і світлофор — це повороти дорогою, а не мета. gegenüber означає «навпроти».'
+  max_replays: 3

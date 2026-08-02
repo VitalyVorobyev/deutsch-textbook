@@ -1,0 +1,119 @@
+# Delayed probe family 3 of 3 — ONE competence: opening a temporal Nebensatz with its
+# conjunction and parking the finite verb at the far end of it, cold. Three parallel
+# translate variants, served in authoring order across the 2/7/21 delays — one
+# retention curve over one clause shape.
+# Translate rather than cloze or mc, because this competence IS a position: a cloze
+# prints the gap exactly where the verb belongs, so the learner cannot leave it in
+# main-clause order, and mc hands back recognition of the two arrangements. The error
+# the check exists to see is the article's own: Während ich wartete auf den Bus — the
+# conjunction taken, the verb left where a main clause would keep it.
+# The instruction names the conjunction each time. EN "before/as soon as/while" would
+# render equally well with vorher, dann or gleichzeitig, and the clause's build is what
+# is probed, never the connector's choice — the same rule the reisen-probleme genitive
+# family states: name the connector, grade its rule.
+# Pinned are both ends of the bracket: the conjunction (in both capitalizations, since
+# the fronted and the trailing clause are both accepted) and the clause-final finite
+# verb. Nothing else — the main clause is carrier, and its verb is not what the tag
+# grades. Each pinned token occurs once in every accepted rendering.
+# Cells: bevor, sobald, während — three conjunctions, one rule. bevor also carries the
+# tense half the article warns about (bevor needs no Plusquamperfekt: the conjunction
+# already says which event is first), so the pinned ging catches a staircase built
+# where none belongs.
+# Content pairings fresh: Bett + gehen with Wecker + stellen, Rechnung + bekommen with
+# Firma + anrufen, Garten + spielen with Mutter + telefonieren — checked by grepping
+# each noun and verb across content/, not by re-reading this list. None of the
+# article's temporal examples (nach Deutschland kam, auf den Bus wartete, Prüfung
+# vorbei war, Regen aufhörte, hier arbeite, auf die Antwort wartete, den Tisch deckte),
+# the pretest's (ich kochte) or the practice set's (auf den Bus wartete, frühstückte,
+# wir warteten, der Regen aufhörte) recurs here.
+# `outcomes: [praeteritum-erzaehlen]` is the outcome every arming item declares: the
+# temporal clauses are how a written narration ties its events to a timeline, which is
+# what that can-do stands on. The topic's Präteritum family declares the same outcome,
+# and that is harmless — arming is by explicit item key (`armingItemKeys`,
+# src/lib/probes.ts), never by outcome, so the two families arm from disjoint item sets
+# and neither can move the other's armedAt.
+topic: erfahrungen-erzaehlen
+role: probe
+title:
+  en: "Delayed check — the temporal clause's wall"
+  ru: "Отложенная проверка — стена временного придаточного"
+  uk: "Відкладена перевірка — стіна часового підрядного"
+  de: "Kontrolle mit Abstand — die Wand des temporalen Nebensatzes"
+arming:
+  - b1/erfahrungen-erzaehlen::order-waehrend
+  - b1/erfahrungen-erzaehlen::mc-waehrend-bis
+  - b1/erfahrungen-erzaehlen::uebersetzen-waehrend-regen
+  - b1/erfahrungen-erzaehlen-produktion::uebersetzen-bis-transfer
+items:
+  - id: variant-a
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Translate as written narrative — join the clauses with bevor. Render 'went to bed' as ins Bett gehen; for 'set' take stellen, for 'alarm clock' der Wecker."
+      ru: "Переведите как письменный рассказ — соедините части союзом bevor. «Лечь спать» передайте через ins Bett gehen; для «поставить» возьмите stellen, для «будильник» — der Wecker."
+      uk: "Перекладіть як письмову розповідь — з'єднайте частини сполучником bevor. «Лягти спати» передайте через ins Bett gehen; для «поставити» візьміть stellen, для «будильник» — der Wecker."
+      de: "Übersetze als geschriebene Erzählung — verbinde die Teilsätze mit bevor. Für das Schlafengehen nimm ins Bett gehen, für das Einstellen stellen, für das Gerät der Wecker."
+    prompt_en: "Before I went to bed, I set the alarm clock."
+    prompt_ru: "Прежде чем лечь спать, я поставил будильник."
+    prompt_uk: "Перш ніж лягти спати, я поставив будильник."
+    answer: "Bevor ich ins Bett ging, stellte ich den Wecker."
+    accept:
+      # The trailing bevor-clause: same bracket, other order.
+      - "Ich stellte den Wecker, bevor ich ins Bett ging."
+    key_tokens: ["Bevor", "bevor", "ging"]
+    explain:
+      en: "Graded are both ends of the clause: bevor opens it, ging closes it. A temporal conjunction always builds a Nebensatz, so the finite verb walks past everything else to the wall — Bevor ich ins Bett ging, never Bevor ich ging ins Bett. The second graded fact is the tense: bevor needs no Plusquamperfekt, because the conjunction itself already says which event comes first, so both clauses simply share the Präteritum. Reserve the staircase for nachdem. When the clause stands first it fills position 1 of the main sentence, which is why stellte follows the comma directly."
+      ru: "Оцениваются оба конца придаточного: bevor его открывает, ging закрывает. Временной союз всегда строит придаточное, поэтому спрягаемый глагол проходит мимо всего остального к стене — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Второй оцениваемый факт — время: bevor не требует Plusquamperfekt, ведь союз сам уже говорит, что было раньше, и обе части просто стоят в Präteritum. Лестницу приберегите для nachdem. Когда придаточное стоит первым, оно занимает первое место главного предложения — поэтому stellte идёт сразу за запятой."
+      uk: "Оцінюються обидва кінці підрядного: bevor його відкриває, ging закриває. Часовий сполучник завжди будує підрядне, тому відмінюване дієслово проходить повз усе інше до стіни — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Другий оцінюваний факт — час: bevor не вимагає Plusquamperfekt, адже сполучник сам уже каже, що було раніше, і обидві частини просто стоять у Präteritum. Сходи приберігайте для nachdem. Коли підрядне стоїть першим, воно займає перше місце головного речення — тому stellte іде одразу за комою."
+      de: "Bewertet werden beide Enden des Nebensatzes: bevor eröffnet ihn, ging schließt ihn. Eine temporale Konjunktion baut immer einen Nebensatz, also wandert das finite Verb an allem vorbei bis zur Wand — Bevor ich ins Bett ging, nie Bevor ich ging ins Bett. Der zweite bewertete Punkt ist das Tempus: bevor braucht kein Plusquamperfekt, denn die Konjunktion sagt selbst schon, was zuerst kommt; beide Teilsätze teilen sich einfach das Präteritum. Die Treppe bleibt nachdem vorbehalten. Steht der Nebensatz vorn, besetzt er Position 1 des Hauptsatzes — deshalb folgt stellte direkt nach dem Komma."
+
+  - id: variant-b
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Translate as written narrative — join the clauses with sobald. For 'get' take bekommen, for 'bill' die Rechnung, for 'call' anrufen."
+      ru: "Переведите как письменный рассказ — соедините части союзом sobald. Для «получить» возьмите bekommen, для «счёт» — die Rechnung, для «позвонить» — anrufen."
+      uk: "Перекладіть як письмову розповідь — з'єднайте частини сполучником sobald. Для «отримати» візьміть bekommen, для «рахунок» — die Rechnung, для «зателефонувати» — anrufen."
+      de: "Übersetze als geschriebene Erzählung — verbinde die Teilsätze mit sobald. Für das Erhalten nimm bekommen, für das Papier die Rechnung, für den Anruf anrufen."
+    prompt_en: "As soon as I got the bill, I called the company."
+    prompt_ru: "Как только я получил счёт, я позвонил в фирму."
+    prompt_uk: "Щойно я отримав рахунок, я зателефонував у фірму."
+    answer: "Sobald ich die Rechnung bekam, rief ich bei der Firma an."
+    accept:
+      # The trailing sobald-clause: same bracket, other order.
+      - "Ich rief bei der Firma an, sobald ich die Rechnung bekam."
+      # anrufen governs the accusative just as idiomatically as bei + Dativ, and the
+      # choice is carrier material — the tag grades the clause, not the frame.
+      - "Sobald ich die Rechnung bekam, rief ich die Firma an."
+      - "Ich rief die Firma an, sobald ich die Rechnung bekam."
+    key_tokens: ["Sobald", "sobald", "bekam"]
+    explain:
+      en: "The same two ends, a new conjunction: sobald opens the clause and bekam stands at its wall. sobald chains the two events without a pause — one ends, the next begins — and it is a conjunction, not an adverb, so it takes the whole clause with it. Watch the main clause on the other side of the comma: rief … an is a separable bracket, so its prefix an lands at the very end of the main clause, while the Nebensatz's verb had already reached the end of its own."
+      ru: "Те же два конца, новый союз: sobald открывает придаточное, bekam стоит у его стены. sobald сцепляет два события без паузы — одно кончается, другое начинается, — и это именно союз, а не наречие, поэтому он забирает с собой всё придаточное. Обратите внимание на главное предложение по ту сторону запятой: rief … an — отделяемая рамка, её приставка an уходит в самый конец главного, тогда как глагол придаточного уже достиг конца своего."
+      uk: "Ті самі два кінці, новий сполучник: sobald відкриває підрядне, bekam стоїть біля його стіни. sobald зчіплює дві події без паузи — одна кінчається, друга починається, — і це саме сполучник, а не прислівник, тому він забирає із собою все підрядне. Зверніть увагу на головне речення по той бік коми: rief … an — відокремлювана рамка, її префікс an іде в самий кінець головного, тоді як дієслово підрядного вже дійшло до кінця свого."
+      de: "Dieselben beiden Enden, eine neue Konjunktion: sobald eröffnet den Nebensatz, bekam steht an seiner Wand. sobald kettet die beiden Ereignisse ohne Pause aneinander — das eine hört auf, das andere fängt an —, und es ist eine Konjunktion, kein Adverb, nimmt also den ganzen Nebensatz mit. Und jenseits des Kommas: rief … an ist eine trennbare Klammer, ihr Präfix an landet ganz am Ende des Hauptsatzes. Jeder der beiden Sätze hat also seine eigene Wand, und jeder füllt sie selbst."
+
+  - id: variant-c
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Translate as written narrative — join the clauses with während. For 'play' take spielen, for 'be on the phone' telefonieren with mit."
+      ru: "Переведите как письменный рассказ — соедините части союзом während. Для «играть» возьмите spielen, для «разговаривать по телефону» — telefonieren с mit."
+      uk: "Перекладіть як письмову розповідь — з'єднайте частини сполучником während. Для «гратися» візьміть spielen, для «розмовляти телефоном» — telefonieren з mit."
+      de: "Übersetze als geschriebene Erzählung — verbinde die Teilsätze mit während. Für das Spielen nimm spielen, für das Telefonat telefonieren mit der Präposition mit."
+    prompt_en: "While my son was playing in the garden, I was on the phone with my mother."
+    prompt_ru: "Пока мой сын играл в саду, я разговаривал по телефону с мамой."
+    prompt_uk: "Поки мій син грався в саду, я розмовляв телефоном з мамою."
+    answer: "Während mein Sohn im Garten spielte, telefonierte ich mit meiner Mutter."
+    accept:
+      # The trailing während-clause: same bracket, other order.
+      - "Ich telefonierte mit meiner Mutter, während mein Sohn im Garten spielte."
+    key_tokens: ["Während", "während", "spielte"]
+    explain:
+      en: "One family, one competence: the temporal bracket built cold, a third time. während runs the two events side by side, and the graded pair is again the doorway and the wall — Während at the front, spielte at the very end, with im Garten squeezed in between. This is the conjunction most often mistaken for an adverb: währenddessen is the adverb and keeps main-clause order, while während takes the verb to the end. German marks the simultaneity with the conjunction alone; the Präteritum forms carry no separate ongoing-action marking."
+      ru: "Одна семья, одна компетенция: временная рамка, построенная без подготовки, в третий раз. während ведёт два события параллельно, и оцениваемая пара — снова вход и стена: Während в начале, spielte в самом конце, а im Garten зажато между ними. Именно этот союз чаще всего принимают за наречие: währenddessen — наречие и сохраняет порядок главного предложения, а während уводит глагол в конец. Одновременность немецкий помечает одним союзом; у форм Präteritum нет отдельного показателя длящегося действия."
+      uk: "Одна сім'я, одна компетенція: часова рамка, побудована без підготовки, утретє. während веде дві події паралельно, і оцінювана пара — знову вхід і стіна: Während на початку, spielte в самому кінці, а im Garten затиснуто між ними. Саме цей сполучник найчастіше беруть за прислівник: währenddessen — прислівник і зберігає порядок головного речення, а während відводить дієслово в кінець. Одночасність німецька позначає самим сполучником; у форм Präteritum немає окремого показника тривалої дії."
+      de: "Eine Familie, eine Fähigkeit: die temporale Klammer zum dritten Mal aus dem Stand gebaut. während lässt die beiden Ereignisse nebeneinander laufen, und bewertet wird wieder das Paar aus Tür und Wand — Während vorn, spielte ganz am Ende, dazwischen eingeklemmt im Garten. Diese Konjunktion wird am häufigsten für ein Adverb gehalten: Das Adverb heißt währenddessen und behält die Hauptsatzstellung — die Konjunktion während dagegen schickt das Verb ans Ende. Die Gleichzeitigkeit trägt allein die Konjunktion; die Präteritumformen haben dafür keine eigene Verlaufsform."

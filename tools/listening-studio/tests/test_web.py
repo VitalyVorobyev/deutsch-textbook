@@ -171,3 +171,190 @@ def test_an_unavailable_step_answers_409_with_the_next_one_named(tmp_path: Path)
     assert "automatically_checked" in repeated.text
     assert "human_approved" in repeated.text
     assert "Traceback" not in repeated.text
+
+
+def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadable(
+    tmp_path: Path,
+) -> None:
+    """P22-3, end to end: the form used to store a payload `Store.get()` then refused, which put
+    the project permanently out of reach — and switching Parler → Qwen is move one of any
+    voice-quality pass."""
+
+    store = Store(tmp_path / "db.sqlite3")
+    base = payload()
+    draft = base.model_copy(
+        update={
+            "tts_adapter": "parler_tts",
+            "lines": [
+                base.lines[0].model_copy(update={"voice": "Nicole"}),
+                base.lines[1].model_copy(update={"voice": "Christopher"}),
+            ],
+        }
+    )
+    project = store.create("switch", draft)
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    headers = {"origin": "http://127.0.0.1:8765"}
+
+    form = {"adapter": "qwen_tts", "max_replays": "2"}
+    for index, line in enumerate(draft.lines):
+        form |= {
+            f"line.{index}.speaker": line.speaker,
+            f"line.{index}.text": line.display_text,
+            f"line.{index}.voice": line.voice,  # still the Parler voices — the form has no others
+            f"line.{index}.pace": str(line.pace),
+            f"line.{index}.pause": str(line.pause_after_ms),
+            f"line.{index}.seed": str(line.seed),
+        }
+    saved = client.post(
+        f"/projects/{project.id}/script?token=test", data=form, headers=headers, follow_redirects=False
+    )
+    assert saved.status_code == 303
+
+    _, _, stored = store.get(project.id)  # the assertion: this used to raise
+    assert stored.tts_adapter == "qwen_tts"
+    assert len({line.voice for line in stored.lines}) == 2
+    assert client.get(f"/projects/{project.id}?token=test", headers=headers).status_code == 200
+
+
+def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Path) -> None:
+    """The form used to be six English words and a name box — no audio, no questions, no QA.
+
+    It also rendered unstyled, because `web.py` carried a local `page()` that returned the body
+    verbatim and shadowed `ui.page`; the approval route was its only caller, so the one page
+    nobody had built was also the one page with no stylesheet. Both are the same defect: a
+    checklist that shows nothing it asks about is a rubber stamp, and the published manifest
+    states that a named human vouched for exactly these six things.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    project = store.create("ls-review-01", payload().model_copy(update={"tts_adapter": "fake"}))
+    plan = {
+        "version": 1,
+        "units": [
+            {
+                "unit": "termine-vereinbaren",
+                "level": "A2",
+                "artifacts": [
+                    {
+                        "id": "ls-review-01",
+                        "wave": 1,
+                        "scenario": "Termin",
+                        "duration_seconds": {"min": 40, "max": 50},
+                    }
+                ],
+            }
+        ],
+    }
+    (tmp_path / "data").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "data" / "listening-plan.yaml").write_text(yaml.safe_dump(plan))
+
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
+
+    page = client.get(f"/projects/{project.id}/approve?token=test")
+    assert page.status_code == 200
+    body = page.text
+
+    # A whole document, not a fragment: this is what the shadowed `page()` was swallowing.
+    assert body.startswith("<!doctype html>")
+    assert "<style>" in body and "Listening Studio</h1>" in body
+
+    # The audio itself, and the speech-only take beside it.
+    assert f"/projects/{project.id}/audio" in body
+
+    # The questions as the learner meets them, with the key marked — `questions` is uncheckable
+    # without them, and every drafted Wave-1 question turned out to be about another script.
+    assert "Wann?" in body and "Freitag" in body and "✓" in body
+
+    # The script, present but collapsed: reading along is how you hear words nobody said.
+    assert "<details>" in body and "Der Termin ist am Freitag." in body
+
+    # What the machine already checked, so the human is not asked to redo it.
+    assert "Automatische Prüfung" in body
+
+    # Full sentences, not bare keys — and the level is named in the two checks that depend on it.
+    assert "Es klingt nach einer sprechenden Person" in body
+    assert "Auf A2 ist jedes Wort heraushörbar" in body
+    # Stated above one button, not six checkboxes: six ticks were never six decisions.
+    assert body.count("<li>Die Aussprache ist verständliches Standarddeutsch") == 1
+    assert "type=checkbox" not in body
+    # No context sound in this payload, so nothing is certified about one.
+    assert "überdecken aber keine Silbe" not in body
+
+    # The measured length against the window the curriculum asked for. The fake adapter's take is
+    # nowhere near 40-50 s, so this is the failing branch — which is the one that has to be legible.
+    assert "Plan 40–50 s" in body
+    assert "class=fail>Dauer" in body
+
+    # Declining is a step, not closing the tab.
+    assert f"/projects/{project.id}/regenerate" in body
+
+
+def test_the_name_is_asked_once_and_the_record_still_carries_all_six(tmp_path: Path) -> None:
+    """One button, not six checkboxes and a name field retyped every time.
+
+    The published manifest is unchanged — `scripts/validate.ts` requires the full six-item
+    checklist and gets it, because the six statements are printed directly above the button that
+    submits them. What is gone is the ceremony: a form whose boxes must all be ticked teaches a
+    reviewer to tick without listening, which is the failure the review exists to prevent.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    client = TestClient(app(store, tmp_path, token="test", allow_test_adapters=True))
+
+    first = store.create("ls-one", payload().model_copy(update={"tts_adapter": "fake"}))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{first.id}/{action}?token=test").status_code == 200
+
+    # Nobody is known yet, so the first approval asks — and only the name.
+    assert "Name der freigebenden Person" in client.get(f"/projects/{first.id}/approve?token=test").text
+    assert client.post(
+        f"/projects/{first.id}/approve/confirm?token=test",
+        data={"editor": "Vitaly Vorobyev"},
+        follow_redirects=False,
+    ).status_code == 303
+
+    _, revision, _ = store.get(first.id)
+    approval = json.loads(revision.approval_json or "{}")
+    assert approval["editor"] == "Vitaly Vorobyev"
+    assert approval["checklist"] == [
+        "accent",
+        "intelligibility",
+        "naturalness",
+        "pace",
+        "questions",
+        "speakers",
+    ]
+    assert approval["audio_sha256"]
+
+    # The second recording knows who is reviewing: one button, nothing to type.
+    second = store.create("ls-two", payload().model_copy(update={"tts_adapter": "fake"}))
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{second.id}/{action}?token=test").status_code == 200
+    page = client.get(f"/projects/{second.id}/approve?token=test").text
+    assert "Gehört und freigegeben — Vitaly Vorobyev" in page
+    assert "Name der freigebenden Person" not in page
+
+    # And it can be handed back: forgetting asks again rather than approving as the wrong person.
+    assert "Name der freigebenden Person" in client.get(
+        f"/projects/{second.id}/approve?token=test&forget=1"
+    ).text
+
+
+def test_an_approval_without_a_name_is_refused(tmp_path: Path) -> None:
+    """The name is the provenance record. One button may remove the typing, never the identity."""
+
+    store = Store(tmp_path / "db.sqlite3")
+    project = store.create("ls-anon", payload().model_copy(update={"tts_adapter": "fake"}))
+    client = TestClient(
+        app(store, tmp_path, token="test", allow_test_adapters=True), raise_server_exceptions=False
+    )
+    for action in ["validate", "generate", "qa"]:
+        assert client.post(f"/projects/{project.id}/{action}?token=test").status_code == 200
+    refused = client.post(
+        f"/projects/{project.id}/approve/confirm?token=test", data={"editor": "   "}
+    )
+    assert refused.status_code == 400
+    _, revision, _ = store.get(project.id)
+    assert revision.approval_json is None

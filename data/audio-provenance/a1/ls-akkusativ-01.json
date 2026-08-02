@@ -1,0 +1,445 @@
+{
+  "approval": {
+    "audio_sha256": "839b6bb36c5bcad7417ba2e398c5c7118f2beaecac1b9bedb955a8e9dc335a29",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "d701c7e946e8ab9e7d5196529969813f8cd1b96fcb6fd6cbc512a78f6064044b",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T14:35:44.498118+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Sehr leiser Wartezimmerton unter einem Gespräch am Praxisempfang.",
+      "duration_seconds": 97.24,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2248464,
+      "original_filename": "744447.mp3",
+      "original_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+      "page_url": "https://freesound.org/s/744447/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 35000,
+        "gain_db": -26.0,
+        "sound_id": 744447,
+        "source_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+        "start_ms": 10000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 744447,
+      "source_file": "preview-hq",
+      "title": "Soft Room Tone",
+      "uploader": "callmethefoo"
+    }
+  ],
+  "created_at": "2026-08-02T14:35:44.498118+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "d701c7e946e8ab9e7d5196529969813f8cd1b96fcb6fd6cbc512a78f6064044b",
+  "exported_files": {
+    "exercise.yaml": "340a2bb0e5351213b577435d17df0849814ef4bd8af23c3f170893ed982e586d",
+    "generation-brief.md": "7c2f0a8a6d7adad4f9eba5356d8a911881a6ccfdb74158b5895e325b7a078bdd",
+    "listening.yaml": "a7b9602212d313483dba2e16445604e53eff9c87b665881335b6358dc9f2cf08",
+    "ls-akkusativ-01-dry.wav": "d701c7e946e8ab9e7d5196529969813f8cd1b96fcb6fd6cbc512a78f6064044b",
+    "ls-akkusativ-01.mp3": "1d61c4f0320c8ca2b1088a0860d407d5d4e148deac63dde8141d922f4ff9956d",
+    "ls-akkusativ-01.wav": "839b6bb36c5bcad7417ba2e398c5c7118f2beaecac1b9bedb955a8e9dc335a29",
+    "project.json": "aeb24556f0f69a5006eddb62462d9d0a7f65dc7f5f0fa964a1af4e169cf92d60",
+    "sources/freesound-744447/ATTRIBUTION.md": "96aa4e583deb9e634fbf2ac146f311374eb3e7e41e3b2061fa7a3dfd9e9a2b95",
+    "sources/freesound-744447/original.mp3": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+    "sources/freesound-744447/source.json": "66d5636bbab5beba835dbc724de7884ec229c6ff25e43c65ab1de05d9aba5d48",
+    "student.html": "c66e50c4b3aff41801cbb851ad0a5e1c8d0989362739f87072f41ad70949b522",
+    "student.pdf": "2a83dc7fe0da8a0e734bdbc4c585459ff0529865982816acd74914173640112e",
+    "teacher.html": "c71117ff94cf630c6671ac8ae678fb4ab0f04375badd6249c6270b7bec6b7f65",
+    "teacher.pdf": "e3ddde63748d33f86be8806b7c93aa81590e4adad4ca785ac1039be01e8d3845",
+    "transcript.txt": "346cc499003dbda425ebda9ea0c5511ad33cf6ff16f14fd5c8ac0d6bddedf057"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-akkusativ-01-listening.md",
+    "sha256": "7c2f0a8a6d7adad4f9eba5356d8a911881a6ccfdb74158b5895e325b7a078bdd"
+  },
+  "id": "ls-akkusativ-01",
+  "line_artifacts": [
+    {
+      "cache_key": "b252b1c6c116f84e18975f9e1fc45a86072fd8310561c0f8f3b0d49aec25abf6",
+      "display_text_sha256": "dec7591b414b5c2118d7a2cffb519d0c4507023b24aabaa6092250a05cc10e91",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "dec7591b414b5c2118d7a2cffb519d0c4507023b24aabaa6092250a05cc10e91",
+      "wav_sha256": "7bfd822c5311f79cb2f55c54866c012664afa0551897ee4651037383517a9ba5"
+    },
+    {
+      "cache_key": "19e51e78c6a40fba8c7f2c210193c05f4a5a552972f5db30253af01632c2dbd2",
+      "display_text_sha256": "d5088804d22d6e418cef31c28172ce7fd39f19ccb050d5248f86a576f68d847a",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "d5088804d22d6e418cef31c28172ce7fd39f19ccb050d5248f86a576f68d847a",
+      "wav_sha256": "a610ea031ff6f1040a65df205d5bae01c8d0cdbfad8030c762a48f2164387369"
+    },
+    {
+      "cache_key": "58dd0cdc10147f5e3bbdbc7d64e5e0ae23c3d5cff1928f8e011c444a7f168c8d",
+      "display_text_sha256": "45773bc7337453b6b61d0367b828b97f1111289a21151090eada80a49e5b9f58",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "45773bc7337453b6b61d0367b828b97f1111289a21151090eada80a49e5b9f58",
+      "wav_sha256": "cc92d243a5511ae9f0608c4cacea28ba4b53f9a4e2d0d735dbdfe90cee2ae93d"
+    },
+    {
+      "cache_key": "69e24500a7fbee7f697843afb350b1e8957d1b3fde2d259cef1b0ff35d8ce334",
+      "display_text_sha256": "be8185e261959792b6f8e080a97e0b9706cf91b0442e2cfcb33fdc4c78eb5fea",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "be8185e261959792b6f8e080a97e0b9706cf91b0442e2cfcb33fdc4c78eb5fea",
+      "wav_sha256": "f95970073120269855bc33502492fdfaadd9d1444afb51b3d2db6dda3cced5c9"
+    },
+    {
+      "cache_key": "ab6e8b14840a4f074621d21a11efc1b73f17e80448c4c4fd75594ce201d5b333",
+      "display_text_sha256": "dba04941893b7870eb8771d388e4b079f6934c9d071a864bedf3315682697c5f",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "dba04941893b7870eb8771d388e4b079f6934c9d071a864bedf3315682697c5f",
+      "wav_sha256": "c973af92af90196fe953afa4ca7805017b5ca0ea2333ad3f979e4d0efbabb822"
+    },
+    {
+      "cache_key": "728465df5586bd86a9cf9c627e61ddd3ade8ca4e1e2e3a90edbf2c5def07d487",
+      "display_text_sha256": "7ca2ffb781c1329a00816865e764427e579566efcfe465004a9ee60188e21c3f",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "7ca2ffb781c1329a00816865e764427e579566efcfe465004a9ee60188e21c3f",
+      "wav_sha256": "6d64062190e09fbedcf88280121b56c25e890487a2d8513b3d932ddd2f6753bb"
+    },
+    {
+      "cache_key": "0c35b0bb7a8a25f1aa45de21efde68b2747ad9296090302a98ded6d48c96e2c3",
+      "display_text_sha256": "e118edfa75889bbd3330f5607fb540b14260e4453c2a0232ec02ae637d1a606a",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "e118edfa75889bbd3330f5607fb540b14260e4453c2a0232ec02ae637d1a606a",
+      "wav_sha256": "243a5727ae29ce04f184dcf978086f5bace9fb9865429f6119135350ef7ae950"
+    }
+  ],
+  "master_audio_sha256": "839b6bb36c5bcad7417ba2e398c5c7118f2beaecac1b9bedb955a8e9dc335a29",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "1d61c4f0320c8ca2b1088a0860d407d5d4e148deac63dde8141d922f4ff9956d",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T14:25:10.189221+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag. Was möchten Sie trinken? Ich nehme einen Kaffee und ein Wasser. Möchten Sie auch etwas essen? Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte. Möchten Sie den Salat mit Brot? Nein, ohne Brot. Danke. Einen Kaffee, ein Wasser und einen Salat.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag. Was möchten Sie trinken?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag! Was möchten Sie trinken?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich nehme einen Kaffee und ein Wasser.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich nehme einen Kaffee und ein Wasser.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Möchten Sie auch etwas essen?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Möchten Sie auch etwas essen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Möchten Sie den Salat mit Brot?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Möchten Sie den Salat mit Brot?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, ohne Brot, danke.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, ohne Brot, danke.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Einen Kaffee, ein Wasser und einen Salat.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Einen Kaffee, ein Wasser und einen Salat.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:25:10.190006+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag. Was möchten Sie trinken? Ich nehme einen Kaffee und ein Wasser. Möchten Sie auch etwas essen? Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte. Möchten Sie den Salat mit Brot? Nein, ohne Brot. Danke. Einen Kaffee, ein Wasser und einen Salat.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag. Was möchten Sie trinken?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag! Was möchten Sie trinken?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich nehme einen Kaffee und ein Wasser.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich nehme einen Kaffee und ein Wasser.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Möchten Sie auch etwas essen?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Möchten Sie auch etwas essen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Möchten Sie den Salat mit Brot?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Möchten Sie den Salat mit Brot?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, ohne Brot, danke.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, ohne Brot, danke.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Einen Kaffee, ein Wasser und einen Salat.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Einen Kaffee, ein Wasser und einen Salat.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "daaac0b27dbe865011db7fc25c8e407833d252d82ebd0208283e460ab125d0d1",
+  "script_sha256": "cf842aa14508cd15f4d1f08709b5c476b759c85049e7eb3a37684539138e15bf",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "lead_in_ms": 0,
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 35000,
+        "gain_db": -26.0,
+        "sound_id": 744447,
+        "source_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+        "start_ms": 10000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Guten Tag. Was möchten Sie trinken?",
+        "id": "line-1",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kellner",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Ich nehme einen Kaffee und ein Wasser.",
+        "id": "line-2",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Gast",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Möchten Sie auch etwas essen?",
+        "id": "line-3",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Kellner",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.",
+        "id": "line-4",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Gast",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Möchten Sie den Salat mit Brot?",
+        "id": "line-5",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Kellner",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Nein, ohne Brot, danke.",
+        "id": "line-6",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Gast",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Einen Kaffee, ein Wasser und einen Salat.",
+        "id": "line-7",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 733,
+        "speaker": "Kellner",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      }
+    ]
+  },
+  "version": 1
+}

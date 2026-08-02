@@ -1,0 +1,105 @@
+topic: einkaufen-reklamation
+role: practice
+title:
+  en: Returning a faulty kettle
+  ru: Возврат неисправного чайника
+  uk: 'Повернення несправного чайника'
+items:
+- id: q1
+  outcomes:
+  - umtausch-begruenden
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kundin
+      text: Guten Tag, ich möchte diesen Wasserkocher reklamieren.
+    - speaker: Mitarbeiter
+      text: Was ist denn das Problem?
+    - speaker: Kundin
+      text: Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.
+    - speaker: Mitarbeiter
+      text: Haben Sie den Kassenbon dabei?
+    - speaker: Kundin
+      text: Ja, hier. Ich möchte gern ein neues Gerät, kein Geld zurück.
+    - speaker: Mitarbeiter
+      text: Das geht. Wir haben das gleiche Modell leider nicht mehr.
+    - speaker: Kundin
+      text: Und ein ähnliches?
+    - speaker: Mitarbeiter
+      text: Wir haben eines für fünf Euro mehr. Den Unterschied müssen Sie zahlen.
+    - speaker: Kundin
+      text: Das ist in Ordnung, wenn ich es heute mitnehmen kann.
+    - speaker: Mitarbeiter
+      text: Ja, ich hole es aus dem Lager. Einen Moment bitte.
+    - speaker: Kundin
+      text: Und die Garantie beginnt dann neu, oder?
+    - speaker: Mitarbeiter
+      text: Genau, ab heute wieder zwei Jahre.
+  recording: ls-einkaufen-reklamation-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was möchte die Kundin?
+  options:
+  - Ein neues Gerät.
+  - Ihr Geld zurück.
+  - Eine Reparatur.
+  correct: 0
+  explain:
+    en: She names both possibilities in one line and rejects one of them in the same
+      breath — kein Geld zurück. The wrong option is a word she actually said.
+    ru: Обе возможности она называет в одной реплике и тут же одну из них отвергает
+      — kein Geld zurück. Неверный вариант — это слово, которое действительно прозвучало.
+    uk: 'Обидві можливості вона називає в одній репліці й тут-таки одну з них відкидає — kein Geld zurück. Хибний варіант — це слово, яке справді прозвучало.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - umtausch-begruenden
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kundin
+      text: Guten Tag, ich möchte diesen Wasserkocher reklamieren.
+    - speaker: Mitarbeiter
+      text: Was ist denn das Problem?
+    - speaker: Kundin
+      text: Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.
+    - speaker: Mitarbeiter
+      text: Haben Sie den Kassenbon dabei?
+    - speaker: Kundin
+      text: Ja, hier. Ich möchte gern ein neues Gerät, kein Geld zurück.
+    - speaker: Mitarbeiter
+      text: Das geht. Wir haben das gleiche Modell leider nicht mehr.
+    - speaker: Kundin
+      text: Und ein ähnliches?
+    - speaker: Mitarbeiter
+      text: Wir haben eines für fünf Euro mehr. Den Unterschied müssen Sie zahlen.
+    - speaker: Kundin
+      text: Das ist in Ordnung, wenn ich es heute mitnehmen kann.
+    - speaker: Mitarbeiter
+      text: Ja, ich hole es aus dem Lager. Einen Moment bitte.
+    - speaker: Kundin
+      text: Und die Garantie beginnt dann neu, oder?
+    - speaker: Mitarbeiter
+      text: Genau, ab heute wieder zwei Jahre.
+  recording: ls-einkaufen-reklamation-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was muss die Kundin zusätzlich bezahlen?
+  options:
+  - Fünf Euro.
+  - Nichts.
+  - Zwei Jahre Garantie.
+  correct: 0
+  explain:
+    en: The five euros arrive as a comparison — fünf Euro mehr — not as a price, and
+      the sentence after it names who pays the difference.
+    ru: Пять евро появляются как сравнение — fünf Euro mehr, — а не как цена, и следующее
+      предложение называет, кто платит разницу.
+    uk: 'П''ять євро з''являються як порівняння — fünf Euro mehr, — а не як ціна, і наступне речення називає, хто платить різницю.'
+  max_replays: 3

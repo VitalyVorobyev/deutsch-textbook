@@ -1,0 +1,73 @@
+topic: menschen-familie
+role: practice
+title:
+  en: A voice message about the family
+  ru: Голосовое сообщение о семье
+  uk: 'Голосове повідомлення про родину'
+items:
+- id: q1
+  outcomes:
+  - familie-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Mila
+      text: Hallo Lea, hier ist Mila. Ich bin heute bei meiner Familie.
+    - speaker: Mila
+      text: Neben mir sitzt mein Bruder Jonas. Er ist achtzehn und studiert in Köln.
+    - speaker: Mila
+      text: Meine Schwester Anna arbeitet heute. Am Abend kommen auch meine Eltern.
+    - speaker: Mila
+      text: Dann essen wir alle zusammen. Bis morgen!
+  recording: ls-menschen-familie-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wer studiert in Köln?
+  options:
+  - Ihr Bruder Jonas.
+  - Ihre Schwester Anna.
+  - Ihre Mutter.
+  correct: 0
+  explain:
+    en: Two siblings are named in the same breath and only one of them studies — Anna
+      is at work. Catching which person a statement belongs to is the whole skill
+      here.
+    ru: 'Названы двое: брат и сестра, но учится только один — Анна на работе. Умение
+      расслышать, к кому относится высказывание, здесь и есть навык.'
+    uk: 'Названо двох — брата і сестру, — але навчається лише один: Анна на роботі. Уміння розчути, до кого належить сказане, і є тут навичкою.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - familie-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Mila
+      text: Hallo Lea, hier ist Mila. Ich bin heute bei meiner Familie.
+    - speaker: Mila
+      text: Neben mir sitzt mein Bruder Jonas. Er ist achtzehn und studiert in Köln.
+    - speaker: Mila
+      text: Meine Schwester Anna arbeitet heute. Am Abend kommen auch meine Eltern.
+    - speaker: Mila
+      text: Dann essen wir alle zusammen. Bis morgen!
+  recording: ls-menschen-familie-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was passiert am Abend?
+  options:
+  - Die Eltern kommen, und alle essen zusammen.
+  - Anna kommt von der Arbeit und geht schlafen.
+  - Mila fährt nach Köln.
+  correct: 0
+  explain:
+    en: Am Abend marks the one future event in the message. "Mila fährt nach Köln" recycles Köln, which was said — but about Jonas's studies, not about a journey.
+    ru: Am Abend отмечает единственное будущее событие в сообщении. В «Mila fährt nach Köln» повторяется Кёльн — слово действительно прозвучало, но про учёбу Йонаса, а
+      не про поездку.
+    uk: 'Am Abend позначає єдину майбутню подію в повідомленні. У «Mila fährt nach Köln» повторюється Кельн — слово справді прозвучало, але про навчання Йонаса, а не про поїздку.'
+  max_replays: 3

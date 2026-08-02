@@ -48,6 +48,22 @@ def app_dir() -> Path:
     return path
 
 
+def remembered_editor(root: Path) -> str | None:
+    """Who signs off here, asked once.
+
+    Retyping a name before every approval is not identity checking — it is the part of the form
+    a reviewer learns to type without reading, next to the boxes they learn to tick without
+    listening. The name is the provenance record; the listening is the review. Keep them apart.
+    """
+
+    name = (root / "editor.txt")
+    return name.read_text().strip() or None if name.exists() else None
+
+
+def remember_editor(root: Path, editor: str) -> None:
+    (root / "editor.txt").write_text(editor.strip())
+
+
 class Store:
     def __init__(self, database: Path | None = None):
         self.root = database.parent if database else app_dir()
