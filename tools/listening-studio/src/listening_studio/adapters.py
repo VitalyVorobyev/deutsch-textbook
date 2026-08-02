@@ -89,7 +89,8 @@ class ParlerTTS:
             self._model = ParlerTTSForConditionalGeneration.from_pretrained(model_path).to(
                 self._device
             )
-            self._tokenizer = AutoTokenizer.from_pretrained(model_path)
+            # transformers ships py.typed from 4.48 on, and `from_pretrained` is untyped in it.
+            self._tokenizer = AutoTokenizer.from_pretrained(model_path)  # type: ignore[no-untyped-call]
             tokenizer_path = locked_snapshot(
                 "google/flan-t5-large",
                 "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
@@ -100,7 +101,7 @@ class ParlerTTS:
                     "special_tokens_map.json",
                 ],
             )
-            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
+            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)  # type: ignore[no-untyped-call]
         description = (
             f"{line.voice}'s German voice is clear, close, natural, and has no background noise."
         )
@@ -121,7 +122,34 @@ class ParlerTTS:
         )
 
 
+REPO_ROOT = Path(__file__).resolve().parents[4]
+
+
+def local_checkout(model_id: str, revision: str) -> Path | None:
+    """A `.models/<repo-name>/` download of exactly `revision`, or None.
+
+    `scripts/download-qwen3-tts.py` fetches with `local_dir=`, which puts the weights in the
+    repository and leaves the Hub cache holding little more than a ref pointer — so a
+    `snapshot_download(local_files_only=True)` by repo id does not find a 1.8 GB checkpoint
+    sitting on disk. The directory is still self-describing: `huggingface_hub` writes the source
+    commit as the first line of each `.cache/huggingface/download/<file>.metadata`, and that is
+    what is checked here. **Never accept the directory on its name alone** — the manifest
+    publishes the pinned revision, and a directory that merely looks right would turn that
+    published claim into an assumption.
+    """
+
+    directory = REPO_ROOT / ".models" / model_id.rsplit("/", 1)[-1]
+    metadata = sorted((directory / ".cache" / "huggingface" / "download").glob("*.metadata"))
+    if not metadata:
+        return None
+    commits = {path.read_text().splitlines()[0].strip() for path in metadata if path.read_text()}
+    return directory if commits == {revision} else None
+
+
 def locked_snapshot(model_id: str, revision: str, allow_patterns: list[str] | None = None) -> str:
+    local = local_checkout(model_id, revision)
+    if local is not None:
+        return str(local)
     try:
         return snapshot_download(
             repo_id=model_id,

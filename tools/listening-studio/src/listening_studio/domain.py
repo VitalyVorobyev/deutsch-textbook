@@ -258,32 +258,63 @@ class QAReport(BaseModel):
 
 
 WORD = re.compile(r"[\wäöüßÄÖÜ]+", re.UNICODE)
+# Keys are casefolded on construction: `"dreißig".casefold()` is `"dreissig"`, so a literal
+# "dreißig" key would never be hit by a lookup on casefolded input — silently, and only for the
+# entries containing ß.
 GERMAN_NUMBER_WORDS = {
-    "zwei": "2",
-    "drei": "3",
-    "vier": "4",
-    "fünf": "5",
-    "sechs": "6",
-    "sieben": "7",
-    "acht": "8",
-    "neun": "9",
-    "zehn": "10",
-    "elf": "11",
-    "zwölf": "12",
-    "dreizehn": "13",
-    "vierzehn": "14",
-    "fünfzehn": "15",
-    "sechzehn": "16",
-    "siebzehn": "17",
-    "achtzehn": "18",
-    "neunzehn": "19",
-    "zwanzig": "20",
+    word.casefold(): digits
+    for word, digits in {
+        "null": "0",
+        "eins": "1",
+        "zwei": "2",
+        "drei": "3",
+        "vier": "4",
+        "fünf": "5",
+        "sechs": "6",
+        "sieben": "7",
+        "acht": "8",
+        "neun": "9",
+        "zehn": "10",
+        "elf": "11",
+        "zwölf": "12",
+        "dreizehn": "13",
+        "vierzehn": "14",
+        "fünfzehn": "15",
+        "sechzehn": "16",
+        "siebzehn": "17",
+        "achtzehn": "18",
+        "neunzehn": "19",
+        "zwanzig": "20",
+        "dreißig": "30",
+        "vierzig": "40",
+        "fünfzig": "50",
+        "sechzig": "60",
+        "siebzig": "70",
+        "achtzig": "80",
+        "neunzig": "90",
+        "hundert": "100",
+    }.items()
 }
 
 
 def normalized_words(text: str) -> list[str]:
+    """Script words and ASR output reduced to one comparable sequence.
+
+    The digit split is the load-bearing part. `listen` and `audio-comprehension` scripts must
+    spell numbers out ("null eins fünf sieben"), while Whisper writes the same speech as one
+    numeral ("0157") — so a flawless A1 telephone-number take scored WER 0.70 and every numeric
+    scenario in `data/listening-plan.yaml` would have failed QA on spelling rather than on
+    speech. Splitting a multi-digit token into single digits makes both spellings the same
+    sequence. It costs a little precision (spoken "zwei null" no longer differs from "zwanzig"),
+    which is the right trade for a screen whose job is to catch defects before a human listens.
+    """
+
     words = [word.casefold() for word in WORD.findall(text)]
-    return [GERMAN_NUMBER_WORDS.get(word, word) for word in words]
+    out: list[str] = []
+    for word in words:
+        mapped = GERMAN_NUMBER_WORDS.get(word, word)
+        out.extend(mapped if mapped.isdigit() and len(mapped) > 1 else [mapped])
+    return out
 
 
 def edit_distance(a: list[str], b: list[str]) -> int:

@@ -132,3 +132,27 @@ def test_the_voice_lists_match_the_provenance_record() -> None:
     lock = json.loads((Path(__file__).resolve().parents[1] / "models.lock.json").read_text())
     for adapter, voices in VOICE_SETS.items():
         assert tuple(lock["models"][adapter]["voices"]) == voices, adapter
+
+
+def test_a_local_checkout_is_accepted_only_at_the_pinned_revision(tmp_path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    """The published manifest states the model revision as fact, so a directory that merely has
+    the right name must not satisfy it."""
+
+    from listening_studio import adapters
+
+    models = tmp_path / ".models" / "Some-Model"
+    download = models / ".cache" / "huggingface" / "download"
+    download.mkdir(parents=True)
+    monkeypatch.setattr(adapters, "REPO_ROOT", tmp_path)
+
+    pinned = "a" * 40
+    # No metadata at all: a directory of weights nobody can date.
+    assert adapters.local_checkout("Org/Some-Model", pinned) is None
+
+    (download / "config.json.metadata").write_text(f"{pinned}\nsha\n1.0\n")
+    (download / "model.safetensors.metadata").write_text(f"{pinned}\nsha\n1.0\n")
+    assert adapters.local_checkout("Org/Some-Model", pinned) == models
+
+    # One file from a different commit is a mixed checkout, not the pinned revision.
+    (download / "model.safetensors.metadata").write_text(f"{'b' * 40}\nsha\n1.0\n")
+    assert adapters.local_checkout("Org/Some-Model", pinned) is None

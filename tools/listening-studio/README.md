@@ -20,9 +20,30 @@ WAV audio, checks it with Whisper, and requires a real six-point human review be
 `publish` refuses every existing target and requires `--yes` after reviewing the bundle.
 
 Model weights are never downloaded implicitly by the editor. Use `models list` and
-`models fetch <generator|qwen_tts|parler_tts|parler_text_tokenizer|asr>`. Qwen and Parler have
-separate pinned compatibility requirements because their Transformers versions conflict. Voice cloning,
+`models fetch <generator|qwen_tts|parler_tts|parler_text_tokenizer|asr>`. Voice cloning,
 reference audio, VoiceDesign and music have no API or UI surface.
+
+## Synthesis engine
+
+**Qwen3-TTS is the engine.** `./install-qwen.sh` installs it; `./install-parler.sh` puts Parler
+back. They cannot be installed at the same time — `qwen_tts` needs `transformers >= 4.48`
+(`ALL_ATTENTION_FUNCTIONS`) and `parler-tts` is pinned to 4.46.1 — so switching engines is a
+reinstall, not a setting. Parler produced Wave 1 and stays in the code and in `models.lock.json`
+because the manifests of that audio name it; new projects are seeded on Qwen (`cli.ENGINE`).
+
+The upstream package is installed with `--no-deps` on purpose: its declared dependencies pull
+gradio, which would move `fastapi` and `starlette` past the pins the Studio's own web layer uses.
+`requirements-qwen-runtime.txt` lists what the generation path actually loads, derived from
+`sys.modules` after a real `generate_custom_voice()` call rather than from the package metadata.
+
+Weights downloaded by `scripts/download-qwen3-tts.py` land in `<repo>/.models/`, which the Hub
+cache does not index. `adapters.local_checkout` finds them there and **verifies the pinned
+revision** from the per-file download metadata before use — a directory is never accepted on its
+name alone, because the published manifest states that revision as fact.
+
+`atlas-listening switch-adapter <adapter> [--dry-run]` moves every existing project at once,
+reassigning voices per speaker and revalidating each payload before it is stored. The assignment
+only keeps speakers apart; pick the actual voices per line in the editor.
 
 ## Context sounds
 
