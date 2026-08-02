@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "models": {
+    "generator": {
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "adapter_code": "mlx-lm@0.28.3",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "license": "Apache-2.0",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "qwen_tts": {
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "license": "Apache-2.0",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": ["Vivian", "Serena", "Uncle_Fu", "Dylan", "Eric", "Ryan", "Aiden", "Ono_Anna", "Sohee"],
+      "forbidden_capabilities": ["voice-clone", "reference-audio", "voice-design"]
+    },
+    "parler_tts": {
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "license": "Apache-2.0",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": ["Nicole", "Christopher", "Megan", "Michelle"]
+    },
+    "parler_text_tokenizer": {
+      "id": "google/flan-t5-large",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "adapter_code": "transformers@4.46.1",
+      "license": "Apache-2.0",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "files": ["tokenizer.json", "tokenizer_config.json", "spiece.model", "special_tokens_map.json"]
+    },
+    "asr": {
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "license": "MIT",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    }
+  }
+}

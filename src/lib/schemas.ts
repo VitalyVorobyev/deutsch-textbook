@@ -540,18 +540,20 @@ const audioTurnSchema = z.object({
   text: z.string().min(1),
 });
 
-export const audioSourceSchema = z.discriminatedUnion('kind', [
-  z.object({
-    kind: z.literal('tts'),
-    turns: z.array(audioTurnSchema).min(1),
-    rate: z.number().min(0.5).max(1.2).default(0.9),
-  }),
-  z.object({
-    kind: z.literal('asset'),
-    src: z.string().min(1),
-    transcript: z.array(audioTurnSchema).min(1),
-  }),
-]);
+/**
+ * The spoken script of an audio-comprehension item.
+ *
+ * `kind` was a two-branch union until 2026-08-02, the second branch pointing at a bare file
+ * path. It carried no item in its whole life — all 57 shipped audio items are `tts` — and the
+ * moment a reviewed recording existed it was the wrong shape anyway: a file path records no
+ * approval, no hashes and no provenance. `recording` on the item replaces it. The literal
+ * stays so the 57 YAML files need no edit and no `revision` bump.
+ */
+export const audioSourceSchema = z.object({
+  kind: z.literal('tts'),
+  turns: z.array(audioTurnSchema).min(1),
+  rate: z.number().min(0.5).max(1.2).default(0.9),
+});
 
 /** Listening comprehension rather than dictation. When no audio is available
     the UI exposes the transcript and explicitly relabels the task as reading. */
@@ -559,6 +561,16 @@ export const audioComprehensionItemSchema = z.object({
   ...itemBase,
   type: z.literal('audio-comprehension'),
   source: audioSourceSchema,
+  /**
+   * Optional id of a reviewed `content/listening/<level>/<id>.yaml` recording.
+   *
+   * `source.turns` is the script the recording was made from *and* the browser-TTS fallback,
+   * and the validator holds the two equal — so the same item YAML serves both builds. The
+   * desktop bundle ships the WAV and plays it; the web demo has no WAV and speaks the turns.
+   * Neither build changes what the item asks or how it is scored, so adding a recording to a
+   * shipped item is not a `revision` bump.
+   */
+  recording: slug.optional(),
   question: z.string().min(1),
   options: z.array(z.string().min(1)).min(2),
   correct: z.number().int().min(0),
@@ -580,6 +592,16 @@ export const exerciseItemSchema = z.discriminatedUnion('type', [
   audioComprehensionItemSchema,
 ]);
 export type ExerciseItem = z.infer<typeof exerciseItemSchema>;
+
+/**
+ * Every item type the app can render, as a plain list.
+ *
+ * Derived from the union above rather than written out, so a new item type joins both in one
+ * edit and `data/listening-plan.yaml` can never plan for a type that does not exist.
+ */
+export const EXERCISE_ITEM_TYPES = exerciseItemSchema.options.map(
+  (option) => option.shape.type.value,
+) as unknown as [string, ...string[]];
 
 export const EXERCISE_ROLES = [
   'pretest',
@@ -606,6 +628,90 @@ export const exerciseSetSchema = z.object({
   items: z.array(exerciseItemSchema).min(1),
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
+
+// ---------------------------------------------------------------------------
+// Reviewed listening artifacts (content/listening/<level>/<id>.yaml)
+// ---------------------------------------------------------------------------
+
+/**
+ * One reviewed recording: the record, beside its WAV, at `content/listening/<level>/<id>.wav`.
+ *
+ * The audio path is derived from `level` and `id` rather than declared, so it cannot drift from
+ * the file it names — and it deliberately does **not** live under `public/`, because the web
+ * demo must not ship 40+ MB of WAV. `scripts/bundle-audio.ts` copies these into the build only
+ * when ATLAS_AUDIO_BUNDLE is set; everywhere else the item falls back to browser TTS.
+ */
+export const listeningArtifactSchema = z.object({
+  id: slug,
+  level: levelSchema,
+  title: bilingualSchema,
+  scenario: z.string().min(1),
+  duration_seconds: z.number().int().positive(),
+  speakers: z.array(z.string().min(1)).min(1).max(4),
+  transcript: z.array(audioTurnSchema).min(1),
+  provenance: z.string().min(1),
+});
+
+/**
+ * Where a reviewed recording sits on disk. The URL it is served at is in lib/audio.ts.
+ *
+ * MP3, not WAV: the WAV master is what the editor approves and what Whisper QA runs on, and it
+ * stays in the studio. Committing it would put ~29 MB in git history and in every desktop
+ * installer for bytes no learner downloads — 64 kbps mono is about a fifth of that and the
+ * assembled master is 16 kHz mono anyway. The provenance manifest pins both: the master hash
+ * the approval is bound to, and the published hash of this file.
+ */
+export const listeningAudioPath = (level: string, id: string) =>
+  `content/listening/${level.toLowerCase()}/${id}.mp3`;
+export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
+
+// ---------------------------------------------------------------------------
+// Editorial listening plan (data/listening-plan.yaml)
+// ---------------------------------------------------------------------------
+
+export const listeningPlanArtifactSchema = z.object({
+  id: slug,
+  wave: z.union([z.literal(1), z.literal(2)]),
+  purpose: z.enum(['listening-outcome', 'model-input']),
+  scenario: z.string().min(1),
+  outcomes: z.array(slug).min(1),
+  required_vocabulary: z.array(z.string().min(1)).default([]),
+  grammar_target: z.string().default(''),
+  duration_seconds: z.object({ min: z.number().int().positive(), max: z.number().int().positive() }),
+  speakers: z.object({ min: z.number().int().min(1).max(4), max: z.number().int().min(1).max(4) }),
+  register: z.string().min(1),
+  /**
+   * Which existing exercise item types will carry this artifact's questions.
+   *
+   * This was `question_kinds`, a six-member response union belonging to a `listening` item
+   * type that no longer exists — single-choice was `mc`, ordering was `order`, dictation was
+   * `listen`, and a parallel grading path for the same four tasks is a second place for every
+   * grading rule to be forgotten. Naming a real type keeps the plan answerable against the
+   * catalog: `bun run validate` rejects a value that is not an item type the app can render.
+   */
+  item_types: z.array(z.enum(EXERCISE_ITEM_TYPES)).min(1),
+  /** How many independently scored questions the artifact should carry. Every planned
+      artifact declared exactly three response kinds, so three is what that encoded. */
+  questions: z.number().int().min(1).max(6).default(3),
+  context_sound: z.string().min(1).nullable(),
+}).superRefine((artifact, ctx) => {
+  if (artifact.duration_seconds.min > artifact.duration_seconds.max)
+    ctx.addIssue({ code: 'custom', path: ['duration_seconds'], message: 'min must not exceed max' });
+  if (artifact.speakers.min > artifact.speakers.max)
+    ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
+  if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
+    ctx.addIssue({ code: 'custom', message: 'Wave 1 requires vocabulary and a grammar/focus target' });
+});
+
+export const listeningPlanSchema = z.object({
+  version: z.literal(1),
+  units: z.array(z.object({
+    unit: slug,
+    level: levelSchema,
+    artifacts: z.array(listeningPlanArtifactSchema).min(1),
+  })).min(1),
+});
+export type ListeningPlan = z.infer<typeof listeningPlanSchema>;
 
 // ---------------------------------------------------------------------------
 // Reading texts (content/reading/<level>/<id>.yaml)
