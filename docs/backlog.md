@@ -109,6 +109,17 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   used correctly in 64 places. The distinguishing test is that emphasis *closes* — a `*` preceded by
   a non-space and followed by space, punctuation or end-of-string — while the linguistic marker never
   does. Verify a candidate rule against both sets before landing it.
+- **P22-14 · Per-line silence compounds with the inter-line pause, and nothing measures it** —
+  each synthesised line carries its own leading and trailing silence (corpus medians 0.43 s and
+  0.46 s), and `assemble` then adds `pause_after_ms` (450 ms) between lines. So a normal turn
+  boundary is ~1.4 s of dead air, and an unlucky pair runs past 2 s: `ls-wohnen-01` line-6 alone
+  carries 2.83 s of lead+trail. Two lines in `ls-gesundheit-wohlbefinden-01` were re-rolled by
+  seed after Vitaly heard them, but that is treating instances. The fix is to trim each take's
+  lead and trail at assembly and let `pause_after_ms` be the whole gap — which would tighten all
+  41 artifacts and **invalidate every approval**, so it is a between-waves change, not a now
+  change. Note the measurement trap while here: words per second of wall clock ranks "Und heute?"
+  as the corpus's slowest line because short utterances are dominated by fixed pause overhead.
+  Words per second of *voiced* audio (median 2.96) is the metric that finds real defects.
 - **P22-10 · Nothing compares a recording's length to the length the plan asked for** —
   `duration_seconds` is authored per artifact in `data/listening-plan.yaml` and read by nothing. Ten
   of the twelve Wave-1 takes fell outside their window against zero of Wave 2's twenty-nine; the
