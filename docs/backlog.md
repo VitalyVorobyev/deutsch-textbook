@@ -149,6 +149,23 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   editorial ruling, not a mechanical fix. Build the detector to respect parentheticals and require
   mutual overlap, then triage against the lapse table (`aufmachen`, `Aufgabe`, `Anweisung`,
   `Empfehlung` sit high on both).
+- **P22-19 · An audio-only topic escapes the item-mix bar entirely** — `scripts/validate.ts:751`
+  builds `practiceItems` with `audio-comprehension` filtered out and then guards the whole block
+  with `if (practiceItems.length > 0)`. A topic whose `role: practice` sets held *only* recorded
+  items would therefore have an empty list and skip not just the two ratios but the **two-translate
+  minimum**, passing validation while offering no written production at all. **Introduced by #131**
+  when the exclusion was added. Not reachable today — every topic pairs its `-hoeren` set with
+  written practice, which is why no gate caught it — but it is a hole in the gate rather than a
+  fact about the corpus, and the next audio-first topic walks through it. Fix as Codex framed it:
+  decide *whether the topic has practice* from the unfiltered list, and use the filtered list only
+  as the ratios' denominator. Found by Codex on #131.
+- **P22-20 · The documented Qwen download is unpinned and the loader is not** —
+  `scripts/download-qwen3-tts.py:55` calls `snapshot_download(repo_id=..., local_dir=...)` with no
+  `revision`, while `QwenTTS.revision` fixes `85e237c1…` and `locked_snapshot` accepts only that
+  metadata. Today upstream `main` happens to match. Once it advances, `install-qwen.sh` will pull a
+  multi-gigabyte checkpoint, exit 0, and the Studio will then report the model as not found — the
+  worst shape for a setup path, because the failure appears nowhere near the command that caused
+  it. Pass the pinned revision to the downloader. Found by Codex on #131.
 - **P22-18 · `soundfile` is pinned twice, at two versions** — `pyproject.toml` and `uv.lock` say
   `0.13.1`; `requirements-qwen-runtime.txt` says `0.14.0`. **Introduced by #131**, which moved
   `soundfile` out of the optional `mlx` extra and into the base dependencies at the extra's
