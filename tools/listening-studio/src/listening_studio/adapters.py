@@ -242,6 +242,13 @@ def draft_prompt(payload: RevisionPayload) -> str:
         "eight short dialogue turns for two or more speakers, or three to five short paragraphs for "
         "one speaker. Keep the total spoken length close to the requested duration. Preserve the "
         "requested three response kinds and all stable ids. "
+        # The site shuffles an item's options on every render, so "the second option" names
+        # nothing. Fourteen of the first forty-one published sets said it anyway, in both
+        # halves, and `scripts/validate.ts` now rejects the shape — but a validator that fires
+        # after synthesis and approval costs a rewrite pass, and this line costs nothing.
+        "In feedback, identify a choice by quoting what it says, never by its position: the "
+        "options are shuffled before the learner sees them, so 'the second option' is wrong for "
+        "most readers. "
         "Never add voice cloning, music, effects, or reference audio. Context sounds are selected "
         "separately by a human and must not be invented by the text model.\nDRAFT SHAPE:\n"
         + payload.model_dump_json(indent=2)

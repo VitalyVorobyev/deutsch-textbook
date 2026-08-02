@@ -85,6 +85,11 @@ describe('positional references to a shuffled option', () => {
     // A digit that belongs to the German, a level, or a grammatical position — not to a list.
     'Das Verb steht auf Position 2, das Partizip am Ende.',
     'Der Kurs beginnt um 2 Uhr.',
+    // A multi-digit number after the option noun is the option's content: no item has ten
+    // options, so "вариант 43" names the page the choice offers. Reported as a defect until
+    // the numeric pattern grew its `(?!\d)`; the sentence it flagged was the item's whole point.
+    'Именно поэтому соблазнителен вариант 43: так это слово звучит, если читать его подряд.',
+    'Option 34 is the one the recording actually names.',
   ];
 
   for (const text of allowed) {

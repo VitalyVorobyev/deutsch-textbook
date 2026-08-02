@@ -53,7 +53,12 @@ const PATTERNS: readonly RegExp[] = [
   // "Option 2", "Вариант 3", "Antwort 1". Found only because a rewrite pass turned up
   // "Option 1 is the neutral everyday pattern" sitting untouched in fields the rule had just
   // declared clean — 13 more fields across 5 items, in a corpus the ordinal rule called done.
-  /(?<!\p{L})(?:option|answer|choice|variante?|antwort|m[öo]glichkeit|вариант|ответ|варіант|відповідь)\s*\d(?!\p{L})/iu,
+  //
+  // `(?!\d)` is load-bearing: no item has ten options, so a multi-digit number after the noun is
+  // the option's *content*, not its position. Without it, `ls-lernen-verstehen-01`'s "соблазнителен
+  // вариант 43" — where 43 is the page number the option offers, and the whole point of the item —
+  // was reported as a defect. A rule that flags the correct sentence teaches the author to ignore it.
+  /(?<!\p{L})(?:option|answer|choice|variante?|antwort|m[öo]glichkeit|вариант|ответ|варіант|відповідь)\s*\d(?!\p{L}|\d)/iu,
   // Spelled-out, and deliberately narrower: only nouns that cannot also be verbs. "answer" and
   // "choice" are dropped here because "you only need to answer one question" is ordinary prose
   // and would be rejected as a defect.
