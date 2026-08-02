@@ -29,8 +29,18 @@ def sha256(path: Path) -> str:
 
 # 64 kbps mono is a long-standing speech setting and the assembled master is 16 kHz mono
 # anyway, so the encoder is not throwing away bandwidth anyone can hear. It is roughly a
-# fifth of the WAV: 41 artifacts at ~700 KB become ~7 MB rather than ~29 MB, in git history
-# and in every desktop installer.
+# quarter of the WAV: the finished 41-artifact corpus is 29.5 minutes of speech, 57.9 MB of
+# master and 14.2 MB published, in git history and in every shipping build.
+#
+# Those are measured, and they replace an estimate written here before the corpus existed
+# ("41 artifacts at ~700 KB become ~7 MB rather than ~29 MB") which was wrong by 2x in both
+# terms — the takes turned out to average 43 seconds, not 22. Reproduce with:
+#   uv run python -c "from listening_studio.storage import Store, app_dir; \
+#     from listening_studio.adapters import wav_duration; \
+#     from pathlib import Path; r = app_dir(); \
+#     f = [r/'projects'/str(p.id)/'final.wav' for p in Store().projects()]; \
+#     print(sum(x.stat().st_size for x in f if x.exists()), \
+#           sum(wav_duration(x) or 0 for x in f if x.exists()))"
 MP3_BITRATE = "64k"
 
 
@@ -380,10 +390,11 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     brief_path = repo / provenance_data["generation_brief"]["path"]
     targets = {
         # The MP3 derivative is what enters the repo — beside the artifact record, NOT under
-        # public/, because the Pages build must ship no audio at all. The WAV master stays in
-        # the studio: it is what the editor approved and what QA ran on, and committing it
-        # would put ~29 MB in git history for bytes no learner ever downloads.
-        # src/integrations/audio-bundle.ts copies these into the desktop build.
+        # public/, because whether a build ships audio is a build decision, not a fact about
+        # where a file sits. src/integrations/audio-bundle.ts copies these into any build that
+        # sets PUBLIC_ATLAS_AUDIO_BUNDLE, which both shipping targets now do. The WAV master
+        # stays in the studio: it is what the editor approved and what QA ran on, and committing
+        # it would put 57.9 MB in git history for bytes no learner ever downloads.
         bundle / f"{slug}.mp3": repo / "content" / "listening" / level / f"{slug}.mp3",
         bundle / "listening.yaml": repo / "content" / "listening" / level / f"{slug}.yaml",
         bundle / "exercise.yaml": repo / "content" / "exercises" / level / f"{slug}-hoeren.yaml",

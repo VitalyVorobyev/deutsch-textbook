@@ -1,18 +1,21 @@
 /**
- * Which build ships the reviewed listening WAVs.
+ * Which build ships the reviewed listening recordings.
  *
- * The same content tree serves two very different targets. The GitHub Pages demo is a public
- * static site where the recordings would be most of the download, and the desktop app is a
- * local bundle where the audio is the point — so the recordings ship there and nowhere else.
+ * Both shipping targets do. This started as a desktop/web split — the recordings would have been
+ * most of a public static site's download — but the measured corpus is 14.2 MB of 64 kbps mono
+ * MP3 against a 69 MB site and a 1 GB Pages limit, fetched per item only when a learner opens
+ * one. So the demo ships them too, and what the flag actually distinguishes is a shipping build
+ * from a lean one that carries no binaries.
+ *
  * An `audio-comprehension` item carries its script either way (`source.turns`), and the
- * validator holds that script equal to the recording's transcript, so the two builds ask the
- * learner exactly the same question. Only the voice differs: a reviewed take, or browser TTS.
+ * validator holds that script equal to the recording's transcript, so a build without audio asks
+ * the learner exactly the same question. Only the voice differs: a reviewed take, or browser TTS.
  *
  * `PUBLIC_ATLAS_AUDIO_BUNDLE=1` turns it on. The name is deliberately `PUBLIC_` — Vite exposes
  * only that prefix to client code, and `AudioComprehension.tsx` has to read the same flag that
  * decided whether the files were copied. One boolean rather than a per-id manifest, because
  * the copy is all-or-nothing and the validator already guarantees every committed artifact has
- * its WAV: an item whose recording resolves in the content tree cannot be missing from a
+ * its MP3: an item whose recording resolves in the content tree cannot be missing from a
  * bundled build.
  *
  * `dist/audio/manifest.json` is written either way. It is not read at runtime — it exists so

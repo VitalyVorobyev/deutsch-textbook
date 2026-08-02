@@ -13,7 +13,17 @@
  * through the item, which does not carry it.
  */
 
-/** Vite exposes only `PUBLIC_`-prefixed variables to client code, and the component needs it. */
+/**
+ * Vite exposes only `PUBLIC_`-prefixed variables to client code, and the component needs it.
+ *
+ * **Both shipping builds set it.** It began as the desktop/web split — the desktop app carried the
+ * recordings and the public demo spoke browser TTS — and that is no longer what it means: the
+ * corpus is 14.2 MB against a 69 MB site, so withholding it from Pages bought nothing and cost the
+ * demo the audio it was built to show. What the flag distinguishes now is a *shipping* build from
+ * a lean one: unset, the site carries no binaries at all, which is what a quick preview or a
+ * bandwidth-limited mirror wants. The TTS path is not dead either way — it remains the live
+ * fallback whenever a recording is absent or fails to load (`onError` in `AudioComprehension`).
+ */
 export const AUDIO_BUNDLE_ENV = 'PUBLIC_ATLAS_AUDIO_BUNDLE';
 
 /**
