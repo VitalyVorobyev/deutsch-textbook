@@ -120,7 +120,10 @@ and the badge deliberately answer different questions.
 
 Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery nor review debt.
 Opening or replaying a listening artifact likewise creates no evidence; only its independently
-identified exercise question can write a verified attempt.
+identified exercise question can write a verified attempt. Reviewed WAVs live beside their records
+in `content/listening/`, never under `public/`: `PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies them into the
+desktop build, and the public demo speaks the same scripts through browser TTS
+(`src/integrations/audio-bundle.ts`).
 
 ## Listening authoring boundary
 

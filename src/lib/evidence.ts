@@ -46,7 +46,6 @@ export function responseModeForItem(item: ExerciseItem): ResponseMode {
     case 'match':
       return 'selection';
     case 'audio-comprehension':
-    case 'listening':
     case 'listen':
       return 'listening';
     case 'speak':

@@ -13,7 +13,7 @@ units:
         duration_seconds: { min: 15, max: 25 }
         speakers: { min: 2, max: 2 }
         register: "neutral-formell, sehr klar"
-        question_kinds: [single-choice, short-answer, dictation]
+        item_types: [audio-comprehension]
         context_sound: "kurzer Telefon-Verbindungston"
   - unit: praesens-wortstellung
     level: A1
@@ -26,7 +26,7 @@ units:
         duration_seconds: { min: 20, max: 30 }
         speakers: { min: 2, max: 2 }
         register: "informell, klar"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: artikel-genus
     level: A1
@@ -39,7 +39,7 @@ units:
         duration_seconds: { min: 15, max: 25 }
         speakers: { min: 2, max: 2 }
         register: "neutral, klar"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Markt-Hintergrund"
   - unit: menschen-familie
     level: A1
@@ -54,7 +54,7 @@ units:
         duration_seconds: { min: 20, max: 30 }
         speakers: { min: 1, max: 1 }
         register: "informell, langsam"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Wohnraum"
   - unit: akkusativ
     level: A1
@@ -67,7 +67,7 @@ units:
         duration_seconds: { min: 20, max: 30 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Café-Raumton"
   - unit: essen-einkaufen
     level: A1
@@ -80,7 +80,7 @@ units:
         duration_seconds: { min: 25, max: 35 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Kassen- oder Marktton"
   - unit: alltag-zeit
     level: A1
@@ -95,7 +95,7 @@ units:
         duration_seconds: { min: 20, max: 30 }
         speakers: { min: 1, max: 1 }
         register: "neutral, langsam"
-        question_kinds: [single-choice, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "ein einzelner Uhr- oder Weckton"
   - unit: wohnen
     level: A1
@@ -108,7 +108,7 @@ units:
         duration_seconds: { min: 25, max: 35 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "kurzes Tür- oder Raumgeräusch"
   - unit: stadt-wege
     level: A1
@@ -123,7 +123,7 @@ units:
         duration_seconds: { min: 25, max: 35 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich, klar"
-        question_kinds: [single-choice, ordering, true-false]
+        item_types: [audio-comprehension]
         context_sound: "leiser Straßenraum"
   - unit: freizeit-koennen
     level: A1
@@ -138,7 +138,7 @@ units:
         duration_seconds: { min: 25, max: 35 }
         speakers: { min: 2, max: 2 }
         register: "informell, klar"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "kurzer Sportstätten-Raumton"
   - unit: dativ
     level: A2
@@ -151,7 +151,7 @@ units:
         duration_seconds: { min: 35, max: 45 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Hausflur"
   - unit: trennbare-verben
     level: A2
@@ -164,7 +164,7 @@ units:
         duration_seconds: { min: 35, max: 45 }
         speakers: { min: 1, max: 1 }
         register: "informell"
-        question_kinds: [ordering, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "kurze Tür- oder Verkehrshinweise"
   - unit: modalverben
     level: A2
@@ -177,7 +177,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [multi-select, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: perfekt-haben-sein
     level: A2
@@ -190,7 +190,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: alltag-tagesablauf
     level: A2
@@ -203,7 +203,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [ordering, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "ein kurzer Weckton"
   - unit: termine-vereinbaren
     level: A2
@@ -218,7 +218,7 @@ units:
         duration_seconds: { min: 35, max: 45 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, true-false, ordering]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Telefon-Leitungston"
   - unit: wohnen-umzug
     level: A2
@@ -231,7 +231,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "informell-höflich"
-        question_kinds: [multi-select, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leise Karton- oder Türgeräusche"
   - unit: reisen-verkehr
     level: A2
@@ -246,7 +246,7 @@ units:
         duration_seconds: { min: 25, max: 35 }
         speakers: { min: 1, max: 1 }
         register: "öffentliche Durchsage, klar"
-        question_kinds: [single-choice, short-answer, true-false]
+        item_types: [audio-comprehension]
         context_sound: "leiser Bahnhof und kurzer neutraler Signalton"
   - unit: einkaufen-reklamation
     level: A2
@@ -259,7 +259,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Ladenraum"
   - unit: adjektive-deklination
     level: A2
@@ -272,7 +272,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "neutral"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: gesundheit-arzttermin
     level: A2
@@ -287,7 +287,7 @@ units:
         duration_seconds: { min: 35, max: 45 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [multi-select, ordering, true-false]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Wartezimmer-Raumton"
   - unit: verben-mit-praepositionen
     level: A2
@@ -300,7 +300,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: arbeit-beruf
     level: A2
@@ -315,7 +315,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "neutral, kollegial"
-        question_kinds: [multi-select, short-answer, ordering]
+        item_types: [audio-comprehension]
         context_sound: "leiser Büro- oder Werkstattraum"
   - unit: nebensaetze-plaene
     level: A2
@@ -328,7 +328,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: infinitiv-mit-zu
     level: A2
@@ -341,7 +341,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: relativsaetze
     level: A2
@@ -354,7 +354,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Serviceschalter"
   - unit: biografie-erfahrungen
     level: A2
@@ -367,7 +367,7 @@ units:
         duration_seconds: { min: 50, max: 60 }
         speakers: { min: 2, max: 2 }
         register: "neutral"
-        question_kinds: [ordering, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: verbindungen-folgen
     level: A2
@@ -380,7 +380,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "neutral"
-        question_kinds: [ordering, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "ein kurzer nichtsprachlicher Vorfallhinweis"
   - unit: man-und-besitz
     level: A2
@@ -393,7 +393,7 @@ units:
         duration_seconds: { min: 35, max: 45 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Hausflur"
   - unit: freunde-feste
     level: A2
@@ -406,7 +406,7 @@ units:
         duration_seconds: { min: 45, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "informell"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Feier-Raumton"
   - unit: lernen-verstehen
     level: A2
@@ -421,7 +421,7 @@ units:
         duration_seconds: { min: 40, max: 50 }
         speakers: { min: 2, max: 2 }
         register: "neutral, klar"
-        question_kinds: [single-choice, short-answer, ordering]
+        item_types: [audio-comprehension]
         context_sound: "leiser Unterrichtsraum"
   - unit: aemter-dienstleistungen
     level: A2
@@ -434,7 +434,7 @@ units:
         duration_seconds: { min: 50, max: 60 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich"
-        question_kinds: [multi-select, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Schalterhallen-Raumton"
   - unit: erfahrungen-erzaehlen
     level: B1
@@ -449,7 +449,7 @@ units:
         duration_seconds: { min: 60, max: 80 }
         speakers: { min: 2, max: 2 }
         register: "neutral, natürlich"
-        question_kinds: [single-choice, ordering, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: leben-veraendern
     level: B1
@@ -462,7 +462,7 @@ units:
         duration_seconds: { min: 60, max: 80 }
         speakers: { min: 2, max: 2 }
         register: "informell, natürlich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: gesundheit-wohlbefinden
     level: B1
@@ -475,7 +475,7 @@ units:
         duration_seconds: { min: 55, max: 75 }
         speakers: { min: 2, max: 2 }
         register: "neutral, nicht-diagnostisch"
-        question_kinds: [single-choice, multi-select, true-false]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: arbeit-bewerbung
     level: B1
@@ -488,7 +488,7 @@ units:
         duration_seconds: { min: 65, max: 85 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich, natürlich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Büroraum"
   - unit: meinung-medien
     level: B1
@@ -501,7 +501,7 @@ units:
         duration_seconds: { min: 70, max: 90 }
         speakers: { min: 3, max: 3 }
         register: "neutral, natürlich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: null
   - unit: konsum-umwelt
     level: B1
@@ -514,7 +514,7 @@ units:
         duration_seconds: { min: 65, max: 85 }
         speakers: { min: 2, max: 2 }
         register: "neutral, alltagsnah"
-        question_kinds: [ordering, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leises Verpackungs- oder Recyclinggeräusch"
   - unit: regeln-verantwortung
     level: B1
@@ -527,7 +527,7 @@ units:
         duration_seconds: { min: 70, max: 90 }
         speakers: { min: 3, max: 3 }
         register: "neutral, natürlich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Gemeinschaftsraum"
   - unit: reisen-probleme
     level: B1
@@ -540,7 +540,7 @@ units:
         duration_seconds: { min: 70, max: 90 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich, natürlich"
-        question_kinds: [ordering, true-false, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "leiser Bahnhof oder Flughafen"
   - unit: lernen-zukunft
     level: B1
@@ -555,5 +555,5 @@ units:
         duration_seconds: { min: 65, max: 85 }
         speakers: { min: 2, max: 2 }
         register: "neutral-höflich, natürlich"
-        question_kinds: [single-choice, multi-select, short-answer]
+        item_types: [audio-comprehension]
         context_sound: "sehr leiser Beratungsraum"

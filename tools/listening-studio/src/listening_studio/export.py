@@ -11,15 +11,8 @@ import yaml
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen.canvas import Canvas
 
-from .adapters import draft_prompt
 from .domain import (
-    Dictation,
-    MultiSelect,
-    Ordering,
     RevisionPayload,
-    ShortAnswer,
-    SingleChoice,
-    TrueFalse,
     line_cache_key,
 )
 from .sources import load_source
@@ -30,7 +23,7 @@ def sha256(path: Path) -> str:
 
 
 def listening_yaml(
-    slug: str, payload: RevisionPayload, audio_src: str, provenance: str
+    slug: str, payload: RevisionPayload, provenance: str
 ) -> dict[str, object]:
     return {
         "id": slug,
@@ -38,7 +31,6 @@ def listening_yaml(
         "title": payload.title.model_dump(exclude_none=True),
         "scenario": payload.brief.scenario,
         "duration_seconds": payload.brief.duration_seconds,
-        "audio": audio_src,
         "speakers": payload.speakers,
         "transcript": [
             {"speaker": line.speaker, "text": line.display_text} for line in payload.lines
@@ -47,38 +39,28 @@ def listening_yaml(
     }
 
 
-def question_data(question: object) -> dict[str, object]:
-    response = question.response  # type: ignore[attr-defined]
-    if isinstance(response, SingleChoice):
-        return response.model_dump(mode="json")
-    if isinstance(response, MultiSelect):
-        return response.model_dump(mode="json")
-    if isinstance(response, TrueFalse):
-        return response.model_dump(mode="json")
-    if isinstance(response, Ordering):
-        return response.model_dump(mode="json")
-    if isinstance(response, ShortAnswer):
-        return response.model_dump(mode="json")
-    if isinstance(response, Dictation):
-        return response.model_dump(mode="json")
-    raise TypeError(response)
-
-
 def exercise_yaml(slug: str, payload: RevisionPayload) -> dict[str, object]:
+    """One `audio-comprehension` item per question.
+
+    `source.turns` is both the script the recording was made from and the browser-TTS fallback
+    the web demo speaks; `scripts/validate.ts` holds it equal to the artifact's transcript, so
+    the two builds ask the same question in different voices. The item names the recording by
+    bare id — the WAV path is derived, never written down.
+    """
+
+    turns = [{"speaker": line.speaker, "text": line.display_text} for line in payload.lines]
     items = []
     for question in payload.questions:
-        item = {
+        item: dict[str, object] = {
             "id": question.id,
             "outcomes": payload.brief.outcomes,
-            "type": "listening",
-            "listening": f"{payload.brief.level.lower()}/{slug}",
-            "audio": f"/audio/{payload.brief.level.lower()}/{slug}.wav",
-            "transcript": [
-                {"id": line.id, "speaker": line.speaker, "text": line.display_text}
-                for line in payload.lines
-            ],
+            "type": "audio-comprehension",
+            "source": {"kind": "tts", "turns": turns},
+            "recording": slug,
             "instruction": question.instruction.model_dump(exclude_none=True),
-            "response": question_data(question),
+            "question": question.response.prompt,
+            "options": question.response.options,
+            "correct": question.response.correct,
             "explain": question.explain.model_dump(exclude_none=True),
             "max_replays": payload.max_replays,
         }
@@ -185,7 +167,28 @@ def write_bundle(
     out.mkdir(parents=True, exist_ok=True)
     review_date = str(approval.get("reviewed_at", ""))[:10]
     brief_name = f"{review_date}-{slug}-listening.md"
-    brief = f"# Listening generation brief — {slug}\n\n## Exact prompt\n\n{draft_prompt(payload)}\n"
+    # The brief states what happened, and nothing else.
+    #
+    # It used to print `draft_prompt(payload)` under the heading "Exact prompt". That call
+    # rebuilds a prompt from the payload as it stands *now* — after the editorial revision
+    # every draft receives — so the published string was not what any model was given; and a
+    # hand-written project, which submits no prompt at all, got one anyway. Provenance that
+    # invents a generation history is worse than provenance that has none.
+    if payload.authoring == "generated" and payload.generation_prompt:
+        brief = (
+            f"# Listening generation brief — {slug}\n\n"
+            "## Exact prompt, as submitted\n\n"
+            f"{payload.generation_prompt}\n\n"
+            "The script below was revised editorially after generation; this prompt is the "
+            "input that produced the draft, not a description of the final text.\n"
+        )
+    else:
+        brief = (
+            f"# Listening generation brief — {slug}\n\n"
+            "## Manually authored\n\n"
+            "No prompt was submitted to a language model for this script. It was written by "
+            "the editor, and the model lock below covers the speech synthesis only.\n"
+        )
     (out / "generation-brief.md").write_text(brief)
     shutil.copy2(wav, out / f"{slug}.wav")
     shutil.copy2(dry_wav or wav, out / f"{slug}-dry.wav")
@@ -208,7 +211,6 @@ def write_bundle(
     data = listening_yaml(
         slug,
         payload,
-        f"/audio/{payload.brief.level.lower()}/{slug}.wav",
         f"data/audio-provenance/{payload.brief.level.lower()}/{slug}.json",
     )
     (out / "listening.yaml").write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False))
@@ -284,7 +286,9 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     provenance_data = json.loads((bundle / "provenance.json").read_text())
     brief_path = repo / provenance_data["generation_brief"]["path"]
     targets = {
-        bundle / f"{slug}.wav": repo / "public" / "audio" / level / f"{slug}.wav",
+        # Beside the artifact record, NOT under public/ — the Pages build must not ship
+        # 40+ MB of WAV. src/integrations/audio-bundle.ts copies these into the desktop build.
+        bundle / f"{slug}.wav": repo / "content" / "listening" / level / f"{slug}.wav",
         bundle / "listening.yaml": repo / "content" / "listening" / level / f"{slug}.yaml",
         bundle / "exercise.yaml": repo / "content" / "exercises" / level / f"{slug}-hoeren.yaml",
         bundle / "provenance.json": repo / "data" / "audio-provenance" / level / f"{slug}.json",

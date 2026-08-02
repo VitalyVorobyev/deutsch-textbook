@@ -25,6 +25,7 @@ import {
   referenceDataSchema,
   listeningArtifactSchema,
   listeningPlanSchema,
+  listeningWavPath,
   type ReferenceData,
   type Discovery,
   type ExerciseSet,
@@ -468,17 +469,22 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
   const data = validateWith(listeningArtifactSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'listening'), file).split(sep).join('/').replace(/\.yaml$/, '');
-  const basename = id.split('/').at(-1)!;
-  const levelDir = id.split('/')[0]!;
+  const path = relative(join(CONTENT, 'listening'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const basename = path.split('/').at(-1)!;
+  const levelDir = path.split('/')[0]!;
   if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
   if (data.level.toLowerCase() !== levelDir) fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
+  // Artifact ids are globally unique by construction — the plan rejects duplicates and every
+  // committed artifact must be planned — so items may reference one by bare id. Checked rather
+  // than assumed, because the failure would be a silent overwrite.
+  const id = data.id;
+  if (listeningArtifacts.has(id)) fail(rel(file), `duplicate listening artifact id "${id}"`);
   const planned = plannedListening.get(data.id);
   if (!planned) fail(rel(file), `artifact "${data.id}" is absent from ${LISTENING_PLAN_FILE}`);
   else if (planned.unit.level !== data.level) fail(rel(file), 'artifact level differs from the listening plan');
-  const audioFile = join(ROOT, 'public', data.audio.replace(/^\//, ''));
+  const audioFile = join(ROOT, listeningWavPath(data.level, data.id));
   if (!existsSync(audioFile))
-    fail(rel(file), `audio "${data.audio}" does not exist under public/`);
+    fail(rel(file), `reviewed audio ${listeningWavPath(data.level, data.id)} is missing — a committed artifact record means its approved WAV is committed too`);
   const provenance = join(ROOT, data.provenance);
   if (!existsSync(provenance)) fail(rel(file), `provenance "${data.provenance}" does not resolve`);
   else {
@@ -1136,28 +1142,27 @@ for (const [setId, { file, data }] of exerciseSets) {
         if (item.correct >= item.options.length)
           fail(where, `correct index ${item.correct} out of range (${item.options.length} options)`);
         if (new Set(item.options).size !== item.options.length) fail(where, 'duplicate options');
-        break;
-      }
-      case 'listening': {
-        const artifact = listeningArtifacts.get(item.listening);
-        if (!artifact) fail(where, `listening ref "${item.listening}" does not resolve`);
-        else {
-          if (artifact.data.audio !== item.audio) fail(where, 'audio snapshot differs from the canonical listening artifact');
-          const canonical = JSON.stringify(artifact.data.transcript);
-          const snapshot = JSON.stringify(item.transcript.map(({ speaker, text }) => ({ speaker, text })));
-          if (canonical !== snapshot) fail(where, 'transcript snapshot differs from the canonical listening artifact');
+        // A reviewed recording supersedes browser TTS where the build ships it. The item keeps
+        // its `turns` — that is the script the recording was made from AND the TTS fallback the
+        // web demo speaks — so the two must say exactly the same thing, or a learner on Pages
+        // and a learner on the desktop app would be answering questions about different audio.
+        // The WAV itself is checked in bundle-audio.ts, not here: content validates identically
+        // in both builds, and only one of them has the file on disk.
+        if (item.recording) {
+          const artifact = listeningArtifacts.get(item.recording);
+          if (!artifact) fail(where, `recording "${item.recording}" does not resolve to content/listening/<level>/<id>.yaml`);
+          else {
+            // A set carries no level of its own — the route reads it off the directory, as
+            // the pretest/probe checks above do.
+            const setLevel = setId.split('/')[0]!.toUpperCase();
+            if (artifact.data.level !== setLevel)
+              fail(where, `recording "${item.recording}" is ${artifact.data.level}, but the set is ${setLevel}`);
+            const script = JSON.stringify(item.source.turns.map(({ speaker, text }) => ({ speaker, text })));
+            const canonical = JSON.stringify(artifact.data.transcript.map(({ speaker, text }) => ({ speaker, text })));
+            if (script !== canonical)
+              fail(where, `the item's turns differ from recording "${item.recording}" — revise and reapprove the artifact, never the item`);
+          }
         }
-        const response = item.response;
-        if ('options' in response && new Set(response.options).size !== response.options.length)
-          fail(where, 'duplicate response options');
-        if (response.kind === 'single-choice' && response.correct >= response.options.length)
-          fail(where, 'correct option is out of range');
-        if (response.kind === 'multi-select') {
-          if (new Set(response.correct).size !== response.correct.length) fail(where, 'duplicate correct indices');
-          if (response.correct.some((index) => index >= response.options.length)) fail(where, 'correct option is out of range');
-        }
-        if (response.kind === 'dictation' && !item.transcript.some((turn) => turn.id === response.line_id))
-          fail(where, `dictation line_id "${response.line_id}" does not resolve in the transcript`);
         break;
       }
     }

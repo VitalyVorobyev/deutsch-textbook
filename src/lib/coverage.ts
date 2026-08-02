@@ -188,16 +188,6 @@ function itemGerman(item: Record<string, unknown>): string[] {
       for (const t of turns) push(t.text);
       break;
     }
-    case 'listening': {
-      const response = (item.response ?? {}) as Record<string, unknown>;
-      push(response.prompt);
-      push(response.statement);
-      push(response.options);
-      push(response.units);
-      push(response.answers);
-      for (const turn of (item.transcript ?? []) as Array<Record<string, unknown>>) push(turn.text);
-      break;
-    }
   }
   return out;
 }

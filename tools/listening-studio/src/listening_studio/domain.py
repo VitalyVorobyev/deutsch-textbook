@@ -5,7 +5,7 @@ import json
 import re
 from datetime import UTC, datetime
 from enum import StrEnum
-from typing import Annotated, Literal
+from typing import Literal
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -85,47 +85,17 @@ class SingleChoice(BaseModel):
         return self
 
 
-class MultiSelect(BaseModel):
-    kind: Literal["multi-select"]
-    prompt: str
-    options: list[str] = Field(min_length=2)
-    correct: list[int] = Field(min_length=1)
-
-
-class TrueFalse(BaseModel):
-    kind: Literal["true-false"]
-    statement: str
-    correct: bool
-
-
-class Ordering(BaseModel):
-    kind: Literal["ordering"]
-    prompt: str
-    units: list[str] = Field(min_length=2)
-
-
-class ShortAnswer(BaseModel):
-    kind: Literal["short-answer"]
-    prompt: str
-    answers: list[str] = Field(min_length=1)
-
-
-class Dictation(BaseModel):
-    kind: Literal["dictation"]
-    line_id: str
-    accept: list[str] = Field(default_factory=list)
-
-
-Response = Annotated[
-    SingleChoice | MultiSelect | TrueFalse | Ordering | ShortAnswer | Dictation,
-    Field(discriminator="kind"),
-]
+# The five other response shapes — multi-select, true/false, ordering, short-answer and
+# dictation — were removed on 2026-08-02 with the `listening` item type they existed to feed.
+# Each duplicated an item type the app already had (`mc`, `order`, `listen`), and an editorial
+# model that can author a task the catalog cannot render is a drafting trap, not a feature.
+# A reviewed recording feeds `audio-comprehension`, which is single-choice.
 
 
 class Question(BaseModel):
     id: str
     instruction: Bilingual
-    response: Response
+    response: SingleChoice
     explain: Bilingual
     translation: Bilingual | None = None
     focus: str | None = None
@@ -140,6 +110,17 @@ class RevisionPayload(BaseModel):
     tts_adapter: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
     context_sounds: list[ContextSound] = Field(default_factory=list, max_length=4)
     max_replays: int = Field(default=3, ge=1, le=10)
+    # How this script came to exist, and — when a model drafted it — the exact prompt that
+    # was submitted, captured at generation time and carried through every later revision.
+    #
+    # The bundle used to rebuild an "Exact prompt" from the *final* payload. After the
+    # editorial revision that every draft receives, that string is not what any model was
+    # ever given; for a hand-written project no prompt was submitted at all. Published
+    # provenance then stated a generation history that had not happened, which is the one
+    # thing docs/product-protection.md requires the manifest to get right. Defaults make old
+    # rows read as what they are: manually authored, no prompt.
+    authoring: Literal["manual", "generated"] = "manual"
+    generation_prompt: str | None = None
 
     @model_validator(mode="after")
     def consistent(self) -> RevisionPayload:
@@ -151,12 +132,6 @@ class RevisionPayload(BaseModel):
         line_ids = {line.id for line in self.lines}
         if len(line_ids) != len(self.lines):
             raise ValueError("line ids must be unique")
-        for question in self.questions:
-            if (
-                isinstance(question.response, Dictation)
-                and question.response.line_id not in line_ids
-            ):
-                raise ValueError("dictation line_id must resolve")
         voice_sets = {
             "qwen_tts": {
                 "Vivian",

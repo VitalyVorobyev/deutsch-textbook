@@ -87,7 +87,7 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
-- **P21-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
+- **P22-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
   for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
   the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving
   failed QA and requiring Vitaly's approval of every exact WAV. Context sounds are optional,

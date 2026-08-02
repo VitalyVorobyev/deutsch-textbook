@@ -17,18 +17,13 @@ from .adapters import draft_prompt, generate_drafts, model_lock
 from .domain import (
     Bilingual,
     Brief,
-    Dictation,
     Line,
-    MultiSelect,
-    Ordering,
     Question,
     RevisionPayload,
-    ShortAnswer,
     SingleChoice,
     Stage,
-    TrueFalse,
 )
-from .export import publish as publish_files, write_bundle
+from .export import publish as publish_files, sha256, write_bundle
 from .storage import Store
 from .sources import import_source, list_sources
 from .web import app as web_app
@@ -59,20 +54,6 @@ def import_project(file: Path, slug: str) -> None:
     typer.echo(f"Created project {project.id}: {slug}")
 
 
-def planned_response(kind: str, line_id: str) -> object:
-    if kind == "multi-select":
-        return MultiSelect(kind="multi-select", prompt="Was hören Sie?", options=["A", "B"], correct=[0])
-    if kind == "true-false":
-        return TrueFalse(kind="true-false", statement="Die Aussage stimmt.", correct=True)
-    if kind == "ordering":
-        return Ordering(kind="ordering", prompt="Bringen Sie die Informationen in die richtige Reihenfolge.", units=["A", "B"])
-    if kind == "short-answer":
-        return ShortAnswer(kind="short-answer", prompt="Was ist die wichtigste Information?", answers=["redaktionell ergänzen"])
-    if kind == "dictation":
-        return Dictation(kind="dictation", line_id=line_id)
-    return SingleChoice(kind="single-choice", prompt="Was ist richtig?", options=["A", "B"], correct=0)
-
-
 def payload_from_plan(
     unit: dict[str, Any], artifact: dict[str, Any], topic: str | None = None
 ) -> RevisionPayload:
@@ -89,13 +70,20 @@ def payload_from_plan(
         Question(
             id=f"q{index + 1}",
             instruction=Bilingual(en="Listen and answer.", ru="Прослушайте и ответьте."),
-            response=planned_response(kind, line.id),  # type: ignore[arg-type]
+            response=SingleChoice(
+                kind="single-choice",
+                prompt="Was ist richtig?",
+                options=["A", "B"],
+                correct=0,
+            ),
             explain=Bilingual(
                 en="Replace with explanatory feedback during editing.",
                 ru="Во время редактирования замените это объясняющей обратной связью.",
             ),
         )
-        for index, kind in enumerate(artifact["question_kinds"])
+        # `questions` is how many independently scored questions the artifact should carry;
+        # the plan's `item_types` says which item type will carry them.
+        for index in range(int(artifact.get("questions", 3)))
     ]
     return RevisionPayload(
         title=Bilingual(
@@ -280,6 +268,23 @@ def bundle_project(project_id: int) -> tuple[Path, RevisionPayload]:
     assert revision.qa_json and revision.approval_json
     wav = store.root / "projects" / str(project_id) / "final.wav"
     dry_wav = store.root / "projects" / str(project_id) / "dry.wav"
+
+    # The approval covers specific bytes. Verify them before bundling, or a WAV regenerated,
+    # replaced or truncated between approval and export is published carrying an approval
+    # nobody gave it — and the downstream gate cannot see it, because scripts/validate.ts
+    # compares the manifest to the file, never the approval to the manifest.
+    approval = json.loads(revision.approval_json)
+    approved_final = approval.get("audio_sha256")
+    approved_dry = approval.get("dry_audio_sha256")
+    if approved_final and sha256(wav) != approved_final:
+        raise typer.BadParameter(
+            "final.wav has changed since approval — re-approve this exact audio before exporting"
+        )
+    if approved_dry and dry_wav.exists() and sha256(dry_wav) != approved_dry:
+        raise typer.BadParameter(
+            "dry.wav has changed since approval — re-approve this exact audio before exporting"
+        )
+
     out = store.root / "exports" / project.slug
     lock_path = PACKAGE_ROOT / "models.lock.json"
     locks = model_lock(lock_path)

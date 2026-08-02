@@ -1,3 +1,6 @@
+import pytest
+from pydantic import ValidationError
+
 from listening_studio.domain import (
     Brief,
     Bilingual,
@@ -52,16 +55,35 @@ def test_qa_passes_exact_transcript() -> None:
     assert report.passed and report.full_wer == 0
 
 
-def test_all_six_response_shapes_parse() -> None:
+def test_only_single_choice_survives() -> None:
+    """The five other response shapes went with the `listening` item type they fed.
+
+    Each duplicated an item type the app already had — multi-select and true/false were `mc`,
+    ordering was `order`, dictation was `listen` — and an editorial model that can author a
+    task the catalog cannot render is a drafting trap. A reviewed recording feeds
+    `audio-comprehension`, which is single-choice.
+    """
+
     base = payload().model_dump(mode="json")
-    shapes = [
-        {"kind": "single-choice", "prompt": "?", "options": ["a", "b"], "correct": 0},
+
+    single = {"kind": "single-choice", "prompt": "?", "options": ["a", "b"], "correct": 0}
+    candidate = {**base, "questions": [{**base["questions"][0], "response": single}]}
+    assert RevisionPayload.model_validate(candidate).questions[0].response.kind == "single-choice"
+
+    for retired in [
         {"kind": "multi-select", "prompt": "?", "options": ["a", "b"], "correct": [0]},
         {"kind": "true-false", "statement": "?", "correct": True},
         {"kind": "ordering", "prompt": "?", "units": ["a", "b"]},
         {"kind": "short-answer", "prompt": "?", "answers": ["ja"]},
         {"kind": "dictation", "line_id": "l1", "accept": []},
-    ]
-    for shape in shapes:
-        candidate = {**base, "questions": [{**base["questions"][0], "response": shape}]}
-        assert RevisionPayload.model_validate(candidate).questions[0].response.kind == shape["kind"]
+    ]:
+        rejected = {**base, "questions": [{**base["questions"][0], "response": retired}]}
+        with pytest.raises(ValidationError):
+            RevisionPayload.model_validate(rejected)
+
+
+def test_authoring_provenance_defaults_to_manual() -> None:
+    """An unmarked payload claims no generation history — see write_bundle in export.py."""
+
+    assert payload().authoring == "manual"
+    assert payload().generation_prompt is None

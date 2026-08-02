@@ -213,7 +213,10 @@ def generate_drafts(
     drafts: list[RevisionPayload] = []
     for index, payload in enumerate(payloads):
         try:
-            response = generate(model, tokenizer, prompt=draft_prompt(payload), max_tokens=8192)
+            # Captured before the call, not rebuilt after it: this is the string the model
+            # actually received, and it is what the published manifest must carry.
+            submitted = draft_prompt(payload)
+            response = generate(model, tokenizer, prompt=submitted, max_tokens=8192)
             start = response.find("{")
             if start < 0:
                 raise RuntimeError("generator did not return a JSON object")
@@ -231,6 +234,8 @@ def generate_drafts(
                         sound.model_dump(mode="json") for sound in payload.context_sounds
                     ],
                     "max_replays": payload.max_replays,
+                    "authoring": "generated",
+                    "generation_prompt": submitted,
                 }
             )
             draft = RevisionPayload.model_validate(final)

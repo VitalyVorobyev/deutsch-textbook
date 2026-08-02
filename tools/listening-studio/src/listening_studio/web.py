@@ -6,8 +6,10 @@ from datetime import UTC, datetime
 from html import escape
 from pathlib import Path
 
+import yaml
+
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 
 from .adapters import (
     FakeTTS,
@@ -31,6 +33,7 @@ from .domain import (
     Stage,
     line_cache_key,
 )
+from .export import sha256
 from .qa import check_transcripts
 from .storage import Store
 
@@ -50,17 +53,26 @@ def app(
 
     @api.middleware("http")
     async def local_only(request: Request, call_next):  # type: ignore[no-untyped-def]
-        if (
-            request.url.path != "/health"
-            and request.query_params.get("token") != secret
-            and request.cookies.get("atlas_studio") != secret
-        ):
-            raise HTTPException(403, "Invalid local session token")
+        # /health is exempt from the token so a supervisor can poll it. It must therefore not
+        # hand one out: issuing the session cookie on every response meant any client could
+        # GET /health, keep the cookie, and reach every mutation endpoint without ever knowing
+        # the token — the exemption became the way in. The cookie is set only for a request
+        # that already proved it had the secret.
+        authenticated = (
+            request.query_params.get("token") == secret
+            or request.cookies.get("atlas_studio") == secret
+        )
+        # Returned, not raised. An HTTPException raised inside an http middleware never reaches
+        # FastAPI's exception handler — Starlette lets it escape as an unhandled error — so
+        # every rejection here was answering 500 while looking like a 403 in the source.
+        if not authenticated and request.url.path != "/health":
+            return JSONResponse({"detail": "Invalid local session token"}, status_code=403)
         origin = request.headers.get("origin")
         if origin and not origin.startswith(("http://127.0.0.1", "http://localhost")):
-            raise HTTPException(403, "Invalid origin")
+            return JSONResponse({"detail": "Invalid origin"}, status_code=403)
         response = await call_next(request)
-        response.set_cookie("atlas_studio", secret, httponly=True, samesite="strict")
+        if authenticated:
+            response.set_cookie("atlas_studio", secret, httponly=True, samesite="strict")
         return response
 
     def page(body: str) -> HTMLResponse:
@@ -83,11 +95,35 @@ def app(
             + (rows or "<p>No projects yet.</p>")
         )
 
+    def wave_slugs(wave: int) -> list[str]:
+        """The wave's artifact ids, from the plan — the only thing that defines corpus identity.
+
+        This filtered on `2 <= project.id <= 13` until 2026-08-02. A project id is database
+        insertion order: against a fresh database `seed-wave` produces ids 1–12 and the window
+        silently dropped the first recording, while against a database with any unrelated
+        project it dropped real Wave-1 work and showed unrelated audio in its place. Either
+        way the review page quietly reviewed the wrong set.
+        """
+        plan = yaml.safe_load((repo / "data" / "listening-plan.yaml").read_text())
+        return [
+            artifact["id"]
+            for unit in plan["units"]
+            for artifact in unit["artifacts"]
+            if artifact["wave"] == wave
+        ]
+
     @api.get("/corpus/wave-1", response_class=HTMLResponse)
     def wave_one_review() -> HTMLResponse:
         cards: list[str] = []
-        for project_row in sorted(store.projects(), key=lambda item: item.id):
-            if not 2 <= project_row.id <= 13:
+        planned = wave_slugs(1)
+        by_slug = {project.slug: project for project in store.projects()}
+        for slug in planned:
+            project_row = by_slug.get(slug)
+            if project_row is None:
+                cards.append(
+                    f"<section class=card><h2>{escape(slug)}</h2>"
+                    "<p class=fail>Planned, but no local project — run <code>seed-wave</code>.</p></section>"
+                )
                 continue
             _, revision, payload = store.get(project_row.id)
             wav = store.root / "projects" / str(project_row.id) / "final.wav"
@@ -402,11 +438,27 @@ def app(
             required.add("context")
         if not required.issubset(form.keys()) or not str(form.get("editor", "")).strip():
             raise HTTPException(400, "complete every check")
+        # Bind the approval to the exact bytes the editor heard.
+        #
+        # Until 2026-08-02 the approval recorded who and when but nothing about the audio, and
+        # `bundle_project()` compared nothing — so a WAV regenerated, replaced or truncated
+        # after approval and before export was bundled and published carrying the old approval
+        # unchanged. `scripts/validate.ts` could not catch it either: it checks the manifest
+        # against the file, never the approval against the manifest. The published provenance
+        # would then state that a named human approved audio nobody had ever listened to,
+        # which is the exact claim docs/product-protection.md exists to make unforgeable.
+        project_dir = store.root / "projects" / str(project_id)
+        final_wav = project_dir / "final.wav"
+        dry_wav = project_dir / "dry.wav"
+        if not final_wav.exists():
+            raise HTTPException(409, "no final audio to approve")
         approval: dict[str, object] = {
             "status": "complete",
             "editor": str(form["editor"]),
             "reviewed_at": datetime.now(UTC).isoformat(),
             "checklist": sorted(required),
+            "audio_sha256": sha256(final_wav),
+            "dry_audio_sha256": sha256(dry_wav) if dry_wav.exists() else None,
         }
         store.transition(
             project_id, Stage.AUTOMATICALLY_CHECKED, Stage.HUMAN_APPROVED, approval=approval

@@ -50,11 +50,15 @@ it is a question about meaning — the text says so, and it is then on the autho
 - `mc` has exactly one correct answer (`correct` = index into `options`).
 - `match` pairs: a German↔German pair keeps plain strings; a meaning-side right is a `{en, ru, uk?}` record — never a mixed `"en / ru"` string, which no language mode can render and the parity/letter-set checks cannot see. A record's `en` is the pair's stable identity in the UI, so edit it as carefully as an answer.
 - `listen` items (dictation): `text` is spoken via browser TTS and is also the canonical typed answer — keep it ≤ ~10 words at the set's level, write numbers as words (validate fails on digits), gloss nothing. Matching ignores punctuation but keeps case (noun capitalization is part of the drill); `accept` is for real spelling variants only.
-- `listening` items reference one reviewed `content/listening/<level>/<id>.yaml` stimulus and ask
-  one stable question. The response is single-choice, multi-select, true/false, ordering,
-  short-answer or dictation. The transcript stays hidden until submission. Replaying audio writes
-  no attempt; the scored response records listening evidence. Revise and reapprove the canonical
-  artifact instead of hand-editing its exported snapshot.
+- `audio-comprehension` items may name a reviewed recording: `recording: <artifact-id>` resolves
+  `content/listening/<level>/<id>.yaml`. `source.turns` stays the item's script — it is what the
+  recording was made from *and* the browser-TTS fallback — and the validator holds the two equal,
+  so the desktop build (which ships the WAV) and the web demo (which does not) ask exactly the
+  same question in different voices. Revise and reapprove the artifact; never hand-edit an item
+  to match a new take. The transcript stays hidden until submission, replaying writes no attempt,
+  and there is deliberately no second audio item type: single-choice is `mc`, ordering is `order`
+  and dictation is `listen`, so a parallel response union would be a second place for every
+  grading rule to be forgotten.
 - `speak` items: declare `mode: spoken-production|spoken-interaction`, a bilingual communicative `prompt` and `goal`, 2–4 bilingual self-check points (rendered as guidance on the compare screen, never as a gated form), and a concise German `model_answer`. Recording is optional and local-only; a stopped take auto-plays and the learner may re-record freely, including after seeing the model. Audio is never uploaded, persisted or automatically scored.
 - Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — three non-empty `::`-separated fields, or four with a trailing `uk` gloss (`[[de::en::ru::uk]]`), all-or-none per reading; every reading should gloss 6–10 phrases.
 - Every exercise set declares `role: pretest|practice|drill|checkpoint|probe|placement`. Pretests are 3-item sets at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`, never mixed into training, never counted as `Geübt`, and **never weakness evidence**. That last one was an oversight for months: `focusStats` keys only by `focus` and saw them, and since all 96 pretest items are `mc` — the format the pilot learner scores ~93% on — 91 easy recognition attempts sat in the denominators of a signal that exists to find *production* confusion. It changed the error rate of 27 tags and swapped a member of the weak set (`nebensatz-vorfeld` masked, `konjunktionaladverb-inversion` falsely raised). `isPretestAttempt` (`src/lib/weakness.ts`) now excludes them, in `focusStats` and in the audit's own table, and **the `-pretest` filename is validator-enforced in both directions** because an attempt records no role — the runtime predicate reads the suffix, so the convention has to be a checked contract.
