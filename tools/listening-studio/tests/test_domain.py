@@ -208,3 +208,41 @@ def test_written_out_german_numerals_parse_up_to_999() -> None:
     assert german_number("Bahnhof") is None
     # Watched failing: a different number is still a different number.
     assert word_error_rate("Sechshundert Euro im Monat.", "700 Euro im Monat.") > 0
+
+
+def test_a_date_said_as_an_ordinal_matches_the_numeral_whisper_writes() -> None:
+    """Dates are spoken as ordinals and written as numerals: `am zwanzigsten November` comes
+    back as `am 20. November`. Two clean takes failed on that alone."""
+
+    from listening_studio.domain import ordinal_number
+
+    assert ordinal_number("zwanzigsten") == "20"
+    assert ordinal_number("einundzwanzigsten") == "21"
+    assert ordinal_number("zwölften") == "12"
+    # Irregular stems: erst-, dritt-, siebt-, acht-.
+    assert ordinal_number("ersten") == "1"
+    assert ordinal_number("dritten") == "3"
+    assert ordinal_number("siebten") == "7"
+    assert ordinal_number("achten") == "8"
+    # A cardinal is not an ordinal, and an ordinary word is neither.
+    assert ordinal_number("sieben") is None
+    assert ordinal_number("November") is None
+
+    assert word_error_rate("Der Stadtrat entscheidet am zwanzigsten November.", "Der Stadtrat entscheidet am 20. November.") == 0
+    # Watched failing: the wrong day is still the wrong day.
+    assert word_error_rate("am zwanzigsten November", "am 21. November") > 0
+
+
+def test_a_compound_split_by_the_asr_is_not_a_misheard_word() -> None:
+    """German writes compounds closed up and Whisper does not always agree.
+
+    `kaputtgegangen` came back as `kaputt gegangen` — the same syllables, differing only in where
+    the ASR guessed a boundary — and scored 0.67 on a three-word line. A boundary is not evidence
+    about the speech; a missing word still is.
+    """
+
+    assert word_error_rate("Ist etwas kaputtgegangen?", "Ist etwas kaputt gegangen?") == 0
+    assert word_error_rate("Ich muss noch einkaufen.", "Ich muss noch ein kaufen.") == 0
+    # Watched failing: dropping a word is not a boundary difference.
+    assert word_error_rate("Ist etwas kaputtgegangen?", "Ist etwas kaputt.") > 0
+    assert word_error_rate("Ist etwas kaputtgegangen?", "Ist nichts kaputtgegangen?") > 0

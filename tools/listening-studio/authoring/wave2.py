@@ -52,8 +52,6 @@ WAVE2: dict[str, dict] = {
             ("Tarek", "Dylan", CASUAL, "Ich wohne in Hamburg. Und du?"),
             ("Lea", "Vivian", CASUAL, "Ich wohne in Bremen. Arbeitest du hier?"),
             ("Tarek", "Dylan", CASUAL, "Nein, ich studiere Informatik. Am Abend lerne ich Deutsch."),
-            ("Lea", "Vivian", CASUAL, "Wie lange lernst du schon Deutsch?"),
-            ("Tarek", "Dylan", CASUAL, "Seit einem Jahr."),
         ],
         "questions": [
             (
@@ -111,7 +109,7 @@ WAVE2: dict[str, dict] = {
             ("Gast", "Ono_Anna", ASKING, "Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte."),
             ("Kellner", "Ryan", SHOP, "Möchten Sie den Salat mit Brot?"),
             ("Gast", "Ono_Anna", ASKING, "Nein, ohne Brot, danke."),
-            ("Kellner", "Ryan", SHOP, "Einen Kaffee, ein Wasser und einen Salat. Kommt sofort."),
+            ("Kellner", "Ryan", SHOP, "Einen Kaffee, ein Wasser und einen Salat."),
         ],
         "questions": [
             (
@@ -299,8 +297,6 @@ WAVE2: dict[str, dict] = {
             ("Anja", "Vivian", CASUAL, "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen."),
             ("Rafa", "Ryan", CASUAL, "Habt ihr auch das Museum besucht?"),
             ("Anja", "Vivian", CASUAL, "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen."),
-            ("Rafa", "Ryan", CASUAL, "Habt ihr Fotos gemacht?"),
-            ("Anja", "Vivian", CASUAL, "Ja, über hundert. Ich schicke dir heute Abend die schönsten."),
             ("Rafa", "Ryan", CASUAL, "Und wann seid ihr zurückgekommen?"),
             ("Anja", "Vivian", CASUAL, "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen."),
         ],
@@ -459,6 +455,11 @@ WAVE2: dict[str, dict] = {
     "ls-verben-mit-praepositionen-01": {
         "speakers": ["Sami", "Lu"],
         "pace": 0.95,
+        # Qwen said "Davor" as something Whisper heard as "Der Woa", and Davor is the pronominal
+        # adverb this whole recording exists to model — fixing the comparison rather than the
+        # audio would have shipped a learner a mispronounced target form. A different seed on
+        # that line alone re-synthesised it correctly; the rest of the take is untouched.
+        "seeds": {3: 512},
         "title": ("Worries and things to look forward to", "Тревоги и то, чего ждёшь"),
         "lines": [
             ("Sami", "Dylan", CASUAL, "Du wirkst müde. Worüber denkst du so viel nach?"),
@@ -870,7 +871,7 @@ WAVE2: dict[str, dict] = {
             ("Frau Ott", "Ono_Anna", DEBATE, "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern, und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum."),
             ("Herr Lang", "Aiden", DEBATE, "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen."),
             ("Frau Ott", "Ono_Anna", DEBATE, "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan."),
-            ("Sprecher", "Eric", REPORT, "Die Entscheidung fällt im Stadtrat am zwanzigsten November."),
+            ("Sprecher", "Eric", REPORT, "Die Entscheidung fällt im Stadtrat am zwanzigsten November. Wir berichten weiter."),
         ],
         "questions": [
             (
@@ -972,7 +973,7 @@ WAVE2: dict[str, dict] = {
             ("Frau Kraus", "Sohee", COMPLAIN, "Und wie lange dauert die Bearbeitung?"),
             ("Mitarbeiter", "Aiden", OFFICIAL, "In der Regel zwei bis drei Wochen. Sie bekommen eine Bestätigung per E-Mail, sobald der Antrag eingegangen ist."),
             ("Frau Kraus", "Sohee", COMPLAIN, "Gut. Muss ich das Original der Rechnung aufheben?"),
-            ("Mitarbeiter", "Aiden", OFFICIAL, "Bitte ja, bis das Geld auf Ihrem Konto ist."),
+            ("Mitarbeiter", "Aiden", OFFICIAL, "Bitte ja, bis das Geld auf Ihrem Konto ist. Danach können Sie sie wegwerfen."),
         ],
         "questions": [
             (
@@ -1004,7 +1005,7 @@ def build(spec: dict, base: RevisionPayload) -> RevisionPayload:
             style=style,
             pace=spec["pace"],
             pause_after_ms=450,
-            seed=100 + index,
+            seed=spec.get("seeds", {}).get(index + 1, 100 + index),
         )
         for index, (speaker, voice, style, text) in enumerate(spec["lines"])
     ]

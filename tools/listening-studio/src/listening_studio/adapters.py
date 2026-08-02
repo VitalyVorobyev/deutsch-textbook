@@ -217,7 +217,19 @@ def transcribe(path: Path) -> str:
         "mlx-community/whisper-large-v3-turbo",
         "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
     )
-    result = mlx_whisper.transcribe(str(path), path_or_hf_repo=model_path, language="de")
+    # `condition_on_previous_text=False` is the guard against Whisper's long-form repetition
+    # loop. Three Wave-2 takes transcribed their whole script correctly and then degenerated —
+    # "ist mir klar, ist mir klar, ist mir klar…" for hundreds of characters — which scored full
+    # WER 1.6 to 1.9 while every individual line passed at 0.00. That signature is unmistakable:
+    # the speech is fine and the decoder is feeding its own output back to itself. Conditioning
+    # on previous text buys fluency across segment boundaries, which is worth nothing here — the
+    # comparison is against a script we already have, word by word.
+    result = mlx_whisper.transcribe(
+        str(path),
+        path_or_hf_repo=model_path,
+        language="de",
+        condition_on_previous_text=False,
+    )
     return str(result["text"]).strip()
 
 

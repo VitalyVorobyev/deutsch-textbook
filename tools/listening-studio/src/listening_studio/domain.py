@@ -411,6 +411,38 @@ def german_number(word: str) -> str | None:
     return None if value is None else str(value)
 
 
+#: Ordinals whose stem is not the cardinal: erst-, dritt-, siebt-, and acht- (which swallows the
+#: -t). Everything else is regular — cardinal + -te below 20, cardinal + -ste from 20 up.
+ORDINAL_IRREGULAR = {
+    f"{stem}{ending}": value
+    for stem, value in {"erst": "1", "dritt": "3", "siebt": "7", "acht": "8"}.items()
+    for ending in ("e", "en", "er", "es", "em")
+}
+_ORDINAL_ENDINGS = ("sten", "ster", "stes", "stem", "ste", "ten", "ter", "tes", "tem", "te")
+
+
+def ordinal_number(word: str) -> str | None:
+    """A written-out German ordinal as its digits, or None.
+
+    Dates are said as ordinals and written as numerals: `am zwanzigsten November` comes back from
+    Whisper as `am 20. November`, and `den ersten August` as `den 1. August`. Both failed clean
+    takes — a city-council date and a booked train — on notation rather than on speech.
+    """
+
+    word = word.casefold()
+    if word in ORDINAL_IRREGULAR:
+        return ORDINAL_IRREGULAR[word]
+    for ending in _ORDINAL_ENDINGS:
+        if not word.endswith(ending):
+            continue
+        stem = word[: -len(ending)]
+        # The stem of a regular ordinal is the cardinal itself: zwanzig+sten, viert -> vier+ten.
+        value = german_number(stem) if stem else None
+        if value:
+            return value
+    return None
+
+
 def normalized_words(text: str) -> list[str]:
     """Script words and ASR output reduced to one comparable sequence.
 
@@ -428,7 +460,9 @@ def normalized_words(text: str) -> list[str]:
     out: list[str] = []
     for word in words:
         word = ASR_SPELLINGS.get(word, word)
-        mapped = german_number(word) or GERMAN_NUMBER_WORDS.get(word, word)
+        mapped = (
+            german_number(word) or ordinal_number(word) or GERMAN_NUMBER_WORDS.get(word, word)
+        )
         out.extend(mapped if mapped.isdigit() and len(mapped) > 1 else [mapped])
     return out
 
@@ -445,7 +479,14 @@ def edit_distance(a: list[str], b: list[str]) -> int:
 
 def word_error_rate(expected: str, actual: str) -> float:
     words = normalized_words(expected)
-    return edit_distance(words, normalized_words(actual)) / max(1, len(words))
+    heard = normalized_words(actual)
+    # A word boundary is the ASR's guess, not evidence about the speech. German writes compounds
+    # closed up and Whisper does not always agree — `kaputtgegangen` came back as `kaputt
+    # gegangen`, which is the same three syllables and scored 0.67 on a three-word line. If the
+    # two sequences are identical once the spaces are gone, nothing was misheard.
+    if words and "".join(words) == "".join(heard):
+        return 0.0
+    return edit_distance(words, heard) / max(1, len(words))
 
 
 def line_cache_key(line: Line, adapter_revision: str, processor_version: str = "2") -> str:
