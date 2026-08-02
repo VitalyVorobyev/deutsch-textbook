@@ -156,3 +156,55 @@ def test_a_local_checkout_is_accepted_only_at_the_pinned_revision(tmp_path, monk
     # One file from a different commit is a mixed checkout, not the pinned revision.
     (download / "model.safetensors.metadata").write_text(f"{'b' * 40}\nsha\n1.0\n")
     assert adapters.local_checkout("Org/Some-Model", pinned) is None
+
+
+def test_a_price_said_in_german_order_is_not_two_errors() -> None:
+    """`zwei Euro fünfzig` comes back from Whisper as `2,50 Euro`.
+
+    Same defect as the clock case: the amount is identical and only the unit word moves, but the
+    comparison read it as two edits and failed a flawless market-stall take on both of the lines
+    carrying the prices its questions ask about.
+    """
+
+    assert word_error_rate("Zusammen sind das sieben Euro fünfzig.", "Zusammen sind das 7,50 Euro.") == 0
+    assert (
+        word_error_rate(
+            "Die Äpfel kosten drei Euro, die Kartoffeln zwei Euro fünfzig.",
+            "Die Äpfel kosten 3 Euro. Die Kartoffeln 2,50 Euro.",
+        )
+        == 0
+    )
+    # Watched failing, as a new rule must be: a different amount is still a different amount.
+    assert word_error_rate("Zusammen sind das sieben Euro fünfzig.", "Zusammen sind das 8,50 Euro.") > 0
+    # And the rule needs "Euro" present — it does not rewrite every decimal it sees.
+    assert word_error_rate("Das Paket wiegt zwei Komma fünf Kilo.", "Das Paket wiegt 2,50 Kilo.") > 0
+
+
+def test_written_out_german_numerals_parse_up_to_999() -> None:
+    """Written German closes a numeral into one word; Whisper writes the digits.
+
+    A lookup table cannot hold this range, and the gap was real content: a 600-euro rent, ICE
+    612 and a 300-kilometre delivery all failed QA on spelling rather than on speech.
+    """
+
+    from listening_studio.domain import german_number
+
+    assert german_number("sechshundert") == "600"
+    assert german_number("sechshundertzwölf") == "612"
+    assert german_number("dreihundert") == "300"
+    assert german_number("hundert") == "100"
+    # Casefolding is the function's own job: dreißig folds to dreissig, which is how it is keyed.
+    assert german_number("siebenunddreißig") == "37"
+    assert german_number("Zwölf") == "12"
+
+    # `ein` is the indefinite article far more often than the number. Whisper writes the article
+    # as a word, so converting it would turn a correct line into a mismatch.
+    assert german_number("ein") is None
+    assert german_number("eins") == "1"
+    assert word_error_rate("Ich möchte ein Kilo Äpfel.", "Ich möchte ein Kilo Äpfel.") == 0
+    # Inside a compound it is the number again.
+    assert german_number("einundzwanzig") == "21"
+
+    assert german_number("Bahnhof") is None
+    # Watched failing: a different number is still a different number.
+    assert word_error_rate("Sechshundert Euro im Monat.", "700 Euro im Monat.") > 0
