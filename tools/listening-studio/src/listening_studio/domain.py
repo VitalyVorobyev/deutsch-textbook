@@ -206,6 +206,17 @@ class RevisionPayload(BaseModel):
     questions: list[Question] = Field(min_length=1)
     tts_adapter: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
     context_sounds: list[ContextSound] = Field(default_factory=list, max_length=4)
+    # Silence prepended to the speech so a scene-opening sound can be heard before anyone
+    # talks. Without it the mixer can only ever place a sound *over* the dialogue: `adelay`
+    # pushes a context sound later, never earlier, and `amix duration=first` truncates the
+    # result to the speech. Five artifacts shipped that way and every one was wrong in the
+    # same manner — a ring-back tone under "Praxis Doktor Klein, guten Tag" (the call has
+    # obviously been answered), a Freizeichen over the Bürgerbüro already speaking, an
+    # answering-machine beep across "Hallo Tom, hier ist Sara". The scenes were right; the
+    # mixer had no way to express them.
+    #
+    # Capped at 5 s: this buys a ring or a beep, not a musical introduction.
+    lead_in_ms: int = Field(default=0, ge=0, le=5000)
     max_replays: int = Field(default=3, ge=1, le=10)
     # How this script came to exist, and — when a model drafted it — the exact prompt that
     # was submitted, captured at generation time and carried through every later revision.

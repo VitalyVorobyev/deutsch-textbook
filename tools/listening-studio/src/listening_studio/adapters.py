@@ -382,12 +382,20 @@ def assemble(payload: RevisionPayload, lines: dict[str, Path], target: Path) -> 
 def mix_context(payload: RevisionPayload, source_root: Path, dry: Path, target: Path) -> None:
     """Create a deterministic final mix; contextual audio is never louder than -12 dB."""
 
-    if not payload.context_sounds:
+    if not payload.context_sounds and not payload.lead_in_ms:
         shutil.copy2(dry, target)
         return
     command = ["ffmpeg", "-v", "error", "-i", str(dry)]
     filters: list[str] = []
-    mix_inputs = ["[0:a]"]
+    # The speech is the first mix input, and `duration=first` measures the mix against it —
+    # so delaying the speech is what makes room for a sound *before* anyone talks, and the
+    # mix simply grows by the same amount. Delaying the context sound instead can only ever
+    # push it further into the dialogue.
+    speech = "[0:a]"
+    if payload.lead_in_ms:
+        filters.append(f"[0:a]adelay={payload.lead_in_ms}|{payload.lead_in_ms}[speech]")
+        speech = "[speech]"
+    mix_inputs = [speech]
     for index, context in enumerate(payload.context_sounds, 1):
         source, source_path = load_source(source_root, context.source_sha256)
         if source.sound_id != context.sound_id:
