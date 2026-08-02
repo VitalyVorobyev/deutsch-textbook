@@ -22,8 +22,8 @@ The course keeps five boundaries:
 
 1. Author B1 in two-unit windows, with the grammar and identity ownership fixed in the blueprint.
 2. Drain the grading queue and read the current snapshot after each window.
-3. Treat the 2026-08-02 A1 cohort and approximately 2026-08-14 A2 checkpoint reads as revision
-   triggers.
+3. Treat the approximately 2026-08-14 A2 checkpoint read as the next revision trigger; the
+   2026-08-02 A1 cohort read has fired and its verdict is below.
 4. Add semantic figures only when a named relation is clearer spatially than in prose or a table.
 5. Continue the authentic-document and extensive-reading streams without converting exploration
    into obligation.
@@ -80,10 +80,12 @@ the due probes, which is not authoring work.
   links the graph both ways: topic → Referenz, Referenz → topic, topic → topic. Derive the edges
   from data the curriculum already owns, the way `/referenz/zeitformen` derives its lesson links
   from the focus-tag map, so they cannot drift. Backlog P21-1 · P21-2 · P21-3.
-- **Audio:** build the reviewed corpus from `data/listening-plan.yaml`: first the twelve live units
-  with explicit listening outcomes, then model/input audio for the remaining units. Neural audio
-  remains publishable only after dry and final-mix QA plus named human review; volume is not a
-  substitute for intelligibility.
+- **Audio:** the reviewed corpus planned in `data/listening-plan.yaml` is authored — 41 artifacts,
+  one per live unit, ~30 minutes of speech, every one passing QA on both the dry take and the final
+  mix. Each is published only after named human approval of the exact bytes, and both shipping
+  builds carry the resulting MP3s. Neural audio remains publishable on those terms alone; volume is
+  not a substitute for intelligibility, and automatic transcription is a defect detector, never
+  proof of natural pronunciation. What remains is the A1 exam-style pack (P19-6).
 
 ## Definition of the next milestone
 
