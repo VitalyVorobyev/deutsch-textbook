@@ -57,8 +57,9 @@ class QwenTTS:
         import torch
 
         torch.manual_seed(line.seed)
+        style = {"instruct": line.style} if line.style else {}
         wavs, rate = self._model.generate_custom_voice(
-            text=line.spoken_text(), language="German", speaker=line.voice
+            text=line.spoken_text(), language="German", speaker=line.voice, **style
         )
         write_with_pace(target, wavs[0], rate, line.pace, sf)
 
@@ -293,9 +294,13 @@ def assemble(payload: RevisionPayload, lines: dict[str, Path], target: Path) -> 
     concat = target.with_suffix(".concat.txt")
     raw = target.with_suffix(".unnormalized.wav")
     parts: list[str] = []
-    for line in payload.lines:
+    for index, line in enumerate(payload.lines):
         parts.append(f"file '{lines[line.id].as_posix()}'")
-        if line.pause_after_ms:
+        # No silence after the final line. A pause between turns is what a listener catches up
+        # in; a pause at the end is trailing silence, and Whisper answers trailing silence by
+        # repeating the last sentence it heard — which showed up as a duplicated closing line in
+        # the full-audio QA transcript and pushed a clean take over the 8% threshold.
+        if line.pause_after_ms and index < len(payload.lines) - 1:
             silence = target.parent / f"silence-{line.pause_after_ms}.wav"
             if not silence.exists():
                 subprocess.run(

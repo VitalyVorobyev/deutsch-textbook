@@ -80,6 +80,11 @@ class Line(BaseModel):
     display_text: str
     synthesis_text: str | None = None
     voice: str = "Ryan"
+    # Natural-language delivery control, passed to Qwen3-TTS as `instruct`. The nine preset
+    # timbres are fixed, so this is the only lever that separates a station announcement from
+    # two friends making plans — and register is most of what makes listening material sound
+    # real. Written in German: the model takes the instruction in the language it speaks.
+    style: str | None = None
     pace: float = Field(default=1.0, ge=0.7, le=1.15)
     pause_after_ms: int = Field(default=350, ge=0, le=5000)
     seed: int = 0
@@ -297,6 +302,49 @@ GERMAN_NUMBER_WORDS = {
 }
 
 
+#: Spellings Whisper prefers for things German says as words. Grown from observed ASR output,
+#: never from guesswork: "Frau Doktor Weber" came back as "Frau Dr. Weber" and cost a clean take
+#: one substitution in the full-audio comparison.
+ASR_SPELLINGS = {"dr": "doktor"}
+
+#: `sechzehn Uhr zehn` is transcribed `16.10 Uhr` — same time, but the unit word moves, which
+#: reads as two edits and failed two otherwise flawless takes. Rewriting the ASR form back into
+#: German word order compares the two spellings as the same sequence, and still requires the
+#: recording to contain "Uhr" at all.
+CLOCK = re.compile(r"\b(\d{1,2})[.:](\d{2})\s*Uhr\b", re.IGNORECASE)
+
+
+#: German says the units before the tens — `fünfundzwanzig` is "five-and-twenty" — and no map of
+#: single words can hold 21-99. Whisper writes them as numerals, so a page number or a departure
+#: minute came back as two edits on an otherwise exact line.
+_UNITS = {
+    "ein": 1,
+    "eins": 1,
+    "zwei": 2,
+    "drei": 3,
+    "vier": 4,
+    "fünf": 5,
+    "sechs": 6,
+    "sieben": 7,
+    "acht": 8,
+    "neun": 9,
+}
+_TENS = {
+    w.casefold(): n
+    for w, n in {
+        "zwanzig": 20,
+        "dreißig": 30,
+        "vierzig": 40,
+        "fünfzig": 50,
+        "sechzig": 60,
+        "siebzig": 70,
+        "achtzig": 80,
+        "neunzig": 90,
+    }.items()
+}
+COMPOUND_NUMBER = re.compile(f"^({'|'.join(_UNITS)})und({'|'.join(_TENS)})$")
+
+
 def normalized_words(text: str) -> list[str]:
     """Script words and ASR output reduced to one comparable sequence.
 
@@ -309,9 +357,13 @@ def normalized_words(text: str) -> list[str]:
     which is the right trade for a screen whose job is to catch defects before a human listens.
     """
 
-    words = [word.casefold() for word in WORD.findall(text)]
+    words = [word.casefold() for word in WORD.findall(CLOCK.sub(r"\1 Uhr \2", text))]
     out: list[str] = []
     for word in words:
+        word = ASR_SPELLINGS.get(word, word)
+        compound = COMPOUND_NUMBER.match(word)
+        if compound:
+            word = str(_TENS[compound[2]] + _UNITS[compound[1]])
         mapped = GERMAN_NUMBER_WORDS.get(word, word)
         out.extend(mapped if mapped.isdigit() and len(mapped) > 1 else [mapped])
     return out
@@ -336,6 +388,7 @@ def line_cache_key(line: Line, adapter_revision: str, processor_version: str = "
     value = {
         "text": line.spoken_text(),
         "voice": line.voice,
+        "style": line.style,
         "pace": line.pace,
         "pause": line.pause_after_ms,
         "seed": line.seed,

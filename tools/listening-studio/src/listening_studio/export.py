@@ -227,6 +227,17 @@ def write_bundle(
             "The script below was revised editorially after generation; this prompt is the "
             "input that produced the draft, not a description of the final text.\n"
         )
+    elif payload.authoring == "generated":
+        # Model-drafted, brief lost. Saying "manually authored" here would be the same
+        # fabrication as printing a reconstructed prompt, just in the other direction — and the
+        # reconstruction is exactly what must not happen, so the gap is stated instead.
+        brief = (
+            f"# Listening generation brief — {slug}\n\n"
+            "## Model-drafted; the submitted brief was not retained\n\n"
+            "This script was drafted by a language model, but the prompt that produced it was "
+            "not saved and cannot be recovered. It is deliberately not reconstructed from the "
+            "final payload: that string would describe the edited text, not the model's input.\n"
+        )
     else:
         brief = (
             f"# Listening generation brief — {slug}\n\n"

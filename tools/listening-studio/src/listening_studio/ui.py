@@ -163,6 +163,9 @@ def script_form(project_id: int, payload: RevisionPayload, voices: list[str], ad
             f"<label>Seed<input name='line.{index}.seed' type=number min=0 value='{line.seed}'></label>"
             "</div>"
             f"<label>Text<textarea name='line.{index}.text' required>{escape(line.display_text)}</textarea></label>"
+            f"<label class=muted>Sprechweise (optional, steuert Ton und Register)"
+            f"<input name='line.{index}.style' value='{escape(line.style or '')}' "
+            f"placeholder='z. B. Sprich sachlich und deutlich wie eine Bahnhofsdurchsage.'></label>"
             f"<label class=muted>Aussprache-Text (optional, nur für die Synthese)"
             f"<input name='line.{index}.synthesis' value='{escape(line.synthesis_text or '')}' placeholder='leer = wie oben'></label>"
             "</div>"
@@ -384,6 +387,7 @@ def parse_lines(form: dict[str, str], payload: RevisionPayload) -> list[dict[str
                 "voice": form.get(f"line.{index}.voice", line.voice),
                 "display_text": form.get(f"line.{index}.text", line.display_text).strip(),
                 "synthesis_text": synthesis or None,
+                "style": form.get(f"line.{index}.style", "").strip() or None,
                 "pace": float(form.get(f"line.{index}.pace", line.pace)),
                 "pause_after_ms": int(form.get(f"line.{index}.pause", line.pause_after_ms)),
                 "seed": int(form.get(f"line.{index}.seed", line.seed)),
