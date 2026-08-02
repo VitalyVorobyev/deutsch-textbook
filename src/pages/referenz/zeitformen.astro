@@ -1,0 +1,81 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TenseSystem from '../../components/reference/TenseSystem.astro';
+import { zeitformenReferenceSchema } from '../../lib/schemas';
+import { withBase } from '../../lib/url';
+
+const entry = await getEntry('referenceData', 'zeitformen');
+if (!entry) throw new Error('Missing canonical zeitformen reference data');
+const data = zeitformenReferenceSchema.parse(entry.data);
+---
+
+<Base title="Zeitformen & Modus">
+  <nav class="mb-5 text-sm text-stone-400">
+    <a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a>
+    <span> / Zeitformen &amp; Modus</span>
+  </nav>
+
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight">Zeitformen &amp; Modus</h1>
+    <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
+      <span class="lang-en">The whole verb system on one page: which forms exist, what each one is for, and where the ones that look alike come apart. The lessons teach these forms one at a time; this page is where they sit next to each other.</span>
+      <span class="lang-ru">Вся глагольная система на одной странице: какие формы существуют, для чего нужна каждая и где расходятся те, что выглядят одинаково. Уроки объясняют формы по одной; здесь они стоят рядом.</span>
+      <span class="lang-uk">Уся дієслівна система на одній сторінці: які форми існують, для чого потрібна кожна і де розходяться ті, що виглядають однаково. Уроки пояснюють форми по одній; тут вони стоять поряд.</span>
+    </p>
+  </header>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Drei Achsen</h2>
+    <p class="mb-5 mt-2 max-w-3xl text-sm text-stone-500">
+      <span class="lang-en">Every finite verb form answers these three questions at once, and answers them independently. Six tenses times four moods times two voices is why the list below looks long — it is three short choices, not one long paradigm.</span>
+      <span class="lang-ru">Каждая личная форма глагола отвечает на эти три вопроса сразу и отвечает независимо. Шесть времён на четыре наклонения на два залога — вот почему список ниже кажется длинным: это три коротких выбора, а не одна длинная парадигма.</span>
+      <span class="lang-uk">Кожна особова форма дієслова відповідає на ці три питання водночас і відповідає незалежно. Шість часів на чотири способи на два стани — ось чому список нижче здається довгим: це три короткі вибори, а не одна довга парадигма.</span>
+    </p>
+    <TenseSystem view="axes" />
+  </section>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold">Die Formen</h2>
+    <p class="mb-6 mt-2 max-w-3xl text-sm text-stone-500">
+      <span class="lang-en">The level badge is the first Atlas stage at which the form is expected productively; the lesson links under it are read from the course itself. Forms marked as later are here so the picture is complete, and are never a current target.</span>
+      <span class="lang-ru">Значок уровня — первая ступень Atlas, на которой форма ожидается активно; ссылки на уроки под ним берутся из самого курса. Формы, помеченные как более поздние, показаны для полноты картины и не являются текущей целью.</span>
+      <span class="lang-uk">Позначка рівня — перший щабель Atlas, на якому форма очікується активно; посилання на уроки під нею беруться із самого курсу. Форми, позначені як пізніші, показано для повноти картини, і вони не є поточною метою.</span>
+    </p>
+    <TenseSystem view="forms" />
+  </section>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold">Dieselben Verben, alle Formen</h2>
+    <p class="mb-6 mt-2 max-w-3xl text-sm text-stone-500">
+      <span class="lang-en">Read down a column and you have one verb through the whole system; read across a row and you have one form across every verb type. A dash means the form does not exist — a modal verb has no ordinary imperative.</span>
+      <span class="lang-ru">Читая столбец сверху вниз, вы видите один глагол во всей системе; читая строку, — одну форму у всех типов глаголов. Прочерк означает, что формы не существует: у модального глагола нет обычного повелительного наклонения.</span>
+      <span class="lang-uk">Читаючи стовпець згори вниз, ви бачите одне дієслово в усій системі; читаючи рядок — одну форму в усіх типів дієслів. Риска означає, що форми не існує: у модального дієслова немає звичайного наказового способу.</span>
+    </p>
+    <TenseSystem view="paradigms" />
+  </section>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold">Die verwechselten Paare</h2>
+    <p class="mt-2 max-w-3xl text-sm text-stone-500">
+      <span class="lang-en">These are the places where the forms look alike and the tables alone will not help. Start here if the system feels crowded.</span>
+      <span class="lang-ru">Здесь формы похожи друг на друга, и одни только таблицы не помогут. Если система кажется перегруженной, начните отсюда.</span>
+      <span class="lang-uk">Тут форми схожі одна на одну, і самі лише таблиці не допоможуть. Якщо система здається перевантаженою, почніть звідси.</span>
+    </p>
+    <div class="mb-6 mt-4 flex flex-wrap gap-2">
+      {data.comparisons.map((comparison) => (
+        <a href={`#${comparison.id}`} lang="de" class="rounded-full border border-stone-200 px-3 py-1 text-sm hover:border-amber-500 hover:text-amber-700 dark:border-stone-600">{comparison.title.de}</a>
+      ))}
+    </div>
+    <TenseSystem view="comparisons" />
+  </section>
+
+  <section class="mt-12 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <p>
+      <span class="lang-en">This page is a map, not a learning claim — reading it changes no progress. For the forms of an individual verb see <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; to check whether you can produce a form without the table, go back to a flashcard or a translation exercise.</span>
+      <span class="lang-ru">Эта страница — карта, а не заявление об освоении: её чтение не меняет прогресс. Формы отдельного глагола смотрите в <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; чтобы проверить, что вы образуете форму без таблицы, вернитесь к карточке или упражнению на перевод.</span>
+      <span class="lang-uk">Ця сторінка — карта, а не твердження про опанування: її читання не змінює прогрес. Форми окремого дієслова дивіться у <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; щоб перевірити, чи утворюєте ви форму без таблиці, поверніться до картки або вправи на переклад.</span>
+    </p>
+  </section>
+</Base>

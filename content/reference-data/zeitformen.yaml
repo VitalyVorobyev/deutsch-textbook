@@ -1,0 +1,505 @@
+id: zeitformen
+
+# The verb system as one picture. Schema: zeitformenReferenceSchema (src/lib/schemas.ts).
+#
+# `level` follows the house convention stated in sentence-connectors.yaml: the first Atlas
+# stage at which the form is expected *productively*. A reference page may show later
+# language early — Futur II and Konjunktiv I are here — but it never turns that language
+# into a current-level learning target, which is what `status: later` records.
+#
+# `focus` names the tags whose drills teach the form. The page reads the teaching topic out
+# of `focusIntroducedBy` at build time, so no topic name and no "taught in B1.x" claim is
+# ever written here by hand.
+
+axes:
+  - id: tempus
+    title: { de: "Tempus", en: "Tense", ru: "Время", uk: "Час" }
+    values: [Gegenwart, Vergangenheit, Zukunft]
+    description:
+      en: "When the event happens. German has six tense forms but only three time frames — the extra forms are choices about medium and about order, not about time."
+      ru: "Когда происходит действие. В немецком шесть временных форм, но лишь три временных плана: лишние формы — это выбор регистра и порядка событий, а не времени."
+      uk: "Коли відбувається дія. У німецькій шість часових форм, але лише три часові плани: зайві форми — це вибір регістру та порядку подій, а не часу."
+  - id: modus
+    title: { de: "Modus", en: "Mood", ru: "Наклонение", uk: "Спосіб" }
+    values: [Indikativ, "Konjunktiv II", "Konjunktiv I", Imperativ]
+    description:
+      en: "Whether the speaker presents the event as real, as unreal or wished-for, or as an instruction. The mood is chosen independently of the time frame."
+      ru: "Как говорящий подаёт событие: как реальное, как нереальное или желаемое, как побуждение. Наклонение выбирается независимо от времени."
+      uk: "Як мовець подає подію: як реальну, як нереальну чи бажану, як спонукання. Спосіб обирається незалежно від часу."
+  - id: genus
+    title: { de: "Genus verbi", en: "Voice", ru: "Залог", uk: "Стан" }
+    values: [Aktiv, Passiv]
+    description:
+      en: "Whether the subject does the action or undergoes it. This too is chosen independently: every tense has a passive."
+      ru: "Совершает ли подлежащее действие или испытывает его. Это тоже выбирается независимо: пассив есть у каждого времени."
+      uk: "Чи виконує підмет дію, чи зазнає її. Це теж обирається незалежно: пасив є в кожного часу."
+
+forms:
+  - id: praesens
+    name_de: "Präsens"
+    axis: tempus
+    formula: "Verbstamm + Endung"
+    level: A1
+    status: productive
+    focus: [verb-endungen, verbzweit]
+    use:
+      en: "The default form: what is true now, what is generally true, and — with a time word — what is planned for the future."
+      ru: "Основная форма: то, что происходит сейчас, что верно вообще, и — при указании времени — то, что запланировано на будущее."
+      uk: "Основна форма: те, що відбувається зараз, що є правдою взагалі, і — з указівкою часу — те, що заплановано на майбутнє."
+    example:
+      de: "Ich fahre morgen nach Berlin."
+      en: "I am going to Berlin tomorrow."
+      ru: "Завтра я еду в Берлин."
+      uk: "Завтра я їду до Берліна."
+
+  - id: perfekt
+    name_de: "Perfekt"
+    axis: tempus
+    formula: "haben/sein (Präsens) + Partizip II"
+    level: A1
+    status: productive
+    focus: [haben-sein, partizip2-a1, partizip2-form, perfekt-satzklammer]
+    use:
+      en: "The everyday past. This is the one you use when speaking and in personal messages, whatever the verb."
+      ru: "Обиходное прошедшее. Именно его используют в устной речи и в личных сообщениях, с любым глаголом."
+      uk: "Побутове минуле. Саме його вживають в усному мовленні та в особистих повідомленнях, з будь-яким дієсловом."
+    example:
+      de: "Wir haben gestern einen Film gesehen."
+      en: "We watched a film yesterday."
+      ru: "Вчера мы посмотрели фильм."
+      uk: "Учора ми подивилися фільм."
+
+  - id: praeteritum
+    name_de: "Präteritum"
+    axis: tempus
+    formula: "Verbstamm (+ -te) + Endung"
+    level: A2
+    status: productive
+    focus: [praeteritum-sein-haben, praeteritum-vollverben]
+    use:
+      en: "The written past of narrative and reports — and, in speech as well, the normal past of sein, haben, werden and the modal verbs."
+      ru: "Письменное прошедшее повествования и отчётов — а для sein, haben, werden и модальных глаголов это обычное прошедшее и в устной речи."
+      uk: "Письмове минуле розповіді та звітів — а для sein, haben, werden і модальних дієслів це звичайне минуле й в усному мовленні."
+    example:
+      de: "Damals wohnte sie in Hamburg und hatte kein Auto."
+      en: "Back then she lived in Hamburg and had no car."
+      ru: "Тогда она жила в Гамбурге, и у неё не было машины."
+      uk: "Тоді вона мешкала в Гамбурзі й не мала автівки."
+
+  - id: plusquamperfekt
+    name_de: "Plusquamperfekt"
+    axis: tempus
+    formula: "hatte/war (Präteritum) + Partizip II"
+    level: B1
+    status: productive
+    focus: [plusquamperfekt-nachdem]
+    use:
+      en: "One step further back: it marks the earlier of two past events, and in practice it arrives together with nachdem."
+      ru: "Шаг ещё дальше в прошлое: отмечает более раннее из двух прошедших событий и на практике появляется вместе с nachdem."
+      uk: "Крок ще далі в минуле: позначає раніше з двох минулих подій і на практиці з'являється разом із nachdem."
+    example:
+      de: "Nachdem wir gegessen hatten, gingen wir spazieren."
+      en: "After we had eaten, we went for a walk."
+      ru: "После того как мы поели, мы пошли гулять."
+      uk: "Після того як ми поїли, ми пішли на прогулянку."
+
+  - id: futur-1
+    name_de: "Futur I"
+    axis: tempus
+    formula: "werden (Präsens) + Infinitiv"
+    level: A2
+    status: productive
+    focus: [futur-werden]
+    use:
+      en: "Not the ordinary future — the present tense covers that. It marks a prediction, an intention or a promise."
+      ru: "Не обычное будущее — для него хватает настоящего времени. Эта форма выражает прогноз, намерение или обещание."
+      uk: "Не звичайне майбутнє — для нього досить теперішнього часу. Ця форма виражає прогноз, намір або обіцянку."
+    example:
+      de: "Ich werde dir helfen, das verspreche ich."
+      en: "I will help you, I promise."
+      ru: "Я тебе помогу, обещаю."
+      uk: "Я тобі допоможу, обіцяю."
+
+  - id: futur-2
+    name_de: "Futur II"
+    axis: tempus
+    formula: "werden + Partizip II + haben/sein"
+    level: B2
+    status: later
+    focus: []
+    use:
+      en: "Rare, and usually an assumption about the past rather than a real future — he will (probably) have missed the train."
+      ru: "Редкая форма, и обычно это предположение о прошлом, а не настоящее будущее: он, вероятно, опоздал на поезд."
+      uk: "Рідкісна форма, і зазвичай це припущення про минуле, а не справжнє майбутнє: він, імовірно, спізнився на потяг."
+    example:
+      de: "Er wird den Zug verpasst haben."
+      en: "He will have missed the train."
+      ru: "Он, наверное, опоздал на поезд."
+      uk: "Він, мабуть, спізнився на потяг."
+
+  - id: konjunktiv2-gegenwart
+    name_de: "Konjunktiv II (Gegenwart)"
+    axis: modus
+    formula: "würde + Infinitiv · bei wenigen Verben eine eigene Form (wäre, hätte, könnte)"
+    level: A2
+    status: productive
+    focus: [hoeflich-konjunktiv, konjunktiv2-form, konjunktiv2-ratschlag]
+    use:
+      en: "For what is not the case, and for politeness. Everyday German builds it with würde; a short list of verbs keeps a one-word form instead."
+      ru: "Для того, чего нет, и для вежливости. В обиходном немецком форма строится через würde; короткий список глаголов сохраняет собственную однословную форму."
+      uk: "Для того, чого немає, і для ввічливості. У побутовій німецькій форма будується через würde; короткий список дієслів зберігає власну однослівну форму."
+    example:
+      de: "Wenn ich mehr Zeit hätte, würde ich öfter kochen."
+      en: "If I had more time, I would cook more often."
+      ru: "Если бы у меня было больше времени, я бы чаще готовил."
+      uk: "Якби я мав більше часу, я б частіше готував."
+
+  - id: konjunktiv2-vergangenheit
+    name_de: "Konjunktiv II (Vergangenheit)"
+    axis: modus
+    formula: "hätte/wäre + Partizip II"
+    level: B1
+    status: productive
+    focus: [irreale-bedingung]
+    use:
+      en: "The only past the Konjunktiv II has. Everything unreal in the past uses this one form — there is no second one to learn."
+      ru: "Единственное прошедшее у Konjunktiv II. Всё нереальное в прошлом выражается одной этой формой — второй учить не нужно."
+      uk: "Єдине минуле, яке має Konjunktiv II. Усе нереальне в минулому виражається однією цією формою — другої вчити не треба."
+    example:
+      de: "Wenn ich das gewusst hätte, wäre ich früher gekommen."
+      en: "If I had known that, I would have come earlier."
+      ru: "Если бы я это знал, я пришёл бы раньше."
+      uk: "Якби я це знав, я прийшов би раніше."
+
+  - id: imperativ
+    name_de: "Imperativ"
+    axis: modus
+    formula: "Verbstamm (du) · Verbstamm + -t (ihr) · Infinitiv + Sie"
+    level: A1
+    status: productive
+    focus: [imperativ-form]
+    use:
+      en: "A direct instruction or request. Three forms, because German settles the choice between du, ihr and Sie before anything else."
+      ru: "Прямое побуждение или просьба. Три формы, потому что немецкий сначала решает, обращаться на du, ihr или Sie."
+      uk: "Пряме спонукання або прохання. Три форми, бо німецька спершу вирішує, звертатися на du, ihr чи Sie."
+    example:
+      de: "Nimm die U-Bahn, das geht schneller."
+      en: "Take the underground, it is faster."
+      ru: "Поезжай на метро, так быстрее."
+      uk: "Їдь на метро, так швидше."
+
+  - id: konjunktiv1
+    name_de: "Konjunktiv I"
+    axis: modus
+    formula: "Verbstamm + -e (er komme, sie habe, er sei)"
+    level: B2
+    status: later
+    focus: []
+    use:
+      en: "Reported speech in journalism and formal writing. Recognising it is enough; in conversation German speakers themselves reach for würde or the indicative."
+      ru: "Косвенная речь в журналистике и официальных текстах. Достаточно узнавать: в разговоре сами носители берут würde или изъявительное наклонение."
+      uk: "Непряма мова в журналістиці та офіційних текстах. Досить упізнавати: у розмові самі носії беруть würde або дійсний спосіб."
+    example:
+      de: "Der Minister sagte, er komme später."
+      en: "The minister said he would come later."
+      ru: "Министр сказал, что придёт позже."
+      uk: "Міністр сказав, що прийде пізніше."
+
+  - id: passiv-praesens
+    name_de: "Passiv Präsens"
+    axis: genus
+    formula: "werden (Präsens) + Partizip II"
+    level: B1
+    status: productive
+    focus: [passiv-rezeptiv, passiv-bildung]
+    use:
+      en: "The action matters and the agent does not — forms, rules, procedures. The object of the active sentence becomes the subject."
+      ru: "Важно действие, а не исполнитель — бланки, правила, процедуры. Дополнение активного предложения становится подлежащим."
+      uk: "Важлива дія, а не виконавець — бланки, правила, процедури. Додаток активного речення стає підметом."
+    example:
+      de: "Das Formular wird online ausgefüllt."
+      en: "The form is filled in online."
+      ru: "Бланк заполняется онлайн."
+      uk: "Бланк заповнюється онлайн."
+
+  - id: passiv-vergangenheit
+    name_de: "Passiv (Vergangenheit)"
+    axis: genus
+    formula: "wurde + Partizip II · ist + Partizip II + worden"
+    level: B1
+    status: productive
+    focus: [passiv-vergangenheit]
+    use:
+      en: "The passive has the same two pasts as the active, and splits them the same way: wurde in writing, ist … worden in speech. Note worden, never geworden."
+      ru: "У пассива те же два прошедших, что и у актива, и разделяются они так же: wurde на письме, ist … worden в устной речи. Обратите внимание: worden, а не geworden."
+      uk: "У пасива ті самі два минулі, що й в актива, і поділяються вони так само: wurde на письмі, ist … worden в усному мовленні. Зверніть увагу: worden, а не geworden."
+    example:
+      de: "Die Brücke wurde 1998 gebaut."
+      en: "The bridge was built in 1998."
+      ru: "Мост построили в 1998 году."
+      uk: "Міст збудували 1998 року."
+
+  - id: passiv-modal
+    name_de: "Passiv mit Modalverb"
+    axis: genus
+    formula: "Modalverb + Partizip II + werden"
+    level: B1
+    status: productive
+    focus: [passiv-modal]
+    use:
+      en: "An obligation or a permission about the action itself. The modal verb is conjugated; werden stays an infinitive at the very end."
+      ru: "Обязанность или разрешение, относящиеся к самому действию. Модальный глагол спрягается, werden остаётся инфинитивом в самом конце."
+      uk: "Обов'язок або дозвіл, що стосуються самої дії. Модальне дієслово відмінюється, werden залишається інфінітивом у самому кінці."
+    example:
+      de: "Das Formular muss heute abgegeben werden."
+      en: "The form has to be handed in today."
+      ru: "Бланк нужно сдать сегодня."
+      uk: "Бланк потрібно здати сьогодні."
+
+paradigms:
+  - id: aktiv
+    caption:
+      de: "Dieselben fünf Verben in jeder Form"
+      en: "The same five verbs in every form — a weak verb, a strong verb, both auxiliaries and a modal."
+      ru: "Одни и те же пять глаголов во всех формах: слабый, сильный, оба вспомогательных и модальный."
+      uk: "Ті самі п'ять дієслів в усіх формах: слабке, сильне, обидва допоміжні та модальне."
+    verbs:
+      - { infinitive: machen, kind: schwach }
+      - { infinitive: fahren, kind: stark }
+      - { infinitive: sein, kind: hilfsverb }
+      - { infinitive: haben, kind: hilfsverb }
+      - { infinitive: können, kind: modalverb }
+    rows:
+      - form: praesens
+        person: ich
+        cells: [mache, fahre, bin, habe, kann]
+      - form: praeteritum
+        person: ich
+        cells: [machte, fuhr, war, hatte, konnte]
+      - form: perfekt
+        person: ich
+        cells: ["habe gemacht", "bin gefahren", "bin gewesen", "habe gehabt", "habe gekonnt"]
+      - form: plusquamperfekt
+        person: ich
+        cells: ["hatte gemacht", "war gefahren", "war gewesen", "hatte gehabt", "hatte gekonnt"]
+      - form: futur-1
+        person: ich
+        cells: ["werde machen", "werde fahren", "werde sein", "werde haben", "werde können"]
+      - form: futur-2
+        person: ich
+        cells: ["werde gemacht haben", "werde gefahren sein", "werde gewesen sein", "werde gehabt haben", "—"]
+      - form: konjunktiv2-gegenwart
+        person: ich
+        # The two cells that carry the whole point: for a weak verb the one-word Konjunktiv II
+        # is indistinguishable from the Präteritum, and for a strong verb it exists but sounds
+        # bookish — which is why everyday German says würde.
+        cells: ["würde machen (machte = Präteritum)", "würde fahren (führe)", "wäre", "hätte", "könnte"]
+      - form: konjunktiv2-vergangenheit
+        person: ich
+        cells: ["hätte gemacht", "wäre gefahren", "wäre gewesen", "hätte gehabt", "hätte gekonnt"]
+      - form: imperativ
+        person: du
+        cells: ["mach!", "fahr!", "sei!", "hab!", "—"]
+      - form: konjunktiv1
+        person: er/sie/es
+        cells: [mache, fahre, sei, habe, könne]
+
+  - id: passiv
+    caption:
+      de: "Passiv: dieselbe Handlung auf drei Zeitstufen"
+      en: "The passive across time — one action, and only the auxiliary moves."
+      ru: "Пассив во времени: действие одно, меняется только вспомогательная часть."
+      uk: "Пасив у часі: дія одна, змінюється лише допоміжна частина."
+    verbs:
+      - { infinitive: ausfüllen, kind: schwach, subject: "das Formular" }
+    rows:
+      - form: passiv-praesens
+        person: es
+        cells: ["wird ausgefüllt"]
+      - form: passiv-vergangenheit
+        person: es
+        cells: ["wurde ausgefüllt · ist ausgefüllt worden"]
+      - form: passiv-modal
+        person: es
+        cells: ["muss ausgefüllt werden"]
+
+comparisons:
+  - id: perfekt-praeteritum
+    title:
+      de: "Perfekt oder Präteritum?"
+      en: "Perfekt or Präteritum?"
+      ru: "Perfekt или Präteritum?"
+      uk: "Perfekt чи Präteritum?"
+    explanation:
+      en: "Both mean the same thing. The choice is one of medium, not of completion: speech and personal writing take the Perfekt, narrative and reports take the Präteritum. English offers no help here — \"I worked\" and \"I have worked\" differ in meaning, while the two German forms do not. Then comes the exception that matters more than the rule: sein, haben, werden and the modal verbs use the Präteritum in conversation too, so ich war and ich hatte are what people actually say."
+      ru: "Обе формы значат одно и то же. Выбор — это регистр, а не завершённость: устная речь и личные письма берут Perfekt, повествование и отчёты — Präteritum. Русский здесь мешает: в русском одно прошедшее время, а различие несёт вид (делал / сделал), и его хочется перенести на две немецкие формы. Переносить нечего — вида в немецком нет. Зато важно исключение: sein, haben, werden и модальные глаголы стоят в Präteritum и в разговоре, поэтому говорят ich war и ich hatte, а не ich bin gewesen."
+      uk: "Обидві форми означають те саме. Вибір — це регістр, а не завершеність: усне мовлення та особисті листи беруть Perfekt, розповідь і звіти — Präteritum. Українська тут заважає: у ній одне минуле, а різницю несе вид (робив / зробив), і його хочеться перенести на дві німецькі форми. Переносити нічого — виду в німецькій немає. Натомість важливий виняток: sein, haben, werden і модальні дієслова стоять у Präteritum і в розмові, тому кажуть ich war та ich hatte, а не ich bin gewesen."
+    examples:
+      - de: "Ich habe gestern lange gearbeitet."
+        en: "I worked late yesterday."
+        ru: "Вчера я долго работал."
+        uk: "Учора я довго працював."
+      - de: "Er arbeitete lange und ging spät nach Hause."
+        en: "He worked late and went home late."
+        ru: "Он долго работал и поздно ушёл домой."
+        uk: "Він довго працював і пізно пішов додому."
+      - de: "Ich war müde und hatte keine Zeit."
+        en: "I was tired and had no time."
+        ru: "Я устал, и у меня не было времени."
+        uk: "Я був утомлений і не мав часу."
+
+  - id: praeteritum-konjunktiv2
+    title:
+      de: "Warum Konjunktiv II wie Präteritum aussieht"
+      en: "Why the Konjunktiv II looks like the Präteritum"
+      ru: "Почему Konjunktiv II похож на Präteritum"
+      uk: "Чому Konjunktiv II схожий на Präteritum"
+    explanation:
+      en: "Because for weak verbs it is the same form. ich machte is the Präteritum and the Konjunktiv II at once, and nothing in the word says which. Strong verbs do differ — the Präteritum stem takes an umlaut and an -e: ich fuhr becomes ich führe, ich kam becomes ich käme — but those forms sound bookish outside writing. That collision is the entire reason würde + Infinitiv exists: it makes the mood visible where the ending cannot. About a dozen verbs keep their one-word form in everyday speech: wäre, hätte, würde, könnte, müsste, dürfte, sollte, wollte, wüsste, gäbe, käme, ginge, bräuchte."
+      ru: "Потому что у слабых глаголов это одна и та же форма. ich machte — одновременно Präteritum и Konjunktiv II, и по самому слову не отличить. У сильных глаголов разница есть: основа Präteritum получает умлаут и -e, ich fuhr даёт ich führe, ich kam даёт ich käme, — но вне письменной речи такие формы звучат книжно. Именно из-за этого совпадения и существует würde + Infinitiv: оно показывает наклонение там, где окончание его показать не может. Около десятка глаголов сохраняют однословную форму и в обиходной речи: wäre, hätte, würde, könnte, müsste, dürfte, sollte, wollte, wüsste, gäbe, käme, ginge, bräuchte."
+      uk: "Бо у слабких дієслів це та сама форма. ich machte — водночас Präteritum і Konjunktiv II, і за самим словом не розрізнити. У сильних дієслів різниця є: основа Präteritum отримує умлаут і -e, ich fuhr дає ich führe, ich kam дає ich käme, — але поза письмовим мовленням такі форми звучать книжно. Саме через цей збіг і існує würde + Infinitiv: воно показує спосіб там, де закінчення показати його не може. Близько десятка дієслів зберігають однослівну форму й у побутовому мовленні: wäre, hätte, würde, könnte, müsste, dürfte, sollte, wollte, wüsste, gäbe, käme, ginge, bräuchte."
+    examples:
+      - de: "Damals machte ich das anders."
+        en: "Back then I did that differently."
+        ru: "Тогда я делал это иначе."
+        uk: "Тоді я робив це інакше."
+      - de: "An deiner Stelle würde ich das anders machen."
+        en: "In your place I would do that differently."
+        ru: "На твоём месте я сделал бы это иначе."
+        uk: "На твоєму місці я зробив би це інакше."
+      - de: "Ich käme gern, aber ich habe keine Zeit."
+        en: "I would like to come, but I have no time."
+        ru: "Я бы с радостью пришёл, но у меня нет времени."
+        uk: "Я б залюбки прийшов, але не маю часу."
+
+  - id: konjunktiv2-eine-vergangenheit
+    title:
+      de: "Konjunktiv II hat nur eine Vergangenheit"
+      en: "The Konjunktiv II has exactly one past"
+      ru: "У Konjunktiv II только одно прошедшее"
+      uk: "У Konjunktiv II лише одне минуле"
+    explanation:
+      en: "There is no unreal Perfekt and no unreal Plusquamperfekt to learn separately. Everything unreal in the past is hätte or wäre plus the Partizip II — and the choice between the two auxiliaries is the one you already make for the Perfekt. Whether the real event would have been a Perfekt, a Präteritum or a Plusquamperfekt makes no difference at all to its unreal version."
+      ru: "Нет ни нереального Perfekt, ни нереального Plusquamperfekt, которые надо было бы учить отдельно. Всё нереальное в прошлом — это hätte или wäre плюс Partizip II, причём выбор между двумя вспомогательными глаголами тот же самый, что уже делается для Perfekt. Каким было бы реальное событие — Perfekt, Präteritum или Plusquamperfekt — для нереального варианта совершенно неважно."
+      uk: "Немає ні нереального Perfekt, ні нереального Plusquamperfekt, які треба було б учити окремо. Усе нереальне в минулому — це hätte або wäre плюс Partizip II, причому вибір між двома допоміжними дієсловами той самий, що вже робиться для Perfekt. Яким було б реальне подія — Perfekt, Präteritum чи Plusquamperfekt — для нереального варіанта зовсім неважливо."
+    examples:
+      - de: "Wenn ich Zeit gehabt hätte, wäre ich gekommen."
+        en: "If I had had time, I would have come."
+        ru: "Если бы у меня было время, я бы пришёл."
+        uk: "Якби я мав час, я б прийшов."
+      - de: "Das hättest du mir früher sagen sollen."
+        en: "You should have told me that earlier."
+        ru: "Тебе следовало сказать мне это раньше."
+        uk: "Тобі слід було сказати мені це раніше."
+
+  - id: konjunktiv2-zwei-aufgaben
+    title:
+      de: "Ein Formensatz, zwei Aufgaben"
+      en: "One set of forms, two jobs"
+      ru: "Один набор форм, две задачи"
+      uk: "Один набір форм, два завдання"
+    explanation:
+      en: "The polite Könnten Sie …? and the unreal Wenn ich Zeit hätte … are not two different grammars. They are the same forms doing two jobs, and the link between them is direct: stepping away from what is actually the case is exactly what makes a request sound less blunt. The course taught the polite phrases first, as fixed chunks, and the full paradigm behind them later — this page is where they become one thing."
+      ru: "Вежливое Könnten Sie …? и нереальное Wenn ich Zeit hätte … — это не две разные грамматики. Это один набор форм, выполняющий две задачи, и связь между ними прямая: отступление от того, что есть на самом деле, как раз и смягчает просьбу. Курс сначала давал вежливые обороты как готовые сочетания, а полную парадигму за ними — позже; здесь они снова становятся одним целым."
+      uk: "Увічливе Könnten Sie …? і нереальне Wenn ich Zeit hätte … — це не дві різні граматики. Це один набір форм, що виконує два завдання, і зв'язок між ними прямий: відступ від того, що є насправді, саме й пом'якшує прохання. Курс спершу давав увічливі звороти як готові сполучення, а повну парадигму за ними — пізніше; тут вони знову стають одним цілим."
+    examples:
+      - de: "Könnten Sie mir bitte helfen?"
+        en: "Could you help me, please?"
+        ru: "Не могли бы вы мне помочь?"
+        uk: "Чи не могли б ви мені допомогти?"
+      - de: "Ich hätte gern einen Kaffee."
+        en: "I would like a coffee."
+        ru: "Я бы хотел кофе."
+        uk: "Я хотів би каву."
+      - de: "Wenn ich reich wäre, würde ich weniger arbeiten."
+        en: "If I were rich, I would work less."
+        ru: "Если бы я был богат, я бы меньше работал."
+        uk: "Якби я був багатий, я б менше працював."
+
+  - id: futur-oder-praesens
+    title:
+      de: "Futur I oder Präsens?"
+      en: "Futur I or present tense?"
+      ru: "Futur I или настоящее время?"
+      uk: "Futur I чи теперішній час?"
+    explanation:
+      en: "German normally puts the future into the present tense and lets a time word carry it: Morgen fahre ich nach Berlin is the ordinary way to say it. werden + Infinitiv adds something the present does not have — a prediction, an intention, a promise. Using it for every future sentence is not wrong, but it sounds heavy, in the way that always saying \"I shall\" would."
+      ru: "Немецкий обычно ставит будущее в настоящее время, а на будущее указывает слово времени: Morgen fahre ich nach Berlin — это нормальный способ сказать. werden + Infinitiv добавляет то, чего в настоящем нет: прогноз, намерение, обещание. Употреблять эту форму в каждом предложении о будущем не ошибка, но звучит тяжеловесно."
+      uk: "Німецька зазвичай ставить майбутнє в теперішній час, а на майбутнє вказує слово часу: Morgen fahre ich nach Berlin — це звичайний спосіб сказати. werden + Infinitiv додає те, чого в теперішньому немає: прогноз, намір, обіцянку. Уживати цю форму в кожному реченні про майбутнє не помилка, але звучить обтяжливо."
+    examples:
+      - de: "Nächste Woche fange ich den neuen Kurs an."
+        en: "Next week I start the new course."
+        ru: "На следующей неделе я начинаю новый курс."
+        uk: "Наступного тижня я починаю новий курс."
+      - de: "Es wird morgen regnen."
+        en: "It is going to rain tomorrow."
+        ru: "Завтра будет дождь."
+        uk: "Завтра буде дощ."
+
+  - id: plusquamperfekt-relativ
+    title:
+      de: "Plusquamperfekt ordnet, es datiert nicht"
+      en: "The Plusquamperfekt orders events; it does not date them"
+      ru: "Plusquamperfekt упорядочивает события, а не датирует их"
+      uk: "Plusquamperfekt упорядковує події, а не датує їх"
+    explanation:
+      en: "The Plusquamperfekt says nothing about how long ago something happened. It says only that one past event came before another past event — so it needs that other event to be present, which is why it usually arrives with nachdem, bevor or als. A lone Plusquamperfekt sentence with nothing to be earlier than is almost always a Perfekt or a Präteritum in disguise."
+      ru: "Plusquamperfekt ничего не говорит о том, как давно что-то произошло. Он сообщает лишь, что одно прошедшее событие предшествовало другому прошедшему событию, поэтому ему нужно это второе событие — отсюда и постоянное соседство с nachdem, bevor или als. Одиночное предложение в Plusquamperfekt, которому нечего предшествовать, почти всегда оказывается замаскированным Perfekt или Präteritum."
+      uk: "Plusquamperfekt нічого не говорить про те, як давно щось сталося. Він повідомляє лише, що одна минула подія передувала іншій минулій події, тому йому потрібна ця друга подія — звідси й постійне сусідство з nachdem, bevor або als. Поодиноке речення в Plusquamperfekt, якому немає чого передувати, майже завжди виявляється замаскованим Perfekt або Präteritum."
+    examples:
+      - de: "Nachdem er die Prüfung bestanden hatte, suchte er eine Stelle."
+        en: "After he had passed the exam, he looked for a job."
+        ru: "После того как он сдал экзамен, он стал искать работу."
+        uk: "Після того як він склав іспит, він почав шукати роботу."
+      - de: "Sie war schon gegangen, als ich ankam."
+        en: "She had already left when I arrived."
+        ru: "Она уже ушла, когда я приехал."
+        uk: "Вона вже пішла, коли я приїхав."
+
+  - id: werden-vier-rollen
+    title:
+      de: "werden: vier Rollen, ein Verb"
+      en: "werden: four jobs, one verb"
+      ru: "werden: четыре роли, один глагол"
+      uk: "werden: чотири ролі, одне дієслово"
+    explanation:
+      en: "Most of the confusion around the German future and the German passive is one word doing four different jobs. On its own werden is a full verb and means become. Before an infinitive it builds the Futur I. Before a Partizip II it builds the passive. And its own Konjunktiv II, würde, is the everyday way to build the unreal mood. What follows werden tells you which of the four you are looking at, every time."
+      ru: "Бо́льшая часть путаницы вокруг немецкого будущего и немецкого пассива — это одно слово в четырёх разных ролях. Само по себе werden — полнозначный глагол со значением «становиться». Перед инфинитивом оно образует Futur I. Перед Partizip II — пассив. А его собственный Konjunktiv II, würde, — обиходный способ образовать нереальное наклонение. Что стоит после werden, то и подсказывает роль, каждый раз."
+      uk: "Більша частина плутанини навколо німецького майбутнього та німецького пасива — це одне слово в чотирьох різних ролях. Саме по собі werden — повнозначне дієслово зі значенням «ставати». Перед інфінітивом воно утворює Futur I. Перед Partizip II — пасив. А його власний Konjunktiv II, würde, — побутовий спосіб утворити нереальний спосіб. Що стоїть після werden, те й підказує роль, щоразу."
+    examples:
+      - de: "Sie wird Ärztin."
+        en: "She is becoming a doctor."
+        ru: "Она станет врачом."
+        uk: "Вона стане лікаркою."
+      - de: "Sie wird morgen anrufen."
+        en: "She will call tomorrow."
+        ru: "Она позвонит завтра."
+        uk: "Вона зателефонує завтра."
+      - de: "Sie wird oft gefragt."
+        en: "She is often asked."
+        ru: "Её часто спрашивают."
+        uk: "Її часто запитують."
+      - de: "Sie würde gern mitkommen."
+        en: "She would like to come along."
+        ru: "Она бы с удовольствием пошла с нами."
+        uk: "Вона б залюбки пішла з нами."
+
+  - id: konjunktiv1-rezeptiv
+    title:
+      de: "Konjunktiv I: erkennen genügt"
+      en: "Konjunktiv I: recognising it is enough"
+      ru: "Konjunktiv I: достаточно узнавать"
+      uk: "Konjunktiv I: досить упізнавати"
+    explanation:
+      en: "In news reports er komme, sie habe and er sei mark the words as someone else's rather than the writer's own claim. That is worth recognising, because it changes who is answerable for the statement. Producing it belongs to a later stage, and in conversation German speakers themselves reach for würde or simply the indicative."
+      ru: "В новостных текстах er komme, sie habe и er sei помечают слова как чужие, а не как утверждение самого автора. Это стоит узнавать, потому что от этого зависит, кто отвечает за сказанное. Активное употребление относится к более поздней ступени, а в разговоре сами носители берут würde или просто изъявительное наклонение."
+      uk: "У новинних текстах er komme, sie habe та er sei позначають слова як чужі, а не як твердження самого автора. Це варто впізнавати, бо від цього залежить, хто відповідає за сказане. Активне вживання належить до пізнішого щабля, а в розмові самі носії беруть würde або просто дійсний спосіб."
+    examples:
+      - de: "Die Sprecherin sagte, das Gesetz sei bereits in Kraft."
+        en: "The spokeswoman said the law was already in force."
+        ru: "Представительница заявила, что закон уже вступил в силу."
+        uk: "Речниця заявила, що закон уже набув чинності."
+      - de: "Er sagte, er habe nichts davon gewusst."
+        en: "He said he had known nothing about it."
+        ru: "Он сказал, что ничего об этом не знал."
+        uk: "Він сказав, що нічого про це не знав."

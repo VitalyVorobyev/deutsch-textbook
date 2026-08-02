@@ -48,6 +48,12 @@ Engagement, same-day accuracy and page viewing cannot substitute for either.
   deterministic HTML/SVG for grammar, sentence topology and time.
 - **Entdecken and documents:** authentic tasks, explicit provenance, no completion state.
 - **Language quality:** Ukrainian calque review and ongoing EN/RU/UK/DE parity checks.
+- **Written forms and cross-links:** give the standard written genres — Bewerbung, Beschwerde,
+  formal e-mail — a practice surface that grades what a program can actually check (structure and
+  register, never wording), an Entdecken index that gathers the material, and a single pass that
+  links the graph both ways: topic → Referenz, Referenz → topic, topic → topic. Derive the edges
+  from data the curriculum already owns, the way `/referenz/zeitformen` derives its lesson links
+  from the focus-tag map, so they cannot drift. Backlog P21-1 · P21-2 · P21-3.
 - **Audio:** maintain purposeful listening tasks; defer broader neural audio until evidence isolates
   audio quality as the limiting factor.
 

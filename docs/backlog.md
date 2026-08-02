@@ -87,6 +87,32 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
 
 ## Open
 
+- **P21-1 · Standard written forms are taught but never practised as forms** — the course teaches
+  the parts (`content/reference-data/briefe.yaml` holds the sections and three complete register
+  models; `write` items ask for free production) and A2/B1 topics name the situations. What is
+  missing is the middle: a task that asks the learner to *assemble* a Bewerbung, a Beschwerde or a
+  formal e-mail from its parts and gets meaningful feedback. `write` cannot do it — it is
+  minimal-ceremony by contract (attempt → model answer → done), and the app cannot verify free
+  production, which is the right rule and also the reason a whole genre has no practice surface.
+  Open question, not a decided design: a new item type that grades *structure* rather than wording
+  (are the required sections present, in order, at one register?) would stay inside what a program
+  can actually check, but it needs the seven placement-style rules thought through before any
+  schema — a form task that grades wording would reject correct German at scale.
+- **P21-2 · The written-forms material has no index** — `briefe`, the register conventions, and the
+  A2/B1 topics that use them are reachable only by knowing they exist. An Entdecken piece
+  (`content/discovery/`) is the natural home for a focused summary that points at the Referenz page
+  and the owning topics — no mastery, no review debt, no completion bar, per the Entdecken contract.
+  Blocked on nothing; sized small.
+- **P21-3 · The Atlas has almost no cross-links, and every new Referenz page widens the gap** —
+  `deepens:` edges exist between topics and are validated, and a discovery piece may name its
+  topics, but there is no link *from* a topic *to* a Referenz page, none from Referenz back into the
+  topics that teach a form, and no topic-to-topic "see also" surface a learner can follow. Today
+  each Referenz page hand-writes at most one closing link. `/referenz/zeitformen` (this PR) shows
+  both halves of the answer and the remaining gap: its per-form lesson chips are **derived** from
+  `focusIntroducedBy` and so cannot drift — that is the pattern to generalise — while the reverse
+  edge, a topic page pointing at the reference that frames what it teaches, still does not exist
+  anywhere. Worth doing as one pass over the whole graph rather than page by page, because the
+  value is in the network and a half-linked graph reads as an oversight.
 - **P20-1 · The A1 exam-practice surface has one entry point and one owner topic** — `/pruefung/a1`
   is linked only from `/about`: no nav entry, no link from the A1 topic pages, nothing on the
   progress page. A learner who never opens Über will not find it. Separately, all three sets
