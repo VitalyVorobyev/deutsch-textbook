@@ -1,0 +1,584 @@
+{
+  "approval": {
+    "audio_sha256": "e927a8ff54a839894f173a77d498edf6c1f62a8a5a8fc85d9d94f8852ced12fd",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "88aea8902550abdec7719fc2ac05f50796b8ea48e6b95ece16aa35950466bd70",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T16:04:22.886041+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Büroraum unter einer Arbeitsanweisung.",
+      "duration_seconds": 66.327063,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 1507872,
+      "original_filename": "135097.mp3",
+      "original_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+      "page_url": "https://freesound.org/s/135097/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 60000,
+        "gain_db": -26.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 4000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Raumton mit entferntem Verkehr, ohne Sprache, Musik oder Marken; CC0 freigegeben.",
+      "sound_id": 135097,
+      "source_file": "preview-hq",
+      "title": "Room Tone Office Quiet Distant Traffic.wav",
+      "uploader": "mzui"
+    }
+  ],
+  "created_at": "2026-08-02T16:04:22.886041+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "88aea8902550abdec7719fc2ac05f50796b8ea48e6b95ece16aa35950466bd70",
+  "exported_files": {
+    "exercise.yaml": "fa45e01fa9538691090275f14698e8a3056e1615278298e0a0087db77cc67f3b",
+    "generation-brief.md": "1fb93271e70363ac57180b238c0e5f490f35da311e18b93d64f35fcb6f84ed00",
+    "listening.yaml": "75b23885d0d52cac2a28f3d255531d61ebb5bf038b53360d568b031eaee31af9",
+    "ls-arbeit-bewerbung-01-dry.wav": "88aea8902550abdec7719fc2ac05f50796b8ea48e6b95ece16aa35950466bd70",
+    "ls-arbeit-bewerbung-01.mp3": "21705059c1d0ae4599aa5618897eefaf246be299c4f4a9ec868686fd99f0ac17",
+    "ls-arbeit-bewerbung-01.wav": "e927a8ff54a839894f173a77d498edf6c1f62a8a5a8fc85d9d94f8852ced12fd",
+    "project.json": "e7b32ec1f7edd3c524c3d0fdc272116a2018e5a4b987789c82152af1cd6d99a3",
+    "sources/freesound-135097/ATTRIBUTION.md": "eb97d005c789dddc4cc7e86df97f8a7414046183a196deaa7cf65e6175905d18",
+    "sources/freesound-135097/original.mp3": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+    "sources/freesound-135097/source.json": "7e5873feb83656067734a6c0eb124fdcc4aef1402a61c186c934e56ec3ee4512",
+    "student.html": "2f9f72f4d9fe013c399fc0f3b6fdd23c7c014267c057d91b64d133d994031ab2",
+    "student.pdf": "cec65d158cbe9e979b28ac3631831b97863f1ca959cadd6895a29b67cf60ef37",
+    "teacher.html": "e86d0fbc57934db789f970f2c9ae3980074e619acf01c517dfc0300c8dbc384c",
+    "teacher.pdf": "d12eed4dfe9f7d46249776551f3d913aa23f45463c77fb86f530bb4b8770e506",
+    "transcript.txt": "4fc672c1e999048ec809e1c0394b7b44622e6e5f06121ea543fecc53ae9ae7d2"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-arbeit-bewerbung-01-listening.md",
+    "sha256": "1fb93271e70363ac57180b238c0e5f490f35da311e18b93d64f35fcb6f84ed00"
+  },
+  "id": "ls-arbeit-bewerbung-01",
+  "line_artifacts": [
+    {
+      "cache_key": "c9c7c2911ce54dcecdf029f082ea3444aadd14bda48f33026bdd5dcba6063258",
+      "display_text_sha256": "7f40bfdd663f4e184b9334fe39da7f8d2af0414b7c422b05b41e72a2834cf2ca",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "7f40bfdd663f4e184b9334fe39da7f8d2af0414b7c422b05b41e72a2834cf2ca",
+      "wav_sha256": "52a18b1dc376f0e9f45a53bfcd160665d9437f7ef82bc6049267cfa72f1a99ef"
+    },
+    {
+      "cache_key": "f9f1fd89e57ffefd2a19432e18eecaf742c53969790995f42ea9c26e76aa63cf",
+      "display_text_sha256": "a7f948081d4e62d521c0eedd1782e8f8e89e39f593afe991000be8e37620243c",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "a7f948081d4e62d521c0eedd1782e8f8e89e39f593afe991000be8e37620243c",
+      "wav_sha256": "d36e1b060199d031cac92e4ced347d3d90dd3f0239a7ce55ffd6888b13bc798c"
+    },
+    {
+      "cache_key": "f360c196ed2d27e6cd68a9be1dbb7bc2c3501849e6a07e73643fd087a4fa03b4",
+      "display_text_sha256": "c74e78bb0039eb41e20a5105fd4cbfdeb54ef748fef8994a7da3684f938e8701",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "c74e78bb0039eb41e20a5105fd4cbfdeb54ef748fef8994a7da3684f938e8701",
+      "wav_sha256": "c0f1aefe43fdf27fdba0e32bad5b30c0d21f95a46206d4b8eefa3aae0b3ac49c"
+    },
+    {
+      "cache_key": "d2d3f8604ee8d0784be3e5082890a9d46e57c934430f0395adb91469e66e6234",
+      "display_text_sha256": "e5fd700b71caa3bc45a13f4d40473eca83c98f4eae5ae047690b548c882885c6",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "e5fd700b71caa3bc45a13f4d40473eca83c98f4eae5ae047690b548c882885c6",
+      "wav_sha256": "a5c6301646ea761b990b95f2e46d21114931b4017283b50233e28e5c2e79beb8"
+    },
+    {
+      "cache_key": "816caae572c69d71b9f2f29e17aafd8ba212e95a95ecbc9c42e5059f052eaec8",
+      "display_text_sha256": "fed359dcea7368b1b15916eb20fd56609dacd58f08421cbf0517a2e76aee0a86",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "fed359dcea7368b1b15916eb20fd56609dacd58f08421cbf0517a2e76aee0a86",
+      "wav_sha256": "25c69a7e5d92c7125fa4c8cd29c4612855acc584841b545e6870537062574ccf"
+    },
+    {
+      "cache_key": "cbce728d98f5fbfa7c437e470657ab46dd3fe8659cbd56892186708a7edd3d20",
+      "display_text_sha256": "f2f4489dcc07f33b6c3b244dcab67d6d6f973b5caf6b3ed08f1cd4fbfbdfb9e7",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "f2f4489dcc07f33b6c3b244dcab67d6d6f973b5caf6b3ed08f1cd4fbfbdfb9e7",
+      "wav_sha256": "7f68fc9eade4862d0943a33919d489a485f36b6bd22701c0dba064d23dc2c6fe"
+    },
+    {
+      "cache_key": "9635abb27b5586f6db6dbee314915473d92ca1fab370e84817bdde5d7259b611",
+      "display_text_sha256": "aa48c4ce3a553494dcc2b50f0f6cd630f26ac6a25050c5f84d1ab0883eddd6fa",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "aa48c4ce3a553494dcc2b50f0f6cd630f26ac6a25050c5f84d1ab0883eddd6fa",
+      "wav_sha256": "767cdd634287b42af5bc91902d6f2e1d0770623e5ccf006932f580cc31e6bbd4"
+    },
+    {
+      "cache_key": "d4efc45730985b7b1df94f5d0136f6ab511206f3f0d21b2271e791efdf7fe249",
+      "display_text_sha256": "2f37ecce8552f75f123ca157e93fba156120d4d16675a9e67249ac63c307d685",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "2f37ecce8552f75f123ca157e93fba156120d4d16675a9e67249ac63c307d685",
+      "wav_sha256": "d2759166c0f2c0ebd8fc8d201f72f99a223e9ddfb53b93dd1e5fff4318ffa43b"
+    },
+    {
+      "cache_key": "b0a9c4f052b4b1bbe590009c7d0e3436783ce16dfc05361fdf724b82bc3e29b0",
+      "display_text_sha256": "497d909f23f30ebd15d55513df5ce2d501b6b5128aa898c706207dc7ca1174e4",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "497d909f23f30ebd15d55513df5ce2d501b6b5128aa898c706207dc7ca1174e4",
+      "wav_sha256": "268355a3484d6c65ffc014bcdfd97cee4f3b0f5b87a26283ab849d8ed1139fab"
+    },
+    {
+      "cache_key": "f920513549d531ecd01fa376e44e755b837d060f88d7c9954beb6656ea787d0e",
+      "display_text_sha256": "52d9c32e8d26bf65b79665c45fe8a17674e407287614c9339d2a56bd35250426",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "52d9c32e8d26bf65b79665c45fe8a17674e407287614c9339d2a56bd35250426",
+      "wav_sha256": "60acb80740a71273ee503d6323263d91501dadeae83f1b0a42ee900e77fad232"
+    },
+    {
+      "cache_key": "b576b66d7b2e47ff4a032c34ec35e118a1a865da283f5212e9a1aa64b9f04b89",
+      "display_text_sha256": "bf38cfd9309fa18dde2b1795a30043864b9b2c09c1c99f30c0e5e3c3a0cb7eb6",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "bf38cfd9309fa18dde2b1795a30043864b9b2c09c1c99f30c0e5e3c3a0cb7eb6",
+      "wav_sha256": "7199d4d3d2501084b02b1a2e2d53809777fb791e4ef5db87c45fd5d78bc5a518"
+    }
+  ],
+  "master_audio_sha256": "e927a8ff54a839894f173a77d498edf6c1f62a8a5a8fc85d9d94f8852ced12fd",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "21705059c1d0ae4599aa5618897eefaf246be299c4f4a9ec868686fd99f0ac17",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T14:30:01.804965+00:00",
+      "failures": [],
+      "full_transcript": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln? Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an Ihrer Stelle. Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen Sie mit Beschwerden um? Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt es schon. Und wenn Sie die Lösung nicht selbst entscheiden dürfen? Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung. Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche? Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert. Eine letzte Frage. Ab wann könnten Sie anfangen? Ich habe vier Wochen Kündigungsfrist, also ab dem 1. Oktober. Gut, wir melden uns bis Ende der Woche bei Ihnen.",
+      "full_wer": 0.006578947368421052,
+      "lines": [
+        {
+          "expected": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an Ihrer Stelle.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an ihrer Stelle.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen Sie mit Beschwerden um?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen sie mit Beschwerden um?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt das schon.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt es schon.",
+          "wer": 0.058823529411764705
+        },
+        {
+          "expected": "Und wenn Sie die Lösung nicht selbst entscheiden dürfen?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn Sie die Lösung nicht selbst entscheiden dürfen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Eine letzte Frage: Ab wann könnten Sie anfangen?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Eine letzte Frage. Ab wann könnten Sie anfangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich habe vier Wochen Kündigungsfrist, also ab dem ersten Oktober.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich habe vier Wochen Kündigungsfrist, also ab dem 1. Oktober.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut. Wir melden uns bis Ende der Woche bei Ihnen.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, wir melden uns bis Ende der Woche bei Ihnen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:30:01.808736+00:00",
+      "failures": [],
+      "full_transcript": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln? Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an Ihrer Stelle. Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen Sie mit Beschwerden um? Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt es schon. Und wenn Sie die Lösung nicht selbst entscheiden dürfen? Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung. Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche? Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert. Eine letzte Frage. Ab wann könnten Sie anfangen? Ich habe vier Wochen Kündigungsfrist, also ab dem 1. Oktober. Gut, wir melden uns bis Ende der Woche bei Ihnen.",
+      "full_wer": 0.006578947368421052,
+      "lines": [
+        {
+          "expected": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an Ihrer Stelle.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an ihrer Stelle.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen Sie mit Beschwerden um?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen sie mit Beschwerden um?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt das schon.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt es schon.",
+          "wer": 0.058823529411764705
+        },
+        {
+          "expected": "Und wenn Sie die Lösung nicht selbst entscheiden dürfen?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn Sie die Lösung nicht selbst entscheiden dürfen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Eine letzte Frage: Ab wann könnten Sie anfangen?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Eine letzte Frage. Ab wann könnten Sie anfangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich habe vier Wochen Kündigungsfrist, also ab dem ersten Oktober.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich habe vier Wochen Kündigungsfrist, also ab dem 1. Oktober.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut. Wir melden uns bis Ende der Woche bei Ihnen.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, wir melden uns bis Ende der Woche bei Ihnen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "d05d876e12959d2e007f68601be2213340e6bb3f3136a4378dbcc97f20d4cecf",
+  "script_sha256": "7662c19026426dd82d525e8f6e7dadbb49f91bba0fb4e0fca8dd8d3874b9ec81",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 60000,
+        "gain_db": -26.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 4000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Frau Petrova, Sie haben zuletzt drei Jahre in einem Logistikunternehmen gearbeitet. Warum möchten Sie wechseln?",
+        "id": "line-1",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Die Arbeit hat mir gefallen, aber ich hatte kaum Kontakt zu Kunden. Genau das reizt mich an Ihrer Stelle.",
+        "id": "line-2",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Frau Petrova",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Unsere Kunden rufen oft an, wenn etwas schiefgegangen ist. Wie gehen Sie mit Beschwerden um?",
+        "id": "line-3",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ich höre erst zu Ende zu und wiederhole dann, was ich verstanden habe. Meistens beruhigt das schon.",
+        "id": "line-4",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Frau Petrova",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Und wenn Sie die Lösung nicht selbst entscheiden dürfen?",
+        "id": "line-5",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Dann sage ich das offen und nenne einen Zeitpunkt, bis wann ich zurückrufe. Falsche Versprechen ärgern die Kunden mehr als eine Verzögerung.",
+        "id": "line-6",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Frau Petrova",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Das sehe ich genauso. Wo sehen Sie Ihre größte Schwäche?",
+        "id": "line-7",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 106,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ich arbeite manchmal zu lange an Details. Ich setze mir inzwischen feste Zeiten, damit das nicht passiert.",
+        "id": "line-8",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 107,
+        "speaker": "Frau Petrova",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Eine letzte Frage: Ab wann könnten Sie anfangen?",
+        "id": "line-9",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 108,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ich habe vier Wochen Kündigungsfrist, also ab dem ersten Oktober.",
+        "id": "line-10",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 109,
+        "speaker": "Frau Petrova",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Gut. Wir melden uns bis Ende der Woche bei Ihnen.",
+        "id": "line-11",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 110,
+        "speaker": "Frau Baumann",
+        "style": "Sprich ruhig, freundlich und aufmerksam, wie in einem Vorstellungsgespräch.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      }
+    ]
+  },
+  "version": 1
+}

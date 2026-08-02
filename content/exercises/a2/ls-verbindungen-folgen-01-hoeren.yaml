@@ -1,0 +1,104 @@
+topic: verbindungen-folgen
+role: practice
+title:
+  en: A burst pipe and what follows
+  ru: Прорвало трубу — и что дальше
+  uk: 'Прорвало трубу — і що далі'
+items:
+- id: q1
+  outcomes:
+  - folge-ausdruecken
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Sanz
+      text: Warum ist das Wasser im Keller abgestellt?
+    - speaker: Hausmeister
+      text: Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.
+    - speaker: Frau Sanz
+      text: Und wie lange dauert das?
+    - speaker: Hausmeister
+      text: Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.
+    - speaker: Frau Sanz
+      text: Ist etwas kaputtgegangen?
+    - speaker: Hausmeister
+      text: Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht
+        abstellen.
+    - speaker: Frau Sanz
+      text: Meine Kisten stehen aber schon unten.
+    - speaker: Hausmeister
+      text: Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.
+    - speaker: Frau Sanz
+      text: Gut, ich mache das gleich.
+    - speaker: Hausmeister
+      text: Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.
+    - speaker: Frau Sanz
+      text: Mache ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.
+  recording: ls-verbindungen-folgen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Warum ist das Wasser abgestellt?
+  options:
+  - Ein Rohr ist geplatzt.
+  - Der Keller wird geputzt.
+  - Die Firma arbeitet am Boden.
+  correct: 0
+  explain:
+    en: Cause and consequence are joined by deshalb in the very first reply. The
+      firm is coming because of the cause, not causing it.
+    ru: Причина и следствие соединены словом deshalb уже в первой реплике. Фирма приезжает
+      из-за причины, а не создаёт её.
+    uk: 'Причину і наслідок з''єднано словом deshalb уже в першій репліці. Фірма приїздить через причину, а не створює її.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - folge-ausdruecken
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Sanz
+      text: Warum ist das Wasser im Keller abgestellt?
+    - speaker: Hausmeister
+      text: Gestern Nacht ist ein Rohr geplatzt, deshalb mussten wir es abstellen.
+    - speaker: Frau Sanz
+      text: Und wie lange dauert das?
+    - speaker: Hausmeister
+      text: Die Firma kommt heute Nachmittag, also haben wir am Abend wieder Wasser.
+    - speaker: Frau Sanz
+      text: Ist etwas kaputtgegangen?
+    - speaker: Hausmeister
+      text: Der Boden im Keller ist nass, darum können Sie Ihre Kisten dort nicht
+        abstellen.
+    - speaker: Frau Sanz
+      text: Meine Kisten stehen aber schon unten.
+    - speaker: Hausmeister
+      text: Dann holen Sie sie bitte heute noch hoch, sonst wird der Karton weich.
+    - speaker: Frau Sanz
+      text: Gut, ich mache das gleich.
+    - speaker: Hausmeister
+      text: Und schreiben Sie Ihren Namen darauf, damit nichts verwechselt wird.
+    - speaker: Frau Sanz
+      text: Mache ich. Sagen Sie mir Bescheid, wenn der Keller wieder trocken ist.
+  recording: ls-verbindungen-folgen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was soll Frau Sanz heute noch tun?
+  options:
+  - Ihre Kisten aus dem Keller holen.
+  - Neue Kartons kaufen.
+  - Auf die Firma warten.
+  correct: 0
+  explain:
+    en: The instruction comes with its own consequence attached — sonst wird der Karton
+      weich — which is a warning about the boxes she has, not an instruction to buy
+      new ones.
+    ru: Указание приходит вместе со своим следствием — sonst wird der Karton weich,
+      — и это предупреждение о её нынешних коробках, а не совет купить новые.
+    uk: 'Вказівка приходить разом зі своїм наслідком — sonst wird der Karton weich, — і це попередження про її теперішні коробки, а не порада купити нові.'
+  max_replays: 3

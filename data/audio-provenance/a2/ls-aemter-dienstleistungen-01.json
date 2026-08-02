@@ -1,0 +1,619 @@
+{
+  "approval": {
+    "audio_sha256": "44445b83b65035dc15c4c246151fbad9693c47c56145d02d4f86498720af7716",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "52b3d191b2880f936e75e7bedcbb87d40bfb5ecc76051f90258b7d5ee83113fd",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T15:57:34.101465+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Sehr leiser Wartezimmerton unter einem Gespräch am Praxisempfang.",
+      "duration_seconds": 97.24,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2248464,
+      "original_filename": "744447.mp3",
+      "original_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+      "page_url": "https://freesound.org/s/744447/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 60000,
+        "gain_db": -25.0,
+        "sound_id": 744447,
+        "source_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+        "start_ms": 5000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 744447,
+      "source_file": "preview-hq",
+      "title": "Soft Room Tone",
+      "uploader": "callmethefoo"
+    }
+  ],
+  "created_at": "2026-08-02T15:57:34.101465+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "52b3d191b2880f936e75e7bedcbb87d40bfb5ecc76051f90258b7d5ee83113fd",
+  "exported_files": {
+    "exercise.yaml": "34b9783078d96bd6863a5a6f7b083ffade1d4a9c28f397362e883a54afb4477e",
+    "generation-brief.md": "38b44913870befb4c9c2cbd1f2d3a72d21e44aebd1db2c981283b545b20ff0c5",
+    "listening.yaml": "5c68aa921a9b17f0930291be56ba583dd540350294333f1dfdd13fe33a5f66c6",
+    "ls-aemter-dienstleistungen-01-dry.wav": "52b3d191b2880f936e75e7bedcbb87d40bfb5ecc76051f90258b7d5ee83113fd",
+    "ls-aemter-dienstleistungen-01.mp3": "2b73c204cf1a364d05ac4c4aab6a088277659ab24636f33ad24776141cac6c5e",
+    "ls-aemter-dienstleistungen-01.wav": "44445b83b65035dc15c4c246151fbad9693c47c56145d02d4f86498720af7716",
+    "project.json": "d62f43b6a046eb871a1d3308cea13159d04cc1d9859313169c329893d94fac3b",
+    "sources/freesound-744447/ATTRIBUTION.md": "96aa4e583deb9e634fbf2ac146f311374eb3e7e41e3b2061fa7a3dfd9e9a2b95",
+    "sources/freesound-744447/original.mp3": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+    "sources/freesound-744447/source.json": "66d5636bbab5beba835dbc724de7884ec229c6ff25e43c65ab1de05d9aba5d48",
+    "student.html": "00d58dbd17b4a8bffab1c8b4ae7f0ddffb8efe638e5358ee96eed6158cb6d6f5",
+    "student.pdf": "221116c4fdbffc37fb49a68d2e5aaae1bb07bce21116363bdfa488ae5b898dd1",
+    "teacher.html": "022264075dcefd62da6aa61e4b6589f567b392a2653a996c0ad3b5eda0fc41bf",
+    "teacher.pdf": "e3ea39cb4c08e1085cad51dafa5c9aac269307175980ff3f9383ecac7d828e52",
+    "transcript.txt": "b29b69489859da4b99cc074da697e70a68bd9ac0236f52058e4377668c7f79b7"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-aemter-dienstleistungen-01-listening.md",
+    "sha256": "38b44913870befb4c9c2cbd1f2d3a72d21e44aebd1db2c981283b545b20ff0c5"
+  },
+  "id": "ls-aemter-dienstleistungen-01",
+  "line_artifacts": [
+    {
+      "cache_key": "e31d226267862fb6cf1e39a0295da31bb6571cb4cd4e1dbff9ed31ab1c86e76f",
+      "display_text_sha256": "f3f112952ff35461b4edd6fade679bc0136df0f71c6ae689284417e589e81171",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "f3f112952ff35461b4edd6fade679bc0136df0f71c6ae689284417e589e81171",
+      "wav_sha256": "5a9784300fce7e0544564814630d5a033d3d429b35f6c7c1e970b245a054f205"
+    },
+    {
+      "cache_key": "fc39949acabfda1fdef4bde76e814ce2c151d180a22a28b50422b2de86b8e756",
+      "display_text_sha256": "34489eae55f3fa5d22567501e0f32681bdbb7020869ac24f0d3873831bc764f2",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "34489eae55f3fa5d22567501e0f32681bdbb7020869ac24f0d3873831bc764f2",
+      "wav_sha256": "9ea6da3cbb4054d2cf337af8a73a1f9ead2c10da7fe1bf2059e58ae254a23877"
+    },
+    {
+      "cache_key": "d0a9aacf73b868dd1c56f3a5b01e1b36b5ac52c2315c753117f47d48c5c5f05f",
+      "display_text_sha256": "2700b0be910acfee6a9f5eefa2b5506f432616ba85623f97d3425fe2b0debd27",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "2700b0be910acfee6a9f5eefa2b5506f432616ba85623f97d3425fe2b0debd27",
+      "wav_sha256": "a2ec1f26823684e6af7e5e6b3146b2839d79ef1dcc1e5a0e418e6405e43a5568"
+    },
+    {
+      "cache_key": "e06375fe5840970cbe42bbf953a6d4c4001fe163de7f9c43ff95ad7cbae52dd0",
+      "display_text_sha256": "2fe1601bfff1279374759f6fa9129d585f79ae8b2016b90e623a8da663d65f1e",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "2fe1601bfff1279374759f6fa9129d585f79ae8b2016b90e623a8da663d65f1e",
+      "wav_sha256": "ebb96ba7c549671fcddd518981608c9f8a2a55af3b425e9f13b1879f87190f3f"
+    },
+    {
+      "cache_key": "959af93cc75baf2da8d2c7445c779e3e9d304efaf207a858ce54338e94e3819a",
+      "display_text_sha256": "684c3c813706c691dfa42768c6bae230abb29d6ecce8912f22c5035c5fb3a760",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "684c3c813706c691dfa42768c6bae230abb29d6ecce8912f22c5035c5fb3a760",
+      "wav_sha256": "4dddfc3f83ea08e0f44e29a05029e84e8d0c8503869f9c5d8c1a831d4a3e4fe2"
+    },
+    {
+      "cache_key": "efca19fd20bdeb6b97454463e05c94b7f440caac64f252145a2bfe93f5d0e8c4",
+      "display_text_sha256": "450b520422843a0c1ac0fbf531ca6761a57841f7f25be252e1725d63209ea2d2",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "450b520422843a0c1ac0fbf531ca6761a57841f7f25be252e1725d63209ea2d2",
+      "wav_sha256": "229a718a6209ca20dda08769237e4185429a1053f03c5aa6fdf20d6469bfff22"
+    },
+    {
+      "cache_key": "31a15499e6a1fa3fc2c749af30879f110802476826a7496014058504bc1d3fe0",
+      "display_text_sha256": "cc1f0b8c9675f239c31bca142141b2135b6c529821f1969a4949ff89f34338aa",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "cc1f0b8c9675f239c31bca142141b2135b6c529821f1969a4949ff89f34338aa",
+      "wav_sha256": "bdbf7864e6c3f170ab59e523e8ab822ca980b4e268d028bec3bacecea3ed319d"
+    },
+    {
+      "cache_key": "d5efbbd6c164d5787c3bef4b4ef2aef67a8df307a598677e0f83f6e176740ad3",
+      "display_text_sha256": "a25065a1f5cc26cc4953945eebd0c6fd4a44126058afbe76baebf509defd870f",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "a25065a1f5cc26cc4953945eebd0c6fd4a44126058afbe76baebf509defd870f",
+      "wav_sha256": "34199eb6914ae032527c1dfac228511201f7aa3b1522362dbcf32f32487065b0"
+    },
+    {
+      "cache_key": "44c849d7450f16764ac042f765a62a27ff6873b6136f28e67de300a7072244c3",
+      "display_text_sha256": "3aad6642096a7d6a298577933cc6be2c4179b0261d47538a52987f43bcf774d1",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "3aad6642096a7d6a298577933cc6be2c4179b0261d47538a52987f43bcf774d1",
+      "wav_sha256": "a5720b4e4b8bfb735dc0befa2f5c59482fdb87384578c4a19781cad561d684f6"
+    },
+    {
+      "cache_key": "602b2a67dc66c48ca7c4227a2c9062424cd8c7cc290431c3421ca8f91f02bdf0",
+      "display_text_sha256": "08b6ad5b36881853ce5fb183feb5264b83b50a8e37418313ea5382c93b20457e",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "08b6ad5b36881853ce5fb183feb5264b83b50a8e37418313ea5382c93b20457e",
+      "wav_sha256": "e0a8244b1effa15034f40c5a32462465fca7af8eccfe76e7eddeb993f0ac66bb"
+    },
+    {
+      "cache_key": "00ac101e56323dbb55bbee82ab345328b1b7c9704a7cd8e1cb7f4ee51ae4fd29",
+      "display_text_sha256": "8972958885b1434817569d6b8d6da0953e31393c3f9603111988a743f06c7f9c",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "8972958885b1434817569d6b8d6da0953e31393c3f9603111988a743f06c7f9c",
+      "wav_sha256": "fc80bd7ea9402ee91386b9c03d285025e9efb0dd67ac1f617a7457cb5e534bb8"
+    },
+    {
+      "cache_key": "325ac3beb22ea076a623773d560adadbf65668c1c2fb98b6af74165ddbe8403f",
+      "display_text_sha256": "84d7e2021982d9cf69c20600d81dd01da1ecab544f1f6008d208e3561bc02d4a",
+      "line_id": "line-12",
+      "synthesis_text_sha256": "84d7e2021982d9cf69c20600d81dd01da1ecab544f1f6008d208e3561bc02d4a",
+      "wav_sha256": "02bbe20f329741a4bdf16601072a82a022338aed32e589bd7ca68c7928c3dc18"
+    }
+  ],
+  "master_audio_sha256": "44445b83b65035dc15c4c246151fbad9693c47c56145d02d4f86498720af7716",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "2b73c204cf1a364d05ac4c4aab6a088277659ab24636f33ad24776141cac6c5e",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T14:29:24.355281+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, was kann ich für Sie tun? Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich? Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular. Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht. Das können Sie hier ausfüllen. Es liegt am Schalter 3. Muss meine Frau auch persönlich kommen? Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr. Und wie lange dauert die Bearbeitung? Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post. Kostet das etwas? Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie 37 Euro. Gut, dann fülle ich das Formular jetzt aus.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag, was kann ich für Sie tun?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag, was kann ich für Sie tun?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das können Sie hier ausfüllen. Es liegt am Schalter drei.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das können Sie hier ausfüllen. Es liegt am Schalter 3.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Muss meine Frau auch persönlich kommen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Muss meine Frau auch persönlich kommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange dauert die Bearbeitung?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange dauert die Bearbeitung?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Kostet das etwas?",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Kostet das etwas?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie siebenunddreißig Euro.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie 37 Euro.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, dann fülle ich das Formular jetzt aus.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, dann fülle ich das Formular jetzt aus.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:29:24.356118+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, was kann ich für Sie tun? Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich? Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular. Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht. Das können Sie hier ausfüllen. Es liegt am Schalter 3. Muss meine Frau auch persönlich kommen? Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr. Und wie lange dauert die Bearbeitung? Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post. Kostet das etwas? Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie 37 Euro. Gut, dann fülle ich das Formular jetzt aus.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag, was kann ich für Sie tun?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag, was kann ich für Sie tun?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das können Sie hier ausfüllen. Es liegt am Schalter drei.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das können Sie hier ausfüllen. Es liegt am Schalter 3.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Muss meine Frau auch persönlich kommen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Muss meine Frau auch persönlich kommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange dauert die Bearbeitung?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange dauert die Bearbeitung?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Kostet das etwas?",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Kostet das etwas?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie siebenunddreißig Euro.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie 37 Euro.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, dann fülle ich das Formular jetzt aus.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, dann fülle ich das Formular jetzt aus.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "656677e07ac3c0c71c45759e6887bacdbf2d0a9528ed3f8522a64e9115f6d272",
+  "script_sha256": "d3e53609d4ecbc2957948dc28456913137f51286fd7afa9a9b18df3efdbec6ab",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 60000,
+        "gain_db": -25.0,
+        "sound_id": 744447,
+        "source_sha256": "0c0e38e634bae6e954c2cc451d331800cfb0b3c97cef5276d596f3e2aca9e1ec",
+        "start_ms": 5000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Guten Tag, was kann ich für Sie tun?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Das können Sie hier ausfüllen. Es liegt am Schalter drei.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Muss meine Frau auch persönlich kommen?",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Nicht unbedingt. Sie brauchen dann aber eine Vollmacht von ihr.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 106,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Und wie lange dauert die Bearbeitung?",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 107,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen per Post.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 108,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Kostet das etwas?",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 109,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie siebenunddreißig Euro.",
+        "id": "line-11",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 110,
+        "speaker": "Sachbearbeiterin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Gut, dann fülle ich das Formular jetzt aus.",
+        "id": "line-12",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 111,
+        "speaker": "Herr Demir",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      }
+    ]
+  },
+  "version": 1
+}

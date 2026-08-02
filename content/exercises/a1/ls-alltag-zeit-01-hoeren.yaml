@@ -1,0 +1,75 @@
+topic: alltag-zeit
+role: practice
+title:
+  en: An answerphone message with times
+  ru: Сообщение на автоответчике со временем
+  uk: 'Повідомлення на автовідповідачі з годинами'
+items:
+- id: q1
+  outcomes:
+  - zeit-uhrzeit-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Sara
+      text: Hallo Tom, hier ist Sara. Unser Plan für morgen hat sich geändert.
+    - speaker: Sara
+      text: Wir treffen uns nicht um acht Uhr, sondern um halb neun am Bahnhof.
+    - speaker: Sara
+      text: Zuerst kaufen wir die Fahrkarten. Um neun Uhr fährt der Zug.
+    - speaker: Sara
+      text: Bitte ruf mich heute Abend noch einmal an. Bis dann!
+  recording: ls-alltag-zeit-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wann treffen sich Sara und Tom?
+  options:
+  - Um halb neun.
+  - Um acht Uhr.
+  - Um neun Uhr.
+  correct: 0
+  explain:
+    en: All three times are spoken. nicht … sondern cancels eight o'clock and replaces
+      it; nine o'clock is when the train leaves, not when they meet. A changed appointment
+      is the commonest thing to mishear.
+    ru: Все три времени звучат в записи. Конструкция nicht … sondern отменяет восемь
+      часов и заменяет их; девять — это отправление поезда, а не встреча. Изменённая
+      договорённость — самое частое место ошибки.
+    uk: 'У записі звучать усі три години. Конструкція nicht … sondern скасовує восьму і ставить замість неї іншу; дев''ята — це відправлення потяга, а не зустріч. Змінена домовленість — найчастіше місце помилки.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - zeit-uhrzeit-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Sara
+      text: Hallo Tom, hier ist Sara. Unser Plan für morgen hat sich geändert.
+    - speaker: Sara
+      text: Wir treffen uns nicht um acht Uhr, sondern um halb neun am Bahnhof.
+    - speaker: Sara
+      text: Zuerst kaufen wir die Fahrkarten. Um neun Uhr fährt der Zug.
+    - speaker: Sara
+      text: Bitte ruf mich heute Abend noch einmal an. Bis dann!
+  recording: ls-alltag-zeit-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was machen sie zuerst?
+  options:
+  - Sie kaufen die Fahrkarten.
+  - Sie fahren mit dem Zug.
+  - Sie rufen am Abend an.
+  correct: 0
+  explain:
+    en: Zuerst orders the two things that happen at the station. The call is for this
+      evening, before any of it.
+    ru: Zuerst задаёт порядок двух действий на вокзале. Звонок — на сегодняшний вечер,
+      то есть до всего остального.
+    uk: 'Zuerst задає порядок двох дій на вокзалі. Дзвінок — на сьогоднішній вечір, тобто ще до всього іншого.'
+  max_replays: 3

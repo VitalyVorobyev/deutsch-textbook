@@ -1,0 +1,577 @@
+{
+  "approval": {
+    "audio_sha256": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:14:26.724417+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T17:14:26.724417+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+  "exported_files": {
+    "exercise.yaml": "75a7eedb9e978f448f850f963e02ff5c0694bb1dbac87327d891fba51254837a",
+    "generation-brief.md": "1509569190869d5c98a22e4a26246732395ffef9b8d78755f10115d25c6f105a",
+    "listening.yaml": "f608a6e755e82277dcc26c2349b79816897c0a374f807078d61a556fdb414869",
+    "ls-biografie-erfahrungen-01-dry.wav": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+    "ls-biografie-erfahrungen-01.mp3": "e8126d80398a746fe24aa950ae45435408d3c2894f3a15c60bbf0e05aeaa5056",
+    "ls-biografie-erfahrungen-01.wav": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+    "project.json": "2c74547fd4f1fb1d434b6c40218a7658f7304cf5f30644af30da3d786fea2bbe",
+    "student.html": "9d968ec078d7832ec16251d6aeaae955c52ebda5167811106654990d5630568f",
+    "student.pdf": "f61edc8efca0a2c7b02ed09bdee2fe8590b4da7efd807aa3cc20b5069b1f4320",
+    "teacher.html": "53bb34cda5ce6f929c2f832d8b024ea7f3bd76a34eb7718a90154e9a609fc9af",
+    "teacher.pdf": "bd2d39b575478ffded686c04e07e4f7f62d780407f1082cc5a6ba9eb76c11a82",
+    "transcript.txt": "10e8b73739746f7242dafb359c42dee498726711c18d6a4e7a33b65cd06e37b3"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-biografie-erfahrungen-01-listening.md",
+    "sha256": "1509569190869d5c98a22e4a26246732395ffef9b8d78755f10115d25c6f105a"
+  },
+  "id": "ls-biografie-erfahrungen-01",
+  "line_artifacts": [
+    {
+      "cache_key": "f3f7e5dbdd5c734fa40cbe0b7e0e142134d78838e54c38f0ba28b20c681466f8",
+      "display_text_sha256": "f5894cc73c24a8bed27b39f4c3a06dad54858bf040ad176df1172af2a4f65fcc",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "f5894cc73c24a8bed27b39f4c3a06dad54858bf040ad176df1172af2a4f65fcc",
+      "wav_sha256": "26dcaba978303ed193a76be8636d4684fdcf93a6274ffa7da8a1c326bd84a690"
+    },
+    {
+      "cache_key": "e470157c68e7310c32e975c085568e5b22d0b79b24f5a810dead3a5510c4a4ed",
+      "display_text_sha256": "d0cbf83958139b096e36be98fa34f4dbeb299adbeacd678513a612acec153d91",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "d0cbf83958139b096e36be98fa34f4dbeb299adbeacd678513a612acec153d91",
+      "wav_sha256": "37280ee506fe724492c7b1ef9238b56fab91fcf5e0c3e9c6ee1c61fd958c1a29"
+    },
+    {
+      "cache_key": "59462212bcc745dd37d49a6dfbccdb8a0dd8ddfb5a1b50eb02ce7befc02be16f",
+      "display_text_sha256": "51a15d98e960c9f11da50318d05d3eb83351923b2be22b41fe57b42cef967e05",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "51a15d98e960c9f11da50318d05d3eb83351923b2be22b41fe57b42cef967e05",
+      "wav_sha256": "adf48c39876e6e2582e519d84f3449a6b53729747dcf45f53a08dd94a06ac880"
+    },
+    {
+      "cache_key": "0af5868d8ca8a6572bb1c853eb56bfd91e0c8237b94a16f51a58bc211d056709",
+      "display_text_sha256": "d8c81e9ffe249c016ec6ce16daa135e82bf7c183150ae0a4b813567a0c628baf",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "d8c81e9ffe249c016ec6ce16daa135e82bf7c183150ae0a4b813567a0c628baf",
+      "wav_sha256": "2538e2d1fa9ea432c6717d2d7875138dc43cd33398f3f1beb750e2e32ecea191"
+    },
+    {
+      "cache_key": "723f72088a9c54351911debc40d2f68b42433af99bf854a907432d68301bc902",
+      "display_text_sha256": "28b3a08adbdde2096788916b56728b1aa5f13ac92016595a7c8142e79419eee5",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "28b3a08adbdde2096788916b56728b1aa5f13ac92016595a7c8142e79419eee5",
+      "wav_sha256": "26777722729ba66fe7f387922078314b6d41179286ad03529e92545cb7651142"
+    },
+    {
+      "cache_key": "4bc99dd9d4880a1facb96bfeb1b42b4e6dde1e4c1fd422ea071298f234452732",
+      "display_text_sha256": "42a3c913fb8d370a9c87d3634e84f617e4e30375060827d4cfe33400cc2193f4",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "42a3c913fb8d370a9c87d3634e84f617e4e30375060827d4cfe33400cc2193f4",
+      "wav_sha256": "70dbe7e15ca1586fe96a8ff1283a3cff2e97b8a491f388e6347ac5cdfc5a11b5"
+    },
+    {
+      "cache_key": "ae5ac01ced80a9008e3ff5d65e92cd2c81e9903cd55638059f2ec238385fc5ad",
+      "display_text_sha256": "21e9c0d8ced6624411773d20db0a3750ea0a19f37671aabd2bf20fa26d901569",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "21e9c0d8ced6624411773d20db0a3750ea0a19f37671aabd2bf20fa26d901569",
+      "wav_sha256": "100b90b588f6dffb4f215c155e5329363a16a136825641142ed7e1d098d97def"
+    },
+    {
+      "cache_key": "0c6450872503350d37d1183daeecbd25e3ffe2607233ab7f951dcd5bec1888e1",
+      "display_text_sha256": "b565581281f00800758d0f9d08943ae434bb09228744ea13a031c56bec20e5b6",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "b565581281f00800758d0f9d08943ae434bb09228744ea13a031c56bec20e5b6",
+      "wav_sha256": "93046f9fdfd3b527b578927f96a6e9371d28d867b0fe0c43e5e8c4510382a8a3"
+    },
+    {
+      "cache_key": "20a7e3d988943ab13ffc8c62c67c771179b02a604012337fd47e1bd57f51eae7",
+      "display_text_sha256": "24cb8cd03e43f87a2e1b47dbfe5746f8a7929d213f526f842baacbb88be0be5b",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "24cb8cd03e43f87a2e1b47dbfe5746f8a7929d213f526f842baacbb88be0be5b",
+      "wav_sha256": "f3684e056b2c259d994a618377196304d96ddae7ada0142a56ac255b31b82f7c"
+    },
+    {
+      "cache_key": "7e43a1b71462723003842e0f6f21baf32eb492d80dac413a1cff88f283a30479",
+      "display_text_sha256": "c84768504103b60e73c1d3ccf604cf0cd96dd468b88374083102b3aff013f0c0",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "c84768504103b60e73c1d3ccf604cf0cd96dd468b88374083102b3aff013f0c0",
+      "wav_sha256": "8d7c6aaea034995db67447f2b9f587979bf1ddaa89b33266b0e1ed34cf503d4b"
+    },
+    {
+      "cache_key": "83b1086bbdf3222d4373abcd9eecdfe72d96acd95adf3384298d400c08b94a34",
+      "display_text_sha256": "4e5c61e84b81c54ff319cd438998ef9c1bfeb36eb743434d0c45bb6df431c414",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "4e5c61e84b81c54ff319cd438998ef9c1bfeb36eb743434d0c45bb6df431c414",
+      "wav_sha256": "bdc2400668ae8e72164cffc72487067ad16162ff6d944b49ee3104955432b4f1"
+    },
+    {
+      "cache_key": "5e7e792b910327086d7c08fd1aa2bcf0eacb99434a97acd3e11db14cdf24d1df",
+      "display_text_sha256": "caf38bae9320f1a3ee65cf9b50c543047b34ffb3da76af07b8c75140e9f01a3e",
+      "line_id": "line-12",
+      "synthesis_text_sha256": "caf38bae9320f1a3ee65cf9b50c543047b34ffb3da76af07b8c75140e9f01a3e",
+      "wav_sha256": "b8ef81de478a00ecf9de11677e471f6609a22ec29ac9a2388c98d1298a5afa3b"
+    }
+  ],
+  "master_audio_sha256": "2ddb418e185d54fe0930e4ba522819cc17a4eaa0eaa9a511e5ef2e0667546173",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "e8126d80398a746fe24aa950ae45435408d3c2894f3a15c60bbf0e05aeaa5056",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T16:55:45.802397+00:00",
+      "failures": [],
+      "full_transcript": "Herr Koster, Sie leben seit 20 Jahren in Deutschland. Wo haben Sie angefangen? Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet. Und wie ging es weiter? Nach drei Jahren habe ich eine Ausbildung als Koch gemacht. War das schwer neben der Arbeit? Sehr, aber danach habe ich in Hamburg eine feste Stelle bekommen. Wann ist Ihre Familie nachgekommen? Meine Frau ist zwei Jahre später gekommen. Unsere Tochter ist hier geboren. Und heute? Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat. Was war der wichtigste Schritt? Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+      "full_wer": 0.009345794392523364,
+      "lines": [
+        {
+          "expected": "Herr Costa, Sie leben seit zwanzig Jahren in Deutschland. Wo haben Sie angefangen?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Herr Koster, Sie leben seit 20 Jahren in Deutschland. Wo haben Sie angefangen?",
+          "wer": 0.07142857142857142
+        },
+        {
+          "expected": "Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie ging es weiter?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie ging es weiter?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nach drei Jahren habe ich eine Ausbildung als Koch gemacht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nach drei Jahren habe ich eine Ausbildung als Koch gemacht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "War das schwer neben der Arbeit?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "War das schwer neben der Arbeit?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr. Aber danach habe ich in Hamburg eine feste Stelle bekommen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr, aber danach habe ich in Hamburg eine feste Stelle bekommen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wann ist Ihre Familie nachgekommen?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wann ist Ihre Familie nachgekommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Meine Frau ist zwei Jahre später gekommen, unsere Tochter ist hier geboren.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Meine Frau ist zwei Jahre später gekommen. Unsere Tochter ist hier geboren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und heute?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und heute?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Was war der wichtigste Schritt?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Was war der wichtigste Schritt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:55:45.804122+00:00",
+      "failures": [],
+      "full_transcript": "Herr Koster, Sie leben seit 20 Jahren in Deutschland. Wo haben Sie angefangen? Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet. Und wie ging es weiter? Nach drei Jahren habe ich eine Ausbildung als Koch gemacht. War das schwer neben der Arbeit? Sehr, aber danach habe ich in Hamburg eine feste Stelle bekommen. Wann ist Ihre Familie nachgekommen? Meine Frau ist zwei Jahre später gekommen. Unsere Tochter ist hier geboren. Und heute? Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat. Was war der wichtigste Schritt? Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+      "full_wer": 0.009345794392523364,
+      "lines": [
+        {
+          "expected": "Herr Costa, Sie leben seit zwanzig Jahren in Deutschland. Wo haben Sie angefangen?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Herr Koster, Sie leben seit 20 Jahren in Deutschland. Wo haben Sie angefangen?",
+          "wer": 0.07142857142857142
+        },
+        {
+          "expected": "Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie ging es weiter?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie ging es weiter?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nach drei Jahren habe ich eine Ausbildung als Koch gemacht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nach drei Jahren habe ich eine Ausbildung als Koch gemacht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "War das schwer neben der Arbeit?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "War das schwer neben der Arbeit?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr. Aber danach habe ich in Hamburg eine feste Stelle bekommen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr, aber danach habe ich in Hamburg eine feste Stelle bekommen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wann ist Ihre Familie nachgekommen?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wann ist Ihre Familie nachgekommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Meine Frau ist zwei Jahre später gekommen, unsere Tochter ist hier geboren.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Meine Frau ist zwei Jahre später gekommen. Unsere Tochter ist hier geboren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und heute?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und heute?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Was war der wichtigste Schritt?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Was war der wichtigste Schritt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "fd496a0ca2eb84a047de2865a8cc7a808b487bb55e785c0b776991511058f881",
+  "script_sha256": "edf45a03c75e1f156872f55f259d1538f7749cca31d0ef34db4ce7de7bb8ff6d",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "Herr Costa, Sie leben seit zwanzig Jahren in Deutschland. Wo haben Sie angefangen?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ich bin zuerst nach Bremen gekommen und habe dort in einer Bäckerei gearbeitet.",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Und wie ging es weiter?",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Nach drei Jahren habe ich eine Ausbildung als Koch gemacht.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "War das schwer neben der Arbeit?",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Sehr. Aber danach habe ich in Hamburg eine feste Stelle bekommen.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Wann ist Ihre Familie nachgekommen?",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Meine Frau ist zwei Jahre später gekommen, unsere Tochter ist hier geboren.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Und heute?",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Heute habe ich ein kleines Restaurant. Ich koche das, was meine Mutter gekocht hat.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Was war der wichtigste Schritt?",
+        "id": "line-11",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Moderatorin",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Die Ausbildung. Ohne die Ausbildung gab es keine feste Stelle.",
+        "id": "line-12",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Costa",
+        "style": "Sprich ruhig, interessiert und aufmerksam, wie in einem Interview.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      }
+    ]
+  },
+  "version": 1
+}

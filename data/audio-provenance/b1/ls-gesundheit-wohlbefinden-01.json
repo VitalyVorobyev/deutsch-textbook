@@ -1,0 +1,577 @@
+{
+  "approval": {
+    "audio_sha256": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:16:21.266495+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T17:16:21.266495+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+  "exported_files": {
+    "exercise.yaml": "6e6e7ef4398b07d1b729338053f1dc4af6cc82c7ab603a47be452c39b1a0b98f",
+    "generation-brief.md": "f6b846b607df762e516dbdfc031a0c14f5741f5e51282353c79832b21f5724d4",
+    "listening.yaml": "03722fdfa7915562739ea8ee7d6d9fb0e31afc901af7769978ff59e926723475",
+    "ls-gesundheit-wohlbefinden-01-dry.wav": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+    "ls-gesundheit-wohlbefinden-01.mp3": "7b218e9ee1c52363c4dfa9ef26e5a670349369db3a830e7c4535311097903c6c",
+    "ls-gesundheit-wohlbefinden-01.wav": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+    "project.json": "02bee7dd558135635dca4284928b4ed6676f497f980dac4caea2c67cf1194692",
+    "student.html": "7e4a657d54054c7de8f32822fe482c4d02314fccc834dcc4c4256e42e1dbcf91",
+    "student.pdf": "671b3b62f543a16ee95868df5a09189d1cf76f90b027ea1f70ef3a2b1a81dd29",
+    "teacher.html": "c4804bb94225cfd8afa77c7d5a192b960ac0e081ef4868b20d01db9bb6a87874",
+    "teacher.pdf": "b6a264a5a791e18a49a4f5ae6c07029c8b250c8fc76587360c60e9f156acd012",
+    "transcript.txt": "0d995d014a8ad9d64dae34e42cd6a88462796548d46fadd9ca7de9f1d249c206"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-gesundheit-wohlbefinden-01-listening.md",
+    "sha256": "f6b846b607df762e516dbdfc031a0c14f5741f5e51282353c79832b21f5724d4"
+  },
+  "id": "ls-gesundheit-wohlbefinden-01",
+  "line_artifacts": [
+    {
+      "cache_key": "cb2821d425380dc467eb8031ad7c92f5641adeedd7a1d22b76174fcec9f4d57d",
+      "display_text_sha256": "6740e77b9ac685dcee9b7badb02e04e9a301b24df182d059890e07f153b6ded9",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "6740e77b9ac685dcee9b7badb02e04e9a301b24df182d059890e07f153b6ded9",
+      "wav_sha256": "a37b262a1557ad26e48d75ce30c2a54963a1402616d1e7e650fb2384cb505c33"
+    },
+    {
+      "cache_key": "2c9c52ad2a7dd568660e203e779812858181f806659af6a092a0248370d067b4",
+      "display_text_sha256": "839a3eae7bc38a8f0ec816cbfcb7201cc274f925d1a252ce1dd290a36d99f786",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "839a3eae7bc38a8f0ec816cbfcb7201cc274f925d1a252ce1dd290a36d99f786",
+      "wav_sha256": "ade0282896e64678ddb5f8d074f3941b514f3ab1dd85d9c90b9006208aa2561e"
+    },
+    {
+      "cache_key": "edcee2a816571c2b28371ef055e0c4ea1c305be2c612e0d978239442808a8f12",
+      "display_text_sha256": "0173c2da0128c1471fb95bf8bbd60a6b12ce78ffee8af1e15907d0f7c05eb8f3",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "0173c2da0128c1471fb95bf8bbd60a6b12ce78ffee8af1e15907d0f7c05eb8f3",
+      "wav_sha256": "0b7cf4487b1f82cd57a2d6d38f97e1fbf8b6fe9b20f40088dfde730b7a91cd6b"
+    },
+    {
+      "cache_key": "422d4262eb38561b21341b40c4233c098dc9b2177c7205db865e706edee917b8",
+      "display_text_sha256": "bf4b46b700e76178301966a43ff1b570ccb5561505539e21cb7eb95d19385a9d",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "bf4b46b700e76178301966a43ff1b570ccb5561505539e21cb7eb95d19385a9d",
+      "wav_sha256": "dd6a5fb9971618cc909fdc62e9f1a26137b943c9140e396467520f1a9d9efd7b"
+    },
+    {
+      "cache_key": "c09e9913c50ed1e621b3a5bc3090026ffd03f8012a209c05e27697335160f383",
+      "display_text_sha256": "a96729a5222b941d54943875544767e13b62d906ce904d900bc0e6fc68e52aab",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "a96729a5222b941d54943875544767e13b62d906ce904d900bc0e6fc68e52aab",
+      "wav_sha256": "a5f7715ea47335a053df93793bd904243c0ff64fdfcc6fe8dd89b536e88cae3b"
+    },
+    {
+      "cache_key": "f89c1a45d5828844596b1df7e7efd9be29efeec32320249df3c8731a5aab3ed2",
+      "display_text_sha256": "c07d30bfd8ed71f35f3130718d263726a6d2544aef72bf16a7dacffb71a1ecd3",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "c07d30bfd8ed71f35f3130718d263726a6d2544aef72bf16a7dacffb71a1ecd3",
+      "wav_sha256": "21280918f5c5793a3327f34e508a6a7ab7935fdde9fa8e6351441bfac639396f"
+    },
+    {
+      "cache_key": "54ae639fee5a5acca2723d37d5784287d12abd3960e5c4d8f1b682ae8a68d947",
+      "display_text_sha256": "db93a43b1bb0d10e7ada3eee2886d874874522d3741c27c89ebb722858148240",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "db93a43b1bb0d10e7ada3eee2886d874874522d3741c27c89ebb722858148240",
+      "wav_sha256": "ae68add6c8c5216a920510f0e212e3de0efe74d83c0d1b2ea14ffa94290e2027"
+    },
+    {
+      "cache_key": "06ad47934e6687cd4fd48b7d8d3d5e1fd3abb9b9edb1591c6f90b1b05b43878a",
+      "display_text_sha256": "e7ef285e5cf4380faa4894cf4e4cdad764ffd4817222424f55d5a1d66ca9afa6",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "e7ef285e5cf4380faa4894cf4e4cdad764ffd4817222424f55d5a1d66ca9afa6",
+      "wav_sha256": "bcabf048bf1b989a91b3eac551f83568e5f80c560275429cc17db6a6fabdd4e4"
+    },
+    {
+      "cache_key": "becec86bb9e40b7c76e1dbe0d3f7aee7fc1095e6fa376bc400b6426ef87ea73d",
+      "display_text_sha256": "3d9c456805fbc892817377ed7a3ab46f07cbaf2f17929df32f7631d58685e469",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "3d9c456805fbc892817377ed7a3ab46f07cbaf2f17929df32f7631d58685e469",
+      "wav_sha256": "1f7f95d8bb09b50fb39d07b66ed4f3d23c5d3d3a467dfd09a8861d4554cde003"
+    },
+    {
+      "cache_key": "fe0c8c5172c90f5d4d607896ec71a0148f643eaa3bf60c1f021087ab5608dcd8",
+      "display_text_sha256": "3c93561c5fd6c808a77e84c7a75c6a5e0322cf633402ae2791d1bf7218e7176e",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "3c93561c5fd6c808a77e84c7a75c6a5e0322cf633402ae2791d1bf7218e7176e",
+      "wav_sha256": "cc61f83d18deec4b416fe952f0fbcf85ae13c635901448c8d760edde0f01592f"
+    },
+    {
+      "cache_key": "a57eb3e8dc5129b7518dd480d5194833ede2d3f9549325a9fda2ec419948f2f0",
+      "display_text_sha256": "9013818c50eca32c7523c5c82eea0963439e8e8b2b6d528497b17c38fc769ed6",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "9013818c50eca32c7523c5c82eea0963439e8e8b2b6d528497b17c38fc769ed6",
+      "wav_sha256": "5f766e635759f302a5974d9249a993f6723b713481b7e59a1c98ebcfd1afd135"
+    },
+    {
+      "cache_key": "a74c37bf83c1d299670b4274d56389528e4948d5c11d1fddb01543f299725301",
+      "display_text_sha256": "7e2420ce864d15100f125fda89545cef37ece98143e6826698dbd8ca87dd3bd9",
+      "line_id": "line-12",
+      "synthesis_text_sha256": "7e2420ce864d15100f125fda89545cef37ece98143e6826698dbd8ca87dd3bd9",
+      "wav_sha256": "5df3401cf26dd48cd509334160db33a03ce88c228679c1b287feeb73019e531b"
+    }
+  ],
+  "master_audio_sha256": "a3ffdd28a42cb04dbf5f772aab508ef180248ffdaa51da77d14e285c56b31fa1",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "7b218e9ee1c52363c4dfa9ef26e5a670349369db3a830e7c4535311097903c6c",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T17:11:32.853804+00:00",
+      "failures": [],
+      "full_transcript": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe. Wie sieht denn ein normaler Tag bei Ihnen aus? Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer. Das ist schon ein Teil der Antwort. Bewegung fehlt und die Pause auch. Für Sport habe ich wirklich keine Zeit. Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen. So wenig soll etwas bringen? Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch. Und das Essen am Schreibtisch? Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper. Das klingt machbar. Womit soll ich anfangen? Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wie sieht denn ein normaler Tag bei Ihnen aus?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wie sieht denn ein normaler Tag bei Ihnen aus?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist schon ein Teil der Antwort. Bewegung fehlt, und die Pause auch.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist schon ein Teil der Antwort. Bewegung fehlt und die Pause auch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Für Sport habe ich wirklich keine Zeit.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Für Sport habe ich wirklich keine Zeit.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "So wenig soll etwas bringen?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "So wenig soll etwas bringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und das Essen am Schreibtisch?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und das Essen am Schreibtisch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das klingt machbar. Womit soll ich anfangen?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das klingt machbar. Womit soll ich anfangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T17:11:32.854907+00:00",
+      "failures": [],
+      "full_transcript": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe. Wie sieht denn ein normaler Tag bei Ihnen aus? Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer. Das ist schon ein Teil der Antwort. Bewegung fehlt und die Pause auch. Für Sport habe ich wirklich keine Zeit. Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen. So wenig soll etwas bringen? Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch. Und das Essen am Schreibtisch? Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper. Das klingt machbar. Womit soll ich anfangen? Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wie sieht denn ein normaler Tag bei Ihnen aus?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wie sieht denn ein normaler Tag bei Ihnen aus?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist schon ein Teil der Antwort. Bewegung fehlt, und die Pause auch.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist schon ein Teil der Antwort. Bewegung fehlt und die Pause auch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Für Sport habe ich wirklich keine Zeit.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Für Sport habe ich wirklich keine Zeit.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "So wenig soll etwas bringen?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "So wenig soll etwas bringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und das Essen am Schreibtisch?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und das Essen am Schreibtisch.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das klingt machbar. Womit soll ich anfangen?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das klingt machbar. Womit soll ich anfangen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "7d328e9a46c4f831e112869297d024591b368ab44d733ee43385030a783889f8",
+  "script_sha256": "89e27dd8a36b6c919cfa8606da783a36e2467f3597523aaa3bf230e189498bdc",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "In letzter Zeit bin ich abends völlig erschöpft, obwohl ich eigentlich genug schlafe.",
+        "id": "line-1",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Wie sieht denn ein normaler Tag bei Ihnen aus?",
+        "id": "line-2",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 901,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Ich sitze acht Stunden am Schreibtisch und esse meistens am Computer.",
+        "id": "line-3",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Das ist schon ein Teil der Antwort. Bewegung fehlt, und die Pause auch.",
+        "id": "line-4",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Für Sport habe ich wirklich keine Zeit.",
+        "id": "line-5",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Es muss kein Sport sein. Viele merken schon einen Unterschied, wenn sie zweimal am Tag zehn Minuten zu Fuß gehen.",
+        "id": "line-6",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "So wenig soll etwas bringen?",
+        "id": "line-7",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Regelmäßig ist wichtiger als lang. Wer einmal pro Woche eine Stunde läuft, hält das selten durch.",
+        "id": "line-8",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Und das Essen am Schreibtisch?",
+        "id": "line-9",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 908,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Versuchen Sie, wenigstens einmal am Tag woanders zu essen. Der Kopf braucht die Unterbrechung genauso wie der Körper.",
+        "id": "line-10",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Das klingt machbar. Womit soll ich anfangen?",
+        "id": "line-11",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Herr Klein",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Mit dem Spaziergang nach dem Mittagessen. Eine Sache reicht für den Anfang.",
+        "id": "line-12",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Beraterin",
+        "style": "Sprich ruhig und ermutigend, wie jemand, der einen praktischen Rat gibt.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      }
+    ]
+  },
+  "version": 1
+}

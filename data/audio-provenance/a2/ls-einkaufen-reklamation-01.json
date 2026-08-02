@@ -1,0 +1,619 @@
+{
+  "approval": {
+    "audio_sha256": "73d2b3f2ead8f6caf2cb21333723f6504dd53cde4b8dfca297071f1a432620cc",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "f7c2bd3e3565530c910de4f4284037f8c0ccf106a0abf43d407a8404cb604db6",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:12:55.290658+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Büroraum unter einer Arbeitsanweisung.",
+      "duration_seconds": 66.327063,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 1507872,
+      "original_filename": "135097.mp3",
+      "original_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+      "page_url": "https://freesound.org/s/135097/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 55000,
+        "gain_db": -25.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 6000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Raumton mit entferntem Verkehr, ohne Sprache, Musik oder Marken; CC0 freigegeben.",
+      "sound_id": 135097,
+      "source_file": "preview-hq",
+      "title": "Room Tone Office Quiet Distant Traffic.wav",
+      "uploader": "mzui"
+    }
+  ],
+  "created_at": "2026-08-02T17:12:55.290658+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "f7c2bd3e3565530c910de4f4284037f8c0ccf106a0abf43d407a8404cb604db6",
+  "exported_files": {
+    "exercise.yaml": "4bd72b43f07e515a84cbd483f236e408bd39f38ef83313be7de45c7e8edf51b7",
+    "generation-brief.md": "6d32df8183cbf0700454fc9daeedb2885d0c8cd291909f4e1645d5f07f824af3",
+    "listening.yaml": "63559a82a962bfe1e5cffe8a5c938019427d96c3201a537010ed5c744bd014c4",
+    "ls-einkaufen-reklamation-01-dry.wav": "f7c2bd3e3565530c910de4f4284037f8c0ccf106a0abf43d407a8404cb604db6",
+    "ls-einkaufen-reklamation-01.mp3": "d162c29435eee9194e1b3d200b9d9a024c957f04f7e66d3af3800cf01aee49c2",
+    "ls-einkaufen-reklamation-01.wav": "73d2b3f2ead8f6caf2cb21333723f6504dd53cde4b8dfca297071f1a432620cc",
+    "project.json": "2aab4c03d0cb3a03d55dfa78a3c506c76c862bfd7b4ae4358a5ba2eab67ac6ee",
+    "sources/freesound-135097/ATTRIBUTION.md": "eb97d005c789dddc4cc7e86df97f8a7414046183a196deaa7cf65e6175905d18",
+    "sources/freesound-135097/original.mp3": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+    "sources/freesound-135097/source.json": "7e5873feb83656067734a6c0eb124fdcc4aef1402a61c186c934e56ec3ee4512",
+    "student.html": "ed811e9f11e49f2cc0b277fc5cd4da83446418f61398181074c474c2b4776a21",
+    "student.pdf": "52a3172bf525dd36dedd97929de391035191f34b3c3580e6abc1ef89a9c338b6",
+    "teacher.html": "e83e8a6ee9096fffa7e5f7c3df20ed0608afe478bbc78ebadee58c42e123d00d",
+    "teacher.pdf": "f425318d4d1d6edbd38c8f836ed24fe3a9505df13d5643dbca75e45941e1f6da",
+    "transcript.txt": "6dc6333f887dc5ceb8b4bb227ffc448a24df345002cb1426279c628704e7db4f"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-einkaufen-reklamation-01-listening.md",
+    "sha256": "6d32df8183cbf0700454fc9daeedb2885d0c8cd291909f4e1645d5f07f824af3"
+  },
+  "id": "ls-einkaufen-reklamation-01",
+  "line_artifacts": [
+    {
+      "cache_key": "76d90fe4e0454d0b5d2548cbd512fb46240079297fb9d42b2a2131e639ed94bd",
+      "display_text_sha256": "c735179b2d081d4f02fe9ed2ecb3cfb2e82caf15f229c1ce9080830d9f92eb41",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "c735179b2d081d4f02fe9ed2ecb3cfb2e82caf15f229c1ce9080830d9f92eb41",
+      "wav_sha256": "7ecbd729deee23b965ec8d12aa80616860d9c053ba0ad99d9b1bc3abe857127a"
+    },
+    {
+      "cache_key": "e7adbaed10167771de311c2030e3a64094606ac2df9f9c21460cdcc7a4f99af9",
+      "display_text_sha256": "f41fac03dc84bac84227bbd39e21e0f2c3bea44394ae4a5becce9c653d1ba8d2",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "f41fac03dc84bac84227bbd39e21e0f2c3bea44394ae4a5becce9c653d1ba8d2",
+      "wav_sha256": "06686045b5c58172439fc74577ced0c727d1d4570f4322f674a27559fa98ec5f"
+    },
+    {
+      "cache_key": "8817770cb148c00e7ebc74f0de2aecf3126d530635603f375212cd5cf859ce96",
+      "display_text_sha256": "76fcf0dbb7908d373968ab4adafc9cec3350dc2d754b08b78a1765e588c354f0",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "76fcf0dbb7908d373968ab4adafc9cec3350dc2d754b08b78a1765e588c354f0",
+      "wav_sha256": "74b03650f8530777543d05331c0688701280b8fa681f3240c79b701b873e9d35"
+    },
+    {
+      "cache_key": "64836e01f03d57fd0f73e78627c449da9ec6657a4e05484be598d0308448ef9b",
+      "display_text_sha256": "218f7ac82201b6ddacae559ad44ea158103d6bc5c56c835e96d0313e52c6a6c8",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "218f7ac82201b6ddacae559ad44ea158103d6bc5c56c835e96d0313e52c6a6c8",
+      "wav_sha256": "d66cc35a790b55b0dc4d62cb385bf87f6a325f045990408cdbaad82432d4c9bc"
+    },
+    {
+      "cache_key": "570c40796547eb8f3346534fe2a13889cfe93c0ec8d9e580d0645ea91e425d8a",
+      "display_text_sha256": "2f363923291ae335d84e17ae7e75dca579759e24bc810b2935ba69e26428f2b9",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "2f363923291ae335d84e17ae7e75dca579759e24bc810b2935ba69e26428f2b9",
+      "wav_sha256": "11273c592e04c8e47d6d4b32fe4a5d49057323ad0832ed708a566feda99aec70"
+    },
+    {
+      "cache_key": "854cb294548ee93381257764a1eab3e7e21d5ba514407402011ffcfb6518ed90",
+      "display_text_sha256": "70e6aef12335156f4a35c9a807238ac5d5c38b30145f4105c575eb4aaefc1747",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "70e6aef12335156f4a35c9a807238ac5d5c38b30145f4105c575eb4aaefc1747",
+      "wav_sha256": "ccf902afb1e4ab74952243d1a06f8a415ea5253cd7e63f994fdcec41f5b9a479"
+    },
+    {
+      "cache_key": "d1152f85d95111ed9e90dcc0e326cc5b178f9da8c9cb76667a821c7391384834",
+      "display_text_sha256": "f488eed060b2a3da7d0ffbc52ae0d70faaad82b28047124a88baaf2ad6e3f2b4",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "f488eed060b2a3da7d0ffbc52ae0d70faaad82b28047124a88baaf2ad6e3f2b4",
+      "wav_sha256": "91576d59348a3821d29b05faf0efcf7fe9bb7f18afbca32db2a91060070774f8"
+    },
+    {
+      "cache_key": "a7cbb9012ce3b4d086ea9d2cbb511ad579e7eb1e82af0fdfc2a215bed5db5a70",
+      "display_text_sha256": "bc99e4376fbcffb5c5780476284f03de43e9d8b49033724594dc1d0370df3c7c",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "bc99e4376fbcffb5c5780476284f03de43e9d8b49033724594dc1d0370df3c7c",
+      "wav_sha256": "cb8ceec9dfbb1ce6b947515dae18ffa9896ded3a401c8de4c75f885edf4ec59c"
+    },
+    {
+      "cache_key": "45dae40e68cf78c2812e8d1ff984a5aad4c402f2365b29291f70ba59d1bddc24",
+      "display_text_sha256": "6be881b1a22a47de0308433cf9ad560c444db1b0b4acc0da9c4f835de56a4dbf",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "6be881b1a22a47de0308433cf9ad560c444db1b0b4acc0da9c4f835de56a4dbf",
+      "wav_sha256": "7dd2e51d35f4380740ca8626eac337e014d1833bde5d5f75352ad9625fcdc1f4"
+    },
+    {
+      "cache_key": "ae6e0fceed4acdb96fef9db6f1d23e23c4b55ae0202e60b4a8076577edcf2432",
+      "display_text_sha256": "f9b16e3678801b583746d96c6b02efd94ff733759d70b52338c1bfe3a30c9d6c",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "f9b16e3678801b583746d96c6b02efd94ff733759d70b52338c1bfe3a30c9d6c",
+      "wav_sha256": "2106b8d9188c010f34a67670b834fdd4453f4ca4a2052132d7dd23af0a069796"
+    },
+    {
+      "cache_key": "f9c5b58aaa4bcfc93753b0e0bbcc7e46fd9567cd9466c20dd23a8fa4b39ab8f9",
+      "display_text_sha256": "f7646ee26cdcd8e0539a30ec796bd053200a11ca8500306faa5c25deb46175f3",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "f7646ee26cdcd8e0539a30ec796bd053200a11ca8500306faa5c25deb46175f3",
+      "wav_sha256": "2b09fcd1701e6dcda34e972dc7d2db18f97ef250e0201254ea57bad0c69f718a"
+    },
+    {
+      "cache_key": "094bc4ee8973aab9bd10dc21748a67bded8bac99a134b8126d4d292c24727935",
+      "display_text_sha256": "46fd4205651901100f2fefd0f173f267cc1cdf1c8ce713132b8acf32764c09fe",
+      "line_id": "line-12",
+      "synthesis_text_sha256": "46fd4205651901100f2fefd0f173f267cc1cdf1c8ce713132b8acf32764c09fe",
+      "wav_sha256": "e0f6eae503c6b72429261456b88cfd98f0f32075984eccd161f8438263cca554"
+    }
+  ],
+  "master_audio_sha256": "73d2b3f2ead8f6caf2cb21333723f6504dd53cde4b8dfca297071f1a432620cc",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "d162c29435eee9194e1b3d200b9d9a024c957f04f7e66d3af3800cf01aee49c2",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T16:51:07.100441+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, ich möchte diesen Wasserkocher reklamieren. Was ist denn das Problem? Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft. Haben Sie den Kassenbon dabei? Ja, hier. Ich möchte gern ein neues Gerät. Kein Geld zurück. Das geht. Wir haben das gleiche Modell leider nicht mehr. Und ein ähnliches? Wir haben eines für 5 Euro mehr. Den Unterschied müssen Sie zahlen. Das ist in Ordnung, wenn ich es heute mitnehmen kann. Ja, ich hole es aus dem Lager. Einen Moment bitte. Und die Garantie beginnt dann neu, oder? Genau. Ab heute wieder zwei Jahre.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag, ich möchte diesen Wasserkocher reklamieren.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag, ich möchte diesen Wasserkocher reklamieren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Was ist denn das Problem?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Was ist denn das Problem?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Haben Sie den Kassenbon dabei?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Haben Sie den Kassenbon dabei?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, hier. Ich möchte gern ein neues Gerät, kein Geld zurück.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, hier. Ich möchte gern ein neues Gerät. Kein Geld zurück.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das geht. Wir haben das gleiche Modell leider nicht mehr.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das geht. Wir haben das gleiche Modell leider nicht mehr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und ein ähnliches?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "und ein ähnliches",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wir haben eines für fünf Euro mehr. Den Unterschied müssen Sie zahlen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wir haben eines für 5 Euro mehr. Den Unterschied müssen Sie zahlen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist in Ordnung, wenn ich es heute mitnehmen kann.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist in Ordnung, wenn ich es heute mitnehmen kann.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich hole es aus dem Lager. Einen Moment bitte.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich hole es aus dem Lager. Einen Moment bitte.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und die Garantie beginnt dann neu, oder?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und die Garantie beginnt dann neu, oder?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Genau, ab heute wieder zwei Jahre.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Genau, ab heute wieder zwei Jahre.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:51:07.101299+00:00",
+      "failures": [],
+      "full_transcript": "Guten Tag, ich möchte diesen Wasserkocher reklamieren. Was ist denn das Problem? Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft. Haben Sie den Kassenbon dabei? Ja, hier. Ich möchte gern ein neues Gerät. Kein Geld zurück. Das geht. Wir haben das gleiche Modell leider nicht mehr. Und ein ähnliches? Wir haben eines für 5 Euro mehr. Den Unterschied müssen Sie zahlen. Das ist in Ordnung, wenn ich es heute mitnehmen kann. Ja, ich hole es aus dem Lager. Einen Moment bitte. Und die Garantie beginnt dann neu, oder? Genau. Ab heute wieder zwei Jahre.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Guten Tag, ich möchte diesen Wasserkocher reklamieren.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag, ich möchte diesen Wasserkocher reklamieren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Was ist denn das Problem?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Was ist denn das Problem?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Haben Sie den Kassenbon dabei?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Haben Sie den Kassenbon dabei?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, hier. Ich möchte gern ein neues Gerät, kein Geld zurück.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, hier. Ich möchte gern ein neues Gerät. Kein Geld zurück.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das geht. Wir haben das gleiche Modell leider nicht mehr.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das geht. Wir haben das gleiche Modell leider nicht mehr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und ein ähnliches?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "und ein ähnliches",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wir haben eines für fünf Euro mehr. Den Unterschied müssen Sie zahlen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wir haben eines für 5 Euro mehr. Den Unterschied müssen Sie zahlen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist in Ordnung, wenn ich es heute mitnehmen kann.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist in Ordnung, wenn ich es heute mitnehmen kann.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, ich hole es aus dem Lager. Einen Moment bitte.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, ich hole es aus dem Lager. Einen Moment bitte.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und die Garantie beginnt dann neu, oder?",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und die Garantie beginnt dann neu, oder?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Genau, ab heute wieder zwei Jahre.",
+          "line_id": "line-12",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Genau, ab heute wieder zwei Jahre.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "1e6fe88aac7ed8882875fe96e1c0055ecd36c3748c49237d6e9849c93b57119a",
+  "script_sha256": "cae4e0323c9ddda121fb48c801f62a70f40a86127187776f288508613df48dda",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 55000,
+        "gain_db": -25.0,
+        "sound_id": 135097,
+        "source_sha256": "7e8060be99b6afb0049e1a5aab9cb41054c3bfc6d835ea16f37a2f2de4425d97",
+        "start_ms": 6000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Guten Tag, ich möchte diesen Wasserkocher reklamieren.",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Was ist denn das Problem?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Er schaltet sich nicht mehr aus. Ich habe ihn vor zwei Wochen gekauft.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Haben Sie den Kassenbon dabei?",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Ja, hier. Ich möchte gern ein neues Gerät, kein Geld zurück.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Das geht. Wir haben das gleiche Modell leider nicht mehr.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Und ein ähnliches?",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Wir haben eines für fünf Euro mehr. Den Unterschied müssen Sie zahlen.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Das ist in Ordnung, wenn ich es heute mitnehmen kann.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Ja, ich hole es aus dem Lager. Einen Moment bitte.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Und die Garantie beginnt dann neu, oder?",
+        "id": "line-11",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kundin",
+        "style": "Sprich sachlich und bestimmt, aber höflich, wie bei einer Reklamation.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Genau, ab heute wieder zwei Jahre.",
+        "id": "line-12",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Mitarbeiter",
+        "style": "Sprich freundlich und zügig, wie hinter einer Ladentheke.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,86 @@
+topic: essen-trinken
+role: practice
+title:
+  en: At the market stall
+  ru: У продуктового прилавка
+  uk: 'Біля продуктового прилавка'
+items:
+- id: q1
+  outcomes:
+  - essen-bestellen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Verkäuferin
+      text: Guten Morgen! Was darf es sein?
+    - speaker: Kunde
+      text: Ich möchte ein Kilo Äpfel und zwei Kilo Kartoffeln.
+    - speaker: Verkäuferin
+      text: Gern. Die Äpfel kosten drei Euro, die Kartoffeln zwei Euro fünfzig.
+    - speaker: Kunde
+      text: Haben Sie auch Tomaten?
+    - speaker: Verkäuferin
+      text: Ja, aber nur noch wenige. Ein Pfund kostet zwei Euro.
+    - speaker: Kunde
+      text: Dann nehme ich ein Pfund Tomaten. Das ist alles.
+    - speaker: Verkäuferin
+      text: Zusammen sind das sieben Euro fünfzig.
+  recording: ls-essen-einkaufen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie viel kosten die Kartoffeln?
+  options:
+  - Zwei Euro fünfzig.
+  - Drei Euro.
+  - Zwei Euro.
+  correct: 0
+  explain:
+    en: Three prices are said and each belongs to a different item — three euros for
+      the apples, two for a pound of tomatoes. Attaching the number to the right product
+      is the whole task.
+    ru: 'Названы три цены, и каждая относится к своему товару: три евро — яблоки,
+      два — фунт помидоров. Задача в том, чтобы привязать число к нужному продукту.'
+    uk: 'Названо три ціни, і кожна стосується свого товару: три євро — яблука, два — фунт помідорів. Завдання в тому, щоб прив''язати число до потрібного продукту.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - essen-bestellen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Verkäuferin
+      text: Guten Morgen! Was darf es sein?
+    - speaker: Kunde
+      text: Ich möchte ein Kilo Äpfel und zwei Kilo Kartoffeln.
+    - speaker: Verkäuferin
+      text: Gern. Die Äpfel kosten drei Euro, die Kartoffeln zwei Euro fünfzig.
+    - speaker: Kunde
+      text: Haben Sie auch Tomaten?
+    - speaker: Verkäuferin
+      text: Ja, aber nur noch wenige. Ein Pfund kostet zwei Euro.
+    - speaker: Kunde
+      text: Dann nehme ich ein Pfund Tomaten. Das ist alles.
+    - speaker: Verkäuferin
+      text: Zusammen sind das sieben Euro fünfzig.
+  recording: ls-essen-einkaufen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie viel bezahlt der Kunde zusammen?
+  options:
+  - Sieben Euro fünfzig.
+  - Sieben Euro.
+  - Fünf Euro fünfzig.
+  correct: 0
+  explain:
+    en: The total comes last, in the shortest line of the whole exchange. Five fifty
+      is what you get if you leave out the tomatoes that were added late.
+    ru: Итог звучит в самом конце, в самой короткой реплике. Пять пятьдесят получается,
+      если не учесть помидоры, добавленные позже.
+    uk: 'Підсумок звучить наприкінці, у найкоротшій репліці. П''ять п''ятдесят виходить, якщо не врахувати помідори, додані пізніше.'
+  max_replays: 3

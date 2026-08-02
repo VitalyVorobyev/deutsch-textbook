@@ -1,0 +1,542 @@
+{
+  "approval": {
+    "audio_sha256": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T15:59:48.491628+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T15:59:48.491628+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+  "exported_files": {
+    "exercise.yaml": "e78858726a8b6189b1eefcb61cb3222a969efd9cab029b193682f76a0b89a84f",
+    "generation-brief.md": "5840bad1012810aae7aa9a485037e42f2a5552ac5b7154c839c72a1646e55ff3",
+    "listening.yaml": "90264a415be217ad185948fc204d203337aed8f81503aa7c3e6cdf4f2ad5bed2",
+    "ls-leben-veraendern-01-dry.wav": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+    "ls-leben-veraendern-01.mp3": "b015817dfbb16a5dd08fbab25de9fd38dbfa130783cdf80370eb440fb36e0eac",
+    "ls-leben-veraendern-01.wav": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+    "project.json": "46c7e023e0dbbef34587203815469e3949078065844db5c62b5195de4b61f660",
+    "student.html": "6d1d46ab336d47b478c6901672b41a5ca6565b61cf71297f0c6f65bc1adb5e87",
+    "student.pdf": "49680e9f63d1fbbd10c2c3bbc2f76a174741887d2454a02dbd136ba216952654",
+    "teacher.html": "6220e941283b02c23fb5054f79df2f4b1c833d6c77067dc55edde85420ae1b00",
+    "teacher.pdf": "b104903db9aa652ff164422dc5b033492d44627fe1dc742823437cc588356390",
+    "transcript.txt": "01d759c594ce181bd1256c8a337cabdc587dbb7d32e460bda784642083fb390b"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-leben-veraendern-01-listening.md",
+    "sha256": "5840bad1012810aae7aa9a485037e42f2a5552ac5b7154c839c72a1646e55ff3"
+  },
+  "id": "ls-leben-veraendern-01",
+  "line_artifacts": [
+    {
+      "cache_key": "7962d6128c77b138b5d8867a98316b0640757cc874735385884e814333c9cf77",
+      "display_text_sha256": "ffcb7c271f849b98e3dd35617551798d3251cb705296535780aa579786060953",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "ffcb7c271f849b98e3dd35617551798d3251cb705296535780aa579786060953",
+      "wav_sha256": "5ed92383fbdc5ce672bb5d408f0033793a68f6664ab6352569c3c2a35de0013b"
+    },
+    {
+      "cache_key": "b52793fa4c7d6b9d472806eb48e55c7288023a792770d5139b37a9508b1f4683",
+      "display_text_sha256": "70e47b63d71f052d677556d14eb68c969d991c990682a5e61b25db3f5bc63324",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "70e47b63d71f052d677556d14eb68c969d991c990682a5e61b25db3f5bc63324",
+      "wav_sha256": "7419c02d9566e343ba447267dc69d8cb2c64555a1e6a3ce5975dda1f50488e33"
+    },
+    {
+      "cache_key": "2e9627a606dd366a3ed259856dfba31b844452c89e8c5c1c9bcebf7254b17fd5",
+      "display_text_sha256": "de5d93a8bf2773cfa342ee4d0dcaad290afd399137cb72bb95cb398ad1083424",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "de5d93a8bf2773cfa342ee4d0dcaad290afd399137cb72bb95cb398ad1083424",
+      "wav_sha256": "ea0afb3a26978b665c0fe4b3718e1b67db1bcb24b6bf882c116b70cc7d1c94da"
+    },
+    {
+      "cache_key": "af5ac20b871d5e3cbee094ebdcb50a1ae51d1d2978a9d3335e00d1e106c4e784",
+      "display_text_sha256": "59a38ac351dd3b98933e250b04eab187fc2da97e0575023076e1260a2183e3ce",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "59a38ac351dd3b98933e250b04eab187fc2da97e0575023076e1260a2183e3ce",
+      "wav_sha256": "5145977a4bb5f6dc8b8d256e393b20c428c65ec38a3aa2a45f8af4c7a4203f7f"
+    },
+    {
+      "cache_key": "f5996bce9b698afd2f7b4b7b82383698c6e7e5c68c87cd906e137b60ad4ed416",
+      "display_text_sha256": "7493345820f1ba174ad7a3822ac0faee85455b8272f289ad5866c6f7e6a1d444",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "7493345820f1ba174ad7a3822ac0faee85455b8272f289ad5866c6f7e6a1d444",
+      "wav_sha256": "e3f6f2d8740eaf716b67ab2781e66f1d0473d00cf585ec72bb1d8bdbee54eff4"
+    },
+    {
+      "cache_key": "8eab406ae7dfae1b2d3c856ba858c8fa3abf5aa566fe6175329a268d33c040d4",
+      "display_text_sha256": "544ec92d899cde66ef97806b8de6cbddbfb1227384c7ca068beea786a6956d83",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "544ec92d899cde66ef97806b8de6cbddbfb1227384c7ca068beea786a6956d83",
+      "wav_sha256": "914fe204ea4285957928990c5bb64c2e8377930be4b051a06c582458d2f13621"
+    },
+    {
+      "cache_key": "2200a44e8b9b80a5d091096d84a8a8e3fddfc6d4c9ec5ac103f7f9bda5818931",
+      "display_text_sha256": "987491cb7e2bece083952fab24f0d5eb85c135d650645a5bb1dcf31af3d30824",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "987491cb7e2bece083952fab24f0d5eb85c135d650645a5bb1dcf31af3d30824",
+      "wav_sha256": "a3bb9d18d727c71989c973e9cddec85da1507e4ccef60e7d5d74599a0754221d"
+    },
+    {
+      "cache_key": "478c16d576020873a6afba2c0b76074e08767adc68ed4ad91f8c86027f01e87e",
+      "display_text_sha256": "b66dc6b1eebe6fc77747b6b3f6bd99d9f46afcb4333f5607958796e5ea6e84c3",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "b66dc6b1eebe6fc77747b6b3f6bd99d9f46afcb4333f5607958796e5ea6e84c3",
+      "wav_sha256": "cd08e86b385a66a06874ea8dfc7404918805f482a055fc1b01495e3e3982e129"
+    },
+    {
+      "cache_key": "332efc9f6d98c2af1acba1999dbc57b02ff79023b98e79145bf4c9baa78e7447",
+      "display_text_sha256": "105c682670878e25456dcb33040e0c774ca5fdf4474bb4d6bbb6d3796df1f4f9",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "105c682670878e25456dcb33040e0c774ca5fdf4474bb4d6bbb6d3796df1f4f9",
+      "wav_sha256": "38f2f4c1fe49eab4a2fb5e520eee95f063db9cad2767401051e4e75fc244109d"
+    },
+    {
+      "cache_key": "8fd260a83db82580968d15e027b27a32f659212695067cf74f6b0ba8715cb92b",
+      "display_text_sha256": "55d262afbe53ecd1a57b2268fa1d9bd89d46264a06728a8751abc027facba2ac",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "55d262afbe53ecd1a57b2268fa1d9bd89d46264a06728a8751abc027facba2ac",
+      "wav_sha256": "f47e6baf9281e6ec03962f5e64ab5c5ec31dad94b31fa977f5e2c9a2b2a8ae86"
+    },
+    {
+      "cache_key": "d9a1b26241d7c5c56705fecc12cc161da755ae99ce98bbc9bc8ef8d545a37d20",
+      "display_text_sha256": "5f1877c8235ea68fbc381bfb52541bbbe965b5ebd93138001d22629a92e90987",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "5f1877c8235ea68fbc381bfb52541bbbe965b5ebd93138001d22629a92e90987",
+      "wav_sha256": "8b8b2aa9ca2e6a98090729878294831d27c74524d9f3d40c5412fe8d339b135c"
+    }
+  ],
+  "master_audio_sha256": "af598de36e9a7acd5fb4f7826510e43f288f9102030db3078a34a71ebf049a51",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "b015817dfbb16a5dd08fbab25de9fd38dbfa130783cdf80370eb440fb36e0eac",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T14:29:35.767897+00:00",
+      "failures": [],
+      "full_transcript": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen. Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort dein Auto. Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz. Und wie lange wärst du dann jeden Tag unterwegs? Mit dem Zug ungefähr 50 Minuten. Im Moment brauche ich 20. Also, eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind es Wochen. Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen. Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt? Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde. Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst. Da hast du recht. Ich rede am Montag mit ihm.",
+      "full_wer": 0.014084507042253521,
+      "lines": [
+        {
+          "expected": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort ein Auto.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort dein Auto.",
+          "wer": 0.0625
+        },
+        {
+          "expected": "Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das stimmt, andererseits hätte ich für dasselbe Geld doppelt so viel Platz.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange wärst du dann jeden Tag unterwegs?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange wärst du dann jeden Tag unterwegs?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mit dem Zug ungefähr fünfzig Minuten. Im Moment brauche ich zwanzig.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mit dem Zug ungefähr 50 Minuten. Im Moment brauche ich 20.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Also eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind das Wochen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Also, eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind es Wochen.",
+          "wer": 0.06666666666666667
+        },
+        {
+          "expected": "Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Da hast du recht. Ich rede am Montag mit ihm.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Da hast du recht, ich rede am Montag mit ihm.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:29:35.770666+00:00",
+      "failures": [],
+      "full_transcript": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen. Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort dein Auto. Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz. Und wie lange wärst du dann jeden Tag unterwegs? Mit dem Zug ungefähr 50 Minuten. Im Moment brauche ich 20. Also, eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind es Wochen. Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen. Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt? Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde. Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst. Da hast du recht. Ich rede am Montag mit ihm.",
+      "full_wer": 0.014084507042253521,
+      "lines": [
+        {
+          "expected": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort ein Auto.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort dein Auto.",
+          "wer": 0.0625
+        },
+        {
+          "expected": "Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das stimmt, andererseits hätte ich für dasselbe Geld doppelt so viel Platz.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wie lange wärst du dann jeden Tag unterwegs?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wie lange wärst du dann jeden Tag unterwegs?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mit dem Zug ungefähr fünfzig Minuten. Im Moment brauche ich zwanzig.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mit dem Zug ungefähr 50 Minuten. Im Moment brauche ich 20.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Also eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind das Wochen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Also, eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind es Wochen.",
+          "wer": 0.06666666666666667
+        },
+        {
+          "expected": "Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Da hast du recht. Ich rede am Montag mit ihm.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Da hast du recht, ich rede am Montag mit ihm.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "a71fa9d84cfb9403c9e7686ed0ab0d022623895d0b91ed35ef6c47122fbfa2b3",
+  "script_sha256": "bad09977306ae1cd8ca0f80a0e8291e905396d431ff0f057fdcf7dc6e38a45a0",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "Ich überlege ernsthaft, aus der Stadt wegzuziehen. Die Mieten sind einfach nicht mehr zu bezahlen.",
+        "id": "line-1",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Das verstehe ich, aber überleg dir das gut. Auf dem Land brauchst du sofort ein Auto.",
+        "id": "line-2",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Kai",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Das stimmt. Andererseits hätte ich für dasselbe Geld doppelt so viel Platz.",
+        "id": "line-3",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Und wie lange wärst du dann jeden Tag unterwegs?",
+        "id": "line-4",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Kai",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Mit dem Zug ungefähr fünfzig Minuten. Im Moment brauche ich zwanzig.",
+        "id": "line-5",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Also eine Stunde mehr pro Tag. Das klingt wenig, aber im Jahr sind das Wochen.",
+        "id": "line-6",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Kai",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Dafür könnte ich im Zug arbeiten oder lesen, statt im Stau zu stehen.",
+        "id": "line-7",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 106,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Wenn dein Chef Homeoffice erlaubt, wäre das kein Problem. Hast du ihn schon gefragt?",
+        "id": "line-8",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 107,
+        "speaker": "Kai",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Noch nicht. Ich wollte erst wissen, ob ich überhaupt etwas Passendes finde.",
+        "id": "line-9",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 108,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Dann würde ich es andersherum machen. Frag zuerst, sonst suchst du vielleicht umsonst.",
+        "id": "line-10",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 109,
+        "speaker": "Kai",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Da hast du recht. Ich rede am Montag mit ihm.",
+        "id": "line-11",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 110,
+        "speaker": "Nora",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,584 @@
+{
+  "approval": {
+    "audio_sha256": "de822b47a160bd33c092534d07cec3ac8fef7eaf1e35f08452a2fb4ecb4b80f2",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "2c17ba53822b831e378d2641100301147f70163ede4a0fab3c6b93b1dae91834",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:15:27.863875+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Sehr leiser Wohnraum unter einem privaten Gespräch über Freizeit.",
+      "duration_seconds": 44.239433,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 983235,
+      "original_filename": "579571.mp3",
+      "original_sha256": "e9a27f9890c9c05916aa84e8084bc455dcd3c23ac54b52ac1f51ca6edc924975",
+      "page_url": "https://freesound.org/s/579571/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 38000,
+        "gain_db": -26.0,
+        "sound_id": 579571,
+        "source_sha256": "e9a27f9890c9c05916aa84e8084bc455dcd3c23ac54b52ac1f51ca6edc924975",
+        "start_ms": 4000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 579571,
+      "source_file": "preview-hq",
+      "title": "A quiet bedroom room tone with an ambient background",
+      "uploader": "leonelmail"
+    }
+  ],
+  "created_at": "2026-08-02T17:15:27.863875+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "2c17ba53822b831e378d2641100301147f70163ede4a0fab3c6b93b1dae91834",
+  "exported_files": {
+    "exercise.yaml": "af85a8de32649314d2de9cc3c38f95531c80045f79bb28fe0752e999f4453033",
+    "generation-brief.md": "d50ea4b4b1e729e43e3c8820226e28747785f8666146b46ac51136dff94b65f5",
+    "listening.yaml": "d42965d5a631b690ab99c9f71b5511baf4d1cf3148f76ba8d3760e5e873364e6",
+    "ls-freunde-feste-01-dry.wav": "2c17ba53822b831e378d2641100301147f70163ede4a0fab3c6b93b1dae91834",
+    "ls-freunde-feste-01.mp3": "b197975135119bf75de302f214085e735371dc8a272bf845230ba0e59b7c4051",
+    "ls-freunde-feste-01.wav": "de822b47a160bd33c092534d07cec3ac8fef7eaf1e35f08452a2fb4ecb4b80f2",
+    "project.json": "8c34d7298e71ef6270634ff22f74140e601382f5f3979dbeb2ef0f2bc3af3f24",
+    "sources/freesound-579571/ATTRIBUTION.md": "8f1dd9d527acbdebe15aa7d92bd6ad74d13aa7cb9e694ce7df168a6adbd2b08c",
+    "sources/freesound-579571/original.mp3": "e9a27f9890c9c05916aa84e8084bc455dcd3c23ac54b52ac1f51ca6edc924975",
+    "sources/freesound-579571/source.json": "b65e4faba1ff43b0e0982663fbc746bba0e4aa5595ed09f11f07327182df6112",
+    "student.html": "bcead1518583b37a31672b90f2ec6d701914b43082753d83eb6c66063ab3f0df",
+    "student.pdf": "8c2ff8b720b2c8150ecac2433e91baf063c9ed1cfdaad92c3f043a9be84a84ef",
+    "teacher.html": "d2db2f279401633db50f3ef1a40754bb0d024df8c96846275f55c71a0683f622",
+    "teacher.pdf": "9d89b335ab072d2076b9bd9156d2cc613c2a565f47f78ce257bc1b62210b60a5",
+    "transcript.txt": "a06af2629df1b8fc9be7700578eb3d2089ff661594d341cd253faa8bb2eaedd0"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-freunde-feste-01-listening.md",
+    "sha256": "d50ea4b4b1e729e43e3c8820226e28747785f8666146b46ac51136dff94b65f5"
+  },
+  "id": "ls-freunde-feste-01",
+  "line_artifacts": [
+    {
+      "cache_key": "675987f3d6fef82d8455c9fd4e06fa502a209df8740c686eee99a815ef3644b2",
+      "display_text_sha256": "9e91718e43abb14dc70b6488c3fd172ed85780b7248e255f167d877ec30d6eb0",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "9e91718e43abb14dc70b6488c3fd172ed85780b7248e255f167d877ec30d6eb0",
+      "wav_sha256": "a33011b208db4fe0dbf54b84cb50ca658f19cb01c8c487792b4554b96a0c40ca"
+    },
+    {
+      "cache_key": "2f985ac2f55d03b1c17daeeafedca649ffc4745f0095ecf523b80686b1fc74bf",
+      "display_text_sha256": "31a2e8ac6504cec74c4607f8c380ee79c35f5a97c669cc88879a4c8b9c9ffcaf",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "31a2e8ac6504cec74c4607f8c380ee79c35f5a97c669cc88879a4c8b9c9ffcaf",
+      "wav_sha256": "b8d00894a8900cd5a97454558862ee7922e8a28b9003c87a608f88cbaf151f6b"
+    },
+    {
+      "cache_key": "8eec824ebe3fbe2712963ffcd85d23f77e7cc542ef6580823d565951ba8a4b80",
+      "display_text_sha256": "6297ef5f4f5915b9f858887720b071a43da9bbd3b89bdb8c894dd07b52b276d8",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "6297ef5f4f5915b9f858887720b071a43da9bbd3b89bdb8c894dd07b52b276d8",
+      "wav_sha256": "2fe5292faed8ef0551194e6716f88d5e55e54197eb9a68d791f8193ef0caebe4"
+    },
+    {
+      "cache_key": "1065f4d818b55469f057069cae88ffb07b9fcfbe323c4c86cf0c810cd30eb62a",
+      "display_text_sha256": "000fe88bd4e578cd36da09e027e9191d5753afb82580972faf73653fc97ab21e",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "000fe88bd4e578cd36da09e027e9191d5753afb82580972faf73653fc97ab21e",
+      "wav_sha256": "9be07d0343bb6d713f36ac98e6b3c27ba17ab069b881638148e26b0e9db452fa"
+    },
+    {
+      "cache_key": "a51e1724ad718639e1b8774c964a415d26dd8ef0a3134481e10eec588cb6de82",
+      "display_text_sha256": "c579fd8fe55b1e5e6b9c2937542547e017d4f756227b73163944e3bfe671cbb9",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "c579fd8fe55b1e5e6b9c2937542547e017d4f756227b73163944e3bfe671cbb9",
+      "wav_sha256": "8cee2117c2c52c60ba1abb9c17dc495ebd68d7fa2fea7482a624d41738cc5b6e"
+    },
+    {
+      "cache_key": "8928c55665f71d2714871eeacb7f928639d7a97acd0fdadb3332fbbeadfc7a84",
+      "display_text_sha256": "7fa7edee7388d3846e3f5f974be3be22fd5c80ed9da7951a70a9899f85e7b7d2",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "7fa7edee7388d3846e3f5f974be3be22fd5c80ed9da7951a70a9899f85e7b7d2",
+      "wav_sha256": "2eea82afa3ffa6d356e07b2f0fa13ffb1a55be302597d95232e7d44126da524a"
+    },
+    {
+      "cache_key": "d1b3bcb45aa13d4720a689019b06c7b1c62a96bd9a61a022ed2fb34f1f54e4ea",
+      "display_text_sha256": "497b94cb2211bb67abe0bb225aa6204934a1e620553b45ef2d7649183167913a",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "497b94cb2211bb67abe0bb225aa6204934a1e620553b45ef2d7649183167913a",
+      "wav_sha256": "a1be7ce02d8008232143169079edba237fed1f3835eca38afdc777bdb4b6b769"
+    },
+    {
+      "cache_key": "f86af4f26c8f329944c6503e150c79478e4849dfd2ea4a98fd6c57683d8a9f33",
+      "display_text_sha256": "9c7b9171e7b7960e737951e4fbfc68e17665cc8834c75a375737e47d796ee8a3",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "9c7b9171e7b7960e737951e4fbfc68e17665cc8834c75a375737e47d796ee8a3",
+      "wav_sha256": "e90a4e6b32b0c30dbc08e700abe4e1b6bdef2376926037a7e0aac7df09104a8a"
+    },
+    {
+      "cache_key": "c1d947d1a916714339396eb8d567dc95d705190ec67fa752a3ba6ad60a66712f",
+      "display_text_sha256": "3d83caf5b2c490bcf91c0bbd2162cf0d5c91720d96fb9431e202d86a2e647fc9",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "3d83caf5b2c490bcf91c0bbd2162cf0d5c91720d96fb9431e202d86a2e647fc9",
+      "wav_sha256": "fc0d5e3e4f8f47a62ff98f62dfe731672f77c453b8821abeee6ba6dcaf780df9"
+    },
+    {
+      "cache_key": "026a2dbb8af777032705fa610ebc06337235ded4c7ebe22fe662ff2680881f06",
+      "display_text_sha256": "b8fc251a3493ef35cfcded277d3a60eba0c80e9ac32bc88c9a1f874335033a12",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "b8fc251a3493ef35cfcded277d3a60eba0c80e9ac32bc88c9a1f874335033a12",
+      "wav_sha256": "d596fa0043d80b9589df70cca6f1ff99b829083b245ba2d771eecfea2b43c787"
+    },
+    {
+      "cache_key": "5350ab99fcd8299dfc36dbf1de09d2e7bdb1d77d0c678f8114818e2c43db74ae",
+      "display_text_sha256": "d07cd8c827845729f4d83cd20dd6d9e38739dc05910c17e60d9e050682fe19b1",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "d07cd8c827845729f4d83cd20dd6d9e38739dc05910c17e60d9e050682fe19b1",
+      "wav_sha256": "73b71a48b56e18fcb7194c64a81363ffad325e1e3c913aad9d91a6d3871f0d7c"
+    }
+  ],
+  "master_audio_sha256": "de822b47a160bd33c092534d07cec3ac8fef7eaf1e35f08452a2fb4ecb4b80f2",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "b197975135119bf75de302f214085e735371dc8a272bf845230ba0e59b7c4051",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T16:48:07.758444+00:00",
+      "failures": [],
+      "full_transcript": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen. Sehr gern. Wo feierst du denn? Im Garten meiner Eltern, wenn das Wetter mitspielt. Und wenn es regnet? Dann gehen wir in den Partyraum im Keller. Der ist reserviert. Soll ich etwas mitbringen? Bring bitte einen Salat mit. Um die Getränke kümmere ich mich. Mach ich. Kann ich meine Freundin mitbringen? Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid. Alles klar. Und wann fangen wir an? Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+      "full_wer": 0.010638297872340425,
+      "lines": [
+        {
+          "expected": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr gern! Wo feierst du denn?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr gern! Wo feierst du denn?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Im Garten meiner Eltern, wenn das Wetter mitspielt.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Im Garten meiner Eltern, wenn das Wetter mitspielt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn es regnet?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn es regnet?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann gehen wir in den Partyraum im Keller. Der ist reserviert.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann gehen wir in den Partyraum im Keller. Der ist reserviert.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Soll ich etwas mitbringen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Soll ich etwas mitbringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mache ich. Kann ich meine Freundin mitbringen?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mach ich. Kann ich meine Freundin mitbringen?",
+          "wer": 0.14285714285714285
+        },
+        {
+          "expected": "Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Alles klar. Und wann fangen wir an?",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Alles klar! Und wann fangen wir an?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:48:07.760163+00:00",
+      "failures": [],
+      "full_transcript": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen. Sehr gern. Wo feierst du denn? Im Garten meiner Eltern, wenn das Wetter mitspielt. Und wenn es regnet? Dann gehen wir in den Partyraum im Keller. Der ist reserviert. Soll ich etwas mitbringen? Bring bitte einen Salat mit. Um die Getränke kümmere ich mich. Mach ich. Kann ich meine Freundin mitbringen? Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid. Alles klar. Und wann fangen wir an? Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+      "full_wer": 0.010638297872340425,
+      "lines": [
+        {
+          "expected": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr gern! Wo feierst du denn?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr gern! Wo feierst du denn?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Im Garten meiner Eltern, wenn das Wetter mitspielt.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Im Garten meiner Eltern, wenn das Wetter mitspielt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn es regnet?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn es regnet?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann gehen wir in den Partyraum im Keller. Der ist reserviert.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann gehen wir in den Partyraum im Keller. Der ist reserviert.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Soll ich etwas mitbringen?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Soll ich etwas mitbringen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mache ich. Kann ich meine Freundin mitbringen?",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mach ich. Kann ich meine Freundin mitbringen?",
+          "wer": 0.14285714285714285
+        },
+        {
+          "expected": "Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Alles klar. Und wann fangen wir an?",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Alles klar! Und wann fangen wir an?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "ffd917196ac09eefedc7dab1a297a45774a8251deb37f155927932e0cceb3ca6",
+  "script_sha256": "c82b33417d690b7b4710982e621102c169318a4cc11b96bbf8b2738171adf97d",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 38000,
+        "gain_db": -26.0,
+        "sound_id": 579571,
+        "source_sha256": "e9a27f9890c9c05916aa84e8084bc455dcd3c23ac54b52ac1f51ca6edc924975",
+        "start_ms": 4000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Sehr gern! Wo feierst du denn?",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Ole",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Im Garten meiner Eltern, wenn das Wetter mitspielt.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Und wenn es regnet?",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Ole",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Dann gehen wir in den Partyraum im Keller. Der ist reserviert.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Soll ich etwas mitbringen?",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Ole",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Mache ich. Kann ich meine Freundin mitbringen?",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Ole",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      },
+      {
+        "display_text": "Alles klar. Und wann fangen wir an?",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Ole",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.",
+        "id": "line-11",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Kata",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Serena"
+      }
+    ]
+  },
+  "version": 1
+}

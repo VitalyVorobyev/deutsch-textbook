@@ -1,0 +1,584 @@
+{
+  "approval": {
+    "audio_sha256": "21c767aad6fbda06b68df06784707ce540bb5ba7e8ee0719ef084f9e05e46042",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "0a445d24f6bed7d17c5a44ffb1c475ee4b9f28796bd6a6621a597236a1d35e24",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T16:08:25.176640+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Unterrichtsraum unter einer Kursanweisung.",
+      "duration_seconds": 101.65675,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2199264,
+      "original_filename": "146435.mp3",
+      "original_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+      "page_url": "https://freesound.org/s/146435/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 85000,
+        "gain_db": -26.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 6000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 146435,
+      "source_file": "preview-hq",
+      "title": "room tone_M24",
+      "uploader": "pushkin"
+    }
+  ],
+  "created_at": "2026-08-02T16:08:25.176640+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "0a445d24f6bed7d17c5a44ffb1c475ee4b9f28796bd6a6621a597236a1d35e24",
+  "exported_files": {
+    "exercise.yaml": "7bb60e9e6638a627435f548994c256f150653aa934b1426d6a0aec8e14aaf741",
+    "generation-brief.md": "1a493c5f2590d19027d16b64caae83508c4d82d12218219760d43be217fb2d53",
+    "listening.yaml": "4c8f10b148e8434280c132de7eb8682be0ed4ed388cccb5303db8ef3af1a7ef0",
+    "ls-regeln-verantwortung-01-dry.wav": "0a445d24f6bed7d17c5a44ffb1c475ee4b9f28796bd6a6621a597236a1d35e24",
+    "ls-regeln-verantwortung-01.mp3": "ec377d082306a79573f381111af7f0991e29a4f93078d6187636ff59c138da14",
+    "ls-regeln-verantwortung-01.wav": "21c767aad6fbda06b68df06784707ce540bb5ba7e8ee0719ef084f9e05e46042",
+    "project.json": "b1357558692d9bd566a0611e3c62d2fd16cb01492b41179e6f1273eb1ce646b9",
+    "sources/freesound-146435/ATTRIBUTION.md": "12fb4c037196fc02762faad7b47766c7f8d95b9f99d3306c014267c0e3761133",
+    "sources/freesound-146435/original.mp3": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+    "sources/freesound-146435/source.json": "638a3bfb4c3e49e22a29cd895fc65983be75488cc9db9fc6ffc9efce7b02058f",
+    "student.html": "a80c60b3f8981455dd4e0edb7bef4a407dd9ecec9f60e6b945d0ff7c3dcb4c2b",
+    "student.pdf": "40e13a7ba3085513e03cb5730ed385a84e717802dec605b890a1e09dc1ea3bfa",
+    "teacher.html": "7b156b9c33eae1138a6946e1e438d2083032d1f82efafc0a06f6f4913c62ece7",
+    "teacher.pdf": "38b543173c10218bea2b497323e361856954718686046b1aa555876a3f22f1c5",
+    "transcript.txt": "39ba0599596f3b0cb9055e1e7de6b220ed19a2655efefd8103c41a85b63a716c"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-regeln-verantwortung-01-listening.md",
+    "sha256": "1a493c5f2590d19027d16b64caae83508c4d82d12218219760d43be217fb2d53"
+  },
+  "id": "ls-regeln-verantwortung-01",
+  "line_artifacts": [
+    {
+      "cache_key": "c445105da969df6719ff4f6ad2871b99eb8a960202677d72aab6f134328ace97",
+      "display_text_sha256": "aa57db9f9eeb0c2e0a9c63fe81dcf68ee99f0f90abfc281e45dceb86e8efc41e",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "aa57db9f9eeb0c2e0a9c63fe81dcf68ee99f0f90abfc281e45dceb86e8efc41e",
+      "wav_sha256": "66ba76d620856445420cb8ffb1ad2d07e4396632755eac05a34672a9d4df1e0a"
+    },
+    {
+      "cache_key": "594b4bf93049dc97dd79c6a9e206b1018e65aaa55cbaaa8d6e2da409e6c492ad",
+      "display_text_sha256": "de0fb1978149e698219999750b6f2321b94ddbafda52b835ab0d22b2def923f8",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "de0fb1978149e698219999750b6f2321b94ddbafda52b835ab0d22b2def923f8",
+      "wav_sha256": "f636cbb9ce8e900fe7491c77ff0587abdba2ad590e626747ae3f29e11a1ef296"
+    },
+    {
+      "cache_key": "886e9d850e8b3b51dfc137417d59883fbc1a689722e0e843eb58baf0ef2817c4",
+      "display_text_sha256": "ae088255a647d783850ba8edff22614835ab92c5485c5ba76840f0768064cabd",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "ae088255a647d783850ba8edff22614835ab92c5485c5ba76840f0768064cabd",
+      "wav_sha256": "2bcf24f59e1cafadcb824368cd9165f2fe6de021333e06ed4303026a32e9ef27"
+    },
+    {
+      "cache_key": "b52963f64134f77de598a7ce3be5cedef6bcd0906248c37eff7af6a6a727ba54",
+      "display_text_sha256": "b440b797c228246da565dc95ce77fc2d3b95d1b4c07cd7f1d87c21cc37648326",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "b440b797c228246da565dc95ce77fc2d3b95d1b4c07cd7f1d87c21cc37648326",
+      "wav_sha256": "38110b48018f7706efaf4ef8f3e218d17105ca88470043ee675e2b6d3779417d"
+    },
+    {
+      "cache_key": "d30e486d07ad074bd3180f52e7cb9a83d83d946ff30112952d39eec7463da883",
+      "display_text_sha256": "72be70bd60013c9d8848f905662d0c20c19089b05b3897da6d4451128a0f659c",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "72be70bd60013c9d8848f905662d0c20c19089b05b3897da6d4451128a0f659c",
+      "wav_sha256": "5a6a6f2a49bb559ddc0dc39e765ab879c2f0a7a18b8511e7930ea07e799fb978"
+    },
+    {
+      "cache_key": "deac86e3d7e0bf8e5739d7134857606f39f596afa13c6797e8dd7a7d4f676a0f",
+      "display_text_sha256": "b9d22c1b84f1f22cdffb116279adcea59c1c1825bc431dc4f92e35e9dd2b0ea0",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "b9d22c1b84f1f22cdffb116279adcea59c1c1825bc431dc4f92e35e9dd2b0ea0",
+      "wav_sha256": "522bc95753c70594c560cf7efc774560142a99632701b5b1c3e57e2b84702f32"
+    },
+    {
+      "cache_key": "4e847e639ba12dadbb86eb84d6042e7addfc4038c72579edc174ae9be8bf5b59",
+      "display_text_sha256": "6bec86e78fd033a956318adcf0a2e67cdcdfd2a317d467b82ec1c2e038e72bbc",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "6bec86e78fd033a956318adcf0a2e67cdcdfd2a317d467b82ec1c2e038e72bbc",
+      "wav_sha256": "5b229200869078a7898f164b55360ed8df2b21d7eeb0108806c8068b172c9d5c"
+    },
+    {
+      "cache_key": "b451504efc9b541b605b8515afb73aaa1608785b10254bab0c660f9f4cd7b924",
+      "display_text_sha256": "44eefde6068c62a05eb7306603559cb04e218c572946c5508f739d7f23eebae0",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "44eefde6068c62a05eb7306603559cb04e218c572946c5508f739d7f23eebae0",
+      "wav_sha256": "82ed596df250b321d4da6b3442fdc697fb160fe0da5cbf884888b127400eabc8"
+    },
+    {
+      "cache_key": "fb3859478ec3e82227940e7aa2052c8ff6732d9fa5146c40d22a1a726c669ace",
+      "display_text_sha256": "e1a1a3603c29ec8ce23f6df2543ce84bff26fb8ba871873b1a0393ee4212f072",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "e1a1a3603c29ec8ce23f6df2543ce84bff26fb8ba871873b1a0393ee4212f072",
+      "wav_sha256": "07c648dbd915529bf469741b17ee9601ae700bfc2b87be8a70b8811682684eee"
+    },
+    {
+      "cache_key": "f8c5e11097174c738eb4957edbab2f187820da28c22b4093dcf7e5850cc7472f",
+      "display_text_sha256": "6c88f470f9e91079b4c78baec1382329aa4d934a447de549667b9dbf3d0041bc",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "6c88f470f9e91079b4c78baec1382329aa4d934a447de549667b9dbf3d0041bc",
+      "wav_sha256": "0f2a4cd5b9e8de3ae440d030bad5029d00133fb8c4bc20a8adbcb69e916c94f0"
+    },
+    {
+      "cache_key": "de10d4faa4d58ef108cf8fe71cdbee783e31aeb28a6fbfbd9a2431ee53e3c7ba",
+      "display_text_sha256": "883ac538dadd24ff9800d1b9b1ec5a4c1f1337cf3a6fe90bee199b82a57e4736",
+      "line_id": "line-11",
+      "synthesis_text_sha256": "883ac538dadd24ff9800d1b9b1ec5a4c1f1337cf3a6fe90bee199b82a57e4736",
+      "wav_sha256": "b95c6f35b19663113b15d51fec17bc9d9da0db6c5fd6f3cc23fdda6524bad801"
+    }
+  ],
+  "master_audio_sha256": "21c767aad6fbda06b68df06784707ce540bb5ba7e8ee0719ef084f9e05e46042",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "ec377d082306a79573f381111af7f0991e29a4f93078d6187636ff59c138da14",
+  "qa": {
+    "context_sound_count": 1,
+    "dry": {
+      "created_at": "2026-08-02T14:30:39.511563+00:00",
+      "failures": [],
+      "full_transcript": "Ich habe sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht, nach 22 Uhr Zimmerlautstärke. Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis 8 arbeite. Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb 9. Wenn ich früher anfange, komme ich kaum auf zwei Stunden. Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von 15 bis 17 Uhr denkbar? Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme. Sonntagvormittag wäre für uns in Ordnung. Da sind wir sowieso draußen. Dann sagen wir sonntags von 11 bis 12. Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal. Und wenn Sie einmal länger proben müssen, klingen Sie einfach vorher bei uns. Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+      "full_wer": 0.005847953216374269,
+      "lines": [
+        {
+          "expected": "Ich habe Sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht: nach zweiundzwanzig Uhr Zimmerlautstärke.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich habe sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht, nach 22 Uhr Zimmerlautstärke.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis acht arbeite.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis 8 arbeite.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb neun.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb neun.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wenn ich früher anfange, komme ich kaum auf zwei Stunden.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wenn ich früher anfange, komme ich kaum auf zwei Stunden.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von fünfzehn bis siebzehn Uhr denkbar?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von 15 bis 17 Uhr denkbar?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann sagen wir sonntags von elf bis zwölf.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sagen wir sonntags von 11 bis 12.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn Sie einmal länger proben müssen, klingeln Sie einfach vorher bei uns.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn Sie einmal länger proben müssen, klingen Sie einfach vorher bei uns.",
+          "wer": 0.07692307692307693
+        },
+        {
+          "expected": "Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:30:39.515038+00:00",
+      "failures": [],
+      "full_transcript": "Ich habe sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht, nach 22 Uhr Zimmerlautstärke. Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis 8 arbeite. Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb 9. Wenn ich früher anfange, komme ich kaum auf zwei Stunden. Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von 15 bis 17 Uhr denkbar? Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme. Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen. Dann sagen wir sonntags von 11 bis 12. Gut, ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal. Und wenn Sie einmal länger proben müssen, klingen Sie einfach vorher bei uns. Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+      "full_wer": 0.005847953216374269,
+      "lines": [
+        {
+          "expected": "Ich habe Sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht: nach zweiundzwanzig Uhr Zimmerlautstärke.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich habe sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht, nach 22 Uhr Zimmerlautstärke.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis acht arbeite.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis 8 arbeite.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb neun.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb neun.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wenn ich früher anfange, komme ich kaum auf zwei Stunden.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wenn ich früher anfange, komme ich kaum auf zwei Stunden.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von fünfzehn bis siebzehn Uhr denkbar?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von 15 bis 17 Uhr denkbar?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann sagen wir sonntags von elf bis zwölf.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sagen wir sonntags von 11 bis 12.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wenn Sie einmal länger proben müssen, klingeln Sie einfach vorher bei uns.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wenn Sie einmal länger proben müssen, klingen Sie einfach vorher bei uns.",
+          "wer": 0.07692307692307693
+        },
+        {
+          "expected": "Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "6f0f974791810bf5bad8f25549e9551af8f0ca0de2a6c18c674148889aa58d95",
+  "script_sha256": "cfd2dc82e31a6e26d870db62a6c5e369ff88154e0f57db894e71e3be717e2c88",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 85000,
+        "gain_db": -26.0,
+        "sound_id": 146435,
+        "source_sha256": "544c1d0b31a0d02cf60dbb6d21cbe7ae96aaf42431d7fdcea7f1999326a11d00",
+        "start_ms": 6000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Ich habe Sie beide gebeten zu kommen, weil sich mehrere Nachbarn über die Musik am Wochenende beschwert haben. In der Hausordnung steht: nach zweiundzwanzig Uhr Zimmerlautstärke.",
+        "id": "line-1",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Frau Vogt",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Mir ist klar, dass es zu laut war. Aber ich probe nur samstags, weil ich unter der Woche bis acht arbeite.",
+        "id": "line-2",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Herr Simon",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Das Problem ist nicht der Samstag, sondern die Uhrzeit. Bei uns schlafen zwei kleine Kinder ab halb neun.",
+        "id": "line-3",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Frau Adamu",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Wenn ich früher anfange, komme ich kaum auf zwei Stunden.",
+        "id": "line-4",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Herr Simon",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Zwei Stunden müssen es ja nicht am Stück sein. Wäre samstags von fünfzehn bis siebzehn Uhr denkbar?",
+        "id": "line-5",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Frau Vogt",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Das ginge, wenn ich dafür sonntags noch eine Stunde dazubekomme.",
+        "id": "line-6",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Herr Simon",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Sonntagvormittag wäre für uns in Ordnung, da sind wir sowieso draußen.",
+        "id": "line-7",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 106,
+        "speaker": "Frau Adamu",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Dann sagen wir sonntags von elf bis zwölf.",
+        "id": "line-8",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 107,
+        "speaker": "Herr Simon",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Gut. Ich halte das schriftlich fest und hänge es aus, damit alle es wissen. Wenn es wieder Beschwerden gibt, reden wir noch einmal.",
+        "id": "line-9",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 108,
+        "speaker": "Frau Vogt",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Und wenn Sie einmal länger proben müssen, klingeln Sie einfach vorher bei uns.",
+        "id": "line-10",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 109,
+        "speaker": "Frau Adamu",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Das mache ich. Danke, dass Sie so entgegenkommend sind.",
+        "id": "line-11",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 110,
+        "speaker": "Herr Simon",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,101 @@
+topic: freunde-feste
+role: practice
+title:
+  en: A birthday invitation
+  ru: Приглашение на день рождения
+  uk: 'Запрошення на день народження'
+items:
+- id: q1
+  outcomes:
+  - absprachen-aushandeln
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kata
+      text: Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.
+    - speaker: Ole
+      text: Sehr gern! Wo feierst du denn?
+    - speaker: Kata
+      text: Im Garten meiner Eltern, wenn das Wetter mitspielt.
+    - speaker: Ole
+      text: Und wenn es regnet?
+    - speaker: Kata
+      text: Dann gehen wir in den Partyraum im Keller. Der ist reserviert.
+    - speaker: Ole
+      text: Soll ich etwas mitbringen?
+    - speaker: Kata
+      text: Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.
+    - speaker: Ole
+      text: Mache ich. Kann ich meine Freundin mitbringen?
+    - speaker: Kata
+      text: Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.
+    - speaker: Ole
+      text: Alles klar. Und wann fangen wir an?
+    - speaker: Kata
+      text: Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.
+  recording: ls-freunde-feste-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was soll Ole mitbringen?
+  options:
+  - Einen Salat.
+  - Die Getränke.
+  - Einen Kuchen.
+  correct: 0
+  explain:
+    en: Kata takes the drinks herself in the second half of the same line. The task
+      and the thing she keeps are one sentence apart.
+    ru: Напитки Ката берёт на себя во второй половине той же реплики. Задание и то,
+      что она оставляет себе, разделены одним предложением.
+    uk: 'Напої Ката бере на себе в другій половині тієї самої репліки. Доручення і те, що вона лишає собі, розділені одним реченням.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - absprachen-aushandeln
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kata
+      text: Ole, ich lade dich zu meinem Geburtstag ein. Am Samstag in zwei Wochen.
+    - speaker: Ole
+      text: Sehr gern! Wo feierst du denn?
+    - speaker: Kata
+      text: Im Garten meiner Eltern, wenn das Wetter mitspielt.
+    - speaker: Ole
+      text: Und wenn es regnet?
+    - speaker: Kata
+      text: Dann gehen wir in den Partyraum im Keller. Der ist reserviert.
+    - speaker: Ole
+      text: Soll ich etwas mitbringen?
+    - speaker: Kata
+      text: Bring bitte einen Salat mit. Um die Getränke kümmere ich mich.
+    - speaker: Ole
+      text: Mache ich. Kann ich meine Freundin mitbringen?
+    - speaker: Kata
+      text: Klar, je mehr, desto besser. Sag mir nur bis Mittwoch Bescheid.
+    - speaker: Ole
+      text: Alles klar. Und wann fangen wir an?
+    - speaker: Kata
+      text: Um sechs. Aber komm ruhig etwas früher, dann können wir noch reden.
+  recording: ls-freunde-feste-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wo wird gefeiert, wenn es regnet?
+  options:
+  - Im Partyraum im Keller.
+  - Im Garten der Eltern.
+  - In Katas Wohnung.
+  correct: 0
+  explain:
+    en: Two places, and a condition decides between them. The garden is the plan;
+      the cellar is the plan for rain.
+    ru: Два места, и выбор между ними решает условие. Сад — это план; подвал — план
+      на случай дождя.
+    uk: 'Два місця, і вибір між ними вирішує умова. Сад — це план; підвал — план на випадок дощу.'
+  max_replays: 3

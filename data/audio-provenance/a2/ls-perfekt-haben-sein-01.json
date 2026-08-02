@@ -1,0 +1,507 @@
+{
+  "approval": {
+    "audio_sha256": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:09:01.037032+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T17:09:01.037032+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+  "exported_files": {
+    "exercise.yaml": "e5fc4e5d90135b0e4a4570f21d3076370e6e67146caa2bf961197547def64b27",
+    "generation-brief.md": "58d7f26b20949911f1044cd249a3773ab74828dd6f6bee7277882aed978a35c0",
+    "listening.yaml": "3d654ce28b3fdd39bcae88384b5a2069d99888ee6611e47882fae2e513dc2396",
+    "ls-perfekt-haben-sein-01-dry.wav": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+    "ls-perfekt-haben-sein-01.mp3": "833fd96dd831d0424637e6a43cb124838c093763925a79e67679da88c5e14200",
+    "ls-perfekt-haben-sein-01.wav": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+    "project.json": "505c5194ba8196ec4e6ed92883632694508cdfe56d4d49376896a834ad102784",
+    "student.html": "0926cd851aee830500727063fc1529793dbfe7e76994f5cc7313dfb31206aa10",
+    "student.pdf": "d9c020e124ab77572c74c848d607ebf1ae34242f752d3160fd122463db4ccf3d",
+    "teacher.html": "b163fbf60b56ee6bc0fc1fff8d92060629039020ec2305e312f079b5dbedc69c",
+    "teacher.pdf": "b4b0c5036b34d924fac18b05a43659b5ee6e8308f2b68ac99fdaeb036ea38a29",
+    "transcript.txt": "5337e1b6b2f4fc079a111d822ad7f63a32abcded2a7bef58e5f88b0949b56a3d"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-perfekt-haben-sein-01-listening.md",
+    "sha256": "58d7f26b20949911f1044cd249a3773ab74828dd6f6bee7277882aed978a35c0"
+  },
+  "id": "ls-perfekt-haben-sein-01",
+  "line_artifacts": [
+    {
+      "cache_key": "bb73b38c602ee2e40408c7fdfdf96c9218a8f7556a800ff8b359dffae238df04",
+      "display_text_sha256": "976308369c1016cf2a335d2d5740ed12350095e8e98e42f364c02f4fcd6e9bec",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "976308369c1016cf2a335d2d5740ed12350095e8e98e42f364c02f4fcd6e9bec",
+      "wav_sha256": "3907993e2ab0989e1cdd0f42f6cb756b951cd52ef763793e55c2719ff9235bdc"
+    },
+    {
+      "cache_key": "cfbe0a4e054b3b32cdab58f2b63e4ca8b198d508785b2d199895b551f2dff882",
+      "display_text_sha256": "0ed866f2eb7d15bba7f6d06d6c7786d1b92c3f79d97c7b746dce32ac1c514e4e",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "0ed866f2eb7d15bba7f6d06d6c7786d1b92c3f79d97c7b746dce32ac1c514e4e",
+      "wav_sha256": "75cd8e89cf64be4d6005704d40f9bce2845c51bf2c38528027032f3e981a5e6b"
+    },
+    {
+      "cache_key": "af5651a7f1208621c6d30dc2601ea19dcde325ecc6ec5e82b4741ecf12174f75",
+      "display_text_sha256": "612035208109d785cf59cb81c2d3d9ff0d69221cc8d2c3fe25bddad28431fe0e",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "612035208109d785cf59cb81c2d3d9ff0d69221cc8d2c3fe25bddad28431fe0e",
+      "wav_sha256": "738318e80294d17bef63b25b735699894f333d41436f01d98dd123b109f7652b"
+    },
+    {
+      "cache_key": "13d936b012a1b5b037ff66722ca09b00c88c72de85a7f6375c29ad1349115e98",
+      "display_text_sha256": "ceb411f5a4b1cbe897021652413cf463af038a791f8deea4113e7d03b1678f67",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "ceb411f5a4b1cbe897021652413cf463af038a791f8deea4113e7d03b1678f67",
+      "wav_sha256": "98b16d563fd18883a7beda68f3b508680d0abcb978ee4897293fbda58dab1c55"
+    },
+    {
+      "cache_key": "a3b583f6639ca890c5e72e9bfe78c9044003d401f50e2f364ff7b5541d712f5f",
+      "display_text_sha256": "8309831f3db81e3c012911bccb5ad87d0132dc6e9846bdb59deb59378afed73e",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "8309831f3db81e3c012911bccb5ad87d0132dc6e9846bdb59deb59378afed73e",
+      "wav_sha256": "4d78bd99ec0a7467bb8d21d60c7733e3a94ee1beabae9a0d586a032b38b069b9"
+    },
+    {
+      "cache_key": "c1d645bdecbaf9a16c1eab9cb3dc02d252d40005d198166d630f4fc0cfa161e7",
+      "display_text_sha256": "929a0d3db6c4b78f3ddc6be4feaec3af9e6013b5de82fea3a1bd210fee0ca8c6",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "929a0d3db6c4b78f3ddc6be4feaec3af9e6013b5de82fea3a1bd210fee0ca8c6",
+      "wav_sha256": "cf808665b35c54414b3a3fab36820b0ca92c137386394f7346594ebb307c630c"
+    },
+    {
+      "cache_key": "ffdcf68a058667ddc5deb11183ee691eb4acc9fe01749b84f7d1baf7648cdb10",
+      "display_text_sha256": "6989948a54b06270c0faf491082a2d61203a9e9c050be160599f3dce273d716f",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "6989948a54b06270c0faf491082a2d61203a9e9c050be160599f3dce273d716f",
+      "wav_sha256": "5de3ca15b182327e8c57396ade805c71d12cf2c4b7f5c234097bffd8eaf111c2"
+    },
+    {
+      "cache_key": "7ea6d07f2d83c8eeda795ae9b4f14ccc0bf49838f3e90a0705c2c9e463ef3868",
+      "display_text_sha256": "228967705c0d12a912f18bcbf6be42b570275fb9a803404ffe504c9d86b16af1",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "228967705c0d12a912f18bcbf6be42b570275fb9a803404ffe504c9d86b16af1",
+      "wav_sha256": "83b6e9478e68957a2fd2842e2b755f747d0dcac6ea11a9e9dfbe345b535741fe"
+    },
+    {
+      "cache_key": "6bdfec6a3a764be6fccafe7449a1ec34b30e95de7fc9b0383f6ff87a98325dc9",
+      "display_text_sha256": "64c89cb2a90f2f3ff9d0891c001a30e355cc3779462b03a36ec3e4366882ffce",
+      "line_id": "line-9",
+      "synthesis_text_sha256": "64c89cb2a90f2f3ff9d0891c001a30e355cc3779462b03a36ec3e4366882ffce",
+      "wav_sha256": "0c142ed274363f90c3e075cbfc0623a70abc267e052c8a3be42194e41b26beb4"
+    },
+    {
+      "cache_key": "2e13a66a22ef9d359a91edd2f12003a0a69d952808b16a72f7d8f2f3a3c24e6d",
+      "display_text_sha256": "727dcddc06d8622798a9499d04620b655c2b351b87a7f78dab73da78002ef5d5",
+      "line_id": "line-10",
+      "synthesis_text_sha256": "727dcddc06d8622798a9499d04620b655c2b351b87a7f78dab73da78002ef5d5",
+      "wav_sha256": "1f233eb395f3e2c8dce6babdf609eee672a9d7134dd0648a649bcbba2700081f"
+    }
+  ],
+  "master_audio_sha256": "94a635be6062a50f3d8be87fac7a907dd7f0e0d06f28d8908df498f96e09328e",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "833fd96dd831d0424637e6a43cb124838c093763925a79e67679da88c5e14200",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T16:54:00.699473+00:00",
+      "failures": [],
+      "full_transcript": "Und, wie war euer Wochenende in Dresden? Sehr schön. Wir sind am Freitagabend mit dem Zug gefahren. Habt ihr das Hotel schnell gefunden? Nein. Wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht. Oh je. Und am Samstag? Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen. Habt ihr auch das Museum besucht? Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen. Und wann seid ihr zurückgekommen? Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Und, wie war euer Wochenende in Dresden?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und, wie war euer Wochenende in Dresden?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr schön! Wir sind am Freitagabend mit dem Zug gefahren.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr schön, wir sind am Freitagabend mit dem Zug gefahren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Habt ihr das Hotel schnell gefunden?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Habt ihr das Hotel schnell gefunden?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Oh je. Und am Samstag?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Oh je! Und am Samstag...",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Habt ihr auch das Museum besucht?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Habt ihr auch das Museum besucht?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wann seid ihr zurückgekommen?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wann seid ihr zurückgekommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:54:00.700328+00:00",
+      "failures": [],
+      "full_transcript": "Und, wie war euer Wochenende in Dresden? Sehr schön. Wir sind am Freitagabend mit dem Zug gefahren. Habt ihr das Hotel schnell gefunden? Nein. Wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht. Oh je. Und am Samstag? Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen. Habt ihr auch das Museum besucht? Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen. Und wann seid ihr zurückgekommen? Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Und, wie war euer Wochenende in Dresden?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und, wie war euer Wochenende in Dresden?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sehr schön! Wir sind am Freitagabend mit dem Zug gefahren.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Sehr schön, wir sind am Freitagabend mit dem Zug gefahren.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Habt ihr das Hotel schnell gefunden?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Habt ihr das Hotel schnell gefunden?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Oh je. Und am Samstag?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Oh je! Und am Samstag...",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Habt ihr auch das Museum besucht?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Habt ihr auch das Museum besucht?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wann seid ihr zurückgekommen?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wann seid ihr zurückgekommen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "90ea94c25443a748eeb1f882ee63ad24eb35901bbb7430c1f30c5c470861fb06",
+  "script_sha256": "3bf6bea061899c39aab78591885237e0b6668c864207fc8b8f17e1de45d5e9e2",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "Und, wie war euer Wochenende in Dresden?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rafa",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Sehr schön! Wir sind am Freitagabend mit dem Zug gefahren.",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Anja",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Habt ihr das Hotel schnell gefunden?",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rafa",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Nein, wir sind zuerst falsch gelaufen und haben eine halbe Stunde gesucht.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Anja",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Oh je. Und am Samstag?",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rafa",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Am Samstag haben wir die Altstadt angeschaut und sind auf einen Turm gestiegen.",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Anja",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Habt ihr auch das Museum besucht?",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rafa",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Das wollten wir, aber es war geschlossen. Deshalb sind wir an den Fluss gegangen.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Anja",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Und wann seid ihr zurückgekommen?",
+        "id": "line-9",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rafa",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Ryan"
+      },
+      {
+        "display_text": "Am Sonntagabend. Wir haben viel gesehen und wenig geschlafen.",
+        "id": "line-10",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Anja",
+        "style": "Sprich locker und freundlich, wie im Gespräch mit einer guten Freundin.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      }
+    ]
+  },
+  "version": 1
+}

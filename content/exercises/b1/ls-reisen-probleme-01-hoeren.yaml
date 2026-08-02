@@ -1,0 +1,118 @@
+topic: reisen-probleme
+role: practice
+title:
+  en: Claiming after a missed connection
+  ru: Компенсация за пропущенную пересадку
+  uk: 'Компенсація за пропущену пересадку'
+items:
+- id: q1
+  outcomes:
+  - panne-berichten
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Kraus
+      text: Guten Tag, ich rufe an, weil mein Zug gestern in Fulda eine Stunde stehen
+        geblieben ist und ich meinen Anschluss verpasst habe.
+    - speaker: Mitarbeiter
+      text: Das tut mir leid. Haben Sie die Fahrkarte und die Zugnummer zur Hand?
+    - speaker: Frau Kraus
+      text: Ja, ICE sechshundertzwölf, gebucht für den ersten August, achtzehn Uhr
+        vierzig.
+    - speaker: Mitarbeiter
+      text: 'Danke. Ich sehe die Verspätung im System: einundsiebzig Minuten am Ziel.'
+    - speaker: Frau Kraus
+      text: Ich musste dann ein Hotel nehmen, weil um Mitternacht nichts mehr fuhr.
+    - speaker: Mitarbeiter
+      text: Ab sechzig Minuten bekommen Sie fünfundzwanzig Prozent des Fahrpreises
+        zurück. Die Hotelkosten werden bis achtzig Euro erstattet, wenn Sie die Rechnung
+        einreichen.
+    - speaker: Frau Kraus
+      text: Die Rechnung war siebenundneunzig Euro.
+    - speaker: Mitarbeiter
+      text: Dann werden achtzig davon übernommen. Bitte laden Sie die Rechnung und
+        die Fahrkarte im Formular hoch.
+    - speaker: Frau Kraus
+      text: Und wie lange dauert die Bearbeitung?
+    - speaker: Mitarbeiter
+      text: In der Regel zwei bis drei Wochen. Sie bekommen eine Bestätigung per E-Mail,
+        sobald der Antrag eingegangen ist.
+    - speaker: Frau Kraus
+      text: Gut. Muss ich das Original der Rechnung aufheben?
+    - speaker: Mitarbeiter
+      text: Bitte ja, bis das Geld auf Ihrem Konto ist. Danach können Sie sie wegwerfen.
+  recording: ls-reisen-probleme-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie viel bekommt Frau Kraus für das Hotel zurück?
+  options:
+  - Achtzig Euro.
+  - Siebenundneunzig Euro.
+  - Fünfundzwanzig Euro.
+  correct: 0
+  explain:
+    en: Ninety-seven is what she paid and eighty is the ceiling, stated one line before
+      it. Twenty-five is not euros at all — it is the percentage of the fare.
+    ru: Девяносто семь — это её расходы, а восемьдесят — потолок, названный репликой
+      раньше. Двадцать пять — вообще не евро, а процент от стоимости билета.
+    uk: 'Дев''яносто сім — це її витрати, а вісімдесят — стеля, названа реплікою раніше. Двадцять п''ять — узагалі не євро, а відсоток від вартості квитка.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - panne-berichten
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Frau Kraus
+      text: Guten Tag, ich rufe an, weil mein Zug gestern in Fulda eine Stunde stehen
+        geblieben ist und ich meinen Anschluss verpasst habe.
+    - speaker: Mitarbeiter
+      text: Das tut mir leid. Haben Sie die Fahrkarte und die Zugnummer zur Hand?
+    - speaker: Frau Kraus
+      text: Ja, ICE sechshundertzwölf, gebucht für den ersten August, achtzehn Uhr
+        vierzig.
+    - speaker: Mitarbeiter
+      text: 'Danke. Ich sehe die Verspätung im System: einundsiebzig Minuten am Ziel.'
+    - speaker: Frau Kraus
+      text: Ich musste dann ein Hotel nehmen, weil um Mitternacht nichts mehr fuhr.
+    - speaker: Mitarbeiter
+      text: Ab sechzig Minuten bekommen Sie fünfundzwanzig Prozent des Fahrpreises
+        zurück. Die Hotelkosten werden bis achtzig Euro erstattet, wenn Sie die Rechnung
+        einreichen.
+    - speaker: Frau Kraus
+      text: Die Rechnung war siebenundneunzig Euro.
+    - speaker: Mitarbeiter
+      text: Dann werden achtzig davon übernommen. Bitte laden Sie die Rechnung und
+        die Fahrkarte im Formular hoch.
+    - speaker: Frau Kraus
+      text: Und wie lange dauert die Bearbeitung?
+    - speaker: Mitarbeiter
+      text: In der Regel zwei bis drei Wochen. Sie bekommen eine Bestätigung per E-Mail,
+        sobald der Antrag eingegangen ist.
+    - speaker: Frau Kraus
+      text: Gut. Muss ich das Original der Rechnung aufheben?
+    - speaker: Mitarbeiter
+      text: Bitte ja, bis das Geld auf Ihrem Konto ist. Danach können Sie sie wegwerfen.
+  recording: ls-reisen-probleme-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was muss Frau Kraus aufheben?
+  options:
+  - Das Original der Rechnung.
+  - Nur die Fahrkarte.
+  - Die Bestätigungs-E-Mail.
+  correct: 0
+  explain:
+    en: The last exchange answers this, and the answer has a time limit attached —
+      bis das Geld auf Ihrem Konto ist. Ticket and confirmation both appear earlier
+      in other roles.
+    ru: 'Отвечает последняя пара реплик, и у ответа есть срок: bis das Geld auf Ihrem
+      Konto ist. Билет и подтверждение упоминались раньше и в других ролях.'
+    uk: 'Відповідає остання пара реплік, і у відповіді є строк: bis das Geld auf Ihrem Konto ist. Квиток і підтвердження згадувалися раніше і в інших ролях.'
+  max_replays: 3

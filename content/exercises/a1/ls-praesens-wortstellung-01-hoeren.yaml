@@ -1,0 +1,85 @@
+topic: praesens-wortstellung
+role: practice
+title:
+  en: Two course partners ask each other questions
+  ru: Двое на курсе расспрашивают друг друга
+  uk: 'Двоє на курсі розпитують одне одного'
+items:
+- id: q1
+  outcomes:
+  - praesens-fragen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Lea
+      text: Hallo, ich bin Lea. Wie heißt du?
+    - speaker: Tarek
+      text: Ich heiße Tarek. Ich komme aus Marokko.
+    - speaker: Lea
+      text: Wo wohnst du jetzt?
+    - speaker: Tarek
+      text: Ich wohne in Hamburg. Und du?
+    - speaker: Lea
+      text: Ich wohne in Bremen. Arbeitest du hier?
+    - speaker: Tarek
+      text: Nein, ich studiere Informatik. Am Abend lerne ich Deutsch.
+  recording: ls-praesens-wortstellung-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Woher kommt Tarek?
+  options:
+  - Aus Marokko.
+  - Aus Hamburg.
+  - Aus Bremen.
+  correct: 0
+  explain:
+    en: Both wrong options are places that are actually named in the conversation
+      — Hamburg is where Tarek lives now and Bremen is where Lea lives. The question
+      is whether you heard woher (where from) rather than wo (where).
+    ru: 'Оба неверных варианта действительно звучат в разговоре: Гамбург — где Тарек
+      живёт сейчас, Бремен — где живёт Леа. Вопрос в том, расслышали ли вы woher (откуда),
+      а не wo (где).'
+    uk: 'Обидва хибні варіанти справді звучать у розмові: Гамбург — де Тарек живе тепер, Бремен — де живе Леа. Питання в тому, чи розчули ви woher (звідки), а не wo (де).'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - praesens-fragen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Lea
+      text: Hallo, ich bin Lea. Wie heißt du?
+    - speaker: Tarek
+      text: Ich heiße Tarek. Ich komme aus Marokko.
+    - speaker: Lea
+      text: Wo wohnst du jetzt?
+    - speaker: Tarek
+      text: Ich wohne in Hamburg. Und du?
+    - speaker: Lea
+      text: Ich wohne in Bremen. Arbeitest du hier?
+    - speaker: Tarek
+      text: Nein, ich studiere Informatik. Am Abend lerne ich Deutsch.
+  recording: ls-praesens-wortstellung-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was macht Tarek?
+  options:
+  - Er studiert Informatik.
+  - Er arbeitet in Hamburg.
+  - Er unterrichtet Deutsch.
+  correct: 0
+  explain:
+    en: Lea asks whether he works and the answer begins with Nein — so the correction
+      comes immediately after the question, which is exactly where attention tends
+      to slip. He learns German in the evening; he does not teach it.
+    ru: Леа спрашивает, работает ли он, и ответ начинается с Nein — поправка звучит
+      сразу после вопроса, а именно там внимание обычно и теряется. Немецкий он вечером
+      учит, а не преподаёт.
+    uk: 'Леа питає, чи він працює, і відповідь починається з Nein — поправка звучить одразу після запитання, а саме там увага і зісковзує. Німецьку він увечері вчить, а не викладає.'
+  max_replays: 3

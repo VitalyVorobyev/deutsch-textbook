@@ -1,0 +1,81 @@
+topic: gesundheit-arzttermin
+role: practice
+title:
+  en: Instructions at the doctor's reception
+  ru: Указания в регистратуре
+  uk: 'Вказівки в реєстратурі'
+items:
+- id: q1
+  outcomes:
+  - praxis-anweisungen-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Empfang
+      text: Guten Morgen. Sie haben um elf Uhr einen Termin bei Frau Doktor Weber.
+    - speaker: Herr Nowak
+      text: Ja. Muss ich noch etwas vorbereiten?
+    - speaker: Empfang
+      text: Bitte füllen Sie zuerst dieses Formular aus. Trinken Sie vorher nichts
+        außer Wasser. Danach warten Sie im zweiten Stock vor Zimmer zwölf.
+    - speaker: Herr Nowak
+      text: Soll ich gleich nach oben gehen?
+    - speaker: Empfang
+      text: Nein, geben Sie mir zuerst das Formular. Dann rufe ich Sie auf.
+  recording: ls-gesundheit-arzttermin-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was soll Herr Nowak zuerst tun?
+  options:
+  - Das Formular ausfüllen.
+  - In den zweiten Stock gehen.
+  - Vor Zimmer zwölf warten.
+  correct: 0
+  explain:
+    en: All three are real instructions from the same turn — only their order differs,
+      and zuerst is said twice to fix it. The last line refuses going up straight
+      away, which is the confirmation.
+    ru: Все три — настоящие указания из одной и той же реплики, различается лишь порядок,
+      и zuerst звучит дважды, чтобы его закрепить. Последняя реплика отказывает в
+      том, чтобы сразу идти наверх, — это подтверждение.
+    uk: 'Усі три — справжні вказівки з однієї репліки, різниться лише порядок, і zuerst звучить двічі, щоб його закріпити. Остання репліка відмовляє в тому, щоб іти нагору відразу, — це й є підтвердження.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - praxis-anweisungen-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Empfang
+      text: Guten Morgen. Sie haben um elf Uhr einen Termin bei Frau Doktor Weber.
+    - speaker: Herr Nowak
+      text: Ja. Muss ich noch etwas vorbereiten?
+    - speaker: Empfang
+      text: Bitte füllen Sie zuerst dieses Formular aus. Trinken Sie vorher nichts
+        außer Wasser. Danach warten Sie im zweiten Stock vor Zimmer zwölf.
+    - speaker: Herr Nowak
+      text: Soll ich gleich nach oben gehen?
+    - speaker: Empfang
+      text: Nein, geben Sie mir zuerst das Formular. Dann rufe ich Sie auf.
+  recording: ls-gesundheit-arzttermin-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was darf Herr Nowak vorher trinken?
+  options:
+  - Nur Wasser.
+  - Kaffee und Wasser.
+  - Gar nichts.
+  correct: 0
+  explain:
+    en: nichts außer Wasser is a negation with an exception, and dropping the exception
+      turns 'only water' into 'nothing at all' — and "Gar nichts" is exactly that mistake.
+    ru: 'nichts außer Wasser — отрицание с исключением; потеряв исключение, «только
+      воду» превращаешь в «совсем ничего»: «Gar nichts» — ровно эта ошибка.'
+    uk: 'nichts außer Wasser — це заперечення з винятком; загубивши виняток, «тільки воду» перетворюєш на «зовсім нічого»: саме це й каже «Gar nichts».'
+  max_replays: 3

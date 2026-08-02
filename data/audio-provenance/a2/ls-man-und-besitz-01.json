@@ -1,0 +1,518 @@
+{
+  "approval": {
+    "audio_sha256": "cbcff550300a2594c3d198f61d40b02f1b16c46d0692b4779a9b0fbc0a8258b8",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "08ea20f3082645b6415553c38c81ffb98e69b0e8a1f4853d96e9e1dc2a60bcec",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:15:07.459486+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Leiser Hausflur unter Nachbarschaftsgesprächen im Treppenhaus.",
+      "duration_seconds": 13.29254,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 302536,
+      "original_filename": "801116.mp3",
+      "original_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+      "page_url": "https://freesound.org/s/801116/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -24.0,
+        "sound_id": 801116,
+        "source_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+        "start_ms": 0
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 801116,
+      "source_file": "preview-hq",
+      "title": "Cold Hallway Ambience",
+      "uploader": "9voltplasma"
+    },
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Sehr leiser kleiner Beratungsraum unter einem Beratungsgespräch.",
+      "duration_seconds": 115.732563,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2666784,
+      "original_filename": "637807.mp3",
+      "original_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+      "page_url": "https://freesound.org/s/637807/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 40000,
+        "gain_db": -27.0,
+        "sound_id": 637807,
+        "source_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+        "start_ms": 20000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 637807,
+      "source_file": "preview-hq",
+      "title": "room tone small space dead quiet air tone.flac",
+      "uploader": "kyles"
+    }
+  ],
+  "created_at": "2026-08-02T17:15:07.459486+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "08ea20f3082645b6415553c38c81ffb98e69b0e8a1f4853d96e9e1dc2a60bcec",
+  "exported_files": {
+    "exercise.yaml": "06c330fbd6149061af9505432521b1c645e5519192c2b1f00c41771639133175",
+    "generation-brief.md": "00a4e3471c4b231c212ce67979633ce5920acfc28fc92f4c292fbc5d524c3a9d",
+    "listening.yaml": "c06f11bd4b9bc5c933a50b067395c90fb54389340b064255742ed4b967ed073a",
+    "ls-man-und-besitz-01-dry.wav": "08ea20f3082645b6415553c38c81ffb98e69b0e8a1f4853d96e9e1dc2a60bcec",
+    "ls-man-und-besitz-01.mp3": "544b9ad4a1dccc608e68c6d7c7fe8e808be437edb28f0fe92133d47013b01566",
+    "ls-man-und-besitz-01.wav": "cbcff550300a2594c3d198f61d40b02f1b16c46d0692b4779a9b0fbc0a8258b8",
+    "project.json": "8ca7d64fc05b9d9b173b2ba1be9eaff3840c208224eb1e7b41dc54361f394d23",
+    "sources/freesound-637807/ATTRIBUTION.md": "ea91eccfdd4d8cd8feea945c842e9ecf8f99afa13cb08d9781470b3115286545",
+    "sources/freesound-637807/original.mp3": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+    "sources/freesound-637807/source.json": "9ee74fa54a1124e808f4f5b5072d0ffb8526e330cc322acfc080bec7931bf8c2",
+    "sources/freesound-801116/ATTRIBUTION.md": "e7091994b7f2b87aa69d6550c01851721197003411c7d85caf1d51f3a0501072",
+    "sources/freesound-801116/original.mp3": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+    "sources/freesound-801116/source.json": "7a932004bd2cf4e5df60ac6251a035022f3d8f9c6b2a238ae16acfaffc031b88",
+    "student.html": "f8757ba157e30d979d15fc73dd86a7fad6e373f989f5caac9ee1489efdedbb77",
+    "student.pdf": "5a48a6ff8a51f8367352c74e0553555330b0ef497941fd5e6574203ef69645a2",
+    "teacher.html": "fb99085b13ee5290b00a6dd64325dcb647c79cc09141b66dcb206e24dd7ef77a",
+    "teacher.pdf": "23a4707f85d1ee6b99a39c6a1c66b1e7c2fb2eca7c48f28f4e0c87e58231cd16",
+    "transcript.txt": "7a14975332420b4f2bf9cf99124c4b6cb74b3d228915571e530a9de665509f73"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-man-und-besitz-01-listening.md",
+    "sha256": "00a4e3471c4b231c212ce67979633ce5920acfc28fc92f4c292fbc5d524c3a9d"
+  },
+  "id": "ls-man-und-besitz-01",
+  "line_artifacts": [
+    {
+      "cache_key": "b2bce3ce2edf0b9fe3742b749e788dabb96b2fa172802ef31f42fd650bf6511b",
+      "display_text_sha256": "fa7ed31de9767275c0f1c1dddc60dc28c1e337612131dff9c800bf8b9e26a2c0",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "fa7ed31de9767275c0f1c1dddc60dc28c1e337612131dff9c800bf8b9e26a2c0",
+      "wav_sha256": "576e3fbd757c1a9ac321b5ca1aa5c2eec665ce1613834be4f324a3b926d0de90"
+    },
+    {
+      "cache_key": "5580d622f27e79f14836036504670e940f6fcbcfde70851da7e68099697b60d2",
+      "display_text_sha256": "50da597b41fd6443564767812e49652cdb28233f53bacdaf08281a8b9392f447",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "50da597b41fd6443564767812e49652cdb28233f53bacdaf08281a8b9392f447",
+      "wav_sha256": "ce9472327a405fa55e355355246f53774bf169d6d0a97f847affa8cf3e1ae9d2"
+    },
+    {
+      "cache_key": "4126e86a1632cab515e59d0250517624ca027ab6b036270ba2b6de471bd02498",
+      "display_text_sha256": "1b7c427d41964782dececfbf44eb66c7b92533044ddfe13d6983ca657e3aa624",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "1b7c427d41964782dececfbf44eb66c7b92533044ddfe13d6983ca657e3aa624",
+      "wav_sha256": "a8a34122fc51bb5d8fd59f243bb879b99722ee5ba04fff8ffdf8816b8cbeae23"
+    },
+    {
+      "cache_key": "5f720c2d211824c47893f17511c96220c06b5b79cc0500c68f307ff67c3734f9",
+      "display_text_sha256": "7129278fe3aa013b2c035129ece43a73472e9f12259a56ed29fbf2327c9103e1",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "7129278fe3aa013b2c035129ece43a73472e9f12259a56ed29fbf2327c9103e1",
+      "wav_sha256": "f5e0cbf31ea599f9fdcb8a3492d39280152b8d0d7c78a52ebe96417b71600a59"
+    },
+    {
+      "cache_key": "103bfc63ad200fd8166198b19a6a8c95bfbf759649347f49bc08581adbda5c7f",
+      "display_text_sha256": "c7201f366bbd6ddb0592a83f72b696992053621e41fc8be75bc7ab45f22a9551",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "c7201f366bbd6ddb0592a83f72b696992053621e41fc8be75bc7ab45f22a9551",
+      "wav_sha256": "49e2658e9baadd545cf2d1c3c6d6b5958ca2cd7580cf28110b234df971419304"
+    },
+    {
+      "cache_key": "a32e0dcc9b15ac161a7f929222c3d8c9eea875d07713618049f34e2772a294e1",
+      "display_text_sha256": "f9e4e4c8dfabd6ae2dc3a73c4378011ed0b778729498d775b7f4186c5db546fd",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "f9e4e4c8dfabd6ae2dc3a73c4378011ed0b778729498d775b7f4186c5db546fd",
+      "wav_sha256": "8fe99724d0e4515b21cccca0a33b9b017e79e140a837fa0127fc776010d9e9b3"
+    },
+    {
+      "cache_key": "6d4ed79af20dca8183e615edfc39423d63d728cb6e688b113113e7827cfe07f2",
+      "display_text_sha256": "979d8d31e186a04f3803e706dee849a37267f021f7a6cf96c35eeec6f2aab936",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "979d8d31e186a04f3803e706dee849a37267f021f7a6cf96c35eeec6f2aab936",
+      "wav_sha256": "d5325f4808f17f5e2a5b3d03deea723b5ee99054d45ef2a4729ac7be4d2dfb0a"
+    },
+    {
+      "cache_key": "8c09f4c8b13e7fb060ec39199d266fee12b8adb48fe22a80eda760eacc9c932e",
+      "display_text_sha256": "83b28e489db68b5b5309a5fb69bcd2f8781bf188f3b5faba423f031f5a2edeb4",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "83b28e489db68b5b5309a5fb69bcd2f8781bf188f3b5faba423f031f5a2edeb4",
+      "wav_sha256": "1ab1dcc088c1938e96745cba329f0963dcecbf8aca0e59fe0604351f4965f3f4"
+    }
+  ],
+  "master_audio_sha256": "cbcff550300a2594c3d198f61d40b02f1b16c46d0692b4779a9b0fbc0a8258b8",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "544b9ad4a1dccc608e68c6d7c7fe8e808be437edb28f0fe92133d47013b01566",
+  "qa": {
+    "context_sound_count": 2,
+    "dry": {
+      "created_at": "2026-08-02T16:52:07.915749+00:00",
+      "failures": [],
+      "full_transcript": "Basti, wem gehört eigentlich das Fahrrad im Hof? Das Rote, das ist meins. Das Blaue gehört den Nachbarn oben. Und die Schuhe vor der Tür? Man stolpert dauernd darüber. Die sind nicht meine. Ich glaube, das sind Lenas. Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur. Richtig. Übrigens, ist das deine Jacke im Waschraum? Nein, meine ist grün. Diese hier ist viel größer. Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Basti, wem gehört eigentlich das Fahrrad im Hof?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Basti, wem gehört eigentlich das Fahrrad im Hof?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das rote? Das ist meins. Das blaue gehört den Nachbarn oben.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das rote, das ist meins. Das blaue gehört den Nachbarn oben.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und die Schuhe vor der Tür? Man stolpert dauernd darüber.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und die Schuhe vor der Tür? Man stolpert dauernd darüber.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die sind nicht meine. Ich glaube, das sind Lenas.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die sind nicht Beine, ich glaube, das sind Lenas.",
+          "wer": 0.1111111111111111
+        },
+        {
+          "expected": "Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Richtig. Übrigens, ist das deine Jacke im Waschraum?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Richtig. Übrigens, ist das deine Jacke im Waschraum?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, meine ist grün. Diese hier ist viel größer.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, meine ist grün. Diese hier ist viel größer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:52:07.916857+00:00",
+      "failures": [],
+      "full_transcript": "Basti, wem gehört eigentlich das Fahrrad im Hof? Das Rote, das ist meins. Das Blaue gehört den Nachbarn oben. Und die Schuhe vor der Tür? Man stolpert dauernd darüber. Die sind nicht Beine. Ich glaube, das sind Lenas. Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur. Richtig. Übrigens, ist das deine Jacke im Waschraum? Nein, meine ist grün. Diese hier ist viel größer. Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+      "full_wer": 0.012987012987012988,
+      "lines": [
+        {
+          "expected": "Basti, wem gehört eigentlich das Fahrrad im Hof?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Basti, wem gehört eigentlich das Fahrrad im Hof?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das rote? Das ist meins. Das blaue gehört den Nachbarn oben.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das rote, das ist meins. Das blaue gehört den Nachbarn oben.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und die Schuhe vor der Tür? Man stolpert dauernd darüber.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und die Schuhe vor der Tür? Man stolpert dauernd darüber.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die sind nicht meine. Ich glaube, das sind Lenas.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die sind nicht Beine, ich glaube, das sind Lenas.",
+          "wer": 0.1111111111111111
+        },
+        {
+          "expected": "Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Richtig. Übrigens, ist das deine Jacke im Waschraum?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Richtig. Übrigens, ist das deine Jacke im Waschraum?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, meine ist grün. Diese hier ist viel größer.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, meine ist grün. Diese hier ist viel größer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "09dd77515d6a0e91da56890e1880bcaa4775bbd63a2e4429a7e45002c8023f73",
+  "script_sha256": "f83c590bb6408bbcc352c61351ec9c08860b9abb01ef0117fe48604443bc9b0d",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 12000,
+        "gain_db": -24.0,
+        "sound_id": 801116,
+        "source_sha256": "da46fab8c1ae266ff97c61f2c7d0a67b282dc936807533769a45566367145520",
+        "start_ms": 0
+      },
+      {
+        "delay_ms": 0,
+        "duration_ms": 40000,
+        "gain_db": -27.0,
+        "sound_id": 637807,
+        "source_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+        "start_ms": 20000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Basti, wem gehört eigentlich das Fahrrad im Hof?",
+        "id": "line-1",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rita",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Das rote? Das ist meins. Das blaue gehört den Nachbarn oben.",
+        "id": "line-2",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Basti",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Dylan"
+      },
+      {
+        "display_text": "Und die Schuhe vor der Tür? Man stolpert dauernd darüber.",
+        "id": "line-3",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rita",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Die sind nicht meine. Ich glaube, das sind Lenas.",
+        "id": "line-4",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Basti",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Dylan"
+      },
+      {
+        "display_text": "Dann sage ich ihr Bescheid. Hier stellt man nichts in den Flur.",
+        "id": "line-5",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rita",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Richtig. Übrigens, ist das deine Jacke im Waschraum?",
+        "id": "line-6",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Basti",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Dylan"
+      },
+      {
+        "display_text": "Nein, meine ist grün. Diese hier ist viel größer.",
+        "id": "line-7",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Rita",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Sohee"
+      },
+      {
+        "display_text": "Dann hängen wir einen Zettel hin. Irgendjemand vermisst sie sicher.",
+        "id": "line-8",
+        "pace": 0.95,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Basti",
+        "style": "Sprich freundlich und alltagsnah, wie unter Nachbarn im Treppenhaus.",
+        "synthesis_text": null,
+        "voice": "Dylan"
+      }
+    ]
+  },
+  "version": 1
+}

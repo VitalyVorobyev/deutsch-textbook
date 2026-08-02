@@ -1,0 +1,518 @@
+{
+  "approval": {
+    "audio_sha256": "7d3ab6512681d9cf58b08ad99eab42afb19395d430df87b0c9646877489407c2",
+    "checklist": [
+      "accent",
+      "context",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "5da8eed968b02f99e2dd4b30aeea3f9dcebc7fba3bc6caf0b3b961fcebc26f3b",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T17:03:45.022781+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Kurzes Türgeräusch am Anfang einer Wohnungsszene.",
+      "duration_seconds": 5.736,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 132576,
+      "original_filename": "343388.mp3",
+      "original_sha256": "1af49d732c6d14106cb7997b23619a30e574e636ed9edf7286137876aa5ae422",
+      "page_url": "https://freesound.org/s/343388/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 2500,
+        "gain_db": -20.0,
+        "sound_id": 343388,
+        "source_sha256": "1af49d732c6d14106cb7997b23619a30e574e636ed9edf7286137876aa5ae422",
+        "start_ms": 0
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Einzelnes Türgeräusch ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 343388,
+      "source_file": "preview-hq",
+      "title": "Household door close, INT.wav",
+      "uploader": "LOVEBURD"
+    },
+    {
+      "contains_brands": false,
+      "contains_music": false,
+      "contains_personal_data": false,
+      "contains_speech": false,
+      "description": "Sehr leiser kleiner Beratungsraum unter einem Beratungsgespräch.",
+      "duration_seconds": 115.732563,
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "original_bytes": 2666784,
+      "original_filename": "637807.mp3",
+      "original_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+      "page_url": "https://freesound.org/s/637807/",
+      "processing": {
+        "delay_ms": 0,
+        "duration_ms": 45000,
+        "gain_db": -27.0,
+        "sound_id": 637807,
+        "source_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+        "start_ms": 10000
+      },
+      "retrieved_at": "2026-08-02",
+      "rights_risk_note": "Reiner Raumton ohne Sprache, Musik oder Marken; CC0 vom Uploader freigegeben.",
+      "sound_id": 637807,
+      "source_file": "preview-hq",
+      "title": "room tone small space dead quiet air tone.flac",
+      "uploader": "kyles"
+    }
+  ],
+  "created_at": "2026-08-02T17:03:45.022781+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "5da8eed968b02f99e2dd4b30aeea3f9dcebc7fba3bc6caf0b3b961fcebc26f3b",
+  "exported_files": {
+    "exercise.yaml": "2e0a5dfc86a1d140883dd5f322d28a0aa9f20002fff3a6578346d04c8be5d1bf",
+    "generation-brief.md": "d58c023f0a71cbb21deb19fc19b1e71abbcb54407714b2c319fbeafac83da6dc",
+    "listening.yaml": "77f97132575abee750100272f60ed75e093f04f4776d639fee9ec36200588e6d",
+    "ls-wohnen-01-dry.wav": "5da8eed968b02f99e2dd4b30aeea3f9dcebc7fba3bc6caf0b3b961fcebc26f3b",
+    "ls-wohnen-01.mp3": "5363d63c5d2925a0fec6e4eb8b221b43605114c2e31ef8d67568dffd5afc5559",
+    "ls-wohnen-01.wav": "7d3ab6512681d9cf58b08ad99eab42afb19395d430df87b0c9646877489407c2",
+    "project.json": "6fe6e158ca7ebbc4096cf70e95c6f7070a5d34b7f2b3d4c205506074ba8ed6ea",
+    "sources/freesound-343388/ATTRIBUTION.md": "46e24519b20d29ad315c43730339822706724539081ed5b7a9c4d0efd6087b34",
+    "sources/freesound-343388/original.mp3": "1af49d732c6d14106cb7997b23619a30e574e636ed9edf7286137876aa5ae422",
+    "sources/freesound-343388/source.json": "176944ad535ad5fa6a9461d5a10c0dd9c7b0d6319de8ce9985f0c07895df8501",
+    "sources/freesound-637807/ATTRIBUTION.md": "ea91eccfdd4d8cd8feea945c842e9ecf8f99afa13cb08d9781470b3115286545",
+    "sources/freesound-637807/original.mp3": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+    "sources/freesound-637807/source.json": "9ee74fa54a1124e808f4f5b5072d0ffb8526e330cc322acfc080bec7931bf8c2",
+    "student.html": "5d29dd13725864a2942cb959a62810c9b2d7d33a34f6a836ff1a2e8490e918c3",
+    "student.pdf": "991fd9b79a513d4d6d020ec45f2cb8c07ed77c013a013ebd2b06f211d5716b8b",
+    "teacher.html": "f408143b634d40b619d406c3635307f8f2d44c5e7326aaed024b78baa00a0690",
+    "teacher.pdf": "611944e19668bcd04f07a8123295cca35d8212f42fceab42b6d7aaabca0de73a",
+    "transcript.txt": "0c6890ead9bec2d73744088ea2cb87b1148a08e297873acb0a10f49786e3e0c2"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-wohnen-01-listening.md",
+    "sha256": "d58c023f0a71cbb21deb19fc19b1e71abbcb54407714b2c319fbeafac83da6dc"
+  },
+  "id": "ls-wohnen-01",
+  "line_artifacts": [
+    {
+      "cache_key": "5d7f7685e71805c4356c5a6f0d2239a67d1f574ccb861e66874e0b69f963aba8",
+      "display_text_sha256": "941f7169697b569329f25fb632cfc79e95bd56a92f2a1cdd5b758e3b1271c120",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "941f7169697b569329f25fb632cfc79e95bd56a92f2a1cdd5b758e3b1271c120",
+      "wav_sha256": "1f57c996bf0d9ac315d2a7e3cf803364b0706665ca0bb78badd734ea89d57fd3"
+    },
+    {
+      "cache_key": "fab04dbfbc3d2335aa702452e275ad7244a463c038626360f7f252e51dec7ce7",
+      "display_text_sha256": "70ab03925492aeff212b0816914cc5ca3ded5036ff337857cb3ab5c592f8ea73",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "70ab03925492aeff212b0816914cc5ca3ded5036ff337857cb3ab5c592f8ea73",
+      "wav_sha256": "f9be7466cf0d98b3993b1c6b6437ff6c599f3f6fe2a53544164957ad84afc3ed"
+    },
+    {
+      "cache_key": "dad0b45fcd578ae4e5c1b7a3c17dfe6bdb904810f15d6855cce8271b1e72bc90",
+      "display_text_sha256": "a6dc91e2e9f8e10820c6b38e520366c55d944a9b1cf2e84a2f7e45cde94236a3",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "a6dc91e2e9f8e10820c6b38e520366c55d944a9b1cf2e84a2f7e45cde94236a3",
+      "wav_sha256": "53e2d2370b26b3961161b7c3e6d1d3f2427f456e6b697523a76f08aaaecd49fc"
+    },
+    {
+      "cache_key": "6ff52b8bd5e05a37857a2053cad1194fd7c34ea17670c830f0b7fb15d1e12016",
+      "display_text_sha256": "f94afe710714b4700d65194504a932f579b1297ddf77bf3396b55402bbbaa6cf",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "f94afe710714b4700d65194504a932f579b1297ddf77bf3396b55402bbbaa6cf",
+      "wav_sha256": "cffb31f7e88639100ab028ad26b761d48effea6518ef84c86ef3cc4eda30a2e1"
+    },
+    {
+      "cache_key": "b931ac06d2ecfcb108e09625a94421b9d58c6c0517d19dac188872900d2b43b5",
+      "display_text_sha256": "7ea7e1e650f4478940b94e739a0d4ac372310aec270212d9d6d23b49c39c9666",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "7ea7e1e650f4478940b94e739a0d4ac372310aec270212d9d6d23b49c39c9666",
+      "wav_sha256": "759e7148a02c6bf259aaeebfc47fb18284c3ad043a2fce2a99bfb0ee6b6d9b8c"
+    },
+    {
+      "cache_key": "809a77108b661f9545de9674b56ef223678a215c0b260faf39c9781d8b3e8817",
+      "display_text_sha256": "8c8fdfe56087f6dac5d94dc9c7a13345ae547fe66683d1341dd63b57294a90a9",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "8c8fdfe56087f6dac5d94dc9c7a13345ae547fe66683d1341dd63b57294a90a9",
+      "wav_sha256": "cb1d00a8948ca11dbe451908ff1a6cdcd417191369f9fa78c40e265c02577495"
+    },
+    {
+      "cache_key": "36af7dcddff2a0c140c102b0b5adaa6a0d4e0c767ec054a5199ac23e5cb200ca",
+      "display_text_sha256": "64caa249c738286ac93e5acc432be26e8075c624184ef573442c02f95412cc94",
+      "line_id": "line-7",
+      "synthesis_text_sha256": "64caa249c738286ac93e5acc432be26e8075c624184ef573442c02f95412cc94",
+      "wav_sha256": "6b1b2d92bf0cd336afd8131b8b726f6e11a977e0df8230fd56df6e1427cc7f8c"
+    },
+    {
+      "cache_key": "3ab5dc2521b2a4b90a1a7ec5939173495b7ed1581fd2604fb3e14905c3eeba7c",
+      "display_text_sha256": "435502b911d4885403a4d458d86d753632be9f4fbaaf96ecdc38c8a5e96f096b",
+      "line_id": "line-8",
+      "synthesis_text_sha256": "435502b911d4885403a4d458d86d753632be9f4fbaaf96ecdc38c8a5e96f096b",
+      "wav_sha256": "f162ef342ce2a7ff179c468ec0134383a27fc868c541926f30531290f8a3c907"
+    }
+  ],
+  "master_audio_sha256": "7d3ab6512681d9cf58b08ad99eab42afb19395d430df87b0c9646877489407c2",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "5363d63c5d2925a0fec6e4eb8b221b43605114c2e31ef8d67568dffd5afc5559",
+  "qa": {
+    "context_sound_count": 2,
+    "dry": {
+      "created_at": "2026-08-02T16:50:38.322868+00:00",
+      "failures": [],
+      "full_transcript": "Hier ist die Wohnung. Sie hat drei Zimmer. Wie groß ist die Küche? Die Küche ist klein, aber das Wohnzimmer ist sehr groß. Gibt es einen Balkon? Ja, der Balkon ist hinten. Das Bad hat ein Fenster. Und was kostet die Wohnung? 600 Euro im Monat. Ohne Heizung. Das ist nicht teuer. Ich nehme sie.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wie groß ist die Küche?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wie groß ist die Küche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gibt es einen Balkon?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gibt es einen Balkon?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und was kostet die Wohnung?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und was kostet die Wohnung?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sechshundert Euro im Monat, ohne Heizung.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "600 Euro im Monat. Ohne Heizung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist nicht teuer. Ich nehme sie.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist nicht teuer. Ich nehme sie.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T16:50:38.323309+00:00",
+      "failures": [],
+      "full_transcript": "Hier ist die Wohnung. Sie hat drei Zimmer. Wie groß ist die Küche? Die Küche ist klein, aber das Wohnzimmer ist sehr groß. Gibt es einen Balkon? Ja, der Balkon ist hinten. Das Bad hat ein Fenster. Und was kostet die Wohnung? 600 Euro im Monat. Ohne Heizung. Das ist nicht teuer. Ich nehme sie.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wie groß ist die Küche?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wie groß ist die Küche?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gibt es einen Balkon?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gibt es einen Balkon?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und was kostet die Wohnung?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und was kostet die Wohnung?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Sechshundert Euro im Monat, ohne Heizung.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "600 Euro im Monat. Ohne Heizung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das ist nicht teuer. Ich nehme sie.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das ist nicht teuer. Ich nehme sie.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "2a9b9969de096d521eee40e5890cd4c4e87bd512d54e6036f6474ef53693a977",
+  "script_sha256": "f05eeac2bd9afe932ede568a7f571e755b4cc622becd6dd942042e543993e124",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [
+      {
+        "delay_ms": 0,
+        "duration_ms": 2500,
+        "gain_db": -20.0,
+        "sound_id": 343388,
+        "source_sha256": "1af49d732c6d14106cb7997b23619a30e574e636ed9edf7286137876aa5ae422",
+        "start_ms": 0
+      },
+      {
+        "delay_ms": 0,
+        "duration_ms": 45000,
+        "gain_db": -27.0,
+        "sound_id": 637807,
+        "source_sha256": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+        "start_ms": 10000
+      }
+    ],
+    "lines": [
+      {
+        "display_text": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+        "id": "line-1",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Maklerin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Wie groß ist die Küche?",
+        "id": "line-2",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Interessent",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+        "id": "line-3",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Maklerin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Gibt es einen Balkon?",
+        "id": "line-4",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Interessent",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+        "id": "line-5",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Maklerin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Und was kostet die Wohnung?",
+        "id": "line-6",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Interessent",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      },
+      {
+        "display_text": "Sechshundert Euro im Monat, ohne Heizung.",
+        "id": "line-7",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Maklerin",
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "synthesis_text": null,
+        "voice": "Vivian"
+      },
+      {
+        "display_text": "Das ist nicht teuer. Ich nehme sie.",
+        "id": "line-8",
+        "pace": 0.9,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Interessent",
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "synthesis_text": null,
+        "voice": "Uncle_Fu"
+      }
+    ]
+  },
+  "version": 1
+}

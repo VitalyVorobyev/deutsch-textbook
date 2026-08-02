@@ -1,0 +1,79 @@
+topic: reisen-verkehr
+role: practice
+title:
+  en: A platform change at the station
+  ru: Смена пути на вокзале
+  uk: 'Зміна колії на вокзалі'
+items:
+- id: q1
+  outcomes:
+  - durchsage-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Durchsage
+      text: Achtung am Gleis sieben.
+    - speaker: Durchsage
+      text: Der Regionalexpress nach Hamburg fährt heute nicht um sechzehn Uhr zehn,
+        sondern um sechzehn Uhr fünfundzwanzig.
+    - speaker: Durchsage
+      text: Der Zug fährt außerdem abweichend von Gleis neun.
+    - speaker: Durchsage
+      text: Reisende nach Hamburg gehen bitte zu Gleis neun.
+  recording: ls-reisen-verkehr-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Von welchem Gleis fährt der Zug nach Hamburg ab?
+  options:
+  - Von Gleis neun.
+  - Von Gleis sieben.
+  - Von Gleis zehn.
+  correct: 0
+  explain:
+    en: Platform seven is where the announcement is made, not where the train leaves
+      from — abweichend von Gleis neun is the change. Ten is a number in the cancelled
+      time (sechzehn Uhr zehn), not a platform at all. An announcement names several
+      numbers and only one answers the question.
+    ru: 'Путь семь — это место, где звучит объявление, а не откуда уходит поезд: изменение
+      — abweichend von Gleis neun. Десять вообще не путь, а часть отменённого времени
+      (sechzehn Uhr zehn). В объявлении звучит несколько чисел, и лишь одно отвечает
+      на вопрос.'
+    uk: 'Колія сім — це місце, де звучить оголошення, а не звідки йде потяг: зміна — abweichend von Gleis neun. Десять узагалі не колія, а частина скасованого часу (sechzehn Uhr zehn). В оголошенні звучить кілька чисел, і лише одне відповідає на запитання.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - durchsage-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Durchsage
+      text: Achtung am Gleis sieben.
+    - speaker: Durchsage
+      text: Der Regionalexpress nach Hamburg fährt heute nicht um sechzehn Uhr zehn,
+        sondern um sechzehn Uhr fünfundzwanzig.
+    - speaker: Durchsage
+      text: Der Zug fährt außerdem abweichend von Gleis neun.
+    - speaker: Durchsage
+      text: Reisende nach Hamburg gehen bitte zu Gleis neun.
+  recording: ls-reisen-verkehr-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wann fährt der Zug ab?
+  options:
+  - Um 16.25 Uhr.
+  - Um 16.10 Uhr.
+  - Um 16.15 Uhr.
+  correct: 0
+  explain:
+    en: nicht … sondern cancels the first time and gives the new one. Whichever half
+      of that construction you miss, you take the wrong train.
+    ru: nicht … sondern отменяет первое время и называет новое. Пропустив любую половину
+      этой конструкции, сядешь не на тот поезд.
+    uk: 'nicht … sondern скасовує перший час і називає новий. Пропустивши будь-яку половину цієї конструкції, сядеш не на той потяг.'
+  max_replays: 3

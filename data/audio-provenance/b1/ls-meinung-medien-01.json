@@ -1,0 +1,367 @@
+{
+  "approval": {
+    "audio_sha256": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+    "checklist": [
+      "accent",
+      "intelligibility",
+      "naturalness",
+      "pace",
+      "questions",
+      "speakers"
+    ],
+    "dry_audio_sha256": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+    "editor": "Vitaly Vorobyev",
+    "reviewed_at": "2026-08-02T16:05:44.956130+00:00",
+    "status": "complete"
+  },
+  "claims": {
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": false,
+    "voice_cloning_used": false
+  },
+  "contextual_sources": [],
+  "created_at": "2026-08-02T16:05:44.956130+00:00",
+  "dependency_lock_sha256": "9db49f2b15180ffa0ca04ebd7612a6a013ac3067905fcd4c838a852cd53d215e",
+  "dry_audio_sha256": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+  "exported_files": {
+    "exercise.yaml": "a3ba96986a09c45fede08b7e14cd9879f24ee76529210ef1acc0d75ad59cfaf5",
+    "generation-brief.md": "bd02cdefb987d590e7c8a6e37ff7443e2d659afd560b882ff72f2faef182ba75",
+    "listening.yaml": "780813549627bce39caa6d80049e9e6a2c1de370b448837ead771af6c0b0636a",
+    "ls-meinung-medien-01-dry.wav": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+    "ls-meinung-medien-01.mp3": "b40b47a3a78c29a77e804a60dd9e6ded8ac8035110da66c20033af0dba9d25ca",
+    "ls-meinung-medien-01.wav": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+    "project.json": "ce2c4c8152890b9cdbc2fda0a3c0aa851406ad202ec94eafd8c1720abd934109",
+    "student.html": "422d6036375d31899cf0fac50308db79acd21d0ebb118e16a676c3d78d22cfcc",
+    "student.pdf": "5c3b119bc6fc9baf4d8cd061e1f4dfb5b6aa3683335de3a88e65431c1a3e6aaa",
+    "teacher.html": "fae84857c5deab2813761b5957bfc55fe21468c2972d88606ce912610ab06f09",
+    "teacher.pdf": "04289db70fa632b63f919be3020b873feb19e34e9eafd8ecb0e912f052bdbc82",
+    "transcript.txt": "2f1e7562dedca1559c85bab8a147e5caa9bbb3bd5f7958870e5930915495ecdf"
+  },
+  "generation_brief": {
+    "path": "data/prompts/2026-08-02-ls-meinung-medien-01-listening.md",
+    "sha256": "bd02cdefb987d590e7c8a6e37ff7443e2d659afd560b882ff72f2faef182ba75"
+  },
+  "id": "ls-meinung-medien-01",
+  "line_artifacts": [
+    {
+      "cache_key": "367ceb04b0f859f90ed95c9d65b091a1375d9f4721199ade3c9006677c021767",
+      "display_text_sha256": "810befb4dfe3491bb80047034e8f2fe9874fa9af764f4922cbd2b738ded6e599",
+      "line_id": "line-1",
+      "synthesis_text_sha256": "810befb4dfe3491bb80047034e8f2fe9874fa9af764f4922cbd2b738ded6e599",
+      "wav_sha256": "1d5fdf93745f603361f902ab565be66592a8bd31b8e19ca1b2b959bdcd5f04cd"
+    },
+    {
+      "cache_key": "7f4df8278ef0533d6c71d08a0bd2f62c24702a091cbcec6a01d13baf2272441d",
+      "display_text_sha256": "061ca2e65f81db2af03b88ddce02962e304e9a0acf09eed5cf795d9c5f1114f4",
+      "line_id": "line-2",
+      "synthesis_text_sha256": "061ca2e65f81db2af03b88ddce02962e304e9a0acf09eed5cf795d9c5f1114f4",
+      "wav_sha256": "177aba54f9dbad646dcb97551eb9a6c480f2997c3537508c26c7be12423042ba"
+    },
+    {
+      "cache_key": "e9158dd5080ae9358a23e37e5cd9931aed02bf7eb8742651140f6d50223a534f",
+      "display_text_sha256": "dfd168dab5c5a9899cbdc9d84bdf8e8251f57a9df8b86c56946c0076999c1f25",
+      "line_id": "line-3",
+      "synthesis_text_sha256": "dfd168dab5c5a9899cbdc9d84bdf8e8251f57a9df8b86c56946c0076999c1f25",
+      "wav_sha256": "5be98336ab055af9b9d4bff7fd21af83862121e01c9415f8f8a35437504afb43"
+    },
+    {
+      "cache_key": "8f1432087ee6ba20828f649c39d6fbae61cd6d14b3e7d23d6acd63145af0c65a",
+      "display_text_sha256": "08bf195c041df9a4db437814e8c24d22ce3fffe923edf6bd4a702e7ee9e170cb",
+      "line_id": "line-4",
+      "synthesis_text_sha256": "08bf195c041df9a4db437814e8c24d22ce3fffe923edf6bd4a702e7ee9e170cb",
+      "wav_sha256": "1cca4341640b6010cde793054ca917738623e2ad0d9a607e7f8503ad0d872a78"
+    },
+    {
+      "cache_key": "d0f7fab3ff33d3b819de59d4b5adbb2fc3a635a1a329d13af5ba4130c9afbd70",
+      "display_text_sha256": "566d17b78aeb2442c2e8e80989ace8b4d6322bf5f272fef886467969cb593930",
+      "line_id": "line-5",
+      "synthesis_text_sha256": "566d17b78aeb2442c2e8e80989ace8b4d6322bf5f272fef886467969cb593930",
+      "wav_sha256": "4742b28dad0c0970484931f93cd1696c0bcfaed2a44945cada42fa6aeb9efacc"
+    },
+    {
+      "cache_key": "7787b524c8a0546e5efcd7d7a5ead71a632e40ae22c521dae21fb08af2cfdf79",
+      "display_text_sha256": "f522ec153d284971b23864964c4fc340c57f8f484364beff4bf4655cb81b6524",
+      "line_id": "line-6",
+      "synthesis_text_sha256": "f522ec153d284971b23864964c4fc340c57f8f484364beff4bf4655cb81b6524",
+      "wav_sha256": "0486617cb2bbf5216c29fc570d419698314ed8e5bc90de13b9f5a730342ebc36"
+    }
+  ],
+  "master_audio_sha256": "1e5e8496e97ddedf36523858cc92dc73850e0321aea9442e632903a120b09df3",
+  "model_lock_sha256": "371819b8f1926efa14d39209927b4ee8c56b55f589dd3b4743bfe70373147791",
+  "models": {
+    "asr": {
+      "adapter_code": "mlx-examples@796f7ae3a4216e2d694b138316a3fa375d63b0f5",
+      "id": "mlx-community/whisper-large-v3-turbo",
+      "license": "MIT",
+      "original_id": "openai/whisper-large-v3-turbo",
+      "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "generator": {
+      "adapter_code": "mlx-lm@0.28.3",
+      "id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "license": "Apache-2.0",
+      "original_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "original_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_text_tokenizer": {
+      "adapter_code": "transformers@4.46.1",
+      "files": [
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "spiece.model",
+        "special_tokens_map.json"
+      ],
+      "id": "google/flan-t5-large",
+      "license": "Apache-2.0",
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "parler_tts": {
+      "adapter_code": "huggingface/parler-tts@d108732cd57788ec86bc857d99a6cabd66663d68",
+      "id": "parler-tts/parler-tts-mini-multilingual-v1.1",
+      "license": "Apache-2.0",
+      "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+      "training_data_provenance": "published dataset lineage; not independently verified",
+      "voices": [
+        "Nicole",
+        "Christopher",
+        "Megan",
+        "Michelle"
+      ]
+    },
+    "qwen_tts": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "forbidden_capabilities": [
+        "voice-clone",
+        "reference-audio",
+        "voice-design"
+      ],
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "license": "Apache-2.0",
+      "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+      "training_data_provenance": "vendor-documented; not independently verified",
+      "voices": [
+        "Vivian",
+        "Serena",
+        "Uncle_Fu",
+        "Dylan",
+        "Eric",
+        "Ryan",
+        "Aiden",
+        "Ono_Anna",
+        "Sohee"
+      ]
+    }
+  },
+  "published_audio_bitrate": "64k",
+  "published_audio_sha256": "b40b47a3a78c29a77e804a60dd9e6ded8ac8035110da66c20033af0dba9d25ca",
+  "qa": {
+    "context_sound_count": 0,
+    "dry": {
+      "created_at": "2026-08-02T14:30:13.554621+00:00",
+      "failures": [],
+      "full_transcript": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt. Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg. Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern. Und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum. Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei ihnen. Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan. Die Entscheidung fällt im Stadtrat am 20. November. Wir berichten weiter.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern, und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Entscheidung fällt im Stadtrat am zwanzigsten November. Wir berichten weiter.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Entscheidung fällt im Stadtrat am 20. November. Wir berichten weiter.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "final": {
+      "created_at": "2026-08-02T14:30:13.555908+00:00",
+      "failures": [],
+      "full_transcript": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt. Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg. Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern. Und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum. Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei ihnen. Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan. Die Entscheidung fällt im Stadtrat am 20. November. Wir berichten weiter.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern, und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Entscheidung fällt im Stadtrat am zwanzigsten November. Wir berichten weiter.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Entscheidung fällt im Stadtrat am 20. November. Wir berichten weiter.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "passed": true
+  },
+  "revision_sha256": "267045d28337038ff181f1e05e6bc1af43cac6b2bcb623e8af0ffd8f6cd00c01",
+  "script_sha256": "bc4c7a25b70ceca0b224516894f101aed3f850dc284829d5095d49a7be1116c3",
+  "settings": {
+    "adapter": "qwen_tts",
+    "assembly": {
+      "format": "wav-pcm-s16le",
+      "silence": "ffmpeg-anullsrc-16000-mono"
+    },
+    "context_sounds": [],
+    "lines": [
+      {
+        "display_text": "In unserer Stadt sollen ab Januar mehrere Straßen in der Innenstadt für Autos gesperrt werden. Die Verwaltung rechnet mit weniger Verkehr und besserer Luft und will die Flächen für Cafés und Fahrräder nutzen. Der Handelsverband warnt dagegen vor Umsatzverlusten, weil Kunden schlechter parken können. Wir haben zwei Stimmen dazu gesammelt.",
+        "id": "line-1",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 100,
+        "speaker": "Sprecher",
+        "style": "Sprich sachlich und gleichmäßig, wie in einem kurzen Radiobericht.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      },
+      {
+        "display_text": "Ich halte das für richtig. In anderen Städten hat sich gezeigt, dass die Geschäfte nach einem Jahr sogar mehr verkaufen, weil mehr Leute zu Fuß vorbeikommen und länger bleiben. Wer mit dem Auto kommt, hält kurz und fährt wieder weg.",
+        "id": "line-2",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 101,
+        "speaker": "Herr Lang",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Das mag in großen Städten stimmen. Bei uns kommen viele Kunden aber aus den Dörfern, und dorthin fährt abends kaum ein Bus. Wenn man ihnen die Zufahrt nimmt, bevor es eine Alternative gibt, fahren sie eben ins Einkaufszentrum.",
+        "id": "line-3",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 102,
+        "speaker": "Frau Ott",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Dann muss man zuerst die Busse verbessern und danach sperren, nicht umgekehrt. Da bin ich ganz bei Ihnen.",
+        "id": "line-4",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 103,
+        "speaker": "Herr Lang",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Aiden"
+      },
+      {
+        "display_text": "Genau das ist mein Punkt. Ich bin nicht gegen die Idee, sondern gegen den Zeitplan.",
+        "id": "line-5",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 104,
+        "speaker": "Frau Ott",
+        "style": "Sprich überlegt und engagiert, wie jemand, der seine Meinung begründet.",
+        "synthesis_text": null,
+        "voice": "Ono_Anna"
+      },
+      {
+        "display_text": "Die Entscheidung fällt im Stadtrat am zwanzigsten November. Wir berichten weiter.",
+        "id": "line-6",
+        "pace": 1.0,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "seed": 105,
+        "speaker": "Sprecher",
+        "style": "Sprich sachlich und gleichmäßig, wie in einem kurzen Radiobericht.",
+        "synthesis_text": null,
+        "voice": "Eric"
+      }
+    ]
+  },
+  "version": 1
+}

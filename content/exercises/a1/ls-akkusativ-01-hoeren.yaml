@@ -1,0 +1,86 @@
+topic: akkusativ
+role: practice
+title:
+  en: Ordering in a café
+  ru: Заказ в кафе
+  uk: 'Замовлення в кафе'
+items:
+- id: q1
+  outcomes:
+  - akkusativ-objekte
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kellner
+      text: Guten Tag. Was möchten Sie trinken?
+    - speaker: Gast
+      text: Ich nehme einen Kaffee und ein Wasser.
+    - speaker: Kellner
+      text: Möchten Sie auch etwas essen?
+    - speaker: Gast
+      text: Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.
+    - speaker: Kellner
+      text: Möchten Sie den Salat mit Brot?
+    - speaker: Gast
+      text: Nein, ohne Brot, danke.
+    - speaker: Kellner
+      text: Einen Kaffee, ein Wasser und einen Salat.
+  recording: ls-akkusativ-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Was bestellt der Gast zu trinken?
+  options:
+  - Einen Kaffee und ein Wasser.
+  - Einen Kaffee und eine Milch.
+  - Ein Wasser und einen Saft.
+  correct: 0
+  explain:
+    en: The order is said twice — once by the guest and once repeated back by the
+      waiter. The repetition is the chance to check, and it is worth waiting for rather
+      than answering on the first hearing.
+    ru: 'Заказ звучит дважды: сначала от гостя, потом официант его повторяет. Повтор
+      — это возможность проверить себя, и стоит дождаться его, а не отвечать с первого
+      раза.'
+    uk: 'Замовлення звучить двічі: спершу його називає гість, потім кельнер повторює. Повтор — це нагода перевірити себе, і на нього варто дочекатися, а не відповідати з першого разу.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - akkusativ-objekte
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Kellner
+      text: Guten Tag. Was möchten Sie trinken?
+    - speaker: Gast
+      text: Ich nehme einen Kaffee und ein Wasser.
+    - speaker: Kellner
+      text: Möchten Sie auch etwas essen?
+    - speaker: Gast
+      text: Ja, ich möchte einen Salat. Ohne Zwiebeln, bitte.
+    - speaker: Kellner
+      text: Möchten Sie den Salat mit Brot?
+    - speaker: Gast
+      text: Nein, ohne Brot, danke.
+    - speaker: Kellner
+      text: Einen Kaffee, ein Wasser und einen Salat.
+  recording: ls-akkusativ-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: Wie möchte der Gast den Salat?
+  options:
+  - Ohne Zwiebeln und ohne Brot.
+  - Mit Zwiebeln und mit Brot.
+  - Ohne Zwiebeln, aber mit Brot.
+  correct: 0
+  explain:
+    en: Two separate refusals, in two different turns. "Ohne Zwiebeln, aber mit Brot" catches the listener who heard the first ohne and stopped listening for the second.
+    ru: Два отдельных отказа в двух разных репликах. «Ohne Zwiebeln, aber mit Brot» ловит того, кто
+      расслышал первое ohne и перестал ждать второго.
+    uk: 'Дві окремі відмови у двох різних репліках. «Ohne Zwiebeln, aber mit Brot» ловить того, хто розчув перше ohne і перестав чекати на друге.'
+  max_replays: 3
