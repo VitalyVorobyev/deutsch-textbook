@@ -134,7 +134,11 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   `ls-man-und-besitz-01` (46.9 s against 35–45), which the voice-drift re-seeding pushed out of a
   window they used to sit inside. Steadier delivery is faster; the windows were written before the
   corpus existed. **Do not amend a window to match what shipped** — decide per artifact whether the
-  script is short, and fix the script.
+  script is short, and fix the script. Worst two by proportion, and the place to start:
+  `ls-lernen-zukunft-01` at 44.4 s against 65–85 (Codex flagged this one on #131 — it is the
+  shortest B1 take against the longest B1 window, so the unit gets roughly half the sustained
+  listening its brief asked for) and `ls-arbeit-beruf-01` at 23.7 s against 40–50. Both need more
+  script and a re-approval, not a wider window.
 - **P22-11 · Nothing detects two vocab entries that answer the same production prompt** — two
   entries whose glosses reduce to the same content words are two correct answers to one question.
   `Angebot`/`Sonderangebot` was found by the learner, not by a gate. A throwaway scan flags 129
@@ -145,6 +149,15 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   editorial ruling, not a mechanical fix. Build the detector to respect parentheticals and require
   mutual overlap, then triage against the lapse table (`aufmachen`, `Aufgabe`, `Anweisung`,
   `Empfehlung` sit high on both).
+- **P22-18 · `soundfile` is pinned twice, at two versions** — `pyproject.toml` and `uv.lock` say
+  `0.13.1`; `requirements-qwen-runtime.txt` says `0.14.0`. **Introduced by #131**, which moved
+  `soundfile` out of the optional `mlx` extra and into the base dependencies at the extra's
+  version without checking the Qwen runtime's. The documented order — `uv sync`, then
+  `install-qwen.sh` — therefore leaves an environment that disagrees with its own package
+  metadata, and a later `uv sync` downgrades it back. Two lines; pick one version and use it in
+  both. Note while there: the 41 committed manifests record `dependency_lock_sha256` as it stood
+  when the audio was approved, which is what a provenance record should say — do **not** refresh
+  those hashes to match a lock that changed afterwards. Found by Codex on #131.
 - **P22-17 · `draft-wave` cannot draft a Qwen-seeded project** — `cli.py`'s `ENGINE` is now
   `qwen_tts`, so `seed-wave` writes payloads whose lines carry Qwen voices (`Vivian`, `Serena`, …),
   but `generate_drafts` still forces `"tts_adapter": "parler_tts"` into the final payload
