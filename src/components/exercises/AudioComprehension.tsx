@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { audioComprehensionItemSchema } from '../../lib/schemas';
 import { speakGermanSequence, ttsAvailable } from '../../lib/speech';
+import { bundlesAudio, listeningAudioUrl } from '../../lib/audio';
+import { withBase } from '../../lib/url';
 import { shuffle } from '../../lib/shuffle';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
@@ -27,8 +29,18 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const cancelRef = useRef<() => void>(() => {});
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
-  const turns = item.source.kind === 'tts' ? item.source.turns : item.source.transcript;
-  const audioAvailable = item.source.kind === 'asset' || ttsAvailable();
+  const turns = item.source.turns;
+  /**
+   * A reviewed recording plays only where the build shipped it. The desktop bundle sets
+   * PUBLIC_ATLAS_AUDIO_BUNDLE and carries the WAVs; the web demo does not, and speaks the
+   * same script through browser TTS instead. The item is identical either way — the
+   * validator holds `source.turns` equal to the recording's transcript — so this changes the
+   * voice, never the question or the score.
+   */
+  const recordingUrl = item.recording && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE)
+    ? withBase(listeningAudioUrl(item.recording))
+    : undefined;
+  const audioAvailable = recordingUrl !== undefined || ttsAvailable();
   const checked = chosen !== null;
   const correct = chosen === item.correct;
 
@@ -38,14 +50,14 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
     if (!audioAvailable || playing || plays >= item.max_replays) return;
     setPlays((n) => n + 1);
     setPlaying(true);
-    if (item.source.kind === 'asset') {
+    if (recordingUrl) {
       const audio = audioRef.current;
       if (!audio) return;
       audio.currentTime = 0;
       void audio.play();
     } else {
       cancelRef.current = speakGermanSequence(
-        item.source.turns.map((t) => t.text),
+        turns.map((t) => t.text),
         { rate: item.source.rate },
         () => setPlaying(false),
       );
@@ -61,8 +73,8 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      {item.source.kind === 'asset' && (
-        <audio ref={audioRef} src={item.source.src} onEnded={() => setPlaying(false)} onError={() => setPlaying(false)} />
+      {recordingUrl && (
+        <audio ref={audioRef} src={recordingUrl} onEnded={() => setPlaying(false)} onError={() => setPlaying(false)} />
       )}
       {audioAvailable ? (
         <div className="mb-4 flex items-center gap-3">

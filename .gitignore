@@ -24,5 +24,15 @@ docs/Goethe-Zertifikat_B1_Wortliste.pdf
 .ds-sync/
 ds-bundle/
 .design-sync/.cache/
+
+# Large local ML checkpoints
+.models/
 .design-sync/learnings/
 .design-sync/node_modules
+
+# Listening Studio local Python state
+tools/listening-studio/.venv/
+tools/listening-studio/.mypy_cache/
+tools/listening-studio/.pytest_cache/
+tools/listening-studio/.ruff_cache/
+tools/listening-studio/**/__pycache__/

@@ -17,6 +17,10 @@ export default tseslint.config(
       'docs/',
       '.claude/', // local settings + agent worktrees (each carries a full repo copy)
       '.agents/',
+      'tools/listening-studio/.venv/',
+      'tools/listening-studio/.mypy_cache/',
+      'tools/listening-studio/.ruff_cache/',
+      'tools/listening-studio/**/__pycache__/',
       'ds-bundle/', // generated claude.ai/design bundle (compiled React + previews)
       '.ds-sync/', // staged design-sync converter scripts + their node_modules
     ],

@@ -1,0 +1,59 @@
+[project]
+name = "deutsch-atlas-listening-studio"
+version = "0.1.0"
+description = "Local-first authoring studio for Deutsch-Atlas listening exercises"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "alembic==1.16.5",
+  "fastapi==0.116.1",
+  "huggingface-hub==0.36.2",
+  "jinja2==3.1.6",
+  "platformdirs==4.4.0",
+  "pydantic==2.11.9",
+  "python-multipart==0.0.20",
+  "reportlab==4.4.3",
+  "sqlalchemy==2.0.43",
+  "typer==0.17.4",
+  "uvicorn==0.35.0",
+  "pyyaml==6.0.2",
+]
+
+[project.optional-dependencies]
+mlx = ["mlx-lm==0.28.3", "mlx-whisper==0.4.3", "soundfile==0.13.1"]
+test = ["httpx==0.28.1", "mypy==1.18.2", "pytest==8.4.2", "ruff==0.13.1"]
+
+[project.scripts]
+atlas-listening = "listening_studio.cli:app"
+
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/listening_studio"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["listening_studio"]
+
+[[tool.mypy.overrides]]
+module = [
+  "yaml",
+  "reportlab.*",
+  "soundfile",
+  "torch",
+  "qwen_tts",
+  "parler_tts",
+  "transformers",
+  "mlx_whisper",
+  "mlx_lm",
+]
+ignore_missing_imports = true

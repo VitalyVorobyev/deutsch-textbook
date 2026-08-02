@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-08-01",
+  "machine": "MacBook Pro M4 Pro, 12 CPU cores, 24 GB unified memory, macOS 26.5.2",
+  "qwen_tts": {
+    "revision": "85e237c12c027371202489a0ec509ded67b5e4b5",
+    "load_seconds": 3.455,
+    "failure_seconds": 53.16,
+    "max_rss_bytes": 2979381248,
+    "swap_change_bytes": 0,
+    "result": "failed: MPS probability tensor contained inf/nan/negative values"
+  },
+  "parler_tts": {
+    "revision": "11b27d57855dec1ce0914ba1f12363bf2ea75ba3",
+    "weight_fetch_seconds": 291,
+    "approximate_synthesis_seconds": 170,
+    "final_audio_seconds": 21.443991,
+    "approximate_realtime_factor": 7.9,
+    "cache_assembly_seconds": 0.088449,
+    "post_qa_rss_bytes": 1882554368,
+    "peak_rss_bytes": null,
+    "swap_change_bytes": null,
+    "automatic_line_passes": 2,
+    "automatic_line_total": 4,
+    "full_wer": 0.06976744186046512,
+    "human_clarity_rating": null,
+    "human_accent_rating": null,
+    "result": "automatic quality gate failed; human review not performed"
+  },
+  "selected_adapter": "parler_tts",
+  "approval": "not_approved"
+}

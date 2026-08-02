@@ -10,6 +10,7 @@ import {
   wortnetzSchema,
   discoverySchema,
   referenceDataSchema,
+  listeningArtifactSchema,
 } from './lib/schemas';
 
 const topics = defineCollection({
@@ -57,6 +58,11 @@ const referenceData = defineCollection({
   schema: referenceDataSchema,
 });
 
+const listening = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './content/listening' }),
+  schema: listeningArtifactSchema,
+});
+
 export const collections = {
   topics,
   vocab,
@@ -67,4 +73,5 @@ export const collections = {
   wortnetze,
   discovery,
   referenceData,
+  listening,
 };

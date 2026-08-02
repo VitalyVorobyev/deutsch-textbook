@@ -1,0 +1,559 @@
+version: 1
+units:
+  - unit: erste-schritte
+    level: A1
+    artifacts:
+      - id: ls-erste-schritte-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Bürgerbüro: Telefonnummer verstehen"
+        outcomes: [erste-zahlen-verstehen]
+        required_vocabulary: ["null", eins, fünf, sieben, Telefonnummer]
+        grammar_target: "Ziffern und einfache W-Fragen"
+        duration_seconds: { min: 15, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-formell, sehr klar"
+        item_types: [audio-comprehension]
+        context_sound: "kurzer Telefon-Verbindungston"
+  - unit: praesens-wortstellung
+    level: A1
+    artifacts:
+      - id: ls-praesens-wortstellung-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurspartner stellen und beantworten persönliche Fragen"
+        outcomes: [praesens-fragen]
+        duration_seconds: { min: 20, max: 30 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, klar"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: artikel-genus
+    level: A1
+    artifacts:
+      - id: ls-artikel-genus-01
+        wave: 2
+        purpose: model-input
+        scenario: "Verkäuferin benennt gesuchte Gegenstände"
+        outcomes: [artikel-genus-erkennen]
+        duration_seconds: { min: 15, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Markt-Hintergrund"
+  - unit: menschen-familie
+    level: A1
+    artifacts:
+      - id: ls-menschen-familie-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Sprachnachricht stellt Familienmitglieder vor"
+        outcomes: [familie-verstehen]
+        required_vocabulary: [Mutter, Vater, Bruder, Schwester, heißen]
+        grammar_target: "Possessivartikel und einfache ist/heißt-Sätze"
+        duration_seconds: { min: 20, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "informell, langsam"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Wohnraum"
+  - unit: akkusativ
+    level: A1
+    artifacts:
+      - id: ls-akkusativ-01
+        wave: 2
+        purpose: model-input
+        scenario: "Bestellung im Café"
+        outcomes: [akkusativ-objekte]
+        duration_seconds: { min: 20, max: 30 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Café-Raumton"
+  - unit: essen-einkaufen
+    level: A1
+    artifacts:
+      - id: ls-essen-einkaufen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Einkauf am Lebensmittelstand"
+        outcomes: [essen-bestellen]
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Kassen- oder Marktton"
+  - unit: alltag-zeit
+    level: A1
+    artifacts:
+      - id: ls-alltag-zeit-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Anrufbeantworter nennt Uhrzeiten und Reihenfolge"
+        outcomes: [zeit-uhrzeit-verstehen]
+        required_vocabulary: [Uhr, halb, morgen, zuerst, dann]
+        grammar_target: "Uhrzeit mit um und Handlungsreihenfolge"
+        duration_seconds: { min: 20, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "neutral, langsam"
+        item_types: [audio-comprehension]
+        context_sound: "ein einzelner Uhr- oder Weckton"
+  - unit: wohnen
+    level: A1
+    artifacts:
+      - id: ls-wohnen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurze Wohnungsbesichtigung"
+        outcomes: [wohnen-beschreiben]
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "kurzes Tür- oder Raumgeräusch"
+  - unit: stadt-wege
+    level: A1
+    artifacts:
+      - id: ls-stadt-wege-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Nach dem Weg fragen und eine einfache Wegbeschreibung verstehen"
+        outcomes: [stadt-wegbeschreibung-verstehen]
+        required_vocabulary: [geradeaus, links, rechts, Straße, Bahnhof]
+        grammar_target: "Imperativische Wegangaben und bis/gegenüber"
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Straßenraum"
+  - unit: freizeit-koennen
+    level: A1
+    artifacts:
+      - id: ls-freizeit-koennen-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Zwei Personen wählen eine mögliche Freizeitaktivität"
+        outcomes: [freizeit-gespraech-verstehen]
+        required_vocabulary: [können, heute, schwimmen, treffen, Uhr]
+        grammar_target: "können-Satzklammer und Verabredung"
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, klar"
+        item_types: [audio-comprehension]
+        context_sound: "kurzer Sportstätten-Raumton"
+  - unit: dativ
+    level: A2
+    artifacts:
+      - id: ls-dativ-01
+        wave: 2
+        purpose: model-input
+        scenario: "Nachbarn leihen und geben Haushaltsgegenstände"
+        outcomes: [dativ-verben]
+        duration_seconds: { min: 35, max: 45 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Hausflur"
+  - unit: trennbare-verben
+    level: A2
+    artifacts:
+      - id: ls-trennbare-verben-01
+        wave: 2
+        purpose: model-input
+        scenario: "Sprachnachricht beschreibt Erledigungen und Zeiten"
+        outcomes: [trennbar-tagesablauf]
+        duration_seconds: { min: 35, max: 45 }
+        speakers: { min: 1, max: 1 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: "kurze Tür- oder Verkehrshinweise"
+  - unit: modalverben
+    level: A2
+    artifacts:
+      - id: ls-modalverben-01
+        wave: 2
+        purpose: model-input
+        scenario: "Mitbewohner klären Pflichten, Erlaubnis und Verbot"
+        outcomes: [modal-erlaubnis-notwendigkeit]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: perfekt-haben-sein
+    level: A2
+    artifacts:
+      - id: ls-perfekt-haben-sein-01
+        wave: 2
+        purpose: model-input
+        scenario: "Freunde erzählen von einer Wochenendreise"
+        outcomes: [perfekt-vergangenheit-erzaehlen]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: alltag-tagesablauf
+    level: A2
+    artifacts:
+      - id: ls-alltag-tagesablauf-01
+        wave: 2
+        purpose: model-input
+        scenario: "Ein Paar koordiniert einen geänderten Tagesplan"
+        outcomes: [alltag-beschreiben]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: "ein kurzer Weckton"
+  - unit: termine-vereinbaren
+    level: A2
+    artifacts:
+      - id: ls-termine-vereinbaren-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Telefonat schlägt einen Termin vor und ändert ihn"
+        outcomes: [termine-zeit-verstehen]
+        required_vocabulary: [Termin, passen, verschieben, Dienstag, Uhr]
+        grammar_target: "höfliche Vorschläge und Zeitangaben"
+        duration_seconds: { min: 35, max: 45 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Telefon-Leitungston"
+  - unit: wohnen-umzug
+    level: A2
+    artifacts:
+      - id: ls-wohnen-umzug-01
+        wave: 2
+        purpose: model-input
+        scenario: "Telefonat koordiniert einen Umzugstag"
+        outcomes: [nachbarn-bitte]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leise Karton- oder Türgeräusche"
+  - unit: reisen-verkehr
+    level: A2
+    artifacts:
+      - id: ls-reisen-verkehr-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Bahnhofsdurchsage ändert Gleis oder Zeit"
+        outcomes: [durchsage-verstehen]
+        required_vocabulary: [Zug, Gleis, Abfahrt, Verspätung, heute]
+        grammar_target: "öffentliche Zeit- und Ortsangaben"
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 1, max: 1 }
+        register: "öffentliche Durchsage, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Bahnhof und kurzer neutraler Signalton"
+  - unit: einkaufen-reklamation
+    level: A2
+    artifacts:
+      - id: ls-einkaufen-reklamation-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kundin reklamiert ein defektes Produkt"
+        outcomes: [umtausch-begruenden]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Ladenraum"
+  - unit: adjektive-deklination
+    level: A2
+    artifacts:
+      - id: ls-adjektive-deklination-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Wohnungen oder Produkte werden verglichen"
+        outcomes: [adjektiv-beschreiben]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: gesundheit-arzttermin
+    level: A2
+    artifacts:
+      - id: ls-gesundheit-arzttermin-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Praxisempfang gibt Vorbereitung und Warteanweisungen"
+        outcomes: [praxis-anweisungen-verstehen]
+        required_vocabulary: [warten, nüchtern, mitbringen, nicht, Untersuchung]
+        grammar_target: "Anweisungen, trennbare Verben und geschützte Negation"
+        duration_seconds: { min: 35, max: 45 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Wartezimmer-Raumton"
+  - unit: verben-mit-praepositionen
+    level: A2
+    artifacts:
+      - id: ls-verben-mit-praepositionen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Freunde sprechen über Sorgen, Interessen und Pläne"
+        outcomes: [person-sache-unterscheiden]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: arbeit-beruf
+    level: A2
+    artifacts:
+      - id: ls-arbeit-beruf-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Vorgesetzte erklärt eine kurze Arbeitsaufgabe"
+        outcomes: [arbeitsanweisung-verstehen]
+        required_vocabulary: [zuerst, danach, prüfen, bis, fertig]
+        grammar_target: "Arbeitsanweisungen, Modalverb und Reihenfolge"
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, kollegial"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Büro- oder Werkstattraum"
+  - unit: nebensaetze-plaene
+    level: A2
+    artifacts:
+      - id: ls-nebensaetze-plaene-01
+        wave: 2
+        purpose: model-input
+        scenario: "Freunde erklären, warum Pläne geändert wurden"
+        outcomes: [weil-grund]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: infinitiv-mit-zu
+    level: A2
+    artifacts:
+      - id: ls-infinitiv-mit-zu-01
+        wave: 2
+        purpose: model-input
+        scenario: "Aufgaben und Zwecke für eine Veranstaltung planen"
+        outcomes: [zweck-um-zu]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: relativsaetze
+    level: A2
+    artifacts:
+      - id: ls-relativsaetze-01
+        wave: 2
+        purpose: model-input
+        scenario: "Fundbüro identifiziert eine verlorene Sache"
+        outcomes: [sache-definieren]
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Serviceschalter"
+  - unit: biografie-erfahrungen
+    level: A2
+    artifacts:
+      - id: ls-biografie-erfahrungen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzes Interview über Lebensstationen"
+        outcomes: [lebensstationen-ordnen]
+        duration_seconds: { min: 50, max: 60 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: verbindungen-folgen
+    level: A2
+    artifacts:
+      - id: ls-verbindungen-folgen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Ein Vorfall und seine Folgen werden erklärt"
+        outcomes: [folge-ausdruecken]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral"
+        item_types: [audio-comprehension]
+        context_sound: "ein kurzer nichtsprachlicher Vorfallhinweis"
+  - unit: man-und-besitz
+    level: A2
+    artifacts:
+      - id: ls-man-und-besitz-01
+        wave: 2
+        purpose: model-input
+        scenario: "Bewohner klären verlorene und gemeinsame Gegenstände"
+        outcomes: [besitz-ausdruecken]
+        duration_seconds: { min: 35, max: 45 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Hausflur"
+  - unit: freunde-feste
+    level: A2
+    artifacts:
+      - id: ls-freunde-feste-01
+        wave: 2
+        purpose: model-input
+        scenario: "Einladung und Planung eines Festes"
+        outcomes: [absprachen-aushandeln]
+        duration_seconds: { min: 45, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Feier-Raumton"
+  - unit: lernen-verstehen
+    level: A2
+    artifacts:
+      - id: ls-lernen-verstehen-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Kursanweisung mit anschließender Verständnisfrage"
+        outcomes: [kursanweisungen-verstehen]
+        required_vocabulary: [Aufgabe, Seite, zuerst, noch einmal, verstehen]
+        grammar_target: "Kursanweisung und höfliche Verständnisfrage"
+        duration_seconds: { min: 40, max: 50 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Unterrichtsraum"
+  - unit: aemter-dienstleistungen
+    level: A2
+    artifacts:
+      - id: ls-aemter-dienstleistungen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Gespräch am Schalter über Unterlagen und nächste Schritte"
+        outcomes: [unterlagen-erfragen]
+        duration_seconds: { min: 50, max: 60 }
+        speakers: { min: 2, max: 2 }
+        register: "formell-höflich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Schalterhallen-Raumton"
+  - unit: erfahrungen-erzaehlen
+    level: B1
+    artifacts:
+      - id: ls-erfahrungen-erzaehlen-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Interview über eine schwierige, aber erfolgreiche Erfahrung"
+        outcomes: [interview-verstehen]
+        required_vocabulary: [Erfahrung, zuerst, nachdem, schwierig, geschafft]
+        grammar_target: "Präteritum, nachdem und narrative Chronologie"
+        duration_seconds: { min: 60, max: 80 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: leben-veraendern
+    level: B1
+    artifacts:
+      - id: ls-leben-veraendern-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Personen vergleichen Wohn- und Umzugsoptionen"
+        outcomes: [wohnsituation-vergleichen]
+        duration_seconds: { min: 60, max: 80 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: gesundheit-wohlbefinden
+    level: B1
+    artifacts:
+      - id: ls-gesundheit-wohlbefinden-01
+        wave: 2
+        purpose: model-input
+        scenario: "Alltagsnahe Empfehlungen zu Gewohnheiten und Wohlbefinden"
+        outcomes: [gewohnheiten-beschreiben]
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, nicht-diagnostisch"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: arbeit-bewerbung
+    level: B1
+    artifacts:
+      - id: ls-arbeit-bewerbung-01
+        wave: 2
+        purpose: model-input
+        scenario: "Ausschnitt aus einem Vorstellungsgespräch"
+        outcomes: [interview-fragen-beantworten]
+        duration_seconds: { min: 65, max: 85 }
+        speakers: { min: 2, max: 2 }
+        register: "formell-höflich, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Büroraum"
+  - unit: meinung-medien
+    level: B1
+    artifacts:
+      - id: ls-meinung-medien-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzer Bericht mit zwei Reaktionen"
+        outcomes: [bericht-verstehen]
+        duration_seconds: { min: 70, max: 90 }
+        speakers: { min: 3, max: 3 }
+        register: "neutral, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: null
+  - unit: konsum-umwelt
+    level: B1
+    artifacts:
+      - id: ls-konsum-umwelt-01
+        wave: 2
+        purpose: model-input
+        scenario: "Herstellung oder Recycling erklären und eine Wahl vergleichen"
+        outcomes: [konsum-vergleichen]
+        duration_seconds: { min: 65, max: 85 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, alltagsnah"
+        item_types: [audio-comprehension]
+        context_sound: "leises Verpackungs- oder Recyclinggeräusch"
+  - unit: regeln-verantwortung
+    level: B1
+    artifacts:
+      - id: ls-regeln-verantwortung-01
+        wave: 2
+        purpose: model-input
+        scenario: "Bewohner handeln unter einer Hausregel eine Lösung aus"
+        outcomes: [loesung-aushandeln]
+        duration_seconds: { min: 70, max: 90 }
+        speakers: { min: 3, max: 3 }
+        register: "neutral, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Gemeinschaftsraum"
+  - unit: reisen-probleme
+    level: B1
+    artifacts:
+      - id: ls-reisen-probleme-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kundendienstgespräch nach einer Reiseunterbrechung"
+        outcomes: [panne-berichten]
+        duration_seconds: { min: 70, max: 90 }
+        speakers: { min: 2, max: 2 }
+        register: "formell-höflich, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Bahnhof oder Flughafen"
+  - unit: lernen-zukunft
+    level: B1
+    artifacts:
+      - id: ls-lernen-zukunft-01
+        wave: 1
+        purpose: listening-outcome
+        scenario: "Beratung zu Lernzielen und beruflichen nächsten Schritten"
+        outcomes: [beratung-verstehen]
+        required_vocabulary: [Ziel, Kurs, Erfahrung, empfehlen, nächster Schritt]
+        grammar_target: "damit/um zu, falls und Beratungssprache"
+        duration_seconds: { min: 65, max: 85 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, natürlich"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Beratungsraum"

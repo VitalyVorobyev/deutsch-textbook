@@ -42,6 +42,7 @@ describe('actual response mode', () => {
     expect(responseModeForItem(write)).toBe('writing');
     expect(responseModeForItem(speak)).toBe('spoken-interaction');
   });
+
 });
 
 describe('explicit focus evidence', () => {

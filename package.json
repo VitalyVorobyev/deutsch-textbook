@@ -9,8 +9,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "dev:desktop": "bun scripts/with-audio.ts dev",
+    "build:desktop": "bun scripts/with-audio.ts build",
     "preview": "astro preview",
     "validate": "bun scripts/validate.ts",
+    "listening:inventory": "bun scripts/listening-inventory.ts",
     "progress:audit": "bun scripts/progress-audit.ts",
     "review:gate": "bun scripts/pr-review-gate.ts",
     "gen:ipa": "bun scripts/gen-ipa.ts",

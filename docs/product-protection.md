@@ -60,6 +60,19 @@ together describe process; neither predicts a court's copyright assessment.
 The repository skill [`.agents/skills/authorship-provenance/SKILL.md`](../.agents/skills/authorship-provenance/SKILL.md)
 is the operational handoff for authors and visual generators.
 
+Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.
+It retains the exact generation brief, immutable model and adapter revisions, model licences,
+separate training-data evidence notes, official voice profile, script and audio hashes, QA results,
+and the human listening checklist. A permissive model licence is never presented as verified
+training-data or speaker-consent provenance. Voice cloning, reference recordings, unverified
+voices and music remain outside the supported authoring path. Short contextual effects may be
+manually downloaded from Freesound only under the reviewed CC0/CC BY policy: the exact original,
+source page, uploader, licence, retrieval date, hash, processing and an honest rights-risk note are
+retained. CC BY-NC, Sampling+, speech, brands and doubtful uploads are rejected; the uploader's
+licence assertion is never presented as independently verified ownership. Context cannot carry a
+correct answer by itself. No generated or mixed audio may enter `content/listening/` until a named
+human has approved that exact revision and WAV.
+
 ## Deferred commercialization checklist
 
 Before a commercial launch, obtain current professional advice and address:

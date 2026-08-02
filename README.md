@@ -124,6 +124,10 @@ schemas. Bun is the package manager and task runner.
 | `bun scripts/grammar-coverage.ts A1` | structural coverage against the grammar inventory (`A1`, `A2` or `B1`) |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
 
+Listening authors can launch the local Python studio documented in
+[`tools/listening-studio/README.md`](tools/listening-studio/README.md). It publishes only reviewed
+WAV, exercise and provenance artifacts and never handles learner data.
+
 Before opening a pull request, run the complete gate — the same one CI runs:
 
 ```sh

@@ -48,8 +48,10 @@ Engagement, same-day accuracy and page viewing cannot substitute for either.
   deterministic HTML/SVG for grammar, sentence topology and time.
 - **Entdecken and documents:** authentic tasks, explicit provenance, no completion state.
 - **Language quality:** Ukrainian calque review and ongoing EN/RU/UK/DE parity checks.
-- **Audio:** maintain purposeful listening tasks; defer broader neural audio until evidence isolates
-  audio quality as the limiting factor.
+- **Audio:** build the reviewed corpus from `data/listening-plan.yaml`: first the twelve live units
+  with explicit listening outcomes, then model/input audio for the remaining units. Neural audio
+  remains publishable only after dry and final-mix QA plus named human review; volume is not a
+  substitute for intelligibility.
 
 ## Definition of the next milestone
 
