@@ -54,8 +54,10 @@ Engagement, same-day accuracy and page viewing cannot substitute for either.
   links the graph both ways: topic → Referenz, Referenz → topic, topic → topic. Derive the edges
   from data the curriculum already owns, the way `/referenz/zeitformen` derives its lesson links
   from the focus-tag map, so they cannot drift. Backlog P21-1 · P21-2 · P21-3.
-- **Audio:** maintain purposeful listening tasks; defer broader neural audio until evidence isolates
-  audio quality as the limiting factor.
+- **Audio:** build the reviewed corpus from `data/listening-plan.yaml`: first the twelve live units
+  with explicit listening outcomes, then model/input audio for the remaining units. Neural audio
+  remains publishable only after dry and final-mix QA plus named human review; volume is not a
+  substitute for intelligibility.
 
 ## Definition of the next milestone
 

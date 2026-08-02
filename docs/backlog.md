@@ -113,6 +113,48 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   edge, a topic page pointing at the reference that frames what it teaches, still does not exist
   anywhere. Worth doing as one pass over the whole graph rather than page by page, because the
   value is in the network and a half-linked graph reads as an oversight.
+- **P22-3 · An adapter switch can save a payload the store will then refuse to load** — the
+  Studio's script form applies `model_copy()`, which bypasses `RevisionPayload.consistent()`.
+  Switching `tts_adapter` while the lines still carry the previous adapter's preset voices
+  therefore writes a revision that every subsequent `Store.get()` rejects, and the project
+  becomes unreachable through the interface — the same failure mode as the legacy-question
+  regression, arrived at from the other direction. The form must build and validate a complete
+  `RevisionPayload` and require the voices to be re-picked when the adapter changes. **This is
+  the first thing anyone switching Parler → Qwen will hit**, so it is the first entry to clear.
+- **P22-4 · `bun tauri dev` serves no reviewed recording** — `src/integrations/audio-bundle.ts`
+  copies audio on `astro:build:done`, which the dev server never reaches, while `dev:desktop`
+  still sets the bundle flag. So `AudioComprehension` requests `/audio/<id>.mp3`, gets a 404, and
+  — because the component treats a configured URL as available — does not fall back to TTS. Two
+  candidate fixes, and they are not alternatives: an `astro:server:setup` middleware serving from
+  `content/listening/` makes dev match the build, and an `<audio>` error handler falling back to
+  TTS covers a missing or corrupt file in a shipped build too. Costs nothing today (no recording
+  is committed) and costs the whole playback check the day one is.
+- **P22-5 · A rebuilt export keeps the previous revision's files** — `write_bundle` reuses the
+  export directory, so a contextual source dropped or replaced by a new revision survives under
+  `sources/`, enters `exported_files` and the ZIP, and is published even though the manifest's
+  `contextual_sources` no longer describes it. A published file no manifest accounts for is
+  precisely what the provenance chain exists to make impossible. Build into a clean directory.
+- **P22-6 · Freesound source URLs are matched by prefix** — `sources.py` accepts
+  `https://freesound.org/s/1234` for `sound_id: 123`, so a metadata typo can credit and link a
+  different upload while every validation step passes. Attribution is someone else's name on
+  someone else's work; parse the URL and require the sound-id segment to equal `sound_id`.
+- **P22-7 · Passive: only the accusative object is promoted** — `content/reference-data/zeitformen.yaml`
+  says the active clause's object becomes the passive subject, unqualified. A dative object does
+  not: *Man hilft dem Mann* → *Dem Mann wird geholfen*, not *\*Der Mann wird geholfen*. The owning
+  B1 material limits the transformation correctly, so the reference page is the looser statement
+  of the two — the state a reference page must never be in.
+- **P22-8 · Konjunktiv II Vergangenheit is not always `hätte/wäre + Partizip II`** — with a
+  governing modal it takes the Ersatzinfinitiv: *Das hättest du sagen sollen*, which the page
+  itself prints two lines below the formula that excludes it. Either qualify the formula as
+  holding without a dependent infinitive, or give the double-infinitive pattern its own row.
+- **P22-1 · Reviewed unit listening corpus** — `data/listening-plan.yaml` owns one planned artifact
+  for each live unit; `bun run listening:inventory` derives production state. Produce Wave 1 for
+  the twelve explicit listening outcomes with Parler on the measured M4 fallback path, preserving
+  failed QA and requiring Vitaly's approval of every exact WAV. Context sounds are optional,
+  speech-independent and restricted to manually reviewed CC0/CC BY Freesound originals. Wave 2 is
+  model/input coverage and does not silently create new listening outcomes. The separate P19-6
+  Goethe pack remains open until its own 6/4/5 task structure and delayed probes ship.
+
 - **P20-1 · The A1 exam-practice surface has one entry point and one owner topic** — `/pruefung/a1`
   is linked only from `/about`: no nav entry, no link from the A1 topic pages, nothing on the
   progress page. A learner who never opens Über will not find it. Separately, all three sets
@@ -186,6 +228,9 @@ Review the checkpoint’s completed 2/7/21-day evidence as a B1 revision trigger
   budget approval. Every take needs human review for A1 intelligibility and natural pacing, plus
   mobile/desktop playback verification. Until this ships, public copy must describe exam practice
   as reading/writing/speaking only and must not imply complete Hören preparation.
+  The repository-local Listening Studio now supplies the reviewed authoring, QA and provenance
+  pipeline, but this content task remains open until the real A1 recordings and Vitaly's review
+  are committed.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract
   (`docs/curriculum-a2-b1.md`, amended 2026-07-24) requires *one 3-variant probe family per
   competence*, and calls one-family-per-unit a regression. B1.4 and B1.5 comply (3 families each);
@@ -345,6 +390,11 @@ These require a measured learning or usability need. They do not block the curri
 
 ## Recently completed
 
+- **P22-2 (2026-08-02):** decided and implemented before the first recording was committed, as the
+  entry required. The WAV master stays in the studio; a 64 kbps mono MP3 is published into
+  `content/listening/`. The manifest carries both `master_audio_sha256` (what the editor approved
+  and what QA ran on) and `published_audio_sha256` (what a learner downloads), and the validator
+  checks the published derivative.
 - **P5-11a (2026-07-28):** both halves resolved by inspection — the zu-infinitiv drill had
   already shipped in #116 (stale "owed" line corrected), and all four 2+-lapse cards in the
   named decks check out: Angebot and Aufgabe fixed by #116's collision pass, Kaution and

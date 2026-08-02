@@ -39,6 +39,7 @@ The principal sources are:
 - `content/exercises/`: pretests, practice, drills, checkpoints, delayed probes, level
   placement tests and non-trainable exam-practice sets;
 - `content/reading/` and `content/documents/`: comprehensible input and reusable stimuli;
+- `content/listening/`: reviewed committed audio stimuli with exact transcripts and provenance;
 - `content/atlas.yaml`: graph relationships, outcomes and ordered curriculum spine;
 - `content/wortfelder/`: topical lexical overlays;
 - `content/wortnetze/`: cross-topic word families and meaning contrasts;
@@ -118,6 +119,23 @@ placement set belongs to no topic, so topic tier derivation cannot observe it at
 and the badge deliberately answer different questions.
 
 Opening a reading, reference page, Wortfeld or Wortnetz creates neither mastery nor review debt.
+Opening or replaying a listening artifact likewise creates no evidence; only its independently
+identified exercise question can write a verified attempt. The published MP3 lives beside its record
+in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
+what QA ran on and what the editor approved, not what a learner downloads. `bun run build:desktop`
+sets `PUBLIC_ATLAS_AUDIO_BUNDLE=1` and copies the MP3s into the desktop build; the public demo
+speaks the same scripts through browser TTS (`src/integrations/audio-bundle.ts`). The flag is set
+in-process rather than as a shell prefix so the Windows release build can run the same command.
+
+## Listening authoring boundary
+
+`tools/listening-studio/` is a local Python editorial service, not a learner service. SQLite keeps
+immutable drafts outside the repository. A committed listening artifact has a published MP3,
+canonical `content/listening/` record, exercise set referenced by its topic, and
+`data/audio-provenance/` manifest pinning both the approved master and the published derivative.
+Publishing refuses unapproved revisions, approvals that vouch for no bytes, existing targets, and
+topics with nowhere to reference the set from. Model licences and training-data provenance
+remain separate claims; automatic transcription is not proof of natural pronunciation.
 
 ## Progress and storage
 

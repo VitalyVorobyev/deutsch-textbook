@@ -4,9 +4,9 @@
   "version": "0.4.0",
   "identifier": "dev.nonvision.deutsch-atlas",
   "build": {
-    "beforeDevCommand": "bun run dev",
+    "beforeDevCommand": "bun run dev:desktop",
     "devUrl": "http://localhost:4321",
-    "beforeBuildCommand": "bun run build",
+    "beforeBuildCommand": "bun run build:desktop",
     "frontendDist": "../dist"
   },
   "app": {

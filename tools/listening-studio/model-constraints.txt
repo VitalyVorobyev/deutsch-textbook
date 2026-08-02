@@ -1,0 +1,4 @@
+# The official Qwen package leaves numba unconstrained; uv otherwise selects an
+# ancient Python<3.10 build through librosa on Python 3.12.
+numba==0.61.2
+llvmlite==0.44.0

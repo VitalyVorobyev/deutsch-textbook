@@ -85,6 +85,11 @@ jobs:
       - uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The desktop app is the build that carries the reviewed listening recordings —
+          # the Pages demo speaks the same scripts through browser TTS instead. tauri-action
+          # runs `bun run build` itself, so the flag has to reach it here.
+          # See src/integrations/audio-bundle.ts.
+          PUBLIC_ATLAS_AUDIO_BUNDLE: '1'
         with:
           tagName: ${{ github.ref_name }}
           releaseName: 'Deutsch-Atlas ${{ github.ref_name }}'
