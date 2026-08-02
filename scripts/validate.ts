@@ -668,6 +668,39 @@ for (const { file, data } of references.values()) {
   }
 }
 
+// The Zeitformen page claims, for every verb form, the level at which the course teaches it.
+// That is precisely the kind of claim a reference page carries for years without anyone
+// re-deriving it, so it is checked rather than trusted: the tags must be real, and a form may
+// not claim to be productive *earlier* than the first topic that teaches any part of it.
+// The teaching topic itself is never written in the YAML — the page reads it out of
+// focusIntroducedBy at build time, so there is nothing here to drift.
+for (const { file, data } of references.values()) {
+  if (data.id !== 'zeitformen') continue;
+  for (const form of data.forms) {
+    let earliest: number | undefined;
+    for (const tag of form.focus) {
+      const owner = focusIntroducedBy[tag];
+      if (!owner) {
+        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (src/lib/focus-tags.ts)`);
+        continue;
+      }
+      const topic = topics.get(owner);
+      if (!topic) {
+        fail(file, `form "${form.id}": focus "${tag}" is introduced by "${owner}", which is not a topic`);
+        continue;
+      }
+      const rank = LEVELS.indexOf(topic.data.level);
+      if (earliest === undefined || rank < earliest) earliest = rank;
+    }
+    if (earliest !== undefined && LEVELS.indexOf(form.level) < earliest)
+      fail(
+        file,
+        `form "${form.id}" claims ${form.level}, but the earliest topic teaching any of its ` +
+          `focus tags is ${LEVELS[earliest]} — a reference page may show later language early, never earlier`,
+      );
+  }
+}
+
 // A discovery piece's `topics` must resolve, exactly like a topic's own refs. Checked in
 // the cross-check pass rather than in the loader because the topic map is only complete
 // here. The edge is deliberately ONE-WAY and non-blocking: a topic never lists its pieces,
