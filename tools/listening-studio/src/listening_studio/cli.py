@@ -17,11 +17,16 @@ from .adapters import draft_prompt, generate_drafts, model_lock
 from .domain import (
     Bilingual,
     Brief,
+    Dictation,
     Line,
+    MultiSelect,
+    Ordering,
     Question,
     RevisionPayload,
+    ShortAnswer,
     SingleChoice,
     Stage,
+    TrueFalse,
 )
 from .export import publish as publish_files, sha256, write_bundle
 from .storage import Store
@@ -329,3 +334,84 @@ def benchmark() -> None:
     if not report.exists():
         raise typer.BadParameter("no measured benchmark exists; run the fixed A2 fixture first")
     typer.echo(report.read_text())
+
+
+TODO_OPTION = "(Distraktor redaktionell ergänzen)"
+
+
+def as_single_choice(question: Question) -> Question | None:
+    """Rewrite one legacy question as a single-choice draft, or None if it already is one.
+
+    Every conversion keeps the authored German and puts the correct answer first, because the
+    point is to lose nothing: these questions were drafted by a model and reviewed by nobody
+    yet, and throwing them away to satisfy a schema change would cost real editorial work. What
+    it cannot invent is a plausible distractor, so it says so in the option list rather than
+    fabricating one — a converted question is a draft, not a finished item.
+    """
+
+    response = question.response
+    if isinstance(response, SingleChoice):
+        return None
+    if isinstance(response, TrueFalse):
+        converted = SingleChoice(
+            kind="single-choice",
+            prompt=response.statement,
+            options=["Richtig", "Falsch"],
+            correct=0 if response.correct else 1,
+        )
+    elif isinstance(response, MultiSelect):
+        # Only the first correct option survives; a single-choice item has exactly one answer.
+        converted = SingleChoice(
+            kind="single-choice",
+            prompt=response.prompt,
+            options=response.options,
+            correct=response.correct[0],
+        )
+    elif isinstance(response, Ordering):
+        converted = SingleChoice(
+            kind="single-choice",
+            prompt=f"{response.prompt} — Was kommt zuerst?",
+            options=response.units,
+            correct=0,
+        )
+    elif isinstance(response, ShortAnswer):
+        converted = SingleChoice(
+            kind="single-choice",
+            prompt=response.prompt,
+            options=[response.answers[0], TODO_OPTION],
+            correct=0,
+        )
+    elif isinstance(response, Dictation):
+        converted = SingleChoice(
+            kind="single-choice",
+            prompt=f"Was hören Sie in {response.line_id}?",
+            options=[(response.accept or ["(Wortlaut ergänzen)"])[0], TODO_OPTION],
+            correct=0,
+        )
+    else:  # pragma: no cover - the union is closed
+        raise TypeError(response)
+    return question.model_copy(update={"response": converted})
+
+
+@app.command("normalize-questions")
+def normalize_questions(dry_run: bool = False) -> None:
+    """Rewrite legacy question shapes as single-choice drafts, keeping the authored text."""
+
+    store = Store()
+    touched = 0
+    for project in store.projects():
+        _, _, payload = store.get(project.id)
+        converted = [as_single_choice(q) for q in payload.questions]
+        if not any(converted):
+            continue
+        questions = [new or old for new, old in zip(converted, payload.questions, strict=True)]
+        changed = [q.id for q, new in zip(payload.questions, converted, strict=True) if new]
+        typer.echo(f"{project.slug}: {', '.join(changed)}")
+        touched += len(changed)
+        if not dry_run:
+            store.revise(project.id, payload.model_copy(update={"questions": questions}))
+    verb = "would convert" if dry_run else "converted"
+    typer.echo(
+        f"{verb} {touched} question(s). Saving a revision returns each project to draft; "
+        f"finish every {TODO_OPTION} in the editor before regenerating audio."
+    )

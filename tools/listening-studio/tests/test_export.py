@@ -1,8 +1,10 @@
+import pytest
 import hashlib
 import json
 from pathlib import Path
 
 from listening_studio.adapters import FakeTTS, assemble, generate_lines
+from listening_studio.domain import ShortAnswer, TrueFalse
 from listening_studio.export import write_bundle
 from test_domain import payload
 
@@ -42,3 +44,43 @@ def test_bundle_is_deterministic_and_records_provenance(tmp_path: Path) -> None:
     assert provenance["audio_sha256"] == hashlib.sha256(wav.read_bytes()).hexdigest()
     assert provenance["claims"]["voice_cloning_used"] is False
     assert all(line["cache_key"] for line in provenance["line_artifacts"])
+
+
+def test_a_legacy_question_cannot_be_exported() -> None:
+    """Readable is not shippable: `audio-comprehension` is single-choice, and there is no
+    second audio item type to render the rest."""
+
+    from listening_studio.export import exercise_yaml
+
+    base = payload()
+    legacy = base.questions[0].model_copy(
+        update={"response": ShortAnswer(kind="short-answer", prompt="Wann?", answers=["um neun"])}
+    )
+    with pytest.raises(ValueError, match="normalize-questions"):
+        exercise_yaml("slug", base.model_copy(update={"questions": [legacy]}))
+
+
+def test_normalize_keeps_the_authored_text() -> None:
+    """Conversion loses no drafted German and invents no distractor."""
+
+    from listening_studio.cli import TODO_OPTION, as_single_choice
+
+    base = payload()
+    short = base.questions[0].model_copy(
+        update={"response": ShortAnswer(kind="short-answer", prompt="Wann?", answers=["um neun"])}
+    )
+    converted = as_single_choice(short)
+    assert converted is not None
+    assert converted.response.prompt == "Wann?"
+    assert converted.response.options == ["um neun", TODO_OPTION]
+    assert converted.response.correct == 0
+
+    tf = base.questions[0].model_copy(
+        update={"response": TrueFalse(kind="true-false", statement="Der Zug fährt.", correct=False)}
+    )
+    converted_tf = as_single_choice(tf)
+    assert converted_tf is not None
+    assert converted_tf.response.options[converted_tf.response.correct] == "Falsch"
+
+    # A question that is already single-choice is left exactly alone.
+    assert as_single_choice(base.questions[0]) is None

@@ -5,7 +5,7 @@ import json
 import re
 from datetime import UTC, datetime
 from enum import StrEnum
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -85,17 +85,63 @@ class SingleChoice(BaseModel):
         return self
 
 
-# The five other response shapes — multi-select, true/false, ordering, short-answer and
-# dictation — were removed on 2026-08-02 with the `listening` item type they existed to feed.
-# Each duplicated an item type the app already had (`mc`, `order`, `listen`), and an editorial
-# model that can author a task the catalog cannot render is a drafting trap, not a feature.
-# A reviewed recording feeds `audio-comprehension`, which is single-choice.
+# ---------------------------------------------------------------------------
+# Legacy response shapes — readable, never exportable
+# ---------------------------------------------------------------------------
+#
+# These five fed the `listening` item type, which was removed on 2026-08-02 because each
+# duplicated an item type the app already had (`mc`, `order`, `listen`). A reviewed recording
+# now feeds `audio-comprehension`, which is single-choice, so nothing below can ship.
+#
+# They stay parseable because deleting them from the model did not delete them from anyone's
+# database: the first attempt narrowed `Question.response` outright and made 12 of 13 drafted
+# projects unloadable — every action answered a wall of pydantic errors, and real authored
+# German sat behind it. A store that cannot read its own history is a worse failure than a
+# shape that cannot be exported.
+#
+# `exercise_yaml` refuses them with a readable message, and `normalize-questions` rewrites
+# them into single-choice drafts that keep the authored text. Do not author new ones.
+
+
+class MultiSelect(BaseModel):
+    kind: Literal["multi-select"]
+    prompt: str
+    options: list[str] = Field(min_length=2)
+    correct: list[int] = Field(min_length=1)
+
+
+class TrueFalse(BaseModel):
+    kind: Literal["true-false"]
+    statement: str
+    correct: bool
+
+
+class Ordering(BaseModel):
+    kind: Literal["ordering"]
+    prompt: str
+    units: list[str] = Field(min_length=2)
+
+
+class ShortAnswer(BaseModel):
+    kind: Literal["short-answer"]
+    prompt: str
+    answers: list[str] = Field(min_length=1)
+
+
+class Dictation(BaseModel):
+    kind: Literal["dictation"]
+    line_id: str
+    accept: list[str] = Field(default_factory=list)
+
+
+LegacyResponse = MultiSelect | TrueFalse | Ordering | ShortAnswer | Dictation
+Response = Annotated[SingleChoice | LegacyResponse, Field(discriminator="kind")]
 
 
 class Question(BaseModel):
     id: str
     instruction: Bilingual
-    response: SingleChoice
+    response: Response
     explain: Bilingual
     translation: Bilingual | None = None
     focus: str | None = None

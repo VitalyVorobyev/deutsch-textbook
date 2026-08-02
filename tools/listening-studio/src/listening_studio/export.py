@@ -13,6 +13,7 @@ from reportlab.pdfgen.canvas import Canvas
 
 from .domain import (
     RevisionPayload,
+    SingleChoice,
     line_cache_key,
 )
 from .sources import load_source
@@ -51,6 +52,15 @@ def exercise_yaml(slug: str, payload: RevisionPayload) -> dict[str, object]:
     turns = [{"speaker": line.speaker, "text": line.display_text} for line in payload.lines]
     items = []
     for question in payload.questions:
+        # A legacy shape is readable but not shippable — `audio-comprehension` is single-choice,
+        # and there is deliberately no second audio item type. `normalize-questions` rewrites
+        # these into single-choice drafts that keep the authored German.
+        if not isinstance(question.response, SingleChoice):
+            raise ValueError(
+                f'question "{question.id}" is a {question.response.kind} question, which no item '
+                "type can render. Run `atlas-listening normalize-questions` and finish the "
+                "converted options in the editor."
+            )
         item: dict[str, object] = {
             "id": question.id,
             "outcomes": payload.brief.outcomes,
