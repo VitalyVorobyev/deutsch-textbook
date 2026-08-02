@@ -39,7 +39,15 @@ HALT_GAPS = 3
 
 
 def median_f0(path: Path) -> float:
-    """Median fundamental over voiced frames, 70-300 Hz, by autocorrelation."""
+    """Median fundamental over voiced frames, by autocorrelation with octave correction.
+
+    **The correction is the whole point.** Taking the largest autocorrelation peak reports the
+    octave *above* the true pitch whenever the second harmonic is strong, which for a male
+    speaker means ~250 Hz instead of ~125. Without it this function claimed a 107 Hz spread on
+    a speaker whose real spread is 15.6 Hz, and that false reading is what sent nineteen
+    artifacts back for re-synthesis. If the lag at 2x or 3x is nearly as periodic, the longer
+    lag is the true period.
+    """
 
     raw = subprocess.run(
         ["ffmpeg", "-v", "quiet", "-i", str(path), "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
@@ -47,7 +55,7 @@ def median_f0(path: Path) -> float:
     ).stdout
     x = np.frombuffer(raw, dtype="<i2").astype(np.float64) / 32768
     sr, win, hop = 16000, 640, 320
-    lo, hi = sr // 300, sr // 70
+    lo, hi = sr // 320, sr // 65
     vals = []
     for i in range(0, len(x) - win, hop):
         frame = x[i : i + win]
@@ -61,8 +69,13 @@ def median_f0(path: Path) -> float:
         if not len(seg):
             continue
         lag = lo + int(np.argmax(seg))
-        if ac[lag] / ac[0] < 0.3:
+        best = ac[lag]
+        if best / ac[0] < 0.3:
             continue
+        for multiple in (2, 3):
+            candidate = lag * multiple
+            if candidate < hi and ac[candidate] > 0.80 * best:
+                lag, best = candidate, ac[candidate]
         vals.append(sr / lag)
     return float(np.median(vals)) if vals else 0.0
 

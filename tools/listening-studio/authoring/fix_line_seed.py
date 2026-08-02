@@ -36,6 +36,9 @@ from listening_studio.storage import Store
 #: slug -> {line_id: new seed}
 SEEDS: dict[str, dict[str, int]] = {
     "ls-gesundheit-wohlbefinden-01": {"line-9": 908, "line-2": 901},
+    # Same signature as line-9 above, found by audio_report.py after the re-seed rather than
+    # by ear: 1.27 words per second of voiced audio with three internal gaps of 0.28 s or more.
+    "ls-praesens-wortstellung-01": {"line-2": 902},
 }
 
 
