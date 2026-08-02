@@ -1000,7 +1000,25 @@ WAVE2: dict[str, dict] = {
 }
 
 
+#: One seed per speaker, spaced, rather than `100 + line_index`.
+#:
+#: Qwen3-TTS keeps a preset's timbre but not the speaker's age or energy, so a seed that
+#: changes every line makes the same character drift through a dialogue. Measured on the
+#: shipped corpus: of 68 speakers with three or more lines, median median-F0 spread was 47 Hz
+#: and 19 exceeded 60 Hz, the worst being a station announcement covering 93-219 Hz — it
+#: changed voice mid-announcement. Seeding per speaker took one dialogue from 89.5 Hz of
+#: spread to 27.9 Hz. The text still differs per line, so the audio does; what stays fixed is
+#: the point the voice is drawn from.
+def speaker_seeds(spec: dict) -> dict[str, int]:
+    order: list[str] = []
+    for speaker, *_ in spec["lines"]:
+        if speaker not in order:
+            order.append(speaker)
+    return {speaker: 100 + 5 * index for index, speaker in enumerate(order)}
+
+
 def build(spec: dict, base: RevisionPayload) -> RevisionPayload:
+    seeds = speaker_seeds(spec)
     lines = [
         Line(
             id=f"line-{index + 1}",
@@ -1010,7 +1028,8 @@ def build(spec: dict, base: RevisionPayload) -> RevisionPayload:
             style=style,
             pace=spec["pace"],
             pause_after_ms=450,
-            seed=spec.get("seeds", {}).get(index + 1, 100 + index),
+            # A per-line override still wins, for re-rolling a single bad take.
+            seed=spec.get("seeds", {}).get(index + 1, seeds[speaker]),
         )
         for index, (speaker, voice, style, text) in enumerate(spec["lines"])
     ]

@@ -23,18 +23,50 @@ from __future__ import annotations
 from listening_studio.domain import RevisionPayload
 from listening_studio.storage import Store
 
-#: slug -> {speaker: seed}. Distinct seeds per speaker inside an artifact, so two characters
-#: are never drawn from the same point.
+#: Artifacts where a speaker's median F0 spans more than 60 Hz inside one dialogue — the point
+#: at which the drift stops sounding like intonation and starts sounding like a second person.
+#: Measured across all 68 speakers with three or more lines: median spread 47 Hz, these 19 above
+#: 60 Hz, worst 126.2 Hz (ls-reisen-verkehr-01's Durchsage, 93.0-219.2 Hz).
+#:
+#: **Deliberately not the whole corpus.** Re-synthesis changes the bytes, and an approval is
+#: bound to `final_sha256`/`dry_sha256` precisely so a manifest can never claim a human approved
+#: audio they did not hear. Touching only what measurably needs it keeps 22 of the 41 approvals
+#: standing instead of none.
+DRIFTED = [
+    "ls-reisen-verkehr-01", "ls-modalverben-01", "ls-freunde-feste-01", "ls-konsum-umwelt-01",
+    "ls-einkaufen-reklamation-01", "ls-man-und-besitz-01", "ls-verbindungen-folgen-01",
+    "ls-termine-vereinbaren-01", "ls-alltag-zeit-01", "ls-stadt-wege-01",
+    "ls-nebensaetze-plaene-01", "ls-trennbare-verben-01", "ls-biografie-erfahrungen-01",
+    "ls-wohnen-umzug-01", "ls-perfekt-haben-sein-01", "ls-wohnen-01",
+    "ls-praesens-wortstellung-01", "ls-dativ-01", "ls-erfahrungen-erzaehlen-01",
+]
+
+#: Explicit overrides where a hand-picked pair is already known good.
 SPEAKER_SEEDS: dict[str, dict[str, int]] = {
     "ls-gesundheit-wohlbefinden-01": {"Herr Klein": 100, "Beraterin": 105},
 }
 
 
+def seeds_for(payload: RevisionPayload) -> dict[str, int]:
+    """One seed per speaker, spaced so two characters are never drawn from the same point."""
+
+    order: list[str] = []
+    for line in payload.lines:
+        if line.speaker not in order:
+            order.append(line.speaker)
+    return {speaker: 100 + 5 * index for index, speaker in enumerate(order)}
+
+
 def main() -> None:
     store = Store()
     by_slug = {p.slug: p for p in store.projects()}
+    plan = dict(SPEAKER_SEEDS)
+    for slug in DRIFTED:
+        if slug not in plan:
+            _, _, payload = store.get(by_slug[slug].id)
+            plan[slug] = seeds_for(payload)
 
-    for slug, seeds in SPEAKER_SEEDS.items():
+    for slug, seeds in plan.items():
         project = by_slug[slug]
         _, _, payload = store.get(project.id)
         unknown = {line.speaker for line in payload.lines} - set(seeds)
