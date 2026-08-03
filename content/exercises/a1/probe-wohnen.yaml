@@ -55,6 +55,7 @@ items:
       uk: "es gibt — застигла формула: es не змінюється, а все перелічене після нього стоїть у знахідному відмінку. З трьох слів форму змінює лише чоловічий рід: der Fernseher → einen Fernseher, тоді як das Bett зберігає ein, а die Uhr — eine."
 
   - id: variant-c
+    revision: 2
     outcomes: [wohnen-beschreiben]
     type: translate
     focus: akkusativ-artikel
@@ -66,6 +67,13 @@ items:
     prompt_ru: "На кухне есть стол, но нет стула."
     prompt_uk: "На кухні є стіл, але немає стільця."
     answer: "In der Küche gibt es einen Tisch, aber keinen Stuhl."
+    # Nothing in «На кухне есть стол» requires the locative to be fronted, and
+    # the second clause may repeat es gibt rather than gapping it. Both graded
+    # articles are unaffected either way.
+    accept:
+      - "Es gibt einen Tisch in der Küche, aber keinen Stuhl."
+      - "Es gibt einen Tisch in der Küche, aber es gibt keinen Stuhl."
+      - "In der Küche gibt es einen Tisch, aber es gibt keinen Stuhl."
     key_tokens: ["einen", "keinen"]
     explain:
       en: "kein- carries exactly the endings of ein-, so in the accusative a masculine noun gives keinen: einen Tisch, aber keinen Stuhl. A missing thing is negated with kein-, never with nicht."

@@ -12,16 +12,29 @@ detail in an archive: [through 2026-07-26](archive/2026-07-backlog-full.md),
 After every two B1 units: drain the grading queue, rerun `bun run progress:audit --profile vitaly`,
 then decide whether content or drills need revision. Never author from a pre-triage focus table.
 
-**Read of 2026-08-02** (queue drained at 165 ruled / 0 awaiting — 13 rulings, 2 accept, 11 confirm):
-the A1 gate came due and missed both bars; the read and the roadmap-rule amendment it triggered are
-in [roadmap.md](roadmap.md#retention-gate). Standing picture is unchanged from the three previous
-reads: production assembly is the bottleneck (`translate` 41% against `cloze` 84%), `order` is
-saturated at 98% so no new order items, and every persistent weak focus already has a serving drill
-— **the owed action is the learner taking training, not authoring**. Six tags still show no recovery
-after their last error: `akkusativ-artikel` (24/74), `haben-sein` (24/85), `nebensatz-verbende`
-(17/53), `trennbar-wortstellung` (15/60), `da-wo-woerter` (11/49), `wo-wohin` (8/36). New drill
-notes from this read: *einladen zu* (not *an*), `nicht` before a time adverb changing what is
-negated, and expletive *es* disappearing once a real subject occupies the slot.
+**Read of 2026-08-03** (queue drained at 188 ruled / 0 awaiting — 23 rulings, 3 accept, 20 confirm),
+the first read taken against a corpus the learner has opened in full: 41 touched topics, 2696
+attempts. Production assembly remains the bottleneck for the fifth consecutive read (`translate`
+42% against `cloze` 85%, `mc` 92%).
+
+**One thing changed that four previous reads did not show: `temporal-nebensatz` (9/21, 2 items, no
+recovery) is now persistent and is the only persistent tag with no serving drill.** The other nine
+all have one (`for f in $(grep -rl "^role: drill" content/exercises/); do …` — 15 drill sets, A1
+and A2 only). So the standing conclusion — *the owed action is the learner taking training, not
+authoring* — holds for nine tags and has its first exception. B1 owns **no** drill set at all,
+which is what made the exception possible.
+
+Four tags show no recovery after their last error: `dativ-praepositionen` (21/84),
+`nebensatz-verbende` (18/54), `da-wo-woerter` (11/49), `temporal-nebensatz` (9/21).
+
+**The table above is post-triage and differs from the pre-triage one**, which is the rule working:
+`adjektiv-nomen` (8/19) left the top ten and `temporal-nebensatz` entered it once the 20 confirms
+re-entered the signals. Drill notes banked from this round: the reflexive pronoun dropped from a
+governed reflexive verb (*sich anmelden*, *sich treffen* — twice in one round); *stellen/legen/setzen*
+taking **wohin** even when the result is a location; *antworten auf* + Akkusativ against *jemandem
+antworten*; a separable prefix dropped at the end of the main clause (*anrufen*); and **aber in
+position 0 never triggering inversion** — the exact mirror of the *deshalb* rule the learner has
+already met.
 
 ### P9-2 · Entdecken pieces
 
@@ -80,6 +93,21 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   adjective built on a compound.
 
 ### Instruments and gates
+
+- **P23-2 · A revision bump that only widens `accept` makes the retention table stop re-grading** —
+  `classifyProbe` (`scripts/progress-audit.ts:769`) re-grades a probe attempt against the item's
+  current spec only when `!revisionKnownMismatch`, which is `attempt.itemRevision !== item.revision`
+  (`:386`). So bumping the revision — which CLAUDE.md requires whenever accepted answers change —
+  drops the attempt to `attempt.focus ? 'failed' : 'retained'`, i.e. **the stored historical tag**,
+  which CLAUDE.md elsewhere says must never be trusted because an older scorer may have attributed
+  it falsely. The distinction the check cannot see is that a *widened accept list does not change
+  the question*: replaying against it is not just safe, it is the only way a false negative is ever
+  corrected. **Measured on the 2026-08-03 triage and currently worth nothing:** the two probe accepts
+  (`a1/probe-wohnen:variant-c`, `a1/probe-menschen-familie:variant-c`) reclassify `correct` ↔
+  `retained` with the bump on and off, and both count toward retention — `akkusativ-artikel` 56% and
+  `possessivartikel` 83% either way. The hazard is the case where the stored tag says `failed`; that
+  did not occur here. **Verify against the corpus before acting** — this entry is a mechanism read
+  plus one measurement of no impact, not evidence that any row is currently wrong.
 
 - **P5-11b · Mode coverage is unchecked** — `bun run validate` enforces the item-mix bar but never
   asks whether an outcome has a task in the mode it names. **A1 resolved 2026-07-31** (items declare

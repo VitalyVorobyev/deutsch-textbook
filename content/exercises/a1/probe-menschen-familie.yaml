@@ -56,6 +56,7 @@ items:
       uk: "Власник один, а закінчення два: їх задає іменник, а не мовець. der Großvater — чоловічого роду → mein Großvater без закінчення; die Großmutter — жіночого → meine Großmutter з -e. Перед назвою професії після sein артикль не ставиться."
 
   - id: variant-c
+    revision: 2
     outcomes: [familie-vorstellen, menschen-beschreiben]
     type: translate
     focus: possessivartikel
@@ -67,6 +68,12 @@ items:
     prompt_ru: "Это моя дочь. Её муж — врач."
     prompt_uk: "Це моя донька. Її чоловік — лікар."
     answer: "Das ist meine Tochter. Ihr Mann ist Arzt."
+    # von Beruf is an idiomatic expansion of the bare predicate noun, not a
+    # second claim; Das ist mein Schwiegersohn is not offered, because the
+    # prompt names the husband through the daughter and that is what Ihr grades.
+    accept:
+      - "Das ist meine Tochter. Ihr Mann ist Arzt von Beruf."
+      - "Das ist meine Tochter. Ihr Mann ist von Beruf Arzt."
     key_tokens: ["meine", "Ihr"]
     explain:
       en: "Two possessives at once: meine Tochter (my + feminine noun → -e) and ihr Mann (her + masculine noun → no ending). The owner picks the word (mein/ihr); the noun picks the ending."

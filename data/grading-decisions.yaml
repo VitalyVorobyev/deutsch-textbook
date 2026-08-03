@@ -1021,3 +1021,141 @@
   decision: confirm
   note: "passen takes the day as its subject: Der Donnerstag passt meiner Frau nicht. Adding es gives the clause two subjects, and the expletive is only available when no other subject is present (Es passt meiner Frau nicht). The dative targets meiner and ihr were correct. drill note: expletive es disappears once a real subject occupies the slot."
   decidedAt: 2026-08-02
+
+- item: b1/lernen-zukunft:uebersetzen-statt-videos
+  given: "Statt bloß Videos zu schauen, wiederhole ich jeden Abend Grammatik."
+  decision: accept
+  note: "bloß is a standard synonym of nur as a restrictive adverb, and «просто»/«просто» name no particular one of them. The graded skeleton — Statt … zu schauen with the fronted clause in position 1 and wiederhole immediately after — is exactly right. The intensifier carries no part of ohne-statt-zu, so the sibling joins the accept list across the item's three clause orders."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft:uebersetzen-statt-videos
+  given: "Statt einfahr Videos zu schauen, wiederhole ich jeden Abend Grammatik."
+  decision: confirm
+  note: "einfahr is not a German word. The statt … zu frame around it is correct, and today's grader leaves the divergence outside ohne-statt-zu, so the ruling costs the focus signal nothing."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-wegen-verspaetung
+  given: "Wegen der Verspettung haben wir den letzten Zug nach Hamburg verpasst"
+  decision: confirm
+  note: "Verspettung misspells Verspätung. Wegen der is correct and the genitive target survived; the divergence is orthographic and sits outside praeposition-genitiv."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-freuen
+  given: "Ich würde mich gefreut, wenn Sie mir bis Freitag antwotren könnten."
+  decision: confirm
+  note: "würde takes the infinitive: Ich würde mich freuen, never würde mich gefreut. That is the konjunktiv2-form target itself, so the rejection is right and the attribution belongs to the focus. antwotren is a separate slip for antworten."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-freuen
+  given: "Ich würde mich freuen, wenn Sie mir antworten könnten."
+  decision: confirm
+  note: "Correct German but an incomplete translation: bis Freitag is dropped, and the deadline is the informative half of the sentence. The Konjunktiv II frame itself was right, and today's grader keeps the divergence outside konjunktiv2-form."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-deshalb-treppe
+  given: "Der Aufzug wird gestrichten. Deshalb nutze ich diese Woche die Treppe"
+  decision: confirm
+  note: "gestrichten is not a form of streichen; the participle is gestrichen. The inversion after Deshalb is correct. Instrument note paid for in the same change: nutzen renders «пользуюсь» as faithfully as benutzen and was neither accepted nor pinned, so the finite verb the rule grades was invisible to key_tokens and the miss could have been attributed to konjunktionaladverb-inversion. nutze now joins both, across the item's four order/punctuation cells."
+  decidedAt: 2026-08-03
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen
+  given: "Während warteten wir, beginnt es zu regnen."
+  decision: confirm
+  note: "Während is a subordinating conjunction and sends the finite verb to the end — Während wir warteten. The rendering keeps verb-second, which is precisely the temporal-nebensatz confusion, so the error is the focus's own. beginnt also loses the past tense the narration needs."
+  decidedAt: 2026-08-03
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss vorher anmelden"
+  decision: confirm
+  note: "sich anmelden is reflexive and the pronoun is obligatory: Man muss sich vorher anmelden. Without it the verb has no object and the clause is ungrammatical. Man and muss were both right, and today's grader keeps the divergence outside indefinitpronomen. drill note: reflexive pronoun dropped from a governed reflexive verb (sich anmelden, sich bewerben, sich beeilen)."
+  decidedAt: 2026-08-03
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss"
+  decision: confirm
+  note: "An abandoned attempt — two words of a five-word sentence. Nothing to rule linguistically."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-an-deiner-stelle
+  given: "An deiner Stelle, würde ich mich bei dem Hotel beschweren"
+  decision: confirm
+  note: "A fronted adverbial takes no comma before the finite verb: An deiner Stelle würde ich … The rendering also drops sofort/gleich, which the prompt's «сразу» carries. bei dem for beim is unobjectionable on its own. The Konjunktiv II advice frame survived, so the divergence sits outside konjunktiv2-ratschlag."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-hof-sodass
+  given: "Den Hof wird repariert, sodass die Kinder nicht auf die Straße spielen können."
+  decision: confirm
+  note: "The subject of a passive clause is nominative: Der Hof wird repariert. auf die Straße spielen is also wrong — spielen names a location, so it takes the dative auf der Straße, and the prompt says draußen rather than in the street at all. The sodass clause's own verb-final order was right."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-miete
+  given: "Die Miete muss nich Bar bezahlt werden"
+  decision: confirm
+  note: "nich misspells nicht, and bar is an adverb here, so it stays lower case — bar bezahlen. muss nicht for the absent obligation was right, so the divergence sits outside duerfen-muessen."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-fahrraeder
+  given: "Die Fahräder müssen bis Sonntag im Hof gestellt werden"
+  decision: confirm
+  note: "Fahräder misspells Fahrräder. More substantially, stellen names a movement into a place and governs the accusative: in den Hof, not im Hof. The modal passive itself — müssen … gestellt werden — was correct. drill note: stellen/legen/setzen take wohin (accusative) even when the resulting state is a location."
+  decidedAt: 2026-08-03
+
+- item: b1/konsum-umwelt:uebersetzen-sofa
+  given: "Das altes Sofa wurde letztes Woche entsorgt."
+  decision: confirm
+  note: "After the definite article the adjective takes the weak -e: das alte Sofa. Woche is feminine, so the time phrase is letzte Woche. The past passive wurde … entsorgt was exactly right, and today's grader keeps both slips outside passiv-vergangenheit."
+  decidedAt: 2026-08-03
+
+- item: a2/freunde-feste-produktion:uebersetzen-aber-sondern-chat
+  given: "Wir treffen nicht um acht, sondern um neun. Ich bringe die Getränke, aber den Kuchen nicht"
+  decision: confirm
+  note: "sich treffen is reflexive: Wir treffen uns nicht um acht. Without uns the verb is transitive and the clause says they are not meeting someone unnamed. sondern and aber were both placed correctly, so the divergence sits outside aber-sondern. drill note: the same dropped reflexive pronoun as a2/man-und-besitz:uebersetzen-man-regel."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft-produktion:uebersetzen-ohne-nachdenken
+  given: "Marta antwortet den Fragen, ohne lange nachzudenken"
+  decision: confirm
+  note: "antworten takes a dative person but a prepositional object for the thing answered: auf die Fragen antworten. den Fragen makes the questions the addressee. The ohne … zu clause was correct, so the valence error sits outside ohne-statt-zu. drill note: antworten auf + Akkusativ against jemandem antworten."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-wohnen:variant-c
+  given: "Es gibt einen Tisch in der Küche, aber es gibt keinen Stuhl"
+  decision: accept
+  note: "Correct German throughout, and both graded articles are exactly right — einen Tisch, keinen Stuhl. The authored answer fronts In der Küche; the learner used the neutral order with the locative after the object and repeated es gibt in the second clause, both of which are ordinary. Nothing in «На кухне есть стол» requires the fronting. The item had no accept list at all, which is why a fully correct probe answer was scored as a failure of akkusativ-artikel."
+  decidedAt: 2026-08-03
+
+- item: b1/probe-erfahrungen-erzaehlen-temporal-nebensatz:variant-a
+  given: "Bevor ich ins Bett ging, stehlt ich den Wecker."
+  decision: confirm
+  note: "stehlt is no form of stellen — the Präteritum is stellte — and stehlen is a different verb entirely. The bevor-clause with its final ging was correct, so the graded temporal structure survived and the divergence sits outside temporal-nebensatz."
+  decidedAt: 2026-08-03
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Main Zug fählt aus."
+  decision: confirm
+  note: "Main for Mein and fählt for fällt are both misspellings. The formal address — können Sie mir helfen — was right, so the divergence sits outside du-sie."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-alltag-zeit:variant-c
+  given: "Im Juli habe ich viel Zeit, aber arbeite ich am Mittwoch."
+  decision: confirm
+  note: "aber is a coordinating conjunction in position 0 and does not take the verb with it: aber ich arbeite am Mittwoch, or aber am Mittwoch arbeite ich. The rendering inverts as though aber were an adverb. Im and am were both correct, so the divergence sits outside um-am-zeit. drill note: aber/und/oder/denn/sondern occupy position 0 and never trigger inversion — the mirror image of the deshalb rule."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-menschen-familie:variant-c
+  given: "Das ist meine Tochter. Ihr Mann ist Arzt von Beruf."
+  decision: accept
+  note: "Correct German, and both graded possessives are exactly right — meine Tochter, Ihr Mann. von Beruf is an idiomatic expansion of the bare predicate noun, not a change of claim: «Её муж — врач» and Ihr Mann ist Arzt von Beruf say the same thing. The item carried no accept list, so an entirely correct probe answer was scored as a failure of possessivartikel."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft:uebersetzen-falls-antwort
+  given: "Falls die Schulle nicht antwortet, rufe ich am Montag."
+  decision: confirm
+  note: "Schulle misspells Schule, and anrufen has lost its separable prefix — rufe ich am Montag an. Without an the verb is rufen, to shout, and the sentence no longer says what it means to. The falls-clause itself was correct, so the divergence sits outside falls-wenn. drill note: separable prefix dropped from the end of the main clause."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-anschluss-perfekt
+  given: "Wir haben den Anschluss verpasst"
+  decision: confirm
+  note: "Correct German but an incomplete translation: in Hannover is dropped, and the possessive unseren has become den. The Perfekt bracket haben … verpasst was right, so the divergence sits outside perfekt-satzklammer."
+  decidedAt: 2026-08-03

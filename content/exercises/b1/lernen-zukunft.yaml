@@ -270,6 +270,7 @@ items:
       de: "Der Infinitivsatz schließt mit zu + Infinitiv, alles andere steht davor: Statt auf die Antwort der Schule zu warten. Die Variante mit zu warten direkt nach statt kopiert die Ordnung der Ausgangssprachen, wo das Verb gleich nach dem Konnektor kommt — das Deutsche parkt es am Ende. Die Variante ohne zu lässt das fallen, worauf der Satz gebaut ist: statt steht nie ohne es."
 
   - id: uebersetzen-statt-videos
+    revision: 2
     outcomes: [beratung-verstehen]
     type: translate
     focus: ohne-statt-zu
@@ -284,9 +285,15 @@ items:
     answer: "Statt nur Videos zu schauen, wiederhole ich jeden Abend Grammatik."
     accept:
       # Clause order is free, and with the statt-clause last the main clause may
-      # front its time phrase — three renderings.
+      # front its time phrase — three renderings. The restrictive adverb is a
+      # second dimension: «просто»/«просто» name no particular one of nur and
+      # bloß, and the intensifier carries no part of the graded frame, so both
+      # run through all three orders.
       - "Ich wiederhole jeden Abend Grammatik, statt nur Videos zu schauen."
       - "Jeden Abend wiederhole ich Grammatik, statt nur Videos zu schauen."
+      - "Statt bloß Videos zu schauen, wiederhole ich jeden Abend Grammatik."
+      - "Ich wiederhole jeden Abend Grammatik, statt bloß Videos zu schauen."
+      - "Jeden Abend wiederhole ich Grammatik, statt bloß Videos zu schauen."
     key_tokens: ["Statt", "statt", "zu", "schauen"]
     explain:
       en: "Graded is the clause's skeleton: statt opens it, zu schauen closes it, and the watching is thereby named as the alternative that does not happen. The subjects must match — the one who skips the videos is the one who revises. Fronted, the whole statt-clause fills position 1, so the main clause opens with wiederhole."
