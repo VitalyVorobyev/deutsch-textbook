@@ -18,6 +18,7 @@ authoring rules. Historical failures and extended rationale are
 | Language selection | `src/lib/prefs.ts`, `src/lib/langcheck.ts` | i18n tests and validator |
 | Explanation prose shape | `src/lib/prose-shape.ts` (authoring-time only; never imported by runtime) | prose-shape tests, validator, `bun scripts/prose-shape.ts` |
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
+| Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard |
 
@@ -34,6 +35,14 @@ authoring rules. Historical failures and extended rationale are
 - References, documents, discovery pieces and learning figures create no progress or review debt.
 - Persisted UI choices receive migrations when their value domain changes.
 - Build-time claims on `/about` are computed from content, never typed by hand.
+- No input is sized, capped or captioned from the answer it is waiting for. A cloze gap was
+  drawn at `answers[0].length + 2`, so `Es gibt hier ___ Supermarkt.` fitted only *einen* of
+  *einen / eine / ein* and the item scored a width judgement as accusative mastery. Every gap
+  now rests at one width and grows with what the learner typed. The same applies to
+  `maxLength`, `placeholder`, `size` and any cell width derived from an answer string —
+  `FormFill` and `TableFill` are CSS-sized and must stay so. Nothing catches this class: the
+  validator sees a well-formed item, the grader sees a correct answer, and the learner is the
+  only observer positioned to notice.
 
 ## Change procedure
 

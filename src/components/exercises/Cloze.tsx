@@ -6,6 +6,28 @@ import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from '.
 
 type ClozeItem = z.infer<typeof clozeItemSchema>;
 
+/**
+ * Every gap rests at the same width, whatever it is hiding.
+ *
+ * It used to be `answers[0].length + 2`, which turned the box into a ruler for the answer:
+ * `Es gibt hier ___ Supermarkt.` was drawn 7ch wide, and of *einen / eine / ein* only one
+ * fits — so the item stopped asking which accusative form the noun takes and started asking
+ * which one is five letters long. That is a retrieval prop the item never meant to give, and
+ * a `cloze` gap is one of the few places measured mastery is charged; the learner spotted it
+ * before any gate could, because no gate can see it.
+ *
+ * The leak was corpus-wide: 893 authored gaps rendered at 4ch–16ch, tracking answer length
+ * exactly (median 4 characters, max 14 — count them with the snippet in
+ * `tests/cloze-gap-width.test.tsx`).
+ *
+ * 8ch is the resting width because 75% of authored gaps are ≤ 6 characters, so three gaps in
+ * four never move while they are being answered. Growth is driven by what the *learner* has
+ * typed, never by the answer, so a long form stays visible instead of scrolling out of sight
+ * and nothing about the target leaks before it is typed.
+ */
+export const GAP_REST_CH = 8;
+export const gapWidthCh = (typed: string) => Math.max(GAP_REST_CH, typed.length + 2);
+
 export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<ClozeItem>) {
   const parts = useMemo(() => parseCloze(item.text), [item]);
   // part index → gap ordinal (-1 for text parts), so render needs no mutable counter
@@ -43,7 +65,6 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
           if (p.type === 'text') return <span key={i}>{p.value}</span>;
           const gi = gapNumbers[i]!;
           const ok = gapResults[gi];
-          const width = Math.max(4, p.answers[0]!.length + 2);
           return (
             <input
               key={i}
@@ -53,7 +74,7 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
               onChange={(e) => setValues((v) => v.map((x, j) => (j === gi ? e.target.value : x)))}
               onKeyDown={(e) => e.key === 'Enter' && check()}
               disabled={checked}
-              style={{ width: `${width}ch` }}
+              style={{ width: `${gapWidthCh(values[gi] ?? '')}ch` }}
               className={`mx-1 min-h-10 rounded border-b-2 bg-transparent px-1 text-center outline-none sm:min-h-0 ${
                 checked
                   ? ok

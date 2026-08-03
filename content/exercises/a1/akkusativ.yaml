@@ -303,6 +303,7 @@ items:
     outcomes: [akkusativ-objekte]
     type: translate
     focus: verbzweit
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -314,6 +315,11 @@ items:
     key_tokens: ["kaufe"]
     accept:
       - "Ich kaufe morgen eine Lampe."
+      # Russian and Ukrainian mark no definiteness on a bare noun: «лампу» fixes
+      # neither article, so the definite rendering answers the prompt the RU/UK
+      # learner was shown. The graded token is kaufe, not the determiner.
+      - "Morgen kaufe ich die Lampe."
+      - "Ich kaufe morgen die Lampe."
     explain:
       en: "Both word orders are correct: Morgen kaufe ich … (the verb stays second, the subject moves behind it) and Ich kaufe morgen …. die Lampe is feminine, so eine does not change in the accusative."
       ru: "Правильны оба порядка слов: Morgen kaufe ich … (глагол остаётся на втором месте, подлежащее уходит за него) и Ich kaufe morgen …. die Lampe — женского рода, поэтому eine в Akkusativ не меняется."

@@ -253,6 +253,7 @@ items:
     outcomes: [termine-organisieren]
     type: translate
     focus: trennbar-modal
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -262,6 +263,10 @@ items:
     prompt_uk: "Я хотів би скасувати зустріч."
     answer: "Ich möchte den Termin absagen."
     key_tokens: ["möchte", "absagen"]
+    accept:
+      # «встречу» / «зустріч» mark no definiteness — cancelling *an* appointment is as
+      # good a reading as cancelling *the* one. The graded bracket is möchte … absagen.
+      - "Ich möchte einen Termin absagen."
     explain:
       en: 'The polite wish is "Ich möchte …" with the infinitive absagen at the end. After möchte the separable verb stays in one piece — the prefix moves away only when the verb itself is conjugated (ich sage den Termin ab).'
       ru: 'Вежливое желание — "Ich möchte …", инфинитив absagen стоит в конце. После möchte отделяемый глагол не разделяется — приставка уходит в конец, только когда глагол спрягается сам (ich sage den Termin ab).'
