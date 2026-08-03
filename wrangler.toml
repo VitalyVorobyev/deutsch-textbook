@@ -45,6 +45,17 @@
 #                         created (or promoted) as an approved owner on sign-in,
 #                         so an empty D1 never locks you out of /konto.
 #
+# **A deploy from a config without `main` removes all six.** Cloudflare's docs
+# say wrangler will not delete secrets; that did not hold across this path. On
+# 2026-08-03 a build of the *old*, assets-only wrangler.toml landed on this
+# Worker while branch control was still building every branch, and replaced the
+# entire binding set: version 02e21b05 (6 secrets + DB + SNAPSHOTS + ASSETS) →
+# c2f78b7e (no bindings at all). Every later build restored the three bindings
+# from this file and had nothing to inherit for the rest, so sign-in was
+# impossible for four hours with every gate green. Recovery is
+# `bunx wrangler secret put` × 6 and needs no rebuild — putting a secret creates
+# a version that inherits the deployed code. Detection is `bun run deploy:smoke`.
+#
 # Redirect URIs to register with both providers:
 #   https://deutsch.vitavision.dev/api/auth/google/callback
 #   https://deutsch.vitavision.dev/api/auth/github/callback

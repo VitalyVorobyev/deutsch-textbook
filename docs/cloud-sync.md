@@ -384,3 +384,43 @@ To exercise auth locally, register `http://localhost:8787/api/auth/{google,githu
 second redirect URI with both providers, then `bun run build && bunx wrangler dev`. Under
 `bun run dev` (Astro alone) there is no Worker, `/api/auth/session` 404s, and the client correctly
 reports signed-out — which is why remote sync needs no environment flag.
+
+## When sign-in stops working
+
+Run the check before reasoning about it:
+
+```
+bun run deploy:smoke          # add --deep to also prove D1 and the migrations
+```
+
+Six checks against the live origin, three of which fail together when the Worker has lost its
+secrets. That is the failure this section exists for, and it has happened once.
+
+**Symptom.** `/konto` shows its local-first paragraph and nothing else — no buttons, no error. Both
+providers redirect to `?auth=provider-unavailable`, and `/api/auth/session` answers
+`{"signedIn":false,"providers":[]}`. An empty `providers` array means the Worker could not configure
+*any* provider; both failing at once points at the shared `SESSION_SECRET` rather than one client id.
+
+**Diagnosis.** Two read-only commands settle it:
+
+```
+bunx wrangler secret list --name deutsch-textbook      # [] is the answer you are looking for
+bunx wrangler versions list --name deutsch-textbook    # which version stopped carrying them
+bunx wrangler versions view <id> --name deutsch-textbook
+```
+
+On 2026-08-03 that history read: version `02e21b05` (`Secret Change`) carried all six secrets plus
+`DB`, `SNAPSHOTS` and `ASSETS`; version `c2f78b7e`, a build seven minutes later, carried **no
+bindings at all**. A version with no `ASSETS` binding is a build of the pre-Worker, assets-only
+`wrangler.toml`, which reached production while Workers Builds was still building every branch. It
+replaced the whole binding set. Every build after it restored the three bindings from the current
+file and had nothing to inherit for the secrets.
+
+**Recovery needs no rebuild.** `bunx wrangler secret put <NAME> --name deutsch-textbook` creates a
+version that inherits the deployed code and bindings, so sign-in returns as soon as the last of the
+six lands. `SESSION_SECRET` may be re-minted freely — it signs only the short-lived OAuth state
+cookie, so rotating it invalidates in-flight sign-ins and nothing else.
+
+**Why the app no longer looks broken meanwhile.** `AccountPanel` renders an explicit "sign-in is not
+available right now" line when `providers` is empty, instead of mapping over an empty list and
+producing a page that ends mid-thought.

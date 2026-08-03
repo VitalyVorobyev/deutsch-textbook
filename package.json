@@ -17,6 +17,7 @@
     "listening:inventory": "bun scripts/listening-inventory.ts",
     "progress:audit": "bun scripts/progress-audit.ts",
     "progress:pull": "bun scripts/progress-pull.ts",
+    "deploy:smoke": "bun scripts/deploy-smoke.ts",
     "review:gate": "bun scripts/pr-review-gate.ts",
     "gen:ipa": "bun scripts/gen-ipa.ts",
     "check": "astro check && tsc --noEmit -p worker/tsconfig.json",

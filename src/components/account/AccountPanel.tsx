@@ -71,6 +71,12 @@ const UI = {
     uk: 'Цей браузер не вміє стискати дані, тому хмарна синхронізація тут недоступна. Експорт та імпорт працюють.',
     de: 'Dieser Browser kann keine Daten komprimieren, deshalb ist die Cloud-Synchronisierung hier nicht verfügbar. Export und Import funktionieren weiterhin.',
   },
+  signInUnavailable: {
+    en: 'Sign-in is not available on this site right now. Nothing on this device is affected — keep learning and try again later.',
+    ru: 'Вход на сайт сейчас недоступен. На этом устройстве ничего не изменилось — продолжайте заниматься и попробуйте войти позже.',
+    uk: 'Вхід на сайт зараз недоступний. На цьому пристрої нічого не змінилося — навчайтеся далі й спробуйте увійти пізніше.',
+    de: 'Die Anmeldung ist auf dieser Seite gerade nicht möglich. Auf diesem Gerät ändert sich nichts — lerne weiter und versuche es später noch einmal.',
+  },
   desktopSignIn: {
     en: 'Sign in on the website first, then create a device code there and paste it below.',
     ru: 'Сначала войдите на сайте, создайте там код устройства и вставьте его ниже.',
@@ -252,6 +258,15 @@ export default function AccountPanel() {
             <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.desktopSignIn)}</p>
             <DeviceTokens lang={lang} />
           </>
+        ) : session.providers.length === 0 ? (
+          // No configured provider means the Worker has no OAuth secrets. Mapping
+          // over the empty list rendered *nothing*, so /konto ended after the
+          // paragraph above and read as a broken page — which is exactly how the
+          // 2026-08-03 outage presented. `bun run deploy:smoke` catches the same
+          // state from outside; this is what the learner sees meanwhile.
+          <p className="text-sm text-stone-500 dark:text-stone-400">
+            {pick(lang, UI.signInUnavailable)}
+          </p>
         ) : (
           <div className="flex flex-wrap gap-2">
             {session.providers.map((provider) => (
