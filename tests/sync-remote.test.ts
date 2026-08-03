@@ -54,7 +54,24 @@ function attempt(id: string, ts: number): Attempt {
   };
 }
 
+/**
+ * The real module, captured before the mock replaces it.
+ *
+ * `mock.module` is **process-global and never torn down**: every file bun loads
+ * after this one sees the replacement. So the mock must be a patch, not a
+ * substitute — spreading `realStore` keeps `localDateString` genuine, and that
+ * one export decides day bucketing in `mastery`, `srs`, `trends`, `resume` and
+ * the Heatmap. Stubbing it to a constant collapsed "two distinct days" into one
+ * and turned `topicTier` from `mastered` into `practiced` in
+ * tests/mastery.test.ts — 21 files further down the run, with nothing pointing
+ * back to here. It passed locally and failed on CI, because the leak is only
+ * visible when this file is loaded *before* the first importer of the real one,
+ * and that ordering is the filesystem's to decide.
+ */
+const realStore = await import('../src/lib/store');
+
 mock.module('../src/lib/store', () => ({
+  ...realStore,
   exportSnapshot: async (profile?: string): Promise<ProgressSnapshot> => ({
     ...local,
     profile,
@@ -71,7 +88,8 @@ mock.module('../src/lib/store', () => ({
       feedback: mergeFeedback(local.feedback, snapshot.feedback),
     };
   },
-  localDateString: () => '2026-08-03',
+  // No `localDateString` override: the real one supplies today's date for the
+  // per-day R2 copy, which is what the Worker validates and what ships.
 }));
 
 // Imported after the mock so the dynamic import inside syncNow resolves to it.
@@ -158,6 +176,16 @@ async function remoteSnapshot(): Promise<ProgressSnapshot> {
 const ids = (snapshot: { attempts: Attempt[] }) => snapshot.attempts.map((a) => a.itemId).sort();
 
 // ---------------------------------------------------------------------------
+
+/**
+ * Guards the mock above against sliding back into a substitute. It lives here
+ * rather than in a file of its own because the leak is only observable after
+ * this file has run, and which file runs next is not ours to decide.
+ */
+test('the store mock is a patch, not a substitute', async () => {
+  const { localDateString } = await import('../src/lib/store');
+  expect(localDateString(new Date(2026, 0, 1))).toBe('2026-01-01');
+});
 
 describe('syncNow', () => {
   test('a first sync uploads what this device holds', async () => {
