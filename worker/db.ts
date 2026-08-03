@@ -284,3 +284,130 @@ export const TOKEN_REF_LENGTH = 12;
 export function tokenRef(hashedId: string): string {
   return hashedId.slice(0, TOKEN_REF_LENGTH);
 }
+
+// ---------------------------------------------------------------------------
+// Pairing requests (migrations/0002_pairing.sql)
+// ---------------------------------------------------------------------------
+
+export interface PairingRow {
+  id: string;
+  user_code: string;
+  label: string;
+  created_at: number;
+  expires_at: number;
+  polled_at: number | null;
+  approved_user_id: string | null;
+}
+
+/**
+ * The code the learner reads off one screen and types into another.
+ *
+ * The alphabet omits every pair a person confuses when copying by eye — 0/O,
+ * 1/I/L, 5/S, 8/B — because a mistyped character here is not a typo, it is a
+ * lookup against a *different* pending request. 28 symbols over 8 positions is
+ * ~38 bits, which is far more than the collision space needs and is not the
+ * secret anyway: the device code is.
+ */
+export const USER_CODE_ALPHABET = '234679ACDEFGHJKMNPQRTUVWXY';
+export const USER_CODE_LENGTH = 8;
+
+export function newUserCode(): string {
+  // Rejection sampling rather than `% length`: the modulo would make the first
+  // few symbols marginally likelier. The bias is small enough not to matter and
+  // cheap enough not to keep.
+  const limit = 256 - (256 % USER_CODE_ALPHABET.length);
+  let code = '';
+  while (code.length < USER_CODE_LENGTH) {
+    for (const byte of crypto.getRandomValues(new Uint8Array(USER_CODE_LENGTH))) {
+      if (byte >= limit) continue;
+      code += USER_CODE_ALPHABET[byte % USER_CODE_ALPHABET.length];
+      if (code.length === USER_CODE_LENGTH) break;
+    }
+  }
+  return code;
+}
+
+/**
+ * Accept what a person actually types: lower case, the dash the UI renders, and
+ * stray spaces. Anything outside the alphabet is left alone so it fails the
+ * lookup rather than being silently rewritten into a *different* valid code.
+ */
+export function normalizeUserCode(input: string): string {
+  return input.toUpperCase().replace(/[\s-]/g, '');
+}
+
+export async function createPairingRequest(
+  db: D1Database,
+  input: { deviceCode: string; userCode: string; label: string; now: number; expiresAt: number },
+): Promise<void> {
+  await db
+    .prepare(
+      'INSERT INTO pairing_requests (id, user_code, label, created_at, expires_at) VALUES (?, ?, ?, ?, ?)',
+    )
+    .bind(
+      await sha256Hex(input.deviceCode),
+      input.userCode,
+      input.label,
+      input.now,
+      input.expiresAt,
+    )
+    .run();
+}
+
+export async function findPairingByUserCode(
+  db: D1Database,
+  userCode: string,
+  now: number,
+): Promise<PairingRow | null> {
+  return db
+    .prepare('SELECT * FROM pairing_requests WHERE user_code = ? AND expires_at > ?')
+    .bind(userCode, now)
+    .first<PairingRow>();
+}
+
+export async function findPairingByDeviceCode(
+  db: D1Database,
+  deviceCode: string,
+  now: number,
+): Promise<PairingRow | null> {
+  return db
+    .prepare('SELECT * FROM pairing_requests WHERE id = ? AND expires_at > ?')
+    .bind(await sha256Hex(deviceCode), now)
+    .first<PairingRow>();
+}
+
+export async function approvePairing(
+  db: D1Database,
+  userCode: string,
+  userId: string,
+  now: number,
+): Promise<number> {
+  const result = await db
+    .prepare(
+      'UPDATE pairing_requests SET approved_user_id = ? WHERE user_code = ? AND expires_at > ? AND approved_user_id IS NULL',
+    )
+    .bind(userId, userCode, now)
+    .run();
+  return result.meta.changes ?? 0;
+}
+
+export async function touchPairingPoll(db: D1Database, id: string, now: number): Promise<void> {
+  await db.prepare('UPDATE pairing_requests SET polled_at = ? WHERE id = ?').bind(now, id).run();
+}
+
+export async function deletePairing(db: D1Database, id: string): Promise<void> {
+  await db.prepare('DELETE FROM pairing_requests WHERE id = ?').bind(id).run();
+}
+
+/** Opportunistic cleanup — there is no cron, and an expired row is only litter. */
+export async function purgeExpiredPairings(db: D1Database, now: number): Promise<void> {
+  await db.prepare('DELETE FROM pairing_requests WHERE expires_at <= ?').bind(now).run();
+}
+
+export async function countPendingPairings(db: D1Database, now: number): Promise<number> {
+  const row = await db
+    .prepare('SELECT COUNT(*) AS n FROM pairing_requests WHERE expires_at > ?')
+    .bind(now)
+    .first<{ n: number }>();
+  return row?.n ?? 0;
+}

@@ -146,6 +146,20 @@ function webTransport(path: string, init: RequestInit = {}): Promise<Response> {
   return fetch(withBase(path), { ...init, credentials: 'same-origin' });
 }
 
+/**
+ * The same transport minus the credential.
+ *
+ * Pairing happens *before* the desktop has a device token — that is the whole
+ * point of it — so `tauriTransport`'s NoTokenError would refuse the one call
+ * that fixes the missing token. On the web this is identical to the normal
+ * path: the cookie rides along on same-origin requests either way.
+ */
+async function anonTransport(path: string, init: RequestInit = {}): Promise<Response> {
+  if (!isTauri()) return webTransport(path, init);
+  const { fetch: tauriFetch } = await import('@tauri-apps/plugin-http');
+  return tauriFetch(`${SYNC_ORIGIN}${path}`, init);
+}
+
 function transport(): Transport {
   return isTauri() ? tauriTransport : webTransport;
 }
@@ -153,6 +167,84 @@ function transport(): Transport {
 /** Endpoint helper for the UI, which needs the same transport for the account routes. */
 export function apiFetch(path: string, init?: RequestInit): Promise<Response> {
   return transport()(path, init);
+}
+
+// ---------------------------------------------------------------------------
+// Device pairing
+// ---------------------------------------------------------------------------
+
+export interface PairingStart {
+  deviceCode: string;
+  userCode: string;
+  label: string;
+  expiresAt: number;
+  interval: number;
+}
+
+export type PairingPoll =
+  | { state: 'pending'; interval: number }
+  | { state: 'slow-down'; interval: number }
+  | { state: 'expired' }
+  | { state: 'approved'; token: string; label: string }
+  | { state: 'error'; detail: string };
+
+/** Desktop: open a pairing request. Returns the short code to show the learner. */
+export async function startPairing(label: string): Promise<PairingStart | null> {
+  const response = await anonTransport('/api/pair/start', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ label }),
+  });
+  if (!response.ok) return null;
+  return (await response.json()) as PairingStart;
+}
+
+/**
+ * Desktop: ask whether the learner has approved yet.
+ *
+ * On `approved` the token is stored here rather than handed to the caller, so
+ * there is exactly one place in the client that writes it, and the forgotten
+ * session probe is cleared so the next sync re-reads who we now are.
+ */
+export async function pollPairing(deviceCode: string): Promise<PairingPoll> {
+  let response: Response;
+  try {
+    response = await anonTransport('/api/pair/poll', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ deviceCode }),
+    });
+  } catch {
+    // Offline mid-pairing is not a failed pairing: the request is still valid
+    // server-side until it expires, so report it as pending and keep polling.
+    return { state: 'pending', interval: 3 };
+  }
+  const body = (await response.json().catch(() => null)) as PairingPoll | null;
+  if (!body) return { state: 'error', detail: 'bad-response' };
+  if (body.state === 'approved') {
+    setDeviceToken(body.token);
+    forgetSession();
+  }
+  return body;
+}
+
+/** Browser: what a code is about to grant, so the learner can check it matches the app. */
+export async function describePairing(
+  userCode: string,
+): Promise<{ userCode: string; label: string; expiresAt: number } | null> {
+  const response = await apiFetch(`/api/pair/request?code=${encodeURIComponent(userCode)}`);
+  if (!response.ok) return null;
+  return (await response.json()) as { userCode: string; label: string; expiresAt: number };
+}
+
+/** Browser: grant the pairing. Cookie-authenticated; a device token is refused server-side. */
+export async function approvePairing(userCode: string): Promise<boolean> {
+  const response = await apiFetch('/api/pair/approve', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ userCode }),
+  });
+  return response.ok;
 }
 
 // ---------------------------------------------------------------------------

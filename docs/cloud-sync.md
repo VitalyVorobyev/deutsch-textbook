@@ -223,6 +223,55 @@ could mint more tokens would be a self-renewing foothold.
 The token sits in the desktop app's `localStorage`, which is a plain file on disk. That is a real
 limitation and the reason revocation is one click on `/konto`.
 
+### Pairing: how the token gets there
+
+The first version of this made the learner read a 43-character bearer credential off one screen and
+type it into another. That is not a security control, it is a transcription task — and what is
+being transcribed ends up in a clipboard, a note, or a screenshot.
+
+`worker/routes/pairing.ts` replaces it with the shape of the **OAuth 2.0 Device Authorization
+Grant** (RFC 8628), minus the OAuth. The desktop opens a pairing, shows an eight-symbol code, and
+polls; the learner types that code on `/konto` in a browser where they are already signed in. Two
+credentials doing two different jobs:
+
+| | Who holds it | What it can do |
+| --- | --- | --- |
+| **device code** (`dpc_…`, 256 bits) | the desktop, never displayed | collect the token, once |
+| **user code** (8 symbols, shown on both screens) | read by the learner | be approved, from a cookie session on an approved account |
+
+The direction of travel is what makes this safe: the secret half never leaves the device that
+generated it, and the half that travels between screens redeems nothing on its own.
+
+**The learner types the code; they do not follow a link that carries it.** That is the documented
+mitigation for this grant's one real weakness — an attacker starts their own pairing, talks a victim
+into approving it, and walks away with a token on the victim's account. A code that has to be read
+off the device in front of you does not travel in a message, and the approval screen shows the code
+and the device label so it can be compared before anything is granted.
+
+`/api/pair/start` and `/api/pair/poll` are unauthenticated because they must be: the desktop has no
+credential yet, which is the entire problem. Neither leaks anything — `start` returns codes it just
+generated, and `poll` answers `pending` for every device code that is not both real and approved,
+whether it was guessed or merely early.
+
+What holds it together, each with a test that has been watched failing:
+
+- **Approval is cookie-only.** A device token cannot approve a pairing, so one leaked token is not a
+  self-renewing foothold — the same rule `/api/tokens` enforces.
+- **Redeemed exactly once.** The token is minted at redemption and the row deleted in the same step,
+  so no readable credential is ever at rest and a replayed device code gets nothing.
+- **Status is re-read at redemption**, not trusted from the moment of approval — the two are
+  separated by however long the desktop takes to poll.
+- **First approver wins.** A second signed-in account cannot redirect a pairing that is already
+  approved.
+- **The per-account device cap applies**, so pairing is not a way around `/api/tokens`.
+- **Polling faster than the interval is refused** with `slow-down` rather than served.
+- Codes live **ten minutes**, and the alphabet omits every character pair a person confuses by eye
+  (`0/O`, `1/I/L`, `5/S`, `8/B`, `Z`) — a mistyped symbol here is not a typo, it is a lookup against
+  somebody else's pending request.
+
+The old path is still there, behind a disclosure on both screens. It is the only one that works when
+the two devices cannot both be looked at: a headless box, a VM, a machine reached over SSH.
+
 ## `bun run progress:pull` reads R2 over S3, not the API
 
 The personalization loop is `bun run progress:audit`, which reads `progress/<profile>/<date>.json`
@@ -307,9 +356,20 @@ on your own card if you really mean it.
 
 ### Connecting the desktop app
 
-The desktop webview is a different origin, so it cannot receive the session cookie. Sign in on the
-website, open `/konto` → **Geräte** → **+ Neues Gerät**, copy the `dat_…` code (shown once), and
-paste it into the desktop app's `/konto` → **Verbinden**. Revoke it from the website at any time.
+The desktop webview is a different origin, so it cannot receive the session cookie. Rather than
+carrying a bearer token between machines, the app asks and you approve:
+
+1. In the desktop app, open **Konto** → **Geräte** → **Verbinden**. It shows an eight-symbol code
+   like `AC4K-MTQ9` and starts waiting.
+2. On any device where you are signed in to the website, open `/konto` → **Geräte**, type that code
+   and press **Weiter**.
+3. Check that the code and device name on screen match what the app is showing, then **Freigeben**.
+4. The desktop picks up its token within a few seconds and starts syncing.
+
+Codes expire after ten minutes; if one does, start again in step 1. Revoke a connected device from
+the website at any time. For a machine you cannot look at while you use the browser — a headless
+box, a VM, an SSH session — **Gerätecode von Hand ausstellen** on the website still issues a `dat_…`
+token to paste in directly.
 
 ## Setup
 

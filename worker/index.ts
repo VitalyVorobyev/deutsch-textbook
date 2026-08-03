@@ -17,6 +17,7 @@
  */
 import { handleAdmin } from './routes/admin';
 import { handleAuth } from './routes/auth';
+import { handlePairing } from './routes/pairing';
 import { handleSync } from './routes/sync';
 import { handleTokens } from './routes/tokens';
 import { isSecureRequest, problem } from './http';
@@ -43,6 +44,8 @@ export default {
           return await handleSync(request, env, url, rest, secure, now);
         case 'tokens':
           return await handleTokens(request, env, url, rest, secure, now);
+        case 'pair':
+          return await handlePairing(request, env, url, rest, secure, now);
         case 'admin':
           return await handleAdmin(request, env, url, rest, secure, now);
         default:

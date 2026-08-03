@@ -13,19 +13,32 @@
  * returns null when the precondition fails.
  */
 import { Database } from 'bun:sqlite';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createDeviceToken, createSession, createUser, type UserRole, type UserStatus } from '../worker/db';
 import { DEVICE_TOKEN_PREFIX } from '../worker/auth/session';
 import { randomToken } from '../worker/crypto';
 
-const MIGRATION = join(import.meta.dir, '..', 'migrations', '0001_init.sql');
+const MIGRATIONS_DIR = join(import.meta.dir, '..', 'migrations');
+
+/**
+ * Every migration, in the order wrangler applies them — discovered rather than
+ * listed, so adding `0003_…` cannot leave the tests running against last
+ * month's schema while the Worker expects this month's.
+ */
+function migrations(): string[] {
+  return readdirSync(MIGRATIONS_DIR)
+    .filter((name) => name.endsWith('.sql'))
+    .sort();
+}
 
 export function makeDb(): D1Database {
   const sqlite = new Database(':memory:');
   // D1 enforces foreign keys; SQLite does not unless asked.
   sqlite.exec('PRAGMA foreign_keys = ON');
-  sqlite.exec(readFileSync(MIGRATION, 'utf8'));
+  for (const file of migrations()) {
+    sqlite.exec(readFileSync(join(MIGRATIONS_DIR, file), 'utf8'));
+  }
 
   const prepare = (sql: string, params: unknown[] = []) => ({
     bind: (...next: unknown[]) => prepare(sql, next),

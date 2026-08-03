@@ -311,6 +311,8 @@ export const STRINGS = {
     uk: 'Остання синхронізація',
   },
   'account.never': { de: 'Nie', en: 'Never', ru: 'Никогда', uk: 'Ніколи' },
+  'account.cancel': { de: 'Abbrechen', en: 'Cancel', ru: 'Отмена', uk: 'Скасувати' },
+  'account.continue': { de: 'Weiter', en: 'Continue', ru: 'Далее', uk: 'Далі' },
   'account.owner': { de: 'Eigentümer', en: 'Owner', ru: 'Владелец', uk: 'Власник' },
 
   // Themen island (CurriculumPath / TopicDetail / OverviewTable).
