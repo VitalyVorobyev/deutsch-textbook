@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import ProfileSwitcher from '../components/ProfileSwitcher';
 import FirstRunGate from '../components/FirstRunGate';
+import UpdatePrompt from '../components/UpdatePrompt';
 import { withBase } from '../lib/url';
 import { t, type StringKey } from '../lib/strings';
 
@@ -39,9 +40,18 @@ function isActive(item: NavItem): boolean {
 <html lang="en" data-explain-lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- viewport-fit=cover lets the standalone PWA paint under the notch; the
+         header and footer pay it back with env(safe-area-inset-*) padding. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
+    <link rel="manifest" href={withBase('/manifest.webmanifest')} />
+    <link rel="apple-touch-icon" href={withBase('/icons/apple-touch-icon.png')} />
+    <meta name="theme-color" content="#d97706" />
+    <!-- iOS reads its own key rather than the manifest's display mode. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Deutsch-Atlas" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>{title} · Deutsch-Atlas</title>
     <script is:inline>
       (function () {
@@ -84,7 +94,8 @@ function isActive(item: NavItem): boolean {
   </head>
   <body class="flex min-h-screen flex-col">
     <FirstRunGate client:only="react" />
-    <header class="sticky top-0 z-10 border-b border-stone-200 bg-stone-50/90 backdrop-blur dark:border-stone-700 dark:bg-stone-900/90">
+    <UpdatePrompt client:only="react" />
+    <header class="sticky top-0 z-10 border-b border-stone-200 bg-stone-50/90 pt-[env(safe-area-inset-top)] backdrop-blur dark:border-stone-700 dark:bg-stone-900/90">
       <div class="mx-auto flex max-w-4xl flex-wrap items-center gap-x-6 gap-y-1 px-4 py-3">
         <a href={home} class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
           Deutsch-<span class="text-amber-600 dark:text-amber-400">Atlas</span>
@@ -124,8 +135,9 @@ function isActive(item: NavItem): boolean {
       <slot />
     </main>
 
-    <footer class="border-t border-stone-200 py-6 text-center text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
+    <footer class="border-t border-stone-200 py-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-center text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
       {t('footer.tagline', 'de')}
+      <a href={withBase('/install')} class="ml-2 underline decoration-dotted hover:text-stone-700 dark:hover:text-stone-200">App installieren</a>
     </footer>
 
     <script>

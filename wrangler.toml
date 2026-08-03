@@ -1,0 +1,13 @@
+# Cloudflare Pages project config.
+#
+# The site is a static Astro build; this file exists so the output directory and
+# the project name are versioned rather than living only in the dashboard.
+# Bindings (D1, R2) and the /api Functions arrive with the auth + sync work —
+# nothing here talks to a server yet.
+#
+# Deploy:  bun run build && bunx wrangler pages deploy dist
+# Domain:  atlas.vitavision.dev (custom domain on the Pages project)
+
+name = "deutsch-atlas"
+compatibility_date = "2026-08-03"
+pages_build_output_dir = "dist"

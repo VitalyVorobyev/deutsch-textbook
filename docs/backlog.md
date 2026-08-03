@@ -231,6 +231,18 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Product surfaces
 
+- **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** — measured on the
+  current build with `find dist -name '*.html' -exec wc -c {} + | sort -rn`: 162 pages, median
+  137 KB, p90 300 KB, but `/ueben/wortschatz` 10.7 MB, `/session` 10.0 MB, `/progress` 6.1 MB,
+  `/` 5.6 MB, `/ueben/wiederholen` 5.4 MB and `/ueben/training` 4.7 MB — together **42 MB of the
+  68 MB** total. This is a page-weight defect on its own terms, not an offline problem: those six
+  are the pages the daily loop starts from, and on a phone over mobile data they are the first
+  thing a new learner waits for. Found while sizing the service worker's document cache, which is
+  why that cache is budgeted in **bytes** rather than entries — a count cap would have meant
+  anything between 5 MB and 40 MB depending on where the learner went. The fix is to stop
+  inlining the whole deck/item set into the island's props and fetch it per view; sizing that is
+  its own task. Do **not** treat the byte budget as the fix.
+
 - **P21-1 · Standard written forms are taught but never practised as forms** — the course teaches the
   parts (`content/reference-data/briefe.yaml`) and names the situations, but nothing asks the learner
   to *assemble* a Bewerbung, Beschwerde or formal e-mail and gives meaningful feedback. `write` cannot

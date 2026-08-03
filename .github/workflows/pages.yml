@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -7,17 +7,23 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # One deploy at a time; let a running deploy finish rather than cancelling it.
 concurrency:
   group: pages
   cancel-in-progress: false
 
+# Needs two repository secrets:
+#   CLOUDFLARE_API_TOKEN   — scoped to "Cloudflare Pages: Edit" on this account
+#   CLOUDFLARE_ACCOUNT_ID
+# The R2 credentials in the local setenv.sh are a different, narrower token and
+# are not used here.
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: cloudflare-pages
+      url: https://atlas.vitavision.dev
     steps:
       - uses: actions/checkout@v7
 
@@ -31,28 +37,20 @@ jobs:
       - name: Validate content
         run: bun run validate
 
-      - name: Build for Pages
+      - name: Build
         run: bun run build
         env:
-          SITE_URL: https://vitalyvorobyev.github.io
-          BASE_PATH: /deutsch-textbook
+          # No BASE_PATH: Pages serves at the root of atlas.vitavision.dev.
+          SITE_URL: https://atlas.vitavision.dev
           # The reviewed recordings ship here too. 41 MP3s at 64 kbps mono is 14.2 MB against a
-          # 69 MB site and a 1 GB Pages limit, and a learner fetches one only when they open the
-          # item. Withholding them would have left the public demo speaking browser TTS over
-          # scripts that were recorded, reviewed and approved — a worse demo for no saving worth
-          # having. `src/lib/audio.ts` explains what the flag now means.
+          # 69 MB site, and a learner fetches one only when they open the item. Withholding them
+          # would have left the public site speaking browser TTS over scripts that were recorded,
+          # reviewed and approved. `src/lib/audio.ts` explains what the flag now means.
           PUBLIC_ATLAS_AUDIO_BUNDLE: '1'
 
-      - uses: actions/upload-pages-artifact@v5
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=deutsch-atlas --branch=main
