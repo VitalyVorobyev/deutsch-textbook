@@ -15,6 +15,12 @@
 #
 #   Build command      bun run build
 #   Output directory   dist
+#   Branch control     build **`main` only**. Workers Builds will otherwise build
+#                      every pushed branch and deploy it to *production* — an
+#                      unreviewed PR branch on the live domain, reported as a
+#                      green check on the PR. Corrected in the dashboard on
+#                      2026-08-03; nothing in this repo can enforce or detect it,
+#                      which is the whole reason it is written down here.
 #   NODE_VERSION       22   — package.json requires >=22.12.0 and Astro 7 needs
 #                            >=20; the platform default is older.
 #   PUBLIC_ATLAS_AUDIO_BUNDLE
