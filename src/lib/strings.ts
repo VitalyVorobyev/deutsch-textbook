@@ -551,6 +551,18 @@ export const STRINGS = {
   'kind.communication': { de: 'Kommunikation', en: 'Communication', ru: 'Коммуникация', uk: 'Комунікація' },
   'kind.phonetics': { de: 'Aussprache', en: 'Pronunciation', ru: 'Произношение', uk: 'Вимова' },
   'discovery.links': { de: 'Links', en: 'Links', ru: 'Ссылки', uk: 'Посилання' },
+
+  // Service-worker update prompt. Never auto-applied: reloading mid-exercise
+  // discards the attempt the learner was about to log (src/lib/pwa.ts).
+  'update.available': {
+    de: 'Neue Version verfügbar',
+    en: 'New version available',
+    ru: 'Доступна новая версия',
+    uk: 'Доступна нова версія',
+  },
+  'update.apply': { de: 'Neu laden', en: 'Reload', ru: 'Перезагрузить', uk: 'Перезавантажити' },
+  'update.dismiss': { de: 'Später', en: 'Later', ru: 'Позже', uk: 'Пізніше' },
+
   'footer.tagline': {
     de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',
     en: 'Deutsch-Atlas by Vitaly Vorobyev · AI-assisted, human-directed and edited',

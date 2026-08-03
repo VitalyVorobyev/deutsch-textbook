@@ -84,7 +84,7 @@ the due probes, which is not authoring work.
   one per live unit, 29.5 minutes of speech, every one passing QA on both the dry take and the final
   mix and every one carrying named human approval of the exact bytes. 14.2 MB of MP3 in
   `content/listening/`, 13.7 MB of Freesound provenance, and both shipping builds carry them (the
-  desktop app and GitHub Pages); an unflagged build reports `bundled: false` and falls back to
+  desktop app and Cloudflare Pages); an unflagged build reports `bundled: false` and falls back to
   browser TTS. Seventeen legacy TTS items were retired against a per-item ledger
   ([docs/audio-retirement-ledger.md](audio-retirement-ledger.md)) and twenty-four kept with reasons.
   Neural audio remains publishable on those terms alone; volume is not a substitute for
