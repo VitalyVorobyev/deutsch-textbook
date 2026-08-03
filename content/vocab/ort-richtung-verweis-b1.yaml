@@ -1,0 +1,674 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the place, direction
+# and reference words of data/goethe-b1-wortliste.txt — where a thing is, which way it
+# goes, and the pointing words that tie a sentence back to something already said.
+id: ort-richtung-verweis-b1
+title_de: "Ort, Richtung und Verweis"
+title_en: "Place, direction and pointing words"
+title_ru: "Место, направление и отсылка"
+title_uk: "Місце, напрямок і відсилання"
+level: B1
+entries:
+  # --- Innen und außen: wo etwas liegt ---
+  - de: innen
+    ipa: "ˈɪnən"
+    pos: adv
+    # Recognition only: A2 ships `drinnen` ("inside, indoors") as a production card,
+    # so an EN/RU prompt reading "inside" is answered by two cards in two decks,
+    # which no `accept` list here can reach.
+    cards: recognition
+    en: on the inside, on the inner side
+    ru: внутри, с внутренней стороны
+    uk: усередині, з внутрішнього боку
+    example_de: Die Jacke ist innen warm gefüttert.
+    example_en: The jacket is warmly lined on the inside.
+    example_ru: Куртка изнутри тепло подбита.
+    example_uk: Куртка зсередини тепло підбита.
+    note:
+      en: 'It describes an object from its inner side and lives in the pair innen und außen: innen weiß, außen grün. A2 drinnen answers a different question — that one says a person is indoors rather than out in the open (Wir bleiben heute drinnen), while this one is about the thing itself. It combines freely: nach innen (Die Tür geht nach innen auf), von innen, innen drin. As a first element in compounds it becomes Innen-: die Innenstadt, die Innentür, der Innenhof.'
+      ru: 'Описывает предмет с внутренней стороны и живёт в паре innen und außen: innen weiß, außen grün. drinnen с уровня A2 отвечает на другой вопрос — оно говорит, что человек находится в помещении, а не под открытым небом (Wir bleiben heute drinnen), тогда как это слово о самом предмете. Оно свободно сочетается: nach innen (Die Tür geht nach innen auf), von innen, innen drin. Первым элементом сложных слов становится Innen-: die Innenstadt, die Innentür, der Innenhof.'
+      uk: 'Описує предмет із внутрішнього боку й живе в парі innen und außen: innen weiß, außen grün. drinnen рівня A2 відповідає на інше питання — воно каже, що людина перебуває в приміщенні, а не просто неба (Wir bleiben heute drinnen), тоді як це слово про сам предмет. Воно вільно сполучається: nach innen (Die Tür geht nach innen auf), von innen, innen drin. Першим елементом складних слів стає Innen-: die Innenstadt, die Innentür, der Innenhof.'
+
+  - de: außen
+    ipa: "ˈaʊ̯sn̩"
+    pos: adv
+    # Recognition only: A2 ships `draußen` ("outside, outdoors") and `außerhalb`
+    # ("outside (of)") as production cards; "outside" is a prompt two shipped cards
+    # already answer, from two other decks.
+    cards: recognition
+    en: on the outside, on the outer side
+    ru: снаружи, с внешней стороны
+    uk: ззовні, із зовнішнього боку
+    example_de: Außen sieht das Haus alt aus, innen ist alles neu.
+    example_en: On the outside the house looks old, inside everything is new.
+    example_ru: Снаружи дом выглядит старым, а внутри всё новое.
+    example_uk: Ззовні будинок виглядає старим, а всередині все нове.
+    note:
+      en: 'The mirror of innen, and the two are almost always used together. Three neighbours are different words: A2 draußen says a person is out in the open (Die Kinder spielen draußen), A2 außerhalb draws a boundary and takes the Genitiv (außerhalb der Stadt), and außerdem is a connector meaning besides. This one describes the outer surface of a thing: von außen, nach außen, außen herum. As a first element it becomes Außen-: die Außentür, der Außenspiegel, die Außentemperatur.'
+      ru: 'Зеркальное к innen, и почти всегда они идут вместе. Три соседа — другие слова: draußen с уровня A2 говорит, что человек на улице, под открытым небом (Die Kinder spielen draußen), außerhalb с уровня A2 проводит границу и требует Genitiv (außerhalb der Stadt), а außerdem — союзное слово «кроме того». Это же слово описывает внешнюю поверхность предмета: von außen, nach außen, außen herum. Первым элементом сложных слов становится Außen-: die Außentür, der Außenspiegel, die Außentemperatur.'
+      uk: 'Дзеркальне до innen, і майже завжди вони йдуть разом. Три сусіди — інші слова: draußen рівня A2 каже, що людина надворі, просто неба (Die Kinder spielen draußen), außerhalb рівня A2 проводить межу й вимагає Genitiv (außerhalb der Stadt), а außerdem — сполучне слово «крім того». Це ж слово описує зовнішню поверхню предмета: von außen, nach außen, außen herum. Першим елементом складних слів стає Außen-: die Außentür, der Außenspiegel, die Außentemperatur.'
+
+  - de: drin
+    ipa: "ˈdʁɪn"
+    pos: adv
+    # Recognition only: A2 ships `drinnen` as a production card and the written form
+    # of this word is `darin`, which the course generates by rule — a typed card would
+    # grade which of three shapes the author meant.
+    cards: recognition
+    en: in there, in it
+    ru: внутри, там внутри
+    uk: усередині, там усередині
+    example_de: Mach die Dose auf, es ist noch etwas Suppe drin.
+    example_en: Open the tin, there is still some soup in it.
+    example_ru: Открой банку, там ещё осталось немного супа.
+    example_uk: Відкрий банку, там ще лишилося трохи супу.
+    note:
+      en: 'The spoken short form of darin, in it, and in loose speech of drinnen too. It belongs to the family that speech has shortened wholesale: heraus and hinaus both become raus, herein and hinein become rein, herauf and hinauf become rauf, herunter and hinunter become runter — and darin becomes this word. A2 already cards raus and rein. In writing use darin (Was steht darin?) or drinnen for indoors. Two idioms keep it: Da ist noch alles drin, anything is still possible, and Das ist nicht drin, that is out of the question.'
+      ru: 'Разговорная краткая форма от darin («в нём, в этом»), а в небрежной речи и от drinnen. Слово принадлежит семье, которую речь сократила целиком: heraus и hinaus дают raus, herein и hinein дают rein, herauf и hinauf дают rauf, herunter и hinunter дают runter, а darin даёт это слово. raus и rein уже есть на уровне A2. На письме берут darin (Was steht darin?) или drinnen для «в помещении». Два оборота держат его: Da ist noch alles drin — «всё ещё возможно», и Das ist nicht drin — «об этом не может быть речи».'
+      uk: 'Розмовна коротка форма від darin («у ньому, у цьому»), а в недбалому мовленні і від drinnen. Слово належить до родини, яку мовлення скоротило цілком: heraus і hinaus дають raus, herein і hinein дають rein, herauf і hinauf дають rauf, herunter і hinunter дають runter, а darin дає це слово. raus і rein уже є на рівні A2. На письмі беруть darin (Was steht darin?) або drinnen для «у приміщенні». Два звороти тримають його: Da ist noch alles drin — «усе ще можливо», і Das ist nicht drin — «про це не може бути мови».'
+
+  - de: mitten
+    # Recognition, on the same argument as `so viel wie` and `vor allem`: the word never
+    # stands alone, and neither English nor Russian has a bare word for it — every gloss
+    # of it is a prepositional phrase, so a typed prompt invites `mitten in` and marks it
+    # wrong. The note is where the word is taught.
+    cards: recognition
+    ipa: "ˈmɪtn̩"
+    pos: adv
+    en: right in the middle of
+    ru: прямо посреди, в самой середине
+    uk: просто посеред, у самій середині
+    example_de: Das Hotel liegt mitten in der Altstadt.
+    example_en: The hotel is right in the middle of the old town.
+    example_ru: Отель находится прямо посреди старого города.
+    example_uk: Готель розташований просто посеред старого міста.
+    note:
+      en: 'It never stands alone: a preposition always follows it, and that preposition keeps its own case — mitten in der Nacht, mitten auf der Straße, mitten durch den Wald, mitten unter uns, mitten im Sommer. The word itself never changes. It is not a replacement for the noun die Mitte (in der Mitte des Zimmers); what it adds is exactness, saying precisely in the middle rather than merely somewhere inside. Written solid it gives mittendrin, right in the thick of it, and mittendurch. In a Wegbeschreibung it is the natural way to place something: mitten auf dem Marktplatz.'
+      ru: 'Само по себе не стоит никогда: за ним всегда идёт предлог, и этот предлог сохраняет свой падеж — mitten in der Nacht, mitten auf der Straße, mitten durch den Wald, mitten unter uns, mitten im Sommer. Само слово не изменяется. Оно не заменяет существительное die Mitte (in der Mitte des Zimmers); оно добавляет точность: «ровно посередине», а не просто «где-то внутри». В слитном написании даёт mittendrin («в самой гуще») и mittendurch. В описании дороги это естественный способ указать место: mitten auf dem Marktplatz.'
+      uk: 'Саме по собі не стоїть ніколи: за ним завжди йде прийменник, і цей прийменник зберігає свій відмінок — mitten in der Nacht, mitten auf der Straße, mitten durch den Wald, mitten unter uns, mitten im Sommer. Саме слово не змінюється. Воно не заміняє іменник die Mitte (in der Mitte des Zimmers); воно додає точності: «рівно посередині», а не просто «десь усередині». У злитному написанні дає mittendrin («у самій гущі») і mittendurch. В описі дороги це природний спосіб указати місце: mitten auf dem Marktplatz.'
+
+  - de: innerhalb
+    ipa: "ˈɪnɐhalp"
+    pos: prep
+    valence: "+ Gen; von + Dat"
+    en: within, inside the bounds of
+    ru: в пределах, в рамках
+    uk: у межах, у рамках
+    example_de: Bitte antworten Sie innerhalb einer Woche.
+    example_en: Please reply within a week.
+    example_ru: Пожалуйста, ответьте в пределах недели.
+    example_uk: Будь ласка, відповідайте в межах тижня.
+    note:
+      en: 'Two jobs, one frame. With a stretch of time it sets a deadline — innerhalb einer Woche, innerhalb der nächsten Tage; with a space it stays inside a boundary — innerhalb der Stadt, innerhalb der Familie, innerhalb des Gebäudes. It governs the Genitiv, and where nothing marks that case (a bare plural, a number) German switches to innerhalb von + Dativ: innerhalb von zwei Wochen, innerhalb von Minuten. Its opposite is A2 außerhalb, built the same way and taking the same case. Keep the time sense apart from in einer Woche, which names the point one week from now, not the span before it.'
+      ru: 'Две работы, одна рамка. С отрезком времени задаёт срок — innerhalb einer Woche, innerhalb der nächsten Tage; с пространством удерживает внутри границы — innerhalb der Stadt, innerhalb der Familie, innerhalb des Gebäudes. Управляет Genitiv, а там, где падеж ничем не помечен (голое множественное число, число), немецкий переходит на innerhalb von + Dativ: innerhalb von zwei Wochen, innerhalb von Minuten. Противоположность — außerhalb с уровня A2, устроенное так же и с тем же падежом. Временное значение держите отдельно от in einer Woche: то называет момент через неделю, а не отрезок до него.'
+      uk: 'Дві роботи, одна рамка. З відрізком часу задає строк — innerhalb einer Woche, innerhalb der nächsten Tage; із простором утримує в межах — innerhalb der Stadt, innerhalb der Familie, innerhalb des Gebäudes. Керує Genitiv, а там, де відмінок нічим не позначено (гола множина, число), німецька переходить на innerhalb von + Dativ: innerhalb von zwei Wochen, innerhalb von Minuten. Протилежність — außerhalb рівня A2, влаштоване так само і з тим самим відмінком. Часове значення тримайте окремо від in einer Woche: те називає момент через тиждень, а не відрізок до нього.'
+
+  - de: nirgendwo
+    ipa: "ˈnɪʁgn̩tvoː"
+    pos: adv
+    # Recognition only: A2 ships `nirgends` ("nowhere, not anywhere") as a production
+    # card and the two words are the same word — a typed prompt cannot separate them.
+    cards: recognition
+    en: nowhere, not in any place
+    ru: нигде, ни в одном месте
+    uk: ніде, у жодному місці
+    example_de: Ich habe meinen Schlüssel gesucht, aber nirgendwo gefunden.
+    example_en: I looked for my key but did not find it anywhere.
+    example_ru: Я искал ключ, но нигде его не нашёл.
+    example_uk: Я шукав ключ, але ніде його не знайшов.
+    note:
+      en: 'A2 nirgends means exactly this: the longer -wo form is a shade more emphatic and the short one is commoner, and no sentence needs to choose between them. Both are already negations, so nothing else negates beside them — ❌ nirgendwo nicht. The directional form is nirgendwohin, to nowhere (Wir fahren dieses Jahr nirgendwohin). The positive members of the family are irgendwo and überall, and the whole irgend- family is regular: irgendwann, irgendwie, irgendwer.'
+      ru: 'nirgends с уровня A2 значит ровно это: длинная форма на -wo чуть выразительнее, короткая встречается чаще, и выбирать между ними ни одному предложению не приходится. Оба слова уже сами по себе отрицания, поэтому рядом ничего не отрицают — ❌ nirgendwo nicht. Форма направления — nirgendwohin («никуда»): Wir fahren dieses Jahr nirgendwohin. Положительные члены семьи — irgendwo и überall, а вся семья irgend- регулярна: irgendwann, irgendwie, irgendwer.'
+      uk: 'nirgends рівня A2 означає рівно це: довга форма на -wo трохи виразніша, коротка трапляється частіше, і обирати між ними жодному реченню не доводиться. Обидва слова вже самі по собі заперечення, тому поряд нічого не заперечують — ❌ nirgendwo nicht. Форма напрямку — nirgendwohin («нікуди»): Wir fahren dieses Jahr nirgendwohin. Позитивні члени родини — irgendwo та überall, а вся родина irgend- регулярна: irgendwann, irgendwie, irgendwer.'
+
+  # --- Richtung: wohin es geht ---
+  - de: hierher
+    ipa: "hiːɐ̯ˈheːɐ̯"
+    pos: adv
+    en: to here, to this place
+    ru: сюда
+    uk: сюди
+    example_de: Kommen Sie bitte hierher, hier ist noch ein Platz frei.
+    example_en: Please come over here, there is still a free seat here.
+    example_ru: Подойдите, пожалуйста, сюда, здесь ещё есть свободное место.
+    example_uk: Підійдіть, будь ласка, сюди, тут ще є вільне місце.
+    note:
+      en: 'German splits the English here into two words. A1 hier answers wo? and this one answers wohin?: Wo bist du? Hier. Wohin soll ich das stellen? Hierher. The half -her always points at the speaker, so this is movement towards where the speaker stands, and its mirror image is dorthin, which points away. Beside a separable verb the word usually splits and the short her carries the meaning: Komm mal her! Bring das bitte hierher. Bis hierher means up to this point, in a room and in a text alike, and Wie kommst du denn hierher? is ordinary spoken German.'
+      ru: 'Немецкий делит русское «здесь / сюда» на два слова. hier с уровня A1 отвечает на вопрос wo?, а это слово — на wohin?: Wo bist du? Hier. Wohin soll ich das stellen? Hierher. Половинка -her всегда указывает на говорящего, поэтому речь о движении туда, где он стоит, а зеркальное слово — dorthin, указывающее прочь. Рядом с отделяемым глаголом слово обычно распадается, и значение несёт короткое her: Komm mal her! Bring das bitte hierher. Bis hierher значит «до этого места» — и в комнате, и в тексте, а Wie kommst du denn hierher? — обычная разговорная фраза.'
+      uk: 'Німецька ділить українське «тут / сюди» на два слова. hier рівня A1 відповідає на питання wo?, а це слово — на wohin?: Wo bist du? Hier. Wohin soll ich das stellen? Hierher. Половинка -her завжди вказує на мовця, тому йдеться про рух туди, де він стоїть, а дзеркальне слово — dorthin, що вказує геть. Поряд із відокремлюваним дієсловом слово зазвичай розпадається, і значення несе коротке her: Komm mal her! Bring das bitte hierher. Bis hierher означає «до цього місця» — і в кімнаті, і в тексті, а Wie kommst du denn hierher? — звичайна розмовна фраза.'
+
+  - de: dorthin
+    ipa: "dɔʁtˈhɪn"
+    pos: adv
+    # `dahin` fills the same slot in the same frame and the note says so, so the
+    # production card must not mark it wrong.
+    accept: ["dahin"]
+    en: to there, to that place
+    ru: туда
+    uk: туди
+    example_de: Das Museum ist neu, wir fahren am Samstag dorthin.
+    example_en: The museum is new, we are going there on Saturday.
+    example_ru: Музей новый, в субботу мы поедем туда.
+    example_uk: Музей новий, у суботу ми поїдемо туди.
+    note:
+      en: 'The directional partner of A1 dort. dort answers wo? and this word answers wohin?: Wo wohnt sie? Dort. Wohin ziehst du? Dorthin. dahin says exactly the same and is what speech normally reaches for, so this card accepts it too. The half -hin always points away from the speaker and -her back towards him, which is why hierher is the mirror image. Beside a verb the halves come apart and the short hin carries the meaning: Da will ich nicht hin. In time, bis dahin means until then; in space, up to there.'
+      ru: 'Направительный напарник для dort с уровня A1. dort отвечает на вопрос wo?, а это слово — на wohin?: Wo wohnt sie? Dort. Wohin ziehst du? Dorthin. dahin значит ровно то же и обычнее в устной речи, поэтому карточка принимает и его. Половинка -hin всегда указывает прочь от говорящего, а -her — обратно к нему, поэтому зеркальное слово — hierher. Рядом с глаголом половинки расходятся, и значение несёт короткое hin: Da will ich nicht hin. Во времени bis dahin значит «до тех пор», в пространстве — «до того места».'
+      uk: 'Напрямковий напарник до dort рівня A1. dort відповідає на питання wo?, а це слово — на wohin?: Wo wohnt sie? Dort. Wohin ziehst du? Dorthin. dahin означає рівно те саме й звичніше в усному мовленні, тому картка приймає і його. Половинка -hin завжди вказує геть від мовця, а -her — назад до нього, тому дзеркальне слово — hierher. Поряд із дієсловом половинки розходяться, і значення несе коротке hin: Da will ich nicht hin. У часі bis dahin означає «доти», у просторі — «до того місця».'
+
+  - de: dahin
+    ipa: "daˈhɪn"
+    pos: adv
+    # Recognition only: `dorthin` in this deck owns the typed card for "(to) there"
+    # and lists this word in `accept`, so a second production card would let two
+    # prompts grade the same rendering correct.
+    cards: recognition
+    en: over there, that way
+    ru: туда, в ту сторону
+    uk: туди, у той бік
+    example_de: Stell die Tasche bitte dahin, neben die Tür.
+    example_en: Please put the bag over there, next to the door.
+    example_ru: Поставь сумку, пожалуйста, туда, рядом с дверью.
+    example_uk: Постав сумку, будь ласка, туди, біля дверей.
+    note:
+      en: 'The everyday spoken form of dorthin, and it is what a German says while pointing: Stell es dahin. Both answer wohin? and both point away from the speaker; hierher points back at him. Beside a verb the halves separate and the short hin does the work: Da will ich nicht hin, Wo willst du hin? In time it means until that moment: Bis dahin ist alles fertig. Two further uses are idioms rather than directions — etwas dahingehend ändern, in that respect, and Der Sommer ist dahin, the summer is gone.'
+      ru: 'Обиходная устная форма от dorthin, и именно её произносят, показывая рукой: Stell es dahin. Оба слова отвечают на вопрос wohin? и оба указывают прочь от говорящего; hierher указывает обратно на него. Рядом с глаголом половинки расходятся, и работу делает короткое hin: Da will ich nicht hin, Wo willst du hin? Во времени значит «до того момента»: Bis dahin ist alles fertig. Ещё два употребления — уже идиомы, а не направление: etwas dahingehend ändern («в этом отношении») и Der Sommer ist dahin («лето прошло»).'
+      uk: 'Побутова усна форма від dorthin, і саме її вимовляють, показуючи рукою: Stell es dahin. Обидва слова відповідають на питання wohin? і обидва вказують геть від мовця; hierher вказує назад на нього. Поряд із дієсловом половинки розходяться, і роботу робить коротке hin: Da will ich nicht hin, Wo willst du hin? У часі означає «до того моменту»: Bis dahin ist alles fertig. Ще два вживання — уже ідіоми, а не напрямок: etwas dahingehend ändern («у цьому відношенні») і Der Sommer ist dahin («літо минуло»).'
+
+  - de: heim
+    ipa: "ˈhaɪ̯m"
+    pos: adv
+    # Recognition only: what a B1 learner must produce for "home(wards)" is the
+    # phrase `nach Hause`, not this adverb — free-standing `heim` is southern and
+    # dated, so a typed card would train the wrong form.
+    cards: recognition
+    en: home, to one's own home
+    ru: домой
+    uk: додому
+    example_de: Nach dem Kurs gehen wir zusammen heim.
+    example_en: After the course we walk home together.
+    example_ru: После курса мы идём домой вместе.
+    example_uk: Після курсу ми йдемо додому разом.
+    note:
+      en: 'The adverb homewards, and it is almost always glued to a verb of motion: heimgehen, heimfahren, heimkommen, heimbringen. Standing free it sounds southern and slightly old-fashioned; the neutral everyday phrase is nach Hause, and zu Hause is the static at home. Do not read it as the noun das Heim, which is an institution — ein Altenheim, ein Kinderheim, ein Studentenheim — and never a private home; that is das Zuhause. B1 Heimweh, homesickness, and A2 Heimat, home country, are built on the same element.'
+      ru: 'Наречие «домой», и почти всегда оно приклеено к глаголу движения: heimgehen, heimfahren, heimkommen, heimbringen. Отдельно звучит по-южнонемецки и слегка старомодно; нейтральный обиходный оборот — nach Hause, а zu Hause — статичное «дома». Не читайте его как существительное das Heim: то учреждение — ein Altenheim, ein Kinderheim, ein Studentenheim — и никогда не частный дом; частный дом — das Zuhause. Heimweh («тоска по дому», уровень B1) и Heimat («родина», уровень A2) построены на том же элементе.'
+      uk: 'Прислівник «додому», і майже завжди він приклеєний до дієслова руху: heimgehen, heimfahren, heimkommen, heimbringen. Окремо звучить по-південнонімецьки і трохи старомодно; нейтральний побутовий зворот — nach Hause, а zu Hause — статичне «удома». Не читайте його як іменник das Heim: то заклад — ein Altenheim, ein Kinderheim, ein Studentenheim — і ніколи не приватний дім; приватний дім — das Zuhause. Heimweh («туга за домом», рівень B1) і Heimat («батьківщина», рівень A2) побудовані на тому самому елементі.'
+
+  - de: aufwärts
+    ipa: "ˈaʊ̯fvɛʁts"
+    pos: adv
+    # Recognition only: A1 ships `oben` ("up; upstairs; at the top") as a production
+    # card and `rauf` on this list says the same at another register — three cards
+    # for one EN/RU prompt, in three decks.
+    cards: recognition
+    en: upwards, uphill
+    ru: вверх, в гору
+    uk: угору, вгору
+    example_de: Von hier an geht der Weg steil aufwärts.
+    example_en: From here on the path goes steeply uphill.
+    example_ru: Отсюда дорога круто идёт вверх.
+    example_uk: Звідси дорога круто йде вгору.
+    note:
+      en: 'It names a rise: movement from a lower point to a higher one, in space or on a scale. Its exact opposite is abwärts. Figuratively Es geht aufwärts means things are looking up — an economy, a business, a person recovering — and that is where a written text needs it most. After a noun it means further up a line: flussaufwärts, upstream. After a figure it means and above: ab zehn Euro aufwärts. In speech the direction itself is nach oben or rauf, and A1 oben answers wo?, not wohin?.'
+      ru: 'Называет подъём: движение от более низкой точки к более высокой, в пространстве или по шкале. Точная противоположность — abwärts. В переносном смысле Es geht aufwärts значит «дела идут на поправку» — об экономике, о фирме, о выздоравливающем, — и именно здесь письменный текст нуждается в слове больше всего. После существительного означает «выше по линии»: flussaufwärts, «вверх по реке». После числа означает «и выше»: ab zehn Euro aufwärts. В речи само направление называют nach oben или rauf, а oben с уровня A1 отвечает на вопрос wo?, а не wohin?.'
+      uk: 'Називає підйом: рух від нижчої точки до вищої, у просторі або за шкалою. Точна протилежність — abwärts. У переносному сенсі Es geht aufwärts означає «справи йдуть на краще» — про економіку, про фірму, про того, хто одужує, — і саме тут писемний текст потребує слова найбільше. Після іменника означає «вище по лінії»: flussaufwärts, «вгору за течією». Після числа означає «і вище»: ab zehn Euro aufwärts. У мовленні сам напрямок називають nach oben або rauf, а oben рівня A1 відповідає на питання wo?, а не wohin?.'
+
+  - de: abwärts
+    ipa: "ˈapvɛʁts"
+    pos: adv
+    # Recognition only: A1 ships `unten` ("down; downstairs; at the bottom") as a
+    # production card and `runter` on this list says the same at another register.
+    cards: recognition
+    en: downwards, downhill
+    ru: вниз, под гору
+    uk: униз, під гору
+    example_de: Ab der Brücke geht der Weg abwärts ins Dorf.
+    example_en: From the bridge on the path goes downhill into the village.
+    example_ru: От моста дорога идёт вниз, в деревню.
+    example_uk: Від мосту дорога йде вниз, у село.
+    note:
+      en: 'The exact mirror of aufwärts, and the two are learned as a pair. Figuratively Es geht abwärts says something is going downhill — sales, health, a mood — and it is the sentence a report reaches for when a curve turns down. After a noun: flussabwärts, downstream. In speech the direction is nach unten or runter. Note that neither this word nor aufwärts can stand in front of a noun: for a downward trend German says eine fallende Tendenz or ein Rückgang.'
+      ru: 'Точное зеркало aufwärts, и учат их парой. В переносном смысле Es geht abwärts значит, что дело идёт под уклон — продажи, здоровье, настроение, — и именно эту фразу берёт отчёт, когда кривая пошла вниз. После существительного: flussabwärts, «вниз по реке». В речи направление называют nach unten или runter. Заметьте: ни это слово, ни aufwärts не могут стоять перед существительным; для «нисходящей тенденции» немецкий говорит eine fallende Tendenz или ein Rückgang.'
+      uk: 'Точне дзеркало aufwärts, і вчать їх парою. У переносному сенсі Es geht abwärts означає, що справа йде під укіс — продажі, здоровʼя, настрій, — і саме цю фразу бере звіт, коли крива пішла вниз. Після іменника: flussabwärts, «вниз за течією». У мовленні напрямок називають nach unten або runter. Зауважте: ні це слово, ні aufwärts не можуть стояти перед іменником; для «спадної тенденції» німецька каже eine fallende Tendenz або ein Rückgang.'
+
+  - de: rauf
+    ipa: "ˈʁaʊ̯f"
+    pos: adv
+    # Recognition only: A1 ships `oben` ("up; upstairs; at the top") as a production
+    # card, and this word is itself two words at once (herauf and hinauf) — the
+    # manifest keeps it as the short spoken form and excludes the long ones.
+    cards: recognition
+    en: up, up there
+    ru: наверх, вверх
+    uk: нагору, вгору
+    example_de: Der Aufzug ist kaputt, wir müssen zu Fuß rauf.
+    example_en: The lift is broken, we have to go up on foot.
+    example_ru: Лифт сломан, придётся идти наверх пешком.
+    example_uk: Ліфт зламаний, доведеться йти нагору пішки.
+    note:
+      en: 'The spoken short form of two words at once: herauf, up towards the speaker, and hinauf, up away from him. Speech has stopped keeping them apart and says this for both, exactly as it says raus for heraus and hinaus, and rein for herein and hinein — A2 already cards raus and rein, and this list adds runter and drin on the same argument. It attaches to verbs: raufgehen, raufkommen, die Treppe raufsteigen. In writing use hinauf, herauf or nach oben. Its opposite is runter, and A1 oben answers wo?, not wohin?.'
+      ru: 'Разговорная краткая форма сразу двух слов: herauf («вверх к говорящему») и hinauf («вверх от него»). Речь перестала их различать и говорит это слово вместо обоих — ровно как raus вместо heraus и hinaus и rein вместо herein и hinein. raus и rein уже есть на уровне A2, а этот список добавляет по тому же основанию runter и drin. Слово приклеивается к глаголам: raufgehen, raufkommen, die Treppe raufsteigen. На письме берут hinauf, herauf или nach oben. Противоположность — runter, а oben с уровня A1 отвечает на вопрос wo?, а не wohin?.'
+      uk: 'Розмовна коротка форма одразу двох слів: herauf («угору до мовця») і hinauf («угору від нього»). Мовлення перестало їх розрізняти й каже це слово замість обох — рівно як raus замість heraus і hinaus та rein замість herein і hinein. raus і rein уже є на рівні A2, а цей список додає з тієї самої підстави runter і drin. Слово приклеюється до дієслів: raufgehen, raufkommen, die Treppe raufsteigen. На письмі беруть hinauf, herauf або nach oben. Протилежність — runter, а oben рівня A1 відповідає на питання wo?, а не wohin?.'
+
+  - de: runter
+    ipa: "ˈʁʊntɐ"
+    pos: adv
+    # Recognition only: A1 ships `unten` ("down; downstairs; at the bottom") as a
+    # production card; the manifest keeps this short spoken form and excludes the
+    # long `herunter` precisely because this is the form that is said.
+    cards: recognition
+    en: down, down there
+    ru: вниз
+    uk: униз
+    example_de: Komm bitte runter, das Essen ist fertig!
+    example_en: Please come down, the food is ready!
+    example_ru: Спустись, пожалуйста, вниз, еда готова!
+    example_uk: Спустися, будь ласка, вниз, їжа готова!
+    note:
+      en: 'The spoken short form of herunter, down towards the speaker, and hinunter, down away from him. The Wortliste lists herunter without a card exactly because this is the form people say, the same ruling A2 made when it kept raus and rein and dropped heraus and herein. It attaches to verbs: runtergehen, runterkommen, runterfallen, and runterladen, the everyday twin of A2 herunterladen. In writing use hinunter, herunter or nach unten. Its opposite is rauf, A1 unten answers wo?, and the spelling is runter, never ❌ runder.'
+      ru: 'Разговорная краткая форма от herunter («вниз к говорящему») и hinunter («вниз от него»). Wortliste оставляет herunter без карточки именно потому, что говорят эту форму, — то же решение уровень A2 принял, когда оставил raus и rein и отбросил heraus и herein. Слово приклеивается к глаголам: runtergehen, runterkommen, runterfallen и runterladen — обиходный двойник herunterladen с уровня A2. На письме берут hinunter, herunter или nach unten. Противоположность — rauf, unten с уровня A1 отвечает на вопрос wo?, а пишется слово runter и никогда ❌ runder.'
+      uk: 'Розмовна коротка форма від herunter («униз до мовця») і hinunter («униз від нього»). Wortliste лишає herunter без картки саме тому, що кажуть цю форму, — те саме рішення рівень A2 ухвалив, коли лишив raus і rein і відкинув heraus та herein. Слово приклеюється до дієслів: runtergehen, runterkommen, runterfallen і runterladen — побутовий двійник herunterladen рівня A2. На письмі беруть hinunter, herunter або nach unten. Протилежність — rauf, unten рівня A1 відповідає на питання wo?, а пишеться слово runter і ніколи ❌ runder.'
+
+  - de: rückwärts
+    ipa: "ˈʁʏkvɛʁts"
+    pos: adv
+    en: backwards, in reverse
+    ru: задним ходом, спиной вперёд
+    uk: заднім ходом, спиною вперед
+    example_de: Der Fahrer fuhr rückwärts aus der Garage.
+    example_en: The driver reversed out of the garage.
+    example_ru: Водитель выехал из гаража задним ходом.
+    example_uk: Водій виїхав із гаража заднім ходом.
+    note:
+      en: 'Movement with the back leading: rückwärts fahren, rückwärts einparken, rückwärts gehen, and rückwärts zählen for counting down from ten. It is the exact mirror of A2 vorwärts, which the course already cards, and it never changes its form. Keep it apart from A1 zurück: zurück says back to where you came from and says nothing about which way you face, so Ich gehe zurück is an ordinary walk and Ich gehe rückwärts is walking backwards. The noun behind it is der Rücken, the back, and der Rückwärtsgang is the reverse gear.'
+      ru: 'Движение спиной вперёд: rückwärts fahren, rückwärts einparken, rückwärts gehen, а rückwärts zählen — «считать в обратном порядке». Точное зеркало vorwärts с уровня A2, которое курс уже даёт карточкой, и форму слово не меняет. Держите его отдельно от zurück с уровня A1: zurück говорит «назад, туда, откуда пришёл», и ничего не говорит о том, куда человек повёрнут, так что Ich gehe zurück — обычная ходьба, а Ich gehe rückwärts — ходьба спиной вперёд. За словом стоит существительное der Rücken («спина»), а der Rückwärtsgang — задняя передача.'
+      uk: 'Рух спиною вперед: rückwärts fahren, rückwärts einparken, rückwärts gehen, а rückwärts zählen — «лічити у зворотному порядку». Точне дзеркало vorwärts рівня A2, яке курс уже дає карткою, і форми слово не змінює. Тримайте його окремо від zurück рівня A1: zurück каже «назад, туди, звідки прийшов», і нічого не каже про те, куди людина повернута, тож Ich gehe zurück — звичайна хода, а Ich gehe rückwärts — хода спиною вперед. За словом стоїть іменник der Rücken («спина»), а der Rückwärtsgang — задня передача.'
+
+  - de: voraus
+    ipa: "foˈʁaʊ̯s"
+    pos: adv
+    # Recognition only: A2 ships `vorher` ("beforehand, before that") and `vorwärts`
+    # ("forwards, ahead") as production cards, and the form a B1 learner actually
+    # needs is the capitalised phrase `im Voraus`, not the bare headword.
+    cards: recognition
+    en: ahead, in front; in advance
+    ru: впереди; заранее
+    uk: попереду; заздалегідь
+    example_de: Vielen Dank im Voraus für Ihre Hilfe.
+    example_en: Many thanks in advance for your help.
+    example_ru: Заранее большое спасибо за вашу помощь.
+    example_uk: Заздалегідь щиро дякую за вашу допомогу.
+    note:
+      en: 'Two lives, and the useful one is a fixed phrase. im Voraus means before the thing happens — vielen Dank im Voraus, die Miete im Voraus bezahlen — and note the capital V, because there the word is a noun. The plain adverb means in front of the others, in space or in knowledge: Er ist den anderen weit voraus, Das Auto fuhr voraus. It also builds separable verbs — vorausgehen, vorausfahren, voraussetzen (to presuppose) — and das Voraus is otherwise not used on its own. A2 vorher is the neutral adverb for beforehand.'
+      ru: 'Две жизни, и полезна из них устойчивая. im Voraus значит «до того, как дело произойдёт»: vielen Dank im Voraus, die Miete im Voraus bezahlen, — и заметьте заглавную V, потому что там это существительное. Простое наречие значит «впереди остальных» — в пространстве или в знании: Er ist den anderen weit voraus, Das Auto fuhr voraus. Оно же строит отделяемые глаголы: vorausgehen, vorausfahren, voraussetzen («предполагать как условие»), — а само по себе das Voraus вне этой рамки не употребляется. Нейтральное наречие «заранее» — vorher с уровня A2.'
+      uk: 'Два життя, і корисне з них стале. im Voraus означає «до того, як справа станеться»: vielen Dank im Voraus, die Miete im Voraus bezahlen, — і зауважте велику V, бо там це іменник. Простий прислівник означає «попереду інших» — у просторі або в знанні: Er ist den anderen weit voraus, Das Auto fuhr voraus. Воно ж будує відокремлювані дієслова: vorausgehen, vorausfahren, voraussetzen («передбачати як умову»), — а саме по собі das Voraus поза цією рамкою не вживається. Нейтральний прислівник «заздалегідь» — vorher рівня A2.'
+
+  - de: quer
+    ipa: "ˈkveːɐ̯"
+    pos: adv
+    # Recognition only: it is the vocabulary of a Wegbeschreibung read off a sign or
+    # heard from a passer-by, and its own prompt would sit beside `durch` and `über`,
+    # which do most of the work in the phrases it lives in.
+    cards: recognition
+    en: crosswise, diagonally; right across
+    ru: поперёк, наискось
+    uk: упоперек, навскіс
+    example_de: Wir sind quer durch die Stadt gelaufen.
+    example_en: We walked right across the town.
+    example_ru: Мы прошли пешком через весь город.
+    example_uk: Ми пройшли пішки через усе місто.
+    note:
+      en: 'It says a line or a movement cuts across something rather than running along it: quer über die Straße, quer zur Fahrtrichtung, das Bild quer aufhängen. With durch it strengthens into right across, from one edge to the other, and that is its commonest use: quer durch Deutschland, quer durch den Park. Der Querschnitt is a cross-section and die Querstraße the street crossing yours. The idiom jemandem in die Quere kommen means to get in someone''s way. Its opposite in this pair is längs, along the length.'
+      ru: 'Говорит, что линия или движение пересекает нечто, а не идёт вдоль: quer über die Straße, quer zur Fahrtrichtung, das Bild quer aufhängen. С durch усиливается до «насквозь, от края до края», и это самое частое употребление: quer durch Deutschland, quer durch den Park. Der Querschnitt — поперечное сечение, die Querstraße — поперечная улица. Оборот jemandem in die Quere kommen значит «перейти кому-то дорогу». Противоположность в этой паре — längs, «вдоль».'
+      uk: 'Каже, що лінія чи рух перетинає щось, а не йде вздовж: quer über die Straße, quer zur Fahrtrichtung, das Bild quer aufhängen. Із durch посилюється до «наскрізь, від краю до краю», і це найчастіше вживання: quer durch Deutschland, quer durch den Park. Der Querschnitt — поперечний переріз, die Querstraße — поперечна вулиця. Зворот jemandem in die Quere kommen означає «перейти комусь дорогу». Протилежність у цій парі — längs, «уздовж».'
+
+  - de: entlang
+    ipa: "ɛntˈlaŋ"
+    pos: prep
+    valence: "nachgestellt + Akk; vorangestellt + Dat/Gen"
+    en: along, following the line of
+    ru: вдоль
+    uk: уздовж
+    example_de: Gehen Sie die Straße entlang bis zur Ampel.
+    example_en: Go along the street as far as the traffic lights.
+    example_ru: Идите вдоль улицы до светофора.
+    example_uk: Ідіть уздовж вулиці до світлофора.
+    note:
+      en: 'The word that makes a Wegbeschreibung work, and its position decides its case. Standing after its noun — the normal pattern, and by far the commonest — it takes the Akkusativ: die Straße entlang, den Fluss entlang, den Weg entlang. Standing in front of the noun it takes the Dativ (entlang dem Ufer) or, in careful writing, the Genitiv (entlang des Ufers), and both sound formal. It also glues to verbs of motion: entlanggehen, entlangfahren, entlanglaufen. Its rarer written twin is längs, and an entlang phrase answers wo? or wohin? depending on the verb, never woher?.'
+      ru: 'Слово, на котором держится описание дороги, и его позиция решает падеж. Стоя после своего существительного — а это обычный и самый частый порядок — оно требует Akkusativ: die Straße entlang, den Fluss entlang, den Weg entlang. Стоя перед существительным, оно требует Dativ (entlang dem Ufer) или, в аккуратном письме, Genitiv (entlang des Ufers), и оба звучат официально. Оно же приклеивается к глаголам движения: entlanggehen, entlangfahren, entlanglaufen. Более редкий письменный двойник — längs, а оборот с этим предлогом отвечает на вопрос wo? или wohin? в зависимости от глагола, но никогда не на woher?.'
+      uk: 'Слово, на якому тримається опис дороги, і його позиція вирішує відмінок. Стоячи після свого іменника — а це звичайний і найчастіший порядок — воно вимагає Akkusativ: die Straße entlang, den Fluss entlang, den Weg entlang. Стоячи перед іменником, воно вимагає Dativ (entlang dem Ufer) або, в охайному письмі, Genitiv (entlang des Ufers), і обидва звучать офіційно. Воно ж приклеюється до дієслів руху: entlanggehen, entlangfahren, entlanglaufen. Рідший писемний двійник — längs, а зворот із цим прийменником відповідає на питання wo? або wohin? залежно від дієслова, але ніколи на woher?.'
+
+  - de: parallel
+    ipa: "paʁaˈleːl"
+    pos: adj
+    valence: "zu + Dat"
+    en: parallel, running alongside
+    ru: параллельный, параллельно
+    uk: паралельний, паралельно
+    example_de: Die neue Straße verläuft parallel zur Bahnlinie.
+    example_en: The new road runs parallel to the railway line.
+    example_ru: Новая дорога идёт параллельно железнодорожной линии.
+    example_uk: Нова дорога йде паралельно залізничній колії.
+    note:
+      en: 'It takes its second half with zu + Dativ: parallel zur Straße, parallel zum Fluss. Beside the geometric sense it says two things run side by side in time, which is where a B1 text needs it: parallel zum Studium arbeiten, zwei Projekte parallel bearbeiten, ein Kurs parallel zur Arbeit. In front of a noun it inflects like any adjective — eine parallele Linie, in parallelen Fällen. The stress is on the last syllable and stays there in die Parallele, the parallel line, and in parallel dazu, alongside that.'
+      ru: 'Второй участник присоединяется через zu + Dativ: parallel zur Straße, parallel zum Fluss. Кроме геометрического смысла слово говорит, что два дела идут бок о бок во времени, — и именно этим оно нужно тексту уровня B1: parallel zum Studium arbeiten, zwei Projekte parallel bearbeiten, ein Kurs parallel zur Arbeit. Перед существительным склоняется как обычное прилагательное: eine parallele Linie, in parallelen Fällen. Ударение на последнем слоге, и там же оно остаётся в die Parallele («параллельная линия») и в parallel dazu («параллельно с этим»).'
+      uk: 'Другий учасник приєднується через zu + Dativ: parallel zur Straße, parallel zum Fluss. Крім геометричного змісту слово каже, що дві справи йдуть пліч-о-пліч у часі, — і саме цим воно потрібне текстові рівня B1: parallel zum Studium arbeiten, zwei Projekte parallel bearbeiten, ein Kurs parallel zur Arbeit. Перед іменником відмінюється як звичайний прикметник: eine parallele Linie, in parallelen Fällen. Наголос на останньому складі, і там само він лишається в die Parallele («паралельна лінія») та в parallel dazu («паралельно з цим»).'
+
+  # --- Auseinander, durcheinander, umgekehrt: wie die Teile zueinander stehen ---
+  - de: auseinander
+    ipa: "aʊ̯sʔaɪ̯ˈnandɐ"
+    pos: adv
+    en: apart, away from one another
+    ru: врозь, в разные стороны
+    uk: нарізно, у різні боки
+    example_de: Bitte rücken Sie die Tische etwas auseinander.
+    example_en: Please move the tables a little apart.
+    example_ru: Раздвиньте, пожалуйста, столы немного в стороны.
+    example_uk: Розсуньте, будь ласка, столи трохи в різні боки.
+    note:
+      en: 'It says two or more things are no longer next to each other, and the distance is the point: weit auseinander sitzen, die Stühle auseinander stellen. As a verb prefix it is very productive and always means into separate parts or in different directions: auseinandernehmen (to take apart), auseinandergehen (to split up, of a couple or a meeting), auseinanderhalten (to tell two things apart), sich auseinandersetzen mit (to engage seriously with a topic). It is one word, never ❌ aus einander, and the opposite side of the family is zusammen.'
+      ru: 'Говорит, что два предмета или больше уже не рядом, и суть именно в расстоянии: weit auseinander sitzen, die Stühle auseinander stellen. Как глагольная приставка слово очень продуктивно и всегда значит «на части» или «в разные стороны»: auseinandernehmen («разобрать»), auseinandergehen («разойтись» — о паре, о собрании), auseinanderhalten («различать два предмета»), sich auseinandersetzen mit («всерьёз разбираться в теме»). Пишется в одно слово, никогда ❌ aus einander, а противоположная сторона семьи — zusammen.'
+      uk: 'Каже, що два предмети чи більше вже не поряд, і суть саме у відстані: weit auseinander sitzen, die Stühle auseinander stellen. Як дієслівний префікс слово дуже продуктивне і завжди означає «на частини» або «у різні боки»: auseinandernehmen («розібрати»), auseinandergehen («розійтися» — про пару, про збори), auseinanderhalten («розрізняти два предмети»), sich auseinandersetzen mit («серйозно розбиратися в темі»). Пишеться одним словом, ніколи ❌ aus einander, а протилежний бік родини — zusammen.'
+
+  - de: durcheinander
+    ipa: "dʊʁçʔaɪ̯ˈnandɐ"
+    pos: adv
+    en: in a muddle, all mixed up
+    ru: в беспорядке, вперемешку
+    uk: у безладі, упереміш
+    example_de: Nach dem Umzug lagen alle Sachen durcheinander.
+    example_en: After the move everything was lying about in a muddle.
+    example_ru: После переезда все вещи лежали в беспорядке.
+    example_uk: Після переїзду всі речі лежали в безладі.
+    note:
+      en: 'Two readings share one shape. Of things it means one on top of the other with no order: Die Papiere liegen durcheinander, alle reden durcheinander (everyone talking at once). Of a person, with sein, it means flustered and unable to think straight: Ich bin heute völlig durcheinander. The verb durcheinanderbringen means to muddle something up or to confuse someone, and capitalised das Durcheinander is the mess itself: Im Büro herrschte ein großes Durcheinander. It is a single word, never ❌ durch einander.'
+      ru: 'Две прочтения делят одну форму. О вещах значит «одно на другом, без порядка»: Die Papiere liegen durcheinander, alle reden durcheinander («все говорят разом»). О человеке, с глаголом sein, значит «сбитый с толку, не в силах собраться»: Ich bin heute völlig durcheinander. Глагол durcheinanderbringen значит «перепутать» или «сбить с толку», а с большой буквы das Durcheinander — сам беспорядок: Im Büro herrschte ein großes Durcheinander. Пишется в одно слово, никогда ❌ durch einander.'
+      uk: 'Два прочитання ділять одну форму. Про речі означає «одне на одному, без ладу»: Die Papiere liegen durcheinander, alle reden durcheinander («усі говорять разом»). Про людину, з дієсловом sein, означає «збитий з пантелику, не в змозі зібратися»: Ich bin heute völlig durcheinander. Дієслово durcheinanderbringen означає «переплутати» або «збити з пантелику», а з великої літери das Durcheinander — сам безлад: Im Büro herrschte ein großes Durcheinander. Пишеться одним словом, ніколи ❌ durch einander.'
+
+  - de: voneinander
+    ipa: "fɔnʔaɪ̯ˈnandɐ"
+    pos: adv
+    # Recognition only: B1's `gesellschaft-zusammenleben` already ships `miteinander`
+    # as a recognition card on the same argument — which member of the einander family
+    # a sentence needs is decided by the verb's own preposition, so an EN/RU prompt
+    # naming only "each other" cannot say which one is wanted.
+    cards: recognition
+    en: from one another, about each other
+    ru: друг у друга, друг о друге
+    uk: один в одного, один про одного
+    example_de: Die beiden Kollegen haben viel voneinander gelernt.
+    example_en: The two colleagues have learned a lot from each other.
+    example_ru: Оба коллеги многому научились друг у друга.
+    example_uk: Обидва колеги багато чого навчилися один в одного.
+    note:
+      en: 'One member of a closed set built on einander, each other: miteinander, voneinander, füreinander, gegeneinander, nebeneinander, hintereinander, übereinander. The preposition comes first and the whole thing is written solid, so ❌ von einander is wrong. Which member a sentence needs is decided by the verb, not by the meaning of each other: lernen von gives voneinander lernen, sprechen über gives übereinander sprechen, sich verabschieden von gives sich voneinander verabschieden. B1 already cards miteinander. In relaxed speech people often say von uns or von euch instead.'
+      ru: 'Один из замкнутого ряда, построенного на einander («друг друга»): miteinander, voneinander, füreinander, gegeneinander, nebeneinander, hintereinander, übereinander. Предлог идёт первым, и всё пишется слитно, так что ❌ von einander неверно. Какой член ряда нужен предложению, решает глагол, а не значение «друг друга»: lernen von даёт voneinander lernen, sprechen über даёт übereinander sprechen, sich verabschieden von даёт sich voneinander verabschieden. miteinander уровень B1 уже даёт карточкой. В непринуждённой речи вместо этого часто говорят von uns или von euch.'
+      uk: 'Один із замкненого ряду, побудованого на einander («одне одного»): miteinander, voneinander, füreinander, gegeneinander, nebeneinander, hintereinander, übereinander. Прийменник іде першим, і все пишеться разом, тож ❌ von einander неправильно. Який член ряду потрібен реченню, вирішує дієслово, а не значення «одне одного»: lernen von дає voneinander lernen, sprechen über дає übereinander sprechen, sich verabschieden von дає sich voneinander verabschieden. miteinander рівень B1 уже дає карткою. У невимушеному мовленні замість цього часто кажуть von uns або von euch.'
+
+  - de: umgekehrt
+    ipa: "ˈʊmgəkeːɐ̯t"
+    pos: adv
+    en: the other way round, the reverse
+    ru: наоборот, обратный
+    uk: навпаки, зворотний
+    example_de: Viele glauben, das Handy stört beim Lernen. Ich sehe es genau umgekehrt.
+    example_en: Many people believe the phone gets in the way of learning. I see it exactly the other way round.
+    example_ru: Многие считают, что телефон мешает учёбе. Я вижу это ровно наоборот.
+    example_uk: Багато хто вважає, що телефон заважає навчанню. Я бачу це рівно навпаки.
+    note:
+      en: 'The word that turns a claim over, and it earns its place in an opinion text: genau umgekehrt, oder umgekehrt, and und umgekehrt tacked onto a sentence to say the reverse holds too — Die Eltern helfen den Kindern und umgekehrt. As an adjective it takes ordinary endings: in umgekehrter Reihenfolge, der umgekehrte Fall. Formally it is the Partizip II of umkehren, to turn round or to turn back. Two neighbours are different words: verkehrt means simply wrong (Du hast den Pullover verkehrt herum an), and das Gegenteil is the noun for the opposite thing.'
+      ru: 'Слово, которое переворачивает утверждение, и в тексте с мнением оно своё место оправдывает: genau umgekehrt, oder umgekehrt, а und umgekehrt приставляют к фразе, чтобы сказать, что верно и обратное: Die Eltern helfen den Kindern und umgekehrt. Как прилагательное берёт обычные окончания: in umgekehrter Reihenfolge, der umgekehrte Fall. Формально это Partizip II глагола umkehren («повернуть обратно»). Два соседа — другие слова: verkehrt значит просто «неправильно» (Du hast den Pullover verkehrt herum an), а das Gegenteil — существительное «противоположность».'
+      uk: 'Слово, яке перевертає твердження, і в тексті з думкою воно своє місце виправдовує: genau umgekehrt, oder umgekehrt, а und umgekehrt приставляють до фрази, щоб сказати, що правильне й зворотне: Die Eltern helfen den Kindern und umgekehrt. Як прикметник бере звичайні закінчення: in umgekehrter Reihenfolge, der umgekehrte Fall. Формально це Partizip II дієслова umkehren («повернути назад»). Два сусіди — інші слова: verkehrt означає просто «неправильно» (Du hast den Pullover verkehrt herum an), а das Gegenteil — іменник «протилежність».'
+
+  # --- Verweiswörter: zurück auf das schon Gesagte ---
+  - de: derselbe
+    ipa: "deːɐ̯ˈzɛlbə"
+    pos: pron
+    # Recognition only: the word declines on both halves at once (derselbe,
+    # denselben, demselben, dasselbe, dieselben) and splits after a preposition
+    # (am selben Tag), so a typed card would grade which of six forms the author
+    # had in mind rather than the word.
+    cards: recognition
+    en: the same one, that very same one
+    ru: тот же самый
+    uk: той самий
+    example_de: Wir haben schon wieder denselben Fehler gemacht.
+    example_en: We have made the same mistake yet again.
+    example_ru: Мы снова сделали ту же самую ошибку.
+    example_uk: Ми знову зробили ту саму помилку.
+    note:
+      en: 'Two halves, and both of them decline. The article part carries the case and the -selb- part carries the adjective ending: derselbe Mann, denselben Fehler, demselben Kind, dasselbe Problem, dieselben Leute. It is written solid only after a bare article; as soon as a preposition swallows the article the two come apart, so it is am selben Tag, im selben Haus, zur selben Zeit, and ❌ amselben is wrong. It claims identity — one and the same thing — while der gleiche claims likeness, a second thing just like the first: dasselbe Auto is the very car, das gleiche Auto an identical model. Everyday speech blurs that difference more often than not.'
+      ru: 'Две половины, и склоняются обе. Артиклевая часть несёт падеж, а часть -selb- — окончание прилагательного: derselbe Mann, denselben Fehler, demselben Kind, dasselbe Problem, dieselben Leute. Слитно пишется только после голого артикля; как только предлог поглощает артикль, половины расходятся: am selben Tag, im selben Haus, zur selben Zeit, — и ❌ amselben неверно. Слово заявляет тождество — «тот самый предмет», — тогда как der gleiche заявляет сходство, второй предмет вроде первого: dasselbe Auto — та самая машина, das gleiche Auto — такая же модель. Обиходная речь эту разницу чаще стирает, чем держит.'
+      uk: 'Дві половини, і відмінюються обидві. Артиклева частина несе відмінок, а частина -selb- — закінчення прикметника: derselbe Mann, denselben Fehler, demselben Kind, dasselbe Problem, dieselben Leute. Разом пишеться лише після голого артикля; щойно прийменник поглинає артикль, половини розходяться: am selben Tag, im selben Haus, zur selben Zeit, — і ❌ amselben неправильно. Слово заявляє тотожність — «той самий предмет», — тоді як der gleiche заявляє схожість, другий предмет на кшталт першого: dasselbe Auto — та сама машина, das gleiche Auto — така сама модель. Побутове мовлення цю різницю частіше стирає, ніж тримає.'
+
+  - de: dabei
+    ipa: "daˈbaɪ̯"
+    pos: adv
+    # Recognition only: three unrelated jobs that no single EN/RU prompt can name,
+    # and A2 already ships the chunk `dabei sein` ("to be there, to take part") as a
+    # production card in another deck.
+    cards: recognition
+    en: with me, on me; in the process; and yet
+    ru: при себе; при этом; хотя при этом
+    uk: із собою; при цьому; хоча при цьому
+    example_de: Ich wollte anrufen, aber ich hatte mein Handy nicht dabei.
+    example_en: I wanted to phone, but I did not have my mobile with me.
+    example_ru: Я хотел позвонить, но телефона при мне не было.
+    example_uk: Я хотів зателефонувати, але телефона при собі не мав.
+    note:
+      en: 'A pointing word that ties the sentence back to something just named, and it does three separate jobs. With haben or sein it means on one''s person or present at the event: Hast du deinen Ausweis dabei? Ich bin dabei! Inside a clause it means while that is going on: Er kochte und hörte dabei Radio. And at the front of a main clause it becomes a concession, close to and yet: Er hat die Prüfung bestanden. Dabei hatte er kaum gelernt. A2 cards the chunk dabei sein for the first job. Formally it belongs to the da- family (damit, dafür, davon), which replaces a preposition plus a thing already mentioned.'
+      ru: 'Указательное слово, привязывающее фразу к только что названному, и работ у него три разных. С haben или sein значит «при себе» или «здесь, среди участников»: Hast du deinen Ausweis dabei? Ich bin dabei! Внутри предложения значит «при этом, одновременно»: Er kochte und hörte dabei Radio. А в начале главного предложения превращается в уступку, близкую к «а ведь»: Er hat die Prüfung bestanden. Dabei hatte er kaum gelernt. Уровень A2 даёт карточкой оборот dabei sein для первой работы. Формально слово принадлежит семье da- (damit, dafür, davon), которая заменяет предлог вместе с уже названным предметом.'
+      uk: 'Вказівне слово, що прив’язує фразу до щойно названого, і робіт у нього три різні. З haben або sein означає «при собі» чи «тут, серед учасників»: Hast du deinen Ausweis dabei? Ich bin dabei! Усередині речення означає «при цьому, водночас»: Er kochte und hörte dabei Radio. А на початку головного речення перетворюється на допуст, близький до «а таки ж»: Er hat die Prüfung bestanden. Dabei hatte er kaum gelernt. Рівень A2 дає карткою зворот dabei sein для першої роботи. Формально слово належить до родини da- (damit, dafür, davon), яка заміняє прийменник разом із уже названим предметом.'
+
+  - de: ebenfalls
+    ipa: "ˈeːbn̩fals"
+    pos: adv
+    # Recognition only: A1 ships `auch` ("also; too") as a production card and this is
+    # its written twin — the same prompt, in a deck no `accept` list here can reach.
+    # `gleichfalls` below owns this deck's typed card for the reply formula and lists
+    # this word in `accept`.
+    cards: recognition
+    en: likewise, as well
+    ru: также, тоже
+    uk: також, теж
+    example_de: Meine Kollegin fährt am Montag zur Messe, ich komme ebenfalls.
+    example_en: My colleague is going to the trade fair on Monday, and I am coming as well.
+    example_ru: Моя коллега едет в понедельник на выставку, я тоже поеду.
+    example_uk: Моя колега їде в понеділок на виставку, я теж поїду.
+    note:
+      en: 'The written twin of A1 auch, standing where auch would stand or at the end of the clause. Three words on the B1 list crowd this one meaning, and each has its own home: this one is the neutral written also; ebenso belongs beside a comparison (ebenso gut wie); gleichfalls belongs to the reply Danke, gleichfalls. In conversation all three sound stiff and German simply says auch. It is also the polite way to return a wish in a letter — Ihnen ebenfalls ein schönes Wochenende — and there it overlaps gleichfalls exactly. Do not read it as eben, the modal particle.'
+      ru: 'Письменный двойник auch с уровня A1: стоит там же, где стояло бы auch, или в конце предложения. Три слова списка B1 теснятся вокруг одного значения, и у каждого свой дом: это — нейтральное письменное «тоже»; ebenso живёт при сравнении (ebenso gut wie); gleichfalls — при ответной реплике Danke, gleichfalls. В разговоре все три звучат натянуто, и немец просто говорит auch. Это же вежливый способ вернуть пожелание в письме — Ihnen ebenfalls ein schönes Wochenende, — и там оно в точности совпадает с gleichfalls. Не читайте его как модальную частицу eben.'
+      uk: 'Писемний двійник auch рівня A1: стоїть там само, де стояло б auch, або в кінці речення. Три слова списку B1 тісняться довкола одного значення, і в кожного свій дім: це — нейтральне писемне «теж»; ebenso живе при порівнянні (ebenso gut wie); gleichfalls — при відповідній репліці Danke, gleichfalls. У розмові всі три звучать силувано, і німець просто каже auch. Це ж увічливий спосіб повернути побажання в листі — Ihnen ebenfalls ein schönes Wochenende, — і там воно точно збігається з gleichfalls. Не читайте його як модальну частку eben.'
+
+  - de: ebenso
+    ipa: "ˈeːbn̩zoː"
+    pos: adv
+    # Recognition only: `genauso` in `graduierung-mengenwoerter-b1` already ships a
+    # production card that lists this very word in its `accept`, so a typed card here
+    # would let two different prompts grade the same rendering correct.
+    cards: recognition
+    en: just as, equally; likewise
+    ru: точно так же, столь же
+    uk: так само, однаково
+    example_de: Der zweite Kurs war ebenso interessant wie der erste.
+    example_en: The second course was just as interesting as the first.
+    example_ru: Второй курс был точно так же интересен, как и первый.
+    example_uk: Другий курс був так само цікавий, як і перший.
+    note:
+      en: 'It grades two things as equal and normally needs its wie: ebenso teuer wie, ebenso gern wie, ebenso viele wie. genauso says exactly the same at a slightly more spoken register, and the B1 deck graduierung-mengenwoerter-b1 already cards genauso for typing with this word among its accepted answers. Without wie it means likewise, in the same way: Ihm geht es ebenso. Its two siblings on this list are ebenfalls, a written auch, and gleichfalls, the reply formula. Written as two words, eben so means just that way and is a different thing.'
+      ru: 'Приравнивает две вещи и обычно требует своего wie: ebenso teuer wie, ebenso gern wie, ebenso viele wie. genauso говорит ровно то же чуть разговорнее, и колода graduierung-mengenwoerter-b1 уровня B1 уже даёт genauso карточкой на ввод, а это слово стоит у неё среди принимаемых ответов. Без wie значит «так же, тем же образом»: Ihm geht es ebenso. Два брата по списку — ebenfalls (письменное auch) и gleichfalls (ответная реплика). В два слова eben so значит «именно так» и является другой вещью.'
+      uk: 'Прирівнює дві речі й зазвичай вимагає свого wie: ebenso teuer wie, ebenso gern wie, ebenso viele wie. genauso каже рівно те саме трохи розмовніше, і колода graduierung-mengenwoerter-b1 рівня B1 уже дає genauso карткою на введення, а це слово стоїть у неї серед прийнятних відповідей. Без wie означає «так само, тим самим чином»: Ihm geht es ebenso. Два брати за списком — ebenfalls (писемне auch) і gleichfalls (відповідна репліка). У два слова eben so означає «саме так» і є іншою річчю.'
+
+  - de: gleichfalls
+    ipa: "ˈglaɪ̯çfals"
+    pos: adv
+    # `ebenfalls` returns a wish just as idiomatically (Danke, ebenfalls!) and the
+    # note says so, so the production card must not mark it wrong. `ebenso` is
+    # deliberately NOT accepted here — it is already an accepted answer on
+    # `genauso` in graduierung-mengenwoerter-b1, and one rendering may be owned by
+    # only one typed prompt.
+    accept: ["ebenfalls"]
+    en: the same to you, you too
+    ru: и вам того же, и тебе тоже
+    uk: і вам того самого, і тобі так само
+    example_de: Wir wünschen Ihnen ein schönes Wochenende. Danke, gleichfalls!
+    example_en: We wish you a nice weekend. Thank you, the same to you!
+    example_ru: Желаем вам хороших выходных. Спасибо, и вам того же!
+    example_uk: Бажаємо вам гарних вихідних. Дякуємо, і вам так само!
+    note:
+      en: 'This is a reply, and that is almost the whole of it: somebody wishes you something and you wish it straight back without repeating the wish — Guten Appetit! Danke, gleichfalls. Schönen Feierabend! Gleichfalls. Frohe Weihnachten! Danke, gleichfalls. ebenfalls returns a wish just as idiomatically, which is why this card accepts it, and relaxed speech says Ihnen auch or Dir auch instead. A second, formal use means likewise inside a sentence — Wir bedanken uns gleichfalls — but there ebenfalls is the usual choice. The A2 card gleich teaches the temporal sense, in a moment; the gleich inside this word is the other one, meaning equal.'
+      ru: 'Это реплика-ответ, и в этом почти всё: вам чего-то желают, и вы желаете того же в ответ, не повторяя самого пожелания, — Guten Appetit! Danke, gleichfalls. Schönen Feierabend! Gleichfalls. Frohe Weihnachten! Danke, gleichfalls. ebenfalls возвращает пожелание столь же естественно, поэтому карточка его принимает, а непринуждённая речь скажет Ihnen auch или Dir auch. Второе, официальное употребление значит «также» внутри предложения — Wir bedanken uns gleichfalls, — но там обычнее ebenfalls. Карточка gleich уровня A2 учит временному значению «сейчас, сию минуту»; gleich внутри этого слова — другое, со значением «равный».'
+      uk: 'Це репліка-відповідь, і в цьому майже все: вам чогось бажають, і ви бажаєте того самого у відповідь, не повторюючи самого побажання, — Guten Appetit! Danke, gleichfalls. Schönen Feierabend! Gleichfalls. Frohe Weihnachten! Danke, gleichfalls. ebenfalls повертає побажання так само природно, тому картка його приймає, а невимушене мовлення скаже Ihnen auch або Dir auch. Друге, офіційне вживання означає «також» усередині речення — Wir bedanken uns gleichfalls, — але там звичніше ebenfalls. Картка gleich рівня A2 учить часового значення «зараз, цієї ж хвилини»; gleich усередині цього слова — інше, зі значенням «рівний».'
+
+  - de: selber
+    ipa: "ˈzɛlbɐ"
+    pos: pron
+    # Recognition only: A2 ships `selbst` ("myself/yourself/…; even") as a production
+    # card and this is the same word at a lower register — an EN/RU prompt reading
+    # "myself, oneself" is answered by both, in two decks.
+    cards: recognition
+    en: myself, yourself, oneself
+    ru: сам, сама, сами
+    uk: сам, сама, самі
+    example_de: Das Regal habe ich selber aufgebaut.
+    example_en: I put the shelf together myself.
+    example_ru: Эту полку я собрал сам.
+    example_uk: Цю полицю я зібрав сам.
+    note:
+      en: 'The colloquial twin of A2 selbst, and in the emphatic sense — I did it, nobody else — the two are fully interchangeable: Das habe ich selber gemacht = selbst gemacht. The difference is register alone, selber belonging to speech and selbst to writing. One thing this word cannot do: selbst has a second job as a focus particle meaning even (Selbst der Chef wusste nichts davon), and selber never carries that meaning. Neither of them ever changes its form. Set phrases keep it in speech: von selber, of its own accord; Selber schuld!, your own fault; das Selbermachen.'
+      ru: 'Разговорный двойник selbst с уровня A2, и в усилительном значении — «я сам, а не кто-то другой» — они полностью взаимозаменяемы: Das habe ich selber gemacht = selbst gemacht. Разница только в регистре: selber принадлежит речи, selbst — письму. Одного это слово не умеет: у selbst есть вторая работа, частица со значением «даже» (Selbst der Chef wusste nichts davon), и selber этого значения не несёт никогда. Формы не меняет ни то, ни другое. Устойчивые обороты держат его в речи: von selber («сам собой»), Selber schuld! («сам виноват»), das Selbermachen.'
+      uk: 'Розмовний двійник selbst рівня A2, і в підсилювальному значенні — «я сам, а не хтось інший» — вони цілком взаємозамінні: Das habe ich selber gemacht = selbst gemacht. Різниця лише в регістрі: selber належить мовленню, selbst — письму. Одного це слово не вміє: у selbst є друга робота, частка зі значенням «навіть» (Selbst der Chef wusste nichts davon), і selber цього значення не несе ніколи. Форми не змінює ні те, ні те. Сталі звороти тримають його в мовленні: von selber («само собою»), Selber schuld! («сам винен»), das Selbermachen.'
+
+  - de: vor allem
+    ipa: "foːɐ̯ ˈaləm"
+    pos: adv
+    # Recognition only, and the call was close because this is the most exam-useful
+    # entry on the list. A2 ships `besonders` ("especially, particularly") as a
+    # production card in another deck, so the prompt is already owned; and the
+    # headword is two words, so a typed card would grade the space against the very
+    # common misspelling `vorallem`. The exam use is taught on the answer side.
+    cards: recognition
+    en: above all, most of all
+    ru: прежде всего, в первую очередь
+    uk: передусім, насамперед
+    example_de: Ich bin dagegen, vor allem weil die Kosten zu hoch sind.
+    example_en: I am against it, above all because the costs are too high.
+    example_ru: Я против, прежде всего потому, что расходы слишком велики.
+    example_uk: Я проти, передусім тому, що витрати надто високі.
+    note:
+      en: 'This is the phrase a B1 opinion text opens its main reason with, and it does more than add a reason: it ranks one above the others. Vor allem finde ich, dass …; Ich bin dagegen, vor allem weil …; Mir gefällt vor allem der Preis. A2 besonders stands close but only intensifies (besonders schön), while this one selects. It is always two words, so ❌ vorallem is wrong, and the first of them is the preposition vor, unstressed here. Vor allen Dingen is the fuller spoken variant and in erster Linie the formal written one.'
+      ru: 'Именно с этого оборота текст с мнением уровня B1 начинает свой главный довод, и он не просто добавляет причину, а ставит одну выше прочих: Vor allem finde ich, dass …; Ich bin dagegen, vor allem weil …; Mir gefällt vor allem der Preis. besonders с уровня A2 стоит рядом, но только усиливает (besonders schön), тогда как этот оборот выбирает. Он всегда в два слова, так что ❌ vorallem неверно, а первое слово — предлог vor, безударный здесь. Vor allen Dingen — более полный устный вариант, in erster Linie — официальный письменный.'
+      uk: 'Саме з цього звороту текст із думкою рівня B1 починає свій головний доказ, і він не просто додає причину, а ставить одну вище за решту: Vor allem finde ich, dass …; Ich bin dagegen, vor allem weil …; Mir gefällt vor allem der Preis. besonders рівня A2 стоїть поряд, але лише підсилює (besonders schön), тоді як цей зворот обирає. Він завжди у два слова, тож ❌ vorallem неправильно, а перше слово — прийменник vor, ненаголошений тут. Vor allen Dingen — повніший усний варіант, in erster Linie — офіційний писемний.'
+
+  - de: nebenbei
+    ipa: "neːbn̩ˈbaɪ̯"
+    pos: adv
+    # Recognition only: B1's `konnektoren-partikeln-b1` ships `übrigens` ("by the
+    # way, incidentally") as a production card and it answers the aside sense of this
+    # prompt from another deck.
+    cards: recognition
+    en: on the side, alongside; by the way
+    ru: попутно, заодно; между прочим
+    uk: побіжно, заразом; між іншим
+    example_de: Sie studiert und arbeitet nebenbei in einem Café.
+    example_en: She is studying and working in a café on the side.
+    example_ru: Она учится и попутно работает в кафе.
+    example_uk: Вона навчається і принагідно працює в кав’ярні.
+    note:
+      en: 'It says an activity runs alongside the main one and is not the main one: nebenbei arbeiten, nebenbei Geld verdienen, etwas nebenbei erledigen. Nebenbei bemerkt and nebenbei gesagt open an aside, and there B1 übrigens is the everyday word for by the way. The related noun der Nebenjob is exactly the work someone does nebenbei, and nebenberuflich is its formal counterpart on a form. Keep it apart from A2 nebenan, which is about the room or flat next door, and from daneben, beside it.'
+      ru: 'Говорит, что занятие идёт рядом с главным и главным не является: nebenbei arbeiten, nebenbei Geld verdienen, etwas nebenbei erledigen. Nebenbei bemerkt и nebenbei gesagt открывают попутное замечание, и там обиходное «кстати» — это übrigens уровня B1. Родственное существительное der Nebenjob — ровно та работа, которую делают nebenbei, а nebenberuflich — его официальный двойник в анкете. Держите его отдельно от nebenan с уровня A2 (о соседней комнате или квартире) и от daneben («рядом с этим»).'
+      uk: 'Каже, що заняття йде поряд із головним і головним не є: nebenbei arbeiten, nebenbei Geld verdienen, etwas nebenbei erledigen. Nebenbei bemerkt і nebenbei gesagt відкривають побіжне зауваження, і там побутове «до речі» — це übrigens рівня B1. Споріднений іменник der Nebenjob — рівно та робота, яку роблять nebenbei, а nebenberuflich — його офіційний двійник в анкеті. Тримайте його окремо від nebenan рівня A2 (про сусідню кімнату чи квартиру) і від daneben («поряд із цим»).'
+
+  - de: hinterher
+    ipa: "hɪntɐˈheːɐ̯"
+    pos: adv
+    # Recognition only: A2 ships `danach` ("after that, afterwards") and `später`
+    # ("later, afterwards") as production cards; the same prompt, two decks over.
+    cards: recognition
+    en: afterwards; along behind
+    ru: потом, после этого; следом
+    uk: потім, після цього; слідом
+    example_de: Erst räumen wir auf, hinterher trinken wir einen Kaffee.
+    example_en: First we tidy up, afterwards we have a coffee.
+    example_ru: Сначала мы приберёмся, а потом выпьем кофе.
+    example_uk: Спершу приберемо, а потім вип’ємо кави.
+    note:
+      en: 'Two senses share one shape. In time it means after that, where A2 danach and später say the same thing — this is the more spoken of the three, and it often carries a hint of too late: Hinterher ist man immer klüger, hindsight is always sharper. In space it means following along behind: Der Hund lief hinterher. Attached to a verb it means chasing after something: hinterherlaufen, hinterherfahren, jemandem hinterherrufen. Nothing about it means behind in the static sense — that is A2 hinten.'
+      ru: 'Два значения делят одну форму. Во времени значит «после этого», и то же говорят danach и später с уровня A2 — из трёх это самое разговорное, и в нём часто слышен оттенок «задним числом»: Hinterher ist man immer klüger («задним умом все крепки»). В пространстве значит «следом, позади»: Der Hund lief hinterher. Приклеенное к глаголу, значит «вдогонку»: hinterherlaufen, hinterherfahren, jemandem hinterherrufen. Статического «сзади» оно не значит — это hinten с уровня A2.'
+      uk: 'Два значення ділять одну форму. У часі означає «після цього», і те саме кажуть danach і später рівня A2 — із трьох це найрозмовніше, і в ньому часто чути відтінок «заднім числом»: Hinterher ist man immer klüger («заднім розумом усі мудрі»). У просторі означає «слідом, позаду»: Der Hund lief hinterher. Приклеєне до дієслова, означає «навздогін»: hinterherlaufen, hinterherfahren, jemandem hinterherrufen. Статичного «ззаду» воно не означає — це hinten рівня A2.'
+
+  # --- Zwei Kleinwörter mit eigenem Rahmen, und zwei Minenfelder ---
+  - de: per
+    ipa: "ˈpɛɐ̯"
+    pos: prep
+    valence: "+ Akk, ohne Artikel"
+    en: by, via (the means)
+    ru: по, через
+    uk: через, за допомогою
+    example_de: Ich schicke Ihnen die Unterlagen heute noch per E-Mail.
+    example_en: I will send you the documents by e-mail today.
+    example_ru: Я отправлю вам документы сегодня же по электронной почте.
+    example_uk: Я надішлю вам документи ще сьогодні електронною поштою.
+    note:
+      en: 'A Latin preposition that names the means, and its whole grammar is one rule: the noun after it stands bare, with no article at all. per E-Mail, per Post, per Telefon, per Hand, per Bahn, per Anhalter — and ❌ per der Post is wrong. Everyday German uses mit plus an article for most of the same ground (mit der Post, mit dem Auto), while this word belongs to business and official writing, which is where a B1 letter needs it. A second, purely official use means as of a date: per 1. Januar. And per se, in itself, is the one frozen Latin phrase a B1 reader will actually meet.'
+      ru: 'Латинский предлог, называющий средство, и вся его грамматика — одно правило: существительное после него стоит голым, вообще без артикля. per E-Mail, per Post, per Telefon, per Hand, per Bahn, per Anhalter, — а ❌ per der Post неверно. Обиходный немецкий покрывает почти то же поле сочетанием mit с артиклем (mit der Post, mit dem Auto), а это слово принадлежит деловому и официальному письму, где оно и нужно письму уровня B1. Второе, сугубо канцелярское употребление значит «с такого-то числа»: per 1. Januar. А per se («само по себе») — единственный застывший латинский оборот с ним, который читателю уровня B1 действительно встретится.'
+      uk: 'Латинський прийменник, що називає засіб, і вся його граматика — одне правило: іменник після нього стоїть голим, узагалі без артикля. per E-Mail, per Post, per Telefon, per Hand, per Bahn, per Anhalter, — а ❌ per der Post неправильно. Побутова німецька покриває майже те саме поле сполукою mit з артиклем (mit der Post, mit dem Auto), а це слово належить діловому й офіційному письму, де воно й потрібне листові рівня B1. Друге, суто канцелярське вживання означає «з такого-то числа»: per 1. Januar. А per se («саме по собі») — єдиний застиглий латинський зворот із ним, який читачеві рівня B1 справді трапиться.'
+
+  - de: los
+    ipa: "ˈloːs"
+    pos: adv
+    # Recognition only: the headword carries no meaning of its own. It means one
+    # thing in `Was ist los?`, another in `Es geht los`, another in `losfahren` and
+    # another in `etwas loswerden`, so any EN/RU prompt would be a gloss of a chunk
+    # rather than of a typeable word.
+    cards: recognition
+    en: going on, the matter
+    ru: происходит, случилось
+    uk: відбувається, сталося
+    example_de: Du siehst müde aus. Was ist los mit dir?
+    example_en: You look tired. What is the matter with you?
+    example_ru: Ты выглядишь усталым. Что с тобой случилось?
+    example_uk: Ти маєш втомлений вигляд. Що з тобою сталося?
+    note:
+      en: 'The word lives in fixed frames and means something different in each. Was ist los? asks what is going on, or, aimed at a person, what is wrong; Es geht los means it is starting; Los! is the shout for Go on!, get moving. Attached to a verb it means away or off: losfahren, losgehen, loslassen, losschicken. As an adjective it means untied or rid of: Der Hund ist los, and etwas loswerden is to get rid of something. Finally the suffix -los makes adjectives negative — arbeitslos, kostenlos, hoffnungslos — which is a separate element with the same shape.'
+      ru: 'Слово живёт в устойчивых рамках и в каждой значит своё. Was ist los? спрашивает, что происходит, а обращённое к человеку — что случилось; Es geht los значит «начинается»; Los! — окрик «давай, пошли». Приклеенное к глаголу, значит «прочь, в путь»: losfahren, losgehen, loslassen, losschicken. Как прилагательное значит «отвязанный, свободный от чего-то»: Der Hund ist los, а etwas loswerden — «избавиться от чего-либо». Наконец суффикс -los делает прилагательные отрицательными — arbeitslos, kostenlos, hoffnungslos, — и это отдельный элемент той же формы.'
+      uk: 'Слово живе в сталих рамках і в кожній означає своє. Was ist los? питає, що відбувається, а звернене до людини — що сталося; Es geht los означає «починається»; Los! — окрик «нумо, гайда». Приклеєне до дієслова, означає «геть, у дорогу»: losfahren, losgehen, loslassen, losschicken. Як прикметник означає «відв’язаний, вільний від чогось»: Der Hund ist los, а etwas loswerden — «позбутися чогось». Нарешті суфікс -los робить прикметники заперечними — arbeitslos, kostenlos, hoffnungslos, — і це окремий елемент тієї самої форми.'
+
+  - de: recht
+    ipa: "ˈʁɛçt"
+    pos: adv
+    # Recognition only: the degree sense is answered by B1's shipped `ziemlich`
+    # ("fairly, pretty") and A2's `ganz` ("completely, quite"), and the headword also
+    # carries `recht haben` (a shipped A2 chunk), the adjective in `zur rechten Zeit`,
+    # A1 `rechts` and the noun `das Recht` — a typed card would grade which of them
+    # the author had in mind.
+    cards: recognition
+    en: quite, fairly
+    ru: довольно, весьма
+    uk: доволі, досить
+    example_de: Das Zimmer ist klein, aber recht hell.
+    example_en: The room is small, but quite bright.
+    example_ru: Комната маленькая, но довольно светлая.
+    example_uk: Кімната маленька, але доволі світла.
+    note:
+      en: 'As a degree word it grades an adjective towards the middle of the scale, exactly like B1 ziemlich and A2 ganz: recht gut, recht früh, recht teuer, recht ordentlich. Four look-alikes are separate words and each has its own card or its own rule. recht haben means to be right, and since the 2006 reform Duden prefers the small r, Du hast recht, while Recht haben stays permitted. The adjective recht means proper or right-hand: zur rechten Zeit, die rechte Hand, and its opposite there is link-. A1 rechts is the direction. And das Recht with a capital R is a right or the law: das Recht auf Bildung. For correct in the everyday sense German says A2 richtig, never this word.'
+      ru: 'Как степенное слово оно поднимает признак к середине шкалы — ровно как ziemlich уровня B1 и ganz уровня A2: recht gut, recht früh, recht teuer, recht ordentlich. Четыре похожих слова — другие, и у каждого своя карточка или своё правило. recht haben значит «быть правым», и после реформы 2006 года Duden предпочитает строчную — Du hast recht, — тогда как Recht haben остаётся допустимым. Прилагательное recht значит «надлежащий» или «правый»: zur rechten Zeit, die rechte Hand, — и там ему противостоит link-. rechts с уровня A1 — направление. А das Recht с прописной — право или закон: das Recht auf Bildung. Для обиходного «правильный» немецкий берёт richtig уровня A2, но не это слово.'
+      uk: 'Як ступеневе слово воно піднімає ознаку до середини шкали — рівно як ziemlich рівня B1 і ganz рівня A2: recht gut, recht früh, recht teuer, recht ordentlich. Чотири схожі слова — інші, і в кожного своя картка або своє правило. recht haben означає «мати рацію», і після реформи 2006 року Duden віддає перевагу малій літері — Du hast recht, — тоді як Recht haben лишається припустимим. Прикметник recht означає «належний» або «правий»: zur rechten Zeit, die rechte Hand, — і там йому протистоїть link-. rechts рівня A1 — напрямок. А das Recht з великої — право або закон: das Recht auf Bildung. Для побутового «правильний» німецька бере richtig рівня A2, але не це слово.'
+
+  - de: nahe
+    ipa: "ˈnaːə"
+    pos: adj
+    # Recognition only: A1 ships `nah` ("near; close by") as a production card, and
+    # this headword is the same word — the prompt cannot separate the two forms, and
+    # they live in different decks.
+    cards: recognition
+    en: near, close by
+    ru: близкий, близко
+    uk: близький, близько
+    example_de: Der Bahnhof ist ganz nahe, wir gehen zu Fuß.
+    example_en: The station is very close, we will walk.
+    example_ru: Вокзал совсем близко, пойдём пешком.
+    example_uk: Вокзал зовсім близько, ходімо пішки.
+    note:
+      en: 'The full form of A1 nah, and the two are one word: nah is the everyday short form, this one the fuller shape a written text and every inflected form prefer — in naher Zukunft, ein naher Verwandter, die nahe Umgebung. The comparison is irregular: näher, am nächsten. As a preposition with the Dativ it means close to (nahe dem Bahnhof), but everyday German says in der Nähe + Genitiv, or simply bei. Do not confuse it with A1 neben, which is beside, immediately next to. And beinahe, on the B1 list, is a different word meaning almost.'
+      ru: 'Полная форма от nah с уровня A1, и это одно слово: nah — обиходная краткая форма, а это — полная, которую предпочитают письменный текст и все склоняемые формы: in naher Zukunft, ein naher Verwandter, die nahe Umgebung. Степени сравнения неправильные: näher, am nächsten. Как предлог с Dativ значит «вблизи» (nahe dem Bahnhof), но в обиходе говорят in der Nähe + Genitiv или просто bei. Не путайте с neben уровня A1: то «рядом, вплотную». А beinahe из списка B1 — другое слово, «чуть не».'
+      uk: 'Повна форма від nah рівня A1, і це одне слово: nah — побутова коротка форма, а це — повна, яку віддають перевагу писемний текст і всі відмінювані форми: in naher Zukunft, ein naher Verwandter, die nahe Umgebung. Ступені порівняння неправильні: näher, am nächsten. Як прийменник із Dativ означає «поблизу» (nahe dem Bahnhof), але в побуті кажуть in der Nähe + Genitiv або просто bei. Не плутайте з neben рівня A1: то «поряд, впритул». А beinahe зі списку B1 — інше слово, «ледь не».'

@@ -620,7 +620,68 @@ describe('cards: recognition | both', () => {
     // `zugänglich`, `äußerlich`: Aushang, Beipackzettel, AGB and course-programme
     // vocabulary, read constantly and produced never at B1. `unheimlich` and `intensiv`
     // join them because each carries two unrelated senses one example cannot hold.
-    expect(cards).toBe(entries * 2 - 192);
+    // `ort-richtung-verweis-b1` (2026-08-03) adds twenty-four, and the collision test
+    // does most of the work again — but this deck's collisions are with the *directional*
+    // A1/A2 lexis rather than with adjectives. `richtung-position-a2` and
+    // `funktionswoerter-chunks` already sell `drinnen`, `draußen`, `nirgends`, `raus`,
+    // `rein`, `vorwärts`, `zurück`, `oben`, `unten`, `hier`, `da` and `dort` as production
+    // cards, so `innen`, `außen`, `drin`, `nirgendwo`, `rauf`, `runter`, `aufwärts` and
+    // `abwärts` answer prompts a shipped card already owns, two decks over. `nahe` is the
+    // same word as A1 `nah`, `selber` the same word as A2 `selbst`, `ebenfalls` a written
+    // A1 `auch`, `hinterher` an A2 `danach`, `nebenbei` the B1 `übrigens` already carded
+    // in `konnektoren-partikeln-b1`, and `voraus` competes with both A2 `vorher` and A2
+    // `vorwärts`. `heim` fails a different test: the form a B1 learner must produce for
+    // "home(wards)" is `nach Hause`, so a typed card would train the wrong word.
+    // Three are decided inside the deck. `ebenso` is the sharpest case in the pass so
+    // far — `genauso` in `graduierung-mengenwoerter-b1` ships it in `accept`, so a
+    // production card here would let two different prompts grade one rendering correct;
+    // `gleichfalls` therefore takes the deck's single typed card for the likewise family,
+    // on the reply formula no other card answers, and lists `ebenfalls` in its own
+    // `accept`. `dahin` yields to `dorthin`, which accepts it. `derselbe` declines on both
+    // halves at once and splits after a preposition (am selben Tag), so a typed card would
+    // grade which of six forms was meant; `dabei`, `los` and `recht` each carry three or
+    // more unrelated jobs that no single EN/RU prompt can name. `vor allem` was the close
+    // call and lost twice over: A2 `besonders` already owns "especially", and the headword
+    // is two words, so the card would grade the space against `vorallem`. `mitten` is the
+    // twenty-fifth, added in review: it never stands alone, and neither English nor Russian
+    // has a bare word for it, so every gloss of it is a prepositional phrase and a typed
+    // prompt invites `mitten in` — the `so viel wie` defect with the space on the inside.
+    // `zeit-b1` (2026-08-03) adds thirty, the largest recognition share of the pass so far
+    // (30 of 40), and it is earned rather than chosen: time is the densest synonym field
+    // A1/A2 has already sold. Run mechanically — YAML-parse every deck, index every
+    // `de`/`en`/`ru`/`uk`/`accept` of every entry whose `cards` is absent or `both`, then
+    // check the forty candidate glosses against it — the collision test flagged seventeen.
+    // Sixteen of those became recognition: `Anfang`, `Moment`, `zuerst`, `danach`, `später`,
+    // `dann`, `neulich`, `gerade`, `ständig`, `irgendwann`, `Alltag`, `Kalender`, `Werktag`,
+    // `wahrscheinlich`, `Zukunft` and `sich beeilen` ship as production cards elsewhere, so
+    // `Beginn`, `Augenblick`, `anfangs`, `zunächst`, `nachher`, `kürzlich`, `vorhin`,
+    // `dauernd`, `jemals`, `Tagesablauf`, `Terminkalender`, `Wochentag`, `voraussichtlich`,
+    // `zukünftig` and `eilen` answer a prompt that is already owned — unrepairable by
+    // `accept`, because the two cards live in different decks and the grader only ever sees
+    // one. `Wochentag` is the one no reading of the glosses would have caught: A2's `Werktag`
+    // is glossed "weekday, working day (Mon–Sat)", and "weekday" is the standard English
+    // rendering of both, which is exactly why a learner swaps them. The seventeenth,
+    // `Zeitpunkt`, survives as `both`: it collided only on the glosses "moment" and "time",
+    // which were then dropped — it ships glossed "point in time" alone, and no shipped card
+    // answers that. Four more are ruled inside the deck, on tests the index cannot run.
+    // `mittlerweile` and `inzwischen` are the
+    // same word for every practical purpose, so `inzwischen` takes the family's one typed card
+    // and lists `mittlerweile` in `accept` — the `ebenso`/`genauso` ruling from
+    // `ort-richtung-verweis-b1`. `zurzeit` grades a space whose two sides mean different
+    // things: solid it is "at present", split `zur Zeit` is "at the time of" and wants a
+    // Genitiv, so a production card cannot signal which is wanted — the `so viel` case, this
+    // time with the meanings rather than the spelling doing the splitting. `dreiviertel` grades
+    // a space too (`drei viertel` is equally correct) on top of colliding with `viertel`. And
+    // the `-lich` frequency series is priced as one rule rather than five words: `täglich`
+    // (gesundheit-arzttermin) already sells the pattern at A2, so `monatlich` takes this deck's
+    // single typed card — the member a B1 learner writes, on rent, salary and every
+    // subscription — while `stündlich`, `wöchentlich`, `jährlich` and `wochentags` are derived
+    // from `Stunde`, `Woche`, `Jahr` and `Woche`, all carded, by a rule the learner can see.
+    // Five typed cards for one visible rule buys nothing the sixth does not already teach.
+    // The remainder are recognition on register alone: `Eile`, `längst`, `vorläufig`,
+    // `Jahrzehnt`, `Jahrhundert`, `Jahrtausend`, `Nationalfeiertag` and `Pfingsten` are
+    // notice, contract, museum-label and calendar vocabulary — read at B1 and never produced.
+    expect(cards).toBe(entries * 2 - 247);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
