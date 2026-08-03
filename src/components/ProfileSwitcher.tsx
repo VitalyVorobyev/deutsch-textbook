@@ -9,7 +9,11 @@ import {
   type Profile,
 } from '../lib/profile';
 import { EXPLAIN_LANGS, pick, setExplainLang } from '../lib/prefs';
-import { useExplainLang } from './hooks';
+import { getSession, readSyncState, type RemoteSession } from '../lib/sync-remote';
+import { flushRemoteSync } from '../lib/autosync';
+import { t } from '../lib/strings';
+import { withBase } from '../lib/url';
+import { useExplainLang, useUiLang } from './hooks';
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
     `{label}` is replaced by the caller. */
@@ -25,18 +29,41 @@ const UI = {
   name: { en: 'Name', ru: 'Имя' },
   add: { en: 'Add', ru: 'Добавить' },
   newProfile: { en: 'New profile', ru: 'Новый профиль' },
+  account: { en: 'Account', ru: 'Аккаунт' },
 } as const satisfies Record<string, { en: string; ru: string }>;
+
+/**
+ * The one cloud pull per page load.
+ *
+ * `scheduleAutoSync` only fires on a *write*, so a device that is only reading
+ * would never learn that another device had written. This component is mounted
+ * once in the header of every page (src/layouts/Base.astro), which makes it the
+ * one place a per-load sync can live without a second global island. The
+ * module-level flag survives React's development double-mount; the floor inside
+ * `flushRemoteSync` handles everything else.
+ */
+let pulledThisLoad = false;
+
+function pullOncePerLoad(): void {
+  if (pulledThisLoad) return;
+  pulledThisLoad = true;
+  // Bound profile only: an unbound or signed-out install must not make a request.
+  if (!readSyncState().profileId) return;
+  void flushRemoteSync();
+}
 
 /** Header dropdown to switch, create, and delete local learner profiles,
     and the per-profile learning-language (explanation) setting — the one
     language selector; the chrome is pinned German (src/lib/prefs.ts). */
 export default function ProfileSwitcher() {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [activeId, setActiveId] = useState('');
   const [adding, setAdding] = useState(false);
   const [newLabel, setNewLabel] = useState('');
+  const [session, setSession] = useState<RemoteSession | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,8 +71,15 @@ export default function ProfileSwitcher() {
     void resolveProfileState().then(() => {
       setProfiles(listProfiles());
       setActiveId(getActiveProfileId());
+      pullOncePerLoad();
     });
   }, []);
+
+  // Only asked for when the menu opens: an account label nobody is looking at
+  // is not worth a request on every page view.
+  useEffect(() => {
+    if (open && !session) void getSession().then(setSession);
+  }, [open, session]);
 
   useEffect(() => {
     if (!open) return;
@@ -120,6 +154,22 @@ export default function ProfileSwitcher() {
               )}
             </div>
           ))}
+
+          <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
+            <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+              {pick(lang, UI.account)}
+            </p>
+            <a
+              href={withBase('/konto')}
+              className="block rounded px-2 py-1.5 text-sm hover:bg-stone-100 dark:hover:bg-stone-700"
+            >
+              {session?.signedIn && session.user ? (
+                <span className="block truncate">{session.user.email}</span>
+              ) : (
+                <span className="text-stone-600 dark:text-stone-300">{t('account.signIn', uiLang)}</span>
+              )}
+            </a>
+          </div>
 
           <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
             <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
