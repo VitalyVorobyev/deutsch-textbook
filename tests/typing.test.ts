@@ -6,7 +6,7 @@
  * For three classes they do not, and the card used to mark correct German wrong.
  */
 import { describe, expect, test } from 'bun:test';
-import { articledForm, checkTypedAnswer, GERMAN_INPUT_KEYS } from '../src/lib/typing';
+import { articledForm, checkTypedAnswer, diffExpected, GERMAN_INPUT_KEYS } from '../src/lib/typing';
 
 describe('the article rules that already worked', () => {
   test('a noun needs its article', () => {
@@ -106,6 +106,23 @@ describe('a German answer must be typeable on a non-German keyboard', () => {
   test('every character a headword needs is on the insert bar', () => {
     expect(GERMAN_INPUT_KEYS).toContain('é');
     for (const ch of ['ä', 'ö', 'ü', 'ß']) expect(GERMAN_INPUT_KEYS).toContain(ch);
+  });
+
+  test('the highlight names a morpheme, not the seam a capital letter cut', () => {
+    // Reported from a review session: `das Angebot` typed for `das Sonderangebot`
+    // highlighted `Sondera`. The learner's capital `A` could not match the compound's
+    // medial lowercase `a`, so the case-sensitive alignment kept only `ngebot` and the
+    // card taught a segmentation German does not have. The missing piece is `Sonder`.
+    const missed = (expected: string, given: string) =>
+      diffExpected(expected, given).filter((s) => s.miss).map((s) => s.text);
+    expect(missed('das Sonderangebot', 'das Angebot')).toEqual(['Sonder']);
+    expect(missed('die Haustür', 'die Tür')).toEqual(['Haus']);
+
+    // Casing is graded, and it is the one thing a folded alignment cannot show —
+    // fold it and the diff reports a perfect match. So when casing is all that is
+    // wrong, the case-sensitive alignment stays and pinpoints the letter.
+    expect(missed('das Angebot', 'das angebot')).toEqual(['A']);
+    expect(diffExpected('das Angebot', 'das Angebot').every((s) => !s.miss)).toBe(true);
   });
 
   test('the accent-less loanword spelling is accepted, the article still is not', () => {
