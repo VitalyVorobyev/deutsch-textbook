@@ -788,6 +788,10 @@ zusammenfassen.").
   The remaining Wortliste tail still closes in an end-of-level completion pass of **unowned** decks,
   recognition-heavy — never listed in any topic's `vocab:`. Coverage command:
   `bun scripts/coverage.ts B1` (with `--check-deck` per deck before validate).
+  **Amended 2026-08-03: the pass no longer waits for level end.** It runs in four waves interleaved
+  with B1.11–B1.14, because 214 days of already-unintroduced cards puts a word authored at level
+  close past the exam. The partition (43 decks, 1621 headwords), the exclusion table and the figure
+  that decided it are in the amendment at the end of this file.
 - **Probes: one 3-variant, single-competence family per competence the unit owns**, from day one,
   cloze-preferred for attribution. A unit with three grammar points declares three families
   (`b1/probe-<id>` plus `b1/probe-<id>-<competence>`); a genre unit declares one per outcome
@@ -996,3 +1000,121 @@ denominator up, percentage down. `CLAUDE.md`, `docs/coverage-instruments.md` and
 `tests/grammar-coverage.test.ts` were updated in the same commit. The debt is now visible *and*
 owned; before the amendment it was invisible, and between the split and this amendment it was
 visible but orphaned, which is what the B1.5 review flagged next.
+
+## Amendment 2026-08-03: the B1 Wortliste completion pass starts now, in waves
+
+The frozen policy above says the Wortliste tail "still closes in an **end-of-level** completion
+pass". It does not any more. The pass starts at B1.10 and runs in waves interleaved with
+B1.11–B1.14, on the two-unit cadence the units already use. Everything else about it is unchanged:
+unowned decks, `level: B1`, recognition-heavy, never listed in a topic's `vocab:`.
+
+### Why now, and the figure that decided it
+
+**The binding constraint is the new-card budget, not authoring throughput.** A word authored at
+level close cannot be retained by exam time, because it cannot even be *introduced* by then.
+
+| figure | value | command |
+| --- | --- | --- |
+| B1 Wortliste | 1722/3416 (50%), **1694 missing** | `bun scripts/coverage.ts B1` |
+| vocab entries in the repo | 1931 (120 `recognition`, 1811 `both`) | YAML-parse `content/vocab/*.yaml`, count `entries[]` and `cards` |
+| cards those entries make | 3742 | `both × 2 + recognition` |
+| cards the learner has graded | 538 | `bun run progress:audit --profile vitaly` |
+| unintroduced today | ~3204 = **214 days** at `DAILY_NEW_CARDS = 15` | 3742 − 538, ÷ 15 |
+| the pass as tiered below | +1849–2350 cards → **337–371 days** | see the tiering rule |
+| the pass if it were all `both` | +3242 cards → **430 days** | 1621 × 2 |
+
+Two things follow. The tail has to start now — 214 days of unintroduced cards is already past the
+horizon, and adding 123–157 days more at level close puts the last B1 word in front of the learner
+some time in 2027. And the tiering is not a preference: the gap between 1849 and 3242 cards is the
+entire reason a 1621-entry pass is payable at all.
+
+**A correction, per the earned-claims rule.** The plan that authorised this pass cited *"1368 vocab
+entries ≈ 2636 cards"*, produced by `grep -c "^  - de:" content/vocab/*.yaml`. That grep is wrong:
+**17 of the 83 decks indent `entries:` differently and the pattern matches none of their entries**,
+so it undercounted by 524. The corpus is 1931 entries and 3742 cards. The error understated the
+problem by 40% — the conclusion survives, but only because it was already pointing the same way.
+Count entries by parsing the YAML, never by grepping for a key at a fixed indentation.
+
+### Three rules, and the one that is different from A2
+
+1. **Every completion deck is unowned and `level: B1`.** Listing one in a topic's `vocab:` would
+   flip its fresh-card gate from *"≥1 B1 topic opened"* to *"this topic opened"* and bury hundreds
+   of words behind it. Unit decks keep their 30–40 entries; completion words are not lesson words.
+2. **The `both` core is the entries a B1 learner must *produce*; everything else is
+   `cards: recognition` from the start, and recognition stays over half of every deck.** It is
+   decided once, at authoring time, and **never retrofitted** — the direction is baked into the
+   card id, so flipping a shipped entry deletes its production-card SRS history.
+3. **A2's manifest was semantic; B1's is alphabetical, so there is nothing to regroup — the
+   grouping is built from scratch.** Goethe-B1 files its 3416 words under A, B, C … Z plus 14 small
+   thematic sections. Coverage is blind to filing (`deckHeadwords()` unions every deck), so a
+   semantic partition costs the measurement nothing and buys back the only thing that makes 43
+   decks authorable in parallel: `bun scripts/coverage.ts B1 --check-deck <file>` rejects any entry
+   that is not on the current missing list, which is by construction a word no other deck owns.
+   **Run it per deck, before `bun run validate`.**
+
+### The partition — 43 decks, 1621 headwords
+
+Waves are ordered by **how soon a word blocks production**: W1 is the closed-class and
+general-purpose lexis every other sentence runs through, W2 the fields the learner lives in, W3 the
+civic and abstract lexis the B1 exam's reading and *Meinung äußern* tasks need, W4 what he will
+only ever read. `mixed` = a `both` core plus a recognition tail; `rec` = all `cards: recognition`.
+
+| wave | decks | n |
+| ---: | --- | ---: |
+| 1 | `konnektoren-partikeln-b1` (37, mixed) · `graduierung-mengenwoerter-b1` (37, mixed) · `ort-richtung-verweis-b1` (36, mixed) · `verben-handlungen-b1-1` (35, mixed) · `verben-handlungen-b1-2` (34, mixed) · `verben-handlungen-b1-3` (34, mixed) · `verben-kommunikation-ausdruck-b1` (36, mixed) · `eigenschaften-bewertung-b1` (41, mixed) · `charakter-verhalten-b1` (40, mixed) · `zeit-b1` (40, mixed) · `zahlen-mengen-masse-b1` (39, mixed) | 409 |
+| 2 | `gefuehle-reflexive-verben-b1` (43, mixed) · `beziehungen-familie-b1` (39, mixed) · `verwaltung-behoerden-b1` (31, mixed) · `arbeit-beruf-b1` (40, mixed) · `berufe-b1` (30, mixed) · `koerper-medizin-b1` (40, mixed) · `essen-lebensmittel-b1` (45, mixed) · `wohnen-gebaeude-b1` (39, rec) · `haushalt-notfall-b1` (40, rec) · `verkehr-auto-b1` (44, mixed) · `einkaufen-geld-b1` (31, rec) | 422 |
+| 3 | `text-schreiben-b1` (35) · `sprechen-lernen-b1` (35) · `computer-internet-b1` (45) · `medien-digital-b1` (31) · `abstrakte-begriffe-b1` (45) · `wirtschaft-handel-b1` (30) · `recht-kriminalitaet-b1` (45) · `politik-staat-b1` (38) · `gesellschaft-migration-b1` (39) · `bildung-schulsystem-b1` (33) · `wissenschaft-technik-b1` (31) — all `rec` | 407 |
+| 4 | `kultur-literatur-presse-b1` (43) · `sport-freizeit-b1` (43) · `reisen-laender-b1` (34) · `natur-geografie-b1` (34) · `tiere-wetter-b1` (41) · `material-stoffe-formen-b1` (30) · `koerperpflege-lebensstil-b1` (38) · `gastronomie-feste-b1` (32) · `varianten-at-ch-essen-alltag-b1` (44) · `varianten-at-ch-institutionen-b1` (44) — all `rec` | 383 |
+
+Deck size is 30–45 (mean 37.7). The word-level assignment is reproducible: it is the partition the
+decks themselves encode, and `--check-deck` is what holds it collision-free.
+
+**Two categories were decided against the temptation to `~` them, and the reason is the same one
+both times: an unearned `~` hard-fails `bun run validate`, so an exclusion you cannot pay for is
+not an exclusion.**
+
+- **All 81 feminine agent nouns get cards** (`Architektin`, `Betreuerin`, `Anwältin`, …; 66 have
+  their masculine also on the missing list, 11 have it already carded). A Movierung table cannot
+  honestly carry 77 regular `-erin` rows. They ship `cards: recognition` and sit **adjacent to
+  their masculine**, whose `note` carries the pair — so a pair costs 3 cards, not 4.
+- **All ~95 Austrian and Swiss variants get cards** (`Marille`, `Semmel`, `Velo`, `Billett`,
+  `Bancomat`, `Matura`, `Abwart`, …), as `recognition`. B1 is a trinational list and these are
+  *different words* from `Aprikose`/`Brötchen`/`Fahrrad`, not spellings of them — the `Disko`/`Klub`
+  interference precedent does not reach them.
+
+### What does not get a flashcard — 73 words, and 44 of them are not paid for yet
+
+Every row is a new `~` in `data/goethe-b1-wortliste.txt`, and `bun run validate` **hard-fails a `~`
+whose word the taught surface does not contain**. Measured against today's surface
+(`addresses(taughtSurface(), word)`, `src/lib/coverage.ts`): **29 of the 73 already pass, 44 do
+not.** So the `~` marks do **not** go into the manifest with the decks — each one lands in the
+commit that ships the table or reading earning it. Until then the word stays plain `missing`, which
+is the honest state.
+
+| words | why no card | earned by |
+| --- | --- | --- |
+| 20 determiner/adjective stems: `aller-`, `beid-`, `besonder-`, `dies-`, `einzig-`, `erst-`, `früher-`, `heutig-`, `inner-`, `irgend-`, `link-`, `mittler-`, `nächst-`, `ober-`, `recht-`, `selb-`, `sogenannt-`, `solch-`, `vorder-`, `was für ein-` | the A2 stem rule: `ownedBy` keys on the exact `de` string, so covering `beid-` means a flashcard whose front reads *"beid-"* | **12 pass.** The other 8 need one inflected form in a German table: `heutige`, `innere`, `linke`, `mittlere`, `obere`, `sogenannte`, the literal cell `irgend-`, and the question *Was für ein …?* |
+| `hell-`, `dunkel-` | same rule; colour-intensity modifiers | **both pass** (`helle`, `dunkel`) |
+| `Nord-`, `Ost-`, `Süd-`, `West-` | same rule | **1 passes.** `STEM_ENDINGS` includes `en`, so the nouns *Osten/Süden/Westen* earn the other three |
+| 18 compound first elements: `Bio-`, `Bundes-`, `Doppel-`, `Elektro-`, `Ferien-`, `gesamt-`, `Gesamt-`, `Groß-`, `Haupt-`, `Kriminal-`, `Not-`, `Öko-`, `rück-`, `Schwieger-`, `Sonder-`, `Speise-`, `Spezial-`, `Traum-` | same rule; these are Wortbildung elements, not words | **5 pass.** The other 13 need a Komposita table whose German cells are written **with the hyphen** — see the normalisation trap below |
+| `un-`, `miss-` | derivational prefixes with no ordinary German form the matcher can see | **neither passes**, and nothing but the literal cells `un-` / `miss-` in that table will do it |
+| `über-`, `unter-` | prefix headwords, not words | **both pass**, off the prepositions |
+| `-speise`, `-weise` | suffix headwords; *"-weise"* is not a card front | **neither passes.** These do *not* take the stem branch (they do not **end** in `-`): they fold to the bare tokens `speise` / `weise` |
+| `entweder … oder`, `je … desto …`, `sowohl … als auch`, `weder … noch`, `um … zu` | two-part frames; a card front with `…` asks for an ellipsis, and both halves are drilled as grammar | **3 pass.** `…` folds to a space, so the Konnektoren table written as the manifest writes it yields the adjacent tokens |
+| `bzw.`, `d. h.`, `etc.`, `vgl.`, `zirka` | written reading conventions (A2's `ca.`/`usw.`/`z. B.`); `zirka` is the A/CH spelling of `circa`, two letters apart — the `Disko`/`Klub` interference case. **`beziehungsweise` and `circa` keep their cards** | **1 passes**; the rest need an abbreviations/Varianten table |
+| `EG`, `OG`, `UG`, `Akkumulator`, `Kraftfahrzeug`, `Personenkraftwagen`, `Lastkraftwagen` | EG/OG/UG are lift-panel labels, read and never spoken as letters — unlike `PC`/`SMS`/`ICE`/`WC`/`Lkw`, which A2 kept as spoken nouns with gender and plural. The four long forms are the officialese behind abbreviations that **all keep cards** (`Akku`, `Kfz`, `Pkw`, `Lastwagen`) | **none pass**; a Wohnungsanzeige reading carrying `EG` / `3. OG` / `UG`, plus the abbreviations table that has to spell the long forms out anyway |
+| `einhundert`, `eintausend` | the manifest's number-*formation* demos (A2's `hunderteins`, `zweihundert`) | **neither passes**; the number-building table |
+| `worüber`, `worum`, `herunter`, `so viel` | `wo(r)-` compounds are generated by the rule `verben-mit-praepositionen` already teaches; `herunter` is the full form of `runter`, as A2 excluded `heraus`/`herein` while keeping `raus`/`rein` (**`runter`, `rauf`, `drin` keep cards**); `so viel` grades a space against `soviel`, and a production card cannot signal that distinction | **3 pass**; `herunter` needs a row in the existing hin/her table |
+
+**The normalisation trap, stated because it is silent and it inverts the obvious move.**
+`normalize()` folds every non-letter to a space, so a compound written solid is **one token**:
+**`Bioladen` does not earn `Bio-`, and `Bio-Laden` does.** The bare cell `Bio-` earns it too, for
+the same reason. Any Komposita table paying these 13 off must therefore hyphenate.
+
+**And the `lieb-`/*lieber* hazard from the A2 pass repeats here — three of the 29 "already pass"
+are passing off the wrong morpheme.** `Not-` passes off **`Noten`** (school grades), `rück-` off
+**`Rücken`** (the body part), and `-weise` would be credited by the adjective *weise*. The matcher
+is satisfied and the learner is taught nothing. All three get a real cell in the Komposita table
+(`Not-`: Notruf, Notausgang, Notaufnahme; `rück-`: Rückkehr, Rückmeldung, rückwärts) rather than
+being left to pass on an accident. A word can pass the earned-`~` test and still not be taught —
+that is the second time this doc has had to say so.
