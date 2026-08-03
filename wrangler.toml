@@ -1,0 +1,39 @@
+# Cloudflare Workers static-assets config.
+#
+# The site is a static Astro build with no server code, so this Worker has no
+# `main` entry — it is assets-only, and Cloudflare serves `dist/` directly. The
+# /api Functions for auth and progress sync arrive with that work and will add a
+# `main` here; nothing talks to a server yet.
+#
+# **Deploys come from the Cloudflare Git integration watching `main`.** There is
+# deliberately no GitHub Actions deploy: two paths watching one branch race each
+# other on every push. `.github/workflows/ci.yml` still runs validate, test,
+# check, lint and build, so broken content is caught before it can be merged.
+#
+# Build configuration to set in the dashboard — the build command on its own is
+# not enough, and each of these has a failure mode worth knowing:
+#
+#   Build command      bun run build
+#   Output directory   dist
+#   NODE_VERSION       22   — package.json requires >=22.12.0 and Astro 7 needs
+#                            >=20; the platform default is older.
+#   PUBLIC_ATLAS_AUDIO_BUNDLE
+#                      1    — without it the build logs "41 reviewed recording(s)
+#                            withheld" and the site speaks browser TTS over
+#                            scripts that were recorded and human-approved.
+#   SITE_URL           https://atlas.vitavision.dev
+#                           — canonical and sitemap URLs only; astro.config
+#                             already defaults to this host.
+#   BASE_PATH          leave unset. Setting it prefixes every URL with a subpath.
+#
+# Deploy by hand:  bun run build && bunx wrangler deploy
+# Domain:          atlas.vitavision.dev
+
+name = "deutsch-atlas"
+compatibility_date = "2026-08-03"
+
+[assets]
+directory = "./dist"
+# Astro emits src/pages/404.astro as dist/404.html. Without this an unknown path
+# gets Cloudflare's own error page instead of the site's.
+not_found_handling = "404-page"

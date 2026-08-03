@@ -1,0 +1,24 @@
+---
+/**
+ * Offline fallback.
+ *
+ * Precached by the service worker and served only when a navigation misses both the network and
+ * the document cache. Deliberately static and dependency-free: it has to render with nothing but
+ * what install-time precaching already put in the shell cache.
+ */
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/url';
+---
+
+<Base title="Offline">
+  <h1 class="text-3xl font-bold tracking-tight">Offline</h1>
+  <p class="mt-4 text-stone-700 dark:text-stone-300">
+    Diese Seite wurde noch nicht heruntergeladen. Besuchte Seiten bleiben offline verfügbar —
+    Wortschatz, Übungen und dein Fortschritt liegen ohnehin auf diesem Gerät.
+  </p>
+  <ul class="mt-6 space-y-2 text-sm">
+    <li><a href={withBase('/')} class="text-amber-700 underline dark:text-amber-400">→ Tagesplan</a></li>
+    <li><a href={withBase('/ueben/wiederholen')} class="text-amber-700 underline dark:text-amber-400">→ Wiederholen</a></li>
+    <li><a href={withBase('/topics')} class="text-amber-700 underline dark:text-amber-400">→ Themen</a></li>
+  </ul>
+</Base>

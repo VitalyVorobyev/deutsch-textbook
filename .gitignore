@@ -25,8 +25,13 @@ docs/Goethe-Zertifikat_B1_Wortliste.pdf
 ds-bundle/
 .design-sync/.cache/
 
+# Local credentials — Cloudflare R2 today. Never committed; the deploy reads
+# CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID from repository secrets instead.
+setenv.sh
+
 # Large local ML checkpoints
 .models/
+.private/
 .design-sync/learnings/
 .design-sync/node_modules
 

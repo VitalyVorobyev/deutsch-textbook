@@ -23,6 +23,10 @@ export default tseslint.config(
       'tools/listening-studio/**/__pycache__/',
       'ds-bundle/', // generated claude.ai/design bundle (compiled React + previews)
       '.ds-sync/', // staged design-sync converter scripts + their node_modules
+      // Flat-config `dist/` anchors at the repo root, so a nested build output —
+      // the Listening Studio frontend's — was being linted as source. It is
+      // gitignored, so this only ever bit a local run.
+      '**/dist/',
     ],
   },
 
@@ -54,6 +58,14 @@ export default tseslint.config(
   {
     files: ['scripts/**', 'src/integrations/**', '*.{js,mjs,ts}', '.design-sync/*.mjs'],
     languageOptions: { globals: globals.node },
+  },
+  // The service-worker source is a template, not a module: it is never imported, and
+  // `src/integrations/pwa.ts` copies it into dist/ with its placeholders filled. It runs in
+  // the ServiceWorkerGlobalScope, so it needs those globals rather than Node's — and the
+  // override must come after the integrations block above, which would otherwise win.
+  {
+    files: ['src/integrations/service-worker.js'],
+    languageOptions: { globals: { ...globals.serviceworker, console: 'readonly' } },
   },
 
   {

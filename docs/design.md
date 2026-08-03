@@ -125,7 +125,7 @@ in `content/listening/`, never under `public/` — the WAV master stays in the s
 what QA ran on and what the editor approved, not what a learner downloads.
 `PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it**:
 `bun run build:desktop` for the desktop app (in-process rather than as a shell prefix, so the
-Windows release build can run the same command) and `.github/workflows/pages.yml` for the public
+Windows release build can run the same command) and the Cloudflare build for the public
 demo. The corpus is 14.2 MB against a 69 MB site, so the split the flag originally encoded —
 recordings on the desktop, browser TTS on the web — bought nothing worth the worse demo. What it
 distinguishes now is a shipping build from a lean one with no binaries; TTS remains the live
@@ -155,6 +155,36 @@ The web app exports snapshots. Development middleware and the Tauri filesystem p
 automatically write them to `progress/<profile>/`. `bun run progress:audit` reads the latest
 snapshot, grading rulings and current content contract to produce the evidence table used for
 drill decisions.
+
+## Delivery and offline
+
+The site is a static build served at `atlas.vitavision.dev` by an assets-only Cloudflare Worker
+(`wrangler.toml` — no `main` entry, because there is no server code yet), deployed by the
+Cloudflare Git integration watching `main`. **There is deliberately no GitHub Actions deploy**:
+two paths watching one branch race each other on every push, and `ci.yml` already runs validate,
+test, check, lint and build, so nothing broken reaches `main` in the first place. The site is
+served at the root — `withBase` (`src/lib/url.ts`) remains the one helper, so a subpath mirror and
+the Tauri shell stay possible. `public/_headers` carries the response headers, of which one is
+load-bearing: a cached `sw.js` strands an installed learner on an old build permanently. The same build is an
+installable PWA: `src/integrations/pwa.ts` emits the web app manifest and the service worker at
+`astro:build:done`, filling the placeholders in the `service-worker.js` template and pinning a
+build id that is the content hash of everything precached, so a no-op rebuild does not invalidate
+a learner's cache.
+
+Three caches on three lifecycles. The **shell** is precached and versioned — content-hashed
+`_astro/` assets, the icons and the offline page. **Documents** are network-first and versioned,
+because each page inlines its content at build time and stale HTML is stale course material.
+**Media** is cache-first and deliberately *unversioned*, because reviewed recordings are immutable
+and re-downloading 14.2 MB of MP3 on every deploy would be the most expensive thing the worker
+could do. Both budgeted caches evict oldest-first against a byte budget rather than an entry
+count, because page weight in this build spans 137 KB (median) to 10.7 MB.
+
+Two behaviours carry the offline promise and are covered by `tests/service-worker.test.ts`, which
+evaluates the substituted template rather than a re-implementation: Range requests are sliced out
+of the cached body into real 206s (Safari sends `Range` for every `<audio>` element, and a cached
+200 is why offline audio silently fails on iOS), and eviction moves a re-visited entry to the back
+of the order. Updates are never applied silently — `sw.js` waits and the learner presses the
+button, because reloading mid-exercise discards the attempt about to be logged.
 
 ## Multilingual rendering
 
