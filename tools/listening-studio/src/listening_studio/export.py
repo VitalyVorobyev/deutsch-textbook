@@ -6,6 +6,7 @@ import json
 import re
 import shutil
 import subprocess
+import tempfile
 import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
@@ -17,7 +18,6 @@ from reportlab.pdfgen.canvas import Canvas
 from .domain import (
     RevisionPayload,
     SingleChoice,
-    line_cache_key,
 )
 from .adapters import wav_duration
 from .sources import load_source
@@ -181,7 +181,7 @@ def manifest(
     )
     per_line = []
     for line in payload.lines:
-        key = line_cache_key(line, adapter_revision)
+        key = payload.cache_key(line, adapter_revision)
         cached_wav = wav.parent / "cache" / f"{key}.wav"
         per_line.append(
             {
@@ -220,7 +220,14 @@ def manifest(
         "models": model_entries,
         "settings": {
             "adapter": payload.tts_adapter,
-            "lines": [line.model_dump(mode="json") for line in payload.lines],
+            "voice_profiles": (
+                [profile.model_dump(mode="json") for profile in payload.voice_profiles]
+                if payload.voice_profiles is not None
+                else None
+            ),
+            "lines": [
+                payload.resolved_line(line).model_dump(mode="json") for line in payload.lines
+            ],
             # `lead_in_ms` belongs here and not with the context sounds: it delays *speech*, so
             # a manifest that records a sound's trim and gain but not the silence pushed in front
             # of the dialogue describes a mix that cannot be rebuilt. Four artifacts use it
@@ -428,7 +435,15 @@ def register_exercise(repo: Path, level: str, topic: str, set_id: str) -> Path:
     return path
 
 
-def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> list[Path]:
+def publish(
+    repo: Path,
+    slug: str,
+    payload: RevisionPayload,
+    bundle: Path,
+    *,
+    replace_existing: bool = False,
+    backup_root: Path | None = None,
+) -> list[Path]:
     level = payload.brief.level.lower()
     provenance_data = json.loads((bundle / "provenance.json").read_text())
     brief_path = repo / provenance_data["generation_brief"]["path"]
@@ -454,20 +469,75 @@ def publish(repo: Path, slug: str, payload: RevisionPayload, bundle: Path) -> li
     # existence keeps the guard pointed at what it is for: a *different* file being clobbered,
     # which is the case for every artifact-specific target in this map.
     collisions = [
-        str(target)
+        target
         for source, target in targets.items()
         if target.exists() and target.read_bytes() != source.read_bytes()
     ]
-    if collisions:
-        raise FileExistsError("publish would overwrite: " + ", ".join(collisions))
+    if collisions and not replace_existing:
+        raise FileExistsError("publish would overwrite: " + ", ".join(map(str, collisions)))
+    if replace_existing:
+        if backup_root is None:
+            raise ValueError("replacement publishing requires a local backup directory")
+        assert backup_root is not None
+        current_manifest = repo / "data" / "audio-provenance" / level / f"{slug}.json"
+        current_audio = repo / "content" / "listening" / level / f"{slug}.mp3"
+        if not current_manifest.exists() or not current_audio.exists():
+            raise FileNotFoundError("replacement requires the existing manifest and MP3")
+        existing = json.loads(current_manifest.read_text())
+        if existing.get("id") != slug:
+            raise ValueError("existing provenance belongs to a different artifact")
+        if existing.get("published_audio_sha256") != sha256(current_audio):
+            raise ValueError("existing MP3 no longer matches its provenance; replacement refused")
     # Fail before writing anything if the set has nowhere to be referenced from — a half-published
     # recording is easier to finish by hand than an orphan nobody notices.
     topic_path = repo / "content" / "topics" / level / f"{payload.brief.topic}.mdx"
     if not topic_path.exists():
         raise FileNotFoundError(f"no topic article at {topic_path} to attach {slug}-hoeren to")
-    for source, target in targets.items():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
+    if replace_existing and f"{level}/{slug}-hoeren" not in topic_path.read_text():
+        raise ValueError("replacement target is not registered on its topic")
+    if replace_existing:
+        assert backup_root is not None
+        backup_root.mkdir(parents=True, exist_ok=False)
+        for target in targets.values():
+            if not target.exists():
+                continue
+            relative = target.relative_to(repo)
+            backup = backup_root / relative
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(target, backup)
+
+        staging_parent = repo / ".atlas-publish-staging"
+        staging_parent.mkdir(exist_ok=True)
+        replaced: list[tuple[Path, Path | None]] = []
+        try:
+            with tempfile.TemporaryDirectory(dir=staging_parent) as temporary:
+                stage = Path(temporary)
+                staged: list[tuple[Path, Path]] = []
+                for index, (source, target) in enumerate(targets.items()):
+                    candidate = stage / str(index)
+                    shutil.copy2(source, candidate)
+                    staged.append((candidate, target))
+                for candidate, target in staged:
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    backup = backup_root / target.relative_to(repo)
+                    replaced.append((target, backup if backup.exists() else None))
+                    candidate.replace(target)
+        except Exception:
+            for target, backup in reversed(replaced):
+                if backup is not None:
+                    shutil.copy2(backup, target)
+                else:
+                    target.unlink(missing_ok=True)
+            raise
+        finally:
+            try:
+                staging_parent.rmdir()
+            except OSError:
+                pass
+    else:
+        for source, target in targets.items():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
     written = list(targets.values())
     written.append(register_exercise(repo, level, payload.brief.topic, f"{level}/{slug}-hoeren"))
     return written

@@ -38,22 +38,23 @@ items:
       uk: "man — підмет третьої особи однини, тому дієслово при ньому стоїть рівно у формі er/sie/es: arbeitet, kann, spricht, hat, включно з чергуванням голосної у sprechen. Англійська перекладає man словом you, і це пастка: you тягне за собою kannst і sprichst, а це форми du і тут вони хибні."
 
   - id: cloze-man-wortstellung
+    revision: 2
     outcomes: [regeln-mit-man]
     type: cloze
     focus: indefinitpronomen
     instruction:
-      en: "Put man where the sentence needs it."
-      ru: "Поставьте man туда, где его требует предложение."
-      uk: "Поставте man туди, де його вимагає речення."
-    text: "Hier darf {{man}} nicht parken. In Deutschland isst {{man}} um zwölf zu Mittag. Wie sagt {{man}} das auf Deutsch?"
+      en: "Each sentence is missing its verb and its subject. Nobody in particular is meant."
+      ru: "В каждом предложении не хватает глагола и подлежащего. Речь не о ком-то конкретном."
+      uk: "У кожному реченні бракує дієслова і підмета. Ідеться не про когось конкретного."
+    text: "In Deutschland {{arbeitet man}} am Sonntag nicht. Im Museum {{darf man}} nicht fotografieren. Wie {{schreibt man}} das?"
     translation:
-      en: "You cannot park here. In Germany people have lunch at twelve. How do you say that in German?"
-      ru: "Здесь нельзя парковаться. В Германии обедают в двенадцать. Как это сказать по-немецки?"
-      uk: "Тут не можна паркуватися. У Німеччині обідають о дванадцятій. Як це сказати німецькою?"
+      en: "In Germany people do not work on Sunday. Taking photos is not allowed in the museum. How do you write that?"
+      ru: "В Германии в воскресенье не работают. В музее нельзя фотографировать. Как это пишется?"
+      uk: "У Німеччині в неділю не працюють. У музеї не можна фотографувати. Як це пишеться?"
     explain:
-      en: "All three gaps sit just after the verb, and none of them is optional. Each sentence opens with something else — Hier, In Deutschland, Wie — so the verb takes position 2 and the subject follows it, exactly as ich or er would. The point of the item is that the subject cannot simply be left out: German sentences need one, and man is what fills the slot when nobody in particular is meant."
-      ru: "Все три пропуска стоят сразу за глаголом, и ни один из них не факультативен. Каждое предложение начинается с другого элемента — Hier, In Deutschland, Wie, — поэтому глагол занимает второе место, а подлежащее идёт за ним, как шло бы ich или er. Смысл задания в том, что подлежащее нельзя просто опустить: немецкому предложению оно нужно, и когда никто конкретный не имеется в виду, это место занимает man. По-русски все три фразы обходятся без подлежащего — отсюда и соблазн."
-      uk: "Усі три пропуски стоять одразу за дієсловом, і жоден із них не факультативний. Кожне речення починається з іншого елемента — Hier, In Deutschland, Wie, — тому дієслово займає друге місце, а підмет іде за ним, як ішло б ich або er. Сенс завдання в тому, що підмет не можна просто пропустити: німецькому реченню він потрібен, і коли нікого конкретного не мають на увазі, це місце займає man. Українською всі три фрази обходяться без підмета — звідси й спокуса."
+      en: "Each sentence opens with something that is not the subject — In Deutschland, Im Museum, Wie — so the finite verb takes position 2 and man follows it: arbeitet man, darf man, schreibt man. Writing In Deutschland man arbeitet puts the verb third and is the commonest way to get this wrong. The verb stays in the er-form throughout, so darf and not darfst. And notice what none of the three English sentences hands you: no word in them names a subject, but the German slot cannot stay empty, and man is what fills it."
+      ru: "Каждое предложение начинается не с подлежащего — In Deutschland, Im Museum, Wie, — поэтому спрягаемый глагол занимает второе место, а man идёт за ним: arbeitet man, darf man, schreibt man. Вариант In Deutschland man arbeitet отправляет глагол на третье место и портит порядок слов чаще всего. Глагол при этом стоит в форме er: darf, а не darfst. И главное: по-русски все три фразы обходятся без подлежащего — «не работают», «нельзя фотографировать», «как это пишется». Немецкому оно нужно всегда, и это место занимает man."
+      uk: "Кожне речення починається не з підмета — In Deutschland, Im Museum, Wie, — тому відмінюване дієслово займає друге місце, а man іде за ним: arbeitet man, darf man, schreibt man. Варіант In Deutschland man arbeitet відправляє дієслово на третє місце і псує порядок слів найчастіше. Дієслово при цьому стоїть у формі er: darf, а не darfst. І головне: українською всі три фрази обходяться без підмета — «не працюють», «не можна фотографувати», «як це пишеться». Німецькій він потрібен завжди, і це місце займає man."
 
   - id: mc-man-oder-jemand
     outcomes: [regeln-mit-man]
@@ -121,9 +122,9 @@ items:
           - { answer: "Der Hund gehört unseren Nachbarn.", given: true }
           - { answer: "der Hund von unseren Nachbarn" }
     explain:
-      en: "This table practises the two A2 production routes. A bare name takes -s and goes in front: Annas Fahrrad, Mareks Wohnung, with no ordinary possessive apostrophe. For a noun phrase, use the safe spoken pattern von + Dativ: von meinem Bruder, von unseren Nachbarn. A full genitive such as das Auto meines Bruders is also grammatical but remains a recognition form here."
-      ru: "Таблица тренирует две активные модели A2. Голое имя получает -s и встаёт впереди: Annas Fahrrad, Mareks Wohnung, без обычного притяжательного апострофа. Для группы с существительным используйте безопасную разговорную модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Полный Genitiv, например das Auto meines Bruders, тоже грамматически правилен, но здесь достаточно его узнавать."
-      uk: "Таблиця тренує дві активні моделі A2. Голе ім'я отримує -s і стає попереду: Annas Fahrrad, Mareks Wohnung, без звичайного присвійного апострофа. Для групи з іменником використовуйте безпечну розмовну модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Повний Genitiv, наприклад das Auto meines Bruders, теж граматично правильний, але тут достатньо його впізнавати."
+      en: "This table practises the two A2 production routes. A bare name takes -s and goes in front: Annas Fahrrad, Mareks Wohnung, with no ordinary possessive apostrophe. The name replaces the article as well — Annas Fahrrad, not das Annas Fahrrad — which is why only the von-rows keep a das or a der. For a noun phrase, use the safe spoken pattern von + Dativ: von meinem Bruder, von unseren Nachbarn. A full genitive such as das Auto meines Bruders is also grammatical but remains a recognition form here."
+      ru: "Таблица тренирует две активные модели A2. Голое имя получает -s и встаёт впереди: Annas Fahrrad, Mareks Wohnung, без обычного притяжательного апострофа. И имя заменяет собой артикль — Annas Fahrrad, а не das Annas Fahrrad, — поэтому das и der остаются только в строках с von. Для группы с существительным используйте безопасную разговорную модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Полный Genitiv, например das Auto meines Bruders, тоже грамматически правилен, но здесь достаточно его узнавать."
+      uk: "Таблиця тренує дві активні моделі A2. Голе ім'я отримує -s і стає попереду: Annas Fahrrad, Mareks Wohnung, без звичайного присвійного апострофа. І ім'я заміняє собою артикль — Annas Fahrrad, а не das Annas Fahrrad, — тому das і der лишаються тільки в рядках із von. Для групи з іменником використовуйте безпечну розмовну модель von + Dativ: von meinem Bruder, von unseren Nachbarn. Повний Genitiv, наприклад das Auto meines Bruders, теж граматично правильний, але тут достатньо його впізнавати."
 
   - id: mc-apostroph
     outcomes: [besitz-ausdruecken]

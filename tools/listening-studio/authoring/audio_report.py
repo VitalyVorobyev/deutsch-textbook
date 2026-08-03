@@ -35,7 +35,6 @@ import numpy as np
 import yaml
 
 from listening_studio.adapters import ParlerTTS, QwenTTS, wav_duration
-from listening_studio.domain import line_cache_key
 from listening_studio.storage import Store
 
 REPO = Path("../..").resolve()
@@ -166,7 +165,7 @@ def main() -> None:
 
         pitches: dict[str, list[float]] = {}
         for line in payload.lines:
-            take = cache / f"{line_cache_key(line, revision)}.wav"
+            take = cache / f"{payload.cache_key(line, revision)}.wav"
             if not take.exists():
                 notes.append(f"{line.id}: no take on disk")
                 continue

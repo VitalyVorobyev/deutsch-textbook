@@ -14,6 +14,8 @@
     "preview": "astro preview",
     "validate": "bun scripts/validate.ts",
     "listening:inventory": "bun scripts/listening-inventory.ts",
+    "studio:build": "bun --cwd tools/listening-studio/frontend run build",
+    "studio:check": "bun --cwd tools/listening-studio/frontend run check",
     "progress:audit": "bun scripts/progress-audit.ts",
     "review:gate": "bun scripts/pr-review-gate.ts",
     "gen:ipa": "bun scripts/gen-ipa.ts",

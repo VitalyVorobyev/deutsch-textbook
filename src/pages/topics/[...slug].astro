@@ -72,7 +72,8 @@ const readings = await Promise.all(
   data.reading.map(async (id) => {
     const r = await getEntry('reading', id);
     if (!r) throw new Error(`Topic ${data.id}: reading "${id}" not found`);
-    return { id, data: r.data };
+    const narration = await getEntry('readingAudio', id);
+    return { id, data: r.data, narration: narration?.data };
   }),
 );
 
@@ -174,7 +175,7 @@ const KIND_KEY: Record<string, StringKey> = {
         <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionReading" /></h2>
         <div class="flex flex-col gap-6">
           {readings.map((r) => (
-            <ReadingTextIsland client:only="react" readingId={r.id} reading={r.data} />
+            <ReadingTextIsland client:only="react" readingId={r.id} reading={r.data} narration={r.narration} />
           ))}
         </div>
       </section>
