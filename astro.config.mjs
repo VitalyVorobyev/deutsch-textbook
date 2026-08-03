@@ -17,7 +17,7 @@ export default defineConfig({
   // Cloudflare Pages serves at the root, so BASE_PATH is unset there and in
   // local dev. It stays supported because the Tauri shell and any subpath
   // mirror still need it, and `withBase` (src/lib/url.ts) is the one helper.
-  site: process.env.SITE_URL ?? 'https://atlas.vitavision.dev',
+  site: process.env.SITE_URL ?? 'https://deutsch.vitavision.dev',
   base,
   // Static meta-refresh redirect pages — work on GitHub Pages and in the
   // Tauri shell. /vocab/<id> deck detail pages stay at their old URLs.

@@ -254,6 +254,67 @@ export const STRINGS = {
     uk: 'Вигляд сторінки прогресу',
   },
 
+  // Konto island (AccountPanel / DeviceTokens / OwnerUsers).
+  // Buttons and labels only. The explanations beside them follow the learner's
+  // explanation language and live as pick() records in the components — the
+  // classification rule at the top of this file.
+  'account.title': { de: 'Konto', en: 'Account', ru: 'Аккаунт', uk: 'Обліковий запис' },
+  'account.signIn': { de: 'Anmelden', en: 'Sign in', ru: 'Войти', uk: 'Увійти' },
+  'account.signOut': { de: 'Abmelden', en: 'Sign out', ru: 'Выйти', uk: 'Вийти' },
+  'account.sync': {
+    de: 'Jetzt synchronisieren',
+    en: 'Sync now',
+    ru: 'Синхронизировать',
+    uk: 'Синхронізувати',
+  },
+  'account.upload': {
+    de: 'Fortschritt hochladen',
+    en: 'Upload progress',
+    ru: 'Загрузить прогресс',
+    uk: 'Завантажити прогрес',
+  },
+  'account.connect': { de: 'Verbinden', en: 'Connect', ru: 'Связать', uk: "Пов'язати" },
+  'account.disconnect': { de: 'Trennen', en: 'Disconnect', ru: 'Отвязать', uk: "Від'єднати" },
+  'account.devices': { de: 'Geräte', en: 'Devices', ru: 'Устройства', uk: 'Пристрої' },
+  'account.newDevice': { de: 'Neues Gerät', en: 'New device', ru: 'Новое устройство', uk: 'Новий пристрій' },
+  'account.revoke': { de: 'Widerrufen', en: 'Revoke', ru: 'Отозвать', uk: 'Відкликати' },
+  'account.users': { de: 'Nutzer', en: 'Users', ru: 'Пользователи', uk: 'Користувачі' },
+  'account.approve': { de: 'Freigeben', en: 'Approve', ru: 'Одобрить', uk: 'Схвалити' },
+  'account.block': { de: 'Sperren', en: 'Block', ru: 'Заблокировать', uk: 'Заблокувати' },
+  'account.remove': { de: 'Entfernen', en: 'Remove', ru: 'Удалить', uk: 'Видалити' },
+  'account.deleteCloud': {
+    de: 'Cloud-Kopie löschen',
+    en: 'Delete cloud copy',
+    ru: 'Удалить копию в облаке',
+    uk: 'Видалити копію в хмарі',
+  },
+  'account.deleteAccount': { de: 'Konto löschen', en: 'Delete account', ru: 'Удалить аккаунт', uk: 'Видалити обліковий запис' },
+  'account.statusPending': {
+    de: 'Wartet auf Freigabe',
+    en: 'Waiting for approval',
+    ru: 'Ожидает одобрения',
+    uk: 'Очікує схвалення',
+  },
+  'account.statusApproved': { de: 'Aktiv', en: 'Active', ru: 'Активен', uk: 'Активний' },
+  'account.statusBlocked': { de: 'Gesperrt', en: 'Blocked', ru: 'Заблокирован', uk: 'Заблокований' },
+  'account.accountId': { de: 'Konto-ID', en: 'Account ID', ru: 'ID аккаунта', uk: 'ID облікового запису' },
+  'account.boundProfile': {
+    de: 'Verbundenes Profil',
+    en: 'Connected profile',
+    ru: 'Связанный профиль',
+    uk: "Пов'язаний профіль",
+  },
+  'account.lastSync': {
+    de: 'Zuletzt synchronisiert',
+    en: 'Last synced',
+    ru: 'Последняя синхронизация',
+    uk: 'Остання синхронізація',
+  },
+  'account.never': { de: 'Nie', en: 'Never', ru: 'Никогда', uk: 'Ніколи' },
+  'account.cancel': { de: 'Abbrechen', en: 'Cancel', ru: 'Отмена', uk: 'Скасувати' },
+  'account.continue': { de: 'Weiter', en: 'Continue', ru: 'Далее', uk: 'Далі' },
+  'account.owner': { de: 'Eigentümer', en: 'Owner', ru: 'Владелец', uk: 'Власник' },
+
   // Themen island (CurriculumPath / TopicDetail / OverviewTable).
   'topics.tabPath': { de: 'Lernpfad', en: 'Learning path', ru: 'Учебный путь', uk: 'Навчальний шлях' },
   'topics.tabAtlas': { de: 'Atlas', en: 'Atlas', ru: 'Атлас', uk: 'Атлас' },

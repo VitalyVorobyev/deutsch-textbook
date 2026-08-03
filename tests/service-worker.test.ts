@@ -93,7 +93,7 @@ function load(shell: string[] = [], base = '/'): Harness {
 
   const self = {
     addEventListener: (type: string, fn: (event: unknown) => void) => listeners.set(type, fn),
-    location: { origin: 'https://atlas.vitavision.dev' },
+    location: { origin: 'https://deutsch.vitavision.dev' },
     clients: { claim: async () => {} },
     skipWaiting: () => {},
   };
@@ -125,7 +125,7 @@ function load(shell: string[] = [], base = '/'): Harness {
   };
 }
 
-const ORIGIN = 'https://atlas.vitavision.dev';
+const ORIGIN = 'https://deutsch.vitavision.dev';
 
 /**
  * A navigation request.
