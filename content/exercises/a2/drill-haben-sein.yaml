@@ -285,6 +285,7 @@ items:
     outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -296,6 +297,10 @@ items:
     key_tokens: ["habe", "bekommen"]
     accept:
       - "Gestern habe ich ein Paket bekommen."
+      # «посылку» / «посилку» mark no definiteness. The graded tokens are habe and
+      # bekommen — the auxiliary is the whole point of this drill, not the article.
+      - "Ich habe gestern das Paket bekommen."
+      - "Gestern habe ich das Paket bekommen."
     explain:
       en: "bekommen looks like kommen but is not movement — it means to receive and takes haben: Ich habe … bekommen."
       ru: "bekommen похоже на kommen, но это не движение — глагол значит «получать» и идёт с haben: Ich habe … bekommen."

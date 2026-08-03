@@ -256,6 +256,7 @@ items:
     outcomes: [perfekt-vergangenheit-erzaehlen]
     type: translate
     focus: haben-sein
+    revision: 2
     instruction:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
@@ -267,6 +268,10 @@ items:
     key_tokens: ["haben", "gegessen"]
     accept:
       - "Wir haben gestern eine Pizza gegessen."
+      # «пиццу» / «піцу» mark no definiteness, so the definite reading answers the
+      # RU/UK prompt too. The graded tokens are haben and gegessen.
+      - "Gestern haben wir die Pizza gegessen."
+      - "Wir haben gestern die Pizza gegessen."
     explain:
       en: "essen takes haben, and the participle is strong: gegessen. Both word orders are correct — with Gestern first, haben stays in position 2 and the participle closes the sentence."
       ru: "essen образует перфект с haben, причастие сильное: gegessen. Оба порядка слов правильны — если Gestern стоит в начале, haben остаётся на втором месте, а причастие замыкает предложение."

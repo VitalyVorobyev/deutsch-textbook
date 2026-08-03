@@ -34,9 +34,9 @@
 
 - item: a2/probe-modalverben:variant-b
   given: "Heute Abend will main Bruder die Suppe kochen"
-  decision: confirm
-  note: "main is not German mein, and die Suppe changes the prompt's indefinite a soup to a specific soup. The rejection was right even though the modal bracket is intact."
-  decidedAt: 2026-07-18
+  decision: accept
+  note: "Reverses the 2026-07-18 confirm, which rested on prompt_en (a soup) while the learner answered «суп» — a bare Russian noun marks no definiteness, so die Suppe renders the prompt as well as eine Suppe. With the definite readings in the accept list, the only divergence left is main for mein: a non-word one edit away, outside the graded tokens will and kochen, which the scorer's slip rule already treats as a typo. The modal bracket was intact all along."
+  decidedAt: 2026-08-03
 
 - item: a2/einkaufen-reklamation:uebersetzen-passt-gefaellt
   given: "Die Jacke passt mir, aber die gefällt meinen Mann nicht"
@@ -148,9 +148,9 @@
 
 - item: a2/perfekt-haben-sein:uebersetzen-pizza
   given: "Gestern haben wir die Pizza gegessen"
-  decision: confirm
-  note: "The prompt says a pizza: eine Pizza. die changes definiteness and meaning — a determiner choice, not a slip. The Perfekt itself (haben … gegessen) was right."
-  decidedAt: 2026-07-14
+  decision: accept
+  note: "Reverses the 2026-07-14 confirm. «Вчера мы съели пиццу» marks no definiteness, so die Pizza and eine Pizza both render the prompt the learner was shown; the earlier note quoted prompt_en. The Perfekt (haben … gegessen) was right, and the determiner is carrier material under focus haben-sein. Both word orders gain the definite reading."
+  decidedAt: 2026-08-03
 
 - item: a2/einkaufen-reklamation:uebersetzen-umtauschen-akkusativ
   given: "Ich möchte den Pullover umtauschen. Er ist mir zu eng."
@@ -250,9 +250,9 @@
 
 - item: a2/termine-vereinbaren:uebersetzen-absagen
   given: "Ich möchte einen Termin absagen"
-  decision: confirm
-  note: "The prompt's 'the appointment' requires den Termin; einen changes definiteness, and einen/den is a closed-class choice, never a slip. Outside the trennbar-modal focus (möchte … absagen was right) — unattributed."
-  decidedAt: 2026-07-14
+  decision: accept
+  note: "Reverses the 2026-07-14 confirm, which read prompt_en ('the appointment'). «Я хотел бы отменить встречу» marks no definiteness, and cancelling an appointment is as ordinary as cancelling the one just discussed. einen/den is indeed a closed-class choice and never a slip — but it is a choice the prompt left open, and the graded bracket möchte … absagen was right."
+  decidedAt: 2026-08-03
 
 - item: a2/modalverben:uebersetzen-helfen-frage
   given: "Kannst do mir helfen?"
@@ -313,8 +313,8 @@
 - item: a2/verben-mit-praepositionen:translate-davon
   given: "Mia träumt von eine Reise. Sie träumt oft davon"
   decision: confirm
-  note: "von governs the dative — von einer Reise — and the prompt's die Reise is definite (von der Reise). The graded preposition tokens (von, davon) were produced; the case on the article is the real error. drill note: dativ-praepositionen — article left in the nominative/accusative after von."
-  decidedAt: 2026-07-16
+  note: "von governs the dative, and von eine Reise leaves the article in the nominative — that is the whole error. (The 2026-07-16 note also called die Reise definite 'in the prompt'; «о путешествии» marks no definiteness, so that half never held. Immaterial here: the case is wrong under either determiner.) The graded preposition tokens (von, davon) were produced. drill note: dativ-praepositionen — article left in the nominative/accusative after von."
+  decidedAt: 2026-08-03
 
 - item: a2/verben-mit-praepositionen:translate-person-sache
   given: "Wir sprechen darüber, nicht über ihn"
@@ -821,14 +821,14 @@
 - item: b1/arbeit-bewerbung:uebersetzen-brief-herrn
   given: "Dieser Brief ist von Herrn Weber."
   decision: confirm
-  note: "Translates a different sentence: the prompt introduces the letter (That is a letter …), the rendering presupposes it (This letter …). Herrn is correct, so n-Deklination is not charged."
-  decidedAt: 2026-07-28
+  note: "Translates a different sentence: prompt_en introduces the letter (That is a letter …), the rendering presupposes it (This letter …). The rejection stands — but the RU/UK prompt genuinely admitted the second parse: «Это письмо от господина Вебера» reads at least as naturally as 'This letter is from …'. Fixed at the source in the same change (prompt_ru/prompt_uk gained the dash that forces the presentational reading, revision 2) rather than by widening accept, because the two are different sentences, not one sentence with a free determiner. Herrn is correct, so n-Deklination is not charged."
+  decidedAt: 2026-08-03
 
 - item: b1/arbeit-bewerbung:uebersetzen-brief-herrn
   given: "Das ist der Brief von Herrn Weber."
-  decision: confirm
-  note: "The prompt's a letter is indefinite; der Brief presupposes a known one. Determiner fidelity, not a case error — Herrn is correct."
-  decidedAt: 2026-07-28
+  decision: accept
+  note: "Reverses the 2026-07-28 confirm. «Это письмо от господина Вебера» marks no definiteness, so der Brief and ein Brief both render it; the earlier note read prompt_en. Herrn is correct, which is the whole of what focus n-deklination grades."
+  decidedAt: 2026-08-03
 
 - item: b1/arbeit-bewerbung:uebersetzen-brief-herrn
   given: "Dieses Brief ist von Herrn Weber."
@@ -893,8 +893,8 @@
 - item: b1/arbeit-bewerbung-produktion:uebersetzen-transfer-kollegen
   given: "Gestern habe ich mit dem neuen Kollegen über das neue Stelle gesprochen."
   decision: confirm
-  note: "The prompt's a colleague is indefinite — mit einem Kollegen — and Stelle is feminine: über die neue Stelle. Kollegen carries its -n either way, so n-Deklination is not charged. drill note: genus of Stelle; determiner fidelity."
-  decidedAt: 2026-07-28
+  note: "Stelle is feminine: über die neue Stelle, never das neue Stelle. That gender error carries the rejection on its own. (The 2026-07-28 note also charged mit dem neuen Kollegen against the prompt's 'a colleague'; «с коллегой» marks no definiteness, so that half is withdrawn.) Kollegen carries its -n either way, so n-Deklination is not charged. drill note: genus of Stelle."
+  decidedAt: 2026-08-03
 
 - item: b1/meinung-medien:uebersetzen-weil-grund
   given: "Ich sehe nur abends Nachrichten, weil ich morgens keine Zeit habe."
@@ -964,15 +964,15 @@
 
 - item: a2/drill-haben-sein:uebersetzen-paket-bekommen
   given: "Gestern habe ich das Paket bekommen."
-  decision: confirm
-  note: "a parcel in the prompt is indefinite; das Paket makes it one the listener already knows about. The haben-sein target was correct, but definiteness is fixed by the prompt — same precedent as uebersetzen-lampe."
-  decidedAt: 2026-08-02
+  decision: accept
+  note: "Reverses the 2026-08-02 confirm, and with it the uebersetzen-lampe precedent it cited: «Вчера я получил посылку» marks no definiteness, so das Paket renders the prompt the learner saw. The haben-sein target — the auxiliary this drill exists for — was correct, and the determiner is carrier material."
+  decidedAt: 2026-08-03
 
 - item: a2/probe-modalverben:variant-c
   given: "Wo kann ich die Fahrkarte kaufen?"
   decision: confirm
-  note: "Doubly determined by the prompt: tickets is plural and indefinite, die Fahrkarte is singular and definite. The modal bracket kann … kaufen was right, but the noun phrase answers a different question."
-  decidedAt: 2026-08-02
+  note: "Determined by number, not definiteness — the 2026-08-02 note claimed both and only one holds. «Где я могу купить билеты?» is plural, and die Fahrkarte is singular; Russian marks no definiteness, so that half of the argument was never available. The modal bracket kann … kaufen was right, but the noun phrase answers a different question."
+  decidedAt: 2026-08-03
 
 - item: a2/gesundheit-arzttermin-produktion:uebersetzen-krankmeldung-seit
   given: "Ich habe seit drei Tagen Fieber, und ich kann nicht heute zum Arbeit kommen"

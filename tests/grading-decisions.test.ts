@@ -123,6 +123,39 @@ describe('audit with grading decisions', () => {
       .toContain('1 rendering(s) ruled; 1 awaiting linguistic review');
   });
 
+  /**
+   * The queue is what a ruling is written from, so it has to show the prompt the learner
+   * answered. «пиццу» is a bare Russian noun and marks no definiteness — `die Pizza` and
+   * `eine Pizza` both render it — where *a pizza* does not. A queue printing only the
+   * English half produced a line of determiner rulings against text the learner never saw
+   * (`a1/akkusativ:uebersetzen-lampe`, ruled confirm 2026-08-02, reversed 2026-08-03).
+   *
+   * Every prompt half the assertions read is stated on the fixture, so tightening the real
+   * corpus can never turn this test red.
+   */
+  test('the queue prints every prompt half, labelled — never just the English one', () => {
+    const trilingual: CatalogItem = {
+      ...pizza,
+      prompt_en: 'Yesterday we ate a pizza.',
+      prompt_ru: 'Вчера мы съели пиццу.',
+      prompt_uk: 'Учора ми з’їли піцу.',
+    };
+    const audit = buildAudit(
+      snapshot([
+        rejectedPizza('Gestern haben wir die Pizza gegessen.', 'haben-sein', 11),
+        rejectedPizza('Gestern haben wir die Pizza gegessen.', 'haben-sein', 12),
+      ]),
+      { snapshotPath: 'snapshot.json', catalog: catalog(trilingual), decisions: [], now: ts(13) },
+    );
+
+    const out = renderMarkdown(audit);
+    expect(out).toContain('Prompt (en): Yesterday we ate a pizza.');
+    expect(out).toContain('Prompt (ru): Вчера мы съели пиццу.');
+    expect(out).toContain('Prompt (uk): Учора ми з’їли піцу.');
+    // An unlabelled line lets a reader take one half for "the prompt" — that is the defect.
+    expect(out).not.toContain('Prompt: ');
+  });
+
   test('accept keeps the attempts excluded from focus signals', () => {
     const attempts = [
       rejectedPizza('Wir haben gestern eine Pizza gegessen.', 'haben-sein', 10),
