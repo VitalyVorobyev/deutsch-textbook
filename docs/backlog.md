@@ -94,6 +94,22 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
+- **P23-3 · Six of the seven tags the runtime prioritises have no drill, and six of the seven are
+  B1** — measured against `progress/vitaly/2026-08-03.json` by running `weakFocuses`
+  (`src/lib/weakness.ts`) and crossing it with every `role: drill` item's `focus`:
+  `komparativ-attributiv` 45% (n=11), `temporal-nebensatz` 43% (n=21, **now drilled**),
+  `damit-um-zu` 43% (n=7), `je-desto` 42% (n=12), `adjektiv-nomen` 39% (n=19),
+  `genitiv-eigenname` 38% (n=12), `lassen-verwendung` 36% (n=11). Note this is a *different*
+  instrument from the audit's persistent-focus table and it disagrees with it: `weakFocuses` reads
+  the last ~30 attempts per focus at a ≥35% bar and drives what mixed training serves **now**,
+  while `persistent` asks whether a confusion is durable across ≥2 items. `komparativ-attributiv`
+  tops the runtime list and does not appear in the persistent top ten at all. Neither is wrong;
+  they answer different questions, and a drill decision should read both. The B1 concentration is
+  the real signal — fifteen drill sets exist and every one is A1 or A2, so B1's weak tags are
+  served only by their own practice items. **Do not author six drills at once**: the standing
+  P5-11 finding is that a serving drill the learner never opens changes nothing, so take the next
+  one from the next read.
+
 - **P23-2 · A revision bump that only widens `accept` makes the retention table stop re-grading** —
   `classifyProbe` (`scripts/progress-audit.ts:769`) re-grades a probe attempt against the item's
   current spec only when `!revisionKnownMismatch`, which is `attempt.itemRevision !== item.revision`

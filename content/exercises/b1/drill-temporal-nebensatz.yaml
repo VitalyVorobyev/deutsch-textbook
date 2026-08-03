@@ -1,0 +1,189 @@
+# Drill from progress (2026-08-03 audit, post-triage): temporal-nebensatz is persistent —
+# 9 attributed errors across 2 distinct items, recent, no recovery since the last error —
+# and it is the only persistent weak focus in the whole table without a serving drill. B1
+# owned no drill set at all until this one.
+#
+# The item history says something narrower than the tag does, and the drill is built on it
+# rather than on the tag's general statement. On `uebersetzen-waehrend-regen` the learner
+# twice produced a correct verb-final clause (`Während wir wartete`, `Während wir warteten`)
+# and then regressed to `Während warteten wir` — the identical wrong string four times,
+# twice in the last week. So this is not a failure to know that a Nebensatz ends with its
+# verb. It is `während` being read as a position-1 *adverb*, which would pull the verb to
+# second place, and the pull is strong because the sentence genuinely does contain an
+# inversion: the fronted clause fills position 1, so the *main* clause inverts after the
+# comma. Two clauses, two rules, one comma between them — every item here drills that pair.
+#
+# Format weighting follows the same evidence. A cloze gap cannot grade a position, so the
+# four translate items carry the load; the two cloze gaps each take the whole verb-final
+# chunk rather than one word, which is the only way a gap grades order (the `nicht`-position
+# fix on #132 is the same device). `nachdem` is deliberately absent — Vorzeitigkeit belongs
+# to `plusquamperfekt-nachdem`, and mixing the two tags here would blur attribution.
+# Contexts are fresh — cooking, a train, a letter, a shop, a bicycle, moving house — and
+# none re-skins the rain-and-waiting sentence or the alarm-clock probe.
+topic: erfahrungen-erzaehlen
+role: drill
+title:
+  en: "Drill — two clauses, two rules, one comma"
+  ru: "Тренажёр — два предложения, два правила, одна запятая"
+  uk: "Тренажер — два речення, два правила, одна кома"
+  de: "Übung — zwei Sätze, zwei Regeln, ein Komma"
+items:
+  - id: mc-waehrend-kochen
+    outcomes: [praeteritum-erzaehlen]
+    type: mc
+    focus: temporal-nebensatz
+    prompt: "___, deckte er den Tisch."
+    options:
+      - "Während ich kochte"
+      - "Während kochte ich"
+    correct: 0
+    translation:
+      en: "While I was cooking, he set the table."
+      ru: "Пока я готовил, он накрывал на стол."
+      uk: "Поки я готував, він накривав на стіл."
+    explain:
+      en: "während is a conjunction, not an adverb: it opens a Nebensatz, and a Nebensatz ends with its conjugated verb — Während ich kochte. Während kochte ich is what you get by treating während like trotzdem or dann, which do sit in position 1 and do pull the verb after them. The comma is the border between the two rules."
+      ru: "während — союз, а не наречие: он открывает придаточное, а придаточное заканчивается спрягаемым глаголом — Während ich kochte. Вариант Während kochte ich получается, если обращаться с während как с trotzdem или dann, которые действительно стоят на первом месте и тянут глагол за собой. Запятая — граница между двумя правилами."
+      uk: "während — сполучник, а не прислівник: він відкриває підрядне, а підрядне закінчується відмінюваним дієсловом — Während ich kochte. Варіант Während kochte ich виходить, якщо поводитися з während як із trotzdem чи dann, які справді стоять на першому місці й тягнуть дієслово за собою. Кома — межа між двома правилами."
+      de: "während ist eine Konjunktion, kein Adverb: Es eröffnet einen Nebensatz, und ein Nebensatz endet mit seinem konjugierten Verb — Während ich kochte. Während kochte ich entsteht, wenn man während wie trotzdem oder dann behandelt, die tatsächlich auf Position 1 stehen und das Verb nach sich ziehen. Das Komma ist die Grenze zwischen beiden Regeln."
+
+  - id: cloze-zwei-verben
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: temporal-nebensatz
+    instruction:
+      en: "Two gaps, two rules. Put the whole end of the bevor-clause in the first, and the start of the main clause in the second."
+      ru: "Два пропуска — два правила. В первый впишите весь конец придаточного с bevor, во второй — начало главного предложения."
+      uk: "Два пропуски — два правила. У перший впишіть увесь кінець підрядного з bevor, у другий — початок головного речення."
+      de: "Zwei Lücken, zwei Regeln. In die erste kommt das ganze Ende des bevor-Satzes, in die zweite der Anfang des Hauptsatzes."
+    text: "Bevor {{der Zug abfuhr}}, {{rief sie}} noch einmal an."
+    translation:
+      en: "Before the train left, she called once more."
+      ru: "Перед тем как поезд отошёл, она позвонила ещё раз."
+      uk: "Перш ніж потяг рушив, вона зателефонувала ще раз."
+    explain:
+      en: "The two gaps hold the two rules. Inside the bevor-clause the subject comes first and the verb last: der Zug abfuhr. After the comma the whole clause has filled position 1, so the main clause must invert: rief sie, not sie rief. Both orders in one sentence, and neither one is the other's mistake."
+      ru: "В двух пропусках — два правила. Внутри придаточного с bevor подлежащее впереди, глагол в конце: der Zug abfuhr. После запятой всё придаточное уже заняло первую позицию, поэтому главное предложение обязано дать инверсию: rief sie, а не sie rief. Оба порядка в одном предложении, и ни один не является ошибкой другого."
+      uk: "У двох пропусках — два правила. Усередині підрядного з bevor підмет попереду, дієслово в кінці: der Zug abfuhr. Після коми все підрядне вже зайняло першу позицію, тому головне речення мусить дати інверсію: rief sie, а не sie rief. Обидва порядки в одному реченні, і жоден не є помилкою іншого."
+      de: "Die zwei Lücken tragen die zwei Regeln. Im bevor-Satz steht das Subjekt vorn und das Verb am Ende: der Zug abfuhr. Nach dem Komma hat der ganze Nebensatz Position 1 besetzt, also muss der Hauptsatz umstellen: rief sie, nicht sie rief. Beide Ordnungen in einem Satz, und keine ist der Fehler der anderen."
+
+  - id: uebersetzen-waehrend-brief
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Start with the während-clause. For 'write' take schreiben in the Präteritum; for 'wait' warten."
+      ru: "Начните с придаточного с während. Для «писать» возьмите schreiben в Präteritum, для «ждать» — warten."
+      uk: "Почніть із підрядного з während. Для «писати» візьміть schreiben у Präteritum, для «чекати» — warten."
+      de: "Beginn mit dem während-Satz. Für das Schreiben nimm schreiben im Präteritum, für das Warten warten."
+    prompt_en: "While she wrote the letter, the others waited outside."
+    prompt_ru: "Пока она писала письмо, остальные ждали снаружи."
+    prompt_uk: "Поки вона писала листа, решта чекали надворі."
+    answer: "Während sie den Brief schrieb, warteten die anderen draußen."
+    key_tokens: ["Während", "schrieb", "warteten"]
+    explain:
+      en: "Both verbs are graded, because both rules are. schrieb closes the während-clause; warteten opens the main clause, because the fronted clause already fills position 1. Writing Während schrieb sie den Brief moves the first verb; writing die anderen warteten after the comma forgets the second."
+      ru: "Оцениваются оба глагола, потому что оба правила. schrieb закрывает придаточное с während; warteten открывает главное, потому что вынесенное вперёд придаточное уже заняло первую позицию. Вариант Während schrieb sie den Brief сдвигает первый глагол, а die anderen warteten после запятой забывает про второй."
+      uk: "Оцінюються обидва дієслова, бо обидва правила. schrieb закриває підрядне з während; warteten відкриває головне, бо винесене наперед підрядне вже зайняло першу позицію. Варіант Während schrieb sie den Brief зсуває перше дієслово, а die anderen warteten після коми забуває про друге."
+      de: "Beide Verben werden bewertet, weil beide Regeln es sind. schrieb schließt den während-Satz; warteten eröffnet den Hauptsatz, weil der vorangestellte Nebensatz Position 1 schon besetzt. Während schrieb sie den Brief verschiebt das erste Verb, die anderen warteten nach dem Komma vergisst das zweite."
+
+  - id: mc-nachgestellt
+    outcomes: [praeteritum-erzaehlen]
+    type: mc
+    focus: temporal-nebensatz
+    prompt: "___, bis der Regen aufhörte."
+    options:
+      - "Wir blieben im Laden"
+      - "Blieben wir im Laden"
+    correct: 0
+    translation:
+      en: "We stayed in the shop until the rain stopped."
+      ru: "Мы оставались в магазине, пока дождь не перестал."
+      uk: "Ми залишалися в крамниці, поки дощ не вщух."
+    explain:
+      en: "Turn the sentence round and the second rule switches off. With the main clause first, nothing has filled position 1 ahead of it, so the ordinary order stands: Wir blieben. The inversion in the other items was never caused by bis or während themselves — it was caused by the Nebensatz standing in front."
+      ru: "Переверните предложение — и второе правило выключается. Если главное предложение идёт первым, перед ним ничто не занимает первую позицию, поэтому остаётся обычный порядок: Wir blieben. Инверсия в других заданиях возникала не из-за bis или während как таковых, а из-за придаточного, стоявшего впереди."
+      uk: "Переверніть речення — і друге правило вимикається. Якщо головне речення йде першим, перед ним ніщо не займає першу позицію, тому лишається звичайний порядок: Wir blieben. Інверсія в інших завданнях виникала не через bis чи während як такі, а через підрядне, що стояло попереду."
+      de: "Dreh den Satz um, und die zweite Regel schaltet sich ab. Steht der Hauptsatz vorn, hat nichts vor ihm Position 1 besetzt, also gilt die normale Ordnung: Wir blieben. Die Umstellung in den anderen Aufgaben kam nie von bis oder während selbst — sie kam vom vorangestellten Nebensatz."
+
+  - id: cloze-sobald-seitdem
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: temporal-nebensatz
+    instruction:
+      en: "Each gap takes the whole end of its clause — subject and verb together, in the right order."
+      ru: "В каждый пропуск идёт весь конец своего придаточного — подлежащее и глагол вместе, в правильном порядке."
+      uk: "У кожен пропуск іде весь кінець свого підрядного — підмет і дієслово разом, у правильному порядку."
+      de: "In jede Lücke kommt das ganze Ende ihres Satzes — Subjekt und Verb zusammen, in der richtigen Reihenfolge."
+    text: "Sobald {{ich ankam}}, war das Zimmer schon fertig. Seitdem {{wir umgezogen sind}}, ist es viel ruhiger."
+    translation:
+      en: "As soon as I arrived, the room was already ready. Since we moved, it has been much quieter."
+      ru: "Как только я приехал, комната уже была готова. С тех пор как мы переехали, стало гораздо тише."
+      uk: "Щойно я приїхав, кімната вже була готова. Відтоді як ми переїхали, стало значно тихіше."
+    explain:
+      en: "sobald and seit(dem) behave exactly like während and bevor — conjunction, then subject, then the verb last. In the second clause the verb is the two-part sind umgezogen, and it is the conjugated half, sind, that goes to the very end: wir umgezogen sind. A separable or compound verb changes nothing about where the finite part lands."
+      ru: "sobald и seit(dem) ведут себя ровно как während и bevor: союз, потом подлежащее, глагол в конце. Во втором придаточном глагол составной — sind umgezogen, — и в самый конец уходит именно спрягаемая часть sind: wir umgezogen sind. Составная или отделяемая форма ничего не меняет в том, где оказывается спрягаемая часть."
+      uk: "sobald і seit(dem) поводяться точно як während і bevor: сполучник, потім підмет, дієслово в кінці. У другому підрядному дієслово складене — sind umgezogen, — і в самий кінець іде саме відмінювана частина sind: wir umgezogen sind. Складена чи відокремлювана форма нічого не змінює в тому, де опиняється відмінювана частина."
+      de: "sobald und seit(dem) verhalten sich genau wie während und bevor: Konjunktion, dann Subjekt, dann das Verb am Ende. Im zweiten Satz ist das Verb zweiteilig — sind umgezogen —, und ganz ans Ende geht der konjugierte Teil sind: wir umgezogen sind. Eine trennbare oder zusammengesetzte Form ändert nichts daran, wo der finite Teil landet."
+
+  - id: uebersetzen-bevor-fahrrad
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Start with the bevor-clause, and keep both clauses in the Präteritum. For 'lock' take abschließen."
+      ru: "Начните с придаточного с bevor и оставьте оба предложения в Präteritum. Для «запирать» возьмите abschließen."
+      uk: "Почніть із підрядного з bevor і залиште обидва речення в Präteritum. Для «замикати» візьміть abschließen."
+      de: "Beginn mit dem bevor-Satz und lass beide Sätze im Präteritum. Für das Abschließen nimm abschließen."
+    prompt_en: "Before he went home, he locked the bicycle."
+    prompt_ru: "Прежде чем он пошёл домой, он запер велосипед."
+    prompt_uk: "Перш ніж він пішов додому, він замкнув велосипед."
+    answer: "Bevor er nach Hause ging, schloss er das Fahrrad ab."
+    accept:
+      - "Bevor er nach Hause ging, schloss er sein Fahrrad ab."
+    key_tokens: ["Bevor", "ging", "schloss"]
+    explain:
+      en: "bevor takes the simple past on both sides — no Plusquamperfekt, because bevor already says which event came first. ging closes the bevor-clause; schloss opens the main clause after the fronted Nebensatz, and the separable ab still travels to the very end of it."
+      ru: "После bevor обе части стоят в простом прошедшем — Plusquamperfekt не нужен, потому что само bevor уже говорит, что было раньше. ging закрывает придаточное; schloss открывает главное после вынесенного вперёд придаточного, а отделяемая приставка ab всё равно уходит в самый его конец."
+      uk: "Після bevor обидві частини стоять у простому минулому — Plusquamperfekt не потрібен, бо саме bevor уже каже, що було раніше. ging закриває підрядне; schloss відкриває головне після винесеного наперед підрядного, а відокремлюваний префікс ab усе одно йде в самий його кінець."
+      de: "Nach bevor steht beides im Präteritum — kein Plusquamperfekt, denn bevor sagt schon, was zuerst war. ging schließt den bevor-Satz; schloss eröffnet den Hauptsatz nach dem vorangestellten Nebensatz, und das trennbare ab wandert trotzdem an dessen Ende."
+
+  - id: uebersetzen-waehrend-nachgestellt
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Put the main clause first this time. For 'read' take lesen in the Präteritum; for 'tidy up' aufräumen."
+      ru: "На этот раз поставьте главное предложение первым. Для «читать» возьмите lesen в Präteritum, для «убирать» — aufräumen."
+      uk: "Цього разу поставте головне речення першим. Для «читати» візьміть lesen у Präteritum, для «прибирати» — aufräumen."
+      de: "Stell diesmal den Hauptsatz voran. Für das Lesen nimm lesen im Präteritum, für das Aufräumen aufräumen."
+    prompt_en: "He read the newspaper while she tidied up the kitchen."
+    prompt_ru: "Он читал газету, пока она убирала кухню."
+    prompt_uk: "Він читав газету, поки вона прибирала кухню."
+    answer: "Er las die Zeitung, während sie die Küche aufräumte."
+    key_tokens: ["las", "während", "aufräumte"]
+    explain:
+      en: "With the main clause in front, its verb sits in the ordinary second position — Er las — and nothing inverts. The während-clause behind the comma still ends with its verb: aufräumte, the separable prefix welded back on because a Nebensatz verb is never split. One rule switched off, the other unchanged."
+      ru: "Когда главное предложение стоит впереди, его глагол занимает обычное второе место — Er las, — и никакой инверсии нет. Придаточное с während за запятой по-прежнему заканчивается своим глаголом: aufräumte, с приставкой, вернувшейся на место, потому что в придаточном глагол никогда не разделяется. Одно правило выключилось, другое осталось."
+      uk: "Коли головне речення стоїть попереду, його дієслово займає звичайне друге місце — Er las, — і жодної інверсії немає. Підрядне з während за комою так само закінчується своїм дієсловом: aufräumte, з префіксом, що повернувся на місце, бо в підрядному дієслово ніколи не розділяється. Одне правило вимкнулося, друге лишилося."
+      de: "Steht der Hauptsatz vorn, sitzt sein Verb auf der gewöhnlichen zweiten Position — Er las —, und nichts stellt sich um. Der während-Satz hinter dem Komma endet weiterhin mit seinem Verb: aufräumte, mit wieder angeschweißter Vorsilbe, denn im Nebensatz wird das Verb nie getrennt. Eine Regel aus, die andere unverändert."
+
+  - id: uebersetzen-bis-transfer-drill
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: temporal-nebensatz
+    instruction:
+      en: "Start with the bis-clause. For 'get dark' take dunkel werden in the Präteritum; for 'play' spielen."
+      ru: "Начните с придаточного с bis. Для «темнеть» возьмите dunkel werden в Präteritum, для «играть» — spielen."
+      uk: "Почніть із підрядного з bis. Для «темніти» візьміть dunkel werden у Präteritum, для «гратися» — spielen."
+      de: "Beginn mit dem bis-Satz. Für das Dunkelwerden nimm dunkel werden im Präteritum, für das Spielen spielen."
+    prompt_en: "Until it got dark, the children played in the courtyard."
+    prompt_ru: "Пока не стемнело, дети играли во дворе."
+    prompt_uk: "Поки не стемніло, діти гралися у дворі."
+    answer: "Bis es dunkel wurde, spielten die Kinder im Hof."
+    key_tokens: ["Bis", "wurde", "spielten"]
+    explain:
+      en: "The same pair one last time, with bis. wurde ends the fronted clause; spielten opens the main clause because that clause is sitting in position 1. Note also that bis needs no negation of its own: 'until it got dark' is Bis es dunkel wurde, never Bis es nicht dunkel wurde."
+      ru: "Та же пара в последний раз, теперь с bis. wurde закрывает вынесенное вперёд придаточное; spielten открывает главное, потому что придаточное занимает первую позицию. Обратите внимание: отрицание немецкому здесь не нужно — само bis несёт тот смысл, который русское «пока не» выражает через частицу."
+      uk: "Та сама пара востаннє, тепер із bis. wurde закриває винесене наперед підрядне; spielten відкриває головне, бо підрядне займає першу позицію. Зверніть увагу: заперечення німецькій тут не потрібне — саме bis несе той сенс, який українське «поки не» виражає через частку."
+      de: "Dasselbe Paar ein letztes Mal, mit bis. wurde beendet den vorangestellten Satz; spielten eröffnet den Hauptsatz, weil dieser Nebensatz auf Position 1 steht. Und das Deutsche braucht hier keine Verneinung — bis allein trägt die Bedeutung, die andere Sprachen mit einem zusätzlichen Wort ausdrücken."
