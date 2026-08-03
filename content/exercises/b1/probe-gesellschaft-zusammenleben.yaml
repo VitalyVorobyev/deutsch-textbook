@@ -1,0 +1,125 @@
+# Delayed probe family 1 of 3 — ONE competence: packing a concession into a Nebensatz
+# cold — obwohl rather than A2's trotzdem, and the finite verb at the end where the
+# conjunction sends it. Three parallel translate variants, served in authoring order
+# across the 2/7/21 delays — one retention curve over one decision.
+#
+# Translate rather than cloze, and that is this family's whole point. A cloze grades a
+# form, never a position: the gap is a slot, so the learner cannot put the verb anywhere
+# else and a cloze family would pass someone who writes obwohl and keeps main-clause
+# order behind it. That is P18-6 (filed against probe-konsum-umwelt, where passiv-bildung
+# is cloze ×3 and its position half has no delayed evidence), and this tag is a word-order
+# contrast end to end. In a translate the collapse is scored wrong and attributed: the
+# pinned clause-final verb sits at a different index, so misplacedGraded fires
+# (src/lib/production.ts) and the tag gets the error it exists to catch.
+#
+# The instruction names the job and never the connector — "one sentence, the concession
+# is a Nebensatz" — because which of the two words can open a Nebensatz is exactly what is
+# probed. Naming only the job also closes the hole a bare source leaves: German joins two
+# main clauses with a comma, so "Der Grill gefällt ihr nicht, trotzdem hilft sie" is one
+# correct sentence for the same prompt, and only "Nebensatz" excludes it without handing
+# over the word. Where the clause stands is free, so both orders are accepted. Only the
+# direction that forces the conjunction is probed: nothing a source sentence can say
+# forces trotzdem while obwohl stays grammatical, and a probe with three lifetime stages
+# must never fail correct German.
+#
+# Pinned are the two ends of the rule — the connector and the finite verb it moves. The
+# main clause's verb-first order after a fronted Nebensatz is deliberately NOT pinned:
+# that is position 1 being occupied, the A1 verbzweit rule, and pinning it would charge a
+# verbzweit error to this tag. It is still scored wrong, only left unattributed.
+#
+# Content fresh against the practice union and the article, checked by grepping each noun
+# and verb across content/. The taught concessions run on dagegen sein / Spielplatz
+# (cloze-obwohl-nebensatz), laut sein / gern wohnen (mc-obwohl-oder-trotzdem), Geld kosten
+# / dafür sein (uebersetzen-obwohl-garten), erklärt haben / unsicher sein
+# (uebersetzen-obwohl-perfekt) and gefallen / stimmen für (hoeren-abstimmung); the article
+# runs on klein sein / hineinpassen and regnen / kommen. None of mögen, anfangen or groß
+# genug sein closes an obwohl clause anywhere in this unit, and Frau Radek, Frau Brandt
+# and Herr Kaminski appear in no article, reading, deck example or practice item.
+#
+# arming: the four items that make the learner pick the word or place the verb.
+# hoeren-abstimmung carries the same tag and is deliberately left out — it asks which half
+# of a heard sentence was the vote, which is comprehension of a concession, not production
+# of one. An arming key starts the 2/7/21 clock, so a family armable by recognition alone
+# would fire its 2-day probe at a form the learner has never built.
+topic: gesellschaft-zusammenleben
+role: probe
+title:
+  en: "Delayed check — the concession as a Nebensatz"
+  ru: "Отложенная проверка — уступка как придаточное"
+  uk: "Відкладена перевірка — поступка як підрядне"
+  de: "Kontrolle mit Abstand — das Zugeständnis als Nebensatz"
+arming:
+  - b1/gesellschaft-zusammenleben::cloze-obwohl-nebensatz
+  - b1/gesellschaft-zusammenleben::mc-obwohl-oder-trotzdem
+  - b1/gesellschaft-zusammenleben::uebersetzen-obwohl-garten
+  - b1/gesellschaft-zusammenleben-produktion::uebersetzen-obwohl-perfekt
+items:
+  - id: variant-a
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Translate as one sentence, and make the concession a Nebensatz. For 'like' take mögen, for 'the barbecue' der Grill, for 'help' helfen."
+      ru: "Переведите одним предложением, оформив уступку как Nebensatz. Для «любить» возьмите mögen, для «мангал» — der Grill, для «помогать» — helfen."
+      uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «любити» візьміть mögen, для «мангал» — der Grill, для «допомагати» — helfen."
+      de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für das Mögen nimm mögen, für den Grill der Grill, für das Helfen helfen."
+    prompt_en: "Although Frau Radek does not like the barbecue, she helps in the courtyard on Saturday."
+    prompt_ru: "Хотя госпожа Радек не любит мангал, она помогает в субботу во дворе."
+    prompt_uk: "Хоча пані Радек не любить мангал, вона допомагає в суботу у дворі."
+    answer: "Obwohl Frau Radek den Grill nicht mag, hilft sie am Samstag im Hof."
+    accept:
+      # The concession may stand second; then the name leads and the clause takes the
+      # pronoun. Nothing else moves, and the graded pair is unchanged.
+      - "Frau Radek hilft am Samstag im Hof, obwohl sie den Grill nicht mag."
+    key_tokens: ["Obwohl", "obwohl", "mag"]
+    explain:
+      en: "Graded are the two ends of the conjunction's rule: obwohl and the clause-final mag. Only a conjunction can open a Nebensatz, so trotzdem is out — it is an adverb and needs a whole main clause behind it. And the conjunction sends the finite verb to the very end: den Grill nicht mag, never mag den Grill nicht. Where the clause stands is free: first, and the main clause opens with hilft; second, and nothing else moves."
+      ru: "Оцениваются два конца правила союза: obwohl и mag в самом конце. Открыть Nebensatz может только союз, поэтому trotzdem отпадает — это наречие, за ним должно стоять полноценное главное предложение. А союз отправляет спрягаемый глагол в самый конец: den Grill nicht mag, и никогда mag den Grill nicht. Место придаточного свободно: впереди — и главное начинается с hilft; сзади — и больше не двигается ничего."
+      uk: "Оцінюються два кінці правила сполучника: obwohl і mag у самому кінці. Відкрити Nebensatz може лише сполучник, тому trotzdem відпадає — це прислівник, за ним має стояти повноцінне головне речення. А сполучник відправляє відмінюване дієслово в самий кінець: den Grill nicht mag, і ніколи mag den Grill nicht. Місце підрядного вільне: попереду — і головне починається з hilft; позаду — і більше не рухається нічого."
+      de: "Bewertet werden die zwei Enden der Konjunktionsregel: obwohl und das satzfinale mag. Einen Nebensatz kann nur eine Konjunktion eröffnen, also fällt trotzdem aus — es ist ein Adverb und braucht einen ganzen Hauptsatz hinter sich. Und die Konjunktion schickt das finite Verb ganz ans Ende: den Grill nicht mag, nie mag den Grill nicht. Wo der Nebensatz steht, ist frei: vorn, dann beginnt der Hauptsatz mit hilft; hinten, dann bewegt sich sonst nichts."
+
+  - id: variant-b
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Translate as one sentence, and make the concession a Nebensatz. For 'start' take anfangen, for 'not until six' erst um sechs, for 'set the tables' die Tische decken."
+      ru: "Переведите одним предложением, оформив уступку как Nebensatz. Для «начинаться» возьмите anfangen, для «только в шесть» — erst um sechs, для «накрывать на стол» — die Tische decken."
+      uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «починатися» візьміть anfangen, для «лише о шостій» — erst um sechs, для «накривати на стіл» — die Tische decken."
+      de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für den Beginn nimm anfangen, für die Uhrzeit erst um sechs, für das Eindecken die Tische decken."
+    prompt_en: "Although the party does not start until six, Frau Brandt is already setting the tables."
+    prompt_ru: "Хотя праздник начинается только в шесть, госпожа Брандт уже накрывает столы."
+    prompt_uk: "Хоча свято починається лише о шостій, пані Брандт уже накриває столи."
+    answer: "Obwohl das Fest erst um sechs anfängt, deckt Frau Brandt schon die Tische."
+    accept:
+      # The concession may stand second; the separable verb still closes it.
+      - "Frau Brandt deckt schon die Tische, obwohl das Fest erst um sechs anfängt."
+    key_tokens: ["Obwohl", "obwohl", "anfängt"]
+    explain:
+      en: "Graded are obwohl and the clause-final anfängt — and a separable verb makes the wall visible twice over. In a main clause the two halves stand apart (Das Fest fängt erst um sechs an); inside a Nebensatz the conjunction pulls the finite verb to the end, where it lands behind its own prefix and is written as one word: erst um sechs anfängt. trotzdem could not do this at all: an adverb opens no clause, it only fills position 1 of a new main clause."
+      ru: "Оцениваются obwohl и anfängt в самом конце — а отделяемая приставка показывает стену дважды. В главном предложении половинки стоят порознь (Das Fest fängt erst um sechs an); в придаточном союз утягивает спрягаемый глагол в конец, где он оказывается позади собственной приставки и пишется одним словом: erst um sechs anfängt. trotzdem этого не может вовсе: наречие не открывает придаточных, оно лишь занимает первую позицию нового главного предложения."
+      uk: "Оцінюються obwohl і anfängt у самому кінці — а відокремлюваний префікс показує стіну двічі. У головному реченні половинки стоять окремо (Das Fest fängt erst um sechs an); у підрядному сполучник тягне відмінюване дієслово в кінець, де воно опиняється позаду власного префікса й пишеться одним словом: erst um sechs anfängt. trotzdem цього не може зовсім: прислівник не відкриває підрядних, він лише займає першу позицію нового головного речення."
+      de: "Bewertet werden obwohl und das satzfinale anfängt — und ein trennbares Verb zeigt die Wand gleich doppelt. Im Hauptsatz stehen die beiden Teile getrennt (Das Fest fängt erst um sechs an); im Nebensatz zieht die Konjunktion das finite Verb ans Ende, wo es hinter dem eigenen Präfix landet und zusammengeschrieben wird: erst um sechs anfängt. trotzdem kann das gar nicht: Ein Adverb eröffnet keinen Nebensatz, es füllt nur Position 1 eines neuen Hauptsatzes."
+
+  - id: variant-c
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Translate as one sentence, and make the concession a Nebensatz. For 'big enough' take groß genug, for 'bicycle' das Fahrrad, for 'put' stellen."
+      ru: "Переведите одним предложением, оформив уступку как Nebensatz. Для «достаточно большой» возьмите groß genug, для «велосипед» — das Fahrrad, для «ставить» — stellen."
+      uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «досить великий» візьміть groß genug, для «велосипед» — das Fahrrad, для «ставити» — stellen."
+      de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für die Größe nimm groß genug, für das Rad das Fahrrad, für das Abstellen stellen."
+    prompt_en: "Although the cellar is big enough, Herr Kaminski puts his bicycle in the courtyard."
+    prompt_ru: "Хотя подвал достаточно большой, господин Каминский ставит свой велосипед во двор."
+    prompt_uk: "Хоча підвал досить великий, пан Камінський ставить свій велосипед у двір."
+    answer: "Obwohl der Keller groß genug ist, stellt Herr Kaminski sein Fahrrad in den Hof."
+    accept:
+      # The concession may stand second; the copula still closes it.
+      - "Herr Kaminski stellt sein Fahrrad in den Hof, obwohl der Keller groß genug ist."
+    key_tokens: ["Obwohl", "obwohl", "ist"]
+    explain:
+      en: "Graded are obwohl and the clause-final ist. The concession is a plain sein-sentence, which is where the collapse is easiest to make: der Keller ist groß genug is the main clause, and behind a conjunction that same verb has to travel to the end — obwohl der Keller groß genug ist. Writing obwohl der Keller ist groß genug is main-clause order surviving into a Nebensatz, and putting trotzdem in front of the clause is the other half of the same confusion: an adverb has no clause to open."
+      ru: "Оцениваются obwohl и ist в самом конце. Уступка здесь — обычное предложение с sein, и как раз в нём развалиться легче всего: der Keller ist groß genug — это главное предложение, а после союза тот же глагол обязан уехать в конец: obwohl der Keller groß genug ist. Написать obwohl der Keller ist groß genug — значит перенести порядок главного предложения в придаточное, а поставить впереди trotzdem — вторая половина той же путаницы: наречию нечего открывать."
+      uk: "Оцінюються obwohl і ist у самому кінці. Поступка тут — звичайне речення з sein, і саме в ньому розвалитися найлегше: der Keller ist groß genug — це головне речення, а після сполучника те саме дієслово мусить поїхати в кінець: obwohl der Keller groß genug ist. Написати obwohl der Keller ist groß genug — це перенести порядок головного речення в підрядне, а поставити попереду trotzdem — друга половина тієї самої плутанини: прислівникові нема чого відкривати."
+      de: "Bewertet werden obwohl und das satzfinale ist. Das Zugeständnis ist ein schlichter sein-Satz, und genau dort stürzt die Stellung am leichtesten ein: der Keller ist groß genug ist der Hauptsatz, und hinter einer Konjunktion muss dasselbe Verb ans Ende — obwohl der Keller groß genug ist. Wer obwohl der Keller ist groß genug schreibt, rettet die Hauptsatzstellung in den Nebensatz hinüber; wer trotzdem davorsetzt, macht die andere Hälfte derselben Verwechslung: Ein Adverb hat keinen Satz zu eröffnen."

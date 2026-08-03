@@ -1,0 +1,71 @@
+# Diagnostic generation, not practice: three guesses before the article, one per taught
+# confusion of the unit (obwohl against A2's trotzdem, the singular jeder among the
+# quantifiers that decline, was after an antecedent with no gender). No focus tags — a
+# pretest is never weakness evidence — and the first item is a cloze, because a pretest
+# made only of mc discriminates nothing. Both words are named in the first instruction,
+# so the item is a determinate 50/50 diagnostic rather than a vocabulary guess. None of
+# these surfaces returns in a probe family.
+topic: gesellschaft-zusammenleben
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-obwohl-trotzdem
+    outcomes: [einwand-ausdruecken]
+    type: cloze
+    instruction:
+      en: "The same thought twice. Put obwohl and trotzdem into the two gaps — the word order around each one tells you which goes where."
+      ru: "Одна и та же мысль дважды. Расставьте obwohl и trotzdem по двум лакунам — порядок слов вокруг каждой подскажет, что куда."
+      uk: "Одна й та сама думка двічі. Розставте obwohl і trotzdem по двох лакунах — порядок слів навколо кожної підкаже, що куди."
+      de: "Derselbe Gedanke zweimal. Setz obwohl und trotzdem in die zwei Lücken — die Wortstellung um jede Lücke sagt dir, was wohin gehört."
+    text: "{{Obwohl}} viele Nachbarn dagegen sind, kommt der Spielplatz. Viele Nachbarn sind dagegen. {{Trotzdem}} kommt der Spielplatz."
+    translation:
+      en: "Although many neighbours are against it, the playground is coming. Many neighbours are against it. All the same, the playground is coming."
+      ru: "Хотя многие соседи против, детская площадка появится. Многие соседи против. И всё же площадка появится."
+      uk: "Хоча багато сусідів проти, дитячий майданчик з'явиться. Багато сусідів проти. І все ж майданчик з'явиться."
+    explain:
+      en: "The first gap opens a clause whose verb sind already sits at the end — only a conjunction can do that, so it is obwohl. The second gap stands in front of a finite verb with the subject behind it, which is the shape of an adverb in position 1: trotzdem. One concession, two word classes, two word orders — the chapter is built on telling them apart."
+      ru: "Первая лакуна открывает придаточное, где глагол sind уже стоит в конце, — так умеет только союз, значит, это obwohl. Вторая стоит перед спрягаемым глаголом, за которым идёт подлежащее, — это форма наречия на первой позиции: trotzdem. Одна уступка, две части речи, два порядка слов; на их различении и построена глава."
+      uk: "Перша лакуна відкриває підрядне, де дієслово sind уже стоїть у кінці, — так уміє лише сполучник, отже, це obwohl. Друга стоїть перед відмінюваним дієсловом, за яким іде підмет, — це форма прислівника на першій позиції: trotzdem. Одна поступка, дві частини мови, два порядки слів; на їхньому розрізненні й побудований розділ."
+      de: "Die erste Lücke eröffnet einen Satz, in dem das Verb sind schon am Ende steht — das kann nur eine Konjunktion, also obwohl. Die zweite steht vor einem finiten Verb, hinter dem das Subjekt folgt: die Form eines Adverbs auf Position 1, also trotzdem. Ein Zugeständnis, zwei Wortarten, zwei Wortstellungen — darauf ist das Kapitel gebaut."
+
+  - id: pre-mc-jeder
+    outcomes: [diskussion-folgen]
+    type: mc
+    prompt: "Im Protokoll steht: „___ Bewohner hat eine Stimme.“ Welches Wort passt?"
+    options:
+      - "Jeder"
+      - "Jede"
+      - "Alle"
+    correct: 0
+    translation:
+      en: "The minutes say: \"___ resident has a vote.\" Which word fits?"
+      ru: "В протоколе написано: «___ житель имеет голос». Какое слово подходит?"
+      uk: "У протоколі написано: «___ мешканець має голос». Яке слово підходить?"
+    explain:
+      en: "der Bewohner is masculine and singular here, and hat is a singular verb — so the quantifier has to agree on both counts. Jede carries a feminine ending. Alle is plural and would demand haben. jeder stays singular however many people it covers, and the chapter turns that into a rule for the whole quantifier family."
+      ru: "der Bewohner здесь мужского рода и единственного числа, а hat — глагол единственного числа, так что количественное слово должно согласоваться и в том и в другом. У Jede женское окончание. Alle — множественное число, оно потребовало бы haben. jeder остаётся единственным, сколько бы людей ни охватывал, и глава превращает это в правило для всего семейства."
+      uk: "der Bewohner тут чоловічого роду й однини, а hat — дієслово однини, тож кількісне слово має узгодитися і в тому, і в тому. У Jede жіноче закінчення. Alle — множина, вона вимагала б haben. jeder лишається одниною, скількох би людей не охоплював, і розділ перетворює це на правило для всієї родини."
+      de: "der Bewohner ist hier maskulin und Singular, und hat ist ein Singularverb — der Quantor muss also in beidem übereinstimmen. Jede trägt eine feminine Endung. Alle ist Plural und verlangte haben. jeder bleibt Singular, wie viele Personen es auch meint, und das Kapitel macht daraus eine Regel für die ganze Wortfamilie."
+
+  - id: pre-mc-alles-was
+    outcomes: [kompromiss-vorschlagen]
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Das ist alles, was wir heute entscheiden können."
+      - "Das ist alles, das wir heute entscheiden können."
+      - "Das ist alles, dass wir heute entscheiden können."
+    correct: 0
+    translation:
+      en: "That is everything we can decide today."
+      ru: "Это всё, что мы можем решить сегодня."
+      uk: "Це все, що ми можемо вирішити сьогодні."
+    explain:
+      en: "A relative pronoun agrees in gender with the word it points back at, and alles has no gender at all — so the relative word is was. das is the familiar form and the one the hand reaches for; dass is a different word entirely, the conjunction after sagen or wissen. The chapter adds wo for places on the same logic."
+      ru: "Относительное местоимение согласуется в роде со словом, на которое указывает, а у alles рода нет вовсе — поэтому относительное слово только was. das — знакомая форма, за которой первой тянется рука; dass — вообще другое слово, союз после sagen или wissen. По той же логике глава добавляет wo для места."
+      uk: "Відносний займенник узгоджується в роді зі словом, на яке вказує, а в alles роду немає взагалі — тому відносне слово was. das — знайома форма, за якою першою тягнеться рука; dass — узагалі інше слово, сполучник після sagen або wissen. За тією самою логікою розділ додає wo для місця."
+      de: "Ein Relativpronomen richtet sich im Genus nach dem Wort, auf das es zeigt, und alles hat überhaupt kein Genus — also heißt das Relativwort was. das ist die vertraute Form, nach der die Hand zuerst greift; dass ist ein ganz anderes Wort, die Konjunktion nach sagen oder wissen. Nach derselben Logik kommt im Kapitel wo für Orte dazu."

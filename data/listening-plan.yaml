@@ -557,3 +557,18 @@ units:
         register: "neutral-höflich, natürlich"
         item_types: [audio-comprehension]
         context_sound: "sehr leiser Beratungsraum"
+  - unit: gesellschaft-zusammenleben
+    level: B1
+    artifacts:
+      - id: ls-gesellschaft-zusammenleben-01
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Hausversammlung über die Nutzung des gemeinsamen Hofs — Spielplatz, Parkplätze oder Garten"
+        outcomes: [diskussion-folgen]
+        required_vocabulary: [Versammlung, Mehrheit, Einwand, Gemeinschaft, abstimmen]
+        grammar_target: "obwohl gegen trotzdem, alle/einige/jeder und die Relativwörter was und wo"
+        duration_seconds: { min: 65, max: 85 }
+        speakers: { min: 3, max: 3 }
+        register: "neutral, alltagsnah, leicht kontrovers"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Gemeinschaftsraum mit wenigen Personen"

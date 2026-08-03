@@ -104,16 +104,21 @@ describe('grammar coverage', () => {
     // praeposition-genitiv. Unit B1.9 (lernen-zukunft, 2026-07-31) closed
     // finalsatz-damit (damit-um-zu), konditionalsatz-falls (falls-wenn) and
     // infinitivsatz-ohne-statt (ohne-statt-zu) — the purpose clause under the subject
-    // test, expectancy against A2's wenn, and um … zu's two siblings.
-    expect(coverage.covered).toBe(26);
+    // test, expectancy against A2's wenn, and um … zu's two siblings. Unit B1.10
+    // (gesellschaft-zusammenleben, 2026-08-03) closed konzessivsatz-obwohl
+    // (obwohl-trotzdem), indefinitpronomen-erweitert and relativ-was-wo — the
+    // conjunction beside A2's trotzdem adverb, the quantifiers that decline beside A2's
+    // invariant set, and the two relative words that are not der/die/das.
+    expect(coverage.covered).toBe(29);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(81);
+    expect(coverage.percent).toBe(91);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
       'adjektiv-nullartikel',
       'finalsatz-damit',
       'genitiv-vollstaendig',
+      'indefinitpronomen-erweitert',
       'infinitivsatz-ohne-statt',
       'kausalsatz-da',
       'komparativ-attributiv',
@@ -121,6 +126,7 @@ describe('grammar coverage', () => {
       'konjunktiv2-irreal',
       'konjunktiv2-ratschlag',
       'konsekutivsatz-sodass',
+      'konzessivsatz-obwohl',
       'lassen',
       'n-deklination',
       'nomen-verb-verbindungen',
@@ -132,6 +138,7 @@ describe('grammar coverage', () => {
       'praeteritum-vollverben',
       'proportionalsatz-je-desto',
       'reflexiv-praeposition',
+      'relativ-was-wo',
       'relativsatz-dativ',
       'temporalsatz',
       'verb-praeposition-erweitert',
@@ -140,7 +147,7 @@ describe('grammar coverage', () => {
     // Every other B1 point still names only tags no shipped content carries — an A2
     // tag must never silently close a B1 gap (the mistake that hid six A2 structures
     // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 26);
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 29);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

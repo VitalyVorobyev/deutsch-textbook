@@ -1723,6 +1723,40 @@ nodes:
         ru: "Я умею извлекать из консультации самые важные пункты."
         uk: "Я вмію вичленовувати з консультації найважливіші пункти."
 
+  - id: gesellschaft-zusammenleben
+    level: B1
+    kind: communication
+    strand: communication
+    group: erzaehlen-berichten
+    prerequisites: [verbindungen-folgen, freunde-feste, nebensaetze-plaene]
+    # Both edges carry a live runtime channel, as `deepens` requires. verbindungen-folgen
+    # drills `konjunktionaladverb-inversion` — trotzdem the position-1 adverb — and this
+    # unit re-arms exactly that tag as the contrast obwohl is taught against; freunde-feste
+    # drills `aber-sondern`, which is the shape an objection travels in (nicht …, sondern …).
+    deepens: [verbindungen-folgen, freunde-feste]
+    outcomes:
+      - id: einwand-ausdruecken
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann Einwände ausdrücken und auf Gegenmeinungen reagieren."
+        en: "I can voice objections and respond to opposing views."
+        ru: "Я умею высказывать возражения и реагировать на противоположные мнения."
+        uk: "Я вмію висловлювати заперечення й реагувати на протилежні думки."
+      - id: diskussion-folgen
+        mode: listening
+        domain: public
+        de: "Ich kann einer Diskussion zu einem vertrauten Thema folgen."
+        en: "I can follow a discussion on a familiar topic."
+        ru: "Я умею следить за обсуждением на знакомую тему."
+        uk: "Я вмію стежити за обговоренням на знайому тему."
+      - id: kompromiss-vorschlagen
+        mode: spoken-interaction
+        domain: public
+        de: "Ich kann bei einer Meinungsverschiedenheit einen Kompromiss vorschlagen."
+        en: "I can propose a compromise when there is a disagreement."
+        ru: "Я умею предлагать компромисс при расхождении во мнениях."
+        uk: "Я вмію пропонувати компроміс за розбіжності в думках."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -2028,3 +2062,10 @@ units:
     title_ru: "Учёба и будущее"
     title_uk: "Навчання та майбутнє"
     topics: [lernen-zukunft]
+  - id: gesellschaft-zusammenleben
+    level: B1
+    title_de: "Gesellschaft & Zusammenleben"
+    title_en: "Society & living together"
+    title_ru: "Общество и совместная жизнь"
+    title_uk: "Суспільство та спільне життя"
+    topics: [gesellschaft-zusammenleben]
