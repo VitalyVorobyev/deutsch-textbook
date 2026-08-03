@@ -65,15 +65,21 @@ mastered, and the next topic to learn.*
 ## Getting it
 
 **Use it in the browser** — the site is deployed at
-<https://atlas.vitavision.dev/>. Nothing to install; progress stays in your
+<https://deutsch.vitavision.dev/>. Nothing to install; progress stays in your
 browser.
+
+**Signing in is optional.** Without an account the app is complete and entirely
+local — an account only adds a copy of your progress in the cloud so a second
+device can pick it up. New accounts are approved by hand, so if you sign in and
+are told your account is waiting, keep going: everything is saved on your device
+and uploads once it is approved.
 
 **Or install it on your phone** — it is a Progressive Web App, so the same URL
 installs to the home screen on iOS (Safari → Share → *Zum Home-Bildschirm*) and
 Android (Chrome → *App installieren*), with no app store involved. It then runs
 in its own window and keeps working offline: visited pages, the recordings you
 have played and all of your progress stay on the device.
-[Installation instructions and a QR code](https://atlas.vitavision.dev/install).
+[Installation instructions and a QR code](https://deutsch.vitavision.dev/install).
 On iOS, installing also stops the system evicting your saved progress after a
 week of not opening it.
 

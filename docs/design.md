@@ -156,11 +156,21 @@ automatically write them to `progress/<profile>/`. `bun run progress:audit` read
 snapshot, grading rulings and current content contract to produce the evidence table used for
 drill decisions.
 
+An optional account adds a third destination: `src/lib/sync-remote.ts` uploads a gzipped snapshot
+to `/api/sync/snapshot` and pulls the other device's before merging it locally. Local-first is
+unchanged by it — with no account every call is a no-op, exactly as on the deployed site before
+accounts existed. `bun run progress:pull` brings the cloud copy back to `progress/<profile>/` so the
+personalization loop is unaffected. The reasoning — why the server stores opaque bytes and never
+merges, why an unconditional PUT does not exist, why signing in grants no storage until the owner
+approves — is in [`cloud-sync.md`](cloud-sync.md).
+
 ## Delivery and offline
 
-The site is a static build served at `atlas.vitavision.dev` by an assets-only Cloudflare Worker
-(`wrangler.toml` — no `main` entry, because there is no server code yet), deployed by the
-Cloudflare Git integration watching `main`. **There is deliberately no GitHub Actions deploy**:
+The site is a static build served at `deutsch.vitavision.dev` from a Cloudflare Worker's static
+assets (`wrangler.toml`), deployed by the Cloudflare Git integration watching `main`. The Worker's
+`main` entry exists for `/api/*` alone — accounts and snapshot sync (`worker/`, D1 + R2); every
+other path is handed straight back to the asset server, so the site is exactly as static as it was
+before there was any server code. **There is deliberately no GitHub Actions deploy**:
 two paths watching one branch race each other on every push, and `ci.yml` already runs validate,
 test, check, lint and build, so nothing broken reaches `main` in the first place. The site is
 served at the root — `withBase` (`src/lib/url.ts`) remains the one helper, so a subpath mirror and

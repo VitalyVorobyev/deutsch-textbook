@@ -15,6 +15,8 @@ import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
 import { pick, type ExplainText } from '../../lib/prefs';
+import { readSyncState } from '../../lib/sync-remote';
+import { withBase } from '../../lib/url';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import { Heatmap } from './Heatmap';
@@ -100,6 +102,15 @@ const UI = {
     en: 'Auto-sync is on: while bun run dev is running, every change is written to progress/ automatically. Export is for the deployed site.',
     ru: 'Автосинхронизация включена: пока работает bun run dev, каждое изменение автоматически записывается в progress/. Экспорт нужен для задеплоенного сайта.',
   },
+  cloudOn: {
+    en: 'Cloud sync is on for this profile — last synced {when}. Export and import stay available; they are not needed for a second device.',
+    ru: 'Облачная синхронизация включена для этого профиля — последняя {when}. Экспорт и импорт остаются доступны; для второго устройства они не нужны.',
+  },
+  cloudOff: {
+    en: 'Cloud sync is off. Progress stays in this browser — export it to move it, or connect an account.',
+    ru: 'Облачная синхронизация выключена. Прогресс остаётся в этом браузере — выгрузите его для переноса или подключите аккаунт.',
+  },
+  cloudLink: { en: 'Account', ru: 'Аккаунт' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 const MODE_LABELS: Record<string, { en: string; ru: string }> = {
@@ -162,6 +173,7 @@ export default function ProgressPanel({
   const [view, setView] = useState<ProgressView>('uebersicht');
   const [message, setMessage] = useState<string | null>(null);
   const [syncDir, setSyncDir] = useState<string | null>(null);
+  const [cloud, setCloud] = useState<{ bound: boolean; at?: number }>({ bound: false });
   const fileInput = useRef<HTMLInputElement>(null);
   const importMode = useRef<'merge' | 'replace'>('merge');
 
@@ -182,8 +194,12 @@ export default function ProgressPanel({
     // localStorage is client-only; queueMicrotask defers the restore out of the
     // effect body — the same idiom the Themen tab uses for its saved view.
     const saved = savedProgressView(localStorage.getItem(VIEW_KEY));
+    // Cloud state is read the same way: local only, no request — the account
+    // page is where the session itself is asked for.
+    const remote = readSyncState();
     queueMicrotask(() => {
       if (saved) setView(saved);
+      setCloud({ bound: remote.profileId === getActiveProfileId(), at: remote.at });
     });
     void loadData().then(setData);
     if (isTauri()) void getSyncDir().then(setSyncDir);
@@ -464,6 +480,17 @@ export default function ProgressPanel({
             </p>
           )
         )}
+        <p className="mt-3 text-center text-xs text-stone-400">
+          {cloud.bound
+            ? pick(lang, UI.cloudOn).replace(
+                '{when}',
+                cloud.at ? new Date(cloud.at).toLocaleString('de-DE') : '—',
+              )
+            : pick(lang, UI.cloudOff)}{' '}
+          <a href={withBase('/konto')} className="underline hover:text-amber-600">
+            {pick(lang, UI.cloudLink)}
+          </a>
+        </p>
         {message && (
           <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
         )}

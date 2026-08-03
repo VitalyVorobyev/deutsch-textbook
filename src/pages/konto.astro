@@ -1,0 +1,19 @@
+---
+/**
+ * Account: sign in, connect a profile, sync, and — for the owner — approve the
+ * people who have signed up.
+ *
+ * Deliberately not in the main navigation. Accounts are optional in a
+ * local-first app, and a permanent nav slot would imply otherwise; the way in is
+ * the profile menu in the header. Everything on the page is client-rendered
+ * because all of it depends on a session the static build cannot know about.
+ */
+import Base from '../layouts/Base.astro';
+import Chrome from '../components/Chrome.astro';
+import AccountPanel from '../components/account/AccountPanel';
+---
+
+<Base title="Konto — Deutsch-Atlas" description="Konto, Freigaben und Fortschritt-Synchronisierung">
+  <h1 class="mb-6 text-2xl font-bold"><Chrome k="account.title" /></h1>
+  <AccountPanel client:only="react" />
+</Base>

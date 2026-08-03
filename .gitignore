@@ -3,6 +3,8 @@ dist/
 .astro/
 src-tauri/target/
 src-tauri/gen/
+# wrangler's local state: the miniflare D1/R2 emulation under `wrangler dev`.
+.wrangler/
 
 # dependencies
 node_modules/
@@ -10,6 +12,9 @@ node_modules/
 # environment
 .env
 .env.*
+# Worker secrets for `wrangler dev` — the local stand-in for `wrangler secret put`.
+.dev.vars
+.dev.vars.*
 
 # macOS
 .DS_Store

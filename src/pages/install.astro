@@ -14,7 +14,7 @@
 import QRCode from 'qrcode';
 import Base from '../layouts/Base.astro';
 
-const url = Astro.site?.href ?? 'https://atlas.vitavision.dev/';
+const url = Astro.site?.href ?? 'https://deutsch.vitavision.dev/';
 const qr = await QRCode.toString(url, {
   type: 'svg',
   margin: 1,
