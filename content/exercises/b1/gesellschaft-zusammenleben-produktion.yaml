@@ -1,0 +1,265 @@
+# B1.10 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — the vote heard once rather than read, a dictation of the
+# line that sums the room up, two translations in frames the primary set does not use
+# (the concession with a Perfekt at the wall, wo after a place), and the open tasks the
+# outcomes claim. Open tasks are minimal ceremony: attempt → model → done;
+# `requirements` and `checklist` are guidance for comparing your own production against
+# the model — the app cannot verify free production, so it charges no steps for
+# feedback it cannot give.
+# Tag notes. hoeren-abstimmung IS tagged obwohl-trotzdem, deviating from B1.9's
+# untagged listening item deliberately: its three options differ in nothing but which
+# half of one concession carries the claim, so a wrong pick is a decode failure of
+# exactly this structure and of nothing else. hoeren-diktat is tagged
+# indefinitpronomen-erweitert on B1.8's precedent — the typed jeder hat … niemand hat
+# IS the tag's substance, and writing haben for a heard hat is the singular-agreement
+# slip itself, not a spelling slip (three edits, so `dictationSlip` does not withhold
+# attribution). The write and speak tasks stay untagged — unverified production must
+# never feed the weakness signal.
+# Outcome discipline continues the primary set's arming channels (probe families arm by
+# outcome, src/lib/probes.ts): the concession work on einwand-ausdruecken, the
+# who-is-where comprehension on diskussion-folgen, the decision-recording sentence and
+# the compromise tasks on kompromiss-vorschlagen. As in B1.6–B1.9, outcome-keyed arming
+# cannot look inside an item, so the 2/7/21 clock may start from a comprehension
+# attempt or an open task rather than a graded production (P19-4).
+# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns
+# is both the script a future take would be made from and today's TTS fallback.
+topic: gesellschaft-zusammenleben
+role: practice
+title:
+  en: "Production — hear the vote, voice the objection, propose the compromise"
+  ru: "Продукция — услышать голосование, высказать возражение, предложить компромисс"
+  uk: "Продукція — почути голосування, висловити заперечення, запропонувати компроміс"
+  de: "Produktion — die Abstimmung hören, den Einwand nennen, den Kompromiss vorschlagen"
+items:
+  - id: hoeren-abstimmung
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    focus: obwohl-trotzdem
+    instruction:
+      en: "The vote, heard and not read. One speaker names what he likes better and votes for something else — listen for which half of his sentence is the vote."
+      ru: "Голосование, услышанное, а не прочитанное. Один из говорящих называет то, что нравится ему больше, и голосует за другое — слушайте, какая половина его фразы и есть голос."
+      uk: "Голосування, почуте, а не прочитане. Один із мовців називає те, що подобається йому більше, і голосує за інше — слухайте, яка половина його фрази і є голос."
+      de: "Die Abstimmung, gehört und nicht gelesen. Ein Sprecher nennt, was ihm besser gefällt, und stimmt für etwas anderes — hör darauf, welche Hälfte seines Satzes die Stimme ist."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Frau Kolb", text: "So, wir haben jetzt alle drei Vorschläge gehört. Ich bitte um Ihre Stimmen." }
+        - { speaker: "Herr Weber", text: "Obwohl mir der Garten besser gefällt, stimme ich für den Spielplatz." }
+        - { speaker: "Frau Adamek", text: "Ich schließe mich Herrn Weber an." }
+        - { speaker: "Frau Kolb", text: "Acht Stimmen dafür, drei dagegen. Die Mehrheit ist für den Spielplatz." }
+    question: "Wofür stimmt Herr Weber?"
+    options:
+      - "Für den Spielplatz, obwohl ihm der Garten besser gefällt."
+      - "Für den Garten, weil er ihm besser gefällt."
+      - "Für den Garten, obwohl ihm der Spielplatz besser gefällt."
+    correct: 0
+    translation:
+      en: "What does Herr Weber vote for?"
+      ru: "За что голосует господин Вебер?"
+      uk: "За що голосує пан Вебер?"
+    explain:
+      en: "All three options are built out of the same two proposals, so only the structure decides. The obwohl-clause is what is conceded, never what is claimed: it grants that the garden appeals to him more. The claim sits in the main clause — stimme ich für den Spielplatz. Hear the concession as the vote and you have him voting against his own words."
+      ru: "Все три варианта собраны из одних и тех же двух предложений, так что решает только структура. Придаточное с obwohl — это то, что уступают, а не то, что утверждают: оно признаёт, что сад нравится ему больше. Утверждение — в главном предложении: stimme ich für den Spielplatz. Услышьте уступку как голос — и он проголосует против собственных слов."
+      uk: "Усі три варіанти зібрані з тих самих двох пропозицій, тож вирішує лише структура. Підрядне з obwohl — це те, що поступаються, а не те, що стверджують: воно визнає, що сад подобається йому більше. Твердження — у головному реченні: stimme ich für den Spielplatz. Почуйте поступку як голос — і він проголосує проти власних слів."
+      de: "Alle drei Optionen sind aus denselben zwei Vorschlägen gebaut, also entscheidet allein die Struktur. Der obwohl-Satz ist das Zugeständnis, nie die Behauptung: Er räumt ein, dass ihm der Garten besser gefällt. Die Behauptung steht im Hauptsatz — stimme ich für den Spielplatz. Wer das Zugeständnis für die Stimme hält, lässt ihn gegen seine eigenen Worte stimmen."
+
+  - id: hoeren-diktat
+    outcomes: [diskussion-folgen]
+    type: listen
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Jeder hat eine Meinung, aber niemand hat eine Lösung."
+    translation:
+      en: "Everybody has an opinion, but nobody has a solution."
+      ru: "Мнение есть у каждого, но решения нет ни у кого."
+      uk: "Думка є в кожного, але рішення немає ні в кого."
+    explain:
+      en: "Nine words, and the same verb form twice. jeder and niemand both cover a roomful of people and both stay grammatically singular, so it is hat on either side — never haben. If your fingers wrote haben, the ear heard how many people the room holds and the hand agreed with the meaning instead of the word."
+      ru: "Девять слов и одна и та же форма глагола дважды. jeder и niemand оба охватывают полную комнату людей и оба остаются грамматически единственного числа, поэтому с обеих сторон hat — и никогда haben. Если пальцы написали haben, ухо услышало, сколько людей в комнате, и рука согласовала глагол со смыслом вместо слова."
+      uk: "Дев'ять слів і та сама форма дієслова двічі. jeder і niemand обидва охоплюють повну кімнату людей і обидва лишаються граматично одниною, тому з обох боків hat — і ніколи haben. Якщо пальці написали haben, вухо почуло, скільки людей у кімнаті, і рука узгодила дієслово зі змістом замість слова."
+      de: "Neun Wörter und zweimal dieselbe Verbform. jeder und niemand meinen beide einen ganzen Raum voller Leute und bleiben beide grammatisch Singular, also heißt es auf beiden Seiten hat — nie haben. Wer haben tippt, hat gehört, wie viele Leute im Raum sind, und die Hand hat sich nach der Bedeutung statt nach dem Wort gerichtet."
+
+  - id: uebersetzen-obwohl-perfekt
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Attach the concession with obwohl. For 'explain' take erklären in the Perfekt; for 'be unsure' unsicher sein."
+      ru: "Присоедините уступку союзом obwohl. Для «объяснить» возьмите erklären в перфекте; для «быть неуверенным» — unsicher sein."
+      uk: "Приєднайте поступку сполучником obwohl. Для «пояснити» візьміть erklären у перфекті; для «бути невпевненим» — unsicher sein."
+      de: "Häng das Zugeständnis mit obwohl an. Für das Erklären nimm erklären im Perfekt, für die Unsicherheit unsicher sein."
+    prompt_en: "Many residents are still unsure, although Frau Kolb has explained everything."
+    prompt_ru: "Многие жильцы всё ещё не уверены, хотя фрау Кольб всё объяснила."
+    prompt_uk: "Багато мешканців усе ще не впевнені, хоча пані Кольб усе пояснила."
+    answer: "Viele Bewohner sind noch unsicher, obwohl Frau Kolb alles erklärt hat."
+    accept:
+      # The concession may lead; then it holds position 1 and the main clause opens
+      # with its finite verb. And "still" renders as noch or immer noch — the product
+      # is 2 x 2 renderings.
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Bewohner noch unsicher."
+      - "Viele Bewohner sind immer noch unsicher, obwohl Frau Kolb alles erklärt hat."
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Bewohner immer noch unsicher."
+    key_tokens: ["obwohl", "Obwohl", "hat"]
+    explain:
+      en: "Graded are obwohl and the finite hat. In a Perfekt clause the wall takes the auxiliary, not the participle: erklärt hat, in that order, at the very end — obwohl Frau Kolb hat alles erklärt is the main-clause order surviving into a Nebensatz. Put the clause first instead and it fills position 1, so the main clause opens with sind."
+      ru: "Оцениваются obwohl и спрягаемое hat. В перфектном придаточном к стене уходит вспомогательный глагол, а не причастие: erklärt hat, именно в этом порядке, в самом конце — obwohl Frau Kolb hat alles erklärt есть порядок главного предложения, доживший до придаточного. Поставьте придаточное вперёд — оно займёт первую позицию, и главное начнётся с sind."
+      uk: "Оцінюються obwohl і відмінюване hat. У перфектному підрядному до стіни йде допоміжне дієслово, а не дієприкметник: erklärt hat, саме в цьому порядку, у самому кінці — obwohl Frau Kolb hat alles erklärt є порядком головного речення, що дожив до підрядного. Поставте підрядне наперед — воно займе першу позицію, і головне почнеться з sind."
+      de: "Bewertet werden obwohl und das finite hat. Im Perfekt geht das Hilfsverb an die Wand, nicht das Partizip: erklärt hat, in dieser Reihenfolge, ganz am Ende — obwohl Frau Kolb hat alles erklärt ist die Hauptsatzstellung, die in den Nebensatz hinübergerettet wurde. Steht der Nebensatz vorn, besetzt er Position 1, und der Hauptsatz beginnt mit sind."
+
+  - id: uebersetzen-wo-ecke
+    outcomes: [kompromiss-vorschlagen]
+    type: translate
+    focus: relativ-was-wo
+    instruction:
+      en: "Attach the relative clause with wo. For 'corner' take Ecke; for 'in peace' in Ruhe."
+      ru: "Присоедините относительное придаточное словом wo. Для «угол» возьмите Ecke; для «спокойно» — in Ruhe."
+      uk: "Приєднайте відносне підрядне словом wo. Для «куток» візьміть Ecke; для «спокійно» — in Ruhe."
+      de: "Schließ den Relativsatz mit wo an. Für die Ecke nimm Ecke, für die Ruhe in Ruhe."
+    prompt_en: "We need a corner where the children can play in peace."
+    prompt_ru: "Нам нужен угол, где дети могут спокойно играть."
+    prompt_uk: "Нам потрібен куток, де діти можуть спокійно гратися."
+    answer: "Wir brauchen eine Ecke, wo die Kinder in Ruhe spielen können."
+    key_tokens: ["wo", "können"]
+    explain:
+      en: "Graded are wo and the clause-final können. After a place, wo replaces a whole preposition-plus-relative-pronoun (in der), which is why it saves you the case decision entirely. What it does not save you is the word order: the relative clause is a Nebensatz, so the finite können stands last, behind the infinitive it governs."
+      ru: "Оцениваются wo и können в конце придаточного. После обозначения места wo заменяет целую связку «предлог + относительное местоимение» (in der) — потому и избавляет от выбора падежа. От чего оно не избавляет, так это от порядка слов: относительное придаточное есть Nebensatz, поэтому спрягаемое können стоит последним, за инфинитивом, которым управляет."
+      uk: "Оцінюються wo і können у кінці підрядного. Після позначення місця wo заміняє цілу зв'язку «прийменник + відносний займенник» (in der) — тому й позбавляє вибору відмінка. Від чого воно не позбавляє, так це від порядку слів: відносне підрядне є Nebensatz, тому відмінюване können стоїть останнім, за інфінітивом, яким керує."
+      de: "Bewertet werden wo und das satzfinale können. Nach einer Ortsangabe ersetzt wo eine ganze Verbindung aus Präposition und Relativpronomen (in der) — deshalb erspart es die Kasusentscheidung ganz. Was es nicht erspart, ist die Wortstellung: Der Relativsatz ist ein Nebensatz, also steht das finite können zuletzt, hinter dem Infinitiv, den es regiert."
+
+  - id: schreiben-zettel
+    outcomes: [kompromiss-vorschlagen]
+    type: write
+    instruction:
+      en: "Write the note yourself — the list shows what to check it against."
+      ru: "Напишите записку сами — список подскажет, что в ней проверить."
+      uk: "Напишіть записку самі — список підкаже, що в ній перевірити."
+      de: "Schreib den Zettel selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "You were away on the evening of the Hausversammlung. Write a short note for the board in the stairwell: say where you stand on the three proposals for the courtyard, raise one objection, correct one point of somebody else's proposal, report where the building stands after your own conversations, and end with a compromise you can suggest."
+      ru: "Вечером, когда шло собрание жильцов, вас не было. Напишите короткую записку на доску в подъезде: скажите, как вы относитесь к трём предложениям по двору, выскажите одно возражение, поправьте один пункт чужого предложения, сообщите, где стоит дом после ваших собственных разговоров, и закончите компромиссом, который вы можете предложить."
+      uk: "Увечері, коли йшли збори мешканців, вас не було. Напишіть коротку записку на дошку в під'їзді: скажіть, як ви ставитеся до трьох пропозицій щодо двору, висловте одне заперечення, поправте один пункт чужої пропозиції, повідомте, де стоїть будинок після ваших власних розмов, і закінчіть компромісом, який ви можете запропонувати."
+      de: "Am Abend der Hausversammlung warst du nicht da. Schreib einen kurzen Zettel fürs Schwarze Brett im Treppenhaus: Sag, wie du zu den drei Vorschlägen für den Hof stehst, nenn einen Einwand, korrigier einen Punkt aus einem fremden Vorschlag, berichte nach deinen eigenen Gesprächen, wo das Haus steht, und schließ mit einem Kompromiss, den du vorschlagen kannst."
+    goal:
+      en: "A note that grants a point, objects, corrects and still ends with something everybody can live with — the writing this unit asks of you."
+      ru: "Записка, которая признаёт довод, возражает, поправляет и всё-таки заканчивается тем, с чем могут жить все, — то самое письмо, которого ждёт эта глава."
+      uk: "Записка, яка визнає довід, заперечує, поправляє і все-таки закінчується тим, з чим можуть жити всі, — те саме письмо, якого чекає цей розділ."
+      de: "Ein Zettel, der einen Punkt einräumt, widerspricht, korrigiert und trotzdem mit etwas endet, womit alle leben können — das Schreiben dieser Einheit."
+    requirements:
+      - en: "Say the concession once in one sentence and once in two: Obwohl ich kein Kind im Haus habe, bin ich dafür — the verb at the end of its clause — and Der Garten ist eine schöne Idee. Trotzdem brauchen wir zuerst einen Platz für die Kinder, with the verb straight behind the adverb."
+        ru: "Скажите уступку один раз в одном предложении и один раз в двух: Obwohl ich kein Kind im Haus habe, bin ich dafür — глагол в конце придаточного — и Der Garten ist eine schöne Idee. Trotzdem brauchen wir zuerst einen Platz für die Kinder, где глагол идёт сразу за наречием."
+        uk: "Скажіть поступку один раз в одному реченні і один раз у двох: Obwohl ich kein Kind im Haus habe, bin ich dafür — дієслово в кінці підрядного — і Der Garten ist eine schöne Idee. Trotzdem brauchen wir zuerst einen Platz für die Kinder, де дієслово йде одразу за прислівником."
+        de: "Sag das Zugeständnis einmal in einem Satz und einmal in zweien: Obwohl ich kein Kind im Haus habe, bin ich dafür — das Verb am Ende des Nebensatzes — und Der Garten ist eine schöne Idee. Trotzdem brauchen wir zuerst einen Platz für die Kinder, mit dem Verb direkt hinter dem Adverb."
+      - en: "Count the building with the quantifiers that decline, and watch the verb: alle and einige are plural (Fast alle finden die Idee gut), jeder and niemand are singular (Niemand ist wirklich dagegen). After mit the ending is audible: mit einigen Bewohnern."
+        ru: "Пересчитайте дом склоняемыми количественными словами и следите за глаголом: alle и einige — множественное число (Fast alle finden die Idee gut), jeder и niemand — единственное (Niemand ist wirklich dagegen). После mit окончание слышно: mit einigen Bewohnern."
+        uk: "Перерахуйте будинок відмінюваними кількісними словами і стежте за дієсловом: alle та einige — множина (Fast alle finden die Idee gut), jeder і niemand — однина (Niemand ist wirklich dagegen). Після mit закінчення чути: mit einigen Bewohnern."
+        de: "Zähl das Haus mit den Quantoren, die sich beugen, und achte auf das Verb: alle und einige sind Plural (Fast alle finden die Idee gut), jeder und niemand Singular (Niemand ist wirklich dagegen). Nach mit hört man die Endung: mit einigen Bewohnern."
+      - en: "Correct one point with nicht …, sondern … — deny exactly what you replace: nicht den ganzen Hof, sondern nur die vordere Hälfte. Where you are only adding a second, compatible remark, the word is aber."
+        ru: "Поправьте один пункт через nicht …, sondern … — отвергайте ровно то, что заменяете: nicht den ganzen Hof, sondern nur die vordere Hälfte. Там, где вы лишь добавляете второе, совместимое замечание, нужно aber."
+        uk: "Поправте один пункт через nicht …, sondern … — відкидайте саме те, що заміняєте: nicht den ganzen Hof, sondern nur die vordere Hälfte. Там, де ви лише додаєте друге, сумісне зауваження, потрібне aber."
+        de: "Korrigier einen Punkt mit nicht …, sondern … — verneine genau das, was du ersetzt: nicht den ganzen Hof, sondern nur die vordere Hälfte. Wo du bloß eine zweite, verträgliche Bemerkung anhängst, heißt das Wort aber."
+      - en: "Close with a was-clause that points back at the whole proposal — Danach können alle noch einmal abstimmen, was mir sehr wichtig ist — comma before was, finite verb last."
+        ru: "Закончите придаточным с was, которое указывает на всё предложение целиком: Danach können alle noch einmal abstimmen, was mir sehr wichtig ist — запятая перед was, спрягаемый глагол в конце."
+        uk: "Закінчіть підрядним із was, яке вказує на всю пропозицію загалом: Danach können alle noch einmal abstimmen, was mir sehr wichtig ist — кома перед was, відмінюване дієслово в кінці."
+        de: "Schließ mit einem was-Satz, der auf den ganzen Vorschlag zeigt — Danach können alle noch einmal abstimmen, was mir sehr wichtig ist — Komma vor was, finites Verb zuletzt."
+    min_words: 60
+    model_answer: "Liebe Nachbarinnen und Nachbarn, am Dienstag war ich leider nicht da. Ich habe mit einigen Bewohnern gesprochen: Fast alle finden den Spielplatz gut, einige sind noch unsicher, und niemand ist wirklich dagegen. Obwohl ich kein Kind im Haus habe, bin ich dafür. Der Garten ist eine schöne Idee. Trotzdem brauchen wir zuerst einen Platz für die Kinder. Ich schlage vor, dass wir nicht den ganzen Hof teilen, sondern nur die vordere Hälfte, und dass wir uns erst einmal auf ein Jahr einigen. Danach können alle noch einmal abstimmen, was mir sehr wichtig ist."
+    model_translation:
+      en: "Dear neighbours, unfortunately I was not there on Tuesday. I have spoken to some of the residents: almost everybody likes the playground, some are still unsure, and nobody is really against it. Although I have no child in the building, I am in favour. The garden is a nice idea. All the same, we need a place for the children first. I suggest that we divide not the whole courtyard but only the front half, and that we agree on one year to begin with. After that everybody can vote again, which matters a lot to me."
+      ru: "Дорогие соседи, во вторник меня, к сожалению, не было. Я поговорил с некоторыми жильцами: детская площадка нравится почти всем, некоторые ещё не уверены, и по-настоящему против никто. Хотя у меня нет ребёнка в доме, я за. Сад — хорошая идея. И всё же сначала нам нужно место для детей. Я предлагаю разделить не весь двор, а только переднюю половину, и договориться для начала на один год. Потом все смогут проголосовать ещё раз, что для меня очень важно."
+      uk: "Дорогі сусіди, у вівторок мене, на жаль, не було. Я поговорив з деякими мешканцями: дитячий майданчик подобається майже всім, деякі ще не впевнені, і справді проти немає нікого. Хоча в мене немає дитини в будинку, я за. Сад — гарна ідея. І все ж спершу нам потрібне місце для дітей. Я пропоную поділити не все подвір'я, а лише передню половину, і домовитися для початку на один рік. Потім усі зможуть проголосувати ще раз, що для мене дуже важливо."
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The room is counted first, so the objection lands on a known majority: fast alle with a plural verb, niemand with a singular one. The concession then appears twice, once folded into obwohl and once split across trotzdem. The correction denies the whole courtyard and puts the front half in its place, and the closing was-clause points back at the entire proposal."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Сначала пересчитан зал, поэтому возражение попадает в уже известное большинство: fast alle с глаголом во множественном числе, niemand — в единственном. Затем уступка появляется дважды: один раз свёрнутая в obwohl, один раз разложенная через trotzdem. Поправка отвергает весь двор и ставит на его место переднюю половину, а финальное придаточное с was указывает на всё предложение целиком."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Спершу перераховано залу, тому заперечення влучає у вже відому більшість: fast alle з дієсловом у множині, niemand — в однині. Потім поступка з'являється двічі: один раз згорнута в obwohl, один раз розкладена через trotzdem. Поправка відкидає все подвір'я і ставить на його місце передню половину, а фінальне підрядне з was указує на всю пропозицію загалом."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Zuerst wird der Raum gezählt, damit der Einwand auf eine bekannte Mehrheit trifft: fast alle mit pluralem Verb, niemand mit singularem. Dann taucht das Zugeständnis zweimal auf, einmal in obwohl gefaltet, einmal über trotzdem verteilt. Die Korrektur verneint den ganzen Hof und setzt die vordere Hälfte an seine Stelle, und der was-Satz am Ende zeigt auf den ganzen Vorschlag."
+
+  - id: sprechen-einwand
+    outcomes: [einwand-ausdruecken]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Answer Herr Weber aloud, in one connected turn — then compare with the model."
+      ru: "Ответьте господину Веберу вслух, одним связным ходом, — затем сравните с образцом."
+      uk: "Відповідайте панові Веберу вголос, одним зв'язним ходом, — потім порівняйте зі зразком."
+      de: "Antworte Herrn Weber laut, in einem zusammenhängenden Zug — vergleich dann mit dem Muster."
+    prompt:
+      en: "Herr Weber says at the meeting: „Der ganze Hof wird ein Parkplatz — anders geht es nicht.“ Answer him: grant his point first, then raise your objection with obwohl or trotzdem, and correct his proposal with nicht …, sondern …."
+      ru: "На собрании господин Вебер говорит: „Der ganze Hof wird ein Parkplatz — anders geht es nicht.“ Ответьте ему: сначала признайте его довод, потом выскажите возражение через obwohl или trotzdem и поправьте его предложение через nicht …, sondern …."
+      uk: "На зборах пан Вебер каже: „Der ganze Hof wird ein Parkplatz — anders geht es nicht.“ Відповідайте йому: спершу визнайте його довід, потім висловте заперечення через obwohl або trotzdem і поправте його пропозицію через nicht …, sondern …."
+      de: "Herr Weber sagt in der Versammlung: „Der ganze Hof wird ein Parkplatz — anders geht es nicht.“ Antworte ihm: Gib ihm zuerst recht, nenn dann deinen Einwand mit obwohl oder trotzdem und korrigier seinen Vorschlag mit nicht …, sondern …."
+    goal:
+      en: "An objection that concedes before it contradicts and ends with a concrete correction — the spoken move this unit is built on."
+      ru: "Возражение, которое сначала уступает, а потом противоречит и заканчивается конкретной поправкой, — тот самый устный ход, на котором держится эта глава."
+      uk: "Заперечення, яке спершу поступається, а потім суперечить і закінчується конкретною поправкою, — той самий усний хід, на якому тримається цей розділ."
+      de: "Ein Einwand, der erst einräumt, dann widerspricht und mit einer konkreten Korrektur endet — der gesprochene Zug, auf dem diese Einheit steht."
+    checklist:
+      - en: "You granted his point before you objected — Da haben Sie recht, Ich verstehe Ihren Einwand — so the objection arrived as a difference of opinion, not as a quarrel."
+        ru: "Вы признали его довод, прежде чем возразить, — Da haben Sie recht, Ich verstehe Ihren Einwand, — и возражение прозвучало как расхождение во мнениях, а не как ссора."
+        uk: "Ви визнали його довід, перш ніж заперечити, — Da haben Sie recht, Ich verstehe Ihren Einwand, — і заперечення прозвучало як розбіжність у думках, а не як сварка."
+        de: "Du hast ihm zuerst recht gegeben — Da haben Sie recht, Ich verstehe Ihren Einwand —, sodass der Einwand als Meinungsverschiedenheit ankam und nicht als Streit."
+      - en: "The concession sat in the right word class: obwohl with the finite verb at the end of its clause, or trotzdem in position 1 of a new main clause with the verb straight behind it."
+        ru: "Уступка стояла в верной части речи: obwohl со спрягаемым глаголом в конце придаточного или trotzdem на первой позиции нового главного предложения, с глаголом сразу за ним."
+        uk: "Поступка стояла у правильній частині мови: obwohl із відмінюваним дієсловом у кінці підрядного або trotzdem на першій позиції нового головного речення, з дієсловом одразу за ним."
+        de: "Das Zugeständnis stand in der richtigen Wortart: obwohl mit dem finiten Verb am Ende seines Nebensatzes oder trotzdem auf Position 1 eines neuen Hauptsatzes, das Verb direkt dahinter."
+      - en: "The correction used nicht …, sondern … and replaced exactly what it denied — not the whole courtyard, but one named part of it."
+        ru: "Поправка шла через nicht …, sondern … и подставляла ровно то, что отвергала: не весь двор, а названную его часть."
+        uk: "Поправка йшла через nicht …, sondern … і підставляла саме те, що відкидала: не все подвір'я, а названу його частину."
+        de: "Die Korrektur lief über nicht …, sondern … und ersetzte genau das Verneinte — nicht den ganzen Hof, sondern einen benannten Teil davon."
+    model_answer: "Da haben Sie recht, Herr Weber, abends ist im Hof wirklich kein Platz mehr. Ich verstehe Ihren Einwand gut. Obwohl ich Verständnis für die Autofahrer habe, wohnen hier auch acht Kinder. Trotzdem müssen wir eine Lösung für beide finden. Ich schlage deshalb vor: nicht den ganzen Hof, sondern nur die hintere Hälfte für die Autos. So bekommt jeder etwas."
+    model_translation:
+      en: "You are right there, Herr Weber, in the evening there really is no space left in the courtyard. I understand your objection well. Although I have sympathy for the drivers, eight children live here too. All the same, we have to find a solution for both. So I suggest: not the whole courtyard, but only the back half for the cars. That way everybody gets something."
+      ru: "Тут вы правы, господин Вебер, вечером во дворе действительно не остаётся места. Я хорошо понимаю ваше возражение. Хотя я с пониманием отношусь к автомобилистам, здесь живут и восемь детей. И всё же нам нужно найти решение для обеих сторон. Поэтому я предлагаю: не весь двор, а только заднюю половину под машины. Так каждый что-то получит."
+      uk: "Тут ви маєте рацію, пане Вебер, увечері у дворі справді не лишається місця. Я добре розумію ваше заперечення. Хоча я з розумінням ставлюся до автомобілістів, тут живуть і восьмеро дітей. І все ж нам треба знайти рішення для обох сторін. Тому я пропоную: не все подвір'я, а лише задню половину під машини. Так кожен щось отримає."
+    explain:
+      en: "The model runs the checklist in order: two lines of agreement, then the concession twice — obwohl with habe at the end of its clause, trotzdem with müssen straight behind it — and finally the correction, which denies the whole courtyard and names the half it replaces it with. If you want a second take, listen for where the finite verb lands after each of the two concession words."
+      ru: "Образец идёт по чек-листу по порядку: две строки согласия, затем уступка дважды — obwohl с habe в конце придаточного и trotzdem с müssen сразу за ним, — и наконец поправка, которая отвергает весь двор и называет половину, ставшую на его место. Захотите второй заход — слушайте, куда приземляется спрягаемый глагол после каждого из двух слов уступки."
+      uk: "Зразок іде за чек-листом по порядку: два рядки згоди, потім поступка двічі — obwohl із habe в кінці підрядного і trotzdem із müssen одразу за ним, — і нарешті поправка, яка відкидає все подвір'я і називає половину, що стала на його місце. Захочете другий захід — слухайте, куди приземляється відмінюване дієслово після кожного з двох слів поступки."
+      de: "Das Muster geht die Checkliste der Reihe nach durch: zwei Zeilen Zustimmung, dann das Zugeständnis zweimal — obwohl mit habe am Ende seines Nebensatzes, trotzdem mit müssen direkt dahinter — und schließlich die Korrektur, die den ganzen Hof verneint und die Hälfte benennt, die an seine Stelle tritt. Magst du einen zweiten Durchgang, hör darauf, wo das finite Verb nach jedem der beiden Wörter landet."
+
+  - id: sprechen-kompromiss
+    outcomes: [kompromiss-vorschlagen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Take the floor aloud and propose the compromise — then compare with the model."
+      ru: "Возьмите слово вслух и предложите компромисс — затем сравните с образцом."
+      uk: "Візьміть слово вголос і запропонуйте компроміс — потім порівняйте зі зразком."
+      de: "Melde dich laut zu Wort und schlag den Kompromiss vor — vergleich dann mit dem Muster."
+    prompt:
+      en: "The discussion is stuck: three proposals, no majority, everybody talking at once. You raise your hand. Sum up briefly where the building stands, using alle, einige and niemand; then propose a compromise; and end with a was-clause saying what it means for everybody."
+      ru: "Обсуждение встало: три предложения, большинства нет, все говорят разом. Вы поднимаете руку. Коротко подведите итог, где стоит дом, — через alle, einige и niemand; затем предложите компромисс; и закончите придаточным с was, которое скажет, что он даёт всем."
+      uk: "Обговорення стало: три пропозиції, більшості немає, усі говорять разом. Ви піднімаєте руку. Коротко підсумуйте, де стоїть будинок, — через alle, einige та niemand; потім запропонуйте компроміс; і закінчіть підрядним із was, яке скаже, що він дає всім."
+      de: "Die Diskussion steckt fest: drei Vorschläge, keine Mehrheit, alle reden durcheinander. Du meldest dich. Fass kurz zusammen, wo das Haus steht — mit alle, einige und niemand —, schlag dann einen Kompromiss vor und schließ mit einem was-Satz, der sagt, was er für alle bedeutet."
+    goal:
+      en: "A compromise proposed out loud, counted in before it is made and closed with what it gives everybody — the spoken outcome of this unit."
+      ru: "Компромисс, произнесённый вслух: сначала пересчитанный зал, потом само предложение, в конце — то, что оно даёт всем; устный итог этой главы."
+      uk: "Компроміс, вимовлений уголос: спершу перерахована зала, потім сама пропозиція, наприкінці — те, що вона дає всім; усний підсумок цього розділу."
+      de: "Ein laut vorgeschlagener Kompromiss: erst der gezählte Raum, dann der Vorschlag, am Ende, was er allen bringt — das gesprochene Ergebnis dieser Einheit."
+    checklist:
+      - en: "The summary counted the room with the quantifiers that decline, each with its own verb number: alle wollen, einige brauchen, niemand will."
+        ru: "Итог пересчитывал зал склоняемыми количественными словами, каждое со своим числом глагола: alle wollen, einige brauchen, niemand will."
+        uk: "Підсумок перераховував залу відмінюваними кількісними словами, кожне зі своїм числом дієслова: alle wollen, einige brauchen, niemand will."
+        de: "Die Zusammenfassung zählte den Raum mit den Quantoren, die sich beugen, jeder mit seinem eigenen Verbnumerus: alle wollen, einige brauchen, niemand will."
+      - en: "The proposal itself was concrete and had a frame: Ich schlage vor, dass … or Einigen wir uns auf … + Akkusativ, with a real division and a real deadline."
+        ru: "Само предложение было конкретным и имело рамку: Ich schlage vor, dass … или Einigen wir uns auf … + Akkusativ, с реальным разделом и реальным сроком."
+        uk: "Сама пропозиція була конкретною і мала рамку: Ich schlage vor, dass … або Einigen wir uns auf … + Akkusativ, із реальним поділом і реальним строком."
+        de: "Der Vorschlag selbst war konkret und hatte einen Rahmen: Ich schlage vor, dass … oder Einigen wir uns auf … + Akkusativ, mit einer echten Teilung und einer echten Frist."
+      - en: "The closing clause used was, pointing back at the whole proposal rather than at one noun — was uns allen genug Zeit gibt — with the finite verb last."
+        ru: "Заключительное придаточное шло через was и указывало на всё предложение целиком, а не на отдельное существительное, — was uns allen genug Zeit gibt, — со спрягаемым глаголом в конце."
+        uk: "Заключне підрядне йшло через was і вказувало на всю пропозицію загалом, а не на окремий іменник, — was uns allen genug Zeit gibt, — із відмінюваним дієсловом у кінці."
+        de: "Der Schlusssatz lief über was und zeigte auf den ganzen Vorschlag statt auf ein einzelnes Nomen — was uns allen genug Zeit gibt — mit dem finiten Verb zuletzt."
+    model_answer: "Darf ich kurz zusammenfassen? Alle wollen den Hof schöner machen, einige brauchen abends einen Parkplatz, und niemand will den ganzen Sommer streiten. Ich schlage deshalb vor, dass wir den Hof teilen: vorne der Spielplatz, hinten zwei Parkplätze. Den Garten machen wir nächstes Jahr. Einigen wir uns erst einmal auf ein Jahr, was uns allen genug Zeit gibt."
+    model_translation:
+      en: "May I sum up briefly? Everybody wants to make the courtyard nicer, some need a parking space in the evening, and nobody wants to argue all summer. So I suggest that we divide the courtyard: the playground at the front, two parking spaces at the back. We will do the garden next year. Let us agree on one year to begin with, which gives us all enough time."
+      ru: "Можно я коротко подведу итог? Все хотят сделать двор красивее, некоторым вечером нужно парковочное место, и никто не хочет спорить всё лето. Поэтому я предлагаю разделить двор: спереди площадка, сзади два парковочных места. Сад сделаем в следующем году. Договоримся для начала на один год, что даст всем нам достаточно времени."
+      uk: "Можна я коротко підсумую? Усі хочуть зробити подвір'я гарнішим, декому ввечері потрібне паркомісце, і ніхто не хоче сперечатися ціле літо. Тому я пропоную поділити подвір'я: спереду майданчик, ззаду два паркомісця. Сад зробимо наступного року. Домовмося для початку на один рік, що дасть усім нам достатньо часу."
+    explain:
+      en: "Notice the order the model works in. The room is counted first, so nobody can say the proposal ignored them — and each quantifier takes its own verb number. Only then comes the division, concrete enough to vote on, with a deadline that makes it reversible. The was-clause at the end names the gain, and because it points at the whole proposal it can be nothing but was."
+      ru: "Обратите внимание на порядок, в котором работает образец. Сначала пересчитан зал, и уже никто не скажет, что предложение его не заметило, — причём каждое количественное слово берёт своё число глагола. Только потом идёт раздел, достаточно конкретный, чтобы за него голосовать, и со сроком, который делает его обратимым. Придаточное с was в конце называет выигрыш, а поскольку оно указывает на всё предложение, ничем, кроме was, оно быть не может."
+      uk: "Зверніть увагу на порядок, у якому працює зразок. Спершу перерахована зала, і вже ніхто не скаже, що пропозиція його не помітила, — причому кожне кількісне слово бере своє число дієслова. Лише потім іде поділ, достатньо конкретний, щоб за нього голосувати, і зі строком, який робить його оборотним. Підрядне з was наприкінці називає виграш, а оскільки воно вказує на всю пропозицію, нічим, крім was, воно бути не може."
+      de: "Achte auf die Reihenfolge des Musters. Zuerst wird der Raum gezählt, sodass niemand sagen kann, der Vorschlag habe ihn übergangen — und jeder Quantor nimmt seinen eigenen Verbnumerus. Erst dann kommt die Teilung, konkret genug zum Abstimmen, mit einer Frist, die sie rückgängig machbar hält. Der was-Satz am Ende benennt den Gewinn, und weil er auf den ganzen Vorschlag zeigt, kann er nichts anderes als was sein."

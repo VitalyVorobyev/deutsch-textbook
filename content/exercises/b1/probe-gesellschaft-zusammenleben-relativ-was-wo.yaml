@@ -1,0 +1,107 @@
+# Delayed probe family 3 of 3 — ONE competence: reaching for the relative word that does
+# not agree, cold — was after an antecedent with no gender, wo after a place. Three
+# parallel cloze variants, each a two-sentence note from the same building with one gap of
+# each kind, served in authoring order across the 2/7/21 delays — one retention curve over
+# one choice.
+#
+# Cloze rather than translate: the confusion is which WORD stands in the slot, never where
+# a word stands, so the gap is the graded token and every miss is attributed (the
+# B1.7/B1.8 family-1 precedent). Word order is unchanged from A2 here — the relative
+# clause is a Nebensatz and its finite verb stands last either way — so this family owes no
+# position evidence and P18-6 does not apply to it. The one thing a cloze could not grade,
+# the verb at the clause end, is already graded by the practice translate
+# (uebersetzen-alles-was pins entscheiden) and by uebersetzen-wo-ecke (pins können).
+#
+# The instruction states the two triggers — an antecedent with no gender, and a place —
+# and never the words, which is the falls-wenn precedent exactly: name the situation the
+# rule keys on, grade the word the learner produces for it. Both gaps are forced on the
+# was side (after nichts, etwas and viel nothing else is grammatical), and the wo gap
+# accepts its longer sibling as well (an der / auf dem / in dem), because wo and
+# preposition-plus-pronoun are both correct German and a probe with three lifetime stages
+# must never fail a learner for the more explicit one.
+#
+# Content fresh against the practice union, the article and the reading, checked by
+# grepping each antecedent, noun and verb across content/. The taught antecedents are das
+# Beste (cloze-was-wo), a whole preceding clause (mc-was-satzbezug) and alles
+# (uebersetzen-alles-was, and the article's Das ist alles, was wir heute entscheiden
+# können); this family uses the three the taught surface never uses — nichts, etwas, viel.
+# The taught places are die Wiese, wo alte Fahrräder liegen and eine Ecke, wo die Kinder
+# spielen können (uebersetzen-wo-ecke), plus der Hof, wo die Autos stehen in the reading;
+# none of die Stelle, der Platz vor dem Haus or der Raum neben dem Eingang carries a
+# relative clause anywhere in this unit.
+#
+# arming: the four practice items in which the learner supplies or picks the relative word
+# — the cloze, the mc that puts das against was, and the two translates. Nothing else in
+# the unit carries this tag.
+topic: gesellschaft-zusammenleben
+role: probe
+title:
+  en: "Delayed check — the relative words with no gender"
+  ru: "Отложенная проверка — относительные слова без рода"
+  uk: "Відкладена перевірка — відносні слова без роду"
+  de: "Kontrolle mit Abstand — die Relativwörter ohne Genus"
+arming:
+  - b1/gesellschaft-zusammenleben::cloze-was-wo
+  - b1/gesellschaft-zusammenleben::mc-was-satzbezug
+  - b1/gesellschaft-zusammenleben::uebersetzen-alles-was
+  - b1/gesellschaft-zusammenleben-produktion::uebersetzen-wo-ecke
+items:
+  - id: variant-a
+    outcomes: [kompromiss-vorschlagen]
+    type: cloze
+    focus: relativ-was-wo
+    instruction:
+      en: "Fill in the two relative words. The first antecedent has no gender for a relative pronoun to agree with; the second is a place — one word does it there, and the longer preposition-plus-pronoun form is accepted too."
+      ru: "Впишите два относительных слова. У первого опорного слова нет рода, с которым согласовалось бы относительное местоимение; второе — обозначение места: там хватит одного слова, но принимается и более длинная форма «предлог + местоимение»."
+      uk: "Впишіть два відносні слова. У першого опорного слова немає роду, з яким узгоджувався б відносний займенник; друге — позначення місця: там вистачить одного слова, але приймається й довша форма «прийменник + займенник»."
+      de: "Ergänze die zwei Relativwörter. Das erste Bezugswort hat kein Genus, nach dem sich ein Relativpronomen richten könnte; das zweite ist ein Ort — dort genügt ein Wort, und die längere Form aus Präposition und Pronomen wird ebenfalls akzeptiert."
+    text: "Herr Lorenz hat nichts gesagt, {{was}} gegen den Plan spricht. Der Garten kommt an die Stelle, {{wo|an der}} jetzt die Mülltonnen stehen."
+    translation:
+      en: "Herr Lorenz said nothing that speaks against the plan. The garden is going in the spot where the bins are standing at the moment."
+      ru: "Господин Лоренц не сказал ничего, что говорило бы против плана. Сад появится на том месте, где сейчас стоят мусорные баки."
+      uk: "Пан Лоренц не сказав нічого, що промовляло б проти плану. Сад з'явиться на тому місці, де зараз стоять смітники."
+    explain:
+      en: "nichts belongs to the small set with no gender at all — alles, etwas, nichts, viel, wenig — so a relative pronoun would have nothing to agree with and the relative word is was. das is the error this check exists for: English covers both German words with 'that' and 'which', so the familiar form comes first to hand. The second clause points at a place, and there wo stands in for a whole preposition plus pronoun: die Stelle, an der → die Stelle, wo. Both clauses stay Nebensätze, with spricht and stehen at the end."
+      ru: "nichts принадлежит к небольшой группе слов без рода вовсе — alles, etwas, nichts, viel, wenig, — поэтому согласовываться относительному местоимению не с чем, и относительное слово это was. das — ошибка, ради которой эта проверка и существует: русское «что» одно на оба немецких слова, и первым под руку попадает знакомое das. Второе придаточное указывает на место, и там wo заменяет целую связку «предлог + местоимение»: die Stelle, an der → die Stelle, wo. Оба придаточных остаются придаточными: spricht и stehen в конце."
+      uk: "nichts належить до невеликої групи слів, що не мають роду взагалі — alles, etwas, nichts, viel, wenig, — тому узгоджуватися відносному займенникові нема з чим, і відносне слово це was. das — помилка, заради якої ця перевірка й існує: українське «що» одне на обидва німецькі слова, і першим під руку трапляється знайоме das. Друге підрядне вказує на місце, і там wo заміняє цілу зв'язку «прийменник + займенник»: die Stelle, an der → die Stelle, wo. Обидва підрядні лишаються підрядними: spricht і stehen у кінці."
+      de: "nichts gehört zu der kleinen Gruppe ohne jedes Genus — alles, etwas, nichts, viel, wenig —, also hätte ein Relativpronomen nichts, wonach es sich richten könnte, und das Relativwort heißt was. das ist der Fehler, für den diese Kontrolle da ist: Die Ausgangssprachen decken beide deutschen Wörter mit einem einzigen ab, also greift die Hand zur vertrauten Form. Der zweite Satz zeigt auf einen Ort, und dort steht wo für eine ganze Verbindung aus Präposition und Pronomen: die Stelle, an der → die Stelle, wo. Beide bleiben Nebensätze, mit spricht und stehen am Ende."
+
+  - id: variant-b
+    outcomes: [kompromiss-vorschlagen]
+    type: cloze
+    focus: relativ-was-wo
+    instruction:
+      en: "Fill in the two relative words. The first antecedent has no gender for a relative pronoun to agree with; the second is a place — one word does it there, and the longer preposition-plus-pronoun form is accepted too."
+      ru: "Впишите два относительных слова. У первого опорного слова нет рода, с которым согласовалось бы относительное местоимение; второе — обозначение места: там хватит одного слова, но принимается и более длинная форма «предлог + местоимение»."
+      uk: "Впишіть два відносні слова. У першого опорного слова немає роду, з яким узгоджувався б відносний займенник; друге — позначення місця: там вистачить одного слова, але приймається й довша форма «прийменник + займенник»."
+      de: "Ergänze die zwei Relativwörter. Das erste Bezugswort hat kein Genus, nach dem sich ein Relativpronomen richten könnte; das zweite ist ein Ort — dort genügt ein Wort, und die längere Form aus Präposition und Pronomen wird ebenfalls akzeptiert."
+    text: "Am Schwarzen Brett hing etwas, {{was}} mich sehr gefreut hat: eine Einladung zum Sommerfest. Das Fest findet auf dem Platz vor dem Haus statt, {{wo|auf dem}} sonst die Autos parken."
+    translation:
+      en: "There was something on the notice board that really pleased me: an invitation to the summer party. The party is taking place on the square in front of the house, where the cars usually park."
+      ru: "На доске объявлений висело кое-что, что меня очень порадовало: приглашение на летний праздник. Праздник пройдёт на площадке перед домом, где обычно паркуются машины."
+      uk: "На дошці оголошень висіло дещо, що мене дуже втішило: запрошення на літнє свято. Свято відбудеться на майданчику перед будинком, де зазвичай паркуються автівки."
+    explain:
+      en: "etwas is the positive twin of nichts and behaves the same way: no gender, so no pronoun can agree with it, and the relative word is was. Note that this clause is a full Nebensatz with its own subject and object — the was is not a filler, it is the subject of gefreut hat. The place clause takes wo, which saves both the preposition and its case: auf dem Platz, auf dem → auf dem Platz, wo. Writing das after etwas is the one move that is simply wrong."
+      ru: "etwas — положительный близнец nichts и ведёт себя так же: рода нет, согласовываться местоимению не с чем, и относительное слово это was. Обратите внимание: это полноценное придаточное со своим подлежащим и дополнением — was здесь не затычка, а подлежащее при gefreut hat. Придаточное места берёт wo, и это экономит и предлог, и падеж: auf dem Platz, auf dem → auf dem Platz, wo. Написать das после etwas — единственный ход, который просто неверен."
+      uk: "etwas — позитивний близнюк nichts і поводиться так само: роду немає, узгоджуватися займенникові нема з чим, і відносне слово це was. Зверніть увагу: це повноцінне підрядне зі своїм підметом і додатком — was тут не затичка, а підмет при gefreut hat. Підрядне місця бере wo, і це заощаджує і прийменник, і відмінок: auf dem Platz, auf dem → auf dem Platz, wo. Написати das після etwas — єдиний хід, що просто хибний."
+      de: "etwas ist der positive Zwilling von nichts und verhält sich genauso: kein Genus, also kann sich kein Pronomen danach richten, und das Relativwort heißt was. Und dieser Satz ist ein vollständiger Nebensatz mit eigenem Subjekt und Objekt — das was ist kein Füllsel, sondern das Subjekt von gefreut hat. Der Ortssatz nimmt wo, und das spart Präposition und Kasus zugleich: auf dem Platz, auf dem → auf dem Platz, wo. das nach etwas ist der eine Zug, der schlicht falsch ist."
+
+  - id: variant-c
+    outcomes: [kompromiss-vorschlagen]
+    type: cloze
+    focus: relativ-was-wo
+    instruction:
+      en: "Fill in the two relative words. The first antecedent has no gender for a relative pronoun to agree with; the second is a place — one word does it there, and the longer preposition-plus-pronoun form is accepted too."
+      ru: "Впишите два относительных слова. У первого опорного слова нет рода, с которым согласовалось бы относительное местоимение; второе — обозначение места: там хватит одного слова, но принимается и более длинная форма «предлог + местоимение»."
+      uk: "Впишіть два відносні слова. У першого опорного слова немає роду, з яким узгоджувався б відносний займенник; друге — позначення місця: там вистачить одного слова, але приймається й довша форма «прийменник + займенник»."
+      de: "Ergänze die zwei Relativwörter. Das erste Bezugswort hat kein Genus, nach dem sich ein Relativpronomen richten könnte; das zweite ist ein Ort — dort genügt ein Wort, und die längere Form aus Präposition und Pronomen wird ebenfalls akzeptiert."
+    text: "Auf der Liste steht noch viel, {{was}} wir heute nicht schaffen. Der letzte Punkt ist der Raum neben dem Eingang, {{wo|in dem}} seit Jahren niemand mehr aufgeräumt hat."
+    translation:
+      en: "There is still a lot on the list that we will not manage today. The last item is the room next to the entrance, where nobody has tidied up for years."
+      ru: "В списке ещё много такого, чего мы сегодня не успеем. Последний пункт — комната рядом со входом, где уже много лет никто не убирался."
+      uk: "У списку ще багато такого, чого ми сьогодні не встигнемо. Останній пункт — кімната поруч зі входом, де вже багато років ніхто не прибирав."
+    explain:
+      en: "viel is the least obvious member of the genderless set, because it looks like an ordinary adjective — but standing alone as an antecedent it has no gender either, and the relative word is was, exactly as after alles, etwas, nichts and wenig. The room is a place, so wo does the work of in dem: der Raum, in dem → der Raum, wo. The clause is still a Nebensatz, and its finite verb is the auxiliary at the very end — aufgeräumt hat, in that order."
+      ru: "viel — наименее очевидный член группы без рода, потому что выглядит как обычное прилагательное; но в роли опорного слова рода у него тоже нет, и относительное слово это was — ровно как после alles, etwas, nichts и wenig. Комната — место, поэтому работу in dem выполняет wo: der Raum, in dem → der Raum, wo. Придаточное остаётся придаточным, и его спрягаемый глагол — вспомогательный, в самом конце: aufgeräumt hat, именно в этом порядке."
+      uk: "viel — найменш очевидний член групи без роду, бо виглядає як звичайний прикметник; але в ролі опорного слова роду в нього теж немає, і відносне слово це was — рівно як після alles, etwas, nichts і wenig. Кімната — місце, тому роботу in dem виконує wo: der Raum, in dem → der Raum, wo. Підрядне лишається підрядним, і його відмінюване дієслово — допоміжне, у самому кінці: aufgeräumt hat, саме в цьому порядку."
+      de: "viel ist das unauffälligste Mitglied der Gruppe ohne Genus, denn es sieht aus wie ein gewöhnliches Adjektiv — aber als Bezugswort hat auch es kein Genus, und das Relativwort heißt was, genau wie nach alles, etwas, nichts und wenig. Der Raum ist ein Ort, also übernimmt wo die Arbeit von in dem: der Raum, in dem → der Raum, wo. Der Satz bleibt ein Nebensatz, und sein finites Verb ist das Hilfsverb ganz am Ende — aufgeräumt hat, in dieser Reihenfolge."

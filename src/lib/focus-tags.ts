@@ -111,4 +111,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'damit-um-zu': 'lernen-zukunft',
   'falls-wenn': 'lernen-zukunft',
   'ohne-statt-zu': 'lernen-zukunft',
+  'obwohl-trotzdem': 'gesellschaft-zusammenleben',
+  'indefinitpronomen-erweitert': 'gesellschaft-zusammenleben',
+  'relativ-was-wo': 'gesellschaft-zusammenleben',
 };

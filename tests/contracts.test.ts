@@ -570,7 +570,15 @@ describe('cards: recognition | both', () => {
     // (Zertifikat … Studie): course-catalogue and classroom-role vocabulary a B1
     // learner reads on a school's notice board or in its programme but is not asked
     // to produce.
-    expect(cards).toBe(entries * 2 - 100);
+    // B1.10 (gesellschaft-zusammenleben, 2026-08-03) adds twenty — eighteen are the
+    // deck's receptive tail (Gesellschaft … gerecht): the courtyard, the notice board
+    // and the people around a Hausversammlung, which a B1 learner reads on an Aushang
+    // or hears across the room but is not asked to produce. The other two, `nachgeben`
+    // and `gegenseitig`, are off the Goethe-B1 manifest and named by no frozen outcome,
+    // so they earn one card rather than two; `Einwand` and `Meinungsverschiedenheit` are
+    // off-manifest too and stay core, because the unit's own atlas outcomes contain
+    // those words (`einwand-ausdruecken`, "bei einer Meinungsverschiedenheit").
+    expect(cards).toBe(entries * 2 - 120);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
