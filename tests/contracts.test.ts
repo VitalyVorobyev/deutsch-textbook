@@ -578,7 +578,16 @@ describe('cards: recognition | both', () => {
     // so they earn one card rather than two; `Einwand` and `Meinungsverschiedenheit` are
     // off-manifest too and stay core, because the unit's own atlas outcomes contain
     // those words (`einwand-ausdruecken`, "bei einer Meinungsverschiedenheit").
-    expect(cards).toBe(entries * 2 - 120);
+    // The Wortliste completion pass (2026-08-03) starts here, and it is the first source
+    // of recognition-only entries that is not a unit deck: `konnektoren-partikeln-b1`
+    // adds twenty-two — the modal particles (eben, halt, wohl, bloß, gar, zwar, nun,
+    // überhaupt), the discourse markers (okay, sowieso, selbstverständlich, meinetwegen,
+    // offenbar) and the connectors whose EN/RU prompt more than one German word
+    // answers (seitdem/seit, solange, indem, als ob, soviel, beziehungsweise, umso,
+    // wieso, and daher against A2's shipped deshalb and also). A typed production card
+    // cannot fairly grade "the particle meaning ведь", and per the amendment in
+    // docs/curriculum-a2-b1.md recognition stays over half of every completion deck.
+    expect(cards).toBe(entries * 2 - 142);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

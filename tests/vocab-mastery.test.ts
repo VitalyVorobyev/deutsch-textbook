@@ -39,8 +39,9 @@ describe('combined vocabulary mastery', () => {
   });
 });
 
-// `cards: recognition` exists because two-cards-per-entry does not survive B1: 1996 more
-// Goethe-B1 headwords at two cards each is ~7230 cards and ~460 days of introduction at
+// `cards: recognition` exists because two-cards-per-entry does not survive B1: the 1694
+// Goethe-B1 headwords still missing (`bun scripts/coverage.ts B1`) at two cards each is
+// ~3400 cards on top of today's 3742, i.e. ~460 days of introduction at
 // DAILY_NEW_CARDS = 15. The mechanism has two hazards, and both are pinned here.
 describe('recognition-only entries', () => {
   test('a one-direction word is graded on the direction it has', () => {
