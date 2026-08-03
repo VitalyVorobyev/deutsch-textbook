@@ -1,0 +1,602 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the subordinators,
+# sentence connectors and modal particles of data/goethe-b1-wortliste.txt.
+id: konnektoren-partikeln-b1
+title_de: "Konnektoren und Partikeln"
+title_en: "Connectors and modal particles"
+title_ru: "Союзы, связки и модальные частицы"
+title_uk: "Сполучники, зв’язки та модальні частки"
+level: B1
+entries:
+  # --- Nebensatzkonnektoren: Zeit, Bedingung, Zweck, Folge, Art und Weise ---
+  - de: bevor
+    ipa: "bəˈfoːɐ̯"
+    pos: conj
+    en: before (conjunction)
+    ru: прежде чем, до того как
+    uk: перш ніж, до того як
+    example_de: Bevor du das Formular abschickst, lies es bitte noch einmal.
+    example_en: Before you send the form off, please read it through once more.
+    example_ru: Прежде чем отправлять бланк, прочитай его ещё раз.
+    example_uk: Перш ніж надсилати бланк, прочитай його ще раз.
+    note:
+      en: 'It opens a Nebensatz, so the finite verb walks to the very end. No Plusquamperfekt is needed: the conjunction itself already says which event came first, so both halves may stay in the same tense. The preposition with the same meaning is vor + Dativ and takes a noun instead of a clause: vor dem Abschicken.'
+      ru: 'Открывает Nebensatz, поэтому спрягаемый глагол уходит в самый конец. Plusquamperfekt не нужен: союз сам говорит, что было раньше, поэтому обе части могут стоять в одном времени. Предлог с тем же значением — vor + Dativ, он берёт существительное, а не придаточное: vor dem Abschicken.'
+      uk: 'Відкриває Nebensatz, тому відмінюване дієслово йде в самий кінець. Plusquamperfekt не потрібен: сполучник сам каже, що було раніше, тож обидві частини можуть стояти в одному часі. Прийменник із тим самим значенням — vor + Dativ, він бере іменник, а не підрядне: vor dem Abschicken.'
+
+  - de: nachdem
+    ipa: "naːxˈdeːm"
+    pos: conj
+    en: after (conjunction)
+    ru: после того как
+    uk: після того як
+    example_de: Nachdem ich die Prüfung bestanden hatte, suchte ich eine neue Stelle.
+    example_en: After I had passed the exam, I looked for a new job.
+    example_ru: После того как я сдал экзамен, я стал искать новую работу.
+    example_uk: Після того як я склав іспит, я почав шукати нову роботу.
+    note:
+      en: 'A Nebensatz with the finite verb at the end, and it demands the step down into the Plusquamperfekt: the earlier event takes hatte/war + Partizip II, the later one follows in Präteritum or Perfekt. The whole clause fills position 1, so the main clause opens with its verb right after the comma. For a noun instead of a clause use nach + Dativ: nach der Prüfung.'
+      ru: 'Nebensatz со спрягаемым глаголом в конце, и он требует шага в Plusquamperfekt: более раннее событие берёт hatte/war + Partizip II, более позднее идёт в Präteritum или Perfekt. Всё придаточное занимает первое место, поэтому главное открывается своим глаголом сразу после запятой. Для существительного вместо придаточного есть nach + Dativ: nach der Prüfung.'
+      uk: 'Nebensatz із відмінюваним дієсловом у кінці, і він вимагає кроку в Plusquamperfekt: раніша подія бере hatte/war + Partizip II, пізніша йде в Präteritum або Perfekt. Усе підрядне займає перше місце, тому головне відкривається своїм дієсловом одразу після коми. Для іменника замість підрядного є nach + Dativ: nach der Prüfung.'
+
+  - de: seitdem
+    ipa: "zaɪ̯tˈdeːm"
+    pos: conj
+    cards: recognition
+    en: ever since; since then
+    ru: с тех пор как; с тех пор
+    uk: відтоді як; відтоді
+    example_de: Seitdem ich in München wohne, spreche ich jeden Tag Deutsch.
+    example_en: Ever since I have been living in Munich I have spoken German every day.
+    example_ru: С тех пор как я живу в Мюнхене, я каждый день говорю по-немецки.
+    example_uk: Відтоді як я живу в Мюнхені, я щодня розмовляю німецькою.
+    note:
+      en: 'Two roles. As a conjunction it opens a Nebensatz with the finite verb at the end and marks an interval that is still running, so German keeps the Präsens where English uses a perfect. As an adverb it stands alone in position 1 and the verb follows at once: Seitdem geht es mir besser. The conjunction seit means exactly the same and is just as correct; for a noun the preposition is seit + Dativ (seit einem Jahr).'
+      ru: 'Две роли. Как союз открывает Nebensatz с глаголом в конце и обозначает интервал, который длится до сих пор, поэтому по-немецки стоит Präsens там, где по-русски прошедшее время. Как наречие занимает первое место в одиночку, и глагол идёт сразу за ним: Seitdem geht es mir besser. Союз seit значит ровно то же и так же правилен; для существительного берут предлог seit + Dativ (seit einem Jahr).'
+      uk: 'Дві ролі. Як сполучник відкриває Nebensatz із дієсловом у кінці й позначає інтервал, що триває досі, тому німецькою стоїть Präsens там, де українською минулий час. Як прислівник займає перше місце самотужки, і дієслово йде одразу за ним: Seitdem geht es mir besser. Сполучник seit значить те саме і так само правильний; для іменника беруть прийменник seit + Dativ (seit einem Jahr).'
+
+  - de: solange
+    ipa: "zoˈlaŋə"
+    pos: conj
+    cards: recognition
+    en: as long as, for as long as
+    ru: пока, до тех пор пока
+    uk: поки, доки
+    example_de: Solange es regnet, bleiben wir im Café.
+    example_en: As long as it is raining, we are staying in the cafe.
+    example_ru: Пока идёт дождь, мы остаёмся в кафе.
+    example_uk: Поки йде дощ, ми залишаємося в кафе.
+    note:
+      en: 'It marks two things running in parallel: the main clause holds for exactly the stretch this clause lasts. Like every temporal conjunction it opens a Nebensatz and sends the finite verb to the end, and a fronted clause fills position 1, so the main clause opens with its verb. Written as two words, so lange is the adverb for such a long time (Ich habe so lange gewartet).'
+      ru: 'Обозначает два процесса, идущих параллельно: главное предложение верно ровно столько, сколько длится это придаточное. Как всякий временной союз открывает Nebensatz и отправляет спрягаемый глагол в конец, а вынесенное вперёд придаточное занимает первое место, поэтому главное открывается глаголом. В два слова so lange — это наречие «так долго» (Ich habe so lange gewartet).'
+      uk: 'Позначає два процеси, що йдуть паралельно: головне речення чинне рівно стільки, скільки триває це підрядне. Як усякий часовий сполучник відкриває Nebensatz і відправляє відмінюване дієслово в кінець, а винесене вперед підрядне займає перше місце, тому головне відкривається дієсловом. У два слова so lange — це прислівник «так довго» (Ich habe so lange gewartet).'
+
+  - de: falls
+    ipa: "ˈfals"
+    pos: conj
+    en: in case, if it should happen that
+    ru: если вдруг, на случай если
+    uk: якщо раптом, на випадок якщо
+    example_de: Nimm einen Schirm mit, falls es später regnet.
+    example_en: Take an umbrella with you in case it rains later.
+    example_ru: Возьми зонт на случай, если позже пойдёт дождь.
+    example_uk: Візьми парасольку на випадок, якщо пізніше піде дощ.
+    note:
+      en: 'The same Nebensatz as wenn — finite verb at the end — but a different expectancy: wenn covers the case you are counting on, this word the bare eventuality a plan merely has to survive. The substitution is one-way. wenn can always stand in for it, while it has no temporal reading at all, so it can never replace a wenn of time. A fronted condition fills position 1, and the main clause then opens with its verb.'
+      ru: 'Тот же Nebensatz, что и с wenn, — глагол в конце, — но другая ожидаемость: wenn покрывает случай, на который рассчитывают, а это слово — голую возможность, которую план должен просто пережить. Замена односторонняя: wenn всегда может встать вместо него, а оно временного значения не имеет вовсе и wenn времени не заменяет. Вынесенное вперёд условие занимает первое место, и главное предложение открывается глаголом.'
+      uk: 'Той самий Nebensatz, що й із wenn, — дієслово в кінці, — але інша очікуваність: wenn покриває випадок, на який розраховують, а це слово — голу можливість, яку план має просто пережити. Заміна одностороння: wenn завжди може стати замість нього, а воно часового значення не має взагалі й wenn часу не заміняє. Винесена вперед умова займає перше місце, і головне речення відкривається дієсловом.'
+
+  - de: damit
+    ipa: "daˈmɪt"
+    pos: conj
+    en: in order that, with the aim that
+    ru: чтобы, с той целью чтобы
+    uk: щоб, з тією метою щоб
+    example_de: Ich schreibe dir die Adresse auf, damit du sie nicht vergisst.
+    example_en: I am writing the address down for you so that you do not forget it.
+    example_ru: Я запишу тебе адрес, чтобы ты его не забыл.
+    example_uk: Я запишу тобі адресу, щоб ти її не забув.
+    note:
+      en: 'The purpose conjunction opens a Nebensatz: it has room for its own subject and the finite verb stands at the very end. That is the test — two different subjects force this word, while one shared subject lets the compact um … zu stand in, because um … zu has no subject slot at all. A look-alike trap: the pronominal adverb spelled the same way means with it or with that and sits inside a main clause (Was machst du damit?).'
+      ru: 'Целевой союз открывает Nebensatz: в нём есть место для собственного подлежащего, а спрягаемый глагол стоит в самом конце. Это и есть тест: два разных подлежащих требуют этого союза, а при одном общем можно взять компактное um … zu, у которого места для подлежащего нет вообще. Ловушка на вид: местоименное наречие с тем же написанием значит «этим, с этим» и стоит внутри главного предложения (Was machst du damit?).'
+      uk: 'Цільовий сполучник відкриває Nebensatz: у ньому є місце для власного підмета, а відмінюване дієслово стоїть у самому кінці. Це і є тест: два різні підмети вимагають цього сполучника, а при одному спільному можна взяти компактне um … zu, у якого місця для підмета немає взагалі. Пастка на вигляд: займенниковий прислівник із тим самим написанням означає «цим, з цим» і стоїть усередині головного речення (Was machst du damit?).'
+
+  - de: sodass
+    ipa: "zoˈdas"
+    pos: conj
+    # The note calls `so dass` the same conjunction, so the card must not mark it wrong.
+    accept: ["so dass"]
+    en: with the result that
+    ru: так что, вследствие чего
+    uk: так що, унаслідок чого
+    example_de: Der Aufzug wird repariert, sodass man ihn heute nicht benutzen kann.
+    example_en: The lift is being repaired, with the result that it cannot be used today.
+    example_ru: Лифт ремонтируют, так что сегодня им нельзя пользоваться.
+    example_uk: Ліфт ремонтують, так що сьогодні ним не можна користуватися.
+    note:
+      en: 'It attaches the consequence as a Nebensatz: comma, subject, finite verb at the very end — where A2 deshalb is an adverb that opens a new main clause and pulls the verb straight behind it. weil looks the other way: after weil comes the cause, after this word the result. One placement rule comes free — the clause always follows its main clause, because a result cannot stand before what causes it, so a German sentence never begins with it. The older spelling so dass is the same conjunction.'
+      ru: 'Присоединяет следствие как Nebensatz: запятая, подлежащее, спрягаемый глагол в самом конце — тогда как deshalb с уровня A2 наречие, оно открывает новое главное предложение и тянет глагол сразу за собой. weil смотрит в другую сторону: после weil идёт причина, после этого союза — результат. Одно правило расстановки достаётся даром: придаточное всегда следует за своим главным, потому что результат не может стоять раньше причины, и немецкое предложение с него никогда не начинается. Старое написание so dass — тот же союз.'
+      uk: 'Приєднує наслідок як Nebensatz: кома, підмет, відмінюване дієслово в самому кінці — тоді як deshalb рівня A2 прислівник, він відкриває нове головне речення й тягне дієслово одразу за собою. weil дивиться в інший бік: після weil іде причина, після цього сполучника — результат. Одне правило розташування дістається даром: підрядне завжди йде за своїм головним, бо результат не може стояти раніше причини, і німецьке речення з нього ніколи не починається. Старе написання so dass — той самий сполучник.'
+
+  - de: obwohl
+    ipa: "ɔpˈvoːl"
+    pos: conj
+    en: although, even though
+    ru: хотя, несмотря на то что
+    uk: хоча, попри те що
+    example_de: Obwohl die Miete hoch ist, bleiben wir in der Wohnung.
+    example_en: Although the rent is high, we are staying in the flat.
+    example_ru: Хотя аренда высокая, мы остаёмся в этой квартире.
+    example_uk: Хоча оренда висока, ми залишаємося в цій квартирі.
+    note:
+      en: 'A subordinating conjunction like weil and dass: it opens a Nebensatz and the finite verb walks to the very end. A2 trotzdem says the other half of the same thought and is an adverb — it fills position 1 of a new main clause and pulls the verb straight behind it (Trotzdem bleiben wir). Keeping main-clause order here is the standard error, and trotz is a third member again: a preposition, so it governs a noun and can open no clause at all.'
+      ru: 'Подчинительный союз, как weil и dass: открывает Nebensatz, и спрягаемый глагол уходит в самый конец. trotzdem с уровня A2 говорит вторую половину той же мысли и является наречием — оно занимает первое место в новом главном предложении и тянет глагол сразу за собой (Trotzdem bleiben wir). Сохранить здесь порядок главного предложения — типичная ошибка. А trotz — третий член ряда: предлог, он управляет существительным и придаточного не открывает вовсе.'
+      uk: 'Підрядний сполучник, як weil і dass: відкриває Nebensatz, і відмінюване дієслово йде в самий кінець. trotzdem рівня A2 каже другу половину тієї самої думки і є прислівником — воно займає перше місце в новому головному реченні й тягне дієслово одразу за собою (Trotzdem bleiben wir). Зберегти тут порядок головного речення — типова помилка. А trotz — третій член ряду: прийменник, він керує іменником і підрядного не відкриває взагалі.'
+
+  - de: indem
+    ipa: "ɪnˈdeːm"
+    pos: conj
+    cards: recognition
+    en: by doing something, by means of
+    ru: тем, что; за счёт того что
+    uk: тим, що; у такий спосіб, що
+    example_de: Man spart Strom, indem man das Licht ausmacht.
+    example_en: You save electricity by switching off the light.
+    example_ru: Электричество экономят тем, что выключают свет.
+    example_uk: Електроенергію заощаджують тим, що вимикають світло.
+    note:
+      en: 'It answers the question how? — it names the means by which the main clause comes about. A subordinating conjunction, so its clause takes the finite verb at the end. English packs the same idea into by plus an -ing form, which needs no subject; the German clause must have one, and it is normally the same person as in the main clause.'
+      ru: 'Отвечает на вопрос «каким образом?» — называет средство, которым достигается сказанное в главном предложении. Подчинительный союз, поэтому глагол в его придаточном стоит в конце. Русский обходится деепричастием («выключая свет»), у которого подлежащего нет; в немецком придаточном подлежащее обязательно, и обычно это то же лицо, что и в главном.'
+      uk: 'Відповідає на питання «яким чином?» — називає засіб, яким досягається сказане в головному реченні. Підрядний сполучник, тому дієслово в його підрядному стоїть у кінці. Українська обходиться дієприслівником («вимикаючи світло»), у якого підмета немає; у німецькому підрядному підмет обов’язковий, і зазвичай це та сама особа, що й у головному.'
+
+  - de: ob
+    ipa: "ˈɔp"
+    pos: conj
+    en: whether
+    ru: ли
+    uk: чи
+    example_de: Ich weiß nicht, ob der Zug pünktlich ankommt.
+    example_en: I do not know whether the train will arrive on time.
+    example_ru: Я не знаю, придёт ли поезд вовремя.
+    example_uk: Я не знаю, чи прибуде потяг вчасно.
+    note:
+      en: 'It opens the indirect version of a yes/no question — a question that has no question word of its own. The finite verb walks to the end of the clause, never the bare question order (❌ …, ob kommt der Zug an). When the question does have a question word, that word does this job instead: Ich weiß nicht, wann der Zug kommt. In a condition, English if is wenn or falls and never this word.'
+      ru: 'Открывает косвенный вариант вопроса «да/нет» — вопроса без вопросительного слова. Спрягаемый глагол уходит в конец придаточного, а не остаётся в вопросительном порядке (❌ …, ob kommt der Zug an). Если вопросительное слово есть, работу делает оно: Ich weiß nicht, wann der Zug kommt. В условии русское «если» — это wenn или falls, но не это слово.'
+      uk: 'Відкриває непрямий варіант питання «так/ні» — питання без питального слова. Відмінюване дієслово йде в кінець підрядного, а не лишається в питальному порядку (❌ …, ob kommt der Zug an). Якщо питальне слово є, роботу робить воно: Ich weiß nicht, wann der Zug kommt. В умові українське «якщо» — це wenn або falls, але не це слово.'
+
+  - de: als ob
+    ipa: "als ˈɔp"
+    pos: conj
+    cards: recognition
+    en: as if, as though
+    ru: как будто, словно
+    uk: ніби, наче
+    example_de: Er sieht aus, als ob er krank wäre.
+    example_en: He looks as if he were ill.
+    example_ru: Он выглядит так, будто болен.
+    example_uk: Він має вигляд, ніби він хворий.
+    note:
+      en: 'It opens a Nebensatz with the finite verb at the end, and that verb stands in Konjunktiv II — wäre, hätte, könnte, würde + Infinitiv — because the comparison is deliberately unreal. The main clause usually carries so tun or a verb of seeming: Er tut so, als ob …; Es klingt, als ob … In careful writing ob may be dropped, and then the verb jumps straight behind als: …, als wäre er krank.'
+      ru: 'Открывает Nebensatz со спрягаемым глаголом в конце, и этот глагол стоит в Konjunktiv II — wäre, hätte, könnte, würde + Infinitiv, — потому что сравнение заведомо нереально. В главном предложении обычно стоит so tun или глагол видимости: Er tut so, als ob …; Es klingt, als ob … В аккуратном письменном языке ob можно опустить, и тогда глагол прыгает сразу за als: …, als wäre er krank.'
+      uk: 'Відкриває Nebensatz із відмінюваним дієсловом у кінці, і це дієслово стоїть у Konjunktiv II — wäre, hätte, könnte, würde + Infinitiv, — бо порівняння свідомо нереальне. У головному реченні зазвичай стоїть so tun або дієслово видимості: Er tut so, als ob …; Es klingt, als ob … В охайному писемному мовленні ob можна опустити, і тоді дієслово стрибає одразу за als: …, als wäre er krank.'
+
+  - de: soviel
+    ipa: "zoˈfiːl"
+    pos: conj
+    cards: recognition
+    en: as far as, from what
+    ru: насколько
+    uk: наскільки
+    example_de: Soviel ich weiß, ist das Büro am Freitag geschlossen.
+    example_en: As far as I know, the office is closed on Friday.
+    example_ru: Насколько я знаю, в пятницу офис закрыт.
+    example_uk: Наскільки я знаю, у п’ятницю офіс зачинений.
+    note:
+      en: 'Written solid it is a conjunction, and it appears almost only in the fixed openers soviel ich weiß and soviel ich gehört habe — the German way of flagging that the information is second-hand. The verb still goes to the end of that clause. Written as two words, so viel is the ordinary quantity phrase (Ich habe so viel Arbeit); this course gives that one no card of its own, because a typed answer cannot signal a space.'
+      ru: 'В слитном написании это союз, и встречается он почти только в застывших зачинах soviel ich weiß и soviel ich gehört habe — так по-немецки помечают, что сведения из вторых рук. Глагол при этом всё равно уходит в конец придаточного. В раздельном написании so viel — обычное количественное сочетание (Ich habe so viel Arbeit); ему в курсе карточки не дают, потому что напечатанный ответ пробел не различает.'
+      uk: 'У злитному написанні це сполучник, і трапляється він майже лише в застиглих зачинах soviel ich weiß та soviel ich gehört habe — так німецькою позначають, що відомості з других рук. Дієслово при цьому все одно йде в кінець підрядного. У роздільному написанні so viel — звичайне кількісне сполучення (Ich habe so viel Arbeit); йому в курсі карток не дають, бо надрукована відповідь пробілу не розрізняє.'
+
+  # --- Verbindungen zwischen Hauptsätzen: Gegensatz, Folge, Begründung ---
+  - de: sondern
+    ipa: "ˈzɔndɐn"
+    pos: conj
+    en: but rather, but instead
+    ru: а (после отрицания)
+    uk: а, а натомість
+    example_de: Wir fahren nicht nach Hamburg, sondern nach Bremen.
+    example_en: We are not going to Hamburg but to Bremen.
+    example_ru: Мы едем не в Гамбург, а в Бремен.
+    example_uk: Ми їдемо не до Гамбурга, а до Бремена.
+    note:
+      en: 'It only ever follows a negation and replaces what was denied: nicht X, sondern Y. aber does a different job — it adds a limitation to something that still stands (Die Wohnung ist klein, aber hell). The test: if the first half stays true, the word is aber; if the first half contains nicht or kein and the second half corrects it, the word is this one. A coordinating conjunction, so it changes no word order.'
+      ru: 'Стоит только после отрицания и заменяет то, что отвергнуто: nicht X, sondern Y. У aber другая работа — оно добавляет ограничение к тому, что остаётся в силе (Die Wohnung ist klein, aber hell). Тест: если первая половина остаётся верной, нужно aber; если в ней есть nicht или kein, а вторая половина её поправляет, нужно это слово. Сочинительный союз, порядок слов он не меняет.'
+      uk: 'Стоїть тільки після заперечення й заміняє те, що відкинуто: nicht X, sondern Y. В aber інша робота — воно додає обмеження до того, що лишається чинним (Die Wohnung ist klein, aber hell). Тест: якщо перша половина лишається правдивою, потрібне aber; якщо в ній є nicht або kein, а друга половина її виправляє, потрібне це слово. Сурядний сполучник, порядку слів він не змінює.'
+
+  - de: jedoch
+    ipa: "jeˈdɔx"
+    pos: adv
+    # `allerdings` fills the same slot in the same register; the card grades "produce a
+    # written contrastive connector", not which one the author had in mind.
+    accept: ["allerdings"]
+    en: however, yet
+    ru: однако, тем не менее
+    uk: однак, проте
+    example_de: Das Angebot klingt gut, jedoch ist der Vertrag sehr kurz.
+    example_en: The offer sounds good; however, the contract is very short.
+    example_ru: Предложение звучит хорошо, однако договор очень короткий.
+    example_uk: Пропозиція звучить добре, однак договір дуже короткий.
+    note:
+      en: 'The written cousin of aber, at home in a report or an opinion text. The difference is grammatical as well as stylistic: aber is a coordinating conjunction and stands outside the sentence frame, changing nothing (…, aber der Vertrag ist kurz), while this word normally fills position 1 and pulls the finite verb behind it (…, jedoch ist der Vertrag kurz). It can also sit inside the clause: Der Vertrag ist jedoch sehr kurz.'
+      ru: 'Письменный родственник aber, уместный в докладе или в тексте с мнением. Разница не только стилистическая, но и грамматическая: aber — сочинительный союз, он стоит вне рамки и ничего не меняет (…, aber der Vertrag ist kurz), а это слово обычно занимает первое место и тянет спрягаемый глагол за собой (…, jedoch ist der Vertrag kurz). Оно может стоять и внутри предложения: Der Vertrag ist jedoch sehr kurz.'
+      uk: 'Писемний родич aber, доречний у звіті чи в тексті з думкою. Різниця не лише стилістична, а й граматична: aber — сурядний сполучник, він стоїть поза рамкою і нічого не змінює (…, aber der Vertrag ist kurz), а це слово зазвичай займає перше місце й тягне відмінюване дієслово за собою (…, jedoch ist der Vertrag kurz). Воно може стояти й усередині речення: Der Vertrag ist jedoch sehr kurz.'
+
+  - de: daher
+    ipa: "daˈheːɐ̯"
+    pos: adv
+    # Recognition only: A2 ships `deshalb` ("therefore, that is why") and `also`
+    # ("so, therefore") as production cards already, and `darum`/`deswegen` answer the
+    # same prompt too. A typed card here would grade which of five the author meant.
+    cards: recognition
+    en: hence, as a result
+    ru: оттого, вследствие этого
+    uk: звідси, унаслідок цього
+    example_de: Die Preise sind stark gestiegen. Daher kaufen wir weniger Fleisch.
+    example_en: Prices have risen sharply. As a result we buy less meat.
+    example_ru: Цены сильно выросли. Оттого мы покупаем меньше мяса.
+    example_uk: Ціни сильно зросли. Через це ми купуємо менше м’яса.
+    note:
+      en: 'It names the consequence, not the reason, and it fills position 1, so the finite verb follows at once (Daher kaufen wir …) — never Daher wir kaufen … A2 deshalb does exactly the same job with the same syntax; this one is the more written of the two and is the usual choice in a report, a letter or an opinion text, while deshalb dominates in speech. Both are adverbs: neither can send a verb to the end.'
+      ru: 'Вводит следствие, а не причину, и занимает первое место, поэтому спрягаемый глагол идёт сразу за ним (Daher kaufen wir …), но не Daher wir kaufen … deshalb с уровня A2 делает ровно ту же работу с тем же синтаксисом; это слово — более книжное из двух и обычно выбирается в отчёте, письме или тексте с мнением, тогда как deshalb преобладает в речи. Оба наречия: ни одно не отправляет глагол в конец.'
+      uk: 'Уводить наслідок, а не причину, і займає перше місце, тому відмінюване дієслово йде одразу за ним (Daher kaufen wir …), але не Daher wir kaufen … deshalb рівня A2 робить рівно ту саму роботу з тим самим синтаксисом; це слово — книжніше з двох і зазвичай обирається у звіті, листі чи тексті з думкою, тоді як deshalb переважає в мовленні. Обидва прислівники: жодне не відправляє дієслово в кінець.'
+
+  - de: nämlich
+    ipa: "ˈnɛːmlɪç"
+    pos: adv
+    en: you see; namely, that is to say
+    ru: дело в том, что; а именно
+    uk: адже; а саме
+    example_de: Ich kann heute nicht kommen. Ich habe nämlich einen Termin beim Arzt.
+    example_en: I cannot come today. I have an appointment at the doctor, you see.
+    example_ru: Я сегодня не могу прийти. Дело в том, что у меня приём у врача.
+    example_uk: Я сьогодні не можу прийти. Річ у тім, що в мене прийом у лікаря.
+    note:
+      en: 'It delivers the explanation for what was just said, but it never opens a sentence: it sits inside the clause, usually right after the finite verb (Ich habe nämlich einen Termin). That is the whole difference from weil, which fronts the same reason as a Nebensatz with the verb at the end. A second use introduces a specification after a colon-like pause: Ein Problem ist geblieben, nämlich die Finanzierung.'
+      ru: 'Доставляет объяснение к только что сказанному, но предложения никогда не открывает: стоит внутри, обычно сразу после спрягаемого глагола (Ich habe nämlich einen Termin). В этом и вся разница с weil, которое выносит ту же причину в Nebensatz с глаголом в конце. Второе употребление вводит уточнение: Ein Problem ist geblieben, nämlich die Finanzierung.'
+      uk: 'Доправляє пояснення до щойно сказаного, але речення ніколи не відкриває: стоїть усередині, зазвичай одразу після відмінюваного дієслова (Ich habe nämlich einen Termin). У цьому й уся різниця з weil, яке виносить ту саму причину в Nebensatz із дієсловом у кінці. Друге вживання вводить уточнення: Ein Problem ist geblieben, nämlich die Finanzierung.'
+
+  - de: einerseits
+    ipa: "ˈaɪ̯nɐˌzaɪ̯ts"
+    pos: adv
+    en: on the one hand
+    ru: с одной стороны
+    uk: з одного боку
+    example_de: Einerseits möchte ich mehr verdienen, andererseits will ich nicht umziehen.
+    example_en: On the one hand I would like to earn more, on the other I do not want to move house.
+    example_ru: С одной стороны, я хочу больше зарабатывать, с другой — не хочу переезжать.
+    example_uk: З одного боку, я хочу більше заробляти, з іншого — не хочу переїжджати.
+    note:
+      en: 'It opens a pair and owes the reader the second half, which is andererseits. Both are adverbs in position 1, so the finite verb comes straight after (Einerseits möchte ich …). The pair weighs two sides of one and the same question, which is what a B1 opinion text is built on — it is not a plain contrast like aber, and it is not a list.'
+      ru: 'Открывает пару и обязывает автора дать вторую половину — andererseits. Оба слова наречия и стоят на первом месте, поэтому спрягаемый глагол идёт сразу за ними (Einerseits möchte ich …). Пара взвешивает две стороны одного и того же вопроса, на чём и строится текст с мнением уровня B1; это не простое противопоставление вроде aber и не перечисление.'
+      uk: 'Відкриває пару й зобов’язує автора дати другу половину — andererseits. Обидва слова прислівники й стоять на першому місці, тому відмінюване дієслово йде одразу за ними (Einerseits möchte ich …). Пара зважує два боки того самого питання, на чому й будується текст із думкою рівня B1; це не просте протиставлення на кшталт aber і не перелік.'
+
+  - de: andererseits
+    ipa: "ˈandəʁɐˌzaɪ̯ts"
+    pos: adv
+    en: on the other hand
+    ru: с другой стороны
+    uk: з іншого боку
+    example_de: Der Job ist gut bezahlt, andererseits muss ich jeden Tag pendeln.
+    example_en: The job pays well; on the other hand I have to commute every day.
+    example_ru: Работа хорошо оплачивается, с другой стороны, приходится каждый день ездить.
+    example_uk: Робота добре оплачується, з іншого боку, доводиться щодня їздити.
+    note:
+      en: 'The closing half of the pair einerseits … andererseits, the standard frame for laying out two sides of one question in a B1 opinion text. An adverb, not a conjunction: in position 1 the finite verb follows immediately (Andererseits muss ich …), never Andererseits ich muss … The first half may also be left out when the contrast is already obvious from the sentence before.'
+      ru: 'Закрывающая половина пары einerseits … andererseits — стандартной рамки, в которой на уровне B1 излагают две стороны одного вопроса. Это наречие, а не союз: на первом месте спрягаемый глагол идёт сразу за ним (Andererseits muss ich …), но не Andererseits ich muss … Первую половину иногда опускают, если противопоставление и так ясно из предыдущего предложения.'
+      uk: 'Закривальна половина пари einerseits … andererseits — стандартної рамки, у якій на рівні B1 викладають два боки одного питання. Це прислівник, а не сполучник: на першому місці відмінюване дієслово йде одразу за ним (Andererseits muss ich …), але не Andererseits ich muss … Першу половину інколи опускають, якщо протиставлення й так ясне з попереднього речення.'
+
+  - de: beziehungsweise
+    ipa: "bəˈtsiːʊŋsˌvaɪ̯zə"
+    pos: conj
+    cards: recognition
+    en: or rather; or, as the case may be
+    ru: или же; соответственно
+    uk: або ж; відповідно
+    example_de: Der Kurs kostet 90 Euro, beziehungsweise 60 Euro für Studenten.
+    example_en: The course costs 90 euros, or 60 euros for students.
+    example_ru: Курс стоит 90 евро, или же 60 евро для студентов.
+    example_uk: Курс коштує 90 євро, або ж 60 євро для студентів.
+    note:
+      en: 'On the page you will meet the abbreviation bzw. far more often than the full word, and this course deliberately gives bzw. no card of its own — read it as this word. Two jobs: it corrects or narrows what was just said, and it distributes two items over two others (Anna und Ben fahren nach Köln bzw. nach Bonn — Anna to Cologne, Ben to Bonn). It links like und and oder and changes no word order.'
+      ru: 'На письме сокращение bzw. встречается куда чаще полного слова, и карточки ему в курсе намеренно не дают — читайте его как это слово. Две работы: оно уточняет или сужает только что сказанное и распределяет два предмета по двум другим (Anna und Ben fahren nach Köln bzw. nach Bonn — Анна в Кёльн, Бен в Бонн). Связывает как und и oder и порядка слов не меняет.'
+      uk: 'На письмі скорочення bzw. трапляється значно частіше за повне слово, і карток йому в курсі свідомо не дають — читайте його як це слово. Дві роботи: воно уточнює або звужує щойно сказане і розподіляє два предмети по двох інших (Anna und Ben fahren nach Köln bzw. nach Bonn — Анна до Кельна, Бен до Бонна). Зв’язує як und і oder і порядку слів не змінює.'
+
+  - de: statt
+    ipa: "ˈʃtat"
+    pos: prep
+    # `anstatt` is fully interchangeable with it in both frames, so the production
+    # card would otherwise reject correct German. Only `statt` is on the manifest.
+    accept: ["anstatt"]
+    en: instead of
+    ru: вместо
+    uk: замість
+    example_de: Statt eines Autos hat sie sich ein Fahrrad gekauft.
+    example_en: Instead of a car she bought herself a bicycle.
+    example_ru: Вместо машины она купила себе велосипед.
+    example_uk: Замість машини вона купила собі велосипед.
+    note:
+      en: 'A preposition with the Genitiv (statt eines Autos); in speech the Dativ is common too (statt einem Auto). anstatt is the same word with an emphatic prefix, fully interchangeable and a shade more formal. With a verb instead of a noun the frame is statt … zu + Infinitiv: Statt zu warten, ging er zu Fuß — and there the subject of both halves must be the same person.'
+      ru: 'Предлог с Genitiv (statt eines Autos); в разговорной речи часто и с Dativ (statt einem Auto). anstatt — то же слово с усилительной приставкой, полностью взаимозаменяемо и чуть более книжно. Если вместо существительного стоит глагол, работает рамка statt … zu + Infinitiv: Statt zu warten, ging er zu Fuß, — и там подлежащее обеих частей должно быть одним и тем же.'
+      uk: 'Прийменник із Genitiv (statt eines Autos); у розмовному мовленні часто й із Dativ (statt einem Auto). anstatt — те саме слово з підсилювальним префіксом, цілком взаємозамінне й трохи книжніше. Якщо замість іменника стоїть дієслово, працює рамка statt … zu + Infinitiv: Statt zu warten, ging er zu Fuß, — і там підмет обох частин має бути тією самою особою.'
+
+  - de: umso
+    ipa: "ˈʊmzoː"
+    pos: adv
+    cards: recognition
+    en: all the more, so much the
+    ru: тем, ещё более
+    uk: тим, ще більше
+    example_de: Je mehr ich lese, umso leichter fällt mir das Schreiben.
+    example_en: The more I read, the easier writing becomes for me.
+    example_ru: Чем больше я читаю, тем легче мне даётся письмо.
+    example_uk: Чим більше я читаю, тим легше мені дається письмо.
+    note:
+      en: 'Two uses, one idea: a comparative gets stronger. In the proportional frame je … desto it is the everyday alternative to desto — the je-half is a Nebensatz with the verb at the end, and the half that begins here is a main clause whose finite verb comes right after the comparative. On its own in front of a comparative it reacts to what was just said: umso besser, umso schlimmer, umso wichtiger.'
+      ru: 'Два употребления, одна идея: сравнительная степень усиливается. В пропорциональной рамке je … desto это обиходная замена desto — часть с je представляет собой Nebensatz с глаголом в конце, а часть, начинающаяся отсюда, главное предложение, спрягаемый глагол в котором идёт сразу после сравнительной степени. Отдельно перед сравнительной степенью слово откликается на только что сказанное: umso besser, umso schlimmer, umso wichtiger.'
+      uk: 'Два вживання, одна ідея: вищий ступінь посилюється. У пропорційній рамці je … desto це побутова заміна desto — частина з je становить Nebensatz із дієсловом у кінці, а частина, що починається звідси, головне речення, відмінюване дієслово в якому йде одразу після вищого ступеня. Окремо перед вищим ступенем слово відгукується на щойно сказане: umso besser, umso schlimmer, umso wichtiger.'
+
+  # --- Fragen und Verweise ---
+  - de: weshalb
+    ipa: "vɛsˈhalp"
+    pos: adv
+    en: which is why, for which reason
+    ru: почему и, отчего
+    uk: через що, чому й
+    example_de: Der Zug hatte Verspätung, weshalb ich den Termin verpasst habe.
+    example_en: The train was delayed, which is why I missed the appointment.
+    example_ru: Поезд опоздал, отчего я и пропустил приём.
+    example_uk: Потяг запізнився, через що я й пропустив прийом.
+    note:
+      en: 'Two jobs. As a relative connector it hangs a consequence on the clause before it and opens a Nebensatz — comma, then the finite verb at the very end. As a question word it is the formal twin of warum (Weshalb haben Sie sich beworben?), at home in a written application or an interview, while warum is the neutral everyday word and wieso the casual one. Only this word and weswegen can also link two clauses; warum and wieso cannot.'
+      ru: 'Две работы. Как относительная связка вешает следствие на предыдущее предложение и открывает Nebensatz — запятая, затем спрягаемый глагол в самом конце. Как вопросительное слово это официальный двойник warum (Weshalb haben Sie sich beworben?), уместный в письменном заявлении или на собеседовании, тогда как warum нейтрально, а wieso разговорно. Связывать два предложения умеют только это слово и weswegen; warum и wieso — нет.'
+      uk: 'Дві роботи. Як відносна зв’язка вішає наслідок на попереднє речення й відкриває Nebensatz — кома, потім відмінюване дієслово в самому кінці. Як питальне слово це офіційний двійник warum (Weshalb haben Sie sich beworben?), доречний у писемній заяві чи на співбесіді, тоді як warum нейтральне, а wieso розмовне. Зв’язувати два речення вміють лише це слово та weswegen; warum і wieso — ні.'
+
+  - de: wieso
+    ipa: "viˈzoː"
+    pos: adv
+    cards: recognition
+    en: how come, why on earth
+    ru: почему же, с чего это
+    uk: чому ж, як це так
+    example_de: Wieso hast du mir nichts gesagt?
+    example_en: How come you did not tell me anything?
+    example_ru: Почему же ты мне ничего не сказал?
+    example_uk: Чому ж ти мені нічого не сказав?
+    note:
+      en: 'Three words ask why. warum is the neutral one, weshalb the formal one for writing and interviews, and this one the casual spoken one, often carrying surprise or a mild reproach — Wieso denn nicht? It only ever opens a question and, unlike weshalb, can never link two clauses. Word order is the ordinary question order: question word, then the finite verb.'
+      ru: 'Спросить «почему» можно тремя словами. warum нейтрально, weshalb официально и уместно на письме и на собеседовании, а это слово разговорное и часто несёт удивление или лёгкий упрёк — Wieso denn nicht? Оно только открывает вопрос и, в отличие от weshalb, связать два предложения не может. Порядок слов обычный вопросительный: вопросительное слово, затем спрягаемый глагол.'
+      uk: 'Запитати «чому» можна трьома словами. warum нейтральне, weshalb офіційне й доречне на письмі та на співбесіді, а це слово розмовне й часто несе подив або легкий докір — Wieso denn nicht? Воно лише відкриває питання і, на відміну від weshalb, зв’язати два речення не може. Порядок слів звичайний питальний: питальне слово, потім відмінюване дієслово.'
+
+  # --- Modalpartikeln: die Haltung des Sprechers ---
+  - de: eben
+    ipa: "ˈeːbn̩"
+    pos: particle
+    cards: recognition
+    en: that is just how it is; simply
+    ru: ну да, ничего не поделаешь
+    uk: та вже ж, нічого не вдієш
+    example_de: Der Zug ist weg. Dann müssen wir eben warten.
+    example_en: The train is gone. Then we will simply have to wait.
+    example_ru: Поезд ушёл. Значит, придётся подождать, ничего не поделаешь.
+    example_uk: Потяг пішов. Отже, доведеться зачекати, нічого не вдієш.
+    note:
+      en: 'As a modal particle — unstressed, inside the clause — it presents the sentence as an unchangeable fact there is no point arguing with. Compare Das ist teuer, which states a price, with Das ist eben teuer, which says take it or leave it. On its own, Eben! agrees emphatically with what someone just said. Two other words are spelled the same and are not what this card teaches: the time adverb (Er war eben noch hier, a moment ago) and the adjective meaning flat (ein ebener Weg).'
+      ru: 'Как модальная частица — безударная, внутри предложения — подаёт сказанное как неизменный факт, спорить с которым бессмысленно; ближе всего русские «ну да», «уж», «ничего не поделаешь». Сравните: Das ist teuer — просто цена, Das ist eben teuer — «дорого, и всё тут». Отдельным словом Eben! значит «вот именно!». Есть ещё два омонима, и карточка не о них: наречие времени (Er war eben noch hier — «только что») и прилагательное «ровный» (ein ebener Weg).'
+      uk: 'Як модальна частка — ненаголошена, усередині речення — подає сказане як незмінний факт, сперечатися з яким немає сенсу; найближче українські «та вже ж», «нічого не вдієш». Порівняйте: Das ist teuer — просто ціна, Das ist eben teuer — «дорого, і край». Окремим словом Eben! означає «отож!». Є ще два омоніми, і картка не про них: прислівник часу (Er war eben noch hier — «щойно») і прикметник «рівний» (ein ebener Weg).'
+
+  - de: halt
+    ipa: "ˈhalt"
+    pos: particle
+    cards: recognition
+    en: just, simply, that is how it is
+    ru: ну, просто, так уж вышло
+    uk: та просто, так уже є
+    example_de: Im November ist das Wetter halt nicht besser.
+    example_en: In November the weather simply is not any better.
+    example_ru: Ну, в ноябре погода и не бывает лучше.
+    example_uk: Та в листопаді погода й не буває кращою.
+    note:
+      en: 'The southern twin of eben: the same job, a different map. It marks the sentence as a fact one simply accepts, and it belongs to spoken Bavarian, Austrian and Swiss German, while eben is the northern and the written form. It never carries stress, never opens a sentence and has no place in a written exam text. Do not confuse it with the command Halt! (stop) or the noun der Halt (a hold, a stop).'
+      ru: 'Южный двойник eben: работа та же, карта другая. Подаёт сказанное как факт, который просто принимают, и принадлежит разговорному языку Баварии, Австрии и Швейцарии, тогда как eben северное и письменное. Ударения не несёт, предложения не открывает и в письменном экзаменационном тексте неуместно. Не путайте с командой Halt! («стой») и существительным der Halt («опора, остановка»).'
+      uk: 'Південний двійник eben: робота та сама, мапа інша. Подає сказане як факт, який просто приймають, і належить розмовній мові Баварії, Австрії та Швейцарії, тоді як eben північне й писемне. Наголосу не несе, речення не відкриває і в писемному екзаменаційному тексті недоречне. Не плутайте з командою Halt! («стій») та іменником der Halt («опора, зупинка»).'
+
+  - de: wohl
+    ipa: "ˈvoːl"
+    pos: particle
+    cards: recognition
+    en: probably, I would say
+    ru: пожалуй, наверное
+    uk: мабуть, певно
+    example_de: Er hat den Bus wohl verpasst.
+    example_en: He has probably missed the bus.
+    example_ru: Он, пожалуй, опоздал на автобус.
+    example_uk: Він, мабуть, спізнився на автобус.
+    note:
+      en: 'Unstressed and inside the clause, it marks the sentence as the speaker guess: Er kommt wohl später is a supposition, Er kommt später a statement. It is softer than wahrscheinlich, which states a probability outright, and much softer than sicher. Stressed, the same word means well in the sense of feeling good (sich wohl fühlen, das Wohl). And ob … wohl turns a question into a musing one: Ob er wohl kommt?'
+      ru: 'Безударная и внутри предложения, частица помечает сказанное как догадку говорящего: Er kommt wohl später — предположение, Er kommt später — утверждение. Она мягче, чем wahrscheinlich, которое прямо называет вероятность, и намного мягче, чем sicher. Под ударением то же слово значит «хорошо, благополучно» (sich wohl fühlen, das Wohl). А ob … wohl превращает вопрос в размышление вслух: Ob er wohl kommt?'
+      uk: 'Ненаголошена й усередині речення, частка позначає сказане як здогад мовця: Er kommt wohl später — припущення, Er kommt später — твердження. Вона м’якша за wahrscheinlich, яке прямо називає ймовірність, і значно м’якша за sicher. Під наголосом те саме слово означає «добре, гаразд» (sich wohl fühlen, das Wohl). А ob … wohl перетворює питання на роздум уголос: Ob er wohl kommt?'
+
+  - de: bloß
+    ipa: "ˈbloːs"
+    pos: particle
+    cards: recognition
+    en: only, just; whatever you do
+    ru: только, лишь; смотри же
+    uk: тільки, лише; гляди ж
+    example_de: Vergiss bloß deinen Ausweis nicht!
+    example_en: Whatever you do, do not forget your ID!
+    example_ru: Смотри не забудь удостоверение!
+    example_uk: Гляди не забудь посвідчення!
+    note:
+      en: 'Two lives. As an ordinary adverb it means only and is interchangeable with nur (Ich habe bloß zehn Euro). As a modal particle in a command or a wish it sharpens the tone into a warning or a plea: Vergiss bloß nicht … is far more insistent than Vergiss nicht …, and Wenn er bloß käme! is a longing wish. Both uses are spoken; a written text prefers nur. The adjective spelled the same way means bare (mit bloßen Händen).'
+      ru: 'Две жизни. Как обычное наречие значит «только» и взаимозаменяемо с nur (Ich habe bloß zehn Euro). Как модальная частица в приказе или желании обостряет тон до предупреждения или мольбы: Vergiss bloß nicht … куда настойчивее, чем Vergiss nicht …, а Wenn er bloß käme! — тоскливое пожелание. Оба употребления разговорные; на письме предпочитают nur. Прилагательное с тем же написанием значит «голый» (mit bloßen Händen).'
+      uk: 'Два життя. Як звичайний прислівник означає «тільки» і взаємозамінне з nur (Ich habe bloß zehn Euro). Як модальна частка в наказі чи бажанні загострює тон до попередження або благання: Vergiss bloß nicht … набагато наполегливіше, ніж Vergiss nicht …, а Wenn er bloß käme! — тужливе побажання. Обидва вживання розмовні; на письмі воліють nur. Прикметник із тим самим написанням означає «голий» (mit bloßen Händen).'
+
+  - de: gar
+    ipa: "ˈgaːɐ̯"
+    pos: particle
+    cards: recognition
+    en: at all, not in the least
+    ru: совсем, вовсе
+    uk: зовсім, аж ніяк
+    example_de: Ich habe gar keine Zeit für das Projekt.
+    example_en: I have no time at all for the project.
+    example_ru: У меня совсем нет времени на этот проект.
+    example_uk: У мене зовсім немає часу на цей проєкт.
+    note:
+      en: 'It strengthens a negation and stands directly in front of it: gar nicht, gar kein, gar nichts, gar niemand. Ich habe gar keine Zeit is a flat denial, noticeably stronger than keine Zeit. The same element is frozen inside sogar (even). Two other senses exist and are not this card: an old-fashioned intensifier meaning very, and the kitchen adjective meaning cooked through (Die Kartoffeln sind gar).'
+      ru: 'Усиливает отрицание и стоит прямо перед ним: gar nicht, gar kein, gar nichts, gar niemand. Ich habe gar keine Zeit — категорический отказ, заметно сильнее, чем keine Zeit. Тот же элемент застыл внутри sogar («даже»). Есть ещё два значения, и карточка не о них: устаревшее усилительное «весьма» и кухонное прилагательное «готовый, проваренный» (Die Kartoffeln sind gar).'
+      uk: 'Підсилює заперечення й стоїть прямо перед ним: gar nicht, gar kein, gar nichts, gar niemand. Ich habe gar keine Zeit — категорична відмова, помітно сильніша за keine Zeit. Той самий елемент застиг усередині sogar («навіть»). Є ще два значення, і картка не про них: застаріле підсилювальне «вельми» та кухонний прикметник «готовий, проварений» (Die Kartoffeln sind gar).'
+
+  - de: zwar
+    ipa: "ˈtsvaːɐ̯"
+    pos: particle
+    cards: recognition
+    en: admittedly, it is true; namely
+    ru: правда, хоть и; а именно
+    uk: щоправда, хоч і; а саме
+    example_de: Die Wohnung ist zwar klein, aber sehr hell.
+    example_en: The flat is admittedly small, but very bright.
+    example_ru: Квартира, правда, маленькая, зато очень светлая.
+    example_uk: Квартира, щоправда, маленька, зате дуже світла.
+    note:
+      en: 'It never stands alone: it announces a concession that a following aber or doch will take back, and the frame zwar … aber is one of the standard moves of a written argument. It sits inside the first clause after the finite verb (Die Wohnung ist zwar klein …) or fills position 1 (Zwar ist die Wohnung klein, aber …). A separate, unrelated use is und zwar, which introduces a precise specification: Wir treffen uns morgen, und zwar um acht.'
+      ru: 'В одиночку не стоит: объявляет уступку, которую следующее aber или doch тут же отбирает, а рамка zwar … aber — один из стандартных ходов письменной аргументации. Слово стоит внутри первой части после спрягаемого глагола (Die Wohnung ist zwar klein …) или занимает первое место (Zwar ist die Wohnung klein, aber …). Отдельное, не связанное с этим употребление — und zwar, вводящее точное уточнение: Wir treffen uns morgen, und zwar um acht.'
+      uk: 'Самотужки не стоїть: оголошує поступку, яку наступне aber або doch одразу забирає, а рамка zwar … aber — один зі стандартних ходів писемної аргументації. Слово стоїть усередині першої частини після відмінюваного дієслова (Die Wohnung ist zwar klein …) або займає перше місце (Zwar ist die Wohnung klein, aber …). Окреме, не пов’язане з цим уживання — und zwar, що вводить точне уточнення: Wir treffen uns morgen, und zwar um acht.'
+
+  - de: überhaupt
+    ipa: "yːbɐˈhaʊ̯pt"
+    pos: particle
+    cards: recognition
+    en: at all; generally speaking
+    ru: вообще; вообще-то
+    uk: узагалі; загалом
+    example_de: Hast du überhaupt Zeit für ein Treffen?
+    example_en: Do you have time for a meeting at all?
+    example_ru: У тебя вообще есть время на встречу?
+    example_uk: У тебе взагалі є час на зустріч?
+    note:
+      en: 'Two jobs, one word. In a question or a negation it questions the premise itself: Hast du überhaupt Zeit? doubts that there is any time at all, where Hast du Zeit? only asks about this occasion; überhaupt nicht and überhaupt kein are flat denials. Outside a question it widens the view to the general case — Sie mag Hunde, und Tiere überhaupt. At the start of a sentence, Überhaupt, … opens a broader remark.'
+      ru: 'Две работы, одно слово. В вопросе или отрицании оно ставит под сомнение саму предпосылку: Hast du überhaupt Zeit? сомневается, есть ли время в принципе, тогда как Hast du Zeit? спрашивает лишь про этот случай; überhaupt nicht и überhaupt kein — категорические отрицания. Вне вопроса расширяет взгляд до общего случая: Sie mag Hunde, und Tiere überhaupt. В начале предложения Überhaupt, … открывает более общее замечание.'
+      uk: 'Дві роботи, одне слово. У питанні чи запереченні воно ставить під сумнів саму передумову: Hast du überhaupt Zeit? сумнівається, чи є час узагалі, тоді як Hast du Zeit? питає лише про цей випадок; überhaupt nicht та überhaupt kein — категоричні заперечення. Поза питанням розширює погляд до загального випадку: Sie mag Hunde, und Tiere überhaupt. На початку речення Überhaupt, … відкриває загальніше зауваження.'
+
+  - de: nun
+    ipa: "ˈnuːn"
+    pos: particle
+    cards: recognition
+    en: well then; now
+    ru: ну; теперь, итак
+    uk: ну; тепер, отже
+    example_de: Nun, das ist wirklich eine gute Frage.
+    example_en: Well, that really is a good question.
+    example_ru: Ну, это действительно хороший вопрос.
+    example_uk: Ну, це справді гарне питання.
+    note:
+      en: 'As a discourse opener, set off by a comma, it buys the speaker a moment before an answer or a change of subject — what English does by starting a sentence with well. The same word is also the written, slightly formal adverb for now (Nun beginnt die Prüfung), where everyday German says jetzt. And nun mal marks something as unalterable, close to eben: Das ist nun mal so.'
+      ru: 'Как зачин реплики, отделённый запятой, слово даёт говорящему секунду перед ответом или сменой темы — так по-русски начинают фразу с «ну». То же слово служит письменным, слегка книжным наречием «теперь» (Nun beginnt die Prüfung), где в обиходе сказали бы jetzt. А nun mal подаёт положение дел как неизменное, близко к eben: Das ist nun mal so.'
+      uk: 'Як зачин репліки, відокремлений комою, слово дає мовцеві секунду перед відповіддю чи зміною теми — так українською починають фразу з «ну». Те саме слово служить писемним, трохи книжним прислівником «тепер» (Nun beginnt die Prüfung), де в побуті сказали б jetzt. А nun mal подає стан речей як незмінний, близько до eben: Das ist nun mal so.'
+
+  - de: meinetwegen
+    ipa: "ˈmaɪ̯nətˌveːgn̩"
+    pos: adv
+    cards: recognition
+    en: as far as I am concerned; fine by me
+    ru: по мне так, ладно уж
+    uk: як на мене, хай уже
+    example_de: Meinetwegen können wir auch später anfangen.
+    example_en: As far as I am concerned we can start later as well.
+    example_ru: По мне так можно начать и позже.
+    example_uk: Як на мене, можна почати й пізніше.
+    note:
+      en: 'Usually a grudging permission: not enthusiasm, but no objection either — on its own, Meinetwegen! means all right then, if you insist. Its literal sense, on my account or because of me, survives in sentences like Mach dir meinetwegen keine Sorgen. The pattern is regular and productive: deinetwegen, seinetwegen, ihretwegen, unsertwegen — the personal forms of the preposition wegen.'
+      ru: 'Обычно это неохотное разрешение: не энтузиазм, но и не возражение — отдельным словом Meinetwegen! значит «ну ладно, если настаиваешь». Буквальный смысл — «из-за меня, ради меня» — сохраняется во фразах вроде Mach dir meinetwegen keine Sorgen. Образец регулярный и продуктивный: deinetwegen, seinetwegen, ihretwegen, unsertwegen — личные формы предлога wegen.'
+      uk: 'Зазвичай це неохоче дозволення: не захват, але й не заперечення — окремим словом Meinetwegen! означає «ну гаразд, якщо наполягаєш». Буквальний зміст — «через мене, заради мене» — зберігається у фразах на кшталт Mach dir meinetwegen keine Sorgen. Зразок регулярний і продуктивний: deinetwegen, seinetwegen, ihretwegen, unsertwegen — особові форми прийменника wegen.'
+
+  # --- Gesprächswörter: kommentieren, zustimmen, weitergehen ---
+  - de: offenbar
+    ipa: "ˈɔfn̩ˌbaːɐ̯"
+    pos: adv
+    cards: recognition
+    en: apparently, evidently
+    ru: очевидно, по всей видимости
+    uk: очевидно, вочевидь
+    example_de: Der Laden hat offenbar schon geschlossen.
+    example_en: The shop has apparently already closed.
+    example_ru: Магазин, очевидно, уже закрылся.
+    example_uk: Крамниця, очевидно, вже зачинилася.
+    note:
+      en: 'It reports a conclusion drawn from visible evidence: the speaker has not checked, but the signs are clear. That makes it firmer than vielleicht and weaker than sicher. Two neighbours: offensichtlich insists the thing is plain for anyone to see, and anscheinend is close enough to swap in almost anywhere. As an adjective it means manifest: ein offenbarer Fehler.'
+      ru: 'Сообщает вывод, сделанный по видимым признакам: говорящий не проверял, но признаки очевидны. Поэтому слово твёрже, чем vielleicht, и слабее, чем sicher. Два соседа: offensichtlich настаивает, что это видно любому, а anscheinend настолько близко, что подставляется почти везде. Как прилагательное значит «явный»: ein offenbarer Fehler.'
+      uk: 'Повідомляє висновок, зроблений за видимими ознаками: мовець не перевіряв, але ознаки очевидні. Тому слово твердіше за vielleicht і слабше за sicher. Два сусіди: offensichtlich наполягає, що це видно кожному, а anscheinend настільки близьке, що підставляється майже скрізь. Як прикметник означає «явний»: ein offenbarer Fehler.'
+
+  - de: selbstverständlich
+    ipa: "ˈzɛlpstfɛɐ̯ˌʃtɛntlɪç"
+    pos: adv
+    cards: recognition
+    en: of course, it goes without saying
+    ru: разумеется, само собой
+    uk: звісно, само собою
+    example_de: Selbstverständlich helfe ich dir beim Umzug.
+    example_en: Of course I will help you with the move.
+    example_ru: Разумеется, я помогу тебе с переездом.
+    example_uk: Звісно, я допоможу тобі з переїздом.
+    note:
+      en: 'The polite, slightly formal way of granting a request, at home in service and business language: Selbstverständlich, gern! A2 natürlich says the same in one shorter word and is the neutral everyday choice; klar is its casual spoken version. As an adjective it means self-evident and often carries a hint of reproach: Das ist doch selbstverständlich.'
+      ru: 'Вежливый, слегка официальный способ пойти навстречу просьбе, уместный в сфере услуг и в деловом языке: Selbstverständlich, gern! natürlich с уровня A2 говорит то же самое одним коротким словом и нейтрально, а klar — его разговорный вариант. Как прилагательное значит «само собой разумеющийся» и нередко звучит с оттенком упрёка: Das ist doch selbstverständlich.'
+      uk: 'Увічливий, трохи офіційний спосіб піти назустріч проханню, доречний у сфері послуг і в діловій мові: Selbstverständlich, gern! natürlich рівня A2 каже те саме одним коротким словом і нейтрально, а klar — його розмовний варіант. Як прикметник означає «само собою зрозумілий» і нерідко звучить із відтінком докору: Das ist doch selbstverständlich.'
+
+  - de: sowieso
+    ipa: "zoviˈzoː"
+    pos: adv
+    cards: recognition
+    en: anyway, in any case
+    ru: всё равно, и так
+    uk: усе одно, і так
+    example_de: Ruf ihn nicht an, ich sehe ihn morgen sowieso.
+    example_en: Do not call him, I am seeing him tomorrow anyway.
+    example_ru: Не звони ему, я всё равно завтра его увижу.
+    example_uk: Не телефонуй йому, я все одно завтра його побачу.
+    note:
+      en: 'It says that the thing holds independently of what has just been discussed, so the discussion changes nothing. It stands inside the clause, usually near the end, and belongs to spoken German; a written text reaches for ohnehin instead. As a one-word reply, Sowieso! means obviously, no question about it.'
+      ru: 'Говорит, что дело обстоит так независимо от только что обсуждавшегося, а значит, обсуждение ничего не меняет. Стоит внутри предложения, обычно ближе к концу, и принадлежит разговорной речи; письменный текст возьмёт ohnehin. Отдельной репликой Sowieso! значит «ясное дело, а как же».'
+      uk: 'Каже, що справа стоїть так незалежно від щойно обговорюваного, а отже, обговорення нічого не змінює. Стоїть усередині речення, зазвичай ближче до кінця, і належить розмовному мовленню; писемний текст візьме ohnehin. Окремою реплікою Sowieso! означає «ясна річ, а як же».'
+
+  - de: übrigens
+    ipa: "ˈyːbʁɪgn̩s"
+    pos: adv
+    en: by the way, incidentally
+    ru: кстати, между прочим
+    uk: до речі, між іншим
+    example_de: Übrigens, deine Schwester hat gestern angerufen.
+    example_en: By the way, your sister called yesterday.
+    example_ru: Кстати, вчера звонила твоя сестра.
+    example_uk: До речі, учора телефонувала твоя сестра.
+    note:
+      en: 'It hangs an afterthought on the conversation — a piece of news that is not the point of what is being said. Two word orders are both correct at the front of a sentence: set off by a comma (Übrigens, sie hat angerufen), which sounds spoken, or filling position 1 with the finite verb straight behind it (Übrigens hat sie angerufen), which is the neutral written form. It also works inside the clause: Sie hat übrigens angerufen.'
+      ru: 'Подвешивает к разговору попутную мысль — новость, которая не является сутью сказанного. В начале предложения возможны два порядка, и оба верны: с запятой (Übrigens, sie hat angerufen), что звучит разговорно, и на первом месте со спрягаемым глаголом сразу за ним (Übrigens hat sie angerufen) — нейтральный письменный вариант. Работает и внутри предложения: Sie hat übrigens angerufen.'
+      uk: 'Підвішує до розмови побіжну думку — новину, яка не є суттю сказаного. На початку речення можливі два порядки, і обидва правильні: з комою (Übrigens, sie hat angerufen), що звучить розмовно, і на першому місці з відмінюваним дієсловом одразу за ним (Übrigens hat sie angerufen) — нейтральний писемний варіант. Працює й усередині речення: Sie hat übrigens angerufen.'
+
+  - de: okay
+    ipa: "oˈkeː"
+    pos: interj
+    cards: recognition
+    en: OK, all right
+    ru: ладно, хорошо
+    uk: гаразд, добре
+    example_de: Okay, dann treffen wir uns um sieben.
+    example_en: OK, then let us meet at seven.
+    example_ru: Ладно, тогда встретимся в семь.
+    example_uk: Гаразд, тоді зустрінемося о сьомій.
+    note:
+      en: 'Fully at home in spoken German: as a one-word agreement (Okay!), as a check that the other person is following (…, okay?), and as an indeclinable adjective meaning acceptable (Das Essen war okay). German writes it out with a k; the abbreviation o. k. also occurs. The stress is on the second syllable, as in English.'
+      ru: 'Полностью прижилось в разговорном немецком: как согласие одним словом (Okay!), как проверка, что собеседник следит за мыслью (…, okay?), и как несклоняемое прилагательное «нормальный, сносный» (Das Essen war okay). По-немецки пишется буквами с k; встречается и сокращение o. k. Ударение на втором слоге, как в английском.'
+      uk: 'Цілком прижилося в розмовній німецькій: як згода одним словом (Okay!), як перевірка, що співрозмовник стежить за думкою (…, okay?), і як невідмінюваний прикметник «нормальний, стерпний» (Das Essen war okay). Німецькою пишеться літерами з k; трапляється й скорочення o. k. Наголос на другому складі, як в англійській.'

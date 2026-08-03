@@ -193,10 +193,13 @@ export const vocabEntrySchema = z
      * announcements, form headings, listing abbreviations, the long tail of a Wortliste.
      *
      * This exists because the two-cards-per-entry rule does not survive B1. The corpus is
-     * 1619 entries → 3238 cards today; the Goethe B1 list is missing 1996 more headwords,
-     * which at two cards each would mean ~7230 cards and ~460 days of introduction at
-     * `DAILY_NEW_CARDS = 15` before anything else is added. A queue that long is not a
-     * curriculum, and its tail is exactly the receptive vocabulary this field describes.
+     * 1931 entries → 3742 cards today (parse `content/vocab/*.yaml` and count `entries[]`
+     * by `cards`; the grep this comment used to quote missed 17 decks that indent
+     * differently, and undercounted by 524); `bun scripts/coverage.ts B1` says 1694
+     * headwords are still missing, which at two cards each would mean ~7000 cards and
+     * ~460 days of introduction at `DAILY_NEW_CARDS = 15` before anything else is added.
+     * A queue that long is not a curriculum, and its tail is exactly the receptive
+     * vocabulary this field describes.
      *
      * **It is defaulted, never retrofitted.** Card identity is `<deck>::<de>::<direction>`,
      * so flipping a shipped entry to `recognition` would delete the learner's SRS history
