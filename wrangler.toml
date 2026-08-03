@@ -50,7 +50,12 @@
 # Deploy by hand:  bun run build && bunx wrangler deploy
 # Domain:          deutsch.vitavision.dev
 
-name = "deutsch-atlas"
+# `name` is the *existing* Worker, which the Git integration named after the
+# GitHub repo — not after this project. It must stay `deutsch-textbook`: a
+# different name here does not rename anything, it deploys a second Worker, and
+# deutsch.vitavision.dev keeps serving the old one. The failure is silent — the
+# build goes green and the API is simply absent from the domain.
+name = "deutsch-textbook"
 main = "worker/index.ts"
 compatibility_date = "2026-08-03"
 
@@ -69,7 +74,7 @@ run_worker_first = ["/api/*"]
 binding = "DB"
 database_name = "deutsch-atlas"
 # Filled in by `bunx wrangler d1 create deutsch-atlas`.
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "07239d0d-50b2-4e43-959a-587036767dc3"
 migrations_dir = "migrations"
 
 [[r2_buckets]]
