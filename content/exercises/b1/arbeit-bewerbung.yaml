@@ -60,17 +60,25 @@ items:
     outcomes: [bewerbung-schreiben]
     type: translate
     focus: n-deklination
+    revision: 2
     instruction:
       en: "Translate. Use von."
       ru: "Переведите. Используйте von."
       uk: "Перекладіть. Використайте von."
       de: "Übersetze. Verwende von."
     prompt_en: "That is a letter from Mr Weber."
-    prompt_ru: "Это письмо от господина Вебера."
-    prompt_uk: "Це лист від пана Вебера."
+    # The dash forces the presentational parse. Without it «Это письмо от…» reads at least
+    # as naturally as "This letter is from…" — a different sentence (Dieser Brief ist von …),
+    # which a learner produced and was marked wrong for.
+    prompt_ru: "Это — письмо от господина Вебера."
+    prompt_uk: "Це — лист від пана Вебера."
     answer: "Das ist ein Brief von Herrn Weber."
     accept:
       - "Es ist ein Brief von Herrn Weber."
+      # Definiteness stays free even with the dash: Russian and Ukrainian mark none, and
+      # the graded token is Herrn.
+      - "Das ist der Brief von Herrn Weber."
+      - "Es ist der Brief von Herrn Weber."
     key_tokens: ["Herrn"]
     explain:
       en: "Graded is one letter: von takes the dative, and Herr belongs to the n-declension, so before the name it becomes Herrn — von Herrn Weber. English Mr is frozen and will not warn you; let the preposition do it. Herr keeps its bare form only in the nominative — as the subject (Herr Weber ruft an) and in the salutation (Sehr geehrter Herr Weber)."

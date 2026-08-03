@@ -119,6 +119,7 @@ export interface ExerciseItem {
   prompt?: string;
   prompt_en?: string;
   prompt_ru?: string;
+  prompt_uk?: string;
   answer?: string;
   accept?: string[];
   focus?: string;
@@ -131,6 +132,28 @@ export interface CatalogItem extends ExerciseItem {
   topic?: string;
   role?: string;
   arming?: string[];
+}
+
+/** The prompt as each explanation language shows it; absent halves fall back to EN at render. */
+export interface PromptHalves {
+  en?: string;
+  ru?: string;
+  uk?: string;
+}
+
+/**
+ * Every prompt the item ships — never just the English one.
+ *
+ * `prompt_en` and `prompt_ru` are the same sentence written independently, and they do not
+ * carry the same information: a bare Russian noun marks no definiteness, so `Завтра я куплю
+ * лампу` leaves both `eine Lampe` and `die Lampe` open where *Tomorrow I am buying a lamp*
+ * does not. An audit that printed only the English half sent a whole line of determiner
+ * rulings against text the learner never saw — `a1/akkusativ:uebersetzen-lampe` was ruled
+ * `confirm` on 2026-08-02 and reversed on 2026-08-03 for exactly that reason. The ruling
+ * author has to be shown the prompt the learner answered.
+ */
+export function promptHalves(item: ExerciseItem): PromptHalves {
+  return { en: item.prompt_en ?? item.prompt, ru: item.prompt_ru, uk: item.prompt_uk };
 }
 
 export interface PerformanceRow {
@@ -162,8 +185,8 @@ export interface RejectedRendering {
 
 export interface GradingCandidate {
   ref: string;
-  prompt?: string;
-  promptRu?: string;
+  /** every prompt the item ships, so a ruling cannot be made against the wrong one */
+  prompts: PromptHalves;
   answer: string;
   accept: string[];
   keyTokens: string[];
@@ -565,8 +588,7 @@ function gradingReview(
 
     candidates.push({
       ref,
-      prompt: item.prompt_en ?? item.prompt,
-      promptRu: item.prompt_ru,
+      prompts: promptHalves(item),
       answer: item.answer!,
       accept: item.accept ?? [],
       keyTokens: item.key_tokens ?? [],
@@ -1163,6 +1185,21 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
 const md = (value: unknown) =>
   String(value ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
 
+/**
+ * One line per authored prompt half, labelled by language.
+ *
+ * Labelled rather than merged, and never collapsed to one line, because which half the
+ * learner saw is the whole point — see `promptHalves`. A single-half item still prints its
+ * label, so an unlabelled prompt can never be mistaken for "the prompt".
+ */
+const promptLines = (prompts: PromptHalves): string[] => {
+  const present = (['en', 'ru', 'uk'] as const)
+    .map((lang) => [lang, prompts[lang]] as const)
+    .filter(([, text]) => text);
+  if (!present.length) return ['Prompt: —'];
+  return present.map(([lang, text]) => `Prompt (${lang}): ${md(text)}`);
+};
+
 function performanceTable(rows: PerformanceRow[]): string[] {
   return [
     '| Kind | Attempts | Verified | Score |',
@@ -1428,7 +1465,7 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     out.push(
       `### \`${candidate.ref}\``,
       '',
-      `Prompt: ${md(candidate.prompt ?? '—')}`,
+      ...promptLines(candidate.prompts),
       `Answer: ${md(candidate.answer)}`,
       `Accepted: ${candidate.accept.length ? candidate.accept.map(md).join(' / ') : '—'}`,
       `Focus / key tokens: ${md(candidate.focus ?? '—')} / ` +
@@ -1468,7 +1505,7 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     out.push(`## Item detail — \`${audit.detail.ref}\``, '');
     if (audit.detail.item) {
       out.push(
-        `Prompt: ${md(audit.detail.item.prompt_en ?? audit.detail.item.prompt ?? '—')}`,
+        ...promptLines(promptHalves(audit.detail.item)),
         `Answer: ${md(audit.detail.item.answer ?? '—')}`,
         `Accepted: ${(audit.detail.item.accept ?? []).map(md).join(' / ') || '—'}`,
         '',

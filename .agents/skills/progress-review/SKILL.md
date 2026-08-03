@@ -52,6 +52,20 @@ committed ruling is what makes it drain. A decided rendering leaves the queue; t
   re-enter the focus signals with attribution recomputed under today's grader — never the stored
   historical tag, which may be an older scorer's false attribution.
 
+**Rule against the prompt the learner answered, not the English one.** The queue prints every
+authored half — `Prompt (en)`, `Prompt (ru)`, `Prompt (uk)` — because they are written
+independently and do not carry the same information. A bare Russian noun marks no definiteness:
+«Завтра я куплю лампу» leaves both *eine Lampe* and *die Lampe* open where *Tomorrow I am buying a
+lamp* does not. Whatever a determiner, a number or an aspect the RU/UK half leaves free, the item
+cannot grade — no matter how determinate `prompt_en` reads. Where that free element does **not**
+carry the item's `focus`, the ruling is **accept** and the sibling joins the accept list, closed
+over any word-order alternates the item already has.
+
+This is not hypothetical: the audit printed only `prompt_en` until 2026-08-03, and a line of
+determiner rulings — `a1/akkusativ:uebersetzen-lampe` among them, ruled `confirm` and reversed the
+next day — was decided against text the learner never saw. Suspect the instrument (§2) before the
+rendering, including when the instrument is the queue you are reading.
+
 Record any real confusion worth a future drill item in the `note` ("drill note: …") — drill
 authoring reads the notes. The linguistic criteria are CLAUDE.md's `translate`/`accept` and
 `key_tokens` rules — apply those, do not restate or improvise them.

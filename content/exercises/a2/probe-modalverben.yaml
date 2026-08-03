@@ -48,6 +48,7 @@ items:
     outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
+    revision: 2
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -65,6 +66,13 @@ items:
       - "Heute Abend will mein Bruder eine Suppe kochen."
       - "Mein Bruder möchte heute Abend eine Suppe kochen."
       - "Heute Abend möchte mein Bruder eine Suppe kochen."
+      # And «суп» marks no definiteness, so the same argument covers the article: a learner
+      # who built the bracket must not be logged as a bracket failure for having read the
+      # bare noun as definite. The list closes over order × modal × determiner.
+      - "Mein Bruder will heute Abend die Suppe kochen."
+      - "Heute Abend will mein Bruder die Suppe kochen."
+      - "Mein Bruder möchte heute Abend die Suppe kochen."
+      - "Heute Abend möchte mein Bruder die Suppe kochen."
     explain:
       en: "The modal is the only verb that gets conjugated, and it claims position 2 — everything the sentence actually says (when, what) then piles up in the middle, and the infinitive is pushed out to the very end: will … kochen. The longer the middle field, the stronger the pull to put the infinitive next to the modal, the way English does ('wants to cook a soup'). German makes you hold it back to the last word."
       ru: "Спрягается только модальный глагол, и он занимает второе место. Всё содержание предложения — когда, что — набивается в середину, а инфинитив выталкивается в самый конец: will … kochen. Чем длиннее середина, тем сильнее соблазн поставить инфинитив сразу за модальным глаголом, как в русском («хочет приготовить суп»). Немецкий заставляет придержать его до последнего слова."
