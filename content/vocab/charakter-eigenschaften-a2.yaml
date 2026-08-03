@@ -149,6 +149,11 @@ entries:
       ru: 'intelligent и klug — почти синонимы, но klug — обычное разговорное слово, а intelligent звучит суховатее. Осторожно: немецкое intelligent значит «умный», а не «интеллигентный» (воспитанный, культурный). Ударение на последнем слоге: in-tel-li-GENT.'
       uk: 'intelligent і klug — майже синоніми, але klug — звичайне розмовне слово, а intelligent звучить сухіше. Обережно: німецьке intelligent означає «розумний», а не «інтелігентний» (вихований, культурний). Наголос на останньому складі: in-tel-li-GENT.'
   - de: komisch
+    # Same prompt as `seltsam` (erfahrungen-erzaehlen), character for character in all
+    # three glosses — the card cannot say which of the two it wants, and both are correct
+    # German for it. Mutual accept rather than a reworded gloss, because the words really
+    # are interchangeable here.
+    accept: ["seltsam"]
     ipa: "ˈkoːmɪʃ"
     pos: adj
     en: strange, odd

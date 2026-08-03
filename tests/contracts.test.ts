@@ -587,7 +587,40 @@ describe('cards: recognition | both', () => {
     // wieso, and daher against A2's shipped deshalb and also). A typed production card
     // cannot fairly grade "the particle meaning ведь", and per the amendment in
     // docs/curriculum-a2-b1.md recognition stays over half of every completion deck.
-    expect(cards).toBe(entries * 2 - 142);
+    // `graduierung-mengenwoerter-b1` (2026-08-03) adds twenty-four on the same argument,
+    // and here it is almost entirely the shipped-synonym one: A1/A2 already sell `oft`,
+    // `meistens`, `normalerweise`, `schon`, `nur`, `alle`, `wieder`, `fast`, `total`,
+    // `ganz`, `unbedingt`, `vielleicht`, `wahrscheinlich` and `bisschen` as production
+    // cards, so `häufig`, `meist`, `gewöhnlich`, `bereits`, `ausschließlich`, `sämtliche`,
+    // `noch mal`, `nochmals`, `beinahe`, `völlig`, `absolut`, `bestimmt`, `eventuell`,
+    // `vermutlich` and `ein bisschen` answer a prompt a shipped card already owns — which
+    // no `accept` list can repair, because the two cards live in different decks. Four
+    // more (`circa`, `etwa`, `je`, `jeweils`) would compete inside this very deck, and
+    // three (`so viel wie`, `wie viele`, `noch mal`) would grade a space rather than a
+    // word; `einzeln` and `folgend` are notice-and-packaging vocabulary.
+    // `eigenschaften-bewertung-b1` (2026-08-03) adds twenty-six, and the shipped-synonym
+    // argument again does most of the work — but here it lands on whole clusters rather
+    // than on single pairs. A2's `bewertung-a2` alone sells `toll`, `super`,
+    // `fantastisch`, `wunderbar`, `klar`, `richtig` and `echt` as production cards, so
+    // the five-word "excellent" cluster collapses to one: `perfekt` keeps the typed card
+    // on the narrow claim that nothing is left to correct, and `ausgezeichnet`, `ideal`,
+    // `klasse`, `cool` and `wunderschön` answer prompts that are already owned —
+    // `cool` twice over, because A2's `kühl` is glossed "cool" letter for letter.
+    // The same test disqualifies `korrekt` (against `richtig`), `eindeutig` (`klar`,
+    // `deutlich`), `unterschiedlich` (`verschieden`), `komplett` (`total`, `ganz`),
+    // `still` (`leise`, `ruhig`), `vergeblich` (`umsonst`, whose second gloss is "in
+    // vain"), `erforderlich` (`notwendig` and `nötig`, both glossed "necessary"),
+    // `üblich` (`normal`, `normalerweise`, `meistens` — the ruling `gewöhnlich` already
+    // got on the sibling deck, and the two notes now agree), `alltäglich` (`täglich`,
+    // `Alltag`), `dicht` (`dick`), `fest` (`hart`) and `original` (`echt`). `fertig` is
+    // the one that looks like an A1 word and is not: A2 ships the phrase `fertig sein`
+    // glossed "to be ready, to be finished", and this headword IS that answer, in
+    // another deck where no `accept` list can reach it. Six more are recognition on the
+    // register argument alone — `begrenzt`, `einheitlich`, `allgemein`, `alternativ`,
+    // `zugänglich`, `äußerlich`: Aushang, Beipackzettel, AGB and course-programme
+    // vocabulary, read constantly and produced never at B1. `unheimlich` and `intensiv`
+    // join them because each carries two unrelated senses one example cannot hold.
+    expect(cards).toBe(entries * 2 - 192);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
