@@ -14,7 +14,7 @@ import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from '.
 
 type ListenItem = z.infer<typeof listenItemSchema>;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   noTts: {
     en: 'Audio is not available on this device — copy the sentence instead.',

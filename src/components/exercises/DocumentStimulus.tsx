@@ -4,7 +4,7 @@ import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   openFull: { en: 'Open document at full size', ru: 'Открыть документ крупно' },
   textVersion: { en: 'Text version of the document', ru: 'Текстовая версия документа' },

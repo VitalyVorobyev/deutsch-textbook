@@ -47,7 +47,7 @@ describe('arguments', () => {
 });
 
 describe('the check list', () => {
-  // A tripwire, not a property: CLAUDE.md and docs/cloud-sync.md both state this
+  // A tripwire, not a property: CLAUDE.md and docs/architecture/cloud-sync.md both state this
   // number in prose, and both said six while the list held seven. Every other
   // test here looks a check up by name, so nothing could see the drift. Adding
   // or removing a check means changing the number in all three places at once.

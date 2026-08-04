@@ -26,7 +26,7 @@ export type { TrainingSet } from '../../lib/training';
 
 const SESSION_SIZE = 15;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   building: { en: 'Building your session…', ru: 'Собираем тренировку…' },
   emptyHint: {

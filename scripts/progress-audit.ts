@@ -76,7 +76,7 @@ interface AuditCard {
  * A lexeme with this many lapses **in the production direction** is what the operating
  * program calls a review trigger for that *entry* — its forms, its contrast and its
  * context — not a signal about the learner: "Two productive-direction lapses on one lexeme
- * trigger review of its forms, contrast and context" (docs/a2-learning-led-program.md).
+ * trigger review of its forms, contrast and context" (docs/curriculum/a2-learning-led-program.md).
  *
  * The direction is part of the rule, not a detail of it, so `needingReview` filters to
  * `x-de` — a recognition card that lapses is telling you the learner cannot read the word

@@ -6,7 +6,7 @@ Two scripts decide every completeness number this project publishes: `scripts/co
 already gone wrong twice, in opposite directions: A1 claimed a word it never taught, and A2 was
 called content-complete at 67% of its own standard.
 
-Lifted out of [`CLAUDE.md`](../CLAUDE.md), which keeps the rules ("a `~` must be earned", "closing
+Lifted out of [`CLAUDE.md`](../../CLAUDE.md), which keeps the rules ("a `~` must be earned", "closing
 a gap lowers the tripwire in the same commit") and points here for how the instruments work and
 what they caught.
 

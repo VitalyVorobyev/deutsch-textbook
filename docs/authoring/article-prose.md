@@ -4,7 +4,7 @@ The article is the **model stage** of the lesson cycle: the place where a learne
 with maximal support, before any practice asks anything back. That job is done by *shape* as much
 as by content, and shape is the thing that drifted.
 
-Lifted out of [`CLAUDE.md`](../CLAUDE.md), which keeps the imperatives (`### subsections`, the
+Lifted out of [`CLAUDE.md`](../../CLAUDE.md), which keeps the imperatives (`### subsections`, the
 table beside its prose, the 120-word ceiling, the drilled-or-`Feinheiten` rule) and points here for
 the measurement behind them and what each one guards.
 
@@ -40,7 +40,7 @@ put a table next to the prose explaining it.
 **Total length was never the defect, and cutting is not the fix.** B1 `<En>` halves average 1516
 words against A2's 1050 (1.44×) while carrying 2.1× the grammar — 2.9 manifest points per
 grammar-bearing B1 unit against 1.36 per A2 topic (`bun scripts/grammar-coverage.ts A2|B1`, unit
-counts from the frozen contract in [`curriculum-a2-b1.md`](curriculum-a2-b1.md)). Per grammar point
+counts from the frozen contract in [`curriculum-a2-b1.md`](../curriculum/a2-b1.md)). Per grammar point
 the B1 articles were already **denser** than A2's. Volume follows the contract; packaging does not.
 A revision that trimmed the elaboration and the L1 contrast would trade a shape defect for a
 teaching one.

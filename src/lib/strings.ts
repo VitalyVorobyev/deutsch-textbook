@@ -2,7 +2,7 @@
  * Chrome strings — the UI's own furniture (navigation, buttons, section
  * labels), as opposed to the content's explanation language.
  *
- * Two independent axes (docs/i18n-design.md), never conflated: `UiLang` picks
+ * Two independent axes (docs/adrs/0001-bilingual-explanation-halves.md), never conflated: `UiLang` picks
  * the chrome language per profile and defaults to 'de' — today's exact UI —
  * while `ExplainLang` (src/lib/prefs.ts) picks which half of a Bilingual
  * block is shown. Full immersion is simply uiLang 'de' over any explanation

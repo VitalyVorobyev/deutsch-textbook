@@ -4,7 +4,7 @@ Status: **A1 and A2 are structurally complete on both coverage measures** (updat
 Wortliste 100% at each level *and* every grammar point of each level's standard taught, 22/22 at
 A1 and 30/30 at A2, verified by `bun scripts/grammar-coverage.ts`. These figures mean the manifest
 is taught; they do **not** assert learner mastery or replace linguistic QA. A2's 30-point
-[linguistic QA ledger](a2-linguistic-qa.md) completed its systematic corpus pass on 2026-07-18:
+[linguistic QA ledger](../quality/a2-linguistic-qa.md) completed its systematic corpus pass on 2026-07-18:
 all points are signed off and all high/medium findings are closed. The second
 half of the structural claim is new: A2 was
 called content-complete for months on its lexical figure alone, and when structure was finally
@@ -15,7 +15,7 @@ ru-bearing A1/A2 file. The system is in the **pre-B1 evidence window**: almost
 every remaining gate is calendar- or learner-evidence-bound rather than authoring work. Phase
 history lives in [archive/2026-07-phases-4-9.md](archive/2026-07-phases-4-9.md) and
 [archive/2026-07-learning-foundations.md](archive/2026-07-learning-foundations.md); *what* A2/B1
-teach is decided in [the curriculum blueprint](curriculum-a2-b1.md); executable work is in
+teach is decided in [the curriculum blueprint](../curriculum/a2-b1.md); executable work is in
 [backlog.md](backlog.md).
 
 ## Product direction
@@ -102,7 +102,7 @@ widening the probe channel (P5-7 and the second-family work), not for lowering t
 
 It is a **revision trigger**, not a blocker on authoring:
 
-> On 2026-08-02 the probe cohort is read and [the audit](a1-learning-audit.md) updated. If A1 misses
+> On 2026-08-02 the probe cohort is read and [the audit](../quality/a1-learning-audit.md) updated. If A1 misses
 > the bar, authoring stops: the units written by then are revised against the finding, and the
 > lesson pattern is fixed before another unit is written.
 
@@ -118,12 +118,12 @@ produced a single answer, so each family now runs parallel checks of *one* compe
 
 - **Phase 7 — Schreib-Assistent** — *done.* Local, advisory-only Ollama feedback on `write` drafts:
   it quotes the learner's words and nudges, never rewrites, and **never becomes evidence**;
-  self-hides when no local model answers. Design: [assist-design.md](assist-design.md).
+  self-hides when no local model answers. Design: [assist-design.md](../adrs/0002-advisory-only-writing-assistant.md).
 - **Phase 8 — Sprachen** — *machinery done; Ukrainian A1+A2 content done (C3).* Ukrainian joins
   EN/RU as an explanation language at the same bar, English fallback where `uk` is missing;
   German-medium `<De>` explanations are authored for B1 onward, never backfilled. The per-profile
   UI language is the foundation, not the objective; chrome stays pinned German by default. B1 `uk`
-  waves follow B1 content. Design: [i18n-design.md](i18n-design.md).
+  waves follow B1 content. Design: [i18n-design.md](../adrs/0001-bilingual-explanation-halves.md).
 - **Phase 9 — Entdecken & Referenz** — *reference layer done; editorial strand open.* All three
   derived/canonical lookup pages have shipped, the last being `/referenz/briefe` (2026-07-21). The
   discovery layer is at seven pieces spanning A1–B1 and is now reachable **from the lesson** — a
@@ -139,7 +139,7 @@ produced a single answer, so each family now runs parallel checks of *one* compe
   localised — so `uk` costs about +47%, and adding `de` costs roughly that much again on top.
   That pair, not either number alone, is what the "B1 carries `de` from day one" preference
   should be decided against. Direction:
-  [future-content-directions.md](future-content-directions.md).
+  [future-content-directions.md](../authoring/future-content-directions.md).
 
 ## Definition of roadmap completion
 
@@ -161,7 +161,7 @@ revision. Decision record and accepted risk:
    ≥80%/≥70% bar was missed, the revision it triggers has shipped. — *revision trigger
    (calendar, 2026-08-02).*
 2. **The A2 checkpoint is completed** and window 6 of
-   [the operating program](a2-learning-led-program.md) — checkpoint + delayed-evidence review — is
+   [the operating program](../curriculum/a2-learning-led-program.md) — checkpoint + delayed-evidence review — is
    done. — *checkpoint taken 2026-07-24 (18/21 verified); the delayed-evidence review is a
    revision trigger (~2026-08-14).*
 3. **The A2 probe evidence has been reviewed** under the operating program's rules. — *revision
@@ -175,8 +175,8 @@ revision. Decision record and accepted risk:
    start (~41% already covered by A1/A2 material).
 7. **Every A2 manifest point has linguistic sign-off, all high/medium findings are fixed, and
    structural coverage language remains explicitly separate from mastery.** — **met
-   2026-07-18:** [the 30-point ledger](a2-linguistic-qa.md) records the completed corpus pass.
-8. **The first B1 PR freezes the B1 identities in [the blueprint](curriculum-a2-b1.md)** — ids
+   2026-07-18:** [the 30-point ledger](../quality/a2-linguistic-qa.md) records the completed corpus pass.
+8. **The first B1 PR freezes the B1 identities in [the blueprint](../curriculum/a2-b1.md)** — ids
    become persisted learner-progress keys the moment a unit ships. — *proceeds now, under the
    2026-07-24 decision.*
 

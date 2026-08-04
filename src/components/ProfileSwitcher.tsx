@@ -15,7 +15,7 @@ import { t } from '../lib/strings';
 import { withBase } from '../lib/url';
 import { useExplainLang, useUiLang } from './hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{label}` is replaced by the caller. */
 const UI = {
   switchProfile: { en: 'Switch learner profile', ru: 'Сменить профиль' },

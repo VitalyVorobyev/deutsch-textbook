@@ -118,7 +118,7 @@ describe('scoring and curriculum contracts', () => {
   });
 
   // Both checks below guard one property with two faces: an item must never grade which
-  // word the author had in mind. `docs/item-authoring.md` had stated it for cloze gaps
+  // word the author had in mind. `docs/authoring/item-authoring.md` had stated it for cloze gaps
   // only; these are the two places it reached `translate` and `table` instead.
   test('no translate item pins one interchangeable connector without saying so', () => {
     // «потому что» renders as denn (V2) or weil (verb-final) with equal fidelity, so an
@@ -586,7 +586,7 @@ describe('cards: recognition | both', () => {
     // answers (seitdem/seit, solange, indem, als ob, soviel, beziehungsweise, umso,
     // wieso, and daher against A2's shipped deshalb and also). A typed production card
     // cannot fairly grade "the particle meaning ведь", and per the amendment in
-    // docs/curriculum-a2-b1.md recognition stays over half of every completion deck.
+    // docs/curriculum/a2-b1.md recognition stays over half of every completion deck.
     // `graduierung-mengenwoerter-b1` (2026-08-03) adds twenty-four on the same argument,
     // and here it is almost entirely the shipped-synonym one: A1/A2 already sell `oft`,
     // `meistens`, `normalerweise`, `schon`, `nur`, `alle`, `wieder`, `fast`, `total`,

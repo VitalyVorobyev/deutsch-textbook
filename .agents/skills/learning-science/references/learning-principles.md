@@ -380,7 +380,7 @@ confusion, each keeping its table beside its prose; one claim per paragraph
 under a hard 120-word ceiling; facts that are never drilled moved to a
 `### Feinheiten` reference table; `## Kurz gesagt` written as an advance
 organizer rather than a summary. Rules, measurement and the instrument:
-`docs/article-prose.md`, `bun scripts/prose-shape.ts`.
+`docs/authoring/article-prose.md`, `bun scripts/prose-shape.ts`.
 **Anti-pattern:** A wall — one block carrying many idea units under a single
 signal, with its table 130 lines away (B1.4 shipped at 397 words in one
 paragraph against an A2 corpus maximum of 107). A bolded lead sentence standing
