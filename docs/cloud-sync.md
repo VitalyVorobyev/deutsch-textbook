@@ -393,7 +393,7 @@ Run the check before reasoning about it:
 bun run deploy:smoke          # add --deep to also prove D1 and the migrations
 ```
 
-Six checks against the live origin, three of which fail together when the Worker has lost its
+Seven checks against the live origin, three of which fail together when the Worker has lost its
 secrets. That is the failure this section exists for, and it has happened once.
 
 **Symptom.** `/konto` shows its local-first paragraph and nothing else — no buttons, no error. Both
