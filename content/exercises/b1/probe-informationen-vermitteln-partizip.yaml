@@ -1,0 +1,109 @@
+# Delayed probe family 3 of 3 — ONE competence: forming an attributive participle cold —
+# choosing between Partizip I and Partizip II by what the noun does, and giving the form the
+# adjective ending its article and case call for. Three parallel cloze variants, each two
+# lines of a notice carrying one participle of each kind, served in authoring order across
+# the 2/7/21 delays: one retention curve over one build.
+#
+# cloze rather than translate: the gap IS the graded token, so every miss is attributed —
+# and the two halves of the competence are both inside it, since a wrong choice
+# (kommende/gekommene) and a missing ending (kommend) are the same gap and the same tag.
+# A translate would put the whole clause around it and let a fumbled Formular or Eingang
+# absorb the attribution. Composition is measured anyway by uebersetzen-partizip in the
+# practice set.
+#
+# Each instruction names the two infinitives and asks for the participle "as an attribute,
+# with its ending", never for "the Partizip I" or "the Partizip II" — naming the form would
+# hand over the half of the decision the tag exists to grade. What the learner has to supply
+# is the choice, and the ending that follows it.
+#
+# The six cells cover both directions and four endings: a Partizip II after a dative article
+# (-en) and a Partizip I after a nominative masculine (-e); two plurals (-en, -en); a
+# nominative masculine (-e) beside a plural (-en). No variant repeats a verb.
+#
+# Content fresh against the taught surface, checked by grepping each verb across the unit's
+# seven files rather than by re-reading this list. The taught attributes are geplant,
+# geändert and verschoben (the article and the reading), lachend and fehlend (the article),
+# abgesagt and wartend (the practice cloze), unterschrieben (the practice translate),
+# bestätigt (the practice mc) and bezahlt (the pretest). None of ausfüllen, kommen,
+# bestellen, laufen, korrigieren or steigen appears as an attribute anywhere in this unit,
+# and none of them appears in the article's or the reading's participle tables at all
+# (the only grep hits outside this family are inside the pretest's own freshness note, plus
+# kommen as a finite verb in the pretest cloze and in family 1 — never in front of a noun).
+#
+# arming: the three items in which the learner supplies or picks an attributive participle —
+# the cloze, the translate and the mc that puts Partizip I against Partizip II. Nothing else
+# in the unit carries this tag. All three families here are new and each arms from its own
+# literal list (P19-4, src/lib/probes.ts reads `arming` and nothing else), so none of them
+# can move another's `armedAt` — measured before and after by reading the three lists, which
+# share no item.
+topic: informationen-vermitteln
+role: probe
+title:
+  en: "Delayed check — the participle in front of the noun"
+  ru: "Отложенная проверка — причастие перед существительным"
+  uk: "Відкладена перевірка — дієприкметник перед іменником"
+  de: "Kontrolle mit Abstand — das Partizip vor dem Nomen"
+arming:
+  - b1/informationen-vermitteln::cloze-partizip-attribut
+  - b1/informationen-vermitteln::uebersetzen-partizip
+  - b1/informationen-vermitteln::mc-partizip-wahl
+items:
+  - id: variant-a
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Two notices, two participles. Put ausfüllen and kommen in front of their nouns as attributes — each with the ending its article and case call for."
+      ru: "Два объявления, два причастия. Поставьте ausfüllen и kommen перед их существительными как определения — каждое с тем окончанием, которого требуют артикль и падеж."
+      uk: "Два оголошення, два дієприкметники. Поставте ausfüllen і kommen перед їхніми іменниками як означення — кожне з тим закінченням, якого вимагають артикль і відмінок."
+      de: "Zwei Aushänge, zwei Partizipien. Setz ausfüllen und kommen als Attribut vor ihr Nomen — jedes mit der Endung, die Artikel und Kasus verlangen."
+    text: "Mit dem {{ausgefüllten}} Formular gehen Sie bitte ins Büro. Der {{kommende}} Montag ist ein Feiertag."
+    translation:
+      en: "Please go to the office with the completed form. The coming Monday is a public holiday."
+      ru: "С заполненным бланком пройдите, пожалуйста, в контору. Наступающий понедельник — праздничный день."
+      uk: "Із заповненим бланком пройдіть, будь ласка, до контори. Наступний понеділок — святковий день."
+    explain:
+      en: "Somebody filled the form in, so the form had it done to it: Partizip II. Monday is doing the coming itself, so: Partizip I, the infinitive plus -d. The endings then follow from the article and the case with nothing new in them — mit takes the dative, so dem gives -en, while der in the nominative gives -e. Unpack either one and the test is visible: das Formular, das ausgefüllt wurde against der Montag, der kommt."
+      ru: "Бланк кто-то заполнил — значит, с ним нечто проделали: Partizip II. Понедельник наступает сам — значит, Partizip I, инфинитив плюс -d. Окончания дальше следуют из артикля и падежа, и ничего нового в них нет: mit требует датива, поэтому после dem стоит -en, а der в именительном даёт -e. Разверните любое обратно — и проверка видна: das Formular, das ausgefüllt wurde против der Montag, der kommt."
+      uk: "Бланк хтось заповнив — отже, з ним щось зробили: Partizip II. Понеділок настає сам — отже, Partizip I, інфінітив плюс -d. Закінчення далі випливають з артикля й відмінка, і нічого нового в них немає: mit вимагає датива, тому після dem стоїть -en, а der у називному дає -e. Розгорніть будь-яке назад — і перевірка видна: das Formular, das ausgefüllt wurde проти der Montag, der kommt."
+      de: "Das Formular hat jemand ausgefüllt, mit ihm wurde also etwas gemacht: Partizip II. Der Montag kommt selbst: Partizip I, Infinitiv plus -d. Die Endungen folgen danach aus Artikel und Kasus und bringen nichts Neues — mit verlangt den Dativ, nach dem steht also -en, und der im Nominativ gibt -e. Pack eines wieder aus, und die Probe steht da: das Formular, das ausgefüllt wurde, gegen der Montag, der kommt."
+
+  - id: variant-b
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Two notices, two participles. Put bestellen and laufen in front of their nouns as attributes — each with the ending its article and case call for."
+      ru: "Два объявления, два причастия. Поставьте bestellen и laufen перед их существительными как определения — каждое с тем окончанием, которого требуют артикль и падеж."
+      uk: "Два оголошення, два дієприкметники. Поставте bestellen і laufen перед їхніми іменниками як означення — кожне з тим закінченням, якого вимагають артикль і відмінок."
+      de: "Zwei Aushänge, zwei Partizipien. Setz bestellen und laufen als Attribut vor ihr Nomen — jedes mit der Endung, die Artikel und Kasus verlangen."
+    text: "Die {{bestellten}} Schlüssel sind noch nicht da. Die {{laufenden}} Arbeiten dauern bis Freitag."
+    translation:
+      en: "The keys that were ordered are not here yet. The work that is under way lasts until Friday."
+      ru: "Заказанные ключи ещё не пришли. Идущие работы продлятся до пятницы."
+      uk: "Замовлені ключі ще не прийшли. Роботи, що тривають, триватимуть до п'ятниці."
+    explain:
+      en: "Somebody ordered the keys, so Partizip II; the work is running itself, so Partizip I. Both nouns are plural and both take -en, which is exactly why this variant is worth its place: the ending gives away nothing about which participle you chose, and a wrong choice here is invisible unless the meaning was decided first. die laufenden Arbeiten and die bestellten Schlüssel unpack to die Arbeiten, die laufen and die Schlüssel, die bestellt wurden."
+      ru: "Ключи кто-то заказал — Partizip II; работы идут сами — Partizip I. Оба существительных во множественном, и оба берут -en, и ровно поэтому вариант нужен: окончание ничего не выдаёт о том, какое причастие вы выбрали, и неверный выбор здесь незаметен, если сперва не решить смысл. die laufenden Arbeiten и die bestellten Schlüssel разворачиваются в die Arbeiten, die laufen и die Schlüssel, die bestellt wurden."
+      uk: "Ключі хтось замовив — Partizip II; роботи тривають самі — Partizip I. Обидва іменники в множині, і обидва беруть -en, і саме тому варіант потрібен: закінчення нічого не видає про те, який дієприкметник ви обрали, і хибний вибір тут непомітний, якщо спершу не вирішити зміст. die laufenden Arbeiten і die bestellten Schlüssel розгортаються в die Arbeiten, die laufen і die Schlüssel, die bestellt wurden."
+      de: "Die Schlüssel hat jemand bestellt, also Partizip II; die Arbeiten laufen selbst, also Partizip I. Beide Nomen stehen im Plural und beide nehmen -en, und genau deshalb steht diese Variante hier: Die Endung verrät nicht, welches Partizip gewählt wurde, und eine falsche Wahl bleibt unsichtbar, wenn die Bedeutung nicht zuerst entschieden wird. die laufenden Arbeiten und die bestellten Schlüssel werden zu die Arbeiten, die laufen, und die Schlüssel, die bestellt wurden."
+
+  - id: variant-c
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Two notices, two participles. Put korrigieren and steigen in front of their nouns as attributes — each with the ending its article and case call for."
+      ru: "Два объявления, два причастия. Поставьте korrigieren и steigen перед их существительными как определения — каждое с тем окончанием, которого требуют артикль и падеж."
+      uk: "Два оголошення, два дієприкметники. Поставте korrigieren і steigen перед їхніми іменниками як означення — кожне з тим закінченням, якого вимагають артикль і відмінок."
+      de: "Zwei Aushänge, zwei Partizipien. Setz korrigieren und steigen als Attribut vor ihr Nomen — jedes mit der Endung, die Artikel und Kasus verlangen."
+    text: "Der {{korrigierte}} Plan hängt jetzt am Eingang. Die {{steigenden}} Kosten stehen im Schreiben."
+    translation:
+      en: "The corrected plan is now by the entrance. The rising costs are set out in the letter."
+      ru: "Исправленный план теперь висит у входа. Растущие расходы указаны в письме."
+      uk: "Виправлений план тепер висить біля входу. Зростаючі витрати вказані в листі."
+    explain:
+      en: "Somebody corrected the plan, so Partizip II with the -e that der in the nominative calls for; the costs are rising by themselves, so Partizip I with the plural -en. Note that neither participle brings a tense with it: the plan is corrected and hanging there now, and the costs are rising now too. What the two forms carry is who does what to whom, and the tense stays wherever the rest of the sentence puts it."
+      ru: "План кто-то исправил — Partizip II с тем -e, которого требует der в именительном; расходы растут сами — Partizip I с множественным -en. Заметьте: ни одно из причастий не приносит с собой времени. План исправлен и висит там сейчас, расходы растут тоже сейчас. Эти формы несут только то, кто с кем что делает, а время остаётся там, куда его поставило остальное предложение."
+      uk: "План хтось виправив — Partizip II з тим -e, якого вимагає der у називному; витрати зростають самі — Partizip I з множинним -en. Зауважте: жоден із дієприкметників не приносить із собою часу. План виправлений і висить там зараз, витрати зростають теж зараз. Ці форми несуть лише те, хто з ким що робить, а час лишається там, куди його поставило решта речення."
+      de: "Den Plan hat jemand korrigiert, also Partizip II mit dem -e, das der im Nominativ verlangt; die Kosten steigen selbst, also Partizip I mit dem Plural-en. Und beachte: Keines der beiden Partizipien bringt eine Zeitform mit. Der Plan ist korrigiert und hängt jetzt dort, die Kosten steigen ebenfalls jetzt. Die Formen tragen nur, wer mit wem was tut; die Zeit bleibt dort, wo der übrige Satz sie hinstellt."

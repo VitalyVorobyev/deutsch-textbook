@@ -239,3 +239,49 @@ topics:
       status: pending
       substantiveContributions: []
       reviewedAt: null
+
+  - topic: geld-vertraege
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1.13"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-04"
+      creativeChoices:
+        - "Stage the unit as one repair and the paper it produces — the Kostenvoranschlag before the work, the Rechnung after it, and the contract with the provider that decides what either of them may say — so that the three genres the frozen contract names (Rechnung, Vertrag, Kostenvoranschlag) are three moments of one job rather than three unrelated documents. PROPOSED BY THE DRAFT, NOT YET SELECTED: the contract fixes the mission, the outcomes, the genre range and the exclusions, but not this setting; a mobile-phone tariff change and a flat's utility statement were the alternatives offered, and the household repair was chosen because it is the one setting in which the comparison outcome has two documents with the SAME three lines (Material, Arbeitszeit, Anfahrt) to compare, which is what makes comparing costs a reading task rather than a preference between two numbers."
+        - "Read the Rechnung down rather than through, and name a discrepancy by its line. The article's first subsection, its table and the reading's first two questions are all built on that one move: the learner points at Zeile 3 before arguing about the total, and asks rather than accuses (Können Sie mir das erklären?), because the overwhelming majority of these are an office slip. The reading is built so that the arithmetic settles it — 90 + 45 is exactly the estimate's 135, so the whole difference is one line — rather than so that a phrase has to be recognised."
+        - "Treat the recycled grammar as the shape of the genre rather than as revision. The genitive appears only as what a bill line is made of (der Preis des Tickets, die Nummer der Rechnung), the modal passive only as the reason contract language is faceless plus the mechanical turn that makes a question out of it (kann monatlich gekündigt werden → Kann ich monatlich kündigen?), and the n-declension only in the two people these sentences have, der Kunde and der Anbieter. None is re-derived; each cross-references the unit that owns it (B1.2, B1.7, B1.4), and the grammar ratchet does not move."
+        - "Hold the banking-and-insurance-law, investment and tax exclusions at the level of the deck, not just the prose: Zinsen, Versicherung and Steuer are all free on the Goethe-B1 manifest and all three were deliberately left there. What the deck admits instead is the everyday paper a household receives — Zeile, Kosten, Zahlung, Mahnung, Kündigung, fällig, gültig — with the 22 productive entries at what the learner has to say out loud and the 16 receptive ones at what the small print says back (verpflichtet, Anspruch, Forderung, pauschal, Abschnitt)."
+        - "Let two words the frozen outcomes themselves name — Tarif and Kostenvoranschlag — be taught receptively rather than carded, because neither is on the Goethe-B1 Wortliste and a deck entry would claim a coverage the manifest does not support. They live in the article's tables and in the reading, which is where language that earns no flashcard belongs, and the deck is noun-heavy for the neighbouring reason: kündigen, bezahlen, überweisen, prüfen, berechnen and seven more of the field's verbs are already owned by earlier decks and are recycled instead."
+    aiAssistance:
+      tools:
+        - "Claude Code (Claude Opus 5) — drafted the topic article, the intensive reading and the vocabulary deck"
+        - "espeak-ng via `bun run gen:ipa` — generated the IPA skeleton for the 38 vocabulary entries; 23 of them were corrected by hand afterwards (missing secondary stress on compounds and separable verbs, the vocalized r of ver-, er- and of bar in Bargeld, vowel length in Überweisung, Abo and Nachfrage, misplaced stress in pauschal, Kreditkarte and Girokonto, the ɛʁ of Alternative, the non-syllabic i of Material, and the nasal ending of Abonnement)"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null
+
+  - topic: informationen-vermitteln
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1.14"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-04"
+      creativeChoices:
+        - "Stage the closing unit of the level as one notice and its afternoon — the Aushang by the letterboxes, the neighbour who stops you in front of it, and the three people who by evening have asked what it said — so that the three grammar points the frozen contract names are three moments of one relay rather than three separate lessons. PROPOSED BY THE DRAFT, NOT YET SELECTED: the contract fixes the mission, the grammar, the outcomes and the exclusions, but not this setting; a workplace handover and a school parents' letter were the alternatives offered, and the building notice was chosen because it is the one setting where the same short text has to be read, reported to somebody who asked a question about it, and summarized for somebody who did not — which is what makes all three outcomes tasks on one object instead of three exercises."
+        - "Teach the Konjunktiv I strictly as a reading skill and say so in the article's own German, not only in its explanation halves. Reported speech gets one subsection built on the productive route (dass, ob, the kept question word, sollen for a request), and the Konjunktiv I gets its own short block whose table has three columns — what the notice says, what it means, and how the learner passes it on — so that the receptive-only status is a visible property of the material rather than a caveat in prose. The frozen contract excludes Konjunktiv I production, and the one place the learner meets it in the reading is glossed as reported speech rather than as a verb form to imitate."
+        - "Present te-ka-mo-lo honestly as a tendency, with the two forces that override it named in the same subsection: one Angabe may be fronted into position 1 and leaves the middle field entirely, and anything new, long or stressed drifts right. A rule of thumb sold as a law is the thing a learner later has to unlearn from real German, and the two exceptions are exactly what they will meet first."
+        - "Split the one manifest point wortstellung-angaben into two subsections rather than one, because it carries two tags and two different confusions: the order of the Angaben, and pronouns before nouns among the objects. The second is framed as being about weight rather than case — short, known, already-mentioned material comes first, and a pronoun is all three at once — which is what makes the accusative-before-dative reversal follow instead of having to be memorized separately."
+        - "Hold the journalistic-register exclusion at the level of the deck, not just the prose: Presse, Reportage, Reporter, Recherche, Magazin and Referat are all free on the Goethe-B1 manifest and all of them were left there. The deck's own finding is recorded in its header — the mediation field is almost entirely owned already (mitteilen, informieren, berichten, melden, zusammenfassen, erklären, wiederholen, ausrichten, ankündigen, behaupten and äußern are every one of them another deck's headword), so seventeen productive entries is what the field has left rather than a chosen size, and Mitteilung and weitergeben take cards despite being off-manifest only because the frozen outcome mitteilung-weitergeben names both words in its own can-do statement."
+    aiAssistance:
+      tools:
+        - "Claude Code (Claude Opus 5) — drafted the topic article, the intensive reading and the vocabulary deck"
+        - "espeak-ng via `bun run gen:ipa` — generated the IPA skeleton for the 38 vocabulary entries; 25 of them were corrected by hand afterwards (missing secondary stress on compounds and separable verbs, the vocalized r of ver- and of dar-, wrong stress in Gegensatz, Zuhörer and Kommunikation, the syllabic l of Einzelheit, the swallowed vowel of Absender, vowel length in Tatsache, and the word-internal glottal stop of Textaufbau)"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null

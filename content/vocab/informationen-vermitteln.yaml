@@ -1,0 +1,755 @@
+id: informationen-vermitteln
+title_de: "Informationen vermitteln"
+title_en: "Passing information on"
+title_ru: "Передача информации"
+title_uk: "Передавання інформації"
+level: B1
+# B1.14 owns three grammar points, so the deck carries the lexis of the task
+# around them: the notice on the board, the message somebody leaves, and the
+# words a summary is built out of.
+#
+# Four constraints shaped the list.
+#
+# 1. The frozen contract excludes journalistic register and minutes/protocol
+#    formats. `Presse`, `Reportage`, `Reporter`, `Recherche`, `Magazin` and
+#    `Referat` are all free on the Goethe-B1 manifest and all of them were left
+#    there. What the deck admits instead is the paper a household and an office
+#    actually hand each other: Mitteilung, Änderung, Rückmeldung, Absender,
+#    Einzelheit, Briefkasten.
+# 2. The mediation field is almost entirely OWNED already, and that is the
+#    finding this deck is built around rather than a preference. Recycled in the
+#    article, the reading and the notes below, never re-taught (the validator
+#    hard-fails a headword living in two decks): Nachricht, Information,
+#    informieren, wiederholen (kommunikation-medien); mitteilen, Hinweis,
+#    gelten, Hausmeister, Treppenhaus (regeln-verantwortung); zusammenfassen,
+#    Aussage, behaupten, Meldung, Quelle (meinung-medien); Bericht, Ereignis
+#    (erfahrungen-erzaehlen); Bescheid (redemittel-chunks-a2); Text, Satz,
+#    Thema, Notiz (schule-faecher-a2); Wort, nachfragen, notieren, Bedeutung
+#    (lernen-verstehen); ausrichten (verben-handlungen-b1-2); aufschreiben
+#    (verben-kommunikation-ausdruck-b1); Unterlagen, Kopie (aemter-
+#    dienstleistungen); Durchsage (reisen-verkehr); Auskunft (reisen-urlaub);
+#    Versammlung, Verwaltung, hinweisen (gesellschaft-zusammenleben);
+#    verschieben, absagen (termine-zeit); stattfinden (zeit-termine-a2); planen,
+#    Vorschlag (nebensaetze-plaene); ankündigen, Überschrift (kultur-freizeit);
+#    Zettel (dinge-sachen-a2); Anzeige (wohnen); Empfänger (einkaufen-geld-a2);
+#    schriftlich (eigenschaften-dinge-a2); Schild (verkehr-unterwegs-a2);
+#    Gespräch (menschen-beziehungen-a2); fehlen (dativ-verben); erklären
+#    (goethe-a1-kernwortschatz). The field's verbs are spent hardest of all —
+#    mitteilen, informieren, berichten, melden, zusammenfassen, erklären,
+#    wiederholen, ausrichten, ankündigen, behaupten and äußern are every one of
+#    them owned — so the five verbs below are what is left, and the deck is
+#    noun-heavy for that reason rather than by choice.
+# 3. Every headword except two is on the Goethe-B1 Wortliste and owned by no
+#    other deck, checked with
+#    `bun scripts/coverage.ts B1 --check-deck content/vocab/informationen-vermitteln.yaml`.
+#    The two exceptions are `Mitteilung` and `weitergeben`, which the frozen
+#    outcome `mitteilung-weitergeben` names in its own can-do statement ("Ich
+#    kann den Inhalt einer Mitteilung mit eigenen Worten weitergeben") — the
+#    `Einwand`/`Meinungsverschiedenheit` precedent from B1.10. `Aushang` gets
+#    the opposite ruling: it is off-manifest AND named by no outcome, so it is
+#    taught receptively in the article and the reading and takes no card.
+# 4. The tiering was run through the same mechanical collision test as the
+#    decks before it — YAML-parse every deck, index the `de`/`en`/`ru`/`uk`/
+#    `accept` of every entry whose `cards` is absent or `both`, and check each
+#    candidate gloss against it. It flagged five words that were drafted `both`
+#    and ship `recognition`: `Neuigkeit` against `Nachricht` (glossed "message;
+#    (pl.) the news"), `Sinn` against `Bedeutung` ("meaning | значение, смысл"),
+#    `Zeichen` against `Schild` ("sign (road sign, notice) | знак"), `Dokument`
+#    against `Unterlagen` and `Papiere` (both glossed "documents"), and
+#    `verständlich` against `klar` ("clear, plain | ясный, понятный") — the
+#    `eindeutig` ruling from `eigenschaften-bewertung-b1`. `Detail` loses its
+#    productive slot inside this deck to `Einzelheit`, which lists it in
+#    `accept`: the `dorthin`/`dahin` ruling from `ort-richtung-verweis-b1`.
+#    Three flags were overruled deliberately, because nothing is shared but the
+#    letters: `Wahrheit` against `Lüge` ("lie, untruth"), `Briefkasten` against
+#    `Kiste` ("box; crate | коробка; ящик"), and `Mitteilung` against `Bescheid`
+#    ("information, notice") — a Mitteilung is written and goes to everybody,
+#    while Bescheid is what one person gives another, and the unit's own
+#    outcome is unwritable without the noun.
+#
+# Tiering, decided once and never retrofitted: the 17 entries the unit actively
+# teaches ship as `both`; the 21 below the divider are the receptive tail — what
+# a notice, a formal letter and a summary say to you — and `cards: recognition`
+# from the start, because the direction is baked into the card id.
+entries:
+  # --- Core (cards: both by default) --------------------------------------
+  # Reading a notice, reporting what somebody said or asked, and cutting a text
+  # down to what the next person can act on. These the learner produces.
+
+  - de: "Mitteilung"
+    ipa: "ˈmɪtˌtaɪ̯lʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Mitteilungen"
+    en: "written announcement to everybody in a building or an office"
+    ru: "письменное оповещение для всех, кого оно касается"
+    uk: "письмове сповіщення для всіх, кого воно стосується"
+    example_de: "Die Mitteilung der Hausverwaltung hängt seit gestern im Flur."
+    example_en: "The building management's announcement has been in the hallway since yesterday."
+    example_ru: "Оповещение управляющей компании висит в коридоре со вчерашнего дня."
+    example_uk: "Сповіщення управлінської компанії висить у коридорі з учора."
+    note:
+      en: "The verb behind it is mitteilen, separable: die Verwaltung teilt mit. On a board the same paper is ein Aushang; to one person you send eine Nachricht."
+      ru: "За ним стоит глагол mitteilen, отделяемый: die Verwaltung teilt mit. На доске та же бумага называется ein Aushang, а одному человеку посылают eine Nachricht."
+      uk: "За ним стоїть дієслово mitteilen, відокремлюване: die Verwaltung teilt mit. На дошці той самий папір зветься ein Aushang, а одній людині надсилають eine Nachricht."
+
+  - de: "weitergeben"
+    ipa: "ˈvaɪ̯tɐˌgeːbn̩"
+    pos: verb
+    praesens_3sg: "gibt weiter"
+    partizip2: "weitergegeben"
+    aux: haben
+    valence: "+ Akk"
+    en: "to pass something on to the next person"
+    ru: "передать дальше, следующему"
+    uk: "передати далі, наступному"
+    example_de: "Ich gebe die Information gern an die Nachbarn weiter."
+    example_en: "I am happy to pass the information on to the neighbours."
+    example_ru: "Я охотно передам эту информацию соседям."
+    example_uk: "Я охоче передам цю інформацію сусідам."
+    note:
+      en: "Separable: gibt weiter, hat weitergegeben. The frame is etwas an jemanden weitergeben. Handing an object back to its owner is zurückgeben instead."
+      ru: "Отделяемая приставка: gibt weiter, hat weitergegeben. Управление — etwas an jemanden weitergeben. Вернуть вещь владельцу — zurückgeben."
+      uk: "Відокремлюваний префікс: gibt weiter, hat weitergegeben. Керування — etwas an jemanden weitergeben. Повернути річ власникові — zurückgeben."
+
+  - de: "Inhalt"
+    ipa: "ˈɪnˌhalt"
+    pos: noun
+    gender: m
+    plural: "die Inhalte"
+    en: "what a text says or a container holds"
+    ru: "то, что сказано в тексте; то, что внутри"
+    uk: "те, що сказано в тексті; те, що всередині"
+    example_de: "Den Inhalt des Briefes kann ich in zwei Sätzen sagen."
+    example_en: "I can give what the letter says in two sentences."
+    example_ru: "Написанное в письме я перескажу в двух предложениях."
+    example_uk: "Написане в листі я перекажу двома реченнями."
+    note:
+      en: "From innen halten. A book's list of chapters is das Inhaltsverzeichnis, and the plural is what a course or a programme covers: die Inhalte des Kurses."
+      ru: "От innen halten. Оглавление книги — das Inhaltsverzeichnis, а множественное число называет то, что проходят на курсе: die Inhalte des Kurses."
+      uk: "Від innen halten. Зміст книжки (перелік розділів) — das Inhaltsverzeichnis, а множина називає те, що проходять на курсі: die Inhalte des Kurses."
+
+  - de: "Änderung"
+    ipa: "ˈɛndəʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Änderungen"
+    en: "alteration to a date or a plan that was already fixed"
+    ru: "поправка к уже назначенному сроку или плану"
+    uk: "поправка до вже призначеного строку чи плану"
+    example_de: "Bitte beachten Sie die Änderung beim Termin."
+    example_en: "Please note the altered appointment."
+    example_ru: "Обратите внимание: срок сдвинут."
+    example_uk: "Зверніть увагу: строк зсунуто."
+    note:
+      en: "The noun to ändern. A notice ends with Änderungen vorbehalten, and a shop that shortens trousers has an Änderungsschneiderei."
+      ru: "Существительное к ändern. Объявление кончается формулой Änderungen vorbehalten, а ателье, подшивающее брюки, — это Änderungsschneiderei."
+      uk: "Іменник до ändern. Оголошення закінчується формулою Änderungen vorbehalten, а ательє, що підшиває штани, — це Änderungsschneiderei."
+
+  - de: "Einzelheit"
+    ipa: "ˈaɪ̯ntsl̩haɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Einzelheiten"
+    accept: ["das Detail"]
+    en: "small point inside a larger whole"
+    ru: "мелкая частность внутри целого"
+    uk: "дрібна частковість усередині цілого"
+    example_de: "In der Zusammenfassung lasse ich die Einzelheiten weg."
+    example_en: "In the summary I leave the small points out."
+    example_ru: "В пересказе я опускаю частности."
+    example_uk: "У переказі я оминаю частковості."
+    note:
+      en: "Almost always plural: in allen Einzelheiten, bis ins letzte Detail. The international word is accepted on this card, and it is the one spoken German reaches for first."
+      ru: "Почти всегда во множественном: in allen Einzelheiten, bis ins letzte Detail. Интернациональное слово карточка принимает, и в живой речи первым берут именно его."
+      uk: "Майже завжди в множині: in allen Einzelheiten, bis ins letzte Detail. Інтернаціональне слово картка приймає, і в живому мовленні першим беруть саме його."
+
+  - de: "Tatsache"
+    ipa: "ˈtaːtˌzaxə"
+    pos: noun
+    gender: f
+    plural: "die Tatsachen"
+    en: "something that is simply the case, not an opinion"
+    ru: "то, что есть на деле, в отличие от мнения"
+    uk: "те, що є насправді, на відміну від думки"
+    example_de: "In der Mitteilung stehen nur Tatsachen, keine Meinungen."
+    example_en: "The notice states only what is the case, no opinions."
+    example_ru: "В оповещении сказано только то, что есть на деле, — без мнений."
+    example_uk: "У сповіщенні сказано лише те, що є насправді, — без думок."
+    note:
+      en: "The sentence opener is Tatsache ist, dass … The adverb tatsächlich beside it means that something really did turn out that way."
+      ru: "Фраза начинается оборотом Tatsache ist, dass … Наречие tatsächlich рядом означает, что так оно и оказалось на самом деле."
+      uk: "Фраза починається зворотом Tatsache ist, dass … Прислівник tatsächlich поряд означає, що так воно й виявилося насправді."
+
+  - de: "Wahrheit"
+    ipa: "ˈvaːɐ̯haɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Wahrheiten"
+    en: "what is true"
+    ru: "правдивое положение дел"
+    uk: "правдивий стан речей"
+    example_de: "Er hat mir die Wahrheit gesagt."
+    example_en: "He told me the truth."
+    example_ru: "Он сказал мне, как всё обстоит на самом деле."
+    example_uk: "Він сказав мені, як усе є насправді."
+    note:
+      en: "die Wahrheit sagen is the fixed chunk, and in Wahrheit introduces how things really are against how they look. The adjective is wahr."
+      ru: "Устойчивое сочетание — die Wahrheit sagen, а оборот in Wahrheit вводит то, как обстоит дело вопреки видимости. Прилагательное — wahr."
+      uk: "Стале сполучення — die Wahrheit sagen, а зворот in Wahrheit вводить те, як стоїть справа всупереч видимості. Прикметник — wahr."
+
+  - de: "Absender"
+    ipa: "ˈapˌzɛndɐ"
+    pos: noun
+    gender: m
+    plural: "die Absender"
+    en: "person a letter was sent by"
+    ru: "тот, кто отправил письмо"
+    uk: "той, хто надіслав листа"
+    example_de: "Auf dem Umschlag steht kein Absender."
+    example_en: "There is nobody named as having sent it on the envelope."
+    example_ru: "На конверте не указан тот, кто его отправил."
+    example_uk: "На конверті не зазначено того, хто його надіслав."
+    note:
+      en: "From absenden, and it names both the person and the block of text top left on the envelope. The other end of the letter is der Empfänger; a woman is die Absenderin."
+      ru: "От absenden; слово называет и человека, и блок текста в левом верхнем углу конверта. Другой конец письма — der Empfänger, женский вариант — die Absenderin."
+      uk: "Від absenden; слово називає і людину, і блок тексту в лівому верхньому куті конверта. Інший кінець листа — der Empfänger, жіночий варіант — die Absenderin."
+
+  - de: "Rückmeldung"
+    ipa: "ˈʁʏkˌmɛldʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Rückmeldungen"
+    en: "short answer telling somebody you got their message"
+    ru: "короткий ответ о том, что сообщение получено"
+    uk: "коротка відповідь про те, що повідомлення отримано"
+    example_de: "Bitte geben Sie uns bis Freitag eine kurze Rückmeldung."
+    example_en: "Please let us know briefly by Friday."
+    example_ru: "Просим до пятницы коротко ответить, что получили."
+    example_uk: "Просимо до п'ятниці коротко відповісти, що отримали."
+    note:
+      en: "eine Rückmeldung geben, um Rückmeldung bitten — office and school register. At a university the same word means re-registering for the next semester."
+      ru: "eine Rückmeldung geben, um Rückmeldung bitten — регистр конторы и школы. В университете то же слово означает продление записи на следующий семестр."
+      uk: "eine Rückmeldung geben, um Rückmeldung bitten — регістр контори та школи. В університеті те саме слово означає продовження запису на наступний семестр."
+
+  - de: "Gegensatz"
+    ipa: "ˈgeːgn̩ˌzats"
+    pos: noun
+    gender: m
+    plural: "die Gegensätze"
+    en: "contrast — the way two things stand against each other"
+    ru: "противопоставление, контраст"
+    uk: "протиставлення, контраст"
+    example_de: "Im Gegensatz zu gestern ist es heute ruhig im Haus."
+    example_en: "In contrast to yesterday, the building is quiet today."
+    example_ru: "В противоположность вчерашнему дню сегодня в доме тихо."
+    example_uk: "На противагу вчорашньому дню сьогодні в будинку тихо."
+    note:
+      en: "The chunk is im Gegensatz zu + Dativ, and it is what a summary uses to put two statements side by side. das Gegenteil is the other thing itself, not the relation between them."
+      ru: "Устойчивое сочетание — im Gegensatz zu + Dativ; им пересказ ставит два утверждения рядом. das Gegenteil — это сама другая вещь, а не отношение между ними."
+      uk: "Стале сполучення — im Gegensatz zu + Dativ; ним переказ ставить два твердження поряд. das Gegenteil — це сама інша річ, а не відношення між ними."
+
+  - de: "Zuhörer"
+    ipa: "ˈtsuːˌhøːʁɐ"
+    pos: noun
+    gender: m
+    plural: "die Zuhörer"
+    en: "person sitting and listening to somebody speak"
+    ru: "тот, кто сидит и слушает говорящего"
+    uk: "той, хто сидить і слухає промовця"
+    example_de: "Der Vortrag war kurz, und die Zuhörer hatten viele Fragen."
+    example_en: "The talk was short and the people listening had many questions."
+    example_ru: "Доклад был коротким, и у сидевших в зале было много вопросов."
+    example_uk: "Доповідь була короткою, і в тих, хто слухав, було багато питань."
+    note:
+      en: "From zuhören. A woman is die Zuhörerin, and the whole room together is das Publikum. Somebody at the radio is der Hörer."
+      ru: "От zuhören. Женский вариант — die Zuhörerin, а весь зал вместе — das Publikum. У радиоприёмника сидит der Hörer."
+      uk: "Від zuhören. Жіночий варіант — die Zuhörerin, а вся зала разом — das Publikum. Біля радіоприймача сидить der Hörer."
+
+  - de: "Kommunikation"
+    ipa: "kɔmunikaˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: "the exchange of information between people"
+    ru: "коммуникация, обмен сведениями между людьми"
+    uk: "комунікація, обмін відомостями між людьми"
+    example_de: "Die Kommunikation im Haus läuft über den Aushang."
+    example_en: "Information in the building is exchanged via the notice board."
+    example_ru: "Сведения в доме передаются через объявление на доске."
+    example_uk: "Відомості в будинку передаються через оголошення на дошці."
+    note:
+      en: "Stress on the last syllable, and no plural in everyday use. The verb is kommunizieren; a single exchange between two people is ein Gespräch."
+      ru: "Ударение на последнем слоге, множественного в обиходе нет. Глагол — kommunizieren; отдельный разговор двоих — ein Gespräch."
+      uk: "Наголос на останньому складі, множини в побуті немає. Дієслово — kommunizieren; окрема розмова двох — ein Gespräch."
+
+  - de: "Liste"
+    ipa: "ˈlɪstə"
+    pos: noun
+    gender: f
+    plural: "die Listen"
+    en: "items written one under the other"
+    ru: "перечень, записанный столбиком"
+    uk: "перелік, записаний стовпчиком"
+    example_de: "Auf der Liste stehen alle Namen aus dem Haus."
+    example_en: "All the names from the building are on the list."
+    example_ru: "В перечне значатся все жильцы дома."
+    example_uk: "У переліку значаться всі мешканці будинку."
+    note:
+      en: "eine Liste machen, auf der Liste stehen, sich in eine Liste eintragen. A shopping one is die Einkaufsliste, and a waiting one die Warteliste."
+      ru: "eine Liste machen, auf der Liste stehen, sich in eine Liste eintragen. В магазин ходят с die Einkaufsliste, а в очереди стоят в die Warteliste."
+      uk: "eine Liste machen, auf der Liste stehen, sich in eine Liste eintragen. До крамниці ходять із die Einkaufsliste, а в черзі стоять у die Warteliste."
+
+  - de: "Briefkasten"
+    ipa: "ˈbʁiːfˌkastn̩"
+    pos: noun
+    gender: m
+    plural: "die Briefkästen"
+    en: "box that letters are put into"
+    ru: "почтовый ящик"
+    uk: "поштова скринька"
+    example_de: "Der Zettel lag heute Morgen im Briefkasten."
+    example_en: "The slip of paper was in the letterbox this morning."
+    example_ru: "Записка лежала утром в почтовом ящике."
+    example_uk: "Записка лежала вранці в поштовій скриньці."
+    note:
+      en: "The same word for the one by your door and the yellow one on the street. The digital one is das Postfach, and so is a numbered box at the post office."
+      ru: "Одно слово и для ящика у двери, и для жёлтого на улице. Электронный называется das Postfach — как и абонентский ящик на почте."
+      uk: "Одне слово і для скриньки біля дверей, і для жовтої на вулиці. Електронна зветься das Postfach — як і абонентська скринька на пошті."
+
+  - de: "mündlich"
+    ipa: "ˈmʏntlɪç"
+    pos: adj
+    en: "said out loud rather than written down"
+    ru: "устный, сказанный вслух, а не написанный"
+    uk: "усний, сказаний уголос, а не написаний"
+    example_de: "Der Hausmeister hat es mir nur mündlich gesagt."
+    example_en: "The caretaker only told me by word of mouth."
+    example_ru: "Комендант сказал мне это только на словах."
+    example_uk: "Комендант сказав мені це лише на словах."
+    note:
+      en: "From der Mund. Its pair is schriftlich, and a contract usually insists on the second: eine mündliche Zusage, eine mündliche Prüfung."
+      ru: "От der Mund. Пара к нему — schriftlich, и договор обычно требует именно второго: eine mündliche Zusage, eine mündliche Prüfung."
+      uk: "Від der Mund. Пара до нього — schriftlich, і договір зазвичай вимагає саме другого: eine mündliche Zusage, eine mündliche Prüfung."
+
+  - de: "hinterlassen"
+    ipa: "hɪntɐˈlasn̩"
+    pos: verb
+    praesens_3sg: "hinterlässt"
+    partizip2: "hinterlassen"
+    aux: haben
+    valence: "+ Akk"
+    en: "to leave something behind for somebody who is not there"
+    ru: "оставить что-либо для того, кого нет на месте"
+    uk: "залишити щось для того, кого немає на місці"
+    example_de: "Ich habe ihm eine Nachricht hinterlassen."
+    example_en: "I left a message for him."
+    example_ru: "Я оставил ему записку."
+    example_uk: "Я залишив йому записку."
+    note:
+      en: "Inseparable and strong, so no ge-: hinterlässt, hat hinterlassen. Besides messages it takes traces and impressions — Spuren hinterlassen, einen guten Eindruck hinterlassen."
+      ru: "Приставка неотделяемая, глагол сильный, поэтому ge- нет: hinterlässt, hat hinterlassen. Кроме сообщений берёт следы и впечатления: Spuren hinterlassen, einen guten Eindruck hinterlassen."
+      uk: "Префікс невідокремлюваний, дієслово сильне, тому ge- немає: hinterlässt, hat hinterlassen. Крім повідомлень бере сліди та враження: Spuren hinterlassen, einen guten Eindruck hinterlassen."
+
+  - de: "stammen"
+    ipa: "ˈʃtamən"
+    pos: verb
+    praesens_3sg: "stammt"
+    partizip2: "gestammt"
+    aux: haben
+    valence: "aus / von + Dat"
+    en: "to have its origin in a place, a time or a person"
+    ru: "брать начало, идти от места, времени или человека"
+    uk: "брати початок, іти від місця, часу чи людини"
+    example_de: "Die Information stammt vom Hausmeister."
+    example_en: "The information originates with the caretaker."
+    example_ru: "Эти сведения идут от коменданта."
+    example_uk: "Ці відомості йдуть від коменданта."
+    note:
+      en: "stammen aus for a place or a period, stammen von for a person or a document. It is what names where a piece of information came from, and it is used almost only in the present."
+      ru: "stammen aus — о месте или эпохе, stammen von — о человеке или документе. Именно им называют, откуда взялись сведения, и почти всегда в настоящем времени."
+      uk: "stammen aus — про місце або добу, stammen von — про людину чи документ. Саме ним називають, звідки взялися відомості, і майже завжди в теперішньому часі."
+
+  # --- Receptive tail (cards: recognition) --------------------------------
+  # What a notice, a formal letter and a course handout say to you: understood,
+  # never demanded back. Declared recognition from the start, never retrofitted.
+
+  - de: "Neuigkeit"
+    ipa: "ˈnɔʏ̯ɪçkaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Neuigkeiten"
+    cards: recognition
+    en: "single piece of news somebody brings you"
+    ru: "новость, которую кто-то приносит"
+    uk: "новина, яку хтось приносить"
+    example_de: "Er hatte eine Neuigkeit für uns: Der Aufzug wird repariert."
+    example_en: "He had a piece of news for us: the lift is being repaired."
+    example_ru: "У него была для нас новость: лифт починят."
+    example_uk: "У нього була для нас новина: ліфт полагодять."
+    note:
+      en: "Countable, unlike the plural die Nachrichten on television. Gibt es Neuigkeiten? is what you ask somebody who has just come back."
+      ru: "Считаемое, в отличие от die Nachrichten по телевизору. Gibt es Neuigkeiten? спрашивают у того, кто только что вернулся."
+      uk: "Обчислюване, на відміну від die Nachrichten по телевізору. Gibt es Neuigkeiten? питають у того, хто щойно повернувся."
+
+  - de: "Sinn"
+    ipa: "ˈzɪn"
+    pos: noun
+    gender: m
+    plural: "die Sinne"
+    cards: recognition
+    en: "point of something; the sense in which it is meant"
+    ru: "смысл, толк"
+    uk: "сенс, глузд"
+    example_de: "Den Sinn des Satzes verstehe ich nicht."
+    example_en: "I do not get the point of the sentence."
+    example_ru: "Смысла этой фразы я не понимаю."
+    example_uk: "Сенсу цієї фрази я не розумію."
+    note:
+      en: "Das hat keinen Sinn says there is no point in doing it, and das ergibt Sinn is the standard way to say something adds up. The plural is the five senses."
+      ru: "Das hat keinen Sinn значит «делать это незачем», а das ergibt Sinn — «это сходится». Множественное число — пять органов чувств."
+      uk: "Das hat keinen Sinn означає «робити це нема чого», а das ergibt Sinn — «це сходиться». Множина — п'ять органів чуття."
+
+  - de: "Zeichen"
+    ipa: "ˈtsaɪ̯çn̩"
+    pos: noun
+    gender: n
+    plural: "die Zeichen"
+    cards: recognition
+    en: "mark or signal that stands for something"
+    ru: "знак, подаваемый сигнал"
+    uk: "знак, поданий сигнал"
+    example_de: "Das Zeichen auf dem Formular bedeutet: bitte hier unterschreiben."
+    example_en: "The mark on the form means: please sign here."
+    example_ru: "Знак в бланке означает: подпишите здесь."
+    example_uk: "Знак у бланку означає: підпишіть тут."
+    note:
+      en: "Singular and plural look the same. jemandem ein Zeichen geben is to signal to somebody; a board by the road is ein Schild, and a letter on a keyboard is ein Buchstabe."
+      ru: "Единственное и множественное совпадают. jemandem ein Zeichen geben — подать кому-то сигнал; табличка у дороги — ein Schild, а буква на клавиатуре — ein Buchstabe."
+      uk: "Однина й множина збігаються. jemandem ein Zeichen geben — подати комусь сигнал; табличка біля дороги — ein Schild, а літера на клавіатурі — ein Buchstabe."
+
+  - de: "Dokument"
+    ipa: "dokuˈmɛnt"
+    pos: noun
+    gender: n
+    plural: "die Dokumente"
+    cards: recognition
+    en: "single official paper, or a file on a computer"
+    ru: "отдельная официальная бумага или файл"
+    uk: "окремий офіційний папір або файл"
+    example_de: "Alle Dokumente liegen im Büro der Verwaltung."
+    example_en: "All the papers are in the management office."
+    example_ru: "Все бумаги лежат в конторе управляющей компании."
+    example_uk: "Усі папери лежать у конторі управлінської компанії."
+    note:
+      en: "The set of papers an office asks you to bring is die Unterlagen, and the ones that prove who you are are die Papiere. This word covers one of them at a time — and the file you save."
+      ru: "Пакет бумаг, который просят принести в учреждении, — die Unterlagen, а удостоверяющие личность — die Papiere. Это слово называет одну бумагу за раз, а ещё сохранённый файл."
+      uk: "Пакет паперів, який просять принести в установі, — die Unterlagen, а ті, що посвідчують особу, — die Papiere. Це слово називає один папір за раз, а ще збережений файл."
+
+  - de: "verständlich"
+    ipa: "fɛɐ̯ˈʃtɛntlɪç"
+    pos: adj
+    cards: recognition
+    en: "put so that the reader gets it without asking"
+    ru: "изложенный так, что доходит без вопросов"
+    uk: "викладений так, що доходить без питань"
+    example_de: "Der Aushang ist kurz und verständlich."
+    example_en: "The notice is short and easy to follow."
+    example_ru: "Объявление короткое и доходчивое."
+    example_uk: "Оголошення коротке й дохідливе."
+    note:
+      en: "From verstehen. sich verständlich machen is to get yourself understood at all, and the opposite is unverständlich. Note that verständlicherweise means understandably in the other sense — that one can see why."
+      ru: "От verstehen. sich verständlich machen — суметь объясниться вообще, противоположность — unverständlich. А verständlicherweise значит «и понятно почему»."
+      uk: "Від verstehen. sich verständlich machen — зуміти порозумітися взагалі, протилежність — unverständlich. А verständlicherweise означає «і зрозуміло чому»."
+
+  - de: "Detail"
+    ipa: "deˈtaɪ̯"
+    pos: noun
+    gender: n
+    plural: "die Details"
+    cards: recognition
+    en: "small point inside a larger whole"
+    ru: "мелкая частность внутри целого"
+    uk: "дрібна частковість усередині цілого"
+    example_de: "Über die Details sprechen wir später."
+    example_en: "We will talk about the small points later."
+    example_ru: "О частностях поговорим позже."
+    example_uk: "Про частковості поговоримо пізніше."
+    note:
+      en: "A French loan: stress on the last syllable, and the ai is spoken as a long e. The German word for the same thing carries this deck's typed card and accepts this one too."
+      ru: "Французское заимствование: ударение на последнем слоге, ai читается как долгое э. Немецкое слово с тем же значением несёт печатаемую карточку этой колоды и принимает также это."
+      uk: "Французьке запозичення: наголос на останньому складі, ai читається як довге е. Німецьке слово з тим самим значенням несе друковану картку цієї колоди і приймає також це."
+
+  - de: "Ansage"
+    ipa: "ˈanˌzaːgə"
+    pos: noun
+    gender: f
+    plural: "die Ansagen"
+    cards: recognition
+    en: "short spoken announcement"
+    ru: "короткое объявление голосом"
+    uk: "коротке оголошення голосом"
+    example_de: "Die Ansage im Radio war zu kurz für mich."
+    example_en: "The spoken announcement on the radio was too short for me."
+    example_ru: "Объявление по радио было для меня слишком коротким."
+    example_uk: "Оголошення по радіо було для мене надто коротким."
+    note:
+      en: "From ansagen. On a platform or in a shop the word is die Durchsage; on an answering machine your recorded greeting is die Ansage."
+      ru: "От ansagen. На перроне и в магазине говорят die Durchsage, а записанное приветствие автоответчика — это die Ansage."
+      uk: "Від ansagen. На пероні та в крамниці кажуть die Durchsage, а записане вітання автовідповідача — це die Ansage."
+
+  - de: "Lautsprecher"
+    ipa: "ˈlaʊ̯tˌʃpʁɛçɐ"
+    pos: noun
+    gender: m
+    plural: "die Lautsprecher"
+    cards: recognition
+    en: "loudspeaker"
+    ru: "громкоговоритель, динамик"
+    uk: "гучномовець, динамік"
+    example_de: "Aus dem Lautsprecher kam eine Durchsage."
+    example_en: "An announcement came out of the loudspeaker."
+    example_ru: "Из динамика прозвучало объявление."
+    example_uk: "З динаміка прозвучало оголошення."
+    note:
+      en: "laut plus Sprecher, stressed on the first part. The small one in a phone is der Lautsprecher too, and auf Lautsprecher stellen is to put a call on speaker."
+      ru: "laut плюс Sprecher, ударение на первой части. Динамик в телефоне называется так же, а auf Lautsprecher stellen — включить громкую связь."
+      uk: "laut плюс Sprecher, наголос на першій частині. Динамік у телефоні зветься так само, а auf Lautsprecher stellen — увімкнути гучний зв'язок."
+
+  - de: "Botschaft"
+    ipa: "ˈboːtʃaft"
+    pos: noun
+    gender: f
+    plural: "die Botschaften"
+    cards: recognition
+    en: "message with something weighty in it; embassy"
+    ru: "послание с важным содержанием; посольство"
+    uk: "послання з важливим змістом; посольство"
+    example_de: "Die Botschaft des Aushangs ist klar: Ab Montag ist die Tür zu."
+    example_en: "The message of the notice is clear: from Monday the door is locked."
+    example_ru: "Посыл объявления ясен: с понедельника дверь заперта."
+    example_uk: "Посил оголошення ясний: з понеділка двері замкнені."
+    note:
+      en: "Two senses far apart, and the everyday one is die Nachricht — this word is for what a text or a picture is really saying. From der Bote, a messenger."
+      ru: "Два далёких значения, а обиходное слово — die Nachricht; это же берут для того, что текст или картинка на деле говорят. От der Bote — гонец."
+      uk: "Два далекі значення, а побутове слово — die Nachricht; це ж беруть для того, що текст або картина насправді кажуть. Від der Bote — гонець."
+
+  - de: "Schreiben"
+    ipa: "ˈʃʁaɪ̯bn̩"
+    pos: noun
+    gender: n
+    plural: "die Schreiben"
+    cards: recognition
+    en: "formal letter from an office or an authority"
+    ru: "официальное письмо из учреждения"
+    uk: "офіційний лист з установи"
+    example_de: "Wir haben ein Schreiben von der Verwaltung bekommen."
+    example_en: "We received a formal letter from the management."
+    example_ru: "Мы получили официальное письмо от управляющей компании."
+    example_uk: "Ми отримали офіційний лист від управлінської компанії."
+    note:
+      en: "The infinitive used as a noun, and purely written register: an ordinary letter is der Brief. In Bezug auf Ihr Schreiben vom … is how a reply to one opens."
+      ru: "Инфинитив в роли существительного, чисто письменный регистр: обычное письмо — der Brief. Ответ на такое начинают формулой In Bezug auf Ihr Schreiben vom …"
+      uk: "Інфінітив у ролі іменника, суто писемний регістр: звичайний лист — der Brief. Відповідь на такий починають формулою In Bezug auf Ihr Schreiben vom …"
+
+  - de: "Anlage"
+    ipa: "ˈanˌlaːgə"
+    pos: noun
+    gender: f
+    plural: "die Anlagen"
+    cards: recognition
+    en: "document sent together with a letter"
+    ru: "документ, приложенный к письму"
+    uk: "документ, доданий до листа"
+    example_de: "In der Anlage finden Sie die Liste der Termine."
+    example_en: "Enclosed you will find the list of dates."
+    example_ru: "В приложении вы найдёте перечень сроков."
+    example_uk: "У додатку ви знайдете перелік строків."
+    note:
+      en: "Anlage: at the foot of a letter announces what is enclosed. On an e-mail the same job is done by der Anhang. Two more senses live far from paper: a park area and a technical installation."
+      ru: "Строка Anlage: внизу письма объявляет, что вложено. В электронной почте ту же работу делает der Anhang. Ещё два значения далеки от бумаги: парковая зона и техническая установка."
+      uk: "Рядок Anlage: внизу листа оголошує, що вкладено. В електронній пошті ту саму роботу робить der Anhang. Ще два значення далекі від паперу: паркова зона й технічна установка."
+
+  - de: "Einschreiben"
+    ipa: "ˈaɪ̯nˌʃʁaɪ̯bn̩"
+    pos: noun
+    gender: n
+    plural: "die Einschreiben"
+    cards: recognition
+    en: "registered letter, signed for on delivery"
+    ru: "заказное письмо с вручением под подпись"
+    uk: "рекомендований лист із врученням під підпис"
+    example_de: "Die Kündigung kam per Einschreiben."
+    example_en: "The notice of termination arrived by registered post."
+    example_ru: "Заявление о расторжении пришло заказным письмом."
+    example_uk: "Заяву про розірвання надіслали рекомендованим листом."
+    note:
+      en: "per Einschreiben schicken. It exists so that the sender can prove the letter arrived, which is why contracts ask for it. The postal receipt is der Einlieferungsbeleg."
+      ru: "per Einschreiben schicken. Существует ради того, чтобы отправитель мог доказать доставку, — потому его и требуют договоры. Почтовая квитанция — der Einlieferungsbeleg."
+      uk: "per Einschreiben schicken. Існує заради того, щоб відправник міг довести доставку, — тому його й вимагають договори. Поштова квитанція — der Einlieferungsbeleg."
+
+  - de: "Vermittlung"
+    ipa: "fɛɐ̯ˈmɪtlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Vermittlungen"
+    cards: recognition
+    en: "bringing two sides together so that they can agree"
+    ru: "посредничество между двумя сторонами"
+    uk: "посередництво між двома сторонами"
+    example_de: "Die Vermittlung zwischen den Nachbarn hat wirklich geholfen."
+    example_en: "Bringing the neighbours together really did help."
+    example_ru: "Посредничество между соседями и правда помогло."
+    example_uk: "Посередництво між сусідами таки допомогло."
+    note:
+      en: "From vermitteln, which also means to put an idea across. An agency that finds people work is die Arbeitsvermittlung, and a switchboard was once die Vermittlung."
+      ru: "От vermitteln, которое значит ещё и «донести мысль». Служба, подыскивающая работу, — die Arbeitsvermittlung, а телефонный коммутатор когда-то называли die Vermittlung."
+      uk: "Від vermitteln, яке означає ще й «донести думку». Служба, що підшукує роботу, — die Arbeitsvermittlung, а телефонний комутатор колись звали die Vermittlung."
+
+  - de: "Vertretung"
+    ipa: "fɛɐ̯ˈtʁeːtʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Vertretungen"
+    cards: recognition
+    en: "person standing in for somebody who is away"
+    ru: "тот, кто замещает отсутствующего"
+    uk: "той, хто заміщає відсутнього"
+    example_de: "In den Ferien ist Frau Weber die Vertretung."
+    example_en: "During the holidays Frau Weber is standing in."
+    example_ru: "На время отпуска замещает госпожа Вебер."
+    example_uk: "На час відпустки заміщає пані Вебер."
+    note:
+      en: "From vertreten. i. V. before a signature stands for in Vertretung and says the letter was signed on somebody else's behalf. A class covered by another teacher is die Vertretungsstunde."
+      ru: "От vertreten. Пометка i. V. перед подписью расшифровывается как in Vertretung и означает, что письмо подписано за другого. Урок за отсутствующего учителя — die Vertretungsstunde."
+      uk: "Від vertreten. Позначка i. V. перед підписом розшифровується як in Vertretung і означає, що лист підписано за іншого. Урок за відсутнього вчителя — die Vertretungsstunde."
+
+  - de: "Darstellung"
+    ipa: "ˈdaːɐ̯ˌʃtɛlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Darstellungen"
+    cards: recognition
+    en: "the way somebody presents or describes something"
+    ru: "то, как кто-либо излагает или подаёт дело"
+    uk: "те, як хтось викладає або подає справу"
+    example_de: "Seine Darstellung der Sitzung war sehr kurz."
+    example_en: "His account of the meeting was very short."
+    example_ru: "Его изложение хода собрания было очень кратким."
+    example_uk: "Його виклад ходу зборів був дуже стислим."
+    note:
+      en: "From darstellen. Two accounts of one event can differ without either being a lie, which is why the word turns up wherever two sides report. eine grafische Darstellung is a chart."
+      ru: "От darstellen. Два изложения одного события могут расходиться, и ни одно не будет ложью, — потому слово и появляется там, где рассказывают две стороны. eine grafische Darstellung — это диаграмма."
+      uk: "Від darstellen. Два виклади однієї події можуть розходитися, і жоден не буде брехнею, — тому слово й з'являється там, де розповідають дві сторони. eine grafische Darstellung — це діаграма."
+
+  - de: "Einleitung"
+    ipa: "ˈaɪ̯nˌlaɪ̯tʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Einleitungen"
+    cards: recognition
+    en: "opening part of a text, before the main part"
+    ru: "вступительная часть текста перед основной"
+    uk: "вступна частина тексту перед основною"
+    example_de: "In der Einleitung steht, worum es geht."
+    example_en: "The opening part says what it is about."
+    example_ru: "Во вступлении сказано, о чём речь."
+    example_uk: "У вступі сказано, про що йдеться."
+    note:
+      en: "A written text is built as Einleitung, Hauptteil, Schluss, and a summary follows the same three steps. The verb is einleiten."
+      ru: "Письменный текст строится как Einleitung, Hauptteil, Schluss, и пересказ идёт теми же тремя шагами. Глагол — einleiten."
+      uk: "Писаний текст будується як Einleitung, Hauptteil, Schluss, і переказ іде тими самими трьома кроками. Дієслово — einleiten."
+
+  - de: "Fortsetzung"
+    ipa: "ˈfɔʁtˌzɛtsʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Fortsetzungen"
+    cards: recognition
+    en: "part that carries on where the last one stopped"
+    ru: "продолжение начатого"
+    uk: "продовження розпочатого"
+    example_de: "Die Fortsetzung des Textes steht auf der nächsten Seite."
+    example_en: "The text carries on over the page."
+    example_ru: "Продолжение текста — на следующей странице."
+    example_uk: "Продовження тексту — на наступній сторінці."
+    note:
+      en: "Fortsetzung folgt at the foot of a page means to be continued. From fortsetzen, which is separable: setzt fort, hat fortgesetzt."
+      ru: "Fortsetzung folgt внизу страницы значит «продолжение следует». От fortsetzen, глагол отделяемый: setzt fort, hat fortgesetzt."
+      uk: "Fortsetzung folgt унизу сторінки означає «далі буде». Від fortsetzen, дієслово відокремлюване: setzt fort, hat fortgesetzt."
+
+  - de: "Textaufbau"
+    ipa: "ˈtɛkstˌʔaʊ̯fbaʊ̯"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: "the way a text is built up, part by part"
+    ru: "построение текста по частям"
+    uk: "побудова тексту за частинами"
+    example_de: "Der Textaufbau ist einfach: erst das Problem, dann die Lösung."
+    example_en: "The text is built simply: first the problem, then the solution."
+    example_ru: "Построение текста простое: сперва проблема, потом решение."
+    example_uk: "Побудова тексту проста: спершу проблема, потім розв'язання."
+    note:
+      en: "Text plus Aufbau, and a course word rather than an everyday one: it names the order of the parts, not what they say. Seeing that order is what makes a text summarizable."
+      ru: "Text плюс Aufbau — слово учебное, а не обиходное: оно называет порядок частей, а не их содержание. Увидеть этот порядок и значит суметь текст пересказать."
+      uk: "Text плюс Aufbau — слово навчальне, а не побутове: воно називає порядок частин, а не їхній зміст. Побачити цей порядок і означає зуміти текст переказати."
+
+  - de: "Vortrag"
+    ipa: "ˈfoːɐ̯ˌtʁaːk"
+    pos: noun
+    gender: m
+    plural: "die Vorträge"
+    cards: recognition
+    en: "talk given in front of an audience"
+    ru: "доклад, выступление перед публикой"
+    uk: "доповідь, виступ перед публікою"
+    example_de: "Der Vortrag über das neue Heizsystem beginnt um 19 Uhr."
+    example_en: "The talk about the new heating system starts at seven."
+    example_ru: "Доклад о новой системе отопления начинается в семь вечера."
+    example_uk: "Доповідь про нову систему опалення починається о сьомій вечора."
+    note:
+      en: "einen Vortrag halten is the fixed pairing — never machen. A short one in class is das Referat, and a whole course of them is die Vorlesung."
+      ru: "Устойчивое сочетание — einen Vortrag halten, но не machen. Короткое выступление в классе — das Referat, а университетский курс — die Vorlesung."
+      uk: "Стале сполучення — einen Vortrag halten, але не machen. Короткий виступ у класі — das Referat, а університетський курс — die Vorlesung."
+
+  - de: "aufnehmen"
+    ipa: "ˈaʊ̯fˌneːmən"
+    pos: verb
+    praesens_3sg: "nimmt auf"
+    partizip2: "aufgenommen"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to record sound or picture; to take somebody in"
+    ru: "записывать звук или видео; принимать кого-либо"
+    uk: "записувати звук або відео; приймати когось"
+    example_de: "Das Gespräch wurde mit dem Handy aufgenommen."
+    example_en: "The conversation was recorded on the phone."
+    example_ru: "Разговор записали на телефон."
+    example_uk: "Розмову записали на телефон."
+    note:
+      en: "Separable: nimmt auf, hat aufgenommen. Besides recording it covers taking a person into a group or a hospital, and Kontakt aufnehmen means getting in touch."
+      ru: "Отделяемая приставка: nimmt auf, hat aufgenommen. Кроме записи покрывает приём человека в группу или в больницу, а Kontakt aufnehmen значит «связаться»."
+      uk: "Відокремлюваний префікс: nimmt auf, hat aufgenommen. Крім запису покриває прийом людини до групи чи до лікарні, а Kontakt aufnehmen означає «зв'язатися»."
+
+  - de: "anzeigen"
+    ipa: "ˈanˌtsaɪ̯gn̩"
+    pos: verb
+    praesens_3sg: "zeigt an"
+    partizip2: "angezeigt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to show on a display; to report to the police"
+    ru: "показывать на табло; заявить в полицию"
+    uk: "показувати на табло; заявити в поліцію"
+    example_de: "Die Tafel zeigt die neuen Zeiten an."
+    example_en: "The board shows the new times."
+    example_ru: "Табло показывает новое расписание."
+    example_uk: "Табло показує новий розклад."
+    note:
+      en: "Separable: zeigt an, hat angezeigt. The two senses are far apart and the noun splits with them — die Anzeige is both the reading on a display and a report filed at a police station."
+      ru: "Отделяемая приставка: zeigt an, hat angezeigt. Значения далеки друг от друга, и существительное делится вместе с ними: die Anzeige — и показание прибора, и заявление в полицию."
+      uk: "Відокремлюваний префікс: zeigt an, hat angezeigt. Значення далекі одне від одного, і іменник ділиться разом із ними: die Anzeige — і показ приладу, і заява в поліцію."

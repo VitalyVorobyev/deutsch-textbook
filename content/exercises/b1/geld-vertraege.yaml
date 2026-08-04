@@ -1,0 +1,294 @@
+# B1.13 primary practice. A genre unit: it adopts no grammar point, closes none, and every
+# tag below was registered by an earlier unit — the grammar ratchet in
+# tests/grammar-coverage.test.ts does not move in this commit
+# (`bun scripts/grammar-coverage.ts B1`, still 29/32).
+# Three of the recycled tags are named by the frozen contract, and each of them is what one
+# of this unit's three documents is made of: genitiv-form (B1.2) is the bill line itself —
+# der Preis des Materials, das Datum der Zahlung — because almost every line says of what;
+# passiv-modal (B1.7) is how a contract states a condition without naming a person, and it
+# is the sentence the learner has to turn into a question; n-deklination (B1.4) is the two
+# people these sentences have, and only one of them bends — dem Kunden, den Kunden beside
+# the unchanging der Anbieter.
+# Two more are the live runtime channels of the `deepens` edges on the atlas node:
+# komparativ-als carries the edge to einkaufen-reklamation (that topic drills it in its own
+# practice — there two jackets, here two Tarife over a whole year), and indirekte-frage
+# carries the edge to aemter-dienstleistungen (drilled in its produktion set; the counter's
+# question returns here as the one asked about a contract — Können Sie mir sagen, wie lange
+# der Preis gültig ist?).
+# Four of the twelve items stay untagged on purpose — the bill-line match, the two mc items
+# on naming a discrepancy and on fällig against gültig, and the mc on what a comparison
+# compares: two are comprehension and two are a discourse or an arithmetic move, and a
+# false tag sends training after a confusion the learner does not have.
+# Outcome discipline, because probe families arm by their own explicit item list
+# (src/lib/probes.ts, P19-4): every item on `rechnung-pruefen` reads or writes one line of
+# a bill; every item on `vertrag-nachfragen` is a condition or the question it turns into;
+# every item on `kosten-vergleichen` compares two offers line against line and names the
+# line the choice rests on.
+# Contract exclusions hold: no banking or insurance law (no Zinsen, no Versicherung, no
+# Widerrufsrecht), no investment vocabulary, no tax content — everything here is on a bill,
+# in a set of terms or in a written estimate a household receives.
+# The sixteen `cards: recognition` headwords of the deck are never demanded as a typed
+# answer anywhere in this set: they appear only inside a German prompt, an option or a
+# cloze frame the learner reads.
+# This set is the primaryPractice — its item list never grows after shipping.
+topic: geld-vertraege
+role: practice
+title:
+  en: "Practice — the bill line, the condition, the comparison"
+  ru: "Практика — строка счёта, условие договора, сравнение"
+  uk: "Практика — рядок рахунку, умова договору, порівняння"
+  de: "Übung — die Rechnungszeile, die Bedingung, der Vergleich"
+items:
+  - id: match-rechnung-lesen
+    outcomes: [rechnung-pruefen]
+    type: match
+    instruction:
+      en: "A bill answers five questions. Which line answers which?"
+      ru: "Счёт отвечает на пять вопросов. Какая строка на какой?"
+      uk: "Рахунок відповідає на п'ять питань. Який рядок на яке?"
+      de: "Eine Rechnung beantwortet fünf Fragen. Welche Zeile beantwortet welche?"
+    pairs:
+      - left: "Wer schickt die Rechnung?"
+        right: "Fahrradwerkstatt Süd, Marktstraße 7"
+      - left: "Welche Rechnung ist das?"
+        right: "Rechnung Nr. 2026-0781 vom 12. Juni"
+      - left: "Wofür zahle ich?"
+        right: "Zeile 1: Reparatur der Bremse, 40,00 €"
+      - left: "Wie viel kostet alles zusammen?"
+        right: "Gesamtbetrag 95,00 €"
+      - left: "Bis wann muss ich zahlen?"
+        right: "fällig am 30. Juni, per Überweisung"
+    explain:
+      en: "A bill is not read through, it is read down, and five questions get everything out of it: who is writing, which bill this is, what each line is for, what it all comes to, and by when the money has to be there. The head and the foot are filing; the lines in between are what you check against what was agreed."
+      ru: "Счёт читают не подряд, а сверху вниз, и пять вопросов вынимают из него всё: кто пишет, что это за счёт, за что каждая строка, сколько выходит вместе и к какому сроку должны прийти деньги. Шапка и низ нужны архиву; строки между ними — это то, что сверяют с договорённостью."
+      uk: "Рахунок читають не поспіль, а згори вниз, і п'ять питань виймають із нього все: хто пише, що це за рахунок, за що кожен рядок, скільки виходить разом і до якого строку мають прийти гроші. Шапка й низ потрібні архіву; рядки між ними — це те, що звіряють із домовленістю."
+      de: "Eine Rechnung liest man nicht durch, sondern von oben nach unten, und fünf Fragen holen alles heraus: wer schreibt, welche Rechnung das ist, wofür jede Zeile steht, was alles zusammen kostet und bis wann das Geld da sein muss. Kopf und Fuß sind fürs Archiv; geprüft werden die Zeilen dazwischen."
+
+  - id: cloze-genitiv-zeile
+    outcomes: [rechnung-pruefen]
+    type: cloze
+    focus: genitiv-form
+    instruction:
+      en: "Two lines of one bill. Put das Material and die Anfahrt into the genitive — the article word, and the noun where it changes."
+      ru: "Две строки одного счёта. Поставьте das Material и die Anfahrt в генитив — артикль и существительное там, где оно меняется."
+      uk: "Два рядки одного рахунку. Поставте das Material і die Anfahrt у генитив — артикль та іменник там, де він змінюється."
+      de: "Zwei Zeilen einer Rechnung. Setz das Material und die Anfahrt in den Genitiv — das Artikelwort und das Nomen dort, wo es sich ändert."
+    text: "In Zeile zwei steht der Preis {{des}} {{Materials}}, in Zeile drei der Betrag {{der}} Anfahrt."
+    translation:
+      en: "The price of the material is in line two, the amount for the call-out in line three."
+      ru: "Во второй строке стоит цена материалов, в третьей — сумма за выезд."
+      uk: "У другому рядку стоїть ціна матеріалів, у третьому — сума за виїзд."
+    explain:
+      en: "The two genders behave differently and a bill uses both in the same breath. A neuter noun carries the case itself: das becomes des and Material gains an -s. A feminine noun carries nothing at all — die becomes der and Anfahrt stays exactly as it was. So the ending is not a rule about the genitive, it is a fact about the gender."
+      ru: "Два рода ведут себя по-разному, а счёт пользуется обоими в одной фразе. Средний род несёт падеж сам: das становится des, а Material получает -s. Женский не несёт ничего: die становится der, а Anfahrt остаётся ровно такой, какой была. Значит, окончание — это не правило о генитиве, а факт о роде."
+      uk: "Два роди поводяться по-різному, а рахунок користується обома в одній фразі. Середній рід несе відмінок сам: das стає des, а Material дістає -s. Жіночий не несе нічого: die стає der, а Anfahrt лишається рівно такою, якою була. Отже, закінчення — це не правило про генитив, а факт про рід."
+      de: "Die beiden Genera verhalten sich verschieden, und eine Rechnung benutzt beide im selben Atemzug. Ein Neutrum trägt den Kasus mit: aus das wird des, und Material bekommt ein -s. Ein Femininum trägt gar nichts: aus die wird der, und Anfahrt bleibt genau wie zuvor. Die Endung ist also keine Regel über den Genitiv, sondern eine Tatsache über das Genus."
+
+  - id: uebersetzen-genitiv-datum
+    outcomes: [rechnung-pruefen]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Write it the way a bill writes it: the second noun in the genitive — not with von, and not as one compound word. For 'the payment' take die Zahlung."
+      ru: "Напишите так, как пишет счёт: второе существительное в генитиве — не через von и не одним сложным словом. Для «платёж» возьмите die Zahlung."
+      uk: "Напишіть так, як пише рахунок: другий іменник у генитиві — не через von і не одним складним словом. Для «платіж» візьміть die Zahlung."
+      de: "Schreib es, wie eine Rechnung es schreibt: das zweite Nomen im Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Bezahlung nimm die Zahlung."
+    prompt_en: "The date of the payment is missing on this bill."
+    prompt_ru: "Дата платежа на этом счёте отсутствует."
+    prompt_uk: "Дата платежу на цьому рахунку відсутня."
+    answer: "Das Datum der Zahlung fehlt auf dieser Rechnung."
+    accept:
+      # The place may lead; both are ordinary V2 and the graded pair does not move.
+      - "Auf dieser Rechnung fehlt das Datum der Zahlung."
+    key_tokens: ["der", "Zahlung"]
+    explain:
+      en: "Graded is the genitive group and nothing else: der Zahlung, where the article word changes and the feminine noun does not. Two other renderings are correct German and neither is what a bill prints — von der Zahlung is the spoken route the source languages suggest, and das Zahlungsdatum packs both nouns into one word. The instruction asks for the written form, because that is the form this line is in."
+      ru: "Оценивается родительная группа и ничего больше: der Zahlung, где меняется артикль, а существительное женского рода — нет. Два других варианта тоже правильный немецкий, но ни один не печатают на счёте: von der Zahlung — разговорный обход, к которому толкает русский, а das Zahlungsdatum складывает оба существительных в одно слово. Инструкция просит письменную форму, потому что строка стоит именно в ней."
+      uk: "Оцінюється родова група і нічого більше: der Zahlung, де змінюється артикль, а іменник жіночого роду — ні. Два інші варіанти теж правильна німецька, але жодного не друкують на рахунку: von der Zahlung — розмовний обхід, до якого штовхає українська, а das Zahlungsdatum складає обидва іменники в одне слово. Інструкція просить письмову форму, бо рядок стоїть саме в ній."
+      de: "Bewertet wird die Genitivgruppe und sonst nichts: der Zahlung, wo sich das Artikelwort ändert und das feminine Nomen nicht. Zwei andere Fassungen sind korrektes Deutsch und stehen trotzdem auf keiner Rechnung — von der Zahlung ist der gesprochene Umweg, das Zahlungsdatum packt beide Nomen in ein Wort. Verlangt ist die geschriebene Form, denn in ihr steht diese Zeile."
+
+  - id: mc-unstimmigkeit
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Sie haben eine Unstimmigkeit gefunden. Mit welchem Satz kann das Büro etwas anfangen?"
+    options:
+      - "In Zeile zwei stimmt der Preis nicht: Im Kostenvoranschlag standen 45 Euro, auf der Rechnung stehen 65."
+      - "Die Rechnung ist viel zu hoch, das kann so nicht stimmen."
+      - "Mit Ihrer Firma bin ich diesmal überhaupt nicht zufrieden."
+    correct: 0
+    translation:
+      en: "You have found a discrepancy. Which sentence gives the office something to work with?"
+      ru: "Вы нашли несоответствие. С каким предложением в конторе смогут что-то сделать?"
+      uk: "Ви знайшли невідповідність. З яким реченням у конторі зможуть щось зробити?"
+    explain:
+      en: "Name the line first and the discrepancy second, with both numbers beside each other. That sentence can be answered — somebody looks up line two, compares it with the estimate and either corrects the bill or explains the difference. Too high is a feeling and not a place, and a complaint about the firm moves the conversation away from the paper altogether."
+      ru: "Сначала строка, потом расхождение, и оба числа рядом. На такую фразу можно ответить: человек откроет вторую строку, сверит её со сметой и либо исправит счёт, либо объяснит разницу. «Слишком много» — это ощущение, а не место, а претензия к фирме уводит разговор от бумаги вовсе."
+      uk: "Спершу рядок, потім розбіжність, і обидва числа поряд. На таку фразу можна відповісти: людина відкриє другий рядок, звірить його з кошторисом і або виправить рахунок, або пояснить різницю. «Забагато» — це відчуття, а не місце, а претензія до фірми відводить розмову від паперу зовсім."
+      de: "Erst die Zeile, dann die Unstimmigkeit, und beide Zahlen nebeneinander. Auf diesen Satz kann man antworten: Jemand schlägt Zeile zwei nach, legt sie neben den Kostenvoranschlag und korrigiert entweder die Rechnung oder erklärt die Differenz. Zu hoch ist ein Gefühl und kein Ort, und ein Vorwurf an die Firma führt vom Papier weg."
+
+  - id: mc-faellig-gueltig
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Unten auf der Rechnung steht: fällig am 30. Juni. Was heißt das?"
+    options:
+      - "Bis zu diesem Tag muss das Geld beim Anbieter sein."
+      - "Nach diesem Tag muss die Rechnung nicht mehr bezahlt werden."
+      - "Ab diesem Tag kostet die Reparatur mehr als vorher."
+    correct: 0
+    translation:
+      en: "At the bottom of the bill it says: due on 30 June. What does that mean?"
+      ru: "Внизу счёта написано: срок оплаты 30 июня. Что это значит?"
+      uk: "Унизу рахунку написано: строк оплати 30 червня. Що це означає?"
+    explain:
+      en: "fällig names the day by which the money has to have arrived, and nothing about the bill ends on it: the claim stays and a Mahnung is added, usually with a fee. The word for a period that really does run out is gültig — an offer, a ticket and a price are gültig until a date; a bill is fällig on one."
+      ru: "fällig называет день, к которому деньги должны быть на месте, и в этот день со счётом ничего не кончается: требование остаётся, а к нему добавляется Mahnung, обычно с доплатой. Слово для срока, который действительно истекает, — gültig: предложение, билет и цена gültig до какой-то даты; счёт же fällig в определённый день."
+      uk: "fällig називає день, до якого гроші мають бути на місці, і цього дня з рахунком нічого не закінчується: вимога лишається, а до неї додається Mahnung, зазвичай із доплатою. Слово для строку, який справді спливає, — gültig: пропозиція, квиток і ціна gültig до якоїсь дати; рахунок же fällig певного дня."
+      de: "fällig nennt den Tag, an dem das Geld da sein muss, und an diesem Tag endet an der Rechnung gar nichts: Die Forderung bleibt, und eine Mahnung kommt dazu, meist mit Gebühr. Das Wort für eine Frist, die wirklich abläuft, heißt gültig — ein Angebot, eine Karte und ein Preis sind bis zu einem Datum gültig, eine Rechnung ist an einem fällig."
+
+  - id: cloze-vertrag-passiv
+    outcomes: [vertrag-nachfragen]
+    type: cloze
+    focus: passiv-modal
+    instruction:
+      en: "Two conditions from a contract. Fill in the Partizip II of kündigen and of schicken, and the verb that follows each of them."
+      ru: "Два условия из договора. Впишите Partizip II глаголов kündigen и schicken и глагол после каждого из них."
+      uk: "Дві умови з договору. Впишіть Partizip II дієслів kündigen і schicken та дієслово після кожного з них."
+      de: "Zwei Bedingungen aus einem Vertrag. Ergänze das Partizip II von kündigen und von schicken und jeweils das Verb danach."
+    text: "Der Vertrag kann jeden Monat {{gekündigt}} {{werden}}, aber die Kündigung muss schriftlich {{geschickt}} {{werden}}."
+    translation:
+      en: "The contract can be cancelled every month, but the notice has to be sent in writing."
+      ru: "Договор можно расторгнуть в любой месяц, но заявление нужно отправить в письменном виде."
+      uk: "Договір можна розірвати будь-якого місяця, але заяву треба надіслати письмово."
+    explain:
+      en: "After a modal every verb is an infinitive, so the clause closes with two of them in a fixed order: the Partizip II first, werden at the very end. wird in the last gap is the one error this shape invites, because the ear expects a conjugated verb somewhere; the modal has already taken that job. And it is werden, never sein — sein would report a state instead of stating a rule."
+      ru: "После модального глагола все глаголы стоят в инфинитиве, поэтому предложение закрывается двумя из них в жёстком порядке: сначала Partizip II, werden в самом конце. wird в последнем пропуске — та самая ошибка, к которой эта форма подталкивает: слух ждёт где-то спрягаемый глагол, но эту работу уже выполнил модальный. И именно werden, а не sein: sein сообщало бы о состоянии вместо правила."
+      uk: "Після модального дієслова всі дієслова стоять в інфінітиві, тому речення закривається двома з них у жорсткому порядку: спершу Partizip II, werden у самому кінці. wird в останньому пропуску — та сама помилка, до якої ця форма підштовхує: слух чекає десь відмінюване дієслово, але цю роботу вже виконало модальне. І саме werden, а не sein: sein повідомляло б про стан замість правила."
+      de: "Nach einem Modalverb steht jedes Verb im Infinitiv, also schließt der Satz mit zweien davon in fester Reihenfolge: zuerst das Partizip II, werden ganz am Ende. wird in der letzten Lücke ist der Fehler, zu dem diese Form verführt, denn das Ohr erwartet irgendwo ein konjugiertes Verb — diese Arbeit hat das Modalverb schon erledigt. Und es heißt werden, nie sein: sein meldete einen Zustand statt einer Regel."
+
+  - id: uebersetzen-passiv-frist
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "State the condition the way the contract states it — use the passive with müssen. For 'pay' take bezahlen."
+      ru: "Сформулируйте условие так, как его формулирует договор, — используйте пассив с müssen. Для «оплатить» возьмите bezahlen."
+      uk: "Сформулюйте умову так, як її формулює договір, — використайте пасив із müssen. Для «оплатити» візьміть bezahlen."
+      de: "Formulier die Bedingung so, wie der Vertrag sie formuliert — benutze das Passiv mit müssen. Für das Zahlen nimm bezahlen."
+    prompt_en: "The bill has to be paid by Friday."
+    prompt_ru: "Счёт нужно оплатить до пятницы."
+    prompt_uk: "Рахунок треба оплатити до п'ятниці."
+    answer: "Die Rechnung muss bis Freitag bezahlt werden."
+    accept:
+      # The deadline may lead; both are ordinary V2 and the closing pair is untouched.
+      - "Bis Freitag muss die Rechnung bezahlt werden."
+    key_tokens: ["muss", "bezahlt", "werden"]
+    explain:
+      en: "Graded are the three anchors of the form: muss agreeing with die Rechnung, and the passive infinitive bezahlt werden closing the clause in exactly that order. Everything between them is carrier. The alternative a hand reaches for is the active with man — Man muss die Rechnung bis Freitag bezahlen — which says the same thing and is not how a condition is written down."
+      ru: "Оцениваются три якоря формы: muss, согласованный с die Rechnung, и пассивный инфинитив bezahlt werden, закрывающий предложение именно в этом порядке. Всё между ними — носитель. Вариант, к которому тянется рука, — актив с man: Man muss die Rechnung bis Freitag bezahlen. Смысл тот же, но условие записывают не так."
+      uk: "Оцінюються три якорі форми: muss, узгоджений із die Rechnung, і пасивний інфінітив bezahlt werden, що закриває речення саме в цьому порядку. Усе між ними — носій. Варіант, до якого тягнеться рука, — актив із man: Man muss die Rechnung bis Freitag bezahlen. Зміст той самий, але умову записують не так."
+      de: "Bewertet werden die drei Anker der Form: muss, passend zu die Rechnung, und der Passiv-Infinitiv bezahlt werden, der den Satz genau in dieser Reihenfolge schließt. Alles dazwischen ist Träger. Die Fassung, zu der die Hand greift, ist das Aktiv mit man — Man muss die Rechnung bis Freitag bezahlen —, dasselbe Sagen und nicht die Schreibweise einer Bedingung."
+
+  - id: uebersetzen-nachfrage-indirekt
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Ask at the counter, and ask indirectly — open with Können Sie mir sagen. For 'valid' take gültig."
+      ru: "Спросите у стойки, и спросите косвенно — начните с Können Sie mir sagen. Для «действительна» возьмите gültig."
+      uk: "Спитайте біля стійки, і спитайте непрямо — почніть із Können Sie mir sagen. Для «дійсна» візьміть gültig."
+      de: "Frag am Schalter, und frag indirekt — beginn mit Können Sie mir sagen. Für die Geltung nimm gültig."
+    prompt_en: "Can you tell me how long the price is valid?"
+    prompt_ru: "Вы можете сказать мне, как долго цена действительна?"
+    prompt_uk: "Чи можете ви сказати мені, як довго ціна дійсна?"
+    answer: "Können Sie mir sagen, wie lange der Preis gültig ist?"
+    accept:
+      # bitte is ordinary counter politeness and moves nothing that is graded.
+      - "Können Sie mir bitte sagen, wie lange der Preis gültig ist?"
+    key_tokens: ["ist"]
+    explain:
+      en: "Graded is the position of ist. A direct question puts the verb second — Wie lange ist der Preis gültig? — but the moment it is packed behind Können Sie mir sagen it becomes a Nebensatz, and the finite verb drops to the very end. English keeps its word order in both, so nothing warns the hand. The wrapper is worth the trouble at a counter: it turns a demand into a request."
+      ru: "Оценивается позиция ist. В прямом вопросе глагол стоит на втором месте — Wie lange ist der Preis gültig? — но, попав за Können Sie mir sagen, вопрос становится придаточным, и спрягаемый глагол уходит в самый конец. По-русски порядок слов при этом не меняется, так что рука ничего не подсказывает. Обёртка у стойки стоит усилий: она превращает требование в просьбу."
+      uk: "Оцінюється позиція ist. У прямому питанні дієслово стоїть на другому місці — Wie lange ist der Preis gültig? — але, потрапивши за Können Sie mir sagen, питання стає підрядним, і відмінюване дієслово йде в самий кінець. Українською порядок слів при цьому не змінюється, тож рука нічого не підказує. Обгортка біля стійки варта зусиль: вона перетворює вимогу на прохання."
+      de: "Bewertet wird die Stellung von ist. Die direkte Frage setzt das Verb an Position 2 — Wie lange ist der Preis gültig? —, doch hinter Können Sie mir sagen wird sie zum Nebensatz, und das finite Verb fällt ans Ende. Die Ausgangssprachen behalten in beiden Fällen ihre Stellung, warnen die Hand also nicht. Am Schalter lohnt die Verpackung: Sie macht aus einer Forderung eine Bitte."
+
+  - id: cloze-kunde-deklination
+    outcomes: [kosten-vergleichen]
+    type: cloze
+    focus: n-deklination
+    instruction:
+      en: "Two sentences about the same two people. Put der Kunde into the accusative and then into the dative — the article word and the noun."
+      ru: "Два предложения об одних и тех же двоих. Поставьте der Kunde в аккузатив, а затем в датив — артикль и существительное."
+      uk: "Два речення про тих самих двох. Поставте der Kunde в акузатив, а потім у датив — артикль та іменник."
+      de: "Zwei Sätze über dieselben zwei Personen. Setz der Kunde in den Akkusativ und danach in den Dativ — Artikelwort und Nomen."
+    text: "Für {{den}} {{Kunden}} ist der zweite Tarif billiger. Der Anbieter schickt {{dem}} {{Kunden}} nur eine Rechnung im Jahr."
+    translation:
+      en: "For the customer the second plan is cheaper. The provider sends the customer only one bill a year."
+      ru: "Для клиента второй тариф дешевле. Оператор присылает клиенту только один счёт в год."
+      uk: "Для клієнта другий тариф дешевший. Оператор надсилає клієнтові лише один рахунок на рік."
+    explain:
+      en: "der Kunde belongs to the small family of masculine person nouns that decline along with their article: -(e)n in every case but the nominative singular, so den Kunden and dem Kunden look identical and only the article word tells them apart. The other person in the sentence does not join in — der Anbieter ends in -er and stays der Anbieter, dem Anbieter, den Anbieter."
+      ru: "der Kunde принадлежит к небольшой группе одушевлённых существительных мужского рода, которые склоняются вместе со своим артиклем: -(e)n во всех падежах, кроме именительного единственного, поэтому den Kunden и dem Kunden выглядят одинаково и различает их только артикль. Второй участник фразы к группе не относится: der Anbieter кончается на -er и остаётся der Anbieter, dem Anbieter, den Anbieter."
+      uk: "der Kunde належить до невеликої групи істот чоловічого роду, які відмінюються разом зі своїм артиклем: -(e)n в усіх відмінках, крім називного однини, тому den Kunden і dem Kunden виглядають однаково, і розрізняє їх лише артикль. Другий учасник фрази до групи не належить: der Anbieter закінчується на -er і лишається der Anbieter, dem Anbieter, den Anbieter."
+      de: "der Kunde gehört zu der kleinen Familie maskuliner Personennomen, die mit ihrem Artikel mitdeklinieren: -(e)n in jedem Kasus außer dem Nominativ Singular, weshalb den Kunden und dem Kunden gleich aussehen und nur das Artikelwort sie trennt. Die zweite Person im Satz macht das nicht mit — der Anbieter endet auf -er und bleibt der Anbieter, dem Anbieter, den Anbieter."
+
+  - id: uebersetzen-kunde-tarif
+    outcomes: [kosten-vergleichen]
+    type: translate
+    focus: n-deklination
+    instruction:
+      en: "One sentence, two people. For 'the provider' take der Anbieter, for 'the customer' der Kunde, for 'plan' der Tarif."
+      ru: "Одно предложение, двое участников. Для «оператор» возьмите der Anbieter, для «клиент» — der Kunde, для «тариф» — der Tarif."
+      uk: "Одне речення, двоє учасників. Для «оператор» візьміть der Anbieter, для «клієнт» — der Kunde, для «тариф» — der Tarif."
+      de: "Ein Satz, zwei Personen. Für den Verkäufer nimm der Anbieter, für die Kundschaft der Kunde, für das Angebot der Tarif."
+    prompt_en: "The provider explains the second plan to the customer."
+    prompt_ru: "Оператор объясняет клиенту второй тариф."
+    prompt_uk: "Оператор пояснює клієнтові другий тариф."
+    answer: "Der Anbieter erklärt dem Kunden den zweiten Tarif."
+    key_tokens: ["dem", "Kunden"]
+    explain:
+      en: "Graded is the dative of der Kunde, both halves of it: the article word dem and the -n the noun itself takes. English marks the case with a preposition and nothing on the noun, so the ending never gets typed — dem Kunde is the miss. The ending is fixed to the word rather than to the article, so it stays put after einem, diesem or unserem alike."
+      ru: "Оценивается датив der Kunde, обе его половины: артикль dem и то -n, которое берёт само существительное. Русский показывает падеж окончанием, но немецкое -n при этом всё равно исчезает — dem Kunde и есть промах. Окончание закреплено за словом, а не за артиклем, поэтому остаётся и после einem, diesem или unserem."
+      uk: "Оцінюється датив der Kunde, обидві його половини: артикль dem і те -n, яке бере сам іменник. Українська показує відмінок закінченням, але німецьке -n при цьому все одно зникає — dem Kunde і є промах. Закінчення закріплене за словом, а не за артиклем, тому лишається й після einem, diesem чи unserem."
+      de: "Bewertet wird der Dativ von der Kunde, und zwar beide Hälften: das Artikelwort dem und das -n, das das Nomen selbst nimmt. Die Ausgangssprachen markieren den Kasus anders, also fällt die Endung beim Tippen weg — dem Kunde ist der Fehlgriff. Die Endung hängt am Wort und nicht am Artikel, sie bleibt also auch nach einem, diesem oder unserem."
+
+  - id: uebersetzen-tarif-vergleich
+    outcomes: [kosten-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: "Compare the two plans over a whole year. For 'cheap' take günstig, for 'plan' der Tarif."
+      ru: "Сравните два тарифа за целый год. Для «дешёвый» возьмите günstig, для «тариф» — der Tarif."
+      uk: "Порівняйте два тарифи за цілий рік. Для «дешевий» візьміть günstig, для «тариф» — der Tarif."
+      de: "Vergleich die beiden Angebote übers ganze Jahr. Für preiswert nimm günstig, für das Angebot der Tarif."
+    prompt_en: "Over the year the second plan is cheaper than the first."
+    prompt_ru: "За год второй тариф дешевле первого."
+    prompt_uk: "За рік другий тариф дешевший за перший."
+    answer: "Der zweite Tarif ist im Jahr günstiger als der erste."
+    accept:
+      # The time phrase may lead; both are ordinary V2 and the graded pair does not move.
+      - "Im Jahr ist der zweite Tarif günstiger als der erste."
+    key_tokens: ["günstiger", "als"]
+    explain:
+      en: "Graded are the comparative and the word that carries the comparison: günstig plus -er, and als in front of what it is measured against. English keeps both words too, but several other languages fold the comparison into a case ending and need no separate word at all, so als is what goes missing; wie is the other miss, and it means as … as rather than more than."
+      ru: "Оцениваются сравнительная степень и слово, несущее сравнение: günstig плюс -er и als перед тем, с чем сравнивают. Русский сравнивает падежом — «дешевле первого» — и отдельного слова не требует вовсе, поэтому als и пропадает; второй промах — wie, но оно значит «такой же, как», а не «более чем»."
+      uk: "Оцінюються вищий ступінь і слово, що несе порівняння: günstig плюс -er і als перед тим, із чим порівнюють. Українська порівнює прийменником — «дешевший за перший» — і окремого слова не потребує зовсім, тому als і зникає; другий промах — wie, але воно означає «такий самий, як», а не «більш ніж»."
+      de: "Bewertet werden der Komparativ und das Wort, das den Vergleich trägt: günstig plus -er und als vor dem, womit verglichen wird. Die Ausgangssprachen vergleichen mit einer Endung oder einer Präposition und brauchen gar kein eigenes Wort, also fällt als weg; der zweite Fehlgriff ist wie, das so … wie meint und nicht mehr als."
+
+  - id: mc-vergleich-basis
+    outcomes: [kosten-vergleichen]
+    type: mc
+    prompt: "Der erste Tarif kostet 10 Euro im Monat und einmal 30 Euro Anschlusspreis. Der zweite kostet 12 Euro im Monat, der Anschluss ist frei. Welcher Vergleich entscheidet?"
+    options:
+      - "Zwölf Monate plus die einmaligen Kosten: 150 Euro gegen 144 Euro."
+      - "Der Monatspreis: 10 Euro gegen 12 Euro."
+      - "Der Anschlusspreis: 30 Euro gegen nichts."
+    correct: 0
+    translation:
+      en: "The first plan costs 10 euros a month plus a one-off connection fee of 30 euros. The second costs 12 euros a month with free connection. Which comparison decides?"
+      ru: "Первый тариф стоит 10 евро в месяц плюс единовременно 30 евро за подключение. Второй стоит 12 евро в месяц, подключение бесплатно. Какое сравнение решает дело?"
+      uk: "Перший тариф коштує 10 євро на місяць плюс одноразово 30 євро за підключення. Другий коштує 12 євро на місяць, підключення безкоштовне. Яке порівняння вирішує справу?"
+    explain:
+      en: "Compare line against line and then add up the same period on both sides: twelve months plus what is paid once. The lower monthly price loses over a year here, and a free connection is not a reason on its own either. This is also why the offer with the smaller total is not automatically the cheaper one — the other one may simply have put a line somewhere you have not read yet."
+      ru: "Сравнивайте строку со строкой, а потом складывайте с обеих сторон один и тот же срок: двенадцать месяцев плюс то, что платится один раз. Меньшая месячная цена здесь за год проигрывает, а бесплатное подключение само по себе тоже не довод. Потому и предложение с меньшим итогом не автоматически дешевле: во втором строка может просто стоять там, куда вы ещё не заглядывали."
+      uk: "Порівнюйте рядок із рядком, а потім додавайте з обох боків той самий строк: дванадцять місяців плюс те, що платиться один раз. Менша місячна ціна тут за рік програє, а безкоштовне підключення саме по собі теж не доказ. Тому й пропозиція з меншим підсумком не автоматично дешевша: у другій рядок може просто стояти там, куди ви ще не зазирали."
+      de: "Zeile gegen Zeile vergleichen und dann auf beiden Seiten denselben Zeitraum addieren: zwölf Monate plus die einmaligen Kosten. Der niedrigere Monatspreis verliert hier übers Jahr, und ein freier Anschluss ist für sich genommen auch kein Grund. Deshalb ist das Angebot mit dem kleineren Gesamtbetrag nicht automatisch das günstigere — beim anderen steht die Zeile vielleicht nur dort, wo man noch nicht gelesen hat."

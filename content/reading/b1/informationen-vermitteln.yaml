@@ -1,0 +1,90 @@
+topic: informationen-vermitteln
+kind: intensive
+title_de: "Aushang im Treppenhaus — der geänderte Termin"
+text:
+  - >-
+    Hausverwaltung Lindenweg 12 —
+    [[Mitteilung::notice to everyone in the building::объявление для всех
+    жильцов::оголошення для всіх мешканців]] an alle Mieterinnen und Mieter,
+    4. August.
+  - >-
+    [[Der für Montag geplante Austausch::the replacement planned for
+    Monday::замена, запланированная на понедельник::заміна, запланована на
+    понеділок]] der Briefkästen wird
+    [[verschoben::moved to another date::перенесён::перенесено]].
+    [[Der geänderte Termin::the new date::изменённая дата::змінена дата]] ist
+    Donnerstag, der 13. August, von 8 bis 14 Uhr. An diesem Tag ist der
+    [[Hausflur::hallway of the building::коридор подъезда::коридор
+    під'їзду]] nicht frei; bitte nehmen Sie den Eingang im Hof.
+  - >-
+    Die Firma teilt uns mit, die neuen Briefkästen
+    [[seien schon geliefert worden::(reported speech) have already been
+    delivered::(косвенная речь) уже доставлены::(непряма мова) вже
+    доставлені]].
+    [[Die fehlenden Schlüssel::the keys that are still missing::недостающие
+    ключи::ключі, яких бракує]] bekommen Sie am selben Tag vom Hausmeister.
+  - >-
+    Wer am 13. August nicht zu Hause ist, gibt bitte bis Dienstag im Büro
+    [[Bescheid::word, message (Bescheid geben = to let somebody
+    know)::весть, сообщение (Bescheid geben — дать знать)::звістка,
+    повідомлення (Bescheid geben — дати знати)]]. Der Hausmeister fragt
+    außerdem, ob jemand einen alten Briefkasten
+    [[behalten::to keep for oneself::оставить себе::залишити собі]] möchte.
+    Bei Fragen erreichen Sie uns montags bis freitags von 9 bis 12 Uhr.
+questions:
+  - id: frage-firma-mitteilung
+    outcomes: [indirekt-berichten]
+    type: mc
+    prompt: "Was teilt die Firma der Hausverwaltung mit?"
+    options:
+      - "Die neuen Briefkästen sind schon geliefert worden."
+      - "Die neuen Briefkästen werden erst am 13. August geliefert."
+      - "Die Firma kann den Termin am Montag nicht halten."
+    correct: 0
+    translation:
+      en: "What does the firm inform the management of?"
+      ru: "О чём фирма сообщает управляющей компании?"
+      uk: "Про що фірма повідомляє управлінську компанію?"
+    explain:
+      en: "The sentence is reported speech in written form: Die Firma teilt uns mit, die neuen Briefkästen seien schon geliefert. The form seien is a Konjunktiv I, and all it does is mark the statement as the firm's rather than the management's — the fact itself is that the boxes have already arrived. The notice says the 13th is the day of the work, not of the delivery, and it never names a reason for the postponement."
+      ru: "Фраза передаёт чужие слова письменным способом: Die Firma teilt uns mit, die neuen Briefkästen seien schon geliefert. Форма seien — это Konjunktiv I, и вся её работа в том, чтобы пометить утверждение как слова фирмы, а не управляющей компании; сам факт — ящики уже доставлены. О 13 августа сказано как о дне работ, а не поставки, и причина переноса нигде не названа."
+      uk: "Фраза переказує чужі слова письмовим способом: Die Firma teilt uns mit, die neuen Briefkästen seien schon geliefert. Форма seien — це Konjunktiv I, і вся її робота в тому, щоб позначити твердження як слова фірми, а не управлінської компанії; сам факт — скриньки вже доставлені. Про 13 серпня сказано як про день робіт, а не постачання, і причину перенесення ніде не названо."
+      de: "Der Satz berichtet fremde Worte: Die Firma teilt uns mit, die neuen Briefkästen seien schon geliefert. Das seien ist ein Konjunktiv I und markiert nur, dass die Aussage von der Firma stammt — die Tatsache ist, dass die Kästen schon da sind. Der 13. August ist der Tag der Arbeit, nicht der Lieferung, und einen Grund für die Verschiebung nennt der Aushang nicht."
+
+  - id: frage-hausmeister-frage
+    outcomes: [indirekt-berichten]
+    type: mc
+    prompt: "Was möchte der Hausmeister wissen?"
+    options:
+      - "Ob jemand einen alten Briefkasten behalten möchte."
+      - "Wer am 13. August nicht zu Hause ist."
+      - "Wann die neuen Schlüssel verteilt werden."
+    correct: 0
+    translation:
+      en: "What does the caretaker want to know?"
+      ru: "Что хочет знать комендант?"
+      uk: "Що хоче знати комендант?"
+    explain:
+      en: "His question is the ob-clause: Der Hausmeister fragt außerdem, ob jemand einen alten Briefkasten behalten möchte. Who is away on the 13th is asked by the management, and in a different shape — an instruction to give word at the office, not a question. The keys are not asked about at all: the notice states when they are handed over."
+      ru: "Его вопрос — это придаточное с ob: Der Hausmeister fragt außerdem, ob jemand einen alten Briefkasten behalten möchte. О том, кого не будет 13-го, спрашивает управляющая компания, и совсем в другой форме — это указание сообщить в контору, а не вопрос. О ключах никто не спрашивает: объявление само сообщает, когда их выдадут."
+      uk: "Його питання — це підрядне з ob: Der Hausmeister fragt außerdem, ob jemand einen alten Briefkasten behalten möchte. Про те, кого не буде 13-го, питає управлінська компанія, і зовсім в іншій формі — це вказівка повідомити в контору, а не питання. Про ключі ніхто не питає: оголошення саме повідомляє, коли їх видадуть."
+      de: "Seine Frage ist der ob-Satz: Der Hausmeister fragt außerdem, ob jemand einen alten Briefkasten behalten möchte. Wer am 13. nicht da ist, fragt die Verwaltung — und in anderer Form: als Aufforderung, im Büro Bescheid zu geben. Nach den Schlüsseln fragt niemand; der Aushang sagt selbst, wann es sie gibt."
+
+  - id: frage-zusammenfassung
+    outcomes: [text-zusammenfassen]
+    type: mc
+    prompt: "Welche Zusammenfassung gibt den Aushang richtig wieder?"
+    options:
+      - "Die Briefkästen werden nicht am Montag ausgetauscht, sondern am Donnerstag, dem 13. August; an diesem Tag geht man durch den Hof."
+      - "Die Briefkästen werden am Montag ausgetauscht, und wer nicht zu Hause ist, bekommt seinen Schlüssel später."
+      - "Der Austausch der Briefkästen fällt aus, weil die neuen Kästen noch nicht geliefert worden sind."
+    correct: 0
+    translation:
+      en: "Which summary gives the notice correctly?"
+      ru: "Какой пересказ верно передаёт объявление?"
+      uk: "Який переказ правильно передає оголошення?"
+    explain:
+      en: "A faithful summary keeps the facts a neighbour can act on and drops the rest: the new date and the way in. The second option keeps the old date, which is the one thing the notice exists to change. The third turns the postponement into a cancellation and gives it a reason the text contradicts — the boxes have been delivered."
+      ru: "Верный пересказ сохраняет факты, по которым сосед может действовать, и отбрасывает остальное: новую дату и вход. Второй вариант оставляет прежнюю дату — ровно то, ради чего объявление и написано. Третий превращает перенос в отмену и придумывает причину, которой текст противоречит: ящики уже доставлены."
+      uk: "Правильний переказ зберігає факти, за якими сусід може діяти, і відкидає решту: нову дату і вхід. Другий варіант лишає попередню дату — саме те, заради чого оголошення й написане. Третій перетворює перенесення на скасування і вигадує причину, якій текст суперечить: скриньки вже доставлені."
+      de: "Eine treue Zusammenfassung behält, womit der Nachbar handeln kann — den neuen Termin und den Weg durch den Hof —, und lässt den Rest weg. Die zweite Antwort behält den alten Termin, also genau das, was der Aushang ändert. Die dritte macht aus der Verschiebung eine Absage und nennt einen Grund, dem der Text widerspricht: Die Kästen sind geliefert."

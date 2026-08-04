@@ -114,4 +114,8 @@ export const focusIntroducedBy: Record<string, string> = {
   'obwohl-trotzdem': 'gesellschaft-zusammenleben',
   'indefinitpronomen-erweitert': 'gesellschaft-zusammenleben',
   'relativ-was-wo': 'gesellschaft-zusammenleben',
+  'indirekte-rede': 'informationen-vermitteln',
+  'angaben-reihenfolge': 'informationen-vermitteln',
+  'pronomen-stellung': 'informationen-vermitteln',
+  'partizip-adjektiv': 'informationen-vermitteln',
 };

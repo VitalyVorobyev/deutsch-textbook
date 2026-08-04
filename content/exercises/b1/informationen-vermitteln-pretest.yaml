@@ -1,0 +1,81 @@
+# Diagnostic generation, not practice: three guesses before the article, one per grammar
+# point the unit owns — the word that opens a reported clause, the order of the Angaben in
+# the middle of a sentence, and the participle that stands in front of a noun. No focus
+# tags, because a pretest is never weakness evidence.
+# The first item is a cloze, since a pretest made only of mc discriminates nothing, and its
+# instruction names the verb, so what is guessed is the connector and the position — not
+# which word the author had in mind.
+# None of these three surfaces returns in a probe family, checked phrase by phrase rather
+# than by reading the lists side by side. The cloze reports a caretaker's statement about
+# Handwerker on Montag, while family 1 relays three written Konjunktiv-I notices (Arzt/um
+# zehn, Training/eine Stunde später, Ausflug/Dienstag) and uses no dass-clause about
+# workmen anywhere; the Angaben mc turns on morgen against zur Post, two Angaben and no
+# third, while family 2 always places three at once (Wochenende/Regen/Haltestelle,
+# Sonntag/Ruhe/Küche, letzte Woche/Arbeit/telefonisch) and never uses gehen or die Post; and
+# the participle mc runs on bezahlt
+# and die Rechnung, which family 3 uses in no variant — it forms ausgefüllt, kommend,
+# bestellt, laufend, korrigiert and steigend.
+topic: informationen-vermitteln
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-berichten
+    outcomes: [indirekt-berichten]
+    type: cloze
+    instruction:
+      en: "Somebody's words are being passed on. Fill in the word that opens the reported clause, and the form of kommen that closes it."
+      ru: "Чужие слова передают дальше. Впишите слово, которым открывается придаточное, и форму глагола kommen, которая его закрывает."
+      uk: "Чужі слова переказують далі. Впишіть слово, яким відкривається підрядне, і форму дієслова kommen, що його закриває."
+      de: "Fremde Worte werden weitergegeben. Ergänze das Wort, das den Nebensatz öffnet, und die Form von kommen, die ihn schließt."
+    text: "Der Hausmeister sagt, {{dass}} die Handwerker am Montag {{kommen}}."
+    translation:
+      en: "The caretaker says that the workmen are coming on Monday."
+      ru: "Комендант говорит, что рабочие придут в понедельник."
+      uk: "Комендант каже, що робітники прийдуть у понеділок."
+    explain:
+      en: "A reported statement opens with dass, and from there the clause behaves like any other Nebensatz: the finite verb walks past everything else to the very end, so kommen stands behind am Montag and not in front of it. English keeps its ordinary word order inside a that-clause, which is why the hand puts the verb early — and why the gap is at the wall."
+      ru: "Переданное утверждение вводится словом dass, и дальше придаточное ведёт себя как любое другое: спрягаемый глагол проходит мимо всего остального в самый конец, поэтому kommen стоит за am Montag, а не перед ним. Русское придаточное с «что» сохраняет обычный порядок слов — потому рука и ставит глагол раньше, а пропуск здесь у самой стены."
+      uk: "Переказане твердження вводиться словом dass, і далі підрядне поводиться як будь-яке інше: відмінюване дієслово проходить повз усе решта в самий кінець, тому kommen стоїть за am Montag, а не перед ним. Українське підрядне зі «що» зберігає звичайний порядок слів — тому рука й ставить дієслово раніше, а пропуск тут біля самої стіни."
+      de: "Eine berichtete Aussage beginnt mit dass, und danach verhält sich der Satz wie jeder Nebensatz: Das finite Verb geht an allem vorbei ganz ans Ende, also steht kommen hinter am Montag und nicht davor. Die Ausgangssprachen behalten im dass-Satz ihre gewohnte Stellung — deshalb setzt die Hand das Verb zu früh, und deshalb steht die Lücke an der Wand."
+
+  - id: pre-mc-angaben
+    outcomes: [mitteilung-weitergeben]
+    type: mc
+    prompt: "Welcher Satz ist normales Deutsch?"
+    options:
+      - "Ich gehe morgen zur Post."
+      - "Ich gehe zur Post morgen."
+      - "Ich morgen gehe zur Post."
+    correct: 0
+    translation:
+      en: "Which sentence is ordinary German?"
+      ru: "Какое предложение — обычный немецкий?"
+      uk: "Яке речення — звичайна німецька?"
+    explain:
+      en: "German puts the time before the place, and the place stays next to the verb: morgen zur Post, never zur Post morgen. English ends the sentence with the time phrase (\"I am going to the post office tomorrow\"), so zur Post morgen is the shape the ear supplies. Ich morgen gehe zur Post breaks a rule from A1 instead: the finite verb has to stand in position 2, whatever comes before it."
+      ru: "Немецкий ставит время перед местом, а место остаётся рядом с глаголом: morgen zur Post, но не zur Post morgen. По-русски обстоятельство времени спокойно уходит в конец («я иду на почту завтра»), поэтому zur Post morgen — это то, что подсказывает слух. Ich morgen gehe zur Post нарушает уже правило из A1: спрягаемый глагол обязан стоять на второй позиции, что бы ни стояло перед ним."
+      uk: "Німецька ставить час перед місцем, а місце лишається поряд із дієсловом: morgen zur Post, але не zur Post morgen. Українською обставина часу спокійно йде в кінець («я йду на пошту завтра»), тому zur Post morgen — це те, що підказує слух. Ich morgen gehe zur Post порушує вже правило з A1: відмінюване дієслово мусить стояти на другій позиції, хоч би що стояло перед ним."
+      de: "Im Deutschen steht die Zeit vor dem Ort, und der Ort bleibt beim Verb: morgen zur Post, nie zur Post morgen. Die Ausgangssprachen hängen die Zeitangabe ans Satzende, also liefert das Ohr zur Post morgen. Ich morgen gehe zur Post verletzt eine Regel aus A1: Das finite Verb steht auf Position 2, was auch immer davorsteht."
+
+  - id: pre-mc-partizip
+    outcomes: [text-zusammenfassen]
+    type: mc
+    prompt: "Die Rechnung wurde bezahlt. Wie steht das kurz vor dem Nomen?"
+    options:
+      - "die bezahlte Rechnung"
+      - "die bezahlende Rechnung"
+      - "die bezahlt Rechnung"
+    correct: 0
+    translation:
+      en: "The bill has been paid. How is that put compactly in front of the noun?"
+      ru: "Счёт оплатили. Как это сказать коротко перед существительным?"
+      uk: "Рахунок оплатили. Як це сказати коротко перед іменником?"
+    explain:
+      en: "Somebody paid the bill, so the bill had it done to it — that is the Partizip II, the form you already build for the Perfekt, plus an ordinary adjective ending: die bezahlte Rechnung. die bezahlende Rechnung is the Partizip I, which would say the bill is doing the paying. die bezahlt Rechnung has the right participle and no ending, and in front of a noun a participle declines exactly like an adjective."
+      ru: "Счёт оплатили — значит, с ним нечто проделали, а это Partizip II, та самая форма, которую вы строите для перфекта, плюс обычное окончание прилагательного: die bezahlte Rechnung. Форма die bezahlende Rechnung — это Partizip I, она сказала бы, что счёт платит сам. В die bezahlt Rechnung причастие верное, а окончания нет, — но перед существительным причастие склоняется ровно как прилагательное."
+      uk: "Рахунок оплатили — отже, з ним щось зробили, а це Partizip II, та сама форма, яку ви будуєте для перфекта, плюс звичайне прикметникове закінчення: die bezahlte Rechnung. Форма die bezahlende Rechnung — це Partizip I, вона сказала б, що рахунок платить сам. У die bezahlt Rechnung дієприкметник правильний, а закінчення немає, — але перед іменником дієприкметник відмінюється рівно як прикметник."
+      de: "Jemand hat die Rechnung bezahlt, mit ihr wurde also etwas gemacht — das ist das Partizip II, die Form aus dem Perfekt, dazu eine normale Adjektivendung: die bezahlte Rechnung. die bezahlende Rechnung ist das Partizip I und hieße, die Rechnung bezahle selbst. die bezahlt Rechnung hat das richtige Partizip und keine Endung, und vor dem Nomen dekliniert ein Partizip genau wie ein Adjektiv."

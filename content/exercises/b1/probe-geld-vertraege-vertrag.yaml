@@ -1,0 +1,132 @@
+# Delayed probe family 2 of 2 — ONE competence: stating a contract condition in the modal
+# passive, cold — the modal as the only conjugated verb, agreeing with the thing, and the
+# clause closing on Partizip II + werden in that order. Three parallel translate variants
+# served in authoring order across the 2/7/21 delays.
+#
+# Why this half of `vertrag-nachfragen` and not the outcome itself. The outcome is
+# spoken-interaction — asking about a contract and clearing up its conditions — and the app
+# never verifies free speech, so the delayed evidence sits on the structure the asking
+# rests on: the learner has to be able to read and rebuild *kann monatlich gekündigt
+# werden* before turning it into *Kann ich monatlich kündigen?*, and that half is
+# verifiable. Family 1 does the same for the reading outcome; `kosten-vergleichen` gets no
+# family, because its competence lives entirely in speech.
+#
+# The tag is recycled and closes nothing: passiv-modal belongs to B1.7, whose own family
+# (probe-regeln-verantwortung) is cloze ×3 in the house-rules register — Heizung
+# kontrolliert, Fenster geputzt, Waschmaschine ausgeschaltet, plus a man-sentence turned
+# round. This family differs in all three of the ways available. Format: translate, so the
+# frame has to be *chosen* and not only filled — B1.7's cloze prints the modal and the
+# slots, while here the active with man (*Man kann den Vertrag online unterschreiben*)
+# renders every prompt just as correctly, which is why each instruction asks for the
+# passive by name. Genre: terms a customer is about to sign rather than rules posted in a
+# stairwell. Cells: kann in a statement, müssen agreeing with a plural, and darf inside a
+# Nebensatz, where the glued pair stays put and the conjugated modal goes behind it
+# (…, ob der Preis erhöht werden darf) — a cell B1.7's family has no analogue for, all
+# three of its variants being main clauses, and the one a learner meets first, because at a
+# counter the condition is asked before it is read. The ob-frame around it is carrier and
+# is deliberately unpinned; the unit's practice set owns an `indirekte-frage` item, so the
+# wrapper is not new here.
+# The two families cannot disturb each other's clock — since P19-4 every family arms from
+# its own literal list, and B1.7's names only B1.7 items.
+#
+# Pinned in every accepted rendering are the three anchors of the form: the conjugated
+# modal, the Partizip II and werden. What stands between them is free, and the fronted
+# rendering is accepted where the prompt invites it — that is Position 1 being filled, the
+# A1 verbzweit rule and not this tag.
+#
+# Content fresh against the taught surface, checked by grepping each participle across the
+# unit's six files rather than by re-reading this list. The unit's taught modal passives
+# run on gekündigt werden and geschickt werden (the article, the pretest and the practice
+# cloze), bezahlt werden (the practice translate) and geändert werden (the produktion
+# translate); ausgestellt and abgebucht occur as plain passives in the reading and the
+# deck. None of `unterschrieben`, `überwiesen` and `erhöht` occurs in any item, article
+# sentence, reading line or deck entry of this unit, and all three are words the learner
+# already produces from an earlier deck — unterschreiben (aemter-dienstleistungen),
+# überweisen (einkaufen-geld-a2) and erhöhen (zahlen-mengen-masse-b1). The one near miss is
+# `erhöhen` itself, which appears once in the deck's note on the recognition headword
+# `Erhöhung`, naming the verb the noun is built from — never as a participle. The noun is
+# deliberately not what variant-c asks for: it is one of this deck's sixteen
+# recognition-only headwords, and the verb behind it has a production card of its own.
+#
+# arming: the three items in which the learner builds the frame. Nothing else in the unit
+# carries this tag, and the pretest's gekündigt-werden mc is excluded by role.
+topic: geld-vertraege
+role: probe
+title:
+  en: "Delayed check — the condition a contract states"
+  ru: "Отложенная проверка — условие, которое ставит договор"
+  uk: "Відкладена перевірка — умова, яку ставить договір"
+  de: "Kontrolle mit Abstand — die Bedingung, die ein Vertrag stellt"
+arming:
+  - b1/geld-vertraege::cloze-vertrag-passiv
+  - b1/geld-vertraege::uebersetzen-passiv-frist
+  - b1/geld-vertraege-produktion::uebersetzen-bedingung-passiv
+items:
+  - id: variant-a
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "State it the way the terms state it — the passive with können. For 'sign' take unterschreiben."
+      ru: "Сформулируйте так, как формулирует договор, — пассив с können. Для «подписать» возьмите unterschreiben."
+      uk: "Сформулюйте так, як формулює договір, — пасив із können. Для «підписати» візьміть unterschreiben."
+      de: "Formulier es so, wie die Vertragsbedingungen es formulieren — das Passiv mit können. Für das Unterzeichnen nimm unterschreiben."
+    prompt_en: "The contract can also be signed online."
+    prompt_ru: "Договор можно подписать и онлайн."
+    prompt_uk: "Договір можна підписати й онлайн."
+    answer: "Der Vertrag kann auch online unterschrieben werden."
+    accept:
+      # The manner phrase may lead; both are ordinary V2 and the closing pair is untouched.
+      - "Auch online kann der Vertrag unterschrieben werden."
+    key_tokens: ["kann", "unterschrieben", "werden"]
+    explain:
+      en: "Three graded forms. kann is the only conjugated verb and agrees with der Vertrag; unterschrieben is the participle of an inseparable verb, so no ge- appears anywhere in it; and werden closes the clause behind it, in its dictionary form, because after a modal every verb is an infinitive. wird there is the standing error — the ear wants a second conjugated verb, and the modal has already been it."
+      ru: "Три оцениваемые формы. kann — единственный спрягаемый глагол, и он согласуется с der Vertrag; unterschrieben — причастие неотделяемого глагола, поэтому никакого ge- в нём нет; а werden закрывает предложение следом, в словарной форме, потому что после модального глагола все глаголы стоят в инфинитиве. wird на этом месте — постоянная ошибка: слух требует второго спрягаемого глагола, а им уже был модальный."
+      uk: "Три оцінювані форми. kann — єдине відмінюване дієслово, і воно узгоджується з der Vertrag; unterschrieben — дієприкметник невідокремлюваного дієслова, тому жодного ge- у ньому немає; а werden закриває речення слідом, у словниковій формі, бо після модального дієслова всі дієслова стоять в інфінітиві. wird на цьому місці — постійна помилка: слух вимагає другого відмінюваного дієслова, а ним уже було модальне."
+      de: "Drei bewertete Formen. kann ist das einzige konjugierte Verb und richtet sich nach der Vertrag; unterschrieben ist das Partizip eines untrennbaren Verbs, also taucht darin kein ge- auf; und werden schließt den Satz dahinter, in der Grundform, denn nach einem Modalverb steht jedes Verb im Infinitiv. wird an dieser Stelle ist der stehende Fehler — das Ohr will ein zweites konjugiertes Verb, und das war das Modalverb schon."
+
+  - id: variant-b
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "State it the way the terms state it — the passive with müssen. For 'transfer' take überweisen, for 'amount' der Betrag."
+      ru: "Сформулируйте так, как формулирует договор, — пассив с müssen. Для «перевести» возьмите überweisen, для «сумма» — der Betrag."
+      uk: "Сформулюйте так, як формулює договір, — пасив із müssen. Для «переказати» візьміть überweisen, для «сума» — der Betrag."
+      de: "Formulier es so, wie die Vertragsbedingungen es formulieren — das Passiv mit müssen. Für das Überweisen nimm überweisen, für die Summe der Betrag."
+    prompt_en: "Both amounts have to be transferred by Monday."
+    prompt_ru: "Обе суммы нужно перевести до понедельника."
+    prompt_uk: "Обидві суми треба переказати до понеділка."
+    answer: "Beide Beträge müssen bis Montag überwiesen werden."
+    accept:
+      # The deadline may lead; both are ordinary V2 and the closing pair does not move.
+      - "Bis Montag müssen beide Beträge überwiesen werden."
+    key_tokens: ["müssen", "überwiesen", "werden"]
+    explain:
+      en: "The number is the cell here: the modal agrees with what the sentence is about, and that is beide Beträge, so it is müssen and not muss. Nothing else in the frame moves with it — überwiesen werden closes the clause exactly as it did in the singular, because both of them are infinitives and infinitives do not agree with anything."
+      ru: "Здесь проверяется число: модальный глагол согласуется с тем, о чём предложение, а это beide Beträge, значит müssen, а не muss. Всё остальное в рамке за ним не меняется — überwiesen werden закрывает предложение ровно так же, как и в единственном числе, потому что оба стоят в инфинитиве, а инфинитивы ни с чем не согласуются."
+      uk: "Тут перевіряється число: модальне дієслово узгоджується з тим, про що речення, а це beide Beträge, отже müssen, а не muss. Усе інше в рамці за ним не змінюється — überwiesen werden закриває речення рівно так само, як і в однині, бо обидва стоять в інфінітиві, а інфінітиви ні з чим не узгоджуються."
+      de: "Der Numerus ist hier die Zelle: Das Modalverb richtet sich nach dem, worum es im Satz geht, und das sind beide Beträge — also müssen und nicht muss. Sonst bewegt sich in der Klammer nichts: überwiesen werden schließt den Satz genau wie im Singular, denn beide sind Infinitive, und Infinitive richten sich nach nichts."
+
+  - id: variant-c
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "Ask about the condition indirectly, and keep the passive with dürfen — open with Ich möchte wissen, ob … For 'increase' take erhöhen."
+      ru: "Спросите об условии косвенно и сохраните пассив с dürfen — начните с Ich möchte wissen, ob … Для «повышать» возьмите erhöhen."
+      uk: "Спитайте про умову непрямо і збережіть пасив із dürfen — почніть із Ich möchte wissen, ob … Для «підвищувати» візьміть erhöhen."
+      de: "Frag indirekt nach der Bedingung und behalt das Passiv mit dürfen — beginn mit Ich möchte wissen, ob … Für das Anheben nimm erhöhen."
+    prompt_en: "I would like to know whether the price may be increased every year."
+    prompt_ru: "Я хотел бы узнать, можно ли повышать цену каждый год."
+    prompt_uk: "Я хотів би дізнатися, чи можна підвищувати ціну щороку."
+    answer: "Ich möchte wissen, ob der Preis jedes Jahr erhöht werden darf."
+    accept:
+      # jedes Jahr and jährlich name the same interval and neither touches the graded three.
+      - "Ich möchte wissen, ob der Preis jährlich erhöht werden darf."
+    key_tokens: ["erhöht", "werden", "darf"]
+    explain:
+      en: "Inside a Nebensatz the whole stack moves to the wall and the order inverts: the pair erhöht werden stays glued exactly as it was, and the conjugated darf goes behind it, last of the three. That is the one place where the modal is not the second word of anything, and it is the shape a question about a contract usually arrives in — wrapped in Ich möchte wissen, ob …"
+      ru: "В придаточном вся стопка уезжает к стене, и порядок внутри неё переворачивается: пара erhöht werden остаётся склеенной точно как была, а спрягаемое darf становится за ней, последним из трёх. Это единственное место, где модальный глагол не стоит вторым, — и именно так обычно и приходит вопрос о договоре, завёрнутый в Ich möchte wissen, ob …"
+      uk: "У підрядному вся стопка їде до стіни, і порядок усередині неї перевертається: пара erhöht werden лишається склеєною точно як була, а відмінюване darf стає за нею, останнім із трьох. Це єдине місце, де модальне дієслово не стоїть другим, — і саме так зазвичай і приходить питання про договір, загорнуте в Ich möchte wissen, ob …"
+      de: "Im Nebensatz wandert der ganze Stapel an die Wand, und die Reihenfolge darin kippt: Das Paar erhöht werden bleibt genau so verklebt, wie es war, und das konjugierte darf stellt sich dahinter, als letztes der drei. Das ist die einzige Stelle, an der das Modalverb nicht das zweite Wort ist — und die Gestalt, in der eine Vertragsfrage meist ankommt: verpackt in Ich möchte wissen, ob …"

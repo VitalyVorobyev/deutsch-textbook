@@ -32,8 +32,10 @@ The course keeps five boundaries:
    rerun `bun run progress:audit --profile vitaly`, and only then read the weak-focus table. This is
    P5-11 and it is not optional: a drill authored from a pre-triage table targets a confusion the
    scorer invented.
-3. **Then the B1 checkpoint and placement** — one of each per level, data rather than wiring, with
-   the placement held to the seven stricter rules in
+3. ~~**Then the B1 checkpoint and placement**~~ — **shipped**: `content/exercises/b1/checkpoint-b1.yaml`
+   (28 tasks, 23 of the 32 B1 manifest points) and `content/exercises/b1/placement-b1.yaml`
+   (32 tasks over the 14 topics, two or three each), one of each per level, data rather than
+   wiring, with the placement held to the seven stricter rules in
    [item-authoring.md](authoring/item-authoring.md).
 4. Treat the approximately 2026-08-14 A2 checkpoint read as the next revision trigger; the
    2026-08-02 A1 cohort read has fired and its verdict is below.
