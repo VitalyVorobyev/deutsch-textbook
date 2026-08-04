@@ -1757,6 +1757,86 @@ nodes:
         ru: "Я умею предлагать компромисс при расхождении во мнениях."
         uk: "Я вмію пропонувати компроміс за розбіжності в думках."
 
+  - id: digitales-leben
+    level: B1
+    kind: communication
+    strand: communication
+    group: behoerden-services
+    prerequisites: [lernen-verstehen, aemter-dienstleistungen, konsum-umwelt, regeln-verantwortung]
+    # A genre unit, so both edges ride recycled tags — no new tag exists to carry them.
+    # lernen-verstehen drills `indirekte-frage` in its own practice, and this unit re-arms
+    # exactly that tag: the one question a fault report is allowed is asked indirectly
+    # (Können Sie mir sagen, ob …). aemter-dienstleistungen drills `hoeflich-konjunktiv`
+    # and, in its produktion set, `trennbar-wortstellung`; an online form asks the counter's
+    # questions in writing, so both return here — Könnten Sie mir die Meldung erklären? and
+    # the prefix of geben … an at the end of a form line. konsum-umwelt and
+    # regeln-verantwortung are prerequisites rather than deepens edges: their tags
+    # (passiv-bildung, sodass-folge) do return, but the contract freezes the two Deepens
+    # above and a spiral edge is a claim about depth, not about tag traffic.
+    deepens: [lernen-verstehen, aemter-dienstleistungen]
+    outcomes:
+      - id: anleitung-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann einer schriftlichen Anleitung Schritt für Schritt folgen."
+        en: "I can follow a set of written instructions step by step."
+        ru: "Я умею шаг за шагом следовать письменной инструкции."
+        uk: "Я вмію крок за кроком дотримуватися письмової інструкції."
+      - id: technikproblem-schildern
+        mode: writing
+        domain: personal
+        de: "Ich kann ein technisches Problem schildern und gezielt um Hilfe bitten."
+        en: "I can describe a technical problem and ask for help in a targeted way."
+        ru: "Я умею описать техническую неполадку и обратиться за конкретной помощью."
+        uk: "Я вмію описати технічну несправність і звернутися по конкретну допомогу."
+      - id: mediennutzung-berichten
+        mode: spoken-production
+        domain: personal
+        de: "Ich kann über meine Mediennutzung berichten und sie einordnen."
+        en: "I can report on my media use and put it in perspective."
+        ru: "Я умею рассказать о своём пользовании медиа и оценить его."
+        uk: "Я вмію розповісти про своє користування медіа й оцінити його."
+
+  - id: kultur-freizeit
+    level: B1
+    kind: communication
+    strand: communication
+    group: person-alltag
+    prerequisites: [freizeit-koennen, freunde-feste, erfahrungen-erzaehlen, leben-veraendern]
+    # A genre unit, so both edges ride recycled tags — no new tag exists to carry them.
+    # freizeit-koennen drills `modal-satzklammer` in its own practice, and this unit
+    # re-arms exactly that tag: the proposal that opens an agreement is a modal with its
+    # infinitive at the wall (Am Sonntag können wir zusammen zur Führung gehen).
+    # freunde-feste drills `trennbar-wortstellung` in its produktion set, and it returns
+    # here as the prefix of mitkommen at the end of an acceptance. erfahrungen-erzaehlen
+    # and leben-veraendern are prerequisites rather than deepens edges: their tags
+    # (praeteritum-vollverben, komparativ-attributiv) do return and are the two the frozen
+    # contract names, but the contract freezes the two Deepens above, and a spiral edge is
+    # a claim about depth rather than about tag traffic.
+    deepens: [freizeit-koennen, freunde-feste]
+    outcomes:
+      - id: programm-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann einem Veranstaltungsprogramm die für mich wichtigen Informationen entnehmen."
+        en: "I can find the information that matters to me in an events programme."
+        ru: "Я умею находить в программе мероприятий нужную мне информацию."
+        uk: "Я вмію знаходити в програмі заходів потрібну мені інформацію."
+      - id: veranstaltung-empfehlen
+        mode: spoken-interaction
+        domain: personal
+        de: "Ich kann eine Veranstaltung empfehlen und mich mit anderen auf einen Plan einigen."
+        en: "I can recommend an event and agree on a plan with others."
+        ru: "Я умею порекомендовать мероприятие и договориться с другими о плане."
+        uk: "Я вмію порекомендувати захід і домовитися з іншими про план."
+      - id: erlebnis-bewerten
+        mode: writing
+        domain: personal
+        de: "Ich kann einen kurzen Erfahrungsbericht schreiben und begründet bewerten."
+        en: "I can write a short account of an experience and give a reasoned judgement."
+        ru: "Я умею написать короткий отзыв о впечатлении и обосновать свою оценку."
+        uk: "Я вмію написати короткий відгук про враження й обґрунтувати свою оцінку."
+
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.
 units:
@@ -2069,3 +2149,17 @@ units:
     title_ru: "Общество и совместная жизнь"
     title_uk: "Суспільство та спільне життя"
     topics: [gesellschaft-zusammenleben]
+  - id: digitales-leben
+    level: B1
+    title_de: "Digitales Leben"
+    title_en: "Digital life"
+    title_ru: "Цифровая жизнь"
+    title_uk: "Цифрове життя"
+    topics: [digitales-leben]
+  - id: kultur-freizeit
+    level: B1
+    title_de: "Kultur & Freizeit"
+    title_en: "Culture & leisure"
+    title_ru: "Культура и досуг"
+    title_uk: "Культура та дозвілля"
+    topics: [kultur-freizeit]

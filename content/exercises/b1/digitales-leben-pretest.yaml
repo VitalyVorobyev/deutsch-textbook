@@ -1,0 +1,74 @@
+# Diagnostic generation, not practice: three guesses before the article, one per outcome —
+# the passive step an Anleitung is written in, the consequence clause a fault report needs,
+# and the purpose form a media report runs on. No focus tags, because a pretest is never
+# weakness evidence. The first item is a cloze, since a pretest made only of mc
+# discriminates nothing, and both its gaps name their verb, so it is a retention check on
+# B1.6's frame rather than a vocabulary guess.
+# A genre unit adopts no structure of its own, so every guess here is about something the
+# learner has already met in an earlier unit — which is precisely what makes this pretest
+# worth taking: it asks whether the form survived, not whether it was ever taught.
+# None of these three surfaces returns in a probe family.
+topic: digitales-leben
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-passiv-schritt
+    outcomes: [anleitung-verstehen]
+    type: cloze
+    instruction:
+      en: "The first step of a set of instructions is in the passive. Fill in werden in the right form and the Partizip II of einschalten."
+      ru: "Первый шаг инструкции стоит в пассиве. Впишите werden в нужной форме и Partizip II глагола einschalten."
+      uk: "Перший крок інструкції стоїть у пасиві. Впишіть werden у потрібній формі та Partizip II дієслова einschalten."
+      de: "Der erste Schritt einer Anleitung steht im Passiv. Ergänze werden in der richtigen Form und das Partizip II von einschalten."
+    text: "Zuerst {{wird}} das Handy {{eingeschaltet}}, danach öffnen Sie die App."
+    translation:
+      en: "First the phone is switched on, then you open the app."
+      ru: "Сначала телефон включают, затем вы открываете приложение."
+      uk: "Спершу телефон вмикають, потім ви відкриваєте застосунок."
+    explain:
+      en: "An instruction step names no person, so it uses the passive: werden conjugated with the new subject — das Handy, so wird — and the Partizip II eingeschaltet at the very end. Write ausschalten in the infinitive there and werden builds the future instead. This chapter asks why the form is in an Anleitung, never how it is made."
+      ru: "Шаг инструкции не называет исполнителя, поэтому стоит в пассиве: werden согласуется с новым подлежащим — das Handy, значит wird, — а Partizip II eingeschaltet уходит в самый конец. Поставьте там инфинитив — и werden построит будущее время. Глава спрашивает, зачем эта форма в инструкции, а не как она образована."
+      uk: "Крок інструкції не називає виконавця, тому стоїть у пасиві: werden узгоджується з новим підметом — das Handy, отже wird, — а Partizip II eingeschaltet іде в самий кінець. Поставте там інфінітив — і werden побудує майбутній час. Розділ питає, навіщо ця форма в інструкції, а не як вона утворена."
+      de: "Ein Anleitungsschritt nennt keine Person, also steht er im Passiv: werden richtet sich nach dem neuen Subjekt — das Handy, also wird —, und das Partizip II eingeschaltet steht ganz am Ende. Ein Infinitiv an dieser Stelle ergäbe Futur. Das Kapitel fragt, wozu die Form in einer Anleitung steht, nicht wie sie gebaut wird."
+
+  - id: pre-mc-sodass
+    outcomes: [technikproblem-schildern]
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Das Netz ist zu langsam, sodass die App das Buch nicht laden kann."
+      - "Das Netz ist zu langsam, sodass kann die App das Buch nicht laden."
+      - "Das Netz ist zu langsam, sodass die App kann das Buch nicht laden."
+    correct: 0
+    translation:
+      en: "The network is too slow, so the app cannot load the book."
+      ru: "Сеть слишком медленная, так что приложение не может загрузить книгу."
+      uk: "Мережа надто повільна, так що застосунок не може завантажити книжку."
+    explain:
+      en: "sodass opens a Nebensatz: the subject comes straight after it and the finite kann closes the clause. sodass kann die App … gives sodass the grammar of deshalb, an adverb that pulls the verb right behind itself. sodass die App kann … keeps main-clause order after a conjunction. A fault report lives on this clause: it says what you can no longer do."
+      ru: "sodass открывает придаточное: сразу за ним подлежащее, а спрягаемое kann закрывает предложение. Вариант sodass kann die App … даёт sodass грамматику deshalb — наречия, которое тянет глагол сразу за собой. Вариант sodass die App kann … сохраняет после союза порядок главного предложения. На этом придаточном держится сообщение о поломке: оно говорит, чего вы теперь не можете."
+      uk: "sodass відкриває підрядне: одразу за ним підмет, а відмінюване kann закриває речення. Варіант sodass kann die App … дає sodass граматику deshalb — прислівника, що тягне дієслово одразу за собою. Варіант sodass die App kann … зберігає після сполучника порядок головного речення. На цьому підрядному тримається повідомлення про поломку: воно каже, чого ви тепер не можете."
+      de: "sodass eröffnet einen Nebensatz: direkt danach das Subjekt, und das finite kann schließt den Satz. sodass kann die App … gibt sodass die Grammatik von deshalb, einem Adverb, das das Verb sofort hinter sich zieht. sodass die App kann … behält nach einer Konjunktion die Hauptsatzstellung. Von diesem Satz lebt eine Problemmeldung: Er sagt, was man nicht mehr tun kann."
+
+  - id: pre-mc-zum-lesen
+    outcomes: [mediennutzung-berichten]
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich nutze die Bahnfahrt zum Lesen."
+      - "Ich nutze die Bahnfahrt für lesen."
+      - "Ich nutze die Bahnfahrt zum lesen."
+    correct: 0
+    translation:
+      en: "I use the train ride for reading."
+      ru: "Поездку на поезде я использую для чтения."
+      uk: "Поїздку потягом я використовую для читання."
+    explain:
+      en: "After zum the infinitive has become a noun, and a German noun is capitalised: zum Lesen, zum Schreiben, zum Einkaufen. für plus a bare infinitive is no German construction at all, and zum lesen keeps the word a verb while the article in front of it says it is not. Saying what you use a device for is half of a media report."
+      ru: "После zum инфинитив становится существительным, а существительное по-немецки пишется с большой буквы: zum Lesen, zum Schreiben, zum Einkaufen. für с голым инфинитивом — вообще не немецкая конструкция, а zum lesen оставляет слово глаголом, хотя артикль перед ним говорит обратное. Сказать, для чего вы берёте устройство, — половина рассказа о своих медиапривычках."
+      uk: "Після zum інфінітив стає іменником, а іменник німецькою пишеться з великої літери: zum Lesen, zum Schreiben, zum Einkaufen. für з голим інфінітивом — узагалі не німецька конструкція, а zum lesen лишає слово дієсловом, хоча артикль перед ним каже протилежне. Сказати, для чого ви берете пристрій, — половина розповіді про свої медіазвички."
+      de: "Nach zum ist der Infinitiv ein Nomen geworden, und ein Nomen wird großgeschrieben: zum Lesen, zum Schreiben, zum Einkaufen. für plus blanker Infinitiv ist überhaupt keine deutsche Fügung, und zum lesen lässt das Wort ein Verb bleiben, obwohl der Artikel davor das Gegenteil sagt. Wofür man ein Gerät nutzt, ist die halbe Auskunft über die eigene Mediennutzung."

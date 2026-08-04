@@ -1,0 +1,769 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the counting and
+# measuring words of data/goethe-b1-wortliste.txt — figures and arithmetic signs, the
+# units a package and a road sign use, the nouns for how much and how far, and the
+# verbs for a number going up, going down or being enough.
+id: zahlen-mengen-masse-b1
+title_de: "Zahlen, Mengen und Maße"
+title_en: "Numbers, quantities and measures"
+title_ru: "Числа, количества и меры"
+title_uk: "Числа, кількості та міри"
+level: B1
+entries:
+  # --- Zahlen und Rechenzeichen ---
+  - de: "Null"
+    ipa: "ˈnʊl"
+    pos: noun
+    gender: f
+    plural: "die Nullen"
+    # Recognition only: A1 `null` ships the figure itself as a production card in
+    # erste-schritte, and the two differ by a capital letter alone — a typed prompt
+    # could not say which of them it wanted.
+    cards: recognition
+    en: nought, the figure zero
+    ru: ноль (как цифра, как знак)
+    uk: нуль (як цифра, як знак)
+    example_de: Bei der Postleitzahl fehlt eine Null.
+    example_en: There is a nought missing from the postcode.
+    example_ru: В почтовом индексе не хватает нуля.
+    example_uk: У поштовому індексі бракує нуля.
+    note:
+      en: 'Feminine and countable — die Nullen are the noughts on a page. The lower-case null is the number word you count with, and the two are separated only by capitalisation, which is why they are easy to mix up. Fixed uses: null Ahnung haben and, in football, zwei zu null.'
+      ru: 'Женский род и счётное слово: die Nullen — нули на бумаге. Строчное null — числительное, которым считают; различает их только заглавная буква, отсюда и путаница. Устойчивые обороты: null Ahnung haben и в футболе zwei zu null.'
+      uk: 'Жіночий рід і злічуване слово: die Nullen — нулі на папері. Мале null — числівник, яким лічать; розрізняє їх лише велика літера, звідси й плутанина. Сталі звороти: null Ahnung haben і у футболі zwei zu null.'
+
+  - de: Milliarde
+    ipa: "mɪˈliaʁdə"
+    pos: noun
+    gender: f
+    plural: "die Milliarden"
+    # Recognition only: a newspaper figure. A B1 learner reads it in a report on a
+    # budget and has no everyday sentence that produces it.
+    cards: recognition
+    en: a thousand million
+    ru: миллиард
+    uk: мільярд
+    example_de: Das Projekt kostet mehr als eine Milliarde Euro.
+    example_en: The project costs more than a thousand million euros.
+    example_ru: Проект стоит больше миллиарда евро.
+    example_uk: Проєкт коштує понад мільярд євро.
+    note:
+      en: 'The trap is worth stating: the German word for a thousand million is not the English billion, which German renders as Milliarde, while die Billion is a million million. Newspapers write Mrd. as the abbreviation. Like Million it is a noun and takes a plural -n.'
+      ru: 'Ловушку стоит назвать прямо: английское billion — это немецкое Milliarde, а die Billion по-немецки означает триллион. В газетах пишут сокращение Mrd. Как и Million, это существительное с окончанием -n во множественном числе.'
+      uk: 'Пастку варто назвати прямо: англійське billion — це німецька Milliarde, а die Billion німецькою означає трильйон. У газетах пишуть скорочення Mrd. Як і Million, це іменник із закінченням -n у множині.'
+
+  - de: Drittel
+    ipa: "ˈdʁɪtl̩"
+    pos: noun
+    gender: n
+    plural: "die Drittel"
+    # Recognition only: `dritte` (zahlen-daten-geld) ships the ordinal as a production
+    # card, and a bare prompt for a third cannot separate the fraction from it.
+    cards: recognition
+    en: one part in three
+    ru: треть
+    uk: третина
+    example_de: Ein Drittel der Gäste ist schon gegangen.
+    example_en: One part in three of the guests has already left.
+    example_ru: Треть гостей уже ушла.
+    example_uk: Третина гостей уже пішла.
+    note:
+      en: 'Neuter, and the plural is the same as the singular: zwei Drittel. Fractions are built from the ordinal plus -tel — Viertel, Fünftel, Zehntel — and they stay uninflected before a noun. What follows is either a genitive or von + Dativ.'
+      ru: 'Средний род, множественное совпадает с единственным: zwei Drittel. Дроби строятся из порядкового числительного и -tel — Viertel, Fünftel, Zehntel — и перед существительным не изменяются. Дальше идёт либо Genitiv, либо von + Dativ.'
+      uk: 'Середній рід, множина збігається з одниною: zwei Drittel. Дроби будуються з порядкового числівника та -tel — Viertel, Fünftel, Zehntel — і перед іменником не змінюються. Далі йде або Genitiv, або von + Dativ.'
+
+  - de: doppelt
+    ipa: "ˈdɔpl̩t"
+    pos: adj
+    en: double, twice as much
+    ru: двойной, вдвое больший
+    uk: подвійний, удвічі більший
+    example_de: Die Miete ist doppelt so hoch wie früher.
+    example_en: The rent is twice as high as it used to be.
+    example_ru: Аренда вдвое выше, чем раньше.
+    example_uk: Оренда вдвічі вища, ніж раніше.
+    note:
+      en: 'The frame doppelt so … wie is the one to hold whole, and it is how German says twice as. As an attribute it means double in the ordinary sense: eine doppelte Portion, ein doppelter Boden. Doppelt gemoppelt is the everyday way to say something was said twice over.'
+      ru: 'Конструкцию doppelt so … wie стоит взять целиком — так по-немецки говорят «вдвое». Как определение значит «двойной»: eine doppelte Portion, ein doppelter Boden. Doppelt gemoppelt — бытовое «масло масляное».'
+      uk: 'Конструкцію doppelt so … wie варто взяти цілою — так німецькою кажуть «удвічі». Як означення означає «подвійний»: eine doppelte Portion, ein doppelter Boden. Doppelt gemoppelt — побутове «масло масляне».'
+
+  - de: zweifach
+    ipa: "ˈtsvaɪ̯ˌfax"
+    pos: adj
+    # Recognition only: `zweimal` (zahlen-masse-a2) ships "twice" as a production card,
+    # and this deck's own `doppelt` covers the attribute — three words, one prompt.
+    cards: recognition
+    en: twofold, in two copies
+    ru: двукратный, в двух экземплярах
+    uk: дворазовий, у двох примірниках
+    example_de: Bitte reichen Sie den Antrag zweifach ein.
+    example_en: Please submit the application in two copies.
+    example_ru: Пожалуйста, подайте заявление в двух экземплярах.
+    example_uk: Будь ласка, подайте заяву у двох примірниках.
+    note:
+      en: 'The -fach ending builds a whole series from the numbers: einfach, zweifach, dreifach, mehrfach, vielfach. In offices it means the number of copies, as in the example. In speech doppelt and zweimal do the work; einfach has drifted away to mean simple.'
+      ru: 'Суффикс -fach строит целый ряд от числительных: einfach, zweifach, dreifach, mehrfach, vielfach. В канцелярии он означает число экземпляров, как в примере. В речи работают doppelt и zweimal, а einfach отошло к значению «простой».'
+      uk: 'Суфікс -fach будує цілий ряд від числівників: einfach, zweifach, dreifach, mehrfach, vielfach. У канцелярії він означає кількість примірників, як у прикладі. У мовленні працюють doppelt і zweimal, а einfach відійшло до значення «простий».'
+
+  - de: plus
+    ipa: "ˈplʊs"
+    pos: conj
+    en: plus, added to
+    ru: плюс
+    uk: плюс
+    example_de: Drei plus vier ist sieben.
+    example_en: Three plus four is seven.
+    example_ru: Три плюс четыре — семь.
+    example_uk: Три плюс чотири — сім.
+    note:
+      en: 'In arithmetic it joins two numbers and the verb stays singular: … ist sieben, or … macht sieben. It also marks a temperature above freezing (plus fünf Grad) and, in a job ad, an advantage: Das ist ein Plus. The opposite sign is minus.'
+      ru: 'В арифметике соединяет два числа, а глагол остаётся в единственном числе: … ist sieben или … macht sieben. Отмечает также температуру выше нуля (plus fünf Grad), а в объявлении о работе — плюс, преимущество: Das ist ein Plus. Противоположный знак — minus.'
+      uk: 'В арифметиці сполучає два числа, а дієслово лишається в однині: … ist sieben або … macht sieben. Позначає також температуру вище нуля (plus fünf Grad), а в оголошенні про роботу — плюс, перевагу: Das ist ein Plus. Протилежний знак — minus.'
+
+  - de: minus
+    ipa: "ˈmiːnʊs"
+    pos: conj
+    en: minus, less
+    ru: минус
+    uk: мінус
+    example_de: Heute Nacht sind es minus drei Grad.
+    example_en: Tonight it will be minus three degrees.
+    example_ru: Сегодня ночью минус три градуса.
+    example_uk: Сьогодні вночі мінус три градуси.
+    note:
+      en: 'Two homes: subtraction (zehn minus zwei) and temperature below freezing, as in the example, where the weather forecast also says drei Grad unter null. Im Minus sein means to be overdrawn at the bank.'
+      ru: 'Две области: вычитание (zehn minus zwei) и температура ниже нуля, как в примере, — прогноз погоды говорит также drei Grad unter null. Im Minus sein — «быть в минусе» на счёте.'
+      uk: 'Дві сфери: віднімання (zehn minus zwei) і температура нижче нуля, як у прикладі, — прогноз погоди каже також drei Grad unter null. Im Minus sein — «бути в мінусі» на рахунку.'
+
+  # --- Maße und Gewichte ---
+  - de: Zentimeter
+    ipa: "tsɛntiˈmeːtɐ"
+    pos: noun
+    gender: m
+    plural: "die Zentimeter"
+    # Recognition only: it is `Meter`, already carded in zahlen-masse-a2, plus a prefix
+    # the learner can see — the derived-by-a-visible-rule ruling from zeit-b1.
+    cards: recognition
+    en: one hundredth of a metre
+    ru: сантиметр
+    uk: сантиметр
+    example_de: Der Schrank ist zwei Zentimeter zu breit.
+    example_en: The cupboard is two hundredths of a metre too wide.
+    example_ru: Шкаф на два сантиметра шире, чем нужно.
+    example_uk: Шафа на два сантиметри ширша, ніж треба.
+    note:
+      en: 'Masculine, and after a number the plural keeps the singular form: zwei Zentimeter. Written short it is cm. The prefixes are the international ones — Zenti-, Milli-, Kilo- — so Meter carries the whole series once you know it. Everyday speech often says Zenti for short.'
+      ru: 'Мужской род, после числительного форма не меняется: zwei Zentimeter. Сокращение — cm. Приставки международные — Zenti-, Milli-, Kilo-, — поэтому весь ряд держится на слове Meter. В речи часто сокращают до Zenti.'
+      uk: 'Чоловічий рід, після числівника форма не змінюється: zwei Zentimeter. Скорочення — cm. Префікси міжнародні — Zenti-, Milli-, Kilo-, — тому весь ряд тримається на слові Meter. У мовленні часто скорочують до Zenti.'
+
+  - de: Kilometer
+    ipa: "kiloˈmeːtɐ"
+    pos: noun
+    gender: m
+    plural: "die Kilometer"
+    # Recognition only: the same visible rule as Zentimeter, on the same carded stem.
+    cards: recognition
+    en: one thousand metres
+    ru: километр
+    uk: кілометр
+    example_de: Bis zur nächsten Tankstelle sind es noch zehn Kilometer.
+    example_en: It is another ten thousand metres to the next petrol station.
+    example_ru: До ближайшей заправки ещё десять километров.
+    example_uk: До найближчої заправки ще десять кілометрів.
+    note:
+      en: 'Masculine, unchanged in the plural after a number, abbreviated km. Speed is written km/h and read Stundenkilometer or Kilometer pro Stunde. The stress falls on the third syllable, which surprises learners who stress the first.'
+      ru: 'Мужской род, после числительного не изменяется, сокращение km. Скорость пишут km/h и читают Stundenkilometer или Kilometer pro Stunde. Ударение падает на третий слог, что удивляет тех, кто ставит его на первый.'
+      uk: 'Чоловічий рід, після числівника не змінюється, скорочення km. Швидкість пишуть km/h і читають Stundenkilometer або Kilometer pro Stunde. Наголос падає на третій склад, що дивує тих, хто ставить його на перший.'
+
+  - de: Pfund
+    ipa: "ˈpfʊnt"
+    pos: noun
+    gender: n
+    plural: "die Pfund"
+    # Recognition only: market and recipe vocabulary — heard at a counter, and a
+    # learner ordering says 500 Gramm or ein halbes Kilo.
+    cards: recognition
+    en: half a kilo (as used at a market)
+    en_compact: half a kilo at a market
+    ru: фунт (полкило в разговорной речи)
+    uk: фунт (пів кіла в розмовній мові)
+    example_de: Ein Pfund Hackfleisch, bitte.
+    example_en: Half a kilo of mince, please.
+    example_ru: Полкило фарша, пожалуйста.
+    example_uk: Пів кіла фаршу, будь ласка.
+    note:
+      en: 'In Germany it means exactly 500 grams, not the British 454, and it lives at market stalls, in recipes and in talk about losing weight. Neuter, and the plural after a number keeps the singular form: drei Pfund. The pound sterling is das Pfund too, which context separates.'
+      ru: 'В Германии это ровно 500 граммов, а не британские 454; слово живёт на рынке, в рецептах и в разговорах о похудении. Средний род, после числительного форма не меняется: drei Pfund. Фунт стерлингов тоже das Pfund — различает контекст.'
+      uk: 'У Німеччині це рівно 500 грамів, а не британські 454; слово живе на ринку, у рецептах і в розмовах про схуднення. Середній рід, після числівника форма не змінюється: drei Pfund. Фунт стерлінгів теж das Pfund — розрізняє контекст.'
+
+  - de: Franken
+    ipa: "ˈfʁaŋkn̩"
+    pos: noun
+    gender: m
+    plural: "die Franken"
+    # Recognition only: a Swiss variant. B1 is a trinational list, and the learner has
+    # to read a Swiss price without ever quoting one.
+    cards: recognition
+    en: the Swiss currency unit
+    ru: франк (валюта Швейцарии)
+    uk: франк (валюта Швейцарії)
+    example_de: Das Ticket kostet zwölf Franken.
+    example_en: The ticket costs twelve of the Swiss currency units.
+    example_ru: Билет стоит двенадцать франков.
+    example_uk: Квиток коштує дванадцять франків.
+    note:
+      en: 'Masculine, unchanged after a number, written CHF or Fr. on a price tag. One hundredth of it is der Rappen. In Switzerland prices are often said as zwölf Franken fünfzig, with the small unit left unnamed.'
+      ru: 'Мужской род, после числительного не изменяется, на ценнике пишут CHF или Fr. Сотая часть — der Rappen. В Швейцарии цену часто называют как zwölf Franken fünfzig, не называя мелкую единицу.'
+      uk: 'Чоловічий рід, після числівника не змінюється, на ціннику пишуть CHF або Fr. Сота частина — der Rappen. У Швейцарії ціну часто називають як zwölf Franken fünfzig, не називаючи дрібної одиниці.'
+
+  - de: Deka
+    ipa: "ˈdeːka"
+    pos: noun
+    gender: n
+    plural: "die Deka"
+    # Recognition only: an Austrian variant, heard at a counter in Vienna. The learner
+    # needs to understand the order, not to place it this way.
+    cards: recognition
+    en: ten grams (Austrian counter unit)
+    en_compact: ten grams, Austrian
+    ru: десять граммов (австрийская мера в магазине)
+    uk: десять грамів (австрійська міра в крамниці)
+    example_de: Zwanzig Deka Schinken, bitte.
+    example_en: Two hundred grams of ham, please.
+    example_ru: Двести граммов ветчины, пожалуйста.
+    example_uk: Двісті грамів шинки, будь ласка.
+    note:
+      en: 'Austrian, and the short form of Dekagramm. Twenty of them are two hundred grams, which is how a Viennese deli counts. In Germany the same order is zweihundert Gramm, and the word is simply not used there.'
+      ru: 'Австрийское слово, краткая форма от Dekagramm. Двадцать таких единиц — двести граммов; именно так считают в венской гастрономии. В Германии тот же заказ звучит zweihundert Gramm, а это слово там просто не употребляют.'
+      uk: 'Австрійське слово, коротка форма від Dekagramm. Двадцять таких одиниць — двісті грамів; саме так лічать у віденській гастрономії. У Німеччині те саме замовлення звучить zweihundert Gramm, а це слово там просто не вживають.'
+
+  - de: Dekagramm
+    ipa: "ˈdeːkaˌgʁam"
+    pos: noun
+    gender: n
+    plural: "die Dekagramm"
+    # Recognition only: the full form of the Austrian unit above; a label and a recipe
+    # write it out, a customer says the short one.
+    cards: recognition
+    en: ten grams, written in full (Austrian)
+    ru: декаграмм, полная форма (Австрия)
+    uk: декаграм, повна форма (Австрія)
+    example_de: Auf dem Rezept steht zehn Dekagramm Butter.
+    example_en: The recipe says one hundred grams of butter.
+    example_ru: В рецепте указано сто граммов масла.
+    example_uk: У рецепті зазначено сто грамів масла.
+    note:
+      en: 'Austrian, abbreviated dag or dkg on a label. Ten of them are one hundred grams. Spoken Austrian shortens it to Deka; German recipes and packaging use Gramm throughout and never this word.'
+      ru: 'Австрийское слово, на этикетке сокращают как dag или dkg. Десять таких единиц — сто граммов. В устной речи в Австрии сокращают до Deka; немецкие рецепты и упаковка пользуются только Gramm.'
+      uk: 'Австрійське слово, на етикетці скорочують як dag або dkg. Десять таких одиниць — сто грамів. В усному мовленні в Австрії скорочують до Deka; німецькі рецепти й пакування користуються лише Gramm.'
+
+  - de: Gewicht
+    ipa: "gəˈvɪçt"
+    pos: noun
+    gender: n
+    plural: "die Gewichte"
+    en: weight
+    ru: вес
+    uk: вага
+    example_de: Das Paket überschreitet das erlaubte Gewicht.
+    example_en: The parcel exceeds the permitted weight.
+    example_ru: Посылка превышает допустимый вес.
+    example_uk: Посилка перевищує дозволену вагу.
+    note:
+      en: 'Neuter, from wiegen. It is the word on a parcel form, a lift plate and a luggage rule. The figurative use is worth knowing: auf etwas Gewicht legen means to attach importance to something. Das Übergewicht is excess weight, of a suitcase or a person.'
+      ru: 'Средний род, от wiegen. Слово из бланка на посылку, таблички в лифте и правил провоза багажа. Полезно и переносное употребление: auf etwas Gewicht legen — «придавать чему-то значение». Das Übergewicht — перевес чемодана и лишний вес человека.'
+      uk: 'Середній рід, від wiegen. Слово з бланка на посилку, таблички в ліфті та правил провезення багажу. Корисне й переносне вживання: auf etwas Gewicht legen — «надавати чомусь значення». Das Übergewicht — перевага ваги валізи й зайва вага людини.'
+
+  - de: wiegen
+    ipa: "ˈviːgn̩"
+    pos: verb
+    praesens_3sg: wiegt
+    partizip2: gewogen
+    aux: haben
+    valence: "+ Akk"
+    en: to weigh
+    ru: весить; взвешивать
+    uk: важити; зважувати
+    example_de: Der Koffer wiegt fast zwanzig Kilo.
+    example_en: The suitcase weighs almost twenty kilos.
+    example_ru: Чемодан весит почти двадцать килограммов.
+    example_uk: Валіза важить майже двадцять кілограмів.
+    note:
+      en: 'Strong verb: wiegt, wog, hat gewogen. It works both ways round with no change of form: a thing weighs so much, and a person weighs a thing. The reflexive sich wiegen is standing on the scales, and die Waage is the scales themselves.'
+      ru: 'Сильный глагол: wiegt, wog, hat gewogen. Работает в обе стороны без смены формы: предмет весит столько-то, и человек взвешивает предмет. Возвратное sich wiegen — «взвешиваться», а die Waage — сами весы.'
+      uk: 'Сильне дієслово: wiegt, wog, hat gewogen. Працює в обидва боки без зміни форми: предмет важить стільки-то, і людина зважує предмет. Зворотне sich wiegen — «зважуватися», а die Waage — самі ваги.'
+
+  - de: messen
+    ipa: "ˈmɛsn̩"
+    pos: verb
+    praesens_3sg: misst
+    partizip2: gemessen
+    aux: haben
+    valence: "+ Akk"
+    en: to measure
+    ru: измерять
+    uk: вимірювати
+    example_de: Der Arzt misst zuerst den Blutdruck.
+    example_en: The doctor measures blood pressure first.
+    example_ru: Сначала врач измеряет давление.
+    example_uk: Спочатку лікар вимірює тиск.
+    note:
+      en: 'Strong verb with a vowel change: ich messe, du misst, er misst; maß, hat gemessen. Like wiegen it also runs the other way — Der Raum misst vier Meter. Fieber messen is taking a temperature, and das Maß is the measurement, with die Maße the dimensions of a room.'
+      ru: 'Сильный глагол с чередованием: ich messe, du misst, er misst; maß, hat gemessen. Как и wiegen, работает в обе стороны: Der Raum misst vier Meter. Fieber messen — «мерить температуру», das Maß — мерка, а die Maße — размеры помещения.'
+      uk: 'Сильне дієслово з чергуванням: ich messe, du misst, er misst; maß, hat gemessen. Як і wiegen, працює в обидва боки: Der Raum misst vier Meter. Fieber messen — «міряти температуру», das Maß — мірка, а die Maße — розміри приміщення.'
+
+  # --- Menge, Summe, Durchschnitt ---
+  - de: Anzahl
+    ipa: "ˈanˌtsaːl"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: `Zahl` and `Nummer` (erste-schritte, zahlen-daten-geld) and
+    # `Menge` (zahlen-masse-a2) already ship the number and quantity prompts.
+    cards: recognition
+    en: number of items, count
+    ru: количество (штук)
+    uk: кількість (штук)
+    example_de: Die Anzahl der Teilnehmer ist begrenzt.
+    example_en: The number of participants is limited.
+    example_ru: Количество участников ограничено.
+    example_uk: Кількість учасників обмежена.
+    note:
+      en: 'No plural. It counts things you could count one by one, which is what separates it from die Menge, an amount that is measured. What is counted follows in the genitive or with von. Eine Anzahl von Leuten means quite a few people.'
+      ru: 'Множественного числа нет. Считает то, что можно пересчитать поштучно, — этим отличается от die Menge, количества измеряемого. Считаемое идёт в Genitiv или с von. Eine Anzahl von Leuten значит «довольно много людей».'
+      uk: 'Множини немає. Лічить те, що можна перелічити поштучно, — цим відрізняється від die Menge, кількості вимірюваної. Злічуване йде в Genitiv або з von. Eine Anzahl von Leuten означає «доволі багато людей».'
+
+  - de: Summe
+    ipa: "ˈzʊmə"
+    pos: noun
+    gender: f
+    plural: "die Summen"
+    # Recognition only: `Betrag` (reisen-probleme) ships "sum, amount" as a production
+    # card, and the two stand side by side on the same invoice.
+    cards: recognition
+    en: total, sum of money
+    ru: сумма, итог
+    uk: сума, підсумок
+    example_de: Die Summe stimmt nicht mit der Rechnung überein.
+    example_en: The total does not match the invoice.
+    example_ru: Сумма не совпадает со счётом.
+    example_uk: Сума не збігається з рахунком.
+    note:
+      en: 'It is the result of adding up, so it stands at the foot of a bill and in a bank transfer. Der Betrag is the amount named on a single line, and it is the word the learner already has. Insgesamt is the adverb that introduces the same figure.'
+      ru: 'Это результат сложения — то, что стоит внизу счёта и в банковском переводе. Der Betrag — сумма, указанная в отдельной строке, и это слово учащемуся уже знакомо. Наречие insgesamt вводит ту же цифру.'
+      uk: 'Це результат додавання — те, що стоїть унизу рахунка й у банківському переказі. Der Betrag — сума, зазначена в окремому рядку, і це слово учневі вже знайоме. Прислівник insgesamt вводить ту саму цифру.'
+
+  - de: Durchschnitt
+    ipa: "ˈdʊʁçˌʃnɪt"
+    pos: noun
+    gender: m
+    plural: "die Durchschnitte"
+    en: average
+    ru: среднее значение
+    uk: середнє значення
+    example_de: Im Durchschnitt arbeite ich vierzig Stunden pro Woche.
+    example_en: On average I work forty hours a week.
+    example_ru: В среднем я работаю сорок часов в неделю.
+    example_uk: У середньому я працюю сорок годин на тиждень.
+    note:
+      en: 'The living form is the chunk im Durchschnitt, which is how German says on average and is worth learning whole. At school der Notendurchschnitt is the grade average, and über dem Durchschnitt means above average.'
+      ru: 'Живая форма — оборот im Durchschnitt: так по-немецки говорят «в среднем», и его стоит выучить целиком. В школе der Notendurchschnitt — средний балл, а über dem Durchschnitt — «выше среднего».'
+      uk: 'Жива форма — зворот im Durchschnitt: так німецькою кажуть «у середньому», і його варто вивчити цілим. У школі der Notendurchschnitt — середній бал, а über dem Durchschnitt — «вище за середнє».'
+
+  - de: durchschnittlich
+    ipa: "ˈdʊʁçˌʃnɪtlɪç"
+    pos: adj
+    # Recognition only: derived from this deck's own Durchschnitt by the -lich rule
+    # the learner can see, and im Durchschnitt is the form a sentence actually uses.
+    cards: recognition
+    en: average (as an attribute), on average
+    en_compact: average, on average
+    ru: средний (по величине), в среднем
+    uk: середній (за величиною), у середньому
+    example_de: Die Wohnung ist durchschnittlich groß.
+    example_en: The flat is of average size.
+    example_ru: Квартира среднего размера.
+    example_uk: Квартира середнього розміру.
+    note:
+      en: 'The adjective of Durchschnitt, formed by the same -lich rule as täglich from Tag. As an attribute it describes a figure (die durchschnittliche Miete); as an adverb it can replace im Durchschnitt. About a person or a film it means unremarkable, which is faint praise.'
+      ru: 'Прилагательное от Durchschnitt, образованное тем же правилом на -lich, что и täglich от Tag. Как определение описывает величину (die durchschnittliche Miete), как наречие может заменять im Durchschnitt. О человеке или фильме значит «заурядный» — похвала сомнительная.'
+      uk: 'Прикметник від Durchschnitt, утворений тим самим правилом на -lich, що й täglich від Tag. Як означення описує величину (die durchschnittliche Miete), як прислівник може заміняти im Durchschnitt. Про людину чи фільм означає «пересічний» — похвала сумнівна.'
+
+  - de: Hälfte
+    ipa: "ˈhɛlftə"
+    pos: noun
+    gender: f
+    plural: "die Hälften"
+    # Recognition only: A1 `halb` ships "half" as a production card in alltag-zeit, and
+    # a bare prompt cannot say whether the noun or the adjective is wanted.
+    cards: recognition
+    en: the half of something
+    ru: половина
+    uk: половина
+    example_de: Die Hälfte der Klasse war krank.
+    example_en: Half the class was ill.
+    example_ru: Половина класса болела.
+    example_uk: Половина класу хворіла.
+    note:
+      en: 'The noun beside the adjective halb. What is halved follows in the genitive or with von. Note the everyday split: halb elf is half past ten in time-telling, while this noun is used for quantities and for the halves of a match.'
+      ru: 'Существительное рядом с прилагательным halb. То, что делится, идёт в Genitiv или с von. Обратите внимание на разделение: halb elf — «половина одиннадцатого» о времени, а это существительное употребляют о количестве и о таймах матча.'
+      uk: 'Іменник поряд із прикметником halb. Те, що ділиться, іде в Genitiv або з von. Зверніть увагу на поділ: halb elf — «пів на одинадцяту» про час, а цей іменник уживають про кількість і про тайми матчу.'
+
+  - de: insgesamt
+    ipa: "ɪnsgəˈzamt"
+    pos: adv
+    en: in total, all together
+    ru: в общей сложности, всего
+    uk: загалом, у сумі
+    example_de: Insgesamt haben wir dreihundert Euro ausgegeben.
+    example_en: In total we spent three hundred euros.
+    example_ru: В общей сложности мы потратили триста евро.
+    example_uk: Загалом ми витратили триста євро.
+    note:
+      en: 'It introduces a figure that sums up everything mentioned, and it is what you write at the end of a list or say when adding up a bill. Zusammen is its spoken neighbour: Was macht das zusammen? Do not confuse it with im Ganzen, which is more formal.'
+      ru: 'Вводит цифру, подводящую итог всему сказанному; так пишут в конце перечня и говорят, складывая счёт. Разговорный сосед — zusammen: Was macht das zusammen? Не путать с более официальным im Ganzen.'
+      uk: 'Уводить цифру, що підсумовує все сказане; так пишуть у кінці переліку й кажуть, складаючи рахунок. Розмовний сусід — zusammen: Was macht das zusammen? Не плутати з офіційнішим im Ganzen.'
+
+  - de: berechnen
+    ipa: "bəˈʁɛçnən"
+    pos: verb
+    praesens_3sg: berechnet
+    partizip2: berechnet
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: A2 `rechnen` ships "to calculate, to do sums" as a production
+    # card, and the difference between the two is a matter of register.
+    cards: recognition
+    en: to work out (a figure); to charge for
+    ru: рассчитывать, вычислять; выставлять в счёт
+    uk: розраховувати, обчислювати; ставити в рахунок
+    example_de: Die Versandkosten werden erst am Ende berechnet.
+    example_en: The postage is only worked out at the end.
+    example_ru: Стоимость доставки рассчитывается только в конце.
+    example_uk: Вартість доставки розраховують лише наприкінці.
+    note:
+      en: 'Regular, inseparable: berechnet, hat berechnet. Rechnen is doing arithmetic in general; this one produces a specific figure, which is why a shop and a form use it. The second sense is to put something on the bill: Wir berechnen keine Gebühr. Die Berechnung is the calculation.'
+      ru: 'Правильный глагол, неотделяемый: berechnet, hat berechnet. Rechnen — считать вообще, а этот глагол даёт конкретную цифру, поэтому им пользуются магазин и бланк. Второе значение — включить в счёт: Wir berechnen keine Gebühr. Die Berechnung — расчёт.'
+      uk: 'Правильне дієслово, невідокремлюване: berechnet, hat berechnet. Rechnen — лічити взагалі, а це дієслово дає конкретну цифру, тому ним користуються крамниця й бланк. Друге значення — включити в рахунок: Wir berechnen keine Gebühr. Die Berechnung — розрахунок.'
+
+  # --- Höhe, Länge, Entfernung, Tempo ---
+  - de: Höhe
+    ipa: "ˈhøːə"
+    pos: noun
+    gender: f
+    plural: "die Höhen"
+    en: height; the size of a sum
+    ru: высота; величина суммы
+    uk: висота; величина суми
+    example_de: Sie bekommen eine Rückzahlung in Höhe von 120 Euro.
+    example_en: You will receive a refund amounting to 120 euros.
+    example_ru: Вам вернут сумму в размере 120 евро.
+    example_uk: Вам повернуть суму в розмірі 120 євро.
+    note:
+      en: 'From hoch, with the Umlaut that builds this whole family of nouns. Beyond physical height it names the size of a sum, and the chunk in Höhe von is standard in letters about money — an invoice, a refund, a fine. Das ist doch die Höhe! means that is the limit.'
+      ru: 'От hoch, с умлаутом, который строит всю эту семью существительных. Кроме физической высоты называет размер суммы, и оборот in Höhe von стандартен в письмах о деньгах: счёт, возврат, штраф. Das ist doch die Höhe! — «это уже слишком».'
+      uk: 'Від hoch, з умлаутом, що будує всю цю сім’ю іменників. Крім фізичної висоти називає розмір суми, і зворот in Höhe von стандартний у листах про гроші: рахунок, повернення, штраф. Das ist doch die Höhe! — «це вже занадто».'
+
+  - de: Länge
+    ipa: "ˈlɛŋə"
+    pos: noun
+    gender: f
+    plural: "die Längen"
+    # Recognition only: derived from carded `lang` by the same visible Umlaut rule as
+    # Höhe from hoch — the deck cards the rule once, on the member that also names a
+    # sum of money.
+    cards: recognition
+    en: length
+    ru: длина
+    uk: довжина
+    example_de: Bitte geben Sie Länge und Breite des Pakets an.
+    example_en: Please state the length and width of the parcel.
+    example_ru: Укажите, пожалуйста, длину и ширину посылки.
+    example_uk: Зазначте, будь ласка, довжину й ширину посилки.
+    note:
+      en: 'From lang. The three dimension nouns Höhe, Länge and Breite are built the same way and travel together on a parcel form and a furniture label, usually abbreviated H, L and B. In der Länge means lengthwise.'
+      ru: 'От lang. Три существительных размерности — Höhe, Länge и Breite — построены одинаково и ходят вместе в бланке на посылку и на этикетке мебели, где их сокращают до H, L и B. In der Länge — «в длину».'
+      uk: 'Від lang. Три іменники розмірності — Höhe, Länge і Breite — побудовані однаково й ходять разом у бланку на посилку та на етикетці меблів, де їх скорочують до H, L і B. In der Länge — «в довжину».'
+
+  - de: Breite
+    ipa: "ˈbʁaɪ̯tə"
+    pos: noun
+    gender: f
+    plural: "die Breiten"
+    # Recognition only: the third member of the Höhe/Länge/Breite set, built by the
+    # same rule from an adjective the learner will meet in the same table.
+    cards: recognition
+    en: width, breadth
+    ru: ширина
+    uk: ширина
+    example_de: Die Breite der Tür beträgt achtzig Zentimeter.
+    example_en: The width of the door is eighty hundredths of a metre.
+    example_ru: Ширина двери составляет восемьдесят сантиметров.
+    example_uk: Ширина дверей становить вісімдесят сантиметрів.
+    note:
+      en: 'From breit. The verb that goes with a measurement in a written statement is betragen, as in the example, and a form usually writes B: 80 cm. On a map die Breite is latitude.'
+      ru: 'От breit. Глагол при измерении в письменной фразе — betragen, как в примере, а в бланке пишут B: 80 cm. На карте die Breite — географическая широта.'
+      uk: 'Від breit. Дієслово при вимірі в писемній фразі — betragen, як у прикладі, а в бланку пишуть B: 80 cm. На карті die Breite — географічна широта.'
+
+  - de: Entfernung
+    ipa: "ɛntˈfɛʁnʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Entfernungen"
+    en: distance
+    ru: расстояние
+    uk: відстань
+    example_de: Die Entfernung zwischen den beiden Orten beträgt zwölf Kilometer.
+    example_en: The distance between the two places is twelve thousand metres.
+    example_ru: Расстояние между двумя населёнными пунктами — двенадцать километров.
+    example_uk: Відстань між двома населеними пунктами — дванадцять кілометрів.
+    note:
+      en: 'Two points take zwischen + Dativ, one point takes von … bis or zu. It also appears in job ads and flat ads as in fußläufiger Entfernung, within walking distance. The verb entfernen means to remove, and the adjective entfernt means far away.'
+      ru: 'Две точки вводятся через zwischen + Dativ, одна — через von … bis или zu. Встречается в объявлениях о работе и жилье: in fußläufiger Entfernung — «в пешей доступности». Глагол entfernen значит «удалять», прилагательное entfernt — «отдалённый».'
+      uk: 'Дві точки вводяться через zwischen + Dativ, одна — через von … bis або zu. Трапляється в оголошеннях про роботу й житло: in fußläufiger Entfernung — «у пішій досяжності». Дієслово entfernen означає «видаляти», прикметник entfernt — «віддалений».'
+
+  - de: Distanz
+    ipa: "dɪsˈtants"
+    pos: noun
+    gender: f
+    plural: "die Distanzen"
+    # Recognition only: it competes inside this deck with `Entfernung`, which is the
+    # everyday German word for the same measurement.
+    cards: recognition
+    en: distance (in sport, or kept between people)
+    en_compact: distance in sport or between people
+    ru: дистанция (в спорте, между людьми)
+    uk: дистанція (у спорті, між людьми)
+    example_de: Er hält immer eine gewisse Distanz zu seinen Kollegen.
+    example_en: He always keeps a certain distance from his colleagues.
+    example_ru: Он всегда держит некоторую дистанцию с коллегами.
+    example_uk: Він завжди тримає певну дистанцію з колегами.
+    note:
+      en: 'A loanword, and it has narrowed: for kilometres German prefers Entfernung, while this one belongs to sport (die olympische Distanz) and to human closeness, as in the example. Auf Distanz gehen means to pull back from someone.'
+      ru: 'Заимствование, значение сузилось: о километрах немецкий предпочитает Entfernung, а это слово живёт в спорте (die olympische Distanz) и в отношениях между людьми, как в примере. Auf Distanz gehen — «отдалиться от кого-то».'
+      uk: 'Запозичення, значення звузилося: про кілометри німецька воліє Entfernung, а це слово живе у спорті (die olympische Distanz) і у стосунках між людьми, як у прикладі. Auf Distanz gehen — «віддалитися від когось».'
+
+  - de: Geschwindigkeit
+    ipa: "gəˈʃvɪndɪçˌkaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Geschwindigkeiten"
+    # Recognition only: road-sign and technical register — the learner reads it on a
+    # sign and in a manual, and says schnell or Tempo.
+    cards: recognition
+    en: speed
+    ru: скорость
+    uk: швидкість
+    example_de: Bitte reduzieren Sie Ihre Geschwindigkeit.
+    example_en: Please reduce your speed.
+    example_ru: Пожалуйста, снизьте скорость.
+    example_uk: Будь ласка, знизьте швидкість.
+    note:
+      en: 'A long word from geschwind, an old adjective for quick. It is what a road sign, a manual and a police report use; das Tempo is the spoken one. Die Geschwindigkeitsbeschränkung is the speed limit, and it is worth reading as three parts.'
+      ru: 'Длинное слово от старого прилагательного geschwind — «быстрый». Им пользуются дорожный знак, инструкция и полицейский протокол; в речи говорят das Tempo. Die Geschwindigkeitsbeschränkung — ограничение скорости; его удобно читать по частям.'
+      uk: 'Довге слово від старого прикметника geschwind — «швидкий». Ним користуються дорожній знак, інструкція та поліційний протокол; у мовленні кажуть das Tempo. Die Geschwindigkeitsbeschränkung — обмеження швидкості; його зручно читати частинами.'
+
+  # --- Mehr und weniger werden ---
+  - de: erhöhen
+    ipa: "ɛɐ̯ˈhøːən"
+    pos: verb
+    praesens_3sg: erhöht
+    partizip2: erhöht
+    aux: haben
+    valence: "+ Akk um + Akk"
+    # Recognition only: `zunehmen` (infinitiv-mit-zu) ships "to increase" as a
+    # production card, and the learner meets this one mainly in the passive.
+    cards: recognition
+    en: to raise, to put up (a figure)
+    ru: повышать, увеличивать
+    uk: підвищувати, збільшувати
+    example_de: Die Miete wird ab Januar um fünfzig Euro erhöht.
+    example_en: The rent is going up by fifty euros from January.
+    example_ru: С января аренду повышают на пятьдесят евро.
+    example_uk: Із січня оренду підвищують на п’ятдесят євро.
+    note:
+      en: 'Regular, inseparable, from hoch: erhöht, hat erhöht. The amount of the change takes um, the new level auf. Somebody does it, so it is transitive — a landlord, a company, a government; when a figure rises by itself German says steigen. Die Erhöhung is the increase, and Mieterhöhung is the letter you dread.'
+      ru: 'Правильный глагол, неотделяемый, от hoch: erhöht, hat erhöht. Величина изменения вводится через um, новый уровень — через auf. Действие совершает кто-то, глагол переходный: арендодатель, фирма, государство; когда цифра растёт сама, говорят steigen. Die Erhöhung — повышение, а Mieterhöhung — то самое письмо.'
+      uk: 'Правильне дієслово, невідокремлюване, від hoch: erhöht, hat erhöht. Величина зміни вводиться через um, новий рівень — через auf. Дію виконує хтось, дієслово перехідне: орендодавець, фірма, держава; коли цифра зростає сама, кажуть steigen. Die Erhöhung — підвищення, а Mieterhöhung — той самий лист.'
+
+  - de: reduzieren
+    ipa: "ʁeduˈtsiːʁən"
+    pos: verb
+    praesens_3sg: reduziert
+    partizip2: reduziert
+    aux: haben
+    valence: "+ Akk auf + Akk"
+    en: to reduce, to cut down
+    ru: сокращать, снижать
+    uk: скорочувати, знижувати
+    example_de: Ich möchte meine Arbeitszeit auf dreißig Stunden reduzieren.
+    example_en: I would like to reduce my working hours to thirty.
+    example_ru: Я хотел бы сократить рабочее время до тридцати часов.
+    example_uk: Я хотів би скоротити робочий час до тридцяти годин.
+    note:
+      en: 'Regular, stress on the -zieren: reduziert, hat reduziert — no ge-. The new level takes auf + Akkusativ, the size of the cut takes um. In a shop the participle is the word on the label: reduziert means marked down. Its opposite here is erhöhen.'
+      ru: 'Правильный глагол, ударение на -zieren: reduziert, hat reduziert — без ge-. Новый уровень вводится через auf + Akkusativ, величина сокращения — через um. В магазине причастие стоит на ценнике: reduziert — «уценённый». Противоположность — erhöhen.'
+      uk: 'Правильне дієслово, наголос на -zieren: reduziert, hat reduziert — без ge-. Новий рівень вводиться через auf + Akkusativ, величина скорочення — через um. У крамниці дієприкметник стоїть на ціннику: reduziert — «уцінений». Протилежність — erhöhen.'
+
+  - de: vergrößern
+    ipa: "fɛɐ̯ˈgʁøːsɐn"
+    pos: verb
+    praesens_3sg: vergrößert
+    partizip2: vergrößert
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: derived from carded `groß` by a rule the learner can see, and
+    # its everyday home is a screen menu and a photo shop.
+    cards: recognition
+    en: to enlarge, to make bigger
+    ru: увеличивать
+    uk: збільшувати
+    example_de: Können Sie das Foto etwas vergrößern?
+    example_en: Could you make the photo a bit bigger?
+    example_ru: Можете немного увеличить фотографию?
+    example_uk: Чи можете трохи збільшити світлину?
+    note:
+      en: 'Regular, inseparable, built from groß by the ver- … -ern pattern that also gives verkleinern, verbessern and verschlechtern. It is transitive; when a thing grows by itself German says wachsen. Die Vergrößerung is an enlargement of a photo.'
+      ru: 'Правильный глагол, неотделяемый, образован от groß по модели ver- … -ern, которая даёт также verkleinern, verbessern и verschlechtern. Глагол переходный; когда предмет растёт сам, говорят wachsen. Die Vergrößerung — увеличенный снимок.'
+      uk: 'Правильне дієслово, невідокремлюване, утворене від groß за моделлю ver- … -ern, яка дає також verkleinern, verbessern і verschlechtern. Дієслово перехідне; коли річ росте сама, кажуть wachsen. Die Vergrößerung — збільшений знімок.'
+
+  - de: sinken
+    ipa: "ˈzɪŋkn̩"
+    pos: verb
+    praesens_3sg: sinkt
+    partizip2: gesunken
+    aux: sein
+    # Recognition only: A2 `fallen` ships "to fall" as a production card in
+    # verben-handlungen-a2-1, and a figure going down is exactly that prompt.
+    cards: recognition
+    en: to fall, to go down (of a figure)
+    en_compact: to fall, to go down
+    ru: падать, снижаться (о показателе)
+    uk: падати, знижуватися (про показник)
+    example_de: Die Zahl der Anmeldungen ist stark gesunken.
+    example_en: The number of registrations has fallen sharply.
+    example_ru: Число заявок сильно снизилось.
+    example_uk: Кількість заявок сильно знизилася.
+    note:
+      en: 'Strong verb with sein: sinkt, sank, ist gesunken. Its home is figures — prices, temperatures, numbers — and it is the opposite of steigen. A ship also sinks with this verb. Fallen is the everyday word for an object dropping to the floor.'
+      ru: 'Сильный глагол с sein: sinkt, sank, ist gesunken. Его область — цифры: цены, температура, количество; противоположность — steigen. Корабль тоже «тонет» этим глаголом. Fallen — бытовое слово о предмете, падающем на пол.'
+      uk: 'Сильне дієслово із sein: sinkt, sank, ist gesunken. Його сфера — цифри: ціни, температура, кількість; протилежність — steigen. Корабель теж «тоне» цим дієсловом. Fallen — побутове слово про предмет, що падає на підлогу.'
+
+  - de: gering
+    ipa: "gəˈʁɪŋ"
+    pos: adj
+    # Recognition only: A1 `klein` ships "small" as a production card, and the
+    # difference this word adds is one of register, which a typed prompt cannot ask
+    # for.
+    cards: recognition
+    en: slight, low (in amount)
+    en_compact: slight, low in amount
+    ru: незначительный, малый (по величине)
+    uk: незначний, малий (за величиною)
+    example_de: Die Chancen auf einen Platz sind leider gering.
+    example_en: The chances of getting a place are unfortunately slight.
+    example_ru: Шансы получить место, к сожалению, невелики.
+    example_uk: Шанси отримати місце, на жаль, невеликі.
+    note:
+      en: 'It measures an amount, a chance or a difference, never the size of an object — a small cup is klein, a slight difference is this word. It belongs to written German: ein geringer Unterschied, geringe Kosten. The comparative geringer is common in reports.'
+      ru: 'Измеряет количество, шанс или разницу, но не размер предмета: маленькая чашка — klein, а незначительная разница — это слово. Принадлежит письменному языку: ein geringer Unterschied, geringe Kosten. Сравнительная форма geringer часто встречается в отчётах.'
+      uk: 'Вимірює кількість, шанс або різницю, але не розмір предмета: маленька чашка — klein, а незначна різниця — це слово. Належить писемній мові: ein geringer Unterschied, geringe Kosten. Порівняльна форма geringer часто трапляється у звітах.'
+
+  - de: knapp
+    ipa: "ˈknap"
+    pos: adj
+    en: just under; in short supply
+    ru: неполный, чуть меньше; в обрез
+    uk: неповний, трохи менше; обмаль
+    example_de: Wir haben nur noch knapp zwanzig Minuten Zeit.
+    example_en: We have just under twenty minutes left.
+    example_ru: У нас осталось неполных двадцать минут.
+    example_uk: У нас лишилося неповних двадцять хвилин.
+    note:
+      en: 'Before a number it means a little less than that number, which is the opposite of gut in the same slot: knapp zwei Stunden is under two hours, gut zwei Stunden is over. Alone it means in short supply — Das Geld ist knapp — and knapp verlieren is to lose narrowly.'
+      ru: 'Перед числительным значит «чуть меньше», что противоположно gut в той же позиции: knapp zwei Stunden — меньше двух часов, gut zwei Stunden — больше. Само по себе значит «в обрез»: Das Geld ist knapp, а knapp verlieren — «проиграть с минимальным отрывом».'
+      uk: 'Перед числівником означає «трохи менше», що протилежне gut у тій самій позиції: knapp zwei Stunden — менше за дві години, gut zwei Stunden — більше. Само по собі означає «обмаль»: Das Geld ist knapp, а knapp verlieren — «програти з мінімальним відривом».'
+
+  - de: schätzen
+    ipa: "ˈʃɛtsn̩"
+    pos: verb
+    praesens_3sg: schätzt
+    partizip2: geschätzt
+    aux: haben
+    valence: "+ Akk"
+    en: to estimate, to reckon
+    ru: оценивать приблизительно, прикидывать
+    uk: оцінювати приблизно, прикидати
+    example_de: Ich schätze, wir brauchen zwei Stunden.
+    example_en: I reckon we will need two hours.
+    example_ru: Полагаю, нам понадобится два часа.
+    example_uk: Гадаю, нам знадобиться дві години.
+    note:
+      en: 'Regular: schätzt, schätzte, hat geschätzt. The everyday use is the opener in the example, a compact way of giving a figure you are not sure of. On paper it estimates a value: die Kosten schätzen, geschätzte 200 Euro. A second sense, to value a person, survives in the letter formula Sehr geschätzte …'
+      ru: 'Правильный глагол: schätzt, schätzte, hat geschätzt. Бытовое употребление — зачин из примера: компактный способ назвать цифру, в которой не уверен. На бумаге оценивают величину: die Kosten schätzen, geschätzte 200 Euro. Второе значение, «ценить человека», живёт в письменной формуле Sehr geschätzte …'
+      uk: 'Правильне дієслово: schätzt, schätzte, hat geschätzt. Побутове вживання — зачин із прикладу: компактний спосіб назвати цифру, у якій не впевнений. На папері оцінюють величину: die Kosten schätzen, geschätzte 200 Euro. Друге значення, «цінувати людину», живе в писемній формулі Sehr geschätzte …'
+
+  # --- Genug oder nicht ---
+  - de: reichen
+    ipa: "ˈʁaɪ̯çn̩"
+    pos: verb
+    praesens_3sg: reicht
+    partizip2: gereicht
+    aux: haben
+    accept:
+      - ausreichen
+      - genügen
+    en: to be enough
+    ru: хватать, быть достаточным
+    uk: вистачати, бути достатнім
+    example_de: Das Geld reicht bis zum Monatsende.
+    example_en: The money is enough to last until the end of the month.
+    example_ru: Денег хватит до конца месяца.
+    example_uk: Грошей вистачить до кінця місяця.
+    note:
+      en: 'Regular: reicht, reichte, hat gereicht. The one-word sentence Das reicht! is a complete refusal, and Reicht das? asks whether something will do. Its two written twins, ausreichen and genügen, mean the same and are accepted by this card. A second, unrelated sense is to pass something: Reich mir bitte das Salz.'
+      ru: 'Правильный глагол: reicht, reichte, hat gereicht. Однословное Das reicht! — законченный отказ, а Reicht das? — вопрос, достаточно ли этого. Два письменных двойника, ausreichen и genügen, значат то же и принимаются этой карточкой. Есть и несвязанное значение «подать»: Reich mir bitte das Salz.'
+      uk: 'Правильне дієслово: reicht, reichte, hat gereicht. Однослівне Das reicht! — завершена відмова, а Reicht das? — питання, чи цього досить. Два писемні двійники, ausreichen і genügen, означають те саме й приймаються цією карткою. Є й непов’язане значення «подати»: Reich mir bitte das Salz.'
+
+  - de: ausreichen
+    ipa: "ˈaʊ̯sˌʁaɪ̯çn̩"
+    pos: verb
+    praesens_3sg: reicht aus
+    partizip2: ausgereicht
+    aux: haben
+    # Recognition only: the same prompt as this deck's `reichen`, which lists it in
+    # `accept` — the ruling `dorthin`/`dahin` got in ort-richtung-verweis-b1.
+    cards: recognition
+    en: to be sufficient
+    ru: быть достаточным, покрывать потребность
+    uk: бути достатнім, покривати потребу
+    example_de: Für die Bewerbung reicht ein einfaches Foto aus.
+    example_en: A simple photo is sufficient for the application.
+    example_ru: Для заявки достаточно обычной фотографии.
+    example_uk: Для заявки достатньо звичайної світлини.
+    note:
+      en: 'Separable, stress on aus: reicht aus, hat ausgereicht. It is the written form of reichen and turns up in instructions and requirements. Its participle is a school grade: ausreichend is a bare pass, and nicht ausreichend is a fail.'
+      ru: 'Отделяемый глагол, ударение на aus: reicht aus, hat ausgereicht. Письменная форма reichen; встречается в инструкциях и требованиях. Причастие служит школьной оценкой: ausreichend — «удовлетворительно», nicht ausreichend — неудовлетворительно.'
+      uk: 'Відокремлюване дієслово, наголос на aus: reicht aus, hat ausgereicht. Писемна форма reichen; трапляється в інструкціях і вимогах. Дієприкметник служить шкільною оцінкою: ausreichend — «задовільно», nicht ausreichend — незадовільно.'
+
+  - de: genügen
+    ipa: "gəˈnyːgn̩"
+    pos: verb
+    praesens_3sg: genügt
+    partizip2: genügt
+    aux: haben
+    valence: "+ Dat"
+    # Recognition only: the third word in this deck for one prompt; `reichen` takes
+    # the typed card and lists this one in `accept`.
+    cards: recognition
+    en: to suffice, to be enough (formal)
+    ru: быть достаточным (официально)
+    uk: бути достатнім (офіційно)
+    example_de: Eine kurze Mitteilung genügt uns.
+    example_en: A short note will be enough for us.
+    example_ru: Нам достаточно короткого сообщения.
+    example_uk: Нам достатньо короткого повідомлення.
+    note:
+      en: 'Regular, inseparable: genügt, hat genügt. The person it is enough for stands in the plain dative, as in the example. It is the most formal of the three and belongs to letters and rules; das genügt mir is still said in speech. Genügend is another school grade, and ungenügend the lowest.'
+      ru: 'Правильный глагол, неотделяемый: genügt, hat genügt. Тот, кому достаточно, стоит в чистом Dativ, как в примере. Самый официальный из трёх, живёт в письмах и правилах; das genügt mir звучит и в речи. Genügend — ещё одна школьная оценка, ungenügend — низшая.'
+      uk: 'Правильне дієслово, невідокремлюване: genügt, hat genügt. Той, кому достатньо, стоїть у чистому Dativ, як у прикладі. Найофіційніший із трьох, живе в листах і правилах; das genügt mir звучить і в мовленні. Genügend — ще одна шкільна оцінка, ungenügend — найнижча.'

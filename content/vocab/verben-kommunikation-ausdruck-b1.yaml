@@ -1,0 +1,759 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the speaking and
+# writing words of data/goethe-b1-wortliste.txt — how you open and close an exchange,
+# what you ask for and refuse, what you put on paper, and the nouns for the thing that
+# was said.
+id: verben-kommunikation-ausdruck-b1
+title_de: "Kommunikation und Ausdruck"
+title_en: "Communication and expression"
+title_ru: "Общение и выражение мысли"
+title_uk: "Спілкування і вислів думки"
+level: B1
+entries:
+  # --- Anreden, grüßen, sich verabschieden ---
+  - de: begrüßen
+    ipa: "bəˈgʁyːsn̩"
+    pos: verb
+    praesens_3sg: begrüßt
+    partizip2: begrüßt
+    aux: haben
+    valence: "+ Akk"
+    en: to greet, to welcome
+    ru: приветствовать
+    uk: привітати, зустрічати вітанням
+    example_de: Der Chef begrüßt die neuen Kolleginnen persönlich.
+    example_en: The boss welcomes the new colleagues in person.
+    example_ru: Начальник лично приветствует новых коллег.
+    example_uk: Керівник особисто вітає нових колег.
+    note:
+      en: 'Regular, inseparable: begrüßt, hat begrüßt. The person greeted is an accusative object, which is what separates it from bare grüßen (to say hello, often in passing). It also means to welcome a decision: Wir begrüßen den Vorschlag. Die Begrüßung is the opening of a speech or an event.'
+      ru: 'Правильный глагол, неотделяемый: begrüßt, hat begrüßt. Тот, кого приветствуют, стоит в Akkusativ — этим глагол отличается от простого grüßen («здороваться», часто мимоходом). Значит также «приветствовать решение»: Wir begrüßen den Vorschlag. Die Begrüßung — вступительная часть речи или мероприятия.'
+      uk: 'Правильне дієслово, невідокремлюване: begrüßt, hat begrüßt. Той, кого вітають, стоїть у Akkusativ — цим дієслово відрізняється від простого grüßen («вітатися», часто мимохідь). Означає також «схвалювати рішення»: Wir begrüßen den Vorschlag. Die Begrüßung — вступна частина промови чи заходу.'
+
+  - de: verabschieden
+    ipa: "fɛɐ̯ˈʔapʃiːdn̩"
+    pos: verb
+    praesens_3sg: verabschiedet sich
+    partizip2: sich verabschiedet
+    aux: haben
+    valence: "sich von + Dat"
+    accept:
+      - sich verabschieden
+    en: to say goodbye
+    ru: прощаться
+    uk: прощатися
+    example_de: Ich muss mich leider verabschieden, mein Zug fährt gleich.
+    example_en: I am afraid I have to say goodbye, my train is about to leave.
+    example_ru: К сожалению, мне пора прощаться, мой поезд вот-вот отправится.
+    example_uk: На жаль, мені час прощатися, мій потяг ось-ось рушить.
+    note:
+      en: 'Regular, inseparable, normally reflexive: verabschiedet sich, hat sich verabschiedet. The person you take leave of takes von + Dativ: Ich verabschiede mich von euch. The sentence in the example is the standard polite exit from a conversation or a party. Without sich it is the parliamentary sense — ein Gesetz verabschieden, to pass a law.'
+      ru: 'Правильный глагол, неотделяемый, обычно возвратный: verabschiedet sich, hat sich verabschiedet. Тот, с кем прощаются, вводится через von + Dativ: Ich verabschiede mich von euch. Фраза из примера — стандартный вежливый выход из разговора или с вечеринки. Без sich остаётся парламентское значение: ein Gesetz verabschieden — «принять закон».'
+      uk: 'Правильне дієслово, невідокремлюване, зазвичай зворотне: verabschiedet sich, hat sich verabschiedet. Той, з ким прощаються, вводиться через von + Dativ: Ich verabschiede mich von euch. Фраза з прикладу — стандартний увічливий вихід із розмови чи з вечірки. Без sich лишається парламентське значення: ein Gesetz verabschieden — «ухвалити закон».'
+
+  - de: sich bedanken
+    ipa: "zɪç bəˈdaŋkn̩"
+    pos: verb
+    praesens_3sg: bedankt sich
+    partizip2: sich bedankt
+    aux: haben
+    valence: "sich bei + Dat für + Akk"
+    # Recognition only: `danken` (dativ-a1-verben) and `bedanken` (gefuehle-reflexive-a2)
+    # both already ship "to thank" as production cards, so this headword answers a
+    # prompt that is owned twice over, in two other decks.
+    cards: recognition
+    en: to say thank you, to express thanks
+    ru: благодарить, выражать благодарность
+    uk: дякувати, висловлювати подяку
+    example_de: Ich möchte mich bei Ihnen für Ihre Hilfe bedanken.
+    example_en: I would like to thank you for your help.
+    example_ru: Я хотел бы поблагодарить вас за помощь.
+    example_uk: Я хотів би подякувати вам за допомогу.
+    note:
+      en: 'Regular, inseparable, always reflexive: bedankt sich, hat sich bedankt. Two prepositions at once: bei + Dativ for the person, für + Akkusativ for the reason. That is the difference from danken, which takes the person in the plain dative (Ich danke Ihnen). The full sentence in the example is the written formula in an email.'
+      ru: 'Правильный глагол, неотделяемый, всегда возвратный: bedankt sich, hat sich bedankt. Сразу два предлога: bei + Dativ для человека, für + Akkusativ для причины. Этим он отличается от danken, где человек стоит в чистом Dativ (Ich danke Ihnen). Полная фраза из примера — письменная формула в электронном письме.'
+      uk: 'Правильне дієслово, невідокремлюване, завжди зворотне: bedankt sich, hat sich bedankt. Одразу два прийменники: bei + Dativ для людини, für + Akkusativ для причини. Цим воно відрізняється від danken, де людина стоїть у чистому Dativ (Ich danke Ihnen). Повна фраза з прикладу — писемна формула в електронному листі.'
+
+  - de: duzen
+    ipa: "ˈduːtsn̩"
+    pos: verb
+    praesens_3sg: duzt
+    partizip2: geduzt
+    aux: haben
+    valence: "+ Akk"
+    en: to address someone informally
+    ru: обращаться на «ты»
+    uk: звертатися на «ти»
+    example_de: In diesem Verein duzen sich alle.
+    example_en: In this club everyone uses first names with each other.
+    example_ru: В этом клубе все на «ты».
+    example_uk: У цьому клубі всі на «ти».
+    note:
+      en: 'Regular: duzt, duzte, hat geduzt. Built straight from the pronoun du, and there is no single English verb for it. The offer is made with Wollen wir uns duzen? or Sag doch einfach du zu mir. In a workplace it is normally the older or senior person who offers.'
+      ru: 'Правильный глагол: duzt, duzte, hat geduzt. Образован прямо от местоимения du. Переход предлагают словами Wollen wir uns duzen? или Sag doch einfach du zu mir. На работе предложение обычно исходит от старшего по возрасту или должности.'
+      uk: 'Правильне дієслово: duzt, duzte, hat geduzt. Утворене прямо від займенника du. Перехід пропонують словами Wollen wir uns duzen? або Sag doch einfach du zu mir. На роботі пропозиція зазвичай іде від старшого за віком чи посадою.'
+
+  - de: siezen
+    ipa: "ˈziːtsn̩"
+    pos: verb
+    praesens_3sg: siezt
+    partizip2: gesiezt
+    aux: haben
+    valence: "+ Akk"
+    en: to address someone formally
+    ru: обращаться на «вы»
+    uk: звертатися на «ви»
+    example_de: Meine Nachbarn siezen mich noch immer.
+    example_en: My neighbours still address me formally.
+    example_ru: Соседи до сих пор обращаются ко мне на «вы».
+    example_uk: Сусіди досі звертаються до мене на «ви».
+    note:
+      en: 'Regular: siezt, siezte, hat gesiezt. The counterpart of duzen, built on the polite pronoun. The safe default with strangers, in shops, at the doctor and at work is the formal form; switching is a small social event, not a matter of grammar. Both verbs are often used reflexively — wir siezen uns.'
+      ru: 'Правильный глагол: siezt, siezte, hat gesiezt. Пара к duzen, образован от вежливого местоимения. С незнакомыми, в магазине, у врача и на работе безопасен именно вежливый вариант; переход — небольшое социальное событие, а не грамматика. Оба глагола часто употребляются возвратно: wir siezen uns.'
+      uk: 'Правильне дієслово: siezt, siezte, hat gesiezt. Пара до duzen, утворений від увічливого займенника. З незнайомими, у крамниці, у лікаря та на роботі безпечний саме ввічливий варіант; перехід — невелика соціальна подія, а не граматика. Обидва дієслова часто вживають зворотно: wir siezen uns.'
+
+  - de: ansprechen
+    ipa: "ˈanˌʃpʁɛçn̩"
+    pos: verb
+    praesens_3sg: spricht an
+    partizip2: angesprochen
+    aux: haben
+    valence: "+ Akk"
+    en: to approach (someone in order to speak); to raise (a subject)
+    en_compact: to speak to someone; to raise a subject
+    ru: заговорить с кем-то; затронуть (тему)
+    uk: заговорити до когось; порушити (тему)
+    example_de: Ein Fremder hat mich auf der Straße angesprochen.
+    example_en: A stranger came up and spoke to me in the street.
+    example_ru: На улице ко мне обратился незнакомый человек.
+    example_uk: На вулиці до мене звернувся незнайомець.
+    note:
+      en: 'Strong verb, separable: spricht an, hat angesprochen. Two useful patterns from one picture. With a person as object, somebody starts a conversation with you. With a topic as object, somebody brings it up: Ich möchte noch ein Problem ansprechen. Angesprochen also means addressed by an advertisement or an offer.'
+      ru: 'Сильный глагол, отделяемый: spricht an, hat angesprochen. Две полезные схемы из одного образа. С человеком в роли дополнения — кто-то заговаривает с вами. С темой — кто-то её поднимает: Ich möchte noch ein Problem ansprechen. Angesprochen значит также «тот, к кому обращена» реклама или предложение.'
+      uk: 'Сильне дієслово, відокремлюване: spricht an, hat angesprochen. Дві корисні схеми з одного образу. З людиною в ролі додатка — хтось заговорює до вас. З темою — хтось її порушує: Ich möchte noch ein Problem ansprechen. Angesprochen означає також «той, до кого звернена» реклама чи пропозиція.'
+
+  - de: Anrede
+    ipa: "ˈanˌʁeːdə"
+    pos: noun
+    gender: f
+    plural: "die Anreden"
+    # Recognition only: a form heading and a letter-writing term — read at the top of
+    # a template, never said out loud.
+    cards: recognition
+    en: form of address, salutation
+    ru: форма обращения (в письме)
+    uk: форма звертання (у листі)
+    example_de: Als Anrede schreibt man im Brief Sehr geehrte Frau Klein.
+    example_en: As a salutation in a letter one writes Sehr geehrte Frau Klein.
+    example_ru: В качестве обращения в письме пишут Sehr geehrte Frau Klein.
+    example_uk: Як звертання в листі пишуть Sehr geehrte Frau Klein.
+    note:
+      en: 'It names the opening line of a letter or an email, and it is the heading you meet in a template or a writing course. The formal pair is Sehr geehrte Frau … / Sehr geehrter Herr …, the informal Liebe … / Lieber … The verb behind it is anreden, and jemanden mit du anreden is how the choice is described.'
+      ru: 'Обозначает первую строку письма или электронного сообщения; это заголовок из шаблона или курса письма. Официальная пара — Sehr geehrte Frau … / Sehr geehrter Herr …, неофициальная — Liebe … / Lieber … За словом стоит глагол anreden, а сам выбор описывают оборотом jemanden mit du anreden.'
+      uk: 'Позначає перший рядок листа або електронного повідомлення; це заголовок із шаблону чи курсу письма. Офіційна пара — Sehr geehrte Frau … / Sehr geehrter Herr …, неофіційна — Liebe … / Lieber … За словом стоїть дієслово anreden, а сам вибір описують зворотом jemanden mit du anreden.'
+
+  # --- Verlangen, auffordern, besprechen ---
+  - de: auffordern
+    ipa: "ˈaʊ̯fˌfɔʁdɐn"
+    pos: verb
+    praesens_3sg: fordert auf
+    partizip2: aufgefordert
+    aux: haben
+    valence: "+ Akk zu + Dat"
+    # Recognition only: official register — an authority or a host calls on somebody
+    # to do something. A learner says bitten or the plain imperative.
+    cards: recognition
+    en: to call on someone (to do something)
+    en_compact: to call on someone
+    ru: призывать, предлагать (сделать что-то)
+    uk: закликати, пропонувати (зробити щось)
+    example_de: Die Gäste wurden aufgefordert, das Gebäude zu verlassen.
+    example_en: The guests were asked to leave the building.
+    example_ru: Гостей попросили покинуть здание.
+    example_uk: Гостей попросили залишити будівлю.
+    note:
+      en: 'Separable, stress on auf: fordert auf, hat aufgefordert. Stronger than bitten and weaker than zwingen: it is what an office letter, a loudspeaker or a host does. The frame is jemanden zu etwas auffordern or jemanden auffordern, etwas zu tun. It also means to ask someone to dance.'
+      ru: 'Отделяемый глагол, ударение на auf: fordert auf, hat aufgefordert. Сильнее, чем bitten, и слабее, чем zwingen: так поступает письмо из ведомства, громкоговоритель или хозяин вечера. Конструкции: jemanden zu etwas auffordern или jemanden auffordern, etwas zu tun. Значит также «пригласить на танец».'
+      uk: 'Відокремлюване дієслово, наголос на auf: fordert auf, hat aufgefordert. Сильніше, ніж bitten, і слабше, ніж zwingen: так чинить лист із відомства, гучномовець чи господар вечора. Конструкції: jemanden zu etwas auffordern або jemanden auffordern, etwas zu tun. Означає також «запросити до танцю».'
+
+  - de: Aufforderung
+    ipa: "ˈaʊ̯fˌfɔʁdəʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Aufforderungen"
+    # Recognition only: the noun of a verb this deck already ships as recognition, and
+    # it lives in the same official letters.
+    cards: recognition
+    en: formal request, summons
+    ru: требование, официальный призыв
+    uk: вимога, офіційний заклик
+    example_de: Nach der zweiten Aufforderung haben wir endlich bezahlt.
+    example_en: After the second reminder we finally paid.
+    example_ru: После второго требования мы наконец заплатили.
+    example_uk: Після другої вимоги ми нарешті заплатили.
+    note:
+      en: 'From auffordern, and it carries the same official weight: an authority, a landlord or a company asks you in writing to do something. Die Zahlungsaufforderung is the demand for payment that comes before die Mahnung. In grammar lessons the same word names the imperative.'
+      ru: 'От auffordern, с тем же официальным весом: ведомство, арендодатель или фирма письменно требует что-то сделать. Die Zahlungsaufforderung — требование об оплате, предшествующее die Mahnung. В грамматике этим же словом называют повелительное наклонение.'
+      uk: 'Від auffordern, з тією самою офіційною вагою: відомство, орендодавець чи фірма письмово вимагає щось зробити. Die Zahlungsaufforderung — вимога про оплату, що передує die Mahnung. У граматиці цим самим словом називають наказовий спосіб.'
+
+  - de: verlangen
+    ipa: "fɛɐ̯ˈlaŋən"
+    pos: verb
+    praesens_3sg: verlangt
+    partizip2: verlangt
+    aux: haben
+    valence: "+ Akk von + Dat"
+    en: to demand, to charge (a price)
+    ru: требовать; запрашивать (цену)
+    uk: вимагати; правити (ціну)
+    example_de: Für die Reparatur verlangt die Werkstatt zweihundert Euro.
+    example_en: The garage is asking two hundred euros for the repair.
+    example_ru: За ремонт мастерская просит двести евро.
+    example_uk: За ремонт майстерня править двісті євро.
+    note:
+      en: 'Regular, inseparable: verlangt, hat verlangt. It covers both a price asked and a demand made, and the person it is directed at takes von + Dativ. On the phone it means to ask for a person: Ich möchte Herrn Weber verlangen. Bitten is the polite request, this one is firmer.'
+      ru: 'Правильный глагол, неотделяемый: verlangt, hat verlangt. Покрывает и запрашиваемую цену, и требование; адресат вводится через von + Dativ. По телефону значит «попросить к аппарату»: Ich möchte Herrn Weber verlangen. Bitten — вежливая просьба, этот глагол твёрже.'
+      uk: 'Правильне дієслово, невідокремлюване: verlangt, hat verlangt. Покриває і запитувану ціну, і вимогу; адресат вводиться через von + Dativ. По телефону означає «попросити до апарата»: Ich möchte Herrn Weber verlangen. Bitten — увічливе прохання, це дієслово твердіше.'
+
+  - de: fordern
+    ipa: "ˈfɔʁdɐn"
+    pos: verb
+    praesens_3sg: fordert
+    partizip2: gefordert
+    aux: haben
+    valence: "+ Akk von + Dat"
+    # Recognition only: the same prompt as this deck's `verlangen`, one syllable
+    # shorter — a typed card could not say which of the two it wanted.
+    cards: recognition
+    en: to demand (publicly)
+    en_compact: to demand publicly
+    ru: требовать (публично)
+    uk: вимагати (публічно)
+    example_de: Die Mieter fordern eine schnelle Reparatur des Aufzugs.
+    example_en: The tenants are demanding a quick repair of the lift.
+    example_ru: Жильцы требуют быстро отремонтировать лифт.
+    example_uk: Мешканці вимагають швидко відремонтувати ліфт.
+    note:
+      en: 'Regular: fordert, forderte, hat gefordert. Where verlangen can be a shop asking a price, this one is a public claim — a union, a party, a group of tenants. Die Forderung is the demand itself. Do not confuse it with fördern, which means to support and to promote.'
+      ru: 'Правильный глагол: fordert, forderte, hat gefordert. Если verlangen может быть просто ценой в магазине, то это публичное требование: профсоюз, партия, жильцы. Die Forderung — само требование. Не путать с fördern — «поддерживать, содействовать».'
+      uk: 'Правильне дієслово: fordert, forderte, hat gefordert. Якщо verlangen може бути просто ціною в крамниці, то це публічна вимога: профспілка, партія, мешканці. Die Forderung — сама вимога. Не плутати з fördern — «підтримувати, сприяти».'
+
+  - de: besprechen
+    ipa: "bəˈʃpʁɛçn̩"
+    pos: verb
+    praesens_3sg: bespricht
+    partizip2: besprochen
+    aux: haben
+    valence: "+ Akk mit + Dat"
+    # Recognition only: A2 `diskutieren` ships "to discuss" as a production card, and
+    # this deck cannot repair a collision that lives in another file.
+    cards: recognition
+    en: to discuss, to talk through (with someone)
+    en_compact: to discuss with someone
+    ru: обсуждать (с кем-то)
+    uk: обговорювати (з кимось)
+    example_de: Das müssen wir noch mit dem Vermieter besprechen.
+    example_en: We still have to talk that through with the landlord.
+    example_ru: Это нам ещё нужно обсудить с арендодателем.
+    example_uk: Це нам ще треба обговорити з орендодавцем.
+    note:
+      en: 'Strong verb, inseparable: bespricht, besprach, hat besprochen. The topic is the accusative object and the other person takes mit + Dativ. Diskutieren suggests arguing a point; this one is quieter and aims at an agreement. Die Besprechung is a work meeting.'
+      ru: 'Сильный глагол, неотделяемый: bespricht, besprach, hat besprochen. Тема — дополнение в Akkusativ, собеседник вводится через mit + Dativ. Diskutieren предполагает спор, а этот глагол спокойнее и нацелен на договорённость. Die Besprechung — рабочее совещание.'
+      uk: 'Сильне дієслово, невідокремлюване: bespricht, besprach, hat besprochen. Тема — додаток у Akkusativ, співрозмовник уводиться через mit + Dativ. Diskutieren передбачає суперечку, а це дієслово спокійніше й націлене на домовленість. Die Besprechung — робоча нарада.'
+
+  - de: bekannt geben
+    ipa: "bəˈkant ˌgeːbn̩"
+    pos: verb
+    praesens_3sg: gibt bekannt
+    partizip2: bekannt gegeben
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: the headword is two words, so a typed card would grade the
+    # space as much as the verb — the `so viel` defect — and the register is that of
+    # an official announcement.
+    cards: recognition
+    en: to announce officially
+    ru: официально объявлять, оглашать
+    uk: офіційно оголошувати
+    example_de: Die Ergebnisse werden am Freitag bekannt gegeben.
+    example_en: The results will be announced on Friday.
+    example_ru: Результаты объявят в пятницу.
+    example_uk: Результати оголосять у п’ятницю.
+    note:
+      en: 'Written as two words, and the participle keeps the split: gibt bekannt, hat bekannt gegeben. It is the verb of a school, a company or an authority making something public, and it is almost always passive, as in the example. Die Bekanntgabe, written solid, is the announcement itself.'
+      ru: 'Пишется в два слова, и причастие сохраняет раздельное написание: gibt bekannt, hat bekannt gegeben. Это глагол школы, фирмы или ведомства, которое что-то обнародует, и почти всегда он стоит в пассиве, как в примере. Die Bekanntgabe — слитно — само объявление.'
+      uk: 'Пишеться у два слова, і дієприкметник зберігає роздільне написання: gibt bekannt, hat bekannt gegeben. Це дієслово школи, фірми чи відомства, яке щось оприлюднює, і майже завжди воно стоїть у пасиві, як у прикладі. Die Bekanntgabe — разом — саме оголошення.'
+
+  # --- Schweigen, schreien, verraten, beleidigen ---
+  - de: schweigen
+    ipa: "ˈʃvaɪ̯gn̩"
+    pos: verb
+    praesens_3sg: schweigt
+    partizip2: geschwiegen
+    aux: haben
+    en: to stay silent, to say nothing
+    ru: молчать
+    uk: мовчати
+    example_de: Zu diesem Vorwurf möchte ich lieber schweigen.
+    example_en: I would rather stay silent on that accusation.
+    example_ru: На этот упрёк я предпочту промолчать.
+    example_uk: На цей докір я волію промовчати.
+    note:
+      en: 'Strong verb: schweigt, schwieg, hat geschwiegen. German has a verb where English needs an adjective, and there is no object — the topic takes zu + Dativ or über + Akkusativ. Still is the adjective for a quiet room; this is a person choosing not to speak. Schweigen Sie! is sharp.'
+      ru: 'Сильный глагол: schweigt, schwieg, hat geschwiegen. В немецком это полноценный глагол, дополнения нет — тема вводится через zu + Dativ или über + Akkusativ. Still — прилагательное о тихой комнате, а здесь человек сознательно не говорит. Schweigen Sie! звучит резко.'
+      uk: 'Сильне дієслово: schweigt, schwieg, hat geschwiegen. У німецькій це повноцінне дієслово, додатка немає — тема вводиться через zu + Dativ або über + Akkusativ. Still — прикметник про тиху кімнату, а тут людина свідомо не говорить. Schweigen Sie! звучить різко.'
+
+  - de: schreien
+    ipa: "ˈʃʁaɪ̯ən"
+    pos: verb
+    praesens_3sg: schreit
+    partizip2: geschrien
+    aux: haben
+    # Recognition only: A2 `rufen` ships the calling-out prompt as a production card,
+    # and at B1 this word arrives mostly inside narration — a baby, a crowd, an
+    # argument someone else is having.
+    cards: recognition
+    en: to shout, to scream
+    ru: кричать, орать
+    uk: кричати, репетувати
+    example_de: Das Baby hat die ganze Nacht geschrien.
+    example_en: The baby screamed all night.
+    example_ru: Ребёнок кричал всю ночь.
+    example_uk: Дитина кричала всю ніч.
+    note:
+      en: 'Strong verb: schreit, schrie, hat geschrien. Louder and more emotional than rufen, which is calling out to someone. Speaking loudly in an argument is laut werden; this word says the voice was out of control. Der Schrei is a scream.'
+      ru: 'Сильный глагол: schreit, schrie, hat geschrien. Громче и эмоциональнее, чем rufen («позвать, окликнуть»). Повысить голос в споре — laut werden; это же слово говорит, что голос уже сорвался. Der Schrei — крик.'
+      uk: 'Сильне дієслово: schreit, schrie, hat geschrien. Гучніше й емоційніше, ніж rufen («покликати, гукнути»). Підвищити голос у суперечці — laut werden; а це слово каже, що голос уже зірвався. Der Schrei — крик.'
+
+  - de: verraten
+    ipa: "fɛɐ̯ˈʁaːtn̩"
+    pos: verb
+    praesens_3sg: verrät
+    partizip2: verraten
+    aux: haben
+    valence: "+ Dat + Akk"
+    # Recognition only: letting a secret slip and betraying a person are two prompts
+    # far apart in weight, and one typed card cannot say which is meant.
+    cards: recognition
+    en: to give away (a secret); to betray
+    en_compact: to give away; to betray
+    ru: выдавать (секрет); предавать
+    uk: видавати (таємницю); зраджувати
+    example_de: Verrate mir bitte nicht, wie der Film ausgeht.
+    example_en: Please do not tell me how the film ends.
+    example_ru: Только не выдавай мне, чем кончается фильм.
+    example_uk: Тільки не видавай мені, чим закінчується фільм.
+    note:
+      en: 'Strong verb, inseparable: verrät, verriet, hat verraten. The light everyday use is the one in the example, and Ich verrate dir ein Geheimnis is friendly. The heavy use is betrayal of a person or a country, and der Verrat is the noun for it. Context alone tells the two apart.'
+      ru: 'Сильный глагол, неотделяемый: verrät, verriet, hat verraten. Лёгкое бытовое употребление — как в примере, а Ich verrate dir ein Geheimnis звучит дружески. Тяжёлое значение — предательство человека или страны, существительное der Verrat. Различает их только контекст.'
+      uk: 'Сильне дієслово, невідокремлюване: verrät, verriet, hat verraten. Легке побутове вживання — як у прикладі, а Ich verrate dir ein Geheimnis звучить по-дружньому. Важке значення — зрада людини чи країни, іменник der Verrat. Розрізняє їх лише контекст.'
+
+  - de: beleidigen
+    ipa: "bəˈlaɪ̯dɪgn̩"
+    pos: verb
+    praesens_3sg: beleidigt
+    partizip2: beleidigt
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: the participle beleidigt (offended, sulking) is what a learner
+    # meets and needs, and it is a different prompt from the verb.
+    cards: recognition
+    en: to insult, to offend
+    ru: оскорблять, обижать
+    uk: ображати, кривдити
+    example_de: Das war nicht so gemeint, ich wollte dich nicht beleidigen.
+    example_en: I did not mean it like that, I did not want to offend you.
+    example_ru: Я не это имел в виду, я не хотел тебя обидеть.
+    example_uk: Я не це мав на увазі, я не хотів тебе образити.
+    note:
+      en: 'Regular, inseparable: beleidigt, hat beleidigt. The participle stands as an adjective and is far more frequent: Er ist beleidigt means he is offended and sulking about it. Die Beleidigung is an insult and, in a legal letter, a punishable offence.'
+      ru: 'Правильный глагол, неотделяемый: beleidigt, hat beleidigt. Причастие работает прилагательным и встречается гораздо чаще: Er ist beleidigt — «он обижен и дуется». Die Beleidigung — оскорбление, а в юридическом письме — наказуемое деяние.'
+      uk: 'Правильне дієслово, невідокремлюване: beleidigt, hat beleidigt. Дієприкметник працює прикметником і трапляється значно частіше: Er ist beleidigt — «він ображений і дметься». Die Beleidigung — образа, а в юридичному листі — каране діяння.'
+
+  - de: Vorwurf
+    ipa: "ˈfoːɐ̯ˌvʊʁf"
+    pos: noun
+    gender: m
+    plural: "die Vorwürfe"
+    # Recognition only: conflict-report register — the noun turns up in a written
+    # complaint or a news item, while a learner says the plain Du hast … nicht gemacht.
+    cards: recognition
+    en: accusation, reproach
+    ru: упрёк, обвинение
+    uk: докір, звинувачення
+    example_de: Sie macht mir immer wieder denselben Vorwurf.
+    example_en: She keeps making the same accusation against me.
+    example_ru: Она снова и снова бросает мне один и тот же упрёк.
+    example_uk: Вона знову й знову кидає мені той самий докір.
+    note:
+      en: 'The verb it goes with is machen, and the person accused is dative: jemandem einen Vorwurf machen. The related verb vorwerfen builds the same sentence in one word. Ich mache dir keinen Vorwurf is the sentence for saying you do not blame someone.'
+      ru: 'Глагол при нём — machen, а тот, кого упрекают, стоит в Dativ: jemandem einen Vorwurf machen. Родственный глагол vorwerfen строит ту же фразу одним словом. Ich mache dir keinen Vorwurf — «я тебя не виню».'
+      uk: 'Дієслово при ньому — machen, а той, кого дорікають, стоїть у Dativ: jemandem einen Vorwurf machen. Споріднене дієслово vorwerfen будує ту саму фразу одним словом. Ich mache dir keinen Vorwurf — «я тебе не виню».'
+
+  - de: verzeihen
+    ipa: "fɛɐ̯ˈtsaɪ̯ən"
+    pos: verb
+    praesens_3sg: verzeiht
+    partizip2: verziehen
+    aux: haben
+    valence: "+ Dat"
+    en: to forgive
+    ru: прощать
+    uk: пробачати
+    example_de: Ich habe ihm den Streit längst verziehen.
+    example_en: I forgave him for the quarrel long ago.
+    example_ru: Я давно простил ему ту ссору.
+    example_uk: Я давно пробачив йому ту сварку.
+    note:
+      en: 'Strong verb, inseparable: verzeiht, verzieh, hat verziehen. The person forgiven is dative and the deed is accusative — jemandem etwas verzeihen. Verzeihung! is the polite apology, one step above Entschuldigung in formality, and Verzeihen Sie bitte opens a request to a stranger.'
+      ru: 'Сильный глагол, неотделяемый: verzeiht, verzieh, hat verziehen. Прощаемый стоит в Dativ, а проступок — в Akkusativ: jemandem etwas verzeihen. Verzeihung! — вежливое извинение, чуть официальнее, чем Entschuldigung, а Verzeihen Sie bitte открывает обращение к незнакомому.'
+      uk: 'Сильне дієслово, невідокремлюване: verzeiht, verzieh, hat verziehen. Той, кого прощають, стоїть у Dativ, а провина — у Akkusativ: jemandem etwas verzeihen. Verzeihung! — увічливе вибачення, трохи офіційніше за Entschuldigung, а Verzeihen Sie bitte відкриває звертання до незнайомого.'
+
+  # --- Warnen, versichern, übertreiben ---
+  - de: warnen
+    ipa: "ˈvaʁnən"
+    pos: verb
+    praesens_3sg: warnt
+    partizip2: gewarnt
+    aux: haben
+    valence: "+ Akk vor + Dat"
+    en: to warn
+    ru: предупреждать (об опасности)
+    uk: попереджати (про небезпеку)
+    example_de: Die Polizei warnt vor Taschendieben am Bahnhof.
+    example_en: The police are warning about pickpockets at the station.
+    example_ru: Полиция предупреждает о карманниках на вокзале.
+    example_uk: Поліція попереджає про кишенькових злодіїв на вокзалі.
+    note:
+      en: 'Regular: warnt, warnte, hat gewarnt. The danger takes vor + Dativ and the person warned is accusative: Ich habe dich vor dem Hund gewarnt. Die Warnung is a warning, and Vorsicht! is the shout that goes with it. Note that it is only ever about danger, never about a reminder.'
+      ru: 'Правильный глагол: warnt, warnte, hat gewarnt. Опасность вводится через vor + Dativ, а предупреждаемый стоит в Akkusativ: Ich habe dich vor dem Hund gewarnt. Die Warnung — предупреждение, а рядом звучит Vorsicht!. Важно: речь всегда об опасности, а не о напоминании.'
+      uk: 'Правильне дієслово: warnt, warnte, hat gewarnt. Небезпека вводиться через vor + Dativ, а той, кого попереджають, стоїть у Akkusativ: Ich habe dich vor dem Hund gewarnt. Die Warnung — попередження, а поруч лунає Vorsicht!. Важливо: ідеться завжди про небезпеку, а не про нагадування.'
+
+  - de: versichern
+    ipa: "fɛɐ̯ˈzɪçɐn"
+    pos: verb
+    praesens_3sg: versichert
+    partizip2: versichert
+    aux: haben
+    valence: "+ Dat + Akk"
+    # Recognition only: to assure someone and to insure a thing are two prompts on one
+    # headword, and the second is where the learner meets it — versichert on a policy.
+    cards: recognition
+    en: to assure (someone); to insure
+    ru: заверять (кого-то); страховать
+    uk: запевняти (когось); страхувати
+    example_de: Er hat mir versichert, dass die Rechnung längst bezahlt ist.
+    example_en: He assured me that the invoice had long been paid.
+    example_ru: Он заверил меня, что счёт давно оплачен.
+    example_uk: Він запевнив мене, що рахунок давно оплачений.
+    note:
+      en: 'Regular, inseparable: versichert, hat versichert. In the first sense the person assured is dative and a dass-clause follows. In the second the object is a car or a flat, and the participle is what a policy prints: gegen Diebstahl versichert. Die Versicherung is the insurance company and the policy at once.'
+      ru: 'Правильный глагол, неотделяемый: versichert, hat versichert. В первом значении заверяемый стоит в Dativ, а дальше идёт придаточное с dass. Во втором дополнением служит машина или квартира, а причастие пишут в полисе: gegen Diebstahl versichert. Die Versicherung — и страховая компания, и сам полис.'
+      uk: 'Правильне дієслово, невідокремлюване: versichert, hat versichert. У першому значенні той, кого запевняють, стоїть у Dativ, а далі йде підрядне з dass. У другому додатком є машина чи квартира, а дієприкметник пишуть у полісі: gegen Diebstahl versichert. Die Versicherung — і страхова компанія, і сам поліс.'
+
+  - de: übertreiben
+    ipa: "yːbɐˈtʁaɪ̯bn̩"
+    pos: verb
+    praesens_3sg: übertreibt
+    partizip2: übertrieben
+    aux: haben
+    valence: "+ Akk"
+    en: to exaggerate, to overdo it
+    ru: преувеличивать; перебарщивать
+    uk: перебільшувати; передавати куті меду
+    example_de: Jetzt übertreibst du aber, so schlimm war es nicht.
+    example_en: Now you are exaggerating, it was not that bad.
+    example_ru: Вот теперь ты преувеличиваешь, всё было не так плохо.
+    example_uk: Ось тепер ти перебільшуєш, усе було не так погано.
+    note:
+      en: 'Strong verb, inseparable with no ge- and no separation: übertreibt, übertrieben. It works about words (a story made bigger) and about actions (too much salt, too much sport). The participle übertrieben is a common adjective: eine übertriebene Reaktion. The example is a whole conversational move worth keeping.'
+      ru: 'Сильный глагол, неотделяемый, без ge-: übertreibt, übertrieben. Работает и о словах (историю раздули), и о действиях (слишком много соли, слишком много спорта). Причастие übertrieben — частое прилагательное: eine übertriebene Reaktion. Фраза из примера — готовый разговорный ход.'
+      uk: 'Сильне дієслово, невідокремлюване, без ge-: übertreibt, übertrieben. Працює і про слова (історію роздули), і про дії (забагато солі, забагато спорту). Дієприкметник übertrieben — частий прикметник: eine übertriebene Reaktion. Фраза з прикладу — готовий розмовний хід.'
+
+  - de: klingen
+    ipa: "ˈklɪŋən"
+    pos: verb
+    praesens_3sg: klingt
+    partizip2: geklungen
+    aux: haben
+    en: to sound (a certain way)
+    ru: звучать (как-то), казаться на слух
+    uk: звучати (якось), видаватися на слух
+    example_de: Das klingt nach einem guten Plan.
+    example_en: That sounds like a good plan.
+    example_ru: Звучит как хороший план.
+    example_uk: Звучить як добрий план.
+    note:
+      en: 'Strong verb: klingt, klang, hat geklungen. Two frames carry almost all of its everyday use: klingen + adjective (Das klingt gut) and klingen nach + Dativ, as in the example. It is a reaction word — the quickest way to answer a suggestion. Der Klang is the sound of a voice or an instrument.'
+      ru: 'Сильный глагол: klingt, klang, hat geklungen. Почти всё бытовое употребление держится на двух схемах: klingen + прилагательное (Das klingt gut) и klingen nach + Dativ, как в примере. Это слово-реакция, самый быстрый способ ответить на предложение. Der Klang — звучание голоса или инструмента.'
+      uk: 'Сильне дієслово: klingt, klang, hat geklungen. Майже все побутове вживання тримається на двох схемах: klingen + прикметник (Das klingt gut) і klingen nach + Dativ, як у прикладі. Це слово-реакція, найшвидший спосіб відповісти на пропозицію. Der Klang — звучання голосу чи інструмента.'
+
+  # --- Mit dem Stift: schreiben, nachschlagen, korrigieren ---
+  - de: vorlesen
+    ipa: "ˈfoːɐ̯ˌleːzn̩"
+    pos: verb
+    praesens_3sg: liest vor
+    partizip2: vorgelesen
+    aux: haben
+    valence: "+ Dat + Akk"
+    en: to read aloud (to someone)
+    ru: читать вслух (кому-то)
+    uk: читати вголос (комусь)
+    example_de: Abends lese ich meiner Tochter eine Geschichte vor.
+    example_en: In the evening I read my daughter a story.
+    example_ru: По вечерам я читаю дочери сказку.
+    example_uk: Увечері я читаю доньці казку.
+    note:
+      en: 'Strong verb, separable: liest vor, hat vorgelesen. The listener is dative, the text accusative. German marks aloud in the prefix, so plain lesen is always silent reading. In a classroom the instruction is Lies bitte vor, and die Vorlesung is a university lecture.'
+      ru: 'Сильный глагол, отделяемый: liest vor, hat vorgelesen. Слушатель в Dativ, текст в Akkusativ. Немецкий помечает «вслух» самой приставкой, поэтому простое lesen — всегда чтение про себя. В классе звучит Lies bitte vor, а die Vorlesung — университетская лекция.'
+      uk: 'Сильне дієслово, відокремлюване: liest vor, hat vorgelesen. Слухач у Dativ, текст у Akkusativ. Німецька позначає «вголос» самим префіксом, тому просте lesen — завжди читання про себе. У класі лунає Lies bitte vor, а die Vorlesung — університетська лекція.'
+
+  - de: aufschreiben
+    ipa: "ˈaʊ̯fˌʃʁaɪ̯bn̩"
+    pos: verb
+    praesens_3sg: schreibt auf
+    partizip2: aufgeschrieben
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: `notieren` (lernen-verstehen) ships "to write down" as a
+    # production card, and the two are interchangeable in every sentence a learner
+    # would build.
+    cards: recognition
+    en: to write down, to note down
+    ru: записывать
+    uk: записувати
+    example_de: Schreib dir die Adresse lieber auf.
+    example_en: You had better write the address down.
+    example_ru: Лучше запиши адрес.
+    example_uk: Краще запиши адресу.
+    note:
+      en: 'Strong verb, separable: schreibt auf, hat aufgeschrieben. A dative reflexive often comes with it — sich etwas aufschreiben, writing it down for yourself, as in the example. Notieren is the same act in a slightly more formal word, and der Zettel is what you write it on.'
+      ru: 'Сильный глагол, отделяемый: schreibt auf, hat aufgeschrieben. Часто с возвратным Dativ — sich etwas aufschreiben, «записать себе», как в примере. Notieren — то же действие словом чуть официальнее, а der Zettel — та бумажка, на которой пишут.'
+      uk: 'Сильне дієслово, відокремлюване: schreibt auf, hat aufgeschrieben. Часто зі зворотним Dativ — sich etwas aufschreiben, «записати собі», як у прикладі. Notieren — та сама дія трохи офіційнішим словом, а der Zettel — той папірець, на якому пишуть.'
+
+  - de: abschreiben
+    ipa: "ˈapˌʃʁaɪ̯bn̩"
+    pos: verb
+    praesens_3sg: schreibt ab
+    partizip2: abgeschrieben
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: copying a text, copying someone's homework and writing a debt
+    # off are three prompts, and the classroom sense carries a judgement a gloss
+    # cannot hold.
+    cards: recognition
+    en: to copy (from a source, or from someone else)
+    ru: списывать, переписывать
+    uk: списувати, переписувати
+    example_de: Den Text bitte sauber von der Tafel abschreiben.
+    example_en: Please copy the text neatly from the board.
+    example_ru: Перепишите текст с доски аккуратно.
+    example_uk: Перепишіть текст із дошки охайно.
+    note:
+      en: 'Strong verb, separable: schreibt ab, hat abgeschrieben. The source takes von + Dativ. In a classroom it swings between the neutral copying of the example and the dishonest kind — bei jemandem abschreiben. In business it means to write something off, and kopieren is the machine version.'
+      ru: 'Сильный глагол, отделяемый: schreibt ab, hat abgeschrieben. Источник вводится через von + Dativ. В классе слово колеблется между нейтральным переписыванием из примера и списыванием — bei jemandem abschreiben. В бухгалтерии значит «списать», а kopieren — машинный вариант.'
+      uk: 'Сильне дієслово, відокремлюване: schreibt ab, hat abgeschrieben. Джерело вводиться через von + Dativ. У класі слово вагається між нейтральним переписуванням із прикладу та списуванням — bei jemandem abschreiben. У бухгалтерії означає «списати», а kopieren — машинний варіант.'
+
+  - de: nachschlagen
+    ipa: "ˈnaːxˌʃlaːgn̩"
+    pos: verb
+    praesens_3sg: schlägt nach
+    partizip2: nachgeschlagen
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: a classroom instruction the learner obeys rather than issues —
+    # the `installieren` ruling from digitales-leben.
+    cards: recognition
+    en: to look up (in a dictionary or a reference book)
+    en_compact: to look up in a dictionary
+    ru: смотреть, искать (в словаре, справочнике)
+    uk: дивитися, шукати (у словнику, довіднику)
+    example_de: Unbekannte Wörter können Sie im Wörterbuch nachschlagen.
+    example_en: You can look unfamiliar words up in the dictionary.
+    example_ru: Незнакомые слова можно посмотреть в словаре.
+    example_uk: Незнайомі слова можна подивитися у словнику.
+    note:
+      en: 'Strong verb, separable: schlägt nach, hat nachgeschlagen. It is specifically looking something up in a book or a list — the picture is opening the pages. On a screen people say googeln or suchen. Das Nachschlagewerk is a reference work.'
+      ru: 'Сильный глагол, отделяемый: schlägt nach, hat nachgeschlagen. Речь именно о поиске в книге или списке — образ раскрываемых страниц. Про экран скажут googeln или suchen. Das Nachschlagewerk — справочное издание.'
+      uk: 'Сильне дієслово, відокремлюване: schlägt nach, hat nachgeschlagen. Ідеться саме про пошук у книжці чи списку — образ розгорнутих сторінок. Про екран скажуть googeln або suchen. Das Nachschlagewerk — довідкове видання.'
+
+  - de: korrigieren
+    ipa: "kɔʁiˈgiːʁən"
+    pos: verb
+    praesens_3sg: korrigiert
+    partizip2: korrigiert
+    aux: haben
+    valence: "+ Akk"
+    en: to correct
+    ru: исправлять, вносить правку
+    uk: виправляти, редагувати
+    example_de: Könnten Sie bitte meinen Brief korrigieren?
+    example_en: Could you please correct my letter?
+    example_ru: Не могли бы вы поправить моё письмо?
+    example_uk: Чи не могли б ви виправити мого листа?
+    note:
+      en: 'Regular, stress on the -gieren: korrigiert, hat korrigiert — no ge- in the participle, like every -ieren verb. It corrects a text, a mistake or a person, and sich korrigieren is what you do mid-sentence. Die Korrektur is the correction, and verbessern is the everyday twin.'
+      ru: 'Правильный глагол, ударение на -gieren: korrigiert, hat korrigiert — без ge- в причастии, как у всех глаголов на -ieren. Исправляют текст, ошибку или человека, а sich korrigieren — поправить себя на полуслове. Die Korrektur — исправление, verbessern — бытовой двойник.'
+      uk: 'Правильне дієслово, наголос на -gieren: korrigiert, hat korrigiert — без ge- у дієприкметнику, як у всіх дієслів на -ieren. Виправляють текст, помилку чи людину, а sich korrigieren — поправити себе на півслові. Die Korrektur — виправлення, verbessern — побутовий двійник.'
+
+  - de: unterstreichen
+    ipa: "ʊntɐˈʃtʁaɪ̯çn̩"
+    pos: verb
+    praesens_3sg: unterstreicht
+    partizip2: unterstrichen
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: an exercise instruction plus a second, figurative sense (to
+    # emphasise) — the learner obeys the first and reads the second.
+    cards: recognition
+    en: to underline; to emphasise
+    ru: подчёркивать (линией); подчёркивать (мысль)
+    uk: підкреслювати (лінією); наголошувати (на думці)
+    example_de: Unterstreichen Sie alle Verben im Text.
+    example_en: Underline all the verbs in the text.
+    example_ru: Подчеркните в тексте все глаголы.
+    example_uk: Підкресліть у тексті всі дієслова.
+    note:
+      en: 'Strong verb, inseparable with no ge- and no separation: unterstreicht, hat unterstrichen. Literally it draws a line under a word, which is the exercise-book use. Figuratively it stresses a point — Er unterstrich, wie wichtig das ist — and betonen is the everyday word for that.'
+      ru: 'Сильный глагол, неотделяемый, без ge-: unterstreicht, hat unterstrichen. Буквально — провести черту под словом, как в учебном задании. Переносно — подчеркнуть мысль: Er unterstrich, wie wichtig das ist; в быту для этого есть betonen.'
+      uk: 'Сильне дієслово, невідокремлюване, без ge-: unterstreicht, hat unterstrichen. Буквально — провести риску під словом, як у навчальному завданні. Переносно — наголосити на думці: Er unterstrich, wie wichtig das ist; у побуті для цього є betonen.'
+
+  # --- Vortragen und widersprechen ---
+  - de: präsentieren
+    ipa: "pʁɛzɛnˈtiːʁən"
+    pos: verb
+    praesens_3sg: präsentiert
+    partizip2: präsentiert
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: work and course register — a company presents results, a
+    # student presents a Referat. What a learner says is zeigen or vorstellen.
+    cards: recognition
+    en: to present (results, a product)
+    ru: представлять, презентовать
+    uk: представляти, презентувати
+    example_de: Am Freitag präsentiert die Gruppe ihre Ergebnisse.
+    example_en: On Friday the group will present its results.
+    example_ru: В пятницу группа представит свои результаты.
+    example_uk: У п’ятницю група представить свої результати.
+    note:
+      en: 'Regular, stress on the -tieren: präsentiert, hat präsentiert. It belongs to work and study — results, a product, a project. Vorstellen introduces a person or an idea and is the everyday choice. Die Präsentation is both the talk and the slides.'
+      ru: 'Правильный глагол, ударение на -tieren: präsentiert, hat präsentiert. Слово работы и учёбы: результаты, продукт, проект. Vorstellen представляет человека или идею и годится для быта. Die Präsentation — и выступление, и слайды.'
+      uk: 'Правильне дієслово, наголос на -tieren: präsentiert, hat präsentiert. Слово роботи та навчання: результати, продукт, проєкт. Vorstellen представляє людину чи ідею і годиться для побуту. Die Präsentation — і виступ, і слайди.'
+
+  - de: Rede
+    ipa: "ˈʁeːdə"
+    pos: noun
+    gender: f
+    plural: "die Reden"
+    # Recognition only: a speech is something a learner listens to at B1 rather than
+    # gives, and the word arrives mostly inside the fixed chunks below.
+    cards: recognition
+    en: speech, address
+    ru: речь, выступление
+    uk: промова, виступ
+    example_de: Der Bürgermeister hielt eine kurze Rede.
+    example_en: The mayor gave a short speech.
+    example_ru: Бургомистр произнёс короткую речь.
+    example_uk: Бургомістр виголосив коротку промову.
+    note:
+      en: 'The verb is halten, never machen: eine Rede halten. Two chunks are worth having whole: Wovon ist die Rede? (what is being talked about) and Das ist nicht der Rede wert (it is not worth mentioning). In grammar, direkte und indirekte Rede is direct and reported speech.'
+      ru: 'Глагол при нём — halten, а не machen: eine Rede halten. Два оборота стоит взять целиком: Wovon ist die Rede? («о чём речь?») и Das ist nicht der Rede wert («не стоит благодарности»). В грамматике direkte und indirekte Rede — прямая и косвенная речь.'
+      uk: 'Дієслово при ньому — halten, а не machen: eine Rede halten. Два звороти варто взяти цілими: Wovon ist die Rede? («про що йдеться?») і Das ist nicht der Rede wert («не варт подяки»). У граматиці direkte und indirekte Rede — пряма й непряма мова.'
+
+  - de: protestieren
+    ipa: "pʁotɛsˈtiːʁən"
+    pos: verb
+    praesens_3sg: protestiert
+    partizip2: protestiert
+    aux: haben
+    valence: "gegen + Akk"
+    # Recognition only: news register — a crowd protests. A learner objecting in a
+    # shop or an office says Ich bin damit nicht einverstanden.
+    cards: recognition
+    en: to protest
+    ru: протестовать
+    uk: протестувати
+    example_de: Hunderte Menschen protestierten gegen die neuen Gebühren.
+    example_en: Hundreds of people protested against the new fees.
+    example_ru: Сотни людей протестовали против новых сборов.
+    example_uk: Сотні людей протестували проти нових зборів.
+    note:
+      en: 'Regular, stress on the -tieren: protestiert, hat protestiert — no ge-. What is protested against takes gegen + Akkusativ. It is a public act, usually of a crowd; a single person in an office objects with widersprechen or sich beschweren. Der Protest is the noun.'
+      ru: 'Правильный глагол, ударение на -tieren: protestiert, hat protestiert — без ge-. Предмет протеста вводится через gegen + Akkusativ. Это публичное действие, обычно множества людей; один человек в учреждении возражает через widersprechen или sich beschweren. Der Protest — существительное.'
+      uk: 'Правильне дієслово, наголос на -tieren: protestiert, hat protestiert — без ge-. Предмет протесту вводиться через gegen + Akkusativ. Це публічна дія, зазвичай багатьох людей; одна людина в установі заперечує через widersprechen або sich beschweren. Der Protest — іменник.'
+
+  # --- Was gesagt wird ---
+  - de: Ausdruck
+    ipa: "ˈaʊ̯sˌdʁʊk"
+    pos: noun
+    gender: m
+    plural: "die Ausdrücke"
+    # Recognition only: two unrelated nouns share the form — a turn of phrase and a
+    # printout — and the plural differs (Ausdrücke, Ausdrucke).
+    cards: recognition
+    en: expression, turn of phrase
+    ru: выражение, оборот речи
+    uk: вислів, зворот мови
+    example_de: Dieser Ausdruck ist ziemlich umgangssprachlich.
+    example_en: This expression is fairly colloquial.
+    example_ru: Это выражение довольно разговорное.
+    example_uk: Цей вислів досить розмовний.
+    note:
+      en: 'Two words in one form. In the sense of a phrase the plural is die Ausdrücke; in the sense of a printout it is die Ausdrucke, from ausdrucken. Etwas zum Ausdruck bringen is the formal way to say you expressed something, and the verb for the phrase sense is ausdrücken.'
+      ru: 'Два слова в одной форме. В значении оборота речи множественное число die Ausdrücke; в значении распечатки — die Ausdrucke, от ausdrucken. Etwas zum Ausdruck bringen — официальный способ сказать «выразить», а глагол для первого значения — ausdrücken.'
+      uk: 'Два слова в одній формі. У значенні звороту мови множина die Ausdrücke; у значенні роздруківки — die Ausdrucke, від ausdrucken. Etwas zum Ausdruck bringen — офіційний спосіб сказати «висловити», а дієслово для першого значення — ausdrücken.'
+
+  - de: Erklärung
+    ipa: "ɛɐ̯ˈklɛːʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Erklärungen"
+    en: explanation
+    ru: объяснение, разъяснение
+    uk: пояснення, роз’яснення
+    example_de: Für die Verspätung gab es keine Erklärung.
+    example_en: There was no explanation for the delay.
+    example_ru: Объяснения задержке не было.
+    example_uk: Пояснення затримці не було.
+    note:
+      en: 'From erklären. The everyday collocations are eine Erklärung geben, eine Erklärung finden and zur Erklärung. The word has a second, official life as a declaration — die Steuererklärung is the tax return, and eine Erklärung unterschreiben is signing a statement.'
+      ru: 'От erklären. Обиходные сочетания: eine Erklärung geben, eine Erklärung finden, zur Erklärung. У слова есть и официальная жизнь — «заявление, декларация»: die Steuererklärung — налоговая декларация, eine Erklärung unterschreiben — подписать заявление.'
+      uk: 'Від erklären. Побутові сполучення: eine Erklärung geben, eine Erklärung finden, zur Erklärung. У слова є й офіційне життя — «заява, декларація»: die Steuererklärung — податкова декларація, eine Erklärung unterschreiben — підписати заяву.'
+
+  - de: Begründung
+    ipa: "bəˈgʁʏndʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Begründungen"
+    # Recognition only: the word of a written decision — a Bescheid, a rejection, an
+    # appeal. In speech the learner gives a Grund.
+    cards: recognition
+    en: justification, stated reason
+    ru: обоснование, мотивировка
+    uk: обґрунтування, мотивування
+    example_de: Die Absage kam ohne jede Begründung.
+    example_en: The rejection came without any justification at all.
+    example_ru: Отказ пришёл вообще без обоснования.
+    example_uk: Відмова надійшла взагалі без обґрунтування.
+    note:
+      en: 'From begründen. It is not simply a reason but the reason as given and written out, which is why it belongs to official decisions and to school essays: mit der Begründung, dass … Der Grund is the plain reason behind an action.'
+      ru: 'От begründen. Это не просто причина, а причина изложенная и записанная, поэтому слово живёт в официальных решениях и школьных сочинениях: mit der Begründung, dass … Der Grund — просто причина поступка.'
+      uk: 'Від begründen. Це не просто причина, а причина викладена й записана, тому слово живе в офіційних рішеннях і шкільних творах: mit der Begründung, dass … Der Grund — просто причина вчинку.'
+
+  - de: Beschreibung
+    ipa: "bəˈʃʁaɪ̯bʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Beschreibungen"
+    en: description
+    ru: описание
+    uk: опис
+    example_de: Die Beschreibung der Wohnung stimmt nicht mit den Fotos überein.
+    example_en: The description of the flat does not match the photos.
+    example_ru: Описание квартиры не совпадает с фотографиями.
+    example_uk: Опис квартири не збігається зі світлинами.
+    note:
+      en: 'From beschreiben. It is the everyday word for the text under a product, a flat or a job, and eine genaue Beschreibung is what the police ask for. Die Personenbeschreibung and die Wegbeschreibung are the two compounds worth knowing whole.'
+      ru: 'От beschreiben. Обиходное слово для текста под товаром, квартирой или вакансией; eine genaue Beschreibung просит полиция. Стоит знать два сложения целиком: die Personenbeschreibung и die Wegbeschreibung.'
+      uk: 'Від beschreiben. Побутове слово для тексту під товаром, квартирою чи вакансією; eine genaue Beschreibung просить поліція. Варто знати два складні слова цілими: die Personenbeschreibung і die Wegbeschreibung.'

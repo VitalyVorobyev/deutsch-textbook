@@ -1,0 +1,83 @@
+topic: digitales-leben
+kind: intensive
+title_de: "Hilfe & häufige Fragen: die Lese-App der Stadtbibliothek"
+text:
+  - >-
+    Die Lese-App der Stadtbibliothek ist
+    [[kostenlos::free of charge::бесплатный::безкоштовний]]. Zuerst wird die
+    App installiert, danach melden Sie sich mit Ihrer
+    [[Ausweisnummer::library card number::номер читательского билета::номер
+    читацького квитка]] an. Wie das genau geht, steht Schritt für Schritt in
+    der [[Anleitung::instructions, step-by-step guide::инструкция::інструкція]].
+  - >-
+    „Das Buch lädt nicht." Prüfen Sie zuerst das
+    [[Netz::network, reception::сеть, связь::мережа, зв'язок]]. Ohne Verbindung
+    wird kein Buch geladen. Klicken Sie danach auf das
+    [[Symbol::icon::значок::значок]] oben rechts und wählen Sie „Neu laden" aus.
+  - >-
+    „Ich sehe eine [[Meldung::message, notice::сообщение::повідомлення]]: Das
+    Feld darf nicht leer sein." Dann fehlt im Formular eine
+    [[Angabe::piece of information you enter::данные, сведения::дані,
+    відомості]]. Gehen Sie zurück und geben Sie die Nummer noch einmal an.
+  - >-
+    „Nichts hilft." Schreiben Sie uns über das
+    [[Kontaktformular::contact form::форма обратной связи::форма зворотного
+    зв'язку]]. Schildern Sie bitte genau, was Sie gemacht haben und was auf dem
+    Bildschirm steht, sodass wir Ihnen schnell antworten können.
+questions:
+  - id: frage-buch-laedt-nicht
+    outcomes: [anleitung-verstehen]
+    type: mc
+    prompt: "Das Buch lädt nicht. Was macht man laut Hilfetext zuerst?"
+    options:
+      - "Man prüft das Netz."
+      - "Man installiert die App noch einmal."
+      - "Man schreibt sofort über das Kontaktformular."
+    correct: 0
+    translation:
+      en: "The book will not load. According to the help text, what do you do first?"
+      ru: "Книга не загружается. Что, согласно справке, надо сделать первым?"
+      uk: "Книжка не завантажується. Що, згідно з довідкою, треба зробити першим?"
+    explain:
+      en: "The order is stated in the text itself: Prüfen Sie zuerst das Netz, and the sentence after it gives the reason — Ohne Verbindung wird kein Buch geladen. Reinstalling is step one for setting the app up, not for a book that will not load, and the contact form is the last resort: Nichts hilft."
+      ru: "Порядок назван в самом тексте: Prüfen Sie zuerst das Netz, а следующая фраза объясняет почему — Ohne Verbindung wird kein Buch geladen. Установка заново — это первый шаг настройки, а не ответ на незагружающуюся книгу; форма обратной связи — последнее средство: Nichts hilft."
+      uk: "Порядок названий у самому тексті: Prüfen Sie zuerst das Netz, а наступна фраза пояснює чому — Ohne Verbindung wird kein Buch geladen. Встановлення наново — це перший крок налаштування, а не відповідь на незавантажену книжку; форма зворотного зв'язку — останній засіб: Nichts hilft."
+      de: "Die Reihenfolge steht im Text: Prüfen Sie zuerst das Netz, und der Satz danach nennt den Grund — Ohne Verbindung wird kein Buch geladen. Das Installieren gehört zur Einrichtung, nicht zu einem Buch, das nicht lädt, und das Kontaktformular kommt zuletzt: Nichts hilft."
+
+  - id: frage-feld-leer
+    outcomes: [anleitung-verstehen]
+    type: mc
+    prompt: 'Was bedeutet die Meldung „Das Feld darf nicht leer sein"?'
+    options:
+      - "Im Formular fehlt eine Angabe, die man nachtragen muss."
+      - "Die App muss neu installiert werden."
+      - "Der Ausweis ist nicht mehr gültig."
+    correct: 0
+    translation:
+      en: 'What does the message „Das Feld darf nicht leer sein" mean?'
+      ru: "Что означает сообщение «Das Feld darf nicht leer sein»?"
+      uk: "Що означає повідомлення «Das Feld darf nicht leer sein»?"
+    explain:
+      en: "A Fehlermeldung names a field and a condition, and the help text spells the consequence out: Dann fehlt im Formular eine Angabe — go back and enter the number again. Nothing in it is about the app or about the library card; the message is a statement about one empty field."
+      ru: "Сообщение об ошибке называет поле и условие, а справка прямо договаривает следствие: Dann fehlt im Formular eine Angabe — вернуться и ввести номер ещё раз. Ни о приложении, ни о читательском билете речи нет: это высказывание про одно пустое поле."
+      uk: "Повідомлення про помилку називає поле й умову, а довідка прямо доказує наслідок: Dann fehlt im Formular eine Angabe — повернутися і ввести номер іще раз. Ні про застосунок, ні про читацький квиток мови немає: це висловлювання про одне порожнє поле."
+      de: "Eine Fehlermeldung nennt ein Feld und eine Bedingung, und der Hilfetext sagt die Folge dazu: Dann fehlt im Formular eine Angabe — zurückgehen und die Nummer noch einmal angeben. Von der App oder vom Ausweis ist nirgends die Rede."
+
+  - id: frage-kontaktformular
+    outcomes: [technikproblem-schildern]
+    type: mc
+    prompt: "Was soll man ins Kontaktformular schreiben?"
+    options:
+      - "Was man gemacht hat und was auf dem Bildschirm steht."
+      - "Nur die Ausweisnummer und den Titel des Buches."
+      - "Nur, dass die App leider nicht funktioniert."
+    correct: 0
+    translation:
+      en: "What should you write in the contact form?"
+      ru: "Что надо написать в форме обратной связи?"
+      uk: "Що треба написати у формі зворотного зв'язку?"
+    explain:
+      en: "The help text asks for both halves of a problem report: Schildern Sie bitte genau, was Sie gemacht haben und was auf dem Bildschirm steht. The card number and the title are not what is asked for, and the bare Es funktioniert nicht is exactly the message the sentence sodass wir Ihnen schnell antworten können rules out."
+      ru: "Справка просит обе половины сообщения о поломке: Schildern Sie bitte genau, was Sie gemacht haben und was auf dem Bildschirm steht. Номер билета и название книги там не требуются, а голое «не работает» — ровно то, что исключает придаточное sodass wir Ihnen schnell antworten können."
+      uk: "Довідка просить обидві половини повідомлення про поломку: Schildern Sie bitte genau, was Sie gemacht haben und was auf dem Bildschirm steht. Номер квитка й назва книжки там не потрібні, а голе «не працює» — саме те, що виключає підрядне sodass wir Ihnen schnell antworten können."
+      de: 'Der Hilfetext verlangt beide Hälften einer Problemmeldung: Schildern Sie bitte genau, was Sie gemacht haben und was auf dem Bildschirm steht. Ausweisnummer und Buchtitel sind nicht gefragt, und ein bloßes „Es funktioniert nicht" schließt der Nebensatz sodass wir Ihnen schnell antworten können gerade aus.'

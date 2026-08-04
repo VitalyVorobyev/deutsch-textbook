@@ -1,0 +1,137 @@
+# Delayed probe family 1 of 2 — ONE competence: writing the report line in the Präteritum
+# of full verbs, cold. Three parallel translate variants served in authoring order across
+# the 2/7/21 delays — one retention curve over one decision.
+#
+# Why a family here at all, and why only two. Of the unit's three outcomes,
+# `veranstaltung-empfehlen` and `erlebnis-bewerten` carry the two forms the frozen contract
+# names, and both are produced in writing here, so both can be probed. `programm-verstehen`
+# is reading: its evidence is the reading's questions and the listening item, and a delayed
+# check of it would measure recognition, which is not what a probe exists for.
+#
+# A genre unit closes no grammar point, so this family measures nothing new:
+# praeteritum-vollverben belongs to B1.1 and already has its own family there
+# (probe-erfahrungen-erzaehlen — cloze ×3, sah, nahm, schrieb). Two things are new.
+# The format: a cloze hands the learner the frame and grades the form in a slot that
+# already exists, while a translate first has to be *decided* — nothing in the prompt
+# forces the past to be written rather than spoken, so the instruction names the register
+# and the learner builds the whole line. The task: B1.1's sentences are a private
+# narrative (a window, a jacket, a notebook), this unit's are a report somebody else will
+# read, where the verbs that carry the evening are the ones the writer did not choose.
+# The two families cannot disturb each other's clock — since P19-4 every family arms from
+# its own literal list, and B1.1's list names only B1.1 items.
+#
+# Every variant names both lexical verbs in the instruction and the register with them,
+# because `Wir haben gewartet und saßen dann hinten` renders each prompt just as correctly
+# in speech: what is probed is the written form, never the choice of verb and never which
+# tense the learner would have used aloud.
+#
+# Pinned in every accepted rendering are the two full verbs and nothing else. `war` and
+# `hatte` are deliberately absent from all three sentences: they belong to
+# `praeteritum-sein-haben` (A2), and a sentence carrying both tags would charge that tag's
+# errors to this one. Each variant holds one strong verb and one weak, so the two halves
+# of the rule — the bare vowel change and the -te — are measured at every delay.
+#
+# Content fresh against the taught surface, checked by grepping each verb across the unit's
+# six files rather than by re-reading this list. The unit's taught Präteritum runs on war,
+# klatschte, spielte, gefiel, gingen/ging, sprach, lobte, kritisierten, standen and dauerte
+# (the article, the reading and the deck's examples) and on gab, gefiel, begann, fand,
+# dauerte, lernte, blieben, endete and sang (the two practice sets and the model report).
+# warten, sitzen, trinken and lachen occur in this unit in no form at all; `kaufen` occurs
+# once, as a present tense in the deck's abmachen example (jeder seine Karte selbst kauft),
+# and the visually near `ausverkauft` is a different word containing no -kauften; `bekommen`
+# occurs as an infinitive in the deck's Lob note (viel Lob bekommen) and as the present
+# `bekomme` in the Bescheid line, never in the Präteritum. None of the six is a B1.1 probe
+# or arming verb either (sehen, nehmen, schreiben, gehen, kommen, finden, wissen).
+#
+# arming: the four practice items in which the learner builds a Präteritum report line.
+# Nothing else in the unit carries this tag, and the pretest's finden item is excluded by
+# role — a pretest is a guess taken before the lesson and arms nothing.
+topic: kultur-freizeit
+role: probe
+title:
+  en: "Delayed check — the report line in the written past"
+  ru: "Отложенная проверка — строка отзыва в письменном прошедшем"
+  uk: "Відкладена перевірка — рядок відгуку в письмовому минулому"
+  de: "Kontrolle mit Abstand — die Berichtszeile im geschriebenen Präteritum"
+arming:
+  - b1/kultur-freizeit::cloze-bericht-praeteritum
+  - b1/kultur-freizeit::uebersetzen-stueck-begann
+  - b1/kultur-freizeit::uebersetzen-fuehrung-dauerte
+  - b1/kultur-freizeit-produktion::uebersetzen-bericht-plaetze
+items:
+  - id: variant-a
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'wait' take warten, for 'sit' sitzen, for 'right at the back' ganz hinten."
+      ru: "Письменный отзыв — значит Präteritum. Для «ждать» возьмите warten, для «сидеть» — sitzen, для «в самом конце» — ganz hinten."
+      uk: "Письмовий відгук — отже Präteritum. Для «чекати» візьміть warten, для «сидіти» — sitzen, для «у самому кінці» — ganz hinten."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für das Warten nimm warten, für das Sitzen sitzen, für den hinteren Platz ganz hinten."
+    prompt_en: "We waited outside the hall for a long time and then sat right at the back."
+    prompt_ru: "Мы долго ждали перед залом, а потом сидели в самом конце."
+    prompt_uk: "Ми довго чекали перед залою, а потім сиділи в самому кінці."
+    answer: "Wir warteten lange vor dem Saal und saßen dann ganz hinten."
+    accept:
+      # danach says the same thing as dann and neither touches the graded pair.
+      - "Wir warteten lange vor dem Saal und saßen danach ganz hinten."
+      # The duration may lead; both are ordinary V2.
+      - "Lange warteten wir vor dem Saal und saßen dann ganz hinten."
+    key_tokens: ["warteten", "saßen"]
+    explain:
+      en: "Graded are the two full verbs, one of each class. warten is weak: the stem stays and takes -te, with an extra e because the stem ends in t — warteten. sitzen is strong: the vowel changes to a and no ending is added at all — saßen. A hand that writes sitzten has applied the weak rule to a strong verb, which is the single error this check exists to see."
+      ru: "Оцениваются два полнозначных глагола, по одному каждого класса. warten — слабый: основа сохраняется и берёт -te, с добавочным e, потому что основа кончается на t: warteten. sitzen — сильный: гласная меняется на a, и никакого окончания не добавляется вовсе: saßen. Рука, написавшая sitzten, применила слабое правило к сильному глаголу — ровно ту ошибку, ради которой эта проверка и существует."
+      uk: "Оцінюються два повнозначні дієслова, по одному кожного класу. warten — слабке: основа зберігається і бере -te, з додатковим e, бо основа закінчується на t: warteten. sitzen — сильне: голосний змінюється на a, і жодного закінчення не додається взагалі: saßen. Рука, що написала sitzten, застосувала слабке правило до сильного дієслова — рівно ту помилку, заради якої ця перевірка й існує."
+      de: "Bewertet werden die zwei Vollverben, je eines pro Klasse. warten ist schwach: Der Stamm bleibt und nimmt -te, mit einem zusätzlichen e, weil der Stamm auf t endet — warteten. sitzen ist stark: Der Vokal wird zu a, und eine Endung kommt gar nicht dazu — saßen. Wer sitzten schreibt, hat die schwache Regel auf ein starkes Verb angewandt, und genau dafür gibt es diese Kontrolle."
+
+  - id: variant-b
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'drink' take trinken, for 'laugh' lachen."
+      ru: "Письменный отзыв — значит Präteritum. Для «пить» возьмите trinken, для «смеяться» — lachen."
+      uk: "Письмовий відгук — отже Präteritum. Для «пити» візьміть trinken, для «сміятися» — lachen."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für das Trinken nimm trinken, für das Lachen lachen."
+    prompt_en: "After the performance we drank a coffee and laughed a lot."
+    prompt_ru: "После спектакля мы выпили кофе и много смеялись."
+    prompt_uk: "Після вистави ми випили кави і багато сміялися."
+    answer: "Nach der Vorstellung tranken wir einen Kaffee und lachten viel."
+    accept:
+      # The subject may lead; the graded pair does not move with it.
+      - "Wir tranken nach der Vorstellung einen Kaffee und lachten viel."
+      # RU and UK mark no article on the drink, and German drinks coffee with and without
+      # one; the graded pair is untouched either way.
+      - "Nach der Vorstellung tranken wir Kaffee und lachten viel."
+      - "Wir tranken nach der Vorstellung Kaffee und lachten viel."
+    key_tokens: ["tranken", "lachten"]
+    explain:
+      en: "Graded are the two full verbs. trinken is strong, so the vowel changes and nothing is added — tranken, never trinkte. lachen is weak and keeps its stem under the -te — lachten. The two forms look nothing alike, and that is the point: German decides between them per verb, and the ending you know from lachen is the one that gets put on trinken by mistake."
+      ru: "Оцениваются два полнозначных глагола. trinken — сильный, поэтому меняется гласная и ничего не добавляется: tranken, но никогда trinkte. lachen — слабый и сохраняет основу под -te: lachten. Формы совсем не похожи, и в этом всё дело: немецкий решает по каждому глаголу отдельно, а окончание, знакомое по lachen, по ошибке приставляют к trinken."
+      uk: "Оцінюються два повнозначні дієслова. trinken — сильне, тому змінюється голосний і нічого не додається: tranken, але ніколи trinkte. lachen — слабке і зберігає основу під -te: lachten. Форми зовсім не схожі, і в цьому вся річ: німецька вирішує щодо кожного дієслова окремо, а закінчення, знайоме з lachen, помилково приставляють до trinken."
+      de: "Bewertet werden die zwei Vollverben. trinken ist stark, also wechselt der Vokal und es kommt nichts dazu — tranken, nie trinkte. lachen ist schwach und behält seinen Stamm unter dem -te — lachten. Die beiden Formen sehen einander gar nicht ähnlich, und genau darum geht es: Deutsch entscheidet pro Verb, und die Endung von lachen wandert irrtümlich an trinken."
+
+  - id: variant-c
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'buy' take kaufen, for 'get' bekommen, and for 'not until' erst — nur would say something else."
+      ru: "Письменный отзыв — значит Präteritum. Для «купить» возьмите kaufen, для «получить» — bekommen, а для «только (не раньше чем)» — erst: nur сказало бы другое."
+      uk: "Письмовий відгук — отже Präteritum. Для «купити» візьміть kaufen, для «дістати» — bekommen, а для «лише (не раніше ніж)» — erst: nur сказало б інше."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für das Kaufen nimm kaufen, für das Erhalten bekommen, und für den späten Zeitpunkt erst — nur hieße etwas anderes."
+    prompt_en: "We only bought the tickets in the evening and still got good seats."
+    prompt_ru: "Билеты мы купили только вечером и всё равно получили хорошие места."
+    prompt_uk: "Квитки ми купили лише ввечері і все одно дістали гарні місця."
+    answer: "Wir kauften die Karten erst am Abend und bekamen trotzdem gute Plätze."
+    accept:
+      # RU and UK front the object and mark no definiteness on a bare noun; both
+      # renderings leave the graded pair exactly where it is.
+      - "Die Karten kauften wir erst am Abend und bekamen trotzdem gute Plätze."
+      - "Wir kauften Karten erst am Abend und bekamen trotzdem gute Plätze."
+    key_tokens: ["kauften", "bekamen"]
+    explain:
+      en: "Graded are the two full verbs. kaufen is weak: stem plus -te, kauften. bekommen is strong and inseparable, so the vowel changes and no ge- and no -te appear anywhere — bekamen. The prefix hides the strong verb inside it, which is why bekommte is the form a hand reaches for: kommen is visibly strong, bekommen is the same verb wearing a prefix."
+      ru: "Оцениваются два полнозначных глагола. kaufen — слабый: основа плюс -te, kauften. bekommen — сильный и неотделяемый, поэтому гласная меняется, а никакого ge- и никакого -te не появляется: bekamen. Приставка прячет сильный глагол внутри, и потому рука тянется к bekommte: kommen сильный на вид, а bekommen — тот же глагол под приставкой."
+      uk: "Оцінюються два повнозначні дієслова. kaufen — слабке: основа плюс -te, kauften. bekommen — сильне й невідокремлюване, тому голосний змінюється, а жодного ge- і жодного -te не з'являється: bekamen. Префікс ховає сильне дієслово всередині, і тому рука тягнеться до bekommte: kommen сильне на вигляд, а bekommen — те саме дієслово під префіксом."
+      de: "Bewertet werden die zwei Vollverben. kaufen ist schwach: Stamm plus -te, kauften. bekommen ist stark und untrennbar, also wechselt der Vokal, und weder ein ge- noch ein -te taucht auf — bekamen. Der Präfix versteckt das starke Verb, und deshalb greift die Hand zu bekommte: kommen sieht stark aus, bekommen ist dasselbe Verb mit einer Vorsilbe."
