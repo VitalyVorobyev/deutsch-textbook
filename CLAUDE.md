@@ -2,8 +2,10 @@
 
 An AI-assisted, human-directed and edited German learning system by Vitaly Vorobyev:
 wiki-like textbook + interactive exercises +
-FSRS flashcards. A1 and A2 are complete and B1 is being authored under its frozen contract
-(`docs/curriculum/a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
+FSRS flashcards. A1 and A2 are complete; all fourteen B1 units of the frozen contract
+(`docs/curriculum/a2-b1.md`) are now authored, and its end-of-level checkpoint and placement
+have landed; what B1 still owes is its Wortliste tail (lexis waves 2–4). The learner (Vitaly)
+has B2 as a longer-term goal. Explanations
 are bilingual **EN + RU**, with an optional **UK** half — independently authored from the
 German, shipping in file-scoped waves — and, from B1
 onward, an optional German-medium explanation half. The repo is
@@ -51,7 +53,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun run gen:ipa` — fill missing `ipa` on vocab entries via espeak-ng (`brew install espeak-ng`; one-off dev tool, nothing about espeak ships). **Always review the output** — it is a good phoneme skeleton but gets compound/separable-verb stress, loanwords and unstressed vowel quality wrong. `--calibrate` diffs against a known-answer table; `--check` is a dry run; `--force` regenerates, discarding manual fixes.
 - `bun scripts/coverage.ts <A1|A2|B1>` — Goethe Wortliste coverage. **A1 and A2 are both at 100% — keep them there.** A new word belongs to exactly one deck; the manifest gains a line in the same change. A leading `~` (taught as grammar, no flashcard) **must be earned** — the validator hard-fails unless the word occurs in the taught surface. Run `--check-deck <file.yaml>` per deck before `bun run validate` on any completion pass. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun scripts/lang-cost.ts <file…>` — words per explanation half, and what four halves cost against two. Exists because a figure that decides a policy has to be reproducible: the `<De>` pilot's ratios reached the roadmap with no command behind them. Counting method is stated in the script.
-- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 22/22, A2 30/30, B1 29/32. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
+- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 22/22, A2 30/30, B1 32/32. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun tauri dev` / `bun tauri build` — desktop app (thin Tauri v2 shell in `src-tauri/`; needs a Rust toolchain). Release: push a plain `vX.Y.Z` tag → `.github/workflows/release.yml` builds Windows, Linux and macOS (unsigned) installers into a GitHub Release; the tag is stamped as the version. Keep the site base-path-agnostic. Tauri JS APIs only behind the `isTauri()` runtime check (`src/lib/syncdir.ts`).
 
 ## Where content lives

@@ -1,0 +1,85 @@
+topic: geld-vertraege
+kind: intensive
+title_de: "Rechnung nach der Reparatur — und der Kostenvoranschlag daneben"
+text:
+  - >-
+    Elektro Weber GmbH — Rechnung Nr. 2026-0412,
+    [[ausgestellt am::issued on::выписан::виписаний]] 3. Mai. Kunde: Herr T.
+    Klein, Lindenweg 12.
+  - >-
+    Zeile 1: Reparatur der Waschmaschine,
+    [[Arbeitszeit::hours worked::время работы::час роботи]] 2 Stunden,
+    90,00 €. Zeile 2: Material (Pumpe), 45,00 €. Zeile 3:
+    [[Anfahrt::call-out journey::выезд мастера::виїзд майстра]]
+    [[pauschal::at one flat rate::единой суммой::єдиною сумою]], 25,00 €.
+    [[Gesamtbetrag::total amount::итоговая сумма::підсумкова сума]]: 160,00 €.
+  - >-
+    Die Zahlung ist am 17. Mai [[fällig::due::подлежит оплате::підлягає
+    оплаті]], per Überweisung auf unser Konto. Nach diesem Datum folgt eine
+    [[Mahnung::reminder to pay::напоминание об оплате::нагадування про
+    оплату]]. Bei Fragen zur Rechnung erreichen Sie uns montags bis freitags
+    von 9 bis 16 Uhr.
+  - >-
+    Notiz des Kunden: Im
+    [[Kostenvoranschlag::written estimate before the work::смете до начала
+    работы::кошторисі до початку роботи]] vom 20. April standen 135 Euro. Die
+    Anfahrt war dort nicht [[angegeben::stated, named::указана::зазначена]].
+    Vor der Überweisung frage ich beim Anbieter nach, ob Zeile 3 richtig ist.
+    Bezahlen möchte ich erst, wenn die Rechnung stimmt.
+questions:
+  - id: frage-differenz-voranschlag
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Warum ist der Gesamtbetrag höher als der Kostenvoranschlag vom 20. April?"
+    options:
+      - "Auf der Rechnung steht eine Zeile mehr: die Anfahrt für 25 Euro."
+      - "Das Material ist seit April teurer geworden."
+      - "Die Reparatur hat länger gedauert als geplant."
+    correct: 0
+    translation:
+      en: "Why is the total higher than the written estimate of 20 April?"
+      ru: "Почему итоговая сумма больше сметы от 20 апреля?"
+      uk: "Чому підсумкова сума більша за кошторис від 20 квітня?"
+    explain:
+      en: "The two documents are compared line by line, and the arithmetic does the rest: Arbeitszeit 90 plus Material 45 is exactly the 135 euros of the estimate, so the whole difference sits in the third line, Anfahrt pauschal 25,00 €. Nothing in the text says a price went up, and the two hours of Arbeitszeit are the same on both papers."
+      ru: "Два документа сравнивают построчно, а дальше считает арифметика: Arbeitszeit 90 плюс Material 45 — это ровно 135 евро сметы, значит вся разница сидит в третьей строке, Anfahrt pauschal 25,00 €. О подорожании в тексте не сказано ни слова, а два часа работы совпадают в обеих бумагах."
+      uk: "Два документи порівнюють рядок за рядком, а далі рахує арифметика: Arbeitszeit 90 плюс Material 45 — це рівно 135 євро кошторису, отже вся різниця сидить у третьому рядку, Anfahrt pauschal 25,00 €. Про подорожчання в тексті не сказано ні слова, а дві години роботи збігаються в обох паперах."
+      de: "Die beiden Papiere werden Zeile gegen Zeile gelegt: Arbeitszeit 90 plus Material 45 sind genau die 135 Euro des Kostenvoranschlags, die ganze Differenz steht also in Zeile 3 — Anfahrt pauschal 25,00 €. Von einer Preiserhöhung steht nichts im Text."
+
+  - id: frage-stundenpreis
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Was kostet nach dieser Rechnung eine Stunde Arbeitszeit?"
+    options:
+      - "45 Euro."
+      - "90 Euro."
+      - "22,50 Euro."
+    correct: 0
+    translation:
+      en: "According to this bill, what does one hour of work cost?"
+      ru: "Сколько по этому счёту стоит один час работы?"
+      uk: "Скільки за цим рахунком коштує одна година роботи?"
+    explain:
+      en: "A bill line carries the quantity and the amount, and the price per unit is what falls out between them: 90,00 € for 2 Stunden means 45 euros an hour. The 90 is the whole line, and 22,50 € would be the answer if the line said four hours."
+      ru: "В строке счёта стоят количество и сумма, а цена за единицу получается между ними: 90,00 € за 2 Stunden — это 45 евро в час. Девяносто — вся строка целиком, а 22,50 € было бы ответом, если бы в строке стояли четыре часа."
+      uk: "У рядку рахунку стоять кількість і сума, а ціна за одиницю виходить між ними: 90,00 € за 2 Stunden — це 45 євро за годину. Дев'яносто — увесь рядок, а 22,50 € було б відповіддю, якби в рядку стояли чотири години."
+      de: "Die Zeile nennt Menge und Betrag; der Einzelpreis ergibt sich dazwischen: 90,00 € für 2 Stunden sind 45 Euro pro Stunde. Die 90 sind die ganze Zeile, 22,50 € wären es bei vier Stunden."
+
+  - id: frage-zahlungsfrist
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Was passiert, wenn Herr Klein erst im Juni zahlt?"
+    options:
+      - "Er bekommt eine Mahnung."
+      - "Die Rechnung ist dann nicht mehr gültig."
+      - "Er muss die Anfahrt nicht mehr bezahlen."
+    correct: 0
+    translation:
+      en: "What happens if Herr Klein pays only in June?"
+      ru: "Что произойдёт, если господин Кляйн заплатит только в июне?"
+      uk: "Що станеться, якщо пан Кляйн заплатить лише в червні?"
+    explain:
+      en: "The payment line names a day and what follows it: am 17. Mai fällig, and nach diesem Datum folgt eine Mahnung. A bill does not expire when the day passes — the claim stays and a reminder is added, which is why fällig and gültig are two different words."
+      ru: "Строка об оплате называет день и то, что за ним следует: am 17. Mai fällig, а дальше — nach diesem Datum folgt eine Mahnung. Счёт не перестаёт действовать оттого, что срок прошёл: требование остаётся, и к нему добавляется напоминание. Потому fällig и gültig — два разных слова."
+      uk: "Рядок про оплату називає день і те, що за ним іде: am 17. Mai fällig, а далі — nach diesem Datum folgt eine Mahnung. Рахунок не перестає діяти від того, що строк минув: вимога лишається, і до неї додається нагадування. Тому fällig і gültig — два різні слова."
+      de: "Die Zahlungszeile nennt einen Tag und was danach kommt: am 17. Mai fällig, nach diesem Datum folgt eine Mahnung. Eine Rechnung verfällt nicht, wenn der Tag vorbei ist — deshalb sind fällig und gültig zwei verschiedene Wörter."
