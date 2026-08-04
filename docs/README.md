@@ -60,6 +60,11 @@ never reused, never silently rewritten — see the [ADR index](adrs/README.md).
 | [`adrs/0001-bilingual-explanation-halves.md`](adrs/0001-bilingual-explanation-halves.md) | Explanation-language, Ukrainian and German-medium design | accepted | never rewritten — superseded by a new ADR |
 | [`adrs/0002-advisory-only-writing-assistant.md`](adrs/0002-advisory-only-writing-assistant.md) | Local writing-assistant contract (advisory only, never evidence) | accepted | never rewritten — superseded by a new ADR |
 | [`adrs/0003-opaque-snapshot-sync-and-approval-accounts.md`](adrs/0003-opaque-snapshot-sync-and-approval-accounts.md) | Why the sync server stores opaque bytes and sign-in grants nothing | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0004-first-run-accounts-and-automatic-sync.md`](adrs/0004-first-run-accounts-and-automatic-sync.md) | Accounts offered at first run; sync is already automatic; cloud is recommended | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0005-one-surface-for-fortschritt-and-konto.md`](adrs/0005-one-surface-for-fortschritt-and-konto.md) | `/progress` absorbs account and sync; `/konto` becomes a redirect | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0006-public-domain-classics-as-extensive-reading-corpus.md`](adrs/0006-public-domain-classics-as-extensive-reading-corpus.md) | Public-domain classics as the second extensive-reading strand | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0007-derived-cross-links-never-hand-maintained.md`](adrs/0007-derived-cross-links-never-hand-maintained.md) | Cross-links derived from focus tags, `deepens` and reference keys | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0008-character-ensemble-and-audio-studio.md`](adrs/0008-character-ensemble-and-audio-studio.md) | Recurring character ensemble and audio-studio productization | proposed | promoted or rejected by a new ADR |
 
 ## Archive
 

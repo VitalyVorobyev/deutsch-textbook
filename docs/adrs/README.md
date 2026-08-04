@@ -32,6 +32,14 @@ relationship.
 | [`0001`](0001-bilingual-explanation-halves.md) | Bilingual explanation halves — Sprachen, Ukrainian and the German-medium half | accepted · 2026-07-14 |
 | [`0002`](0002-advisory-only-writing-assistant.md) | Schreib-Assistent — local, advisory-only writing feedback, never evidence | accepted · 2026-07-14 |
 | [`0003`](0003-opaque-snapshot-sync-and-approval-accounts.md) | Opaque snapshot sync and approval accounts | accepted · reframed 2026-08-04 |
+| [`0004`](0004-first-run-accounts-and-automatic-sync.md) | Accounts at first run, sync already automatic, cloud recommended | accepted · 2026-08-04 |
+| [`0005`](0005-one-surface-for-fortschritt-and-konto.md) | One surface for Fortschritt and Konto | accepted · 2026-08-04 |
+| [`0006`](0006-public-domain-classics-as-extensive-reading-corpus.md) | Public-domain classics as the second extensive-reading strand | accepted · 2026-08-04 |
+| [`0007`](0007-derived-cross-links-never-hand-maintained.md) | Cross-links are derived, never hand-maintained | accepted · 2026-08-04 |
+| [`0008`](0008-character-ensemble-and-audio-studio.md) | A recurring character ensemble, and productizing the audio studio | **proposed** · 2026-08-04 |
+
+A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
+superseded by a new ADR rather than edited into an acceptance.
 
 Rationale that predates this ADR practice — completed roadmaps, superseded design notes, dated
 evidence reviews — lives in [`../archive/`](../archive/), frozen as it shipped.

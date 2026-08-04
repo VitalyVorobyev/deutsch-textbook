@@ -47,9 +47,8 @@ never in the write path: `logAttempt` writes IndexedDB and *then* schedules a sy
   the desktop shell a page load lasts as long as the app is open; caching "the request did not
   complete" would stop a laptop that started on a train from ever syncing again without a restart.
   Regression-tested.
-- The desktop app additionally keeps its folder sync, which is unconditional and local. That is
-  strictly better than the cloud for the agent loop, and it is why the folder backend was not
-  replaced.
+- The desktop app additionally keeps its folder sync, unconditional and local — the cloud backend
+  was added beside the dev writer and the sync folder, never in place of them.
 
 ## Cadence: why remote is not 2.5 seconds
 
@@ -84,11 +83,10 @@ In order:
 3. a new `pending` account.
 
 Step 2 is why signing in with GitHub after Google finds the existing progress instead of minting a
-second account the learner cannot tell apart. It is only sound **because the email is verified** —
-Google's `email_verified`, GitHub's `/user/emails` `verified: true`. An unverified address is
-refused outright (`?auth=email-unverified`), because the email is the linking key and an
-unverified one would let anyone who can claim an address at a provider walk into someone else's
-account.
+second account. It is sound only **because the email is verified** — Google's `email_verified`,
+GitHub's `/user/emails` `verified: true`; an unverified address is refused outright
+(`?auth=email-unverified`). Why the verification is load-bearing:
+[ADR 0003](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md).
 
 ### Sessions and CSRF
 
@@ -115,9 +113,8 @@ carries an explicit `Authorization: Bearer dat_…`, issued from a browser sessi
 shown exactly once (only its sha256 is stored). It goes through `@tauri-apps/plugin-http`, which is
 Rust-side and exempt from CORS; the origin is allowlisted in `src-tauri/capabilities/default.json`.
 
-**A device token grants sync and nothing else.** `/api/admin/*`, `/api/tokens` and account deletion
-all require the cookie. One leaked paste must not be an administrative takeover, and a token that
-could mint more tokens would be a self-renewing foothold.
+**A device token grants sync and nothing else** — `/api/admin/*`, `/api/tokens` and account deletion
+all require the cookie ([ADR 0003](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md)).
 
 The token sits in the desktop app's `localStorage`, which is a plain file on disk. That is a real
 limitation and the reason revocation is one click on `/konto`.
@@ -145,8 +142,8 @@ whether it was guessed or merely early.
 
 What holds it together, each with a test that has been watched failing:
 
-- **Approval is cookie-only.** A device token cannot approve a pairing, so one leaked token is not a
-  self-renewing foothold — the same rule `/api/tokens` enforces.
+- **Approval is cookie-only.** A device token cannot approve a pairing — the same rule
+  `/api/tokens` enforces.
 - **Redeemed exactly once.** The token is minted at redemption and the row deleted in the same step,
   so no readable credential is ever at rest and a replayed device code gets nothing.
 - **Status is re-read at redemption**, not trusted from the moment of approval — the two are
@@ -193,12 +190,10 @@ which produce tests that pass for the wrong reason:
 
 Every mechanism in this document has been watched failing: deleting the approval gate, the 428, the
 `If-None-Match` short-circuit, the HMAC comparison, the verified-email refusal, the byte cap, the
-device-token boundary and refuse-to-shrink each turn a named test red.
-
-One of those checks found a defect in the test rather than the code: the original "tampered state"
-test passed with the HMAC comparison deleted, because a mangled base64 payload fails to parse
-anyway. It now substitutes a payload that decodes to *valid* state under the original signature, so
-only the HMAC can reject it.
+device-token boundary and refuse-to-shrink each turn a named test red. One of those checks found a
+defect in the *test* rather than the code ([archive](../archive/2026-08-doc-slimming.md)) — the
+lesson being that "the test goes red when I delete the mechanism" is the only proof that it tests
+the mechanism.
 
 ## Walkthroughs
 
@@ -310,6 +305,5 @@ version that inherits the deployed code and bindings, so sign-in returns as soon
 six lands. `SESSION_SECRET` may be re-minted freely — it signs only the short-lived OAuth state
 cookie, so rotating it invalidates in-flight sign-ins and nothing else.
 
-**Why the app no longer looks broken meanwhile.** `AccountPanel` renders an explicit "sign-in is not
-available right now" line when `providers` is empty, instead of mapping over an empty list and
-producing a page that ends mid-thought.
+Meanwhile the app does not look broken: `AccountPanel` renders an explicit "sign-in is not available
+right now" line when `providers` is empty.
