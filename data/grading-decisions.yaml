@@ -1159,3 +1159,15 @@
   decision: confirm
   note: "Correct German but an incomplete translation: in Hannover is dropped, and the possessive unseren has become den. The Perfekt bracket haben … verpasst was right, so the divergence sits outside perfekt-satzklammer."
   decidedAt: 2026-08-03
+
+- item: a1/checkpoint-a1:uebersetzen-fahrrad
+  given: "Wir fahren mit dem Fahrrad ins Kaufhaus"
+  decision: confirm
+  note: "das Kaufhaus is a department store, not a supermarket — all three prompt halves say Supermarkt/супермаркет, so the rendering changes the destination and does not preserve the target. The grammar around it (fahren mit dem Fahrrad, ins + Akkusativ direction) is fine, and the item is untagged, so nothing is attributed. drill note: store-type lexemes confused — Kaufhaus for Supermarkt; the Laden/Geschäft/Kaufhaus/Supermarkt row already lives in A1 vocabulary."
+  decidedAt: 2026-08-04
+
+- item: b1/probe-erfahrungen-erzaehlen-plusquamperfekt-nachdem:variant-b
+  given: "Nachdem ich den Vertrag unterschrieben hatte, ging alles sehr gut."
+  decision: confirm
+  note: "sehr gut renders «очень хорошо», but every prompt half says fast/быстро/швидко — the carrier adverb is mistranslated, so the sentence is not target-preserving and accept would be wrong. The probed competence is intact: Nachdem, unterschrieben and hatte are all exactly right, so under today's grader the miss stays outside plusquamperfekt-nachdem and the probe stage is not charged to the tag."
+  decidedAt: 2026-08-04

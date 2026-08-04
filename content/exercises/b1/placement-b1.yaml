@@ -1,0 +1,544 @@
+topic: informationen-vermitteln
+role: placement
+title:
+  en: "Placement test B1 — what you already know"
+  ru: "Тест на уровень B1 — что вы уже знаете"
+  uk: "Тест на рівень B1 — що ви вже знаєте"
+  de: "Einstufungstest B1 — was du schon kannst"
+
+# The B1 entry test: 32 tasks over 14 topics, two or three each. Same contract as the A1 and
+# A2 tests — a topic is placed only when every one of its tasks is answered and the parts-
+# weighted ratio reaches 0.8, so at two items both have to be right.
+#
+# Anchored to `informationen-vermitteln`, the last B1 topic in the spine, so every focus tag
+# introduced anywhere in B1 passes the curriculum-order check. No item carries `preview`:
+# every tag used here is introduced at or before the anchor.
+#
+# Mix: 18 translate, 5 cloze, 5 mc, 4 audio-comprehension. 23 of the 32 tasks (72%) are free
+# or gap production against 5 (16%) the learner picks from what is on screen. Against the
+# written-item denominator the two caps read 5 of 28 mc (18%, cap 25%) and 5 of 28 selection
+# (18%, cap 40%) — both stricter than a practice set's, because a guessed answer here costs
+# the learner a lesson rather than a point. `audio-comprehension` is on neither side of those
+# ratios, exactly as in the practice item mix.
+#
+# Every item's outcomes belong to exactly ONE topic: the item's score decides that topic's
+# verdict, and an item counted toward two would blur both.
+#
+# Four listening tasks, one more than the single item the rule demands. A test that can be
+# read end to end certifies reading and would then place the learner out of the listening
+# topics on written evidence — the worst false positive this design can produce.
+#
+# No `write` and no `speak`, and that is not a stylistic choice: open production is never
+# scored, and since "every item answered" is half the pass condition, one unscorable item
+# would leave its topic permanently unplaceable.
+
+items:
+  # --- erfahrungen-erzaehlen ---
+  - id: erfahrungen-interview-hoeren
+    outcomes: [interview-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Reporterin", text: "Herr Nowak, Sie haben ein Jahr im Ausland gearbeitet. Würden Sie es wieder machen?" }
+        - { speaker: "Herr Nowak", text: "Sofort. Die Sprache war am Anfang schwer, und ich habe oft an zu Hause gedacht. Aber ich habe in diesem einen Jahr mehr gelernt als in den fünf Jahren davor." }
+    question: "Wie bewertet Herr Nowak das Jahr im Ausland?"
+    options: ["Er würde es sofort wiederholen.", "Er bereut es, weil die Sprache zu schwer war.", "Er hat weniger gelernt als erwartet."]
+    correct: 0
+    translation: { en: "How does Herr Nowak rate the year abroad?", ru: "Как господин Новак оценивает год за границей?", uk: "Як пан Новак оцінює рік за кордоном?" }
+    explain: { en: "Sofort answers the question before any of the detail arrives, and everything after it is a but-clause that does not take the answer back. The difficulty with the language and the homesickness are real and they are conceded, not complained about — aber ich habe … mehr gelernt is where the verdict lands. When somebody answers in one word and then explains, the one word is the answer.", ru: "Sofort отвечает на вопрос ещё до всех подробностей, и всё, что идёт следом, — это уступка, которая ответа не отменяет. Трудности с языком и тоска по дому настоящие, но их именно признают, а не жалуются: оценка стоит в aber ich habe … mehr gelernt. Когда человек отвечает одним словом, а потом объясняет, ответ — это слово.", uk: "Sofort відповідає на питання ще до всіх подробиць, і все, що йде далі, — це поступка, яка відповіді не скасовує. Труднощі з мовою й туга за домом справжні, але їх саме визнають, а не скаржаться: оцінка стоїть у aber ich habe … mehr gelernt. Коли людина відповідає одним словом, а потім пояснює, відповідь — це слово.", de: "Sofort beantwortet die Frage, bevor irgendein Detail kommt, und alles danach ist ein Aber, das die Antwort nicht zurücknimmt. Die Schwierigkeit mit der Sprache und das Heimweh sind echt, aber sie werden eingeräumt und nicht beklagt — das Urteil steht in aber ich habe … mehr gelernt. Wer mit einem Wort antwortet und dann erklärt, hat mit dem einen Wort geantwortet." }
+
+  - id: erfahrungen-praeteritum-luecke
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written account. Fill in the Präteritum of the verb in brackets."
+      ru: "Письменный рассказ. Вставьте Präteritum глагола, указанного в скобках."
+      uk: "Письмова розповідь. Вставте Präteritum дієслова, вказаного в дужках."
+      de: "Ein schriftlicher Bericht. Ergänze das Präteritum des Verbs in Klammern."
+    text: "Im Sommer {{fuhr}} (fahren) ich nach Wien. Ich {{blieb}} (bleiben) drei Tage und {{schrieb}} (schreiben) jeden Abend eine Karte."
+    translation: { en: "In the summer I went to Vienna. I stayed three days and wrote a postcard every evening.", ru: "Летом я ездил в Вену. Я пробыл там три дня и каждый вечер писал открытку.", uk: "Улітку я їздив до Відня. Я пробув там три дні й щовечора писав листівку." }
+    explain: { en: "All three are strong verbs, and a strong verb builds the Präteritum by changing its vowel and taking no -te at all: fahren → fuhr, bleiben → blieb, schreiben → schrieb. The ich-form is bare — no ending. This is the written past. Spoken German would tell the same trip in the Perfekt (ich bin gefahren), and neither is more correct; the register decides.", ru: "Все три глагола сильные, а сильный глагол образует Präteritum сменой гласной и никакого -te не берёт: fahren → fuhr, bleiben → blieb, schreiben → schrieb. Форма ich без окончания. Это письменное прошедшее. Вслух ту же поездку рассказали бы в Perfekt (ich bin gefahren), и ни один вариант не «правильнее» — выбирает регистр.", uk: "Усі три дієслова сильні, а сильне дієслово утворює Präteritum зміною голосної і жодного -te не бере: fahren → fuhr, bleiben → blieb, schreiben → schrieb. Форма ich без закінчення. Це письмове минуле. Вголос ту саму поїздку розповіли б у Perfekt (ich bin gefahren), і жоден варіант не «правильніший» — вибирає регістр.", de: "Alle drei sind starke Verben, und ein starkes Verb bildet das Präteritum mit Vokalwechsel und ganz ohne -te: fahren → fuhr, bleiben → blieb, schreiben → schrieb. Die ich-Form ist endungslos. Das ist die geschriebene Vergangenheit. Gesprochen erzählte man dieselbe Reise im Perfekt (ich bin gefahren), und keines ist richtiger — es entscheidet das Register." }
+
+  - id: erfahrungen-nachdem-uebersetzen
+    outcomes: [vorzeitigkeit-ausdruecken]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Translate into German. Use nachdem, and put the earlier event in the Plusquamperfekt."
+      ru: "Переведите на немецкий. Используйте nachdem и поставьте более раннее событие в Plusquamperfekt."
+      uk: "Перекладіть німецькою. Використайте nachdem і поставте ранішу подію в Plusquamperfekt."
+      de: "Übersetze ins Deutsche. Benutze nachdem und setz das frühere Ereignis ins Plusquamperfekt."
+    prompt_en: "After we had eaten, we went for a walk."
+    prompt_ru: "После того как мы поели, мы пошли гулять."
+    prompt_uk: "Після того як ми поїли, ми пішли гуляти."
+    answer: "Nachdem wir gegessen hatten, machten wir einen Spaziergang."
+    key_tokens: ["gegessen", "hatten"]
+    accept:
+      # The main clause may be Perfekt in speech; the graded pair in the nachdem-clause is
+      # untouched by that choice.
+      - "Nachdem wir gegessen hatten, haben wir einen Spaziergang gemacht."
+    explain: { en: "Graded are the two parts of the Plusquamperfekt: the participle gegessen and the auxiliary hatten, in that order and both at the end of the clause. nachdem is what forces the tense — the clause it opens holds the earlier of the two events, and German marks that step back rather than leaving it to be inferred. The main clause then stays one step later, which is why machten and haben gemacht are both fine there.", ru: "Оцениваются две части Plusquamperfekt: причастие gegessen и вспомогательный hatten — именно в таком порядке и оба в конце придаточного. Время задаёт nachdem: в открываемом им придаточном стоит более раннее из двух событий, и немецкий помечает этот шаг назад, а не оставляет его домысливать. Главное предложение остаётся на шаг позже — поэтому там годятся и machten, и haben gemacht.", uk: "Оцінюються дві частини Plusquamperfekt: дієприкметник gegessen і допоміжне hatten — саме в такому порядку і обидва в кінці підрядного. Час задає nachdem: у підрядному, яке він відкриває, стоїть раніша з двох подій, і німецька позначає цей крок назад, а не залишає його домислювати. Головне речення лишається на крок пізніше — тому там годяться і machten, і haben gemacht.", de: "Bewertet werden die beiden Teile des Plusquamperfekts: das Partizip gegessen und das Hilfsverb hatten, in dieser Reihenfolge und beide am Satzende. Die Zeitform erzwingt nachdem: Im Satz, den es eröffnet, steht das frühere der beiden Ereignisse, und das Deutsche markiert diesen Schritt zurück, statt ihn erschließen zu lassen. Der Hauptsatz bleibt einen Schritt später — deshalb sind dort machten und haben gemacht beide in Ordnung." }
+
+  # --- leben-veraendern ---
+  - id: leben-relativ-dativ-luecke
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativpronomen-dativ
+    instruction:
+      en: "Fill in the relative pronoun. In both clauses it is the person who receives something."
+      ru: "Вставьте относительное местоимение. В обоих придаточных это тот, кто получает."
+      uk: "Вставте відносний займенник. В обох підрядних це той, хто отримує."
+      de: "Ergänze das Relativpronomen. In beiden Nebensätzen ist es die Person, die etwas bekommt."
+    text: "Die Nachbarin, {{der}} ich den Schlüssel gegeben habe, ist im Urlaub. Der Kollege, {{dem}} ich geholfen habe, hat sich bedankt."
+    translation: { en: "The neighbour I gave the key to is on holiday. The colleague I helped said thank you.", ru: "Соседка, которой я отдал ключ, в отпуске. Коллега, которому я помог, поблагодарил.", uk: "Сусідка, якій я віддав ключ, у відпустці. Колега, якому я допоміг, подякував." }
+    explain: { en: "Gender and number come from the noun outside the clause; the case comes from the job the pronoun does inside it. Here both jobs are dative — geben hands something to somebody, and helfen governs the dative outright — so feminine der and masculine dem. The feminine dative der is the form that catches people out, because it looks exactly like the masculine nominative der.", ru: "Род и число берутся у существительного снаружи, падеж — у той роли, которую местоимение играет внутри придаточного. Здесь обе роли дативные: geben передаёт что-то кому-то, а helfen управляет дативом напрямую, — отсюда der в женском роде и dem в мужском. Подводит именно датив женского рода der: он выглядит точно как номинатив мужского.", uk: "Рід і число беруться в іменника ззовні, відмінок — у тієї ролі, яку займенник відіграє всередині підрядного. Тут обидві ролі давальні: geben передає щось комусь, а helfen керує давальним напряму, — звідси der у жіночому роді й dem у чоловічому. Підводить саме давальний жіночого роду der: він виглядає точно як називний чоловічого.", de: "Genus und Numerus kommen vom Nomen davor, der Kasus von der Rolle im Nebensatz. Hier sind beide Rollen Dativ — geben übergibt jemandem etwas, helfen regiert den Dativ direkt —, also feminin der und maskulin dem. Zu Fall bringt der feminine Dativ der, denn er sieht genauso aus wie der maskuline Nominativ." }
+
+  - id: leben-komparativ-uebersetzen
+    outcomes: [wohnsituation-vergleichen]
+    type: translate
+    focus: komparativ-attributiv
+    instruction:
+      en: "Translate into German. Put the compared adjective in front of the noun."
+      ru: "Переведите на немецкий. Поставьте сравнение перед существительным."
+      uk: "Перекладіть німецькою. Поставте порівняння перед іменником."
+      de: "Übersetze ins Deutsche. Stell das verglichene Adjektiv vor das Nomen."
+    prompt_en: "We now live in a smaller flat."
+    prompt_ru: "Теперь мы живём в квартире поменьше."
+    prompt_uk: "Тепер ми живемо в меншій квартирі."
+    answer: "Wir wohnen jetzt in einer kleineren Wohnung."
+    key_tokens: ["kleineren"]
+    accept:
+      - "Jetzt wohnen wir in einer kleineren Wohnung."
+    explain: { en: "One word carries the whole item, and it carries two endings: klein + -er for the comparison + -en for the feminine dative after in einer. Learners routinely stop after the first of them (in einer kleiner Wohnung), because the comparison already feels expressed. It is not — an adjective in front of a noun must still be declined, whatever else it is doing.", ru: "Всё задание держится на одном слове, и в нём два окончания: klein + -er для сравнения + -en для женского датива после in einer. Чаще всего останавливаются на первом (in einer kleiner Wohnung), потому что сравнение вроде бы уже выражено. Нет: прилагательное перед существительным всё равно должно склоняться, что бы оно ещё ни делало.", uk: "Усе завдання тримається на одному слові, і в ньому два закінчення: klein + -er для порівняння + -en для жіночого давального після in einer. Найчастіше зупиняються на першому (in einer kleiner Wohnung), бо порівняння начебто вже виражене. Ні: прикметник перед іменником усе одно має відмінюватися, хоч би що він іще робив.", de: "Ein Wort trägt die ganze Aufgabe, und es trägt zwei Endungen: klein + -er für den Vergleich + -en für den femininen Dativ nach in einer. Meist wird nach der ersten aufgehört (in einer kleiner Wohnung), weil der Vergleich sich schon ausgedrückt anfühlt. Ist er nicht — ein Adjektiv vor einem Nomen wird dekliniert, was es sonst noch tut." }
+
+  - id: leben-genitiv-uebersetzen
+    outcomes: [veraenderung-berichten]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Translate into German. Join the two nouns with the genitive, not with von."
+      ru: "Переведите на немецкий. Соедините два существительных генитивом, а не через von."
+      uk: "Перекладіть німецькою. З'єднайте два іменники генитивом, а не через von."
+      de: "Übersetze ins Deutsche. Verbinde die beiden Nomen mit dem Genitiv, nicht mit von."
+    prompt_en: "The location of the new flat is better."
+    prompt_ru: "Расположение новой квартиры лучше."
+    prompt_uk: "Розташування нової квартири краще."
+    answer: "Die Lage der neuen Wohnung ist besser."
+    key_tokens: ["der", "Wohnung"]
+    explain: { en: "The genitive answers wessen? and it follows the noun it belongs to: die Lage der neuen Wohnung, never der neuen Wohnung Lage. Feminine shows the case on the article word alone — der, with the noun unchanged — while masculine and neuter would add an -s to the noun as well (des Hauses). The spoken route die Lage von der neuen Wohnung exists, but a written report uses the genitive, and that is the register this unit works in.", ru: "Генитив отвечает на вопрос wessen? и стоит после того существительного, к которому относится: die Lage der neuen Wohnung, а не der neuen Wohnung Lage. В женском роде падеж виден только на артикле — der, а само существительное не меняется, — тогда как мужской и средний добавили бы ещё -s (des Hauses). Разговорный обход die Lage von der neuen Wohnung существует, но письменный рассказ берёт генитив, и это как раз регистр этой главы.", uk: "Генитив відповідає на питання wessen? і стоїть після того іменника, до якого належить: die Lage der neuen Wohnung, а не der neuen Wohnung Lage. У жіночому роді відмінок видно лише на артиклі — der, а сам іменник не змінюється, — тоді як чоловічий і середній додали б ще -s (des Hauses). Розмовний обхід die Lage von der neuen Wohnung існує, але письмова розповідь бере генитив, і це саме регістр цього розділу.", de: "Der Genitiv antwortet auf wessen? und steht hinter dem Nomen, zu dem er gehört: die Lage der neuen Wohnung, nie der neuen Wohnung Lage. Das Femininum zeigt den Kasus allein am Artikelwort — der, das Nomen bleibt unverändert —, Maskulinum und Neutrum hängten dem Nomen noch ein -s an (des Hauses). Den gesprochenen Umweg die Lage von der neuen Wohnung gibt es; ein geschriebener Bericht nimmt den Genitiv, und in diesem Register arbeitet die Einheit." }
+
+  # --- gesundheit-wohlbefinden ---
+  - id: gesundheit-reflexiv-uebersetzen
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Translate into German. Use sich ärgern."
+      ru: "Переведите на немецкий. Используйте sich ärgern."
+      uk: "Перекладіть німецькою. Вживайте sich ärgern."
+      de: "Übersetze ins Deutsche. Benutze sich ärgern."
+    prompt_en: "I rarely get annoyed about small things."
+    prompt_ru: "Я редко раздражаюсь из-за мелочей."
+    prompt_uk: "Я рідко дратуюся через дрібниці."
+    answer: "Ich ärgere mich selten über Kleinigkeiten."
+    key_tokens: ["mich", "über"]
+    explain: { en: "The verb arrives as a package and both graded parts are in it: the reflexive pronoun mich and the preposition über, which then takes the accusative. Neither can be worked out from the meaning — sich freuen takes auf or über, sich kümmern takes um, sich interessieren takes für — so the frame is learned whole: sich ärgern über. Leaving the pronoun out gives ich ärgere, which means I annoy somebody else.", ru: "Глагол приходит комплектом, и обе оцениваемые части в нём: возвратное mich и предлог über, который дальше требует аккузатива. Ни то, ни другое из значения не выводится — sich freuen берёт auf или über, sich kümmern — um, sich interessieren — für, — поэтому рамка заучивается целиком: sich ärgern über. Без местоимения получается ich ärgere, а это «я раздражаю кого-то другого».", uk: "Дієслово приходить комплектом, і обидві оцінювані частини в ньому: зворотне mich і прийменник über, який далі вимагає акузатива. Ні те, ні інше зі значення не виводиться — sich freuen бере auf або über, sich kümmern — um, sich interessieren — für, — тому рамка заучується цілком: sich ärgern über. Без займенника виходить ich ärgere, а це «я дратую когось іншого».", de: "Das Verb kommt als Paket, und beide bewerteten Teile stecken darin: das Reflexivpronomen mich und die Präposition über, die dann den Akkusativ nimmt. Aus der Bedeutung folgt keines von beiden — sich freuen nimmt auf oder über, sich kümmern um, sich interessieren für —, deshalb lernt man den Rahmen als Ganzes: sich ärgern über. Ohne das Pronomen bleibt ich ärgere, und das heißt, dass ich jemand anderen ärgere." }
+
+  - id: gesundheit-ratschlag-uebersetzen
+    outcomes: [ratschlaege-formulieren]
+    type: translate
+    focus: konjunktiv2-ratschlag
+    instruction:
+      en: "Give the advice with An deiner Stelle."
+      ru: "Дайте совет, начав с An deiner Stelle."
+      uk: "Дайте пораду, почавши з An deiner Stelle."
+      de: "Gib den Rat mit An deiner Stelle."
+    prompt_en: "If I were you, I would go to the doctor."
+    prompt_ru: "На твоём месте я бы сходил к врачу."
+    prompt_uk: "На твоєму місці я б сходив до лікаря."
+    answer: "An deiner Stelle würde ich zum Arzt gehen."
+    key_tokens: ["würde", "gehen"]
+    accept:
+      - "Ich würde an deiner Stelle zum Arzt gehen."
+    explain: { en: "Advice in German is softened by the Konjunktiv II, and the everyday machine for it is würde plus an infinitive at the very end of the clause. An deiner Stelle fills position 1 on its own, so the verb comes second and the subject moves in behind it — würde ich, never An deiner Stelle ich würde. The bare imperative Geh zum Arzt says the same thing and says it as an order; between friends that is a different register, not a stronger one.", ru: "Совет по-немецки смягчают через Konjunktiv II, и рабочий механизм здесь — würde плюс инфинитив в самом конце. An deiner Stelle целиком занимает первое место, поэтому глагол идёт вторым, а подлежащее уходит за него: würde ich, а не An deiner Stelle ich würde. Голый императив Geh zum Arzt говорит то же самое, но приказом; между друзьями это другой регистр, а не более сильный.", uk: "Пораду німецькою пом'якшують через Konjunktiv II, і робочий механізм тут — würde плюс інфінітив у самому кінці. An deiner Stelle цілком займає перше місце, тому дієслово йде другим, а підмет іде за нього: würde ich, а не An deiner Stelle ich würde. Голий імператив Geh zum Arzt каже те саме, але наказом; між друзями це інший регістр, а не сильніший.", de: "Ein Rat wird im Deutschen mit dem Konjunktiv II abgeschwächt, und die Alltagsmaschine dafür ist würde plus Infinitiv ganz am Ende. An deiner Stelle füllt Position 1 allein, also steht das Verb an zweiter Stelle und das Subjekt dahinter — würde ich, nie An deiner Stelle ich würde. Der reine Imperativ Geh zum Arzt sagt dasselbe als Anweisung; unter Freunden ist das ein anderes Register, kein stärkeres." }
+
+  - id: gesundheit-packung-mc
+    outcomes: [empfehlungen-verstehen]
+    type: mc
+    prompt: "Auf der Packung steht: „Erwachsene nehmen dreimal täglich eine Tablette, jeweils nach dem Essen. Nicht länger als sieben Tage einnehmen.“ Was ist richtig?"
+    options:
+      - "Man nimmt die Tabletten nach dem Essen und höchstens eine Woche lang."
+      - "Man nimmt die Tabletten vor dem Essen und höchstens eine Woche lang."
+      - "Man nimmt dreimal täglich drei Tabletten."
+    correct: 0
+    translation: { en: "A package says: „Adults take one tablet three times a day, in each case after meals. Do not take for longer than seven days.“ What is correct?", ru: "На упаковке написано: «Взрослым принимать по одной таблетке три раза в день, каждый раз после еды. Не принимать дольше семи дней». Что верно?", uk: "На упаковці написано: «Дорослим приймати по одній таблетці тричі на день, щоразу після їжі. Не приймати довше семи днів». Що правильно?" }
+    explain: { en: "Three details decide it and each is a single word: nach and not vor; eine Tablette dreimal, not drei Tabletten; and sieben Tage as an upper limit, which is one week. nach and vor are the pair that changes the instruction completely, which is why a pharmacist repeats them slowly. jeweils means each time, not altogether.", ru: "Решают три детали, и каждая — одно слово: nach, а не vor; eine Tablette трижды, а не drei Tabletten; и sieben Tage как верхняя граница, то есть неделя. Пара nach и vor полностью меняет указание — поэтому в аптеке её проговаривают медленно. jeweils значит «каждый раз», а не «в сумме».", uk: "Вирішують три деталі, і кожна — одне слово: nach, а не vor; eine Tablette тричі, а не drei Tabletten; і sieben Tage як верхня межа, тобто тиждень. Пара nach і vor повністю змінює вказівку — тому в аптеці її промовляють повільно. jeweils означає «щоразу», а не «загалом».", de: "Drei Einzelheiten entscheiden, und jede ist ein Wort: nach und nicht vor; eine Tablette dreimal, nicht drei Tabletten; und sieben Tage als Obergrenze, also eine Woche. Das Paar nach/vor kehrt die Anweisung um, deshalb spricht eine Apothekerin es langsam. jeweils heißt jedes Mal, nicht insgesamt." }
+
+  # --- arbeit-bewerbung ---
+  - id: arbeit-stellenanzeige-mc
+    outcomes: [stellenanzeige-verstehen]
+    type: mc
+    prompt: "In der Anzeige steht: „Wir suchen eine Mitarbeiterin für unser Büro. Erfahrung im Kundenkontakt ist erwünscht, gute Deutschkenntnisse sind Voraussetzung. Bewerbungen bitte bis zum 15. Mai per E-Mail.“ Was ist unbedingt nötig?"
+    options:
+      - "Gute Deutschkenntnisse."
+      - "Erfahrung im Kundenkontakt."
+      - "Eine Bewerbung auf Papier."
+    correct: 0
+    translation: { en: "An advertisement reads: „We are looking for a member of staff for our office. Experience in customer contact is desirable, good German is a requirement. Applications by e-mail by 15 May, please.“ What is absolutely necessary?", ru: "В объявлении написано: «Мы ищем сотрудницу в наш офис. Опыт работы с клиентами приветствуется, хорошее знание немецкого — обязательное условие. Заявки, пожалуйста, по электронной почте до 15 мая». Что обязательно?", uk: "В оголошенні написано: «Ми шукаємо співробітницю в наш офіс. Досвід роботи з клієнтами вітається, добре знання німецької — обов'язкова умова. Заявки, будь ласка, електронною поштою до 15 травня». Що обов'язково?" }
+    explain: { en: "A job advertisement grades its own requirements, and the two words that do it are Voraussetzung and erwünscht. A Voraussetzung is a condition without which the application does not qualify; erwünscht is a wish — nice to have, and not a reason to stay away. Reading the two as equal is what makes people not apply. Paper is ruled out the other way: the ad asks for e-mail.", ru: "Объявление о вакансии само расставляет требования по весу, и делают это два слова: Voraussetzung и erwünscht. Voraussetzung — условие, без которого заявка не проходит; erwünscht — пожелание: хорошо, если есть, и не повод не подавать. Именно смешение этих двух и удерживает людей от отклика. Бумага отпадает по другой причине: в объявлении просят электронную почту.", uk: "Оголошення про вакансію саме розставляє вимоги за вагою, і роблять це два слова: Voraussetzung і erwünscht. Voraussetzung — умова, без якої заявка не проходить; erwünscht — побажання: добре, якщо є, і не привід не подавати. Саме змішування цих двох і втримує людей від відгуку. Папір відпадає з іншої причини: в оголошенні просять електронну пошту.", de: "Eine Stellenanzeige gewichtet ihre Anforderungen selbst, und zwei Wörter tun das: Voraussetzung und erwünscht. Eine Voraussetzung ist die Bedingung, ohne die die Bewerbung nicht in Frage kommt; erwünscht ist ein Wunsch — schön, wenn vorhanden, und kein Grund fernzubleiben. Wer beides gleichsetzt, bewirbt sich nicht. Papier fällt aus einem anderen Grund weg: Die Anzeige bittet um E-Mail." }
+
+  - id: arbeit-n-deklination-luecke
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: n-deklination
+    instruction:
+      en: "Fill in the noun in the correct form: der Kollege, der Kunde, der Student."
+      ru: "Вставьте существительное в правильной форме: der Kollege, der Kunde, der Student."
+      uk: "Вставте іменник у правильній формі: der Kollege, der Kunde, der Student."
+      de: "Ergänze das Nomen in der richtigen Form: der Kollege, der Kunde, der Student."
+    text: "Ich habe dem {{Kollegen}} die Unterlagen gegeben. Wir haben den {{Kunden}} gestern angerufen. Die Firma sucht einen {{Studenten}} für das Praktikum."
+    translation: { en: "I gave the colleague the documents. We called the customer yesterday. The company is looking for a student for the internship.", ru: "Я отдал коллеге документы. Клиенту мы звонили вчера. Фирма ищет студента на стажировку.", uk: "Я віддав колезі документи. Клієнтові ми телефонували вчора. Фірма шукає студента на стажування." }
+    explain: { en: "A small group of masculine nouns adds -n or -en in every case except the nominative singular: der Kollege → dem Kollegen, der Kunde → den Kunden, der Student → einen Studenten. The dictionary form is the only one without the ending, which is exactly why it gets copied everywhere. Most of the group are people, and most end in -e, -ent, -ist or -and; der Name and der Herr belong to it too.", ru: "Небольшая группа существительных мужского рода добавляет -n или -en во всех падежах, кроме именительного единственного: der Kollege → dem Kollegen, der Kunde → den Kunden, der Student → einen Studenten. Словарная форма — единственная без окончания, и именно её по инерции ставят везде. Почти вся группа — обозначения людей, чаще всего на -e, -ent, -ist или -and; сюда же относятся der Name и der Herr.", uk: "Невелика група іменників чоловічого роду додає -n або -en в усіх відмінках, крім називного однини: der Kollege → dem Kollegen, der Kunde → den Kunden, der Student → einen Studenten. Словникова форма — єдина без закінчення, і саме її за інерцією ставлять усюди. Майже вся група — назви людей, найчастіше на -e, -ent, -ist або -and; сюди ж належать der Name і der Herr.", de: "Eine kleine Gruppe maskuliner Nomen hängt in jedem Kasus außer dem Nominativ Singular ein -n oder -en an: der Kollege → dem Kollegen, der Kunde → den Kunden, der Student → einen Studenten. Die Wörterbuchform ist die einzige ohne Endung, und genau sie wird überallhin kopiert. Fast alle bezeichnen Personen und enden auf -e, -ent, -ist oder -and; der Name und der Herr gehören ebenfalls dazu." }
+
+  - id: arbeit-nomen-verb-uebersetzen
+    outcomes: [bewerbung-schreiben]
+    type: translate
+    focus: nomen-verb-verbindung
+    instruction:
+      en: "This is the closing line of an application letter. Use zur Verfügung stehen."
+      ru: "Это заключительная строка письма-заявления. Используйте zur Verfügung stehen."
+      uk: "Це заключний рядок листа-заяви. Використайте zur Verfügung stehen."
+      de: "Das ist die Schlusszeile eines Bewerbungsschreibens. Benutze zur Verfügung stehen."
+    prompt_en: "If you have any questions, I am at your disposal."
+    prompt_ru: "Если у вас возникнут вопросы, я в вашем распоряжении."
+    prompt_uk: "Якщо у вас виникнуть питання, я до ваших послуг."
+    answer: "Für Rückfragen stehe ich Ihnen gern zur Verfügung."
+    key_tokens: ["stehe", "Verfügung"]
+    explain: { en: "German writes a great deal of its formal register in noun–verb pairs, and the pair is fixed: it is zur Verfügung stehen and nothing else — not sein, not haben, and no article of your own choosing, because zur is already der contracted into it. Learn such pairs the way you learn a word: eine Frage stellen, eine Entscheidung treffen, in Kontakt bleiben. This one is the standard last sentence of a German application.", ru: "Немецкий официальный регистр во многом состоит из связок «существительное + глагол», и связка жёсткая: именно zur Verfügung stehen — не sein, не haben, и артикль свой не подставляют, потому что zur — это уже стянутое der. Такие пары учат как слова: eine Frage stellen, eine Entscheidung treffen, in Kontakt bleiben. Эта — стандартная последняя фраза немецкого письма-заявления.", uk: "Німецький офіційний регістр значною мірою складається зі зв'язок «іменник + дієслово», і зв'язка жорстка: саме zur Verfügung stehen — не sein, не haben, і артикль свій не підставляють, бо zur — це вже стягнене der. Такі пари вчать як слова: eine Frage stellen, eine Entscheidung treffen, in Kontakt bleiben. Ця — стандартна остання фраза німецького листа-заяви.", de: "Das förmliche Deutsch besteht zu großen Teilen aus Nomen-Verb-Verbindungen, und die Verbindung liegt fest: Es heißt zur Verfügung stehen und sonst nichts — nicht sein, nicht haben, und kein selbst gewählter Artikel, denn zur enthält das der schon. Solche Paare lernt man wie Wörter: eine Frage stellen, eine Entscheidung treffen, in Kontakt bleiben. Dieses ist der Standardschlusssatz einer deutschen Bewerbung." }
+
+  # --- meinung-medien ---
+  - id: meinung-konnektoren-uebersetzen
+    outcomes: [argumente-verbinden]
+    type: translate
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "Translate into German. Use entweder … oder."
+      ru: "Переведите на немецкий. Используйте entweder … oder."
+      uk: "Перекладіть німецькою. Використайте entweder … oder."
+      de: "Übersetze ins Deutsche. Benutze entweder … oder."
+    prompt_en: "We either read the report or we watch the video."
+    prompt_ru: "Мы либо прочитаем сообщение, либо посмотрим видео."
+    prompt_uk: "Ми або прочитаємо повідомлення, або подивимося відео."
+    answer: "Wir lesen entweder den Bericht oder wir sehen das Video."
+    key_tokens: ["entweder", "oder"]
+    accept:
+      - "Entweder lesen wir den Bericht, oder wir sehen das Video."
+    explain: { en: "A two-part connector is one item split in two, and dropping half of it changes the meaning: oder alone offers an addition, entweder … oder makes the two exclusive. entweder is mobile — it may sit in front of the first alternative or open the whole sentence — and when it opens the sentence, position 1 is filled and the verb comes second: Entweder lesen wir … The oder-half is an ordinary main clause either way.", ru: "Двойной союз — это один элемент, разорванный надвое, и потеря половины меняет смысл: одно oder просто добавляет вариант, а entweder … oder делает их взаимоисключающими. entweder подвижно: оно может стоять перед первой альтернативой или открывать всё предложение, — и когда открывает, первое место занято и глагол идёт вторым: Entweder lesen wir … Половина с oder в любом случае остаётся обычным главным предложением.", uk: "Подвійний сполучник — це один елемент, розірваний надвоє, і втрата половини змінює зміст: саме oder просто додає варіант, а entweder … oder робить їх взаємовиключними. entweder рухоме: воно може стояти перед першою альтернативою або відкривати все речення, — і коли відкриває, перше місце зайняте і дієслово йде другим: Entweder lesen wir … Половина з oder у будь-якому разі лишається звичайним головним реченням.", de: "Ein zweiteiliger Konnektor ist ein Element in zwei Stücken, und wer eine Hälfte weglässt, ändert die Bedeutung: oder allein bietet eine Ergänzung an, entweder … oder macht beides zu Alternativen. entweder ist beweglich — es steht vor der ersten Alternative oder eröffnet den ganzen Satz —, und wenn es eröffnet, ist Position 1 besetzt und das Verb steht an zweiter Stelle: Entweder lesen wir … Die oder-Hälfte bleibt so oder so ein gewöhnlicher Hauptsatz." }
+
+  - id: meinung-da-uebersetzen
+    outcomes: [meinung-begruenden]
+    type: translate
+    focus: da-weil
+    instruction:
+      en: "Translate into German. Open with da — the reason is already known to both of you."
+      ru: "Переведите на немецкий. Начните с da — причина уже известна обоим."
+      uk: "Перекладіть німецькою. Почніть з da — причина вже відома обом."
+      de: "Übersetze ins Deutsche. Beginn mit da — der Grund ist beiden schon bekannt."
+    prompt_en: "Since the topic is well known, I will explain it only briefly."
+    prompt_ru: "Поскольку тема известна, я объясню её только коротко."
+    prompt_uk: "Оскільки тема відома, я поясню її лише коротко."
+    answer: "Da das Thema bekannt ist, erkläre ich es nur kurz."
+    key_tokens: ["Da", "ist"]
+    explain: { en: "da and weil send their verb to the same place — the very end of their clause, here ist — so the grammar is identical and the choice is about information. da presents the reason as already shared and usually goes in front; weil presents it as new and usually follows, and weil is the one that can stand alone as an answer to Warum? Note that the fronted da-clause fills position 1, so the main clause opens with its verb: …, erkläre ich es nur kurz.", ru: "da и weil отправляют глагол в одно и то же место — в самый конец своего придаточного, здесь ist, — так что грамматика одинаковая, и выбор здесь про информацию. da подаёт причину как уже известную и обычно ставится впереди; weil подаёт её как новую и обычно идёт следом, и именно weil может стоять отдельным ответом на Warum? Обратите внимание: вынесенное вперёд придаточное с da занимает первое место, поэтому главное начинается с глагола: …, erkläre ich es nur kurz.", uk: "da і weil відправляють дієслово в те саме місце — у самий кінець свого підрядного, тут ist, — тож граматика однакова, і вибір тут про інформацію. da подає причину як уже відому і зазвичай ставиться попереду; weil подає її як нову і зазвичай іде далі, і саме weil може стояти окремою відповіддю на Warum? Зверніть увагу: винесене вперед підрядне з da займає перше місце, тому головне починається з дієслова: …, erkläre ich es nur kurz.", de: "da und weil schicken ihr Verb an denselben Platz — ganz ans Ende ihres Satzes, hier ist —, die Grammatik ist also gleich und die Wahl betrifft die Information. da stellt den Grund als schon geteilt dar und steht meist vorn; weil stellt ihn als neu dar und folgt meist nach, und nur weil kann allein als Antwort auf Warum? stehen. Und der vorangestellte da-Satz füllt Position 1, deshalb beginnt der Hauptsatz mit seinem Verb: …, erkläre ich es nur kurz." }
+
+  # --- konsum-umwelt ---
+  - id: konsum-passiv-uebersetzen
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate into German. Use the passive — who does it does not matter here."
+      ru: "Переведите на немецкий. Используйте пассив — кто это делает, здесь неважно."
+      uk: "Перекладіть німецькою. Використайте пасив — хто це робить, тут неважливо."
+      de: "Übersetze ins Deutsche. Benutze das Passiv — wer es tut, spielt hier keine Rolle."
+    prompt_en: "The bottles are collected and reused."
+    prompt_ru: "Бутылки собирают и используют снова."
+    prompt_uk: "Пляшки збирають і використовують знову."
+    answer: "Die Flaschen werden gesammelt und wiederverwendet."
+    key_tokens: ["werden", "gesammelt", "wiederverwendet"]
+    explain: { en: "The present passive is werden agreeing with the subject plus a Partizip II at the end, and one werden can carry two participles: gesammelt und wiederverwendet. The subject is what has something done to it — die Flaschen — and no agent is named at all, which is precisely why the form exists. The usual slip is sind for werden: Die Flaschen sind gesammelt describes a finished state, not a process that keeps happening.", ru: "Пассив настоящего времени — это werden, согласованный с подлежащим, плюс Partizip II в конце, и одно werden может держать два причастия: gesammelt und wiederverwendet. Подлежащее — то, с чем действие производят (die Flaschen), а исполнитель не назван вовсе: ради этого форма и существует. Обычная ошибка — sind вместо werden: Die Flaschen sind gesammelt описывает готовое состояние, а не повторяющийся процесс.", uk: "Пасив теперішнього часу — це werden, узгоджений із підметом, плюс Partizip II у кінці, і одне werden може тримати два дієприкметники: gesammelt und wiederverwendet. Підмет — те, з чим дію виконують (die Flaschen), а виконавця не названо зовсім: заради цього форма й існує. Звична помилка — sind замість werden: Die Flaschen sind gesammelt описує готовий стан, а не повторюваний процес.", de: "Das Passiv Präsens ist werden in Übereinstimmung mit dem Subjekt plus Partizip II am Ende, und ein werden kann zwei Partizipien tragen: gesammelt und wiederverwendet. Subjekt ist das, mit dem etwas geschieht — die Flaschen —, und ein Handelnder wird gar nicht genannt; dafür gibt es die Form. Der übliche Ausrutscher ist sind statt werden: Die Flaschen sind gesammelt beschreibt einen fertigen Zustand, keinen laufenden Vorgang." }
+
+  - id: konsum-je-desto-luecke
+    outcomes: [konsum-vergleichen]
+    type: cloze
+    focus: je-desto
+    instruction:
+      en: "je or desto? Fill in the two halves of each frame."
+      ru: "je или desto? Вставьте обе половины каждой конструкции."
+      uk: "je чи desto? Вставте обидві половини кожної конструкції."
+      de: "je oder desto? Ergänze beide Hälften jedes Rahmens."
+    text: "{{Je}} älter das Handy ist, {{desto}} langsamer wird es. {{Je}} mehr wir reparieren, {{desto}} weniger müssen wir kaufen."
+    translation: { en: "The older the phone is, the slower it gets. The more we repair, the less we have to buy.", ru: "Чем старше телефон, тем медленнее он работает. Чем больше мы чиним, тем меньше приходится покупать.", uk: "Що старший телефон, то повільніше він працює. Що більше ми лагодимо, то менше доводиться купувати." }
+    explain: { en: "Two comparatives held together by one frame, and each half has its own word order. je opens a subordinate clause — the comparative comes straight after it and the verb goes to the very end (Je älter das Handy ist). desto opens a main clause, so it and its comparative take position 1 together and the finite verb comes second (desto langsamer wird es). umso may replace desto; nothing else in the frame moves.", ru: "Две сравнительные степени, связанные одной конструкцией, и у каждой половины свой порядок слов. je открывает придаточное: сравнительная степень идёт сразу за ним, а глагол уходит в самый конец (Je älter das Handy ist). desto открывает главное предложение, поэтому оно вместе со своей сравнительной степенью занимает первое место, а спрягаемый глагол идёт вторым (desto langsamer wird es). umso может заменить desto; больше в конструкции ничто не двигается.", uk: "Два вищі ступені, пов'язані однією конструкцією, і в кожної половини свій порядок слів. je відкриває підрядне: вищий ступінь іде одразу за ним, а дієслово йде в самий кінець (Je älter das Handy ist). desto відкриває головне речення, тому воно разом зі своїм вищим ступенем займає перше місце, а відмінюване дієслово йде другим (desto langsamer wird es). umso може замінити desto; більше в конструкції ніщо не рухається.", de: "Zwei Komparative in einem Rahmen, und jede Hälfte hat ihre eigene Wortstellung. je eröffnet einen Nebensatz — der Komparativ folgt sofort, das Verb geht ganz ans Ende (Je älter das Handy ist). desto eröffnet einen Hauptsatz, steht also mit seinem Komparativ zusammen auf Position 1, und das finite Verb kommt an zweiter Stelle (desto langsamer wird es). umso kann desto ersetzen; sonst bewegt sich nichts." }
+
+  # --- regeln-verantwortung ---
+  - id: regeln-passiv-modal-uebersetzen
+    outcomes: [pflichten-verstehen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "Write it the way a house rule writes it: the passive with müssen."
+      ru: "Напишите так, как это пишут в правилах дома: пассив с müssen."
+      uk: "Напишіть так, як це пишуть у правилах будинку: пасив із müssen."
+      de: "Schreib es, wie eine Hausordnung es schreibt: das Passiv mit müssen."
+    prompt_en: "The bikes have to be parked in the yard."
+    prompt_ru: "Велосипеды нужно ставить во дворе."
+    prompt_uk: "Велосипеди треба ставити у дворі."
+    answer: "Die Fahrräder müssen im Hof abgestellt werden."
+    key_tokens: ["müssen", "abgestellt", "werden"]
+    accept:
+      - "Im Hof müssen die Fahrräder abgestellt werden."
+    explain: { en: "Graded are the three anchors: müssen agreeing with die Fahrräder, and the pair abgestellt werden closing the clause in exactly that order. A modal changes nothing about the passive frame, it only occupies position 2 and pushes the passive infinitive to the end. The active with man says the same thing — Man muss die Fahrräder im Hof abstellen — and is not how a rule is written down, because a rule addresses nobody in particular.", ru: "Оцениваются три якоря: müssen, согласованный с die Fahrräder, и пара abgestellt werden, закрывающая предложение именно в таком порядке. Модальный глагол в пассивной рамке ничего не меняет: он лишь занимает второе место и отодвигает пассивный инфинитив в конец. Актив с man говорит то же самое — Man muss die Fahrräder im Hof abstellen, — но правила так не пишут: правило ни к кому конкретно не обращается.", uk: "Оцінюються три якорі: müssen, узгоджений із die Fahrräder, і пара abgestellt werden, що закриває речення саме в такому порядку. Модальне дієслово в пасивній рамці нічого не змінює: воно лише займає друге місце й відсуває пасивний інфінітив у кінець. Актив із man каже те саме — Man muss die Fahrräder im Hof abstellen, — але правила так не пишуть: правило ні до кого конкретно не звертається.", de: "Bewertet werden drei Anker: müssen passend zu die Fahrräder und das Paar abgestellt werden, das den Satz genau in dieser Reihenfolge schließt. Ein Modalverb ändert am Passivrahmen nichts, es besetzt nur Position 2 und schiebt den Passivinfinitiv ans Ende. Das Aktiv mit man sagt dasselbe — Man muss die Fahrräder im Hof abstellen — und ist nicht die Schreibweise einer Regel, denn eine Regel spricht niemanden persönlich an." }
+
+  - id: regeln-sodass-uebersetzen
+    outcomes: [folgen-benennen]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Name the consequence with sodass."
+      ru: "Назовите следствие с помощью sodass."
+      uk: "Назвіть наслідок за допомогою sodass."
+      de: "Nenn die Folge mit sodass."
+    prompt_en: "The shop closes at six, so we have to hurry."
+    prompt_ru: "Магазин закрывается в шесть, так что нам надо поторопиться."
+    prompt_uk: "Магазин зачиняється о шостій, тож нам треба поспішити."
+    answer: "Der Laden schließt um sechs, sodass wir uns beeilen müssen."
+    key_tokens: ["sodass", "müssen"]
+    explain: { en: "Both ends are graded: sodass opening the clause and müssen closing it. sodass is a conjunction, so what follows is a subordinate clause and the finite verb goes to the very wall, with the infinitive in front of it — sodass wir uns beeilen müssen. Writing sodass müssen wir uns beeilen treats it like the adverb deshalb, which really does take position 1 and put the verb second: Deshalb müssen wir uns beeilen.", ru: "Оцениваются оба конца: sodass, открывающий придаточное, и müssen, закрывающий его. sodass — союз, поэтому дальше идёт придаточное, и спрягаемый глагол уходит к самой стене, а инфинитив стоит перед ним: sodass wir uns beeilen müssen. Вариант sodass müssen wir uns beeilen обращается с ним как с наречием deshalb, которое действительно занимает первое место и ставит глагол вторым: Deshalb müssen wir uns beeilen.", uk: "Оцінюються обидва кінці: sodass, що відкриває підрядне, і müssen, що його закриває. sodass — сполучник, тому далі йде підрядне, і відмінюване дієслово йде до самої стіни, а інфінітив стоїть перед ним: sodass wir uns beeilen müssen. Варіант sodass müssen wir uns beeilen поводиться з ним як із прислівником deshalb, який справді займає перше місце і ставить дієслово другим: Deshalb müssen wir uns beeilen.", de: "Bewertet werden beide Enden: sodass am Anfang des Nebensatzes und müssen an seinem Ende. sodass ist eine Konjunktion, dahinter steht also ein Nebensatz, das finite Verb geht an die Wand und der Infinitiv davor — sodass wir uns beeilen müssen. Wer sodass müssen wir uns beeilen schreibt, behandelt es wie das Adverb deshalb, das tatsächlich auf Position 1 steht und das Verb an zweiter Stelle hat: Deshalb müssen wir uns beeilen." }
+
+  # --- reisen-probleme ---
+  - id: reisen-irreal-uebersetzen
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "An unreal condition — it is not the case. Use wenn and the Konjunktiv II of sein."
+      ru: "Нереальное условие — на самом деле это не так. Используйте wenn и Konjunktiv II от sein."
+      uk: "Нереальна умова — насправді це не так. Використайте wenn і Konjunktiv II від sein."
+      de: "Eine irreale Bedingung — so ist es gerade nicht. Benutze wenn und den Konjunktiv II von sein."
+    prompt_en: "If the train were on time, we would already be there."
+    prompt_ru: "Если бы поезд шёл по расписанию, мы были бы уже на месте."
+    prompt_uk: "Якби потяг ішов за розкладом, ми були б уже на місці."
+    answer: "Wenn der Zug pünktlich wäre, wären wir schon da."
+    key_tokens: ["wäre", "wären"]
+    explain: { en: "Both halves are marked, and that is what makes the sentence unreal rather than merely conditional: wäre in the wenn-clause, wären in the main clause. sein has its own Konjunktiv II and does not need würde. The word order is the other half of the item — a fronted wenn-clause fills position 1 by itself, so the main clause opens with its verb, wären wir, and never with the subject.", ru: "Помечены обе половины, и именно это делает предложение нереальным, а не просто условным: wäre в придаточном с wenn, wären в главном. У sein есть собственный Konjunktiv II, и würde ему не нужно. Вторая половина задания — порядок слов: вынесенное вперёд придаточное с wenn целиком занимает первое место, поэтому главное начинается с глагола, wären wir, а не с подлежащего.", uk: "Позначені обидві половини, і саме це робить речення нереальним, а не просто умовним: wäre в підрядному з wenn, wären у головному. У sein є власний Konjunktiv II, і würde йому не потрібне. Друга половина завдання — порядок слів: винесене вперед підрядне з wenn цілком займає перше місце, тому головне починається з дієслова, wären wir, а не з підмета.", de: "Beide Hälften sind markiert, und erst das macht den Satz irreal und nicht bloß konditional: wäre im wenn-Satz, wären im Hauptsatz. sein hat einen eigenen Konjunktiv II und braucht kein würde. Die andere Hälfte der Aufgabe ist die Wortstellung — ein vorangestellter wenn-Satz füllt Position 1 allein, deshalb beginnt der Hauptsatz mit seinem Verb, wären wir, und nie mit dem Subjekt." }
+
+  - id: reisen-genitiv-praeposition-luecke
+    outcomes: [beschwerde-schreiben]
+    type: cloze
+    focus: praeposition-genitiv
+    instruction:
+      en: "Fill in the article. wegen, trotz and während all govern the genitive."
+      ru: "Вставьте артикль. wegen, trotz и während управляют генитивом."
+      uk: "Вставте артикль. wegen, trotz і während керують генитивом."
+      de: "Ergänze das Artikelwort. wegen, trotz und während regieren den Genitiv."
+    text: "Wegen {{des}} Gewitters blieb das Flugzeug am Boden. Trotz {{der}} Verspätung war die Stimmung gut. Während {{des}} Fluges habe ich geschlafen."
+    translation: { en: "Because of the thunderstorm the plane stayed on the ground. Despite the delay the mood was good. During the flight I slept.", ru: "Из-за грозы самолёт остался на земле. Несмотря на задержку, настроение было хорошее. Во время полёта я спал.", uk: "Через грозу літак залишився на землі. Попри затримку настрій був добрий. Під час польоту я спав." }
+    explain: { en: "These three prepositions are the everyday genitive, and each names a different relation: wegen a cause, trotz a concession, während a stretch of time. Masculine and neuter mark it twice, on the article word and with an -s on the noun (des Gewitters, des Fluges); feminine marks it once, on the article word alone (der Verspätung). wegen dem Gewitter is common in speech and out of place in a written complaint, which is the register these words mostly appear in.", ru: "Эти три предлога — генитив на каждый день, и каждый называет своё отношение: wegen — причину, trotz — уступку, während — отрезок времени. Мужской и средний род показывают падеж дважды: артиклем и окончанием -s у существительного (des Gewitters, des Fluges); женский — один раз, только артиклем (der Verspätung). Форма wegen dem Gewitter обычна в речи и неуместна в письменной жалобе, а именно в этом регистре эти слова чаще всего и встречаются.", uk: "Ці три прийменники — генитив на щодень, і кожен називає своє відношення: wegen — причину, trotz — поступку, während — відрізок часу. Чоловічий і середній рід показують відмінок двічі: артиклем і закінченням -s в іменника (des Gewitters, des Fluges); жіночий — раз, лише артиклем (der Verspätung). Форма wegen dem Gewitter звичайна в мовленні й недоречна в письмовій скарзі, а саме в цьому регістрі ці слова найчастіше й трапляються.", de: "Diese drei Präpositionen sind der Alltagsgenitiv, und jede nennt ein anderes Verhältnis: wegen einen Grund, trotz eine Einräumung, während eine Zeitspanne. Maskulinum und Neutrum markieren ihn zweimal, am Artikelwort und mit einem -s am Nomen (des Gewitters, des Fluges); das Femininum einmal, allein am Artikelwort (der Verspätung). wegen dem Gewitter ist gesprochen häufig und in einer geschriebenen Beschwerde fehl am Platz — und dort stehen diese Wörter meistens." }
+
+  # --- lernen-zukunft ---
+  - id: lernen-beratung-hoeren
+    outcomes: [beratung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Berater", text: "Sie möchten also im Herbst weiterlernen. Haben Sie schon einen Kurs im Blick?" }
+        - { speaker: "Frau Aydin", text: "Ja, den Abendkurs. Tagsüber arbeite ich." }
+        - { speaker: "Berater", text: "Der Abendkurs beginnt am fünften Oktober. Melden Sie sich bitte bis Ende September an, danach sind die Plätze meistens weg." }
+    question: "Was muss Frau Aydin bis Ende September tun?"
+    options: ["Sich für den Abendkurs anmelden.", "Den Kurs bezahlen.", "Einen Test schreiben."]
+    correct: 0
+    translation: { en: "What does Frau Aydin have to do by the end of September?", ru: "Что госпожа Айдын должна сделать до конца сентября?", uk: "Що пані Айдин має зробити до кінця вересня?" }
+    explain: { en: "Two dates are read out and they belong to two different things: the fifth of October is when the course starts, the end of September is the deadline for doing something about it. The instruction is a separable verb split across the clause — Melden Sie sich bitte bis Ende September an — so listening only to the front of the sentence gives you melden and loses the an that makes it anmelden. Nothing is said about paying or about a test.", ru: "Прозвучали две даты, и относятся они к разным вещам: пятое октября — начало курса, конец сентября — срок, к которому нужно что-то сделать. Указание — это отделяемый глагол, растянутый на всё предложение: Melden Sie sich bitte bis Ende September an, — так что, слушая только начало фразы, вы получаете melden и теряете an, из-за которого это anmelden. Ни об оплате, ни о тесте не сказано.", uk: "Пролунали дві дати, і стосуються вони різних речей: п'яте жовтня — початок курсу, кінець вересня — строк, до якого треба щось зробити. Вказівка — це відокремлюване дієслово, розтягнуте на все речення: Melden Sie sich bitte bis Ende September an, — тож, слухаючи лише початок фрази, ви отримуєте melden і губите an, через яке це anmelden. Ні про оплату, ні про тест не сказано.", de: "Zwei Daten werden genannt, und sie gehören zu Verschiedenem: Der fünfte Oktober ist der Kursbeginn, Ende September die Frist, bis zu der etwas zu tun ist. Die Anweisung ist ein trennbares Verb über den ganzen Satz — Melden Sie sich bitte bis Ende September an —, wer also nur den Satzanfang hört, bekommt melden und verliert das an, das daraus anmelden macht. Von Bezahlen oder einem Test ist nicht die Rede." }
+
+  - id: lernen-damit-uebersetzen
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Two different subjects — you explain, the others understand. Use damit."
+      ru: "Подлежащие разные: объясняете вы, а понимают другие. Используйте damit."
+      uk: "Підмети різні: пояснюєте ви, а розуміють інші. Використайте damit."
+      de: "Zwei verschiedene Subjekte — du erklärst, die anderen verstehen. Benutze damit."
+    prompt_en: "I am explaining it again so that everyone understands it."
+    prompt_ru: "Я объясняю это ещё раз, чтобы все поняли."
+    prompt_uk: "Я пояснюю це ще раз, щоб усі зрозуміли."
+    answer: "Ich erkläre es noch einmal, damit alle es verstehen."
+    key_tokens: ["damit", "verstehen"]
+    explain: { en: "Count the subjects and the choice makes itself. um … zu has no subject of its own and can only mean the subject of the main clause, so it works only when the two coincide. Here they do not — I explain, everyone understands — and a purpose with its own subject needs a full clause: damit opens it and the finite verb closes it, damit alle es verstehen. There is no zu anywhere in a damit-clause.", ru: "Сосчитайте подлежащие — и выбор сделается сам. У um … zu собственного подлежащего нет, оно может означать только подлежащее главного предложения и потому работает лишь при совпадении. Здесь совпадения нет: объясняю я, понимают все, — а цель со своим подлежащим требует полноценного придаточного: его открывает damit, а закрывает спрягаемый глагол, damit alle es verstehen. Никакого zu в придаточном с damit нет.", uk: "Порахуйте підмети — і вибір зробиться сам. У um … zu власного підмета немає, воно може означати лише підмет головного речення і тому працює тільки за збігу. Тут збігу немає: пояснюю я, розуміють усі, — а мета зі своїм підметом вимагає повноцінного підрядного: його відкриває damit, а закриває відмінюване дієслово, damit alle es verstehen. Жодного zu в підрядному з damit немає.", de: "Zähl die Subjekte, dann trifft sich die Wahl von selbst. um … zu hat kein eigenes Subjekt und kann nur das des Hauptsatzes meinen, funktioniert also nur, wenn beide zusammenfallen. Hier fallen sie nicht zusammen — ich erkläre, alle verstehen —, und ein Zweck mit eigenem Subjekt braucht einen vollen Nebensatz: damit eröffnet ihn, das finite Verb schließt ihn, damit alle es verstehen. Ein zu steht im damit-Satz nirgends." }
+
+  # --- gesellschaft-zusammenleben ---
+  - id: gesellschaft-diskussion-hoeren
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Frau Lehner", text: "Ich finde, wir sollten den Garten gemeinsam pflegen." }
+        - { speaker: "Herr Kilic", text: "Obwohl ich die Idee gut finde, habe ich am Wochenende selten Zeit." }
+        - { speaker: "Frau Lehner", text: "Dann machen wir es abends. Einmal im Monat, eine Stunde." }
+        - { speaker: "Herr Kilic", text: "Einverstanden." }
+    question: "Wie lösen die beiden das Problem?"
+    options: ["Sie treffen sich einmal im Monat abends.", "Herr Kilic macht die Gartenarbeit allein.", "Sie geben die Idee auf."]
+    correct: 0
+    translation: { en: "How do the two of them solve the problem?", ru: "Как эти двое решают проблему?", uk: "Як ці двоє розв'язують проблему?" }
+    explain: { en: "Herr Kilic's obwohl-clause is the shape an objection travels in: it grants the point (ich finde die Idee gut) and still names the obstacle, which is not a refusal. Frau Lehner then changes only the thing that was in the way — the time — and keeps the plan. Einverstanden closes it. Hearing obwohl as a no is what makes the answer about giving up look plausible; obwohl concedes.", ru: "Придаточное с obwohl у господина Кылыча — это форма, в которой путешествует возражение: оно признаёт правоту (ich finde die Idee gut) и всё же называет препятствие, а это не отказ. Госпожа Ленер меняет только то, что мешало, — время, — и план сохраняет. Einverstanden завершает дело. Услышать obwohl как «нет» — вот из-за чего вариант с отказом от идеи выглядит правдоподобно; obwohl уступает.", uk: "Підрядне з obwohl у пана Килича — це форма, у якій подорожує заперечення: воно визнає слушність (ich finde die Idee gut) і все ж називає перешкоду, а це не відмова. Пані Ленер міняє лише те, що заважало, — час, — і план зберігає. Einverstanden завершає справу. Почути obwohl як «ні» — ось через що варіант із відмовою від ідеї виглядає правдоподібно; obwohl поступається.", de: "Der obwohl-Satz von Herrn Kilic ist die Form, in der ein Einwand reist: Er gibt recht (ich finde die Idee gut) und nennt trotzdem das Hindernis, und das ist keine Absage. Frau Lehner ändert daraufhin nur das, was im Weg stand — die Zeit — und behält den Plan. Einverstanden schließt die Sache. Wer obwohl als Nein hört, hält die Antwort vom Aufgeben für plausibel; obwohl räumt ein." }
+
+  - id: gesellschaft-obwohl-uebersetzen
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Translate into German. Use obwohl, not trotzdem."
+      ru: "Переведите на немецкий. Используйте obwohl, а не trotzdem."
+      uk: "Перекладіть німецькою. Використайте obwohl, а не trotzdem."
+      de: "Übersetze ins Deutsche. Benutze obwohl, nicht trotzdem."
+    prompt_en: "Although it was raining, we went to the park."
+    prompt_ru: "Хотя шёл дождь, мы пошли в парк."
+    prompt_uk: "Хоча йшов дощ, ми пішли в парк."
+    answer: "Obwohl es geregnet hat, sind wir in den Park gegangen."
+    key_tokens: ["Obwohl", "hat"]
+    explain: { en: "Graded are both ends of the rule: obwohl opening the clause and hat, the finite verb, closing it. obwohl is a conjunction, so its clause is a subordinate clause with the verb at the wall — never obwohl es hat geregnet. trotzdem means much the same and is an adverb, so it cannot open a clause like this at all: it takes position 1 of its own main clause and the verb comes second (Es hat geregnet. Trotzdem sind wir in den Park gegangen). Note that the fronted obwohl-clause fills position 1, so the main clause opens with sind.", ru: "Оцениваются оба конца правила: obwohl, открывающий придаточное, и hat — спрягаемый глагол, который его закрывает. obwohl — союз, поэтому его придаточное строится с глаголом у стены: никогда obwohl es hat geregnet. trotzdem значит примерно то же, но это наречие, и так открыть придаточное оно не может вовсе: оно занимает первое место в собственном главном предложении, а глагол идёт вторым (Es hat geregnet. Trotzdem sind wir in den Park gegangen). Обратите внимание: вынесенное вперёд придаточное с obwohl занимает первое место, поэтому главное начинается с sind.", uk: "Оцінюються обидва кінці правила: obwohl, що відкриває підрядне, і hat — відмінюване дієслово, яке його закриває. obwohl — сполучник, тому його підрядне будується з дієсловом біля стіни: ніколи obwohl es hat geregnet. trotzdem означає приблизно те саме, але це прислівник, і так відкрити підрядне він не може зовсім: він займає перше місце у власному головному реченні, а дієслово йде другим (Es hat geregnet. Trotzdem sind wir in den Park gegangen). Зверніть увагу: винесене вперед підрядне з obwohl займає перше місце, тому головне починається з sind.", de: "Bewertet werden beide Enden der Regel: obwohl am Anfang des Nebensatzes und hat, das finite Verb, an seinem Ende. obwohl ist eine Konjunktion, sein Satz ist also ein Nebensatz mit dem Verb an der Wand — nie obwohl es hat geregnet. trotzdem heißt ungefähr dasselbe und ist ein Adverb, kann so gar keinen Nebensatz eröffnen: Es steht auf Position 1 seines eigenen Hauptsatzes, das Verb an zweiter Stelle (Es hat geregnet. Trotzdem sind wir in den Park gegangen). Und der vorangestellte obwohl-Satz füllt Position 1, deshalb beginnt der Hauptsatz mit sind." }
+
+  # --- digitales-leben ---
+  - id: digitales-anleitung-mc
+    outcomes: [anleitung-verstehen]
+    type: mc
+    prompt: "In der Anleitung steht: „Schalten Sie das Gerät aus, bevor Sie die Batterie herausnehmen. Setzen Sie danach die neue Batterie ein und schalten Sie das Gerät wieder ein.“ Was macht man zuerst?"
+    options:
+      - "Das Gerät ausschalten."
+      - "Die Batterie herausnehmen."
+      - "Das Gerät wieder einschalten."
+    correct: 0
+    translation: { en: "A set of instructions reads: „Switch the device off before you take the battery out. Then insert the new battery and switch the device back on.“ What do you do first?", ru: "В инструкции написано: «Выключите устройство, прежде чем вынимать батарею. Затем вставьте новую батарею и снова включите устройство». Что делают первым?", uk: "В інструкції написано: «Вимкніть пристрій, перш ніж виймати батарею. Потім вставте нову батарею і знову ввімкніть пристрій». Що роблять першим?" }
+    explain: { en: "The order on the page is not the order of the steps, and bevor is what says so: whatever follows bevor happens later, whatever precedes it happens first. So switching off comes before taking the battery out, even though the battery is mentioned in the same sentence. danach then keeps the rest in sequence. Instructions are read for these two words before they are read for the verbs.", ru: "Порядок на странице не равен порядку действий, и говорит об этом bevor: то, что стоит после bevor, происходит позже, а то, что перед ним, — раньше. Значит, выключение идёт до извлечения батареи, хотя батарея упомянута в том же предложении. Дальше danach выстраивает остальное по порядку. В инструкции сначала читают эти два слова и только потом глаголы.", uk: "Порядок на сторінці не дорівнює порядку дій, і каже про це bevor: те, що стоїть після bevor, відбувається пізніше, а те, що перед ним, — раніше. Отже, вимкнення йде до виймання батареї, хоча батарея згадана в тому самому реченні. Далі danach вибудовує решту по черзі. В інструкції спочатку читають ці два слова і лише потім дієслова.", de: "Die Reihenfolge auf dem Papier ist nicht die Reihenfolge der Schritte, und bevor sagt das: Was nach bevor steht, geschieht später, was davor steht, zuerst. Also kommt das Ausschalten vor dem Herausnehmen der Batterie, obwohl die Batterie im selben Satz steht. danach ordnet dann den Rest. Eine Anleitung liest man nach diesen beiden Wörtern, bevor man sie nach den Verben liest." }
+
+  - id: digitales-problem-uebersetzen
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: verb-praeposition-b1
+    instruction:
+      en: "You are writing to a support desk. Use bitten um."
+      ru: "Вы пишете в службу поддержки. Используйте bitten um."
+      uk: "Ви пишете до служби підтримки. Використайте bitten um."
+      de: "Du schreibst an einen Support. Benutze bitten um."
+    prompt_en: "I am asking you for a short reply."
+    prompt_ru: "Прошу вас о коротком ответе."
+    prompt_uk: "Прошу вас про коротку відповідь."
+    answer: "Ich bitte Sie um eine kurze Rückmeldung."
+    key_tokens: ["bitte", "um"]
+    explain: { en: "The preposition belongs to the verb and has to be learned with it: bitten um, and the noun after um goes into the accusative — um eine kurze Rückmeldung. Note the two objects: the person asked is a direct accusative (Ich bitte Sie), while what is asked for arrives through um. fragen is not a substitute — Ich frage Sie asks a question, it does not make a request.", ru: "Предлог принадлежит глаголу и заучивается вместе с ним: bitten um, а существительное после um идёт в аккузативе — um eine kurze Rückmeldung. Обратите внимание на два дополнения: тот, кого просят, стоит в прямом аккузативе (Ich bitte Sie), а то, о чём просят, приходит через um. fragen здесь не замена: Ich frage Sie — это «задаю вопрос», а не «прошу».", uk: "Прийменник належить дієслову й заучується разом із ним: bitten um, а іменник після um іде в акузативі — um eine kurze Rückmeldung. Зверніть увагу на два додатки: той, кого просять, стоїть у прямому акузативі (Ich bitte Sie), а те, про що просять, приходить через um. fragen тут не заміна: Ich frage Sie — це «ставлю питання», а не «прошу».", de: "Die Präposition gehört zum Verb und wird mit ihm gelernt: bitten um, und das Nomen nach um steht im Akkusativ — um eine kurze Rückmeldung. Beachte die zwei Objekte: Die gebetene Person steht im reinen Akkusativ (Ich bitte Sie), das Erbetene kommt über um. fragen ist kein Ersatz — Ich frage Sie stellt eine Frage und bittet um nichts." }
+
+  # --- kultur-freizeit ---
+  - id: kultur-programm-mc
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Im Programm steht: „Konzert im Stadtpark, Freitag 19 Uhr. Bei Regen findet die Veranstaltung in der Halle statt. Eintritt: 8 Euro, ermäßigt 5 Euro.“ Was passiert, wenn es regnet?"
+    options:
+      - "Das Konzert findet in der Halle statt."
+      - "Das Konzert fällt aus."
+      - "Das Konzert beginnt später."
+    correct: 0
+    translation: { en: "An events programme reads: „Concert in the town park, Friday 7 p.m. In case of rain the event takes place in the hall. Admission: 8 euros, reduced 5 euros.“ What happens if it rains?", ru: "В программе написано: «Концерт в городском парке, пятница, 19:00. В случае дождя мероприятие проходит в зале. Вход: 8 евро, льготный 5 евро». Что будет, если пойдёт дождь?", uk: "У програмі написано: «Концерт у міському парку, п'ятниця, 19:00. У разі дощу захід відбувається в залі. Вхід: 8 євро, пільговий 5 євро». Що буде, якщо піде дощ?" }
+    explain: { en: "Bei Regen is the conditional formula a programme uses instead of a wenn-clause: bei plus a bare noun, meaning if it rains. What follows it is the alternative, not a cancellation — findet … in der Halle statt, a separable verb whose statt lands at the end of the sentence. Reading only as far as Halle and stopping is safe here; reading only bei Regen and assuming the worst is not.", ru: "Bei Regen — это условная формула, которую программа ставит вместо придаточного с wenn: bei плюс существительное без артикля, то есть «если будет дождь». Дальше идёт альтернатива, а не отмена: findet … in der Halle statt — отделяемый глагол, у которого statt оказывается в конце предложения. Дочитать до Halle здесь достаточно; прочитать одно bei Regen и предположить худшее — нет.", uk: "Bei Regen — це умовна формула, яку програма ставить замість підрядного з wenn: bei плюс іменник без артикля, тобто «якщо буде дощ». Далі йде альтернатива, а не скасування: findet … in der Halle statt — відокремлюване дієслово, у якого statt опиняється в кінці речення. Дочитати до Halle тут достатньо; прочитати саме bei Regen і припустити найгірше — ні.", de: "Bei Regen ist die Bedingungsformel, die ein Programm statt eines wenn-Satzes benutzt: bei plus bloßes Nomen, also wenn es regnet. Danach folgt die Alternative und keine Absage — findet … in der Halle statt, ein trennbares Verb, dessen statt am Satzende landet. Bis Halle zu lesen genügt hier; nur bei Regen zu lesen und das Schlimmste anzunehmen nicht." }
+
+  - id: kultur-verabredung-hoeren
+    outcomes: [veranstaltung-empfehlen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Lena", text: "Am Sonntag ist im Museum eine Führung. Hast du Lust?" }
+        - { speaker: "Mark", text: "Sonntag ist schlecht, da arbeite ich. Geht auch Samstag?" }
+        - { speaker: "Lena", text: "Samstag gibt es nur die Ausstellung ohne Führung. Aber die soll auch sehr gut sein." }
+        - { speaker: "Mark", text: "Dann Samstag, ohne Führung." }
+    question: "Worauf einigen sich Lena und Mark?"
+    options: ["Sie gehen am Samstag in die Ausstellung.", "Sie gehen am Sonntag zur Führung.", "Sie gehen gar nicht ins Museum."]
+    correct: 0
+    translation: { en: "What do Lena and Mark agree on?", ru: "О чём договариваются Лена и Марк?", uk: "Про що домовляються Лена і Марк?" }
+    explain: { en: "An agreement is made in three moves here: a proposal, a counter-proposal with its reason (Sonntag ist schlecht, da arbeite ich), and the trade that settles it — a different day, and the guided tour dropped in exchange. Mark's last line states the outcome in four words, and it names both halves of the trade: Dann Samstag, ohne Führung. The tour is what is given up, not the museum.", ru: "Договорённость складывается здесь в три хода: предложение, встречное предложение с обоснованием (Sonntag ist schlecht, da arbeite ich) и размен, который всё решает: другой день — и экскурсия в обмен отпадает. Последняя реплика Марка называет исход четырьмя словами и обе половины размена сразу: Dann Samstag, ohne Führung. Отказываются от экскурсии, а не от музея.", uk: "Домовленість складається тут у три ходи: пропозиція, зустрічна пропозиція з обґрунтуванням (Sonntag ist schlecht, da arbeite ich) і розмін, який усе вирішує: інший день — і екскурсія в обмін відпадає. Остання репліка Марка називає підсумок чотирма словами і обидві половини розміну одразу: Dann Samstag, ohne Führung. Відмовляються від екскурсії, а не від музею.", de: "Eine Einigung entsteht hier in drei Zügen: ein Vorschlag, ein Gegenvorschlag mit Begründung (Sonntag ist schlecht, da arbeite ich) und der Tausch, der die Sache klärt — ein anderer Tag, und dafür fällt die Führung weg. Marks letzter Satz nennt das Ergebnis in vier Wörtern und beide Hälften des Tauschs: Dann Samstag, ohne Führung. Aufgegeben wird die Führung, nicht das Museum." }
+
+  # --- geld-vertraege ---
+  - id: geld-rechnung-mc
+    outcomes: [rechnung-pruefen]
+    type: mc
+    prompt: "Auf der Rechnung steht: „Grundpreis 19,90 € · Verbrauch 34,10 € · Zwischensumme 54,00 € · MwSt. 19 % 10,26 € · Gesamtbetrag 64,26 €“. Sie haben 54,00 Euro überwiesen. Was stimmt?"
+    options:
+      - "Es fehlen noch 10,26 Euro."
+      - "Die Rechnung ist damit vollständig bezahlt."
+      - "Sie haben 10,26 Euro zu viel bezahlt."
+    correct: 0
+    translation: { en: "A bill reads: „Base price 19.90 € · Usage 34.10 € · Subtotal 54.00 € · VAT 19% 10.26 € · Total 64.26 €“. You transferred 54.00 euros. What is true?", ru: "В счёте указано: «Базовая плата 19,90 € · Потребление 34,10 € · Промежуточная сумма 54,00 € · НДС 19 % 10,26 € · Итого 64,26 €». Вы перевели 54,00 евро. Что верно?", uk: "У рахунку зазначено: «Базова плата 19,90 € · Споживання 34,10 € · Проміжна сума 54,00 € · ПДВ 19 % 10,26 € · Разом 64,26 €». Ви переказали 54,00 євро. Що правильно?" }
+    explain: { en: "Zwischensumme and Gesamtbetrag are the two words that decide it, and only the Gesamtbetrag is what you owe: the subtotal is the figure before tax, and the VAT line is added to it. Paying the subtotal leaves exactly the tax outstanding — 64,26 minus 54,00 is 10,26. On a German bill, always find the Gesamtbetrag before you transfer anything; every line above it is a working step.", ru: "Решают два слова — Zwischensumme и Gesamtbetrag, — и должны вы ровно столько, сколько стоит в Gesamtbetrag: промежуточная сумма стоит до налога, а строка НДС к ней прибавляется. Оплатив промежуточную сумму, вы остаётесь должны ровно налог: 64,26 минус 54,00 — это 10,26. В немецком счёте всегда сначала находите Gesamtbetrag и только потом переводите деньги; всё, что выше, — промежуточные расчёты.", uk: "Вирішують два слова — Zwischensumme і Gesamtbetrag, — і винні ви рівно стільки, скільки стоїть у Gesamtbetrag: проміжна сума стоїть до податку, а рядок ПДВ до неї додається. Оплативши проміжну суму, ви лишаєтеся винні рівно податок: 64,26 мінус 54,00 — це 10,26. У німецькому рахунку завжди спочатку знаходьте Gesamtbetrag і лише потім переказуйте гроші; усе, що вище, — проміжні розрахунки.", de: "Zwei Wörter entscheiden — Zwischensumme und Gesamtbetrag —, und geschuldet ist allein der Gesamtbetrag: Die Zwischensumme steht vor der Steuer, die MwSt.-Zeile kommt hinzu. Wer die Zwischensumme überweist, schuldet genau die Steuer: 64,26 minus 54,00 sind 10,26. Auf einer deutschen Rechnung sucht man zuerst den Gesamtbetrag und überweist erst dann; alles darüber ist Rechenweg." }
+
+  - id: geld-tarif-uebersetzen
+    outcomes: [kosten-vergleichen]
+    type: translate
+    focus: komparativ-als
+    instruction:
+      en: "Compare the two plans."
+      ru: "Сравните два тарифа."
+      uk: "Порівняйте два тарифи."
+      de: "Vergleich die beiden Tarife."
+    prompt_en: "The new plan is cheaper than the old one."
+    prompt_ru: "Новый тариф дешевле старого."
+    prompt_uk: "Новий тариф дешевший за старий."
+    answer: "Der neue Tarif ist günstiger als der alte."
+    key_tokens: ["günstiger", "billiger", "als"]
+    accept:
+      - "Der neue Tarif ist billiger als der alte."
+    explain: { en: "German builds the comparative with an ending, never with a helper word: günstig → günstiger, and there is no mehr günstig. What follows the comparison is als and never wie — wie belongs to the other comparison, the one that finds two things equal (so günstig wie). billiger is the everyday word and is accepted here; günstiger is what a price comparison usually says, because billig can also mean cheaply made.", ru: "Немецкий строит сравнительную степень окончанием, а не служебным словом: günstig → günstiger, и никакого mehr günstig не бывает. За сравнением идёт als и никогда wie: wie принадлежит другому сравнению — тому, что приравнивает (so günstig wie). billiger — обиходное слово, и оно здесь принимается; в сравнении цен обычно говорят günstiger, потому что billig может означать ещё и «низкого качества».", uk: "Німецька будує вищий ступінь закінченням, а не службовим словом: günstig → günstiger, і жодного mehr günstig не буває. За порівнянням іде als і ніколи wie: wie належить до іншого порівняння — того, що прирівнює (so günstig wie). billiger — побутове слово, і воно тут приймається; у порівнянні цін зазвичай кажуть günstiger, бо billig може означати ще й «низької якості».", de: "Das Deutsche bildet den Komparativ mit einer Endung und nie mit einem Hilfswort: günstig → günstiger, mehr günstig gibt es nicht. Nach dem Vergleich steht als und nie wie — wie gehört zum anderen Vergleich, dem gleichsetzenden (so günstig wie). billiger ist das Alltagswort und wird hier akzeptiert; ein Preisvergleich sagt meist günstiger, weil billig auch minderwertig heißen kann." }
+
+  # --- informationen-vermitteln ---
+  - id: informationen-indirekt-uebersetzen
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-rede
+    instruction:
+      en: "Pass it on. Open the reported clause with dass and keep the tense of the original."
+      ru: "Передайте сообщение. Придаточное откройте через dass и сохраните время оригинала."
+      uk: "Перекажіть повідомлення. Підрядне відкрийте через dass і збережіть час оригіналу."
+      de: "Gib es weiter. Eröffne den berichteten Satz mit dass und behalt die Zeitform des Originals."
+    prompt_en: "The caretaker says that the lift will be repaired on Monday."
+    prompt_ru: "Комендант говорит, что лифт починят в понедельник."
+    prompt_uk: "Комендант каже, що ліфт полагодять у понеділок."
+    answer: "Der Hausmeister sagt, dass der Aufzug am Montag repariert wird."
+    key_tokens: ["dass", "wird"]
+    explain: { en: "Graded are both ends of the reported clause: dass opening it and the finite verb wird standing at the very end. dass reports a statement; a yes/no question would take ob, and wenn does neither — it opens a condition or a repeated time only. The tense stays as the original had it, because Monday is still ahead; changing the tense would change the fact rather than the wording.", ru: "Оцениваются оба конца придаточного: dass, который его открывает, и спрягаемый глагол wird в самом конце. dass передаёт утверждение; вопрос без вопросительного слова взял бы ob, а wenn не годится ни для того, ни для другого — оно вводит только условие или повторяющееся время. Время остаётся как в оригинале, потому что понедельник ещё впереди: смена времени изменила бы не формулировку, а факт.", uk: "Оцінюються обидва кінці підрядного: dass, що його відкриває, і відмінюване дієслово wird у самому кінці. dass передає твердження; питання без питального слова взяло б ob, а wenn не годиться ні для того, ні для іншого — воно вводить лише умову або повторюваний час. Час лишається як в оригіналі, бо понеділок ще попереду: зміна часу змінила б не формулювання, а факт.", de: "Bewertet werden beide Enden des berichteten Satzes: dass am Anfang und das finite Verb wird ganz am Ende. dass berichtet eine Aussage; eine Ja/Nein-Frage nähme ob, und wenn tut keines von beidem — es eröffnet nur Bedingung oder wiederholte Zeit. Die Zeitform bleibt die des Originals, denn der Montag steht noch bevor; eine andere Zeitform wäre eine andere Tatsache, nicht eine andere Formulierung." }
+
+  - id: informationen-angaben-uebersetzen
+    outcomes: [mitteilung-weitergeben]
+    type: translate
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Keep the German order of the adverbials: time, then cause, then manner, then place."
+      ru: "Соблюдайте немецкий порядок обстоятельств: время, затем причина, затем образ действия, затем место."
+      uk: "Дотримуйтеся німецького порядку обставин: час, потім причина, потім спосіб дії, потім місце."
+      de: "Halt die deutsche Reihenfolge der Angaben ein: temporal, kausal, modal, lokal."
+    prompt_en: "Tomorrow I am travelling to Cologne by train because of an appointment."
+    prompt_ru: "Завтра я поеду в Кёльн на поезде из-за встречи."
+    prompt_uk: "Завтра я поїду до Кельна потягом через зустріч."
+    answer: "Ich fahre morgen wegen eines Termins mit dem Zug nach Köln."
+    key_tokens: ["morgen", "wegen", "Zug", "Köln"]
+    accept:
+      # One Angabe may lead as the Vorfeld; the relative order of the remaining three is
+      # what the tag grades, and it is unchanged here.
+      - "Morgen fahre ich wegen eines Termins mit dem Zug nach Köln."
+    explain: { en: "Four adverbials in one clause, and German has a default order for them: temporal before causal before modal before local — morgen, wegen eines Termins, mit dem Zug, nach Köln. Say it in the source-language order and the sentence comes out with the place too early, which is the one that sounds most wrong to a German ear. The order is a default and not a law: any one of them may be moved into position 1 for emphasis, and then the verb comes second and the rest keep their sequence.", ru: "Четыре обстоятельства в одном предложении, и у немецкого для них есть порядок по умолчанию: время — причина — образ действия — место: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказать это в русском порядке — значит вынести место слишком рано, а именно это немецкому уху и режет слух сильнее всего. Порядок — это умолчание, а не закон: любое из обстоятельств можно вынести на первое место для акцента, и тогда глагол идёт вторым, а остальные сохраняют свою последовательность.", uk: "Чотири обставини в одному реченні, і в німецької для них є порядок за замовчуванням: час — причина — спосіб дії — місце: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказати це в українському порядку — означає винести місце надто рано, а саме це німецькому вуху й ріже слух найдужче. Порядок — це замовчування, а не закон: будь-яку з обставин можна винести на перше місце для акценту, і тоді дієслово йде другим, а решта зберігають свою послідовність.", de: "Vier Angaben in einem Satz, und das Deutsche hat dafür eine Grundreihenfolge: temporal vor kausal vor modal vor lokal — morgen, wegen eines Termins, mit dem Zug, nach Köln. Wer sie in der Reihenfolge der Ausgangssprache sagt, setzt die Ortsangabe zu früh, und genau das klingt für ein deutsches Ohr am schiefsten. Die Reihenfolge ist eine Grundregel und kein Gesetz: Jede einzelne Angabe darf zur Betonung auf Position 1 rücken, dann steht das Verb an zweiter Stelle und der Rest behält seine Abfolge." }

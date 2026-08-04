@@ -605,3 +605,38 @@ units:
         register: "freundlich-sachlich, Auskunft am Telefon"
         item_types: [audio-comprehension]
         context_sound: "sehr leises Telefonrauschen"
+  - unit: geld-vertraege
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome, for the same reason as B1.11 and B1.12:
+      # this unit owns no listening outcome — its three are reading, spoken interaction and
+      # spoken production — so the artifact carries the genre's spoken form (a bill queried
+      # over the phone) and claims no listening evidence.
+      - id: ls-geld-vertraege-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf beim Anbieter: eine Zeile der Rechnung stimmt nicht, der Zahltag bleibt"
+        outcomes: [rechnung-pruefen]
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Servicegespräch am Telefon"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: informationen-vermitteln
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome: this unit owns no listening outcome —
+      # its three are spoken production and twice writing — so the artifact carries the
+      # spoken form of the genre (a message left for somebody who is not there) and claims
+      # no listening evidence. It is what the unit's own outcome asks the learner to relay,
+      # heard rather than read.
+      - id: ls-informationen-vermitteln-01
+        wave: 2
+        purpose: model-input
+        scenario: "Nachricht an der Wohnungstür: ein Termin rückt, der Schlüssel bekommt eine eigene Frist, die Uhrzeit bleibt"
+        outcomes: [mitteilung-weitergeben]
+        duration_seconds: { min: 50, max: 70 }
+        speakers: { min: 2, max: 2 }
+        register: "nachbarschaftlich-freundlich, gesprochene Nachricht"
+        item_types: [audio-comprehension]
+        context_sound: "leises Treppenhaus"

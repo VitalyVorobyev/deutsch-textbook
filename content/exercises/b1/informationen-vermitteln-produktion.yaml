@@ -1,0 +1,222 @@
+# B1.14 production half: the transfer set. Fresh contexts throughout — a message left on
+# the phone rather than a notice read on a board, the one sentence of a caretaker's question
+# written down as it is heard, two translations in frames the primary set does not use (a
+# question relayed rather than a statement; a written summary of an evening that is over),
+# and the two open tasks the outcomes claim. The write task moves to the cellar clearance
+# and the speak task to the heating meters, so neither can be answered out of the lift and
+# letterbox notices the primary set and the reading are built on.
+# Two recycled tags live here and each is the live runtime channel of a `deepens` edge:
+# `indirekte-frage` (lernen-verstehen — the embedded question whose verb falls to the end)
+# and `praeteritum-vollverben` (erfahrungen-erzaehlen — the written narrative past a summary
+# of a past event is written in). The third edge, to nebensaetze-plaene, is carried by
+# `nebensatz-verbende` in the primary set.
+# The listening item is untagged: its three options differ in which of the day and the
+# deadline the caller changed, and the two are settled two turns apart, so a wrong pick is a
+# failure to carry one fact across a conversation and not a decode failure of any structure.
+# The dictation is untagged for the neighbouring reason — it happens to be an ob-report, and
+# tagging a whole-sentence dictation would charge any miss anywhere in it to that tag.
+# Open tasks are minimal ceremony: attempt → model answer → done. `requirements` and
+# `checklist` are guidance for comparing your own production against the model — the app
+# cannot verify free production, so it charges no steps for feedback it cannot give — and
+# both stay untagged, because unverified production must never feed the weakness signal.
+# The write task takes `indirekt-berichten` (writing) and the speak task
+# `mitteilung-weitergeben` (spoken-production), each in the mode its frozen outcome names.
+# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns is
+# both the script a future take would be made from and today's TTS fallback
+# (data/listening-plan.yaml, ls-informationen-vermitteln-01, purpose: model-input).
+# The deck's 21 `cards: recognition` headwords are never demanded as a typed answer here
+# either: `Ansage`, `Botschaft` and `Schreiben` appear only in a prompt or a model the
+# learner reads.
+topic: informationen-vermitteln
+role: practice
+title:
+  en: "Production — take the message, relay the question, summarize, hand it on"
+  ru: "Продукция — принять сообщение, передать вопрос, пересказать, отдать дальше"
+  uk: "Продукція — прийняти повідомлення, передати питання, переказати, віддати далі"
+  de: "Produktion — die Nachricht aufnehmen, die Frage weitergeben, zusammenfassen, ausrichten"
+items:
+  - id: hoeren-nachricht-aufnehmen
+    outcomes: [mitteilung-weitergeben]
+    type: audio-comprehension
+    instruction:
+      en: "A message you have to pass on, heard and not read. Two things change and one stays, and they are settled in different turns."
+      ru: "Сообщение, которое придётся передать, — услышанное, а не прочитанное. Две вещи меняются, одна остаётся, и решается это в разных репликах."
+      uk: "Повідомлення, яке доведеться передати, — почуте, а не прочитане. Дві речі змінюються, одна лишається, і вирішується це в різних репліках."
+      de: "Eine Nachricht, die du weitergeben musst — gehört, nicht gelesen. Zwei Dinge ändern sich, eines bleibt, und das wird in verschiedenen Beiträgen geklärt."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Frau Ritter", text: "Hallo, hier ist Frau Ritter von oben. Ich erreiche Herrn Klein nicht — können Sie ihm etwas ausrichten?" }
+        - { speaker: "Nachbar", text: "Natürlich, ich sage es ihm heute Abend." }
+        - { speaker: "Frau Ritter", text: "Die Handwerker kommen doch nicht am Dienstag, sondern erst am Donnerstag. Und er soll den Schlüssel bis Mittwoch im Büro abgeben." }
+        - { speaker: "Nachbar", text: "Also Donnerstag statt Dienstag, und der Schlüssel bis Mittwoch ins Büro. Habe ich das richtig verstanden?" }
+        - { speaker: "Frau Ritter", text: "Genau. Die Uhrzeit bleibt, wie sie war: acht Uhr morgens." }
+    question: "Was müssen Sie Herrn Klein weitergeben?"
+    options:
+      - "Die Handwerker kommen am Donnerstag um acht, und der Schlüssel muss bis Mittwoch ins Büro."
+      - "Die Handwerker kommen am Dienstag um acht, und der Schlüssel muss bis Donnerstag ins Büro."
+      - "Der Termin wurde auf acht Uhr verschoben, und der Schlüssel bleibt bei Herrn Klein."
+    correct: 0
+    translation:
+      en: "What do you have to pass on to Herr Klein?"
+      ru: "Что вы должны передать господину Кляйну?"
+      uk: "Що ви маєте передати панові Кляйну?"
+    explain:
+      en: "Three facts arrive in three different turns and only two of them change. The day moves — nicht am Dienstag, sondern erst am Donnerstag — and the key gets a deadline of its own, Mittwoch, which is neither the old day nor the new one. The time is settled last and settled the other way: die Uhrzeit bleibt, wie sie war. Swapping Dienstag and Donnerstag is what happens when a listener keeps only one of the two dates; making acht Uhr the news drops the instruction the message was left for."
+      ru: "Три факта приходят в трёх разных репликах, и меняются только два. День сдвигается — nicht am Dienstag, sondern erst am Donnerstag, — а у ключа появляется собственный срок, Mittwoch, который не совпадает ни со старым днём, ни с новым. Время решают последним и решают иначе: die Uhrzeit bleibt, wie sie war. Поменять местами Dienstag и Donnerstag — так бывает, когда в памяти остаётся только одна из дат; сделать новостью acht Uhr — значит потерять указание, ради которого сообщение и оставили."
+      uk: "Три факти приходять у трьох різних репліках, і змінюються лише два. День зсувається — nicht am Dienstag, sondern erst am Donnerstag, — а в ключа з'являється власний строк, Mittwoch, який не збігається ні зі старим днем, ні з новим. Час вирішують останнім і вирішують інакше: die Uhrzeit bleibt, wie sie war. Поміняти місцями Dienstag і Donnerstag — так буває, коли в пам'яті лишається лише одна з дат; зробити новиною acht Uhr — означає згубити вказівку, заради якої повідомлення й лишили."
+      de: "Drei Tatsachen kommen in drei verschiedenen Beiträgen, und nur zwei ändern sich. Der Tag rückt — nicht am Dienstag, sondern erst am Donnerstag —, und der Schlüssel bekommt eine eigene Frist, Mittwoch, die weder der alte noch der neue Tag ist. Die Uhrzeit wird zuletzt geklärt, und zwar andersherum: Sie bleibt, wie sie war. Dienstag und Donnerstag zu vertauschen passiert, wenn nur eines der Daten hängen bleibt; acht Uhr zur Neuigkeit zu machen verliert die Anweisung, wegen der die Nachricht überhaupt hinterlassen wurde."
+
+  - id: hoeren-diktat-frage
+    outcomes: [indirekt-berichten]
+    type: listen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Der Hausmeister fragt, ob jemand einen Zettel gefunden hat."
+    translation:
+      en: "The caretaker is asking whether anybody has found a note."
+      ru: "Комендант спрашивает, не находил ли кто-нибудь записку."
+      uk: "Комендант питає, чи не знаходив хтось записку."
+    explain:
+      en: "A relayed question is not a question any more: no question mark, no question word order. What you hear is one main clause and one Nebensatz, and everything that decides the sentence sits at its two ends — ob at the front, hat at the wall behind the participle. Writing it down whole is the point: half a message travels as badly as a wrong one."
+      ru: "Переданный вопрос перестал быть вопросом: ни знака вопроса, ни вопросительного порядка слов. Вы слышите одно главное предложение и одно придаточное, а всё решающее стоит по его концам — ob в начале, hat у стены за причастием. Записать целиком и есть задача: половина сообщения уходит дальше не лучше, чем неверное."
+      uk: "Переказане питання перестало бути питанням: ні знака питання, ні питального порядку слів. Ви чуєте одне головне речення й одне підрядне, а все вирішальне стоїть по його кінцях — ob на початку, hat біля стіни за дієприкметником. Записати цілком і є завдання: половина повідомлення йде далі не краще, ніж хибне."
+      de: "Eine berichtete Frage ist keine Frage mehr: kein Fragezeichen, keine Fragestellung. Zu hören sind ein Hauptsatz und ein Nebensatz, und alles Entscheidende steht an dessen beiden Enden — ob vorn, hat an der Wand hinter dem Partizip. Der ganze Satz ist die Aufgabe: Eine halbe Nachricht läuft nicht besser weiter als eine falsche."
+
+  - id: uebersetzen-frage-weitergeben
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-frage
+    instruction:
+      en: "Pass a question on, not a statement. For 'the neighbour' take die Nachbarin, for 'wanted to know' wollte wissen, and for where a letterbox is take hängen."
+      ru: "Передайте вопрос, а не утверждение. Для «соседка» возьмите die Nachbarin, для «хотела знать» — wollte wissen, а для местоположения почтового ящика — hängen."
+      uk: "Передайте питання, а не твердження. Для «сусідка» візьміть die Nachbarin, для «хотіла знати» — wollte wissen, а для розташування поштової скриньки — hängen."
+      de: "Gib eine Frage weiter, keine Aussage. Für die Frau von nebenan nimm die Nachbarin, für ihr Interesse wollte wissen, und für den Ort eines Briefkastens hängen."
+    prompt_en: "The neighbour wanted to know where the new letterbox is."
+    prompt_ru: "Соседка хотела знать, где висит новый почтовый ящик."
+    prompt_uk: "Сусідка хотіла знати, де висить нова поштова скринька."
+    answer: "Die Nachbarin wollte wissen, wo der neue Briefkasten hängt."
+    key_tokens: ["wo", "hängt"]
+    explain:
+      en: "Graded are the two ends of the embedded question: the question word that opens it and the finite verb that has to close it. Asked directly it would be Wo hängt der neue Briefkasten? with the verb in position 2 — but packed behind wollte wissen it is a Nebensatz like any other and the verb drops to the wall. The question word itself stays: a reported W-question keeps it, where a yes/no question has to borrow ob."
+      ru: "Оцениваются два конца вложенного вопроса: вопросительное слово, которое его открывает, и спрягаемый глагол, который обязан его закрыть. Заданный прямо, он звучал бы Wo hängt der neue Briefkasten? — глагол на второй позиции, — но за wollte wissen это придаточное, как любое другое, и глагол падает к стене. Само вопросительное слово остаётся: переданный вопрос с вопросительным словом его сохраняет, а вопрос без него вынужден брать ob."
+      uk: "Оцінюються два кінці вкладеного питання: питальне слово, що його відкриває, і відмінюване дієслово, яке мусить його закрити. Поставлене прямо, воно звучало б Wo hängt der neue Briefkasten? — дієслово на другій позиції, — але за wollte wissen це підрядне, як будь-яке інше, і дієслово падає до стіни. Саме питальне слово лишається: переказане питання з питальним словом його зберігає, а питання без нього мусить брати ob."
+      de: "Bewertet werden die beiden Enden der eingebetteten Frage: das Fragewort, das sie öffnet, und das finite Verb, das sie schließen muss. Direkt gefragt hieße es Wo hängt der neue Briefkasten? mit dem Verb auf Position 2 — hinter wollte wissen ist es ein Nebensatz wie jeder andere, und das Verb fällt an die Wand. Das Fragewort selbst bleibt: Eine berichtete W-Frage behält es, eine Ja/Nein-Frage muss sich ob borgen."
+
+  - id: uebersetzen-praeteritum-zusammenfassen
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written summary of an evening that is over, so the written past — the Präteritum, and of full verbs, not only of war and hatte. For 'begin' take beginnen, for 'speak' sprechen."
+      ru: "Письменный пересказ уже прошедшего вечера, значит письменное прошедшее — Präteritum, и у полнозначных глаголов, а не только у war и hatte. Для «начаться» возьмите beginnen, для «говорить» — sprechen."
+      uk: "Письмовий переказ уже минулого вечора, отже писемний минулий — Präteritum, і в повнозначних дієслів, а не лише в war і hatte. Для «початися» візьміть beginnen, для «говорити» — sprechen."
+      de: "Eine schriftliche Zusammenfassung eines Abends, der vorbei ist, also die geschriebene Vergangenheit — das Präteritum, und zwar von Vollverben, nicht nur von war und hatte. Für den Anfang nimm beginnen, für das Reden sprechen."
+    prompt_en: "The meeting began at seven, and the caretaker spoke about the new letterboxes."
+    prompt_ru: "Собрание началось в семь, и комендант говорил о новых почтовых ящиках."
+    prompt_uk: "Збори почалися о сьомій, і комендант говорив про нові поштові скриньки."
+    answer: "Das Treffen begann um sieben, und der Hausmeister sprach über die neuen Briefkästen."
+    key_tokens: ["begann", "sprach"]
+    explain:
+      en: "Graded are the two full verbs, both strong: beginnen changes its vowel and takes no -te at all (begann, never beginnte), and sprechen does the same (sprach). This is the register rather than the tense — spoken German would say hat begonnen and hat gesprochen, and a written summary would not. Note what stays in the present tense elsewhere in this unit: a notice reports what is still ahead, and only what is already over goes into the Präteritum."
+      ru: "Оцениваются два полнозначных глагола, оба сильные: beginnen меняет гласный и вовсе не берёт -te (begann, но не beginnte), sprechen делает то же самое (sprach). Дело здесь в регистре, а не во времени: в устной речи сказали бы hat begonnen и hat gesprochen, а письменный пересказ так не пишут. Заметьте, что остаётся в настоящем в других заданиях этой главы: объявление сообщает о том, что ещё впереди, и в Präteritum уходит только уже завершённое."
+      uk: "Оцінюються два повнозначні дієслова, обидва сильні: beginnen міняє голосний і зовсім не бере -te (begann, але не beginnte), sprechen робить те саме (sprach). Річ тут у регістрі, а не в часі: в усному мовленні сказали б hat begonnen і hat gesprochen, а письмовий переказ так не пишуть. Зверніть увагу, що лишається в теперішньому в інших завданнях цього розділу: оголошення повідомляє про те, що ще попереду, і в Präteritum іде тільки вже завершене."
+      de: "Bewertet werden die beiden Vollverben, beide stark: beginnen wechselt den Vokal und nimmt gar kein -te (begann, nie beginnte), sprechen ebenso (sprach). Es geht um das Register, nicht um die Zeit — gesprochen hieße es hat begonnen und hat gesprochen, geschrieben nicht. Und man sieht, was anderswo in dieser Einheit im Präsens bleibt: Ein Aushang berichtet, was noch bevorsteht; ins Präteritum geht nur, was schon vorbei ist."
+
+  - id: schreiben-mitteilung-berichten
+    outcomes: [indirekt-berichten]
+    type: write
+    instruction:
+      en: "Write the message yourself — the list shows what to check it against."
+      ru: "Напишите сообщение сами — список подскажет, что в нём проверить."
+      uk: "Напишіть повідомлення самі — список підкаже, що в ньому перевірити."
+      de: "Schreib die Nachricht selbst — die Liste zeigt, woran du sie prüfen kannst."
+    prompt:
+      en: "You come home and find two things: a notice from the management saying the cellar has to be cleared out before 20 September, and a note from Frau Berger asking whether your flatmate still needs the old cupboard down there. Write a short message to your flatmate: say where each piece of information comes from, report what the notice says and what Frau Berger asked, say what the two of you have to do and by when, and mark the one point you are not certain about."
+      ru: "Вы возвращаетесь домой и находите две вещи: объявление управляющей компании о том, что подвал нужно освободить до 20 сентября, и записку от госпожи Бергер с вопросом, нужен ли ещё вашему соседу старый шкаф внизу. Напишите короткое сообщение соседу: скажите, откуда каждая из этих сведений, передайте, что написано в объявлении и о чём спросила госпожа Бергер, скажите, что вам двоим нужно сделать и к какому сроку, и пометьте тот единственный пункт, в котором вы не уверены."
+      uk: "Ви повертаєтеся додому й знаходите дві речі: оголошення управлінської компанії про те, що підвал треба звільнити до 20 вересня, і записку від пані Бергер із питанням, чи потрібна ще вашому сусідові стара шафа внизу. Напишіть коротке повідомлення сусідові: скажіть, звідки кожна з цих відомостей, перекажіть, що написано в оголошенні і про що спитала пані Бергер, скажіть, що вам двом треба зробити і до якого строку, і позначте той єдиний пункт, у якому ви не впевнені."
+      de: "Du kommst nach Hause und findest zweierlei: einen Aushang der Verwaltung, dass der Keller bis zum 20. September geräumt werden muss, und einen Zettel von Frau Berger mit der Frage, ob dein Mitbewohner den alten Schrank unten noch braucht. Schreib deinem Mitbewohner eine kurze Nachricht: Sag, woher jede Information stammt, berichte, was im Aushang steht und was Frau Berger gefragt hat, sag, was ihr beide bis wann tun müsst, und markier den einen Punkt, bei dem du dir nicht sicher bist."
+    goal:
+      en: "A message the other person can act on without reading the originals: two sources named, one statement and one question reported, one deadline, and one honest uncertainty. The writing this unit asks of you."
+      ru: "Сообщение, по которому собеседник может действовать, не читая оригиналов: два названных источника, переданные утверждение и вопрос, один срок и одна честно помеченная неясность. То самое письмо, которого ждёт эта глава."
+      uk: "Повідомлення, за яким співрозмовник може діяти, не читаючи оригіналів: два названі джерела, переказані твердження і питання, один строк і одна чесно позначена неясність. Те саме письмо, якого чекає цей розділ."
+      de: "Eine Nachricht, mit der der andere handeln kann, ohne die Originale zu lesen: zwei genannte Quellen, eine berichtete Aussage und eine berichtete Frage, eine Frist und eine ehrlich markierte Unsicherheit. Das Schreiben dieser Einheit."
+    requirements:
+      - en: "Name the source before the content, each time: Im Aushang steht, dass … and Frau Berger hat gefragt, ob … Without it your flatmate cannot tell what is the management's word and what is a neighbour's."
+        ru: "Каждый раз называйте источник прежде содержания: Im Aushang steht, dass … и Frau Berger hat gefragt, ob … Иначе сосед не отличит слова управляющей компании от слов соседки."
+        uk: "Щоразу називайте джерело перед змістом: Im Aushang steht, dass … і Frau Berger hat gefragt, ob … Інакше сусід не відрізнить слова управлінської компанії від слів сусідки."
+        de: "Nenn jedes Mal die Quelle vor dem Inhalt: Im Aushang steht, dass … und Frau Berger hat gefragt, ob … Sonst kann dein Mitbewohner nicht unterscheiden, was die Verwaltung sagt und was eine Nachbarin."
+      - en: "The statement takes dass, the question takes ob, and in both the finite verb goes to the very end: …, dass der Keller bis zum 20. September geräumt werden muss; …, ob du den alten Schrank noch brauchst. Never wenn for the question."
+        ru: "Утверждение вводится через dass, вопрос — через ob, и в обоих спрягаемый глагол уходит в самый конец: …, dass der Keller bis zum 20. September geräumt werden muss; …, ob du den alten Schrank noch brauchst. Никогда не wenn для вопроса."
+        uk: "Твердження вводиться через dass, питання — через ob, і в обох відмінюване дієслово йде в самий кінець: …, dass der Keller bis zum 20. September geräumt werden muss; …, ob du den alten Schrank noch brauchst. Ніколи не wenn для питання."
+        de: "Die Aussage bekommt dass, die Frage ob, und in beiden steht das finite Verb ganz am Ende: …, dass der Keller bis zum 20. September geräumt werden muss; …, ob du den alten Schrank noch brauchst. Nie wenn für die Frage."
+      - en: "Keep the tense the original used. The notice is about something still ahead, so it stays in the present — geräumt werden muss, not geräumt werden musste. Changing the tense changes the fact."
+        ru: "Сохраняйте то время, которое стояло в оригинале. Объявление говорит о том, что ещё впереди, значит остаётся настоящее — geräumt werden muss, а не geräumt werden musste. Смена времени меняет факт."
+        uk: "Зберігайте той час, який стояв в оригіналі. Оголошення говорить про те, що ще попереду, отже лишається теперішній — geräumt werden muss, а не geräumt werden musste. Зміна часу міняє факт."
+        de: "Behalt die Zeitform des Originals. Der Aushang spricht von etwas, das noch bevorsteht, also bleibt das Präsens — geräumt werden muss, nicht musste. Eine andere Zeitform ist eine andere Tatsache."
+      - en: "End with what is to be done and by when — Wir müssen den Keller bis Freitag leer haben — and mark the one thing you are unsure of in a sentence of its own: So habe ich es verstanden, or Ich bin nicht sicher, ob auch die Fahrräder gemeint sind."
+        ru: "Закончите тем, что нужно сделать и к какому сроку — Wir müssen den Keller bis Freitag leer haben, — и пометьте отдельной фразой то единственное, в чём не уверены: So habe ich es verstanden или Ich bin nicht sicher, ob auch die Fahrräder gemeint sind."
+        uk: "Закінчіть тим, що треба зробити і до якого строку — Wir müssen den Keller bis Freitag leer haben, — і позначте окремою фразою те єдине, у чому не впевнені: So habe ich es verstanden або Ich bin nicht sicher, ob auch die Fahrräder gemeint sind."
+        de: "Schließ mit dem, was zu tun ist, und bis wann — Wir müssen den Keller bis Freitag leer haben — und markier das eine, bei dem du unsicher bist, in einem eigenen Satz: So habe ich es verstanden oder Ich bin nicht sicher, ob auch die Fahrräder gemeint sind."
+    min_words: 55
+    model_answer: "Hallo, im Treppenhaus hängt seit heute ein Aushang von der Verwaltung. Dort steht, dass der Keller bis zum 20. September geräumt werden muss. Alles, was danach noch unten steht, wird von der Firma entsorgt. Wir haben also gut zwei Wochen Zeit, und ich würde am Samstag anfangen. Frau Berger hat außerdem einen Zettel in den Briefkasten geworfen. Sie hat gefragt, ob du den alten Schrank unten noch brauchst — wenn nicht, nimmt sie ihn gern. Eines weiß ich nicht sicher: Ich bin nicht sicher, ob auch die Fahrräder im Gang gemeint sind. So habe ich es jedenfalls verstanden. Sag mir bitte bis Donnerstag Bescheid."
+    model_translation:
+      en: "Hi, there has been a notice from the management in the stairwell since today. It says that the cellar has to be cleared out by 20 September. Anything still standing down there afterwards will be disposed of by the company. So we have a good two weeks, and I would start on Saturday. Frau Berger also put a note in the letterbox. She asked whether you still need the old cupboard down there — if not, she would be glad to take it. There is one thing I do not know for certain: I am not sure whether the bicycles in the corridor are meant as well. That is how I understood it, at any rate. Please let me know by Thursday."
+      ru: "Привет, на лестнице со сегодняшнего дня висит объявление от управляющей компании. Там написано, что подвал нужно освободить до 20 сентября. Всё, что останется внизу после этого, фирма вывезет. То есть у нас добрых две недели, и я бы начал в субботу. Госпожа Бергер, кроме того, бросила записку в почтовый ящик. Она спросила, нужен ли тебе ещё старый шкаф внизу, — если нет, она охотно его заберёт. Одного я точно не знаю: не уверен, имеются ли в виду и велосипеды в коридоре. Во всяком случае, я понял это так. Дай мне, пожалуйста, знать до четверга."
+      uk: "Привіт, на сходах від сьогодні висить оголошення від управлінської компанії. Там написано, що підвал треба звільнити до 20 вересня. Усе, що лишиться внизу після цього, фірма вивезе. Тобто в нас добрих два тижні, і я б почав у суботу. Пані Бергер, крім того, вкинула записку в поштову скриньку. Вона спитала, чи потрібна тобі ще стара шафа внизу, — якщо ні, вона охоче її забере. Одного я напевно не знаю: не впевнений, чи маються на увазі й велосипеди в коридорі. Хай там як, я зрозумів це так. Дай мені, будь ласка, знати до четверга."
+    explain:
+      en: "Compare your draft against the model's moves, not its words. Each piece of information arrives with its source in front of it, so the reader always knows whose word it is. The statement travels in a dass-clause and the question in an ob-clause, both with the verb at the wall, and both in the tense the original used, because the cellar is still to be cleared. The uncertainty gets a sentence of its own instead of being smuggled into the report — that one sentence is what keeps a relayed mistake from travelling further than the person who made it. And the message closes with a deadline the other person can act on."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Каждая порция сведений приходит с названным источником впереди, поэтому читатель всегда знает, чьи это слова. Утверждение идёт придаточным с dass, вопрос — придаточным с ob, в обоих глагол у стены, и оба сохраняют время оригинала, потому что подвал ещё только предстоит освободить. Неуверенность получает отдельную фразу, а не прячется внутри пересказа: именно эта фраза не даёт чужой ошибке уйти дальше, чем ушёл тот, кто её сделал. И заканчивается сообщение сроком, по которому можно действовать."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Кожна порція відомостей приходить із названим джерелом попереду, тому читач завжди знає, чиї це слова. Твердження йде підрядним із dass, питання — підрядним із ob, у обох дієслово біля стіни, і обидва зберігають час оригіналу, бо підвал іще тільки треба звільнити. Непевність дістає окрему фразу, а не ховається всередині переказу: саме ця фраза не дає чужій помилці піти далі, ніж пішов той, хто її зробив. І закінчується повідомлення строком, за яким можна діяти."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Jede Information kommt mit ihrer Quelle davor, also weiß die Leserin immer, wessen Wort es ist. Die Aussage reist im dass-Satz, die Frage im ob-Satz, beide mit dem Verb an der Wand und beide in der Zeitform des Originals, denn der Keller ist noch zu räumen. Die Unsicherheit bekommt einen eigenen Satz, statt sich in den Bericht zu schleichen — genau dieser Satz hält einen weitergereichten Fehler auf. Und die Nachricht schließt mit einer Frist, mit der der andere arbeiten kann."
+
+  - id: sprechen-mitteilung-weitergeben
+    outcomes: [mitteilung-weitergeben]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say the whole thing aloud in one go — then compare with the model."
+      ru: "Произнесите всё вслух одним куском — затем сравните с образцом."
+      uk: "Промовте все вголос одним шматком — потім порівняйте зі зразком."
+      de: "Sprich das Ganze am Stück laut — vergleich dann mit dem Muster."
+    prompt:
+      en: "A notice by the letterboxes says that the heating meters are being read on Tuesday between nine and one, that somebody has to be at home, and that anybody who cannot manage it should hand a key in at the office by Monday. The caretaker added out loud that he still needs to know how many rooms have a radiator in them. A neighbour who has not read the notice asks you what it says. Tell him: name where it comes from, give the main point first, say what changes and what he has to do, pass the caretaker's question on, and mark anything you are not sure of."
+      ru: "У почтовых ящиков висит объявление: во вторник с девяти до часу снимают показания счётчиков отопления, кто-то должен быть дома, а кто не может — должен до понедельника сдать ключ в контору. Комендант вдобавок сказал вслух, что ему ещё нужно знать, в скольких комнатах есть батарея. Сосед, который объявления не читал, спрашивает вас, что там написано. Расскажите ему: назовите источник, начните с главного, скажите, что меняется и что ему нужно сделать, передайте вопрос коменданта и пометьте то, в чём не уверены."
+      uk: "Біля поштових скриньок висить оголошення: у вівторок із дев'ятої до першої знімають покази лічильників опалення, хтось має бути вдома, а хто не може — має до понеділка здати ключ у контору. Комендант на додачу сказав уголос, що йому ще потрібно знати, у скількох кімнатах є батарея. Сусід, який оголошення не читав, питає вас, що там написано. Розкажіть йому: назвіть джерело, почніть з головного, скажіть, що змінюється і що йому треба зробити, передайте питання коменданта і позначте те, у чому не впевнені."
+      de: "An den Briefkästen hängt ein Aushang: Am Dienstag zwischen neun und eins werden die Heizungszähler abgelesen, jemand muss zu Hause sein, und wer es nicht schafft, soll bis Montag einen Schlüssel im Büro abgeben. Der Hausmeister hat mündlich ergänzt, er müsse noch wissen, in wie vielen Zimmern eine Heizung steht. Ein Nachbar, der den Aushang nicht gelesen hat, fragt dich, was darin steht. Erzähl es ihm: Nenn die Quelle, bring den Hauptpunkt zuerst, sag, was sich ändert und was er tun muss, gib die Frage des Hausmeisters weiter und markier, was du nicht sicher weißt."
+    goal:
+      en: "A relay the other person can act on without walking down to the board: the source named, the main point first, one thing to do with a deadline, one question passed on, and one honest uncertainty. The spoken outcome of this unit."
+      ru: "Пересказ, по которому собеседник может действовать, не спускаясь к доске: названный источник, главное вперёд, одно дело со сроком, один переданный вопрос и одна честно помеченная неясность. Устный итог этой главы."
+      uk: "Переказ, за яким співрозмовник може діяти, не спускаючись до дошки: назване джерело, головне вперед, одна справа зі строком, одне передане питання і одна чесно позначена неясність. Усний підсумок цього розділу."
+      de: "Eine Weitergabe, mit der der andere handeln kann, ohne selbst zur Tafel zu gehen: Quelle genannt, Hauptpunkt zuerst, eine Aufgabe mit Frist, eine weitergegebene Frage und eine ehrlich markierte Unsicherheit. Das gesprochene Ergebnis dieser Einheit."
+    checklist:
+      - en: "You said where it comes from before you said what it says: Im Aushang an den Briefkästen steht, dass … Your own opinion about the heating firm stayed out of it."
+        ru: "Вы назвали источник прежде содержания: Im Aushang an den Briefkästen steht, dass … Собственное мнение о фирме-теплоснабженце осталось при вас."
+        uk: "Ви назвали джерело перед змістом: Im Aushang an den Briefkästen steht, dass … Власна думка про фірму-теплопостачальника лишилася при вас."
+        de: "Du hast die Quelle vor dem Inhalt genannt: Im Aushang an den Briefkästen steht, dass … Deine eigene Meinung über die Heizungsfirma blieb draußen."
+      - en: "The main point came first and the details after it: Am Dienstag werden die Heizungszähler abgelesen — everything about the hours and the key follows from that one fact."
+        ru: "Главное прозвучало первым, подробности — за ним: Am Dienstag werden die Heizungszähler abgelesen; всё про время и ключ следует уже из этого факта."
+        uk: "Головне прозвучало першим, подробиці — за ним: Am Dienstag werden die Heizungszähler abgelesen; усе про час і ключ випливає вже з цього факту."
+        de: "Der Hauptpunkt kam zuerst, die Einzelheiten danach: Am Dienstag werden die Heizungszähler abgelesen — alles über die Uhrzeit und den Schlüssel folgt daraus."
+      - en: "You passed the caretaker's question on as a question, not as an order: Er wollte wissen, in wie vielen Zimmern eine Heizung steht. The question word stays and the verb goes to the end."
+        ru: "Вопрос коменданта вы передали именно как вопрос, а не как распоряжение: Er wollte wissen, in wie vielen Zimmern eine Heizung steht. Вопросительное слово сохраняется, глагол уходит в конец."
+        uk: "Питання коменданта ви передали саме як питання, а не як розпорядження: Er wollte wissen, in wie vielen Zimmern eine Heizung steht. Питальне слово зберігається, дієслово йде в кінець."
+        de: "Die Frage des Hausmeisters hast du als Frage weitergegeben, nicht als Anweisung: Er wollte wissen, in wie vielen Zimmern eine Heizung steht. Das Fragewort bleibt, das Verb geht ans Ende."
+      - en: "You named the one thing to do with its deadline — Wer nicht da sein kann, gibt bis Montag einen Schlüssel im Büro ab — and marked what you were unsure of in a sentence of its own: So habe ich es verstanden."
+        ru: "Вы назвали единственное дело вместе со сроком — Wer nicht da sein kann, gibt bis Montag einen Schlüssel im Büro ab — и пометили отдельной фразой то, в чём не уверены: So habe ich es verstanden."
+        uk: "Ви назвали єдину справу разом зі строком — Wer nicht da sein kann, gibt bis Montag einen Schlüssel im Büro ab — і позначили окремою фразою те, у чому не впевнені: So habe ich es verstanden."
+        de: "Du hast die eine Aufgabe mit ihrer Frist genannt — Wer nicht da sein kann, gibt bis Montag einen Schlüssel im Büro ab — und in einem eigenen Satz markiert, was du nicht sicher weißt: So habe ich es verstanden."
+    model_answer: "Warte, ich sage dir kurz, was drinsteht. Im Aushang an den Briefkästen steht, dass am Dienstag die Heizungszähler abgelesen werden. Das ist der Hauptpunkt. Die Leute kommen zwischen neun und eins, und einer von uns muss in der Wohnung sein. Wer es nicht schafft, gibt bis Montag einen Schlüssel im Büro ab. Der Hausmeister hat mich außerdem gefragt, in wie vielen Zimmern bei dir eine Heizung steht — das wollte er noch wissen. Ob sie auch in den Keller müssen, weiß ich nicht sicher; so habe ich den Aushang jedenfalls verstanden. Wenn du magst, hänge ich dir den Zettel nachher an die Tür."
+    model_translation:
+      en: "Hang on, I will tell you quickly what it says. The notice by the letterboxes says that the heating meters are being read on Tuesday. That is the main point. The people are coming between nine and one, and one of us has to be in the flat. Anybody who cannot manage it hands a key in at the office by Monday. The caretaker also asked me how many rooms you have a radiator in — that is something he still wants to know. Whether they have to go down to the cellar as well I do not know for certain; that is how I understood the notice, at any rate. If you like, I will pin the note to your door later."
+      ru: "Погоди, сейчас коротко скажу, что там. В объявлении у почтовых ящиков написано, что во вторник снимают показания счётчиков отопления. Это главное. Придут между девятью и часом, и кто-то из нас должен быть в квартире. Кто не может — до понедельника сдаёт ключ в контору. Комендант, кроме того, спросил меня, в скольких комнатах у тебя стоит батарея, — это он ещё хотел узнать. Пойдут ли они и в подвал, я точно не знаю; во всяком случае, объявление я понял так. Если хочешь, я потом повешу тебе записку на дверь."
+      uk: "Зачекай, зараз коротко скажу, що там. В оголошенні біля поштових скриньок написано, що у вівторок знімають покази лічильників опалення. Це головне. Прийдуть між дев'ятою і першою, і хтось із нас має бути у квартирі. Хто не може — до понеділка здає ключ у контору. Комендант, крім того, спитав мене, у скількох кімнатах у тебе стоїть батарея, — це він іще хотів дізнатися. Чи підуть вони й у підвал, я точно не знаю; хай там як, оголошення я зрозумів так. Якщо хочеш, я потім повішу тобі записку на двері."
+    explain:
+      en: "Listen for the order the model works in, not for its words. The source comes first, so nothing that follows can be mistaken for your own claim. Then the one fact everything else hangs on, then the details it produces — the hours, the person at home, the key with its deadline. The caretaker's question travels as a question with its question word kept and its verb at the end, and the uncertainty is a sentence rather than a hedge inside the report. Nothing about the firm, the tone of the notice or how annoying Tuesday is belongs in a relay."
+      ru: "Слушайте порядок ходов образца, а не его слова. Сначала источник — тогда ничто последующее нельзя принять за ваше собственное утверждение. Потом один факт, на котором держится всё остальное, потом подробности, которые из него вытекают: время, кто-то дома, ключ со сроком. Вопрос коменданта передан именно как вопрос — вопросительное слово сохранено, глагол в конце, — а неуверенность оформлена отдельной фразой, а не оговоркой внутри пересказа. Ни фирма, ни тон объявления, ни неудобство вторника в пересказ не входят."
+      uk: "Слухайте порядок ходів зразка, а не його слова. Спершу джерело — тоді ніщо подальше не можна прийняти за ваше власне твердження. Потім один факт, на якому тримається все решта, потім подробиці, що з нього випливають: час, хтось удома, ключ зі строком. Питання коменданта передане саме як питання — питальне слово збережене, дієслово в кінці, — а непевність оформлена окремою фразою, а не застереженням усередині переказу. Ні фірма, ні тон оголошення, ні незручність вівторка до переказу не входять."
+      de: "Hör auf die Reihenfolge des Musters, nicht auf seine Wörter. Zuerst die Quelle, damit nichts danach für eine eigene Behauptung gehalten wird. Dann die eine Tatsache, an der alles hängt, dann die Einzelheiten, die daraus folgen — die Uhrzeit, die Person in der Wohnung, der Schlüssel mit seiner Frist. Die Frage des Hausmeisters reist als Frage, mit Fragewort und Verb am Ende, und die Unsicherheit ist ein eigener Satz und keine Einschränkung im Bericht. Die Firma, der Ton des Aushangs und die Unbequemlichkeit des Dienstags gehören nicht in eine Weitergabe."

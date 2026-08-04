@@ -4,16 +4,18 @@ import { deriveStatus, inventory } from '../scripts/listening-inventory';
 describe('listening production inventory', () => {
   // The count moves with the spine, in the commit that ships the unit — same rule as the
   // grammar ratchet. B1.10 (gesellschaft-zusammenleben, 2026-08-03) took it 41 → 42, and
-  // B1.11 (digitales-leben, 2026-08-04) 42 → 43 and B1.12 (kultur-freizeit, 2026-08-04)
-  // 43 → 44. All three artifacts are planned, not recorded: the plan entry is what
-  // `validate` requires of a live unit, and the recording follows through the Studio, so
-  // the wave-1 count does not move. The two genre units' are additionally
-  // `purpose: model-input` — neither owns a listening outcome, so their artifacts carry
-  // the genre's spoken form and claim no listening evidence.
+  // B1.11 (digitales-leben, 2026-08-04) 42 → 43, B1.12 (kultur-freizeit, 2026-08-04)
+  // 43 → 44, B1.13 (geld-vertraege, 2026-08-04) 44 → 45 and B1.14
+  // (informationen-vermitteln, 2026-08-04) 45 → 46, which closes the B1 spine. All five
+  // artifacts are planned, not recorded: the plan entry is what `validate` requires of a
+  // live unit, and the recording follows through the Studio, so the wave-1 count does not
+  // move. The four are additionally `purpose: model-input` — none of those units owns a
+  // listening outcome, so their artifacts carry the genre's spoken form and claim no
+  // listening evidence.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(44);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(44);
+    expect(rows).toHaveLength(46);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(46);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

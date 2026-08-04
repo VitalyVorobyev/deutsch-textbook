@@ -775,7 +775,56 @@ describe('cards: recognition | both', () => {
     // `Durchschnitt`, `lang`, `breit` and `groß` plus an affix, which is the `-lich`
     // frequency-series ruling from `zeit-b1`. `Null` is the sharpest of them: A1 ships the
     // numeral `null`, and the two differ by one capital letter.
-    expect(cards).toBe(entries * 2 - 411);
+    // `geld-vertraege` (B1.13, 2026-08-04) adds sixteen on the same test, applied to the
+    // paper a household is sent: the line falls where the learner stops saying the word and
+    // only has to read it off a bill or out of the small print. The unit's three outcomes
+    // are check a Rechnung, ask about a Vertrag, compare what two things cost, so the
+    // twenty-two productive entries are what those three tasks have to say out loud —
+    // `Zeile`, `Kosten`, `Zahlung`, `Überweisung`, `Mahnung`, `Kündigung`, `Abo`,
+    // `Anbieter`, `Alternative`, `Angabe`, `Auftrag`, `Material`, `Bargeld`,
+    // `Kreditkarte`, `Leistung`, `Trinkgeld`, the two adjectives a payment date turns on
+    // (`fällig`, `gültig`) and the four verbs the field has left unowned. The sixteen
+    // recognition entries are what the *paper* says back: `verpflichtet`, `Anspruch`,
+    // `Forderung`, `pauschal`, `Abschnitt` and `Urkunde` are terms-and-conditions and
+    // Amt language, read in every contract and written in none; `Stempel`, `Girokonto`,
+    // `Tabelle` and `ausstellen` are what a bill, a receipt and an estimate are printed
+    // with. Four lose a productive slot to a card that already ships or to this deck's own
+    // core: `Abonnement` to `Abo`, which lists it in `accept` — the `gleichfalls`/
+    // `ebenfalls` ruling from `ort-richtung-verweis-b1`; `Kauf` to `kaufen` (A1) and to
+    // `Einkauf` (einkaufen-geschaefte), both glossed "purchase"; `Erhöhung` to `erhöhen`
+    // (zahlen-mengen-masse-b1), the noun-to-verb case of the `Auswahl`/`aussuchen` ruling
+    // from `kultur-freizeit`; and `Schulden` on register — a Mahnung says it, a learner at
+    // a counter does not. `Ausgabe` and `Nachfrage` carry two unrelated senses one example
+    // cannot hold (spending and a newspaper's edition; asking again and market demand) —
+    // the `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`.
+    // One `both` entry is kept over a collision, deliberately: `Kosten` case-folds onto
+    // A1's verb `kosten` (essen-trinken). It is NOT the `Null`/`null` case, because that
+    // pair shares a prompt — here nothing is shared but the letters: "to cost" and
+    // "costs, what something comes to altogether" are different questions, and the unit's
+    // own `kosten-vergleichen` outcome is unwritable without the noun.
+    // `informationen-vermitteln` (B1.14, 2026-08-04) adds twenty-one, the largest receptive
+    // share of any unit deck so far (21 of 38) — and it is a finding rather than a choice.
+    // The mediation field is almost entirely owned before this unit opens: `mitteilen`
+    // (regeln-verantwortung), `informieren` and `Nachricht` (kommunikation-medien),
+    // `berichten` (verben-handlungen-a2-1), `melden` (arbeit-beruf), `zusammenfassen`,
+    // `behaupten`, `Aussage`, `Meldung` and `Quelle` (meinung-medien), `ausrichten`
+    // (verben-handlungen-b1-2), `ankündigen` (kultur-freizeit) and `Bescheid`
+    // (redemittel-chunks-a2) are every one of them another deck's headword, so seventeen
+    // productive entries is what the field has left. Five were drafted `both` and demoted by
+    // the same mechanical collision test the pass before it used: `Neuigkeit` against
+    // `Nachricht` (glossed "message; (pl.) the news"), `Sinn` against `Bedeutung`
+    // ("meaning | значение, смысл"), `Zeichen` against `Schild` ("sign (road sign, notice)"),
+    // `Dokument` against `Unterlagen` and `Papiere` (both glossed "documents"), and
+    // `verständlich` against `klar` ("clear, plain | ясный, понятный") — the `eindeutig`
+    // ruling from `eigenschaften-bewertung-b1`. `Detail` yields its productive slot to this
+    // deck's own `Einzelheit`, which lists it in `accept`: the `dorthin`/`dahin` ruling from
+    // `ort-richtung-verweis-b1`. The rest are recognition on register — `Schreiben`, `Anlage`,
+    // `Einschreiben`, `Vermittlung`, `Vertretung`, `Darstellung`, `Einleitung`, `Fortsetzung`,
+    // `Textaufbau`, `Ansage`, `Lautsprecher` and `Vortrag` are what a formal letter, a notice
+    // board and a course handout say to you — plus `Botschaft`, `aufnehmen` and `anzeigen`,
+    // which each carry two unrelated senses one example cannot hold (the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`).
+    expect(cards).toBe(entries * 2 - 448);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
