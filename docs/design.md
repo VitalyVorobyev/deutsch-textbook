@@ -12,8 +12,9 @@ Astro renders the textbook and reference surfaces; React islands provide statefu
 sessions, flashcards and progress views. A thin Tauri shell adds desktop filesystem integration
 without changing the learning model.
 
-There is no account service and no server-side learner model. Content is build-time data; learner
-state belongs to a local profile and can be exported as a backward-compatible snapshot.
+There is no server-side learner model. Content is build-time data; learner state belongs to a local
+profile and can be exported as a backward-compatible snapshot. An optional account adds a cloud copy
+of that snapshot and nothing else — the server has never parsed one.
 
 ## Content pipeline
 
@@ -103,11 +104,11 @@ Focused free-typed tasks may carry `focus_evidence` response predicates. Where a
 them, the attempt carries an explicit `retained`, `failed` or `unknown` verdict and that verdict
 decides attribution — an unmatched whole-sentence error is not guessed into the weakness signal.
 Where an item declares none, the attempt carries no verdict and attribution stays as it was
-(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are additive on purpose:
-silencing every unmatched miss corpus-wide was measured against the learner's log and inverts the
-signal rather than gapping it — 145 of 291 wrong free-typed attempts lose their tag and
-`weakFocuses` falls 7 → 1, with error rates driven to zero at an unchanged denominator.
-Checkpoint scores exclude both open writing and speech while their attempts still count as coverage.
+(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are **additive on purpose**:
+silencing every unmatched free-typed miss corpus-wide was measured against the learner's log and
+inverts the signal rather than gapping it ([archive](archive/2026-08-doc-slimming.md), backlog
+P12-6). Checkpoint scores exclude both open writing and speech while their attempts still count as
+coverage.
 
 `src/lib/mastery.ts` derives topic evidence and mastery. `src/lib/weakness.ts` aggregates
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;
@@ -123,14 +124,12 @@ Opening or replaying a listening artifact likewise creates no evidence; only its
 identified exercise question can write a verified attempt. The published MP3 lives beside its record
 in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
 what QA ran on and what the editor approved, not what a learner downloads.
-`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it**:
-`bun run build:desktop` for the desktop app (in-process rather than as a shell prefix, so the
-Windows release build can run the same command) and the Cloudflare build for the public
-demo. The corpus is 14.2 MB against a 69 MB site, so the split the flag originally encoded —
-recordings on the desktop, browser TTS on the web — bought nothing worth the worse demo. What it
-distinguishes now is a shipping build from a lean one with no binaries; TTS remains the live
-fallback for a recording that is absent or fails to load (`src/integrations/audio-bundle.ts`,
-`src/lib/audio.ts`).
+`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it** —
+`bun run build:desktop` (in-process rather than as a shell prefix, so the Windows release build can
+run the same command) and the Cloudflare build. The flag therefore distinguishes a shipping build
+from a lean one with no binaries, not the desktop from the web
+([archive](archive/2026-08-doc-slimming.md)). TTS remains the live fallback for a recording that is
+absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`).
 
 ## Listening authoring boundary
 
@@ -158,36 +157,32 @@ drill decisions.
 
 An optional account adds a third destination: `src/lib/sync-remote.ts` uploads a gzipped snapshot
 to `/api/sync/snapshot` and pulls the other device's before merging it locally. Local-first is
-unchanged by it — with no account every call is a no-op, exactly as on the deployed site before
-accounts existed. `bun run progress:pull` brings the cloud copy back to `progress/<profile>/` so the
-personalization loop is unaffected. The reasoning — why the server stores opaque bytes and never
-merges, why an unconditional PUT does not exist, why signing in grants no storage until the owner
-approves — is in [`cloud-sync.md`](architecture/cloud-sync.md).
+unchanged by it — with no account every call is a no-op. `bun run progress:pull` brings the cloud
+copy back to `progress/<profile>/` so the personalization loop is unaffected. The reasoning is
+[ADR 0003](adrs/0003-opaque-snapshot-sync-and-approval-accounts.md); the operations are
+[`cloud-sync.md`](architecture/cloud-sync.md).
 
 ## Delivery and offline
 
 The site is a static build served at `deutsch.vitavision.dev` from a Cloudflare Worker's static
 assets (`wrangler.toml`), deployed by the Cloudflare Git integration watching `main`. The Worker's
 `main` entry exists for `/api/*` alone — accounts and snapshot sync (`worker/`, D1 + R2); every
-other path is handed straight back to the asset server, so the site is exactly as static as it was
-before there was any server code. **There is deliberately no GitHub Actions deploy**:
-two paths watching one branch race each other on every push, and `ci.yml` already runs validate,
-test, check, lint and build, so nothing broken reaches `main` in the first place. The site is
-served at the root — `withBase` (`src/lib/url.ts`) remains the one helper, so a subpath mirror and
-the Tauri shell stay possible. `public/_headers` carries the response headers, of which one is
-load-bearing: a cached `sw.js` strands an installed learner on an old build permanently. The same build is an
-installable PWA: `src/integrations/pwa.ts` emits the web app manifest and the service worker at
-`astro:build:done`, filling the placeholders in the `service-worker.js` template and pinning a
-build id that is the content hash of everything precached, so a no-op rebuild does not invalidate
-a learner's cache.
+other path is handed straight back to the asset server. **There is deliberately no GitHub Actions
+deploy**: two paths watching one branch race each other on every push, and `ci.yml` already gates
+`main`. The site is served at the root — `withBase` (`src/lib/url.ts`) remains the one helper, so a
+subpath mirror and the Tauri shell stay possible. `public/_headers` carries the response headers, of
+which one is load-bearing: a cached `sw.js` strands an installed learner on an old build
+permanently. The same build is an installable PWA: `src/integrations/pwa.ts` emits the manifest and
+the service worker at `astro:build:done`, pinning a build id that is the content hash of everything
+precached, so a no-op rebuild does not invalidate a learner's cache.
 
 Three caches on three lifecycles. The **shell** is precached and versioned — content-hashed
 `_astro/` assets, the icons and the offline page. **Documents** are network-first and versioned,
 because each page inlines its content at build time and stale HTML is stale course material.
 **Media** is cache-first and deliberately *unversioned*, because reviewed recordings are immutable
-and re-downloading 14.2 MB of MP3 on every deploy would be the most expensive thing the worker
-could do. Both budgeted caches evict oldest-first against a byte budget rather than an entry
-count, because page weight in this build spans 137 KB (median) to 10.7 MB.
+and re-downloading the whole MP3 corpus on every deploy would be the most expensive thing the worker
+could do. Both budgeted caches evict oldest-first against a byte budget rather than an entry count,
+because page weight in this build spans two orders of magnitude (backlog P23-1).
 
 Two behaviours carry the offline promise and are covered by `tests/service-worker.test.ts`, which
 evaluates the substituted template rather than a re-implementation: Range requests are sliced out
@@ -201,10 +196,9 @@ button, because reloading mid-exercise discards the attempt about to be logged.
 English and Russian are the core explanation halves; Ukrainian is an independently authored half —
 written from the German, never from a sibling half — required wherever a scope has entered a
 Ukrainian authoring wave (a wave is a scope of files, not a mode of writing). German-medium
-explanation halves ship with B1 content — live since the first B1 unit (2026-07-24), never
-backfilled to A1/A2.
-`src/lib/prefs.ts` selects the requested half and defines fallback behavior; `src/lib/langcheck.ts`
-and the validator enforce parity and alphabet discipline.
+explanation halves ship with B1 content and are never backfilled to A1/A2. `src/lib/prefs.ts`
+selects the requested half and defines fallback behavior; `src/lib/langcheck.ts` and the validator
+enforce parity and alphabet discipline.
 
 Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for the dual-language
 card surface. The compact form is used only when `pickSecond` resolves an actual RU/UK half;
