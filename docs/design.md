@@ -139,8 +139,39 @@ immutable drafts outside the repository. A committed listening artifact has a pu
 canonical `content/listening/` record, exercise set referenced by its topic, and
 `data/audio-provenance/` manifest pinning both the approved master and the published derivative.
 Publishing refuses unapproved revisions, approvals that vouch for no bytes, existing targets, and
-topics with nowhere to reference the set from. Model licences and training-data provenance
-remain separate claims; automatic transcription is not proof of natural pronunciation.
+topics with nowhere to reference the set from. A dialogue character owns one versioned preset
+voice, fixed seed and baseline style; line cache identity includes that resolved profile. Local
+WavLM speaker embeddings rank same-character drift and character separation for review, but remain
+warnings whose bounds can only be derived from the re-reviewed corpus. Guarded republishing checks
+the existing slug/hash, retains the previous bundle, stages the full replacement and rolls back a
+partial failure. Model licences and training-data provenance remain separate claims; automatic
+transcription or embedding similarity is not proof of natural pronunciation or human approval.
+Each dialogue also owns an explicit soundscape: continuous beds loop to the end, finite events do
+not, and every new assisted placement stores an honest authoring label and reason. QA reports both
+configured coverage and pause-bed loudness; the named editor still decides whether the setting is
+recognizable without masking speech. The React/TypeScript Studio dashboard derives dialogue and
+reading metrics, distributions and ranked review links from source content, current SQLite
+revisions and QA rather than maintaining another status ledger. FastAPI owns workflows and
+protected audio endpoints; the frontend owns navigation, charts, tables and local playback.
+
+High-quality reading narration is a second bounded audio corpus. The 59 Lesetexte are represented
+as immutable reading revisions with source hashes; Qwen synthesizes whole paragraphs, assembly
+derives exact cue points, and Whisper/WavLM QA remains separate from exact-byte human approval.
+Approved MP3s and records live in `content/reading-audio/`, provenance in
+`data/audio-provenance/readings/`, and the learner uses one full-text player with paragraph seek and
+browser TTS only as load/missing-artifact fallback. Changing one paragraph reuses every other
+paragraph cache entry but invalidates the master and approval. Vocabulary is a different boundary. Generating every
+headword, example, direction and normal/slow variant would multiply review and invalidation cost;
+word cards therefore keep browser TTS for now. A later small canonical headword cache may be added
+for listening-mode cards, but only with stable card/audio identity and the same exact-byte review
+and provenance rules—not by treating dynamic examples as listening artifacts.
+
+Human-reference voice cloning has a narrower research boundary than the synthetic benchmark. The
+`experiment-human-voice-clone` command accepts only a consent record and reference whose bytes are
+bound by SHA-256, and only when reference, consent and output all resolve beneath the gitignored
+`.private/` directory. It runs pinned local models offline, retains incomplete/rerun artifacts and
+has no publisher import. A successful metric report remains pending human listening and cannot be
+promoted into the Studio, content corpus or export path.
 
 ## Progress and storage
 

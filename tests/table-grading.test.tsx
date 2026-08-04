@@ -84,9 +84,46 @@ describe('acceptedCellAnswers', () => {
     expect(graded(weil, 'Ich komme nicht, weil ich heute arbeite')).toBe(false);
   });
 
-  test('a cell with no stub accepts only its answer', () => {
+  test('a cell with no stub accepts its answer and that answer capitalized', () => {
     const plain = [{ answer: 'Positiv: gut', given: true }, { answer: 'am besten' }];
-    expect(acceptedCellAnswers(plain, 1)).toEqual(['am besten']);
+    expect(acceptedCellAnswers(plain, 1)).toEqual(['am besten', 'Am besten']);
+  });
+});
+
+/**
+ * A cell is a box for a fragment, so its first letter is not part of the graded surface — in the
+ * direction the learner can get it wrong for free. `a2/man-und-besitz:table-wem-gehoert`,
+ * restated: two rows whose key starts with a name, two whose key starts with an article.
+ */
+describe('acceptedCellAnswers tolerates a capitalized fragment', () => {
+  const graded = (cells: Array<{ answer: string; given?: boolean }>, typed: string) =>
+    answerMatches(typed, acceptedCellAnswers(cells, 1));
+  const vonDativ = [
+    { answer: 'Das Auto gehört meinem Bruder.', given: true },
+    { answer: 'das Auto von meinem Bruder' },
+  ];
+  const name = [
+    { answer: 'Das Fahrrad gehört Anna.', given: true },
+    { answer: 'Annas Fahrrad' },
+  ];
+
+  test('accepts the key as authored', () => {
+    expect(graded(vonDativ, 'das Auto von meinem Bruder')).toBe(true);
+  });
+
+  test('accepts the same answer with a capital first letter', () => {
+    // The rendering scored wrong on 2026-08-02, on the D alone.
+    expect(graded(vonDativ, 'Das Auto von meinem Bruder')).toBe(true);
+  });
+
+  test('still grades the construction the row exists to drill', () => {
+    expect(graded(vonDativ, 'Das Auto von mein Bruder')).toBe(false);
+    expect(graded(name, 'Das Annas Fahrrad')).toBe(false);
+  });
+
+  test('does not tolerate the other direction — noun capitalization stays graded', () => {
+    expect(graded(vonDativ, 'das auto von meinem Bruder')).toBe(false);
+    expect(graded(name, 'annas Fahrrad')).toBe(false);
   });
 });
 

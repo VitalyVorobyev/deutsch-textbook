@@ -27,7 +27,12 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFi
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
-import { listeningArtifactSchema, listeningAudioPath } from '../lib/schemas';
+import {
+  listeningArtifactSchema,
+  listeningAudioPath,
+  readingAudioArtifactSchema,
+  readingAudioPath,
+} from '../lib/schemas';
 import { AUDIO_BUNDLE_ENV, bundlesAudio } from '../lib/audio';
 
 interface Shipped {
@@ -63,6 +68,32 @@ export function reviewedRecordings(root: string): Shipped[] {
   return out.sort((a, b) => a.id.localeCompare(b.id));
 }
 
+/** Every approved Lesetext narration in the content tree. */
+export function reviewedReadingAudio(root: string): Shipped[] {
+  const base = join(root, 'content', 'reading-audio');
+  if (!existsSync(base)) return [];
+  const out: Shipped[] = [];
+  for (const levelDir of readdirSync(base, { withFileTypes: true })) {
+    if (!levelDir.isDirectory()) continue;
+    for (const name of readdirSync(join(base, levelDir.name))) {
+      if (!name.endsWith('.yaml')) continue;
+      const parsed = readingAudioArtifactSchema.safeParse(
+        YAML.parse(readFileSync(join(base, levelDir.name, name), 'utf8')),
+      );
+      if (!parsed.success) continue;
+      const source = readingAudioPath(parsed.data.level, parsed.data.id);
+      if (!existsSync(join(root, source))) continue;
+      out.push({
+        id: parsed.data.id,
+        level: parsed.data.level,
+        source,
+        bytes: readFileSync(join(root, source)).byteLength,
+      });
+    }
+  }
+  return out.sort((a, b) => a.id.localeCompare(b.id));
+}
+
 export function audioBundle(): AstroIntegration {
   return {
     name: 'audio-bundle',
@@ -78,7 +109,18 @@ export function audioBundle(): AstroIntegration {
         if (!bundlesAudio(process.env[AUDIO_BUNDLE_ENV])) return;
         const root = process.cwd();
         server.middlewares.use((req, res, next) => {
-          const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec((req.url ?? '').split('?')[0] ?? '');
+          const path = (req.url ?? '').split('?')[0] ?? '';
+          const readingMatch = /^\/audio\/readings\/(a1|a2|b1)\/([a-z0-9-]+)\.mp3$/.exec(path);
+          if (readingMatch) {
+            const rec = reviewedReadingAudio(root).find(
+              (row) => row.level.toLowerCase() === readingMatch[1] && row.id === readingMatch[2],
+            );
+            if (!rec) return next();
+            res.setHeader('Content-Type', 'audio/mpeg');
+            res.end(readFileSync(join(root, rec.source)));
+            return;
+          }
+          const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec(path);
           if (!match) return next();
           // Re-read per request: a recording republished while the server runs is served fresh.
           const rec = reviewedRecordings(root).find((r) => r.id === match[1]);
@@ -86,7 +128,9 @@ export function audioBundle(): AstroIntegration {
           res.setHeader('Content-Type', 'audio/mpeg');
           res.end(readFileSync(join(root, rec.source)));
         });
-        logger.info(`serving ${reviewedRecordings(root).length} reviewed recording(s) from content/listening`);
+        logger.info(
+          `serving ${reviewedRecordings(root).length} dialogue(s) and ${reviewedReadingAudio(root).length} reading narration(s)`,
+        );
       },
       'astro:build:done': ({ dir, logger }) => {
         const root = process.cwd();
@@ -94,22 +138,30 @@ export function audioBundle(): AstroIntegration {
         const audioDir = join(outDir, 'audio');
         const bundle = bundlesAudio(process.env[AUDIO_BUNDLE_ENV]);
         const available = reviewedRecordings(root);
+        const availableReadings = reviewedReadingAudio(root);
 
         mkdirSync(audioDir, { recursive: true });
         const shipped = bundle ? available : [];
         // Flat target: ids are globally unique, and the component has no level to build a
         // path from. See lib/audio.ts.
         for (const rec of shipped) copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.mp3`));
+        const readingDir = join(audioDir, 'readings');
+        const shippedReadings = bundle ? availableReadings : [];
+        for (const rec of shippedReadings) {
+          const levelDir = join(readingDir, rec.level.toLowerCase());
+          mkdirSync(levelDir, { recursive: true });
+          copyFileSync(join(root, rec.source), join(levelDir, `${rec.id}.mp3`));
+        }
         writeFileSync(
           join(audioDir, 'manifest.json'),
-          `${JSON.stringify({ bundled: bundle, recordings: shipped }, null, 2)}\n`,
+          `${JSON.stringify({ bundled: bundle, recordings: shipped, readings: shippedReadings }, null, 2)}\n`,
         );
 
-        const megabytes = (shipped.reduce((sum, r) => sum + r.bytes, 0) / 1e6).toFixed(1);
+        const megabytes = ([...shipped, ...shippedReadings].reduce((sum, r) => sum + r.bytes, 0) / 1e6).toFixed(1);
         logger.info(
           bundle
-            ? `shipped ${shipped.length} reviewed recording(s), ${megabytes} MB → ${relative(root, audioDir)}`
-            : `${available.length} reviewed recording(s) withheld (${AUDIO_BUNDLE_ENV} unset) — items fall back to browser TTS`,
+            ? `shipped ${shipped.length} dialogue(s) and ${shippedReadings.length} reading narration(s), ${megabytes} MB → ${relative(root, audioDir)}`
+            : `${available.length + availableReadings.length} reviewed audio artifact(s) withheld (${AUDIO_BUNDLE_ENV} unset) — items fall back to browser TTS`,
         );
       },
     },

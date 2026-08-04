@@ -1,5 +1,5 @@
-import { Fragment, useMemo, useState } from 'react';
-import type { Reading } from '../../lib/schemas';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import type { Reading, ReadingAudioArtifact } from '../../lib/schemas';
 import { parseGlosses } from '../../lib/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
@@ -9,11 +9,15 @@ import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
 import type { ItemResult } from '../exercises/shared';
 import SpeakerButton from '../SpeakerButton';
+import { bundlesAudio, readingAudioUrl } from '../../lib/audio';
+import { speakGermanSequence } from '../../lib/speech';
+import { withBase } from '../../lib/url';
 
 interface Props {
   /** reading path-id, e.g. "a2/termine-vereinbaren" */
   readingId: string;
   reading: Reading;
+  narration?: ReadingAudioArtifact;
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
@@ -32,11 +36,52 @@ const UI = {
  * Attempts are logged under `reading:<path-id>` so they are distinguishable
  * from exercise-set attempts in progress snapshots.
  */
-export default function ReadingText({ readingId, reading }: Props) {
+export default function ReadingText({ readingId, reading, narration }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const paragraphs = useMemo(() => reading.text.map((p) => parseGlosses(p).segments), [reading]);
   const [openGlosses, setOpenGlosses] = useState<ReadonlySet<string>>(new Set());
+  const [audioFailed, setAudioFailed] = useState(false);
+  const [activeParagraph, setActiveParagraph] = useState<number | null>(null);
+  const [fallbackPlaying, setFallbackPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const cancelSpeech = useRef<() => void>(() => {});
+  const narrationUrl = narration && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE) && !audioFailed
+    ? withBase(readingAudioUrl(narration.level, readingId.split('/').at(-1)!))
+    : undefined;
+
+  useEffect(() => () => cancelSpeech.current(), []);
+
+  function paragraphText(index: number): string {
+    return paragraphs[index]!.map((segment) => segment.kind === 'text' ? segment.text : segment.gloss.de).join('');
+  }
+
+  function playAll() {
+    if (narrationUrl && audioRef.current) {
+      void audioRef.current.play();
+      return;
+    }
+    setFallbackPlaying(true);
+    cancelSpeech.current = speakGermanSequence(
+      paragraphs.map((_, index) => paragraphText(index)),
+      {},
+      () => setFallbackPlaying(false),
+    );
+  }
+
+  function replayParagraph(index: number) {
+    const cue = narration?.paragraphs[index];
+    if (narrationUrl && cue && audioRef.current) {
+      audioRef.current.currentTime = cue.start_ms / 1000;
+      void audioRef.current.play();
+    }
+  }
+
+  function syncParagraph() {
+    const time = (audioRef.current?.currentTime ?? 0) * 1000;
+    const cue = narration?.paragraphs.find((row) => time >= row.start_ms && time < row.end_ms);
+    setActiveParagraph(cue?.paragraph_index ?? null);
+  }
 
   const questions = reading.questions;
   const [index, setIndex] = useState(0);
@@ -105,13 +150,29 @@ export default function ReadingText({ readingId, reading }: Props) {
       )}
       {!extensive && <div className="mb-4" />}
 
+      <div className="mb-5 flex flex-wrap items-center gap-3 rounded-md border border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-700 dark:bg-stone-900">
+        <button type="button" onClick={playAll} disabled={fallbackPlaying}
+          className="min-h-10 rounded-md bg-stone-800 px-4 text-sm font-semibold text-white disabled:opacity-50 dark:bg-stone-200 dark:text-stone-900">
+          {fallbackPlaying ? '…' : '▶ Gesamten Text anhören'}
+        </button>
+        {narration ? (
+          <span className="text-xs text-stone-500">{narration.style_id} · geprüfte Aufnahme</span>
+        ) : (
+          <span className="text-xs text-stone-500">Systemstimme · hochwertige Aufnahme folgt</span>
+        )}
+        {narrationUrl && <audio ref={audioRef} src={narrationUrl} controls className="h-9 min-w-64 flex-1"
+          onTimeUpdate={syncParagraph} onEnded={() => setActiveParagraph(null)} onError={() => setAudioFailed(true)} />}
+      </div>
+
       <div lang="de" className="flex flex-col gap-4 leading-relaxed">
         {paragraphs.map((segments, pi) => (
-          <p key={pi}>
-            <SpeakerButton
-              text={segments.map((s) => (s.kind === 'text' ? s.text : s.gloss.de)).join('')}
-              className="float-right ml-2 text-stone-400"
-            />
+          <p key={pi} className={activeParagraph === pi ? '-mx-2 rounded-md bg-amber-50 px-2 py-1 dark:bg-amber-950/40' : ''}>
+            {narrationUrl ? (
+              <button type="button" onClick={() => replayParagraph(pi)} aria-label={`Absatz ${pi + 1} anhören`}
+                className="float-right ml-2 inline-flex min-h-8 min-w-8 items-center justify-center rounded-md text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-700">▶</button>
+            ) : (
+              <SpeakerButton text={paragraphText(pi)} className="float-right ml-2 text-stone-400" />
+            )}
             {segments.map((seg, si) => {
               if (seg.kind === 'text') return <Fragment key={si}>{seg.text}</Fragment>;
               const key = `${pi}:${si}`;

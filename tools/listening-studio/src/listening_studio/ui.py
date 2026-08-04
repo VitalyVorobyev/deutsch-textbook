@@ -20,20 +20,41 @@ from .domain import (
     RevisionPayload,
     SingleChoice,
     Stage,
+    VoiceProfile,
+    lock_voice_profiles,
 )
 
 CSS = """
-:root{color-scheme:light dark}
-body{font:16px/1.5 system-ui;max-width:1100px;margin:auto;padding:2rem;background:#f7f5f2;color:#292524}
-header{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
-h1{font-size:1.4rem;margin:0}
-a{color:#9a3412}
+:root{color-scheme:light dark;--ink:#292524;--muted:#78716c;--paper:#fffdf9;--line:#e7e1d8;--accent:#b45309;--accent-soft:#fff4df;--green:#166534;--red:#b91c1c}
+*{box-sizing:border-box}
+body{font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;max-width:1240px;margin:auto;padding:1.5rem 2rem 4rem;background:linear-gradient(180deg,#f3eee6 0,#faf8f4 18rem);color:var(--ink)}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;padding:.7rem 0}
+h1{font:700 1.25rem/1.2 ui-serif,Georgia,serif;letter-spacing:-.02em;margin:0}
+h2,h3,h4{line-height:1.2;letter-spacing:-.015em}
+a{color:#92400e;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+nav a,.button-link{display:inline-flex;align-items:center;justify-content:center;min-height:2.35rem;padding:.45rem .85rem;border:1px solid #d6cec2;border-radius:999px;background:rgba(255,255,255,.72);color:#57534e;font-weight:650;box-shadow:0 1px 2px rgba(41,37,36,.05)}
+nav a:hover,.button-link:hover{border-color:#c7904e;background:white;text-decoration:none}
 label{display:block;margin:.6rem 0;font-size:.85rem;color:#57534e}
 input,select,textarea{box-sizing:border-box;width:100%;padding:.5rem;border:1px solid #d6d3d1;border-radius:6px;background:white;font:inherit;color:inherit}
 textarea{min-height:4.5rem}
-button{padding:.6rem 1rem;border:0;border-radius:6px;background:#44403c;color:white;cursor:pointer;font:inherit}
+button{padding:.62rem 1rem;border:0;border-radius:8px;background:#44403c;color:white;cursor:pointer;font:inherit;font-weight:650}
 button.ghost{background:white;color:#44403c;border:1px solid #d6d3d1}
-.card{background:white;border:1px solid #e7e5e4;border-radius:10px;padding:1.2rem;margin:1rem 0}
+.card{background:rgba(255,253,249,.94);border:1px solid var(--line);border-radius:16px;padding:1.25rem;margin:1rem 0;box-shadow:0 8px 30px rgba(68,53,38,.06)}
+.hero{padding:1.55rem 1.65rem;background:linear-gradient(135deg,#fffaf0,#fff 65%)}
+.hero h2{font:700 1.75rem/1.1 ui-serif,Georgia,serif;margin:.1rem 0 .45rem}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.75rem;margin:1rem 0}
+.metric{padding:1rem;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.72)}
+.metric strong{display:block;font:700 1.65rem/1 ui-serif,Georgia,serif;margin-bottom:.35rem}
+.metric span{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.055em}
+.level-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:.9rem}
+.level-head h3{font:700 1.4rem ui-serif,Georgia,serif;margin:0}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:.8rem}
+.project-card{display:flex;flex-direction:column;min-height:12.5rem;padding:1rem;border:1px solid var(--line);border-radius:13px;background:#fff;transition:transform .15s,border-color .15s,box-shadow .15s}
+.project-card:hover{transform:translateY(-2px);border-color:#d6b27e;box-shadow:0 9px 22px rgba(68,53,38,.08)}
+.project-card h4{margin:.55rem 0 .3rem;font-size:1rem;overflow-wrap:anywhere}
+.project-card .scenario{margin:0 0 auto;color:#57534e}
+.project-meta{display:flex;flex-wrap:wrap;gap:.35rem .7rem;margin-top:.8rem;padding-top:.7rem;border-top:1px solid #eee9e2;color:var(--muted);font-size:.76rem}
 .stage{font-weight:700;color:#9a3412}
 .actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
 .muted{color:#78716c;font-size:.85rem}
@@ -47,22 +68,27 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;color:#78716c}
 .grid{display:grid;gap:.75rem}
 .line{border:1px solid #e7e5e4;border-radius:8px;padding:.8rem;margin:.6rem 0;background:#fafaf9}
 .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:.5rem}
-.chip{display:inline-block;border-radius:999px;padding:.15rem .6rem;font-size:.75rem;font-weight:600}
+.chip{display:inline-block;width:max-content;border-radius:999px;padding:.18rem .62rem;font-size:.72rem;font-weight:700;letter-spacing:.01em}
 .chip.todo{background:#f5f5f4;color:#78716c}
 .chip.work{background:#fef3c7;color:#92400e}
 .chip.ready{background:#dcfce7;color:#166534}
 .chip.blocked{background:#fee2e2;color:#991b1b}
+.chip.info{background:#e0f2fe;color:#075985}
+.chip-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
 .certify{margin:.4rem 0 1.1rem;padding-left:1.2rem}
 .certify li{margin:.45rem 0;font-size:.95rem}
-nav a{margin-left:1rem}
 @media(prefers-color-scheme:dark){
- body{background:#1c1917;color:#e7e5e4}
- .card,input,select,textarea{background:#292524;border-color:#44403c}
+ :root{--ink:#f5f5f4;--muted:#a8a29e;--paper:#211e1b;--line:#48413a}
+ body{background:linear-gradient(180deg,#171412,#211d19 18rem);color:#e7e5e4}
+ .card,.hero,.metric,.project-card,input,select,textarea{background:#292524;border-color:#44403c}
  .line{background:#1c1917;border-color:#44403c}
+ .project-meta{border-color:#44403c}.project-card .scenario{color:#d6d3d1}
  th,td{border-color:#44403c}
  button.ghost{background:#292524;color:#e7e5e4}
+ nav a,.button-link{background:#292524;border-color:#57534e;color:#e7e5e4}
  label,.muted,th{color:#a8a29e}
 }
+@media(max-width:640px){body{padding:1rem}.project-grid{grid-template-columns:1fr}.hero{padding:1.2rem}}
 """
 
 
@@ -99,41 +125,95 @@ def index_page(rows: list[dict[str, object]]) -> str:
     regenerated outside the UI.
     """
 
-    counts: dict[str, int] = {}
-    for row in rows:
-        counts[str(row["state"])] = counts.get(str(row["state"]), 0) + 1
-    summary = " · ".join(
-        f"{count} {STATE_CHIP[state][1]}" for state, count in sorted(counts.items())
-    )
+    def number(value: object | None) -> float | None:
+        try:
+            return float(str(value)) if value is not None else None
+        except ValueError:
+            return None
+
+    qa_passed = sum(row["state"] in {"qa_passed", "approved", "published"} for row in rows)
+    ambience = sum((number(row.get("bed_count")) or 0) > 0 for row in rows)
+    approved = sum(row["state"] in {"approved", "published"} for row in rows)
+    published = sum(bool(row.get("published_exists")) for row in rows)
     body = [
-        f"<div class=card><h2>{len(rows)} geplante Aufnahmen</h2><p class=muted>{escape(summary)}</p></div>"
+        "<section class='card hero'><span class=muted>Deutsch-Atlas Audiokorpus</span>"
+        f"<h2>{len(rows)} Hördialoge, eine redaktionelle Pipeline</h2>"
+        "<p class=muted>Stimmen, Verständlichkeit, Umgebung und Freigabe auf einen Blick — "
+        "nach Stufe gruppiert, aus Projekten und QA abgeleitet.</p>"
+        "<div class=metric-grid>"
+        f"<div class=metric><strong>{qa_passed}/{len(rows)}</strong><span>QA bestanden</span></div>"
+        f"<div class=metric><strong>{ambience}/{len(rows)}</strong><span>durchgehende Umgebung</span></div>"
+        f"<div class=metric><strong>{approved}</strong><span>aktuelle Fassung freigegeben</span></div>"
+        f"<div class=metric><strong>{published}</strong><span>Fassung im Kurs</span></div>"
+        "</div></section>"
     ]
     by_level: dict[str, list[dict[str, object]]] = {}
     for row in rows:
         by_level.setdefault(str(row["level"]), []).append(row)
     for level in sorted(by_level):
+        level_rows = by_level[level]
+        level_qa = sum(
+            row["state"] in {"qa_passed", "approved", "published"} for row in level_rows
+        )
+        level_ambience = sum((number(row.get("bed_count")) or 0) > 0 for row in level_rows)
+        durations = [value for row in level_rows if (value := number(row.get("duration_seconds")))]
+        duration_label = f"{sum(durations) / len(durations):.0f} s" if durations else "—"
+        within = [
+            value
+            for row in level_rows
+            if (value := number(row.get("within_similarity_min"))) is not None
+        ]
+        cross = [
+            value
+            for row in level_rows
+            if (value := number(row.get("cross_similarity_max"))) is not None
+        ]
+        within_label = f"{min(within):.3f}" if within else "—"
+        cross_label = f"{max(cross):.3f}" if cross else "—"
         cells = []
-        for row in by_level[level]:
+        for row in level_rows:
             chip, label = STATE_CHIP[str(row["state"])]
             name = escape(str(row["id"]))
             link = (
-                f"<a href='/projects/{row['project_id']}'>{name}</a>"
+                f"<a class=button-link href='/projects/{row['project_id']}'>Öffnen</a>"
                 if row["project_id"]
-                else name
+                else "<span class=muted>Noch kein Projekt</span>"
             )
-            qa = ""
-            if row["state"] == "qa_failed":
-                qa = "<span class=fail>QA</span>"
+            duration = number(row.get("duration_seconds"))
+            project_duration_label = f"{duration:.0f} s" if duration else "— s"
+            environment = (
+                f"Umgebung {row.get('bed_count', 0)} Bett · {row.get('event_count', 0)} Ereignis"
+                if (number(row.get("context_count")) or 0) > 0
+                else "keine Umgebung"
+            )
+            live = (
+                "<span class='chip todo'>ältere Fassung im Kurs</span>"
+                if row.get("published_exists") and row["state"] != "published"
+                else ""
+            )
             cells.append(
-                f"<tr><td>{link}<div class=muted>{escape(str(row['scenario']))}</div></td>"
-                f"<td>{escape(str(row['unit']))}</td>"
-                f"<td><span class='chip {chip}'>{label}</span> {qa}</td>"
-                f"<td class=muted>Welle {row['wave']}</td></tr>"
+                "<article class=project-card>"
+                f"<div class=chip-row><span class='chip {chip}'>{label}</span>{live}</div><h4>{name}</h4>"
+                f"<p class=scenario>{escape(str(row['scenario']))}</p>"
+                "<div class=project-meta>"
+                f"<span>{row.get('speaker_count', 0)} Figuren</span>"
+                f"<span>{row.get('line_count', 0)} Repliken</span>"
+                f"<span>{project_duration_label}</span>"
+                f"<span>{escape(environment)}</span><span>Welle {row['wave']}</span>"
+                f"</div><div style='margin-top:.8rem'>{link}</div></article>"
             )
         body.append(
-            f"<div class=card><h3>{escape(level)} · {len(by_level[level])}</h3>"
-            "<table><thead><tr><th>Aufnahme</th><th>Einheit</th><th>Status</th><th></th></tr></thead>"
-            f"<tbody>{''.join(cells)}</tbody></table></div>"
+            "<section class=card><div class=level-head>"
+            f"<div><span class=muted>Sprachniveau</span><h3>{escape(level)}</h3></div>"
+            f"<span class=muted>{len(level_rows)} Dialoge</span></div>"
+            "<div class=metric-grid>"
+            f"<div class=metric><strong>{level_qa}/{len(level_rows)}</strong><span>QA</span></div>"
+            f"<div class=metric><strong>{level_ambience}/{len(level_rows)}</strong><span>Umgebungsbett</span></div>"
+            f"<div class=metric><strong>{duration_label}</strong><span>Ø Dauer</span></div>"
+            f"<div class=metric><strong>{within_label}</strong><span>niedrigste Identität</span></div>"
+            f"<div class=metric><strong>{cross_label}</strong><span>höchste Figurenähnlichkeit</span></div>"
+            "</div>"
+            f"<div class=project-grid>{''.join(cells)}</div></section>"
         )
     return page("".join(body))
 
@@ -148,41 +228,57 @@ def _options(values: list[str], selected: str) -> str:
 
 
 def script_form(project_id: int, payload: RevisionPayload, voices: list[str], adapters: list[str]) -> str:
-    """The script, one card per line, with the knobs that actually change a take.
+    """Character identity once, turn delivery once per line."""
 
-    voice, pace, pause and seed are the four settings that decide what comes out of the
-    synthesiser, and every one of them used to be reachable only by editing JSON.
-    """
+    locked = lock_voice_profiles(payload)
+    profiles = []
+    assert locked.voice_profiles is not None
+    for index, profile in enumerate(locked.voice_profiles):
+        profiles.append(
+            "<div class=line><div class=row>"
+            f"<label>Figur<input value='{escape(profile.speaker, quote=True)}' disabled></label>"
+            f"<label>Stimme<select name='profile.{index}.voice'>"
+            f"{_options(voices or [profile.voice], profile.voice)}</select></label>"
+            f"<label>Identitäts-Seed<input value='{profile.seed}' disabled></label>"
+            "</div>"
+            f"<label>Grundsätzliche Sprechweise<input name='profile.{index}.style' "
+            f"value='{escape(profile.style or '', quote=True)}' "
+            "placeholder='z. B. Sprich freundlich, ruhig und deutlich.'></label>"
+            f"<button class=ghost name=reroll value='{index}'>Neue Variante für diese Figur</button>"
+            "</div>"
+        )
 
     lines = []
-    for index, line in enumerate(payload.lines):
+    for index, line in enumerate(locked.lines):
         lines.append(
             f"<div class=line><div class=row>"
-            f"<label>Sprecher<select name='line.{index}.speaker'>{_options(payload.speakers, line.speaker)}</select></label>"
-            f"<label>Stimme<select name='line.{index}.voice'>{_options(voices or [line.voice], line.voice)}</select></label>"
+            f"<label>Sprecher<select name='line.{index}.speaker'>{_options(locked.speakers, line.speaker)}</select></label>"
             f"<label>Tempo<input name='line.{index}.pace' type=number step=0.01 min=0.7 max=1.15 value='{line.pace}'></label>"
             f"<label>Pause danach (ms)<input name='line.{index}.pause' type=number min=0 max=5000 value='{line.pause_after_ms}'></label>"
-            f"<label>Seed<input name='line.{index}.seed' type=number min=0 value='{line.seed}'></label>"
             "</div>"
             f"<label>Text<textarea name='line.{index}.text' required>{escape(line.display_text)}</textarea></label>"
-            f"<label class=muted>Sprechweise (optional, steuert Ton und Register)"
-            f"<input name='line.{index}.style' value='{escape(line.style or '')}' "
-            f"placeholder='z. B. Sprich sachlich und deutlich wie eine Bahnhofsdurchsage.'></label>"
+            f"<label class=muted>Sprechweise nur für diese Replik (optional)"
+            f"<input name='line.{index}.delivery' value='{escape(line.delivery or '', quote=True)}' "
+            f"placeholder='z. B. Antworte erleichtert, aber nicht überschwänglich.'></label>"
             f"<label class=muted>Aussprache-Text (optional, nur für die Synthese)"
             f"<input name='line.{index}.synthesis' value='{escape(line.synthesis_text or '')}' placeholder='leer = wie oben'></label>"
             "</div>"
         )
     return (
         f"<div class=card><h3>Skript &amp; Stimmen</h3><form method=post action='/projects/{project_id}/script'>"
+        "<p class=muted>Stimme, Grundstil und Seed gehören zur Figur. Eine neue Variante erzeugt "
+        "später alle Repliken dieser Figur neu; einzelne Repliken bekommen keinen eigenen Seed.</p>"
+        + "".join(profiles)
+        + "<h4>Repliken</h4>"
         + "".join(lines)
         + "<div class=row>"
         f"<label>Synthese-Modell<select name=adapter>{_options(adapters, payload.tts_adapter)}</select></label>"
         f"<label>Max. Wiederholungen<input name=max_replays type=number min=1 max=10 value='{payload.max_replays}'></label>"
         "</div>"
         "<p class=muted>Speichern legt eine neue Revision an und setzt das Projekt zurück auf <em>draft</em>. "
-        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Stimme, Seed und Tempo gleich bleiben. "
+        "Zwischengespeicherte Zeilen-Audios werden wiederverwendet, solange Text, Figurenprofil und Tempo gleich bleiben. "
         "Beim Wechsel des Synthese-Modells bekommt jede Sprecherin und jeder Sprecher automatisch eine Stimme des "
-        "neuen Modells — danach hier anpassen: die Zuordnung ist beliebig, sie hält nur die Sprecher auseinander.</p>"
+        "neuen Modells — danach hier pro Figur anpassen.</p>"
         "<button>Skript speichern</button></form></div>"
     )
 
@@ -255,13 +351,72 @@ def qa_card(qa: dict[str, object]) -> str:
         if isinstance(failures, list) and failures
         else ""
     )
+    speaker = qa.get("speaker_consistency")
+    speaker_html = ""
+    if isinstance(speaker, dict) and isinstance(speaker.get("characters"), list):
+        def shown_similarity(row: dict[str, object]) -> str:
+            value = row.get("minimum_similarity")
+            return "—" if value is None else f"{float(str(value)):.3f}"
+
+        def shown_pitch(row: dict[str, object]) -> str:
+            value = row.get("pitch_spread_hz")
+            return "—" if value is None else f"{float(str(value)):.1f} Hz"
+
+        character_rows = "".join(
+            f"<tr><td>{escape(str(row.get('speaker', '')))}</td>"
+            f"<td>{escape(str(row.get('measured_lines', 0)))}/{escape(str(row.get('line_count', 0)))}</td>"
+            f"<td>{shown_similarity(row)}</td><td>{shown_pitch(row)}</td></tr>"
+            for row in speaker["characters"]
+            if isinstance(row, dict)
+        )
+        pair_rows = "".join(
+            f"<tr><td>{escape(' / '.join(map(str, row.get('speakers', []))))}</td>"
+            f"<td>{float(row.get('similarity') or 0):.3f}</td></tr>"
+            for row in speaker.get("different_characters", [])
+            if isinstance(row, dict)
+        )
+        warnings = speaker.get("warnings") or []
+        warning_html = (
+            "<ul class=muted>" + "".join(f"<li>{escape(str(w))}</li>" for w in warnings) + "</ul>"
+            if isinstance(warnings, list) and warnings
+            else ""
+        )
+        speaker_html = (
+            "<h4>Stimmkonsistenz · Warninstrument, noch ohne Grenzwert</h4>"
+            "<table><thead><tr><th>Figur</th><th>messbare Repliken</th><th>kleinste Ähnlichkeit</th><th>Tonhöhenspanne</th></tr></thead>"
+            f"<tbody>{character_rows}</tbody></table>"
+            + (
+                "<table><thead><tr><th>Figurenpaar</th><th>Ähnlichkeit</th></tr></thead>"
+                f"<tbody>{pair_rows}</tbody></table>"
+                if pair_rows
+                else ""
+            )
+            + warning_html
+            + "<p class=muted>Niedrige Werte innerhalb einer Figur und hohe Werte zwischen Figuren "
+            "verdienen Aufmerksamkeit. Bis zur Kalibrierung entscheidet ausschließlich die Anhörung.</p>"
+        )
+    soundscape = qa.get("soundscape")
+    soundscape_html = ""
+    if isinstance(soundscape, dict):
+        rms = soundscape.get("measured_ambience_rms_dbfs")
+        rms_label = "—" if rms is None else f"{float(rms):.1f} dBFS"
+        soundscape_html = (
+            "<h4>Umgebung</h4><div class=metric-grid>"
+            f"<div class=metric><strong>{soundscape.get('bed_count', 0)}</strong><span>durchgehende Betten</span></div>"
+            f"<div class=metric><strong>{soundscape.get('event_count', 0)}</strong><span>Ereignisse</span></div>"
+            f"<div class=metric><strong>{float(soundscape.get('configured_coverage_ratio') or 0):.0%}</strong><span>konfigurierte Abdeckung</span></div>"
+            f"<div class=metric><strong>{rms_label}</strong><span>gemessene Umgebung</span></div>"
+            "</div><p class=muted>Das ist eine Mischungsdiagnose, kein Lautheitsurteil. "
+            "Bei der Anhörung muss die Szene erkennbar bleiben, ohne eine Silbe zu verdecken.</p>"
+        )
     return (
         f"<div class=card><h3>Automatische Prüfung</h3><p>{verdict} · Gesamt-WER "
         f"{float(final.get('full_wer') or 0):.1%}</p>{failure_html}"
         "<table><thead><tr><th>Zeile</th><th>Erwartet</th><th>Gehört</th><th>WER</th><th></th></tr></thead>"
         f"<tbody>{''.join(rows)}</tbody></table>"
         "<p class=muted>Die automatische Prüfung findet Abweichungen im Wortlaut. Sie sagt nichts "
-        "über Aussprache, Tempo oder Natürlichkeit — das entscheidet die Anhörung.</p></div>"
+        "über Aussprache, Tempo oder Natürlichkeit — das entscheidet die Anhörung.</p>"
+        f"{speaker_html}{soundscape_html}</div>"
     )
 
 
@@ -292,7 +447,11 @@ APPROVAL_CHECKS: dict[str, str] = {
     "intelligibility": (
         "Auf {level} ist jedes Wort heraushörbar — beim Hören, ohne Mitlesen im Skript."
     ),
-    "speakers": "Die Sprecher sind durchgehend als verschiedene Personen unterscheidbar.",
+    "identity": (
+        "Jede Figur bleibt über alle Repliken dieselbe erkennbare Person — Alter, Stimmfarbe "
+        "und Grundenergie springen nicht mitten im Gespräch."
+    ),
+    "speakers": "Die verschiedenen Figuren sind durchgehend voneinander unterscheidbar.",
     "pace": "Das Tempo passt zu {level}: nicht gehetzt, aber auch nicht künstlich gedehnt.",
     "questions": (
         "Jede Frage ist allein aus dem Gehörten beantwortbar, und die markierte Antwort "
@@ -310,8 +469,9 @@ def transcript_card(payload: RevisionPayload) -> str:
     """
 
     rows = "".join(
-        f"<tr><td>{escape(line.speaker)}</td><td class=muted>{escape(line.voice or '—')}</td>"
-        f"<td class=muted>{escape(line.style or '—')}</td>"
+        f"<tr><td>{escape(line.speaker)}</td>"
+        f"<td class=muted>{escape(payload.resolved_line(line).voice or '—')}</td>"
+        f"<td class=muted>{escape(payload.resolved_line(line).style or '—')}</td>"
         f"<td>{escape(line.display_text)}</td></tr>"
         for line in payload.lines
     )
@@ -353,6 +513,38 @@ def question_review_card(payload: RevisionPayload) -> str:
             f"<p class=muted>{escape(question.explain.en)}<br>{escape(question.explain.ru)}</p></div>"
         )
     return "<div class=card><h3>Fragen</h3>" + "".join(blocks) + "</div>"
+
+
+def soundscape_card(payload: RevisionPayload) -> str:
+    """Show what creates the scene and why each placement exists."""
+
+    if not payload.context_sounds:
+        return (
+            "<div class=card><h3>Umgebung</h3>"
+            "<p class=fail>Kein Umgebungsbett konfiguriert.</p></div>"
+        )
+    sounds = []
+    for sound in payload.context_sounds:
+        role = "Umgebungsbett" if sound.role == "bed" else "Ereignis"
+        authoring = {
+            "human": "menschlich platziert",
+            "ai-assisted": "KI-unterstützt platziert",
+            "legacy": "ältere Platzierung",
+        }[sound.placement_authoring]
+        reason = sound.editorial_reason or "Keine redaktionelle Begründung aus der Altversion."
+        sounds.append(
+            "<article class=project-card>"
+            f"<span class='chip info'>{role}</span><h4>Quelle {sound.sound_id}</h4>"
+            f"<p>{escape(reason)}</p><div class=project-meta>"
+            f"<span>{sound.gain_db:g} dB</span><span>{authoring}</span>"
+            f"<span>Start {sound.start_ms / 1000:g} s</span></div></article>"
+        )
+    return (
+        "<div class=card><h3>Umgebung</h3>"
+        "<p class=muted>Betten laufen bis zum Dialogende; Ereignisse bleiben einmalig. "
+        "Die Begründung beschreibt eine Platzierungsentscheidung, keine menschliche Freigabe.</p>"
+        f"<div class=project-grid>{''.join(sounds)}</div></div>"
+    )
 
 
 def approval_page(
@@ -502,6 +694,7 @@ def project_page(
         + actions_card(project_id, stage, qa_passed)
         + (qa_card(qa) if qa else "")
         + (approval_card(approval) if approval else "")
+        + soundscape_card(payload)
         + script_form(project_id, payload, voices, adapters)
         + questions_form(project_id, payload)
     )
@@ -527,17 +720,35 @@ def parse_lines(form: dict[str, str], payload: RevisionPayload) -> list[dict[str
         current.update(
             {
                 "speaker": form.get(f"line.{index}.speaker", line.speaker),
-                "voice": form.get(f"line.{index}.voice", line.voice),
                 "display_text": form.get(f"line.{index}.text", line.display_text).strip(),
                 "synthesis_text": synthesis or None,
-                "style": form.get(f"line.{index}.style", "").strip() or None,
+                "delivery": form.get(f"line.{index}.delivery", "").strip() or None,
                 "pace": float(form.get(f"line.{index}.pace", line.pace)),
                 "pause_after_ms": int(form.get(f"line.{index}.pause", line.pause_after_ms)),
-                "seed": int(form.get(f"line.{index}.seed", line.seed)),
             }
         )
         out.append(current)
     return out
+
+
+def parse_voice_profiles(
+    form: dict[str, str], payload: RevisionPayload
+) -> list[VoiceProfile]:
+    locked = lock_voice_profiles(payload)
+    assert locked.voice_profiles is not None
+    reroll = form.get("reroll")
+    profiles: list[VoiceProfile] = []
+    for index, profile in enumerate(locked.voice_profiles):
+        profiles.append(
+            profile.model_copy(
+                update={
+                    "voice": form.get(f"profile.{index}.voice", profile.voice),
+                    "style": form.get(f"profile.{index}.style", "").strip() or None,
+                    "seed": profile.seed + 1 if reroll == str(index) else profile.seed,
+                }
+            )
+        )
+    return profiles
 
 
 def parse_questions(form: dict[str, str], payload: RevisionPayload) -> list[Question]:

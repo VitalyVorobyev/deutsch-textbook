@@ -666,6 +666,8 @@ export const listeningArtifactSchema = z.object({
  */
 export const listeningAudioPath = (level: string, id: string) =>
   `content/listening/${level.toLowerCase()}/${id}.mp3`;
+export const readingAudioPath = (level: string, id: string) =>
+  `content/reading-audio/${level.toLowerCase()}/${id}.mp3`;
 export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
 
 // ---------------------------------------------------------------------------
@@ -747,6 +749,27 @@ export const readingSchema = z.object({
   questions: z.array(mcItemSchema).max(4).default([]),
 });
 export type Reading = z.infer<typeof readingSchema>;
+
+export const readingParagraphCueSchema = z.object({
+  paragraph_index: z.number().int().nonnegative(),
+  start_ms: z.number().int().nonnegative(),
+  end_ms: z.number().int().positive(),
+  text_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+}).refine((cue) => cue.end_ms > cue.start_ms, 'cue end must follow cue start');
+
+export const readingAudioArtifactSchema = z.object({
+  id: slug,
+  reading_id: z.string().min(1),
+  level: levelSchema,
+  style_id: slug,
+  style_version: z.number().int().positive(),
+  narrator_id: slug,
+  narrator_version: z.number().int().positive(),
+  duration_seconds: z.number().positive(),
+  paragraphs: z.array(readingParagraphCueSchema).min(1),
+  provenance: z.string().min(1),
+});
+export type ReadingAudioArtifact = z.infer<typeof readingAudioArtifactSchema>;
 
 // ---------------------------------------------------------------------------
 // Visual documents (content/documents/<level>/<id>.yaml)

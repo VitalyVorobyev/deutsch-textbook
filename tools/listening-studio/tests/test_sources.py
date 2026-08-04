@@ -1,5 +1,7 @@
 import hashlib
 import json
+import math
+import struct
 import wave
 from pathlib import Path
 
@@ -7,6 +9,7 @@ import pytest
 
 from listening_studio.adapters import FakeTTS, assemble, generate_lines, mix_context, wav_duration
 from listening_studio.domain import ContextSound
+from listening_studio.soundscape import soundscape_report
 from listening_studio.sources import import_source, load_source
 from test_domain import payload
 
@@ -138,3 +141,48 @@ def test_lead_in_alone_still_mixes(tmp_path: Path) -> None:
     out = tmp_path / "out.wav"
     mix_context(project, tmp_path / "store", dry, out)
     assert wav_duration(out) == pytest.approx((wav_duration(dry) or 0) + 0.8, abs=0.05)
+
+
+def test_environment_bed_loops_under_the_complete_dialogue(tmp_path: Path) -> None:
+    original = tmp_path / "short-bed.wav"
+    samples = [int(3000 * math.sin(2 * math.pi * 180 * i / 16000)) for i in range(4000)]
+    with wave.open(str(original), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(16000)
+        wav.writeframes(b"".join(struct.pack("<h", sample) for sample in samples))
+    info = tmp_path / "source.json"
+    metadata(info)
+    source = import_source(original, info, tmp_path / "store")
+    sound = ContextSound(
+        source_sha256=source.original_sha256,
+        sound_id=source.sound_id,
+        duration_ms=250,
+        role="bed",
+        editorial_reason="test bed",
+        placement_authoring="ai-assisted",
+    )
+    project = payload().model_copy(update={"context_sounds": [sound]})
+    lines = generate_lines(project, tmp_path / "project", FakeTTS())
+    dry = tmp_path / "dry.wav"
+    assemble(project, lines, dry)
+    mixed = tmp_path / "mixed.wav"
+    mix_context(project, tmp_path / "store", dry, mixed)
+    with wave.open(str(mixed), "rb") as wav:
+        wav.setpos(max(0, wav.getnframes() - 4000))
+        tail = wav.readframes(4000)
+    assert any(tail), "a short bed must still be audible at the end of a longer dialogue"
+    report = soundscape_report(project, dry, mixed)
+    assert report.configured_coverage_ratio == 1
+    assert report.measured_ambience_rms_dbfs is not None
+    assert report.measured_ambience_rms_dbfs < -25
+
+
+def test_ai_assisted_placement_requires_an_honest_reason() -> None:
+    with pytest.raises(ValueError, match="editorial reason"):
+        ContextSound(
+            source_sha256="a" * 64,
+            sound_id=1,
+            duration_ms=1000,
+            placement_authoring="ai-assisted",
+        )
