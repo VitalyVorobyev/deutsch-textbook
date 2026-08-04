@@ -1,6 +1,6 @@
 # Authoring checklists and the personalization loop
 
-The end-to-end procedures, lifted out of [`CLAUDE.md`](../CLAUDE.md): what a finished topic owes,
+The end-to-end procedures, lifted out of [`CLAUDE.md`](../../CLAUDE.md): what a finished topic owes,
 what the lesson cycle requires, and how a drill is derived from real learner evidence.
 
 CLAUDE.md keeps the nine-line checklist skeleton. This file keeps each line's reasoning, the
@@ -10,7 +10,7 @@ hazards that are invisible until they fire, and the full drills-from-progress pr
 
 New topic — a topic is not done until every line here is:
 0. For B1.4 and later, read the
-   [`authorship-provenance` skill](../.agents/skills/authorship-provenance/SKILL.md) and maintain
+   [`authorship-provenance` skill](../../.agents/skills/authorship-provenance/SKILL.md) and maintain
    the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
    is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
    `status: reviewed`.
@@ -26,7 +26,7 @@ New topic — a topic is not done until every line here is:
    - **Type decides what a format can grade.** A `cloze` gap grades a **form**, never a **position** — the slot is given, so the learner cannot put the word anywhere else. So `verbzweit`, `nicht-position`, `modal-satzklammer` and the other placement tags cannot get a cloze twin at all; their second family must probe a different (form) competence. `cloze` is otherwise the best second format: it is always attributed, because the gap *is* the graded token, so a miss cannot land in the "target retained, sentence missed elsewhere" bucket that a `translate` probe produces.
    - **Adding a second family no longer re-arms the topic — but measure it anyway.** This used to be the expensive part: a single-family topic armed from whole practice *sets*, and the arrival of a second flipped it to per-*item* arming, so the *existing* family's `armedAt` could move and `probeResults` would silently re-label probes already taken (a 4-day retention result filed as a 1-day one). P19-4 (2026-07-31) ended it. Every family now commits its own explicit `arming:` list and `probeFamilies` reads nothing else — `armingItemKeys: [...(s.arming ?? [])]` in `src/lib/probes.ts`, with no `armingSetIds`, no `shared` flag and no set-membership fallback. A new family cannot touch an old one's clock, because that clock is a literal list in the old family's own YAML. **Still capture `armedAt` before and after**, because a source reading is not a measurement: when the six B1.1–B1.3 families landed on 2026-08-02, the three existing families' timestamps came back identical to the byte.
 5. Reading text in `content/reading/<level>/<id>.yaml` — `kind: intensive`, ~90–130 words at the topic's level, 6–10 glosses, 3 comprehension questions; referenced via `reading`. An extensive reader is a *different artifact* (`kind: extensive`, 250–400 words, ≤2 questions, ~1 gloss per 40 words) and is meant to be read straight through.
-6. Vocab file if the topic introduces a word field (20–40 entries; A2 units are thinner — see below). Fill `ipa` with `bun run gen:ipa`, then review it against [`docs/lautschrift.md`](lautschrift.md) — the generator is weakest exactly on compounds, separable verbs and loanwords.
+6. Vocab file if the topic introduces a word field (20–40 entries; A2 units are thinner — see below). Fill `ipa` with `bun run gen:ipa`, then review it against [`docs/authoring/lautschrift.md`](lautschrift.md) — the generator is weakest exactly on compounds, separable verbs and loanwords.
 7. Add the node (with 2–4 can-do `outcomes`) and its unit slot to `content/atlas.yaml`. **Every outcome must be referenced by at least one item in a `role: practice` or `role: drill` set, or by at least one reading question** (validator-enforced). Pretests, checkpoints and probes deliberately do not count: a pretest is a guess taken *before* the lesson, and a checkpoint or probe *tests* an outcome rather than teaching it — an outcome that is only ever tested was never practised. An outcome nothing measures can never light up, and a probe on it can never arm.
 8. New `focus` tags registered in the table above **and** in `focusIntroducedBy` (`src/lib/focus-tags.ts`).
 9. `bun run validate` must pass.
@@ -35,7 +35,7 @@ New topic — a topic is not done until every line here is:
 
 **Since P5-6, `cards: recognition` makes single-card understand-only entries legitimate for B1 decks** — one card instead of two for language the learner must understand but will never produce; set it at authoring time only, never retrofitted to a shipped entry, because the direction is in the card id and flipping deletes the production card's SRS history.
 
-**Wortliste completion decks are unowned.** Closing a level's Wortliste is a *separate* artifact from its units: decks of 15–45 entries, `level: <the level>`, that **no topic lists in `vocab:`** — exactly like the eleven A1 completion decks. Listing one in a topic's frontmatter flips its fresh-card gate from "≥1 topic at this level opened" to "this topic opened", which is the same trap as adopting an A1 deck. Regroup rather than mirror the manifest's sections (they are a transcription convenience, and run from 1 to 92 words), and remember the rule the `~` exists for: **a word earns a card iff an A2 learner could plausibly *produce* it.** Rarity is not a licence to `~` — `nirgends` and all 43 Berufe get cards; `z. B.` and `hin`/`her` do not. The partition and the exclusion list are frozen in [`docs/curriculum-a2-b1.md`](curriculum-a2-b1.md).
+**Wortliste completion decks are unowned.** Closing a level's Wortliste is a *separate* artifact from its units: decks of 15–45 entries, `level: <the level>`, that **no topic lists in `vocab:`** — exactly like the eleven A1 completion decks. Listing one in a topic's frontmatter flips its fresh-card gate from "≥1 topic at this level opened" to "this topic opened", which is the same trap as adopting an A1 deck. Regroup rather than mirror the manifest's sections (they are a transcription convenience, and run from 1 to 92 words), and remember the rule the `~` exists for: **a word earns a card iff an A2 learner could plausibly *produce* it.** Rarity is not a licence to `~` — `nirgends` and all 43 Berufe get cards; `z. B.` and `hin`/`her` do not. The partition and the exclusion list are frozen in [`docs/curriculum/a2-b1.md`](../curriculum/a2-b1.md).
 
 ---
 

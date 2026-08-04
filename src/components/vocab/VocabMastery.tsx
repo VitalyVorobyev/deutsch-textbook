@@ -16,7 +16,7 @@ const LABELS: Record<WordMastery, { en: string; ru: string }> = {
   established: { en: 'Established', ru: 'Закрепляются' }, strong: { en: 'Strong', ru: 'Прочные' },
 };
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   legendAria: { en: 'Vocabulary status legend', ru: 'Легенда статусов слов' },
   uniqueWords: {

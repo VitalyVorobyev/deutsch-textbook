@@ -39,7 +39,7 @@ already met.
 ### P9-2 · Entdecken pieces
 
 Recurring, at most one or two reviewed pieces per PR. Each must pass the editorial and provenance
-contract in [future-content-directions.md](future-content-directions.md).
+contract in [future-content-directions.md](authoring/future-content-directions.md).
 
 ## Calendar gates
 
@@ -53,7 +53,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract requires
   one 3-variant family per competence; B1.1–B1.3 own 3 + 3 + 4 grammar points and shipped one
-  family each. The 2026-08-02 amendment to [curriculum-a2-b1.md](curriculum-a2-b1.md) removed the
+  family each. The 2026-08-02 amendment to [curriculum-a2-b1.md](curriculum/a2-b1.md) removed the
   reason this was expensive (P19-4 gave every family its own explicit `arming:` list, so a new
   family cannot move an existing one's `armedAt`). `adjektiv-nullartikel` is the remainder after
   this PR's six families.
@@ -76,7 +76,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 - **P18-1 · `explain` prose drifted the way the articles did** — mean EN `explain` runs A1 28 w →
   A2 53 w → ~110 w in B1.4/B1.5 (max 167), against an A2 practice norm of ~50. Explanatory feedback
   is read *after* an error, where attention is scarcest. Decide a target, put it in
-  [item-authoring.md](item-authoring.md), and revise the two B1 units' non-produktion sets;
+  [item-authoring.md](authoring/item-authoring.md), and revise the two B1 units' non-produktion sets;
   `-produktion` model answers are legitimately longer and need their own line.
 - **P18-2 · `Kurz gesagt` exceeds its own target in two A2 files** — `a2/freunde-feste` (143 w) and
   `a2/arbeit-beruf` (144 w) against the ~100-word target. Median across 37 topics is 91, so these
@@ -88,7 +88,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   ruling; language quality, not alphabet parity, is the target.
 - **C6-2 · Verify the citation stress of `tatsächlich`** — `content/vocab/meinung-medien.yaml` has
   `ˈtaːtzɛçlɪç` (initial), supported by the derivation from *Tatsache*, the parallel `hauptsächlich`,
-  and [lautschrift.md](lautschrift.md); a 2026-07-27 review argued for `taːtˈzɛçlɪç`, which is the
+  and [lautschrift.md](authoring/lautschrift.md); a 2026-07-27 review argued for `taːtˈzɛçlɪç`, which is the
   emphatic realisation. Settle against Duden's primary entry, and apply to any other `-lich`
   adjective built on a compound.
 
@@ -331,7 +331,7 @@ Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md).
   live units, every one human-approved and hash-bound to the bytes that shipped: 14.2 MB of MP3 and
   41 `-hoeren` practice sets in `content/`, 13.7 MB of Freesound provenance in `data/`, carried by
   both shipping builds. 17 superseded TTS items retired against a per-item ledger
-  ([audio-retirement-ledger.md](audio-retirement-ledger.md)). The A1 Goethe pack (P19-6) remains
+  ([audio-retirement-ledger.md](quality/audio-retirement-ledger.md)). The A1 Goethe pack (P19-6) remains
   open as its own task.
 - **P22-2 · P22-3 · P22-4 (2026-08-02):** master/derivative split decided before the first commit;
   adapter switch can no longer save an unloadable payload; `bun tauri dev` serves recordings.

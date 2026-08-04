@@ -23,7 +23,7 @@ import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import SpeakerButton from '../SpeakerButton';
 import { useExplainLang, useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   allDone: { en: 'All done for now!', ru: 'На сегодня всё!' },
   cardsReviewed: { en: 'Cards reviewed', ru: 'Карточек повторено' },

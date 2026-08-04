@@ -36,7 +36,7 @@ mastered, and the next topic to learn.*
        units per level:   bun -e 'const {getCurriculum}=await import("./src/lib/curriculum.ts");
                             const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1;
                             console.log(c)'
-       B1 contract total: docs/curriculum-a2-b1.md — frozen 2026-07-24 at fourteen units -->
+       B1 contract total: docs/curriculum/a2-b1.md — frozen 2026-07-24 at fourteen units -->
 
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,
   matching, word order, tables, translation, open writing, speaking, and
@@ -159,7 +159,7 @@ conventions — are in [CLAUDE.md](CLAUDE.md).
 Deutsch-Atlas is AI-assisted, human-directed and edited. AI systems support drafting and asset
 generation; they are not credited as authors. The project’s ownership, licence boundaries and
 authorship-provenance process are summarized in [NOTICE.md](NOTICE.md) and
-[docs/product-protection.md](docs/product-protection.md).
+[docs/authoring/product-protection.md](docs/authoring/product-protection.md).
 
 ## Licence
 

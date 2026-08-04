@@ -165,7 +165,7 @@ const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
     on screen — as the prompt, the answer, or the reading text — so a `de` translation
     would be the source text printed twice, and the learner would read the same
     sentence back as if it were help. Same reason there is no `prompt_de` and no `de`
-    field on a gloss (docs/i18n-design.md).
+    field on a gloss (docs/adrs/0001-bilingual-explanation-halves.md).
 
     `uk` parity is deliberately NOT exempted here: a Ukrainian rendering of a German
     sentence is exactly what a Ukrainian reader needs. The asymmetry is the point —
@@ -238,7 +238,7 @@ export interface MdxLangReport {
  * parity for the optional halves.
  *
  * `forceUk` bridges frontmatter uk the body scan cannot see: parity is
- * per FILE (docs/i18n-design.md), so a `title_uk` alone must demand a `<Uk>`
+ * per FILE (docs/adrs/0001-bilingual-explanation-halves.md), so a `title_uk` alone must demand a `<Uk>`
  * half in every `<Bilingual>` block — otherwise a wave could translate the
  * title, skip the article, and both validate and count as translated. The
  * reverse bridge (body `<Uk>` forcing frontmatter parity) is the caller's:
@@ -283,7 +283,7 @@ export function mdxLangProblems(
     // Was `tag === 'Uk' && opts.forceUk`, so the frontmatter→body bridge existed for uk
     // alone: a file could carry `summary.de` and a wholly English article, or German
     // article halves under an English summary card, and validate said nothing — while
-    // docs/i18n-design.md and the comment in scripts/validate.ts both assert frontmatter
+    // docs/adrs/0001-bilingual-explanation-halves.md and the comment in scripts/validate.ts both assert frontmatter
     // and body are ONE parity scope. That was true of uk only. Found by the first content
     // ever to use `de` (content/discovery/b1/sonntagsruhe.mdx), which is what the pilot
     // was for; both directions were reproduced passing before the fix.

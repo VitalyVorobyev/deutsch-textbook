@@ -3,7 +3,7 @@
 An AI-assisted, human-directed and edited German learning system by Vitaly Vorobyev:
 wiki-like textbook + interactive exercises +
 FSRS flashcards. A1 and A2 are complete and B1 is being authored under its frozen contract
-(`docs/curriculum-a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
+(`docs/curriculum/a2-b1.md`); the learner (Vitaly) has B2 as a longer-term goal. Explanations
 are bilingual **EN + RU**, with an optional **UK** half — independently authored from the
 German, shipping in file-scoped waves — and, from B1
 onward, an optional German-medium explanation half. The repo is
@@ -19,18 +19,19 @@ read**, not a rule to guess at.
 
 | If you are… | Read first |
 | --- | --- |
-| writing or revising a **topic article** (`## Erklärung` structure, paragraph size, `Kurz gesagt`) | [`docs/article-prose.md`](docs/article-prose.md) |
-| authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/item-authoring.md`](docs/item-authoring.md) |
-| choosing or adding a **`focus` tag** | [`docs/focus-tags.md`](docs/focus-tags.md) |
-| changing anything in **`src/lib/`** | [`docs/runtime-contracts.md`](docs/runtime-contracts.md) |
-| touching **`worker/`**, `src/lib/sync-remote.ts` or `scripts/progress-pull.ts` (accounts, approval, snapshot sync) | [`docs/cloud-sync.md`](docs/cloud-sync.md) |
-| shipping a **new topic**, or writing a **drill from learner progress** | [`docs/authoring-checklists.md`](docs/authoring-checklists.md) |
-| drafting or reviewing **B1.4+**, or adding a generated/simulated asset | [`.agents/skills/authorship-provenance/SKILL.md`](.agents/skills/authorship-provenance/SKILL.md) · [`docs/product-protection.md`](docs/product-protection.md) |
-| touching a **coverage figure** (Wortliste `~`, grammar inventory, `/about`) | [`docs/coverage-instruments.md`](docs/coverage-instruments.md) |
-| hand-editing a vocab **`ipa`** | [`docs/lautschrift.md`](docs/lautschrift.md) |
-| authoring **Entdecken** material or adding a **document** | [`docs/future-content-directions.md`](docs/future-content-directions.md) |
-| deciding **what A2 teaches**, in what order, with which frozen identities | [`docs/curriculum-a2-b1.md`](docs/curriculum-a2-b1.md) |
-| checking a finished unit against the **quality gate** | [`docs/a1-learning-audit.md`](docs/a1-learning-audit.md) |
+| writing or revising a **topic article** (`## Erklärung` structure, paragraph size, `Kurz gesagt`) | [`docs/authoring/article-prose.md`](docs/authoring/article-prose.md) |
+| authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md) |
+| choosing or adding a **`focus` tag** | [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) |
+| changing anything in **`src/lib/`** | [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md) |
+| touching **`worker/`**, `src/lib/sync-remote.ts` or `scripts/progress-pull.ts` (accounts, approval, snapshot sync) | [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md) |
+| reading or writing an **ADR**, or making an **architecture decision** | [`docs/adrs/README.md`](docs/adrs/README.md) |
+| shipping a **new topic**, or writing a **drill from learner progress** | [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md) |
+| drafting or reviewing **B1.4+**, or adding a generated/simulated asset | [`.agents/skills/authorship-provenance/SKILL.md`](.agents/skills/authorship-provenance/SKILL.md) · [`docs/authoring/product-protection.md`](docs/authoring/product-protection.md) |
+| touching a **coverage figure** (Wortliste `~`, grammar inventory, `/about`) | [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md) |
+| hand-editing a vocab **`ipa`** | [`docs/authoring/lautschrift.md`](docs/authoring/lautschrift.md) |
+| authoring **Entdecken** material or adding a **document** | [`docs/authoring/future-content-directions.md`](docs/authoring/future-content-directions.md) |
+| deciding **what A2 teaches**, in what order, with which frozen identities | [`docs/curriculum/a2-b1.md`](docs/curriculum/a2-b1.md) |
+| checking a finished unit against the **quality gate** | [`docs/quality/a1-learning-audit.md`](docs/quality/a1-learning-audit.md) |
 | looking for the **system map** or **the queue** | [`docs/design.md`](docs/design.md) · [`docs/backlog.md`](docs/backlog.md) |
 
 ## Commands
@@ -45,12 +46,12 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun run build` — production build (also type-checks content against schemas)
 - `bun run review:gate` — read-only merge gate: non-draft PR, green CI, no unresolved actionable threads and a Codex review of current HEAD
 - `bun run progress:audit --profile <slug>` — aggregate the newest learner snapshot. **Never Read a raw snapshot**: they run 300 KB+ and the audit already aggregates everything. `--item <set-id>:<item-id>` for focused evidence on one item. `--project <YYYY-MM-DD>` answers a different question from the retention table — not *what is the percentage* but *can there be one*: how many competences can reach the readability floor by that date, given arming dates and the interval schedule alone. Ask it **before** a gate date, not on it.
-- `bun run progress:pull --profile <slug>` — fetch the learner's cloud snapshot into `progress/<profile>/<date>.json`, so `progress:audit` keeps working now that sync is not local. Needs `source setenv.sh` (it reads R2 over S3, not through the API — reasons in [`docs/cloud-sync.md`](docs/cloud-sync.md)). `--list` shows what is stored; `--account <id>` when the bucket holds more than one (the id is on `/konto`); `--date` for a specific day's copy. **It refuses to shrink an existing file** and parks the smaller state in a sibling `*.conflict-*.json` — investigate rather than delete.
-- `bun run deploy:smoke` — seven checks against the live origin, for the failures no gate here can see because nothing here is wrong. **Run it after every deploy that touches `worker/` or `wrangler.toml`.** A deploy from a config without `main` strips the Worker's secrets: sign-in then dies silently, `/api/auth/session` reports `providers: []`, and the build, the tests and the Cloudflare deploy all stay green. `--origin` to point elsewhere; `--deep` also proves D1 and the migrations, and is opt-in because it is the only check that writes. Diagnosis and recovery: [`docs/cloud-sync.md`](docs/cloud-sync.md#when-sign-in-stops-working).
+- `bun run progress:pull --profile <slug>` — fetch the learner's cloud snapshot into `progress/<profile>/<date>.json`, so `progress:audit` keeps working now that sync is not local. Needs `source setenv.sh` (it reads R2 over S3, not through the API — reasons in [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md)). `--list` shows what is stored; `--account <id>` when the bucket holds more than one (the id is on `/konto`); `--date` for a specific day's copy. **It refuses to shrink an existing file** and parks the smaller state in a sibling `*.conflict-*.json` — investigate rather than delete.
+- `bun run deploy:smoke` — seven checks against the live origin, for the failures no gate here can see because nothing here is wrong. **Run it after every deploy that touches `worker/` or `wrangler.toml`.** A deploy from a config without `main` strips the Worker's secrets: sign-in then dies silently, `/api/auth/session` reports `providers: []`, and the build, the tests and the Cloudflare deploy all stay green. `--origin` to point elsewhere; `--deep` also proves D1 and the migrations, and is opt-in because it is the only check that writes. Diagnosis and recovery: [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md#when-sign-in-stops-working).
 - `bun run gen:ipa` — fill missing `ipa` on vocab entries via espeak-ng (`brew install espeak-ng`; one-off dev tool, nothing about espeak ships). **Always review the output** — it is a good phoneme skeleton but gets compound/separable-verb stress, loanwords and unstressed vowel quality wrong. `--calibrate` diffs against a known-answer table; `--check` is a dry run; `--force` regenerates, discarding manual fixes.
-- `bun scripts/coverage.ts <A1|A2|B1>` — Goethe Wortliste coverage. **A1 and A2 are both at 100% — keep them there.** A new word belongs to exactly one deck; the manifest gains a line in the same change. A leading `~` (taught as grammar, no flashcard) **must be earned** — the validator hard-fails unless the word occurs in the taught surface. Run `--check-deck <file.yaml>` per deck before `bun run validate` on any completion pass. → [`docs/coverage-instruments.md`](docs/coverage-instruments.md)
+- `bun scripts/coverage.ts <A1|A2|B1>` — Goethe Wortliste coverage. **A1 and A2 are both at 100% — keep them there.** A new word belongs to exactly one deck; the manifest gains a line in the same change. A leading `~` (taught as grammar, no flashcard) **must be earned** — the validator hard-fails unless the word occurs in the taught surface. Run `--check-deck <file.yaml>` per deck before `bun run validate` on any completion pass. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun scripts/lang-cost.ts <file…>` — words per explanation half, and what four halves cost against two. Exists because a figure that decides a policy has to be reproducible: the `<De>` pilot's ratios reached the roadmap with no command behind them. Counting method is stated in the script.
-- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 22/22, A2 30/30, B1 29/32. → [`docs/coverage-instruments.md`](docs/coverage-instruments.md)
+- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 22/22, A2 30/30, B1 29/32. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun tauri dev` / `bun tauri build` — desktop app (thin Tauri v2 shell in `src-tauri/`; needs a Rust toolchain). Release: push a plain `vX.Y.Z` tag → `.github/workflows/release.yml` builds Windows, Linux and macOS (unsigned) installers into a GitHub Release; the tag is stamped as the version. Keep the site base-path-agnostic. Tauri JS APIs only behind the `isTauri()` runtime check (`src/lib/syncdir.ts`).
 
 ## Where content lives
@@ -76,7 +77,7 @@ without one is inert. Each node declares 2–5 learner-facing `outcomes`. All of
 
 ## Runtime invariants
 
-Load-bearing, and each one silent when broken. Mechanism and history: [`docs/runtime-contracts.md`](docs/runtime-contracts.md).
+Load-bearing, and each one silent when broken. Mechanism and history: [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md).
 
 - **`planReview()` (`src/lib/decks.ts`) is the ONE rule for what a review queue contains.** New cards are rationed **per day, not per queue** (`DAILY_NEW_CARDS = 15`) — `planReview` re-runs on every mount, so a per-queue cap alone dealt a reloading learner 75 new cards and months of review debt. Fresh-card ties break at random, never by card id.
 - **Never mount a React island per table row.** In `.astro` templates use `src/components/SpeakButton.astro` — one hoisted, delegated listener for the whole page.
@@ -86,7 +87,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 - **Navigation asks a different question than the badge.** `pathDone` is mastered *or* primary practice completed *or* self-rated `learned`. **Never derive a badge from `pathDone`** — a self-rating is not evidence. And never gate the path on item-level completion alone.
 - **Unverified practice never raises measured mastery.** `write` and `speak` are minimal-ceremony: attempt → model answer → done. Their `requirements`/`checklist` render as guidance, **never as gated forms** — the app cannot verify free production, so it must not charge steps for feedback it cannot give.
 - **There is no default profile and no name is ever assumed.** Nothing may create a database before discovery has run. The last remaining profile cannot be deleted. An OAuth display name may *prefill* the first-run field and nothing more.
-- **The sync server stores opaque bytes and never merges.** `/api/sync/snapshot` (`worker/`) does not parse, validate or migrate a snapshot — merging is `mergeSnapshot` on the client, so a new snapshot version needs no Worker deploy. Two rules follow: an **unconditional PUT does not exist** (no `If-Match`/`If-None-Match` → 428; a lost race → 412 → pull, merge locally, retry), and **signing in grants nothing** — a new account is `pending` until the owner approves it on `/konto`, so an unapproved account costs one D1 row and zero bytes. A **device token grants sync only**, never admin — and it **cannot approve a device pairing**, or one leaked string would renew itself. Pairing is the desktop's way in (`/api/pair/*`, RFC 8628's shape): the app shows a short code and a **cookie session on an approved account** grants it; the learner **types** that code rather than following a link carrying it, which is the whole anti-phishing argument. → [`docs/cloud-sync.md`](docs/cloud-sync.md)
+- **The sync server stores opaque bytes and never merges.** `/api/sync/snapshot` (`worker/`) does not parse, validate or migrate a snapshot — merging is `mergeSnapshot` on the client, so a new snapshot version needs no Worker deploy. Two rules follow: an **unconditional PUT does not exist** (no `If-Match`/`If-None-Match` → 428; a lost race → 412 → pull, merge locally, retry), and **signing in grants nothing** — a new account is `pending` until the owner approves it on `/konto`, so an unapproved account costs one D1 row and zero bytes. A **device token grants sync only**, never admin — and it **cannot approve a device pairing**, or one leaked string would renew itself. Pairing is the desktop's way in (`/api/pair/*`, RFC 8628's shape): the app shows a short code and a **cookie session on an approved account** grants it; the learner **types** that code rather than following a link carrying it, which is the whole anti-phishing argument. → [`docs/adrs/0003-opaque-snapshot-sync-and-approval-accounts.md`](docs/adrs/0003-opaque-snapshot-sync-and-approval-accounts.md) · [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md)
 - **Every figure on `/about` is computed from content at build time.** Never hand-write a count there, and never claim a level is more finished than it is.
 - Legacy or mismatched-revision attempts keep their logged result and are **never replayed** against a current key. Snapshot migrations v1–v7 are explicit (`src/lib/snapshot-schema.ts`).
 - **No input is sized, capped or captioned from the answer it is waiting for.** A cloze gap drawn at `answers[0].length + 2` made the box a ruler: `Es gibt hier ___ Supermarkt.` fitted only *einen* of *einen/eine/ein*, and the item scored a width judgement as accusative mastery. Every gap rests at one width and grows with what the **learner** typed (`gapWidthCh`, `Cloze.tsx`); `maxLength`, `placeholder` and `size` are the same hazard. No gate can see this class — the validator sees a well-formed item and the grader a correct answer.
@@ -108,7 +109,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/run
 - German content (examples, tables, headings like "Beispiele") stays outside Bilingual blocks — it is always visible.
 - Grammar terminology: use German terms with a per-language gloss on first use — in En blocks "der Kasus (case)", in Ru blocks "der Kasus (падеж)".
 
-### Topic article skeleton → [`docs/article-prose.md`](docs/article-prose.md)
+### Topic article skeleton → [`docs/authoring/article-prose.md`](docs/authoring/article-prose.md)
 Section order (H2 headings, in German):
 1. `## Kurz gesagt` — an advance organizer: the schema the article will fill in, ≤ ~100 words and ≤ 5 sentences per half, not a summary of its details (bilingual).
 2. `## Erklärung` — the full explanation with tables (bilingual prose, German tables).
@@ -120,7 +121,7 @@ Section order (H2 headings, in German):
 - **No paragraph over 120 words in any explanation half** (validator-enforced, `src/lib/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
 - **A fact stated in `## Erklärung` is drilled by an item or serves an outcome**; otherwise it goes in a compact `### Feinheiten` table. A list over three members is a table or a bullet list, never a semicolon chain — and prose never restates what the table beside it already enumerates.
 
-### Exercise items → [`docs/item-authoring.md`](docs/item-authoring.md)
+### Exercise items → [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md)
 
 - Topic `id` equals the filename; kebab-case ASCII. Exercise refs are path-ids like `a2/perfekt-haben-sein`.
 - **Item ids are stable.** Increment `revision` only when prompts, accepted answers, scoring, outcomes or focus semantics change — explanation-only polish does not.
@@ -134,7 +135,7 @@ Section order (H2 headings, in German):
 - `mc` has exactly one correct answer. A `match` meaning-side right is a `{en, ru, uk?}` record, **never a mixed `"en / ru"` string**. `listen` text is ≤ ~10 words with numbers written as words. An `audio-comprehension` item may name a reviewed `recording`; its `source.turns` are both the recorded script and the TTS fallback, and the validator holds them equal. Playback is never evidence. Readings gloss 6–10 phrases as `[[de::en::ru]]`.
 - **Placement sets are held to seven stricter rules** than practice — a guessed placement item retires a lesson the learner never sees again.
 
-### Focus tags → [`docs/focus-tags.md`](docs/focus-tags.md)
+### Focus tags → [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md)
 
 The table there is an **allowlist**: `bun run validate` rejects a tag not registered in
 `focusIntroducedBy` (`src/lib/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
@@ -142,7 +143,7 @@ whenever possible; a new one is for a genuinely new confusion and joins both pla
 change. Leave genuinely mixed or pure-comprehension items untagged — **a false tag is worse than no
 tag**, because it sends training and drill authoring after a confusion the learner does not have.
 
-### Vocab entries → [`docs/item-authoring.md`](docs/item-authoring.md#vocab-entries)
+### Vocab entries → [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md#vocab-entries)
 
 - Nouns need `gender` + `plural` (with article); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed. Every entry except sentence-length `phrase`s needs a reviewed `ipa`.
 - **`accept` exists because `de` is three things at once** — the Wortliste key, the answer shown, and the answer typed. Reflexive verbs, adjectival nouns and course-taught spelling variants need it, or the card marks correct German **wrong**. A reflexive verb's form fields must carry `sich` too (validator-enforced when reflexivity is declared).
@@ -152,7 +153,7 @@ tag**, because it sends training and drill authoring after a confusion the learn
 - **Card identity is `<vocab-file-id>::<de>::<direction>`.** Renaming a headword or file id resets the learner's SRS history — avoid unless the entry was wrong.
 - **A2 vocabulary recycles, never adopts**, and **Wortliste completion decks stay unowned** — listing one in a topic's `vocab:` flips its fresh-card gate and buries hundreds of words behind that topic.
 
-### Entdecken & Dokumente → [`docs/future-content-directions.md`](docs/future-content-directions.md)
+### Entdecken & Dokumente → [`docs/authoring/future-content-directions.md`](docs/authoring/future-content-directions.md)
 
 Optional editorial material outside the spine (`content/discovery/<level>/<id>.mdx`): **no mastery,
 no review debt, no completion bar**, and opening one obligates the learner to nothing. Only
@@ -174,7 +175,7 @@ Every rule above makes a *published* figure earned rather than asserted — the 
 
 One mechanical hazard in the same family — silently wrong, and no gate catches it: **never write a literal NUL byte into source.** It is valid TypeScript, so tests, `astro check`, ESLint and the build all pass, but `file` reports the source as `data` and grep, ripgrep and editor search then **skip the file without saying so**. Two files sat that way. Use the escape in a template literal instead; `tests/source-hygiene.test.ts` fails on any tracked file containing one.
 
-### Shipping a topic → [`docs/authoring-checklists.md`](docs/authoring-checklists.md)
+### Shipping a topic → [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md)
 
 A topic is not done until all nine are:
 
@@ -185,7 +186,7 @@ A topic is not done until all nine are:
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.
 6. Vocab file if the topic introduces a word field; fill `ipa` with `bun run gen:ipa`, then review it.
 7. Atlas node + unit slot, with 2–5 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
-8. New `focus` tags registered in [`docs/focus-tags.md`](docs/focus-tags.md) **and** in `focusIntroducedBy`.
+8. New `focus` tags registered in [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) **and** in `focusIntroducedBy`.
 9. `bun run validate` passes.
 
 ### Review rounds end when a round finds nothing material
@@ -219,4 +220,4 @@ Each topic implements **pretest → model → explanation → scaffold → fade 
 2. **Triage the grading queue first.** Rulings live in `data/grading-decisions.yaml` and must be committed, or the same rendering returns for review forever. An `accept` or `constrain` is paid for in the same change (an `accept` must pass today's grader; a `constrain` adds the bilingual `instruction`), both with a `revision` bump. **Never author a drill from a pre-triage weak-focus table** — rule the queue, rerun the audit, then read the table.
 3. Diagnose via the weak **focus tags**, not individual failed items. Write a drill set targeting that confusion, tag every item with it, and attach the set to the relevant topic's `exercises`.
 
-Full procedure, including what each `decision` means and how attribution is recomputed: [`docs/authoring-checklists.md`](docs/authoring-checklists.md) and the `progress-review` skill.
+Full procedure, including what each `decision` means and how attribution is recomputed: [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md) and the `progress-review` skill.

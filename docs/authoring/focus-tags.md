@@ -1,6 +1,6 @@
 # Focus tags — the confusion taxonomy
 
-The allowlist of confusions this course can name, lifted out of [`CLAUDE.md`](../CLAUDE.md)
+The allowlist of confusions this course can name, lifted out of [`CLAUDE.md`](../../CLAUDE.md)
 because it is a lookup table consulted while tagging an item, not a rule that applies everywhere.
 
 A tag is the unit the whole personalization loop runs on: attempts carry it into progress

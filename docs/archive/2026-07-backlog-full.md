@@ -9,7 +9,7 @@ items closed by the 2026-07-20 instrument review and the 2026-07-21 pre-B1 revie
 
 Every content item must pass the learning-science review and `bun run validate`. Code changes must
 preserve v1–v6 snapshot import and pass the full repository gate. What A2 teaches, in what order,
-with which identities, is decided in [the A2–B1 curriculum blueprint](curriculum-a2-b1.md) — read it
+with which identities, is decided in [the A2–B1 curriculum blueprint](../curriculum/a2-b1.md) — read it
 before authoring anything.
 
 Phases 0–8 are done: the learning system, the Atlas, complete A1 and A2 curriculum spines (including
@@ -43,19 +43,19 @@ it; everything else lives in the archive.
   P6-4 dative-cluster drill; P6-5 verb-forms drill (split by tag ownership); P6-6 desktop mic
   permission; P6-7 minimal-ceremony open production; P6-8 Goethe-B1 Wortliste manifest
   (3,416 headwords, inherited-only `~`).
-- **Phase 7 · Schreib-Assistent** — `done` 2026-07-15, per [assist-design.md](assist-design.md);
+- **Phase 7 · Schreib-Assistent** — `done` 2026-07-15, per [assist-design.md](../adrs/0002-advisory-only-writing-assistant.md);
   advisory only, never evidence. P7-1 assist library; P7-2 Write.tsx advisory panel; P7-3 Tauri
   transport.
-- **Phase 8 · Sprachen, machinery** — `done` 2026-07-15/16, per [i18n-design.md](i18n-design.md);
+- **Phase 8 · Sprachen, machinery** — `done` 2026-07-15/16, per [i18n-design.md](../adrs/0001-bilingual-explanation-halves.md);
   the objective is the learner's language, not the chrome. P8-1 strings module + per-profile
   language preferences; P8-2/P8-3 the ternary sweep (~136 ternaries → hoisted `pick()` records);
   P8-4 content-language machinery for `uk` **and** the B1-onward German-medium `de` half;
   P8-5 card meaning side + computed Über UK-coverage figure + chrome residue. **Post-scriptum
   2026-07-16**: one Lernsprache selector, chrome pinned German, EN surface never shows RU/UK
   (`pickSecond` under `en` → EN alone) — the owner ruling and rationale live in
-  [i18n-design.md](i18n-design.md).
+  [i18n-design.md](../adrs/0001-bilingual-explanation-halves.md).
 - **C6 · Ukrainian is an authored half, not a translation** — owner ruling, `done` 2026-07-25. The
-  substantive contract already said so ([i18n-design.md](i18n-design.md) C3: a wave *authors* the
+  substantive contract already said so ([i18n-design.md](../adrs/0001-bilingual-explanation-halves.md) C3: a wave *authors* the
   `uk` half and it may diverge where that helps its reader). The scheduling word "translation wave"
   had leaked into the instrument, the Über page and the docs, where it reads as a claim about how
   the prose is produced. Renamed to match: the coverage instrument is `ukHalfCoverage()` and its
@@ -92,7 +92,7 @@ it; everything else lives in the archive.
   `de` in chrome stays deliberately out of scope: page prose is not level-bound content, `de` is a
   B1-onward *content* half, and the EN fallback there is the designed behaviour.
 - **C4 · German-medium `de` half on B1 exercises and readings** — `done` 2026-07-25.
-  [i18n-design.md](i18n-design.md) has said since P8-4 that "B1 articles **and exercises** are
+  [i18n-design.md](../adrs/0001-bilingual-explanation-halves.md) has said since P8-4 that "B1 articles **and exercises** are
   authored with `<De>` halves from day one". The articles were; the exercises never were. B1.1–B1.3
   shipped 12 exercise sets and 3 readings carrying **zero** `de`, so a learner on
   `explainLang: 'de'` read a German article and then met English feedback at the item — the place
@@ -155,7 +155,7 @@ it; everything else lives in the archive.
   `/referenz/wortnetze` and compact card-back context off the same data; a parallel reference track
   that does not gate B1; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
 - **Phase 10 · close the A2 grammar standard** — `done` 2026-07-18. Structural coverage moved from 20/30 to 30/30; see [the phases 4–10 archive](archive/2026-07-phases-4-9.md).
-- **P11 · A2 linguistic corpus pass** — `done` 2026-07-18. All 30 manifest points are signed off with zero open high/medium findings; see [the QA ledger](a2-linguistic-qa.md).
+- **P11 · A2 linguistic corpus pass** — `done` 2026-07-18. All 30 manifest points are signed off with zero open high/medium findings; see [the QA ledger](../quality/a2-linguistic-qa.md).
 - **P12-1 · The probe channel was a `translate` monoculture** — `done` 2026-07-20 for A1 and 16 of the
   17 safe A2 topics: 8 A1 `cloze` families (24 items) and 48 A2 cloze items, so a delayed result is
   attributed to the graded token instead of being lost among an eight-decision sentence. Verified by
@@ -283,7 +283,7 @@ stops, the units written by then are revised against the finding, and the lesson
 before another unit is written.
 
 - Accept: delayed and novel-transfer evidence are reported separately from engagement; the findings
-  update [the audit](a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
+  update [the audit](../quality/a1-learning-audit.md) and, if the bar is missed, the A2 units already written.
 
 ## Open — semantic illustrations
 
@@ -416,7 +416,7 @@ the grammars differ. The remaining uk-carrying files (373 in all, `ukHalfCoverag
 been audited for it, and nothing here should be read as saying they have — the rate above is one
 file pair, not a corpus estimate.
 
-No gate is proposed, for the reason recorded under C3 in [i18n-design.md](i18n-design.md): the leak
+No gate is proposed, for the reason recorded under C3 in [i18n-design.md](../adrs/0001-bilingual-explanation-halves.md): the leak
 is semantic, so `RU_ONLY` cannot see it, and a calque denylist would catch the lexical half and
 neither agreement error while reading like it covers all of it. The audit is human review — read the
 `uk` half against the German and English with the `ru` half closed. Sample first and record the rate
@@ -478,7 +478,7 @@ grammar inventory is the instrument to answer it with.
 ### P9-2 · Entdecken pieces — `todo` (recurring, ~1–2 per PR)
 
 Optional editorial pieces from the fifteen-theme backlog, each passing the editorial test in
-[future-content-directions.md](future-content-directions.md) — a language reason to exist, level
+[future-content-directions.md](../authoring/future-content-directions.md) — a language reason to exist, level
 control, and no review obligation from opening it:
 
 1. die Berliner Mauer im Stadtbild
@@ -548,7 +548,7 @@ unchanged (620+53, 1362+87).
 ### P5-11 · Two-unit A2 evidence cycles — `doing` (recurring)
 
 Run the just-in-time audit and post-pair snapshot review in
-[a2-learning-led-program.md](a2-learning-led-program.md). The audit reports revision coverage,
+[a2-learning-led-program.md](../curriculum/a2-learning-led-program.md). The audit reports revision coverage,
 response modes, overdue probes, productive-card lapses, persistent focus errors, structured
 production changes, session workload, pair windows and pilot feedback.
 
