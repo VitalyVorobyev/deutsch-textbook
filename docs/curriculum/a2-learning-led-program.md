@@ -21,12 +21,10 @@ After each pair, run `bun run progress:audit --profile vitaly`. Record response-
 delayed and overdue probes, productive (`x-de`) lapses, persistent focus errors, linguistic-review
 candidates, structured writing/speaking use, session workload, the pair table and pilot feedback.
 
-The 2026-07-13 queue of 29 rejected production renderings was reviewed before this program opened.
-No rendering was added merely because it was grammatical in isolation: the apparent candidates
-changed definiteness (`den` → `einen`), communicative meaning (`wo ist` → `wie komme ich`) or
-asserted a narrower physical state (`ist` → `steht`); the remaining rows were lexical, case,
-word-order or spelling errors already handled by the authored contract. Revisit only when a new,
-revision-matched attempt supplies evidence.
+**No rendering joins `accept` merely because it is grammatical in isolation.** The candidates that
+look strongest usually fail this: they change definiteness (`den` → `einen`), communicative meaning
+(`wo ist` → `wie komme ich`) or assert a narrower physical state (`ist` → `steht`). Revisit a
+rejected rendering only when a new, revision-matched attempt supplies evidence.
 
 ## Decision rules
 
