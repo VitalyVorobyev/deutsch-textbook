@@ -11,7 +11,7 @@ description: >-
 
 # Progress review — the procedure
 
-The decision rules live in [docs/a2-learning-led-program.md](../../../docs/a2-learning-led-program.md);
+The decision rules live in [docs/curriculum/a2-learning-led-program.md](../../../docs/curriculum/a2-learning-led-program.md);
 this skill is the procedure that gets you to them with clean inputs.
 
 ## 1. Read the audit, never the raw snapshot

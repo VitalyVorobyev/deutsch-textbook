@@ -33,7 +33,7 @@ const NO_CHECKPOINTS: PathCheckpoint[] = [];
 
 const VIEWS = [['path', 'topics.tabPath'], ['atlas', 'topics.tabAtlas'], ['overview', 'topics.tabOverview']] as const;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   checkpointResult: {

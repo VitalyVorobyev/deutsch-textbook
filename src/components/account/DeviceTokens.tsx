@@ -15,7 +15,7 @@ import type { ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   intro: {
     en: 'The desktop app runs in its own window, not in this browser, so the sign-in cookie cannot reach it. Start the connection in the app; it shows a short code, and you type that code here.',

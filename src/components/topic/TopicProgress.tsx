@@ -35,7 +35,7 @@ const REQ_KEYS: Record<MasteryReq, StringKey> = {
   cards: 'mastery.reqCards',
 };
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   // The ru values were German before the sweep (an authoring slip the inline
   // ternaries hid) — fixed here rather than preserved byte-exact.

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { dirname, join, relative, resolve } from 'node:path';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 
 const root = resolve(import.meta.dir, '..');
 
@@ -15,8 +15,10 @@ function slug(heading: string): string {
 }
 
 describe('documentation links', () => {
-  const activeDocs = readdirSync(join(root, 'docs'))
-    .filter((name) => name.endsWith('.md'))
+  // Every .md under docs/, recursively — EXCLUDING docs/archive/, which is frozen history:
+  // archived files keep the links they shipped with and are never edited to track moves.
+  const activeDocs = (readdirSync(join(root, 'docs'), { recursive: true }) as string[])
+    .filter((name) => name.endsWith('.md') && !name.startsWith(`archive${sep}`))
     .map((name) => join(root, 'docs', name));
   const files = [join(root, 'README.md'), join(root, 'CLAUDE.md'), ...activeDocs];
 

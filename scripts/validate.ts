@@ -1775,12 +1775,12 @@ for (const [setId, { file, data }] of exerciseSets) {
           // exempt from the spine check — which is exactly backwards, since a tag nobody
           // registered is the one most likely to be a typo or an undeclared new confusion.
           // (`haben-wendungen` had been escaping this way.) The table is also the canonical
-          // focus-tag list in docs/focus-tags.md, so the two cannot drift apart unnoticed.
+          // focus-tag list in docs/authoring/focus-tags.md, so the two cannot drift apart unnoticed.
           const intro = focusIntroducedBy[item.focus];
           if (!intro) {
             fail(
               `${file} → item "${item.id}"`,
-              `focus "${item.focus}" is not in the focus-tag table — add it to docs/focus-tags.md ` +
+              `focus "${item.focus}" is not in the focus-tag table — add it to docs/authoring/focus-tags.md ` +
                 'and to focusIntroducedBy in src/lib/focus-tags.ts, naming the topic that introduces it — ' +
                   'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
             );
@@ -1898,7 +1898,7 @@ for (const { file, data } of references.values()) checkLangDiscipline(file, data
 /**
  * MDX files: frontmatter and body are ONE parity scope — the contract is per
  * file ("any uk in a file means every ru-bearing field in that file carries
- * uk", docs/i18n-design.md), and the frontmatter/body split must not open a
+ * uk", docs/adrs/0001-bilingual-explanation-halves.md), and the frontmatter/body split must not open a
  * hole in it. So uk on either side forces parity on both — the same bridge as
  * reading glosses ↔ YAML above: `title_uk` alone demands a <Uk> half in every
  * <Bilingual> block, and a <Uk> block alone demands `title_uk`. Otherwise a
@@ -1918,7 +1918,7 @@ function checkMdxLangDiscipline(
   // (content/discovery/b1/sonntagsruhe.mdx) was written to look for exactly this: a file
   // could carry `summary.de` with a wholly English article, or German article halves under
   // an English summary card, and validate said nothing — while the comment above and
-  // docs/i18n-design.md both claimed frontmatter and body were ONE parity scope. They were,
+  // docs/adrs/0001-bilingual-explanation-halves.md both claimed frontmatter and body were ONE parity scope. They were,
   // for uk alone.
   const bodyHasDe = body.includes('<De>');
   for (const p of deParityProblems(data, { forceDe: bodyHasDe })) fail(file, p);

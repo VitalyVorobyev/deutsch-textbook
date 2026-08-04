@@ -7,7 +7,7 @@
  * no `main` at all — so adding a server did not make the site dynamic.
  *
  * Design notes worth reading before changing anything here:
- * - `docs/cloud-sync.md` — why the server stores opaque bytes, why the approval
+ * - `docs/adrs/0003-opaque-snapshot-sync-and-approval-accounts.md` — why the server stores opaque bytes, why the approval
  *   gate, why conditional PUT rather than a version column.
  * - `worker/routes/sync.ts` — the snapshot contract itself.
  *

@@ -5,7 +5,7 @@ import type { UiLang } from './strings';
 
 /**
  * Content explanation languages (the other axis from UiLang chrome — see
- * docs/i18n-design.md). `en` and `ru` are fully authored; `uk` and `de` are
+ * docs/adrs/0001-bilingual-explanation-halves.md). `en` and `ru` are fully authored; `uk` and `de` are
  * optional per field and fall back to `en` at render time (see pick()).
  * Mirrors the UI_LANGS/isUiLang pattern in src/lib/strings.ts.
  */
@@ -161,7 +161,7 @@ export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
  * 'en' shows nothing: an EN-mode learner is never assumed to read Russian or
  * Ukrainian (owner ruling 2026-07-16 — the earlier `en · ru` view leaked
  * Russian into the EN surface). 'de' shows nothing — a card's meaning side is
- * never German by construction (docs/i18n-design.md). `undefined` means "no
+ * never German by construction (docs/adrs/0001-bilingual-explanation-halves.md). `undefined` means "no
  * second half": the caller renders EN alone, with no separator — never
  * `en · en`. Display-only; card identity never carries a gloss language.
  * Keep the branches in lockstep with pick()/pickLang().

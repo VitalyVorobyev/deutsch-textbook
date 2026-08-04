@@ -162,7 +162,7 @@ unchanged by it — with no account every call is a no-op, exactly as on the dep
 accounts existed. `bun run progress:pull` brings the cloud copy back to `progress/<profile>/` so the
 personalization loop is unaffected. The reasoning — why the server stores opaque bytes and never
 merges, why an unconditional PUT does not exist, why signing in grants no storage until the owner
-approves — is in [`cloud-sync.md`](cloud-sync.md).
+approves — is in [`cloud-sync.md`](architecture/cloud-sync.md).
 
 ## Delivery and offline
 

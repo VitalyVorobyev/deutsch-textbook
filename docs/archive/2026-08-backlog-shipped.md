@@ -20,7 +20,7 @@ substitution such as *kommen* (unknown) instead of charging both to `zu-infiniti
 `setId::itemId` arming sources; validation rejects unresolved, non-practice and unverified ones,
 and runtime no longer falls back to broad outcomes. This also removed the coupling that made a
 second probe family expensive — see the 2026-08-02 amendment in
-[curriculum-a2-b1.md](../curriculum-a2-b1.md).
+[curriculum-a2-b1.md](../curriculum/a2-b1.md).
 
 **P19-2 · `a1/probe-erste-schritte` audit label** (2026-07-31). The family stays honestly untagged
 for scoring; the audit shows its outcome identity rather than an unreadable `(untagged)` label, and

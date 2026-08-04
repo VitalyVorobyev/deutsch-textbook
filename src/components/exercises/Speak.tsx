@@ -8,7 +8,7 @@ import { Instruction, Translation, type ItemProps } from './shared';
 type SpeakItem = z.infer<typeof speakItemSchema>;
 type Stage = 'attempt' | 'compare';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   playing: { en: 'Playing your recording…', ru: 'Играет ваша запись…' },
   listenBack: { en: 'Listen to your recording', ru: 'Прослушайте свою запись' },

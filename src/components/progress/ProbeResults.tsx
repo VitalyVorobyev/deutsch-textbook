@@ -17,7 +17,7 @@ export interface ProbeFamilyLabel {
   title_de: string;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   title: { en: 'Delayed checks', ru: 'Проверки через время' },

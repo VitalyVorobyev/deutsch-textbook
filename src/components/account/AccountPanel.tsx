@@ -21,7 +21,7 @@ import { useExplainLang, useUiLang } from '../hooks';
 import DeviceTokens from './DeviceTokens';
 import OwnerUsers from './OwnerUsers';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   localFirst: {
     en: 'Deutsch-Atlas works without an account. Everything you do is stored in this browser first; signing in only adds a copy in the cloud so a second device can pick it up.',

@@ -1,14 +1,9 @@
-# Schreib-Assistent: local advisory writing feedback
+# ADR 0002: Schreib-Assistent — local, advisory-only writing feedback
 
-Status: design accepted 2026-07-14; P7-1/P7-2 implemented and piloted against the live model
-2026-07-15 (findings folded in below — see *Prompt design* and *Latency*). Implementation is
-Phase 7 (P7-1…P7-3) in [backlog.md](backlog.md); this document is the contract those items
-implement. All three are shipped: P7-3 (Tauri transport) routes both assist requests through
-`tauri-plugin-http` behind `isTauri()`, capability-scoped to exactly `http://localhost:11434/*`;
-the plugin's fetch honors `RequestInit.signal`, so the abort and timeout semantics are identical
-on both transports.
+Status: accepted · 2026-07-14 (piloted against the live model 2026-07-15; pilot findings folded
+in below). Reframed 2026-08-04 from `docs/assist-design.md`.
 
-## What it is, and the one rule it lives under
+## Context
 
 A `write` task ends with the learner revising a draft against a checklist and honestly rating the
 result. The assistant adds one optional voice to that revision: a local language model — Ollama, on
@@ -16,15 +11,17 @@ the learner's own machine — reads the draft and returns a short praise line an
 each quoting the learner's exact words and nudging with a question or rule pointer in the learner's
 explanation language.
 
-The rule is the standing one, restated because everything below is shaped by it: **assist output is
-advisory only, never evidence.** Nothing the model produces touches accuracy, mastery, attempts or
-the snapshot. A `write` already logs unverified practice evidence by design; the assistant does not
-even reach that bar — it is a commentary on a draft, not an assessment of one. The feature
-self-hides when no local model answers, so the course is complete without it: an enrichment for a
-machine that happens to run Ollama, never a dependency. This deliberately does not reopen P5-3
-(pronunciation assistance), which stays deferred.
+The rule it lives under is the standing one, restated because everything below is shaped by it:
+**assist output is advisory only, never evidence.** Nothing the model produces touches accuracy,
+mastery, attempts or the snapshot. A `write` already logs unverified practice evidence by design;
+the assistant does not even reach that bar — it is a commentary on a draft, not an assessment of
+one. The feature self-hides when no local model answers, so the course is complete without it: an
+enrichment for a machine that happens to run Ollama, never a dependency. This deliberately does
+not reopen P5-3 (pronunciation assistance), which stays deferred.
 
-## Module API
+## Decision
+
+### Module API
 
 `src/lib/assist.ts` exports two functions and no UI:
 
@@ -39,7 +36,7 @@ machine that happens to run Ollama, never a dependency. This deliberately does n
   the learner's explanation language. A 60-second `AbortController` bounds the call; the caller may
   pass its own signal so the panel's Abbrechen button aborts immediately.
 
-## The hints shape
+### The hints shape
 
 ```
 writeHintsSchema = {
@@ -55,10 +52,10 @@ writeHintsSchema = {
 ```
 
 At most four hints: a wall of feedback gets skimmed, and an optional revision should stay a
-revision, not a correction transcript. The category enum both constrains the model and gives the panel a
-label per hint.
+revision, not a correction transcript. The category enum both constrains the model and gives the
+panel a label per hint.
 
-## Prompt design
+### Prompt design
 
 The system rubric is written in **English** — small local models follow English instructions most
 reliably — and says, in substance:
@@ -89,7 +86,7 @@ alike) and the near-perfect draft got zero. A praise-only reply (`hints: []`) is
 **legitimate result, not a filter failure** — the corrective retry fires only when returned hints
 all fail the quote filter or the JSON is malformed.
 
-## Hallucination filter
+### Hallucination filter
 
 Structured output constrains the shape, not the truth, and small local models will misquote:
 
@@ -101,7 +98,7 @@ Structured output constrains the shape, not the truth, and small local models wi
 3. If the retry also produces nothing usable, **fail silent and hide the assistant for the rest of
    the session.** A feature that visibly fails twice is worse than one that is not there.
 
-## Where it attaches, and why exactly there
+### Where it attaches, and why exactly there
 
 **The compare screen only, on demand (a button) — never while drafting.**
 
@@ -110,11 +107,11 @@ Structured output constrains the shape, not the truth, and small local models wi
   flow additionally gated the panel behind a before-assessment; that checklist ceremony was retired
   in 2026-07 — open production is minimal-ceremony now, and Write's compare screen keeps the text
   editable, so a revision is an option rather than a stage.)
-- On demand rather than automatic: generation costs tens of seconds (below), and the model
+- On demand rather than automatic: generation costs tens of seconds (see *Latency*), and the model
   comparison is the primary instrument — the assistant is a second opinion the learner asks for,
   not a gate they wait behind.
 
-## Storage
+### Storage
 
 **Not in the attempt, not in the snapshot.** Hints live in component state, plus an optional field
 on the existing `SavedWriting` localStorage record (`src/components/exercises/Write.tsx`), so a
@@ -123,7 +120,7 @@ never-evidence: what is never persisted to attempts or snapshots cannot leak int
 merge or the audit — there is nothing for `mergeSnapshot` to mishandle and nothing for a future
 consumer to misread as a score.
 
-## Settings
+### Settings
 
 - `da:assist` — device-level, default **on**. Default-on is safe because the feature self-hides
   when the probe fails; on a machine without Ollama the setting is invisible.
@@ -132,7 +129,7 @@ consumer to misread as a score.
 - A gear popover in the panel holds the model picker and the off switch. Device-level rather than
   profile-level: which model is installed is a property of the machine, not of who is learning.
 
-## Transport
+### Transport
 
 | Context | Transport | Why |
 | --- | --- | --- |
@@ -140,7 +137,7 @@ consumer to misread as a score.
 | Desktop app (Tauri) | `@tauri-apps/plugin-http`, capability scoped to `http://localhost:11434/*` (P7-3) | the webview's own fetch cannot be relied on for localhost; the capability keeps the reachable surface exactly one origin |
 | Deployed `https:` site | none — the probe never runs | mixed content: an https page cannot call `http://localhost` |
 
-## Failure modes
+### Failure modes
 
 | Failure | Behaviour |
 | --- | --- |
@@ -151,7 +148,7 @@ consumer to misread as a score.
 | Malformed JSON despite `format` | treated as "nothing survived" → one corrective retry → fail silent and hide for the session |
 | Every quote hallucinated | same path as malformed JSON |
 
-## Latency
+### Latency
 
 No streaming. The hints are one small JSON object; streaming partial JSON buys nothing and
 complicates the quote filter. The panel shows a spinner and an **Abbrechen** button, and the
@@ -159,17 +156,24 @@ request carries the 60-second abort. A machine that needs longer than that will 
 feature pleasant — fail fast rather than wait.
 
 The request sends **`think: false`**: the pilot measured ~20–30 s per review with `gemma4:e4b`'s
-reasoning on and 1–6 s with it off, at identical hint quality on both drafts. Ollama ignores a
-false `think` on models without the thinking capability, so the flag is safe to send always.
+reasoning on and 1–6 s with it off, at identical hint quality on both drafts.
+Ollama ignores a false `think` on models without the thinking capability, so the flag is safe to
+send always.
 
-## Open risk
+## Consequences
 
-The feedback quality of a small local model is unknown until piloted. The design makes failure
-cheap — advisory-only, quote-filtered, self-hiding — but cheap failure is not usefulness. P7-2
-therefore requires a manual pilot against the live model with two or three real drafts **before**
-the PR opens, and expects prompt iteration. If the pilot shows the model cannot produce useful
-nudges at this level, the honest outcome is to record that finding here and stop after P7-1 — the
-library costs nothing to keep.
+**Implementation record.** P7-1/P7-2 were implemented and piloted against the live model
+2026-07-15; all three backlog items are shipped: P7-3 (Tauri transport) routes both assist
+requests through `tauri-plugin-http` behind `isTauri()`, capability-scoped to exactly
+`http://localhost:11434/*`; the plugin's fetch honors `RequestInit.signal`, so the abort and
+timeout semantics are identical on both transports.
+
+**Open risk, and how the pilot resolved it.** The feedback quality of a small local model was
+unknown until piloted. The design makes failure cheap — advisory-only, quote-filtered,
+self-hiding — but cheap failure is not usefulness. P7-2 therefore required a manual pilot against
+the live model with two or three real drafts **before** the PR opened, and expected prompt
+iteration. If the pilot had shown the model cannot produce useful nudges at this level, the honest
+outcome was to record that finding here and stop after P7-1 — the library costs nothing to keep.
 
 **Pilot outcome (2026-07-15, three prompt iterations):** useful. On the planted-error draft the
 final prompt caught the V2 violation, the um/am confusion and *mit* + Dativ with verbatim quotes

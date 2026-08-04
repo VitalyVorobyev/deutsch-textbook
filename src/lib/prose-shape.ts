@@ -12,7 +12,7 @@
  * units each, against a corpus where no A1 or A2 file exceeds 107 — the
  * signaling and segmenting the A2 articles get from `### subsections` was
  * simply missing. Reasoning, measurement and the four levers:
- * `docs/article-prose.md`.
+ * `docs/authoring/article-prose.md`.
  *
  * The cap is a **tripwire, not a target.** Readability formulas are validated
  * as correlational indices and writing to them strips cohesion, which is the
@@ -202,7 +202,7 @@ export function proseShapeStats(body: string): Partial<Record<ProseLang, ProseLa
  * and enough of the text to find it. Everything else about prose shape —
  * whether `## Erklärung` is split into `###` subsections, whether a table sits
  * beside the prose that explains it, whether a stated fact is ever drilled — is
- * a judgement about meaning and stays with the author (`docs/article-prose.md`).
+ * a judgement about meaning and stays with the author (`docs/authoring/article-prose.md`).
  */
 export function proseShapeProblems(body: string, opts: { max?: number } = {}): string[] {
   const max = opts.max ?? MAX_PARAGRAPH_WORDS;

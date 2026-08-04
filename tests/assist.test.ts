@@ -1,5 +1,5 @@
 /**
- * The assist library's contract (docs/assist-design.md): the probe self-hides
+ * The assist library's contract (docs/adrs/0002-advisory-only-writing-assistant.md): the probe self-hides
  * where Ollama cannot answer, reviewDraft's hints are anchored to the draft by
  * the quote filter, garbage earns exactly one corrective retry, and an abort
  * propagates to the caller. All network is mocked — no test talks to Ollama.

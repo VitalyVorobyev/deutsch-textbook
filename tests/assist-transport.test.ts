@@ -1,5 +1,5 @@
 /**
- * The P7-3 transport seam (docs/assist-design.md): under Tauri, assist requests
+ * The P7-3 transport seam (docs/adrs/0002-advisory-only-writing-assistant.md): under Tauri, assist requests
  * route through tauri-plugin-http's fetch — the webview's origin rules cannot
  * reach http://localhost:11434 — and everywhere else through the global fetch,
  * resolved at call time so the other assist tests can keep swapping it.

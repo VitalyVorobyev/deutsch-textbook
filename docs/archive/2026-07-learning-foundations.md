@@ -162,7 +162,7 @@ outcome-level results on Fortschritt.
 
 ## Phase 3 — hardening the A1 learning loop
 
-Shipped 2026-07-12. Driven by [the A1 learning audit](../a1-learning-audit.md), which judged the
+Shipped 2026-07-12. Driven by [the A1 learning audit](../quality/a1-learning-audit.md), which judged the
 course as a learning system rather than as a valid content collection.
 
 **The sequencing was the hard call, and it is worth preserving.** P3-1 (probes) was the only item

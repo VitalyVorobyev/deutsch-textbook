@@ -70,7 +70,7 @@ function numeral(word: string): number {
  * gaps and duplicates so a malformed heading cannot quietly lower it.
  */
 function contractedB1Units(): number {
-  const headings = [...read('docs/curriculum-a2-b1.md').matchAll(/^### B1\.(\d+) · /gm)].map((m) =>
+  const headings = [...read('docs/curriculum/a2-b1.md').matchAll(/^### B1\.(\d+) · /gm)].map((m) =>
     Number(m[1]),
   );
   expect(headings).toEqual(headings.map((_, i) => i + 1));
@@ -111,7 +111,7 @@ describe('published progress claims match the content', () => {
   });
 
   test('the coverage-instruments B1 paragraph matches the instrument and the allowlist', () => {
-    const doc = read('docs/coverage-instruments.md');
+    const doc = read('docs/authoring/coverage-instruments.md');
     const coverage = grammarCoverage('B1');
 
     // "B1 has a real 32-point manifest, at 21/32 (66%) …"

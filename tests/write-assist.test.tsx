@@ -1,5 +1,5 @@
 /**
- * The advisory panel's boundary (docs/assist-design.md): compare screen only, on
+ * The advisory panel's boundary (docs/adrs/0002-advisory-only-writing-assistant.md): compare screen only, on
  * demand, gated on the probe and the da:assist pref — and **nothing the
  * assistant produces enters the submitted payload**. The last test locks that
  * with exact equality: hints on screen, byte-identical onResult.

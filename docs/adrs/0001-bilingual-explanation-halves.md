@@ -1,13 +1,9 @@
-# Sprachen: per-profile UI language and Ukrainian
+# ADR 0001: Bilingual explanation halves — Sprachen, Ukrainian and the German-medium half
 
-Status: design accepted 2026-07-14; P8-1 (strings module, per-profile keys, pre-paint attribute,
-nav as the first chrome surface, picker in the ProfileSwitcher dropdown), the P8-2/P8-3
-ternary sweep (35 components: hoisted `pick()` records; ~130 chrome keys in the strings table)
-and P8-4 (the content-language machinery, extended with the German explanation half — see below)
-shipped 2026-07-15; P8-5 (the card meaning side via `pickSecond`, the Über page's computed
-UK-coverage figure, and the chrome residue in never-ternary components and static `.astro`
-pages) shipped 2026-07-16. The machinery is complete: the only remaining implementation is the
-C3 authoring waves in [backlog.md](backlog.md); this document is the contract they implement.
+Status: accepted · 2026-07-14 (objective restated 2026-07-15; single-selector owner decision
+2026-07-16 — both recorded below). Reframed 2026-08-04 from `docs/i18n-design.md`.
+
+## Context
 
 **The objective, restated after a course correction (2026-07-15):** the point of this phase is
 the *learner's* language — Ukrainian + English explanations for a Ukrainian reader the way
@@ -16,12 +12,11 @@ not the chrome. The UI-language work shipped first because it is the foundation 
 but a Ukrainian menu over Russian unit material is not the deliverable; the Ukrainian authoring
 waves and the `de` half are.
 
-## The two axes, and why they never merge
-
 The system has two language questions that look like one:
 
 - **`UiLang`** — the chrome: navigation, buttons, section labels, empty states, the grade buttons.
-  Today it is hardcoded German. It becomes `de | en | ru | uk`, chosen per profile.
+  Before this decision it was hardcoded German; the design gives it `de | en | ru | uk`, chosen
+  per profile.
 - **`ExplainLang`** — the content's explanation language: which half of a `Bilingual` block is
   shown, which gloss column, which `prompt_*` field. `en | ru | uk | de` (`src/lib/prefs.ts`):
   `en`/`ru` fully authored, `uk` arriving in authoring waves, `de` the German-medium half
@@ -30,29 +25,12 @@ The system has two language questions that look like one:
 They are independent and must never be conflated. A learner may want German chrome (immersion) with
 Russian explanations; a Ukrainian speaker may want Ukrainian chrome with Ukrainian explanations; a
 teacher demoing the app may want English chrome over any content language. **Chrome immersion is
-simply `uiLang: 'de'`** — today's exact UI, and still the default. Content immersion is
+simply `uiLang: 'de'`** — the pre-existing UI, and still the default. Content immersion is
 `explainLang: 'de'` — the German explanation half below, real only where content carries it
 (B1 onward), an honest EN fallback everywhere else.
 
-**Owner decision 2026-07-16 — one selector, chrome pinned German.** Two four-way selectors (the
-header `ExplainLang` toggle and the ProfileSwitcher's `UiLang` picker) exposed the two axes as two
-user decisions, and that was redundant clutter: nobody wants to control them independently, and the
-one imagined use case (a teacher demoing in English chrome) never outweighed the cost. The UI now
-has **one** selector — **Lernsprache** (the `ExplainLang`, per-profile, in the ProfileSwitcher
-dropdown) — and the chrome is **pinned to German**: `resolveUiLang`/`getUiLang`/`useUiLang` return
-`'de'` unconditionally, the retired `da:uilang:<profileId>` keys are ignored and never written, the
-header toggle and the `.ui-*` span mechanism are gone (static chrome renders `t(key, 'de')`
-directly). German-always chrome is not a loss: the default was already `'de'` for everyone, so no
-learner's first-run experience changed, and the nav labels are high-frequency sight vocabulary —
-the immersion argument this document already made for the default. The two-axis *architecture*
-stays (the strings table keeps all four languages as dormant data; `UiLang` remains a type), so
-the pin is a one-line reversal if it is ever wrong. The same ruling fixed `pickSecond`: the
-meaning side of a card under `en` was still `en · ru` (P8-5's zero-visual-change reading), which
-leaked Russian into the EN surface — under `en` the second half is now `undefined`, and only the
-chosen language's gloss ever joins the EN one.
-
 **The classification rule that makes the default safe: a string is chrome iff it is German
-today.** The current UI is a two-tongue hybrid — German furniture (nav, `GRADE_BUTTONS`,
+today.** The pre-decision UI was a two-tongue hybrid — German furniture (nav, `GRADE_BUTTONS`,
 `VerdictChip`) plus helper text that follows the explanation language ("Reveal/Показать" in
 `FlashcardSession`, section labels in `TopicProgressList`). Only the German-today strings enter
 the chrome table; a string that follows `ExplainLang` today **stays an `ExplainLang` surface** —
@@ -64,7 +42,28 @@ rejected: it would flip the German furniture to EN/RU for existing users — a f
 If the owner later wants helper text German too, that is a future explicit decision, not a side
 effect of this migration.
 
-## P8-1 — the strings module
+## Decision
+
+### One selector, chrome pinned German (owner decision 2026-07-16)
+
+Two four-way selectors (the header `ExplainLang` toggle and the ProfileSwitcher's `UiLang` picker)
+exposed the two axes as two user decisions, and that was redundant clutter: nobody wants to control
+them independently, and the one imagined use case (a teacher demoing in English chrome) never
+outweighed the cost. The UI has **one** selector — **Lernsprache** (the `ExplainLang`, per-profile,
+in the ProfileSwitcher dropdown) — and the chrome is **pinned to German**:
+`resolveUiLang`/`getUiLang`/`useUiLang` return `'de'` unconditionally, the retired
+`da:uilang:<profileId>` keys are ignored and never written, the header toggle and the `.ui-*` span
+mechanism are gone (static chrome renders `t(key, 'de')` directly). German-always chrome is not a
+loss: the default was already `'de'` for everyone, so no learner's first-run experience changed,
+and the nav labels are high-frequency sight vocabulary — the immersion argument this document
+already made for the default. The two-axis *architecture* stays (the strings table keeps all four
+languages as dormant data; `UiLang` remains a type), so the pin is a one-line reversal if it is
+ever wrong. The same ruling fixed `pickSecond`: the meaning side of a card under `en` was still
+`en · ru` (P8-5's zero-visual-change reading), which leaked Russian into the EN surface — under
+`en` the second half is now `undefined`, and only the chosen language's gloss ever joins the EN
+one.
+
+### P8-1 — the strings module
 
 - `src/lib/strings.ts`: a table of chrome strings keyed by stable ids, `t(key, uiLang)`, and a
   `useUiLang()` hook for React islands.
@@ -82,10 +81,10 @@ effect of this migration.
   choice rather than resetting to English. `ProfileSwitcher` re-applies both root attributes when
   the active profile changes.
 
-## P8-2 / P8-3 — the ternary sweep
+### P8-2 / P8-3 — the ternary sweep
 
-There are ~136 inline `lang === 'ru' ? … : …` ternaries across ~35 components. The sweep is
-mechanical but wide, so it runs as two PRs of roughly half the components each, leaning on
+There were ~136 inline `lang === 'ru' ? … : …` ternaries across ~35 components. The sweep is
+mechanical but wide, so it ran as two PRs of roughly half the components each, leaning on
 `bun run check` to catch shape errors.
 
 The target shape is a **hoisted `pick()` record**: each inline ternary becomes
@@ -96,7 +95,7 @@ every branch point in the codebase being touched again per language.
 `GRADE_BUTTONS` and `VerdictChip` labels look like content but are chrome — they follow `UiLang`,
 so they move into the strings table rather than gaining `uk` fields.
 
-## P8-4 — Ukrainian content machinery (shipped 2026-07-15, extended with `de` — next section)
+### P8-4 — Ukrainian content machinery
 
 - `bilingualSchema` gains an optional `uk`, and the parallel optionals follow: `title_uk` on
   topics, `uk`/`example_uk` on vocab entries, `prompt_uk` on translate items, `uk` on atlas
@@ -122,7 +121,7 @@ so they move into the strings table rather than gaining `uk` fields.
   Honest state over silent substitution: seeing English where Ukrainian does not exist yet is also
   an accurate live indicator of how far the authoring waves have progressed.
 
-## The German explanation half (`de`)
+### The German explanation half (`de`)
 
 Added to P8-4 by an owner decision (2026-07-15). The objective: advanced learners read German
 explanations. A hide-the-EN/RU-prose mode was considered and **rejected** — an article stripped of
@@ -171,7 +170,7 @@ its explanation prose is not immersion, it is a table collection.
   commented in `global.css`. Where `:has()` is unsupported, EN shows beside the chosen half:
   readable, not broken.
 
-## P8-5 — surfaces (shipped 2026-07-16)
+### P8-5 — surfaces
 
 - **The meaning side of a card** becomes `${en} · ${pickSecond(card)}`, where `pickSecond`
   resolves the ru/uk gloss by explanation language — and renders EN alone under `de`, because a
@@ -180,12 +179,13 @@ its explanation prose is not immersion, it is a table collection.
   German answer, and the Hören input mode keeps its dictation behavior, exactly as today. The
   change is **display-only**: card identity is `<deck>::<de>::<direction>` and never carries a
   gloss language, so no SRS history resets — asserted in a test, not assumed.
-- ~~The header language toggle gains UK~~ — shipped with P8-4 (the toggle is EN/RU/UK/DE).
+- ~~The header language toggle gains UK~~ — shipped with P8-4 (the toggle was EN/RU/UK/DE), then
+  retired by the 2026-07-16 single-selector decision above.
 - The Über page gains a **build-time UK-coverage figure**, computed from content per the
   earned-claims rule — the page never hand-writes a count, and it never claims the Ukrainian half
   is further along than the files show.
 
-## C3 — the Ukrainian authoring waves
+### C3 — the Ukrainian authoring waves
 
 **A wave is a scope of files, not a mode of writing** — a scheduling unit, nothing more. A1 first
 in **~3 large waves**, then A2 in **~4–5** (owner decision 2026-07-15: fewer, larger chunks — the
@@ -215,10 +215,19 @@ Each wave carries two jobs in one review pass:
 - Every wave passes the validator letter and parity checks and a review before merge; per-file
   parity means each of a wave's files carries the half throughout or not at all, never half.
 
-## Honest volume
+## Consequences
 
-**~13 PRs total:** 5 machinery PRs (P8-1…P8-5; P8-4 shipped 2026-07-15) and ~7–8 large content
-waves (A1 ~3, A2 ~4–5). The waves start immediately, run concurrent with B1 authoring and
-**never gate it**. The roadmap's B1-gate soft preference is met: P8-4 landed before B1 unit 1,
-so B1 content carries `uk` — and its German-medium `de` half — from day one instead of being
-backfilled.
+**Implementation record.** P8-1 (strings module, per-profile keys, pre-paint attribute, nav as the
+first chrome surface, picker in the ProfileSwitcher dropdown), the P8-2/P8-3 ternary sweep
+(35 components: hoisted `pick()` records; ~130 chrome keys in the strings table) and P8-4 (the
+content-language machinery, extended with the German explanation half) shipped 2026-07-15; P8-5
+(the card meaning side via `pickSecond`, the Über page's computed UK-coverage figure, and the
+chrome residue in never-ternary components and static `.astro` pages) shipped 2026-07-16. The
+machinery is complete: the only remaining implementation is the C3 authoring waves in
+[backlog.md](../backlog.md); this document is the contract they implement.
+
+**Honest volume: ~13 PRs total** — 5 machinery PRs (P8-1…P8-5; P8-4 shipped 2026-07-15) and ~7–8
+large content waves (A1 ~3, A2 ~4–5). The waves start immediately, run concurrent with B1
+authoring and **never gate it**. The roadmap's B1-gate soft preference is met: P8-4 landed before
+B1 unit 1, so B1 content carries `uk` — and its German-medium `de` half — from day one instead of
+being backfilled.

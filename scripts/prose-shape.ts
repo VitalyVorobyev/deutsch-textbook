@@ -2,7 +2,7 @@
  * How the explanation prose is shaped, in paragraphs and sentences.
  *
  * Written for the same reason as scripts/lang-cost.ts: every figure about prose
- * in docs/article-prose.md and CLAUDE.md has to be reproducible by one paste,
+ * in docs/authoring/article-prose.md and CLAUDE.md has to be reproducible by one paste,
  * and writing the command forces the author to have run it. The measurement
  * that produced the rule — A1/A2 max 107 words per paragraph, B1.4 at 397 —
  * came from this script.
@@ -25,7 +25,7 @@
  *
  * The gate is `max`: `bun run validate` fails any paragraph over
  * MAX_PARAGRAPH_WORDS. mean and p90 are for authoring judgement, not enforced —
- * a word count is a tripwire, never a target (docs/article-prose.md).
+ * a word count is a tripwire, never a target (docs/authoring/article-prose.md).
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';

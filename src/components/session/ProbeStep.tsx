@@ -43,7 +43,7 @@ interface Queued {
   overdueDays: number;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{n}` is replaced by the caller. */
 const UI = {
   probeResult: {

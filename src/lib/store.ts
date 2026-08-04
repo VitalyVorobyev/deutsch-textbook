@@ -90,7 +90,7 @@ export interface Attempt {
   totalParts?: number;
   /** what the learner entered/chose, for the personalization loop */
   given: string;
-  /** the item's confusion tag (see focus-tag table in docs/focus-tags.md), when tagged */
+  /** the item's confusion tag (see focus-tag table in docs/authoring/focus-tags.md), when tagged */
   focus?: string;
   /** Explicit verdict for the item's targeted focus; absent on historical attempts. */
   focusEvidence?: 'retained' | 'failed' | 'unknown';

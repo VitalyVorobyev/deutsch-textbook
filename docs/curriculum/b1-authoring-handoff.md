@@ -7,8 +7,8 @@ this file is unit-agnostic and does not change.
 ## Prompt for Claude
 
 Author B1.8 `reisen-probleme` and B1.9 `lernen-zukunft` from their frozen contracts in
-`docs/curriculum-a2-b1.md`. Read `CLAUDE.md`, `docs/design.md`,
-`docs/authoring-checklists.md`, `.agents/skills/learning-science/SKILL.md` and
+`docs/curriculum/a2-b1.md`. Read `CLAUDE.md`, `docs/design.md`,
+`docs/authoring/authoring-checklists.md`, `.agents/skills/learning-science/SKILL.md` and
 `.agents/skills/authorship-provenance/SKILL.md` before editing.
 
 Maintain the matching records in `data/authorship-provenance.yaml`. Treat every AI-produced

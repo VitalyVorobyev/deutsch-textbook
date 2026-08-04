@@ -923,7 +923,7 @@ describe('uk reaches the runtime surfaces', () => {
 /**
  * The frontmatter↔body parity bridge, for BOTH optional halves.
  *
- * `docs/i18n-design.md` and the comment in `scripts/validate.ts` both say frontmatter and
+ * `docs/adrs/0001-bilingual-explanation-halves.md` and the comment in `scripts/validate.ts` both say frontmatter and
  * body are one parity scope. That was true of `uk` only: `mdxLangProblems` hardcoded its
  * force to `tag === 'Uk'`, and `deParityProblems` never saw the body at all. So a file
  * could ship a fully German-medium article under an English-only summary card, or the

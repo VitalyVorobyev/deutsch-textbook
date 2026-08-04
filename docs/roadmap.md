@@ -1,6 +1,6 @@
 # Deutsch-Atlas roadmap: durable A1–B1 learning
 
-Status: active product direction. The [curriculum blueprint](curriculum-a2-b1.md) owns frozen
+Status: active product direction. The [curriculum blueprint](curriculum/a2-b1.md) owns frozen
 content identities; the [backlog](backlog.md) owns executable work. The completed A1–A2 roadmap is
 [archived](archive/2026-07-roadmap-a1-a2.md).
 
@@ -86,7 +86,7 @@ the due probes, which is not authoring work.
   `content/listening/`, 13.7 MB of Freesound provenance, and both shipping builds carry them (the
   desktop app and Cloudflare Pages); an unflagged build reports `bundled: false` and falls back to
   browser TTS. Seventeen legacy TTS items were retired against a per-item ledger
-  ([docs/audio-retirement-ledger.md](audio-retirement-ledger.md)) and twenty-four kept with reasons.
+  ([docs/quality/audio-retirement-ledger.md](quality/audio-retirement-ledger.md)) and twenty-four kept with reasons.
   Neural audio remains publishable on those terms alone; volume is not a substitute for
   intelligibility, and automatic transcription is a defect detector, never proof of natural
   pronunciation. What remains is the A1 exam-style pack (P19-6).

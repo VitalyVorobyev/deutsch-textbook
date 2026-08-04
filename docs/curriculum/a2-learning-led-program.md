@@ -61,4 +61,4 @@ checkpoint delayed-evidence review each may stop B1 authoring and send shipped B
 revision. The accepted risk is explicit: identities frozen and units written before those reads may
 need rework. The revision-bump lock on pre-08-02 cohort items and the P12-4 scorer fix stay
 calendar-bound — they protect the instrument, not the schedule. Full reasoning:
-[the A2 close review](archive/2026-07-a2-close-review.md).
+[the A2 close review](../archive/2026-07-a2-close-review.md).

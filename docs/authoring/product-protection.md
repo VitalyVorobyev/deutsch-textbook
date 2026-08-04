@@ -21,7 +21,7 @@ The current open model remains unchanged:
 
 | Material | Licence | Boundary |
 | --- | --- | --- |
-| Application code in `src/`, `scripts/` and `src-tauri/` | MIT | Excludes the two course-visual directories below; see [`../LICENSE`](../LICENSE) |
+| Application code in `src/`, `scripts/` and `src-tauri/` | MIT | Excludes the two course-visual directories below; see [`../LICENSE`](../../LICENSE) |
 | Course content and course-specific instructional assets named in `content/LICENSE`, including `src/assets/illustrations/` and `src/components/visuals/` | CC BY-SA 4.0 only | Not dual-licensed under MIT; attribution and share-alike apply, including to commercial reuse |
 | Real or adapted third-party sources | Their recorded licence | Attribution and licence metadata are mandatory |
 | Vitaly Vorobyev's name, likeness and endorsement | Not granted by either project licence | Credit does not imply endorsement |
@@ -57,7 +57,7 @@ decisions. Legacy assets keep frozen baseline hashes; any later edit requires it
 change record with the real tool, saved brief and human direction. `sourceClass` and the manifest
 together describe process; neither predicts a court's copyright assessment.
 
-The repository skill [`.agents/skills/authorship-provenance/SKILL.md`](../.agents/skills/authorship-provenance/SKILL.md)
+The repository skill [`.agents/skills/authorship-provenance/SKILL.md`](../../.agents/skills/authorship-provenance/SKILL.md)
 is the operational handoff for authors and visual generators.
 
 Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.

@@ -1,6 +1,6 @@
 # Authoring an exercise item
 
-The per-item-type contract, lifted out of [`CLAUDE.md`](../CLAUDE.md) because you can only reach
+The per-item-type contract, lifted out of [`CLAUDE.md`](../../CLAUDE.md) because you can only reach
 it once you already know you are authoring an item. CLAUDE.md keeps the one-line rule; this file
 keeps the mechanism and the measurement that produced it.
 
@@ -119,7 +119,7 @@ validator says so.
 
 - Nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat").
 - **`en_compact` is the English half of a dual-language card, not a replacement for `en`.** Keep `en` complete and determinate for EN-only mode. If both English and RU/UK need a parenthetical or dash clarification, put the full distinction in each standalone gloss and add a shorter, plain English translation in `en_compact`; the RU/UK dual view then explains the distinction once. Extended usage teaching belongs in `note` on the answer side, and the note must add to rather than paraphrase the gloss.
-- **`ipa` (Lautschrift)** on every entry except sentence-length `phrase`s: Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then **reviewed** — the generator is weakest on compounds, separable verbs and loanwords. The character set and the transcription rules (stress, uvular r, syllabic consonants, glottal stop, the U+0261 copy-paste trap) are enforced by `bun run validate` and written out in [`docs/lautschrift.md`](lautschrift.md) — read it before hand-editing an `ipa`.
+- **`ipa` (Lautschrift)** on every entry except sentence-length `phrase`s: Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then **reviewed** — the generator is weakest on compounds, separable verbs and loanwords. The character set and the transcription rules (stress, uvular r, syllabic consonants, glottal stop, the U+0261 copy-paste trap) are enforced by `bun run validate` and written out in [`docs/authoring/lautschrift.md`](lautschrift.md) — read it before hand-editing an `ipa`.
 - **`accept` on a vocab entry** — other correct typed answers for the EN/RU→DE production card. It exists because `de` is *three* things at once: the Wortliste key (matched against the manifest character for character), the answer shown on the back, and the answer the learner must type. For most words those coincide; for four classes they do not, and without `accept` the card marks correct German **wrong**:
   - a **reflexive verb** — the headword is `ärgern`, but the form to produce is `sich ärgern`;
   - an **adjectival noun** — the card shows `die Deutsche`, but `der Deutsche` and `ein Deutscher` are equally right (same for `Angestellte`, `Verwandte`, `Erwachsene`, …);

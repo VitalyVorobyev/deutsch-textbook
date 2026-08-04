@@ -2,7 +2,7 @@
  * Confusion-level weakness detection over the attempt log.
  *
  * Attempts carry an optional `focus` tag (the confusion an exercise item
- * drills, e.g. "haben-sein" — see the focus-tag table in docs/focus-tags.md). These
+ * drills, e.g. "haben-sein" — see the focus-tag table in docs/authoring/focus-tags.md). These
  * pure functions aggregate recent error rates per tag; MixedTraining and the
  * progress page use them to steer practice toward weak confusions.
  */

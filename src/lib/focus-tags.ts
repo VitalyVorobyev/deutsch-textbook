@@ -4,7 +4,7 @@
  * spine; an intentional forward reference says `preview: true`.
  *
  * It lives in its own side-effect-free module, not inside `scripts/validate.ts`, because
- * `tests/focus-tags.test.ts` holds it against the table in `docs/focus-tags.md` — and
+ * `tests/focus-tags.test.ts` holds it against the table in `docs/authoring/focus-tags.md` — and
  * importing the validator to reach it would *run* the validator, so an unrelated content
  * error anywhere in the repo would fail the taxonomy test for reasons that have nothing to
  * do with the taxonomy. Same reason `coverage.ts` and `grammar-coverage.ts` sit here.
@@ -82,7 +82,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'hoeflich-konjunktiv': 'aemter-dienstleistungen',
   // was escaping the spine check entirely while the table was a lookup, not an allowlist
   'haben-wendungen': 'essen-trinken',
-  // --- B1 (contract: docs/curriculum-a2-b1.md) ---
+  // --- B1 (contract: docs/curriculum/a2-b1.md) ---
   'praeteritum-vollverben': 'erfahrungen-erzaehlen',
   'plusquamperfekt-nachdem': 'erfahrungen-erzaehlen',
   'temporal-nebensatz': 'erfahrungen-erzaehlen',

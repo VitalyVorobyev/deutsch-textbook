@@ -1,7 +1,7 @@
 /**
  * Schreib-Assistent: local advisory feedback on `write` drafts via Ollama.
  *
- * Contract: docs/assist-design.md. The one rule everything here is shaped by:
+ * Contract: docs/adrs/0002-advisory-only-writing-assistant.md. The one rule everything here is shaped by:
  * assist output is **advisory only, never evidence** — nothing returned by this
  * module may touch accuracy, mastery, attempts or the snapshot. The feature
  * self-hides when no local model answers, so the course is complete without it.
@@ -284,7 +284,7 @@ async function attempt(
         model,
         messages,
         stream: false,
-        // The pilot (docs/assist-design.md) found reasoning buys no hint quality
+        // The pilot (docs/adrs/0002-advisory-only-writing-assistant.md) found reasoning buys no hint quality
         // here and quadruples latency; Ollama ignores `think` on non-reasoning models.
         think: false,
         options: { temperature: 0.2 },
@@ -350,7 +350,7 @@ function combineWithTimeout(
 // ---------------------------------------------------------------------------
 // Prompt design (English: small local models follow English instructions most
 // reliably). The rules were earned in the 2026-07-15 pilot against gemma4:e4b —
-// see docs/assist-design.md — where the model quoted flawlessly but padded a
+// see docs/adrs/0002-advisory-only-writing-assistant.md — where the model quoted flawlessly but padded a
 // near-perfect draft with invented problems until told that an empty hints
 // array is a good outcome.
 // ---------------------------------------------------------------------------

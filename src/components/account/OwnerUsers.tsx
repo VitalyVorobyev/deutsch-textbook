@@ -5,7 +5,7 @@ import type { ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   intro: {
     en: 'Anyone may sign in, but a new account stores nothing until you approve it here. Until then that person still has the full app — it simply keeps their progress on their own device.',

@@ -56,7 +56,7 @@ function savedProgressView(value: string | null): ProgressView | undefined {
   return value === 'uebersicht' || value === 'nachweise' || value === 'daten' ? value : undefined;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   writtenTo: { en: 'Written to {path}', ru: 'Сохранено в {path}' },
