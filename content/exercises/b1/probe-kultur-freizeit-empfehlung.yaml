@@ -1,0 +1,117 @@
+# Delayed probe family 2 of 2 — ONE competence: putting the compared adjective in front of
+# the noun, which means building the comparative and then declining it. Three parallel
+# cloze variants served in authoring order across the 2/7/21 delays.
+#
+# Cloze rather than translate, on B1.2's own reasoning for this tag: the competence is a
+# FORM and nothing else — the adjective's slot between article and noun is fixed, so no
+# position is at stake, and a cloze is always attributed, because the gap IS the graded
+# token. A translate would add a decision the tag is not about: the learner would also
+# choose the determiner, and a neuter noun takes -es after ein but -e after das, so a cell
+# where the two differ would grade a definiteness choice that no prompt fixes. The unit's
+# own practice translate is written around that (a feminine noun, where both determiners
+# give -e); a probe with three lifetime stages should not have to be.
+#
+# A genre unit closes no grammar point, so this family measures nothing new:
+# komparativ-attributiv belongs to B1.2 and already has its own family there
+# (probe-leben-veraendern-komparativ-attributiv — freundlichere Chefin, bequemeres Bett,
+# moderneren Büro). What is new is the task around it. B1.2 compares two flats after a
+# move; this unit compares two evenings on one flyer, which is the only place the form does
+# interactive work — naming the better one is what the other person can answer, and a bare
+# Das ist besser is not. The cells overlap deliberately in two of three (feminine
+# accusative -e, neuter accusative -es) so the same rule is measured, and the third is the
+# masculine accusative -en rather than B1.2's dative, so a hand that has settled on one
+# ending everywhere shows it on a different article word. The two families cannot disturb
+# each other's clock — since P19-4 every family arms from its own literal list, and B1.2's
+# names only B1.2 items.
+#
+# Each instruction names the adjective in its base form, so the target stays determinate
+# when the item is served alone in mixed training, and the graded fact is the ending on top
+# of -er. All three adjectives take a plain -er with no umlaut and no dropped e, so nothing
+# but the ending is at stake.
+#
+# Content fresh against the taught surface, checked by grepping each adjective across
+# content/, not by re-reading this list. The unit's comparatives are besser (the article's
+# examples and Häufige Fehler, the pretest, the practice cloze), ruhiger (the article and
+# the practice cloze), interessanter (the article's Häufige Fehler and the practice
+# translate) and gemütlicher (the article, predicatively, and the production translate).
+# spät, spannend and schön appear in no comparative anywhere in this unit: `spannend` occurs
+# three times and `schön` three times in the deck, all inside notes about other words (the
+# gespannt entry explains spannend, the Broschüre entry uses schön to describe a sound), and
+# `spät` does not occur at all. Nor do they collide with B1.2's family, whose adjectives are
+# freundlich, bequem and modern. The only `spätere` in the corpus is in
+# erfahrungen-erzaehlen.mdx, where it is an adjectival noun about tense order (das spätere
+# Ereignis), not an attributive comparative anyone is asked to build.
+#
+# arming: the three practice items in which the learner builds the form. Nothing else in
+# the unit carries this tag, and the pretest's besseres item is excluded by role.
+topic: kultur-freizeit
+role: probe
+title:
+  en: "Delayed check — the comparison in front of the noun"
+  ru: "Отложенная проверка — сравнение перед существительным"
+  uk: "Відкладена перевірка — порівняння перед іменником"
+  de: "Kontrolle mit Abstand — der Vergleich vor dem Nomen"
+arming:
+  - b1/kultur-freizeit::cloze-empfehlung-komparativ
+  - b1/kultur-freizeit::uebersetzen-interessantere-fuehrung
+  - b1/kultur-freizeit-produktion::uebersetzen-gemuetlicherer-abend
+items:
+  - id: variant-a
+    outcomes: [veranstaltung-empfehlen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "spät in the comparative, with its adjective ending."
+      ru: "spät в сравнительной степени, с окончанием прилагательного."
+      uk: "spät у вищому ступені, із закінченням прикметника."
+      de: "spät im Komparativ, mit seiner Adjektivendung."
+    text: "Am Sonntag läuft eine {{spätere}} Vorstellung als am Samstag."
+    translation:
+      en: "On Sunday there is a later showing than on Saturday."
+      ru: "В воскресенье идёт более поздний сеанс, чем в субботу."
+      uk: "У неділю йде пізніший сеанс, ніж у суботу."
+    explain:
+      en: "Two steps, in this order. Build the comparative first: spät plus -er is später. Then treat später as an ordinary adjective stem — eine puts a feminine noun in the accusative, and that cell's ending is -e, exactly what nette would take. So spätere. A hand that stops at später has kept the comparison and dropped the declension."
+      ru: "Два шага, именно в таком порядке. Сначала стройте сравнительную степень: spät плюс -er даёт später. Затем считайте später обычной основой прилагательного: eine ставит существительное женского рода в аккузатив, а окончание этой клетки — -e, ровно то, что взяло бы nette. Получается spätere. Рука, остановившаяся на später, сохранила сравнение и выбросила склонение."
+      uk: "Два кроки, саме в такому порядку. Спершу будуйте вищий ступінь: spät плюс -er дає später. Потім вважайте später звичайною основою прикметника: eine ставить іменник жіночого роду в акузатив, а закінчення цієї клітинки — -e, рівно те, що взяло б nette. Виходить spätere. Рука, що спинилася на später, зберегла порівняння і викинула відмінювання."
+      de: "Zwei Schritte, genau in dieser Reihenfolge. Zuerst der Komparativ: spät plus -er ergibt später. Dann behandle später als normalen Adjektivstamm — eine stellt ein feminines Nomen in den Akkusativ, und die Endung dieser Zelle heißt -e, genau die, die auch nette nähme. Also spätere. Wer bei später aufhört, behält den Vergleich ohne Deklination."
+
+  - id: variant-b
+    outcomes: [veranstaltung-empfehlen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "spannend in the comparative, with its adjective ending."
+      ru: "spannend в сравнительной степени, с окончанием прилагательного."
+      uk: "spannend у вищому ступені, із закінченням прикметника."
+      de: "spannend im Komparativ, mit seiner Adjektivendung."
+    text: "Am Freitag gibt es ein {{spannenderes}} Stück als am Samstag."
+    translation:
+      en: "On Friday there is a more gripping play than on Saturday."
+      ru: "В пятницу дают более захватывающую пьесу, чем в субботу."
+      uk: "У п'ятницю дають захопливішу п'єсу, ніж у суботу."
+    explain:
+      en: "Long adjectives take the same -er as short ones: spannend becomes spannender, and German has no mehr plus adjective at all. Then ein asks a neuter noun for the strong -es, because the article itself does not show the gender — so spannenderes. Two endings, stacked, and neither may be dropped."
+      ru: "Длинные прилагательные берут то же -er, что и короткие: spannend даёт spannender, а конструкции mehr плюс прилагательное в немецком нет вовсе. Дальше ein требует у существительного среднего рода сильного -es, потому что сам артикль род не показывает: получается spannenderes. Два окончания, одно на другом, и выбросить нельзя ни одно."
+      uk: "Довгі прикметники беруть те саме -er, що й короткі: spannend дає spannender, а конструкції mehr плюс прикметник у німецькій немає зовсім. Далі ein вимагає в іменника середнього роду сильного -es, бо сам артикль роду не показує: виходить spannenderes. Два закінчення, одне на одному, і викинути не можна жодне."
+      de: "Lange Adjektive nehmen dasselbe -er wie kurze: aus spannend wird spannender, und ein mehr plus Adjektiv gibt es im Deutschen gar nicht. Danach verlangt ein von einem neutralen Nomen das starke -es, weil der Artikel selbst das Genus nicht zeigt — also spannenderes. Zwei Endungen, gestapelt, und keine davon darf fehlen."
+
+  - id: variant-c
+    outcomes: [veranstaltung-empfehlen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "schön in the comparative, with its adjective ending."
+      ru: "schön в сравнительной степени, с окончанием прилагательного."
+      uk: "schön у вищому ступені, із закінченням прикметника."
+      de: "schön im Komparativ, mit seiner Adjektivendung."
+    text: "Vorne hat man einen {{schöneren}} Blick auf die Bühne als ganz hinten."
+    translation:
+      en: "At the front you have a nicer view of the stage than right at the back."
+      ru: "Спереди вид на сцену лучше, чем в самом конце."
+      uk: "Спереду вигляд на сцену кращий, ніж у самому кінці."
+    explain:
+      en: "schön plus -er gives schöner, with no umlaut anywhere — the vowel already has one. Then einen puts a masculine noun in the accusative, and that cell takes -en, exactly what schönen would take. So schöneren, with the -er of the comparison first and the case ending on top. The masculine accusative is where a hand that has learned to write -e everywhere shows it."
+      ru: "schön плюс -er даёт schöner, и никакого умлаута тут не появляется — он уже есть в самой гласной. Дальше einen ставит существительное мужского рода в аккузатив, а эта клетка берёт -en, ровно то, что взяло бы schönen. Получается schöneren: сначала -er сравнения, потом падежное окончание поверх. Аккузатив мужского рода — именно та клетка, где видно руку, привыкшую писать -e везде."
+      uk: "schön плюс -er дає schöner, і жодного умлаута тут не з'являється — він уже є в самому голосному. Далі einen ставить іменник чоловічого роду в акузатив, а ця клітинка бере -en, рівно те, що взяло б schönen. Виходить schöneren: спершу -er порівняння, потім відмінкове закінчення поверх. Акузатив чоловічого роду — саме та клітинка, де видно руку, що звикла писати -e всюди."
+      de: "schön plus -er ergibt schöner, ganz ohne Umlaut — der Vokal hat schon einen. Danach stellt einen ein maskulines Nomen in den Akkusativ, und diese Zelle nimmt -en, genau das, was auch schönen nähme. Also schöneren, erst das -er des Vergleichs, dann die Kasusendung darauf. Im maskulinen Akkusativ zeigt sich die Hand, die überall ein -e schreibt."

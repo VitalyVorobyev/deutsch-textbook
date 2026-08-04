@@ -1,0 +1,128 @@
+# Delayed probe family 2 of 2 — ONE competence: writing an instruction step the way an
+# Anleitung writes it, cold — werden conjugated with the thing, the Partizip II at the
+# wall, and nobody named. Three parallel translate variants across the 2/7/21 delays.
+#
+# Why a second family on a genre unit, and why this one. Of the unit's three outcomes only
+# two can carry delayed evidence at all: `mediennutzung-berichten` is spoken production,
+# which the app never verifies and therefore never probes, and the other two are covered
+# here and by family 1. The Anleitung cluster is worth the second curve because the passive
+# step is the one structure in this unit whose loss is invisible in comprehension — a
+# learner who can read *Zuerst wird das Gerät ausgeschaltet* perfectly well may still write
+# *wird ausschalten* three weeks later, and no reading question can see that.
+#
+# The tag is recycled and closes nothing: passiv-bildung belongs to B1.6, whose own family
+# (probe-konsum-umwelt) is cloze ×3 — Milch geliefert, Handys repariert, Qualität
+# kontrolliert. This one is translate, so the two ask different halves of the same rule: a
+# cloze grades the two forms in slots that already fix their position, while a translate
+# also grades where they land. That difference is P18-6's observation, and this family does
+# not close it — P18-6 is about B1.6's own family, which is unchanged. Nor can the two
+# disturb each other: since P19-4 every family arms from its own literal list, and B1.6's
+# names only B1.6 items.
+#
+# Every variant names its lexical verb in the instruction and asks for the passive by name,
+# because *man sichert zuerst alle Termine* renders each prompt just as correctly — the
+# frame is what is probed, never the choice to use it, and never which verb the author had
+# in mind.
+#
+# Pinned in every accepted rendering are the two walls: the conjugated werden and the
+# Partizip II. The order of what stands between them is free and both orders are accepted,
+# because that is Position 1 being filled — the A1 verbzweit rule, not this tag.
+#
+# Content fresh against the taught surface, checked by grepping each verb across content/.
+# The taught passive steps run on installieren and löschen (cloze-anleitung-passiv),
+# aufladen (mc-werden-passiv), auswählen (uebersetzen-passiv-sprache), bedienen
+# (uebersetzen-passiv-tasten), einschalten (the pretest) and ausschalten, installieren and
+# laden (the article, the reading and the deck's own installieren example). None of
+# sichern, ausdrucken or abschicken closes a passive step anywhere in this unit: all three
+# appear only as Sie-imperatives — two in the deck's examples (Sichern Sie Ihre Bilder …,
+# Drucken Sie die Bestätigung … aus) and abschicken once in the article's form table,
+# pointing at a button. That is the other word class and the other word order.
+#
+# arming: the four practice items that make the learner build or pick the frame. The mc is
+# in on B1.6's own precedent (mc-wird-ist arms probe-konsum-umwelt): its three options
+# differ in nothing but which auxiliary and which verb form carry the step.
+topic: digitales-leben
+role: probe
+title:
+  en: "Delayed check — the instruction step with nobody in it"
+  ru: "Отложенная проверка — шаг инструкции без исполнителя"
+  uk: "Відкладена перевірка — крок інструкції без виконавця"
+  de: "Kontrolle mit Abstand — der Anleitungsschritt ohne handelnde Person"
+arming:
+  - b1/digitales-leben::cloze-anleitung-passiv
+  - b1/digitales-leben::mc-werden-passiv
+  - b1/digitales-leben::uebersetzen-passiv-sprache
+  - b1/digitales-leben-produktion::uebersetzen-passiv-tasten
+items:
+  - id: variant-a
+    outcomes: [anleitung-verstehen]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate the step in the passive. For 'back up' take sichern, for 'appointment' der Termin, for 'first' zuerst."
+      ru: "Переведите шаг в пассиве. Для «сохранять» возьмите sichern, для «встреча» — der Termin, для «сначала» — zuerst."
+      uk: "Перекладіть крок у пасиві. Для «зберігати» візьміть sichern, для «зустріч» — der Termin, для «спершу» — zuerst."
+      de: "Übersetze den Schritt im Passiv. Für das Sichern nimm sichern, für die Verabredung der Termin, für den Anfang zuerst."
+    prompt_en: "First all the appointments are backed up."
+    prompt_ru: "Сначала сохраняют все встречи."
+    prompt_uk: "Спершу зберігають усі зустрічі."
+    answer: "Zuerst werden alle Termine gesichert."
+    accept:
+      # The subject may lead; the frame is unchanged and the graded pair with it.
+      - "Alle Termine werden zuerst gesichert."
+    key_tokens: ["werden", "gesichert"]
+    explain:
+      en: "Graded are the two walls: werden in position 2 and gesichert at the very end. The plural subject alle Termine decides the form — werden, not wird — because the passive agrees with the thing it talks about, and there is nobody else in the sentence to agree with. That absence is the point of the form."
+      ru: "Оцениваются две стены: werden на втором месте и gesichert в самом конце. Форму задаёт подлежащее во множественном числе alle Termine — werden, а не wird: пассив согласуется с тем, о чём говорит, и согласовываться в этом предложении больше не с кем. В этом отсутствии и весь смысл формы."
+      uk: "Оцінюються дві стіни: werden на другому місці і gesichert у самому кінці. Форму задає підмет у множині alle Termine — werden, а не wird: пасив узгоджується з тим, про що говорить, і узгоджуватися в цьому реченні більше нема з ким. У цій відсутності й увесь сенс форми."
+      de: "Bewertet werden die zwei Wände: werden auf Position 2 und gesichert ganz am Ende. Das plurale Subjekt alle Termine bestimmt die Form — werden, nicht wird —, denn das Passiv richtet sich nach der Sache, von der es spricht, und sonst ist niemand im Satz. Genau diese Abwesenheit ist der Zweck der Form."
+
+  - id: variant-b
+    outcomes: [anleitung-verstehen]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate the step in the passive. For 'print out' take ausdrucken, for 'the list' die Liste, for 'then' danach."
+      ru: "Переведите шаг в пассиве. Для «распечатывать» возьмите ausdrucken, для «список» — die Liste, для «затем» — danach."
+      uk: "Перекладіть крок у пасиві. Для «роздруковувати» візьміть ausdrucken, для «потім» — danach, для «список» — die Liste."
+      de: "Übersetze den Schritt im Passiv. Für das Drucken nimm ausdrucken, für die Liste die Liste, für den nächsten Schritt danach."
+    prompt_en: "Then the list is printed out."
+    prompt_ru: "Затем список распечатывают."
+    prompt_uk: "Потім список роздруковують."
+    answer: "Danach wird die Liste ausgedruckt."
+    accept:
+      - "Die Liste wird danach ausgedruckt."
+      # RU/UK mark no definiteness on a bare noun, so an indefinite list is an equally
+      # faithful rendering of the same step; the frame is what is graded.
+      - "Danach wird eine Liste ausgedruckt."
+      - "Eine Liste wird danach ausgedruckt."
+    key_tokens: ["wird", "ausgedruckt"]
+    explain:
+      en: "Graded are wird and ausgedruckt. A separable verb shows the wall twice: as an active step it would read Danach druckt man die Liste aus, with the prefix alone at the end, while the passive sends the whole Partizip II there in one word — ausgedruckt, with the ge- tucked inside behind aus."
+      ru: "Оцениваются wird и ausgedruckt. Отделяемый глагол показывает стену дважды: в активе было бы Danach druckt man die Liste aus, где в конце стоит одна приставка, а пассив отправляет туда целое Partizip II одним словом — ausgedruckt, с ge- внутри, сразу за aus."
+      uk: "Оцінюються wird і ausgedruckt. Відокремлюване дієслово показує стіну двічі: в активі було б Danach druckt man die Liste aus, де в кінці стоїть сам префікс, а пасив відправляє туди ціле Partizip II одним словом — ausgedruckt, із ge- усередині, одразу за aus."
+      de: "Bewertet werden wird und ausgedruckt. Ein trennbares Verb zeigt die Wand doppelt: Aktiv hieße es Danach druckt man die Liste aus, mit dem bloßen Präfix am Ende, während das Passiv das ganze Partizip II dorthin schickt, in einem Wort — ausgedruckt, das ge- innen hinter aus."
+
+  - id: variant-c
+    outcomes: [anleitung-verstehen]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate the step in the passive. For 'send off' take abschicken, for 'the form' das Formular, for 'at the end' zum Schluss."
+      ru: "Переведите шаг в пассиве. Для «отправлять» возьмите abschicken, для «формуляр» — das Formular, для «в конце» — zum Schluss."
+      uk: "Перекладіть крок у пасиві. Для «надсилати» візьміть abschicken, для «формуляр» — das Formular, для «наприкінці» — zum Schluss."
+      de: "Übersetze den Schritt im Passiv. Für das Absenden nimm abschicken, für das Formular das Formular, für den Schluss zum Schluss."
+    prompt_en: "At the end the form is sent off."
+    prompt_ru: "В конце формуляр отправляют."
+    prompt_uk: "Наприкінці формуляр надсилають."
+    answer: "Zum Schluss wird das Formular abgeschickt."
+    accept:
+      - "Das Formular wird zum Schluss abgeschickt."
+      # As in variant b, the bare RU/UK noun leaves the determiner free.
+      - "Zum Schluss wird ein Formular abgeschickt."
+    key_tokens: ["wird", "abgeschickt"]
+    explain:
+      en: "Graded are wird and abgeschickt. Nothing about the step says who sends the form, and that is exactly why an Anleitung writes it this way: the sentence stays true whether you, a colleague or the librarian is at the screen. Write Zum Schluss wird das Formular abschicken and werden has quietly built the future instead."
+      ru: "Оцениваются wird и abgeschickt. Кто отправляет формуляр, шаг не говорит вовсе, и ровно поэтому инструкция так и пишет: фраза остаётся верной, стоите ли у экрана вы, коллега или библиотекарь. Напишите Zum Schluss wird das Formular abschicken — и werden незаметно построит будущее время."
+      uk: "Оцінюються wird і abgeschickt. Хто надсилає формуляр, крок не каже взагалі, і саме тому інструкція так і пише: фраза лишається правдивою, чи стоїте біля екрана ви, колега або бібліотекар. Напишіть Zum Schluss wird das Formular abschicken — і werden непомітно побудує майбутній час."
+      de: "Bewertet werden wird und abgeschickt. Der Schritt sagt nicht, wer das Formular abschickt, und genau deshalb schreibt eine Anleitung so: Der Satz stimmt, ob du, eine Kollegin oder der Bibliothekar am Bildschirm steht. Wer Zum Schluss wird das Formular abschicken schreibt, hat mit werden ein Futur gebaut."

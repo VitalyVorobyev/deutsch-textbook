@@ -181,14 +181,85 @@ items:
     model_translation: { en: "At seven o'clock I drink coffee and eat a roll. In the morning I work at home. At one o'clock I cook soup, because I like eating soup. In the evening I read or listen to music.", ru: "В семь часов я пью кофе и ем булочку. До обеда я работаю дома. В час я готовлю суп — я люблю суп. Вечером я читаю или слушаю музыку.", uk: "О сьомій годині я п'ю каву та їм булочку. До обіду я працюю вдома. О першій я варю суп — я люблю суп. Увечері я читаю або слухаю музику." }
     explain: { en: "Pattern: a time phrase first, the verb right after it in position 2 — Um sieben Uhr trinke ich Kaffee. Liking food or drink is essen/trinken + gern.", ru: "Схема: сначала указание времени, сразу за ним глагол на втором месте — Um sieben Uhr trinke ich Kaffee. Любимая еда и напитки — это essen/trinken + gern.", uk: "Схема: спочатку позначення часу, одразу за ним дієслово на другому місці — Um sieben Uhr trinke ich Kaffee. Улюблена їжа та напої — це essen/trinken + gern." }
   # --- A1 boundary additions (new ids deliberately reopen this checkpoint) ---
-  - { id: a1-du-sie-neu, type: cloze, outcomes: [stadt-weg-erfragen], focus: du-sie, text: "Entschuldigung, können {{Sie}} mir helfen?", explain: { en: "A stranger takes polite Sie.", ru: "К незнакомому человеку обращаются на Sie.", uk: "До незнайомої людини звертаються на Sie." } }
-  - { id: a1-imperativ-neu, type: cloze, outcomes: [stadt-wegbeschreibung-geben], focus: imperativ-form, text: "{{Nehmen}} Sie die zweite Straße rechts!", explain: { en: "The polite imperative is verb + Sie.", ru: "Вежливый Imperativ строится как глагол + Sie.", uk: "Ввічливий Imperativ будується як дієслово + Sie." } }
-  - { id: a1-regel-neu, type: cloze, outcomes: [stadt-schilder-verstehen], focus: duerfen-muessen, text: "Der Eintritt ist frei: Sie {{müssen}} nicht bezahlen.", explain: { en: "müssen nicht removes necessity; it is not a prohibition.", ru: "müssen nicht снимает необходимость, а не запрещает.", uk: "müssen nicht знімає необхідність, а не забороняє." } }
-  - { id: a1-trennbar-neu, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-wortstellung, text: "Nach dem Kurs {{räume}} ich die Küche {{auf}}.", explain: { en: "The prefix closes the main clause.", ru: "Приставка закрывает главное предложение.", uk: "Префікс закриває головне речення." } }
-  - { id: a1-trennbar-modal-neu, type: cloze, outcomes: [zeit-tagesablauf-beschreiben], focus: trennbar-modal, text: "Morgen muss ich um sechs Uhr {{aufstehen}}.", explain: { en: "After muss, the infinitive stays whole at the end.", ru: "После muss инфинитив остаётся целым в конце.", uk: "Після muss інфінітив залишається цілим у кінці." } }
-  - { id: a1-perfekt-aux-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: haben-sein, text: "Am Sonntag {{sind}} wir nach Hause gegangen.", explain: { en: "Movement to another place uses sein.", ru: "Перемещение в другое место образует Perfekt с sein.", uk: "Переміщення в інше місце утворює Perfekt із sein." } }
-  - { id: a1-perfekt-partizip-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: partizip2-a1, text: "Ich habe am Abend Pizza {{gekocht}}.", explain: { en: "kochen forms the regular participle gekocht.", ru: "kochen образует правильное Partizip II gekocht.", uk: "kochen утворює правильний Partizip II gekocht." } }
-  - { id: a1-perfekt-klammer-neu, type: cloze, outcomes: [freizeit-vergangenheit], focus: perfekt-satzklammer, text: "Wir {{haben}} am Samstag Fußball {{gespielt}}.", explain: { en: "The auxiliary stands second and the participle last.", ru: "Вспомогательный глагол стоит вторым, Partizip II — последним.", uk: "Допоміжне дієслово стоїть другим, Partizip II — останнім." } }
+  # The eight P19-1 backfill items below shipped 2026-07-31 without instruction or
+  # translation — unlike every older item in this file. On a phone that renders as two bare
+  # gaps and no task (owner report, 2026-08-04). Five of the eight were also indeterminate:
+  # the gap asked for a lexical verb nothing named (aufräumen, aufstehen, kochen, spielen,
+  # nehmen), so the item graded which word the author had in mind. Each now names its task
+  # the way the older items do; revision bumped because the prompt changed. Logged attempts
+  # keep their revision-1 result and are never replayed.
+  - id: a1-du-sie-neu
+    revision: 2
+    outcomes: [stadt-weg-erfragen]
+    type: cloze
+    focus: du-sie
+    instruction: { en: "du or Sie? Fill in the pronoun this situation asks for.", ru: "du или Sie? Вставьте местоимение, которого требует ситуация.", uk: "du чи Sie? Вставте займенник, якого вимагає ситуація." }
+    text: "Entschuldigung, können {{Sie}} mir helfen?"
+    translation: { en: "Excuse me, can you help me?", ru: "Извините, вы можете мне помочь?", uk: "Вибачте, ви можете мені допомогти?" }
+    explain: { en: "A stranger takes polite Sie.", ru: "К незнакомому человеку обращаются на Sie.", uk: "До незнайомої людини звертаються на Sie." }
+  - id: a1-imperativ-neu
+    revision: 2
+    outcomes: [stadt-wegbeschreibung-geben]
+    type: cloze
+    focus: imperativ-form
+    instruction: { en: "Put nehmen into the polite Sie-imperative.", ru: "Поставьте nehmen в вежливую форму императива (на Sie).", uk: "Поставте nehmen у ввічливу форму імператива (на Sie)." }
+    text: "{{Nehmen}} Sie die zweite Straße rechts!"
+    translation: { en: "Take the second street on the right!", ru: "Поверните на вторую улицу направо!", uk: "Поверніть на другу вулицю праворуч!" }
+    explain: { en: "The polite imperative is verb + Sie.", ru: "Вежливый Imperativ строится как глагол + Sie.", uk: "Ввічливий Imperativ будується як дієслово + Sie." }
+  - id: a1-regel-neu
+    revision: 2
+    outcomes: [stadt-schilder-verstehen]
+    type: cloze
+    focus: duerfen-muessen
+    instruction: { en: "Fill in the modal verb that fits: müssen or dürfen?", ru: "Вставьте подходящий модальный глагол: müssen или dürfen?", uk: "Вставте відповідне модальне дієслово: müssen чи dürfen?" }
+    text: "Der Eintritt ist frei: Sie {{müssen}} nicht bezahlen."
+    translation: { en: "Admission is free: you don't have to pay.", ru: "Вход бесплатный: платить не нужно.", uk: "Вхід безкоштовний: платити не потрібно." }
+    explain: { en: "müssen nicht removes necessity; it is not a prohibition.", ru: "müssen nicht снимает необходимость, а не запрещает.", uk: "müssen nicht знімає необхідність, а не забороняє." }
+  - id: a1-trennbar-neu
+    revision: 2
+    outcomes: [zeit-tagesablauf-beschreiben]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction: { en: "Put aufräumen into the sentence — watch where its two parts go.", ru: "Вставьте aufräumen — следите, куда встают его две части.", uk: "Вставте aufräumen — стежте, куди стають його дві частини." }
+    text: "Nach dem Kurs {{räume}} ich die Küche {{auf}}."
+    translation: { en: "After the course I tidy up the kitchen.", ru: "После курса я убираю кухню.", uk: "Після курсу я прибираю кухню." }
+    explain: { en: "The prefix closes the main clause.", ru: "Приставка закрывает главное предложение.", uk: "Префікс закриває головне речення." }
+  - id: a1-trennbar-modal-neu
+    revision: 2
+    outcomes: [zeit-tagesablauf-beschreiben]
+    type: cloze
+    focus: trennbar-modal
+    instruction: { en: "Complete the sentence with aufstehen.", ru: "Дополните предложение глаголом aufstehen.", uk: "Доповніть речення дієсловом aufstehen." }
+    text: "Morgen muss ich um sechs Uhr {{aufstehen}}."
+    translation: { en: "Tomorrow I have to get up at six o'clock.", ru: "Завтра мне нужно встать в шесть часов.", uk: "Завтра мені треба встати о шостій годині." }
+    explain: { en: "After muss, the infinitive stays whole at the end.", ru: "После muss инфинитив остаётся целым в конце.", uk: "Після muss інфінітив залишається цілим у кінці." }
+  - id: a1-perfekt-aux-neu
+    revision: 2
+    outcomes: [freizeit-vergangenheit]
+    type: cloze
+    focus: haben-sein
+    instruction: { en: "haben or sein? Fill in the auxiliary gehen takes.", ru: "haben или sein? Вставьте вспомогательный глагол, которого требует gehen.", uk: "haben чи sein? Вставте допоміжне дієслово, якого вимагає gehen." }
+    text: "Am Sonntag {{sind}} wir nach Hause gegangen."
+    translation: { en: "On Sunday we went home.", ru: "В воскресенье мы пошли домой.", uk: "У неділю ми пішли додому." }
+    explain: { en: "Movement to another place uses sein.", ru: "Перемещение в другое место образует Perfekt с sein.", uk: "Переміщення в інше місце утворює Perfekt із sein." }
+  - id: a1-perfekt-partizip-neu
+    revision: 2
+    outcomes: [freizeit-vergangenheit]
+    type: cloze
+    focus: partizip2-a1
+    instruction: { en: "Fill in the Partizip II of kochen.", ru: "Вставьте Partizip II глагола kochen.", uk: "Вставте Partizip II дієслова kochen." }
+    text: "Ich habe am Abend Pizza {{gekocht}}."
+    translation: { en: "In the evening I cooked pizza.", ru: "Вечером я приготовил пиццу.", uk: "Увечері я приготував піцу." }
+    explain: { en: "kochen forms the regular participle gekocht.", ru: "kochen образует правильное Partizip II gekocht.", uk: "kochen утворює правильний Partizip II gekocht." }
+  - id: a1-perfekt-klammer-neu
+    revision: 2
+    outcomes: [freizeit-vergangenheit]
+    type: cloze
+    focus: perfekt-satzklammer
+    instruction: { en: "Put the Perfekt of spielen into the sentence — both parts.", ru: "Поставьте spielen в Perfekt — обе части.", uk: "Поставте spielen у Perfekt — обидві частини." }
+    text: "Wir {{haben}} am Samstag Fußball {{gespielt}}."
+    translation: { en: "On Saturday we played football.", ru: "В субботу мы играли в футбол.", uk: "У суботу ми грали у футбол." }
+    explain: { en: "The auxiliary stands second and the participle last.", ru: "Вспомогательный глагол стоит вторым, Partizip II — последним.", uk: "Допоміжне дієслово стоїть другим, Partizip II — останнім." }
   - id: a1-form-neu
     type: form
     target_mode: writing

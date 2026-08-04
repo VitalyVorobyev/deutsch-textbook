@@ -572,3 +572,36 @@ units:
         register: "neutral, alltagsnah, leicht kontrovers"
         item_types: [audio-comprehension]
         context_sound: "leiser Gemeinschaftsraum mit wenigen Personen"
+  - unit: digitales-leben
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome: this unit owns no listening outcome —
+      # its three are reading, writing and spoken production — so the artifact carries the
+      # genre's spoken form (steps given over the phone) and claims no listening evidence.
+      - id: ls-digitales-leben-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf bei der Bibliothekshilfe: zwei Schritte zur Anmeldung in der Lese-App"
+        outcomes: [anleitung-verstehen]
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, geduldig"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: kultur-freizeit
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome, for the same reason as B1.11: this unit
+      # owns no listening outcome — its three are reading, spoken interaction and writing —
+      # so the artifact carries the genre's spoken form (a programme read out over the
+      # phone) and claims no listening evidence.
+      - id: ls-kultur-freizeit-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf im Kulturbüro: Preise, Beginn und Einlass für das Wochenendprogramm"
+        outcomes: [programm-verstehen]
+        duration_seconds: { min: 50, max: 70 }
+        speakers: { min: 2, max: 2 }
+        register: "freundlich-sachlich, Auskunft am Telefon"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"

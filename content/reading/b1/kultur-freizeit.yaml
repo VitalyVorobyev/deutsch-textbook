@@ -1,0 +1,83 @@
+topic: kultur-freizeit
+kind: intensive
+title_de: "Kulturwoche im Stadtteil — das Programm für das Wochenende"
+text:
+  - >-
+    Freitag, Beginn 20 Uhr, Einlass ab 19.30, Stadthalle, [[großer Saal::large
+    hall::большой зал::велика зала]]: Konzert des Schulorchesters. Eintritt
+    8 Euro, Kinder [[gratis::free of charge::бесплатно::безкоштовно]].
+  - >-
+    Samstag, 19 Uhr, kleiner Saal: das Theaterstück „Zwei Stühle". Diese
+    [[Vorstellung::performance, showing::спектакль, сеанс::вистава, сеанс]] ist
+    [[ausverkauft::sold out::распродан::розпроданий]]; für den Sonntag gibt es
+    noch [[Restkarten::remaining tickets::оставшиеся билеты::квитки, що
+    лишилися]] an der Abendkasse.
+  - >-
+    Sonntag, 11 Uhr, Rathaus: Ausstellung mit Führung.
+    [[Reservierung::booking::бронирование::бронювання]] bis Freitag nötig,
+    Telefon 0231 44 55. Sonntag, 18 Uhr, kleiner Saal: zweite Vorstellung von
+    „Zwei Stühle".
+  - >-
+    Leserstimme zur letzten Kulturwoche: „Der Saal war voll, und das
+    [[Publikum::audience::публика::публіка]] klatschte nach jedem Stück. Die
+    [[Stimmung::atmosphere, mood::атмосфера, настроение::атмосфера, настрій]]
+    war gut, und ich habe den Abend sehr genossen. Nur der zweite Teil war zu
+    lang. Ich würde wieder hingehen und diesmal früher reservieren."
+questions:
+  - id: frage-theaterstueck-karten
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Sie möchten „Zwei Stühle\" sehen. Was sagt das Programm?"
+    options:
+      - "Am Samstag geht es nicht mehr; am Sonntag gibt es Restkarten an der Abendkasse."
+      - "Karten gibt es nur mit einer Reservierung bis Freitag."
+      - "Das Stück ist an beiden Tagen ausverkauft."
+    correct: 0
+    translation:
+      en: "You want to see „Zwei Stühle\". What does the programme say?"
+      ru: "Вы хотите посмотреть «Zwei Stühle». Что говорит программа?"
+      uk: "Ви хочете подивитися «Zwei Stühle». Що каже програма?"
+    explain:
+      en: "Two lines answer the ticket question, and they answer it differently: Diese Vorstellung ist ausverkauft closes Saturday, and für den Sonntag gibt es noch Restkarten an der Abendkasse leaves the second showing open. The booking deadline belongs to the Sunday exhibition, not to the play, and ausverkauft is said of one performance only."
+      ru: "На вопрос о билетах отвечают две строки, и отвечают по-разному: Diese Vorstellung ist ausverkauft закрывает субботу, а für den Sonntag gibt es noch Restkarten an der Abendkasse оставляет открытым второй показ. Срок бронирования относится к воскресной выставке, а не к спектаклю, и слово ausverkauft сказано лишь про один сеанс."
+      uk: "На питання про квитки відповідають два рядки, і відповідають по-різному: Diese Vorstellung ist ausverkauft закриває суботу, а für den Sonntag gibt es noch Restkarten an der Abendkasse лишає відкритим другий показ. Термін бронювання стосується недільної виставки, а не вистави, і слово ausverkauft сказане лише про один сеанс."
+      de: "Zwei Zeilen beantworten die Kartenfrage, und zwar verschieden: Diese Vorstellung ist ausverkauft schließt den Samstag, für den Sonntag gibt es noch Restkarten an der Abendkasse lässt die zweite Vorstellung offen. Die Frist bis Freitag gehört zur Ausstellung, nicht zum Stück."
+
+  - id: frage-fuehrung-reservierung
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Was muss man tun, wenn man am Sonntag zur Führung möchte?"
+    options:
+      - "Bis Freitag reservieren."
+      - "Acht Euro an der Abendkasse zahlen."
+      - "Nichts — man kommt einfach um 11 Uhr."
+    correct: 0
+    translation:
+      en: "What do you have to do if you want to join the guided tour on Sunday?"
+      ru: "Что нужно сделать, чтобы попасть в воскресенье на экскурсию?"
+      uk: "Що потрібно зробити, щоб потрапити в неділю на екскурсію?"
+
+    explain:
+      en: "The line says it in three words: Reservierung bis Freitag nötig. A programme puts the condition immediately under the event it belongs to, so this one is about the exhibition and its tour. The eight euros are Friday's concert price, and the Abendkasse in the text sells the remaining tickets for the play."
+      ru: "Строка говорит об этом тремя словами: Reservierung bis Freitag nötig. Программа ставит условие сразу под тем событием, к которому оно относится, — значит, речь о выставке и её экскурсии. Восемь евро — это цена пятничного концерта, а вечерняя касса в тексте продаёт оставшиеся билеты на спектакль."
+      uk: "Рядок каже про це трьома словами: Reservierung bis Freitag nötig. Програма ставить умову одразу під тією подією, до якої вона належить, — отже, ідеться про виставку та її екскурсію. Вісім євро — це ціна п'ятничного концерту, а вечірня каса в тексті продає квитки, що лишилися, на виставу."
+      de: "Die Zeile sagt es in drei Wörtern: Reservierung bis Freitag nötig. Ein Programm stellt die Bedingung direkt unter die Veranstaltung, zu der sie gehört — hier also unter die Ausstellung mit Führung. Die acht Euro sind der Preis des Konzerts am Freitag."
+
+  - id: frage-leserstimme
+    outcomes: [erlebnis-bewerten]
+    type: mc
+    prompt: "Wie ist die Leserstimme am Ende aufgebaut?"
+    options:
+      - "Sie lobt den Abend und nennt dann eine einzige Einschränkung."
+      - "Sie nennt nur Fakten und bewertet nichts."
+      - "Sie kritisiert den ganzen Abend."
+    correct: 0
+    translation:
+      en: "How is the reader's comment at the end put together?"
+      ru: "Как построен отзыв читателя в конце?"
+      uk: "Як побудований відгук читача наприкінці?"
+    explain:
+      en: "Three sentences carry the judgement and the fourth draws it together: der Saal war voll and die Stimmung war gut are positive, Nur der zweite Teil war zu lang is the one limitation, and Ich würde wieder hingehen is the verdict. Facts alone would stop after the first sentence, and a comment that criticised everything could not end with going again."
+      ru: "Оценку несут три предложения, а четвёртое её собирает: der Saal war voll и die Stimmung war gut — положительные, Nur der zweite Teil war zu lang — единственная оговорка, а Ich würde wieder hingehen — вывод. Одни факты кончились бы на первой фразе, а сплошная критика не могла бы завершиться готовностью пойти снова."
+      uk: "Оцінку несуть три речення, а четверте її збирає: der Saal war voll і die Stimmung war gut — позитивні, Nur der zweite Teil war zu lang — єдине застереження, а Ich würde wieder hingehen — висновок. Самі факти скінчилися б на першій фразі, а суцільна критика не могла б завершитися готовністю піти знову."
+      de: "Drei Sätze tragen die Bewertung, der vierte fasst sie zusammen: der Saal war voll und die Stimmung war gut sind positiv, Nur der zweite Teil war zu lang ist die eine Einschränkung, und Ich würde wieder hingehen ist das Urteil. Reine Fakten hörten nach dem ersten Satz auf."

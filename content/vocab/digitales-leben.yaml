@@ -1,0 +1,737 @@
+id: digitales-leben
+title_de: "Digitales Leben"
+title_en: "Digital life"
+title_ru: "Цифровая жизнь"
+title_uk: "Цифрове життя"
+level: B1
+# B1.11 is a genre unit: it owns no grammar point, so the deck carries the whole
+# weight of what is new here — the words an Anleitung, a Hilfetext and an
+# Online-Formular are made of, plus what you need to say how much of your day a
+# screen gets.
+#
+# Three constraints shaped the list.
+#
+# 1. The frozen contract excludes IT-specialist vocabulary, so every headword is
+#    a word a library user, not an administrator, has to read: Taste, Feld,
+#    Netz, Akku, Kabel. Nothing about protocols, operating systems or hardware
+#    beyond the plug at the end of the cable.
+# 2. The everyday digital words the learner already owns are RECYCLED in the
+#    article and in the notes below, never re-taught (the validator hard-fails a
+#    headword living in two decks): Handy, Internet, schicken, senden
+#    (kommunikation-medien, A2); Datei, online, speichern (digital-medien-a2);
+#    Computer, Formular (schule-arbeit, A2); Gerät, Fehler
+#    (einkaufen-reklamation, A2); funktionieren (haushalt-geraete, A1);
+#    Bildschirm, Meldung, Medien (meinung-medien, B1.5); Verbindung, reagieren
+#    (reisen-probleme, B1.8); anmelden, ausfüllen (aemter-dienstleistungen, A2);
+#    benutzen (verben-handlungen-a2-1). Their slots went to the neighbour this
+#    unit genuinely adds — nutzen beside benutzen, anklicken beside klicken,
+#    ausdrucken beside drucken.
+# 3. Every headword is on the Goethe-B1 Wortliste and owned by no other deck,
+#    checked with
+#    `bun scripts/coverage.ts B1 --check-deck content/vocab/digitales-leben.yaml`.
+#    No exceptions were needed, so unlike meinung-medien and
+#    gesellschaft-zusammenleben this deck is fully manifest-clean.
+#
+# Tiering, decided once and never retrofitted: the 22 entries the unit actively
+# teaches ship as `both`; the 16 below the divider are the receptive tail —
+# language you must understand on a screen but are never asked to produce, and
+# `cards: recognition` from the start because the direction is baked into the
+# card id.
+entries:
+  # --- Core (cards: both by default) --------------------------------------
+  # Reading a set of instructions, filling in a form, reporting a fault and
+  # saying how much you use what. These the learner produces.
+
+  - de: "Anleitung"
+    ipa: "ˈanˌlaɪ̯tʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Anleitungen"
+    en: "instructions, step-by-step guide"
+    ru: "инструкция, руководство"
+    uk: "інструкція, посібник"
+    example_de: "In der Anleitung stehen alle Schritte in der richtigen Reihenfolge."
+    example_en: "The instructions list every step in the right order."
+    example_ru: "В инструкции все шаги перечислены в правильном порядке."
+    example_uk: "В інструкції всі кроки перелічені в правильному порядку."
+    note:
+      en: "einer Anleitung folgen — and folgen takes the Dativ. From anleiten, to guide someone through something. On paper in a box it is usually die Bedienungsanleitung; on a screen just die Anleitung."
+      ru: "einer Anleitung folgen — и folgen требует Dativ. От anleiten — «провести кого-то через что-то». На бумаге в коробке это обычно die Bedienungsanleitung, на экране — просто die Anleitung."
+      uk: "einer Anleitung folgen — і folgen вимагає Dativ. Від anleiten — «провести когось через щось». На папері в коробці це зазвичай die Bedienungsanleitung, на екрані — просто die Anleitung."
+
+  - de: "Schritt"
+    ipa: "ˈʃʁɪt"
+    pos: noun
+    gender: m
+    plural: "die Schritte"
+    en: "step"
+    ru: "шаг"
+    uk: "крок"
+    example_de: "Beim dritten Schritt ist bei mir nichts passiert."
+    example_en: "At the third step nothing happened on my side."
+    example_ru: "На третьем шаге у меня ничего не произошло."
+    example_uk: "На третьому кроці в мене нічого не сталося."
+    note:
+      en: "Schritt für Schritt is the fixed phrase every set of instructions uses. The same word is a pace on foot: einen Schritt nach vorn. Der erste Schritt is also the first move in a plan."
+      ru: "Schritt für Schritt — устойчивое выражение, на котором держится любая инструкция. То же слово — шаг ногой: einen Schritt nach vorn. Der erste Schritt — ещё и первый ход в плане."
+      uk: "Schritt für Schritt — стале словосполучення, на якому тримається будь-яка інструкція. Те саме слово — крок ногою: einen Schritt nach vorn. Der erste Schritt — ще й перший хід у плані."
+
+  - de: "Reihenfolge"
+    ipa: "ˈʁaɪ̯ənˌfɔlgə"
+    pos: noun
+    gender: f
+    plural: "die Reihenfolgen"
+    en: "order, sequence"
+    ru: "последовательность, порядок"
+    uk: "послідовність, порядок"
+    example_de: "Halten Sie bitte die Reihenfolge ein, sonst funktioniert es nicht."
+    example_en: "Please keep to the sequence, otherwise it will not work."
+    example_ru: "Пожалуйста, соблюдайте последовательность, иначе ничего не выйдет."
+    example_uk: "Будь ласка, дотримуйтеся послідовності, інакше нічого не вийде."
+    note:
+      en: "die Reihe plus folgen: what follows what. in der richtigen Reihenfolge, in umgekehrter Reihenfolge. die Ordnung is tidiness in a room; this word is only about sequence."
+      ru: "die Reihe плюс folgen: что за чем идёт. in der richtigen Reihenfolge, in umgekehrter Reihenfolge. die Ordnung — порядок как чистота в комнате; это слово только о последовательности."
+      uk: "die Reihe плюс folgen: що за чим іде. in der richtigen Reihenfolge, in umgekehrter Reihenfolge. die Ordnung — порядок як лад у кімнаті; це слово лише про послідовність."
+
+  - de: "Taste"
+    ipa: "ˈtastə"
+    pos: noun
+    gender: f
+    plural: "die Tasten"
+    en: "key, button you press"
+    ru: "клавиша, кнопка"
+    uk: "клавіша, кнопка"
+    example_de: "Drücken Sie zwei Sekunden lang die rechte Taste."
+    example_en: "Press the right-hand button for two seconds."
+    example_ru: "Нажмите правую кнопку и держите две секунды."
+    example_uk: "Натисніть праву кнопку й тримайте дві секунди."
+    note:
+      en: "eine Taste drücken. On a keyboard, a phone or a washing machine panel. der Knopf is a knob you turn or a button on a coat; der Schlüssel only opens a door."
+      ru: "eine Taste drücken. На клавиатуре, на телефоне, на панели стиральной машины. der Knopf — ручка, которую крутят, или пуговица на пальто; der Schlüssel открывает только дверь."
+      uk: "eine Taste drücken. На клавіатурі, на телефоні, на панелі пральної машини. der Knopf — ручка, яку крутять, або ґудзик на пальті; der Schlüssel відчиняє лише двері."
+
+  - de: "Feld"
+    ipa: "ˈfɛlt"
+    pos: noun
+    gender: n
+    plural: "die Felder"
+    en: "field, box on a form"
+    ru: "поле, графа в формуляре"
+    uk: "поле, графа у формулярі"
+    example_de: "Das Feld mit dem Stern darf nicht leer bleiben."
+    example_en: "The box with the star must not be left empty."
+    example_ru: "Графу со звёздочкой нельзя оставлять пустой."
+    example_uk: "Графу із зірочкою не можна лишати порожньою."
+    note:
+      en: "ein Feld ausfüllen; ein Pflichtfeld is one you may not skip. Out of town the same word is a field of wheat, which is where the picture comes from: a fenced-off area."
+      ru: "ein Feld ausfüllen; ein Pflichtfeld — обязательное для заполнения. За городом то же слово — поле с пшеницей, откуда и образ: огороженный участок."
+      uk: "ein Feld ausfüllen; ein Pflichtfeld — обов'язкове для заповнення. За містом те саме слово — поле з пшеницею, звідки й образ: обгороджена ділянка."
+
+  - de: "Zugang"
+    ipa: "ˈtsuːˌgaŋ"
+    pos: noun
+    gender: m
+    plural: "die Zugänge"
+    en: "access (to a network, a building or an offer)"
+    en_compact: "access"
+    ru: "доступ (к сети, зданию или услуге)"
+    uk: "доступ (до мережі, будівлі чи послуги)"
+    example_de: "Ohne Ausweisnummer bekommen Sie keinen Zugang zur App."
+    example_en: "Without a card number you will not get access to the app."
+    example_ru: "Без номера билета доступ к приложению вы не получите."
+    example_uk: "Без номера квитка доступу до застосунку ви не отримаєте."
+    note:
+      en: "Zugang zu + Dat. Built from zugehen, to go up to something. A physical entrance uses the same word: der Zugang zum Hof ist gesperrt."
+      ru: "Zugang zu + Dat. От zugehen — «подойти к чему-то». О физическом входе то же слово: der Zugang zum Hof ist gesperrt."
+      uk: "Zugang zu + Dat. Від zugehen — «підійти до чогось». Про фізичний вхід те саме слово: der Zugang zum Hof ist gesperrt."
+
+  - de: "Akku"
+    ipa: "ˈakʊ"
+    pos: noun
+    gender: m
+    plural: "die Akkus"
+    en: "rechargeable battery"
+    ru: "аккумулятор"
+    uk: "акумулятор"
+    example_de: "Mein Akku ist schon am Mittag leer."
+    example_en: "My battery is empty by midday."
+    example_ru: "У меня аккумулятор садится уже к обеду."
+    example_uk: "У мене акумулятор сідає вже до обіду."
+    note:
+      en: "Short for der Akkumulator, and the everyday form. The difference that matters: this one you charge again, die Batterie you throw away. Der Akku ist leer, der Akku lädt nicht."
+      ru: "Сокращение от der Akkumulator и обычная форма в речи. Важное отличие: этот заряжают снова, а die Batterie выбрасывают. Der Akku ist leer, der Akku lädt nicht."
+      uk: "Скорочення від der Akkumulator і звична форма в мовленні. Важлива відмінність: цей заряджають знову, а die Batterie викидають. Der Akku ist leer, der Akku lädt nicht."
+
+  - de: "Kabel"
+    ipa: "ˈkaːbl̩"
+    pos: noun
+    gender: n
+    plural: "die Kabel"
+    en: "cable, lead"
+    ru: "кабель, провод"
+    uk: "кабель, провід"
+    example_de: "Am Kabel lädt das Handy noch, ohne Kabel nicht mehr."
+    example_en: "On the lead the phone still charges, without it no longer."
+    example_ru: "От провода телефон ещё заряжается, без него уже нет."
+    example_uk: "Від проводу телефон ще заряджається, без нього вже ні."
+    note:
+      en: "Neuter, and the plural looks like the singular: die Kabel. das Ladekabel is the one for charging; der Stecker sits on its end."
+      ru: "Средний род, множественное число совпадает с единственным: die Kabel. das Ladekabel — зарядный; der Stecker сидит на его конце."
+      uk: "Середній рід, множина збігається з одниною: die Kabel. das Ladekabel — зарядний; der Stecker сидить на його кінці."
+
+  - de: "Netz"
+    ipa: "ˈnɛts"
+    pos: noun
+    gender: n
+    plural: "die Netze"
+    en: "network; mobile reception (the everyday word for WLAN and the internet too)"
+    en_compact: "network; reception"
+    ru: "сеть; связь (то же слово для вайфая и интернета)"
+    uk: "мережа; зв'язок (те саме слово для вайфаю та інтернету)"
+    example_de: "Im Keller habe ich kein Netz."
+    example_en: "I have no reception in the basement."
+    example_ru: "В подвале у меня нет связи."
+    example_uk: "У підвалі в мене немає зв'язку."
+    note:
+      en: "kein Netz haben covers a dead phone signal, a dropped WLAN and no internet at once — German does not separate them in everyday speech. The oldest sense is still there: ein Netz zum Fischen."
+      ru: "kein Netz haben покрывает сразу и пропавшую мобильную связь, и отвалившийся вайфай, и отсутствие интернета — в быту немецкий их не разделяет. Древнее значение никуда не делось: ein Netz zum Fischen."
+      uk: "kein Netz haben покриває водночас і зниклий мобільний зв'язок, і відпалий вайфай, і відсутність інтернету — у побуті німецька їх не розділяє. Найдавніше значення нікуди не поділося: ein Netz zum Fischen."
+
+  - de: "Technik"
+    ipa: "ˈtɛçnɪk"
+    pos: noun
+    gender: f
+    plural: "die Techniken"
+    en: "technology, equipment; technique"
+    ru: "техника, оборудование; приём"
+    uk: "техніка, обладнання; прийом"
+    example_de: "Mit der Technik im Büro komme ich gut zurecht."
+    example_en: "I get on well with the equipment in the office."
+    example_ru: "С техникой в офисе я справляюсь неплохо."
+    example_uk: "З технікою в офісі я даю раду непогано."
+    note:
+      en: "In the sense of technology it stays singular; the plural die Techniken means single methods, eine Technik zum Auswendiglernen. The person who repairs it is der Techniker."
+      ru: "В значении «техника вообще» слово остаётся в единственном числе; множественное die Techniken — это отдельные приёмы, eine Technik zum Auswendiglernen. Тот, кто чинит, — der Techniker."
+      uk: "У значенні «техніка загалом» слово лишається в однині; множина die Techniken — це окремі прийоми, eine Technik zum Auswendiglernen. Той, хто лагодить, — der Techniker."
+
+  - de: "folgen"
+    ipa: "ˈfɔlgn̩"
+    pos: verb
+    praesens_3sg: "folgt"
+    partizip2: "gefolgt"
+    aux: sein
+    valence: "+ Dat"
+    en: "to follow, to go along with step by step"
+    ru: "следовать, идти следом"
+    uk: "прямувати слідом, дотримуватися"
+    example_de: "Ich bin der Anleitung genau gefolgt."
+    example_en: "I followed the instructions exactly."
+    example_ru: "Я в точности следовал инструкции."
+    example_uk: "Я точно дотримувався інструкції."
+    note:
+      en: "Perfekt with sein: Ich bin der Anleitung gefolgt. What you follow stands in the Dativ, with no preposition. Only in the sense of obeying does it take haben: Das Kind hat nicht gefolgt."
+      ru: "Перфект с sein: Ich bin der Anleitung gefolgt. То, чему следуют, стоит в Dativ и без предлога. Только в значении «слушаться» берётся haben: Das Kind hat nicht gefolgt."
+      uk: "Перфект із sein: Ich bin der Anleitung gefolgt. Те, чого дотримуються, стоїть у Dativ і без прийменника. Лише у значенні «слухатися» береться haben: Das Kind hat nicht gefolgt."
+
+  - de: "klicken"
+    ipa: "ˈklɪkn̩"
+    pos: verb
+    praesens_3sg: "klickt"
+    partizip2: "geklickt"
+    aux: haben
+    valence: "auf + Akk"
+    en: "to click"
+    ru: "щёлкать, нажимать"
+    uk: "клацати, натискати"
+    example_de: "Klicken Sie auf das Symbol oben rechts."
+    example_en: "Click the icon at the top right."
+    example_ru: "Нажмите на значок в правом верхнем углу."
+    example_uk: "Натисніть на значок у правому верхньому куті."
+    note:
+      en: "auf etwas klicken — with the preposition and the Akkusativ. The prefixed anklicken takes a plain object instead: das Feld anklicken. The noun is der Klick."
+      ru: "auf etwas klicken — с предлогом и Akkusativ. Приставочный anklicken берёт прямое дополнение: das Feld anklicken. Существительное — der Klick."
+      uk: "auf etwas klicken — із прийменником і Akkusativ. Префіксальний anklicken бере прямий додаток: das Feld anklicken. Іменник — der Klick."
+
+  - de: "angeben"
+    ipa: "ˈanˌgeːbn̩"
+    pos: verb
+    praesens_3sg: "gibt an"
+    partizip2: "angegeben"
+    aux: haben
+    valence: "+ Akk"
+    en: "to state, to enter on a form"
+    ru: "указывать, вносить в формуляр"
+    uk: "зазначати, вносити у формуляр"
+    example_de: "Bitte geben Sie Ihre Telefonnummer an."
+    example_en: "Please state your telephone number."
+    example_ru: "Пожалуйста, укажите свой номер телефона."
+    example_uk: "Будь ласка, зазначте свій номер телефону."
+    note:
+      en: "Separable and strong: gibt an, hat angegeben. geben hands something over; angeben names it in writing. The noun is die Angabe. Colloquially the same verb also means to show off."
+      ru: "Отделяемая приставка, сильный глагол: gibt an, hat angegeben. geben — передать в руки, angeben — назвать письменно. Существительное — die Angabe. В разговорной речи этот же глагол значит «хвастаться»."
+      uk: "Відокремлюваний префікс, сильне дієслово: gibt an, hat angegeben. geben — передати до рук, angeben — назвати письмово. Іменник — die Angabe. У розмовній мові це саме дієслово означає «хизуватися»."
+
+  - de: "auswählen"
+    ipa: "ˈaʊ̯sˌvɛːlən"
+    pos: verb
+    praesens_3sg: "wählt aus"
+    partizip2: "ausgewählt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to select, to pick one from several"
+    ru: "выбирать из нескольких"
+    uk: "вибирати з кількох"
+    example_de: "Wählen Sie bitte Ihr Geburtsjahr aus."
+    example_en: "Please select your year of birth."
+    example_ru: "Пожалуйста, выберите год рождения."
+    example_uk: "Будь ласка, виберіть рік народження."
+    note:
+      en: "Separable and regular: wählt aus, hat ausgewählt. wählen alone covers voting and dialling a number; auswählen always means taking one out of a set that is already there — a list, a menu, a shelf."
+      ru: "Отделяемая приставка, правильный глагол: wählt aus, hat ausgewählt. Один wählen — это и голосовать, и набирать номер; auswählen всегда значит взять одно из уже готового набора: списка, меню, полки."
+      uk: "Відокремлюваний префікс, правильне дієслово: wählt aus, hat ausgewählt. Саме wählen — це й голосувати, і набирати номер; auswählen завжди означає взяти одне з уже готового набору: списку, меню, полиці."
+
+  - de: "bedienen"
+    ipa: "bəˈdiːnən"
+    pos: verb
+    praesens_3sg: "bedient"
+    partizip2: "bedient"
+    aux: haben
+    valence: "+ Akk"
+    en: "to operate, to work a machine; to serve a customer"
+    ru: "управлять прибором; обслуживать посетителя"
+    uk: "керувати приладом; обслуговувати відвідувача"
+    example_de: "Die neue Kaffeemaschine ist leicht zu bedienen."
+    example_en: "The new coffee machine is easy to operate."
+    example_ru: "Новой кофемашиной легко управлять."
+    example_uk: "Новою кавовою машиною легко керувати."
+    note:
+      en: "Inseparable, so no ge-: hat bedient. Both senses meet in die Bedienung, which is the waiter in a café and the controls on a device. Hence die Bedienungsanleitung."
+      ru: "Неотделяемая приставка, поэтому без ge-: hat bedient. Оба значения сходятся в die Bedienung — это и официант в кафе, и управление прибором. Отсюда die Bedienungsanleitung."
+      uk: "Невідокремлюваний префікс, тому без ge-: hat bedient. Обидва значення сходяться в die Bedienung — це й офіціант у кав'ярні, і керування приладом. Звідси die Bedienungsanleitung."
+
+  - de: "einschalten"
+    ipa: "ˈaɪ̯nˌʃaltn̩"
+    pos: verb
+    praesens_3sg: "schaltet ein"
+    partizip2: "eingeschaltet"
+    aux: haben
+    valence: "+ Akk"
+    en: "to switch on"
+    ru: "включать"
+    uk: "вмикати"
+    example_de: "Schalten Sie das Gerät erst nach dem Laden wieder ein."
+    example_en: "Switch the device back on only after charging."
+    example_ru: "Включайте прибор снова только после зарядки."
+    example_uk: "Вмикайте пристрій знову лише після заряджання."
+    note:
+      en: "Separable: schaltet ein, hat eingeschaltet. Its pair is ausschalten. In relaxed speech people say anmachen and ausmachen; an Anleitung keeps to einschalten."
+      ru: "Отделяемая приставка: schaltet ein, hat eingeschaltet. Пара — ausschalten. В непринуждённой речи говорят anmachen и ausmachen; инструкция держится за einschalten."
+      uk: "Відокремлюваний префікс: schaltet ein, hat eingeschaltet. Пара — ausschalten. У невимушеній мові кажуть anmachen і ausmachen; інструкція тримається einschalten."
+
+  - de: "aufladen"
+    ipa: "ˈaʊ̯fˌlaːdn̩"
+    pos: verb
+    praesens_3sg: "lädt auf"
+    partizip2: "aufgeladen"
+    aux: haben
+    valence: "+ Akk"
+    en: "to charge up"
+    ru: "заряжать"
+    uk: "заряджати"
+    example_de: "Über Nacht lade ich das Handy nicht mehr auf."
+    example_en: "I no longer charge the phone overnight."
+    example_ru: "На ночь телефон я больше не заряжаю."
+    example_uk: "На ніч телефон я більше не заряджаю."
+    note:
+      en: "Separable and strong, with the vowel change of laden: er lädt auf, never ladet. The same verb loads goods onto a lorry, and etwas aufladen bekommen is what a battery does to itself."
+      ru: "Отделяемая приставка, сильный глагол с чередованием, как у laden: er lädt auf, но никогда ladet. Тот же глагол — грузить товар на машину."
+      uk: "Відокремлюваний префікс, сильне дієслово з чергуванням, як у laden: er lädt auf, але ніколи ladet. Те саме дієслово — вантажити товар на машину."
+
+  - de: "löschen"
+    ipa: "ˈlœʃn̩"
+    pos: verb
+    praesens_3sg: "löscht"
+    partizip2: "gelöscht"
+    aux: haben
+    valence: "+ Akk"
+    en: "to delete; to put out a fire"
+    ru: "удалять; тушить"
+    uk: "видаляти; гасити"
+    example_de: "Ich habe die alten Nachrichten gelöscht."
+    example_en: "I have deleted the old messages."
+    example_ru: "Я удалил старые сообщения."
+    example_uk: "Я видалив старі повідомлення."
+    note:
+      en: "One verb for both: eine Datei löschen and ein Feuer löschen. Regular: löscht, hat gelöscht. What is gone for good is unwiderruflich gelöscht."
+      ru: "Один глагол на оба случая: eine Datei löschen и ein Feuer löschen. Правильный: löscht, hat gelöscht. То, что пропало навсегда, — unwiderruflich gelöscht."
+      uk: "Одне дієслово на обидва випадки: eine Datei löschen і ein Feuer löschen. Правильне: löscht, hat gelöscht. Те, що зникло назавжди, — unwiderruflich gelöscht."
+
+  - de: "ausdrucken"
+    ipa: "ˈaʊ̯sˌdʁʊkn̩"
+    pos: verb
+    praesens_3sg: "druckt aus"
+    partizip2: "ausgedruckt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to print out"
+    ru: "распечатывать"
+    uk: "роздруковувати"
+    example_de: "Drucken Sie die Bestätigung bitte zweimal aus."
+    example_en: "Please print the confirmation twice."
+    example_ru: "Распечатайте, пожалуйста, подтверждение в двух экземплярах."
+    example_uk: "Роздрукуйте, будь ласка, підтвердження у двох примірниках."
+    note:
+      en: "Separable: druckt aus, hat ausgedruckt. drucken alone is what a printing house does to a book; ausdrucken is what your own printer does to one page. The sheet in your hand is der Ausdruck, plural die Ausdrucke."
+      ru: "Отделяемая приставка: druckt aus, hat ausgedruckt. Один drucken — это типография и книга; ausdrucken — ваш принтер и один лист. Лист в руке — der Ausdruck, множественное число die Ausdrucke."
+      uk: "Відокремлюваний префікс: druckt aus, hat ausgedruckt. Саме drucken — це друкарня і книжка; ausdrucken — ваш принтер і один аркуш. Аркуш у руці — der Ausdruck, множина die Ausdrucke."
+
+  - de: "nutzen"
+    ipa: "ˈnʊtsn̩"
+    pos: verb
+    praesens_3sg: "nutzt"
+    partizip2: "genutzt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to make use of, to take advantage of"
+    ru: "пользоваться, использовать возможность"
+    uk: "користуватися, використовувати нагоду"
+    example_de: "Ich nutze die Bahnfahrt fast immer zum Lesen."
+    example_en: "I nearly always use the train ride for reading."
+    example_ru: "Дорогу в поезде я почти всегда использую для чтения."
+    example_uk: "Дорогу в потязі я майже завжди використовую для читання."
+    note:
+      en: "benutzen is holding a thing and working it; this verb is making use of what something offers, which is why time, chances and offers are always genutzt. Es nutzt nichts means there is no point."
+      ru: "benutzen — взять вещь в руки и ею действовать; этот глагол — воспользоваться тем, что что-то даёт, поэтому время, шансы и предложения всегда genutzt. Es nutzt nichts — «без толку»."
+      uk: "benutzen — узяти річ до рук і нею діяти; це дієслово — скористатися тим, що щось дає, тому час, нагоди й пропозиції завжди genutzt. Es nutzt nichts — «марно»."
+
+  - de: "technisch"
+    ipa: "ˈtɛçnɪʃ"
+    pos: adj
+    en: "technical"
+    ru: "технический"
+    uk: "технічний"
+    example_de: "Wir haben ein technisches Problem mit der App."
+    example_en: "We have a technical problem with the app."
+    example_ru: "У нас техническая проблема с приложением."
+    example_uk: "У нас технічна проблема із застосунком."
+    note:
+      en: "ein technisches Problem is the opening line of nearly every help request. From die Technik. As an adverb it narrows a claim: Technisch gesehen ist das richtig."
+      ru: "ein technisches Problem — начало почти любого обращения в поддержку. От die Technik. Как наречие сужает утверждение: Technisch gesehen ist das richtig."
+      uk: "ein technisches Problem — початок майже будь-якого звернення до підтримки. Від die Technik. Як прислівник звужує твердження: Technisch gesehen ist das richtig."
+
+  - de: "digital"
+    ipa: "digiˈtaːl"
+    pos: adj
+    en: "digital"
+    ru: "цифровой"
+    uk: "цифровий"
+    example_de: "Zeitung lese ich inzwischen nur noch digital."
+    example_en: "I now read the paper only on a screen."
+    example_ru: "Газету я теперь читаю только с экрана."
+    example_uk: "Газету я тепер читаю тільки з екрана."
+    note:
+      en: "Its opposite is analog. Works as an adverb without changing shape: digital lesen, digital bezahlen. Stress on the last syllable."
+      ru: "Противоположность — analog. Работает и как наречие без изменения формы: digital lesen, digital bezahlen. Ударение на последнем слоге."
+      uk: "Протилежність — analog. Працює і як прислівник без зміни форми: digital lesen, digital bezahlen. Наголос на останньому складі."
+
+  # --- Receptive tail (cards: recognition) --------------------------------
+  # What a screen, a help page and a device box say to you. Understood, never
+  # demanded back. Declared recognition from the start, never retrofitted.
+
+  - de: "Bedienungsanleitung"
+    ipa: "bəˈdiːnʊŋsˌʔanlaɪ̯tʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Bedienungsanleitungen"
+    cards: recognition
+    en: "user manual"
+    ru: "руководство по эксплуатации"
+    uk: "інструкція з експлуатації"
+    example_de: "Die Bedienungsanleitung liegt noch in der Schachtel."
+    example_en: "The manual is still in the box."
+    example_ru: "Руководство всё ещё лежит в коробке."
+    example_uk: "Керівництво все ще лежить у коробці."
+    note:
+      en: "die Bedienung plus die Anleitung, with a linking s. The printed booklet that comes with a device; a short guide on a screen is just die Anleitung."
+      ru: "die Bedienung плюс die Anleitung, со связующим s. Печатная книжечка из коробки; короткая подсказка на экране — просто die Anleitung."
+      uk: "die Bedienung плюс die Anleitung, зі сполучним s. Друкована книжечка з коробки; коротка підказка на екрані — просто die Anleitung."
+
+  - de: "anklicken"
+    ipa: "ˈanˌklɪkn̩"
+    pos: verb
+    praesens_3sg: "klickt an"
+    partizip2: "angeklickt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to click on something"
+    ru: "щёлкнуть по чему-либо"
+    uk: "клацнути по чомусь"
+    example_de: "Klicken Sie das kleine Feld links an."
+    example_en: "Click the small box on the left."
+    example_ru: "Щёлкните по маленькой графе слева."
+    example_uk: "Клацніть по маленькій графі ліворуч."
+    note:
+      en: "Separable: klickt an, hat angeklickt. The prefix swallows the preposition, so this verb takes a plain Akkusativ where klicken needs auf."
+      ru: "Отделяемая приставка: klickt an, hat angeklickt. Приставка поглощает предлог, поэтому этот глагол берёт прямой Akkusativ там, где klicken требует auf."
+      uk: "Відокремлюваний префікс: klickt an, hat angeklickt. Префікс поглинає прийменник, тому це дієслово бере прямий Akkusativ там, де klicken потребує auf."
+
+  - de: "hochladen"
+    ipa: "ˈhoːxˌlaːdn̩"
+    pos: verb
+    praesens_3sg: "lädt hoch"
+    partizip2: "hochgeladen"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to upload"
+    ru: "загружать на сервер"
+    uk: "завантажувати на сервер"
+    example_de: "Laden Sie bitte ein Foto von Ihrem Ausweis hoch."
+    example_en: "Please upload a photo of your identity card."
+    example_ru: "Загрузите, пожалуйста, фотографию удостоверения."
+    example_uk: "Завантажте, будь ласка, фотографію посвідчення."
+    note:
+      en: "Separable and strong, like aufladen: lädt hoch, hat hochgeladen. Its opposite is herunterladen, which German shortens to downloaden only in speech."
+      ru: "Отделяемая приставка, сильный глагол, как aufladen: lädt hoch, hat hochgeladen. Противоположность — herunterladen; сокращение downloaden живёт только в разговоре."
+      uk: "Відокремлюваний префікс, сильне дієслово, як aufladen: lädt hoch, hat hochgeladen. Протилежність — herunterladen; скорочення downloaden живе лише в розмові."
+
+  - de: "installieren"
+    ipa: "ɪnstaˈliːʁən"
+    pos: verb
+    praesens_3sg: "installiert"
+    partizip2: "installiert"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to install"
+    ru: "устанавливать"
+    uk: "встановлювати"
+    example_de: "Zuerst wird die App installiert, danach melden Sie sich an."
+    example_en: "First the app is installed, then you sign in."
+    example_ru: "Сначала устанавливают приложение, затем вы входите в него."
+    example_uk: "Спершу встановлюють застосунок, потім ви входите в нього."
+    note:
+      en: "Verbs in -ieren build the Partizip II without ge-: hat installiert. It covers a plumber fitting a boiler just as well as software."
+      ru: "Глаголы на -ieren образуют Partizip II без ge-: hat installiert. Слово годится и для сантехника с котлом, и для программы."
+      uk: "Дієслова на -ieren утворюють Partizip II без ge-: hat installiert. Слово годиться і для сантехніка з котлом, і для програми."
+
+  - de: "sichern"
+    ipa: "ˈzɪçɐn"
+    pos: verb
+    praesens_3sg: "sichert"
+    partizip2: "gesichert"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to back up; to make safe"
+    ru: "сохранять резервную копию; обезопасить"
+    uk: "зберігати резервну копію; убезпечити"
+    example_de: "Sichern Sie Ihre Bilder, bevor Sie das Handy zurücksetzen."
+    example_en: "Back up your pictures before you reset the phone."
+    example_ru: "Сохраните копию снимков, прежде чем сбрасывать телефон."
+    example_uk: "Збережіть копію знімків, перш ніж скидати телефон."
+    note:
+      en: "From sicher. speichern puts a file somewhere; sichern makes a second copy in case the first is lost. The copy itself is die Sicherung."
+      ru: "От sicher. speichern кладёт файл куда-то; sichern делает вторую копию на случай потери первой. Сама копия — die Sicherung."
+      uk: "Від sicher. speichern кладе файл кудись; sichern робить другу копію на випадок утрати першої. Сама копія — die Sicherung."
+
+  - de: "tippen"
+    ipa: "ˈtɪpn̩"
+    pos: verb
+    praesens_3sg: "tippt"
+    partizip2: "getippt"
+    aux: haben
+    valence: "+ Akk; auf + Akk"
+    cards: recognition
+    en: "to type; to tap"
+    ru: "печатать; касаться экрана"
+    uk: "друкувати; торкатися екрана"
+    example_de: "Tippen Sie die Nummer ohne Leerzeichen."
+    example_en: "Type the number without spaces."
+    example_ru: "Наберите номер без пробелов."
+    example_uk: "Наберіть номер без пробілів."
+    note:
+      en: "Regular: tippt, hat getippt. On a screen it is auf etwas tippen. A third sense is guessing a result: Ich tippe auf morgen."
+      ru: "Правильный глагол: tippt, hat getippt. По экрану — auf etwas tippen. Третье значение — предполагать: Ich tippe auf morgen."
+      uk: "Правильне дієслово: tippt, hat getippt. По екрану — auf etwas tippen. Третє значення — припускати: Ich tippe auf morgen."
+
+  - de: "zuschauen"
+    ipa: "ˈtsuːˌʃaʊ̯ən"
+    pos: verb
+    praesens_3sg: "schaut zu"
+    partizip2: "zugeschaut"
+    aux: haben
+    valence: "+ Dat"
+    cards: recognition
+    en: "to watch, to look on"
+    ru: "смотреть со стороны, наблюдать"
+    uk: "дивитися збоку, спостерігати"
+    example_de: "Meine Tochter schaut mir beim Kochen gern zu."
+    example_en: "My daughter likes watching me cook."
+    example_ru: "Дочь любит смотреть, как я готовлю."
+    example_uk: "Донька любить дивитися, як я готую."
+    note:
+      en: "Separable: schaut zu, hat zugeschaut. The person watched stands in the Dativ. It is watching without joining in — a film is instead ansehen or schauen."
+      ru: "Отделяемая приставка: schaut zu, hat zugeschaut. Тот, за кем наблюдают, стоит в Dativ. Это наблюдение со стороны, без участия; фильм — это ansehen или schauen."
+      uk: "Відокремлюваний префікс: schaut zu, hat zugeschaut. Той, за ким спостерігають, стоїть у Dativ. Це спостереження збоку, без участі; фільм — це ansehen або schauen."
+
+  - de: "Software"
+    ipa: "ˈsɔftˌvɛːɐ̯"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: "software"
+    ru: "программное обеспечение"
+    uk: "програмне забезпечення"
+    example_de: "Die Software auf dem Rechner ist zwei Jahre alt."
+    example_en: "The software on the machine is two years old."
+    example_ru: "Программы на этом компьютере двухлетней давности."
+    example_uk: "Програми на цьому комп'ютері дворічної давності."
+    note:
+      en: "An English loan that keeps English sounds and takes die. Used in the singular only; its counterpart is die Hardware."
+      ru: "Английское заимствование: звучит по-английски и берёт артикль die. Употребляется только в единственном числе; пара — die Hardware."
+      uk: "Англійське запозичення: звучить по-англійському і бере артикль die. Уживається лише в однині; пара — die Hardware."
+
+  - de: "Stecker"
+    ipa: "ˈʃtɛkɐ"
+    pos: noun
+    gender: m
+    plural: "die Stecker"
+    cards: recognition
+    en: "plug"
+    ru: "штекер, вилка"
+    uk: "штекер, вилка"
+    example_de: "Ziehen Sie den Stecker heraus und warten Sie zehn Sekunden."
+    example_en: "Pull the plug out and wait ten seconds."
+    example_ru: "Выньте вилку и подождите десять секунд."
+    example_uk: "Вийміть вилку й зачекайте десять секунд."
+    note:
+      en: "From stecken, to put into something. The plural looks like the singular. What it goes into is die Steckdose."
+      ru: "От stecken — «вставлять». Множественное число совпадает с единственным. То, куда вставляют, — die Steckdose."
+      uk: "Від stecken — «вставляти». Множина збігається з одниною. Те, куди вставляють, — die Steckdose."
+
+  - de: "Symbol"
+    ipa: "zʏmˈboːl"
+    pos: noun
+    gender: n
+    plural: "die Symbole"
+    cards: recognition
+    en: "icon; symbol"
+    ru: "значок; символ"
+    uk: "значок; символ"
+    example_de: "Das Symbol oben rechts öffnet die Einstellungen."
+    example_en: "The icon at the top right opens the settings."
+    example_ru: "Значок в правом верхнем углу открывает настройки."
+    example_uk: "Значок у правому верхньому куті відкриває налаштування."
+    note:
+      en: "Neuter, stress on the last syllable. On a screen it is the little picture you press; outside one it is anything that stands for something else."
+      ru: "Средний род, ударение на последнем слоге. На экране это картинка, по которой нажимают; вне экрана — всё, что стоит вместо чего-то другого."
+      uk: "Середній рід, наголос на останньому складі. На екрані це картинка, по якій натискають; поза екраном — усе, що стоїть замість чогось іншого."
+
+  - de: "Menü"
+    ipa: "meˈnyː"
+    pos: noun
+    gender: n
+    plural: "die Menüs"
+    cards: recognition
+    en: "menu, list of options"
+    ru: "меню, список пунктов"
+    uk: "меню, список пунктів"
+    example_de: "Im Menü finden Sie den Punkt „Sprache\"."
+    example_en: "In the menu you will find the item \"Language\"."
+    example_ru: "В меню вы найдёте пункт «Язык»."
+    example_uk: "У меню ви знайдете пункт «Мова»."
+    note:
+      en: "Neuter, plural die Menüs, stress on the last syllable. In a restaurant the same word is the set meal of the day, not the card you order from — that is die Karte."
+      ru: "Средний род, множественное die Menüs, ударение на последнем слоге. В ресторане то же слово — комплексный обед, а не то, из чего заказывают: это die Karte."
+      uk: "Середній рід, множина die Menüs, наголос на останньому складі. У ресторані те саме слово — комплексний обід, а не те, з чого замовляють: це die Karte."
+
+  - de: "Textnachricht"
+    ipa: "ˈtɛkstˌnaːxʁɪçt"
+    pos: noun
+    gender: f
+    plural: "die Textnachrichten"
+    cards: recognition
+    en: "text message"
+    ru: "текстовое сообщение"
+    uk: "текстове повідомлення"
+    example_de: "Eine kurze Textnachricht reicht mir völlig."
+    example_en: "A short text message is quite enough for me."
+    example_ru: "Короткого текстового сообщения мне вполне хватает."
+    example_uk: "Короткого текстового повідомлення мені цілком вистачає."
+    note:
+      en: "der Text plus die Nachricht — the plain German name for what most people call eine SMS."
+      ru: "der Text плюс die Nachricht — обычное немецкое название того, что почти все зовут eine SMS."
+      uk: "der Text плюс die Nachricht — звичайна німецька назва того, що майже всі звуть eine SMS."
+
+  - de: "Serie"
+    ipa: "ˈzeːʁi̯ə"
+    pos: noun
+    gender: f
+    plural: "die Serien"
+    cards: recognition
+    en: "series"
+    ru: "сериал; серия"
+    uk: "серіал; серія"
+    example_de: "Abends schaue ich höchstens eine Folge einer Serie."
+    example_en: "In the evening I watch one episode at most."
+    example_ru: "Вечером я смотрю самое большее одну серию."
+    example_uk: "Увечері я дивлюся щонайбільше одну серію."
+    note:
+      en: "Two syllables, not three: the -ie is a glide, Se-rie. One instalment of it is die Folge. Outside television it is any run of like things: eine Serie von Fragen."
+      ru: "Два слога, а не три: -ie здесь скользящий звук, Se-rie. Отдельная часть — die Folge. Вне телевидения это любой ряд однородного: eine Serie von Fragen."
+      uk: "Два склади, а не три: -ie тут ковзний звук, Se-rie. Окрема частина — die Folge. Поза телебаченням це будь-який ряд однорідного: eine Serie von Fragen."
+
+  - de: "Unterhaltung"
+    ipa: "ʊntɐˈhaltʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Unterhaltungen"
+    cards: recognition
+    en: "entertainment; conversation"
+    ru: "развлечение; беседа"
+    uk: "розвага; бесіда"
+    example_de: "Das Handy nutze ich vor allem zur Unterhaltung."
+    example_en: "I use my phone mainly for entertainment."
+    example_ru: "Телефоном я пользуюсь в основном для развлечения."
+    example_uk: "Телефоном я користуюся здебільшого для розваги."
+    note:
+      en: "zur Unterhaltung is the entertainment sense; eine Unterhaltung führen is the talking one. Both come from sich unterhalten, which itself carries the same two meanings."
+      ru: "zur Unterhaltung — значение «развлечение»; eine Unterhaltung führen — «беседа». Оба идут от sich unterhalten, у которого те же два смысла."
+      uk: "zur Unterhaltung — значення «розвага»; eine Unterhaltung führen — «бесіда». Обидва йдуть від sich unterhalten, у якого ті самі два сенси."
+
+  - de: "Fernbedienung"
+    ipa: "ˈfɛʁnbəˌdiːnʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Fernbedienungen"
+    cards: recognition
+    en: "remote control"
+    ru: "пульт"
+    uk: "пульт"
+    example_de: "Die Fernbedienung liegt immer unter dem Kissen."
+    example_en: "The remote is always under the cushion."
+    example_ru: "Пульт всегда лежит под подушкой."
+    example_uk: "Пульт завжди лежить під подушкою."
+    note:
+      en: "fern plus die Bedienung: operating something from a distance. Almost always in the singular, because a household has one."
+      ru: "fern плюс die Bedienung: управление на расстоянии. Почти всегда в единственном числе — в доме он один."
+      uk: "fern плюс die Bedienung: керування на відстані. Майже завжди в однині — у домі він один."
+
+  - de: "abhängig"
+    ipa: "ˈapˌhɛŋɪç"
+    pos: adj
+    cards: recognition
+    en: "dependent, reliant"
+    ru: "зависимый"
+    uk: "залежний"
+    example_de: "Vom Handy bin ich abends leider ziemlich abhängig."
+    example_en: "In the evening I am unfortunately rather reliant on my phone."
+    example_ru: "По вечерам я, к сожалению, довольно завишу от телефона."
+    example_uk: "Вечорами я, на жаль, досить залежу від телефона."
+    note:
+      en: "von etwas abhängig sein — the thing depended on takes von and the Dativ. Its opposite is unabhängig, and the noun is die Abhängigkeit."
+      ru: "von etwas abhängig sein — то, от чего зависят, вводит von с Dativ. Противоположность — unabhängig, существительное — die Abhängigkeit."
+      uk: "von etwas abhängig sein — те, від чого залежать, вводить von з Dativ. Протилежність — unabhängig, іменник — die Abhängigkeit."
