@@ -1,0 +1,751 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the first third of
+# the action verbs of data/goethe-b1-wortliste.txt — what hands and bodies do to
+# things: lifting and gripping them, pushing and throwing them, moving through space,
+# and the ways a thing grows, vanishes or breaks.
+id: verben-handlungen-b1-1
+title_de: "Handlungen: greifen, bewegen, verändern"
+title_en: "Actions: gripping, moving, changing"
+title_ru: "Действия: взять, сдвинуть, изменить"
+title_uk: "Дії: взяти, зрушити, змінити"
+level: B1
+entries:
+  # --- Was die Hände tun: heben, greifen, halten ---
+  - de: heben
+    ipa: "ˈheːbn̩"
+    pos: verb
+    praesens_3sg: hebt
+    partizip2: gehoben
+    aux: haben
+    valence: "+ Akk"
+    en: to lift
+    ru: поднимать
+    uk: піднімати
+    example_de: Heben Sie den Karton bitte nicht allein.
+    example_en: Please do not lift the box on your own.
+    example_ru: Пожалуйста, не поднимайте коробку в одиночку.
+    example_uk: Будь ласка, не піднімайте коробку самі.
+    note:
+      en: 'Strong verb: hebt, hob, hat gehoben. It is the plain physical lift — something leaves the ground because you apply force. The everyday spoken form is usually hochheben, and the separable prefix is where the stress goes. Figurative uses exist (die Stimmung heben, den Lebensstandard heben), but the picture underneath is always the same upward movement.'
+      ru: 'Сильный глагол: hebt, hob, hat gehoben. Это чисто физический подъём: предмет отрывается от опоры, потому что вы прикладываете силу. В разговорной речи чаще звучит hochheben, и ударение падает на отделяемую приставку. Переносные значения есть (die Stimmung heben, den Lebensstandard heben), но за ними стоит всё то же движение вверх.'
+      uk: 'Сильне дієслово: hebt, hob, hat gehoben. Це суто фізичне піднімання: предмет відривається від опори, бо ви прикладаєте силу. У розмовній мові частіше звучить hochheben, і наголос падає на відокремлюваний префікс. Переносні значення є (die Stimmung heben, den Lebensstandard heben), але за ними стоїть той самий рух угору.'
+
+  - de: aufheben
+    ipa: "ˈaʊ̯fˌheːbn̩"
+    pos: verb
+    praesens_3sg: hebt auf
+    partizip2: aufgehoben
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: the headword carries two jobs one example cannot hold —
+    # picking a thing up off the floor, and keeping a thing instead of throwing it
+    # away — and each has a different answer in EN and RU. That is the
+    # `unheimlich`/`intensiv` ruling from eigenschaften-bewertung-b1.
+    cards: recognition
+    en: to pick up (off the ground); to keep, to save
+    en_compact: to pick up; to keep
+    ru: поднимать (с пола); хранить, сохранять
+    uk: піднімати (з підлоги); зберігати, тримати
+    example_de: Heb den Zettel bitte auf, wir brauchen ihn noch.
+    example_en: Please pick the slip of paper up, we still need it.
+    example_ru: Подними, пожалуйста, эту бумажку, она нам ещё пригодится.
+    example_uk: Підніми, будь ласка, цей папірець, він нам ще знадобиться.
+    note:
+      en: 'Separable, stress on auf: hebt auf, hat aufgehoben. The two senses split by context — Ich hebe das Handy auf is bending down for it, Ich hebe die Rechnung auf is filing it for later. The second sense is what a shop assistant means with Bewahren Sie den Kassenbon auf. A third, formal sense (ein Gesetz aufheben, to repeal) belongs to the news.'
+      ru: 'Отделяемый глагол, ударение на auf: hebt auf, hat aufgehoben. Значения различает контекст: Ich hebe das Handy auf — наклониться и поднять, Ich hebe die Rechnung auf — сохранить на будущее. Второе значение стоит за фразой продавца Bewahren Sie den Kassenbon auf. Третье, официальное (ein Gesetz aufheben, «отменить закон»), встречается в новостях.'
+      uk: 'Відокремлюване дієслово, наголос на auf: hebt auf, hat aufgehoben. Значення розрізняє контекст: Ich hebe das Handy auf — нахилитися й підняти, Ich hebe die Rechnung auf — зберегти на майбутнє. Друге значення стоїть за фразою продавця Bewahren Sie den Kassenbon auf. Третє, офіційне (ein Gesetz aufheben, «скасувати закон»), трапляється в новинах.'
+
+  - de: greifen
+    ipa: "ˈgʁaɪ̯fn̩"
+    pos: verb
+    praesens_3sg: greift
+    partizip2: gegriffen
+    aux: haben
+    valence: "nach + Dat"
+    en: to reach for, to grab hold of
+    ru: хватать, тянуться (рукой)
+    uk: хапати, тягнутися (рукою)
+    example_de: Das Kind greift nach dem Löffel.
+    example_en: The child is reaching for the spoon.
+    example_ru: Ребёнок тянется за ложкой.
+    example_uk: Дитина тягнеться до ложки.
+    note:
+      en: 'Strong verb: greift, griff, hat gegriffen. The usual frame is greifen nach + Dativ, which describes the movement of the hand towards the thing; nehmen describes the result. Zu etwas greifen is the idiom for resorting to something (zu Medikamenten greifen). The related noun der Griff is the handle you take hold of.'
+      ru: 'Сильный глагол: greift, griff, hat gegriffen. Обычная конструкция — greifen nach + Dativ: она описывает движение руки к предмету, тогда как nehmen описывает результат. Zu etwas greifen — устойчивый оборот «прибегнуть к чему-то» (zu Medikamenten greifen). Родственное существительное der Griff — ручка, за которую берутся.'
+      uk: 'Сильне дієслово: greift, griff, hat gegriffen. Звична конструкція — greifen nach + Dativ: вона описує рух руки до предмета, тоді як nehmen описує результат. Zu etwas greifen — сталий зворот «вдатися до чогось» (zu Medikamenten greifen). Споріднений іменник der Griff — ручка, за яку беруться.'
+
+  - de: fassen
+    ipa: "ˈfasn̩"
+    pos: verb
+    praesens_3sg: fasst
+    partizip2: gefasst
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: three unrelated jobs — to take hold of, to hold a capacity,
+    # and to grasp mentally (Ich kann es nicht fassen) — and this deck's own
+    # `greifen` already answers the first prompt.
+    cards: recognition
+    en: to take hold of; to hold (a capacity); to grasp (mentally)
+    en_compact: to take hold of; to hold; to grasp
+    ru: схватить; вмещать; постичь, осознать
+    uk: схопити; вміщати; збагнути, усвідомити
+    example_de: Der Tank fasst fünfzig Liter.
+    example_en: The tank holds fifty litres.
+    example_ru: Бак вмещает пятьдесят литров.
+    example_uk: Бак вміщає п’ятдесят літрів.
+    note:
+      en: 'Regular: fasst, fasste, hat gefasst. The physical sense is close to greifen but ends in contact rather than in movement. The capacity sense is what you read on a container or a hall (der Saal fasst 300 Personen). And the mental sense lives almost entirely in the fixed exclamation Das kann ich nicht fassen, said when news is too much to take in. einen Entschluss fassen is the formal way to say you decided.'
+      ru: 'Правильный глагол: fasst, fasste, hat gefasst. Физическое значение близко к greifen, но подчёркивает не движение, а сам захват. Значение вместимости встречается на ёмкостях и в описании залов (der Saal fasst 300 Personen). Ментальное значение живёт почти только в восклицании Das kann ich nicht fassen — «не могу поверить». einen Entschluss fassen — официальный способ сказать, что решение принято.'
+      uk: 'Правильне дієслово: fasst, fasste, hat gefasst. Фізичне значення близьке до greifen, але підкреслює не рух, а сам захват. Значення місткості трапляється на ємностях і в описі залів (der Saal fasst 300 Personen). Ментальне значення живе майже лише у вигуку Das kann ich nicht fassen — «не можу повірити». einen Entschluss fassen — офіційний спосіб сказати, що рішення ухвалене.'
+
+  - de: festhalten
+    ipa: "ˈfɛstˌhaltn̩"
+    pos: verb
+    praesens_3sg: hält fest
+    partizip2: festgehalten
+    aux: haben
+    valence: "+ Akk / sich an + Dat"
+    # Recognition only: it splits into a physical grip and a written record (etwas
+    # schriftlich festhalten), and the reflexive sich festhalten is the form the
+    # learner actually hears — three prompts, one headword.
+    cards: recognition
+    en: to hold on tight; to put on record
+    ru: крепко держать; фиксировать (письменно)
+    uk: міцно тримати; фіксувати (письмово)
+    example_de: Bitte festhalten, der Bus fährt gleich los.
+    example_en: Please hold on, the bus is about to move off.
+    example_ru: Держитесь, пожалуйста, автобус сейчас тронется.
+    example_uk: Тримайтеся, будь ласка, автобус зараз рушить.
+    note:
+      en: 'Separable, stress on fest: hält fest, hat festgehalten. On a bus or a tram the reflexive sich festhalten is what the announcement says, and the thing you hold takes an + Dativ: Halten Sie sich am Griff fest. The written sense turns up in offices and minutes: Wir halten das Ergebnis schriftlich fest. The prefix fest also builds festlegen and feststellen, and all three share the idea of pinning something down.'
+      ru: 'Отделяемый глагол, ударение на fest: hält fest, hat festgehalten. В автобусе или трамвае звучит возвратная форма sich festhalten, а опора вводится через an + Dativ: Halten Sie sich am Griff fest. Письменное значение живёт в канцелярии и протоколах: Wir halten das Ergebnis schriftlich fest. Приставка fest даёт также festlegen и feststellen — все три о том, чтобы что-то закрепить.'
+      uk: 'Відокремлюване дієслово, наголос на fest: hält fest, hat festgehalten. В автобусі чи трамваї звучить зворотна форма sich festhalten, а опора вводиться через an + Dativ: Halten Sie sich am Griff fest. Писемне значення живе в канцелярії та протоколах: Wir halten das Ergebnis schriftlich fest. Префікс fest дає також festlegen і feststellen — усі три про те, щоб щось закріпити.'
+
+  # --- Kraft auf ein Ding: schieben, stoßen, werfen ---
+  - de: schieben
+    ipa: "ˈʃiːbn̩"
+    pos: verb
+    praesens_3sg: schiebt
+    partizip2: geschoben
+    aux: haben
+    valence: "+ Akk"
+    en: to shove, to slide (something along)
+    en_compact: to shove, to slide along
+    ru: двигать, толкать (не отрывая от поверхности)
+    uk: сунути, штовхати (не відриваючи від поверхні)
+    example_de: Wir haben das Sofa an die Wand geschoben.
+    example_en: We slid the sofa over to the wall.
+    example_ru: Мы придвинули диван к стене.
+    example_uk: Ми присунули диван до стіни.
+    note:
+      en: 'Strong verb: schiebt, schob, hat geschoben. It keeps contact with the floor or the table — a pram, a bicycle, a chair. A2 drücken is force against a surface (a button, a door), and no ground is covered. The idiom etwas auf jemanden schieben means to blame someone else for it.'
+      ru: 'Сильный глагол: schiebt, schob, hat geschoben. Предмет не отрывается от пола или стола — коляска, велосипед, стул. A2-глагол drücken — это давление на поверхность (кнопка, дверь), без перемещения. Оборот etwas auf jemanden schieben значит «свалить вину на другого».'
+      uk: 'Сильне дієслово: schiebt, schob, hat geschoben. Предмет не відривається від підлоги чи столу — візок, велосипед, стілець. Дієслово рівня A2 drücken — це тиск на поверхню (кнопка, двері), без переміщення. Зворот etwas auf jemanden schieben означає «звалити провину на іншого».'
+
+  - de: stoßen
+    ipa: "ˈʃtoːsn̩"
+    pos: verb
+    praesens_3sg: stößt
+    partizip2: gestoßen
+    aux: haben/sein
+    valence: "+ Akk / gegen + Akk"
+    # Recognition only: A2 `drücken` already ships "to push" as a production card,
+    # and this headword additionally splits by auxiliary — hat gestoßen for the
+    # shove, ist gestoßen for bumping into something.
+    cards: recognition
+    en: to bump into, to knock against
+    ru: толкнуть; удариться (обо что-то)
+    uk: штовхнути; вдаритися (об щось)
+    example_de: Ich bin im Dunkeln gegen den Tisch gestoßen.
+    example_en: In the dark I bumped into the table.
+    example_ru: В темноте я ударился о стол.
+    example_uk: У темряві я вдарився об стіл.
+    note:
+      en: 'Strong verb: stößt, stieß. The auxiliary carries the meaning: hat gestoßen is a deliberate shove with an accusative object, ist gestoßen with gegen + Akk is the accidental collision in the example. auf etwas stoßen is the useful figurative one — to come across a problem, a name, a piece of information.'
+      ru: 'Сильный глагол: stößt, stieß. Вспомогательный глагол несёт смысл: hat gestoßen — намеренный толчок с Akkusativ, ist gestoßen с gegen + Akk — случайное столкновение, как в примере. auf etwas stoßen — полезное переносное значение: наткнуться на проблему, имя, сведения.'
+      uk: 'Сильне дієслово: stößt, stieß. Допоміжне дієслово несе зміст: hat gestoßen — навмисний поштовх з Akkusativ, ist gestoßen з gegen + Akk — випадкове зіткнення, як у прикладі. auf etwas stoßen — корисне переносне значення: натрапити на проблему, ім’я, відомості.'
+
+  - de: werfen
+    ipa: "ˈvɛʁfn̩"
+    pos: verb
+    praesens_3sg: wirft
+    partizip2: geworfen
+    aux: haben
+    valence: "+ Akk"
+    en: to throw
+    ru: бросать, кидать
+    uk: кидати
+    example_de: Wirf mir bitte den Schlüssel herüber.
+    example_en: Throw me the key, please.
+    example_ru: Брось мне, пожалуйста, ключ.
+    example_uk: Кинь мені, будь ласка, ключа.
+    note:
+      en: 'Strong verb with vowel change in the singular: ich werfe, du wirfst, er wirft; warf, hat geworfen. The compound wegwerfen (to throw away) is the everyday one for rubbish, and einen Blick auf etwas werfen is the standard way to say you took a quick look at something.'
+      ru: 'Сильный глагол с чередованием в единственном числе: ich werfe, du wirfst, er wirft; warf, hat geworfen. Составной глагол wegwerfen («выбрасывать») используется о мусоре, а einen Blick auf etwas werfen — обычный способ сказать «бросить взгляд, взглянуть».'
+      uk: 'Сильне дієслово з чергуванням в однині: ich werfe, du wirfst, er wirft; warf, hat geworfen. Складене дієслово wegwerfen («викидати») уживають про сміття, а einen Blick auf etwas werfen — звичний спосіб сказати «кинути оком, поглянути».'
+
+  - de: fangen
+    ipa: "ˈfaŋən"
+    pos: verb
+    praesens_3sg: fängt
+    partizip2: gefangen
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: `erreichen` (reisen-verkehr) ships "to catch" as a production
+    # card for trains and buses, which is the sense a learner needs first; a typed
+    # prompt reading "to catch" is answered two decks over.
+    cards: recognition
+    en: to catch (something in flight or in a trap)
+    ru: ловить, поймать
+    uk: ловити, зловити
+    example_de: Der Torwart hat den Ball sicher gefangen.
+    example_en: The goalkeeper caught the ball safely.
+    example_ru: Вратарь уверенно поймал мяч.
+    example_uk: Воротар упевнено зловив м’яча.
+    note:
+      en: 'Strong verb with Umlaut in the singular: fängt, fing, hat gefangen. It is the physical catch — a ball, a fish, an animal. A train or a bus is not caught with this verb but with erreichen or noch schaffen. The separable anfangen (to begin) looks related and is a different word in use.'
+      ru: 'Сильный глагол с умлаутом в единственном числе: fängt, fing, hat gefangen. Значение физическое: мяч, рыба, животное. Про поезд или автобус говорят не так, а erreichen или noch schaffen. Отделяемый anfangen («начинать») выглядит родственным, но в речи это другое слово.'
+      uk: 'Сильне дієслово з умлаутом в однині: fängt, fing, hat gefangen. Значення фізичне: м яч, риба, тварина. Про потяг чи автобус кажуть інакше — erreichen або noch schaffen. Відокремлюване anfangen («починати») виглядає спорідненим, але в мовленні це інше слово.'
+
+  - de: treten
+    ipa: "ˈtʁeːtn̩"
+    pos: verb
+    praesens_3sg: tritt
+    partizip2: getreten
+    aux: haben/sein
+    valence: "+ Akk / auf + Akk"
+    # Recognition only: to kick, to step and to tread are three prompts, and the
+    # headword additionally powers a family the learner meets separately
+    # (eintreten, auftreten, zurücktreten).
+    cards: recognition
+    en: to kick; to step, to tread
+    ru: пнуть, ударить ногой; ступить, наступить
+    uk: копнути, ударити ногою; ступити, наступити
+    example_de: Bitte nicht auf den Rasen treten.
+    example_en: Please do not step on the grass.
+    example_ru: Пожалуйста, не наступайте на газон.
+    example_uk: Будь ласка, не ступайте на газон.
+    note:
+      en: 'Strong verb: tritt, trat. Movement takes sein (ich bin auf den Rasen getreten), a kick takes haben (er hat den Ball getreten). The sign in the example is on every German lawn. The prefixed family is worth recognising as one: eintreten (to enter), auftreten (to appear on stage), zurücktreten (to resign).'
+      ru: 'Сильный глагол: tritt, trat. Движение требует sein (ich bin auf den Rasen getreten), удар ногой — haben (er hat den Ball getreten). Табличка из примера стоит на каждом немецком газоне. Приставочную семью полезно узнавать как целое: eintreten («входить»), auftreten («выступать»), zurücktreten («уйти в отставку»).'
+      uk: 'Сильне дієслово: tritt, trat. Рух вимагає sein (ich bin auf den Rasen getreten), удар ногою — haben (er hat den Ball getreten). Табличка з прикладу стоїть на кожному німецькому газоні. Префіксальну сім’ю варто впізнавати як ціле: eintreten («входити»), auftreten («виступати»), zurücktreten («піти у відставку»).'
+
+  - de: schlagen
+    ipa: "ˈʃlaːgn̩"
+    pos: verb
+    praesens_3sg: schlägt
+    partizip2: geschlagen
+    aux: haben
+    valence: "+ Akk"
+    en: to hit, to strike
+    ru: бить, ударять
+    uk: бити, ударяти
+    example_de: Der Regen schlägt gegen das Fenster.
+    example_en: The rain is beating against the window.
+    example_ru: Дождь бьёт в окно.
+    example_uk: Дощ б’є у вікно.
+    note:
+      en: 'Strong verb with Umlaut in the singular: schlägt, schlug, hat geschlagen. Beyond hitting, it is the verb for a clock striking and a heart beating (das Herz schlägt). Its most useful derivative is already familiar: vorschlagen, to suggest, is literally to strike something forward.'
+      ru: 'Сильный глагол с умлаутом в единственном числе: schlägt, schlug, hat geschlagen. Кроме удара, это глагол о бое часов и биении сердца (das Herz schlägt). Самая полезная производная уже знакома: vorschlagen («предлагать») — буквально «бить вперёд».'
+      uk: 'Сильне дієслово з умлаутом в однині: schlägt, schlug, hat geschlagen. Крім удару, це дієслово про бій годинника й биття серця (das Herz schlägt). Найкорисніша похідна вже знайома: vorschlagen («пропонувати») — буквально «бити вперед».'
+
+  - de: klopfen
+    ipa: "ˈklɔpfn̩"
+    pos: verb
+    praesens_3sg: klopft
+    partizip2: geklopft
+    aux: haben
+    valence: "an + Akk"
+    en: to knock
+    ru: стучать
+    uk: стукати
+    example_de: Bitte klopfen Sie an die Tür, bevor Sie eintreten.
+    example_en: Please knock on the door before you come in.
+    example_ru: Пожалуйста, постучите в дверь, прежде чем войти.
+    example_uk: Будь ласка, постукайте у двері, перш ніж заходити.
+    note:
+      en: 'Regular: klopft, klopfte, hat geklopft. The frame is an die Tür klopfen with the accusative, because knocking is movement towards the door; an der Tür with the dative would place you standing beside it. Es klopft is the complete German sentence for there is a knock at the door. Sign version: Bitte anklopfen.'
+      ru: 'Правильный глагол: klopft, klopfte, hat geklopft. Конструкция an die Tür klopfen требует Akkusativ, потому что стук — движение к двери; an der Tür с Dativ означало бы «стоя у двери». Es klopft — полноценное немецкое предложение «стучат». Вариант на табличке: Bitte anklopfen.'
+      uk: 'Правильне дієслово: klopft, klopfte, hat geklopft. Конструкція an die Tür klopfen вимагає Akkusativ, бо стукіт — це рух до дверей; an der Tür з Dativ означало б «стоячи біля дверей». Es klopft — повноцінне німецьке речення «стукають». Варіант на табличці: Bitte anklopfen.'
+
+  - de: schütteln
+    ipa: "ˈʃʏtl̩n"
+    pos: verb
+    praesens_3sg: schüttelt
+    partizip2: geschüttelt
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: at B1 the word arrives almost entirely inside narration —
+    # sie schüttelte den Kopf — while the learner's own way of saying no is nein
+    # sagen or the plain head movement.
+    cards: recognition
+    en: to shake (something)
+    ru: трясти, встряхивать
+    uk: трясти, струшувати
+    example_de: Vor Gebrauch gut schütteln.
+    example_en: Shake well before use.
+    example_ru: Перед употреблением хорошо взболтать.
+    example_uk: Перед уживанням добре збовтати.
+    note:
+      en: 'Regular: schüttelt, schüttelte, hat geschüttelt. The example is printed on medicine bottles and salad dressings. Den Kopf schütteln is the fixed phrase for shaking your head in refusal or disbelief, and jemandem die Hand schütteln is the handshake. The thing shaken is always an accusative object.'
+      ru: 'Правильный глагол: schüttelt, schüttelte, hat geschüttelt. Пример напечатан на пузырьках с лекарством и бутылочках с заправкой. Den Kopf schütteln — устойчивое «покачать головой» в знак отказа или недоверия, jemandem die Hand schütteln — рукопожатие. То, что трясут, всегда в Akkusativ.'
+      uk: 'Правильне дієслово: schüttelt, schüttelte, hat geschüttelt. Приклад надрукований на пляшечках з ліками та із заправкою. Den Kopf schütteln — стале «похитати головою» на знак відмови чи недовіри, jemandem die Hand schütteln — потиск руки. Те, що трясуть, завжди в Akkusativ.'
+
+  # --- Dinge in Position bringen: kleben, stecken, ziehen, drehen ---
+  - de: kleben
+    ipa: "ˈkleːbn̩"
+    pos: verb
+    praesens_3sg: klebt
+    partizip2: geklebt
+    aux: haben
+    valence: "+ Akk / an + Dat"
+    en: to glue, to stick
+    ru: клеить; прилипать
+    uk: клеїти; прилипати
+    example_de: Ich klebe die Briefmarke auf den Umschlag.
+    example_en: I am sticking the stamp onto the envelope.
+    example_ru: Я приклеиваю марку на конверт.
+    example_uk: Я приклеюю марку на конверт.
+    note:
+      en: 'Regular: klebt, klebte, hat geklebt. It works both ways round: with an accusative object you are doing the sticking, without one the thing is stuck (der Zettel klebt an der Tür). Direction takes auf or an with the accusative, position an with the dative. The noun der Klebstoff is the glue itself.'
+      ru: 'Правильный глагол: klebt, klebte, hat geklebt. Работает в обе стороны: с Akkusativ вы клеите сами, без него предмет сам приклеен (der Zettel klebt an der Tür). Направление вводится через auf или an с Akkusativ, положение — через an с Dativ. Существительное der Klebstoff — сам клей.'
+      uk: 'Правильне дієслово: klebt, klebte, hat geklebt. Працює в обидва боки: з Akkusativ ви клеїте самі, без нього предмет уже приклеєний (der Zettel klebt an der Tür). Напрямок вводиться через auf або an з Akkusativ, положення — через an з Dativ. Іменник der Klebstoff — сам клей.'
+
+  - de: stecken
+    ipa: "ˈʃtɛkn̩"
+    pos: verb
+    praesens_3sg: steckt
+    partizip2: gesteckt
+    aux: haben
+    valence: "+ Akk in + Akk"
+    # Recognition only: `setzen`, `stellen` and `legen` all ship "to put" as
+    # production cards, so a typed prompt for putting a thing somewhere is answered
+    # three times over before this card is reached.
+    cards: recognition
+    en: to put (into a narrow space); to be stuck
+    ru: сунуть, вставить; торчать, застрять
+    uk: сунути, вставити; стирчати, застрягти
+    example_de: Steck den Stecker in die Steckdose.
+    example_en: Put the plug into the socket.
+    example_ru: Вставь вилку в розетку.
+    example_uk: Встав вилку в розетку.
+    note:
+      en: 'Regular: steckt, steckte, hat gesteckt. It is the member of the setzen/stellen/legen family for narrow openings — a key in a lock, a letter in a postbox, hands in pockets. Without an object it means the thing is in there and not moving: der Schlüssel steckt, and Wir stecken im Stau is the traffic jam. Im Stau stecken and stecken bleiben are worth learning whole.'
+      ru: 'Правильный глагол: steckt, steckte, hat gesteckt. Это член семьи setzen/stellen/legen для узких отверстий: ключ в замок, письмо в ящик, руки в карманы. Без дополнения означает, что предмет уже там и не двигается: der Schlüssel steckt, а Wir stecken im Stau — «мы стоим в пробке». Обороты im Stau stecken и stecken bleiben стоит выучить целиком.'
+      uk: 'Правильне дієслово: steckt, steckte, hat gesteckt. Це член сім ї setzen/stellen/legen для вузьких отворів: ключ у замок, лист у скриньку, руки в кишені. Без додатка означає, що предмет уже там і не рухається: der Schlüssel steckt, а Wir stecken im Stau — «ми стоїмо в заторі». Звороти im Stau stecken і stecken bleiben варто вивчити цілими.'
+
+  - de: ziehen
+    ipa: "ˈtsiːən"
+    pos: verb
+    praesens_3sg: zieht
+    partizip2: gezogen
+    aux: haben
+    valence: "+ Akk"
+    en: to pull
+    ru: тянуть, тащить
+    uk: тягти, тягнути
+    example_de: Ziehen Sie bitte kräftig an dem Griff.
+    example_en: Please pull hard on the handle.
+    example_ru: Потяните, пожалуйста, за ручку посильнее.
+    example_uk: Потягніть, будь ласка, за ручку сильніше.
+    note:
+      en: 'Strong verb: zieht, zog, hat gezogen. It is the opposite of drücken, and the two words are printed on shop doors as Ziehen and Drücken. With sein it means to move house or to move on (wir sind nach Berlin gezogen), which is where the already familiar umziehen comes from. Tea and coffee ziehen as well — that is the brewing.'
+      ru: 'Сильный глагол: zieht, zog, hat gezogen. Противоположность drücken; оба слова написаны на дверях магазинов: Ziehen и Drücken. С sein означает «переехать» (wir sind nach Berlin gezogen) — отсюда уже знакомый umziehen. Чай и кофе тоже ziehen — это про заваривание.'
+      uk: 'Сильне дієслово: zieht, zog, hat gezogen. Протилежність drücken; обидва слова написані на дверях крамниць: Ziehen і Drücken. З sein означає «переїхати» (wir sind nach Berlin gezogen) — звідси вже знайоме umziehen. Чай і кава теж ziehen — це про заварювання.'
+
+  - de: drehen
+    ipa: "ˈdʁeːən"
+    pos: verb
+    praesens_3sg: dreht
+    partizip2: gedreht
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: `wenden` (reisen-probleme) already ships "to turn" as a
+    # production card, and this deck's own `umdrehen` answers the same prompt again.
+    cards: recognition
+    en: to turn, to rotate
+    ru: вращать, поворачивать
+    uk: обертати, повертати
+    example_de: Drehen Sie den Knopf nach rechts.
+    example_en: Turn the knob to the right.
+    example_ru: Поверните ручку вправо.
+    example_uk: Поверніть ручку праворуч.
+    note:
+      en: 'Regular: dreht, drehte, hat gedreht. The picture is rotation around an axis — a knob, a key, a wheel. Es dreht sich um … is the very common way to say what something is about. A film is gedreht rather than gemacht, which is why a shoot is called Dreharbeiten.'
+      ru: 'Правильный глагол: dreht, drehte, hat gedreht. Образ — вращение вокруг оси: ручка, ключ, колесо. Es dreht sich um … — очень частый способ сказать, о чём идёт речь. Фильм по-немецки drehen, а не machen, поэтому съёмки называются Dreharbeiten.'
+      uk: 'Правильне дієслово: dreht, drehte, hat gedreht. Образ — обертання навколо осі: ручка, ключ, колесо. Es dreht sich um … — дуже частий спосіб сказати, про що йдеться. Фільм німецькою drehen, а не machen, тому зйомки називаються Dreharbeiten.'
+
+  - de: umdrehen
+    ipa: "ˈʊmˌdʁeːən"
+    pos: verb
+    praesens_3sg: dreht um
+    partizip2: umgedreht
+    aux: haben
+    valence: "+ Akk / sich"
+    # Recognition only: the same prompt as this deck's `drehen` and as A2 `wenden`,
+    # with the added split between turning a thing over and turning yourself round.
+    cards: recognition
+    en: to turn over, to turn round
+    ru: перевернуть; обернуться
+    uk: перевернути; обернутися
+    example_de: Dreh das Blatt um, die Aufgabe geht hinten weiter.
+    example_en: Turn the sheet over, the exercise continues on the back.
+    example_ru: Переверни лист, задание продолжается на обороте.
+    example_uk: Переверни аркуш, завдання продовжується на звороті.
+    note:
+      en: 'Separable, stress on um: dreht um, hat umgedreht. With an accusative object it flips a thing over; with sich it is a person turning round to look (er hat sich noch einmal umgedreht). On a form the instruction is often just Bitte wenden, abbreviated b. w.'
+      ru: 'Отделяемый глагол, ударение на um: dreht um, hat umgedreht. С Akkusativ переворачивает предмет; с sich — человек оборачивается (er hat sich noch einmal umgedreht). В бланках вместо этого пишут Bitte wenden с сокращением b. w.'
+      uk: 'Відокремлюване дієслово, наголос на um: dreht um, hat umgedreht. З Akkusativ перевертає предмет; із sich — людина обертається (er hat sich noch einmal umgedreht). У бланках замість цього пишуть Bitte wenden зі скороченням b. w.'
+
+  # --- Der Körper in Bewegung ---
+  - de: springen
+    ipa: "ˈʃpʁɪŋən"
+    pos: verb
+    praesens_3sg: springt
+    partizip2: gesprungen
+    aux: sein
+    en: to jump
+    ru: прыгать
+    uk: стрибати
+    example_de: Die Kinder springen ins Wasser.
+    example_en: The children are jumping into the water.
+    example_ru: Дети прыгают в воду.
+    example_uk: Діти стрибають у воду.
+    note:
+      en: 'Strong verb with sein: springt, sprang, ist gesprungen — movement from place to place always takes sein. The same verb describes glass cracking (das Glas ist gesprungen), which is worth knowing before you meet it on a broken screen. Aufspringen is to jump up, abspringen to jump off.'
+      ru: 'Сильный глагол с sein: springt, sprang, ist gesprungen — перемещение всегда требует sein. Тот же глагол описывает трещину в стекле (das Glas ist gesprungen), и это стоит знать до встречи с разбитым экраном. Aufspringen — «вскочить», abspringen — «спрыгнуть».'
+      uk: 'Сильне дієслово із sein: springt, sprang, ist gesprungen — переміщення завжди вимагає sein. Те саме дієслово описує тріщину у склі (das Glas ist gesprungen), і це варто знати до зустрічі з розбитим екраном. Aufspringen — «схопитися», abspringen — «зістрибнути».'
+
+  - de: klettern
+    ipa: "ˈklɛtɐn"
+    pos: verb
+    praesens_3sg: klettert
+    partizip2: geklettert
+    aux: sein
+    valence: "auf + Akk"
+    en: to climb (using hands and feet)
+    ru: лазать, карабкаться
+    uk: лазити, дертися
+    example_de: Der Junge klettert auf den Baum.
+    example_en: The boy is climbing up the tree.
+    example_ru: Мальчик лезет на дерево.
+    example_uk: Хлопчик лізе на дерево.
+    note:
+      en: 'Regular but with sein: klettert, kletterte, ist geklettert. Hands are involved — a tree, a rock, a climbing wall — which separates it from steigen, where you simply go up (stairs, a mountain path, a price). Klettern is also the name of the sport, and the wall is die Kletterwand.'
+      ru: 'Правильный глагол, но с sein: klettert, kletterte, ist geklettert. Участвуют руки — дерево, скала, скалодром; этим он отличается от steigen, где просто поднимаются (лестница, тропа, цена). Klettern — также название вида спорта, а стенка — die Kletterwand.'
+      uk: 'Правильне дієслово, але із sein: klettert, kletterte, ist geklettert. Задіяні руки — дерево, скеля, скеледром; цим воно відрізняється від steigen, де просто піднімаються (сходи, стежка, ціна). Klettern — також назва виду спорту, а стінка — die Kletterwand.'
+
+  - de: rennen
+    ipa: "ˈʁɛnən"
+    pos: verb
+    praesens_3sg: rennt
+    partizip2: gerannt
+    aux: sein
+    # Recognition only: A1 `laufen` ships "to run" as a production card in
+    # perfekt-a1-verben, so a typed prompt reading "to run" is answered one deck over
+    # and no accept list here can reach it.
+    cards: recognition
+    en: to run fast, to race
+    ru: бежать, мчаться
+    uk: бігти, мчати
+    example_de: Er ist zum Bus gerannt und hat ihn trotzdem verpasst.
+    example_en: He raced for the bus and missed it anyway.
+    example_ru: Он бежал к автобусу и всё равно на него опоздал.
+    example_uk: Він біг до автобуса й усе одно на нього спізнився.
+    note:
+      en: 'Mixed verb: rennt, rannte, ist gerannt — the vowel changes like a strong verb, the ending is weak. It is faster and more urgent than laufen, which covers both running and simply going on foot. Where laufen can mean to walk, this one never does.'
+      ru: 'Смешанный глагол: rennt, rannte, ist gerannt — гласный меняется по сильному типу, окончание слабое. Быстрее и напряжённее, чем laufen, которое покрывает и бег, и ходьбу пешком. Там, где laufen может значить «идти», этот глагол — никогда.'
+      uk: 'Мішане дієслово: rennt, rannte, ist gerannt — голосний змінюється за сильним типом, закінчення слабке. Швидше й напруженіше, ніж laufen, яке покриває і біг, і ходьбу пішки. Там, де laufen може означати «йти», це дієслово — ніколи.'
+
+  - de: steigen
+    ipa: "ˈʃtaɪ̯gn̩"
+    pos: verb
+    praesens_3sg: steigt
+    partizip2: gestiegen
+    aux: sein
+    en: to rise, to go up
+    ru: подниматься, повышаться (о числах)
+    uk: підніматися, підвищуватися (про числа)
+    example_de: Die Preise sind im letzten Jahr stark gestiegen.
+    example_en: Prices went up sharply last year.
+    example_ru: За последний год цены сильно выросли.
+    example_uk: За останній рік ціни сильно зросли.
+    note:
+      en: 'Strong verb with sein: steigt, stieg, ist gestiegen. Two lives: a person going up (auf den Berg steigen, ins Auto steigen) and a figure going up, which is the sense a newspaper and a rent increase use. The familiar einsteigen, aussteigen and umsteigen are all built on it, and its opposite for figures is sinken.'
+      ru: 'Сильный глагол с sein: steigt, stieg, ist gestiegen. Две жизни: человек поднимается (auf den Berg steigen, ins Auto steigen) и число растёт — именно это значение в газете и в письме о повышении аренды. Знакомые einsteigen, aussteigen и umsteigen построены на нём, а противоположность для чисел — sinken.'
+      uk: 'Сильне дієслово із sein: steigt, stieg, ist gestiegen. Два життя: людина піднімається (auf den Berg steigen, ins Auto steigen) і число зростає — саме це значення в газеті та в листі про підвищення оренди. Знайомі einsteigen, aussteigen і umsteigen побудовані на ньому, а протилежність для чисел — sinken.'
+
+  - de: stürzen
+    ipa: "ˈʃtʏʁtsn̩"
+    pos: verb
+    praesens_3sg: stürzt
+    partizip2: gestürzt
+    aux: sein
+    # Recognition only: A2 `fallen` ships "to fall" as a production card in
+    # verben-handlungen-a2-1, and this word is that prompt with an adverb attached —
+    # the fall is simply harder and faster.
+    cards: recognition
+    en: to fall heavily, to crash down
+    ru: упасть, рухнуть
+    uk: упасти, звалитися
+    example_de: Meine Nachbarin ist auf der Treppe gestürzt.
+    example_en: My neighbour had a bad fall on the stairs.
+    example_ru: Моя соседка упала на лестнице.
+    example_uk: Моя сусідка впала на сходах.
+    note:
+      en: 'Regular with sein: stürzt, stürzte, ist gestürzt. It is the fall that hurts, which is why an accident report and a doctor use it rather than fallen. With haben and an accusative object it means to topple a government. The noun der Sturz covers both the fall and the crash of a price.'
+      ru: 'Правильный глагол с sein: stürzt, stürzte, ist gestürzt. Это падение с ушибом, поэтому его выбирают в протоколе о происшествии и у врача, а не fallen. С haben и Akkusativ означает «свергнуть правительство». Существительное der Sturz покрывает и падение человека, и обвал цены.'
+      uk: 'Правильне дієслово із sein: stürzt, stürzte, ist gestürzt. Це падіння з ударом, тому його обирають у протоколі про пригоду й у лікаря, а не fallen. З haben і Akkusativ означає «повалити уряд». Іменник der Sturz покриває і падіння людини, і обвал ціни.'
+
+  - de: tauchen
+    ipa: "ˈtaʊ̯xn̩"
+    pos: verb
+    praesens_3sg: taucht
+    partizip2: getaucht
+    aux: haben/sein
+    # Recognition only: holiday-page and diving-course vocabulary at B1 — read in a
+    # brochure and rarely produced, and the productive form for the hobby is the
+    # chunk tauchen gehen.
+    cards: recognition
+    en: to dive
+    ru: нырять, погружаться
+    uk: пірнати, занурюватися
+    example_de: Im Urlaub war sie jeden Tag tauchen.
+    example_en: On holiday she went diving every day.
+    example_ru: В отпуске она каждый день ныряла с аквалангом.
+    example_uk: У відпустці вона щодня пірнала з аквалангом.
+    note:
+      en: 'Regular: taucht, tauchte. It takes sein when a route is covered (er ist zum Wrack getaucht) and haben for the activity as such (sie hat früher viel getaucht). Auftauchen is the useful figurative relative: a name, a problem or a person surfaces.'
+      ru: 'Правильный глагол: taucht, tauchte. Требует sein, когда пройден маршрут (er ist zum Wrack getaucht), и haben, когда речь о занятии как таковом (sie hat früher viel getaucht). Auftauchen — полезный переносный родственник: всплывает имя, проблема или человек.'
+      uk: 'Правильне дієслово: taucht, tauchte. Вимагає sein, коли пройдено маршрут (er ist zum Wrack getaucht), і haben, коли йдеться про заняття як таке (sie hat früher viel getaucht). Auftauchen — корисний переносний родич: спливає ім’я, проблема або людина.'
+
+  - de: bewegen
+    ipa: "bəˈveːgn̩"
+    pos: verb
+    praesens_3sg: bewegt
+    partizip2: bewegt
+    aux: haben
+    valence: "+ Akk / sich"
+    # Recognition only: `verschieben` (termine-zeit) and `umziehen` (trennbare-verben)
+    # both ship "to move" as production cards, so the typed prompt is taken.
+    cards: recognition
+    en: to move (something); to be physically active
+    ru: двигать; двигаться, быть в движении
+    uk: рухати; рухатися, бути в русі
+    example_de: Man soll sich jeden Tag eine halbe Stunde bewegen.
+    example_en: You should be physically active for half an hour a day.
+    example_ru: Двигаться нужно хотя бы полчаса в день.
+    example_uk: Рухатися треба принаймні пів години на день.
+    note:
+      en: 'Regular: bewegt, bewegte, hat bewegt. The reflexive sich bewegen is the health-advice word in the example, and die Bewegung is exercise on a doctor leaflet. The transitive sense moves an object; a meeting is not moved with this verb but with verschieben, and a household with umziehen.'
+      ru: 'Правильный глагол: bewegt, bewegte, hat bewegt. Возвратное sich bewegen — то самое слово из советов о здоровье, а die Bewegung на листовке у врача значит «физическая активность». Переходное значение сдвигает предмет; встречу переносят не этим глаголом, а verschieben, переезд — umziehen.'
+      uk: 'Правильне дієслово: bewegt, bewegte, hat bewegt. Зворотне sich bewegen — те саме слово з порад про здоров’я, а die Bewegung на листівці в лікаря означає «фізична активність». Перехідне значення зсуває предмет; зустріч переносять не цим дієсловом, а verschieben, переїзд — umziehen.'
+
+  - de: treiben
+    ipa: "ˈtʁaɪ̯bn̩"
+    pos: verb
+    praesens_3sg: treibt
+    partizip2: getrieben
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: three unrelated jobs — Sport treiben, Handel treiben, and
+    # drifting on water — and the first of them is already said with machen, which
+    # ships as an A1 production card.
+    cards: recognition
+    en: to drive (something on); to do (sport)
+    ru: гнать, побуждать; заниматься (спортом)
+    uk: гнати, спонукати; займатися (спортом)
+    example_de: Sie treibt dreimal die Woche Sport.
+    example_en: She does sport three times a week.
+    example_ru: Она занимается спортом три раза в неделю.
+    example_uk: Вона займається спортом тричі на тиждень.
+    note:
+      en: 'Strong verb: treibt, trieb, hat getrieben. Sport treiben is the fixed, slightly formal alternative to Sport machen and is the one a health article prints. Handel treiben is to trade. With sein the verb means to drift, which is what a boat without an engine does. The prefixed antreiben (to drive on) and vertreiben (to drive away) belong to the same picture.'
+      ru: 'Сильный глагол: treibt, trieb, hat getrieben. Sport treiben — устойчивый и чуть более официальный вариант Sport machen, именно он стоит в статье о здоровье. Handel treiben — «вести торговлю». С sein глагол значит «дрейфовать», как лодка без мотора. Приставочные antreiben («подгонять») и vertreiben («прогонять») из той же картины.'
+      uk: 'Сильне дієслово: treibt, trieb, hat getrieben. Sport treiben — сталий і трохи офіційніший варіант Sport machen, саме він стоїть у статті про здоров’я. Handel treiben — «вести торгівлю». Із sein дієслово означає «дрейфувати», як човен без мотора. Префіксальні antreiben («підганяти») і vertreiben («проганяти») з тієї самої картини.'
+
+  # --- Werden, verschwinden, kaputtgehen ---
+  - de: wachsen
+    ipa: "ˈvaksn̩"
+    pos: verb
+    praesens_3sg: wächst
+    partizip2: gewachsen
+    aux: sein
+    en: to grow
+    ru: расти
+    uk: рости
+    example_de: Die Stadt wächst jedes Jahr um etwa tausend Einwohner.
+    example_en: The town grows by about a thousand inhabitants every year.
+    example_ru: Город растёт примерно на тысячу жителей в год.
+    example_uk: Місто зростає приблизно на тисячу мешканців на рік.
+    note:
+      en: 'Strong verb with Umlaut and sein: wächst, wuchs, ist gewachsen. Children, plants, cities and numbers all grow with it; it is never transitive, so you cannot grow a plant this way — for that German uses anbauen or züchten. The familiar aufwachsen means to grow up, and erwachsen is the adjective for adult.'
+      ru: 'Сильный глагол с умлаутом и sein: wächst, wuchs, ist gewachsen. Растут дети, растения, города и числа; глагол непереходный, поэтому «выращивать» им сказать нельзя — для этого есть anbauen или züchten. Знакомое aufwachsen — «расти, взрослеть», а erwachsen — прилагательное «взрослый».'
+      uk: 'Сильне дієслово з умлаутом і sein: wächst, wuchs, ist gewachsen. Ростуть діти, рослини, міста й числа; дієслово неперехідне, тому «вирощувати» ним сказати не можна — для цього є anbauen або züchten. Знайоме aufwachsen — «рости, дорослішати», а erwachsen — прикметник «дорослий».'
+
+  - de: verschwinden
+    ipa: "fɛɐ̯ˈʃvɪndn̩"
+    pos: verb
+    praesens_3sg: verschwindet
+    partizip2: verschwunden
+    aux: sein
+    en: to disappear
+    ru: исчезать, пропадать
+    uk: зникати, пропадати
+    example_de: Mein Ausweis ist plötzlich verschwunden.
+    example_en: My ID card has suddenly disappeared.
+    example_ru: Моё удостоверение вдруг пропало.
+    example_uk: Моє посвідчення раптом зникло.
+    note:
+      en: 'Strong verb with sein and no ge- in the participle: verschwindet, verschwand, ist verschwunden. Inseparable ver- prefixes never take ge-. The participle doubles as an adjective on a notice or in a police report: Vermisst und verschwunden. Its opposite is auftauchen.'
+      ru: 'Сильный глагол с sein и без ge- в причастии: verschwindet, verschwand, ist verschwunden. Неотделяемая приставка ver- никогда не берёт ge-. Причастие работает и как прилагательное в объявлении или полицейском отчёте: Vermisst und verschwunden. Противоположность — auftauchen.'
+      uk: 'Сильне дієслово із sein і без ge- у дієприкметнику: verschwindet, verschwand, ist verschwunden. Невідокремлюваний префікс ver- ніколи не бере ge-. Дієприкметник працює і як прикметник в оголошенні чи поліційному звіті: Vermisst und verschwunden. Протилежність — auftauchen.'
+
+  - de: entfernen
+    ipa: "ɛntˈfɛʁnən"
+    pos: verb
+    praesens_3sg: entfernt
+    partizip2: entfernt
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: notice-and-menu register — Bitte entfernen Sie …, and the
+    # Entfernen button on a screen. What the learner says is wegmachen or wegnehmen.
+    cards: recognition
+    en: to remove, to take away
+    ru: удалять, убирать
+    uk: видаляти, прибирати
+    example_de: Bitte entfernen Sie das Preisschild vor dem Verschenken.
+    example_en: Please remove the price tag before giving it as a present.
+    example_ru: Пожалуйста, удалите ценник, прежде чем дарить.
+    example_uk: Будь ласка, зніміть цінник, перш ніж дарувати.
+    note:
+      en: 'Regular, inseparable: entfernt, entfernte, hat entfernt. It is the written word — on a sign, in an instruction manual, and as the delete button on a screen. Speech prefers wegmachen or wegnehmen. The related adjective entfernt means distant, and die Entfernung is the distance between two points.'
+      ru: 'Правильный глагол, неотделяемый: entfernt, entfernte, hat entfernt. Это письменное слово — на табличке, в инструкции и как кнопка удаления на экране. В речи предпочитают wegmachen или wegnehmen. Родственное прилагательное entfernt значит «отдалённый», а die Entfernung — расстояние между точками.'
+      uk: 'Правильне дієслово, невідокремлюване: entfernt, entfernte, hat entfernt. Це писемне слово — на табличці, в інструкції та як кнопка видалення на екрані. У мовленні воліють wegmachen або wegnehmen. Споріднений прикметник entfernt означає «віддалений», а die Entfernung — відстань між точками.'
+
+  - de: verstecken
+    ipa: "fɛɐ̯ˈʃtɛkn̩"
+    pos: verb
+    praesens_3sg: versteckt
+    partizip2: versteckt
+    aux: haben
+    valence: "+ Akk / sich"
+    en: to hide
+    ru: прятать; прятаться
+    uk: ховати; ховатися
+    example_de: Wo hast du den Schlüssel versteckt?
+    example_en: Where did you hide the key?
+    example_ru: Куда ты спрятал ключ?
+    example_uk: Куди ти сховав ключа?
+    note:
+      en: 'Regular, inseparable: versteckt, versteckte, hat versteckt. With an accusative object you hide a thing, with sich you hide yourself (das Kind hat sich hinter dem Sofa versteckt). Note that verstecken hides on purpose while verlieren loses by accident, and the children called their game Versteckspiel.'
+      ru: 'Правильный глагол, неотделяемый: versteckt, versteckte, hat versteckt. С Akkusativ прячут предмет, с sich — прячется сам человек (das Kind hat sich hinter dem Sofa versteckt). Важно: verstecken — спрятать намеренно, verlieren — потерять случайно; детская игра называется Versteckspiel.'
+      uk: 'Правильне дієслово, невідокремлюване: versteckt, versteckte, hat versteckt. З Akkusativ ховають предмет, із sich — ховається сама людина (das Kind hat sich hinter dem Sofa versteckt). Важливо: verstecken — сховати навмисно, verlieren — загубити випадково; дитяча гра називається Versteckspiel.'
+
+  - de: mischen
+    ipa: "ˈmɪʃn̩"
+    pos: verb
+    praesens_3sg: mischt
+    partizip2: gemischt
+    aux: haben
+    valence: "+ Akk"
+    en: to mix
+    ru: смешивать
+    uk: змішувати
+    example_de: Mischen Sie das Mehl mit dem Zucker.
+    example_en: Mix the flour with the sugar.
+    example_ru: Смешайте муку с сахаром.
+    example_uk: Змішайте борошно з цукром.
+    note:
+      en: 'Regular: mischt, mischte, hat gemischt. The second ingredient takes mit + Dativ, or the two are joined with und. Its participle is everywhere as an adjective: gemischter Salat on a menu, gemischte Gefühle in a conversation. sich einmischen means to interfere in something that is not yours.'
+      ru: 'Правильный глагол: mischt, mischte, hat gemischt. Второй компонент вводится через mit + Dativ или соединяется через und. Причастие часто работает прилагательным: gemischter Salat в меню, gemischte Gefühle в разговоре. sich einmischen — «вмешиваться не в своё дело».'
+      uk: 'Правильне дієслово: mischt, mischte, hat gemischt. Другий компонент вводиться через mit + Dativ або приєднується через und. Дієприкметник часто працює прикметником: gemischter Salat у меню, gemischte Gefühle в розмові. sich einmischen — «втручатися не у свою справу».'
+
+  - de: trocknen
+    ipa: "ˈtʁɔknən"
+    pos: verb
+    praesens_3sg: trocknet
+    partizip2: getrocknet
+    aux: haben/sein
+    # Recognition only: the adjective `trocken` ships as a production card in
+    # natur-tiere-a2, and a typed prompt about drying invites that adjective back —
+    # one letter group apart, two different words.
+    cards: recognition
+    en: to dry (something); to become dry
+    ru: сушить; сохнуть
+    uk: сушити; сохнути
+    example_de: Die Wäsche trocknet auf dem Balkon.
+    example_en: The washing is drying on the balcony.
+    example_ru: Бельё сохнет на балконе.
+    example_uk: Білизна сохне на балконі.
+    note:
+      en: 'Regular: trocknet, trocknete. With an accusative object it takes haben (ich habe die Haare getrocknet); when a thing dries by itself the perfect is usually ist getrocknet. abtrocknen is what you do to the dishes and to yourself after a shower, and der Trockner is the machine.'
+      ru: 'Правильный глагол: trocknet, trocknete. С Akkusativ идёт haben (ich habe die Haare getrocknet); когда предмет сохнет сам, перфект обычно ist getrocknet. abtrocknen — вытирать посуду и вытираться после душа, а der Trockner — сушильная машина.'
+      uk: 'Правильне дієслово: trocknet, trocknete. З Akkusativ іде haben (ich habe die Haare getrocknet); коли річ сохне сама, перфект зазвичай ist getrocknet. abtrocknen — витирати посуд і витиратися після душу, а der Trockner — сушильна машина.'
+
+  - de: verbrennen
+    ipa: "fɛɐ̯ˈbʁɛnən"
+    pos: verb
+    praesens_3sg: verbrennt
+    partizip2: verbrannt
+    aux: haben/sein
+    # Recognition only: the headword covers burning something, burning up, and
+    # burning yourself, and each takes a different auxiliary or pronoun — one typed
+    # prompt cannot say which is wanted.
+    cards: recognition
+    en: to burn (something); to get burnt
+    ru: сжигать; обжечься, сгореть
+    uk: спалювати; обпектися, згоріти
+    example_de: Ich habe mir an dem Topf die Finger verbrannt.
+    example_en: I burnt my fingers on the pot.
+    example_ru: Я обжёг пальцы о кастрюлю.
+    example_uk: Я обпік пальці об каструлю.
+    note:
+      en: 'Mixed verb, inseparable: verbrennt, verbrannte. Three patterns worth separating: haben with an object (Müll verbrennen), sein without one (das Haus ist verbrannt), and the dative reflexive of the example, where the burnt body part follows. Plain brennen means to be on fire or to sting.'
+      ru: 'Смешанный глагол, неотделяемый: verbrennt, verbrannte. Три схемы стоит различать: haben с дополнением (Müll verbrennen), sein без него (das Haus ist verbrannt) и возвратная с Dativ, как в примере, где дальше называют обожжённую часть тела. Простое brennen значит «гореть» или «жечь, щипать».'
+      uk: 'Мішане дієслово, невідокремлюване: verbrennt, verbrannte. Три схеми варто розрізняти: haben з додатком (Müll verbrennen), sein без нього (das Haus ist verbrannt) і зворотна з Dativ, як у прикладі, де далі називають обпечену частину тіла. Просте brennen означає «горіти» або «пекти, щипати».'
+
+  - de: zerstören
+    ipa: "tsɛɐ̯ˈʃtøːʁən"
+    pos: verb
+    praesens_3sg: zerstört
+    partizip2: zerstört
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: news and report register — a storm, a fire or a war destroys
+    # something. What a learner says about their own things is kaputtmachen.
+    cards: recognition
+    en: to destroy
+    ru: разрушать, уничтожать
+    uk: руйнувати, знищувати
+    example_de: Der Sturm hat mehrere Häuser zerstört.
+    example_en: The storm destroyed several houses.
+    example_ru: Буря разрушила несколько домов.
+    example_uk: Буря зруйнувала кілька будинків.
+    note:
+      en: 'Regular, inseparable: zerstört, zerstörte, hat zerstört. The prefix zer- means to pieces and builds a whole family: zerbrechen, zerreißen, zerschneiden. The scale is large — a building, a town, a friendship — while a phone that stops working is simply kaputt.'
+      ru: 'Правильный глагол, неотделяемый: zerstört, zerstörte, hat zerstört. Приставка zer- значит «на куски» и строит целую семью: zerbrechen, zerreißen, zerschneiden. Масштаб крупный — здание, город, дружба; а сломавшийся телефон просто kaputt.'
+      uk: 'Правильне дієслово, невідокремлюване: zerstört, zerstörte, hat zerstört. Префікс zer- означає «на шматки» і будує цілу сім’ю: zerbrechen, zerreißen, zerschneiden. Масштаб великий — будівля, місто, дружба; а телефон, що зламався, просто kaputt.'
+
+  - de: brechen
+    ipa: "ˈbʁɛçn̩"
+    pos: verb
+    praesens_3sg: bricht
+    partizip2: gebrochen
+    aux: haben/sein
+    valence: "+ Akk"
+    # Recognition only: the headword breaks a bone, a promise and a record, and it
+    # switches auxiliary between doing the breaking and coming apart — the everyday
+    # answer a learner needs is kaputtmachen or kaputtgehen.
+    cards: recognition
+    en: to break
+    ru: ломать; ломаться
+    uk: ламати; ламатися
+    example_de: Beim Skifahren hat er sich das Bein gebrochen.
+    example_en: He broke his leg while skiing.
+    example_ru: Катаясь на лыжах, он сломал ногу.
+    example_uk: Катаючись на лижах, він зламав ногу.
+    note:
+      en: 'Strong verb: bricht, brach. With haben something is broken by someone, with sein it comes apart on its own (der Ast ist gebrochen). Body parts use the dative reflexive of the example, exactly as in sich den Arm brechen. Figuratively you break a promise (ein Versprechen brechen) and a record (einen Rekord brechen).'
+      ru: 'Сильный глагол: bricht, brach. С haben предмет ломает кто-то, с sein он ломается сам (der Ast ist gebrochen). О частях тела говорят возвратно с Dativ, как в примере: sich den Arm brechen. В переносном значении нарушают обещание (ein Versprechen brechen) и бьют рекорд (einen Rekord brechen).'
+      uk: 'Сильне дієслово: bricht, brach. З haben предмет ламає хтось, із sein він ламається сам (der Ast ist gebrochen). Про частини тіла кажуть зворотно з Dativ, як у прикладі: sich den Arm brechen. У переносному значенні порушують обіцянку (ein Versprechen brechen) і б’ють рекорд (einen Rekord brechen).'

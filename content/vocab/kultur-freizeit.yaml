@@ -1,0 +1,723 @@
+id: kultur-freizeit
+title_de: "Kultur & Freizeit"
+title_en: "Culture and leisure"
+title_ru: "Культура и досуг"
+title_uk: "Культура та дозвілля"
+level: B1
+# B1.12 is a genre unit: it owns no grammar point, so the deck carries the whole
+# weight of what is new here — the words a Veranstaltungsprogramm, a spoken
+# agreement about an evening out and a short written Erfahrungsbericht are made
+# of.
+#
+# Three constraints shaped the list.
+#
+# 1. The frozen contract excludes art-criticism register, sports-reporting jargon
+#    and cultural-history content. So no `Werk`, no `Interpretation`, no
+#    `Epoche`: every headword is one a person reading a district's culture-week
+#    flyer has to read or say — Saal, Vorstellung, Reservierung, Treffpunkt,
+#    Stimmung.
+# 2. The culture and leisure words the learner already owns are RECYCLED in the
+#    article, the reading and the notes below, never re-taught (the validator
+#    hard-fails a headword living in two decks): Veranstaltung, Programm,
+#    Eintritt, Ausstellung, Kultur, Sendung, Band, Krimi, Lied
+#    (kultur-unterhaltung-a2); Konzert, Kino, Film, Musik, Einladung, Fest,
+#    feiern, tanzen, spielen, malen, wandern (freizeit-koennen, A1); Theater,
+#    Museum, reservieren, Gast (reisen-urlaub); Karte (kommunikation-medien);
+#    Kritik (meinung-medien, B1.5); empfehlen (verben-handlungen-a2-1);
+#    Vorschlag (nebensaetze-plaene); Ermäßigung, kostenlos (einkaufen-geld-a2);
+#    Führung (reisen-orte-a2); Erlebnis, erleben (erfahrungen-erzaehlen, B1.1);
+#    Unterhaltung, auswählen (digitales-leben, B1.11). Their slots went to the
+#    neighbour this unit genuinely adds — gratis beside kostenlos, aussuchen
+#    beside auswählen, Vorstellung beside Veranstaltung, Stimmung beside Laune.
+# 3. Every headword is on the Goethe-B1 Wortliste and owned by no other deck,
+#    checked with
+#    `bun scripts/coverage.ts B1 --check-deck content/vocab/kultur-freizeit.yaml`.
+#    No exceptions were needed, so like digitales-leben this deck is fully
+#    manifest-clean.
+#
+# Tiering, decided once and never retrofitted: the 22 entries the unit actively
+# teaches ship as `both`; the 16 below the divider are the receptive tail —
+# language a programme, a poster and a review say to you, and `cards:
+# recognition` from the start because the direction is baked into the card id.
+entries:
+  # --- Core (cards: both by default) --------------------------------------
+  # Reading a programme for the four facts, agreeing on an evening with someone,
+  # and writing down afterwards what it was like. These the learner produces.
+
+  - de: "Vorstellung"
+    ipa: "ˈfoːɐ̯ˌʃtɛlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Vorstellungen"
+    en: "performance, showing"
+    ru: "спектакль, сеанс"
+    uk: "вистава, сеанс"
+    example_de: "Die zweite Vorstellung am Sonntag ist noch nicht ausverkauft."
+    example_en: "The second showing on Sunday is not sold out yet."
+    example_ru: "Второй сеанс в воскресенье ещё не распродан."
+    example_uk: "Другий сеанс у неділю ще не розпроданий."
+    note:
+      en: "One evening of a play, a film or a concert: eine Vorstellung besuchen. The whole event across several days is die Veranstaltung. The second sense — a picture in your head — lives in sich etwas vorstellen: Ich hatte mir das anders vorgestellt."
+      ru: "Один вечер спектакля, фильма или концерта: eine Vorstellung besuchen. Всё мероприятие целиком, на несколько дней, — die Veranstaltung. Второе значение, «представление в голове», живёт в sich etwas vorstellen: Ich hatte mir das anders vorgestellt."
+      uk: "Один вечір вистави, фільму чи концерту: eine Vorstellung besuchen. Увесь захід загалом, на кілька днів, — die Veranstaltung. Друге значення, «уявлення в голові», живе в sich etwas vorstellen: Ich hatte mir das anders vorgestellt."
+
+  - de: "Publikum"
+    ipa: "ˈpuːblikʊm"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: "audience"
+    ru: "публика, зрители"
+    uk: "публіка, глядачі"
+    example_de: "Das Publikum klatschte nach jedem Stück."
+    example_en: "The audience clapped after every piece."
+    example_ru: "Публика хлопала после каждого номера."
+    example_uk: "Публіка плескала після кожного номера."
+    note:
+      en: "Grammatically singular even though it names many people: Das Publikum war begeistert. There is no everyday plural. die Zuschauer counts heads; das Publikum is the whole room as one."
+      ru: "Грамматически единственное число, хотя людей много: Das Publikum war begeistert. Обиходного множественного у слова нет. die Zuschauer — счёт по головам, das Publikum — весь зал как одно целое."
+      uk: "Граматично однина, хоча людей багато: Das Publikum war begeistert. Побутової множини слово не має. die Zuschauer — лік по головах, das Publikum — уся зала як одне ціле."
+
+  - de: "Bühne"
+    ipa: "ˈbyːnə"
+    pos: noun
+    gender: f
+    plural: "die Bühnen"
+    en: "stage"
+    ru: "сцена"
+    uk: "сцена"
+    example_de: "Nach der Pause standen alle wieder auf der Bühne."
+    example_en: "After the interval everybody was back on stage."
+    example_ru: "После антракта все снова стояли на сцене."
+    example_uk: "Після антракту всі знову стояли на сцені."
+    note:
+      en: "auf die Bühne gehen for the movement, auf der Bühne stehen for the position — the two-way prepositions from A1. The word also names the theatre world as a whole: ein Stück für die Bühne schreiben."
+      ru: "auf die Bühne gehen — движение, auf der Bühne stehen — положение: те самые предлоги двойного управления с A1. Слово называет и театральный мир в целом: ein Stück für die Bühne schreiben."
+      uk: "auf die Bühne gehen — рух, auf der Bühne stehen — положення: ті самі прийменники подвійного керування з A1. Слово називає і театральний світ загалом: ein Stück für die Bühne schreiben."
+
+  - de: "Saal"
+    ipa: "ˈzaːl"
+    pos: noun
+    gender: m
+    plural: "die Säle"
+    en: "hall, auditorium"
+    ru: "зал"
+    uk: "зала"
+    example_de: "Der kleine Saal hat nur hundert Plätze."
+    example_en: "The small hall seats only a hundred."
+    example_ru: "В малом зале всего сто мест."
+    example_uk: "У малій залі лише сто місць."
+    note:
+      en: "Irregular plural with an umlaut and a single a: die Säle, never Saale. A programme names the house first and the room second: Stadthalle, kleiner Saal. der Raum is any room; this one is big and has an audience in it."
+      ru: "Неправильное множественное с умлаутом и одной a: die Säle, но никогда Saale. В программе сначала называют здание, потом помещение: Stadthalle, kleiner Saal. der Raum — любое помещение, а это — большое и со зрителями."
+      uk: "Неправильна множина з умлаутом і однією a: die Säle, але ніколи Saale. У програмі спершу називають будівлю, потім приміщення: Stadthalle, kleiner Saal. der Raum — будь-яке приміщення, а це — велике й з глядачами."
+
+  - de: "Reservierung"
+    ipa: "ʁezɛɐ̯ˈviːʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Reservierungen"
+    en: "booking, advance reservation"
+    ru: "бронирование, предварительный заказ"
+    uk: "бронювання, попереднє замовлення"
+    example_de: "Für die Führung am Sonntag ist eine Reservierung nötig."
+    example_en: "Booking is required for Sunday's guided tour."
+    example_ru: "На воскресную экскурсию нужно бронирование."
+    example_uk: "На недільну екскурсію потрібне бронювання."
+    note:
+      en: "The noun to reservieren: eine Reservierung machen, unter dem Namen Klein. It holds a table, a seat or a place on a tour — the paper you then pay for is die Karte."
+      ru: "Существительное к reservieren: eine Reservierung machen, unter dem Namen Klein. Держит столик, место или место в группе, а бумажка, за которую платят, — die Karte."
+      uk: "Іменник до reservieren: eine Reservierung machen, unter dem Namen Klein. Тримає столик, місце або місце в групі, а папірець, за який платять, — die Karte."
+
+  - de: "Treffpunkt"
+    ipa: "ˈtʁɛfˌpʊŋkt"
+    pos: noun
+    gender: m
+    plural: "die Treffpunkte"
+    en: "meeting point"
+    ru: "место встречи"
+    uk: "місце зустрічі"
+    example_de: "Treffpunkt ist um Viertel vor acht vor dem Saal."
+    example_en: "The meeting point is outside the hall at a quarter to eight."
+    example_ru: "Встречаемся без четверти восемь перед залом."
+    example_uk: "Зустрічаємося за чверть восьма перед залою."
+    note:
+      en: "treffen plus der Punkt. In a plan it stands with no article and no verb: Treffpunkt: Haupteingang, 19.45. der Termin fixes the time, der Treffpunkt the place — a plan needs both."
+      ru: "treffen плюс der Punkt. В плане слово стоит без артикля и без глагола: Treffpunkt: Haupteingang, 19.45. der Termin задаёт время, der Treffpunkt — место; в плане нужны оба."
+      uk: "treffen плюс der Punkt. У плані слово стоїть без артикля й без дієслова: Treffpunkt: Haupteingang, 19.45. der Termin задає час, der Treffpunkt — місце; у плані потрібні обидва."
+
+  - de: "Stimmung"
+    ipa: "ˈʃtɪmʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Stimmungen"
+    en: "atmosphere, mood in a room"
+    ru: "атмосфера, настроение в зале"
+    uk: "атмосфера, настрій у залі"
+    example_de: "Im kleinen Saal war die Stimmung besser als in der Halle."
+    example_en: "The atmosphere in the small hall was better than in the arena."
+    example_ru: "В малом зале атмосфера была лучше, чем в большом ангаре."
+    example_uk: "У малій залі атмосфера була краща, ніж у великому ангарі."
+    note:
+      en: "gute Stimmung, schlechte Stimmung — what a room or an evening feels like, and the first thing a short review names. One person's mood on one day is die Laune instead: Er hat heute schlechte Laune."
+      ru: "gute Stimmung, schlechte Stimmung — то, каким ощущается зал или вечер, и первое, что называет короткий отзыв. Настроение одного человека в конкретный день — die Laune: Er hat heute schlechte Laune."
+      uk: "gute Stimmung, schlechte Stimmung — те, яким відчувається зал або вечір, і перше, що називає короткий відгук. Настрій однієї людини в конкретний день — die Laune: Er hat heute schlechte Laune."
+
+  - de: "Roman"
+    ipa: "ʁoˈmaːn"
+    pos: noun
+    gender: m
+    plural: "die Romane"
+    en: "novel"
+    ru: "роман"
+    uk: "роман"
+    example_de: "Ich finde den Film besser als den Roman."
+    example_en: "I think the film is better than the novel."
+    example_ru: "По-моему, фильм лучше книги."
+    example_uk: "Як на мене, фільм кращий за книжку."
+    note:
+      en: "Stress on the second syllable, and no connection to Rom or to romantisch — a Roman can be a crime story just as well. A short one is die Erzählung; the whole field is die Literatur."
+      ru: "Ударение на втором слоге, и никакой связи ни с Rom, ни с romantisch: ein Roman вполне может быть детективом. Короткая вещь — die Erzählung, вся область — die Literatur."
+      uk: "Наголос на другому складі, і жодного зв'язку ні з Rom, ні з romantisch: ein Roman цілком може бути детективом. Коротка річ — die Erzählung, уся царина — die Literatur."
+
+  - de: "Figur"
+    ipa: "fiˈguːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Figuren"
+    en: "character in a story; figure"
+    ru: "персонаж; фигура"
+    uk: "персонаж; фігура"
+    example_de: "Die Hauptfigur im zweiten Teil war mir zu leise."
+    example_en: "The lead character in the second half was too quiet for me."
+    example_ru: "Главный персонаж во второй части показался мне слишком тихим."
+    example_uk: "Головний персонаж у другій частині здався мені надто тихим."
+    note:
+      en: "die Hauptfigur is the lead. The same word is a body's shape, eine sportliche Figur, and a piece on a board, die Schachfigur. Stress on the last syllable."
+      ru: "die Hauptfigur — главный герой. То же слово — телосложение, eine sportliche Figur, и фишка на доске, die Schachfigur. Ударение на последнем слоге."
+      uk: "die Hauptfigur — головний герой. Те саме слово — статура, eine sportliche Figur, і фішка на дошці, die Schachfigur. Наголос на останньому складі."
+
+  - de: "Wanderung"
+    ipa: "ˈvandəʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Wanderungen"
+    en: "hike, walk in the country"
+    ru: "поход, прогулка за городом"
+    uk: "похід, прогулянка за містом"
+    example_de: "Am Sonntag machen wir lieber eine kurze Wanderung."
+    example_en: "On Sunday we would rather go on a short hike."
+    example_ru: "В воскресенье мы лучше сходим в короткий поход."
+    example_uk: "У неділю ми краще підемо в короткий похід."
+    note:
+      en: "eine Wanderung machen — the noun to wandern, and hours rather than minutes. A stroll around the block is ein Spaziergang. The marked route is der Wanderweg."
+      ru: "eine Wanderung machen — существительное к wandern, и речь о часах, а не минутах. Прогулка вокруг дома — ein Spaziergang. Размеченный маршрут — der Wanderweg."
+      uk: "eine Wanderung machen — іменник до wandern, і йдеться про години, а не хвилини. Прогулянка навколо будинку — ein Spaziergang. Розмічений маршрут — der Wanderweg."
+
+  - de: "verabreden"
+    ipa: "fɛɐ̯ˈʔapʁeːdn̩"
+    pos: verb
+    praesens_3sg: "verabredet sich"
+    partizip2: "sich verabredet"
+    aux: haben
+    valence: "sich mit + Dat"
+    accept: ["sich verabreden"]
+    en: "to arrange to meet"
+    ru: "договариваться о встрече"
+    uk: "домовлятися про зустріч"
+    example_de: "Wir haben uns für Samstag vor dem Kino verabredet."
+    example_en: "We arranged to meet outside the cinema on Saturday."
+    example_ru: "Мы договорились встретиться в субботу у кинотеатра."
+    example_uk: "Ми домовилися зустрітися в суботу біля кінотеатру."
+    note:
+      en: "Reflexive in this sense, and the other person takes mit + Dativ: sich mit jemandem verabreden. Without the pronoun it arranges the thing rather than the meeting: einen Termin verabreden. Ich bin verabredet says the plan already exists."
+      ru: "В этом значении глагол возвратный, а собеседник вводится через mit + Dativ: sich mit jemandem verabreden. Без местоимения договариваются о самой вещи, а не о встрече: einen Termin verabreden. Ich bin verabredet значит, что договорённость уже есть."
+      uk: "У цьому значенні дієслово зворотне, а співрозмовник уводиться через mit + Dativ: sich mit jemandem verabreden. Без займенника домовляються про саму річ, а не про зустріч: einen Termin verabreden. Ich bin verabredet означає, що домовленість уже є."
+
+  - de: "abmachen"
+    ipa: "ˈapˌmaxn̩"
+    pos: verb
+    praesens_3sg: "macht ab"
+    partizip2: "abgemacht"
+    aux: haben
+    valence: "+ Akk"
+    en: "to agree on, to settle between you"
+    ru: "договариваться о чём-либо"
+    uk: "домовлятися про щось"
+    example_de: "Wir haben abgemacht, dass jeder seine Karte selbst kauft."
+    example_en: "We agreed that everybody buys their own ticket."
+    example_ru: "Мы договорились, что каждый покупает билет себе сам."
+    example_uk: "Ми домовилися, що кожен купує квиток собі сам."
+    note:
+      en: "Separable: macht ab, hat abgemacht. Abgemacht! on its own closes a plan and needs nothing after it. The literal sense is taking a thing off something: ein Schild abmachen."
+      ru: "Отделяемая приставка: macht ab, hat abgemacht. Одно Abgemacht! закрывает договорённость, и добавлять к нему нечего. Буквальное значение — снять что-то: ein Schild abmachen."
+      uk: "Відокремлюваний префікс: macht ab, hat abgemacht. Одне Abgemacht! закриває домовленість, і додавати до нього нічого. Буквальне значення — зняти щось: ein Schild abmachen."
+
+  - de: "genießen"
+    ipa: "gəˈniːsn̩"
+    pos: verb
+    praesens_3sg: "genießt"
+    partizip2: "genossen"
+    aux: haben
+    valence: "+ Akk"
+    en: "to enjoy, to savour"
+    ru: "наслаждаться, получать удовольствие"
+    uk: "насолоджуватися, діставати задоволення"
+    example_de: "Den ruhigen Abend im kleinen Saal habe ich sehr genossen."
+    example_en: "I really enjoyed the quiet evening in the small hall."
+    example_ru: "Тихим вечером в малом зале я по-настоящему насладился."
+    example_uk: "Тихим вечором у малій залі я по-справжньому насолодився."
+    note:
+      en: "Strong and inseparable: genießt, hat genossen — no ge- in the participle, because ge- is already the prefix. It takes a plain Akkusativ. gefallen turns the sentence round instead: Der Abend hat mir gefallen."
+      ru: "Сильный и неотделяемый: genießt, hat genossen — в причастии нет ge-, потому что ge- уже приставка. Управляет прямым Akkusativ. gefallen переворачивает фразу: Der Abend hat mir gefallen."
+      uk: "Сильне й невідокремлюване: genießt, hat genossen — у дієприкметнику немає ge-, бо ge- уже префікс. Керує прямим Akkusativ. gefallen перевертає фразу: Der Abend hat mir gefallen."
+
+  - de: "loben"
+    ipa: "ˈloːbn̩"
+    pos: verb
+    praesens_3sg: "lobt"
+    partizip2: "gelobt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to praise"
+    ru: "хвалить"
+    uk: "хвалити"
+    example_de: "Die Zeitung lobte vor allem das Orchester."
+    example_en: "The paper praised the orchestra above all."
+    example_ru: "Газета хвалила прежде всего оркестр."
+    example_uk: "Газета хвалила передусім оркестр."
+    note:
+      en: "Regular: lobt, hat gelobt. Its opposite in a review is kritisieren. The noun das Lob has no everyday plural: viel Lob bekommen."
+      ru: "Правильный глагол: lobt, hat gelobt. Противоположность в отзыве — kritisieren. У существительного das Lob обиходного множественного нет: viel Lob bekommen."
+      uk: "Правильне дієслово: lobt, hat gelobt. Протилежність у відгуку — kritisieren. Іменник das Lob побутової множини не має: viel Lob bekommen."
+
+  - de: "kritisieren"
+    ipa: "kʁitiˈziːʁən"
+    pos: verb
+    praesens_3sg: "kritisiert"
+    partizip2: "kritisiert"
+    aux: haben
+    valence: "+ Akk"
+    en: "to criticize"
+    ru: "критиковать"
+    uk: "критикувати"
+    example_de: "Viele kritisierten nur die Länge des zweiten Teils."
+    example_en: "Many people criticized only the length of the second half."
+    example_ru: "Многие критиковали лишь длину второй части."
+    example_uk: "Багато хто критикував лише довжину другої частини."
+    note:
+      en: "Verbs in -ieren build the Partizip II without ge-: hat kritisiert. It takes a plain Akkusativ, and the noun is die Kritik. It is not automatically hostile — a good review criticizes one part and praises the rest."
+      ru: "Глаголы на -ieren образуют Partizip II без ge-: hat kritisiert. Управляет прямым Akkusativ, существительное — die Kritik. Слово не обязательно враждебное: хороший отзыв ругает одну часть и хвалит остальное."
+      uk: "Дієслова на -ieren утворюють Partizip II без ge-: hat kritisiert. Керує прямим Akkusativ, іменник — die Kritik. Слово не конче вороже: гарний відгук ганить одну частину й хвалить решту."
+
+  - de: "aussuchen"
+    ipa: "ˈaʊ̯sˌzuːxn̩"
+    pos: verb
+    praesens_3sg: "sucht aus"
+    partizip2: "ausgesucht"
+    aux: haben
+    valence: "+ Akk"
+    en: "to pick out, to choose from what is there"
+    ru: "выбирать, подбирать из имеющегося"
+    uk: "вибирати, добирати з наявного"
+    example_de: "Such dir aus dem Programm zwei Abende aus."
+    example_en: "Pick two evenings out of the programme."
+    example_ru: "Выбери себе из программы два вечера."
+    example_uk: "Вибери собі з програми два вечори."
+    note:
+      en: "Separable: sucht aus, hat ausgesucht. Very often with a Dativ of the person choosing for themselves: sich etwas aussuchen. auswählen is the same move on a screen or a list; aussuchen is the everyday word for a shelf, a menu and a programme."
+      ru: "Отделяемая приставка: sucht aus, hat ausgesucht. Очень часто с дативом того, кто выбирает себе: sich etwas aussuchen. auswählen — то же действие на экране или в списке, aussuchen — обиходное слово для полки, меню и программы."
+      uk: "Відокремлюваний префікс: sucht aus, hat ausgesucht. Дуже часто з давальним того, хто вибирає собі: sich etwas aussuchen. auswählen — та сама дія на екрані чи в списку, aussuchen — побутове слово для полиці, меню й програми."
+
+  - de: "sich amüsieren"
+    ipa: "zɪç amyˈziːʁən"
+    pos: verb
+    praesens_3sg: "amüsiert sich"
+    partizip2: "sich amüsiert"
+    aux: haben
+    valence: "sich"
+    en: "to have a good time"
+    ru: "хорошо проводить время, веселиться"
+    uk: "гарно проводити час, веселитися"
+    example_de: "Auf dem Fest haben wir uns gut amüsiert."
+    example_en: "We had a good time at the party."
+    example_ru: "На празднике мы хорошо повеселились."
+    example_uk: "На святі ми гарно повеселилися."
+    note:
+      en: "The pronoun is not optional in this sense: Wir haben uns amüsiert. Verbs in -ieren take no ge-. sich über etwas amüsieren is a different thing again — finding something funny, not enjoying it."
+      ru: "Местоимение здесь не факультативно: Wir haben uns amüsiert. Глаголы на -ieren идут без ge-. sich über etwas amüsieren — уже другое: находить что-то смешным, а не наслаждаться этим."
+      uk: "Займенник тут не факультативний: Wir haben uns amüsiert. Дієслова на -ieren ідуть без ge-. sich über etwas amüsieren — уже інше: вважати щось смішним, а не насолоджуватися цим."
+
+  - de: "sich langweilen"
+    ipa: "zɪç ˈlaŋˌvaɪ̯lən"
+    pos: verb
+    praesens_3sg: "langweilt sich"
+    partizip2: "sich gelangweilt"
+    aux: haben
+    valence: "sich"
+    en: "to be bored"
+    ru: "скучать, томиться"
+    uk: "нудьгувати, нудитися"
+    example_de: "In der zweiten Hälfte habe ich mich ein bisschen gelangweilt."
+    example_en: "I was a little bored in the second half."
+    example_ru: "Во второй половине мне стало немного скучно."
+    example_uk: "У другій половині мені стало трохи нудно."
+    note:
+      en: "Inseparable despite the long look of it: hat sich gelangweilt, never gelangweiltet. langweilig describes the thing, sich langweilen the person — Der Film war langweilig, also habe ich mich gelangweilt."
+      ru: "Приставка неотделяемая, несмотря на длину слова: hat sich gelangweilt, но никогда gelangweiltet. langweilig описывает вещь, sich langweilen — человека: Der Film war langweilig, also habe ich mich gelangweilt."
+      uk: "Префікс невідокремлюваний, попри довжину слова: hat sich gelangweilt, але ніколи gelangweiltet. langweilig описує річ, sich langweilen — людину: Der Film war langweilig, also habe ich mich gelangweilt."
+
+  - de: "begeistert"
+    ipa: "bəˈgaɪ̯stɐt"
+    pos: adj
+    en: "thrilled, full of enthusiasm"
+    ru: "восхищённый, в восторге"
+    uk: "захоплений, у захваті"
+    example_de: "Das Publikum war von der zweiten Hälfte begeistert."
+    example_en: "The audience was thrilled by the second half."
+    example_ru: "Публика была в восторге от второй половины."
+    example_uk: "Публіка була в захваті від другої половини."
+    note:
+      en: "von etwas begeistert sein — what caused it takes von and the Dativ. From begeistern; the noun is die Begeisterung. It comes after the event, where gespannt comes before it."
+      ru: "von etwas begeistert sein — источник восторга вводится через von с Dativ. От begeistern, существительное — die Begeisterung. Слово приходит после события, тогда как gespannt — до него."
+      uk: "von etwas begeistert sein — джерело захвату вводиться через von з Dativ. Від begeistern, іменник — die Begeisterung. Слово приходить після події, тоді як gespannt — до неї."
+
+  - de: "gespannt"
+    ipa: "gəˈʃpant"
+    pos: adj
+    en: "eager to see what comes, curious"
+    ru: "с нетерпением ожидающий"
+    uk: "той, що з нетерпінням очікує"
+    example_de: "Auf den zweiten Teil bin ich schon gespannt."
+    example_en: "I am already looking forward to the second half."
+    example_ru: "Вторую часть я жду с нетерпением."
+    example_uk: "Другу частину я чекаю з нетерпінням."
+    note:
+      en: "auf etwas gespannt sein — always before the event; afterwards you are begeistert or enttäuscht instead. Literally tensed, from spannen, and spannend describes the thing doing the tensing."
+      ru: "auf etwas gespannt sein — всегда до события; после него говорят begeistert или enttäuscht. Буквально «натянутый», от spannen, а spannend описывает то, что натягивает."
+      uk: "auf etwas gespannt sein — завжди до події; після неї кажуть begeistert або enttäuscht. Буквально «натягнутий», від spannen, а spannend описує те, що натягує."
+
+  - de: "gratis"
+    ipa: "ˈgʁaːtɪs"
+    pos: adv
+    en: "free of charge"
+    ru: "бесплатно"
+    uk: "безкоштовно"
+    example_de: "Kinder bis zwölf Jahre kommen gratis ins Museum."
+    example_en: "Children under twelve get into the museum free."
+    example_ru: "Дети до двенадцати лет проходят в музей бесплатно."
+    example_uk: "Діти до дванадцяти років проходять у музей безкоштовно."
+    note:
+      en: "Never takes an ending: nie ein gratises Konzert. Before a noun German uses kostenlos instead, and a programme line writes Eintritt frei. A Latin word, stressed on the first syllable."
+      ru: "Окончания не получает никогда: nie ein gratises Konzert. Перед существительным немецкий берёт kostenlos, а строка программы пишет Eintritt frei. Слово латинское, ударение на первом слоге."
+      uk: "Закінчення не дістає ніколи: nie ein gratises Konzert. Перед іменником німецька бере kostenlos, а рядок програми пише Eintritt frei. Слово латинське, наголос на першому складі."
+
+  - de: "Bescheid sagen"
+    ipa: "bəˈʃaɪ̯t ˈzaːgn̩"
+    pos: phrase
+    en: "to let somebody know"
+    ru: "сообщить, дать знать"
+    uk: "повідомити, дати знати"
+    example_de: "Sag mir bis Donnerstag Bescheid, ob du mitkommst."
+    example_en: "Let me know by Thursday whether you are coming."
+    example_ru: "Скажи мне до четверга, идёшь ли ты с нами."
+    example_uk: "Скажи мені до четверга, чи йдеш ти з нами."
+    note:
+      en: "The person told stands in the Dativ: Ich sage dir Bescheid. The second word belongs to the verb and closes the bracket, so a deadline goes before it, never after. Bescheid wissen is the other half of the pair: to be in the know."
+      ru: "Тот, кому сообщают, стоит в Dativ: Ich sage dir Bescheid. Второе слово принадлежит глаголу и закрывает рамку, поэтому срок ставится перед ним, а не после. Парное выражение — Bescheid wissen, «быть в курсе»."
+      uk: "Той, кому повідомляють, стоїть у Dativ: Ich sage dir Bescheid. Друге слово належить дієслову й закриває рамку, тому термін ставлять перед ним, а не після. Парний вислів — Bescheid wissen, «бути в курсі»."
+
+  # --- Receptive tail (cards: recognition) --------------------------------
+  # What a programme, a poster and a printed review say to you. Understood,
+  # never demanded back. Declared recognition from the start, never retrofitted.
+
+  - de: "Oper"
+    ipa: "ˈoːpɐ"
+    pos: noun
+    gender: f
+    plural: "die Opern"
+    cards: recognition
+    en: "opera; opera house"
+    ru: "опера; оперный театр"
+    uk: "опера; оперний театр"
+    example_de: "Die Oper beginnt schon um halb sieben."
+    example_en: "The opera starts as early as half past six."
+    example_ru: "Опера начинается уже в половине седьмого."
+    example_uk: "Опера починається вже о пів на сьому."
+    note:
+      en: "Two things in one word: the piece and the house it is played in — in die Oper gehen means the building. Stress on the first syllable."
+      ru: "Два предмета в одном слове: и произведение, и здание, где его дают, — in die Oper gehen значит именно здание. Ударение на первом слоге."
+      uk: "Дві речі в одному слові: і твір, і будівля, де його дають, — in die Oper gehen означає саме будівлю. Наголос на першому складі."
+
+  - de: "Orchester"
+    ipa: "ɔʁˈkɛstɐ"
+    pos: noun
+    gender: n
+    plural: "die Orchester"
+    cards: recognition
+    en: "orchestra"
+    ru: "оркестр"
+    uk: "оркестр"
+    example_de: "Das Orchester der Musikschule spielt am Freitag."
+    example_en: "The music school's orchestra plays on Friday."
+    example_ru: "Оркестр музыкальной школы играет в пятницу."
+    example_uk: "Оркестр музичної школи грає в п'ятницю."
+    note:
+      en: "The ch is spoken as k: Or-kes-ter, with the stress in the middle. The plural looks like the singular. A handful of players with guitars is die Band instead."
+      ru: "Сочетание ch здесь звучит как k: Or-kes-ter, ударение на среднем слоге. Множественное число совпадает с единственным. Несколько человек с гитарами — это die Band."
+      uk: "Сполучення ch тут звучить як k: Or-kes-ter, наголос на середньому складі. Множина збігається з одниною. Кілька людей із гітарами — це die Band."
+
+  - de: "Ballett"
+    ipa: "baˈlɛt"
+    pos: noun
+    gender: n
+    plural: "die Ballette"
+    cards: recognition
+    en: "ballet"
+    ru: "балет"
+    uk: "балет"
+    example_de: "Für das Ballett am Sonntag gibt es noch Karten."
+    example_en: "There are still tickets for Sunday's ballet."
+    example_ru: "На воскресный балет ещё есть билеты."
+    example_uk: "На недільний балет ще є квитки."
+    note:
+      en: "Stress on the last syllable and the final t is spoken: Bal-lett. A French word that German pronounces its own way."
+      ru: "Ударение на последнем слоге, конечное t произносится: Bal-lett. Французское слово, которое немецкий произносит по-своему."
+      uk: "Наголос на останньому складі, кінцеве t вимовляється: Bal-lett. Французьке слово, яке німецька вимовляє по-своєму."
+
+  - de: "Szene"
+    ipa: "ˈstseːnə"
+    pos: noun
+    gender: f
+    plural: "die Szenen"
+    cards: recognition
+    en: "scene"
+    ru: "сцена как часть пьесы, эпизод"
+    uk: "сцена як частина п'єси, епізод"
+    example_de: "Die letzte Szene war die beste des Abends."
+    example_en: "The last scene was the best of the evening."
+    example_ru: "Последний эпизод оказался лучшим за вечер."
+    example_uk: "Останній епізод виявився найкращим за вечір."
+    note:
+      en: "Sz- is spoken s-ts. One part of a play or a film; the boards the actors stand on are die Bühne. It also names a group of people around a kind of music: die Jazzszene."
+      ru: "Sz- произносится как с-ц. Это часть пьесы или фильма, а помост, на котором стоят актёры, — die Bühne. Слово называет и круг людей вокруг музыки: die Jazzszene."
+      uk: "Sz- вимовляється як с-ц. Це частина п'єси чи фільму, а поміст, на якому стоять актори, — die Bühne. Слово називає і коло людей навколо музики: die Jazzszene."
+
+  - de: "Auftritt"
+    ipa: "ˈaʊ̯fˌtʁɪt"
+    pos: noun
+    gender: m
+    plural: "die Auftritte"
+    cards: recognition
+    en: "appearance on stage"
+    ru: "выступление, выход на сцену"
+    uk: "виступ, вихід на сцену"
+    example_de: "Der erste Auftritt der Band dauerte nur zwanzig Minuten."
+    example_en: "The band's first set lasted only twenty minutes."
+    example_ru: "Первое выступление группы длилось всего двадцать минут."
+    example_uk: "Перший виступ гурту тривав лише двадцять хвилин."
+    note:
+      en: "The noun to auftreten. It names one turn on stage, not the whole evening — that is die Vorstellung."
+      ru: "Существительное к auftreten. Называет один выход на сцену, а не весь вечер: весь вечер — die Vorstellung."
+      uk: "Іменник до auftreten. Називає один вихід на сцену, а не весь вечір: весь вечір — die Vorstellung."
+
+  - de: "Überschrift"
+    ipa: "ˈyːbɐˌʃʁɪft"
+    pos: noun
+    gender: f
+    plural: "die Überschriften"
+    cards: recognition
+    en: "heading, headline"
+    ru: "заголовок"
+    uk: "заголовок"
+    example_de: "Die Überschrift nennt nur den Titel, die Zeile darunter die Uhrzeit."
+    example_en: "The heading gives only the title, the line below it the time."
+    example_ru: "Заголовок называет только название, строка под ним — время."
+    example_uk: "Заголовок називає лише назву, рядок під ним — час."
+    note:
+      en: "über plus die Schrift: what is written above. In a newspaper it is the headline; in a programme or on a form it names the section under it."
+      ru: "über плюс die Schrift: то, что написано сверху. В газете это заголовок статьи, в программе или бланке — название раздела под ним."
+      uk: "über плюс die Schrift: те, що написано зверху. У газеті це заголовок статті, у програмі чи бланку — назва розділу під ним."
+
+  - de: "Broschüre"
+    ipa: "bʁɔˈʃyːʁə"
+    pos: noun
+    gender: f
+    plural: "die Broschüren"
+    cards: recognition
+    en: "brochure, booklet"
+    ru: "брошюра, буклет"
+    uk: "брошура, буклет"
+    example_de: "Die Broschüre mit dem ganzen Programm liegt im Rathaus."
+    example_en: "The booklet with the whole programme is at the town hall."
+    example_ru: "Брошюра со всей программой лежит в ратуше."
+    example_uk: "Брошура з усією програмою лежить у ратуші."
+    note:
+      en: "Stress on the second syllable, sch as in schön. A thin thing handed to you at a counter; a thick one with pictures and prices is der Katalog."
+      ru: "Ударение на втором слоге, sch — как в schön. Тонкая книжечка, которую дают на стойке; толстая, с картинками и ценами, — der Katalog."
+      uk: "Наголос на другому складі, sch — як у schön. Тонка книжечка, яку дають на стійці; товста, з малюнками й цінами, — der Katalog."
+
+  - de: "Saison"
+    ipa: "zɛˈzɔ̃ː"
+    pos: noun
+    gender: f
+    plural: "die Saisons"
+    cards: recognition
+    en: "season of a theatre or a business"
+    ru: "сезон в театре или в деле"
+    uk: "сезон у театрі чи в справі"
+    example_de: "Die neue Saison im Theater beginnt im September."
+    example_en: "The new season at the theatre starts in September."
+    example_ru: "Новый сезон в театре начинается в сентябре."
+    example_uk: "Новий сезон у театрі починається у вересні."
+    note:
+      en: "A French word: the ai sounds like ä and the ending is nasal. Not die Jahreszeit, which is spring, summer, autumn and winter."
+      ru: "Французское слово: ai звучит как ä, а окончание носовое. Это не die Jahreszeit — весна, лето, осень, зима."
+      uk: "Французьке слово: ai звучить як ä, а закінчення носове. Це не die Jahreszeit — весна, літо, осінь, зима."
+
+  - de: "Auswahl"
+    ipa: "ˈaʊ̯sˌvaːl"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: "range to choose from"
+    ru: "выбор, ассортимент"
+    uk: "вибір, асортимент"
+    example_de: "Die Auswahl an Konzerten ist dieses Jahr größer."
+    example_en: "The range of concerts is bigger this year."
+    example_ru: "Выбор концертов в этом году больше."
+    example_uk: "Вибір концертів цього року більший."
+    note:
+      en: "eine große Auswahl an + Dativ, and almost always singular. The verbs beside it are aussuchen and auswählen; die Wahl is the act of choosing rather than what there is to choose from."
+      ru: "eine große Auswahl an + Dativ, и почти всегда единственное число. Рядом стоят глаголы aussuchen и auswählen, а die Wahl — сам акт выбора, а не то, из чего выбирают."
+      uk: "eine große Auswahl an + Dativ, і майже завжди однина. Поруч стоять дієслова aussuchen і auswählen, а die Wahl — сам акт вибору, а не те, з чого вибирають."
+
+  - de: "Tanz"
+    ipa: "ˈtants"
+    pos: noun
+    gender: m
+    plural: "die Tänze"
+    cards: recognition
+    en: "dance"
+    ru: "танец"
+    uk: "танець"
+    example_de: "Nach dem Konzert gibt es im Saal noch Tanz."
+    example_en: "After the concert there is dancing in the hall."
+    example_ru: "После концерта в зале ещё будут танцы."
+    example_uk: "Після концерту в залі ще будуть танці."
+    note:
+      en: "Plural with an umlaut: die Tänze. tanzen is the verb, der Tänzer does it for a living. Ein Abend mit Tanz on a poster means the floor is open to everybody."
+      ru: "Множественное с умлаутом: die Tänze. Глагол — tanzen, а der Tänzer делает это профессионально. Ein Abend mit Tanz на афише значит, что танцевать может каждый."
+      uk: "Множина з умлаутом: die Tänze. Дієслово — tanzen, а der Tänzer робить це фахово. Ein Abend mit Tanz на афіші означає, що танцювати може кожен."
+
+  - de: "Langeweile"
+    ipa: "ˈlaŋəˌvaɪ̯lə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: "boredom"
+    ru: "скука"
+    uk: "нудьга"
+    example_de: "Aus lauter Langeweile bin ich in der Pause gegangen."
+    example_en: "Out of sheer boredom I left at the interval."
+    example_ru: "От чистой скуки я ушёл в антракте."
+    example_uk: "Від чистої нудьги я пішов в антракті."
+    note:
+      en: "lang plus die Weile, written as one word: aus Langeweile, vor Langeweile. The verb is sich langweilen and the adjective langweilig."
+      ru: "lang плюс die Weile, пишется слитно: aus Langeweile, vor Langeweile. Глагол — sich langweilen, прилагательное — langweilig."
+      uk: "lang плюс die Weile, пишеться разом: aus Langeweile, vor Langeweile. Дієслово — sich langweilen, прикметник — langweilig."
+
+  - de: "Vergnügen"
+    ipa: "fɛɐ̯ˈgnyːgn̩"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: "pleasure, enjoyment"
+    ru: "удовольствие"
+    uk: "задоволення"
+    example_de: "Viel Vergnügen bei der Vorstellung!"
+    example_en: "Enjoy the show!"
+    example_ru: "Приятного вечера на спектакле!"
+    example_uk: "Приємного вечора на виставі!"
+    note:
+      en: "Viel Vergnügen! is what a programme wishes you at the bottom of the page. mit Vergnügen means gladly. The adjective is vergnügt."
+      ru: "Viel Vergnügen! — то, чем программа желает вам хорошего вечера внизу страницы. mit Vergnügen значит «с удовольствием». Прилагательное — vergnügt."
+      uk: "Viel Vergnügen! — те, чим програма зичить вам гарного вечора внизу сторінки. mit Vergnügen означає «залюбки». Прикметник — vergnügt."
+
+  - de: "verabredet"
+    ipa: "fɛɐ̯ˈʔapʁeːdət"
+    pos: adj
+    cards: recognition
+    en: "already committed to meeting somebody"
+    ru: "уже договорившийся о встрече"
+    uk: "той, що вже домовився про зустріч"
+    example_de: "Am Samstag bin ich leider schon verabredet."
+    example_en: "Unfortunately I already have plans on Saturday."
+    example_ru: "В субботу я, к сожалению, уже занят."
+    example_uk: "У суботу я, на жаль, уже зайнятий."
+    note:
+      en: "verabredet sein is the state, sich verabreden the act that produced it. It says a plan exists without saying with whom, which is what makes it a polite way of turning an invitation down."
+      ru: "verabredet sein — состояние, sich verabreden — действие, которое к нему привело. Фраза сообщает, что планы есть, но не говорит с кем, — потому и годится как вежливый отказ."
+      uk: "verabredet sein — стан, sich verabreden — дія, що до нього призвела. Фраза повідомляє, що плани є, але не каже з ким, — тому й годиться як увічлива відмова."
+
+  - de: "auftreten"
+    ipa: "ˈaʊ̯fˌtʁeːtn̩"
+    pos: verb
+    praesens_3sg: "tritt auf"
+    partizip2: "aufgetreten"
+    aux: sein
+    cards: recognition
+    en: "to appear on stage, to perform"
+    ru: "выступать, выходить на сцену"
+    uk: "виступати, виходити на сцену"
+    example_de: "Am Samstag treten zwei Gruppen nacheinander auf."
+    example_en: "On Saturday two groups perform one after the other."
+    example_ru: "В субботу одна за другой выступают две группы."
+    example_uk: "У суботу одна за одною виступають два гурти."
+    note:
+      en: "Perfekt with sein: ist aufgetreten. Vowel change like treten: tritt auf. A second sense is a problem showing up: Es sind Probleme aufgetreten."
+      ru: "Перфект с sein: ist aufgetreten. Чередование гласной как у treten: tritt auf. Второе значение — «возникнуть»: Es sind Probleme aufgetreten."
+      uk: "Перфект із sein: ist aufgetreten. Чергування голосного як у treten: tritt auf. Друге значення — «виникнути»: Es sind Probleme aufgetreten."
+
+  - de: "aufführen"
+    ipa: "ˈaʊ̯fˌfyːʁən"
+    pos: verb
+    praesens_3sg: "führt auf"
+    partizip2: "aufgeführt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to stage, to put a piece on"
+    ru: "ставить, исполнять на сцене"
+    uk: "ставити, виконувати на сцені"
+    example_de: "Das Stück wird nur an drei Abenden aufgeführt."
+    example_en: "The play is being staged on three evenings only."
+    example_ru: "Пьесу играют только три вечера."
+    example_uk: "П'єсу грають лише три вечори."
+    note:
+      en: "Separable: führt auf, hat aufgeführt. The house stages the piece, the people on stage auftreten. The noun is die Aufführung."
+      ru: "Отделяемая приставка: führt auf, hat aufgeführt. Театр ставит вещь, а люди на сцене auftreten. Существительное — die Aufführung."
+      uk: "Відокремлюваний префікс: führt auf, hat aufgeführt. Театр ставить річ, а люди на сцені auftreten. Іменник — die Aufführung."
+
+  - de: "ankündigen"
+    ipa: "ˈanˌkʏndɪgn̩"
+    pos: verb
+    praesens_3sg: "kündigt an"
+    partizip2: "angekündigt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to announce in advance"
+    ru: "объявлять заранее, анонсировать"
+    uk: "оголошувати заздалегідь, анонсувати"
+    example_de: "Im Programm ist für Sonntag eine Führung angekündigt."
+    example_en: "A guided tour is announced for Sunday in the programme."
+    example_ru: "В программе на воскресенье анонсирована экскурсия."
+    example_uk: "У програмі на неділю анонсовано екскурсію."
+    note:
+      en: "Separable: kündigt an, hat angekündigt. Not to be mixed up with kündigen, which ends a job or a flat contract. The noun is die Ankündigung."
+      ru: "Отделяемая приставка: kündigt an, hat angekündigt. Не путать с kündigen — «уволиться» или «расторгнуть договор». Существительное — die Ankündigung."
+      uk: "Відокремлюваний префікс: kündigt an, hat angekündigt. Не плутати з kündigen — «звільнитися» або «розірвати договір». Іменник — die Ankündigung."

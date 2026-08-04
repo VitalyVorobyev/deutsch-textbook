@@ -193,3 +193,49 @@ topics:
       status: pending
       substantiveContributions: []
       reviewedAt: null
+
+  - topic: digitales-leben
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1.11"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-04"
+      creativeChoices:
+        - "Stage the whole unit inside one continuous afternoon — setting up a city library's reading app on a new phone, hitting a fault, writing to the help desk about it, and then saying how much of the evening the phone now gets — so that the three text types the frozen contract names (Anleitung, Hilfetext, Online-Formular) are three moments of one task rather than three unrelated genre samples. PROPOSED BY THE DRAFT, NOT YET SELECTED: the contract fixes the mission, the outcomes, the genre range and the exclusions, but not this setting; a public-transport ticket app and a Bürgeramt online appointment form were the alternatives offered, and the library was chosen because it is the one setting in which the media-use outcome (reading, and how reading changed) arises from the same task as the instructions and the fault report instead of being appended to them."
+        - "Treat the recycled grammar as genre evidence rather than revision. The passive appears only as the answer to why an Anleitung avoids naming a person — the step stays true whoever performs it — and sodass appears only as the clause that tells a help desk what the learner can no longer do. Neither form is re-derived; both are cross-referenced to the unit that owns them (B1.6, B1.7), which is what a genre unit that closes no grammar point is for."
+        - "Name the four Erklärung subsections after tasks, not structures: reading an Anleitung step by step, filling in an Online-Formular, describing a fault and asking for help, reporting on one's own media use. Each maps to one frozen outcome or one named genre, so a learner scanning the headings sees what they will be able to do rather than what will be explained at them."
+        - "Hold the IT-specialist exclusion at the level of the deck, not just the prose: every one of the 38 headwords is a word a library user rather than an administrator has to read (Taste, Feld, Netz, Akku, Kabel), and the split between the 22 productive and the 16 receptive entries falls exactly where the learner stops needing to write the word and only needs to recognise it on a screen."
+        - "Make the quotable Fehlermeldung the article's one memorable teaching move: a message copied word for word can be looked up by the person reading the request, and a learner's summary of it cannot. It is the concrete reason the unit's writing outcome asks for precision rather than politeness."
+    aiAssistance:
+      tools:
+        - "Claude Code (Claude Opus 5) — drafted the topic article, the intensive reading and the vocabulary deck"
+        - "espeak-ng via `bun run gen:ipa` — generated the IPA skeleton for the 38 vocabulary entries; 19 of them were corrected by hand afterwards (compound and separable-verb secondary stress, the Software loan, vowel length in Kabel, Akku, Textnachricht and Reihenfolge)"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null
+
+  - topic: kultur-freizeit
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1.12"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-04"
+      creativeChoices:
+        - "Stage the unit as one district's Kulturwoche read off a single flyer — the programme for the coming weekend, the message that settles which evening two people go to, and the reader's comment printed after the last one — so that the three genres the frozen contract names (Programm, Einladung, Rezension) are three moments of one weekend rather than three unrelated samples. PROPOSED BY THE DRAFT, NOT YET SELECTED: the contract fixes the mission, the outcomes, the genre range and the exclusions, but not this setting; a city theatre's season brochure and a music festival's line-up were the alternatives offered, and the neighbourhood culture week was chosen because it is the one setting whose programme mixes a concert, a play and an exhibition on the same page, which is what makes the recommendation outcome a genuine comparison rather than a preference between two dates for the same event."
+        - "Read the Programm on four questions and stop — when, where, what it costs, whether tickets are left. The reading strategy, the article's first subsection, its table and the reading's two programme questions are all built on those four, because a genre unit's teachable content is where the answers sit, not what the words mean. The fifth and sixth table rows (for whom, who is playing) are labelled as the same move applied twice, not as further rules."
+        - "Treat the recycled grammar as the shape of a recommendation rather than as revision. The attributive comparative appears only as the thing that makes a recommendation answerable — ein besseres Konzert names what the other person can counter — and the Präteritum appears only as the register a written Erfahrungsbericht is in, with the spoken Perfekt named beside it so the choice is visible. Neither is re-derived; both cross-reference the unit that owns them (B1.2, B1.1). The attributive superlative is deliberately NOT taught: it sits in the Feinheiten table marked as something to read in a programme, because B1.2's frozen exclusion keeps it out of production and a genre unit may not quietly add it."
+        - "Hold the art-criticism exclusion at the level of the deck, not just the prose: every one of the 38 headwords is a word a person reading a district flyer has to read or say (Saal, Vorstellung, Reservierung, Treffpunkt, Stimmung), and nothing in the field of Werk, Interpretation or Epoche is admitted. The split between the 22 productive and the 16 receptive entries falls where the learner stops needing to write the word — a programme's own labels (Oper, Orchester, Ballett, Saison, Auftritt) are read constantly and produced never."
+        - "Make the single limitation the article's one memorable teaching move for the writing outcome: Nur der zweite Teil war zu lang is what makes the praise around it readable as a judgement instead of an advertisement, and it costs one sentence. The reading's third question measures exactly that shape in someone else's comment before the learner is asked to produce it."
+    aiAssistance:
+      tools:
+        - "Claude Code (Claude Opus 5) — drafted the topic article, the intensive reading and the vocabulary deck"
+        - "espeak-ng via `bun run gen:ipa` — generated the IPA skeleton for the 38 vocabulary entries; 21 of them were corrected by hand afterwards (missing secondary stress on compounds and separable verbs, the vocalized r of ver- and of Reservierung, vowel length in Publikum and gratis, misplaced stress in Broschüre and Szene, the schwa in Langeweile, and the nasal in Saison)"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null

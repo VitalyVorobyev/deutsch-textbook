@@ -681,7 +681,101 @@ describe('cards: recognition | both', () => {
     // The remainder are recognition on register alone: `Eile`, `längst`, `vorläufig`,
     // `Jahrzehnt`, `Jahrhundert`, `Jahrtausend`, `Nationalfeiertag` and `Pfingsten` are
     // notice, contract, museum-label and calendar vocabulary — read at B1 and never produced.
-    expect(cards).toBe(entries * 2 - 247);
+    // `digitales-leben` (B1.11, 2026-08-04) adds sixteen, and the line falls where the
+    // learner stops writing the word and only has to recognise it on a screen. The unit's
+    // three outcomes are read an Anleitung, write a fault report, talk about media use, so
+    // the twenty-two productive entries are exactly what those three tasks need to be
+    // produced: `Anleitung`, `Schritt`, `Reihenfolge`, `Taste`, `Feld`, `Zugang`, `Akku`,
+    // `Kabel`, `Netz`, `Technik` and the eleven verbs and adjectives a form, a fault and a
+    // habit are described with. The sixteen recognition entries are what the *screen* says
+    // back: `Software`, `Symbol`, `Menü`, `Stecker`, `Fernbedienung`, `Bedienungsanleitung`
+    // and `Textnachricht` are label-and-box vocabulary, read constantly and written never;
+    // `installieren`, `hochladen`, `sichern`, `anklicken`, `tippen` and `zuschauen` are
+    // instruction verbs the learner obeys rather than issues — and `anklicken` additionally
+    // collides with this deck's own `klicken`, which differs only in whether the object
+    // arrives through `auf`, so a typed prompt could not name which of the two it wanted.
+    // `Serie` loses the "what I watch" slot to cards that already ship: `Film`
+    // (freizeit-koennen, A1) and `Sendung` (kultur-unterhaltung-a2), and the productive
+    // core of the media-use outcome is the frequency-duration-purpose frame the article
+    // teaches (`täglich`, `ungefähr zwei Stunden`, `zum Lesen`), not the genre noun.
+    // `Unterhaltung` carries two unrelated senses one example cannot hold — entertainment
+    // and conversation — and each already has a carded answer, `Spaß`
+    // (kultur-unterhaltung-a2) and `Gespräch` (menschen-beziehungen-a2); that is the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. `abhängig` is
+    // recognition on register: it is the word a screen-time article uses, while the
+    // article's own model for saying the same thing is the plain
+    // `Ich brauche das Handy auch für die Arbeit`.
+    // `kultur-freizeit` (B1.12, 2026-08-04) adds sixteen on the same test, applied to a
+    // flyer instead of a screen: the line falls where the learner stops writing the word
+    // and only has to read it off a programme. The unit's three outcomes are read a
+    // Programm, agree on an evening, write a short report of it, so the twenty-two
+    // productive entries are what those three tasks have to say out loud — `Vorstellung`,
+    // `Publikum`, `Bühne`, `Saal`, `Reservierung`, `Treffpunkt`, `Stimmung`, `Roman`,
+    // `Figur`, `Wanderung`, the eight verbs of arranging and judging, and the four
+    // evaluative words a report and a plan are built from. The sixteen recognition entries
+    // are what the *programme* says back: `Oper`, `Orchester`, `Ballett`, `Szene`,
+    // `Auftritt`, `Saison`, `Broschüre` and `Überschrift` are label-and-poster vocabulary,
+    // read on every flyer and written on none; `aufführen`, `auftreten` and `ankündigen`
+    // are what a venue does to an event, never what a learner reports doing. Three lose a
+    // productive slot to a card that already ships or to this deck's own core: `Tanz` to
+    // `tanzen` (freizeit-koennen, A1), which is the form the plan actually needs;
+    // `Auswahl` to this deck's `aussuchen`, since a typed prompt for "choice" cannot say
+    // which of the noun and the verb it wants — the `anklicken`/`klicken` ruling from
+    // `digitales-leben`; and `Langeweile` to `sich langweilen`, the same pair one step
+    // further, with `langweilig` (bewertung-a2) already carded. `verabredet` is the
+    // participle of this deck's own `verabreden` and would grade the same word twice.
+    // `Vergnügen` is recognition on register: `Viel Vergnügen!` is printed at the foot of
+    // a programme, and the article's model for saying it is the plain `sich amüsieren`,
+    // which does ship as a production card.
+    // Wortliste completion wave 1, decks 6–11 (2026-08-04) add a hundred and thirty-two
+    // across six unowned decks — `verben-handlungen-b1-1` (20 of 35),
+    // `verben-handlungen-b1-2` (23 of 34), `verben-handlungen-b1-3` (20 of 34),
+    // `verben-kommunikation-ausdruck-b1` (21 of 36), `charakter-verhalten-b1` (23 of 40)
+    // and `zahlen-mengen-masse-b1` (25 of 39). Every split was run through the same
+    // mechanical collision test as the five wave-1 decks before them: YAML-parse every
+    // deck, index the `de`/`en`/`ru`/`uk`/`accept` of every entry whose `cards` is absent
+    // or `both`, and check each candidate gloss against it.
+    // The general-purpose verbs collide hardest, because A1/A2 already sell the plain
+    // members of every family: `benutzen` owns "to use", so `anwenden`, `verwenden` and
+    // `gebrauchen` are one prompt with three headwords; `bekommen`/`kriegen`/`holen` own
+    // "to get", which retires `besorgen`, `erhalten` and `empfangen`; `laufen` owns "to
+    // run" (`rennen`), `fallen` owns "to fall" (`stürzen`, and `sinken` in the numbers
+    // deck), `wenden` owns "to turn" (`drehen`, `umdrehen`), `setzen`/`stellen`/`legen`
+    // own "to put" (`stecken`), `erfahren` owns "to find out" (`herausfinden`),
+    // `akzeptieren`/`zusagen` own "to accept" (`annehmen`), `prüfen` owns "to test"
+    // (`testen`), `diskutieren` owns "to discuss" (`besprechen`), `notieren` owns "to
+    // write down" (`aufschreiben`), `sich bemühen` owns "to make an effort"
+    // (`sich anstrengen`), and `danken`/`bedanken` own "to thank" twice over, which is
+    // why the B1 headword `sich bedanken` cannot have a typed card at all.
+    // `neugierig` is the one no reading of the glosses would have caught: `gespannt`
+    // (kultur-freizeit, shipped in the same tree) is glossed "eager to see what comes,
+    // curious", and "curious" is the standard rendering of both — the `Wochentag`/`Werktag`
+    // case from `zeit-b1`, in the other direction.
+    // Four rulings are made inside a deck rather than against another one. `reichen` takes
+    // the typed card for the enough-family and lists `ausreichen` and `genügen` in its
+    // `accept`, the `dorthin`/`dahin` ruling from `ort-richtung-verweis-b1`; `verlangen`
+    // takes it from `fordern`; `festlegen` from `festsetzen`; `Entfernung` from `Distanz`.
+    // `ordnen` was drafted `both` and demoted in review: `organisieren` and `vereinbaren`
+    // both ship "to arrange", `regeln` owns the sorting-out prompt and `aufräumen` the
+    // tidying one — three owners in three other decks for one headword.
+    // The rest are recognition on two arguments the corpus has used before. Multi-sense
+    // headwords one example cannot hold: `aufheben`, `fassen`, `festhalten`, `treten`,
+    // `brechen`, `leisten`, `einsetzen`, `ausrichten`, `handeln`, `aufhalten`, `behandeln`,
+    // `vertreten`, `verraten`, `versichern`, `Ausdruck`, `locker`, `schuldig` — the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. And register: the
+    // office and notice words (`benötigen`, `erstellen`, `unterlassen`, `beschränken`,
+    // `festsetzen`, `feststehen`, `sich befinden`, `sich ereignen`, `Anrede`,
+    // `Aufforderung`, `Begründung`, `bekannt geben`, `kreativ`, `flexibel`), the
+    // instruction verbs a learner obeys rather than issues (`einfügen`, `zuordnen`,
+    // `nachschlagen`, `unterstreichen` — the `installieren` ruling from `digitales-leben`),
+    // and the units and figures that are read and never quoted (`Zentimeter`, `Kilometer`,
+    // `Milliarde`, `Franken`, `Deka`, `Dekagramm`, `Pfund`, `Geschwindigkeit`).
+    // `Zentimeter`, `Kilometer`, `durchschnittlich`, `Länge`, `Breite` and `vergrößern`
+    // additionally lose their card to a rule the learner can see — they are `Meter`,
+    // `Durchschnitt`, `lang`, `breit` and `groß` plus an affix, which is the `-lich`
+    // frequency-series ruling from `zeit-b1`. `Null` is the sharpest of them: A1 ships the
+    // numeral `null`, and the two differ by one capital letter.
+    expect(cards).toBe(entries * 2 - 411);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

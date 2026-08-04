@@ -1,0 +1,217 @@
+# B1.11 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a help-desk call heard rather than read, the dictation of the
+# one line a fault report must quote exactly, two translations in frames the primary set
+# does not use (a manual step with an instrument, a consequence with no modal in it), and
+# the open tasks the outcomes claim. The written task moves to a borrowed library tablet
+# and the spoken one to the learner's own evening, so neither can be answered from the
+# app the primary set is built on.
+# Open tasks are minimal ceremony: attempt → model → done; `requirements` and `checklist`
+# are guidance for comparing your own production against the model — the app cannot verify
+# free production, so it charges no steps for feedback it cannot give, and both stay
+# untagged, because unverified production must never feed the weakness signal.
+# The listening item is untagged too, deviating from B1.10's tagged one deliberately: its
+# three options differ in which step comes first, so a wrong pick is a failure to hold a
+# sequence, not a decode failure of any one structure. The dictation is untagged for the
+# same reason — what it drills is quoting a Meldung character for character, which is a
+# genre habit and no grammar tag's substance.
+# Outcome discipline continues the primary set's channels (probe families arm from their
+# own explicit item lists, src/lib/probes.ts): the manual step and the call on
+# anleitung-verstehen, the quoted message, the consequence and the report on
+# technikproblem-schildern, the spoken habit on mediennutzung-berichten.
+# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns is
+# both the script a future take would be made from and today's TTS fallback.
+topic: digitales-leben
+role: practice
+title:
+  en: "Production — hear the help desk, quote the message, report the fault"
+  ru: "Продукция — услышать справочную, процитировать сообщение, сообщить о поломке"
+  uk: "Продукція — почути довідкову, процитувати повідомлення, повідомити про поломку"
+  de: "Produktion — die Hilfe hören, die Meldung zitieren, die Störung melden"
+items:
+  - id: hoeren-hilfe-anruf
+    outcomes: [anleitung-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "A call to the library help desk, heard and not read. Two steps are named in one sentence — listen for which of them comes first."
+      ru: "Звонок в справочную библиотеки, услышанный, а не прочитанный. Два шага названы в одной фразе — слушайте, какой из них идёт первым."
+      uk: "Дзвінок до довідкової бібліотеки, почутий, а не прочитаний. Два кроки названо в одній фразі — слухайте, який з них іде першим."
+      de: "Ein Anruf bei der Bibliothekshilfe, gehört und nicht gelesen. Zwei Schritte stehen in einem Satz — hör darauf, welcher zuerst kommt."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Frau Roth", text: "Stadtbibliothek, guten Tag. Was kann ich für Sie tun?" }
+        - { speaker: "Anruferin", text: "Ich habe die App installiert, aber sie fragt nach einer Nummer, und ich weiß nicht, welche." }
+        - { speaker: "Frau Roth", text: "Das ist die Ausweisnummer, sie steht unten auf Ihrem Ausweis. Geben Sie zuerst die Nummer an und wählen Sie danach Ihre Stadt aus." }
+        - { speaker: "Anruferin", text: "Und wenn das Feld rot wird?" }
+        - { speaker: "Frau Roth", text: "Dann fehlt noch eine Angabe. Gehen Sie einfach zurück und tippen Sie die Nummer noch einmal ein." }
+    question: "Was macht die Anruferin zuerst?"
+    options:
+      - "Sie gibt die Ausweisnummer an."
+      - "Sie wählt ihre Stadt aus."
+      - "Sie installiert die App noch einmal."
+    correct: 0
+    translation:
+      en: "What does the caller do first?"
+      ru: "Что звонящая делает первым?"
+      uk: "Що та, хто телефонує, робить першим?"
+    explain:
+      en: "Both steps arrive in one sentence, and the two adverbs decide their order: zuerst die Nummer angeben, danach die Stadt auswählen. Installing is behind her already — she says so in her first turn. That is the whole listening strategy for instructions: find the sequence words, then the verb that belongs to each of them."
+      ru: "Оба шага приходят в одной фразе, и порядок задают два наречия: zuerst die Nummer angeben, danach die Stadt auswählen. Установка уже позади — она сама говорит об этом в первой реплике. В этом и вся стратегия слушания инструкций: найти слова последовательности, а потом глагол при каждом из них."
+      uk: "Обидва кроки приходять в одній фразі, і порядок задають два прислівники: zuerst die Nummer angeben, danach die Stadt auswählen. Встановлення вже позаду — вона сама каже про це в першій репліці. У цьому й уся стратегія слухання інструкцій: знайти слова послідовності, а потім дієслово при кожному з них."
+      de: "Beide Schritte stehen in einem Satz, und die zwei Adverbien entscheiden ihre Reihenfolge: zuerst die Nummer angeben, danach die Stadt auswählen. Das Installieren liegt schon hinter ihr — das sagt sie in ihrem ersten Beitrag. Mehr braucht die Hörstrategie für Anleitungen nicht: erst die Ablaufwörter, dann das Verb dazu."
+
+  - id: hoeren-diktat-meldung
+    outcomes: [technikproblem-schildern]
+    type: listen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Auf dem Bildschirm steht: Keine Verbindung."
+    translation:
+      en: "The screen says: no connection."
+      ru: "На экране написано: нет соединения."
+      uk: "На екрані написано: немає з'єднання."
+    explain:
+      en: "This is the most useful line in any fault report, and it only works word for word: the person reading it can look that exact sentence up, while a summary of it cannot be looked up by anybody. Note the frame too — Auf dem Bildschirm steht … is what carries the quotation into your own sentence."
+      ru: "Это самая полезная строчка любого сообщения о поломке, и работает она только слово в слово: ровно эту фразу тот, кто читает, найдёт в справочнике, а ваш пересказ не найдёт никто. Обратите внимание и на рамку: Auf dem Bildschirm steht … — то, чем цитата вносится в ваше собственное предложение."
+      uk: "Це найкорисніший рядок будь-якого повідомлення про поломку, і працює він лише слово в слово: саме цю фразу той, хто читає, знайде в довіднику, а ваш переказ не знайде ніхто. Зверніть увагу й на рамку: Auf dem Bildschirm steht … — те, чим цитата вноситься у ваше власне речення."
+      de: "Das ist die nützlichste Zeile jeder Problemmeldung, und sie wirkt nur wörtlich: Genau diesen Satz kann die andere Seite nachschlagen, eine Zusammenfassung davon niemand. Achte auch auf den Rahmen — Auf dem Bildschirm steht … trägt das Zitat in den eigenen Satz hinein."
+
+  - id: uebersetzen-passiv-tasten
+    outcomes: [anleitung-verstehen]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "A line from a user manual — write it in the passive. For 'operate' take bedienen, for 'key' Taste."
+      ru: "Строка из руководства — напишите её в пассиве. Для «управлять» возьмите bedienen, для «кнопка» — Taste."
+      uk: "Рядок із посібника — напишіть його в пасиві. Для «керувати» візьміть bedienen, для «кнопка» — Taste."
+      de: "Eine Zeile aus einer Bedienungsanleitung — schreib sie im Passiv. Für das Bedienen nimm bedienen, für den Knopf Taste."
+    prompt_en: "The device is operated with two keys."
+    prompt_ru: "Прибором управляют двумя кнопками."
+    prompt_uk: "Пристроєм керують двома кнопками."
+    answer: "Das Gerät wird mit zwei Tasten bedient."
+    accept:
+      # The instrument may lead; the frame is unchanged.
+      - "Mit zwei Tasten wird das Gerät bedient."
+    key_tokens: ["wird", "bedient"]
+    explain:
+      en: "Graded are the two walls again: wird in position 2 and bedient at the very end. The instrument enters with mit plus dative — mit zwei Tasten — and it is not the doer, which is why the passive keeps working: a manual describes what happens to the device, never who is standing at it."
+      ru: "Оцениваются те же две стены: wird на втором месте и bedient в самом конце. Инструмент входит через mit с дативом — mit zwei Tasten — и деятелем не является, поэтому пассив и держится: руководство описывает, что происходит с прибором, а не кто у него стоит."
+      uk: "Оцінюються ті самі дві стіни: wird на другому місці і bedient у самому кінці. Інструмент входить через mit з давальним — mit zwei Tasten — і виконавцем не є, тому пасив і тримається: посібник описує, що відбувається з пристроєм, а не хто біля нього стоїть."
+      de: "Bewertet werden wieder die zwei Wände: wird auf Position 2 und bedient ganz am Ende. Das Instrument kommt mit mit plus Dativ herein — mit zwei Tasten — und ist keine handelnde Person; deshalb trägt das Passiv weiter: Eine Bedienungsanleitung beschreibt, was mit dem Gerät geschieht, nicht wer davorsteht."
+
+  - id: uebersetzen-sodass-software
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Attach the consequence with sodass. For 'the software' take die Software, for 'start' starten."
+      ru: "Присоедините следствие союзом sodass. Для «программа» возьмите die Software, для «запускаться» — starten."
+      uk: "Приєднайте наслідок сполучником sodass. Для «програма» візьміть die Software, для «запускатися» — starten."
+      de: "Häng die Folge mit sodass an. Für das Programm nimm die Software, für das Starten starten."
+    prompt_en: "The software is too old, so the app no longer starts."
+    prompt_ru: "Программа слишком старая, так что приложение больше не запускается."
+    prompt_uk: "Програма застара, так що застосунок більше не запускається."
+    answer: "Die Software ist zu alt, sodass die App nicht mehr startet."
+    accept:
+      # The older spelling is the same conjunction.
+      - "Die Software ist zu alt, so dass die App nicht mehr startet."
+    key_tokens: ["sodass", "startet"]
+    explain:
+      en: "Graded are sodass and the clause-final startet. There is no modal here, so nothing hides the rule: a single finite verb has to travel to the wall on its own — sodass die App nicht mehr startet, never sodass startet die App nicht mehr, which is the word order of deshalb."
+      ru: "Оцениваются sodass и startet в самом конце. Модального глагола здесь нет, и правило ничем не прикрыто: единственный спрягаемый глагол обязан уехать к стене сам — sodass die App nicht mehr startet, и никогда sodass startet die App nicht mehr, что было бы порядком слов deshalb."
+      uk: "Оцінюються sodass і startet у самому кінці. Модального дієслова тут немає, і правило нічим не прикрите: єдине відмінюване дієслово мусить поїхати до стіни саме — sodass die App nicht mehr startet, і ніколи sodass startet die App nicht mehr, що було б порядком слів deshalb."
+      de: "Bewertet werden sodass und das satzfinale startet. Hier steht kein Modalverb, also verdeckt nichts die Regel: Das einzige finite Verb muss allein an die Wand — sodass die App nicht mehr startet, nie sodass startet die App nicht mehr, denn das wäre die Stellung von deshalb."
+
+  - id: schreiben-problemmeldung
+    outcomes: [technikproblem-schildern]
+    type: write
+    instruction:
+      en: "Write the message yourself — the list shows what to check it against."
+      ru: "Напишите сообщение сами — список подскажет, что в нём проверить."
+      uk: "Напишіть повідомлення самі — список підкаже, що в ньому перевірити."
+      de: "Schreib die Nachricht selbst — die Liste zeigt, woran du sie prüfen kannst."
+    prompt:
+      en: "Two weeks ago you borrowed a tablet from the city library. It will not charge properly any more. Write a short message through the contact form: say what you did, what happened, quote the message on the screen word for word, say what you can no longer do because of it, and end with one polite question."
+      ru: "Две недели назад вы взяли планшет в городской библиотеке. Он перестал нормально заряжаться. Напишите короткое сообщение через форму обратной связи: скажите, что вы сделали, что произошло, процитируйте надпись на экране слово в слово, скажите, чего вы из-за этого больше не можете, и закончите одним вежливым вопросом."
+      uk: "Два тижні тому ви взяли планшет у міській бібліотеці. Він перестав нормально заряджатися. Напишіть коротке повідомлення через форму зворотного зв'язку: скажіть, що ви зробили, що сталося, процитуйте напис на екрані слово в слово, скажіть, чого ви через це більше не можете, і закінчіть одним увічливим питанням."
+      de: "Vor zwei Wochen hast du ein Tablet in der Stadtbibliothek ausgeliehen. Es lädt nicht mehr richtig auf. Schreib eine kurze Nachricht über das Kontaktformular: Sag, was du gemacht hast, was passiert ist, zitier die Meldung auf dem Bildschirm wörtlich, sag, was du deshalb nicht mehr kannst, und schließ mit einer höflichen Frage."
+    goal:
+      en: "A message somebody can act on: three facts, one quotation, one consequence and one question — the writing this unit asks of you."
+      ru: "Сообщение, по которому можно что-то сделать: три факта, одна цитата, одно следствие и один вопрос — то самое письмо, которого ждёт эта глава."
+      uk: "Повідомлення, за яким можна щось зробити: три факти, одна цитата, один наслідок і одне питання — те саме письмо, якого чекає цей розділ."
+      de: "Eine Nachricht, mit der die andere Seite arbeiten kann: drei Fakten, ein Zitat, eine Folge und eine Frage — das Schreiben dieser Einheit."
+    requirements:
+      - en: "Open with what you did, in the Perfekt: Ich habe das Tablet ans Kabel angeschlossen. Watch the two verbs that take sein — Ich bin der Anleitung gefolgt and Der Bildschirm ist dunkel geblieben."
+        ru: "Начните с того, что вы сделали, в перфекте: Ich habe das Tablet ans Kabel angeschlossen. Следите за двумя глаголами, которые берут sein: Ich bin der Anleitung gefolgt и Der Bildschirm ist dunkel geblieben."
+        uk: "Почніть із того, що ви зробили, у перфекті: Ich habe das Tablet ans Kabel angeschlossen. Стежте за двома дієсловами, які беруть sein: Ich bin der Anleitung gefolgt і Der Bildschirm ist dunkel geblieben."
+        de: "Beginn mit dem, was du gemacht hast, im Perfekt: Ich habe das Tablet ans Kabel angeschlossen. Achte auf die zwei Verben mit sein — Ich bin der Anleitung gefolgt und Der Bildschirm ist dunkel geblieben."
+      - en: "Say since when and how often, in one short phrase: seit gestern Abend, jedes Mal, wenn ich das Tablet einschalte."
+        ru: "Скажите, с каких пор и как часто, одной короткой фразой: seit gestern Abend, jedes Mal, wenn ich das Tablet einschalte."
+        uk: "Скажіть, відколи і як часто, однією короткою фразою: seit gestern Abend, jedes Mal, wenn ich das Tablet einschalte."
+        de: "Sag in einer kurzen Wendung, seit wann und wie oft: seit gestern Abend, jedes Mal, wenn ich das Tablet einschalte."
+      - en: "Quote the Meldung word for word inside its frame: Auf dem Bildschirm steht: „Akku leer\". A quoted line can be looked up; your summary of it cannot."
+        ru: "Процитируйте надпись слово в слово внутри её рамки: Auf dem Bildschirm steht: „Akku leer\". Процитированную строчку можно найти в справочнике, ваш пересказ — нельзя."
+        uk: "Процитуйте напис слово в слово всередині його рамки: Auf dem Bildschirm steht: „Akku leer\". Процитований рядок можна знайти в довіднику, ваш переказ — ні."
+        de: "Zitier die Meldung wörtlich in ihrem Rahmen: Auf dem Bildschirm steht: „Akku leer\". Eine zitierte Zeile lässt sich nachschlagen, deine Zusammenfassung nicht."
+      - en: "Name the consequence with sodass and close its clause with the finite verb: …, sodass ich zurzeit kein Buch mehr lesen kann. Then ask one question, indirectly: Könnten Sie mir sagen, ob …"
+        ru: "Назовите следствие через sodass и закройте придаточное спрягаемым глаголом: …, sodass ich zurzeit kein Buch mehr lesen kann. Потом задайте один вопрос, косвенно: Könnten Sie mir sagen, ob …"
+        uk: "Назвіть наслідок через sodass і закрийте підрядне відмінюваним дієсловом: …, sodass ich zurzeit kein Buch mehr lesen kann. Потім поставте одне питання, непрямо: Könnten Sie mir sagen, ob …"
+        de: "Nenn die Folge mit sodass und schließ den Nebensatz mit dem finiten Verb: …, sodass ich zurzeit kein Buch mehr lesen kann. Stell dann eine Frage, indirekt: Könnten Sie mir sagen, ob …"
+    min_words: 60
+    model_answer: "Guten Tag, vor zwei Wochen habe ich in der Stadtbibliothek ein Tablet ausgeliehen. Gestern Abend habe ich es ans Kabel angeschlossen und über Nacht aufgeladen. Heute Morgen ist der Bildschirm trotzdem dunkel geblieben. Ich bin der Anleitung im Menü Schritt für Schritt gefolgt, aber es passiert jedes Mal dasselbe: Auf dem Bildschirm steht kurz „Akku leer\", danach geht das Gerät wieder aus. Ich kann das Tablet also nur am Kabel benutzen, sodass ich zurzeit kein Buch mehr im Zug lesen kann. Könnten Sie mir sagen, ob ich das Gerät vorbeibringen soll? Vielen Dank!"
+    model_translation:
+      en: "Hello, two weeks ago I borrowed a tablet from the city library. Yesterday evening I connected it to the cable and charged it overnight. This morning the screen stayed dark all the same. I followed the instructions in the menu step by step, but the same thing happens every time: the screen briefly says \"battery empty\", then the device switches off again. So I can only use the tablet on the cable, which means I cannot read a book on the train at the moment. Could you tell me whether I should bring the device in? Many thanks!"
+      ru: "Добрый день, две недели назад я взял в городской библиотеке планшет. Вчера вечером я подключил его к кабелю и заряжал всю ночь. Сегодня утром экран всё равно остался тёмным. Я шаг за шагом следовал инструкции в меню, но каждый раз происходит одно и то же: на экране коротко появляется «Akku leer», после чего прибор снова выключается. Пользоваться планшетом я могу только от кабеля, так что читать книгу в поезде сейчас не получается. Не могли бы вы сказать, нужно ли принести прибор к вам? Большое спасибо!"
+      uk: "Добрий день, два тижні тому я взяв у міській бібліотеці планшет. Учора ввечері я підключив його до кабелю і заряджав цілу ніч. Сьогодні вранці екран усе одно лишився темним. Я крок за кроком дотримувався інструкції в меню, але щоразу відбувається те саме: на екрані коротко з'являється «Akku leer», після чого пристрій знову вимикається. Користуватися планшетом я можу лише від кабелю, так що читати книжку в потязі зараз не виходить. Чи не могли б ви сказати, чи потрібно принести пристрій до вас? Щиро дякую!"
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The three facts come in order — what I did, what happened, how often — and only then the quotation, which is the one line the help desk can look up. The consequence arrives last, in a sodass-clause, and the single question at the end is indirect: Könnten Sie mir sagen, ob …"
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Три факта идут по порядку — что я сделал, что произошло, как часто, — и только потом цитата: та единственная строчка, которую поддержка может найти в справочнике. Следствие приходит последним, в придаточном с sodass, а единственный вопрос в конце — косвенный: Könnten Sie mir sagen, ob …"
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Три факти йдуть по порядку — що я зробив, що сталося, як часто, — і лише потім цитата: той єдиний рядок, який підтримка може знайти в довіднику. Наслідок приходить останнім, у підрядному з sodass, а єдине питання в кінці — непряме: Könnten Sie mir sagen, ob …"
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Die drei Fakten kommen der Reihe nach — was ich gemacht habe, was passiert ist, wie oft —, und erst danach das Zitat, die einzige Zeile, die der Support nachschlagen kann. Die Folge steht zuletzt im sodass-Satz, und die eine Frage am Ende ist indirekt."
+
+  - id: sprechen-mediennutzung
+    outcomes: [mediennutzung-berichten]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Speak one connected turn aloud — then compare with the model."
+      ru: "Произнесите вслух один связный ход — затем сравните с образцом."
+      uk: "Промовте вголос один зв'язний хід — потім порівняйте зі зразком."
+      de: "Sprich einen zusammenhängenden Beitrag laut — vergleich dann mit dem Muster."
+    prompt:
+      en: "In your course somebody asks: „Wie viel Zeit verbringst du eigentlich am Handy?\" Answer in one connected turn: say how often and how long, what you use it for, how that compares with a few years ago, and what you think of it — with one honest qualification at the end."
+      ru: "На курсе вас спрашивают: „Wie viel Zeit verbringst du eigentlich am Handy?\" Ответьте одним связным ходом: скажите, как часто и как долго, для чего вы им пользуетесь, как это соотносится с тем, что было несколько лет назад, и что вы об этом думаете — с одной честной оговоркой в конце."
+      uk: "На курсі вас питають: „Wie viel Zeit verbringst du eigentlich am Handy?\" Відповідайте одним зв'язним ходом: скажіть, як часто і як довго, для чого ви ним користуєтеся, як це співвідноситься з тим, що було кілька років тому, і що ви про це думаєте — з одним чесним застереженням у кінці."
+      de: "Im Kurs fragt jemand: „Wie viel Zeit verbringst du eigentlich am Handy?\" Antworte in einem zusammenhängenden Beitrag: Sag, wie oft und wie lange, wofür du es nutzt, wie das im Vergleich zu früher aussieht und was du davon hältst — mit einer ehrlichen Einschränkung am Schluss."
+    goal:
+      en: "A report rather than a number: how much, what for, compared with when — and what you make of it. The spoken outcome of this unit."
+      ru: "Рассказ, а не число: сколько, для чего, по сравнению с каким временем — и что вы об этом думаете. Устный итог этой главы."
+      uk: "Розповідь, а не число: скільки, для чого, порівняно з яким часом — і що ви про це думаєте. Усний підсумок цього розділу."
+      de: "Ein Bericht statt einer Zahl: wie viel, wofür, verglichen womit — und was du davon hältst. Das gesprochene Ergebnis dieser Einheit."
+    checklist:
+      - en: "You gave frequency and duration separately: mehrmals am Tag, täglich, and ungefähr zwei Stunden, höchstens eine halbe Stunde."
+        ru: "Вы назвали частоту и продолжительность отдельно: mehrmals am Tag, täglich — и ungefähr zwei Stunden, höchstens eine halbe Stunde."
+        uk: "Ви назвали частоту й тривалість окремо: mehrmals am Tag, täglich — і ungefähr zwei Stunden, höchstens eine halbe Stunde."
+        de: "Du hast Häufigkeit und Dauer getrennt genannt: mehrmals am Tag, täglich — und ungefähr zwei Stunden, höchstens eine halbe Stunde."
+      - en: "The purpose came in one of its two forms: zum plus a capitalised noun (zum Lesen) or the full frame um … zu (um mit meiner Familie zu sprechen) — never für plus a bare infinitive."
+        ru: "Цель прозвучала в одной из двух форм: zum плюс существительное с большой буквы (zum Lesen) или полная рамка um … zu (um mit meiner Familie zu sprechen) — но не für с голым инфинитивом."
+        uk: "Мета прозвучала в одній із двох форм: zum плюс іменник з великої літери (zum Lesen) або повна рамка um … zu (um mit meiner Familie zu sprechen) — але не für з голим інфінітивом."
+        de: "Der Zweck stand in einer seiner zwei Formen: zum plus großgeschriebenes Nomen (zum Lesen) oder der volle Rahmen um … zu (um mit meiner Familie zu sprechen) — nie für plus blanken Infinitiv."
+      - en: "You placed the number instead of only naming it: Früher …, heute … with the verb second in both halves, one judgement (Das ist mir eigentlich zu viel) and one qualification (Allerdings brauche ich das Handy für die Arbeit)."
+        ru: "Вы поместили число, а не просто назвали его: Früher …, heute … с глаголом на втором месте в обеих половинах, одна оценка (Das ist mir eigentlich zu viel) и одна оговорка (Allerdings brauche ich das Handy für die Arbeit)."
+        uk: "Ви помістили число, а не просто назвали його: Früher …, heute … з дієсловом на другому місці в обох половинах, одна оцінка (Das ist mir eigentlich zu viel) і одне застереження (Allerdings brauche ich das Handy für die Arbeit)."
+        de: "Du hast die Zahl eingeordnet, statt sie nur zu nennen: Früher …, heute … mit dem Verb an zweiter Stelle in beiden Hälften, eine Bewertung (Das ist mir eigentlich zu viel) und eine Einschränkung (Allerdings brauche ich das Handy für die Arbeit)."
+    model_answer: "Ich schaue mehrmals am Tag aufs Handy, zusammen ungefähr zwei Stunden. Vor allem nutze ich es zum Lesen, und abends schaue ich noch eine Serie. Die Bahnfahrt nutze ich fast immer zum Lesen, und am Sonntag rufe ich meine Eltern an, um mit ihnen zu sprechen. Früher habe ich abends Zeitung gelesen, heute lese ich digital. Das ist mir eigentlich zu viel. Allerdings brauche ich das Handy auch für die Arbeit."
+    model_translation:
+      en: "I look at my phone several times a day, about two hours in total. I mainly use it for reading, and in the evening I watch a series as well. I almost always use the train ride for reading, and on Sundays I call my parents to talk to them. I used to read the paper in the evening; today I read digitally. That is really too much for me. Then again, I also need the phone for work."
+      ru: "Я смотрю в телефон несколько раз в день, в сумме около двух часов. Пользуюсь им прежде всего для чтения, а вечером смотрю ещё сериал. Поездку на поезде я почти всегда использую для чтения, а по воскресеньям звоню родителям, чтобы с ними поговорить. Раньше я читал по вечерам газету, сегодня читаю в цифровом виде. Мне самому этого многовато. Правда, телефон нужен мне и для работы."
+      uk: "Я дивлюся в телефон кілька разів на день, загалом близько двох годин. Користуюся ним передусім для читання, а ввечері дивлюся ще серіал. Поїздку потягом я майже завжди використовую для читання, а по неділях телефоную батькам, щоб з ними поговорити. Раніше я читав увечері газету, сьогодні читаю в цифровому вигляді. Мені самому цього забагато. Щоправда, телефон потрібен мені й для роботи."
+    explain:
+      en: "Listen for the order the model works in. The number comes first and is immediately placed: against a purpose, against how it used to be, against a judgement. Both purpose forms appear — zum Lesen with a capitalised noun, um … zu with its two ends — and the closing Allerdings keeps the report honest instead of turning it into a complaint."
+      ru: "Слушайте порядок, в котором работает образец. Число идёт первым и тут же помещается в контекст: к цели, к тому, как было раньше, к оценке. Появляются обе формы цели — zum Lesen с существительным и um … zu с двумя концами, — а заключительное Allerdings оставляет рассказ честным, не превращая его в жалобу."
+      uk: "Слухайте порядок, у якому працює зразок. Число йде першим і одразу поміщається в контекст: до мети, до того, як було раніше, до оцінки. З'являються обидві форми мети — zum Lesen з іменником і um … zu з двома кінцями, — а прикінцеве Allerdings лишає розповідь чесною, не перетворюючи її на скаргу."
+      de: "Hör auf die Reihenfolge des Musters. Die Zahl kommt zuerst und wird sofort eingeordnet: an einem Zweck, an dem, wie es früher war, an einer Bewertung. Beide Zweckformen tauchen auf — zum Lesen mit großgeschriebenem Nomen und um … zu mit seinen zwei Enden —, und das abschließende Allerdings hält den Bericht ehrlich, statt ihn zur Beschwerde zu machen."

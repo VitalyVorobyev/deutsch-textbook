@@ -1,0 +1,135 @@
+# Delayed probe family 1 of 2 — ONE competence: hanging the consequence of a fault on
+# sodass, cold, with the finite verb at the clause end. Three parallel translate variants
+# served in authoring order across the 2/7/21 delays — one retention curve over one
+# decision.
+#
+# Translate rather than cloze, on the B1.7 precedent for this same tag: the confusion is
+# verb *position*, and a cloze fixes the position by where its gap sits, so a cloze family
+# would pass a learner who writes sodass and keeps main-clause order behind it. In a
+# translate the collapse is scored wrong and attributed — the pinned clause-final verb sits
+# at a different index, misplacedGraded fires (src/lib/production.ts), and the tag gets the
+# error it exists to catch.
+#
+# A genre unit closes no grammar point, so this family measures nothing new: sodass-folge
+# belongs to B1.7 and already has its own family there (probe-regeln-verantwortung-
+# sodass-folge, three everyday consequences — a neighbour's flowers, snow, a cancelled
+# tram). What is new is the task around it. This unit's writing outcome is a fault report,
+# and the consequence clause is the part that makes one actionable: not what is broken, but
+# what the writer can no longer do. Three device faults are therefore what is probed, and
+# the two families cannot disturb each other's clock — since P19-4 every family arms from
+# its own literal list, and B1.7's list names only B1.7 items.
+#
+# The instruction names sodass and never the shape of the consequence, because which
+# connector renders EN "so" / RU «так что» / UK «так що» is not what is probed — deshalb
+# would do it just as well, in a new main clause. The older spelling so dass is the same
+# conjunction and every variant accepts it, so this course's orthography cannot cost a
+# probe with three lifetime stages.
+#
+# Pinned are the two ends of the rule in every accepted rendering: sodass and the finite
+# verb it drives to the wall. The main clause is deliberately unpinned — a fumbled subject
+# there is scored wrong and left unattributed rather than charged to this tag.
+#
+# Content fresh against the taught surface, checked by grepping each noun and verb across
+# content/. The taught consequences run on Netz/laden (pretest), Zugang/laden (mc-sodass-
+# stellung), Bildschirm/bedienen (uebersetzen-sodass-bildschirm), Software/starten
+# (uebersetzen-sodass-software), Akku/nutzen (the article) and Kontaktformular/antworten
+# (the reading); the write task's model ends on kein Buch mehr lesen. Every taught clause
+# closes on kann/können plus laden, bedienen, nutzen, antworten or lesen, or on the plain
+# startet — so muss, kann + öffnen and a separable verb at the wall are all new here. The
+# three faults are new too: die linke Taste and a two-hour battery occur nowhere in the
+# unit (the deck presses die rechte Taste and empties its Akku at midday), and der Drucker
+# occurs exactly once, in the article's Feinheiten row about the plural of Ausdruck —
+# never as a fault, never in a sodass-clause.
+#
+# arming: the three practice items in which the learner picks or builds the clause. The
+# mc is in on B1.7's own precedent for this tag — its three options differ in nothing but
+# where the finite verb stands, so a right answer is a structural choice and not a
+# vocabulary guess. Nothing else in the unit carries this tag.
+topic: digitales-leben
+role: probe
+title:
+  en: "Delayed check — the consequence and its verb-final clause"
+  ru: "Отложенная проверка — следствие и его придаточное с глаголом в конце"
+  uk: "Відкладена перевірка — наслідок і його підрядне з дієсловом у кінці"
+  de: "Kontrolle mit Abstand — die Folge und ihr verbletzter Nebensatz"
+arming:
+  - b1/digitales-leben::mc-sodass-stellung
+  - b1/digitales-leben::uebersetzen-sodass-bildschirm
+  - b1/digitales-leben-produktion::uebersetzen-sodass-software
+items:
+  - id: variant-a
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass. For 'the printer' take der Drucker, for 'print' drucken."
+      ru: "Переведите — присоедините следствие союзом sodass. Для «принтер» возьмите der Drucker, для «печатать» — drucken."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass. Для «принтер» візьміть der Drucker, для «друкувати» — drucken."
+      de: "Übersetze — häng die Folge mit sodass an. Für den Drucker nimm der Drucker, für das Drucken drucken."
+    prompt_en: "My printer has not been working since today, so I have to print the pages at the library."
+    prompt_ru: "С сегодняшнего дня мой принтер не работает, так что страницы мне приходится печатать в библиотеке."
+    prompt_uk: "Від сьогодні мій принтер не працює, так що сторінки мені доводиться друкувати в бібліотеці."
+    answer: "Mein Drucker geht seit heute nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
+    accept:
+      # The older spelling is the same conjunction.
+      - "Mein Drucker geht seit heute nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
+      # funktionieren is the second everyday rendering of the same cause; the graded pair
+      # is untouched by it.
+      - "Mein Drucker funktioniert seit heute nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Mein Drucker funktioniert seit heute nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
+    key_tokens: ["sodass", "muss"]
+    explain:
+      en: "Graded are the two ends of the consequence clause: sodass opening it and muss at its wall, with the verb chain drucken muss whole and the finite verb last. sodass muss ich … would be the word order of deshalb, an adverb that pulls the verb straight behind itself; the source languages keep their own order after 'so', which is exactly the pull to resist."
+      ru: "Оцениваются два конца придаточного следствия: sodass, который его открывает, и muss у самой стены — цепочка drucken muss остаётся целой, спрягаемый глагол последним. sodass muss ich … было бы порядком слов deshalb, наречия, тянущего глагол сразу за собой; русское «так что» своего порядка не меняет, и именно этому тянущему усилию надо сопротивляться."
+      uk: "Оцінюються два кінці підрядного наслідку: sodass, що його відкриває, і muss біля самої стіни — ланцюжок drucken muss лишається цілим, відмінюване дієслово останнім. sodass muss ich … було б порядком слів deshalb, прислівника, що тягне дієслово одразу за собою; українське «так що» свого порядку не змінює, і саме цьому тягу треба опиратися."
+      de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und muss an seiner Wand — die Kette drucken muss bleibt zusammen, das finite Verb zuletzt. sodass muss ich … wäre die Stellung von deshalb, einem Adverb, das das Verb direkt hinter sich zieht. Die Ausgangssprachen behalten nach ihrem „so\" ihre eigene Stellung bei."
+
+  - id: variant-b
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass. For 'respond' take reagieren, for 'the menu' das Menü."
+      ru: "Переведите — присоедините следствие союзом sodass. Для «реагировать» возьмите reagieren, для «меню» — das Menü."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass. Для «реагувати» візьміть reagieren, для «меню» — das Menü."
+      de: "Übersetze — häng die Folge mit sodass an. Für das Reagieren nimm reagieren, für das Menü das Menü."
+    prompt_en: "The left key does not respond any more, so I cannot open the menu."
+    prompt_ru: "Левая кнопка больше не реагирует, так что меню я открыть не могу."
+    prompt_uk: "Ліва кнопка більше не реагує, так що меню я відкрити не можу."
+    answer: "Die linke Taste reagiert nicht mehr, sodass ich das Menü nicht öffnen kann."
+    accept:
+      - "Die linke Taste reagiert nicht mehr, so dass ich das Menü nicht öffnen kann."
+      # The key may be placed rather than declined; nothing else moves.
+      - "Die Taste links reagiert nicht mehr, sodass ich das Menü nicht öffnen kann."
+      - "Die Taste links reagiert nicht mehr, so dass ich das Menü nicht öffnen kann."
+    key_tokens: ["sodass", "kann"]
+    explain:
+      en: "Graded are sodass and the clause-final kann. Two negations sit in this sentence and neither of them touches the rule: nicht mehr in the main clause, nicht in the consequence, and the finite kann still stands last, behind the infinitive it governs. Only the position of the verb is the tag's business."
+      ru: "Оцениваются sodass и kann в самом конце. В предложении два отрицания, и ни одно правила не касается: nicht mehr в главном, nicht в придаточном, а спрягаемое kann всё равно стоит последним, за инфинитивом, которым управляет. Тег занят только позицией глагола."
+      uk: "Оцінюються sodass і kann у самому кінці. У реченні два заперечення, і жодне правила не стосується: nicht mehr у головному, nicht у підрядному, а відмінюване kann усе одно стоїть останнім, за інфінітивом, яким керує. Тег займається лише позицією дієслова."
+      de: "Bewertet werden sodass und das satzfinale kann. Zwei Verneinungen stehen in diesem Satz, und keine rührt an die Regel: nicht mehr im Hauptsatz, nicht im Folgesatz, und das finite kann steht trotzdem zuletzt, hinter dem Infinitiv, den es regiert. Den Tag interessiert allein die Stellung des Verbs."
+
+  - id: variant-c
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Translate — attach the consequence with sodass. For 'last' take halten, for 'take along' mitnehmen."
+      ru: "Переведите — присоедините следствие союзом sodass. Для «хватать» возьмите halten, для «брать с собой» — mitnehmen."
+      uk: "Перекладіть — приєднайте наслідок сполучником sodass. Для «вистачати» візьміть halten, для «брати із собою» — mitnehmen."
+      de: "Übersetze — häng die Folge mit sodass an. Für das Halten nimm halten, für das Mitnehmen mitnehmen."
+    prompt_en: "The battery only lasts two hours, so I always take the cable with me."
+    prompt_ru: "Аккумулятора хватает только на два часа, так что кабель я всегда беру с собой."
+    prompt_uk: "Акумулятора вистачає лише на дві години, так що кабель я завжди беру із собою."
+    answer: "Der Akku hält nur zwei Stunden, sodass ich das Kabel immer mitnehme."
+    accept:
+      - "Der Akku hält nur zwei Stunden, so dass ich das Kabel immer mitnehme."
+      # The frequency adverb may stand in front of the object; the wall is unchanged.
+      - "Der Akku hält nur zwei Stunden, sodass ich immer das Kabel mitnehme."
+      - "Der Akku hält nur zwei Stunden, so dass ich immer das Kabel mitnehme."
+    key_tokens: ["sodass", "mitnehme"]
+    explain:
+      en: "Graded are sodass and mitnehme at the wall — and a separable verb makes that wall visible twice over. In a main clause the halves stand apart: Ich nehme das Kabel immer mit. Behind the conjunction the finite verb travels to the end, lands behind its own prefix and is written as one word: immer mitnehme. No modal is involved, so the single verb makes the trip alone."
+      ru: "Оцениваются sodass и mitnehme у стены — а отделяемая приставка показывает эту стену дважды. В главном предложении половинки стоят порознь: Ich nehme das Kabel immer mit. После союза спрягаемый глагол уезжает в конец, оказывается позади собственной приставки и пишется одним словом: immer mitnehme. Модального глагола здесь нет, и единственный глагол проделывает путь сам."
+      uk: "Оцінюються sodass і mitnehme біля стіни — а відокремлюваний префікс показує цю стіну двічі. У головному реченні половинки стоять окремо: Ich nehme das Kabel immer mit. Після сполучника відмінюване дієслово їде в кінець, опиняється позаду власного префікса й пишеться одним словом: immer mitnehme. Модального дієслова тут немає, і єдине дієслово долає шлях саме."
+      de: "Bewertet werden sodass und das satzfinale mitnehme — und ein trennbares Verb zeigt die Wand gleich doppelt. Im Hauptsatz stehen die Teile getrennt: Ich nehme das Kabel immer mit. Hinter der Konjunktion geht das finite Verb ans Ende, landet hinter dem eigenen Präfix und wird zusammengeschrieben: immer mitnehme. Ein Modalverb ist nicht dabei, also macht das eine Verb die Reise allein."

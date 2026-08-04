@@ -114,6 +114,22 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   and claimed almost nowhere — only `erfahrungen-erzaehlen` declares a listening outcome. First
   step: decide whether an outcome must name the mode it is measured in, write it down, then extend
   the A1 validator check to B1.
+- **P24-8 · `bun run gen:ipa` writes a duplicate `ipa:` key when a comment line precedes the
+  field** — observed 2026-08-04 on five decks (`erfahrungen-erzaehlen`, `infinitiv-mit-zu`,
+  `charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `ort-richtung-verweis-b1`) and reverted by
+  hand; YAML keeps the last key, so a reviewed transcription is silently replaced by a generated
+  one. First step: make the writer idempotent, and add the comment-preceded case to its test.
+- **P24-9 · Article comprehensibility is felt, not measured** — perceived difficulty varies
+  substantially between topics (owner, 2026-08-04) and no instrument sees it: `prose-shape` checks
+  paragraph *shape*, and CEFR discipline binds only at authoring time. Two measurable halves:
+  (a) an input-load report — `scripts/comprehensibility.ts <topic>` reading the German surface
+  (examples, tables, reading, items) against `taughtSurface()` truncated at the topic's spine
+  position plus the ≤level Wortliste, reporting ahead-of-the-learner tokens per section, sentence
+  length and Nebensatz density against level norms, and grammar-terminology density per
+  explanation half; (b) learner evidence — a per-topic pretest→first-blocked-practice accuracy
+  delta in `progress:audit`, since an article that taught reads as a positive delta. Outliers are
+  the product, never caps. First step: build (a) read-only, rank all topics, and check the ranking
+  against the owner's felt-difficulty list before trusting either.
 - **P12-6 · Dictation focus attribution** — A1 is resolved; A2/B1 dictations keep `dictationSlip`,
   because extending the A1 silence to items without predicates dropped 145 of 291 free-typed tags
   and took `weakFocuses` from 7 to 1 — an inverted signal, not an honest gap
@@ -277,7 +293,19 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   goes to a design session; the constraint is no horizontal scroll under 640 px and no nav slot
   added ([ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md) keeps the count at seven).
   Second half of the entry: a full-surface mobile audit — tap targets, table overflow containers,
-  the exercise widgets, the session flow, PWA behaviour — walked once on a real phone.
+  the exercise widgets, the session flow, PWA behaviour — walked once on a real phone. Named
+  starting points from the owner's iPhone screenshots (2026-08-04): on `/ueben/wiederholen` in
+  Tippen mode the production card spends most of the viewport on padding — the eight-key insert
+  bar wraps into two centred rows below a narrow input, and the whole card face fits in half the
+  screen it occupies.
+- **P24-10 · The flashcard rating buttons land under Safari's bottom bar on iPhone** — after a
+  typed answer is revealed, a long card back (example sentence, translations, note) pushes the
+  Nochmal/Gut row below the fold, where Safari's chrome covers it (owner screenshot 2026-08-04,
+  the `die Bewohnerin` card): the learner who just answered correctly cannot see how to proceed.
+  The fix direction is a rating row that is always visible — sticky above
+  `env(safe-area-inset-bottom)`, or scrolled into view on reveal — in
+  `src/components/srs/FlashcardSession.tsx`. First step: reproduce at 390×844 with a long-note
+  card, then decide sticky vs scroll in the same pass as P24-7's audit.
 - **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
   `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
   137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and
