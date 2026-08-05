@@ -313,9 +313,14 @@ export default function FlashcardSession({
     </>
   );
 
+  // Sticky on phones (P24-10): a long card back — example, translations, note —
+  // pushed this row below the fold, where Safari's bottom bar covered it; the
+  // learner who had just answered could not see how to proceed. Sticky beats
+  // scroll-into-view because it also holds when the back is taller than one
+  // viewport. Static again at sm:, where the fold was never the problem.
   const gradeButtons = (withSuggestion: boolean) => (
-    <>
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
+    <div className="sticky bottom-0 z-10 mt-6 bg-white/95 pb-[max(0.25rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm dark:bg-stone-800/95 sm:static sm:z-auto sm:bg-transparent sm:pb-0 sm:pt-0 sm:backdrop-blur-none">
+      <div className="flex flex-wrap justify-center gap-2">
         {GRADE_BUTTONS.map(({ grade: g, label, cls }) => (
           <button
             key={g}
@@ -336,7 +341,7 @@ export default function FlashcardSession({
           ↵ {suggested === Rating.Good ? t('grade.good', uiLang) : t('grade.again', uiLang)} · 1–2
         </p>
       )}
-    </>
+    </div>
   );
 
   return (

@@ -196,6 +196,7 @@ export function Translate({
             : 'border-stone-300 focus:border-amber-500 dark:border-stone-600'
         }`}
         autoCapitalize="off"
+        autoCorrect="off"
         autoComplete="off"
         spellCheck={false}
       />
