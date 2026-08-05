@@ -21,7 +21,7 @@ read**, not a rule to guess at.
 
 | If you are… | Read first |
 | --- | --- |
-| writing or revising a **topic article** (`## Erklärung` structure, paragraph size, `Kurz gesagt`) | [`docs/authoring/article-prose.md`](docs/authoring/article-prose.md) |
+| writing or revising a **topic article** (`## Erklärung` structure, paragraph size, `Kurz gesagt`, the native-language prose-review loop) | [`docs/authoring/article-prose.md`](docs/authoring/article-prose.md) |
 | authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md) |
 | choosing or adding a **`focus` tag** | [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) |
 | changing anything in **`src/lib/`** | [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md) |
@@ -101,6 +101,7 @@ Load-bearing, and each one silent when broken. Mechanism and history: [`docs/arc
 ### Language discipline
 - German orthography must be perfect: ä/ö/ü/ß always (never ae/oe/ue/ss substitutes), nouns capitalized.
 - Russian and English explanation text must be complete and idiomatic — never machine-translation-ese, never transliteration.
+- **A half that mirrors a sibling half's rhetoric sentence-for-sentence is a calque, and no gate can see it.** Diagnose with the `textbook-text-reviewer` skill, repair with `textbook-text-editor`; when to run the loop and the repo bindings the skills cannot know: [`docs/authoring/article-prose.md`](docs/authoring/article-prose.md).
 - **CEFR discipline**: in a topic at level X, German example sentences and exercise items may only use grammar and vocabulary at or below level X. An A2 article must be fully readable by an A2 learner.
 - Every German example sentence gets EN and RU translations.
 
