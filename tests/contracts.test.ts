@@ -861,7 +861,41 @@ describe('cards: recognition | both', () => {
     // `entspannend`, `Wunder`, `sich etwas gefallen lassen`, `Generation`, `Senioren`,
     // `Familienstand`, `getrennt leben`, `geboren werden`, `Nachwuchs` and `umarmen` are
     // what a form, a report and a narrative say to the learner, not what he says back.
-    expect(cards).toBe(entries * 2 - 506);
+    // Wortliste completion wave 2, decks 3–5 (2026-08-05) add sixty-six across three
+    // more unowned decks — `verwaltung-behoerden-b1` (18 of 31), `arbeit-beruf-b1`
+    // (26 of 40) and `berufe-b1` (22 of 35). Two thirds of the total are one rule: every
+    // feminine agent noun ships recognition beside its masculine, so a Movierung pair
+    // costs three cards and not four — `Beamtin`, `Bürgerin`, `Betriebsrätin`,
+    // `Leiterin`, `Architektin`, `Anwältin`, `Sekretärin`, `Übersetzerin`, `Malerin`,
+    // `Briefträgerin`, `Betreuerin`, `Pflegerin`, `Unternehmerin`, `Händlerin`,
+    // `Vertreterin`, `Managerin`, `Spezialistin`, `Fachfrau` and `Stewardess`, plus five
+    // whose masculine already ships elsewhere: `Praktikantin` (Praktikant,
+    // arbeit-bewerbung), `Mitarbeiterin` (arbeit-ausbildung-a2), `Arbeiterin`
+    // (arbeit-bewerbung), `Hausmeisterin` (regeln-verantwortung) and `Direktorin`
+    // (schule-faecher-a2). The office deck is owned before it opens by A2's
+    // `aemter-dienstleistungen`: `Amt` owns the counter, so `Behörde` keeps only the
+    // body behind it, and `Kopie` owns `Original`. Seven more yield to a shipped
+    // production card — `verboten` and `untersagt` to `verboten sein`
+    // (verben-handlungen-a2-2), `genehmigen` to `erlauben` (verben-handlungen-a2-1),
+    // `Rufnummer` to A1 `Telefonnummer`, `sich bewerben` to `bewerben`
+    // (arbeit-ausbildung-a2, which lists it in `accept`), `anstellen` to `einstellen`,
+    // `Lehre` and `Lehrling` to `Ausbildung` and `Azubi`, `betreuen` to `kümmern`,
+    // `Kuli` to `Kugelschreiber` inside the deck, and `Pfleger`/`Pflegerin` to
+    // `Krankenpfleger`/`Krankenschwester` (berufe-a2). `Überstunde` is this pass's
+    // `leid tun`: A2 ships the plural `Überstunden` (arbeit-beruf), one letter away, so
+    // the Wortliste's singular can only be keyed. `Spezialist` yields to this deck's own
+    // `Experte`, and `Manager` to `Chef` and `Leiter`. Four carry senses one prompt
+    // cannot name — `Leiter` (the head and the ladder), `Leitung` (the management, the
+    // pipe and the phone line), `Dienst` (the shift, the state sector and a favour) and
+    // `Meister` (the trade qualification and the champion) — the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. `in Rente
+    // gehen/sein` and `Fachleute` cannot be typed at all: one is a slash headword, the
+    // other plural-only. The rest are register — `Konsulat`, `Asyl`, `Personalien`,
+    // `Personenstand`, `Daten`, `Versichertenkarte`, `Förderung`, `fördern`,
+    // `Einrichtung`, `städtisch`, `Aushilfe`, `halbtags`, `ausgebildet`, `Tätigkeit`,
+    // `Betreuung`, `Profi`, `anwesend`, `abwesend`, `Mappe`, `Kopierer` and `Steward`
+    // are what a form, a rota and an advert say to the learner, not what he says back.
+    expect(cards).toBe(entries * 2 - 572);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

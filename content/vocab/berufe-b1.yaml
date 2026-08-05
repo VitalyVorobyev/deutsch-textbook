@@ -1,0 +1,701 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the profession
+# NAMES of data/goethe-b1-wortliste.txt that A2's `berufe-a2` did not reach. Every
+# feminine agent noun ships `cards: recognition` and sits directly after its
+# masculine, whose note carries the pair — so a pair costs three cards, not four,
+# per the Movierung rule of the B1 completion pass. The work itself, its contracts
+# and its office are a deck of their own (arbeit-beruf-b1).
+id: berufe-b1
+title_de: "Berufe"
+title_en: "Professions and trades"
+title_ru: "Профессии и занятия"
+title_uk: "Професії та заняття"
+level: B1
+entries:
+  # --- Freie Berufe und Praxen ---
+  - de: Architekt
+    ipa: "aʁçiˈtɛkt"
+    pos: noun
+    gender: m
+    plural: "die Architekten"
+    en: a man who designs buildings and oversees their construction
+    en_compact: "architect"
+    ru: специалист, который проектирует здания и ведёт надзор за стройкой
+    uk: фахівець, який проєктує будівлі та веде нагляд за будівництвом
+    example_de: Der Architekt hat für den Umbau drei Entwürfe vorgelegt.
+    example_en: The architect submitted three designs for the conversion.
+    example_ru: Архитектор представил три проекта перестройки.
+    example_uk: Архітектор подав три проєкти перебудови.
+    note:
+      en: 'An n-noun: every case except the nominative singular adds -en, so den Architekten, dem Architekten, des Architekten. Nouns of foreign origin ending in a stressed syllable behave this way as a group — der Student, der Polizist, der Patient. The ch here is the back sound, as in Buch, which German keeps in Greek loanwords before a consonant. The feminine is die Architektin, the next entry, and das Architekturbüro is the practice they work in.'
+      ru: 'Слабое существительное (n-Deklination): во всех падежах, кроме именительного единственного, добавляется -en — den Architekten, dem Architekten, des Architekten. Заимствованные существительные с ударением на последнем слоге ведут себя так целой группой: der Student, der Polizist, der Patient. Сочетание ch здесь — задний звук, как в Buch: немецкий сохраняет его в греческих заимствованиях перед согласной. Женская пара — die Architektin, следующая запись, а бюро называется das Architekturbüro.'
+      uk: 'Слабкий іменник (n-Deklination): в усіх відмінках, крім називного однини, додається -en — den Architekten, dem Architekten, des Architekten. Запозичені іменники з наголосом на останньому складі поводяться так цілою групою: der Student, der Polizist, der Patient. Сполука ch тут — задній звук, як у Buch: німецька зберігає його в грецьких запозиченнях перед приголосною. Жіноча пара — die Architektin, наступний запис, а бюро зветься das Architekturbüro.'
+
+  - de: Architektin
+    ipa: "aʁçiˈtɛktɪn"
+    pos: noun
+    gender: f
+    plural: "die Architektinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who designs buildings and oversees their construction
+    en_compact: "architect (female)"
+    ru: женщина, которая проектирует здания и ведёт надзор за стройкой
+    uk: жінка, яка проєктує будівлі та веде нагляд за будівництвом
+    example_de: Die Architektin zeigte uns das Modell des neuen Museums.
+    example_en: The architect showed us the model of the new museum.
+    example_ru: Архитектор показала нам макет нового музея.
+    example_uk: Архітекторка показала нам макет нового музею.
+    note:
+      en: 'Movierung with -in, and note what it does to the declension: the masculine is an n-noun and changes in every case, while this form is a plain feminine noun and never changes at all — der Architektin, die Architektinnen. The same asymmetry runs through the whole group, der Student and die Studentin, der Patient and die Patientin. Job adverts write Architekt/-in or Architekt (m/w/d), and a firm on a letterhead is die Architekten.'
+      ru: 'Мовирование на -in, и обратите внимание, что оно делает со склонением: мужская форма — слабое существительное и меняется во всех падежах, а эта — обычное существительное женского рода и не меняется вовсе: der Architektin, die Architektinnen. Та же асимметрия проходит через всю группу: der Student и die Studentin, der Patient и die Patientin. В объявлениях о работе пишут Architekt/-in или Architekt (m/w/d), а на фирменном бланке бюро стоит die Architekten.'
+      uk: 'Мовація на -in, і зверніть увагу, що вона робить із відмінюванням: чоловіча форма — слабкий іменник і змінюється в усіх відмінках, а ця — звичайний іменник жіночого роду й не змінюється зовсім: der Architektin, die Architektinnen. Та сама асиметрія проходить через усю групу: der Student і die Studentin, der Patient і die Patientin. В оголошеннях про роботу пишуть Architekt/-in або Architekt (m/w/d), а на фірмовому бланку бюро стоїть die Architekten.'
+
+  - de: Anwalt
+    ipa: "ˈanvalt"
+    pos: noun
+    gender: m
+    plural: "die Anwälte"
+    en: a man trained in law who advises clients and speaks for them in court
+    en_compact: "lawyer"
+    ru: юрист, который консультирует клиентов и представляет их в суде
+    uk: юрист, який консультує клієнтів і представляє їх у суді
+    example_de: Ohne Anwalt würde ich diesen Vertrag nicht unterschreiben.
+    example_en: I would not sign this contract without a lawyer.
+    example_ru: Без юриста я бы этот договор не подписал.
+    example_uk: Без юриста я б цього договору не підписав.
+    note:
+      en: 'The full form is der Rechtsanwalt, and both are current — a door plate says Rechtsanwalt, a conversation says the short one. The plural takes an umlaut: die Anwälte, and the feminine is die Anwältin below, with the umlaut as well. Two neighbours belong to a courtroom, not to this word: der Richter decides the case and der Staatsanwalt brings the charge, and the second one is confusingly close in shape. The practice is die Kanzlei.'
+      ru: 'Полная форма — der Rechtsanwalt, и обе в ходу: на табличке у двери стоит Rechtsanwalt, в разговоре — короткая. Множественное с умлаутом: die Anwälte, женская пара — die Anwältin ниже, тоже с умлаутом. Два соседа принадлежат залу суда, а не этому слову: der Richter решает дело, а der Staatsanwalt поддерживает обвинение, и второе слово опасно похоже по виду. Контора называется die Kanzlei.'
+      uk: 'Повна форма — der Rechtsanwalt, і обидві в ужитку: на табличці біля дверей стоїть Rechtsanwalt, у розмові — коротка. Множина з умлаутом: die Anwälte, жіноча пара — die Anwältin нижче, теж з умлаутом. Два сусіди належать залі суду, а не цьому слову: der Richter вирішує справу, а der Staatsanwalt підтримує обвинувачення, і друге слово небезпечно схоже на вигляд. Контора зветься die Kanzlei.'
+
+  - de: Anwältin
+    ipa: "ˈanvɛltɪn"
+    pos: noun
+    gender: f
+    plural: "die Anwältinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman trained in law who advises clients and speaks for them in court
+    en_compact: "lawyer (female)"
+    ru: женщина-юрист, которая консультирует клиентов и представляет их в суде
+    uk: жінка-юрист, яка консультує клієнтів і представляє їх у суді
+    example_de: Meine Anwältin hat den Brief noch am selben Abend beantwortet.
+    example_en: My lawyer answered the letter the same evening.
+    example_ru: Моя адвокат ответила на письмо в тот же вечер.
+    example_uk: Моя адвокатка відповіла на лист того самого вечора.
+    note:
+      en: 'Movierung with -in and the umlaut the stem allows, which is the a to ä you also see in der Arzt and die Ärztin. Where German can put an umlaut in the feminine it usually does, and where the stem has no suitable vowel nothing changes at all, as in der Lehrer and die Lehrerin. The full form is die Rechtsanwältin, and jemanden anwaltlich vertreten lassen is the formal way of saying you have engaged one.'
+      ru: 'Мовирование на -in плюс умлаут, который допускает основа, — то же a в ä, что и в паре der Arzt / die Ärztin. Там, где немецкий может поставить умлаут в женской форме, он обычно его ставит, а там, где подходящего гласного в основе нет, не меняется ничего: der Lehrer и die Lehrerin. Полная форма — die Rechtsanwältin, а jemanden anwaltlich vertreten lassen — официальный способ сказать, что вы наняли юриста.'
+      uk: 'Мовація на -in плюс умлаут, який дозволяє основа, — те саме a в ä, що й у парі der Arzt / die Ärztin. Там, де німецька може поставити умлаут у жіночій формі, вона зазвичай його ставить, а там, де відповідного голосного в основі немає, не змінюється нічого: der Lehrer і die Lehrerin. Повна форма — die Rechtsanwältin, а jemanden anwaltlich vertreten lassen — офіційний спосіб сказати, що ви найняли юриста.'
+
+  - de: Sekretär
+    ipa: "zekʁeˈtɛːɐ̯"
+    pos: noun
+    gender: m
+    plural: "die Sekretäre"
+    en: a man who keeps an office running, handling appointments, letters and callers
+    en_compact: "secretary"
+    ru: "сотрудник, который ведёт офис: встречи, письма, посетители"
+    uk: "працівник, який веде офіс: зустрічі, листи, відвідувачі"
+    example_de: Der Sekretär verbindet Sie gleich mit der Abteilungsleitung.
+    example_en: The secretary will put you through to the head of department in a moment.
+    example_ru: Секретарь сейчас соединит вас с руководством отдела.
+    example_uk: Секретар зараз з’єднає вас із керівництвом відділу.
+    note:
+      en: 'Stress on the last syllable, as with every German noun in -är: der Millionär, der Funktionär. The room is das Sekretariat, which schule-faecher-a2 already cards for a school office. In politics the same word names a high post, der Generalsekretär, and in old furniture catalogues der Sekretär is a writing desk with a fall front. The feminine below is far commoner in everyday German than the masculine.'
+      ru: 'Ударение на последнем слоге, как у всех немецких существительных на -är: der Millionär, der Funktionär. Помещение — das Sekretariat, оно уже есть в колоде schule-faecher-a2 как школьная канцелярия. В политике тем же словом называют высокий пост — der Generalsekretär, — а в старых мебельных каталогах der Sekretär — это письменный стол с откидной крышкой. Женская форма ниже в обиходном немецком встречается куда чаще мужской.'
+      uk: 'Наголос на останньому складі, як у всіх німецьких іменників на -är: der Millionär, der Funktionär. Приміщення — das Sekretariat, воно вже є в колоді schule-faecher-a2 як шкільна канцелярія. У політиці тим самим словом називають високу посаду — der Generalsekretär, — а в старих меблевих каталогах der Sekretär — це письмовий стіл із відкидною кришкою. Жіноча форма нижче в побутовій німецькій трапляється значно частіше за чоловічу.'
+
+  - de: Sekretärin
+    ipa: "zekʁeˈtɛːʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Sekretärinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who keeps an office running, handling appointments, letters and callers
+    en_compact: "secretary (female)"
+    ru: "сотрудница, которая ведёт офис: встречи, письма, посетители"
+    uk: "працівниця, яка веде офіс: зустрічі, листи, відвідувачі"
+    example_de: Die Sekretärin trägt den Termin gleich in den Kalender ein.
+    example_en: The secretary is entering the appointment in the calendar right away.
+    example_ru: Секретарь сразу же вносит встречу в календарь.
+    example_uk: Секретарка одразу ж вносить зустріч до календаря.
+    note:
+      en: 'The -är ending keeps its stress under Movierung, so the accent stays on the same syllable and only a syllable is added. Modern German has largely replaced the job title with die Assistenz or die Bürokauffrau, and a company today writes Assistenz der Geschäftsführung on the door. The word is nevertheless everywhere in older texts, in films, and in the sentence a receptionist still says on the phone.'
+      ru: 'Окончание -är сохраняет ударение и при мовировании: акцент остаётся на том же слоге, добавляется лишь ещё один. Современный немецкий по большей части заменил это название должности на die Assistenz или die Bürokauffrau, и фирма сегодня пишет на двери Assistenz der Geschäftsführung. Тем не менее слово встречается всюду в старых текстах, в фильмах и в той фразе, которую до сих пор говорят по телефону в приёмной.'
+      uk: 'Закінчення -är зберігає наголос і при мовації: акцент лишається на тому самому складі, додається лише ще один. Сучасна німецька здебільшого замінила цю назву посади на die Assistenz або die Bürokauffrau, і фірма сьогодні пише на дверях Assistenz der Geschäftsführung. Проте слово трапляється всюди в старих текстах, у фільмах і в тій фразі, яку досі кажуть телефоном у приймальні.'
+
+  - de: Übersetzer
+    ipa: "yːbɐˈzɛtsɐ"
+    pos: noun
+    gender: m
+    plural: "die Übersetzer"
+    en: a man who turns written texts from one language into another
+    en_compact: "translator"
+    ru: специалист, который передаёт письменные тексты с одного языка на другой
+    uk: фахівець, який передає письмові тексти з однієї мови іншою
+    example_de: Der Übersetzer hat den Vertrag ins Deutsche übertragen.
+    example_en: The translator rendered the contract into German.
+    example_ru: Переводчик перевёл договор на немецкий.
+    example_uk: Перекладач переклав договір німецькою.
+    note:
+      en: 'German separates the two jobs that English blurs: this one works on writing and takes his time, while der Dolmetscher works on speech and works live, in a booth or beside a doctor''s desk. A2 übersetzen is the verb, and note that it is inseparable in this sense (er übersetzt den Text) but separable in the literal one about ferrying somebody across a river (er setzt über). The plural is unchanged, and the feminine is the next entry.'
+      ru: 'Немецкий разводит две профессии, которые русский называет одним словом: эта работает с письменным текстом и никуда не спешит, а der Dolmetscher работает с устной речью в реальном времени — в кабине или рядом со столом врача. Глагол — übersetzen уровня A2, и заметьте: в этом значении он неотделяемый (er übersetzt den Text), а в буквальном, о переправе через реку, отделяемый (er setzt über). Множественное не меняется, а женская форма — следующая запись.'
+      uk: 'Німецька розводить дві професії, які українська називає одним словом: ця працює з писемним текстом і нікуди не поспішає, а der Dolmetscher працює з усним мовленням у реальному часі — у кабіні або поряд зі столом лікаря. Дієслово — übersetzen рівня A2, і зауважте: у цьому значенні воно невідокремлюване (er übersetzt den Text), а в буквальному, про переправу через річку, відокремлюване (er setzt über). Множина не змінюється, а жіноча форма — наступний запис.'
+
+  - de: Übersetzerin
+    ipa: "yːbɐˈzɛtsəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Übersetzerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who turns written texts from one language into another
+    en_compact: "translator (female)"
+    ru: женщина, которая передаёт письменные тексты с одного языка на другой
+    uk: жінка, яка передає письмові тексти з однієї мови іншою
+    example_de: Als Übersetzerin arbeitet sie zu Hause und teilt sich die Zeit selbst ein.
+    example_en: As a translator she works at home and organises her own time.
+    example_ru: Как переводчица она работает дома и сама распределяет время.
+    example_uk: Як перекладачка вона працює вдома й сама розподіляє час.
+    note:
+      en: 'The -er of an agent noun becomes -erin with no umlaut, and this is the largest and most regular group of all: der Lehrer, der Fahrer, der Verkäufer all behave the same way. A stem with no vowel that can carry an umlaut simply never takes one, which is why die Ärztin and die Lehrerin look so different. The sworn version needed for official documents is die vereidigte Übersetzerin.'
+      ru: 'Суффикс -er у существительного деятеля даёт -erin без умлаута, и это самая большая и самая правильная группа: der Lehrer, der Fahrer, der Verkäufer ведут себя одинаково. Основа, в которой нет гласного, способного принять умлаут, его просто никогда не получает — оттого die Ärztin и die Lehrerin так не похожи. Присяжный вариант, нужный для официальных документов, — die vereidigte Übersetzerin.'
+      uk: 'Суфікс -er в іменника діяча дає -erin без умлаута, і це найбільша й найправильніша група: der Lehrer, der Fahrer, der Verkäufer поводяться однаково. Основа, у якій немає голосного, здатного прийняти умлаут, його просто ніколи не отримує — тому die Ärztin і die Lehrerin такі несхожі. Присяжний варіант, потрібний для офіційних документів, — die vereidigte Übersetzerin.'
+
+  # --- Handwerk und Dienst am Haus ---
+  - de: Maler
+    ipa: "ˈmaːlɐ"
+    pos: noun
+    gender: m
+    plural: "die Maler"
+    en: a man who paints, either walls for a living or pictures as an artist
+    en_compact: "painter; decorator"
+    ru: тот, кто красит стены как ремесленник или пишет картины как художник
+    uk: той, хто фарбує стіни як ремісник або пише картини як митець
+    example_de: Der Maler streicht die Wohnung in drei Tagen.
+    example_en: The decorator will paint the flat in three days.
+    example_ru: Маляр покрасит квартиру за три дня.
+    example_uk: Маляр пофарбує квартиру за три дні.
+    note:
+      en: 'One word for the trade and for the art, and only the sentence decides which: der Maler und Lackierer is the official name of the trade, while Dürer war ein deutscher Maler is the other one. The verb is A2 malen, to paint; the tradesman''s own verb is streichen, and eine Wand streichen is what he charges for. The feminine below is used for both readings just as freely.'
+      ru: 'Одно слово и на ремесло, и на искусство, и различает их только предложение: der Maler und Lackierer — официальное название ремесла, а Dürer war ein deutscher Maler — совсем другое. Глагол — malen уровня A2 «рисовать, писать красками»; собственный глагол ремесленника — streichen, и eine Wand streichen — это то, за что он берёт деньги. Женская форма ниже так же свободно работает в обоих смыслах.'
+      uk: 'Одне слово і на ремесло, і на мистецтво, і розрізняє їх лише речення: der Maler und Lackierer — офіційна назва ремесла, а Dürer war ein deutscher Maler — зовсім інше. Дієслово — malen рівня A2 «малювати, писати фарбами»; власне дієслово ремісника — streichen, і eine Wand streichen — це те, за що він бере гроші. Жіноча форма нижче так само вільно працює в обох сенсах.'
+
+  - de: Malerin
+    ipa: "ˈmaːləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Malerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who paints, either walls for a living or pictures as an artist
+    en_compact: "painter; decorator (female)"
+    ru: женщина, которая красит стены как ремесленница или пишет картины как художница
+    uk: жінка, яка фарбує стіни як ремісниця або пише картини як мисткиня
+    example_de: Die Bilder stammen von einer jungen Malerin aus Leipzig.
+    example_en: The pictures are by a young painter from Leipzig.
+    example_ru: Картины принадлежат молодой художнице из Лейпцига.
+    example_uk: Картини належать молодій мисткині з Лейпцига.
+    note:
+      en: 'Regular -erin with no umlaut. In art writing German prefers die Künstlerin for a woman who makes art of any kind and keeps this word for the one who paints; in the trades it is simply the female form of the craft. Careful with the near-homophone die Mahlerin, from mahlen, to grind grain, which is a different verb spelled with an h and survives mainly in die Mühle and der Müller.'
+      ru: 'Правильное -erin без умлаута. В текстах об искусстве немецкий предпочитает die Künstlerin для женщины, занимающейся искусством вообще, а это слово оставляет за той, кто пишет красками; в ремесле же это просто женская форма профессии. Осторожно с почти омофоном die Mahlerin, от mahlen «молоть зерно»: это другой глагол, пишется с h и уцелел в основном в словах die Mühle и der Müller.'
+      uk: 'Правильне -erin без умлаута. У текстах про мистецтво німецька віддає перевагу die Künstlerin для жінки, що займається мистецтвом узагалі, а це слово лишає за тією, хто пише фарбами; у ремеслі ж це просто жіноча форма професії. Обережно з майже омофоном die Mahlerin, від mahlen «молоти зерно»: це інше дієслово, пишеться з h і вціліло здебільшого у словах die Mühle та der Müller.'
+
+  - de: Briefträger
+    ipa: "ˈbʁiːfˌtʁɛːgɐ"
+    pos: noun
+    gender: m
+    plural: "die Briefträger"
+    en: the man who brings the post to the door every morning
+    en_compact: "postman"
+    ru: человек, который каждое утро приносит почту к двери
+    uk: людина, яка щоранку приносить пошту до дверей
+    example_de: Der Briefträger klingelt nur, wenn ein Paket dabei ist.
+    example_en: The postman only rings when there is a parcel.
+    example_ru: Почтальон звонит только тогда, когда есть посылка.
+    example_uk: Листоноша дзвонить лише тоді, коли є посилка.
+    note:
+      en: 'A transparent compound of A1 der Brief and tragen, to carry. The official job title today is der Zusteller, and the Post''s own paperwork says Zustellerin und Zusteller, but everybody in the street uses this word. Switzerland has its own, der Pöstler. The feminine is the next entry, and die Zustellung is the delivery itself.'
+      ru: 'Прозрачное сложение из der Brief уровня A1 и tragen «носить». Официальное название должности сегодня — der Zusteller, и в бумагах почты стоит Zustellerin und Zusteller, но на улице все говорят именно так. У Швейцарии слово своё — der Pöstler. Женская форма — следующая запись, а сама доставка — die Zustellung.'
+      uk: 'Прозоре складання з der Brief рівня A1 і tragen «носити». Офіційна назва посади сьогодні — der Zusteller, і в паперах пошти стоїть Zustellerin und Zusteller, але на вулиці всі кажуть саме так. У Швейцарії слово своє — der Pöstler. Жіноча форма — наступний запис, а сама доставка — die Zustellung.'
+
+  - de: Briefträgerin
+    ipa: "ˈbʁiːfˌtʁɛːgəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Briefträgerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: the woman who brings the post to the door every morning
+    en_compact: "postwoman"
+    ru: женщина, которая каждое утро приносит почту к двери
+    uk: жінка, яка щоранку приносить пошту до дверей
+    example_de: Unsere Briefträgerin kennt jeden Namen im Haus.
+    example_en: Our postwoman knows every name in the building.
+    example_ru: Наша почтальонка знает в доме каждую фамилию.
+    example_uk: Наша листоноша знає в будинку кожне прізвище.
+    note:
+      en: 'The umlaut in this family sits inside the second element and is already there in the masculine, because tragen gives der Träger, so the feminine only adds -in. That is a useful reminder that the umlaut belongs to the word itself, not to the Movierung: it appears wherever the stem asks for it. The same shape gives der Gepäckträger, which is a porter as well as the rack over a bicycle wheel, so a Träger compound is not always a person.'
+      ru: 'Умлаут в этой семье сидит внутри второго элемента и уже есть в мужской форме, потому что от tragen образуется der Träger, — женской остаётся лишь добавить -in. Это полезное напоминание: умлаут принадлежит самому слову, а не мовированию, и появляется там, где его требует основа. Тот же облик даёт der Gepäckträger — и носильщик, и багажник над велосипедным колесом, так что составное на -träger не всегда человек.'
+      uk: 'Умлаут у цій родині сидить усередині другого елемента і вже є в чоловічій формі, бо від tragen утворюється der Träger, — жіночій лишається тільки додати -in. Це корисне нагадування: умлаут належить самому слову, а не мовації, і з’являється там, де його вимагає основа. Той самий вигляд дає der Gepäckträger — і носій, і багажник над велосипедним колесом, тож складне на -träger не завжди людина.'
+
+  - de: Hausmeisterin
+    ipa: "ˈhaʊ̯sˌmaɪ̯stəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Hausmeisterinnen"
+    # Recognition only: the feminine of `Hausmeister` ("caretaker, building
+    # superintendent", regeln-verantwortung), which is itself a recognition card.
+    cards: recognition
+    en: the woman who looks after a building, its heating, its bins and its small repairs
+    en_compact: "caretaker (female)"
+    ru: "женщина, которая следит за домом: отоплением, мусором и мелким ремонтом"
+    uk: "жінка, яка доглядає будинок: опалення, сміття та дрібний ремонт"
+    example_de: Bei einem Wasserschaden ruft man zuerst die Hausmeisterin an.
+    example_en: If water damage occurs you call the caretaker first.
+    example_ru: При протечке первым делом звонят коменданту дома.
+    example_uk: При протіканні насамперед телефонують доглядачці будинку.
+    note:
+      en: 'The masculine, in the regeln-verantwortung deck, is a fixture of German block-of-flats life: keys, heating, the bin store and the notice about the stairwell. This form is the ordinary -in feminine and adds nothing to the declension. Switzerland says der Abwart and die Abwartin, and Austria often der Hausbesorger. Do not confuse the person with die Hausverwaltung, the company that manages the property from an office.'
+      ru: 'Мужская форма, в колоде regeln-verantwortung, — непременная фигура жизни немецкого многоквартирного дома: ключи, отопление, мусорка и объявление о лестничной клетке. Эта форма — обычное женское -in, к склонению она ничего не добавляет. Швейцария говорит der Abwart и die Abwartin, а Австрия часто der Hausbesorger. Не путайте человека с die Hausverwaltung — компанией, которая управляет домом из офиса.'
+      uk: 'Чоловіча форма, у колоді regeln-verantwortung, — неодмінна постать життя німецького багатоквартирного будинку: ключі, опалення, смітник і оголошення про сходову клітку. Ця форма — звичайне жіноче -in, до відмінювання вона нічого не додає. Швейцарія каже der Abwart і die Abwartin, а Австрія часто der Hausbesorger. Не плутайте людину з die Hausverwaltung — компанією, що керує будинком з офісу.'
+
+  # --- Menschen betreuen und pflegen ---
+  - de: Betreuer
+    ipa: "bəˈtʁɔʏ̯ɐ"
+    pos: noun
+    gender: m
+    plural: "die Betreuer"
+    en: a man whose job is looking after a group or a person over a stretch of time
+    en_compact: "carer, support worker"
+    ru: тот, чья работа — вести группу или человека на протяжении времени
+    uk: той, чия робота — вести групу чи людину протягом часу
+    example_de: Im Ferienlager kommt auf zehn Kinder ein Betreuer.
+    example_en: At the holiday camp there is one supervisor for every ten children.
+    example_ru: В летнем лагере на десять детей приходится один воспитатель.
+    example_uk: У літньому таборі на десятеро дітей припадає один вихователь.
+    note:
+      en: 'The person behind B1 betreuen, and German uses it very widely: a camp supervisor, a support worker, a team manager in sport, the academic who supervises a thesis. It says somebody is responsible for a person or a group over time, which is why der Helfer sounds too casual for it and der Pfleger below too medical. The verb and the noun die Betreuung are both in arbeit-beruf-b1, and the feminine is the next entry.'
+      ru: 'Человек за глаголом betreuen уровня B1, и немецкий пользуется словом очень широко: вожатый в лагере, социальный работник, менеджер команды в спорте, научный руководитель диплома. Слово говорит, что кто-то отвечает за человека или группу на протяжении времени, — оттого der Helfer звучит для этого слишком мимоходом, а der Pfleger ниже слишком по-медицински. Глагол и существительное die Betreuung лежат в колоде arbeit-beruf-b1, а женская форма — следующая запись.'
+      uk: 'Людина за дієсловом betreuen рівня B1, і німецька користується словом дуже широко: вожатий у таборі, соціальний працівник, менеджер команди у спорті, науковий керівник диплома. Слово каже, що хтось відповідає за людину чи групу протягом часу, — тому der Helfer звучить для цього надто мимохідь, а der Pfleger нижче надто по-медичному. Дієслово та іменник die Betreuung лежать у колоді arbeit-beruf-b1, а жіноча форма — наступний запис.'
+
+  - de: Betreuerin
+    ipa: "bəˈtʁɔʏ̯əʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Betreuerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman whose job is looking after a group or a person over a stretch of time
+    en_compact: "carer, support worker (female)"
+    ru: женщина, чья работа — вести группу или человека на протяжении времени
+    uk: жінка, чия робота — вести групу чи людину протягом часу
+    example_de: Die Betreuerin bleibt bis zum Abend bei der alten Dame.
+    example_en: The carer stays with the old lady until the evening.
+    example_ru: Сиделка остаётся с пожилой дамой до вечера.
+    example_uk: Доглядальниця залишається з літньою пані до вечора.
+    note:
+      en: 'Regular -erin. German has a whole family of care words and they are not interchangeable: die Erzieherin is trained for a nursery, die Pflegerin below works on the body, die Sozialarbeiterin works for an authority, and this word covers the rest. In elder care the common compound is die Alltagsbetreuerin, and the fee an insurer pays is das Betreuungsgeld.'
+      ru: 'Правильное -erin. У немецкого целая семья слов о заботе, и они не взаимозаменяемы: die Erzieherin имеет педагогическое образование и работает в саду, die Pflegerin ниже работает с телом, die Sozialarbeiterin служит в ведомстве, а это слово покрывает всё остальное. В уходе за пожилыми частое составное — die Alltagsbetreuerin, а выплата от страховой называется das Betreuungsgeld.'
+      uk: 'Правильне -erin. У німецької ціла родина слів про турботу, і вони не взаємозамінні: die Erzieherin має педагогічну освіту й працює в садку, die Pflegerin нижче працює з тілом, die Sozialarbeiterin служить у відомстві, а це слово покриває решту. У догляді за літніми часте складне — die Alltagsbetreuerin, а виплата від страхової зветься das Betreuungsgeld.'
+
+  - de: Pfleger
+    ipa: "ˈpfleːgɐ"
+    pos: noun
+    gender: m
+    plural: "die Pfleger"
+    # Recognition only: A2 ships `Krankenpfleger` ("nurse (male)", berufe-a2) as the
+    # production card, and this is the same job under its short name.
+    cards: recognition
+    en: a man who cares for the sick or the elderly, washing, feeding and lifting them
+    en_compact: "carer, nurse (male)"
+    ru: "тот, кто ухаживает за больными или пожилыми: моет, кормит, поднимает"
+    uk: "той, хто доглядає хворих або літніх: миє, годує, піднімає"
+    example_de: Der Pfleger half ihr, aus dem Bett aufzustehen.
+    example_en: The nurse helped her get out of bed.
+    example_ru: Санитар помог ей встать с кровати.
+    example_uk: Санітар допоміг їй встати з ліжка.
+    note:
+      en: 'The short form of A2 der Krankenpfleger, and it reaches further: der Altenpfleger, der Tierpfleger at a zoo, and even der Denkmalpfleger, who looks after historic buildings. The work is physical, which is what separates it from der Betreuer above. Note the spelling trap in the plural of the profession as a whole: die Pflegekräfte is what an advert says, because it covers both sexes without naming either.'
+      ru: 'Короткая форма от der Krankenpfleger уровня A2, и она берёт шире: der Altenpfleger, der Tierpfleger в зоопарке и даже der Denkmalpfleger, который следит за памятниками архитектуры. Работа телесная, и этим слово отличается от der Betreuer выше. Заметьте, как профессия называется в целом: в объявлении стоит die Pflegekräfte, потому что это слово покрывает оба пола, не называя ни одного.'
+      uk: 'Коротка форма від der Krankenpfleger рівня A2, і вона бере ширше: der Altenpfleger, der Tierpfleger у зоопарку і навіть der Denkmalpfleger, який доглядає пам’ятки архітектури. Робота тілесна, і цим слово відрізняється від der Betreuer вище. Зауважте, як професія зветься загалом: в оголошенні стоїть die Pflegekräfte, бо це слово покриває обидві статі, не називаючи жодної.'
+
+  - de: Pflegerin
+    ipa: "ˈpfleːgəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Pflegerinnen"
+    # Recognition only: the feminine of the entry above; A2 `Krankenschwester`
+    # (berufe-a2) is the shipped production card for a female nurse.
+    cards: recognition
+    en: a woman who cares for the sick or the elderly, washing, feeding and lifting them
+    en_compact: "carer, nurse (female)"
+    ru: "женщина, которая ухаживает за больными или пожилыми: моет, кормит, поднимает"
+    uk: "жінка, яка доглядає хворих або літніх: миє, годує, піднімає"
+    example_de: Zwei Pflegerinnen kommen jeden Morgen zu ihm nach Hause.
+    example_en: Two carers come to his home every morning.
+    example_ru: Две сиделки приходят к нему домой каждое утро.
+    example_uk: Дві доглядальниці приходять до нього додому щоранку.
+    note:
+      en: 'German is in the middle of renaming this whole field: A2 die Krankenschwester, literally a sister, has been replaced in law since 2020 by die Pflegefachfrau, and hospitals now write die Pflegefachkraft on a rota. All of them are current, and a patient hears whichever the speaker grew up with. The verb is B1 pflegen, which also means to keep up a habit — er pflegt früh aufzustehen.'
+      ru: 'Немецкий как раз переименовывает всю эту область: die Krankenschwester уровня A2, буквально «сестра», с 2020 года заменена в законе на die Pflegefachfrau, а в графике смен больницы пишут die Pflegefachkraft. Все варианты в ходу, и пациент слышит тот, с которым вырос говорящий. Глагол — pflegen уровня B1, у которого есть и второе значение: er pflegt früh aufzustehen — «он имеет обыкновение рано вставать».'
+      uk: 'Німецька саме перейменовує всю цю галузь: die Krankenschwester рівня A2, буквально «сестра», з 2020 року замінена в законі на die Pflegefachfrau, а в графіку змін лікарні пишуть die Pflegefachkraft. Усі варіанти в ужитку, і пацієнт чує той, з яким виріс мовець. Дієслово — pflegen рівня B1, у якого є й друге значення: er pflegt früh aufzustehen — «він має звичку рано вставати».'
+
+  # --- Wer ein Geschäft führt ---
+  - de: Unternehmer
+    ipa: "ʊntɐˈneːmɐ"
+    pos: noun
+    gender: m
+    plural: "die Unternehmer"
+    en: a man who runs a business of his own and carries its risk
+    en_compact: "entrepreneur, business owner"
+    ru: тот, кто ведёт собственное дело и несёт его риск
+    uk: той, хто веде власну справу й несе її ризик
+    example_de: Als Unternehmer haftet er mit seinem eigenen Geld.
+    example_en: As a business owner he is liable with his own money.
+    example_ru: Как предприниматель он отвечает собственными деньгами.
+    example_uk: Як підприємець він відповідає власними грошима.
+    note:
+      en: 'The firm itself is das Unternehmen, neuter, and the same word is the verb A2 unternehmen, to undertake something — Was unternehmen wir am Wochenende? Risk is the defining part: A2 selbstständig describes anybody working for themselves, while this word implies a business with employees. The bosses'' side in a wage negotiation is der Arbeitgeber, and the union''s side is der Arbeitnehmer.'
+      ru: 'Сама фирма — das Unternehmen, среднего рода, и то же слово есть глагол unternehmen уровня A2 «предпринимать»: Was unternehmen wir am Wochenende? Определяющая часть — риск: selbstständig уровня A2 описывает любого, кто работает на себя, а это слово предполагает дело с наёмными работниками. В переговорах о зарплате сторона хозяев — der Arbeitgeber, а сторона профсоюза — der Arbeitnehmer.'
+      uk: 'Сама фірма — das Unternehmen, середнього роду, і те саме слово є дієсловом unternehmen рівня A2 «започатковувати, робити»: Was unternehmen wir am Wochenende? Визначальна частина — ризик: selbstständig рівня A2 описує будь-кого, хто працює на себе, а це слово передбачає справу з найманими працівниками. У переговорах про зарплату сторона господарів — der Arbeitgeber, а сторона профспілки — der Arbeitnehmer.'
+
+  - de: Unternehmerin
+    ipa: "ʊntɐˈneːməʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Unternehmerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who runs a business of her own and carries its risk
+    en_compact: "entrepreneur (female)"
+    ru: женщина, которая ведёт собственное дело и несёт его риск
+    uk: жінка, яка веде власну справу й несе її ризик
+    example_de: Die Unternehmerin beschäftigt inzwischen vierzig Leute.
+    example_en: The businesswoman now employs forty people.
+    example_ru: Предпринимательница теперь даёт работу сорока людям.
+    example_uk: Підприємиця тепер дає роботу сорока людям.
+    note:
+      en: 'Regular -erin on an inseparable verb stem, so nothing shifts and the stress stays on the third syllable. German business writing likes the compound die Jungunternehmerin for a young founder and die Gründerin for anybody who has started something. Beside them, die Chefin is the boss of a place whether she owns it or not, and die Geschäftsführerin is the managing director, an office rather than an ownership.'
+      ru: 'Правильное -erin на основе неотделяемого глагола: ничего не сдвигается, ударение остаётся на третьем слоге. Немецкая деловая пресса любит составное die Jungunternehmerin для молодой основательницы и die Gründerin для всякого, кто что-то начал. Рядом: die Chefin — начальница заведения независимо от того, владеет ли она им, а die Geschäftsführerin — управляющая, то есть должность, а не собственность.'
+      uk: 'Правильне -erin на основі невідокремлюваного дієслова: нічого не зсувається, наголос лишається на третьому складі. Німецька ділова преса любить складне die Jungunternehmerin для молодої засновниці та die Gründerin для всякого, хто щось почав. Поряд: die Chefin — начальниця закладу незалежно від того, чи володіє вона ним, а die Geschäftsführerin — керуюча, тобто посада, а не власність.'
+
+  - de: Händler
+    ipa: "ˈhɛndlɐ"
+    pos: noun
+    gender: m
+    plural: "die Händler"
+    en: a man who buys goods and sells them on as his business
+    en_compact: "dealer, trader"
+    ru: тот, кто закупает товар и перепродаёт его как своё дело
+    uk: той, хто закуповує товар і перепродає його як свою справу
+    example_de: Den Wagen habe ich bei einem Händler in der Nähe gekauft.
+    example_en: I bought the car from a dealer nearby.
+    example_ru: Машину я купил у дилера неподалёку.
+    example_uk: Автівку я купив у дилера неподалік.
+    note:
+      en: 'Trading is the whole meaning, so the word is about the business and not about the counter: A2 der Verkäufer is the person who serves you in a shop, and this one is whoever owns the stock. It lives in compounds naming what is traded — der Autohändler, der Buchhändler, der Großhändler for wholesale, der Einzelhändler for retail. The trade itself is der Handel, and the verb is handeln, which also means to act and to haggle.'
+      ru: 'Всё значение — в торговле как деле, а не в прилавке: der Verkäufer уровня A2 — тот, кто обслуживает вас в магазине, а здесь речь о том, кому принадлежит товар. Слово живёт в составных, называющих предмет торговли: der Autohändler, der Buchhändler, der Großhändler — оптовик, der Einzelhändler — розничный торговец. Сама торговля — der Handel, а глагол handeln значит ещё «действовать» и «торговаться».'
+      uk: 'Усе значення — у торгівлі як справі, а не в прилавку: der Verkäufer рівня A2 — той, хто обслуговує вас у крамниці, а тут ідеться про того, кому належить товар. Слово живе у складних, що називають предмет торгівлі: der Autohändler, der Buchhändler, der Großhändler — оптовик, der Einzelhändler — роздрібний торговець. Сама торгівля — der Handel, а дієслово handeln означає ще «діяти» і «торгуватися».'
+
+  - de: Händlerin
+    ipa: "ˈhɛndləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Händlerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who buys goods and sells them on as her business
+    en_compact: "dealer, trader (female)"
+    ru: женщина, которая закупает товар и перепродаёт его как своё дело
+    uk: жінка, яка закуповує товар і перепродає його як свою справу
+    example_de: Auf dem Markt hat mir eine Händlerin zwei Kilo Äpfel eingepackt.
+    example_en: At the market a trader packed two kilos of apples for me.
+    example_ru: На рынке торговка упаковала мне два килограмма яблок.
+    example_uk: На ринку торговка запакувала мені два кілограми яблук.
+    note:
+      en: 'The umlaut is already in the masculine, because the stem is der Handel and the agent noun fronts the vowel, so the feminine only adds -in. On a market stall German more often says die Marktfrau or names the goods, die Obstfrau, and in a shop die Verkäuferin. The word carries no judgement, but the compound die Drogenhändlerin shows how easily it takes a dark object.'
+      ru: 'Умлаут уже есть в мужской форме, потому что основа — der Handel, а существительное деятеля переводит гласную вперёд; женской остаётся добавить -in. О торговке на рынке немецкий чаще скажет die Marktfrau или назовёт товар — die Obstfrau, а в магазине die Verkäuferin. Само слово оценки не несёт, но составное die Drogenhändlerin показывает, как легко оно берёт тёмное дополнение.'
+      uk: 'Умлаут уже є в чоловічій формі, бо основа — der Handel, а іменник діяча переводить голосну вперед; жіночій лишається додати -in. Про торговку на ринку німецька частіше скаже die Marktfrau або назве товар — die Obstfrau, а в крамниці die Verkäuferin. Саме слово оцінки не несе, але складне die Drogenhändlerin показує, як легко воно бере темний додаток.'
+
+  - de: Vertreter
+    ipa: "fɛɐ̯ˈtʁeːtɐ"
+    pos: noun
+    gender: m
+    plural: "die Vertreter"
+    en: a man who acts or speaks for somebody else, above all one who sells for a firm
+    en_compact: "representative; sales rep"
+    ru: тот, кто действует или говорит от чужого имени, прежде всего торговый агент фирмы
+    uk: той, хто діє або говорить від чужого імені, передусім торговий агент фірми
+    example_de: Ein Vertreter der Firma kommt am Dienstag ins Haus.
+    example_en: A representative of the company is coming to the house on Tuesday.
+    example_ru: Представитель фирмы придёт во вторник.
+    example_uk: Представник фірми прийде у вівторок.
+    note:
+      en: 'From B1 vertreten, to stand in for or to represent, and the meaning splits with the context: der Handelsvertreter travels and sells, der Gewerkschaftsvertreter sits at a negotiating table, and in a school die Vertretung is the teacher covering a colleague''s lesson. The word also means a proponent of an idea — ein Vertreter dieser Meinung. The feminine is the next entry.'
+      ru: 'От vertreten уровня B1 «замещать, представлять», и значение расходится по контексту: der Handelsvertreter ездит и продаёт, der Gewerkschaftsvertreter сидит за столом переговоров, а в школе die Vertretung — учитель, ведущий урок за коллегу. Слово означает и сторонника идеи: ein Vertreter dieser Meinung. Женская форма — следующая запись.'
+      uk: 'Від vertreten рівня B1 «заміщати, представляти», і значення розходиться за контекстом: der Handelsvertreter їздить і продає, der Gewerkschaftsvertreter сидить за столом переговорів, а в школі die Vertretung — учитель, що веде урок за колегу. Слово означає й прибічника ідеї: ein Vertreter dieser Meinung. Жіноча форма — наступний запис.'
+
+  - de: Vertreterin
+    ipa: "fɛɐ̯ˈtʁeːtəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Vertreterinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who acts or speaks for somebody else, above all one who sells for a firm
+    en_compact: "representative (female)"
+    ru: женщина, которая действует или говорит от чужого имени, прежде всего торговый агент фирмы
+    uk: жінка, яка діє або говорить від чужого імені, передусім торговий агент фірми
+    example_de: Die Vertreterin der Eltern sprach als Erste.
+    example_en: The parents' representative spoke first.
+    example_ru: Представительница родителей выступила первой.
+    example_uk: Представниця батьків виступила першою.
+    note:
+      en: 'Regular -erin on the ver- stem, and the pair is common in official German because so many bodies are made of representatives: die Elternvertreterin at a school, die Klassensprecherin among pupils, die Interessenvertretung as the abstract body. A newer and now very frequent word for the same idea without a gender is die Vertretung, used for the person as well as the office.'
+      ru: 'Правильное -erin на основе с приставкой ver-, и пара часто встречается в официальном немецком, потому что множество органов состоит из представителей: die Elternvertreterin в школе, die Klassensprecherin среди учеников, die Interessenvertretung как отвлечённый орган. Более новое и сегодня очень частое слово для той же идеи без указания пола — die Vertretung: им называют и человека, и должность.'
+      uk: 'Правильне -erin на основі з префіксом ver-, і пара часто трапляється в офіційній німецькій, бо безліч органів складається з представників: die Elternvertreterin у школі, die Klassensprecherin серед учнів, die Interessenvertretung як відсторонений орган. Новіше й сьогодні дуже часте слово для тієї самої ідеї без зазначення статі — die Vertretung: ним називають і людину, і посаду.'
+
+  - de: Manager
+    ipa: "ˈmɛnɪdʒɐ"
+    pos: noun
+    gender: m
+    plural: "die Manager"
+    # Recognition only: A2 `Chef` (schule-arbeit) and B1 `Leiter` (arbeit-beruf-b1)
+    # already answer a prompt about the person in charge.
+    cards: recognition
+    en: a man who runs part of a company, planning its work and its people
+    en_compact: "manager"
+    ru: руководитель части компании, планирующий её работу и людей
+    uk: керівник частини компанії, що планує її роботу й людей
+    example_de: Der Manager der Filiale entscheidet über die Öffnungszeiten.
+    example_en: The branch manager decides on the opening hours.
+    example_ru: Управляющий филиалом решает вопрос о часах работы.
+    example_uk: Керівник філії вирішує питання про години роботи.
+    note:
+      en: 'An English loanword kept with its English pronunciation, which is why the first syllable sounds like Männ- and the g like a soft j. It is business register: A2 der Chef is the boss you actually answer to, der Leiter names the office, and this word suggests a firm large enough to have several. In sport it is the person who runs a club or an artist''s affairs, and das Management is both the activity and the team.'
+      ru: 'Английское заимствование, сохранившее английское произношение: поэтому первый слог звучит как Männ-, а g — как мягкое дж. Регистр деловой: der Chef уровня A2 — начальник, которому вы подчиняетесь на деле, der Leiter называет должность, а это слово намекает на фирму, достаточно большую, чтобы их было несколько. В спорте так называют того, кто ведёт клуб или дела артиста, а das Management — и деятельность, и команда руководителей.'
+      uk: 'Англійське запозичення, що зберегло англійську вимову: тому перший склад звучить як Männ-, а g — як м’яке дж. Регістр діловий: der Chef рівня A2 — начальник, якому ви підпорядковані насправді, der Leiter називає посаду, а це слово натякає на фірму, достатньо велику, щоб їх було кілька. У спорті так звуть того, хто веде клуб або справи артиста, а das Management — і діяльність, і команда керівників.'
+
+  - de: Managerin
+    ipa: "ˈmɛnɪdʒəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Managerinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who runs part of a company, planning its work and its people
+    en_compact: "manager (female)"
+    ru: женщина, руководящая частью компании и планирующая её работу и людей
+    uk: жінка, що керує частиною компанії й планує її роботу та людей
+    example_de: Die Managerin stellte den Plan für das nächste Jahr vor.
+    example_en: The manager presented the plan for the coming year.
+    example_ru: Управляющая представила план на следующий год.
+    example_uk: Керівниця представила план на наступний рік.
+    note:
+      en: 'German gives even an English loanword the German feminine ending, which is what makes the pair look odd to an English eye: die Managerin, die Designerin, die Bloggerin all follow the rule. The plural of the masculine is unchanged because it already ends in -er, while this one adds -innen. Beside it, die Geschäftsführerin is a legally defined office, and die Leiterin names responsibility for one department.'
+      ru: 'Немецкий добавляет немецкое женское окончание даже к английскому заимствованию — оттого пара и выглядит непривычно для английского глаза: die Managerin, die Designerin, die Bloggerin следуют одному правилу. Множественное мужской формы не меняется, потому что она и так кончается на -er, а эта добавляет -innen. Рядом: die Geschäftsführerin — юридически определённая должность, а die Leiterin называет ответственность за один отдел.'
+      uk: 'Німецька додає німецьке жіноче закінчення навіть до англійського запозичення — тому пара й виглядає незвично для англійського ока: die Managerin, die Designerin, die Bloggerin ідуть за одним правилом. Множина чоловічої форми не змінюється, бо вона й так закінчується на -er, а ця додає -innen. Поряд: die Geschäftsführerin — юридично визначена посада, а die Leiterin називає відповідальність за один відділ.'
+
+  # --- Wer sich auskennt ---
+  - de: Experte
+    ipa: "ɛksˈpɛʁtə"
+    pos: noun
+    gender: m
+    plural: "die Experten"
+    en: somebody with deep knowledge of a subject, whose opinion is asked for
+    en_compact: "expert"
+    ru: человек с глубокими знаниями в предмете, чьё мнение спрашивают
+    uk: людина з глибокими знаннями в предметі, чию думку запитують
+    example_de: Zu dieser Frage haben wir einen Experten eingeladen.
+    example_en: We have invited an expert on this question.
+    example_ru: По этому вопросу мы пригласили эксперта.
+    example_uk: Із цього питання ми запросили експерта.
+    note:
+      en: 'An n-noun, so it adds -n everywhere except the nominative singular: den Experten, dem Experten, die Experten. Knowledge is what the word claims, not a job, which is why a television studio invites one to explain rather than to work. Beside it, der Spezialist below is defined by working in one narrow field, and der Fachmann by knowing a practical trade. The feminine is die Expertin, and das Expertenwissen is what they have.'
+      ru: 'Слабое существительное: во всех падежах, кроме именительного единственного, добавляется -n — den Experten, dem Experten, die Experten. Слово заявляет знание, а не должность, — оттого телестудия приглашает такого человека объяснять, а не работать. Рядом: der Spezialist ниже определяется работой в узкой области, а der Fachmann — знанием практического ремесла. Женская форма — die Expertin, а то, чем они обладают, — das Expertenwissen.'
+      uk: 'Слабкий іменник: в усіх відмінках, крім називного однини, додається -n — den Experten, dem Experten, die Experten. Слово заявляє знання, а не посаду, — тому телестудія запрошує таку людину пояснювати, а не працювати. Поряд: der Spezialist нижче визначається роботою у вузькій галузі, а der Fachmann — знанням практичного ремесла. Жіноча форма — die Expertin, а те, чим вони володіють, — das Expertenwissen.'
+
+  - de: Spezialist
+    ipa: "ʃpetsiaˈlɪst"
+    pos: noun
+    gender: m
+    plural: "die Spezialisten"
+    # Recognition only: `Experte` above holds the production prompt for somebody who
+    # knows a subject, and the two are near-synonyms in most sentences.
+    cards: recognition
+    en: a man who works in one narrow field and does nothing else
+    en_compact: "specialist"
+    ru: тот, кто работает в одной узкой области и ничем другим не занимается
+    uk: той, хто працює в одній вузькій галузі й нічим іншим не займається
+    example_de: Für die Schulter hat mich der Arzt zu einem Spezialisten geschickt.
+    example_en: For my shoulder the doctor sent me to a specialist.
+    example_ru: С плечом врач направил меня к специалисту.
+    example_uk: Із плечем лікар скерував мене до фахівця.
+    note:
+      en: 'Another n-noun, like every masculine in -ist: der Spezialisten, den Journalisten, dem Polizisten. The narrowness is the point — a specialist is defined by what they do not do — while der Experte above is defined by what they know. In medicine German usually says der Facharzt, and der Facharzt für Orthopädie is what actually stands on the door. The verb sich spezialisieren auf takes an accusative.'
+      ru: 'Ещё одно слабое существительное — как всякое мужское на -ist: den Spezialisten, den Journalisten, dem Polizisten. Суть в узости: специалист определяется тем, чем он не занимается, тогда как der Experte выше — тем, что он знает. В медицине немецкий обычно говорит der Facharzt, и на двери стоит der Facharzt für Orthopädie. Глагол sich spezialisieren auf берёт дополнение в Akkusativ.'
+      uk: 'Ще один слабкий іменник — як усякий чоловічий на -ist: den Spezialisten, den Journalisten, dem Polizisten. Суть у вузькості: спеціаліст визначається тим, чим він не займається, тоді як der Experte вище — тим, що він знає. У медицині німецька зазвичай каже der Facharzt, і на дверях стоїть der Facharzt für Orthopädie. Дієслово sich spezialisieren auf бере додаток у Akkusativ.'
+
+  - de: Spezialistin
+    ipa: "ʃpetsiaˈlɪstɪn"
+    pos: noun
+    gender: f
+    plural: "die Spezialistinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who works in one narrow field and does nothing else
+    en_compact: "specialist (female)"
+    ru: женщина, которая работает в одной узкой области и ничем другим не занимается
+    uk: жінка, яка працює в одній вузькій галузі й нічим іншим не займається
+    example_de: Sie ist Spezialistin für alte Musik.
+    example_en: She is a specialist in early music.
+    example_ru: Она специалист по старинной музыке.
+    example_uk: Вона фахівчиня зі старовинної музики.
+    note:
+      en: 'Movierung with -in, and it quietly repairs the declension: the masculine changes in every case as an n-noun, while this form never does. Note the preposition the pair takes — Spezialistin für etwas, always für and an accusative, never in. German drops the article after sein and werden with a profession, which is why the example says Sie ist Spezialistin and not eine Spezialistin.'
+      ru: 'Мовирование на -in заодно чинит склонение: мужская форма меняется во всех падежах как слабое существительное, а эта не меняется никогда. Обратите внимание на предлог: Spezialistin für etwas, всегда für и Akkusativ, но не in. После sein и werden немецкий опускает артикль при названии профессии — потому в примере стоит Sie ist Spezialistin, а не eine Spezialistin.'
+      uk: 'Мовація на -in заразом лагодить відмінювання: чоловіча форма змінюється в усіх відмінках як слабкий іменник, а ця не змінюється ніколи. Зверніть увагу на прийменник: Spezialistin für etwas, завжди für і Akkusativ, але не in. Після sein і werden німецька опускає артикль при назві професії — тому в прикладі стоїть Sie ist Spezialistin, а не eine Spezialistin.'
+
+  - de: Fachmann
+    ipa: "ˈfaxˌman"
+    pos: noun
+    gender: m
+    plural: "die Fachleute"
+    en: a man who knows a practical trade well enough to be called in for it
+    en_compact: "skilled tradesman"
+    ru: знаток практического дела, которого зовут, когда сами не справляются
+    uk: знавець практичної справи, якого кличуть, коли самі не дають ради
+    example_de: Die Heizung sollte lieber ein Fachmann reparieren.
+    example_en: The heating had better be repaired by a professional.
+    example_ru: Отопление лучше пусть чинит знающий человек.
+    example_uk: Опалення хай краще ремонтує знавець справи.
+    note:
+      en: 'Practical competence is the whole of it: this is the person you call when the boiler stops, while der Experte is asked for an opinion and der Spezialist works in one field. The plural has two forms with a real difference — die Fachmänner counts individuals, and die Fachleute below is the ordinary plural for professionals as a group. The stem das Fach means both a school subject and a compartment, and das Fachgeschäft is a specialist shop.'
+      ru: 'Всё дело в практическом умении: это тот, кого зовут, когда встал котёл, тогда как der Experte даёт заключение, а der Spezialist работает в одной области. У множественного числа две формы, и разница настоящая: die Fachmänner считает отдельных людей, а die Fachleute ниже — обычное множественное для профессионалов как группы. Основа das Fach — это и школьный предмет, и отделение, ячейка, а das Fachgeschäft — специализированный магазин.'
+      uk: 'Уся річ у практичному вмінні: це той, кого кличуть, коли став котел, тоді як der Experte дає висновок, а der Spezialist працює в одній галузі. У множини дві форми, і різниця справжня: die Fachmänner рахує окремих людей, а die Fachleute нижче — звичайна множина для професіоналів як групи. Основа das Fach — це і шкільний предмет, і відділення, комірка, а das Fachgeschäft — спеціалізована крамниця.'
+
+  - de: Fachfrau
+    ipa: "ˈfaxˌfʁaʊ̯"
+    pos: noun
+    gender: f
+    plural: "die Fachfrauen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    # It is built with -frau rather than -in, which is why it is not adjacent by
+    # spelling alone.
+    cards: recognition
+    en: a woman who knows a practical trade well enough to be called in for it
+    en_compact: "skilled tradeswoman"
+    ru: женщина, знающая практическое дело настолько, что её зовут на помощь
+    uk: жінка, що знає практичну справу настільки, що її кличуть на допомогу
+    example_de: Bei Fragen zur Versicherung wenden Sie sich an eine Fachfrau.
+    example_en: For questions about the insurance, turn to a professional.
+    example_ru: С вопросами по страхованию обращайтесь к знающему человеку.
+    example_uk: З питаннями щодо страхування звертайтеся до знавця справи.
+    note:
+      en: 'The one feminine in this deck that is not built with -in: the masculine ends in -mann, so German swaps the whole element for -frau, exactly as in der Kaufmann and die Kauffrau, der Feuerwehrmann and die Feuerwehrfrau. Switzerland has made this the official pattern for trade qualifications — die Fachfrau Gesundheit — and Germany is following. The plural takes -en, not the umlaut of die Frauen alone.'
+      ru: 'Единственная женская форма в этой колоде, построенная не на -in: мужская кончается на -mann, и немецкий заменяет весь этот элемент на -frau — ровно как в der Kaufmann и die Kauffrau, der Feuerwehrmann и die Feuerwehrfrau. Швейцария сделала эту модель официальной для профессиональных квалификаций — die Fachfrau Gesundheit, — и Германия идёт следом. Множественное на -en, а не просто с умлаутом, как у die Frauen.'
+      uk: 'Єдина жіноча форма в цій колоді, побудована не на -in: чоловіча закінчується на -mann, і німецька замінює весь цей елемент на -frau — точно як у der Kaufmann і die Kauffrau, der Feuerwehrmann і die Feuerwehrfrau. Швейцарія зробила цю модель офіційною для фахових кваліфікацій — die Fachfrau Gesundheit, — і Німеччина йде слідом. Множина на -en, а не просто з умлаутом, як у die Frauen.'
+
+  - de: Fachleute
+    ipa: "ˈfaxˌlɔʏ̯tə"
+    pos: phrase
+    # Recognition only: the shared plural of the two entries above, and a
+    # plural-only word — there is no singular for a typed prompt to ask for.
+    cards: recognition
+    en: people who know a trade or a field, taken together as a group
+    en_compact: "professionals, specialists"
+    ru: люди, знающие своё дело, взятые как группа
+    uk: люди, що знають свою справу, взяті як група
+    example_de: Fachleute rechnen mit einer Lösung erst im nächsten Jahr.
+    example_en: Professionals expect a solution only next year.
+    example_ru: Специалисты ожидают решения не раньше следующего года.
+    example_uk: Фахівці очікують розв’язання не раніше наступного року.
+    note:
+      en: 'Plural only, and it is the ordinary plural of both entries above at once — which is why German so often reaches for it in a headline where naming a gender would be awkward. The element -leute replaces -mann and -frau throughout the language: die Kaufleute, die Geschäftsleute, die Eheleute, die Landsleute. A singular exists only through die Fachkraft, which an advert uses because it is feminine in form but neutral in meaning.'
+      ru: 'Слово только во множественном числе, и это обычное множественное сразу для обеих записей выше — оттого немецкий так часто берёт его в заголовок, где называть пол было бы неловко. Элемент -leute заменяет -mann и -frau по всему языку: die Kaufleute, die Geschäftsleute, die Eheleute, die Landsleute. Единственное существует только через die Fachkraft, которое берёт объявление: по форме оно женского рода, а по смыслу нейтрально.'
+      uk: 'Слово лише в множині, і це звичайна множина одразу для обох записів вище — тому німецька так часто бере його в заголовок, де називати стать було б незручно. Елемент -leute заміняє -mann і -frau по всій мові: die Kaufleute, die Geschäftsleute, die Eheleute, die Landsleute. Однина існує лише через die Fachkraft, яке бере оголошення: за формою воно жіночого роду, а за змістом нейтральне.'
+
+  # --- Auf dem Land, in der Luft, im Direktionszimmer ---
+  - de: Bauer
+    ipa: "ˈbaʊ̯ɐ"
+    pos: noun
+    gender: m
+    plural: "die Bauern"
+    en: a man who works the land and keeps animals on a holding of his own
+    en_compact: "farmer"
+    ru: тот, кто обрабатывает землю и держит скот на собственном хозяйстве
+    uk: той, хто обробляє землю й тримає худобу на власному господарстві
+    example_de: Der Bauer verkauft Eier und Kartoffeln direkt am Hof.
+    example_en: The farmer sells eggs and potatoes directly at the farm.
+    example_ru: Крестьянин продаёт яйца и картофель прямо во дворе хозяйства.
+    example_uk: Селянин продає яйця та картоплю просто у дворі господарства.
+    note:
+      en: 'An n-noun with a small irregularity: den Bauern, dem Bauern, but the genitive is des Bauern rather than the -ns some grammars expect. The modern official word is der Landwirt, which sounds businesslike, while this one carries the farmhouse with it — der Bauernhof, das Bauernbrot, der Bauernmarkt. The feminine is die Bäuerin, with an umlaut, and in chess the same word is a pawn.'
+      ru: 'Слабое существительное с маленькой неправильностью: den Bauern, dem Bauern, а родительный — des Bauern, а не на -ns, как можно было бы ждать. Современное официальное слово — der Landwirt, оно звучит по-деловому, а это тянет за собой хутор: der Bauernhof, das Bauernbrot, der Bauernmarkt. Женская форма — die Bäuerin, с умлаутом, а в шахматах тем же словом называют пешку.'
+      uk: 'Слабкий іменник із маленькою неправильністю: den Bauern, dem Bauern, а родовий — des Bauern, а не на -ns, як можна було б чекати. Сучасне офіційне слово — der Landwirt, воно звучить по-діловому, а це тягне за собою хутір: der Bauernhof, das Bauernbrot, der Bauernmarkt. Жіноча форма — die Bäuerin, з умлаутом, а в шахах тим самим словом звуть пішака.'
+
+  - de: Steward
+    ipa: "ˈstjuːɐt"
+    pos: noun
+    gender: m
+    plural: "die Stewards"
+    # Recognition only: heard in an announcement and read on a badge. What a learner
+    # produces is the crew word or simply `Personal`.
+    cards: recognition
+    en: a man who looks after passengers on a plane or a ship
+    en_compact: "flight attendant (male)"
+    ru: бортпроводник, который обслуживает пассажиров в самолёте или на судне
+    uk: бортпровідник, який обслуговує пасажирів у літаку або на судні
+    example_de: Der Steward brachte uns Wasser und Decken.
+    example_en: The flight attendant brought us water and blankets.
+    example_ru: Бортпроводник принёс нам воду и пледы.
+    example_uk: Бортпровідник приніс нам воду й пледи.
+    note:
+      en: 'An English loanword kept with its English sound, so the first syllable is spoken with a long u and no German st. The plural takes -s. Airlines themselves have moved on: German today says das Flugbegleitpersonal or der Flugbegleiter, and the announcement on board names die Kabinenbesatzung. In a stadium or at a festival the same word means a marshal, and there the plural is heard far more often.'
+      ru: 'Английское заимствование, сохранившее английское звучание: первый слог произносят с долгим u и без немецкого st. Множественное на -s. Сами авиакомпании ушли вперёд: немецкий сегодня говорит das Flugbegleitpersonal или der Flugbegleiter, а объявление на борту называет die Kabinenbesatzung. На стадионе или фестивале тем же словом называют распорядителя, и там множественное слышится куда чаще.'
+      uk: 'Англійське запозичення, що зберегло англійське звучання: перший склад вимовляють із довгим u і без німецького st. Множина на -s. Самі авіакомпанії пішли вперед: німецька сьогодні каже das Flugbegleitpersonal або der Flugbegleiter, а оголошення на борту називає die Kabinenbesatzung. На стадіоні чи фестивалі тим самим словом звуть розпорядника, і там множина чується значно частіше.'
+
+  - de: Stewardess
+    ipa: "ˈstjuːɐdɛs"
+    pos: noun
+    gender: f
+    plural: "die Stewardessen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman who looks after passengers on a plane or a ship
+    en_compact: "flight attendant (female)"
+    ru: бортпроводница, которая обслуживает пассажиров в самолёте или на судне
+    uk: бортпровідниця, яка обслуговує пасажирів у літаку або на судні
+    example_de: Die Stewardess erklärte, wo die Notausgänge sind.
+    example_en: The flight attendant explained where the emergency exits are.
+    example_ru: Бортпроводница объяснила, где находятся аварийные выходы.
+    example_uk: Бортпровідниця пояснила, де аварійні виходи.
+    note:
+      en: 'The one feminine in this deck built with neither -in nor -frau: the ending came in with the loanword and German kept it, adding only a German plural, die Stewardessen. It is the same -ess that English put on actress and waitress, and German has it in almost nothing else. The word is dated in the industry but alive in speech, and die Flugbegleiterin is what a contract says today.'
+      ru: 'Единственная женская форма в этой колоде, построенная ни на -in, ни на -frau: окончание пришло вместе с заимствованием, немецкий его сохранил и добавил лишь своё множественное — die Stewardessen. Это тот же -ess, что английский поставил в actress и waitress, и в немецком он почти больше нигде не встречается. В отрасли слово устарело, но в речи живо, а в договоре сегодня стоит die Flugbegleiterin.'
+      uk: 'Єдина жіноча форма в цій колоді, побудована ні на -in, ні на -frau: закінчення прийшло разом із запозиченням, німецька його зберегла й додала лише свою множину — die Stewardessen. Це той самий -ess, що англійська поставила в actress і waitress, і в німецькій він майже більше ніде не трапляється. У галузі слово застаріло, але в мовленні живе, а в договорі сьогодні стоїть die Flugbegleiterin.'
+
+  - de: Direktorin
+    ipa: "diʁɛkˈtoːʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Direktorinnen"
+    # Recognition only: the feminine of A2's `Direktor` ("head teacher, principal",
+    # schule-faecher-a2) — the pair costs three cards rather than four.
+    cards: recognition
+    en: the woman at the head of a school, a museum or a company
+    en_compact: "director, principal (female)"
+    ru: женщина во главе школы, музея или компании
+    uk: жінка на чолі школи, музею чи компанії
+    example_de: Die Direktorin des Museums führte uns selbst durch die Ausstellung.
+    example_en: The director of the museum showed us round the exhibition herself.
+    example_ru: Директор музея сама провела нас по выставке.
+    example_uk: Директорка музею сама провела нас виставкою.
+    note:
+      en: 'Movierung with -in, and it moves the stress: the masculine der Direktor is stressed on the second syllable, while adding the ending pulls the accent onto the third, which is the pattern of every Latin -or noun — der Professor and die Professorin, der Motor and die Motoren. A2 cards the masculine for a school head; this form is used just as readily for a museum, a bank or a theatre.'
+      ru: 'Мовирование на -in, и оно сдвигает ударение: мужское der Direktor ударяется на втором слоге, а с окончанием акцент переходит на третий — образец всех латинских существительных на -or: der Professor и die Professorin, der Motor и die Motoren. На A2 карточка мужской формы дана как «директор школы»; эта форма так же свободно применяется к музею, банку или театру.'
+      uk: 'Мовація на -in, і вона зсуває наголос: чоловіче der Direktor наголошується на другому складі, а із закінченням акцент переходить на третій — зразок усіх латинських іменників на -or: der Professor і die Professorin, der Motor і die Motoren. На A2 картка чоловічої форми подана як «директор школи»; ця форма так само вільно застосовується до музею, банку чи театру.'
