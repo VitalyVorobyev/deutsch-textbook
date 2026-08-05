@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   apiFetch,
   bindActiveProfile,
@@ -59,12 +59,6 @@ const UI = {
     uk: 'У цьому профілі на пристрої вже є прогрес. Зв’язування об’єднає його з тим, що зберігається в обліковому записі: нічого не видаляється, але дві історії стануть однією. Продовжити?',
     de: 'Dieses Profil hat auf diesem Gerät bereits Fortschritt. Beim Verbinden wird er mit dem Stand des Kontos zusammengeführt — nichts wird gelöscht, aber aus zwei Verläufen wird einer. Fortfahren?',
   },
-  uploadHelp: {
-    en: 'Have an exported file from another browser? Load it here: it is merged into this profile and then uploaded, so you continue exactly where you left off.',
-    ru: 'Есть файл, выгруженный из другого браузера? Загрузите его здесь: он объединится с этим профилем и будет отправлен в облако — вы продолжите ровно с того же места.',
-    uk: 'Маєте файл, вивантажений з іншого браузера? Завантажте його тут: він об’єднається з цим профілем і буде надісланий у хмару — ви продовжите точно з того самого місця.',
-    de: 'Eine exportierte Datei aus einem anderen Browser? Hier laden: sie wird in dieses Profil eingefügt und hochgeladen, sodass du genau dort weitermachst, wo du aufgehört hast.',
-  },
   unsupported: {
     en: 'This browser cannot compress data, so cloud sync is unavailable here. Export and import still work.',
     ru: 'Этот браузер не умеет сжимать данные, поэтому облачная синхронизация здесь недоступна. Экспорт и импорт работают.',
@@ -103,18 +97,6 @@ const UI = {
     uk: 'Синхронізацію не завершено ({reason}). Повтор відбудеться автоматично.',
     de: 'Die Synchronisierung wurde nicht abgeschlossen ({reason}). Sie wird automatisch wiederholt.',
   },
-  importFailed: {
-    en: 'That file is not a Deutsch-Atlas progress export.',
-    ru: 'Этот файл не является выгрузкой прогресса Deutsch-Atlas.',
-    uk: 'Цей файл не є вивантаженням прогресу Deutsch-Atlas.',
-    de: 'Diese Datei ist kein Deutsch-Atlas-Fortschrittsexport.',
-  },
-  uploaded: {
-    en: 'Loaded and uploaded.',
-    ru: 'Загружено и отправлено в облако.',
-    uk: 'Завантажено й надіслано в хмару.',
-    de: 'Eingelesen und hochgeladen.',
-  },
   authError: {
     en: 'Sign-in did not complete ({reason}).',
     ru: 'Вход не завершён ({reason}).',
@@ -148,7 +130,6 @@ export default function AccountPanel() {
   const [message, setMessage] = useState<string | null>(null);
   const [boundProfile, setBoundProfile] = useState<string | undefined>(undefined);
   const [lastSync, setLastSync] = useState<number | undefined>(undefined);
-  const fileInput = useRef<HTMLInputElement>(null);
 
   const activeProfileId = typeof window === 'undefined' ? '' : getActiveProfileId();
 
@@ -194,24 +175,6 @@ export default function AccountPanel() {
     await runSync();
   }
 
-  async function upload(file: File) {
-    setBusy(true);
-    setMessage(null);
-    try {
-      const { mergeSnapshot } = await import('../../lib/store');
-      await mergeSnapshot(JSON.parse(await file.text()));
-    } catch {
-      setMessage(pick(lang, UI.importFailed));
-      setBusy(false);
-      return;
-    }
-    const result = await forceSync();
-    setOutcome(result);
-    refreshLocalState();
-    setMessage(result.state === 'ok' ? pick(lang, UI.uploaded) : null);
-    setBusy(false);
-  }
-
   async function deleteCloudCopy() {
     if (!confirm(pick(lang, UI.deleteCloudConfirm))) return;
     await apiFetch('/api/sync/snapshot', { method: 'DELETE' });
@@ -252,6 +215,11 @@ export default function AccountPanel() {
   if (!session.signedIn || !user) {
     return (
       <div className="space-y-4">
+        {/* Its own heading since ADR 0005: the panel sits on the Daten tab now,
+            no longer under a /konto page h1. */}
+        <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+          {t('account.title', uiLang)}
+        </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.localFirst)}</p>
         {isTauri() ? (
           <>
@@ -272,7 +240,7 @@ export default function AccountPanel() {
             {session.providers.map((provider) => (
               <a
                 key={provider}
-                href={withBase(`/api/auth/${provider}/start?returnTo=/konto`)}
+                href={withBase(`/api/auth/${provider}/start?returnTo=${encodeURIComponent('/progress?tab=daten')}`)}
                 className="min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
               >
                 {t('account.signIn', uiLang)} · {PROVIDER_LABEL[provider] ?? provider}
@@ -289,6 +257,9 @@ export default function AccountPanel() {
 
   return (
     <div className="space-y-4">
+      <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+        {t('account.title', uiLang)}
+      </h2>
       <section className="rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
         <div className="flex flex-wrap items-baseline gap-2">
           <span className="font-semibold">{user.displayName || user.email}</span>
@@ -310,7 +281,21 @@ export default function AccountPanel() {
             {boundProfile ? (bound ? getActiveProfile().label : boundProfile) : '—'}
           </dd>
           <dt className="font-semibold">{t('account.lastSync', uiLang)}</dt>
-          <dd>{lastSync ? new Date(lastSync).toLocaleString('de-DE') : t('account.never', uiLang)}</dd>
+          <dd className="flex flex-wrap items-center gap-x-2">
+            <span>{lastSync ? new Date(lastSync).toLocaleString('de-DE') : t('account.never', uiLang)}</span>
+            {/* The force button, demoted to an escape hatch beside the value it
+                refreshes (ADR 0004e): sync is automatic, this is for certainty. */}
+            {bound && user.status === 'approved' && compressionSupported() && (
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void runSync()}
+                className="inline-flex min-h-11 items-center underline decoration-dotted underline-offset-2 hover:text-amber-600 disabled:opacity-50 sm:min-h-0"
+              >
+                {t('account.sync', uiLang)}
+              </button>
+            )}
+          </dd>
         </dl>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -367,14 +352,6 @@ export default function AccountPanel() {
               <>
                 <button
                   type="button"
-                  disabled={busy}
-                  onClick={() => void runSync()}
-                  className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50 sm:min-h-0"
-                >
-                  {t('account.sync', uiLang)}
-                </button>
-                <button
-                  type="button"
                   onClick={() => {
                     unbindProfile();
                     refreshLocalState();
@@ -382,6 +359,13 @@ export default function AccountPanel() {
                   className="min-h-11 rounded-md border border-stone-300 px-3 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
                 >
                   {t('account.disconnect', uiLang)}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void deleteCloudCopy()}
+                  className="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-red-600 dark:text-stone-400 sm:min-h-0"
+                >
+                  {t('account.deleteCloud', uiLang)}
                 </button>
               </>
             ) : (
@@ -395,40 +379,6 @@ export default function AccountPanel() {
               </button>
             )}
           </div>
-
-          {bound && (
-            <>
-              <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.uploadHelp)}</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  disabled={busy}
-                  onClick={() => fileInput.current?.click()}
-                  className="min-h-11 rounded-md border border-stone-300 px-3 py-1.5 text-sm font-semibold hover:border-amber-500 disabled:opacity-50 dark:border-stone-600 sm:min-h-0"
-                >
-                  {t('account.upload', uiLang)}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => void deleteCloudCopy()}
-                  className="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-red-600 dark:text-stone-400 sm:min-h-0"
-                >
-                  {t('account.deleteCloud', uiLang)}
-                </button>
-                <input
-                  ref={fileInput}
-                  type="file"
-                  accept="application/json"
-                  className="hidden"
-                  onChange={(event) => {
-                    const file = event.target.files?.[0];
-                    if (file) void upload(file);
-                    event.target.value = '';
-                  }}
-                />
-              </div>
-            </>
-          )}
 
           <p className="mt-3 text-sm text-stone-500 dark:text-stone-400">
             {busy

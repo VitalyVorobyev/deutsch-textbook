@@ -247,6 +247,7 @@ export const STRINGS = {
   'progress.tabUebersicht': { de: 'Übersicht', en: 'Overview', ru: 'Обзор', uk: 'Огляд' },
   'progress.tabNachweise': { de: 'Nachweise', en: 'Evidence', ru: 'Показатели', uk: 'Показники' },
   'progress.tabDaten': { de: 'Daten', en: 'Data', ru: 'Данные', uk: 'Дані' },
+  'progress.datenLocal': { de: 'Dieses Gerät', en: 'This device', ru: 'Это устройство', uk: 'Цей пристрій' },
   'progress.viewsAria': {
     de: 'Fortschrittsansicht',
     en: 'Progress view',
@@ -266,12 +267,6 @@ export const STRINGS = {
     en: 'Sync now',
     ru: 'Синхронизировать',
     uk: 'Синхронізувати',
-  },
-  'account.upload': {
-    de: 'Fortschritt hochladen',
-    en: 'Upload progress',
-    ru: 'Загрузить прогресс',
-    uk: 'Завантажити прогрес',
   },
   'account.connect': { de: 'Verbinden', en: 'Connect', ru: 'Связать', uk: "Пов'язати" },
   'account.disconnect': { de: 'Trennen', en: 'Disconnect', ru: 'Отвязать', uk: "Від'єднати" },
@@ -507,6 +502,12 @@ export const STRINGS = {
     en: 'Vocabulary by area',
     ru: 'Лексика по разделам',
     uk: 'Лексика за розділами',
+  },
+  'vocab.moreBreakdowns': {
+    de: 'Mehr Details: nach Thema und Wortart',
+    en: 'More detail: by topic and word type',
+    ru: 'Подробнее: по темам и частям речи',
+    uk: 'Докладніше: за темами та частинами мови',
   },
   'vocab.deckSummary': {
     de: '{due} Wörter fällig · {strong} sicher',

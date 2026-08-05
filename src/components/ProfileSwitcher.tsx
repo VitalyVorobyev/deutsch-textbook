@@ -160,7 +160,7 @@ export default function ProfileSwitcher() {
               {pick(lang, UI.account)}
             </p>
             <a
-              href={withBase('/konto')}
+              href={withBase('/progress?tab=daten')}
               className="block rounded px-2 py-1.5 text-sm hover:bg-stone-100 dark:hover:bg-stone-700"
             >
               {session?.signedIn && session.user ? (
