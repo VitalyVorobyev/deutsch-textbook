@@ -83,6 +83,7 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
                   : 'border-stone-400 focus:border-amber-500'
               }`}
               autoCapitalize="off"
+              autoCorrect="off"
               autoComplete="off"
               spellCheck={false}
             />
