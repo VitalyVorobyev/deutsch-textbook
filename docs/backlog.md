@@ -245,8 +245,24 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Product surfaces
 
+- **P25-1 · `/ueben/wortschatz` is a ~19,000 px flat deck list on a phone** — 22.3 viewport-heights
+  at 390 px, one card per deck for the whole corpus, and every Wortliste wave makes it longer.
+  Group by level with collapsed sections and/or a filter row. Evidence and method:
+  [ux-audit-2026-08.md](quality/ux-audit-2026-08.md). First step: pick grouping vs filter (the
+  Fortschritt vocab section's per-level summary is the in-house precedent).
+- **P25-2 · Topic-page paradigm tables have no overflow container** — five per topic page, no
+  viewport excepted; three-column paradigms fit 390 px by squeezing, and a wider paradigm clips
+  with no gate seeing it. Fix once at the prose-table rendering layer in the topic template, never
+  per-table. Evidence: [ux-audit-2026-08.md](quality/ux-audit-2026-08.md).
+- **P25-3 · Sub-44 px touch targets on the daily loop's surfaces** — measured at 390 px: theme
+  toggle 30 px, profile button 30, Eingabe mode chips 28, "Mark as learned" 26, taught-in chips 22,
+  crumb links 17. Apply the existing `min-h-11 sm:min-h-0` pattern to the listed sites; one pass,
+  no redesign. Evidence: [ux-audit-2026-08.md](quality/ux-audit-2026-08.md).
+
 - **P24-5 · The one-pass derived cross-link graph, and a structured Referenz IA** — **subsumes
-  P21-3**: no link from a topic to a Referenz page, none from Referenz back into the topics that
+  P21-3**, and carries **P25-4** (reference pages run 9–13 screens with no in-page navigation — an
+  anchor index rides on the IA pass, [ux-audit-2026-08.md](quality/ux-audit-2026-08.md)): no link
+  from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
   [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) settles the how — every edge is
   **derived** from `focusIntroducedBy` (`src/lib/focus-tags.ts`), `deepens` edges and reference-data
