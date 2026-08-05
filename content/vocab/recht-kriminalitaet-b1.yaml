@@ -1,0 +1,727 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the law-and-crime
+# field of data/goethe-b1-wortliste.txt: the rule a state writes down and can
+# enforce, the act that breaks it, the words for the person who did it and the
+# person it was done to, and everything between the arrest and the sentence. This
+# is the German of a police report and of the third page of a newspaper.
+# A1's `reisen-urlaub` owns die Polizei, A2's `berufe-a2` owns Polizist and
+# Polizistin, B1's `berufe-b1` owns Anwalt and Anwältin and its note already names
+# the courtroom neighbours, B1's `regeln-verantwortung` owns the rule as a house
+# rule and the quarrel it settles (Vorschrift, Streit, Sicherheit, Notfall), A2's
+# `verben-handlungen-a2-1` and `-a2-2` own erlauben, verbieten and lügen, B1's
+# `verwaltung-behoerden-b1` owns the authority side of all of it (Behörde, Beamte,
+# verboten), B1's `charakter-verhalten-b1` owns schuldig, and B1's
+# `verben-handlungen-b1-3` owns beweisen. This deck is what those eight leave
+# unnamed: the word for the deed, the word for the person who did it, and every
+# word a court file needs between the two.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field
+# is read, never written: a learner reporting a theft says Man hat mir mein Fahrrad
+# gestohlen out of A1 and A2 words, and everything here is what the form, the reply
+# and the newspaper say back at him.
+id: recht-kriminalitaet-b1
+title_de: "Recht und Kriminalität"
+title_en: "Law and crime"
+title_ru: "Право и преступность"
+title_uk: "Право і злочинність"
+level: B1
+entries:
+  # --- Das Gesetz und das Recht ---
+  - de: Gesetz
+    ipa: "gəˈzɛts"
+    pos: noun
+    gender: n
+    plural: "die Gesetze"
+    cards: recognition
+    en: a rule the state has written down and can enforce against everybody alike
+    ru: правило, записанное государством и обязательное для всех без исключения
+    uk: правило, записане державою й обов’язкове для всіх без винятку
+    example_de: Das neue Gesetz gilt ab Januar.
+    example_en: The new law comes into force in January.
+    example_ru: Новый закон действует с января.
+    example_uk: Новий закон діє від січня.
+    note:
+      en: 'Neuter, plural in -e, and the -tz is the ts sound. Three words sit on one scale and a text picks by how binding the rule is: A2 die Regel in the deck `lernen-verstehen` is what a group agrees on, B1 die Vorschrift in the deck `regeln-verantwortung` is official but stands below a statute, and this one is the statute itself. Chunks: ein Gesetz beschließen, gegen das Gesetz verstoßen, laut Gesetz. The adjective is gesetzlich, and Germany''s constitution is called das Grundgesetz rather than die Verfassung.'
+      ru: 'Средний род, множественное на -e, а -tz звучит как ts. Три слова стоят на одной шкале, и текст выбирает по степени обязательности: die Regel уровня A2 из колоды `lernen-verstehen` — то, о чём договорилась группа, die Vorschrift уровня B1 из колоды `regeln-verantwortung` — предписание официальное, но ниже закона, а здесь сам закон. Обороты: ein Gesetz beschließen, gegen das Gesetz verstoßen, laut Gesetz. Прилагательное — gesetzlich, а конституция Германии называется das Grundgesetz, а не die Verfassung.'
+      uk: 'Середній рід, множина на -e, а -tz звучить як ts. Три слова стоять на одній шкалі, і текст обирає за мірою обов’язковості: die Regel рівня A2 з колоди `lernen-verstehen` — те, про що домовилася група, die Vorschrift рівня B1 з колоди `regeln-verantwortung` — припис офіційний, але нижчий за закон, а тут сам закон. Звороти: ein Gesetz beschließen, gegen das Gesetz verstoßen, laut Gesetz. Прикметник — gesetzlich, а конституція Німеччини зветься das Grundgesetz, а не die Verfassung.'
+
+  - de: Recht
+    ipa: "ˈʁɛçt"
+    pos: noun
+    gender: n
+    plural: "die Rechte"
+    cards: recognition
+    en: 'the whole body of rules a state lives by, taken as a field; and one single claim a person may make under it'
+    ru: 'вся совокупность норм, по которым живёт государство, взятая как область; и отдельное притязание, которое человек вправе по ним заявить'
+    uk: 'уся сукупність норм, за якими живе держава, узята як галузь; і окреме домагання, яке людина має право за ними заявити'
+    example_de: Jeder hat das Recht auf einen Anwalt.
+    example_en: Everybody has the right to a lawyer.
+    example_ru: Каждый имеет право на адвоката.
+    example_uk: Кожен має право на адвоката.
+    note:
+      en: 'The capital R divides the labour with B1 recht in the deck `ort-richtung-verweis-b1`, which ships the small-letter degree word and whose note already points here. As a field it takes no plural and no article in Recht studieren; as a single claim it takes both, and what the claim is about follows auf plus the accusative: das Recht auf Bildung, die Rechte der Kinder. One statute is das Gesetz above, and all of them together are das Recht. Two chunks are learned whole: Recht haben, to be right, where Duden now prefers the small r, and im Recht sein.'
+      ru: 'Прописная R делит работу с recht уровня B1 из колоды `ort-richtung-verweis-b1`: там степенное слово со строчной, и его примечание уже отсылает сюда. Как область слово не имеет ни множественного, ни артикля в обороте Recht studieren; как отдельное притязание имеет и то и другое, а предмет притязания вводит auf с винительным: das Recht auf Bildung, die Rechte der Kinder. Один закон — das Gesetz выше, а все они вместе — das Recht. Два оборота учат целиком: Recht haben — «быть правым», где Duden теперь предпочитает строчную, и im Recht sein.'
+      uk: 'Велика R ділить роботу з recht рівня B1 з колоди `ort-richtung-verweis-b1`: там ступеневе слово з малої, і його примітка вже відсилає сюди. Як галузь слово не має ні множини, ні артикля у звороті Recht studieren; як окреме домагання має і те й те, а предмет домагання вводить auf зі знахідним: das Recht auf Bildung, die Rechte der Kinder. Один закон — das Gesetz вище, а всі вони разом — das Recht. Два звороти вчать цілком: Recht haben — «мати рацію», де Duden тепер віддає перевагу малій літері, та im Recht sein.'
+
+  - de: rechtlich
+    ipa: "ˈʁɛçtlɪç"
+    pos: adj
+    cards: recognition
+    en: having to do with the law; seen the way the law sees it
+    ru: относящийся к праву; взятый так, как это видит закон
+    uk: що стосується права; узятий так, як це бачить закон
+    example_de: Rechtlich ist der Fall völlig klar.
+    example_en: Legally the case is completely clear.
+    example_ru: С правовой точки зрения дело совершенно ясное.
+    example_uk: З правового погляду справа цілком зрозуміла.
+    note:
+      en: 'From das Recht above, and it says which point of view is being taken, not that something is allowed. Beside it gesetzlich means laid down in a particular statute, so gesetzlich vorgeschrieben is stronger and narrower than rechtlich möglich. Chunks: rechtliche Schritte einleiten, rechtliche Folgen, aus rechtlichen Gründen, rechtlich verbindlich. Keep it away from A2 richtig in the deck `bewertung-a2`, which means correct, and from the direction word A1 rechts.'
+      ru: 'От das Recht выше, и оно указывает точку зрения, а не разрешение. Рядом gesetzlich значит «прописанный в конкретном законе», так что gesetzlich vorgeschrieben сильнее и уже, чем rechtlich möglich. Обороты: rechtliche Schritte einleiten, rechtliche Folgen, aus rechtlichen Gründen, rechtlich verbindlich. Не смешивайте с richtig уровня A2 из колоды `bewertung-a2` — «правильный», — и с направлением rechts уровня A1.'
+      uk: 'Від das Recht вище, і воно вказує на позицію, а не на дозвіл. Поряд gesetzlich означає «прописаний у конкретному законі», тож gesetzlich vorgeschrieben сильніше й вужче, ніж rechtlich möglich. Звороти: rechtliche Schritte einleiten, rechtliche Folgen, aus rechtlichen Gründen, rechtlich verbindlich. Не змішуйте з richtig рівня A2 з колоди `bewertung-a2` — «правильний», — і з напрямком rechts рівня A1.'
+
+  - de: illegal
+    ipa: "ˈɪlegaːl"
+    pos: adj
+    cards: recognition
+    en: against the law, and usually done in the knowledge that it is
+    ru: противозаконный, и, как правило, совершаемый с пониманием этого
+    uk: протизаконний, і, як правило, вчинюваний із розумінням цього
+    example_de: Der Handel mit diesen Tieren ist illegal.
+    example_en: Trading in these animals is illegal.
+    example_ru: Торговля этими животными незаконна.
+    example_uk: Торгівля цими тваринами незаконна.
+    note:
+      en: 'A Latin loan built as in- plus legal, and legal is its opposite. Duden gives the stress on the first syllable, ˈillegal, with the last-syllable illeGAL current beside it. Three words fence off different sizes of wrong: B1 verboten in the deck `verwaltung-behoerden-b1` is what a sign or a house rule forbids, this one is what a law forbids, and strafbar below is narrower still, because it adds that a penalty follows. Chunks: illegale Beschäftigung, illegal einreisen, sich illegal aufhalten.'
+      ru: 'Латинское заимствование из in- и legal, а legal — его противоположность. Duden ставит ударение на первый слог, ˈillegal, рядом с ним ходит и illeGAL. Три слова размечают разные размеры нарушения: verboten уровня B1 из колоды `verwaltung-behoerden-b1` — то, что запрещает табличка или домовой порядок, это слово — то, что запрещает закон, а strafbar ниже ещё уже, потому что добавляет наказание. Обороты: illegale Beschäftigung, illegal einreisen, sich illegal aufhalten.'
+      uk: 'Латинське запозичення з in- і legal, а legal — його протилежність. Duden ставить наголос на перший склад, ˈillegal, поряд із ним побутує й illeGAL. Три слова розмічають різні розміри порушення: verboten рівня B1 з колоди `verwaltung-behoerden-b1` — те, що забороняє табличка або домовий порядок, це слово — те, що забороняє закон, а strafbar нижче ще вужче, бо додає покарання. Звороти: illegale Beschäftigung, illegal einreisen, sich illegal aufhalten.'
+
+  - de: strafbar
+    ipa: "ˈʃtʁaːfbaːɐ̯"
+    pos: adj
+    cards: recognition
+    en: 'punishable: of the kind the criminal law attaches a penalty to'
+    ru: 'наказуемый: такой, за который уголовный закон предусматривает наказание'
+    uk: 'караний: такий, за який кримінальний закон передбачає покарання'
+    example_de: Wer hier ohne Fahrkarte fährt, macht sich strafbar.
+    example_en: Anybody travelling here without a ticket is committing an offence.
+    example_ru: Кто едет здесь без билета, совершает наказуемое деяние.
+    example_uk: Хто їде тут без квитка, чинить каране діяння.
+    note:
+      en: 'Die Strafe below plus the suffix -bar, which makes an adjective meaning that something can be done to the thing — the same build as B1 haltbar in the deck `essen-lebensmittel-b1` and B1 sichtbar in the deck `eigenschaften-bewertung-b1`. The frame a learner meets it in is reflexive: sich strafbar machen, to make oneself liable to punishment. It is narrower than illegal above, because it says a penalty attaches: eine strafbare Handlung is a criminal offence, and the family runs die Straftat and der Straftäter.'
+      ru: 'Die Strafe ниже плюс суффикс -bar, дающий прилагательное со значением «с этим можно так поступить» — тот же тип, что у haltbar уровня B1 из колоды `essen-lebensmittel-b1` и sichtbar уровня B1 из колоды `eigenschaften-bewertung-b1`. Оборот, в котором слово встречают, возвратный: sich strafbar machen — «навлечь на себя наказание». Оно уже, чем illegal выше, потому что утверждает наказание: eine strafbare Handlung — уголовно наказуемое деяние, а семейство даёт die Straftat и der Straftäter.'
+      uk: 'Die Strafe нижче плюс суфікс -bar, що дає прикметник зі значенням «із цим можна так вчинити» — той самий тип, що в haltbar рівня B1 з колоди `essen-lebensmittel-b1` і sichtbar рівня B1 з колоди `eigenschaften-bewertung-b1`. Зворот, у якому слово зустрічають, зворотний: sich strafbar machen — «накликати на себе покарання». Воно вужче, ніж illegal вище, бо стверджує покарання: eine strafbare Handlung — кримінально каране діяння, а родина дає die Straftat і der Straftäter.'
+
+  # --- Die Tat und wer sie begangen hat ---
+  - de: Tat
+    ipa: "ˈtaːt"
+    pos: noun
+    gender: f
+    plural: "die Taten"
+    cards: recognition
+    en: one single thing somebody did, named by a report or a court as the thing to be judged
+    ru: отдельный совершённый поступок, названный протоколом или судом как то, что подлежит оценке
+    uk: окремий вчинок, названий протоколом або судом як те, що підлягає оцінці
+    example_de: Die Tat geschah am frühen Morgen.
+    example_en: The offence took place early in the morning.
+    example_ru: Деяние произошло ранним утром.
+    example_uk: Діяння сталося раннього ранку.
+    note:
+      en: 'The noun to A2 tun in the deck `verben-handlungen-a2-2`, and on its own it is neutral or even warm: eine gute Tat, ein Mann der Tat. What makes it a crime word is the company it keeps, because every compound the police use is built on it: die Straftat, der Tatort, die Tatzeit, der Tatverdacht, and der Täter below. The adverb in der Tat means indeed and belongs to an argument, not to a case file.'
+      ru: 'Существительное к tun уровня A2 из колоды `verben-handlungen-a2-2`, и само по себе оно нейтрально и даже тепло: eine gute Tat, ein Mann der Tat. Криминальным его делает окружение: все полицейские сложные слова построены на нём — die Straftat, der Tatort, die Tatzeit, der Tatverdacht, и der Täter ниже. Наречный оборот in der Tat значит «в самом деле» и принадлежит рассуждению, а не делу в производстве.'
+      uk: 'Іменник до tun рівня A2 з колоди `verben-handlungen-a2-2`, і саме по собі воно нейтральне і навіть тепле: eine gute Tat, ein Mann der Tat. Кримінальним його робить оточення: усі поліційні складні слова побудовані на ньому — die Straftat, der Tatort, die Tatzeit, der Tatverdacht, і der Täter нижче. Прислівниковий зворот in der Tat означає «справді» і належить міркуванню, а не справі в провадженні.'
+
+  - de: Täter
+    ipa: "ˈtɛːtɐ"
+    pos: noun
+    gender: m
+    plural: "die Täter"
+    cards: recognition
+    en: the man who committed an offence, named before any court has decided anything
+    ru: 'мужчина, совершивший деяние: так его называют до того, как что-либо решил суд'
+    uk: 'чоловік, що вчинив діяння: так його називають до того, як щось вирішив суд'
+    example_de: Die Polizei sucht noch den Täter.
+    example_en: The police are still looking for the offender.
+    example_ru: Полиция всё ещё разыскивает преступника.
+    example_uk: Поліція досі розшукує зловмисника.
+    note:
+      en: 'Die Tat above plus -er, with the long ä. This is the procedural word and it judges nothing: it says only that this person did the deed, which is why a report may use it while the case is still open. Der Verbrecher below judges the person, and once a court has convicted somebody the file says der Verurteilte. Singular and plural are spelled alike. The feminine is die Täterin, the next entry, and the pair runs through the compounds too: der Mittäter, der Wiederholungstäter, die Täterbeschreibung.'
+      ru: 'Die Tat выше плюс -er, с долгим ä. Это процессуальное слово, и оно никого не оценивает: сказано лишь, что деяние совершил этот человек, — потому сводка употребляет его, пока дело ещё открыто. Der Verbrecher ниже оценивает человека, а после обвинительного приговора в деле пишут der Verurteilte. Единственное и множественное пишутся одинаково. Женская пара — die Täterin, следующая запись, и пара тянется в сложные слова: der Mittäter, der Wiederholungstäter, die Täterbeschreibung.'
+      uk: 'Die Tat вище плюс -er, із довгим ä. Це процесуальне слово, і воно нікого не оцінює: сказано лише, що діяння вчинила ця людина, — тому зведення вживає його, поки справа ще відкрита. Der Verbrecher нижче оцінює людину, а після обвинувального вироку у справі пишуть der Verurteilte. Однина і множина пишуться однаково. Жіноча пара — die Täterin, наступний запис, і пара тягнеться у складні слова: der Mittäter, der Wiederholungstäter, die Täterbeschreibung.'
+
+  - de: Täterin
+    ipa: "ˈtɛːtəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Täterinnen"
+    cards: recognition
+    en: the woman who committed an offence, named in the same neutral way
+    ru: женщина, совершившая деяние, названная так же нейтрально
+    uk: жінка, що вчинила діяння, названа так само нейтрально
+    example_de: Die Polizei hat ein Foto von der Täterin.
+    example_en: The police have a photograph of the offender.
+    example_ru: У полиции есть фотография преступницы.
+    example_uk: У поліції є світлина зловмисниці.
+    note:
+      en: 'Regular Movierung with -in and no further change to the stem, since the umlaut is already in Täter; the plural doubles the n. A police appeal writes Täter/-in when the sex is unknown, and the plural die Täter is the neutral form for a mixed group. In a newspaper both are usually replaced by the precise word for the offence, der Dieb or der Einbrecher below, which says what was done as well as who did it.'
+      ru: 'Обычное мовирование на -in без дальнейших изменений основы: умлаут уже есть в Täter; во множественном n удваивается. Полицейское обращение к гражданам пишет Täter/-in, когда пол неизвестен, а множественное die Täter — нейтральная форма для смешанной группы. В газете оба слова обычно заменяет точное название деяния — der Dieb или der Einbrecher ниже, — которое говорит и что сделано, и кем.'
+      uk: 'Звичайна моція на -in без подальших змін основи: умлаут уже є в Täter; у множині n подвоюється. Поліційне звернення до громадян пише Täter/-in, коли стать невідома, а множина die Täter — нейтральна форма для змішаної групи. У газеті обидва слова зазвичай заступає точна назва діяння — der Dieb або der Einbrecher нижче, — яка каже і що зроблено, і ким.'
+
+  - de: Verbrecher
+    ipa: "fɛɐ̯ˈbʁɛçɐ"
+    pos: noun
+    gender: m
+    plural: "die Verbrecher"
+    cards: recognition
+    en: a man who commits serious crimes, named as a kind of person rather than for a single act
+    ru: 'мужчина, совершающий тяжкие преступления: назван как определённый род людей, а не по одному поступку'
+    uk: 'чоловік, що чинить тяжкі злочини: названий як певний рід людей, а не за одним учинком'
+    example_de: Der Mann ist kein Verbrecher, er hat nur einen Fehler gemacht.
+    example_en: The man is not a criminal, he only made a mistake.
+    example_ru: Этот человек не преступник, он лишь совершил ошибку.
+    example_uk: Ця людина не злочинець, вона лише припустилася помилки.
+    note:
+      en: 'From das Verbrechen, a serious crime, and the ch after e is the soft one. It carries a judgement that der Täter above deliberately does not, so it belongs to speech, to headlines and to indignation rather than to a case file, where the person is der Beschuldigte before the trial and der Angeklagte during it. Singular and plural look alike; the feminine is die Verbrecherin, the next entry. The adjective is verbrecherisch.'
+      ru: 'От das Verbrechen — тяжкое преступление, — а ch после e мягкое. В слове есть оценка, которой у der Täter выше намеренно нет, поэтому оно принадлежит речи, заголовкам и возмущению, а не материалам дела, где человек до суда der Beschuldigte, а на суде der Angeklagte. Единственное и множественное выглядят одинаково; женская пара — die Verbrecherin, следующая запись. Прилагательное — verbrecherisch.'
+      uk: 'Від das Verbrechen — тяжкий злочин, — а ch після e м’яке. У слові є оцінка, якої в der Täter вище навмисне немає, тому воно належить мовленню, заголовкам і обуренню, а не матеріалам справи, де людина до суду der Beschuldigte, а на суді der Angeklagte. Однина і множина мають однаковий вигляд; жіноча пара — die Verbrecherin, наступний запис. Прикметник — verbrecherisch.'
+
+  - de: Verbrecherin
+    ipa: "fɛɐ̯ˈbʁɛçəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Verbrecherinnen"
+    cards: recognition
+    en: a woman who commits serious crimes, named in the same judging way
+    ru: женщина, совершающая тяжкие преступления, названная так же оценочно
+    uk: жінка, що чинить тяжкі злочини, названа так само оцінково
+    example_de: Im Roman wird sie am Ende als Verbrecherin verurteilt.
+    example_en: In the novel she is convicted as a criminal in the end.
+    example_ru: В романе её в конце осуждают как преступницу.
+    example_uk: У романі її наприкінці засуджують як злочинницю.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n. Because the word judges, it is far rarer in print than the masculine and rarer still than die Täterin above: a report that has to name a woman reaches for the neutral form or for the offence itself. Novels and films keep it alive, which is where a B1 reader is most likely to meet it.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. Поскольку слово оценочно, в печати оно встречается куда реже мужской формы и ещё реже, чем die Täterin выше: сводка, которой надо назвать женщину, берёт нейтральную форму или само название деяния. Слово держат живым романы и фильмы — там читатель уровня B1 его и встретит.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. Оскільки слово оцінкове, у друці воно трапляється куди рідше за чоловічу форму і ще рідше, ніж die Täterin вище: зведення, якому треба назвати жінку, бере нейтральну форму або саму назву діяння. Слово тримають живим романи та фільми — там читач рівня B1 його і зустріне.'
+
+  - de: Gewalt
+    ipa: "gəˈvalt"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: physical force used against people or things; and, in the language of the state, the power it holds over them
+    ru: физическая сила, применённая к людям или вещам; а в языке государства — власть, которой оно над ними располагает
+    uk: фізична сила, застосована до людей або речей; а в мові держави — влада, яку вона над ними має
+    example_de: In diesem Land ist Gewalt gegen Kinder verboten.
+    example_en: In this country violence against children is forbidden.
+    example_ru: В этой стране насилие в отношении детей запрещено.
+    example_uk: У цій країні насильство щодо дітей заборонене.
+    note:
+      en: 'In the violence sense it is uncountable, so German says viel Gewalt and never two of them; the plural die Gewalten exists only in constitutional language, where die drei Gewalten are the three branches of the state. Chunks: Gewalt anwenden, mit Gewalt, häusliche Gewalt, and the adjective gewalttätig. Beside it B1 die Kraft in the deck `koerper-medizin-b1` is strength a body has, with no wrong in it, and höhere Gewalt is the fixed term for an event nobody could prevent.'
+      ru: 'В значении насилия слово неисчисляемое, поэтому говорят viel Gewalt и никогда «две»; множественное die Gewalten живёт только в конституционном языке, где die drei Gewalten — три ветви власти. Обороты: Gewalt anwenden, mit Gewalt, häusliche Gewalt, прилагательное gewalttätig. Рядом die Kraft уровня B1 из колоды `koerper-medizin-b1` — сила тела, в которой нет ничего дурного, а höhere Gewalt — устойчивый термин для обстоятельств непреодолимой силы.'
+      uk: 'У значенні насильства слово незлічуване, тому кажуть viel Gewalt і ніколи «дві»; множина die Gewalten живе лише в конституційній мові, де die drei Gewalten — три гілки влади. Звороти: Gewalt anwenden, mit Gewalt, häusliche Gewalt, прикметник gewalttätig. Поряд die Kraft рівня B1 з колоди `koerper-medizin-b1` — сила тіла, у якій немає нічого лихого, а höhere Gewalt — усталений термін для обставин непереборної сили.'
+
+  - de: Killer
+    ipa: "ˈkɪlɐ"
+    pos: noun
+    gender: m
+    plural: "die Killer"
+    cards: recognition
+    en: 'a man who kills for money or on somebody else''s order: the word of headlines and crime fiction'
+    ru: 'мужчина, который убивает за деньги или по чужому заказу: слово заголовков и криминального жанра'
+    uk: 'чоловік, який убиває за гроші або на чуже замовлення: слово заголовків і кримінального жанру'
+    example_de: In dem Film sucht die Polizei einen Killer.
+    example_en: In the film the police are looking for a hitman.
+    example_ru: В фильме полиция ищет наёмного убийцу.
+    example_uk: У фільмі поліція шукає найманого вбивцю.
+    note:
+      en: 'An English loan with a German short i and the ending spoken as ɐ. German''s own word is der Mörder, and that is what a court, a police statement and a serious report use; this one carries the flavour of a thriller, which is exactly why the Wortliste files it with Job, Laptop and Manager rather than with the legal words. Compounds: der Auftragskiller, der Serienkiller, and in advertising das Killerargument for an unanswerable point. The feminine is die Killerin, the next entry.'
+      ru: 'Английское заимствование с немецким кратким i и окончанием, звучащим как ɐ. Своё немецкое слово — der Mörder, и именно его берут суд, полицейская сводка и серьёзный репортаж; у этого же привкус триллера, потому Wortliste и держит его рядом с Job, Laptop и Manager, а не среди юридических слов. Сложные слова: der Auftragskiller, der Serienkiller, а в рекламе das Killerargument — довод, на который нечего возразить. Женская пара — die Killerin, следующая запись.'
+      uk: 'Англійське запозичення з німецьким коротким i та закінченням, що звучить як ɐ. Своє німецьке слово — der Mörder, і саме його беруть суд, поліційне зведення й серйозний репортаж; у цього ж присмак трилера, тому Wortliste і тримає його поряд із Job, Laptop і Manager, а не серед юридичних слів. Складні слова: der Auftragskiller, der Serienkiller, а в рекламі das Killerargument — доказ, на який нічого заперечити. Жіноча пара — die Killerin, наступний запис.'
+
+  - de: Killerin
+    ipa: "ˈkɪləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Killerinnen"
+    cards: recognition
+    en: a woman who kills for money or on somebody else's order
+    ru: женщина, которая убивает за деньги или по чужому заказу
+    uk: жінка, яка вбиває за гроші або на чуже замовлення
+    example_de: Die Killerin im Krimi arbeitet allein.
+    example_en: The hitwoman in the crime novel works alone.
+    example_ru: Наёмная убийца в этом детективе работает одна.
+    example_uk: Наймана вбивця в цьому детективі працює сама.
+    note:
+      en: 'A German -in ending on an English stem, which is what German does with every loaned agent noun: die Managerin, die Jobberin, die Killerin. Plural with a doubled n. It lives almost entirely in fiction and in the summary of a plot; the everyday German for a woman who kills is die Mörderin, and outside a story a report would name the offence instead.'
+      ru: 'Немецкое -in на английской основе — так немецкий поступает с любым заимствованным названием деятеля: die Managerin, die Jobberin, die Killerin. Во множественном n удваивается. Слово живёт почти только в художественном тексте и в пересказе сюжета; обиходное немецкое для женщины, совершившей убийство, — die Mörderin, а вне истории сводка назвала бы само деяние.'
+      uk: 'Німецьке -in на англійській основі — так німецька чинить із будь-якою запозиченою назвою діяча: die Managerin, die Jobberin, die Killerin. У множині n подвоюється. Слово живе майже тільки в художньому тексті та в переказі сюжету; побутове німецьке для жінки, що скоїла вбивство, — die Mörderin, а поза історією зведення назвало б саме діяння.'
+
+  # --- Diebstahl, Einbruch, Betrug ---
+  - de: Dieb
+    ipa: "ˈdiːp"
+    pos: noun
+    gender: m
+    plural: "die Diebe"
+    cards: recognition
+    en: a man who takes what belongs to somebody else, without force and without being seen
+    ru: мужчина, который берёт чужое — без применения силы и незаметно
+    uk: чоловік, який бере чуже — без застосування сили і непомітно
+    example_de: Die Polizei hat den Dieb noch im Zug gefunden.
+    example_en: The police found the thief while he was still on the train.
+    example_ru: Полиция нашла вора ещё в поезде.
+    example_uk: Поліція знайшла злодія ще в потязі.
+    note:
+      en: 'The final b is devoiced and sounds like p. The method is what separates the neighbours: this one is quiet and unseen, der Räuber uses force in front of you, and der Einbrecher below breaks his way in. The verb is stehlen below, and the offence is der Diebstahl — the word on the police form and in an insurance policy, Diebstahl anzeigen. The feminine die Diebin is regular; the Wortliste lists only the masculine here.'
+      ru: 'Конечное b оглушается и звучит как p. Соседей разделяет способ: этот тихий и незаметный, der Räuber применяет силу у вас на глазах, а der Einbrecher ниже вламывается. Глагол — stehlen ниже, а само деяние — der Diebstahl, слово из полицейского бланка и страхового полиса: Diebstahl anzeigen. Женская пара die Diebin образуется обычно; Wortliste даёт здесь только мужскую.'
+      uk: 'Кінцеве b оглушується і звучить як p. Сусідів розділяє спосіб: цей тихий і непомітний, der Räuber застосовує силу у вас на очах, а der Einbrecher нижче вдирається. Дієслово — stehlen нижче, а саме діяння — der Diebstahl, слово з поліційного бланка і страхового поліса: Diebstahl anzeigen. Жіноча пара die Diebin твориться звичайно; Wortliste подає тут лише чоловічу.'
+
+  - de: stehlen
+    ipa: "ˈʃteːlən"
+    pos: verb
+    praesens_3sg: stiehlt
+    partizip2: gestohlen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to take something that belongs to somebody else, quietly and for good
+    ru: взять чужое — тихо и насовсем
+    uk: узяти чуже — тихо і назавжди
+    example_de: Man hat mir das Fahrrad gestohlen.
+    example_en: My bicycle has been stolen.
+    example_ru: У меня украли велосипед.
+    example_uk: У мене вкрали велосипед.
+    note:
+      en: 'A strong verb with three different stem vowels and an e that turns to ie in the present: du stiehlst, er stiehlt, but wir stehlen; stehlen, stahl, hat gestohlen. The frame in the example is the one a learner hears most, with the owner in the dative and no named thief. A1 nehmen in the deck `perfekt-a1-verben` is the neutral act; this verb adds that the thing was not yours. Everyday speech often says klauen instead, which is informal but very common.'
+      ru: 'Сильный глагол с тремя разными корневыми гласными и с переходом e в ie в настоящем: du stiehlst, er stiehlt, но wir stehlen; stehlen, stahl, hat gestohlen. Конструкция из примера — та, которую слышишь чаще всего: пострадавший в дательном, вор не назван. nehmen уровня A1 из колоды `perfekt-a1-verben` — нейтральное действие; этот глагол добавляет, что вещь была не ваша. В разговоре часто говорят klauen — фамильярно, но очень употребительно.'
+      uk: 'Сильне дієслово з трьома різними кореневими голосними і з переходом e в ie в теперішньому: du stiehlst, er stiehlt, але wir stehlen; stehlen, stahl, hat gestohlen. Конструкція з прикладу — та, яку чуєш найчастіше: потерпілий у давальному, злодія не названо. nehmen рівня A1 з колоди `perfekt-a1-verben` — нейтральна дія; це дієслово додає, що річ була не ваша. У розмові часто кажуть klauen — фамільярно, але дуже вживано.'
+
+  - de: einbrechen
+    ipa: "ˈaɪ̯nˌbʁɛçn̩"
+    pos: verb
+    praesens_3sg: bricht ein
+    partizip2: eingebrochen
+    aux: sein
+    valence: "in + Akk"
+    cards: recognition
+    en: to force a way into a building in order to steal
+    ru: проникнуть в здание, взломав его, чтобы обокрасть
+    uk: проникнути до будівлі, зламавши її, щоб обікрасти
+    example_de: In der Nacht ist jemand in die Schule eingebrochen.
+    example_en: Somebody broke into the school during the night.
+    example_ru: Ночью кто-то проник в школу со взломом.
+    example_uk: Уночі хтось проник до школи зі зламом.
+    note:
+      en: 'Separable, and strong like brechen: bricht ein, brach ein, eingebrochen. Duden gives it sein, not haben, and the reason is visible in the sentence: what the verb describes is a movement into somewhere, and the place stands in in plus the accusative, the direction case. The same sein runs through the other senses, where a roof or the ice gives way and where winter sets in. The person is der Einbrecher and the deed der Einbruch, both below.'
+      ru: 'Отделяемый и сильный, как brechen: bricht ein, brach ein, eingebrochen. Duden даёт ему sein, а не haben, и причина видна в самом предложении: глагол описывает движение внутрь, и место стоит при in с винительным — падеже направления. То же sein идёт и через другие значения: проваливается крыша или лёд, наступает зима. Человек — der Einbrecher, деяние — der Einbruch, оба ниже.'
+      uk: 'Відокремлюване і сильне, як brechen: bricht ein, brach ein, eingebrochen. Duden дає йому sein, а не haben, і причина видна в самому реченні: дієслово описує рух усередину, і місце стоїть при in зі знахідним — відмінку напрямку. Те саме sein іде й крізь інші значення: провалюється дах або лід, настає зима. Людина — der Einbrecher, діяння — der Einbruch, обидва нижче.'
+
+  - de: Einbrecher
+    ipa: "ˈaɪ̯nˌbʁɛçɐ"
+    pos: noun
+    gender: m
+    plural: "die Einbrecher"
+    cards: recognition
+    en: a man who forces his way into buildings to steal from them
+    ru: мужчина, который со взломом проникает в здания, чтобы их обокрасть
+    uk: чоловік, який зі зламом проникає до будівель, щоб їх обікрасти
+    example_de: Die Einbrecher kamen durch das Fenster im Erdgeschoss.
+    example_en: The burglars came in through the ground-floor window.
+    example_ru: Взломщики проникли через окно первого этажа.
+    example_uk: Зловмисники проникли крізь вікно першого поверху.
+    note:
+      en: 'Einbrechen above plus -er, with the primary stress on Ein- and a secondary one on the stem. Singular and plural are spelled alike. Where der Dieb above says only that something was taken, this word says how it was got at, which is why an insurance policy and a police report both prefer it. The feminine is die Einbrecherin, the next entry, and the trade''s vocabulary is die Einbruchsicherung and der Einbruchschutz.'
+      ru: 'Einbrechen выше плюс -er, главное ударение на Ein-, побочное на корне. Единственное и множественное пишутся одинаково. Там, где der Dieb выше говорит только, что вещь унесли, это слово говорит, как до неё добрались, — потому его и предпочитают страховой полис и полицейская сводка. Женская пара — die Einbrecherin, следующая запись, а словарь ремесла — die Einbruchsicherung и der Einbruchschutz.'
+      uk: 'Einbrechen вище плюс -er, головний наголос на Ein-, побічний на корені. Однина і множина пишуться однаково. Там, де der Dieb вище каже лише, що річ винесли, це слово каже, як до неї дісталися, — тому його і воліють страховий поліс і поліційне зведення. Жіноча пара — die Einbrecherin, наступний запис, а словник ремесла — die Einbruchsicherung і der Einbruchschutz.'
+
+  - de: Einbrecherin
+    ipa: "ˈaɪ̯nˌbʁɛçəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Einbrecherinnen"
+    cards: recognition
+    en: a woman who forces her way into buildings to steal from them
+    ru: женщина, которая со взломом проникает в здания, чтобы их обокрасть
+    uk: жінка, яка зі зламом проникає до будівель, щоб їх обікрасти
+    example_de: Die Polizei sucht eine Einbrecherin und zwei Männer.
+    example_en: The police are looking for a female burglar and two men.
+    example_ru: Полиция разыскивает взломщицу и двоих мужчин.
+    example_uk: Поліція розшукує зловмисницю і двох чоловіків.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n; the stress stays where the masculine put it. It surfaces where a report has to distinguish the people involved, as in the example. For a mixed group German uses the masculine plural die Einbrecher, and a headline that wants neither says simply Unbekannte, unknown persons.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается; ударение остаётся там же, где в мужской форме. Слово всплывает там, где сводке нужно различить участников, как в примере. Для смешанной группы немецкий берёт мужское множественное die Einbrecher, а заголовок, которому не нужно ни то ни другое, скажет просто Unbekannte — «неизвестные».'
+      uk: 'Звичайна моція на -in, у множині n подвоюється; наголос лишається там само, де в чоловічій формі. Слово зринає там, де зведенню треба розрізнити учасників, як у прикладі. Для змішаної групи німецька бере чоловічу множину die Einbrecher, а заголовок, якому не потрібно ні того ні того, скаже просто Unbekannte — «невідомі».'
+
+  - de: Einbruch
+    ipa: "ˈaɪ̯nˌbʁʊx"
+    pos: noun
+    gender: m
+    plural: "die Einbrüche"
+    cards: recognition
+    en: the offence of forcing a way into a building; also the moment at which something sets in
+    ru: 'взлом как деяние: проникновение в здание силой; а также момент, когда что-либо наступает'
+    uk: 'злам як діяння: проникнення до будівлі силою; а також мить, коли щось настає'
+    example_de: Nach dem Einbruch hat die Familie neue Schlösser gekauft.
+    example_en: After the break-in the family bought new locks.
+    example_ru: После взлома семья купила новые замки.
+    example_uk: Після зламу родина купила нові замки́.
+    note:
+      en: 'The noun to einbrechen above, with an umlaut in the plural. The insurance term is der Einbruchdiebstahl, which names both halves of what happened. The second sense has nothing criminal about it and is common in weather and time expressions: bei Einbruch der Dunkelheit, bei Einbruch der Nacht, der Kälteeinbruch. A market that falls sharply also suffers ein Einbruch.'
+      ru: 'Существительное к einbrechen выше, во множественном умлаут. Страховой термин — der Einbruchdiebstahl, называющий обе половины случившегося. Второе значение не имеет ничего криминального и обычно для погоды и времени: bei Einbruch der Dunkelheit, bei Einbruch der Nacht, der Kälteeinbruch. О резко упавшем рынке тоже говорят ein Einbruch.'
+      uk: 'Іменник до einbrechen вище, у множині умлаут. Страховий термін — der Einbruchdiebstahl, що називає обидві половини того, що сталося. Друге значення не має нічого кримінального і звичне для погоди й часу: bei Einbruch der Dunkelheit, bei Einbruch der Nacht, der Kälteeinbruch. Про різко впалий ринок теж кажуть ein Einbruch.'
+
+  - de: betrügen
+    ipa: "bəˈtʁyːgn̩"
+    pos: verb
+    praesens_3sg: betrügt
+    partizip2: betrogen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to get money or an advantage out of somebody by making them believe something untrue
+    ru: получить с кого-либо деньги или выгоду, заставив поверить в неправду
+    uk: дістати з когось гроші або вигоду, змусивши повірити в неправду
+    example_de: Die Firma hat ihre Kunden jahrelang betrogen.
+    example_en: The company cheated its customers for years.
+    example_ru: Фирма годами обманывала своих клиентов.
+    example_uk: Фірма роками ошукувала своїх клієнтів.
+    note:
+      en: 'Strong and inseparable, so there is no ge- in the participle and all three stems differ: betrügen, betrog, hat betrogen. What the victim is deprived of follows um plus the accusative: jemanden um sein Geld betrügen. A2 lügen in the deck `verben-handlungen-a2-2` is only saying something untrue; this verb is doing damage with it, which is why the second, private sense — betraying a partner — uses the same word. Nouns: der Betrug, der Betrüger.'
+      ru: 'Сильный и неотделяемый, поэтому в причастии нет ge-, а все три основы разные: betrügen, betrog, hat betrogen. То, чего лишают, вводится через um с винительным: jemanden um sein Geld betrügen. lügen уровня A2 из колоды `verben-handlungen-a2-2` — только сказать неправду; этот глагол — нанести ею ущерб, потому тем же словом называют и второе, частное значение: измену партнёру. Существительные: der Betrug, der Betrüger.'
+      uk: 'Сильне і невідокремлюване, тому в дієприкметнику немає ge-, а всі три основи різні: betrügen, betrog, hat betrogen. Те, чого позбавляють, уводиться через um зі знахідним: jemanden um sein Geld betrügen. lügen рівня A2 з колоди `verben-handlungen-a2-2` — лише сказати неправду; це дієслово — завдати нею шкоди, тому тим самим словом звуть і друге, приватне значення: зраду партнерові. Іменники: der Betrug, der Betrüger.'
+
+  # --- Wer ermittelt, und woran ---
+  - de: Kriminalpolizei
+    ipa: "kʁimiˈnaːlpoliˌtsaɪ̯"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: the branch of the police that investigates serious crime instead of patrolling
+    ru: подразделение полиции, которое расследует тяжкие преступления, а не несёт патрульную службу
+    uk: підрозділ поліції, що розслідує тяжкі злочини, а не несе патрульну службу
+    example_de: Den Fall übernimmt jetzt die Kriminalpolizei.
+    example_en: The criminal investigation department is taking the case over now.
+    example_ru: Дело теперь передано уголовному розыску.
+    example_uk: Справу тепер передано карному розшуку.
+    note:
+      en: 'Nobody says the long word out loud: in speech, in a television series and even in a newspaper it is die Kripo. A1 die Polizei in the deck `reisen-urlaub` is the whole force, and the uniformed half that patrols is die Schutzpolizei. No plural — it names one organisation, and the federal office above it is das Bundeskriminalamt, the BKA. Primary stress falls inside Kriminal-, on -nal-, with a secondary stress on -zei.'
+      ru: 'Длинное слово вслух не произносит никто: в речи, в сериале и даже в газете это die Kripo. die Polizei уровня A1 из колоды `reisen-urlaub` — вся полиция целиком, а патрулирующая половина в форме — die Schutzpolizei. Множественного нет: слово называет одну организацию, а стоящее над ней федеральное ведомство — das Bundeskriminalamt, BKA. Главное ударение падает внутри Kriminal-, на -nal-, побочное — на -zei.'
+      uk: 'Довге слово вголос не вимовляє ніхто: у мовленні, у серіалі і навіть у газеті це die Kripo. die Polizei рівня A1 з колоди `reisen-urlaub` — уся поліція цілком, а патрульна половина в однострої — die Schutzpolizei. Множини немає: слово називає одну організацію, а федеральне відомство над нею — das Bundeskriminalamt, BKA. Головний наголос падає всередині Kriminal-, на -nal-, побічний — на -zei.'
+
+  - de: Verdacht
+    ipa: "fɛɐ̯ˈdaxt"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the reason there is to think somebody did it, while nothing has yet been proved
+    ru: основание думать, что это сделал такой-то, пока ничего не доказано
+    uk: підстава думати, що це зробив такий-то, доки нічого не доведено
+    example_de: Gegen ihn gibt es nur einen Verdacht, keine Beweise.
+    example_en: There is only a suspicion against him, no evidence.
+    example_ru: Против него есть только подозрение, а не доказательства.
+    example_uk: Проти нього є лише підозра, а не докази.
+    note:
+      en: 'Masculine, and in practice singular only — Duden records a plural, but a B1 text never needs it. What the suspicion is about follows auf plus the accusative, and a doctor uses exactly the same frame: Verdacht auf Grippe. Chunks: Verdacht haben, unter Verdacht stehen, einen Verdacht äußern, and auf Verdacht for doing something on the off chance. B1 der Zweifel in the deck `lernen-zukunft` doubts a claim; this word suspects a person.'
+      ru: 'Мужской род и на практике только единственное: Duden фиксирует множественное, но тексту уровня B1 оно не нужно. Предмет подозрения вводится через auf с винительным, и та же конструкция у врача: Verdacht auf Grippe. Обороты: Verdacht haben, unter Verdacht stehen, einen Verdacht äußern, а auf Verdacht — «на всякий случай, наудачу». der Zweifel уровня B1 из колоды `lernen-zukunft` сомневается в утверждении; это слово подозревает человека.'
+      uk: 'Чоловічий рід і на практиці лише однина: Duden фіксує множину, але текстові рівня B1 вона не потрібна. Предмет підозри вводиться через auf зі знахідним, і та сама конструкція в лікаря: Verdacht auf Grippe. Звороти: Verdacht haben, unter Verdacht stehen, einen Verdacht äußern, а auf Verdacht — «про всяк випадок, навмання». der Zweifel рівня B1 з колоди `lernen-zukunft` сумнівається в твердженні; це слово підозрює людину.'
+
+  - de: verdächtig
+    ipa: "fɛɐ̯ˈdɛçtɪç"
+    pos: adj
+    cards: recognition
+    en: giving reason to think that somebody or something is behind an offence
+    ru: дающий основание думать, что за деянием стоит этот человек или этот предмет
+    uk: що дає підставу думати, ніби за діянням стоїть ця людина або цей предмет
+    example_de: Das Auto vor dem Haus sieht verdächtig aus.
+    example_en: The car in front of the house looks suspicious.
+    example_ru: Машина перед домом выглядит подозрительно.
+    example_uk: Автівка перед будинком має підозрілий вигляд.
+    note:
+      en: 'From der Verdacht above, with an umlaut and a soft ch at both ends of the word. It works on people and on things alike: ein verdächtiges Paket, sich verdächtig machen. The person is der Verdächtige, an adjectival noun whose ending follows its article — der Verdächtige, ein Verdächtiger, die Verdächtigen — and the verb verdächtigen takes an accusative object.'
+      ru: 'От der Verdacht выше, с умлаутом и мягким ch на обоих концах слова. Работает и о людях, и о вещах: ein verdächtiges Paket, sich verdächtig machen. Человек — der Verdächtige, субстантивированное прилагательное, у которого окончание следует за артиклем: der Verdächtige, ein Verdächtiger, die Verdächtigen, — а глагол verdächtigen управляет винительным.'
+      uk: 'Від der Verdacht вище, з умлаутом і м’яким ch на обох кінцях слова. Працює і про людей, і про речі: ein verdächtiges Paket, sich verdächtig machen. Людина — der Verdächtige, субстантивований прикметник, у якого закінчення йде за артиклем: der Verdächtige, ein Verdächtiger, die Verdächtigen, — а дієслово verdächtigen керує знахідним.'
+
+  - de: Beweis
+    ipa: "bəˈvaɪ̯s"
+    pos: noun
+    gender: m
+    plural: "die Beweise"
+    cards: recognition
+    en: something that shows a claim to be true, of the kind a court will accept
+    ru: то, что показывает истинность утверждения, — в том виде, в каком это примет суд
+    uk: те, що показує істинність твердження, — у тому вигляді, у якому це прийме суд
+    example_de: Ohne Beweise kann das Gericht niemanden verurteilen.
+    example_en: Without evidence the court cannot convict anybody.
+    example_ru: Без доказательств суд не может никого осудить.
+    example_uk: Без доказів суд не може нікого засудити.
+    note:
+      en: 'The noun to B1 beweisen in the deck `verben-handlungen-b1-3`, which the learner already produces as a typed card; the final s is voiceless. Chunks: einen Beweis liefern, als Beweis dienen, es gibt keine Beweise. Mathematics uses the same word for a proof. Keep it apart from A2 das Zeugnis in the deck `schule-faecher-a2`, which is a school report: what a witness says in court is die Aussage.'
+      ru: 'Существительное к beweisen уровня B1 из колоды `verben-handlungen-b1-3`, которое учащийся уже набирает как ответ; конечное s глухое. Обороты: einen Beweis liefern, als Beweis dienen, es gibt keine Beweise. Математика берёт то же слово для доказательства теоремы. Не смешивайте с das Zeugnis уровня A2 из колоды `schule-faecher-a2` — школьным свидетельством: показания свидетеля в суде — это die Aussage.'
+      uk: 'Іменник до beweisen рівня B1 з колоди `verben-handlungen-b1-3`, яке учень уже набирає як відповідь; кінцеве s глухе. Звороти: einen Beweis liefern, als Beweis dienen, es gibt keine Beweise. Математика бере те саме слово для доведення теореми. Не змішуйте з das Zeugnis рівня A2 з колоди `schule-faecher-a2` — шкільним свідоцтвом: свідчення свідка в суді — це die Aussage.'
+
+  - de: festnehmen
+    ipa: "ˈfɛstˌneːmən"
+    pos: verb
+    praesens_3sg: nimmt fest
+    partizip2: festgenommen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to take somebody into custody on the spot, as the police do at the scene
+    ru: задержать человека на месте — так это делает полиция
+    uk: затримати людину на місці — так це робить поліція
+    example_de: Die Polizei hat den Mann noch am selben Abend festgenommen.
+    example_en: The police took the man into custody the same evening.
+    example_ru: Полиция задержала этого мужчину в тот же вечер.
+    example_uk: Поліція затримала цього чоловіка того самого вечора.
+    note:
+      en: 'Separable, and it inherits everything from A1 nehmen in the deck `perfekt-a1-verben`: nimmt fest, nahm fest, hat festgenommen. It names the physical act at the scene, with no paperwork in hand; verhaften below adds the warrant. The noun is die Festnahme, and a learner meets the verb in the passive far more often than in the active: Der Mann wurde festgenommen.'
+      ru: 'Отделяемый, и всё берёт от nehmen уровня A1 из колоды `perfekt-a1-verben`: nimmt fest, nahm fest, hat festgenommen. Слово называет само физическое действие на месте, без бумаги на руках; verhaften ниже добавляет постановление. Существительное — die Festnahme, а глагол учащийся встретит в страдательном залоге куда чаще, чем в действительном: Der Mann wurde festgenommen.'
+      uk: 'Відокремлюване, і все бере від nehmen рівня A1 з колоди `perfekt-a1-verben`: nimmt fest, nahm fest, hat festgenommen. Слово називає саму фізичну дію на місці, без папірця на руках; verhaften нижче додає постанову. Іменник — die Festnahme, а дієслово учень зустріне в пасиві куди частіше, ніж в активі: Der Mann wurde festgenommen.'
+
+  - de: verhaften
+    ipa: "fɛɐ̯ˈhaftn̩"
+    pos: verb
+    praesens_3sg: verhaftet
+    partizip2: verhaftet
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to arrest somebody formally, on a warrant issued by a court
+    ru: арестовать человека официально, по выданному судом постановлению
+    uk: заарештувати людину офіційно, за виданою судом постановою
+    example_de: Der Verdächtige wurde am Flughafen verhaftet.
+    example_en: The suspect was arrested at the airport.
+    example_ru: Подозреваемого арестовали в аэропорту.
+    example_uk: Підозрюваного заарештували в аеропорту.
+    note:
+      en: 'Weak and inseparable, so the participle carries no ge-: hat verhaftet, and it looks exactly like the third person singular. The difference from festnehmen above is a piece of paper: festnehmen is an officer taking hold of somebody, while this verb presupposes der Haftbefehl, an arrest warrant signed by a judge. Newspapers use the two loosely; a legal text does not. Nouns: die Verhaftung, and die Haft for being held, in Haft sitzen.'
+      ru: 'Слабый и неотделяемый, поэтому в причастии нет ge-: hat verhaftet, и оно совпадает по виду с формой третьего лица. Отличие от festnehmen выше — в бумаге: festnehmen — это когда сотрудник берёт человека, а этот глагол предполагает der Haftbefehl, постановление об аресте за подписью судьи. Газеты употребляют оба слова вольно; юридический текст — нет. Существительные: die Verhaftung, а также die Haft — содержание под стражей, in Haft sitzen.'
+      uk: 'Слабке і невідокремлюване, тому в дієприкметнику немає ge-: hat verhaftet, і воно збігається на вигляд із формою третьої особи. Відмінність від festnehmen вище — у папері: festnehmen — це коли працівник бере людину, а це дієслово передбачає der Haftbefehl, постанову про арешт за підписом судді. Газети вживають обидва слова вільно; юридичний текст — ні. Іменники: die Verhaftung, а також die Haft — тримання під вартою, in Haft sitzen.'
+
+  # --- Vor Gericht ---
+  - de: Prozess
+    ipa: "pʁoˈtsɛs"
+    pos: noun
+    gender: m
+    plural: "die Prozesse"
+    cards: recognition
+    en: a case being heard in court from the opening to the verdict; also any course of change that runs in steps
+    ru: судебное дело от начала слушаний до приговора; а также всякий ход изменений, идущий по шагам
+    uk: судова справа від початку слухань до вироку; а також будь-який перебіг змін, що йде кроками
+    example_de: Der Prozess gegen die beiden Männer beginnt im März.
+    example_en: The trial of the two men begins in March.
+    example_ru: Процесс против этих двоих начинается в марте.
+    example_uk: Процес проти цих двох починається в березні.
+    note:
+      en: 'The double s marks the short e before it, and the plural keeps both. In the legal sense the accused follow gegen plus the accusative, and the chunks are einen Prozess führen, den Prozess gewinnen or verlieren. The second sense has nothing to do with courts and is everywhere in B1 reading: ein langer Prozess, der Lernprozess, der Herstellungsprozess. The room the trial is held in is das Gericht, which ships at A2 in the deck `essen-trinken-a2` as the dish on a menu, with a note naming this second meaning.'
+      ru: 'Двойное s помечает краткость предшествующего e, и во множественном оба сохраняются. В судебном значении подсудимых вводит gegen с винительным, а обороты — einen Prozess führen, den Prozess gewinnen или verlieren. Второе значение к суду отношения не имеет и пронизывает чтение уровня B1: ein langer Prozess, der Lernprozess, der Herstellungsprozess. Само место, где идёт разбирательство, — das Gericht, и оно уже есть на уровне A2 в колоде `essen-trinken-a2` как «блюдо», с примечанием, называющим это второе значение.'
+      uk: 'Подвійне s позначає стислість попереднього e, і в множині обидва зберігаються. У судовому значенні підсудних уводить gegen зі знахідним, а звороти — einen Prozess führen, den Prozess gewinnen або verlieren. Друге значення до суду стосунку не має і пронизує читання рівня B1: ein langer Prozess, der Lernprozess, der Herstellungsprozess. Саме місце, де точиться розгляд, — das Gericht, і воно вже є на рівні A2 в колоді `essen-trinken-a2` як «страва», з приміткою, що називає це друге значення.'
+
+  - de: Richter
+    ipa: "ˈʁɪçtɐ"
+    pos: noun
+    gender: m
+    plural: "die Richter"
+    cards: recognition
+    en: the official who conducts a court hearing and decides the case
+    ru: должностное лицо, которое ведёт судебное заседание и решает дело
+    uk: посадова особа, яка веде судове засідання і вирішує справу
+    example_de: Der Richter hat noch drei Fragen an den Zeugen.
+    example_en: The judge has three more questions for the witness.
+    example_ru: У судьи есть ещё три вопроса к свидетелю.
+    example_uk: У судді є ще три питання до свідка.
+    note:
+      en: 'From richten, and singular and plural look alike. B1 der Anwalt in the deck `berufe-b1` already names this word in its own note and sorts the three roles: the Anwalt speaks for one side, der Staatsanwalt brings the charge, and the Richter decides between them. Chunks: vor den Richter kommen, der Richter verkündet das Urteil. Sport borrowed the word whole for der Schiedsrichter, the referee. The feminine is die Richterin, the next entry.'
+      ru: 'От richten, единственное и множественное на вид одинаковы. der Anwalt уровня B1 из колоды `berufe-b1` уже называет это слово в своём примечании и разводит три роли: Anwalt говорит за одну сторону, der Staatsanwalt поддерживает обвинение, а Richter решает между ними. Обороты: vor den Richter kommen, der Richter verkündet das Urteil. Спорт взял слово целиком в der Schiedsrichter — судья на поле. Женская пара — die Richterin, следующая запись.'
+      uk: 'Від richten, однина і множина на вигляд однакові. der Anwalt рівня B1 з колоди `berufe-b1` уже називає це слово у своїй примітці і розводить три ролі: Anwalt говорить за один бік, der Staatsanwalt підтримує обвинувачення, а Richter вирішує між ними. Звороти: vor den Richter kommen, der Richter verkündet das Urteil. Спорт узяв слово цілком у der Schiedsrichter — суддя на полі. Жіноча пара — die Richterin, наступний запис.'
+
+  - de: Richterin
+    ipa: "ˈʁɪçtəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Richterinnen"
+    cards: recognition
+    en: the woman who conducts a court hearing and decides the case
+    ru: женщина, которая ведёт судебное заседание и решает дело
+    uk: жінка, яка веде судове засідання і вирішує справу
+    example_de: Die Richterin unterbricht den Prozess für eine Stunde.
+    example_en: The judge adjourns the trial for an hour.
+    example_ru: Судья прерывает заседание на час.
+    example_uk: Суддя перериває засідання на годину.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n. In court she is addressed as Frau Richterin, and a written judgement names her in full; German has no separate word for the office itself, which is das Richteramt. The lay judges who sit beside her are die Schöffen.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. В зале к ней обращаются Frau Richterin, а письменное решение называет её полностью; отдельного слова для самой должности у немецкого нет — это das Richteramt. Народные заседатели рядом с ней — die Schöffen.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. У залі до неї звертаються Frau Richterin, а письмове рішення називає її повністю; окремого слова для самої посади німецька не має — це das Richteramt. Народні засідателі поряд із нею — die Schöffen.'
+
+  - de: Zeuge
+    ipa: "ˈtsɔʏ̯gə"
+    pos: noun
+    gender: m
+    plural: "die Zeugen"
+    cards: recognition
+    en: a man who saw what happened and is asked to say so
+    ru: мужчина, который видел происшедшее и которого просят об этом рассказать
+    uk: чоловік, який бачив те, що сталося, і якого просять про це розповісти
+    example_de: Der Zeuge konnte sich an das Auto genau erinnern.
+    example_en: The witness could remember the car exactly.
+    example_ru: Свидетель точно помнил машину.
+    example_uk: Свідок точно пам’ятав автівку.
+    note:
+      en: 'A weak masculine, so -en everywhere except the nominative singular: der Zeuge, den Zeugen, dem Zeugen, des Zeugen, die Zeugen — exactly like A1 der Kollege in the deck `termine-a1` and A2 der Polizist in the deck `berufe-a2`, and the trap is that the bare form is the one shape you rarely need. Chunks: als Zeuge aussagen, Zeuge eines Unfalls sein. The feminine die Zeugin is next and is an ordinary -in noun: the weak declension stops there, as it does with A1 die Kollegin.'
+      ru: 'Слабое существительное мужского рода: -en везде, кроме именительного единственного — der Zeuge, den Zeugen, dem Zeugen, des Zeugen, die Zeugen, — ровно как der Kollege уровня A1 из колоды `termine-a1` и der Polizist уровня A2 из колоды `berufe-a2`; ловушка в том, что голая форма нужна реже всех. Обороты: als Zeuge aussagen, Zeuge eines Unfalls sein. Женская пара die Zeugin — следующая запись, и это обычное существительное на -in: слабое склонение на ней обрывается, как и у die Kollegin уровня A1.'
+      uk: 'Слабкий іменник чоловічого роду: -en усюди, крім називного однини — der Zeuge, den Zeugen, dem Zeugen, des Zeugen, die Zeugen, — точно як der Kollege рівня A1 з колоди `termine-a1` і der Polizist рівня A2 з колоди `berufe-a2`; пастка в тому, що гола форма потрібна найрідше. Звороти: als Zeuge aussagen, Zeuge eines Unfalls sein. Жіноча пара die Zeugin — наступний запис, і це звичайний іменник на -in: слабке відмінювання на ній уривається, як і в die Kollegin рівня A1.'
+
+  - de: Zeugin
+    ipa: "ˈtsɔʏ̯gɪn"
+    pos: noun
+    gender: f
+    plural: "die Zeuginnen"
+    cards: recognition
+    en: a woman who saw what happened and is asked to say so
+    ru: женщина, которая видела происшедшее и которую просят об этом рассказать
+    uk: жінка, яка бачила те, що сталося, і яку просять про це розповісти
+    example_de: Die Zeugin hat alles vom Fenster aus gesehen.
+    example_en: The witness saw everything from the window.
+    example_ru: Свидетельница видела всё из окна.
+    example_uk: Свідкиня бачила все з вікна.
+    note:
+      en: 'Movierung with -in on the stem Zeug-, so the e of Zeuge drops out; plural with a doubled n and no case endings at all. A summons is addressed to whichever form fits, and the neutral plural for a mixed group is die Zeugen. What she gives in court is die Aussage, and to give it is aussagen.'
+      ru: 'Мовирование на -in по основе Zeug-, поэтому e из Zeuge выпадает; во множественном n удваивается, а падежных окончаний нет вовсе. Повестка адресуется той форме, которая подходит, а нейтральное множественное для смешанной группы — die Zeugen. То, что она даёт в суде, — die Aussage, а давать показания — aussagen.'
+      uk: 'Моція на -in за основою Zeug-, тому e з Zeuge випадає; у множині n подвоюється, а відмінкових закінчень немає зовсім. Повістка адресується тій формі, яка підходить, а нейтральна множина для змішаної групи — die Zeugen. Те, що вона дає в суді, — die Aussage, а давати свідчення — aussagen.'
+
+  - de: Urteil
+    ipa: "ˈʊʁtaɪ̯l"
+    pos: noun
+    gender: n
+    plural: "die Urteile"
+    cards: recognition
+    en: the decision a court hands down at the end of a case; outside court, a settled opinion somebody stands behind
+    ru: решение, которое суд выносит в конце дела; а вне суда — сложившееся мнение, за которое человек отвечает
+    uk: рішення, яке суд ухвалює наприкінці справи; а поза судом — сформована думка, за яку людина відповідає
+    example_de: Das Urteil kommt erst am Freitag.
+    example_en: The verdict will not come until Friday.
+    example_ru: Приговор будет только в пятницу.
+    example_uk: Вирок буде лише в п’ятницю.
+    note:
+      en: 'The u is short. In court: ein Urteil fällen, ein Urteil sprechen, gegen das Urteil Berufung einlegen. Outside it the word is stronger than A2 die Meinung in the deck `nebensaetze-plaene` — a Meinung is what you happen to think and may drop over coffee, while an Urteil has been arrived at and is defended: sich ein Urteil bilden, ein hartes Urteil. Verbs: urteilen and beurteilen for weighing something up, verurteilen below only for the court. And das Vorurteil is a prejudice.'
+      ru: 'U краткое. В суде: ein Urteil fällen, ein Urteil sprechen, gegen das Urteil Berufung einlegen. Вне суда слово сильнее, чем die Meinung уровня A2 из колоды `nebensaetze-plaene`: Meinung — то, что человек думает и может оставить за чашкой кофе, а Urteil выношено и отстаивается: sich ein Urteil bilden, ein hartes Urteil. Глаголы: urteilen и beurteilen — «оценивать», verurteilen ниже — только про суд. А das Vorurteil — предрассудок.'
+      uk: 'U коротке. У суді: ein Urteil fällen, ein Urteil sprechen, gegen das Urteil Berufung einlegen. Поза судом слово сильніше, ніж die Meinung рівня A2 з колоди `nebensaetze-plaene`: Meinung — те, що людина думає і може лишити за філіжанкою кави, а Urteil виношене й обстоюване: sich ein Urteil bilden, ein hartes Urteil. Дієслова: urteilen і beurteilen — «оцінювати», verurteilen нижче — лише про суд. А das Vorurteil — упередження.'
+
+  - de: verurteilen
+    ipa: "fɛɐ̯ˈʔʊʁtaɪ̯lən"
+    pos: verb
+    praesens_3sg: verurteilt
+    partizip2: verurteilt
+    aux: haben
+    valence: "+ Akk zu + Dat"
+    cards: recognition
+    en: to find somebody guilty in court and impose a penalty; also to condemn something publicly
+    ru: признать человека виновным в суде и назначить наказание; а также публично осудить что-либо
+    uk: визнати людину винною в суді і призначити покарання; а також публічно засудити щось
+    example_de: Das Gericht hat ihn zu einer Geldstrafe verurteilt.
+    example_en: The court sentenced him to a fine.
+    example_ru: Суд приговорил его к денежному штрафу.
+    example_uk: Суд присудив йому грошовий штраф.
+    note:
+      en: 'Inseparable and weak, hat verurteilt, built on das Urteil above; there is a glottal stop before the stressed u, because the stem begins with a vowel of its own. The penalty follows zu plus the dative: zu einer Geldstrafe, zu zwei Jahren Haft verurteilt werden, and the passive is how a learner meets it almost every time. The second sense is moral and needs no court: Die Regierung verurteilt den Angriff. What the person then is, is B1 schuldig in the deck `charakter-verhalten-b1`.'
+      ru: 'Неотделяемый и слабый, hat verurteilt, построен на das Urteil выше; перед ударным u стоит гортанная смычка, потому что корень начинается с собственного гласного. Наказание вводится через zu с дательным: zu einer Geldstrafe, zu zwei Jahren Haft verurteilt werden, — и почти всегда учащийся встречает глагол в страдательном залоге. Второе значение нравственное и суда не требует: Die Regierung verurteilt den Angriff. А кем человек после этого становится, говорит schuldig уровня B1 из колоды `charakter-verhalten-b1`.'
+      uk: 'Невідокремлюване і слабке, hat verurteilt, побудоване на das Urteil вище; перед наголошеним u стоїть гортанна змичка, бо корінь починається з власного голосного. Покарання вводиться через zu з давальним: zu einer Geldstrafe, zu zwei Jahren Haft verurteilt werden, — і майже завжди учень зустрічає дієслово в пасиві. Друге значення моральне і суду не потребує: Die Regierung verurteilt den Angriff. А ким людина після цього стає, каже schuldig рівня B1 з колоди `charakter-verhalten-b1`.'
+
+  - de: Strafe
+    ipa: "ˈʃtʁaːfə"
+    pos: noun
+    gender: f
+    plural: "die Strafen"
+    cards: recognition
+    en: what somebody has to pay or to suffer because of what they did
+    ru: то, что человеку приходится заплатить или претерпеть за содеянное
+    uk: те, що людині доводиться заплатити або перетерпіти за скоєне
+    example_de: Auf diese Tat steht eine hohe Strafe.
+    example_en: That offence carries a heavy penalty.
+    example_ru: За это деяние полагается суровое наказание.
+    example_uk: За це діяння передбачено суворе покарання.
+    note:
+      en: 'The word covers everything from a parking ticket to a prison term, so German usually says which with a compound: die Geldstrafe, die Freiheitsstrafe, and eine Strafe bekommen or zahlen. Everyday speech calls the ticket der Strafzettel and the official fine das Bußgeld. It also works at home and at school, where zur Strafe means as a punishment. The verb is bestrafen, next; the adjective strafbar is above.'
+      ru: 'Слово покрывает всё — от квитанции за парковку до тюремного срока, — поэтому немец обычно уточняет сложным словом: die Geldstrafe, die Freiheitsstrafe, а также eine Strafe bekommen или zahlen. В быту квитанцию зовут der Strafzettel, а официальный штраф — das Bußgeld. Работает слово и дома, и в школе, где zur Strafe значит «в наказание». Глагол — bestrafen, следующая запись; прилагательное strafbar выше.'
+      uk: 'Слово покриває все — від квитанції за паркування до тюремного строку, — тому німець зазвичай уточнює складним словом: die Geldstrafe, die Freiheitsstrafe, а також eine Strafe bekommen або zahlen. У побуті квитанцію звуть der Strafzettel, а офіційний штраф — das Bußgeld. Працює слово і вдома, і в школі, де zur Strafe означає «на кару». Дієслово — bestrafen, наступний запис; прикметник strafbar вище.'
+
+  - de: bestrafen
+    ipa: "bəˈʃtʁaːfn̩"
+    pos: verb
+    praesens_3sg: bestraft
+    partizip2: bestraft
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to make somebody pay or suffer for what they have done
+    ru: заставить человека заплатить или претерпеть за содеянное
+    uk: змусити людину заплатити або перетерпіти за скоєне
+    example_de: Solche Fehler werden im Sport hart bestraft.
+    example_en: Mistakes like that are punished severely in sport.
+    example_ru: Такие ошибки в спорте наказываются жёстко.
+    example_uk: Такі помилки в спорті караються жорстко.
+    note:
+      en: 'Weak and inseparable, so no ge- in the participle: hat bestraft. The person is the accusative object and the reason follows für plus the accusative or wegen plus the genitive: Er wurde wegen Betrugs bestraft. The bare verb strafen exists but sounds biblical or literary, and news German prefers the passive, as in the example. The noun for the act of punishing is die Bestrafung; die Strafe above is the thing imposed.'
+      ru: 'Слабый и неотделяемый, поэтому в причастии нет ge-: hat bestraft. Человек — прямое дополнение, а основание вводится через für с винительным или wegen с родительным: Er wurde wegen Betrugs bestraft. Голый глагол strafen существует, но звучит библейски или книжно, а газетный немецкий предпочитает страдательный залог, как в примере. Существительное для самого действия — die Bestrafung; die Strafe выше — то, что назначено.'
+      uk: 'Слабке і невідокремлюване, тому в дієприкметнику немає ge-: hat bestraft. Людина — прямий додаток, а підстава вводиться через für зі знахідним або wegen з родовим: Er wurde wegen Betrugs bestraft. Голе дієслово strafen існує, але звучить біблійно або книжно, а газетна німецька воліє пасив, як у прикладі. Іменник для самої дії — die Bestrafung; die Strafe вище — те, що призначено.'
+
+  - de: Gefängnis
+    ipa: "gəˈfɛŋnɪs"
+    pos: noun
+    gender: n
+    plural: "die Gefängnisse"
+    cards: recognition
+    en: the building in which people are held after a court has sentenced them
+    ru: здание, в котором содержат людей после вынесенного судом приговора
+    uk: будівля, у якій утримують людей після винесеного судом вироку
+    example_de: Er muss für zwei Jahre ins Gefängnis.
+    example_en: He has to go to prison for two years.
+    example_ru: Ему предстоит два года тюрьмы.
+    example_uk: На нього чекають два роки в’язниці.
+    note:
+      en: 'Built from fangen, neuter, and the plural doubles the s. The ng is one sound, ŋ, with no g spoken after it. Chunks: ins Gefängnis kommen, im Gefängnis sitzen, zu drei Jahren Gefängnis verurteilt werden. Official German calls the institution die Justizvollzugsanstalt, abbreviated JVA on every sign and in every letter, and die Haft is the state of being held rather than the place.'
+      ru: 'Образовано от fangen, средний род, во множественном s удваивается. Сочетание ng — один звук ŋ, никакого g после него не произносят. Обороты: ins Gefängnis kommen, im Gefängnis sitzen, zu drei Jahren Gefängnis verurteilt werden. Официальный немецкий зовёт учреждение die Justizvollzugsanstalt, на каждой табличке и в каждом письме сокращённо JVA, а die Haft — это состояние под стражей, а не место.'
+      uk: 'Утворене від fangen, середній рід, у множині s подвоюється. Сполука ng — один звук ŋ, жодного g після нього не вимовляють. Звороти: ins Gefängnis kommen, im Gefängnis sitzen, zu drei Jahren Gefängnis verurteilt werden. Офіційна німецька зве заклад die Justizvollzugsanstalt, на кожній табличці і в кожному листі скорочено JVA, а die Haft — це стан під вартою, а не місце.'
+
+  # --- Wen es getroffen hat ---
+  - de: Opfer
+    ipa: "ˈɔpfɐ"
+    pos: noun
+    gender: n
+    plural: "die Opfer"
+    cards: recognition
+    en: the person something bad was done to; also something valuable given up for a purpose
+    ru: тот, против кого совершено дурное; а также нечто ценное, отданное ради цели
+    uk: той, проти кого скоєно лихе; а також щось цінне, віддане заради мети
+    example_de: Das Opfer wurde sofort ins Krankenhaus gebracht.
+    example_en: The victim was taken to hospital at once.
+    example_ru: Пострадавшего сразу доставили в больницу.
+    example_uk: Потерпілого одразу доправили до лікарні.
+    note:
+      en: 'Neuter whoever it refers to, and singular and plural are spelled alike, so only the article and the verb tell them apart. The second sense is the older one and has nothing criminal about it: ein Opfer bringen is to make a sacrifice, and opfern is to give something up. Chunks: einem Betrug zum Opfer fallen, die Opfer des Unglücks, and the memorial phrase already met at B1 das Denkmal in the deck `wohnen-gebaeude-b1`: ein Denkmal für die Opfer.'
+      ru: 'Средний род, о ком бы ни шла речь, а единственное и множественное пишутся одинаково — различают их только артикль и глагол. Второе значение старше и криминального в нём нет: ein Opfer bringen — «принести жертву», opfern — «пожертвовать». Обороты: einem Betrug zum Opfer fallen, die Opfer des Unglücks, а также памятниковая формула, уже встреченная при слове das Denkmal уровня B1 из колоды `wohnen-gebaeude-b1`: ein Denkmal für die Opfer.'
+      uk: 'Середній рід, про кого б не йшлося, а однина і множина пишуться однаково — розрізняють їх лише артикль і дієслово. Друге значення давніше, і кримінального в ньому немає: ein Opfer bringen — «принести жертву», opfern — «пожертвувати». Звороти: einem Betrug zum Opfer fallen, die Opfer des Unglücks, а також пам’ятникова формула, уже зустрінута при слові das Denkmal рівня B1 з колоди `wohnen-gebaeude-b1`: ein Denkmal für die Opfer.'
+
+  - de: Tote
+    ipa: "ˈtoːtə"
+    pos: noun
+    gender: f
+    plural: "die Toten"
+    # An adjectival noun (der Tote / ein Toter / zwei Tote), so it would need an accept
+    # list if it were typed — it is not, and the note carries the declension. The card
+    # front stands in the feminine, exactly as the shipped `Kranke` entry does
+    # (koerper-medizin-b1), and for the same reason: the form the article decides
+    # cannot be graded from a meaning prompt.
+    cards: recognition
+    en: a person who has died, referred to as a person rather than described
+    ru: умерший человек, названный как лицо, а не описанный
+    uk: померла людина, названа як особа, а не описана
+    example_de: Bei dem Unfall gab es zwei Tote.
+    example_en: Two people were killed in the accident.
+    example_ru: В аварии погибли двое.
+    example_uk: В аварії загинули двоє.
+    note:
+      en: 'An adjectival noun, so the ending follows whatever article stands in front: der Tote, ein Toter, die Tote, eine Tote, die Toten, and after a number simply zwei Tote — exactly like B1 der Kranke in the deck `koerper-medizin-b1` and A2 der Angestellte in the deck `berufe-a2`. News German counts casualties with it, as in the example. Around it stand A2 tot in the deck `eigenschaften-dinge-a2` for the adjective, B1 der Tod in the deck `koerper-medizin-b1` for death itself, and A2 sterben in the deck `verben-handlungen-a2-2` for the verb.'
+      ru: 'Субстантивированное прилагательное, поэтому окончание следует за стоящим перед ним артиклем: der Tote, ein Toter, die Tote, eine Tote, die Toten, а после числительного просто zwei Tote — ровно как der Kranke уровня B1 из колоды `koerper-medizin-b1` и der Angestellte уровня A2 из колоды `berufe-a2`. Газетный немецкий считает этим словом погибших, как в примере. Рядом стоят tot уровня A2 из колоды `eigenschaften-dinge-a2` — прилагательное, der Tod уровня B1 из колоды `koerper-medizin-b1` — сама смерть, и sterben уровня A2 из колоды `verben-handlungen-a2-2` — глагол.'
+      uk: 'Субстантивований прикметник, тому закінчення йде за артиклем, що стоїть перед ним: der Tote, ein Toter, die Tote, eine Tote, die Toten, а після числівника просто zwei Tote — точно як der Kranke рівня B1 з колоди `koerper-medizin-b1` і der Angestellte рівня A2 з колоди `berufe-a2`. Газетна німецька рахує цим словом загиблих, як у прикладі. Поряд стоять tot рівня A2 з колоди `eigenschaften-dinge-a2` — прикметник, der Tod рівня B1 з колоди `koerper-medizin-b1` — сама смерть, і sterben рівня A2 з колоди `verben-handlungen-a2-2` — дієслово.'

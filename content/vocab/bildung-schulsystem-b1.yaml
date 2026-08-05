@@ -1,0 +1,529 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the education
+# field of data/goethe-b1-wortliste.txt: the institutions a German child passes
+# through from the first year of life to the last year of study, the names of the
+# branches the system splits into after year four, and the six marks a Zeugnis is
+# written in.
+# A1's `schule-arbeit` owns the school as a place and a day (Schule, Klasse,
+# Unterricht, Kurs, Prüfung, Schüler, Universität, Studium, studieren), A2's
+# `schule-faecher-a2` owns what happens inside it (Fach, Note, Zeugnis, Abitur,
+# Kindergarten, and the note there already states which end of the scale is good),
+# A2's `biografie-erfahrungen` owns die Ausbildung and der Abschluss, and B1's
+# `sprechen-lernen-b1` owns student life and its short words (Mensa, Seminar,
+# Semester, Mathe, Nachhilfe). This deck is the layer none of them names: the
+# institution on the letterhead and the mark on the sheet.
+# The Austrian and Swiss school names the Wortliste files beside these — Matura,
+# AHS, BHS, Volksschule, Primarschule, Sekundarschule, Schularbeit and their
+# siblings — are held back for the Varianten deck of wave 4; where one exists, this
+# deck's `note` names it and nothing more. The one exception is genügend, which
+# ships here because it is the Austrian half of a German pair the learner cannot
+# read a Zeugnis without.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field
+# is read off a school website, a letter from an authority and an exam text; the
+# learner who has to *say* where he went to school reaches for the A1 or A2 word
+# beside it, and that word already ships as a typed card.
+id: bildung-schulsystem-b1
+title_de: "Bildung und Schulsystem"
+title_en: "Education and the school system"
+title_ru: "Образование и школьная система"
+title_uk: "Освіта і шкільна система"
+level: B1
+entries:
+  # --- Vor der Schule ---
+  - de: Krippe
+    ipa: "ˈkʁɪpə"
+    pos: noun
+    gender: f
+    plural: "die Krippen"
+    cards: recognition
+    en: day care for children under three, before nursery age
+    ru: дневной присмотр за детьми младше трёх лет, до садовского возраста
+    uk: денний догляд за дітьми, молодшими за три роки, до садочкового віку
+    example_de: Ihre Tochter kommt mit einem Jahr in die Krippe.
+    example_en: Their daughter starts at the crèche when she is one.
+    example_ru: Их дочь пойдёт в ясли в год.
+    example_uk: Їхня донька піде в ясла в рік.
+    note:
+      en: 'The age band is what defines it: under three, so it sits below A2 der Kindergarten in the deck `schule-faecher-a2`, which begins at about three. The full compound is die Kinderkrippe and the thing parents queue for is der Krippenplatz. The word is old and its first sense is a feeding trough for animals, which is also why the Christmas scene under the tree is die Weihnachtskrippe — the same object, in a stable.'
+      ru: 'Определяет это слово возраст: до трёх лет, поэтому оно стоит ниже der Kindergarten уровня A2 из колоды `schule-faecher-a2`, который начинается примерно с трёх. Полное сложное слово — die Kinderkrippe, а то, за чем стоят в очереди родители, — der Krippenplatz. Слово старое, и первое его значение — кормушка для скота; поэтому и рождественская сцена под ёлкой называется die Weihnachtskrippe: тот же предмет, только в хлеву.'
+      uk: 'Визначає це слово вік: до трьох років, тому воно стоїть нижче за der Kindergarten рівня A2 з колоди `schule-faecher-a2`, який починається приблизно з трьох. Повне складне слово — die Kinderkrippe, а те, за чим стоять у черзі батьки, — der Krippenplatz. Слово давнє, і перше його значення — годівниця для худоби; тому й різдвяна сцена під ялинкою зветься die Weihnachtskrippe: той самий предмет, тільки у хліві.'
+
+  - de: Kindertagesstätte
+    ipa: "ˈkɪndɐˌtaːgəsʃtɛtə"
+    pos: noun
+    gender: f
+    plural: "die Kindertagesstätten"
+    cards: recognition
+    en: an institution that looks after children through the day, from the youngest up to school age
+    ru: учреждение, которое присматривает за детьми в течение дня — от самых маленьких до школьного возраста
+    uk: заклад, що доглядає дітей упродовж дня — від найменших до шкільного віку
+    example_de: Die Stadt baut im Herbst eine neue Kindertagesstätte.
+    example_en: The town is building a new day-care centre in the autumn.
+    example_ru: Осенью город строит новый детский сад полного дня.
+    example_uk: Восени місто будує новий дитячий садок повного дня.
+    note:
+      en: 'This is the official word — the one in the law, in the funding application and on the sign over the door. It is an umbrella: one Kindertagesstätte usually holds a Krippe group and a Kindergarten group in the same house, and takes the children for the whole working day rather than the morning. Since 2013 a child in Germany has a legal claim to a place from its first birthday, which is why the queue and the word both matter. Nobody says it out loud; the spoken form is Kita, next.'
+      ru: 'Это официальное слово — то, что стоит в законе, в заявке на финансирование и на табличке над дверью. Оно зонтичное: одно Kindertagesstätte обычно держит и группу Krippe, и группу Kindergarten в одном доме и берёт детей на весь рабочий день, а не на утро. С 2013 года ребёнок в Германии имеет законное право на место с первого дня рождения — потому важны и очередь, и само слово. Вслух его не произносит никто; разговорная форма — Kita, следующая запись.'
+      uk: 'Це офіційне слово — те, що стоїть у законі, у заявці на фінансування і на табличці над дверима. Воно парасолькове: одна Kindertagesstätte зазвичай тримає і групу Krippe, і групу Kindergarten в одному домі та бере дітей на цілий робочий день, а не на ранок. Від 2013 року дитина в Німеччині має законне право на місце з першого дня народження — тому важливі і черга, і саме слово. Уголос його не вимовляє ніхто; розмовна форма — Kita, наступний запис.'
+
+  - de: Kita
+    ipa: "ˈkiːta"
+    pos: noun
+    gender: f
+    plural: "die Kitas"
+    cards: recognition
+    en: the short everyday name for a day-care centre, the form every parent and every notice board uses
+    ru: короткое обиходное название детского сада полного дня — форма, которой пользуются все родители и все объявления
+    uk: коротка побутова назва дитячого садка повного дня — форма, якою послуговуються всі батьки й усі оголошення
+    example_de: Die Kita hat bis siebzehn Uhr geöffnet.
+    example_en: The day-care centre is open until five in the afternoon.
+    example_ru: Садик работает до пяти вечера.
+    example_uk: Садочок працює до п’ятої вечора.
+    note:
+      en: 'Built from the first syllables of the long form above and then treated as an ordinary word: read as two syllables, not spelled out letter by letter, and keeping the gender of its source, exactly as B1 die Uni below and B1 die Mathe in the deck `sprechen-lernen-b1` do. The plural simply adds -s. Compounds are formed on the short word and not on the long one: der Kitaplatz, die Kitagebühren, der Kitastreik. The spelling KiTa, with the second capital showing the seam, is still met on official paper.'
+      ru: 'Составлено из первых слогов длинной формы выше и дальше ведёт себя как обычное слово: читается двумя слогами, а не по буквам, и сохраняет род источника — ровно как die Uni уровня B1 ниже и die Mathe уровня B1 из колоды `sprechen-lernen-b1`. Множественное просто прибавляет -s. Сложные слова строят на коротком, а не на длинном: der Kitaplatz, die Kitagebühren, der Kitastreik. Написание KiTa, где вторая заглавная показывает шов, ещё попадается на официальной бумаге.'
+      uk: 'Складене з перших складів довгої форми вище і далі поводиться як звичайне слово: читається двома складами, а не по літерах, і зберігає рід джерела — точно як die Uni рівня B1 нижче і die Mathe рівня B1 з колоди `sprechen-lernen-b1`. Множина просто додає -s. Складні слова будують на короткому, а не на довгому: der Kitaplatz, die Kitagebühren, der Kitastreik. Написання KiTa, де друга велика літера показує шов, ще трапляється на офіційному папері.'
+
+  # --- Die Schule und ihre Zweige ---
+  - de: Grundschule
+    ipa: "ˈgʁʊntˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Grundschulen"
+    cards: recognition
+    en: the first school in Germany, which every child attends together before the system divides
+    ru: первая школа в Германии, куда все дети идут вместе, прежде чем система разделится
+    uk: перша школа в Німеччині, до якої всі діти йдуть разом, перш ніж система розділиться
+    example_de: Nach vier Jahren Grundschule wechseln die Kinder die Schule.
+    example_en: After four years of primary school the children move to another school.
+    example_ru: После четырёх лет начальной школы дети переходят в другую школу.
+    example_uk: Після чотирьох років початкової школи діти переходять до іншої школи.
+    note:
+      en: 'Years 1 to 4 in almost every Bundesland, and years 1 to 6 in Berlin and Brandenburg — school is a Land matter, so even the length differs across a border. It is the one stretch all children share, and everything below in this section is what happens when it ends: the family gets a recommendation, and the child goes on to a Hauptschule, a Realschule, a Gymnasium or a Gesamtschule. In the language of the ministries this stage is die Primarstufe, and what follows it is die Sekundarstufe below.'
+      ru: 'Классы с первого по четвёртый почти во всех федеральных землях и с первого по шестой в Берлине и Бранденбурге: школа — дело земли, так что за невидимой границей меняется даже её длина. Это единственный отрезок, который проходят все дети вместе, и всё остальное в этом разделе — то, что начинается, когда он кончается: семья получает рекомендацию, и ребёнок идёт в Hauptschule, Realschule, Gymnasium или Gesamtschule. На языке министерств эта ступень называется die Primarstufe, а следующая — die Sekundarstufe ниже.'
+      uk: 'Класи з першого по четвертий майже в усіх федеральних землях і з першого по шостий у Берліні та Бранденбурзі: школа — справа землі, тож за невидимим кордоном змінюється навіть її довжина. Це єдиний відтинок, який проходять усі діти разом, і все інше в цьому розділі — те, що починається, коли він кінчається: родина отримує рекомендацію, і дитина йде до Hauptschule, Realschule, Gymnasium або Gesamtschule. Мовою міністерств цей щабель зветься die Primarstufe, а наступний — die Sekundarstufe нижче.'
+
+  - de: Orientierungsstufe
+    ipa: "oʁi̯ɛnˈtiːʁʊŋsˌʃtuːfə"
+    pos: noun
+    gender: f
+    plural: "die Orientierungsstufen"
+    cards: recognition
+    en: years five and six treated as a trial phase, in which the choice of school branch can still be changed
+    ru: пятый и шестой классы как пробная ступень, на которой выбор школьной ветви ещё можно изменить
+    uk: п’ятий і шостий класи як пробний щабель, на якому вибір шкільної гілки ще можна змінити
+    example_de: In der Orientierungsstufe können sich die Eltern noch anders entscheiden.
+    example_en: During the orientation phase the parents can still change their minds.
+    example_ru: На ориентационной ступени родители ещё могут решить иначе.
+    example_uk: На орієнтаційному щаблі батьки ще можуть вирішити інакше.
+    note:
+      en: 'It exists because the branch is chosen at ten, which is early, and the phase is the system''s way of leaving the decision open for two more years. How it is arranged differs by Bundesland: in some the two years are taught inside the school already chosen, in others they are a separate stage that all children of the year share. Other names for the same idea are die Erprobungsstufe and die Förderstufe, so a school website may not use this word at all. The base is die Orientierung, and the stress sits on -tie-.'
+      ru: 'Ступень существует потому, что ветвь выбирают в десять лет — рано, — и эта фаза есть способ системы оставить решение открытым ещё на два года. Устройство различается по землям: где-то оба года проходят уже внутри выбранной школы, где-то это отдельная ступень, общая для всех детей года. Ту же мысль называют также die Erprobungsstufe и die Förderstufe, так что на сайте конкретной школы этого слова может не оказаться вовсе. Основа — die Orientierung, ударение на -tie-.'
+      uk: 'Щабель існує тому, що гілку обирають у десять років — рано, — і ця фаза є способом системи лишити рішення відкритим ще на два роки. Улаштування різниться за землями: десь обидва роки проходять уже всередині обраної школи, десь це окремий щабель, спільний для всіх дітей року. Ту саму думку звуть також die Erprobungsstufe і die Förderstufe, тож на сайті конкретної школи цього слова може не виявитися зовсім. Основа — die Orientierung, наголос на -tie-.'
+
+  - de: Hauptschule
+    ipa: "ˈhaʊ̯ptˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Hauptschulen"
+    cards: recognition
+    en: the shortest branch of the German secondary system, ending after year nine and leading straight into a trade
+    ru: 'самая короткая ветвь немецкой средней школы: заканчивается после девятого класса и ведёт прямо в рабочую профессию'
+    uk: 'найкоротша гілка німецької середньої школи: закінчується після дев’ятого класу і веде просто в робітничий фах'
+    example_de: Nach der Hauptschule hat er eine Lehre als Bäcker begonnen.
+    example_en: After leaving the Hauptschule he started an apprenticeship as a baker.
+    example_ru: После Hauptschule он начал ученичество на пекаря.
+    example_uk: Після Hauptschule він почав учнівство на пекаря.
+    note:
+      en: 'The Haupt- is historical rather than descriptive: it was once the school most children went to, which is exactly what it no longer is. It runs to year nine, sometimes ten, and its certificate is der Hauptschulabschluss, the minimum an employer asks for before B1 die Lehre in the deck `arbeit-beruf-b1`. Because the numbers fell, several Bundesländer have merged it with the Realschule under a new name — die Mittelschule below in Bavaria, die Oberschule, die Werkrealschule — so in much of Germany the word now names something that has closed.'
+      ru: 'Haupt- здесь историческое, а не описательное: когда-то в эту школу шло большинство детей, а сегодня как раз наоборот. Она идёт до девятого класса, иногда до десятого, а её свидетельство — der Hauptschulabschluss, тот минимум, который спрашивают перед die Lehre уровня B1 из колоды `arbeit-beruf-b1`. Из-за падения набора несколько земель слили её с Realschule под новым именем — die Mittelschule ниже в Баварии, die Oberschule, die Werkrealschule, — так что на большей части Германии слово называет теперь закрытое.'
+      uk: 'Haupt- тут історичне, а не описове: колись до цієї школи йшла більшість дітей, а сьогодні якраз навпаки. Вона йде до дев’ятого класу, іноді до десятого, а її свідоцтво — der Hauptschulabschluss, той мінімум, який питають перед die Lehre рівня B1 з колоди `arbeit-beruf-b1`. Через падіння набору кілька земель злили її з Realschule під новим ім’ям — die Mittelschule нижче в Баварії, die Oberschule, die Werkrealschule, — тож на більшій частині Німеччини слово називає тепер закрите.'
+
+  - de: Realschule
+    ipa: "ʁeˈaːlˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Realschulen"
+    cards: recognition
+    en: the middle branch of the German secondary system, ending after year ten with a certificate that opens most apprenticeships
+    ru: 'средняя ветвь немецкой средней школы: заканчивается после десятого класса аттестатом, который открывает большинство рабочих специальностей'
+    uk: 'середня гілка німецької середньої школи: закінчується після десятого класу атестатом, що відкриває більшість робітничих фахів'
+    example_de: Sie hat die Realschule mit guten Noten beendet.
+    example_en: She finished the Realschule with good marks.
+    example_ru: Она окончила Realschule с хорошими оценками.
+    example_uk: Вона закінчила Realschule з гарними оцінками.
+    note:
+      en: 'Years 5 to 10, between the Hauptschule above and the Gymnasium below. Its leaving certificate has two names for one thing, der Realschulabschluss and die Mittlere Reife, and the second is what job adverts print. With good enough marks it is not a dead end: the holder may move into the upper years of a Gymnasium or a Fachoberschule and reach an Abitur after all. The Real- comes from the old contrast between practical subjects and the Latin and Greek of the Gymnasium.'
+      ru: 'Классы с пятого по десятый, между Hauptschule выше и Gymnasium ниже. У выпускного свидетельства два имени на одну вещь — der Realschulabschluss и die Mittlere Reife, — и в объявлениях о работе печатают второе. При достаточно хороших оценках это не тупик: обладатель может перейти в старшие классы гимназии или в Fachoberschule и всё-таки дойти до Abitur. Real- идёт от старого противопоставления практических предметов латыни и греческому гимназии.'
+      uk: 'Класи з п’ятого по десятий, між Hauptschule вище і Gymnasium нижче. Випускне свідоцтво має два імені на одну річ — der Realschulabschluss і die Mittlere Reife, — і в оголошеннях про роботу друкують друге. За досить добрих оцінок це не глухий кут: власник може перейти до старших класів гімназії або до Fachoberschule і таки дійти до Abitur. Real- іде від давнього протиставлення практичних предметів латині та грецькій гімназії.'
+
+  - de: Gymnasium
+    ipa: "gʏmˈnaːzi̯ʊm"
+    pos: noun
+    gender: n
+    plural: "die Gymnasien"
+    cards: recognition
+    en: the academic branch of the German secondary system, the one that ends with the examination a university asks for
+    ru: академическая ветвь немецкой средней школы — та, что заканчивается экзаменом, которого требует университет
+    uk: академічна гілка німецької середньої школи — та, що закінчується іспитом, якого вимагає університет
+    example_de: Auf dem Gymnasium lernt man mindestens zwei Fremdsprachen.
+    example_en: At a Gymnasium you learn at least two foreign languages.
+    example_ru: В гимназии учат минимум два иностранных языка.
+    example_uk: У гімназії вчать щонайменше дві іноземні мови.
+    note:
+      en: 'Neuter, and the Latin plural ends in -ien: ein Gymnasium, zwei Gymnasien. It runs from year 5 to year 12 or 13 — which of the two has been argued about for twenty years under the names G8 and G9 — and it ends with A2 das Abitur in the deck `schule-faecher-a2`, clipped to das Abi in speech. Do not read it as the English gymnasium: a hall for sport is die Turnhalle or die Sporthalle, and nothing about this word involves exercise. The preposition is auf or in: auf das Gymnasium gehen.'
+      ru: 'Средний род, латинское множественное на -ien: ein Gymnasium, zwei Gymnasien. Идёт с пятого по двенадцатый или тринадцатый класс — о том, какой из двух, спорят двадцать лет под названиями G8 и G9, — и заканчивается словом das Abitur уровня A2 из колоды `schule-faecher-a2`, в речи сокращаемым до das Abi. Не читайте слово по-английски: зал для спорта — die Turnhalle или die Sporthalle, и к физкультуре это слово отношения не имеет. Предлог — auf или in: auf das Gymnasium gehen.'
+      uk: 'Середній рід, латинська множина на -ien: ein Gymnasium, zwei Gymnasien. Іде з п’ятого по дванадцятий або тринадцятий клас — про те, який із двох, сперечаються двадцять років під назвами G8 і G9, — і закінчується словом das Abitur рівня A2 з колоди `schule-faecher-a2`, у мовленні скорочуваним до das Abi. Не читайте слово по-англійськи: зала для спорту — die Turnhalle або die Sporthalle, і до фізкультури це слово стосунку не має. Прийменник — auf або in: auf das Gymnasium gehen.'
+
+  - de: Gesamtschule
+    ipa: "gəˈzamtˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Gesamtschulen"
+    cards: recognition
+    en: a secondary school that holds all three branches under one roof, so that a pupil can change track without changing school
+    ru: средняя школа, держащая под одной крышей все три ветви, так что ученик может сменить направление, не меняя школы
+    uk: середня школа, що тримає під одним дахом усі три гілки, тож учень може змінити напрям, не змінюючи школи
+    example_de: An der Gesamtschule sind alle Abschlüsse möglich.
+    example_en: Every leaving certificate can be taken at a Gesamtschule.
+    example_ru: В Gesamtschule можно получить любой аттестат.
+    example_uk: У Gesamtschule можна здобути будь-який атестат.
+    note:
+      en: 'gesamt means taken all together, and that is the whole design: the school answers the objection that the branch is chosen at ten by keeping the choice open until the pupil is ready. Two forms exist. In die integrierte Gesamtschule the year is taught together and split only by ability in single subjects; in die kooperative Gesamtschule the three branches keep their own classes and share a building and a yard. Bundesländer differ sharply in how many they run.'
+      ru: 'gesamt значит «взятый весь целиком», и в этом весь замысел: школа отвечает на возражение, что ветвь выбирают в десять лет, тем, что держит выбор открытым, пока ученик не будет готов. Форм две. В die integrierte Gesamtschule год учится вместе и делится по силам лишь в отдельных предметах; в die kooperative Gesamtschule три ветви держат свои классы и делят здание и двор. Земли резко расходятся в том, сколько таких школ у них есть.'
+      uk: 'gesamt означає «узятий увесь цілком», і в цьому весь задум: школа відповідає на заперечення, що гілку обирають у десять років, тим, що тримає вибір відкритим, доки учень не буде готовий. Форм дві. У die integrierte Gesamtschule рік учиться разом і ділиться за силами лише в окремих предметах; у die kooperative Gesamtschule три гілки тримають свої класи і ділять будівлю та подвір’я. Землі різко розходяться в тому, скільки таких шкіл у них є.'
+
+  - de: Mittelschule
+    ipa: "ˈmɪtl̩ˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Mittelschulen"
+    cards: recognition
+    en: in Bavaria, the present-day name of the school that took over the work of the Hauptschule
+    ru: в Баварии — нынешнее название школы, принявшей на себя работу Hauptschule
+    uk: у Баварії — теперішня назва школи, що перебрала роботу Hauptschule
+    example_de: In Bayern heißt diese Schule heute Mittelschule.
+    example_en: In Bavaria this school is called a Mittelschule today.
+    example_ru: В Баварии эта школа сегодня называется Mittelschule.
+    example_uk: У Баварії ця школа сьогодні зветься Mittelschule.
+    note:
+      en: 'A renaming, not a new kind of school: Bavaria has used the word since 2011 for its Hauptschulen once they offered a longer path and the Mittlere Reife. Saxony called its schools that too until 2013 and then switched to die Oberschule, so an older Saxon text uses the word in the same sense and a current one does not. Careful with Switzerland, where die Mittelschule is the school that leads to the Matura — that is, the Swiss word for what Germany calls a Gymnasium, and therefore the opposite end of the system.'
+      ru: 'Это переименование, а не новый вид школы: Бавария употребляет слово с 2011 года для своих Hauptschulen — с тех пор, как те предложили более длинный путь и Mittlere Reife. Саксония называла так свои школы до 2013 года, а потом перешла на die Oberschule, так что старый саксонский текст употребляет слово в том же значении, а нынешний — нет. Осторожно со Швейцарией: там die Mittelschule — школа, ведущая к Matura, то есть швейцарское имя того, что в Германии зовётся Gymnasium, а значит, другой конец системы.'
+      uk: 'Це перейменування, а не новий вид школи: Баварія вживає слово від 2011 року для своїх Hauptschulen — відколи ті запропонували довший шлях і Mittlere Reife. Саксонія звала так свої школи до 2013 року, а потім перейшла на die Oberschule, тож старий саксонський текст уживає слово в тому самому значенні, а теперішній — ні. Обережно зі Швейцарією: там die Mittelschule — школа, що веде до Matura, тобто швейцарське ім’я того, що в Німеччині зветься Gymnasium, а отже, інший кінець системи.'
+
+  - de: Sonderschule
+    ipa: "ˈzɔndɐˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Sonderschulen"
+    cards: recognition
+    en: a separate school for children who need more support than an ordinary class can give them
+    ru: отдельная школа для детей, которым нужна большая поддержка, чем может дать обычный класс
+    uk: окрема школа для дітей, яким потрібна більша підтримка, ніж може дати звичайний клас
+    example_de: Sein Bruder ging damals auf eine Sonderschule.
+    example_en: His brother went to a special school at that time.
+    example_ru: Его брат тогда ходил в специальную школу.
+    example_uk: Його брат тоді ходив до спеціальної школи.
+    note:
+      en: 'The word is on the Wortliste because it is what older texts and many speakers still say, but it is the older name: the term in use today is die Förderschule, or das Förderzentrum, and the shift was deliberate — Sonder- marks the child as set apart, Förder- names what the school is for. Behind both stands die Inklusion, the policy of teaching these children in ordinary schools instead, which has changed how many such schools there are from Bundesland to Bundesland.'
+      ru: 'Слово стоит в Wortliste, потому что так до сих пор говорят старые тексты и многие люди, но это старое название: сегодня в ходу die Förderschule или das Förderzentrum, и замена была сознательной — Sonder- отмечает ребёнка как отставленного в сторону, а Förder- называет то, ради чего школа существует. За обоими стоит die Inklusion — политика учить таких детей в обычных школах, из-за которой число подобных школ по землям сильно расходится.'
+      uk: 'Слово стоїть у Wortliste, бо так досі кажуть старі тексти і багато людей, але це давня назва: сьогодні в ужитку die Förderschule або das Förderzentrum, і заміна була свідомою — Sonder- позначає дитину як відставлену вбік, а Förder- називає те, задля чого школа існує. За обома стоїть die Inklusion — політика вчити таких дітей у звичайних школах, через яку кількість подібних шкіл за землями сильно розходиться.'
+
+  - de: Sekundarstufe
+    ipa: "zekʊnˈdaːɐ̯ˌʃtuːfə"
+    pos: noun
+    gender: f
+    plural: "die Sekundarstufen"
+    cards: recognition
+    en: the umbrella term for all school years after the primary school, divided into a lower and an upper half
+    ru: обобщающее название всех школьных лет после начальной школы, разделённых на нижнюю и верхнюю половины
+    uk: узагальнювальна назва всіх шкільних років після початкової школи, поділених на нижню і верхню половини
+    example_de: Sie arbeitet als Lehrerin in der Sekundarstufe I.
+    example_en: She works as a teacher in the lower secondary stage.
+    example_ru: Она работает учительницей на первой ступени средней школы.
+    example_uk: Вона працює вчителькою на першому щаблі середньої школи.
+    note:
+      en: 'A word from the ministries rather than from the playground, and it always comes with a Roman numeral. Sekundarstufe I is years 5 to 9 or 10 and covers every branch above; Sekundarstufe II is what follows — the upper years of a Gymnasium and the Berufsschule that goes with an apprenticeship. Written short as Sek I and Sek II. A German teacher is trained and hired for one Stufe, not for a subject alone, which is why the phrase turns up in every job advert for a school.'
+      ru: 'Слово скорее министерское, чем школьное, и всегда идёт с римской цифрой. Sekundarstufe I — это классы с пятого по девятый или десятый и охватывает все ветви выше; Sekundarstufe II — то, что следует за ними: старшие классы гимназии и Berufsschule при ученичестве. Коротко пишут Sek I и Sek II. Немецкого учителя готовят и берут на работу под ступень, а не под один только предмет, — потому этот оборот и стоит в каждом школьном объявлении о вакансии.'
+      uk: 'Слово радше міністерське, ніж шкільне, і завжди йде з римською цифрою. Sekundarstufe I — це класи з п’ятого по дев’ятий або десятий і охоплює всі гілки вище; Sekundarstufe II — те, що йде за ними: старші класи гімназії та Berufsschule при учнівстві. Коротко пишуть Sek I і Sek II. Німецького вчителя готують і беруть на роботу під щабель, а не під один лише предмет, — тому цей зворот і стоїть у кожному шкільному оголошенні про вакансію.'
+
+  # --- Nach der Schule ---
+  - de: Hochschule
+    ipa: "ˈhoːxˌʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Hochschulen"
+    cards: recognition
+    en: 'any institution of higher education, taken as a class: universities, colleges of applied sciences, art and music colleges alike'
+    ru: 'любое учреждение высшего образования как класс: университеты, прикладные вузы, художественные и музыкальные вузы'
+    uk: 'будь-який заклад вищої освіти як клас: університети, прикладні виші, художні та музичні виші'
+    example_de: Nach dem Abitur kann man an jeder Hochschule studieren.
+    example_en: After the Abitur you may study at any institution of higher education.
+    example_ru: После Abitur можно учиться в любом вузе.
+    example_uk: Після Abitur можна вчитися в будь-якому виші.
+    note:
+      en: 'The word to be careful with in this whole deck, because English offers a false friend: a Hochschule is not a high school. It comes after school, not instead of it, and the ticket into it is called die Hochschulreife — which is what an Abitur confers. It is the umbrella over A1 die Universität in the deck `schule-arbeit`, over die Fachhochschule below, and over die Kunsthochschule and die Musikhochschule. The teacher there is der Hochschullehrer, and the whole sector is das Hochschulwesen.'
+      ru: 'Слово, с которым во всей этой колоде надо быть осторожнее всего, потому что английский подсовывает ложного друга: Hochschule — не средняя школа. Оно идёт после школы, а не вместо неё, и пропуск туда называется die Hochschulreife — то, что даёт Abitur. Это зонт над die Universität уровня A1 из колоды `schule-arbeit`, над die Fachhochschule ниже и над die Kunsthochschule и die Musikhochschule. Преподаватель там — der Hochschullehrer, а вся отрасль — das Hochschulwesen.'
+      uk: 'Слово, з яким у всій цій колоді треба бути найобережніше, бо англійська підсовує фальшивого друга: Hochschule — не середня школа. Воно йде після школи, а не замість неї, і перепустка туди зветься die Hochschulreife — те, що дає Abitur. Це парасоля над die Universität рівня A1 з колоди `schule-arbeit`, над die Fachhochschule нижче і над die Kunsthochschule та die Musikhochschule. Викладач там — der Hochschullehrer, а вся галузь — das Hochschulwesen.'
+
+  - de: Fachhochschule
+    ipa: "ˈfaxˌhoːxʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Fachhochschulen"
+    cards: recognition
+    en: a college of higher education whose courses stay close to the trade they train for, with practice built into the degree
+    ru: высшее учебное заведение, чьи программы держатся ближе к профессии, с обязательной практикой внутри курса
+    uk: вищий навчальний заклад, чиї програми тримаються ближче до фаху, з обов’язковою практикою всередині курсу
+    example_de: An der Fachhochschule gehört ein Praktikum zum Studium.
+    example_en: At a Fachhochschule a work placement is part of the course.
+    example_ru: В Fachhochschule практика входит в программу обучения.
+    example_uk: У Fachhochschule практика входить до програми навчання.
+    note:
+      en: 'A2 das Fach in the deck `schule-faecher-a2` plus die Hochschule above, and the Fach- is the point: shorter, more applied, and with A1 das Praktikum in the deck `schule-arbeit` written into the timetable rather than left to the summer. Abbreviated FH. Many now call themselves Hochschule für angewandte Wissenschaften, or in English on their own website a University of Applied Sciences. Both kinds award a Bachelor and a Master; what a university still keeps mostly to itself is the doctorate.'
+      ru: 'das Fach уровня A2 из колоды `schule-faecher-a2` плюс die Hochschule выше, и вся суть в Fach-: короче, прикладнее, и das Praktikum уровня A1 из колоды `schule-arbeit` вписано в расписание, а не оставлено на лето. Сокращение — FH. Многие теперь зовут себя Hochschule für angewandte Wissenschaften, а на собственном сайте по-английски — University of Applied Sciences. Оба вида дают Bachelor и Master; за университетом по большей части остаётся докторская степень.'
+      uk: 'das Fach рівня A2 з колоди `schule-faecher-a2` плюс die Hochschule вище, і вся суть у Fach-: коротше, прикладніше, і das Praktikum рівня A1 з колоди `schule-arbeit` вписане в розклад, а не лишене на літо. Скорочення — FH. Багато хто тепер зве себе Hochschule für angewandte Wissenschaften, а на власному сайті англійською — University of Applied Sciences. Обидва види дають Bachelor і Master; за університетом здебільшого лишається докторський ступінь.'
+
+  - de: Uni
+    ipa: "ˈʊni"
+    pos: noun
+    gender: f
+    plural: "die Unis"
+    cards: recognition
+    en: the short everyday name for a university, the form students use among themselves
+    ru: короткое обиходное название университета — форма, которой студенты пользуются между собой
+    uk: коротка побутова назва університету — форма, якою студенти послуговуються між собою
+    example_de: Meine Schwester studiert seit zwei Jahren an der Uni.
+    example_en: My sister has been studying at university for two years.
+    example_ru: Моя сестра уже два года учится в университете.
+    example_uk: Моя сестра вже два роки навчається в університеті.
+    note:
+      en: 'A1 die Universität in the deck `schule-arbeit` is the full word and the one on the certificate, the letterhead and the sign; this is what is said, and the pattern is the same one B1 die Mathe in the deck `sprechen-lernen-b1` follows — the front of the long word, the gender of the long word, and a life of its own. The plural adds -s. Chunks: an der Uni studieren, zur Uni fahren, and the compounds are built on the short form: die Unibibliothek, das Uniklinikum.'
+      ru: 'die Universität уровня A1 из колоды `schule-arbeit` — полное слово, и оно же стоит в дипломе, на бланке и на вывеске; это же — то, что говорят, и образец здесь тот самый, которому следует die Mathe уровня B1 из колоды `sprechen-lernen-b1`: начало длинного слова, род длинного слова и дальше собственная жизнь. Множественное прибавляет -s. Обороты: an der Uni studieren, zur Uni fahren, — а сложные слова строят на короткой форме: die Unibibliothek, das Uniklinikum.'
+      uk: 'die Universität рівня A1 з колоди `schule-arbeit` — повне слово, і воно ж стоїть у дипломі, на бланку і на вивісці; це ж — те, що кажуть, і зразок тут той самий, якому слідує die Mathe рівня B1 з колоди `sprechen-lernen-b1`: початок довгого слова, рід довгого слова і далі власне життя. Множина додає -s. Звороти: an der Uni studieren, zur Uni fahren, — а складні слова будують на короткій формі: die Unibibliothek, das Uniklinikum.'
+
+  - de: Volkshochschule
+    ipa: "ˈfɔlksˌhoːxʃuːlə"
+    pos: noun
+    gender: f
+    plural: "die Volkshochschulen"
+    cards: recognition
+    en: a town-run centre of evening and weekend courses for adults, cheap and open to anybody
+    ru: городской центр вечерних и выходных курсов для взрослых — дешёвый и открытый для всех
+    uk: міський центр вечірніх і вихідних курсів для дорослих — дешевий і відкритий для всіх
+    example_de: Die Volkshochschule bietet am Abend Sprachkurse an.
+    example_en: The adult education centre offers language courses in the evening.
+    example_ru: Народный университет предлагает по вечерам языковые курсы.
+    example_uk: Народний університет пропонує вечорами мовні курси.
+    note:
+      en: 'Despite the -hochschule inside it, this is not a Hochschule and awards no degree: it is adult education, run by the town, with German, other languages, cooking, computers, painting and — for those who want it — a second chance at a school certificate. There are no entrance requirements and the fees are low, which is why many an Integrationskurs is taught at one. Abbreviated VHS, and there is one in nearly every German town of any size.'
+      ru: 'Несмотря на -hochschule внутри, это не Hochschule и никакой степени она не даёт: это образование для взрослых, содержимое городом, с немецким, другими языками, кулинарией, компьютерами, рисованием и — кому нужно — вторым шансом получить школьный аттестат. Вступительных требований нет, плата низкая, потому очень многие Integrationskurse идут именно здесь. Сокращение — VHS, и есть она почти в каждом сколько-нибудь заметном немецком городе.'
+      uk: 'Попри -hochschule всередині, це не Hochschule і жодного ступеня вона не дає: це освіта для дорослих, утримувана містом, з німецькою, іншими мовами, кулінарією, комп’ютерами, малюванням і — кому треба — другим шансом здобути шкільний атестат. Вступних вимог немає, плата низька, тому дуже багато Integrationskurse йдуть саме тут. Скорочення — VHS, і є вона майже в кожному скільки-небудь помітному німецькому місті.'
+
+  - de: Akademie
+    ipa: "akadeˈmiː"
+    pos: noun
+    gender: f
+    plural: "die Akademien"
+    cards: recognition
+    en: an institution for training or scholarship in one named field, standing outside the ordinary school and university path
+    ru: учреждение для обучения или науки в одной названной области, стоящее вне обычного школьного и университетского пути
+    uk: заклад для навчання чи науки в одній названій царині, що стоїть поза звичайним шкільним та університетським шляхом
+    example_de: Sie hat an einer Akademie für Musik studiert.
+    example_en: She studied at an academy of music.
+    example_ru: Она училась в академии музыки.
+    example_uk: Вона навчалася в академії музики.
+    note:
+      en: 'Feminine, stress on the last syllable, and the plural adds -n with that ending then read as two syllables — the pattern of every noun in -ie. Two uses live side by side. The learned society is the old one: die Akademie der Wissenschaften, a body of elected scholars that teaches nobody. The other is a training institution named for its field — die Kunstakademie, die Polizeiakademie, die Sommerakademie — and, because the word is not protected, private providers of every size put it on their door. The name says nothing about what the certificate is worth.'
+      ru: 'Женский род, ударение на последнем слоге, а множественное прибавляет -n, и окончание тогда читается двумя слогами, — образец всякого слова на -ie. Два употребления живут бок о бок. Учёное общество — старшее: die Akademie der Wissenschaften, собрание избранных учёных, которое никого не учит. Второе — учебное заведение по названию своей области: die Kunstakademie, die Polizeiakademie, die Sommerakademie, — и, поскольку слово не защищено, частные заведения любого размера вешают его на дверь. Само название ничего не говорит о том, чего стоит выданная бумага.'
+      uk: 'Жіночий рід, наголос на останньому складі, а множина додає -n, і закінчення тоді читається двома складами, — зразок усякого слова на -ie. Два вжитки живуть поруч. Учене товариство — старше: die Akademie der Wissenschaften, зібрання обраних учених, яке нікого не вчить. Другий — навчальний заклад за назвою своєї царини: die Kunstakademie, die Polizeiakademie, die Sommerakademie, — і, оскільки слово не захищене, приватні заклади будь-якого розміру вішають його на двері. Сама назва нічого не каже про те, чого варта видана папірка.'
+
+  # --- Die Notenwörter ---
+  - de: befriedigend
+    ipa: "bəˈfʁiːdɪgn̩t"
+    pos: adj
+    cards: recognition
+    en: the middle mark on the German school scale, the third of six
+    ru: средняя отметка немецкой школьной шкалы, третья из шести
+    uk: середня оцінка німецької шкільної шкали, третя із шести
+    example_de: Im Zeugnis steht in Mathe befriedigend.
+    example_en: The report says satisfactory in maths.
+    example_ru: В табеле по математике стоит befriedigend.
+    example_uk: У табелі з математики стоїть befriedigend.
+    note:
+      en: 'The German scale runs 1 to 6 and 1 is the best, as the note on A2 die Note in the deck `schule-faecher-a2` already says. Each number has an adjective beside it, and the top two are words the learner already has: 1 is sehr gut and 2 is gut, on A2 gut in the deck `bewertung-a2`. This is 3 — passed, unremarkable, and very common on a German Zeugnis. Outside school the word keeps its plain meaning of meeting a need: eine befriedigende Antwort, from the verb befriedigen.'
+      ru: 'Немецкая шкала идёт от 1 до 6, и 1 — лучшая, как уже сказано в примечании к die Note уровня A2 из колоды `schule-faecher-a2`. При каждом числе стоит прилагательное, и верхние два учащемуся уже знакомы: 1 — это sehr gut, 2 — gut, от gut уровня A2 из колоды `bewertung-a2`. Это же 3 — сдано, ничем не примечательно и в немецком табеле встречается очень часто. Вне школы слово держит своё прямое значение «удовлетворяющий»: eine befriedigende Antwort, от глагола befriedigen.'
+      uk: 'Німецька шкала йде від 1 до 6, і 1 — найкраща, як уже сказано в примітці до die Note рівня A2 з колоди `schule-faecher-a2`. При кожному числі стоїть прикметник, і верхні два учневі вже знайомі: 1 — це sehr gut, 2 — gut, від gut рівня A2 з колоди `bewertung-a2`. Це ж 3 — складено, нічим не примітно і в німецькому табелі трапляється дуже часто. Поза школою слово тримає своє пряме значення «що задовольняє»: eine befriedigende Antwort, від дієслова befriedigen.'
+
+  - de: ausreichend
+    ipa: "ˈaʊ̯sˌʁaɪ̯çn̩t"
+    pos: adj
+    cards: recognition
+    en: the lowest passing mark on the German school scale, the fourth of six
+    ru: низшая проходная отметка немецкой школьной шкалы, четвёртая из шести
+    uk: найнижча прохідна оцінка німецької шкільної шкали, четверта із шести
+    example_de: Mit ausreichend hat er die Prüfung gerade noch bestanden.
+    example_en: With a bare pass he just managed to get through the exam.
+    example_ru: С отметкой ausreichend он экзамен всё-таки сдал.
+    example_uk: З оцінкою ausreichend він іспит таки склав.
+    note:
+      en: 'Mark 4, and the line between passing and failing runs directly under it: a 4 is bestanden, a 5 is not. From the separable verb ausreichen, to be enough, and outside school the word is an ordinary adverb of quantity — ausreichend Zeit, ausreichend Platz — where speech would rather say genug. In Austria the same mark is called genügend, three entries below, which is the pair this deck exists to keep apart.'
+      ru: 'Отметка 4, и черта между «сдал» и «не сдал» проходит прямо под ней: 4 — это bestanden, 5 — уже нет. От отделяемого глагола ausreichen — «хватать», и вне школы слово работает обычным наречием количества: ausreichend Zeit, ausreichend Platz, — где живая речь скорее скажет genug. В Австрии та же отметка называется genügend, тремя записями ниже, и ради этой пары колода и старается.'
+      uk: 'Оцінка 4, і межа між «склав» і «не склав» проходить просто під нею: 4 — це bestanden, 5 — уже ні. Від відокремлюваного дієслова ausreichen — «вистачати», і поза школою слово працює звичайним прислівником кількості: ausreichend Zeit, ausreichend Platz, — де живе мовлення радше скаже genug. В Австрії та сама оцінка зветься genügend, трьома записами нижче, і заради цієї пари колода й старається.'
+
+  - de: mangelhaft
+    ipa: "ˈmaŋl̩ˌhaft"
+    pos: adj
+    cards: recognition
+    en: the first failing mark on the German school scale, the fifth of six
+    ru: первая непроходная отметка немецкой школьной шкалы, пятая из шести
+    uk: перша непрохідна оцінка німецької шкільної шкали, п’ята із шести
+    example_de: Die Note mangelhaft bedeutet, dass die Prüfung nicht bestanden ist.
+    example_en: The mark mangelhaft means the exam has not been passed.
+    example_ru: Отметка mangelhaft значит, что экзамен не сдан.
+    example_uk: Оцінка mangelhaft означає, що іспит не складено.
+    note:
+      en: 'Mark 5, and the German word says why: der Mangel is a shortage or a defect, and -haft makes an adjective out of it, so the mark reports something missing rather than something wrong. One 5 in a Zeugnis can usually be balanced by a good mark in another subject; two of them mean repeating the year, which German calls sitzenbleiben. The word is at home outside school as well, where mangelhafte Ware is faulty goods a shop must take back.'
+      ru: 'Отметка 5, и немецкое слово само говорит почему: der Mangel — нехватка или изъян, а -haft делает из него прилагательное, так что отметка сообщает о недостающем, а не об ошибочном. Одну 5 в табеле обычно можно уравновесить хорошей отметкой по другому предмету; две означают второй год, что по-немецки зовётся sitzenbleiben. Вне школы слово тоже как дома: mangelhafte Ware — бракованный товар, который магазин обязан принять обратно.'
+      uk: 'Оцінка 5, і німецьке слово саме каже чому: der Mangel — нестача або вада, а -haft робить із нього прикметник, тож оцінка повідомляє про те, чого бракує, а не про те, що хибне. Одну 5 в табелі зазвичай можна врівноважити доброю оцінкою з іншого предмета; дві означають другий рік, що німецькою зветься sitzenbleiben. Поза школою слово теж як удома: mangelhafte Ware — бракований товар, який крамниця мусить прийняти назад.'
+
+  - de: ungenügend
+    ipa: "ˈʊngəˌnyːgn̩t"
+    pos: adj
+    cards: recognition
+    en: the bottom mark on the German school scale, the sixth of six
+    ru: последняя отметка немецкой школьной шкалы, шестая из шести
+    uk: остання оцінка німецької шкільної шкали, шоста із шести
+    example_de: Ungenügend bekommt man nur sehr selten.
+    example_en: You very rarely get the bottom mark.
+    example_ru: Отметку ungenügend получают очень редко.
+    example_uk: Оцінку ungenügend отримують дуже рідко.
+    note:
+      en: 'Mark 6, the end of the scale, given when nothing at all could be credited — rare in practice, and heavy when it appears. Read the word literally, not sufficing, and then read the next entry carefully: genügend is not its opposite in the German system, because Germany does not use genügend as a mark at all. Its opposite here is ausreichend above, which is mark 4. The prefix un- is stressed, as it is in every un- adjective.'
+      ru: 'Отметка 6, конец шкалы; её ставят, когда зачесть нечего вовсе, — на практике редко, и появление её тяжело. Читайте слово буквально: «недостаточный», — а потом внимательно прочтите следующую запись: genügend в немецкой системе ему не противоположно, потому что как отметка genügend в Германии не употребляется вовсе. Противоположность здесь — ausreichend выше, то есть отметка 4. Приставка un- под ударением, как во всяком прилагательном на un-.'
+      uk: 'Оцінка 6, кінець шкали; її ставлять, коли зарахувати нема чого зовсім, — на практиці рідко, і поява її важка. Читайте слово буквально: «недостатній», — а потім уважно прочитайте наступний запис: genügend у німецькій системі йому не протилежне, бо як оцінка genügend у Німеччині не вживається зовсім. Протилежність тут — ausreichend вище, тобто оцінка 4. Префікс un- під наголосом, як у кожного прикметника на un-.'
+
+  - de: genügend
+    ipa: "gəˈnyːgn̩t"
+    pos: adj
+    cards: recognition
+    en: in Austria, the lowest passing mark, the fourth of five; in Germany, an ordinary word meaning enough
+    ru: в Австрии — низшая проходная отметка, четвёртая из пяти; в Германии — обычное слово со значением «достаточно»
+    uk: в Австрії — найнижча прохідна оцінка, четверта з п’яти; у Німеччині — звичайне слово зі значенням «достатньо»
+    example_de: In Österreich bedeutet genügend, dass man bestanden hat.
+    example_en: In Austria genügend means you have passed.
+    example_ru: В Австрии genügend значит, что экзамен сдан.
+    example_uk: В Австрії genügend означає, що іспит складено.
+    note:
+      en: 'Austria marks on five steps, not six, and this is the fourth of them — the last one that passes, so it does the job German does with ausreichend above. That crossing is the trap: a German reader who takes genügend for the good half of ungenügend has it backwards, since the German pair is ausreichend against mangelhaft, and genügend is simply not a German mark. It was one in older German schools, which is why it still looks half-familiar. As a plain word it lives on everywhere: genügend Zeit, genügend Geld, from the verb genügen.'
+      ru: 'Австрия ставит отметки по пяти ступеням, а не по шести, и это четвёртая из них — последняя проходная, то есть она делает работу немецкого ausreichend выше. В этом переходе и ловушка: немецкий читатель, принимающий genügend за хорошую половину пары к ungenügend, понимает наоборот, потому что немецкая пара — ausreichend против mangelhaft, а genügend немецкой отметкой попросту не является. Ею оно было в старой немецкой школе — оттого и кажется наполовину знакомым. Как обычное слово оно живо повсюду: genügend Zeit, genügend Geld, от глагола genügen.'
+      uk: 'Австрія ставить оцінки за п’ятьма щаблями, а не за шістьма, і це четвертий із них — останній прохідний, тобто він виконує роботу німецького ausreichend вище. У цьому переході й пастка: німецький читач, який бере genügend за добру половину пари до ungenügend, розуміє навпаки, бо німецька пара — ausreichend проти mangelhaft, а genügend німецькою оцінкою просто не є. Нею воно було в старій німецькій школі — тому й здається наполовину знайомим. Як звичайне слово воно живе всюди: genügend Zeit, genügend Geld, від дієслова genügen.'
+
+  # --- Die Zahl als Note ---
+  - de: Eins
+    ipa: "ˈaɪ̯ns"
+    pos: noun
+    gender: f
+    plural: "die Einsen"
+    cards: recognition
+    en: the number one written as a noun, and with it the best mark a German school gives
+    ru: число «один», записанное существительным, а вместе с ним — лучшая отметка немецкой школы
+    uk: число «один», записане іменником, а разом із ним — найкраща оцінка німецької школи
+    example_de: Für eine Eins muss man fast alles richtig machen.
+    example_en: To get a one you have to get almost everything right.
+    example_ru: Чтобы получить единицу, нужно сделать почти всё правильно.
+    example_uk: Щоб отримати одиницю, треба зробити майже все правильно.
+    note:
+      en: 'A German numeral becomes a noun by taking a capital letter and the feminine article, and it then declines like any other noun: die Eins, der Eins, die Einsen. That rule covers this whole section. This one is mark 1, the adjective for it is sehr gut, and it is the best there is — the direction that surprises anybody whose own school counted upwards. Chunks: eine Eins schreiben, eine Eins bekommen, eine Eins in Mathe. Away from school the same noun is the figure on a door and the number 1 tram: mit der Eins fahren.'
+      ru: 'Немецкое числительное становится существительным, взяв заглавную букву и артикль женского рода, и дальше склоняется как всякое другое: die Eins, der Eins, die Einsen. Это правило покрывает весь настоящий раздел. Здесь это отметка 1, прилагательное к ней — sehr gut, и лучше не бывает: направление шкалы удивляет всякого, у кого в школе считали вверх. Обороты: eine Eins schreiben, eine Eins bekommen, eine Eins in Mathe. Вне школы то же существительное — цифра на двери и первый трамвай: mit der Eins fahren.'
+      uk: 'Німецький числівник стає іменником, узявши велику літеру й артикль жіночого роду, і далі відмінюється як усякий інший: die Eins, der Eins, die Einsen. Це правило покриває весь цей розділ. Тут це оцінка 1, прикметник до неї — sehr gut, і краще не буває: напрям шкали дивує кожного, у кого в школі рахували вгору. Звороти: eine Eins schreiben, eine Eins bekommen, eine Eins in Mathe. Поза школою той самий іменник — цифра на дверях і перший трамвай: mit der Eins fahren.'
+
+  - de: Zwei
+    ipa: "ˈtsvaɪ̯"
+    pos: noun
+    gender: f
+    plural: "die Zweien"
+    cards: recognition
+    en: the number two written as a noun, and with it the second-best mark a German school gives
+    ru: число «два», записанное существительным, а вместе с ним — вторая по качеству отметка немецкой школы
+    uk: число «два», записане іменником, а разом із ним — друга за якістю оцінка німецької школи
+    example_de: Sie hat in Deutsch eine Zwei bekommen.
+    example_en: She got a two in German.
+    example_ru: По немецкому она получила двойку.
+    example_uk: З німецької вона отримала двійку.
+    note:
+      en: 'Mark 2, and the adjective for it is gut. The plural is die Zweien, and the same -en runs through Dreien, Vieren, Fünfen, Sechsen — only die Einsen above takes -sen. In the south of Germany and in Austria a mark is often said with a different noun altogether, der Einser, der Zweier, der Dreier, so a Munich pupil reports einen Zweier where a Hamburg one reports eine Zwei. Both mean the same sheet of paper.'
+      ru: 'Отметка 2, прилагательное к ней — gut. Множественное — die Zweien, и то же -en идёт через Dreien, Vieren, Fünfen, Sechsen; только die Einsen выше берёт -sen. На юге Германии и в Австрии отметку часто называют совсем другим существительным — der Einser, der Zweier, der Dreier, — так что мюнхенский школьник сообщит einen Zweier там, где гамбургский скажет eine Zwei. Речь об одном и том же листке.'
+      uk: 'Оцінка 2, прикметник до неї — gut. Множина — die Zweien, і те саме -en іде через Dreien, Vieren, Fünfen, Sechsen; лише die Einsen вище бере -sen. На півдні Німеччини та в Австрії оцінку часто звуть зовсім іншим іменником — der Einser, der Zweier, der Dreier, — тож мюнхенський школяр повідомить einen Zweier там, де гамбурзький скаже eine Zwei. Ідеться про той самий аркуш.'
+
+  - de: Drei
+    ipa: "ˈdʁaɪ̯"
+    pos: noun
+    gender: f
+    plural: "die Dreien"
+    cards: recognition
+    en: the number three written as a noun, and with it the middle mark a German school gives
+    ru: число «три», записанное существительным, а вместе с ним — средняя отметка немецкой школы
+    uk: число «три», записане іменником, а разом із ним — середня оцінка німецької школи
+    example_de: Eine Drei liegt genau in der Mitte.
+    example_en: A three sits exactly in the middle.
+    example_ru: Тройка стоит ровно посередине.
+    example_uk: Трійка стоїть точно посередині.
+    note:
+      en: 'Mark 3, and the adjective for it is befriedigend above. It is an everyday mark on a German report and nobody''s problem: a Zeugnis full of Dreien passes every year and closes no door by itself. Where a Russian or Ukrainian reader has to be careful is the shape of the scale rather than this number — three of six is the middle, while three of five would already be the weak half.'
+      ru: 'Отметка 3, прилагательное к ней — befriedigend выше. В немецком табеле это будничная отметка, и ничьей бедой она не является: табель, полный Dreien, проходит каждый год и сам по себе ни одной двери не закрывает. Осторожным русскому или украинскому читателю надо быть не с самим числом, а с формой шкалы: три из шести — середина, тогда как три из пяти были бы уже слабой половиной.'
+      uk: 'Оцінка 3, прикметник до неї — befriedigend вище. У німецькому табелі це буденна оцінка, і нічиєю бідою вона не є: табель, повний Dreien, проходить щороку і сам собою жодних дверей не зачиняє. Обережним російському чи українському читачеві треба бути не із самим числом, а з формою шкали: три із шести — середина, тоді як три з п’яти були б уже слабкою половиною.'
+
+  - de: Vier
+    ipa: "ˈfiːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Vieren"
+    cards: recognition
+    en: the number four written as a noun, and with it the lowest passing mark a German school gives
+    ru: число «четыре», записанное существительным, а вместе с ним — низшая проходная отметка немецкой школы
+    uk: число «чотири», записане іменником, а разом із ним — найнижча прохідна оцінка німецької школи
+    example_de: Mit einer Vier hat man die Klasse gerade noch geschafft.
+    example_en: With a four you have only just got through the year.
+    example_ru: С четвёркой класс закончен едва-едва.
+    example_uk: З четвіркою клас закінчено ледь-ледь.
+    note:
+      en: 'Mark 4, the adjective ausreichend above, and the last one that passes. German speech sharpens all these marks with plus and minus, and they are written on the paper as well: eine Zwei plus, eine Drei minus, eine Vier minus — the last of which is as close to failing as a pass gets. The numeral is one vowel away from the preposition für, so listen for the article: eine Vier is a mark, für is not.'
+      ru: 'Отметка 4, прилагательное к ней — ausreichend выше, и это последняя проходная. Немецкая речь уточняет все эти отметки плюсом и минусом, и на бумаге это тоже пишут: eine Zwei plus, eine Drei minus, eine Vier minus, — последняя из которых к «не сдал» уже вплотную. Числительное отличается от предлога für одним гласным, так что ориентируйтесь на артикль: eine Vier — отметка, für — нет.'
+      uk: 'Оцінка 4, прикметник до неї — ausreichend вище, і це остання прохідна. Німецьке мовлення уточнює всі ці оцінки плюсом і мінусом, і на папері це теж пишуть: eine Zwei plus, eine Drei minus, eine Vier minus, — остання з яких до «не склав» уже впритул. Числівник відрізняється від прийменника für одним голосним, тож орієнтуйтеся на артикль: eine Vier — оцінка, für — ні.'
+
+  - de: Fünf
+    ipa: "ˈfʏnf"
+    pos: noun
+    gender: f
+    plural: "die Fünfen"
+    cards: recognition
+    en: the number five written as a noun, and with it the first failing mark a German school gives
+    ru: число «пять», записанное существительным, а вместе с ним — первая непроходная отметка немецкой школы
+    uk: число «п’ять», записане іменником, а разом із ним — перша непрохідна оцінка німецької школи
+    example_de: Eine Fünf im Zeugnis macht den Eltern Sorgen.
+    example_en: A five on the report worries the parents.
+    example_ru: Пятёрка в табеле тревожит родителей.
+    example_uk: П’ятірка в табелі непокоїть батьків.
+    note:
+      en: 'Mark 5, the adjective mangelhaft above, and the number that has to be unlearned first by anybody whose own school gave five for the best work: here it means the subject was failed. Two Fünfen in one Zeugnis normally mean the year is repeated. One idiom uses the noun with no school in sight — fünfe gerade sein lassen, to let something pass rather than insist on it, where the numeral is written small.'
+      ru: 'Отметка 5, прилагательное к ней — mangelhaft выше, и это то число, которое первым приходится переучивать всякому, у кого в школе пятёрку ставили за лучшую работу: здесь она значит, что предмет провален. Две Fünfen в одном табеле обычно означают второй год. Один оборот берёт это существительное без всякой школы: fünfe gerade sein lassen — «закрыть на что-то глаза», и числительное там пишется с маленькой буквы.'
+      uk: 'Оцінка 5, прикметник до неї — mangelhaft вище, і це те число, яке першим доводиться переучувати кожному, у кого в школі п’ятірку ставили за найкращу роботу: тут вона означає, що предмет провалено. Дві Fünfen в одному табелі зазвичай означають другий рік. Один зворот бере цей іменник без жодної школи: fünfe gerade sein lassen — «заплющити на щось очі», і числівник там пишеться з малої літери.'
+
+  - de: Sechs
+    ipa: "ˈzɛks"
+    pos: noun
+    gender: f
+    plural: "die Sechsen"
+    cards: recognition
+    en: the number six written as a noun, and with it the worst mark a German school gives
+    ru: число «шесть», записанное существительным, а вместе с ним — худшая отметка немецкой школы
+    uk: число «шість», записане іменником, а разом із ним — найгірша оцінка німецької школи
+    example_de: Eine Sechs sieht man in einem deutschen Zeugnis fast nie.
+    example_en: You almost never see a six on a German report.
+    example_ru: Шестёрку в немецком табеле почти не встретишь.
+    example_uk: Шістку в німецькому табелі майже не побачиш.
+    note:
+      en: 'Mark 6, the adjective ungenügend above, and the bottom of the German scale. Switzerland runs the same six numbers in the opposite direction: there 6 is the best mark and 4 the lowest pass, so a Swiss Zeugnis full of Sechsen is excellent and reads as a disaster to a German eye. That reversal is worth remembering once, here, and it holds for the whole section above. Note the spelling, chs read as ks, and the plural die Sechsen.'
+      ru: 'Отметка 6, прилагательное к ней — ungenügend выше, и это дно немецкой шкалы. Швейцария пускает те же шесть чисел в обратную сторону: там 6 — лучшая отметка, а 4 — низшая проходная, так что швейцарский табель, полный Sechsen, отличен, а немецкому глазу читается как катастрофа. Эту перемену стоит запомнить один раз, здесь, и она держится для всего раздела выше. Обратите внимание на написание: chs читается как ks, а множественное — die Sechsen.'
+      uk: 'Оцінка 6, прикметник до неї — ungenügend вище, і це дно німецької шкали. Швейцарія пускає ті самі шість чисел у зворотний бік: там 6 — найкраща оцінка, а 4 — найнижча прохідна, тож швейцарський табель, повний Sechsen, відмінний, а німецькому оку читається як катастрофа. Цю переміну варто запам’ятати один раз, тут, і вона тримається для всього розділу вище. Зверніть увагу на написання: chs читається як ks, а множина — die Sechsen.'
