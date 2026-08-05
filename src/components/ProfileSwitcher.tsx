@@ -30,7 +30,50 @@ const UI = {
   add: { en: 'Add', ru: 'Добавить' },
   newProfile: { en: 'New profile', ru: 'Новый профиль' },
   account: { en: 'Account', ru: 'Аккаунт' },
+  syncedAgo: { en: 'Synced {when}', ru: 'Синхронизировано {when}' },
+  justNow: { en: 'just now', ru: 'только что' },
+  minAgo: { en: '{n} min ago', ru: '{n} мин назад' },
+  hoursAgo: { en: '{n} h ago', ru: '{n} ч назад' },
+  daysAgo: { en: '{n} d ago', ru: '{n} дн назад' },
+  syncPending: {
+    en: 'Awaiting approval — everything stays on this device',
+    ru: 'Ожидает одобрения — всё хранится на этом устройстве',
+  },
+  syncBlocked: { en: 'Account blocked — not syncing', ru: 'Аккаунт заблокирован — без синхронизации' },
+  syncUnbound: { en: 'Cloud sync not connected', ru: 'Облачная синхронизация не подключена' },
+  syncOtherProfile: { en: 'Syncing a different profile', ru: 'Синхронизируется другой профиль' },
+  syncNever: { en: 'Not synced yet', ru: 'Ещё не синхронизировано' },
 } as const satisfies Record<string, { en: string; ru: string }>;
+
+/**
+ * The sync state the profile menu can show without a single network request
+ * (ADR 0004e): pending/blocked come from the session the menu already fetches
+ * on open, everything else from the locally persisted sync state. No error
+ * variant on purpose — outcomes are not persisted, and a *stale* "synced N ago"
+ * is the honest outage signal ADR 0004 wants the learner to see.
+ */
+export type SyncMenuStatus =
+  | { kind: 'hidden' }
+  | { kind: 'pending' }
+  | { kind: 'blocked' }
+  | { kind: 'unbound' }
+  | { kind: 'other-profile' }
+  | { kind: 'never' }
+  | { kind: 'synced'; at: number };
+
+export function syncMenuStatus(
+  session: RemoteSession | null,
+  state: { profileId?: string; at?: number },
+  activeProfileId: string,
+): SyncMenuStatus {
+  if (!session?.signedIn || !session.user) return { kind: 'hidden' };
+  if (session.user.status === 'pending') return { kind: 'pending' };
+  if (session.user.status === 'blocked') return { kind: 'blocked' };
+  if (!state.profileId) return { kind: 'unbound' };
+  if (state.profileId !== activeProfileId) return { kind: 'other-profile' };
+  if (!state.at) return { kind: 'never' };
+  return { kind: 'synced', at: state.at };
+}
 
 /**
  * The one cloud pull per page load.
@@ -64,6 +107,10 @@ export default function ProfileSwitcher() {
   const [adding, setAdding] = useState(false);
   const [newLabel, setNewLabel] = useState('');
   const [session, setSession] = useState<RemoteSession | null>(null);
+  // Snapshot per open: localStorage and the clock are impure, so both are read
+  // in the effect below, never during render.
+  const [menuSync, setMenuSync] = useState<SyncMenuStatus>({ kind: 'hidden' });
+  const [now, setNow] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,6 +128,17 @@ export default function ProfileSwitcher() {
     if (open && !session) void getSession().then(setSession);
   }, [open, session]);
 
+  // queueMicrotask defers the setState out of the effect body — the same idiom
+  // the Fortschritt panel uses for its saved-view restore. No reset on close:
+  // the whole menu unmounts, and reopening recomputes.
+  useEffect(() => {
+    if (!open) return;
+    queueMicrotask(() => {
+      setNow(Date.now());
+      setMenuSync(syncMenuStatus(session, readSyncState(), activeId));
+    });
+  }, [open, session, activeId]);
+
   useEffect(() => {
     if (!open) return;
     function onDown(e: MouseEvent) {
@@ -91,6 +149,27 @@ export default function ProfileSwitcher() {
   }, [open]);
 
   const active = profiles.find((p) => p.id === activeId);
+
+  function relWhen(at: number): string {
+    const mins = Math.floor((now - at) / 60_000);
+    if (mins < 1) return pick(lang, UI.justNow);
+    if (mins < 60) return pick(lang, UI.minAgo).replace('{n}', String(mins));
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return pick(lang, UI.hoursAgo).replace('{n}', String(hours));
+    return pick(lang, UI.daysAgo).replace('{n}', String(Math.floor(hours / 24)));
+  }
+
+  function syncStatusText(status: SyncMenuStatus): string | null {
+    switch (status.kind) {
+      case 'pending': return pick(lang, UI.syncPending);
+      case 'blocked': return pick(lang, UI.syncBlocked);
+      case 'unbound': return pick(lang, UI.syncUnbound);
+      case 'other-profile': return pick(lang, UI.syncOtherProfile);
+      case 'never': return pick(lang, UI.syncNever);
+      case 'synced': return pick(lang, UI.syncedAgo).replace('{when}', relWhen(status.at));
+      default: return null;
+    }
+  }
 
   function handleCreate() {
     const label = newLabel.trim();
@@ -169,6 +248,11 @@ export default function ProfileSwitcher() {
                 <span className="text-stone-600 dark:text-stone-300">{t('account.signIn', uiLang)}</span>
               )}
             </a>
+            {menuSync.kind !== 'hidden' && (
+              <p className="px-2 pb-1 text-[11px] leading-snug text-stone-400">
+                {syncStatusText(menuSync)}
+              </p>
+            )}
           </div>
 
           <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
