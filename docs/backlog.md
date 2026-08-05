@@ -271,14 +271,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   Referenz back into the topics — which exists nowhere else and is the cheaper half. Same pass
   regroups `src/pages/referenz/index.astro` (a flat grid of eight equal cards) by function. Where an
   editorial relation has no data behind it, add the datum, not a link.
-- **P24-6 · Four answer inputs let the phone rewrite German, and one suppresses nothing** —
-  `src/components/srs/FlashcardSession.tsx:427`, `:439`–`:442` carries the full set (`lang="de"`,
-  `autoCapitalize`, `autoCorrect`, `autoComplete`, `spellCheck`). `Cloze.tsx:69`, `Listen.tsx:124`,
-  `Translate.tsx:173` and `TableFill.tsx:84` each carry four of the five and **omit `autoCorrect`**;
-  `FormFill.tsx:39` additionally needs `lang` and `autoCapitalize`. Copy the flashcard set to all
-  five. `Write.tsx:235` suppresses nothing: give it autocorrect suppression, but treat **spellcheck
-  as a separate call** — `write` is open production under an advisory-only assist boundary, so
-  whether the browser may flag spelling is a policy question. Trivial, and the first mobile fix.
 - **P24-7 · The seven-link nav horizontally scrolls on every phone** — `src/layouts/Base.astro:103`
   is one `overflow-x-auto whitespace-nowrap` row that only becomes `sm:overflow-visible
   sm:flex-wrap` at 640 px, over the seven links at `:23`–`:31`, so below 640 px the primary
@@ -291,14 +283,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   Tippen mode the production card spends most of the viewport on padding — the eight-key insert
   bar wraps into two centred rows below a narrow input, and the whole card face fits in half the
   screen it occupies.
-- **P24-10 · The flashcard rating buttons land under Safari's bottom bar on iPhone** — after a
-  typed answer is revealed, a long card back (example sentence, translations, note) pushes the
-  Nochmal/Gut row below the fold, where Safari's chrome covers it (owner screenshot 2026-08-04,
-  the `die Bewohnerin` card): the learner who just answered correctly cannot see how to proceed.
-  The fix direction is a rating row that is always visible — sticky above
-  `env(safe-area-inset-bottom)`, or scrolled into view on reveal — in
-  `src/components/srs/FlashcardSession.tsx`. First step: reproduce at 390×844 with a long-note
-  card, then decide sticky vs scroll in the same pass as P24-7's audit.
 - **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
   `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
   137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and
@@ -341,6 +325,12 @@ These require a measured learning or usability need. They do not block the curri
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
 [the 2026-07-26 archive](archive/2026-07-backlog-full.md).
 
+- **P24-6 · P24-10 (2026-08-05):** the mobile quick wins — `autoCorrect="off"` on all five exercise
+  inputs (plus `lang`/`autoCapitalize` on FormFill), `Write`'s textarea suppresses autocorrect while
+  **spellcheck stays on deliberately** (advisory-only assist boundary; flagged in the code); and the
+  flashcard rating row is sticky above `env(safe-area-inset-bottom)` on phones — sticky over
+  scroll-into-view because it also holds when the card back is taller than one viewport. Verified at
+  390×844 with a long-note card.
 - **P24-1 (2026-08-05):** the first-run gate offers optional sign-in below the first-class local
   path — providers from the session, absent when the deployment has none and in the desktop app;
   OAuth display name prefills the editable name field and nothing more; pending stated with the

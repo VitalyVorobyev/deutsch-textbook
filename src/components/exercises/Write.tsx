@@ -232,9 +232,13 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
   return (
     <div className="mt-4">
       <label htmlFor={id} className="text-sm font-semibold">{label}</label>
+      {/* Autocorrect must not rewrite free German production; spellCheck stays ON
+          deliberately — write is advisory-only assist territory, and whether the
+          browser may flag spelling is a policy call (P24-6), not a device bug. */}
       <textarea
         id={id}
         lang="de"
+        autoCorrect="off"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         disabled={disabled}
