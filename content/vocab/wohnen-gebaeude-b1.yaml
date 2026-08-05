@@ -1,0 +1,732 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the housing-and-
+# building field of data/goethe-b1-wortliste.txt: the shell a building has from
+# outside, the names German gives the place a person lives in, the way up through
+# the floors, and what a Wohnungsanzeige says about all of it.
+# A1's `wohnen` owns the flat a learner describes (Wohnung, Haus, Zimmer, Küche,
+# Bad, Balkon, Flur, Fenster, Tür, Schrank, Lampe, Miete, Anzeige), A1's
+# `haushalt-geraete` owns what is plumbed and wired into it (Herd, Heizung, Strom,
+# Licht, vermieten), A2's `wohnen-umzug` owns the move and the fabric of the
+# building (Möbel, Teppich, Wand, Treppe, Keller, Aufzug, Erdgeschoss, Vermieter),
+# and B1's `leben-veraendern` owns the tenancy as a life event (Mieter). This deck
+# is the layer between and above them: the German of an estate agent's listing, a
+# town guide and a floor plan, which those four never name.
+# Every entry is `cards: recognition` by the frozen wave-2c tiering. This field is
+# read off an advert, a sign and a plan; the learner who has to *say* any of it
+# reaches for the A1 or A2 word beside it, and that word already ships as a typed
+# card. The Austrian and Swiss siblings of several headwords here (Stiege,
+# Stiegenhaus, Fauteuil) are held back for the Varianten deck of wave 4; where one
+# exists, this deck's `note` names it and nothing more.
+id: wohnen-gebaeude-b1
+title_de: "Wohnen und Gebäude"
+title_en: "Housing and buildings"
+title_ru: "Жильё и здания"
+title_uk: "Житло та будівлі"
+level: B1
+entries:
+  # --- Das Gebäude von außen ---
+  - de: Gebäude
+    ipa: "gəˈbɔʏ̯də"
+    pos: noun
+    gender: n
+    plural: "die Gebäude"
+    cards: recognition
+    en: a finished roofed structure of any purpose, big enough to be named on a map or a sign
+    ru: законченная постройка под крышей любого назначения, достаточно крупная, чтобы её отметили на карте или на табличке
+    uk: завершена споруда під дахом будь-якого призначення, достатньо велика, щоб її позначили на карті або на табличці
+    example_de: Das Amt liegt im nächsten Gebäude links.
+    example_en: The office is in the next building on the left.
+    example_ru: Ведомство находится в следующем здании слева.
+    example_uk: Відомство міститься в наступній будівлі ліворуч.
+    note:
+      en: 'Neuter, and singular and plural are spelled alike. This is the neutral, official word for a structure of any purpose: A1 das Haus is where somebody lives, while this one covers the school, the town hall and the warehouse just as easily, which is why signs, floor plans and letters reach for it. Beside it der Bau is the building as an activity or a site, so a Gebäude is what is left standing when the Bau is over. The family runs das Hauptgebäude, das Nebengebäude, der Gebäudeteil.'
+      ru: 'Средний род, единственное и множественное пишутся одинаково. Это нейтральное, официальное слово для постройки любого назначения: das Haus уровня A1 — там, где живут, а это одинаково годится и для школы, и для ратуши, и для склада, поэтому его выбирают таблички, планы этажей и письма. Рядом der Bau — стройка как действие или площадка, так что Gebäude — то, что остаётся стоять, когда Bau закончен. Семейство слов: das Hauptgebäude, das Nebengebäude, der Gebäudeteil.'
+      uk: 'Середній рід, однина і множина пишуться однаково. Це нейтральне, офіційне слово для споруди будь-якого призначення: das Haus рівня A1 — там, де живуть, а це однаково годиться і для школи, і для ратуші, і для складу, тому його обирають таблички, плани поверхів і листи. Поряд der Bau — будівництво як дія або майданчик, тож Gebäude — те, що лишається стояти, коли Bau скінчено. Родина слів: das Hauptgebäude, das Nebengebäude, der Gebäudeteil.'
+
+  - de: Bau
+    ipa: "ˈbaʊ̯"
+    pos: noun
+    gender: m
+    plural: "die Bauten"
+    cards: recognition
+    en: the work of putting a structure up, and the site where that work is going on
+    ru: возведение постройки как работа и площадка, на которой эта работа идёт
+    uk: зведення споруди як робота і майданчик, на якому ця робота триває
+    example_de: Der Bau der neuen Schule dauert noch zwei Jahre.
+    example_en: The construction of the new school will take another two years.
+    example_ru: Строительство новой школы продлится ещё два года.
+    example_uk: Будівництво нової школи триватиме ще два роки.
+    note:
+      en: 'Masculine, and in its everyday sense uncountable: it names the process, so no plural belongs to it there. The form die Bauten does exist, but it means notable structures in an architectural or historical text, which is a different job. A builder says of himself Ich arbeite auf dem Bau, and A2 die Baustelle is that same site seen as a place you drive past. Keep it apart from das Gebäude above, which is the finished result. A zoological sense survives in der Fuchsbau, a fox''s earth.'
+      ru: 'Мужской род, и в обиходном значении слово неисчисляемое: оно называет процесс, и множественного числа у него в этом смысле нет. Форма die Bauten существует, но значит «сооружения» в архитектурном или историческом тексте — это уже другая работа. Строитель говорит о себе Ich arbeite auf dem Bau, а die Baustelle уровня A2 — та же площадка, но как место, мимо которого проезжаешь. Не смешивайте со стоящим выше das Gebäude: там готовый результат. Зоологическое значение уцелело в слове der Fuchsbau — лисья нора.'
+      uk: 'Чоловічий рід, і в побутовому значенні слово незлічуване: воно називає процес, і множини в цьому сенсі не має. Форма die Bauten існує, але означає «споруди» в архітектурному чи історичному тексті — це вже інша робота. Будівельник каже про себе Ich arbeite auf dem Bau, а die Baustelle рівня A2 — той самий майданчик, але як місце, повз яке проїжджаєш. Не змішуйте з das Gebäude вище: там готовий результат. Зоологічне значення вціліло у слові der Fuchsbau — лисяча нора.'
+
+  - de: Dach
+    ipa: "ˈdax"
+    pos: noun
+    gender: n
+    plural: "die Dächer"
+    cards: recognition
+    en: the covering over the top of a building that keeps the rain and the snow out
+    ru: покрытие над верхом здания, которое не пускает внутрь дождь и снег
+    uk: покриття над верхом будівлі, яке не пускає всередину дощ і сніг
+    example_de: Nach dem Sturm fehlten auf dem Dach mehrere Ziegel.
+    example_en: Several tiles were missing from the roof after the storm.
+    example_ru: После бури на крыше не хватало нескольких черепиц.
+    example_uk: Після бурі на даху бракувало кількох черепиць.
+    note:
+      en: 'Neuter, with an umlaut in the plural. Two chunks carry it in ordinary speech: ein Dach über dem Kopf haben, to have somewhere to live at all, and unterm Dach wohnen, to live in the top flat right under it. A flat advert sells that flat as die Dachwohnung or das Dachgeschoss, and the attic used for storage is der Dachboden. The ch after a is the back one, as in machen, not the soft ch of ich.'
+      ru: 'Средний род, во множественном умлаут. В живой речи слово держат два оборота: ein Dach über dem Kopf haben — «иметь крышу над головой» и unterm Dach wohnen — жить в самой верхней квартире, прямо под ней. В объявлении такую квартиру называют die Dachwohnung или das Dachgeschoss, а чердак под хлам — der Dachboden. ch после a здесь заднее, как в machen, а не мягкое, как в ich.'
+      uk: 'Середній рід, у множині умлаут. У живому мовленні слово тримають два звороти: ein Dach über dem Kopf haben — «мати дах над головою» і unterm Dach wohnen — жити в найвищій квартирі, просто під ним. В оголошенні таку квартиру звуть die Dachwohnung або das Dachgeschoss, а горище під мотлох — der Dachboden. ch після a тут заднє, як у machen, а не м’яке, як в ich.'
+
+  - de: Mauer
+    ipa: "ˈmaʊ̯ɐ"
+    pos: noun
+    gender: f
+    plural: "die Mauern"
+    cards: recognition
+    en: a solid outdoor wall of stone or brick standing on its own, around a property or between two of them
+    ru: сплошная наружная стена из камня или кирпича, стоящая сама по себе — вокруг участка или между двумя участками
+    uk: суцільна зовнішня стіна з каменю чи цегли, що стоїть сама по собі — навколо ділянки або між двома ділянками
+    example_de: Um den alten Garten läuft eine hohe Mauer.
+    example_en: A high wall runs around the old garden.
+    example_ru: Старый сад обнесён высокой стеной.
+    example_uk: Старий сад обнесений високим муром.
+    note:
+      en: 'German splits what English calls a wall in two, and the split is about where it stands: A2 die Wand is the surface inside a room, the one you hang a picture on, and this one is the free-standing structure outside, made of stone or brick and thick enough to walk along the top of. History fixed the word for a whole generation — die Berliner Mauer, and the verb for its fall is fiel. The trade that builds them is der Maurer, a bricklayer, one letter away and a different word.'
+      ru: 'Немецкий делит то, что по-русски называется «стеной», надвое, и делит по месту: die Wand уровня A2 — поверхность внутри комнаты, та, на которую вешают картину, а это — отдельно стоящее наружное сооружение из камня или кирпича, достаточно толстое, чтобы по нему пройти. Для целого поколения слово закрепила история: die Berliner Mauer. Ремесло, которое их кладёт, — der Maurer, каменщик: одна буква разницы и совсем другое слово.'
+      uk: 'Німецька ділить те, що українською зветься «стіною», надвоє, і ділить за місцем: die Wand рівня A2 — поверхня всередині кімнати, та, на яку вішають картину, а це — окремо розташована зовнішня споруда з каменю чи цегли, достатньо товста, щоб нею пройти. Для цілого покоління слово закріпила історія: die Berliner Mauer. Ремесло, яке їх кладе, — der Maurer, муляр: одна літера різниці і зовсім інше слово.'
+
+  - de: Turm
+    ipa: "ˈtʊʁm"
+    pos: noun
+    gender: m
+    plural: "die Türme"
+    cards: recognition
+    en: a tall narrow structure that rises well above everything around it
+    ru: высокое узкое сооружение, поднимающееся заметно выше всего вокруг
+    uk: висока вузька споруда, що підноситься помітно вище за все довкола
+    example_de: Vom Turm der Kirche sieht man die ganze Stadt.
+    example_en: You can see the whole town from the church tower.
+    example_ru: С колокольни видно весь город.
+    example_uk: З вежі церкви видно все місто.
+    note:
+      en: 'Masculine, umlaut in the plural. Almost every use is a compound naming what the tower belongs to: der Kirchturm, der Fernsehturm, der Wasserturm, der Leuchtturm for a lighthouse. It is also the rook in chess, and in a school report ein Turm aus Bausteinen is what a small child builds. Note the vowel: short u before rm, so it does not rhyme with A1 die Tür.'
+      ru: 'Мужской род, во множественном умлаут. Почти всякое употребление — сложное слово, называющее, чему башня принадлежит: der Kirchturm, der Fernsehturm, der Wasserturm, der Leuchtturm — маяк. В шахматах это ладья, а ein Turm aus Bausteinen — то, что строит из кубиков ребёнок. Следите за гласным: перед rm он краткий, так что с die Tür уровня A1 слово не рифмуется.'
+      uk: 'Чоловічий рід, у множині умлаут. Майже кожне вживання — складне слово, що називає, чому вежа належить: der Kirchturm, der Fernsehturm, der Wasserturm, der Leuchtturm — маяк. У шахах це тура, а ein Turm aus Bausteinen — те, що будує з кубиків дитина. Стежте за голосним: перед rm він короткий, тож із die Tür рівня A1 слово не римується.'
+
+  - de: Tor
+    ipa: "ˈtoːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Tore"
+    cards: recognition
+    en: a large gate wide enough to drive a vehicle through; also the goal in football, and the point scored into it
+    ru: широкие ворота, в которые проезжает машина; а также ворота в футболе и забитый в них гол
+    uk: широка брама, у яку проїжджає машина; а також ворота у футболі та забитий у них гол
+    example_de: Das Tor zum Hof steht offen.
+    example_en: The gate to the yard is standing open.
+    example_ru: Ворота во двор стоят открытыми.
+    example_uk: Брама до подвір’я стоїть відчинена.
+    note:
+      en: 'Neuter, and the size is what separates it from A1 die Tür: a Tür is person-sized and hangs in a wall, a Tor is vehicle-sized and closes a yard, a garage or a city wall — das Garagentor, das Hoftor, das Brandenburger Tor. Football took the same word for the goal and for scoring in it: ein Tor schießen, and the keeper is der Torwart. Watch the spelling against A2 das Tier and against der Tor, an archaic word for a fool.'
+      ru: 'Средний род, и от die Tür уровня A1 его отделяет размер: Tür — по росту человека и висит в стене, Tor — по размеру машины и запирает двор, гараж или городскую стену: das Garagentor, das Hoftor, das Brandenburger Tor. Футбол взял то же слово и для ворот, и для гола: ein Tor schießen, а вратарь — der Torwart. Следите за написанием рядом с das Tier уровня A2, а также с устаревшим der Tor — «глупец».'
+      uk: 'Середній рід, і від die Tür рівня A1 його відділяє розмір: Tür — на зріст людини й висить у стіні, Tor — на розмір машини й замикає подвір’я, гараж або міський мур: das Garagentor, das Hoftor, das Brandenburger Tor. Футбол узяв те саме слово і для воріт, і для гола: ein Tor schießen, а воротар — der Torwart. Стежте за написанням поряд із das Tier рівня A2, а також із застарілим der Tor — «дурень».'
+
+  - de: Burg
+    ipa: "ˈbʊʁk"
+    pos: noun
+    gender: f
+    plural: "die Burgen"
+    cards: recognition
+    en: a fortified stronghold of stone from the Middle Ages, usually built high up for defence
+    ru: укреплённая каменная крепость Средневековья, обычно поставленная на высоте ради обороны
+    uk: укріплена кам’яна фортеця Середньовіччя, зазвичай поставлена на висоті задля оборони
+    example_de: Über dem Fluss liegt eine Burg aus dem 13. Jahrhundert.
+    example_en: A castle from the thirteenth century stands above the river.
+    example_ru: Над рекой стоит крепость XIII века.
+    example_uk: Над річкою стоїть фортеця XIII століття.
+    note:
+      en: 'German keeps two words where English has only castle, and they are not stylistic variants: this one was built to be defended, so it is walled, high and plain, while A2 das Schloss was built to be lived in and shown off, so it is wide and decorated. A tourist sign therefore tells you in advance what you are about to see. The -burg in Hamburg, Freiburg and Würzburg is the same word, and a ruined one is die Burgruine. The final g is devoiced to k.'
+      ru: 'Немецкий держит два слова там, где по-русски есть «замок», и это не стилистические варианты: это строили, чтобы оборонять, — отсюда стены, высота и голый камень, а das Schloss уровня A2 строили, чтобы в нём жить и производить впечатление, — отсюда ширина и украшения. Так что туристический указатель заранее говорит, что вас ждёт. Часть -burg в Hamburg, Freiburg и Würzburg — то же самое слово, а руины называются die Burgruine. Конечное g оглушается в k.'
+      uk: 'Німецька тримає два слова там, де українською є «замок», і це не стилістичні варіанти: це будували, щоб обороняти, — звідси мури, висота й голий камінь, а das Schloss рівня A2 будували, щоб у ньому жити й справляти враження, — звідси ширина й оздоби. Тож туристичний покажчик заздалегідь каже, що на вас чекає. Частина -burg у Hamburg, Freiburg і Würzburg — те саме слово, а руїни звуться die Burgruine. Кінцеве g оглушується в k.'
+
+  - de: Denkmal
+    ipa: "ˈdɛŋkˌmaːl"
+    pos: noun
+    gender: n
+    plural: "die Denkmäler"
+    cards: recognition
+    en: a statue or a stone put up in a public place to keep a person or an event in memory; also any old structure the state protects
+    ru: памятник, поставленный на видном месте в память о человеке или событии; а также всякая старая постройка, взятая государством под охрану
+    uk: пам’ятник, поставлений на видному місці на згадку про людину чи подію; а також будь-яка стара споруда, взята державою під охорону
+    example_de: Auf dem Platz steht ein Denkmal für die Opfer des Krieges.
+    example_en: There is a memorial to the victims of the war on the square.
+    example_ru: На площади стоит памятник жертвам войны.
+    example_uk: На площі стоїть пам’ятник жертвам війни.
+    note:
+      en: 'Built from denken and das Mal, a mark: literally a mark for thinking on. It takes für plus the accusative for whom it honours — ein Denkmal für die Opfer. The second sense is administrative and turns up in every property listing: a house that steht unter Denkmalschutz is legally protected, which means the owner may not change the windows without permission. Plural die Denkmäler in everyday German; the older die Denkmale survives in official texts.'
+      ru: 'Составлено из denken и das Mal — «знак»; буквально «знак для памяти». Того, кому он поставлен, вводит für с винительным: ein Denkmal für die Opfer. Второе значение — административное и попадается в каждом объявлении о недвижимости: дом, который steht unter Denkmalschutz, охраняется законом, и хозяин не вправе без разрешения поменять даже окна. Множественное в живой речи — die Denkmäler; более старое die Denkmale держится в официальных текстах.'
+      uk: 'Складене з denken і das Mal — «знак»; буквально «знак для пам’яті». Того, кому його поставлено, вводить für зі знахідним: ein Denkmal für die Opfer. Друге значення — адміністративне і трапляється в кожному оголошенні про нерухомість: будинок, який steht unter Denkmalschutz, охороняється законом, і власник не має права без дозволу змінити навіть вікна. Множина в живому мовленні — die Denkmäler; давніше die Denkmale тримається в офіційних текстах.'
+
+  - de: Hütte
+    ipa: "ˈhʏtə"
+    pos: noun
+    gender: f
+    plural: "die Hütten"
+    cards: recognition
+    en: a small plain building of wood or stone, put up for shelter rather than for comfort
+    ru: маленькая простая постройка из дерева или камня, поставленная ради укрытия, а не ради удобства
+    uk: маленька проста будівля з дерева чи каменю, поставлена задля прихистку, а не задля вигоди
+    example_de: Nach vier Stunden Aufstieg erreichten wir die Hütte.
+    example_en: After a four-hour climb we reached the hut.
+    example_ru: После четырёх часов подъёма мы добрались до хижины.
+    example_uk: Після чотирьох годин підйому ми дісталися хатини.
+    note:
+      en: 'Feminine, plural in -n. In the Alps it is an institution rather than a shack: die Berghütte and die Skihütte serve food, rent bunks and are booked weeks ahead, so a walking guide uses the word without any sense of poverty. Said of one''s own place it is affectionate self-mockery — Kommt doch in meine Hütte. A separate technical sense is the ironworks, das Hüttenwerk, which has nothing to do with mountains.'
+      ru: 'Женский род, множественное на -n. В Альпах это не лачуга, а учреждение: die Berghütte и die Skihütte кормят, сдают койки и бронируются за недели, так что путеводитель употребляет слово без всякого оттенка бедности. О собственном жилье это ласковая самоирония: Kommt doch in meine Hütte. Отдельное техническое значение — металлургический завод, das Hüttenwerk, и к горам оно отношения не имеет.'
+      uk: 'Жіночий рід, множина на -n. В Альпах це не халупа, а установа: die Berghütte і die Skihütte годують, здають ліжка й бронюються за тижні, тож путівник уживає слово без жодного відтінку бідності. Про власне житло це лагідна самоіронія: Kommt doch in meine Hütte. Окреме технічне значення — металургійний завод, das Hüttenwerk, і до гір воно стосунку не має.'
+
+  - de: Bauernhof
+    ipa: "ˈbaʊ̯ɐnˌhoːf"
+    pos: noun
+    gender: m
+    plural: "die Bauernhöfe"
+    cards: recognition
+    en: 'a working farm taken as a whole: the house, the yard, the sheds and the animals'
+    ru: 'крестьянское хозяйство целиком: дом, двор, постройки и скот'
+    uk: 'селянське господарство цілком: дім, подвір’я, будівлі та худоба'
+    example_de: Die Kinder verbringen jeden Sommer auf einem Bauernhof.
+    example_en: The children spend every summer on a farm.
+    example_ru: Дети каждое лето проводят на ферме.
+    example_uk: Діти щоліта проводять на фермі.
+    note:
+      en: 'B1 der Bauer plus B1 der Hof, and the preposition is auf rather than in: auf dem Bauernhof arbeiten, auf einen Bauernhof fahren. Germany sells a whole holiday category under the name Urlaub auf dem Bauernhof. The land itself is der Hof only in the sense of the farmyard; where a text means the business and its fields it says der Betrieb or der Landwirtschaftsbetrieb. Primary stress on Bauern-, secondary on -hof.'
+      ru: 'der Bauer уровня B1 плюс der Hof уровня B1, и предлог здесь auf, а не in: auf dem Bauernhof arbeiten, auf einen Bauernhof fahren. В Германии под названием Urlaub auf dem Bauernhof продаётся целая категория отдыха. Само слово der Hof значит только двор; там, где текст имеет в виду хозяйство с землёй, он скажет der Betrieb или der Landwirtschaftsbetrieb. Главное ударение на Bauern-, побочное на -hof.'
+      uk: 'der Bauer рівня B1 плюс der Hof рівня B1, і прийменник тут auf, а не in: auf dem Bauernhof arbeiten, auf einen Bauernhof fahren. У Німеччині під назвою Urlaub auf dem Bauernhof продається ціла категорія відпочинку. Саме слово der Hof означає лише подвір’я; там, де текст має на увазі господарство із землею, він скаже der Betrieb або der Landwirtschaftsbetrieb. Головний наголос на Bauern-, побічний на -hof.'
+
+  # --- Wohnformen und ihre Namen ---
+  - de: Apartment
+    ipa: "apaʁtˈmɛnt"
+    pos: noun
+    gender: n
+    plural: "die Apartments"
+    cards: recognition
+    en: a small self-contained flat of one or two rooms, of the kind let furnished and by the month
+    ru: небольшая отдельная квартира из одной-двух комнат, какие сдают меблированными и помесячно
+    uk: невелика окрема квартира з однієї-двох кімнат, які здають умебльованими й помісячно
+    example_de: Für das erste Jahr mietet sie ein möbliertes Apartment.
+    example_en: She is renting a furnished studio flat for the first year.
+    example_ru: На первый год она снимает меблированную квартиру-студию.
+    example_uk: На перший рік вона винаймає умебльовану квартиру-студію.
+    note:
+      en: 'A1 die Wohnung is the neutral word and covers everything a person lives in, of any size; this one is narrower and belongs to advertising — small, self-contained, usually furnished, usually let short-term to somebody in town for a job. Stress falls on the last syllable and the final t is fully spoken, so it does not sound like the English word. The French spelling das Appartement exists beside it with the same meaning, and a one-room version is often das Studio or die Einzimmerwohnung.'
+      ru: 'die Wohnung уровня A1 — нейтральное слово, оно покрывает любое жильё любого размера; это же уже. Оно принадлежит языку объявлений: маленькое, полностью автономное, обычно меблированное и обычно сдаваемое ненадолго тому, кто приехал в город работать. Ударение падает на последний слог, конечное t проговаривается полностью, так что по-английски слово не звучит. Рядом существует французское написание das Appartement с тем же значением, а однокомнатный вариант часто называют das Studio или die Einzimmerwohnung.'
+      uk: 'die Wohnung рівня A1 — нейтральне слово, воно покриває будь-яке житло будь-якого розміру; це ж вужче. Воно належить мові оголошень: маленьке, цілком автономне, зазвичай умебльоване і зазвичай здане ненадовго тому, хто приїхав до міста працювати. Наголос падає на останній склад, кінцеве t вимовляється повністю, тож по-англійськи слово не звучить. Поряд існує французьке написання das Appartement із тим самим значенням, а однокімнатний варіант часто звуть das Studio або die Einzimmerwohnung.'
+
+  - de: Quartier
+    ipa: "kvaʁˈtiːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Quartiere"
+    cards: recognition
+    en: a place to stay found or given for a limited time, rather than a home of one's own
+    ru: пристанище, которое ищут или дают на ограниченный срок, а не собственное жильё
+    uk: прихисток, який шукають або дають на обмежений час, а не власне житло
+    example_de: Für die drei Nächte hatten wir ein einfaches Quartier im Dorf.
+    example_en: For the three nights we had simple lodgings in the village.
+    example_ru: На три ночи у нас было простое пристанище в деревне.
+    example_uk: На три ночі ми мали просте помешкання в селі.
+    note:
+      en: 'The word came in from the army, where troops were quartered, and it kept that flavour: ein Quartier suchen, ein Quartier beziehen, and the host who provides it is der Quartiergeber. It is somewhere you are put up, not somewhere you live. In Switzerland, and in parts of Austria, the same word means a district of a town where the rest of the German-speaking area says der Stadtteil or das Viertel, so a Zurich address can use it in a sense a Berlin reader would not expect.'
+      ru: 'Слово пришло из армии, где войска расквартировывали, и этот привкус сохранило: ein Quartier suchen, ein Quartier beziehen, а хозяин, который его предоставляет, — der Quartiergeber. Это место, куда вас поселили, а не место, где вы живёте. В Швейцарии и отчасти в Австрии то же слово означает городской район, тогда как в остальном немецкоязычном пространстве говорят der Stadtteil или das Viertel, — так что цюрихский адрес может употребить его в значении, которого берлинский читатель не ждёт.'
+      uk: 'Слово прийшло з армії, де війська розквартировували, і цей присмак зберегло: ein Quartier suchen, ein Quartier beziehen, а господар, який його надає, — der Quartiergeber. Це місце, куди вас поселили, а не місце, де ви живете. У Швейцарії та почасти в Австрії те саме слово означає міський район, тоді як в решті німецькомовного простору кажуть der Stadtteil або das Viertel, — тож цюрихська адреса може вжити його у значенні, якого берлінський читач не чекає.'
+
+  - de: Heim
+    ipa: "ˈhaɪ̯m"
+    pos: noun
+    gender: n
+    plural: "die Heime"
+    cards: recognition
+    en: a run institution where people who need looking after are housed together
+    ru: учреждение, в котором вместе живут люди, нуждающиеся в уходе или в койке
+    uk: заклад, у якому разом мешкають люди, що потребують догляду або ліжка
+    example_de: Ihre Großmutter lebt seit einem Jahr in einem Heim.
+    example_en: Her grandmother has been living in a care home for a year.
+    example_ru: Её бабушка уже год живёт в доме престарелых.
+    example_uk: Її бабуся вже рік живе в будинку для літніх людей.
+    note:
+      en: 'Neuter, plural in -e, and today the institutional sense dominates: das Altenheim, das Pflegeheim, das Kinderheim, das Studentenwohnheim. Because of that a German ear hears something official in the bare word, and the warm sense — the place that is one''s own — has moved almost entirely to das Zuhause below; this word keeps it only in older or deliberately cosy language, as in ein gemütliches Heim. As a separable prefix heim- means homewards: heimgehen, heimfahren, heimkommen, where standard German usually says nach Hause.'
+      ru: 'Средний род, множественное на -e, и сегодня перевешивает значение учреждения: das Altenheim, das Pflegeheim, das Kinderheim, das Studentenwohnheim. Из-за этого голое слово звучит для немца казённо, а тёплый смысл — «свой дом» — почти целиком перешёл к das Zuhause ниже; здесь он держится лишь в старом или нарочито уютном языке: ein gemütliches Heim. Как отделяемая приставка heim- значит «домой»: heimgehen, heimfahren, heimkommen, — там, где литературный язык обычно скажет nach Hause.'
+      uk: 'Середній рід, множина на -e, і сьогодні переважає значення закладу: das Altenheim, das Pflegeheim, das Kinderheim, das Studentenwohnheim. Через це голе слово звучить для німця казенно, а теплий сенс — «своя домівка» — майже цілком перейшов до das Zuhause нижче; тут він тримається лише в старій або навмисне затишній мові: ein gemütliches Heim. Як відокремлюваний префікс heim- означає «додому»: heimgehen, heimfahren, heimkommen, — там, де літературна мова зазвичай скаже nach Hause.'
+
+  - de: Zuhause
+    ipa: "tsuˈhaʊ̯zə"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the place a person belongs and feels safe in, named as a thing rather than as a direction
+    ru: место, где человеку хорошо и куда он принадлежит, названное как предмет, а не как направление
+    uk: місце, де людині добре і якому вона належить, назване як предмет, а не як напрямок
+    example_de: Nach dem Umzug hat die Familie endlich wieder ein Zuhause.
+    example_en: After the move the family finally has a home again.
+    example_ru: После переезда у семьи наконец снова есть дом.
+    example_uk: Після переїзду родина нарешті знову має дім.
+    note:
+      en: 'The spelling carries the whole distinction and it is easy to get wrong: zu Hause, two words and no capital, is the adverb — Ich bin zu Hause; das Zuhause, one word with a capital, is this noun and needs an article — Sie hat kein Zuhause. There is no plural. It is not A1 die Wohnung or das Haus, which name the object you can measure in square metres; this names belonging, which is why a charity appeal and an estate agent both use it and mean different things by it. The institutional das Heim above is its cold cousin.'
+      ru: 'Всё различие держится на написании, и ошибиться легко: zu Hause — два слова с маленькой буквы, это наречие: Ich bin zu Hause; das Zuhause — одно слово с большой, это существительное, и ему нужен артикль: Sie hat kein Zuhause. Множественного числа нет. Это не die Wohnung и не das Haus уровня A1, которые называют предмет, измеримый в квадратных метрах; здесь названа принадлежность — потому этим словом пользуются и благотворительный призыв, и риелтор, вкладывая в него разное. Казённое das Heim выше — его холодный родственник.'
+      uk: 'Уся різниця тримається на написанні, і схибити легко: zu Hause — два слова з малої літери, це прислівник: Ich bin zu Hause; das Zuhause — одне слово з великої, це іменник, і йому потрібен артикль: Sie hat kein Zuhause. Множини немає. Це не die Wohnung і не das Haus рівня A1, які називають предмет, вимірний у квадратних метрах; тут названа належність — тому цим словом користуються і благодійний заклик, і ріелтор, вкладаючи в нього різне. Казенне das Heim вище — його холодний родич.'
+
+  - de: WG
+    ipa: "veːˈgeː"
+    pos: noun
+    gender: f
+    plural: "die WGs"
+    cards: recognition
+    en: a flat rented and lived in jointly by people who are not a family, each with a room of their own
+    ru: квартира, которую вместе снимают и в которой вместе живут люди, не связанные семьёй, каждый в своей комнате
+    uk: квартира, яку разом винаймають і в якій разом живуть люди, не пов’язані сім’єю, кожен у своїй кімнаті
+    example_de: Er wohnt seit dem Studium in einer WG mit drei anderen.
+    example_en: He has lived in a shared flat with three others since university.
+    example_ru: Со студенческих лет он живёт в съёмной квартире вместе с тремя соседями.
+    example_uk: Від студентських років він живе у спільно винайнятій квартирі з трьома сусідами.
+    note:
+      en: 'Short for die Wohngemeinschaft and spoken as two letters, with the stress on the second — the same pattern as A2 das WC and der Lkw. Nobody says the long form out loud. It is feminine because Gemeinschaft is, and the plural simply adds -s. Student and young-professional life runs on it: ein WG-Zimmer, in eine WG einziehen, and the advert asks for somebody who passt. It is not a couple and not a family; that is exactly what the word rules out.'
+      ru: 'Сокращение от die Wohngemeinschaft, читается по буквам с ударением на второй — как das WC и der Lkw уровня A2. Полную форму вслух не произносит никто. Род женский, потому что женского рода Gemeinschaft, а множественное просто прибавляет -s. На этом слове держится быт студентов и молодых специалистов: ein WG-Zimmer, in eine WG einziehen, а объявление ищет того, кто «подходит». Это не пара и не семья — как раз это слово и исключает.'
+      uk: 'Скорочення від die Wohngemeinschaft, читається по літерах із наголосом на другій — як das WC і der Lkw рівня A2. Повну форму вголос не вимовляє ніхто. Рід жіночий, бо жіночого роду Gemeinschaft, а множина просто додає -s. На цьому слові тримається побут студентів і молодих фахівців: ein WG-Zimmer, in eine WG einziehen, а оголошення шукає того, хто «пасує». Це не пара і не сім’я — саме це слово й виключає.'
+
+  - de: Salon
+    ipa: "zaˈlɔŋ"
+    pos: noun
+    gender: m
+    plural: "die Salons"
+    cards: recognition
+    en: a shop where hair or beauty is worked on; and, in older use, the formal reception room of a large house
+    ru: заведение, где занимаются волосами или красотой; а в старом употреблении — парадная гостиная большого дома
+    uk: заклад, де опікуються волоссям чи красою; а в старому вжитку — парадна вітальня великого будинку
+    example_de: Der Salon an der Ecke hat montags geschlossen.
+    example_en: The salon on the corner is closed on Mondays.
+    example_ru: Салон на углу по понедельникам закрыт.
+    example_uk: Салон на розі по понеділках зачинений.
+    note:
+      en: 'The living sense is the business, and it almost always comes with its trade attached: der Friseursalon, der Kosmetiksalon, der Schönheitssalon, der Nagelsalon. That is the word over the door and in the appointment book. The grand reception room belongs to the nineteenth century and survives in novels and in the phrase ein literarischer Salon, an evening of invited talk. A French loan: the last syllable is nasal and the plural takes -s, never -e.'
+      ru: 'Живое значение — заведение, и почти всегда рядом стоит ремесло: der Friseursalon, der Kosmetiksalon, der Schönheitssalon, der Nagelsalon. Именно это написано над дверью и в книге записи. Парадная гостиная принадлежит XIX веку и держится в романах и в обороте ein literarischer Salon — вечер приглашённой беседы. Французское заимствование: последний слог носовой, множественное на -s, а не на -e.'
+      uk: 'Живе значення — заклад, і майже завжди поряд стоїть ремесло: der Friseursalon, der Kosmetiksalon, der Schönheitssalon, der Nagelsalon. Саме це написано над дверима і в книзі записів. Парадна вітальня належить XIX століттю і тримається в романах та у звороті ein literarischer Salon — вечір запрошеної бесіди. Французьке запозичення: останній склад носовий, множина на -s, а не на -e.'
+
+  # --- Wege durch das Haus ---
+  - de: Korridor
+    ipa: "ˈkɔʁidoːɐ̯"
+    pos: noun
+    gender: m
+    plural: "die Korridore"
+    cards: recognition
+    en: a long narrow passage with doors opening off it, running through a large building
+    ru: длинный узкий проход с дверями по сторонам, тянущийся через большое здание
+    uk: довгий вузький прохід із дверима обабіч, що тягнеться крізь велику будівлю
+    example_de: Das Büro liegt am Ende des Korridors rechts.
+    example_en: The office is at the end of the corridor on the right.
+    example_ru: Кабинет — в конце коридора справа.
+    example_uk: Кабінет — у кінці коридору праворуч.
+    note:
+      en: 'A1 der Flur is the hall of a flat: the first room you step into, where the coats and the shoes are. This word is the long institutional passage of a school, a hospital, an office block or a hotel, with numbered doors along it, and no German would use it for the two square metres inside a flat. Der Gang below is the neutral middle term and can stand for either. Stress on the first syllable, and the final -or is the vocalised r.'
+      ru: 'der Flur уровня A1 — прихожая квартиры: первое помещение, куда входишь, где пальто и обувь. Это же слово — длинный казённый проход школы, больницы, офисного здания или гостиницы, с пронумерованными дверями вдоль него, и о двух квадратных метрах внутри квартиры немец так не скажет. der Gang ниже — нейтральное среднее слово, годное и туда, и сюда. Ударение на первом слоге, а конечное -or звучит с вокализованным r.'
+      uk: 'der Flur рівня A1 — передпокій квартири: перше приміщення, куди заходиш, де пальта й взуття. Це ж слово — довгий казенний прохід школи, лікарні, офісної будівлі чи готелю, із пронумерованими дверима вздовж нього, і про два квадратні метри всередині квартири німець так не скаже. der Gang нижче — нейтральне середнє слово, придатне і туди, і сюди. Наголос на першому складі, а кінцеве -or звучить із вокалізованим r.'
+
+  - de: Gang
+    ipa: "ˈgaŋ"
+    pos: noun
+    gender: m
+    plural: "die Gänge"
+    cards: recognition
+    en: a walkway between rooms or between rows of seats, narrow and meant to be walked along; also a gear in a car and a course of a meal
+    ru: проход между помещениями или между рядами кресел, узкий и предназначенный для ходьбы; а также передача в машине и подача за столом
+    uk: прохід між приміщеннями або між рядами крісел, вузький і призначений для ходіння; а також передача в машині та подача за столом
+    example_de: Bitte stellen Sie Ihr Gepäck nicht in den Gang.
+    example_en: Please do not put your luggage in the aisle.
+    example_ru: Пожалуйста, не ставьте багаж в проход.
+    example_uk: Будь ласка, не ставте багаж у прохід.
+    note:
+      en: 'The neutral, widest of the three passage words: a Korridor is a long Gang, A1 der Flur is the Gang inside a flat, and this one covers both plus the aisle of a train, a plane or a supermarket — ein Platz am Gang is the aisle seat. Two further senses are entirely separate and both frequent: der erste Gang is first gear, den Gang wechseln is to change gear, and at table der Hauptgang is the main course of a meal in several. From gehen, and the plural takes an umlaut.'
+      ru: 'Самое нейтральное и широкое из трёх слов о проходе: Korridor — это длинный Gang, der Flur уровня A1 — Gang внутри квартиры, а это покрывает и то и другое плюс проход в поезде, самолёте и супермаркете: ein Platz am Gang — место у прохода. Ещё два значения совершенно самостоятельны и оба частотны: der erste Gang — первая передача, den Gang wechseln — переключить передачу, а за столом der Hauptgang — основное блюдо в обеде из нескольких. От gehen, во множественном умлаут.'
+      uk: 'Найнейтральніше і найширше з трьох слів про прохід: Korridor — це довгий Gang, der Flur рівня A1 — Gang усередині квартири, а це покриває і те й те плюс прохід у потязі, літаку та супермаркеті: ein Platz am Gang — місце біля проходу. Ще два значення цілком самостійні й обидва частотні: der erste Gang — перша передача, den Gang wechseln — перемкнути передачу, а за столом der Hauptgang — основна страва в обіді з кількох. Від gehen, у множині умлаут.'
+
+  - de: Stufe
+    ipa: "ˈʃtuːfə"
+    pos: noun
+    gender: f
+    plural: "die Stufen"
+    cards: recognition
+    en: one single step of a staircase; also one level on a scale that rises
+    ru: одна отдельная ступень лестницы; а также одна ступень на возрастающей шкале
+    uk: один окремий щабель сходів; а також один щабель на зростаючій шкалі
+    example_de: Vorsicht, hier ist eine Stufe!
+    example_en: Careful, there is a step here!
+    example_ru: Осторожно, здесь ступенька!
+    example_uk: Обережно, тут сходинка!
+    note:
+      en: 'A2 die Treppe is the whole flight; this is one of the pieces it is made of, which is why the warning sign at a doorway says Stufe and not Treppe. The abstract sense is everywhere in course and pay language: die Stufe A1, die Sprachstufe, eine Stufe höher, stufenweise for step by step. Do not use it for a pace when walking — that is der Schritt. In Austria and parts of the south die Stiege names the staircase itself.'
+      ru: 'die Treppe уровня A2 — лестница целиком, а это одна из частей, из которых она сложена; потому предупреждающая табличка в дверях говорит Stufe, а не Treppe. Отвлечённое значение пронизывает язык курсов и зарплат: die Stufe A1, die Sprachstufe, eine Stufe höher, stufenweise — «поэтапно». Не путайте с шагом при ходьбе: это der Schritt. В Австрии и отчасти на юге лестницу называют die Stiege.'
+      uk: 'die Treppe рівня A2 — сходи цілком, а це одна з частин, із яких вони складені; тому попереджувальна табличка у дверях каже Stufe, а не Treppe. Відсторонене значення пронизує мову курсів і зарплат: die Stufe A1, die Sprachstufe, eine Stufe höher, stufenweise — «поетапно». Не плутайте з кроком під час ходьби: це der Schritt. В Австрії та почасти на півдні сходи звуть die Stiege.'
+
+  - de: Lift
+    ipa: "ˈlɪft"
+    pos: noun
+    gender: m
+    plural: "die Lifte"
+    cards: recognition
+    en: the cabin that carries people up and down inside a building, or up a mountain on a cable
+    ru: кабина, которая возит людей вверх и вниз внутри здания или поднимает их в гору по канату
+    uk: кабіна, яка возить людей угору і вниз усередині будівлі або підіймає їх у гору канатом
+    example_de: Der Lift ist kaputt, wir müssen die Treppe nehmen.
+    example_en: The lift is out of order, we have to take the stairs.
+    example_ru: Лифт сломан, придётся идти по лестнице.
+    example_uk: Ліфт зламаний, доведеться йти сходами.
+    note:
+      en: 'The same machine as A2 der Aufzug, and the difference is register, not meaning: Aufzug is the word on the official notice, in the building regulations and in the inspection sticker inside the cabin, while this English loan is what people say. On a mountain only this one works — der Skilift, der Sessellift, der Schlepplift. Plural die Lifte, or die Lifts after the English. In Switzerland and Austria you will also hear der Aufzug replaced by it almost everywhere.'
+      ru: 'Та же машина, что и der Aufzug уровня A2, и разница не в значении, а в регистре: Aufzug стоит на официальном объявлении, в строительных правилах и на наклейке о техосмотре внутри кабины, а это английское заимствование — то, что говорят люди. В горах работает только оно: der Skilift, der Sessellift, der Schlepplift. Множественное die Lifte или, на английский лад, die Lifts. В Швейцарии и Австрии им почти повсеместно вытеснено и слово der Aufzug.'
+      uk: 'Та сама машина, що й der Aufzug рівня A2, і різниця не у значенні, а в регістрі: Aufzug стоїть на офіційному оголошенні, у будівельних правилах і на наліпці про техогляд усередині кабіни, а це англійське запозичення — те, що кажуть люди. У горах працює лише воно: der Skilift, der Sessellift, der Schlepplift. Множина die Lifte або, на англійський лад, die Lifts. У Швейцарії та Австрії ним майже повсюдно витіснено й слово der Aufzug.'
+
+  - de: Obergeschoss
+    ipa: "ˈoːbɐgəˌʃɔs"
+    pos: noun
+    gender: n
+    plural: "die Obergeschosse"
+    cards: recognition
+    en: any floor of a building that lies above the one at street level
+    ru: любой этаж здания, расположенный выше уровня улицы
+    uk: будь-який поверх будівлі, розташований вище за рівень вулиці
+    example_de: Die Kinderabteilung finden Sie im zweiten Obergeschoss.
+    example_en: You will find the children's department on the second floor up.
+    example_ru: Детский отдел находится на третьем этаже.
+    example_uk: Дитячий відділ міститься на третьому поверсі.
+    note:
+      en: 'German counts from the street, and this word is where the counting parts company with English: A2 das Erdgeschoss is at street level, so what an English speaker calls the first floor is das erste Obergeschoss, and every number above it is one out. In speech people usually say der erste Stock for the same thing; this longer word belongs to the floor plan, the lift panel and the fire notice, which also print it in its two-letter short form.'
+      ru: 'Немец считает от улицы, и именно на этом слове счёт расходится с русским: das Erdgeschoss уровня A2 стоит на уровне улицы, а этаж прямо над ним — das erste Obergeschoss, то есть по-русски второй. В разговоре о том же скажут der erste Stock; это длинное слово принадлежит плану этажей, панели лифта и табличке о пожарной безопасности, где его же печатают двухбуквенным сокращением.'
+      uk: 'Німець рахує від вулиці, і саме на цьому слові лік розходиться з українським: das Erdgeschoss рівня A2 стоїть на рівні вулиці, а поверх просто над ним — das erste Obergeschoss, тобто українською другий. У розмові про те саме скажуть der erste Stock; це довге слово належить плану поверхів, панелі ліфта і табличці про пожежну безпеку, де його ж друкують дволітерним скороченням.'
+
+  - de: Untergeschoss
+    ipa: "ˈʊntɐgəˌʃɔs"
+    pos: noun
+    gender: n
+    plural: "die Untergeschosse"
+    cards: recognition
+    en: a proper floor of a building lying below street level, with rooms in use rather than storage
+    ru: полноценный этаж здания ниже уровня улицы, с рабочими помещениями, а не с кладовками
+    uk: повноцінний поверх будівлі нижче за рівень вулиці, з робочими приміщеннями, а не з комірчинами
+    example_de: Die Lebensmittel gibt es im Untergeschoss.
+    example_en: The food department is in the basement.
+    example_ru: Продукты — на нижнем этаже.
+    example_uk: Продукти — на нижньому поверсі.
+    note:
+      en: 'Not the same as A2 der Keller, and the difference is what happens down there: a Keller is private and used for storage, bicycles and the boiler, while this is a proper storey with shops, offices or a car park in it, which is why a department store and a station reach for this word. Das Tiefgeschoss and das Souterrain do the same job in other buildings. A floor plan writes it in a two-letter short form, and the counting is the mirror of Obergeschoss above.'
+      ru: 'Это не der Keller уровня A2, и разница в том, что там внизу происходит: Keller — частный, для хранения, велосипедов и котла, а здесь полноценный этаж с магазинами, конторами или парковкой, потому это слово выбирают универмаг и вокзал. Ту же работу в других зданиях делают das Tiefgeschoss и das Souterrain. На плане этажей его пишут двухбуквенным сокращением, а счёт — зеркальное отражение Obergeschoss выше.'
+      uk: 'Це не der Keller рівня A2, і різниця в тому, що там унизу відбувається: Keller — приватний, для зберігання, велосипедів і котла, а тут повноцінний поверх із крамницями, конторами чи паркінгом, тому це слово обирають універмаг і вокзал. Ту саму роботу в інших будівлях виконують das Tiefgeschoss і das Souterrain. На плані поверхів його пишуть дволітерним скороченням, а лік — дзеркальне відображення Obergeschoss вище.'
+
+  # --- Was im Zimmer steht und was fest verbaut ist ---
+  - de: Boden
+    ipa: "ˈboːdn̩"
+    pos: noun
+    gender: m
+    plural: "die Böden"
+    cards: recognition
+    en: the surface you walk on inside a room; also the ground outside, and the soil that things grow in
+    ru: поверхность, по которой ходят внутри помещения; а также земля под открытым небом и почва, на которой всё растёт
+    uk: поверхня, якою ходять усередині приміщення; а також земля просто неба і ґрунт, на якому все росте
+    example_de: Der Schlüssel lag die ganze Zeit auf dem Boden.
+    example_en: The key was on the floor the whole time.
+    example_ru: Ключ всё это время лежал на полу.
+    example_uk: Ключ увесь цей час лежав на підлозі.
+    note:
+      en: 'One word for three surfaces, and only the sentence tells them apart: the floor of a room (der Holzboden, der Fußboden), the ground under the open sky (auf dem Boden liegen), and the soil a farmer works (fruchtbarer Boden). A fourth sense hides in a compound: der Dachboden is the attic, the space rather than a surface at all. Plural takes an umlaut. Not die Erde, which is the planet and the material you dig.'
+      ru: 'Одно слово на три поверхности, и различает их только предложение: пол в комнате (der Holzboden, der Fußboden), земля под открытым небом (auf dem Boden liegen) и почва, которую обрабатывает крестьянин (fruchtbarer Boden). Четвёртое значение спрятано в сложном слове: der Dachboden — чердак, то есть уже не поверхность, а пространство. Во множественном умлаут. Это не die Erde — планета и то, что копают.'
+      uk: 'Одне слово на три поверхні, і розрізняє їх лише речення: підлога в кімнаті (der Holzboden, der Fußboden), земля просто неба (auf dem Boden liegen) і ґрунт, який обробляє селянин (fruchtbarer Boden). Четверте значення сховане у складному слові: der Dachboden — горище, тобто вже не поверхня, а простір. У множині умлаут. Це не die Erde — планета і те, що копають.'
+
+  - de: Decke
+    ipa: "ˈdɛkə"
+    pos: noun
+    gender: f
+    plural: "die Decken"
+    cards: recognition
+    en: the upper surface of a room, over your head; also a blanket to pull over yourself
+    ru: верхняя поверхность комнаты, над головой; а также одеяло, которым укрываются
+    uk: верхня поверхня кімнати, над головою; а також ковдра, якою вкриваються
+    example_de: Die Lampe hängt in der Mitte der Decke.
+    example_en: The lamp hangs in the middle of the ceiling.
+    example_ru: Лампа висит посреди потолка.
+    example_uk: Лампа висить посеред стелі.
+    note:
+      en: 'Both senses come from decken, to cover, and German pins them down with a compound when the sentence would leave it open: die Zimmerdecke for the ceiling, die Bettdecke or die Wolldecke for the blanket, die Tischdecke for the tablecloth. Two idioms are worth recognising: an die Decke gehen is to hit the roof, and sich nach der Decke strecken is to live within one''s means.'
+      ru: 'Оба значения идут от decken — «покрывать», и там, где предложение оставляет выбор, немец уточняет сложным словом: die Zimmerdecke — потолок, die Bettdecke или die Wolldecke — одеяло, die Tischdecke — скатерть. Стоит узнавать два оборота: an die Decke gehen — «взорваться от злости» и sich nach der Decke strecken — «жить по средствам».'
+      uk: 'Обидва значення йдуть від decken — «покривати», і там, де речення лишає вибір, німець уточнює складним словом: die Zimmerdecke — стеля, die Bettdecke або die Wolldecke — ковдра, die Tischdecke — скатертина. Варто впізнавати два звороти: an die Decke gehen — «вибухнути злістю» і sich nach der Decke strecken — «жити за коштами».'
+
+  - de: Sessel
+    ipa: "ˈzɛsl̩"
+    pos: noun
+    gender: m
+    plural: "die Sessel"
+    cards: recognition
+    en: a soft wide seat for one person, with arms, of the kind you sink into to read
+    ru: мягкое широкое сиденье на одного, с подлокотниками, в которое усаживаются с книгой
+    uk: м’яке широке сидіння на одного, з підлокітниками, у яке всідаються з книжкою
+    example_de: Der alte Sessel steht neben dem Fenster.
+    example_en: The old armchair stands next to the window.
+    example_ru: Старое кресло стоит у окна.
+    example_uk: Старе крісло стоїть біля вікна.
+    note:
+      en: 'In Germany this is the armchair and A1 der Stuhl is the upright chair at the table. In Austria the two have swapped places: there der Sessel is the ordinary chair and the armchair is der Fauteuil, so a sentence heard in Vienna can furnish the room quite differently. Singular and plural are spelled alike. Two compounds keep the German sense visible: der Sessellift, the chairlift, and der Ohrensessel, the winged armchair.'
+      ru: 'В Германии это кресло, а der Stuhl уровня A1 — обычный стул у стола. В Австрии они поменялись местами: там der Sessel — как раз стул, а кресло называется der Fauteuil, так что услышанная в Вене фраза обставит комнату иначе. Единственное и множественное пишутся одинаково. Немецкое значение видно в двух составных словах: der Sessellift — кресельный подъёмник и der Ohrensessel — кресло с высокими «ушами».'
+      uk: 'У Німеччині це крісло, а der Stuhl рівня A1 — звичайний стілець біля столу. В Австрії вони помінялися місцями: там der Sessel — саме стілець, а крісло зветься der Fauteuil, тож почута у Відні фраза обставить кімнату інакше. Однина і множина пишуться однаково. Німецьке значення видно у двох складних словах: der Sessellift — крісельний підйомник і der Ohrensessel — крісло з високими «вухами».'
+
+  - de: Kasten
+    ipa: "ˈkastn̩"
+    pos: noun
+    gender: m
+    plural: "die Kästen"
+    cards: recognition
+    en: a sturdy box or crate, especially the one that bottles are carried and sold in
+    ru: прочный ящик или коробка, прежде всего та, в которой носят и продают бутылки
+    uk: міцний ящик або коробка, передусім та, у якій носять і продають пляшки
+    example_de: Kannst du bitte einen Kasten Wasser mitbringen?
+    example_en: Could you bring a crate of water, please?
+    example_ru: Принеси, пожалуйста, ящик воды.
+    example_uk: Принеси, будь ласка, ящик води.
+    note:
+      en: 'In Germany the everyday one is the drinks crate: ein Kasten Bier, ein Kasten Wasser, returned empty for the deposit. Beyond that it is any solid box for keeping things in — der Briefkasten for the letterbox, der Schaukasten for the display case. In Austria der Kasten is what Germany calls der Schrank, so a Viennese flat advert offering einen Kasten is offering furniture, not drinks. Plural takes an umlaut.'
+      ru: 'В Германии обиходный смысл — ящик под напитки: ein Kasten Bier, ein Kasten Wasser, который сдают пустым ради залога. Помимо этого — всякий прочный ящик для хранения: der Briefkasten — почтовый ящик, der Schaukasten — витрина. В Австрии der Kasten — это то, что в Германии называют der Schrank, так что венское объявление, обещающее einen Kasten, обещает мебель, а не напитки. Во множественном умлаут.'
+      uk: 'У Німеччині побутовий сенс — ящик під напої: ein Kasten Bier, ein Kasten Wasser, який здають порожнім заради застави. Крім того — будь-який міцний ящик для зберігання: der Briefkasten — поштова скринька, der Schaukasten — вітрина. В Австрії der Kasten — це те, що в Німеччині звуть der Schrank, тож віденське оголошення, що обіцяє einen Kasten, обіцяє меблі, а не напої. У множині умлаут.'
+
+  - de: Badewanne
+    ipa: "ˈbaːdəˌvanə"
+    pos: noun
+    gender: f
+    plural: "die Badewannen"
+    cards: recognition
+    en: the long deep basin you fill with water and lie down in to wash
+    ru: длинная глубокая ёмкость, которую наполняют водой и в которой моются лёжа
+    uk: довга глибока посудина, яку наповнюють водою і в якій миються лежачи
+    example_de: Die Wohnung hat eine Dusche, aber keine Badewanne.
+    example_en: The flat has a shower but no bathtub.
+    example_ru: В квартире есть душ, но нет ванны.
+    example_uk: У квартирі є душ, але немає ванни.
+    note:
+      en: 'A1 das Bad is the room; this is the fixture standing in it, and a flat advert keeps the two apart because the difference costs money — mit Badewanne against nur Dusche. In speech die Wanne alone means the same thing. The chunk for using it is ein Bad nehmen or in die Badewanne steigen, and A2 die Dusche is the alternative. Primary stress on Bade-, secondary on -wanne, as in every German compound.'
+      ru: 'das Bad уровня A1 — комната; это же сантехника, которая в ней стоит, и объявление о квартире их различает, потому что разница стоит денег: mit Badewanne против nur Dusche. В разговоре то же самое называют просто die Wanne. Оборот про пользование — ein Bad nehmen или in die Badewanne steigen, а die Dusche уровня A2 — альтернатива. Главное ударение на Bade-, побочное на -wanne, как во всяком немецком сложном слове.'
+      uk: 'das Bad рівня A1 — кімната; це ж сантехніка, що в ній стоїть, і оголошення про квартиру їх розрізняє, бо різниця коштує грошей: mit Badewanne проти nur Dusche. У розмові те саме звуть просто die Wanne. Зворот про користування — ein Bad nehmen або in die Badewanne steigen, а die Dusche рівня A2 — альтернатива. Головний наголос на Bade-, побічний на -wanne, як у кожному німецькому складному слові.'
+
+  - de: Steckdose
+    ipa: "ˈʃtɛkˌdoːzə"
+    pos: noun
+    gender: f
+    plural: "die Steckdosen"
+    cards: recognition
+    en: the fitting in the wall that a plug goes into to draw electricity
+    ru: гнездо в стене, в которое вставляют вилку, чтобы взять электричество
+    uk: гніздо в стіні, у яке вставляють вилку, щоб узяти електрику
+    example_de: Neben dem Bett gibt es leider keine Steckdose.
+    example_en: Unfortunately there is no socket next to the bed.
+    example_ru: Рядом с кроватью, к сожалению, нет розетки.
+    example_uk: Біля ліжка, на жаль, немає розетки.
+    note:
+      en: 'From stecken, to put something into something, plus die Dose, a tin or a can. B1 der Stecker is the plug on the cable and this is the hole it goes into, so the two are a minimal pair worth keeping straight. German sockets take the round two-pin Schuko plug, which is why a traveller from Britain or Switzerland needs der Adapter. A1 der Strom is the electricity itself and A2 der Schalter is the switch beside it.'
+      ru: 'Из stecken — «вставлять» и die Dose — «банка». der Stecker уровня B1 — вилка на шнуре, а это отверстие, куда её вставляют, так что пара стоит того, чтобы её различать. В немецкие розетки идёт круглая двухштырьковая вилка Schuko, поэтому приезжему из Британии или Швейцарии нужен der Adapter. der Strom уровня A1 — само электричество, а der Schalter уровня A2 — выключатель рядом.'
+      uk: 'Із stecken — «вставляти» і die Dose — «банка». der Stecker рівня B1 — вилка на шнурі, а це отвір, куди її вставляють, тож пару варто розрізняти. У німецькі розетки йде кругла двоштиркова вилка Schuko, тому приїжджому з Британії чи Швейцарії потрібен der Adapter. der Strom рівня A1 — сама електрика, а der Schalter рівня A2 — вимикач поряд.'
+
+  - de: Ofen
+    ipa: "ˈoːfn̩"
+    pos: noun
+    gender: m
+    plural: "die Öfen"
+    cards: recognition
+    en: a closed heater that burns wood or coal to warm a room; also the closed compartment food is baked in
+    ru: закрытая печь, которая топится дровами или углём и греет комнату; а также закрытое отделение, в котором пекут
+    uk: закрита піч, що топиться дровами чи вугіллям і гріє кімнату; а також закрите відділення, у якому печуть
+    example_de: Im Winter heizen sie das alte Haus mit einem Ofen.
+    example_en: In winter they heat the old house with a stove.
+    example_ru: Зимой они топят старый дом печью.
+    example_uk: Узимку вони опалюють старий будинок піччю.
+    note:
+      en: 'Two things at once: the stove that heats a room — der Kachelofen, der Holzofen, der Kamin beside it — and the oven, for which der Backofen is the unambiguous word and is what a recipe writes. A1 der Herd is the cooker as a whole, with the rings on top, and A1 die Heizung is the central heating that replaced most Öfen. Plural takes an umlaut. The idiom Jetzt ist der Ofen aus means that is the end of that.'
+      ru: 'Две вещи сразу: печь, которая греет комнату, — der Kachelofen, der Holzofen, рядом der Kamin — и духовка, для которой однозначное слово der Backofen, именно его пишет рецепт. der Herd уровня A1 — плита целиком, с конфорками сверху, а die Heizung уровня A1 — то центральное отопление, которое вытеснило большинство печей. Во множественном умлаут. Оборот Jetzt ist der Ofen aus значит «на этом всё кончено».'
+      uk: 'Дві речі водночас: піч, яка гріє кімнату, — der Kachelofen, der Holzofen, поряд der Kamin — і духовка, для якої однозначне слово der Backofen, саме його пише рецепт. der Herd рівня A1 — плита цілком, із конфорками згори, а die Heizung рівня A1 — те центральне опалення, яке витіснило більшість печей. У множині умлаут. Зворот Jetzt ist der Ofen aus означає «на цьому все скінчено».'
+
+  - de: heizen
+    ipa: "ˈhaɪ̯tsn̩"
+    pos: verb
+    praesens_3sg: heizt
+    partizip2: geheizt
+    aux: haben
+    cards: recognition
+    en: to keep a room or a building warm by running a heating system
+    ru: поддерживать тепло в помещении или здании, пуская отопление
+    uk: підтримувати тепло в приміщенні чи будівлі, пускаючи опалення
+    example_de: Wir heizen erst ab Oktober.
+    example_en: We do not start heating until October.
+    example_ru: Мы начинаем топить только с октября.
+    example_uk: Ми починаємо топити лише з жовтня.
+    note:
+      en: 'Weak and regular, with haben, and it works with or without an object: Wir heizen mit Gas says how, das Zimmer ist gut geheizt says what. A1 die Heizung is both the radiator and the system, and die Heizkosten is the line on the bill that made this verb a household argument. Do not use it for warming food up — that is aufwärmen or warm machen. The related noun for what you burn is der Brennstoff.'
+      ru: 'Слабый и правильный, с haben, и работает как с дополнением, так и без: Wir heizen mit Gas говорит чем, das Zimmer ist gut geheizt — что именно. die Heizung уровня A1 — и батарея, и система, а die Heizkosten — та строка в счёте, из-за которой этот глагол стал предметом семейных споров. Не берите его для разогрева еды: там aufwärmen или warm machen. Топливо называется der Brennstoff.'
+      uk: 'Слабке й правильне, із haben, і працює як із додатком, так і без: Wir heizen mit Gas каже чим, das Zimmer ist gut geheizt — що саме. die Heizung рівня A1 — і батарея, і система, а die Heizkosten — той рядок у рахунку, через який це дієслово стало предметом родинних суперечок. Не беріть його для розігрівання їжі: там aufwärmen або warm machen. Паливо зветься der Brennstoff.'
+
+  - de: möbliert
+    ipa: "møˈbliːɐ̯t"
+    pos: adj
+    cards: recognition
+    en: let or handed over with the furniture already standing in it
+    ru: сдаваемый или передаваемый уже с мебелью внутри
+    uk: що здається або передається вже з меблями всередині
+    example_de: Wir suchen ein möbliertes Zimmer für sechs Monate.
+    example_en: We are looking for a furnished room for six months.
+    example_ru: Мы ищем меблированную комнату на полгода.
+    example_uk: Ми шукаємо умебльовану кімнату на пів року.
+    note:
+      en: 'The Partizip II of möblieren used as an adjective, and it is a listing word before it is anything else: möbliertes Zimmer, möblierte Wohnung, teilmöbliert for part-furnished, and the opposite an advert prints is unmöbliert or simply leer. A2 die Möbel is the furniture itself, plural only. The ö is long and rounded, and the stress sits on the -iert ending, as it does in every verb of that family.'
+      ru: 'Partizip II от möblieren в роли прилагательного, и прежде всего это слово объявлений: möbliertes Zimmer, möblierte Wohnung, teilmöbliert — частично меблированный, а противоположность объявление напечатает как unmöbliert или просто leer. die Möbel уровня A2 — сама мебель, слово только множественного числа. ö долгое и огублённое, а ударение сидит на окончании -iert, как у всех глаголов этого семейства.'
+      uk: 'Partizip II від möblieren у ролі прикметника, і насамперед це слово оголошень: möbliertes Zimmer, möblierte Wohnung, teilmöbliert — частково умебльований, а протилежність оголошення надрукує як unmöbliert або просто leer. die Möbel рівня A2 — самі меблі, слово лише множини. ö довге й огублене, а наголос сидить на закінченні -iert, як в усіх дієслів цієї родини.'
+
+  # --- Draußen um das Haus herum ---
+  - de: Terrasse
+    ipa: "tɛˈʁasə"
+    pos: noun
+    gender: f
+    plural: "die Terrassen"
+    cards: recognition
+    en: a paved open area at ground level beside a house, big enough to put a table and chairs on
+    ru: мощёная открытая площадка на уровне земли рядом с домом, где помещаются стол и стулья
+    uk: брукована відкрита площадка на рівні землі поруч із домом, де вміщаються стіл і стільці
+    example_de: Im Sommer frühstücken wir auf der Terrasse.
+    example_en: In summer we have breakfast on the terrace.
+    example_ru: Летом мы завтракаем на террасе.
+    example_uk: Улітку ми снідаємо на терасі.
+    note:
+      en: 'Height is the whole difference from A1 der Balkon: a Balkon hangs off an upper floor and has a railing, a Terrasse rests on the ground and usually opens straight off the living room, which is why a flat advert prices them differently. A café puts its outdoor tables auf der Terrasse. Double s after a short a, and the stress is on that middle syllable, never on the first.'
+      ru: 'Всё отличие от der Balkon уровня A1 — в высоте: Balkon висит на верхнем этаже и обнесён перилами, а Terrasse лежит на земле и обычно открывается прямо из гостиной, поэтому объявление о квартире оценивает их по-разному. Кафе выставляет столики auf der Terrasse. После краткого a двойное s, а ударение стоит на этом среднем слоге, но никак не на первом.'
+      uk: 'Уся відмінність від der Balkon рівня A1 — у висоті: Balkon висить на верхньому поверсі й обнесений поруччям, а Terrasse лежить на землі й зазвичай відчиняється просто з вітальні, тому оголошення про квартиру оцінює їх по-різному. Кав’ярня виставляє столики auf der Terrasse. Після короткого a подвійне s, а наголос стоїть на цьому середньому складі, але аж ніяк не на першому.'
+
+  - de: Rasen
+    ipa: "ˈʁaːzn̩"
+    pos: noun
+    gender: m
+    plural: "die Rasen"
+    cards: recognition
+    en: an area of short cut grass kept as a surface, in a garden or on a sports field
+    ru: участок коротко стриженной травы, содержащийся как покрытие, — в саду или на спортивном поле
+    uk: ділянка коротко стриженої трави, що утримується як покриття, — у саду чи на спортивному полі
+    example_de: Der Rasen muss dringend gemäht werden.
+    example_en: The lawn urgently needs mowing.
+    example_ru: Газон срочно нужно подстричь.
+    example_uk: Газон терміново треба підстригти.
+    note:
+      en: 'Das Gras is the plant; this is the mown surface as something made and maintained, which is why the park sign says Rasen betreten verboten and never Gras. Mowing it is den Rasen mähen and the machine is der Rasenmäher. The plural is barely used. Careful with the identical-looking verb rasen, to tear along much too fast, which belongs to the traffic field and has nothing to do with gardens.'
+      ru: 'das Gras — растение, а это скошенная поверхность как нечто устроенное и поддерживаемое, поэтому табличка в парке говорит Rasen betreten verboten, а не Gras. Стричь его — den Rasen mähen, машина — der Rasenmäher. Множественное почти не употребляется. Осторожно с одинаково выглядящим глаголом rasen — «нестись слишком быстро»: он из дорожного поля и к саду отношения не имеет.'
+      uk: 'das Gras — рослина, а це скошена поверхня як щось влаштоване й підтримуване, тому табличка в парку каже Rasen betreten verboten, а не Gras. Стригти його — den Rasen mähen, машина — der Rasenmäher. Множина майже не вживається. Обережно з однаково виглядним дієсловом rasen — «мчати надто швидко»: воно з дорожнього поля і до саду стосунку не має.'
+
+  - de: Umgebung
+    ipa: "ʊmˈgeːbʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Umgebungen"
+    cards: recognition
+    en: everything lying around a place, taken together as what surrounds it
+    ru: всё, что лежит вокруг какого-то места, взятое вместе как его окружение
+    uk: усе, що лежить довкола якогось місця, узяте разом як його оточення
+    example_de: In der Umgebung der Stadt gibt es mehrere Seen.
+    example_en: There are several lakes in the area around the town.
+    example_ru: В окрестностях города есть несколько озёр.
+    example_uk: В околицях міста є кілька озер.
+    note:
+      en: 'From umgeben, to surround. It answers where something sits in the world rather than what stands next to it, and the standard phrase on a map, a poster and a job advert is München und Umgebung. It also does the work of environment in the social sense — in einer ruhigen Umgebung aufwachsen. Not B1 die Umwelt, which is nature as the thing we damage, and not die Nachbarschaft, which means the people rather than the place.'
+      ru: 'От umgeben — «окружать». Оно отвечает на вопрос, где предмет стоит в мире, а не что стоит рядом с ним, и стандартный оборот карты, афиши и объявления о работе — München und Umgebung. Оно же передаёт «среду» в социальном смысле: in einer ruhigen Umgebung aufwachsen. Это не die Umwelt уровня B1 — природа как то, чему мы вредим, — и не die Nachbarschaft, где речь о людях, а не о месте.'
+      uk: 'Від umgeben — «оточувати». Воно відповідає на питання, де предмет стоїть у світі, а не що стоїть поруч із ним, і стандартний зворот карти, афіші та оголошення про роботу — München und Umgebung. Воно ж передає «середовище» в соціальному сенсі: in einer ruhigen Umgebung aufwachsen. Це не die Umwelt рівня B1 — природа як те, чому ми шкодимо, — і не die Nachbarschaft, де йдеться про людей, а не про місце.'
+
+  # --- Mieten, vermieten, wohnen bleiben ---
+  - de: Mieterin
+    ipa: "ˈmiːtəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Mieterinnen"
+    cards: recognition
+    en: the woman who pays each month to live in a place that belongs to somebody else
+    ru: женщина, которая ежемесячно платит за право жить в чужом жилье
+    uk: жінка, яка щомісяця платить за право жити в чужому житлі
+    example_de: Die neue Mieterin zieht am ersten März ein.
+    example_en: The new tenant is moving in on the first of March.
+    example_ru: Новая квартиросъёмщица въезжает первого марта.
+    example_uk: Нова наймачка заїжджає першого березня.
+    note:
+      en: 'This one ships without its masculine beside it, because B1 der Mieter already lives in another deck (leben-veraendern) and a headword belongs to exactly one file. The pattern is the general German one all the same: a role word takes -in for a woman, the stem is otherwise untouched, and the plural doubles the n — die Mieterinnen. The other side of the contract is A2 der Vermieter or die Vermieterin, and the paper between them is der Mietvertrag.'
+      ru: 'Эта запись идёт без мужской пары рядом, потому что der Mieter уровня B1 уже живёт в другой колоде (leben-veraendern), а заглавное слово принадлежит ровно одному файлу. Общее немецкое правило от этого не меняется: слово-роль получает -in для женщины, основа при этом не трогается, а во множественном n удваивается — die Mieterinnen. Другая сторона договора — der Vermieter или die Vermieterin уровня A2, а бумага между ними — der Mietvertrag.'
+      uk: 'Цей запис іде без чоловічої пари поряд, бо der Mieter рівня B1 уже живе в іншій колоді (leben-veraendern), а заголовне слово належить рівно одному файлу. Загальне німецьке правило від цього не змінюється: слово-роль дістає -in для жінки, основа при цьому не чіпається, а в множині n подвоюється — die Mieterinnen. Інший бік договору — der Vermieter або die Vermieterin рівня A2, а папір між ними — der Mietvertrag.'
+
+  - de: Vermietung
+    ipa: "fɛɐ̯ˈmiːtʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Vermietungen"
+    cards: recognition
+    en: the letting out of something for payment, named as a business or as the desk that handles it
+    ru: сдача чего-либо внаём за плату, названная как деятельность или как стойка, которая ею занимается
+    uk: здавання чогось у найм за плату, назване як діяльність або як стійка, що ним опікується
+    example_de: Die Vermietung von Ferienwohnungen läuft über das Internet.
+    example_en: The letting of holiday flats is handled over the internet.
+    example_ru: Сдача квартир для отдыха идёт через интернет.
+    example_uk: Здавання квартир для відпочинку йде через інтернет.
+    note:
+      en: 'The noun of A1 vermieten, and it names the activity from the owner''s side, never the tenant''s. On a sign it shrinks to the counter that does it: die Autovermietung, die Fahrradvermietung. Where nothing is lived in for a stretch of time German prefers another word, der Verleih, so skis and party glasses come from a Verleih rather than a Vermietung. The ver- prefix is unstressed and its r is the vocalised one, so the word opens fɛɐ̯- exactly like A2 der Vermieter.'
+      ru: 'Существительное от vermieten уровня A1, называющее действие со стороны хозяина и никогда со стороны жильца. На вывеске оно сжимается до стойки, которая этим занимается: die Autovermietung, die Fahrradvermietung. Там, где в предмете не живут, немец возьмёт другое слово — der Verleih. Приставка ver- безударна, а её r вокализуется, так что слово открывается на fɛɐ̯-, ровно как der Vermieter уровня A2.'
+      uk: 'Іменник від vermieten рівня A1, що називає дію з боку власника і ніколи з боку мешканця. На вивісці воно стискається до стійки, яка цим опікується: die Autovermietung, die Fahrradvermietung. Там, де в предметі не живуть, німець візьме інше слово — der Verleih. Префікс ver- ненаголошений, а його r вокалізується, тож слово відкривається на fɛɐ̯-, точно як der Vermieter рівня A2.'
+
+  - de: Zustand
+    ipa: "ˈtsuːˌʃtant"
+    pos: noun
+    gender: m
+    plural: "die Zustände"
+    cards: recognition
+    en: how a thing or a person is at a given moment, judged as good or bad
+    ru: то, в каком виде вещь или человек находятся в данный момент, с оценкой «хорошо» или «плохо»
+    uk: те, у якому вигляді річ чи людина перебувають цієї миті, з оцінкою «добре» чи «погано»
+    example_de: Das Fahrrad ist alt, aber in gutem Zustand.
+    example_en: The bicycle is old but in good condition.
+    example_ru: Велосипед старый, но в хорошем состоянии.
+    example_uk: Велосипед старий, але в доброму стані.
+    note:
+      en: 'A second-hand advert lives on it: in gutem Zustand, in gepflegtem Zustand, im Originalzustand. At a rental handover both sides record den Zustand der Wohnung in a protocol, and that page decides who pays at the end. In the plural it turns critical and always negative: Das sind ja Zustände! means the state of things is scandalous. Not die Situation, which is the circumstances a person is in; this is the condition of the thing itself.'
+      ru: 'На нём держится объявление о подержанной вещи: in gutem Zustand, in gepflegtem Zustand, im Originalzustand. При передаче квартиры обе стороны записывают den Zustand der Wohnung в акт, и эта страница решает, кто в конце платит. Во множественном слово становится оценочным и всегда отрицательным: Das sind ja Zustände! — «безобразие». Это не die Situation, где речь об обстоятельствах вокруг человека; здесь состояние самой вещи.'
+      uk: 'На ньому тримається оголошення про вживану річ: in gutem Zustand, in gepflegtem Zustand, im Originalzustand. Під час передавання квартири обидві сторони записують den Zustand der Wohnung до акта, і ця сторінка вирішує, хто наприкінці платить. У множині слово стає оцінним і завжди негативним: Das sind ja Zustände! — «неподобство». Це не die Situation, де йдеться про обставини навколо людини; тут стан самої речі.'
+
+  - de: Einwohner
+    ipa: "ˈaɪ̯nˌvoːnɐ"
+    pos: noun
+    gender: m
+    plural: "die Einwohner"
+    cards: recognition
+    en: a person counted as living in a town or a country, as a statistic counts them
+    ru: человек, посчитанный как житель города или страны, — так, как его считает статистика
+    uk: людина, порахована як мешканець міста чи країни, — так, як її рахує статистика
+    example_de: Die Stadt hat etwa achtzigtausend Einwohner.
+    example_en: The town has about eighty thousand inhabitants.
+    example_ru: В городе около восьмидесяти тысяч жителей.
+    example_uk: У місті близько вісімдесяти тисяч мешканців.
+    note:
+      en: 'The word of the register and the guidebook, and it counts heads rather than describing anybody: it is not A2 der Nachbar, the person next door, and not B1 der Bürger, who is defined by rights and duties. The office that keeps the list is das Einwohnermeldeamt, where every newcomer to Germany must register within two weeks. Singular and plural are spelled alike. The feminine die Einwohnerin is the next entry.'
+      ru: 'Слово реестра и путеводителя: оно считает головы, а не описывает человека. Это не der Nachbar уровня A2 — сосед по дому — и не der Bürger уровня B1, которого определяют права и обязанности. Список ведёт das Einwohnermeldeamt, где каждый приехавший в Германию обязан прописаться в течение двух недель. Единственное и множественное пишутся одинаково. Женская пара die Einwohnerin — следующая запись.'
+      uk: 'Слово реєстру й путівника: воно рахує голови, а не описує людину. Це не der Nachbar рівня A2 — сусід по будинку — і не der Bürger рівня B1, якого визначають права та обов’язки. Список веде das Einwohnermeldeamt, де кожен приїжджий до Німеччини мусить зареєструватися протягом двох тижнів. Однина і множина пишуться однаково. Жіноча пара die Einwohnerin — наступний запис.'
+
+  - de: Einwohnerin
+    ipa: "ˈaɪ̯nˌvoːnəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Einwohnerinnen"
+    cards: recognition
+    en: a woman counted as living in a town or a country
+    ru: женщина, посчитанная как жительница города или страны
+    uk: жінка, порахована як мешканка міста чи країни
+    example_de: Als neue Einwohnerin muss sie sich beim Amt anmelden.
+    example_en: As a new resident she has to register at the office.
+    example_ru: Как новая жительница она должна зарегистрироваться в ведомстве.
+    example_uk: Як нова мешканка вона мусить зареєструватися у відомстві.
+    note:
+      en: 'The feminine of the entry above: -in on the stem, and the plural doubles the n. Official German today usually writes both out — die Einwohnerinnen und Einwohner — or shortens that to die Einwohner*innen or die EinwohnerInnen on a form, a poster and a council report. A statistic giving one figure still uses the masculine plural for everybody, which is why the two words are not equally frequent.'
+      ru: 'Женская пара к записи выше: -in на основе, а во множественном n удваивается. Официальный немецкий сегодня обычно выписывает обе формы — die Einwohnerinnen und Einwohner — или сокращает это до die Einwohner*innen и die EinwohnerInnen на бланке, афише и в отчёте муниципалитета. Статистика, дающая одну цифру, всё равно берёт мужское множественное на всех, поэтому частотность у слов разная.'
+      uk: 'Жіноча пара до запису вище: -in на основі, а в множині n подвоюється. Офіційна німецька сьогодні зазвичай виписує обидві форми — die Einwohnerinnen und Einwohner — або скорочує це до die Einwohner*innen і die EinwohnerInnen на бланку, афіші та у звіті муніципалітету. Статистика, що дає одну цифру, все одно бере чоловічу множину на всіх, тому частотність у слів різна.'

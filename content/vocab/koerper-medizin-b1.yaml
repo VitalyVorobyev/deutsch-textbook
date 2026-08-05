@@ -1,0 +1,794 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the body-and-medicine
+# field of data/goethe-b1-wortliste.txt: the parts a doctor asks you to point at, what
+# goes wrong with them, and what a practice or a hospital then does about it.
+# A1's `koerper-gesundheit` owns the body's outline and the sickroom (Körper, Kopf,
+# Arm, Bein, Schmerzen, Fieber, Medikament, Tablette, Krankenhaus), A2's
+# `koerper-pflege-a2` and `gesundheit-arzttermin` own the appointment itself
+# (Beschwerden, Husten, Rezept, Sprechstunde, Hausarzt, untersuchen, verletzen), and
+# B1's `gesundheit-wohlbefinden` owns living well (atmen, Ernährung, sich erkälten).
+# This deck is the layer between them: the anatomy those three never name and the
+# treatment they stop short of.
+id: koerper-medizin-b1
+title_de: "Körper und Medizin"
+title_en: "The body and medicine"
+title_ru: "Тело и медицина"
+title_uk: "Тіло та медицина"
+level: B1
+entries:
+  # --- Der Körper von außen ---
+  - de: Haut
+    ipa: "ˈhaʊ̯t"
+    pos: noun
+    gender: f
+    plural: "die Häute"
+    en: the outer layer that covers a whole body and can be dry, oily or sunburnt
+    ru: наружный покров тела, который бывает сухим, жирным или обгоревшим на солнце
+    uk: зовнішній покрив тіла, який буває сухим, жирним або обгорілим на сонці
+    example_de: Nach zwei Wochen am Meer war seine Haut ganz braun.
+    example_en: After two weeks by the sea his skin was completely brown.
+    example_ru: После двух недель на море его кожа стала совсем смуглой.
+    example_uk: Після двох тижнів на морі його шкіра стала зовсім смаглявою.
+    note:
+      en: 'Of a living person it stays singular — the plural belongs to animals and to the leather trade. A2 die Creme goes on it, and the specialist is der Hautarzt or die Hautärztin, which is the word a receptionist will use rather than the Latin one. Two idioms are worth recognising because they sound alarming and are not: aus der Haut fahren is to lose your temper, and sich in seiner Haut wohlfühlen is to be comfortable with who you are.'
+      ru: 'О живом человеке слово стоит в единственном числе — множественное относится к животным и к кожевенному делу. Сверху наносят die Creme уровня A2, а специалист — der Hautarzt или die Hautärztin; именно так скажет регистратура, а не по-латыни. Два оборота стоит узнавать, потому что звучат они тревожно, а смысл мирный: aus der Haut fahren — «выйти из себя», а sich in seiner Haut wohlfühlen — «быть в ладу с самим собой».'
+      uk: 'Про живу людину слово стоїть в однині — множина стосується тварин і чинбарства. Зверху наносять die Creme рівня A2, а фахівець — der Hautarzt або die Hautärztin; саме так скаже реєстратура, а не латиною. Два звороти варто впізнавати, бо звучать вони тривожно, а зміст мирний: aus der Haut fahren — «вийти із себе», а sich in seiner Haut wohlfühlen — «бути в злагоді із самим собою».'
+
+  - de: Brust
+    ipa: "ˈbʁʊst"
+    pos: noun
+    gender: f
+    plural: "die Brüste"
+    en: the front of the upper body, between the neck and the stomach
+    ru: передняя часть верхней половины тела, между шеей и животом
+    uk: передня частина верхньої половини тіла, між шиєю і животом
+    example_de: Der Arzt hörte die Brust mit dem Stethoskop ab.
+    example_en: The doctor listened to the chest with a stethoscope.
+    example_ru: Врач послушал грудную клетку стетоскопом.
+    example_uk: Лікар послухав грудну клітку стетоскопом.
+    note:
+      en: 'One German word covers what English splits into chest and breast, and the number decides which one is meant: the singular is the front of the torso in anybody, the plural is a woman''s breasts. At a practice the useful phrase is Schmerzen in der Brust, and the bones around it are der Brustkorb. Do not reach for it where English says heart in a figurative sense — an emotion sits im Herzen, never here.'
+      ru: 'Одно немецкое слово покрывает то, что русский делит на «грудную клетку» и «грудь» как женский орган, а различает их число: единственное — передняя часть корпуса у любого человека, множественное — женская грудь. У врача пригодится оборот Schmerzen in der Brust, а костный каркас вокруг — der Brustkorb. Не берите это слово там, где по-русски говорят «в груди» о чувстве: чувство живёт im Herzen, а не здесь.'
+      uk: 'Одне німецьке слово покриває те, що українська ділить на «грудну клітку» і «груди» як жіночий орган, а розрізняє їх число: однина — передня частина корпусу в будь-якої людини, множина — жіночі груди. У лікаря знадобиться зворот Schmerzen in der Brust, а кістковий каркас навколо — der Brustkorb. Не беріть це слово там, де українською кажуть «у грудях» про почуття: почуття живе im Herzen, а не тут.'
+
+  - de: Schulter
+    ipa: "ˈʃʊltɐ"
+    pos: noun
+    gender: f
+    plural: "die Schultern"
+    en: the joint where the arm meets the body, on the top corner of the torso
+    ru: сустав, которым рука соединяется с телом, на верхнем углу корпуса
+    uk: суглоб, яким рука з’єднується з тілом, на верхньому куті корпусу
+    example_de: Seit dem Umzug tut mir die rechte Schulter weh.
+    example_en: My right shoulder has been hurting since the move.
+    example_ru: После переезда у меня болит правое плечо.
+    example_uk: Після переїзду в мене болить праве плече.
+    note:
+      en: 'Plural in -n and no umlaut. The gesture Germans call mit den Schultern zucken is the shrug, and it turns up in reported speech as often as in a room: Er zuckte nur mit den Schultern. Beside A1 der Arm and die Hand this is the third joint a doctor asks you to move, so the sentence to have ready is Ich kann den Arm nicht heben. The idiom auf die leichte Schulter nehmen means to take a problem far too lightly.'
+      ru: 'Множественное на -n, без умлаута. Жест, который немцы называют mit den Schultern zucken, — это пожатие плечами, и в пересказе он встречается не реже, чем в комнате: Er zuckte nur mit den Schultern. Рядом с der Arm и die Hand уровня A1 это третий сустав, которым врач попросит подвигать, поэтому наготове стоит держать фразу Ich kann den Arm nicht heben. Оборот auf die leichte Schulter nehmen значит «отнестись к беде слишком легкомысленно».'
+      uk: 'Множина на -n, без умлаута. Жест, який німці називають mit den Schultern zucken, — це знизування плечима, і в переказі він трапляється не рідше, ніж у кімнаті: Er zuckte nur mit den Schultern. Поряд із der Arm і die Hand рівня A1 це третій суглоб, яким лікар попросить порухати, тож напоготові варто мати фразу Ich kann den Arm nicht heben. Зворот auf die leichte Schulter nehmen означає «поставитися до біди надто легковажно».'
+
+  - de: Knie
+    ipa: "ˈkniː"
+    pos: noun
+    gender: n
+    plural: "die Knie"
+    en: the joint in the middle of the leg, which bends when you sit down or kneel
+    ru: сустав посреди ноги, который сгибается, когда садишься или встаёшь на колени
+    uk: суглоб посеред ноги, який згинається, коли сідаєш або стаєш на коліна
+    example_de: Beim Fußball hat er sich am Knie verletzt.
+    example_en: He injured his knee playing football.
+    example_ru: Играя в футбол, он повредил колено.
+    example_uk: Граючи у футбол, він пошкодив коліно.
+    note:
+      en: 'Neuter, and the plural is spelled exactly like the singular — die Knie, with the e spoken. The k is pronounced in German, unlike English knee, so it opens with a real kn-. This is the joint that comes up most often at a practice, and the frame is sich am Knie verletzen, with the body part in a prepositional phrase rather than as a possessive: Germans say ich habe mir das Knie verletzt where English says my knee. The verb for going down on them is knien.'
+      ru: 'Средний род, и множественное пишется так же, как единственное, — die Knie, причём e произносится. В отличие от английского knee, немецкое k звучит, так что слово начинается настоящим kn-. Это тот сустав, о котором на приёме заходит речь чаще всего, а конструкция — sich am Knie verletzen: часть тела стоит в предложной группе, а не с притяжательным местоимением, поэтому немец скажет ich habe mir das Knie verletzt там, где русский скажет «повредил своё колено». Глагол «стоять на них» — knien.'
+      uk: 'Середній рід, і множина пишеться так само, як однина, — die Knie, причому e вимовляється. На відміну від англійського knee, німецьке k звучить, тож слово починається справжнім kn-. Це той суглоб, про який на прийомі йдеться найчастіше, а конструкція — sich am Knie verletzen: частина тіла стоїть у прийменниковій групі, а не з присвійним займенником, тому німець скаже ich habe mir das Knie verletzt там, де українець скаже «пошкодив своє коліно». Дієслово «стояти на них» — knien.'
+
+  - de: Lippe
+    ipa: "ˈlɪpə"
+    pos: noun
+    gender: f
+    plural: "die Lippen"
+    en: one of the two soft edges of the mouth, which crack in cold weather
+    ru: один из двух мягких краёв рта, которые на морозе трескаются
+    uk: один із двох м’яких країв рота, які на морозі тріскаються
+    example_de: Im Winter werden meine Lippen immer trocken.
+    example_en: My lips always get dry in winter.
+    example_ru: Зимой у меня всегда сохнут губы.
+    example_uk: Узимку в мене завжди сохнуть губи.
+    note:
+      en: 'Almost always plural in real sentences, because they come in a pair. The stick in every German handbag from November on is der Lippenstift — which is lipstick, not lip balm; the balm is der Lippenpflegestift or simply die Lippencreme. A2 der Mund is the opening as a whole and is what you open at a dentist''s; these are only its rim. The idiom an den Lippen hängen means to hang on somebody''s every word.'
+      ru: 'В живой речи почти всегда во множественном числе — они парные. Карандаш, который с ноября лежит в каждой немецкой сумке, — der Lippenstift, и это именно губная помада, а не гигиеническая: гигиеническая — der Lippenpflegestift или просто die Lippencreme. der Mund уровня A2 — отверстие целиком, его открывают у стоматолога; здесь же речь только о его кромке. Оборот an den Lippen hängen значит «ловить каждое слово».'
+      uk: 'У живому мовленні майже завжди в множині — вони парні. Олівець, що з листопада лежить у кожній німецькій сумці, — der Lippenstift, і це саме губна помада, а не гігієнічна: гігієнічна — der Lippenpflegestift або просто die Lippencreme. der Mund рівня A2 — отвір цілком, його відкривають у стоматолога; тут же йдеться лише про його край. Зворот an den Lippen hängen означає «ловити кожне слово».'
+
+  - de: Bart
+    ipa: "ˈbaːɐ̯t"
+    pos: noun
+    gender: m
+    plural: "die Bärte"
+    # Recognition only: grooming rather than medicine, and the sentence a learner
+    # produces about it is built from A2 `rasieren` — the noun is read on a barber's
+    # window and heard in a description, not said.
+    cards: recognition
+    en: the hair a man lets grow on his chin and cheeks
+    ru: волосы, которые мужчина отпускает на подбородке и щеках
+    uk: волосся, яке чоловік відпускає на підборідді та щоках
+    example_de: Seit dem Urlaub trägt mein Bruder einen Bart.
+    example_en: My brother has had a beard since the holiday.
+    example_ru: После отпуска мой брат носит бороду.
+    example_uk: Після відпустки мій брат носить бороду.
+    note:
+      en: 'The umlaut appears only in the plural: der Bart, die Bärte. German does not separate beard from moustache with two basic words — the upper lip alone is der Schnurrbart, three days'' worth is der Dreitagebart, and the collective is simply this word. The verb beside it is sich rasieren, and a man who keeps one is bärtig. Do not confuse it with die Bar, a place to drink, or with A1 das Haar on the head.'
+      ru: 'Умлаут появляется только во множественном числе: der Bart, die Bärte. Немецкий не разводит бороду и усы двумя разными базовыми словами: усы отдельно — der Schnurrbart, трёхдневная щетина — der Dreitagebart, а общее слово одно. Рядом стоит глагол sich rasieren, а тот, кто её носит, — bärtig. Не путайте со словом die Bar, где пьют, и с das Haar уровня A1 на голове.'
+      uk: 'Умлаут з’являється лише в множині: der Bart, die Bärte. Німецька не розводить бороду й вуса двома різними базовими словами: вуса окремо — der Schnurrbart, триденна щетина — der Dreitagebart, а спільне слово одне. Поряд стоїть дієслово sich rasieren, а той, хто її носить, — bärtig. Не плутайте зі словом die Bar, де п’ють, і з das Haar рівня A1 на голові.'
+
+  - de: Muskel
+    ipa: "ˈmʊskl̩"
+    pos: noun
+    gender: m
+    plural: "die Muskeln"
+    # Recognition only: gym and anatomy register. What a learner produces after a hard
+    # day is `Ich habe Muskelkater` as a chunk, or A1 `Schmerzen`.
+    cards: recognition
+    en: one of the parts under the skin that pull a bone and make it move
+    ru: одна из тканей под кожей, которая тянет кость и заставляет её двигаться
+    uk: одна з тканин під шкірою, що тягне кістку і змушує її рухатися
+    example_de: Nach dem Training tun mir alle Muskeln weh.
+    example_en: All my muscles hurt after the training session.
+    example_ru: После тренировки у меня болят все мышцы.
+    example_uk: Після тренування в мене болять усі м’язи.
+    note:
+      en: 'Masculine and plural in -n — der Muskel, die Muskeln — with no umlaut anywhere. The one word every German gym-goer knows is der Muskelkater, literally a muscle hangover, for the ache two days after unusual exercise; there is no shorter way to say it. Note the stress: it falls on the first syllable, unlike English muscle''s Latin cousin musculature. Building them is Muskeln aufbauen.'
+      ru: 'Мужской род, множественное на -n — der Muskel, die Muskeln, — умлаута нигде нет. Слово, которое знает каждый посетитель немецкого спортзала, — der Muskelkater, буквально «мышечное похмелье», то есть боль через день-другой после непривычной нагрузки; короче сказать нельзя. Обратите внимание на ударение: оно на первом слоге. «Накачивать» их — Muskeln aufbauen.'
+      uk: 'Чоловічий рід, множина на -n — der Muskel, die Muskeln, — умлаута ніде немає. Слово, яке знає кожен відвідувач німецького спортзалу, — der Muskelkater, буквально «м’язове похмілля», тобто біль через день-другий після незвичного навантаження; коротше сказати не можна. Зверніть увагу на наголос: він на першому складі. «Накачувати» їх — Muskeln aufbauen.'
+
+  - de: Knochen
+    ipa: "ˈknɔxn̩"
+    pos: noun
+    gender: m
+    plural: "die Knochen"
+    en: one of the hard white parts that hold a body up and can break in a fall
+    ru: одна из твёрдых белых частей, на которых держится тело и которые ломаются при падении
+    uk: одна з твердих білих частин, на яких тримається тіло і які ламаються при падінні
+    example_de: Beim Sturz auf dem Eis hat sie sich einen Knochen gebrochen.
+    example_en: She broke a bone falling on the ice.
+    example_ru: Упав на льду, она сломала кость.
+    example_uk: Упавши на льоду, вона зламала кістку.
+    note:
+      en: 'Singular and plural are spelled the same, like A1 der Rücken. The k is spoken here too, so the word opens kn-. The sentence a hospital wants is sich etwas brechen with a dative reflexive — ich habe mir den Arm gebrochen — and the result on the X-ray is der Bruch. Two compounds you will hear: der Knochenbruch for the fracture itself and das Knochenmark for marrow. Of a person, knochig means gaunt.'
+      ru: 'Единственное и множественное пишутся одинаково — как der Rücken уровня A1. k здесь тоже произносится, так что слово открывается сочетанием kn-. Больнице нужна конструкция sich etwas brechen с возвратным местоимением в Dativ: ich habe mir den Arm gebrochen, — а результат на снимке называется der Bruch. Два составных слова, которые вы услышите: der Knochenbruch — сам перелом и das Knochenmark — костный мозг. О человеке knochig значит «костлявый».'
+      uk: 'Однина і множина пишуться однаково — як der Rücken рівня A1. k тут теж вимовляється, тож слово відкривається сполукою kn-. Лікарні потрібна конструкція sich etwas brechen зі зворотним займенником у Dativ: ich habe mir den Arm gebrochen, — а результат на знімку зветься der Bruch. Два складні слова, які ви почуєте: der Knochenbruch — сам перелом і das Knochenmark — кістковий мозок. Про людину knochig означає «кістлявий».'
+
+  # --- Was drinnen arbeitet ---
+  - de: Herz
+    ipa: "ˈhɛʁts"
+    pos: noun
+    gender: n
+    plural: "die Herzen"
+    en: the organ in the chest that pumps and beats faster when you run
+    ru: орган в груди, который качает кровь и бьётся чаще, когда бежишь
+    uk: орган у грудях, який качає кров і б’ється частіше, коли біжиш
+    example_de: Beim Treppensteigen schlägt mein Herz sehr schnell.
+    example_en: My heart beats very fast when I climb stairs.
+    example_ru: Когда я поднимаюсь по лестнице, сердце бьётся очень часто.
+    example_uk: Коли я піднімаюся сходами, серце б’ється дуже часто.
+    note:
+      en: 'Neuter, and its declension is the last irregular one left in modern German: dem Herzen, des Herzens, die Herzen. The figurative sense is as alive as in English and drives whole chunks — von Herzen for sincerely, sich etwas zu Herzen nehmen for taking something to heart, and ein Herz aus Stein. In medicine everything hangs off it in compounds: der Herzinfarkt, die Herzkrankheit, der Herzschlag. Watch the r: it is the uvular one and the word is one syllable.'
+      ru: 'Средний род, и его склонение — последнее неправильное, уцелевшее в современном немецком: dem Herzen, des Herzens, die Herzen. Переносное значение живо не меньше, чем в русском, и держит целые обороты: von Herzen — «от души», sich etwas zu Herzen nehmen — «принять близко к сердцу», ein Herz aus Stein. В медицине от него ветвятся составные слова: der Herzinfarkt, die Herzkrankheit, der Herzschlag. Следите за r: оно увулярное, а слово односложное.'
+      uk: 'Середній рід, і його відмінювання — останнє неправильне, що вціліло в сучасній німецькій: dem Herzen, des Herzens, die Herzen. Переносне значення живе не менше, ніж в українській, і тримає цілі звороти: von Herzen — «від щирого серця», sich etwas zu Herzen nehmen — «взяти близько до серця», ein Herz aus Stein. У медицині від нього розгалужуються складні слова: der Herzinfarkt, die Herzkrankheit, der Herzschlag. Стежте за r: воно увулярне, а слово односкладове.'
+
+  - de: Blut
+    ipa: "ˈbluːt"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: the red liquid that runs through a body and is taken for a laboratory test
+    ru: красная жидкость, которая течёт по телу и которую берут на лабораторный анализ
+    uk: червона рідина, що тече тілом і яку беруть на лабораторний аналіз
+    example_de: Für den Test müssen wir Ihnen Blut abnehmen.
+    example_en: We have to take some blood from you for the test.
+    example_ru: Для анализа нам нужно взять у вас кровь.
+    example_uk: Для аналізу нам треба взяти у вас кров.
+    note:
+      en: 'A mass noun with no plural at all, so it never takes ein. The two sentences a practice actually says are Blut abnehmen, to take a sample, and Blut spenden, to donate. Compounds carry most of the medical field: der Blutdruck for blood pressure, which is what a nurse measures first, das Blutbild for the lab result, and die Blutgruppe. The vowel is long — bluː — and that length is what separates it from the verb beside it.'
+      ru: 'Неисчисляемое слово без множественного числа, поэтому ein при нём не ставится. Две фразы, которые действительно звучат в кабинете: Blut abnehmen — «взять анализ» и Blut spenden — «сдать донорскую». Медицинское поле держится на составных словах: der Blutdruck — давление, которое медсестра меряет первым, das Blutbild — результат анализа и die Blutgruppe. Гласный долгий — bluː, — и именно долгота отличает это слово от стоящего рядом глагола.'
+      uk: 'Незлічуване слово без множини, тому ein при ньому не ставлять. Дві фрази, які справді звучать у кабінеті: Blut abnehmen — «взяти аналіз» і Blut spenden — «здати донорську». Медичне поле тримається на складних словах: der Blutdruck — тиск, який медсестра міряє першим, das Blutbild — результат аналізу і die Blutgruppe. Голосний довгий — bluː, — і саме довгота відрізняє це слово від дієслова поряд.'
+
+  - de: bluten
+    ipa: "ˈbluːtn̩"
+    pos: verb
+    praesens_3sg: blutet
+    partizip2: geblutet
+    aux: haben
+    en: to lose blood from a cut or a wound
+    ru: терять кровь из пореза или раны, кровоточить
+    uk: втрачати кров із порізу чи рани, кровоточити
+    example_de: Die Wunde blutet immer noch ein bisschen.
+    example_en: The cut is still bleeding a little.
+    example_ru: Рана всё ещё немного кровоточит.
+    example_uk: Рана все ще трохи кровоточить.
+    note:
+      en: 'Weak and regular, with haben in the Perfekt even though nothing is done to an object: Es hat stark geblutet. The commonest use in daily life is die Nase blutet, a nosebleed, which German states as a full clause rather than naming it as a noun. Note the -et in blutet and geblutet: the stem ends in t, so the ending needs its helping e, exactly like arbeiten. Beside it, verbluten is to bleed to death.'
+      ru: 'Слабый и правильный, в Perfekt с haben, хотя никакого объекта нет: Es hat stark geblutet. Чаще всего в быту говорят die Nase blutet — про носовое кровотечение, и немецкий выражает это целым предложением, а не отдельным существительным. Обратите внимание на -et в blutet и geblutet: основа кончается на t, поэтому окончанию нужна вставная e — ровно как у arbeiten. Рядом verbluten значит «истечь кровью».'
+      uk: 'Слабке й правильне, у Perfekt із haben, хоча жодного об’єкта немає: Es hat stark geblutet. Найчастіше в побуті кажуть die Nase blutet — про носову кровотечу, і німецька виражає це цілим реченням, а не окремим іменником. Зверніть увагу на -et у blutet і geblutet: основа закінчується на t, тож закінченню потрібна вставна e — точно як в arbeiten. Поряд verbluten означає «стекти кров’ю».'
+
+  - de: Atem
+    ipa: "ˈaːtəm"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: B1's `atmen` (gesundheit-wohlbefinden) already ships as the
+    # production card for this idea, and the noun lives almost entirely inside fixed
+    # chunks the learner reads rather than builds.
+    cards: recognition
+    en: the air a person draws in and lets out, as something that can run short
+    ru: воздух, который человек вдыхает и выдыхает, — то, чего может не хватать
+    uk: повітря, яке людина вдихає і видихає, — те, чого може бракувати
+    example_de: Nach dem Lauf war sie ganz außer Atem.
+    example_en: She was completely out of breath after the run.
+    example_ru: После пробежки она совсем запыхалась.
+    example_uk: Після пробіжки вона зовсім захекалася.
+    note:
+      en: 'Masculine, no plural, and it barely appears outside three chunks: außer Atem sein, to be out of breath, tief Atem holen, to take a deep breath, and den Atem anhalten, to hold it. The verb atmen is the everyday way to say all of this, which is why the noun is worth recognising more than producing. Two compounds a doctor uses: die Atemnot for breathlessness and der Atemzug for a single breath.'
+      ru: 'Мужской род, множественного нет, и вне трёх оборотов слово почти не встречается: außer Atem sein — «запыхаться», tief Atem holen — «глубоко вдохнуть» и den Atem anhalten — «задержать дыхание». Всё это в быту выражают глаголом atmen, поэтому существительное важнее узнавать, чем строить. Два врачебных составных слова: die Atemnot — одышка и der Atemzug — один вдох.'
+      uk: 'Чоловічий рід, множини немає, і поза трьома зворотами слово майже не трапляється: außer Atem sein — «захекатися», tief Atem holen — «глибоко вдихнути» і den Atem anhalten — «затримати дихання». Усе це в побуті виражають дієсловом atmen, тому іменник важливіше впізнавати, ніж будувати. Два лікарські складні слова: die Atemnot — задишка і der Atemzug — один вдих.'
+
+  - de: Kraft
+    ipa: "ˈkʁaft"
+    pos: noun
+    gender: f
+    plural: "die Kräfte"
+    en: the bodily power a person has for lifting, pushing or holding out
+    ru: телесная сила, которой хватает, чтобы поднять, толкнуть или продержаться
+    uk: тілесна сила, якої вистачає, щоб підняти, штовхнути або протриматися
+    example_de: Nach der Grippe hatte er zwei Wochen lang keine Kraft.
+    example_en: After the flu he had no strength for two weeks.
+    example_ru: После гриппа у него две недели не было сил.
+    example_uk: Після грипу в нього два тижні не було сил.
+    note:
+      en: 'Not the same word as B1 die Energie, which is what a power station produces and what a diet gives you in the abstract; this one is what your arms have or do not have this morning, and the sentence Ich habe keine Kraft mehr is the everyday complaint. The plural means either forces or, in an office, staff — Fachkräfte are qualified people. A second, legal sense travels in fixed phrases: in Kraft treten, of a law coming into force. The adjective beside it is the next entry.'
+      ru: 'Это не die Energie уровня B1, которую вырабатывает электростанция и о которой отвлечённо говорят применительно к питанию; здесь речь о том, есть ли у вас сегодня силы в руках, и обиходная жалоба звучит так: Ich habe keine Kraft mehr. Множественное значит либо «силы» вообще, либо, в конторском языке, «кадры»: Fachkräfte — квалифицированные работники. Второй, юридический смысл ходит в устойчивых оборотах: in Kraft treten — «вступить в силу» о законе. Прилагательное рядом — следующая запись.'
+      uk: 'Це не die Energie рівня B1, яку виробляє електростанція і про яку відсторонено говорять щодо харчування; тут ідеться про те, чи є у вас сьогодні сила в руках, і побутова скарга звучить так: Ich habe keine Kraft mehr. Множина означає або «сили» взагалі, або, у канцелярській мові, «кадри»: Fachkräfte — кваліфіковані працівники. Другий, юридичний сенс ходить в усталених зворотах: in Kraft treten — «набути чинності» про закон. Прикметник поряд — наступний запис.'
+
+  - de: kräftig
+    ipa: "ˈkʁɛftɪç"
+    pos: adj
+    # Recognition only: A2 ships `stark` ("strong", charakter-eigenschaften-a2) as the
+    # production card for exactly this prompt, and no accept list in this deck can
+    # reach a card in that one.
+    cards: recognition
+    en: solidly built and powerful — said of a body, and also of a colour or a meal
+    en_compact: solidly built and powerful
+    ru: крепкий и плотный — о телосложении, а также о цвете или о еде
+    uk: міцний і щільний — про статуру, а також про колір або про їжу
+    example_de: Für diese Arbeit braucht man kräftige Arme.
+    example_en: You need powerful arms for this job.
+    example_ru: Для этой работы нужны крепкие руки.
+    example_uk: Для цієї роботи потрібні міцні руки.
+    note:
+      en: 'Formed from the noun above with the umlaut and -ig, and it says something A2 stark does not: not just strong but thickset, with substance behind the strength. That is why it stretches to other senses — eine kräftige Farbe is a deep, saturated colour, ein kräftiges Essen is a hearty meal, and kräftig schütteln on a bottle means shake it hard. Of a person it is never an insult, unlike dick.'
+      ru: 'Образовано от существительного выше умлаутом и суффиксом -ig, и говорит оно то, чего не говорит stark уровня A2: не просто «сильный», а «плотный, ладный», с телесной основательностью за силой. Отсюда и другие значения: eine kräftige Farbe — насыщенный цвет, ein kräftiges Essen — сытная еда, а kräftig schütteln на флаконе значит «хорошенько взболтать». О человеке это, в отличие от dick, никогда не обидно.'
+      uk: 'Утворене від іменника вище умлаутом і суфіксом -ig, і каже воно те, чого не каже stark рівня A2: не просто «сильний», а «щільний, ладний», із тілесною ґрунтовністю за силою. Звідси й інші значення: eine kräftige Farbe — насичений колір, ein kräftiges Essen — ситна їжа, а kräftig schütteln на флаконі означає «добряче збовтати». Про людину це, на відміну від dick, ніколи не образливо.'
+
+  - de: körperlich
+    ipa: "ˈkœʁpɐlɪç"
+    pos: adj
+    # Recognition only: read on a job advert, a sick note and a fitness leaflet. The
+    # learner who has to say it reaches for A1 `Körper` in a prepositional phrase.
+    cards: recognition
+    en: having to do with the body rather than with the mind
+    ru: относящийся к телу, а не к душе или уму
+    uk: що стосується тіла, а не душі чи розуму
+    example_de: Die Arbeit im Lager ist körperlich sehr anstrengend.
+    example_en: The work in the warehouse is physically very demanding.
+    example_ru: Работа на складе физически очень тяжёлая.
+    example_uk: Робота на складі фізично дуже виснажлива.
+    note:
+      en: 'Built from A1 der Körper with -lich. Its standing opposite is geistig, of the mind, and German job adverts and sick notes pair them constantly: körperlich und geistig fit. As an adverb it modifies a whole state — körperlich anstrengend, körperlich behindert. Do not use it of a physical object; a thing that exists in the world is materiell or real, and the school subject Physik is a different word entirely.'
+      ru: 'Образовано от der Körper уровня A1 суффиксом -lich. Постоянная противоположность — geistig, «душевный, умственный», и немецкие объявления о работе и больничные листы всё время ставят их рядом: körperlich und geistig fit. Как наречие определяет состояние целиком: körperlich anstrengend, körperlich behindert. Не применяйте его к предмету: вещь, существующая в мире, — materiell или real, а школьный предмет Physik — совсем другое слово.'
+      uk: 'Утворене від der Körper рівня A1 суфіксом -lich. Постійна протилежність — geistig, «душевний, розумовий», і німецькі оголошення про роботу й лікарняні листки весь час ставлять їх поряд: körperlich und geistig fit. Як прислівник визначає стан цілком: körperlich anstrengend, körperlich behindert. Не застосовуйте його до предмета: річ, що існує у світі, — materiell або real, а шкільний предмет Physik — зовсім інше слово.'
+
+  - de: schwitzen
+    ipa: "ˈʃvɪtsn̩"
+    pos: verb
+    praesens_3sg: schwitzt
+    partizip2: geschwitzt
+    aux: haben
+    en: to give off wet drops through the skin because of heat, effort or fever
+    ru: выделять влагу через кожу от жары, усилия или температуры
+    uk: виділяти вологу через шкіру від спеки, зусилля чи температури
+    example_de: Ich habe die ganze Nacht geschwitzt und schlecht geschlafen.
+    example_en: I sweated all night and slept badly.
+    example_ru: Я всю ночь потел и плохо спал.
+    example_uk: Я всю ніч пітнів і погано спав.
+    note:
+      en: 'Weak, with haben, and one of the three symptoms a German doctor asks about by name alongside Fieber and Husten: Haben Sie nachts geschwitzt? The noun is der Schweiß, which shares its ß with the adjective for white but is spoken with a different vowel. Figuratively it means to sweat over a task — Ich habe über der Prüfung geschwitzt — exactly as in English. Keep the sch- cluster: it opens ʃv-, not sv-.'
+      ru: 'Слабый, с haben, и один из трёх симптомов, о которых немецкий врач спрашивает поимённо наряду с Fieber и Husten: Haben Sie nachts geschwitzt? Существительное — der Schweiß; ß у него общее с прилагательным «белый», но гласный другой. В переносном смысле — «попотеть над задачей»: Ich habe über der Prüfung geschwitzt, — точно как по-русски. Не теряйте сочетание sch-: слово открывается ʃv-, а не sv-.'
+      uk: 'Слабке, із haben, і один із трьох симптомів, про які німецький лікар питає поіменно поряд із Fieber і Husten: Haben Sie nachts geschwitzt? Іменник — der Schweiß; ß у нього спільне з прикметником «білий», але голосний інший. У переносному сенсі — «попотіти над завданням»: Ich habe über der Prüfung geschwitzt, — точно як українською. Не губіть сполуку sch-: слово відкривається ʃv-, а не sv-.'
+
+  # --- Wenn etwas nicht stimmt ---
+  - de: Wunde
+    ipa: "ˈvʊndə"
+    pos: noun
+    gender: f
+    plural: "die Wunden"
+    en: the open place on the skin left by a cut, a burn or an operation
+    ru: открытое место на коже, оставшееся от пореза, ожога или операции
+    uk: відкрите місце на шкірі, що лишилося від порізу, опіку чи операції
+    example_de: Die Wunde am Finger muss jeden Tag sauber gemacht werden.
+    example_en: The cut on the finger has to be cleaned every day.
+    example_ru: Рану на пальце нужно каждый день промывать.
+    example_uk: Рану на пальці треба щодня промивати.
+    note:
+      en: 'Concrete and visible: this is the hole itself, the thing you put a dressing on, while die Verletzung below is the damage as an event and can be internal. It heals — die Wunde heilt — and what covers it is das Pflaster or der Verband. Beware the adjective wund, which means sore or chafed and is not the same word in use: wunde Füße are sore feet with nothing open on them at all.'
+      ru: 'Слово предметное и зримое: это само отверстие, то, на что накладывают повязку, тогда как die Verletzung ниже — повреждение как событие, и оно может быть внутренним. Оно заживает — die Wunde heilt, — а закрывают его das Pflaster или der Verband. Осторожно с прилагательным wund: оно значит «натёртый, саднящий» и в употреблении это не то же самое — wunde Füße — это стёртые ноги, на которых ничего не открыто.'
+      uk: 'Слово предметне й зриме: це сам отвір, те, на що накладають пов’язку, тоді як die Verletzung нижче — пошкодження як подія, і воно може бути внутрішнім. Воно загоюється — die Wunde heilt, — а закривають його das Pflaster або der Verband. Обережно з прикметником wund: він означає «натертий, саднить», і у вжитку це не те саме — wunde Füße — це стерті ноги, на яких нічого не відкрито.'
+
+  - de: Verletzung
+    ipa: "fɛɐ̯ˈlɛtsʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Verletzungen"
+    en: damage done to a body by an accident or in sport, whether it shows or not
+    ru: повреждение тела, полученное при несчастном случае или в спорте, видимое или нет
+    uk: пошкодження тіла, отримане при нещасному випадку чи у спорті, видиме чи ні
+    example_de: Wegen einer Verletzung am Rücken kann er nicht arbeiten.
+    example_en: He cannot work because of a back injury.
+    example_ru: Из-за повреждения спины он не может работать.
+    example_uk: Через пошкодження спини він не може працювати.
+    note:
+      en: 'The noun of A2 verletzen. It is the wider of the two words on this page: a broken bone, a torn muscle and a bruise are all one, and none of them has to be visible. German sport reporting runs on it — sich eine Verletzung zuziehen, verletzungsbedingt ausfallen — and an insurer''s letter will say Art der Verletzung. A second, abstract sense is a breach: eine Verletzung der Regeln, of rules rather than of a person.'
+      ru: 'Существительное от verletzen уровня A2. Из двух слов этой страницы оно шире: перелом, разрыв мышцы и синяк — всё это оно, и ничему из этого не обязательно быть видимым. Немецкие спортивные сводки держатся на нём: sich eine Verletzung zuziehen, verletzungsbedingt ausfallen, — а письмо страховщика напишет Art der Verletzung. Второй, отвлечённый смысл — нарушение: eine Verletzung der Regeln, то есть правил, а не человека.'
+      uk: 'Іменник від verletzen рівня A2. Із двох слів цієї сторінки воно ширше: перелом, розрив м’яза і синець — усе це воно, і нічому з цього не обов’язково бути видимим. Німецькі спортивні зведення тримаються на ньому: sich eine Verletzung zuziehen, verletzungsbedingt ausfallen, — а лист страховика напише Art der Verletzung. Другий, відсторонений сенс — порушення: eine Verletzung der Regeln, тобто правил, а не людини.'
+
+  - de: Infektion
+    ipa: "ɪnfɛkˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Infektionen"
+    # Recognition only: a word read on a diagnosis, a leaflet and the news. What the
+    # learner says at the counter is A1 `Ich bin krank` or A2 `Erkältung`.
+    cards: recognition
+    en: an illness caused by germs that have got into the body and are spreading there
+    ru: болезнь, вызванная попавшими в организм микробами, которые в нём размножаются
+    uk: хвороба, спричинена мікробами, що потрапили в організм і розмножуються в ньому
+    example_de: Der Arzt vermutet eine Infektion und hat Blut abgenommen.
+    example_en: The doctor suspects an infection and has taken a blood sample.
+    example_ru: Врач подозревает инфекцию и взял кровь на анализ.
+    example_uk: Лікар підозрює інфекцію і взяв кров на аналіз.
+    note:
+      en: 'Stress on the last syllable, as in every German noun in -ion, and the tion is spoken tsion. It is diagnosis language, one level above what a patient volunteers: you say Ich habe Halsschmerzen and the letter says eine Infektion der oberen Atemwege. The verb is sich anstecken, to catch something from somebody, and the adjective ansteckend means contagious. Do not use it of a computer virus — that is der Virus in a different field.'
+      ru: 'Ударение на последнем слоге, как у всех немецких существительных на -ion, а tion произносится «цион». Это язык диагноза, ступенью выше того, что говорит сам больной: вы скажете Ich habe Halsschmerzen, а в заключении будет eine Infektion der oberen Atemwege. Глагол — sich anstecken, «заразиться от кого-то», прилагательное ansteckend — «заразный». О компьютере так не говорят: там der Virus и совсем другое поле.'
+      uk: 'Наголос на останньому складі, як в усіх німецьких іменників на -ion, а tion вимовляється «ціон». Це мова діагнозу, щаблем вище за те, що каже сам хворий: ви скажете Ich habe Halsschmerzen, а у висновку буде eine Infektion der oberen Atemwege. Дієслово — sich anstecken, «заразитися від когось», прикметник ansteckend — «заразний». Про комп’ютер так не кажуть: там der Virus і зовсім інше поле.'
+
+  - de: erkältet
+    ipa: "ɛɐ̯ˈkɛltət"
+    pos: adj
+    # Recognition only: A2 ships the whole chunk `erkältet sein` (koerper-pflege-a2) as
+    # a production card, and B1 `sich erkälten` (gesundheit-wohlbefinden) beside it —
+    # a typed prompt about having a cold is answered twice over in other decks.
+    cards: recognition
+    en: having a runny nose and a sore throat from catching cold
+    ru: с насморком и больным горлом, простуженный
+    uk: із нежитем і болючим горлом, застуджений
+    example_de: Ich bin seit gestern erkältet und bleibe heute zu Hause.
+    example_en: I have had a cold since yesterday and am staying at home today.
+    example_ru: Я со вчерашнего дня простужен и сегодня остаюсь дома.
+    example_uk: Я від учора застуджений і сьогодні лишаюся вдома.
+    note:
+      en: 'The Partizip II of sich erkälten used as an adjective, and it always comes with sein — German has no verb here where English has to have a cold. Note the tense logic: the reflexive verb names the moment you caught it (Ich habe mich erkältet) and this word names the state you are in now, so the two are not interchangeable in a sentence about today. The noun is A1 die Erkältung.'
+      ru: 'Partizip II от sich erkälten в роли прилагательного, и стоит оно всегда с sein — глагола, соответствующего русскому «простыл», здесь нет. Обратите внимание на логику времени: возвратный глагол называет момент, когда простуда была подхвачена (Ich habe mich erkältet), а это слово — нынешнее состояние, так что во фразе про сегодня они не взаимозаменяемы. Существительное — die Erkältung уровня A1.'
+      uk: 'Partizip II від sich erkälten у ролі прикметника, і стоїть воно завжди із sein — дієслова, що відповідало б українському «застудився», тут немає. Зверніть увагу на логіку часу: зворотне дієслово називає мить, коли застуду було підхоплено (Ich habe mich erkältet), а це слово — теперішній стан, тож у фразі про сьогодні вони не взаємозамінні. Іменник — die Erkältung рівня A1.'
+
+  - de: blind
+    ipa: "ˈblɪnt"
+    pos: adj
+    # Recognition only: a word met in a text, a sign and a description of somebody
+    # else; a learner talking about their own eyes says `Ich sehe schlecht`.
+    cards: recognition
+    en: unable to see at all
+    ru: полностью лишённый зрения
+    uk: цілком позбавлений зору
+    example_de: Ihr Großvater ist seit einem Unfall blind.
+    example_en: Her grandfather has been blind since an accident.
+    example_ru: Её дедушка ослеп после несчастного случая.
+    example_uk: Її дідусь осліп після нещасного випадку.
+    note:
+      en: 'Spelled like the English word and spoken with a final t, because German devoices d at the end of a word. Two uses run beside the literal one and are just as common: blind vertrauen means to trust somebody completely without checking, and ein blinder Passagier is a stowaway. The polite noun today is der blinde Mensch or die blinde Person; the older Blinde is still standard but sounds curt in speech.'
+      ru: 'Пишется как английское слово, а произносится с конечным t, потому что немецкий оглушает d на конце. Рядом с прямым значением живут два переносных, не менее частых: blind vertrauen — «доверять слепо, не проверяя», а ein blinder Passagier — безбилетник в трюме. Вежливое существительное сегодня — der blinde Mensch или die blinde Person; более старое Blinde остаётся нормой, но в речи звучит резковато.'
+      uk: 'Пишеться як англійське слово, а вимовляється з кінцевим t, бо німецька оглушує d наприкінці. Поряд із прямим значенням живуть два переносні, не менш часті: blind vertrauen — «довіряти сліпо, не перевіряючи», а ein blinder Passagier — безквитковий у трюмі. Ввічливий іменник сьогодні — der blinde Mensch або die blinde Person; давніше Blinde лишається нормою, але в мовленні звучить різкувато.'
+
+  - de: taub
+    ipa: "ˈtaʊ̯p"
+    pos: adj
+    # Recognition only: it carries two unrelated senses one prompt cannot name — unable
+    # to hear, and numb — the `unheimlich`/`intensiv` ruling from
+    # eigenschaften-bewertung-b1.
+    cards: recognition
+    en: unable to hear; also, of a hand or a foot, gone numb
+    ru: лишённый слуха; а о руке или ноге — онемевший, потерявший чувствительность
+    uk: позбавлений слуху; а про руку чи ногу — затерплий, що втратив чутливість
+    example_de: Nach dem Konzert war ich auf einem Ohr fast taub.
+    example_en: After the concert I was almost deaf in one ear.
+    example_ru: После концерта я почти оглох на одно ухо.
+    example_uk: Після концерту я майже оглух на одне вухо.
+    note:
+      en: 'Two senses that share nothing: the ear one, and the pins-and-needles one — meine Finger sind taub, my fingers have gone numb. A third turns up in the kitchen, where eine taube Nuss is an empty shell and, of a person, a fool. Spoken with the final b devoiced to p and the diphthong of Haus. Do not confuse it with die Taube, the pigeon, which is a noun with a different vowel length; and the sign-language noun is die Gebärdensprache.'
+      ru: 'Два значения, у которых нет ничего общего: про ухо и про онемение — meine Finger sind taub, «пальцы затекли». Третье попадается на кухне: eine taube Nuss — пустой орех, а о человеке — «пустая голова». Конечное b оглушается в p, дифтонг как в Haus. Не путайте с die Taube — голубь: это существительное с другой долготой гласного; а язык жестов называется die Gebärdensprache.'
+      uk: 'Два значення, у яких немає нічого спільного: про вухо і про затерплість — meine Finger sind taub, «пальці затерпли». Третє трапляється на кухні: eine taube Nuss — порожній горіх, а про людину — «порожня голова». Кінцеве b оглушується в p, дифтонг як у Haus. Не плутайте з die Taube — голуб: це іменник з іншою довготою голосного; а мова жестів зветься die Gebärdensprache.'
+
+  - de: stumm
+    ipa: "ˈʃtʊm"
+    pos: adj
+    # Recognition only: narrative and technical register — a silent film, a muted phone,
+    # a person in a story. A learner describing a quiet room reaches for A1 `leise`.
+    cards: recognition
+    en: unable to speak, or saying nothing on purpose
+    ru: лишённый речи или намеренно не произносящий ни слова
+    uk: позбавлений мови або навмисне такий, що не промовляє ні слова
+    example_de: Den ganzen Abend saß er stumm am Tisch.
+    example_en: He sat at the table without a word all evening.
+    example_ru: Весь вечер он просидел за столом молча.
+    example_uk: Увесь вечір він просидів за столом мовчки.
+    note:
+      en: 'The medical sense is rare today; what keeps the word alive is the second one, saying nothing although you could — stumm bleiben, jemanden stumm ansehen. Technology took it over too: der Stummfilm is a silent film and das Handy stumm schalten is to mute a phone. It is not A1 leise, which is about volume, nor still, which is about a room being quiet. The st- opens ʃt-.'
+      ru: 'Медицинское значение сегодня редко; слово держится вторым — «молчать, хотя мог бы»: stumm bleiben, jemanden stumm ansehen. Техника тоже взяла его себе: der Stummfilm — немое кино, а das Handy stumm schalten — «поставить телефон на беззвучный». Это не leise уровня A1, где речь о громкости, и не still, где речь о тишине в комнате. Сочетание st- открывается как ʃt-.'
+      uk: 'Медичне значення сьогодні рідкісне; слово тримається другим — «мовчати, хоч і міг би»: stumm bleiben, jemanden stumm ansehen. Техніка теж узяла його собі: der Stummfilm — німе кіно, а das Handy stumm schalten — «поставити телефон на беззвучний». Це не leise рівня A1, де йдеться про гучність, і не still, де йдеться про тишу в кімнаті. Сполука st- відкривається як ʃt-.'
+
+  - de: Tod
+    ipa: "ˈtoːt"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: A2 ships `sterben` ("to die", verben-handlungen-a2-2) and `tot`
+    # ("dead", eigenschaften-dinge-a2) as production cards, and between them they answer
+    # every prompt this noun could carry.
+    cards: recognition
+    en: the end of a life, named as an event
+    ru: конец жизни, названный как событие
+    uk: кінець життя, названий як подія
+    example_de: Nach dem Tod ihres Mannes zog sie zu ihrer Tochter.
+    example_en: She moved in with her daughter after her husband's death.
+    example_ru: После смерти мужа она переехала к дочери.
+    example_uk: Після смерті чоловіка вона переїхала до доньки.
+    note:
+      en: 'Masculine and effectively without a plural — where several are counted a text says die Todesfälle. Watch the spelling against A2 tot, the adjective: the noun carries a d and a long o, the adjective a t, and they sound identical. The genitive -es- shows up in every compound: die Todesursache for the cause of death on a certificate, die Todesangst for sheer terror. The verb is A2 sterben, and an tut sterben is not German — the cause takes an + Dativ.'
+      ru: 'Мужской род и практически без множественного числа: там, где считают случаи, текст скажет die Todesfälle. Следите за написанием рядом с tot уровня A2: у существительного d и долгое o, у прилагательного t, а звучат они одинаково. Родительное -es- проступает во всех составных словах: die Todesursache — причина смерти в свидетельстве, die Todesangst — смертельный ужас. Глагол — sterben уровня A2, а причина при нём стоит с an + Dativ.'
+      uk: 'Чоловічий рід і фактично без множини: там, де рахують випадки, текст скаже die Todesfälle. Стежте за написанням поряд із tot рівня A2: в іменника d і довге o, у прикметника t, а звучать вони однаково. Родове -es- проступає в усіх складних словах: die Todesursache — причина смерті у свідоцтві, die Todesangst — смертельний жах. Дієслово — sterben рівня A2, а причина при ньому стоїть з an + Dativ.'
+
+  - de: tödlich
+    ipa: "ˈtøːtlɪç"
+    pos: adj
+    # Recognition only: news and warning-label register — a learner reads it on a
+    # bottle and in a report, and says `sehr gefährlich` instead.
+    cards: recognition
+    en: certain or likely to kill
+    ru: приводящий к смерти, смертельный
+    uk: що призводить до смерті, смертельний
+    example_de: Diese Menge ist für ein Kind tödlich.
+    example_en: This quantity is fatal for a child.
+    example_ru: Такое количество для ребёнка смертельно.
+    example_uk: Така кількість для дитини смертельна.
+    note:
+      en: 'The umlaut is what marks it off from the noun above: ö, not o. It is stronger than A2 gefährlich, which only says harm is possible — this one says the outcome is death, so a warning label reaches for it and a weather report does not. The news chunk is ein tödlicher Unfall. Figuratively it means unbearable rather than lethal: tödlich langweilig, deadly boring, and beleidigt sein bis aufs Blut is its cousin in tone.'
+      ru: 'Умлаут — то, что отделяет его от существительного выше: ö, а не o. Оно сильнее, чем gefährlich уровня A2: то лишь говорит, что вред возможен, а это — что исход смертельный, поэтому за ним тянется предупреждающая этикетка, а не прогноз погоды. Новостной оборот — ein tödlicher Unfall. В переносном смысле значит «невыносимо», а не «смертоносно»: tödlich langweilig — «смертельно скучно».'
+      uk: 'Умлаут — те, що відділяє його від іменника вище: ö, а не o. Воно сильніше за gefährlich рівня A2: те лише каже, що шкода можлива, а це — що наслідок смертельний, тому за ним тягнеться попереджувальна етикетка, а не прогноз погоди. Новинний зворот — ein tödlicher Unfall. У переносному сенсі означає «нестерпно», а не «смертоносно»: tödlich langweilig — «смертельно нудно».'
+
+  # --- Was die Praxis dann macht ---
+  - de: Untersuchung
+    ipa: "ʊntɐˈzuːxʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Untersuchungen"
+    # Recognition only: it carries two unrelated senses one prompt cannot name — the
+    # medical check-up and an official enquiry — and A2 `untersuchen`
+    # (gesundheit-arzttermin) already ships the medical one as a production card.
+    cards: recognition
+    en: the appointment at which a doctor checks a body over; also an official enquiry
+    ru: приём, на котором врач осматривает пациента; а также служебное расследование
+    uk: прийом, на якому лікар оглядає пацієнта; а також службове розслідування
+    example_de: Die Untersuchung beim Hausarzt dauert etwa zwanzig Minuten.
+    example_en: The check-up at the GP's takes about twenty minutes.
+    example_ru: Осмотр у семейного врача занимает минут двадцать.
+    example_uk: Огляд у сімейного лікаря триває хвилин двадцять.
+    note:
+      en: 'The noun of A2 untersuchen, and the two fields it serves have nothing in common: at a practice it is the examination itself, and in a newspaper it is the investigation an authority runs — die Untersuchung des Unfalls. Germany names its screening appointments with it too: die Vorsorgeuntersuchung is the preventive check-up the Krankenkasse pays for, and children have a numbered series of them, U1 to U9.'
+      ru: 'Существительное от untersuchen уровня A2, и два поля, которым оно служит, между собой не связаны: в кабинете это сам осмотр, а в газете — расследование, которое ведёт ведомство: die Untersuchung des Unfalls. Германия называет им и профилактические приёмы: die Vorsorgeuntersuchung — диспансерный осмотр за счёт Krankenkasse, а у детей это пронумерованная серия от U1 до U9.'
+      uk: 'Іменник від untersuchen рівня A2, і два поля, яким воно служить, між собою не пов’язані: у кабінеті це сам огляд, а в газеті — розслідування, яке веде відомство: die Untersuchung des Unfalls. Німеччина називає ним і профілактичні прийоми: die Vorsorgeuntersuchung — диспансерний огляд коштом Krankenkasse, а в дітей це пронумерована серія від U1 до U9.'
+
+  - de: Operation
+    ipa: "opeʁaˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Operationen"
+    en: the treatment in which a surgeon opens a body to repair something inside
+    ru: лечение, при котором хирург вскрывает тело, чтобы исправить что-то внутри
+    uk: лікування, при якому хірург розкриває тіло, щоб виправити щось усередині
+    example_de: Nach der Operation musste sie eine Woche im Krankenhaus bleiben.
+    example_en: She had to stay in hospital for a week after the operation.
+    example_ru: После операции ей пришлось неделю пролежать в больнице.
+    example_uk: Після операції їй довелося тиждень пролежати в лікарні.
+    note:
+      en: 'Stress on the -ion, and in speech Germans shorten it to die OP, spoken oː-ˈpeː — der OP with the masculine article is the operating theatre itself, so the article decides which one is meant. The phrases to have ready are sich operieren lassen, to have one, and nach der OP. Beside it, der Eingriff is the sober clinical word a letter uses, and die Narkose is the anaesthetic.'
+      ru: 'Ударение на -ion, а в речи немцы сокращают до die OP, произнося «о-пэ»; der OP с мужским артиклем — это уже операционная, так что артикль решает, о чём речь. Наготове стоит держать sich operieren lassen — «лечь на операцию» и nach der OP. Рядом der Eingriff — сухое клиническое слово, которым пишут в заключении, а die Narkose — наркоз.'
+      uk: 'Наголос на -ion, а в мовленні німці скорочують до die OP, вимовляючи «о-пе»; der OP з чоловічим артиклем — це вже операційна, тож артикль вирішує, про що йдеться. Напоготові варто мати sich operieren lassen — «лягти на операцію» і nach der OP. Поряд der Eingriff — сухе клінічне слово, яким пишуть у висновку, а die Narkose — наркоз.'
+
+  - de: operieren
+    ipa: "opeˈʁiːʁən"
+    pos: verb
+    praesens_3sg: operiert
+    partizip2: operiert
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: the noun above takes the deck's typed card for this idea, and
+    # the sentence a patient really produces is the passive `Ich werde operiert` or
+    # `Ich lasse mich operieren`, neither of which a one-word prompt can ask for.
+    cards: recognition
+    en: to open a body surgically in order to repair or remove something
+    ru: хирургически вскрывать тело, чтобы что-то исправить или удалить
+    uk: хірургічно розкривати тіло, щоб щось виправити або видалити
+    example_de: Der Arzt hat sie gestern am Knie operiert.
+    example_en: The doctor operated on her knee yesterday.
+    example_ru: Вчера врач оперировал ей колено.
+    example_uk: Учора лікар оперував їй коліно.
+    note:
+      en: 'A verb in -ieren, so its Partizip II has no ge-: hat operiert, like telefonieren and studieren. German puts the patient in the accusative and the body part behind an + Dativ — jemanden am Knie operieren — where English operates on a person. In practice the passive is what you hear, because the patient is not the one doing it: Ich werde am Montag operiert. The noun is the entry above.'
+      ru: 'Глагол на -ieren, поэтому в Partizip II нет ge-: hat operiert — как telefonieren и studieren. Немецкий ставит больного в Akkusativ, а часть тела — с an + Dativ: jemanden am Knie operieren. На деле чаще слышен пассив, ведь оперируют не сам больной: Ich werde am Montag operiert. Существительное — запись выше.'
+      uk: 'Дієслово на -ieren, тому в Partizip II немає ge-: hat operiert — як telefonieren і studieren. Німецька ставить хворого в Akkusativ, а частину тіла — з an + Dativ: jemanden am Knie operieren. Насправді частіше чути пасив, адже оперує не сам хворий: Ich werde am Montag operiert. Іменник — запис вище.'
+
+  - de: Spritze
+    ipa: "ˈʃpʁɪtsə"
+    pos: noun
+    gender: f
+    plural: "die Spritzen"
+    en: the shot a nurse gives into an arm, and the instrument with the plunger it comes from
+    ru: укол, который медсестра делает в руку, и сам инструмент с поршнем, которым его делают
+    uk: укол, який медсестра робить у руку, і сам інструмент із поршнем, яким його роблять
+    example_de: Vor der Reise brauche ich noch eine Spritze gegen Grippe.
+    example_en: I still need a flu jab before the trip.
+    example_ru: Перед поездкой мне нужно ещё сделать укол от гриппа.
+    example_uk: Перед поїздкою мені треба ще зробити укол від грипу.
+    note:
+      en: 'One German word for the syringe and for the jab it gives, and the verb beside it is not spritzen but bekommen: eine Spritze bekommen is to be given one, eine Spritze geben to give it. A vaccination has its own word, die Impfung, and the shot itself may be called either. At the dentist''s what numbs you is die Betäubung. The sp- opens ʃp-, like Sport and sprechen.'
+      ru: 'Одно немецкое слово и для шприца, и для укола, который им делают, а глагол рядом не spritzen, а bekommen: eine Spritze bekommen — «получить укол», eine Spritze geben — «сделать». У прививки своё слово, die Impfung, и сам укол при ней могут назвать и так, и так. У стоматолога обезболивание — die Betäubung. Сочетание sp- открывается как ʃp-, как в Sport и sprechen.'
+      uk: 'Одне німецьке слово і для шприца, і для уколу, який ним роблять, а дієслово поряд не spritzen, а bekommen: eine Spritze bekommen — «дістати укол», eine Spritze geben — «зробити». У щеплення своє слово, die Impfung, і сам укол при ньому можуть назвати і так, і так. У стоматолога знеболення — die Betäubung. Сполука sp- відкривається як ʃp-, як у Sport і sprechen.'
+
+  - de: Pille
+    ipa: "ˈpɪlə"
+    pos: noun
+    gender: f
+    plural: "die Pillen"
+    # Recognition only: A1 ships `Tablette` ("pill; tablet", koerper-gesundheit) as the
+    # production card for exactly this prompt, one deck over.
+    cards: recognition
+    en: a small round thing you swallow with water, of the kind a doctor prescribes
+    ru: маленькое круглое средство, которое проглатывают с водой по назначению врача
+    uk: маленький круглий засіб, який ковтають із водою за призначенням лікаря
+    example_de: Diese Pillen müssen Sie morgens und abends nehmen.
+    example_en: You have to take these pills morning and evening.
+    example_ru: Эти пилюли нужно принимать утром и вечером.
+    example_uk: Ці пігулки треба приймати вранці й увечері.
+    note:
+      en: 'Everyday and slightly informal beside A1 die Tablette, which is what a pharmacist and a package insert say. With the definite article and no plural it means one specific thing: die Pille is the contraceptive pill, and die Pille nehmen is understood that way and no other. A bitter truth is eine bittere Pille, exactly as in English. The verb for taking any of them is nehmen, never trinken or essen.'
+      ru: 'Обиходное и чуть неформальное рядом с die Tablette уровня A1, которым говорят аптекарь и вкладыш к лекарству. С определённым артиклем и без множественного оно значит одно конкретное: die Pille — противозачаточная таблетка, и die Pille nehmen понимается только так. Горькая правда — eine bittere Pille. Глагол для приёма любых из них — nehmen, а не trinken и не essen.'
+      uk: 'Побутове і трохи неформальне поряд із die Tablette рівня A1, яким говорять аптекар і вкладка до ліків. З означеним артиклем і без множини воно означає одне конкретне: die Pille — протизаплідна таблетка, і die Pille nehmen розуміють тільки так. Гірка правда — eine bittere Pille. Дієслово для прийому будь-яких із них — nehmen, а не trinken і не essen.'
+
+  - de: Pflaster
+    ipa: "ˈpflastɐ"
+    pos: noun
+    gender: n
+    plural: "die Pflaster"
+    en: the small sticky strip you put over a cut to keep it clean
+    ru: небольшая клейкая полоска, которой заклеивают порез, чтобы он не грязнился
+    uk: невелика клейка смужка, якою заклеюють поріз, щоб він не забруднювався
+    example_de: Hast du ein Pflaster für meinen Finger?
+    example_en: Have you got a plaster for my finger?
+    example_ru: У тебя есть пластырь для моего пальца?
+    example_uk: У тебе є пластир для мого пальця?
+    note:
+      en: 'Neuter, and the plural is spelled like the singular. Every German first-aid box has them, and the brand name Hansaplast is used the way Band-Aid is in America. A second sense is the paved surface of a street — das Kopfsteinpflaster is cobblestones — which is why a city can be called ein teures Pflaster, an expensive place to live. The pf- is a real affricate: both letters sound.'
+      ru: 'Средний род, множественное пишется как единственное. Есть в любой немецкой аптечке, а фирменное название Hansaplast употребляют как нарицательное. Второй смысл — мощёное покрытие улицы: das Kopfsteinpflaster — булыжная мостовая, отсюда и оборот ein teures Pflaster о дорогом для жизни городе. Сочетание pf- — настоящая аффриката: звучат обе буквы.'
+      uk: 'Середній рід, множина пишеться як однина. Є в будь-якій німецькій аптечці, а фірмову назву Hansaplast вживають як загальну. Другий сенс — брукована поверхня вулиці: das Kopfsteinpflaster — бруківка, звідси й зворот ein teures Pflaster про дороге для життя місто. Сполука pf- — справжня африката: звучать обидві літери.'
+
+  - de: Medizin
+    ipa: "mediˈtsiːn"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: it carries two unrelated senses one prompt cannot name — the
+    # science and the stuff in the bottle — and A1 `Medikament` ("medicine;
+    # medication", koerper-gesundheit) already ships the second one as a typed card.
+    cards: recognition
+    en: the science doctors study and practise; loosely, also what you are told to take
+    ru: наука, которую изучают и практикуют врачи; в разговоре — также и само лекарство
+    uk: наука, яку вивчають і практикують лікарі; у розмові — також і самі ліки
+    example_de: Seine Tochter studiert in Heidelberg Medizin.
+    example_en: His daughter is studying medicine in Heidelberg.
+    example_ru: Его дочь учится в Гейдельберге на медицинском.
+    example_uk: Його донька навчається в Гайдельберзі на медичному.
+    note:
+      en: 'Two things at once, and the sentence decides which: Medizin studieren is the university subject, while Nimm deine Medizin is the bottle on the shelf — for which the precise word, and the one a pharmacy uses, is A1 das Medikament. Stress on the last syllable. The adjective is medizinisch, and die Humanmedizin distinguishes the human field from die Tiermedizin.'
+      ru: 'Две вещи разом, и выбирает предложение: Medizin studieren — университетский предмет, а Nimm deine Medizin — пузырёк на полке, для которого точное и аптечное слово — das Medikament уровня A1. Ударение на последнем слоге. Прилагательное — medizinisch, а die Humanmedizin отделяет человеческую область от die Tiermedizin.'
+      uk: 'Дві речі водночас, і обирає речення: Medizin studieren — університетський предмет, а Nimm deine Medizin — пляшечка на полиці, для якої точне й аптечне слово — das Medikament рівня A1. Наголос на останньому складі. Прикметник — medizinisch, а die Humanmedizin відділяє людську галузь від die Tiermedizin.'
+
+  - de: Therapie
+    ipa: "teʁaˈpiː"
+    pos: noun
+    gender: f
+    plural: "die Therapien"
+    # Recognition only: read on a referral and a clinic website. What a learner says is
+    # `Ich gehe zur Physiotherapie` as a fixed chunk, or names the treatment itself.
+    cards: recognition
+    en: a course of treatment that runs over weeks, not a single visit
+    ru: курс лечения, растянутый на недели, а не одно посещение
+    uk: курс лікування, розтягнутий на тижні, а не одне відвідування
+    example_de: Nach dem Unfall macht er eine Therapie für die Schulter.
+    example_en: He is having a course of treatment for his shoulder after the accident.
+    example_ru: После аварии он проходит курс лечения плеча.
+    example_uk: Після аварії він проходить курс лікування плеча.
+    note:
+      en: 'Stress on the final -pie, and the h is silent. The word means the plan and the series, not the one appointment: eine Therapie machen, in Therapie sein. Germans shorten the two commonest kinds in speech — die Physio for physiotherapy and, said of talking treatment, simply die Therapie. Beside it, die Behandlung is any treatment at all, including a single filling at the dentist''s.'
+      ru: 'Ударение на конечном -pie, h не произносится. Слово значит план и серию, а не один приём: eine Therapie machen, in Therapie sein. Две самые частые разновидности немцы в речи сокращают: die Physio — физиотерапия, а о психотерапии говорят просто die Therapie. Рядом die Behandlung — любое лечение вообще, включая одну пломбу у стоматолога.'
+      uk: 'Наголос на кінцевому -pie, h не вимовляється. Слово означає план і серію, а не один прийом: eine Therapie machen, in Therapie sein. Два найчастіші різновиди німці в мовленні скорочують: die Physio — фізіотерапія, а про психотерапію кажуть просто die Therapie. Поряд die Behandlung — будь-яке лікування взагалі, включно з однією пломбою у стоматолога.'
+
+  - de: Diät
+    ipa: "diˈɛːt"
+    pos: noun
+    gender: f
+    plural: "die Diäten"
+    # Recognition only: B1's `Ernährung` ("diet, nutrition", gesundheit-wohlbefinden)
+    # already ships as the production card in this field, and no prompt for a
+    # restricted eating plan can be kept clear of it.
+    cards: recognition
+    en: a restricted eating plan followed to lose weight or on a doctor's orders
+    ru: ограничительный режим питания ради похудения или по назначению врача
+    uk: обмежувальний режим харчування задля схуднення або за призначенням лікаря
+    example_de: Seit Januar macht meine Schwester eine strenge Diät.
+    example_en: My sister has been on a strict diet since January.
+    example_ru: С января моя сестра сидит на строгой диете.
+    example_uk: Із січня моя сестра сидить на суворій дієті.
+    note:
+      en: 'A false friend for English speakers: this is never the neutral sense of what somebody normally eats — that is die Ernährung, and eine gesunde Ernährung is a healthy diet in the English sense. Here it is always the restriction, and the verb is machen or halten, never haben. The trema on the ä matters: two syllables, di-ät, with the stress on the second. The plural also means the allowance paid to a member of parliament.'
+      ru: 'Ложный друг: нейтрального значения «то, что человек обычно ест» здесь нет — это die Ernährung, и eine gesunde Ernährung значит «здоровое питание». Тут всегда именно ограничение, а глагол при нём — machen или halten, но не haben. Две точки над ä существенны: слово двусложное, di-ät, ударение на втором. Множественное значит ещё и депутатское содержание.'
+      uk: 'Фальшивий друг: нейтрального значення «те, що людина зазвичай їсть» тут немає — це die Ernährung, і eine gesunde Ernährung означає «здорове харчування». Тут завжди саме обмеження, а дієслово при ньому — machen або halten, але не haben. Дві крапки над ä істотні: слово двоскладове, di-ät, наголос на другому. Множина означає ще й депутатське утримання.'
+
+  - de: ernähren
+    ipa: "ɛɐ̯ˈnɛːʁən"
+    pos: verb
+    praesens_3sg: ernährt
+    partizip2: ernährt
+    aux: haben
+    valence: "+ Akk / sich"
+    en: to provide somebody with what they live on; with sich, to eat in a certain way
+    ru: обеспечивать кого-то пропитанием; с sich — питаться определённым образом
+    uk: забезпечувати когось харчуванням; із sich — харчуватися певним чином
+    example_de: Seit einem Jahr ernährt sie sich ohne Fleisch.
+    example_en: She has been eating without meat for a year.
+    example_ru: Уже год она питается без мяса.
+    example_uk: Уже рік вона харчується без м’яса.
+    note:
+      en: 'Two readings, and the pronoun tells them apart. Without sich it means to keep somebody alive by providing food — eine Familie ernähren is to be the breadwinner, and it is about money as much as about meals. With sich it is what you personally eat, and it is the standard way to say it: sich gesund ernähren, sich vegetarisch ernähren. The noun of the second reading is die Ernährung. The er- prefix is unstressed and its r is the vocalised one.'
+      ru: 'Два чтения, и различает их местоимение. Без sich — «содержать, кормить»: eine Familie ernähren значит «кормить семью», и речь тут не меньше о деньгах, чем о еде. С sich — о том, как питаетесь вы сами, и это стандартный способ это сказать: sich gesund ernähren, sich vegetarisch ernähren. Существительное от второго чтения — die Ernährung. Приставка er- безударна, а r в ней вокализованное.'
+      uk: 'Два прочитання, і розрізняє їх займенник. Без sich — «утримувати, годувати»: eine Familie ernähren означає «годувати родину», і йдеться тут не менше про гроші, ніж про їжу. Із sich — про те, як харчуєтеся ви самі, і це стандартний спосіб це сказати: sich gesund ernähren, sich vegetarisch ernähren. Іменник від другого прочитання — die Ernährung. Префікс er- ненаголошений, а r у ньому вокалізоване.'
+
+  # --- Wer behandelt wird, und wo ---
+  - de: Patient
+    ipa: "paˈtsi̯ɛnt"
+    pos: noun
+    gender: m
+    plural: "die Patienten"
+    en: a man a doctor is treating, seen from the practice's side of the desk
+    ru: мужчина, которого лечит врач, — как его называют по ту сторону стола в кабинете
+    uk: чоловік, якого лікує лікар, — як його називають по той бік столу в кабінеті
+    example_de: Der Arzt hat heute schon dreißig Patienten gesehen.
+    example_en: The doctor has already seen thirty patients today.
+    example_ru: Врач сегодня уже принял тридцать пациентов.
+    example_uk: Лікар сьогодні вже прийняв тридцять пацієнтів.
+    note:
+      en: 'An n-noun: it adds -en everywhere except the nominative singular — dem Patienten, den Patienten, die Patienten — the same pattern as A2 Kollege and Kunde. The ti is spoken tsi, so the word has three syllables with the stress on the last. The feminine is die Patientin, the next entry. It is the practice''s word for you; your own word for your state is A1 krank.'
+      ru: 'Слабое существительное: -en появляется везде, кроме именительного единственного, — dem Patienten, den Patienten, die Patienten, — та же модель, что у Kollege и Kunde уровня A2. ti произносится «ци», так что слогов три, ударение на последнем. Женская пара — die Patientin, следующая запись. Это слово кабинета о вас; о собственном состоянии вы скажете krank уровня A1.'
+      uk: 'Слабкий іменник: -en з’являється всюди, крім називного однини, — dem Patienten, den Patienten, die Patienten, — та сама модель, що в Kollege і Kunde рівня A2. ti вимовляється «ці», тож складів три, наголос на останньому. Жіноча пара — die Patientin, наступний запис. Це слово кабінету про вас; про власний стан ви скажете krank рівня A1.'
+
+  - de: Patientin
+    ipa: "paˈtsi̯ɛntɪn"
+    pos: noun
+    gender: f
+    plural: "die Patientinnen"
+    # Recognition only: the feminine of the entry above, whose note already names this
+    # form — the pair costs three cards rather than four, per the Movierung rule for
+    # the B1 completion pass.
+    cards: recognition
+    en: a woman a doctor is treating, in that same word from the practice's side
+    ru: женщина, которую лечит врач, — тем же словом со стороны кабинета
+    uk: жінка, яку лікує лікар, — тим самим словом з боку кабінету
+    example_de: Die Patientin wartet schon zwanzig Minuten im Wartezimmer.
+    example_en: The patient has already been waiting twenty minutes in the waiting room.
+    example_ru: Пациентка ждёт в приёмной уже двадцать минут.
+    example_uk: Пацієнтка чекає в приймальні вже двадцять хвилин.
+    note:
+      en: 'Regular Movierung with -in, doubled n in the plural, and — as with A2 Kollegin — the n-declension of the masculine stops here: this form never changes its ending. Practice software and waiting-room signs write Patient/-in or Patient*in; a letter addressed to you personally will use whichever fits. The neutral plural for a mixed group is die Patienten.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается, и — как у Kollegin уровня A2 — слабое склонение мужской формы здесь обрывается: эта форма окончания не меняет. Программы для практик и таблички в приёмной пишут Patient/-in или Patient*in; в личном письме выберут подходящую. Нейтральное множественное для смешанной группы — die Patienten.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється, і — як у Kollegin рівня A2 — слабке відмінювання чоловічої форми тут уривається: ця форма закінчення не змінює. Програми для практик і таблички в приймальні пишуть Patient/-in або Patient*in; в особистому листі виберуть відповідну. Нейтральна множина для змішаної групи — die Patienten.'
+
+  - de: Kranke
+    ipa: "ˈkʁaŋkə"
+    pos: noun
+    gender: f
+    plural: "die Kranken"
+    # An adjectival noun (der Kranke / ein Kranker / eine Kranke), so it would need an
+    # accept list if it were typed — it is not, and the note carries the declension.
+    # Recognition only: A1 ships the adjective `krank` (goethe-a1-kernwortschatz) as a
+    # production card, and this noun is one ending away from it — a typed prompt about
+    # an ill person cannot say which of the two it wants.
+    cards: recognition
+    en: an ill person, referred to as a person rather than described
+    ru: больной человек, названный как лицо, а не описанный
+    uk: хвора людина, названа як особа, а не описана
+    example_de: Auf der Station liegen zwölf Kranke.
+    example_en: There are twelve sick people on the ward.
+    example_ru: В отделении лежат двенадцать больных.
+    example_uk: У відділенні лежать дванадцять хворих.
+    note:
+      en: 'An adjectival noun, so its ending changes with the article in front of it: der Kranke, ein Kranker, die Kranke, die Kranken — exactly like A2 der Angestellte and die Verwandte. It belongs to writing and to institutions; in speech a German says er ist krank rather than naming somebody this way. Compounds built on it are everywhere in the health system, though: das Krankenhaus, die Krankenkasse, der Krankenwagen below, all with -en- in the middle.'
+      ru: 'Субстантивированное прилагательное, поэтому окончание меняется вместе с артиклем: der Kranke, ein Kranker, die Kranke, die Kranken — ровно как der Angestellte и die Verwandte уровня A2. Слово письменное и институциональное; в речи немец скажет er ist krank, а не назовёт человека так. Зато составные слова с ним пронизывают всю систему здравоохранения: das Krankenhaus, die Krankenkasse, der Krankenwagen ниже — все с -en- в середине.'
+      uk: 'Субстантивований прикметник, тому закінчення змінюється разом з артиклем: der Kranke, ein Kranker, die Kranke, die Kranken — так само як der Angestellte і die Verwandte рівня A2. Слово письмове й інституційне; у мовленні німець скаже er ist krank, а не назве людину так. Зате складні слова з ним пронизують усю систему охорони здоров’я: das Krankenhaus, die Krankenkasse, der Krankenwagen нижче — усі з -en- посередині.'
+
+  - de: Klinik
+    ipa: "ˈkliːnɪk"
+    pos: noun
+    gender: f
+    plural: "die Kliniken"
+    # Recognition only: A1 ships `Krankenhaus` ("hospital", koerper-gesundheit) as the
+    # production card for the building you are admitted to, and in everyday German the
+    # two answer the same prompt.
+    cards: recognition
+    en: a hospital, especially one built around a single field of treatment
+    ru: больница, особенно устроенная вокруг одного направления лечения
+    uk: лікарня, особливо влаштована навколо одного напряму лікування
+    example_de: Sie arbeitet seit drei Jahren in einer Klinik für Kinder.
+    example_en: She has been working at a children's hospital for three years.
+    example_ru: Она уже три года работает в детской больнице.
+    example_uk: Вона вже три роки працює в дитячій лікарні.
+    note:
+      en: 'Interchangeable with A1 das Krankenhaus in most sentences, with one shade of difference: this word leans towards a specialised or a private house — die Augenklinik, die Privatklinik — and a university hospital is die Uniklinik. Stress on the first syllable, with a long i, and the plural adds -en. A doctor''s own rooms are die Praxis, which is never this word.'
+      ru: 'В большинстве фраз взаимозаменяемо с das Krankenhaus уровня A1, с одним оттенком: это слово тяготеет к специализированному или частному заведению — die Augenklinik, die Privatklinik, — а университетская больница называется die Uniklinik. Ударение на первом слоге, i долгое, множественное на -en. Кабинет самого врача — die Praxis, и это никогда не то же слово.'
+      uk: 'У більшості фраз взаємозамінне з das Krankenhaus рівня A1, з одним відтінком: це слово тяжіє до спеціалізованого або приватного закладу — die Augenklinik, die Privatklinik, — а університетська лікарня зветься die Uniklinik. Наголос на першому складі, i довге, множина на -en. Кабінет самого лікаря — die Praxis, і це ніколи не те саме слово.'
+
+  - de: Krankenwagen
+    ipa: "ˈkʁaŋkn̩ˌvaːgn̩"
+    pos: noun
+    gender: m
+    plural: "die Krankenwagen"
+    en: the emergency vehicle with a siren that drives an injured person to hospital
+    ru: экстренная машина с сиреной, которая везёт пострадавшего в больницу
+    uk: екстрений автомобіль із сиреною, що везе потерпілого до лікарні
+    example_de: Ruf bitte sofort einen Krankenwagen!
+    example_en: Please call an ambulance immediately!
+    example_ru: Пожалуйста, немедленно вызови скорую!
+    example_uk: Будь ласка, негайно виклич швидку!
+    note:
+      en: 'The single most useful sentence built on it is einen Krankenwagen rufen — and note the verb: German calls the vehicle, not a number. The emergency number is 112 everywhere in the EU, and der Rettungswagen is what the service itself calls the same van. Plural and singular are spelled alike, since Wagen never changes. Primary stress on Kranken-, secondary on -wagen, as in every German compound.'
+      ru: 'Самая полезная фраза с ним — einen Krankenwagen rufen, и обратите внимание на глагол: немец «зовёт» машину, а не звонит по номеру. Экстренный номер во всём ЕС — 112, а сама служба называет тот же фургон der Rettungswagen. Множественное и единственное пишутся одинаково, ведь Wagen не меняется. Главное ударение на Kranken-, побочное на -wagen, как во всяком немецком сложном слове.'
+      uk: 'Найкорисніша фраза з ним — einen Krankenwagen rufen, і зверніть увагу на дієслово: німець «кличе» машину, а не телефонує на номер. Екстрений номер в усьому ЄС — 112, а сама служба називає той самий фургон der Rettungswagen. Множина й однина пишуться однаково, адже Wagen не змінюється. Головний наголос на Kranken-, побічний на -wagen, як у кожному німецькому складному слові.'
+
+  - de: Besserung
+    ipa: "ˈbɛsəʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: A2 ships the whole wish `Gute Besserung!`
+    # (gesundheit-arzttermin) as a production card, and this word is that card minus
+    # one adjective — the `Überstunde`/`Überstunden` ruling from arbeit-beruf-b1.
+    cards: recognition
+    en: the turn for the better in somebody's health, as a state that has begun
+    ru: перемена к лучшему в состоянии здоровья, уже начавшаяся
+    uk: зміна на краще в стані здоров’я, що вже почалася
+    example_de: Der Arzt sieht seit Montag eine deutliche Besserung.
+    example_en: The doctor has seen a clear improvement since Monday.
+    example_ru: С понедельника врач видит заметное улучшение.
+    example_uk: Із понеділка лікар бачить помітне поліпшення.
+    note:
+      en: 'The noun of bessern, and outside medicine it is rare — it survives above all inside the wish A2 teaches, Gute Besserung!, which is what Germans say instead of get well soon and which no letter or visit omits. Do not use it for an improvement in a text, a plan or a product: that is die Verbesserung, with ver-, and the two are not interchangeable. Weather turns for the better with die Wetterbesserung.'
+      ru: 'Существительное от bessern, и вне медицины оно редко — держится прежде всего внутри пожелания, которому учит A2: Gute Besserung!, — так немцы говорят вместо «выздоравливай», и ни письмо, ни визит без этого не обходятся. Не применяйте его к улучшению текста, плана или изделия: там die Verbesserung, с ver-, и они не взаимозаменяемы. Про погоду говорят die Wetterbesserung.'
+      uk: 'Іменник від bessern, і поза медициною воно рідкісне — тримається передусім усередині побажання, якого вчить A2: Gute Besserung!, — так німці кажуть замість «одужуй», і ні лист, ні візит без цього не обходяться. Не застосовуйте його до поліпшення тексту, плану чи виробу: там die Verbesserung, із ver-, і вони не взаємозамінні. Про погоду кажуть die Wetterbesserung.'

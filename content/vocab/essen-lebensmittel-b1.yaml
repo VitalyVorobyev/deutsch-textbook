@@ -1,0 +1,856 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the food field of
+# data/goethe-b1-wortliste.txt: what goes into the trolley beyond the basics, what a
+# recipe does with it, and the words a menu and a label use for the result.
+# A1's `essen-trinken` owns the shopping basket (Brot, Butter, Käse, Milch, Fleisch,
+# Obst, Zucker, Salz, Wurst, Hunger, Durst, kochen) and A2's `essen-trinken-a2` owns
+# the restaurant (Gericht, Lebensmittel, Hähnchen, Vorspeise, bestellen, scharf,
+# probieren). This deck is what those two leave on the shelf — the second row of the
+# supermarket and the middle of the recipe.
+# The Austrian and Swiss siblings of several headwords here (Marille, Faschierte,
+# Obers, Rüebli, Knödel) are held back for the Varianten deck of wave 4; where one
+# exists, this deck's `note` names it and nothing more.
+id: essen-lebensmittel-b1
+title_de: "Essen und Lebensmittel"
+title_en: "Food and groceries"
+title_ru: "Еда и продукты"
+title_uk: "Їжа та продукти"
+level: B1
+entries:
+  # --- Fleisch, wie es im Laden liegt ---
+  - de: Hackfleisch
+    ipa: "ˈhakˌflaɪ̯ʃ"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: meat put through a mincer, sold loose by the kilo for meatballs and sauces
+    ru: мясо, пропущенное через мясорубку и продаваемое на вес для котлет и соусов
+    uk: м’ясо, пропущене через м’ясорубку і продаване на вагу для котлет і соусів
+    example_de: Für die Soße brauchen wir ein halbes Kilo Hackfleisch.
+    example_en: We need half a kilo of mince for the sauce.
+    example_ru: Для соуса нам нужно полкило фарша.
+    example_uk: Для соусу нам потрібно півкіла фаршу.
+    note:
+      en: 'A mass noun with no plural, ordered by weight at the counter: 500 Gramm Hackfleisch, bitte. Germany distinguishes what is in it — Rinderhack from beef, gemischtes Hack from beef and pork together — and the raw seasoned kind eaten on a bread roll is das Mett, which no other country will offer you. In Austria the same product is das Faschierte. The compound''s first half is hacken, to chop.'
+      ru: 'Неисчисляемое, без множественного числа, заказывают на вес: 500 Gramm Hackfleisch, bitte. Германия различает состав — Rinderhack из говядины, gemischtes Hack из говядины со свининой, — а сырой приправленный фарш, который едят на булочке, называется das Mett, и больше нигде вам такого не предложат. В Австрии тот же продукт зовётся das Faschierte. Первая половина слова — глагол hacken, «рубить».'
+      uk: 'Незлічуване, без множини, замовляють на вагу: 500 Gramm Hackfleisch, bitte. Німеччина розрізняє склад — Rinderhack із яловичини, gemischtes Hack із яловичини зі свининою, — а сирий приправлений фарш, який їдять на булочці, зветься das Mett, і більше ніде вам такого не запропонують. В Австрії той самий продукт зветься das Faschierte. Перша половина слова — дієслово hacken, «рубати».'
+
+  - de: Schinken
+    ipa: "ˈʃɪŋkn̩"
+    pos: noun
+    gender: m
+    plural: "die Schinken"
+    en: the salted or smoked leg of a pig, cut in thin slices for a bread roll
+    ru: солёный или копчёный свиной окорок, нарезанный тонкими ломтиками на бутерброд
+    uk: солоний або копчений свинячий окіст, нарізаний тонкими скибочками на бутерброд
+    example_de: Auf dem Brötchen ist Schinken und ein bisschen Butter.
+    example_en: There is ham and a little butter on the roll.
+    example_ru: На булочке ветчина и немного масла.
+    example_uk: На булочці шинка і трохи масла.
+    note:
+      en: 'Distinct from A1 die Wurst, which is minced and pushed into a skin; this is one muscle, cured whole and then sliced. The two German kinds are named by the method and both appear on every breakfast board: gekochter Schinken is boiled and pale, roher Schinken air-dried and dark red, and Schwarzwälder Schinken is the famous smoked one. Singular and plural are spelled alike. Figuratively a Schinken is a fat, heavy book.'
+      ru: 'Не то же, что die Wurst уровня A1: та рубленая и набита в оболочку, а здесь одна мышца, засоленная целиком и нарезанная. Немецкие разновидности названы по способу и обе лежат на любом завтраке: gekochter Schinken — варёная, бледная, roher Schinken — вяленая, тёмно-красная, а Schwarzwälder Schinken — знаменитая копчёная. Единственное и множественное пишутся одинаково. В переносном смысле Schinken — толстая тяжёлая книга.'
+      uk: 'Не те саме, що die Wurst рівня A1: та січена й набита в оболонку, а тут один м’яз, засолений цілком і нарізаний. Німецькі різновиди названо за способом, і обидва лежать на будь-якому сніданку: gekochter Schinken — варена, бліда, roher Schinken — в’ялена, темно-червона, а Schwarzwälder Schinken — славетна копчена. Однина й множина пишуться однаково. У переносному сенсі Schinken — товста важка книжка.'
+
+  - de: Schnitzel
+    ipa: "ˈʃnɪtsl̩"
+    pos: noun
+    gender: n
+    plural: "die Schnitzel"
+    # Recognition only: a menu line rather than a shopping word — what a learner
+    # produces at the table is A2 `bestellen` plus the name read off the card.
+    cards: recognition
+    en: a thin flat piece of meat, coated in breadcrumbs and fried in a pan
+    ru: тонкий плоский кусок мяса, обваленный в сухарях и обжаренный на сковороде
+    uk: тонкий плаский шматок м’яса, обкачаний у сухарях і засмажений на сковороді
+    example_de: Zum Schnitzel gibt es Kartoffelsalat und eine Zitrone.
+    example_en: The schnitzel comes with potato salad and a slice of lemon.
+    example_ru: К шницелю подают картофельный салат и дольку лимона.
+    example_uk: До шніцеля подають картопляний салат і скибку лимона.
+    note:
+      en: 'Neuter, and the plural is spelled like the singular. The name protected by Austrian law is das Wiener Schnitzel, which must be veal; anything else has to say what it is — das Schweineschnitzel, or, if it is not breaded at all, das Schnitzel Natur. Beside it on a German menu, das Kotelett keeps its bone and der Braten is a whole roasted joint. The word comes from schnitzen, to carve.'
+      ru: 'Средний род, множественное пишется как единственное. Название, защищённое австрийским законом, — das Wiener Schnitzel, и это непременно телятина; всё прочее обязано назвать себя: das Schweineschnitzel, а если панировки нет вовсе — das Schnitzel Natur. Рядом в немецком меню das Kotelett сохраняет косточку, а der Braten — целый запечённый кусок. Слово идёт от schnitzen, «вырезать».'
+      uk: 'Середній рід, множина пишеться як однина. Назва, захищена австрійським законом, — das Wiener Schnitzel, і це неодмінно телятина; усе інше зобов’язане назвати себе: das Schweineschnitzel, а якщо паніровки немає зовсім — das Schnitzel Natur. Поряд у німецькому меню das Kotelett зберігає кісточку, а der Braten — цілий запечений шматок. Слово походить від schnitzen, «вирізати».'
+
+  - de: Hühnchen
+    ipa: "ˈhyːnçən"
+    pos: noun
+    gender: n
+    plural: "die Hühnchen"
+    # Recognition only: A2 ships `Hähnchen` ("chicken (as food)", essen-trinken-a2) as
+    # a production card, and the two differ by one umlaut — the `Überstunde` ruling
+    # from arbeit-beruf-b1, where a near-identical string can only ever be keyed.
+    cards: recognition
+    en: a whole young bird from the poultry counter, roasted or fried
+    ru: целая молодая птица с прилавка птицы, запечённая или жареная
+    uk: ціла молода птиця з прилавка птиці, запечена або смажена
+    example_de: Am Sonntag gibt es bei uns oft Hühnchen mit Reis.
+    example_en: We often have chicken with rice on Sundays.
+    example_ru: По воскресеньям у нас часто курица с рисом.
+    example_uk: У неділю в нас часто курка з рисом.
+    note:
+      en: 'One umlaut away from A2 das Hähnchen, and in a shop the two are used for the same thing — northern Germany says the ä form, the south and Austria prefer this one or das Hendl. Strictly the ä word is a young cock and this one a young hen, but no butcher keeps that apart. The bird alive is das Huhn, and the meat on a menu is das Hühnerfleisch. The idiom ein Hühnchen mit jemandem rupfen means to have a bone to pick.'
+      ru: 'На один умлаут отличается от das Hähnchen уровня A2, и в магазине оба слова означают одно и то же: север Германии говорит через ä, юг и Австрия предпочитают эту форму или das Hendl. Строго говоря, форма с ä — это молодой петушок, а эта — молодая курочка, но ни один мясник этого не различает. Живая птица — das Huhn, а мясо в меню — das Hühnerfleisch. Оборот ein Hühnchen mit jemandem rupfen значит «свести счёты».'
+      uk: 'На один умлаут відрізняється від das Hähnchen рівня A2, і в магазині обидва слова означають те саме: північ Німеччини каже через ä, південь і Австрія віддають перевагу цій формі або das Hendl. Строго кажучи, форма з ä — це молодий півник, а ця — молода курочка, але жоден м’ясник цього не розрізняє. Жива птиця — das Huhn, а м’ясо в меню — das Hühnerfleisch. Зворот ein Hühnchen mit jemandem rupfen означає «звести рахунки».'
+
+  # --- Aus dem Kühlregal und vom Frühstückstisch ---
+  - de: Sahne
+    ipa: "ˈzaːnə"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: the thick fatty top of the milk, poured over fruit or stirred into a sauce
+    ru: густая жирная часть молока, которую льют к фруктам или добавляют в соус
+    uk: густа жирна частина молока, яку ллють до фруктів або додають у соус
+    example_de: In die Soße kommt am Ende noch ein Becher Sahne.
+    example_en: A tub of cream goes into the sauce at the end.
+    example_ru: В конце в соус добавляют стаканчик сливок.
+    example_uk: Наприкінці в соус додають склянку вершків.
+    note:
+      en: 'A mass noun with no plural, sold in small tubs marked with a fat percentage. Do not reach for A2 die Creme, which is what you put on your skin — the two are separate words in German where English has one. Austria says das Obers and Switzerland der Rahm for exactly this. Beaten stiff it changes its name, and that is the next entry but one.'
+      ru: 'Неисчисляемое, без множественного числа, продаётся в стаканчиках с указанием жирности. Не берите die Creme уровня A2: то, что наносят на кожу, — в немецком другое слово. В Австрии это das Obers, в Швейцарии der Rahm. Взбитые, они меняют название — об этом через запись.'
+      uk: 'Незлічуване, без множини, продається в склянках із зазначенням жирності. Не беріть die Creme рівня A2: те, що наносять на шкіру, — у німецькій інше слово. В Австрії це das Obers, у Швейцарії der Rahm. Збиті, вони змінюють назву — про це через запис.'
+
+  - de: Schlagsahne
+    ipa: "ˈʃlaːkˌzaːnə"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: the same referent as the entry above once it has been beaten,
+    # and this deck sells the production card to the shorter, commoner word.
+    cards: recognition
+    en: cream that has been beaten stiff and spooned onto cake or hot chocolate
+    ru: сливки, взбитые до густоты и положенные ложкой на пирог или в горячий шоколад
+    uk: вершки, збиті до густоти й покладені ложкою на пиріг чи в гарячий шоколад
+    example_de: Möchten Sie den Kuchen mit Schlagsahne?
+    example_en: Would you like the cake with whipped cream?
+    example_ru: Хотите пирог со взбитыми сливками?
+    example_uk: Хочете пиріг зі збитими вершками?
+    note:
+      en: 'Built from schlagen, to beat, and it names both the liquid sold for whipping and the finished white heap on the plate. In a café the question comes as mit Sahne? and everybody understands the long form is meant. Austria says das Schlagobers or simply Obers, Switzerland der Schlagrahm. Primary stress on Schlag-, secondary on -sahne, like every German compound.'
+      ru: 'Образовано от schlagen, «взбивать», и называет и жидкость, которую продают для взбивания, и готовую белую горку на тарелке. В кафе спросят просто mit Sahne?, и все поймут, что имеется в виду именно это. Австрия говорит das Schlagobers или просто Obers, Швейцария — der Schlagrahm. Главное ударение на Schlag-, побочное на -sahne, как во всяком немецком сложном слове.'
+      uk: 'Утворене від schlagen, «збивати», і називає і рідину, яку продають для збивання, і готову білу гірку на тарілці. У кав’ярні спитають просто mit Sahne?, і всі зрозуміють, що йдеться саме про це. Австрія каже das Schlagobers або просто Obers, Швейцарія — der Schlagrahm. Головний наголос на Schlag-, побічний на -sahne, як у кожному німецькому складному слові.'
+
+  - de: Margarine
+    ipa: "maʁgaˈʁiːnə"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: a label word beside A1 `Butter`, which owns the spread a
+    # learner asks for at the table.
+    cards: recognition
+    en: the cheaper plant-based spread sold in a tub beside the butter
+    ru: более дешёвая растительная намазка, которую продают в ванночке рядом с маслом
+    uk: дешевша рослинна намазка, яку продають у ванночці поряд із маслом
+    example_de: Für den Kuchen nehme ich lieber Butter als Margarine.
+    example_en: I would rather use butter than margarine for the cake.
+    example_ru: Для пирога я лучше возьму сливочное масло, а не маргарин.
+    example_uk: Для пирога я краще візьму вершкове масло, а не маргарин.
+    note:
+      en: 'Stress on the -ri-, and the g before a is hard. No plural: like A1 die Butter it is measured, not counted. German packaging distinguishes die Halbfettmargarine and die Pflanzenmargarine, and a recipe that allows either says Butter oder Margarine. The word for spreading any of it is streichen, and what you get is der Brotaufstrich.'
+      ru: 'Ударение на -ri-, g перед a твёрдое. Множественного нет: как и die Butter уровня A1, слово меряют, а не считают. На немецких упаковках различают die Halbfettmargarine и die Pflanzenmargarine, а рецепт, допускающий и то и другое, пишет Butter oder Margarine. Глагол «намазывать» — streichen, а сама намазка — der Brotaufstrich.'
+      uk: 'Наголос на -ri-, g перед a тверде. Множини немає: як і die Butter рівня A1, слово міряють, а не рахують. На німецьких упаковках розрізняють die Halbfettmargarine і die Pflanzenmargarine, а рецепт, що припускає і те й те, пише Butter oder Margarine. Дієслово «намащувати» — streichen, а сама намазка — der Brotaufstrich.'
+
+  - de: Marmelade
+    ipa: "maʁməˈlaːdə"
+    pos: noun
+    gender: f
+    plural: "die Marmeladen"
+    en: the sweet spread of boiled fruit and sugar that goes on bread in the morning
+    ru: сладкая намазка из уваренных с сахаром плодов, которую утром кладут на хлеб
+    uk: солодка намазка з уварених із цукром плодів, яку вранці кладуть на хліб
+    example_de: Zum Frühstück esse ich ein Brot mit Marmelade.
+    example_en: I have a slice of bread with jam for breakfast.
+    example_ru: На завтрак я ем хлеб с вареньем.
+    example_uk: На сніданок я їм хліб із варенням.
+    note:
+      en: 'The everyday word — what stands on a German breakfast table and what a child asks for. EU law reserves it for citrus only and makes producers print die Konfitüre on everything else, which is why the label and the sentence disagree; speech has ignored the rule completely. Not the English marmalade, which is only the orange kind. The jar is das Marmeladenglas, and Erdbeermarmelade names the fruit in front.'
+      ru: 'Обиходное слово — то, что стоит на немецком завтраке и что просит ребёнок. Закон ЕС оставляет его за цитрусовыми и заставляет производителей писать на всём остальном die Konfitüre, отчего этикетка и живая речь расходятся; речь правило просто игнорирует. Это не английское marmalade, которое означает только апельсиновое. Банка — das Marmeladenglas, а Erdbeermarmelade называет плод впереди.'
+      uk: 'Побутове слово — те, що стоїть на німецькому сніданку і що просить дитина. Закон ЄС лишає його за цитрусовими і змушує виробників писати на всьому іншому die Konfitüre, через що етикетка й жива мова розходяться; мовлення правило просто ігнорує. Це не англійське marmalade, яке означає лише апельсинове. Банка — das Marmeladenglas, а Erdbeermarmelade називає плід попереду.'
+
+  - de: Konfitüre
+    ipa: "kɔnfiˈtyːʁə"
+    pos: noun
+    gender: f
+    plural: "die Konfitüren"
+    # Recognition only: the same referent as the entry above, in the wording the label
+    # is legally obliged to use — the deck sells the typed card to the spoken word.
+    cards: recognition
+    en: the wording a jar must carry for that spread when the law fixes its fruit content
+    ru: обозначение, которое банка обязана нести по закону, если доля плодов задана нормой
+    uk: позначення, яке банка зобов’язана нести за законом, якщо частку плодів задано нормою
+    example_de: Auf dem Glas steht Konfitüre extra mit fünfzig Prozent Frucht.
+    example_en: The jar says extra jam with fifty per cent fruit.
+    example_ru: На банке стоит надпись «конфитюр экстра» с пятьюдесятью процентами плодов.
+    example_uk: На банці стоїть напис «конфітюр екстра» з п’ятдесятьма відсотками плодів.
+    note:
+      en: 'A French loan, stressed on the -tü-, and in Germany a legal term rather than a household one: the grade Konfitüre extra requires a stated proportion of whole fruit. Nobody says it at breakfast. Switzerland is the exception — there it is the ordinary word and Marmelade sounds foreign. A useful reflex: read it on the shelf, say the other one at the table.'
+      ru: 'Французское заимствование с ударением на -tü-, и в Германии это скорее юридический термин, чем домашний: сорт Konfitüre extra требует определённой доли цельных плодов. За завтраком так никто не говорит. Исключение — Швейцария: там это обычное слово, а Marmelade звучит чужеродно. Полезный рефлекс: читать его на полке, а за столом говорить другое.'
+      uk: 'Французьке запозичення з наголосом на -tü-, і в Німеччині це радше юридичний термін, ніж домашній: ґатунок Konfitüre extra вимагає певної частки цілих плодів. За сніданком так ніхто не каже. Виняток — Швейцарія: там це звичайне слово, а Marmelade звучить чужорідно. Корисний рефлекс: читати його на полиці, а за столом казати інше.'
+
+  - de: Honig
+    ipa: "ˈhoːnɪç"
+    pos: noun
+    gender: m
+    plural: "—"
+    en: the thick golden sweetener bees make, spooned into tea or spread on bread
+    ru: густой золотистый подсластитель, который делают пчёлы, — его кладут в чай или мажут на хлеб
+    uk: густий золотистий підсолоджувач, який роблять бджоли, — його кладуть у чай або мажуть на хліб
+    example_de: Bei Halsschmerzen trinke ich Tee mit Honig.
+    example_en: I drink tea with honey when I have a sore throat.
+    example_ru: При боли в горле я пью чай с мёдом.
+    example_uk: Коли болить горло, я п’ю чай із медом.
+    note:
+      en: 'Masculine, no plural, and the final -ig is spoken like the ich-Laut in standard German: ˈhoːnɪç, not -ik. That rule covers a whole family — wenig, richtig, billig. The label word for the good kind is der Imkerhonig or Honig aus der Region; the runny sort is flüssiger Honig and the set sort fester Honig. The idiom jemandem Honig ums Maul schmieren is to flatter somebody shamelessly.'
+      ru: 'Мужской род, множественного нет, а конечное -ig в литературном немецком звучит как ich-Laut: ˈhoːnɪç, а не -ik. Правило охватывает целое семейство: wenig, richtig, billig. На этикетке хороший сорт обозначают der Imkerhonig или Honig aus der Region; жидкий — flüssiger Honig, севший — fester Honig. Оборот jemandem Honig ums Maul schmieren значит «беззастенчиво льстить».'
+      uk: 'Чоловічий рід, множини немає, а кінцеве -ig у літературній німецькій звучить як ich-Laut: ˈhoːnɪç, а не -ik. Правило охоплює ціле сімейство: wenig, richtig, billig. На етикетці добрий ґатунок позначають der Imkerhonig або Honig aus der Region; рідкий — flüssiger Honig, зацукрований — fester Honig. Зворот jemandem Honig ums Maul schmieren означає «безсоромно лестити».'
+
+  # --- Vom Feld und vom Baum ---
+  - de: Zwiebel
+    ipa: "ˈtsviːbl̩"
+    pos: noun
+    gender: f
+    plural: "die Zwiebeln"
+    en: the round layered bulb that is chopped first in almost every savoury recipe
+    ru: круглая слоистая луковица, которую в почти любом несладком рецепте режут первой
+    uk: кругла шарувата цибулина, яку в майже будь-якому несолодкому рецепті ріжуть першою
+    example_de: Schneiden Sie zuerst die Zwiebel klein und braten Sie sie an.
+    example_en: First chop the onion finely and fry it.
+    example_ru: Сначала мелко нарежьте лук и обжарьте его.
+    example_uk: Спершу дрібно наріжте цибулю й обсмажте її.
+    note:
+      en: 'Feminine, plural in -n, and countable in German where English often is not: eine Zwiebel is one bulb, zwei Zwiebeln two of them. The stem stands in a family of kitchen words — der Zwiebelkuchen is the autumn tart eaten with new wine, and die Frühlingszwiebel is a spring onion. Garlic is a separate word, der Knoblauch, not a kind of this one. The initial z is ts.'
+      ru: 'Женский род, множественное на -n, и в немецком слово считаемое: eine Zwiebel — одна луковица, zwei Zwiebeln — две. Корень стоит в кухонном семействе: der Zwiebelkuchen — осенний пирог, который едят с молодым вином, а die Frühlingszwiebel — зелёный лук. Чеснок — отдельное слово, der Knoblauch, а не разновидность этого. Начальное z читается как «ц».'
+      uk: 'Жіночий рід, множина на -n, і в німецькій слово злічуване: eine Zwiebel — одна цибулина, zwei Zwiebeln — дві. Корінь стоїть у кухонній родині: der Zwiebelkuchen — осінній пиріг, який їдять із молодим вином, а die Frühlingszwiebel — зелена цибуля. Часник — окреме слово, der Knoblauch, а не різновид цього. Початкове z читається як «ц».'
+
+  - de: Karotte
+    ipa: "kaˈʁɔtə"
+    pos: noun
+    gender: f
+    plural: "die Karotten"
+    en: the long orange root eaten raw as a stick or cooked in a stew
+    ru: длинный оранжевый корнеплод, который едят сырым палочкой или варят в рагу
+    uk: довгий помаранчевий коренеплід, який їдять сирим паличкою або варять у рагу
+    example_de: Die Kinder essen Karotten am liebsten roh.
+    example_en: The children like carrots best raw.
+    example_ru: Больше всего дети любят морковь сырой.
+    example_uk: Найбільше діти люблять моркву сирою.
+    note:
+      en: 'Feminine, stress on the -ro-, plural in -n. Germany has two names for it and they are geographical rather than botanical: the south and the west say this one, the north and the east die Möhre, which is the next entry. Switzerland says das Rüebli, and a Swiss carrot cake is die Rüeblitorte. Both German words are equally correct everywhere, and a recipe may use either.'
+      ru: 'Женский род, ударение на -ro-, множественное на -n. У Германии для этого овоща два названия, и различие географическое, а не ботаническое: юг и запад говорят так, север и восток — die Möhre, следующая запись. Швейцария говорит das Rüebli, а швейцарский морковный торт — die Rüeblitorte. Оба немецких слова везде одинаково правильны, и рецепт может взять любое.'
+      uk: 'Жіночий рід, наголос на -ro-, множина на -n. У Німеччини для цього овоча дві назви, і різниця географічна, а не ботанічна: південь і захід кажуть так, північ і схід — die Möhre, наступний запис. Швейцарія каже das Rüebli, а швейцарський морквяний торт — die Rüeblitorte. Обидва німецькі слова скрізь однаково правильні, і рецепт може взяти будь-яке.'
+
+  - de: Möhre
+    ipa: "ˈmøːʁə"
+    pos: noun
+    gender: f
+    plural: "die Möhren"
+    # Recognition only: the same vegetable as the entry above under its northern name.
+    # One referent takes one production card; the note carries the pair.
+    cards: recognition
+    en: that same orange root under the name the north and east of Germany use
+    ru: тот же оранжевый корнеплод под названием, принятым на севере и востоке Германии
+    uk: той самий помаранчевий коренеплід під назвою, вживаною на півночі та сході Німеччини
+    example_de: Auf dem Markt in Berlin heißen sie Möhren.
+    example_en: At the market in Berlin they are called Möhren.
+    example_ru: На берлинском рынке их называют Möhren.
+    example_uk: На берлінському ринку їх називають Möhren.
+    note:
+      en: 'Same vegetable, different half of the country — and a third form, die Mohrrübe, survives in the east. Nothing distinguishes them in meaning, so a shopping list may say either and a supermarket in Hamburg will print this one on the shelf label. The stem also gives der Möhrensaft. Note the umlaut: ö with a long vowel, and the plural adds -n without changing it.'
+      ru: 'Тот же овощ, другая половина страны, а на востоке уцелела и третья форма — die Mohrrübe. По смыслу они не различаются, так что в списке покупок можно писать любое, а супермаркет в Гамбурге напечатает на ценнике именно это. От корня образовано и der Möhrensaft. Обратите внимание на умлаут: ö долгое, а множественное добавляет -n, ничего не меняя.'
+      uk: 'Той самий овоч, інша половина країни, а на сході вціліла й третя форма — die Mohrrübe. За змістом вони не різняться, тож у списку покупок можна писати будь-яке, а супермаркет у Гамбурзі надрукує на ціннику саме це. Від кореня утворено й der Möhrensaft. Зверніть увагу на умлаут: ö довге, а множина додає -n, нічого не змінюючи.'
+
+  - de: Pilz
+    ipa: "ˈpɪlts"
+    pos: noun
+    gender: m
+    plural: "die Pilze"
+    en: the soft-stemmed thing with a cap that grows in a wood and is fried in butter
+    ru: то, что растёт в лесу на мягкой ножке под шляпкой и жарится на сливочном масле
+    uk: те, що росте в лісі на м’якій ніжці під шапкою і смажиться на вершковому маслі
+    example_de: Im Herbst sammeln wir im Wald Pilze.
+    example_en: In autumn we gather mushrooms in the woods.
+    example_ru: Осенью мы собираем в лесу грибы.
+    example_uk: Восени ми збираємо в лісі гриби.
+    note:
+      en: 'Masculine, plural in -e, and the z is ts — the word ends in a cluster, ˈpɪlts. Germans distinguish the shop kind, der Champignon, from the wild ones they gather themselves, and Pilze sammeln is a real autumn pastime with a real risk: giftig means poisonous and is the word on every warning. The same noun names the medical kind, der Fußpilz, athlete''s foot.'
+      ru: 'Мужской род, множественное на -e, z читается «ц» — слово оканчивается сочетанием, ˈpɪlts. Немцы отличают магазинные der Champignon от лесных, которые собирают сами, и Pilze sammeln — настоящее осеннее занятие с настоящим риском: giftig значит «ядовитый», и это слово стоит в любом предупреждении. Тем же существительным называют и медицинский случай: der Fußpilz — грибок стопы.'
+      uk: 'Чоловічий рід, множина на -e, z читається «ц» — слово закінчується сполукою, ˈpɪlts. Німці відрізняють магазинні der Champignon від лісових, які збирають самі, і Pilze sammeln — справжнє осіннє заняття зі справжнім ризиком: giftig означає «отруйний», і це слово стоїть у будь-якому попередженні. Тим самим іменником називають і медичний випадок: der Fußpilz — грибок стопи.'
+
+  - de: Aprikose
+    ipa: "apʁiˈkoːzə"
+    pos: noun
+    gender: f
+    plural: "die Aprikosen"
+    en: the small soft orange stone fruit that ripens in July and dries well
+    ru: небольшой мягкий оранжевый плод с косточкой, который зреет в июле и хорошо сушится
+    uk: невеликий м’який помаранчевий плід із кісточкою, що дозріває в липні й добре сушиться
+    example_de: Diese Aprikosen sind noch nicht ganz reif.
+    example_en: These apricots are not quite ripe yet.
+    example_ru: Эти абрикосы ещё не совсем спелые.
+    example_uk: Ці абрикоси ще не зовсім стиглі.
+    note:
+      en: 'Feminine, stress on the -ko-, plural in -n. Austria has an entirely different word for it, die Marille, and a Wachauer Marillenknödel is one of the country''s signature dishes — a German shop will not use that name. The dried kind are getrocknete Aprikosen, the stone is der Kern, and the jam made from them is die Aprikosenmarmelade.'
+      ru: 'Женский род, ударение на -ko-, множественное на -n. У Австрии для него совсем другое слово — die Marille, и Wachauer Marillenknödel — одно из фирменных австрийских блюд; в немецком магазине такого названия не будет. Сушёные — getrocknete Aprikosen, косточка — der Kern, а варенье из них — die Aprikosenmarmelade.'
+      uk: 'Жіночий рід, наголос на -ko-, множина на -n. В Австрії для нього зовсім інше слово — die Marille, і Wachauer Marillenknödel — одна з фірмових австрійських страв; у німецькому магазині такої назви не буде. Сушені — getrocknete Aprikosen, кісточка — der Kern, а варення з них — die Aprikosenmarmelade.'
+
+  - de: Frucht
+    ipa: "ˈfʁʊxt"
+    pos: noun
+    gender: f
+    plural: "die Früchte"
+    # Recognition only: A1 ships `Obst` ("fruit", essen-trinken) as the production card
+    # for this field, and no EN or RU prompt can hold one botanical specimen apart from
+    # the mass word a shopper actually says.
+    cards: recognition
+    en: the single thing a plant produces around its seed, counted one by one
+    ru: отдельное образование, которое растение производит вокруг семени, — поштучно
+    uk: окреме утворення, яке рослина продукує навколо насінини, — поштучно
+    example_de: Dieser Baum trägt jedes Jahr viele Früchte.
+    example_en: This tree bears a lot of fruit every year.
+    example_ru: Это дерево каждый год приносит много плодов.
+    example_uk: Це дерево щороку приносить багато плодів.
+    note:
+      en: 'The countable, botanical word: one specimen on a branch, with a plural that takes an umlaut — die Früchte. A1 das Obst is the mass word for what you buy and eat, has no plural at all, and is what a shopping list says. Because a tomato and a cucumber are botanically this and never Obst, a science text and a greengrocer disagree on purpose. Figuratively it is a result: die Früchte seiner Arbeit.'
+      ru: 'Слово считаемое и ботаническое: один экземпляр на ветке, а множественное берёт умлаут — die Früchte. das Obst уровня A1 — собирательное слово о том, что покупают и едят, множественного у него нет вовсе, и именно оно стоит в списке покупок. Поскольку помидор и огурец ботанически относятся сюда и никогда к Obst, научный текст и зеленщик расходятся сознательно. В переносном смысле это результат: die Früchte seiner Arbeit.'
+      uk: 'Слово злічуване й ботанічне: один примірник на гілці, а множина бере умлаут — die Früchte. das Obst рівня A1 — збірне слово про те, що купують і їдять, множини в нього немає взагалі, і саме воно стоїть у списку покупок. Оскільки помідор і огірок ботанічно належать сюди і ніколи до Obst, науковий текст і зеленяр розходяться свідомо. У переносному сенсі це результат: die Früchte seiner Arbeit.'
+
+  - de: Früchte
+    ipa: "ˈfʁʏçtə"
+    pos: phrase
+    # Recognition only: the Wortliste keys this plural separately from the singular
+    # above, and a shopper's prompt for fruit as food is answered by A1 `Obst`.
+    cards: recognition
+    en: several pieces of fruit taken together, as a yoghurt lid or a menu lists them
+    ru: несколько плодов вместе — так, как их перечисляют на крышке йогурта или в меню
+    uk: кілька плодів разом — так, як їх перелічують на кришці йогурту або в меню
+    example_de: Der Joghurt enthält Früchte aus biologischem Anbau.
+    example_en: The yoghurt contains organically grown fruit.
+    example_ru: В йогурте плоды из органического хозяйства.
+    example_uk: У йогурті плоди з органічного господарства.
+    note:
+      en: 'The Wortliste lists the plural as a headword of its own, and the reason is that it does a job the singular cannot: on a label, a menu and a market stall it is the collective — rote Früchte, Früchte der Saison, Früchtetee. In a spoken sentence a German still says Obst for the same idea, so read this one and say the other. The umlaut ü and the plural ending are what separate it from the singular in speech.'
+      ru: 'Wortliste даёт множественное отдельным заголовком, и не зря: оно делает работу, которую единственное сделать не может. На этикетке, в меню и на прилавке это собирательное: rote Früchte, Früchte der Saison, Früchtetee. В устной фразе немец для той же мысли скажет Obst, так что это слово читают, а говорят другое. Умлаут ü и окончание множественного — то, что в речи отличает его от единственного.'
+      uk: 'Wortliste дає множину окремим заголовком, і не дарма: вона робить роботу, якої однина зробити не може. На етикетці, у меню й на прилавку це збірне: rote Früchte, Früchte der Saison, Früchtetee. В усній фразі німець для тієї самої думки скаже Obst, тож це слово читають, а кажуть інше. Умлаут ü і закінчення множини — те, що в мовленні відрізняє його від однини.'
+
+  # --- Was man dazutut ---
+  - de: Mehl
+    ipa: "ˈmeːl"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: the fine white powder ground from grain, weighed out first in every baking recipe
+    ru: тонкий белый порошок из смолотого зерна, который в любом рецепте выпечки отвешивают первым
+    uk: тонкий білий порошок із змеленого зерна, який у будь-якому рецепті випічки відважують першим
+    example_de: Für den Teig brauchst du dreihundert Gramm Mehl.
+    example_en: You need three hundred grams of flour for the dough.
+    example_ru: Для теста нужно триста граммов муки.
+    example_uk: Для тіста потрібно триста грамів борошна.
+    note:
+      en: 'Neuter, no plural, and German sells it by a type number printed large on the bag: Mehl Type 405 is the fine white one for cakes, 1050 is darker, and Vollkornmehl is wholemeal. A recipe says Mehl sieben, to sieve it, and der Teig is what it becomes. The vowel is long and the h is silent — it is only there to mark the length, as in nehmen and Zahl.'
+      ru: 'Средний род, множественного нет, а немцы продают его по номеру типа, крупно напечатанному на пакете: Mehl Type 405 — тонкая белая для тортов, 1050 темнее, а Vollkornmehl — цельнозерновая. Рецепт скажет Mehl sieben, «просеять», а получается из неё der Teig. Гласный долгий, h не произносится: оно лишь обозначает долготу, как в nehmen и Zahl.'
+      uk: 'Середній рід, множини немає, а німці продають його за номером типу, великим шрифтом надрукованим на пакеті: Mehl Type 405 — тонке біле для тортів, 1050 темніше, а Vollkornmehl — цільнозернове. Рецепт скаже Mehl sieben, «просіяти», а виходить із нього der Teig. Голосний довгий, h не вимовляється: воно лише позначає довготу, як у nehmen і Zahl.'
+
+  - de: Essig
+    ipa: "ˈɛsɪç"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: a bottle read on the shelf and a line in a recipe. What a
+    # learner produces at the table is A2 `Öl` or the name of the dressing.
+    cards: recognition
+    en: the sharp sour liquid shaken into a salad dressing beside the oil
+    ru: резкая кислая жидкость, которую вместе с маслом взбалтывают в салатной заправке
+    uk: різка кисла рідина, яку разом з олією збовтують у салатній заправці
+    example_de: In die Soße kommen zwei Löffel Öl und ein Löffel Essig.
+    example_en: Two spoonfuls of oil and one of vinegar go into the dressing.
+    example_ru: В заправку идут две ложки масла и ложка уксуса.
+    example_uk: У заправку йдуть дві ложки олії й ложка оцту.
+    note:
+      en: 'Masculine, no plural, and the -ig ends in the ich-Laut just as Honig does. It travels almost always as half of a pair, Öl und Essig, which is how a German names a dressing without describing it. Kinds you will see: der Weinessig, der Apfelessig, der Balsamico. The idiom Das ist Essig is old-fashioned slang for something having come to nothing.'
+      ru: 'Мужской род, множественного нет, а -ig на конце звучит ich-Laut''ом, как и в Honig. Слово почти всегда ходит половиной пары — Öl und Essig; так немец называет заправку, не описывая её. Разновидности, которые попадутся: der Weinessig, der Apfelessig, der Balsamico. Оборот Das ist Essig — старомодное просторечие о деле, которое сорвалось.'
+      uk: 'Чоловічий рід, множини немає, а -ig на кінці звучить як ich-Laut, так само як у Honig. Слово майже завжди ходить половиною пари — Öl und Essig; так німець називає заправку, не описуючи її. Різновиди, які трапляться: der Weinessig, der Apfelessig, der Balsamico. Зворот Das ist Essig — старомодне просторіччя про справу, яка зірвалася.'
+
+  - de: Pfeffer
+    ipa: "ˈpfɛfɐ"
+    pos: noun
+    gender: m
+    plural: "—"
+    en: the dark spice ground from small dried berries and turned over food at the table
+    ru: тёмная приправа из мелких сушёных ягод, которую мелют над едой прямо за столом
+    uk: темна приправа з дрібних сушених ягід, яку мелють над їжею просто за столом
+    example_de: Bitte noch etwas Salz und Pfeffer an die Suppe.
+    example_en: A little more salt and pepper on the soup, please.
+    example_ru: Пожалуйста, ещё немного соли и перца в суп.
+    example_uk: Будь ласка, ще трохи солі й перцю в суп.
+    note:
+      en: 'Masculine, no plural, and always paired with A1 das Salz in that fixed order: Salz und Pfeffer, never the other way round. It is the ground black kind by default; the fresh green vegetable is die Paprika, an entirely different word, and chilli heat is scharf. The pf- is a real affricate, both letters sounding. The verb is pfeffern, and gepfeffert of a price means steep.'
+      ru: 'Мужской род, множественного нет, и стоит он всегда в паре с das Salz уровня A1 в закреплённом порядке: Salz und Pfeffer, и никак не наоборот. По умолчанию имеется в виду молотый чёрный; свежий овощ — die Paprika, совсем другое слово, а острота от чили — scharf. Сочетание pf- — настоящая аффриката, звучат обе буквы. Глагол — pfeffern, а gepfeffert о цене значит «кусачая».'
+      uk: 'Чоловічий рід, множини немає, і стоїть він завжди в парі з das Salz рівня A1 у закріпленому порядку: Salz und Pfeffer, і аж ніяк не навпаки. За замовчуванням мається на увазі мелений чорний; свіжий овоч — die Paprika, зовсім інше слово, а гострота від чилі — scharf. Сполука pf- — справжня африката, звучать обидві літери. Дієслово — pfeffern, а gepfeffert про ціну означає «кусюча».'
+
+  - de: Gewürz
+    ipa: "gəˈvʏʁts"
+    pos: noun
+    gender: n
+    plural: "die Gewürze"
+    # Recognition only: a category word for the shelf and the recipe heading. A learner
+    # cooking or ordering names the particular one — Salz, Pfeffer, Paprika.
+    cards: recognition
+    en: any of the dried plant parts a cook adds in small amounts to give a dish its character
+    ru: любая из сушёных частей растений, которые повар добавляет понемногу, чтобы задать блюду характер
+    uk: будь-яка із сушених частин рослин, які кухар додає потроху, щоб задати страві характер
+    example_de: In diesem Regal stehen alle Gewürze für die indische Küche.
+    example_en: All the spices for Indian cooking are on this shelf.
+    example_ru: На этой полке стоят все приправы для индийской кухни.
+    example_uk: На цій полиці стоять усі приправи для індійської кухні.
+    note:
+      en: 'Neuter, plural in -e, and it is the umbrella word rather than any one of them: a recipe lists Salz, Pfeffer und andere Gewürze. The verb behind it is würzen, to season, and gut gewürzt is the compliment a cook wants; scharf, which A2 teaches, says the heat is high and is a different judgement. Compounds: das Gewürzregal, die Gewürzmischung, der Gewürzkuchen.'
+      ru: 'Средний род, множественное на -e, и это зонтичное слово, а не название конкретного: рецепт перечислит Salz, Pfeffer und andere Gewürze. За ним стоит глагол würzen, «приправлять», а gut gewürzt — комплимент, которого ждёт повар; scharf, которое проходят на A2, говорит об остроте и оценивает другое. Составные: das Gewürzregal, die Gewürzmischung, der Gewürzkuchen.'
+      uk: 'Середній рід, множина на -e, і це парасолькове слово, а не назва конкретного: рецепт перелічить Salz, Pfeffer und andere Gewürze. За ним стоїть дієслово würzen, «приправляти», а gut gewürzt — комплімент, на який чекає кухар; scharf, яке вивчають на A2, говорить про гостроту й оцінює інше. Складні: das Gewürzregal, die Gewürzmischung, der Gewürzkuchen.'
+
+  - de: Fett
+    ipa: "ˈfɛt"
+    pos: noun
+    gender: n
+    plural: "die Fette"
+    # Recognition only: it is a nutrition-label noun and an adjective at the same time,
+    # and one prompt cannot say which is wanted — the `unheimlich`/`intensiv` ruling
+    # from eigenschaften-bewertung-b1.
+    cards: recognition
+    en: the greasy substance in food that a nutrition table counts in grams
+    ru: жирное вещество в пище, которое таблица питательности считает в граммах
+    uk: жирна речовина в їжі, яку таблиця поживності рахує в грамах
+    example_de: Auf der Packung steht, wie viel Fett das Produkt enthält.
+    example_en: The packet says how much fat the product contains.
+    example_ru: На упаковке указано, сколько жира содержит продукт.
+    example_uk: На упаковці зазначено, скільки жиру містить продукт.
+    note:
+      en: 'Two words in one spelling: the noun here and the adjective fett, greasy or, of a person, an unkind word for heavy. Written small it is the adjective, written large the noun, and that is the only signal in a text. The plural is used for kinds — pflanzliche Fette, tierische Fette. A German label ranks them as gesättigte and ungesättigte Fettsäuren, and the low-fat claim is fettarm.'
+      ru: 'Два слова в одном написании: существительное здесь и прилагательное fett — «жирный», а о человеке грубоватое «толстый». С маленькой буквы — прилагательное, с большой — существительное, и это единственная подсказка в тексте. Множественное употребляют о сортах: pflanzliche Fette, tierische Fette. Немецкая этикетка делит их на gesättigte и ungesättigte Fettsäuren, а «нежирный» на упаковке — fettarm.'
+      uk: 'Два слова в одному написанні: іменник тут і прикметник fett — «жирний», а про людину грубувате «товстий». З малої літери — прикметник, з великої — іменник, і це єдина підказка в тексті. Множину вживають про ґатунки: pflanzliche Fette, tierische Fette. Німецька етикетка ділить їх на gesättigte й ungesättigte Fettsäuren, а «нежирний» на упаковці — fettarm.'
+
+  - de: Soße
+    ipa: "ˈzoːsə"
+    pos: noun
+    gender: f
+    plural: "die Soßen"
+    accept: ["Sauce"]
+    en: the thick liquid poured over meat, pasta or a pudding to go with it
+    ru: густая жидкость, которую подливают к мясу, пасте или десерту
+    uk: густа рідина, яку підливають до м’яса, пасти чи десерту
+    example_de: Die Nudeln schmecken mir nur mit einer guten Soße.
+    example_en: I only like pasta with a good sauce.
+    example_ru: Макароны мне нравятся только с хорошим соусом.
+    example_uk: Макарони мені смакують лише з добрим соусом.
+    note:
+      en: 'Two spellings are equally correct and the card accepts both: Soße with ß is the Germanised one and Sauce the French original, which restaurant menus prefer. The word covers the savoury and the sweet — die Tomatensoße on pasta, die Vanillesoße on a pudding — where English needs sauce, gravy and custard. The ß follows a long o, which is exactly why it is ß and not ss.'
+      ru: 'Два написания одинаково правильны, и карточка принимает оба: Soße с ß — онемеченное, Sauce — французский оригинал, который предпочитают меню ресторанов. Слово покрывает и несладкое, и сладкое: die Tomatensoße к пасте, die Vanillesoße к десерту, — там, где русскому нужны «соус» и «подливка». ß стоит после долгого o — именно поэтому ß, а не ss.'
+      uk: 'Два написання однаково правильні, і картка приймає обидва: Soße з ß — онімечене, Sauce — французький оригінал, якому віддають перевагу меню ресторанів. Слово покриває і несолодке, і солодке: die Tomatensoße до пасти, die Vanillesoße до десерту, — там, де українській потрібні «соус» і «підлива». ß стоїть після довгого o — саме тому ß, а не ss.'
+
+  # --- Der Gang durch die Mahlzeit ---
+  - de: Müsli
+    ipa: "ˈmyːsli"
+    pos: noun
+    gender: n
+    plural: "die Müslis"
+    en: the breakfast mix of oats, nuts and dried fruit eaten with milk or yoghurt
+    ru: завтрак из смеси хлопьев, орехов и сухофруктов, который едят с молоком или йогуртом
+    uk: сніданок із суміші пластівців, горіхів і сухофруктів, який їдять із молоком або йогуртом
+    example_de: Morgens esse ich immer ein Müsli mit Joghurt.
+    example_en: I always have muesli with yoghurt in the morning.
+    example_ru: По утрам я всегда ем мюсли с йогуртом.
+    example_uk: Уранці я завжди їм мюслі з йогуртом.
+    note:
+      en: 'A Swiss word that Germany adopted whole, and a rare loan that takes ein: ein Müsli is one bowlful, not one flake. The stress is on the long ü of the first syllable, and the plural adds -s. Do not confuse it with die Cornflakes, which are only one ingredient of it, or with der Haferbrei, which is cooked porridge. A Müsliriegel is the bar version for a pocket.'
+      ru: 'Швейцарское слово, которое Германия переняла целиком, и редкое заимствование, берущее ein: ein Müsli — одна порция, а не одна хлопинка. Ударение на долгом ü первого слога, множественное на -s. Не путайте с die Cornflakes — это лишь один из его компонентов, и с der Haferbrei — варёной кашей. Ein Müsliriegel — батончик, который кладут в карман.'
+      uk: 'Швейцарське слово, яке Німеччина перейняла цілком, і рідкісне запозичення, що бере ein: ein Müsli — одна порція, а не одна пластівка. Наголос на довгому ü першого складу, множина на -s. Не плутайте з die Cornflakes — це лише один із його складників, і з der Haferbrei — вареною кашею. Ein Müsliriegel — батончик, який кладуть до кишені.'
+
+  - de: Gebäck
+    ipa: "gəˈbɛk"
+    pos: noun
+    gender: n
+    plural: "—"
+    # Recognition only: a category word for a shop window and a coffee table. A learner
+    # buying names the piece — A1 `Kuchen`, `Brötchen`, or `Keks`.
+    cards: recognition
+    en: the small sweet things a baker sells beside the loaves, served with coffee
+    ru: мелкая сладкая выпечка, которую пекарь продаёт рядом с хлебом и подают к кофе
+    uk: дрібна солодка випічка, яку пекар продає поряд із хлібом і подають до кави
+    example_de: Zum Kaffee stellte sie einen Teller mit Gebäck auf den Tisch.
+    example_en: She put a plate of pastries on the table to go with the coffee.
+    example_ru: К кофе она поставила на стол тарелку с выпечкой.
+    example_uk: До кави вона поставила на стіл тарілку з випічкою.
+    note:
+      en: 'A collective noun with no plural, built from backen with the ge- that turns a verb into the mass of what it produces — the same pattern as das Gepäck from packen. It covers biscuits, small tarts and pastries but not a whole A1 Kuchen and not bread. At Christmas the whole category has its own name, das Weihnachtsgebäck, and the shop that sells it is die Konditorei.'
+      ru: 'Собирательное существительное без множественного, образованное от backen приставкой ge-, которая превращает глагол в массу произведённого, — та же модель, что у das Gepäck от packen. Оно покрывает печенье, корзиночки и слойки, но не целый Kuchen уровня A1 и не хлеб. На Рождество у всей категории своё имя — das Weihnachtsgebäck, а лавка, где его продают, — die Konditorei.'
+      uk: 'Збірний іменник без множини, утворений від backen префіксом ge-, що перетворює дієслово на масу виробленого, — та сама модель, що в das Gepäck від packen. Воно покриває печиво, кошики й листкове, але не цілий Kuchen рівня A1 і не хліб. На Різдво в усієї категорії своє ім’я — das Weihnachtsgebäck, а крамниця, де його продають, — die Konditorei.'
+
+  - de: Kloß
+    ipa: "ˈkloːs"
+    pos: noun
+    gender: m
+    plural: "die Klöße"
+    # Recognition only: a menu and a regional-cooking word. A learner ordering points
+    # at the line or says `Kartoffeln`.
+    cards: recognition
+    en: a soft round ball of potato or bread, boiled and served beside a roast
+    ru: мягкий круглый шар из картофеля или хлеба, отваренный и поданный к жаркому
+    uk: м’яка кругла куля з картоплі або хліба, зварена й подана до печені
+    example_de: Zum Braten gab es Rotkohl und zwei große Klöße.
+    example_en: There was red cabbage and two big dumplings with the roast.
+    example_ru: К жаркому подали краснокочанную капусту и две большие клёцки.
+    example_uk: До печені подали червонокачанну капусту й дві великі книдлі.
+    note:
+      en: 'Masculine, and the plural takes an umlaut plus -e: die Klöße. Thuringia and Saxony say this word; Bavaria and Austria say der Knödel for the same thing, and a menu in Munich will print that one. The savoury kinds are Kartoffelklöße and Semmelklöße, and the sweet stone-fruit ones a dessert. Figuratively einen Kloß im Hals haben is to have a lump in your throat.'
+      ru: 'Мужской род, а множественное берёт умлаут и -e: die Klöße. Так говорят в Тюрингии и Саксонии; Бавария и Австрия называют то же самое der Knödel, и меню в Мюнхене напечатает именно это. Несладкие разновидности — Kartoffelklöße и Semmelklöße, а сладкие, с фруктом внутри, идут на десерт. В переносном смысле einen Kloß im Hals haben — «ком в горле».'
+      uk: 'Чоловічий рід, а множина бере умлаут і -e: die Klöße. Так кажуть у Тюрингії та Саксонії; Баварія й Австрія називають те саме der Knödel, і меню в Мюнхені надрукує саме це. Несолодкі різновиди — Kartoffelklöße і Semmelklöße, а солодкі, з фруктом усередині, ідуть на десерт. У переносному сенсі einen Kloß im Hals haben — «клубок у горлі».'
+
+  - de: Nachspeise
+    ipa: "ˈnaːxˌʃpaɪ̯zə"
+    pos: noun
+    gender: f
+    plural: "die Nachspeisen"
+    en: the sweet course that closes a meal, ordered after the main one
+    ru: сладкая перемена, которой заканчивают обед и которую заказывают после основного
+    uk: солодка страва, якою закінчують обід і яку замовляють після основної
+    example_de: Als Nachspeise nehme ich Eis mit heißen Kirschen.
+    example_en: I will have ice cream with hot cherries for dessert.
+    example_ru: На сладкое я возьму мороженое с горячей вишней.
+    example_uk: На солодке я візьму морозиво з гарячою вишнею.
+    note:
+      en: 'Transparent where the French word beside it is not: nach plus die Speise, the course after. A German menu heads the page with it or with der Nachtisch, which is the commoner spoken form; das Dessert, the next entry, is the smart one. The frame is als Nachspeise, with no article, and the first course at the other end of the meal is die Vorspeise, which A2 teaches.'
+      ru: 'Прозрачное там, где стоящее рядом французское слово непрозрачно: nach плюс die Speise — «перемена после». Немецкое меню озаглавит страницу им или словом der Nachtisch, более частым в речи; das Dessert, следующая запись, — вариант понаряднее. Конструкция — als Nachspeise, без артикля, а первая перемена на другом конце обеда — die Vorspeise, которую проходят на A2.'
+      uk: 'Прозоре там, де французьке слово поряд непрозоре: nach плюс die Speise — «страва після». Німецьке меню очолить сторінку ним або словом der Nachtisch, частішим у мовленні; das Dessert, наступний запис, — варіант ошатніший. Конструкція — als Nachspeise, без артикля, а перша страва на іншому кінці обіду — die Vorspeise, яку вивчають на A2.'
+
+  - de: Dessert
+    ipa: "dɛˈseːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Desserts"
+    # Recognition only: the same course as the entry above under its French name, and
+    # one referent takes one production card.
+    cards: recognition
+    en: that same closing sweet course under the name a smarter menu prints
+    ru: та же завершающая сладкая перемена под названием, которое печатает меню посолиднее
+    uk: та сама завершальна солодка страва під назвою, яку друкує ошатніше меню
+    example_de: Das Dessert ist im Menü schon enthalten.
+    example_en: The dessert is already included in the set menu.
+    example_ru: Десерт уже включён в комплексное меню.
+    example_uk: Десерт уже включено до комплексного меню.
+    note:
+      en: 'Spoken the French way, with the final t silent and the stress on the second syllable — dɛˈseːɐ̯ — which is exactly what makes it hard to say and easy to read. Neuter, and the plural adds -s. In a home kitchen a German family says der Nachtisch; this word belongs to a restaurant, a hotel and a printed card. Nothing distinguishes the three words in meaning, only in register.'
+      ru: 'Произносится по-французски: конечное t не звучит, ударение на втором слоге — dɛˈseːɐ̯, — и именно поэтому слово трудно выговорить и легко прочесть. Средний род, множественное на -s. Дома немецкая семья скажет der Nachtisch; это слово принадлежит ресторану, отелю и печатной карте. По смыслу все три не различаются — различаются регистром.'
+      uk: 'Вимовляється по-французьки: кінцеве t не звучить, наголос на другому складі — dɛˈseːɐ̯, — і саме тому слово важко вимовити й легко прочитати. Середній рід, множина на -s. Удома німецька родина скаже der Nachtisch; це слово належить ресторанові, готелю й друкованій карті. За змістом усі три не різняться — різняться регістром.'
+
+  - de: Mahlzeit
+    ipa: "ˈmaːlˌtsaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Mahlzeiten"
+    # Recognition only: A1 ships `Essen` ("food, meal", essen-trinken) and A2 `Gericht`
+    # ("dish (a prepared meal)") as production cards, and neither an EN nor an RU
+    # prompt for a meal can be kept clear of them.
+    cards: recognition
+    en: one of the three occasions in a day when people sit down and eat
+    ru: один из трёх случаев за день, когда люди садятся и едят
+    uk: один із трьох випадків за день, коли люди сідають і їдять
+    example_de: Nehmen Sie die Tabletten zu den Mahlzeiten ein.
+    example_en: Take the tablets with meals.
+    example_ru: Принимайте таблетки во время еды.
+    example_uk: Приймайте таблетки під час їди.
+    note:
+      en: 'The formal, countable word for the occasion rather than the food: a package insert says zu den Mahlzeiten and a nutritionist counts drei Mahlzeiten am Tag. A1 das Essen is what is on the plate and is what people actually say. There is a second life to it: called out on its own, Mahlzeit! is how German colleagues greet each other around midday, and it means nothing more than hello.'
+      ru: 'Официальное считаемое слово о самом случае, а не о еде: вкладыш к лекарству напишет zu den Mahlzeiten, а диетолог посчитает drei Mahlzeiten am Tag. das Essen уровня A1 — то, что на тарелке, и именно так говорят в быту. Есть и вторая жизнь: выкрикнутое отдельно Mahlzeit! — это то, чем немецкие коллеги здороваются около полудня, и значит оно не больше, чем «привет».'
+      uk: 'Офіційне злічуване слово про сам випадок, а не про їжу: вкладка до ліків напише zu den Mahlzeiten, а дієтолог порахує drei Mahlzeiten am Tag. das Essen рівня A1 — те, що на тарілці, і саме так кажуть у побуті. Є й друге життя: вигукнуте окремо Mahlzeit! — це те, чим німецькі колеги вітаються близько полудня, і означає воно не більше за «привіт».'
+
+  - de: Nahrungsmittel
+    ipa: "ˈnaːʁʊŋsˌmɪtl̩"
+    pos: noun
+    gender: n
+    plural: "die Nahrungsmittel"
+    # Recognition only: A2 ships `Lebensmittel` ("groceries, foodstuffs",
+    # essen-trinken-a2) as the production card, and the two are near-synonyms no prompt
+    # can separate.
+    cards: recognition
+    en: anything a body takes in as food, named the way a report or a law names it
+    ru: всё, что организм принимает как пищу, — так, как это называет отчёт или закон
+    uk: усе, що організм приймає як їжу, — так, як це називає звіт або закон
+    example_de: In vielen Ländern sind die Preise für Nahrungsmittel stark gestiegen.
+    example_en: Food prices have risen sharply in many countries.
+    example_ru: Во многих странах цены на продовольствие сильно выросли.
+    example_uk: У багатьох країнах ціни на продовольство сильно зросли.
+    note:
+      en: 'Almost the same word as A2 das Lebensmittel, and where they differ is register rather than meaning: this one belongs to nutrition science and to news about hunger and prices, while the A2 word is what stands over the aisle in a supermarket and goes on a shopping list. Both are neuter and both keep their plural spelling identical to the singular. The first half is die Nahrung, nourishment.'
+      ru: 'Почти то же слово, что das Lebensmittel уровня A2, и различие тут не смысловое, а регистровое: это принадлежит науке о питании и новостям о голоде и ценах, а слово уровня A2 висит над рядом в супермаркете и попадает в список покупок. Оба среднего рода, и у обоих множественное пишется как единственное. Первая половина — die Nahrung, «пропитание».'
+      uk: 'Майже те саме слово, що das Lebensmittel рівня A2, і різниця тут не змістова, а регістрова: це належить науці про харчування й новинам про голод і ціни, а слово рівня A2 висить над рядом у супермаркеті й потрапляє до списку покупок. Обидва середнього роду, і в обох множина пишеться як однина. Перша половина — die Nahrung, «поживок».'
+
+  - de: Zutaten
+    ipa: "ˈtsuːˌtaːtn̩"
+    pos: phrase
+    # Recognition only: a plural-only headword read off a packet and a recipe. The
+    # `Fachleute` ruling from berufe-b1 — a plural-only form has no singular prompt a
+    # typed card could ask for.
+    cards: recognition
+    en: everything a recipe tells you to have ready before you start, listed in order
+    ru: всё, что рецепт велит приготовить заранее, перечисленное по порядку
+    uk: усе, що рецепт велить приготувати заздалегідь, перелічене за порядком
+    example_de: Die Zutaten für vier Personen stehen oben auf der Seite.
+    example_en: The ingredients for four people are at the top of the page.
+    example_ru: Ингредиенты на четверых указаны вверху страницы.
+    example_uk: Інгредієнти на чотирьох указано вгорі сторінки.
+    note:
+      en: 'Used in the plural and almost never in the singular, though die Zutat exists. It heads the first block of every German recipe and, by law, the smallest print on every packet, where the order is by weight: what there is most of comes first. The verb behind it is zutun, to add — literally what is put in. Beside it, die Menge is how much of each and die Zubereitung the method.'
+      ru: 'Употребляется во множественном числе и почти никогда в единственном, хотя die Zutat существует. Это заголовок первого блока любого немецкого рецепта и, по закону, самый мелкий шрифт на любой упаковке, где порядок задан весом: чего больше, то и первое. За словом стоит глагол zutun, «добавлять», — буквально «то, что кладут». Рядом die Menge — сколько чего, а die Zubereitung — способ приготовления.'
+      uk: 'Уживається в множині й майже ніколи в однині, хоча die Zutat існує. Це заголовок першого блоку будь-якого німецького рецепта і, за законом, найдрібніший шрифт на будь-якій упаковці, де порядок задано вагою: чого більше, те й перше. За словом стоїть дієслово zutun, «додавати», — буквально «те, що кладуть». Поряд die Menge — скільки чого, а die Zubereitung — спосіб приготування.'
+
+  - de: zubereiten
+    ipa: "ˈtsuːbəˌʁaɪ̯tn̩"
+    pos: verb
+    praesens_3sg: bereitet zu
+    partizip2: zubereitet
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: A1 `kochen` ("to cook") and A2 `vorbereiten` ("to prepare
+    # (something)", arbeit-ausbildung-a2) between them answer every prompt this verb
+    # could carry.
+    cards: recognition
+    en: to make a dish ready to eat, from washing and cutting through to the last step
+    ru: доводить блюдо до готовности — от мытья и нарезки до последнего шага
+    uk: доводити страву до готовності — від миття і нарізання до останнього кроку
+    example_de: Das Gericht lässt sich in zwanzig Minuten zubereiten.
+    example_en: The dish can be made in twenty minutes.
+    example_ru: Блюдо можно приготовить за двадцать минут.
+    example_uk: Страву можна приготувати за двадцять хвилин.
+    note:
+      en: 'Separable, so the prefix goes to the end — sie bereitet das Essen zu — but the Partizip II is zubereitet with no ge-, because bereiten is already a prefixed stem. It is wider than A1 kochen, which needs heat: a salad is zubereitet and never gekocht. A2 vorbereiten is what you do the day before, to a meal or to an exam. The noun is die Zubereitung, the method block of a recipe.'
+      ru: 'Отделяемый, так что приставка уходит в конец — sie bereitet das Essen zu, — но Partizip II будет zubereitet без ge-, потому что bereiten уже само с приставкой. Оно шире, чем kochen уровня A1, которому нужен огонь: салат zubereitet и никогда nicht gekocht. vorbereiten уровня A2 — то, что делают накануне, с обедом или с экзаменом. Существительное — die Zubereitung, блок способа в рецепте.'
+      uk: 'Відокремлюване, тож префікс іде в кінець — sie bereitet das Essen zu, — але Partizip II буде zubereitet без ge-, бо bereiten уже саме з префіксом. Воно ширше за kochen рівня A1, якому потрібен вогонь: салат zubereitet і ніколи не gekocht. vorbereiten рівня A2 — те, що роблять напередодні, з обідом або з іспитом. Іменник — die Zubereitung, блок способу в рецепті.'
+
+  # --- Wie es schmeckt und wie lange es hält ---
+  - de: Geschmack
+    ipa: "gəˈʃmak"
+    pos: noun
+    gender: m
+    plural: "die Geschmäcker"
+    # Recognition only: it carries two unrelated senses one prompt cannot name — what a
+    # food is like on the tongue, and a person's judgement in art and clothes — the
+    # `unheimlich`/`intensiv` ruling from eigenschaften-bewertung-b1.
+    cards: recognition
+    en: what a food is like on the tongue; also a person's sense of what is fine
+    ru: то, каким продукт оказывается на языке; а также чутьё человека на прекрасное
+    uk: те, яким продукт виявляється на язиці; а також чуття людини на прекрасне
+    example_de: Der Käse hat einen sehr starken Geschmack.
+    example_en: The cheese has a very strong taste.
+    example_ru: У этого сыра очень сильный вкус.
+    example_uk: У цього сиру дуже сильний смак.
+    note:
+      en: 'The noun of A1 schmecken, and its two senses run in different rooms: the tongue one — ein süßer Geschmack — and the aesthetic one, which lives in fixed sayings. Über Geschmack lässt sich nicht streiten is the German for there is no accounting for taste, and Das ist Geschmackssache closes an argument. The plural die Geschmäcker belongs to the second sense only. The adjective geschmacklos means both tasteless and in bad taste.'
+      ru: 'Существительное от schmecken уровня A1, и два его значения живут в разных комнатах: вкус на языке — ein süßer Geschmack — и вкус эстетический, который держится на устойчивых фразах. Über Geschmack lässt sich nicht streiten — немецкое «о вкусах не спорят», а Das ist Geschmackssache закрывает спор. Множественное die Geschmäcker принадлежит только второму значению. Прилагательное geschmacklos значит и «безвкусный», и «бестактный».'
+      uk: 'Іменник від schmecken рівня A1, і два його значення живуть у різних кімнатах: смак на язиці — ein süßer Geschmack — і смак естетичний, який тримається на усталених фразах. Über Geschmack lässt sich nicht streiten — німецьке «про смаки не сперечаються», а Das ist Geschmackssache закриває суперечку. Множина die Geschmäcker належить лише другому значенню. Прикметник geschmacklos означає і «несмачний», і «нетактовний».'
+
+  - de: salzig
+    ipa: "ˈzaltsɪç"
+    pos: adj
+    en: tasting of salt, sometimes of too much of it
+    ru: со вкусом соли, порой и с её избытком
+    uk: зі смаком солі, часом і з її надміром
+    example_de: Die Suppe ist mir ein bisschen zu salzig.
+    example_en: The soup is a bit too salty for me.
+    example_ru: Суп для меня немного пересолен.
+    example_uk: Суп для мене трохи пересолений.
+    note:
+      en: 'Built from A1 das Salz with -ig, the suffix that turns a substance into the quality of having it — the same step as sonnig from Sonne and durstig below. It is neutral by itself; the complaint needs zu in front, as in the example. Its partners round the table are süß, sauer and bitter, and A2 scharf, which is about heat rather than salt. The final -ig ends in the ich-Laut.'
+      ru: 'Образовано от das Salz уровня A1 суффиксом -ig, который превращает вещество в свойство «имеющий это», — тот же шаг, что от Sonne к sonnig и в durstig ниже. Само по себе слово нейтрально; жалобе нужен zu впереди, как в примере. За столом его напарники — süß, sauer и bitter, а также scharf уровня A2, где речь об остроте, а не о соли. Конечное -ig звучит как ich-Laut.'
+      uk: 'Утворене від das Salz рівня A1 суфіксом -ig, який перетворює речовину на властивість «той, що має це», — той самий крок, що від Sonne до sonnig і в durstig нижче. Саме по собі слово нейтральне; скарзі потрібен zu попереду, як у прикладі. За столом його напарники — süß, sauer і bitter, а також scharf рівня A2, де йдеться про гостроту, а не про сіль. Кінцеве -ig звучить як ich-Laut.'
+
+  - de: mild
+    ipa: "ˈmɪlt"
+    pos: adj
+    en: gentle on the tongue rather than sharp — and, of weather, softer than expected
+    en_compact: gentle on the tongue rather than sharp
+    ru: мягкий для языка, не резкий, — а о погоде мягче ожидаемого
+    uk: м’який для язика, не різкий, — а про погоду м’якший за очікуваний
+    example_de: Für die Kinder nehmen wir lieber den milden Käse.
+    example_en: We would rather take the mild cheese for the children.
+    example_ru: Для детей мы лучше возьмём мягкий сыр.
+    example_uk: Для дітей ми краще візьмемо м’який сир.
+    note:
+      en: 'The standing opposite of A2 scharf on a menu and a packet: mild oder scharf is the question at a Turkish counter, and the answer decides how much chilli goes in. It works for cheese and coffee too, where it means gentle rather than strong. Outside food it describes weather — ein milder Winter — and a person''s judgement: eine milde Strafe is a lenient sentence. Final d devoices to t.'
+      ru: 'Постоянная противоположность scharf уровня A2 в меню и на упаковке: mild oder scharf — вопрос у турецкого прилавка, и ответ решает, сколько положат чили. Работает и о сыре, и о кофе, где значит «неострый, некрепкий». Вне еды описывает погоду — ein milder Winter — и человеческое суждение: eine milde Strafe — мягкий приговор. Конечное d оглушается в t.'
+      uk: 'Постійна протилежність scharf рівня A2 в меню й на упаковці: mild oder scharf — питання біля турецького прилавка, і відповідь вирішує, скільки покладуть чилі. Працює і про сир, і про каву, де означає «негострий, неміцний». Поза їжею описує погоду — ein milder Winter — і людське судження: eine milde Strafe — м’який вирок. Кінцеве d оглушується в t.'
+
+  - de: roh
+    ipa: "ˈʁoː"
+    pos: adj
+    en: not cooked, exactly as it came from the ground or the counter
+    ru: не подвергшийся тепловой обработке, такой же, как с грядки или с прилавка
+    uk: не підданий тепловій обробці, такий самий, як із грядки чи з прилавка
+    example_de: Diese Bohnen darf man nicht roh essen.
+    example_en: You must not eat these beans raw.
+    example_ru: Эти бобы нельзя есть сырыми.
+    example_uk: Ці боби не можна їсти сирими.
+    note:
+      en: 'Long o and a silent h, exactly as in Schuh and früh. It is the standing opposite of gekocht and gebraten, and Germans build whole food words on it: die Rohkost is a plate of raw vegetables, roher Schinken is air-dried ham. Of a person it means coarse or brutal — ein roher Kerl — which is a much harsher word than the food sense suggests. Not related to A2 rot, the colour.'
+      ru: 'Долгое o и немое h — ровно как в Schuh и früh. Это постоянная противоположность gekocht и gebraten, и немцы строят на нём целые кулинарные слова: die Rohkost — тарелка сырых овощей, roher Schinken — вяленая ветчина. О человеке значит «грубый, жестокий» — ein roher Kerl, — и это куда более резкое слово, чем подсказывает кулинарный смысл. С rot уровня A2, цветом, оно не родственно.'
+      uk: 'Довге o і німе h — точно як у Schuh і früh. Це постійна протилежність gekocht і gebraten, і німці будують на ньому цілі кулінарні слова: die Rohkost — тарілка сирих овочів, roher Schinken — в’ялена шинка. Про людину означає «грубий, жорстокий» — ein roher Kerl, — і це набагато різкіше слово, ніж підказує кулінарний сенс. Із rot рівня A2, кольором, воно не споріднене.'
+
+  - de: mager
+    ipa: "ˈmaːgɐ"
+    pos: adj
+    # Recognition only: A2 ships `dünn` ("thin", charakter-eigenschaften-a2) as the
+    # production card for the body sense, and the food sense is a packet word — a
+    # single prompt cannot ask for one without inviting the other.
+    cards: recognition
+    en: with very little fat in it — of meat and milk, and of a body, thin and bony
+    en_compact: with very little fat in it
+    ru: с очень малым содержанием жира — о мясе и молоке, а о теле — худой, костлявый
+    uk: з дуже малим вмістом жиру — про м’ясо й молоко, а про тіло — худий, кістлявий
+    example_de: Nehmen Sie bitte ein mageres Stück Fleisch.
+    example_en: Please take a lean piece of meat.
+    example_ru: Возьмите, пожалуйста, постный кусок мяса.
+    example_uk: Візьміть, будь ласка, пісний шматок м’яса.
+    note:
+      en: 'Of food it is a compliment on a packet — mageres Hackfleisch, magerer Quark — and the marketing form is fettarm. Of a person it is not: A2 dünn is neutral and schlank is flattering, while this one suggests too little flesh, and calling somebody it in conversation is unkind. A third, figurative use is disappointing: ein mageres Ergebnis is a poor result.'
+      ru: 'О продукте это похвала на упаковке — mageres Hackfleisch, magerer Quark, — а маркетинговая форма fettarm. О человеке — нет: dünn уровня A2 нейтрально, schlank лестно, а это намекает на нехватку плоти, и в разговоре так о человеке говорить недобро. Третье, переносное употребление — про разочарование: ein mageres Ergebnis — скудный результат.'
+      uk: 'Про продукт це похвала на упаковці — mageres Hackfleisch, magerer Quark, — а маркетингова форма fettarm. Про людину — ні: dünn рівня A2 нейтральне, schlank улесливе, а це натякає на брак плоті, і в розмові так про людину казати недобре. Третє, переносне вживання — про розчарування: ein mageres Ergebnis — злиденний результат.'
+
+  - de: haltbar
+    ipa: "ˈhaltbaːɐ̯"
+    pos: adj
+    # Recognition only: a packet word, read and never said — what a shopper produces at
+    # the counter is a question about the date itself.
+    cards: recognition
+    en: still safe to eat until a date the packet prints
+    ru: пригодный в пищу до срока, напечатанного на упаковке
+    uk: придатний до вживання до строку, надрукованого на упаковці
+    example_de: Die Milch ist nur noch bis Freitag haltbar.
+    example_en: The milk will only keep until Friday.
+    example_ru: Молоко годно только до пятницы.
+    example_uk: Молоко придатне лише до п’ятниці.
+    note:
+      en: 'Built from halten with -bar, the suffix that means can be done — the same step as essbar and lesbar. Every German packet carries the phrase mindestens haltbar bis, best before, abbreviated MHD, and Germans distinguish it sharply from zu verbrauchen bis, the harder use-by date on meat and fish. Figuratively an argument can be it too: ein haltbares Argument is one that stands up.'
+      ru: 'Образовано от halten суффиксом -bar, который значит «поддающийся» — тот же шаг, что в essbar и lesbar. На каждой немецкой упаковке стоит оборот mindestens haltbar bis, «годен минимум до», сокращаемый до MHD, и немцы чётко отличают его от zu verbrauchen bis — более жёсткого срока на мясе и рыбе. В переносном смысле так говорят и о доводе: ein haltbares Argument — довод, который выдерживает проверку.'
+      uk: 'Утворене від halten суфіксом -bar, що означає «здатний бути» — той самий крок, що в essbar і lesbar. На кожній німецькій упаковці стоїть зворот mindestens haltbar bis, «придатний щонайменше до», скорочуваний до MHD, і німці чітко відрізняють його від zu verbrauchen bis — жорсткішого строку на м’ясі й рибі. У переносному сенсі так кажуть і про доказ: ein haltbares Argument — доказ, який витримує перевірку.'
+
+  - de: vegetarisch
+    ipa: "vegeˈtaːʁɪʃ"
+    pos: adj
+    en: containing no meat and no fish, as a menu line or a way of eating
+    ru: без мяса и рыбы — о строке в меню и о способе питаться
+    uk: без м’яса й риби — про рядок у меню й про спосіб харчуватися
+    example_de: Haben Sie auch ein vegetarisches Gericht?
+    example_en: Do you have a vegetarian dish as well?
+    example_ru: У вас есть и вегетарианское блюдо?
+    example_uk: Чи є у вас і вегетаріанська страва?
+    note:
+      en: 'The single most useful sentence a non-meat-eater needs in Germany is the example above, and the answer is usually yes. The v is spoken v here, not f, because the word is a loan. The stricter word for no animal products at all is vegan, and a person is ein Vegetarier or eine Vegetarierin. To say how you eat, use sich vegetarisch ernähren rather than a noun.'
+      ru: 'Самое полезное предложение, какое нужно в Германии тому, кто не ест мяса, — это пример выше, и ответ обычно утвердительный. v здесь читается как «в», а не «ф», потому что слово заимствованное. Более строгое слово, о полном отказе от продуктов животного происхождения, — vegan, а человек — ein Vegetarier или eine Vegetarierin. Чтобы сказать, как вы питаетесь, берите sich vegetarisch ernähren, а не существительное.'
+      uk: 'Найкорисніше речення, яке потрібне в Німеччині тому, хто не їсть м’яса, — це приклад вище, і відповідь зазвичай ствердна. v тут читається як «в», а не «ф», бо слово запозичене. Суворіше слово, про цілковиту відмову від продуктів тваринного походження, — vegan, а людина — ein Vegetarier або eine Vegetarierin. Щоб сказати, як ви харчуєтеся, беріть sich vegetarisch ernähren, а не іменник.'
+
+  # --- Hunger, Durst und was man dazwischen trinkt ---
+  - de: hungrig
+    ipa: "ˈhʊŋʁɪç"
+    pos: adj
+    en: needing to eat, in the adjective a person uses about themselves
+    ru: испытывающий потребность поесть — прилагательным, которое человек говорит о себе
+    uk: той, хто відчуває потребу поїсти, — прикметником, який людина каже про себе
+    example_de: Nach der langen Wanderung waren alle sehr hungrig.
+    example_en: Everybody was very hungry after the long walk.
+    example_ru: После долгого похода все были очень голодны.
+    example_uk: Після довгої мандрівки всі були дуже голодні.
+    note:
+      en: 'Formed from A1 der Hunger with -ig. German has both ways of saying it and prefers the noun: Ich habe Hunger is what you actually hear, while the adjective turns up after sein and in front of a noun — ein hungriges Kind. Note that the noun construction has no article, so Ich habe einen Hunger is an exclamation about how hungry you are, not the plain statement.'
+      ru: 'Образовано от der Hunger уровня A1 суффиксом -ig. У немецкого есть оба способа, и он предпочитает существительное: в жизни звучит Ich habe Hunger, а прилагательное появляется после sein и перед существительным — ein hungriges Kind. Учтите, что в конструкции с существительным артикля нет, так что Ich habe einen Hunger — это восклицание о том, как сильно вы голодны, а не нейтральное сообщение.'
+      uk: 'Утворене від der Hunger рівня A1 суфіксом -ig. У німецької є обидва способи, і вона віддає перевагу іменникові: у житті звучить Ich habe Hunger, а прикметник з’являється після sein і перед іменником — ein hungriges Kind. Зважте, що в конструкції з іменником артикля немає, тож Ich habe einen Hunger — це вигук про те, як сильно ви голодні, а не нейтральне повідомлення.'
+
+  - de: durstig
+    ipa: "ˈdʊʁstɪç"
+    pos: adj
+    en: needing something to drink
+    ru: испытывающий потребность попить
+    uk: той, хто відчуває потребу попити
+    example_de: Die Kinder kamen durstig vom Spielplatz zurück.
+    example_en: The children came back from the playground thirsty.
+    example_ru: Дети вернулись с площадки, желая пить.
+    example_uk: Діти повернулися з майданчика, спраглі.
+    note:
+      en: 'Built on A1 der Durst the same way the entry above is built on Hunger, and the same preference holds: Ich habe Durst is the everyday sentence and this is the adjective beside it. The r is the vocalised one in the middle of the word, ˈdʊʁstɪç. A drink that makes you want more is not this word but durstlöschend, thirst-quenching, which is what an advert claims.'
+      ru: 'Построено на der Durst уровня A1 так же, как запись выше построена на Hunger, и предпочтение то же: в быту звучит Ich habe Durst, а это — прилагательное рядом. r в середине слова вокализованное: ˈdʊʁstɪç. Напиток, который утоляет жажду, называется не так, а durstlöschend — это слово обещает реклама.'
+      uk: 'Побудоване на der Durst рівня A1 так само, як запис вище побудований на Hunger, і вподобання те саме: у побуті звучить Ich habe Durst, а це — прикметник поряд. r у середині слова вокалізоване: ˈdʊʁstɪç. Напій, що вгамовує спрагу, зветься не так, а durstlöschend — це слово обіцяє реклама.'
+
+  - de: satt
+    ipa: "ˈzat"
+    pos: adj
+    en: having eaten enough and wanting no more
+    ru: наевшийся и больше не желающий есть
+    uk: той, хто наївся і більше не хоче їсти
+    example_de: Danke, ich bin satt — es war sehr gut.
+    example_en: Thank you, I have had enough — it was very good.
+    example_ru: Спасибо, я сыт — было очень вкусно.
+    example_uk: Дякую, я ситий — було дуже смачно.
+    note:
+      en: 'The polite way to decline a second helping at a German table, and there is no verb for it — the frame is always sein or werden. Do not use A2 voll, which is about a container or a crowded train and, of a person, means drunk. A second use is figurative and impatient: etwas satt haben is to be fed up with it — Ich habe das satt.'
+      ru: 'Вежливый способ отказаться от добавки за немецким столом, и глагола для этого нет — конструкция всегда с sein или werden. Не берите voll уровня A2: оно о ёмкости и о набитом поезде, а о человеке значит «пьяный». Второе употребление переносное и нетерпеливое: etwas satt haben — «быть сытым по горло»: Ich habe das satt.'
+      uk: 'Ввічливий спосіб відмовитися від добавки за німецьким столом, і дієслова для цього немає — конструкція завжди із sein або werden. Не беріть voll рівня A2: воно про посудину й напханий поїзд, а про людину означає «п’яний». Друге вживання переносне й нетерпляче: etwas satt haben — «бути ситим по горло»: Ich habe das satt.'
+
+  - de: Appetit
+    ipa: "apeˈtiːt"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: A1 ships the whole wish `Guten Appetit!` (essen-trinken) as a
+    # production card, and this word is that card minus one adjective — the
+    # `Überstunde`/`Überstunden` ruling from arbeit-beruf-b1.
+    cards: recognition
+    en: the wish to eat something, as a state a person has or has lost
+    ru: желание поесть как состояние, которое у человека есть или пропало
+    uk: бажання поїсти як стан, який у людини є або зник
+    example_de: Seit der Grippe hat sie wenig Appetit.
+    example_en: She has had little appetite since the flu.
+    example_ru: После гриппа у неё плохой аппетит.
+    example_uk: Після грипу в неї поганий апетит.
+    note:
+      en: 'Stress on the last syllable, no plural. It is milder than A1 der Hunger: hunger is the body''s need, this is the willingness, which is why a doctor asks Haben Sie Appetit? about somebody who is unwell. The chunk everybody knows first is the wish Guten Appetit!, said before a meal by whoever sits down. Appetit auf etwas haben is to fancy something in particular.'
+      ru: 'Ударение на последнем слоге, множественного нет. Слово мягче, чем der Hunger уровня A1: голод — телесная нужда, а это готовность, и потому врач спрашивает Haben Sie Appetit? о нездоровом человеке. Первый оборот, который узнают все, — пожелание Guten Appetit!: его говорит тот, кто садится за стол. Appetit auf etwas haben — «хотеться чего-то конкретного».'
+      uk: 'Наголос на останньому складі, множини немає. Слово м’якше за der Hunger рівня A1: голод — тілесна потреба, а це готовність, і тому лікар питає Haben Sie Appetit? про нездорову людину. Перший зворот, який дізнаються всі, — побажання Guten Appetit!: його каже той, хто сідає до столу. Appetit auf etwas haben — «хотітися чогось конкретного».'
+
+  - de: Kakao
+    ipa: "kaˈkaʊ̯"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: A1 ships `Schokolade` (einkaufen-geschaefte) as the production
+    # card in this field, and in a German café the drink is ordered as
+    # `heiße Schokolade`.
+    cards: recognition
+    en: the brown powder from a tropical bean, and the hot milk drink made with it
+    ru: коричневый порошок из тропических бобов и горячий напиток на молоке из него
+    uk: коричневий порошок із тропічних бобів і гарячий напій на молоці з нього
+    example_de: Die Kinder bekommen im Winter jeden Abend einen Kakao.
+    example_en: The children get a cup of cocoa every evening in winter.
+    example_ru: Зимой дети каждый вечер получают какао.
+    example_uk: Узимку діти щовечора отримують какао.
+    note:
+      en: 'Stress on the second syllable and the ao is one diphthong: kaˈkaʊ̯. Two things at once — the tin in the cupboard and the cup, which is why einen Kakao takes an article when the drink is meant. In a café the same drink is more often ordered as eine heiße Schokolade. The idiom jemanden durch den Kakao ziehen means to make gentle fun of somebody.'
+      ru: 'Ударение на втором слоге, а ao — один дифтонг: kaˈkaʊ̯. Слово значит сразу две вещи — банку в шкафу и чашку, и потому einen Kakao берёт артикль, когда речь о напитке. В кафе тот же напиток чаще заказывают как eine heiße Schokolade. Оборот jemanden durch den Kakao ziehen значит «беззлобно подтрунивать над кем-то».'
+      uk: 'Наголос на другому складі, а ao — один дифтонг: kaˈkaʊ̯. Слово означає одразу дві речі — бляшанку в шафі й горнятко, і тому einen Kakao бере артикль, коли йдеться про напій. У кав’ярні той самий напій частіше замовляють як eine heiße Schokolade. Зворот jemanden durch den Kakao ziehen означає «беззлобно кепкувати з когось».'
+
+  - de: Limonade
+    ipa: "limoˈnaːdə"
+    pos: noun
+    gender: f
+    plural: "die Limonaden"
+    # Recognition only: a false friend that a German menu abbreviates to `Limo` and an
+    # English speaker will misread — A1 `Saft` owns the drink a learner orders by name.
+    cards: recognition
+    en: any sweet fizzy soft drink, not necessarily made from any citrus at all
+    ru: любой сладкий газированный безалкогольный напиток, вовсе не обязательно из цитрусов
+    uk: будь-який солодкий газований безалкогольний напій, зовсім не обов’язково з цитрусів
+    example_de: Für die Kinder haben wir Wasser und Limonade gekauft.
+    example_en: We bought water and fizzy drinks for the children.
+    example_ru: Для детей мы купили воду и газировку.
+    example_uk: Для дітей ми купили воду й газованку.
+    note:
+      en: 'A false friend twice over. It is not lemonade in the English home-made sense, and it is not restricted to lemon: a German menu files cola, orange and herbal drinks under it alike. Everyday speech shortens it to die Limo, which is what a child asks for. The drink an English speaker means is Zitronenwasser or selbst gemachte Limonade, and A1 der Saft is pressed juice with nothing added.'
+      ru: 'Ложный друг дважды. Это не «лимонад» в смысле домашнего напитка из лимона и вовсе не ограничено лимоном: немецкое меню сводит сюда и колу, и апельсиновую, и травяную. В речи слово сокращают до die Limo, и именно так просит ребёнок. То, что имеет в виду англичанин, — Zitronenwasser или selbst gemachte Limonade, а der Saft уровня A1 — отжатый сок без добавок.'
+      uk: 'Фальшивий друг двічі. Це не «лимонад» у сенсі домашнього напою з лимона і зовсім не обмежене лимоном: німецьке меню зводить сюди і колу, і помаранчеву, і трав’яну. У мовленні слово скорочують до die Limo, і саме так просить дитина. Те, що має на увазі англієць, — Zitronenwasser або selbst gemachte Limonade, а der Saft рівня A1 — вичавлений сік без додатків.'
