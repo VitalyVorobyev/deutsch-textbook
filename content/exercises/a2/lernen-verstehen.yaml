@@ -203,6 +203,7 @@ items:
       uk: "Два речення — два правила. Рамка Wissen Sie — звичайне питання: дієслово першим, підмет за ним. Після коми йде підрядне, і відкрити його чимось потрібно — цим «чимось» буде ob, адже питального слова тут немає. Усе інше вишиковується всередині, а відмінюване дієслово закриває підрядне: stattfindet, разом із префіксом. У підрядному немає другого місця, яке відокремлюваний префікс міг би покинути, — і він повертається до дієслова."
 
   - id: uebersetzen-wie-lange-der-kurs-dauert
+    revision: 2
     outcomes: [nachfragen-klaeren]
     type: translate
     focus: indirekte-frage
@@ -214,8 +215,16 @@ items:
     prompt_ru: "Вы не подскажете, сколько длится курс?"
     prompt_uk: "Чи не підкажете, скільки триває курс?"
     answer: "Können Sie mir sagen, wie lange der Kurs dauert?"
+    # The focus grades where the wrapped verb lands, not which verb it is — so the
+    # ist-variant (Der Kurs ist zwei Wochen lang → wie lang der Kurs ist, bare lang)
+    # and the Konjunktiv wrapper are siblings, accepted per the 2026-08-05 ruling in
+    # data/grading-decisions.yaml.
     accept:
       - "Können Sie mir bitte sagen, wie lange der Kurs dauert?"
+      - "Könnten Sie mir sagen, wie lange der Kurs dauert?"
+      - "Könnten Sie mir bitte sagen, wie lange der Kurs dauert?"
+      - "Können Sie mir sagen, wie lang der Kurs ist?"
+      - "Könnten Sie mir sagen, wie lang der Kurs ist?"
       - "Wissen Sie, wie lange der Kurs dauert?"
       - "Ich möchte wissen, wie lange der Kurs dauert."
     key_tokens: ["dauert"]
