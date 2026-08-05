@@ -959,7 +959,19 @@ describe('cards: recognition | both', () => {
     // beside their masculines; `Absenderin`, `Zuhörerin`, `Moderatorin` and
     // `Zuschauerin` ship alone because `informationen-vermitteln` and `meinung-medien`
     // already own the masculine headwords in other files.
-    expect(cards).toBe(entries * 2 - 906);
+    // Wortliste completion wave 3b, five recognition-only decks (2026-08-06), closes
+    // wave 3 with one hundred and forty-seven more: `recht-kriminalitaet-b1` (38 of
+    // 38) is the crime report and the courtroom as a newspaper prints them,
+    // `politik-staat-b1` (36 of 36) the state as the evening news names it,
+    // `gesellschaft-migration-b1` (25 of 25) the B1 reading text about who lives here,
+    // `bildung-schulsystem-b1` (28 of 28) the school system's proper names and its
+    // marks — words *about* the institutions, where the learner's own sentence uses
+    // A1 `Schule` and A2 `Note` — and `wissenschaft-technik-b1` (20 of 20) research
+    // and the machine behind the plug. Eleven Movierung pairs sit adjacent at the
+    // cost of adjacency alone; `Mitglied` is the counter-case the deck teaches (no
+    // -in form exists); `Tote` ships as an adjectival noun like `Kranke`; `Abgase`
+    // is `Zinsen` again, plural-only as `pos: phrase`.
+    expect(cards).toBe(entries * 2 - 1053);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
