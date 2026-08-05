@@ -97,6 +97,12 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
+- **P25-5 · `gen:ipa` without `--only` duplicates the `ipa:` key in five decks** — when an existing
+  `ipa` sits below a comment block it fails to see it and writes a second key
+  (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
+  `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).
+  Until fixed, run it only with `--only <deck>`; the fix is in the writer's did-I-already-fill-this
+  check, and duplicate-key YAML should also fail `bun run validate`.
 - **P23-3 · Six of the seven tags the runtime prioritises have no drill, and all six are B1** —
   cross `weakFocuses` (`src/lib/weakness.ts`) against every `role: drill` item's `focus`; fifteen of
   the sixteen drill sets are A1 or A2. **Read both instruments before deciding**: `weakFocuses`
