@@ -943,7 +943,23 @@ describe('cards: recognition | both', () => {
     // three cards rather than four — `Einwohnerin` and `Käuferin` beside their
     // masculines — and `Mieterin` ships without an adjacency at all, because B1 `Mieter`
     // (leben-veraendern) already owns that headword in another file.
-    expect(cards).toBe(entries * 2 - 754);
+    // Wortliste completion wave 3a, six recognition-only decks (2026-08-05), adds one
+    // hundred and fifty-two — the whole of wave 3's first slice, and the ruling stays
+    // per deck: `text-schreiben-b1` (19 of 19) is the German printed around a text —
+    // the envelope, the caption, the slide; `sprechen-lernen-b1` (23 of 23) the German
+    // of a course register, a timetable and a northern radio announcer;
+    // `computer-internet-b1` (29 of 29) a spec sheet, a browser and a virus warning;
+    // `medien-digital-b1` (25 of 25) a listings page, a credit roll and a shelf of old
+    // discs; `abstrakte-begriffe-b1` (37 of 37) the sentence-carrying abstractions of a
+    // B1 reading text; and `wirtschaft-handel-b1` (19 of 19) the economy as a headline
+    // names it. All six are read, never produced — the learner's own sentence about
+    // any of it comes out of the A1/A2 word beside each entry, which already ships as
+    // a typed card, and each note names that word. Movierung inside the wave costs
+    // adjacency, not cards: `Userin`, `Teilnehmerin`, `Hörerin` and `Reporterin` sit
+    // beside their masculines; `Absenderin`, `Zuhörerin`, `Moderatorin` and
+    // `Zuschauerin` ship alone because `informationen-vermitteln` and `meinung-medien`
+    // already own the masculine headwords in other files.
+    expect(cards).toBe(entries * 2 - 906);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
