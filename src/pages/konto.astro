@@ -1,19 +1,39 @@
 ---
 /**
- * Account: sign in, connect a profile, sync, and — for the owner — approve the
- * people who have signed up.
+ * /konto is a redirect now (ADR 0005): the account surface lives on the
+ * Fortschritt page's Daten tab. The URL must keep working — it is the OAuth
+ * callback landing (worker/auth/state.ts `safeReturnTo` falls back to /konto,
+ * and a failed callback appends ?auth=<reason> to it) and the address the
+ * pairing copy tells the learner to type.
  *
- * Deliberately not in the main navigation. Accounts are optional in a
- * local-first app, and a permanent nav slot would imply otherwise; the way in is
- * the profile menu in the header. Everything on the page is client-rendered
- * because all of it depends on a session the static build cannot know about.
+ * Deliberately NOT an entry in astro.config's `redirects:` table: that emits a
+ * meta refresh with a build-time-fixed URL and no query forwarding, which would
+ * silently swallow the ?auth= failure reason — and no gate can see that. The
+ * script below forwards every param and forces tab=daten; the meta refresh is
+ * only the no-JS fallback and loses the params, matching what a generated
+ * redirect page would have done anyway.
  */
-import Base from '../layouts/Base.astro';
-import Chrome from '../components/Chrome.astro';
-import AccountPanel from '../components/account/AccountPanel';
+import { withBase } from '../lib/url';
+const target = withBase('/progress');
 ---
 
-<Base title="Konto — Deutsch-Atlas" description="Konto, Freigaben und Fortschritt-Synchronisierung">
-  <h1 class="mb-6 text-2xl font-bold"><Chrome k="account.title" /></h1>
-  <AccountPanel client:only="react" />
-</Base>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Konto — Deutsch-Atlas</title>
+    <meta http-equiv="refresh" content={`0;url=${target}?tab=daten`} />
+    <script is:inline define:vars={{ target }}>
+      const params = new URLSearchParams(window.location.search);
+      params.set('tab', 'daten');
+      window.location.replace(`${target}?${params.toString()}${window.location.hash}`);
+    </script>
+  </head>
+  <body>
+    <p style="font-family: system-ui, sans-serif; padding: 2rem;">
+      <a href={`${target}?tab=daten`}>Fortschritt → Daten</a>
+    </p>
+  </body>
+</html>
