@@ -112,3 +112,52 @@ long-sentence statistic was wrong on first writing — its split lookahead was `
 never matches a Cyrillic capital, so the RU and UK halves reported one sentence each and a
 long-sentence share of 56–69% where EN read 10%. A statistic that works for one of four halves is
 worse than none.
+
+## The native-language review loop
+
+Two skills diagnose and repair explanation prose as *native-language text* — the quality
+dimension no validator can reach, because a calqued sentence is well-formed YAML, valid MDX and
+perfect orthography all at once:
+
+- `.claude/skills/textbook-text-reviewer/` — diagnosis only: findings with severity, learner
+  impact and a revision direction. Never rewrites.
+- `.claude/skills/textbook-text-editor/` — repair against the reviewer's findings.
+- `.claude/skills/textbook-quality-rubric.md` — the shared rubric both apply.
+
+**The defect class it exists for is the calque.** A RU/UK half drafted while the EN half is in
+view inherits its rhetoric sentence-for-sentence, and figures that work in English — antithesis
+("precise where a complaint is loud"), a unit number as teaching agent ("B1.7 taught"), "three
+moves do it" — garden-path or collapse in Russian and Ukrainian. First live case:
+`b1/digitales-leben`, learner-reported 2026-08-05. The tell was that RU and UK failed in the
+*same three sentences*: both halves had been shaped by the EN template, which is exactly what
+"independently authored from the German" exists to prevent.
+
+**When to run it:**
+
+1. **New unit authoring** — reviewer pass over the freshly drafted RU and UK halves, before the
+   five-field semantics review. The two reviews answer different questions and neither replaces
+   the other: this one never checks German facts against items, the semantics review never checks
+   whether the Russian is Russian.
+2. **A learner-reported language complaint** — this loop is the procedure, and the quoted
+   sentences are confirmed member cases, not the full finding list.
+3. **Not as a corpus-wide gate.** The scores are uncalibrated LLM judgements (the editor skill's
+   own calibration warning); a blanket pass over shipped topics manufactures review rounds. Run it
+   where a complaint, a spot-check or new authoring points.
+
+**How to run it — the parts the skills cannot know about this repo:**
+
+- Reviewer and editor are separate invocations, and the reviewer that verifies a revision is a
+  fresh context — never the editor grading itself (the skill's own workflow; also this repo's
+  review-round doctrine). Subagents run one at a time, sequentially.
+- **The factual specification is the German material** — the `<De>` half, the example sentences,
+  the tables. **Never hand the sibling half over as the reference**: halves are independent by
+  design and may deliberately diverge, so "matches the EN" is not meaning preservation — here it
+  is the defect under review. Give the EN half as context labelled as suspect, or not at all.
+- The editor's revision keeps the repo constraints: ≤ 120-word paragraphs, divergence-by-design
+  (an RU repair does not obligate the EN half), German terms glossed on first use, the language
+  hygiene rules (`bun run validate` enforces the character-set half of them).
+- Stop after two edit cycles and report what still fails (skill rule; same doctrine as "review
+  rounds end when a round finds nothing material").
+- **The 0–4 scores never leave the review.** Status (PASS/REVISE/REJECT) plus findings are the
+  deliverable; a score is an uncalibrated judgement with no command behind it, and quoting one in
+  a PR or doc violates the claims discipline in `CLAUDE.md`.

@@ -82,8 +82,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   band (`scripts/validate.ts:1309`); **(3)** wave the remaining nine, four of which need trimming
   (`awk '/^## Adaptierter Lesetext/{f=1;next}/^## /{f=0}f' <file> | wc -w`). Decide the corpus
   directory's final home in the same pass, never before the adaptations exist.
-- **C6-1 · Ukrainian calque audit** — review halves written before the German-first authoring
-  ruling; language quality, not alphabet parity, is the target.
+- **C6-1 · RU/UK calque triage with the prose-reviewer skill** — was "Ukrainian calque audit";
+  widened 2026-08-05 when a learner report caught calqued *Russian* in `b1/digitales-leben` (RU and
+  UK failed in the same sentences — both shaped by the EN template). Instrument now exists: the
+  `textbook-text-reviewer` skill loop (`docs/authoring/article-prose.md`). Scope by evidence, not
+  blanket: a 3-unit spot-check of B1 RU `Kurz gesagt` blocks (`meinung-medien`, `leben-veraendern`,
+  `informationen-vermitteln`) found none, so triage at *section* granularity, worst-suspects first
+  (units authored earliest in the B1 pipeline), and stop when a unit reviews clean. Language
+  quality, not alphabet parity, is the target.
 - **C6-2 · Verify the citation stress of `tatsächlich`** — `content/vocab/meinung-medien.yaml` has
   initial `ˈtaːtzɛçlɪç` (derivation from *Tatsache*, parallel `hauptsächlich`); a review argued for
   `taːtˈzɛçlɪç`, which is the emphatic realisation. Settle against Duden's primary entry and apply
